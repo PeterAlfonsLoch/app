@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4797ad72-7e48-438c-b0b1-64b9a8b6e046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{58740f90-66ec-4405-9e0c-a52510bfb62a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{d61d44c3-e61c-4241-b911-11a860345129}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="npca2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="np_entry.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\http.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\file.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\heap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\str.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\starter_start.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\install_npca2plugin.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="npca2_base.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\md5.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\mem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="npca2.rc">
+      <Filter>Source</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pluginbase.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="npca2.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="npca2_base.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ccvotagus\source\install_spaboot\install_spaboot.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ccvotagus\source\install_spaboot\md5.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="npca2.def">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\..\time\spa\x86\spa_bspatch.dll">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\..\..\time\spa\x86\spaadmin.bz">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\..\..\time\spa\x86\spalib.bz">
+      <Filter>Resource</Filter>
+    </None>
+  </ItemGroup>
+</Project>

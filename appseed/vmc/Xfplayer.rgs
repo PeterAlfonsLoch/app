@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{C467BBF9-B4BE-461E-8C5B-7699525E0E4E} = s 'Xfplayer'
+		'Xfplayer.EXE'
+		{
+			val AppID = s {C467BBF9-B4BE-461E-8C5B-7699525E0E4E}
+		}
+	}
+}

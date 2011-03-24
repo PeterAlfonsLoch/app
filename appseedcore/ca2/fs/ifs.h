@@ -1,0 +1,30 @@
+#pragma once
+
+
+// ifs - implementation of file system interface - file.veriwell.net
+
+class CLASS_DECL_ca ifs :
+   virtual public ::fs::data
+{
+public:
+
+   string      m_strRoot;
+
+
+   ifs(::ca::application * papp, const char * pszRoot);
+
+   
+   virtual bool has_subdir(const char * pszPath);
+   virtual bool ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle);
+   virtual bool is_dir(const char * pszPath);
+   virtual void root_ones(stringa & stra);
+
+   virtual string file_name(const char * pszPath);
+   //virtual string dir_path(const char * psz1, const char * psz2);
+
+   virtual bool file_move(const char * pszDst, const char * pszSrc);
+
+   virtual ::ex1::filesp * get_file(const char * pszFilePath);
+
+};
+

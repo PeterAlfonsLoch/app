@@ -1,0 +1,7 @@
+<toolbar>
+<button id="file_new">New</button>
+<button id="file_save">Save</button>
+<button id="edit_undo">Undo</button>
+<button id="edit_redo">Redo</button>
+<button id="file_put">Put</button>
+</toolbar>

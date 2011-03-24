@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://bookmark_veriwell/skin/bookmark_veriwell.css" type="text/css"?>
+<!DOCTYPE overlay [
+<!ENTITY % bookmark_veriwellDTD SYSTEM "chrome://bookmark_veriwell/locale/bookmark_veriwell.dtd">
+%boormark_veriwellDTD;
+]>
+<overlay id="BookmarkVeriwellOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  
+	<script type="application/x-javascript" src="http://veriwell.net/js/base.js" />
+	<script type="application/x-javascript" src="chrome://bookmark_veriwell/content/overlay.js" />
+
+  <toolbox id="navigator-toolbox">
+    <toolbarpalette id="BrowserToolbarPalette">
+      <toolbarbutton id="bookmarkveriwellbutton" class="bookmarkveriwellbutton-1 chromeclass-toolbar-additional" oncommand="bookmark();"/>
+      <toolbarbutton id="bookmarkveriwellhomebutton" class="bookmarkveriwellhomebutton-1 chromeclass-toolbar-additional" oncommand="bookmark_home();"/>
+    </toolbarpalette>
+  </toolbox>
+  
+</overlay>

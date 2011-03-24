@@ -1,0 +1,16 @@
+// npvmp.odl : type library source for npvmp.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (npvmp.tlb).
+
+[ uuid(08899B12-6B5D-437D-81D7-CEFAE56A9080), version(1.0) ]
+library Npvmp
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

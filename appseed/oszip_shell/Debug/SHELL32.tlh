@@ -1,0 +1,880 @@
+// Created by Microsoft (R) C/C++ Compiler Version 12.00.8168.0 (2d5de6b9).
+//
+// f:\veriwell\_project\oszip_shell\debug\SHELL32.tlh
+//
+// C++ source equivalent of Win32 type library C:\WINDOWS\system32\SHELL32.dll
+// compiler-generated file created 06/19/05 at 13:23:15 - DO NOT EDIT!
+
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("9ba05970-f6a8-11cf-a442-00a0c90a8f39"))
+/* dual interface */ IFolderViewOC;
+struct __declspec(uuid("62112aa2-ebe4-11cf-a5fb-0020afe7292d"))
+/* dispinterface */ DShellFolderViewEvents;
+struct /* coclass */ ShellFolderViewOC;
+struct __declspec(uuid("4a3df050-23bd-11d2-939f-00a0c91eedba"))
+/* dual interface */ DFConstraint;
+struct __declspec(uuid("1d2efd50-75ce-11d1-b75a-00a0c90564fe"))
+/* dual interface */ ISearchCommandExt;
+struct __declspec(uuid("fac32c80-cbe4-11ce-8350-444553540000"))
+/* dual interface */ FolderItem;
+struct __declspec(uuid("1f8352c0-50b0-11cf-960c-0080c7f4ee85"))
+/* dual interface */ FolderItemVerbs;
+struct __declspec(uuid("08ec3e00-50b0-11cf-960c-0080c7f4ee85"))
+/* dual interface */ FolderItemVerb;
+struct __declspec(uuid("744129e0-cbe5-11ce-8350-444553540000"))
+/* dual interface */ FolderItems;
+struct __declspec(uuid("bbcbde60-c3ff-11ce-8350-444553540000"))
+/* dual interface */ Folder;
+struct __declspec(uuid("f0d2d8ef-3890-11d2-bf8b-00c04fb93661"))
+/* dual interface */ Folder2;
+struct __declspec(uuid("a7ae5f64-c4d7-4d7f-9307-4d24ee54b841"))
+/* dual interface */ Folder3;
+struct __declspec(uuid("edc817aa-92b8-11d1-b075-00c04fc33aa5"))
+/* dual interface */ FolderItem2;
+struct /* coclass */ ShellFolderItem;
+struct __declspec(uuid("c94f0ad0-f363-11d2-a327-00c04f8eec7f"))
+/* dual interface */ FolderItems2;
+struct __declspec(uuid("eaa7c309-bbec-49d5-821d-64d966cb667f"))
+/* dual interface */ FolderItems3;
+struct __declspec(uuid("88a05c00-f000-11ce-8350-444553540000"))
+/* dual interface */ IShellLinkDual;
+struct __declspec(uuid("317ee249-f12e-11d2-b1e4-00c04f8eeb3e"))
+/* dual interface */ IShellLinkDual2;
+struct /* coclass */ ShellLinkObject;
+struct __declspec(uuid("e7a1af80-4d96-11cf-960c-0080c7f4ee85"))
+/* dual interface */ IShellFolderViewDual;
+struct __declspec(uuid("31c147b6-0ade-4a3c-b514-ddf932ef6d17"))
+/* dual interface */ IShellFolderViewDual2;
+struct /* coclass */ ShellFolderView;
+struct __declspec(uuid("d8f015c0-c278-11ce-a49e-444553540000"))
+/* dual interface */ IShellDispatch;
+struct __declspec(uuid("a4c6892c-3ba9-11d2-9dea-00c04fb16162"))
+/* dual interface */ IShellDispatch2;
+struct __declspec(uuid("177160ca-bb5a-411c-841d-bd38facdeaa0"))
+/* dual interface */ IShellDispatch3;
+struct __declspec(uuid("efd84b2d-4bcf-4298-be25-eb542a59fbda"))
+/* dual interface */ IShellDispatch4;
+struct /* coclass */ Shell;
+struct /* coclass */ ShellDispatchInproc;
+struct /* coclass */ WebViewFolderContents;
+struct __declspec(uuid("60890160-69f0-11d1-b758-00a0c90564fe"))
+/* dispinterface */ DSearchCommandEvents;
+struct /* coclass */ SearchCommand;
+struct __declspec(uuid("2d91eea1-9932-11d2-be86-00a0c9a83da1"))
+/* dual interface */ IFileSearchBand;
+struct /* coclass */ FileSearchBand;
+struct __declspec(uuid("18bcc359-4990-4bfb-b951-3c83702be5f9"))
+/* dual interface */ IWebWizardHost;
+struct __declspec(uuid("0751c551-7568-41c9-8e5b-e22e38919236"))
+/* dual interface */ INewWDEvents;
+struct __declspec(uuid("b30f7305-5967-45d1-b7bc-d6eb7163d770"))
+/* dual interface */ IPassportClientServices;
+struct /* coclass */ PassportClientServices;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(IFolderViewOC, __uuidof(IFolderViewOC));
+_COM_SMARTPTR_TYPEDEF(DShellFolderViewEvents, __uuidof(IDispatch));
+_COM_SMARTPTR_TYPEDEF(DFConstraint, __uuidof(DFConstraint));
+_COM_SMARTPTR_TYPEDEF(ISearchCommandExt, __uuidof(ISearchCommandExt));
+_COM_SMARTPTR_TYPEDEF(FolderItem, __uuidof(FolderItem));
+_COM_SMARTPTR_TYPEDEF(FolderItemVerbs, __uuidof(FolderItemVerbs));
+_COM_SMARTPTR_TYPEDEF(FolderItemVerb, __uuidof(FolderItemVerb));
+_COM_SMARTPTR_TYPEDEF(FolderItems, __uuidof(FolderItems));
+_COM_SMARTPTR_TYPEDEF(Folder, __uuidof(Folder));
+_COM_SMARTPTR_TYPEDEF(Folder2, __uuidof(Folder2));
+_COM_SMARTPTR_TYPEDEF(Folder3, __uuidof(Folder3));
+_COM_SMARTPTR_TYPEDEF(FolderItem2, __uuidof(FolderItem2));
+_COM_SMARTPTR_TYPEDEF(FolderItems2, __uuidof(FolderItems2));
+_COM_SMARTPTR_TYPEDEF(FolderItems3, __uuidof(FolderItems3));
+_COM_SMARTPTR_TYPEDEF(IShellLinkDual, __uuidof(IShellLinkDual));
+_COM_SMARTPTR_TYPEDEF(IShellLinkDual2, __uuidof(IShellLinkDual2));
+_COM_SMARTPTR_TYPEDEF(IShellFolderViewDual, __uuidof(IShellFolderViewDual));
+_COM_SMARTPTR_TYPEDEF(IShellFolderViewDual2, __uuidof(IShellFolderViewDual2));
+_COM_SMARTPTR_TYPEDEF(IShellDispatch, __uuidof(IShellDispatch));
+_COM_SMARTPTR_TYPEDEF(IShellDispatch2, __uuidof(IShellDispatch2));
+_COM_SMARTPTR_TYPEDEF(IShellDispatch3, __uuidof(IShellDispatch3));
+_COM_SMARTPTR_TYPEDEF(IShellDispatch4, __uuidof(IShellDispatch4));
+_COM_SMARTPTR_TYPEDEF(DSearchCommandEvents, __uuidof(IDispatch));
+_COM_SMARTPTR_TYPEDEF(IFileSearchBand, __uuidof(IFileSearchBand));
+_COM_SMARTPTR_TYPEDEF(IWebWizardHost, __uuidof(IWebWizardHost));
+_COM_SMARTPTR_TYPEDEF(INewWDEvents, __uuidof(INewWDEvents));
+_COM_SMARTPTR_TYPEDEF(IPassportClientServices, __uuidof(IPassportClientServices));
+
+//
+// Type library items
+//
+
+struct __declspec(uuid("9ba05970-f6a8-11cf-a442-00a0c90a8f39"))
+IFolderViewOC : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall SetFolderView (
+        IDispatch * pdisp ) = 0;
+};
+
+struct __declspec(uuid("62112aa2-ebe4-11cf-a5fb-0020afe7292d"))
+DShellFolderViewEvents : IDispatch
+{};
+
+struct __declspec(uuid("9ba05971-f6a8-11cf-a442-00a0c90a8f39"))
+ShellFolderViewOC;
+    // [ default ] interface IFolderViewOC
+    // [ default, source ] dispinterface DShellFolderViewEvents
+
+struct __declspec(uuid("4a3df050-23bd-11d2-939f-00a0c91eedba"))
+DFConstraint : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Name (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall get_Value (
+        VARIANT * pv ) = 0;
+};
+
+struct __declspec(uuid("1d2efd50-75ce-11d1-b75a-00a0c90564fe"))
+ISearchCommandExt : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall ClearResults ( ) = 0;
+    virtual HRESULT __stdcall NavigateToSearchResults ( ) = 0;
+    virtual HRESULT __stdcall get_ProgressText (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall SaveSearch ( ) = 0;
+    virtual HRESULT __stdcall GetErrorInfo (
+        BSTR * pbs,
+        int * phr ) = 0;
+    virtual HRESULT __stdcall SearchFor (
+        int iFor ) = 0;
+    virtual HRESULT __stdcall GetScopeInfo (
+        BSTR bsScope,
+        int * pdwScopeInfo ) = 0;
+    virtual HRESULT __stdcall RestoreSavedSearch (
+        VARIANT * pvarFile ) = 0;
+    virtual HRESULT __stdcall Execute (
+        VARIANT * RecordsAffected,
+        VARIANT * Parameters,
+        long Options ) = 0;
+    virtual HRESULT __stdcall AddConstraint (
+        BSTR Name,
+        VARIANT Value ) = 0;
+    virtual HRESULT __stdcall GetNextConstraint (
+        VARIANT_BOOL fReset,
+        struct DFConstraint * * ppdfc ) = 0;
+};
+
+enum SearchCommandExecuteErrors
+{
+    SCEE_PATHNOTFOUND = 1,
+    SCEE_MAXFILESFOUND = 2,
+    SCEE_INDEXSEARCH = 3,
+    SCEE_CONSTRAINT = 4,
+    SCEE_SCOPEMISMATCH = 5,
+    SCEE_CASESENINDEX = 6,
+    SCEE_INDEXNOTCOMPLETE = 7
+};
+
+struct __declspec(uuid("fac32c80-cbe4-11ce-8350-444553540000"))
+FolderItem : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Name (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall put_Name (
+        BSTR pbs ) = 0;
+    virtual HRESULT __stdcall get_Path (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall get_GetLink (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_GetFolder (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_IsLink (
+        VARIANT_BOOL * pb ) = 0;
+    virtual HRESULT __stdcall get_IsFolder (
+        VARIANT_BOOL * pb ) = 0;
+    virtual HRESULT __stdcall get_IsFileSystem (
+        VARIANT_BOOL * pb ) = 0;
+    virtual HRESULT __stdcall get_IsBrowsable (
+        VARIANT_BOOL * pb ) = 0;
+    virtual HRESULT __stdcall get_ModifyDate (
+        DATE * pdt ) = 0;
+    virtual HRESULT __stdcall put_ModifyDate (
+        DATE pdt ) = 0;
+    virtual HRESULT __stdcall get_Size (
+        long * pul ) = 0;
+    virtual HRESULT __stdcall get_Type (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall Verbs (
+        struct FolderItemVerbs * * ppfic ) = 0;
+    virtual HRESULT __stdcall InvokeVerb (
+        VARIANT vVerb = vtMissing ) = 0;
+};
+
+struct __declspec(uuid("1f8352c0-50b0-11cf-960c-0080c7f4ee85"))
+FolderItemVerbs : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Count (
+        long * plCount ) = 0;
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall Item (
+        VARIANT index,
+        struct FolderItemVerb * * ppid ) = 0;
+    virtual HRESULT __stdcall _NewEnum (
+        IUnknown * * ppunk ) = 0;
+};
+
+struct __declspec(uuid("08ec3e00-50b0-11cf-960c-0080c7f4ee85"))
+FolderItemVerb : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Name (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall DoIt ( ) = 0;
+};
+
+struct __declspec(uuid("744129e0-cbe5-11ce-8350-444553540000"))
+FolderItems : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Count (
+        long * plCount ) = 0;
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall Item (
+        VARIANT index,
+        struct FolderItem * * ppid ) = 0;
+    virtual HRESULT __stdcall _NewEnum (
+        IUnknown * * ppunk ) = 0;
+};
+
+struct __declspec(uuid("bbcbde60-c3ff-11ce-8350-444553540000"))
+Folder : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Title (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_ParentFolder (
+        struct Folder * * ppsf ) = 0;
+    virtual HRESULT __stdcall Items (
+        struct FolderItems * * ppid ) = 0;
+    virtual HRESULT __stdcall ParseName (
+        BSTR bName,
+        struct FolderItem * * ppid ) = 0;
+    virtual HRESULT __stdcall NewFolder (
+        BSTR bName,
+        VARIANT vOptions = vtMissing ) = 0;
+    virtual HRESULT __stdcall MoveHere (
+        VARIANT vItem,
+        VARIANT vOptions = vtMissing ) = 0;
+    virtual HRESULT __stdcall CopyHere (
+        VARIANT vItem,
+        VARIANT vOptions = vtMissing ) = 0;
+    virtual HRESULT __stdcall GetDetailsOf (
+        VARIANT vItem,
+        int iColumn,
+        BSTR * pbs ) = 0;
+};
+
+struct __declspec(uuid("f0d2d8ef-3890-11d2-bf8b-00c04fb93661"))
+Folder2 : Folder
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Self (
+        struct FolderItem * * ppfi ) = 0;
+    virtual HRESULT __stdcall get_OfflineStatus (
+        long * pul ) = 0;
+    virtual HRESULT __stdcall Synchronize ( ) = 0;
+    virtual HRESULT __stdcall get_HaveToShowWebViewBarricade (
+        VARIANT_BOOL * pbHaveToShowWebViewBarricade ) = 0;
+    virtual HRESULT __stdcall DismissedWebViewBarricade ( ) = 0;
+};
+
+enum OfflineFolderStatus
+{
+    OFS_INACTIVE = -1,
+    OFS_ONLINE = 0,
+    OFS_OFFLINE = 1,
+    OFS_SERVERBACK = 2,
+    OFS_DIRTYCACHE = 3
+};
+
+struct __declspec(uuid("a7ae5f64-c4d7-4d7f-9307-4d24ee54b841"))
+Folder3 : Folder2
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_ShowWebViewBarricade (
+        VARIANT_BOOL * pbShowWebViewBarricade ) = 0;
+    virtual HRESULT __stdcall put_ShowWebViewBarricade (
+        VARIANT_BOOL pbShowWebViewBarricade ) = 0;
+};
+
+struct __declspec(uuid("edc817aa-92b8-11d1-b075-00c04fc33aa5"))
+FolderItem2 : FolderItem
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall InvokeVerbEx (
+        VARIANT vVerb = vtMissing,
+        VARIANT vArgs = vtMissing ) = 0;
+    virtual HRESULT __stdcall ExtendedProperty (
+        BSTR bstrPropName,
+        VARIANT * pvRet ) = 0;
+};
+
+struct __declspec(uuid("2fe352ea-fd1f-11d2-b1f4-00c04f8eeb3e"))
+ShellFolderItem;
+    // [ default ] interface FolderItem2
+
+struct __declspec(uuid("c94f0ad0-f363-11d2-a327-00c04f8eec7f"))
+FolderItems2 : FolderItems
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall InvokeVerbEx (
+        VARIANT vVerb = vtMissing,
+        VARIANT vArgs = vtMissing ) = 0;
+};
+
+struct __declspec(uuid("eaa7c309-bbec-49d5-821d-64d966cb667f"))
+FolderItems3 : FolderItems2
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall Filter (
+        long grfFlags,
+        BSTR bstrFileSpec ) = 0;
+    virtual HRESULT __stdcall get_Verbs (
+        struct FolderItemVerbs * * ppfic ) = 0;
+};
+
+struct __declspec(uuid("88a05c00-f000-11ce-8350-444553540000"))
+IShellLinkDual : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Path (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall put_Path (
+        BSTR pbs ) = 0;
+    virtual HRESULT __stdcall get_Description (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall put_Description (
+        BSTR pbs ) = 0;
+    virtual HRESULT __stdcall get_WorkingDirectory (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall put_WorkingDirectory (
+        BSTR pbs ) = 0;
+    virtual HRESULT __stdcall get_Arguments (
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall put_Arguments (
+        BSTR pbs ) = 0;
+    virtual HRESULT __stdcall get_Hotkey (
+        int * piHK ) = 0;
+    virtual HRESULT __stdcall put_Hotkey (
+        int piHK ) = 0;
+    virtual HRESULT __stdcall get_ShowCommand (
+        int * piShowCommand ) = 0;
+    virtual HRESULT __stdcall put_ShowCommand (
+        int piShowCommand ) = 0;
+    virtual HRESULT __stdcall Resolve (
+        int fFlags ) = 0;
+    virtual HRESULT __stdcall GetIconLocation (
+        BSTR * pbs,
+        int * piIcon ) = 0;
+    virtual HRESULT __stdcall SetIconLocation (
+        BSTR bs,
+        int iIcon ) = 0;
+    virtual HRESULT __stdcall Save (
+        VARIANT vWhere = vtMissing ) = 0;
+};
+
+struct __declspec(uuid("317ee249-f12e-11d2-b1e4-00c04f8eeb3e"))
+IShellLinkDual2 : IShellLinkDual
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Target (
+        struct FolderItem * * ppfi ) = 0;
+};
+
+struct __declspec(uuid("11219420-1768-11d1-95be-00609797ea4f"))
+ShellLinkObject;
+    // [ default ] interface IShellLinkDual
+
+struct __declspec(uuid("e7a1af80-4d96-11cf-960c-0080c7f4ee85"))
+IShellFolderViewDual : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Folder (
+        struct Folder * * ppid ) = 0;
+    virtual HRESULT __stdcall SelectedItems (
+        struct FolderItems * * ppid ) = 0;
+    virtual HRESULT __stdcall get_FocusedItem (
+        struct FolderItem * * ppid ) = 0;
+    virtual HRESULT __stdcall SelectItem (
+        VARIANT * pvfi,
+        int dwFlags ) = 0;
+    virtual HRESULT __stdcall PopupItemMenu (
+        struct FolderItem * pfi,
+        VARIANT vx,
+        VARIANT vy,
+        BSTR * pbs ) = 0;
+    virtual HRESULT __stdcall get_Script (
+        IDispatch * * ppDisp ) = 0;
+    virtual HRESULT __stdcall get_ViewOptions (
+        long * plViewOptions ) = 0;
+};
+
+struct __declspec(uuid("31c147b6-0ade-4a3c-b514-ddf932ef6d17"))
+IShellFolderViewDual2 : IShellFolderViewDual
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_CurrentViewMode (
+        unsigned int * pViewMode ) = 0;
+    virtual HRESULT __stdcall put_CurrentViewMode (
+        unsigned int pViewMode ) = 0;
+    virtual HRESULT __stdcall SelectItemRelative (
+        int iRelative ) = 0;
+};
+
+struct __declspec(uuid("62112aa1-ebe4-11cf-a5fb-0020afe7292d"))
+ShellFolderView;
+    // [ default ] interface IShellFolderViewDual2
+    // [ default, source ] dispinterface DShellFolderViewEvents
+
+enum ShellFolderViewOptions
+{
+    SFVVO_SHOWALLOBJECTS = 1,
+    SFVVO_SHOWEXTENSIONS = 2,
+    SFVVO_SHOWCOMPCOLOR = 8,
+    SFVVO_SHOWSYSFILES = 32,
+    SFVVO_WIN95CLASSIC = 64,
+    SFVVO_DOUBLECLICKINWEBVIEW = 128,
+    SFVVO_DESKTOPHTML = 512
+};
+
+struct __declspec(uuid("d8f015c0-c278-11ce-a49e-444553540000"))
+IShellDispatch : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall get_Application (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall get_Parent (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall NameSpace (
+        VARIANT vDir,
+        struct Folder * * ppsdf ) = 0;
+    virtual HRESULT __stdcall BrowseForFolder (
+        long Hwnd,
+        BSTR Title,
+        long Options,
+        VARIANT RootFolder,
+        struct Folder * * ppsdf ) = 0;
+    virtual HRESULT __stdcall Windows (
+        IDispatch * * ppid ) = 0;
+    virtual HRESULT __stdcall Open (
+        VARIANT vDir ) = 0;
+    virtual HRESULT __stdcall Explore (
+        VARIANT vDir ) = 0;
+    virtual HRESULT __stdcall MinimizeAll ( ) = 0;
+    virtual HRESULT __stdcall UndoMinimizeALL ( ) = 0;
+    virtual HRESULT __stdcall FileRun ( ) = 0;
+    virtual HRESULT __stdcall CascadeWindows ( ) = 0;
+    virtual HRESULT __stdcall TileVertically ( ) = 0;
+    virtual HRESULT __stdcall TileHorizontally ( ) = 0;
+    virtual HRESULT __stdcall ShutdownWindows ( ) = 0;
+    virtual HRESULT __stdcall Suspend ( ) = 0;
+    virtual HRESULT __stdcall EjectPC ( ) = 0;
+    virtual HRESULT __stdcall SetTime ( ) = 0;
+    virtual HRESULT __stdcall TrayProperties ( ) = 0;
+    virtual HRESULT __stdcall Help ( ) = 0;
+    virtual HRESULT __stdcall FindFiles ( ) = 0;
+    virtual HRESULT __stdcall FindComputer ( ) = 0;
+    virtual HRESULT __stdcall RefreshMenu ( ) = 0;
+    virtual HRESULT __stdcall ControlPanelItem (
+        BSTR szDir ) = 0;
+};
+
+struct __declspec(uuid("a4c6892c-3ba9-11d2-9dea-00c04fb16162"))
+IShellDispatch2 : IShellDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall IsRestricted (
+        BSTR Group,
+        BSTR Restriction,
+        long * plRestrictValue ) = 0;
+    virtual HRESULT __stdcall ShellExecute (
+        BSTR File,
+        VARIANT vArgs = vtMissing,
+        VARIANT vDir = vtMissing,
+        VARIANT vOperation = vtMissing,
+        VARIANT vShow = vtMissing ) = 0;
+    virtual HRESULT __stdcall FindPrinter (
+        BSTR Name,
+        BSTR location,
+        BSTR model ) = 0;
+    virtual HRESULT __stdcall GetSystemInformation (
+        BSTR Name,
+        VARIANT * pv ) = 0;
+    virtual HRESULT __stdcall ServiceStart (
+        BSTR ServiceName,
+        VARIANT Persistent,
+        VARIANT * pSuccess ) = 0;
+    virtual HRESULT __stdcall ServiceStop (
+        BSTR ServiceName,
+        VARIANT Persistent,
+        VARIANT * pSuccess ) = 0;
+    virtual HRESULT __stdcall IsServiceRunning (
+        BSTR ServiceName,
+        VARIANT * pRunning ) = 0;
+    virtual HRESULT __stdcall CanStartStopService (
+        BSTR ServiceName,
+        VARIANT * pCanStartStop ) = 0;
+    virtual HRESULT __stdcall ShowBrowserBar (
+        BSTR bstrClsid,
+        VARIANT bShow,
+        VARIANT * pSuccess ) = 0;
+};
+
+struct __declspec(uuid("177160ca-bb5a-411c-841d-bd38facdeaa0"))
+IShellDispatch3 : IShellDispatch2
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall AddToRecent (
+        VARIANT varFile,
+        BSTR bstrCategory ) = 0;
+};
+
+struct __declspec(uuid("efd84b2d-4bcf-4298-be25-eb542a59fbda"))
+IShellDispatch4 : IShellDispatch3
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall WindowsSecurity ( ) = 0;
+    virtual HRESULT __stdcall ToggleDesktop ( ) = 0;
+    virtual HRESULT __stdcall ExplorerPolicy (
+        BSTR bstrPolicyName,
+        VARIANT * pValue ) = 0;
+    virtual HRESULT __stdcall GetSetting (
+        long lSetting,
+        VARIANT_BOOL * pResult ) = 0;
+};
+
+struct __declspec(uuid("13709620-c279-11ce-a49e-444553540000"))
+Shell;
+    // [ default ] interface IShellDispatch
+
+struct __declspec(uuid("0a89a860-d7b1-11ce-8350-444553540000"))
+ShellDispatchInproc;
+    // [ default ] interface IUnknown
+
+struct __declspec(uuid("1820fed0-473e-11d0-a96c-00c04fd705a2"))
+WebViewFolderContents;
+    // [ default ] interface IShellFolderViewDual
+    // [ default, source ] dispinterface DShellFolderViewEvents
+
+enum ShellSpecialFolderConstants
+{
+    ssfDESKTOP = 0,
+    ssfPROGRAMS = 2,
+    ssfCONTROLS = 3,
+    ssfPRINTERS = 4,
+    ssfPERSONAL = 5,
+    ssfFAVORITES = 6,
+    ssfSTARTUP = 7,
+    ssfRECENT = 8,
+    ssfSENDTO = 9,
+    ssfBITBUCKET = 10,
+    ssfSTARTMENU = 11,
+    ssfDESKTOPDIRECTORY = 16,
+    ssfDRIVES = 17,
+    ssfNETWORK = 18,
+    ssfNETHOOD = 19,
+    ssfFONTS = 20,
+    ssfTEMPLATES = 21,
+    ssfCOMMONSTARTMENU = 22,
+    ssfCOMMONPROGRAMS = 23,
+    ssfCOMMONSTARTUP = 24,
+    ssfCOMMONDESKTOPDIR = 25,
+    ssfAPPDATA = 26,
+    ssfPRINTHOOD = 27,
+    ssfLOCALAPPDATA = 28,
+    ssfALTSTARTUP = 29,
+    ssfCOMMONALTSTARTUP = 30,
+    ssfCOMMONFAVORITES = 31,
+    ssfINTERNETCACHE = 32,
+    ssfCOOKIES = 33,
+    ssfHISTORY = 34,
+    ssfCOMMONAPPDATA = 35,
+    ssfWINDOWS = 36,
+    ssfSYSTEM = 37,
+    ssfPROGRAMFILES = 38,
+    ssfMYPICTURES = 39,
+    ssfPROFILE = 40,
+    ssfSYSTEMx86 = 41,
+    ssfPROGRAMFILESx86 = 48
+};
+
+struct __declspec(uuid("60890160-69f0-11d1-b758-00a0c90564fe"))
+DSearchCommandEvents : IDispatch
+{};
+
+struct __declspec(uuid("b005e690-678d-11d1-b758-00a0c90564fe"))
+SearchCommand;
+    // [ default ] interface IDispatch
+    // [ default, source ] dispinterface DSearchCommandEvents
+
+struct __declspec(uuid("2d91eea1-9932-11d2-be86-00a0c9a83da1"))
+IFileSearchBand : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall SetFocus ( ) = 0;
+    virtual HRESULT __stdcall SetSearchParameters (
+        BSTR * pbstrSearchID,
+        VARIANT_BOOL bNavToResults,
+        VARIANT * pvarScope = &vtMissing,
+        VARIANT * pvarQueryFile = &vtMissing ) = 0;
+    virtual HRESULT __stdcall get_SearchID (
+        BSTR * pbstrSearchID ) = 0;
+    virtual HRESULT __stdcall get_Scope (
+        VARIANT * pvarScope ) = 0;
+    virtual HRESULT __stdcall get_QueryFile (
+        VARIANT * pvarFile ) = 0;
+};
+
+struct __declspec(uuid("c4ee31f3-4768-11d2-be5c-00a0c9a83da1"))
+FileSearchBand;
+    // [ default ] interface IFileSearchBand
+
+struct __declspec(uuid("18bcc359-4990-4bfb-b951-3c83702be5f9"))
+IWebWizardHost : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall FinalBack ( ) = 0;
+    virtual HRESULT __stdcall FinalNext ( ) = 0;
+    virtual HRESULT __stdcall Cancel ( ) = 0;
+    virtual HRESULT __stdcall put_Caption (
+        BSTR pbstrCaption ) = 0;
+    virtual HRESULT __stdcall get_Caption (
+        BSTR * pbstrCaption ) = 0;
+    virtual HRESULT __stdcall put_Property (
+        BSTR bstrPropertyName,
+        VARIANT * pvProperty ) = 0;
+    virtual HRESULT __stdcall get_Property (
+        BSTR bstrPropertyName,
+        VARIANT * pvProperty ) = 0;
+    virtual HRESULT __stdcall SetWizardButtons (
+        VARIANT_BOOL vfEnableBack,
+        VARIANT_BOOL vfEnableNext,
+        VARIANT_BOOL vfLastPage ) = 0;
+    virtual HRESULT __stdcall SetHeaderText (
+        BSTR bstrHeaderTitle,
+        BSTR bstrHeaderSubtitle ) = 0;
+};
+
+struct __declspec(uuid("0751c551-7568-41c9-8e5b-e22e38919236"))
+INewWDEvents : IWebWizardHost
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall PassportAuthenticate (
+        BSTR bstrSignInUrl,
+        VARIANT_BOOL * pvfAuthenitcated ) = 0;
+};
+
+struct __declspec(uuid("b30f7305-5967-45d1-b7bc-d6eb7163d770"))
+IPassportClientServices : IDispatch
+{
+    //
+    // Raw methods provided by interface
+    //
+
+    virtual HRESULT __stdcall MemberExists (
+        BSTR bstrUser,
+        BSTR bstrPassword,
+        VARIANT_BOOL * pvfExists ) = 0;
+};
+
+struct __declspec(uuid("2d2307c8-7db4-40d6-9100-d52af4f97a5b"))
+PassportClientServices;
+    // [ default ] interface IPassportClientServices
+
+//
+// Named GUID constants initializations
+//
+
+extern "C" const GUID __declspec(selectany) LIBID_Shell32 =
+    {0x50a7e9b0,0x70ef,0x11d1,{0xb7,0x5a,0x00,0xa0,0xc9,0x05,0x64,0xfe}};
+extern "C" const GUID __declspec(selectany) IID_IFolderViewOC =
+    {0x9ba05970,0xf6a8,0x11cf,{0xa4,0x42,0x00,0xa0,0xc9,0x0a,0x8f,0x39}};
+extern "C" const GUID __declspec(selectany) DIID_DShellFolderViewEvents =
+    {0x62112aa2,0xebe4,0x11cf,{0xa5,0xfb,0x00,0x20,0xaf,0xe7,0x29,0x2d}};
+extern "C" const GUID __declspec(selectany) CLSID_ShellFolderViewOC =
+    {0x9ba05971,0xf6a8,0x11cf,{0xa4,0x42,0x00,0xa0,0xc9,0x0a,0x8f,0x39}};
+extern "C" const GUID __declspec(selectany) IID_DFConstraint =
+    {0x4a3df050,0x23bd,0x11d2,{0x93,0x9f,0x00,0xa0,0xc9,0x1e,0xed,0xba}};
+extern "C" const GUID __declspec(selectany) IID_ISearchCommandExt =
+    {0x1d2efd50,0x75ce,0x11d1,{0xb7,0x5a,0x00,0xa0,0xc9,0x05,0x64,0xfe}};
+extern "C" const GUID __declspec(selectany) IID_FolderItem =
+    {0xfac32c80,0xcbe4,0x11ce,{0x83,0x50,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) IID_FolderItemVerbs =
+    {0x1f8352c0,0x50b0,0x11cf,{0x96,0x0c,0x00,0x80,0xc7,0xf4,0xee,0x85}};
+extern "C" const GUID __declspec(selectany) IID_FolderItemVerb =
+    {0x08ec3e00,0x50b0,0x11cf,{0x96,0x0c,0x00,0x80,0xc7,0xf4,0xee,0x85}};
+extern "C" const GUID __declspec(selectany) IID_FolderItems =
+    {0x744129e0,0xcbe5,0x11ce,{0x83,0x50,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) IID_Folder =
+    {0xbbcbde60,0xc3ff,0x11ce,{0x83,0x50,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) IID_Folder2 =
+    {0xf0d2d8ef,0x3890,0x11d2,{0xbf,0x8b,0x00,0xc0,0x4f,0xb9,0x36,0x61}};
+extern "C" const GUID __declspec(selectany) IID_Folder3 =
+    {0xa7ae5f64,0xc4d7,0x4d7f,{0x93,0x07,0x4d,0x24,0xee,0x54,0xb8,0x41}};
+extern "C" const GUID __declspec(selectany) IID_FolderItem2 =
+    {0xedc817aa,0x92b8,0x11d1,{0xb0,0x75,0x00,0xc0,0x4f,0xc3,0x3a,0xa5}};
+extern "C" const GUID __declspec(selectany) CLSID_ShellFolderItem =
+    {0x2fe352ea,0xfd1f,0x11d2,{0xb1,0xf4,0x00,0xc0,0x4f,0x8e,0xeb,0x3e}};
+extern "C" const GUID __declspec(selectany) IID_FolderItems2 =
+    {0xc94f0ad0,0xf363,0x11d2,{0xa3,0x27,0x00,0xc0,0x4f,0x8e,0xec,0x7f}};
+extern "C" const GUID __declspec(selectany) IID_FolderItems3 =
+    {0xeaa7c309,0xbbec,0x49d5,{0x82,0x1d,0x64,0xd9,0x66,0xcb,0x66,0x7f}};
+extern "C" const GUID __declspec(selectany) IID_IShellLinkDual =
+    {0x88a05c00,0xf000,0x11ce,{0x83,0x50,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) IID_IShellLinkDual2 =
+    {0x317ee249,0xf12e,0x11d2,{0xb1,0xe4,0x00,0xc0,0x4f,0x8e,0xeb,0x3e}};
+extern "C" const GUID __declspec(selectany) CLSID_ShellLinkObject =
+    {0x11219420,0x1768,0x11d1,{0x95,0xbe,0x00,0x60,0x97,0x97,0xea,0x4f}};
+extern "C" const GUID __declspec(selectany) IID_IShellFolderViewDual =
+    {0xe7a1af80,0x4d96,0x11cf,{0x96,0x0c,0x00,0x80,0xc7,0xf4,0xee,0x85}};
+extern "C" const GUID __declspec(selectany) IID_IShellFolderViewDual2 =
+    {0x31c147b6,0x0ade,0x4a3c,{0xb5,0x14,0xdd,0xf9,0x32,0xef,0x6d,0x17}};
+extern "C" const GUID __declspec(selectany) CLSID_ShellFolderView =
+    {0x62112aa1,0xebe4,0x11cf,{0xa5,0xfb,0x00,0x20,0xaf,0xe7,0x29,0x2d}};
+extern "C" const GUID __declspec(selectany) IID_IShellDispatch =
+    {0xd8f015c0,0xc278,0x11ce,{0xa4,0x9e,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) IID_IShellDispatch2 =
+    {0xa4c6892c,0x3ba9,0x11d2,{0x9d,0xea,0x00,0xc0,0x4f,0xb1,0x61,0x62}};
+extern "C" const GUID __declspec(selectany) IID_IShellDispatch3 =
+    {0x177160ca,0xbb5a,0x411c,{0x84,0x1d,0xbd,0x38,0xfa,0xcd,0xea,0xa0}};
+extern "C" const GUID __declspec(selectany) IID_IShellDispatch4 =
+    {0xefd84b2d,0x4bcf,0x4298,{0xbe,0x25,0xeb,0x54,0x2a,0x59,0xfb,0xda}};
+extern "C" const GUID __declspec(selectany) CLSID_Shell =
+    {0x13709620,0xc279,0x11ce,{0xa4,0x9e,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) CLSID_ShellDispatchInproc =
+    {0x0a89a860,0xd7b1,0x11ce,{0x83,0x50,0x44,0x45,0x53,0x54,0x00,0x00}};
+extern "C" const GUID __declspec(selectany) CLSID_WebViewFolderContents =
+    {0x1820fed0,0x473e,0x11d0,{0xa9,0x6c,0x00,0xc0,0x4f,0xd7,0x05,0xa2}};
+extern "C" const GUID __declspec(selectany) DIID_DSearchCommandEvents =
+    {0x60890160,0x69f0,0x11d1,{0xb7,0x58,0x00,0xa0,0xc9,0x05,0x64,0xfe}};
+extern "C" const GUID __declspec(selectany) CLSID_SearchCommand =
+    {0xb005e690,0x678d,0x11d1,{0xb7,0x58,0x00,0xa0,0xc9,0x05,0x64,0xfe}};
+extern "C" const GUID __declspec(selectany) IID_IFileSearchBand =
+    {0x2d91eea1,0x9932,0x11d2,{0xbe,0x86,0x00,0xa0,0xc9,0xa8,0x3d,0xa1}};
+extern "C" const GUID __declspec(selectany) CLSID_FileSearchBand =
+    {0xc4ee31f3,0x4768,0x11d2,{0xbe,0x5c,0x00,0xa0,0xc9,0xa8,0x3d,0xa1}};
+extern "C" const GUID __declspec(selectany) IID_IWebWizardHost =
+    {0x18bcc359,0x4990,0x4bfb,{0xb9,0x51,0x3c,0x83,0x70,0x2b,0xe5,0xf9}};
+extern "C" const GUID __declspec(selectany) IID_INewWDEvents =
+    {0x0751c551,0x7568,0x41c9,{0x8e,0x5b,0xe2,0x2e,0x38,0x91,0x92,0x36}};
+extern "C" const GUID __declspec(selectany) IID_IPassportClientServices =
+    {0xb30f7305,0x5967,0x45d1,{0xb7,0xbc,0xd6,0xeb,0x71,0x63,0xd7,0x70}};
+extern "C" const GUID __declspec(selectany) CLSID_PassportClientServices =
+    {0x2d2307c8,0x7db4,0x40d6,{0x91,0x00,0xd5,0x2a,0xf4,0xf9,0x7a,0x5b}};
+
+#pragma pack(pop)

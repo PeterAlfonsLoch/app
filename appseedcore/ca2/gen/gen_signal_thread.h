@@ -1,0 +1,58 @@
+#pragma once
+
+namespace gen
+{
+
+   template < class DST, class SRC >
+   class signal_thread :
+      public ::radix::thread
+   {
+   public:
+
+
+      DST * m_psignalizableDst;
+      void (DST::* m_pfnDst)(gen::signal_object *);
+      SRC * m_psignalizableSrc;
+      void (SRC::* m_pfnSrc)(gen::signal_object *);
+      gen::signal_object * m_pobj;
+      
+      
+      signal_thread(::ca::application * papp,
+         DST * psignalizableDst, void (DST::* pfnDst)(gen::signal_object *), 
+         SRC * psignalizableSrc, void (SRC::* pfnSrc)(gen::signal_object *), 
+         gen::signal_object * pobj) :
+         ca(papp),
+         thread(papp)
+      {
+         m_bAutoDelete        = true;
+         m_p->m_bAutoDelete   = true;
+         m_psignalizableDst   = psignalizableDst;
+         m_pfnDst             = pfnDst;
+         m_psignalizableSrc   = psignalizableSrc;
+         m_pfnSrc             = pfnSrc;
+         m_pobj               = pobj;
+      }
+
+
+      int run()
+      {
+         (m_psignalizableSrc->*m_pfnSrc)(m_pobj);
+         (m_psignalizableDst->*m_pfnDst)(m_pobj);
+         delete m_pobj;
+         return 0;
+      }
+
+
+   };
+
+   template < class DST, class SRC >
+   void emit(::ca::application * papp,
+      DST * psignalizableDst, void (DST::* pfnDst)(gen::signal_object *), 
+      SRC * psignalizableSrc, void (SRC::* pfnSrc)(gen::signal_object *), 
+      gen::signal_object * pobj)
+   {
+      signal_thread < DST, SRC > * pthread = new signal_thread < DST, SRC > (papp, psignalizableDst, pfnDst, psignalizableSrc, pfnSrc, pobj);
+      pthread->Begin();
+   }
+
+} // namespace gen

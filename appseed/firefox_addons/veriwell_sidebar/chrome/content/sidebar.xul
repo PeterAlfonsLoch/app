@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type"text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<!DOCTYPE page SYSTEM "chrome://veriwell_sidebar/locale/veriwell_sidebar.dtd">
+<page title="veriwell"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+	  Loading...
+</page>

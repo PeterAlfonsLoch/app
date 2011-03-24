@@ -1,0 +1,9 @@
+SCC = This is a Source Code Control file
+
+[vmszlib.dsp]
+SCC_Aux_Path = "H:\_veriwell\vss\_vapp"
+SCC_Project_Name = "$/vmszlib", VFDAAAAA
+
+[vmszlib.vcproj]
+SCC_Aux_Path = "F:\veriwell\vss\_vapp"
+SCC_Project_Name = "$/vmszlib", VFDAAAAA

@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+DATE=`date +%Y-%m-%d_%H_%M_%S`
+
+# Dados do arquivo de backup
+TOPIC="votagus"
+FILE="backup-$TOPIC-$DATE.tar.gz"
+DIRECTORIES="/home/cgclcst/net/ds"
+
+# Dados do servidor FTP
+FTP_HOST="208.109.96.16"
+FTP_USER="gustavo"
+FTP_PASSWORD="h1pt5mLJpC3r"
+
+# A partir daqui não precisa mais editar.
+# Cria o arquivo .tar.gz no /tmp (Temporário)
+cd /tmp
+tar zcf /tmp/$FILE $DIRECTORIES
+
+# Acessa o FTP e coloca os arquivos
+ftp -in <<EOF
+   open $FTP_HOST
+   user $FTP_USER $FTP_PASSWORD
+   bin
+   lcd /tmp
+   dele $FILE
+   put $FILE
+   bye
+EOF
+
+# Remove os arquivos temporarios
+rm -rf /tmp/$FILE

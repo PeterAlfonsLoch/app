@@ -1,0 +1,16 @@
+// vmsriffdec.odl : type library source for vmsriffdec.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (vmsriffdec.tlb).
+
+[ uuid(8BBD7683-A601-453B-B8BD-8B2E6B54AED5), version(1.0) ]
+library Vmsriffdec
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

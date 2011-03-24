@@ -1,0 +1,104 @@
+﻿<layout name="Brasil - ABNT2" hkla="0xf0100416;0x0416" >
+	<item code="53" value=";" />
+	<item code="53" shift="1" value=":" />
+	<item code="86" value="\\" />
+	<item code="86" shift="1" value="|" />
+	<item code="12" value="-" />
+	<item code="12" shift="1" value="_" />
+	<item code="13" value="=" />
+	<item code="13 shift="1" value="+" />
+	<item code="26" escape="´" />
+	<item code="26" shift="1" escape="`" />
+	<item code="40" escape="~" />
+	<item code="40" shift="1" escape="^" />
+	<item code="27" value="[" />
+	<item code="27" shift="1" value="{" />
+	<item code="43" value="]" />
+	<item code="43" shift="1" value="}" />
+	<item code="51" value="," />
+	<item code="51" shift="1" value="<" />
+	<item code="52" value="." />
+	<item code="52" shift="1" value=">" />
+	<item code="115" value="/" />
+	<item code="115" shift="1" value="?" />
+	<item code="41" value="\'" />
+	<item code="41" shift="1" value="\"" />
+	<item code="2" value="1" />
+	<item code="3" value="2" />
+	<item code="4" value="3" />
+	<item code="5" value="4" />
+	<item code="6" value="5" />
+	<item code="7" value="6" />
+	<item code="8" value="7" />
+	<item code="9" value="8" />
+	<item code="10" value="9" />
+	<item code="11" value="0" />
+	<item code="2" shift="1" value="!" />
+	<item code="3" shift="1" value="@" />
+	<item code="4" shift="1" value="#" />
+	<item code="5" shift="1" value="$" />
+	<item code="6" shift="1" value="%" />
+	<item code="7" shift="1" escape="¨" />
+	<item code="8" shift="1" value="&" />
+	<item code="9" shift="1" value="*" />
+	<item code="10" shift="1" value="(" />
+	<item code="11" shift="1" value=")" />
+	<escape value="¨">
+		<item char="a" value="ä" />
+		<item char="e" value="ë" />
+		<item char="i" value="ï" />
+		<item char="o" value="ö" />
+		<item char="u" value="ü" />
+		<item char="A" value="Ä" />
+		<item char="E" value="Ë" />
+		<item char="I" value="Ï" />
+		<item char="O" value="Ö" />
+		<item char="U" value="Ü" />
+	</escape>
+	<escape value="´">
+		<item char="a" value="á" />
+		<item char="e" value="é" />
+		<item char="i" value="í" />
+		<item char="o" value="ó" />
+		<item char="u" value="ú" />
+		<item char="A" value="Á" />
+		<item char="E" value="É" />
+		<item char="I" value="Í" />
+		<item char="O" value="Ó" />
+		<item char="U" value="Ú" />
+	</escape>
+	<escape value="`">
+		<item char="a" value="à" />
+		<item char="e" value="è" />
+		<item char="i" value="ì" />
+		<item char="o" value="ò" />
+		<item char="u" value="ù" />
+		<item char="A" value="À" />
+		<item char="E" value="È" />
+		<item char="I" value="Ì" />
+		<item char="O" value="Ò" />
+		<item char="U" value="Ù" />
+	</escape>
+	<escape value="~">
+		<item char="a" value="ã" />
+		<item char="o" value="õ" />
+		<item char="n" value="ñ" />
+		<item char="A" value="Ã" />
+		<item char="O" value="Õ" />
+		<item char="N" value="Ñ" />
+	</escape>
+	<escape value="^">
+		<item char="a" value="â" />
+		<item char="e" value="ê" />
+		<item char="i" value="î" />
+		<item char="o" value="ô" />
+		<item char="u" value="û" />
+		<item char="A" value="Â" />
+		<item char="E" value="Ê" />
+		<item char="I" value="Î" />
+		<item char="O" value="Ô" />
+		<item char="U" value="Û" />
+	</escape>
+
+</layout>
+

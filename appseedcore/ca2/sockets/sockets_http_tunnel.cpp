@@ -1,0 +1,187 @@
+#include "StdAfx.h"
+
+namespace sockets
+{
+
+   http_tunnel::http_tunnel(socket_handler_base & h) :
+      ::ca::ca(h.get_app()),
+      socket(h),
+      stream_socket(h),
+      tcp_socket(h),
+      http_socket(h),
+      m_fileBody(h.get_app(), m_memoryBody)
+   {
+      SetLineProtocol();
+      m_bOk = false;
+      m_bDirect = false;
+      m_estate = state_initial;
+      m_memoryBuf.allocate(1024 * 16);
+   }
+
+
+
+
+      void http_tunnel::OnConnect()
+   {
+      if(m_bDirect)
+      {
+         step();
+      }
+      else if(m_bOk)
+      {
+         step();
+      }
+      else if(GetUrlPort() == 80)
+      {
+         m_bOk = true;
+         step();
+      }
+      else
+      {
+         if(m_estate == state_initial)
+         {
+            string str;
+            str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost(), (int) GetUrlPort());
+            Send(str);
+            str.Format("host: %s:%d\r\n", GetUrlHost(), (int) GetUrlPort());
+            Send(str);
+            str = "\r\n";
+            Send(str);
+            m_estate = state_connect_sent;
+         }
+      }
+   }
+
+      void http_tunnel::OnLine(const string & strParam)
+      {
+         if(m_bOk || m_bDirect)
+         {
+            http_socket::OnLine(strParam);
+         }
+         else
+         {
+            string str(strParam);
+            m_straProxy.add(str);
+            if(m_straProxy.get_count() == 1)
+            {
+               int iPos = str.find(" ");
+               string strStatus;
+               if(iPos >= 0)
+               {
+                  strStatus = str.Mid(iPos + 1);
+               }
+               if(gen::str::begins(strStatus, "200 "))
+               {
+                  m_estate = state_proxy_ok;
+               }
+            }
+            str.trim();
+            if(str.is_empty())
+            {
+               if(m_estate != state_proxy_ok)
+                  return;
+               m_bOk = true;
+               if(m_bSslTunnel)
+               {
+                  EnableSSL();
+                  OnSSLConnect();
+                  m_estate = state_init_ssl;
+               }
+               else
+               {
+                  step();
+               }
+            }
+         }
+      }
+
+      void http_tunnel::step()
+      {
+         string str;
+         m_request.attr("http_method") = "GET";
+         m_request.attr("request_uri") = m_strRequest;
+         m_request.attr("http_version") = "HTTP/1.1";
+      //   outheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      //outheader("Accept-Language") = "en-us,en;q=0.5";
+      //outheader("Accept-Encoding") = "gzip,deflate";
+      //outheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+      //outheader("User-agent") = MyUseragent();
+
+      //if (GetUrlPort() != 80 && GetUrlPort() != 443)
+      //   outheader("Host") = GetUrlHost() + ":" + Utility::l2string(GetUrlPort());
+      //else
+      //   outheader("Host") = GetUrlHost();
+         outheader("Host") = m_host;
+         SendRequest();
+      }
+
+      void http_tunnel::OnFirst()
+      {
+      }
+      void http_tunnel::OnHeader(const string & strKey, const string & strValue)
+      {
+         inheader(strKey) = strValue;
+      }
+      void http_tunnel::OnHeaderComplete()
+      {
+         m_bHeaders = true;
+         m_fileBody.Truncate(0);
+         m_fileBody.seek_to_begin();
+      }
+      void http_tunnel::OnData(const char * psz, size_t size)
+      {
+         m_fileBody.write(psz, size);
+      }
+
+
+
+   bool http_tunnel::open(bool bConfigProxy)
+   {
+      if(bConfigProxy)
+      {
+         ::sockets::application_interface * psocketsapp = 
+            dynamic_cast < ::sockets::application_interface  * >
+               (get_app());
+         psocketsapp->http_config_proxy(get_url(), this);
+      }
+      if(m_bDirect)
+      {
+         if (!tcp_socket::open(GetUrlHost(),GetUrlPort()))
+         {
+            if (!Connecting())
+            {
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::gen::log::level::fatal);
+               SetCloseAndDelete();
+            }
+            return false;
+         }
+      }
+      else
+      {
+         m_bSslTunnel = IsSSL();
+         EnableSSL(false);
+         if (!tcp_socket::open(m_strProxy, (port_t) m_iProxyPort))
+         {
+            if (!Connecting())
+            {
+               Handler().LogError(this, "http_get_socket", -1, "connect() failed miserably", ::gen::log::level::fatal);
+               SetCloseAndDelete();
+            }
+            return false;
+         }
+      }
+      return true;}
+
+
+   const string & http_tunnel::GetUrlHost()
+   {
+      return m_host;
+   }
+
+
+   port_t http_tunnel::GetUrlPort()
+   {
+      return m_port;
+   }
+
+} // namespace sockets

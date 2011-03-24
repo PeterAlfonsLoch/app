@@ -1,0 +1,4 @@
+content bookmark_veriwell chrome/content
+
+# Firefox
+overlay	chrome://browser/content/browser.xul chrome://bookmark_veriwell/chrome/content/statusbar.xul

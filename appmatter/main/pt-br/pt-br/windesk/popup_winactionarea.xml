@@ -1,0 +1,9 @@
+<menubar>
+	<menubar id="view">
+		<item id="view_clock">Relógio</item>
+		<item id="view_area">Áreas</item>
+		<item id="view_task">Tarefas</item>
+		<item id="list_view_auto_arrange">Organizar Automaticamente</item>
+		<item id="properties">Propriedades</item>
+	</menubar>
+</menubar>

@@ -1,0 +1,1445 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "../vmsp/resource.h"
+#include "cafxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\vmc.ico"
+IDR_VMCTYPE             ICON    DISCARDABLE     "res\\vmcDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDR_VMCTYPE_SRVR_IP     BITMAP  MOVEABLE PURE   "res\\IToolbar.bmp"
+IDB_MENUV033            BITMAP  DISCARDABLE     "res\\menuv033.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_CONTEXT_HELP
+END
+
+IDR_VMCTYPE_SRVR_IP TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_CONTEXT_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Tela Cheia",                  ID_VIEW_FULL_SCREEN
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmc...",               ID_APP_ABOUT
+    END
+    POPUP "&Ferramentas"
+    BEGIN
+        MENUITEM "Á&lbum\tF5",                  ID_TOOLS_ALBUM
+        MENUITEM "&Controle de Volume\tF9",     ID_TOOLS_MIXER
+        MENUITEM SEPARATOR
+        MENUITEM "Economizar memória",          ID_TOOLS_SAVEMEMORY
+        MENUITEM "Economizar processamento",    ID_TOOLS_SAVEPROCESSING
+        MENUITEM SEPARATOR
+        POPUP "&Utilitários de banco de dados"
+        BEGIN
+            MENUITEM "Compactar banco de dados",    ID_TOOLS_COMPACTDATABASE
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Opções...",                  ID_TOOLS_OPTIONS
+    END
+END
+
+IDR_VMCTYPE MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "Paste &Special...",           ID_EDIT_PASTE_SPECIAL
+        MENUITEM SEPARATOR
+        MENUITEM "Insert &New Object...",       ID_OLE_INSERT_NEW
+        MENUITEM "Lin&ks...",                   ID_OLE_EDIT_LINKS
+        MENUITEM "<<OLE VERBS GO HERE>>",       ID_OLE_VERB_FIRST
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmc...",               ID_APP_ABOUT
+    END
+END
+
+IDR_VMCTYPE_CNTR_IP MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    MENUITEM SEPARATOR
+    MENUITEM SEPARATOR
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+    END
+END
+
+IDR_VMCTYPE_SRVR_EMB MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "&Update\tCtrl+S",             ID_FILE_UPDATE
+        MENUITEM "Save Copy &As...",            ID_FILE_SAVE_COPY_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "Paste &Special...",           ID_EDIT_PASTE_SPECIAL
+        MENUITEM SEPARATOR
+        MENUITEM "Insert &New Object...",       ID_OLE_INSERT_NEW
+        MENUITEM "Lin&ks...",                   ID_OLE_EDIT_LINKS
+        MENUITEM "<<OLE VERBS GO HERE>>",       ID_OLE_VERB_FIRST
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&New Window",                 ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmc...",               ID_APP_ABOUT
+    END
+END
+
+IDR_VMCTYPE_SRVR_IP MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM "Paste &Special...",           ID_EDIT_PASTE_SPECIAL
+        MENUITEM SEPARATOR
+        MENUITEM "Insert &New Object...",       ID_OLE_INSERT_NEW
+        MENUITEM "Lin&ks...",                   ID_OLE_EDIT_LINKS
+        MENUITEM "<<OLE VERBS GO HERE>>",       ID_OLE_VERB_FIRST
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+    END
+    MENUITEM SEPARATOR
+    MENUITEM SEPARATOR
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmc...",               ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,    VIRTKEY, NOINVERT
+    VK_ESCAPE,      ID_EXIT_FULL_SCREEN,    VIRTKEY, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_VMCTYPE_CNTR_IP ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT
+    VK_F1,          ID_HELP,                VIRTKEY 
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,    VIRTKEY, NOINVERT
+END
+
+IDR_VMCTYPE_SRVR_IP ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT
+    VK_F1,          ID_HELP,                VIRTKEY 
+    VK_ESCAPE,      ID_CANCEL_EDIT_SRVR,    VIRTKEY, NOINVERT
+END
+
+IDR_VMCTYPE_SRVR_EMB ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_UPDATE,         VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT
+    VK_F1,          ID_HELP,                VIRTKEY 
+    VK_ESCAPE,      ID_CANCEL_EDIT_CNTR,    VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About vmc"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "vmc Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDR_MAINFRAME DIALOG DISCARDABLE  0, 0, 330, 16
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "TODO: layout dialog bar ",IDC_STATIC,12,4,300,8
+END
+
+IDR_VMCTYPE_SRVR_IP DIALOG DISCARDABLE  0, 0, 330, 16
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "TODO: layout inplace dialog bar ",IDC_STATIC,12,4,300,8
+END
+
+IDD_OPTIONS_AUDIO_DEVICES DIALOG DISCARDABLE  0, 0, 251, 103
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    GROUPBOX        "Sound Recording (Scoring)",IDC_STATIC,3,3,188,38
+    ICON            166,IDC_STATIC,5,14,20,20
+    COMBOBOX        IDC_COMBO_SOUND_RECORDING,31,24,153,56,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Preferred Device:",IDC_STATIC,31,12,128,9
+    GROUPBOX        "MIDI Song Playback",IDC_STATIC,3,47,188,38
+    ICON            167,IDC_STATIC,5,58,20,20
+    COMBOBOX        IDC_COMBO_MIDI_PLAYBACK,31,68,153,45,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Preferred Device:",IDC_STATIC,31,56,128,9
+END
+
+IDD_OPTIONS_SONGS_DIRECTORIES DIALOG DISCARDABLE  0, 0, 250, 114
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    LTEXT           "Folders:",IDC_STATIC,0,16,100,8
+    LISTBOX         IDC_LIST,0,24,250,90,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add...",IDC_ADD,118,3,57,13
+    PUSHBUTTON      "Remove",IDC_REMOVE,180,3,50,12
+END
+
+IDD_OPTIONS_IMAGES_DIRECTORIES DIALOG DISCARDABLE  0, 0, 251, 103
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    LTEXT           "Folders:",IDC_STATIC,0,10,111,8
+    LISTBOX         IDC_LIST,0,17,251,86,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add...",IDC_ADD,118,3,57,13
+    PUSHBUTTON      "Remove",IDC_REMOVE,180,3,50,12
+END
+
+IDD_OPTIONS_IMAGES DIALOG DISCARDABLE  0, 0, 251, 103
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    EDITTEXT        IDC_EDIT_CHANGE_TIME,6,53,47,11,ES_AUTOHSCROLL
+    LTEXT           "Time Interval (in seconds)",IDC_STATIC,7,43,106,8
+    CONTROL         "Sequential",IDC_RADIO_SEQUENTIAL,"Button",
+                    BS_AUTORADIOBUTTON,7,15,104,10
+    CONTROL         "Random",IDC_RADIO_RANDOM,"Button",BS_AUTORADIOBUTTON,7,
+                    28,106,10
+    CONTROL         "Spin1",IDC_SPIN_CHANGE_TIME,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,54,53,9,10
+    GROUPBOX        "Change",IDC_STATIC,3,3,119,66
+END
+
+IDD_OPTIONS_GENERAL DIALOG DISCARDABLE  0, 0, 251, 103
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    CONTROL         "Recent files list:",IDC_CHECK_MRU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,51,99,8
+    EDITTEXT        IDC_EDIT_MRU_COUNT,110,50,30,10,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_MRU,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,130,50,9,
+                    10
+END
+
+IDD_OPTIONS_AUDIO_DEVICES1 DIALOG DISCARDABLE  0, 0, 251, 103
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    GROUPBOX        "Sound Recording (Scoring)",IDC_STATIC,3,3,188,38
+    ICON            166,IDC_STATIC,5,14,20,20
+    COMBOBOX        IDC_COMBO_SOUND_RECORDING,31,24,153,56,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Preferred Device:",IDC_STATIC,31,12,128,9
+    GROUPBOX        "MIDI Song Playback",IDC_STATIC,3,47,188,38
+    ICON            167,IDC_STATIC,5,58,20,20
+    COMBOBOX        IDC_COMBO_MIDI_PLAYBACK,31,68,153,45,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Preferred Device:",IDC_STATIC,31,56,128,9
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "vmc MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "vmc\0"
+            VALUE "LegalCopyright", "Copyright (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "vmc.EXE\0"
+            VALUE "ProductName", "vmc Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_VMC                 REGISTRY DISCARDABLE    "Vmc.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+    IDS_PROJNAME            "vmsse"
+    IDR_XFPLAYER            "VMS Karaoke Player\n\nVMS Karaoke Player\nVMS Karaoke Files (*.mid;*.kar;*.st3)\n.mid;.kar;.st3\nVeriwellMusicalStudio.Document\nVMS Document"
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDP_FAILED_TO_CREATE    "Failed to create object.  Make sure the object is entered in the system registry."
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "vmc"
+    IDR_MUSICALSTUDIO       "\nVeriwell Musical Studio\nVeriwell Musical Studio\nVeriwell Musical Studio Files (*.vms)\n.vms\nVeriwellMusical.Document\nVeriwell Musical Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_SOFTKARAOKE         "XF Player\n\nSoft Karaoke\nSoft Karaoke Files (*.kar|\n.kar\nXfplayer.Document\nXfplayer Document"
+    IDR_PLAYLIST            "XF Player\n\nSoft Karaoke\nSoft Karaoke Files (*.vmspl|\n.vmspl\nVeriwell.Playlist\nVeriwell Playlist"
+    IDR_XFPLAYER_MENUBAR    "Open the current menu.\nCurrent Menu"
+    IDR_VMCTYPE             "\nVmc\nVmc\nVmc Files (*.vmc)\n.vmc\nVmc.Document\nVmc Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "vmc"
+    AFX_IDS_IDLEMESSAGE     "For Help, press F1"
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+    ID_FILE_UPDATE          "Update the container to show any changes\nUpdate"
+    ID_FILE_SAVE_COPY_AS    "Save a copy of the active document with a new name\nSave Copy"
+    ID_FILE_SEND_MAIL       "Send the active document through electronic mail\nSend Mail"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+    ID_HELP_INDEX           "Opens Help\nHelp Topics"
+    ID_HELP_FINDER          "List Help topics\nHelp Topics"
+    ID_HELP_USING           "Display instructions about how to use help\nHelp"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows\nHelp"
+    ID_HELP                 "Display help for current task or command\nHelp"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_PASTE_LINK      "Insert Clipboard contents and a link to its source\nPaste Link"
+    ID_EDIT_PASTE_SPECIAL   "Insert Clipboard contents with options\nPaste Special"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OLE_INSERT_NEW       "Insert new embedded object\nNew Object"
+    ID_OLE_EDIT_LINKS       "Edit linked objects\nEdit Links"
+    ID_OLE_EDIT_CONVERT     "Convert object to different type\nConvert Object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OLE_VERB_FIRST       "Activate embedded or linked object"
+    57873                   "Activate embedded or linked object"
+    57874                   "Activate embedded or linked object"
+    57875                   "Activate embedded or linked object"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PLAY                 "Play the selected music.\nPlay"
+    ID_STOP                 "Stop the performing song.\nStop."
+    ID_PAUSE                "Pause or continues the music.\nPause"
+    ID_TOOLS_ALBUM          "Abre o álbum de músicas.\nÁlbum"
+    ID_NEXTSONG             "Passa a reproduzir a próxima música.\nPróxima Música"
+    ID_VIEW_FULL_SCREEN     "Toggle full screen mode\nFull Screen"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_LYRICS          "Open song lyrics.\nSong Lyrics"
+    ID_VIEW_UPDATE          "Atualiza os dados em relação ao banco de dados."
+    ID_ALBUM_RESERVESONG    "Add selected songs to the playlist\nAdd songs"
+    ID_TOOLS_MIXER          "Abre o controle de volume\nControle de volume"
+    ID_PLAYPAUSE            "Pausa/Continua a reprodução da música em execução/atual.\nPausar"
+    ID_ALBUM_FULLBUILD      "Rebuild the album excluding all previous data and renumbering all songs.\nFull Build"
+    ID_ALBUM_PARTIALBUILD   "Rebuild the album updating data but preserving previous song numbering.\nPartial Build"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SONG_NUMBER_FORMAT  "%05d"
+    IDS_NOSPECIFIED_ERROR   "Um erro ocorreu. Entretando, nenhuma informação especídifca de erro foi disponível."
+    IDS_NOSPECIFIED_SOURCE  "Erro não especificado"
+    IDS_CHOOSE_IMAGE_DIRECTORY "Escolha um diretório de imagens:"
+    IDS_NO_DIRECTORY_SELECTED "Nenhum diretório foi selecionado."
+    IDS_FILE_OPEN_ERROR     "The file cannot be open by this application."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PLAYLIST_TITLE      "Playlist"
+    IDS_ALBUM_AUTHOR        "Autor"
+    IDS_ALBUM_COPYRIGHT     "Copyright"
+    IDS_ALBUM_NAVIGATOR     "Navigator"
+    IDS_XFPLAYER_SAVEFILEFILTER "Arquivos de karaoke tipo XF (*.mid)|*.mid"
+    IDS_ERROR_SAVEASXFONLY  "Este programa salva somente arquivos .mid com informação de karaoke no formato XF. Mude a extensão do nome do arquivo para .mid"
+    IDS_MIDIEVENTSVIEW_RUNNINGSTATUS "EC"
+    IDS_MIDIEVENTSVIEW_NOTEON "Note On"
+    IDS_MIDIEVENTSVIEW_NOTEOFF "Note Off"
+    IDS_MIDIEVENTSVIEW_META "Meta"
+    IDS_MIDIEVENTSVIEW_SYSEX "SysEx"
+    IDS_MIDIEVENTSVIEW_SYSEXEND "SysEx End"
+    IDS_MIDIEVENTSVIEW_SOSTENUTO "Sus"
+    IDS_MIDI_NOTEOFF        "Note Off"
+    IDS_MIDI_NOTEON         "Note On"
+    IDS_MIDI_KEYPRESSURE    "Key Pressure"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MIDI_CONTROLCHANGE  "Control Change"
+    IDS_MIDI_PROGRAMCHANGE  "Program Change"
+    IDS_MIDI_VELOCITY_F001  "Velocidty: %d"
+    IDS_MIDI_SAVEFILEFILTER "XF karaoke file  (*.mid)|*.mid|SoftKaraoke file  (*.kar)|(*.kar)|Karaoke file (*.mid)|(.mid)"
+    IDS_MIDI_EXPRESSIONCONTROLLER "Expression Control"
+    IDS_MIDI_CONTROLLERVALUE_F001 "Value: %d"
+    IDS_ALBUM_NAVIGATOR_GOBACK "Back"
+    IDS_ALBUM_NAVIGATOR_GOFORWARD "Foward"
+    IDS_ALBUM_LIST_SONGNAME "Lista ordenada por título da música"
+    IDS_ALBUM_LIST_AUTHOR   "Lista ordenada por autor"
+    IDS_ALBUM_LIST_COPYRIGHT "Lista ordenada por copyright"
+    IDS_ALBUM_LIST_COMPOSER "Lista ordenada por compositor"
+    IDS_ALBUM_LIST_LYRICIST "Lista ordenada por lírico"
+    IDS_ALBUM_LIST_ARRANGER "Lista ordenada por arranjador"
+    IDS_ALBUM_LIST_PERFORMER "Lista ordenada por executor"
+    IDS_ALBUM_LIST_PROGRAMMER "Lista ordenada por programador"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_ALBUM_SEARCHLIST     "Open search view\nSearch"
+    ID_ALBUM_TREELIST       "Open explorer view\nExplore"
+    ID_ALBUM_FULLLIST       "Open the list with all songs\nAll Songs"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_REMOVE_SONG          "Remove selected songs from the playlist.\nRemove Song"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_IMAGE_TILE      "Apresenta imagem de fundo lado a lado."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_PLAYLIST        "Abrir lista de reprodução.\nLista de reprodução"
+    ID_ALBUM_NAVIGATOR      "Abre o navegador das músicas.\nNavegador"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_GOBACK               "Navegar para página anterior/nVoltar"
+    ID_GOFORWARD            "Avançar\nAvançar"
+    ID_GOHOME               "Vai para a página inicial\nPágina inicial"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PLAYLIST_REMOVE_SONG "Remove the selected song(s) from the playlist.\nRemove Song"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DATABASESYSTEMFAILEDFEATUREDISABLED 
+                            "O sistema de banco de dados falhou. O recurso está indisponível."
+    IDS_XFPROP_NEWCOMPOSER  "<Incluir Compositor>"
+    IDS_XFPROP_NEWLYRICIST  "<Incluir Lírico>"
+    IDS_XFPROP_NEWARRANGER  "<Incluir Arranjador>"
+    IDS_XFPROP_NEWPERFORMER "<Incluir Executor>"
+    IDS_XFPROP_NEWPROGRAMMER "<Incluir Programador>"
+    IDS_XFPROP_NEWKEYWORD   "<Incluir Palavra-chave>"
+    IDS_ALBUM_KEYWORD       "Keyword"
+    IDS_ALBUM_TITLE         "Album"
+    IDS_FORMAT001_COMPOSER  "Composition by %s"
+    IDS_FORMAT001_PERFORMER "Execution by %s"
+    IDS_FORMAT001_LYRICIST  "Lyrics by %s"
+    IDS_FORMAT001_ARRANGER  "Arrangement by %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FORMAT001_PROGRAMMER "Programming by %s"
+    IDS_MMSYSERR_ALLOCATED  "Não é possível reproduzir a transmissão contínua de áudio: não há hardware de áudio disponível ou o hardware não está respondendo."
+    IDS_XFPLAYER_OPENFILEFILTER 
+                            "Karaoke files (*.mid; *.kar;*.st3)|*.mid;*.kar;*.st3"
+    IDS_XFPLAYER_OPENFILETITLE "Open"
+    IDS_PREROLLUSERERROR001 "Não é possível reproduzir a transmissão contínua de áudio: não há hardware de áudio disponível ou o hardware não está respondendo."
+    IDS_NODATABASESUPPORTERROR 
+                            "Some features will not be available: the database file is missing or it is corrupted and/or this computer hasn´t the necessary Microsoft (C) Data Access - MDAC - support to the application."
+    IDS_ALBUM_FULLLIST      "All Songs"
+    IDS_ALBUM_EXPLORE       "Explore"
+    IDS_ALBUM_SEARCH        "Search"
+    IDS_FILENAME            "File Name"
+    IDS_FOLDER_SONGS        "Songs"
+    IDS_FOLDER_IMAGES       "Images"
+    IDS_FOLDER_LYRICS       "Lyrics"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NODATABASESUPPORTERROR_RESOURCEUNAVAILABLE 
+                            "This feature is not available: the database file is missing or it is corrupted and/or this computer hasn´t the necessary Microsoft (C) Data Access - MDAC - support to the application."
+    IDS_MIXER_DIALOG_TITLEFORMAT "%s - %s - %s"
+    IDS_MIXER_BALANCE       "Balance"
+    IDS_MIXER_VOLUME        "Volume"
+    IDS_MIXER_MUTE          "Mute"
+    IDS_MIXER_MUTEALL       "Mute All"
+    IDS_FOLDER_LOG          "Reports"
+    IDS_FILE_BUILDALBUMLOG  "Album Build"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MAINFRAME_FULLSCREEN "Full Screen"
+    IDS_MAINFRAME_ALBUM     "Album"
+    IDS_MAINFRAME_LYRICS    "Lyricis"
+    IDS_MAINFRAME_MIXER     "Mixer"
+    IDS_ALBUM_SONGCOUNTINDICATOR "%d song(s)"
+    IDS_ALBUM_SELECTEDSONGCOUNTINDICATOR "%d song(s) selected"
+    IDS_MIDIMAPPER          "MIDI Mapper"
+    IDS_OPTIONS_AUDIODEVICES "Audio Devices"
+    IDS_WAVEMAPPER          "Wave Mapper"
+    IDS_ALBUM_SEARCHINGINDICATOR "Searching..."
+    IDS_ALBUM_FOUNDINDICATOR "Found %d song(s)."
+    IDS_ALBUM_NOTFOUNDINDICATOR "No songs found that satisfies the criteria."
+    IDS_ALBUM_PLAYLIST      "Playlist"
+    IDS_ALBUM_PLAYLISTS     "Playlists"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ALBUM_LIST_KEYWORD  "List sorted by keyword"
+    IDS_ALBUM_LIST_NOSONGS  "<p>Não há músicas que satisfaçam o critéirio. </p>\n<p>As razões para isso pode ser:</p> <p>Não foi configurada nenhuma pasta de música na guia ""Pastas de Músicas"", em ""Opções..."" no menu Ferramentas</p <p> Se existem pastas configuradas, não há músicas nessas pastas </p> <p> Ou nenhuma música não possui o atributo requisitado, Exemplo: deseja-se procurar por músicas cujo compositor inicia com a letra ""A"", mas rnenhuma música desse compositor possui essa informação no arquivo de música.</p>"
+    IDS_ALBUM_FILENAME      "Nome do arquivo"
+    IDS_ALBUM_LIST_FILENAME "List sorted by file name"
+    IDS_XFPLAYER_FULLSCREEN "Full Screen"
+    IDS_XFPLAYER_ALBUM      "Album"
+    IDS_XFPLAYER_PLAYLIST   "Playlist"
+    IDS_XFPLAYER_LYRICS     "Song Lyrics"
+    IDS_XFPLAYER_PLAY       "Play"
+    IDS_XFPLAYER_STOP       "Stop"
+    IDS_XFPLAYER_PAUSE      "Pause/Continue"
+    IDS_XFPLAYER_NEXTSONG   "Next Sont"
+    IDS_ALBUM_DUPLICATESLIST "Duplicates"
+    IDS_ALBUM_DELETE        "Delete"
+    IDS_OPTIONS_GENERAL     "General"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RECENT_FILE         "Recent File"
+    IDS_MSWORD_INITIALIZATION_FAILED 
+                            "Microsoft ® Word © initialization has failed. It may be not installed."
+    IDS_FILE_ALBUM          "Album"
+    IDS_FOLDER_ALBUM        "Album"
+    IDS_NOTEPADALBUM_PROCESSINGLINE "Processing line %d"
+    IDS_ALBUM_EXPORTMSWORD9 "Export to MS Word 2000"
+    IDS_ALBUM_EXPORTTEXT    "Export to Text"
+    IDS_MSWORD9_PROCESSINGLINE "Exporting line %d of %d"
+    IDS_OPTIONS_SONGSFOLDER "Songs Folders"
+    IDS_OPTIONS_IMAGESFOLDERS "Images Folders"
+    IDS_OPTIONS_IMAGES      "Images"
+    IDS_TASK_TASKS          "Tasks"
+    IDS_TASK_STATUS         "Status"
+    IDS_TASK_EXECUTING      "Executing"
+    IDS_TASK_CONCLUDED      "Finished"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VMSGUI_CLOSE         "Fecha a janela atual.\nFechar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ALBUM_SONGNAME      "Title"
+    IDS_ALBUM_COMPOSER      "Composer"
+    IDS_ALBUM_CODE          "Code"
+    IDS_ALBUM_LYRICIST      "Lyric"
+    IDS_ALBUM_ARRANGER      "Arranger"
+    IDS_ALBUM_PROGRAMMER    "Programmer"
+    IDS_ALBUM_PERFORMER     "Performer"
+    IDS_ALBUM_COUNTRY       "Country"
+    IDS_ALBUM_PATH          "Path"
+    IDS_FINISHED_SONG_QUICK_BUILD "Terminada a preparação do álbum."
+    IDS_BUILDALBUM_INFORMATION_PROCESSINGRECORD 
+                            "Processando registro %d de %d."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_0             "Acoustic grand piano"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_1             "Bright acoustic piano"
+    IDS_VOICE_2             "Electric grand piano"
+    IDS_VOICE_3             "Honky-tonk piano"
+    IDS_VOICE_4             "Rhodes piano"
+    IDS_VOICE_5             "Rhodes piano"
+    IDS_VOICE_6             "Chorused piano"
+    IDS_VOICE_7             "Harpsichord"
+    IDS_VOICE_8             "Clavinet"
+    IDS_VOICE_9             "A"
+    IDS_VOICE_10            "A"
+    IDS_VOICE_11            "A"
+    IDS_VOICE_12            "A"
+    IDS_VOICE_13            "A"
+    IDS_VOICE_14            "A"
+    IDS_VOICE_15            "A"
+    IDS_VOICE_16            "A"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_17            "A"
+    IDS_VOICE_18            "A"
+    IDS_VOICE_19            "A"
+    IDS_VOICE_20            "A"
+    IDS_VOICE_21            "A"
+    IDS_VOICE_22            "A"
+    IDS_VOICE_23            "A"
+    IDS_VOICE_24            "A"
+    IDS_VOICE_25            "A"
+    IDS_VOICE_26            "A"
+    IDS_VOICE_27            "A"
+    IDS_VOICE_28            "A"
+    IDS_VOICE_29            "A"
+    IDS_VOICE_30            "A"
+    IDS_VOICE_31            "A"
+    IDS_VOICE_32            "Acoustic bass"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_33            "Electric bass (finger)"
+    IDS_VOICE_34            "Electric bass (pick)"
+    IDS_VOICE_35            "Fretless bass"
+    IDS_VOICE_36            "Slap bass 1"
+    IDS_VOICE_37            "Slap bass 2"
+    IDS_VOICE_38            "Synth bass 1"
+    IDS_VOICE_39            "Synth bass 2"
+    IDS_VOICE_40            "A"
+    IDS_VOICE_41            "A"
+    IDS_VOICE_42            "A"
+    IDS_VOICE_43            "A"
+    IDS_VOICE_44            "A"
+    IDS_VOICE_45            "A"
+    IDS_VOICE_46            "A"
+    IDS_VOICE_47            "A"
+    IDS_VOICE_48            "A"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_49            "A"
+    IDS_VOICE_50            "A"
+    IDS_VOICE_51            "A"
+    IDS_VOICE_52            "A"
+    IDS_VOICE_53            "A"
+    IDS_VOICE_54            "A"
+    IDS_VOICE_55            "A"
+    IDS_VOICE_56            "A"
+    IDS_VOICE_57            "A"
+    IDS_VOICE_58            "A"
+    IDS_VOICE_59            "A"
+    IDS_VOICE_60            "A"
+    IDS_VOICE_61            "A"
+    IDS_VOICE_62            "A"
+    IDS_VOICE_63            "A"
+    IDS_VOICE_64            "A"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_65            "A"
+    IDS_VOICE_66            "A"
+    IDS_VOICE_67            "A"
+    IDS_VOICE_68            "A"
+    IDS_VOICE_69            "A"
+    IDS_VOICE_70            "A"
+    IDS_VOICE_71            "A"
+    IDS_VOICE_72            "A"
+    IDS_VOICE_73            "A"
+    IDS_VOICE_74            "A"
+    IDS_VOICE_75            "A"
+    IDS_VOICE_76            "A"
+    IDS_VOICE_77            "A"
+    IDS_VOICE_78            "A"
+    IDS_VOICE_79            "A"
+    IDS_VOICE_80            "A"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_81            "A"
+    IDS_VOICE_82            "A"
+    IDS_VOICE_83            "A"
+    IDS_VOICE_84            "A"
+    IDS_VOICE_85            "A"
+    IDS_VOICE_86            "A"
+    IDS_VOICE_87            "A"
+    IDS_VOICE_88            "A"
+    IDS_VOICE_89            "A"
+    IDS_VOICE_90            "A"
+    IDS_VOICE_91            "A"
+    IDS_VOICE_92            "A"
+    IDS_VOICE_93            "A"
+    IDS_VOICE_94            "A"
+    IDS_VOICE_95            "A"
+    IDS_VOICE_96            "A"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_97            "A"
+    IDS_VOICE_98            "A"
+    IDS_VOICE_99            "A"
+    IDS_VOICE_100           "A"
+    IDS_VOICE_101           "A"
+    IDS_VOICE_102           "A"
+    IDS_VOICE_103           "A"
+    IDS_VOICE_104           "A"
+    IDS_VOICE_105           "A"
+    IDS_VOICE_106           "A"
+    IDS_VOICE_107           "A"
+    IDS_VOICE_108           "A"
+    IDS_VOICE_109           "A"
+    IDS_VOICE_110           "A"
+    IDS_VOICE_111           "A"
+    IDS_VOICE_112           "A"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_VOICE_113           "A"
+    IDS_VOICE_114           "A"
+    IDS_VOICE_115           "A"
+    IDS_VOICE_116           "A"
+    IDS_VOICE_117           "A"
+    IDS_VOICE_118           "A"
+    IDS_VOICE_119           "A"
+    IDS_VOICE_120           "A"
+    IDS_VOICE_121           "A"
+    IDS_VOICE_122           "A"
+    IDS_VOICE_123           "A"
+    IDS_VOICE_124           "A"
+    IDS_VOICE_125           "A"
+    IDS_VOICE_126           "A"
+    IDS_VOICE_127           "A"
+    IDS_MICROSOFTCLASS_JETOLEDB40 "Microsoft.Jet.OLEDB.4.0"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MICROSOFTCLASS_JETOLEDB351 "Microsoft.Jet.OLEDB.3.51"
+    IDS_ALBUM_SONG_NAME     "Título"
+    IDS_ALBUMBUILDPROGRESS_FINISHEDPART1 
+                            "Terminada verificação e atualização do álbum."
+    IDS_ALBUMBUILDPROGRESS_FINISHEDPART2 
+                            "Terminada eliminação de músicas inexistentes."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BUILDALBUMEXTENSIONS "mid/midi/kar/st3"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BUILDALBUM_INFORMATION_PROCESSINGFILE "Processando arquivo %d de %d."
+    IDS_BUILDALBUM_STATUS_INEXISTINGFILESRECORDSDELETING 
+                            "Eliminar registro de arquivos inexistentes"
+    IDS_BUILDALBUM_STATUS_SONGSFILESPROCESSING "Processar arquivos de músicas"
+    IDS_BUILDALBUM_STATUS_CREATINGSEARCHREFERENCES 
+                            "Criar referências de busca"
+    IDS_BUILDALBUM_TASKADVISE 
+                            "Se não forram acrescentados, modificados nem retirados arquivos das pastas de músicas ou as próprias pastas de música, clique em Parar para cancelar a operação de verificação do álbum."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ALBUM_SONGNAME2     "Nome"
+    IDS_ALBUM_COMPOSER2     "Compositor"
+    IDS_ALBUM_CODE2         "Código"
+    IDS_ALBUM_LYRICIST2     "Lírico"
+    IDS_ALBUM_ARRANGER2     "Arranjador"
+    IDS_ALBUM_PROGRAMMER2   "Programador"
+    IDS_ALBUM_PERFORMER2    "Executor"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ALBUM_COUNTRY2      "País"
+    IDS_ALBUM_PATH2         "Caminho"
+    IDS_VMPRESDLL_LANGUAGE  "English (U.S.)"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_XFPLAYER_SERVER_INPLACE BITMAP  MOVEABLE PURE   "res\\xfplayer.bmp"
+IDR_FULLSCREEN          BITMAP  DISCARDABLE     "res\\toolbar1.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\vmcsplash1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_XFPLAYER_SERVER_INPLACE TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_CONTEXT_HELP
+END
+
+IDR_FULLSCREEN TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      32781
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SPLASH DIALOGEX 0, 0, 333, 185
+STYLE WS_POPUP
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         139,IDC_STATIC_BITMAP,"Static",SS_BITMAP | 
+                    SS_REALSIZEIMAGE,0,0,333,185
+END
+
+IDD_OPTIONS DIALOG DISCARDABLE  0, 0, 315, 166
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,150,150,50,14
+    PUSHBUTTON      "Cancelar",IDCANCEL,205,150,50,14
+    CONTROL         "Tab1",IDC_TAB,"SysTabControl32",0x0,5,7,305,138
+    PUSHBUTTON      "Aplicar",IDAPPLY,260,150,50,14
+END
+
+IDD_MIDI_EVENTS_NOTE_EDIT DIALOG DISCARDABLE  0, 0, 350, 12
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    COMBOBOX        IDC_COMBO_FULLTYPE,39,0,52,77,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Tipo:",IDC_STATIC,1,2,16,8
+    LTEXT           "Tom:",IDC_STATIC,99,2,19,8
+    COMBOBOX        IDC_COMBO_PITCH,119,0,52,77,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Velocidade:",IDC_STATIC,173,2,34,8
+    EDITTEXT        IDC_EDIT_VELOCITY,211,0,45,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_VELOCITY,273,0,52,77,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Spin1",IDC_SPIN_VELOCITY,"msctls_updown32",
+                    UDS_ARROWKEYS,257,0,9,10
+    CONTROL         "",IDC_BUTTON_CLOSE,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    334,1,11,9
+END
+
+IDD_WELCOME DIALOGEX 0, 0, 155, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Seja Bem-Vindo"
+FONT 8, "Lucida Sans Unicode", 0, 0, 0x1
+BEGIN
+    ICON            183,ID_TOOLS_ALBUM,5,59,22,20,SS_NOTIFY,
+                    WS_EX_DLGMODALFRAME
+    LTEXT           "Abrir o Álbum",IDC_STATIC,31,65,63,17
+    LTEXT           "Clique no ícone para:",IDC_STATIC,5,38,103,11
+    ICON            181,ID_PLAYER,5,92,22,20,SS_NOTIFY,WS_EX_DLGMODALFRAME
+    LTEXT           "Abrir o Tocador de Karaoke",IDC_STATIC,30,98,111,13
+    ICON            IDR_MAINFRAME,IDC_STATIC,7,11,18,17
+    LTEXT           "Veriwell Musical Studio",IDC_STATIC,31,15,115,15
+END
+
+IDD_MIDI_EVENTS_NOTE_EDIT1 DIALOGEX 0, 0, 350, 12
+STYLE DS_MODALFRAME | WS_POPUP
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "Lucida Sans Unicode", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_FULLTYPE,39,0,52,77,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Tipo:",IDC_STATIC,1,2,16,8
+    LTEXT           "Tom:",IDC_STATIC,99,2,19,8
+    COMBOBOX        IDC_COMBO_PITCH,119,0,52,77,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Velocidade:",IDC_STATIC,173,2,34,8
+    EDITTEXT        IDC_EDIT_VELOCITY,211,0,45,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_VELOCITY,273,0,52,77,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Spin1",IDC_SPIN_VELOCITY,"msctls_updown32",
+                    UDS_ARROWKEYS,257,0,9,10
+    CONTROL         "",IDC_BUTTON_CLOSE,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    334,1,11,9
+END
+
+IDD_MIDITRACKSEVENTS DIALOG DISCARDABLE  0, 0, 186, 94
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tab1",IDC_TAB,"SysTabControl32",TCS_BOTTOM | 
+                    TCS_RAGGEDRIGHT | TCS_TOOLTIPS,7,7,172,80
+END
+
+IDD_OPTIONS_SONGS_DIRECTORIES1 DIALOG DISCARDABLE  0, 0, 250, 114
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    LTEXT           "Diretórios",IDC_STATIC,0,16,100,8
+    LISTBOX         IDC_LIST,0,24,250,90,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Adicionar...",IDC_ADD,118,3,57,13
+    PUSHBUTTON      "Remover",IDC_REMOVE,180,3,50,12
+END
+
+IDD_OPTIONS_AUDIO_DEVICES DIALOG DISCARDABLE  0, 0, 251, 103
+STYLE WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    GROUPBOX        "Gravação de Som",IDC_STATIC,3,3,188,38
+    ICON            166,IDC_STATIC,5,14,20,20
+    COMBOBOX        IDC_COMBO_SOUND_RECORDING,31,24,153,56,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Dispositivo preferido:",IDC_STATIC,31,12,128,9
+    GROUPBOX        "Reprodução de música MIDI",IDC_STATIC,3,47,188,38
+    ICON            167,IDC_STATIC,5,58,20,20
+    COMBOBOX        IDC_COMBO_MIDI_PLAYBACK,31,68,153,45,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Dispositivo preferido:",IDC_STATIC,31,56,128,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SPLASH, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 310
+        VERTGUIDE, 10
+        VERTGUIDE, 300
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 159
+        HORZGUIDE, 24
+        HORZGUIDE, 139
+    END
+
+    IDD_MIDI_EVENTS_NOTE_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 5
+    END
+
+    IDD_WELCOME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 148
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_MIDITRACKSEVENTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\vmc.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#include ""afxolecl.rc""       // OLE container resources\r\n"
+    "#include ""afxolesv.rc""       // OLE server resources\r\n"
+    "#include ""afxdb.rc""          // Database resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\vmc.rc2"  // non-Microsoft Visual C++ edited resources
+#include "../_000ca2api14000/cafxres.rc"         // Standard components
+#include "../_000ca2api14000/cafxprint.rc"       // printing/print preview resources
+//#include "../_000ca2api14000/cafxolecl.rc"       // OLE container resources
+//#include "../_000ca2api14000/cafxolesv.rc"       // OLE server resources
+//#include "../_000ca2api14000/cafxdb.rc"          // Database resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,42 @@
+// vmsaudioprofile.odl : type library source for vmsaudioprofile.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (vmsaudioprofile.tlb).
+
+[ uuid(8C0639B2-9B53-473C-BB3E-6F7D68426114), version(1.0) ]
+library Vmsaudioprofile
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CVmsaudioprofileDoc
+	
+	[ uuid(AF1C4FE5-B6F9-4DF5-A803-CD5E370B9A8A) ]
+	dispinterface IVmsaudioprofile
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CVmsaudioprofileDoc)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CVmsaudioprofileDoc)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CVmsaudioprofileDoc
+	
+	[ uuid(4DAFB489-AE89-411E-8029-91D7FF961DAC) ]
+	coclass Document
+	{
+		[default] dispinterface IVmsaudioprofile;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

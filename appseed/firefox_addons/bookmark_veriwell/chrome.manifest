@@ -1,0 +1,6 @@
+content bookmark_veriwell chrome/content/
+locale  bookmark_veriwell en-US   chrome/locale/en-US/
+skin    bookmark_veriwell classic/1.0 chrome/skin/
+
+overlay chrome://browser/content/browser.xul chrome://bookmark_veriwell/content/overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://bookmark_veriwell/skin/bookmark_veriwell.css

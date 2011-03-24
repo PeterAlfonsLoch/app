@@ -1,0 +1,7 @@
+; alarm.def : Declares the module parameters for the DLL.
+
+LIBRARY      "alarm"
+	;DESCRIPTION  'alarm Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

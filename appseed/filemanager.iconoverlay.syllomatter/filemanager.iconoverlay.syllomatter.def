@@ -1,0 +1,9 @@
+; filemanager.iconoverlay.syllomatter.def
+
+LIBRARY  "filemanager.iconoverlay.syllomatter"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+	filemanager_iconoverlayer_create
+	filemanager_iconoverlayer_destroy
+

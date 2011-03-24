@@ -1,0 +1,157 @@
+#include "StdAfx.h"
+
+namespace userbase
+{
+
+   button::button(::ca::application * papp) :
+      ::user::interaction(papp), 
+      ::user::button(papp),
+      ca(papp),
+      m_dib(papp)
+   {
+      m_pschema   = NULL;
+   }
+
+   button::~button()
+   {
+   }
+
+   ::ca::font * button::_001GetFont()
+   {
+      if(m_pschema == NULL)
+         return NULL;
+      return m_pschema->m_font;
+   }
+
+   void button::_001OnDraw(::ca::graphics * pdc)
+   {
+      
+      if(m_pschema == NULL)
+         return;
+
+      string str(m_langstrButtonText.get(get_app()));
+
+      pdc->SelectObject(_001GetFont());
+      
+      rect rectClient;
+      m_pguie->GetClientRect(rectClient);
+
+      COLORREF crBk;
+      if(!_001IsWindowEnabled())
+      {
+         crBk = m_pschema->m_crBkDisabled;
+      }
+      else if(_001IsPressed())
+      {
+         crBk = m_pschema->m_crBkPress;
+      }
+      else if(m_iHover >= 0)
+      {
+         crBk = m_pschema->m_crBkHover;
+      }
+      else
+      {
+         crBk = m_pschema->m_crBkNormal;
+      }
+
+
+      if(::user::button::_001IsTranslucent())
+      {
+         class imaging & imaging = System.imaging();
+         imaging.color_blend(
+            pdc,
+            rectClient,
+            crBk,
+            127);
+      }
+      else
+      {
+         pdc->FillSolidRect(rectClient, crBk);
+      }
+
+
+      COLORREF crBorder;
+      if(!_001IsWindowEnabled())
+      {
+         crBorder = RGB(127, 127, 127);
+         pdc->SetTextColor(m_pschema->m_crTextDisabled);
+      }
+      else if(_001IsPressed())
+      {
+         crBorder = RGB(255, 255, 255);
+         pdc->SetTextColor(m_pschema->m_crTextPress);
+      }
+      else if(m_iHover >= 0)
+      {
+         crBorder = RGB(100, 100, 200);
+         pdc->SetTextColor(m_pschema->m_crTextHover);
+      }
+      else
+      {
+         crBorder = RGB(10, 10, 100);
+         pdc->SetTextColor(m_pschema->m_crTextNormal);
+      }
+
+      if(m_pschema->m_bBorder)
+      {
+         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+      }
+      
+      pdc->SetBkMode(TRANSPARENT);
+
+      rectClient.left   += 3;
+      rectClient.top    += 3;
+      rect rectText = m_rectText;
+//      string str = gen::international::utf8_to_unicode(str);
+      if(m_dib.is_set())
+      {
+         if(m_dib->width() > 0 &&
+            m_dib->height() > 0)
+         {
+            rect rectDib;
+            rectDib = m_rectText;
+            rectDib.bottom = min(rectText.top + m_dib->height(), rectText.bottom);
+            rectDib.right = min(rectText.left + m_dib->width(), rectText.right);
+            //m_dib->to(pdc, rectDib);
+            m_dib->bitmap_blend(pdc, rectDib);
+            rectText.left += m_dib->width();
+         }
+      }
+      ::DrawTextU((HDC)pdc->get_os_data(), str, str.get_length(), rectText, DT_LEFT | DT_TOP);
+   }
+
+   void button::_001OnCreate(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      m_pschema   = &userbase::GetUfeSchema(get_app())->m_button;
+   }
+
+   void button::ResizeToFit()
+   {
+      ::ca::graphics * pdc = m_pguie->GetDC();
+
+      if(pdc == NULL)
+         return;
+
+      pdc->SelectObject(m_pschema->m_font);
+
+      string str(m_langstrButtonText.get(get_app()));
+      size size = pdc->GetTextExtent(str);
+
+      rect rect(0, 0, 0, 0);
+      rect.right = size.cx + 4;
+      rect.bottom = size.cy + 4;
+
+      SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
+
+      m_pguie->ReleaseDC(pdc);
+   }
+
+   void button::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   {
+      ::user::interaction::_001InstallMessageHandling(pinterface);
+      ::user::button::_001InstallMessageHandling(pinterface);
+      IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
+   }
+
+} // namespace userbase

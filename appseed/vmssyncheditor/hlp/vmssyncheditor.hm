@@ -1,0 +1,23 @@
+ 
+// Commands (ID_* and IDM_*) 
+HID_FILE_                               0x18003
+HID_EXECUTE_PLAY                        0x18004
+HID_EXECUTE_STOP                        0x18005
+HID_FILE_INSERT                         0x18006
+HID_FILE_EXPORT                         0x18007
+HID_APPLY                               0x18008
+ 
+// Prompts (IDP_*) 
+HIDP_OLE_INIT_FAILED                    0x30064
+HIDP_SOCKETS_INIT_FAILED                0x30068
+ 
+// Resources (IDR_*) 
+HIDR_MAINFRAME                          0x20080
+HIDR_VMSSYNTYPE                         0x20081
+HIDR_MIDISELECTTRACK                    0x20083
+ 
+// Dialogs (IDD_*) 
+HIDD_ABOUTBOX                           0x20064
+HIDD_DIALOG1                            0x20082
+ 
+// Frame Controls (IDW_*) 

@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+
+TOPIC=$1
+
+$SCRIPT_BASE/ftp_clean $TOPIC
+
+DATE=`date +%Y-%m-%d`
+
+# Dados do arquivo de backup
+FILE="backup-$TOPIC-$DATE.tar.gz"
+DIRECTORIES=$2
+
+
+# A partir daqui não precisa mais editar.
+# Cria o arquivo .tar.gz no /tmp (Temporário)
+cd /tmp
+tar zcf /tmp/$FILE $DIRECTORIES
+
+
+$SCRIPT_BASE/ftp_put $FILE
+
+# Remove os arquivos temporarios
+rm -rf /tmp/$FILE

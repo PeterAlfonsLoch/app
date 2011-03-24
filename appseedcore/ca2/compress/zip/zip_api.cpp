@@ -1,0 +1,45 @@
+#include "StdAfx.h"
+
+
+namespace zip
+{
+
+   //::collection::map < unzFile, unzFile, memory_file *, memory_file * & > api::m_mapUnzip;
+
+   api::api()
+   {
+
+   }
+
+   api::~api()
+   {
+
+   }
+
+
+   unzFile api::unzipOpen(memory_file * pfile)
+   {
+      unzFile pf = unzOpen2("pad", &pfile->m_filefuncdef);
+      if(pf == NULL)
+         return NULL;
+
+     // m_mapUnzip.set_at(pf, pfile);
+
+      return pf;
+
+   }
+
+
+   unzFile api::unzipOpen (File * pfile)
+   {
+      unzFile pf = unzOpen2("pad", &pfile->m_filefuncdef);
+      if(pf == NULL)
+         return NULL;
+
+   //   m_mapUnzip.set_at(pf, pfile);
+
+      return pf;
+
+   }
+
+} // namespace zip

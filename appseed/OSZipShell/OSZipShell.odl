@@ -1,0 +1,44 @@
+// OSZipShell.odl : type library source for OSZipShell.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (OSZipShell.tlb).
+
+[ uuid(99501130-98C7-4AA3-9650-F1FD24335C66), version(1.0) ]
+library OSZipShell
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+
+	//  Primary dispatch interface for OSZipContextMenuHandler
+	
+	[ uuid(E6E88C89-911C-4EC2-93B2-DF1D1BAFB12D) ]
+	dispinterface IOSZipContextMenuHandler
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(OSZipContextMenuHandler)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(OSZipContextMenuHandler)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for OSZipContextMenuHandler
+
+	[ uuid(D8A11407-DA73-47B3-B09D-60A99D688BC4) ]
+	coclass OSZip
+	{
+		[default] dispinterface IOSZipContextMenuHandler;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,1867 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "ca2_res.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_VIEW_KARAOKE
+    BUTTON      ID_FILE_OPEN_EX
+    BUTTON      ID_VIEW_PLAYLIST
+    BUTTON      ID_VIEW_ALBUM
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_EXECUTE_PLAY
+    BUTTON      ID_EXECUTE_STOP
+    BUTTON      ID_EXECUTE_PAUSE
+    SEPARATOR
+    BUTTON      ID_EXECUTE_PREVIOUS
+    BUTTON      ID_EXECUTE_NEXT
+    SEPARATOR
+    BUTTON      ID_KARAOKE_BOUNCING_BALL
+    BUTTON      ID_KARAOKE_GRADUAL_FILLING
+    SEPARATOR
+    BUTTON      ID_EXECUTE_MINUS_ONE
+    SEPARATOR
+    BUTTON      ID_VIEW_FULLSCREEN
+    SEPARATOR
+    BUTTON      ID_APP_EXIT
+    SEPARATOR
+    BUTTON      ID_CONTEXT_HELP
+    BUTTON      ID_FILE_
+    SEPARATOR
+    BUTTON      ID_TOGGLECUSTOMFRAME
+END
+
+IDR_SRVR_INPLACE TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_CONTEXT_HELP
+END
+
+IDR_MAINFRAME1 TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_EXECUTE_PLAY
+    BUTTON      ID_EXECUTE_STOP
+    BUTTON      ID_EXECUTE_PAUSE
+    SEPARATOR
+    BUTTON      ID_KARAOKE_BOUNCING_BALL
+    BUTTON      ID_KARAOKE_GRADUAL_FILLING
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_CONTEXT_HELP
+END
+
+IDR_PLAYLIST TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_FILE_ADD
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_PLAYLIST_EXECUTE_PLAY
+    SEPARATOR
+    BUTTON      ID_EDIT_REMOVE
+END
+
+IDR_ALBUM TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_EXECUTE_PLAY
+    SEPARATOR
+    BUTTON      ID_EDIT_REMOVEDELETE
+END
+
+IDR_FILEMANAGER_OPENMUSIC TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_BROWSE_LEVELUP
+END
+
+IDR_VIEW TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_VIEW_KARAOKE
+    BUTTON      ID_FILE_OPEN_EX
+    BUTTON      ID_VIEW_PLAYLIST
+    BUTTON      ID_VIEW_ALBUM
+END
+
+IDR_MEDIALIBRARY TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_VIEW_KARAOKE
+    BUTTON      ID_FILE_OPEN_EX
+    BUTTON      ID_VIEW_PLAYLIST
+    BUTTON      ID_VIEW_ALBUM
+    SEPARATOR
+    BUTTON      ID_VIEW_ALLMEDIA
+    BUTTON      ID_VIEW_MEDIAEXPLORER
+    BUTTON      ID_VIEW_VERIWELLKARAOKELIBRARYEXPLORER
+END
+
+IDR_OPTIONSFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_EDIT_ADD
+    BUTTON      ID_EDIT_REMOVE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "File &Manager\tCtrl+M",       ID_FILE_OPEN_EX
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "Bouncing Ball",               ID_KARAOKE_BOUNCING_BALL
+        MENUITEM "Gradual Filling",             ID_KARAOKE_GRADUAL_FILLING
+        MENUITEM SEPARATOR
+        MENUITEM "File &Manager\tCtrl+M",       ID_FILE_OPEN_EX
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        MENUITEM "Media &Library",              ID_VIEW_ALBUM
+        MENUITEM SEPARATOR
+        POPUP "Encoding"
+        BEGIN
+            MENUITEM "ID_VIEW_ENCODING",            ID_VIEW_ENCODING
+        END
+    END
+    POPUP "&Play"
+    BEGIN
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM "&Pause",                      ID_EXECUTE_PAUSE
+        MENUITEM SEPARATOR
+        MENUITEM "Pre&vious",                   ID_EXECUTE_PREVIOUS
+        MENUITEM "&Next",                       ID_EXECUTE_NEXT
+        MENUITEM SEPARATOR
+        MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+        MENUITEM "Auto Record",                 ID_EXECUTE_AUTO_RECORD
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "Options ...",                 ID_VIEW_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+    POPUP "(&W)"
+    BEGIN
+        MENUITEM "ID_LANGUAGE_CHANGE",          ID_LANGUAGE_CHANGE
+    END
+END
+
+IDR_SRVR_INPLACE MENU 
+BEGIN
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+    END
+    MENUITEM SEPARATOR
+    MENUITEM SEPARATOR
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_SRVR_EMBEDDED MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Update\tCtrl+S",             ID_FILE_UPDATE
+        MENUITEM "Save copy &As...",            ID_FILE_SAVE_COPY_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_LYRICVIEW MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        POPUP "Complete Menu"
+        BEGIN
+            MENUITEM "IDR_MAINFRAME",               IDR_MAINFRAME
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "P&ause",                      ID_EXECUTE_PAUSE
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM SEPARATOR
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN_EX
+        MENUITEM "Play&list",                   ID_VIEW_PLAYLIST
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        POPUP "Encoding"
+        BEGIN
+            MENUITEM "ID_VIEW_ENCODING",            ID_VIEW_ENCODING
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_PLAYLIST MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "&remove",                     ID_EDIT_REMOVE
+    END
+    POPUP "&Play"
+    BEGIN
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM "&Pause",                      ID_EXECUTE_PAUSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_ALBUM MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "&remove",                     ID_EDIT_REMOVE
+    END
+    POPUP "&Play"
+    BEGIN
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM "&Pause",                      ID_EXECUTE_PAUSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_FILEMANAGER_OPENMUSIC MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        POPUP "Encoding"
+        BEGIN
+            MENUITEM "Latin1",                      ID_VIEW_ENCODING_LATIN1
+            MENUITEM "Japanese Shift JIS",          ID_VIEW_ENCODING_SHIFTJIS
+        END
+    END
+    POPUP "&Play"
+    BEGIN
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM "&Pause",                      ID_EXECUTE_PAUSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_PLAYLIST MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       32771
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   32782
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN_EX
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_POPUP_PLAYLIST_ITEM MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        MENUITEM "remove Item",                 ID_EDIT_REMOVE
+        MENUITEM "&Play",                       ID_PLAYLIST_EXECUTE_PLAY
+        MENUITEM SEPARATOR
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       ID_EXECUTE_PLAY
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   32782
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN_EX
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM SEPARATOR
+    END
+END
+
+IDR_POPUP_FILEOPEN_ITEM MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        MENUITEM "remove Item",                 ID_EDIT_REMOVE
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "add to the playlist",         ID_EXECUTE_ADDTOPLAYLIST
+        MENUITEM SEPARATOR
+        MENUITEM "ID_SUBST_SO_SHELL_MENU",      ID_SUBST_SO_SHELL_MENU
+        MENUITEM SEPARATOR
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            57601
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       ID_EXECUTE_PLAY
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_POPUP_FILEOPEN MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            57601
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       32771
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_POPUP_ALBUM_ITEM MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        MENUITEM "&Play",                       ID_ALBUM_PLAYLIST_EXECUTE_PLAY
+        MENUITEM SEPARATOR
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       ID_EXECUTE_PLAY
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN_EX
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "Play&list",                   ID_VIEW_PLAYLIST
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_POPUP_ALBUM MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       32771
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN_EX
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "Play&list",                   ID_VIEW_PLAYLIST
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_MAINFRAME2 MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        POPUP "Encoding"
+        BEGIN
+            MENUITEM "Latin1",                      ID_VIEW_ENCODING_LATIN1
+            MENUITEM "Japanese Shift JIS",          ID_VIEW_ENCODING_SHIFTJIS
+        END
+    END
+    POPUP "&Play"
+    BEGIN
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM "&Pause",                      ID_EXECUTE_PAUSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_MAINFRAME_INLINE MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&view"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        POPUP "Encoding"
+        BEGIN
+            MENUITEM "Latin1",                      ID_VIEW_ENCODING_LATIN1
+            MENUITEM "Japanese Shift JIS",          ID_VIEW_ENCODING_SHIFTJIS
+        END
+    END
+    POPUP "&Play"
+    BEGIN
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM "&Pause",                      ID_EXECUTE_PAUSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER
+        MENUITEM SEPARATOR
+        MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_FILEOPEN_DIRECTORY MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        MENUITEM "add to Media Library",        ID_ADDTOMEDIALIBRARY
+        MENUITEM SEPARATOR
+        POPUP "Complete Menu"
+        BEGIN
+            POPUP "&File"
+            BEGIN
+                MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+                MENUITEM "&Open...\tCtrl+O",            57601
+                MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+                MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+                MENUITEM SEPARATOR
+                MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+                MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+                MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+                MENUITEM SEPARATOR
+                MENUITEM "Sen&d...",                    ID_FILE_SEND_MAIL
+                MENUITEM SEPARATOR
+                MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+                MENUITEM SEPARATOR
+                MENUITEM "E&xit",                       ID_APP_EXIT
+            END
+            POPUP "&Edit"
+            BEGIN
+                MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+                MENUITEM SEPARATOR
+                MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+                MENUITEM "&copy\tCtrl+C",               ID_EDIT_COPY
+                MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+            END
+            POPUP "&Play"
+            BEGIN
+                MENUITEM "&Play",                       32771
+                MENUITEM "&Stop",                       32777
+                MENUITEM "&Pause",                      32779
+                MENUITEM SEPARATOR
+                MENUITEM "&Minus One",                  ID_EXECUTE_MINUS_ONE
+            END
+            POPUP "&view"
+            BEGIN
+                MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+                MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+                MENUITEM SEPARATOR
+                MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+                MENUITEM SEPARATOR
+                MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+            END
+            POPUP "&Tools"
+            BEGIN
+                MENUITEM "&Options...",                 ID_TOOLS_OPTIONS
+            END
+            POPUP "&Help"
+            BEGIN
+                MENUITEM "&Help Topics",                ID_HELP_FINDER
+                MENUITEM SEPARATOR
+                MENUITEM "&About vmpLight...",          ID_APP_ABOUT
+            END
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Karaoke",                    ID_VIEW_KARAOKE
+        MENUITEM "&Playlist",                   ID_VIEW_PLAYLIST
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_POPUP_LYRICVIEW_COMPLETE MENU 
+BEGIN
+    POPUP "000"
+    BEGIN
+        POPUP "Complete Menu"
+        BEGIN
+            MENUITEM "IDR_MAINFRAME",               IDR_MAINFRAME
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Play",                       ID_EXECUTE_PLAY
+        MENUITEM "P&ause",                      ID_EXECUTE_PAUSE
+        MENUITEM "&Stop",                       ID_EXECUTE_STOP
+        MENUITEM SEPARATOR
+        MENUITEM "&Open\tCtrl+O",               ID_FILE_OPEN_EX
+        MENUITEM "Play&list",                   ID_VIEW_PLAYLIST
+        MENUITEM "Al&bum",                      ID_VIEW_ALBUM
+        POPUP "Recent Files"
+        BEGIN
+            MENUITEM "Recent File",                 ID_FILE_MRU_FILE, GRAYED
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Full Screen\tF11",           ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        POPUP "Encoding"
+        BEGIN
+            MENUITEM "ID_VIEW_ENCODING",            ID_VIEW_ENCODING
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_FILE_OPEN_EX,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    VK_F11,         ID_VIEW_FULLSCREEN,     VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_SPACE,       ID_EXECUTE_PLAY,        VIRTKEY, NOINVERT
+    VK_SPACE,       ID_EXECUTE_PAUSE,       VIRTKEY, NOINVERT
+    VK_TAB,         ID_VIEW_NEXT_PANE,      VIRTKEY, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_SRVR_INPLACE ACCELERATORS 
+BEGIN
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT
+    VK_F1,          ID_HELP,                VIRTKEY 
+    VK_ESCAPE,      ID_CANCEL_EDIT_SRVR,    VIRTKEY, NOINVERT
+END
+
+IDR_SRVR_EMBEDDED ACCELERATORS 
+BEGIN
+    "S",            ID_FILE_UPDATE,         VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT
+    VK_F1,          ID_HELP,                VIRTKEY 
+END
+
+IDR_PLAYLIST ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_FILE_OPEN_EX,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_REMOVE,         VIRTKEY, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    VK_F11,         ID_VIEW_FULLSCREEN,     VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_RIGHT,       ID_PLAYLIST_EXECUTE_PLAY, VIRTKEY, NOINVERT
+    VK_TAB,         ID_VIEW_NEXT_PANE,      VIRTKEY, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_ALBUM ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_FILE_OPEN_EX,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_REMOVE,         VIRTKEY, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    VK_F11,         ID_VIEW_FULLSCREEN,     VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_RIGHT,       ID_ALBUM_EXECUTE_PLAY,  VIRTKEY, NOINVERT
+    VK_TAB,         ID_VIEW_NEXT_PANE,      VIRTKEY, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 342, 193
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC_ICON,7,3,21,20
+    LTEXT           "vmpLight",IDC_STATIC_TITLE,33,6,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2004",IDC_STATIC_COPYRIGHT,8,176,119,8
+    DEFPUSHBUTTON   "OK",IDOK,280,170,50,14,WS_GROUP
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 179, 20
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDR_VMPLIGTYPE_SRVR_IP DIALOG  0, 0, 330, 16
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "TODO: layout inplace dialog bar ",IDC_STATIC,12,4,300,8
+END
+
+IDD_OPTIONS_IMAGES DIALOG  0, 0, 251, 103
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    EDITTEXT        IDC_EDIT_CHANGE_TIME,6,53,47,11,ES_AUTOHSCROLL
+    LTEXT           "Time interval (in seconds)",IDC_STATIC,7,43,106,8
+    CONTROL         "Sequential",IDC_RADIO_SEQUENTIAL,"Button",BS_AUTORADIOBUTTON,7,15,104,10
+    CONTROL         "Random",IDC_RADIO_RANDOM,"Button",BS_AUTORADIOBUTTON,7,28,106,10
+    CONTROL         "Spin1",IDC_SPIN_CHANGE_TIME,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,54,53,9,10
+    GROUPBOX        "Change",IDC_STATIC,3,3,119,66
+END
+
+IDR_ALBUM_DIALOGBAR DIALOGEX 0, 0, 179, 14
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Search:",IDC_STATIC_SEARCH,2,1,28,13
+    EDITTEXT        IDC_EDIT_SEARCH,31,1,96,13,ES_AUTOHSCROLL | NOT WS_BORDER,WS_EX_STATICEDGE
+END
+
+IDD_ERROR DIALOG  0, 0, 277, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Close",IDOK,220,5,50,14
+    ICON            "",IDC_STATIC_IMAGE,7,7,20,20
+    LTEXT           "Static",IDC_STATIC_TEXT,44,8,156,80
+    EDITTEXT        IDC_EDIT_ADVANCED,5,105,265,75,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Detalhes",IDC_STATIC,5,95,90,10
+    PUSHBUTTON      "Button1",IDC_BUTTON1,220,25,50,15
+END
+
+IDD_OPTIONS_SONGS_DIRECTORIES DIALOG  0, 0, 250, 114
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    LTEXT           "Folders",IDC_STATIC,0,16,100,8
+    PUSHBUTTON      "add Folder...",IDC_ADD,118,3,57,13
+    PUSHBUTTON      "remove Folder",IDC_REMOVE,180,3,50,12
+    CONTROL         "Custom2",IDC_LIST,"vmsbasewnd",WS_TABSTOP,1,26,249,88
+END
+
+IDD_OPTIONS_IMAGES_DIRECTORIES DIALOG  0, 0, 251, 103
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    LTEXT           "Folders",IDC_STATIC,0,10,111,8
+    PUSHBUTTON      "add Folder...",IDC_ADD,118,3,57,13
+    PUSHBUTTON      "remove Folder",IDC_REMOVE,180,3,50,12
+    CONTROL         "Custom1",IDC_LIST,"vmsbasewnd",WS_TABSTOP,2,25,248,77
+END
+
+IDD_OPTIONS_GENERAL DIALOGEX 0, 0, 251, 103
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Lucida Sans Unicode", 0, 0, 0x0
+BEGIN
+    CONTROL         "Lista de arquivos utilizados:",IDC_CHECK_MRU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,51,99,8
+    EDITTEXT        IDC_EDIT_MRU_COUNT,110,50,30,10,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_MRU,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,130,50,9,10
+    EDITTEXT        IDC_EDIT_SYNCH_DELAY,3,14,38,12,ES_AUTOHSCROLL
+    LTEXT           "Synch Delay (ms)",IDC_STATIC_SYNCH_DELAY,3,3,66,9
+END
+
+IDD_OPTIONS_AUDIO_DEVICES DIALOG  0, 0, 251, 103
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    ICON            IDI_SOUND_RECORDING,IDC_STATIC_AUDIO_RECORDING_ICON,6,4,20,20
+    COMBOBOX        IDC_COMBO_SOUND_RECORDING,31,24,153,56,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Preferred device:",IDC_STATIC_AUDIO_RECORDING_LABEL,31,12,128,9
+    ICON            IDI_MIDI_PLAYBACK,IDC_STATIC_MIDI_PLAYBACK_ICON,6,54,20,20
+    COMBOBOX        IDC_COMBO_MIDI_PLAYBACK,31,76,153,45,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Preferred device:",IDC_STATIC_MIDI_PLAYBACK_LABEL,31,64,128,9
+    LTEXT           "Midi Playback",IDC_STATIC_MIDI_PLAYBACK,31,53,59,7
+    LTEXT           "Audio Recording",IDC_STATIC_AUDIO_RECORDING,31,3,156,7
+END
+
+IDD_OPTIONS DIALOG  0, 0, 314, 179
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "Lucida Sans Unicode"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,150,161,50,14
+    PUSHBUTTON      "Cancelar",IDCANCEL,205,161,50,14
+    CONTROL         "Tab1",IDC_TAB,"SysTabControl32",0x0,5,18,305,138
+    PUSHBUTTON      "Aplicar",IDAPPLY,260,161,50,14
+END
+
+IDD_FILE_ASSOCIATIONS DIALOG  0, 0, 186, 95
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "MIDI - XF - Tune 1000 (.mid)",IDC_CHECK_MID,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,159,10
+    CONTROL         "Soft Karaoke (.kar)",IDC_CHECK_KAR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,49,159,10
+    LTEXT           "File extensions  to be associated:",IDC_ST_FILE_EXTENSION,7,19,111,11
+    CONTROL         "Star Korea Karaoke (.st3)",IDC_CHECK_ST3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,62,159,10
+END
+
+IDR_SRVR_INPLACE DIALOG  0, 0, 177, 50
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDD_WAIT_MESSAGE DIALOGEX 0, 0, 306, 118
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Continue",ID_CONTINUE,164,92,62,18,BS_RIGHT | BS_BOTTOM | BS_FLAT
+    ICON            IDI_ICON1,IDC_STATIC_ICON,7,22,21,20
+    EDITTEXT        IDC_EDIT_MESSAGE,33,22,262,63,ES_MULTILINE | ES_READONLY | NOT WS_BORDER | WS_VSCROLL,WS_EX_STATICEDGE
+    EDITTEXT        IDC_EDIT_TIMEOUT,31,93,51,17,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    DEFPUSHBUTTON   "Cancel",ID_CANCEL,233,92,62,18,BS_RIGHT | BS_BOTTOM | BS_FLAT
+END
+
+IDR_FILEMANAGER_DIALOGBAR DIALOGEX 0, 0, 179, 14
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Search:",IDC_STATIC_SEARCH,1,1,26,13
+    EDITTEXT        IDC_EDIT_SEARCH,31,1,96,13,ES_AUTOHSCROLL | NOT WS_BORDER,WS_EX_STATICEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        TOPMARGIN, 1
+    END
+
+    IDR_ALBUM_DIALOGBAR, DIALOG
+    BEGIN
+        TOPMARGIN, 1
+    END
+
+    IDD_FILE_ASSOCIATIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDR_SRVR_INPLACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 170
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_WAIT_MESSAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 295
+        TOPMARGIN, 22
+        BOTTOMMARGIN, 110
+    END
+
+    IDR_FILEMANAGER_DIALOGBAR, DIALOG
+    BEGIN
+        TOPMARGIN, 1
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// string Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+    IDS_MIXER_PLAYBACK_TAB  "Playback"
+    IDS_MIXER_RECORDING_TAB "Recording"
+    IDS_OPTIONSVIEW_TAB_FOLDERS "Folders"
+    IDS_MIXER_MUTEALL       "Sem Áudio Geral"
+    IDS_MIXER_MUTE          "Sem Áudio"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "\nveriwell Musical Player lite\nveriwell Musical Player lite\nveriwell Music Files (*.mid;*.kar;*.st3;*.mk1)\n.mid;.kar;.st3;.mk1\nveriwellMusicalStudio.Mid.document\nveriwell Musical document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "vmpLight"
+    AFX_IDS_IDLEMESSAGE     "For Help, press F1"
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+    IDS_MID                 "\nVeriwell Musical Player\nVeriwell Musical Player\nVMS Karaoke Files (*.mid)\n.mid\nVeriwellMusicalStudio.document\nVeriwell Musical Studio document"
+    IDS_KAR                 "\nVeriwell Musical Player\nVeriwell Musical Playerr\nVMS Karaoke Files (*.kar)\n.kar\nVeriwellMusicalStudio.document\nVeriwell Musical Studio document"
+    IDS_ST3                 "\nVeriwell Musical Player\nVeriwell Musical Player\nVMS Karaoke Files (.st3)\n.st3\nVeriwellMusicalStudio.document\nVeriwell Musical Studio document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+    ID_FILE_UPDATE          "Update the container to show any changes\nUpdate"
+    ID_FILE_SAVE_COPY_AS    "Save a copy of the active document with a new name\nSave copy"
+    ID_FILE_SEND_MAIL       "Send the active document through electronic cube\nSend Mail"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+    ID_HELP_INDEX           "Opens Help\nHelp Topics"
+    ID_HELP_FINDER          "List Help topics\nHelp Topics"
+    ID_HELP_USING           "Display instructions about how to use help\nHelp"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows\nHelp"
+    ID_HELP                 "Display help for current task or command\nHelp"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next ::ca::window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous ::ca::window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active ::ca::window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the ::ca::window size"
+    AFX_IDS_SCMOVE          "Change the ::ca::window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the ::ca::window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the ::ca::window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document ::ca::window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document ::ca::window"
+    AFX_IDS_SCCLOSE         "Close the active ::ca::window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the ::ca::window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+    IDS_FILE_OPEN_ERROR     "Não foi possível abrir o arquivo. O formato não é suportado ou o arquivo está corrompido."
+    IDS_PLAYLIST_HEADER_FILENAME "File Name"
+    IDS_PLAYLIST_HEADER_FILEPATH "File Path"
+    IDS_APP_OPTIONS_GENERAL_SYNCH_DELAY "Synch Delay (ms)"
+    IDS_VIEW_LANGUAGE       "English"
+    IDS_OPTIONSVIEW_TAB_SONGDIRECTORIES "Song Folders"
+    IDS_OPTIONSVIEW_TAB_IMAGEDIRECTORIES "Image Folders"
+    IDS_VIEW_ENCODING_LATIN1 "Latin 1"
+    IDS_VIEW_ENCODING_SHIFTJIS "Japanese (Shift JIS)"
+    IDS_VIEW_ENCODING_BIG5  "Chinese (Traditional Chinese)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MIDIMAPPER          "MIDI Mapper"
+    IDS_OPTIONS_AUDIODEVICES "Audio Devices"
+    IDS_WAVEMAPPER          "Wave Mapper"
+    IDS_KARAOKEVIEW_TAB_KARAOKE "Karaoke"
+    IDS_KARAOKEVIEW_TAB_PLAYLIST "Playlist"
+    IDS_KARAOKEVIEW_TAB_ALBUM "Album"
+    IDS_KARAOKEVIEW_TAB_OPEN "Open"
+    IDS_KARAOKEVIEW_TAB_OPTIONS "Options"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_GENERAL     "General"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONS_SONGSFOLDER "Songs Folders"
+    IDS_OPTIONS_IMAGESFOLDERS "Images Folders"
+    IDS_OPTIONS_IMAGES      "Images"
+    IDS_XFPLAYER_OPENFILETITLE "Abrir"
+    IDS_XFPLAYER_OPENFILEFILTER 
+                            "Supported Music Files|*.mid;*.kar;*.st3;*.mk1|Karaoke files (*.mid, *.kar, *.st3,*.mk1)|*.mid;*.kar;*.st3;*.mk1"
+    IDS_XFPLAYER_OPENFILEFILTER2 
+                            "Supported Music Files|*.mid;*.kar;*.st3;*.mk1;*.mp3;*.aif;*.vqf|Karaoke files (*.mid, *.kar, *.st3, *.mk1)|*.mid;*.kar;*.st3;*.mk1"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CHOOSE_IMAGE_DIRECTORY "Escolha um diretório de imagens:"
+    IDS_NO_DIRECTORY_SELECTED "Nenhum diretório foi selecionado."
+    IDS_OPTIONS_FILE_ASSOCIATIONS "Tipos de arquivos"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EXECUTE_MINUSONE     "Minus One feature"
+    ID_VIEW_FULLSCREEN      "Toggle Full Screen Mode\nFull Screen"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_BROWSE_LEVELUP       "Navigate One Level Up\nOne Level Up"
+    ID_VIEW_MEDIAEXPLORER   "Media Explorer\nView Media Explorer"
+    ID_VIEW_ALLMEDIA        "All Media\nView All Media"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSVIEW_TAB_FILEASSOCIATION "File Association"
+    IDS_OPTIONSVIEW_TAB_AUDIODEVICES "Audio Devices"
+    IDS_MEDIALIBRARY_TAB_ALL "All Local Media"
+    IDS_MEDIALIBRARY_TAB_EXPLORER "Explore Local Media"
+    IDS_MEDIALIBRARY_TAB_VMSKARLIB "Explore karaoke.veriwell.com.br"
+    IDS_VIEW_ENCODING_SHIFTEUCJP "Japanese (EUC-JP)"
+    IDS_VIEW_ENCODING_ISO2022JP "Japanese (ISO-2022-JP)"
+    IDS_VIEW_ENCODING_MACJP "Japanese (MAC)"
+    IDS_VIEW_ENCODING_AUTODETECT "Auto-detect"
+    IDS_OPTIONSVIEW_TAB_KARAOKE "Karaoke"
+    IDS_KARAOKEVIEW_TAB_MENU "Menu"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_KARAOKEVIEW_TAB_AUDIOCONTROL "Audio Control"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPTIONSFOLDERS_TAB_SONG "Song"
+    IDS_OPTIONSFOLDERS_TAB_IMAGE "Image"
+    IDS_OPTIONSFOLDERS_TAB_AUTO_RECORD "Auto Record"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_LYRICVIEW_LINK MENU 
+BEGIN
+    POPUP "IDR_POPUP_LYRICVIEW_LINK"
+    BEGIN
+        MENUITEM "Open Link in New Window",     ID_OPEN_LINK_IN_NEW_WINDOW
+        MENUITEM "copy Link Location",          ID_COPY_LINK_LOCATION
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,1,1,1
+ PRODUCTVERSION 0,1,1,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "veriwell"
+            VALUE "FileDescription", "veriwell Musical Player lite"
+            VALUE "FileVersion", "0, 1, 1, 1"
+            VALUE "InternalName", "vmpLight"
+            VALUE "LegalCopyright", "Copyright (C) 2004"
+            VALUE "OriginalFilename", "vmpLight.exe"
+            VALUE "ProductName", "veriwell Musical Player lite"
+            VALUE "ProductVersion", "0, 1, 1, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\vmpLight.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#include ""afxolesv.rc""       // OLE server resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// ENHMETAFILE
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "ca2api000_00001_res.rc"         // Standard components
+#include "../ca2/cafxprint.rc"       // printing/print preview resources
+#include "../ca2/cafxolesv.rc"       // OLE server resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

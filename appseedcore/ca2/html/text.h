@@ -1,0 +1,57 @@
+#pragma once
+
+namespace html
+{
+
+namespace impl
+{
+   class text : 
+      virtual public elemental,
+      virtual public user::edit_plain_text
+   {
+   public:
+
+      
+      base_array < size, size & > m_sizea;
+      stringa m_straLines;
+      stringa m_straWordSpace;
+      bool m_bLink;
+      string m_strLink;
+
+
+      text(::ca::application * papp);
+
+      DECL_GEN_SIGNAL(OnLButtonDown)
+      DECL_GEN_SIGNAL(OnMouseMove)
+      DECL_GEN_SIGNAL(OnLButtonUp)
+
+      virtual void _001OnGetText();
+
+      virtual void _001OnDraw(data * pdoc);
+      virtual void _001OnDraw(::ca::graphics * pgraphics);
+      void implement_phase1(data * pdoc, ::html::elemental * pelemental);
+      void layout_phase3(data * pdoc);
+
+      virtual void delete_implementation();
+
+      virtual bool get_color(COLORREF & cr);
+      virtual bool has_link();
+      virtual string link();
+
+      virtual int hit_test(point pt);
+
+      virtual int char_hit_test(::ca::graphics * pdc, int px, int py);
+
+      virtual int get_first_line_height();
+      virtual int get_last_line_height();
+
+      virtual void _001OnAfterChangeText();
+      
+
+   };
+
+} // namespace impl
+
+
+
+} // namespace html_impl

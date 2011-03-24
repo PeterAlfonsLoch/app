@@ -1,0 +1,13 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+
+HKEY_CLASSES_ROOT\Whiteboard.Document = Whiteb Document
+HKEY_CLASSES_ROOT\Whiteboard.Document\CLSID = {AB168B84-F863-42B7-8763-3DB56231410E}
+
+HKEY_CLASSES_ROOT\CLSID\{AB168B84-F863-42B7-8763-3DB56231410E} = Whiteb Document
+HKEY_CLASSES_ROOT\CLSID\{AB168B84-F863-42B7-8763-3DB56231410E}\ProgId = Whiteboard.Document
+HKEY_CLASSES_ROOT\CLSID\{AB168B84-F863-42B7-8763-3DB56231410E}\LocalServer32 = WHITEBOARD.EXE

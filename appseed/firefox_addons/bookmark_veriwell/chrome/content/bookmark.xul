@@ -1,0 +1,8 @@
+<toolbox id="navigator-toolbox">
+    <toolbarpalette id="BrowserToolbarPalette">
+      <toolbarbutton id="bookmark-veriwell-button" class="bookmarkveriwellbutton chromeclass-toolbar-additional"
+                     observes="viewBookmarkVeriwellSidebar" />
+      <toolbarbutton id="bookmark-veriwell-home-button" class="bookmarkveriwellhomebutton chromeclass-toolbar-additional"
+                     observes="viewBookmarkVeriwellSidebar" />
+    </toolbarpalette>
+  </toolbox>

@@ -1,0 +1,4 @@
+﻿<toolbar>
+	<button id="add_alarm">add alarm</button>
+	<button id="delete_alarm">delete alarm</button>
+</toolbar>

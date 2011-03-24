@@ -1,0 +1,7 @@
+LIBRARY   npca2plugin
+
+EXPORTS
+_NS_PluginShutdown = _NS_PluginShutdown
+_fillNetscapeFunctionTable = _fillNetscapeFunctionTable
+_NS_PluginInitialize = _NS_PluginInitialize
+_fillPluginFunctionTable = _fillPluginFunctionTable

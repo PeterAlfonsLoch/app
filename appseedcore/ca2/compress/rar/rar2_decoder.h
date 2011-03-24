@@ -1,0 +1,176 @@
+// Rar2Decoder.h
+// According to unRAR license, this code may not be used to develop
+// a program that creates RAR archives
+// from 7-zip on 2012-12-23, dawn
+#pragma once
+
+
+/*#include "../../Common/MyCom.h"
+
+#include "../ICoder.h"
+
+#include "../Common/InBuffer.h"
+
+#include "BitmDecoder.h"
+#include "HuffmanDecoder.h"
+#include "LzOutWindow.h"*/
+
+namespace compress
+{
+
+   namespace rar2
+   {
+
+      const uint32 kNumRepDists = 4;
+      const uint32 kDistTableSize = 48;
+
+      const int kMMTableSize = 256 + 1;
+
+      const uint32 kMainTableSize = 298;
+      const uint32 kLenTableSize = 28;
+
+      const uint32 kDistTableStart = kMainTableSize;
+      const uint32 kLenTableStart = kDistTableStart + kDistTableSize;
+
+      const uint32 kHeapTablesSizesSum = kMainTableSize + kDistTableSize + kLenTableSize;
+
+      const uint32 kLevelTableSize = 19;
+
+      const uint32 kMMTablesSizesSum = kMMTableSize * 4;
+
+      const uint32 kMaxTableSize = kMMTablesSizesSum;
+
+      const uint32 kTableDirectLevels = 16;
+      const uint32 kTableLevelRepNumber = kTableDirectLevels;
+      const uint32 kTableLevel0Number = kTableLevelRepNumber + 1;
+      const uint32 kTableLevel0Number2 = kTableLevel0Number + 1;
+
+      const uint32 kLevelMask = 0xF;
+
+
+      const uint32 kRepBothNumber = 256;
+      const uint32 kRepNumber = kRepBothNumber + 1;
+      const uint32 kLen2Number = kRepNumber + 4;
+
+      const uint32 kLen2NumNumbers = 8;
+      const uint32 kReadTableNumber = kLen2Number + kLen2NumNumbers;
+      const uint32 kMatchNumber = kReadTableNumber + 1;
+
+      const byte kLenStart[kLenTableSize]      = {0,1,2,3,4,5,6,7,8,10,12,14,16,20,24,28,32,40,48,56,64,80,96,112,128,160,192,224};
+      const byte kLenDirectBits[kLenTableSize] = {0,0,0,0,0,0,0,0,1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4,  4,  5,  5,  5,  5};
+
+      const uint32 kDistStart[kDistTableSize]     = {0,1,2,3,4,6,8,12,16,24,32,48,64,96,128,192,256,384,512,768,1024,1536,2048,3072,4096,6144,8192,12288,16384,24576,32768U,49152U,65536,98304,131072,196608,262144,327680,393216,458752,524288,589824,655360,720896,786432,851968,917504,983040};
+      const byte kDistDirectBits[kDistTableSize] = {0,0,0,0,1,1,2, 2, 3, 3, 4, 4, 5, 5,  6,  6,  7,  7,  8,  8,   9,   9,  10,  10,  11,  11,  12,   12,   13,   13,    14,    14,   15,   15,    16,    16,    16,    16,    16,    16,    16,    16,    16,    16,    16,    16,    16,    16};
+
+      const byte kLevelDirectBits[kLevelTableSize] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
+
+      const byte kLen2DistStarts[kLen2NumNumbers]={0,4,8,16,32,64,128,192};
+      const byte kLen2DistDirectBits[kLen2NumNumbers]={2,2,3, 4, 5, 6,  6,  6};
+
+      const uint32 kDistLimit2 = 0x101 - 1;
+      const uint32 kDistLimit3 = 0x2000 - 1;
+      const uint32 kDistLimit4 = 0x40000 - 1;
+
+      const uint32 kMatchMaxLen = 255 + 2;
+      const uint32 kMatchMaxLenMax = 255 + 5;
+      const uint32 kNormalMatchMinLen = 3;
+
+      namespace multimedia
+      {
+
+         struct filter
+         {
+            int K1,K2,K3,K4,K5;
+            int D1,D2,D3,D4;
+            int LastDelta;
+            uint32 Dif[11];
+            uint32 ByteCount;
+            int LastChar;
+
+            byte Decode(int &channelDelta, byte delta);
+
+            void Init() { memset(this, 0, sizeof(*this)); }
+
+         };
+
+         const int kNumChanelsMax = 4;
+
+         class filter2
+         {
+         public:
+            filter  m_Filters[kNumChanelsMax];
+            int m_ChannelDelta;
+            int CurrentChannel;
+
+            void Init() { memset(this, 0, sizeof(*this)); }
+            byte Decode(byte delta)
+            {
+               return m_Filters[CurrentChannel].Decode(m_ChannelDelta, delta);
+            }
+
+         };
+
+      }
+
+
+      const int kNumHuffmanBits = 15;
+
+      class decoder :
+         public ::compress::coder_interface,
+         public ::compress::set_decoder_properties2_interface
+      {
+         ::compress::lz_out_window m_OutWindowStream;
+         ::ex1::bitm::in_buffer_decoder m_InBitStream;
+         huffman::decoder<kNumHuffmanBits, kMainTableSize> m_MainDecoder;
+         huffman::decoder<kNumHuffmanBits, kDistTableSize> m_DistDecoder;
+         huffman::decoder<kNumHuffmanBits, kLenTableSize> m_LenDecoder;
+         huffman::decoder<kNumHuffmanBits, kMMTableSize> m_MMDecoders[multimedia::kNumChanelsMax];
+         huffman::decoder<kNumHuffmanBits, kLevelTableSize> m_LevelDecoder;
+
+         bool m_AudioMode;
+
+         multimedia::filter2 m_MmFilter;
+         int m_NumChannels;
+
+         uint32 m_RepDists[kNumRepDists];
+         uint32 m_RepDistPtr;
+
+         uint32 m_LastLength;
+
+         byte m_LastLevels[kMaxTableSize];
+
+         uint64 m_PackSize;
+         bool m_IsSolid;
+
+         void InitStructures();
+         uint32 ReadBits(int numBits);
+         bool ReadTables();
+         bool ReadLastTables();
+
+         bool DecodeMm(uint32 pos);
+         bool DecodeLz(int32 pos);
+
+         HRESULT CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface *progress);
+
+      public:
+         decoder();
+
+         //MY_UNKNOWN_IMP1(ICompressSetDecoderProperties2)
+
+            void ReleaseStreams()
+         {
+            m_OutWindowStream.ReleaseStream();
+            m_InBitStream.ReleaseStream();
+         }
+
+         virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface *progress);
+
+         virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32 size);
+
+      };
+
+   } // namespace rar2
+
+} // namespace compress
+
+

@@ -1,0 +1,7 @@
+; winshelllink.def
+
+LIBRARY  "winshelllink"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+

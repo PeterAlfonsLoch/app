@@ -1,0 +1,42 @@
+// mk1expander.odl : type library source for mk1expander.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (mk1expander.tlb).
+
+[ uuid(B5765A3A-3DDD-4898-9D0A-A3B92CAF9025), version(1.0) ]
+library Mk1expander
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CMk1expanderDoc
+	
+	[ uuid(CC09B445-B133-4B5B-99CA-FE6170826449) ]
+	dispinterface IMk1expander
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CMk1expanderDoc)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CMk1expanderDoc)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CMk1expanderDoc
+	
+	[ uuid(D8D988A8-A22C-482F-B358-E8ADC1D30B61) ]
+	coclass Document
+	{
+		[default] dispinterface IMk1expander;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

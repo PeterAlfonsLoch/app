@@ -1,0 +1,77 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "vmplight"=..\vmplight\vmplight.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/vmpLight", UJCAAAAA
+    ..\..\_ms\vmplight
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "vmse"=.\vmse_mbcs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "vmsmediai"=..\vmsmediai\vmsmediai.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/vmsmediai", HCDAAAAA
+    ..\vmsmediai
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "vmsmus"=..\vmsmus\vmsmus_mbcs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/vmsmus", FCBAAAAA
+    ..\vmsmus
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

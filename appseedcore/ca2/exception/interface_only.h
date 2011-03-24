@@ -1,0 +1,11 @@
+#pragma once
+
+
+class CLASS_DECL_ca interface_only_exception : public not_implemented_exception
+{
+public:
+
+   interface_only_exception(const char * pszTip = NULL);
+   interface_only_exception(const interface_only_exception & e);
+   virtual ~interface_only_exception();
+};

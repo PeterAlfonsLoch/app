@@ -1,0 +1,317 @@
+#include "StdAfx.h"
+
+
+namespace fs
+{
+
+
+   tree::tree(::ca::application * papp) :
+      ca(papp),
+      ::ca::data_container(papp),
+      ::user::scroll_view(papp),
+      ::ex1::tree(papp),
+      ::user::tree(papp),
+      ::fs::tree_interface(papp),
+      m_scrollbarHorz(papp),
+      m_scrollbarVert(papp)
+   {
+         
+      m_etranslucency = TranslucencyPresent;
+      m_pscrollbarVert  = &m_scrollbarVert;
+      m_pscrollbarHorz  = &m_scrollbarHorz;
+      m_pscrollbarHorz = &m_scrollbarHorz;
+      m_pscrollbarVert = &m_scrollbarVert;
+
+   }
+
+   tree::~tree()
+   {
+   }
+
+
+#ifdef _DEBUG
+   void tree::assert_valid() const
+   {
+      ::fs::tree_interface::assert_valid();
+   }
+
+   void tree::dump(dump_context & dumpcontext) const
+   {
+      ::fs::tree_interface::dump(dumpcontext);
+   }
+#endif //_DEBUG
+
+   void tree::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   {
+      ::fs::tree_interface::_001InstallMessageHandling(pinterface);
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &tree::_001OnLButtonDblClk);
+      IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
+   }
+
+   void tree::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   {
+      //FileManagerViewInterface::on_update(pSender, lHint, phint);
+      if(phint != NULL)
+      {
+         if(base < FileManagerViewUpdateHint > :: bases(phint))
+         {
+            FileManagerViewUpdateHint * puh = (FileManagerViewUpdateHint *) phint;
+            if(puh->is_type_of(FileManagerViewUpdateHint::TypeInitialize))
+            {
+               /* xxx _001SetExpandImage(
+                  System.LoadIcon(
+                     GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiExpandBox));
+               _001SetCollapseImage(
+                  System.LoadIcon(
+                     GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiCollapseBox));*/
+
+                  
+   //            VmsDataInitialize(this);
+      //          SetDataInterface(&m_datainterface);
+         //        AddClient(&m_datainterface);
+/*               string str;
+               str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+               if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+               {
+                  ::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
+               }
+               m_dataid = str;*/
+   //            _001UpdateColumns();
+            }
+            if(puh->is_type_of(FileManagerViewUpdateHint::TypePreSynchronize))
+            {
+               _017PreSynchronize();
+            }
+            if(puh->is_type_of(FileManagerViewUpdateHint::TypeSynchronize))
+            {
+               _017Synchronize();
+            }
+            if(puh->is_type_of(FileManagerViewUpdateHint::TypeFilter))
+            {
+               if(puh->m_wstrFilter.is_empty())
+               {
+   //               FilterClose();
+               }
+               else
+               {
+      //             FilterBegin();
+         //           Filter1(puh->m_wstrFilter);
+         //         FilterApply();
+               }
+            }
+         }
+      }
+   }
+
+
+   void tree::_001OnLButtonDblClk(gen::signal_object * pobj) 
+   {
+      UNREFERENCED_PARAMETER(pobj);
+   //   int iItem;
+      
+   /*   if(_001HitTest_(point, iItem))
+      {
+         if(m_itema.get_item(iItem).IsFolder())
+         {
+            ::fs::item item;
+            item.m_strPath         = m_itema.get_item(iItem).m_strPath;
+            item.m_lpiidlAbsolute   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+            item.m_lpiidlRelative   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+            get_document()->OpenFolder(item);
+         }
+         else
+         {
+            ::fs::item item;
+            item.m_strPath         = m_itema.get_item(iItem).m_strPath;
+            item.m_lpiidlAbsolute   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+            item.m_lpiidlRelative   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+
+            ::fs::item_array itema;
+            itema.add(item);
+
+            GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
+         }
+      }*/
+   }
+
+   /*
+   bool tree::OnSetData(const ::database::id &key, int iLine, int iColumn, var & var, ::database::update_hint * puh)
+   {
+      if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
+      {
+         ASSERT(var.get_type() == var::type_string
+            || var.is_empty());
+         string str;
+         str = var.m_str;
+         RenameFile(iLine, str);
+      }
+      return true;
+   }
+   */
+
+   /*
+   bool tree::get_data(const ::database::id & key, int iLine, int iColumn, var & var)
+   {
+      string str;
+      if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
+      {
+         str = m_itema.get_item(iLine).m_wstrName;
+      }
+      var.set_type(var::type_string);
+      var.m_str = str;
+      return true;
+   }
+
+   void tree::RenameFile(int iLine, string &wstrNameNew)
+   {
+      string str = m_itema.get_item(iLine).m_strPath;
+
+      int iFind = str.reverse_find(L'\\');
+
+
+      string wstrNew = str.Left(iFind + 1) + wstrNameNew;
+
+      if(!WindowsShell::MoveFile(str, wstrNew))
+      {
+         System.simple_message_box("Could not rename the file");
+      }
+
+   }*/
+
+   void tree::_001OnContextMenu(gen::signal_object * pobj) 
+   {
+      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+   //   int iItem;
+   //   HRESULT hr;
+      point ptClient = pcontextmenu->GetPoint();
+      ::user::tree::ScreenToClient(&ptClient);
+   /*     if(_001HitTest_(ptClient, iItem))
+      {
+         CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
+         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiFilePopup))
+         {
+            CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
+            ASSERT(pPopup != NULL);
+            frame_window * pframe = GetTopLevelFrame();
+
+            pframe->SetActiveView(this);
+
+            //IContextMenu * pcontextmenu;
+
+            hr = m_spshellfolder->GetUIObjectOf(
+               NULL,
+               1,
+               (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
+               IID_IContextMenu,
+               NULL,
+               (void **) &m_contextmenu.m_pcontextmenu);
+
+            
+            if(SUCCEEDED(hr))
+            {
+               hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
+                     pPopup->GetSafeHmenu(),
+                     0,
+                     SHELL_COMMAND_FIRST,
+                     SHELL_COMMAND_LAST,
+                     CMF_NORMAL);
+
+            }
+
+
+            pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+               point.x, point.y,
+               (::ca::window *) pframe);
+         }
+      }
+      else
+      {
+         ::userbase::menu menu;
+         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiPopup))
+         {
+            ::userbase::menu* pPopup = menu.GetSubMenu(0);
+            ASSERT(pPopup != NULL);
+            frame_window * pframe = GetTopLevelFrame();
+            pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+               point.x, point.y,
+               (::ca::window *) pframe);
+         }
+      }*/
+   }
+
+   BOOL tree::PreCreateWindow(CREATESTRUCT& cs) 
+   {
+      
+      cs.style |= WS_CLIPCHILDREN;
+      
+      return ::fs::tree_interface::PreCreateWindow(cs);
+   }
+
+
+   void tree::_001OnTimer(gen::signal_object * pobj) 
+   {
+      SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+      if(ptimer->m_nIDEvent == 1234567)
+      {
+         m_iAnimate += 2;
+         if(m_iAnimate >= 11)
+         {
+            m_iAnimate = 0;
+            KillTimer(ptimer->m_nIDEvent);
+            
+         }
+         RedrawWindow();
+      }
+      else if(ptimer->m_nIDEvent == 123)
+      {
+         _001RedrawWindow();
+         m_bTimer123 = false;
+         KillTimer(123);
+      }
+   }
+
+   void tree::StartAnimation()
+   {
+      SetTimer(1234567, 50, NULL);
+   }
+
+   bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   {
+      return ::fs::tree_interface::_001OnCmdMsg(pcmdmsg);
+   }
+
+   void tree::_001OnShellCommand(gen::signal_object * pobj) 
+   {
+      SCAST_PTR(::user::win::message::command, pcommand, pobj)
+   }
+
+   void tree::_017OpenFolder(::fs::item &item)
+   {
+      get_document()->file_manager_browse(item.m_strPath);
+   }
+
+   void tree::_001OnCreate(gen::signal_object * pobj) 
+   {
+      UNREFERENCED_PARAMETER(pobj);
+
+      if(!initialize())
+         throw simple_exception();
+
+      /*m_pimagelist = System.shellimageset().GetImageList16();
+      m_iDefaultImage = System.shellimageset().GetImage(
+         "foo",
+         _shell::FileAttributeDirectory,
+         _shell::IconNormal);
+
+      m_iDefaultImageSelected = System.shellimageset().GetImage(
+         "foo",
+         _shell::FileAttributeDirectory,
+         _shell::IconOpen);*/
+   }
+
+
+} // namespace fs
+
+

@@ -1,0 +1,7 @@
+; command.def
+
+LIBRARY  "command"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+

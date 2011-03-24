@@ -1,0 +1,5 @@
+Curitiba, 11 de setembro de 2010 - a noite, aprox 20:00, em casa fazendo faxina do ca2 para todo mundo, especialmente, ou melhor
+inspirado pelo programador Telmo Friesen - meu amigo do peito - que espero que também seja ca2, possa baixar facilmente o ca2.
+
+A idéia é criar um engine gráfico 3D.
+OpenGL é o link bem mais antigo com o Telmo sempre presente.

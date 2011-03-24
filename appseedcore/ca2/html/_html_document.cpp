@@ -1,0 +1,172 @@
+﻿#include "StdAfx.h"
+#include "html_document.h"
+
+html_document::html_document(::ca::application * papp) :
+   ca(papp),
+   data_container(papp),
+   ::document(papp),
+   ::userbase::document(papp)
+{
+   set_data(new html::data(papp));
+   get_html_data()->m_pcallback = this;
+   get_html_data()->m_propset["bReplaceEx1"] = true;
+}
+
+BOOL html_document::on_new_document()
+{
+   ::database::client::initialize(get_app());
+
+   if (!::userbase::document::on_new_document())
+      return FALSE;
+
+   /*string str;
+   data_get("LastOpenedFile", str);
+
+   if(str.get_length() > 0)
+   {
+      return on_open_document(str);
+   }*/
+
+
+
+   update_all_views(NULL, 0);
+
+   /*str = "<html>\n";
+   str += "<head>\n";
+   str += "</head>\n";
+   str += "<body>\n";
+   // tag fixer tabjs!!
+   str += "<span>Curitiba, 10 de abril de 2008</span>\n";
+   str += "<h1>Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!</h1>";
+   str += "<h2>Assinado Camilo Sasuke Tsumanuma.</h2>\n";
+   str += "<span>htmlapp dedicado ao Carlos Gustavo Cecyn Lundgren!!</span>";
+   str += "<br />";
+   str += "<span>Voc・conhece o ca2?</span>";
+   str += "<br />";
+   str += "<span>Se positivo, entre com seu nome abaixo e clique em enviar!</span>";
+   str += "<br />";
+   str += "<input type=\"text\" />";
+   str += "</body>\n";
+   str += "</html>\n";
+   m_document.load(str);
+*/
+   return TRUE;
+}
+
+html_document::~html_document()
+{
+}
+
+
+
+#ifdef _DEBUG
+void html_document::assert_valid() const
+{
+   ::userbase::document::assert_valid();
+}
+
+void html_document::dump(dump_context & dumpcontext) const
+{
+   ::userbase::document::dump(dumpcontext);
+}
+#endif //_DEBUG
+
+/////////////////////////////////////////////////////////////////////////////
+// html_document serialization
+
+/*void html_document::Serialize(CArchive& ar)
+{
+   if (ar.IsStoring())
+   {
+      // TODO: add storing code here
+   }
+   else
+   {
+      // TODO: add loading code here
+   }
+}
+*/
+
+void html_document::data_on_after_change(gen::signal_object * pobj)
+{
+   UNREFERENCED_PARAMETER(pobj);
+}
+
+void html_document::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+{
+   UNREFERENCED_PARAMETER(lpszUrl);
+   UNREFERENCED_PARAMETER(nFlags);
+   UNREFERENCED_PARAMETER(lpszTargetFrameName);
+   UNREFERENCED_PARAMETER(baPostedData);
+   UNREFERENCED_PARAMETER(lpszHeaders);
+   UNREFERENCED_PARAMETER(pbCancel);
+}
+
+bool html_document::on_open_document(var varFile)
+{
+   if(!get_html_data()->open_document(varFile))
+      return FALSE;
+   set_path_name(get_html_data()->m_strPathName);
+   /*   m_document.m_papp = get_app();*/
+   html_view_update_hint uh;
+   uh.m_etype = html_view_update_hint::type_document_complete;
+   uh.m_strUrl = varFile;
+   update_all_views(NULL, 0, &uh);
+   data_set("LastOpenedFile", get_path_name());
+   return TRUE;
+}
+
+void html_document::soft_reload()
+{
+   ::ca::data::writing writing(get_html_data());
+   string str = get_html_data()->m_strSource;
+   //if(m_propset["bReplaceEx1"])
+   {
+      get_html_data()->m_propertyset.replace_ex1(str);
+   }
+   TRACE0(str);
+   get_html_data()->load(str);
+   html_view_update_hint uh;
+   uh.m_etype = html_view_update_hint::type_document_complete;
+   uh.m_strUrl = get_path_name();
+   update_all_views(NULL, 0, &uh);
+}
+
+::html::data * html_document::get_html_data()
+{
+   return dynamic_cast < ::html::data * > (::document::get_data());
+}
+
+bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
+{
+   if(pcmdui->m_id == "viewindefaultbrowser")
+   {
+      pcmdui->Enable();
+      return true;
+   }
+   return false;
+}
+ 
+bool html_document::_001OnCommand(id id)
+{
+   if(id == "viewindefaultbrowser")
+   {
+      gen::property_set propertyset;
+      System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
+      ::ShellExecute(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
+      return true;
+   }
+   return false;
+}
+
+
+bool html_document::open_document(var varFile)
+{
+   return on_open_document(varFile) != FALSE;
+}
+
+::ca::application * html_document::get_app() const
+{
+   return ::userbase::document::get_app();
+}
+

@@ -1,0 +1,228 @@
+#include "StdAfx.h"
+
+single_document_template::single_document_template(
+   ::ca::application * papp, 
+   const char * pszMatter,
+   ::ca::type_info pDocClass, ::ca::type_info pFrameClass,
+   ::ca::type_info pViewClass) :
+   ca(papp),
+   document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
+{
+   m_pdocument = NULL;
+}
+
+single_document_template::~single_document_template()
+{
+#ifdef _DEBUG
+   if (m_pdocument != NULL)
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live document.\n");
+#endif
+}
+
+count single_document_template::get_document_count() const
+{
+   return (m_pdocument == NULL) ? 0 : 1;
+}
+
+document * single_document_template::get_document(index index) const
+{
+   if(index == 0)
+      return m_pdocument;
+   else
+      return NULL;
+}
+
+void single_document_template::add_document(document * pdocument)
+{
+   if(m_pdocument == NULL)
+   {
+      m_pdocument = pdocument;
+      document_template::add_document(pdocument);
+   }
+}
+
+void single_document_template::remove_document(document * pdocument)
+{
+   if(m_pdocument == pdocument)
+   {
+      document_template::remove_document(pdocument);
+      m_pdocument = NULL;
+   }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// single_document_template commands
+
+void single_document_template::request(var & varFile, var & varQuery)
+   // if lpszPathName == NULL => create new file of this type
+{
+   varQuery["document"] = (::ca::ca *) NULL;
+   bool bMakeVisible = varQuery["make_visible_boolean"];
+   ::user::interaction * pwndParent = varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
+   ::view * pviewAlloc = varQuery["allocation_view"].ca2 < ::view > ();
+
+   document * pdocument = NULL;
+   frame_window* pFrame = NULL;
+   BOOL bCreated = FALSE;      // => doc and frame created
+   BOOL bWasModified = FALSE;
+
+   if (m_pdocument != NULL)
+   {
+      // already have a document - reinit it
+      pdocument = m_pdocument;
+      if (!pdocument->save_modified())
+         return;        // leave the original one
+
+      pFrame = dynamic_cast < frame_window * > (pdocument->get_view()->GetParentFrame());
+      ASSERT(pFrame != NULL);
+      ASSERT_KINDOF(frame_window, pFrame);
+      ASSERT_VALID(pFrame);
+   }
+   else
+   {
+      // create a new document
+      pdocument = create_new_document();
+      ASSERT(pFrame == NULL);     // will be created below
+      bCreated = TRUE;
+   }
+
+   if (pdocument == NULL)
+   {
+      // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+      System.simple_message_box(NULL, "Failed to create document");
+      return;
+   }
+   ASSERT(pdocument == m_pdocument);
+
+   if (pFrame == NULL)
+   {
+      ASSERT(bCreated);
+
+      // create frame - set as main document frame
+      BOOL bAutoDelete = pdocument->m_bAutoDelete;
+      pdocument->m_bAutoDelete = FALSE;
+               // don't destroy if something goes wrong
+      pFrame = create_new_frame(pdocument, NULL, pwndParent, pviewAlloc);
+      pdocument->m_bAutoDelete = bAutoDelete;
+      if (pFrame == NULL)
+      {
+         // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+         System.simple_message_box(NULL, "Failed to create document");
+         delete pdocument;       // explicit delete on error
+         return;
+      }
+   }
+
+   if (varFile.is_empty())
+   {
+      // create a new document
+      set_default_title(pdocument);
+
+      // avoid creating temporary compound file when starting up invisible
+      if (!bMakeVisible)
+         pdocument->m_bEmbedded = TRUE;
+
+      if (!pdocument->on_new_document())
+      {
+         // ::fontopus::user has been alerted to what failed in on_new_document
+         TRACE(::radix::trace::category_AppMsg, 0, "document::on_new_document returned FALSE.\n");
+         if (bCreated)
+            pFrame->DestroyWindow();    // will destroy document
+         return;
+      }
+   }
+   else
+   {
+      wait_cursor wait(get_app());
+
+      // open an existing document
+      bWasModified = pdocument->is_modified();
+      pdocument->set_modified_flag(FALSE);  // not dirty for open
+
+      if (!pdocument->on_open_document(varFile))
+      {
+         // ::fontopus::user has been alerted to what failed in on_open_document
+         TRACE(::radix::trace::category_AppMsg, 0, "document::on_open_document returned FALSE.\n");
+         if (bCreated)
+         {
+            pFrame->DestroyWindow();    // will destroy document
+         }
+         else if (!pdocument->is_modified())
+         {
+            // original document is untouched
+            pdocument->set_modified_flag(bWasModified);
+         }
+         else
+         {
+            // we corrupted the original document
+            set_default_title(pdocument);
+
+            if (!pdocument->on_new_document())
+            {
+               TRACE(::radix::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+                  "to open a document - trying to continue.\n");
+               // assume we can continue
+            }
+         }
+         return;        // open failed
+      }
+      pdocument->set_path_name(varFile);
+   }
+
+   ::radix::thread* pThread = System.GetThread();
+   ASSERT(pThread);
+   if (bCreated && pThread->GetMainWnd() == NULL)
+   {
+      // set as main frame (InitialUpdateFrame will show the ::ca::window)
+      pThread->SetMainWnd(pFrame);
+   }
+   InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
+
+   view_update_hint uh(get_app());
+   uh.m_etype = view_update_hint::TypeOpenDocument;
+   pdocument->update_all_views(NULL, 0, &uh);
+   
+   gen::add_ref(pdocument);
+
+   varQuery["document"] = pdocument;
+}
+
+void single_document_template::set_default_title(document * pdocument)
+{
+   string strDocName;
+   if (!GetDocString(strDocName, document_template::docName) ||
+      strDocName.is_empty())
+   {
+      strDocName = System.load_string("untitled");
+   }
+   pdocument->set_title(strDocName);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// single_document_template diagnostics
+
+#ifdef _DEBUG
+void single_document_template::dump(dump_context & dumpcontext) const
+{
+   document_template::dump(dumpcontext);
+
+   if (m_pdocument)
+      dumpcontext << "with document: " << (void *)m_pdocument;
+   else
+      dumpcontext << "with no document";
+
+   dumpcontext << "\n";
+}
+
+void single_document_template::assert_valid() const
+{
+   document_template::assert_valid();
+   if (m_pdocument)
+      ASSERT_VALID(m_pdocument);
+}
+#endif //_DEBUG
+
+
+// IMPLEMENT_DYNAMIC(single_document_template, document_template)
+
+/////////////////////////////////////////////////////////////////////////////

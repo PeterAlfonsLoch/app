@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1280586586 source:/cecyn1.at.hotmail.com/app/appseedcore/_/StdAfx.cpp
+	"StdAfx.h"
+
+1280586576 /cecyn1.at.hotmail.com/app/appseedcore/_/StdAfx.h
+	"_.h"
+
+1280589772 /cecyn1.at.hotmail.com/app/appseedcore/_/_.h
+	<inttypes.h>
+	"natural.h"
+
+1280587020 /cecyn1.at.hotmail.com/app/appseedcore/_/natural.h
+
+1280583129 source:/cecyn1.at.hotmail.com/app/appseedcore/_/_.cpp
+	"StdAfx.h"
+
+1280585980 source:/cecyn1.at.hotmail.com/app/appseedcore/_/main.c
+

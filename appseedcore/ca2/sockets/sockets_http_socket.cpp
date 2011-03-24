@@ -1,0 +1,485 @@
+#include "StdAfx.h"
+
+namespace sockets
+{
+
+   http_socket::http_socket(socket_handler_base& h) :
+      ::ca::ca(h.get_app()),
+      socket(h),
+      stream_socket(h),
+      tcp_socket(h),
+      m_request(h.get_app()),
+      m_response(h.get_app()),
+      m_bFirst(true),
+      m_bHeader(true),
+      m_bRequest(false),
+      m_bResponse(false),
+      m_body_size_left(0),
+      m_b_http_1_1(false),
+      m_b_keepalive(false),
+      m_b_chunked(false),
+      m_chunk_size(0),
+      m_chunk_state(0)
+   {
+      m_request.attr("http_version") = "HTTP/1.0";
+      SetLineProtocol();
+      DisableInputBuffer();
+   }
+
+
+   http_socket::~http_socket()
+   {
+   }
+
+
+   void http_socket::OnRawData(char *buf,size_t len)
+   {
+      if (!m_bHeader)
+      {
+         if (m_b_chunked)
+         {
+            size_t ptr = 0;
+            while (ptr < len)
+            {
+               switch (m_chunk_state)
+               {
+               case 4:
+                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.Mid(m_chunk_line.get_length() - 2) != "\r\n"))
+                     m_chunk_line += buf[ptr++];
+                  if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
+                  {
+                     OnDataComplete();
+                     // prepare for next request(or response)
+                     m_b_chunked = false;
+                     SetLineProtocol( true );
+                     m_bFirst = true;
+                     m_bHeader = true;
+                     m_body_size_left = 0;
+                     if (len - ptr > 0)
+                     {
+                        char tmp[TCP_BUFSIZE_READ];
+                        memcpy(tmp, buf + ptr, len - ptr);
+                        tmp[len - ptr] = 0;
+                        OnRead( tmp, len - ptr );
+                        ptr = len;
+                     }
+                  }
+                  break;
+               case 0:
+                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.Mid(m_chunk_line.get_length() - 2) != "\r\n"))
+                     m_chunk_line += buf[ptr++];
+                  if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
+                  {
+                     m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
+                     ::gen::parse pa(m_chunk_line, ";");
+                     string size_str = pa.getword();
+                     m_chunk_size = gen::str::hex2unsigned(size_str);
+                     if (!m_chunk_size)
+                     {
+                        m_chunk_state = 4;
+                        m_chunk_line = "";
+                     }
+                     else
+                     {
+                        m_chunk_state = 1;
+                        m_chunk_line = "";
+                     }
+                  }
+                  break;
+               case 1:
+                  {
+                     size_t left = len - ptr;
+                     size_t sz = m_chunk_size < left ? m_chunk_size : left;
+                     OnData(buf + ptr, sz);
+                     m_chunk_size -= sz;
+                     ptr += sz;
+                     if (!m_chunk_size)
+                     {
+                        m_chunk_state = 2;
+                     }
+                  }
+                  break;
+               case 2: // skip CR
+                  ptr++;
+                  m_chunk_state = 3;
+                  break;
+               case 3: // skip LF
+                  ptr++;
+                  m_chunk_state = 0;
+                  break;
+               }
+            }
+         }
+         else
+         if (!m_b_keepalive)
+         {
+            OnData(buf, len);
+            /*
+               request is HTTP/1.0 _or_ HTTP/1.1 and not keep-alive
+
+               This means we destroy the connection after the response has been delivered,
+               hence no need to reset all internal state variables for a new incoming
+               request.
+            */
+            m_body_size_left -= len;
+            if (!m_body_size_left)
+            {
+               OnDataComplete();
+            }
+         }
+         else
+         {
+            size_t sz = m_body_size_left < len ? m_body_size_left : len;
+            OnData(buf, sz);
+            m_body_size_left -= sz;
+            if (!m_body_size_left)
+            {
+               OnDataComplete();
+               // prepare for next request(or response)
+               SetLineProtocol( true );
+               m_bFirst = true;
+               m_bHeader = true;
+               m_body_size_left = 0;
+               if (len - sz > 0)
+               {
+                  char tmp[TCP_BUFSIZE_READ];
+                  memcpy(tmp, buf + sz, len - sz);
+                  tmp[len - sz] = 0;
+                  OnRead( tmp, len - sz );
+               }
+            }
+         }
+      }
+   }
+
+
+   void http_socket::OnLine(const string & line)
+   {
+      if (m_bFirst)
+      {
+         m_request.attr("remote_addr") = GetRemoteSocketAddress()->Convert(false);
+         {
+            __int64 count;
+            __int64 freq;
+            if(QueryPerformanceCounter((LARGE_INTEGER *) &count)
+            && QueryPerformanceFrequency((LARGE_INTEGER *) &freq))
+            {
+               m_iFirstTime = count * 1000 * 1000 / freq;
+            }
+            else
+            {
+               m_iFirstTime = ::GetTickCount();
+            }
+         }
+         ::gen::parse pa(line);
+         string str = pa.getword();
+         if (str.get_length() > 4 &&  gen::str::begins_ci(str, "http/")) // response
+         {
+            m_request.attr("http_version") = str;
+            m_request.attr("http_status_code") = pa.getword();
+            m_request.attr("http_status") = pa.getrest();
+            m_bResponse = true;
+         }
+         else // request
+         {
+            m_request.attr("http_method") = str;
+            m_request.attr("https") = IsSSL();
+            if(IsSSL())
+            {
+               m_request.attr("http_protocol") = "https";
+            }
+            else
+            {
+               m_request.attr("http_protocol") = "http";
+            }
+            m_request.attr("http_method") = str;
+            string strRequestUri = pa.getword();
+            string strScript = System.url().get_script(strRequestUri);
+            string strQuery = System.url().object_get_query(strRequestUri);
+            m_request.attr("request_uri") = System.url().url_decode(strScript) + gen::str::has_char(strQuery, "?");
+            m_request.attr("http_version") = pa.getword();
+            m_b_http_1_1 = gen::str::ends(m_request.attr("http_version"), "/1.1");
+            m_b_keepalive = m_b_http_1_1;
+            m_bRequest = true;
+         }
+         m_bFirst = false;
+         OnFirst();
+         return;
+      }
+      if (!line.get_length())
+      {
+         if (m_body_size_left || !m_b_keepalive || m_b_chunked)
+         {
+            SetLineProtocol(false);
+            m_bHeader = false;
+         }
+         OnHeaderComplete();
+         if (!m_body_size_left && !m_b_chunked)
+         {
+            OnDataComplete();
+         }
+         return;
+      }
+      ::gen::parse pa(line,":");
+      string key = pa.getword();
+      string value = pa.getrest();
+      OnHeader(key,value);
+      if(gen::str::equals_ci(key, "content-length"))
+      {
+         m_body_size_left = atol(value);
+      }
+      if(gen::str::equals_ci(key, "connection"))
+      {
+         if (m_b_http_1_1)
+         {
+            if(gen::str::equals_ci(value, "close"))
+            {
+               m_b_keepalive = false;
+            }
+            else
+            {
+               m_b_keepalive = true;
+            }
+         }
+         else
+         {
+            if(gen::str::equals_ci(value, "keep-alive"))
+            {
+               m_b_keepalive = true;
+            }
+            else
+            {
+               m_b_keepalive = false;
+            }
+         }
+      }
+      if (gen::str::equals_ci(key, "transfer-encoding") && gen::str::ends_ci(value, "chunked"))
+      {
+         m_b_chunked = true;
+      }
+      /* If remote end tells us to keep connection alive, and we're operating
+      in http/1.1 mode (not http/1.0 mode), then we mark the socket to be
+      retained. */
+   #ifdef ENABLE_POOL
+      if(m_b_keepalive)
+      {
+         SetRetain();
+      }
+   #endif
+   }
+
+   bool http_socket::http_filter_response_header(string & strKey, string & strValue)
+   {
+      UNREFERENCED_PARAMETER(strKey);
+      UNREFERENCED_PARAMETER(strValue);
+      return true;
+   }
+
+
+   void http_socket::SendResponse()
+   {
+      //TRACE("\n");
+      //TRACE("SendResponse\n");
+      string msg;
+      string strLine;
+      string strTrace;
+      strLine = m_response.attr("http_version").get_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
+      msg = strLine + "\r\n";
+      strTrace = strLine;
+      strTrace.replace("%", "%%");
+      TRACE(strTrace + "\n");
+      for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
+      {
+         string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
+         string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
+         if(!http_filter_response_header(strKey, strValue))
+            continue;
+         strLine = strKey + ": " + strValue;
+         msg += strLine + "\r\n";
+         strTrace = strLine;
+         strTrace.replace("%", "%%");
+         //TRACE(strTrace + "\n");
+      }
+      msg += "\r\n";
+      Send( msg );
+      SendResponseBody();
+   }
+
+   void http_socket::SendResponseBody()
+   {
+      if(response().file().get_size() > 0)
+      {
+         int iSize = response().file().get_size();
+         while(iSize > 0)
+         {
+            int iSend = min(iSize, 1024 * 16);
+            SendBuf(&((const char *) response().file().GetAllocation())[response().file().get_size() - iSize], iSend);
+            iSize -= iSend;
+         }
+      }
+   }
+
+
+
+
+   void http_socket::SendRequest()
+   {
+      string msg;
+      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_count(); i++)
+      {
+         msg += m_response.m_propertysetHeader.m_propertya[i].name() + ": " + m_response.m_propertysetHeader.m_propertya[i].get_string() + "\r\n";
+      }
+      msg += "\r\n";
+      Send( msg );
+   }
+
+
+   string http_socket::MyUseragent()
+   {
+      string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; pt-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      //string version = "C++Sockets/";
+   #ifdef _VERSION
+      version += _VERSION;
+   #endif
+      return version;
+   }
+
+
+   void http_socket::Reset()
+   {
+      m_bFirst = true;
+      m_bHeader = true;
+      m_bRequest = false;
+      m_bResponse = false;
+      SetLineProtocol(true);
+      m_request.clear();
+      m_response.clear();
+   }
+
+
+
+
+   bool http_socket::IsRequest()
+   {
+      return m_bRequest;
+   }
+
+
+   bool http_socket::IsResponse()
+   {
+      return m_bResponse;
+   }
+
+
+
+
+
+   void http_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
+   {
+      ::gen::parse pa(url_in,"/");
+      protocol = pa.getword(); // http
+      if (!strcasecmp(protocol, "https:"))
+      {
+   #ifdef HAVE_OPENSSL
+         EnableSSL();
+   #else
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::gen::log::level::warning);
+   #endif
+         port = 443;
+      }
+      else
+      {
+         port = 80;
+      }
+      host = pa.getword();
+      if (strstr(host,":"))
+      {
+         ::gen::parse pa(host,":");
+         pa.getword(host);
+         port = static_cast<port_t>(pa.getvalue());
+      }
+      url = "/" + pa.getrest();
+      {
+         ::gen::parse pa(url,"/");
+         string tmp = pa.getword();
+         while (tmp.get_length())
+         {
+            file = tmp;
+            tmp = pa.getword();
+         }
+      }
+   } // url_this
+
+
+   ::http::request & http_socket::request()
+   {
+      return m_request;
+   }
+
+   ::http::response & http_socket::response()
+   {
+      return m_response;
+   }
+
+   gen::property & http_socket::inattr(const char * pszName)
+   {
+      return m_request.attr(pszName);
+   }
+
+   gen::property_set & http_socket::inattrs()
+   {
+      return m_request.attrs();
+   }
+
+   gen::property & http_socket::outattr(const char * pszName)
+   {
+      return m_response.attr(pszName);
+   }
+
+   gen::property_set & http_socket::outattrs()
+   {
+      return m_response.attrs();
+   }
+
+   gen::property & http_socket::inheader(const char * pszName)
+   {
+      return m_request.header(pszName);
+   }
+
+   gen::property_set & http_socket::inheaders()
+   {
+      return m_request.headers();
+   }
+
+   gen::property & http_socket::outheader(const char * pszName)
+   {
+      return m_response.header(pszName);
+   }
+
+   gen::property_set & http_socket::outheaders()
+   {
+      return m_response.headers();
+   }
+
+   void http_socket::OnHeader(const string & key,const string & value)
+   {
+      //http_socket::OnHeader(key, value);
+      /*if(key.CompareNoCase("user-agent") == 0)
+      {
+         TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
+      }*/
+      string strKey = key;
+      strKey = strKey.make_lower();
+      if(strKey == "cookie")
+      {
+         m_request.cookies().parse_header(value);
+         m_response.cookies().parse_header(value);
+      }
+      else
+         m_request.header(key) = value;
+   }
+
+
+
+} // namespace sockets

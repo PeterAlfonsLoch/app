@@ -1,0 +1,4 @@
+#bookmarkveriwellbutton {
+  list-style-image: url("chrome://bookmarkveriwell/chrome/bookmark-logo-24.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}

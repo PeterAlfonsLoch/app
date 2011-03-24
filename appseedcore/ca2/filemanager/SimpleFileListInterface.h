@@ -1,0 +1,198 @@
+#pragma once
+
+class FileManagerInterface;
+class ::fs::item;
+
+
+namespace filemanager
+{
+
+
+   class SimpleFileListInterface :
+      virtual public ::fs::list,
+      virtual public FileManagerViewInterface
+   {
+   public:
+
+      class create_image_list_thread :
+         public ::radix::thread
+      {
+      public:
+         create_image_list_thread(::ca::application * papp);
+         virtual BOOL run();
+         SimpleFileListInterface * m_plist;
+      };
+
+      enum EArrange
+      {
+         ArrangeByName,
+      };
+      enum e_message
+      {
+         MessageMainPost = WM_USER + 23,
+      };
+      enum EMessageMainPost
+      {
+         MessageMainPostCreateImageListItemStepSetRedraw,
+         MessageMainPostCreateImageListItemRedraw,
+      };
+      virtual void _001InsertColumns();
+      /*class Item
+      {
+      public:
+         index            m_iCsidl;
+         string         m_strPath;
+         string         m_strName;
+         string        m_strExtra;
+         index            m_iImage;
+         index            m_iIndex;
+         index            m_iArrange;
+         flags < filemanager::e_flag > m_flags;
+
+         Item();
+
+         static index CompareArrangeByName(Item & pitema, Item & itemb);
+         index CompareArrangeByName(const Item & item) const;
+         index GetIndex() const;
+         bool IsFolder() const;
+      };*/
+
+      
+      /*class ItemArray :
+         protected class_sort_array < ItemArray, Item, Item & >
+      {
+
+      public:
+
+
+         ItemArray(::ca::application * papp);
+
+
+         void add_item(Item & item);
+         count get_item_count();
+         void clear(LPITEMIDLIST lpiidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
+         Item & get_item(index i);
+         void SetItemAt(index i, Item & item);
+         void SetItemCount(count iCount);
+         index find_item_by_path(const char * pszPath);
+
+         void SoftSwap(index i1, index i2);
+
+         void Arrange(EArrange earrange);
+      };*/
+
+      index                     m_iNameSubItem;
+      index                     m_iNameSubItemText;
+      index                     m_iSelectionSubItem;
+      index                     m_iSizeSubItem;
+      bool                    m_bPendingSize;
+      DWORD                   m_dwLastFileSizeGet;
+
+      ::collection::map < icon_key, const icon_key &, icon, icon & > m_iconmap;
+
+      mutex            m_mutex;
+
+      IShellFolder *   m_pshellfolder;
+      bool               m_bCreateImageList;
+      bool               m_bCreateImageListRedraw;
+      index               m_iAnimate;
+      ::user::buffer   m_gdibuffer;
+      create_image_list_thread * m_pcreateimagelistthread;
+
+      __int64          m_iCreateImageListStep;
+
+      string                  m_strPath;
+
+      DWORD             m_dwLastRedraw;
+      bool              m_bRestartCreateImageList;
+
+      bool              m_bStatic;
+      
+   /*   class icon_key
+      {
+      public:
+         icon_key();
+         string      m_strPath;
+         index         m_iIcon;
+         string      m_strExtension;
+
+         operator DWORD () const
+         {
+            return m_iIcon;
+         }
+         bool operator == (const icon_key & key) const;
+      };
+      
+      
+      
+      class icon
+      {
+      public:
+         icon();
+         HICON         m_hicon;
+         index         m_iImage;
+      };*/
+
+      SimpleFileListInterface(::ca::application * papp);
+      virtual ~SimpleFileListInterface();
+      virtual void file_size_add_request(bool bClear);
+      
+
+      virtual COLORREF get_background_color();
+      void add_item(const char * pszPath, const char * pszTitle);
+      //virtual void schedule_file_size(const char * psz) = 0;
+   // Attributes
+      virtual void _017Synchronize();
+      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+
+      image_list * GetActionButtonImageList(index i);
+
+
+
+      void GetSelected(::fs::item_array & itema);
+
+      void _001OnInitializeForm(user::control * pcontrol);
+      void _001OnButtonAction(user::control * pcontrol);
+
+      virtual void _017OpenFile(::fs::item_array & itema);
+      virtual void _017OpenFolder(::fs::item & item);
+      virtual void _017OpenSelected(bool bOpenFile);
+      virtual void _017OpenContextMenuSelected();
+      virtual void _017OpenContextMenuFolder(::fs::item &item);
+      virtual void _017OpenContextMenuFile(::fs::item_array &itema);
+      virtual void _017OpenContextMenu();
+      void _017PreSynchronize();
+      void TakeAnimationSnapshot();
+      virtual void StartAnimation();
+      virtual void _001OnDraw(::ca::graphics * pdc);
+      ::fs::item & GetFileManagerItem();
+      DECL_GEN_SIGNAL(_001OnMainPostMessage)
+      void _017UpdateList();
+      void GetSelectedFilePath(stringa & base_array);
+      virtual bool TwiHasTranslucency();
+      void _001CreateImageList();
+      bool _001CreateImageListStep();
+      virtual index _001GetItemImage(index iItem, index iSubItem, index iListItem);
+      virtual bool _001GetItemText(string & str, index iItem, index iSubItem, index iListItem);
+      virtual count _001GetItemCount();
+      void _017Browse(const char * lpcsz);
+      void _017UpdateList(const char * lpcsz);
+      void _017UpdateZipList(const char * lpcsz);
+
+      DECL_GEN_SIGNAL(_001OnHScroll)
+      DECL_GEN_SIGNAL(_001OnVScroll)
+      DECL_GEN_SIGNAL(_001OnFileRename)
+      DECL_GEN_SIGNAL(_001OnUpdateFileRename)
+      DECL_GEN_SIGNAL(_001OnShowWindow)
+
+
+      virtual void _001InitializeFormPreData();
+
+
+
+      virtual bool query_drop(index iDisplayDrop, index iDisplayDrag);
+      virtual bool do_drop(index iDisplayDrop, index iDisplayDrag);
+
+   };
+
+} // namespace filemanager

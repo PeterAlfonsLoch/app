@@ -1,0 +1,13 @@
+; npvmp.def : Declares the module parameters for the DLL.
+
+LIBRARY      "npvmp"
+DESCRIPTION  'npvmp Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	NP_GetEntryPoints   @1
+	NP_Initialize       @2
+	NP_Shutdown         @3
+	DllCanUnloadNow PRIVATE
+	DllGetClassObject PRIVATE
+	DllRegisterServer PRIVATE

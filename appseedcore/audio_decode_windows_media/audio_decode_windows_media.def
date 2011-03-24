@@ -1,0 +1,9 @@
+; audio_decode_windows_media.def : Declares the module parameters for the DLL.
+
+LIBRARY      "audio_decode_windows_media"
+; DESCRIPTION  'audio_decode_windows_media Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	NewDecoderInterface 
+	DeleteDecoderInterface 

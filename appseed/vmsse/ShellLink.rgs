@@ -1,0 +1,26 @@
+HKCR
+{
+	Vmsse.ShellLink.1 = s 'ShellLink Class'
+	{
+		CLSID = s '{1C67F829-5945-440B-BB8E-7D586F374135}'
+	}
+	Vmsse.ShellLink = s 'ShellLink Class'
+	{
+		CLSID = s '{1C67F829-5945-440B-BB8E-7D586F374135}'
+		CurVer = s 'Vmsse.ShellLink.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {1C67F829-5945-440B-BB8E-7D586F374135} = s 'ShellLink Class'
+		{
+			ProgID = s 'Vmsse.ShellLink.1'
+			VersionIndependentProgID = s 'Vmsse.ShellLink'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{DB8F1A1D-6301-407F-BE6F-DE6B7C0AE66A}'
+		}
+	}
+}

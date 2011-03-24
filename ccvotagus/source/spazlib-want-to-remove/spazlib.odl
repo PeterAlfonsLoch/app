@@ -1,0 +1,16 @@
+// vmszlib.odl : type library source for vmszlib.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (vmszlib.tlb).
+
+[ uuid(A9230D0E-5E2D-4180-A64E-071002D22CAA), version(1.0) ]
+library Vmszlib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

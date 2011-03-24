@@ -1,0 +1,459 @@
+#include "StdAfx.h"
+
+namespace ex1
+{
+
+   AFX_STATIC inline BOOL IsDirSep(WCHAR ch)
+   {
+      return (ch == '\\' || ch == '/');
+   }
+
+
+   file::file()
+   {
+      m_preader = this;
+      m_pwriter = this;
+   }
+
+
+   DWORD_PTR file::read(void *lpBuf, DWORD_PTR nCount)
+   {
+      return io_stream::read(lpBuf, nCount);
+   }
+
+   void file::write(const void * lpBuf, DWORD_PTR nCount)
+   {
+      io_stream::write(lpBuf, nCount);
+   }
+
+
+   void file::write(output_stream & ostream)
+   {
+      seek_to_begin();
+      ex1::io_stream::write(ostream);
+   }
+    
+   void file::read(input_stream & istream)
+   {
+      ex1::io_stream::read(istream);
+      seek_to_begin();
+   }
+
+   file::~file()
+   {
+   }
+
+   file* file::Duplicate() const
+   {
+      return NULL;
+   }
+
+   BOOL file::open(const char * lpszFileName, UINT nOpenFlags,
+      ex1::file_exception_sp * pException)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(nOpenFlags);
+      UNREFERENCED_PARAMETER(pException);
+      return FALSE;
+   }
+
+   INT_PTR file::seek(INT_PTR lOff, UINT nFrom)
+   {
+      UNREFERENCED_PARAMETER(lOff);
+      UNREFERENCED_PARAMETER(nFrom);
+      return 0;
+   }
+
+   DWORD_PTR file::GetPosition() const
+   {
+      return 0;
+   }
+
+   void file::Flush()
+   {
+   }
+
+   void file::close()
+   {
+   }
+
+   void file::Abort()
+   {
+   }
+
+   void file::LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+   {
+      UNREFERENCED_PARAMETER(dwPos);
+      UNREFERENCED_PARAMETER(dwCount);
+   }
+
+   void file::UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+   {
+      UNREFERENCED_PARAMETER(dwPos);
+      UNREFERENCED_PARAMETER(dwCount);
+   }
+
+   void file::SetLength(DWORD_PTR dwNewLen)
+   {
+      UNREFERENCED_PARAMETER(dwNewLen);
+   }
+
+   DWORD_PTR file::get_length() const
+   {
+      return 0;
+   }
+
+   // file does not support direct buffering (CMemFile does)
+   DWORD_PTR file::GetBufferPtr(UINT nCommand, DWORD_PTR nCount, void ** ppBufStart, void ** ppBufMax)
+   {
+      UNREFERENCED_PARAMETER(nCommand);
+      UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(ppBufStart);
+      UNREFERENCED_PARAMETER(ppBufMax);
+      return 0;
+   }
+
+/*   void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
+   {
+      UNREFERENCED_PARAMETER(lpszOldName);
+      UNREFERENCED_PARAMETER(lpszNewName);
+   }
+
+   void PASCAL file::remove(const char * lpszFileName)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+   }*/
+
+   #ifdef _DEBUG
+   void file::assert_valid() const
+   {
+   //   ::radix::object::assert_valid();
+      // we permit the descriptor m_hFile to be any value for derived classes
+   }
+
+   void file::dump(dump_context & dumpcontext) const
+   {
+      UNREFERENCED_PARAMETER(dumpcontext);
+   //   ::radix::object::dump(dumpcontext);
+
+   //   dumpcontext << "with handle " << (UINT)m_hFile;
+   //   dumpcontext << " and name \"" << m_wstrFileName << "\"";
+   //   dumpcontext << "\n";
+   }
+   #endif
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file_exception helpers
+
+   #ifdef _DEBUG
+   static const char * rgszFileExceptionCause[] =
+   {
+      "none",
+      "generic",
+      "fileNotFound",
+      "badPath",
+      "tooManyOpenFiles",
+      "accessDenied",
+      "invalidFile",
+      "removeCurrentDir",
+      "directoryFull",
+      "badSeek",
+      "hardIO",
+      "sharingViolation",
+      "lockViolation",
+      "diskFull",
+      "endOfFile",
+   };
+   static const char szUnknown[] = "unknown";
+   #endif
+
+
+   /*void vfxThrowFileException(int cause, LONG lOsError,
+   //   const char * lpszFileName /* == NULL */
+   /*{
+   #ifdef _DEBUG
+      const char * lpsz;
+      if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
+         lpsz = rgszFileExceptionCause[cause];
+      else
+         lpsz = szUnknown;
+      TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
+         lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
+   #endif
+      THROW(new file_exception(cause, lOsError, lpszFileName));
+   }*/
+
+   /* Error Codes */
+
+   #define EPERM           1
+   #define ENOENT          2
+   #define ESRCH           3
+   #define EINTR           4
+   #define EIO             5
+   #define ENXIO           6
+   #define E2BIG           7
+   #define ENOEXEC         8
+   #define EBADF           9
+   #define ECHILD          10
+   #define EAGAIN          11
+   #define ENOMEM          12
+   #define EACCES          13
+   #define EFAULT          14
+   #define EBUSY           16
+   #define EEXIST          17
+   #define EXDEV           18
+   #define ENODEV          19
+   #define ENOTDIR         20
+   #define EISDIR          21
+   #define EINVAL          22
+   #define ENFILE          23
+   #define EMFILE          24
+   #define ENOTTY          25
+   #define EFBIG           27
+   #define ENOSPC          28
+   #define ESPIPE          29
+   #define EROFS           30
+   #define EMLINK          31
+   #define EPIPE           32
+   #define EDOM            33
+   #define ERANGE          34
+   #define EDEADLK         36
+   #define ENAMETOOLONG    38
+   #define ENOLCK          39
+   #define ENOSYS          40
+   #define ENOTEMPTY       41
+   #define EILSEQ          42
+
+   /*
+    * Support EDEADLOCK for compatibiity with older MS-C versions.
+    */
+   #define EDEADLOCK       EDEADLK
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file name handlers
+
+   string file::GetFileName() const
+   {
+      return "";
+   }
+
+   string file::GetFileTitle() const
+   {
+      return "";
+   }
+
+   string file::GetFilePath() const
+   {
+      return "";
+   }
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file_exception
+
+
+   file_exception::file_exception(::ca::application * papp, int cause , LONG lOsError,
+      const char * lpszArchiveName) :
+      ca(papp)
+   {
+      Construct(cause, lOsError, lpszArchiveName);
+   }
+
+
+   void file_exception::Construct(int cause, LONG lOsError,
+      const char * pstrFileName /* = NULL */)
+   {
+      UNREFERENCED_PARAMETER(cause);
+      UNREFERENCED_PARAMETER(lOsError);
+      UNREFERENCED_PARAMETER(pstrFileName);
+   }
+
+   file_exception::~file_exception()
+   {
+   }
+
+   int file_exception::get_cause()
+   {
+      return none;
+   }
+   
+   LONG file_exception::get_os_error()
+   {
+      return -1;
+   }
+   
+   string file_exception::get_file_path()
+   {
+      return "";
+   }
+
+
+   BOOL file_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
+   {
+      UNREFERENCED_PARAMETER(str);
+      UNREFERENCED_PARAMETER(pnHelpContext);
+      return FALSE;
+   }
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file_exception diagnostics
+
+   #ifdef _DEBUG
+   void file_exception::dump(dump_context & dumpcontext) const
+   {
+      UNREFERENCED_PARAMETER(dumpcontext);
+      //::radix::object::dump(dumpcontext);
+
+   /*   dumpcontext << "m_cause = ";
+      if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
+         dumpcontext << rgszFileExceptionCause[m_cause];
+      else
+         dumpcontext << szUnknown;
+      dumpcontext << "\nm_lOsError = " << (void *)m_lOsError;
+
+      dumpcontext << "\n";*/
+   }
+   #endif
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file_exception helpers
+
+   void vfxThrowFileException(::ca::application  * papp, int cause, LONG lOsError,
+      const char * lpszFileName /* == NULL */)
+   {
+   #ifdef _DEBUG
+      const char * lpsz;
+      if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
+         lpsz = rgszFileExceptionCause[cause];
+      else
+         lpsz = szUnknown;
+/*      TRACE3("file exception: %hs, file %s, App error information = %ld.\n",
+         lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);*/
+   #endif
+      throw new file_exception(papp, cause, lOsError, lpszFileName);
+   }
+
+
+
+   // IMPLEMENT_DYNAMIC(file_exception, base_exception)
+
+   /////////////////////////////////////////////////////////////////////////////
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // Help and other support
+
+   // Strings in format ".....%1 .... %2 ...." etc.
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file Status implementation
+
+   BOOL file::GetStatus(file_status & rStatus) const
+   {
+      UNREFERENCED_PARAMETER(rStatus);
+      return FALSE;
+   }
+
+   BOOL PASCAL file::GetStatus(const char * lpszFileName, file_status & rStatus)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(rStatus);
+      return FALSE;
+   }
+
+
+   void PASCAL file::SetStatus(const char * lpszFileName, const file_status & status)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(status);
+   }
+
+
+
+   bool file::IsOpened()
+   {
+      return false;
+   }
+
+   string file::get_location() const
+   {
+      return GetFileName();
+   }
+
+   bool file::read(char * pch)
+   {
+      if(read(pch, 1) == 1)
+      {
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   bool file::read(unsigned char * puch)
+   {
+      if(read(puch, 1) == 1)
+      {
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   bool file::peek(char * pch)
+   {
+      if(read(pch, 1) == 1)
+      {
+         seek(-1, ::ex1::seek_current);
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   bool file::peek(unsigned char * puch)
+   {
+      if(read(puch, 1) == 1)
+      {
+         seek(-1, ::ex1::seek_current);
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   bool file::read(char & ch)
+   {
+      return read(&ch);
+   }
+
+   bool file::read(unsigned char & uch)
+   {
+      return read(&uch);
+   }
+
+   bool file::peek(char & ch)
+   {
+      return peek(&ch);
+   }
+
+   bool file::peek(unsigned char & uch)
+   {
+      return peek(&uch);
+   }
+
+} // namespace ex1

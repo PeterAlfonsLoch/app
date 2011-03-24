@@ -1,0 +1,90 @@
+// vmsse.idl : IDL source for vmsse.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (vmsse.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+//import "ShObjIdl.idl";
+
+	[
+		object,
+		uuid(E4792155-176D-4547-8E13-AEE514674F4E),
+		dual,
+		helpstring("IAlbumSongList Interface"),
+		pointer_default(unique)
+	]
+	interface IAlbumSongList : IDispatch
+	{
+//		[id(1), helpstring("method ParseDisplayName")] HRESULT ParseDisplayName(HWND  hwnd, LPBC pbc, LPOLESTR pszDisplayName, ULONG * pchEaten, LPITEMIDLIST * ppidl, pdwAttributes);
+	};
+	[
+		object,
+		uuid(EE691384-C97B-499C-B6C0-BA0EEB5D9126),
+		dual,
+		helpstring("IAlbumSongFolder Interface"),
+		pointer_default(unique)
+	]
+	interface IAlbumSongFolder : IDispatch
+	{
+	};
+	[
+		object,
+		uuid(8FDA63E7-9C0B-4E2D-9098-285A6427804C),
+		dual,
+		helpstring("IAlbumSongView Interface"),
+		pointer_default(unique)
+	]
+	interface IAlbumSongView : IDispatch
+	{
+		[propget, id(1), helpstring("property ShellBrowser")] HRESULT ShellBrowser([out, retval] IShellBrowser ** pVal);
+		[propput, id(1), helpstring("property ShellBrowser")] HRESULT ShellBrowser([in] IShellBrowser * newVal);
+//		[propget, id(1), helpstring("property ShellBrowser")] HRESULT ShellBrowser([out, retval] IUnknown ** pVal);
+//		[propput, id(1), helpstring("property ShellBrowser")] HRESULT ShellBrowser([in] IUnknown * newVal);
+	};
+	
+
+[
+	uuid(DB8F1A1D-6301-407F-BE6F-DE6B7C0AE66A),
+	version(1.0),
+	helpstring("vmsse 1.0 Type Library")
+]
+library VMSSELib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(8258F568-02EC-404E-AA2D-B2228AF8D7FC),
+		helpstring("AlbumSongList Class")
+	]
+	coclass AlbumSongList
+	{
+		[default] interface IAlbumSongList;
+				  interface IShellView;
+				  interface IShellFolder;
+	};
+	[
+		uuid(11F9FB16-80F8-4F49-8DED-2DB08AA230A3),
+		helpstring("AlbumSongFolder Class")
+	]
+	coclass AlbumSongFolder
+	{
+		[default] interface IAlbumSongFolder;
+				interface IShellFolder;
+	
+	};
+	[
+		uuid(E63964BE-8BB4-4395-8733-29D8493A0402),
+		helpstring("AlbumSongView Class")
+	]
+	coclass AlbumSongView
+	{
+		[default] interface IAlbumSongView;
+			interface IShellView;
+			interface IShellLinkW;
+	};
+	
+};

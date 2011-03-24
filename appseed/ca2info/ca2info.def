@@ -1,0 +1,7 @@
+; ca2info.def
+
+LIBRARY  "ca2info"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+

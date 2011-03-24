@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="all32">
+		<Project filename="../../appseedcore/_/_.cbp" />
+		<Project filename="../../thirdparty/appseed/sqlite/sqlite.cbp" />
+		<Project filename="../../thirdparty/appseed/libcharguess/libcharguess.cbp" />
+		<Project filename="../../appseedcore/ca2/ca2.cbp" />
+		<Project filename="../../nodeapp/platform/linux/x86/linux/linux.cbp" active="1" />
+	</Workspace>
+</CodeBlocks_workspace_file>

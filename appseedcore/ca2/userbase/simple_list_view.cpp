@@ -1,0 +1,84 @@
+#include "StdAfx.h"
+
+simple_list_view::simple_list_view(::ca::application * papp) :
+   ca(papp),
+   ::userbase::view(papp),
+   ::user::scroll_view(papp),
+   ::user::list(papp),
+   form(papp),
+   ::user::form_list(papp),
+   ::userbase::form_list(papp),
+   m_headerctrl(papp),
+   m_scrollbarVert(papp),
+   m_scrollbarHorz(papp)
+{
+   m_pheaderctrl     = &m_headerctrl;
+   m_pheaderctrl->SetBaseListCtrlInterface(this);
+   m_pscrollbarVert  = &m_scrollbarVert;
+   m_pscrollbarHorz  = &m_scrollbarHorz;
+}
+
+simple_list_view::~simple_list_view()
+{
+}
+
+void simple_list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+{
+   ::userbase::view::_001InstallMessageHandling(pinterface);
+   ::user::list::_001InstallMessageHandling(pinterface);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// simple_list_view drawing
+
+void simple_list_view::OnDraw(::ca::graphics * pgraphics)
+{
+   UNREFERENCED_PARAMETER(pgraphics);
+   ASSERT(FALSE);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// simple_list_view diagnostics
+
+#ifdef _DEBUG
+void simple_list_view::assert_valid() const
+{
+   ::userbase::view::assert_valid();
+}
+
+void simple_list_view::dump(dump_context & dumpcontext) const
+{
+   ::userbase::view::dump(dumpcontext);
+}
+#endif //_DEBUG
+
+/////////////////////////////////////////////////////////////////////////////
+// simple_list_view message handlers
+
+BOOL simple_list_view::PreCreateWindow(CREATESTRUCT& cs)
+{
+   cs.style |= WS_CLIPCHILDREN;
+
+   return ::userbase::view::PreCreateWindow(cs);
+}
+
+
+::user::interaction* simple_list_view::OnDrawInterfaceGetWnd()
+{
+   return this;
+}
+
+void simple_list_view::OnDrawInterfaceDraw(::ca::graphics *pdc)
+{
+   _001OnDraw(pdc);
+}
+
+
+
+::user::interaction* simple_list_view::_GetWnd()
+{
+   return this;
+}
+

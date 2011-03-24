@@ -1,0 +1,117 @@
+# depslib dependency file v1.0
+1280590893 source:/cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/main.c
+
+1280590867 source:/cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/main.cpp
+	"StdAfx.h"
+	"sal.h"
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/StdAfx.h
+	"win.h"
+	"win_internal.h"
+
+1280592334 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/win.h
+	"include/ca2.h"
+	<shlobj.h>
+	<Security.h>
+	<shlobj.h>
+	"win1.h"
+	"implementation.h"
+	"state.h"
+	"handle.h"
+	"dir.h"
+	"factory_exchange.h"
+	"UACTools.h"
+	"window_draw.h"
+	"graphics.h"
+	"graphics_object.h"
+	"bitmap.h"
+	"dib.h"
+	"palette.h"
+	"pen.h"
+	"font.h"
+	"brush.h"
+	"rgn.h"
+	"draw_dib.h"
+	"thread.h"
+	"window.h"
+	"osi.h"
+	"thread.h"
+	"application.h"
+	"kerr/kerr.h"
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/win1.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/implementation.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/state.h
+	"thread_slots.h"
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/thread_slots.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/handle.h
+	"radix/fixed_alloc.h"
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/dir.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/factory_exchange.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/UACTools.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/window_draw.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/graphics.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/graphics_object.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/bitmap.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/dib.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/palette.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/pen.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/font.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/brush.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/rgn.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/draw_dib.h
+	<vfw.h>
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/thread.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/window.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/osi.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/application.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/win_internal.h
+	"radix/implementation.h"
+	"dir.h"
+	"WFileFind.h"
+	"WinFileSystem.h"
+	"WinFile.h"
+	"WindowsShell.h"
+	"WinResource.h"
+	"application.h"
+	"WinStdioFile.h"
+	"WinFileSet.h"
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WFileFind.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WinFileSystem.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WinFile.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WindowsShell.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WinResource.h
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WinStdioFile.h
+	"WinFile.h"
+
+1280590867 /cecyn1.at.hotmail.com/app/nodeapp/platform/linux/x86/linux/WinFileSet.h
+

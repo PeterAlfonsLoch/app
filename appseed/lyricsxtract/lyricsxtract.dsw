@@ -1,0 +1,61 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "lyricsxtract"=.\lyricsxtract.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "vmsgen"=..\vmsgen\vmsgen_mbcs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/_musicalstudio/vmsgen", JAAAAAAA
+    ..\vmsgen
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "vmsmus"=..\vmsmus\vmsmus_mbcs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/_musicalstudio/vmsmus", SAAAAAAA
+    ..\vmsmus
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

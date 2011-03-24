@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{B619EB48-9A4C-43BD-8477-00774E24CD77} = s 'Oszip_shell'
+		'Oszip_shell.EXE'
+		{
+			val AppID = s {B619EB48-9A4C-43BD-8477-00774E24CD77}
+		}
+	}
+}

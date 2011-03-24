@@ -1,0 +1,42 @@
+// vmssyncheditor.odl : type library source for vmssyncheditor.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (vmssyncheditor.tlb).
+
+[ uuid(2948BC59-3230-4380-9317-B827670D9FCB), version(1.0) ]
+library Vmssyncheditor
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for _vmssyncheditorDoc
+	
+	[ uuid(3B4D4283-AE8A-40D4-AAFB-BB509183EA00) ]
+	dispinterface IVmssyncheditor
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(_vmssyncheditorDoc)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(_vmssyncheditorDoc)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for _vmssyncheditorDoc
+	
+	[ uuid(37C437F4-45F3-446E-9F4B-0A70FD2FB29F) ]
+	coclass Document
+	{
+		[default] dispinterface IVmssyncheditor;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

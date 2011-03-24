@@ -1,0 +1,9 @@
+<menubar>
+	<menubar id="view">
+		<item id="view_clock">Clock</item>
+		<item id="view_area">Areas</item>
+		<item id="view_task">Tasks</item>
+		<item id="list_view_auto_arrange">Auto Arrange</item>
+		<item id="properties">Properties</item>
+	</menubar>
+</menubar>

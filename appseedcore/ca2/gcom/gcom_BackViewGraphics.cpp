@@ -1,0 +1,519 @@
+#include "StdAfx.h"
+
+namespace gcom
+{
+   namespace backview
+   {
+
+      Graphics::Graphics(Main & main) :
+         ::ca::ca(main.get_app()),
+         Helper(main)
+      {
+         m_spdrawdib.create(get_app());
+         m_spdrawdib->open();
+         m_dcScreen.create(get_app());
+      }
+
+      Graphics::~Graphics()
+      {
+      }
+
+      ::ca::graphics & Graphics::GetScreenDC()
+      {
+         return m_dcScreen;
+      }
+
+      ::ca::graphics & Graphics::GetBackDC()
+      {
+         return *GetDib(_graphics::DibBack)->get_graphics();
+      }
+
+      ::ca::graphics & Graphics::GetTransferDC()
+      {
+         GetDib(_graphics::DibTransfer)->dc_select();
+         return *GetDib(_graphics::DibTransfer)->get_graphics();
+      }
+
+      ::ca::graphics & Graphics::GetFrame1DC()
+      {
+         return *GetDib(_graphics::DibFrame1)->get_graphics();
+      }
+
+      ::ca::graphics & Graphics::GetBufferDC()
+      {
+         return *GetDib(_graphics::DibBuffer)->get_graphics();
+      }
+
+      ::ca::graphics & Graphics::GetSourceDC()
+      {
+         return *GetDib(_graphics::DibSource)->get_graphics();
+      }
+
+      ::ca::bitmap & Graphics::GetBackBitmap()
+      {
+         return *GetDib(_graphics::DibBack)->get_bitmap();
+      }
+
+      ::ca::bitmap & Graphics::GetTransferBitmap()
+      {
+         return *GetDib(_graphics::DibTransfer)->get_bitmap();
+      }
+
+      ::ca::bitmap & Graphics::GetFrame1Bitmap()
+      {
+         return *GetDib(_graphics::DibFrame1)->get_bitmap();
+      }
+
+      ::ca::bitmap & Graphics::GetBufferBitmap()
+      {
+         return *GetDib(_graphics::DibBuffer)->get_bitmap();
+
+      }
+
+      ::ca::bitmap & Graphics::GetSourceBitmap()
+      {
+         return *GetDib(_graphics::DibSource)->get_bitmap();
+      }
+
+      ::ca::draw_dib & Graphics::GetDrawDib()
+      {
+         return m_spdrawdib;
+      }
+
+      void Graphics::LayoutBackBitmap(
+         BITMAP *   lpbmBack)
+      {
+         UNREFERENCED_PARAMETER(lpbmBack);
+         rect rectClient;
+
+         HelperGetMain().GetInterface().BackViewGetClientRect(rectClient);
+
+         int cx = rectClient.width();
+         int cy = rectClient.height();
+
+         CSingleLock sl1Back(&m_mutex1Back, TRUE);
+         ::ca::graphics & dcBack = GetBackDC();
+         GetDib(_graphics::DibBack)->create(cx, cy);
+         dcBack.FillSolidRect(0, 0, cx, cy, RGB(127, 136, 145));
+         sl1Back.Unlock();
+      }
+
+
+      void Graphics::OnImageLoaded(::ca::bitmap * pbitmap)
+      {
+         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+
+         Main & main = HelperGetMain();
+
+//         gen::savings & savings = System.savings();
+
+         bool bOk = false;
+         // 2004-08-24
+         if(pbitmap != NULL)
+         {
+            BITMAP bm;
+            pbitmap->GetObject(sizeof(bm), &bm);
+            ::ca::graphics_sp spgraphics(get_app());
+            spgraphics->CreateCompatibleDC(NULL);
+            ::ca::bitmap * pbitmapOriginal = spgraphics->SelectObject(pbitmap);
+            GetDib(_graphics::DibSource)->create(bm.bmWidth, bm.bmHeight);
+            GetDib(_graphics::DibSource)->from(spgraphics);
+            spgraphics->SelectObject(pbitmapOriginal);
+            bOk = true;
+         }
+
+         if(bOk)
+            main.ImageChangePostEvent(EventLoaded);
+         else
+            main.ImageChangePostEvent(EventLoadFailed);
+         return;
+      }
+
+      void Graphics::OnDestroy()
+      {
+         CSingleLock sl1Back(&m_mutex1Back, TRUE);
+         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
+         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+      }
+
+      bool Graphics::RenderBufferLevel2()
+      {
+         Main & main = HelperGetMain();
+
+         Interface & iface = main.GetInterface();
+
+         rect rectClient;
+         iface.BackViewGetClientRect(rectClient);
+
+         rect rectScreen = rectClient;
+         iface.BackViewClientToScreen(rectScreen);
+
+         int cx = rectClient.width();
+         int cy = rectClient.height();
+
+//         const int ciBufferBitmapNotCreated = 1;
+//         const int ciBackBitmapNotCreated = 2;
+//         const int ciBufferBitmapNotSelected = 3;
+//         const int ciBackBitmapNotSelected = 4;
+//         const int ciBufferBitmapInfoNotAvailable = 5;
+         const int ciScaledBitmapInfoNotAvailable = 6;
+
+         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
+         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+
+         HelperGetMain().DeferCheckLayout();
+
+//         ::ca::graphics & dcScreen = GetScreenDC();
+         ::ca::graphics & dcBuffer = GetBufferDC();
+         ::ca::graphics & dcSource = GetSourceDC();
+//         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
+
+
+//         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
+
+         if(dcSource.get_os_data() == NULL)
+            return false;
+         if(dcBuffer.get_os_data() == NULL)
+            return false;
+
+         try
+         {   
+            //sl2Buffer.Lock();
+
+            dcBuffer.FillSolidRect(rectClient, RGB(63, 106, 150));
+
+            HENHMETAFILE hemf = main.GetInterface().BackViewGetFillingMetaFile();
+            if(hemf != NULL)
+            {
+               ENHMETAHEADER emh;
+
+               ::GetEnhMetaFileHeader(
+                  hemf,
+                  sizeof(emh),
+                  &emh);
+
+               dcBuffer.FillSolidRect(
+                  rectClient,
+                  RGB(30, 26, 21));
+
+               rect rectMeta(0, 0, emh.rclBounds.right - emh.rclBounds.left, emh.rclBounds.bottom - emh.rclBounds.top);
+               rectMeta.FitOnCenterOf(rect(0, 0, 64, 64));
+
+               int iW = rectMeta.width();
+               int iH = rectMeta.height();
+               int iXMod = (cx - iW) / 2;
+               int iYMod = (cy - iH) / 2;
+               int iXOffset =  iXMod;
+               int iYOffset =  iYMod;
+               iXOffset %= iW;
+               while(iXOffset > 0)
+               {
+                  iXOffset -= iW;
+               }
+               iYOffset %= iH;
+               while(iYOffset > 0)
+               {
+                  iYOffset -= iH;
+               }
+               int iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
+               int jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
+
+               rectMeta.left = iXOffset;
+               for(int i = 0; i < iCount; i++)
+               {
+                  rectMeta.top = iYOffset;
+                  for(int j = 0; j < jCount; j++)
+                  {
+                     rectMeta.SetBottomRightSize(iW, iH);
+                     dcBuffer.PlayMetaFile(hemf, rectMeta);
+                     rectMeta.top += iH;
+                  }
+                  rectMeta.left += iW;
+               }
+            }
+
+            //sl3Source.Lock();
+            ::ca::bitmap & bmpSource = GetSourceBitmap();
+
+            if(bmpSource.get_os_data() != NULL 
+               && GetDib(_graphics::DibSource)->width() > 0
+               && GetDib(_graphics::DibSource)->height() > 0)
+            {
+               if(main.IsFullScreen())
+               {
+                  dcBuffer.FillSolidRect(
+                     rectClient,
+                     GetDib(_graphics::DibSource)->GetAverageColor());
+               }
+               else
+               {
+                  dcBuffer.FillSolidRect(
+                     rectClient,
+                     GetDib(_graphics::DibSource)->GetAverageColor());
+               }
+
+               BITMAP bmSource;
+               if(!bmpSource.GetBitmap(&bmSource))
+               {
+                  TRACE0("Mem Bitmap info not available.\n");
+                  throw ciScaledBitmapInfoNotAvailable;
+               }
+
+
+               int finalX;
+               int finalY;
+               int finalW;
+               int finalH;
+
+               ImageChange & imagechange = main.GetImageChange();
+
+               double dRate;
+               if(imagechange.m_eplacement == ImagePlacementZoomAll)
+               {
+                  dRate = min((double) cx / bmSource.bmWidth, (double) cy / bmSource.bmHeight);
+                  finalW = (int) (bmSource.bmWidth * dRate);
+                  finalH = (int)(bmSource.bmHeight * dRate);
+                  finalX = (cx - finalW) / 2;
+                  finalY = (cy - finalH) / 2;
+               }
+               else if (imagechange.m_eplacement == ImagePlacementZoomExtend)
+               {
+                  dRate = max((double) cx / bmSource.bmWidth, (double) cy / bmSource.bmHeight);
+                  finalW = (int) (bmSource.bmWidth * dRate);
+                  finalH = (int) (bmSource.bmHeight * dRate);
+                  finalX = (cx - finalW) / 2;
+                  finalY = (cy - finalH) / 2;
+               }
+               else if (imagechange.m_eplacement == ImagePlacementStretch)
+               {
+                  finalW = (int) cx;
+                  finalH = (int) cy;
+                  finalX = 0;
+                  finalY = 0;
+               }
+
+
+               if(imagechange.m_eplacement == ImagePlacementTile)
+               {
+
+                  int iW = bmSource.bmWidth;
+                  int iH = bmSource.bmHeight;
+                  int iXMod = (cx - iW) / 2;
+                  int iYMod = (cy - iH) / 2;
+                  int iXOffset =  iXMod;
+                  int iYOffset =  iYMod;
+                  while(iXOffset > 0)
+                  {
+                     iXOffset -= iW;
+                  }
+                  while(iYOffset > 0)
+                  {
+                     iYOffset -= iH;
+                  }
+                  int iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
+                  int jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
+                  for(int i = 0; i < iCount; i++)
+                  {
+                     int iX = iXOffset + iW * i;
+                     for(int j = 0; j < jCount; j++)
+                     {
+                        int iY = iYOffset + iH * j;
+                        dcBuffer.BitBlt(
+                           iX, iY,
+                           iW, iH,
+                           &dcSource,
+                           0, 0,
+                           SRCCOPY);
+                     }
+                  }
+
+                  m_rectFinalPlacement.left     = iXOffset;
+                  m_rectFinalPlacement.top      = iYOffset;
+                  m_rectFinalPlacement.right    = iXOffset + iW * iCount;
+                  m_rectFinalPlacement.bottom   = iXOffset + iW * jCount;
+
+               }
+               else if(imagechange.m_eplacement == ImagePlacementZoomAll ||
+                  imagechange.m_eplacement == ImagePlacementZoomExtend ||
+                  imagechange.m_eplacement == ImagePlacementStretch)
+               {
+
+                  int srcX = 0;
+                  int srcY = 0;
+                  int srcW = bmSource.bmWidth;
+                  int srcH = bmSource.bmHeight;
+
+                  dcBuffer.SetStretchBltMode(HALFTONE);
+                  dcBuffer.StretchBlt(
+                     finalX, finalY,
+                     finalW, finalH,
+                     &dcSource,
+                     srcX, srcY,
+                     srcW, srcH,
+                     SRCCOPY);
+                  m_rectFinalPlacement.left     = finalX;
+                  m_rectFinalPlacement.top      = finalY;
+                  m_rectFinalPlacement.right    = finalX + finalW;
+                  m_rectFinalPlacement.bottom   = finalY + finalH;
+
+               }
+               GetDib(_graphics::DibFinal)->create(
+                  m_rectFinalPlacement.width(),
+                  m_rectFinalPlacement.height());
+               GetDib(_graphics::DibFinal)->get_graphics()->SetStretchBltMode(HALFTONE);
+               GetDib(_graphics::DibFinal)->get_graphics()->StretchBlt(
+                  0,
+                  0,
+                  m_rectFinalPlacement.width(),
+                  m_rectFinalPlacement.height(),
+                  GetDib(_graphics::DibBuffer)->get_graphics(),
+                  m_rectFinalPlacement.left,
+                  m_rectFinalPlacement.top,
+                  m_rectFinalPlacement.width(),
+                  m_rectFinalPlacement.height(),
+                  SRCCOPY);
+
+               /*            else if(m_lineSongLabel.GetVisible() && ! m_bCompactMode)
+               {
+               System.imaging().color_blend(&dcBuffer, 0, m_lineSongLabel.m_iTop, cx, m_lineSongLabel.m_iBottom - m_lineSongLabel.m_iTop, RGB(255, 255, 255), 127);
+               }*/
+            }
+         }
+         catch(int)
+         {
+         }
+         //GetDib(100)->from(&dcBuffer, &bmpBuffer);
+         return true;
+      }
+
+      void Graphics::UpdateObjects()
+      {
+         rect rectClient;
+         Interface & iface = HelperGetMain().GetInterface();
+         iface.BackViewGetClientRect(rectClient);
+         int cx = rectClient.width();
+         int cy = rectClient.height();
+
+         CSingleLock sl1Back(&m_mutex1Back, TRUE);
+         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
+         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+         
+
+         ::ca::graphics & spgraphicsScreen    = GetScreenDC();
+
+         if(spgraphicsScreen.get_os_data() != NULL)
+         {
+            spgraphicsScreen.DeleteDC();
+         }
+         spgraphicsScreen.CreateDC("DISPLAY", NULL, NULL, NULL);
+
+         GetDib(_graphics::DibBack)->create(cx, cy); // Back
+         GetDib(_graphics::DibBack)->Fill(63, 106, 150);
+
+         GetDib(_graphics::DibBuffer)->create(cx, cy); // buffer
+         GetDib(_graphics::DibBuffer)->Fill(63, 106, 150);
+
+         GetDib(_graphics::DibTransfer)->create(cx, cy); // Transfer
+         GetDib(_graphics::DibTransfer)->Fill(63, 150, 106);
+
+         GetDib(_graphics::DibFrame1)->create(cx, cy); // Frame1
+         GetDib(_graphics::DibFrame1)->Fill(127, 136, 145);
+
+      }
+
+      EImagePlacement
+         Graphics::GetDefaultPlacement()
+      {
+         ::ca::bitmap & bmpSource = GetSourceBitmap();
+
+         BITMAP bm;
+         EImagePlacement eplacement;
+         if(!bmpSource.GetObject(sizeof(bm), &bm))
+         {
+            eplacement = ImagePlacementZoomAll;
+         }
+         else
+         {
+            if(bm.bmWidth < (GetSystemMetrics(SM_CXSCREEN) / 2) &&
+               bm.bmHeight < (GetSystemMetrics(SM_CYSCREEN) / 2))
+            {
+               eplacement = ImagePlacementTile;
+            }
+            else
+            {
+               eplacement = ImagePlacementZoomAll;
+            }
+
+         }
+         return eplacement;
+      }
+
+      ::ca::dib * Graphics::GetDib(int iIndex)
+      {
+         ::ca::dib * pdib;
+         if(m_mapDib.Lookup(iIndex, pdib))
+         {
+            return pdib;
+         }
+         else
+         {
+            ::ca::dib_sp spdib(get_app());
+            OnCreateDib(spdib, iIndex);
+            m_mapDib.set_at(iIndex, spdib);
+            gen::add_ref(spdib.m_p);
+            return spdib;
+         }
+      }
+
+      void Graphics::BufferToBack()
+      {
+         CSingleLock sl1Back(&m_mutex1Back, TRUE);
+         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
+         GetDib(_graphics::DibBack)->copy(GetDib(_graphics::DibBuffer));
+      }
+
+      void Graphics::BackToTransfer()
+      {
+         CSingleLock sl1Back(&m_mutex1Back, TRUE);
+         
+         GetDib(_graphics::DibTransfer)->copy(GetDib(_graphics::DibBack));
+
+      }
+      void Graphics::OnCreateDib(::ca::dib *pdib, int iIndex)
+      {
+         switch(iIndex)
+         {
+         case 1977:
+            {
+               // Radial Fill (Center Full alpha, Radius = 256 pixels)
+               pdib->create(512, 512);
+               pdib->RadialFill(255, 0, 0, 0, 
+                  0, 0, 0, 0,
+                  255, 255, 256);
+            }
+            break;
+         case 1984:
+            {
+               // Radial Fill (Border Full alpha, Radius = 256 pixels)
+               pdib->create(511, 511);
+               pdib->RadialFill(0, 0, 0, 0,
+                  255, 0, 0, 0, 255, 255, 256);
+            }
+            break;
+         default:
+            break;
+         }
+      }
+      void Graphics::GetFinalPlacement(LPRECT lprect)
+      {
+         *lprect = m_rectFinalPlacement;
+
+      }
+
+   } // namespace backview
+
+} // namespace gcom
+
+
+
+

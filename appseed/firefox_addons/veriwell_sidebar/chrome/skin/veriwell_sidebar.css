@@ -1,0 +1,14 @@
+#veriwellsidebarbutton {
+  list-style-image: url("chrome://veriwell_sidebar/skin/veriwell-logo-33-n.png");
+  -moz-image-region: rect(0px 33px 33px 0px);
+}
+
+#veriwellsidebarbutton:hover {
+  list-style-image: url("chrome://veriwell_sidebar/skin/veriwell-logo-33-h.png");
+  -moz-image-region: rect(0px 33px 33px 0px);
+}
+
+#veriwellsidebarbutton[disabled="true"] {
+  list-style-image: url("chrome://veriwell_sidebar/skin/veriwell-logo-33-d.png");
+  -moz-image-region: rect(0px 33px 33px 0px);
+}

@@ -1,0 +1,1 @@
+@call "%VS_VARS%"

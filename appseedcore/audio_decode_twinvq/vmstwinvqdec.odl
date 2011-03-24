@@ -1,0 +1,16 @@
+// vmstwinvqdec.odl : type library source for vmstwinvqdec.dll
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (vmstwinvqdec.tlb).
+
+[ uuid(FF5A46EF-2154-4E1B-B913-6CDB3500F46B), version(1.0) ]
+library Vmstwinvqdec
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

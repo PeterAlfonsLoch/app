@@ -1,0 +1,13 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+
+HKEY_CLASSES_ROOT\Oszip.Document = Oszip Document
+HKEY_CLASSES_ROOT\Oszip.Document\CLSID = {8F09AD37-4AAC-4D25-852E-4F9586053F9F}
+
+HKEY_CLASSES_ROOT\CLSID\{8F09AD37-4AAC-4D25-852E-4F9586053F9F} = Oszip Document
+HKEY_CLASSES_ROOT\CLSID\{8F09AD37-4AAC-4D25-852E-4F9586053F9F}\ProgId = Oszip.Document
+HKEY_CLASSES_ROOT\CLSID\{8F09AD37-4AAC-4D25-852E-4F9586053F9F}\LocalServer32 = OSZIP.EXE

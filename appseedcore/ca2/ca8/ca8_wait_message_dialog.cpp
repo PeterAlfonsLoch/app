@@ -1,0 +1,92 @@
+#include "StdAfx.h"
+
+
+wait_message_dialog::wait_message_dialog(::ca::application * papp) :
+   ca(papp),
+   user::scroll_view(papp),
+   ::userbase::view(papp),
+   userbase::scroll_view(papp),
+   userbase::form_view(papp),
+   form(papp),
+   html_form(papp),
+   html_form_view(papp),
+   form_view(papp),
+   dialog(papp)
+{
+   m_dwStartTime = 0;
+   m_dwDelay = 0;
+}
+
+wait_message_dialog::~wait_message_dialog()
+{
+   if(m_pdocument != NULL)
+   {
+      m_pdocument->on_close_document();
+      m_pdocument = NULL;
+   }
+}
+
+void wait_message_dialog::on_show(const char * pszMatter, gen::property_set & propertyset)
+{
+   UNREFERENCED_PARAMETER(pszMatter);
+   UNREFERENCED_PARAMETER(propertyset);
+   if(m_dwDelay > 0)
+   {
+      m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int) (m_dwDelay / 1000);
+      SetTimer(5432175, 584, NULL);
+   }
+   m_dwStartTime = ::GetTickCount();
+}
+
+
+
+bool wait_message_dialog::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+{
+   UNREFERENCED_PARAMETER(pview);
+   if(pevent->m_eevent == ::user::event_button_clicked)
+   {
+      m_strResponse = pevent->m_puie->m_id;
+      EndModalLoop(IDOK);
+   }
+   else if(pevent->m_eevent == ::user::event_timer)
+   {
+      if(pevent->m_uiEvent == 5432175)
+      {
+         DWORD dwTimeout = ::GetTickCount() - m_dwStartTime;
+         if(dwTimeout > m_dwDelay)
+         {
+            if(on_timeout())
+            {
+               EndModalLoop(IDOK);
+            }
+         }
+         else
+         {
+            on_timer_soft_reload(dwTimeout);
+         }
+         
+      }
+   }
+   return false;
+}
+
+
+bool wait_message_dialog::on_timeout()
+{
+   m_strResponse = "timeout";
+   return true;
+}
+
+void wait_message_dialog::on_timer_soft_reload(DWORD dwTimeout)
+{
+   string str;
+   str.Format("%d", (int) ((m_dwDelay - dwTimeout) / 1000));
+   html::elemental * pelemental = m_pdocument->get_html_data()->get_element_by_id("timeout");
+   if(pelemental != NULL)
+   {
+      pelemental->set_string(str);
+      layout();
+   }
+   //m_pdocument->m_propertyset["wait_message_dialog_timeout"] = (int) ((m_dwDelay - dwTimeout) / 1000);
+   //m_pdocument->soft_reload();
+}

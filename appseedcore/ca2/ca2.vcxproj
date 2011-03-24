@@ -1,0 +1,2890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
+    <RootNamespace>ca2</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</GenerateManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</EmbedManifest>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</PreBuildEventUseInBuild>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)crt\src;</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../nodeapp/windows;$(SolutionDir)../../nodeapp/windows/include;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../nodeapp/windows;$(SolutionDir)../../nodeapp/windows/include;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>libmysql.lib;libeay32.lib;ssleay32.lib;FreeImage.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="bergedge\bergedge_bergedge.h" />
+    <ClInclude Include="bergedge\bergedge.h" />
+    <ClInclude Include="bergedge\bergedge_document.h" />
+    <ClInclude Include="bergedge\bergedge_form_callback.h" />
+    <ClInclude Include="bergedge\bergedge_frame.h" />
+    <ClInclude Include="bergedge\bergedge_pane_view.h" />
+    <ClInclude Include="bergedge\bergedge_pane_view_update_hint.h" />
+    <ClInclude Include="bergedge\bergedge_view.h" />
+    <ClInclude Include="ca2\ca2.h" />
+    <ClInclude Include="ca2\ca2_2.h" />
+    <ClInclude Include="ca2\ca2_file_application.h" />
+    <ClInclude Include="ca2\ca2_main.h" />
+    <ClInclude Include="ca2\ca2_inline.h" />
+    <ClInclude Include="ca2\ca2_net.h" />
+    <ClInclude Include="ca2\ca2_seed.h" />
+    <ClInclude Include="ca2\ca2_sockets_address.h" />
+    <ClInclude Include="ca2\ca2_stra.h" />
+    <ClInclude Include="ca2\ca2_file_system.h" />
+    <ClInclude Include="ca2\ca2_xml.h" />
+    <ClInclude Include="ca2_res.h" />
+    <ClInclude Include="ca2_system_allocate.h" />
+    <ClInclude Include="ca4\ca4.h" />
+    <ClInclude Include="ca4\ca4_application.h" />
+    <ClInclude Include="ca4\ca4_http_application.h" />
+    <ClInclude Include="ca4\ca4_compress.h" />
+    <ClInclude Include="ca4\ca4_copydesk.h" />
+    <ClInclude Include="ca4\ca4_crypt.h" />
+    <ClInclude Include="ca4\ca4_email.h" />
+    <ClInclude Include="ca4\ca4_file.h" />
+    <ClInclude Include="ca4\ca4_http.h" />
+    <ClInclude Include="ca4\ca4_http_system.h" />
+    <ClInclude Include="ca4\ca4_http_get_socket.h" />
+    <ClInclude Include="ca4\ca4_ip_enum.h" />
+    <ClInclude Include="ca4\ca4_nessie.h" />
+    <ClInclude Include="ca4\ca4_patch.h" />
+    <ClInclude Include="ca5\ca5.h" />
+    <ClInclude Include="ca5\ca5_application.h" />
+    <ClInclude Include="ca5\ca5_user_presence.h" />
+    <ClInclude Include="ca5\ca5_user_presence_central.h" />
+    <ClInclude Include="ca5\ca5_user_presence_central_container.h" />
+    <ClInclude Include="ca8\ca8.h" />
+    <ClInclude Include="ca8\ca8_application.h" />
+    <ClInclude Include="ca8\ca8_keyboard_layout.h" />
+    <ClInclude Include="ca8\ca8_message_box.h" />
+    <ClInclude Include="ca8\ca8_network_configuration.h" />
+    <ClInclude Include="ca8\ca8_Shell.h" />
+    <ClInclude Include="ca8\ca8_validate.h" />
+    <ClInclude Include="ca8\ca8_wait_message_dialog.h" />
+    <ClInclude Include="ca8_77\ca77.h" />
+    <ClInclude Include="ca8_77\ca77_application.h" />
+    <ClInclude Include="ca8_84\ca84.h" />
+    <ClInclude Include="ca8_84\ca84_application.h" />
+    <ClInclude Include="calculator\frame.h" />
+    <ClInclude Include="calculator\mail_frame.h" />
+    <ClInclude Include="ca\ca.h" />
+    <ClInclude Include="ca\ca_2.h" />
+    <ClInclude Include="ca\ca_application_bias.h" />
+    <ClInclude Include="ca\ca_ca.h" />
+    <ClInclude Include="ca\ca_base.h" />
+    <ClInclude Include="ca\ca_dir_application.h" />
+    <ClInclude Include="ca\ca_system.h" />
+    <ClInclude Include="ca\ca_data.h" />
+    <ClInclude Include="ca\ca_data_container.h" />
+    <ClInclude Include="ca\ca_data_listener.h" />
+    <ClInclude Include="ca\ca_history.h" />
+    <ClInclude Include="ca\ca_interlocked_long.h" />
+    <ClInclude Include="ca\ca_interlocked_long_pulse.h" />
+    <ClInclude Include="ca\ca_graphics.h" />
+    <ClInclude Include="collection\base_object_list.h" />
+    <ClInclude Include="collection\comparable_eq_array.h" />
+    <ClInclude Include="collection\comparable_eq_list.h" />
+    <ClInclude Include="collection\comparable_list.h" />
+    <ClInclude Include="collection\stringa.h" />
+    <ClInclude Include="collection\stringl.h" />
+    <ClInclude Include="collection\string_array.h" />
+    <ClInclude Include="collection\string_sort_array.h" />
+    <ClInclude Include="collection\list.h" />
+    <ClInclude Include="collection\logic_array.h" />
+    <ClInclude Include="collection\map.h" />
+    <ClInclude Include="collection\pointer_list.h" />
+    <ClInclude Include="collection\raw_array.h" />
+    <ClInclude Include="collection\string_list.h" />
+    <ClInclude Include="collection\string_to_string_map.h" />
+    <ClInclude Include="collection\unique_array.h" />
+    <ClInclude Include="collection\_Base2DArray.h" />
+    <ClInclude Include="compress\7z\7zCompressionMode.h" />
+    <ClInclude Include="compress\7z\7zDecode.h" />
+    <ClInclude Include="compress\7z\7zEncode.h" />
+    <ClInclude Include="compress\7z\7zFolderInStream.h" />
+    <ClInclude Include="compress\7z\7zFolderOutStream.h" />
+    <ClInclude Include="compress\7z\7zHandler.h" />
+    <ClInclude Include="compress\7z\7zHeader.h" />
+    <ClInclude Include="compress\7z\7zIn.h" />
+    <ClInclude Include="compress\7z\7zItem.h" />
+    <ClInclude Include="compress\7z\7zOut.h" />
+    <ClInclude Include="compress\7z\7zProperties.h" />
+    <ClInclude Include="compress\7z\7zSpecStream.h" />
+    <ClInclude Include="compress\7z\7zUpdate.h" />
+    <ClInclude Include="compress\7z\7z.h" />
+    <ClInclude Include="compress\archive.h" />
+    <ClInclude Include="compress\bitl_decoder.h" />
+    <ClInclude Include="compress\bitl_encoder.h" />
+    <ClInclude Include="compress\bitm_decoder.h" />
+    <ClInclude Include="compress\bitm_encoder.h" />
+    <ClInclude Include="compress\bsdiff\bsdiff.h" />
+    <ClInclude Include="compress\bsdiff\bzlib.h" />
+    <ClInclude Include="compress\bsdiff\bzlib_private.h" />
+    <ClInclude Include="compress\bzip_helper.h" />
+    <ClInclude Include="compress\coder.h" />
+    <ClInclude Include="compress\coder_mixer.h" />
+    <ClInclude Include="compress\coder_mixer2.h" />
+    <ClInclude Include="compress\coder_mixer2mt.h" />
+    <ClInclude Include="compress\compress.h" />
+    <ClInclude Include="compress\input_stream_with_crc.h" />
+    <ClInclude Include="compress\method_properties.h" />
+    <ClInclude Include="compress\out_handler.h" />
+    <ClInclude Include="compress\ppmd8.h" />
+    <ClInclude Include="compress\copy_coder.h" />
+    <ClInclude Include="compress\create_coder.h" />
+    <ClInclude Include="compress\filter_coder.h" />
+    <ClInclude Include="compress\gzip_helper.h" />
+    <ClInclude Include="compress\huffman_decoder.h" />
+    <ClInclude Include="compress\int_to_string.h" />
+    <ClInclude Include="compress\item_name.h" />
+    <ClInclude Include="compress\local_progress.h" />
+    <ClInclude Include="compress\lz_out_window.h" />
+    <ClInclude Include="compress\ppmd.h" />
+    <ClInclude Include="compress\ppmd7.h" />
+    <ClInclude Include="compress\rar\rar1_decoder.h" />
+    <ClInclude Include="compress\rar\rar2_decoder.h" />
+    <ClInclude Include="compress\rar\rar3_decoder.h" />
+    <ClInclude Include="compress\rar\rar3_vm.h" />
+    <ClInclude Include="compress\reader_with_crc.h" />
+    <ClInclude Include="compress\register_codec.h" />
+    <ClInclude Include="compress\writer_with_crc.h" />
+    <ClInclude Include="compress\prop_id.h" />
+    <ClInclude Include="compress\rar\aes.h" />
+    <ClInclude Include="compress\rar\handler.h" />
+    <ClInclude Include="compress\rar\header.h" />
+    <ClInclude Include="compress\rar\input_file.h" />
+    <ClInclude Include="compress\rar\item.h" />
+    <ClInclude Include="compress\rar\rar.h" />
+    <ClInclude Include="compress\rar\folder_reader.h" />
+    <ClInclude Include="compress\zip\Api.h" />
+    <ClInclude Include="compress\zip\crypt.h" />
+    <ClInclude Include="compress\zip\File.h" />
+    <ClInclude Include="compress\zip\InFile.h" />
+    <ClInclude Include="compress\zip\ioapi.h" />
+    <ClInclude Include="compress\zip\iowin32.h" />
+    <ClInclude Include="compress\zip\memory_file.h" />
+    <ClInclude Include="compress\zip\unzip.h" />
+    <ClInclude Include="compress\zip\Util.h" />
+    <ClInclude Include="compress\zip\zip.h" />
+    <ClInclude Include="compress\zip\zipImpl.h" />
+    <ClInclude Include="compress\zip\zip_internal.h" />
+    <ClInclude Include="crypto\7z_crc.h" />
+    <ClInclude Include="crypto\compress_codecs_info_interface.h" />
+    <ClInclude Include="crypto\compress_coder2_interface.h" />
+    <ClInclude Include="crypto\compress_coder_interface.h" />
+    <ClInclude Include="crypto\compress_filter_interface.h" />
+    <ClInclude Include="crypto\compress_get_input_stream_processed_size_interface.h" />
+    <ClInclude Include="crypto\compress_get_sub_stream_size_interface.h" />
+    <ClInclude Include="crypto\compress_progress_info_interface.h" />
+    <ClInclude Include="crypto\compress_set_codecs_info_interface.h" />
+    <ClInclude Include="crypto\compress_set_coder_mt_interface.h" />
+    <ClInclude Include="crypto\compress_set_coder_properties_interface.h" />
+    <ClInclude Include="crypto\compress_set_decoder_properties2_interface.h" />
+    <ClInclude Include="crypto\compress_set_input_stream_interface.h" />
+    <ClInclude Include="crypto\compress_set_output_stream_interface.h" />
+    <ClInclude Include="crypto\compress_write_coder_properties_interface.h" />
+    <ClInclude Include="crypto\crypto_get_text_password_interface.h" />
+    <ClInclude Include="crypto\crypto_get_text_password2_interface.h" />
+    <ClInclude Include="crypto\crypto_properties_interface.h" />
+    <ClInclude Include="crypto\crypto_reset_init_vector_interface.h" />
+    <ClInclude Include="crypto\crypto_sha1.h" />
+    <ClInclude Include="crypto\c_crypto.h" />
+    <ClInclude Include="crypto\aes_cbc_coder.h" />
+    <ClInclude Include="crypto\crypto_set_password_interface.h" />
+    <ClInclude Include="crypto\rar20.h" />
+    <ClInclude Include="database\database_01.h" />
+    <ClInclude Include="database\database_field_definition.h" />
+    <ClInclude Include="ex1\ex1_0.h" />
+    <ClInclude Include="ex1\ex1_1.h" />
+    <ClInclude Include="ex1\ex1_bitl_decoder.h" />
+    <ClInclude Include="ex1\ex1_bitl_encoder.h" />
+    <ClInclude Include="ex1\ex1_bitm_decoder.h" />
+    <ClInclude Include="ex1\ex1_bitm_encoder.h" />
+    <ClInclude Include="ex1\ex1_buffer.h" />
+    <ClInclude Include="ex1\ex1_clustered_input_stream.h" />
+    <ClInclude Include="ex1\ex1_definition.h" />
+    <ClInclude Include="ex1\ex1_dynamic_buffer.h" />
+    <ClInclude Include="ex1\ex1_dynamic_buffered_writer.h" />
+    <ClInclude Include="ex1\ex1_fs_interface.h" />
+    <ClInclude Include="ex1\ex1_in_buffer.h" />
+    <ClInclude Include="ex1\ex1_io_temp_buffer.h" />
+    <ClInclude Include="ex1\ex1_limited_input_stream.h" />
+    <ClInclude Include="ex1\ex1_limited_writer.h" />
+    <ClInclude Include="ex1\ex1_limited_reader.h" />
+    <ClInclude Include="ex1\ex1_output_stream_flush_interface.h" />
+    <ClInclude Include="ex1\ex1_out_buffer.h" />
+    <ClInclude Include="ex1\ex1_progress_interface.h" />
+    <ClInclude Include="ex1\ex1_request_interface.h" />
+    <ClInclude Include="ex1\ex1_simple_tree_data.h" />
+    <ClInclude Include="ex1\ex1_simple_tree_item_data.h" />
+    <ClInclude Include="ex1\ex1_size_count_writer.h" />
+    <ClInclude Include="ex1\ex1_stream_binder.h" />
+    <ClInclude Include="ex1\ex1_system_exception.h" />
+    <ClInclude Include="ex1\ex1_timeout_file.h" />
+    <ClInclude Include="ex1\ex1_tree.h" />
+    <ClInclude Include="ex1\ex1_tree_item.h" />
+    <ClInclude Include="ex1\ex1_tree_item_data.h" />
+    <ClInclude Include="ex1\ex1_types.h" />
+    <ClInclude Include="ex1\ex1_locked_in_stream.h" />
+    <ClInclude Include="ex2\ex2_folder_watch.h" />
+    <ClInclude Include="exception\assert.h" />
+    <ClInclude Include="exception\base_exception.h" />
+    <ClInclude Include="exception\class.h" />
+    <ClInclude Include="exception\debug.h" />
+    <ClInclude Include="exception\debug_stream.h" />
+    <ClInclude Include="exception\dump_context.h" />
+    <ClInclude Include="exception\error_exception.h" />
+    <ClInclude Include="exception\exception.h" />
+    <ClInclude Include="exception\exception2.h" />
+    <ClInclude Include="exception\exception_0.h" />
+    <ClInclude Include="exception\exception_trap.h" />
+    <ClInclude Include="exception\interface_only.h" />
+    <ClInclude Include="exception\invalid_argument.h" />
+    <ClInclude Include="exception\memory.h" />
+    <ClInclude Include="exception\memory_state.h" />
+    <ClInclude Include="exception\misc.h" />
+    <ClInclude Include="exception\not_implemented.h" />
+    <ClInclude Include="exception\not_supported.h" />
+    <ClInclude Include="exception\resource.h" />
+    <ClInclude Include="exception\se_exception.h" />
+    <ClInclude Include="exception\se_translator.h" />
+    <ClInclude Include="exception\simple.h" />
+    <ClInclude Include="exception\SymEngine.h" />
+    <ClInclude Include="exception\unhandled_report.h" />
+    <ClInclude Include="exception\user.h" />
+    <ClInclude Include="exception\VMSException.h" />
+    <ClInclude Include="filemanager\FileManagerSaveAsNameView.h" />
+    <ClInclude Include="filemanager\filemanager_const.h" />
+    <ClInclude Include="filemanager\filemanager_fs_simple_list_view.h" />
+    <ClInclude Include="filemanager\filemanager_fs_simple_tree_view.h" />
+    <ClInclude Include="filemanager\filemanager_fs_simple_view.h" />
+    <ClInclude Include="filemanager\filemanager_iconoverlayer.h" />
+    <ClInclude Include="filemanager_folder_list_data.h" />
+    <ClInclude Include="fontopus\fontopus_contact_list.h" />
+    <ClInclude Include="fontopus\fontopus_license.h" />
+    <ClInclude Include="fontopus\fontopus_user.h" />
+    <ClInclude Include="fontopus\fontopus_usera.h" />
+    <ClInclude Include="fontopus\fontopus_validate.h" />
+    <ClInclude Include="fontopus\fontopus_application.h" />
+    <ClInclude Include="fontopus\fontopus.h" />
+    <ClInclude Include="fontopus\fontopus_user_set.h" />
+    <ClInclude Include="fs\fs.h" />
+    <ClInclude Include="fs\fs_application.h" />
+    <ClInclude Include="fs\fs_data.h" />
+    <ClInclude Include="fs\fs_document.h" />
+    <ClInclude Include="fs\fs_item.h" />
+    <ClInclude Include="fs\fs_item_array.h" />
+    <ClInclude Include="fs\fs_list.h" />
+    <ClInclude Include="fs\fs_list_data.h" />
+    <ClInclude Include="fs\fs_list_interface.h" />
+    <ClInclude Include="fs\fs_list_item.h" />
+    <ClInclude Include="fs\fs_list_item_array.h" />
+    <ClInclude Include="fs\fs_main_view.h" />
+    <ClInclude Include="fs\fs_tree.h" />
+    <ClInclude Include="fs\fs_tree_data.h" />
+    <ClInclude Include="fs\fs_tree_interface.h" />
+    <ClInclude Include="fs\fs_tree_item.h" />
+    <ClInclude Include="fs\ifs.h" />
+    <ClInclude Include="fs\native_fs.h" />
+    <ClInclude Include="gen\gen_0.h" />
+    <ClInclude Include="gen\gen_request_signal.h" />
+    <ClInclude Include="gen\gen_stringl.h" />
+    <ClInclude Include="gen\gen_string_tokenizer.h" />
+    <ClInclude Include="gen\gen_keeper.h" />
+    <ClInclude Include="gen\gen_memory_file.h" />
+    <ClInclude Include="gen\gen_parse.h" />
+    <ClInclude Include="gen\gen_math_rng.h" />
+    <ClInclude Include="gen\gen_savings.h" />
+    <ClInclude Include="gen\gen_signal_thread.h" />
+    <ClInclude Include="html\data_callback.h" />
+    <ClInclude Include="html\html_lite_html.h" />
+    <ClInclude Include="icube\icube.h" />
+    <ClInclude Include="icube\icube_application.h" />
+    <ClInclude Include="icube\icube_main.h" />
+    <ClInclude Include="icube\icube_system.h" />
+    <ClInclude Include="icube\icube_system_allocate.h" />
+    <ClInclude Include="icube\icube_system_ca_template.h" />
+    <ClInclude Include="icube\icube_system_template_trace.h" />
+    <ClInclude Include="mail\mail_list_interface.h" />
+    <ClInclude Include="mail\mail_tree_data.h" />
+    <ClInclude Include="mail\mail_tree_item.h" />
+    <ClInclude Include="mail\mail_views.h" />
+    <ClInclude Include="multithreading\event.h" />
+    <ClInclude Include="multithreading\manual_reset_event.h" />
+    <ClInclude Include="multithreading\mutex.h" />
+    <ClInclude Include="multithreading\plain_service.h" />
+    <ClInclude Include="multithreading\semaphore.h" />
+    <ClInclude Include="multithreading\service_base.h" />
+    <ClInclude Include="multithreading\service_status.h" />
+    <ClInclude Include="multithreading\sync_object.h" />
+    <ClInclude Include="multithreading\thread_pool.h" />
+    <ClInclude Include="mus\midi_midi.h" />
+    <ClInclude Include="nature\appearance_view.h" />
+    <ClInclude Include="nature\nature_application.h" />
+    <ClInclude Include="nature\database.h" />
+    <ClInclude Include="nature\document.h" />
+    <ClInclude Include="nature\frame.h" />
+    <ClInclude Include="nature\nature.h" />
+    <ClInclude Include="nature\pane_view.h" />
+    <ClInclude Include="nature\pane_view_update_hint.h" />
+    <ClInclude Include="nature\view.h" />
+    <ClInclude Include="os_history.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\document.h" />
+    <ClInclude Include="platform\frame.h" />
+    <ClInclude Include="platform\pane_view.h" />
+    <ClInclude Include="platform\pane_view_update_hint.h" />
+    <ClInclude Include="platform\platform.h" />
+    <ClInclude Include="platform\Resource.h" />
+    <ClInclude Include="platform\view.h" />
+    <ClInclude Include="primitive\check.h" />
+    <ClInclude Include="primitive\fixed_string.h" />
+    <ClInclude Include="primitive\id.h" />
+    <ClInclude Include="primitive\id_space.h" />
+    <ClInclude Include="primitive\simple_string.h" />
+    <ClInclude Include="primitive\string.h" />
+    <ClInclude Include="primitive\var.h" />
+    <ClInclude Include="radix\ca2_res.h" />
+    <ClInclude Include="radix\heap.h" />
+    <ClInclude Include="radix\inline.h" />
+    <ClInclude Include="radix\plex_heap.h" />
+    <ClInclude Include="radix\radix.h" />
+    <ClInclude Include="radix\radix_1.h" />
+    <ClInclude Include="radix\radix_2.h" />
+    <ClInclude Include="radix\radix_object.h" />
+    <ClInclude Include="radix\radix_os_history.h" />
+    <ClInclude Include="sockets\http_file.h" />
+    <ClInclude Include="sockets\sip_base.h" />
+    <ClInclude Include="sockets\sip_base_client_socket.h" />
+    <ClInclude Include="sockets\sip_request.h" />
+    <ClInclude Include="sockets\sip_response.h" />
+    <ClInclude Include="sockets\sip_tcp_client_socket.h" />
+    <ClInclude Include="sockets\sip_transaction.h" />
+    <ClInclude Include="sockets\sip_udp_client_socket.h" />
+    <ClInclude Include="sockets\sockets_http_file.h" />
+    <ClInclude Include="sockets\sync_socket_handler.h" />
+    <ClInclude Include="sockets\tls_socket.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="ca2_system_ca_template.h" />
+    <ClInclude Include="template\template.h" />
+    <ClInclude Include="userbase\simple_document.h" />
+    <ClInclude Include="userbase\simple_tree_view.h" />
+    <ClInclude Include="userbase_tree_set.h" />
+    <ClInclude Include="userbase_tree_set_interface.h" />
+    <ClInclude Include="userex\mini_dock_frame_window.h" />
+    <ClInclude Include="userex\application.h" />
+    <ClInclude Include="userex\userex_hour_list_view.h" />
+    <ClInclude Include="userex\userex_minute_list_view.h" />
+    <ClInclude Include="userex\userex_second_list_view.h" />
+    <ClInclude Include="user\user_00.h" />
+    <ClInclude Include="user\user_01.h" />
+    <ClInclude Include="user\user_combo_box.h" />
+    <ClInclude Include="user\user_document_manager.h" />
+    <ClInclude Include="user\user_document_request_interface.h" />
+    <ClInclude Include="user\user_inline.h" />
+    <ClInclude Include="user\user_keyboard.h" />
+    <ClInclude Include="user\user_keyboard_layout.h" />
+    <ClInclude Include="user\user_place_holder.h" />
+    <ClInclude Include="user\user_place_holder_container.h" />
+    <ClInclude Include="user\user_plain_text_data.h" />
+    <ClInclude Include="user\user_xfplayer_view_line_selection.h" />
+    <ClInclude Include="veiev_post.h" />
+    <ClInclude Include="video\video_command.h" />
+    <ClInclude Include="video\video.h" />
+    <ClInclude Include="video\video_global.h" />
+    <ClInclude Include="video\video_player.h" />
+    <ClInclude Include="video\video_player_command.h" />
+    <ClInclude Include="video_decode\decoder_.h" />
+    <ClInclude Include="video_decode\decoder_plugin.h" />
+    <ClInclude Include="video_decode\decoder_plugin_set.h" />
+    <ClInclude Include="video_decode\decoder_plugin_set_ex1.h" />
+    <ClInclude Include="video_decode\video_decode.h" />
+    <ClInclude Include="visual\fastblur.h" />
+    <ClInclude Include="visual\visual_00.h" />
+    <ClInclude Include="visual\visual_01.h" />
+    <ClInclude Include="vms\veriwell_musical_studio.h" />
+    <ClInclude Include="vms\vms.h" />
+    <ClInclude Include="vms\vms_2.h" />
+    <ClInclude Include="window_frame\FrameSchemaHardCoded008.h" />
+    <ClInclude Include="xml\application.h" />
+    <ClInclude Include="xml\attr.h" />
+    <ClInclude Include="xml\base_array.h" />
+    <ClInclude Include="xml\disp_option.h" />
+    <ClInclude Include="xml\document.h" />
+    <ClInclude Include="xml\entity.h" />
+    <ClInclude Include="xml\enum.h" />
+    <ClInclude Include="xml\exportable.h" />
+    <ClInclude Include="xml\importable.h" />
+    <ClInclude Include="xml\input_tree.h" />
+    <ClInclude Include="xml\node.h" />
+    <ClInclude Include="xml\output_tree.h" />
+    <ClInclude Include="xml\parse_info.h" />
+    <ClInclude Include="xml\property_exchange.h" />
+    <ClInclude Include="xml\tree_base.h" />
+    <ClInclude Include="xml\tree_schema.h" />
+    <ClInclude Include="xml\var_exchange.h" />
+    <ClInclude Include="xml\xml.h" />
+    <ClInclude Include="xml\XMLite.h" />
+    <ClInclude Include="calculator\application.h" />
+    <ClInclude Include="calculator\calculator.h" />
+    <ClInclude Include="calculator\calculator_class.h" />
+    <ClInclude Include="calculator\datetime_element.h" />
+    <ClInclude Include="calculator\datetime_parser.h" />
+    <ClInclude Include="calculator\datetime_scanner.h" />
+    <ClInclude Include="calculator\datetime_token.h" />
+    <ClInclude Include="calculator\document.h" />
+    <ClInclude Include="calculator\element.h" />
+    <ClInclude Include="calculator\numeric_element.h" />
+    <ClInclude Include="calculator\numeric_parser.h" />
+    <ClInclude Include="calculator\numeric_scanner.h" />
+    <ClInclude Include="calculator\numeric_token.h" />
+    <ClInclude Include="calculator\numeric_value.h" />
+    <ClInclude Include="calculator\parser.h" />
+    <ClInclude Include="calculator\scanner.h" />
+    <ClInclude Include="calculator\StdAfx.h" />
+    <ClInclude Include="calculator\this_version_info.h" />
+    <ClInclude Include="calculator\view.h" />
+    <ClInclude Include="colorertake5\application.h" />
+    <ClInclude Include="colorertake5\base_editor.h" />
+    <ClInclude Include="colorertake5\colorertake5.h" />
+    <ClInclude Include="colorertake5\cregexp.h" />
+    <ClInclude Include="colorertake5\default_error_handler.h" />
+    <ClInclude Include="colorertake5\editor_listener.h" />
+    <ClInclude Include="colorertake5\error_handler.h" />
+    <ClInclude Include="colorertake5\error_handler_writer.h" />
+    <ClInclude Include="colorertake5\exception.h" />
+    <ClInclude Include="colorertake5\features.h" />
+    <ClInclude Include="colorertake5\file_input_source.h" />
+    <ClInclude Include="colorertake5\file_type.h" />
+    <ClInclude Include="colorertake5\file_type_impl.h" />
+    <ClInclude Include="colorertake5\file_writer.h" />
+    <ClInclude Include="colorertake5\hrc_parser.h" />
+    <ClInclude Include="colorertake5\hrc_parser_helpers.h" />
+    <ClInclude Include="colorertake5\hrc_parser_impl.h" />
+    <ClInclude Include="colorertake5\line_region.h" />
+    <ClInclude Include="colorertake5\line_regions_compact_support.h" />
+    <ClInclude Include="colorertake5\line_regions_support.h" />
+    <ClInclude Include="colorertake5\line_source.h" />
+    <ClInclude Include="colorertake5\logging.h" />
+    <ClInclude Include="colorertake5\memory_chunks.h" />
+    <ClInclude Include="colorertake5\memory_file.h" />
+    <ClInclude Include="colorertake5\memory_operator.h" />
+    <ClInclude Include="colorertake5\outline_item.h" />
+    <ClInclude Include="colorertake5\outliner.h" />
+    <ClInclude Include="colorertake5\pair_match.h" />
+    <ClInclude Include="colorertake5\parsed_line_writer.h" />
+    <ClInclude Include="colorertake5\parser_factory.h" />
+    <ClInclude Include="colorertake5\parser_factory_exception.h" />
+    <ClInclude Include="colorertake5\region.h" />
+    <ClInclude Include="colorertake5\region_define.h" />
+    <ClInclude Include="colorertake5\region_handler.h" />
+    <ClInclude Include="colorertake5\region_mapper.h" />
+    <ClInclude Include="colorertake5\region_mapper_impl.h" />
+    <ClInclude Include="colorertake5\scheme.h" />
+    <ClInclude Include="colorertake5\shared_input_source.h" />
+    <ClInclude Include="colorertake5\string_buffer.h" />
+    <ClInclude Include="colorertake5\styled_hrd_mapper.h" />
+    <ClInclude Include="colorertake5\styled_region.h" />
+    <ClInclude Include="colorertake5\text_console_viewer.h" />
+    <ClInclude Include="colorertake5\text_hrd_mapper.h" />
+    <ClInclude Include="colorertake5\text_lines.h" />
+    <ClInclude Include="colorertake5\text_parser.h" />
+    <ClInclude Include="colorertake5\text_parser_helpers.h" />
+    <ClInclude Include="colorertake5\text_parser_impl.h" />
+    <ClInclude Include="colorertake5\text_region.h" />
+    <ClInclude Include="colorertake5\Writer.h" />
+    <ClInclude Include="colorertake5\xmldom.h" />
+    <ClInclude Include="filemanager\ContextMenu.h" />
+    <ClInclude Include="filemanager\file_operation.h" />
+    <ClInclude Include="filemanager\filemanager.h" />
+    <ClInclude Include="filemanager\filemanager_application.h" />
+    <ClInclude Include="filemanager\filemanager_folder_list_view.h" />
+    <ClInclude Include="filemanager\filemanager_folder_selection_list_view.h" />
+    <ClInclude Include="filemanager\filemanager_form_child_frame.h" />
+    <ClInclude Include="filemanager\filemanager_form_document.h" />
+    <ClInclude Include="filemanager\filemanager_form_update_hint.h" />
+    <ClInclude Include="filemanager\filemanager_form_view.h" />
+    <ClInclude Include="filemanager\filemanager_icon.h" />
+    <ClInclude Include="filemanager\filemanager_item_action.h" />
+    <ClInclude Include="filemanager\filemanager_operation_child_frame.h" />
+    <ClInclude Include="filemanager\filemanager_operation_document.h" />
+    <ClInclude Include="filemanager\filemanager_operation_info_view.h" />
+    <ClInclude Include="filemanager\filemanager_operation_list_view.h" />
+    <ClInclude Include="filemanager\filemanager_operation_thread.h" />
+    <ClInclude Include="filemanager\filemanager_operation_view.h" />
+    <ClInclude Include="filemanager\FileManagerCallbackInterface.h" />
+    <ClInclude Include="filemanager\FileManagerChildFrame.h" />
+    <ClInclude Include="filemanager\filemanager_data.h" />
+    <ClInclude Include="filemanager\filemanager_document.h" />
+    <ClInclude Include="filemanager\FileManagerFileListCallback.h" />
+    <ClInclude Include="filemanager\FileManagerFrame.h" />
+    <ClInclude Include="filemanager\FileManagerInterface.h" />
+    <ClInclude Include="filemanager\FileManagerLeftView.h" />
+    <ClInclude Include="filemanager\FileManagerMainFrame.h" />
+    <ClInclude Include="filemanager\FileManagerPathView.h" />
+    <ClInclude Include="filemanager\FileManagerTabView.h" />
+    <ClInclude Include="filemanager\FileManagerTemplate.h" />
+    <ClInclude Include="filemanager\FileManagerView.h" />
+    <ClInclude Include="filemanager\FileManagerViewInterface.h" />
+    <ClInclude Include="filemanager\FileManagerViewUpdateHint.h" />
+    <ClInclude Include="filemanager\SimpleFileListInterface.h" />
+    <ClInclude Include="filemanager\SimpleFileListView.h" />
+    <ClInclude Include="filemanager\SimpleFilePropertiesForm.h" />
+    <ClInclude Include="filemanager\SimpleFolderListInterface.h" />
+    <ClInclude Include="filemanager\SimpleFolderListView.h" />
+    <ClInclude Include="filemanager\SimpleFolderTreeInterface.h" />
+    <ClInclude Include="filemanager\SimpleFolderTreeView.h" />
+    <ClInclude Include="filemanager\SimplePreview.h" />
+    <ClInclude Include="filemanager\SimplePreviewInterface.h" />
+    <ClInclude Include="geoip\geoip.h" />
+    <ClInclude Include="geoip\geoip_city.h" />
+    <ClInclude Include="geoip\geoip_internal.h" />
+    <ClInclude Include="geoip\geoip_update.h" />
+    <ClInclude Include="geoip\global.h" />
+    <ClInclude Include="userbase\simple_button.h" />
+    <ClInclude Include="userbase\simple_child_frame.h" />
+    <ClInclude Include="userbase\simple_combo_box.h" />
+    <ClInclude Include="userbase\simple_edit.h" />
+    <ClInclude Include="userbase\simple_edit_plain_text.h" />
+    <ClInclude Include="userbase\simple_form_list_edit.h" />
+    <ClInclude Include="userbase\simple_form_list_view.h" />
+    <ClInclude Include="userbase\simple_frame_window.h" />
+    <ClInclude Include="userbase\simple_list_control.h" />
+    <ClInclude Include="userbase\simple_list_header_control.h" />
+    <ClInclude Include="userbase\simple_list_view.h" />
+    <ClInclude Include="userbase\simple_mdi_child_window.h" />
+    <ClInclude Include="userbase\simple_mdi_frame_window.h" />
+    <ClInclude Include="userbase\simple_menu_bar.h" />
+    <ClInclude Include="userbase\simple_push_button.h" />
+    <ClInclude Include="userbase\simple_scroll_bar.h" />
+    <ClInclude Include="userbase\simple_static.h" />
+    <ClInclude Include="userbase\simple_status_bar.h" />
+    <ClInclude Include="userbase\simple_tab_control.h" />
+    <ClInclude Include="userbase\simple_tab_view.h" />
+    <ClInclude Include="userbase\simple_tool_bar.h" />
+    <ClInclude Include="userbase\userbase.h" />
+    <ClInclude Include="userbase\userbase_application.h" />
+    <ClInclude Include="userbase\userbase_bitmap_button.h" />
+    <ClInclude Include="userbase\userbase_button.h" />
+    <ClInclude Include="userbase\userbase_button_control.h" />
+    <ClInclude Include="userbase\userbase_combo_box.h" />
+    <ClInclude Include="userbase\userbase_control_bar.h" />
+    <ClInclude Include="userbase\userbase_dock_context.h" />
+    <ClInclude Include="userbase\userbase_dock_state.h" />
+    <ClInclude Include="userbase\userbase_document.h" />
+    <ClInclude Include="userbase\userbase_document_manager.h" />
+    <ClInclude Include="userbase\userbase_document_template.h" />
+    <ClInclude Include="userbase\userbase_edit_plain_text.h" />
+    <ClInclude Include="userbase\userbase_edit_plain_text_view.h" />
+    <ClInclude Include="userbase\userbase_elastic_slider.h" />
+    <ClInclude Include="userbase\userbase_form_list.h" />
+    <ClInclude Include="userbase\userbase_form_view.h" />
+    <ClInclude Include="userbase\userbase_frame_window.h" />
+    <ClInclude Include="userbase\userbase_frame_window_interface.h" />
+    <ClInclude Include="userbase\userbase_image_manager.h" />
+    <ClInclude Include="userbase\userbase_impl.h" />
+    <ClInclude Include="userbase\userbase_mdi_child_window.h" />
+    <ClInclude Include="userbase\userbase_mdi_frame_window.h" />
+    <ClInclude Include="userbase\userbase_menu.h" />
+    <ClInclude Include="userbase\userbase_menu_base.h" />
+    <ClInclude Include="userbase\userbase_menu_button.h" />
+    <ClInclude Include="userbase\userbase_menu_central.h" />
+    <ClInclude Include="userbase\userbase_menu_item.h" />
+    <ClInclude Include="userbase\userbase_menu_list_view.h" />
+    <ClInclude Include="userbase\userbase_menu_list_window.h" />
+    <ClInclude Include="userbase\userbase_meta_button.h" />
+    <ClInclude Include="userbase\userbase_multiple_document_template.h" />
+    <ClInclude Include="userbase\userbase_notification_area.h" />
+    <ClInclude Include="userbase\userbase_notify_icon.h" />
+    <ClInclude Include="userbase\userbase_notify_icon_listener.h" />
+    <ClInclude Include="userbase\userbase_scroll_view.h" />
+    <ClInclude Include="userbase\userbase_simple.h" />
+    <ClInclude Include="userbase\userbase_single_document_template.h" />
+    <ClInclude Include="userbase\userbase_split_bar.h" />
+    <ClInclude Include="userbase\userbase_split_layout.h" />
+    <ClInclude Include="userbase\userbase_split_view.h" />
+    <ClInclude Include="userbase\userbase_split_window.h" />
+    <ClInclude Include="userbase\userbase_static.h" />
+    <ClInclude Include="userbase\userbase_status_bar.h" />
+    <ClInclude Include="userbase\userbase_step_slider.h" />
+    <ClInclude Include="userbase\userbase_tab_control.h" />
+    <ClInclude Include="userbase\userbase_tab_view.h" />
+    <ClInclude Include="userbase\userbase_tab_view_update_hint.h" />
+    <ClInclude Include="userbase\userbase_tool_bar.h" />
+    <ClInclude Include="userbase\userbase_tool_bar_control.h" />
+    <ClInclude Include="userbase\userbase_tree_window.h" />
+    <ClInclude Include="userbase\userbase_view.h" />
+    <ClInclude Include="userbase\userbase_window_map.h" />
+    <ClInclude Include="userex\calendar.h" />
+    <ClInclude Include="userex\calendar_interface.h" />
+    <ClInclude Include="userex\clock.h" />
+    <ClInclude Include="userex\clock_interface.h" />
+    <ClInclude Include="userex\dialog.h" />
+    <ClInclude Include="userex\form_child_frame.h" />
+    <ClInclude Include="userex\form_document.h" />
+    <ClInclude Include="userex\form_frame.h" />
+    <ClInclude Include="userex\form_update_hint.h" />
+    <ClInclude Include="userex\form_view.h" />
+    <ClInclude Include="userex\menu_document.h" />
+    <ClInclude Include="userex\menu_frame.h" />
+    <ClInclude Include="userex\menu_view.h" />
+    <ClInclude Include="userex\pane_split_view.h" />
+    <ClInclude Include="userex\pane_tab_view.h" />
+    <ClInclude Include="userex\pane_view.h" />
+    <ClInclude Include="userex\split_view.h" />
+    <ClInclude Include="userex\userex.h" />
+    <ClInclude Include="html\application.h" />
+    <ClInclude Include="html\cell.h" />
+    <ClInclude Include="html\data.h" />
+    <ClInclude Include="html\elemental.h" />
+    <ClInclude Include="html\file.h" />
+    <ClInclude Include="html\font.h" />
+    <ClInclude Include="html\form.h" />
+    <ClInclude Include="html\html.h" />
+    <ClInclude Include="html\html_attribute.h" />
+    <ClInclude Include="html\html_base.h" />
+    <ClInclude Include="html\html_child_frame.h" />
+    <ClInclude Include="html\html_document.h" />
+    <ClInclude Include="html\html_ex.h" />
+    <ClInclude Include="html\html_form.h" />
+    <ClInclude Include="html\html_form_view.h" />
+    <ClInclude Include="html\html_frame.h" />
+    <ClInclude Include="html\html_reader.h" />
+    <ClInclude Include="html\html_tag.h" />
+    <ClInclude Include="html\html_value.h" />
+    <ClInclude Include="html\html_view.h" />
+    <ClInclude Include="html\html_view_update_hint.h" />
+    <ClInclude Include="html\image.h" />
+    <ClInclude Include="html\input_button.h" />
+    <ClInclude Include="html\input_check_box.h" />
+    <ClInclude Include="html\input_text.h" />
+    <ClInclude Include="html\html_lite_html_attributes.h" />
+    <ClInclude Include="html\html_lite_html_common.h" />
+    <ClInclude Include="html\html_lite_html_entity_resolver.h" />
+    <ClInclude Include="html\html_lite_html_reader.h" />
+    <ClInclude Include="html\html_lite_html_tag.h" />
+    <ClInclude Include="html\signal.h" />
+    <ClInclude Include="html\style.h" />
+    <ClInclude Include="html\style_sheet.h" />
+    <ClInclude Include="html\style_sheet_array.h" />
+    <ClInclude Include="html\table.h" />
+    <ClInclude Include="html\table_elemental.h" />
+    <ClInclude Include="html\table_row.h" />
+    <ClInclude Include="html\text.h" />
+    <ClInclude Include="database\database.h" />
+    <ClInclude Include="database\database_application.h" />
+    <ClInclude Include="database\database_base.h" />
+    <ClInclude Include="database_change_event.h" />
+    <ClInclude Include="database\database_client.h" />
+    <ClInclude Include="database\database_definition.h" />
+    <ClInclude Include="database\database_id.h" />
+    <ClInclude Include="database\database_key.h" />
+    <ClInclude Include="database\database_selection.h" />
+    <ClInclude Include="database\database_selection_item.h" />
+    <ClInclude Include="database\database_server.h" />
+    <ClInclude Include="database\database_set.h" />
+    <ClInclude Include="database\database_stringhelper.h" />
+    <ClInclude Include="database\database_update_hint.h" />
+    <ClInclude Include="database\database_user_interaction.h" />
+    <ClInclude Include="primitive\align.h" />
+    <ClInclude Include="primitive\color.h" />
+    <ClInclude Include="primitive\count.h" />
+    <ClInclude Include="primitive\img.h" />
+    <ClInclude Include="primitive\index.h" />
+    <ClInclude Include="primitive\int_biunique.h" />
+    <ClInclude Include="primitive\logic.h" />
+    <ClInclude Include="primitive\memory.h" />
+    <ClInclude Include="primitive\memory_container.h" />
+    <ClInclude Include="primitive\memory_file.h" />
+    <ClInclude Include="primitive\memory_operator.h" />
+    <ClInclude Include="primitive\natural.h" />
+    <ClInclude Include="primitive\numeric_info.h" />
+    <ClInclude Include="primitive\point.h" />
+    <ClInclude Include="primitive\primitive.h" />
+    <ClInclude Include="primitive\rectangle.h" />
+    <ClInclude Include="primitive\scalar.h" />
+    <ClInclude Include="primitive\shared_file.h" />
+    <ClInclude Include="primitive\shared_memory.h" />
+    <ClInclude Include="primitive\size.h" />
+    <ClInclude Include="primitive\types.h" />
+    <ClInclude Include="visual\api.h" />
+    <ClInclude Include="visual\buffered_graphics.h" />
+    <ClInclude Include="visual\clip.h" />
+    <ClInclude Include="visual\dib_pal.h" />
+    <ClInclude Include="visual\font_central.h" />
+    <ClInclude Include="visual\FreeImageFileProc.h" />
+    <ClInclude Include="visual\glyph.h" />
+    <ClInclude Include="visual\glyph_set.h" />
+    <ClInclude Include="visual\graphics_extension.h" />
+    <ClInclude Include="visual\icon.h" />
+    <ClInclude Include="visual\image_list.h" />
+    <ClInclude Include="visual\imaging.h" />
+    <ClInclude Include="visual\rgb_quad_array.h" />
+    <ClInclude Include="visual\visual.h" />
+    <ClInclude Include="visual\visual_application.h" />
+    <ClInclude Include="visual\visual_cursor.h" />
+    <ClInclude Include="visual\visual_dib.h" />
+    <ClInclude Include="visual\visual_font.h" />
+    <ClInclude Include="visual\visual_visual.h" />
+    <ClInclude Include="visual\water_routine.h" />
+    <ClInclude Include="mail\application.h" />
+    <ClInclude Include="mail\application_interface.h" />
+    <ClInclude Include="mail\configuration.h" />
+    <ClInclude Include="mail\db_pop3.h" />
+    <ClInclude Include="mail\mail_tree.h" />
+    <ClInclude Include="mail\mail_tree_interface.h" />
+    <ClInclude Include="mail\mail.h" />
+    <ClInclude Include="mail\mail_account.h" />
+    <ClInclude Include="mail\mail_child_frame.h" />
+    <ClInclude Include="mail\mail_document.h" />
+    <ClInclude Include="mail\mail_list.h" />
+    <ClInclude Include="mail\mail_view.h" />
+    <ClInclude Include="mail\main_document.h" />
+    <ClInclude Include="mail\main_frame.h" />
+    <ClInclude Include="mail\pop3.h" />
+    <ClInclude Include="mail\pop3_socket.h" />
+    <ClInclude Include="mail\right_pane_view.h" />
+    <ClInclude Include="mail\simple_pop3.h" />
+    <ClInclude Include="mail\views.h" />
+    <ClInclude Include="math\_double.h" />
+    <ClInclude Include="math\_float.h" />
+    <ClInclude Include="math\_integer.h" />
+    <ClInclude Include="math\binary_operation.h" />
+    <ClInclude Include="math\math.h" />
+    <ClInclude Include="math\number.h" />
+    <ClInclude Include="math\value.h" />
+    <ClInclude Include="simpledb\application.h" />
+    <ClInclude Include="simpledb\db_long_set.h" />
+    <ClInclude Include="simpledb\db_server.h" />
+    <ClInclude Include="simpledb\db_set.h" />
+    <ClInclude Include="simpledb\db_str_set.h" />
+    <ClInclude Include="simpledb\db_stra_set.h" />
+    <ClInclude Include="simpledb\DBFileSystemSize.h" />
+    <ClInclude Include="field_definition.h" />
+    <ClInclude Include="simpledb\file_set.h" />
+    <ClInclude Include="simpledb\im_post.h" />
+    <ClInclude Include="simpledb\mysql_database.h" />
+    <ClInclude Include="simpledb\mysql_result.h" />
+    <ClInclude Include="simpledb\simpledb.h" />
+    <ClInclude Include="simpledb\simpledb_base.h" />
+    <ClInclude Include="simpledb\simpledb_set.h" />
+    <ClInclude Include="simpledb\simpledb_table.h" />
+    <ClInclude Include="simpledb\sqlite_base.h" />
+    <ClInclude Include="simpledb\sqlite_set.h" />
+    <ClInclude Include="window_frame\Appearance.h" />
+    <ClInclude Include="window_frame\Constants.h" />
+    <ClInclude Include="window_frame\ControlBoxButton.h" />
+    <ClInclude Include="window_frame\DockManager.h" />
+    <ClInclude Include="window_frame\FrameSchema.h" />
+    <ClInclude Include="window_frame\FrameSchemaHardCoded001.h" />
+    <ClInclude Include="window_frame\FrameSchemaHardCoded002.h" />
+    <ClInclude Include="window_frame\FrameSchemaHardCoded005.h" />
+    <ClInclude Include="window_frame\MoveManager.h" />
+    <ClInclude Include="window_frame\SizeManager.h" />
+    <ClInclude Include="window_frame\SysMenuManager.h" />
+    <ClInclude Include="window_frame\UpDownTarget.h" />
+    <ClInclude Include="window_frame\window_frame.h" />
+    <ClInclude Include="window_frame\WorkSet.h" />
+    <ClInclude Include="window_frame\WorkSetClientInterface.h" />
+    <ClInclude Include="window_frame\WorkSetDownUpInterface.h" />
+    <ClInclude Include="window_frame\WorkSetListener.h" />
+    <ClInclude Include="window_frame\WorkSetListenerArray.h" />
+    <ClInclude Include="crypto\aes.h" />
+    <ClInclude Include="crypto\aes_cbc.h" />
+    <ClInclude Include="crypto\aes_icm.h" />
+    <ClInclude Include="crypto\alloc.h" />
+    <ClInclude Include="crypto\auth.h" />
+    <ClInclude Include="crypto\cipher.h" />
+    <ClInclude Include="crypto\config.h" />
+    <ClInclude Include="crypto\crypto.h" />
+    <ClInclude Include="crypto\crypto_kernel.h" />
+    <ClInclude Include="crypto\crypto_math.h" />
+    <ClInclude Include="crypto\crypto_types.h" />
+    <ClInclude Include="crypto\cryptoalg.h" />
+    <ClInclude Include="crypto\datatypes.h" />
+    <ClInclude Include="crypto\err.h" />
+    <ClInclude Include="crypto\gf2_8.h" />
+    <ClInclude Include="crypto\hmac.h" />
+    <ClInclude Include="crypto\integers.h" />
+    <ClInclude Include="crypto\kernel_compat.h" />
+    <ClInclude Include="crypto\key.h" />
+    <ClInclude Include="crypto\null_auth.h" />
+    <ClInclude Include="crypto\null_cipher.h" />
+    <ClInclude Include="crypto\prng.h" />
+    <ClInclude Include="crypto\rand_source.h" />
+    <ClInclude Include="crypto\rdb.h" />
+    <ClInclude Include="crypto\rdbx.h" />
+    <ClInclude Include="crypto\sha1.h" />
+    <ClInclude Include="crypto\stat.h" />
+    <ClInclude Include="crypto\StdAfx.h" />
+    <ClInclude Include="crypto\xfm.h" />
+    <ClInclude Include="ortp\b64.h" />
+    <ClInclude Include="ortp\event.h" />
+    <ClInclude Include="ortp\file.h" />
+    <ClInclude Include="ortp\jitterctl.h" />
+    <ClInclude Include="ortp\ortp-config-win32.h" />
+    <ClInclude Include="ortp\ortp.h" />
+    <ClInclude Include="ortp\payloadtype.h" />
+    <ClInclude Include="ortp\port.h" />
+    <ClInclude Include="ortp\rtcp.h" />
+    <ClInclude Include="ortp\rtp.h" />
+    <ClInclude Include="ortp\rtpsession.h" />
+    <ClInclude Include="ortp\rtpsession_priv.h" />
+    <ClInclude Include="ortp\rtpsignaltable.h" />
+    <ClInclude Include="ortp\rtptimer.h" />
+    <ClInclude Include="ortp\scheduler.h" />
+    <ClInclude Include="ortp\sessionset.h" />
+    <ClInclude Include="ortp\srtp.h" />
+    <ClInclude Include="ortp\str_utils.h" />
+    <ClInclude Include="ortp\stun.h" />
+    <ClInclude Include="ortp\stun_udp.h" />
+    <ClInclude Include="ortp\telephonyevents.h" />
+    <ClInclude Include="ortp\utils.h" />
+    <ClInclude Include="sockets\application_interface.h" />
+    <ClInclude Include="sockets\Exception.h" />
+    <ClInclude Include="sockets\http_memory_file.h" />
+    <ClInclude Include="sockets\config.h" />
+    <ClInclude Include="sockets\sockets.h" />
+    <ClInclude Include="srtp\config.h" />
+    <ClInclude Include="srtp\config_in.h" />
+    <ClInclude Include="srtp\getopt_s.h" />
+    <ClInclude Include="srtp\rtp.h" />
+    <ClInclude Include="srtp\rtp_priv.h" />
+    <ClInclude Include="srtp\srtp.h" />
+    <ClInclude Include="srtp\srtp_priv.h" />
+    <ClInclude Include="gen\gen_application.h" />
+    <ClInclude Include="gen\gen_Base2DArray.h" />
+    <ClInclude Include="gen\gen_base64.h" />
+    <ClInclude Include="gen\gen_base_enum.h" />
+    <ClInclude Include="gen\gen_bit.h" />
+    <ClInclude Include="gen\gen_ch.h" />
+    <ClInclude Include="gen\gen_ch_class.h" />
+    <ClInclude Include="gen\gen_command_line.h" />
+    <ClInclude Include="gen\gen_Debug.h" />
+    <ClInclude Include="gen\gen_file_association.h" />
+    <ClInclude Include="gen\gen_frame_window_interface.h" />
+    <ClInclude Include="gen\gen_full_pointer.h" />
+    <ClInclude Include="gen\gen.h" />
+    <ClInclude Include="gen\gen_1.h" />
+    <ClInclude Include="gen\gen_2.h" />
+    <ClInclude Include="gen\gen_geometry.h" />
+    <ClInclude Include="gen\gen_international.h" />
+    <ClInclude Include="gen\gen_international2.h" />
+    <ClInclude Include="gen\gen_logic.h" />
+    <ClInclude Include="gen\gen_math.h" />
+    <ClInclude Include="gen\Muldiv32.h" />
+    <ClInclude Include="gen\MulDiv64.h" />
+    <ClInclude Include="gen\gen_object.h" />
+    <ClInclude Include="gen\gen_holder.h" />
+    <ClInclude Include="gen\gen_pointer_manager.h" />
+    <ClInclude Include="gen\gen_process.h" />
+    <ClInclude Include="gen\gen_property.h" />
+    <ClInclude Include="gen\gen_ptri.h" />
+    <ClInclude Include="gen\gen_raw_pointer.h" />
+    <ClInclude Include="gen\gen_signal.h" />
+    <ClInclude Include="gen\gen_str.h" />
+    <ClInclude Include="gen\gen_system.h" />
+    <ClInclude Include="gen\gen_timer.h" />
+    <ClInclude Include="gen\gen_timer_callback.h" />
+    <ClInclude Include="gen\gen_timer_listener.h" />
+    <ClInclude Include="gen\gen_timer_window.h" />
+    <ClInclude Include="gen\gen_util1.h" />
+    <ClInclude Include="gen\gen_var.h" />
+    <ClInclude Include="gen\gen_var_array.h" />
+    <ClInclude Include="gen\gen_variable_strict_compare.h" />
+    <ClInclude Include="ca\ca_application.h" />
+    <ClInclude Include="ca\ca_application_interface.h" />
+    <ClInclude Include="ca\ca_bitmap.h" />
+    <ClInclude Include="ca\ca_brush.h" />
+    <ClInclude Include="ca\ca_dib.h" />
+    <ClInclude Include="ca\ca_dir_system.h" />
+    <ClInclude Include="ca\ca_draw_dib.h" />
+    <ClInclude Include="ca\ca_exception.h" />
+    <ClInclude Include="ca\ca_font.h" />
+    <ClInclude Include="ca\ca_3_graphics.h" />
+    <ClInclude Include="ca\ca_graphics_object.h" />
+    <ClInclude Include="ca\ca_igui.h" />
+    <ClInclude Include="ca\ca_lock.h" />
+    <ClInclude Include="ca\ca_log.h" />
+    <ClInclude Include="ca\ca_message_window.h" />
+    <ClInclude Include="ca\ca_object.h" />
+    <ClInclude Include="ca\ca_osi.h" />
+    <ClInclude Include="ca\ca_palette.h" />
+    <ClInclude Include="ca\ca_pen.h" />
+    <ClInclude Include="ca\ca_profiler.h" />
+    <ClInclude Include="ca\ca_rgn.h" />
+    <ClInclude Include="ca\ca_se_translator.h" />
+    <ClInclude Include="ca\ca_smart_pointer.h" />
+    <ClInclude Include="ca\ca_thread.h" />
+    <ClInclude Include="ca\ca_type_info.h" />
+    <ClInclude Include="ca\ca_window.h" />
+    <ClInclude Include="ca\ca_window_draw.h" />
+    <ClInclude Include="ca2\ca2_application.h" />
+    <ClInclude Include="ca2\ca2_datetime.h" />
+    <ClInclude Include="ca2\ca2_html.h" />
+    <ClInclude Include="ca2\ca2_log.h" />
+    <ClInclude Include="ca2\ca2_process.h" />
+    <ClInclude Include="ca2\ca2_url.h" />
+    <ClInclude Include="ca2\ca2_url_domain.h" />
+    <ClInclude Include="radix\allocate.h" />
+    <ClInclude Include="radix\radix_application.h" />
+    <ClInclude Include="radix\base.h" />
+    <ClInclude Include="radix\BSTR.H" />
+    <ClInclude Include="radix\cafxdllx.h" />
+    <ClInclude Include="radix\class_sort_array.h" />
+    <ClInclude Include="radix\command.h" />
+    <ClInclude Include="radix\command_target.h" />
+    <ClInclude Include="radix\common.h" />
+    <ClInclude Include="radix\comparable.h" />
+    <ClInclude Include="radix\composite.h" />
+    <ClInclude Include="radix\constraint.h" />
+    <ClInclude Include="radix\contact_list.h" />
+    <ClInclude Include="radix\conv.h" />
+    <ClInclude Include="radix\conversion.h" />
+    <ClInclude Include="radix\radix_5.h" />
+    <ClInclude Include="radix\create_context.h" />
+    <ClInclude Include="radix\data_exchange.h" />
+    <ClInclude Include="radix\datetime_value.h" />
+    <ClInclude Include="radix\dbimpl.h" />
+    <ClInclude Include="radix\dd_.h" />
+    <ClInclude Include="radix\debug.h" />
+    <ClInclude Include="radix\debug_stream.h" />
+    <ClInclude Include="radix\DispatchPtrArray.h" />
+    <ClInclude Include="radix\dispimpl.h" />
+    <ClInclude Include="radix\dll_.h" />
+    <ClInclude Include="radix\document.h" />
+    <ClInclude Include="radix\document_template.h" />
+    <ClInclude Include="radix\elements.h" />
+    <ClInclude Include="radix\factory.h" />
+    <ClInclude Include="radix\field_definition.h" />
+    <ClInclude Include="radix\fixed_alloc.h" />
+    <ClInclude Include="radix\flags.h" />
+    <ClInclude Include="radix\frame_window.h" />
+    <ClInclude Include="radix\fspath.h" />
+    <ClInclude Include="radix\go_thread.h" />
+    <ClInclude Include="radix\hh.h" />
+    <ClInclude Include="radix\html_file.h" />
+    <ClInclude Include="radix\id.h" />
+    <ClInclude Include="radix\id_space.h" />
+    <ClInclude Include="radix\implementation.h" />
+    <ClInclude Include="radix\index.h" />
+    <ClInclude Include="radix\install.h" />
+    <ClInclude Include="radix\int_biunique.h" />
+    <ClInclude Include="radix\kbase.h" />
+    <ClInclude Include="radix\keep_ptr.h" />
+    <ClInclude Include="radix\language_string.h" />
+    <ClInclude Include="radix\machine_event_central.h" />
+    <ClInclude Include="radix\pointer_object.h" />
+    <ClInclude Include="radix\packset.h" />
+    <ClInclude Include="radix\creutil.h" />
+    <ClInclude Include="radix\pipe.h" />
+    <ClInclude Include="radix\plex.h" />
+    <ClInclude Include="radix\preview_dc.h" />
+    <ClInclude Include="radix\priv.h" />
+    <ClInclude Include="radix\priv2.h" />
+    <ClInclude Include="radix\process_data.h" />
+    <ClInclude Include="radix\PushingRoutingFrame.h" />
+    <ClInclude Include="radix\Resource.h" />
+    <ClInclude Include="radix\se_exception.h" />
+    <ClInclude Include="radix\se_translator.h" />
+    <ClInclude Include="radix\sensitive_ptr.h" />
+    <ClInclude Include="radix\service.h" />
+    <ClInclude Include="radix\simple_list.h" />
+    <ClInclude Include="radix\simple_thread.h" />
+    <ClInclude Include="radix\single_document_template.h" />
+    <ClInclude Include="radix\sockets.h" />
+    <ClInclude Include="radix\specialty.h" />
+    <ClInclude Include="radix\spreadset.h" />
+    <ClInclude Include="radix\SymEngine.h" />
+    <ClInclude Include="radix\this_build_number.h" />
+    <ClInclude Include="radix\thread.h" />
+    <ClInclude Include="radix\types.h" />
+    <ClInclude Include="radix\unhandled_report.h" />
+    <ClInclude Include="radix\userset.h" />
+    <ClInclude Include="radix\util.h" />
+    <ClInclude Include="radix\veriwell_musical_studio.h" />
+    <ClInclude Include="radix\vms.h" />
+    <ClInclude Include="radix\wait_cursor.h" />
+    <ClInclude Include="radix\win_registry.h" />
+    <ClInclude Include="audio\audio.h" />
+    <ClInclude Include="audio\audio_global.h" />
+    <ClInclude Include="audio\Command.h" />
+    <ClInclude Include="audio\WaveBuffer.h" />
+    <ClInclude Include="audio\WaveCentral.h" />
+    <ClInclude Include="audio\WaveCentralContainer.h" />
+    <ClInclude Include="audio\WaveEffectCrescendo.h" />
+    <ClInclude Include="audio\WaveEffectDevocalizer.h" />
+    <ClInclude Include="audio\WaveFile.h" />
+    <ClInclude Include="audio\WaveIn.h" />
+    <ClInclude Include="audio\WaveInListener.h" />
+    <ClInclude Include="audio\WaveInListenerSet.h" />
+    <ClInclude Include="audio\WaveOut.h" />
+    <ClInclude Include="audio\WavePlayer.h" />
+    <ClInclude Include="audio\WavePlayerCommand.h" />
+    <ClInclude Include="audio\WavePlayerInterface.h" />
+    <ClInclude Include="audio\WavePreBuffer.h" />
+    <ClInclude Include="audio\WaveRecorder.h" />
+    <ClInclude Include="audio\WaveRecorderCommand.h" />
+    <ClInclude Include="audio\WaveRecorderInterface.h" />
+    <ClInclude Include="audio_decode\audio_decode.h" />
+    <ClInclude Include="audio_decode\decoder_.h" />
+    <ClInclude Include="audio_decode\decoder_plugin.h" />
+    <ClInclude Include="audio_decode\decoder_plugin_set.h" />
+    <ClInclude Include="audio_decode\decoder_plugin_set_ex1.h" />
+    <ClInclude Include="audio_decode\encoder_.h" />
+    <ClInclude Include="audio_decode\encoder_plugin.h" />
+    <ClInclude Include="audio_decode\encoder_plugin_set.h" />
+    <ClInclude Include="audio_decode\encoder_plugin_set_ex1.h" />
+    <ClInclude Include="gcom\gcom.h" />
+    <ClInclude Include="gcom\gcom_BackView.h" />
+    <ClInclude Include="gcom\gcom_backview_interface.h" />
+    <ClInclude Include="gcom\gcom_backview_thread.h" />
+    <ClInclude Include="gcom\gcom_backview_user_interaction.h" />
+    <ClInclude Include="gcom\gcom_BackViewEnum.h" />
+    <ClInclude Include="gcom\gcom_BackViewGraphics.h" />
+    <ClInclude Include="gcom\gcom_BackViewHelper.h" />
+    <ClInclude Include="gcom\gcom_BackViewImageChange.h" />
+    <ClInclude Include="gcom\gcom_BackViewInterfaceData.h" />
+    <ClInclude Include="gcom\gcom_BackViewTransitionEffect.h" />
+    <ClInclude Include="gcom\gcom_BackViewVisualEffect.h" />
+    <ClInclude Include="gcom\gcom_Enum.h" />
+    <ClInclude Include="gcom\gcom_internal.h" />
+    <ClInclude Include="gcom\gcom_Rect.h" />
+    <ClInclude Include="gcom\gcom_Space.h" />
+    <ClInclude Include="gcom\gcom_SpaceUtil.h" />
+    <ClInclude Include="gcom\gcom_Util.h" />
+    <ClInclude Include="iaudio\iaudio.h" />
+    <ClInclude Include="iaudio\WaveStreamEffect.h" />
+    <ClInclude Include="iaudio\WaveStreamEffectChain.h" />
+    <ClInclude Include="iaudio\WaveStreamEffectEventListener.h" />
+    <ClInclude Include="iaudio\WaveStreamEffectOrder.h" />
+    <ClInclude Include="ikar\Global.h" />
+    <ClInclude Include="ikar\ikar.h" />
+    <ClInclude Include="ikar\data.h" />
+    <ClInclude Include="ikar\data_container.h" />
+    <ClInclude Include="ikar\dynamic_data.h" />
+    <ClInclude Include="ikar\karaoke.h" />
+    <ClInclude Include="ikar\static_data.h" />
+    <ClInclude Include="ikar\LyricEventsV1.h" />
+    <ClInclude Include="ikar\LyricEventsV2.h" />
+    <ClInclude Include="ikar\LyricEventV1.h" />
+    <ClInclude Include="imedia\imedia.h" />
+    <ClInclude Include="imedia\position.h" />
+    <ClInclude Include="imedia\position_array.h" />
+    <ClInclude Include="imedia\time.h" />
+    <ClInclude Include="imedia\time_array.h" />
+    <ClInclude Include="kar\application_interface.h" />
+    <ClInclude Include="kar\kar.h" />
+    <ClInclude Include="kar\KaraokeBouncingBall.h" />
+    <ClInclude Include="kar\KaraokeView.h" />
+    <ClInclude Include="kar\LyricViewLine.h" />
+    <ClInclude Include="kar\LyricViewLines.h" />
+    <ClInclude Include="kar\LyricViewLineSelection.h" />
+    <ClInclude Include="kar\LyricViewLineTemplate.h" />
+    <ClInclude Include="kar\LyricViewLineTemplates.h" />
+    <ClInclude Include="kar\Scoring.h" />
+    <ClInclude Include="kar\ScoringCentral.h" />
+    <ClInclude Include="kar\ScoringCentralContainer.h" />
+    <ClInclude Include="mediamanager\AlbumBuild.h" />
+    <ClInclude Include="mediamanager\AlbumBuildThread.h" />
+    <ClInclude Include="mediamanager\AlbumBuildWnd.h" />
+    <ClInclude Include="mediamanager\mediamanager.h" />
+    <ClInclude Include="mediamanager\MediaManagerImpl.h" />
+    <ClInclude Include="mediaplaylist\enum.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist.h" />
+    <ClInclude Include="mediaplaylist\PlaylistAppInterface.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCallback.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCallbackContainer.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCallbackContainerInterface.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCallbackInterface.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCentral.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCentralCallbackInterface.h" />
+    <ClInclude Include="mediaplaylist\PlaylistCentralContainer.h" />
+    <ClInclude Include="mediaplaylist\PlaylistDoc.h" />
+    <ClInclude Include="mediaplaylist\PlaylistFrame.h" />
+    <ClInclude Include="mediaplaylist\PlaylistListView.h" />
+    <ClInclude Include="mediaplaylist\PlaylistView.h" />
+    <ClInclude Include="mediaplaylist\PlaylistViewUpdateHint.h" />
+    <ClInclude Include="mediaplay\document.h" />
+    <ClInclude Include="mediaplay\karaoke.h" />
+    <ClInclude Include="mediaplay\mediaplay.h" />
+    <ClInclude Include="mediaplay\record_notify_view.h" />
+    <ClInclude Include="mediaplay\view.h" />
+    <ClInclude Include="mediaplay\data.h" />
+    <ClInclude Include="mediaplay\view_interface.h" />
+    <ClInclude Include="mediaplay\view_update_hint.h" />
+    <ClInclude Include="mediaplay\playlist_callback.h" />
+    <ClInclude Include="mixer\application_interface.h" />
+    <ClInclude Include="mixer\mixer.h" />
+    <ClInclude Include="mixer\mixer_Mixer.h" />
+    <ClInclude Include="mixer\MixerCallback.h" />
+    <ClInclude Include="mixer\MixerCentral.h" />
+    <ClInclude Include="mixer\MixerControl.h" />
+    <ClInclude Include="mixer\MixerDestination.h" />
+    <ClInclude Include="mixer\MixerDevice.h" />
+    <ClInclude Include="mixer\MixerLevelControl.h" />
+    <ClInclude Include="mixer\MixerLineInfo.h" />
+    <ClInclude Include="mixer\MixerSource.h" />
+    <ClInclude Include="mixer\MixerThread.h" />
+    <ClInclude Include="mixer\MixerWnd.h" />
+    <ClInclude Include="mixer\control.h" />
+    <ClInclude Include="mixer\label.h" />
+    <ClInclude Include="mixer\level_control.h" />
+    <ClInclude Include="mixer\toggle_control.h" />
+    <ClInclude Include="mixeruibase\application_interface.h" />
+    <ClInclude Include="mixeruibase\GoodMixerDoc.h" />
+    <ClInclude Include="mixeruibase\MixerControlData.h" />
+    <ClInclude Include="mixeruibase\mixercontrolview.h" />
+    <ClInclude Include="mixeruibase\MixerDoc.h" />
+    <ClInclude Include="mixeruibase\MixerFrameWnd.h" />
+    <ClInclude Include="mixeruibase\MixerMainView.h" />
+    <ClInclude Include="mixeruibase\mixeruibase.h" />
+    <ClInclude Include="mixeruibase\MixerVisualCentral.h" />
+    <ClInclude Include="mixeruibase\MixerVisualThread.h" />
+    <ClInclude Include="mixeruibase\label.h" />
+    <ClInclude Include="mixeruibase\mute_control.h" />
+    <ClInclude Include="mixeruibase\slider.h" />
+    <ClInclude Include="mus\Attributes.h" />
+    <ClInclude Include="mus\Intrisics.h" />
+    <ClInclude Include="mus\KaraokeUtil.h" />
+    <ClInclude Include="mus\LyricTrack.h" />
+    <ClInclude Include="mus\microke1_.h" />
+    <ClInclude Include="mus\midi.h" />
+    <ClInclude Include="mus\midi_central.h" />
+    <ClInclude Include="mus\midi_central_container.h" />
+    <ClInclude Include="mus\midi_central_listener.h" />
+    <ClInclude Include="mus\MidiDocHelper.h" />
+    <ClInclude Include="mus\MidiEventBase.h" />
+    <ClInclude Include="mus\MidiEventsV1.h" />
+    <ClInclude Include="mus\MidiEventV001.h" />
+    <ClInclude Include="mus\MidiEventV007.h" />
+    <ClInclude Include="mus\MidiEventV008.h" />
+    <ClInclude Include="mus\MidiEventV016.h" />
+    <ClInclude Include="mus\MidiEventV508.h" />
+    <ClInclude Include="mus\midi_exception.h" />
+    <ClInclude Include="mus\midi_file.h" />
+    <ClInclude Include="mus\MidiPlayer.h" />
+    <ClInclude Include="mus\MidiPlayerCallback.h" />
+    <ClInclude Include="mus\midiplayercallbackinterface.h" />
+    <ClInclude Include="mus\MidiPlayerInterface.h" />
+    <ClInclude Include="mus\MidiPlayerWnd.h" />
+    <ClInclude Include="mus\Midiplyr.h" />
+    <ClInclude Include="mus\midi_sequence.h" />
+    <ClInclude Include="mus\MidiSequenceThread.h" />
+    <ClInclude Include="mus\MidiTrack.h" />
+    <ClInclude Include="mus\MidiTrackBase.h" />
+    <ClInclude Include="mus\MidiTracks.h" />
+    <ClInclude Include="mus\MidiTrackV008.h" />
+    <ClInclude Include="mus\MidiUtil.h" />
+    <ClInclude Include="mus\MidiViewHelper.h" />
+    <ClInclude Include="mus\MultimediaFile.h" />
+    <ClInclude Include="mus\mus.h" />
+    <ClInclude Include="mus\mus_intrisics.h" />
+    <ClInclude Include="mus\SoftKaraokeInfo.h" />
+    <ClInclude Include="mus\Star350.h" />
+    <ClInclude Include="mus\Star350EventBase.h" />
+    <ClInclude Include="mus\Star350EventTrack.h" />
+    <ClInclude Include="mus\Star350EventV001.h" />
+    <ClInclude Include="mus\Star350EventV008.h" />
+    <ClInclude Include="mus\Star350EventV016.h" />
+    <ClInclude Include="mus\Star350File.h" />
+    <ClInclude Include="mus\Star350InfoHeader.h" />
+    <ClInclude Include="mus\Star350LyricTrack.h" />
+    <ClInclude Include="mus\Star350LyricTracks.h" />
+    <ClInclude Include="mus\Star350TrackBase.h" />
+    <ClInclude Include="mus\Star350Tracks.h" />
+    <ClInclude Include="mus\Star350TrackV008.h" />
+    <ClInclude Include="mus\Tune1000Info.h" />
+    <ClInclude Include="mus\Uiutils.h" />
+    <ClInclude Include="mus\vmsgentempl.h" />
+    <ClInclude Include="mus\vmsmusresource.h" />
+    <ClInclude Include="mus\Xf.h" />
+    <ClInclude Include="mus\XFInfoHeader.h" />
+    <ClInclude Include="mus\XFInfoHeaderLS.h" />
+    <ClInclude Include="mus\XFInfoHeaders.h" />
+    <ClInclude Include="musctrl\musctrl.h" />
+    <ClInclude Include="musctrl\MusicalPlayerCentral.h" />
+    <ClInclude Include="musctrl\MusicalPlayerCentralContainer.h" />
+    <ClInclude Include="musctrl\PlayerDocContainer.h" />
+    <ClInclude Include="musctrl\single_document_template.h" />
+    <ClInclude Include="imediamanager\imediamanager.h" />
+    <ClInclude Include="imediamanager\PlayerInterface.h" />
+    <ClInclude Include="imediamanager\PlaylistInterface.h" />
+    <ClInclude Include="kissfftf\fftfFftrd.h" />
+    <ClInclude Include="kissfftf\fftfFftri.h" />
+    <ClInclude Include="kissfftf\kissfftf.h" />
+    <ClInclude Include="kissfftf\_kiss_fft_guts.h" />
+    <ClInclude Include="kissfftf\kiss_fft.h" />
+    <ClInclude Include="kissfftf\kiss_fftr.h" />
+    <ClInclude Include="x\x_charcategory.h" />
+    <ClInclude Include="x\x_charcategory2.h" />
+    <ClInclude Include="x\x_charcategory_names.h" />
+    <ClInclude Include="x\x_defines.h" />
+    <ClInclude Include="x\x_encodings.h" />
+    <ClInclude Include="x\x_tables.h" />
+    <ClInclude Include="ex1\ex1.h" />
+    <ClInclude Include="ex1\ex1_application.h" />
+    <ClInclude Include="ex1\ex1_buffered_file.h" />
+    <ClInclude Include="ex1\ex1_edit_file.h" />
+    <ClInclude Include="ex1\ex1_exception.h" />
+    <ClInclude Include="ex1\ex1_file.h" />
+    <ClInclude Include="ex1\ex1_file_set.h" />
+    <ClInclude Include="ex1\ex1_file_system.h" />
+    <ClInclude Include="ex1\ex1_resource.h" />
+    <ClInclude Include="ex1\ex1_serializable.h" />
+    <ClInclude Include="ex1\ex1_str_stream.h" />
+    <ClInclude Include="ex1\ex1_stream.h" />
+    <ClInclude Include="ex1\ex1_stream2.h" />
+    <ClInclude Include="ex1\ex1_text_file.h" />
+    <ClInclude Include="ex1\ex1_tree_data.h" />
+    <ClInclude Include="ex2\Ex17MemoryFile.h" />
+    <ClInclude Include="ex2\ex2.h" />
+    <ClInclude Include="ex2\ex2_application.h" />
+    <ClInclude Include="ex2\ex2_file_set.h" />
+    <ClInclude Include="id3lib\acconfig.h" />
+    <ClInclude Include="id3lib\config.h" />
+    <ClInclude Include="id3lib\field.h" />
+    <ClInclude Include="id3lib\field_def.h" />
+    <ClInclude Include="id3lib\field_impl.h" />
+    <ClInclude Include="id3lib\flags.h" />
+    <ClInclude Include="id3lib\frame_def.h" />
+    <ClInclude Include="id3lib\frame_impl.h" />
+    <ClInclude Include="id3lib\globals.h" />
+    <ClInclude Include="id3lib\header.h" />
+    <ClInclude Include="id3lib\header_frame.h" />
+    <ClInclude Include="id3lib\header_tag.h" />
+    <ClInclude Include="id3lib\helpers.h" />
+    <ClInclude Include="id3lib\id3.h" />
+    <ClInclude Include="id3lib\id3lib_frame.h" />
+    <ClInclude Include="id3lib\id3lib_streams.h" />
+    <ClInclude Include="id3lib\id3lib_strings.h" />
+    <ClInclude Include="id3lib\io_decorators.h" />
+    <ClInclude Include="id3lib\io_helpers.h" />
+    <ClInclude Include="id3lib\io_strings.h" />
+    <ClInclude Include="id3lib\mp3_header.h" />
+    <ClInclude Include="id3lib\reader.h" />
+    <ClInclude Include="id3lib\readers.h" />
+    <ClInclude Include="id3lib\sized_types.h" />
+    <ClInclude Include="id3lib\spec.h" />
+    <ClInclude Include="id3lib\tag.h" />
+    <ClInclude Include="id3lib\tag_impl.h" />
+    <ClInclude Include="id3lib\utils.h" />
+    <ClInclude Include="id3lib\writer.h" />
+    <ClInclude Include="id3lib\writers.h" />
+    <ClInclude Include="user\user_application.h" />
+    <ClInclude Include="user\user_buffer.h" />
+    <ClInclude Include="user\user_button.h" />
+    <ClInclude Include="user\user_check_box.h" />
+    <ClInclude Include="user\user_check_interface.h" />
+    <ClInclude Include="user\user_control.h" />
+    <ClInclude Include="user\user_control_event.h" />
+    <ClInclude Include="user\user_control_property.h" />
+    <ClInclude Include="user\user_create_context.h" />
+    <ClInclude Include="user\user_create_view.h" />
+    <ClInclude Include="user\user_document.h" />
+    <ClInclude Include="user\user_document_interface.h" />
+    <ClInclude Include="user\user_document_template.h" />
+    <ClInclude Include="user\user_document_template_interface.h" />
+    <ClInclude Include="user\user_draw_context.h" />
+    <ClInclude Include="user\user_edit_plain_text.h" />
+    <ClInclude Include="user\user_element_2d.h" />
+    <ClInclude Include="user\user_elemental.h" />
+    <ClInclude Include="user\user_form.h" />
+    <ClInclude Include="user\user_form_callback.h" />
+    <ClInclude Include="user\user_form_list.h" />
+    <ClInclude Include="user\user_frame_window.h" />
+    <ClInclude Include="user\user_frame_window_interface.h" />
+    <ClInclude Include="user\user_front_end.h" />
+    <ClInclude Include="user\user_front_end_schema.h" />
+    <ClInclude Include="user\user_get_view.h" />
+    <ClInclude Include="user\user_interaction.h" />
+    <ClInclude Include="user\user_keyboard_focus.h" />
+    <ClInclude Include="user\user_list.h" />
+    <ClInclude Include="user\user_list_cache.h" />
+    <ClInclude Include="user\user_list_cache_interface.h" />
+    <ClInclude Include="user\user_list_data.h" />
+    <ClInclude Include="user\user_list_data_interface.h" />
+    <ClInclude Include="user\user_list_header.h" />
+    <ClInclude Include="user\user_mouse_focus.h" />
+    <ClInclude Include="user\user_multiple_document_template.h" />
+    <ClInclude Include="user\user_on_draw_interface.h" />
+    <ClInclude Include="user\user_scroll_bar.h" />
+    <ClInclude Include="user\user_scroll_view.h" />
+    <ClInclude Include="user\user_simple_list_data.h" />
+    <ClInclude Include="user\user_single_document_template.h" />
+    <ClInclude Include="user\user_str.h" />
+    <ClInclude Include="user\user_tab.h" />
+    <ClInclude Include="user\user_tab_callback.h" />
+    <ClInclude Include="user\user_text_interface.h" />
+    <ClInclude Include="user\user_tool_tip_tool.h" />
+    <ClInclude Include="user\user_tool_tip_window.h" />
+    <ClInclude Include="user\user_tree.h" />
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\user_view.h" />
+    <ClInclude Include="user\user_virtual_user_interface.h" />
+    <ClInclude Include="user\user_window_draw_client_tool.h" />
+    <ClInclude Include="user\user_window_draw_interface.h" />
+    <ClInclude Include="user\user_window_id.h" />
+    <ClInclude Include="user\user_window_interface.h" />
+    <ClInclude Include="user\user_window_map.h" />
+    <ClInclude Include="user\user_window_message.h" />
+    <ClInclude Include="user\user_window_redraw_interface.h" />
+    <ClInclude Include="user\user_window_util.h" />
+    <ClInclude Include="user\user_xfplayer_view_line.h" />
+    <ClInclude Include="user\user_xfplayer_view_lines.h" />
+    <ClInclude Include="databaseuser\data_key_list_data.h" />
+    <ClInclude Include="databaseuser\databaseuser.h" />
+    <ClInclude Include="databaseuser\list_data.h" />
+    <ClInclude Include="template\allocate.h" />
+    <ClInclude Include="template\base.h" />
+    <ClInclude Include="template\checked.h" />
+    <ClInclude Include="template\core.h" />
+    <ClInclude Include="template\debug.h" />
+    <ClInclude Include="template\definition.h" />
+    <ClInclude Include="template\exception.h" />
+    <ClInclude Include="template\resource.h" />
+    <ClInclude Include="template\simple_collection.h" />
+    <ClInclude Include="template\simple_string.h" />
+    <ClInclude Include="template\string.h" />
+    <ClInclude Include="template\string_template.h" />
+    <ClInclude Include="template\time.h" />
+    <ClInclude Include="template\trace.h" />
+    <ClInclude Include="template\trace_module_manager.h" />
+    <ClInclude Include="collection\array.h" />
+    <ClInclude Include="collection\array_app_alloc.h" />
+    <ClInclude Include="collection\array_parent_alloc.h" />
+    <ClInclude Include="collection\array_ptr.h" />
+    <ClInclude Include="collection\array_ptr_alloc.h" />
+    <ClInclude Include="collection\array_ptr_copy.h" />
+    <ClInclude Include="collection\array_smart_ptr.h" />
+    <ClInclude Include="collection\base_array.h" />
+    <ClInclude Include="collection\bit_array.h" />
+    <ClInclude Include="collection\collection.h" />
+    <ClInclude Include="collection\comparable_array.h" />
+    <ClInclude Include="collection\comparable_primitive_array.h" />
+    <ClInclude Include="collection\comparable_raw_array.h" />
+    <ClInclude Include="collection\elements.h" />
+    <ClInclude Include="collection\key_sort_array.h" />
+    <ClInclude Include="collection\numeric_array.h" />
+    <ClInclude Include="collection\point_array.h" />
+    <ClInclude Include="primitive_array.h" />
+    <ClInclude Include="collection\rect_array.h" />
+    <ClInclude Include="collection\sort.h" />
+    <ClInclude Include="collection\sort_array.h" />
+    <ClInclude Include="multithreading\multithreading.h" />
+    <ClInclude Include="sockets\ajp13.h" />
+    <ClInclude Include="sockets\Ajp13Socket.h" />
+    <ClInclude Include="sockets\AjpBaseSocket.h" />
+    <ClInclude Include="sockets\http_base_socket.h" />
+    <ClInclude Include="sockets\http_cookie.h" />
+    <ClInclude Include="sockets\http_form.h" />
+    <ClInclude Include="sockets\http_request.h" />
+    <ClInclude Include="sockets\http_response.h" />
+    <ClInclude Include="sockets\http_transaction.h" />
+    <ClInclude Include="sockets\httpd_socket.h" />
+    <ClInclude Include="sockets\Event.h" />
+    <ClInclude Include="sockets\EventHandler.h" />
+    <ClInclude Include="sockets\EventTime.h" />
+    <ClInclude Include="sockets\IEventHandler.h" />
+    <ClInclude Include="sockets\IEventOwner.h" />
+    <ClInclude Include="sockets\smtp_socket.h" />
+    <ClInclude Include="sockets\smtpd_socket.h" />
+    <ClInclude Include="sockets\sip_client.h" />
+    <ClInclude Include="sockets\sip_server.h" />
+    <ClInclude Include="sockets\StdLog.h" />
+    <ClInclude Include="sockets\trace_log.h" />
+    <ClInclude Include="sockets\SSLInitializer.h" />
+    <ClInclude Include="sockets\http_socket.h" />
+    <ClInclude Include="sockets\http_tunnel.h" />
+    <ClInclude Include="sockets\http_client_socket.h" />
+    <ClInclude Include="sockets\http_debug_socket.h" />
+    <ClInclude Include="sockets\http_get_socket.h" />
+    <ClInclude Include="sockets\http_post_socket.h" />
+    <ClInclude Include="sockets\http_put_socket.h" />
+    <ClInclude Include="sockets\resolv_server.h" />
+    <ClInclude Include="sockets\resolv_socket.h" />
+    <ClInclude Include="sockets\ipv4_address.h" />
+    <ClInclude Include="sockets\ipv6_address.h" />
+    <ClInclude Include="sockets\socket_handler_base.h" />
+    <ClInclude Include="sockets\listen_socket.h" />
+    <ClInclude Include="sockets\sctp_socket.h" />
+    <ClInclude Include="sockets\Socket.h" />
+    <ClInclude Include="sockets\socket_handler.h" />
+    <ClInclude Include="sockets\stream_socket.h" />
+    <ClInclude Include="sockets\tcp_socket.h" />
+    <ClInclude Include="sockets\udp_socket.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="collection\collection.inl" />
+    <ClCompile Include="ca2\ca2_application_file.cpp" />
+    <ClCompile Include="ca2\ca2_file_system.cpp" />
+    <ClCompile Include="ca4\ca4_http_application.cpp" />
+    <ClCompile Include="ca4\ca4_compress.cpp" />
+    <ClCompile Include="ca4\ca4_http.cpp" />
+    <ClCompile Include="ca4\ca4_patch.cpp" />
+    <ClCompile Include="ca4\ca4_crypt.cpp" />
+    <ClCompile Include="ca4\ca4_application.cpp" />
+    <ClCompile Include="ca4\ca4_email.cpp" />
+    <ClCompile Include="ca4\ca4_http_system.cpp" />
+    <ClCompile Include="ca4\ca4_http_get_socket.cpp" />
+    <ClCompile Include="ca4\ca4_file.cpp" />
+    <ClCompile Include="ca4\ca4_nessie.cpp" />
+    <ClCompile Include="ca4\ca4_copydesk.cpp" />
+    <ClCompile Include="ca4\ca4_enum.cpp" />
+    <ClCompile Include="ca4\ca4_whirlpool.cpp" />
+    <ClCompile Include="ca5\ca5_application.cpp" />
+    <ClCompile Include="ca5\ca5_user_presence.cpp" />
+    <ClCompile Include="ca5\ca5_user_presence_central.cpp" />
+    <ClCompile Include="ca5\ca5_user_presence_central_container.cpp" />
+    <ClCompile Include="ca8\ca8_application.cpp" />
+    <ClCompile Include="ca8\ca8_keyboard_layout.cpp" />
+    <ClCompile Include="ca8\ca8_message_box.cpp" />
+    <ClCompile Include="ca8\ca8_network_configuration.cpp" />
+    <ClCompile Include="ca8\ca8_Shell.cpp" />
+    <ClCompile Include="ca8\ca8_wait_message_dialog.cpp" />
+    <ClCompile Include="ca8_77\ca77_application.cpp" />
+    <ClCompile Include="ca8_84\ca84_application.cpp" />
+    <ClCompile Include="ca\ca_application_bias.cpp" />
+    <ClCompile Include="ca\ca_data_container.cpp" />
+    <ClCompile Include="ca\ca_dir_application.cpp" />
+    <ClCompile Include="ca\ca_system.cpp" />
+    <ClCompile Include="collection\stringa.cpp" />
+    <ClCompile Include="collection\stringl.cpp" />
+    <ClCompile Include="collection\string_array.cpp" />
+    <ClCompile Include="collection\string_sort_array.cpp" />
+    <ClCompile Include="compress\compress_parse_properties.cpp">
+      <FileType>Document</FileType>
+    </ClCompile>
+    <None Include="multithreading\multithreading.inl" />
+    <None Include="ca2.def" />
+    <None Include="radix\radix.inl" />
+    <None Include="user\user_interaction.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bergedge\bergedge_bergedge.cpp" />
+    <ClCompile Include="bergedge\bergedge_document.cpp" />
+    <ClCompile Include="bergedge\bergedge_form_callback.cpp" />
+    <ClCompile Include="bergedge\bergedge_frame.cpp" />
+    <ClCompile Include="bergedge\bergedge_pane_view.cpp" />
+    <ClCompile Include="bergedge\bergedge_pane_view_update_hint.cpp" />
+    <ClCompile Include="bergedge\bergedge_view.cpp" />
+    <ClCompile Include="ca2\ca2_net.cpp" />
+    <ClCompile Include="ca2\ca2_xml.cpp" />
+    <ClCompile Include="ca2\socket_address.cpp" />
+    <ClCompile Include="calculator\mail_main_frame.cpp" />
+    <ClCompile Include="ca\ca_history.cpp" />
+    <ClCompile Include="ca\ca_data.cpp" />
+    <ClCompile Include="ca\ca_data_listener.cpp" />
+    <ClCompile Include="ca\ca_interlocked_long.cpp" />
+    <ClCompile Include="ca\ca_interlocked_long_pulse.cpp" />
+    <ClCompile Include="collection\simple_list.cpp" />
+    <ClCompile Include="collection\string_to_string_map.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_line_source.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_parsed_line_writer.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_region_handler.cpp" />
+    <ClCompile Include="compress\7z\7zDecode.cpp" />
+    <ClCompile Include="compress\7z\7zEncode.cpp" />
+    <ClCompile Include="compress\7z\7zExtract.cpp" />
+    <ClCompile Include="compress\7z\7zFolderInStream.cpp" />
+    <ClCompile Include="compress\7z\7zFolderOutStream.cpp" />
+    <ClCompile Include="compress\7z\7zHandler.cpp" />
+    <ClCompile Include="compress\7z\7zHandlerOut.cpp" />
+    <ClCompile Include="compress\7z\7zHeader.cpp" />
+    <ClCompile Include="compress\7z\7zIn.cpp" />
+    <ClCompile Include="compress\7z\7zOut.cpp" />
+    <ClCompile Include="compress\7z\7zProperties.cpp" />
+    <ClCompile Include="compress\7z\7zRegister.cpp" />
+    <ClCompile Include="compress\7z\7zSpecStream.cpp" />
+    <ClCompile Include="compress\7z\7zUpdate.cpp" />
+    <ClCompile Include="compress\7z_crc_opt.cpp" />
+    <ClCompile Include="compress\bsdiff\blocksort.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\bsdiff.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\bspatch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\bzlib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\compress.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\crctable.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\decompress.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\huffman.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bsdiff\randtable.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\bzip_helper.cpp" />
+    <ClCompile Include="compress\compress_archive.cpp" />
+    <ClCompile Include="compress\compress_archive_item_name.cpp" />
+    <ClCompile Include="compress\compress_coder_mixer.cpp" />
+    <ClCompile Include="compress\compress_coder_mixer2mt.cpp" />
+    <ClCompile Include="compress\compress_coder_mixer2.cpp" />
+    <ClCompile Include="compress\compress_copy_coder.cpp" />
+    <ClCompile Include="compress\compress_create_coder.cpp" />
+    <ClCompile Include="compress\compress_filter_coder.cpp" />
+    <ClCompile Include="compress\compress_int_to_string.cpp" />
+    <ClCompile Include="compress\compress_local_progress.cpp" />
+    <ClCompile Include="compress\compress_lz_out_window.cpp" />
+    <ClCompile Include="compress\compress_method_id.cpp" />
+    <ClCompile Include="compress\compress_method_properties.cpp" />
+    <ClCompile Include="compress\compress_ppmd7.cpp" />
+    <ClCompile Include="compress\compress_ppmd7_dec.cpp" />
+    <ClCompile Include="compress\compress_ppmd7_enc.cpp" />
+    <ClCompile Include="compress\compress_ppmd8.cpp" />
+    <ClCompile Include="compress\compress_reader_with_crc.cpp" />
+    <ClCompile Include="compress\gzip_helper.cpp" />
+    <ClCompile Include="compress\method_properties.cpp" />
+    <ClCompile Include="compress\out_handler.cpp" />
+    <ClCompile Include="compress\prop_id.cpp" />
+    <ClCompile Include="compress\rar\rar1_decoder.cpp" />
+    <ClCompile Include="compress\rar\rar2_decoder.cpp" />
+    <ClCompile Include="compress\rar\rar3_decoder.cpp" />
+    <ClCompile Include="compress\rar\rar3_vm.cpp" />
+    <ClCompile Include="compress\rar\rar_aes.cpp" />
+    <ClCompile Include="compress\rar\rar_codecs_register.cpp" />
+    <ClCompile Include="compress\rar\rar_handler.cpp" />
+    <ClCompile Include="compress\rar\rar_header.cpp" />
+    <ClCompile Include="compress\rar\rar_input_file.cpp" />
+    <ClCompile Include="compress\rar\rar_item.cpp" />
+    <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
+    <ClCompile Include="compress\writer_with_crc.cpp" />
+    <ClCompile Include="compress\zip\zip_api.cpp" />
+    <ClCompile Include="compress\zip\zip_file.cpp" />
+    <ClCompile Include="compress\zip\zip_in_file.cpp" />
+    <ClCompile Include="compress\zip\zip_ioapi.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_iowin32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_memory_file.cpp" />
+    <ClCompile Include="compress\zip\zip_unzip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_util.cpp" />
+    <ClCompile Include="compress\zip\zip_zip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\7z_crc.cpp" />
+    <ClCompile Include="crypto\crypto_rar20.cpp" />
+    <ClCompile Include="crypto\crypto_sha1.cpp" />
+    <ClCompile Include="crypto\my_aes.cpp" />
+    <ClCompile Include="database\database_field_definition.cpp" />
+    <ClCompile Include="ex1\ex1_clustered_input_stream.cpp" />
+    <ClCompile Include="ex1\ex1_dynamic_buffered_writer.cpp" />
+    <ClCompile Include="ex1\ex1_fs_interface.cpp" />
+    <ClCompile Include="ex1\ex1_in_buffer.cpp" />
+    <ClCompile Include="ex1\ex1_io_temp_buffer.cpp" />
+    <ClCompile Include="ex1\ex1_limited_input_stream.cpp" />
+    <ClCompile Include="ex1\ex1_limited_reader.cpp" />
+    <ClCompile Include="ex1\ex1_limited_writer.cpp" />
+    <ClCompile Include="ex1\ex1_locked_in_stream.cpp" />
+    <ClCompile Include="ex1\ex1_out_buffer.cpp" />
+    <ClCompile Include="ex1\ex1_request_interface.cpp" />
+    <ClCompile Include="ex1\ex1_simple_tree_data.cpp" />
+    <ClCompile Include="ex1\ex1_simple_tree_item_data.cpp" />
+    <ClCompile Include="ex1\ex1_size_count_writer.cpp" />
+    <ClCompile Include="ex1\ex1_stream_binder.cpp" />
+    <ClCompile Include="ex1\ex1_timeout_file.cpp" />
+    <ClCompile Include="ex1\ex1_tree.cpp" />
+    <ClCompile Include="ex1\ex1_tree_item.cpp" />
+    <ClCompile Include="ex1\ex1_tree_item_data.cpp" />
+    <ClCompile Include="ex2\ex2_folder_watch.cpp" />
+    <ClCompile Include="exception\debug.cpp" />
+    <ClCompile Include="exception\dump.cpp" />
+    <ClCompile Include="exception\dump_context.cpp" />
+    <ClCompile Include="exception\dump_floating_point.cpp" />
+    <ClCompile Include="exception\dump_output.cpp" />
+    <ClCompile Include="exception\error_exception.cpp" />
+    <ClCompile Include="exception\except.cpp" />
+    <ClCompile Include="exception\exception.cpp" />
+    <ClCompile Include="exception\se_translator.cpp" />
+    <ClCompile Include="exception\SymEngine.cpp" />
+    <ClCompile Include="exception\VMSException.cpp" />
+    <ClCompile Include="filemanager\FileManagerSaveAsNameView.cpp" />
+    <ClCompile Include="filemanager\filemanager_ContextMenu.cpp" />
+    <ClCompile Include="filemanager\filemanager_folder_list_data.cpp" />
+    <ClCompile Include="filemanager\filemanager_fs_simple_list_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_fs_simple_tree_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_fs_simple_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_iconoverlayer.cpp" />
+    <ClCompile Include="fontopus\fontopus_contact_list.cpp" />
+    <ClCompile Include="fontopus\fontopus_license.cpp" />
+    <ClCompile Include="fontopus\fontopus_user.cpp" />
+    <ClCompile Include="fontopus\fontopus_usera.cpp" />
+    <ClCompile Include="fontopus\fontopus_user_set.cpp" />
+    <ClCompile Include="fontopus\fontopus_validate.cpp" />
+    <ClCompile Include="fontopus\fontopus_application.cpp" />
+    <ClCompile Include="fs\fs_application.cpp" />
+    <ClCompile Include="fs\fs_data.cpp" />
+    <ClCompile Include="fs\fs_document.cpp" />
+    <ClCompile Include="fs\fs_item.cpp" />
+    <ClCompile Include="fs\fs_item_array.cpp" />
+    <ClCompile Include="fs\fs_list.cpp" />
+    <ClCompile Include="fs\fs_list_data.cpp" />
+    <ClCompile Include="fs\fs_list_interface.cpp" />
+    <ClCompile Include="fs\fs_list_item.cpp" />
+    <ClCompile Include="fs\fs_list_item_array.cpp" />
+    <ClCompile Include="fs\fs_main_view.cpp" />
+    <ClCompile Include="fs\native_fs.cpp" />
+    <ClCompile Include="fs\fs_tree.cpp" />
+    <ClCompile Include="fs\fs_tree_data.cpp" />
+    <ClCompile Include="fs\fs_tree_interface.cpp" />
+    <ClCompile Include="fs\fs_tree_item.cpp" />
+    <ClCompile Include="fs\ifs.cpp" />
+    <ClCompile Include="gen\gen_math_rng.cpp" />
+    <ClCompile Include="gen\gen_parse.cpp" />
+    <ClCompile Include="gen\gen_signal_thread.cpp" />
+    <ClCompile Include="gen\gen_string_tokenizer.cpp" />
+    <ClCompile Include="gen\go_thread.cpp" />
+    <ClCompile Include="gen\simple_thread.cpp" />
+    <ClCompile Include="html\html_data_callback.cpp" />
+    <ClCompile Include="html\html_LiteHTMLTag.cpp" />
+    <ClCompile Include="icube\icube_application.cpp" />
+    <ClCompile Include="icube\icube_main.cpp" />
+    <ClCompile Include="icube\icube_system.cpp" />
+    <ClCompile Include="kissfftf\kiss_fft_shared.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="mail\mail_tree_data.cpp" />
+    <ClCompile Include="mail\mail_tree_item.cpp" />
+    <ClCompile Include="multithreading\multithreading_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="multithreading\multithreading_service_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="nature\nature_appearance_view.cpp" />
+    <ClCompile Include="nature\nature_application.cpp" />
+    <ClCompile Include="nature\nature_database.cpp" />
+    <ClCompile Include="nature\nature_document.cpp" />
+    <ClCompile Include="nature\nature_frame.cpp" />
+    <ClCompile Include="nature\nature_pane_view.cpp" />
+    <ClCompile Include="nature\nature_pane_view_update_hint.cpp" />
+    <ClCompile Include="nature\nature_view.cpp" />
+    <ClCompile Include="ortp\ortp_file.cpp" />
+    <ClCompile Include="primitive\strcore.cpp" />
+    <ClCompile Include="primitive\string_manager.cpp" />
+    <ClCompile Include="primitive\var.cpp" />
+    <ClCompile Include="radix\radix_os_history.cpp" />
+    <ClCompile Include="platform\platform_application.cpp" />
+    <ClCompile Include="platform\platform_document.cpp" />
+    <ClCompile Include="platform\platform_frame.cpp" />
+    <ClCompile Include="platform\platform_pane_view.cpp" />
+    <ClCompile Include="platform\platform_pane_view_update_hint.cpp" />
+    <ClCompile Include="platform\platform_view.cpp" />
+    <ClCompile Include="primitive\fixed_string.cpp" />
+    <ClCompile Include="primitive\id.cpp" />
+    <ClCompile Include="primitive\simple_string.cpp" />
+    <ClCompile Include="primitive\string.cpp" />
+    <ClCompile Include="radix\allocate.cpp" />
+    <ClCompile Include="radix\assert.cpp" />
+    <ClCompile Include="radix\heap.cpp" />
+    <ClCompile Include="radix\plex_heap.cpp" />
+    <ClCompile Include="radix\wait_cursor.cpp" />
+    <ClCompile Include="simpledb\simpledb_veiev_post.cpp" />
+    <ClCompile Include="sockets\http_file.cpp" />
+    <ClCompile Include="sockets\sockets_http_file.cpp" />
+    <ClCompile Include="sockets\sockets_sip_base_client_socket.cpp" />
+    <ClCompile Include="sockets\sockets_sip_request.cpp" />
+    <ClCompile Include="sockets\sockets_sip_response.cpp" />
+    <ClCompile Include="sockets\sockets_sip_tcp_client_socket.cpp" />
+    <ClCompile Include="sockets\sockets_sip_transaction.cpp" />
+    <ClCompile Include="sockets\sockets_sip_udp_client_socket.cpp" />
+    <ClCompile Include="sockets\sockets_sync_socket_handler.cpp" />
+    <ClCompile Include="sockets\sockets_tls_socket.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">StdAfx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_document.cpp" />
+    <ClCompile Include="userbase\simple_tree_view.cpp" />
+    <ClCompile Include="userex\userbase_mini_dock_frame_window.cpp" />
+    <ClCompile Include="userex\userex_application.cpp" />
+    <ClCompile Include="userex\userex_dialog.cpp" />
+    <ClCompile Include="userex\userex_hour_list_view.cpp" />
+    <ClCompile Include="userex\userex_minute_list_view.cpp" />
+    <ClCompile Include="userex\userex_second_list_view.cpp" />
+    <ClCompile Include="user\user_combo_box.cpp" />
+    <ClCompile Include="user\user_create_context.cpp" />
+    <ClCompile Include="user\user_document_request_interface.cpp" />
+    <ClCompile Include="user\user_frame_window.cpp" />
+    <ClCompile Include="user\user_keyboard.cpp" />
+    <ClCompile Include="user\user_keyboard_layout.cpp" />
+    <ClCompile Include="user\user_mdi_child_window.cpp" />
+    <ClCompile Include="user\user_place_holder.cpp" />
+    <ClCompile Include="user\user_place_holder_container.cpp" />
+    <ClCompile Include="user\user_plain_text_data.cpp" />
+    <ClCompile Include="user\user_xfplayer_view_line_selection.cpp" />
+    <ClCompile Include="video\video_player.cpp" />
+    <ClCompile Include="video\video_player_command.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_plugin.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_plugin_set.cpp" />
+    <ClCompile Include="video_decode\video_decode_decoder_plugin_set_ex1.cpp" />
+    <ClCompile Include="visual\visual_fastblur.cpp" />
+    <ClCompile Include="window_frame\FrameSchemaHardCoded008.cpp" />
+    <ClCompile Include="xml\xml_application.cpp" />
+    <ClCompile Include="xml\xml_attr.cpp" />
+    <ClCompile Include="xml\xml_base_array.cpp" />
+    <ClCompile Include="xml\xml_disp_option.cpp" />
+    <ClCompile Include="xml\xml_document.cpp" />
+    <ClCompile Include="xml\xml_entity.cpp" />
+    <ClCompile Include="xml\xml_exportable.cpp" />
+    <ClCompile Include="xml\xml_importable.cpp" />
+    <ClCompile Include="xml\xml_input_tree.cpp" />
+    <ClCompile Include="xml\xml_node.cpp" />
+    <ClCompile Include="xml\xml_output_tree.cpp" />
+    <ClCompile Include="xml\xml_parse_info.cpp" />
+    <ClCompile Include="xml\xml_property_exchange.cpp" />
+    <ClCompile Include="xml\xml_tree_base.cpp" />
+    <ClCompile Include="xml\xml_tree_schema.cpp" />
+    <ClCompile Include="xml\xml_var_exchange.cpp" />
+    <ClCompile Include="xml\xml_XMLite.cpp" />
+    <ClCompile Include="window_frame\Appearance.cpp" />
+    <ClCompile Include="window_frame\Constants.cpp" />
+    <ClCompile Include="window_frame\ControlBoxButton.cpp" />
+    <ClCompile Include="window_frame\DockManager.cpp" />
+    <ClCompile Include="window_frame\FrameSchema.cpp" />
+    <ClCompile Include="window_frame\FrameSchemaHardCoded001.cpp" />
+    <ClCompile Include="window_frame\FrameSchemaHardCoded002.cpp" />
+    <ClCompile Include="window_frame\FrameSchemaHardCoded005.cpp" />
+    <ClCompile Include="window_frame\MoveManager.cpp" />
+    <ClCompile Include="window_frame\SizeManager.cpp" />
+    <ClCompile Include="window_frame\SysMenuManager.cpp" />
+    <ClCompile Include="window_frame\UpDownTarget.cpp" />
+    <ClCompile Include="window_frame\WorkSet.cpp" />
+    <ClCompile Include="window_frame\WorkSetClientInterface.cpp" />
+    <ClCompile Include="window_frame\WorkSetDownUpInterface.cpp" />
+    <ClCompile Include="window_frame\WorkSetListener.cpp" />
+    <ClCompile Include="window_frame\WorkSetListenerArray.cpp" />
+    <ClCompile Include="simpledb\simpledb_long_set.cpp" />
+    <ClCompile Include="simpledb\simpledb_server.cpp" />
+    <ClCompile Include="simpledb\simpledb_set.cpp" />
+    <ClCompile Include="simpledb\simpledb_str_set.cpp" />
+    <ClCompile Include="simpledb\simpledb_stra_set.cpp" />
+    <ClCompile Include="simpledb\simpledb_file_system_size.cpp" />
+    <ClCompile Include="simpledb\simpledb_file_set.cpp" />
+    <ClCompile Include="simpledb\simpledb_im_post.cpp" />
+    <ClCompile Include="simpledb\simpledb_mysql_database.cpp" />
+    <ClCompile Include="simpledb\simpledb_mysql_result.cpp" />
+    <ClCompile Include="simpledb\simpledb_application.cpp" />
+    <ClCompile Include="simpledb\simpledb_database.cpp" />
+    <ClCompile Include="simpledb\simpledb_dataset.cpp" />
+    <ClCompile Include="simpledb\simpledb_table.cpp" />
+    <ClCompile Include="simpledb\simpledb_sqlite_database.cpp" />
+    <ClCompile Include="simpledb\simpledb_sqlite_dataset.cpp" />
+    <ClCompile Include="srtp\srtp_srtp.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="mail\mail_account.cpp" />
+    <ClCompile Include="mail\mail_application.cpp" />
+    <ClCompile Include="mail\mail_child_frame.cpp" />
+    <ClCompile Include="mail\mail_configuration.cpp" />
+    <ClCompile Include="mail\mail_db_pop3.cpp" />
+    <ClCompile Include="mail\mail_document.cpp" />
+    <ClCompile Include="mail\mail_tree.cpp" />
+    <ClCompile Include="mail\mail_tree_interface.cpp" />
+    <ClCompile Include="mail\mail_frame.cpp" />
+    <ClCompile Include="mail\mail_list.cpp" />
+    <ClCompile Include="mail\mail_list_interface.cpp" />
+    <ClCompile Include="mail\mail_pop3.cpp" />
+    <ClCompile Include="mail\mail_pop3_socket.cpp" />
+    <ClCompile Include="mail\mail_right_pane_view.cpp" />
+    <ClCompile Include="mail\mail_simple_pop3.cpp" />
+    <ClCompile Include="mail\mail_view.cpp" />
+    <ClCompile Include="mail\mail_views.cpp" />
+    <ClCompile Include="visual\visual_font_central.cpp" />
+    <ClCompile Include="visual\visual_FreeImageFileProc.cpp" />
+    <ClCompile Include="visual\visual_imaging.cpp" />
+    <ClCompile Include="visual\visual_rgb_quad_array.cpp" />
+    <ClCompile Include="visual\visual_api.cpp" />
+    <ClCompile Include="visual\visual_application.cpp" />
+    <ClCompile Include="visual\visual_buffered_graphics.cpp" />
+    <ClCompile Include="visual\visual_clip.cpp" />
+    <ClCompile Include="visual\visual_cursor.cpp" />
+    <ClCompile Include="visual\visual_dib.cpp" />
+    <ClCompile Include="visual\visual_font.cpp" />
+    <ClCompile Include="visual\visual_glyph.cpp" />
+    <ClCompile Include="visual\visual_glyph_set.cpp" />
+    <ClCompile Include="visual\visual_graphics_extension.cpp" />
+    <ClCompile Include="visual\visual_icon.cpp" />
+    <ClCompile Include="visual\visual_image_list.cpp" />
+    <ClCompile Include="visual\visual_visual.cpp" />
+    <ClCompile Include="visual\visual_water_routine.cpp" />
+    <ClCompile Include="user\user_document.cpp" />
+    <ClCompile Include="user\user_document_manager.cpp" />
+    <ClCompile Include="user\user_document_template.cpp" />
+    <ClCompile Include="user\user_frame_window_interface.cpp" />
+    <ClCompile Include="user\user_multiple_document_template.cpp" />
+    <ClCompile Include="user\user_single_document_template.cpp" />
+    <ClCompile Include="user\user_application.cpp" />
+    <ClCompile Include="user\user_buffer.cpp" />
+    <ClCompile Include="user\user_button.cpp" />
+    <ClCompile Include="user\user_check_box.cpp" />
+    <ClCompile Include="user\user_check_interface.cpp" />
+    <ClCompile Include="user\user_control.cpp" />
+    <ClCompile Include="user\user_control_event.cpp" />
+    <ClCompile Include="user\user_control_property.cpp" />
+    <ClCompile Include="user\user_create_view.cpp" />
+    <ClCompile Include="user\user_document_interface.cpp" />
+    <ClCompile Include="user\user_document_template_tnterface.cpp" />
+    <ClCompile Include="user\user_draw_context.cpp" />
+    <ClCompile Include="user\user_edit_plain_text.cpp" />
+    <ClCompile Include="user\user_element_2d.cpp" />
+    <ClCompile Include="user\user_elemental.cpp" />
+    <ClCompile Include="user\user_form.cpp" />
+    <ClCompile Include="user\user_form_callback.cpp" />
+    <ClCompile Include="user\user_form_list.cpp" />
+    <ClCompile Include="user\user_front_end.cpp" />
+    <ClCompile Include="user\user_front_end_schema.cpp" />
+    <ClCompile Include="user\user_get_view.cpp" />
+    <ClCompile Include="user\user_interaction.cpp" />
+    <ClCompile Include="user\user_keyboard_focus.cpp" />
+    <ClCompile Include="user\user_list.cpp" />
+    <ClCompile Include="user\user_list_cache.cpp" />
+    <ClCompile Include="user\user_list_cache_interface.cpp" />
+    <ClCompile Include="user\user_list_data.cpp" />
+    <ClCompile Include="user\user_list_data_interface.cpp" />
+    <ClCompile Include="user\user_list_header.cpp" />
+    <ClCompile Include="user\user_mouse_focus.cpp" />
+    <ClCompile Include="user\user_on_draw_interface.cpp" />
+    <ClCompile Include="user\user_scroll_bar.cpp" />
+    <ClCompile Include="user\user_scroll_view.cpp" />
+    <ClCompile Include="user\user_str.cpp" />
+    <ClCompile Include="user\user_tab.cpp" />
+    <ClCompile Include="user\user_tab_callback.cpp" />
+    <ClCompile Include="user\user_text_interface.cpp" />
+    <ClCompile Include="user\user_tool_tip_tool.cpp" />
+    <ClCompile Include="user\user_tool_tip_window.cpp" />
+    <ClCompile Include="user\user_tree.cpp" />
+    <ClCompile Include="user\user_window_draw_client_tool.cpp" />
+    <ClCompile Include="user\user_window_draw_interface.cpp" />
+    <ClCompile Include="user\user_window_map.cpp" />
+    <ClCompile Include="user\user_window_message.cpp" />
+    <ClCompile Include="user\user_window_util.cpp" />
+    <ClCompile Include="user\user_view.cpp" />
+    <ClCompile Include="user\user_virtual_user_interface.cpp" />
+    <ClCompile Include="user\user_window_interface.cpp" />
+    <ClCompile Include="user\user_mdi_frame_window.cpp" />
+    <ClCompile Include="user\user_mini_frame_window.cpp" />
+    <ClCompile Include="user\user_xfplayer_view_line.cpp" />
+    <ClCompile Include="user\user_xfplayer_view_lines.cpp" />
+    <ClCompile Include="database\database_application.cpp" />
+    <ClCompile Include="database\database_base.cpp" />
+    <ClCompile Include="database\database_client.cpp" />
+    <ClCompile Include="database\database_definition.cpp" />
+    <ClCompile Include="database\database_event_change.cpp" />
+    <ClCompile Include="database\database_id.cpp" />
+    <ClCompile Include="database\database_key.cpp" />
+    <ClCompile Include="database\database_selection.cpp" />
+    <ClCompile Include="database\database_selection_item.cpp" />
+    <ClCompile Include="database\database_server.cpp" />
+    <ClCompile Include="database\database_set.cpp" />
+    <ClCompile Include="database\database_stringhelper.cpp" />
+    <ClCompile Include="database\database_update_hint.cpp" />
+    <ClCompile Include="database\database_user_interaction.cpp" />
+    <ClCompile Include="html\_html_child_frame.cpp" />
+    <ClCompile Include="html\_html_document.cpp" />
+    <ClCompile Include="html\_html_form.cpp" />
+    <ClCompile Include="html\_html_form_view.cpp" />
+    <ClCompile Include="html\_html_view.cpp" />
+    <ClCompile Include="html\html_application.cpp" />
+    <ClCompile Include="html\html_attribute.cpp" />
+    <ClCompile Include="html\html_base.cpp" />
+    <ClCompile Include="html\html_cell.cpp" />
+    <ClCompile Include="html\html_data.cpp" />
+    <ClCompile Include="html\html_elemental.cpp" />
+    <ClCompile Include="html\html_ex.cpp" />
+    <ClCompile Include="html\html_file.cpp" />
+    <ClCompile Include="html\html_font.cpp" />
+    <ClCompile Include="html\html_form.cpp" />
+    <ClCompile Include="html\html_frame.cpp" />
+    <ClCompile Include="html\html_image.cpp" />
+    <ClCompile Include="html\html_input_button.cpp" />
+    <ClCompile Include="html\html_input_checkbox.cpp" />
+    <ClCompile Include="html\html_input_text.cpp" />
+    <ClCompile Include="html\html_LiteHTMLAttributes.cpp" />
+    <ClCompile Include="html\html_LiteHTMLEntityResolver.cpp" />
+    <ClCompile Include="html\html_lite_html_reader.cpp" />
+    <ClCompile Include="html\html_reader.cpp" />
+    <ClCompile Include="html\html_signal.cpp" />
+    <ClCompile Include="html\html_style.cpp" />
+    <ClCompile Include="html\html_style_sheet.cpp" />
+    <ClCompile Include="html\html_style_sheet_array.cpp" />
+    <ClCompile Include="html\html_table.cpp" />
+    <ClCompile Include="html\html_table_elemental.cpp" />
+    <ClCompile Include="html\html_table_row.cpp" />
+    <ClCompile Include="html\html_tag.cpp" />
+    <ClCompile Include="html\html_text.cpp" />
+    <ClCompile Include="html\html_value.cpp" />
+    <ClCompile Include="html\html_view_update_hint.cpp" />
+    <ClCompile Include="userex\userex_calendar.cpp" />
+    <ClCompile Include="userex\userex_calendar_interface.cpp" />
+    <ClCompile Include="userex\userex_clock.cpp" />
+    <ClCompile Include="userex\userex_clock_interface.cpp" />
+    <ClCompile Include="userex\userex_form_child_frame.cpp" />
+    <ClCompile Include="userex\userex_form_document.cpp" />
+    <ClCompile Include="userex\userex_form_frame.cpp" />
+    <ClCompile Include="userex\userex_form_update_hint.cpp" />
+    <ClCompile Include="userex\userex_form_view.cpp" />
+    <ClCompile Include="userex\userex_menu_document.cpp" />
+    <ClCompile Include="userex\userex_menu_frame.cpp" />
+    <ClCompile Include="userex\userex_menu_view.cpp" />
+    <ClCompile Include="userex\userex_pane_split_view.cpp" />
+    <ClCompile Include="userex\userex_pane_tab_view.cpp" />
+    <ClCompile Include="userex\userex_pane_view.cpp" />
+    <ClCompile Include="userex\userex_split_view.cpp" />
+    <ClCompile Include="userbase\simple_button.cpp" />
+    <ClCompile Include="userbase\simple_combo_box.cpp" />
+    <ClCompile Include="userbase\simple_edit.cpp" />
+    <ClCompile Include="userbase\simple_edit_plain_text.cpp" />
+    <ClCompile Include="userbase\simple_form_list_edit.cpp" />
+    <ClCompile Include="userbase\simple_form_list_view.cpp" />
+    <ClCompile Include="userbase\simple_frame_window.cpp" />
+    <ClCompile Include="userbase\simple_list_ctrl.cpp" />
+    <ClCompile Include="userbase\simple_list_header_ctrl.cpp" />
+    <ClCompile Include="userbase\simple_list_view.cpp" />
+    <ClCompile Include="userbase\simple_mdi_child_window.cpp" />
+    <ClCompile Include="userbase\simple_mdi_frame_window.cpp" />
+    <ClCompile Include="userbase\simple_menu_bar.cpp" />
+    <ClCompile Include="userbase\simple_push_button.cpp" />
+    <ClCompile Include="userbase\simple_scroll_bar.cpp" />
+    <ClCompile Include="userbase\simple_static.cpp" />
+    <ClCompile Include="userbase\simple_status_bar.cpp" />
+    <ClCompile Include="userbase\simple_tab_ctrl.cpp" />
+    <ClCompile Include="userbase\simple_tab_view.cpp" />
+    <ClCompile Include="userbase\simple_toolbar.cpp" />
+    <ClCompile Include="userbase\userbase_application.cpp" />
+    <ClCompile Include="userbase\userbase_base_bitmap_buttonex.cpp" />
+    <ClCompile Include="userbase\userbase_button.cpp" />
+    <ClCompile Include="userbase\userbase_button_control.cpp" />
+    <ClCompile Include="userbase\simple_child_frame.cpp" />
+    <ClCompile Include="userbase\userbase_combo_box.cpp" />
+    <ClCompile Include="userbase\userbase_control_bar.cpp" />
+    <ClCompile Include="userbase\userbase_document.cpp" />
+    <ClCompile Include="userbase\userbase_document_manager.cpp" />
+    <ClCompile Include="userbase\userbase_document_template.cpp" />
+    <ClCompile Include="userbase\userbase_edit_plain_text.cpp" />
+    <ClCompile Include="userbase\userbase_edit_plain_text_view.cpp" />
+    <ClCompile Include="userbase\userbase_elastic_slider.cpp" />
+    <ClCompile Include="userbase\userbase_form_list.cpp" />
+    <ClCompile Include="userbase\userbase_form_view.cpp" />
+    <ClCompile Include="userbase\userbase_frame_window.cpp" />
+    <ClCompile Include="userbase\userbase_frame_window_interface.cpp" />
+    <ClCompile Include="userbase\userbase_image_manager.cpp" />
+    <ClCompile Include="userbase\userbase_mdi_child_window.cpp" />
+    <ClCompile Include="userbase\userbase_mdi_frame_window.cpp" />
+    <ClCompile Include="userbase\userbase_menu.cpp" />
+    <ClCompile Include="userbase\userbase_menu_base.cpp" />
+    <ClCompile Include="userbase\userbase_menu_button.cpp" />
+    <ClCompile Include="userbase\userbase_menu_central.cpp" />
+    <ClCompile Include="userbase\userbase_menu_item.cpp" />
+    <ClCompile Include="userbase\userbase_menu_list_view.cpp" />
+    <ClCompile Include="userbase\userbase_menu_list_window.cpp" />
+    <ClCompile Include="userbase\userbase_meta_button.cpp" />
+    <ClCompile Include="userbase\userbase_multiple_document_template.cpp" />
+    <ClCompile Include="userbase\userbase_notification_area.cpp" />
+    <ClCompile Include="userbase\userbase_notify_icon.cpp" />
+    <ClCompile Include="userbase\userbase_notify_icon_listener.cpp" />
+    <ClCompile Include="userbase\userbase_scroll_view.cpp" />
+    <ClCompile Include="userbase\userbase_single_document_template.cpp" />
+    <ClCompile Include="userbase\userbase_split_bar.cpp" />
+    <ClCompile Include="userbase\userbase_split_layout.cpp" />
+    <ClCompile Include="userbase\userbase_split_view.cpp" />
+    <ClCompile Include="userbase\userbase_split_window.cpp" />
+    <ClCompile Include="userbase\userbase_static.cpp" />
+    <ClCompile Include="userbase\userbase_status_bar.cpp" />
+    <ClCompile Include="userbase\userbase_step_slider.cpp" />
+    <ClCompile Include="userbase\userbase_tab_control.cpp" />
+    <ClCompile Include="userbase\userbase_tab_view.cpp" />
+    <ClCompile Include="userbase\userbase_tab_view_update_hint.cpp" />
+    <ClCompile Include="userbase\userbase_toolbar.cpp" />
+    <ClCompile Include="userbase\userbase_toolbar_ctrl.cpp" />
+    <ClCompile Include="userbase\userbase_tree_window.cpp" />
+    <ClCompile Include="userbase\userbase_util.cpp" />
+    <ClCompile Include="userbase\userbase_view.cpp" />
+    <ClCompile Include="geoip\geoip.cpp" />
+    <ClCompile Include="geoip\geoip_city.cpp" />
+    <ClCompile Include="geoip\geoip_update.cpp" />
+    <ClCompile Include="geoip\region_name.cpp" />
+    <ClCompile Include="geoip\time_zone.cpp" />
+    <ClCompile Include="filemanager\file_operation.cpp" />
+    <ClCompile Include="filemanager\filemanager_application.cpp" />
+    <ClCompile Include="filemanager\filemanager_folder_list_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_folder_selection_list_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_form_child_frame.cpp" />
+    <ClCompile Include="filemanager\filemanager_form_document.cpp" />
+    <ClCompile Include="filemanager\filemanager_form_update_hint.cpp" />
+    <ClCompile Include="filemanager\filemanager_form_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_icon.cpp" />
+    <ClCompile Include="filemanager\filemanager_item_action.cpp" />
+    <ClCompile Include="filemanager\filemanager_operation_child_frame.cpp" />
+    <ClCompile Include="filemanager\filemanager_operation_document.cpp" />
+    <ClCompile Include="filemanager\filemanager_operation_info_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_operation_list_view.cpp" />
+    <ClCompile Include="filemanager\filemanager_operation_thread.cpp" />
+    <ClCompile Include="filemanager\filemanager_operation_view.cpp" />
+    <ClCompile Include="filemanager\FileManagerCallbackInterface.cpp" />
+    <ClCompile Include="filemanager\FileManagerChildFrame.cpp" />
+    <ClCompile Include="filemanager\filemanager_data.cpp" />
+    <ClCompile Include="filemanager\filemanager_document.cpp" />
+    <ClCompile Include="filemanager\FileManagerFileListCallback.cpp" />
+    <ClCompile Include="filemanager\FileManagerFrame.cpp" />
+    <ClCompile Include="filemanager\FileManagerInterface.cpp" />
+    <ClCompile Include="filemanager\FileManagerLeftView.cpp" />
+    <ClCompile Include="filemanager\FileManagerMainFrame.cpp" />
+    <ClCompile Include="filemanager\FileManagerPathView.cpp" />
+    <ClCompile Include="filemanager\FileManagerTabView.cpp" />
+    <ClCompile Include="filemanager\FileManagerTemplate.cpp" />
+    <ClCompile Include="filemanager\FileManagerView.cpp" />
+    <ClCompile Include="filemanager\FileManagerViewInterface.cpp" />
+    <ClCompile Include="filemanager\FileManagerViewUpdateHint.cpp" />
+    <ClCompile Include="filemanager\SimpleFileListInterface.cpp" />
+    <ClCompile Include="filemanager\SimpleFileListView.cpp" />
+    <ClCompile Include="filemanager\SimpleFilePropertiesForm.cpp" />
+    <ClCompile Include="filemanager\SimpleFolderListInterface.cpp" />
+    <ClCompile Include="filemanager\SimpleFolderListView.cpp" />
+    <ClCompile Include="filemanager\SimpleFolderTreeInterface.cpp" />
+    <ClCompile Include="filemanager\SimpleFolderTreeView.cpp" />
+    <ClCompile Include="filemanager\SimplePreview.cpp" />
+    <ClCompile Include="filemanager\SimplePreviewInterface.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_application.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_base_editor.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_cregexp.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_default_error_handler.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_error_handler_writer.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_exception.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_hrc_parser_helpers.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_hrc_parser_impl.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_line_regions_compact_support.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_line_regions_support.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_logging.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_outliner.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_parser_factory.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_region_mapper_impl.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_styled_hrd_mapper.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_text_hrd_mapper.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_text_lines.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_text_parser_helpers.cpp" />
+    <ClCompile Include="colorertake5\colorertake5_text_parser_impl.cpp" />
+    <ClCompile Include="calculator\calculator_application.cpp" />
+    <ClCompile Include="calculator\calculator_class.cpp" />
+    <ClCompile Include="calculator\calculator_document.cpp" />
+    <ClCompile Include="calculator\calculator_frame.cpp" />
+    <ClCompile Include="calculator\calculator_view.cpp" />
+    <ClCompile Include="calculator\datetime_element.cpp" />
+    <ClCompile Include="calculator\datetime_parser.cpp" />
+    <ClCompile Include="calculator\datetime_scanner.cpp" />
+    <ClCompile Include="calculator\datetime_token.cpp" />
+    <ClCompile Include="calculator\numeric_element.cpp" />
+    <ClCompile Include="calculator\numeric_parser.cpp" />
+    <ClCompile Include="calculator\numeric_scanner.cpp" />
+    <ClCompile Include="calculator\numeric_value.cpp" />
+    <ClCompile Include="crypto\ae_xfm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\cipher_aes.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\cipher_aes_cbc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\cipher_aes_icm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\cipher_cipher.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\cipher_null_cipher.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\gf2_8.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\hash_auth.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\hash_hmac.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\hash_null_auth.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\hash_sha1.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\kernel_alloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\kernel_crypto_kernel.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\kernel_err.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\kernel_key.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\math_datatypes.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\math_stat.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\replay_rdb.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\replay_rdbx.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\replay_ut_sim.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\rng_ctr_prng.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\rng_prng.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="crypto\rng_rand_source.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ortp\avprofile.cpp" />
+    <ClCompile Include="ortp\b64.cpp" />
+    <ClCompile Include="ortp\event.cpp" />
+    <ClCompile Include="ortp\jitterctl.cpp" />
+    <ClCompile Include="ortp\ortp.cpp" />
+    <ClCompile Include="ortp\payloadtype.cpp" />
+    <ClCompile Include="ortp\port.cpp" />
+    <ClCompile Include="ortp\posixtimer.cpp" />
+    <ClCompile Include="ortp\rtcp.cpp" />
+    <ClCompile Include="ortp\rtcpparse.cpp" />
+    <ClCompile Include="ortp\rtpparse.cpp" />
+    <ClCompile Include="ortp\rtpsession.cpp" />
+    <ClCompile Include="ortp\rtpsession_inet.cpp" />
+    <ClCompile Include="ortp\rtpsignaltable.cpp" />
+    <ClCompile Include="ortp\rtptimer.cpp" />
+    <ClCompile Include="ortp\scheduler.cpp" />
+    <ClCompile Include="ortp\sessionset.cpp" />
+    <ClCompile Include="ortp\srtp.cpp" />
+    <ClCompile Include="ortp\str_utils.cpp" />
+    <ClCompile Include="ortp\stun.cpp" />
+    <ClCompile Include="ortp\stun_udp.cpp" />
+    <ClCompile Include="ortp\telephonyevents.cpp" />
+    <ClCompile Include="ortp\utils.cpp" />
+    <ClCompile Include="sockets\http_memory_file.cpp" />
+    <ClCompile Include="sockets\socket_include.cpp" />
+    <ClCompile Include="sockets\sockets_application_interface.cpp" />
+    <ClCompile Include="sockets\sockets_exception.cpp" />
+    <ClCompile Include="sockets\sockets_Ajp13Socket.cpp" />
+    <ClCompile Include="sockets\sockets_AjpBaseSocket.cpp" />
+    <ClCompile Include="sockets\sockets_http_base_socket.cpp" />
+    <ClCompile Include="sockets\sockets_http_cookie.cpp" />
+    <ClCompile Include="sockets\sockets_http_form.cpp" />
+    <ClCompile Include="sockets\sockets_http_request.cpp" />
+    <ClCompile Include="sockets\sockets_http_response.cpp" />
+    <ClCompile Include="sockets\sockets_http_transaction.cpp" />
+    <ClCompile Include="sockets\sockets_httpd_socket.cpp" />
+    <ClCompile Include="sockets\sockets_Event.cpp" />
+    <ClCompile Include="sockets\sockets_EventHandler.cpp" />
+    <ClCompile Include="sockets\sockets_EventTime.cpp" />
+    <ClCompile Include="sockets\sockets_IEventOwner.cpp" />
+    <ClCompile Include="sockets\sockets_smtp_socket.cpp" />
+    <ClCompile Include="sockets\sockets_smtpd_socket.cpp" />
+    <ClCompile Include="sockets\sockets_sip_client.cpp" />
+    <ClCompile Include="sockets\sockets_sip_server.cpp" />
+    <ClCompile Include="sockets\sockets_trace_log.cpp" />
+    <ClCompile Include="sockets\sockets_SSLInitializer.cpp" />
+    <ClCompile Include="sockets\sockets_http_socket.cpp" />
+    <ClCompile Include="sockets\sockets_http_tunnel.cpp" />
+    <ClCompile Include="sockets\sockets_HttpClientSocket.cpp" />
+    <ClCompile Include="sockets\sockets_HttpDebugSocket.cpp" />
+    <ClCompile Include="sockets\sockets_HttpGetSocket.cpp" />
+    <ClCompile Include="sockets\sockets_HttpPostSocket.cpp" />
+    <ClCompile Include="sockets\sockets_HttpPutSocket.cpp" />
+    <ClCompile Include="sockets\sockets_resolv_server.cpp" />
+    <ClCompile Include="sockets\sockets_resolv_socket.cpp" />
+    <ClCompile Include="sockets\sockets_Ipv4Address.cpp" />
+    <ClCompile Include="sockets\sockets_Ipv6Address.cpp" />
+    <ClCompile Include="sockets\sockets_SctpSocket.cpp" />
+    <ClCompile Include="sockets\sockets_Socket.cpp" />
+    <ClCompile Include="sockets\sockets_SocketHandler.cpp" />
+    <ClCompile Include="sockets\sockets_StreamSocket.cpp" />
+    <ClCompile Include="sockets\sockets_tcp_socket.cpp" />
+    <ClCompile Include="sockets\sockets_udp_socket.cpp" />
+    <ClCompile Include="radix\afxcrit.cpp" />
+    <ClCompile Include="radix\afxdbcs.cpp" />
+    <ClCompile Include="radix\allocation.cpp" />
+    <ClCompile Include="radix\allocator.cpp" />
+    <ClCompile Include="radix\application.cpp" />
+    <ClCompile Include="radix\auxdata.cpp" />
+    <ClCompile Include="radix\radix_object.cpp" />
+    <ClCompile Include="radix\BSTR.CPP" />
+    <ClCompile Include="radix\cmdtarg.cpp" />
+    <ClCompile Include="radix\command_target.cpp" />
+    <ClCompile Include="radix\composite.cpp" />
+    <ClCompile Include="radix\constraint.cpp" />
+    <ClCompile Include="radix\datetime_value.cpp" />
+    <ClCompile Include="radix\dllinit.cpp" />
+    <ClCompile Include="radix\Externs.cpp" />
+    <ClCompile Include="radix\factory.cpp" />
+    <ClCompile Include="radix\fixed_alloc.cpp" />
+    <ClCompile Include="radix\flags.cpp" />
+    <ClCompile Include="radix\install.cpp" />
+    <ClCompile Include="radix\language_string.cpp" />
+    <ClCompile Include="radix\LoadNSave.cpp" />
+    <ClCompile Include="radix\machine_event_central.cpp" />
+    <ClCompile Include="radix\PcreUtil.cpp" />
+    <ClCompile Include="radix\pipe.cpp" />
+    <ClCompile Include="radix\plex.cpp" />
+    <ClCompile Include="radix\PushingRoutingFrame.cpp" />
+    <ClCompile Include="radix\radix_html_file.cpp" />
+    <ClCompile Include="radix\service.cpp" />
+    <ClCompile Include="radix\thread.cpp" />
+    <ClCompile Include="radix\timecore.cpp" />
+    <ClCompile Include="radix\util.cpp" />
+    <ClCompile Include="radix\validadd.cpp" />
+    <ClCompile Include="radix\win_registry.cpp" />
+    <ClCompile Include="radix\winstr.cpp" />
+    <ClCompile Include="gen\base_enum.cpp" />
+    <ClCompile Include="gen\gen_application.cpp" />
+    <ClCompile Include="gen\gen_base64.cpp" />
+    <ClCompile Include="gen\gen_bit.cpp" />
+    <ClCompile Include="gen\gen_ch.cpp" />
+    <ClCompile Include="gen\gen_ch_class.cpp" />
+    <ClCompile Include="gen\gen_command_line.cpp" />
+    <ClCompile Include="gen\gen_Debug.cpp" />
+    <ClCompile Include="gen\gen_file_sssociation.cpp" />
+    <ClCompile Include="gen\gen_frame_wnd_interface.cpp" />
+    <ClCompile Include="gen\gen_geometry.cpp" />
+    <ClCompile Include="gen\gen_international.cpp" />
+    <ClCompile Include="gen\gen_keeper.cpp" />
+    <ClCompile Include="gen\gen_logic.cpp" />
+    <ClCompile Include="gen\gen_math.cpp" />
+    <ClCompile Include="gen\gen_object.cpp" />
+    <ClCompile Include="gen\gen_pointer_holder.cpp" />
+    <ClCompile Include="gen\gen_pointer_interface.cpp" />
+    <ClCompile Include="gen\gen_pointer_keeper.cpp" />
+    <ClCompile Include="gen\gen_pointer_listener.cpp" />
+    <ClCompile Include="gen\gen_pointer_manager.cpp" />
+    <ClCompile Include="gen\gen_process.cpp" />
+    <ClCompile Include="gen\gen_property.cpp" />
+    <ClCompile Include="gen\gen_ptri.cpp" />
+    <ClCompile Include="gen\gen_savings.cpp" />
+    <ClCompile Include="gen\gen_signal.cpp" />
+    <ClCompile Include="gen\gen_str.cpp" />
+    <ClCompile Include="gen\gen_system.cpp" />
+    <ClCompile Include="gen\gen_Timer.cpp" />
+    <ClCompile Include="gen\gen_TimerCallback.cpp" />
+    <ClCompile Include="gen\gen_TimerListener.cpp" />
+    <ClCompile Include="gen\gen_TimerWnd.cpp" />
+    <ClCompile Include="gen\gen_var.cpp" />
+    <ClCompile Include="gen\gen_var_array.cpp" />
+    <ClCompile Include="gen\gen_variable_strict_compare.cpp" />
+    <ClCompile Include="gen\muldiv64.cpp" />
+    <ClCompile Include="ca\ca_application.cpp" />
+    <ClCompile Include="ca\ca_application_interface.cpp" />
+    <ClCompile Include="ca\ca_bitmap.cpp" />
+    <ClCompile Include="ca\ca_brush.cpp" />
+    <ClCompile Include="ca\ca_ca.cpp" />
+    <ClCompile Include="ca\ca_dib.cpp" />
+    <ClCompile Include="ca\ca_dir_system.cpp" />
+    <ClCompile Include="ca\ca_draw_dib.cpp" />
+    <ClCompile Include="ca\ca_exception.cpp" />
+    <ClCompile Include="ca\ca_font.cpp" />
+    <ClCompile Include="ca\ca_graphics.cpp" />
+    <ClCompile Include="ca\ca_graphics_object.cpp" />
+    <ClCompile Include="ca\ca_lock.cpp" />
+    <ClCompile Include="ca\ca_log.cpp" />
+    <ClCompile Include="ca\ca_message_window.cpp" />
+    <ClCompile Include="ca\ca_object.cpp" />
+    <ClCompile Include="ca\ca_osi.cpp" />
+    <ClCompile Include="ca\ca_palette.cpp" />
+    <ClCompile Include="ca\ca_pen.cpp" />
+    <ClCompile Include="ca\ca_profiler.cpp" />
+    <ClCompile Include="ca\ca_rgn.cpp" />
+    <ClCompile Include="ca\ca_thread.cpp" />
+    <ClCompile Include="ca\ca_window.cpp" />
+    <ClCompile Include="ca\ca_window_draw.cpp" />
+    <ClCompile Include="ca\ca_type_info.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_decoder_.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_decoder_plugin.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_decoder_plugin_set.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_decoder_plugin_set_ex1.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_encoder_.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_encoder_plugin.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_encoder_plugin_set.cpp" />
+    <ClCompile Include="audio_decode\audio_decode_encoder_plugin_set_ex1.cpp" />
+    <ClCompile Include="gcom\gcom_BackView.cpp" />
+    <ClCompile Include="gcom\gcom_backview_interface.cpp" />
+    <ClCompile Include="gcom\gcom_backview_thread.cpp" />
+    <ClCompile Include="gcom\gcom_backview_user_interface.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewGraphics.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewHelper.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewImageChange.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewInterfaceData.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewTransitionEffect.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewTransitionEffectTool001.cpp" />
+    <ClCompile Include="gcom\gcom_BackViewVisualEffect.cpp" />
+    <ClCompile Include="gcom\gcom_Rect.cpp" />
+    <ClCompile Include="gcom\gcom_Space.cpp" />
+    <ClCompile Include="gcom\gcom_SpaceUtil.cpp" />
+    <ClCompile Include="gcom\gcom_Util.cpp" />
+    <ClCompile Include="iaudio\WaveStreamEffect.cpp" />
+    <ClCompile Include="iaudio\WaveStreamEffectChain.cpp" />
+    <ClCompile Include="iaudio\WaveStreamEffectEventListener.cpp" />
+    <ClCompile Include="ikar\ikar_data.cpp" />
+    <ClCompile Include="ikar\ikar_data_container.cpp" />
+    <ClCompile Include="ikar\ikar_dynamic_data.cpp" />
+    <ClCompile Include="ikar\ikar_karaoke.cpp" />
+    <ClCompile Include="ikar\ikar_static_data.cpp" />
+    <ClCompile Include="ikar\LyricEventsV1.cpp" />
+    <ClCompile Include="ikar\LyricEventsV2.cpp" />
+    <ClCompile Include="ikar\LyricEventV1.cpp" />
+    <ClCompile Include="imedia\imedia_position.cpp" />
+    <ClCompile Include="imedia\imedia_position_array.cpp" />
+    <ClCompile Include="imedia\imedia_time.cpp" />
+    <ClCompile Include="imedia\imedia_time_array.cpp" />
+    <ClCompile Include="imediamanager\PlayerInterface.cpp" />
+    <ClCompile Include="imediamanager\PlaylistInterface.cpp" />
+    <ClCompile Include="kar\kar_application_interface.cpp" />
+    <ClCompile Include="kar\KaraokeBouncingBall.cpp" />
+    <ClCompile Include="kar\KaraokeView.cpp" />
+    <ClCompile Include="kar\LyricViewLine.cpp" />
+    <ClCompile Include="kar\LyricViewLines.cpp" />
+    <ClCompile Include="kar\LyricViewLineSelection.cpp" />
+    <ClCompile Include="kar\LyricViewLineTemplate.cpp" />
+    <ClCompile Include="kar\LyricViewLineTemplates.cpp" />
+    <ClCompile Include="kar\Scoring.cpp" />
+    <ClCompile Include="kar\ScoringCentral.cpp" />
+    <ClCompile Include="kar\ScoringCentralContainer.cpp" />
+    <ClCompile Include="mediamanager\AlbumBuild.cpp" />
+    <ClCompile Include="mediamanager\AlbumBuildThread.cpp" />
+    <ClCompile Include="mediamanager\AlbumBuildWnd.cpp" />
+    <ClCompile Include="mediamanager\MediaManagerImpl.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_document.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_karaoke.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_playlist_callback.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_record_notify_view.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_view.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_data.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_view_interface.cpp" />
+    <ClCompile Include="mediaplay\mediaplay_view_update_hint.cpp" />
+    <ClCompile Include="mixer\mixer_application_interface.cpp" />
+    <ClCompile Include="mixer\mixer_Mixer.cpp" />
+    <ClCompile Include="mixer\mixer_MixerCallback.cpp" />
+    <ClCompile Include="mixer\mixer_MixerCentral.cpp" />
+    <ClCompile Include="mixer\mixer_MixerControl.cpp" />
+    <ClCompile Include="mixer\mixer_MixerDestination.cpp" />
+    <ClCompile Include="mixer\mixer_MixerDevice.cpp" />
+    <ClCompile Include="mixer\mixer_MixerLevelControl.cpp" />
+    <ClCompile Include="mixer\mixer_MixerLineInfo.cpp" />
+    <ClCompile Include="mixer\mixer_MixerSource.cpp" />
+    <ClCompile Include="mixer\mixer_MixerThread.cpp" />
+    <ClCompile Include="mixer\mixer_MixerWnd.cpp" />
+    <ClCompile Include="mixer\mixer_control.cpp" />
+    <ClCompile Include="mixer\mixer_label.cpp" />
+    <ClCompile Include="mixer\mixer_level_control.cpp" />
+    <ClCompile Include="mixer\mixer_toggle_control.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_application_interface.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_GoodMixerDoc.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerControlData.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerControlView.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerDoc.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerFrameWnd.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerMainView.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerVisualCentral.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_MixerVisualThread.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_label.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_mute_control.cpp" />
+    <ClCompile Include="mixeruibase\mixeruibase_slider.cpp" />
+    <ClCompile Include="mus\Attributes.cpp" />
+    <ClCompile Include="mus\KaraokeUtil.cpp" />
+    <ClCompile Include="mus\LyricTrack.cpp" />
+    <ClCompile Include="mus\Microke1.cpp" />
+    <ClCompile Include="mus\midi.cpp" />
+    <ClCompile Include="mus\midi_central.cpp" />
+    <ClCompile Include="mus\midi_central_container.cpp" />
+    <ClCompile Include="mus\midi_central_listener.cpp" />
+    <ClCompile Include="mus\MidiDocHelper.cpp" />
+    <ClCompile Include="mus\MidiEventBase.cpp" />
+    <ClCompile Include="mus\MidiEventsV1.cpp" />
+    <ClCompile Include="mus\MidiEventV001.cpp" />
+    <ClCompile Include="mus\MidiEventV007.cpp" />
+    <ClCompile Include="mus\MidiEventV008.cpp" />
+    <ClCompile Include="mus\MidiEventV016.cpp" />
+    <ClCompile Include="mus\MidiEventV508.cpp" />
+    <ClCompile Include="mus\midi_exception.cpp" />
+    <ClCompile Include="mus\midi_file.cpp" />
+    <ClCompile Include="mus\MidiPlayer.cpp" />
+    <ClCompile Include="mus\MidiPlayerCallback.cpp" />
+    <ClCompile Include="mus\MidiPlayerCallbackInterface.cpp" />
+    <ClCompile Include="mus\MidiPlayerInterface.cpp" />
+    <ClCompile Include="mus\MidiPlayerWnd.cpp" />
+    <ClCompile Include="mus\midi_sequence.cpp" />
+    <ClCompile Include="mus\MidiSequenceThread.cpp" />
+    <ClCompile Include="mus\MidiTrack.cpp" />
+    <ClCompile Include="mus\MidiTrackBase.cpp" />
+    <ClCompile Include="mus\MidiTracks.cpp" />
+    <ClCompile Include="mus\MidiTrackV008.cpp" />
+    <ClCompile Include="mus\midiutil.cpp" />
+    <ClCompile Include="mus\MidiViewHelper.cpp" />
+    <ClCompile Include="mus\MultimediaFile.cpp" />
+    <ClCompile Include="mus\SoftKaraokeInfo.cpp" />
+    <ClCompile Include="mus\Star350EventBase.cpp" />
+    <ClCompile Include="mus\Star350EventTrack.cpp" />
+    <ClCompile Include="mus\Star350EventV001.cpp" />
+    <ClCompile Include="mus\Star350EventV008.cpp" />
+    <ClCompile Include="mus\Star350EventV016.cpp" />
+    <ClCompile Include="mus\Star350File.cpp" />
+    <ClCompile Include="mus\Star350InfoHeader.cpp" />
+    <ClCompile Include="mus\Star350LyricTrack.cpp" />
+    <ClCompile Include="mus\Star350LyricTracks.cpp" />
+    <ClCompile Include="mus\Star350TrackBase.cpp" />
+    <ClCompile Include="mus\Star350Tracks.cpp" />
+    <ClCompile Include="mus\Star350TrackV008.cpp" />
+    <ClCompile Include="mus\Tune1000Info.cpp" />
+    <ClCompile Include="mus\Uiutils.cpp" />
+    <ClCompile Include="mus\XF.cpp" />
+    <ClCompile Include="mus\XFInfoHeader.cpp" />
+    <ClCompile Include="mus\XFInfoHeaderLS.cpp" />
+    <ClCompile Include="mus\XFInfoHeaders.cpp" />
+    <ClCompile Include="musctrl\musctrl_single_document_template.cpp" />
+    <ClCompile Include="musctrl\MusicalPlayerCentral.cpp" />
+    <ClCompile Include="musctrl\MusicalPlayerCentralContainer.cpp" />
+    <ClCompile Include="musctrl\PlayerDocContainer.cpp" />
+    <ClCompile Include="kissfftf\fftfFftrd.cpp" />
+    <ClCompile Include="kissfftf\fftfFftri.cpp" />
+    <ClCompile Include="kissfftf\kiss_fft.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="kissfftf\kiss_fftr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_application.cpp" />
+    <ClCompile Include="ca2\ca2_datetime.cpp" />
+    <ClCompile Include="ca2\ca2_html.cpp" />
+    <ClCompile Include="ca2\ca2_log.cpp" />
+    <ClCompile Include="ca2\ca2_process.cpp" />
+    <ClCompile Include="ca2\ca2_url.cpp" />
+    <ClCompile Include="ca2\ca2_url_domain.cpp" />
+    <ClCompile Include="ex1\ex1_application.cpp" />
+    <ClCompile Include="ex1\ex1_buffered_file.cpp" />
+    <ClCompile Include="ex1\ex1_edit_file.cpp" />
+    <ClCompile Include="ex1\ex1_exception.cpp" />
+    <ClCompile Include="ex1\ex1_file.cpp" />
+    <ClCompile Include="ex1\ex1_file_set.cpp" />
+    <ClCompile Include="ex1\ex1_file_system.cpp" />
+    <ClCompile Include="ex1\ex1_resource.cpp" />
+    <ClCompile Include="ex1\ex1_serializable.cpp" />
+    <ClCompile Include="ex1\ex1_str_stream.cpp" />
+    <ClCompile Include="ex1\ex1_stream.cpp" />
+    <ClCompile Include="ex1\ex1_stream2.cpp" />
+    <ClCompile Include="ex1\ex1_text_file.cpp" />
+    <ClCompile Include="ex1\ex1_tree_data.cpp" />
+    <ClCompile Include="ex2\ex2_application.cpp" />
+    <ClCompile Include="ex2\ex2_file_set.cpp" />
+    <ClCompile Include="id3lib\id3lib_c_wrapper.cpp" />
+    <ClCompile Include="id3lib\id3lib_field.cpp" />
+    <ClCompile Include="id3lib\id3lib_field_binary.cpp" />
+    <ClCompile Include="id3lib\id3lib_field_integer.cpp" />
+    <ClCompile Include="id3lib\id3lib_field_string.cpp" />
+    <ClCompile Include="id3lib\id3lib_frame.cpp" />
+    <ClCompile Include="id3lib\id3lib_frame_impl.cpp" />
+    <ClCompile Include="id3lib\id3lib_frame_parse.cpp" />
+    <ClCompile Include="id3lib\id3lib_frame_render.cpp" />
+    <ClCompile Include="id3lib\id3lib_globals.cpp" />
+    <ClCompile Include="id3lib\id3lib_header.cpp" />
+    <ClCompile Include="id3lib\id3lib_header_frame.cpp" />
+    <ClCompile Include="id3lib\id3lib_header_tag.cpp" />
+    <ClCompile Include="id3lib\id3lib_helpers.cpp" />
+    <ClCompile Include="id3lib\id3lib_io.cpp" />
+    <ClCompile Include="id3lib\id3lib_io_decorators.cpp" />
+    <ClCompile Include="id3lib\id3lib_io_helpers.cpp" />
+    <ClCompile Include="id3lib\id3lib_mp3_parse.cpp" />
+    <ClCompile Include="id3lib\id3lib_readers.cpp" />
+    <ClCompile Include="id3lib\id3lib_spec.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_file.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_find.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_impl.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_parse.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_parse_lyrics3.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_parse_musicmatch.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_parse_v1.cpp" />
+    <ClCompile Include="id3lib\id3lib_tag_render.cpp" />
+    <ClCompile Include="id3lib\id3lib_utils.cpp" />
+    <ClCompile Include="id3lib\id3lib_writers.cpp" />
+    <ClCompile Include="primitive\color.cpp" />
+    <ClCompile Include="primitive\comparable.cpp" />
+    <ClCompile Include="primitive\count.cpp" />
+    <ClCompile Include="primitive\index.cpp" />
+    <ClCompile Include="primitive\int_biunique.cpp" />
+    <ClCompile Include="primitive\logic.cpp" />
+    <ClCompile Include="primitive\memory.cpp" />
+    <ClCompile Include="primitive\memory_container.cpp" />
+    <ClCompile Include="primitive\memory_file.cpp" />
+    <ClCompile Include="primitive\natural.cpp" />
+    <ClCompile Include="primitive\point.cpp" />
+    <ClCompile Include="primitive\primitive_scalar.cpp" />
+    <ClCompile Include="primitive\rectangle.cpp" />
+    <ClCompile Include="primitive\shared_file.cpp" />
+    <ClCompile Include="primitive\shared_memory.cpp" />
+    <ClCompile Include="primitive\size.cpp" />
+    <ClCompile Include="primitive\types.cpp" />
+    <ClCompile Include="databaseuser\database_key_list_data.cpp" />
+    <ClCompile Include="databaseuser\database_list_data.cpp" />
+    <ClCompile Include="template\template_base.cpp" />
+    <ClCompile Include="template\template_debug.cpp" />
+    <ClCompile Include="template\template_memory.cpp" />
+    <ClCompile Include="template\template_time.cpp" />
+    <ClCompile Include="template\template_trace.cpp" />
+    <ClCompile Include="template\template_trace_module_manager.cpp" />
+    <ClCompile Include="collection\2DArray.cpp" />
+    <ClCompile Include="collection\array.cpp" />
+    <ClCompile Include="collection\array_app_copy.cpp" />
+    <ClCompile Include="collection\array_ptr.cpp" />
+    <ClCompile Include="collection\array_ptr_alloc.cpp" />
+    <ClCompile Include="collection\array_ptr_copy.cpp" />
+    <ClCompile Include="collection\bit_array.cpp" />
+    <ClCompile Include="collection\class_sort_array.cpp" />
+    <ClCompile Include="collection\collection_numeric_array.cpp" />
+    <ClCompile Include="collection\comparable_array.cpp" />
+    <ClCompile Include="collection\key_sort_array.cpp" />
+    <ClCompile Include="collection\base_object_list.cpp" />
+    <ClCompile Include="collection\pointer_list.cpp" />
+    <ClCompile Include="collection\collection_string_list.cpp" />
+    <ClCompile Include="collection\map_pp.cpp" />
+    <ClCompile Include="collection\map_pw.cpp" />
+    <ClCompile Include="collection\map_so.cpp" />
+    <ClCompile Include="collection\map_sp.cpp" />
+    <ClCompile Include="collection\map_wo.cpp" />
+    <ClCompile Include="collection\map_wp.cpp" />
+    <ClCompile Include="collection\point_array.cpp" />
+    <ClCompile Include="collection\rect_array.cpp" />
+    <ClCompile Include="collection\Sort.cpp" />
+    <ClCompile Include="multithreading\multithreading_core.cpp" />
+    <ClCompile Include="multithreading\multithreading_mutex.cpp" />
+    <ClCompile Include="audio\audio_WaveBuffer.cpp" />
+    <ClCompile Include="audio\audio_WaveCentral.cpp" />
+    <ClCompile Include="audio\audio_WaveCentralContainer.cpp" />
+    <ClCompile Include="audio\audio_WaveEffectCrescendo.cpp" />
+    <ClCompile Include="audio\audio_WaveEffectDevocalizer.cpp" />
+    <ClCompile Include="audio\audio_WaveFile.cpp" />
+    <ClCompile Include="audio\audio_WaveIn.cpp" />
+    <ClCompile Include="audio\audio_WaveInListener.cpp" />
+    <ClCompile Include="audio\audio_WaveInListenerSet.cpp" />
+    <ClCompile Include="audio\audio_WaveOut.cpp" />
+    <ClCompile Include="audio\audio_WavePlayer.cpp" />
+    <ClCompile Include="audio\audio_WavePlayerInterface.cpp" />
+    <ClCompile Include="audio\audio_WavePreBuffer.cpp" />
+    <ClCompile Include="audio\audio_WavePreBufferCallback.cpp" />
+    <ClCompile Include="audio\audio_WaveRecorder.cpp" />
+    <ClCompile Include="audio\audio_WaveRecorderInterface.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistAppInterface.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCallback.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCallbackContainer.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCallbackContainerInterface.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCallbackInterface.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCentral.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCentralCallbackInterface.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistCentralContainer.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistDoc.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistFrame.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistListView.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistView.cpp" />
+    <ClCompile Include="mediaplaylist\PlaylistViewUpdateHint.cpp" />
+    <ClCompile Include="..\..\ccvotagus\source\spalib\machine_event.cpp" />
+    <ClCompile Include="..\..\ccvotagus\source\spalib\machine_event_data.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\thirdparty\appseed\libcharguess\libcharguess.vcxproj">
+      <Project>{38a5c152-c1ef-4322-badf-a41b35335831}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\sqlite\sqlite.vcxproj">
+      <Project>{edc06be7-d6af-4309-b8fe-1e8d974d23d7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\zlib\zlib.vcxproj">
+      <Project>{6352ad78-a4ba-4f99-89eb-521c22c05322}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\_\_.vcxproj">
+      <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

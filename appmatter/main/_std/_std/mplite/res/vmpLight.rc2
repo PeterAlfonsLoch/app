@@ -1,0 +1,13 @@
+//
+// VMPLIGHT.RC2 - resources Microsoft visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// add manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////

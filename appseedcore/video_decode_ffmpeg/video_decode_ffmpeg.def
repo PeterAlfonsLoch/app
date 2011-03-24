@@ -1,0 +1,10 @@
+; auddio_decode_libmpg123.def : Declares the module parameters for the DLL.
+
+LIBRARY      "video_decode_ffmpeg"
+
+EXPORTS
+    ; Explicit exports can go here
+	NewDecoderInterface 
+	DeleteDecoderInterface 
+;	NewEncoderInterface
+;	DeleteEncoderInterface	

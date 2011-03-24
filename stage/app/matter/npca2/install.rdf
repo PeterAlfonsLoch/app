@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r:RDF xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<r:Description about="urn:mozilla:install-manifest">
+		<em:id>npca2@ca2.cc</em:id>
+		<em:name>ca2 plugin for Firefox</em:name>
+		<em:version>%BUILD%</em:version>
+		<em:targetApplication>
+			<r:Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>1.5</em:minVersion>
+				<em:maxVersion>4.0.*</em:maxVersion>
+				<em:targetPlatform>WINNT_x86-msvc</em:targetPlatform>
+				<em:homepageURL>http://ca2.cc/</em:homepageURL>
+				<em:updateURL>https://fontopus.com/%PLATFORM%/windows.rdf</em:updateURL>
+			</r:Description>
+		</em:targetApplication>
+		<em:targetPlatform>WINNT_x86-msvc</em:targetPlatform>
+		<em:homepageURL>http://ca2.cc/</em:homepageURL>
+		<em:updateURL>https://fontopus.com/%PLATFORM%/windows.rdf</em:updateURL>
+		<em:iconURL>chrome://npca2/skin/ca2-5c-32.png</em:iconURL>
+		<em:unpack>true</em:unpack>
+	</r:Description>
+</r:RDF>

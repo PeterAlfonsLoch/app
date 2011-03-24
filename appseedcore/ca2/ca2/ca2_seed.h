@@ -1,0 +1,39 @@
+#include "ccvotagus/appseedca2core/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
+
+
+#include "operational_system/ca2.h"
+
+
+#ifndef __cplusplus
+   #error ca2 API requires C++ compilation (use a .cpp suffix)
+#endif
+
+
+
+#pragma once
+
+
+#ifdef _WINDOWS
+#ifdef _CA_DLL
+   #define CLASS_DECL_ca  _declspec(dllexport)
+#else
+   #define CLASS_DECL_ca  _declspec(dllimport)
+#endif
+#else
+   #define CLASS_DECL_ca
+#endif
+
+namespace ca
+{
+   class application;
+} // namespace ca
+
+#if defined(WIN32) && !defined(VC6) && ! defined(VC71)
+#include <vadefs.h>
+#else
+#include <stdarg.h>
+#endif
+
+#include "ca/ca_base.h"
+
+#pragma warning(disable: 4250)

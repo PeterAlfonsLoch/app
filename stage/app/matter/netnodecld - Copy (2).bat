@@ -1,0 +1,9 @@
+@call "%VS_VARS%"
+
+@echo Compiling...
+
+@cl /Od /I ".." /I "%VOTAGUS_ROOT%app/" /I "%VOTAGUS_ROOT%app/thirdparty/include" /I "%VOTAGUS_ROOT%app/thirdparty/appseed" /I "%VOTAGUS_ROOT%app/appseedcore" /I "%VOTAGUS_ROOT%app/nodeapp/platform" /I "%VOTAGUS_ROOT%app/appseed" /I "%VOTAGUS_ROOT%app/appseedcore/include/win32" /I "%VOTAGUS_ROOT%net/netseed/ds/ca2" /I "%VOTAGUS_ROOT%net/netseed/ds/ca2/include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXEXT" /D "_NETNODESCRIPT_DLL" /D "_WINDLL" /D "_MBCS" /FD /EHa /RTC1 /MDd /Yu"stdafx.h" /Fp"%VOTAGUS_ROOT%time/intermediate/Debug/netnodescript/netnodescript.pch" /Fo"%VOTAGUS_ROOT%time/intermediate/Debug/netnodescript/%ITEM_NAME%.ds/" /Fd"%VOTAGUS_ROOT%time/intermediate/Debug/netnodescript/%ITEM_NAME%.ds/vc90.pdb" /W3 /nologo /c /ZI /TP /errorReport:prompt /Zm184 "%VOTAGUS_ROOT%time/ds/common/netnode/%ITEM_NAME%.cpp"
+
+@echo Linking...
+
+@link /OUT:"%VOTAGUS_ROOT%stage/Debug\%ITEM_NAME%.dll" /INCREMENTAL /NOLOGO /LIBPATH:"%VOTAGUS_ROOT%time/library/Debug/" /LIBPATH:"%VOTAGUS_ROOT%time/library/Debug/%ITEM_DIR%" /LIBPATH:"%VOTAGUS_ROOT%app/thirdparty/library" /LIBPATH:"%VOTAGUS_ROOT%time/library/Debug/library/" /DLL /MANIFEST:NO /DEBUG  /DEF:"%VOTAGUS_ROOT%app/appseed/netnodescript/netnode_script.def" /PDB:"%VOTAGUS_ROOT%stage\Debug\%ITEM_NAME%.pdb" /SUBSYSTEM:WINDOWS /DYNAMICBASE:NO /NXCOMPAT /IMPLIB:"%VOTAGUS_ROOT%stage/Debug/%ITEM_NAME%.lib" /MACHINE:X86 /ERRORREPORT:PROMPT freeimage.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib mysqlclientd.lib %LIBS_LIBS% "%VOTAGUS_ROOT%time\intermediate\Debug\netnodescript\StdAfx.obj" "%VOTAGUS_ROOT%time\intermediate\Debug\netnodescript\dllmain.obj"  "%VOTAGUS_ROOT%time\intermediate\Debug\netnodescript\%ITEM_NAME%.ds\%ITEM_TITLE%.obj" > "%VOTAGUS_ROOT%time\ds\common\netnode\%ITEM_NAME%-link-log.txt"

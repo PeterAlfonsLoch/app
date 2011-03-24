@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="ccvotagus_ca2_spa">
+</Property><Property Name="Solution File" Value="V:\cecyn1.at.hotmail.com\app\ccvotagus\seed\ccvotagus_ca2_spa.sln">
+</Property><Property Name="Date" Value="sábado, 26 de junho de 2010">
+</Property><Property Name="Time" Value="06:59">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="ccvotagus_ca2_spa.sln" Description="File successfully backed up as V:\cecyn1.at.hotmail.com\app\ccvotagus\seed\ccvotagus_ca2_spa.sln.old">
+</Event><Event ErrorLevel="3" Project="spalib" Source="..\source\spalib\spalib.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="3" Project="zlib" Source="..\source\zlib\zlib.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="3" Project="spa" Source="..\source\basis_spa\spa.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="3" Project="spaadmin" Source="..\source\basis_spaadmin\spaadmin.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="3" Project="spaboot" Source="..\source\spaboot\spaboot.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="3" Project="install_spaboot" Source="..\source\install_spaboot\install_spaboot.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="3" Project="spa_bspatch" Source="..\..\appseedcore\ca2\bsdiff\spa_bspatch.vcproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="ccvotagus_ca2_spa.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="ccvotagus_ca2_spa.sln" Description="Converted">
+</Event></UpgradeLog>

@@ -1,0 +1,29 @@
+#bookmarkveriwellbutton {
+  list-style-image: url("chrome://bookmark_veriwell/skin/bookmark-logo-24-n.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#bookmarkveriwellbutton:hover {
+  list-style-image: url("chrome://bookmark_veriwell/skin/bookmark-logo-24.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#bookmarkveriwellbutton[disabled="true"] {
+  list-style-image: url("chrome://bookmark_veriwell/skin/bookmark-logo-24-d.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#bookmarkveriwellhomebutton {
+  list-style-image: url("chrome://bookmark_veriwell/skin/bookmark-home-logo-24-n.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#bookmarkveriwellhomebutton:hover {
+  list-style-image: url("chrome://bookmark_veriwell/skin/bookmark-home-logo-24.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#bookmarkveriwellhomebutton[disabled="true"] {
+  list-style-image: url("chrome://bookmark_veriwell/skin/bookmark-home-logo-24-d.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
