@@ -1,12 +1,12 @@
-﻿-c1-production -c2-producer -t12n-producing -mmmi- 2011-10-25 20-53-43 app:SVN2631, app-veriwell:15 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
+﻿-c1-production -c2-producer -t12n-producing -mmmi- 2011-10-26 18-33-59 app:SVN2652M, app-veriwell:24 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
 // <==! Thanks and dedicated to &lt; <
 // Thanks to and in honor of God > &gt; ==>
 // for ca2 and 5!!
 // you(*) and me(*) and God(***) make 5...
-#define THIS_PRODUCT_VERSION "2011-10-25 20-53-43 app:SVN2631, app-veriwell:15\0"
-#define THIS_FILE_VERSION "2011-10-25 20-53-43 app:SVN2631, app-veriwell:15\0"
-#define __THIS_PRODUCT_VERSION 2011,1025,2053,43
-#define __THIS_FILE_VERSION 2011,1025,2053,43
+#define THIS_PRODUCT_VERSION "2011-10-26 18-33-59 app:SVN2652M, app-veriwell:24\0"
+#define THIS_FILE_VERSION "2011-10-26 18-33-59 app:SVN2652M, app-veriwell:24\0"
+#define __THIS_PRODUCT_VERSION 2011,1026,1833,59
+#define __THIS_FILE_VERSION 2011,1026,1833,59
 
 
 
