@@ -3802,7 +3802,17 @@ namespace dynamic_source
 
    string script_impl::spa_calc_best_host()
    {
-      string strHost = Application.file().as_string(System.dir().ca2("net/system/spa_host.txt"));
+      string strVersion;
+      strVersion = get("version");
+      string strHost;
+      if(strVersion.CompareNoCase("basis") == 0)
+      {
+         strHost = Application.file().as_string(System.dir().ca2("net/system/basis_spa_host.txt"));
+      }
+      else
+      {
+         strHost = Application.file().as_string(System.dir().ca2("net/system/stage_spa_host.txt"));
+      }
       dprint("<pre>host:\n");
       dprint(strHost);
       dprint("</pre>");
