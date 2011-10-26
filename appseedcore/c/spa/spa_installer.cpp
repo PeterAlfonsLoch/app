@@ -2181,7 +2181,12 @@ namespace spa
       {
          g_strLastHost = g_strCurrentHost + ";" + g_strLastHost;
       }
-      vsstring strUrl = "http://spaignition.api.veriterse.net/query?node=spa_host";
+      vsstring strUrl;
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+      strUrl = "http://basis.spaignition.api.veriterse.net/query?node=spa_host&version=basis";
+#else
+      strUrl = "http://stage.spaignition.api.veriterse.net/query?node=spa_host&version=stage";
+#endif
       if(!g_strLastHost.is_empty())
       {
          strUrl += "&last_host=" + g_strLastHost;
