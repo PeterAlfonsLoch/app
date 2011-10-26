@@ -2207,7 +2207,11 @@ namespace spa
             }
             else
             {
-               strUrl = "http://spaignition.api.veriterse.net/query?node=spa_host";
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+               strUrl = "http://basis.spaignition.api.veriterse.net/query?node=spa_host&version=basis";
+#else
+               strUrl = "http://stage.spaignition.api.veriterse.net/query?node=spa_host&version=stage";
+#endif
             }
          }
          else
