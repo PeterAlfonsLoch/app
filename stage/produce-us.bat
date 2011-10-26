@@ -1,4 +1,4 @@
 @echo going to telmico/votagus production folder
-T:
+V:
 cd \production\stage\x64\
-cubeapp.exe : app=production start_deferred=1 base_dir=T:\stage
+ca2app.exe : app=production start_deferred=1 base_dir=T:\stage version=stage

@@ -1386,24 +1386,40 @@ bool production_class::release_npca2(const char * pszPlatform)
       atoi(m_strFormatBuild.Mid(17, 2))
       );
    
+      string strVersionUrl;
+   if(m_eversion == version_basis)
+   {
+      strVersionUrl = "/basis";
+   }
 
    string strChromeManifest = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/chrome.manifest"));
    strChromeManifest.replace("%BUILD%", strNpca2Version);
    strChromeManifest.replace("%PLATFORM%", strPlatform);
+   strChromeManifest.replace("%VERSION%", strVersionUrl);
    Application.file().put_contents(System.dir().path(strDir, "npca2", "chrome.manifest"), strChromeManifest);
 
-   string strIcon = Application.dir().matter("ca2-5c-32.png");
+   string strIcon;
+   if(m_eversion == version_basis)
+   {
+      strIcon = Application.dir().matter("fluidbasis-5c-32.png");
+   }
+   else
+   {
+      strIcon = Application.dir().matter("ca2-5c-32.png");
+   }
    System.file().copy(System.dir().path(strDir, "npca2/skin/classic", "ca2-5c-32.png"), strIcon);
 
    string strInstall = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/install.rdf"));
    strInstall.replace("%BUILD%", strNpca2Version);
    strInstall.replace("%PLATFORM%", strPlatform);
+   strChromeManifest.replace("%VERSION%", strVersionUrl);
    Application.file().put_contents(System.dir().path(strDir, "npca2", "install.rdf"), strInstall);
 
 
    string strWindows = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/windows.rdf"));
    strWindows.replace("%BUILD%", strNpca2Version);
    strWindows.replace("%PLATFORM%", strPlatform);
+   strChromeManifest.replace("%VERSION%", strVersionUrl);
    Application.file().put_contents(System.dir().path(strDir, "windows.rdf"), strWindows);
    
 
@@ -1426,9 +1442,15 @@ bool production_class::release_npca2(const char * pszPlatform)
    System.file().del(System.dir().path(strDir, "npca2.xpi"));
 
    create_xpi(pszPlatform, false);
+   string strVersion;
+   if(m_eversion == version_basis)
+   {
+      strVersion = "\\basis";
+   }
 
-   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\xpi\\"+strPlatform+"\\npca2.xpi", System.dir().path(strDir, "npca2.xpi"));
-   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\rdf\\"+strPlatform+"\\windows.rdf", System.dir().path(strDir, "windows.rdf"));
+
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\xpi\\"+strPlatform+strVersion+"\\npca2.xpi", System.dir().path(strDir, "npca2.xpi"));
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\rdf\\"+strPlatform+strVersion+"\\windows.rdf", System.dir().path(strDir, "windows.rdf"));
 
    return true;
 }
@@ -1568,7 +1590,13 @@ bool production_class::release_iexca2(const char * pszPlatform)
       i++;
    }
 
-   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\cab\\"+strPlatform+"\\iexca2.cab", System.dir().path(m_strBase, "time\\iexca2\\"+strPlatform+"\\iexca2.cab"));
+   string strVersion;
+   if(m_eversion == version_basis)
+   {
+      strVersion = "\\basis";
+   }
+
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\cab\\"+strPlatform+ strVersion+ "\\iexca2.cab", System.dir().path(m_strBase, "time\\iexca2\\"+strPlatform+"\\iexca2.cab"));
 
    return true;
 
@@ -1599,7 +1627,15 @@ bool production_class::release_crxca2(const char * pszPlatform)
    strManifestJson.replace("%PLATFORM%", strPlatform);
    Application.file().put_contents(System.dir().path(strDir,  "manifest.json"), strManifestJson);
 
-   string strIcon = Application.dir().matter("ca2-5c-32.png");
+   string strIcon;
+   if(m_eversion == version_basis)
+   {
+      strIcon = Application.dir().matter("fluidbasis-5c-32.png");
+   }
+   else
+   {
+      strIcon = Application.dir().matter("ca2-5c-32.png");
+   }
    System.file().copy(System.dir().path(strDir, "ca2-5c-32.png"), strIcon);
 
    add_status("Signing npca2.dll ...");
@@ -1618,7 +1654,14 @@ bool production_class::release_crxca2(const char * pszPlatform)
    strCmd = "C:\\Users\\production\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe --no-message-box --pack-extension=\"" +strDir + "\" --pack-extension-key=\"C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\npca2key.pem\"";
    System.process().synch(strCmd);
 
-   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\crx\\"+strPlatform+"\\crxca2.crx", System.dir().path(System.dir().name(strDir), "crxca2.crx"));
+   string strVersion;
+   if(m_eversion == version_basis)
+   {
+      strVersion = "\\basis";
+   }
+
+
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\crx\\"+strPlatform+strVersion+"\\crxca2.crx", System.dir().path(System.dir().name(strDir), "crxca2.crx"));
 
    return true;
 }
