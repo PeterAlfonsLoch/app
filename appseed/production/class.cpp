@@ -1921,7 +1921,14 @@ void production_class::build(const char * psz)
    }
    gen::process process;
    string strPath;
-   strPath = System.dir().ca2(strApp + "\\stage\\app\\matter\\stage_build.bat");
+   if(Application.m_eversion == version_basis)
+   {
+      strPath = System.dir().ca2(strApp + "\\stage\\app\\matter\\stage_build.bat");
+   }
+   else
+   {
+      strPath = System.dir().ca2(strApp + "\\stage\\app\\matter\\basis_build.bat");
+   }
    if(!process.create_child_process(strPath, false))
    {
       DWORD dw = GetLastError();

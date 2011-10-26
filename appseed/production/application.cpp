@@ -26,8 +26,6 @@ namespace production
       if(!cube2::application::initialize_instance())
          return false;
 
-      m_eversion = production_class::version_stage;
-
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
@@ -59,6 +57,19 @@ namespace production
 
    void application::on_request(::ca::create_context * pcreatecontext)
    {
+      string strBaseDir = pcreatecontext->m_spCommandLine->m_varQuery["base_dir"];
+      if(pcreatecontext->m_spCommandLine->m_varQuery["version"] == "basis")
+      {
+         m_eversion = production_class::version_basis;
+         Application.file().put_contents(System.dir().path(strBaseDir, "app/appseedcore/c", "version.config.h"), "#pragma once\n\n\n#define CA2_PLATFORM_VERSION CA2_BASIS\n\n\n\n");
+      }
+      else
+      {
+         m_eversion = production_class::version_stage;
+         Application.file().put_contents(System.dir().path(strBaseDir, "app/appseedcore/c", "version.config.h"), "#pragma once\n\n\n#define CA2_PLATFORM_VERSION CA2_STAGE\n\n\n\n");
+      }
+
+
       m_pdoctemplateMain->open_document_file(pcreatecontext);
    }
 
@@ -72,10 +83,6 @@ namespace production
 
 
 
-   ::ca::application * application::get_app() const
-   {
-      return m_papp;
-   }
 
    void application::OnFileManagerOpenFile(
          ::filemanager::data * pdata, 

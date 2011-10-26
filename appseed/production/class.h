@@ -30,6 +30,7 @@ public:
    enum e_version
    {
       version_backup,
+      version_basis,
       version_stage,
    };
 

@@ -27,7 +27,6 @@ namespace production
 	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    		
 
-      virtual ::ca::application * get_app() const;
       virtual void OnFileManagerOpenFile(
          ::filemanager::data * pdata, 
          ::fs::item_array & itema);
