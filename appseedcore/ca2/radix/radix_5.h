@@ -11,16 +11,14 @@
 
 #define WM_VIEW (WM_USER + 1023)
 
-#define ZORDER_TOP ((int) HWND_TOP)
-#define ZORDER_BOTTOM ((int) HWND_BOTTOM)
-#define ZORDER_TOPMOST ((int) HWND_TOPMOST)
-#define ZORDER_NOTOPMOST ((int) HWND_NOTOPMOST)
 
 #include "template/base.h"
 #include "constraint.h"
 
+#ifdef _WINDOWS
 #ifndef _INC_SHELLAPI
    #include <shellapi.h>
+#endif
 #endif
 
 #ifndef __AFXRES_H__
@@ -46,10 +44,10 @@ inline short APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WORD
 
 #if (_WIN32_WINNT >= 0x501)
 #include <uxtheme.h>
-#include <tmschema.h>
+#include <vssym32.h>
 #endif   // (_WIN32_WINNT >= 0x501)
 
-#ifndef _AFX_NOFORCE_LIBS
+#ifndef _CA_DLL
 #pragma comment(lib, "uuid.lib")
 #endif
 
@@ -105,16 +103,16 @@ namespace radix
          class font;
          class pen;
          class brush;
-         class window;            // a window 
+         class window;            // a window
+         class client_graphics;         // ::ca::graphics_sp for client of ::ca::window
+         class window_graphics;         // ::ca::graphics_sp for entire ::ca::window
+         class paint_graphics;          // embeddable BeginPaint struct helper
       }
-      class CClientDC;         // ::ca::graphics_sp for client of ::ca::window
-      class CWindowDC;         // ::ca::graphics_sp for entire ::ca::window
-      class CPaintDC;          // embeddable BeginPaint struct helper
 
       namespace userbase
       {
          class menu;                 // a menu
-      } 
+      }
 
    class command_target;            // a target for ::fontopus::user commands
    namespace user
@@ -168,13 +166,7 @@ enum AFX_HELP_TYPE
    afxHTMLHelp = 1
 };
 
-// Type modifier for message handlers
-#ifndef afx_msg
-#define afx_msg         // intentional placeholder
-#endif
 
-
-#include "primitive/types.h"
 
 #ifdef _DEBUG
 // Diagnostic Output
@@ -227,21 +219,17 @@ CLASS_DECL_ca void AfxDrawDitheredBitmap(::ca::application * papp, ::ca::graphic
 typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
 
 
-
-
-
-
 // global helpers for threads
 
 CLASS_DECL_ca ::radix::thread* AfxBeginThread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam,
-   int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
+   int nPriority = ::ca::thread_priority_normal, UINT nStackSize = 0,
    DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca thread* AfxBeginThread(::ca::type_info pThreadClass,
    int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * AfxBeginThread (::ca::application * papp, int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
+THREAD_TYPE * AfxBeginThread (::ca::application * papp, int nPriority = ::ca::thread_priority_normal, UINT nStackSize = 0,
    DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
@@ -316,7 +304,7 @@ _AfxSetRegKey(const char * lpszKey, const char * lpszValue, const char * lpszVal
 #define _AFX_MRU_MAX_COUNT 16   // currently allocated id range supports 16
 
 #define _AFX_SYSPOLICY_NOTINITIALIZED         0
-#define _AFX_SYSPOLICY_NORUN               1 
+#define _AFX_SYSPOLICY_NORUN               1
 #define _AFX_SYSPOLICY_NODRIVES               2
 #define _AFX_SYSPOLICY_RESTRICTRUN            4
 #define _AFX_SYSPOLICY_NONETCONNECTDISCONNECTD   8
@@ -339,7 +327,7 @@ struct _AfxSysPolicies
    _AfxSysPolicyData *pData;
 };
 
-class CLASS_DECL_ca file_manager_interface : 
+class CLASS_DECL_ca file_manager_interface :
    virtual public ::radix::object
 {
 public:
@@ -371,6 +359,7 @@ namespace windows
 
 
 #include "radix_application.h"
+#include "radix_system.h"
 
 
 #include "wait_cursor.h"

@@ -14,7 +14,7 @@ namespace mediamanager
    const string AlbumBuild::m_wstrBuildAlbumExtensions(L"mid/midi/kar/st3/mk1");
 
    AlbumBuild::AlbumBuild(::ca::application * papp) :
-      ca(papp), 
+      ca(papp),
       m_albumrecord(papp)
    {
    //   m_iExistFileStep = -1;
@@ -38,11 +38,11 @@ namespace mediamanager
       m_pdsPreBuildRead        = (::sqlite::set *) m_pdb->CreateDataset();;
       m_pdsPreBuildWrite        = (::sqlite::set *) m_pdb->CreateDataset();;
       m_pdsGetExRead = (::sqlite::set *) m_pdb->CreateDataset();;
-      
+
 
 
       //m_pthread = (AlbumBuildThread *) AfxBeginThread(
-        // &typeid(AlbumBuildThread),
+        // ::ca::get_type_info < AlbumBuildThread > (),
          //THREAD_PRIORITY_IDLE);
 
       m_pthread = NULL;
@@ -141,7 +141,7 @@ namespace mediamanager
    }
 
    bool AlbumRecord::FillFileInfo(
-      AlbumBuild & build, 
+      AlbumBuild & build,
       const char * lpcsz)
    {
       string str(lpcsz);
@@ -154,7 +154,7 @@ namespace mediamanager
       if(iFind >= 0)
       {
          ex1::filesp spfile(get_app());
-         
+
          spfile->open(
             str.Left(iFind + 4),
             ::ex1::file::mode_read |
@@ -171,7 +171,7 @@ namespace mediamanager
             return false;
 
          string str;
-         
+
          str = str.Mid(iFind + 5);
 
          if(unzLocateFile(
@@ -186,7 +186,7 @@ namespace mediamanager
             NULL,
             0,
             NULL, // extra Field
-            0, 
+            0,
             NULL, // comment
             0);
 
@@ -198,14 +198,14 @@ namespace mediamanager
 
 
          unzReadCurrentFile(
-            pf, 
-            m_storage.GetAllocation(), 
-            m_storage.GetStorageSize());
+            pf,
+            m_storage.get_data(),
+            m_storage.get_size());
 
          iResult = unzCloseCurrentFile(pf);
 
          return FillFileInfo(
-            build, 
+            build,
             m_storage);
       }
       else
@@ -241,7 +241,7 @@ namespace mediamanager
                iFind = iFind2 + 1;
             }
          }
-      
+
          m_wstrFileName = str.Mid(iFind);
 
 
@@ -253,8 +253,8 @@ namespace mediamanager
             ::ex1::file::type_binary);
          //Archive archive(&file, CArchive::load);
 
-      
-      
+
+
          m_storage.read(spfile);
 
          return FillFileInfo(build, m_storage);
@@ -263,10 +263,10 @@ namespace mediamanager
    }
 
    bool AlbumRecord::FillFileInfo(
-      AlbumBuild & build, 
+      AlbumBuild & build,
       primitive::memory & storage)
    {
-      
+
       bool bValidRecord;
 
       if(build.m_pkaraokeutil->IsStar350File(storage))
@@ -313,12 +313,12 @@ namespace mediamanager
             // add as invalid file
             bValidRecord = false;
          }
-                
-         
+
+
       }
 
       return bValidRecord;
-      
+
    }
 
    string AlbumRecord::GetFileName(
@@ -355,7 +355,7 @@ namespace mediamanager
             iFind = iFind2 + 1;
          }
       }
-      
+
       return str.Mid(iFind);
 
 
@@ -364,7 +364,7 @@ namespace mediamanager
 
    void AlbumBuild::Build(stringa & wstraFolder, bool bRecursive)
    {
-      CSingleLock slRead1(&m_csRead1, TRUE);
+      single_lock slRead1(&m_csRead1, TRUE);
       ::sqlite::base * pdb   = m_pdb;
       ::sqlite::set * pds    = m_pdsWrite;
 
@@ -459,7 +459,7 @@ namespace mediamanager
 
       GetExistingFiles(
          m_pdsRead,
-         fileinfo.m_iaOld, 
+         fileinfo.m_iaOld,
          fileinfo.m_wstraOld,
          fileinfo.m_timeaOld);
 
@@ -468,7 +468,7 @@ namespace mediamanager
    }*/
 
    bool   AlbumBuild::PreBuild(
-      int &          iStep,     
+      int &          iStep,
       bool           bRecursive,
       bool           bAddEmpty)
    {
@@ -527,7 +527,7 @@ namespace mediamanager
                iStep = -2;
                return false;
             }
-         
+
             try
             {
                m_pdsPreBuildRead->exec("PRAGMA show_datatypes=on");
@@ -535,7 +535,7 @@ namespace mediamanager
             catch(...)
             {
             }
-      
+
             //m_pdsPreBuildRead->query("select a.id as aid, a.filename as afn, a.filepath as afp, a.title as at, a.artist as aa from album a;");
             m_iFindFilesStep = 0;
             m_iZipFindFilesStep = 0;
@@ -552,7 +552,7 @@ namespace mediamanager
                m_wstraPreBuildFolders = m_wstraFolder;
             }
 
-            CSingleLock sl(&m_csRead1, TRUE);
+            single_lock sl(&m_csRead1, TRUE);
             m_pdsRead1->query(DATASET_READ_SQL);
             if(m_pdsRead1->result.record_header.get_size() != 6)
             {
@@ -608,7 +608,7 @@ namespace mediamanager
                fileinfo.m_timeaAdd.remove_all();
             }
             if(m_iZipFindFilesStep < 0 &&
-               m_iFindFilesStep < 0 && 
+               m_iFindFilesStep < 0 &&
                m_iGetExStep < 0)
             {
                m_iPreBuildSubStep = -2;
@@ -641,7 +641,7 @@ namespace mediamanager
    {
       ::sqlite::base * pdb   = m_pdb;
       ::sqlite::set * pds    = m_pdsWrite;
-      CSingleLock sl(&m_csRead1, TRUE);
+      single_lock sl(&m_csRead1, TRUE);
 
       int iId = 0;
 
@@ -671,8 +671,8 @@ namespace mediamanager
                strSql += ", ";
             ia.add(iId);
             str.Format(
-               "('%d','%s', '%s')", 
-               iId, 
+               "('%d','%s', '%s')",
+               iId,
                stra[i],
                AlbumRecord::GetFileName(stra[i]));
             strSql+= str;
@@ -860,11 +860,11 @@ namespace mediamanager
 
    //   pdb->start_transaction();
       record.GetInsertSql(iId);
-      pds->exec((char *)record.m_storageSql.GetAllocation());
+      pds->exec((char *)record.m_storageSql.get_data());
    //   pdb->commit_transaction();
 
       return true;
-      
+
    }
 
    int AlbumBuild::AddEmptyFile(const char * lpcsz)
@@ -887,11 +887,11 @@ namespace mediamanager
 
       pdb->start_transaction();
       record.GetInsertSql(iId);
-      pds->exec((char *)record.m_storageSql.GetAllocation());
+      pds->exec((char *)record.m_storageSql.get_data());
       pdb->commit_transaction();
 
       return iId;
-      
+
    }
 
    bool AlbumBuild::UpdateAlbumRecord(
@@ -903,7 +903,7 @@ namespace mediamanager
       ::sqlite::set * pds    = m_pdsWrite;
       AlbumRecord & record = GetAlbumRecord();
 
-      
+
 
       string strSql;
       string str;
@@ -925,15 +925,15 @@ namespace mediamanager
          iId,
          bUpdateFilePath,
          bUpdateFileName);
-      pds->exec((char *)record.m_storageSql.GetAllocation());
+      pds->exec((char *)record.m_storageSql.get_data());
       //pdb->commit_transaction();
 
       return true;
-      
+
    }
 
    bool AlbumRecord::SetStar350File(
-      AlbumBuild & albumbuild, 
+      AlbumBuild & albumbuild,
       primitive::memory &storage)
    {
       Star350File & file = albumbuild.GetStar350File();
@@ -1181,7 +1181,7 @@ namespace mediamanager
                   zip::File zipfile(get_app());
 
                   zipfile.m_pfile = spfile;
-      
+
                   unzFile pf = zip::api::unzipOpen(&zipfile);
 
                   if(pf != NULL)
@@ -1192,10 +1192,10 @@ namespace mediamanager
                         {
                            const int BUFSIZE = 4096;
    //                        char szTempName[MAX_PATH];
-   //                        char buffer[BUFSIZE]; 
+   //                        char buffer[BUFSIZE];
                            WCHAR lpPathBuffer[BUFSIZE];
                            GetTempPathW(BUFSIZE,   // length of the buffer
-                              lpPathBuffer);      // buffer for path 
+                              lpPathBuffer);      // buffer for path
 
 
                             CHAR szTitle[_MAX_PATH];
@@ -1207,7 +1207,7 @@ namespace mediamanager
                               szTitle,
                               _MAX_PATH,
                               NULL, // extra Field
-                              0, 
+                              0,
                               NULL, // comment
                               0);
 
@@ -1247,7 +1247,7 @@ namespace mediamanager
                               }
 
                            }
-                           
+
 
    //            nextFile:
                            unzCloseCurrentFile(pf);
@@ -1288,8 +1288,8 @@ namespace mediamanager
    void AlbumRecord::GetInsertSql(int iId)
    {
         while(_snprintf(
-         (char *) m_storageSql.GetAllocation(), 
-         m_storageSql.GetStorageSize(), 
+         (char *) m_storageSql.get_data(),
+         m_storageSql.get_size(),
          "insert into album (id, filename, filepath, title, artist, lastmodified) values ('%d','%s','%s','%s','%s','%s');",
          iId,
          Prepare(m_wstrFileName),
@@ -1298,7 +1298,7 @@ namespace mediamanager
          Prepare(m_wstrArtist),
          Prepare(m_wstrLastWriteTime)) < 0)
       {
-         m_storageSql.allocate(m_storageSql.GetStorageSize() + 1024);
+         m_storageSql.allocate(m_storageSql.get_size() + 1024);
       }
    }
 
@@ -1312,15 +1312,15 @@ namespace mediamanager
          string str;
          Prepare(str,   m_timeLastWrite);
            while(_snprintf(
-            (char *) m_storageSql.GetAllocation(), 
-            m_storageSql.GetStorageSize(), 
+            (char *) m_storageSql.get_data(),
+            m_storageSql.get_size(),
             "update album set title = '%s', artist = '%s', lastmodified = '%s' where id = '%d';",
             Prepare(m_wstrTitle),
             Prepare(m_wstrArtist),
             str,
             iId) < 0)
          {
-            m_storageSql.allocate(m_storageSql.GetStorageSize() + 1024);
+            m_storageSql.allocate(m_storageSql.get_size() + 1024);
          }
       }
       else
@@ -1328,8 +1328,8 @@ namespace mediamanager
          string str;
          Prepare(str,   m_timeLastWrite);
            while(_snprintf(
-            (char *) m_storageSql.GetAllocation(), 
-            m_storageSql.GetStorageSize(), 
+            (char *) m_storageSql.get_data(),
+            m_storageSql.get_size(),
             "update album set filename = '%s', filepath = '%s', title = '%s', artist = '%s', lastmodified = '%s' where id = '%d';",
             Prepare(m_wstrFileName),
             Prepare(m_wstrFilePath),
@@ -1338,14 +1338,14 @@ namespace mediamanager
             str,
             iId) < 0)
          {
-            m_storageSql.allocate(m_storageSql.GetStorageSize() + 1024);
+            m_storageSql.allocate(m_storageSql.get_size() + 1024);
          }
       }
    }
 
    void AlbumBuild::GetExistingFiles(
       int_array & ia,
-      stringa & straFile, 
+      stringa & straFile,
       CTimeArray & timea)
    {
       ::sqlite::set * pds = m_pdsGetExRead;
@@ -1361,7 +1361,7 @@ namespace mediamanager
    void AlbumBuild::GetExistingFiles(
       ::sqlite::set * pds,
       int_array & ia,
-      stringa & wstraFile, 
+      stringa & wstraFile,
       CTimeArray & timea)
    {
       int iRowCount = pds->num_rows();
@@ -1396,7 +1396,7 @@ namespace mediamanager
          pds->seek(iRow);
 
          ia.set_at(iRow, pds->GetSelectFieldValue(iFieldIndexId));
-         
+
          wstrFile = pds->GetSelectFieldValue(iFieldIndexFilePath);
 
          wstraFile.set_at(iRow, wstrFile);
@@ -1480,7 +1480,7 @@ namespace mediamanager
 
       int iUpdate = 0;
       int iFound;
-      
+
       while(iUpdate < straUpdate.get_size())
       {
          iFound = straRemove.find_first(straUpdate[iUpdate]);

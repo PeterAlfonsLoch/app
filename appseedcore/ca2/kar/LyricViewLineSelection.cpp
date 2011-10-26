@@ -29,7 +29,7 @@ ca(papp)
       {
          return;
       }
-    
+
        int iToken;
        int iChar;
        if((message == WM_MOUSEMOVE && GetState() == StateTracking)
@@ -38,9 +38,9 @@ ca(papp)
        {
           bool bInside;
           point ptCursor(
-             LOWORD(pbase->m_lparam),  // horizontal position of cursor 
-             HIWORD(pbase->m_lparam));  // vertical position of cursor 
-          
+             LOWORD(pbase->m_lparam),  // horizontal position of cursor
+             HIWORD(pbase->m_lparam));  // vertical position of cursor
+
           rect rectPlacement;
           viewline.GetPlacement(rectPlacement);
           bInside = rectPlacement.contains(ptCursor) != 0;
@@ -48,7 +48,7 @@ ca(papp)
           {
              if(message == WM_LBUTTONUP
                 || message == WM_MOUSEMOVE)
-             {   
+             {
                 if(ptCursor.y < rectPlacement.top
                    ||
                    (ptCursor.y <= rectPlacement.bottom &&
@@ -71,9 +71,9 @@ ca(papp)
           }
           else if(bInside)
           {
-             //DWORD fwKeys = pbase->m_wparam; // key flags 
+             //DWORD fwKeys = pbase->m_wparam; // key flags
              if(message == WM_LBUTTONDOWN)
-             {   
+             {
                 if(viewline.CalcChar(ptCursor, iToken, iChar))
                 {
                    m_item.SetTokenStart(iToken);
@@ -92,13 +92,13 @@ ca(papp)
                 viewline.GetKaraokeView()->_001RedrawWindow();
                 OnSelEvent(viewline, EventStart);
                 pbase->m_bRet = true;
-                return;         
+                return;
              }
              else if(
                 (message == WM_LBUTTONUP
                 || message == WM_MOUSEMOVE)
                 && GetState() == StateTracking)
-             {   
+             {
                 if(viewline.m_tokenaMain.get_size() <= 0)
                    return;
                 if(viewline.CalcChar(ptCursor, iToken, iChar))
@@ -111,7 +111,7 @@ ca(papp)
                 }
                 else
                 {
-                   if(ptCursor.x < viewline.m_tokenaMain.element_at(0).GetPosition())
+                   if(ptCursor.x < viewline.m_tokenaMain.element_at(0).get_position())
                    {
                       SetSelBefore(viewline);
                    }
@@ -119,7 +119,7 @@ ca(papp)
                       SetSelAfter(viewline);
                    }
                    viewline.GetKaraokeView()->_001RedrawWindow();
-                   
+
                 }
                 if(message == WM_LBUTTONUP)
                 {
@@ -143,7 +143,7 @@ ca(papp)
                 return;
              }
              else if(message == WM_MOUSEMOVE)
-             {   
+             {
                 point pt;
                 System.get_cursor_pos(&pt);
                 viewline.UpdateHover(pt);
@@ -177,7 +177,7 @@ ca(papp)
          m_iCharStartSource   = m_item.GetCharStart();
          m_iCharEndSource      = m_item.GetCharEnd();
          m_estate               = StateTracking;
-         
+
          viewline.GetTemplate()->OnSelStart(&viewline);
          break;
       case EventEnd:
@@ -185,12 +185,12 @@ ca(papp)
          m_item.NormalizeSel();
          Select(
             m_item.GetTokenStart(),
-            m_item.GetTokenEnd(), 
+            m_item.GetTokenEnd(),
             m_item.GetCharStart(),
             m_item.GetCharEnd(), false);
          m_estate = state_initial;
          viewline.GetTemplate()->OnSelEnd(&viewline);
-         
+
          break;
       default:
          ASSERT(FALSE);
@@ -276,7 +276,7 @@ ca(papp)
    {
       UNREFERENCED_PARAMETER(viewline);
       ASSERT(FALSE);
-   /*   string str;   
+   /*   string str;
       if(m_item.m_iTokenStart < 0)
       {
       }
@@ -318,7 +318,7 @@ ca(papp)
          {
             m_item.m_iCharEnd = m_item.m_iCharStart;
          }
-         
+
          if(m_item.m_iTokenEnd >= viewline.m_tokenaMain.get_size())
          {
             m_item.m_iTokenEnd = viewline.m_tokenaMain.get_size() - 1;
@@ -352,7 +352,7 @@ ca(papp)
             }
          }
       }*/
-      
+
    }
 
    LyricViewLineSelection & LyricViewLineSelection::operator =(LyricViewLineSelection & selection)
@@ -422,7 +422,7 @@ ca(papp)
    bool LyricViewLineSelection::OnLButtonDown(LyricViewLine & viewline, UINT user, point pt)
    {
       UNREFERENCED_PARAMETER(user);
-      
+
       bool bInside;
 
           int iToken;
@@ -436,7 +436,7 @@ ca(papp)
           }
           else if(bInside)
           {
-             //DWORD fwKeys = user; // key flags 
+             //DWORD fwKeys = user; // key flags
                 if(viewline.CalcChar(pt, iToken, iChar))
                 {
                    m_item.SetTokenStart(iToken);
@@ -454,7 +454,7 @@ ca(papp)
                 }
                viewline.GetKaraokeView()->_001RedrawWindow();
                 OnSelEvent(viewline, EventStart);
-                return true;         
+                return true;
           }
 
           return false;
@@ -475,7 +475,7 @@ ca(papp)
          return false;
 
        bool bInside;
-       
+
               int iToken;
           int iChar;
 
@@ -501,9 +501,9 @@ ca(papp)
        }
        else if(bInside)
        {
-          //DWORD fwKeys = user; // key flags 
+          //DWORD fwKeys = user; // key flags
             if(GetState() == StateTracking)
-          {   
+          {
              if(viewline.m_tokenaMain.get_size() <= 0)
                 return false;
              if(viewline.CalcChar(pt, iToken, iChar))
@@ -516,7 +516,7 @@ ca(papp)
              }
              else
              {
-                if(pt.x < viewline.m_tokenaMain.element_at(0).GetPosition())
+                if(pt.x < viewline.m_tokenaMain.element_at(0).get_position())
                 {
                    SetSelBefore(viewline);
                 }
@@ -524,7 +524,7 @@ ca(papp)
                    SetSelAfter(viewline);
                 }
                 viewline.GetKaraokeView()->_001RedrawWindow();
-                
+
              }
              OnSelEvent(viewline, EventEnd);
              if(m_iTokenStartSource == m_item.GetTokenStart()
@@ -542,7 +542,7 @@ ca(papp)
              return true;
           }
        }
-      
+
       return false;
    }
 
@@ -589,37 +589,40 @@ ca(papp)
    {
       return m_iTokenStart;
    }
-   
+
    int LyricViewLineSelectionItem::GetTokenEnd()
    {
       return m_iTokenEnd;
    }
-   
+
    int LyricViewLineSelectionItem::GetCharStart()
    {
-      return m_iCharStart;
+      if(m_iCharStart < 0)
+         return 0;
+      else
+         return m_iCharStart;
    }
-   
+
    int LyricViewLineSelectionItem::GetCharEnd()
    {
       return m_iCharEnd;
    }
-   
+
    void LyricViewLineSelectionItem::SetTokenStart(int iToken)
    {
       m_iTokenStart = iToken;
    }
-   
+
    void LyricViewLineSelectionItem::SetTokenEnd(int iToken)
    {
       m_iTokenEnd = iToken;
    }
-   
+
    void LyricViewLineSelectionItem::SetCharStart(int iChar)
    {
       m_iCharStart = iChar;
    }
-   
+
    void LyricViewLineSelectionItem::SetCharEnd(int iChar)
    {
       m_iCharEnd = iChar;

@@ -30,10 +30,10 @@ namespace bergedge
 
       void rotate();
       
-      void on_create_view(view_data * pviewdata);
+      void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       void check_3click_dir(const char * psz);
       void check_menu_dir(const char * psz);
@@ -45,9 +45,7 @@ namespace bergedge
    /*   virtual void OnFileManagerOpenContextMenuFolder(
          ::filemanager::data * pdata, 
          ::fs::item & item);*/
-      virtual void OnFileManagerOpenContextMenuFile(
-         ::filemanager::data * pdata, 
-         ::fs::item_array & itema);
+      virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
       virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
 
       void _001OnDraw(::ca::graphics * pdc);

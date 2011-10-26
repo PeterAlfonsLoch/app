@@ -3,7 +3,7 @@
 #include "_Sort.h"
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
-class key_sort_array  
+class key_sort_array
 {
 public:
 	key_sort_array();
@@ -14,11 +14,11 @@ public:
    bool FindFirst(KEY k, int & iIndex, int iStart, int iEnd);
 
    int add(ARG_TYPE type);
-   
+
    int get_size();
 
    TYPE & ElementAt(int iIndex);
-   
+
 protected:
 
 
@@ -63,7 +63,7 @@ template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 bool key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
 FindFirst(KEY k, int & iIndex)
 {
-   return FindFirst(k, iIndex, 0, get_size() - 1);
+   return FindFirst(k, iIndex, 0, this->get_size() - 1);
 }
 
 
@@ -71,14 +71,14 @@ template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 bool key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
 FindFirst(KEY k, int & iIndex, int iStart, int iEnd)
 {
-   if(get_size() == 0)
+   if(this->get_size() == 0)
 	{
 		return false;
 	}
 	int iLBound = iStart;
    int iMaxBound = iEnd;
 	int iUBound = iMaxBound;
-   
+
 	while(true)
 	{
 		iIndex = (iUBound + iLBound) / 2;
@@ -143,7 +143,7 @@ add(ARG_TYPE t)
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 int key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
-get_size()
+this->get_size()
 {
    return m_array.get_size();
 }

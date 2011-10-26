@@ -7,7 +7,7 @@
 namespace compress
 {
 
-   void writer_with_crc::write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize)
+   void writer_with_crc::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
    {
      if (_stream)
        _stream->write(data, size, &size);

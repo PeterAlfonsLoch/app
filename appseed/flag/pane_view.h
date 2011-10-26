@@ -8,42 +8,28 @@ namespace flag
    class view;
 
    class CLASS_DECL_CA2_FLAG pane_view : 
-      public ::userex::pane_tab_view,
-      public FileManagerCallbackInterface,
-      public flag::form_callback
+      public ::userex::pane_tab_view
    {
    public:
 
-      ::flag::view *                     m_pwinactionareaview;
 
-	   pane_view(::ca::application * papp);
-
-      void rotate();
-      
-      void on_create_view(view_data * pviewdata);
-      void on_show_view();
-
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
-
-      //void check_menu_dir(const char * psz);
-      void check_3click_dir(const char * psz);
-
-      virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
-	   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      ::flag::view *                     m_pflagview;
 
 
-      void request(var & varFile, var & varQuery);
-
-      DECL_GEN_SIGNAL(_001OnMenuMessage)
+      pane_view(::ca::application * papp);
 	   virtual ~pane_view();
+
+      
+      void on_create_view(::user::view_creator_data * pcreatordata);
+
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+
    #ifdef _DEBUG
 	   virtual void assert_valid() const;
 	   virtual void dump(dump_context & dumpcontext) const;
    #endif
 
 	   DECL_GEN_SIGNAL(_001OnCreate)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnShowWindow)
 
    };
 

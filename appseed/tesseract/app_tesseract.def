@@ -1,0 +1,4 @@
+LIBRARY      "app_tesseract"
+
+EXPORTS
+get_new_library

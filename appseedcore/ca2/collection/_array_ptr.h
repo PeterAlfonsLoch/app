@@ -12,7 +12,7 @@ public:
    void remove_at(INT_PTR iIndex);
    count remove_all(bool bDelete = true);
    void remove_last(bool bDelete = true);
-   
+
 };
 template <class TYPE, class ARG_TYPE>
 array_ptr < TYPE, ARG_TYPE >::array_ptr()

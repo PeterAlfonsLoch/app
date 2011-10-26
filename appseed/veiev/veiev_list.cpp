@@ -53,10 +53,10 @@ namespace veiev
    }
 
 
-   void list::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void list::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      veiev::list_interface::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      veiev::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list::_001OnTimer);
    }

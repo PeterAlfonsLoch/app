@@ -58,7 +58,26 @@ char *CStrFromBSTR(UINT codePage, BSTR bstr)
     return CStrFromWSTR(codePage, bstr, SysStringLen(bstr));
 };
 
+BSTR BSTRFromCStr(UINT codePage, LPCSTR s)
+{
+    int wideLen = MultiByteToWideChar(codePage, 0, s, -1, NULL, 0);
+    if( wideLen > 0 )
+    {
+        WCHAR* wideStr = (WCHAR*)CoTaskMemAlloc(wideLen*sizeof(WCHAR));
+        if( NULL != wideStr )
+        {
+            BSTR bstr;
 
+            ZeroMemory(wideStr, wideLen*sizeof(WCHAR));
+            MultiByteToWideChar(codePage, 0, s, -1, wideStr, wideLen);
+            bstr = SysAllocStringLen(wideStr, wideLen-1);
+            CoTaskMemFree(wideStr);
+
+            return bstr;
+        }
+    }
+    return NULL;
+};
 /*
 **  properties
 */

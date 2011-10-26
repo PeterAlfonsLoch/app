@@ -86,7 +86,7 @@ typedef short            int32;
 #endif /* UINT_MAX == 0xfffffffful */
 
 
-typedef unsigned __int64  uint64;
+typedef uint64_t  uint64;
 typedef __int64           int64;
 
 

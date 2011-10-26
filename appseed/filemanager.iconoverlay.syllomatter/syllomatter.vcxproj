@@ -14,7 +14,7 @@
     <ProjectGuid>{C7DD2C78-071D-4F37-AC05-5B87309F4F86}</ProjectGuid>
     <RootNamespace>winactionarea</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>filemanager.iconoverlay.syllomatter</ProjectName>
+    <ProjectName>filemanager_iconoverlay_syllomatter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -72,7 +72,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../nodeapp/windows;$(SolutionDir)../../nodeapp/windows/include;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_AFXEXT;_CA2_FONTOPUS_FLAG_DLL;_AFXDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -209,16 +209,18 @@
       <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\appseedcore\_\_.vcxproj">
+    <ProjectReference Include="..\..\appseedcore\ca\ca.vcxproj">
       <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\cube\cube.vcxproj">
+    <ProjectReference Include="..\..\appseedcore\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\tesseract\tesseract.vcxproj">
       <Project>{437699ad-7464-4e5f-acf3-7167487a9e3d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="filemanager.iconoverlay.syllomatter.def" />
+    <None Include="filemanager_iconoverlay_syllomatter.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

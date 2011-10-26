@@ -10,62 +10,62 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp">
+    <ClCompile Include="winutil_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="document.cpp">
+    <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="form_callback.cpp">
+    <ClCompile Include="winutil_pane_view_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="frame.cpp">
+    <ClCompile Include="winutil_pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pane_view.cpp">
+    <ClCompile Include="winutil_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pane_view_update_hint.cpp">
+    <ClCompile Include="winutil_form_callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="winutil_document.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view.cpp">
+    <ClCompile Include="winutil_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="document.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="form_callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pane_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pane_view_update_hint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="winutil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_pane_view_update_hint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_pane_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_form_callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winutil_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="winutil.def">
+    <None Include="app_winutil.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

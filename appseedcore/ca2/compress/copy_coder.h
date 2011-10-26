@@ -23,7 +23,7 @@ namespace compress
       copy_coder();
       ~copy_coder();
 
-      virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 *inSize, const uint64 *outSize, progress_info_interface *progress);
+      virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
       virtual ex1::HRes GetInStreamProcessedSize(uint64 *value);
    };
 

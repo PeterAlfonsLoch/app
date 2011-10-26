@@ -171,6 +171,12 @@ public:
    {
       return id_cmp(this, i) >= 0;
    }
+   inline id & operator = (index i)
+   {
+      m_ui        = i;
+      m_chType    = IDTYPE_TYPE_NUMBER;
+      return *this;
+   }
 #endif
    inline bool operator == (index user) const
    {
@@ -196,15 +202,29 @@ public:
    {
       return id_cmp(this, user) >= 0;
    }
+   inline id & operator = (int i)
+   {
+      m_ui        = i;
+      m_chType    = IDTYPE_TYPE_NUMBER;
+      return *this;
+   }
    inline bool operator == (const string_interface & str) const;
    inline bool operator != (const string_interface & str) const;
    inline bool operator < (const string_interface & str) const;
    inline bool operator <= (const string_interface & str) const;
    inline bool operator > (const string_interface & str) const;
    inline bool operator >= (const string_interface & str) const;
-   
+
    id & operator = (const string_interface & str);
-   
+
+   inline operator index() const
+   {
+      if(is_number())
+         return m_ui;
+      else
+         return 0;
+   }
+
    inline operator index()
    {
       if(is_number())
@@ -228,7 +248,7 @@ public:
       return m_chType == IDTYPE_TYPE_NULL;
    }
 
-   inline bool is_empty() const 
+   inline bool is_empty() const
    {
       return is_null() || (is_text() && (m_psz == NULL || m_psz[0] == '\0'));
    }
@@ -271,7 +291,7 @@ protected:
    {
       const char *         m_psz;
 #ifdef _AMD64_
-      unsigned __int64     m_ui;
+      uint64_t     m_ui;
 #else
       unsigned int         m_ui;
 #endif

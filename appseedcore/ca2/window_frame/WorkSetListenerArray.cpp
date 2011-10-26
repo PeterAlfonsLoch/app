@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-namespace window_frame 
+namespace window_frame
 {
 
    //////////////////////////////////////////////////////////////////////
@@ -18,42 +18,42 @@ namespace window_frame
    }
 
    void WorkSetListenerArray::WFLOnSizingGripMove(
-      WorkSet * pwf, 
-      ::user::interaction * pwnd, 
+      WorkSet * pwf,
+      ::user::interaction * pwnd,
       EGrip egrip)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         WorkSetListener * plistener = element_at(i);
+         WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnSizingGripMove(
-            pwf, 
+            pwf,
             pwnd,
             egrip);
       }
    }
 
    void WorkSetListenerArray::WFLOnDock(
-      WorkSet * pwf, 
+      WorkSet * pwf,
       ::user::interaction * pwnd)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         WorkSetListener * plistener = element_at(i);
+         WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnDock(
-            pwf, 
+            pwf,
             pwnd);
       }
    }
 
    void WorkSetListenerArray::WFLOnClose(
-      WorkSet * pwf, 
+      WorkSet * pwf,
       ::user::interaction * pwnd)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         WorkSetListener * plistener = element_at(i);
+         WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnClose(
-            pwf, 
+            pwf,
             pwnd);
       }
    }
@@ -64,11 +64,11 @@ namespace window_frame
       UINT nHitTest,
       point point)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         WorkSetListener * plistener = element_at(i);
+         WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnNcLButtonDown(
-            pworkset, 
+            pworkset,
             pwnd,
             nHitTest,
             point);
@@ -89,6 +89,7 @@ namespace window_frame
 
    void WorkSetListenerArray::on_delete(::ca::ca * p)
    {
+      UNREFERENCED_PARAMETER(p);
    }
 
 } // namespace window_frame

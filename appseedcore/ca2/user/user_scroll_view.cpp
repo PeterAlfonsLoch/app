@@ -18,6 +18,12 @@ namespace user
       m_scrollinfo.m_rectMargin.bottom = 0;
       m_scrollinfo.m_bVScroll = false;
       m_scrollinfo.m_bHScroll = false;
+      m_scrollinfo.m_sizeTotal.cx = 0;
+      m_scrollinfo.m_sizeTotal.cy = 0;
+      m_scrollinfo.m_sizePage.cx = 0;
+      m_scrollinfo.m_sizePage.cy = 0;
+      m_scrollinfo.m_sizeLine.cx = 0;
+      m_scrollinfo.m_sizeLine.cy = 0;
 
    }
 
@@ -29,10 +35,10 @@ namespace user
    {
       rect rectClient;
       control::GetClientRect(rectClient);
-      rectClient.left               += m_scrollinfo.m_rectMargin.left;
+      /*rectClient.left               += m_scrollinfo.m_rectMargin.left;
       rectClient.top                += m_scrollinfo.m_rectMargin.top;
       rectClient.right              += m_scrollinfo.m_rectMargin.right;
-      rectClient.bottom             += m_scrollinfo.m_rectMargin.bottom;
+      rectClient.bottom             += m_scrollinfo.m_rectMargin.bottom;*/
       m_scrollinfo.m_iScrollHeight  = GetSystemMetrics(SM_CYHSCROLL);
       m_scrollinfo.m_iScrollWidth   = GetSystemMetrics(SM_CXVSCROLL);
 
@@ -50,42 +56,37 @@ namespace user
       m_scrollinfo.m_sizePage.cx    = m_scrollinfo.m_sizeClient.cx;
       m_scrollinfo.m_sizePage.cy    = m_scrollinfo.m_sizeClient.cy;
 
-      m_scrollinfo.m_bVScroll       = m_scrollinfo.m_sizeTotal.cy > (rectClient.height() - m_scrollinfo.m_iScrollHeight);
-      m_scrollinfo.m_bHScroll       = m_scrollinfo.m_sizeTotal.cx > (rectClient.width() - m_scrollinfo.m_iScrollWidth);
-
+      if(rectClient.area() <= 0)
+      {
+         m_scrollinfo.m_bHScroll = false;
+         m_scrollinfo.m_bVScroll = false;
+      }
+      else
+      {
+         m_scrollinfo.m_bVScroll       = (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height() - m_scrollinfo.m_iScrollHeight);
+         m_scrollinfo.m_bHScroll       = (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - m_scrollinfo.m_iScrollWidth);
+      }
 
       _001UpdateScrollBars();
 
       *lprect = rectClient;
    }
 
-   /*void scroll_view::GetClientRect(LPRECT lprect)
-   {
-      rect rect;
-      GetClientRect(rect);
-      ::copy(lprect, rect);
-   }*/
-
-   void scroll_view::LayoutScrollBars()
+   void scroll_view::_001LayoutScrollBars()
    {
       rect rectClient;
 
       GetClientRect(rectClient);
        
-
       int ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+
+      _001DeferCreateScrollBars();
 
       if(m_pscrollbarHorz != NULL)
       {
          if(m_scrollinfo.m_bHScroll)
          {
-            m_pscrollbarHorz->SetWindowPos(
-               ZORDER_TOP,
-               0,
-               rectClient.bottom - m_scrollinfo.m_iScrollHeight,
-               rectClient.width() - m_scrollinfo.m_iScrollWidth,
-               m_scrollinfo.m_iScrollHeight,
-               ifswp);
+            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP, 0, rectClient.bottom - m_scrollinfo.m_iScrollHeight, rectClient.width() - m_scrollinfo.m_iScrollWidth, m_scrollinfo.m_iScrollHeight, ifswp);
          }
          else
          {
@@ -97,13 +98,7 @@ namespace user
       {
          if(m_scrollinfo.m_bVScroll)
          {
-            m_pscrollbarVert->SetWindowPos(
-               ZORDER_TOP,
-               rectClient.right - m_scrollinfo.m_iScrollWidth,
-               rectClient.top, 
-               m_scrollinfo.m_iScrollWidth,
-               rectClient.height() - m_scrollinfo.m_iScrollHeight - rectClient.top,
-               ifswp);
+            m_pscrollbarVert->SetWindowPos(ZORDER_TOP, rectClient.right - m_scrollinfo.m_iScrollWidth, rectClient.top, m_scrollinfo.m_iScrollWidth, rectClient.height() - m_scrollinfo.m_iScrollHeight - rectClient.top, ifswp);
          }
          else
          {
@@ -113,45 +108,39 @@ namespace user
        
    }
 
+
+   void scroll_view::_001DeferCreateScrollBars()
+   {
+
+      if(m_scrollinfo.m_bHScroll)
+      {
+         if(m_pscrollbarHorz == NULL)
+            create_scroll_bar(scroll_bar::orientation_horizontal);
+
+      }
+
+      if(m_scrollinfo.m_bVScroll)
+      {
+         if(m_pscrollbarVert == NULL)
+            create_scroll_bar(scroll_bar::orientation_vertical);
+      }
+       
+   }
+
    void scroll_view::_001OnCreate(gen::signal_object * pobj)
    {
+
       SCAST_PTR(::user::win::message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
 
-      class rect rect;
-      rect.null();
-
-      if(m_pscrollbarHorz != NULL)
-      {
-         VERIFY(m_pscrollbarHorz->create(
-            ::user::scroll_bar::orientation_vertical,
-            WS_CHILD 
-            | WS_VISIBLE,
-            rect,
-            this,
-            1024));
-      }
-
-      rect.null();
-
-      if(m_pscrollbarVert != NULL)
-      {
-         VERIFY(m_pscrollbarVert->create(
-            ::user::scroll_bar::orientation_vertical,
-            WS_CHILD 
-            | WS_VISIBLE,
-            rect,
-            this,
-            1025));
-      }
    }
 
    void scroll_view::_001OnSize(gen::signal_object * pobj)
    {
       pobj->previous();
-      LayoutScrollBars();
+      _001LayoutScrollBars();
    }
 
    void scroll_view::_001OnUser9654(gen::signal_object * pobj) 
@@ -184,13 +173,36 @@ namespace user
 
    void scroll_view::_001UpdateScrollBars()
    {
+
+      _001DeferCreateScrollBars();
+
+      if(m_scrollinfo.m_ptScroll.y < m_scrollinfo.m_rectMargin.top)
+      {
+         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_rectMargin.top;
+      }
+      else
+      {
+         if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom)
+            m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom; 
+      }
+
+      if(m_scrollinfo.m_ptScroll.x < m_scrollinfo.m_rectMargin.left)
+      {
+         m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_rectMargin.left;
+      }
+      else
+      {
+         if(m_scrollinfo.m_ptScroll.x > m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right)
+            m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right; 
+      }
+
       ::user::scroll_info si;
 
       if(m_pscrollbarHorz != NULL)
       {
          si.fMask       = SIF_ALL;
-         si.nMin        = 0;
-         si.nMax        = m_scrollinfo.m_sizeTotal.cx;
+         si.nMin        = m_scrollinfo.m_rectMargin.left;
+         si.nMax        = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right;
          si.nPage       = (uint) m_scrollinfo.m_sizePage.cx;
          si.nPos        = m_scrollinfo.m_ptScroll.x;
          si.nTrackPos   = m_scrollinfo.m_ptScroll.x;
@@ -200,8 +212,8 @@ namespace user
       if(m_pscrollbarVert != NULL)
       {
          si.fMask       = SIF_ALL;
-         si.nMin        = 0;
-         si.nMax        = m_scrollinfo.m_sizeTotal.cy;
+         si.nMin        = m_scrollinfo.m_rectMargin.top;
+         si.nMax        = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
          si.nPage       = (uint) m_scrollinfo.m_sizePage.cy;
          si.nPos        = m_scrollinfo.m_ptScroll.y;
          si.nTrackPos   = m_scrollinfo.m_ptScroll.y;
@@ -213,14 +225,52 @@ namespace user
 
 
 
-   void scroll_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void scroll_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      control::_001InstallMessageHandling(pinterface);
+      control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &scroll_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &scroll_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &scroll_view::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_HSCROLL,         pinterface, this, &scroll_view::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_USER + 9654,     pinterface, this, &scroll_view::_001OnUser9654);
+   }
+
+
+   void scroll_view::create_scroll_bar(scroll_bar::e_orientation eorientation)
+   {
+
+      if(eorientation == scroll_bar::orientation_horizontal)
+      {
+         if(m_pscrollbarHorz != NULL)
+            return;
+      }
+      else
+      {
+         if(m_pscrollbarVert != NULL)
+            return;
+      }
+      
+      scroll_bar * pbar = new simple_scroll_bar(get_app());
+
+      class rect rectNull;
+
+      rectNull.null();
+
+      if(!pbar->create(eorientation, WS_CHILD | WS_VISIBLE, rectNull, this, 7000 + eorientation))
+      {
+         delete pbar;
+         return;
+      }
+
+      if(eorientation == scroll_bar::orientation_horizontal)
+      {
+         m_pscrollbarHorz = pbar;
+      }
+      else
+      {
+         m_pscrollbarVert = pbar;
+      }
+      
    }
 
 

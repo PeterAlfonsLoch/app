@@ -10,9 +10,9 @@ namespace compress
       public ::compress::get_sub_stream_size_interface
    {
    public:
-      
-      ::ca::smart_pointer<::ex1::reader> _stream;
-      ::ca::smart_pointer<::compress::get_sub_stream_size_interface> _getSubStreamSize;
+
+      ::ca::smart_pointer < ::ex1::reader > _stream;
+      ::ca::smart_pointer < ::compress::get_sub_stream_size_interface > _getSubStreamSize;
       uint64 _size;
 
       void Init(::ex1::reader *stream)
@@ -25,7 +25,7 @@ namespace compress
 
    //   MY_UNKNOWN_IMP1(::compress::get_sub_stream_size_interface)
 
-      DWORD_PTR read(void *data, DWORD_PTR size);
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
 
       ex1::HRes GetSubStreamSize(uint64 subStream, uint64 *value);
    };

@@ -191,7 +191,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
         m_service->Start(0);
         m_service->UpdateState(SERVICE_RUNNING);
     }
-    catch (const _template::CAtlException& e)
+    catch (const _template::atl_exception& e)
     {
         //
         // If the service can't start it should throw an exception from the 
@@ -240,7 +240,7 @@ void WINAPI service_base::ServiceHandler(DWORD control)
             }
         }
     }
-    catch (const _template::CAtlException& e)
+    catch (const _template::atl_exception& e)
     {
         m_service->UpdateState(SERVICE_STOPPED, e);
     }

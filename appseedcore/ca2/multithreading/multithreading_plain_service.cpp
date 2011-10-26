@@ -20,7 +20,7 @@ void plain_service::Start(DWORD)
 void plain_service::Stop(DWORD)
 {
    m_stopping = true;
-   m_stopped.Lock();
+   m_stopped.wait();
 }
 
 void plain_service::CallServiceThread()

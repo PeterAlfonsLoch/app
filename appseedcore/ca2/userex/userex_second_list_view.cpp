@@ -22,6 +22,7 @@ namespace userex
       simple_list_view(papp)
    {
       m_eview = ViewList;
+      m_scrollinfo.m_rectMargin.null();
    }
    
    second_list_view::~second_list_view()
@@ -42,16 +43,16 @@ namespace userex
 #endif //_DEBUG
 
 
-   void second_list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void second_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_list_view::_001InstallMessageHandling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &second_list_view::_001OnCreate);
+      simple_list_view::install_message_handling(pinterface);
+      USER_MESSAGE_LINK(message_create, pinterface, this, &second_list_view::_001OnCreate);
    }
 
-   bool second_list_view::_001GetItemText(string &str, index iItem, index iSubItem, index iListItem)
+   void second_list_view::_001GetItemText(::user::list_item * pitem)
    {
-      str.Format("%02d", iItem);
-      return true;
+      pitem->m_strText.Format("%02d", pitem->m_iItem);
+      pitem->m_bOk = true;
    }
    count second_list_view::_001GetItemCount()
    {
@@ -61,7 +62,7 @@ namespace userex
    void second_list_view::_001InsertColumns()
    {
 
-      Column column;
+      ::user::list_column column;
 
       column.m_iWidth               = 33;
       column.m_iSubItem             = 0;
@@ -75,6 +76,7 @@ namespace userex
       if(pobj->m_bRet)
          return;
       _001UpdateColumns();
+      _001OnUpdateItemCount();
    }
 
    void second_list_view::_001OnSelectionChange()

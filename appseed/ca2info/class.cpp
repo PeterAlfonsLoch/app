@@ -11,12 +11,12 @@ namespace ca2info
       m_ptemplatePane = new ::userbase::single_document_template(
          papp,
          "system/form",
-         &typeid(form_document),
-         &typeid(simple_frame_window),
-         &typeid(userex::pane_tab_view));
+         ::ca::get_type_info < form_document > (),
+         ::ca::get_type_info < simple_frame_window > (),
+         ::ca::get_type_info < userex::pane_tab_view > ());
 
-   m_straStatus.add("online");
-   m_straStatus.add("offline");
+	m_straStatus.add("online");
+	m_straStatus.add("offline");
 
    }
 
@@ -27,9 +27,9 @@ namespace ca2info
    void ca2info_class::perform()
    {
       ip_enum::enumerate();
-      form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(NULL));
+      form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(::ca::create_context_sp()));
       userex::pane_tab_view * pview = dynamic_cast < userex::pane_tab_view * > (pdoc->get_view());
-      pview->set_create_view(this);
+      pview->set_view_creator(this);
       rect rectOpen;
       System.get_screen_rect(rectOpen);
       int iWidth = rectOpen.width();
@@ -44,9 +44,9 @@ namespace ca2info
       pview->set_cur_tab_by_id(1);
    }
 
-   void ca2info_class::on_create_view(view_data * pviewdata)
+   void ca2info_class::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case 1:
          {
@@ -99,13 +99,14 @@ namespace ca2info
 }
 
 
-   void ca2info_class::OnBeforeNavigate2(const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+   void ca2info_class::OnBeforeNavigate2(html::data * pdata, var & varUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
    {
+      UNREFERENCED_PARAMETER(pdata);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(lpszTargetFrameName);
       UNREFERENCED_PARAMETER(baPostedData);
       UNREFERENCED_PARAMETER(lpszHeaders);
-      string str(lpszUrl);
+      string str(varUrl);
       if(gen::str::begins_eat(str, "ca2info_class://"))
       {
          m_pviewServer->GetTopLevelParent()->EndModalLoop(IDOK);
@@ -179,7 +180,7 @@ namespace ca2info
 
       strHtml += "</body></html>";
 
-      System.file().put_contents(m_strViewPath, strHtml);
+      Application.file().put_contents(m_strViewPath, strHtml);
       m_pdocServer->open_document(m_strViewPath);
    }
 

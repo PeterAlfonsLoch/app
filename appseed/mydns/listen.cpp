@@ -30,10 +30,10 @@
 //#  include <sys/ioctl.h>
 
 
-int *udp4_fd = (int *)NULL;									/* Listening socket: UDP, IPv4 */
-int *tcp4_fd = (int *)NULL;									/* Listening socket: TCP, IPv4 */
-int num_udp4_fd = 0;												/* Number of items in 'udp4_fd' */
-int num_tcp4_fd = 0;												/* Number of items in 'tcp4_fd' */
+SOCKET * udp4_fd = (SOCKET *) NULL;									/* Listening socket: UDP, IPv4 */
+SOCKET * tcp4_fd = (SOCKET *) NULL;									/* Listening socket: TCP, IPv4 */
+unsigned int num_udp4_fd = 0;												/* Number of items in 'udp4_fd' */
+unsigned int num_tcp4_fd = 0;												/* Number of items in 'tcp4_fd' */
 
 #if HAVE_IPV6
 int *udp6_fd = (int *)NULL;									/* Listening socket: UDP, IPv6 */
@@ -256,6 +256,7 @@ public:
    }
    BOOL EnumCallbackFunction(int nAdapter, const in_addr& address)
    {
+      UNREFERENCED_PARAMETER(nAdapter);
       addrlist_add(AF_INET, (void *) &address, m_iPort);
       return TRUE;
    }
@@ -340,7 +341,7 @@ get_opt_addrlist(ADDRLIST *Addresses, const char *opt, int default_port, char *d
 	FirstAddr = LastAddr = NULL;
 	if (!opt || !opt[0])
 		return (NULL);
-	if (!(oc = strdup((char *)opt)))							/* Make copy of 'opt' for mangling */
+	if (!(oc = _strdup((char *)opt)))							/* Make copy of 'opt' for mangling */
 		Err("strdup");
 	for (c = oc; *c; c++)										/* Replace commas with CONF_FS */
 		if (*c == ',')
@@ -616,17 +617,17 @@ create_listeners(void)
 
 			memset(&sa, 0, sizeof(struct sockaddr_in));
 			sa.sin_family = AF_INET;
-			sa.sin_port = htons(L->port);
+			sa.sin_port = htons((u_short) L->port);
 			memcpy(&sa.sin_addr, &L->addr4, sizeof(struct in_addr));
 
 			/* Expand FD lists as appropriate and create listening sockets */
-			if (!(udp4_fd = (int *) realloc(udp4_fd, (1 + num_udp4_fd) * sizeof(int))))
+			if (!(udp4_fd = (SOCKET *) realloc(udp4_fd, (1 + num_udp4_fd) * sizeof(SOCKET))))
 				Err(_("out of primitive::memory"));
 			udp4_fd[num_udp4_fd++] = ipv4_listener(&sa, SOCK_DGRAM);
 
 			if (axfr_enabled || tcp_enabled)
 			{
-				if (!(tcp4_fd = (int *) realloc(tcp4_fd, (1 + num_tcp4_fd) * sizeof(int))))
+				if (!(tcp4_fd = (SOCKET *) realloc(tcp4_fd, (1 + num_tcp4_fd) * sizeof(SOCKET))))
 					Err(_("out of primitive::memory"));
 				tcp4_fd[num_tcp4_fd++] = ipv4_listener(&sa, SOCK_STREAM);
 			}
@@ -675,7 +676,7 @@ server_greeting(void)
 {
 	char	greeting[512], *g = greeting;						/* Server startup message */
 	int	total;													/* Total listening sockets */
-	time_t now = time(NULL);
+//	time_t now = time(NULL);
 
 //	g += sprintf(g, "%s %s %s %.24s", progname, PACKAGE_VERSION, _("started"), ctime(&now));
 

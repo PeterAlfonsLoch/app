@@ -53,13 +53,13 @@ void single_document_template::remove_document(document * pdocument)
 /////////////////////////////////////////////////////////////////////////////
 // single_document_template commands
 
-void single_document_template::request(var & varFile, var & varQuery)
+void single_document_template::request(::ca::create_context * pcreatecontext)
    // if lpszPathName == NULL => create new file of this type
 {
-   varQuery["document"] = (::ca::ca *) NULL;
-   bool bMakeVisible = varQuery["make_visible_boolean"];
-   ::user::interaction * pwndParent = varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
-   ::view * pviewAlloc = varQuery["allocation_view"].ca2 < ::view > ();
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+   bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
+//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
+//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
 
    document * pdocument = NULL;
    frame_window* pFrame = NULL;
@@ -102,7 +102,7 @@ void single_document_template::request(var & varFile, var & varQuery)
       BOOL bAutoDelete = pdocument->m_bAutoDelete;
       pdocument->m_bAutoDelete = FALSE;
                // don't destroy if something goes wrong
-      pFrame = create_new_frame(pdocument, NULL, pwndParent, pviewAlloc);
+      pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
       pdocument->m_bAutoDelete = bAutoDelete;
       if (pFrame == NULL)
       {
@@ -113,7 +113,7 @@ void single_document_template::request(var & varFile, var & varQuery)
       }
    }
 
-   if (varFile.is_empty())
+   if (pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
       // create a new document
       set_default_title(pdocument);
@@ -124,7 +124,7 @@ void single_document_template::request(var & varFile, var & varQuery)
 
       if (!pdocument->on_new_document())
       {
-         // ::fontopus::user has been alerted to what failed in on_new_document
+         // user has been alerted to what failed in on_new_document
          TRACE(::radix::trace::category_AppMsg, 0, "document::on_new_document returned FALSE.\n");
          if (bCreated)
             pFrame->DestroyWindow();    // will destroy document
@@ -139,9 +139,9 @@ void single_document_template::request(var & varFile, var & varQuery)
       bWasModified = pdocument->is_modified();
       pdocument->set_modified_flag(FALSE);  // not dirty for open
 
-      if (!pdocument->on_open_document(varFile))
+      if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
       {
-         // ::fontopus::user has been alerted to what failed in on_open_document
+         // user has been alerted to what failed in on_open_document
          TRACE(::radix::trace::category_AppMsg, 0, "document::on_open_document returned FALSE.\n");
          if (bCreated)
          {
@@ -166,16 +166,29 @@ void single_document_template::request(var & varFile, var & varQuery)
          }
          return;        // open failed
       }
-      pdocument->set_path_name(varFile);
+      pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
    }
 
    ::radix::thread* pThread = System.GetThread();
    ASSERT(pThread);
-   if (bCreated && pThread->GetMainWnd() == NULL)
+   if(bCreated)
    {
-      // set as main frame (InitialUpdateFrame will show the ::ca::window)
-      pThread->SetMainWnd(pFrame);
+      if(pThread->GetMainWnd() == NULL)
+      {
+         // set as main frame (InitialUpdateFrame will show the ::ca::window)
+         pThread->SetMainWnd(pFrame);
+      }
+      if(Application.m_puiMain == NULL)
+      {
+         Application.m_puiMain = pFrame;
+      }
    }
+   
+   if(!pcreatecontext->m_bHold)
+   {
+      pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
+   }
+
    InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
 
    view_update_hint uh(get_app());
@@ -184,7 +197,7 @@ void single_document_template::request(var & varFile, var & varQuery)
    
    gen::add_ref(pdocument);
 
-   varQuery["document"] = pdocument;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 }
 
 void single_document_template::set_default_title(document * pdocument)

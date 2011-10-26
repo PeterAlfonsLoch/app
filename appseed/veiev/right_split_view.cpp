@@ -14,9 +14,9 @@ namespace veiev
    {
    }
 
-   void right_split_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void right_split_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::split_view::_001InstallMessageHandling(pinterface);
+      ::userbase::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &right_split_view::_001OnCreate);
 
    }
@@ -31,11 +31,11 @@ namespace veiev
       SetPaneCount(2);
       SetSplitOrientation(orientation_horizontal);
       set_position_rate(0, 0.2);
-      ::user::interaction* pwnd = create_view(typeid(simple_list_view), get_document(), this, 100);
+      ::user::interaction* pwnd = create_view(::ca::get_type_info < simple_list_view > (), get_document(), this, 100);
       SetPane(0, pwnd, false);
       m_plistview = dynamic_cast < simple_list_view * > (pwnd);
 
-      pwnd = create_view(typeid(veiev::view), get_document(), this, 101);
+      pwnd = create_view(::ca::get_type_info < veiev::view > (), get_document(), this, 101);
       SetPane(1, pwnd, false);
       layout();
       m_pview = dynamic_cast < veiev::view * > (pwnd);

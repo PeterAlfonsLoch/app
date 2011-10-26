@@ -12,10 +12,13 @@ namespace gen
 
       cross_pipe m_pipe;
       bool m_bPiped;
+
+#ifdef WINDOWS
       PROCESS_INFORMATION m_pi;
       STARTUPINFO m_si;
+#endif
 
-      bool create_child_process(const char * pszCmdLine, bool bPiped);
+      bool create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir = NULL);
 
       DWORD wait_until_exit(int iWaitMax = 0);
       bool has_exited(DWORD * pdwExitCode = NULL);

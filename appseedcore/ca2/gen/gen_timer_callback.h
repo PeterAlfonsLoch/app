@@ -42,7 +42,7 @@ public:
 //   bool _000BeforeWndProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 //   bool InstallTimerCallbackHook();
    bool SetTimerWindow(TimerWnd * ptimerwnd);
-    //CEvent                    m_evTimerWndDeleted;
+    //event                    m_evTimerWndDeleted;
 protected:
     bool        m_bTimerCallbackEnable;
 };

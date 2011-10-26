@@ -1,12 +1,19 @@
 #pragma once
 
+
+namespace mediaplay
+{
+   class document;
+}
+
 namespace video
 {
 
    class document;
 
    class CLASS_DECL_ca player :
-      virtual public ::radix::thread
+      virtual public ::radix::thread,
+      virtual public ::audio::WavePlayerInterface
    {
    public:
 
@@ -18,6 +25,7 @@ namespace video
          DeviceStateStopping,
          DeviceStatePaused,
       };
+
       enum EDecoderState
       {
          DecoderStateInitial,
@@ -73,18 +81,38 @@ namespace video
       ::collection::list < player_command, player_command & > m_commandlistStopOpen;
       ::collection::list < player_command, player_command & > m_commandlistOpenPlay;
 
-      video_decode::decoder_plugin_set_ex1      m_decodersetex1;
-      video_decode::decoder_plugin_set         m_decoderset;
-      ::user::interaction *                  m_hwndCallback;
-      video_decode::decoder *                m_pdecoder;
+      video_decode::decoder_plugin_set_ex1         m_decodersetex1;
+      video_decode::decoder_plugin_set             m_decoderset;
+      ::user::interaction *                        m_hwndCallback;
+      ::video_decode::decoder *                    m_pdecoder;
+      ::audio_decode::decoder *                    m_paudiodecoder;
+      mediaplay::document *                        m_pmediaplaydocument;
    
-      EDeviceState                           m_edevicestate;
-      EDecoderState                          m_edecoderstate;
-      e_state                                m_estate;
-      CEvent                                 m_eventStopped;
-      bool                                   m_bPlay;
-      mutex                                  m_mutexBuffer;
+      EDeviceState                                 m_edevicestate;
+      EDecoderState                                m_edecoderstate;
+      e_state                                      m_estate;
+      event                                        m_eventStopped;
+      bool                                         m_bPlay;
+      
+      mutex                                        m_mutexBuffer;
+      array_app_alloc < ::ca::dib, ::ca::dib >     m_diba;
+      base_array < uint64_t, uint64_t >            m_ptsa;
+      int_array                                    m_iaFrame;
+      bool_array                                   m_scaleda;
+      
 
+      int                                          m_iPlayDib;
+      int                                          m_iLastDib;
+
+      size                                         m_sizeVideo;
+      size                                         m_sizeView;
+      point                                        m_ptView;
+      rect                                         m_rectClient;
+
+      
+
+
+      
 
 
 
@@ -99,7 +127,7 @@ namespace video
       void ExecuteCommand(player_command & command);
 
       
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 
       virtual void _001OnDraw(::ca::graphics * pdc);
@@ -107,6 +135,9 @@ namespace video
       
       bool step();
       bool decode();
+
+
+      virtual uint64_t get_pts();
       
 
       DECL_GEN_SIGNAL(_001OnSize)
@@ -149,7 +180,7 @@ namespace video
       void OnEvent(e_event event);
       bool DeviceIsOpened();
       bool DecoderIsOpened();
-      void AttachEndEvent(CEvent * pevent);
+      void AttachEndEvent(event * pevent);
 
 
       virtual bool initialize_instance();
@@ -158,6 +189,11 @@ namespace video
       void _Stop();
       void ExecuteStop();
       DECL_GEN_SIGNAL(OnCommandMessage)
+
+
+      virtual int get_free_frame();
+
+      virtual void layout();
 
    };
 

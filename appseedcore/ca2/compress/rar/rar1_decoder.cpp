@@ -373,12 +373,12 @@ namespace compress {
       }
 
       HRESULT decoder::CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream,
-         const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface * /* progress */)
+         const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface * /* progress */)
       {
          if (inSize == NULL || outSize == NULL)
             return E_INVALIDARG;
 
-         if (!m_OutWindowStream.Create(kHistorySize))
+         if (!m_OutWindowStream.create(kHistorySize))
             return E_OUTOFMEMORY;
          if (!m_InBitStream.Create(1 << 20))
             return E_OUTOFMEMORY;
@@ -460,8 +460,7 @@ namespace compress {
          return m_OutWindowStream.Flush();
       }
 
-      ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream,
-         const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface *progress)
+      ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size * inSize, const file_size *outSize, ::compress::progress_info_interface *progress)
       {
          try { return CodeReal(inStream, outStream, inSize, outSize, progress); }
          catch(const ::ex1::in_buffer_exception &e) { return e.ErrorCode; }

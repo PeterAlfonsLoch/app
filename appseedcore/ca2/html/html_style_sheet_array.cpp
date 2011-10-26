@@ -13,7 +13,7 @@ namespace html
       style * pstyle = NULL;
       for(int i = get_upper_bound(); i >= 0; i--)
       {
-         style_sheet & sheet = element_at(i);
+         style_sheet & sheet = this->element_at(i);
          pstyle = sheet.rfind(pszTag, pszClass, pszSubClass, pszName);
          if(pstyle != NULL)
             break;

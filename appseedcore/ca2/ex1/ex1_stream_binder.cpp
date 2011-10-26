@@ -17,13 +17,13 @@ namespace ex1
 
       ~reader_for_binder() { m_StreamBinder->CloseRead(); }
       
-      virtual DWORD_PTR read(void *data, DWORD_PTR size);
+      virtual ::primitive::memory_size read(void *data, ::primitive::memory_size size);
 
       void set_binder(stream_binder *streamBinder) { m_StreamBinder = streamBinder; }
 
    };
 
-   DWORD_PTR reader_for_binder::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size reader_for_binder::read(void *data, ::primitive::memory_size size)
    { 
       return m_StreamBinder->read(data, size); 
    }
@@ -39,14 +39,16 @@ namespace ex1
       
       ~writer_for_binder() {  m_StreamBinder->CloseWrite(); }
 
-      virtual void write(const void *lpBuf, DWORD_PTR nCount, DWORD_PTR * dwWritten);
+      virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
 
       void set_binder(stream_binder *streamBinder) { m_StreamBinder = streamBinder; }
 
    };
 
-   void writer_for_binder::write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize)
-   { return m_StreamBinder->write(data, size, processedSize); }
+   void writer_for_binder::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
+   { 
+      return m_StreamBinder->write(data, size, processedSize); 
+   }
 
 
    //////////////////////////
@@ -93,12 +95,12 @@ namespace ex1
       ProcessedSize = 0;
    }
 
-   DWORD_PTR stream_binder::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size stream_binder::read(void *data, ::primitive::memory_size size)
    {
       uint sizeToRead = size;
       if(size > 0)
       {
-         _thereAreBytesToReadEvent.Lock();
+         _thereAreBytesToReadEvent.wait();
          sizeToRead = min(_size, size);
          if(_size > 0)
          {
@@ -121,7 +123,7 @@ namespace ex1
       _readStreamIsClosedEvent.SetEvent();
    }
 
-   void stream_binder::write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize)
+   void stream_binder::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
       if (size > 0)
       {
@@ -130,12 +132,10 @@ namespace ex1
          _allBytesAreWritenEvent.ResetEvent();
          _thereAreBytesToReadEvent.SetEvent();
 
-         sync_object_base * events[2];
-         events[0] = &_allBytesAreWritenEvent;
-         events[1] = &_readStreamIsClosedEvent;
-         CMultiLock ml(events, 2);
-         DWORD waitResult = ml.Lock(INFINITE, FALSE);
-         if(waitResult != WAIT_OBJECT_0 + 0)
+         event_collection eva;
+         eva.add(_allBytesAreWritenEvent);
+         eva.add(_readStreamIsClosedEvent);
+         if(!eva.wait(false, duration::infinite()).signaled())
          {
             throw S_FALSE;
          }

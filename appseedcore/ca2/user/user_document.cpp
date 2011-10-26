@@ -346,10 +346,25 @@ bool document::do_save(const char * pszPathName, bool bReplace)
          }
       }
 
-      if (!System.do_prompt_file_name(newName,
-        bReplace ? AFX_IDS_SAVEFILE : AFX_IDS_SAVEFILECOPY,
-        0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate))
-         return FALSE;       // don't even attempt to save
+      ::userex::pane_tab_view * ppanetabview = NULL;
+      if(get_view() != NULL && get_view()->GetTypedParent < ::userex::pane_tab_view > () != NULL)
+      {
+         ppanetabview = get_view()->GetTypedParent < ::userex::pane_tab_view > ();
+         ppanetabview->set_cur_tab_by_id("file_manager");
+         ppanetabview->get_pane_by_id("file_manager")->m_bPermanent = false;
+         ppanetabview->layout();
+         ppanetabview->get_filemanager_document()->FileManagerSaveAs(this);
+         if(ppanetabview->GetParentFrame()->RunModalLoop() != "yes")
+            return true;
+         newName = ppanetabview->get_filemanager_document()->get_filemanager_data()->m_pmanager->m_strTopic;
+      }
+      else
+      {
+         if (!System.do_prompt_file_name(newName,
+           bReplace ? AFX_IDS_SAVEFILE : AFX_IDS_SAVEFILECOPY,
+           0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate))
+            return FALSE;       // don't even attempt to save
+      }
    }
 
    wait_cursor wait(get_app());
@@ -368,7 +383,7 @@ bool document::do_save(const char * pszPathName, bool bReplace)
             TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
             pe->Delete();
          }
-         
+
       }
       return FALSE;
    }
@@ -404,7 +419,7 @@ BOOL document::save_modified()
    string prompt;
    prompt = System.load_string("MessageBoxChangedFileAskToSave");
    prompt.replace("%1", name);
-   switch (System.simple_message_box(NULL, MB_YESNOCANCEL, prompt))
+   switch (Application.simple_message_box(NULL, MB_YESNOCANCEL, prompt))
    {
    case IDCANCEL:
       return FALSE;       // don't continue
@@ -439,7 +454,7 @@ HACCEL document::GetDefaultAccelerator()
 void document::report_save_load_exception(const char * lpszPathName,
    base_exception* e, BOOL bSaving, UINT nIDPDefault)
 {
-   
+
    UNREFERENCED_PARAMETER(bSaving);
    UNREFERENCED_PARAMETER(nIDPDefault);
 //   UINT nIDP = nIDPDefault;
@@ -448,7 +463,6 @@ void document::report_save_load_exception(const char * lpszPathName,
 
    if (e != NULL)
    {
-      ASSERT_VALID(e);
       if (base < user_exception >::bases(e))
          return; // already reported
 
@@ -542,13 +556,20 @@ bool document::on_open_document(var varFile)
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document.\n");
 #endif
 
-
+   ::ex1::byte_stream spfile;
    ex1::file_exception_sp fe(get_app());
-   ex1::filesp spfile(get_app());
-   if(!spfile->open(varFile,::ex1::file::mode_read|::ex1::file::shareDenyWrite, &fe))
+   spfile = Application.get_byte_stream(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
+   /*if(gen::str::begins_ci(varFile, "uifs://"))
    {
-      report_save_load_exception(varFile, fe,
-         FALSE, AFX_IDP_FAILED_TO_OPEN_DOC);
+      spfile = ifs(get_app(), "").get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
+   }
+   else
+   {
+      spfile = System.fs()->get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
+   }*/
+   if(spfile.is_reader_null())
+   {
+      report_save_load_exception(varFile, fe, FALSE, AFX_IDP_FAILED_TO_OPEN_DOC);
       return FALSE;
    }
 
@@ -559,11 +580,11 @@ bool document::on_open_document(var varFile)
    {
       wait_cursor wait(get_app());
       read(spfile);     // load me
-      spfile->close();
+      spfile.close();
    }
    catch(base_exception * pe)
    {
-      spfile->close();
+      spfile.close();
       delete_contents();   // remove failed contents
 
       try
@@ -577,7 +598,7 @@ bool document::on_open_document(var varFile)
       pe->Delete();
       return FALSE;
    }
-   
+
    set_modified_flag(FALSE);     // start off with unmodified
 
    return TRUE;
@@ -585,14 +606,13 @@ bool document::on_open_document(var varFile)
 
 BOOL document::on_save_document(const char * lpszPathName)
 {
+
+   ::ex1::byte_stream spfile;
    ex1::file_exception_sp fe(get_app());
-   ex1::filesp spfile(get_app());
-   if(!spfile->open(lpszPathName, ::ex1::file::defer_create_directory |
-      ::ex1::file::mode_create |
-      ::ex1::file::mode_read_write | ::ex1::file::shareExclusive, &fe))
+   spfile = Application.get_byte_stream(lpszPathName, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive, &fe);
+   if(spfile.is_writer_null())
    {
-      report_save_load_exception(lpszPathName, fe,
-         TRUE, AFX_IDP_INVALID_FILENAME);
+      report_save_load_exception(lpszPathName, fe, TRUE, AFX_IDP_INVALID_FILENAME);
       return FALSE;
    }
 
@@ -600,17 +620,15 @@ BOOL document::on_save_document(const char * lpszPathName)
    {
       wait_cursor wait(get_app());
       write(spfile);
-      spfile->close();
+      spfile.close();
    }
    catch(base_exception * pe)
    {
-      spfile->close();
-      //ReleaseFile(pFile, TRUE);
+      spfile.close();
 
       try
       {
-         report_save_load_exception(lpszPathName, pe,
-            TRUE, AFX_IDP_FAILED_TO_SAVE_DOC);
+         report_save_load_exception(lpszPathName, pe, TRUE, AFX_IDP_FAILED_TO_SAVE_DOC);
       }
       catch(...)
       {
@@ -618,7 +636,7 @@ BOOL document::on_save_document(const char * lpszPathName)
       pe->Delete();
       return FALSE;
    }
-   
+
 
    set_modified_flag(FALSE);     // back to unmodified
 
@@ -809,12 +827,12 @@ bool document::is_new_document()
    return m_bNew;
 }
 
-void document::write(ex1::output_stream & ostream)
+void document::write(ex1::byte_output_stream & ostream)
 {
    UNREFERENCED_PARAMETER(ostream);
 }
 
-void document::read(ex1::input_stream & istream)
+void document::read(ex1::byte_input_stream & istream)
 {
    UNREFERENCED_PARAMETER(istream);
 }
@@ -837,7 +855,7 @@ void document::read(ex1::input_stream & istream)
       }
    }
    return NULL;
-}  
+}
 
 
 void document::show_all_frames(UINT nCmdShow)
@@ -864,8 +882,8 @@ void document::show_all_frames(UINT nCmdShow)
    { ASSERT(this != NULL); m_bModified = bModified; }
  void document::set_new(bool bNew)
 {
-   ASSERT(this != NULL); 
-   m_bNew = bNew; 
+   ASSERT(this != NULL);
+   m_bNew = bNew;
 }
 
 

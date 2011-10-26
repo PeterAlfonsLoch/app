@@ -110,7 +110,7 @@ LRESULT SimpleMDIFrameWindow::OnCommandHelp(WPARAM wParam, LPARAM lParam)
    return FALSE;
 }
 
-BOOL SimpleMDIFrameWindow::OnCreateClient(LPCREATESTRUCT lpcs, create_context*)
+BOOL SimpleMDIFrameWindow::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context*)
 {
 
    return CreateClient(lpcs, NULL);
@@ -258,7 +258,7 @@ BOOL SimpleMDIFrameWindow::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 BOOL SimpleMDIFrameWindow::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-   ::user::interaction* pParentWnd, create_context* pContext)
+   ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
    if (!frame_window::LoadFrame(pszMatter, dwDefaultStyle,
      pParentWnd, pContext))
@@ -341,12 +341,13 @@ SimpleMDIChildWindow* SimpleMDIFrameWindow::CreateNewChild(::ca::type_info pClas
    ASSERT_KINDOF(SimpleMDIChildWindow, pFrame);
 
    // load the frame
-   create_context context;
-   context.m_pCurrentFrame = this;
+   ::ca::create_context_sp context(get_app());
+   stacker < ::user::create_context > cc(context->m_user);
+   cc->m_pCurrentFrame = this;
 
    pFrame->SetHandles(hMenu, hAccel);
    if (!pFrame->LoadFrame(pszMatter,
-         WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL, &context))
+         WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL, context))
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ca::window.\n");
       delete pFrame;

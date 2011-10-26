@@ -14,7 +14,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   request::request(const request& src) : 
+   request::request(const request& src) :
    ::ca::ca(((request&) src).get_app()),
    transaction(src),
    m_null(src.m_null),
@@ -56,7 +56,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::write( const char *buf, size_t sz )
+   void request::write( const char *buf, ::primitive::memory_size sz )
    {
          m_file.write(buf, sz);
    }
@@ -72,7 +72,6 @@ namespace http
    // --------------------------------------------------------------------------------------
    void request::ParseBody()
    {
-      //Utility::ncmap<string>::const_iterator it;
       m_form.clear();
       if(attrs().has_property("request_uri"))
       {
@@ -80,13 +79,18 @@ namespace http
          string str = attrs()["query_string"];
          m_form.parse_query_string(str, str.get_length());
       }
-      attr("http_host") = header("host");
-      attr("http_referer") = header("referer");
+      m_form.request().m_propertya.add(m_form.get().m_propertya);
+      attr("http_host")       = header("host");
+      attr("http_referer")    = header("referer");
+      if(attr("http_method").get_string().CompareNoCase("PUT") == 0)
+      {
+         // skip following POST processing below
+         return;
+      }
       if(m_file.get_size() > 0)
       {
          m_form.parse_body(&m_file, ContentType(), ContentLength());
       }
-      m_form.request().m_propertya.add(m_form.get().m_propertya);
       m_form.request().m_propertya.add(m_form.post().m_propertya);
    }
 
@@ -111,7 +115,7 @@ namespace http
       attr("server_name") = "";
       attr("server_port") = 0;
       attr("https") = false;*/
-      
+
    //   m_file = std::auto_ptr<IFile>(NULL);
       m_form.clear();
       m_cookies.remove_all();

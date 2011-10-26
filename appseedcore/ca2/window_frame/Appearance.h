@@ -53,18 +53,17 @@ namespace window_frame
       };
 
       CWorkSetDownUpInterface   *   m_pwndframeworkdownupinterface;
-      BOOL                       m_fActive;
-      bool                       m_bUseNc;
+      BOOL                          m_fActive;
+      bool                          m_bUseNc;
 
-      bool                        m_bAutomaticModeSwitching;
+      bool                          m_bAutomaticModeSwitching;
 
-      WorkSet *                  m_pworkset;
-      bool                       m_bEnabled;
-      EAppearanceMode            m_emode;
-      EAppearanceTransparency    m_nTransparency;
-      CTool001 *                  m_ptool001;
+      WorkSet *                     m_pworkset;
+      bool                          m_bEnabled;
+      EAppearanceMode               m_emode;
+      EAppearanceTransparency       m_nTransparency;
+      CTool001 *                    m_ptool001;
 
-      
       bool IsNotifyIconEnabled();
       virtual ::user::interaction * get_guie();
       ::user::interaction * GetWnd();

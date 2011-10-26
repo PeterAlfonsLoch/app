@@ -48,10 +48,10 @@ namespace userbase
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      database::user::interaction::_001InstallMessageHandling(pinterface);
-      ::view::_001InstallMessageHandling(pinterface);
+      database::user::interaction::install_message_handling(pinterface);
+      ::view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE  , pinterface, this, &view::_001OnMouseActivate);
       IGUI_WIN_MSG_LINK(WM_DESTROY        , pinterface, this, &view::_001OnDestroy);
@@ -113,7 +113,7 @@ namespace userbase
          pwndex = dynamic_cast < ::user::interaction * >(GetParent());
          if(pwndex != NULL)
          {
-            if (pwndex->::user::interaction::_001OnCmdMsg(pcmdmsg))
+            if (pwndex->_001OnCmdMsg(pcmdmsg))
                return TRUE;
          }
       }
@@ -181,7 +181,7 @@ namespace userbase
       }
    }
 
-   void view::OnActivateFrame(UINT /*nState*/, userbase::frame_window* /*pFrameWnd*/)
+   void view::OnActivateFrame(UINT /*nState*/, ::frame_window* /*pFrameWnd*/)
    {
    }
 

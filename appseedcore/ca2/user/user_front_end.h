@@ -1,5 +1,13 @@
 #pragma once
 
+
+#ifdef LINUX
+
+typedef void * HHOOK ;
+
+#endif // defined(LINUX)
+
+
 namespace userbase
 {
    class menu;
@@ -15,7 +23,7 @@ namespace user
 
       front_end(void);
       ~front_end(void);
-      
+
       static LRESULT CALLBACK MouseProc(
          int      nCode,
          WPARAM   wparam,

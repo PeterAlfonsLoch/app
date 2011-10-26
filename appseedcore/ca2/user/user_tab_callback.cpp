@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace user
 {
+
 
    tab_callback::tab_callback()
    {
@@ -24,15 +26,20 @@ namespace user
       UNREFERENCED_PARAMETER(iTab);
    }
 
+   void tab_callback::_001OnTabClose(int iTab)
+   {
+      UNREFERENCED_PARAMETER(iTab);
+   }
+
    ::user::interaction * tab_callback::_001GetTabWnd(int iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
       return NULL;
    }
 
-   void tab_callback::on_show_view(tab * pinterface)
+   void tab_callback::_001OnShowTab(tab * ptab)
    {
-      UNREFERENCED_PARAMETER(pinterface);
+      UNREFERENCED_PARAMETER(ptab);
    }
 
    void tab_callback::_001OnDropTab(int iTab, e_position eposition)
@@ -41,19 +48,21 @@ namespace user
       UNREFERENCED_PARAMETER(eposition);
    }
 
-   void tab_callback::_001DropTargetWindowInitialize(tab * pinterface)
+   void tab_callback::_001DropTargetWindowInitialize(tab * ptab)
    {
-      UNREFERENCED_PARAMETER(pinterface);
+      UNREFERENCED_PARAMETER(ptab);
    }
 
-   void tab_callback::_001DropTargetWindowRelay(tab * pinterface)
+   void tab_callback::_001DropTargetWindowRelay(tab * ptab)
    {
-      UNREFERENCED_PARAMETER(pinterface);
+      UNREFERENCED_PARAMETER(ptab);
    }
 
-   void tab_callback::_001DropTargetWindowFinalize(tab * pinterface)
+   void tab_callback::_001DropTargetWindowFinalize(tab * ptab)
    {
-      UNREFERENCED_PARAMETER(pinterface);
+      UNREFERENCED_PARAMETER(ptab);
    }
+
 
 } // namespace ex1
+

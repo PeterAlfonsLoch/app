@@ -237,7 +237,7 @@ namespace libepp
 
    string StrUtil::esc_xml_markup(const char *input_txt)
    {
-      return Application.xml().special_chars(input_txt);
+      return System.xml().special_chars(input_txt);
       /*string escaped = "";
       try {
       XMLPlatformUtils::Initialize();

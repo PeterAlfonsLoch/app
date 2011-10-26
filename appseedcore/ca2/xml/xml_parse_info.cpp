@@ -7,7 +7,7 @@ namespace xml
       m_bTrimValue      = false; 
       m_bEntityValue    = true; 
       m_bForceParse     = false;
-      m_pentities       = &papp->m_psystem->m_entities; 
+      m_pentities       = &Sys(papp).m_entities; 
       
       m_bErrorOccur     = false;
       m_pszErrorPointer = NULL;

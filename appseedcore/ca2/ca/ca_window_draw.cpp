@@ -8,9 +8,8 @@ namespace ca
    window_draw::window_draw() :
       m_eventFree(TRUE, TRUE)
    {
-      m_bDrawCursor              = true;
       m_bProDevianMode           = true;
-      m_iFramesPerSecond         = 20;
+      m_iFramesPerSecond         = 40;
       m_bRun                     = true;
    }
 

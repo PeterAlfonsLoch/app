@@ -24,7 +24,7 @@ class DispatchPtrArray :
 public:
    DispatchPtrArray();
    virtual ~DispatchPtrArray();
-   
+
    void PtrCallAll(void (TYPE::* lpfn)());
    void PtrCallAll(void (TYPE::* lpfn)(int), int i);
    void PtrCallAll(void (TYPE::* lpfn)(int, int), int i1, int i2);
@@ -46,9 +46,9 @@ void
 DispatchPtrArray<TYPE, TYPEPTR>::
 PtrCallAll(void (TYPE::* lpfn)())
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      (element_at(i)->*lpfn)();
+      (this->element_at(i)->*lpfn)();
    }
 }
 
@@ -57,9 +57,9 @@ void
 DispatchPtrArray<TYPE, TYPEPTR>::
 PtrCallAll(void (TYPE::* lpfn)(int), int iParam)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      (element_at(i)->*lpfn)(iParam);
+      (this->element_at(i)->*lpfn)(iParam);
    }
 }
 
@@ -68,8 +68,8 @@ void
 DispatchPtrArray<TYPE, TYPEPTR>::
 PtrCallAll(void (TYPE::* lpfn)(int, int), int iParam1, int iParam2)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      (element_at(i)->*lpfn)(iParam1, iParam2);
+      (this->element_at(i)->*lpfn)(iParam1, iParam2);
    }
 }

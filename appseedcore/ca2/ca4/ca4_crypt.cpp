@@ -1,4 +1,13 @@
 #include "StdAfx.h"
+#include <openssl/ssl.h>
+
+
+extern "C"
+{
+
+   #include "crypto/hmac.h"
+
+}
 
 
 #include "ca4_nessie.h"
@@ -39,14 +48,14 @@ namespace ca4
       DATA_BLOB DataSalt;
       primitive::memory memorySalt;
       memorySalt.from_string(pszSalt);
-      DataSalt.pbData = memorySalt.GetAllocation();    
-      DataSalt.cbData = memorySalt.GetStorageSize();
+      DataSalt.pbData = memorySalt.get_data();
+      DataSalt.cbData = (DWORD) memorySalt.get_size();
 
       //--------------------------------------------------------------------
       // Initialize the DataIn structure.
 
-      DataIn.pbData = storageEncrypt.GetAllocation();    
-      DataIn.cbData = storageEncrypt.GetStorageSize();
+      DataIn.pbData = storageEncrypt.get_data();
+      DataIn.cbData = (DWORD) storageEncrypt.get_size();
 
       wchar_t * lpwsz = NULL;
 
@@ -58,17 +67,17 @@ namespace ca4
          &DataIn,
          NULL, // A description string
                                             // to be included with the
-                                            // encrypted data. 
+                                            // encrypted data.
          &DataSalt,                               // Optional entropy not used.
          NULL,                               // Reserved.
-         NULL,                               // Pass NULL for the 
+         NULL,                               // Pass NULL for the
                                             // prompt structure.
          0,
          &DataOut))
       {
          TRACE("crypt::decrypt The encryption phase worked. \n");
          storageDecrypt.allocate(DataOut.cbData);
-         memcpy(storageDecrypt.GetAllocation(), DataOut.pbData, DataOut.cbData);
+         memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
          LocalFree(lpwsz);
          LocalFree(DataOut.pbData);
          return true;
@@ -84,11 +93,11 @@ namespace ca4
    int crypt::key(primitive::memory & storage)
    {
       storage.allocate(16);
-      for(int i = 0; i < storage.GetStorageSize(); i++)
+      for(primitive::memory_position i = 0; i < storage.get_size(); i++)
       {
-         storage.GetAllocation()[i] = rand() & 0xff;
+         storage.get_data()[i] = rand() & 0xff;
       }
-      return storage.GetStorageSize();
+      return (int) storage.get_size();
    }
 
    bool crypt::encrypt(primitive::memory & storageEncrypt, primitive::memory & storageDecrypt, const char * pszSalt)
@@ -102,15 +111,15 @@ namespace ca4
       DATA_BLOB DataSalt;
       primitive::memory memorySalt;
       memorySalt.from_string(pszSalt);
-      DataSalt.pbData = memorySalt.GetAllocation();    
-      DataSalt.cbData = memorySalt.GetStorageSize();
+      DataSalt.pbData = memorySalt.get_data();
+      DataSalt.cbData = (DWORD) memorySalt.get_size();
 
 
       //--------------------------------------------------------------------
       // Initialize the DataIn structure.
 
-      DataIn.pbData = (BYTE *) storageDecrypt.GetAllocation();    
-      DataIn.cbData = storageDecrypt.GetStorageSize();
+      DataIn.pbData = (BYTE *) storageDecrypt.get_data();
+      DataIn.cbData = (DWORD) storageDecrypt.get_size();
 
 //      wchar_t * lpwsz = NULL;
 
@@ -122,17 +131,17 @@ namespace ca4
            &DataIn,
            NULL, // A description string
                                                // to be included with the
-                                               // encrypted data. 
+                                               // encrypted data.
            &DataSalt,                               // Optional entropy not used.
            NULL,                               // Reserved.
-           NULL,                               // Pass NULL for the 
+           NULL,                               // Pass NULL for the
                                                // prompt structure.
            0,
            &DataOut))
       {
          TRACE("crypt::encrypt The encryption phase worked. \n");
          storageEncrypt.allocate(DataOut.cbData);
-         memcpy(storageEncrypt.GetAllocation(), DataOut.pbData, DataOut.cbData);
+         memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
          LocalFree(DataOut.pbData);
          return true;
       }
@@ -145,45 +154,45 @@ namespace ca4
    }
 
    int crypt::encrypt(primitive::memory & storageEncrypt, primitive::memory & storageDecrypt, primitive::memory & key)
-   { 
-      int plainlen = storageDecrypt.GetStorageSize();
+   {
+      int plainlen = (int) storageDecrypt.get_size();
       int cipherlen, tmplen;
       unsigned char iv[8] = {1,2,3,4,5,6,7,8};
       EVP_CIPHER_CTX ctx;
       EVP_CIPHER_CTX_init(&ctx);
-      EVP_EncryptInit(&ctx,EVP_bf_cbc(),key.GetAllocation(),iv);
-      cipherlen = storageDecrypt.GetStorageSize() + 16 - 1; //; 16 = key size
+      EVP_EncryptInit(&ctx,EVP_bf_cbc(),key.get_data(),iv);
+      cipherlen = (int) (storageDecrypt.get_size() + 16 - 1); //; 16 = key size
       storageEncrypt.allocate(cipherlen);
-      if (!EVP_EncryptUpdate(&ctx,storageEncrypt.GetAllocation(),&cipherlen,storageDecrypt.GetAllocation(),plainlen))
+      if (!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(),&cipherlen, storageDecrypt.get_data(),plainlen))
       {
          return -1;
       }
-      if (!EVP_EncryptFinal(&ctx,storageEncrypt.GetAllocation()+cipherlen,&tmplen))
+      if (!EVP_EncryptFinal(&ctx,storageEncrypt.get_data()+cipherlen,&tmplen))
       {
          return -1;
       }
       cipherlen += tmplen;
       storageEncrypt.allocate(cipherlen);
       EVP_CIPHER_CTX_cleanup(&ctx);
-      return cipherlen; 
+      return cipherlen;
    }
 
 
    int crypt::decrypt(primitive::memory & storageDecrypt, primitive::memory & storageEncrypt, primitive::memory & key)
    {
-      int cipherlen = storageEncrypt.GetStorageSize();
+      int cipherlen = (int) storageEncrypt.get_size();
       int plainlen, tmplen;
       unsigned char iv[8] = {1,2,3,4,5,6,7,8};
       EVP_CIPHER_CTX ctx;
       EVP_CIPHER_CTX_init(&ctx);
-      EVP_DecryptInit(&ctx,EVP_bf_cbc(),key.GetAllocation(),iv);
-      plainlen = storageEncrypt.GetStorageSize();
+      EVP_DecryptInit(&ctx,EVP_bf_cbc(),key.get_data(),iv);
+      plainlen = (int) storageEncrypt.get_size();
       storageDecrypt.allocate(plainlen);
-      if(!EVP_DecryptUpdate(&ctx,storageDecrypt.GetAllocation(),&plainlen,storageEncrypt.GetAllocation(),cipherlen))
+      if(!EVP_DecryptUpdate(&ctx,storageDecrypt.get_data(),&plainlen,storageEncrypt.get_data(),cipherlen))
       {
          return -1;
       }
-      if (!EVP_DecryptFinal(&ctx,storageDecrypt.GetAllocation()+plainlen,&tmplen))
+      if (!EVP_DecryptFinal(&ctx,storageDecrypt.get_data()+plainlen,&tmplen))
       {
          storageDecrypt.allocate(plainlen);
          EVP_CIPHER_CTX_cleanup(&ctx);
@@ -192,7 +201,7 @@ namespace ca4
       plainlen += tmplen;
       storageDecrypt.allocate(plainlen);
       EVP_CIPHER_CTX_cleanup(&ctx);
-      return plainlen; 
+      return plainlen;
    }
 
    string crypt::strkey()
@@ -213,7 +222,7 @@ namespace ca4
          return 0;
       }
       storageDecrypt.from_string(pszDecrypt);
-      System.base64().decode(pszKey, storageKey);
+      System.base64().decode(storageKey, pszKey);
       int cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
       strEncrypt = System.base64().encode(storageEncrypt);
       return cipherlen;
@@ -224,8 +233,8 @@ namespace ca4
       primitive::memory storageEncrypt;
       primitive::memory storageDecrypt;
       primitive::memory storageKey;
-      System.base64().decode(pszEncrypt, storageEncrypt);
-      System.base64().decode(pszKey, storageKey);
+      System.base64().decode(storageEncrypt, pszEncrypt);
+      System.base64().decode(storageKey, pszKey);
       int plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
       storageDecrypt.to_string(strDecrypt);
       return plainlen;
@@ -253,18 +262,59 @@ namespace ca4
    }
 
 
-   bool crypt::file_set(const char * pszFile, const char * pszData, const char * pszSalt)
+   string crypt::md5(primitive::memory & mem)
+   {
+      int iBufSize = 16;
+      unsigned char * buf = new unsigned char[iBufSize];
+      MD5_CTX ctx;
+      MD5_Init(&ctx);
+      //int iRead;
+      MD5_Update(&ctx, mem, (unsigned long) mem.get_size());
+      MD5_Final(buf,&ctx);
+      string str;
+      string strFormat;
+      for(int i = 0; i < 16; i++)
+      {
+         strFormat.Format("%02x", buf[i]);
+         str += strFormat;
+      }
+      delete [] buf;
+      return str;
+   }
+
+   string crypt::sha1(primitive::memory & mem)
+   {
+      int iBufSize = 20;
+      unsigned char * buf = new unsigned char[iBufSize];
+      sha1_ctx_t ctx;
+      sha1_init(&ctx);
+      //int iRead;
+      sha1_update(&ctx, mem, (int) mem.get_size());
+      sha1_final(&ctx, (uint32_t *) buf);
+      string str;
+      string strFormat;
+      for(int i = 0; i < 20; i++)
+      {
+         strFormat.Format("%02x", buf[i]);
+         str += strFormat;
+      }
+      delete [] buf;
+      return str;
+   }
+
+
+   bool crypt::file_set(var varFile, const char * pszData, const char * pszSalt, ::ca::application * papp)
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
-      System.file().put_contents(pszFile, memoryEncrypt);
+      App(papp).file().put_contents(varFile, memoryEncrypt);
       return true;
    }
-   
-   bool crypt::file_get(const char * pszFile, string & str, const char * pszSalt)
+
+   bool crypt::file_get(var varFile, string & str, const char * pszSalt, ::ca::application * papp)
    {
       primitive::memory memoryEncrypt;
-      System.file().as_memory(pszFile, memoryEncrypt, &System);
+      App(papp).file().as_memory(varFile, memoryEncrypt);
       decrypt(str, memoryEncrypt, pszSalt);
       return true;
    }
@@ -307,15 +357,7 @@ namespace ca4
    // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
    string crypt::v5_get_password_hash(const char * pszSalt, const char * pszPassword, int iOrder)
    {
-      string strHash;
-      if(iOrder <= 0)
-      {
-         strHash = nessie(pszPassword);
-      }
-      else
-      {
-         strHash = pszPassword;
-      }
+      string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(V5_SALT_BYTES);
       for(int i = iOrder; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i++)
@@ -328,8 +370,7 @@ namespace ca4
 
    string crypt::v5_get_passhash(const char * pszSalt, const char * pszPassword, int iMaxOrder)
    {
-      string strHash;
-      strHash = nessie(pszPassword);
+      string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(V5_SALT_BYTES);
       for(int i = 0; i < iMaxOrder; i++)
@@ -360,11 +401,23 @@ namespace ca4
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
 
-   DWORD crypt::crc32(DWORD dwPrevious, const char * psz, int iCount)
+   DWORD crypt::crc32(DWORD dwPrevious, const void * psz, ::primitive::memory_size iCount)
    {
-      if(iCount < 0)
-         iCount = strlen(psz);
+      if(iCount == (::primitive::memory_size::TYPE) -1)
+         iCount = strlen((const char*) psz);
       return ::crc32(dwPrevious, (const Bytef *) psz, iCount);
    }
 
+   DWORD crypt::crc32(DWORD dwPrevious, const char * psz)
+   {
+      return crc32(dwPrevious, psz, (::primitive::memory_size::TYPE) -1);
+   }
+
+   void crypt::hmac(primitive::memory & memKey, const char * message, byte result[20])
+   {
+      hmac_ctx_t state;
+      memset(&state, 0, sizeof(state));
+      hmac_init(&state, memKey, (int) memKey.get_size());
+      hmac_compute(&state, message, strlen(message), 20, result);
+   }
 } // namespace ca4

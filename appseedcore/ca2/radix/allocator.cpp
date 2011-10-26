@@ -20,7 +20,7 @@ bool allocator::Init(const CHAR *pszFileName, DWORD dwMaxSize)
    {
       if( !(GetVersion()&0x80000000) )
       {
-         // If we're being loaded while impersonating a different client, 
+         // If we're being loaded while impersonating a different client,
          // we need to revert to self before we open the shared primitive::memory section
          BOOL bOpen = OpenThreadToken(GetCurrentThread(), TOKEN_IMPERSONATE|TOKEN_DUPLICATE, TRUE, &hThreadToken);
          if( !bOpen || hThreadToken != NULL )
@@ -60,7 +60,7 @@ bool allocator::Init(const CHAR *pszFileName, DWORD dwMaxSize)
 
          // Looks like it's already mapped into this process space.
          // Let's do some checking...
-         if(( m_pProcess==NULL ) || ( m_pProcess->Base()==NULL ) || 
+         if(( m_pProcess==NULL ) || ( m_pProcess->Base()==NULL ) ||
             ( 0 != memcmp(m_pBufferStart, m_pProcess->Base(), m_pProcess->m_dwFrontAlloc )))
          {
             // something's not right

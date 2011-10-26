@@ -39,18 +39,18 @@ namespace sockets
       m_psocket->Send(str);
    }
 
-   void sync_socket_handler::write(void * pdata, size_t len)
+   void sync_socket_handler::write(void * pdata, ::primitive::memory_size len)
    {
       m_psocket->SendBuf((char *) pdata, len);
    }
-   
-   int sync_socket_handler::read(void * pdata, size_t len)
+
+   ::primitive::memory_size sync_socket_handler::read(void * pdata, ::primitive::memory_size len)
    {
       while(m_file.get_size() < len && m_handler.get_count() > 0)
       {
          m_handler.Select(8, 0);
       }
-      return m_file.RemoveBegin(pdata, len);
+      return m_file.remove_begin(pdata, len);
    }
 
    string sync_socket_handler::read_string()
@@ -92,9 +92,10 @@ namespace sockets
 
    void sync_socket_handler::read_payload_v1(string & xml_payload, int iTimeout)
    {
+      UNREFERENCED_PARAMETER(xml_payload);
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
-      unsigned int uiLen = 0;
+      ::primitive::memory_size uiLen = 0;
       if(read(&uiLen, 4) != 4)
          throw simple_exception();
       ntohl(uiLen);
@@ -104,8 +105,8 @@ namespace sockets
          throw simple_exception();
    }
 
-   void sync_socket_handler::write_payload_v1(const char * xml_payload, int iTimeout) 
-   { 
+   void sync_socket_handler::write_payload_v1(const char * xml_payload, int iTimeout)
+   {
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
       UINT uiLen = strlen(xml_payload);

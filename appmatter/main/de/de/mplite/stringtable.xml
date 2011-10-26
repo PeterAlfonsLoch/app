@@ -1,0 +1,21 @@
+﻿<stringtable>
+	<string id='media_library_tab_all'>Alle Lokale Medien</string>
+	<string id='media_library_tab_explorer'>Entdecken Lokale Medien</string>
+	<string id='media_library_tab_vmskarlib'>Entdecken karaoke.veriwell.com.br</string>
+	<string id='karaoke_view_tab_menu'>Menü</string>
+	<string id='karaoke_view_tab_karaoke'>Karaoke</string>
+	<string id='karaoke_view_tab_open'>Öffnen</string>
+	<string id='karaoke_view_tab_playlist'>Playlist</string>
+	<string id='karaoke_view_tab_album'>Album</string>
+	<string id='karaoke_view_tab_options'>Optionen</string>
+	<string id='karaoke_view_tab_audio_control'>Audio Control</string>
+	<string id='mixer_playback_tab'>Wiedergabe</string>
+	<string id='mixer_recording_tab'>Recording</string>
+	<string id='options_folders_tab_song'>Song</string>
+	<string id='options_folders_tab_image'>Image</string>
+	<string id='options_folders_tab_auto_record'>Auto Recording</string>
+	<string id='options_view_tab_folders'>Ordner</string>
+	<string id='options_view_tab_file_association'>File Association</string>
+	<string id='options_view_tab_karaoke'>Karaoke</string>
+	<string id='options_view_tab_audio_devices'>Audiogeräte</string>
+</stringtable>

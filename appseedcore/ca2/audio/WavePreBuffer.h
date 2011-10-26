@@ -12,8 +12,6 @@ namespace iaudio
 };
 
 
-   class audWaveEffectDevocalizer;
-
 class CLASS_DECL_ca audWavePreBuffer :
    virtual public pha(audio_decode::decoder)
 {
@@ -39,7 +37,7 @@ public:
       e_state GetState();
    protected:
       e_state            m_estate;
-      CEvent            m_evStep;
+      event            m_evStep;
       audWavePreBuffer *   m_pprebuffer;    
 
       virtual int run();
@@ -66,27 +64,27 @@ public:
    };
 
 
-   short *                       m_pshL1;
-   short *                       m_pshL2;
-   audWavePreBufferCallback *    m_pcallback;
-   int                           m_iChannelCount;
-   int                           m_iChunkCount;
-   int                           m_iChunkSampleCount;
-   ph(audio_decode::decoder)     m_pdecoder;
+   raw_array < short >                 m_shaL1;
+   raw_array < short >                 m_shaL2;
+   audWavePreBufferCallback *          m_pcallback;
+   int                                 m_iChannelCount;
+   int                                 m_iChunkCount;
+   int                                 m_iChunkSampleCount;
+   ph(audio_decode::decoder)           m_pdecoder;
 
-   audWaveEffectDevocalizer *    m_pdevocalizer;
-   ChunkArray                    m_chunkaL1;
-   ChunkArray                    m_chunkaL2;
+   sp(iaudio::WaveStreamEffect)        m_speffect;
+   ChunkArray                          m_chunkaL1;
+   ChunkArray                          m_chunkaL2;
 
-   int                           m_iOutCount;
-   int                           m_iMinFreeBuffer;
+   int                                 m_iOutCount;
+   int                                 m_iMinFreeBuffer;
 
-   critical_section              m_cs;
-   bool                          m_bPlay;
+   critical_section                    m_cs;
+   bool                                m_bPlay;
 
-   iaudio::WaveStreamEffect *    m_pstreameffectOut;
+   iaudio::WaveStreamEffect *          m_pstreameffectOut;
 
-   imedia::position              m_position;
+   imedia::position                    m_position;
 
    void on_delete(::ca::ca * pdecoder);
 

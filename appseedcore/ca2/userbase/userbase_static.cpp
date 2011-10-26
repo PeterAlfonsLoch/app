@@ -3,11 +3,9 @@
 namespace userbase
 {
 
-   BOOL base_static::create(const char * lpszText, DWORD dwStyle,
-         const RECT& rect, ::user::interaction* pParentWnd, UINT nID)
+   bool base_static::create(::user::interaction* pParentWnd, id id)
    {
-      ::user::interaction* pWnd = this;
-      return pWnd->create("STATIC", lpszText, dwStyle, rect, pParentWnd, nID);
+      return ::user::control::create(pParentWnd, id);
    }
 
    base_static::~base_static()

@@ -10,21 +10,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="form_callback.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pane_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pane_view_update_hint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="winshelllink_document.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,23 +19,23 @@
     <ClCompile Include="winshelllink_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winshelllink_pane_view_update_hint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winshelllink_pane_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winshelllink_form_callback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winshelllink_application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="form_callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pane_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pane_view_update_hint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="winshelllink.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,9 +48,24 @@
     <ClInclude Include="winshelllink_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="winshelllink_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winshelllink_form_callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winshelllink_pane_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winshelllink_pane_view_update_hint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="winshelllink.def">
+    <None Include="app_winshelllink.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

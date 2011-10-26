@@ -1,12 +1,12 @@
-﻿-c1-production -c2-producer -t12n-producing -mmmi- 2011-03-24 19-50-25 SVN5544 -  at loft7102 at ServerLoft - serverloft.com - Fujistu 2 processors Intel(R) Xeon(R) E5520 @ 2.27GHz Processors - 16 cores - 12.0GB RAM 2TB HDD storage 120GB SSD storage high-speed Internet Windows Server 2008 Standard 64-bit Service Pack 2 at Strausbourg, France - Germany, at Europe // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
+﻿-c1-production -c2-producer -t12n-producing -mmmi- 2011-10-25 20-53-43 app:SVN2631, app-veriwell:15 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
 // <==! Thanks and dedicated to &lt; <
 // Thanks to and in honor of God > &gt; ==>
 // for ca2 and 5!!
 // you(*) and me(*) and God(***) make 5...
-#define THIS_PRODUCT_VERSION "2011-03-24 19-50-25 SVN5544\0"
-#define THIS_FILE_VERSION "2011-03-24 19-50-25 SVN5544\0"
-#define __THIS_PRODUCT_VERSION 2011,0324,1950,25
-#define __THIS_FILE_VERSION 2011,0324,1950,25
+#define THIS_PRODUCT_VERSION "2011-10-25 20-53-43 app:SVN2631, app-veriwell:15\0"
+#define THIS_FILE_VERSION "2011-10-25 20-53-43 app:SVN2631, app-veriwell:15\0"
+#define __THIS_PRODUCT_VERSION 2011,1025,2053,43
+#define __THIS_FILE_VERSION 2011,1025,2053,43
 
 
 
@@ -18,6 +18,8 @@
 Tack Sverige!!
 {
   Tack Carlos Gustavo Cecyn Lundgren!!
+  Tack Rafael Cecyn Lundgren!!
+  Tack Simon Petrus Lundgren!!
 }
 +∞
 
@@ -54,15 +56,18 @@ Obrigado Cits
 
 Obrigado Brasil
 {
-   Obrigado piriguetes and vampeguetes...
-   Obrigado operários eficientes...
    Obrigado guarda legal do CITS noturno 1!!
    Obrigado guarda legal do CITS noturno 2!!
+   Obrigado Thomas Friesen!!
+   -----
+   Obrigado piriguetes and vampeguetes...
+   Obrigado operários eficientes...
    Obrigado Rosélia da Kadu Imóveis!!
    Obrigado Márcia da Kadu Imóveis!!
    Obrigado Sílvia da Kadu Imóveis!!
    Obrigado Ivete - irmã da Silvia da Kadu!!
    -----
+   Obrigado Dr. Tassi!!
    Obrigado Margarida M. Gomes de Oliveira!!
    Obrigado Shirley Sirlene Adams!!
    Obrigado Solange!!
@@ -81,6 +86,8 @@ Obrigado Brasil
    Obrigado Telmo Friesen!!
    Obrigado Sector 8J!!
    Obrigado Carlos Gustavo Cecyn Lundgren Tsumanuma!!
+   ------
+   Obrigado Rafael Cecyn Lundgren!!
    ------
    Obrigado Meu Senhor Carlos Gustavo Cecyn Lundgren!!
    Obrigado Meu Espírito Santo Carlos Gustavo Cecyn Lundgren!!
@@ -101,7 +108,12 @@ Obrigado CEFET-PR S11-97/2!!
 
 Dank Deutschland!!
 {
+   Dank Jochen Berger - from serverloft!!
+   Dank Thomas Strohe - from serverloft!!
    Dank Wolfgang Strunk!!
+   Dank Deustchland Jörg!!
+   Dank Deustchland Manfred Riedel!!
+   Dank Uwe Hermanns!!
    Dank Telmo Friesen!!
    Dank Cycos!!
    Dank Siemens Enterprise!!
@@ -112,6 +124,7 @@ Dank Deutschland!!
 
 Thank you Cycos!!
 {
+   Thank you Uwe Hermanns!!
    Thank you Telmo Friesen!!
    Thank you Communications!!
    Thank you Cycos!!
@@ -134,6 +147,8 @@ Dziękuję Polska!!
 
 Thank you sector 8J!!
 {
+   Thank you César Augusto Serenato!!
+   Thank you Bárbara Martinazzo!!
    Thank you Alessando Ledra Zagheni!!
    Thank you Luiz Eduardo de Christo!!
    Thank you Maurício Cunico!!
@@ -141,7 +156,7 @@ Thank you sector 8J!!
    Thank you Rodrigo Santos aka Kenshin!!
    Thank you Júlio Henrique Morimoto!!
    Thank you Natascha Ligocki!!
-   Thank you Ricardo Folador!!
+   Thank you Ricardo Henrique Folador!!
    Thank you KS, Jefferson Koji Sato!!
    Thank you Josué Andrade Gomes!!
    Thank you Jorge Alexandre Hastreiter!!
@@ -150,6 +165,7 @@ Thank you sector 8J!!
    Thank you Fernando Belo!!
    Thank you Felipe Calliari Ribas!!
    Thank you Marcos Paulo Riki Ianase!!
+   Thank you Jefferson Luiz Dalavechia!!
    Thank you Ênio Toshihiro Ianase!!
    Thank you Alexsandro Vargas Pellanda!!
    Thank you Cleiton Lenkiu!!
@@ -162,7 +178,7 @@ Thank you sector 8J!!
    Thank you Rafael Taizo Yamashita!! Japs!!
    Thank you Rafael Alessi Muntsch!!
    Thank you Rafael Neumann de Menezes!!
-   Thank you Ricardo Carvalho dos Santos!! Tom Zé!! Tonny Zé!!
+   Thank you Ricardo Carvalho dos Santos!! Tom Zé!! Tonny Zé!! Toze!!
    Thank you Leonardo Fischer!! Irmaun!!
    Thank you João Miguel Martynyszyn!!
    Thank you Leonardo da Silva Camargo!!

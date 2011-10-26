@@ -27,7 +27,7 @@ base_editor::~base_editor()
    }
    breakParse = true;
    while(validationProcess); /// @todo wait until validation is finished
-   if(internalRM) 
+   if(internalRM)
    {
       if(regionMapper != NULL)
       {
@@ -44,7 +44,7 @@ base_editor::~base_editor()
    }
 }
 
-void base_editor::initialize(line_source *lineSource) 
+void base_editor::initialize(line_source *lineSource)
 {
    ParserFactory *parserFactory = &System.parser_factory();
   if (parserFactory == NULL || lineSource == NULL){
@@ -518,7 +518,7 @@ void base_editor::leaveScheme(int lno, const char *line, int sx, int ex, class r
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

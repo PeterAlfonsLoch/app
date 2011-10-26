@@ -118,14 +118,14 @@ namespace sockets
    {
       struct sockaddr_in6 sa;
       memset(&a, 0, sizeof(a));
-      if(papp->m_psystem->net().isipv6(hostname))
+      if(Sys(papp->m_psystem).net().isipv6(hostname))
       {
-         if(!papp->m_psystem->net().u2ip(hostname, sa, AI_NUMERICHOST))
+         if(!Sys(papp->m_psystem).net().u2ip(hostname, sa, AI_NUMERICHOST))
             return false;
          a = sa.sin6_addr;
          return true;
       }
-      if(!papp->m_psystem->net().u2ip(hostname, sa))
+      if(!Sys(papp->m_psystem).net().u2ip(hostname, sa))
          return false;
       a = sa.sin6_addr;
       return true;
@@ -138,7 +138,7 @@ namespace sockets
       memset(&sa, 0, sizeof(sa));
       sa.sin6_family = AF_INET6;
       sa.sin6_addr = a;
-      return papp->m_psystem->net().reverse((struct sockaddr *)&sa, sizeof(sa), name);
+      return Sys(papp->m_psystem).net().reverse((struct sockaddr *)&sa, sizeof(sa), name);
    }
 
 
@@ -191,7 +191,7 @@ namespace sockets
          sa.sin6_family = AF_INET6;
          sa.sin6_addr = a;
          string name;
-         papp->m_psystem->net().reverse((struct sockaddr *)&sa, sizeof(sa), name, NI_NUMERICHOST);
+         Sys(papp->m_psystem).net().reverse((struct sockaddr *)&sa, sizeof(sa), name, NI_NUMERICHOST);
          return name;
       }
       return slask;

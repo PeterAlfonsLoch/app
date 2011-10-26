@@ -36,7 +36,7 @@ public:
    void seek_begin();
    
    SMFRESULT GetNextEvent(
-      MidiEventBase * pEvent,
+      midi_event_base * pEvent,
       imedia::position tkMax, 
       BOOL bTkMaxInclusive,
       bool bOnlyMTrk,

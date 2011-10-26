@@ -33,6 +33,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win", "..\..\nodeapp\windows\win\win.vcxproj", "{DFA865FA-07A1-410C-882D-CEBB89AC8FD6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libepp", "..\..\thirdparty\appseed\libepp\libepp.vcxproj", "{B19043D8-EE69-4B75-968F-543C39E2F4C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ACB3FF4B-0B61-45A7-881D-E102E0F85808} = {ACB3FF4B-0B61-45A7-881D-E102E0F85808}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -15,44 +15,45 @@ namespace filemanager
    }
 
 
-   bool folder_list_data::_001GetItemText(
-         ::user::list * plist,
-         string &str,
-         index iItem,
-         index iSubItem, 
-         index iListItem)
+
+
+   void folder_list_data::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(plist);
-      UNREFERENCED_PARAMETER(iListItem);
-      if(iSubItem == 0)
+      if(pitem->m_iSubItem == 0)
       {
          stringa stra;
-         if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, stra))
-            return false;
-         str = stra[iItem];
+         if(!data_get(::radix::system::idEmpty, ::radix::system::idEmpty, stra))
+         {
+            pitem->m_bOk = false;
+            return;
+         }
+         pitem->m_strText = stra[pitem->m_iItem];
       }
-      else if(iSubItem == 1)
+      else if(pitem->m_iSubItem == 1)
       {
          bool_array ba;
-         if(!data_get("recursive", ::ca::system::idEmpty, ba))
-            return false;
-         bool b = ba[iItem];
+         if(!data_get("recursive", ::radix::system::idEmpty, ba))
+         {
+            pitem->m_bOk = false;
+            return;
+         }
+         bool b = ba[pitem->m_iItem];
          if(b)
          {
-            str = "Recursive";
+            pitem->m_strText = "Recursive";
          }
          else
          {
-            str.Empty();
+            pitem->m_strText.Empty();
          }
       }
-      return true;
+      pitem->m_bOk = true;
    }
 
    void folder_list_data::GetSel(::user::list * plist , stringa & stra)
    {
       stringa wstraTotal;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, wstraTotal))
+      if(!data_get(::radix::system::idEmpty, ::radix::system::idEmpty, wstraTotal))
          return;
       ::user::list::Range range;
       plist->_001GetSelection(range);
@@ -61,7 +62,10 @@ namespace filemanager
          ::user::list::ItemRange itemrange = range.ItemAt(i);
          for(index iItem = itemrange.GetLBound(); iItem <= itemrange.GetUBound(); iItem++)
          {
-            stra.add(wstraTotal[iItem]);
+            if(iItem >= 0 && iItem <= wstraTotal.get_upper_bound())
+            {
+               stra.add(wstraTotal[iItem]);
+            }
          }
       }
    }
@@ -69,7 +73,7 @@ namespace filemanager
    count folder_list_data::_001GetItemCount()
    {
       stringa straTotal;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straTotal))
+      if(!data_get(::radix::system::idEmpty, ::radix::system::idEmpty, straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -78,15 +82,18 @@ namespace filemanager
    bool folder_list_data::add_unique(const stringa & stra, bool_array & baRecursive)
    {
       stringa straData;
-      data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straData);
+      data_get(::radix::system::idEmpty, ::radix::system::idEmpty, straData);
       bool_array baData;
-      data_get("recursive", ::ca::system::idEmpty, baData);
+      data_get("recursive", ::radix::system::idEmpty, baData);
       for(int i = 0; i < stra.get_count(); i++)
       {
          if(!straData.contains(stra[i]))
          {
             straData.add(stra[i]);
-            baData.add(baRecursive[i]);
+            if(i <= baRecursive.get_upper_bound())
+            {
+               baData.add(baRecursive[i]);
+            }
          }
       }
       while(baData.get_size() < straData.get_size())
@@ -97,9 +104,9 @@ namespace filemanager
       {
          baData.remove_last();
       }
-      if(!data_set(::ca::system::idEmpty, ::ca::system::idEmpty, straData))
+      if(!data_set(::radix::system::idEmpty, ::radix::system::idEmpty, straData))
          return false;
-      if(!data_set("recursive", ::ca::system::idEmpty, baData))
+      if(!data_set("recursive", ::radix::system::idEmpty, baData))
          return false;
       return true;
    }
@@ -107,10 +114,10 @@ namespace filemanager
    bool folder_list_data::remove(const stringa & stra)
    {
       stringa straData;
-      if(!data_get(::ca::system::idEmpty, ::ca::system::idEmpty, straData))
+      if(!data_get(::radix::system::idEmpty, ::radix::system::idEmpty, straData))
          return true;
       bool_array baData;
-      data_get("recursive", ::ca::system::idEmpty, baData);
+      data_get("recursive", ::radix::system::idEmpty, baData);
       int iFind;
       for(int i = 0; i < stra.get_count(); i++)
       {
@@ -131,9 +138,9 @@ namespace filemanager
       {
          baData.remove_last();
       }
-      if(!data_set(::ca::system::idEmpty, ::ca::system::idEmpty, straData))
+      if(!data_set(::radix::system::idEmpty, ::radix::system::idEmpty, straData))
          return false;
-      if(!data_set("recursive", ::ca::system::idEmpty, baData))
+      if(!data_set("recursive", ::radix::system::idEmpty, baData))
          return false;
       return true;
    }

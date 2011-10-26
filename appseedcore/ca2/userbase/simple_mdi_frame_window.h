@@ -40,8 +40,8 @@ public:
    virtual BOOL LoadFrame(const char * pszMatter,
             DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
             ::user::interaction* pParentWnd = NULL,
-            create_context* pContext = NULL);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, create_context* pContext);
+            ::ca::create_context* pContext = NULL);
+   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual void pre_translate_message(gen::signal_object * pobj);
    virtual void on_update_frame_title(BOOL bAddToTitle);
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
@@ -55,13 +55,13 @@ protected:
 
    //{{AFX_MSG(SimpleMDIFrameWindow)
    DECL_GEN_SIGNAL(_001OnDestroy)
-   afx_msg void OnSize(UINT nType, int cx, int cy);
-   afx_msg void OnUpdateMDIWindowCmd(cmd_ui * pcmdui);
-   afx_msg BOOL OnMDIWindowCmd(UINT nID);
-   afx_msg void OnWindowNew();
-   afx_msg LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
-   afx_msg void OnIdleUpdateCmdUI();
-   afx_msg LRESULT OnMenuChar(UINT nChar, UINT, ::userbase::menu*);
+   void OnSize(UINT nType, int cx, int cy);
+   void OnUpdateMDIWindowCmd(cmd_ui * pcmdui);
+   BOOL OnMDIWindowCmd(UINT nID);
+   void OnWindowNew();
+   LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
+   void OnIdleUpdateCmdUI();
+   LRESULT OnMenuChar(UINT nChar, UINT, ::userbase::menu*);
    //}}AFX_MSG
    //()
 };

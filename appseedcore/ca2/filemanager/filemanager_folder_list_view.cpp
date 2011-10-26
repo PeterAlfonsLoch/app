@@ -42,8 +42,8 @@ void folder_list_view::Initialize(::database::id  datakey, bool bRecursive)
 
 void folder_list_view::_001InsertColumns()
 {
-    
-   Column column;
+
+   ::user::list_column column;
 
    column.m_iWidth               = 400;
    column.m_iSubItem             = 0;

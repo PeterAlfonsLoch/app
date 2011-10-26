@@ -33,11 +33,11 @@ class sort_array :
    public BASE_ARRAY
 {
 public:
-   
+
 
    bool BaseSortFind(ARG_TYPE t, INT_PTR & iIndex) const;
    bool BaseSortFind(ARG_TYPE t, INT_PTR & iIndex, INT_PTR iStart, INT_PTR iEnd) const;
-   
+
 
    index BaseSortInsert(ARG_TYPE t);
    index BaseSortInsert(ARG_TYPE t, INT_PTR iStart, INT_PTR iEnd);
@@ -58,7 +58,7 @@ protected:
 
    //DispatchPtrArray < CBaseSwapInterface, CBaseSwapInterface *>
      //    m_swapptra;
-   
+
 };
 
 
@@ -66,9 +66,9 @@ protected:
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 bool
 sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-BaseSortFind(ARG_TYPE t, index & iIndex) const 
+BaseSortFind(ARG_TYPE t, index & iIndex) const
 {
-   return BaseSortFind(t, iIndex, 0, get_size() - 1);
+   return BaseSortFind(t, iIndex, 0, this->get_size() - 1);
 }
 
 
@@ -77,7 +77,7 @@ bool
 sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
 BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
 {
-   if(get_size() == 0)
+   if(this->get_size() == 0)
    {
       return false;
    }
@@ -89,7 +89,7 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
    iIndex = (iUBound + iLBound) / 2;
    while(iUBound - iLBound >= 8)
    {
-      iCompare = BaseSortCompare((ARG_TYPE) element_at(iIndex), (ARG_TYPE) t);
+      iCompare = BaseSortCompare((ARG_TYPE) this->element_at(iIndex), (ARG_TYPE) t);
       if(iCompare == 0)
       {
          return true;
@@ -115,9 +115,9 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
       iIndex = (iUBound + iLBound) / 2;
    }
    // do sequential search
-   while(iIndex < get_count())
+   while(iIndex < this->get_count())
    {
-      iCompare = BaseSortCompare((ARG_TYPE) element_at(iIndex), (ARG_TYPE) t);
+      iCompare = BaseSortCompare((ARG_TYPE) this->element_at(iIndex), (ARG_TYPE) t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -125,11 +125,11 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
       else
          break;
    }
-   if(iIndex >= get_count())
+   if(iIndex >= this->get_count())
       return false;
    while(iIndex >= 0)
    {
-      iCompare = BaseSortCompare((ARG_TYPE) element_at(iIndex), (ARG_TYPE) t);
+      iCompare = BaseSortCompare((ARG_TYPE) this->element_at(iIndex), (ARG_TYPE) t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)
@@ -167,10 +167,10 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 void sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
 Paste(base_array <TYPE, ARG_TYPE> & a)
 {
-   a.set_size(get_size());
-   for(index i = 0; i < get_size(); i++)
+   a.set_size(this->get_size());
+   for(index i = 0; i < this->get_size(); i++)
    {
-      a.set_at(i, element_at(i));
+      a.set_at(i, this->element_at(i));
    }
 }
 
@@ -179,7 +179,7 @@ void
 sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
 QuickSort()
 {
-   QuickSort(0, get_size() - 1);
+   QuickSort(0, this->get_size() - 1);
 }
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
@@ -193,8 +193,8 @@ QuickSort(index i1, index i2)
    index iUpperBound;
    index iLPos, iUPos, iMPos;
    //   TYPE t;
-   
-   if(get_size() >= 2)
+
+   if(this->get_size() >= 2)
    {
       stackLowerBound.push(i1);
       stackUpperBound.push(i2);
@@ -211,11 +211,11 @@ QuickSort(index i1, index i2)
             {
                if(iMPos == iUPos)
                   break;
-               if(BaseSortCompare(element_at(iMPos), element_at(iUPos)) <= 0)
+               if(BaseSortCompare(this->element_at(iMPos), this->element_at(iUPos)) <= 0)
                   iUPos--;
                else
                {
-                  swap(iMPos, iUPos);
+                  this->swap(iMPos, iUPos);
                   break;
                }
             }
@@ -226,11 +226,11 @@ QuickSort(index i1, index i2)
             {
                if(iMPos == iLPos)
                   break;
-               if(BaseSortCompare(element_at(iLPos), element_at(iMPos)) <= 0)
+               if(BaseSortCompare(this->element_at(iLPos), this->element_at(iMPos)) <= 0)
                   iLPos++;
                else
                {
-                  swap(iLPos, iMPos);
+                  this->swap(iLPos, iMPos);
                   break;
                }
             }

@@ -1,10 +1,5 @@
 #pragma once
 
-#define CLASS_DECL_MACHINE_EVENT CLASS_DECL_ca
-
-#include "ccvotagus/source/spalib/machine_event_data.h"
-#include "ccvotagus/source/spalib/machine_event.h"
-
 
 class CLASS_DECL_ca machine_event_central :
    public simple_thread

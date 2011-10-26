@@ -29,7 +29,7 @@ namespace visual
       int iFind = str.find(L' ');
       if(iFind < 0)
       {
-         int i = 1;
+         size_t i = 1;
          size sz;
          while(i < wcslen(wstr))
          {
@@ -53,7 +53,7 @@ namespace visual
       }
    }
 
-   int graphics_extension::_DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat)
+   int graphics_extension::_DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline)
    {
 
       string str(lpcsz);
@@ -189,22 +189,26 @@ namespace visual
       }
 
 
-      ::ca::font_sp fontUnderline(get_app());
+      ::ca::font_sp fontUnderline;
       ::ca::font * pfont;
 
 
       if(iUnderline >= 0)
       {
+         if(pfontUnderline == NULL)
+         {
+            fontUnderline.create(get_app());
+            pfontUnderline = fontUnderline;
+            pfont = pdc->GetCurrentFont();
 
-         pfont = pdc->GetCurrentFont();
-
-         if(pfont == NULL)
-            return 0;
+            if(pfont == NULL)
+               return 0;
          
-         LOGFONT lf;
-         pfont->GetLogFont(&lf);
-         lf.lfUnderline = TRUE;
-         fontUnderline->CreateFontIndirect(&lf);
+            LOGFONT lf;
+            pfont->GetLogFont(&lf);
+            lf.lfUnderline = TRUE;
+            fontUnderline->CreateFontIndirect(&lf);
+         }
       }
       
       rect rect;
@@ -252,7 +256,7 @@ namespace visual
             min(iUnderline, str.get_length()));
          if(iUnderline <= str.get_length())
          {
-            pfontOld = pdc->SelectObject(fontUnderline);
+            pfontOld = pdc->SelectObject(pfontUnderline);
             ::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),
                str,
@@ -301,7 +305,7 @@ namespace visual
       return 1;
    }
 
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, base_array <size, size &> & sizea)
+   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, base_array < size > & sizea)
    {
       string str(lpcsz);
       int iLen = str.get_length();
@@ -336,11 +340,10 @@ namespace visual
 
    void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, int iCount, size & size)
    {
-      string str(lpcsz);
       ::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
-         (const char *) str,
-         str.get_length(),
+         lpcsz,
+         iCount,
          &size);
 
    }

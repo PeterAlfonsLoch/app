@@ -33,12 +33,22 @@ namespace ca5
       void presence::pulse_user_presence()
       {
          
-         if(System.m_strAppName == "netnode" || System.m_strAppName == "netnodecfg")
+         if(System.m_strAppName == "netnode" || System.m_strAppName == "simpledbcfg")
             return;
 
-         string strUrl = "https://i2com.api.veriterse.net/pulse_user_presence";
-         strUrl = System.url().set(strUrl, "short_status", gen::str::itoa(m_iShortStatusCynceTag));
-         strUrl = System.url().set(strUrl, "long_status", m_strLongStatus);
+         string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+         stringa straRequestingServer;
+         straRequestingServer.add("fontopus.com");
+         straRequestingServer.add("fontopus.eu");
+         straRequestingServer.add("fontopus.asia");
+         if(!straRequestingServer.contains_ci(strHost))
+         {
+            strHost = "fontopus.com";
+         }
+
+         string strUrl = "https://" + strHost + "/ca2api/i2com/pulse_user_presence";
+         System.url().set(strUrl, "short_status", gen::str::i64toa(m_iShortStatusCynceTag));
+         System.url().set(strUrl, "long_status", m_strLongStatus);
          Application.http().get(strUrl);
       }
 

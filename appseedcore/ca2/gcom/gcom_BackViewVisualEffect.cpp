@@ -30,11 +30,11 @@ namespace gcom
          {
             InitialRender();
          }
-            
+
          Interface & iface = main.GetInterface();
 
          iface.BackViewGetClientRect(tool1.rectClient);
-         
+
          tool1.cx = tool1.rectClient.width();
          tool1.cy = tool1.rectClient.height();
 //         class imaging & imaging = System.imaging();
@@ -42,21 +42,21 @@ namespace gcom
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-         
-         CSingleLock sl1Back(&graphics.m_mutex1Back, FALSE);
-         CSingleLock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
+
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
          ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 //         ::ca::graphics & dcTransfer = graphics.GetFrame1DC();
-         
+
          HelperGetMain().DeferCheckLayout();
 
 
-         sl1Back.Lock();
-         sl2Buffer.Lock();
+         sl1Back.lock();
+         sl2Buffer.lock();
          dcBack.SelectClipRgn(NULL);
          dcBuffer.SelectClipRgn(NULL);
 
@@ -139,10 +139,10 @@ namespace gcom
             break;
          }
 
-         CSingleLock sl(&graphics.m_mutex4Transfer, TRUE);
+         single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
-         
+
          pdibTransfer->stretch_dib(pdibBack);
       }
 
@@ -157,17 +157,17 @@ namespace gcom
 //         int cx = rectClient.width();
 //         int cy = rectClient.height();
 //         class imaging & imaging = System.imaging();
-            
+
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -195,14 +195,14 @@ namespace gcom
 
 
 
-         
-            
 
-            
+
+
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
 //         BYTE bA = 50;
 
 
@@ -211,7 +211,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-         
+
          pdib3->stretch_dib(pdibBuffer);
 
          StepGrow001(
@@ -289,17 +289,17 @@ namespace gcom
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -307,7 +307,7 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         
+
 
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
@@ -333,14 +333,14 @@ namespace gcom
             m_iGrowColor,
             m_iGrowMax);
 
-         
-            
 
-            
+
+
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 50;
 
 
@@ -349,7 +349,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-         
+
         // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
@@ -420,17 +420,17 @@ namespace gcom
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -438,7 +438,7 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         
+
 
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
@@ -473,14 +473,14 @@ namespace gcom
             m_iGrowColor,
             m_iGrowMax);
 
-         
-            
 
-            
+
+
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 50;
 
 
@@ -489,7 +489,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-         
+
         // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
@@ -563,17 +563,17 @@ namespace gcom
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -581,7 +581,7 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         
+
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
@@ -608,7 +608,7 @@ namespace gcom
          {
             m_dDirection = ((int) m_dDirection % 360);
             m_dDirectionAddUp = 4.0 * rand() / RAND_MAX - 2.0;
-            
+
          }
          m_dDirection += m_dDirectionAddUp;
 
@@ -622,7 +622,7 @@ namespace gcom
 
          m_ptColorTrack.x += (LONG) (abs(m_rndgrowVelocity.i) * dcos);
          m_ptColorTrack.y += (LONG) (abs(m_rndgrowVelocity.i) * dsin);
-         
+
          if(m_ptColorTrack.x > cx1 - 10)
          {
       //      m_dDirection += 180 + ((int) m_dDirection % 360);
@@ -663,11 +663,11 @@ namespace gcom
          }
 
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 50;
 
 
@@ -694,13 +694,13 @@ namespace gcom
          double dAngle;
          if(m_iGrowColor >= 0)
          {
-            
+
 
             dAngle = 10.111 + dAngleOffset;
          }
          else
          {
-            
+
             dAngle = -10.111 - dAngleOffset;
          }
          pdib2->rotate(pdib1, dAngle, 1.009);
@@ -727,10 +727,10 @@ namespace gcom
             ::ca::brush_sp brush(get_app(), m_color.get_rgb());
             pdib1->get_graphics()->SelectObject(brush);
             pdib1->get_graphics()->SelectObject(pen);
-            //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA); 
-            //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA); 
-            pdib1->get_graphics()->Ellipse(x1, y1, x1 + c3, y1 + c3); 
-            pdib1->get_graphics()->Ellipse(x2 - c3, y2 - c3, x2, y2); 
+            //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
+            //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
+            pdib1->get_graphics()->Ellipse(x1, y1, x1 + c3, y1 + c3);
+            pdib1->get_graphics()->Ellipse(x2 - c3, y2 - c3, x2, y2);
          }
 
          /*imaging.bitmap_blend(
@@ -764,7 +764,7 @@ namespace gcom
       {
          tool1.page = 0;
             Main & main = HelperGetMain();
-            
+
          Interface & iface = main.GetInterface();
 
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
@@ -772,27 +772,27 @@ namespace gcom
          rect rectClient;
          iface.BackViewGetClientRect(rectClient);
          tool1.rectClient = rectClient;
-         
+
          int cx = rectClient.width();
          int cy = rectClient.height();
 //         class imaging & imaging = System.imaging();
-         
+
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
 
-         
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-         
-         CSingleLock sl1Back(&graphics.m_mutex1Back, FALSE);
-         CSingleLock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
+
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
          ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-         
-         sl1Back.Lock();
-         sl2Buffer.Lock();
+
+         sl1Back.lock();
+         sl2Buffer.lock();
          dcBack.SelectClipRgn(NULL);
          dcBuffer.SelectClipRgn(NULL);
 
@@ -868,7 +868,7 @@ namespace gcom
       }
 
       void VisualEffect::StepGrow001(
-            color & color, 
+            color & color,
             int & iGrowColor,
             int & iGrowMax)
       {
@@ -893,7 +893,7 @@ namespace gcom
                iGrowColor = -1;
 
             dH += rand() * 0.003 / RAND_MAX;
-            
+
             if(dH >= 1.0)
             {
                dH = 1.0;
@@ -913,9 +913,9 @@ namespace gcom
             }
             if(iGrowColor < iGrowMax)
                iGrowColor = 1;
-            
+
             dH -= rand() * 0.003 / RAND_MAX;
-            
+
             if(dH < 0.0)
             {
                dH = 0.0;
@@ -928,7 +928,7 @@ namespace gcom
       }
 
       void VisualEffect::StepGrow034(
-            color & color, 
+            color & color,
             int & iGrowColor,
             int & iGrowMax)
       {
@@ -953,7 +953,7 @@ namespace gcom
                iGrowColor = -1;
 
             dH += rand() * 0.003 / RAND_MAX;
-            
+
             if(dH >= 1.0)
             {
                dH = 1.0;
@@ -973,9 +973,9 @@ namespace gcom
             }
             if(iGrowColor < iGrowMax)
                iGrowColor = 1;
-            
+
             dH -= rand() * 0.003 / RAND_MAX;
-            
+
             if(dH < 0.0)
             {
                dH = 0.0;
@@ -988,7 +988,7 @@ namespace gcom
       }
 
       void VisualEffect::StepGrow001(
-            color & color, 
+            color & color,
             int & iGrowColor,
             int & iGrowMax,
             bool & bGrowColor)
@@ -1018,7 +1018,7 @@ namespace gcom
             }
 
             dH += rand() * 0.003 / RAND_MAX;
-            
+
             if(dH >= 1.0)
             {
                dH = 1.0;
@@ -1043,9 +1043,9 @@ namespace gcom
                bGrowColor = true;
                iGrowColor = 1;
             }
-            
+
             dH -= rand() * 0.003 / RAND_MAX;
-            
+
             if(dH < 0.0)
             {
                dH = 0.0;
@@ -1081,7 +1081,7 @@ namespace gcom
                i = -lbound;
                b = true;
             }
-             
+
          }
          else
          {
@@ -1111,17 +1111,17 @@ namespace gcom
          TransitionEffect & transitioneffect = main.GetTransitionEffect();
 
          rect rectClient = tool1.rectClient;
-         
+
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
          Graphics & graphics = main.GetGraphics();
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -1158,7 +1158,7 @@ namespace gcom
          {
             m_dDirection = ((int) m_dDirection % 360);
             m_dDirectionAddUp = 4.0 * rand() / RAND_MAX - 2.0;
-            
+
          }
          m_dDirection += m_dDirectionAddUp;
 
@@ -1185,7 +1185,7 @@ namespace gcom
 
          m_ptColorTrack.x += (LONG) (abs(m_rndgrowVelocity.i) * dcos);
          m_ptColorTrack.y += (LONG) (abs(m_rndgrowVelocity.i) * dsin);
-         
+
          if(m_ptColorTrack.x > cx1 - 10)
          {
             m_dDirection += 180 + ((int) m_dDirection % 360);
@@ -1222,11 +1222,11 @@ namespace gcom
          }
 
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 200;
 
 
@@ -1253,13 +1253,13 @@ namespace gcom
          double dAngle;
          if(m_iGrowColor >= 0)
          {
-            
+
 
             dAngle = 10.111 + dAngleOffset;
          }
          else
          {
-            
+
             dAngle = -10.111 - dAngleOffset;
          }
          pdib2->rotate(pdib1, dAngle, 1.009);
@@ -1291,12 +1291,12 @@ namespace gcom
             brush->construct(colorStrong.get_rgb());
             pdib2->get_graphics()->SelectObject(brush);
             pdib2->get_graphics()->SelectObject(pen);
-            //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA); 
-            //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA); 
-            pdib2->get_graphics()->Ellipse(x1, y1, x1 + d, y1 + d); 
-            pdib2->get_graphics()->Ellipse(x2 - d, y1, x2, y1 + d); 
-            pdib2->get_graphics()->Ellipse(x1, y2 - d, x1 + d, y2); 
-            pdib2->get_graphics()->Ellipse(x2 - d, y2 - d, x2, y2); 
+            //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
+            //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
+            pdib2->get_graphics()->Ellipse(x1, y1, x1 + d, y1 + d);
+            pdib2->get_graphics()->Ellipse(x2 - d, y1, x2, y1 + d);
+            pdib2->get_graphics()->Ellipse(x1, y2 - d, x1 + d, y2);
+            pdib2->get_graphics()->Ellipse(x2 - d, y2 - d, x2, y2);
          }
 
          /*imaging.bitmap_blend(
@@ -1341,17 +1341,17 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
 //         class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -1396,16 +1396,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += (LONG) (abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos);
             ct1.m_ptColorTrack.y += (LONG) (abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin);
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
          }
@@ -1483,11 +1483,11 @@ namespace gcom
          }
 
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
 //         BYTE bA = 200;
 
 
@@ -1521,13 +1521,13 @@ namespace gcom
          double dAngle;
          if(m_iGrowColor >= 0)
          {
-            
+
 
             dAngle = 0.111 + dAngleOffset;
          }
          else
          {
-            
+
             dAngle = -0.111 - dAngleOffset;
          }
          //pdib2->rotate(pdib1, dAngle, 1.009);
@@ -1599,7 +1599,7 @@ namespace gcom
                   }
                   break;
                }
-               pdib2->get_graphics()->Ellipse(x1, y1, x1 + d, y1 + d); 
+               pdib2->get_graphics()->Ellipse(x1, y1, x1 + d, y1 + d);
             }
 
          }
@@ -1674,7 +1674,7 @@ namespace gcom
          {
             direction = ((int) direction % 360);
             directionAddUp = 4.0 * rand() / RAND_MAX - 2.0;
-            
+
          }
          direction += directionAddUp;
       }
@@ -1697,17 +1697,17 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -1759,16 +1759,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -1876,11 +1876,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 200;
 
 
@@ -1918,7 +1918,7 @@ namespace gcom
          }
          else
          {
-            
+
             dAngle = -0.111 - dAngleOffset;
          }
          pdib2->rotate(pdib1, dAngle, 1.05);
@@ -1989,12 +1989,12 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
 
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),
@@ -2023,9 +2023,9 @@ namespace gcom
       }
 
       void VisualEffect::Constraint001(
-         point & pt, 
-         LPCRECT lpcrectIn, 
-         LPCRECT lpcrectOut, 
+         point & pt,
+         LPCRECT lpcrectIn,
+         LPCRECT lpcrectOut,
          double & direction)
       {
          rect rectIn(lpcrectIn);
@@ -2116,21 +2116,21 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
@@ -2178,16 +2178,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -2295,11 +2295,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 200;
 
 
@@ -2312,7 +2312,7 @@ namespace gcom
          {
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
-         
+
         // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
@@ -2344,7 +2344,7 @@ namespace gcom
          }
          else
          {
-            
+
             //dAngle = -10.111 - dAngleOffset;
             dAngle = -m_dAngleOffset;
          }
@@ -2374,7 +2374,7 @@ namespace gcom
          int margin = 10;
          int w = margin * 2;
          pdib1->get_graphics()->MoveTo(margin, margin);
-         
+
          int imax = cx1 - margin;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -2544,12 +2544,12 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
 
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),
@@ -2587,7 +2587,7 @@ namespace gcom
          Graphics & graphics = main.GetGraphics();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -2620,10 +2620,10 @@ namespace gcom
          }
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
-            
-         
+
+
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, pdib3->get_graphics(), 0, 0, SRCCOPY);
-         
+
          System.imaging().bitmap_blend(
             pdib4->get_graphics(),
             null_point(), pdib1->size(),
@@ -2689,17 +2689,17 @@ namespace gcom
                pdib1->width() / 2,
                pdib1->height() / 2));
          }
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -2762,7 +2762,7 @@ namespace gcom
             dS = 0.8;
             colorStrong1.set_hls(dH, dL, dS);
          }
-         
+
          ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
          ::ca::pen_sp penWhite(get_app());
@@ -2771,11 +2771,11 @@ namespace gcom
          int margin2 = cy1 / 2;
          int w = cy1 / 3;
 
-         double jmul = (double) cy1 / (cx1 * 2.0); 
+         double jmul = (double) cy1 / (cx1 * 2.0);
 
          double delta = w;
-         
-         
+
+
          int imax = cx1 - margin1;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -2879,11 +2879,11 @@ namespace gcom
          }
          else
          {
-            
+
             dAngle = -1.511 - dAngleOffset;
          }
          pdib2->Rotate034(pdib1, dAngle, 0.95);
-         
+
 
          BLENDFUNCTION bf;
 
@@ -2920,21 +2920,21 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
@@ -2999,16 +2999,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -3116,11 +3116,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
 //         BYTE bA = 200;
 
 
@@ -3133,7 +3133,7 @@ namespace gcom
          {
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
-         
+
         // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
@@ -3148,19 +3148,19 @@ namespace gcom
 
 
 
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+
+
+
+
+
+
+
+
+
+
+
+
+
          /*   m_rndgrowAngleOffsetLatency.Step();
          if(m_rndgrowAngleOffsetLatency.i == 1)
          {
@@ -3179,7 +3179,7 @@ namespace gcom
          }
          else
          {
-            
+
             //dAngle = -10.111 - dAngleOffset;
             dAngle = -m_dAngleOffset;
          }
@@ -3236,8 +3236,8 @@ namespace gcom
          int w = cy1 / 3;
 
          int delta = 5;
-         
-         
+
+
          int imax = cx1 - margin1;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -3423,7 +3423,7 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -3445,11 +3445,11 @@ namespace gcom
          }
          else
          {
-            
+
             dAngle = -1.511 - dAngleOffset;
          }
          pdib2->Rotate034(pdib1, dAngle, 0.95);
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),
@@ -3516,7 +3516,7 @@ namespace gcom
       void PixelExplosion::to(DWORD* pSrcImage,DWORD* pTargetImage)
       {
          int i = 0;
-         
+
          // Yes they have to be the same size...(for now)
          DrawWaterNoLight(m_iHpage,pSrcImage,pTargetImage);
          if(i == 2)
@@ -3553,7 +3553,7 @@ namespace gcom
          double dmax = min(m_iWidth, m_iHeight);
 
          double dm = dmax / 3;
-         
+
          if(m_minradius > 0.0)
          {
             dm = m_minradius;
@@ -3584,13 +3584,13 @@ namespace gcom
                }
                else
                {
-                  
+
                   dcos = m / dr;
                   dsin = n / dr;
                }
 
                d = dr / dmax;
-               
+
 
                //d = sqrt(d);
 
@@ -3657,17 +3657,17 @@ namespace gcom
                }
                else
                {
-                  
+
                   dcos = m / dr;
                   dsin = n / dr;
                }
 
                d = m_z;
-               
+
 
                //d = sqrt(d);
 
-               //int rnd = 
+               //int rnd =
                // i = x + y * width
                //m_pointa[k].x = dr * dcos * (rand() * 0.5 * d / RAND_MAX + 1.0);
                //m_pointa[k].y = dr * dsin * (rand() * 0.5 * d / RAND_MAX + 1.0);
@@ -3775,10 +3775,10 @@ namespace gcom
              int newy = (int) m_pointa[i].y + my;
              if(newy < 0 || newy >= m_iHeight)
                 continue;
-             
+
              pTargetImage[newx + newy * m_iWidth] =
                   pSrcImage[x + y * m_iWidth];
-       
+
           }
         }
       }
@@ -3812,7 +3812,7 @@ namespace gcom
          Graphics & graphics = main.GetGraphics();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -3852,13 +3852,13 @@ namespace gcom
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
 
-            
+
          pdib3->Fill(0, 0, 0);
-         
+
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
 
          GdiFlush();
-         
+
          /*System.imaging().bitmap_blend(
             pdib4->get_graphics(),
             0, 0, cx1, cy1,
@@ -3937,7 +3937,7 @@ namespace gcom
          Graphics & graphics = main.GetGraphics();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -3975,7 +3975,7 @@ namespace gcom
          }
 
          pdib4->get_graphics()->from(pdib1->size(), pdib3->get_graphics(), SRCCOPY);
-         
+
          System.imaging().bitmap_blend(
             pdib4->get_graphics(),
             null_point(), pdib1->size(),
@@ -4037,7 +4037,7 @@ namespace gcom
          Graphics & graphics = main.GetGraphics();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -4078,11 +4078,11 @@ namespace gcom
          int cy1 = pdib1->height();
 
          pdib3->Fill(0, 0, 0);
-         
+
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
 
          GdiFlush();
-         
+
          /*System.imaging().bitmap_blend(
             pdib4->get_graphics(),
             0, 0, cx1, cy1,
@@ -4153,17 +4153,17 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 ///         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -4210,16 +4210,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -4327,11 +4327,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
 //         BYTE bA = 200;
 
 
@@ -4344,7 +4344,7 @@ namespace gcom
          {
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
-         
+
 //         int c1 = rand() * 3 / RAND_MAX;
 //         int c2 = rand() * 3 / RAND_MAX;
 //         int c4 = rand() * 10 / RAND_MAX + 1;
@@ -4368,7 +4368,7 @@ namespace gcom
          }
          else
          {
-            
+
             //dAngle = -10.111 - dAngleOffset;
             dAngle = -m_dAngleOffset;
          }
@@ -4399,7 +4399,7 @@ namespace gcom
          int marginy = cy1 * 5 / 11;
          int w = marginx * 2;
          pdib1->get_graphics()->MoveTo(marginx, marginy);
-         
+
          int imax = cx1 - marginx;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -4564,12 +4564,12 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
 
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),
@@ -4615,21 +4615,21 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
@@ -4677,16 +4677,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -4794,11 +4794,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
          BYTE bA = 200;
 
 
@@ -4811,7 +4811,7 @@ namespace gcom
          {
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
-         
+
         // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
@@ -4843,7 +4843,7 @@ namespace gcom
          }
          else
          {
-            
+
             //dAngle = -10.111 - dAngleOffset;
             dAngle = -m_dAngleOffset;
          }
@@ -4873,7 +4873,7 @@ namespace gcom
          int margin = 10;
          int w = margin * 2;
          pdib1->get_graphics()->MoveTo(margin, margin);
-         
+
          int imax = cx1 - margin;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -5043,12 +5043,12 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
 
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),
@@ -5095,17 +5095,17 @@ namespace gcom
                pdib1->width() / 2,
                pdib1->height() / 2));
          }
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -5168,7 +5168,7 @@ namespace gcom
             dS = 0.8;
             colorStrong1.set_hls(dH, dL, dS);
          }
-         
+
          ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
          ::ca::pen_sp penWhite(get_app());
@@ -5177,11 +5177,11 @@ namespace gcom
          int margin2 = cy1 / 2;
          int w = cy1 / 3;
 
-         double jmul = (double) cy1 / (cx1 * 2.0); 
+         double jmul = (double) cy1 / (cx1 * 2.0);
 
          double delta = w;
-         
-         
+
+
          int imax = cx1 - margin1;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -5258,7 +5258,7 @@ namespace gcom
 
          if(transitioneffect.m_iVisual == VisualEffectRotateEx6)
          {
-            
+
 
             keeper < bool > keepTransferVoid (&HelperGetMain().GetInterface().m_bTransferVoid, true, false, true);
 
@@ -5289,11 +5289,11 @@ namespace gcom
          }
          else
          {
-            
+
             dAngle = -1.511 - dAngleOffset;
          }
          //pdib2->Rotate034(pdib1, dAngle, 0.95);
-         
+
 
          BLENDFUNCTION bf;
 
@@ -5330,21 +5330,21 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-            
+
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
@@ -5409,16 +5409,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -5526,11 +5526,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
 //         BYTE bA = 200;
 
 
@@ -5543,7 +5543,7 @@ namespace gcom
          {
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
-         
+
         // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
@@ -5558,19 +5558,19 @@ namespace gcom
 
 
 
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+
+
+
+
+
+
+
+
+
+
+
+
+
          /*   m_rndgrowAngleOffsetLatency.Step();
          if(m_rndgrowAngleOffsetLatency.i == 1)
          {
@@ -5589,7 +5589,7 @@ namespace gcom
          }
          else
          {
-            
+
             //dAngle = -10.111 - dAngleOffset;
             dAngle = -m_dAngleOffset;
          }
@@ -5646,8 +5646,8 @@ namespace gcom
          int w = cy1 / 3;
 
          int delta = 5;
-         
-         
+
+
          int imax = cx1 - margin1;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -5833,7 +5833,7 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
@@ -5855,11 +5855,11 @@ namespace gcom
          }
          else
          {
-            
+
             dAngle = -1.511 - dAngleOffset;
          }
          //pdib2->Rotate034(pdib1, dAngle, 0.95);
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),
@@ -5907,17 +5907,17 @@ namespace gcom
          }
 
 
-            
+
          rect rectClient = tool1.rectClient;
          tool1.cx = rectClient.width();
          tool1.cy = rectClient.height();
          class imaging & imaging = System.imaging();
-            
+
 
 //         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-            
+
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-            
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -5963,16 +5963,16 @@ namespace gcom
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
             TrackDirection001(
-               ct1.m_dDirection, 
-               ct1.m_dDirectionAddUp, 
+               ct1.m_dDirection,
+               ct1.m_dDirectionAddUp,
                ct1.m_rndgrowDirectionLatency);
             ct1.m_dCos = ::cos(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_dSin = ::sin(ct1.m_dDirection * M_PI / 180.0);
             ct1.m_ptColorTrack.x += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dCos;
             ct1.m_ptColorTrack.y += abs(ct1.m_rndgrowVelocity.i) * ct1.m_dSin;
             Constraint001(
-               ct1.m_ptColorTrack, 
-               rcTrackBox, 
+               ct1.m_ptColorTrack,
+               rcTrackBox,
                rcTrackBox2,
                ct1.m_dDirection);
             ct1.m_dSize = rand() * 5 / RAND_MAX + 1;
@@ -6080,11 +6080,11 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-            
+
             RGB(rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
-                                 
+
 //         BYTE bA = 200;
 
 
@@ -6097,7 +6097,7 @@ namespace gcom
          {
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
-         
+
 //         int c1 = rand() * 3 / RAND_MAX;
 //         int c2 = rand() * 3 / RAND_MAX;
 //         int c4 = rand() * 10 / RAND_MAX + 1;
@@ -6121,7 +6121,7 @@ namespace gcom
          }
          else
          {
-            
+
             //dAngle = -10.111 - dAngleOffset;
             dAngle = -m_dAngleOffset;
          }
@@ -6152,7 +6152,7 @@ namespace gcom
          int marginy = cy1 * 5 / 11;
          int w = marginx * 2;
          pdib1->get_graphics()->MoveTo(marginx, marginy);
-         
+
          int imax = cx1 - marginx;
          int jmax = cx1 / 2;
          int rmax = jmax * RAND_MAX;
@@ -6317,12 +6317,12 @@ namespace gcom
                   }
                   break;
                }
-               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d); 
+               pdib1->get_graphics()->Rectangle(x1, y1, x1 + d, y1 + d);
             }
 
          }*/
 
-         
+
 
          /*imaging.bitmap_blend(
             pdib1->get_graphics(),

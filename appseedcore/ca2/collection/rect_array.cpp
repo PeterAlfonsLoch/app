@@ -7,9 +7,9 @@ rect_array::~rect_array()
 
 void rect_array::offset(int cx, int cy)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      rect & rect = element_at(i);
+      rect & rect = this->element_at(i);
       rect.left   += cx;
       rect.top    += cy;
       rect.right  += cx;
@@ -20,9 +20,9 @@ void rect_array::offset(int cx, int cy)
 void rect_array::get_box(LPRECT lprect)
 {
    rect rectUnion(0, 0, 0, 0);
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      rectUnion.unite(rectUnion, element_at(i));
+      rectUnion.unite(rectUnion, this->element_at(i));
    }
 
    *lprect = rectUnion;
@@ -31,10 +31,10 @@ void rect_array::get_box(LPRECT lprect)
 
 void rect_array::intersect(LPCRECT lpcrect)
 {
-   for(int i = 0; i < get_size();)
+   for(int i = 0; i < this->get_size();)
    {
-      element_at(i).intersect(element_at(i), lpcrect);
-      if(element_at(i).is_null())
+      this->element_at(i).intersect(this->element_at(i), lpcrect);
+      if(this->element_at(i).is_null())
       {
          remove_at(i);
       }

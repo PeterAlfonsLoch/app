@@ -21,7 +21,7 @@ namespace http
       void InitBody( size_t sz );
 
       /** write body data */
-      void write( const char *buf, size_t sz );
+      void write( const char *buf, ::primitive::memory_size sz );
 
       /** No more writing */
       void CloseBody();

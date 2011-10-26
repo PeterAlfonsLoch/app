@@ -65,7 +65,7 @@ void FileManagerFileListCallback::InitializeActionButton(id id, BaseButtonContro
    }
 }
 
-void FileManagerFileListCallback::OnButtonAction(id i, ::fs::item & item)
+void FileManagerFileListCallback::OnButtonAction(id i, const ::fs::item & item)
 {
    UNREFERENCED_PARAMETER(i);
    UNREFERENCED_PARAMETER(item);
@@ -79,13 +79,13 @@ bool FileManagerFileListCallback::GetMenuItemCallback(id iId)
    return false;
 }
 
-void FileManagerFileListCallback::OnMenuItemAction(id iId, ::fs::item_array & itema)
+void FileManagerFileListCallback::OnMenuItemAction(id iId, const ::fs::item_array & itema)
 {
    UNREFERENCED_PARAMETER(iId);
    UNREFERENCED_PARAMETER(itema);
 }
 
-void FileManagerFileListCallback::GetMenuItemUpdate(id iId, ::fs::item_array & itema, cmd_ui * pcmdui)
+void FileManagerFileListCallback::GetMenuItemUpdate(id iId, const ::fs::item_array & itema, cmd_ui * pcmdui)
 {
    UNREFERENCED_PARAMETER(iId);
    UNREFERENCED_PARAMETER(itema);

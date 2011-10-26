@@ -37,18 +37,18 @@ namespace production
 
 
 
-   void frame::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_frame_window::_001InstallMessageHandling(pinterface);
+      simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
    }
 
    void frame::_001OnCreate(gen::signal_object * pobj)
    {
       pobj->previous();
-      application * papp = dynamic_cast < application * > (get_app());
+//      application * papp = dynamic_cast < application * > (get_app());
 
-      window_frame::FrameSchemaHardCoded005 * pschema = dynamic_cast < window_frame::FrameSchemaHardCoded005 * > (m_wndframework.m_pframeschema);
+      window_frame::FrameSchemaHardCoded005 * pschema = dynamic_cast < window_frame::FrameSchemaHardCoded005 * > (m_workset.m_pframeschema);
       if(pschema != NULL)
       {
          pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleBlueRedPurple);

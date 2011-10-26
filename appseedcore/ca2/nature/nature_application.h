@@ -6,7 +6,7 @@ namespace nature
    class database;
 
    class CLASS_DECL_ca application :
-      virtual public ::icube::application
+      virtual public ::cube8::application
    {
    public:
 
@@ -31,10 +31,6 @@ namespace nature
       void _001OnFileNew();
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-
-      void request(var & varFile, var & varQuery);
-
-
 
    };
 

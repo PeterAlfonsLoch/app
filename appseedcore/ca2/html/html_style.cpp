@@ -71,7 +71,7 @@ namespace html
          if(pstyle == NULL)
          {
             if(pelemental->m_pparent != NULL && 
-               stricmp(pszName, "background-color"))
+               _stricmp(pszName, "background-color"))
             {
                if(pelemental->m_pparent->m_style.get_color(pszName, pszSubClass, pdata, pelemental->m_pparent, cr))
                {
@@ -170,6 +170,29 @@ namespace html
          return pstyle->get_text(pszName, pszSubClass, pdata, pelemental, str);
       }
       str = m_propertyset[pszName];
+      string strEm = str;
+      if(string(pszName).CompareNoCase("font-size") == 0)
+      {
+         if(gen::str::find_awwci("em", str) > 0)
+         {
+            if(pelemental->m_pparent != NULL)
+            {
+               string strParent;
+               if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, strParent))
+               {
+                  str = gen::str::itoa((int)((double) atof(str) * atoi(strParent)));
+               }
+               else
+               {
+                  str = gen::str::itoa((int)((double) atof(str) * 12));
+               }
+            }
+            else
+            {
+               str = gen::str::itoa((int)((double) atof(str) * 12));
+            }
+         }
+      }
       return true;
    }
 

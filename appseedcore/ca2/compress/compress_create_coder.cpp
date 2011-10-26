@@ -90,6 +90,7 @@ namespace compress
       const string &name,
       method_id &methodId, uint32 &numInStreams, uint32 &numOutStreams)
    {
+      UNREFERENCED_PARAMETER(externalCodecs);
       uint32 i;
       for (i = 0; i < g_NumCodecs; i++)
       {
@@ -123,6 +124,7 @@ namespace compress
       ::compress::codecs_info_interface * /*codecsInfo*/, const base_array<codec_info_ex> *externalCodecs,
       method_id methodId, string &name)
    {
+      UNREFERENCED_PARAMETER(externalCodecs);
       uint32 i;
       for (i = 0; i < g_NumCodecs; i++)
       {
@@ -265,7 +267,7 @@ namespace compress
       method_id methodId,
       ::compress::coder_interface * &coder, bool encode)
    {
-      ::compress::filter_interface * filter = NULL;
+//      ::compress::filter_interface * filter = NULL;
       ::compress::coder2_interface * coder2 = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,

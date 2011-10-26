@@ -48,7 +48,7 @@ namespace _template
    #endif
 
    // COM Sync Classes
-   class CComCriticalSection
+   /*class CComCriticalSection
    {
    public:
       CComCriticalSection() throw()
@@ -58,12 +58,12 @@ namespace _template
       ~CComCriticalSection()
       {
       }
-      HRESULT Lock() throw()
+      HRESULT lock() throw()
       {
          EnterCriticalSection(&m_sec);
          return S_OK;
       }
-      HRESULT Unlock() throw()
+      HRESULT unlock() throw()
       {
          LeaveCriticalSection(&m_sec);
          return S_OK;
@@ -148,7 +148,7 @@ namespace _template
          return CComCriticalSection::Term();
       }
 
-      HRESULT Lock()
+      HRESULT lock()
       {
          // CComSafeDeleteCriticalSection::Init or CComAutoDeleteCriticalSection::Init
          // not called or failed.
@@ -156,7 +156,7 @@ namespace _template
          // CComAutoDeleteCriticalSection. It has to be initialized
          // by calling CComObjectRootEx::_AtlInitialConstruct
          ATLASSUME(m_bInitialized);
-         return CComCriticalSection::Lock();
+         return CComCriticalSection::lock();
       }
 
    private:
@@ -173,129 +173,19 @@ namespace _template
    class CComFakeCriticalSection
    {
    public:
-      HRESULT Lock() throw() { return S_OK; }
-      HRESULT Unlock() throw() { return S_OK; }
+      HRESULT lock() throw() { return S_OK; }
+      HRESULT unlock() throw() { return S_OK; }
       HRESULT Init() throw() { return S_OK; }
       HRESULT Term() throw() { return S_OK; }
    };
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // string resource helpers
-
-   #pragma warning(push)
-   #pragma warning(disable: 4200)
-      struct ATLSTRINGRESOURCEIMAGE
-      {
-         WORD nLength;
-         WCHAR achString[];
-      };
-   #pragma warning(pop)   // C4200
-
-   inline const ATLSTRINGRESOURCEIMAGE* _AtlGetStringResourceImage( HINSTANCE hInstance, HRSRC hResource, UINT id ) throw()
-   {
-      const ATLSTRINGRESOURCEIMAGE* pImage;
-      const ATLSTRINGRESOURCEIMAGE* pImageEnd;
-      ULONG nResourceSize;
-      HGLOBAL hGlobal;
-      UINT iIndex;
-
-      hGlobal = ::LoadResource( hInstance, hResource );
-      if( hGlobal == NULL )
-      {
-         return( NULL );
-      }
-
-      pImage = (const ATLSTRINGRESOURCEIMAGE*)::LockResource( hGlobal );
-      if( pImage == NULL )
-      {
-         return( NULL );
-      }
-
-      nResourceSize = ::SizeofResource( hInstance, hResource );
-      pImageEnd = (const ATLSTRINGRESOURCEIMAGE*)(LPBYTE( pImage )+nResourceSize);
-      iIndex = id&0x000f;
-
-      while( (iIndex > 0) && (pImage < pImageEnd) )
-      {
-         pImage = (const ATLSTRINGRESOURCEIMAGE*)(LPBYTE( pImage )+(sizeof( ATLSTRINGRESOURCEIMAGE )+(pImage->nLength*sizeof( WCHAR ))));
-         iIndex--;
-      }
-      if( pImage >= pImageEnd )
-      {
-         return( NULL );
-      }
-      if( pImage->nLength == 0 )
-      {
-         return( NULL );
-      }
-
-      return( pImage );
-   }
-
-   inline const ATLSTRINGRESOURCEIMAGE* AtlGetStringResourceImage( HINSTANCE hInstance, UINT id ) throw()
-   {
-      HRSRC hResource;
-
-      hResource = ::FindResource( hInstance, MAKEINTRESOURCE( ((id>>4)+1) ), RT_STRING );
-      if( hResource == NULL )
-      {
-         return( NULL );
-      }
-
-      return _AtlGetStringResourceImage( hInstance, hResource, id );
-   }
-
-   inline const ATLSTRINGRESOURCEIMAGE* AtlGetStringResourceImage( HINSTANCE hInstance, UINT id, WORD wLanguage ) throw()
-   {
-      HRSRC hResource;
-
-      hResource = ::FindResourceEx( hInstance, RT_STRING, MAKEINTRESOURCE( ((id>>4)+1) ), wLanguage );
-      if( hResource == NULL )
-      {
-         return( NULL );
-      }
-
-      return _AtlGetStringResourceImage( hInstance, hResource, id );
-   }
+*/
 
 
 
 
-   /*
-   Needed by both atlcomcli and atlsafe, so needs to be in here
-   */
-   inline HRESULT AtlSafeArrayGetActualVartype
-   (
-       SAFEARRAY *psaArray,
-       VARTYPE *pvtType
-   )
-   {
-       HRESULT hrSystem=::SafeArrayGetVartype(psaArray, pvtType);
 
-       if(FAILED(hrSystem))
-       {
-           return hrSystem;
-       }
 
-       /*
-       When Windows has a SAFEARRAY of type VT_DISPATCH with FADF_HAVEIID,
-       it returns VT_UNKNOWN instead of VT_DISPATCH. We patch the value to be correct
-       */
-       if(pvtType && *pvtType==VT_UNKNOWN)
-       {
-           if(psaArray && ((psaArray->fFeatures & FADF_HAVEIID)!=0))
-           {
-               if(psaArray->fFeatures & FADF_DISPATCH)
-               {
-                   *pvtType=VT_DISPATCH;
-               }
-           }
-       }
-
-       return hrSystem;
-   }
-   template <typename _CharType>
+   /*template <typename _CharType>
    inline _CharType* AtlCharNext(const _CharType* p) throw()
    {
       ATLASSUME(p != NULL);   // Too expensive to check separately here
@@ -377,6 +267,6 @@ namespace _template
             systimeSrc.wSecond == sysTime.wSecond);
 
       return ok;
-   }
+   }*/
 
 }   // namespace _template

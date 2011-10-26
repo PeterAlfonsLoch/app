@@ -11,7 +11,7 @@ im_post::im_post(db_server * pserver) :
    pds->query("select * from sqlite_master where type like 'table' and name like 'im_post'");
    if (pds->num_rows()==0)
    {
-      if(!pds->exec("create table im_post (sender integer, recipient integer, sent integer, send_time text, `index` integer, message text, PRIMARY KEY (sender, send_time, `index`))"))
+      if(!pds->exec("create table im_post (sender integer, recipient integer, `name` text, sent integer, send_time text, `index` integer, message text, PRIMARY KEY (sender, send_time, `index`))"))
       {
          pdb->rollback_transaction();
          return;
@@ -29,7 +29,7 @@ im_post::~im_post()
 
 bool im_post::write(var rec)
 {
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    ::sqlite::base * pdb = db()->GetImplDatabase();
 
@@ -40,15 +40,16 @@ bool im_post::write(var rec)
    
    string strSql;
    strSql.Format(
-      "insert into im_post (`sender`, `recipient`, `sent`, `send_time`, `index`, `message`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
+      "insert into im_post (`sender`, `recipient`, `name`, `sent`, `send_time`, `index`, `message`) VALUES ('%s', '%s','%s', '%s', '%s', '%s', '%s');",
       rec["sender"].get_string(),
       rec["recipient"].get_string(),
+      rec["name"].get_string(),
       rec["sent"].get_string(),
       rec["send_time"].get_string(),
       rec["index"].get_string(),
       strMessage);
 
-   slDatabase.Lock();
+   slDatabase.lock();
    pdb->start_transaction();
    if(!m_pdataset->exec(strSql))
    {
@@ -61,9 +62,9 @@ bool im_post::write(var rec)
 
 var im_post::get_since(var rec)
 {
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
-   ::sqlite::base * pdb = db()->GetImplDatabase();
+//   ::sqlite::base * pdb = db()->GetImplDatabase();
 
    string strSql;
    strSql.Format(
@@ -76,7 +77,7 @@ var im_post::get_since(var rec)
       rec["send_time"].get_string(),
       rec["index"].get_string());
 
-   slDatabase.Lock();
+   slDatabase.lock();
    try
    {
       m_pdataset->query(strSql);
@@ -106,7 +107,7 @@ var im_post::last(var user1, var user2)
    if(m_pdataserver == NULL)
       return false;
 
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strSql;
    strSql.Format(
@@ -117,7 +118,7 @@ var im_post::last(var user1, var user2)
       user1.get_string());
 
    
-   slDatabase.Lock();
+   slDatabase.lock();
    try
    {
       m_pdataset->query(strSql);

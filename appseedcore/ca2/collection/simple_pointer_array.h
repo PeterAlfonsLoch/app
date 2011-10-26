@@ -1,6 +1,6 @@
 #pragma once
 
-class simple_pointer_array : 
+class simple_pointer_array :
    virtual public base_object
 {
 public:
@@ -22,7 +22,7 @@ public:
 	void* get_at(int nIndex) const;
 	void set_at(int nIndex, void* newElement);
 
-	void*& element_at(int nIndex);
+	void*& this->element_at(int nIndex);
 
 	// Direct Access to the element data (may return NULL)
 	const void** get_data() const;

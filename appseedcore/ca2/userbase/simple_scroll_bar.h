@@ -1,13 +1,11 @@
 #pragma once
 
 
-
 class CLASS_DECL_ca simple_scroll_bar :
-   virtual public ::user::interaction, 
    virtual public ::user::scroll_bar
 {
 public:
-   simple_scroll_bar(::ca::application * papp);
+
 
    ::ca::brush_sp       m_brushNull;
    ::ca::pen_sp         m_penDraw;
@@ -18,17 +16,23 @@ public:
    ::ca::rgn_sp         m_rgnB; // região da segunda seta
    UINT                 m_uiTimer;
 
-   virtual void pre_translate_message(gen::signal_object * pobj);
-   virtual BOOL create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, create_context* pContext = NULL);
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
 
-   virtual void OnDrawInterfaceDraw(::ca::graphics * pdc);
+   simple_scroll_bar(::ca::application * papp);
+   virtual ~simple_scroll_bar();
+
+
+
+   virtual void pre_translate_message(gen::signal_object * pobj);
+   using ::user::scroll_bar::create;
+   virtual BOOL create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+
    virtual void _001OnDraw(::ca::graphics * pdc);
 
    void UpdateDrawingObjects();
 
-   
-   
+
+
    int ScrollLineA();
    int ScrollLineB();
    int ScrollPageB();
@@ -44,8 +48,7 @@ public:
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true);
 
    BOOL create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
-   virtual ~simple_scroll_bar();
-   
+
    int SetTrackingPos(point point);
    int GetTrackSize(size & size);
    BOOL GetTrackClientRect(LPRECT lpRect);
@@ -58,6 +61,10 @@ public:
    DECL_GEN_SIGNAL(_001OnTimer)
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnShowWindow)
-   afx_msg LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
+   DECL_GEN_SIGNAL(_001OnDestroy)
+   LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
+
+
 };
+
 

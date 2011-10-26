@@ -1,8 +1,10 @@
 #pragma once
 
-#include "simpledb/simpledb.h"
+
+#include "ca2/simpledb/simpledb.h"
 #include "window_frame/window_frame.h"
 #include "user/user_document_template_interface.h"
+
 
 struct AFX_SIZEPARENTPARAMS;
 
@@ -79,7 +81,13 @@ namespace userbase
 #include "userbase_step_slider.h"
 #include "userbase_elastic_slider.h"
 
+
+// userbase simple
 #include "userbase_simple.h"
+
+
+// userbase after simple
+#include "userbase_main_frame.h"
 
 #include "userbase_tree_window.h"
 

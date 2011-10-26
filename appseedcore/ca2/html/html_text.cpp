@@ -27,7 +27,7 @@ namespace html
 
       void text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
-         
+
          ::ca::data::writing writing(pdata);
 
          elemental::implement_phase1(pdata, pelemental);
@@ -52,13 +52,13 @@ namespace html
                m_strLink = pelemental->m_propertyset["href"];
             }
          }
-         if(pelemental->m_elementalptra.get_size() > 0
-         || pelemental->m_propertyset["PropertyBody"].is_empty())
-            return;
          if(!IsWindow() && pdata->m_bEdit)
          {
             create(pdata->m_pform, 1004);
          }
+         if(pelemental->m_elementalptra.get_size() > 0
+         || pelemental->m_propertyset["PropertyBody"].is_empty())
+            return;
          ::ca::graphics * pdc = pdata->m_pdc;
          if(pdc == NULL)
             return;
@@ -68,6 +68,13 @@ namespace html
             pdc->SelectObject(pfont->m_font);
          }
          string str = m_pelemental->m_propertyset["PropertyBody"];
+
+         if(IsWindow() && pdata->m_bEdit)
+         {
+            _001SetText(str);
+         }
+
+
          size size = pdc->GetTextExtent(str);
          m_cxMax = size.cx;
 
@@ -143,7 +150,7 @@ namespace html
          elemental::layout_phase3(pdata);
          if(strTag.CompareNoCase("br") == 0)
          {
-            int iIndex = -1;
+//            int iIndex = -1;
 
             ::ca::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
@@ -168,7 +175,7 @@ namespace html
          }
          else
          {
-            int iIndex = -1;
+//            int iIndex = -1;
 
             ::ca::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
@@ -221,7 +228,7 @@ namespace html
                   {
                      m_straLines.add("");
                      sizeText.cx = 0;
-                  } 
+                  }
                   else if(iLastSpace > 0)
                   {
                      sizeText = pdc->GetTextExtent(strLine.Left(iLastSpace));
@@ -238,16 +245,16 @@ namespace html
                   x = m_ptBound.x;
                }
             }
-            if(pdata->m_bEdit && m_straLines.get_size() == 0)
-            {
-               m_straLines.add("");
-               m_sizea.add(size(0, 0));
-            }
             if(strLine.get_length() > 0)
             {
                sizeText = pdc->GetTextExtent(strLine);
                m_straLines.add(strLine);
                m_sizea.add(sizeText);
+            }
+            if(pdata->m_bEdit && m_straLines.get_size() == 0)
+            {
+               m_straLines.add("");
+               m_sizea.add(size(0, 0));
             }
             m_size.cx = 0;
             m_size.cy = 0;
@@ -432,6 +439,7 @@ namespace html
          int top = y + cy;
          if(pdata->m_bEdit)
          {
+            int y = top;
             stringa stra;
             int i1 = iSelStart - lim;
             int i2 = iSelEnd - lim;
@@ -500,7 +508,7 @@ namespace html
             return m_size.cy;
          }
       }
-      
+
       int text::get_last_line_height()
       {
          if(m_sizea.get_size() > 0)
@@ -529,7 +537,7 @@ namespace html
       {
          if(has_link())
             cr =  RGB(127, 127, 255);
-         else 
+         else
             cr = 0;
          return true;
       }
@@ -557,8 +565,9 @@ namespace html
          }
       }
 
-      int text::hit_test(point pt)
+      int text::hit_test(data * pdoc, point pt)
       {
+         UNREFERENCED_PARAMETER(pdoc);
          int x = get_x();
 //         int y = get_y();
         int cy = 0;
@@ -649,7 +658,7 @@ namespace html
          SCAST_PTR(::user::win::message::mouse, pmouse, phtml->m_psignal);
          point pt = pmouse->m_pt;
          phtml->m_pui->ScreenToClient(&pt);
-         bool bHover = hit_test(pt);
+         bool bHover = hit_test(phtml->m_pdata, pt) != 0;
          if(bHover != m_bHover)
          {
             m_bHover = bHover;
@@ -682,14 +691,14 @@ namespace html
          rect.top = m_pt.y;
          rect.right = rect.left + m_size.cx;
          rect.bottom = rect.top + m_size.cy;
-         
+
          pdc->SelectObject(m_pelemental->m_pdata->get_font(m_pelemental)->m_font);
          int x = get_x();
          int y = get_y();
          int cy = 0;
          if(py < y)
             return 0;
-         int iFind = -1;
+         int iFind = 0;
          int iLen = 0;
          for(int i = 0; i < m_straLines.get_size(); i++)
          {
@@ -697,7 +706,7 @@ namespace html
             LPCTSTR lpszStart = str;
             LPCTSTR lpszEnd = lpszStart;
             int cur_x = i == 0 ? x : m_ptBound.x;
-            int cur_y = y + cy;
+//            int cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy))
             {
                class size size(0, 0);
@@ -712,6 +721,7 @@ namespace html
                   lpszEnd = gen::str::utf8_inc(lpszEnd);
                   iChar++;
                }
+               iFind = iChar;
             }
             else
             {
@@ -719,16 +729,16 @@ namespace html
             }
             cy += m_sizea[i].cy;
          }
-         return iFind;
+         return iFind + iLen;
       }
 
       void text::_001OnGetText()
       {
-         edit_plain_text::_001OnGetText();
       }
 
       void text::_001OnDraw(::ca::graphics * pgraphics)
       {
+         UNREFERENCED_PARAMETER(pgraphics);
       }
 
       void text::_001OnAfterChangeText()

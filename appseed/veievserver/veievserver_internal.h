@@ -1,8 +1,8 @@
 #pragma once
 
-#include "win/win.h"
+#include "os/os/os.h"
 #include <iostream>
 
 #include "service.h"
 
-#pragma comment(lib, "win.lib")
+#pragma comment(lib, "os.lib")

@@ -1,21 +1,30 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 
 namespace video
 {
 
    player::player(::ca::application * papp) :
       ca(papp),
+      m_diba(papp),
       ::radix::thread(papp),
-      m_decoderset(papp), 
+      m_decoderset(papp),
       m_decodersetex1(papp),
       m_play(papp),
-      m_decode(papp)
+      m_decode(papp),
+      ::audio::WavePlayerInterface(papp)
    {
       m_play.m_pplayer     = this;
       m_decode.m_pplayer   = this;
       m_pdecoder           = NULL;
       m_hwndCallback       = NULL;
       m_estate             = state_initial;
+      m_pmediaplaydocument = NULL;
+      m_iLastDib           = -1;
+      m_diba.set_size(84);
+      m_ptsa.set_size(m_diba.get_size());
+      m_scaleda.set_size(m_diba.get_size());
+      m_iaFrame.set_size(m_diba.get_size());
+      m_iPlayDib           = 0;
    }
 
    player::~player()
@@ -38,21 +47,103 @@ namespace video
 
    void player::_001OnDraw(::ca::graphics * pdc)
    {
-      CSingleLock sl(&m_mutexBuffer, TRUE);
-      ::ca::dib & dib = m_pdecoder->m_diba[m_pdecoder->m_iPlayDib];
-      dib.to(pdc, null_point(), dib.size());
+      
+      uint64_t pts = get_pts();
+
+//      int iAttempt = 0;
+
+      int iDibFound = m_iPlayDib;
+      bool bFound = false;
+
+      uint64_t ptsMin = (uint64_t) -1;
+
+      for(int iDib = 0; iDib < m_diba.get_size(); iDib++)
+      {
+         uint64_t    ptsFrame    = m_ptsa    [iDib];
+         bool        bScaled     = m_scaleda [iDib];
+         if(bScaled && ptsFrame != (uint64_t) -1 && ptsFrame < ptsMin && ptsFrame >= pts)
+         {
+            ptsMin = ptsFrame;
+            iDibFound = iDib;
+            bFound = true;
+         }
+      }
+
+      if(bFound && !m_pdecoder->m_bDraw)
+      {
+         m_pdecoder->m_bDraw = true;
+         m_pdecoder->m_dwStartTime = ::GetTickCount();
+      }
+
+      m_iPlayDib = iDibFound;
+
+      
+      ::ca::dib * pdib =  m_pdecoder->decoder_get_frame(m_iPlayDib);
+      if(pdib != NULL)
+      {
+         pdib->to(pdc, m_ptView, pdib->size());
+      }
+
+      if(!bFound && m_pdecoder->m_bEmpty && !m_pdecoder->m_bDecoding && !m_pdecoder->m_bScaling)
+      {
+         pdc->SetBkMode(OPAQUE);
+         pdc->SetBkColor(RGB(0, 0, 0));
+         pdc->SetTextColor(RGB(215, 255, 220));
+         pdc->TextOut(100, 100, unitext("To be Continued... つづく"));
+      }
+
+   }
+
+
+   int player::get_free_frame()
+   {
+
+      uint64_t ptsMin = (uint64_t) -1;
+
+      int iDibFound = -1;
+
+      for(int iDib = 0; iDib < m_diba.get_size(); iDib++)
+      {
+         if(m_ptsa[iDib] < ptsMin)
+         {
+            ptsMin = m_ptsa[iDib];
+            iDibFound = iDib;
+         }
+         else if(m_ptsa[iDib] == (uint64_t) -1)
+         {
+            ptsMin = (uint64_t) -1;
+            iDibFound = iDib;
+            break;
+         }
+      }
+
+      if(ptsMin < get_pts() || ptsMin == (uint64_t) -1)
+      {
+         if(iDibFound >= 0)
+         {
+            m_scaleda[iDibFound] = false;
+         }
+         return iDibFound;
+      }
+
+      return -1;
+
    }
 
 
 
    bool player::step()
    {
-      CSingleLock sl(&m_mutexBuffer, TRUE);
+      if(m_iPlayDib == m_iLastDib)
+      {
+         return false;
+      }
       if(!m_pdecoder->step())
       {
          m_bPlay = false;
          return false;
       }
+      Sleep(23);
       return true;
    }
 
@@ -86,16 +177,16 @@ namespace video
 
    int player::decode_thread::run()
    {
-      while(m_pplayer->m_bPlay && m_pplayer->m_pdecoder->m_iLastDib < 0)
+/*      while(m_pplayer->m_bPlay && m_pplayer->m_pdecoder->m_iLastDib < 0)
       {
          while(m_pplayer->decode() && m_pplayer->m_bPlay);
          Sleep(10);
-      }
+      }*/
       return 0;
    }
 
 
-   void player::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void player::install_message_handling(::user::win::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(message_command, pinterface, this, &player::OnCommandMessage);
    }
@@ -106,6 +197,7 @@ namespace video
       if(command.GetCommand() == command_open_file)
       {
          m_pdecoder = m_decodersetex1.GetNewDecoder(NULL, command.GetOpenFile());
+         m_pdecoder->m_pplayer = this;
          m_iOutBufferSampleCount =  48 * 1024;
       }
       else
@@ -128,6 +220,9 @@ namespace video
          m_pdecoder = pplugin->NewDecoder();
          if(m_pdecoder != NULL)
          {
+            
+            m_pdecoder->m_pplayer = this;
+
             if(command.GetCommand() == command_open_rtp_file)
             {
                if(m_pdecoder->DecoderSetSeekable(false))
@@ -190,7 +285,7 @@ namespace video
 
    int player::exit_instance()
    {
-   
+
       return thread::exit_instance();
    }
 
@@ -224,7 +319,7 @@ namespace video
    {
       SCAST_PTR(::user::win::message::base, pbase, pobj);
       player_command * pcommand = (player_command *) pbase->m_lparam;
-      CommandMessageProcedure(*pcommand);      
+      CommandMessageProcedure(*pcommand);
       if(pcommand->m_pbResult != NULL)
       {
          *pcommand->m_pbResult = pcommand->m_bResult;
@@ -235,7 +330,7 @@ namespace video
    bool player::CommandMessageProcedure(player_command &command)
    {
    //   bool bSetEvents = true;
-      command.m_bResult = true;  
+      command.m_bResult = true;
       e_command ecommand = command.GetCommand();
       switch(ecommand)
       {
@@ -287,6 +382,54 @@ namespace video
                {
                   OnEvent(EventOpenDevice);
                   m_pdecoder->DecoderSeekBegin();
+
+                  m_bPlay = true;
+
+                  m_iLastDib = -1;
+
+                  if(m_pdecoder->DecoderGetChannelCount() > 0)
+                  {
+
+                     m_paudiodecoder = dynamic_cast < ::audio_decode::decoder * > (m_pdecoder);
+
+                     if(m_paudiodecoder != NULL)
+                     {
+                        m_paudiodecoder->DecoderSetReadBlockSize(1024 * 512);
+
+                        audWavePlayerCommand command;
+                     
+                        command.OpenDecoder(m_paudiodecoder);
+
+                        GetWavePlayer()->ExecuteCommand(command);
+
+                     
+
+
+                        synch_lock lock(m_paudiodecoder);
+                        m_paudiodecoder->m_iaLostPosition.remove_all();
+                        m_paudiodecoder->m_iaLostCount.remove_all();
+                        m_paudiodecoder->m_iRead = 0;
+                        m_paudiodecoder->m_iReadExpanded = 0;
+                        lock.unlock();
+
+                        m_paudiodecoder->Begin();
+
+                        imedia::position position;
+
+                        command.Play(position);
+
+                        GetWavePlayer()->ExecuteCommand(command);
+
+                     }
+                     else if(m_pmediaplaydocument != NULL)
+                     {
+                        var varFile;
+                        varFile["file"] = &m_pdecoder->m_transferfileAudio;
+                        varFile["url"] = "untitled.mp3";
+                        m_pmediaplaydocument->::mediaplay::document::on_open_document(varFile);
+                     }
+                  }
+
                   OnEvent(EventPlay);
                   m_play.Begin();
                   m_decode.Begin();
@@ -301,7 +444,26 @@ namespace video
          break;
       case command_execute_stop:
          {
-            FadeOutAndStop();
+            if(m_pdecoder == NULL)
+            {
+               m_eventStopped.SetEvent();
+               command.m_bResult = true;
+               break;
+            }
+
+            if(m_pdecoder->DecoderGetChannelCount() > 0)
+            {
+               if(m_paudiodecoder != NULL)
+               {
+                  GetWavePlayer()->FadeOutAndStop();
+
+                  GetWavePlayer()->m_pwaveout->m_eventStopped.wait(seconds(60));
+               }
+
+            }
+
+            m_pdecoder->m_bStop = true;
+            
          }
          break;
       case command_execute_pause:
@@ -335,7 +497,7 @@ namespace video
    }
 
 
-   void player::AttachEndEvent(CEvent * pevent)
+   void player::AttachEndEvent(event * pevent)
    {
       UNREFERENCED_PARAMETER(pevent);
    }
@@ -511,7 +673,7 @@ namespace video
       {
          m_eventStopped.ResetEvent();
          OnEvent(EventStop);
-         m_eventStopped.Lock(10000);
+         m_eventStopped.wait(seconds(10));
          m_pdecoder->DecoderSeekBegin();
       }
    }
@@ -524,8 +686,8 @@ namespace video
 
       while(true)
       {
-         pplayer->m_evOutBufferDone.Lock();
-         pplayer->m_evPreBufferDone.Lock();
+         pplayer->m_evOutBufferDone.lock();
+         pplayer->m_evPreBufferDone.lock();
          pplayer->PostThreadMessage(MessageKickBufferOut, 0, 0);
       }
 
@@ -556,12 +718,12 @@ namespace video
       pfadeout->SetFinalScale(0, (short) pfadeout->m_iLength);
       pfadeout->Initialize();
       m_pwaveout->m_pprebuffer->m_pstreameffectOut = pfadeout;
-      //CSingleLock sl(& m_pwaveout->m_csPreBuffer, TRUE);
+      //single_lock sl(& m_pwaveout->m_csPreBuffer, TRUE);
       m_pwaveout->m_pprebuffer->ClearBuffer();*/
    }
 
    void player::FillTitleInfo(
-      stringa &wstraFormat, 
+      stringa &wstraFormat,
       string2a & wstr2aTitle)
    {
       if(m_pdecoder == NULL)
@@ -593,7 +755,7 @@ namespace video
       {
          strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         wstraFormat.add(L"Album: %0");
+         wstraFormat.add("Album: %0");
          wstr2aTitle.add_new();
          wstr2aTitle[wstr2aTitle.get_upper_bound()].add(wstrAttr);
       }
@@ -602,7 +764,7 @@ namespace video
       {
          strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         wstraFormat.add(L"Composer: %0");
+         wstraFormat.add("Composer: %0");
          wstr2aTitle.add_new();
          wstr2aTitle[wstr2aTitle.get_upper_bound()].add(wstrAttr);
       }
@@ -611,7 +773,7 @@ namespace video
       {
          strAttr.ReleaseBuffer();
          wstrAttr = strAttr;
-         wstraFormat.add(L"Year: %0");
+         wstraFormat.add("Year: %0");
          wstr2aTitle.add_new();
          wstr2aTitle[wstr2aTitle.get_upper_bound()].add(wstrAttr);
       }
@@ -619,12 +781,46 @@ namespace video
 
 
 
+   uint64_t player::get_pts()
+   {
+      if(GetWavePlayer()->IsPlaying())
+      {
+         return GetWavePlayer()->GetWaveOut()->GetPositionMillisForSynch();
+      }
+      else if(m_bPlay && m_pdecoder->m_bDraw)
+      {
+         if((UINT) m_pdecoder->m_iFrameDelayTolerance > (::GetTickCount() - m_pdecoder->m_dwStartTime))
+            return 0;
+         else
+            return ::GetTickCount() - m_pdecoder->m_dwStartTime - m_pdecoder->m_iFrameDelayTolerance;
+      }
+      else
+      {
+         return 0;
+      }
+   }
+
+   void player::layout()
+   {
+
+      if(m_sizeVideo.area() <= 0)
+         return;
+
+      double dx = (double) m_rectClient.width()  / (double) m_sizeVideo.cx;
+      double dy = (double) m_rectClient.height() / (double) m_sizeVideo.cy;
+
+      double d = min(dx, dy);
+
+      m_sizeView.cx = (long) (d * m_sizeVideo.cx);
+      m_sizeView.cy = (long) (d * m_sizeVideo.cy);
+
+      for(int i = 0; i < m_scaleda.get_size(); i++)
+      {
+         m_scaleda[i] = false;
+      }
 
 
-
-
-
-
+   }
 
 
 } // namespace verisimplevideo

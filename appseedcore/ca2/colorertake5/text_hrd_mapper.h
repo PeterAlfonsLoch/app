@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace colorertake5
 {
+
 
    /** HRD files reader.
    HRD Files format contains mappings of HRC syntax regions into
@@ -16,13 +18,16 @@ namespace colorertake5
       virtual public ::radix::object
    {
    public:
+   
+      
       TextHRDMapper(::ca::application * papp);
       ~TextHRDMapper();
+
 
       /**
       * Loads region defines from @c is input_source
       */
-      void  loadRegionMappings(ex1::input_stream & is);
+      void  loadRegionMappings(ex1::byte_input_stream & istream);
 
       /**
       * Saves all loaded region defines into @c writer.
@@ -30,7 +35,7 @@ namespace colorertake5
       * to input one, because there could be multiple input
       * documents.
       */
-      void  saveRegionMappings(ex1::output_stream & writer) const;
+      void  saveRegionMappings(ex1::byte_output_stream & ostream) const;
 
       /**
       * Changes specified region definition to @c rdnew
@@ -38,9 +43,13 @@ namespace colorertake5
       * @param rdnew  New region definition to replace old one
       */
       void  setRegionDefine(const char * region, RegionDefine *rdnew);
+
+
    };
 
+
 } // namespace colorertake5
+
 
 /* ***** BEGIN LICENSE BLOCK *****
 * Version: MPL 1.1/GPL 2.0/LGPL 2.1

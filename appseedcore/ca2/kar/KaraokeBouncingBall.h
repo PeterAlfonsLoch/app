@@ -53,10 +53,11 @@ namespace kar
       LyricViewLines *     m_pviewlines;
       double               m_dCurrentNoteLeft;
       double               m_dCurrentNoteRight;
-      int                  m_iDelay; // in milliseconds
+      imedia::time         m_iDelay; // in milliseconds
       HICON                m_hiconNormal;
       HICON                m_hiconPressed;
       ::visual::dib_sp     m_dibBall;
+      ::visual::dib_sp     m_dibBallShadow;
     
    public:
       void SetBallSize(SIZE size);
@@ -98,7 +99,8 @@ namespace kar
          ::ca::graphics *      pdc,
          bool                  bDraw,
          LyricViewLine *      lpline,
-         LyricEventsV2 *      pEvents);
+         LyricEventsV2 *      pEvents,
+         bool bShadow);
 
    };
 

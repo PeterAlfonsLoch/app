@@ -21,8 +21,8 @@ namespace ex1
       virtual ~tree_data();
 
 
-      virtual bool initialize();
-      virtual bool finalize();
+      virtual bool initialize_data();
+      virtual bool finalize_data();
 
 
       bool contains(tree_item_data * pitem);

@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 
-veiev_post::veiev_post(db_server * pserver) : 
+veiev_post::veiev_post(db_server * pserver) :
    db_set(pserver, "veiev_post")
 {
    ::sqlite::base * pdb = db()->GetImplDatabase();
    ::sqlite::set *  pds = (::sqlite::set *) pdb->CreateDataset();
-   
+
    //create string Table if necessary
    pdb->start_transaction();
    pds->query("select * from sqlite_master where type like 'table' and name like 'veiev_post'");
@@ -29,14 +29,14 @@ veiev_post::~veiev_post()
 
 bool veiev_post::write(var rec)
 {
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    ::sqlite::base * pdb = db()->GetImplDatabase();
 
    string strMessage;
    strMessage = rec["message"];
    strMessage.replace("'", "''");
-   
+
    string strSql;
    strSql.Format(
       "insert into veiev_post (`sender`, `recipient`, `sent`, `datetime`, `index`, `message`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
@@ -47,7 +47,7 @@ bool veiev_post::write(var rec)
       rec["index"].get_string(),
       strMessage);
 
-   slDatabase.Lock();
+   slDatabase.lock();
    pdb->start_transaction();
    if(!m_pdataset->exec(strSql))
    {
@@ -63,13 +63,13 @@ var veiev_post::last()
    if(m_pdataserver == NULL)
       return false;
 
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strSql;
    strSql = "select * FROM veiev_post ORDER BY `datetime`DESC, `index` DESC LIMIT 1";
 
-   
-   slDatabase.Lock();
+
+   slDatabase.lock();
    try
    {
       m_pdataset->query(strSql);
@@ -106,11 +106,11 @@ var veiev_post::get_page(int iPage, int iMessageCountPerPage)
    if(m_pdataserver == NULL)
       return false;
 
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    class var var;
 
-   ::sqlite::base * pdb = db()->GetImplDatabase();
+//   ::sqlite::base * pdb = db()->GetImplDatabase();
 
    string strSql;
    strSql.Format(
@@ -118,7 +118,7 @@ var veiev_post::get_page(int iPage, int iMessageCountPerPage)
       iPage * iMessageCountPerPage,
       iMessageCountPerPage);
 
-   slDatabase.Lock();
+   slDatabase.lock();
    try
    {
       m_pdataset->query(strSql);
@@ -148,16 +148,16 @@ __int64 veiev_post::get_count()
    if(m_pdataserver == NULL)
       return 0;
 
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    class var var;
 
-   ::sqlite::base * pdb = db()->GetImplDatabase();
+//   ::sqlite::base * pdb = db()->GetImplDatabase();
 
    string strSql;
    strSql = "select COUNT(*) as count FROM veiev_post";
 
-   slDatabase.Lock();
+   slDatabase.lock();
    try
    {
       m_pdataset->query(strSql);

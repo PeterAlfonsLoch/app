@@ -88,9 +88,9 @@ namespace n7z
 
    HRESULT CDecoder::Decode(
       ::compress::codecs_info_interface * codecsInfo, const base_array<::compress::codec_info_ex> * externalCodecs,
-      ::ex1::input_stream *inStream,
-      uint64 startPos,
-      const uint64 *packSizes,
+      ::ex1::byte_input_stream *inStream,
+      file_position startPos,
+      const file_size * packSizes,
       const CFolder &folderInfo,
       ::ex1::writer *outStream,
       ::compress::progress_info_interface *compressProgress,
@@ -111,7 +111,7 @@ namespace n7z
       {
          ::ex1::locked_reader *lockedStreamImpSpec = new ::ex1::locked_reader;
          ::ca::smart_pointer<::ex1::reader> lockedStreamImp = lockedStreamImpSpec;
-         lockedStreamImpSpec->Init(&lockedInStream, startPos);
+         lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
          ::ex1::limited_reader *streamSpec = new
@@ -162,7 +162,7 @@ namespace n7z
 
             ::ca::smart_pointer<::compress::coder_interface> decoder;
             ::ca::smart_pointer<::compress::coder2_interface> decoder2;
-             
+
             if(FAILED(hr = ::compress::CreateCoder(
                codecsInfo, externalCodecs,
                coderInfo.MethodID, decoder, decoder2, false)))
@@ -217,7 +217,7 @@ namespace n7z
       for (i = 0; i < numCoders; i++)
       {
          const CCoderInfo &coderInfo = folderInfo.Coders[i];
-         ::ca::smart_pointer<::ca::ca> &decoder = _decoders[coderIndex];
+//         ::ca::smart_pointer<::ca::ca> &decoder = _decoders[coderIndex];
 
          {
             ::ca::smart_pointer<::compress::set_decoder_properties2_interface> setDecoderProperties;
@@ -276,8 +276,8 @@ namespace n7z
 
          uint32 numInStreams = (uint32)coderInfo.NumInStreams;
          uint32 numOutStreams = (uint32)coderInfo.NumOutStreams;
-         base_array<const uint64 *> packSizesPointers;
-         base_array<const uint64 *> unpackSizesPointers;
+         base_array<const file_size *> packSizesPointers;
+         base_array<const file_size *> unpackSizesPointers;
          packSizesPointers.set_size(0, numInStreams);
          unpackSizesPointers.set_size(0, numOutStreams);
          uint32 j;

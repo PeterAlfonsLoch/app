@@ -15,9 +15,9 @@ namespace mail
    {
       m_dataid = "mail::tree_interface";
 
-      m_pdata = this;
+      ::ca::data_container::m_spdata = this;
 
-      if(!ex1::tree_data::initialize())
+      if(!ex1::tree_data::initialize_data())
          throw simple_exception();
    
    }
@@ -26,7 +26,7 @@ namespace mail
    {
       if(!::ex1::tree::initialize())
          return false;
-      m_pdata = this;
+      ::ca::data_container::m_spdata = this;
       return true;
    }
 

@@ -3,11 +3,9 @@
 #include "x/x_tables.h"
 #include "x/x_charcategory_names.h"
 
-bool is_legal_uni_index(__int64 c)
+inline bool is_legal_uni_index(__int64 c)
 {
-   if(c >= ((unsigned __int64) 0xffff))
-      return false;
-   return true;
+   return c >= ((uint64_t) 0xffff) ? false : true;
 }
 
 namespace gen
@@ -135,6 +133,23 @@ namespace gen
                     (1 << CHAR_CATEGORY_Zp)
                    ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0);
       }
+      bool ch::is_whitespace(const char * pszUtf8Char, const char * pszEnd){
+         __int64 c = uni_index(pszUtf8Char, pszEnd);
+         if(!is_legal_uni_index(c))
+            return false;
+        return  (c == 0x20)
+                 ||
+                ((c <= 0x0020) &&
+                 (((((1 << 0x0009) |
+                 (1 << 0x000A) |
+                 (1 << 0x000C) |
+                 (1 << 0x000D)) >> c) & 1) != 0))
+                 ||
+                (((((1 << CHAR_CATEGORY_Zs) |
+                    (1 << CHAR_CATEGORY_Zl) |
+                    (1 << CHAR_CATEGORY_Zp)
+                   ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0);
+      }
 
       bool ch::is_number(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
@@ -214,28 +229,61 @@ namespace gen
 
 
 
-      __int64 uni_index(const char * pszUtf8)
+      __int64 ch::uni_index(const char * pszUtf8)
       {
          unsigned char * source = (unsigned char *) pszUtf8;
          __int64 ch = 0;
          int extraBytesToRead = trailingBytesForUTF8[*source];
-         if(natural(extraBytesToRead) >= strlen(pszUtf8))
-         {
-            return -1; // source exhausted
-         }
+/*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
+         }*/
+//         if(natural(extraBytesToRead) >= strlen(pszUtf8))
+  //       {
+    //        return -1; // source exhausted
+      //   }
+         if(*source == '\0') return -1;
          switch (extraBytesToRead)
          {
             case 5: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
             case 4: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
             case 3: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
             case 2: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
             case 1: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
             case 0: ch += *source++;
          }
          ch -= offsetsFromUTF8[extraBytesToRead];
          return ch;
       }
 
+      __int64 ch::uni_index(const char * pszUtf8, const char * pszEnd)
+      {
+         unsigned char * source = (unsigned char *) pszUtf8;
+         __int64 ch = 0;
+         int extraBytesToRead = trailingBytesForUTF8[*source];
+         if(*source == '\0') return -1;
+         if((source + extraBytesToRead + 1) > (unsigned char *) pszEnd)
+            return -1;
+         switch (extraBytesToRead)
+         {
+            case 5: ch += *source++; ch <<= 6; 
+                if(*source == '\0') return -1;
+            case 4: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
+            case 3: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
+            case 2: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
+            case 1: ch += *source++; ch <<= 6;
+                if(*source == '\0') return -1;
+            case 0: ch += *source++;
+         }
+         ch -= offsetsFromUTF8[extraBytesToRead];
+         return ch;
+      }
 
 
    } // namespace ch

@@ -27,7 +27,7 @@
 	Close/shutdown a socket.
 **************************************************************************************************/
 void
-_sockclose(int fd)
+_sockclose(SOCKET fd)
 {
 	if (fd >= 0)
 	{
@@ -50,6 +50,7 @@ _sockclose(int fd)
 char *
 ipaddr(int family, void *addr)
 {
+   UNREFERENCED_PARAMETER(family);
 	static char addrbuf[128];
 
 	addrbuf[0] = '\0';

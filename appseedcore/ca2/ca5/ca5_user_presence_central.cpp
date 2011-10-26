@@ -36,6 +36,26 @@ namespace ca5
 
       }
 
+      bool presence_central::finalize()
+      {
+
+         if(m_spwindowMessage.is_null())
+            return true;
+
+         m_spwindowMessage->KillTimer(1984);
+         
+         finalize_message_window();
+
+         if(ApplicationUser.m_ppresence != NULL)
+         {
+            delete ApplicationUser.m_ppresence;
+            ApplicationUser.m_ppresence = NULL;
+         }
+
+         return true;
+
+      }
+
       bool presence_central::is_initialized()
       {
          

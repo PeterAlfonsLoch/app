@@ -23,6 +23,7 @@ namespace collection
       // count of elements
       count get_count() const;
       count get_size() const;
+      count size() const;
       bool is_empty(count countMinimum = 1) const;
       bool has_elements(count countMinimum = 1) const;
 
@@ -40,6 +41,7 @@ namespace collection
       // add before head or after tail
       POSITION add_head(ARG_TYPE newElement);
       POSITION add_tail(ARG_TYPE newElement);
+      void push_back(ARG_TYPE newElement);
 
       // add another list of elements before head or after tail
       void add_head(list* pNewList);
@@ -47,6 +49,12 @@ namespace collection
 
       // remove all elements
       void remove_all();
+      void clear();
+
+      TYPE & front();
+      const TYPE & front() const;
+
+      void pop_front();
 
       // iteration
       POSITION get_head_position() const;
@@ -105,25 +113,31 @@ namespace collection
 template<class TYPE, class ARG_TYPE>
 inline count list<TYPE, ARG_TYPE>::get_count() const
 {
-   return m_nCount; 
+   return m_nCount;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline count list<TYPE, ARG_TYPE>::get_size() const
 {
-   return m_nCount; 
+   return m_nCount;
+}
+
+template<class TYPE, class ARG_TYPE>
+inline count list<TYPE, ARG_TYPE>::size() const
+{
+   return m_nCount;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool list<TYPE, ARG_TYPE>::is_empty(count countMinimum) const
 {
-   return m_nCount < countMinimum; 
+   return m_nCount < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
-{ 
-   return m_nCount >= countMinimum; 
+{
+   return m_nCount >= countMinimum;
 }
 
    template<class TYPE, class ARG_TYPE>
@@ -172,6 +186,26 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
          ASSERT(fx_is_valid_address(pNode, sizeof(node)));
          rPosition = (POSITION) pNode->pPrev;
          return pNode->data; }
+
+template<class TYPE, class ARG_TYPE>
+inline TYPE & list < TYPE, ARG_TYPE >::front()
+{
+   return get_at(get_head_position());
+}
+
+template<class TYPE, class ARG_TYPE>
+inline const TYPE & list < TYPE, ARG_TYPE >::front() const
+{
+   return get_at(get_head_position());
+}
+
+template<class TYPE, class ARG_TYPE>
+inline void list < TYPE, ARG_TYPE >::pop_front()
+{
+   return remove_at(get_head_position());
+}
+
+
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_at(POSITION position)
       { node* pNode = (node*) position;
@@ -223,6 +257,14 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
       m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
       m_pBlocks->FreeDataChain();
       m_pBlocks = NULL;
+   }
+
+   template<class TYPE, class ARG_TYPE>
+   void list<TYPE, ARG_TYPE>::clear()
+   {
+
+      remove_all();
+
    }
 
    template<class TYPE, class ARG_TYPE>
@@ -323,6 +365,12 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
          m_pnodeHead = pNewNode;
       m_pnodeTail = pNewNode;
       return (POSITION) pNewNode;
+   }
+
+   template<class TYPE, class ARG_TYPE>
+   void list<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement)
+   {
+      add_tail(newElement);
    }
 
    template<class TYPE, class ARG_TYPE>
@@ -630,7 +678,7 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
       }
 
       for (; pNode != NULL; pNode = pNode->pNext)
-         if (CompareElements<TYPE>(&pNode->data, &searchValue))
+         if (_template::equals::CompareElements<TYPE>(&pNode->data, &searchValue))
             return (POSITION)pNode;
       return NULL;
    }
@@ -650,7 +698,7 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
          {
             ASSERT(fx_is_valid_address(pNode, sizeof(node)));
             TYPE* pData;
-            /* 
+            /*
              * in some cases the & operator might be overloaded, and we cannot use it to obtain
              * the address of a given object.  We then use the following trick to get the address
              */

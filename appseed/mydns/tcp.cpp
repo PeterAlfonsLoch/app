@@ -31,6 +31,7 @@
 int
 accept_tcp_query(int fd, int family)
 {
+   UNREFERENCED_PARAMETER(family);
 	struct sockaddr_in addr4;
 #if HAVE_IPV6
 	struct sockaddr_in6 addr6;

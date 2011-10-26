@@ -1,7 +1,10 @@
 #pragma once
 
 
-namespace sort  
+#include "numeric_array.h"
+
+
+namespace sort
 {
 
    template <class T> void sort( T & t1, T & t2)
@@ -31,7 +34,7 @@ namespace sort
    template <class A> static index  CompareTkPosition(const A a1, const A a2);
 
    template <class TYPE>
-   index sort::NumericCompare(const TYPE * ptA, const TYPE * ptB)
+   index NumericCompare(const TYPE * pta, const TYPE * ptb)
    {
       if(*pta > *ptb)
          return 1;
@@ -40,7 +43,6 @@ namespace sort
       else
          return 0;
    }
-
 
 
    template <class A> static index  CompareTkPosition(const A a1, const A a2)
@@ -836,7 +838,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByPtrAtGetSize(
-      array_ptr_alloc < TYPE, ARG_TYPE > & a, 
+      array_ptr_alloc < TYPE, ARG_TYPE > & a,
       bool bAsc = true);
 
    template <class TYPE, class ARG_TYPE>
@@ -886,7 +888,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByGetSize(
-      base_array < TYPE, ARG_TYPE > & a, 
+      base_array < TYPE, ARG_TYPE > & a,
       bool bAsc)
    {
       TYPE t;
@@ -924,7 +926,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByPtrAtGetSize(
-      array_ptr_alloc < TYPE, ARG_TYPE > & a, 
+      array_ptr_alloc < TYPE, ARG_TYPE > & a,
       bool bAsc)
    {
       TYPE t;
@@ -1178,7 +1180,7 @@ namespace sort
 
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & l)
+   void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
       base_array < POSITION > stackLowerBound;
       base_array < POSITION > stackUpperBound;
@@ -1247,7 +1249,7 @@ namespace sort
    }
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & l)
+   void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
       base_array < POSITION > stackLowerBound;
       base_array < POSITION > stackUpperBound;
@@ -1323,3 +1325,61 @@ namespace sort
 
 #include "sort_array.h"
 #include "key_sort_array.h"
+
+
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::QuickSort(bool bAsc)
+{
+   if(bAsc)
+   {
+      sort::QuickSortAsc(*this);
+   }
+   else
+   {
+      sort::QuickSortDesc(*this);
+   }
+}
+
+
+
+
+template < class TYPE >
+void numeric_array < TYPE >::
+QuickSort(bool bAsc)
+{
+   if(bAsc)
+   {
+      sort::QuickSortAsc(*this);
+   }
+   else
+   {
+      sort::QuickSortDesc(*this);
+   }
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+QuickSort(bool bAsc)
+{
+   if(bAsc)
+   {
+      sort::QuickSortAsc(*this);
+   }
+   else
+   {
+      sort::QuickSortDesc(*this);
+   }
+}
+
+template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
+void key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
+SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)())
+{
+   m_lpfnKeyProperty= lpfnKeyProperty;
+   sort::QuickSortByKey < KEY, TYPE, ARG_TYPE >(
+      m_array,
+      m_lpfnKeyProperty);
+}
+

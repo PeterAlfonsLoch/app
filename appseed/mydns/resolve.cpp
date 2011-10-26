@@ -95,6 +95,8 @@ static int
 cname_recurse(TASK *t, datasection_t section, dns_qtype_t qtype,
 				  char *fqdn, MYDNS_SOA *soa, char *label, MYDNS_RR *cname, int level)
 {
+   UNREFERENCED_PARAMETER(soa);
+   UNREFERENCED_PARAMETER(label);
 	register int n;
 
 	if (level >= MAX_CNAME_LEVEL)

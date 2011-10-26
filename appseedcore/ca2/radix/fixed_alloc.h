@@ -41,18 +41,21 @@ public:
    void FreeAll();   // free everything allocated from this allocator
 
 protected:
-   CRITICAL_SECTION m_protect;
+   simple_critical_section m_protect;
 };
 
+#include "exception/base_exception.h"
+#include "exception/simple_exception.h"
+#include "exception/assert.h"
 #include "collection/base_array.h"
 
-class CLASS_DECL_ca fixed_alloc_array : 
+class CLASS_DECL_ca fixed_alloc_array :
    public base_array < fixed_alloc * >
 {
 public:
 
 
-   HANDLE      m_hmutex;
+   simple_mutex      m_mutex;
 
 
    fixed_alloc_array();

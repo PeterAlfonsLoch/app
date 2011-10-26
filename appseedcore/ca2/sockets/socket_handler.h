@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -35,13 +35,13 @@ namespace sockets
    class socket;
    class resolv_server;
 
-   /** socket container class, event generator. 
+   /** socket container class, event generator.
       \ingroup basic */
    class CLASS_DECL_ca socket_handler : public socket_handler_base
    {
    protected:
       /** Map type for holding file descriptors/socket object pointers. */
-      
+
 
    public:
       /** socket_handler constructor.
@@ -58,7 +58,7 @@ namespace sockets
       /** get mutex reference for threadsafe operations. */
       mutex & GetMutex() const;
 
-      /** Register StdLog object for error callback. 
+      /** Register StdLog object for error callback.
          \param log Pointer to log class */
       void RegStdLog(StdLog *log);
 
@@ -89,7 +89,7 @@ namespace sockets
       /** Return number of sockets handled by this handler.  */
       size_t get_count();
 
-      /** Override and return false to deny all incoming connections. 
+      /** Override and return false to deny all incoming connections.
          \param p listen_socket class pointer (use GetPort to identify which one) */
       bool OkToAccept(socket *p);
 
@@ -101,7 +101,7 @@ namespace sockets
       socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&);
       /** Enable connection pool (by default disabled). */
       void EnablePool(bool x = true);
-      /** Check pool status. 
+      /** Check pool status.
          \return true if connection pool is enabled */
       bool PoolEnabled();
 
@@ -116,7 +116,7 @@ namespace sockets
       void SetSocks4Userid(const string & );
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       void SetSocks4TryDirect(bool x = true);
-      /** get socks4 server ip. 
+      /** get socks4 server ip.
          \return socks4 server ip */
       ipaddr_t GetSocks4Host();
       /** get socks4 port number.
@@ -130,7 +130,7 @@ namespace sockets
       bool Socks4TryDirect();
 
       // DNS resolve server
-      /** Enable asynchronous DNS. 
+      /** Enable asynchronous DNS.
          \param port Listen port of asynchronous dns server */
       void EnableResolver(port_t port = 16667);
       /** Check resolver status.

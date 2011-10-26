@@ -15,9 +15,9 @@ namespace database
       {
       }
 
-      void interaction::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+      void interaction::install_message_handling(::user::win::message::dispatch * pinterface)
       {
-         ::user::interaction::_001InstallMessageHandling(pinterface);
+         ::user::interaction::install_message_handling(pinterface);
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction::_001OnCreate);
          IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &interaction::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &interaction::_001OnMove);
@@ -27,7 +27,11 @@ namespace database
       void interaction::_001OnCreate(gen::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
-         set_server(System.get_data_server());
+
+         if(pobj->previous())
+            return;
+
+         set_server(Application.get_data_server());
          if(m_dataidWindow.is_null())
          {
             string strKey;
@@ -123,12 +127,10 @@ namespace database
          ::user::interaction * pWnd,
          bool bForceRestore)
       {
-         gen::memory_file memstream(get_app());
-         if(!data_get(
-            key, 
-            idIndex,
-            memstream))
+         gen::byte_stream_memory_file memstream(get_app());
+         if(!data_get(key, idIndex, memstream))
             return false;
+         memstream.seek_to_begin();
          bool bZoomed = false;
          memstream >> bZoomed;
          if(!bForceRestore && bZoomed)
@@ -149,7 +151,7 @@ namespace database
          }
          if(bForceRestore)
          {
-            pWnd->ShowWindow(SW_NORMAL);
+            pWnd->ShowWindow(SW_RESTORE);
          }
          if(bForceRestore || (!bZoomed && !bFullScreen && !bIconic))
          {
@@ -165,12 +167,13 @@ namespace database
       {
          //WINDOWPLACEMENT wp;
          //pWnd->GetWindowPlacement(&wp);
-         gen::memory_file memstream(get_app());
-         gen::memory_file memstreamGet(get_app());
+         gen::byte_stream_memory_file memstream(get_app());
+         gen::byte_stream_memory_file memstreamGet(get_app());
          bool bGet = data_get(
             key, 
             idIndex,
             memstreamGet);
+         memstreamGet.seek_to_begin();
          bool bZoomedOld = false;
          bool bFullScreenOld = false;
          bool bIconicOld = false;

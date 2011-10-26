@@ -1,0 +1,105 @@
+#include "StdAfx.h"
+#include <windows.h>
+
+namespace ca
+{
+
+
+   library::library()
+   {
+      m_bAutoClose = true;
+      m_plibrary = NULL;
+   }
+
+   library::library(const char * pszOpen)
+   {
+      m_bAutoClose = true;
+      m_plibrary = NULL;
+      open(pszOpen);
+   }
+
+   library::~library()
+   {
+      if(m_bAutoClose)
+      {
+         close();
+      }
+   }
+
+   bool library::open(const char * pszPath)
+   {
+      vsstring strPath(pszPath);
+      if(strstr_dup(file_title_dup(strPath), ".") == NULL)
+         strPath += ".dll";
+      m_plibrary = ::LoadLibrary(strPath);
+      return m_plibrary != NULL;
+   }
+
+   bool library::close()
+   {
+      if(m_plibrary != NULL)
+      {
+         return ::FreeLibrary((HINSTANCE) m_plibrary) != FALSE;
+      }
+      return true;
+   }
+
+
+   void * library::raw_get(const char * pszElement)
+   {
+      return ::GetProcAddress((HINSTANCE) m_plibrary, pszElement);
+   }
+
+   ca2_library::ca2_library()
+   {
+   }
+
+   ca2_library::ca2_library(const char * pszOpen) :
+      library(pszOpen)
+   {
+
+   }
+
+   ca2_library::~ca2_library()
+   {
+
+   }
+
+   bool ca2_library::open(const char * pszPath)
+   {
+      m_plibrary = ::ca2::open_ca2_library(pszPath);
+      return m_plibrary != NULL;
+   }
+
+
+
+
+} // namespace ca
+
+
+namespace ca2
+{
+
+   void * open_ca2_library(const char * psz)
+   {
+/*      string str(psz);
+      if(str.find("..") >= 0)
+         return FALSE;
+      if(str.find(":") >= 0)
+         return FALSE;
+      if(str.find("\\\\") >= 0)
+         return FALSE;
+      if(str[0] == '\\')
+         return FALSE;
+      if(str[0] == '/')
+         return FALSE;
+   #ifdef _M_X64
+      ::SetDllDirectory(dir::ca2("stage\\x64") + "\\");
+   #else
+      ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
+   #endif*/
+      return LoadLibrary(psz);
+   }
+
+}
+

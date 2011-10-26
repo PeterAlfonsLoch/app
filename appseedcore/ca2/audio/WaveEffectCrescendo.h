@@ -1,7 +1,5 @@
 #pragma once
 
-#include "iaudio/WaveStreamEffect.h"
-
 class audWaveEffectCrescendo :
    public iaudio::WaveStreamEffect
 {

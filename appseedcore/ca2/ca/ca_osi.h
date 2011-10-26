@@ -11,7 +11,9 @@ namespace ca
       virtual bool shutdown(bool bPowerOff);
 
       virtual void terminate_processes_by_title(const char * pszName);
+#ifdef WINDOWS
       virtual string get_module_path(HMODULE hmodule);
+#endif
       virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid);
       virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
       virtual void get_all_processes(dword_array & dwa);

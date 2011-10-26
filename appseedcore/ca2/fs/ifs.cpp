@@ -80,8 +80,17 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strName = pnode->child_at(i)->attr("name");
          if(pnode->child_at(i)->m_strName != "folder")
             continue;
-         pstraPath->add(dir_path(pszDir, strName));
-         pstraTitle->add(strName);
+         string strPath = dir_path(pszDir, strName);
+         m_mapdirTimeout[strPath] = ::GetTickCount() + (4 * 1000);
+         m_mapfileTimeout.remove_key(strPath);
+         if(pstraPath != NULL)
+         {
+            pstraPath->add(strPath);
+         }
+         if(pstraTitle != NULL)
+         {
+            pstraTitle->add(strName);
+         }
       }
    }
 
@@ -95,8 +104,17 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          string strExtension = pnode->child_at(i)->attr("extension");
          if(pnode->child_at(i)->m_strName != "file")
             continue;
-         pstraPath->add(dir_path(pszDir, strName + "." + strExtension));
-         pstraTitle->add(strName + "." + strExtension);
+         string strPath = dir_path(pszDir, strName);
+         m_mapfileTimeout[strPath] = ::GetTickCount() + (4 * 1000);
+         m_mapdirTimeout.remove_key(strPath);
+         if(pstraPath != NULL)
+         {
+            pstraPath->add(strPath);
+         }
+         if(pstraTitle != NULL)
+         {
+            pstraTitle->add(strName);
+         }
       }
    }
 
@@ -105,9 +123,67 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
 bool ifs::is_dir(const char * pszPath)
 {
-   xml::node node(get_app());
+   //xml::node node(get_app());
 
-   string strUrl;
+   if(pszPath == NULL || strlen(pszPath) == 0)
+   {
+      return true;
+   }
+
+   if(stricmp(pszPath, "uifs://") == 0)
+   {
+      return true;
+   }
+
+   DWORD dwTimeout;
+
+   if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
+   {
+      if(::GetTickCount() > dwTimeout)
+      {
+         stringa straPath;
+         stringa straTitle;
+         ls(System.dir().name(pszPath), &straPath, &straTitle);
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   if(m_mapdirTimeout.Lookup(pszPath, dwTimeout))
+   {
+      if(::GetTickCount() > dwTimeout)
+      {
+         stringa straPath;
+         stringa straTitle;
+         ls(System.dir().name(pszPath), &straPath, &straTitle);
+      }
+      else
+      {
+         return true;
+      }
+   }
+
+   if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
+   {
+      if(::GetTickCount() > dwTimeout)
+      {
+         return false;
+      }
+      else
+      {
+         return true;
+      }
+   }
+   else
+   {
+      return false;
+   }
+
+   
+
+   /*string strUrl;
 
    strUrl = "http://file.veriwell.net/ls?path=" + System.url().url_encode(pszPath);
 
@@ -124,7 +200,7 @@ bool ifs::is_dir(const char * pszPath)
    if(node.m_strName != "folder")
       return false;
 
-   return true;
+   return true;*/
 
 }
 
@@ -132,45 +208,43 @@ string ifs::file_name(const char * pszPath)
 {
    string strPath(pszPath);
 
-   if(!gen::str::begins_eat(strPath, "ifs://"))
+   if(!gen::str::begins_eat_ci(strPath, "ifs://") && !gen::str::begins_eat_ci(strPath, "uifs://"))
    {
       return "";
    }
 
-   gen::parse parse(strPath);
+   int iFind = strPath.reverse_find("/");
 
-   parse.getword();
+   if(iFind < 0)
+      iFind = -1;
 
-   strPath = parse.getrest();
-
-   gen::str::begins_eat(strPath, "/");
-
-   return strPath;
-
+   return strPath.Mid(iFind + 1);
 
 }
 
 bool ifs::file_move(const char * pszDst, const char * pszSrc)
 {
+   UNREFERENCED_PARAMETER(pszDst);
+   UNREFERENCED_PARAMETER(pszSrc);
    return true;
 }
 
 
-ex1::filesp * ifs::get_file(const char * pszPath)
+ex1::filesp ifs::get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception)
 {
    
-   sockets::http::file * pfile = new sockets::http::file(get_app());
+   ex1::filesp spfile(new ifs_file(get_app()));
 
-   string strUrl;
-
-   strUrl = "http://file.veriwell.net/get?path=" + System.url().url_encode(pszPath);
-
-   if(!pfile->open(strUrl, ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary))
+   if(!spfile->open(varFile.get_string(), nOpenFlags, pexception))
    {
       throw new ex1::file_exception_sp(get_app());
    }
 
-   return pfile;
+   return spfile;
 
 }
 
+bool ifs::file_exists(const char * pszPath)
+{
+   return ::fs::data::file_exists(pszPath);
+}

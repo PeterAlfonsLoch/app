@@ -1,7 +1,7 @@
 /*
  Copyright (c) 2001 - 2002
- Author: Konstantin Boukreev 
- E-mail: konstantin@mail.primorye.ru 
+ Author: Konstantin Boukreev
+ E-mail: konstantin@mail.primorye.ru
  Created: 25.12.2001 19:41:00
  Version: 1.0.2
 
@@ -12,9 +12,9 @@
  in supporting documentation.  Konstantin Boukreev makes no representations
  about the suitability of this software for any purpose.
  It is provided "as is" without express or implied warranty.
- 
+
  sym_engine class incapsulate Symbol Handler and Debugging Service API
-   
+
  the list of used API:
    SymInitialize, SymCleanup, SymGetLineFromAddr, SymGetModuleBase,
    SymGetSymbolInfo, SymGetSymFromAddr, SymGetSymFromName, SymGetSymNext,
@@ -29,7 +29,9 @@
 
 
 #include "template/string.h"
+#ifdef _WINDOWS
 #include <imagehlp.h>
+#endif
 
 class SymEngine
 {
@@ -39,7 +41,7 @@ class SymEngine
 
    void address(DWORD_PTR a)      { m_uiAddress = a; }
    DWORD_PTR address(void) const   { return m_uiAddress; }
-   
+
    // symbol handler queries
    unsigned int module  (string & str);
    unsigned int symbol  (string & str, DWORD_PTR * = 0);
@@ -57,22 +59,22 @@ class SymEngine
       %ld : line's displacement
       %s  : symbol
       %sd : symbol's displacement
-      
-      for example   
+
+      for example
       "%f(%l) : %m at %s\n"
       "%m.%s + %sd bytes, in %f:line %l\n"
-   */   
+   */
    static bool stack_trace(string & str, CONTEXT *, DWORD_PTR uiSkip = 0, const char * pszFormat = default_format());
-   static bool stack_trace(string & str, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());    
+   static bool stack_trace(string & str, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
    static bool stack_trace(string & str, SymEngine&, CONTEXT *, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
    static DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
  private:
-   static const char * default_format(){ return "%f(%l) : %m at %s\n"; }   
+   static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
    static bool get_line_from_address(HANDLE hProc, DWORD_PTR uiAddress, DWORD_PTR * puiDisplacement, IMAGEHLP_LINE * pline);
    static unsigned get_module_basename(HMODULE hmodule, string & strName);
 
-   
-   
+
+
    bool check();
 
  private:
@@ -80,22 +82,22 @@ class SymEngine
    bool           m_bOk;
    STACKFRAME *   m_pstackframe;
    CONTEXT *      m_pcontext;
-   
+
  private:
    class guard
-   {   
+   {
    private:
       guard();
    public:
       ~guard();
-      bool init();      
+      bool init();
       bool fail() const { return m_iRef == -1; }
-      static guard & instance() 
+      static guard & instance()
       {
-         static guard g; 
+         static guard g;
          return g;
       }
-   private:      
+   private:
       void clear();
       bool load_module(HANDLE, HMODULE);
       int  m_iRef;

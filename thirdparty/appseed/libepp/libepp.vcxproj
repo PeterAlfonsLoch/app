@@ -47,6 +47,11 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -99,23 +104,18 @@
     <ClCompile Include="NameServer.cpp" />
     <ClCompile Include="Poll.cpp" />
     <ClCompile Include="Session.cpp" />
-    <ClInclude Include="shepp_want_not_to_use_cpp.h" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StrUtil.cpp" />
     <ClInclude Include="NameServer.h" />
-    <ClInclude Include="TransportTLSCommon_want_to_remove.H" />
-    <ClInclude Include="TransportTLS_want_to_remove_cpp.h">
-      <FileType>CppHeader</FileType>
-    </ClInclude>
-    <ClInclude Include="TransportTLSCommon_want_to_remove_cpp.H">
-      <FileType>CppHeader</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\appseedcore\ca2\ca2.vcxproj">
       <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\appseedcore\_\_.vcxproj">
+      <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -250,18 +250,13 @@
     <ClInclude Include="RegistrationPeriod.H" />
     <ClInclude Include="Response.H" />
     <ClInclude Include="Session.H" />
-    <ClInclude Include="shell_Command_want_not_to_use.H" />
-    <ClInclude Include="shell_CommandFunctions_want_not_to_use.H" />
-    <ClInclude Include="shell_Global_want_not_to_use.H" />
-    <ClInclude Include="shell_ObjectSet_want_not_to_use.H" />
-    <ClInclude Include="shell_Print_want_not_to_use.H" />
-    <ClInclude Include="shell_StrUtil_want_not_to_use.H" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringEncodingException.H" />
     <ClInclude Include="StrUtil.H" />
-    <ClInclude Include="TransportException_want_to_remove.H" />
-    <ClInclude Include="TransportTLS_want_to_remove.H" />
     <ClInclude Include="XmlException.H" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libepp.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

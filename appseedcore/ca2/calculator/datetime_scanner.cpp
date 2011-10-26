@@ -37,18 +37,34 @@ namespace datetime
          return true;
    }
 
-   string check_unit(const char * input, const char * & scanner)
+   string check_unit(::user::str_context * pcontext, const char * input, const char * & scanner)
    {
       scanner = input;
       while(gen::ch::is_space_char(scanner) && *scanner != '\0')
-         scanner++;
+         scanner = gen::str::utf8_inc(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
-      while(gen::ch::is_letter(scanner))
-         scanner = gen::str::utf8_inc(scanner);
-      string strCandidate = string(input, scanner - start);
-      strCandidate.make_lower();
+      string strCandidate;
+      if(gen::ch::is_letter(scanner))
+      {
+         while(gen::ch::is_letter(scanner))
+            scanner = gen::str::utf8_inc(scanner);
+         strCandidate = string(start, scanner - start + 1);
+         strCandidate.make_lower();
+         if(pcontext->matches("calendar:days", strCandidate))
+         {
+            return "days";
+         }
+      }
+      else
+      {
+         strCandidate = string(input);
+         if(pcontext->begins("calendar:days", strCandidate))
+         {
+            return "days";
+         }
+      }
       if(strCandidate == "sec")
       {
          return strCandidate;
@@ -470,7 +486,7 @@ namespace datetime
       }
    }
 
-   string check_offset(const char * input, const char * & scanner)
+   string check_offset(::user::str_context * pcontext, const char * input, const char * & scanner)
    {
       if(check_end_expression(input, scanner))
          return "";
@@ -487,7 +503,7 @@ namespace datetime
             return "";
          }
          input = scanner;
-         string strUnit = check_unit(input, scanner);
+         string strUnit = check_unit(pcontext, input, scanner);
          if(!strNat.has_char())
          {
             return "";
@@ -498,7 +514,7 @@ namespace datetime
       return string(start, scanner - start);
    }
 
-   string consume_date_expression(const char * & input)
+   string consume_date_expression(::user::str_context * pcontext, const char * & input)
    {
       const char * scanner;
       if(check_end_expression(input, scanner))
@@ -508,7 +524,7 @@ namespace datetime
       if(strDate.has_char())
       {
          input = scanner;
-         string strOffset = check_offset(input, scanner);
+         string strOffset = check_offset(pcontext, input, scanner);
          if(strOffset.has_char())
          {
             input = scanner;
@@ -536,7 +552,7 @@ namespace datetime
          if(strLangDate.has_char())
          {
             input = scanner;
-            string strOffset = check_offset(input, scanner);
+            string strOffset = check_offset(pcontext, input, scanner);
             if(strOffset.has_char())
             {
                input = scanner;
@@ -561,7 +577,7 @@ namespace datetime
          else
          {
             input = scanner;
-            string strOffset = check_offset(input, scanner);
+            string strOffset = check_offset(pcontext, input, scanner);
             if(strOffset.has_char())
             {
                input = scanner;
@@ -586,10 +602,11 @@ namespace datetime
       }
    }
 
-   scanner::scanner()
+   scanner::scanner(::user::str_context * pcontext)
    {
-      m_ptoken    = NULL;
-      input       = NULL;
+      m_pstrcontext     = pcontext;
+      m_ptoken          = NULL;
+      input             = NULL;
    }
 
    scanner::~scanner()
@@ -677,9 +694,9 @@ namespace datetime
       }
       else 
       {
-         token->m_str = consume_date_expression(input);
-         while(isspace(*input))
-            input++;
+         token->m_str = consume_date_expression(m_pstrcontext, input);
+         while(gen::ch::is_space_char(input))
+            input = gen::str::utf8_inc(input);
          if(*input == '(')
          {
             token->value = token::function;

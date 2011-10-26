@@ -15,13 +15,13 @@ public:
 
   /** Loads region defines from @c is input_source
   */
-  virtual void  loadRegionMappings(ex1::input_stream & is) = 0;
+  virtual void  loadRegionMappings(ex1::byte_input_stream & reader) = 0;
   /** Saves all loaded region defines into @c writer.
       Note, that result document would not be equal
       to input one, because there could be multiple input
       documents.
   */
-  virtual void  saveRegionMappings(ex1::output_stream & stream) const = 0;
+  virtual void  saveRegionMappings(ex1::byte_output_stream & writer) const = 0;
   /** Changes specified region definition to @c rdnew
       @param region region full qualified name.
       @param rdnew  New region definition to replace old one

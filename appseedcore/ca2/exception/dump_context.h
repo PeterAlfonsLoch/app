@@ -39,13 +39,13 @@ public:
    dump_context& dumpAsHex(int n);
    dump_context& dumpAsHex(UINT u);
 #else
-#ifndef VC6
+#ifdef WINDOWS
    dump_context& operator<<(LONG_PTR l);
    dump_context& operator<<(DWORD_PTR dw);
 #endif
    dump_context& operator<<(INT_PTR n);
    dump_context& operator<<(UINT_PTR u);
-#ifndef VC6
+#ifdef WINDOWS
    dump_context& dumpAsHex(LONG_PTR l);
    dump_context& dumpAsHex(DWORD_PTR dw);
 #endif
@@ -54,14 +54,18 @@ public:
 #endif
    dump_context& operator<<(float f);
    dump_context& operator<<(double d);
+#ifdef WINDOWS
    dump_context& operator<<(LONGLONG n);
    dump_context& operator<<(ULONGLONG n);
    dump_context& dumpAsHex(LONGLONG n);
    dump_context& dumpAsHex(ULONGLONG n);
+#endif
    dump_context& operator<<(HWND h);
    dump_context& operator<<(HDC h);
+#ifdef _WINDOWS
    dump_context& operator<<(HMENU h);
    dump_context& operator<<(HACCEL h);
+#endif
    dump_context& operator<<(HFONT h);
    void Hexdump(const char * lpszLine, BYTE* pby, int nBytes, int nWidth);
    void Flush();

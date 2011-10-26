@@ -1,7 +1,7 @@
 #pragma once
 
 template<class TYPE, class ARG_TYPE = const TYPE&>
-class base_array : 
+class base_array :
    virtual public base_object
 {
 public:
@@ -11,7 +11,7 @@ public:
 
 // Attributes
 	count get_size() const;
-	count get_count() const;
+	countget_count() const;
 	bool is_empty() const;
 	index get_upper_bound() const;
 	count set_size(count nNewSize, count nGrowBy = -1);
@@ -24,8 +24,8 @@ public:
 	const TYPE& get_at(index nIndex) const;
 	TYPE& get_at(index nIndex);
 	void set_at(index nIndex, ARG_TYPE newElement);
-	const TYPE& element_at(index nIndex) const;
-	TYPE& element_at(index nIndex);
+	const TYPE & element_at(index nIndex) const;
+	TYPE & element_at(index nIndex);
 
 	// Direct Access to the element data (may return NULL)
 	const TYPE* get_data() const;
@@ -50,9 +50,9 @@ public:
 	void insert_array_at(index nStartIndex, base_array* pNewArray); // for disambiguation
    void remove_last();
 
-   
+
    void increment_size(count add_up = 1);
-   
+
    TYPE & first_element();
    const TYPE & first_element() const;
    TYPE & last_element();
@@ -103,38 +103,38 @@ template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::
 increment_size(count iAddUp)
 {
-    set_size(get_size() + iAddUp);
+    set_size(this->get_size() + iAddUp);
 }
 
 template<class TYPE, class ARG_TYPE>
 TYPE & base_array<TYPE, ARG_TYPE>::
 last_element()
 {
-    ASSERT(get_size() > 0);
-    return element_at(get_size() - 1);
+    ASSERT(this->get_size() > 0);
+    return this->element_at(this->get_size() - 1);
 }
 
 template<class TYPE, class ARG_TYPE>
 const TYPE & base_array<TYPE, ARG_TYPE>::
 last_element() const
 {
-    ASSERT(get_size() > 0);
-    return element_at(get_size() - 1);
+    ASSERT(this->get_size() > 0);
+    return this->element_at(this->get_size() - 1);
 }
 
 template<class TYPE, class ARG_TYPE>
 TYPE & base_array<TYPE, ARG_TYPE>::
 first_element()
 {
-    ASSERT(get_size() > 0);
-    return element_at(0);
+    ASSERT(this->get_size() > 0);
+    return this->element_at(0);
 }
 
 template<class TYPE, class ARG_TYPE>
 const TYPE & base_array<TYPE, ARG_TYPE>::
 first_element() const
 {
-    ASSERT(get_size() > 0);
+    ASSERT(this->get_size() > 0);
     return get_at(0);
 }
 
@@ -142,7 +142,7 @@ template <class TYPE, class ARG_TYPE>
 count base_array<TYPE, ARG_TYPE>::
 remove_all(bool bResize)
 {
-   count countOld = get_count();
+   count countOld = this->get_count();
    if(bResize)
    {
       set_size(0, -1);
@@ -158,21 +158,21 @@ template <class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::swap(index i1, index i2)
 {
     TYPE t;
-    t = element_at(i1);
-    element_at(i1) = element_at(i2);
-    element_at(i2) = t;
+    t = this->element_at(i1);
+    this->element_at(i1) = this->element_at(i2);
+    this->element_at(i2) = t;
 }
 
 template <class TYPE, class ARG_TYPE>
 index base_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
+      last += this->get_count();
 	for(; find <= last; find++)
    {
-		if(&element_at(find) == pt)
+		if(&this->element_at(find) == pt)
 			return find;
    }
 	return -1;
@@ -181,12 +181,12 @@ template <class TYPE, class ARG_TYPE>
 index base_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
+      last += this->get_count();
 	for(; find <= last; find++)
    {
-		if(lpfnCompare((ARG_TYPE)element_at(find), (ARG_TYPE)t) == 0)
+		if(lpfnCompare((ARG_TYPE)this->element_at(find), (ARG_TYPE)t) == 0)
 			return find;
    }
 	return -1;
@@ -195,7 +195,7 @@ index base_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )
 
 
 template <class TYPE, class ARG_TYPE>
-base_array <TYPE, ARG_TYPE> & 
+base_array <TYPE, ARG_TYPE> &
 base_array<TYPE, ARG_TYPE>::
 operator = (const base_array <TYPE, ARG_TYPE> & a)
 {
@@ -208,7 +208,7 @@ operator = (const base_array <TYPE, ARG_TYPE> & a)
 template <class TYPE, class ARG_TYPE>
 inline TYPE base_array <TYPE, ARG_TYPE>::pop()
 {
-	ASSERT(get_size() > 0);
+	ASSERT(this->get_size() > 0);
 	TYPE t = last_element();
 	remove_at(get_upper_bound());
 	return t;

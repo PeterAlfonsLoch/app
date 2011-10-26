@@ -10,6 +10,7 @@ namespace gen
       resource_display_bandwidth,
       resource_blur_background,
       resource_blurred_text_embossing,
+      resource_translucent_background,
    };
 
    class CLASS_DECL_ca savings :

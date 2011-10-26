@@ -4,7 +4,8 @@
 namespace ca
 {
 
-   data_container::data_container(::ca::application * papp)
+   data_container::data_container(::ca::application * papp) :
+      ca(papp)
    {
    }
    
@@ -30,6 +31,11 @@ namespace ca
 
    void data_container::on_update_data(int iHint)
    {
+      UNREFERENCED_PARAMETER(iHint);
    }
 
+
 } // namespace ca
+
+
+

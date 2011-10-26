@@ -24,6 +24,7 @@ namespace md5
          string   m_strFile;
          bool     m_bReady;
          string   m_strMd5;
+         string   m_strStatus;
 
 
          thread(::ca::application * papp);

@@ -38,11 +38,11 @@ namespace libepp
    public:
 
      /// Null constructor
-     Logout(const ActionType type = LOGOUT) : Action(type)
+     Logout(::ca::application * papp, const ActionType type = LOGOUT) : ca(papp), Action(type)
      {
        if (type == LOGOUT) {
          _response = pointer_object<Response>(new Response());
-         _command = pointer_object<Command>(new Command());
+         _command = pointer_object<Command>(new Command(papp));
        }
      }
 

@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 
-base_cmd_ui::base_cmd_ui(gen::signal * psignal) : 
-   signal_object(psignal) 
+base_cmd_ui::base_cmd_ui(gen::signal * psignal) :
+   signal_object(psignal)
 {
 }
 
-BaseCommand::BaseCommand(gen::signal * psignal) : 
+BaseCommand::BaseCommand(gen::signal * psignal) :
    signal_object(psignal)
 {
 }
@@ -46,11 +46,11 @@ bool command_target_interface::_001SendCommand(id id)
 
 bool command_target_interface::_001SendUpdateCmdUi(cmd_ui * pcmdui)
 {
-   BaseCmdMsg msg(pcmdui);  
+   BaseCmdMsg msg(pcmdui);
    return _001OnCmdMsg(&msg);
 }
 
-bool command_target_interface::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+bool command_target_interface::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 {
    if(pcmdmsg->m_etype == BaseCmdMsg::type_command)
    {
@@ -83,7 +83,7 @@ command_target_interface::command_signalrange::~command_signalrange()
 command_target_interface::command_target_interface()
 {
 }
- 
+
 command_target_interface::command_target_interface(::ca::application * papp)
 : ca(papp)
 {
@@ -122,7 +122,7 @@ bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
 }
 
 void command_target_interface::get_command_signal_array(
-   BaseCmdMsg::e_type etype, 
+   BaseCmdMsg::e_type etype,
    gen::dispatch::signal_ptr_array & signalptra, id id)
 {
    command_signalid signalid;

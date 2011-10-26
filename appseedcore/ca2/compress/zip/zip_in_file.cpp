@@ -39,7 +39,7 @@ namespace zip
    }
 
    BOOL InFile::open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
-   { 
+   {
       m_filea.remove_all();
       m_izfilea.remove_all();
       m_straPath.remove_all();
@@ -144,15 +144,15 @@ namespace zip
       if(m_strFileName.is_empty())
          return false;
       BYTE buf[1024];
-      int iRead;
+      ::primitive::memory_size iRead;
       while((iRead = read(buf, sizeof(buf))) > 0)
       {
          pfile->write(buf, iRead);
-      }  
+      }
       return true;
    }
 
-   DWORD_PTR InFile::read(void * lpBuf, DWORD_PTR nCount)
+   ::primitive::memory_size InFile::read(void * lpBuf, ::primitive::memory_size nCount)
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -161,16 +161,16 @@ namespace zip
          return 0;   // avoid Win32 "null-read"
 
       ASSERT(lpBuf != NULL);
-      ASSERT(fx_is_valid_address(lpBuf, nCount));
+      ASSERT(fx_is_valid_address(lpBuf, (UINT_PTR) nCount));
 
-      DWORD_PTR iRead;
-      iRead = unzReadCurrentFile(get_zip_file()->m_pf, lpBuf, nCount);
+      uint64_t iRead;
+      iRead = unzReadCurrentFile(get_zip_file()->m_pf, lpBuf, (unsigned int) nCount);
       m_iPosition += iRead;
 
       return (UINT)iRead;
    }
 
-   void InFile::write(const void * lpBuf, DWORD_PTR nCount)
+   void InFile::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       UNREFERENCED_PARAMETER(lpBuf);
       UNREFERENCED_PARAMETER(nCount);
@@ -180,12 +180,12 @@ namespace zip
       ASSERT(FALSE);
    }
 
-   INT_PTR InFile::seek(INT_PTR lOff, UINT nFrom)
+   file_position InFile::seek(file_offset lOff, ::ex1::e_seek nFrom)
    {
    //   ASSERT_VALID(this);
-      ASSERT(get_zip_file() != NULL);
-      ASSERT(nFrom == ::ex1::seek_begin || nFrom == ::ex1::seek_end || nFrom == ::ex1::seek_current);
-      ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
+      //ASSERT(get_zip_file() != NULL);
+      //ASSERT(nFrom == ::ex1::seek_begin || nFrom == ::ex1::seek_end || nFrom == ::ex1::seek_current);
+      //ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
    /*typedef struct unz_file_pos_s
    {
        uLong pos_in_zip_directory;   /* offset in zip file directory */
@@ -193,7 +193,7 @@ namespace zip
    //} unz_file_pos;
 
 
-      DWORD_PTR iNewPos;
+      uint64_t iNewPos;
       if(nFrom == ::ex1::seek_begin)
       {
          iNewPos = lOff;
@@ -214,22 +214,22 @@ namespace zip
       if(iNewPos < m_iPosition)
       {
          if(unzCloseCurrentFile(get_zip_file()->m_pf) != UNZ_OK)
-            return -1;
+            return file_size::allset_value();
          if(unzOpenCurrentFile(get_zip_file()->m_pf) != UNZ_OK)
-            return -1;
+            return file_size::allset_value();
          m_iPosition = 0;
       }
 
       if(iNewPos > m_iPosition)
       {
-         int iRemain = iNewPos - m_iPosition;
-         int iGet;
+         int64_t iRemain = iNewPos - m_iPosition;
+         int64_t iGet;
          int iRead;
          BYTE lpbBuf[1024];
          while(iRemain > 0)
          {
             iGet = min(iRemain, 1024);
-            iRead = unzReadCurrentFile(get_zip_file()->m_pf, lpbBuf, iGet);
+            iRead = unzReadCurrentFile(get_zip_file()->m_pf, lpbBuf, (unsigned int) iGet);
             iRemain -= iRead;
             if(iRead < iGet)
                break;
@@ -242,7 +242,7 @@ namespace zip
       return iNewPos;
    }
 
-   DWORD_PTR InFile::GetPosition() const
+   file_position InFile::get_position() const
    {
       return m_iPosition;
    }
@@ -279,19 +279,19 @@ namespace zip
    {
    }
 
-   void InFile::LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+   void InFile::LockRange(file_position dwPos, file_size dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void InFile::UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+   void InFile::UnlockRange(file_position dwPos, file_size dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void InFile::SetLength(DWORD_PTR dwNewLen)
+   void InFile::set_length(file_size dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    //   ASSERT_VALID(this);
@@ -299,13 +299,13 @@ namespace zip
       ASSERT(FALSE);
    }
 
-   DWORD_PTR InFile::get_length() const
+   file_size InFile::get_length() const
    {
       return m_fi.uncompressed_size;
    }
 
    // InFile does not support direct buffering (CMemFile does)
-   DWORD_PTR InFile::GetBufferPtr(UINT nCommand, DWORD_PTR /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
+   uint64_t InFile::GetBufferPtr(UINT nCommand, uint64_t /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    {
       ASSERT(nCommand == bufferCheck);
       UNUSED(nCommand);    // not used in retail build
@@ -501,7 +501,7 @@ namespace zip
    }
 
    const File * InFile::get_zip_file() const
-   { 
+   {
       if(m_filea.get_count() <= 0)
          return NULL;
       else

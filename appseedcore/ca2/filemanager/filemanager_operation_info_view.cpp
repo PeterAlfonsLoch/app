@@ -126,9 +126,9 @@ void file_manager_operation_info_view::_001OnCreate(gen::signal_object * pobj)
    //SetTimer(123, 184, NULL);
 }
 
-void file_manager_operation_info_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void file_manager_operation_info_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::view::_001InstallMessageHandling(pinterface);
+   ::userbase::view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_info_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_manager_operation_info_view::_001OnTimer);
 }

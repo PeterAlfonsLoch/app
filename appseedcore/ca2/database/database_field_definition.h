@@ -8,14 +8,26 @@ namespace database
    {
    public:
 
+      enum e_type
+      {
+         type_none,
+         type_text,
+      };
 
-      string m_strName;
+
+      string      m_strName;
+      int         m_iSize;
+      e_type      m_etype;
 
       
       field_definition_item();
       field_definition_item(const field_definition_item & item);
 
       field_definition_item & operator = (const field_definition_item & item);
+      field_definition_item & operator = (const xml::node & node);
+
+
+      e_type field_str_to_type(const char * pszType);
 
    };
 

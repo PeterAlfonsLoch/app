@@ -31,6 +31,7 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
+      using ::radix::object::request;
       gen::relation_set & get();
       gen::relation_set & post();
       gen::relation_set & request();

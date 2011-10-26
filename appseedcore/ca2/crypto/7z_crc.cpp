@@ -22,7 +22,7 @@ struct CCRCTableInit
 #define CRC_NUM_TABLES 1
 #endif
 
-typedef uint32 (*CRC_FUNC)(uint32 v, const void *data, size_t size, const uint32 *table);
+typedef uint32 (*CRC_FUNC)(uint32 v, const void *data, ::primitive::memory_size size, const uint32 *table);
 
 static CRC_FUNC g_CrcUpdate;
 uint32 g_CrcTable[256 * CRC_NUM_TABLES];
@@ -41,17 +41,17 @@ static uint32 CrcUpdateT1(uint32 v, const void *data, size_t size, const uint32 
 
 #else
 
-uint32 CrcUpdateT4(uint32 v, const void *data, size_t size, const uint32 *table);
-uint32 CrcUpdateT8(uint32 v, const void *data, size_t size, const uint32 *table);
+uint32 CrcUpdateT4(uint32 v, const void *data, ::primitive::memory_size size, const uint32 *table);
+uint32 CrcUpdateT8(uint32 v, const void *data, ::primitive::memory_size size, const uint32 *table);
 
 #endif
 
-uint32 crc_update(uint32 v, const void *data, size_t size)
+uint32 crc_update(uint32 v, const void *data, ::primitive::memory_size size)
 {
   return g_CrcUpdate(v, data, size, g_CrcTable);
 }
 
-uint32 crc_calc(const void *data, size_t size)
+uint32 crc_calc(const void *data, ::primitive::memory_size size)
 {
   return g_CrcUpdate(CRC_INIT_VAL, data, size, g_CrcTable) ^ CRC_INIT_VAL;
 }

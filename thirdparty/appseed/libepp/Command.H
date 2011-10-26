@@ -34,11 +34,12 @@ namespace libepp
 
    /// EPP Command Class
    class Command :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
      /// Default constructor
-     Command(bool reset = true)
+     Command(::ca::application * papp, bool reset = true) :
+         ca(papp)
      {
        if (reset) {
          this->reset();

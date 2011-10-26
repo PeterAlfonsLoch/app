@@ -20,6 +20,7 @@ namespace _template
 
 //   #pragma push_macro("new")
    #undef new
+#undef delete
 
    /////////////////////////////////////////////////////////////////////////////
    // Collection helpers - CSimpleArray & CSimpleMap
@@ -103,7 +104,7 @@ namespace _template
       }
       CSimpleArray< T, TEqual >& operator=(const CSimpleArray< T, TEqual >& src)
       {
-         if (get_size() != src.get_size())
+         if (this->get_size() != src.get_size())
          {
             remove_all();
             m_aT = (T*)calloc(src.get_size(), sizeof(T));
@@ -112,7 +113,7 @@ namespace _template
          }
          else
          {
-            for (int i = get_size(); i > 0; i--)
+            for (int i = this->get_size(); i > 0; i--)
                remove_at(i - 1);
          }
          for (int i=0; i<src.get_size(); i++)
@@ -132,23 +133,23 @@ namespace _template
                T* aT;
                int nNewAllocSize = (m_nAllocSize == 0) ? 1 : (m_nSize * 2);
 
-        
+
                   if (nNewAllocSize<0||nNewAllocSize>INT_MAX/sizeof(T))
                {
-             
+
 
                      return FALSE;
-            
+
                }
 
-             
-         
+
+
                aT = (T*)_recalloc(m_aT, nNewAllocSize, sizeof(T));
                if(aT == NULL)
                   return FALSE;
                m_nAllocSize = nNewAllocSize;
                m_aT = aT;
-                     
+
             }
             InternalSetAtIndex(m_nSize, t);
             m_nSize++;
@@ -183,13 +184,13 @@ namespace _template
          }
          m_nSize = 0;
          m_nAllocSize = 0;
-       }   
+       }
       const T& operator[] (int nIndex) const
       {
          ATLASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
          {
-            _AtlRaiseException((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);               
+            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
          }
          return m_aT[nIndex];
       }
@@ -198,7 +199,7 @@ namespace _template
          ATLASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
          {
-            _AtlRaiseException((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);               
+            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
          }
          return m_aT[nIndex];
       }
@@ -257,7 +258,7 @@ namespace _template
 
    };
 
-   #define CSimpleValArray CSimpleArray 
+   #define CSimpleValArray CSimpleArray
 
       template <class T, class TEqual> inline  CSimpleArray<T, TEqual>::~CSimpleArray()
       {
@@ -282,7 +283,7 @@ namespace _template
 
       ~CSimpleMap()
       {
-         remove_all();   
+         remove_all();
       }
 
    // Operations
@@ -385,16 +386,16 @@ namespace _template
       {
          ATLASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
-            _AtlRaiseException((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
-            
+            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
+
          return m_aKey[nIndex];
       }
       TVal& GetValueAt(int nIndex) const
       {
          ATLASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
-            _AtlRaiseException((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);   
-            
+            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
+
          return m_aVal[nIndex];
       }
 

@@ -11,11 +11,12 @@ public:
    sp(::document)    m_spdocument;
 
    view();
+   virtual ~view() = 0;
 
    document * get_document() const;
    ::ca::data * get_data() const;
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
    virtual BOOL IsSelected(const ::radix::object* pDocItem) const; // support for OLE
 
@@ -51,15 +52,18 @@ public:
    virtual void OnDraw(::ca::graphics * pgraphics);
    virtual void OnViewUpdateHint(view * pSender, LPARAM lHint, view_update_hint * pHint);
 
+   template < class VIEW >
+   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL)
+   {
+      return dynamic_cast < VIEW * > (create_view(::ca::get_type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
+   }
 
-   static ::user::interaction * create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
-   static ::user::interaction * create_view(create_context * pContext, ::user::interaction * pwndParent, id id);
+   ::user::interaction * create_view(::ca::type_info info, document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+   static ::user::interaction * s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
+   static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
 
    static document * get_document(::user::interaction * pguie);
 
-// Implementation
-public:
-   virtual ~view() = 0;
 #ifdef _DEBUG
    virtual void dump(dump_context&) const;
    virtual void assert_valid() const;
@@ -74,10 +78,8 @@ public:
    virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
 
 
-public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
       
-protected:
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual void PostNcDestroy();
 
@@ -96,17 +98,21 @@ protected:
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)
-   afx_msg void OnPaint();
-   //afx_msg int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
+   void OnPaint();
+   //int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
    // commands
-   afx_msg void OnUpdateSplitCmd(cmd_ui* pCmdUI);
-   afx_msg BOOL OnSplitCmd(UINT nID);
-   afx_msg void OnUpdateNextPaneMenu(cmd_ui* pCmdUI);
-   afx_msg BOOL OnNextPaneCmd(UINT nID);
+   void OnUpdateSplitCmd(cmd_ui* pCmdUI);
+   BOOL OnSplitCmd(UINT nID);
+   void OnUpdateNextPaneMenu(cmd_ui* pCmdUI);
+   BOOL OnNextPaneCmd(UINT nID);
 
    // not mapped commands - must be mapped in derived class
-   afx_msg void OnFilePrint();
-   afx_msg void OnFilePrintPreview();
+   void OnFilePrint();
+   void OnFilePrintPreview();
+
+   // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
+   virtual void collaborate(::ca::job * pjob);
+   virtual int  get_total_page_count(::ca::job * pjob);
 
    DECL_GEN_SIGNAL(_001OnView)
    DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -155,6 +161,6 @@ public:
    virtual void assert_valid() const;
 #endif //_DEBUG
 
-   afx_msg void OnPaint();
+   void OnPaint();
 };
 

@@ -26,8 +26,8 @@ namespace sockets
       void handle(socket * psocket);
 
       virtual void write(string & str);
-      virtual void write(void * pdata, size_t len);
-      virtual int read(void * pdata, size_t len);
+      virtual void write(void * pdata, ::primitive::memory_size len);
+      virtual ::primitive::memory_size read(void * pdata, ::primitive::memory_size len);
       virtual string read_line();
       virtual string read_string();
 

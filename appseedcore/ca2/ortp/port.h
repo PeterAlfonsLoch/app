@@ -33,7 +33,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <string.h>
+//#include <string.h>
 
 #ifdef __linux
 #include <stdint.h>
@@ -113,7 +113,7 @@ int __ortp_thread_create(pthread_t *thread, pthread_attr_t *attr, void * (*routi
 #endif
 
 /* vc6
-typedef  unsigned __int64 uint64_t;
+typedef  uint64_t uint64_t;
 typedef  __int64 int64_t;
 typedef  unsigned short uint16_t;
 typedef  unsigned int uint32_t;
@@ -137,7 +137,7 @@ typedef HANDLE ortp_thread_t;
 
 #define ortp_thread_create   WIN_thread_create
 #define ortp_thread_join   WIN_thread_join
-#define ortp_thread_exit(arg)      
+#define ortp_thread_exit(arg)
 #define ortp_mutex_init      WIN_mutex_init
 #define ortp_mutex_lock      WIN_mutex_lock
 #define ortp_mutex_unlock   WIN_mutex_unlock
@@ -153,12 +153,12 @@ typedef HANDLE ortp_thread_t;
 extern "C"
 {
 #endif
-   
+
 int WIN_mutex_init(ortp_mutex_t *m, void *attr_unused);
 int WIN_mutex_lock(ortp_mutex_t *mutex);
 int WIN_mutex_unlock(ortp_mutex_t *mutex);
 int WIN_mutex_destroy(ortp_mutex_t *mutex);
-int WIN_thread_create(ortp_thread_t *t, void *attr_unused, void *(*func)(void*), void *arg); 
+int WIN_thread_create(ortp_thread_t *t, void *attr_unused, void *(*func)(void*), void *arg);
 int WIN_thread_join(ortp_thread_t thread, void **unused);
 int WIN_cond_init(ortp_cond_t *cond, void *attr_unused);
 int WIN_cond_wait(ortp_cond_t * cond, ortp_mutex_t * mutex);

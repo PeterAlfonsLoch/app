@@ -1,7 +1,0 @@
-; netshareserver.def
-
-LIBRARY  "netshareserver"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-

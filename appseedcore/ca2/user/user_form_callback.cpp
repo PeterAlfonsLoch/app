@@ -32,10 +32,10 @@ namespace user
       UNREFERENCED_PARAMETER(lparam);
    }
 
-   void form_callback::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+   void form_callback::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
    {
       UNREFERENCED_PARAMETER(pdata);
-      UNREFERENCED_PARAMETER(lpszUrl);
+      UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(lpszTargetFrameName);
       UNREFERENCED_PARAMETER(baPostedData);

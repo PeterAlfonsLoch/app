@@ -92,7 +92,7 @@ strtoupper(char *str)
 	if (!str || !*str)
 		return (NULL);
 	for (c = str; *c; c++)
-		*c = toupper(*c);
+		*c = (char) toupper(*c);
 	return (str);
 }  
 /*--- strtoupper() ------------------------------------------------------------------------------*/
@@ -110,7 +110,7 @@ strtolower(char *str)
 	if (!str || !*str)
 		return (NULL);
 	for (c = str; *c; c++)
-		*c = tolower(*c);
+		*c = (char) tolower(*c);
 	return (str);
 }  
 /*--- strtolower() ------------------------------------------------------------------------------*/
@@ -127,10 +127,10 @@ strsecs(time_t seconds)
 	static char str[40];
 	char *s;
 
-	weeks = seconds / 604800; seconds -= (weeks * 604800);
-	days = seconds / 86400; seconds -= (days * 86400);
-	hours = seconds / 3600; seconds -= (hours * 3600);
-	minutes = seconds / 60; seconds -= (minutes * 60);
+	weeks = (int) (seconds / 604800); seconds -= (weeks * 604800);
+	days = (int) (seconds / 86400); seconds -= (days * 86400);
+	hours = (int) (seconds / 3600); seconds -= (hours * 3600);
+	minutes = (int) (seconds / 60); seconds -= (minutes * 60);
 
 	s = str;
 	if (weeks) s += snprintf(s, sizeof(str) - strlen(str), "%dw", weeks);

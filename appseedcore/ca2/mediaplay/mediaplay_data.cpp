@@ -6,14 +6,13 @@ namespace mediaplay
    data::data(document * pdocument) :
       ::ca::ca(pdocument->get_app()),
       m_pdocument(pdocument),
-      MidiDocHelper(pdocument->get_app()), 
-      m_fileWave(pdocument->get_app()) ,
+      MidiDocHelper(pdocument->get_app()),
       m_memfile(pdocument->get_app()),
       m_karaokeinterface(pdocument->get_app())
    {
 
       m_bWrite = false;
-      
+
       SetKaraokeData(new ikar::data(get_app()));
       if(GetKaraokeData().IsNull())
          throw new memory_exception;
@@ -53,21 +52,21 @@ namespace mediaplay
 
 
 
-   bool data::on_open_document(var varFile) 
+   bool data::on_open_document(var varFile)
    {
       keeper < bool > keepWrite(&m_bWrite, true, false, true);
 
       ikar::data & data = GetKaraokeData();
-      
-      CSingleLock slKaraokeData(&data.m_mutex, FALSE);
-      if(!slKaraokeData.Lock(1984 * 5))
+
+      single_lock slKaraokeData(&data.m_mutex, FALSE);
+      if(!slKaraokeData.lock(millis(1984 * 5)))
          return FALSE;
 
       e_type e_type = DetermineFileType(varFile);
 
       if(e_type == TypeZip)
       {
-         return OnOpenZipFile(varFile);
+         return OnOpenZipFile(varFile) != FALSE;
       }
 
       string strPath;
@@ -84,79 +83,28 @@ namespace mediaplay
          strPath = varFile;
       }
 
-      
+
       m_etype = e_type;
-      
+
       EMode emode = DetermineMode(e_type);
 
       m_emode = emode;
 
       if(GetMode() == ModeWave)
       {
-         if(m_fileWave->IsOpened())
-            m_fileWave->close();
-       
-         if(varFile.get_type() == var::type_propset
-         && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
-         {
-            m_fileWave.destroy();
-            m_fileWave.m_p = varFile.propset()["file"].ca2 < ::ex1::file >();
-         }
-         else if(e_type == TypeRtp)
-         {
-            m_fileWave.destroy();
-            rtp::file * pfile =  new rtp::file(get_app());
 
-            m_fileWave.m_p = pfile;
-            if(!pfile->rx_open(
-               System.url().get_server(strPath),
-               System.url().get_port(varFile)))
-            {
-      /*         throw new ex1::file_exception_sp(fileexception.m_cause, 
-                  fileexception.m_lOsError,
-                  fileexception.m_wstrFileName);*/
-               throw new ex1::file_exception_sp(get_app());
-            }
-            pfile->set_payload("mp3", &payload_type_mp3_128);
-         }
-         else if(gen::str::begins(strPath, "http://")
-            ||   gen::str::begins(strPath, "https://"))
+         ::ex1::file_exception_sp e;
+         ::ex1::filesp spfile = Application.get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary | ::ex1::file::hint_unknown_length_supported, &e);
+         if(spfile.is_null())
          {
-             m_fileWave.destroy();
-             sockets::http::file * pfile = new sockets::http::file(get_app());
-             m_fileWave.m_p = *pfile;
-
-            if(!pfile->open(strPath, ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary))
-            {
-               throw new ex1::file_exception_sp(get_app());
-            }
-         }
-         else if(gen::str::begins(strPath, "ifs://")
-            ||   gen::str::begins(strPath, "uifs://"))
-         {
-             m_fileWave.destroy();
-             ex1::filesp * pfile = ifs(get_app(), "").get_file(strPath);
-             m_fileWave.m_p = *pfile;
-
-            /*if(!pfile->open(strPath, ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary))
-            {
-               throw new ex1::file_exception_sp(get_app());
-            }*/
-         }
-         else
-         {
-            m_fileWave.create(get_app());
-            ex1::file_exception_sp fileexception(get_app());
-            if(!m_fileWave->open(strPath, ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary))
-            {
-      /*         throw new ex1::file_exception_sp(fileexception.m_cause, 
-                  fileexception.m_lOsError,
-                  fileexception.m_wstrFileName);*/
-               throw new ex1::file_exception_sp(get_app());
-            }
+            throw e;
+            return false;
          }
 
-         m_fileWave->seek_to_begin();
+         m_spfile = spfile;
+
+
+         m_spfile->seek_to_begin();
 
          m_strPathName = strPath;
 
@@ -176,74 +124,52 @@ namespace mediaplay
             audWavePlayerCommand command;
             if(m_etype == data::TypeRtp)
             {
-               command.OpenRtpFile(m_fileWave);
+               command.OpenRtpFile(m_spfile);
             }
             else
             {
                bool bSeekable = !(gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://")
                   || gen::str::begins(strPath, "uifs://") || gen::str::begins(strPath, "fs://")
                   || varFile.ca2 < ::sockets::http::file > () != NULL
-                  || varFile.propset()["file"].ca2 < ::sockets::http::file >() != NULL);
-               command.OpenFile(m_fileWave, bSeekable);
+                  || varFile.propset()["file"].ca2 < ::sockets::http::file >() != NULL
+                  || varFile.propset()["file"].ca2 < ::ex1::file >() != NULL);
+               command.OpenFile(m_spfile, bSeekable);
             }
-            /*
-            switch(pviewdata->get_type())
-            {
-            case data::TypeAiff:
-               command.OpenAiffFile(&pviewdata->GetWaveFile());
-               break;
-            case data::TypeCda:
-               command.OpenCdaFile(&pviewdata->GetWaveFile());
-               break;
-            case data::TypeMpeg:
-               command.OpenMp3File(&pviewdata->GetWaveFile());
-               break;
-            case data::TypeTwinVQ:
-               command.OpenVqfFile(&pviewdata->GetWaveFile());
-               break;
-            case data::TypeWav:
-               command.OpenWavFile(&pviewdata->GetWaveFile());
-               break;
-            case data::TypeWm:
-               command.OpenWmFile(&pviewdata->GetWaveFile());
-               break;
-            default:
-               ASSERT(FALSE);
-               break;
-            }*/
             pwaveplayer->ExecuteCommand(command);
          }
 
          string str;
          string strFile;
 
-         int iFind = m_strPathName.reverse_find(L'.');
-         str = m_strPathName.Left(iFind + 1) + "kok";
-         strFile = Application.file().as_string(str);
-         if(strFile.has_char())
+         if(m_etype != data::TypeRtp)
          {
-            gen::memory_file memfile(get_app());
-            memfile.from_string(strFile);
-            m_karaokeinterface.ParseKOKFile(&memfile);
-            GetKaraokeData().Initialize(&m_karaokeinterface);
-            GetKaraokeData().Prepare();
-            goto kokEnd;
-         }
+            int iFind = m_strPathName.reverse_find(L'.');
+            str = m_strPathName.Left(iFind + 1) + "kok";
+            strFile = Application.file().as_string(str);
+            if(strFile.has_char())
+            {
+               gen::memory_file memfile(get_app());
+               memfile.from_string(strFile);
+               m_karaokeinterface.ParseKOKFile(&memfile);
+               GetKaraokeData().Initialize(&m_karaokeinterface);
+               GetKaraokeData().Prepare();
+               goto kokEnd;
+            }
 
-         iFind = m_strPathName.reverse_find(L'.');
-         str = m_strPathName.Left(iFind + 1) + "ssa";
-         strFile = Application.file().as_string(str);
-         if(strFile.has_char())
-         {
-            gen::memory_file memfile(get_app());
-            memfile.from_string(strFile);
-            m_karaokeinterface.ParseSSAFile(&memfile);
-            GetKaraokeData().Initialize(&m_karaokeinterface);
-            GetKaraokeData().Prepare();
-            goto kokEnd;
+            iFind = m_strPathName.reverse_find(L'.');
+            str = m_strPathName.Left(iFind + 1) + "ssa";
+            strFile = Application.file().as_string(str);
+            if(strFile.has_char())
+            {
+               gen::memory_file memfile(get_app());
+               memfile.from_string(strFile);
+               m_karaokeinterface.ParseSSAFile(&memfile);
+               GetKaraokeData().Initialize(&m_karaokeinterface);
+               GetKaraokeData().Prepare();
+               goto kokEnd;
+            }
          }
    kokEnd:
-
          return true;
       }
       else if(GetMode() == ModeMidi)
@@ -256,7 +182,7 @@ namespace mediaplay
          }
 
          m_strPathName = strPath;
-      
+
          GetKaraokeData().Prepare();
 
          return true;
@@ -267,15 +193,25 @@ namespace mediaplay
       }
    }
 
-   void data::delete_contents() 
+   void data::delete_contents()
    {
 
       keeper < bool > keepWrite(&m_bWrite, true, false, true);
-      GetKaraokeData().delete_contents();
-      
+
+      if(ikar::data_container::m_pdata != NULL)
+      {
+         try
+         {
+            GetKaraokeData().delete_contents();
+         }
+         catch(...)
+         {
+         }
+      }
+
    }
 
-   void data::AttachPlaylist(PlaylistDoc *pdoc)
+   void data::AttachPlaylist(::mediaplaylist::document *pdoc)
    {
       ::mediaplay::view_update_hint uh;
       uh.set_type(::mediaplay::view_update_hint::TypeAttachPlaylist);
@@ -284,12 +220,14 @@ namespace mediaplay
    }
 
 
-   BOOL data::OpenFile(const char * bstrFilePath, BOOL bMakeVisible) 
+   BOOL data::OpenFile(const char * bstrFilePath, BOOL bMakeVisible)
    {
       UNREFERENCED_PARAMETER(bMakeVisible);
       string str;
       str = bstrFilePath;
-      return System.open_document_file(str) != NULL;
+      ::ca::create_context_sp cc(get_app());
+      cc->m_spCommandLine->m_varFile = str;
+      return System.open_document_file(cc) != NULL;
    }
 
    data::e_type data::DetermineFileType(var varFile)
@@ -310,7 +248,10 @@ namespace mediaplay
          strPath = varFile;
       }
 
-      if(gen::str::begins_ci(strPath, "rtp://"))
+      strPath.trim("\"'");
+
+      if(gen::str::begins_ci(strPath, "rtp://")
+      || gen::str::begins_ci(strPath, "rtprx://"))
       {
          return TypeRtp;
       }
@@ -380,9 +321,9 @@ namespace mediaplay
       return m_pdocument;
    }
 
-   ex1::filesp & data::GetWaveFile()
+   ex1::file * data::get_file()
    {
-      return m_fileWave;
+      return m_spfile;
    }
 
    string data::GetAnimatedTitle()
@@ -429,13 +370,13 @@ namespace mediaplay
       }
       const int BUFSIZE = 4096;
    //   char szTempName[MAX_PATH];
-   //   char buffer[BUFSIZE]; 
+   //   char buffer[BUFSIZE];
 
    //   WCHAR szTitle1[_MAX_PATH];
 
       string strPathName;
       GetTempPath(BUFSIZE,   // length of the buffer
-         strPathName.GetBuffer(BUFSIZE));      // buffer for path 
+         strPathName.GetBuffer(BUFSIZE));      // buffer for path
       strPathName.ReleaseBuffer();
       strPathName += "vmplite";
 
@@ -475,6 +416,7 @@ namespace mediaplay
 
    void data::on_http_request_response(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       //m_strTimePath
 /*         SCAST_PTR(ca4::http::signal, psignal, pobj);
 

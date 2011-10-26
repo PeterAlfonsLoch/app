@@ -23,7 +23,7 @@ CPropMap kPropMap[] =
   { NID::kName, { NULL, ::compress::kpidPath, VT_BSTR } },
   { NID::kSize, { NULL, ::compress::kpidSize, VT_UI8 } },
   { NID::kPackInfo, { NULL,::compress:: kpidPackSize, VT_UI8 } },
-  
+
   #ifdef _MULTI_PACK
   { 100, { L"Pack0", kpidPackedSize0, VT_UI8 } },
   { 101, { L"Pack1", kpidPackedSize1, VT_UI8 } },
@@ -39,7 +39,7 @@ CPropMap kPropMap[] =
   { NID::kStartPos, { NULL, ::compress::kpidPosition, VT_UI4 } },
 
   { NID::kCRC, { NULL, ::compress::kpidCRC, VT_UI4 } },
-  
+
   { NID::kAnti, { NULL, ::compress::kpidIsAnti, VT_BOOL } }
 
   #ifndef _SFX
@@ -120,7 +120,7 @@ void CHandler::FillPopIDs()
   CopyOneItem(fileInfoPopIDs, _fileInfoPopIDs, NID::kCRC);
   CopyOneItem(fileInfoPopIDs, _fileInfoPopIDs, NID::kComment);
   _fileInfoPopIDs.add(fileInfoPopIDs);
- 
+
   #ifndef _SFX
   _fileInfoPopIDs.add(97);
   _fileInfoPopIDs.add(98);

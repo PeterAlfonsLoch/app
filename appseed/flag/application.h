@@ -9,17 +9,7 @@ namespace flag
    public:
       
       
-      class helper_thread :
-         virtual public thread
-      {
-      public:
-         helper_thread(::ca::application * papp);
-         int run();
-      };
-
-
       ::userbase::single_document_template *  m_ptemplate_html;
-      comparable_array < HWND >     m_hwndaHidden;
 
 
       application(void);
@@ -29,20 +19,8 @@ namespace flag
       virtual bool initialize_instance();
       virtual int  exit_instance();
 
-      virtual bool bergedge_start();
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
-      virtual void _001OnFileNew();
-
-      virtual ::ca::application * get_app() const;
-
-      virtual bool on_assert_failed_line(const char * lpszFileName, int iLine);
-
-      virtual bool final_handle_exception(::ca::exception & e);
-
-      void menu_view_check_menu_dir(const char * psz);
-
-      ::document * _001OpenDocumentFile(var varFile);
-      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
    };
 

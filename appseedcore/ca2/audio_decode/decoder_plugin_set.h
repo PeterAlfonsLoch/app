@@ -4,7 +4,7 @@ namespace audio_decode
 {
 
 class CLASS_DECL_ca decoder_plugin_set :
-   public array_ptr < decoder_plugin, decoder_plugin & >
+   public array_del_ptr < decoder_plugin, decoder_plugin & >
 {
 public:
 

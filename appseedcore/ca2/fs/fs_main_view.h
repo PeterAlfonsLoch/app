@@ -12,13 +12,12 @@ namespace fs
    public:
          
       main_view(::ca::application * papp);
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
 
 
       document * get_document();
-      virtual data * get_fs_data();
 
    };
 

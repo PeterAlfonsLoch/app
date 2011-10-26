@@ -12,14 +12,14 @@ class CLASS_DECL_ca fixed_string_manager :
 {
 protected:
 
-   
+
    string_manager_interface * m_pMgr;
    string_data* m_pData;
 
 
 public:
-   
-   
+
+
    static fixed_string_log_interface * s_pLog;
 
    fixed_string_manager(string_data * pData,int nChars, string_manager_interface * pMgr = NULL ) throw();
@@ -43,8 +43,8 @@ class fixed_string :
    public string
 {
 protected:
-   
-   
+
+
    string_data m_data;
    string::XCHAR m_achData[t_nChars+1];
 
@@ -70,57 +70,57 @@ public:
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string() throw() :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( static_cast< string_manager_interface* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( static_cast< string_manager_interface* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(string_manager_interface* pstringmanager ) throw() :
    fixed_string_manager( &m_data, t_nChars, pstringmanager ),
-   stringype( static_cast< string_manager_interface* >( this ) )
+   string( static_cast< string_manager_interface* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(const fixed_string< t_nChars >& str ) :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( str.GetString(), str.get_length(), static_cast< fixed_string_manager* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( str.GetString(), str.get_length(), static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(string str ) :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( str.GetString(), str.get_length(), static_cast< fixed_string_manager* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( str.GetString(), str.get_length(), static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz ) :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( psz, static_cast< fixed_string_manager* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz,int nLength ) :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( psz, nLength, static_cast< fixed_string_manager* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( psz, nLength, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(const string::YCHAR* psz ) :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( psz, static_cast< fixed_string_manager* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string(const unsigned char* psz ) :
-   fixed_string_manager( &m_data, t_nChars, str_traits::GetDefaultManager() ),
-   stringype( psz, static_cast< fixed_string_manager* >( this ) )
+   fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
+   string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
@@ -133,35 +133,35 @@ fixed_string< t_nChars >::~fixed_string() throw()
 template < int t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const fixed_string< t_nChars >& str )
 {
-   stringype::operator=( str );
+   string::operator=( str );
    return *this;
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const char* psz )
 {
-   stringype::operator=( psz );
+   string::operator=( psz );
    return *this;
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const wchar_t* psz )
 {
-   stringype::operator=( psz );
+   string::operator=( psz );
    return *this;
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const unsigned char* psz )
 {
-   stringype::operator=( psz );
+   string::operator=( psz );
    return *this;
 }
 
 template < int t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const string & str )
 {
-   stringype::operator=( str );
+   string::operator=( str );
    return *this;
 }
 

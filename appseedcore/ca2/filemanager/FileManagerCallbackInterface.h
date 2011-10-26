@@ -1,6 +1,8 @@
 #pragma once
 
+#ifdef _WINDOWS
 #include <shlobj.h>
+#endif
 
 
 namespace filemanager
@@ -18,21 +20,21 @@ class CLASS_DECL_ca FileManagerCallbackInterface :
 {
 public:
 
-   
+
    FileManagerCallbackInterface();
    virtual ~FileManagerCallbackInterface();
 
 
-   virtual void on_request(var & varFile, var & varRequest);
+   virtual void on_request(::ca::create_context * pcreatecontext);
 
 
-   virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::fs::item & item);
-   virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, ::fs::item_array & itema);
+   virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item);
+   virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
    virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
-   virtual void OnFileManagerOpenFolder(::filemanager::data * pdata, ::fs::item & item);
-   virtual bool GetFileManagerItemCallback(::filemanager::data * pdata, id id, ::fs::item_array & itema);
-   virtual void OnFileManagerItemUpdate(::filemanager::data * pdata, cmd_ui * pcmdui, ::fs::item_array & itema);
-   virtual void OnFileManagerItemCommand(::filemanager::data * pdata, id pszId, ::fs::item_array & itema);
+   virtual void OnFileManagerOpenFolder(::filemanager::data * pdata, const ::fs::item & item);
+   virtual bool GetFileManagerItemCallback(::filemanager::data * pdata, id id, const ::fs::item_array & itema);
+   virtual void OnFileManagerItemUpdate(::filemanager::data * pdata, cmd_ui * pcmdui, const ::fs::item_array & itema);
+   virtual void OnFileManagerItemCommand(::filemanager::data * pdata, id pszId, const ::fs::item_array & itema);
    virtual void OnFileManagerInitializeFormPreData(::filemanager::data * pdata, id uiId, ::user::form * pform);
 
 
@@ -41,22 +43,3 @@ public:
 };
 
 
-namespace filemanager
-{
-   class launch_app_thread :
-      public ::radix::thread
-   {
-   public:
-      launch_app_thread(::ca::application * papp);
-
-      bool initialize_instance();
-
-      var m_varFile;
-      var m_varQuery;
-      ::fs::item_array m_itema;
-      int run();
-   };
-
-
-
-} // namespace filemanager

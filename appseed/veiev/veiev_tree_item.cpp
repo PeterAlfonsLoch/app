@@ -7,6 +7,7 @@ namespace veiev
 
    string tree_item::get_text(ex1::tree * ptree)
    {
+      UNREFERENCED_PARAMETER(ptree);
 		return m_strName;
    }
 

@@ -96,6 +96,9 @@ _formerr_internal(
 	unsigned int lineno
 )
 {
+   UNREFERENCED_PARAMETER(xtra);
+   UNREFERENCED_PARAMETER(filename);
+   UNREFERENCED_PARAMETER(lineno);
 	char	*dest;
 
 #if DEBUG_ENABLED && DEBUG_ERROR
@@ -140,6 +143,9 @@ _dnserror_internal(
 	unsigned int lineno
 )
 {
+   
+   UNREFERENCED_PARAMETER(filename);
+   UNREFERENCED_PARAMETER(lineno);
 	if (t->hdr.rcode == DNS_RCODE_NOERROR)
 	{
 #if DEBUG_ENABLED && DEBUG_ERROR

@@ -1,12 +1,16 @@
 #pragma once
 
-#include "include/cube.h"
+
+#include "include/tesseract.h"
+
+
 
 #ifdef _CA2_FONTOPUS_VEIEV_DLL
     #define CLASS_DECL_CA2_VEIEV  _declspec(dllexport)
 #else
     #define CLASS_DECL_CA2_VEIEV  _declspec(dllimport)
 #endif
+
 
 #include "veiev_const.h"
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "gen_var.h"
+#include "gen/gen_var.h"
 
 class CLASS_DECL_ca stringa :
    virtual public string_array,
-   virtual public ex1::serializable
+   virtual public ex1::byte_serializable
 {
 public:
    stringa(::ca::application * papp = NULL);
@@ -21,6 +21,10 @@ public:
    index add_unique_ci(const char * lpcsz);
    count add_unique_ci(const string_array & stra);
 
+   void make_lower();
+   void make_upper();
+
+
    index get_random_index() const;
 
    string & random_element();
@@ -36,10 +40,10 @@ public:
    void splice(const stringa & stra, index index, count count);
    void splice(const stringa & stra, index index, stringa & straRemoved);
    void splice(const stringa & stra, index index, count count, stringa & straRemoved);
-   
+
 
    // if string is found, move it to specified position
-   bool move_ci(const char * lpcsz, index iIndex); 
+   bool move_ci(const char * lpcsz, index iIndex);
 
    // move preferred in order
    bool preferred(const char * lpcsz);
@@ -79,7 +83,7 @@ public:
    void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
 
 //   void XFV001Expand();
-    
+
    stringa & operator =(const var var);
    stringa & operator =(const stringa & stra);
    stringa & operator =(const string_array & stra);
@@ -91,8 +95,8 @@ public:
 
    void replace(const char * lpszSearch, const char * lpszReplace);
 
-   void write(ex1::output_stream & ostream);
-   void read(ex1::input_stream & istream);
+   void write(ex1::byte_output_stream & ostream);
+   void read(ex1::byte_input_stream & istream);
 
 
    void get_format_string(string & str, const char * lpcszSeparator) const;
@@ -111,13 +115,13 @@ void SortEx(ARRAYCOMPARE * pacompare,
             int fCompare(const char *, const char *),
             ARRAYRELATION * parelation)
 {
-   CDWordStack stackLowerBound;
-   CDWordStack stackUpperBound;
+   dword_array stackLowerBound;
+   dword_array stackUpperBound;
    int iLowerBound;
    int iUpperBound;
    int iLPos, iUPos, iMPos;
    string str;
-    
+
     if(pacompare->get_size() >= 2)
    {
         stackLowerBound.push(0);
@@ -180,7 +184,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
    }
    //for(int i = 0; i < pacompare->get_size(); i++)
    //{
-//      TRACE("%d element_at(iPos) %s\n", i, element_at(i));
+//      TRACE("%d this->element_at(iPos) %s\n", i, this->element_at(i));
    //}
 }
 
@@ -189,13 +193,13 @@ void SortEx(ARRAYCOMPARE * pacompare,
             int fCompare(const wchar_t *, const wchar_t *),
             ARRAYRELATION * parelation)
 {
-   CDWordStack stackLowerBound;
-   CDWordStack stackUpperBound;
+   dword_array stackLowerBound;
+   dword_array stackUpperBound;
    int iLowerBound;
    int iUpperBound;
    int iLPos, iUPos, iMPos;
    string str;
-    
+
     if(pacompare->get_size() >= 2)
    {
         stackLowerBound.push(0);
@@ -258,7 +262,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
    }
    //for(int i = 0; i < pacompare->get_size(); i++)
    //{
-//      TRACE("%d element_at(iPos) %s\n", i, element_at(i));
+//      TRACE("%d this->element_at(iPos) %s\n", i, this->element_at(i));
    //}
 }
 

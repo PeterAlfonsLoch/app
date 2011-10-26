@@ -67,16 +67,16 @@ POSITION comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
 find_first(const TYPE & t, POSITION pos, POSITION posLast) const
 {
    if(pos == NULL)
-      pos = get_head_position();
+      pos = this->get_head_position();
    if(pos == NULL)
-      pos = get_tail_position();
+      pos = this->get_tail_position();
    for(; pos != NULL;)
    {
-      if(get_at(pos) == t)
+      if(this->get_at(pos) == t)
          return pos;
       if(pos == posLast)
          break;
-      get_next(pos);
+      this->get_next(pos);
    }
    return NULL;
 }
@@ -86,16 +86,16 @@ POSITION comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
 find_last(const TYPE & t, POSITION pos, POSITION posLast) const
 {
    if(pos == NULL)
-      pos = get_tail_position();
+      pos = this->get_tail_position();
    if(pos == NULL)
-      pos = get_head_position();
+      pos = this->get_head_position();
    for(; pos != NULL;)
    {
-      if(get_at(pos) == t)
+      if(this->get_at(pos) == t)
          return pos;
       if(pos == posLast)
          break;
-      get_previous(pos);
+      this->get_previous(pos);
    }
    return NULL;
 }
@@ -164,12 +164,12 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
 {
-   POSITION pos = get_head_position();
+   POSITION pos = this->get_head_position();
    for(; pos != NULL;)
    {
-      if(!a.contains(get_next(pos)))
+      if(!a.contains(this->get_next(pos)))
       {
-         remove_at(pos);
+         this->remove_at(pos);
       }
    }
 }
@@ -183,7 +183,7 @@ merge_tail(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
    {
       if(!contains(l.get_at(pos)))
       {
-         add_tail(l.get_next(pos));
+         this->add_tail(l.get_next(pos));
       }
    }
 }
@@ -249,10 +249,10 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 remove_first(const TYPE & t)
 {
-   POSITION find = find_first(t);
+   POSITION find = this->find_first(t);
    if(find != NULL)
    {
-      remove_at(find);
+      this->remove_at(find);
       return true;
    }
    return false;
@@ -263,11 +263,11 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 remove_first(const TYPE & t, POSITION & find, POSITION last)
 {
-   if((find = find_first(t, find, last)) != NULL)
+   if((find = this->find_first(t, find, last)) != NULL)
    {
       POSITION posRemove = find;
-      get_next(find);
-      remove_at(posRemove);
+      this->get_next(find);
+      this->remove_at(posRemove);
       return true;
    }
    return false;
@@ -291,7 +291,7 @@ remove_last(const TYPE & t)
    POSITION find = find_last(t);
    if(find != NULL)
    {
-      remove_at(find);
+      this->remove_at(find);
       return true;
    }
    return false;
@@ -305,8 +305,8 @@ remove_last(const TYPE & t, POSITION & find, POSITION last)
    if((find = find_last(t, find, last)) != NULL)
    {
       POSITION posRemove = find;
-      get_previous(find);
-      remove_at(posRemove);
+      this->get_previous(find);
+      this->remove_at(posRemove);
       return true;
    }
    return false;

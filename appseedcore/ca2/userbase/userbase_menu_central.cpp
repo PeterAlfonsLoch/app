@@ -31,7 +31,7 @@ BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
    VERIFY(m_fontMenu->CreateFontIndirect(&ncm.lfMenuFont));
    if(!MenuV033GetImageList()->create(
       16, 16,
-      ILC_COLOR24 | ILC_MASK, 
+      ILC_COLOR24 | ILC_MASK,
       0, 10))
    {
       return;
@@ -91,7 +91,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::application * papp)
       MenuV033GetImageList(),
       RGB(220, 220, 215),
       0.50);
-   
+
 
 
 
@@ -105,7 +105,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
 
 /*   if(!MenuV033GetImageList()->create(
       16, 16,
-      ILC_COLOR24 | ILC_MASK, 
+      ILC_COLOR24 | ILC_MASK,
       0, 10))
    {
       return FALSE;
@@ -193,7 +193,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
         {ID_CHECK, 25},
         {ID_ALBUM_DUPLICATESLIST, 27},
     };
-    
+
     UINT uiSize = sizeof(uiaMenuV003Map) / (sizeof(UINT) * 2);
     for(UINT user = 0; user < uiSize; user++)
     {
@@ -284,7 +284,7 @@ void BaseMenuCentral::HookCBTHook()
 {
    if (!m_hCBTHook)
    {
-      m_hCBTHook = SetWindowsHookEx(WH_CBT, CBTHook, 
+      m_hCBTHook = SetWindowsHookEx(WH_CBT, CBTHook,
          NULL, GetCurrentThreadId());
    }
 }
@@ -293,7 +293,7 @@ void BaseMenuCentral::UnhookCBTHook()
 {
    if (m_hCBTHook)
    {
-      UnhookWindowsHookEx(m_hCBTHook);    
+      UnhookWindowsHookEx(m_hCBTHook);
       m_hCBTHook = NULL;
    }
 }
@@ -301,7 +301,7 @@ void BaseMenuCentral::UnhookCBTHook()
 /* trans
 void BaseMenuCentral::RemoveBorder(HWND hWnd)
 {
-   const int SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE | 
+   const int SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
       SWP_NOZORDER | SWP_NOACTIVATE;
 
    DWORD dwStyle = ::GetWindowLong(hWnd, GWL_STYLE);

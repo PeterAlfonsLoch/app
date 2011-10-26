@@ -21,7 +21,7 @@ public:
   /** Destructor */
   ~str_buffer();
 
-  /** Changes the GetLength of this str_buffer */
+  /** Changes the get_length of this str_buffer */
   void setLength(int newLength);
 
   /** Appends to this string buffer @c string */

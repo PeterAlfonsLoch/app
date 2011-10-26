@@ -13,6 +13,16 @@
 #include "factory.h"
 
 
+namespace userbase
+{
+
+
+   class main_frame;
+
+
+} // namespace userbase
+
+
 namespace radix
 {
 
@@ -26,15 +36,44 @@ namespace radix
       ExclusiveInstanceLicense,
    };
 
-   class CLASS_DECL_ca application : 
-      virtual public ::ca::application,
-      virtual public ::ca::message_window_simple_callback
+
+   class CLASS_DECL_ca application_signal_object :
+         public gen::signal_object
    {
+   public:
+
+
+      ::ca::e_application_signal       m_esignal;
+      int                              m_iRet;
+      bool                             m_bOk;
+
+
+      application_signal_object(::ca::application * papp, ::gen::signal * psignal, ::ca::e_application_signal esignal);
+
+
+   };
+
+
+   class CLASS_DECL_ca application :
+      virtual public ::ca::application,
+      virtual public ::ca::message_window_simple_callback,
+      virtual public ::radix::thread
+   {
+
+   public:
+
+
+
+      gen::signal                   m_signal;
+      string                        m_strInstallToken;
+      //::user::interaction *         m_puiInitialPlaceHolderContainer;
+      ::ca::application_bias        m_biasCalling;
+
    protected:
       HGLOBAL m_hDevMode;             // printer Dev Mode
       HGLOBAL m_hDevNames;            // printer Device Names
       DWORD m_dwPromptContext;        // help context override for message box
-   // LKG   
+   // LKG
    //   DWORD m_dwPolicies;            // block for storing boolean system policies
 
       int m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
@@ -48,7 +87,7 @@ namespace radix
       ::user::LPWndArray * m_pframea;
 
 
-   
+
       EExclusiveInstance m_eexclusiveinstance;
 
       ::mutex *     m_pmutexLocal;
@@ -84,8 +123,6 @@ namespace radix
 
       // set in constructor to override default
 
-      // Executable name (no spaces).
-      const char * m_pszExeName;
 
       // Default based on this module's path.
       const char * m_pszHelpFilePath;
@@ -105,36 +142,36 @@ namespace radix
 
 
 
-   string                           m_strId;
+      string                           m_strId;
 
-   mutex                            m_mutexObjectLock;
-   ::collection::map < ::radix::object *, ::radix::object *, mutex *, mutex * > m_mapObjectMutex;
+      mutex                            m_mutexObjectLock;
+      ::collection::map < ::sync_object_base *, ::sync_object_base *, mutex *, mutex * > m_mapObjectMutex;
 
-   mutex                            m_mutexObjectEvent;
-   ::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int, int, CEvent *, CEvent * > *, ::collection::map < int, int, CEvent *, CEvent * >  * > m_mapObjectEvent;
+      mutex                            m_mutexObjectEvent;
+      ::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int, int, event *, event * > *, ::collection::map < int, int, event *, event * >  * > m_mapObjectEvent;
 
-   typedef ::collection::map < id, id, var, var > idvar;
-   typedef ::collection::map < ::radix::object *, ::radix::object *, idvar, idvar > oidvar;
-   mutex                            m_mutexObjectVar;
-   oidvar                           m_mapObjectVar;
+      typedef ::collection::map < ::radix::object *, ::radix::object *, gen::property_set, gen::property_set > oset;
+      oset                             m_mapObjectSet;
 
-   class ::user::str_context *      m_puistrcontext;
-   bool                             m_bShouldInitializeGTwf;
-   point                            m_ptCursor;
-   bool                             m_bSessionSynchronizedCursor;
-   rect                             m_rectScreen;
-   bool                             m_bSessionSynchronizedScreen;
-   ::user::interaction *            m_pwndMain;
+      class ::user::str_context *      m_puserstrcontext;
+      bool                             m_bShouldInitializeGTwf;
+      point                            m_ptCursor;
+      bool                             m_bSessionSynchronizedCursor;
+      rect                             m_rectScreen;
+      bool                             m_bSessionSynchronizedScreen;
+      ::user::interaction *            m_pwndMain;
 
-   ::user::keyboard_focus *         m_pkeyboardfocus;
-   ::user::mouse_focus *            m_pmousefocusLButtonDown;
+      ::user::keyboard_focus *         m_pkeyboardfocus;
+      ::user::mouse_focus *            m_pmousefocusLButtonDown;
+      ::user::mouse_focus *            m_pmousefocusRButtonDown;
 
-   ::user::str *                      m_puistr;
+      int                              m_iResourceId;
 
-   int                              m_iResourceId;
-   //BaseIdSpaceIntegerMap      m_imapResource;
-   //BaseIdSpaceStringKeyMap    m_strmapResource;
-//   id_space                   m_idspace;
+      ::collection::string_to_ptr         m_appmap;
+
+      //BaseIdSpaceIntegerMap      m_imapResource;
+      //BaseIdSpaceStringKeyMap    m_strmapResource;
+   //   id_space                   m_idspace;
 
 
 
@@ -156,10 +193,6 @@ namespace radix
       virtual bool release_exclusive();
 
 
-
-
-
-
       // Sets and initializes usage of HtmlHelp instead of WinHelp.
       void EnableHtmlHelp();
 
@@ -171,6 +204,7 @@ namespace radix
 
       ::user::interaction * get_active_guie();
       ::user::interaction * get_focus_guie();
+//      virtual ::user::interaction * get_place_holder_container();
 
       ::user::LPWndArray & frames();
       virtual void add_frame(::user::interaction * pwnd);
@@ -212,6 +246,7 @@ namespace radix
       // Loads an OEM cursor; for all OCR_* values.
       HCURSOR LoadOEMCursor(UINT nIDCursor) const;
 
+#ifdef WINDOWS
       // Loads an icon resource.
       HICON LoadIcon(const char * lpszResourceName) const;
       HICON LoadIcon(UINT nIDResource) const;
@@ -221,6 +256,7 @@ namespace radix
 
       // Loads an OEM icon resource; for all OIC_* values.
       HICON LoadOEMIcon(UINT nIDIcon) const;
+#endif
 
       // Retrieve an integer value from INI file or registry.
       UINT GetProfileInt(const char * lpszSection, const char * lpszEntry, int nDefault);
@@ -253,8 +289,10 @@ namespace radix
       // Unregisters everything this cast was known to register.
       virtual BOOL Unregister();
 
+#ifdef WINDOWS
       // Delete a registry key entry (and all its subkeys, too).
       LONG DelRegTree(HKEY hParentKey, const string & strKeyName);
+#endif
 
    // Running Operations - to be done on a running application
       // Dealing with document templates
@@ -264,12 +302,11 @@ namespace radix
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual void on_request(var & varFile, var & varQuery);
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
 
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode,
-         BOOL bFreeOld = TRUE);
+      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, BOOL bFreeOld = TRUE);
 
       // create a DC for the system default printer.
       BOOL CreatePrinterDC(::ca::graphics_sp& spgraphics);
@@ -294,6 +331,9 @@ namespace radix
       // Hooks for your initialization code
       virtual BOOL InitApplication();
 
+      virtual int    exit();
+      virtual bool   finalize();
+
       // exiting
       virtual BOOL save_all_modified(); // save before exit
       void HideApplication();
@@ -306,26 +346,28 @@ namespace radix
       // Advanced: process async DDE request
       virtual BOOL OnDDECommand(LPTSTR lpszCommand);
 
+#ifdef WINDOWS
       // Advanced: Help support
       virtual void WinHelp(DWORD_PTR dwData, UINT nCmd = HELP_CONTEXT);
       virtual void HtmlHelp(DWORD_PTR dwData, UINT nCmd = 0x000F);
       virtual void WinHelpInternal(DWORD_PTR dwData, UINT nCmd = HELP_CONTEXT);
+#endif
 
    // Command Handlers
    protected:
       // ::collection::map to the following for file new/open
-      afx_msg void _001OnFileNew();
-      afx_msg void on_file_open();
+      void _001OnFileNew();
+      void on_file_open();
 
       // ::collection::map to the following to enable print setup
-      afx_msg void OnFilePrintSetup();
+      void OnFilePrintSetup();
 
       // ::collection::map to the following to enable help
-      afx_msg void OnContextHelp();   // shift-F1
-      afx_msg void OnHelp();          // F1 (uses current context)
-      afx_msg void OnHelpIndex();     // ID_HELP_INDEX
-      afx_msg void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
-      afx_msg void OnHelpUsing();     // ID_HELP_USING
+      void OnContextHelp();   // shift-F1
+      void OnHelp();          // F1 (uses current context)
+      void OnHelpIndex();     // ID_HELP_INDEX
+      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
+      void OnHelpUsing();     // ID_HELP_USING
 
    // Implementation
    public:
@@ -364,11 +406,13 @@ namespace radix
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
+#ifdef WINDOWS
       // helpers for registration
       HKEY GetSectionKey(const char * lpszSection);
       HKEY GetAppRegistryKey();
+#endif
 
-      afx_msg void OnAppExit();
+      void OnAppExit();
    public :
       // System Policy Settings
       virtual BOOL LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
@@ -391,76 +435,150 @@ namespace radix
 
       virtual void delete_temp();
 
-   var & oprop(::radix::object * pobject, id id);
+      using ::radix::thread::propset;
+      gen::property_set & propset(::radix::object * pobject);
 
-   virtual HWND get_ca2_app_wnd(const char * psz);
+      virtual HWND get_ca2_app_wnd(const char * psz);
 
-   virtual ::user::interaction * uie_from_point(point pt);
+      virtual ::user::interaction * uie_from_point(point pt);
 
-   virtual void get_cursor_pos(LPPOINT lppoint);
-   virtual void get_screen_rect(LPRECT lprect);
+      virtual void get_cursor_pos(LPPOINT lppoint);
+      virtual void get_screen_rect(LPRECT lprect);
 
-   virtual ::user::interaction * release_capture_uie();
-   virtual ::user::interaction * get_capture_uie();
+      virtual ::user::interaction * release_capture_uie();
+      virtual ::user::interaction * get_capture_uie();
 
-   virtual ::user::keyboard_focus * get_keyboard_focus();
-   virtual void set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus);
-   virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
-   virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
+      virtual ::user::keyboard_focus * get_keyboard_focus();
+      virtual void set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus);
+      virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
+      virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
+      virtual ::user::mouse_focus * get_mouse_focus_RButtonDown();
+      virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
 
-   virtual int get_document_count();
+      virtual int get_document_count();
 
-   // transparent ::ca::window framework
-   
-
-   mutex * get_mutex(::radix::object * pobject);
-   bool lock(::radix::object * pobject, DWORD dwTimeout = INFINITE);
-   bool unlock(::radix::object * pobject);
-
-   CEvent * get_event(::radix::object * pobject, int iEvent = 0);
-   bool event_lock(::radix::object * pobject, int iEvent = 0, DWORD dwTimeout = INFINITE);
-   bool event_unlock(::radix::object * pobject, int iEvent = 0);
-
-/*   int GetResourceId(const id_space * pspace, int iKey);
-   int GetResourceId(const id_space & pspace, int iKey);
-   int GetResourceId(const id_space * pspace, const char * lpcszKey);
-   int GetResourceId(const id_space & pspace, const char * lpcszKey);*/
+      // transparent ::ca::window framework
 
 
-   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-   virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
-   virtual bool is_inside_time_dir(const char * pszPath);
-   virtual bool file_is_read_only(const char * pszPath);
-   virtual string file_as_string(const char * pszPath);
-   virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
-   virtual string dir_name(const char * psz);
-   virtual bool dir_mk(const char * psz);
-   virtual string file_title(const char * psz);
-   virtual string file_name(const char * psz);
+      mutex * get_mutex(::sync_object_base * pobject);
+      using ::radix::thread::lock;
+      bool lock(::sync_object_base * pobject, duration dwTimeout = duration::infinite());
+      using ::radix::thread::unlock;
+      bool unlock(::sync_object_base * pobject);
+
+      event * get_event(::radix::object * pobject, int iEvent = 0);
+      bool event_lock(::radix::object * pobject, int iEvent = 0, duration dwTimeout = duration::infinite());
+      bool event_unlock(::radix::object * pobject, int iEvent = 0);
+
+   /*   int GetResourceId(const id_space * pspace, int iKey);
+      int GetResourceId(const id_space & pspace, int iKey);
+      int GetResourceId(const id_space * pspace, const char * lpcszKey);
+      int GetResourceId(const id_space & pspace, const char * lpcszKey);*/
 
 
-   virtual bool bergedge_start();
+      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual bool is_inside_time_dir(const char * pszPath);
+      virtual bool file_is_read_only(const char * pszPath);
+      virtual string file_as_string(const char * pszPath);
+      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
+      virtual string dir_name(const char * psz);
+      virtual bool dir_mk(const char * psz);
+      virtual string file_title(const char * psz);
+      virtual string file_name(const char * psz);
 
-   virtual bool does_launch_window_on_startup();
-   virtual bool activate_app();
+
+      virtual bool bergedge_start();
+
+      virtual bool does_launch_window_on_startup();
+      virtual bool activate_app();
 
 
 
-   static inline application & app_cast(::ca::ca * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
+      static inline application & app_cast(::ca::ca * papp)
+      {
+         return *dynamic_cast < application * > (papp);
+      }
 
-   virtual bool initialize1();
+      virtual bool initialize1();
 
-   ::user::str & str();
-   ::user::str_context * str_context();
+      ::user::str_context * str_context();
 
-   virtual void on_delete(::ca::object * pobject);
+      using pha(::user::interaction)::on_delete;
+      virtual void on_delete(::ca::object * pobject);
+
+      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
+
+      // Temporary ::collection::map management (locks temp ::collection::map on current thread)
+      virtual void LockTempMaps();
+      virtual BOOL UnlockTempMaps(BOOL bDeleteTemps = TRUE);
+      virtual void TermThread(HINSTANCE hInstTerm);
+
+      virtual ::ca::graphics * graphics_from_os_data(void * pdata);
+
+      virtual ::ca::window * window_from_os_data(void * pdata);
+      virtual ::ca::window * window_from_os_data_permanent(void * pdata);
+
+      virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual ::ca::window * FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+
+      virtual string get_local_mutex_name(const char * pszAppName);
+      virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
+      virtual string get_global_mutex_name(const char * pszAppName);
+      virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId);
+
+      virtual string get_local_mutex_name();
+      virtual string get_local_id_mutex_name();
+      virtual string get_global_mutex_name();
+      virtual string get_global_id_mutex_name();
+
+      virtual string get_local_mutex_id() = 0;
+      virtual string get_global_mutex_id() = 0;
+
+      virtual bool final_handle_exception(::ca::exception & e);
+
+      virtual bool is_system();
+      virtual bool is_bergedge();
+      bool ca_process_initialize();
+      bool ca_initialize1();
+      bool initialize2();
+      bool initialize3();
+      bool initialize();
+
+      bool ca_finalize();
+
+      virtual ::ca::ca * alloc(::ca::type_info & info);
+
+      virtual bool app_map_lookup(const char * psz, void * &);
+      virtual void app_map_set(const char * psz, void *);
+
+
+      virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
+      virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+
 
    };
+
 
 } // namespace radix
 
 
+
+namespace ca
+{
+
+
+   template < class IFACE >
+   interface_application < IFACE > :: interface_application()
+   {
+      (dynamic_cast < ::radix::application * > (this->m_papp))->m_signal.connect(this, &::ca::interface_application < IFACE >::on_signal);
+   }
+
+
+} // namespace ca
+
+
+
 typedef ::ca::application * (* LP_GET_NEW_APP) (void);
+
+

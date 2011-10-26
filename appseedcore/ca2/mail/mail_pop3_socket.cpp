@@ -1,7 +1,10 @@
 #include "StdAfx.h"
+#include <openssl/ssl.h>
+
 
 namespace mail
 {
+
 
    pop3_socket::pop3_socket(::sockets::socket_handler_base& h) :
       ::ca::ca(h.get_app()),
@@ -197,7 +200,7 @@ namespace mail
       case state_listmessages:
          if(strLine == ".")
          {
-            
+
             m_ppop3->filter_id();
             if(retrieve())
                m_estate = state_receive_message;
@@ -419,4 +422,7 @@ namespace mail
       }
    }
 
+
 } // namespace mail
+
+

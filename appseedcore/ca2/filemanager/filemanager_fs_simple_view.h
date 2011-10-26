@@ -23,7 +23,7 @@ namespace filemanager
 
             view(::ca::application * papp);
 
-            void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+            void install_message_handling(::user::win::message::dispatch * pinterface);
 
             void open_file(__int64 iFolder, const char * lpszFileName, const char * pszExt);
             void open_folder(__int64 iFolder);

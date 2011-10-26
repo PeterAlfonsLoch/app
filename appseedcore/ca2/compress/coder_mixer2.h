@@ -144,13 +144,13 @@ namespace compress
          uint32 NumInStreams;
          uint32 NumOutStreams;
 
-         base_array<uint64> InSizes;
-         base_array<uint64> OutSizes;
-         base_array<const uint64 *> InSizePointers;
-         base_array<const uint64 *> OutSizePointers;
+         base_array<file_size> InSizes;
+         base_array<file_size> OutSizes;
+         base_array<const file_size *> InSizePointers;
+         base_array<const file_size *> OutSizePointers;
 
          CCoderInfo2(uint32 numInStreams, uint32 numOutStreams);
-         void SetCoderInfo(const uint64 **inSizes, const uint64 **outSizes);
+         void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
 
       };
 
@@ -159,7 +159,7 @@ namespace compress
       public:
          virtual ex1::HRes SetBindInfo(const CBindInfo &bindInfo) = 0;
          virtual void ReInit() = 0;
-         virtual void SetCoderInfo(uint32 coderIndex, const uint64 **inSizes, const uint64 **outSizes) = 0;
+         virtual void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes) = 0;
       };
 
    } // namespace coder_mixer

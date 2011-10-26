@@ -15,8 +15,8 @@ namespace musctrl
       playlist_document * m_pActivePlaylistDoc;
 
       // varFile, bMakeVisible = true, ui * puiParent = NULL, ui * puiAlloc)
-      void request(var & varFile, var & varQuery);
-      document * OpenDocumentFileNoReserve(var varPathName, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      void request(::ca::create_context * pcreatecontext);
+      document * OpenDocumentFileNoReserve(var varPathName, ::ca::create_context * pcreatecontext);
       VMSRESULT ReserveSong(stringa & stra, bool bDoPlay, bool bMakeVisible);
       VMSRESULT ReserveSong(int iSongCode, bool bDoPlay, bool bMakeVisible);
       VMSRESULT ReserveSong(var varPath, bool bDoPlay, bool bMakeVisible);

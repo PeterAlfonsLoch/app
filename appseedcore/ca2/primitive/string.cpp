@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-int string_interface::get_length() const
+strsize string_interface::get_length() const
 {
    return 0;
 }
@@ -20,7 +20,7 @@ string_interface & string_interface::operator = (const string_interface & str)
    if(&str == this)
       return *this;
    char sz[256];
-   int iLen = str.get_length();
+   strsize iLen = str.get_length();
    if(iLen < ((sizeof(sz) / sizeof(char)) - sizeof(char)))
    {
       str.get_string(sz);
@@ -59,7 +59,7 @@ string_composite & string_composite::operator = (const string & str)
 
 
 
-string::string(wchar_t ch,int nLength) :
+string::string(wchar_t ch,strsize nLength) :
    simple_string( string_trait::GetDefaultManager() )
 {
    ATLASSERT( nLength >= 0 );
@@ -67,7 +67,7 @@ string::string(wchar_t ch,int nLength) :
    {
       //Convert ch to the char
       wchar_t pszCh[2] = { ch , 0 };
-      int ncharCharLen = 1;
+      strsize ncharCharLen = 1;
 
       if(ch != L'\0')
       {
@@ -76,7 +76,7 @@ string::string(wchar_t ch,int nLength) :
 
       primitive::memory buffcharChar;
       buffcharChar.allocate(ncharCharLen+1);
-      string_trait::ConvertTochar( (XCHAR*)buffcharChar.GetAllocation(), ncharCharLen+1, pszCh, 1 );
+      string_trait::ConvertTochar( (XCHAR*)buffcharChar.get_data(), ncharCharLen+1, pszCh, 1 );
       //allocate enough characters in string and flood (replicate) with the (converted character)*nLength
       PXSTR pszBuffer = GetBuffer( nLength*ncharCharLen );
       if (ncharCharLen == 1)
@@ -85,9 +85,9 @@ string::string(wchar_t ch,int nLength) :
       } else
       {
          XCHAR* p=pszBuffer;
-         for (int i=0 ; i < nLength ;++i)
+         for (strsize i=0 ; i < nLength ;++i)
          {
-            for (int j=0 ; j < ncharCharLen ;++j)
+            for (strsize j=0 ; j < ncharCharLen ;++j)
             {
                *p=buffcharChar[j];
                ++p;
@@ -98,7 +98,7 @@ string::string(wchar_t ch,int nLength) :
    }
 }
 
-string::string(const YCHAR* pch,int nLength ) :
+string::string(const YCHAR* pch,strsize nLength ) :
    simple_string( string_trait::GetDefaultManager() )
 {
    ATLASSERT( nLength >= 0 );
@@ -108,14 +108,14 @@ string::string(const YCHAR* pch,int nLength ) :
       if(pch == NULL)
          AtlThrow(E_INVALIDARG);
 
-      int nDestLength = string_trait::GetcharLength( pch, nLength );
+      strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       PXSTR pszBuffer = GetBuffer( nDestLength );
       string_trait::ConvertTochar( pszBuffer, nDestLength, pch, nLength );
       ReleaseBufferSetLength( nDestLength );
    }
 }
 
-string::string(const YCHAR* pch,int nLength,string_manager_interface * pstringmanager ) :
+string::string(const YCHAR* pch,strsize nLength,string_manager_interface * pstringmanager ) :
    simple_string( pstringmanager )
 {
    ATLASSERT( nLength >= 0 );
@@ -125,7 +125,7 @@ string::string(const YCHAR* pch,int nLength,string_manager_interface * pstringma
       if(pch == NULL)
          AtlThrow(E_INVALIDARG);
 
-      int nDestLength = string_trait::GetcharLength( pch, nLength );
+      strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       PXSTR pszBuffer = GetBuffer( nDestLength );
       string_trait::ConvertTochar( pszBuffer, nDestLength, pch, nLength );
       ReleaseBufferSetLength( nDestLength );
@@ -135,7 +135,7 @@ string::string(const YCHAR* pch,int nLength,string_manager_interface * pstringma
 
 
 
-void fixed_string_log::OnAllocateSpill(int nActualChars,int nFixedChars,const string_data* pData ) throw()
+void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) throw()
 {
    (void)nActualChars;
    (void)nFixedChars;
@@ -144,7 +144,7 @@ void fixed_string_log::OnAllocateSpill(int nActualChars,int nFixedChars,const st
    ::OutputDebugStringA("fixed_string_log::OnAllocateSpill");
 }
 
-void fixed_string_log::OnReallocateSpill(int nActualChars,int nFixedChars,const string_data* pData ) throw()
+void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) throw()
 {
    (void)nActualChars;
    (void)nFixedChars;
@@ -158,35 +158,75 @@ void fixed_string_log::OnReallocateSpill(int nActualChars,int nFixedChars,const 
 
 char* __cdecl crt_char_traits::CharNext(const char* p ) throw()
 {
-   return reinterpret_cast< char* >( _mbsinc( reinterpret_cast< const unsigned char* >( p ) ) );
+   return const_cast< char* >( gen::str::utf8_inc(p) );
 }
 
-int __cdecl crt_char_traits::IsDigit(char ch ) throw()
+
+
+strsize __cdecl crt_char_traits::IsDigit(const char * pch ) throw()
 {
-   return _ismbcdigit( ch );
+   return gen::ch::is_digit(pch) ? 1 : 0;
 }
 
-int __cdecl crt_char_traits::IsSpace(char ch ) throw()
+strsize __cdecl crt_char_traits::IsSpace(const char * pch ) throw()
 {
-   return _ismbcspace( ch );
+   return gen::ch::is_whitespace( pch ) ? 1 : 0;
 }
 
-int __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
+
+strsize __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
+{
+   return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+}
+
+strsize __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
+{
+   return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+}
+
+strsize __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
+{
+   return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+}
+
+strsize __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
+{
+   return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+}
+
+const char * __cdecl crt_char_traits::StringFindString(const char * pszBlock,const char * pszMatch ) throw()
+{
+   return reinterpret_cast< const char * >( strstr( reinterpret_cast< const  char* >( pszBlock ),
+      reinterpret_cast< const  char* >( pszMatch ) ) );
+}
+
+char * __cdecl crt_char_traits::StringFindString(char * pszBlock,const char * pszMatch ) throw()
+{
+   return( const_cast< char * >( StringFindString( const_cast< const char * >( pszBlock ), pszMatch ) ) );
+}
+
+const char * __cdecl crt_char_traits::StringFindChar(const char * pszBlock,char chMatch ) throw()
+{
+   return reinterpret_cast< const char * >( strchr( reinterpret_cast< const  char* >( pszBlock ), ( char)chMatch ) );
+}
+
+/*
+strsize __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
 {
    return _mbscmp( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
 }
 
-int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
+strsize __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
    return _mbsicmp( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
 }
 
-int __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
+strsize __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
 {
    return _mbscoll( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
 }
 
-int __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
+strsize __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
 {
    return _mbsicoll( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
 }
@@ -206,11 +246,11 @@ const char * __cdecl crt_char_traits::StringFindChar(const char * pszBlock,char 
 {
    return reinterpret_cast< const char * >( _mbschr( reinterpret_cast< const unsigned char* >( pszBlock ), (unsigned char)chMatch ) );
 }
-
-const char * __cdecl crt_char_traits::StringFindCharRev(const char * psz,char ch, int iStart ) throw()
+*/
+const char * __cdecl crt_char_traits::StringFindCharRev(const char * psz,char ch, strsize iStart ) throw()
 {
    if(iStart < 0)
-      iStart = (int)(strlen(psz) + iStart);
+      iStart = (strsize)(strlen(psz) + iStart);
    if(iStart < 0)
       return NULL;
    while(iStart >= 0)
@@ -224,10 +264,10 @@ const char * __cdecl crt_char_traits::StringFindCharRev(const char * psz,char ch
 }
 
 
-const char * __cdecl crt_char_traits::StringFindStrRev(const char * psz,const char * pszFind, int iStart ) throw()
+const char * __cdecl crt_char_traits::StringFindStrRev(const char * psz,const char * pszFind, strsize iStart ) throw()
 {
-   int iLen = int(strlen(psz));
-   int iLenFind = int(strlen(pszFind));
+   strsize iLen = strsize(strlen(psz));
+   strsize iLenFind = strsize(strlen(pszFind));
    if(iStart < 0 )
       iStart = iLen + iStart;
    if(iLenFind > iLen)
@@ -245,18 +285,50 @@ const char * __cdecl crt_char_traits::StringFindStrRev(const char * psz,const ch
 
 const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const char * pszMatch ) throw()
 {
-   return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ),
-      reinterpret_cast< const unsigned char* >( pszMatch ) ) );
+   if(pszMatch == NULL || pszBlock == NULL || *pszBlock == '\0')
+      return NULL;
+   while(*pszMatch != '\0')
+   {
+      string strUtf8Char = gen::str::utf8_char(pszMatch);
+      const char * psz = strstr(pszBlock, strUtf8Char);
+      if(psz != NULL)
+         return psz;
+      pszMatch = gen::str::utf8_inc(pszMatch);
+   }
+   return NULL;
+   //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ),
+     // reinterpret_cast< const unsigned char* >( pszMatch ) ) );
 }
 
-int __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw()
+strsize __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw()
 {
-   return (int)_mbsspn( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszSet ) );
+   if(pszSet == NULL || pszBlock == NULL)
+      return 0;
+   const char * psz = pszBlock;
+   const char * pszLast = NULL;
+   while((psz == StringScanSet(psz, pszSet)) != NULL)
+   {
+      pszLast = psz;
+      psz++;
+   }
+   if(pszLast == NULL)
+      return 0;
+   else
+      return pszBlock - pszLast + gen::str::utf8_char(pszLast).get_length();
+   //return (strsize)_mbsspn( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszSet ) );
 }
 
-int __cdecl crt_char_traits::StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw()
+strsize __cdecl crt_char_traits::StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw()
 {
-   return (int)_mbscspn( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszSet ) );
+//   return (strsize)_mbscspn( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszSet ) );
+   if(pszSet == NULL || pszBlock == NULL)
+      return 0;
+   const char * psz = StringScanSet(pszBlock, pszSet);
+   if(psz == NULL)
+      return strlen(pszBlock);
+   else
+      return psz - pszBlock;
+
 }
 
 _ATL_INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppercase")
@@ -264,7 +336,20 @@ char * __cdecl crt_char_traits::StringUppercase( char * psz ) throw()
 {
 #pragma warning (push)
 #pragma warning(disable : 4996)
-   return reinterpret_cast< char * >( _mbsupr( reinterpret_cast< unsigned char* >( psz ) ) );
+   if(psz == NULL)
+      return NULL;
+   char * p = psz;
+   string strFinal;
+   while(*p)
+   {
+      strFinal += gen::ch::to_upper_case(p);
+      p = (char *) gen::str::utf8_inc(p);
+   }
+   strcpy(p, strFinal);
+   return psz;
+
+
+//   return reinterpret_cast< char * >(( reinterpret_cast< unsigned char* >( psz ) ) );
 #pragma warning (pop)
 }
 
@@ -273,14 +358,26 @@ char * __cdecl crt_char_traits::StringLowercase( char * psz ) throw()
 {
 #pragma warning (push)
 #pragma warning(disable : 4996)
-   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< unsigned char* >( psz ) ) );
+   if(psz == NULL)
+      return NULL;
+   char * p = psz;
+   string strFinal;
+   while(*p)
+   {
+      strFinal += gen::ch::to_lower_case(p);
+      p = (char *) gen::str::utf8_inc(p);
+   }
+   strcpy(p, strFinal);
+   return psz;
+
+//   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< unsigned char* >( psz ) ) );
 #pragma warning (pop)
 }
 
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
 #if _SECURE_ATL
-   _template::checked::mbsupr_s(reinterpret_cast< unsigned char* >( psz ), size);
+   _template::checked::strupr_s(psz, size);
 #else
    UNREFERENCED_PARAMETER(size);
    return reinterpret_cast< char * >( _mbsupr( reinterpret_cast< unsigned char* >( psz ) ) );
@@ -291,7 +388,7 @@ char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
 #if _SECURE_ATL
-   _template::checked::mbslwr_s( reinterpret_cast< unsigned char* >( psz ), size );
+   _template::checked::strlwr_s(psz, size);
 #else
    UNREFERENCED_PARAMETER(size);
    return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< unsigned char* >( psz ) ) );
@@ -301,53 +398,63 @@ char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 
 char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
 {
-   return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< unsigned char* >( psz ) ) );
+   if(psz == NULL)
+      return NULL;
+   string strRev;
+   char * p = psz + strlen(psz);
+   while((p = (char*) gen::str::utf8_dec(psz, p))!= NULL)
+   {
+      strRev += gen::str::utf8_char(p);
+   }
+   strcpy(psz, strRev);
+   return psz;
+   //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< unsigned char* >( psz ) ) );
 }
 
-int __cdecl crt_char_traits::GetFormattedLength(const char * pszFormat, va_list args ) throw()
+strsize __cdecl crt_char_traits::GetFormattedLength(const char * pszFormat, va_list args ) throw()
 {
    return _vscprintf( pszFormat, args );
 }
 
-int __cdecl crt_char_traits::Format(char * pszBuffer,const char * pszFormat, va_list args ) throw()
+strsize __cdecl crt_char_traits::Format(char * pszBuffer,const char * pszFormat, va_list args ) throw()
 {
    return vsprintf( pszBuffer, pszFormat, args );
 
 }
 
 #if _SECURE_ATL
-int __cdecl crt_char_traits::Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw()
+strsize __cdecl crt_char_traits::Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw()
 {
    return vsprintf_s( pszBuffer, nlength, pszFormat, args );
 }
 #endif
 
-int __cdecl crt_char_traits::GetcharLength(const char * pszSrc ) throw()
+strsize __cdecl crt_char_traits::GetcharLength(const char * pszSrc ) throw()
 {
    // Returns required buffer length in XCHARs
-   return int( strlen( pszSrc ) );
+   return strsize( strlen( pszSrc ) );
 }
 
-int __cdecl crt_char_traits::GetcharLength(const char * pszSrc, int nLength ) throw()
+strsize __cdecl crt_char_traits::GetcharLength(const char * pszSrc, strsize nLength ) throw()
 {
    (void)pszSrc;
    // Returns required buffer length in XCHARs
    return nLength;
 }
 
-int __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource ) throw()
+strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource ) throw()
 {
    // Returns required buffer length in XCHARs
    return ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSource, -1, NULL, 0, NULL, NULL )-1;
 }
 
-int __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource, int nLength ) throw()
+strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource, strsize nLength ) throw()
 {
    // Returns required buffer length in XCHARs
    return ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSource, nLength, NULL, 0, NULL, NULL );
 }
 
-void __cdecl crt_char_traits::ConvertTochar(char * pszDest,int nDestLength, const char * pszSrc, int nSrcLength) throw()
+void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength) throw()
 {
    if (nSrcLength == -1) { nSrcLength=1 + GetcharLength(pszSrc); }
    // nLen is in XCHARs
@@ -355,7 +462,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,int nDestLength, cons
       pszSrc, nSrcLength*sizeof( char ) );
 }
 
-void __cdecl crt_char_traits::ConvertTochar(char * pszDest,int nDestLength, const wchar_t * pszSrc,int nSrcLength) throw()
+void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength) throw()
 {
    // nLen is in XCHARs
    ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSrc, nSrcLength, pszDest, nDestLength, NULL, NULL );
@@ -375,15 +482,15 @@ void crt_char_traits::ConvertToAnsi(char* pstrString) throw()
    ATLASSERT(fSuccess);
 }
 
-void __cdecl crt_char_traits::FloodCharacters(char ch,int nLength, char* pch ) throw()
+void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch ) throw()
 {
    // nLength is in XCHARs
    memset( pch, ch, nLength );
 }
 
-BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, int nDataLength ) throw()
+BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nDataLength ) throw()
 {
-   int nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength,
+   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength,
       NULL, NULL );
    BSTR bstr = ::SysAllocStringLen( NULL, nLen );
    if( bstr != NULL )
@@ -395,9 +502,9 @@ BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, int nDataLeng
    return bstr;
 }
 
-BOOL __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,int nDataLength ) throw()
+BOOL __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
 {
-   int nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength, NULL, NULL );
+   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength, NULL, NULL );
    BOOL bSuccess = ::SysReAllocStringLen( pbstr, NULL, nLen );
    if( bSuccess )
    {
@@ -422,29 +529,29 @@ DWORD __cdecl crt_char_traits::format_message(DWORD dwFlags, LPCVOID pSource,
    return FormatMessage(dwFlags, pSource, dwMessageID, dwLanguageID, pszBuffer, nSize, pArguments);
 }
 
-int __cdecl crt_char_traits::SafeStringLen( const char * psz ) throw()
+strsize __cdecl crt_char_traits::SafeStringLen( const char * psz ) throw()
 {
    // returns length in bytes
-   return (psz != NULL) ? int( strlen( psz ) ) : 0;
+   return (psz != NULL) ? strsize( strlen( psz ) ) : 0;
 }
 
-int __cdecl crt_char_traits::SafeStringLen( const wchar_t * psz ) throw()
+strsize __cdecl crt_char_traits::SafeStringLen( const wchar_t * psz ) throw()
 {
    // returns length in wchar_ts
-   return (psz != NULL) ? int( wcslen( psz ) ) : 0;
+   return (psz != NULL) ? strsize( wcslen( psz ) ) : 0;
 }
 
-int __cdecl crt_char_traits::GetCharLen(const wchar_t* pch ) throw()
+strsize __cdecl crt_char_traits::GetCharLen(const wchar_t* pch ) throw()
 {
    (void)pch;
    // returns char length
    return 1;
 }
 
-int __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
+strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
 {
    // returns char length
-   return  _mbclen( (const unsigned char* ) pch );
+   return  gen::str::utf8_char(pch).get_length();
 }
 
 DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar,
@@ -502,6 +609,11 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    }
 
    string::operator PCXSTR() const throw()
+   {
+      return simple_string::operator PCXSTR();
+   }
+
+   string::PCXSTR string::c_str() const throw()
    {
       return simple_string::operator PCXSTR();
    }
@@ -573,7 +685,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       simple_string( string_trait::GetDefaultManager() )
    {
       char sz[256];
-      int iLen = str.get_length();
+      strsize iLen = str.get_length();
       if(iLen < ((sizeof(sz) / sizeof(sz[0])) - sizeof(sz[0])))
       {
          str.get_string(sz);
@@ -604,7 +716,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    }
 //ctors to prevent from oldSyntax template ctor (above) hijack certain types.
 //ca2 API dll instantiate all string methods inside the dll and declares dllimport for
-//all methods in ::fontopus::user build (see afxstr.h), so need to include the methods in ca2 API dll builds.
+//all methods in user build (see afxstr.h), so need to include the methods in ca2 API dll builds.
 #if defined(_ApplicationFrameworkDLL) && defined(_MFC_DLL_BLD) || !defined(__cplusplus_cli) && defined(_MANAGED)
 
    /*CSTRING_EXPLICIT*/ string::string(char* pszSrc ) :
@@ -644,7 +756,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       *this = reinterpret_cast< const char* >( pszSrc );
    }
 
-   CSTRING_EXPLICIT string::string(char ch,int nLength) :
+   CSTRING_EXPLICIT string::string(char ch,strsize nLength) :
       simple_string( string_trait::GetDefaultManager() )
    {
       ATLASSERT( nLength >= 0 );
@@ -656,12 +768,26 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       }
    }
 
-   string::string(const XCHAR* pch,int nLength ) :
+string::string(strsize nLength, char ch) :
+      simple_string( string_trait::GetDefaultManager() )
+{
+      ATLASSERT( nLength >= 0 );
+      if( nLength > 0 )
+      {
+         PXSTR pszBuffer = GetBuffer( nLength );
+         string_trait::FloodCharacters( XCHAR( ch ), nLength, pszBuffer );
+         ReleaseBufferSetLength( nLength );
+      }
+
+}
+
+
+   string::string(const XCHAR* pch,strsize nLength ) :
       simple_string( pch, nLength, string_trait::GetDefaultManager() )
    {
    }
 
-   string::string(const XCHAR* pch,int nLength,string_manager_interface * pstringmanager ) :
+   string::string(const XCHAR* pch,strsize nLength,string_manager_interface * pstringmanager ) :
       simple_string( pch, nLength, pstringmanager )
    {
    }
@@ -695,7 +821,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    string& string::operator=(PCYSTR pszSrc )
    {
       // nDestLength is in XCHARs
-      int nDestLength = (pszSrc != NULL) ? string_trait::GetcharLength( pszSrc ) : 0;
+      strsize nDestLength = (pszSrc != NULL) ? string_trait::GetcharLength( pszSrc ) : 0;
       if( nDestLength > 0 )
       {
          PXSTR pszBuffer = GetBuffer( nDestLength );
@@ -780,49 +906,253 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return pstringmanager->Clone();
    }
 
+   string & string::assign (const string & str)
+   {
+      return operator = (str);
+   }
+
+   string & string::assign(const string & str, strsize pos, strsize n)
+   {
+      return operator = (str.substr(pos, n));
+   }
+
+   string & string::assign(const char* s, strsize n)
+   {
+      return operator = (string(s, n));
+   }
+
+   string & string::assign(const char * s)
+   {
+      return operator = (s);
+   }
+
+   string & string::assign(strsize n, char c)
+   {
+      return operator = (string(c, n));
+   }
+
+   string & string::assign(strsize n, strsize c)
+   {
+      return assign((uint64) n, (uint64) c);
+   }
+
+   string & string::assign(int64 n, int64 c)
+   {
+      return assign((uint64) n, (uint64) c);
+   }
+
+   string & string::assign(unsigned int n, unsigned int c)
+   {
+      return assign((uint64) n, (uint64) c);
+   }
+
+   string & string::assign(uint64 n, uint64 c)
+   {
+      string strChar = gen::str::uni_to_utf8(c);
+      while(n > 0)
+      {
+         *this += strChar;
+      }
+      return *this;
+   }
+
+
+
    // Comparison
 
-   int string::Compare(PCXSTR psz ) const
+   strsize string::Compare(PCXSTR psz ) const
    {
       ATLENSURE( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCompare( GetString(), psz ) );
    }
 
-   int string::CompareNoCase(PCXSTR psz ) const throw()
+   strsize string::CompareNoCase(PCXSTR psz ) const throw()
    {
       ATLASSERT( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCompareIgnore( GetString(), psz ) );
    }
 
-   int string::Collate(PCXSTR psz ) const throw()
+   strsize string::Collate(PCXSTR psz ) const throw()
    {
       ATLASSERT( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCollate( GetString(), psz ) );
    }
 
-   int string::CollateNoCase(PCXSTR psz ) const throw()
+   strsize string::CollateNoCase(PCXSTR psz ) const throw()
    {
       ATLASSERT( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCollateIgnore( GetString(), psz ) );
    }
 
-   int string::Delete(int iIndex,int nCount)
+   strsize string::compare(PCXSTR psz ) const
    {
+      return Compare(psz);
+   }
+
+   strsize string::compare_no_case(PCXSTR psz ) const throw()
+   {
+      return CompareNoCase(psz);
+   }
+
+   strsize string::collate(PCXSTR psz ) const throw()
+   {
+      return Collate(psz);
+   }
+
+   strsize string::collate_no_case(PCXSTR psz ) const throw()
+   {
+      return CollateNoCase(psz);
+   }
+
+   strsize string::compare(strsize iStart, strsize nCount, PCXSTR psz ) const
+   {
+      return substr(iStart, nCount).compare(psz);
+   }
+
+   strsize string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
+   {
+      return substr(iStart, nCount).compare_no_case(psz);
+   }
+
+   strsize string::collate(strsize iStart, strsize nCount, PCXSTR psz ) const
+   {
+      return substr(iStart, nCount).collate(psz);
+   }
+
+   strsize string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
+   {
+      return substr(iStart, nCount).compare_no_case(psz);
+   }
+
+   strsize string::compare(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   {
+      return substr(iStart, nCount).compare(string(psz).substr(start2, count2));
+   }
+
+   strsize string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   {
+      return substr(iStart, nCount).compare_no_case(string(psz).substr(start2, count2));
+   }
+
+   strsize string::collate(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   {
+      return substr(iStart, nCount).collate(string(psz).substr(start2, count2));
+   }
+
+   strsize string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   {
+      return substr(iStart, nCount).collate_no_case(string(psz).substr(start2, count2));
+   }
+
+
+   bool string::contains(char ch, strsize iStart, strsize nCount)
+   {
+      return find(ch, iStart, nCount) >= 0;
+   }
+
+   bool string::contains(wchar_t wch, strsize iStart, strsize nCount)
+   {
+      return find_w(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+   }
+
+   bool string::contains(strsize i, strsize iStart, strsize nCount) // utf8 char index
+   {
+      return find_w(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
+   }
+
+   bool string::contains(const char * psz, strsize iStart, strsize nCount)
+   {
+      return find(psz, iStart, nCount) >= 0;
+   }
+
+   bool string::contains(const string & str, strsize iStart, strsize nCount)
+   {
+      return find(str, iStart, nCount) >= 0;
+   }
+
+   bool string::contains_ci(char ch, strsize iStart, strsize nCount)
+   {
+      return find_ci(ch, iStart, nCount) >= 0;
+   }
+
+   bool string::contains_ci(wchar_t wch, strsize iStart, strsize nCount)
+   {
+      return find_wci(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+   }
+
+   bool string::contains_ci(strsize i, strsize iStart, strsize nCount) // utf8 char index
+   {
+      return find_wci(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
+   }
+
+   bool string::contains_ci(const char * psz, strsize iStart, strsize nCount)
+   {
+      return find_ci(psz, iStart, nCount) >= 0;
+   }
+
+   bool string::contains_ci(const string & str, strsize iStart, strsize nCount)
+   {
+      return find_ci(str, iStart, nCount) >= 0;
+   }
+
+   bool string::contains_wci(wchar_t wch, strsize iStart, strsize nCount)
+   {
+      return find_wci(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+   }
+
+   bool string::contains_wci(strsize i, strsize iStart, strsize nCount) // utf8 char index
+   {
+      return find_wci(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
+   }
+
+   bool string::contains_wci(const char * psz, strsize iStart, strsize nCount)
+   {
+      return find_wci(psz, iStart, nCount) >= 0;
+   }
+
+   bool string::contains_wci(const string & str, strsize iStart, strsize nCount)
+   {
+      return find_wci(str, iStart, nCount) >= 0;
+   }
+
+
+   string & string::erase(strsize iStart, strsize strsize)
+   {
+      if( iStart < 0 )
+         strsize = 0;
+
+      if( strsize < 0 )
+         strsize = get_length();
+
+      Delete(iStart, strsize);
+
+      return *this;
+   }
+
+   strsize string::Delete(strsize iIndex,strsize nCount)
+   {
+      strsize nLength = get_length();
+
       if( iIndex < 0 )
          iIndex = 0;
 
-      if( nCount < 0 )
-         nCount = 0;
+      if(nCount < 0)
+         nCount = nLength;
 
-      int nLength = get_length();
+      if(nCount + iIndex > nLength)
+         nCount = nLength - iIndex;
+
+      if(nCount < 0)
+         return get_length();
+
       if( (::_template::add_throw(nCount, iIndex)) > nLength )
       {
          nCount = nLength-iIndex;
       }
       if( nCount > 0 )
       {
-         int nNewLength = nLength-nCount;
-         int nXCHARsToCopy = nLength-(iIndex+nCount)+1;
+         strsize nNewLength = nLength-nCount;
+         strsize nXCHARsToCopy = nLength-(iIndex+nCount)+1;
          PXSTR pszBuffer = GetBuffer();
          _template::checked::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( XCHAR ),
             pszBuffer+iIndex+nCount, nXCHARsToCopy*sizeof( XCHAR ) );
@@ -832,7 +1162,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( get_length() );
    }
 
-   int string::Insert(int iIndex,XCHAR ch )
+   strsize string::Insert(strsize iIndex,XCHAR ch )
    {
       if( iIndex < 0 )
          iIndex = 0;
@@ -841,7 +1171,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       {
          iIndex = get_length();
       }
-      int nNewLength = get_length()+1;
+      strsize nNewLength = get_length()+1;
 
       PXSTR pszBuffer = GetBuffer( nNewLength );
 
@@ -855,7 +1185,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( nNewLength );
    }
 
-   int string::Insert(int iIndex,PCXSTR psz )
+   strsize string::Insert(strsize iIndex,PCXSTR psz )
    {
       if( iIndex < 0 )
          iIndex = 0;
@@ -866,8 +1196,8 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       }
 
       // nInsertLength and nNewLength are in XCHARs
-      int nInsertLength = string_trait::SafeStringLen( psz );
-      int nNewLength = get_length();
+      strsize nInsertLength = string_trait::SafeStringLen( psz );
+      strsize nNewLength = get_length();
       if( nInsertLength > 0 )
       {
          nNewLength += nInsertLength;
@@ -884,9 +1214,9 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( nNewLength );
    }
 
-   int string::replace(XCHAR chOld,XCHAR chNew )
+   strsize string::replace(XCHAR chOld,XCHAR chNew )
    {
-      int nCount = 0;
+      strsize nCount = 0;
 
       // short-circuit the nop case
       if( chOld != chNew )
@@ -895,8 +1225,8 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          bool bCopied = false;
          PXSTR pszBuffer = const_cast< PXSTR >( GetString() );  // We don't actually write to pszBuffer until we've called GetBuffer().
 
-         int nLength = get_length();
-         int iChar = 0;
+         strsize nLength = get_length();
+         strsize iChar = 0;
          while( iChar < nLength )
          {
             // replace instances of the specified character only
@@ -910,7 +1240,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
                pszBuffer[iChar] = chNew;
                nCount++;
             }
-            iChar = int( string_trait::CharNext( pszBuffer+iChar )-pszBuffer );
+            iChar = strsize( (pszBuffer+iChar + 1 )-pszBuffer );
          }
          if( bCopied )
          {
@@ -921,19 +1251,19 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( nCount );
    }
 
-   int string::replace(PCXSTR pszOld,PCXSTR pszNew )
+   strsize string::replace(PCXSTR pszOld,PCXSTR pszNew )
    {
       // can't have is_empty or NULL lpszOld
 
       // nSourceLen is in XCHARs
-      int nSourceLen = string_trait::SafeStringLen( pszOld );
+      strsize nSourceLen = string_trait::SafeStringLen( pszOld );
       if( nSourceLen == 0 )
          return( 0 );
       // nReplacementLen is in XCHARs
-      int nReplacementLen = string_trait::SafeStringLen( pszNew );
+      strsize nReplacementLen = string_trait::SafeStringLen( pszNew );
 
       // loop once to figure out the size of the result string
-      int nCount = 0;
+      strsize nCount = 0;
       {
          PCXSTR pszStart = GetString();
          PCXSTR pszEnd = pszStart+get_length();
@@ -954,8 +1284,8 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       {
          // if the buffer is too small, just
          //   allocate a new buffer (slow but sure)
-         int nOldLength = get_length();
-         int nNewLength = nOldLength+(nReplacementLen-nSourceLen)*nCount;
+         strsize nOldLength = get_length();
+         strsize nNewLength = nOldLength+(nReplacementLen-nSourceLen)*nCount;
 
          PXSTR pszBuffer = GetBuffer( __max( nNewLength, nOldLength ) );
 
@@ -968,7 +1298,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
             PXSTR pszTarget;
             while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL )
             {
-               int nBalance = nOldLength-int(pszTarget-pszBuffer+nSourceLen);
+               strsize nBalance = nOldLength-strsize(pszTarget-pszBuffer+nSourceLen);
                     _template::checked::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( XCHAR ),
                   pszTarget+nSourceLen, nBalance*sizeof( XCHAR ) );
                _template::checked::memcpy_s( pszTarget, nReplacementLen*sizeof( XCHAR ),
@@ -986,9 +1316,21 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( nCount );
    }
 
-   int string::remove(XCHAR chRemove )
+   string & string::replace(strsize iStart, strsize nCount, const char * psz)
    {
-      int nLength = get_length();
+      if(nCount < 0)
+      {
+         return operator = (Left(iStart) + psz);
+      }
+      else
+      {
+         return operator = (Left(iStart) + psz + Mid(nCount));
+      }
+   }
+
+   strsize string::remove(XCHAR chRemove )
+   {
+      strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer( nLength );
 
       PXSTR pszSource = pszBuffer;
@@ -997,8 +1339,8 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
       while( pszSource < pszEnd )
       {
-         PXSTR pszNewSource = string_trait::CharNext( pszSource );
-         if( *pszSource != chRemove )
+         PXSTR pszNewSource = pszSource + 1;
+         if(*pszSource != chRemove)
          {
             // copy the source to the destination.  Remember to copy all bytes of an MBCS character
                // copy the source to the destination.  Remember to copy all bytes of an MBCS character
@@ -1015,13 +1357,13 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          pszSource = pszNewSource;
       }
       *pszDest = 0;
-      int nCount = int( pszSource-pszDest );
+      strsize nCount = strsize( pszSource-pszDest );
       ReleaseBufferSetLength( nLength-nCount );
 
       return( nCount );
    }
 
-   string string::Tokenize(PCXSTR pszTokens, int& iStart ) const
+   string string::Tokenize(PCXSTR pszTokens, strsize& iStart ) const
    {
       ATLASSERT( iStart >= 0 );
 
@@ -1041,16 +1383,16 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          PCXSTR pszEnd = GetString()+get_length();
          if( pszPlace < pszEnd )
          {
-            int nIncluding = string_trait::StringSpanIncluding( pszPlace,
+            strsize nIncluding = string_trait::StringSpanIncluding( pszPlace,
                pszTokens );
 
             if( (pszPlace+nIncluding) < pszEnd )
             {
                pszPlace += nIncluding;
-               int nExcluding = string_trait::StringSpanExcluding( pszPlace, pszTokens );
+               strsize nExcluding = string_trait::StringSpanExcluding( pszPlace, pszTokens );
 
-               int iFrom = iStart+nIncluding;
-               int nUntil = nExcluding;
+               strsize iFrom = iStart+nIncluding;
+               strsize nUntil = nExcluding;
                iStart = iFrom+nUntil+1;
 
                return( Mid( iFrom, nUntil ) );
@@ -1066,30 +1408,80 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
    // find routines
 
-   // find the first occurrence of character 'ch', starting at index 'iStart'
-   int string::find(XCHAR ch,int iStart) const throw()
+   // find the first occurrence of character 'ch', starting at strsize 'iStart'
+   strsize string::find(XCHAR ch,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
       ATLASSERT( iStart >= 0 );
 
       // nLength is in XCHARs
-      int nLength = get_length();
+      strsize nLength = get_length();
       if( iStart < 0 || iStart >= nLength)
       {
          return( -1 );
       }
 
-      // find first single character
-      PCXSTR psz = string_trait::StringFindChar( GetString()+iStart, ch );
+      if(nCount < 0)
+         nCount = nLength;
 
-      // return -1 if not found and index otherwise
-      return( (psz == NULL) ? -1 : int( psz-GetString() ) );
+      if(nCount + iStart > nLength)
+         nCount = nLength - iStart;
+
+      if(nCount < 0)
+         return -1;
+
+      PCXSTR psz = GetString() + iStart;
+      for(int i = 0; i < nCount; i++)
+      {
+         if(psz[i] == ch)
+         {
+            return iStart + i;
+         }
+      }
+      return -1;
    }
 
+   // find the first occurrence of character 'ch', starting at strsize 'iStart'
+   strsize string::find_ci(XCHAR ch,strsize iStart, strsize nCount) const throw()
+   {
+      // iStart is in XCHARs
+      ATLASSERT( iStart >= 0 );
+
+      // nLength is in XCHARs
+      strsize nLength = get_length();
+      if( iStart < 0 || iStart >= nLength)
+      {
+         return( -1 );
+      }
+
+      if(nCount < 0)
+         nCount = nLength;
+
+      if(nCount + iStart > nLength)
+         nCount = nLength - iStart;
+
+      if(nCount < 0)
+         return -1;
+
+      PCXSTR psz = GetString() + iStart;
+      for(int i = 0; i < nCount; i++)
+      {
+         if(tolower(psz[i]) == tolower(ch))
+         {
+            return iStart + i;
+         }
+      }
+      return -1;
+   }
+
+   strsize string::find_first_of(XCHAR ch,strsize iStart) const throw()
+   {
+      return find(ch, iStart);
+   }
    // look for a specific sub-string
 
-   // find the first occurrence of string 'pszSub', starting at index 'iStart'
-   int string::find(PCXSTR pszSub,int iStart) const throw()
+   // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
+   strsize string::find(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
       ATLASSERT( iStart >= 0 );
@@ -1100,45 +1492,386 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          return( -1 );
       }
       // nLength is in XCHARs
-      int nLength = get_length();
+      strsize nLength = get_length();
       if( iStart < 0 || iStart > nLength )
       {
          return( -1 );
       }
 
-      // find first matching substring
-      PCXSTR psz = string_trait::StringFindString( GetString()+iStart, pszSub );
+      strsize nLength2 = strlen(pszSub);
 
-      // return -1 for not found, distance from beginning otherwise
-      return( (psz == NULL) ? -1 : int( psz-GetString() ) );
+      if(nCount < 0)
+         nCount = nLength;
+
+      if(nCount + iStart + nLength2 > nLength)
+         nCount = nLength  - iStart - nLength2;
+
+      if(nCount < 0)
+         return -1;
+
+      PCXSTR psz = GetString() + iStart;
+      for(int i = 0; i <= nCount; i++)
+      {
+         bool bFound = true;
+         int j;
+         for(j = 0; j < nLength2; j++)
+         {
+            if(psz[j] != pszSub[j])
+            {
+               bFound = false;
+               break;
+            }
+         }
+         if(bFound && j == nLength2)
+            return i + iStart;
+         psz++;
+      }
+      return -1;
+   }
+
+   // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
+   strsize string::find_ci(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+   {
+      // iStart is in XCHARs
+      ATLASSERT( iStart >= 0 );
+      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+
+      if(pszSub == NULL)
+      {
+         return( -1 );
+      }
+      // nLength is in XCHARs
+      strsize nLength = get_length();
+      if( iStart < 0 || iStart > nLength )
+      {
+         return( -1 );
+      }
+
+      strsize nLength2 = strlen(pszSub);
+
+      if(nCount < 0)
+         nCount = nLength;
+
+      if(nCount + iStart + nLength2 > nLength)
+         nCount = nLength  - iStart - nLength2;
+
+      if(nCount < 0)
+         return -1;
+
+      PCXSTR psz = GetString() + iStart;
+      for(int i = 0; i <= nCount; i++)
+      {
+         bool bFound = true;
+         for(int j = 0; j < nLength2; j++)
+         {
+            if(tolower(psz[j]) != tolower(pszSub[j]))
+            {
+               bFound = false;
+               break;
+            }
+         }
+         if(bFound)
+            return i + iStart;
+         psz++;
+      }
+      return -1;
+   }
+
+   // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
+   strsize string::find_w(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+   {
+      // iStart is in XCHARs
+      ATLASSERT( iStart >= 0 );
+      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+
+      if(pszSub == NULL)
+      {
+         return( -1 );
+      }
+
+      if(iStart < 0)
+         return -1;
+
+      PCXSTR psz = GetString() + iStart;
+
+      if(*psz == '\0')
+         return -1;
+      while(*psz != '\0' && (psz - GetString() - iStart) < nCount)
+      {
+         bool bFound = true;
+         const char * psz2 = psz;
+         const char * pszSub2 = pszSub;
+         while(*psz2 != '\0' && *pszSub2 != '\0')
+         {
+            if(gen::str::utf8_char(psz2) != gen::str::utf8_char(pszSub2))
+            {
+               bFound = false;
+               break;
+            }
+            psz2 = gen::str::utf8_inc(psz2);
+            pszSub2 = gen::str::utf8_inc(pszSub2);
+         }
+         if(bFound)
+         {
+            if(*pszSub2 == '\0')
+            {
+               return psz - GetString();
+            }
+            else
+            {
+               return -1;
+            }
+         }
+         psz++;
+      }
+      return -1;
+   }
+
+   // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
+   strsize string::find_wci(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+   {
+      // iStart is in XCHARs
+      ATLASSERT( iStart >= 0 );
+      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+
+      if(pszSub == NULL)
+      {
+         return( -1 );
+      }
+
+      if(iStart < 0)
+         return -1;
+
+      PCXSTR psz = GetString() + iStart;
+
+      if(*psz == '\0')
+         return -1;
+      while(*psz != '\0' && (psz - GetString() - iStart) < nCount)
+      {
+         bool bFound = true;
+         const char * psz2 = psz;
+         const char * pszSub2 = pszSub;
+         while(*psz2 != '\0' && *pszSub2 != '\0')
+         {
+            if(gen::ch::to_lower_case(psz2) != gen::ch::to_lower_case(pszSub2))
+            {
+               bFound = false;
+               break;
+            }
+            psz2 = gen::str::utf8_inc(psz2);
+            pszSub2 = gen::str::utf8_inc(pszSub2);
+         }
+         if(bFound)
+         {
+            if(*pszSub2 == '\0')
+            {
+               return psz - GetString();
+            }
+            else
+            {
+               return -1;
+            }
+         }
+         psz++;
+      }
+      return -1;
    }
 
    // find the first occurrence of any of the characters in string 'pszCharSet'
-   int string::FindOneOf(PCXSTR pszCharSet ) const throw()
+   strsize string::FindOneOf(PCXSTR pszCharSet, strsize iStart, strsize n) const throw()
    {
-      ATLASSERT( _template::_template_is_valid_string( pszCharSet ) );
-      PCXSTR psz = string_trait::StringScanSet( GetString(), pszCharSet );
-      return( (psz == NULL) ? -1 : int( psz-GetString() ) );
+      string strCharSet(pszCharSet, n);
+      // iStart is in XCHARs
+      ATLASSERT( iStart >= 0 );
+
+      // nLength is in XCHARs
+      strsize nLength = get_length();
+      if( iStart < 0 || iStart >= nLength)
+      {
+         return( -1 );
+      }
+      PCXSTR psz = string_trait::StringScanSet( &GetString()[iStart], strCharSet );
+      return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
    }
 
+   strsize string::find_first_of(PCXSTR pszCharSet, strsize iStart) const throw()
+   {
+      return FindOneOf(pszCharSet, iStart, -1);
+   }
+
+   strsize string::find_first_of(PCXSTR pszCharSet, strsize iStart, strsize n) const throw()
+   {
+      return FindOneOf(pszCharSet, iStart, n);
+   }
+
+   strsize string::find_first_of(const string & strCharSet, strsize pos) const throw()
+   {
+      return FindOneOf(strCharSet, pos, strCharSet.get_length());
+   }
+
+   strsize string::find_first_not_of(const string& str, strsize pos) const
+   {
+      return find_first_not_of(str, pos, str.get_length());
+   }
+
+   strsize string::find_first_not_of(const char* s, strsize pos) const
+   {
+      return find_first_not_of(s, pos, strlen(s));
+   }
+
+   strsize string::find_first_not_of(char c, strsize pos) const
+   {
+      strsize nLength = get_length();
+
+      if(pos < 0 || pos >= nLength)
+         return -1;
+      const char * psz = &GetString()[pos];
+      while(*psz != '\0' && *psz == c)
+      {
+         psz++;
+      }
+      if(*psz == '\0')
+         return -1;
+      else
+         return psz - GetString();
+   }
+
+   strsize string::find_first_not_of(const char* s, strsize pos, strsize n ) const
+   {
+      string strChars(s, n);
+
+      strsize nLength = get_length();
+
+      if(pos < 0 || pos >= nLength)
+         return -1;
+      const char * psz = &GetString()[pos];
+      while(*psz != '\0' && strChars.contains(*psz))
+      {
+         psz++;
+      }
+      if(*psz == '\0')
+         return -1;
+      else
+         return psz - GetString();
+   }
+
+
+   // find the first occurrence of any of the characters in string 'pszCharSet'
+   strsize string::find_last_of(char c, strsize pos) const throw()
+   {
+      strsize nLength = get_length();
+      // nLength is in XCHARs
+      if(pos < 0)
+         pos = nLength - 1;
+      if(pos < 0 || pos >= nLength)
+      {
+         return( -1 );
+      }
+      PCXSTR psz = GetString();
+      while(pos >= 0 && psz[pos] != c)
+      {
+         pos--;
+      }
+      return pos;
+   }
+
+   strsize string::find_last_of(PCXSTR pszCharSet, strsize iStart) const throw()
+   {
+      return find_last_of(pszCharSet, iStart, -1);
+   }
+
+   strsize string::find_last_of(PCXSTR pszCharSet, strsize pos, strsize n) const throw()
+   {
+      strsize nLength = get_length();
+      // nLength is in XCHARs
+      if(pos < 0)
+         pos = nLength - 1;
+      if(pos < 0 || pos >= nLength)
+      {
+         return( -1 );
+      }
+      string strChars(pszCharSet, n);
+      PCXSTR psz = GetString();
+      while(pos >= 0 && !strChars.contains(psz[pos]))
+      {
+         pos--;
+      }
+      return pos;
+   }
+
+   strsize string::find_last_of(const string & strCharSet, strsize pos) const throw()
+   {
+      return find_last_of(strCharSet, pos, strCharSet.get_length());
+   }
+
+
+   // find the first occurrence of any of the characters in string 'pszCharSet'
+   strsize string::find_last_not_of(char c, strsize pos) const throw()
+   {
+      strsize nLength = get_length();
+      // nLength is in XCHARs
+      if(pos < 0)
+         pos = nLength - 1;
+      if(pos < 0 || pos >= nLength)
+      {
+         return( -1 );
+      }
+      PCXSTR psz = GetString();
+      while(pos >= 0 && psz[pos] == c)
+      {
+         pos--;
+      }
+      return pos;
+   }
+
+   strsize string::find_last_not_of(PCXSTR pszCharSet, strsize iStart) const throw()
+   {
+      return find_last_not_of(pszCharSet, iStart, -1);
+   }
+
+   strsize string::find_last_not_of(PCXSTR pszCharSet, strsize pos, strsize n) const throw()
+   {
+      strsize nLength = get_length();
+      // nLength is in XCHARs
+      if(pos < 0)
+         pos = nLength - 1;
+      if(pos < 0 || pos >= nLength)
+      {
+         return( -1 );
+      }
+      string strChars(pszCharSet, n);
+      PCXSTR psz = GetString();
+      while(pos >= 0 && strChars.contains(psz[pos]))
+      {
+         pos--;
+      }
+      return pos;
+   }
+
+   strsize string::find_last_not_of(const string & strCharSet, strsize pos) const throw()
+   {
+      return find_last_not_of(strCharSet, pos, strCharSet.get_length());
+   }
+
+
    // find the last occurrence of character 'ch'
-   int string::reverse_find(XCHAR ch, int iStart) const throw()
+   strsize string::reverse_find(XCHAR ch, strsize iStart) const throw()
    {
       // find last single character
       PCXSTR psz = string_trait::StringFindCharRev( GetString(), ch, iStart );
 
       // return -1 if not found, distance from beginning otherwise
-      return( (psz == NULL) ? -1 : int( psz-GetString() ) );
+      return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
    }
 
    // find the last occurrence of character 'ch'
-   int string::reverse_find( PCXSTR ch, int iStart) const throw()
+   strsize string::reverse_find( PCXSTR ch, strsize iStart) const throw()
    {
       // find last single character
       PCXSTR psz = string_trait::StringFindStrRev( GetString(), ch, iStart );
 
       // return -1 if not found, distance from beginning otherwise
-      return( (psz == NULL) ? -1 : int( psz-GetString() ) );
+      return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
    }
 
    // manipulation
@@ -1146,7 +1879,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    // Convert the string to uppercase
    string& string::make_upper()
    {
-      int nLength = get_length();
+      strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::StringUppercase( pszBuffer, nLength+1 );
       ReleaseBufferSetLength( nLength );
@@ -1157,7 +1890,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    // Convert the string to lowercase
    string& string::make_lower()
    {
-      int nLength = get_length();
+      strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::StringLowercase( pszBuffer, nLength+1 );
       ReleaseBufferSetLength( nLength );
@@ -1168,7 +1901,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    // Reverse the string
    string& string::MakeReverse()
    {
-      int nLength = get_length();
+      strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::StringReverse( pszBuffer );
       ReleaseBufferSetLength( nLength );
@@ -1181,35 +1914,39 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    // remove all trailing whitespace
    string& string::trim_right()
    {
-      // find beginning of trailing spaces by starting
-      // at beginning (DBCS aware)
-
-      PCXSTR psz = GetString();
+      
       PCXSTR pszLast = NULL;
+      PCXSTR pszMax = GetString() + get_length();
+      PCXSTR psz = pszMax;
 
-      while( *psz != 0 )
+      if(psz != NULL)
       {
-         if( string_trait::IsSpace( *psz ) )
+         while(true)
          {
-            if( pszLast == NULL )
-               pszLast = psz;
+            psz = gen::str::utf8_dec(GetString(), psz);
+            if(psz < GetString())
+               break;
+            if(!string_trait::IsSpace(psz))
+            {
+               pszLast = gen::str::__utf8_inc(psz);
+               break;
+            }
          }
-         else
-         {
-            pszLast = NULL;
-         }
-         psz = string_trait::CharNext( psz );
       }
 
-      if( pszLast != NULL )
+      if(pszLast != NULL && pszLast < pszMax)
       {
-         // truncate at trailing space start
-         int iLast = int( pszLast-GetString() );
+
+         // truncate at trailing space iStart
+
+         strsize iLast = strsize(pszLast - GetString());
 
          Truncate( iLast );
+
       }
 
       return( *this );
+
    }
 
    // remove all leading whitespace
@@ -1219,7 +1956,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
       PCXSTR psz = GetString();
 
-      while( string_trait::IsSpace( *psz ) )
+      while( string_trait::IsSpace( psz ) )
       {
          psz = string_trait::CharNext( psz );
       }
@@ -1227,10 +1964,10 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       if( psz != GetString() )
       {
          // fix up data and length
-         int iFirst = int( psz-GetString() );
+         strsize iFirst = strsize( psz-GetString() );
          PXSTR pszBuffer = GetBuffer( get_length() );
          psz = pszBuffer+iFirst;
-         int nDataLength = get_length()-iFirst;
+         strsize nDataLength = get_length()-iFirst;
             _template::checked::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
             psz, (nDataLength+1)*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nDataLength );
@@ -1287,7 +2024,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       if( pszLast != NULL )
       {
          // truncate at left-most matching character
-         int iLast = int( pszLast-GetString() );
+         strsize iLast = strsize( pszLast-GetString() );
          Truncate( iLast );
       }
 
@@ -1328,7 +2065,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       if( pszLast != NULL )
       {
          // truncate at left-most matching character
-         int iLast = int( pszLast-GetString() );
+         strsize iLast = strsize( pszLast-GetString() );
          Truncate( iLast );
       }
 
@@ -1349,10 +2086,10 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       if( psz != GetString() )
       {
          // fix up data and length
-         int iFirst = int( psz-GetString() );
+         strsize iFirst = strsize( psz-GetString() );
          PXSTR pszBuffer = GetBuffer( get_length() );
          psz = pszBuffer+iFirst;
-         int nDataLength = get_length()-iFirst;
+         strsize nDataLength = get_length()-iFirst;
             _template::checked::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
             psz, (nDataLength+1)*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nDataLength );
@@ -1379,10 +2116,10 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       if( psz != GetString() )
       {
          // fix up data and length
-         int iFirst = int( psz-GetString() );
+         strsize iFirst = strsize( psz-GetString() );
          PXSTR pszBuffer = GetBuffer( get_length() );
          psz = pszBuffer+iFirst;
-         int nDataLength = get_length()-iFirst;
+         strsize nDataLength = get_length()-iFirst;
             _template::checked::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
             psz, (nDataLength+1)*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nDataLength );
@@ -1394,7 +2131,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    // Convert the string to the OEM character set
    void string::AnsiToOem()
    {
-      int nLength = get_length();
+      strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::ConvertToOem( pszBuffer, nLength+1 );
       ReleaseBufferSetLength( nLength );
@@ -1403,7 +2140,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    // Convert the string to the ANSI character set
    void string::OemToAnsi()
    {
-      int nLength = get_length();
+      strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::ConvertToAnsi( pszBuffer, nLength+1 );
       ReleaseBufferSetLength( nLength );
@@ -1411,27 +2148,37 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
    // Very simple sub-string extraction
 
-   // Return the substring starting at index 'iFirst'
-   string string::Mid(int iFirst ) const
+   // Return the substring starting at strsize 'iFirst'
+   string string::Mid(strsize iFirst ) const
    {
       return( Mid( iFirst, get_length()-iFirst ) );
    }
 
-   string string::substr(int iFirst) const
+   string string::substr(strsize iFirst) const
    {
       return Mid(iFirst);
    }
 
-   // Return the substring starting at index 'iFirst', with length 'nCount'
-   string string::Mid(int iFirst,int nCount ) const
+   // Return the substring starting at strsize 'iFirst', with length 'nCount'
+   string string::Mid(strsize iFirst,strsize nCount ) const
    {
       // nCount is in XCHARs
 
       // out-of-bounds requests return sensible things
+
+      int nLength = get_length();
+
       if (iFirst < 0)
          iFirst = 0;
-      if (nCount < 0)
-         nCount = 0;
+
+      if(nCount < 0)
+         nCount = nLength;
+
+      if(nCount + iFirst > nLength)
+         nCount = nLength - iFirst;
+
+      if(nCount < 0)
+         return "";
 
       if( (::_template::add_throw(iFirst,nCount)) > get_length() )
       {
@@ -1453,7 +2200,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( string( GetString()+iFirst, nCount, GetManager() ) );
    }
 
-   string string::substr(int iFirst, int nCount) const
+   string string::substr(strsize iFirst, strsize nCount) const
    {
       return Mid(iFirst, nCount);
    }
@@ -1464,13 +2211,13 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    }
 
    // Return the substring consisting of the rightmost 'nCount' characters
-   string string::Right(int nCount ) const
+   string string::Right(strsize nCount ) const
    {
       // nCount is in XCHARs
       if (nCount < 0)
          nCount = 0;
 
-      int nLength = get_length();
+      strsize nLength = get_length();
       if( nCount >= nLength )
       {
          return( *this );
@@ -1480,13 +2227,13 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    }
 
    // Return the substring consisting of the leftmost 'nCount' characters
-   string string::Left(int nCount ) const
+   string string::Left(strsize nCount ) const
    {
       // nCount is in XCHARs
       if (nCount < 0)
          nCount = 0;
 
-      int nLength = get_length();
+      strsize nLength = get_length();
       if( nCount >= nLength )
       {
          return( *this );
@@ -1519,8 +2266,8 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    {
       ATLASSERT( _template::_template_is_valid_string( pszFormat ) );
 
-      int nCurrentLength = get_length();
-      int nAppendLength = string_trait::GetFormattedLength( pszFormat, args );
+      strsize nCurrentLength = get_length();
+      strsize nAppendLength = string_trait::GetFormattedLength( pszFormat, args );
       PXSTR pszBuffer = GetBuffer( nCurrentLength+nAppendLength );
 #if _SECURE_ATL
         string_trait::Format( pszBuffer+nCurrentLength,
@@ -1537,7 +2284,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       if(pszFormat == NULL)
          AtlThrow(E_INVALIDARG);
 
-      int nLength = string_trait::GetFormattedLength( pszFormat, args );
+      strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
       PXSTR pszBuffer = GetBuffer( nLength );
 #if _SECURE_ATL
         string_trait::Format( pszBuffer, nLength+1, pszFormat, args );
@@ -1625,7 +2372,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          return( FALSE );
       }
 
-      int nLength = string_trait::GetcharLength( pImage->achString, pImage->nLength );
+      strsize nLength = string_trait::GetcharLength( pImage->achString, pImage->nLength );
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
       ReleaseBufferSetLength( nLength );
@@ -1642,7 +2389,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          return( FALSE );
       }
 
-      int nLength = string_trait::GetcharLength( pImage->achString, pImage->nLength );
+      strsize nLength = string_trait::GetcharLength( pImage->achString, pImage->nLength );
       PXSTR pszBuffer = GetBuffer( nLength );
       string_trait::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
       ReleaseBufferSetLength( nLength );
@@ -1756,12 +2503,12 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( str1 == str2 );
    }
 
-   bool CLASS_DECL_ca operator==(string str1, int i)
+   bool CLASS_DECL_ca operator==(string str1, strsize i)
    {
       return strtoi(str1.operator string::PCXSTR()) == i;
    }
 
-   bool CLASS_DECL_ca operator==(int i, string str1)
+   bool CLASS_DECL_ca operator==(strsize i, string str1)
    {
       return strtoi(str1.operator string::PCXSTR()) == i;
    }
@@ -1795,12 +2542,12 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( str1 != str2 );
    }
 
-   bool CLASS_DECL_ca operator!=(string str1, int i)
+   bool CLASS_DECL_ca operator!=(string str1, strsize i)
    {
       return strtoi(str1.operator string::PCXSTR()) != i;
    }
 
-   bool CLASS_DECL_ca operator!=(int i, string str1)
+   bool CLASS_DECL_ca operator!=(strsize i, string str1)
    {
       return strtoi(str1.operator string::PCXSTR()) != i;
    }
@@ -1820,12 +2567,12 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( str2.Compare( psz1 ) > 0 );
    }
 
-   bool CLASS_DECL_ca operator<(string str1, int i)
+   bool CLASS_DECL_ca operator<(string str1, strsize i)
    {
       return strtoi(str1.operator string::PCXSTR()) < i;
    }
 
-   bool CLASS_DECL_ca operator<(int i, string str1)
+   bool CLASS_DECL_ca operator<(strsize i, string str1)
    {
       return i < strtoi(str1.operator string::PCXSTR());
    }
@@ -1845,12 +2592,12 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( str2.Compare( psz1 ) < 0 );
    }
 
-   bool CLASS_DECL_ca operator>(string str1, int i)
+   bool CLASS_DECL_ca operator>(string str1, strsize i)
    {
       return strtoi(str1.operator string::PCXSTR()) > i;
    }
 
-   bool CLASS_DECL_ca operator>(int i, string str1)
+   bool CLASS_DECL_ca operator>(strsize i, string str1)
    {
       return i > strtoi(str1.operator string::PCXSTR());
    }
@@ -1870,12 +2617,12 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( str2.Compare( psz1 ) >= 0 );
    }
 
-   bool CLASS_DECL_ca operator<=(string str1, int i)
+   bool CLASS_DECL_ca operator<=(string str1, strsize i)
    {
       return strtoi(str1.operator string::PCXSTR()) <= i;
    }
 
-   bool CLASS_DECL_ca operator<=(int i, string str1)
+   bool CLASS_DECL_ca operator<=(strsize i, string str1)
    {
       return i <= strtoi(str1.operator string::PCXSTR());
    }
@@ -1895,12 +2642,12 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return( str2.Compare( psz1 ) <= 0 );
    }
 
-   bool CLASS_DECL_ca operator>=(string str1, int i)
+   bool CLASS_DECL_ca operator>=(string str1, strsize i)
    {
       return strtoi(str1.operator string::PCXSTR()) >= i;
    }
 
-   bool CLASS_DECL_ca operator>=(int i, string str1)
+   bool CLASS_DECL_ca operator>=(strsize i, string str1)
    {
       return i >= strtoi(str1.operator string::PCXSTR());
    }
@@ -1982,3 +2729,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
 
 
+bool string::load_string(::ca::application * papp, id id)
+{
+   return App(papp).load_string(*this, id);
+}

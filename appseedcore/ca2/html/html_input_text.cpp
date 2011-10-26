@@ -25,6 +25,7 @@ namespace html
          elemental::implement_phase1(pdata, pelemental);
          if(!m_pedit->IsWindow())
          {
+            m_pedit->oprop("parent_lock_data") = (::ca::data *) pdata;
             m_pedit->create(pdata->m_pguie, 100);
             pdata->on_create_interaction(m_pedit);
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;

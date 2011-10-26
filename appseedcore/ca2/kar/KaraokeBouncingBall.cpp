@@ -10,7 +10,8 @@ namespace kar
       m_lyricViewLines(papp),
       m_brushBall(papp),
       m_penBall(papp),
-      m_dibBall(papp)
+      m_dibBall(papp),
+      m_dibBallShadow(papp)
    {
        m_sizeBall.cx = 49;
        m_sizeBall.cy = 49;
@@ -23,6 +24,7 @@ namespace kar
        m_bPendingBBArrange = false;
        m_eballtype = image;
        m_dibBall.load_from_matter("mplite/yellow_ball.png");
+       m_dibBallShadow.load_from_matter("sphere-shadow.png");
    }
 
    KaraokeBouncingBall::~KaraokeBouncingBall()
@@ -46,7 +48,7 @@ namespace kar
 
    //        double x = 2.0 * m * (dCycleRate - 0.5);
    //        return (-n / (m * m)) * x * x + n;
-           
+
            //double x = 2.0 * (dCycleRate - 0.5);
            //return (-n * x * x) + n;
 
@@ -70,43 +72,43 @@ namespace kar
        return x1 + (x2 - x1) * dCycleRate;
    }
 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    VMSRESULT KaraokeBouncingBall::to(
       ::ca::graphics *                     pdc,
       bool                     bDraw,
       LyricViewLine *         lpline,
-      LyricEventsV2 *         plyricevents// must be Normalized
-      )
+      LyricEventsV2 *         plyricevents, // must be Normalized
+      bool bShadowNow)
    {
 
       if(plyricevents == NULL)
          return VMSR_E_FAIL;
 
-      CSingleLock slRender(&m_csRender, TRUE);
+      single_lock slRender(&m_csRender, TRUE);
 
       ikar::data & data = GetKaraokeData();
       ikar::dynamic_data & dynamicdata = data.GetDynamicData();
@@ -127,23 +129,23 @@ namespace kar
 
       imedia::position tkCurrentNote;
       imedia::position tkNextNote;
-       
+
       {
          imedia::position tkOldPosition = position;
-         int iMsPosition  = pinterface->PositionToTime(position);
+         imedia::time iMsPosition  = pinterface->PositionToTime(position);
          iMsPosition -= m_iDelay;
          position = pinterface->TimeToPosition(iMsPosition);
       }
-      
+
       int iCurrentToken    = plyricevents->GetPositionToken(position);
       int iCurrentNote     = plyricevents->GetPositionNote(position);
       int iNextToken       = iCurrentToken + 1;
-      int iLineLastToken   = lpline->GetLastToken();
+//      int iLineLastToken   = lpline->GetLastToken();
       int iLastNote        = plyricevents->GetTokenLastNote(iCurrentToken);
-      
-      bool bLineLastToken  = iLineLastToken == iCurrentToken;
+
+      //bool bLineLastToken  = iLineLastToken == iCurrentToken;
       bool bTokenLastNote  = iLastNote == iCurrentNote;
-       
+
       imedia::position tkLastNote;
       if(iLastNote < 0)
       {
@@ -166,7 +168,7 @@ namespace kar
          &dBegX,
          &dEndX);
 
-      
+
 
       double dDeltaX;
 
@@ -206,7 +208,7 @@ namespace kar
       dNextTokenRight      -= dDeltaX * 0.10;
 
       dDeltaX = (dCurrentTokenRight - dCurrentTokenLeft);
-         
+
       if(bTokenLastNote)
       {
          m_dCurrentNoteLeft   = dCurrentTokenLeft + dDeltaX * dBegX;
@@ -256,14 +258,17 @@ namespace kar
       int iy = m_rectClient.bottom - (int) dy + iBallMinHeight;
       int iBallHeight;
       int iBallWidth;
+      bool bShadow;
       if(dy < iCompressPathHeight)
       {
-         iBallHeight = iBallMinHeight + (dy * iBallCompress/ iCompressPathHeight);
-         iBallWidth = iBallMaxWidth - dy * (iBallMaxWidth - iBallMinWidth) / iCompressPathHeight;
+         bShadow = true;
+         iBallHeight = (int) (iBallMinHeight + (dy * iBallCompress/ iCompressPathHeight));
+         iBallWidth = (int) (iBallMaxWidth - dy * (iBallMaxWidth - iBallMinWidth) / iCompressPathHeight);
          ix -= (iBallWidth - iBallMinWidth) / 2;
       }
       else
       {
+         bShadow = false;
          iBallHeight = m_sizeBall.cy;
          iBallWidth = iBallMinWidth;
       }
@@ -283,57 +288,111 @@ namespace kar
                TRACE("KaraokeBouncingBall::to :: System is warning to save \"processing\" resource");
                TRACE("KaraokeBouncingBall::to :: Going to change ball type from \"image\" to \"vectorial ball\"");
                System.savings().clear_warning(gen::resource_processing);
-               m_eballtype = Ball;            
+               m_eballtype = Ball;
             }
-            visual::dib_sp dib(get_app());
-            visual::dib_sp dib2(get_app());
-            visual::dib_sp dib12(get_app());
-            dib->create(rectBall.size());
-            dib2->create(m_dibBall->size());
-            dib12->create(rectBall.size());
-            ::ca::draw_dib_sp drawdib(get_app());
-            dib->get_graphics()->SetStretchBltMode(HALFTONE);
-            dib2->from(m_dibBall->get_graphics());
-            dib2->channel_copy(visual::rgba::channel_red, visual::rgba::channel_alpha);
-            dib12->get_graphics()->SetStretchBltMode(HALFTONE);
-            drawdib->draw(
-               dib->get_graphics(),
-               0,
-               0,
-               rectBall.width(),
-               rectBall.height(),
-               m_dibBall,
-               0, 0,
-               m_dibBall->width(), 
-               m_dibBall->height(),
-               SRCCOPY);
-            drawdib->draw(
-               dib12->get_graphics(),
-               0,
-               0,
-               rectBall.width(),
-               rectBall.height(),
-               dib2,
-               0, 0,
-               dib2->width(), 
-               dib2->height(),
-               SRCCOPY);
-            dib12->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_red);
-            //System.imaging().blur(dib->get_graphics(), null_point(), rectBall.size(), dib->get_graphics(), null_point(), -1);
-            //System.imaging().blur(dib2->get_graphics(), null_point(), rectBall.size(), dib2->get_graphics(), null_point(), -1);
-            //dib->get_graphics()->SetStretchBltMode(HALFTONE);
-            //dib->get_graphics()->StretchBlt(0, 0, rectBall.width(), rectBall.height(), m_dibBall->get_graphics(), 0, 0, m_dibBall->width(), m_dibBall->height(), SRCCOPY);
-            System.imaging().bitmap_blend(pdc, rectBall.top_left(), rectBall.size(), dib->get_graphics(), null_point(), dib12->get_graphics(), null_point());
+            class rect rectShadow;
+            double d = GetSplineY(dRate, 1.0);
+            int iMidW = (int) ((iBallMinWidth / 2) + ((iBallMaxWidth - iBallMinWidth / 2) * d));
+            if(iMidW >= 5 && bShadowNow)
+            {
+               rectShadow.left = rectBall.center().x - iMidW;
+               rectShadow.right = rectBall.center().x + iMidW;
+               //rectShadow.top = rectPlacement.bottom - rectShadow.width() / 5;
+               rectShadow.top = m_rectClient.bottom + iBallMinHeight + (iBallMaxWidth - iBallMinWidth) / 2;
+               rectShadow.bottom = rectShadow.top + rectShadow.width() / 3;
+               visual::dib_sp dib(get_app());
+               visual::dib_sp dib2(get_app());
+               visual::dib_sp dib12(get_app());
+               dib->create(rectShadow.size());
+               dib2->create(m_dibBallShadow->size());
+               dib12->create(rectShadow.size());
+               ::ca::draw_dib_sp drawdib(get_app());
+               dib->get_graphics()->SetStretchBltMode(HALFTONE);
+               dib2->from(m_dibBallShadow->get_graphics());
+               dib2->channel_copy(visual::rgba::channel_red, visual::rgba::channel_alpha);
+               dib12->get_graphics()->SetStretchBltMode(HALFTONE);
+               drawdib->draw(
+                  dib->get_graphics(),
+                  0,
+                  0,
+                  rectShadow.width(),
+                  rectShadow.height(),
+                  m_dibBallShadow,
+                  0, 0,
+                  m_dibBallShadow->width(),
+                  m_dibBallShadow->height(),
+                  SRCCOPY);
+               drawdib->draw(
+                  dib12->get_graphics(),
+                  0,
+                  0,
+                  rectShadow.width(),
+                  rectShadow.height(),
+                  dib2,
+                  0, 0,
+                  dib2->width(),
+                  dib2->height(),
+                  SRCCOPY);
+               dib12->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_red);
+               dib12->channel_multiply(visual::rgba::channel_alpha, 1.0 - d);
+               //System.imaging().blur(dib->get_graphics(), null_point(), rectBall.size(), dib->get_graphics(), null_point(), -1);
+               //System.imaging().blur(dib2->get_graphics(), null_point(), rectBall.size(), dib2->get_graphics(), null_point(), -1);
+               //dib->get_graphics()->SetStretchBltMode(HALFTONE);
+               //dib->get_graphics()->StretchBlt(0, 0, rectBall.width(), rectBall.height(), m_dibBall->get_graphics(), 0, 0, m_dibBall->width(), m_dibBall->height(), SRCCOPY);
+               System.imaging().bitmap_blend(pdc, rectShadow.top_left(), rectShadow.size(), dib->get_graphics(), null_point(), dib12->get_graphics(), null_point());
+            }
+            if(!bShadowNow)
+            {
+               visual::dib_sp dib(get_app());
+               visual::dib_sp dib2(get_app());
+               visual::dib_sp dib12(get_app());
+               dib->create(rectBall.size());
+               dib2->create(m_dibBall->size());
+               dib12->create(rectBall.size());
+               ::ca::draw_dib_sp drawdib(get_app());
+               dib->get_graphics()->SetStretchBltMode(HALFTONE);
+               dib2->from(m_dibBall->get_graphics());
+               dib2->channel_copy(visual::rgba::channel_red, visual::rgba::channel_alpha);
+               dib12->get_graphics()->SetStretchBltMode(HALFTONE);
+               drawdib->draw(
+                  dib->get_graphics(),
+                  0,
+                  0,
+                  rectBall.width(),
+                  rectBall.height(),
+                  m_dibBall,
+                  0, 0,
+                  m_dibBall->width(),
+                  m_dibBall->height(),
+                  SRCCOPY);
+               drawdib->draw(
+                  dib12->get_graphics(),
+                  0,
+                  0,
+                  rectBall.width(),
+                  rectBall.height(),
+                  dib2,
+                  0, 0,
+                  dib2->width(),
+                  dib2->height(),
+                  SRCCOPY);
+               dib12->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_red);
+               //System.imaging().blur(dib->get_graphics(), null_point(), rectBall.size(), dib->get_graphics(), null_point(), -1);
+               //System.imaging().blur(dib2->get_graphics(), null_point(), rectBall.size(), dib2->get_graphics(), null_point(), -1);
+               //dib->get_graphics()->SetStretchBltMode(HALFTONE);
+               //dib->get_graphics()->StretchBlt(0, 0, rectBall.width(), rectBall.height(), m_dibBall->get_graphics(), 0, 0, m_dibBall->width(), m_dibBall->height(), SRCCOPY);
+               System.imaging().bitmap_blend(pdc, rectBall.top_left(), rectBall.size(), dib->get_graphics(), null_point(), dib12->get_graphics(), null_point());
+            }
          }
          else if(m_eballtype == Ball)
          {
-            
+
             ::ca::pen * ppenOld = pdc->GetCurrentPen();
             pdc->SelectObject(m_penBall);
-       
+
             ::ca::brush * pbrushOld = pdc->GetCurrentBrush();
             pdc->SelectObject(m_brushBall);
-       
+
             pdc->Ellipse(rectBall);
 
             pdc->SelectObject(ppenOld);
@@ -368,7 +427,7 @@ namespace kar
       {
          m_rectBall = rectBall;
       }
-       
+
       return VMSR_SUCCESS;
 
    }
@@ -456,6 +515,6 @@ namespace kar
    void KaraokeBouncingBall::SetBallSize(SIZE size)
    {
       m_sizeBall = size;
-   }  
+   }
 
 } // namespace kar

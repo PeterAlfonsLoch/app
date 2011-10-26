@@ -63,7 +63,7 @@ namespace userbase
                pApp->m_nCmdShow = -1; // set to default after first time
             }
             bool bFullScreen;
-            data_get("FullScreen", ::ca::system::idEmpty, bFullScreen);
+            data_get("FullScreen", ::radix::system::idEmpty, bFullScreen);
             if(bFullScreen)
             {
                WfiFullScreen(bFullScreen, false);
@@ -88,12 +88,11 @@ namespace userbase
       pbase->set_lresult(0);
    }
 
-   void frame_window_interface::_001InstallMessageHandling(::user::win::message::dispatch *pinterface)
+   void frame_window_interface::install_message_handling(::user::win::message::dispatch *pinterface)
    {
-      ::user::frame_window_interface::_001InstallMessageHandling(pinterface);
-      database::user::interaction::_001InstallMessageHandling(pinterface);
-      IGUI_WIN_MSG_LINK(
-         ::user::win::message::message_frame_initial_update,
+      ::user::frame_window_interface::install_message_handling(pinterface);
+      database::user::interaction::install_message_handling(pinterface);
+      IGUI_MSG_LINK(::user::message_frame_initial_update,
          pinterface,
          this,
          &frame_window_interface::_guserbaseOnInitialUpdate);
@@ -143,15 +142,11 @@ namespace userbase
 
    void frame_window_interface::_001OnDraw(::ca::graphics *pdc)
    {
-      if(m_etranslucency == TranslucencyTotal
+      if(m_bCustomFrame 
+      || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent)
       {
-         ::user::window_interface::_001OnDraw(pdc);
-         return;
-      }
-      if(m_bCustomFrame)
-      {
-         ::user::window_interface::_001OnDraw(pdc);
+         window_frame::WorkSetClientInterface::_001OnDraw(pdc);
       }
       else
       {
@@ -159,7 +154,7 @@ namespace userbase
          ::user::interaction* pwnd = get_guie();
          pwnd->GetClientRect(rect);
          pdc->FillSolidRect(rect, RGB(127, 192, 215));
-         //m_wndframework.OnDraw(pdc);
+         //m_workset.OnDraw(pdc);
       }
    }
 
@@ -272,7 +267,7 @@ namespace userbase
    {
       HICON hIcon = ::ExtractIcon(
          System.m_hInstance, 
-         System.dir().path(System.dir().matter(pszMatter), "icon.ico"), 
+         System.dir().path(Application.dir().matter(pszMatter), "icon.ico"), 
          1);
       if (hIcon != NULL)
       {
@@ -351,7 +346,7 @@ namespace userbase
    void frame_window_interface::on_set_parent(::user::interaction* pguieParent)
    {
       UNREFERENCED_PARAMETER(pguieParent);
-      m_wndframework.m_pwndEvent = m_pimpl;
+      m_workset.m_pwndEvent = m_pimpl->m_pguie;
    }
 
    void frame_window_interface::assert_valid() const

@@ -11,12 +11,12 @@ namespace visual
       
       graphics_extension(::ca::application * papp);
       virtual ~graphics_extension();
-      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, base_array < size, size & > & sizea);
+      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, base_array < size > & sizea);
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, size & size);
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, int iCount, size & size);
 
       BOOL TextOut(::ca::graphics * pdc, int x, int y, const char * lpcwsz, int iCount);
-      int _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat);
+      int _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline = NULL);
       
       int _EncodeV033(string & str);
 

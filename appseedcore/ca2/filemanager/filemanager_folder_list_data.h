@@ -15,7 +15,7 @@ namespace filemanager
       virtual ~folder_list_data(void);
 
 
-      virtual bool _001GetItemText(::user::list * plist, string &str, index iItem, index iSubItem, index iListItem);
+      virtual void _001GetItemText(::user::list_item * pitem);
 
       virtual count _001GetItemCount();
 

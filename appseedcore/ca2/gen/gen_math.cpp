@@ -22,7 +22,7 @@ namespace gen
       {
          // initial rng seed
          dPi = atan(1.0) * 4.0;
-         hCryptProv = NULL;
+/*         hCryptProv = NULL;
          hOriginalKey = NULL;
          hDuplicateKey = NULL;
 
@@ -44,8 +44,8 @@ namespace gen
             }
             else
             {
-           TRACELASTERROR();
-             TRACE("Error during CryptAcquireContext!\n");
+//           TRACELASTERROR();
+             printf("Error during CryptAcquireContext!\n");
 
             }
           
@@ -66,7 +66,7 @@ namespace gen
          }
          else
          {
-            TRACE("ERROR - CryptGenKey.");
+            printf("ERROR - CryptGenKey.");
          }
          //-------------------------------------------------------------------
          // Duplicate the key.
@@ -81,7 +81,7 @@ namespace gen
          }
          else
          {
-            TRACE("ERROR - CryptDuplicateKey");
+            printf("ERROR - CryptDuplicateKey");
          }
          //-------------------------------------------------------------------
          // Set additional parameters on the original key.
@@ -98,7 +98,7 @@ namespace gen
          }
          else
          {
-              TRACE("Error during CryptSetKeyParam.");
+              printf("Error during CryptSetKeyParam.");
          }
 
          // Generate a random initialization vector.
@@ -111,7 +111,7 @@ namespace gen
          }
          else
          {
-              TRACE("Error during CryptGenRandom.");
+              printf("Error during CryptGenRandom.");
          }
          //-------------------------------------------------------------------
          // Set the initialization vector.
@@ -126,13 +126,13 @@ namespace gen
          }
          else
          {
-              TRACE("Error during CryptSetKeyParam.");
+              printf("Error during CryptSetKeyParam.");
          }
 
          {
             m_chRngReSeedCountDown = -1;
             //unsigned long ulRnd = rnd();
-         }
+         }*/
 
       }
 
@@ -145,7 +145,14 @@ namespace gen
 
       void math::gen_rand(void * buf, DWORD dwLen)
       {
-         CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
+         byte * puch = (byte *) buf;
+         while(dwLen > 0)
+        {
+           *puch = (byte) rnd() % 256;
+           puch++;
+           dwLen--;
+         }
+         //CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
       }
 
       int math::rand_max()
@@ -155,22 +162,59 @@ namespace gen
 
       unsigned long math::rnd()
       {
-         ::ca::lock lock(this);
-         if(m_chRngReSeedCountDown < 0)
+         synch_lock lock(this);
+         static int s_iRngReSeedCountDown = -1;
+         if(s_iRngReSeedCountDown < 0)
          {
-            m_chRngReSeedCountDown = (char) RandRange(23, 84);
-            m_rng.seed(RandRange(777, 1984), (unsigned long) (time(NULL) + RandRange(0, 1984 * 1977)));
+            s_iRngReSeedCountDown = random_context_entropy(19840, 8777);
+            m_rng.seed(1984, random_context_entropy(19841511, 19770402));
          }
          else
          {
-            m_chRngReSeedCountDown--;
+            s_iRngReSeedCountDown--;
          }
          return m_rng.get();
       }
 
+
+      int math::random_context_entropy(int iMin, int iMax, int iLevel)
+      {
+         int iValue;
+         if(iLevel > 0)
+         {
+            iLevel = min(iLevel, 3);
+            iValue = abs(random_context_entropy(iMin, iMax, iLevel - 1) + random_context_entropy(iMin, iMax, iLevel - 1)) % abs(iMax - iMin);
+         }
+         else
+         {
+            sleep(millis(1));
+            LARGE_INTEGER tick;
+            QueryPerformanceCounter(&tick);
+            PERFORMANCE_INFORMATION pi;
+            memset(&pi, 0, sizeof(pi));
+            GetPerformanceInfo(&pi, sizeof(pi));
+            FILETIME fta[3];
+            memset(&fta, 0, sizeof(fta));
+            GetSystemTimes(&fta[0], &fta[1], &fta[2]);
+            __int64 v1 = tick.QuadPart;
+            __int64 v2 = time(NULL);
+            __int64 v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
+            __int64 v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+            iValue = abs(v1 + v2 + v3 + v4) % (iMax - iMin);
+         }
+         if(iMax > iMin)
+         {
+            return iMin + iValue;
+         }
+         else
+         {
+            return iMin - iValue;
+         }
+      }
+
       math::~math()
       {
-      if (hOriginalKey)
+      /*if (hOriginalKey)
           if (!CryptDestroyKey(hOriginalKey))
               TRACE("Failed CryptDestroyKey\n");
 
@@ -181,7 +225,7 @@ namespace gen
       if(hCryptProv)
           if (!CryptReleaseContext(hCryptProv, 0))
               TRACE("Failed CryptReleaseContext\n");
-
+*/
 
       }
 

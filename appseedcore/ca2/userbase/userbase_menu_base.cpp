@@ -6,7 +6,7 @@ namespace userbase
    menu_base::menu_base(::ca::application * papp):
       ca(papp)
    {
-      m_pitem = new menu_item(papp);
+      m_pitem(new menu_item(papp));
    }
 
    menu_base::~menu_base()
@@ -15,7 +15,7 @@ namespace userbase
 
    void menu_base::clear()
    {
-      m_pitem = new menu_item(get_app());
+      m_pitem(new menu_item(get_app()));
    }
 
    bool menu_base::LoadMenu(xml::node * lpnode)
@@ -26,7 +26,7 @@ namespace userbase
    bool menu_base::LoadXmlMenu(const char * pszMatter)
    {
       xml::node node(get_app());
-      node.load(Application.file().as_string(System.dir().matter(pszMatter)));
+      node.load(Application.file().as_string(Application.dir().matter(pszMatter)));
       return LoadMenu(&node);
    }
 

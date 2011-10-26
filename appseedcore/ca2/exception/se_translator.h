@@ -1,10 +1,10 @@
 /*
- Copyright (c) 2001 
- Author: Konstantin Boukreev 
- E-mail: konstantin@mail.primorye.ru 
+ Copyright (c) 2001
+ Author: Konstantin Boukreev
+ E-mail: konstantin@mail.primorye.ru
  Created: 25.12.2001 14:47:20
  Version: 1.0.0
- 
+
  Permission to use, copy, modify, distribute and sell this software
  and its documentation for any purpose is hereby granted without fee,
  provided that the above copyright notice appear in all copies and
@@ -19,32 +19,43 @@
 
 #pragma once
 
+#ifdef _WINDOWS
 #include <eh.h>
+#else
+#include <signal.h>
+#endif
 
 
 class CLASS_DECL_ca se_translator :
    virtual public ::radix::object
-{      
+{
  public:
    se_translator();
    virtual ~se_translator();
 
+#ifdef _WINDOWS
    void filter(unsigned int uiCode, _EXCEPTION_POINTERS * p);
    static void __cdecl filter2(unsigned int uiCode, _EXCEPTION_POINTERS * p);
    //void filter( _EXCEPTION_POINTERS * p);
    static string name(unsigned int uiCode);
    static string description(unsigned int uiCode);
+#else
+   static void filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc);
+   static void filter_fpe(int signal, siginfo_t * psiginfo, void * pc);
+#endif
 
 
    bool attach();
    bool detach();
 
-   
+
 
  private:
     bool                      m_bSet;
     //LPTOP_LEVEL_EXCEPTION_FILTER m_pfn;
+#ifdef _WINDOWS
     _se_translator_function   m_pfn;
+#endif
 };
 
 /*

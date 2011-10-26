@@ -10,7 +10,7 @@ namespace userbase
       tree_window(::ca::application * papp);
       virtual ~tree_window();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
    };
 
 } // namespace userbase

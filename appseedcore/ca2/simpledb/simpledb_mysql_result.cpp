@@ -24,6 +24,17 @@ namespace mysql
       return row;
    }
 
+   unsigned long * result::fetch_lengths()
+   {
+      unsigned long * lengths;
+      if(m_pres == NULL)
+         return NULL;
+      lengths = mysql_fetch_lengths((MYSQL_RES *) m_pres);
+      if(mysql_errno ((MYSQL *) m_pdatabase->m_pmysql) != 0)
+         m_pdatabase->trace_error1( "mysql_fetch_row() failed");
+      return lengths;
+   }
+
    int result::num_fields()
    {
       return mysql_num_fields((MYSQL_RES *) m_pres);

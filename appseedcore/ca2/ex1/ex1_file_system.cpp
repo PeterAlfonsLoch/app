@@ -20,8 +20,11 @@ namespace ex1
 
    bool file_system::FullPath(string & str, const char * lpszFileIn)
    {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(lpszFileIn);
+      if(gen::str::begins_ci(lpszFileIn, "uifs://"))
+      {
+         str = lpszFileIn;
+         return true;
+      }
       return false;
    }
 

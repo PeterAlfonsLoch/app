@@ -1,40 +1,40 @@
 #include "StdAfx.h"
 
-MidiLyricTrack::MidiLyricTrack(::ca::application * papp) :
+midi_lyric_track::midi_lyric_track(::ca::application * papp) :
    ca(papp),
-   MidiTrackBase(papp)
+   midi_track_base(papp)
 {
    m_pfile = NULL;
    m_iDelay = 0;
 }
 
-MidiLyricTrack::MidiLyricTrack(::mus::midi::file * pfile) :
+midi_lyric_track::midi_lyric_track(::mus::midi::file * pfile) :
    ca(pfile->get_app()),
-   MidiTrackBase(pfile->get_app())
+   midi_track_base(pfile->get_app())
 {
    m_pfile = pfile;
    m_iDelay = 0;
 }
 
-MidiLyricTrack::MidiLyricTrack(const MidiLyricTrack & track) :
+midi_lyric_track::midi_lyric_track(const midi_lyric_track & track) :
    ca(track.get_app()),
-   MidiTrackBase(track.get_app())
+   midi_track_base(track.get_app())
 {
    operator = (track);
 }
 
-MidiLyricTrack::~MidiLyricTrack()
+midi_lyric_track::~midi_lyric_track()
 {
 
 }
 
-::mus::midi::e_file_result MidiLyricTrack::GetPosition(imedia::position & tkPositionParam, imedia::position tkMax)
+::mus::midi::e_file_result midi_lyric_track::get_position(imedia::position & tkPositionParam, imedia::position tkMax)
 {
    if(m_iCurrentEvent >= m_trackWorkStorage.GetEventCount())
    {
       return ::mus::midi::SEndOfTrack;
    }
-   //    MidiEventV008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
+   //    midi_event_v008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
 
    imedia::position tkPosition = -1;
    if(m_iCurrentEvent == m_iLastEvent &&
@@ -65,17 +65,17 @@ MidiLyricTrack::~MidiLyricTrack()
    return ::mus::midi::Success;
 }
 
-::mus::midi::file_flags & MidiLyricTrack::GetFlags()
+::mus::midi::file_flags & midi_lyric_track::GetFlags()
 {
    return m_flagsFile;
 }
 
-const ::mus::midi::file_flags & MidiLyricTrack::GetFlags() const
+const ::mus::midi::file_flags & midi_lyric_track::GetFlags() const
 {
    return m_flagsFile;
 }
 
-::mus::midi::e_file_result MidiLyricTrack::GetEvent(MidiEventBase *& pevent, imedia::position tkMax, BOOL bTkMaxInclusive)
+::mus::midi::e_file_result midi_lyric_track::GetEvent(midi_event_base *& pevent, imedia::position tkMax, BOOL bTkMaxInclusive)
 {
    UNREFERENCED_PARAMETER(tkMax);
    UNREFERENCED_PARAMETER(bTkMaxInclusive);
@@ -91,8 +91,8 @@ const ::mus::midi::file_flags & MidiLyricTrack::GetFlags() const
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiLyricTrack::GetEvent(
-   MidiEventV001 *& pevent,
+::mus::midi::e_file_result midi_lyric_track::GetEvent(
+   midi_event_v001 *& pevent,
    imedia::position   tkMax,
    BOOL   bTkMaxInclusive)
 {
@@ -105,18 +105,18 @@ const ::mus::midi::file_flags & MidiLyricTrack::GetFlags() const
    {
       return ::mus::midi::SReachedTkMax;
    }
-   MidiEventV008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
+   midi_event_v008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
    m_eventv001 = event;
    pevent = &m_eventv001;
    return ::mus::midi::Success;
 }
 
-imedia::position MidiLyricTrack::GetPosition()
+imedia::position midi_lyric_track::get_position()
 {
    return ApplyDelay(m_tkPosition);
 }
 
-::mus::midi::e_file_result MidiLyricTrack::seek_begin()
+::mus::midi::e_file_result midi_lyric_track::seek_begin()
 {
    m_iCurrentEvent      = -1;
    m_tkPosition         = 0;
@@ -126,21 +126,21 @@ imedia::position MidiLyricTrack::GetPosition()
    return MoveNext();
 }
 
-::mus::midi::e_file_result MidiLyricTrack::seek_end()
+::mus::midi::e_file_result midi_lyric_track::seek_end()
 {
    m_iCurrentEvent = m_trackWorkStorage.GetEventCount();
-   m_tkPosition = m_trackWorkStorage.EventAt(m_trackWorkStorage.GetEventCount() - 1).GetPosition();
+   m_tkPosition = m_trackWorkStorage.EventAt(m_trackWorkStorage.GetEventCount() - 1).get_position();
    GetFlags().signalize(::mus::midi::EndOfFile);
-   m_tkLastPosition = m_trackWorkStorage.EventAt(m_trackWorkStorage.GetEventCount() - 2).GetPosition();
+   m_tkLastPosition = m_trackWorkStorage.EventAt(m_trackWorkStorage.GetEventCount() - 2).get_position();
    m_iLastEvent = m_trackWorkStorage.GetEventCount() - 2;
    return ::mus::midi::Success;
 }
 
 
-VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV1 & events)
+VMSRESULT midi_lyric_track::Prepare(::ca::application * papp, LyricEventsV1 & events)
 {
    gen::memory_file       memFile(papp);
-   MidiEventV008    event;
+   midi_event_v008    event;
    imedia::position             tkPosition;
    imedia::position             tkLastPosition = 0;
    base_array < LyricEventV1, LyricEventV1 &> lvaPending;
@@ -155,7 +155,7 @@ VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV1 & even
    {
       lvaPending.add(events);
       tkPosition = events.m_tkaTokensPosition.element_at(events.m_iCurrentToken);
-      TRACE("MidiLyricTrack::Prepare V1 tkPosition %d", tkPosition);
+      TRACE("midi_lyric_track::Prepare V1 tkPosition %d", tkPosition);
       if(tkPosition >= tkLastPosition)
       {
          event._SetFlags(1); // Flag 1 means POSITIONCB
@@ -172,7 +172,7 @@ VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV1 & even
          lvaPending.Serialize(ar);
          ar.Flush();
          DWORD dwLength = memFile.get_length();
-         LPBYTE lpData = memFile.GetAllocation();
+         LPBYTE lpData = memFile.get_data();
          event.SetParam(lpData, dwLength);
          //memFile.Attach(lpData, dwLength);
          lvaPending.remove_all();
@@ -186,10 +186,10 @@ VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV1 & even
    return VMSR_SUCCESS;
 }
 
-VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV2 & events)
+VMSRESULT midi_lyric_track::Prepare(::ca::application * papp, LyricEventsV2 & events)
 {
    gen::memory_file       memFile(papp);
-   MidiEventV008    event;
+   midi_event_v008    event;
    imedia::position             tkPosition;
    imedia::position             tkLastPosition = 0;
    base_array < LyricEventV1, LyricEventV1 &> lvaPending;
@@ -212,7 +212,7 @@ VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV2 & even
          events.m_iCurrentToken = ia.get_at(0);
          lvaPending.add(events);
          tkPosition = events.m_tkaNotesPosition.element_at(events.m_iCurrentNote);
-         TRACE("MidiLyricTrack::Prepare V2 tkPosition %d", tkPosition);
+         TRACE("midi_lyric_track::Prepare V2 tkPosition %d", tkPosition);
          if(tkPosition >= tkLastPosition)
          {
             event._SetFlags(1); // Flag 1 means POSITIONCB
@@ -244,7 +244,7 @@ VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV2 & even
    return VMSR_SUCCESS;
 }
 
-::mus::midi::e_file_result MidiLyricTrack::MoveNext()
+::mus::midi::e_file_result midi_lyric_track::MoveNext()
 {
    m_iCurrentEvent++;
    if(m_iCurrentEvent >= m_trackWorkStorage.GetEventCount())
@@ -253,13 +253,13 @@ VMSRESULT MidiLyricTrack::Prepare(::ca::application * papp, LyricEventsV2 & even
    }
 
    m_tkPosition += m_trackWorkStorage.EventAt(m_iCurrentEvent)._GetDelta();
-   //TRACE("MidiLyricTrack::MoveNext iEvent %d position %d Next %d\n",
+   //TRACE("midi_lyric_track::MoveNext iEvent %d position %d Next %d\n",
    //   m_iCurrentEvent, m_tkPosition, m_tkNextPosition);
    return ::mus::midi::Success;
 
 }
 
-MidiLyricTrack & MidiLyricTrack::operator =(const MidiLyricTrack &track)
+midi_lyric_track & midi_lyric_track::operator =(const midi_lyric_track &track)
 {
    m_iCurrentEvent = track.m_iCurrentEvent;
    m_iDelay = track.m_iDelay;
@@ -275,28 +275,28 @@ MidiLyricTrack & MidiLyricTrack::operator =(const MidiLyricTrack &track)
 
 }
 
-imedia::position MidiLyricTrack::WorkGetPosition()
+imedia::position midi_lyric_track::WorkGetPosition()
 {
    imedia::position tkPosition = 0x7fffffff;
-   GetPosition(tkPosition, 0x7fffffff);
+   get_position(tkPosition, 0x7fffffff);
    return tkPosition;
 }
 
-::mus::midi::e_file_result MidiLyricTrack::WorkMoveNext()
+::mus::midi::e_file_result midi_lyric_track::WorkMoveNext()
 {
    return MoveNext();
 }
 
-void MidiLyricTrack::WorkGetEvent(
-   MidiEventBase *&    pevent,
+void midi_lyric_track::WorkGetEvent(
+   midi_event_base *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
-   WorkGetEvent((MidiEventV008 *&) pevent, tkMax, bTkMaxInclusive);
+   WorkGetEvent((midi_event_v008 *&) pevent, tkMax, bTkMaxInclusive);
 }
 
-void MidiLyricTrack::WorkGetEvent(
-   MidiEventV008 *&    pevent,
+void midi_lyric_track::WorkGetEvent(
+   midi_event_v008 *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
@@ -309,40 +309,40 @@ void MidiLyricTrack::WorkGetEvent(
    {
       return;
    }
-   MidiEventV008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
+   midi_event_v008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
    pevent = &event;
 }
 
 
-::mus::midi::e_file_result MidiLyricTrack::WorkSeekBegin()
+::mus::midi::e_file_result midi_lyric_track::WorkSeekBegin()
 {
    return seek_begin();
 }
 
-::mus::midi::e_file_result MidiLyricTrack::WorkSeekEnd()
+::mus::midi::e_file_result midi_lyric_track::WorkSeekEnd()
 {
    return seek_end();
 }
 
-MidiTrackBase::e_type MidiLyricTrack::get_type()
+midi_track_base::e_type midi_lyric_track::get_type()
 {
    return TypeLyric;
 }
 
-bool MidiLyricTrack::WorkIsEOT()
+bool midi_lyric_track::WorkIsEOT()
 {
    return m_iCurrentEvent >= m_trackWorkStorage.GetEventCount();
 }
 
 
-imedia::position MidiLyricTrack::ApplyDelay(imedia::position tkPosition)
+imedia::position midi_lyric_track::ApplyDelay(imedia::position tkPosition)
 {
    return m_pfile->MillisecsToTicks(
       m_pfile->TicksToMillisecs(tkPosition)
       + m_iDelay);
 }
 
-void MidiLyricTrack::SetDelay(int iMillis)
+void midi_lyric_track::SetDelay(int iMillis)
 {
    m_iDelay = iMillis;
 }

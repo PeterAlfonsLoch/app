@@ -48,28 +48,26 @@ namespace user
    {
    }
 
-   void window_interface::_001InstallMessageHandling(win::message::dispatch * pinterface)
+   void window_interface::install_message_handling(win::message::dispatch * pinterface)
    {
-      win::message::dispatch::_001InstallMessageHandling(pinterface);
-
-      _001InstallOnDrawInterface(pinterface);
+      win::message::dispatch::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(
          MessageBaseWndGetProperty,
-         pinterface, 
-         this, 
+         pinterface,
+         this,
          &window_interface::_001OnBaseWndGetProperty);
 
       IGUI_WIN_MSG_LINK(
          WM_CREATE,
-         pinterface, 
-         this, 
+         pinterface,
+         this,
          &window_interface::_001OnCreate);
 
       IGUI_WIN_MSG_LINK(
          MessageProperty,
-         pinterface, 
-         this, 
+         pinterface,
+         this,
          &window_interface::_001OnBaseWndGetProperty);
    }
 
@@ -86,7 +84,7 @@ namespace user
 
    /*bool window_interface::TwfRender(
       ::ca::graphics *          pdc,
-      HWND           hwndExclude, 
+      HWND           hwndExclude,
       LPCRECT        lpcrectUpdate,
       user::HwndTree::Array & hwndtreea,
       bool           bBackground)
@@ -96,7 +94,7 @@ namespace user
       rect rectChild;
 
       rect rectNewUpdate;
-      
+
       for(int i = hwndtreea.get_size() - 1; i >= 0; i--)
       {
          user::HwndTree & hwndtreeChild = hwndtreea[i];
@@ -154,7 +152,7 @@ namespace user
       {
          return false;
       }
-            
+
       if(!::IsWindowVisible(hwndParam))
       {
          return false;
@@ -162,7 +160,7 @@ namespace user
 
 
       ::ca::window * pwnd = ::ca::window::FromHandlePermanent(hwndParam);
-       
+
       if((::GetWindowLong((hwndParam), GWL_STYLE) & WS_VISIBLE) == 0)
       {
          return true;
@@ -174,7 +172,7 @@ namespace user
       window_interface * pwndi = dynamic_cast<window_interface *>(pwnd);
       if(pwndi == NULL)
       {
-         CSingleLock sl(m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
+         single_lock sl(m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
          if(m_papp->s_ptwf->m_wndinterfacemap.Lookup(hwndParam, pwndi))
          {
             if(pwndi != NULL)
@@ -187,13 +185,13 @@ namespace user
             m_papp->s_ptwf->m_wndinterfacemap.set_at(hwndParam, pwndi);
             ::SendMessage(
                hwndParam,
-               window_interface::MessageBaseWndGetProperty, 
-               window_interface::PropertyDrawBaseWndInterface, 
+               window_interface::MessageBaseWndGetProperty,
+               window_interface::PropertyDrawBaseWndInterface,
                (LPARAM) &pwndi);
          }
-         sl.Unlock();
+         sl.unlock();
       }
-      
+
    //   if(pwndi == this)
      //    return true;
 
@@ -203,7 +201,7 @@ namespace user
       ::ClientToScreen(hwndParam, &rectWindow.bottom_right());
       ::ScreenToClient(GetSafeHwnd(), &rectWindow.top_left());
       ::ScreenToClient(GetSafeHwnd(), &rectWindow.bottom_right());
-      
+
       pdc->SetViewportOrg(rectWindow.left, rectWindow.top);
 
       if(pwndi != NULL)
@@ -233,7 +231,7 @@ namespace user
       }
 
 
-      
+
 
       DWORD dwTimeOut = GetTickCount();
    //   TRACE("// Average Window Rendering time\n");
@@ -268,249 +266,6 @@ namespace user
       wndpa.get_wnda(hwnda);
    }
 
-   void window_interface::TwiRender(
-      user::window_draw_client_tool & tool)
-   {
-   // trans   ASSERT(::IsWindow(GetHandle()));
-   // trans   ASSERT(IsWindowVisible());
-
-      tool.GetDC()->SelectClipRgn(NULL);
-
-      // Not Client Drawing
-      _001OnNcDraw(tool.GetDC());
-
-
-      // Client Drawing
-      rect rectWindow;
-      GetWindowRect(rectWindow);
-
-      point ptClientOffset = rectWindow.top_left();
-      ScreenToClient(&ptClientOffset);
-
-      tool.GetDC()->OffsetViewportOrg(
-         -ptClientOffset.x,
-         -ptClientOffset.y);
-
-
-      rect rectClient;
-      GetClientRect(rectClient);
-
-      point ptOffset = tool.GetDC()->GetViewportOrg();
-      rectClient.offset(ptOffset);
-
-      tool.GetClientRgn().SetRectRgn(
-         rectClient.left,
-         rectClient.top,
-         rectClient.right,
-         rectClient.bottom);
-
-      tool.GetClientRgn().CombineRgn(
-         &tool.GetClipRgn(),
-         &tool.GetClientRgn(),
-         RGN_AND);
-
-   #ifdef _DEBUG
-      rect rectClip;
-      tool.GetClientRgn().GetRgnBox(rectClip);
-   #endif
-
-
-      tool.GetDC()->SelectClipRgn(&tool.GetClientRgn());
-      //tool.GetDC()->SelectClipRgn(NULL);
-
-      try
-      {
-         _000OnDraw(tool.GetDC());
-      }
-      catch(...)
-      {
-      }
-      
-      if(!m_bOnPaint)
-      {
-         tool.GetClientRgn().OffsetRgn(-rectClient.top_left());
-         // trans ValidateRgn(&tool.GetClientRgn());
-      }
-         
-      tool.SignalizeRenderResult(user::RenderSuccess);
-   }
-
-
-   // lprect should be in client coordinates
-
-   /*bool window_interface::TwfRender(
-       ::ca::graphics * pdc,
-       HWND hwndExclude,
-       LPCRECT lpcrect,
-       ::ca::rgn * lpcrgn,
-       bool bBackground)
-   {
-      int iDC = pdc->SaveDC();
-
-
-
-
-   //   TRACE("////////////////////////////////////////////////////\n");
-   //   TRACE("// window_interface::TwfRender\n");
-   //   TRACE("//\n");
-
-      DWORD dwTimeIn = GetTickCount();
-
-      static bool bTest = false;
-      ::ca::rgn & rgnClip = m_papp->s_ptwf->m_twrenderclienttool.GetClipRgn();
-      rect rectClip;
-      if(lpcrgn != NULL)
-      {
-         rgnClip.CopyRgn((::ca::rgn *) lpcrgn);
-         rect rect;
-         rgnClip.GetRgnBox(rect);
-   //      TRACE("// Region");
-   //      TRACE("// rgnClip.GetRgnBox:\n");
-   //      TRACE("// width = %d\n", rect.width());
-   //      TRACE("// height = %d\n", rect.height());
-   //      TRACE("// top = %d\n", rect.top);
-   //      TRACE("// left = %d\n", rect.left);
-         
-         if(rect.width() == 1024
-            && rect.height() == 768)
-         {
-            ASSERT(TRUE);
-         }
-      }
-      else if(lpcrect != NULL)
-      {
-         rect rect(lpcrect);
-         if(rect.width() == 1024
-            && rect.height() == 768)
-         {
-            ASSERT(TRUE);
-         }
-         rgnClip.SetRectRgn(
-            lpcrect->left,
-            lpcrect->top,
-            lpcrect->right,
-            lpcrect->bottom);
-   //      TRACE("// Rectangle\n");
-   //      TRACE("// width = %d\n", rect.width());
-   //      TRACE("// height = %d\n", rect.height());
-   //      TRACE("// top = %d\n", rect.top);
-   //      TRACE("// left = %d\n", rect.left);
-      }
-      else
-      {
-   //      TRACE("// WARNING!!!\n");
-   //      TRACE("// Screen as clip region\n");
-   //      TRACE("// END WARNING!!!\n");
-         rgnClip.SetRectRgn(
-            0,
-            0,
-            GetSystemMetrics(SM_CXSCREEN),
-            GetSystemMetrics(SM_CYSCREEN));
-      }
-
-   //   TRACE("\n");
-
-
-      rgnClip.GetRgnBox(rectClip);
-      
-
-      if(bTest)
-      {
-         //ASSERT(FALSE);
-         //return VMSR_E_FAIL;
-      }
-
-      CSingleLock slRendering(m_papp->s_ptwf->m_mutexRendering, FALSE);
-      if(!slRendering.Lock(0))
-      {
-         return false;
-      }
-
-      // Turn clip rgn into its box
-      rect rectClipBox;
-      rgnClip.GetRgnBox(rectClipBox);
-      rgnClip.SetRectRgn(
-         rectClipBox.left, rectClipBox.top,
-         rectClipBox.right, rectClipBox.bottom);
-
-   //   DWORD dwTime1 = GetTickCount();
-   /*   TRACE("//\n");
-      TRACE("// Initialization (Clip Region Creation) \n");
-      TRACE("// TickCount; %d \n", dwTime1 - dwTimeIn);
-      TRACE("//\n");
-      TRACE("// Region");
-      TRACE("// rgnClip.GetRgnBox:\n");
-      TRACE("// width = %d\n", rectClipBox.width());
-      TRACE("// height = %d\n", rectClipBox.height());
-      TRACE("// top = %d\n", rectClipBox.top);
-      TRACE("// left = %d\n", rectClipBox.left);*/
-
-   /*   m_papp->s_ptwf->m_twrenderclienttool.SetDC(pdc);
-
-      if(pdc == NULL)
-      {
-         return false;
-      }
-
-
-
-      Carray < HWND, HWND > hwnda;
-
-      TwfGetWndArray(hwnda);
-
-
-      CVmsGuiWndUtil::SortByZOrder(hwnda);
-
-      user::HwndTree::Array hwndtreea;
-      hwndtreea = hwnda;
-      hwndtreea.EnumDescendants();
-
-
-      
-
-      rect rectUpdate;
-      rgnClip.GetRgnBox(rectUpdate);
-
-      Optimize001(hwndtreea, rectUpdate);
-
-      m_papp->s_ptwf->TwfOptimizeRender(hwndtreea, rectUpdate);
-
-      if(!bBackground)
-      {
-         hwndtreea.remove(hwndExclude);
-      }
-
-   //   DWORD dwTime2 = GetTickCount();
-   //   TRACE("//\n");
-   //   TRACE("// Initialization (Window Tree Creation)\n");
-   //   TRACE("// TickCount = %d \n", dwTime2 - dwTime1);
-   //   TRACE("//\n");
-
-      rect rectScreen(rectUpdate);
-
-      ClientToScreen(&rectScreen);
-
-      TwfRender(pdc, hwndExclude, rectScreen, hwndtreea, bBackground);
-
-   //   DWORD dwTime3 = GetTickCount();
-   //   TRACE("//\n");
-   //   TRACE("// All windows renderings\n");
-   //   TRACE("// TickCount = %d \n", dwTime3 - dwTime2);
-   //   TRACE("//\n");
-
-      pdc->RestoreDC(iDC);
-
-   //   DWORD dwTimeOut = GetTickCount();
-   //   TRACE("//\n");
-   //   TRACE("// Rendering Finished\n");
-   //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
-   //   TRACE("////////////////////////////////////////////////////\n");
-
-      return true;
-   }*/
-
-
-
 
    void window_interface::_001RedrawWindow()
    {
@@ -524,7 +279,7 @@ namespace user
       {
          if(!System.get_twf()->m_bProDevianMode)
          {
-            ::ca::lock lock(System.get_twf());
+            synch_lock lock(System.get_twf());
             get_wnd()->m_pguie->RedrawWindow();
          }
       }
@@ -617,13 +372,13 @@ namespace user
       window_interface * pwndi = NULL;
       if(pwndi == NULL)
       {
-         CSingleLock sl(&m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
+         single_lock sl(&m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
          if(!m_papp->s_ptwf->m_wndinterfacemap.Lookup(hwnd, pwndi))
          {
             ::SendMessage(
                hwnd,
-               window_interface::MessageBaseWndGetProperty, 
-               window_interface::PropertyDrawBaseWndInterface, 
+               window_interface::MessageBaseWndGetProperty,
+               window_interface::PropertyDrawBaseWndInterface,
                (LPARAM) &pwndi);
             m_papp->s_ptwf->m_wndinterfacemap.set_at(hwnd, pwndi);
          }
@@ -710,7 +465,7 @@ namespace user
       int iArea2 = rect2.width() * rect2.height();
       rect3.unite(rect1, rect2);
       int iArea3 = rect3.width() * rect3.height();
-      
+
 
       if(iArea3 < (110 * (iArea1 + iArea2) / 100))
       {
@@ -767,8 +522,8 @@ namespace user
 
    void window_interface::_on_start_user_message_handler()
    {
+      dispatch::_on_start_user_message_handler();
       _001BaseWndInterfaceMap();
-
    }
 
    void window_interface::_000OnDraw(::ca::graphics * pdc)
@@ -786,8 +541,8 @@ namespace user
    inline void window_interface::Invalidate(BOOL bErase)
    {
       UNREFERENCED_PARAMETER(bErase);
-      //ASSERT(::IsWindow(GetHandle())); 
-      //::InvalidateRect(GetHandle(), NULL, bErase); 
+      //ASSERT(::IsWindow(GetHandle()));
+      //::InvalidateRect(GetHandle(), NULL, bErase);
    }
 
    bool window_interface::Redraw(rect_array & recta)
@@ -824,7 +579,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lprect);
-      }  
+      }
    }
 
    void window_interface::ClientToScreen(LPPOINT lppoint)
@@ -834,7 +589,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lppoint);
-      }  
+      }
    }
 
 
@@ -848,7 +603,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lprect);
-      }  
+      }
    }
 
    void window_interface::ClientToScreen(__point64 * lppoint)
@@ -858,7 +613,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ClientToScreen(lppoint);
-      }  
+      }
    }
 
 
@@ -872,7 +627,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lprect);
-      }  
+      }
    }
 
    void window_interface::ScreenToClient(LPPOINT lppoint)
@@ -882,7 +637,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lppoint);
-      }  
+      }
    }
 
 
@@ -896,7 +651,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lprect);
-      }  
+      }
    }
 
    void window_interface::ScreenToClient(__point64 * lppoint)
@@ -906,7 +661,7 @@ namespace user
       if(window_interface_get_parent() != NULL)
       {
          window_interface_get_parent()->ScreenToClient(lppoint);
-      }  
+      }
    }
 
 

@@ -8,8 +8,6 @@ public:
    simple_form_list_view(::ca::application * papp);
 
    simple_list_header_control   m_headerctrl;
-   simple_scroll_bar        m_scrollbarVert;
-   simple_scroll_bar        m_scrollbarHorz;
 
 
    
@@ -21,6 +19,6 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
    
 };

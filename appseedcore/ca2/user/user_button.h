@@ -45,7 +45,7 @@ namespace user
       virtual bool create_control(class control::descriptor * pdescriptor);
 
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
       virtual void _001SetCheck(check::e_check check, bool bUser);
@@ -78,6 +78,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
       DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(on_create);
 
    };
 

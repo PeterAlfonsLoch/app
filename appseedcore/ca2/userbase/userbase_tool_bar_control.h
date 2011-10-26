@@ -1,13 +1,19 @@
 #pragma once
 
+
 struct IDropTarget; // forward declaration
+
 
 namespace userbase
 {
 
-   class CLASS_DECL_ca tool_bar_control : public ::user::interaction
+
+   class CLASS_DECL_ca tool_bar_control :
+      public ::user::interaction
    {
    public:
+
+
       tool_bar_control();
 
       //BOOL LoadToolBar(const char * lpszResourceName);
@@ -15,9 +21,9 @@ namespace userbase
       BOOL SetButtons(const UINT* lpIDArray, int nIDCount);
 
 
-      BOOL create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd,
-      UINT nID);
 
+      using ::user::interaction::create;
+      BOOL create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID);
 
 
       BOOL IsButtonEnabled(int nID);
@@ -27,7 +33,9 @@ namespace userbase
       BOOL IsButtonIndeterminate(int nID);
       BOOL SetState(int nID, UINT nState);
       int GetState(int nID);
+#ifdef WINDOWS
       BOOL GetButton(int nIndex, LPTBBUTTON lpButton);
+#endif
       int GetButtonCount();
       BOOL GetItemRect(int nIndex, LPRECT lpRect);
       BOOL GetRect(int nID, LPRECT lpRect);
@@ -54,19 +62,25 @@ namespace userbase
       BOOL SetIndent(int iIndent);
       BOOL SetMaxTextRows(int iMaxRows);
       void SetStyle(DWORD dwStyle);
+#ifdef WINDOWS
       BOOL GetButtonInfo(int nID, TBBUTTONINFO* ptbbi);
       BOOL SetButtonInfo(int nID, TBBUTTONINFO* ptbbi);
       BOOL GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
       BOOL SetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
+#endif
       DWORD SetDrawTextFlags(DWORD dwMask, DWORD dwDTFlags);
       BOOL GetAnchorHighlight();
       BOOL SetAnchorHighlight(BOOL fAnchor = TRUE);
       int GetHotItem();
       int SetHotItem(int nHot);
+#ifdef WINDOWS
       void GetInsertMark(TBINSERTMARK* ptbim);
       void SetInsertMark(TBINSERTMARK* ptbim);
+#endif
       BOOL GetMaxSize(LPSIZE pSize);
+#ifdef WINDOWS
       BOOL InsertMarkHitTest(LPPOINT ppt, LPTBINSERTMARK ptbim);
+#endif
       DWORD GetExtendedStyle();
       DWORD SetExtendedStyle(DWORD dwExStyle);
       COLORREF GetInsertMarkColor();
@@ -81,14 +95,16 @@ namespace userbase
       BOOL Indeterminate(int nID, BOOL bIndeterminate = TRUE);
       int AddBitmap(int nNumButtons, UINT nBitmapID);
       int AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap);
+#ifdef WINDOWS
       BOOL AddButtons(int nNumButtons, LPTBBUTTON lpButtons);
       BOOL InsertButton(int nIndex, LPTBBUTTON lpButton);
+#endif
       BOOL DeleteButton(int nIndex);
       UINT CommandToIndex(UINT nID);
-      void SaveState(HKEY hKeyRoot, const char * lpszSubKey,
-         const char * lpszValueName);
-      void RestoreState(HKEY hKeyRoot, const char * lpszSubKey,
-         const char * lpszValueName);
+#ifdef WINDOWS
+      void SaveState(HKEY hKeyRoot, const char * lpszSubKey, const char * lpszValueName);
+      void RestoreState(HKEY hKeyRoot, const char * lpszSubKey, const char * lpszValueName);
+#endif
       void LoadImages(int iBitmapID, HINSTANCE hinst);
       BOOL MapAccelerator(char chAccel, UINT* pIDBtn);
       BOOL MarkButton(int nID, BOOL fHighlight = TRUE);
@@ -100,14 +116,14 @@ namespace userbase
       int AddStrings(const char * lpszStrings);
       void AutoSize();
 
-   // Implementation
-   public:
       int GetButtonText(UINT uiID, string &str);
       virtual ~tool_bar_control();
 
-   protected:
-      afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+      int OnCreate(LPCREATESTRUCT lpCreateStruct);
+
    };
 
 
 } // namespace userbase
+
+

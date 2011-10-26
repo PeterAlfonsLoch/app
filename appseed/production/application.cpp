@@ -23,7 +23,7 @@ namespace production
       System.factory().creatable_small < frame >();
       System.factory().creatable_small < view >();
       System.factory().creatable_small < production::pane_view >();
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       m_eversion = production_class::version_stage;
@@ -34,18 +34,22 @@ namespace production
 	   m_pdoctemplateMain = new ::userbase::single_document_template(
          this,
 		   "production/frame",
-		   &typeid(document),
-		   &typeid(frame),
-		   &typeid(pane_view));
+		   ::ca::get_type_info < document > (),
+		   ::ca::get_type_info < frame > (),
+		   ::ca::get_type_info < pane_view > ());
 
       add_document_template(m_pdoctemplateMain);
+
+
+
+      
 
       return true;
    }
 
    BOOL application::exit_instance()
    {
-      return ca84::application::exit_instance();
+      return cube8::application::exit_instance();
    }
 
    bool application::bergedge_start()
@@ -53,9 +57,9 @@ namespace production
       return true;
    }
 
-   void application::on_request(var & varFile, var & varQuery)
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
-      m_pdoctemplateMain->open_document_file(NULL, TRUE);
+      m_pdoctemplateMain->open_document_file(pcreatecontext);
    }
 
 
@@ -94,8 +98,9 @@ namespace production
 
 } // namespace production
 
-CLASS_DECL_CA2_PRODUCTION ::ca::application * get_new_app()
+
+::ca2::library * get_new_library()
 {
-   return new production::application();
+   return new ::ca2::single_application_library < production::application > ();
 }
 

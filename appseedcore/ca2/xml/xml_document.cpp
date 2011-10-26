@@ -9,7 +9,7 @@ namespace xml
       m_parseinfo(papp)
    {
       m_pnodeParent  = NULL;
-      m_pdoc         = this; 
+      m_pdoc         = this;
       m_etype        = node_document;
       m_parseinfo    = *System.m_pparseinfoDefault;
       entitiesHash.set_at("lt", "<");
@@ -65,7 +65,7 @@ namespace xml
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = this;
       char * end;
-      
+
       if( (end = pnodeRoot->load( pszXml, &m_parseinfo )) == NULL )
       {
          delete pnodeRoot;
@@ -78,7 +78,7 @@ namespace xml
       char * ret;
       bool bRet = false;
       ret = pnodeRoot->LoadOtherNodes(&bRet, end, &m_parseinfo );
-      if( ret != NULL ) 
+      if( ret != NULL )
          end = ret;
 
       return end;
@@ -137,7 +137,7 @@ namespace xml
 
    char * document::patch_entity_ref(const char * & pszXml, bool useExtEnt, ...)
    {
-      // pszXml must be a valid portion of and point to an entity ref in: 
+      // pszXml must be a valid portion of and point to an entity ref in:
       // m_strData of this document
       const char * pszOldData = m_strData;
       int iPos = pszXml - pszOldData;
@@ -147,7 +147,7 @@ namespace xml
       string strValue = consume_entity_ref(pszXml, strName, useExtEnt, bExt);
       m_strData = m_strData.Left(iPos) + strValue + m_strData.Mid(iPos + strName.get_length() + 2);
       int iOffset = ((const char *)m_strData) - pszOldData;
-      va_list ptr; 
+      va_list ptr;
       va_start(ptr, useExtEnt);
       INT_PTR p;
       while((p = va_arg(ptr, INT_PTR)) != NULL)

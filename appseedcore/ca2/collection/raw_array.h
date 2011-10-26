@@ -2,6 +2,10 @@
 
 #undef new
 
+#ifndef __max
+#define __max(a,b)  (((a) > (b)) ? (a) : (b))
+#endif
+
 // raw array is a special array and should be used with care
 // it uses operations like memmove and memcopy to move objects and does not
 // call constructors and destructors for the elements
@@ -9,18 +13,100 @@
 // with strict structs and primitive data types
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
-class raw_array : 
+class raw_array :
    virtual public ::radix::object
 {
 public:
+
+
+   class iterator
+   {
+   public:
+
+
+      index            m_i;
+      raw_array *     m_parray;
+
+      iterator(index i, raw_array * parray)
+      {
+      }
+
+      iterator(const iterator & it)
+      {
+      }
+
+      TYPE & operator * ()
+      {
+         m_parray->element_at[m_i];
+      }
+
+      const TYPE & operator * () const
+      {
+         m_parray->element_at[m_i];
+      }
+
+      iterator & operator = (const iterator & it)
+      {
+         if(this != &it)
+         {
+            m_i         = it.m_i;
+            m_parray    = it.m_parray;
+         }
+         return *this;
+      }
+
+      bool operator == (const iterator & it)
+      {
+         if(this == &it)
+            return true;
+         if(m_parray != it.m_parray)
+            return false;
+         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
+            return true;
+         if(m_i <= 0 && it.m_i <= 0)
+            return true;
+         return m_i == it.m_i;
+      }
+
+      iterator & operator ++()
+      {
+         m_i++;
+         if(m_i >= m_parray->get_size())
+            m_i = m_parray->get_size();
+         return *this;
+      }
+
+      iterator & operator +(int i)
+      {
+         m_i += i;
+         if(m_i >= m_parray->get_size())
+            m_i = m_parray->get_size();
+         return *this;
+      }
+
+      iterator & operator --()
+      {
+         m_i--;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+   };
+
+
+
    raw_array();
 
    count get_size() const;
+   count get_size_in_bytes() const;
    count get_count() const;
+   count get_byte_count() const;
    bool is_empty(count countMinimum = 1) const;
    bool has_elements(count countMinimum = 1) const;
    index get_upper_bound(index i = 0) const;
    count set_size(index nNewSize, count nGrowBy = -1);
+   count set_size_in_bytes(index nNewSize, count nGrowBy = -1);
 
    void free_extra();
    count remove_all();
@@ -33,8 +119,8 @@ public:
    TYPE& get_at(index nIndex);
    void set_at(index nIndex, ARG_TYPE newElement);
 
-   const TYPE& element_at(index nIndex) const;
-   TYPE& element_at(index nIndex);
+   const TYPE & element_at(index nIndex) const;
+   TYPE & element_at(index nIndex);
 
    const TYPE& first_element(index index = 0) const;
    TYPE& first_element(index index = 0);
@@ -54,7 +140,20 @@ public:
    void copy(const raw_array& src);
    index push(ARG_TYPE newElement);
 
-   
+
+
+   iterator erase(iterator pos);
+   iterator erase(iterator first, iterator last);
+   iterator begin()
+   {
+      return iterator(0, this);
+   }
+
+   iterator end()
+   {
+      return iterator(this->get_size(), this);
+   }
+
 
    // overloaded operator helpers
    const TYPE& operator[](index nIndex) const;
@@ -94,31 +193,43 @@ public:
 template<class TYPE, class ARG_TYPE>
 inline count raw_array<TYPE, ARG_TYPE>::get_size() const
 {
-   return m_nSize; 
+   return m_nSize;
+}
+
+template<class TYPE, class ARG_TYPE>
+inline count raw_array<TYPE, ARG_TYPE>::get_size_in_bytes() const
+{
+   return m_nSize * sizeof(TYPE);
 }
 
 template<class TYPE, class ARG_TYPE>
 inline count raw_array<TYPE, ARG_TYPE>::get_count() const
 {
-   return m_nSize; 
+   return this->get_size();
+}
+
+template<class TYPE, class ARG_TYPE>
+inline count raw_array<TYPE, ARG_TYPE>::get_byte_count() const
+{
+   return this->get_size_in_bytes();
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool raw_array<TYPE, ARG_TYPE>::is_empty(count countMinimum) const
 {
-   return m_nSize < countMinimum; 
+   return m_nSize < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline bool raw_array<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
 {
-   return m_nSize >= countMinimum; 
+   return m_nSize >= countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
 {
-   return m_nSize - 1 - index; 
+   return m_nSize - 1 - index;
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -135,89 +246,84 @@ inline void raw_array<TYPE, ARG_TYPE>::remove_last()
 
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex)
-{ 
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+{
    if(nIndex >= 0 && nIndex < m_nSize)
-      return m_pData[nIndex]; 
-   AfxThrowInvalidArgException();      
+      return m_pData[nIndex];
+   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex >= 0 && nIndex < m_nSize)
-      return m_pData[nIndex]; 
-   AfxThrowInvalidArgException();      
+      return m_pData[nIndex];
+   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
-{ 
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+{
    if(nIndex >= 0 && nIndex < m_nSize)
-      m_pData[nIndex] = newElement; 
+      m_pData[nIndex] = newElement;
    else
-      AfxThrowInvalidArgException();      
+      AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
-{ 
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+{
    if(nIndex >= 0 && nIndex < m_nSize)
-      return m_pData[nIndex]; 
-   AfxThrowInvalidArgException();      
+      return m_pData[nIndex];
+   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
-{ 
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+{
    if(nIndex >= 0 && nIndex < m_nSize)
-      return m_pData[nIndex]; 
-   AfxThrowInvalidArgException();      
+      return m_pData[nIndex];
+   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex) const
-{ 
-   return element_at(nIndex);
+{
+   return this->element_at(nIndex);
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex)
-{ 
-   return element_at(nIndex);
+{
+   return this->element_at(nIndex);
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index) const
-{ 
+{
    index  = get_upper_bound(index);
    ASSERT(index >= 0 && index < m_nSize);
    if(index >= 0 && index < m_nSize)
-      return m_pData[index]; 
-   AfxThrowInvalidArgException();      
+      return m_pData[index];
+   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index)
-{ 
+{
    index  = get_upper_bound(index);
    ASSERT(index >= 0 && index < m_nSize);
    if(index >= 0 && index < m_nSize)
-      return m_pData[index]; 
-   AfxThrowInvalidArgException();      
+      return m_pData[index];
+   AfxThrowInvalidArgException();
 }
 
 template<class TYPE, class ARG_TYPE>
 inline const TYPE* raw_array<TYPE, ARG_TYPE>::get_data() const
 {
-   return (const TYPE*)m_pData; 
+   return (const TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline TYPE* raw_array<TYPE, ARG_TYPE>::get_data()
 {
-   return (TYPE*)m_pData; 
+   return (TYPE*)m_pData;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
-{ 
+{
    index nIndex = m_nSize;
    set_at_grow(nIndex, newElement);
    return nIndex;
@@ -225,26 +331,26 @@ inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::add(const raw_array & src)
-{ 
+{
    return append(src);
 }
 
 template<class TYPE, class ARG_TYPE>
 inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement)
 {
-   return add(newElement); 
+   return add(newElement);
 }
 
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 {
-   return get_at(nIndex); 
+   return get_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 {
-   return element_at(nIndex); 
+   return this->element_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -254,17 +360,17 @@ inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index index)
    ASSERT(index >= 0 && index < m_nSize);
    if(index >= 0 && index < m_nSize)
    {
-      TYPE t = m_pData[index]; 
+      TYPE t = m_pData[index];
       remove_at(index);
       return t;
    }
-   AfxThrowInvalidArgException();      
+   AfxThrowInvalidArgException();
 }
 
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 {
-   TYPE t = m_pData[index2]; 
+   TYPE t = m_pData[index2];
    m_pData[index2] = m_pData[index1];
    m_pData[index1] = t;
 }
@@ -298,6 +404,19 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
       for( int i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
       delete[] (BYTE*)m_pData;
+   }
+}
+
+template<class TYPE, class ARG_TYPE>
+count raw_array<TYPE, ARG_TYPE>::set_size_in_bytes(count nNewSize, count nGrowBy)
+{
+   if(nGrowBy < 0)
+   {
+      return set_size(nNewSize / sizeof(TYPE), -1);
+   }
+   else
+   {
+      return set_size(nNewSize / sizeof(TYPE), nGrowBy / sizeof(TYPE));
    }
 }
 
@@ -364,7 +483,7 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
          nNewMax = nNewSize;  // no slush
 
       ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
-      
+
       if(nNewMax  < m_nMaxSize)
          AfxThrowInvalidArgException();
 
@@ -393,7 +512,7 @@ index raw_array<TYPE, ARG_TYPE>::append(const raw_array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
-   
+
    if(this == &src)
       AfxThrowInvalidArgException();
 
@@ -448,7 +567,7 @@ void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
-   
+
    if(nIndex < 0)
       AfxThrowInvalidArgException();
 
@@ -501,7 +620,7 @@ index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
    ASSERT(nIndex >= 0);
    ASSERT(nCount >= 0);
    index nUpperBound = nIndex + nCount;
-   ASSERT(nUpperBound <= m_nSize && nUpperBound >= nIndex && nUpperBound >= nCount);
+   //ASSERT(nUpperBound <= m_nSize && nUpperBound >= nIndex && nUpperBound >= nCount);
 
    if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
       AfxThrowInvalidArgException();
@@ -571,4 +690,41 @@ void raw_array<TYPE, ARG_TYPE>::assert_valid() const
 }
 #endif //_DEBUG
 
+template<class TYPE, class ARG_TYPE>
+typename raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator pos)
+{
+   if(pos.m_parray == this)
+   {
+      remove_at(pos.m_i);
+      return iterator(pos.m_i, this);
+   }
+   else
+   {
+      return end();
+   }
+}
+
+template<class TYPE, class ARG_TYPE>
+typename  raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
+{
+   if(begin.m_parray == this && last.m_parray == this)
+   {
+      if(begin.m_i >= 0 && begin.m_i < this->get_size())
+      {
+         int nCount = last.m_i - begin.m_i;
+         remove_at(begin.m_i, nCount);
+         return iterator(begin.m_i, this);
+      }
+      else
+      {
+         return end();
+      }
+   }
+   else
+   {
+      return end();
+   }
+}
 #define new DEBUG_NEW
+
+

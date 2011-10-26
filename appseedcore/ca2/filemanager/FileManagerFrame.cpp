@@ -27,15 +27,16 @@ FileManagerFrame::~FileManagerFrame()
 /////////////////////////////////////////////////////////////////////////////
 // FileManagerFrame message handlers
 
-int FileManagerFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+void FileManagerFrame::_001OnCreate(gen::signal_object * pobj) 
 {
-   UNREFERENCED_PARAMETER(lpCreateStruct);
+   
+   pobj->previous();
 /* trans   if (simple_frame_window::OnCreate(lpCreateStruct) == -1)
       return -1; */
 
    
-   return 0;
 }
+
 bool FileManagerFrame::DestroyBars()
 {
 
@@ -89,7 +90,7 @@ bool FileManagerFrame::CreateBars()
    string strToolBar = pdoc->get_filemanager_data()->m_ptemplate->m_strToolBar;
 
    if (!m_toolbar.CreateEx(this) ||
-      !m_toolbar.LoadXmlToolBar(Application.file().as_string(System.dir().matter(strToolBar))))
+      !m_toolbar.LoadXmlToolBar(Application.file().as_string(Application.dir().matter(strToolBar))))
    {
       TRACE0("Failed to create toolbar\n");
       return false;      // fail to create
@@ -101,10 +102,11 @@ bool FileManagerFrame::CreateBars()
 }
 
 
-void FileManagerFrame::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void FileManagerFrame::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   simple_frame_window::_001InstallMessageHandling(pinterface);
+   simple_frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETTEXT, pinterface, this, &FileManagerFrame::_001OnSetText);
+   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerFrame::_001OnCreate);
 }
 
 

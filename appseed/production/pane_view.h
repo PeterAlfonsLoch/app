@@ -27,10 +27,10 @@ namespace production
 
       bool BaseOnControlEvent(::user::control_event * pevent);
       
-      virtual void on_create_view(view_data * pviewdata);
+      virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_show_view();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 	   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

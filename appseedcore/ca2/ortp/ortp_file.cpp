@@ -1,23 +1,27 @@
 #include "StdAfx.h"
 
+int iMp3PacketSize = 1024;
+
 namespace rtp
 {
 
    file::file(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_memfile(papp)
    {
-      m_uiTimeStamp     = 0;
-      jittcomp          = 40;
-      adapt             = TRUE;
-      clockslide        = 0;
-      m_dwSynchSource   = 1;
-      m_dwTimeOut       = 120 * 1000;
-      format            = 0;
-      jitter            = 0;
-      m_iRemotePort     = -1;
-      m_iListenPort     = -1;
-      m_psession        = NULL;
-      m_pprofile        = NULL;
+      m_uiTimeStamp        = 0;
+      jittcomp             = 100;
+      adapt                = TRUE;
+      clockslide           = 0;
+      m_dwSynchSource      = 1;
+      m_dwTimeOut          = 120 * 1000;
+      format               = 0;
+      jitter               = 0;
+      m_iRemotePort        = -1;
+      m_iListenPort        = -1;
+      m_psession           = NULL;
+      m_pprofile           = NULL;
+      m_bStreamReceived    = false;
    }
 
    file::~file()
@@ -26,6 +30,7 @@ namespace rtp
 
    bool file::rx_open(const char * pszAddress, int iPort)
    {
+
       m_strListenAddress = pszAddress;
       m_iListenPort = iPort;
       if(m_set.has_property("--noadapt"))
@@ -67,6 +72,7 @@ namespace rtp
       rtp_session_set_payload_type(m_psession->m_psession,0);
       //rtp_session_signal_connect(m_psession->m_psession,"ssrc_changed",(RtpCallback)ssrc_cb,0);
       rtp_session_signal_connect(m_psession->m_psession,"ssrc_changed",(RtpCallback)rtp_session_reset,0);
+      m_iHaveMore = 1;
       return true;   
    }
 
@@ -117,38 +123,47 @@ cleanup:
 
 
 
-   DWORD_PTR file::read(void *lpBuf, DWORD_PTR nCount)
+   ::primitive::memory_size file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
-      have_more = 1;
       UINT uiRead = 0;
       DWORD dwStartTime = ::GetTickCount();
+      primitive::memory mem(get_app());
+      mem.allocate(nCount);
 //      UINT uiStart = m_uiTimeStamp;
-      while(true)
+      while(m_memfile.get_size() <= 0)
       {
-         uiRead = m_iError = m_psession->recv_with_ts(
-            lpBuf,
-            nCount,
-            m_uiTimeStamp,
-            &have_more);
-         if(uiRead > 0)
+         m_iHaveMore = 1;
+		   while (m_iHaveMore)
          {
-            m_uiTimeStamp += nCount;
-            return uiRead;
-         }
-         if(!have_more)
-         {
-            m_uiTimeStamp += nCount;
-         }
+            uiRead = m_iError = m_psession->recv_with_ts(mem, mem.get_size(), m_uiTimeStamp, &m_iHaveMore);
+			   if(m_iError > 0) 
+               m_bStreamReceived = true;
+			   /* this is to avoid to write to disk some silence before the first RTP packet is returned*/	
+			   if((m_bStreamReceived) && (m_iError > 0))
+            {
+               m_memfile.write(mem, uiRead);
+               m_iError = 0;
+            }
+            if(GetTickCount() - dwStartTime > m_dwTimeOut)
+            {
+               // error = timeout
+               return 0; // Eof;
+            }
+			}
+         m_uiTimeStamp += iMp3PacketSize;
          if(GetTickCount() - dwStartTime > m_dwTimeOut)
          {
             // error = timeout
             return 0; // Eof;
          }
-
-      }
+		}
+      uiRead = min(m_memfile.get_size(), nCount);
+      m_memfile.remove_begin(lpBuf, uiRead);
+      return uiRead;
+		
    }
 
-   void file::write(const void * lpBuf, DWORD_PTR nCount)
+   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       m_psession->send_with_ts(lpBuf, nCount, m_uiTimeStamp);
       m_uiTimeStamp += nCount;

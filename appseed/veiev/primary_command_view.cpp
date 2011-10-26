@@ -34,9 +34,9 @@ void primary_command_view::on_update(::view* pSender, LPARAM lHint, ::radix::obj
    UNREFERENCED_PARAMETER(phint);
 }
 
-void primary_command_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void primary_command_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::edit_plain_text_view::_001InstallMessageHandling(pinterface);
+   ::userbase::edit_plain_text_view::install_message_handling(pinterface);
 	IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &primary_command_view::_001OnContextMenu);
 
 }
@@ -76,6 +76,7 @@ void primary_command_view::_001OnAfterChangeText()
             }
             catch(const char * psz)
             {
+               TRACE("primary_command_view::_001OnAfterChangeText string exception 1 %s", psz);
                bOk = false;
             }
 
@@ -120,13 +121,14 @@ void primary_command_view::_001OnAfterChangeText()
                      _001SetText(strNewText);
                      str = strNewText;
                      m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
-                     Application.send_simple_command("winactionareaview::show_calendar(\""+ gen::str::itoa(pelement->get_value().mod()) +"\")", get_wnd()->get_os_data());
+                     Application.send_simple_command("winactionareaview::show_calendar(\""+ gen::str::itoa((int) pelement->get_value().mod()) +"\")", get_wnd()->get_os_data());
                      bOk = true;
                   }
                }
             }
             catch(const char * psz)
             {
+               TRACE("primary_command_view::_001OnAfterChangeText string exception 2 %s", psz);
                bOk = false;
             }
             
@@ -161,6 +163,7 @@ void primary_command_view::_001OnUpdateEditCopy(gen::signal_object * pobj)
 
 void primary_command_view::_001OnEditCopy(gen::signal_object * pobj)
 {
+   UNREFERENCED_PARAMETER(pobj);
    clipboard_copy();
 }
 
@@ -173,6 +176,7 @@ void primary_command_view::_001OnUpdateEditPaste(gen::signal_object * pobj)
 
 void primary_command_view::_001OnEditPaste(gen::signal_object * pobj)
 {
+   UNREFERENCED_PARAMETER(pobj);
    clipboard_paste();
 }
 

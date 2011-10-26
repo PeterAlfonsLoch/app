@@ -12,7 +12,7 @@
     <ClCompile Include="md5_document.cpp" />
     <ClCompile Include="md5_frame.cpp" />
     <ClCompile Include="md5_view.cpp" />
-    <ClCompile Include="service.cpp" />
+    <ClCompile Include="pane_view_update_hint.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -25,22 +25,27 @@
     <ClInclude Include="md5_view.h" />
     <ClInclude Include="pane_view.h" />
     <ClInclude Include="pane_view_update_hint.h" />
-    <ClInclude Include="service.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_md5.def" />
+    <ClCompile Include="pane_view.cpp">
+      <FileType>Document</FileType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseedcore\ca2\ca2.vcxproj">
       <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\cube\cube.vcxproj">
-      <Project>{437699ad-7464-4e5f-acf3-7167487a9e3d}</Project>
+    <ProjectReference Include="..\..\appseedcore\ca\ca.vcxproj">
+      <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseedcore\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="md5.def" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>md5</ProjectName>
+    <ProjectName>app_md5</ProjectName>
     <ProjectGuid>{AFF9FDD2-1F13-4951-815B-61BC0C9A774F}</ProjectGuid>
     <RootNamespace>md5</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -73,8 +78,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../nodeapp/windows;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_AFXEXT;_CA2_FONTOPUS_MD5_DLL;_AFXDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_AFXEXT;_CA2_FONTOPUS_MD5_DLL;_AFXDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -102,6 +107,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

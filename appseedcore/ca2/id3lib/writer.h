@@ -24,21 +24,27 @@
 // contributed to id3lib.  See the ChangeLog file for a list of changes to
 // id3lib.  These files are distributed with id3lib at
 // http://download.sourceforge.net/id3lib/
-
 #ifndef _ID3LIB_WRITER_H_
 #define _ID3LIB_WRITER_H_
 
+
 #include "globals.h" //has <stdlib.h> "sized_types.h"
+
 
 class CLASS_DECL_ca ID3_Writer
 {
- public:
-  typedef DWORD_PTR size_type;
-  typedef uint8  char_type;
-  typedef DWORD_PTR pos_type;
-  typedef  DWORD_PTR off_type;
-  typedef  int16 int_type;
+public:
+
+
+  typedef file_size        size_type;
+  typedef uint8            char_type;
+  typedef file_position    pos_type;
+  typedef file_offset      off_type;
+  typedef int16            int_type;
+
+
   static const int_type END_OF_WRITER;
+
   
   /** close the writer.  Any further actions on the writer should fail. **/
   virtual void close() = 0;
@@ -47,21 +53,21 @@ class CLASS_DECL_ca ID3_Writer
   virtual void flush() = 0;
 
   /** Return the beginning position in the writer **/
-  virtual pos_type getBeg() { return static_cast<pos_type>(0); }
+  virtual file_position getBeg() { return static_cast<file_position>(0); }
 
   /** Return the first position that can't be written to.  A return value of
    ** -1 indicates no (reasonable) limit to the writer. 
    **/
-  virtual pos_type getEnd() { return static_cast<pos_type>(-1); }
+  virtual file_position getEnd() { return static_cast<file_position>(-1); }
 
   /** Return the next position that will be written to */
-  virtual pos_type getCur() = 0;
+  virtual file_position getCur() = 0;
 
   /** Return the number of bytes written **/
-  virtual size_type getSize() { return this->getCur() - this->getBeg(); }
+  virtual file_size getSize() { return this->getCur() - this->getBeg(); }
 
   /** Return the maximum number of bytes that can be written **/
-  virtual size_type getMaxSize() { return this->getEnd() - this->getBeg(); }
+  virtual file_size getMaxSize() { return this->getEnd() - this->getBeg(); }
 
   /** write a single character and advance the internal position.  Note that
    ** the interal position may advance more than one byte for a single
@@ -83,8 +89,8 @@ class CLASS_DECL_ca ID3_Writer
    ** the value returned may be less than the number of bytes that the internal
    ** position advances, due to multi-byte characters.
    **/
-  virtual size_type writeChars(const char_type buf[], size_type len) = 0;
-  virtual size_type writeChars(const char buf[], size_type len)
+  virtual ::primitive::memory_size writeChars(const char_type buf[], ::primitive::memory_size len) = 0;
+  virtual ::primitive::memory_size writeChars(const char buf[], ::primitive::memory_size len)
   {
     return this->writeChars(reinterpret_cast<const char_type *>(buf), len);
   }

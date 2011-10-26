@@ -28,14 +28,17 @@
 #include "readers.h"
 #include "utils.h" // has <config.h> "id3lib_streams.h" "globals.h" "id3lib_strings.h"
 
+
 using namespace dami;
 
-ID3_Reader::size_type
-ID3_MemoryReader::readChars(char buf[], size_type len)
+
+::primitive::memory_size ID3_MemoryReader::readChars(char buf[], ::primitive::memory_size len)
 {
-  size_type size = min(len, m_pchEnd - m_pchCur);
-  ::memcpy(buf, m_pchCur, size);
-  m_pchCur += size;
-  return size;
+   
+   ::primitive::memory_size size = min(len, (::primitive::memory_size) (m_pchEnd - m_pchCur));
+   ::memcpy(buf, m_pchCur, size);
+   m_pchCur += size;
+   return size;
+
 }
 

@@ -4,7 +4,7 @@
 
 class CLASS_DECL_ca stringl :
    virtual public string_list,
-   virtual public ex1::serializable
+   virtual public ex1::byte_serializable
 {
 public:
 
@@ -21,8 +21,8 @@ public:
    void add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL bAddEmpty);
 
 
-   void write(ex1::output_stream & ostream);
-   void read(ex1::input_stream & istream);
+   void write(ex1::byte_output_stream & ostream);
+   void read(ex1::byte_input_stream & istream);
 
 
 };

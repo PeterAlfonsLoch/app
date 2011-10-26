@@ -1039,7 +1039,7 @@ size_t ID3_FieldImpl::size() const
   }
   else
   {
-    size = _binary.GetStorageSize();
+    size = _binary.get_size();
   }
 
   return size;
@@ -1186,7 +1186,7 @@ bool ID3_FieldImpl::SetEncoding(ID3_TextEnc enc)
   if (changed)
   {
     //_text = convert(_text, _enc, enc);
-    
+
     _changed = true;
   }
   return changed;

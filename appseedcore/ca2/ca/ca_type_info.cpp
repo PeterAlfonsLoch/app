@@ -3,13 +3,17 @@
 
 namespace ca
 {
+
+
    type_info::type_info(id id)
    {
       m_id = id;
+      m_pfactoryitem = NULL;
    }
 
    type_info::type_info()
    {
+      m_pfactoryitem = NULL;
    }
 
    type_info::~type_info()
@@ -19,31 +23,40 @@ namespace ca
    type_info::type_info(const type_info * pinfo)
    {
       m_id = pinfo->m_id;
+      m_pfactoryitem = pinfo->m_pfactoryitem;
+      m_spmutex = pinfo->m_spmutex;
    }
 
    type_info::type_info(const type_info & info)
    {
       m_id = info.m_id;
+      m_pfactoryitem = info.m_pfactoryitem;
+      m_spmutex = info.m_spmutex;
    }
 
    type_info::type_info(const std_type_info & info)
    {
       m_id = info.raw_name();
+      m_pfactoryitem = NULL;
    }
    
    type_info::type_info(const std_type_info * pinfo)
    {
       m_id = pinfo->raw_name();
+      m_pfactoryitem = NULL;
    }
 
    type_info::type_info(const char * pszRawName)
    {
       m_id = pszRawName;
+      m_pfactoryitem = NULL;
    }
 
    type_info & type_info::operator = (const type_info * pinfo)
    {
       m_id = pinfo->m_id;
+      m_pfactoryitem = pinfo->m_pfactoryitem;
+      m_spmutex = pinfo->m_spmutex;
       return *this;
    }
 
@@ -56,6 +69,8 @@ namespace ca
    type_info & type_info::operator = (::ca::type_info info)
    {
       m_id = info.m_id;
+      m_pfactoryitem = info.m_pfactoryitem;
+      m_spmutex = info.m_spmutex;
       return *this;
    }
 
@@ -109,16 +124,22 @@ namespace ca
       m_id = pszRawName;
    }
 
-
-   CLASS_DECL_ca bool operator == (const std_type_info & info1, ::ca::type_info info2)
+   ptra * type_info::new_ptra()
    {
-      return !strcmp(info1.raw_name(), info2.raw_name());
-   }
-
-   CLASS_DECL_ca bool operator != (const std_type_info & info1, ::ca::type_info info2)
-   {
-      return !strcmp(info1.raw_name(), info2.raw_name());
+      return new ptra();
    }
 
 
 } //  namespace ca
+
+
+CLASS_DECL_ca bool operator == (const std_type_info & info1, ::ca::type_info info2)
+{
+   return !strcmp(info1.raw_name(), info2.raw_name());
+}
+
+CLASS_DECL_ca bool operator != (const std_type_info & info1, ::ca::type_info info2)
+{
+   return !strcmp(info1.raw_name(), info2.raw_name());
+}
+

@@ -39,7 +39,7 @@ namespace
     io::ExitTrigger et(rdr, beg);
     ID3_Reader::pos_type last_pos = beg;
     size_t totalSize = 0;
-    size_t frameSize = 0;
+    ::primitive::memory_size frameSize = 0;
     char ch;
     while (rdr.peek(&ch) && ch != '\0')
     {
@@ -50,7 +50,7 @@ namespace
       ID3_Frame* f = new ID3_Frame;
       f->SetSpec(tag.GetSpec());
       bool goodParse = f->Parse(rdr);
-      frameSize = rdr.getCur() - last_pos;
+      frameSize = (::primitive::memory_size) (rdr.getCur() - last_pos);
       ID3D_NOTICE( "id3::v2::parseFrames(): frameSize = " << frameSize );
       totalSize += frameSize;
 
@@ -219,7 +219,7 @@ void ID3_TagImpl::ParseReader(ID3_Reader &reader)
   wr.setBeg(wr.getCur());
 
   _file_tags.clear();
-  _file_size = reader.getEnd();
+  _file_size = (file_size) reader.getEnd();
 
   ID3_Reader::pos_type beg  = wr.getBeg();
   ID3_Reader::pos_type cur  = wr.getCur();
@@ -271,7 +271,7 @@ void ID3_TagImpl::ParseReader(ID3_Reader &reader)
     else
       wr.setCur(cur);
   }
-  _prepended_bytes = cur - beg;
+  _prepended_bytes = (::primitive::memory_size) (cur - beg);
   // go looking for the first sync byte to add to bytes_till_sync
   // by not adding it to _prepended_bytes, we preserve this 'unknown' data
   // The routine's only effect is helping the lib to find things as bitrate etc.
@@ -329,7 +329,7 @@ void ID3_TagImpl::ParseReader(ID3_Reader &reader)
       //return;
     }
   }
-  bytes_till_sync = cur - beg;
+  bytes_till_sync = (::primitive::memory_size) (cur - beg);
 
   cur = wr.setCur(end);
   if (_file_size > _prepended_bytes)
@@ -381,10 +381,10 @@ void ID3_TagImpl::ParseReader(ID3_Reader &reader)
       }
       cur = wr.getCur();
     } while (cur != last);
-    _appended_bytes = end - cur;
+    _appended_bytes = (::primitive::memory_size) (end - cur);
 
     // Now get the mp3 header
-    mp3_core_size = (_file_size - _appended_bytes) - (_prepended_bytes + bytes_till_sync);
+    mp3_core_size = (size_t) ((_file_size - _appended_bytes) - (_prepended_bytes + bytes_till_sync));
     if (mp3_core_size >= 4)
     { //it has at least the size for a mp3 header (a mp3 header is 4 bytes)
       wr.setBeg(_prepended_bytes + bytes_till_sync);

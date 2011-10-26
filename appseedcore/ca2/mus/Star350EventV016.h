@@ -3,7 +3,7 @@
 class Star350EventV001;
 
 class CLASS_DECL_ca Star350EventV016 :
-   public MidiEventBase,
+   public midi_event_base,
    public Star350EventBase
 {
 public:
@@ -12,14 +12,14 @@ public:
    virtual ~Star350EventV016();
 
 #if !core_level_1
-   using ::MidiEventBase::SetParam;
+   using ::midi_event_base::SetParam;
 #endif
 
 
    virtual void clear();
 
-   virtual MidiEventBase & operator = (const MidiEventBase & eventSrc) { return MidiEventBase::operator = (eventSrc); }
-   virtual MidiEventBase & operator = (const MidiEventV008 & eventSrc) { return MidiEventBase::operator = (eventSrc); }
+   virtual midi_event_base & operator = (const midi_event_base & eventSrc) { return midi_event_base::operator = (eventSrc); }
+   virtual midi_event_base & operator = (const midi_event_v008 & eventSrc) { return midi_event_base::operator = (eventSrc); }
 
    virtual Star350EventBase & operator = (const Star350EventBase & eventSrc) { return Star350EventBase::operator = (eventSrc); }
    virtual Star350EventV016 & operator = (const Star350EventV016 & eventSrc);
@@ -29,7 +29,7 @@ public:
 
    inline imedia::position GetDelta() const;
    inline void SetDelta(imedia::position tkDelta);
-   inline imedia::position GetPosition() const;
+   inline imedia::position get_position() const;
    inline void SetPosition(imedia::position tkPosition);
    inline BYTE GetFullType() const;
    inline void SetFullType(BYTE bValue);

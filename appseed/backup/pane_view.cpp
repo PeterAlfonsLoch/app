@@ -12,15 +12,8 @@ namespace backup
       ::userbase::tab_view(papp),
       place_holder_container(papp)
    {
-      m_pcreateview = this;
-      m_pviewdataOld = NULL;
 
-      // BaseWndInterface
       m_etranslucency      = TranslucencyPresent;
-
-      m_pviewdata              = NULL;
-      m_pviewdataOld              = NULL;
-
 
    }
 
@@ -43,7 +36,7 @@ namespace backup
 
    void pane_view::_001OnCreate(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
 
       if(pobj->previous())
          return;
@@ -84,7 +77,7 @@ namespace backup
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
                
-               int iTab;
+//               int iTab;
    //            if(puh->m_eview == PaneViewContextMenu)
      //          {
        //           m_tab._001AddSel(0);
@@ -103,22 +96,17 @@ namespace backup
 
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      application * papp = dynamic_cast < application * > (get_app());
-      switch(pviewdata->m_id)
+//      application * papp = dynamic_cast < application * > (get_app());
+      switch(pcreatordata->m_id)
       {
       case pane_view_backup:
          {
-            create_context cc;
-            cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  typeid(backup::view);
-
-            ::view * pview = dynamic_cast < ::view * > (create_view(&cc, this, 101));
-            if(pview != NULL)
+            pcreatordata->m_pwnd = create_view < backup::view > ();
+            if(pcreatordata->m_pwnd != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
+               pcreatordata->m_pdoc = get_document();
             }
          }
          break;
@@ -140,9 +128,9 @@ namespace backup
          pdoc->update_all_views(NULL, 0, &uh);
 
 
-         pviewdata->m_pwnd = dynamic_cast < ::ca::window * >(pview->GetParentFrame());
-         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pviewdata->m_pwnd);
-         pviewdata->m_pdoc = pdoc;
+         pcreatordata->m_pwnd = dynamic_cast < ::ca::window * >(pview->GetParentFrame());
+//         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
+         pcreatordata->m_pdoc = pdoc;
 
       }
       break;
@@ -154,9 +142,9 @@ namespace backup
    }
 
 
-   void pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
+      ::userex::pane_tab_view::install_message_handling(pinterface);
 	   IGUI_WIN_MSG_LINK(WM_CREATE       , pinterface, this, &pane_view::_001OnCreate);
    }
 

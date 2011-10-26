@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace calculator
 {
+
 
    class CLASS_DECL_ca application :
       virtual public ca8::application

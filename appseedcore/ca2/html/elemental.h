@@ -64,7 +64,8 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         bool hit_test(point pt);
+         bool hit_test(data * pdata, point pt);
+         double bound_hit_test(data * pdata, point pt);
 
 
          virtual int get_x();
@@ -138,7 +139,9 @@ namespace html
       elemental * get_element_by_name(id id);
       elemental * get_element_by_id(id id);
 
-      virtual elemental * hit_test(point pt);
+      virtual elemental * hit_test(data * pdoc, point pt);
+      virtual elemental * bound_hit_test(data * pdoc, point pt);
+      virtual elemental * bound_hit_test(data * pdoc, point pt, double & dMin);
 
       base_array < elemental *, elemental * > m_elementalptra;
       virtual void implement(data * pdoc);
@@ -161,7 +164,7 @@ namespace html
       virtual void layout_phase2(data * pdoc);
       virtual void layout_phase3(data * pdoc);
 
-      virtual void get_html(string & str) const;
+      virtual void get_html(data * pdata, string & str) const;
 
    protected:
       virtual bool parse(data * pdoc, const char * & psz);

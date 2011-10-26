@@ -408,7 +408,7 @@ namespace n7z
 
       ::ca::smart_pointer<::crypto::get_text_password_interface> getPassword;
       getPassword = dynamic_cast < ::crypto::get_text_password_interface * > (updateCallback);
-      
+
       ex1::HRes res = Update(
          _codecsInfo, &_externalCodecs,
 #ifdef _7Z_VOL

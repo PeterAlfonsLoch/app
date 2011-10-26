@@ -63,9 +63,9 @@ private:
 
   // file-related member variables
   string _file_name;       // name of the file we are linked to
-  size_t     _file_size;       // the size of the file (without any tag(s))
-  size_t     _prepended_bytes; // number of tag bytes at start of file
-  size_t     _appended_bytes;  // number of tag bytes at end of file
+  file_size     _file_size;       // the size of the file (without any tag(s))
+  ::primitive::memory_size     _prepended_bytes; // number of tag bytes at start of file
+  ::primitive::memory_size     _appended_bytes;  // number of tag bytes at end of file
   bool       _is_file_writable;// is the associated file (via Link) writable?
   ID3_Flags  _tags_to_parse;   // which tag types should attempt to be parsed
   ID3_Flags  _file_tags;       // which tag types does the file contain
@@ -105,9 +105,9 @@ public:
    flags_t    Update(flags_t = (flags_t) ID3TT_ALL);
    flags_t    Strip(flags_t = (flags_t) ID3TT_ALL);
 
-   size_t     GetPrependedBytes() const { return _prepended_bytes; }
-   size_t     GetAppendedBytes() const { return _appended_bytes; }
-   size_t     GetFileSize() const { return _file_size; }
+   primitive::memory_size     GetPrependedBytes() const { return _prepended_bytes; }
+   primitive::memory_size     GetAppendedBytes() const { return _appended_bytes; }
+   file_size     GetFileSize() const { return _file_size; }
    string GetFileName() const { return _file_name; }
 
    ID3_Frame* Find(ID3_FrameID id) const;
@@ -125,7 +125,7 @@ public:
    static size_t IsV2Tag(ID3_Reader&);
 
    const Mp3_Headerinfo* GetMp3HeaderInfo() const { if (_mp3_info) return _mp3_info->GetMp3HeaderInfo(); else return NULL; }
-   
+
    ID3_Frames & frames() { return _frames; }
    const ID3_Frames & frames() const { return _frames; }
 

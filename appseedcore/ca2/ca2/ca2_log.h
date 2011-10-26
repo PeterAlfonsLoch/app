@@ -5,7 +5,8 @@ namespace ca2
 {
 
    class CLASS_DECL_ca log :
-      public ca::log
+      virtual public ca::log,
+      virtual public ::radix::object
    {
    public:
 

@@ -8,7 +8,7 @@ CLASS_DECL_ca plex_heap_alloc_array g_heap;
 plex* PASCAL plex::create(plex*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
 {
 
-   __int64 size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;
+   ::primitive::memory_size size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;
    plex* p = (plex*) g_heap.alloc(size);
    p->size = size;
          // may throw exception

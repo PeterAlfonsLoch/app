@@ -3,14 +3,6 @@
 
 wait_message_dialog::wait_message_dialog(::ca::application * papp) :
    ca(papp),
-   user::scroll_view(papp),
-   ::userbase::view(papp),
-   userbase::scroll_view(papp),
-   userbase::form_view(papp),
-   form(papp),
-   html_form(papp),
-   html_form_view(papp),
-   form_view(papp),
    dialog(papp)
 {
    m_dwStartTime = 0;
@@ -19,11 +11,11 @@ wait_message_dialog::wait_message_dialog(::ca::application * papp) :
 
 wait_message_dialog::~wait_message_dialog()
 {
-   if(m_pdocument != NULL)
+   /*if(m_pdocument != NULL)
    {
       m_pdocument->on_close_document();
       m_pdocument = NULL;
-   }
+   }*/
 }
 
 void wait_message_dialog::on_show(const char * pszMatter, gen::property_set & propertyset)
@@ -33,7 +25,7 @@ void wait_message_dialog::on_show(const char * pszMatter, gen::property_set & pr
    if(m_dwDelay > 0)
    {
       m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int) (m_dwDelay / 1000);
-      SetTimer(5432175, 584, NULL);
+      m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
    }
    m_dwStartTime = ::GetTickCount();
 }
@@ -85,7 +77,7 @@ void wait_message_dialog::on_timer_soft_reload(DWORD dwTimeout)
    if(pelemental != NULL)
    {
       pelemental->set_string(str);
-      layout();
+      m_pframe->layout();
    }
    //m_pdocument->m_propertyset["wait_message_dialog_timeout"] = (int) ((m_dwDelay - dwTimeout) / 1000);
    //m_pdocument->soft_reload();

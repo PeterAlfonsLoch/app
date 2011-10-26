@@ -14,7 +14,7 @@ namespace _template
 
 #if defined( _ATL_CUSTOM_THROW )  // You can define your own AtlThrow to throw a custom exception.
 
-CLASS_DECL_ca void WINAPI AtlThrowImpl( HRESULT hr )
+CLASS_DECL_ca void WINAPI atl_throw_impl( HRESULT hr )
 {
    ATLTRACE(atlTraceException, 0, "AtlThrow: hr = 0x%x\n", hr );
 #ifdef _AFX
@@ -27,19 +27,21 @@ CLASS_DECL_ca void WINAPI AtlThrowImpl( HRESULT hr )
 //      AfxThrowOleException( hr );
    }
 #else
-   throw CAtlException( hr );
+   throw atl_exception( hr );
 #endif
 };
 
 #endif
 
 
-// Throw a CAtlException with th given HRESULT
+// Throw a atl_exception with th given HRESULT
 #if !defined( _ATL_CUSTOM_THROW )  // You can define your own AtlThrow
 
-CLASS_DECL_ca void WINAPI AtlThrowImpl( HRESULT hr )
+CLASS_DECL_ca void WINAPI atl_throw_impl(HRESULT hr)
 {
-   ::OutputDebugString("AtlThrow");
+//   TRACE("AtlThrow: hr = 0x%x\n", hr);
+   throw hresult_exception(hr);
+/*   ::OutputDebugString("AtlThrow");
    char sz[200];
    sprintf(sz, "0x%s", hr);
    ::OutputDebugString(sz);
@@ -55,7 +57,7 @@ CLASS_DECL_ca void WINAPI AtlThrowImpl( HRESULT hr )
    default:
       dwExceptionCode = EXCEPTION_ILLEGAL_INSTRUCTION;
    }
-   _AtlRaiseException((DWORD)dwExceptionCode);
+   atl_raise_exception((DWORD)dwExceptionCode);*/
 }
 #endif
 

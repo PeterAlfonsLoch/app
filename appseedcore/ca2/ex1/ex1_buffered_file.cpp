@@ -3,7 +3,7 @@
 namespace ex1
 {
 
-   buffered_file::buffered_file(::ca::application * papp, ex1::filesp pfile, DWORD_PTR iBufferSize) :
+   buffered_file::buffered_file(::ca::application * papp, ex1::filesp pfile, ::primitive::memory_size iBufferSize) :
       ca(papp)
    {
       m_storage.allocate(iBufferSize);
@@ -22,7 +22,7 @@ namespace ex1
 
    }
 
-   DWORD_PTR buffered_file::GetBufferSize()
+   uint64_t buffered_file::GetBufferSize()
    {
       return m_uiBufferSize;
    }
@@ -32,20 +32,20 @@ namespace ex1
       return m_pfile.is_set();
    }
 
-   /*int buffered_file::RemoveBegin(void * lpBuf, UINT uiCount)
+   /*int buffered_file::remove_begin(void * lpBuf, UINT uiCount)
    {
       ASSERT(IsValid());
       if(uiCount > get_length())
          uiCount = m_storage.get_size();
-      memcpy(lpBuf, ((LPBYTE)GetAllocation()), uiCount);
-      if(uiCount < get_size())
+      memcpy(lpBuf, ((LPBYTE)get_data()), uiCount);
+      if(uiCount < this->get_size())
       {
          memmove(
-            m_storage.GetAllocation(), 
-            &((LPBYTE)m_storage.GetAllocation())[uiCount],
+            m_storage.get_data(),
+            &((LPBYTE)m_storage.get_data())[uiCount],
             m_storage.get_size() - uiCount);
       }
-      
+
       if(m_dwPosition <= uiCount)
          m_uiPosition = 0;
       else
@@ -61,32 +61,32 @@ namespace ex1
    {
    }*/
 
-   INT_PTR buffered_file::seek(INT_PTR lOff, UINT nFrom)
+   file_position buffered_file::seek(file_offset lOff, ::ex1::e_seek nFrom)
    {
-      int iBegBufPosition = m_uiBufLPos;
-      int iEndBufPosition = m_uiBufUPos;
-      int iNewPos;
+      uint64_t uiBegBufPosition = m_uiBufLPos;
+      uint64_t uiEndBufPosition = m_uiBufUPos;
+      uint64_t uiNewPos;
       if(nFrom == ::ex1::seek_begin)
       {
-         iNewPos = lOff;
+         uiNewPos = lOff;
       }
       else if(nFrom == ::ex1::seek_end)
       {
-         iNewPos = m_pfile->get_length() + lOff;
+         uiNewPos = m_pfile->get_length() + lOff;
       }
       else if(nFrom == ::ex1::seek_current)
       {
-         iNewPos = m_uiPosition + lOff;
+         uiNewPos = m_uiPosition + lOff;
       }
       else
       {
          ASSERT(FALSE);
       }
 
-      if(iNewPos >= iBegBufPosition
-         && iNewPos <= iEndBufPosition)
+      if(uiNewPos >= uiBegBufPosition
+         && uiNewPos <= uiEndBufPosition)
       {
-         m_uiPosition = iNewPos;
+         m_uiPosition = uiNewPos;
       }
       else
       {
@@ -101,12 +101,12 @@ namespace ex1
       return m_uiPosition;
    }
 
-   DWORD_PTR buffered_file::GetPosition() const
+   file_position buffered_file::get_position() const
    {
       return m_uiPosition;
    }
 
-   DWORD_PTR buffered_file::get_length() const
+   file_size buffered_file::get_length() const
    {
       return m_pfile->get_length();
    }
@@ -121,24 +121,24 @@ namespace ex1
       m_pfile->clear();
    }*/
 
-   DWORD_PTR buffered_file:: read(void *lpBufParam, DWORD_PTR nCount)
+   ::primitive::memory_size buffered_file:: read(void *lpBufParam, ::primitive::memory_size nCount)
    {
       if(nCount == 0)
          return 0;
-      DWORD_PTR uiRead = 0;
-      DWORD_PTR uiReadNow = 0;
+      ::primitive::memory_size uiRead = 0;
+      ::primitive::memory_size uiReadNow = 0;
       while(uiRead < nCount)
       {
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos && m_uiBufUPos != 0xFFFFFFFF)
          {
-            uiReadNow = min(nCount - uiRead, m_uiBufUPos - m_uiPosition + 1);
+            uiReadNow = min(nCount - uiRead, (::primitive::memory_size) (m_uiBufUPos - m_uiPosition + 1));
             if(nCount == 1)
             {
-               ((LPBYTE)lpBufParam)[uiRead] = m_storage.GetAllocation()[m_uiPosition - m_uiBufLPos];
+               ((LPBYTE)lpBufParam)[uiRead] = m_storage.get_data()[m_uiPosition - m_uiBufLPos];
             }
             else
             {
-               memcpy(&((LPBYTE)lpBufParam)[uiRead], &m_storage.GetAllocation()[m_uiPosition - m_uiBufLPos], uiReadNow);
+               memcpy(&((LPBYTE)lpBufParam)[uiRead], &m_storage.get_data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
             }
             m_uiPosition += uiReadNow;
             uiRead += uiReadNow;
@@ -152,7 +152,7 @@ namespace ex1
       return uiRead;
    }
 
-   bool buffered_file::buffer(DWORD_PTR uiGrow)
+   bool buffered_file::buffer(::primitive::memory_size uiGrow)
    {
       if(m_bDirty)
       {
@@ -160,13 +160,13 @@ namespace ex1
       }
       //if(uiGrow == 0 && m_uiPosition > m_pfile->get_length())
         // return false;
-      m_pfile->seek(m_uiPosition, seek_begin);
-      UINT uiCopy;
+      m_pfile->seek((file_offset) m_uiPosition, seek_begin);
+      ::primitive::memory_size uiCopy;
       if(uiGrow > 0)
          uiCopy = min(m_uiBufferSize, uiGrow);
       else
          uiCopy = m_uiBufferSize;
-      UINT uiRead    = m_pfile->read(m_storage.GetAllocation(), uiCopy);
+      ::primitive::memory_size uiRead    = m_pfile->read(m_storage.get_data(), uiCopy);
       m_uiBufLPos     = m_uiPosition;
       m_uiBufUPos     = m_uiPosition + uiRead - 1;
       m_uiWriteLPos   = 0xffffffff;
@@ -175,21 +175,21 @@ namespace ex1
    }
 
 
-   void buffered_file::write(const void * lpBuf, DWORD_PTR nCount)
+   void buffered_file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      UINT uiWrite = 0;
-      UINT uiWriteNow = 0;
+      ::primitive::memory_size uiWrite = 0;
+      ::primitive::memory_size uiWriteNow = 0;
       while(uiWrite < nCount)
       {
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos)
          {
             m_bDirty = true;
-            uiWriteNow = min(nCount - uiWrite, m_uiBufUPos - m_uiPosition + 1);
+            uiWriteNow = min(nCount - uiWrite, (::primitive::memory_size) (m_uiBufUPos - m_uiPosition + 1));
             if(m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
                m_uiWriteLPos = m_uiPosition;
             if(m_uiWriteUPos == 0xffffffff || m_uiWriteUPos < (m_uiPosition + uiWriteNow - 1))
                m_uiWriteUPos = (m_uiPosition + uiWriteNow - 1);
-            memcpy(&m_storage.GetAllocation()[m_uiPosition - m_uiBufLPos], &((LPBYTE)lpBuf)[uiWrite], uiWriteNow);
+            memcpy(&m_storage.get_data()[m_uiPosition - m_uiBufLPos], &((LPBYTE)lpBuf)[uiWrite], (size_t) uiWriteNow);
             m_uiPosition += uiWriteNow;
             uiWrite += uiWriteNow;
          }
@@ -205,8 +205,8 @@ namespace ex1
    {
       if(m_bDirty)
       {
-         m_pfile->seek(m_uiWriteLPos, seek_begin);
-         m_pfile->write(&m_storage.GetAllocation()[m_uiWriteLPos - m_uiBufLPos], m_uiWriteUPos - m_uiWriteLPos);
+         m_pfile->seek((file_offset) m_uiWriteLPos, seek_begin);
+         m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (::primitive::memory_size) (m_uiWriteUPos - m_uiWriteLPos));
          m_bDirty = false;
          m_uiWriteLPos = 0xffffffff;
          m_uiWriteUPos = 0xffffffff;
@@ -214,9 +214,9 @@ namespace ex1
    }
 
 
-   void buffered_file::SetLength(DWORD_PTR dwNewLen)
+   void buffered_file::set_length(file_size dwNewLen)
    {
-      m_pfile->SetLength(dwNewLen);
+      m_pfile->set_length(dwNewLen);
    }
 
 } // namespace ex1

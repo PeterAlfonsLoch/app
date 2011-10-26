@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="StdAfx.h" open="0" top="0" tabpos="0">
+		<Cursor position="28" topLine="0" />
+	</File>
+	<File name="_crt0dll.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="510" topLine="0" />
+	</File>
+	<File name="atol.h" open="1" top="0" tabpos="6">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="c.h" open="0" top="0" tabpos="6">
+		<Cursor position="1123" topLine="50" />
+	</File>
+	<File name="ca_seed.h" open="0" top="0" tabpos="0">
+		<Cursor position="738" topLine="0" />
+	</File>
+	<File name="conv.h" open="1" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="event_wait.h" open="0" top="0" tabpos="0">
+		<Cursor position="198" topLine="0" />
+	</File>
+	<File name="file.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="6924" topLine="275" />
+	</File>
+	<File name="heap.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1840" topLine="36" />
+	</File>
+	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="23">
+		<Cursor position="7978" topLine="362" />
+	</File>
+	<File name="index.h" open="0" top="0" tabpos="0">
+		<Cursor position="16" topLine="0" />
+	</File>
+	<File name="linux/linux.h" open="0" top="0" tabpos="5">
+		<Cursor position="258" topLine="0" />
+	</File>
+	<File name="linux/linux_binreloc.c" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="27" />
+	</File>
+	<File name="linux/linux_cross_win_file.h" open="0" top="0" tabpos="0">
+		<Cursor position="912" topLine="3" />
+	</File>
+	<File name="linux/linux_cross_win_gdi.cpp" open="0" top="0" tabpos="18">
+		<Cursor position="3338" topLine="135" />
+	</File>
+	<File name="linux/linux_http.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="484" topLine="0" />
+	</File>
+	<File name="linux/linux_http_lib.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4469" topLine="146" />
+	</File>
+	<File name="linux/linux_lock.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="193" topLine="0" />
+	</File>
+	<File name="linux/linux_message_loop.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2104" topLine="110" />
+	</File>
+	<File name="linux/linux_process.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="46" />
+	</File>
+	<File name="linux/linux_small_ipc_channel.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="41" topLine="0" />
+	</File>
+	<File name="mutex_lock.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="mutex_lock.h" open="0" top="0" tabpos="10">
+		<Cursor position="18" topLine="0" />
+	</File>
+	<File name="radix.h" open="0" top="0" tabpos="0">
+		<Cursor position="15" topLine="0" />
+	</File>
+	<File name="simple_array.h" open="0" top="0" tabpos="0">
+		<Cursor position="625" topLine="3" />
+	</File>
+	<File name="simple_event.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="492" topLine="0" />
+	</File>
+	<File name="simple_event.h" open="0" top="0" tabpos="9">
+		<Cursor position="232" topLine="0" />
+	</File>
+	<File name="simple_mutex.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="2763" topLine="120" />
+	</File>
+	<File name="simple_mutex.h" open="0" top="0" tabpos="4">
+		<Cursor position="184" topLine="0" />
+	</File>
+	<File name="small_ipc_channel.h" open="0" top="0" tabpos="8">
+		<Cursor position="92" topLine="0" />
+	</File>
+	<File name="spa/spa_http.cpp" open="0" top="0" tabpos="13">
+		<Cursor position="1419" topLine="41" />
+	</File>
+	<File name="spa/spa_installer.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="81262" topLine="2577" />
+	</File>
+	<File name="spa/spa_plugin.cpp" open="0" top="0" tabpos="15">
+		<Cursor position="2525" topLine="104" />
+	</File>
+	<File name="spa/spa_small_bell.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1833" topLine="5" />
+	</File>
+	<File name="spa/spa_starter_start.cpp" open="0" top="0" tabpos="14">
+		<Cursor position="3779" topLine="181" />
+	</File>
+	<File name="spa/spa_trace.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="1230" topLine="39" />
+	</File>
+	<File name="spa/spa_window.cpp" open="0" top="0" tabpos="17">
+		<Cursor position="6820" topLine="253" />
+	</File>
+	<File name="str.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="4071" topLine="208" />
+	</File>
+	<File name="str.h" open="1" top="0" tabpos="3">
+		<Cursor position="1305" topLine="10" />
+	</File>
+	<File name="template.h" open="0" top="0" tabpos="0">
+		<Cursor position="281" topLine="0" />
+	</File>
+	<File name="types.h" open="1" top="0" tabpos="5">
+		<Cursor position="0" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

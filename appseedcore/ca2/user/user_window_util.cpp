@@ -16,15 +16,15 @@ namespace user
    void HWNDArray::SortSiblingsByZOrder()
    {
       HWND hwndSwap;
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         for(int j = i + 1; j < get_size(); j++)
+         for(int j = i + 1; j < this->get_size(); j++)
          {
-            if(WndUtil::GetZOrder(element_at(i)) > WndUtil::GetZOrder(element_at(j)))
+            if(WndUtil::GetZOrder(this->element_at(i)) > WndUtil::GetZOrder(this->element_at(j)))
             {
-               hwndSwap = element_at(i);
-               element_at(i) = element_at(j);
-               element_at(j) = hwndSwap;
+               hwndSwap = this->element_at(i);
+               this->element_at(i) = this->element_at(j);
+               this->element_at(j) = hwndSwap;
             }
          }
       }
@@ -255,9 +255,9 @@ namespace user
 
    void HwndTree::Array::EnumDescendants()
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         element_at(i).EnumDescendants();
+         this->element_at(i).EnumDescendants();
       }
    }
 
@@ -296,9 +296,9 @@ namespace user
       if(hwnd == NULL)
          return true;
       int i;
-      for(i = 0; i < get_size();)
+      for(i = 0; i < this->get_size();)
       {
-         HwndTree & tree = element_at(i);
+         HwndTree & tree = this->element_at(i);
          if(tree.m_hwnd == hwnd)
          {
             remove_at(i);
@@ -309,9 +309,9 @@ namespace user
             i++;
          }
       }
-      for(i = 0; i < get_size(); i++)
+      for(i = 0; i < this->get_size(); i++)
       {
-         HwndTree & tree = element_at(i);
+         HwndTree & tree = this->element_at(i);
          if(tree.m_hwndtreea.remove(hwnd))
          {
             return true;
@@ -611,9 +611,16 @@ namespace user
    int WndUtil::GetZOrder(HWND hwnd)
    {
       int iOrder = 0;
-      HWND hwndOrder = ::GetWindow(hwnd, GW_HWNDFIRST);
-      while(hwndOrder != NULL
-         && ::IsWindow(hwndOrder))
+      HWND hwndOrder = NULL;
+      try
+      {
+         hwndOrder = ::GetWindow(hwnd, GW_HWNDFIRST);
+      }
+      catch(...)
+      {
+         return 0x7fffffff;
+      }
+      while(hwndOrder != NULL && ::IsWindow(hwndOrder))
       {
          if(hwnd == hwndOrder)
             return iOrder;
@@ -709,11 +716,11 @@ namespace user
 
    ::user::interaction * LPWndArray::find_first(::ca::type_info info)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         if(typeid(*element_at(i)).raw_name() == info.raw_name())
+         if(typeid(*this->element_at(i)).raw_name() == info.raw_name())
          {
-            return element_at(i);
+            return this->element_at(i);
          }
       }
       return NULL;
@@ -721,11 +728,11 @@ namespace user
 
    ::user::interaction * LPWndArray::find_first(HWND hwnd)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         if(element_at(i)->get_safe_handle() == hwnd)
+         if(this->element_at(i)->get_safe_handle() == hwnd)
          {
-            return element_at(i);
+            return this->element_at(i);
          }
       }
       return NULL;
@@ -734,19 +741,19 @@ namespace user
    void LPWndArray::get_wnda(HWNDArray & hwnda)
    {
       hwnda.remove_all();
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         hwnda.add(element_at(i)->_get_handle());
+         hwnda.add(this->element_at(i)->_get_handle());
       }
    }
 
    void LPWndArray::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          try
          {
-            element_at(i)->SendMessageA(uiMessage, wparam, lparam);
+            this->element_at(i)->SendMessageA(uiMessage, wparam, lparam);
          }
          catch(...)
          {
@@ -756,11 +763,11 @@ namespace user
 
    void LPWndArray::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          try
          {
-            element_at(i)->SendMessageToDescendants(uiMessage, wparam, lparam, bRecursive);
+            this->element_at(i)->SendMessageToDescendants(uiMessage, wparam, lparam, bRecursive);
          }
          catch(...)
          {

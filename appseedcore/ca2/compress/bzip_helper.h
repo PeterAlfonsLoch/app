@@ -50,7 +50,7 @@
 class bzip
 {
 public:
-   ex1::output_stream * m_postream;
+   ex1::byte_output_stream m_ostream;
    primitive::memory m_memory;
    int m_CurrentBufferSize;
    bz_stream m_zstream;
@@ -60,10 +60,11 @@ public:
 
 
    bzip(ex1::file * pfileDest);
-   bzip(ex1::output_stream & ostreamDest);
+   bzip(ex1::writer & writer);
+   bzip(ex1::byte_output_stream & ostreamDest);
    virtual ~bzip();
 
-   bool write(void * buf, int iSize);
+   bool write(void * buf, ::primitive::memory_size iSize);
    void finish();
 
 protected:
@@ -303,7 +304,7 @@ class CGZIP2AT
     x += ((uLong)c)<<24;
     return x;
  }
- int write(char* buf,int count)
+ int write(char* buf,::primitive::memory_size count)
  {
      if(buf==0) return 0;
     if(Length+count>m_CurrentBufferSize)

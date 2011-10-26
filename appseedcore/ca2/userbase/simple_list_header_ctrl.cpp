@@ -16,11 +16,10 @@ simple_list_header_control::~simple_list_header_control()
 
 
 
-void simple_list_header_control::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_list_header_control::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::user::interaction::_001InstallMessageHandling(pinterface);
-   ::user::list_header::_001InstallMessageHandling(pinterface);
-   InstallBuffering(pinterface);
+   ::user::interaction::install_message_handling(pinterface);
+   ::user::list_header::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(HDN_ENDTRACK, pinterface, this, &simple_list_header_control::_001OnEndTrack);
    IGUI_WIN_MSG_LINK(HDN_TRACK, pinterface, this, &simple_list_header_control::_001OnTrack);
    IGUI_WIN_MSG_LINK(HDN_ENDDRAG, pinterface, this, &simple_list_header_control::_001OnEndDrag);
@@ -196,12 +195,5 @@ void simple_list_header_control::_001OnMove(gen::signal_object * pobj)
    SCAST_PTR(::user::win::message::move, pmove, pobj)
    point point(pmove->m_pt.x, pmove->m_pt.y);
    pmove->m_bRet = false;
-}
-
-void simple_list_header_control::OnDrawInterfaceDraw(::ca::graphics * pdc)
-{
-   //TwiOnDraw(pdcm_gdibuffer.GetBuffer());
-   //m_gdibuffer.BitBlt(pdc);
-   _001OnDraw(pdc);
 }
 

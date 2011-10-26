@@ -1,13 +1,5 @@
 #include "StdAfx.h"
 
-void __cdecl wparse_cmdline (
-    WCHAR *cmdstart,
-    WCHAR **argv,
-    WCHAR *args,
-    int *numargs,
-    int *numchars
-    );
-
 namespace ex2
 {
 
@@ -21,19 +13,28 @@ namespace ex2
       ::ca::smart_pointer < application >::m_p = NULL;
    }
 
-   void application::_001ParseCommandLine(gen::command_line& rCmdInfo)
+   void application::construct()
    {
-      ::ca::smart_pointer < application >::m_p->_001ParseCommandLine(rCmdInfo);
    }
 
-   bool application::_001ProcessShellCommand(gen::command_line& rCmdInfo)
+   void application::construct(const char * pszId)
    {
-      return ::ca::smart_pointer < application >::m_p->_001ProcessShellCommand(rCmdInfo);
+      UNREFERENCED_PARAMETER(pszId);
    }
 
-   void application::_001OnFileNew()
+   void application::_001OnFileNew(gen::signal_object * pobj)
    {
-      ::ca::smart_pointer < application >::m_p->_001OnFileNew();
+      
+      UNREFERENCED_PARAMETER(pobj);
+
+      var varFile;
+      var varQuery;
+
+      varQuery["command"] = "new_file";
+
+      request(varFile, varQuery);
+
+      //::ca::smart_pointer < application >::m_p->_001OnFileNew();
    }
 
    ::document * application::_001OpenDocumentFile(var varFile)
@@ -56,16 +57,6 @@ namespace ex2
       return m_spfilesystem;
    }
 
-   void application::Ex1SetCommandLineInfo(gen::command_line & rCmdInfo)
-   {
-      ::ca::smart_pointer < application >::m_p->Ex1SetCommandLineInfo(rCmdInfo);
-   }
-
-   void application::Ex1GetCommandLineInfo(gen::command_line & rCmdInfo)
-   {
-      ::ca::smart_pointer < application >::m_p->Ex1SetCommandLineInfo(rCmdInfo);
-   }
-   
    bool application::process_initialize()
    {
 
@@ -100,6 +91,8 @@ namespace ex2
          gen::add_ref(::ca::thread_sp::m_p);
       }
       set_thread(dynamic_cast < ::radix::thread * > (this));
+      m_pappDelete = this;
+      ::ca::thread_sp::m_p->m_pappDelete = this;
 
       if(is_system())
       {
@@ -111,18 +104,6 @@ namespace ex2
       if(!smart_pointer < application >::m_p->process_initialize())
             return false;
 
-      if(is_system())
-      {
-         m_pcommandline = new class gen::command_line();
-         m_pcommandline->set_app(this);
-         m_pcommandline->m_varQuery.set_app(this);
-         _001ParseCommandLine(*m_pcommandline);
-         on_process_initialize_command_line();
-      }
-      else
-      {
-         m_pcommandline = System.m_pcommandline;
-      }
 
       return true;
    }
@@ -187,33 +168,29 @@ namespace ex2
 
    int application::exit_instance()
    {
-      try
+      if(is_system())
       {
-         if(m_pcommandline != NULL)
-         {
-            delete m_pcommandline;
-            m_pcommandline = NULL;
-         }
-      }
-      catch(...)
-      {
-      }
 
-      try
-      {
-         if(m_spfilesystem.m_p != NULL)
+         try
          {
-            gen::del(m_spfilesystem.m_p);
+            if(m_spfilesystem.m_p != NULL)
+            {
+               gen::del(m_spfilesystem.m_p);
+            }
          }
-      }
-      catch(...)
-      {
+         catch(...)
+         {
+         }
       }
 
       try
       {
          // avoid calling CloseHandle() on our own thread handle
          // during the thread destructor
+         // avoid thread object data auto deletion on thread termination,
+         // letting thread function terminate 
+         ::ca::thread_sp::m_p->m_bAutoDelete = false; 
+
          ::ca::thread_sp::m_p->set_os_data(NULL);
 
          ::ca::thread_sp::m_p->set_run(false);
@@ -310,14 +287,11 @@ namespace ex2
 
    ::user::interaction * application::GetMainWnd()
    { 
-      thread* pthread = GetThread();
-      if(pthread == NULL)
-         return NULL;
-      if(pthread == this)
-      {
-         return ::radix::thread::GetMainWnd();
-      }
-      return pthread->GetMainWnd(); 
+      if(m_puiMain != NULL)
+         return m_puiMain;
+      if(::ca::thread_sp::m_p != NULL && ::ca::thread_sp::m_p->m_puiMain != NULL)
+         return ::ca::thread_sp::m_p->m_puiMain;
+      return NULL;
    }
 
    ::ca::graphics * application::graphics_from_os_data(void * pdata)
@@ -333,6 +307,11 @@ namespace ex2
    ::ca::window * application::window_from_os_data_permanent(void * pdata)
    {
       return ::ca::smart_pointer<::ex2::application>::m_p->window_from_os_data_permanent(pdata);
+   }
+
+   ::user::printer * application::get_printer(const char * pszDeviceName)
+   {
+      return ::ca::smart_pointer<::ex2::application>::m_p->get_printer(pszDeviceName);
    }
 
    ::ca::window * application::get_desktop_window()
@@ -370,7 +349,7 @@ namespace ex2
       return ::ca::smart_pointer<::ex2::application>::m_p->get_thread_id();
    }
 
-   bool application::set_main_init_data(void * pdata)
+   bool application::set_main_init_data(::ca::main_init_data * pdata)
    {
       return ::ca::smart_pointer<::ex2::application>::m_p->set_main_init_data(pdata);
    }

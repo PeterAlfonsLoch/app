@@ -13,7 +13,7 @@ public:
    void InitializeMail();
 
 
-   array_ptr < mail::account, mail::account & > m_accounta;
+   array_del_ptr < mail::account, mail::account & > m_accounta;
 
    void TimerStep();
 

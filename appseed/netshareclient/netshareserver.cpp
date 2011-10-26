@@ -10,9 +10,9 @@ namespace netshareclient
       m_ptemplatePane = new ::userbase::single_document_template(
          papp,
          "system/form",
-         &typeid(form_document),
-         &typeid(simple_frame_window),
-         &typeid(userex::pane_tab_view));
+         ::ca::get_type_info < form_document > (),
+         ::ca::get_type_info < simple_frame_window > (),
+         ::ca::get_type_info < userex::pane_tab_view > ());
    }
 
    bergedge::~bergedge()
@@ -22,9 +22,9 @@ namespace netshareclient
 
    string bergedge::get_server()
    {
-      form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(NULL, TRUE, Application.m_puiInitialPlaceHolderContainer));
+      form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file());
       userex::pane_tab_view * pview = dynamic_cast < userex::pane_tab_view * > (pdoc->get_view());
-      pview->set_create_view(this);
+      pview->set_view_creator(this);
       rect rectOpen;
       Application.get_screen_rect(rectOpen);
       int iWidth = rectOpen.width();
@@ -40,9 +40,9 @@ namespace netshareclient
       return m_strServer;
    }
 
-   void bergedge::on_create_view(view_data * pviewdata)
+   void bergedge::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case 1:
          {
@@ -53,8 +53,8 @@ namespace netshareclient
                m_pviewServer->m_pcallback = this;
                
                m_pviewServer->get_html_data()->open_document("https://fontopus.com/ca2api/i2com/select_netshareserver");
-               pviewdata->m_pdoc = m_pdocServer;
-               pviewdata->m_pwnd = m_pviewServer->GetParentFrame();
+               pcreatordata->m_pdoc = m_pdocServer;
+               pcreatordata->m_pwnd = m_pviewServer->GetParentFrame();
             }
          }
          break;
@@ -67,6 +67,7 @@ namespace netshareclient
 
    bool bergedge::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
+      UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
          if(pevent->m_puie->m_id == "submit")
@@ -82,9 +83,14 @@ namespace netshareclient
       return false;
    }
 
-   void bergedge::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+   void bergedge::OnBeforeNavigate2(html::data * pdata, var & varUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
    {
-      string str(lpszUrl);
+      UNREFERENCED_PARAMETER(pdata);
+      UNREFERENCED_PARAMETER(nFlags);
+      UNREFERENCED_PARAMETER(lpszTargetFrameName);
+      UNREFERENCED_PARAMETER(baPostedData);
+      UNREFERENCED_PARAMETER(lpszHeaders);
+      string str(varUrl);
       if(gen::str::begins_eat(str, "http://netshare.bergedge.com/?"))
       {
          gen::property_set set(get_app());
@@ -94,7 +100,7 @@ namespace netshareclient
          //m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
 
          netshareclient::application * papp = dynamic_cast < netshareclient::application * > (get_app());
-         document * pdoc = dynamic_cast < document * > (papp->m_pdoctemplate->open_document_file(NULL, TRUE, Application.m_puiInitialPlaceHolderContainer));
+         document * pdoc = dynamic_cast < document * > (papp->m_pdoctemplate->open_document_file());
          view * pview = pdoc->get_typed_view < view > ();
          pview->m_strServer = m_strServer;
          pview->m_pthread = new netshareclient::thread(get_app());

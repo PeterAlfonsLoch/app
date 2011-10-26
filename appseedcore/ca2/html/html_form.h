@@ -26,7 +26,7 @@ public:
 
    virtual void layout();
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
    virtual string get_path();
 
@@ -37,12 +37,13 @@ public:
    const ::html::data * get_html_data() const;
 
 
-   DECL_GEN_SIGNAL(_001OnSize);
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnMouseMove)
    DECL_GEN_SIGNAL(_001OnLButtonUp)
    DECL_GEN_SIGNAL(_001OnImageLoaded)
+   DECL_GEN_SIGNAL(_001OnKeyDown)
+
 
 
    virtual void _001GetText(string & str) const;

@@ -11,7 +11,7 @@ namespace sockets
       m_email(h.get_app())
    {
       SetLineProtocol();
-      
+
    }
 
 
@@ -146,7 +146,7 @@ email::address::address()
 
 email::address::address(const char * psz)
 {
-   operator = (psz);   
+   operator = (psz);
 }
 
 email::address & email::address::operator= (const char * psz)

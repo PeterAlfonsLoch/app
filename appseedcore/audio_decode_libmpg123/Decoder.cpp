@@ -21,25 +21,35 @@ namespace audio_decode_libmpg123
       m_memfile(papp)
    {
       m_readframe.m_bSeekable = true;
+      m_readframe.m_pdecoder = this;
+      m_iBufferSize = 512 * 1024;
    }
 
    decoder::~decoder()
    {
+      DecoderStop();
    }
+
    bool decoder::_DecoderInitialize(ex1::file *pfile)
    {
       m_bStop = false;
       GetMemoryFile().Truncate(0);
-      pfile = new ::ex1::buffered_file(get_app(), pfile);
+
+      if(m_spfile.is_set())
+      {
+         gen::release(m_spfile.m_p);
+      }
+
+      m_spfile(new ::ex1::buffered_file(get_app(), pfile, m_iBufferSize));
 
       try
       {
 
          m_bStop = false;
          m_iReadPointer = 0;
-         pfile->seek_to_begin();
+         m_spfile->seek_to_begin();
 
-         if(!m_readframe.Initialize(pfile, &GetMemoryFile()))
+         if(!m_readframe.Initialize(m_spfile, &GetMemoryFile()))
             return false;
          int err;
          if(m_readframe.m_bSeekable)
@@ -54,24 +64,24 @@ namespace audio_decode_libmpg123
 
          GuessParameters();
 
-         struct mpg123_frameinfo mi;
+         /*struct mpg123_frameinfo mi;
          memset(&mi, 0, sizeof(mi));
          int iRet = mpg123_info(m_readframe.m_phandle, &mi);
          if(iRet == MPG123_ERR || iRet > 0)
          {
             return false;
-         }
+         }*/
          if(m_nSampleCount < 0)
             return false;
 
          if(m_readframe.m_bSeekable)
          {
-            DWORD_PTR dwPos = pfile->GetPosition();
-            pfile->seek_to_begin();
+            uint64_t dwPos = m_spfile->get_position();
+            m_spfile->seek_to_begin();
             m_id3tag.clear();
-            m_id3reader.m_pfile = pfile;
+            m_id3reader.m_pfile = m_spfile;
             m_id3tag.Link(m_id3reader);
-            pfile->seek(dwPos, ex1::seek_begin);
+            m_spfile->seek(dwPos, ex1::seek_begin);
          }
 
          if(m_readframe.m_bSeekable)
@@ -89,6 +99,17 @@ namespace audio_decode_libmpg123
       return true;
       
    }
+
+
+   bool decoder::_DecoderFinalize()
+   {
+      m_readframe.Finalize();
+      m_memfile.close();
+      gen::release(m_spfile.m_p);
+      return true;
+   }
+
+
    void decoder::DecoderMoveNext()
    {
    //   ReadNextFrame();
@@ -99,11 +120,11 @@ namespace audio_decode_libmpg123
    }
    LPBYTE decoder::DecoderGetBuffer()
    {
-      return GetMemoryFile().GetAllocation();
+      return GetMemoryFile().get_data();
    }
    int decoder::DecoderGetBufferSize()
    {
-      return GetMemoryFile().get_size();
+      return(int)  GetMemoryFile().get_size();
    }
 
    void decoder::DecoderRun()
@@ -124,15 +145,15 @@ namespace audio_decode_libmpg123
       return 16;
    }
 
-   int decoder::_DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize)
+   ::primitive::memory_size decoder::_DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize)
    {
       if(_DecoderEOF())
          return 0;
 
 //      LPBYTE lpbBuffer = (LPBYTE) lpvoidBuffer; 
-      UINT uiRemain = uiBufferSize;
-      UINT uiPointer = 0;
-      UINT uiSize;
+      ::primitive::memory_size uiRemain = uiBufferSize;
+      ::primitive::memory_size uiPointer = 0;
+      ::primitive::memory_size uiSize;
       
       while(uiRemain > 0)
       {
@@ -145,7 +166,7 @@ namespace audio_decode_libmpg123
 
          uiSize = min(uiRemain, GetMemoryFile().get_size());
 
-         uiSize = GetMemoryFile().RemoveBegin(&((unsigned char *)lpvoidBuffer)[uiPointer], uiSize);
+         uiSize = GetMemoryFile().remove_begin(&((unsigned char *)lpvoidBuffer)[uiPointer], uiSize);
 
          uiRemain -= uiSize;
          uiPointer += uiSize;
@@ -198,7 +219,7 @@ namespace audio_decode_libmpg123
    void decoder::GuessParameters()
    {
 
-      ::ca::lock lock(m_readframe.m_pfileIn);
+      synch_lock lock(m_readframe.m_pfileIn);
 
       int  err  = MPG123_OK;
       /* Peek into track and get first output format. */
@@ -231,7 +252,7 @@ namespace audio_decode_libmpg123
 
       if(!m_readframe.m_bSeekable)
          return false;
-      ::ca::lock lock(m_readframe.m_pfileIn);
+      synch_lock lock(m_readframe.m_pfileIn);
       ID3_FrameID eid = GetAttributeId(eattribute);
 
 
@@ -242,7 +263,7 @@ namespace audio_decode_libmpg123
 
          return false;
 
-//      DWORD dw = m_readframe.m_pfileIn->GetPosition();
+//      DWORD dw = m_readframe.m_pfileIn->get_position();
       
       ID3_Frame * pframe;
 
@@ -285,8 +306,6 @@ namespace audio_decode_libmpg123
 
    decoder::ReadFrame::ReadFrame()
    {
-      m_pfileIn   = NULL;
-      m_pfileOut  = NULL;
       m_phandle   = NULL;  
       m_memoryIn.allocate(1024 * 128);
       m_memoryOut.allocate(1024 * 128 * 8);
@@ -300,7 +319,7 @@ namespace audio_decode_libmpg123
 
    off_t ex1_file_seek(void * ph, off_t off, int i)
    {
-      return ((::ex1::file *) ph)->seek(off, i);
+      return throw_cast < long > (((::ex1::file *) ph)->seek(off, (::ex1::e_seek) i));
    }
 
    void ex1_file_close(void * ph)
@@ -351,6 +370,13 @@ namespace audio_decode_libmpg123
       return true;
    }
 
+   bool decoder::ReadFrame::Finalize()
+   {
+      gen::release(m_pfileIn.m_p);
+      gen::release(m_pfileOut.m_p);
+      return true;
+   }
+
    __int64 decoder::DecoderGetSampleCount()
    {
       return m_nSampleCount;
@@ -371,14 +397,14 @@ namespace audio_decode_libmpg123
    bool decoder::ReadFrame::_seekable_read_frame()
    {
       ASSERT(m_bSeekable);
-      ::ca::lock lockOut(m_pfileOut);
-      ::ca::lock lockIn(m_pfileIn);
+      synch_lock lockOut(m_pfileOut);
+      synch_lock lockIn(m_pfileIn);
       size_t done;
       int iRet;
 
       if(!m_bFileInEof)
       {
-         while(m_pfileOut->get_length() < (natural) (m_memoryIn.GetStorageSize() * 8))
+         while(m_pfileOut->get_length() < (m_memoryIn.get_size() * 8))
          {
             done = 0;
             iRet = MPG123_ERR;
@@ -386,8 +412,8 @@ namespace audio_decode_libmpg123
             {
                iRet = mpg123_read(
                   m_phandle, 
-                  (unsigned char *) m_memoryOut.GetAllocation(),
-                  m_memoryOut.GetStorageSize(), 
+                  (unsigned char *) m_memoryOut.get_data(),
+                  m_memoryOut.get_size(), 
                   &done);
             }
             catch(...)
@@ -396,7 +422,7 @@ namespace audio_decode_libmpg123
             m_iRet = iRet;
             if(done > 0)
             {
-               m_pfileOut->write(m_memoryOut.GetAllocation(), done);
+               m_pfileOut->write(m_memoryOut.get_data(), done);
             }
             if(iRet == MPG123_NEW_FORMAT)
             {
@@ -416,21 +442,24 @@ namespace audio_decode_libmpg123
    bool decoder::ReadFrame::_non_seekable_read_frame()
    {
       ASSERT(!m_bSeekable);
-      ::ca::lock lockOut(m_pfileOut);
-      ::ca::lock lockIn(m_pfileIn);
+      synch_lock lockOut(m_pfileOut);
+      synch_lock lockIn(m_pfileIn);
       size_t done;
       int iRet;
       int iRead = 0;
+      int iTotalRead = 0;
+      int iMaxCount = 1024 * 64;
 
       if(!m_bFileInEof)
       {
-         while(m_pfileOut->get_length() < (natural) (m_memoryIn.GetStorageSize() * 8))
+         while(iTotalRead < iMaxCount)
          {
             done = 0;
             iRet = MPG123_ERR;
             try
             {
                iRet = mpg123_decode(m_phandle, m_memoryIn, iRead, m_memoryOut, m_memoryOut.get_size(), &done);
+               iTotalRead += iRead;
                iRead = 0;
             }
             catch(...)
@@ -439,7 +468,7 @@ namespace audio_decode_libmpg123
             m_iRet = iRet;
             if(done > 0)
             {
-               m_pfileOut->write(m_memoryOut.GetAllocation(), done);
+               m_pfileOut->write(m_memoryOut.get_data(), done);
             }
             if(iRet == MPG123_NEW_FORMAT)
             {
@@ -453,9 +482,15 @@ namespace audio_decode_libmpg123
             }
             else if(iRet == MPG123_NEED_MORE)
             {
-               if(m_pfileOut->get_length() >= (natural) (m_memoryIn.GetStorageSize() * 8))
+               if(m_pfileOut->get_length() >= m_memoryIn.get_size() * 8)
                   break;
-               iRead = m_pfileIn->read(m_memoryIn, m_memoryIn.get_size());
+               ::primitive::memory_size uiSize = m_memoryIn.get_size();
+               if(m_pfileIn->get_length() != 0 && m_pfileIn->get_length() != ((uint64_t) -1)
+                  && m_pfileIn->get_length() != ((uint64_t) -2))
+               {
+                  uiSize = min(uiSize, (::primitive::memory_size) (m_pfileIn->get_length() - m_pfileIn->get_position()));
+               }
+               iRead = m_pfileIn->read(m_memoryIn, uiSize);
                if(iRead <= 0)
                {
                   m_bFileInEof = true;
@@ -464,6 +499,12 @@ namespace audio_decode_libmpg123
                }
             }
          }
+      }
+
+      if(iTotalRead >= iMaxCount)
+      {
+         m_bFileInEof = true;
+         m_bDecEof = true;
       }
 
       return true;
@@ -500,8 +541,9 @@ namespace audio_decode_libmpg123
       if(iSize > 0)
       {
          m_readframe.m_memoryIn.allocate(iSize);
+         m_iBufferSize = iSize;
       }
-      return m_readframe.m_memoryIn.GetStorageSize();
+      return m_readframe.m_memoryIn.get_size();
    }
 
 /*   inline CBitStream & decoder::GetBitStream()

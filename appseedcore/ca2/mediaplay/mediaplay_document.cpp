@@ -76,7 +76,13 @@ namespace mediaplay
       if(pdataOld != NULL)
       {
          m_pdata = NULL;
-         pdataOld->delete_contents();
+         try
+         {
+            pdataOld->delete_contents();
+         }
+         catch(...)
+         {
+         }
          delete pdataOld;
          pdataOld = NULL;
       }

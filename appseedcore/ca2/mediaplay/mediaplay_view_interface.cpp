@@ -7,23 +7,39 @@
 
 #include "kar/KaraokeBouncingBall.h"
 
-#include "mediaplaylist/PlaylistCallbackInterface.h"
+#ifdef WIN32
+   BOOL win_SHGetSpecialFolderPath(HWND hwnd, string &str, int csidl, BOOL fCreate)
+   {
+      string wstrPath;
+      wchar_t * lpsz = (wchar_t *) malloc(MAX_PATH * sizeof(WCHAR) * 4);
+      BOOL b = ::SHGetSpecialFolderPathW(
+         hwnd,
+         lpsz,
+         csidl,
+         fCreate);
+      gen::international::unicode_to_utf8(str, lpsz);
+      free(lpsz);
+      return b;
+   }
+#endif
+
 
 namespace mediaplay
 {
 
    view_interface::view_interface(::ca::application * papp) :
       ca(papp),
-      m_hglrc(NULL), 
-      kar::KaraokeView(papp), 
+      m_hglrc(NULL),
+      kar::KaraokeView(papp),
       m_fileRecord(papp),
       gcom::backview::user::interaction(papp),
       gcom::backview::Interface(papp),
-      MidiPlayerInterface(papp),
+      midi_player_interface(papp),
       audio::WavePlayerInterface(papp),
       audio::WaveRecorderInterface(papp),
       m_viewlineaStatus(papp),
-      m_spgraphics(papp)
+      m_spgraphics(papp),
+      midi_player_callback(papp)
    /*   m_pixelformatdescriptor(
       sizeof(PIXELFORMATDESCRIPTOR),            // size Of This Pixel Format Descriptor
       1,                                 // Version Number
@@ -37,7 +53,7 @@ namespace mediaplay
       0,                                 // Shift Bit Ignored
       0,                                 // No Accumulation buffer
       0, 0, 0, 0,                           // Accumulation Bits Ignored
-      16,                                 // 16Bit Z-buffer (Depth buffer)  
+      16,                                 // 16Bit Z-buffer (Depth buffer)
       0,                                 // No Stencil buffer
       0,                                 // No Auxiliary buffer
       PFD_MAIN_PLANE,                        // Main Drawing Layer
@@ -50,13 +66,14 @@ namespace mediaplay
 
       m_spgraphics->CreateCompatibleDC(NULL);
 
-      m_bPassthroughBackground = true;
+      m_bEnableShowGcomBackground   = true;
+      m_bShowGcomBackground         = false;
 
-      m_pplaylistcallback = NULL;
+      m_pplaylistcallback           = NULL;
 
-      m_dBlend = 0.0;
+      m_dBlend                      = 0.0;
 
-      m_pdocument = NULL;
+      m_pdocument                   = NULL;
       //   m_tab.InstallMessageHandling(this);
       m_pixelformatdescriptor.nSize= sizeof(PIXELFORMATDESCRIPTOR);
       m_pixelformatdescriptor.nVersion = 1;
@@ -95,15 +112,15 @@ namespace mediaplay
 
       m_pwaverecorder = AfxBeginThread < audWaveRecorder > (get_app());
 
-      
+
 
 
 
       m_bWaitingToPlay = false;
       m_bDestroy = false;
-      
-      
-      
+
+
+
 
 
    //   m_lpbouncingball->SetIcons(System.LoadIcon(IDI_BB1), System.LoadIcon(IDI_BB1_PRESSED1));
@@ -115,13 +132,13 @@ namespace mediaplay
       //xxxdb.AddClient(this);
       //xxxm_relCodePage.add(ID_VIEW_ENCODING_LATIN1, 1252);
       //xxxm_relCodePage.add(ID_VIEW_ENCODING_SHIFTJIS, 932);
-      
+
    }
 
    bool view_interface::Initialize(midi_central * pmidicentral)
    {
       m_pmidicentral = pmidicentral;
-      if(!MidiPlayerInterface::Initialize(pmidicentral))
+      if(!midi_player_interface::Initialize(pmidicentral))
          return false;
 
       return true;
@@ -129,7 +146,7 @@ namespace mediaplay
 
    bool view_interface::Finalize()
    {
-      if(!MidiPlayerInterface::Finalize())
+      if(!midi_player_interface::Finalize())
          return false;
 
       return true;
@@ -144,10 +161,10 @@ namespace mediaplay
       }
    }
 
-   void view_interface::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view_interface::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      gcom::backview::Interface::_001InstallMessageHandling(pinterface);
-      kar::KaraokeView::_001InstallMessageHandling(pinterface);
+      gcom::backview::Interface::install_message_handling(pinterface);
+      kar::KaraokeView::install_message_handling(pinterface);
       m_lyrictemplatelines.InstallMessageHandling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view_interface::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view_interface::_001OnCreate);
@@ -177,7 +194,7 @@ namespace mediaplay
 
    void view_interface::_ExecutePlay(bool bMakeVisible, const imedia::position & position)
    {
-      
+
       UNREFERENCED_PARAMETER(bMakeVisible);
 
       if(!OnExecuteBeforePlay())
@@ -202,16 +219,16 @@ namespace mediaplay
          {
             audWavePlayerCommand command;
    //         command.OpenDevice();
-     //       m_pwaveplayer->ExecuteCommand(command);
+     //       GetWavePlayer()->ExecuteCommand(command);
             command.Play(position);
-            m_pwaveplayer->ExecuteCommand(command);
+            GetWavePlayer()->ExecuteCommand(command);
          }
          break;
       case data::ModeMidi:
          {
             ::mus::midi::sequence & midisequence = GetMidiSequence();
             ASSERT(&midisequence != NULL);
-      
+
 //            ikar::data & data = GetKaraokeData();
 //            ikar::static_data & staticdata = data.GetStaticData();
 //            ikar::dynamic_data& dynamicdata = data.GetDynamicData();
@@ -221,13 +238,13 @@ namespace mediaplay
                return;
             }
             ASSERT(midisequence.GetState() == ::mus::midi::sequence::StatusOpened);
-      
+
             if(GetMidiSequence().GetState() == ::mus::midi::sequence::StatusOpened)
             {
                SetTitleVisible(true);
                pdata->m_bPlay = true;
 
-               _ExecuteListenMinusOne(GetListenMinusOneCheck());
+               //_ExecuteListenMinusOne(GetListenMinusOneCheck());
                GetMidiPlayer()->SendReset();
                //GetMidiSequence().SetSpecialModeV001Operation(::mus::midi::sequence::SPMV001GMReset);
                // execution continues in OnMmmsgDone
@@ -289,7 +306,7 @@ namespace mediaplay
          {
             audWavePlayerCommand command;
             command.CloseDevice();
-            m_pwaveplayer->ExecuteCommand(command);
+            GetWavePlayer()->ExecuteCommand(command);
          }
          break;
       default:
@@ -299,13 +316,52 @@ namespace mediaplay
 
    }
 
-   PlaylistCallbackInterface * view_interface::GetPlaylistCallback()
+   mediaplaylist::callback_interface * view_interface::GetPlaylistCallback()
    {
       return m_pplaylistcallback;
    }
 
 
    void view_interface::_ExecuteStop()
+   {
+      data * pdoc = get_data();
+      switch(pdoc->GetMode())
+      {
+      case data::ModeMidi:
+         {
+            if(_ExecuteIsWaitingToPlay())
+            {
+               m_bWaitingToPlay = false;
+            }
+            else
+            {
+
+               if(m_pmidiplayer == NULL)
+                  return;
+               if(m_pmidiplayer->IsPlaying())
+               {
+                  if(!m_pmidiplayer->ExecuteCommand(MidiPlayerCommandStop, 84))
+                  {
+                     TRACE("view_interface::_ExecuteStop: Execute stop seems to have been failed.");
+                  }
+               }
+            }
+         }
+      break;
+      case data::ModeWave:
+         {
+            audWavePlayerCommand command;
+            command.Stop();
+            GetWavePlayer()->ExecuteCommand(command);
+         }
+         break;
+      default:
+         ASSERT(FALSE);
+         break;
+      }
+   }
+
+   void view_interface::_ExecuteStopAndQuit()
    {
       data * pdoc = get_data();
       switch(pdoc->GetMode())
@@ -334,7 +390,10 @@ namespace mediaplay
          {
             audWavePlayerCommand command;
             command.Stop();
-            m_pwaveplayer->ExecuteCommand(command);
+            GetWavePlayer()->m_commandlistStopOpen.remove_all();
+            GetWavePlayer()->ExecuteCommand(command);
+            GetWavePlayer()->m_pwaveout->m_eventStopped.wait(seconds(60));
+            GetWavePlayer()->PostThreadMessageA(WM_QUIT, 0, 0);
          }
          break;
       default:
@@ -344,8 +403,7 @@ namespace mediaplay
    }
 
 
-
-   /*void view_interface::OnUpdateExecuteStop(cmd_ui * pcmdui) 
+   /*void view_interface::OnUpdateExecuteStop(cmd_ui * pcmdui)
    {
       bool bEnable = false;
       data * pdoc = get_data();
@@ -361,8 +419,8 @@ namespace mediaplay
          }
       case data::ModeWave:
          {
-   //         bEnable = m_pwaveplayer != NULL
-     //          && m_pwaveplayer->IsPlaying();
+   //         bEnable = GetWavePlayer() != NULL
+     //          && GetWavePlayer()->IsPlaying();
             break;
          }
       }
@@ -370,7 +428,7 @@ namespace mediaplay
       pcmdui->Enable(bEnable);
    }*/
 
-   /*void view_interface::OnExecutePause() 
+   /*void view_interface::OnExecutePause()
    {
       ExecutePause();
    }*/
@@ -380,7 +438,7 @@ namespace mediaplay
       GetMidiPlayer()->Pause();
    }
 
-   /*void view_interface::OnUpdateExecutePause(cmd_ui * pcmdui) 
+   /*void view_interface::OnUpdateExecutePause(cmd_ui * pcmdui)
    {
       pcmdui->Enable(ExecuteGetPauseEnable());
       pcmdui->SetCheck(ExecuteIsPaused() ? 1 : 0);
@@ -394,6 +452,10 @@ namespace mediaplay
 
    bool view_interface::_ExecuteGetPauseEnable()
    {
+
+      if(get_data() == NULL)
+         return false;
+
       switch(get_data()->GetMode())
       {
       case data::ModeNone:
@@ -431,7 +493,7 @@ namespace mediaplay
             && (pdata->GetMidiSequence().GetState() == ::mus::midi::sequence::StatusOpened)
             && !_ExecuteIsWaitingToPlay();
       case data::ModeWave:
-         return m_pwaveplayer->GetPlayEnable();
+         return GetWavePlayer()->GetPlayEnable();
       default:
          ASSERT(FALSE);
          return false;
@@ -453,8 +515,8 @@ namespace mediaplay
                   GetMidiSequence().GetState() == ::mus::midi::sequence::StatusPlaying ||
                   _ExecuteIsWaitingToPlay());
       case data::ModeWave:
-         return m_pwaveplayer != NULL &&
-                  m_pwaveplayer->IsPlaying();
+         return GetWavePlayer() != NULL &&
+                  GetWavePlayer()->IsPlaying();
       default:
          ASSERT(FALSE);
          return false;
@@ -469,7 +531,7 @@ namespace mediaplay
       ikar::data & data = GetKaraokeData();
       if(get_data()->GetMode() == data::ModeMidi)
       {
-         MidiPlayer * pplayer = GetMidiPlayer();
+         midi_player * pplayer = GetMidiPlayer();
          ::mus::midi::sequence & sequence = pplayer->GetSequence();
          //::mus::midi::file & file = sequence.GetFile();
          int iTrack = data.GetStaticData().GetGuessMelodyTrack();
@@ -480,8 +542,13 @@ namespace mediaplay
             iTrack,
             bMinusOne);*/
       }
-      DBListenMinusOne(true, m_pdocument->get_path_name(), bMinusOne);
-      
+      bool bPreviousMinusOne = false;
+      if(!DBListenMinusOne(false, m_pdocument->get_path_name(), bPreviousMinusOne)
+      || is_different(bPreviousMinusOne, bMinusOne))
+      {
+         DBListenMinusOne(true, m_pdocument->get_path_name(), bMinusOne);
+      }
+
    }
 
    void view_interface::_ExecuteToggleListenMinusOne()
@@ -495,15 +562,15 @@ namespace mediaplay
          {
          case data::ModeWave:
             {
-               m_pwaveplayer->Devocalize(!m_pwaveplayer->IsDevocalized());
+               GetWavePlayer()->Devocalize(!GetWavePlayer()->IsDevocalized());
             }
             break;
          case data::ModeMidi:
             {
-               MidiPlayer * pplayer = GetMidiPlayer();
+               midi_player * pplayer = GetMidiPlayer();
                ::mus::midi::sequence & sequence = pplayer->GetSequence();
                ::mus::midi::file & file = sequence.GetFile();
-//               MidiTracks & tracks = file.GetTracks();
+//               midi_tracks & tracks = file.GetTracks();
                int iTrack = data.GetStaticData().GetGuessMelodyTrack();
                bool bMute = file.IsTrackMute(iTrack);
                _ExecuteListenMinusOne(!bMute);
@@ -524,11 +591,11 @@ namespace mediaplay
          && (GetMidiSequence().GetState() == ::mus::midi::sequence::StatusOpened
          || GetMidiSequence().GetState() == ::mus::midi::sequence::StatusPlaying))
          ||
-         (m_pwaveplayer != NULL
-         && (m_pwaveplayer->IsPlaying() 
-            || m_pwaveplayer->DecoderIsOpened()));
+         (GetWavePlayer() != NULL
+         && (GetWavePlayer()->IsPlaying()
+            || GetWavePlayer()->DecoderIsOpened()));
       return bEnable;
-      
+
    }
 
    bool view_interface::GetListenMinusOneCheck()
@@ -540,7 +607,7 @@ namespace mediaplay
          {
          case data::ModeWave:
             {
-               return m_pwaveplayer->IsDevocalized();
+               return GetWavePlayer()->IsDevocalized();
             }
             break;
          case data::ModeMidi:
@@ -564,11 +631,11 @@ namespace mediaplay
 
    void view_interface::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEvent * pdata)
    {
-      MidiPlayerInterface::OnMidiPlayerNotifyEvent(pdata);
+      midi_player_interface::OnMidiPlayerNotifyEvent(pdata);
       ::mus::midi::sequence & seq = pdata->m_pplayer->GetSequence();
       ASSERT(&seq == &GetMidiSequence());
       data * pdoc = get_data();
-      
+
       switch(pdata->m_enotifyevent)
       {
       case  ::mus::midi::player::NotifyEventPlaybackStart:
@@ -587,17 +654,17 @@ namespace mediaplay
       if(pdata->m_enotifyevent == ::mus::midi::player::NotifyEventGenericMmsgDone
          && pdoc->m_bPlay)
       {
-         
+
    //      double dRate =   GetProgressSlider()->GetRate();
-     
+
          //if(dRate == 0.0)
          {
             //Show Title
      //       ShowTitle();
-            
+
             // time to let the title be visible
        //     m_msPlayTimeOut = timeGetTime() + 3000;
-            
+
             //       Sleep(3000);
          }
    //      else
@@ -645,15 +712,15 @@ namespace mediaplay
        //  CXfplayerViewUpdateHint uh;
          //uh.AddType(CXfplayerViewUpdateHint::TypeProgressRateChange);
          //pdoc->update_all_views(NULL, 0, &uh);
-         
+
       }
-      else 
+      else
       {
          int i = 0;
          i++;
       }
    //   pdoc->OnMidiPlayerNotifyEvent(pdata);
-      
+
    }
 
    bool view_interface::_ExecuteIsWaitingToPlay()
@@ -696,22 +763,25 @@ namespace mediaplay
             {
                if(_ExecuteIsPlaying())
                {
-                  if(Application.GetPlaylistCentral().GetCurrentPlaylist() != NULL)
+                  if(&Application.GetPlaylistCentral() != NULL)
                   {
-                     data * pdata = get_data();
-                     if(pdata != NULL)
+                     if(Application.GetPlaylistCentral().GetCurrentPlaylist() != NULL)
                      {
-                        imedia::position pos = 0;
-                        switch(pdata->GetMode())
+                        data * pdata = get_data();
+                        if(pdata != NULL)
                         {
-                        case data::ModeWave:
-                           pos = GetWavePlayer()->GetWaveOut()->get_position_for_synch();
-                           break;
-                        case data::ModeMidi:
-                           GetMidiSequence().GetPosition(pos);
-                           break;
+                           imedia::position pos = 0;
+                           switch(pdata->GetMode())
+                           {
+                           case data::ModeWave:
+                              pos = GetWavePlayer()->GetWaveOut()->get_position_for_synch();
+                              break;
+                           case data::ModeMidi:
+                              GetMidiSequence().get_position(pos);
+                              break;
+                           }
+                           Application.GetPlaylistCentral().GetCurrentPlaylist()->set_int("current_song_position", (int) pos.m_number);
                         }
-                        Application.GetPlaylistCentral().GetCurrentPlaylist()->data_set("current_song_position", pos.m_i);
                      }
                   }
                }
@@ -800,26 +870,26 @@ namespace mediaplay
       m_bWaitingToPlay = false;
 
 //      data * pdoc = get_data();
-      
+
    /*   CXfplayerViewUpdateHint uh;
-      
-      
+
+
       CXfplayerDoc * pdoc = get_data();
       uh.AddType(CXfplayerViewUpdateHint::UpdateSimpleLyricsNoRepaint);
       pdoc->update_all_views(NULL, 0L, &uh);*/
-      
+
       //frame_window * pMainFrame = GetParentFrame();
-      
-      MidiPlayer * pmidiplayer = GetMidiPlayer();
-      
+
+      midi_player * pmidiplayer = GetMidiPlayer();
+
       ::mus::midi::sequence & midisequence = pmidiplayer->GetSequence();
       ASSERT(!midisequence.IsNull());
-      
+
    //   CXfplayerScoring * pscoring = pdoc->GetScoring();
      // ASSERT(pscoring != NULL);
-      
+
    //   double dRate =   GetProgressRate();
-      
+
       try
       {
    //      pmidiplayer->SetMessageWindow(plyriSimpleView->m_hWnd);
@@ -845,15 +915,15 @@ namespace mediaplay
          pe->Delete();*/
          return;
       }
-      
+
    //   pdoc->StartScoring(true);
-      
+
      // pdoc->Show(pdoc->ShowSongLabelInformation, false);
-      
+
    //   uh.clear();
      // uh.AddType(CXfplayerViewUpdateHint::UpdateSongLabelInformation);
       //pdoc->update_all_views(NULL, 0L, &uh);
-      
+
    }
 
    void view_interface::OnMidiLyricEvent(base_array<LyricEventV1, LyricEventV1&> * pevents)
@@ -890,7 +960,7 @@ namespace mediaplay
 
    bool view_interface::BackViewGetDestroy()
    {
-      return m_bDestroy; 
+      return m_bDestroy;
    }
 
    void view_interface::_001OnSize(gen::signal_object * pobj)
@@ -923,7 +993,7 @@ namespace mediaplay
 
       pdc->SelectClipRgn(NULL);
 
-      if(!m_bPassthroughBackground)
+      if(m_bShowGcomBackground && m_bEnableShowGcomBackground)
       {
          if(gcom::backview::Interface::IsEnabled())
          {
@@ -933,21 +1003,22 @@ namespace mediaplay
             main.DeferCheckLayout();
 
             if(main.IsInitialized())
-             {
+            {
 
-             ::ca::rgn_sp rgn(get_app());
-             rect rect(graphics.m_rectFinalPlacement);
-         ClientToScreen(rect);
-            rgn->CreateRectRgnIndirect(rect);
-            pdc->SelectClipRgn(rgn);
+               ::ca::rgn_sp rgn(get_app());
+               rect rect(graphics.m_rectFinalPlacement);
+               ClientToScreen(rect);
+               rgn->CreateRectRgnIndirect(rect);
+               pdc->SelectClipRgn(rgn);
 
-            gcom::backview::Interface::BackViewRender(pdc, rectClient);
-            pdc->SelectClipRgn(NULL);
+               gcom::backview::Interface::BackViewRender(pdc, rectClient);
+               pdc->SelectClipRgn(NULL);
+
             }
          }
          else
          {
-            pdc->FillSolidRect(rectClient, RGB(200, 220, 180));
+            //pdc->FillSolidRect(rectClient, RGB(200, 220, 180));
          }
       }
 
@@ -966,9 +1037,9 @@ namespace mediaplay
 
    }
 
-   void view_interface::KaraokeBouncingBall() 
+   void view_interface::KaraokeBouncingBall()
    {
-      
+
       if(!m_bBouncingBall)
       {
          m_bBouncingBall = true;
@@ -986,19 +1057,19 @@ namespace mediaplay
          PrepareLyricTemplateLines();
       }
       RedrawWindow();
-      data_set("BouncingBall", ::ca::system::idEmpty, m_bBouncingBall ? 1 : 0);   
+      data_set("BouncingBall", ::radix::system::idEmpty, m_bBouncingBall ? 1 : 0);
    }
 
-   /*void view_interface::OnUpdateKaraokeBouncingBall(cmd_ui * pcmdui) 
+   /*void view_interface::OnUpdateKaraokeBouncingBall(cmd_ui * pcmdui)
    {
       pcmdui->Enable();
       pcmdui->SetCheck(m_bBouncingBall ? 1: 0);
-      
+
    }*/
 
-   void view_interface::KaraokeGradualFilling() 
+   void view_interface::KaraokeGradualFilling()
    {
-      
+
       if(!m_bGradualFilling)
       {
          m_bGradualFilling = true;
@@ -1016,24 +1087,24 @@ namespace mediaplay
          PrepareLyricTemplateLines();
       }
       RedrawWindow();
-      data_set("GradualFilling", ::ca::system::idEmpty, m_bGradualFilling ? 1 : 0);   
+      data_set("GradualFilling", ::radix::system::idEmpty, m_bGradualFilling ? 1 : 0);
    }
 
-   /*void view_interface::OnUpdateKaraokeGradualFilling(cmd_ui * pcmdui) 
+   /*void view_interface::OnUpdateKaraokeGradualFilling(cmd_ui * pcmdui)
    {
       pcmdui->Enable();
       pcmdui->SetCheck(m_bGradualFilling ? 1: 0);
-      
+
    }*/
 
 
 
-   /*void view_interface::OnExecuteMinusOne() 
+   /*void view_interface::OnExecuteMinusOne()
    {
       ExecuteToggleListenMinusOne();
    }
 
-   void view_interface::OnUpdateExecuteMinusOne(cmd_ui * pcmdui) 
+   void view_interface::OnUpdateExecuteMinusOne(cmd_ui * pcmdui)
    {
       pcmdui->Enable(ExecuteGetListenMinusOneEnable());
       pcmdui->SetCheck(GetListenMinusOneCheck());
@@ -1081,7 +1152,7 @@ namespace mediaplay
 
       //if(db.get_data(_vmsp::CConfiguration::CfgKaraokeEncoding, GetLanguage(), 0, var))
       if(db.get_data(
-         _vmsp::CConfiguration::CfgKaraokeEncoding, 
+         _vmsp::CConfiguration::CfgKaraokeEncoding,
          0,
          0,
          var))
@@ -1119,12 +1190,12 @@ namespace mediaplay
 
    //   db.set_data(
      //    _vmsp::CConfiguration::CfgKaraokeEncoding,
-       //  GetLanguage(), 
+       //  GetLanguage(),
          //0,
          //var);
       db.set_data(
          _vmsp::CConfiguration::CfgKaraokeEncoding,
-         0, 
+         0,
          0,
          var);*/
 
@@ -1144,7 +1215,7 @@ namespace mediaplay
        }
        return retval;
    }
-    
+
 
    void URLOpenNew(const char * lpcsz)
    {
@@ -1175,7 +1246,7 @@ namespace mediaplay
 
       WinExec(str,SW_SHOW);
 
-           
+
    }
 
 
@@ -1185,14 +1256,14 @@ namespace mediaplay
       return System.LoadStandardCursor(IDC_ARROW);
    }
 
-   void view_interface::CopyLinkLocation() 
+   void view_interface::CopyLinkLocation()
    {
    /* trans   if (!KaraokeGetWnd()->OpenClipboard())
       {
          System.simple_message_box( "Cannot open the Clipboard" );
          return;
       }
-      
+
       // remove the current Clipboard contents
       if(!EmptyClipboard())
       {
@@ -1203,21 +1274,21 @@ namespace mediaplay
       string str;
       gen::international::UnicodeToACP(str, m_wstrCurrentLink);
 
-      HGLOBAL hglbCopy = GlobalAlloc(GMEM_MOVEABLE, 
-               (str.get_length() + 1) * sizeof(char)); 
-           if (hglbCopy == NULL) 
-           { 
-               CloseClipboard(); 
-               return; 
-           } 
-    
-           // Lock the handle and copy the text to the buffer. 
-    
-           LPTSTR lptstrCopy = (LPTSTR) GlobalLock(hglbCopy); 
-           memcpy(lptstrCopy, (const char *) str, 
-               str.get_length() * sizeof(char)); 
-           lptstrCopy[str.get_length()] = (char) 0;    // null character 
-           GlobalUnlock(hglbCopy); 
+      HGLOBAL hglbCopy = GlobalAlloc(GMEM_MOVEABLE,
+               (str.get_length() + 1) * sizeof(char));
+           if (hglbCopy == NULL)
+           {
+               CloseClipboard();
+               return;
+           }
+
+           // lock the handle and copy the text to the buffer.
+
+           LPTSTR lptstrCopy = (LPTSTR) GlobalLock(hglbCopy);
+           memcpy(lptstrCopy, (const char *) str,
+               str.get_length() * sizeof(char));
+           lptstrCopy[str.get_length()] = (char) 0;    // null character
+           GlobalUnlock(hglbCopy);
       // ...
       // get the currently selected data
       // ...
@@ -1254,16 +1325,16 @@ namespace mediaplay
       strListenMinusOne.Format("%s.ListenMinusOne", lpcszPathName);
       if(bSave)
       {
-         data_set(strListenMinusOne, ::ca::system::idEmpty, bMinusOne ? 1 : 0);   
-         data_set("General.ListenMinusOne", ::ca::system::idEmpty, bMinusOne ? 1 : 0);   
+         data_set(strListenMinusOne, ::radix::system::idEmpty, bMinusOne ? 1 : 0);
+         data_set("General.ListenMinusOne", ::radix::system::idEmpty, bMinusOne ? 1 : 0);
          return true;
       }
       else
       {
          int i;
-         if(!data_get(strListenMinusOne, ::ca::system::idEmpty, i))
+         if(!data_get(strListenMinusOne, ::radix::system::idEmpty, i))
          {
-            if(!data_get("General.ListenMinusOne", ::ca::system::idEmpty, i))
+            if(!data_get("General.ListenMinusOne", ::radix::system::idEmpty, i))
             {
                return false;
             }
@@ -1271,7 +1342,7 @@ namespace mediaplay
          bMinusOne = (i == 0) ? false : true;
          return true;
       }
-      
+
    }
 
    bool view_interface::OnExecuteBeforePlay()
@@ -1294,7 +1365,7 @@ namespace mediaplay
 
    void view_interface::OnMediaPlaybackStart()
    {
-      
+
       rect rectClient;
       GetClientRect(rectClient);
       rect rect = rectClient;
@@ -1323,8 +1394,8 @@ namespace mediaplay
    {
       return 0;
       view_interface * pview = (view_interface *) lpParam;
-      //CSingleLock slBuffer(pview->m_gdibuffer.GetSemaphore());
-      CEvent event;
+      //single_lock slBuffer(pview->m_gdibuffer.GetSemaphore());
+      event event;
       LyricEventV1 levent;
       levent.m_iType = ikar::event_timer;
       MMRESULT mmr;
@@ -1337,8 +1408,8 @@ namespace mediaplay
          mmr = timeSetEvent(
             max(iResolution, iDelay),
             iResolution,  // 5 ms resolution
-            (LPTIMECALLBACK) (HANDLE) event,  
-            NULL,      
+            (LPTIMECALLBACK) (HANDLE) event,
+            NULL,
             TIME_ONESHOT | TIME_CALLBACK_EVENT_SET);
 
          if(pview == NULL)
@@ -1348,7 +1419,7 @@ namespace mediaplay
             pview->OnLyricEvent(&levent, true);
          }
 
-         event.Lock();
+         event.wait();
       }
 
       return 0;
@@ -1360,7 +1431,7 @@ namespace mediaplay
       if(pbase->m_wparam == 1)
       {
          rect_array * precta = (rect_array *) pbase->m_lparam;
-         UpdateScreen(*precta, RDW_INVALIDATE | RDW_UPDATENOW );   
+         UpdateScreen(*precta, RDW_INVALIDATE | RDW_UPDATENOW );
          delete precta;
       }
       pbase->set_lresult(0);
@@ -1417,44 +1488,53 @@ namespace mediaplay
 
    void view_interface::_StartRecording()
    {
-      if(m_pwaverecorder->IsRecording())
-         return;
-
-      audWaveRecorderCommand reccommand;
-
-      string strRec;
-
-      data * pdata = get_data();
-
-      if(pdata->m_etype == data::TypeRtp)
-         return;
-
-      string strPath = pdata->get_path_name();
-
-
-      string strTitle = System.file().name_(strPath);
-
-      string strFolder = Application.dir().userdata(unitext("Gravações de Karaokê"));
-      System.dir().mk(strFolder);
-      
-
-      string strBase;
-
-      strBase = System.dir().path(strFolder, strTitle);
-
-      int i = 1;
-      while(true)
+      try
       {
-         strRec.Format("%s.%d.wav", strBase, i);
-         if(!System.file().exists(strRec))
-            break;
-         i++;
+         if(m_pwaverecorder->IsRecording())
+            return;
+
+         audWaveRecorderCommand reccommand;
+
+         string strRec;
+
+         data * pdata = get_data();
+
+         if(pdata == NULL)
+            return;
+
+         if(pdata->m_etype == data::TypeRtp)
+            return;
+
+         string strPath = pdata->get_path_name();
+
+
+         string strTitle = System.file().name_(strPath);
+
+         string strFolder = Application.dir().userdata(unitext("Gravações de Karaokê"));
+         System.dir().mk(strFolder);
+
+
+         string strBase;
+
+         strBase = System.dir().path(strFolder, strTitle);
+
+         int i = 1;
+         while(true)
+         {
+            strRec.Format("%s.%d.wav", strBase, i);
+            if(!System.file().exists(strRec))
+               break;
+            i++;
+         }
+         m_fileRecord->open(strRec, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::type_binary);
+         reccommand.OpenWavFile(m_fileRecord);
+         m_pwaverecorder->ExecuteCommand(reccommand);
+         reccommand.Record();
+         m_pwaverecorder->ExecuteCommand(reccommand);
       }
-      m_fileRecord->open(strRec, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::type_binary);
-      reccommand.OpenWavFile(m_fileRecord);
-      m_pwaverecorder->ExecuteCommand(reccommand);
-      reccommand.Record();
-      m_pwaverecorder->ExecuteCommand(reccommand);
+      catch(...)
+      {
+      }
 
    }
 
@@ -1491,7 +1571,7 @@ namespace mediaplay
             _StartRecording();
          }
       }
-      data_set("General.AutoRecord", m_bAutoRecord);   
+      data_set("General.AutoRecord", m_bAutoRecord);
    }
 
    void view_interface::OnSetScalar(int i, double d)
@@ -1532,13 +1612,13 @@ namespace mediaplay
          {
          case data::ModeWave:
             {
-               return m_pwaveplayer->GetWaveOut()->GetPositionMillis();
+               return (double) GetWavePlayer()->GetWaveOut()->GetPositionMillis();
             }
          case data::ModeMidi:
             {
                imedia::position pos;
-               GetMidiSequence().GetPosition(pos);
-               return pos;
+               GetMidiSequence().get_position(pos);
+               return (double) pos;
             }
          default:
             {
@@ -1563,13 +1643,13 @@ namespace mediaplay
          {
          case data::ModeWave:
             {
-               return (double) m_pwaveplayer->GetWaveOut()->m_pprebuffer->GetMillisLength();
+               return (double) GetWavePlayer()->GetWaveOut()->m_pprebuffer->GetMillisLength();
             }
          case data::ModeMidi:
             {
                imedia::position pos;
                GetMidiSequence().GetPositionLength(pos);
-               return pos;
+               return (double) pos;
             }
          default:
             {
@@ -1669,6 +1749,109 @@ namespace mediaplay
    int view_interface::KaraokeGetLyricsDelay()
    {
       return m_iDelay;
+   }
+
+
+   bool view_interface::toggle_show_gcom_background()
+   {
+      return show_gcom_background(!m_bShowGcomBackground);
+   }
+
+
+   bool view_interface::show_gcom_background(bool bShow)
+   {
+
+      if(!m_bEnableShowGcomBackground)
+         return false;
+
+
+      gcom::backview::user::interaction * pbackview = NULL;
+
+      bergedge::frame * pframe = GetTypedParent< bergedge::frame >();
+      if(pframe != NULL)
+      {
+         try
+         {
+            pbackview = pframe->m_pview;
+            pbackview->m_dataid = m_dataid;
+         }
+         catch(...)
+         {
+            pbackview = this;
+         }
+      }
+      else
+      {
+         pbackview = this;
+      }
+
+      if(pbackview == NULL)
+         return false;
+
+      if(bShow)
+      {
+         if(pbackview->m_spfilesetBackgroundImage.is_set())
+         {
+            pbackview->m_spfilesetBackgroundImage.delete_this();
+         }
+         simpledb::file_set * pimagefileset = new simpledb::file_set(get_app());
+         pimagefileset->initialize(get_app());
+         pimagefileset->m_dataid = "ca2_fontopus_votagus.nature.ImageDirectorySet";
+
+         stringa straFilter;
+         straFilter.add("\\*.bmp");
+         straFilter.add("\\*.jpg");
+         straFilter.add("\\*.png");
+         pimagefileset->m_p->add_filter(straFilter);
+
+         bool bInit;
+         if(!pimagefileset->data_get("initialize_default", ::radix::system::idEmpty, bInit))
+         {
+              bInit = true;
+         }
+         if(bInit)
+         {
+            pimagefileset->data_set("initialize_default", ::radix::system::idEmpty, false);
+#ifdef WIN32
+            string strDir;
+            win_SHGetSpecialFolderPath(
+               NULL,
+               strDir,
+               CSIDL_WINDOWS,
+               FALSE);
+            strDir = System.dir().path(strDir, "Web\\Wallpaper");
+            pimagefileset->add_search(strDir);
+#else
+            zz
+#endif
+         }
+         pimagefileset->refresh();
+
+         pbackview->m_spfilesetBackgroundImage.m_p = dynamic_cast < ex2::file_set * > (pimagefileset->m_p);
+
+         pbackview->Enable(true);
+         pbackview->SetBackgroundImageChangeInterval(1000);
+         if(pbackview->m_dwTimerStep > 0)
+         {
+            pbackview->KillTimer(pbackview->m_dwTimerStep);
+         }
+         pbackview->m_dwTimerStep = TimerBackView;
+         pbackview->SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
+         pbackview->layout();
+         pbackview->GetMain().m_bPendingLayout = true;
+      }
+      else
+      {
+         pbackview->Enable(false);
+      }
+
+      m_bShowGcomBackground = bShow;
+
+      data_set("ShowGcomBackground", ::radix::system::idEmpty, bShow);   
+
+
+      return true;
+
    }
 
 } // namespace mediaplay

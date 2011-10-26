@@ -29,14 +29,14 @@ namespace html
 
    attribute * attribute_array::get(const char * pszName)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         if(element_at(i).get_name().CompareNoCase(pszName) == 0)
-            return &element_at(i);
+         if(this->element_at(i).get_name().CompareNoCase(pszName) == 0)
+            return &this->element_at(i);
       }
       return NULL;
    }
-   
+
    string attribute_array::get_value(const char * pszName)
    {
       attribute * pattr = get(pszName);

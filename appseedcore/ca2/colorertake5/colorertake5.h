@@ -7,7 +7,7 @@ namespace colorertake5
    class application;
 } // namespace colorertake5
 
-#include "Features.h"
+#include "features.h"
 #include "exception.h"
 #include "memory_chunks.h"
 #include "logging.h"

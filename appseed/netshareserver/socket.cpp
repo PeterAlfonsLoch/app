@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "include/FreeImage.h"
+#include <math.h>
 
 namespace netshareserver
 {
@@ -12,55 +13,9 @@ namespace netshareserver
       httpd_socket(h)
    {
       
-      m_strCat = System.dir().matter("fontopus.com.cat");
+      m_strCat = Application.dir().matter("fontopus.com.cat");
 
       m_psession = NULL;
-	   /*
-      m_strHead += "HTTP/1.1 200 OK\n";
-	   m_strHead += "Server: netnode/1.0 (Windows)\n";
-	   m_strHead += "Accept-Ranges: bytes\n";
-	   m_strHead += "Date: Mon, 23 May 2005 22:38:34 GMT\n";
-	   m_strHead += "Server: netnode/1.0 (Windows)\n";
-	   m_strHead += "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\n";
-	   //m_memfileSend += "Etag: "3f80f-1b6-3e1cb03b"";
-	   m_strHead += "Accept-Ranges: bytes\n";
-	   // m_memfileSend += "Content-Length: 438";
-	   //m_strHead += "Connection: close\n";
-      */
-
-      /*	
-      m_memfileBody << "<html>\n";
-      m_memfileBody << "<head>\n";
-      m_memfileBody << "</head>\n";
-      m_memfileBody << "<body>\n";
-      m_memfileBody << "<h1>Ti Amo Carlos Gustavo Cecyn Lundgren de 15 de novembro de 1984!</h1>\n";
-      m_memfileBody << "<h1>Assinado Camilo Sasuke Tsumanuma de 2 de abril de 1977!</h1>\n";
-      m_memfileBody << "</body>\n";
-      m_memfileBody.Truncate(0);
-      */
-
-      /*
-      m_plistensocket = plistensocket;
-	   m_strHead += "HTTP/1.1 200 OK\n";
-	   m_strHead += "Server: netnode/1.0 (Windows)\n";
-	   m_strHead += "Accept-Ranges: bytes\n";
-	   m_strHead += "Date: Mon, 23 May 2005 22:38:34 GMT\n";
-	   m_strHead += "Server: netnode/1.0 (Windows)\n";
-	   m_strHead += "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\n";*/
-	   //m_memfileSend += "Etag: "3f80f-1b6-3e1cb03b"";
-	   //m_strHead += "Accept-Ranges: bytes\n";
-	   // m_memfileSend += "Content-Length: 438";
-	   //m_strHead += "Connection: close\n";
-
-	   /*
-      m_memfileBody << "<html>\n";
-	   m_memfileBody << "<head>\n";
-	   m_memfileBody << "</head>\n";
-	   m_memfileBody << "<body>\n";
-	   m_memfileBody << "<h1>Ti Amo Carlos Gustavo Cecyn Lundgren de 15 de novembro de 1984!</h1>\n";
-	   m_memfileBody << "<h1>Assinado Camilo Sasuke Tsumanuma de 2 de abril de 1977!</h1>\n";
-	   m_memfileBody << "</body>\n";
-      */
 	      
       m_nBytesSent = 0;
       m_nBytesBufferSize = 1024;
@@ -118,10 +73,13 @@ namespace netshareserver
 
       defer_initialize_session();
 
+      if(m_dibSnapshot.is_null())
+         m_dibSnapshot.create(m_pbergedge);
+
       string str(lpcsz);
 
-      string strObject = m_psession->m_papp->m_psystem->url().object_get_script(str);
-      string strQuery = m_psession->m_papp->m_psystem->url().object_get_query(str);
+      string strObject = CaSys(m_psession).url().object_get_script(str);
+      string strQuery = CaSys(m_psession).url().object_get_query(str);
       int iFrame;
       if(strObject == "/snapshoti.png")
 		{
@@ -148,7 +106,7 @@ namespace netshareserver
          rectScreen = m_psession->m_pbergedge->m_rectScreen;
          if(rectScreen.width() > 0 && rectScreen.height() > 0)
          {
-            m_psession->m_pframe->SetWindowPos(0, 0, 0, rectScreen.width(), rectScreen.height(), SWP_NOZORDER);
+            m_psession->SetWindowPos(0, 0, 0, rectScreen.width(), rectScreen.height(), SWP_NOZORDER);
          }
          iFrame = send_snapshot("f");
          return;
@@ -166,12 +124,8 @@ namespace netshareserver
          int y = q["y"].get_integer();
          point pt(x, y);
          m_psession->m_pframe->ClientToScreen(&pt);
-         m_psession->m_pbergedge->m_ptCursor = pt;
          int iMouseFlagPress = 0;
-         m_psession->PostMessage(
-            WM_MOUSEMOVE, 
-            iMouseFlagPress, 
-            MAKELONG(m_psession->m_pbergedge->m_ptCursor.x, m_psession->m_pbergedge->m_ptCursor.y));
+         m_psession->PostMessage(WM_MOUSEMOVE, iMouseFlagPress, MAKELONG(pt.x, pt.y));
          netshareSend();
          return;
 
@@ -184,11 +138,7 @@ namespace netshareserver
          int y = q["y"].get_integer();
          point pt(x, y);
          m_psession->m_pframe->ClientToScreen(&pt);
-         m_psession->m_pbergedge->m_ptCursor = pt;
-         m_psession->PostMessage(
-            WM_LBUTTONDOWN, 
-            MK_LBUTTON, 
-            MAKELONG(m_psession->m_pbergedge->m_ptCursor.x, m_psession->m_pbergedge->m_ptCursor.y));
+         m_psession->PostMessage(WM_LBUTTONDOWN, MK_LBUTTON, MAKELONG(pt.x, pt.y));
          netshareSend();
          return;
 
@@ -201,11 +151,7 @@ namespace netshareserver
          int y = q["y"].get_integer();
          point pt(x, y);
          m_psession->m_pframe->ClientToScreen(&pt);
-         m_psession->m_pbergedge->m_ptCursor = pt;
-         m_psession->PostMessage(
-            WM_LBUTTONUP, 
-            0, 
-            MAKELONG(m_psession->m_pbergedge->m_ptCursor.x, m_psession->m_pbergedge->m_ptCursor.y));
+         m_psession->PostMessage(WM_LBUTTONUP, 0, MAKELONG(pt.x, pt.y));
          netshareSend();
          return;
       }
@@ -230,88 +176,44 @@ namespace netshareserver
    int socket::send_snapshot(string str)
    {
       session * psession = m_psession;
-      CSingleLock sl (&psession->m_mutexSnapshot, TRUE);
-      int iRetry = 0;
-   start:
-      //string strI;
-      //string strD;
-      //string strF;
+      single_lock sl (&psession->m_mutexSnapshot, TRUE);
+//      int iRetry = 0;
+//   start:
       int iFrame = psession->m_iFrame;
-      //strI.Format("C:\\ca2\\netshareserver\\screenshotI%d.png", iFrame);
-      //strD.Format("C:\\ca2\\netshareserver\\screenshotD%d.png", iFrame);
-      //strF.Format("C:\\ca2\\netshareserver\\screenshotF.png", iFrame);
-      psession->m_iFrame++;
-      if(psession->m_iFrame >= psession->m_iFrameCount)
-         psession->m_iFrame = 0;
-      int iFrameCount = psession->m_iFrameCount;
-      /*if(str == "b")
-      {
-//         int iSize1 = m_psession->m_papp->file().length(strI);
-  //       int iSize2 = m_psession->m_papp->file().length(strD);
-         if(iSize2 == 0)
-         {
-            iRetry++;
-            if(iRetry <= psession->m_iFrameCount)
-               goto start;
-         }
-         if(iSize1 <= iSize2)
-            str = "i";
-         else
-            str = "d";
-      }*/
-      iFrameCount = 256;
+      int iFrameCount = 1;
       class size size = m_psession->m_pbergedge->m_rectScreen.size();
-      int iSliceCount = (int) sqrt((double) iFrameCount);
-      int iFrameWidth = size.cx / iSliceCount;
-      int iFrameHeight = size.cy / iSliceCount;
-      class size sizeFrame(iFrameWidth, iFrameHeight);
+      int iSliceCount;;
+      int iFrameWidth;;
+      int iFrameHeight;;
+      class size sizeFrame;
       int iFrameX;
       int iFrameY;
+      ::ca::dib_sp & dib  = m_dibSnapshot;
 
-      /*iFrameCount = 256;
-      int iDiffCount = 0;
-      ::ca::dib_sp dib(get_app());
-      int i;
-      for(i = 0; i < iFrameCount; i++)
+      m_psession->m_dibScreen->get_graphics()->SetViewportOrg(null_point());
+      m_psession->m_dibUser->get_graphics()->SetViewportOrg(null_point());
+
+
+      if(str == "i")
       {
-         dib->create(sizeFrame);
-         iFrameX = (i % iSliceCount) * iFrameWidth;
-         iFrameY = (i / iSliceCount) * iFrameHeight;
-         dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibScreen->get_graphics(), iFrameX, iFrameY, SRCCOPY);
-         dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibUser->get_graphics(), iFrameX, iFrameY, SRCINVERT);
-         COLORREF * p = dib->get_data();
-         int iArea = dib->area();
-         while(*p == 0 && iArea > 0)
-         {
-            p++;
-            iArea--;
-         }
-         if(*p != 0)
-         {
-            iFrame = i;
-            iDiffCount++;
-            if(iDiffCount > 2)
-               break;
-         }
-      }
-      if(iDiffCount > 2)
-      {
-         iFrameCount = 64;
-         iDiffCount = 0;
-         size = m_psession->m_papp->m_rectScreen.size();
+         iFrameCount = 1;
+         if(iFrame >= iFrameCount)
+            iFrame = 0;
          iSliceCount = (int) sqrt((double) iFrameCount);
          iFrameWidth = size.cx / iSliceCount;
          iFrameHeight = size.cy / iSliceCount;
          sizeFrame = class size(iFrameWidth, iFrameHeight);
-         for(i = 0; i < iFrameCount; i++)
+         dib->create(sizeFrame);
+         int i;
+         bool bFound = false;
+         for(i = iFrame; i < iFrameCount; i++)
          {
-            dib->create(sizeFrame);
             iFrameX = (i % iSliceCount) * iFrameWidth;
             iFrameY = (i / iSliceCount) * iFrameHeight;
             dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibScreen->get_graphics(), iFrameX, iFrameY, SRCCOPY);
             dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibUser->get_graphics(), iFrameX, iFrameY, SRCINVERT);
             COLORREF * p = dib->get_data();
-            int iArea = dib->area();
+            __int64 iArea = dib->area();
             while(*p == 0 && iArea > 0)
             {
                p++;
@@ -319,30 +221,21 @@ namespace netshareserver
             }
             if(*p != 0)
             {
+               bFound = true;
                iFrame = i;
-               iDiffCount++;
-               if(iDiffCount > 2)
-                  break;
+               break;
             }
          }
-         if(iDiffCount > 2)
+         if(!bFound)
          {
-            iFrameCount = 16;
-            iDiffCount = 0;
-            size = m_psession->m_papp->m_rectScreen.size();
-            iSliceCount = (int) sqrt((double) iFrameCount);
-            iFrameWidth = size.cx / iSliceCount;
-            iFrameHeight = size.cy / iSliceCount;
-            sizeFrame = class size(iFrameWidth, iFrameHeight);
-            for(i = 0; i < iFrameCount; i++)
+            for(i = 0; i < iFrame; i++)
             {
-               dib->create(sizeFrame);
                iFrameX = (i % iSliceCount) * iFrameWidth;
                iFrameY = (i / iSliceCount) * iFrameHeight;
                dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibScreen->get_graphics(), iFrameX, iFrameY, SRCCOPY);
                dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibUser->get_graphics(), iFrameX, iFrameY, SRCINVERT);
                COLORREF * p = dib->get_data();
-               int iArea = dib->area();
+               __int64 iArea = dib->area();
                while(*p == 0 && iArea > 0)
                {
                   p++;
@@ -350,73 +243,33 @@ namespace netshareserver
                }
                if(*p != 0)
                {
+                  bFound = true;
                   iFrame = i;
-                  iDiffCount++;
-                  if(iDiffCount > 2)
-                     break;
-               }
-            }
-            if(iDiffCount > 2)
-            {
-               iFrameCount = 4;
-               iDiffCount = 0;
-               size = m_psession->m_papp->m_rectScreen.size();
-               iSliceCount = (int) sqrt((double) iFrameCount);
-               iFrameWidth = size.cx / iSliceCount;
-               iFrameHeight = size.cy / iSliceCount;
-               sizeFrame = class size(iFrameWidth, iFrameHeight);
-               for(i = 0; i < iFrameCount; i++)
-               {
-                  dib->create(sizeFrame);
-                  iFrameX = (i % iSliceCount) * iFrameWidth;
-                  iFrameY = (i / iSliceCount) * iFrameHeight;
-                  dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibScreen->get_graphics(), iFrameX, iFrameY, SRCCOPY);
-                  dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibUser->get_graphics(), iFrameX, iFrameY, SRCINVERT);
-                  COLORREF * p = dib->get_data();
-                  int iArea = dib->area();
-                  while(*p == 0 && iArea > 0)
-                  {
-                     p++;
-                     iArea--;
-                  }
-                  if(*p != 0)
-                  {
-                     iFrame = i;
-                     iDiffCount++;
-                     if(iDiffCount > 1)
-                        break;
-                  }
-               }
-               if(iDiffCount > 1)
-               {
-                  iFrame = 0;
-                  iFrameCount = 1;
-                  size = m_psession->m_papp->m_rectScreen.size();
-                  iSliceCount = (int) sqrt((double) iFrameCount);
-                  iFrameWidth = size.cx / iSliceCount;
-                  iFrameHeight = size.cy / iSliceCount;
-                  sizeFrame = class size(iFrameWidth, iFrameHeight);
+                  break;
                }
             }
          }
-      }*/
-
-      iFrame = 0;
-      iFrameCount = 1;
-      size = m_psession->m_pbergedge->m_rectScreen.size();
-      iSliceCount = (int) sqrt((double) iFrameCount);
-      iFrameWidth = size.cx / iSliceCount;
-      iFrameHeight = size.cy / iSliceCount;
-      sizeFrame = class size(iFrameWidth, iFrameHeight);
-
+      }
+      else
+      {
+         iFrame = 0;
+         iFrameCount = 1;
+         size = m_psession->m_pbergedge->m_rectScreen.size();
+         iSliceCount = (int) sqrt((double) iFrameCount);
+         iFrameWidth = size.cx / iSliceCount;
+         iFrameHeight = size.cy / iSliceCount;
+         sizeFrame = class size(iFrameWidth, iFrameHeight);
+      }
+      psession->m_iFrame = iFrame + 1;
+      
       ex1::filesp spfile(get_app());
       primitive::memory st;
       FIBITMAP * pfi3 = NULL;
       if(str == "f")
       {
-            iFrameX = (iFrame % iSliceCount) * iFrameWidth;
-            iFrameY = (iFrame / iSliceCount) * iFrameHeight;
-         pfi3 = m_psession->m_papp->m_psystem->imaging().HBITMAPtoFI(psession->m_dibScreen->get_bitmap());
+         iFrameX = (iFrame % iSliceCount) * iFrameWidth;
+         iFrameY = (iFrame / iSliceCount) * iFrameHeight;
+         pfi3 = CaSys(m_psession).imaging().HBITMAPtoFI(psession->m_dibScreen->get_bitmap());
          psession->m_dibUser->from(null_point(), psession->m_dibScreen->get_graphics(), null_point(), size);
          m_dwLastITime = ::GetTickCount();
 
@@ -442,14 +295,10 @@ namespace netshareserver
       }
       else if(str == "i")
       {
-         ::ca::dib_sp dib(get_app());
-         iFrameX = (iFrame % iSliceCount) * iFrameWidth;
-         iFrameY = (iFrame / iSliceCount) * iFrameHeight;
-         dib->create(sizeFrame);
-         dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibScreen->get_graphics(), iFrameX, iFrameY, SRCCOPY);
-         pfi3 = m_psession->m_papp->m_psystem->imaging().HBITMAPtoFI(dib->get_bitmap());
          point ptFrame(iFrameX, iFrameY);
-         psession->m_dibUser->from(ptFrame, psession->m_dibScreen->get_graphics(), ptFrame, size);
+         dib->from(null_point(), psession->m_dibScreen->get_graphics(), ptFrame, sizeFrame);
+         pfi3 = CaSys(m_psession).imaging().HBITMAPtoFI(dib->get_bitmap());
+         psession->m_dibUser->from(ptFrame, psession->m_dibScreen->get_graphics(), ptFrame, sizeFrame);
          m_dwLastITime = ::GetTickCount();
 
          string strLen;
@@ -480,7 +329,7 @@ namespace netshareserver
          dib->create(sizeFrame);
          dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibScreen->get_graphics(), iFrameX, iFrameY, SRCCOPY);
          dib->get_graphics()->BitBlt(0, 0, iFrameWidth, iFrameHeight, psession->m_dibUser->get_graphics(), iFrameX, iFrameY, SRCINVERT);
-         pfi3 = m_psession->m_papp->m_psystem->imaging().HBITMAPtoFI(dib->get_bitmap());
+         pfi3 = CaSys(m_psession).imaging().HBITMAPtoFI(dib->get_bitmap());
          point ptFrame(iFrameX, iFrameY);
          psession->m_dibUser->from(ptFrame, psession->m_dibScreen->get_graphics(), ptFrame, size);
          
@@ -533,6 +382,7 @@ namespace netshareserver
          FreeImage_CloseMemory(pfimemI);
          netshareSend();
       }
+      
       return 0;
    }
 

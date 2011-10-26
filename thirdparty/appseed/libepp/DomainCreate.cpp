@@ -103,7 +103,7 @@ namespace libepp
 
          if (get_command()->has_secdns_extension())
          {
-            collection::list < DSInfo > ds_info_list = get_command()->get_dsInfo();
+            ds_info_array ds_info_list = get_command()->get_dsInfo();
             collection::list < KeyData > dnskey_data_list = get_command()->get_keyDataList();
 
             if (get_command()->get_secDnsVersion() == "1.0") 
@@ -111,9 +111,9 @@ namespace libepp
                to_parse["ds_ext"] +=  "<secDNS:create xmlns:secDNS=\"urn:ietf:params:xml:ns:secDNS-1.0\" xsi:schemaLocation=\"urn:ietf:params:xml:ns:secDNS-1.0 secDNS-1.0.xsd\">";
 
                
-               for(POSITION pos = ds_info_list.get_head_position(); pos != NULL;) 
+               for(int i = 0; i < ds_info_list.get_count(); i++) 
                {
-                  DSInfo & info = ds_info_list.get_next(pos);
+                  DSInfo & info = ds_info_list[i];
                   to_parse["ds_ext"] += info.get_xml_format(get_command()->get_secDnsVersion());
                }
 
@@ -140,9 +140,9 @@ namespace libepp
                } 
                else 
                {
-                  for(POSITION pos = ds_info_list.get_head_position(); pos != NULL;) 
+                  for(int i = 0; i < ds_info_list.get_count(); i++) 
                   {
-                     DSInfo & info = ds_info_list.get_next(pos);
+                     DSInfo & info = ds_info_list[i];
                      to_parse["ds_ext"] += info.get_xml_format(get_command()->get_secDnsVersion());
                   }
                }

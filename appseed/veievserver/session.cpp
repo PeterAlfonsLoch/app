@@ -132,7 +132,7 @@ namespace veievserver
       if(!papp->initialize_instance())
          return 0;
 
-      papp->m_psystem->get_twf()->m_bRun = false;
+      Sys(papp->m_psystem).get_twf()->m_bRun = false;
       win::thread * pthread = dynamic_cast < win::thread *> (App(papp).smart_pointer < ::ca::thread > ::m_p);
       win::thread * pthreadCur = dynamic_cast < win::thread *> (App(papp).GetThread()->m_p);
       pthread->m_hThread = pthreadCur->m_hThread;
@@ -176,7 +176,7 @@ namespace veievserver
       try
       {
          iExitCode = papp->exit_instance();
-         papp->m_psystem->log().trace("Exit Code from retract_app %d (exit_instance %s)", iExitCode, typeid(*papp).raw_name());
+         Sys(papp->m_psystem).log().trace("Exit Code from retract_app %d (exit_instance %s)", iExitCode, typeid(*papp).raw_name());
       }
       catch(...)
       {

@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ex1
 {
+
 
    class CLASS_DECL_ca buffered_file : 
       public ::ex1::file
@@ -9,35 +11,38 @@ namespace ex1
    public:
 
 
-      ex1::filesp          m_pfile;
+      ex1::filesp                m_pfile;
 
-      DWORD_PTR            m_uiBufferSize;
-      DWORD_PTR            m_uiPosition;
-      DWORD_PTR            m_uiBufLPos;
-      DWORD_PTR            m_uiBufUPos;
-      bool                 m_bDirty;
-      DWORD_PTR            m_uiWriteLPos;
-      DWORD_PTR            m_uiWriteUPos;
-      primitive::memory    m_storage;
+      ::primitive::memory_size   m_uiBufferSize;
+      file_position              m_uiPosition;
+      file_position              m_uiBufLPos;
+      file_position              m_uiBufUPos;
+      bool                       m_bDirty;
+      file_position              m_uiWriteLPos;
+      file_position              m_uiWriteUPos;
+      primitive::memory          m_storage;
 
 
-
-      buffered_file(::ca::application * papp, ex1::filesp pfile, DWORD_PTR iBufferSize = 1024 * 128);
+      buffered_file(::ca::application * papp, ex1::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_file();
 
+
       virtual bool IsValid() const;
-      INT_PTR seek(INT_PTR lOff, UINT nFrom);
-      DWORD_PTR GetPosition() const;
-      DWORD_PTR get_length() const;
+      file_position seek(file_offset lOff, ::ex1::e_seek nFrom);
+      file_position get_position() const;
+      file_size get_length() const;
 
-      virtual DWORD_PTR read(void *lpBuf, DWORD_PTR nCount);
-      virtual void write(const void * lpBuf, DWORD_PTR nCount);
+      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual void Flush();
-      virtual bool buffer(DWORD_PTR uiGrow = 0);
-      virtual void SetLength(DWORD_PTR dwNewLen);
+      virtual bool buffer(::primitive::memory_size uiGrow = 0);
+      virtual void set_length(file_size dwNewLen);
 
-      DWORD_PTR      GetBufferSize();
+      uint64_t      GetBufferSize();
 
    };
 
+
 } // namespace ex1
+
+

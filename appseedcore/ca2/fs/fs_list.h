@@ -13,8 +13,6 @@ namespace fs
 
 
       simple_list_header_control    m_headerctrl;
-      simple_scroll_bar             m_scrollbarVert;
-      simple_scroll_bar             m_scrollbarHorz;
 
 
       list(::ca::application * papp);
@@ -23,7 +21,7 @@ namespace fs
 
       void _001OnClick(UINT uiFlags, point point);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
       
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

@@ -55,7 +55,7 @@ void copydesk::set_filea(stringa & stra)
    }
 
 
-   HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(DROPFILES) + (iLen + 1) * sizeof(WCHAR)); 
+   HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(DROPFILES) + (iLen + 1) * sizeof(WCHAR));
    LPDROPFILES pDropFiles = (LPDROPFILES) ::GlobalLock(hglbCopy);
    pDropFiles->pFiles = sizeof(DROPFILES);
    pDropFiles->pt.x = pDropFiles->pt.y = 0;
@@ -69,14 +69,14 @@ void copydesk::set_filea(stringa & stra)
    for(int i = 0; i < stra.get_size(); i++)
    {
       ASSERT(m_p->IsWindow());
-      gen::international::utf8_to_unicode(lpwstrCopy, gen::international::utf8_to_unicode_count(stra[i]) + 1, stra[i]); 
+      gen::international::utf8_to_unicode(lpwstrCopy, gen::international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
       ASSERT(m_p->IsWindow());
       lpwstrCopy += (stra[i].get_length() + 1);
    }
    ASSERT(m_p->IsWindow());
-   *lpwstrCopy = '\0';    // null character 
+   *lpwstrCopy = '\0';    // null character
    ASSERT(m_p->IsWindow());
-   ::GlobalUnlock(hglbCopy); 
+   ::GlobalUnlock(hglbCopy);
    ASSERT(m_p->IsWindow());
    if(!m_p->OpenClipboard())
    {
@@ -92,7 +92,7 @@ void copydesk::set_filea(stringa & stra)
 
 
 bool copydesk::initialize()
-{  
+{
    if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
       return false;
 
@@ -115,18 +115,18 @@ void copydesk::set_plain_text(const char * psz)
       return;
    }
    EmptyClipboard();
-   
-   
+
+
    int iCount = gen::international::utf8_to_unicode_count(str) + 1;
-   HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, iCount * sizeof(WCHAR)); 
+   HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, iCount * sizeof(WCHAR));
    wchar_t * lpwstrCopy  = (wchar_t *) ::GlobalLock(hglbCopy);
    gen::international::utf8_to_unicode(lpwstrCopy, iCount, str);
-   ::GlobalUnlock(hglbCopy); 
+   ::GlobalUnlock(hglbCopy);
 
-   HGLOBAL hglbCopy2 = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(CHAR) * (strlen(psz) + 1)); 
+   HGLOBAL hglbCopy2 = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(CHAR) * (strlen(psz) + 1));
    char * lpstrCopy  = (char *) ::GlobalLock(hglbCopy2);
    strcpy(lpstrCopy, psz);
-   ::GlobalUnlock(hglbCopy2); 
+   ::GlobalUnlock(hglbCopy2);
 
 
    SetClipboardData(CF_UNICODETEXT, hglbCopy);
@@ -138,23 +138,23 @@ void copydesk::set_plain_text(const char * psz)
 
 string copydesk::get_plain_text()
 {
-   if (IsClipboardFormatAvailable(CF_UNICODETEXT)) 
+   if (IsClipboardFormatAvailable(CF_UNICODETEXT))
    {
       if(!m_p->OpenClipboard())
          return "";
-      HGLOBAL hglb = GetClipboardData(CF_UNICODETEXT); 
+      HGLOBAL hglb = GetClipboardData(CF_UNICODETEXT);
       string str(gen::international::unicode_to_utf8((const wchar_t *) GlobalLock(hglb)));
-      GlobalUnlock(hglb); 
+      GlobalUnlock(hglb);
       VERIFY(::CloseClipboard());
       return str;
    }
-   else if (IsClipboardFormatAvailable(CF_TEXT)) 
+   else if (IsClipboardFormatAvailable(CF_TEXT))
    {
       if(!m_p->OpenClipboard())
          return "";
-      HGLOBAL hglb = GetClipboardData(CF_TEXT); 
-      string str((char *) GlobalLock(hglb)); 
-      GlobalUnlock(hglb); 
+      HGLOBAL hglb = GetClipboardData(CF_TEXT);
+      string str((char *) GlobalLock(hglb));
+      GlobalUnlock(hglb);
       VERIFY(::CloseClipboard());
       return str;
    }
@@ -162,4 +162,22 @@ string copydesk::get_plain_text()
    {
       return "";
    }
+}
+
+bool copydesk::desk_to_dib(::ca::dib * pdib)
+{
+   if(!m_p->OpenClipboard())
+      return false;
+   HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
+   HDC hdc = ::CreateCompatibleDC(NULL);
+   ::ca::graphics * pgraphics = Application.graphics_from_os_data(hdc);
+   pgraphics->SelectObject(hbitmap);
+   BITMAP bm;
+   ::GetObjectA(hbitmap, sizeof(bm), &bm);
+   if(!pdib->create(bm.bmWidth, bm.bmHeight))
+      return false;
+   pdib->get_graphics()->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, pgraphics, 0, 0, SRCCOPY);
+   ::DeleteDC(hdc);
+   ::CloseClipboard();
+   return true;
 }

@@ -86,15 +86,12 @@ namespace windesk
 
    void document::data_on_after_change(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
    }
 
-   BOOL document::on_open_document(const char * lpszPathName)
+   bool document::on_open_document(var varFile)
    {
-      string str = Application.file().as_string(lpszPathName);
-      if(str.is_empty())
-      {
-         System.sync_load_url(str, lpszPathName, &ApplicationUser);
-      }
+      string str = Application.file().as_string(varFile);
    //  m_document.load(str);
       update_all_views(NULL, 123);
       return TRUE;

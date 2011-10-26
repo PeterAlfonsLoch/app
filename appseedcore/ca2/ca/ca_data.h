@@ -17,7 +17,7 @@ namespace ca
       public:
 
 
-         sp(data) m_spdata;
+         sp(data)    m_spdata;
 
 
          writing(data * pdata);
@@ -40,7 +40,8 @@ namespace ca
 
       };
 
-      comparable_array < data_listener * > m_listenerptra;
+      comparable_array < data_listener * >   m_listenerptra;
+      sp(data)                               m_spdataParentLock;
 
       // writing to this data
       interlocked_long  m_lockedlongWriting;
@@ -50,6 +51,10 @@ namespace ca
 
       data(::ca::application * papp);
       virtual ~data();
+
+
+      virtual bool initialize_data();
+      virtual bool finalize_data();
 
       virtual bool is_in_use() const;
 

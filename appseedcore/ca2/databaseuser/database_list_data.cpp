@@ -16,24 +16,21 @@ namespace databaseuser
 
    }
 
-   bool list_data::_001GetItemText(
-      ::user::list * plist,
-      string &str,
-      index iItem,
-      index iSubItem, 
-      index iListItem)
+   void list_data::_001GetItemText(::user::list_item * pitem)
    {
 
       ::database::id key1;
       ::database::id key2;
 
-      if(Map(plist, key1, key2, iItem, iSubItem, iListItem))
+      if(Map(pitem->m_plist, key1, key2, pitem->m_iItem, pitem->m_iSubItem, pitem->m_iListItem))
       {
-         if(data_get(key1, key2, str))
-            return true;
+         if(data_get(key1, key2, pitem->m_strText))
+         {
+            return_(pitem->m_bOk, true);
+         }
       }
 
-      return false;
+      return_(pitem->m_bOk, false);
 
    }
 

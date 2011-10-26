@@ -30,7 +30,7 @@ void midi_central::SetMidiOutDevice(UINT uiDevice)
 {
    m_uiMidiOutDevice = uiDevice;
    int iAttribute = (int) mus::MidiCentralAttributeMidiOutDevice;
-   m_listenerptra.PtrCallAll(&CMidiCentralListener::OnAttributeChange, iAttribute);
+   m_listenerptra.PtrCallAll(&midi_central_listener::OnAttributeChange, iAttribute);
 }
 
 UINT midi_central::GetMidiOutDevice()
@@ -38,12 +38,12 @@ UINT midi_central::GetMidiOutDevice()
    return m_uiMidiOutDevice;
 }
 
-void midi_central::AddListener(CMidiCentralListener *plistener)
+void midi_central::AddListener(midi_central_listener *plistener)
 {
    m_listenerptra.add_unique(plistener);
 }
 
-void midi_central::RemoveListener(CMidiCentralListener *plistener)
+void midi_central::RemoveListener(midi_central_listener *plistener)
 {
    m_listenerptra.remove(plistener);
 }

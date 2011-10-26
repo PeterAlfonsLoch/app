@@ -1,11 +1,14 @@
 #pragma once
 
+
 class DBCentralInterface;
 class CResourceCentral;
 class VmsDataServerInterface;
 
+
 namespace database
 {
+
 
    class CLASS_DECL_ca application :
       virtual public ca4::application,

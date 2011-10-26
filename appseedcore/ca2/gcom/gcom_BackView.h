@@ -44,6 +44,7 @@ namespace gcom
          void Release();
          void Shutdown();
 
+         
 
          bool IsInitialized();
          void Enable(bool bEnable);

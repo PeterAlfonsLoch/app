@@ -206,7 +206,7 @@ namespace libepp
 
    void Session::read_template(enum ActionType eactiontype, const char * pszTemplateName)
    {
-      _templates[eactiontype] = Application.file().as_string(Application.dir().matter("libepp/templates", string(pszTemplateName) + ".xml"));
+      _templates[eactiontype] = Application.file().as_string(System.dir().matter("libepp/templates", string(pszTemplateName) + ".xml"));
    }
 
    void Session::read_templates(const char *templates_dir)

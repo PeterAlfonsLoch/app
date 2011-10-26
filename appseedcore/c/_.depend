@@ -1,0 +1,797 @@
+# depslib dependency file v1.0
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_.cpp
+	"StdAfx.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/StdAfx.h
+	"c.h"
+
+1319353458 /cecyn1.at.hotmail.com/app/appseedcore/c/c.h
+	"radix.h"
+	"cpu_architecture.h"
+	"_libct.h"
+	"printf.h"
+	"sprintf.h"
+	"str.h"
+	"std_file.h"
+	"atol.h"
+	"count.h"
+	"index.h"
+	"keep_true.h"
+	"heap.h"
+	"gdi.h"
+	"mem.h"
+	"math.h"
+	"verisimple_string.h"
+	"verisimple_wstring.h"
+	"vsstringtow.h"
+	"wstringtovss.h"
+	"dir.h"
+	"md5.h"
+	"simple_obj.h"
+	"template.h"
+	"simple_array.h"
+	"simple_map.h"
+	"stra.h"
+	"xmlite.h"
+	"file.h"
+	"launcher.h"
+	"small_ipc_channel.h"
+	"simple_mutex.h"
+	"simple_event.h"
+	"mutex_lock.h"
+	"event_wait.h"
+	"simple_critical_section.h"
+	"library.h"
+	"hotplugin/hotplugin.h"
+	"spa/spa.h"
+	"macos/macos.h"
+	"linux/linux.h"
+	"windows/windows.h"
+	"message_loop.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/radix.h
+	"ca_seed.h"
+	"vms/vms.h"
+
+1318543747 /cecyn1.at.hotmail.com/app/appseedcore/c/ca_seed.h
+	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
+	"os/macos/operational_system/_.h"
+	"os/linux/operational_system/_.h"
+	"os/windows/operational_system/_.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
+
+1318417560 /cecyn1.at.hotmail.com/app/os/linux/operational_system/_.h
+	"get_platform.h"
+	"linux32_system.h"
+	"c/types.h"
+	"c/natural.h"
+	"bare_operational_system.h"
+	"cross/win/win.h"
+	<pthread.h>
+	<sys/resource.h>
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/get_platform.h
+	<inttypes.h>
+	<stdlib.h>
+
+1319272237 /cecyn1.at.hotmail.com/app/os/linux/operational_system/linux32_system.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/types.h
+	"c_types.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/c_types.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/natural.h
+
+1319355573 /cecyn1.at.hotmail.com/app/os/linux/operational_system/bare_operational_system.h
+	<stdlib.h>
+	<unistd.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	"version_linux.h"
+	"version_cpu.h"
+	"version_dll.h"
+	"version_cpu.h"
+	<stdlib.h>
+	<string.h>
+	"cross/win/win.h"
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/version_linux.h
+	<stdlib.h>
+	<stdio.h>
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/version_cpu.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/version_dll.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win.h
+	"base_tsd.h"
+	"win_def.h"
+	"win_error.h"
+	"win_base.h"
+	"win_gdi.h"
+	"win_user.h"
+	"win_errno.h"
+	"win_crtdefs.h"
+	"win_nls.h"
+	"win_file.h"
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/base_tsd.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_def.h
+	"win_nt.h"
+
+1319291620 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_nt.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_error.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_base.h
+
+1319289898 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_gdi.h
+
+1319305967 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_user.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_errno.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_crtdefs.h
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_nls.h
+	<macwin32.h>
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/_.h
+	"get_platform.h"
+	"win32_system.h"
+	"c/types.h"
+	"c/natural.h"
+	"bare_operational_system.h"
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/get_platform.h
+	"inttypes.h"
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/inttypes.h
+	"stdint.h"
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/stdint.h
+	<limits.h>
+	<wchar.h>
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/win32_system.h
+
+1319308325 /cecyn1.at.hotmail.com/app/os/windows/operational_system/bare_operational_system.h
+	"version_windows.h"
+	"version_cpu.h"
+	<afxv_cfg.h>
+	"version_dll.h"
+	"version_cpu.h"
+	"cross/cross.h"
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/version_windows.h
+	<windows.h>
+	<shlwapi.h>
+	<zmouse.h>
+	<commctrl.h>
+	<tchar.h>
+	<mbctype.h>
+	<mbstring.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<Psapi.h>
+	<MMSystem.h>
+	<ole2.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<tpipv6.h>
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/version_cpu.h
+
+1318390286 /cecyn1.at.hotmail.com/app/os/windows/operational_system/version_dll.h
+
+1318390319 /cecyn1.at.hotmail.com/app/appseedcore/ca2/vms/vms.h
+	"veriwell_musical_studio.h"
+
+1318390319 /cecyn1.at.hotmail.com/app/appseedcore/ca2/vms/veriwell_musical_studio.h
+
+1318543747 /cecyn1.at.hotmail.com/app/appseedcore/c/cpu_architecture.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/_libct.h
+	<tchar.h>
+	"_heap.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/_heap.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/printf.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/sprintf.h
+
+1319356316 /cecyn1.at.hotmail.com/app/appseedcore/c/str.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/std_file.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/atol.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/count.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/index.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/keep_true.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/heap.h
+	"_heap.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/gdi.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/mem.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/math.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/verisimple_string.h
+
+1319062236 /cecyn1.at.hotmail.com/app/appseedcore/c/verisimple_wstring.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/vsstringtow.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/wstringtovss.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/dir.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/md5.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_obj.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/template.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_array.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_map.h
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/stra.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/xmlite.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/file.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/launcher.h
+
+1318543747 /cecyn1.at.hotmail.com/app/appseedcore/c/small_ipc_channel.h
+	<pthread.h>
+	<pthread.h>
+	"simple_mutex.h"
+
+1319265603 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_mutex.h
+	<pthread.h>
+
+1319353458 /cecyn1.at.hotmail.com/app/appseedcore/c/mutex_lock.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_critical_section.h
+
+1319235395 /cecyn1.at.hotmail.com/app/appseedcore/c/library.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin.h
+	"hotplugin_plugin.h"
+	"hotplugin_host.h"
+
+1319157841 /cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin_plugin.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin_host.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa.h
+	"spa_spa.h"
+	"spa_starter_start.h"
+	"spa_boot.h"
+	"spa_cube_run.h"
+	"spa_small_bell.h"
+	"spa_install_ca2.h"
+	"spa_canvas.h"
+	"spa_window.h"
+	"spa_trace.h"
+	"spa_machine_event_data.h"
+	"spa_machine_event.h"
+	"spa_installer.h"
+	"resource.h"
+	"spa_machine_event_data.h"
+	"spa_focus.h"
+	"spa_machine_event_data.h"
+	"spa_machine_event.h"
+	"spa_http.h"
+	"spa_plugin.h"
+	"spa_installer.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_spa.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_starter_start.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_boot.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_cube_run.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_small_bell.h
+
+1319062235 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_install_ca2.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_canvas.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_window.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_trace.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_machine_event_data.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_machine_event.h
+
+1319062235 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_installer.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/resource.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_focus.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_http.h
+
+1319157841 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_plugin.h
+
+1319264203 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux.h
+	<stdarg.h>
+	<wchar.h>
+	"linux_http_lib.h"
+	"linux_http.h"
+	"linux_process.h"
+	"linux_cross_win_gdi.h"
+	"linux_cross_win_file.h"
+	"linux_binreloc.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_http_lib.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_http.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_process.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_cross_win_gdi.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_cross_win_file.h
+
+1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows.h
+	"windows_http.h"
+	"windows_registry.h"
+	"windows_process.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/http.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/registry.h
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/process.h
+	<ShellAPI.h>
+	<ShellAPI.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_argcargv.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_atol.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_crt0dll.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_initterm.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_math.cpp
+	"StdAfx.h"
+	<math.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_mem.cpp
+	"StdAfx.h"
+
+1318890745 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_printf.cpp
+	"StdAfx.h"
+	<stdio.h>
+	<stdarg.h>
+	<wchar.h>
+
+1319012998 source:/cecyn1.at.hotmail.com/app/appseedcore/c/_std_file.cpp
+	"StdAfx.h"
+	<stdarg.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/ca_c.c
+	"c_c.h"
+
+1319232899 /cecyn1.at.hotmail.com/app/appseedcore/c/c_c.h
+	"os/macos/operational_system/get_platform.h"
+	"os/linux/operational_system/get_platform.h"
+	"os/windows/operational_system/get_platform.h"
+	"c_types.h"
+	"c_natural.h"
+	"cpu_architecture.h"
+	"_libct.h"
+	"_heap.h"
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/c_natural.h
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/conv.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/cpu_architecture.c
+	"c_c.h"
+	<windows.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/dir.cpp
+	"StdAfx.h"
+	<Shlobj.h>
+	<sys/types.h>
+	<sys/stat.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/dir2.cpp
+	"StdAfx.h"
+	<Shlobj.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/dll_main.cpp
+	"StdAfx.h"
+
+1319356181 source:/cecyn1.at.hotmail.com/app/appseedcore/c/file.cpp
+	"StdAfx.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<stdio.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/mman.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/file_spa.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/gdi.cpp
+	"StdAfx.h"
+
+1319260158 source:/cecyn1.at.hotmail.com/app/appseedcore/c/heap.cpp
+	"StdAfx.h"
+	<malloc/malloc.h>
+	<malloc.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux.cpp
+	"StdAfx.h"
+	<sys/time.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_cross_win_file.cpp
+
+1319305719 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_cross_win_gdi.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_http.cpp
+	"StdAfx.h"
+
+1319355416 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_http_lib.cpp
+	"StdAfx.h"
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<ctype.h>
+	<unistd.h>
+	<stdlib.h>
+	<modes.h>
+	<types.h>
+	<machine/reg.h>
+	<INET/socket.h>
+	<INET/in.h>
+	<INET/netdb.h>
+	<INET/pwd.h>
+	<stdio.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_library.cpp
+	"StdAfx.h"
+	<dlfcn.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_process.cpp
+	"StdAfx.h"
+	<stdlib.h>
+	<stdio.h>
+	<signal.h>
+	<errno.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_small_ipc_channel.cpp
+	"StdAfx.h"
+	<sys/ipc.h>
+	<sys/msg.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/md5.cpp
+	"StdAfx.h"
+
+1319353458 source:/cecyn1.at.hotmail.com/app/appseedcore/c/mutex_lock.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/simple_array.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/simple_critical_section.cpp
+	"StdAfx.h"
+
+1319353458 source:/cecyn1.at.hotmail.com/app/appseedcore/c/simple_mutex.cpp
+	"StdAfx.h"
+	<sys/ipc.h>
+	<sys/types.h>
+	<sys/sem.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/simple_obj.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/sprintf.cpp
+	"StdAfx.h"
+
+1319356461 source:/cecyn1.at.hotmail.com/app/appseedcore/c/str.cpp
+	"StdAfx.h"
+	"x/x_defines.h"
+	"x/x_tables.h"
+	"x/x_charcategory_names.h"
+	"x/x_charcategory.h"
+
+1318390319 /cecyn1.at.hotmail.com/app/appseedcore/ca2/x/x_defines.h
+
+1318390319 /cecyn1.at.hotmail.com/app/appseedcore/ca2/x/x_tables.h
+
+1318390319 /cecyn1.at.hotmail.com/app/appseedcore/ca2/x/x_charcategory_names.h
+
+1318390319 /cecyn1.at.hotmail.com/app/appseedcore/ca2/x/x_charcategory.h
+
+1318890745 source:/cecyn1.at.hotmail.com/app/appseedcore/c/stra.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/strdup.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/strw.cpp
+	"StdAfx.h"
+	"x/x_defines.h"
+	"x/x_tables.h"
+	"x/x_charcategory_names.h"
+	"x/x_charcategory.h"
+
+1319062236 source:/cecyn1.at.hotmail.com/app/appseedcore/c/strx.cpp
+	"StdAfx.h"
+	"x/x_defines.h"
+	"x/x_tables.h"
+	"x/x_charcategory_names.h"
+	"x/x_charcategory.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/template.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/verisimple_string.cpp
+	"StdAfx.h"
+
+1319062236 source:/cecyn1.at.hotmail.com/app/appseedcore/c/verisimple_wstring.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/vsstringtow.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/wstringtovss.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/xmlite.cpp
+
+1318390283 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_file.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/_.h
+	"get_platform.h"
+	"macos_system.h"
+	"c/types.h"
+	"c/natural.h"
+	"bare_operational_system.h"
+	"cross/win/win.h"
+	<pthread.h>
+	<sys/resource.h>
+
+1318890744 /cecyn1.at.hotmail.com/app/os/macos/operational_system/get_platform.h
+	<inttypes.h>
+	<stdlib.h>
+
+1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/_types.h
+	"include/inttypes.h"
+	"include/inttypes.h"
+	<inttypes.h>
+	"c_types.h"
+
+1319271934 /cecyn1.at.hotmail.com/app/os/macos/operational_system/macos_system.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/bare_operational_system.h
+	<stdlib.h>
+	<unistd.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	"version_linux.h"
+	"version_cpu.h"
+	"version_dll.h"
+	"version_cpu.h"
+	"cross/win/win.h"
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/version_linux.h
+	<stdlib.h>
+	<stdio.h>
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/version_cpu.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/version_dll.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win.h
+	"base_tsd.h"
+	"win_def.h"
+	"win_error.h"
+	"win_base.h"
+	"win_gdi.h"
+	"win_user.h"
+	"win_errno.h"
+	"win_crtdefs.h"
+	"win_nls.h"
+	"win_file.h"
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/base_tsd.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_def.h
+	"win_nt.h"
+
+1319291257 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_nt.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_error.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_base.h
+
+1319193974 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_gdi.h
+
+1319261239 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_user.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_errno.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_crtdefs.h
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_nls.h
+	<macwin32.h>
+
+1318543751 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_file.h
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin_host.cpp
+	"StdAfx.h"
+
+1318890745 source:/cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin_plugin.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa.cpp
+	"compress/bsdiff/bsdiff.h"
+	<math.h>
+
+1318390308 /cecyn1.at.hotmail.com/app/appseedcore/ca2/compress/bsdiff/bsdiff.h
+	"bzlib.h"
+
+1318390308 /cecyn1.at.hotmail.com/app/appseedcore/ca2/compress/bsdiff/bzlib.h
+	"c/c.h"
+	"c/c_c.h"
+	<stdio.h>
+	<windows.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_boot.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_bz.cpp
+	"StdAfx.h"
+	"../../appseedcore/ca2/compress/bsdiff/bzlib.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_canvas.cpp
+	"StdAfx.h"
+	<math.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_cube_run.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_focus.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_http.cpp
+	"StdAfx.h"
+
+1319062235 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_install_ca2.cpp
+	"StdAfx.h"
+
+1319269902 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_installer.cpp
+	"compress/bsdiff/bsdiff.h"
+	<WinInet.h>
+	<Winternl.h>
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_installer_square.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_machine_event.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_machine_event_data.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_main.cpp
+	"StdAfx.h"
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos.h
+	<stdarg.h>
+	<wchar.h>
+	"macos_http_lib.h"
+	"macos_http.h"
+	"macos_process.h"
+	"macos_cross_win_gdi.h"
+	"macos_cross_win_file.h"
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_http_lib.h
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_http.h
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_process.h
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_cross_win_gdi.h
+
+1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_cross_win_file.h
+
+1319093259 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_binreloc.h
+
+1319093327 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_binreloc.c
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	<string.h>
+	"linux_binreloc.h"
+
+1319265301 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_lock.cpp
+	"c.h"
+	<fcntl.h>
+	<sys/file.h>
+	<errno.h>
+	<unistd.h>
+
+1319232899 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_plugin.cpp
+	"StdAfx.h"
+	<process.h>
+
+1319239238 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_small_bell.cpp
+	"StdAfx.h"
+
+1318390302 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_spa.cpp
+	"StdAfx.h"
+
+1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows_http.h
+
+1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows_registry.h
+
+1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows_process.h
+	<ShellAPI.h>
+	<ShellAPI.h>
+
+1319264839 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_event.h
+	<pthread.h>
+
+1319259697 /cecyn1.at.hotmail.com/app/appseedcore/c/event_wait.h
+
+1319261925 source:/cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_message_loop.cpp
+	"StdAfx.h"
+
+1319262129 source:/cecyn1.at.hotmail.com/app/appseedcore/c/event_wait.cpp
+
+1319353458 source:/cecyn1.at.hotmail.com/app/appseedcore/c/simple_event.cpp
+	"StdAfx.h"
+
+1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/message_loop.h
+
+1319258203 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_starter_start.cpp
+	"StdAfx.h"
+
+1319270031 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_trace.cpp
+	"StdAfx.h"
+
+1319308325 /cecyn1.at.hotmail.com/app/os/windows/operational_system/cross/cross.h
+	"general/general.h"
+
+1319308325 /cecyn1.at.hotmail.com/app/os/windows/operational_system/cross/general/general.h
+	"general_windows.h"
+
+1319308325 /cecyn1.at.hotmail.com/app/os/windows/operational_system/cross/general/general_windows.h
+
+1319305894 source:/cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_window.cpp
+	"StdAfx.h"
+

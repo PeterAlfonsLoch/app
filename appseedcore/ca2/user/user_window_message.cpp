@@ -1,5 +1,8 @@
 #include "StdAfx.h"
 
+
+#undef new
+
 struct myfx_CTLCOLOR
 {
    HWND hWnd;
@@ -32,7 +35,7 @@ namespace user
          {
             while(theMessageHandlerArray.remove_first(phandler));
          }
-   
+
 
          void SendGlobalMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
          {
@@ -42,6 +45,7 @@ namespace user
             }
          }
          */
+
 
 
          bool dispatch::igui_RelayEvent(LPMSG lpmsg)
@@ -104,7 +108,7 @@ namespace user
                break;
             case PrototypeCreate:
                {
-                  pbase = new create(get_app());
+                  pbase = new ::user::win::message::create(get_app());
                }
                break;
             case PrototypeNcActivate:
@@ -203,7 +207,7 @@ namespace user
          {
             m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
          }
-   
+
          void dispatch::_user_message_handler(gen::signal_object * pobj)
          {
             SignalPtrArray signalptra;
@@ -242,7 +246,7 @@ namespace user
                psignal->emit(pobj);
                if(pobj->m_bRet)
                   return;
-            } 
+            }
          }
 
 
@@ -282,7 +286,7 @@ namespace user
                   {
       /*            case PrototypeNotify:
                      {
-                  
+
                         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
                         ASSERT(pNotify != NULL);
                         ASSERT(pNotify->pResult != NULL);
@@ -436,11 +440,11 @@ namespace user
                return PrototypeKey;
             case WM_NCHITTEST:
                return PrototypeNcHitTest;
-            case WM_SETCURSOR: 
+            case WM_SETCURSOR:
                return PrototypeSetCursor;
-            case WM_ERASEBKGND: 
+            case WM_ERASEBKGND:
                return PrototypeEraseBkgnd;
-            case WM_SHOWWINDOW: 
+            case WM_SHOWWINDOW:
                return PrototypeShowWindow;
             case WM_INITMENUPOPUP:
                return PrototypeInitMenuPopup;
@@ -466,7 +470,7 @@ namespace user
             m_lresult = 0;
             m_plresult = &m_lresult;
          }
-         
+
          base::base(::ca::application * papp, HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult) :
             ca(papp),
             signal_object(papp)
@@ -483,7 +487,7 @@ namespace user
             m_lparam       = lparam;
             m_plresult     = &lresult;
          }
-         
+
          void base::set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
          {
             set(hwnd, uiMessage, wparam, lparam, m_lresult);
@@ -528,7 +532,7 @@ namespace user
          }
 
          activate::activate(::ca::application * papp) :
-            ca(papp), 
+            ca(papp),
             ::user::win::message::base(papp)
          {
          }
@@ -554,8 +558,8 @@ namespace user
             set_lresult(bResult);
          }
 
-         key::key(::ca::application * papp) : 
-            ca(papp), 
+         key::key(::ca::application * papp) :
+            ca(papp),
             ::user::win::message::base(papp)
          {
          }
@@ -587,18 +591,24 @@ namespace user
             m_size      = class ::size(LOWORD(lparam), HIWORD(lparam));
          }
 
-         mouse::mouse(::ca::application * papp) : 
-            ca(papp), 
-            base(papp), 
+         mouse::mouse(::ca::application * papp) :
+            ca(papp),
+            base(papp),
             m_ecursor(::visual::cursor_unmodified)
          {
          }
 
          mouse::~mouse()
          {
-            if(m_ecursor != ::visual::cursor_unmodified)
+            try
             {
-               System.set_cursor(m_ecursor);
+               if(m_ecursor != ::visual::cursor_unmodified && m_pbergedge != NULL)
+               {
+                  Bergedge.set_cursor(m_ecursor);
+               }
+            }
+            catch(...)
+            {
             }
          }
 
@@ -610,14 +620,14 @@ namespace user
             m_bTranslated = false;
          }
 
-         
+
          ::user::interaction * mouse_activate::GetDesktopWindow()
          {
             throw not_implemented_exception();
             return NULL;
 //            return ::ca::window::from_handle(reinterpret_cast<HWND>(m_wparam));
          }
-         
+
          UINT mouse_activate::GetHitTest()
          {
             return LOWORD(m_lparam);
@@ -627,7 +637,7 @@ namespace user
          {
             return HIWORD(m_lparam);
          }
-               
+
          ::ca::window * context_menu::GetWindow()
          {
             throw not_implemented_exception();
@@ -675,7 +685,7 @@ namespace user
             m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
          }
 
-         
+
          bool enable::get_enable()
          {
             return m_wparam != 0;
@@ -688,7 +698,7 @@ namespace user
 
 
 
-         
+
          UINT mouse_wheel::GetFlags()
          {
             return LOWORD(m_wparam);
@@ -698,7 +708,7 @@ namespace user
          {
             return (short)HIWORD(m_wparam);
          }
-         
+
          point mouse_wheel::GetPoint()
          {
             return point(GET_X_LPARAM(m_lparam), GET_Y_LPARAM(m_lparam));
@@ -708,7 +718,7 @@ namespace user
          {
             return HIWORD(m_wparam);
          }
-         
+
          UINT command::GetId()
          {
             return LOWORD(m_wparam);
@@ -745,17 +755,17 @@ namespace user
 
          dispatch::HandlerItemArray::~HandlerItemArray()
          {
-            for(int i = 0; i < get_size(); i++)
+            for(int i = 0; i < this->get_size(); i++)
             {
-               delete element_at(i);
+               delete this->element_at(i);
             }
          }
 
          bool dispatch::HandlerItemArray::HasSignalizable(gen::signalizable * psignalizable)
          {
-            for(int i = 0; i < get_size(); i++)
+            for(int i = 0; i < this->get_size(); i++)
             {
-              if(element_at(i)->get_signalizable() == psignalizable)
+              if(this->element_at(i)->get_signalizable() == psignalizable)
                   return true;
             }
             return false;
@@ -764,8 +774,13 @@ namespace user
          void dispatch::_start_user_message_handler(gen::signal_object * pobj)
          {
             _on_start_user_message_handler();
-            m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
-            _001InstallMessageHandling(this);
+#ifdef WINDOWS
+            install_message_handling(this);
+#endif
+#ifdef LINUX
+            _002InstallMessageHandling(this);
+#endif
+            install_message_handling(this);
             if(get_app() == NULL)
             {
                set_app(calc_app());
@@ -773,13 +788,14 @@ namespace user
             return _user_message_handler(pobj);
          }
 
-         void dispatch::_001InstallMessageHandling(dispatch * pinterface)
+         void dispatch::install_message_handling(dispatch * pinterface)
          {
             UNREFERENCED_PARAMETER(pinterface);
          }
 
          void dispatch::_on_start_user_message_handler()
          {
+            m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
          }
 
          ::ca::application * dispatch::calc_app()
@@ -992,9 +1008,9 @@ namespace user
                      // special case for OnCtlColor to avoid too many temporary objects
                      ASSERT(message == WM_CTLCOLOR);
                      myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                     ::ca::graphics_sp dcTemp; 
+                     ::ca::graphics_sp dcTemp;
       //               dcTemp.set_handle1(pCtl->hDC);
-                     ::ca::window wndTemp; 
+                     ::ca::window wndTemp;
       //               wndTemp.set_handle(pCtl->hWnd);
                      UINT nCtlType = pCtl->nCtlType;
                      // if not coming from a permanent ::ca::window, use stack temporary
@@ -1033,7 +1049,7 @@ namespace user
                   {         // special case for CtlColor to avoid too many temporary objects
                      ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
                      myfx_CTLCOLOR* pCtl = reinterpret_cast<myfx_CTLCOLOR*>(lparam);
-                     ::ca::graphics_sp dcTemp; 
+                     ::ca::graphics_sp dcTemp;
       //               dcTemp.set_handle1(pCtl->hDC);
                      UINT nCtlType = pCtl->nCtlType;
                      ctl_color ctlcolor(get_app());
@@ -1065,7 +1081,7 @@ namespace user
                   {
                      notify notify;
                      notify.set(message, wparam, lparam, lresult);
-               
+
                      psignal->emit(&notify);
                      if(notify.m_bRet)
                         return true;
@@ -1107,7 +1123,7 @@ namespace user
          IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(erase_bkgnd);
          IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(nchittest);
          IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(key);
-         IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(nc_activate);         
+         IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(nc_activate);
          IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(notify);
          IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(update_cmd_ui);
          IMPLEMENT_SIGNAL_OBJECT_FIXED_ALLOC(command);

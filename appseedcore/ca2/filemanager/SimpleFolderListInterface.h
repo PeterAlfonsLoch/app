@@ -45,17 +45,17 @@ public:
    
    ::fs::item & GetFileManagerItem();
 
-   virtual index _001GetItemImage(index iItem, index iSubItem, index iListItem);
+   virtual void _001GetItemImage(::user::list_item * pitem);
    void _017UpdateList(const char * lpcszParent);
-   virtual void _001CreateImageList(Column & column);
+   virtual void _001CreateImageList(::user::list_column * column);
    void _017UpdateList();
    void _017Browse(const char * lpcsz);
    void _017Browse(const wchar_t * lpcsz);
-   virtual bool _001GetItemText(string &str, index iItem, index iSubItem, index iListItem);
+   virtual void _001GetItemText(::user::list_item * pitem);
    virtual count _001GetItemCount();
    virtual void _001InsertColumns();
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
    virtual COLORREF get_background_color();
 

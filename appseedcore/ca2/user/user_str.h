@@ -26,6 +26,7 @@ namespace user
       }
       
       bool matches(const char * pszRoot, const char * psz);
+      bool begins(const char * pszRoot, const char * psz);
       bool begins_eat(string & str, const char * pszRoot);
       void get(stringa & stra, const char * pszRoot);
       string get(const char * pszRoot);
@@ -74,6 +75,7 @@ namespace user
       string body(const char * psz);
 
       bool matches(str_context * pcontext, const char * pszRoot, const char * psz);
+      bool begins(str_context * pcontext, const char * psz, const char * pszRoot);
       bool begins_eat(str_context * pcontext, string & str, const char * pszRoot);
       void get(stringa & stra, str_context * pcontext, const char * pszRoot);
       string get(str_context * pcontext, const char * pszRoot);

@@ -41,9 +41,10 @@ namespace sockets
    public:
       
       
-      string m_filename;
-      string m_content_type;
-      long m_content_length;
+      string            m_filename;
+      string            m_content_type;
+      long              m_content_length;
+      ::ex1::filesp     m_file;
 
       
       http_put_socket(socket_handler_base&);
@@ -59,7 +60,7 @@ namespace sockets
       void SetContentType(const string & );
 
       /** http put client implemented in OnConnect */
-      void OnConnect();
+      virtual void step();
 
    };
 

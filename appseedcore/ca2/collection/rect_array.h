@@ -1,7 +1,5 @@
 #pragma once
 
-#include "primitive/rectangle.h"
-
 class CLASS_DECL_ca rect_array :
    public raw_array < rect >
 {

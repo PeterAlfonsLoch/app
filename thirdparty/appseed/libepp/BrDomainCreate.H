@@ -38,8 +38,8 @@ namespace libepp
    public:
 
       /// Constructor
-      BrDomainCreate(const ActionType type = BR_DOMAIN_CREATE)
-         : DomainCreate(type)
+      BrDomainCreate(::ca::application * papp, const ActionType type = BR_DOMAIN_CREATE)
+         : ca(papp), DomainCreate(papp, type)
       {
          if (type == BR_DOMAIN_CREATE) {
             _command = pointer_object<BrDomainCreateCommand>(new BrDomainCreateCommand());

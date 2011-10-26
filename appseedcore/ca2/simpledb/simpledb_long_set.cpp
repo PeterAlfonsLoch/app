@@ -3,6 +3,7 @@
 
 
 db_long_set::db_long_set(db_server * pserver) :
+   ca(pserver->get_app()),
    db_set(pserver, "integertable")
 {
 }
@@ -15,7 +16,7 @@ db_long_set::~db_long_set()
 // Adiciona na matriz System nomes dos diretórios de imagens.
 bool db_long_set::load(const char * lpKey, long *plValue)
 {
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strKey;
    strKey = lpKey;
@@ -27,7 +28,7 @@ bool db_long_set::load(const char * lpKey, long *plValue)
       strKey);
 
    
-   slDatabase.Lock();
+   slDatabase.lock();
    //try
    {
       m_pdataset->query(strSql);
@@ -59,7 +60,7 @@ bool db_long_set::load(const char * lpKey, int & iValue)
 
 bool db_long_set::save(const char * lpKey, long lValue)
 {
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
    string strKey;
    strKey = lpKey;
    strKey.replace("'", "''");
@@ -68,7 +69,7 @@ bool db_long_set::save(const char * lpKey, long lValue)
    ::sqlite::base * pdb   = db()->GetImplDatabase();
    string strSql;
    long l;
-   slDatabase.Lock();
+   slDatabase.lock();
    if(load(lpKey, &l))
    {
       strSql.Format(
@@ -122,7 +123,7 @@ bool db_long_set::save(const char * lpKey, int iValue)
 bool db_long_set::find(const char * lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
-/*    CSingleLock sl(&m_CriticalSection, TRUE);
+/*    single_lock sl(&m_CriticalSection, TRUE);
    HRESULT hr;
     if(m_bIndexed)
     {
@@ -276,9 +277,9 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
       propset.add_property(DBPROP_IRowsetScroll, true);
       propset.add_property(DBPROP_IRowsetChange, true);
       propset.add_property(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE );
-      m_CriticalSection.Lock();
+      m_CriticalSection.lock();
       hr = CCommand<CAccessor<CDBLongRow> >::open(session, lpcszSql, &propset);
-      m_CriticalSection.Unlock();
+      m_CriticalSection.unlock();
       if (FAILED(hr))
       {
          AddOLEDBException(session.m_spOpenRowset, IID_ICommandPrepare);

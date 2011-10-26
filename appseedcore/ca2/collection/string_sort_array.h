@@ -12,7 +12,7 @@ protected:
    int       (*m_pfnCompare)(const char *, const char *);
 
    inline void _Swap(index iA, index iB);
-   
+
 
 public:
 
@@ -28,8 +28,8 @@ public:
    // stringa overrides
    void set_at(index nIndex, const char * newElement);
    void set_at(index nIndex, const string & newElement);
-   string & element_at(index nIndex);
-   string* get_data();
+   string element_at(index nIndex);
+   string * get_data();
    void set_at_grow(index nIndex, const char * newElement);
    void set_at_grow(index nIndex, const string & newElement);
    index add(const char * newElement);
@@ -68,7 +68,7 @@ inline void str_sort_array::set_at(index nIndex, const string & newElement)
    m_stra.set_at(nIndex, newElement);
 }
 
-inline string & str_sort_array::element_at(index nIndex)
+inline string str_sort_array::element_at(index nIndex)
 {
    m_bSorted = false;
    return m_stra.element_at(nIndex);
@@ -175,11 +175,11 @@ inline void str_sort_array::add_normal(const char * lpcsz)
 // strA - strB
 inline int str_sort_array::Compare(const char * lpcszA, const char * lpcszB)
 {
-   return _tcscmp(lpcszA, lpcszB);
+   return strcmp(lpcszA, lpcszB);
 }
 
 // strA - strB
 inline int str_sort_array::CompareNoCase(const char * lpcszA, const char * lpcszB)
 {
-   return _tcsicmp(lpcszA, lpcszB);
+   return stricmp(lpcszA, lpcszB);
 }

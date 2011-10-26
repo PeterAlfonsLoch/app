@@ -19,11 +19,13 @@ namespace userbase
       ::ca::bitmap m_bitmapDisabled;  // disabled bitmap
       ::ca::bitmap m_bitmapHover;     // hover bitmap
 
+#ifdef WINDOWS
       BOOL LoadBitmaps(UINT nIDBitmapResource,
          UINT nIDBitmapResourceSel = 0,
          UINT nIDBitmapResourceFocus = 0,
          UINT nIDBitmapResourceDisabled = 0,
          UINT nIDBitmapResourceHover = 0);
+#endif
 
       BOOL LoadBitmaps(
          const char * lpszBitmapResource,
@@ -37,8 +39,10 @@ namespace userbase
       virtual void BaseToolTipGetRect(LPRECT lprect);
       virtual int BaseToolTipGetIndex();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+#ifdef WINDOWS
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDIS);
+#endif
       virtual void pre_translate_message(gen::signal_object * pobj);
       virtual void message_handler(gen::signal_object * pobj);
 
@@ -48,6 +52,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnMouseMove)
    };
 
+#ifdef WINDOWS
    inline BOOL bitmap_button::LoadBitmaps(UINT nIDBitmapResource,
        UINT nIDBitmapResourceSel, UINT nIDBitmapResourceFocus,
        UINT nIDBitmapResourceDisabled, UINT nIDBitmapResourceHover)
@@ -56,5 +61,6 @@ namespace userbase
            MAKEINTRESOURCE(nIDBitmapResourceFocus),
            MAKEINTRESOURCE(nIDBitmapResourceDisabled),
          MAKEINTRESOURCE(nIDBitmapResourceHover)); }
+#endif
 
 } // namespace userbase

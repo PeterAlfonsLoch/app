@@ -49,8 +49,8 @@ public:
    trace_category* GetCategory(int iCategory) const;
 
    /*
-   bool Lock(DWORD dwTimeOut);
-   void Unlock();
+   bool lock(DWORD dwTimeOut);
+   void unlock();
    */
 
    bool LoadSettings(const CHAR *pszFileName);

@@ -201,7 +201,7 @@ bool lyr3::v1::parse(ID3_TagImpl& tag, ID3_Reader& reader)
   }
 
   // reserve enough space for lyrics3 + id3v1 tag
-  size_t window = end - reader.getBeg();
+  size_t window = (::primitive::memory_size)(end - reader.getBeg());
   size_t lyrDataSize = min(window, 11 + 5100 + 9 + 128);
   reader.setCur(end - lyrDataSize);
   io::WindowedReader wr(reader, lyrDataSize - (9 + 128));

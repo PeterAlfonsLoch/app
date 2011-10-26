@@ -27,7 +27,7 @@ namespace windesk
    #endif
 
 
-      BOOL on_open_document(const char * lpszPathName);
+      bool on_open_document(var varFile);
 
    };
 

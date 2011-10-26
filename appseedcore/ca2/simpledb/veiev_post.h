@@ -2,7 +2,7 @@
 
 class db_server;
 
-namespace vmssqlite 
+namespace vmssqlite
 {
    class ::database::set;
 }
@@ -11,7 +11,7 @@ class CLASS_DECL_ca veiev_post :
    public db_set
 {
 public:
-    
+
    veiev_post(db_server * pdatacentral);
    virtual ~veiev_post();
 
@@ -34,7 +34,7 @@ public:
 
 
    var get_page(int iPage, int iMessageCountPerPage);
-   __int64 get_count();
+   int64_t get_count();
 
 
 };

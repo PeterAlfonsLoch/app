@@ -6,26 +6,26 @@ class CLASS_DECL_ca ID3_Reader :
    virtual public ::radix::object
 {
  public:
-  typedef int32 size_type;
-  typedef int32 pos_type;
-  typedef int32 off_type;
+  typedef file_size size_type;
+  typedef file_position pos_type;
+  typedef file_offset off_type;
   
   /** close the reader.  Any further actions on the reader should fail.
    **/
   virtual void close() = 0;
 
   /** Return the beginning position in the reader */
-  virtual pos_type getBeg() { return static_cast<pos_type>(0); }
+  virtual file_position getBeg() { return static_cast<pos_type>(0); }
 
   /** Return the ending position in the reader */
-  virtual pos_type getEnd() { return static_cast<pos_type>(-1); }
+  virtual file_position getEnd() { return static_cast<pos_type>(-1); }
 
   /** Return the current position in the reader */
-  virtual pos_type getCur() = 0;
+  virtual file_position getCur() = 0;
 
   /** Set the value of the current position for reading.
    **/
-  virtual pos_type setCur(pos_type pos) = 0;
+  virtual file_position setCur(file_position pos) = 0;
 
   /**
    ** read a single character and advance the internal position.  Note that the
@@ -53,17 +53,17 @@ class CLASS_DECL_ca ID3_Reader :
    ** the value returned may be less than the number of bytes that the internal
    ** position advances, due to multi-byte characters.
    **/
-  virtual size_type readChars(char buf[], size_type len) = 0;
+  virtual ::primitive::memory_size readChars(char buf[], ::primitive::memory_size len) = 0;
   
   /** Skip up to \c len chars in the stream and advance the internal position
    ** accordingly.  Returns the number of characters actually skipped (may be 
    ** less than requested).
    **/
-  virtual size_type skipChars(size_type len)
+  virtual ::primitive::memory_size skipChars(::primitive::memory_size len)
   {
-    const size_type SIZE = 1024;
+    const ::primitive::memory_size::TYPE SIZE = 1024;
     char bytes[SIZE];
-    size_type remaining = len;
+    ::primitive::memory_size remaining = len;
     while (!atEnd() && remaining > 0)
     {
       remaining -= readChars(bytes, (remaining < SIZE ? remaining : SIZE));
@@ -71,17 +71,17 @@ class CLASS_DECL_ca ID3_Reader :
     return len - remaining;
   }
 
-  virtual size_type remainingBytes()
+  virtual ::primitive::memory_size remainingBytes()
   {
     pos_type end = getEnd(), cur = getCur();
     if (end == pos_type(-1))
     {
-      return size_type(-1);
+      return ::primitive::memory_size(-1);
     }
     
     if (end >= cur)
     {
-      return end - cur;
+      return (::primitive::memory_size)(end - cur);
     }
     
     return 0;

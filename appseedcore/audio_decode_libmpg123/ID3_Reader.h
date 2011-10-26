@@ -16,11 +16,11 @@ namespace audio_decode_libmpg123
       ex1::file *      m_pfile;
 
       virtual void close();
-      virtual pos_type getCur();
-      virtual pos_type setCur(pos_type pos);
+      virtual file_position getCur();
+      virtual file_position setCur(file_position pos);
       virtual bool peek(char * pch);
-      virtual size_type readChars(char buf[], size_type len);
-      virtual pos_type getEnd();
+      virtual ::primitive::memory_size readChars(char buf[], ::primitive::memory_size len);
+      virtual file_position getEnd();
 
 
    };

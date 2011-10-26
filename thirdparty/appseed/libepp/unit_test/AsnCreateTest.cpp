@@ -25,7 +25,6 @@
 /* $Id: AsnCreateTest.cpp 1015 2009-03-12 19:28:56Z eduardo $ */
 #if USE_IP_MANAGEMENT
 #include <memory>
-#include <string>
 
 #include "libepp_nicbr.H"
 

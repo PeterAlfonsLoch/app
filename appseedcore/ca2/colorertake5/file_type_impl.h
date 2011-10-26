@@ -27,7 +27,7 @@ public:
     return baseScheme;
   }
 
-  string enumerateParameters(int idx) 
+  string enumerateParameters(int idx)
   {
     if (idx >= paramVector.get_size() || idx < 0){
       throw 0;
@@ -35,19 +35,19 @@ public:
     return paramVector.element_at(idx);
   }
 
-  string getParameterDescription(const char *name) 
+  string getParameterDescription(const char *name)
   {
     return paramDescriptionHash[name];
   }
 
-  string getParamValue(const char * name) 
+  string getParamValue(const char * name)
   {
     string val = paramHash[name];
     if(val.is_empty())
        return getParamDefaultValue(name);
     return val;
   }
-  string getParamDefaultValue(const char * name) 
+  string getParamDefaultValue(const char * name)
   {
     return paramDefaultHash[name];
   }
@@ -141,7 +141,7 @@ public:
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

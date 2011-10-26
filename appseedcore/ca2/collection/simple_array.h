@@ -1,7 +1,7 @@
 #pragma once
 
 template<class TYPE, class ARG_TYPE = const TYPE&>
-class simple_array : 
+class simple_array :
    virtual public base_object
 {
 public:
@@ -11,7 +11,7 @@ public:
 
 // Attributes
 	count get_size() const;
-	count get_count() const;
+	countget_count() const;
 	bool is_empty() const;
 	index get_upper_bound() const;
 	count set_size(count nNewSize, count nGrowBy = -1);
@@ -22,8 +22,8 @@ public:
 	const TYPE& get_at(index nIndex) const;
 	TYPE& get_at(index nIndex);
 	void set_at(index nIndex, ARG_TYPE newElement);
-	const TYPE& element_at(index nIndex) const;
-	TYPE& element_at(index nIndex);
+	const TYPE & element_at(index nIndex) const;
+	TYPE & element_at(index nIndex);
 
 	// Direct Access to the element data (may return NULL)
 	const TYPE* get_data() const;
@@ -49,7 +49,7 @@ public:
    void remove_last();
 
    void increment_size(count add_up = 1);
-   
+
    count remove_all(bool bResize = false);
 
    void swap(index i1, index i2);
@@ -83,14 +83,14 @@ template<class TYPE, class ARG_TYPE>
 void simple_array<TYPE, ARG_TYPE>::
 increment_size(count iAddUp)
 {
-    set_size(get_size() + iAddUp);
+    set_size(this->get_size() + iAddUp);
 }
 
 template <class TYPE, class ARG_TYPE>
 count simple_array<TYPE, ARG_TYPE>::
 remove_all(bool bResize)
 {
-   count countOld = get_count();
+   count countOld = this->get_count();
    if(bResize)
    {
       set_size(0, -1);
@@ -106,14 +106,14 @@ template <class TYPE, class ARG_TYPE>
 void simple_array<TYPE, ARG_TYPE>::swap(index i1, index i2)
 {
     TYPE t;
-    t = element_at(i1);
-    element_at(i1) = element_at(i2);
-    element_at(i2) = t;
+    t = this->element_at(i1);
+    this->element_at(i1) = this->element_at(i2);
+    this->element_at(i2) = t;
 }
 
 
 template <class TYPE, class ARG_TYPE>
-simple_array <TYPE, ARG_TYPE> & 
+simple_array <TYPE, ARG_TYPE> &
 simple_array<TYPE, ARG_TYPE>::
 operator = (const simple_array <TYPE, ARG_TYPE> & a)
 {

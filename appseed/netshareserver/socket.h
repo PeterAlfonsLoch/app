@@ -25,7 +25,7 @@ namespace netshareserver
       }
       inline netnodeMemoryFile & operator << (gen::memory_file & memfile)
       {
-         write(memfile.GetAllocation(), memfile.get_length());
+         write(memfile.get_data(), (::primitive::memory_size) memfile.get_length());
          return *this;
       }
       inline netnodeMemoryFile & operator << (ex1::file & file)
@@ -46,14 +46,17 @@ namespace netshareserver
    public:
 	   
       
-      string               m_strRead;
+      string                  m_strRead;
 
-	   int                  m_nBytesSent;
-	   int                  m_nBytesBufferSize;
-      session *            m_psession;
-      bool                 m_bDrawCursor;
+	   int                     m_nBytesSent;
+	   int                     m_nBytesBufferSize;
+      session *               m_psession;
+      bool                    m_bDrawCursor;
 
-      DWORD                m_dwLastITime;
+      DWORD                   m_dwLastITime;
+      ::visual::dib_sp        m_dibSnapshot;
+
+
 
 
 	   socket(::sockets::socket_handler_base & h);

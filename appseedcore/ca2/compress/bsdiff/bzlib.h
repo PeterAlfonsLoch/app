@@ -22,6 +22,13 @@
 #ifndef _BZLIB_H
 #define _BZLIB_H
 
+#ifdef __cplusplus
+#include "c/c.h"
+#else
+#include "c/c_c.h"
+#endif
+
+
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
@@ -75,7 +82,7 @@ typedef
 #endif
 
 #ifndef BZ_NO_STDIO
-/* Need a definitition for FILE */
+/* Need a definitition for _FILE */
 #include <stdio.h>
 #endif
 
@@ -85,7 +92,7 @@ typedef
       /* windows.h define small to char */
 #      undef small
 #   endif
-#ifdef BZ_DLL
+/*#ifdef BZ_DLL
 #   define BZ_API(func) WINAPI func
 #   define BZ_EXTERN __declspec(dllexport)
 #elif defined(USE_BZ_DLL)
@@ -96,13 +103,16 @@ typedef
 #   define BZ_EXTERN extern
 #else
    /* import windows dll dynamically */
-#   define BZ_API(func) (WINAPI * func)
+/*#   define BZ_API(func) (WINAPI * func)
 #   define BZ_EXTERN
 #endif
 #else
 #   define BZ_API(func) func
-#   define BZ_EXTERN extern
+#   define BZ_EXTERN extern*/
 #endif
+
+#define BZ_API(func)  WINAPI func
+#define BZ_EXTERN CLASS_DECL_____ extern
 
 
 /*-- Core (low-level) library functions --*/
@@ -148,7 +158,7 @@ typedef void BZFILE;
 
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) ( 
       int*  bzerror,   
-      FILE* f, 
+      _FILE* f, 
       int   verbosity, 
       int   small,
       void * unused,    
@@ -176,7 +186,7 @@ BZ_EXTERN int BZ_API(BZ2_bzRead) (
 
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) ( 
       int*  bzerror,      
-      FILE* f, 
+      _FILE* f, 
       int   blockSize100k, 
       int   verbosity, 
       int   workFactor 

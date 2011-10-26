@@ -149,17 +149,17 @@ namespace mus
             e_flag GetFlag();
             e_flag                  m_eflag;
             imedia::position                  m_tkRestart;
-            MidiPlayerCommand *  m_pcommand;
+            ::ca::smart_pointer < midi_player_command >  m_spcommand;
             void OnFinishCommand(EMidiPlayerCommand ecommand);
-            void SetCommand(MidiPlayerCommand * pcommand);
+            void SetCommand(midi_player_command * pcommand);
             PlayerLink();
          };
 
          BufferArray     m_buffera;
 
-         CEvent  m_evMmsgDone;
+         event  m_evMmsgDone;
 
-         CEvent            m_eventMidiPlaybackEnd;
+         event            m_eventMidiPlaybackEnd;
          mutex            m_mutex;
          UINT           m_uiDeviceID;          /* Requested MIDI device ID for MMSYSTEM        */
          UINT           m_uiState;             /* Sequencer state (SEQ_S_xxx)                  */
@@ -194,14 +194,14 @@ namespace mus
 
          midi_callback_data m_midicallbackdata;
          PlayerLink   m_playerlink;
-         ::CEvent       m_evBuffersZero;
+         ::event       m_evBuffersZero;
          //DWORD          m_cBuffer;            /* Number of streaming buffers to alloc         */
          DWORD          m_cbBuffer;           /* size of each streaming buffer                */
          //UINT           m_uMCIDeviceID;       /* Our MCI device ID given to us                */
          //UINT           m_uMCITimeFormat;     /* Current time format                          */
          //UINT           m_uMCITimeDiv;        /* MCI_SEQ_DIV_xxx for current file             */
          //HWND                     m_hWnd;            /* Where to post MMSG_DONE when done playing   */
-         MidiSequenceThread *    m_pthread;
+         midi_sequence_thread *    m_pthread;
 
 
 
@@ -249,12 +249,9 @@ namespace mus
          void OnDone(HMIDISTRM hmidistream, LPMIDIHDR lpmidihdr);
          virtual void GetTimeLength(imedia::time & time);
          virtual void GetPositionLength(imedia::position & position);
-         virtual void GetPosition(imedia::position & position);
 
-#if !core_level_1
          using ::ikar::karaoke::TimeToPosition;
          using ::ikar::karaoke::PositionToTime;
-#endif
 
          virtual imedia::position TimeToPosition(imedia::time time);
          virtual imedia::time PositionToTime(imedia::position position);
@@ -296,12 +293,14 @@ namespace mus
          //MMRESULT Stop(DWORD dwEllapse);
          MMRESULT Stop();
 
-         MMRESULT get_time(imedia::position  & ticks);
-         void get_time(imedia::time  & ticks);
+         void get_position(imedia::position  & time);
+         void get_time(imedia::time  & time);
 
-         MMRESULT GetMillis(DWORD  & ticks);
+         MMRESULT GetTicks(imedia::position & time);
+         MMRESULT GetMillis(imedia::time & time);
 
-         imedia::position MillisecsToTicks(DWORD msOffset);
+
+         imedia::position MillisecsToTicks(imedia::time msOffset);
 
          DWORD TicksToMillisecs(imedia::position tkOffset);
 
@@ -313,7 +312,7 @@ namespace mus
          DWORD dwUser,
          DWORD dw1,
          DWORD dw2,
-         MidiPlayer * lpMidiPlayer,
+         midi_player * lpMidiPlayer,
          CXfplayerView * pview);*/
          static void CALLBACK MidiOutProc(HMIDIOUT hmo, UINT wMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2);
 

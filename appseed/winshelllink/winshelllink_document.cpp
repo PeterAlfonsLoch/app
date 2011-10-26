@@ -80,11 +80,12 @@ void winshelllink_document::Serialize(CArchive& ar)
 
 void winshelllink_document::data_on_after_change(gen::signal_object * pobj)
 {
+   UNREFERENCED_PARAMETER(pobj);
 }
 
-BOOL winshelllink_document::on_open_document(const char * lpszPathName)
+bool winshelllink_document::on_open_document(var varUrl)
 {
-   string str = Application.file().as_string(lpszPathName);
+   string str = Application.file().as_string(varUrl);
    update_all_views(NULL, 123);
    return TRUE;
 }

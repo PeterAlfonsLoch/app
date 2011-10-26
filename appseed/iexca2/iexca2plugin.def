@@ -1,0 +1,15 @@
+; ca2 starter ActiveX
+
+LIBRARY "iexca2plugin"
+
+EXPORTS
+DllMain
+DllCanUnloadNow = DllCanUnloadNow PRIVATE
+DllGetClassObject = DllGetClassObject PRIVATE
+DllRegisterServer = DllRegisterServer PRIVATE
+DllUnregisterServer = DllUnregisterServer PRIVATE
+DllMain
+_DllCanUnloadNow = _DllCanUnloadNow 
+_DllGetClassObject = _DllGetClassObject  
+_DllRegisterServer = _DllRegisterServer 
+_DllUnregisterServer = _DllUnregisterServer 

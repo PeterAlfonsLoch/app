@@ -33,7 +33,7 @@ namespace libepp
 {
 
    class KeyData :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
       unsigned int get_flags() const

@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace n7z 
+namespace n7z
 {
 
    const uint64 k_AES = 0x06F10701;
@@ -33,13 +33,13 @@ namespace n7z
       array_ptr_alloc<CCoderInfo> Coders;
       base_array<CBindPair> BindPairs;
       base_array<CNum> PackStreams;
-      base_array<uint64> UnpackSizes;
+      base_array<file_size> UnpackSizes;
       uint32 UnpackCRC;
       bool UnpackCRCDefined;
 
       CFolder(): UnpackCRCDefined(false) {}
 
-      uint64 GetUnpackSize() const // test it
+      file_size GetUnpackSize() const // test it
       {
          if (UnpackSizes.is_empty())
             return 0;
@@ -135,7 +135,7 @@ namespace n7z
 
    struct CFileItem
    {
-      uint64 get_count;
+      file_size get_count;
       uint32 Attrib;
       uint32 Crc;
       string Name;
@@ -174,7 +174,7 @@ namespace n7z
 
    struct CArchiveDatabase
    {
-      base_array<uint64> PackSizes;
+      base_array<file_size> PackSizes;
       bool_array PackCRCsDefined;
       base_array<uint32> PackCRCs;
       array_ptr_alloc<CFolder> Folders;
@@ -255,5 +255,5 @@ namespace n7z
       void AddFile(const CFileItem &file, const CFileItem2 &file2);
    };
 
-} // namespace n7z 
+} // namespace n7z
 

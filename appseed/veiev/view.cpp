@@ -16,9 +16,9 @@ namespace veiev
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -98,6 +98,7 @@ namespace veiev
 
    void view::_001OnSize(gen::signal_object * pobj) 
    {
+      UNREFERENCED_PARAMETER(pobj);
    //   SCAST_PTR(::user::win::message::size, psize, pobj)
 
       rect rectDesktop;

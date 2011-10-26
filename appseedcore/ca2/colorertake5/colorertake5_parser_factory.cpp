@@ -103,7 +103,7 @@ void ParserFactory::init()
 
 string ParserFactory::searchPath()
 {
-   return System.dir().matter("colorer.zip:catalog.xml");
+   return Application.dir().matter("colorer.zip:catalog.xml");
 };
 
 ParserFactory::ParserFactory(::ca::application * papp) :
@@ -184,6 +184,9 @@ HRCParser* ParserFactory::getHRCParser()
                   }
                   catch(base_exception &e)
                   {
+                     string str;
+                     e.GetErrorMessage(str);
+                     TRACE("exception %s", str);
                   }
                }
             }
@@ -199,6 +202,9 @@ HRCParser* ParserFactory::getHRCParser()
                }
                catch(base_exception & e)
                {
+                  string str;
+                  e.GetErrorMessage(str);
+                  TRACE("exception %s", str);
                }
             }
          }
@@ -241,10 +247,11 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
   {
     if (hrdLocV->element_at(idx) != NULL)
     {
-       ex1::filesp spfile(get_app());
+
        try
        {
-          if(spfile->open(hrdLocV->element_at(idx), ::ex1::file::mode_read | ::ex1::file::type_binary))
+          ex1::byte_stream spfile(Application.get_byte_stream(hrdLocV->element_at(idx), ::ex1::file::mode_read | ::ex1::file::type_binary));
+          if(spfile.is_reader_set())
           {
             mapper->loadRegionMappings(spfile);
           }
@@ -252,7 +259,6 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
        catch(base_exception & )
        {
        }
-       spfile->close();
       };
     };
   return mapper;
@@ -276,18 +282,17 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   {
     if (hrdLocV->element_at(idx) != NULL)
     {
-       ex1::filesp spfile(get_app());
        try
        {
-          if(spfile->open(hrdLocV->element_at(idx), ::ex1::file::mode_read |::ex1::file::type_binary))
+          ex1::byte_stream stream(Application.get_byte_stream(hrdLocV->element_at(idx), ::ex1::file::mode_read |::ex1::file::type_binary));
+          if(stream.is_reader_set())
           {
-            mapper->loadRegionMappings(spfile);
+               mapper->loadRegionMappings(stream);
           }
        }
        catch(base_exception &)
        {
        }
-       spfile->close();
      }
   }
   return mapper;
@@ -313,7 +318,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

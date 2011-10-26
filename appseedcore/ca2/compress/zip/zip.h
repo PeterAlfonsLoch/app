@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "zip/zip_internal.h"
+#include "zip_internal.h"
 
 
 // vmszip

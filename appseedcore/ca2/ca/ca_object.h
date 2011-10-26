@@ -1,12 +1,21 @@
 #pragma once
 
+
+
 namespace ca
 {
+
+   
+   class ptra;
+
 
    class CLASS_DECL_ca object :
       virtual public ::ca::ca
    {
    public:
+
+
+
 
       object();
       object(const object & o);
@@ -14,6 +23,13 @@ namespace ca
       virtual ~object();
 
       virtual void delete_this();
+
+      virtual ::ca::ca * clone();
+
+
+      virtual ptra * new_ptra();
+
+
 
    };
 

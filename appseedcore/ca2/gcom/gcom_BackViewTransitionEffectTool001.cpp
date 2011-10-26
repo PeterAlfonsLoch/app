@@ -104,7 +104,7 @@ namespace gcom
          case TransitionEffectCirclypixelate_:
          case TransitionEffectEllipsoidalpixelate_:
             {
-        
+
                const int tilesx = max(4, cx / 48);
                const int tilesy = max(4, cy / 48);
                const int tiles = tilesx * tilesy;
@@ -199,7 +199,7 @@ namespace gcom
                m_iStepRepeatCount = 16;
 
                effect.m_dwDelay = 50;
-               
+
                //double dPow = 1.0 / 2.5;
                //const int iMaxGroupCount = 256;
                const int iMaxGroupCount = 127;
@@ -208,7 +208,7 @@ namespace gcom
                const int iFrameCount = iTileCount;
 
                //m_dAlpha = ceil(255.0 / pow(iGroupCount, dPow));
-               
+
                m_data.m_sliceframe.m_iTileCount = iTileCount;
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_data.m_sliceframe.m_iGroupCount = iGroupCount;
@@ -256,7 +256,7 @@ namespace gcom
                m_iStepRepeatCount = 1;
 
                effect.m_dwDelay = 50;
-               
+
                int c1 = 0;
                int c2 = 0;
 
@@ -279,8 +279,8 @@ namespace gcom
 
                m_data.m_alphapixelate.m_c1 = c1;
                m_data.m_alphapixelate.m_c2 = c2;
-               
-               
+
+
                int iSize;
 
                {
@@ -344,7 +344,7 @@ namespace gcom
                m_iStepRepeatCount = 1;
 
                effect.m_dwDelay = 50;
-               
+
             }
             break;
          case TransitionEffectVisual:
@@ -408,7 +408,7 @@ namespace gcom
 
 
                effect.m_dwDelay = 100;
-               
+
             }
             break;
          default:
@@ -420,7 +420,7 @@ namespace gcom
       void TransitionEffect::Tool001::Go()
       {
          ETransitionEffect etransitioneffect = m_etransitioneffect;
-         
+
          const int & cx = m_cx;
          const int & cy = m_cy;
 //         const double dRate = m_dRate;
@@ -817,23 +817,23 @@ namespace gcom
          }
       }
       void TransitionEffect::Tool001::GetRect(
-         LPRECT lprect, 
+         LPRECT lprect,
          EAlign ealign)
       {
          GetRect(lprect, ealign, m_dRate);
       }
 
       void TransitionEffect::Tool001::GetRect(
-         LPRECT lprect, 
+         LPRECT lprect,
          EAlign ealign,
          double dRate)
       {
          GetRect(lprect, ealign, m_cx, m_cy, dRate);
       }
-         
+
       void TransitionEffect::Tool001::GetRect(
-         LPRECT   lprect, 
-         EAlign   ealign, 
+         LPRECT   lprect,
+         EAlign   ealign,
          int      cx,
          int      cy,
          double   dRate)
@@ -931,20 +931,20 @@ namespace gcom
       }
 
       void TransitionEffect::Tool001::GetSliceRect(
-         LPRECT lprect, 
+         LPRECT lprect,
          EAlign ealign)
       {
          GetSliceRect(lprect, ealign, m_dRate, m_dRateEx);
       }
 
       void TransitionEffect::Tool001::GetSliceRect(
-         LPRECT   lprect, 
+         LPRECT   lprect,
          EAlign   ealign,
          double   dRate,
          double   dRatePlus // greater rate
          )
       {
-         
+
          const int & cx = m_cx;
          const int & cy = m_cy;
 
@@ -1117,7 +1117,7 @@ namespace gcom
 
       void TransitionEffect::Tool001::Finalize()
       {
-         
+
          m_ia.remove_all();
          m_pointa.remove_all();
 
@@ -1198,7 +1198,7 @@ namespace gcom
          GetRotateRect(
             m_size.cx,
             m_size.cy,
-            i, 
+            i,
             j,
             m_phi,
             lppoint);

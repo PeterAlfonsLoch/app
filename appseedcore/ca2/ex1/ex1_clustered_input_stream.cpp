@@ -7,12 +7,12 @@ namespace ex1
 {
 
 
-   DWORD_PTR clustered_input_stream::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size clustered_input_stream::read(void *data, ::primitive::memory_size size)
    {
-      DWORD_PTR processedSize = 0;
+      ::primitive::memory_size processedSize = 0;
       if (_virtPos >= Size)
       {
-         if(_virtPos == Size) 
+         if(_virtPos == Size)
             return 0;
          else
             throw system_exception(get_app(), E_FAIL);
@@ -20,25 +20,25 @@ namespace ex1
 
       if (_curRem == 0)
       {
-         uint32 blockSize = (uint32)1 << BlockSizeLog;
-         uint32 virtBlock = (uint32)(_virtPos >> BlockSizeLog);
-         uint32 offsetInBlock = (uint32)_virtPos & (blockSize - 1);
-         uint32 phyBlock = Vector[virtBlock];
-         uint64 newPos = StartOffset + ((uint64)phyBlock << BlockSizeLog) + offsetInBlock;
+         file_size blockSize = 1 << BlockSizeLog;
+         file_size virtBlock = _virtPos >> BlockSizeLog;
+         file_size offsetInBlock = _virtPos & (blockSize - 1);
+         file_size phyBlock = Vector[(index)virtBlock];
+         file_size newPos = StartOffset + ((uint64)phyBlock << BlockSizeLog) + offsetInBlock;
          if (newPos != _physPos)
          {
             _physPos = newPos;
-            RINOK(SeekToPhys());
+            SeekToPhys();
          }
          _curRem = blockSize - offsetInBlock;
-         for (int i = 1; i < 64 && (virtBlock + i) < (uint32)Vector.get_size() && phyBlock + i == Vector[virtBlock + i]; i++)
-            _curRem += (uint32)1 << BlockSizeLog;
+         for (int i = 1; i < 64 && (virtBlock + i) < (uint32)Vector.get_size() && phyBlock + i == Vector[(index)(virtBlock + i)]; i++)
+            _curRem += (uint64)((uint32) 1 << (uint32) BlockSizeLog);
          uint64 rem = Size - _virtPos;
          if (_curRem > rem)
-            _curRem = (uint32)rem;
+            _curRem = rem;
       }
       if (size > _curRem)
-         size = _curRem;
+         size = (::primitive::memory_size) _curRem;
       size = Stream->read(data, size);
       processedSize = size;
       _physPos += size;
@@ -47,7 +47,7 @@ namespace ex1
       return processedSize;
    }
 
-   DWORD_PTR clustered_input_stream::seek(INT_PTR offset, e_seek seekOrigin)
+   file_position clustered_input_stream::seek(file_offset offset, e_seek seekOrigin)
    {
       uint64 newVirtPos = offset;
       switch(seekOrigin)
@@ -55,7 +55,7 @@ namespace ex1
       case STREAM_SEEK_SET: break;
       case STREAM_SEEK_CUR: newVirtPos += _virtPos; break;
       case STREAM_SEEK_END: newVirtPos += Size; break;
-      default: 
+      default:
          throw system_exception(get_app(), STG_E_INVALIDFUNCTION);
       }
       if (_virtPos != newVirtPos)

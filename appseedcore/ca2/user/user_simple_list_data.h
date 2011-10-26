@@ -27,7 +27,7 @@ namespace user
       void SetItemText(list * plist, index iItem, index iSubItem, const char * lpcsz);
       
 
-      virtual bool _001GetItemText(list * plist, string &str, index iItem, index iSubItem, index iListItem);
+      virtual void _001GetItemText(list_item * pitem);
 
       virtual INT_PTR _001GetItemCount();
 

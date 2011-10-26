@@ -97,7 +97,7 @@ void KeywordList::substrIndex(){
 char*schemeNodeTypeNames[] =  { "EMPTY", "RE", "SCHEME", "KEYWORDS", "INHERIT" };
 
 
-SchemeNode::SchemeNode() 
+SchemeNode::SchemeNode()
 {
    virtualEntryVector.set_size(0, 5);
   type = SNT_EMPTY;
@@ -150,7 +150,7 @@ SchemeNode::~SchemeNode(){
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

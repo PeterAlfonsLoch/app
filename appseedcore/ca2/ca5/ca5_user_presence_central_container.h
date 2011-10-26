@@ -19,6 +19,7 @@ namespace ca5
          virtual ~presence_central_container();
 
          virtual bool initialize_central_container(::ca::application * papp);
+         virtual bool finalize_central_container();
 
          virtual bool is_initialized();
 

@@ -25,38 +25,21 @@ namespace fontopus
 namespace ca2
 {
 
-   class CLASS_DECL_ca application_request
-   {
-   public:
-
-
-      ::user::interaction *      m_puiParent;
-      index                      m_iEdge;
-      string                     m_strApp;
-      var                        m_varFile;
-      var                        m_varQuery;
-      manual_reset_event         m_eventReady;
-      ::ca::application_bias *   m_pbiasCreate;
-
-
-      application_request();
-
-   };
-
    class CLASS_DECL_ca application :
       virtual public ::xml::application
    {
    public:
-      ::collection::map < string, string, string_to_string_map *, string_to_string_map * > m_stringtablemap;
-      ::collection::map < string, string, string_to_string_map *, string_to_string_map * > m_stringtablemapStd;
-      comparable_array < language_string *, language_string * > m_langstrptra;
-      string                              m_strLocale;
-      string                              m_strStyle;
-      manual_reset_event *                m_peventReady;
+      ::collection::map < string, string, string_to_string_map *, string_to_string_map * >      m_stringtablemap;
+      ::collection::map < string, string, string_to_string_map *, string_to_string_map * >      m_stringtablemapStd;
+      comparable_array < language_string *, language_string * >                                 m_langstrptra;
+      string                                                                                    m_strLocale;
+      string                                                                                    m_strStyle;
+      manual_reset_event *                                                                      m_peventReady;
 
       
-      string                              m_strLicense;
-      string                              m_strBaseSupportId;
+      string                                                                                    m_strLicense;
+      string                                                                                    m_strBaseSupportId;
+      collection::map < int, int, bool, bool > *                                                m_pmapKeyPressed;
 
 
       
@@ -66,13 +49,13 @@ namespace ca2
       virtual ~application();
 
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
       virtual int run();
 
       virtual string get_locale();
       virtual string get_style();
-      virtual string get_locale_style_dir();
+      virtual string get_locale_style_dir(const char * pszLocale = NULL, const char * pszStyle = NULL);
 
       virtual void EnableShellOpen();
 
@@ -99,9 +82,12 @@ namespace ca2
 
 
 
+
+
       //virtual string get_current_user_login();
 
       virtual string load_string(id id);
+      virtual bool load_string(string & str, id id);
       bool load_cached_string(string & str, id id, bool bLoadStringTable);
       bool load_cached_string_by_id(string & str, id id, const char * pszFallbackValue, bool bLoadStringTable);
       void load_string_table(const char * pszId);
@@ -144,10 +130,11 @@ namespace ca2
       virtual bool on_run_install();
       virtual bool on_run_uninstall();
 
-      virtual void request_application(::ca2::application_request * prequest);
-
-
       DECL_GEN_SIGNAL(_001OnApplicationRequest)
+
+      virtual bool is_key_pressed(int iKey);
+      virtual void set_key_pressed(int iKey, bool bPressed);
+
 
    };
 

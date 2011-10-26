@@ -32,7 +32,9 @@ namespace libepp
 {
 
    /// DSInfo Class
-   class DSInfo {
+   class DSInfo :
+   virtual public ::radix::object 
+   {
    public:
       DSInfo& operator=(const DSInfo &dsInfo) {
          _key_tag = dsInfo._key_tag;
@@ -51,7 +53,7 @@ namespace libepp
       }
 
       /// Default constructor
-      DSInfo()
+      DSInfo(::ca::application * papp)
       {
          this->reset();
       }
@@ -182,7 +184,7 @@ namespace libepp
             "</secDNS:alg>"
             "<secDNS:digestType>" + gen::str::itoa(_digest_type) +
             "</secDNS:digestType>"
-            "<secDNS:digest>" + Application.xml().special_chars(_digest) + 
+            "<secDNS:digest>" + System.xml().special_chars(_digest) + 
             "</secDNS:digest>"; 
 
          if (_max_sig_life > 0 && secDnsVersion == "1.0")
@@ -232,6 +234,18 @@ namespace libepp
       unsigned int _max_sig_life;
       KeyData _key_data;
 
+   };
+
+
+   class ds_info_array :
+      virtual public array_app_alloc < DSInfo >
+   {
+   public:
+      ds_info_array(::ca::application * papp) :
+         ca(papp),
+         array_app_alloc < DSInfo >(papp)
+      {
+      }
    };
 
 } // namespace libepp

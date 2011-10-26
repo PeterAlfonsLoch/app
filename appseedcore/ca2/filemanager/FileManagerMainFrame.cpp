@@ -47,10 +47,10 @@ bool FileManagerMainFrame::CreateBars()
       strToolBar = pdoc->get_filemanager_data()->m_ptemplate->m_strToolBar;
    }
 
-   string str = Application.file().as_string(System.dir().matter(strToolBar));
+   string str = Application.file().as_string(Application.dir().matter(strToolBar));
 
    if (!m_toolbar.CreateEx(this) ||
-      !m_toolbar.LoadXmlToolBar(Application.file().as_string(System.dir().matter(strToolBar))))
+      !m_toolbar.LoadXmlToolBar(Application.file().as_string(Application.dir().matter(strToolBar))))
    {
       TRACE0("Failed to create toolbar\n");
       return false;      // fail to create

@@ -19,13 +19,11 @@ namespace filemanager
 
       file_manager_operation_document * get_operation_doc(bool bSwitch);
 
-      //virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
-
 
       virtual bool _001OnCommand(id id);
       virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
 
-      virtual data * get_filemanager_data();
+      virtual ::filemanager::data * get_filemanager_data();
 
       virtual BOOL on_new_document();
    

@@ -55,7 +55,7 @@ Star350EventBase & Star350EventBase::operator =(Star350EventBase &eventSrc)
    SetChB2(eventSrc.GetChB2());
    SetParam(eventSrc.GetParam(), eventSrc.GetParamSize());
    SetDelta(eventSrc.GetDelta());
-   SetPosition(eventSrc.GetPosition());
+   SetPosition(eventSrc.get_position());
    SetImage(eventSrc.GetImage());
    SetImageSize(eventSrc.GetImageSize());
     SetFlags(eventSrc.GetFlags());

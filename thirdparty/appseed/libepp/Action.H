@@ -36,7 +36,7 @@ namespace libepp
 
    /// EPP Action Class
    class Action :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
       /// virtual destructor

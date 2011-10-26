@@ -11,7 +11,7 @@ FileManagerInterface::~FileManagerInterface()
 
 }
 
-bool FileManagerInterface::FileManagerBrowse(::fs::item & item)
+bool FileManagerInterface::FileManagerBrowse(const ::fs::item & item)
 {
    if(&item != &m_item)
    {
@@ -35,7 +35,7 @@ void FileManagerInterface::FileManagerOneLevelUp()
    if(get_item().m_strPath.is_empty())
       return;
 
-   string strParent = filemanager::_shell::_017FilePathGetParent(get_item().m_strPath);
+   string strParent = get_fs_data()->eat_end_level(get_item().m_strPath, 1);
 
    FileManagerBrowse(strParent);
 
@@ -59,7 +59,7 @@ critical_section * FileManagerInterface::GetItemIdListCriticalSection()
 
 void FileManagerInterface::OnFileManagerBrowse()
 {
-   data_set("InitialBrowsePath", ::ca::system::idEmpty, get_item().m_strPath);
+   data_set("InitialBrowsePath", ::radix::system::idEmpty, get_item().m_strPath);
    //get_filemanager_data()->OnFileManagerOpenFolder(get_item());
 }
 
@@ -76,8 +76,11 @@ void FileManagerInterface::FileManagerSaveOK()
 {
 }
 
-
 void FileManagerInterface::FileManagerSaveCancel()
 {
 }
 
+::fs::data * FileManagerInterface::get_fs_data()
+{
+   return NULL;
+}

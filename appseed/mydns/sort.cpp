@@ -142,6 +142,8 @@ sort_rrlist(RRLIST *rrlist, int (*compar)(RR *, RR *))
 static inline void
 load_balance(TASK *t, RRLIST *rrlist, datasection_t section, int sort_level)
 {
+   UNREFERENCED_PARAMETER(t);
+   UNREFERENCED_PARAMETER(section);
 	register RR	*node;											/* Current node */
 	register int order = 1;										/* Current order */
 
@@ -263,6 +265,8 @@ sort_a_recs(TASK *t, RRLIST *rrlist, datasection_t section)
 void
 sort_mx_recs(TASK *t, RRLIST *rrlist, datasection_t section)
 {
+   UNREFERENCED_PARAMETER(t);
+   UNREFERENCED_PARAMETER(section);
 	register RR *node;
 
 #if DEBUG_ENABLED && DEBUG_SORT
@@ -291,6 +295,8 @@ static inline int
 sort_srv_priority(TASK *t, RRLIST *rrlist, datasection_t section, uint32_t priority,
 						int sort_level, int order)
 {
+   UNREFERENCED_PARAMETER(t);
+   UNREFERENCED_PARAMETER(section);
 	register RR	*node;											/* Current node */
 	register int found = 0;										/* Number of records with this priority */
 	uint64_t	weights = 0;										/* Sum of weights */

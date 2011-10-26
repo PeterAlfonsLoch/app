@@ -13,7 +13,7 @@ namespace userbase
       virtual ~elastic_slider(void);
 
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)

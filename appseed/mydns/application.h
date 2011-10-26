@@ -5,7 +5,7 @@ namespace mydns
    class service;
 
    class CLASS_DECL_CA2_MYDNS application :
-      public ::icube::application
+      public ::cube::application
    {
    public:
 
@@ -20,7 +20,7 @@ namespace mydns
 
       bool initialize_instance();
       virtual void netnode_run();
-      virtual void on_request(var & varFile, var & varQuery);
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
       int CreateService();
       int RemoveService();

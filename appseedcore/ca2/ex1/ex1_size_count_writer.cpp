@@ -3,9 +3,9 @@
 namespace ex1
 {
 
-   void size_count_writer::write(const void *data, DWORD_PTR size, DWORD_PTR * processedSize)
+   void size_count_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
-      DWORD_PTR realProcessedSize;
+      ::primitive::memory_size realProcessedSize;
       _stream->write(data, size, &realProcessedSize);
       _size += realProcessedSize;
       if (processedSize)

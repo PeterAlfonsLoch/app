@@ -1,5 +1,5 @@
 #pragma once
 
-#include "include/cube.h"
+#include "include/tesseract.h"
 
 #include "iconoverlayer.h"

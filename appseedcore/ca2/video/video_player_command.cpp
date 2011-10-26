@@ -56,7 +56,7 @@ namespace video
       SetCommand(command_execute_play);
    }
 
-   void player_command::AttachEvent(CEvent *pevent)
+   void player_command::AttachEvent(event *pevent)
    {
       m_evptra.add(pevent);
    }

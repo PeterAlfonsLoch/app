@@ -1,7 +1,4 @@
 #include "StdAfx.h"
-#include "mediaplaylist/PlaylistCentralContainer.h"
-#include "mediaplaylist/PlaylistCentral.h"
-#include "mediaplaylist/PlaylistDoc.h"
 
 namespace musctrl
 {
@@ -36,25 +33,25 @@ namespace musctrl
 
 
 
-   void single_document_template::request(var & varFile, var & varQuery)
+   void single_document_template::request(::ca::create_context * pcreatecontext)
    {
-      varQuery["document"] = (::ca::ca *) NULL;
-      bool bMakeVisible = varQuery["make_visible_boolean"];
-      ::user::interaction * puiParent = varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
-      ::view * pviewAlloc = varQuery["allocation_view"].ca2 < ::view > ();
-      if(varFile.is_empty())
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+      bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"];
+//      ::user::interaction * puiParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
+//      ::view * pviewAlloc = pcreatecontext->m_varQuery["allocation_view"].ca2 < ::view > ();
+      if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         varQuery["document"] = OpenDocumentFileNoReserve(NULL, bMakeVisible != 0, puiParent);
+         pcreatecontext->m_spCommandLine->m_varQuery["document"] = OpenDocumentFileNoReserve(NULL, pcreatecontext);
       }
       else
       {
-         OpenDocumentFileNoReserve(NULL, bMakeVisible != 0, puiParent);
-         ReserveSong(varFile, true, bMakeVisible != 0);
-         varQuery["document"] = m_pdocument;
+         OpenDocumentFileNoReserve(NULL, pcreatecontext);
+         ReserveSong(pcreatecontext->m_spCommandLine->m_varFile, true, bMakeVisible != 0);
+         pcreatecontext->m_spCommandLine->m_varQuery["document"] = m_pdocument;
       }
    }
 
-   document * single_document_template::OpenDocumentFileNoReserve(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
+   document * single_document_template::OpenDocumentFileNoReserve(var varFile, ::ca::create_context * pcreatecontext)
    {
 
       document * pdocument = NULL;
@@ -108,7 +105,7 @@ namespace musctrl
          BOOL bAutoDelete = pdocument->m_bAutoDelete;
          pdocument->m_bAutoDelete = FALSE;
                   // don't destroy if something goes wrong
-         pFrame = create_new_frame(pdocument, NULL, puiParent);
+         pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
          pdocument->m_bAutoDelete = bAutoDelete;
          if (pFrame == NULL)
          {
@@ -126,12 +123,12 @@ namespace musctrl
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
-         if (!bMakeVisible)
+         if (!pcreatecontext->m_bMakeVisible)
             pdocument->m_bEmbedded = TRUE;
 
          if (!pdocument->on_new_document())
          {
-            // ::fontopus::user has been alerted to what failed in on_new_document
+            // user has been alerted to what failed in on_new_document
             TRACE0("::userbase::document::on_new_document returned FALSE.\n");
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy document
@@ -149,7 +146,7 @@ namespace musctrl
          if (!pdocument->on_open_document(varFile))
            //if(VMS_FAILED(ReserveSong(lpszPathName, true)))
          {
-            // ::fontopus::user has been alerted to what failed in on_open_document
+            // user has been alerted to what failed in on_open_document
             TRACE0("::userbase::document::on_open_document returned FALSE.\n");
             if (bCreated)
             {
@@ -177,15 +174,21 @@ namespace musctrl
       }
 
       ::radix::thread* pThread = System.GetThread();
-      if (bCreated && (pThread->GetMainWnd() == NULL ||
-           (dynamic_cast<userbase::frame_window*>(pThread->GetMainWnd()) == NULL)))
+      if (bCreated)
       {
-         // set as main frame (InitialUpdateFrame will show the ::ca::window)
-         pThread->SetMainWnd(pFrame);
+         if(pThread->GetMainWnd() == NULL || (dynamic_cast<userbase::frame_window*>(pThread->GetMainWnd()) == NULL))
+         {
+            // set as main frame (InitialUpdateFrame will show the ::ca::window)
+            pThread->SetMainWnd(pFrame);
+         }
+         if(Application.m_puiMain == NULL)
+         {
+            Application.m_puiMain = pFrame;
+         }
       }
       if(bCreatedNewFrame)
       {
-         InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
+         InitialUpdateFrame(pFrame, pdocument, pcreatecontext->m_bMakeVisible);
       }
 
       return pdocument;
@@ -219,8 +222,8 @@ namespace musctrl
 
    VMSRESULT single_document_template::ReserveSong(LPINT lpiaSongs, int iSongCount, bool bDoPlay, bool bMakeVisible)
    {
-      PlaylistCentral & playlistcentral = PlaylistCentralContainer::AppGetPlaylistCentral(get_app());
-      PlaylistDoc * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
+      mediaplaylist::central & playlistcentral = mediaplaylist::central_container::AppGetPlaylistCentral(get_app());
+      ::mediaplaylist::document * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
       pdoc->AddSong(lpiaSongs, iSongCount, bDoPlay, bMakeVisible);
       return VMSR_SUCCESS;
    }
@@ -228,27 +231,27 @@ namespace musctrl
 
    VMSRESULT single_document_template::ReserveSong(int iSongCode, bool bDoPlay, bool bMakeVisible)
    {
-      PlaylistCentral & playlistcentral = PlaylistCentralContainer::AppGetPlaylistCentral(get_app());
-      PlaylistDoc * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
+      mediaplaylist::central & playlistcentral = mediaplaylist::central_container::AppGetPlaylistCentral(get_app());
+      ::mediaplaylist::document * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
       pdoc->AddSong(iSongCode, bDoPlay, bMakeVisible, true);
       return VMSR_SUCCESS;
    }
 
    VMSRESULT single_document_template::ReserveSong(var varFile, bool bDoPlay, bool bMakeVisible)
    {
-      PlaylistCentral & playlistcentral = PlaylistCentralContainer::AppGetPlaylistCentral(get_app());
-      PlaylistDoc * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
+      mediaplaylist::central & playlistcentral = mediaplaylist::central_container::AppGetPlaylistCentral(get_app());
+      ::mediaplaylist::document * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
       //string str;
       //str.SetACP(lpcszPath); // ACP here is very important.
-      pdoc->AddSong(varFile, bDoPlay ? PlaylistDoc::AddSongAndPlay : PlaylistDoc::AddSongAndPlayIfNotPlaying, bMakeVisible, true);
+      pdoc->AddSong(varFile, bDoPlay ? ::mediaplaylist::document::AddSongAndPlay : ::mediaplaylist::document::AddSongAndPlayIfNotPlaying, bMakeVisible, true);
       return VMSR_SUCCESS;
    }
 
 
    VMSRESULT single_document_template::ReserveSong(stringa & stra, bool bDoPlay, bool bMakeVisible)
    {
-      PlaylistCentral & playlistcentral = PlaylistCentralContainer::AppGetPlaylistCentral(get_app());
-      PlaylistDoc * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
+      mediaplaylist::central & playlistcentral = mediaplaylist::central_container::AppGetPlaylistCentral(get_app());
+      ::mediaplaylist::document * pdoc = playlistcentral.GetCurrentPlaylist(bMakeVisible);
       pdoc->AddSong(stra, bDoPlay, bMakeVisible);
       return VMSR_SUCCESS;
    }

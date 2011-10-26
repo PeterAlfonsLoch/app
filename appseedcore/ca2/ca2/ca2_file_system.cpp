@@ -46,9 +46,9 @@ namespace ca2
       bool system::path::is_relative(const char * psz)
       {
          string strPath(psz);
-         if(strPath.find(':') != -1 && strPath.find(':') < 10) 
+         if(strPath.find(':') != -1 && strPath.find(':') < 10)
             return false;
-         if(strPath.find('/') == 0 || strPath.find('\\') == 0) 
+         if(strPath.find('/') == 0 || strPath.find('\\') == 0)
             return false;
          return true;
       }
@@ -105,8 +105,8 @@ namespace ca2
       {
          mutex_lock lockMachineEvent(
             &System.machine_event_central() != NULL ?
-               System.machine_event_central().m_machineevent.m_hmutex 
-               : NULL);
+               &System.machine_event_central().m_machineevent.m_mutex
+               : NULL, true);
          int iIncLevel = -1;
          string str;
          string strPrefix(pszPrefix);
@@ -194,7 +194,7 @@ namespace ca2
                   i--;
                   continue;
                }
-               if(!isdigit(str[0]) || !isdigit(str[1]))
+               if(!isdigit((unsigned char) str[0]) || !isdigit((unsigned char) str[1]))
                {
                   stra.remove_at(i);
                   i--;
@@ -222,6 +222,12 @@ namespace ca2
 
       string system::as_string(var varFile, ::ca::application * papp)
       {
+          var varQuery;
+          return as_string(varFile, varQuery, papp);
+      }
+
+      string system::as_string(var varFile, var varQuery, ::ca::application * papp)
+      {
          primitive::memory storage;
          if(varFile.ca2 < ::ex1::file > () != NULL)
          {
@@ -232,7 +238,7 @@ namespace ca2
             string strFilePath(varFile);
             if(gen::str::find_ci(".zip:", strFilePath) >= 0)
             {
-               gen::memory_file memfile(get_app(), storage);
+               gen::memory_file memfile(get_app(), &storage);
                zip::InFile infile(get_app());
                if(!infile.open(strFilePath, 0, NULL))
                   return "";
@@ -250,7 +256,9 @@ namespace ca2
             else if(gen::str::begins_ci(strFilePath, "http://")
             || gen::str::begins_ci(strFilePath, "https://"))
             {
-               Application.http().get(strFilePath, storage, &AppUser(papp));
+               gen::property_set post;
+               gen::property_set headers;
+               Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
             }
             else
             {
@@ -258,36 +266,50 @@ namespace ca2
             }
          }
          string strResult;
-         if(storage.GetStorageSize() >= 2
-         && storage.GetAllocation()[0] == 255
-         && storage.GetAllocation()[1] == 60)
+         if(storage.get_size() >= 2
+         && storage.get_data()[0] == 255
+         && storage.get_data()[1] == 60)
          {
-            gen::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.GetAllocation()[2], storage.GetStorageSize() - 2);
+            gen::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int)(storage.get_size() - 2));
          }
-         else if(storage.GetStorageSize() >= 3
-         && storage.GetAllocation()[0] == 0xef
-         && storage.GetAllocation()[1] == 0xbb
-         && storage.GetAllocation()[2] == 0xbf)
+         else if(storage.get_size() >= 3
+         && storage.get_data()[0] == 0xef
+         && storage.get_data()[1] == 0xbb
+         && storage.get_data()[2] == 0xbf)
          {
-            strResult = string((const char *) (const wchar_t *) &storage.GetAllocation()[3], storage.GetStorageSize() - 3);
+            strResult = string((const char *) (const wchar_t *) &storage.get_data()[3], (int) (storage.get_size() - 3));
          }
-         else 
+         else
          {
-            strResult = string((const char *) storage.GetAllocation(), storage.GetStorageSize());
+            strResult = string((const char *) storage.get_data(), (int) storage.get_size());
          }
-      
+
          return strResult;
       }
 
-      void system::as_memory(var varFile, primitive::memory & mem, ::ca::application * papp)
+      void system::as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp)
       {
-         ex1::filesp spfile(get_app());
+         if(varFile.get_type() == var::type_string)
+         {
+            string strPath = varFile.get_string();
+            strPath.trim("\"'");
+            if((gen::str::begins(strPath, "http://")
+               || gen::str::begins(strPath, "https://")))
+            {
+               App(papp).http().get(strPath, mem, &AppUser(papp));
+               return;
+            }
+         }
+         ex1::filesp spfile = Sys(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
+         if(spfile.is_set())
+         {
+/*
 
          if(varFile.get_type() == var::type_string
          && (gen::str::begins(varFile, "http://")
             || gen::str::begins(varFile, "https://")))
          {
-            Application.http().get(varFile, mem, &AppUser(papp));
+            App(papp).http().get(varFile, mem, &AppUser(papp));
          }
          else if(varFile.get_type() == var::type_propset
          && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
@@ -304,9 +326,9 @@ namespace ca2
             string str(varFile);
             if(gen::str::begins_eat_ci(str, "matter://"))
             {
-               str = System.dir().matter(str);
-            }
-            try
+               str = App(papp).dir().matter(str);
+            }*/
+            /*try
             {
                spfile->open(str, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
             }
@@ -315,12 +337,18 @@ namespace ca2
                gen::del(pe);
                return;
             }
+            catch(...)
+            {
+               return;
+            }*/
+
             mem.FullLoad(spfile);
          }
       }
 
       void system::lines(stringa & stra, var varFile, ::ca::application * papp)
       {
+         UNREFERENCED_PARAMETER(papp);
          ex1::text_file_sp spfile(get_app());
 
          try
@@ -342,96 +370,60 @@ namespace ca2
 
       }
 
-      bool system::put_contents(const char * lpcsz, const char * lpcszContents)
+      bool system::put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp)
       {
-         ex1::filesp spfile(get_app());
-         if(!spfile->open(
-            lpcsz, 
-            ::ex1::file::type_binary 
-            | ::ex1::file::mode_write 
-            | ::ex1::file::mode_create 
-            | ::ex1::file::shareDenyNone
-            | ::ex1::file::defer_create_directory))
+         ex1::filesp spfile;
+         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         if(spfile.is_null())
             return false;
+         spfile->write(pvoidContents, count);
+         return true;
+      }
+
+      bool system::put_contents(var varFile, const char * lpcszContents, ::ca::application * papp)
+      {
+         if(lpcszContents == NULL)
+         {
+            return put_contents(varFile, "", 0, papp);
+         }
          else
          {
-            spfile->write(lpcszContents, strlen(lpcszContents));
-            spfile->Flush();
-            spfile->close();
-            return true;
+            return put_contents(varFile, lpcszContents, strlen(lpcszContents), papp);
          }
       }
-      bool system::put_contents_utf8(const char * lpcsz, const char * lpcszContents)
+
+      bool system::put_contents(var varFile, ex1::file & file, ::ca::application * papp)
       {
-         ex1::filesp spfile(get_app());
-         try
-         {
-            if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory))
-               return false;
-         }
-         catch(...)
-         {
+         ex1::filesp spfile;
+         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         if(spfile.is_null())
             return false;
-         }
-         char sig[] = {'\xef', '\xbb', '\xbf'};
-         spfile->write(&sig, sizeof(sig));
-         spfile->write(lpcszContents, strlen(lpcszContents));
-         spfile->Flush();
-         spfile->close();
-         return true;
-      }
-      bool system::put_contents(const char * lpcsz, ex1::file & file)
-      {
-         ex1::filesp spfile(get_app());
-         try
-         {
-            if(!spfile->open(
-               lpcsz, 
-               ::ex1::file::type_binary 
-               | ::ex1::file::mode_write 
-               | ::ex1::file::mode_create 
-               | ::ex1::file::shareDenyNone
-               | ::ex1::file::defer_create_directory))
-               return false;
-         }
-         catch(...)
-         {
-            return false;
-         }
          primitive::memory mem;
          mem.allocate(1024 * 1024 * 8);
-         UINT uiRead;
-         while((uiRead = file.read(mem.GetAllocation(), mem.GetStorageSize())) > 0)
+         ::primitive::memory_size uiRead;
+         while((uiRead = file.read(mem.get_data(), mem.get_size())) > 0)
          {
-            spfile->write(mem.GetAllocation(), uiRead);
+            spfile->write(mem.get_data(), uiRead);
          }
-         spfile->Flush();
-         spfile->close();
          return true;
       }
-      bool system::put_contents(const char * lpcsz, primitive::memory & mem)
+
+      bool system::put_contents(var varFile, primitive::memory & mem, ::ca::application * papp)
       {
-         ex1::filesp spfile(get_app());
-         try
-         {
-            if(!spfile->open(
-               lpcsz, 
-               ::ex1::file::type_binary 
-               | ::ex1::file::mode_write 
-               | ::ex1::file::mode_create 
-               | ::ex1::file::shareDenyNone
-               | ::ex1::file::defer_create_directory))
-               return false;
-         }
-         catch(...)
-         {
+         return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
+      }
+
+      bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::ca::application * papp)
+      {
+         ex1::filesp spfile;
+         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         if(spfile.is_null())
             return false;
-         }
-         spfile->write(mem.GetAllocation(), mem.GetStorageSize());
-         spfile->Flush();
-         spfile->close();
+         ::ex1::byte_output_stream(spfile) << "\xef\xbb\xbf";
+         spfile->write(lpcszContents, strlen(lpcszContents));
          return true;
       }
+
       void system::path::split(stringa & stra, const char * lpcszPath)
       {
          stringa straSeparator;
@@ -538,7 +530,7 @@ namespace ca2
                      System.dir().mk(System.dir().name(strNew));
                   }
                   if(!::CopyFileW(
-                     gen::international::utf8_to_unicode(strOld), 
+                     gen::international::utf8_to_unicode(strOld),
                      gen::international::utf8_to_unicode(strNew), bFailIfExists))
                      throw "Failed to copy file";
                }
@@ -548,7 +540,7 @@ namespace ca2
          {
             System.dir().mk(System.dir().name(pszNew));
             if(!::CopyFileW(
-               gen::international::utf8_to_unicode(psz), 
+               gen::international::utf8_to_unicode(psz),
                gen::international::utf8_to_unicode(pszNew), bFailIfExists))
             {
                DWORD dwError = ::GetLastError();
@@ -562,7 +554,7 @@ namespace ca2
       void system::move(const char * pszNew, const char * psz)
       {
          if(!::MoveFileW(
-            gen::international::utf8_to_unicode(psz), 
+            gen::international::utf8_to_unicode(psz),
             gen::international::utf8_to_unicode(pszNew)))
          {
             DWORD dwError = ::GetLastError();
@@ -630,6 +622,12 @@ namespace ca2
 
       bool system::exists(const char * pszPath)
       {
+         string strPath(pszPath);
+         strPath.trim();
+         if(gen::str::begins_ci(strPath, "uifs://"))
+         {
+            return ifs(get_app(), "").file_exists(strPath);
+         }
          int iFind = gen::str::find_ci(".zip:", pszPath);
          zip::Util ziputil(get_app());
          if(iFind >= 0)
@@ -683,7 +681,7 @@ namespace ca2
             if(strNew != strOld)
             {
                ::MoveFileW(
-                  gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)), 
+                  gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
                   gen::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
             }
          }
@@ -702,7 +700,7 @@ namespace ca2
          char lpPathBuffer[MAX_PATH * 16];
        // get the temp path.
          DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-                              lpPathBuffer); // buffer for path 
+                              lpPathBuffer); // buffer for path
          if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
          {
             printf ("GetTempPath failed (%d)\n", GetLastError());
@@ -737,7 +735,7 @@ namespace ca2
          char lpPathBuffer[MAX_PATH * 16];
        // get the temp path.
          DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-                              lpPathBuffer); // buffer for path 
+                              lpPathBuffer); // buffer for path
          if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
          {
             printf ("GetTempPath failed (%d)\n", GetLastError());
@@ -769,6 +767,21 @@ namespace ca2
          if(!fileOut->open(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write, &e))
             throw e;
          return fileOut;
+      }
+
+      string system::replace_extension(const char * pszFile, const char * pszExtension)
+      {
+         string strFile(pszFile);
+         set_extension(strFile, pszExtension);
+         return strFile;
+      }
+
+      void system::set_extension(string & strFile, const char * pszExtension)
+      {
+         strsize iEnd = strFile.reverse_find('.');
+         if(iEnd < 0)
+            iEnd = strFile.get_length();
+         strFile = strFile.Left(iEnd) + gen::str::has_char(pszExtension, ".");
       }
 
    } // namespace file

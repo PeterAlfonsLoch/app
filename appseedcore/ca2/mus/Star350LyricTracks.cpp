@@ -2,7 +2,7 @@
 #include "Star350LyricTracks.h"
 
 Star350LyricTracks::Star350LyricTracks(::ca::application * papp) :
-   array_app_alloc < MidiLyricTrack, MidiLyricTrack & > (papp)
+   array_app_alloc < midi_lyric_track, midi_lyric_track & > (papp)
 {
 
 }
@@ -23,7 +23,7 @@ Star350LyricTracks::~Star350LyricTracks()
     imedia::position                   tkRelTime;
     imedia::position                   tkMinRelTime;
     DWORD                   dwGot;
-    
+
 
 //    ASSERT(pSmf != NULL);
     ASSERT(pTkPosition != NULL);
@@ -35,7 +35,7 @@ Star350LyricTracks::~Star350LyricTracks()
 
     pTrkFound       = NULL;
     tkMinRelTime    = MAX_TICKS;
-    
+
     //for (pTrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; pTrk++)
    for (idxTrack = 0; idxTrack < m_nSize; idxTrack++)
     {
@@ -51,7 +51,7 @@ Star350LyricTracks::~Star350LyricTracks()
                return CMidiFile::InvalidFile;
          }
       }
-   
+
       tkEventDelta = pTrk->m_tkDelta;
 
        tkRelTime = pTrk->m_tkPosition + tkEventDelta - m_tkPosition;
@@ -75,7 +75,7 @@ Star350LyricTracks::~Star350LyricTracks()
     {
         return CMidiFile::ReachedTkMax;
     }
-        
+
 
     dwGot = pTrk->m_dwUsed;
    tkEventDelta = pTrk->m_tkDelta;
@@ -100,7 +100,7 @@ void Star350LyricTracks::seek_begin()
 {
    for (int i = 0; i < m_nSize; i++)
     {
-      CLyricTrack *pTrk = &element_at(i);
+      CLyricTrack *pTrk = &this->element_at(i);
       pTrk->seek_begin();
     }
 }
@@ -131,7 +131,7 @@ VMSRESULT Star350LyricTracks::GetNextEvent(
         if (pTrk->m_fdwTrack & SMF_TF_EOT)
             continue;
 
-        
+
         if (pTrk->GetState() == CMidiTrack::StateOnDelta)
         {
          if(pTrk->ReadDelta() != CMidiFile::Success)
@@ -173,7 +173,7 @@ VMSRESULT Star350LyricTracks::GetNextEvent(
          return CMidiFile::ReachedTkMax;
       }
    }
-    
+
    smfrc = pTrk->ReadEvent(tkMax, bTkMaxInclusive);
 
    if(smfrc != CMidiFile::Success)

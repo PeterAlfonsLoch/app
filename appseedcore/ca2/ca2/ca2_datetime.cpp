@@ -4,6 +4,8 @@ namespace ca2
 {
 
 
+
+
    datetime::datetime(::ca::application * papp) :
       ca(papp),
       m_international(papp),
@@ -253,5 +255,227 @@ namespace ca2
       class time timeUTCNow = class time(tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
       return class time(iYear, iMonth, iDay, iHour, iMinute, iSecond) + (timeUTCNow - timeLocalNow);
    }
+
+
+   int DP(int y, int m);
+   int ML(int y, int m);
+   int LEAP(int y);
+
+   /*
+   and ML ("Month Length") is defined as:
+
+       ML( y, 1 ) = 31
+       ML( y, 2 ) = 28 + LEAP( y )
+       ML( y, 3 ) = 31
+       ML( y, 4 ) = 30
+       ML( y, 5 ) = 31
+       ML( y, 6 ) = 30
+       ML( y, 7 ) = 31
+       ML( y, 8 ) = 31
+       ML( y, 9 ) = 30
+       ML( y, 10 ) = 31
+       ML( y, 11 ) = 30
+       ML( y, 12 ) = 31
+    
+   and LEAP( y ) is defined as:
+
+       LEAP( y ) = ( y % 4 == 0 ) && ( ( y % 100 != 0 ) || ( y % 400 == 0 ) ) */
+
+   // simple week number
+   //The simple week number we define such that
+   //    week 1 starts on January 1st of a given year,
+   //    week n+1 starts 7 days after week n 
+   int SWN(int y, int m, int d ) 
+   { 
+      return 1 + (DP( y, m ) + d-1 ) / 7;
+   }
+
+   //where DP ("Days Passed") is given by:
+   //   DP( y, 1 ) = 0
+   //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
+   int DP(int y, int m)
+   {
+      if(m == 1)
+         return 0;
+      else
+         return DP(y, m - 1) + ML(y, m - 1);
+   }
+
+   int ML(int y, int m)
+   {
+      switch(m)
+      {
+      case 1:
+         return 31;
+      case 2:
+         return 28 + LEAP(y);
+      case 3:
+         return 31;
+      case 4:
+         return 30;
+      case 5:
+         return 31;
+      case 6:
+         return 30;
+      case 7:
+         return 31;
+      case 8:
+         return 31;
+      case 9:
+         return 30;
+      case 10:
+         return 31;
+      case 11:
+         return 30;
+      case 12:
+         return 30;
+      }
+      AfxThrowInvalidArgException();
+   }
+
+   int LEAP(int y )
+   {
+      if((y % 4 == 0) && ((y % 100 != 0) || (y % 400 == 0)))
+         return 1;
+      else
+         return 0;
+   }
+
+
+   // Use this elegant code by Tomohiko Sakamoto:
+
+   int dayofweek(int y, int m, int d)	/* 0 = Sunday */
+   {
+	   static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+	   y -= m < 3;
+	   return (y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
+   }
+
+   int SDOW(int y,int m, int d ) // ( 0 = Monday, ..., 6 = Sunday ) 
+   {
+      return (DP( y, m ) + d-1 ) % 7;
+   }
+
+int getDayOfWeek(int month, int day, int year, int CalendarSystem);
+   // day of week
+
+   int DOW(int y, int m, int d)
+   {
+      //return SDOW(y, m, d);
+      return getDayOfWeek(m, d, y, 1);
+   }
+
+
+int getDayOfWeek(int month, int day, int year, int CalendarSystem)
+{
+     // CalendarSystem = 1 for Gregorian Calendar
+     if (month < 3)
+     {
+           month = month + 12;
+           year = year - 1;
+     }
+     return (
+             day
+             + (2 * month)
+             + int(6 * (month + 1) / 10)
+             + year
+             + int(year / 4)
+             - int(year / 100)
+             + int(year / 400)
+             + CalendarSystem
+            ) % 7;
+}
+
+   /*In [ISO8601], the week number is defined by:
+
+       weeks start on a monday
+       week 1 of a given year is the one that includes the first Thursday of that year. (or, equivalently, week 1 is the week that includes 4 January.) 
+
+   This means that the days before week 1 in a given year are attributed to the last week of the previous year. Also the days that come after the last week of a given year are attributed to the first week of the next year.
+
+   If we adapt approximation SWN5 for the simple week number to reflect the differences between the definitions of both week numbers, we arrive at the final solution, adopted for the week number wristapp: 
+   */
+   /*int ISO_WN(int  y, int m, int d, int dow, int dow0101 )
+   {
+       dow     = DOW( y, m, d );
+       dow0101 = DOW( y, 1, 1 );
+
+       if      ( m == 1  &&  3 < dow0101 < 7 - (d-1) )
+       {
+           // days before week 1 of the current year have the same week number as
+           // the last day of the last week of the previous year
+
+           dow     = dow0101 - 1;
+           dow0101 = DOW( y-1, 1, 1 );
+           m       = 12;
+           d       = 31;
+       }
+       else if ( m == 12  &&  30 - (d-1) < DOW( y+1, 1, 1 ) < 4 )
+       {
+           // days after the last week of the current year have the same week number as
+           // the first day of the next year, (i.e. 1)
+
+           return 1;
+       }
+
+       return  ( DOW( y, 1, 1 ) < 4 ) + 4 * (m-1) + ( 2 * (m-1) + (d-1) + dow0101 - dow + 6 ) * 36 / 256;
+
+   }*/
+
+
+   int ISO_WN(int y, int m, int d)
+   {
+      int dow     = DOW( y, m, d );
+      int dow0101 = DOW( y, 1, 1 );
+
+       if      ( m == 1  &&  3 < dow0101 && dow0101 < 7 - (d-1) )
+       {
+           // days before week 1 of the current year have the same week number as
+           // the last day of the last week of the previous year
+
+           dow     = dow0101 - 1;
+           dow0101 = DOW( y-1, 1, 1 );
+           m       = 12;
+           d       = 31;
+       }
+       else if ( m == 12  &&  30 - (d-1) < DOW( y+1, 1, 1 ) && DOW( y+1, 1, 1 ) < 4 )
+       {
+           // days after the last week of the current year have the same week number as
+           // the first day of the next year, (i.e. 1)
+
+           return 1;
+       }
+
+       return ( DOW( y, 1, 1 ) < 4 ) + 4 * (m-1) + ( 2 * (m-1) + (d-1) + dow0101 - dow + 6 ) * 36 / 256;
+   }
+
+
+
+
+   string datetime::strftime(const char * psz, time_t timeParam)
+   {
+      string strFormat(psz);
+      string str;
+      class time time(timeParam);
+      int iFind = strFormat.find("%V");
+      if(iFind >= 0)
+      {
+         string strV;
+         strV.Format("%02d", ISO_WN(time.GetYear(), time.GetMonth(), time.GetDay()));
+         strFormat.replace("%V", strV);
+      }
+      time.FormatGmt(str, strFormat);
+      return str;
+   }
+
+   string datetime::strftime(const char * psz)
+   {
+      string str;
+      class time time;
+      time = time::get_current_time();
+      time.FormatGmt(str, psz);
+      return str;
+   }
+
 
 } // namespace ca2

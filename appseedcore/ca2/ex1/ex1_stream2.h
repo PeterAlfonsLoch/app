@@ -4,7 +4,7 @@ namespace ex1
 {
 
    class CLASS_DECL_ca output_stream2 :
-      virtual public output_stream
+      virtual public byte_output_stream
    {
    public:
       output_stream2();
@@ -16,7 +16,7 @@ namespace ex1
       output_stream2 & operator << (int i);
       output_stream2 & operator << (unsigned long i);
       output_stream2 & operator << (LPCRECT lpcrect);
-      output_stream2 & operator << (serializable & serializable);
+      output_stream2 & operator << (byte_serializable & serializable);
       output_stream2 & operator << (const char * psz);
       output_stream2 & operator << (const string & str);
    };

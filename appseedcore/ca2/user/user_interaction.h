@@ -8,6 +8,7 @@ namespace ca
 {
 
    class window_callback;
+   class live_object;
 
 } // namespace ca
 
@@ -25,11 +26,17 @@ namespace user
       class CLASS_DECL_ca timer_item
       {
       public:
+
+
          interaction *        m_pguie;
          UINT                 m_uiId;
          UINT                 m_uiElapse;
-         UINT                 m_uiLastSent;  
-         void check();
+         UINT                 m_uiLastSent;
+
+
+         bool check();
+
+
       };
 
       class CLASS_DECL_ca timer_array :
@@ -48,6 +55,8 @@ namespace user
          void check();
          bool unset(interaction * pguie, UINT uiId);
          void unset(interaction * pguie);
+         void detach(raw_array < timer_item > & timera, interaction * pguie);
+         void transfer(::ca::window * pwindow, interaction * pguie);
          interaction * find(::ca::ca * pca);
          int find(interaction * pguie, UINT uiId);
          int find_from(interaction * pguie, int iStart);
@@ -85,6 +94,9 @@ namespace user
       int                                 m_iModal;
       int                                 m_iModalCount;
       bool                                m_bRectOk;
+      comparable_array < int >            m_iaModalThread;
+      id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
+
 
 
       interaction();
@@ -97,6 +109,9 @@ namespace user
 
       ::visual::e_cursor get_cursor();
       void set_cursor(::visual::e_cursor ecursor);
+
+
+      void set_timer(raw_array < timer_item > timera);
 
 
       virtual BOOL IsWindow();
@@ -113,6 +128,9 @@ namespace user
       virtual interaction * under_sibling();
       virtual interaction * above_sibling();
 
+      virtual interaction * above_sibling(interaction * pui);
+      virtual interaction * under_sibling(interaction * pui);
+
 
 
       virtual BOOL CheckAutoCenter();
@@ -123,10 +141,10 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget, BOOL bDisableIfNoHndler);
       virtual void CenterWindow(interaction * pAlternateOwner = NULL);
-      virtual int RunModalLoop(DWORD dwFlags = 0);
-      virtual BOOL ContinueModal();
-      virtual void EndModalLoop(int nResult);
-      virtual void EndAllModalLoops(int nResult);
+      virtual id   RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+      virtual bool ContinueModal(int iLevel);
+      virtual void EndModalLoop(id nResult);
+      virtual void EndAllModalLoops(id nResult);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -147,6 +165,8 @@ namespace user
       virtual void GetClientRect(__rect64 * lprect);
       virtual void GetWindowRect(LPRECT lprect);
       virtual void GetWindowRect(__rect64 * lprect);
+      virtual rect GetWindowRect();
+      virtual rect64 GetWindowRect64();
       virtual void ClientToScreen(LPRECT lprect);
       virtual void ClientToScreen(__rect64 * lprect);
       virtual void ClientToScreen(LPPOINT lppoint);
@@ -162,16 +182,18 @@ namespace user
 
       virtual void layout();
 
-      virtual void BringWindowToTop();
+      virtual bool BringWindowToTop();
+
 
       virtual BOOL GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       virtual BOOL SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
 
-
       virtual BOOL SendChildNotifyLastMsg(LRESULT* pResult = NULL);
-      
+
+
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+
 
       virtual bool subclass_window(void * posdata);
       virtual void * unsubclass_window();
@@ -182,12 +204,13 @@ namespace user
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
-         create_context* pContext = NULL);
+         ::ca::create_context* pContext = NULL);
+      using ::ex1::request_interface::create;
       virtual BOOL create(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
-         create_context* pContext = NULL);
+         ::ca::create_context* pContext = NULL);
       virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
@@ -207,9 +230,17 @@ namespace user
 
       virtual BOOL DestroyWindow();
 
+
+#ifdef WINDOWS
       virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::rgn* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+#else
+      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL,
+         ::ca::rgn* prgnUpdate = NULL,
+         UINT flags = 0);
+#endif
+
 
       virtual void UpdateWindow();
       virtual void SetRedraw(BOOL bRedraw = TRUE);
@@ -245,7 +276,7 @@ namespace user
       virtual BOOL IsWindowEnabled();
       virtual BOOL EnableWindow(BOOL bEnable = TRUE);
 
-      
+      virtual void _001Print(::ca::graphics * pdc);
       virtual void _000OnDraw(::ca::graphics *pdc);
       virtual void _001DrawThis(::ca::graphics *pdc);
       virtual void _001DrawChildren(::ca::graphics *pdc);
@@ -262,7 +293,7 @@ namespace user
 
       virtual interaction * set_capture(interaction * pinterface = NULL);
       virtual interaction * release_capture();
-      
+
       virtual bool has_focus();
       virtual interaction * SetFocus();
       virtual BOOL SetForegroundWindow();
@@ -280,7 +311,7 @@ namespace user
       virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
       virtual ::ca::font* GetFont();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL IsWindowVisible();
 
       virtual void _000OnMouse(::user::win::message::mouse * pmouse);
@@ -290,13 +321,14 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseLeave)
       DECL_GEN_SIGNAL(_001OnKeyDown)
       DECL_GEN_SIGNAL(_001OnKeyUp)
-      //DECL_GEN_SIGNAL(_001OnTimer)
+      DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnChar)
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnMove)
       DECL_GEN_SIGNAL(_001OnUser184)
+      DECL_GEN_SIGNAL(_001OnNcCalcSize)
 
       virtual DECL_GEN_SIGNAL(_002OnLButtonDown)
       virtual DECL_GEN_SIGNAL(_002OnLButtonUp)
@@ -306,7 +338,7 @@ namespace user
       virtual DECL_GEN_SIGNAL(_002OnKeyDown)
       virtual DECL_GEN_SIGNAL(_002OnKeyUp)
       virtual DECL_GEN_SIGNAL(_002OnTimer)
-      
+
 
       virtual void on_delete(::ca::ca * poc);
 
@@ -321,7 +353,7 @@ namespace user
 
       virtual bool _001IsPointInside(point64 pt);
       virtual interaction * _001FromPoint(point64 pt, bool bTestedIfParentVisible = false);
-      
+
       virtual void OnLinkClick(const char * psz, const char * pszTarget = NULL);
 
       interaction * GetChildByName(const char * pszName, int iLevel = -1);
@@ -334,6 +366,11 @@ namespace user
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
          LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
       virtual void pre_translate_message(gen::signal_object * pobj);
+
+
+      virtual int get_descendant_level(::user::interaction * pui);
+      virtual bool is_descendant(::user::interaction * pui, bool bIncludeSelf = false);
+      virtual ::user::interaction * get_focusable_descendant(::user::interaction * pui = NULL);
 
       virtual ::ca::window * get_wnd();
 
@@ -349,8 +386,16 @@ namespace user
       virtual interaction * ChildWindowFromPoint(POINT point);
       virtual interaction * ChildWindowFromPoint(POINT point, UINT nFlags);
 
+
+#ifdef WINDOWS
       virtual interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+#else
+      virtual interaction * GetNextWindow(UINT nFlag = 0);
+#endif
+
       virtual interaction * GetTopWindow();
+
+      virtual interaction * get_next(bool bIgnoreChildren = false, int * piLevel = NULL);
 
       virtual interaction * GetWindow(UINT nCmd);
       virtual interaction * GetLastActivePopup();
@@ -358,7 +403,10 @@ namespace user
       virtual interaction * GetDlgItem(id nID);
 
       virtual void pre_subclass_window();
+
+#ifdef WINDOWS
       virtual WNDPROC* GetSuperWndProcAddr();
+#endif
 
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();
@@ -402,14 +450,14 @@ namespace user
          return NULL;
       }
 
-      
+
       virtual bool can_merge(::user::interaction * pui);
       virtual bool merge(::user::interaction * pui);
 
 
    };
 
-
+#ifdef WINDOWS
    inline HWND interaction::get_safe_handle()
    {
       if(((INT_PTR)this) < 16 * 1024) // consider invalid
@@ -418,6 +466,16 @@ namespace user
       }
       return _get_handle();
    }
+#else
+   inline int interaction::get_safe_handle()
+   {
+      if(((INT_PTR)this) < 16 * 1024) // consider invalid
+      {
+         return NULL;
+      }
+      return _get_handle();
+   }
+#endif
 
 
 

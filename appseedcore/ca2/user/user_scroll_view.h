@@ -24,22 +24,25 @@ namespace user
          int         m_iScrollWidth;
       };
 
-      scroll_bar * m_pscrollbarHorz;
-      scroll_bar * m_pscrollbarVert;
-      scroll_info m_scrollinfo;
+      ph(scroll_bar)    m_pscrollbarHorz;
+      ph(scroll_bar)    m_pscrollbarVert;
+      scroll_info       m_scrollinfo;
 
       scroll_view(::ca::application * papp);
       virtual ~scroll_view();
 
 
-      void LayoutScrollBars();
+      virtual void _001LayoutScrollBars();
+
+      virtual void _001DeferCreateScrollBars();
 
       virtual void GetClientRect(LPRECT lprect);
 
       
+      virtual void create_scroll_bar(scroll_bar::e_orientation eorientation);
 
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 
 

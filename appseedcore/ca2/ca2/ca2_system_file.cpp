@@ -40,9 +40,9 @@ namespace ca2
    bool system_file::path::is_relative(const char * psz)
    {
       string strPath(psz);
-      if(strPath.find(':') != -1 && strPath.find(':') < 10) 
+      if(strPath.find(':') != -1 && strPath.find(':') < 10)
          return false;
-      if(strPath.find('/') == 0 || strPath.find('\\') == 0) 
+      if(strPath.find('/') == 0 || strPath.find('\\') == 0)
          return false;
       return true;
    }
@@ -99,7 +99,7 @@ namespace ca2
    {
       mutex_lock lockMachineEvent(
          &System.machine_event_central() != NULL ?
-            System.machine_event_central().m_machineevent.m_hmutex 
+            System.machine_event_central().m_machineevent.m_hmutex
             : NULL);
       int iIncLevel = -1;
       string str;
@@ -261,11 +261,11 @@ namespace ca2
       {
          strResult = string((const char *) (const wchar_t *) &storage.GetAllocation()[3], storage.GetStorageSize() - 3);
       }
-      else 
+      else
       {
          strResult = string((const char *) storage.GetAllocation(), storage.GetStorageSize());
       }
-      
+
       return strResult;
    }
 
@@ -336,10 +336,10 @@ namespace ca2
    {
       ex1::filesp spfile(get_app());
       if(!spfile->open(
-         lpcsz, 
-         ::ex1::file::type_binary 
-         | ::ex1::file::mode_write 
-         | ::ex1::file::mode_create 
+         lpcsz,
+         ::ex1::file::type_binary
+         | ::ex1::file::mode_write
+         | ::ex1::file::mode_create
          | ::ex1::file::shareDenyNone
          | ::ex1::file::defer_create_directory))
          return false;
@@ -376,10 +376,10 @@ namespace ca2
       try
       {
          if(!spfile->open(
-            lpcsz, 
-            ::ex1::file::type_binary 
-            | ::ex1::file::mode_write 
-            | ::ex1::file::mode_create 
+            lpcsz,
+            ::ex1::file::type_binary
+            | ::ex1::file::mode_write
+            | ::ex1::file::mode_create
             | ::ex1::file::shareDenyNone
             | ::ex1::file::defer_create_directory))
             return false;
@@ -405,10 +405,10 @@ namespace ca2
       try
       {
          if(!spfile->open(
-            lpcsz, 
-            ::ex1::file::type_binary 
-            | ::ex1::file::mode_write 
-            | ::ex1::file::mode_create 
+            lpcsz,
+            ::ex1::file::type_binary
+            | ::ex1::file::mode_write
+            | ::ex1::file::mode_create
             | ::ex1::file::shareDenyNone
             | ::ex1::file::defer_create_directory))
             return false;
@@ -528,7 +528,7 @@ namespace ca2
                   System.dir().mk(System.dir().name(strNew));
                }
                if(!::CopyFileW(
-                  gen::international::utf8_to_unicode(strOld), 
+                  gen::international::utf8_to_unicode(strOld),
                   gen::international::utf8_to_unicode(strNew), bFailIfExists))
                   throw "Failed to copy file";
             }
@@ -538,7 +538,7 @@ namespace ca2
       {
          System.dir().mk(System.dir().name(pszNew));
          if(!::CopyFileW(
-            gen::international::utf8_to_unicode(psz), 
+            gen::international::utf8_to_unicode(psz),
             gen::international::utf8_to_unicode(pszNew), bFailIfExists))
          {
             DWORD dwError = ::GetLastError();
@@ -552,7 +552,7 @@ namespace ca2
    void system_file::move(const char * pszNew, const char * psz)
    {
       if(!::MoveFileW(
-         gen::international::utf8_to_unicode(psz), 
+         gen::international::utf8_to_unicode(psz),
          gen::international::utf8_to_unicode(pszNew)))
       {
          DWORD dwError = ::GetLastError();
@@ -673,7 +673,7 @@ namespace ca2
          if(strNew != strOld)
          {
             ::MoveFileW(
-               gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)), 
+               gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
                gen::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
          }
       }
@@ -692,7 +692,7 @@ namespace ca2
       char lpPathBuffer[MAX_PATH * 16];
     // get the temp path.
       DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-                           lpPathBuffer); // buffer for path 
+                           lpPathBuffer); // buffer for path
       if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
       {
          printf ("GetTempPath failed (%d)\n", GetLastError());
@@ -727,7 +727,7 @@ namespace ca2
       char lpPathBuffer[MAX_PATH * 16];
     // get the temp path.
       DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-                           lpPathBuffer); // buffer for path 
+                           lpPathBuffer); // buffer for path
       if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
       {
          printf ("GetTempPath failed (%d)\n", GetLastError());

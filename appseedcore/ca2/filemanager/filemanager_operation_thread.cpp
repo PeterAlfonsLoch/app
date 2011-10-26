@@ -5,7 +5,7 @@
 // END_MESSAGE_MAP()
 
 file_manager_operation_thread::file_manager_operation_thread(::ca::application * papp) :
-   ca(papp), 
+   ca(papp),
    thread(papp),
    simple_thread(papp)
 {
@@ -16,8 +16,8 @@ file_manager_operation_thread::file_manager_operation_thread(::ca::application *
 
 bool file_manager_operation_thread::step()
 {
-   CSingleLock sl(&m_mutexStep);
-   if(!sl.Lock(0))
+   single_lock sl(&m_mutexStep);
+   if(!sl.lock(duration::zero()))
       return true;
    if(m_bStep)
       return true;
@@ -76,7 +76,7 @@ bool file_manager_operation_thread::step()
 
 double file_manager_operation_thread::get_item_progress(int iItem)
 {
-   CSingleLock sl(&m_mutexFileOperationA, TRUE);
+   single_lock sl(&m_mutexFileOperationA, TRUE);
    int iLBound = 0;
    int iUBound;
    for(int i = 0; i < m_fileoperationa.get_size(); i++)
@@ -92,7 +92,7 @@ double file_manager_operation_thread::get_item_progress(int iItem)
 
 string file_manager_operation_thread::get_item_message(int iItem)
 {
-   CSingleLock sl(&m_mutexFileOperationA, TRUE);
+   single_lock sl(&m_mutexFileOperationA, TRUE);
    int iLBound = 0;
    int iUBound;
    for(int i = 0; i < m_fileoperationa.get_size(); i++)
@@ -110,7 +110,7 @@ string file_manager_operation_thread::get_item_message(int iItem)
 
 int file_manager_operation_thread::get_item_count()
 {
-   CSingleLock sl(&m_mutexFileOperationA, TRUE);
+   single_lock sl(&m_mutexFileOperationA, TRUE);
    int iCount = 0;
    for(int i = 0; i < m_fileoperationa.get_size(); i++)
    {
@@ -138,7 +138,7 @@ void file_manager_operation_thread::queue_copy(stringa & stra, const char * pszD
    poperation->set_app(get_app());
    poperation->set_copy(stra, pszDstBase, pszSrcBase, bExpand);
 
-   CSingleLock sl(&m_mutexFileOperationA, TRUE);
+   single_lock sl(&m_mutexFileOperationA, TRUE);
    m_fileoperationa.add(poperation);
 }
 
@@ -156,14 +156,14 @@ int file_manager_operation_thread::run()
          i--;
       }
       m_pview->PostMessage(
-         file_manager_operation_view::MessageMainPost, 
-         file_manager_operation_view::MessageMainPostFileOperation, 
+         file_manager_operation_view::MessageMainPost,
+         file_manager_operation_view::MessageMainPostFileOperation,
          0);
       Sleep(iStepSetSleep);
    }
    m_pview->PostMessage(
-      file_manager_operation_view::MessageMainPost, 
-      file_manager_operation_view::MessageMainPostFileOperationFinal, 
+      file_manager_operation_view::MessageMainPost,
+      file_manager_operation_view::MessageMainPostFileOperationFinal,
       0);
 exit:
    return 1;
@@ -171,7 +171,7 @@ exit:
 
 double file_manager_operation_thread::get_progress_rate()
 {
-   CSingleLock sl(&m_mutexFileOperationA, TRUE);
+   single_lock sl(&m_mutexFileOperationA, TRUE);
    double dTotal = 0.0;
    for(int i = 0; i < m_fileoperationa.get_size(); i++)
    {

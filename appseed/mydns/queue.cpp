@@ -49,6 +49,8 @@ queue_init(void)
 int
 _enqueue(QUEUE *q, TASK *t, const char *file, unsigned int line)
 {
+   UNREFERENCED_PARAMETER(file);
+   UNREFERENCED_PARAMETER(line);
 	t->next = t->prev = NULL;
 
 	/* If there's no head of the list, make this the head.  Otherwise, do nothing */
@@ -88,6 +90,8 @@ _enqueue(QUEUE *q, TASK *t, const char *file, unsigned int line)
 void
 _dequeue(QUEUE *q, TASK *t, const char *file, unsigned int line)
 {
+   UNREFERENCED_PARAMETER(file);
+   UNREFERENCED_PARAMETER(line);
 #if DEBUG_ENABLED && DEBUG_QUEUE
 	Debug("%s: dequeued (by %s:%u)", desctask(t), file, line);
 #endif

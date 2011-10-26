@@ -7,22 +7,22 @@
 
 
 #include "midi.h"
-#include "Attributes.h"
+#include "mus_attributes.h"
 
 #include "midi_central_listener.h"
 
 #include "midi_sequence.h"
 
-#include "MidiPlayerCallbackInterface.h"
-#include "MidiPlayerWnd.h"
-#include "MidiPlayerCallback.h"
-#include "MidiPlayerInterface.h"
-#include "MidiPlayer.h"
+#include "midi_player_callback_interface.h"
+#include "midi_player_window.h"
+#include "midi_player_callback.h"
+#include "midi_player_interface.h"
+#include "midi_player.h"
 #include "midi_central_container.h"
 #include "midi_exception.h"
 #include "midi_file.h"
 
-#include "microke1_.h"
+#include "mus_microke1.h"
 
 #include "midi_central.h"
 

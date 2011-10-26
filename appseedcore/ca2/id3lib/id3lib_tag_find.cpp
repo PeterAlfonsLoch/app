@@ -65,7 +65,7 @@ ID3_Frame * ID3_TagImpl::Find(ID3_FrameID id) const
       // search to the cursor.
       index begin = (0 == iCount ? _cursor : 0);
       index end   = (0 == iCount ? _frames.get_upper_bound() : _cursor);
-      
+
       // search from the cursor to the end
       for(index cur = begin; cur <= end; cur++)
       {
@@ -106,7 +106,7 @@ ID3_Frame *ID3_TagImpl::Find(ID3_FrameID id, ID3_FieldID fldID, string data) con
       // search to the cursor.
       index begin = (0 == iCount ? _cursor : 0);
       index end   = (0 == iCount ? _frames.get_upper_bound() : _cursor);
-      
+
       // search from the cursor to the end
       for(index cur = begin; cur <= end; cur++)
       {
@@ -187,7 +187,7 @@ ID3_Frame *ID3_TagImpl::Find(ID3_FrameID id, ID3_FieldID fldID, string data) con
 
 ID3_Frame *ID3_TagImpl::Find(ID3_FrameID id, ID3_FieldID fldID, uint32 data) const
 {
-   
+
    ID3_Frame * frame = NULL;
 
   // reset the cursor if it isn't set
@@ -206,7 +206,7 @@ ID3_Frame *ID3_TagImpl::Find(ID3_FrameID id, ID3_FieldID fldID, uint32 data) con
       // search to the cursor.
       index begin = (0 == iCount ? _cursor : 0);
       index end   = (0 == iCount ? _frames.get_upper_bound() : _cursor);
-      
+
       // search from the cursor to the end
       for(index cur = begin; cur <= end; cur++)
       {

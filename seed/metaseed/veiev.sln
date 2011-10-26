@@ -16,12 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "..\..\thirdparty\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "..\..\thirdparty\appseed\zlib\zlib.vcxproj", "{6352AD78-A4BA-4F99-89EB-521C22C05322}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_", "..\..\appseedcore\_\_.vcxproj", "{ACB3FF4B-0B61-45A7-881D-E102E0F85808}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cubeapp", "..\..\appseed\cubeapp\cubeapp.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
 	ProjectSection(ProjectDependencies) = postProject
-		{C4525E36-7969-42C9-91BF-8D061D7BEE66} = {C4525E36-7969-42C9-91BF-8D061D7BEE66}
-		{4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36} = {4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36}
 		{ACB3FF4B-0B61-45A7-881D-E102E0F85808} = {ACB3FF4B-0B61-45A7-881D-E102E0F85808}
 		{38A5C152-C1EF-4322-BADF-A41B35335831} = {38A5C152-C1EF-4322-BADF-A41B35335831}
 		{6352AD78-A4BA-4F99-89EB-521C22C05322} = {6352AD78-A4BA-4F99-89EB-521C22C05322}
@@ -30,13 +26,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cubeapp", "..\..\appseed\cu
 		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7} = {EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win", "..\..\nodeapp\windows\win\win.vcxproj", "{DFA865FA-07A1-410C-882D-CEBB89AC8FD6}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "veiev", "..\..\appseed\veiev\veiev.vcxproj", "{810274AB-CA54-4877-93DE-0F6273844CAC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "salt", "..\..\appseedcore\salt\salt.vcxproj", "{4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c", "..\..\appseedcore\c\c.vcxproj", "{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "salt_generator", "..\..\ccvotagus\source\salt_generator\salt_generator.vcxproj", "{C4525E36-7969-42C9-91BF-8D061D7BEE66}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca", "..\..\appseedcore\ca\ca.vcxproj", "{ACB3FF4B-0B61-45A7-881D-E102E0F85808}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os", "..\..\..\os\os\os.vcxproj", "{9163E31A-2D5A-4F18-AD6F-B561C76E5054}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,30 +60,26 @@ Global
 		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|Win32.Build.0 = basis|Win32
 		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|x64.ActiveCfg = basis|x64
 		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|x64.Build.0 = basis|x64
-		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|Win32.ActiveCfg = basis|Win32
-		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|Win32.Build.0 = basis|Win32
-		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|x64.ActiveCfg = basis|x64
-		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|x64.Build.0 = basis|x64
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Win32.ActiveCfg = basis|Win32
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|Win32.Build.0 = basis|Win32
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|x64.ActiveCfg = basis|x64
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184}.basis|x64.Build.0 = basis|x64
-		{DFA865FA-07A1-410C-882D-CEBB89AC8FD6}.basis|Win32.ActiveCfg = basis|Win32
-		{DFA865FA-07A1-410C-882D-CEBB89AC8FD6}.basis|Win32.Build.0 = basis|Win32
-		{DFA865FA-07A1-410C-882D-CEBB89AC8FD6}.basis|x64.ActiveCfg = basis|x64
-		{DFA865FA-07A1-410C-882D-CEBB89AC8FD6}.basis|x64.Build.0 = basis|x64
 		{810274AB-CA54-4877-93DE-0F6273844CAC}.basis|Win32.ActiveCfg = basis|Win32
 		{810274AB-CA54-4877-93DE-0F6273844CAC}.basis|Win32.Build.0 = basis|Win32
 		{810274AB-CA54-4877-93DE-0F6273844CAC}.basis|x64.ActiveCfg = basis|x64
 		{810274AB-CA54-4877-93DE-0F6273844CAC}.basis|x64.Build.0 = basis|x64
-		{4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36}.basis|Win32.ActiveCfg = basis|Win32
-		{4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36}.basis|Win32.Build.0 = basis|Win32
-		{4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36}.basis|x64.ActiveCfg = basis|x64
-		{4BFE4A4B-A73B-4F3B-B9D2-3752362D6A36}.basis|x64.Build.0 = basis|x64
-		{C4525E36-7969-42C9-91BF-8D061D7BEE66}.basis|Win32.ActiveCfg = basis|Win32
-		{C4525E36-7969-42C9-91BF-8D061D7BEE66}.basis|Win32.Build.0 = basis|Win32
-		{C4525E36-7969-42C9-91BF-8D061D7BEE66}.basis|x64.ActiveCfg = basis|x64
-		{C4525E36-7969-42C9-91BF-8D061D7BEE66}.basis|x64.Build.0 = basis|x64
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Win32.ActiveCfg = basis|Win32
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|Win32.Build.0 = basis|Win32
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|x64.ActiveCfg = basis|x64
+		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|x64.Build.0 = basis|x64
+		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|Win32.ActiveCfg = basis|Win32
+		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|Win32.Build.0 = basis|Win32
+		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|x64.ActiveCfg = basis|x64
+		{ACB3FF4B-0B61-45A7-881D-E102E0F85808}.basis|x64.Build.0 = basis|x64
+		{9163E31A-2D5A-4F18-AD6F-B561C76E5054}.basis|Win32.ActiveCfg = basis|Win32
+		{9163E31A-2D5A-4F18-AD6F-B561C76E5054}.basis|Win32.Build.0 = basis|Win32
+		{9163E31A-2D5A-4F18-AD6F-B561C76E5054}.basis|x64.ActiveCfg = basis|x64
+		{9163E31A-2D5A-4F18-AD6F-B561C76E5054}.basis|x64.Build.0 = basis|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

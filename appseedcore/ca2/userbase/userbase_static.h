@@ -1,20 +1,28 @@
 #pragma once
 
 
+#ifdef LINUX
+
+typedef void * HENHMETAFILE;
+
+#endif
+
+
 namespace userbase
 {
 
 
-   class CLASS_DECL_ca base_static : 
-      public ::user::interaction
+   class CLASS_DECL_ca base_static :
+      virtual public ::user::control
    {
    public:
-      
+
+
       base_static(::ca::application * papp);
       virtual ~base_static();
 
-      virtual BOOL create(const char * lpszText, DWORD dwStyle,
-               const RECT& rect, ::user::interaction* pParentWnd, UINT nID = 0xffff);
+
+      virtual bool create(::user::interaction* puiParent, id id);
 
       HICON SetIcon(HICON hIcon);
       HICON GetIcon();
@@ -26,7 +34,9 @@ namespace userbase
       HCURSOR SetCursor(HCURSOR hCursor);
       HCURSOR GetCursor();
 
+#ifdef WINDOWS
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+#endif
 
       virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
    };

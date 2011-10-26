@@ -1,94 +1,30 @@
 #include "StdAfx.h"
 
-wchar_t * AfxA2WHelper(wchar_t * lpw, const char * lpa, int nChars);
 
-char * AfxW2AHelper(char * lpa, const wchar_t * lpw, int nChars);
-
-#ifndef ATLA2WHELPER
-#define ATLA2WHELPER AfxA2WHelper
-#define ATLW2AHELPER AfxW2AHelper
-#endif
-
-/*#ifdef _CONVERSION_USES_THREAD_LOCALE
-   #define W2A(lpw) (\
-      ((_lpw = lpw) == NULL) ? NULL : (\
-         _convert = (lstrlenW(_lpw)+1)*2,\
-         ATLW2AHELPER((char *) alloca(_convert), _lpw, _convert, _acp)))
-#else
-   #define W2A(lpw) (\
-      ((_lpw = lpw) == NULL) ? NULL : (\
-         _convert = (lstrlenW(_lpw)+1)*2,\
-         ATLW2AHELPER((char *) alloca(_convert), _lpw, _convert)))
-#endif
-*/
-#define A2CW(lpa) ((const wchar_t *)A2W(lpa))
-#define W2CA(lpw) ((const char *)W2A(lpw))
-
-
-/*#ifdef _CONVERSION_USES_THREAD_LOCALE
-   #ifndef _DEBUG
-      #define USES_CONVERSION int _convert; _convert; UINT _acp = GetACP(); _acp; const wchar_t * _lpw; _lpw; const char * _lpa; _lpa
-   #else
-      #define USES_CONVERSION int _convert = 0; _convert; UINT _acp = GetACP(); _acp; const wchar_t * _lpw = NULL; _lpw; const char * _lpa = NULL; _lpa
-   #endif
-#else
-   #ifndef _DEBUG
-      #define USES_CONVERSION int _convert; _convert; UINT _acp = CP_ACP; _acp; const wchar_t * _lpw; _lpw; const char * _lpa; _lpa
-   #else
-      #define USES_CONVERSION int _convert = 0; _convert; UINT _acp = CP_ACP; _acp; const wchar_t * _lpw = NULL; _lpw; const char * _lpa = NULL; _lpa
-   #endif
-#endif
-
-#ifdef _UNICODE
-   #define T2A W2A
-   #define A2T A2W
-   inline wchar_t * T2W(LPTSTR lp) { return lp; }
-   inline LPTSTR W2T(wchar_t * lp) { return lp; }
-   #define T2CA W2CA
-   #define A2CT A2CW
-   inline const wchar_t * T2CW(const char * lp) { return lp; }
-   inline const char * W2CT(const wchar_t * lp) { return lp; }
-#else
-   #define T2W A2W
-   #define W2T W2A
-   inline char * T2A(LPTSTR lp) { return lp; }
-   inline LPTSTR A2T(char * lp) { return lp; }
-   #define T2CW A2CW
-   #define W2CT W2CA
-   inline const char * T2CA(const char * lp) { return lp; }
-   inline const char * A2CT(const char * lp) { return lp; }
-#endif
-*/
 namespace gen
 {
 
-   /////////////////////////////////////////////////////////////////////////////
-   // command_line implementation
 
-   command_line::command_line()
+   command_line::command_line(::ca::application * papp) :
+      ca(papp)
    {
-      m_bShowSplash = TRUE;
-      m_bRunEmbedded = FALSE;
-      m_bRunAutomated = FALSE;
-      m_nShellCommand = FileNew;
+      common_construct();
+   }
+
+   void command_line::common_construct()
+   {
+      m_bShowSplash     = TRUE;
+      m_bRunEmbedded    = FALSE;
+      m_bRunAutomated   = FALSE;
+      m_ecommand        = command_file_new;
+      m_iEdge           = 0;
+      m_puiParent       = NULL;
+      m_pbiasCreate     = NULL;
    }
 
    command_line::~command_line()
    {
    }
-
-   /*void command_line::ParseParam(const WCHAR* pszParam,BOOL bFlag,BOOL bLast)
-   {
-      if (bFlag)
-      {
-         USES_CONVERSION;
-         ParseParamFlag(W2CA(pszParam));
-      }
-      else
-         ParseParamNotFlag(pszParam);
-
-      ParseLast(bLast);
-   }*/
 
    void command_line::ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast)
    {
@@ -106,15 +42,15 @@ namespace gen
       // shell command switches are case sensitive
 
       if (lstrcmpA(pszParam, "pt") == 0)
-         m_nShellCommand = FilePrintTo;
+         m_ecommand = command_file_print_to;
       else if (lstrcmpA(pszParam, "p") == 0)
-         m_nShellCommand = FilePrint;
+         m_ecommand = command_file_print;
       else if (lstrcmpiA(pszParam, "Unregister") == 0 ||
              lstrcmpiA(pszParam, "Unregserver") == 0)
-         m_nShellCommand = AppUnregister;
+         m_ecommand = command_app_unregister;
       else if (lstrcmpA(pszParam, "dde") == 0)
       {
-         m_nShellCommand = FileDDE;
+         m_ecommand = command_file_dde;
       }
       else if (lstrcmpiA(pszParam, "Embedding") == 0)
       {
@@ -128,27 +64,15 @@ namespace gen
       }
    }
 
-   /*void command_line::ParseParamNotFlag(const WCHAR* pszParam)
-   {
-      if (m_strFileName.is_empty())
-         m_strFileName = pszParam;
-      else if (m_nShellCommand == FilePrintTo && m_wstrPrinterName.is_empty())
-         m_strPrinterName = pszParam;
-      else if (m_nShellCommand == FilePrintTo && m_wstrDriverName.is_empty())
-         m_strDriverName = pszParam;
-      else if (m_nShellCommand == FilePrintTo && m_wstrPortName.is_empty())
-         m_strPortName = pszParam;
-   }*/
-
    void command_line::ParseParamNotFlag(const char* pszParam)
    {
       if (m_varFile.is_empty())
          m_varFile = pszParam;
-      else if (m_nShellCommand == FilePrintTo && m_strPrinterName.is_empty())
+      else if (m_ecommand == command_file_print_to && m_strPrinterName.is_empty())
          m_varFile = pszParam;
-      else if (m_nShellCommand == FilePrintTo && m_strDriverName.is_empty())
+      else if (m_ecommand == command_file_print_to && m_strDriverName.is_empty())
          m_varFile = pszParam;
-      else if (m_nShellCommand == FilePrintTo && m_strPortName.is_empty())
+      else if (m_ecommand == command_file_print_to && m_strPortName.is_empty())
          m_varFile = pszParam;
    }
 
@@ -156,10 +80,203 @@ namespace gen
    {
       if (bLast)
       {
-         if (m_nShellCommand == FileNew && !m_varFile.is_empty())
-            m_nShellCommand = FileOpen;
+         if (m_ecommand == command_file_new && !m_varFile.is_empty())
+            m_ecommand = command_file_open;
          m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
       }
    }
 
+   command_line & command_line::operator = (const command_line & info)
+   {
+
+      m_bShowSplash     = info.m_bShowSplash;
+      m_bRunEmbedded    = info.m_bRunEmbedded;
+      m_bRunAutomated   = info.m_bRunAutomated;
+      m_varFile         = info.m_varFile;
+      m_strPrinterName  = info.m_strPrinterName;
+      m_strPortName     = info.m_strPortName;
+
+      return *this;
+
+   }
+
+   void command_line::_001ParseCommandLine(const char * pszCommandLine)
+   {
+      m_varQuery.propset()._008ParseCommandLine(pszCommandLine, m_varFile);
+      if(!m_varFile.is_empty())
+      {
+         m_ecommand = gen::command_line::command_file_open;
+      }
+      if(m_varQuery.has_property("uri"))
+      {
+         if(m_varFile.has_char())
+         {
+            m_varFile += ";";
+            m_varFile += m_varQuery["uri"];
+         }
+         else
+         {
+            m_varFile = m_varQuery["uri"];
+         }
+         if(m_ecommand == gen::command_line::command_file_new)
+            m_ecommand = gen::command_line::command_file_open;
+      }
+      if(m_ecommand == gen::command_line::command_file_open)
+      {
+         m_varQuery["show_platform"] = 1;
+      }
+
+      if(m_varQuery.propset().has_property("app"))
+      {
+         m_strApp = m_varQuery.propset()["app"];
+      }
+
+      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      {
+         m_strApp = m_varQuery.propset()["bergedge_start"];
+      }
+
+
+   }
+
+
+   void command_line::_001ParseCommandLineUri(const char * pszCommandLine)
+   {
+
+      m_varFile = System.url().get_script(pszCommandLine);
+      m_varQuery.propset().parse_url_query(System.url().get_query(pszCommandLine));
+
+      if(m_varQuery.has_property("uri"))
+      {
+         if(m_varFile.has_char())
+         {
+            m_varFile += ";";
+            m_varFile += m_varQuery["uri"];
+         }
+         else
+         {
+            m_varFile = m_varQuery["uri"];
+         }
+         if(m_ecommand == gen::command_line::command_file_new)
+            m_ecommand = gen::command_line::command_file_open;
+      }
+      if(m_ecommand == gen::command_line::command_file_open)
+      {
+         m_varQuery["show_platform"] = 1;
+      }
+
+      if(m_varQuery.propset().has_property("app"))
+      {
+         m_strApp = m_varQuery.propset()["app"];
+      }
+
+      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      {
+         m_strApp = m_varQuery.propset()["bergedge_start"];
+      }
+
+//      m_pthreadParent->consolidate(this);
+
+   }
+
+   void command_line::_001ParseCommandFork(const char * pszCommandFork)
+   {
+      
+      m_varQuery.propset()._008ParseCommandFork(pszCommandFork, m_varFile, m_strApp);
+      if(!m_varFile.is_empty())
+      {
+         m_ecommand = gen::command_line::command_file_open;
+      }
+      if(m_varQuery.has_property("uri"))
+      {
+         if(m_varFile.has_char())
+         {
+            m_varFile += ";";
+            m_varFile += m_varQuery["uri"];
+         }
+         else
+         {
+            m_varFile = m_varQuery["uri"];
+         }
+         if(m_ecommand == gen::command_line::command_file_new)
+            m_ecommand = gen::command_line::command_file_open;
+      }
+      if(m_ecommand == gen::command_line::command_file_open)
+      {
+         m_varQuery["show_platform"] = 1;
+      }
+
+      if(m_varQuery.propset().has_property("app"))
+      {
+         m_strApp = m_varQuery.propset()["app"];
+      }
+
+      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      {
+         m_strApp = m_varQuery.propset()["bergedge_start"];
+      }
+
+//      m_pthreadParent->consolidate(this);
+
+   }
+
+
+
+   void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
+   {
+      
+      m_varFile.set_type(var::type_new);
+      m_strApp = System.url().get_script(pszCommandFork);
+      m_varQuery.propset().set_app(get_app());
+      m_varQuery.propset().parse_url_query(System.url().get_query(pszCommandFork));
+
+      if(m_varQuery.has_property("uri"))
+      {
+         if(m_varFile.has_char())
+         {
+            m_varFile += ";";
+            m_varFile += m_varQuery["uri"];
+         }
+         else
+         {
+            m_varFile = m_varQuery["uri"];
+         }
+         if(m_ecommand == gen::command_line::command_file_new)
+            m_ecommand = gen::command_line::command_file_open;
+      }
+      if(m_ecommand == gen::command_line::command_file_open)
+      {
+         m_varQuery["show_platform"] = 1;
+      }
+
+      if(m_varQuery.propset().has_property("app"))
+      {
+         m_strApp = m_varQuery.propset()["app"];
+      }
+
+      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      {
+         m_strApp = m_varQuery.propset()["bergedge_start"];
+      }
+
+//      m_pthreadParent->consolidate(this);
+
+   }
+
+
+
+   command_line_sp::command_line_sp()
+   {
+   }
+
+
+   command_line_sp::command_line_sp(::ca::application * papp) :
+      ca(papp),
+      ::ca::smart_pointer < command_line > (papp)
+   {
+   }
+
+
 } // namespace gen 
+
+

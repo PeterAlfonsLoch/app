@@ -20,7 +20,7 @@ void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
 
    get_document()->m_thread.m_pview = this;
 
-   m_pcreateview = new ::user::create_view();
+   m_pviewcreator = new ::user::view_creator();
 
    SetPaneCount(2);
 
@@ -28,10 +28,7 @@ void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
   
    set_position_rate(0, 0.3);
 
-   create_context cc;
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(file_manager_operation_list_view);
-   m_plistview = dynamic_cast < file_manager_operation_list_view * > (create_view(&cc, this, 100));
+   m_plistview = create_view < file_manager_operation_list_view > ();
    if(m_plistview == NULL)
    {
       System.simple_message_box(NULL, "Could not create transfer list ::view");
@@ -39,9 +36,7 @@ void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
    SetPane(0, m_plistview, false);
 
 
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(file_manager_operation_info_view);
-   m_pinfoview = dynamic_cast < file_manager_operation_info_view * > (create_view(&cc, this, 101));
+   m_pinfoview = create_view < file_manager_operation_info_view > ();
    if(m_pinfoview == NULL)
    {
       System.simple_message_box(NULL, "Could not create transfer information ::view");
@@ -50,9 +45,9 @@ void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
 
 }
 
-void file_manager_operation_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void file_manager_operation_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::split_view::_001InstallMessageHandling(pinterface);
+   ::userbase::split_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_manager_operation_view::_001OnMainPostMessage);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &file_manager_operation_view::_001OnDestroy);

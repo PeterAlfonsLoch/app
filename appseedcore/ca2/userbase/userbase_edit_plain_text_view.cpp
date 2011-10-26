@@ -19,15 +19,10 @@ namespace userbase
       m_pfont = m_font;
    }
 
-   void edit_plain_text_view::OnDraw(::ca::graphics * pdc)
+   void edit_plain_text_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      UNREFERENCED_PARAMETER(pdc);
-   }
-
-   void edit_plain_text_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
-   {
-      ::user::edit_plain_text::_001InstallMessageHandling(pinterface);
-      view::_001InstallMessageHandling(pinterface);
+      ::user::edit_plain_text::install_message_handling(pinterface);
+      view::install_message_handling(pinterface);
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &edit_plain_text_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &::user::edit_plain_text::_002OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::edit_plain_text::_002OnLButtonDown);
@@ -36,13 +31,9 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::edit_plain_text::_002OnKeyUp);
    }
 
-   void edit_plain_text_view::_001OnDraw(::ca::graphics * pdc)
-   {
-      ::user::edit_plain_text::_001OnDraw(pdc);
-   }
-
    void edit_plain_text_view::_001OnSetText()
    {
+      ::user::edit_plain_text::_001OnSetText();
    }
 
    void edit_plain_text_view::_001OnUpdate()

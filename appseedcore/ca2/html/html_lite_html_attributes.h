@@ -20,8 +20,8 @@ class LiteHTMLElemAttr
 public:
 
 
-   string           m_strName;  
-   string           m_strValue; 
+   string           m_strName;
+   string           m_strValue;
 
 
    LiteHTMLElemAttr(const char * lpszAttribName = NULL, const char * lpszAttribValue = NULL)
@@ -39,15 +39,15 @@ public:
    }
 
    static void Init(void);
-   
+
    string getName() const
-   { 
-      return m_strName; 
+   {
+      return m_strName;
    }
 
    string getValue() const
    {
-      return m_strValue; 
+      return m_strValue;
    }
 
    /**
@@ -67,33 +67,13 @@ public:
    bool isSysColorValue(::lite_html_reader * preader) const;
 
    /**
-    * Determines if the attribute value is a color value in 
+    * Determines if the attribute value is a color value in
     * hexadecimal format
     * @return true if attribute value is a color value, otherwise, false
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool isHexColorValue(void) const
-   {
-      // zero-length attribute value?
-      if (m_strValue.is_empty())
-         return (false);
-
-      if (m_strValue[0] == '#')
-      {
-         if (m_strValue.get_length() > 1)
-         {
-            for (int i = 1; i < m_strValue.get_length(); i++)
-            {
-               if (!::_istxdigit(m_strValue[i]))
-                  return (false);
-            }
-            return (true);
-         }
-      }
-
-      return (false);
-   }
+   bool isHexColorValue(void) const;
 
    /**
     * Determines if the attribute value contains a color reference
@@ -111,7 +91,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    COLORREF getColorValue(::lite_html_reader * preader) const;
-   
+
    /**
     * Returns the RGB value of the attribute in hexadecimal format
     * @return hexadecimal string representing the color value
@@ -142,26 +122,26 @@ public:
       unsigned short   percentVal = (unsigned short)((short)*this);
       return ((percentVal > max ? max : percentVal));
    }
-   
+
    /**
-    * Parses a length value from the attribute/value 
+    * Parses a length value from the attribute/value
     * and identifies its length unit also
     *
     * @param rUnit - this will receive the type of the length unit
     *
-    * @return an integer value of the attribute 
+    * @return an integer value of the attribute
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
    enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, pt, pc };
    short getLengthValue(LengthUnitsEnum &rUnit) const
    {
-      static const char   _szUnits[][4] = 
+      static const char   _szUnits[][4] =
       {
          /** relative length units */
-         "em", "ex", "px", "%", 
+         "em", "ex", "px", "%",
          /** absolute length units */
-         "in", "cm", "mm", "pt", "pc" 
+         "in", "cm", "mm", "pt", "pc"
       };
 
       if (m_strValue.is_empty())
@@ -170,7 +150,7 @@ public:
       int i;
       for (i = 0; i < sizeof(_szUnits)/sizeof(_szUnits[0]); i++)
       {
-         if (m_strValue.Right(::lstrlen(_szUnits[i])). \
+         if (m_strValue.Right(::strlen(_szUnits[i])). \
             CompareNoCase(_szUnits[i]) == 0)
          {
             rUnit = (LengthUnitsEnum)i;
@@ -207,7 +187,7 @@ public:
     */
    operator BYTE() const
       { return ((BYTE)(m_strValue.get_length() ? m_strValue[0] : 0)); }
-   
+
    /**
     * Converts attribute value to double
     * @return 0.00 on failure, otherwise, a numeric value
@@ -215,8 +195,8 @@ public:
     * @author Gurmeet S. Kochar
     */
    operator double() const
-      { return (::_tcstod(m_strValue, NULL)); }
-   
+      { return (::strtod(m_strValue, NULL)); }
+
    /**
     * Converts attribute value to signed short int
     * @return 0 on failure, otherwise, an integer value
@@ -224,8 +204,8 @@ public:
     * @author Gurmeet S. Kochar
     */
    operator short() const
-      { return ((short)::_ttoi(m_strValue)); }
-   
+      { return ((short)::atoi(m_strValue)); }
+
    /**
     * @return attribute value
     * @since 1.0
@@ -244,7 +224,7 @@ private:
     *  4. Replaces each carriage-return (CR) or tab with a single space.
     *
     * @param lpszValue - new attribute value
-    * 
+    *
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
@@ -268,13 +248,13 @@ class LiteHTMLAttributes
 {
 // Construction/Destruction
 public:
-   LiteHTMLAttributes() 
+   LiteHTMLAttributes()
       : m_parrAttrib(NULL)
    { }
 
    /**
-    * @param bCopy - if true, this LiteHTMLAttributes makes a copy 
-    * of the encapsulated pointer. if false, this constructor takes 
+    * @param bCopy - if true, this LiteHTMLAttributes makes a copy
+    * of the encapsulated pointer. if false, this constructor takes
     * ownership of the encapsulated pointer.
     *
     * @since 1.0
@@ -295,10 +275,10 @@ public:
          {
             if ((m_parrAttrib = new CElemAttrArray) == NULL)
                AfxThrowMemoryException();
-            
+
             LiteHTMLElemAttr   *pItem = NULL;
             m_parrAttrib->set_size(nElemCount);
-            
+
             /** DEEP COPY BEGIN */
             for (int iElem = 0; iElem < nElemCount; iElem++)
             {
@@ -308,7 +288,7 @@ public:
                   AfxThrowMemoryException();
                   return;
                }
-               
+
                (*m_parrAttrib)[iElem] = pItem;
                pItem = NULL;
             }
@@ -342,7 +322,7 @@ public:
 
    /**
     * Look up the index of an attribute given its name.
-    * If more than one attribute with the same name exist, 
+    * If more than one attribute with the same name exist,
     * this will return the index of the first match.
     *
     * @param lpszAttributeName - name of the attribute
@@ -359,7 +339,7 @@ public:
       {
          if ((pItem = (*m_parrAttrib)[iElem]) == NULL)   // just in case
             continue;
-         
+
          // perform a CASE-INSENSITIVE search
          if (pItem->m_strName.CompareNoCase(lpszAttributeName) == 0)
             return (iElem);
@@ -457,9 +437,9 @@ public:
     *
     * @param lpszName - attribute name (serves as the key to the item)
     * @param lpszValue - attribute value
-    * @param bReplaceOld - If an item with the same name as specified 
-    *        by lpszName already exists in the collection, this 
-    *        parameter is used to determine whether to replace the 
+    * @param bReplaceOld - If an item with the same name as specified
+    *        by lpszName already exists in the collection, this
+    *        parameter is used to determine whether to replace the
     *        existing item or add a new one
     *
     * @return pointer to a LiteHTMLElemAttr
@@ -467,7 +447,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    LiteHTMLElemAttr* addAttribute(const char * lpszName, const char * lpszValue);
-   
+
    /**
     * Removes an LiteHTMLElemAttr item from the collection
     *
@@ -486,7 +466,7 @@ public:
       SAFE_DELETE_POINTER(pItem);
       return (true);
    }
-   
+
    /**
     * Removes all LiteHTMLElemAttr items from the collection
     * @return true if successful, false otherwise

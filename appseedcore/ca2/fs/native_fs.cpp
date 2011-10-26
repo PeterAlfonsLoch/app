@@ -48,6 +48,13 @@ namespace fs
    string native::eat_end_level(const char * pszPath, int iCount)
    {
       string strPath(pszPath);
+      while(iCount > 0)
+      {
+         strPath = filemanager::_shell::_017FilePathGetParent(strPath);
+         iCount--;
+      }
+      return strPath;
+/*      string strPath(pszPath);
       int iFind1 = -1;
       int iFind2 = -1;
       int iFind = -1;
@@ -62,7 +69,7 @@ namespace fs
          if(iFind < 0)
             return "";
       }
-      return strPath.Left(iFind);
+      return strPath.Left(iFind);*/
    }
 
    string native::file_name(const char * pszPath)
@@ -81,16 +88,22 @@ namespace fs
       return true;
    }
 
-   ::ex1::filesp * native::get_file(const char * pszFilePath)
+   ::ex1::filesp native::get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception)
    {
-      ::ex1::filesp * pfile = new ::ex1::filesp(get_app());
+      ::ex1::filesp spfile(get_app());
 
-      if(!(*pfile)->open(pszFilePath, ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary))
+      // ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary
+      if(!spfile->open(varFile.get_string(), nOpenFlags, pexception))
       {
          throw new ex1::file_exception_sp(get_app());
       }
 
-      return pfile;
+      return spfile;
+   }
+
+   bool native::file_exists(const char * pszPath)
+   {
+      return System.file().exists(pszPath);
    }
 
 

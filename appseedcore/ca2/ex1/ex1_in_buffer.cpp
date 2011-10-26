@@ -62,7 +62,7 @@ namespace ex1
       if (_wasFinished)
          return false;
       _processedSize += (_buffer - _bufferBase);
-      uint32 numProcessedBytes;
+      ::primitive::memory_size numProcessedBytes;
       try
       {
          numProcessedBytes = _stream->read(_bufferBase, _bufferSize);

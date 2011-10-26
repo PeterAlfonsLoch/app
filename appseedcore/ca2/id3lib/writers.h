@@ -14,12 +14,12 @@
 class CLASS_DECL_ca ID3_FileWriter : 
    public ID3_Writer
 {
-   ex1::file & _stream;
-   DWORD_PTR  _beg;
+   ex1::byte_output_stream _stream;
+   pos_type  _beg;
 protected:
-   ex1::file& getWriter() const { return _stream; }
+   ex1::byte_output_stream & getWriter() const { return const_cast < ID3_FileWriter * > (this)->_stream; }
 public:
-   ID3_FileWriter(ex1::file & writer) : _stream(writer), _beg((pos_type) _stream.GetPosition()) {}
+   ID3_FileWriter(ex1::file & writer) : _stream(&writer), _beg((pos_type) _stream.get_position()) {}
    virtual ~ID3_FileWriter() {}
 
    virtual void close() {_stream.close();}
@@ -34,20 +34,20 @@ public:
   /** write up to \c len chars into buf and advance the internal position
    ** accordingly.  Returns the number of characters write into buf.
    **/
-  virtual size_type writeChars(const char buf[], size_type len)
+  virtual ::primitive::memory_size writeChars(const char buf[], ::primitive::memory_size len)
   { 
     _stream.write(buf, len);
     return len;
   }
 
-  virtual size_type writeChars(const char_type buf[], size_type len)
+  virtual ::primitive::memory_size writeChars(const char_type buf[], ::primitive::memory_size len)
   {
     _stream.write(reinterpret_cast<const char*>(buf), len);
     return len;
   }
 
-  virtual DWORD_PTR getBeg() { return _beg; }
-  virtual DWORD_PTR getCur() { return (pos_type) _stream.GetPosition(); }
+  virtual file_position getBeg() { return _beg; }
+  virtual file_position getCur() { return (file_position) _stream.get_position(); }
 };
 
   
@@ -85,31 +85,31 @@ public:
    /** write up to \c len chars from buf and advance the internal position
    ** accordingly.  Returns the number of characters written from buf.
    **/
-   virtual size_type writeChars(const char buf[], size_type len)
+   virtual ::primitive::memory_size writeChars(const char buf[], ::primitive::memory_size len)
    { 
       return writeChars(reinterpret_cast<const char_type *>(buf), len);
    }
 
-   virtual size_type writeChars(const char_type buf[], size_type len)
+   virtual ::primitive::memory_size writeChars(const char_type buf[], ::primitive::memory_size len)
    {
-      size_type remaining = _end - _cur;
-      size_type size = (remaining > len) ? len : remaining;
+      ::primitive::memory_size remaining = (::primitive::memory_size) (_end - _cur);
+      ::primitive::memory_size size = (::primitive::memory_size) ((remaining > len) ? len : remaining);
       ::memcpy(_cur, buf, size);
       _cur += size;
       return size;
    }
     
-   virtual pos_type getCur() 
+   virtual file_position getCur() 
    { 
       return _cur - _beg; 
    }
     
-   virtual pos_type getBeg()
+   virtual file_position getBeg()
    {
       return _beg - _beg;
    }
     
-   virtual pos_type getEnd()
+   virtual file_position getEnd()
    {
       return _end - _beg;
    }

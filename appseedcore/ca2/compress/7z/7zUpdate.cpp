@@ -103,7 +103,7 @@ namespace n7z
 #define USE_86_FILTER
 #endif
 
-   static HRESULT WriteRange(::ex1::input_stream *inStream, ::ex1::writer *outStream,
+   static HRESULT WriteRange(::ex1::byte_input_stream *inStream, ::ex1::writer *outStream,
       uint64 position, uint64 size, ::compress::progress_info_interface *progress)
    {
       inStream->seek(position, ::ex1::seek_begin);
@@ -512,12 +512,11 @@ namespace n7z
          _crcStream = _crcStreamSpec;
       }
 
-      HRESULT Init(const CArchiveDatabaseEx *db, uint32 startIndex,
-         const bool_array *extractStatuses, ::ex1::writer *outStream);
+      HRESULT Init(const CArchiveDatabaseEx *db, uint32 startIndex, const bool_array *extractStatuses, ::ex1::writer *outStream);
       void ReleaseOutStream();
       HRESULT CheckFinishedState() const { return (_currentIndex == _extractStatuses->get_count()) ? S_OK: E_FAIL; }
 
-      void write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize);
+      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
    };
 
    HRESULT CFolderOutStream2::Init(const CArchiveDatabaseEx *db, uint32 startIndex,
@@ -571,7 +570,7 @@ namespace n7z
       return S_OK;
    }
 
-   void CFolderOutStream2::write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize)
+   void CFolderOutStream2::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
    {
       HRESULT hr;
       if (processedSize != NULL)
@@ -580,7 +579,7 @@ namespace n7z
       {
          if (_fileIsOpen)
          {
-            DWORD_PTR cur = size < _rem ? size : (uint32)_rem;
+            ::primitive::memory_size cur = size < _rem ? size : (uint32)_rem;
             _crcStream->write(data, cur, &cur);
             if (cur == 0)
                break;
@@ -616,20 +615,20 @@ namespace n7z
    {
    public:
       HRESULT Result;
-      ::ca::smart_pointer<::ex1::input_stream> InStream;
+      ::ca::smart_pointer<::ex1::byte_input_stream> InStream;
 
       CFolderOutStream2 *FosSpec;
       ::ca::smart_pointer<::ex1::writer> Fos;
 
       uint64 StartPos;
-      const uint64 *PackSizes;
+      const file_size *PackSizes;
       const CFolder *Folder;
 #ifndef _NO_CRYPTO
       ::ca::smart_pointer<::crypto::get_text_password_interface> GetTextPassword;
 #endif
 
       ///DECL_EXTERNAL_CODECS_VARS
-      ::compress::codecs_info_interface * _codecsInfo; 
+      ::compress::codecs_info_interface * _codecsInfo;
       base_array < ::compress::codec_info_ex > _externalCodecs;
          CDecoder Decoder;
 
@@ -728,7 +727,7 @@ namespace n7z
 
    HRESULT Update(
       ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
-      ::ex1::input_stream *inStream,
+      ::ex1::byte_input_stream *inStream,
       const CArchiveDatabaseEx *db,
       const array_ptr_alloc<CUpdateItem> &updateItems,
       COutArchive &archive,
@@ -745,7 +744,7 @@ namespace n7z
       if (numSolidFiles == 0)
          numSolidFiles = 1;
       /*
-      ::ca::smart_pointer<::ex1::output_stream> outStream;
+      ::ca::smart_pointer<::ex1::byte_output_stream> outStream;
       RINOK(seqOutStream->QueryInterface(IID_IOutStream, (void **)&outStream));
       if (!outStream)
       return E_NOTIMPL;
@@ -822,7 +821,7 @@ namespace n7z
          //folderRefs.Sort(CompareFolderRepacks, (void *)db);
       }
 
-      uint64 inSizeForReduce = 0;
+      file_size inSizeForReduce = 0;
       int i;
       for (i = 0; i < updateItems.get_count(); i++)
       {
@@ -1065,7 +1064,7 @@ namespace n7z
          int numFiles = group.Indices.get_count();
          if (numFiles == 0)
             continue;
-         array_ptr<CRefItem> refItems;
+         array_del_ptr<CRefItem> refItems;
          //refItems.set_size(0, numFiles);
          bool sortByType = (numSolidFiles > 1);
          for (i = 0; i < numFiles; i++)

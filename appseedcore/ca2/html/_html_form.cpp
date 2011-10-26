@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 
 html_form::html_form(::ca::application * papp) :
    ca(papp),
@@ -23,12 +23,33 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
    {
       get_html_data()->_001OnDraw(pdc);
    }
+
+   // tranas m_hwnd = GetSafeHwnd();
+   //pdc->SetBkMode(TRANSPARENT);
+   //get_html_data()->_001OnDraw(pdc);
+
+   //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
+
+   //::ca::bitmap bmp2;
+
+   //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
+   //::ca::graphics_sp dc2;
+   //dc2.CreateCompatibleDC(pdc);
+   //dc2.SelectObject(bmp2);
+
+   //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)spgraphics, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
+
+   //pdc->BitBlt (0 ,   0,  1280, 1024, &dc2, 0, 0, SRCCOPY);
+   //pdc->TextOut(20,  20, "Curitiba, 24 de fevereiro de 2008.");
+   //pdc->TextOut(20,  80, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
+   //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
+
 }
 
 
 void html_form::_001DrawChildren(::ca::graphics *pdc)
 {
-      
+
    if(m_pguie != NULL && m_pguie != this)
    {
       m_pguie->_001DrawChildren(pdc);
@@ -73,16 +94,15 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
 }
 
 
-void html_form::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void html_form::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::form_view::_001InstallMessageHandling(pinterface);
+   ::userbase::form_view::install_message_handling(pinterface);
 
-   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &html_form::_001OnSize);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &html_form::_001OnCreate);
 
 //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
 //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
-   IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
+   IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::html_form::_001OnKeyDown);
    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
 
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &html_form::_001OnLButtonDown);
@@ -117,35 +137,29 @@ void html_form::layout()
    if(get_html_data() == NULL)
       return;
    GetClientRect(&get_html_data()->m_rect);
-   bool bLayoutOk = false;
-   if(get_html_data()->m_rect.width() > 0 &&
-      get_html_data()->m_rect.height() > 0)
-   {
-      bLayoutOk = true;
-   }
+   //bool bLayoutOk = false;
+   //if(get_html_data()->m_rect.width() > 0 &&
+     // get_html_data()->m_rect.height() > 0)
+   //{
+     // bLayoutOk = true;
+   //}
    ::ca::graphics * pdc = GetDC();
    get_html_data()->m_pguie = this;
    get_html_data()->m_pguie = this;
    get_html_data()->implement(pdc);
-   if(bLayoutOk)
-   {
+   //if(bLayoutOk)
+   //{
       get_html_data()->m_pform = this;
       get_html_data()->layout(pdc);
-   }
+   //}
    ReleaseDC(pdc);
-   if(bLayoutOk)
-   {
+   //if(bLayoutOk)
+   //{
       _001RedrawWindow();
-   }
+   //}
 
 }
 
-
-void html_form::_001OnSize(gen::signal_object * pobj)
-{
-   UNREFERENCED_PARAMETER(pobj);
-   layout();
-}
 
 void html_form::_001OnCreate(gen::signal_object * pobj)
 {
@@ -177,7 +191,7 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
-   m_pelementalLButtonDown = get_html_data()->m_elemental.hit_test(pt);
+   m_pelementalLButtonDown = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
    if(m_pelementalLButtonDown != NULL)
    {
       html::signal signal(pobj->m_psignal);
@@ -188,10 +202,9 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
 }
-
-void html_form::_001OnMouseMove(gen::signal_object * pobj)
+   /*void html_form::_001OnMouseMove(gen::signal_object * pobj)
 {
-   /*SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -204,11 +217,12 @@ void html_form::_001OnMouseMove(gen::signal_object * pobj)
       pelemental->OnMouseMove(&signal);
    }*/
 
+void html_form::_001OnMouseMove(gen::signal_object * pobj)
+{
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
-   point pt;
-   pt = pmouse->m_pt;
+   point pt(pmouse->m_pt);
    ScreenToClient(&pt);
-   html::elemental * pelemental = get_html_data()->m_elemental.hit_test(pt);
+   html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
    html::signal signal(pobj->m_psignal);
    signal.m_pdata = get_html_data();
    signal.m_psignal = pmouse;
@@ -244,10 +258,9 @@ void html_form::_001OnMouseMove(gen::signal_object * pobj)
 void html_form::_001OnLButtonUp(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
-   point pt;
-   pt = pmouse->m_pt;
+   point pt(pmouse->m_pt);
    ScreenToClient(&pt);
-   html::elemental * pelemental = get_html_data()->m_elemental.hit_test(pt);
+   html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
    if(m_pelementalLButtonDown != NULL
       && pelemental == m_pelementalLButtonDown)
    {
@@ -263,7 +276,7 @@ html::data * html_form::calc_data()
    if(get_html_data() != NULL)
       return get_html_data();
    else
-      return dynamic_cast < html::data * > (System.alloc(typeid(html::data)));
+      return dynamic_cast < html::data * > (Application.alloc(::ca::get_type_info < html::data > ()));
 }
 
 /*
@@ -303,13 +316,22 @@ bool html_form::open_document(var varFile)
 
 void html_form::_001GetText(string & str) const
 {
-   get_html_data()->m_elemental.get_html(str);
+   get_html_data()->m_elemental.get_html(const_cast < html::data * > (get_html_data()), str);
 }
 
 void html_form::_001SetText(const char * psz)
 {
+   bool bFocus = Application.get_keyboard_focus() == this || is_descendant(dynamic_cast < ::user::interaction * > (Application.get_keyboard_focus()));
    get_html_data()->load(psz);
    layout();
+   if(bFocus)
+   {
+	   ::user::keyboard_focus * pfocus = get_focusable_descendant();
+      if(pfocus != NULL)
+      {
+         Application.set_keyboard_focus(pfocus);
+      }
+   }
 }
 
 
@@ -321,4 +343,14 @@ void html_form::_001SetText(const char * psz)
 const ::html::data * html_form::get_html_data() const
 {
    return dynamic_cast < ::html::data * > (::view::get_data());
+}
+
+void html_form::_001OnKeyDown(gen::signal_object * pobj)
+{
+   SCAST_PTR(::user::win::message::key, pkey, pobj);
+   if(pkey->m_nChar == '\t')
+   {
+      pkey->m_bRet = true;
+      return;
+   }
 }

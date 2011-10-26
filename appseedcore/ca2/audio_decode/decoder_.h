@@ -3,6 +3,11 @@
 
 namespace audio_decode
 {
+
+
+   class decoder_plugin;
+
+
    enum EAttribute
    {
       AttributeNone,
@@ -21,23 +26,36 @@ namespace audio_decode
    public:
 
 
-      DWORD_PTR                              m_dwDecodeLength;
-      pointer_object < primitive::memory >   m_pmemory;
-      pointer_object < gen::memory_file >    m_pmemoryfileOut;
-      pointer_object < gen::memory_file >    m_pmemoryfileIn;
+      primitive::memory_size                 m_dwDecodeLength;
+      sp(primitive::memory)                  m_spmemory;
+      sp(gen::memory_file)                   m_spmemoryfileOut;
+      sp(gen::memory_file)                   m_spmemoryfileIn;
       int64_array                            m_iaLostPosition;
       int_array                              m_iaLostCount;
       __int64                                m_iReadExpanded;
       __int64                                m_iRead;
       bool                                   m_bInitialized;
+      bool                                   m_bRunning;
+      int                                    m_iBufferSize;
+
+
+      decoder_plugin *                       m_pplugin;
 
 
       decoder(::ca::application * papp);
       virtual ~decoder();
 
       virtual int       run();
+
       virtual bool      DecoderInitialize(ex1::file *pfile);
       virtual bool      _DecoderInitialize(ex1::file *pfile) = 0;
+
+      virtual void      DecoderFinalize();
+      virtual bool      _DecoderFinalize() = 0;
+
+      virtual void      DecoderStop();
+
+
       virtual void      DecoderMoveNext() = 0;
       virtual bool      DecoderEOF();
       virtual bool      _DecoderEOF() = 0;
@@ -53,7 +71,7 @@ namespace audio_decode
       virtual bool      DecoderGetAttribute(EAttribute attribute, string & str);
 
 
-      virtual DWORD              DecoderGetLostMillis(DWORD dwExpandedMillis);
+      virtual imedia::time       DecoderGetLostMillis(imedia::time dwExpandedMillis);
       virtual imedia::position   DecoderGetLostPositionOffset(imedia::position position);
 
       // low level adjustments that may be not supported by the decoder in
@@ -64,12 +82,15 @@ namespace audio_decode
       virtual int       DecoderSetReadBlockSize(int iSize);
 
       // return number of bytes written
-      virtual int       DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize);
+      virtual ::primitive::memory_size       DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize);
 
-      virtual int       _DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize) = 0;
+      virtual ::primitive::memory_size       _DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize) = 0;
 
       virtual __int64   DecoderGetSampleCount() = 0;
       virtual __int64   DecoderGetMillisLength();
+
+
+      virtual void delete_this();
 
       //virtual void      DecoderStop() = 0;
 

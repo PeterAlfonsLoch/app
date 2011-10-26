@@ -1286,7 +1286,7 @@ namespace libepp
          }
          else if (elem_name == "secDNS:dsData") 
          {
-            DSInfo dsInfo;
+            DSInfo dsInfo(get_app());
             fill_ds_info(n, &dsInfo);
             response->add_dsInfo(dsInfo);
          }
@@ -2465,7 +2465,7 @@ namespace libepp
          else if (elem_name == "domain:infData")
          {
             pointer_object<DomainInfoResponse> response = 
-               pointer_object<DomainInfoResponse>(new DomainInfoResponse());
+               pointer_object<DomainInfoResponse>(new DomainInfoResponse(get_app()));
             fill_domain_info_response(n, response.m_ptr);
             poll_response->set_response((Response *) response.detach(), DOMAIN_INFO);
          }
@@ -3398,7 +3398,7 @@ namespace libepp
          contacts.get_next_assoc(pos, strKey, strValue);
          str += "<";
          str += strTag;
-         str += " type='" + Application.xml().special_chars(strKey) + "'>" + Application.xml().special_chars(strValue);
+         str += " type='" + System.xml().special_chars(strKey) + "'>" + System.xml().special_chars(strValue);
          str += "</";
          str += strTag;
          str += ">";

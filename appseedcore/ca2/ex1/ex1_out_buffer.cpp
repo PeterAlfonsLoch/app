@@ -1,3 +1,28 @@
+      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
+      void SetStream(writer *stream);
+      void Init();
+      HRESULT Flush();
+      void FlushWithCheck();
+      void ReleaseStream()
+      {
+         // _stream.Release();
+      }
+      HRESULT FlushPart();
+
+      void WriteByte(byte b)
+      {
+         m_memory.get_data()[_pos++] = b;
+         if(_pos == _limitPos)
+            FlushWithCheck();
+      }
+      void WriteBytes(const void *data, size_t size)
+      {
+         for (size_t i = 0; i < size; i++)
+            WriteByte(((const byte *)data)[i]);
+      }
+
+      uint64 GetProcessedSize() const;
+
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
 #include "StdAfx.h"
@@ -9,23 +34,31 @@
 namespace ex1
 {
 
-   bool out_buffer::Create(uint32 bufferSize)
+   out_buffer::out_buffer() :
+      _pos(0), _stream(0), _buffer2(0)
    {
-      const uint32 kMinBlockSize = 1;
-      if (bufferSize < kMinBlockSize)
-         bufferSize = kMinBlockSize;
-      if (_buffer != 0 && _bufferSize == bufferSize)
-         return true;
-      Free();
-      _bufferSize = bufferSize;
-      _buffer = (byte *)::MidAlloc(bufferSize);
-      return (_buffer != 0);
    }
 
-   void out_buffer::Free()
+   out_buffer::~out_buffer()
    {
-      ::MidFree(_buffer);
-      _buffer = 0;
+      free();
+   }
+
+   bool out_buffer::create(::primitive::memory_size bufferSize)
+   {
+      const ::primitive::memory_size kMinBlockSize = 1;
+      if (bufferSize < kMinBlockSize)
+         bufferSize = kMinBlockSize;
+      if (m_memory.get_size() == bufferSize)
+         return true;
+      m_memory.free_data();
+      m_memory.allocate(bufferSize);
+      return m_memory.get_data() != NULL;
+   }
+
+   void out_buffer::free()
+   {
+      m_memory.free_data();
    }
 
    void out_buffer::SetStream(writer *stream)
@@ -36,20 +69,20 @@ namespace ex1
    void out_buffer::Init()
    {
       _streamPos = 0;
-      _limitPos = _bufferSize;
+      _limitPos = (file_position) m_memory.get_size();
       _pos = 0;
       _processedSize = 0;
       _overDict = false;
-#ifdef _NO_EXCEPTIONS
+   #ifdef _NO_EXCEPTIONS
       ErrorCode = S_OK;
-#endif
+   #endif
    }
 
    uint64 out_buffer::GetProcessedSize() const
    {
       uint64 res = _processedSize + _pos - _streamPos;
       if (_streamPos > _pos)
-         res += _bufferSize;
+         res += m_memory.get_size();
       return res;
    }
 
@@ -57,29 +90,29 @@ namespace ex1
    HRESULT out_buffer::FlushPart()
    {
       // _streamPos < _bufferSize
-      DWORD_PTR size = (_streamPos >= _pos) ? (_bufferSize - _streamPos) : (_pos - _streamPos);
+      ::primitive::memory_size size = (::primitive::memory_size) ((_streamPos >= _pos) ? (m_memory.get_size() - _streamPos) : (_pos - _streamPos));
       HRESULT result = S_OK;
       if (_buffer2 != 0)
       {
-         memmove(_buffer2, _buffer + _streamPos, size);
+         memmove(_buffer2, m_memory.get_data() + (::primitive::memory_size) _streamPos, (size_t) size);
          _buffer2 += size;
       }
 
       if (_stream != 0)
       {
-         DWORD_PTR processedSize = 0;
-         _stream->write(_buffer + _streamPos, size, &processedSize);
+         ::primitive::memory_size processedSize = 0;
+         _stream->write(m_memory.get_data() + (::primitive::memory_size) _streamPos, size, &processedSize);
          size = processedSize;
       }
       _streamPos += size;
-      if (_streamPos == _bufferSize)
+      if (_streamPos == m_memory.get_size())
          _streamPos = 0;
-      if (_pos == _bufferSize)
+      if (_pos == m_memory.get_size())
       {
          _overDict = true;
          _pos = 0;
       }
-      _limitPos = (_streamPos > _pos) ? _streamPos : _bufferSize;
+      _limitPos = (_streamPos > _pos) ? _streamPos : (file_position) m_memory.get_size();
       _processedSize += size;
       return result;
    }
@@ -103,4 +136,22 @@ namespace ex1
    }
 
 
-} // namespace ex1 
+         void out_buffer::SetMemStream(byte *buffer) { _buffer2 = buffer; }
+      void out_buffer::ReleaseStream()
+      {
+         // _stream.Release();
+      }
+      void out_buffer::WriteByte(byte b)
+      {
+         m_memory.get_data()[_pos++] = b;
+         if(_pos == _limitPos)
+            FlushWithCheck();
+      }
+      void out_buffer::WriteBytes(const void *data, size_t size)
+      {
+         for (size_t i = 0; i < size; i++)
+            WriteByte(((const byte *)data)[i]);
+      }
+
+
+} // namespace ex1

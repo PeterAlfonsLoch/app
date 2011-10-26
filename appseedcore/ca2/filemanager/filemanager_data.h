@@ -18,7 +18,7 @@ namespace filemanager
    public:
 
 
-      document *                       m_pdocumentSave;
+      ::document *                     m_pdocumentSave;
       file_manager_interface *         m_pfilemanager;
       FileManagerInterface *           m_pmanager;
       FileManagerInterface *           m_pmanagerMain;
@@ -28,6 +28,7 @@ namespace filemanager
       string                           m_strDISection;
       ::user::place_holder *           m_pholderFileList;
       ::user::interaction *            m_ptreeFileTreeMerge;
+      bool                             m_bSetBergedgeTopicFile;
    
    
 
@@ -50,15 +51,15 @@ namespace filemanager
       bool is_saving();
 
       void FileManagerBrowse(const char * lpcsz);
-      void FileManagerBrowse(::fs::item & item);
-      void OnFileManagerOpenContextMenuFolder(::fs::item & item);
-      void OnFileManagerOpenContextMenuFile(::fs::item_array & itema);
+      void FileManagerBrowse(const ::fs::item & item);
+      void OnFileManagerOpenContextMenuFolder(const ::fs::item & item);
+      void OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema);
       void OnFileManagerOpenContextMenu();
-      void OnFileManagerOpenFile(::fs::item_array & itema);
-      void OnFileManagerOpenFolder(::fs::item & str);
+      void OnFileManagerOpenFile(const ::fs::item_array & itema);
+      void OnFileManagerOpenFolder(const ::fs::item & str);
 
-      void OnFileManagerItemUpdate(cmd_ui * pcmdui, ::fs::item_array & itema);
-      void OnFileManagerItemCommand(const char * pszId, ::fs::item_array & itema);
+      void OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema);
+      void OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema);
 
 
 

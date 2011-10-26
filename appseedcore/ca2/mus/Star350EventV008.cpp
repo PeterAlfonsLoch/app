@@ -46,7 +46,7 @@ VMSRESULT Star350EventV008::GetEventV001(Star350EventV001 * lpMidiEventV001,  DW
    //   lpMidiEventV001->SetParamSize(GetParamSize());
    lpMidiEventV001->SetParam(GetParam(), GetParamSize());
    lpMidiEventV001->SetDelta(GetDelta());
-   lpMidiEventV001->SetPosition(GetPosition());
+   lpMidiEventV001->SetPosition(get_position());
    lpMidiEventV001->SetImage(NULL);
    lpMidiEventV001->SetImageSize(GetImageSize());
    return VMSR_SUCCESS;
@@ -139,7 +139,7 @@ VMSRESULT Star350EventV008::FromData(LPVOID lpData, LPINT lpiLeft, Star350EventB
         return VMSR_E_INVALIDFILE;
     }
 
-    dwGot = MidiEventBase::GetVDWord(
+    dwGot = midi_event_base::GetVDWord(
         hpbImage, 
         *lpiLeft,
         &dwDelta);
@@ -163,7 +163,7 @@ VMSRESULT Star350EventV008::FromData(LPVOID lpData, LPINT lpiLeft, Star350EventB
         return VMSR_E_INVALIDFILE;
     }
 
-    dwGot = MidiEventBase::GetVDWord(
+    dwGot = midi_event_base::GetVDWord(
         hpbImage, 
         *lpiLeft,
         &dwDuration);
@@ -187,7 +187,7 @@ VMSRESULT Star350EventV008::FromData(LPVOID lpData, LPINT lpiLeft, Star350EventB
         return VMSR_E_INVALIDFILE;
     }
 
-    dwGot = MidiEventBase::GetVDWord(
+    dwGot = midi_event_base::GetVDWord(
         hpbImage, 
         *lpiLeft,
         (DWORD *)&iType);

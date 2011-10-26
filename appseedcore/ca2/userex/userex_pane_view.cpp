@@ -8,7 +8,7 @@ namespace userex
       ::userbase::view(papp)
    {
    }
-    
+
    pane_view::~pane_view()
    {
    }
@@ -40,26 +40,25 @@ namespace userex
    }
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       for(int i = 0; i < m_menua.get_size(); i++)
       {
-         if(pviewdata->m_id == m_menua[i].m_id)
+         if(pcreatordata->m_id == m_menua[i].m_id)
          {
-            create_context cc;
-            cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView = typeid(::userbase::menu_list_view);
+            //create_context cc;
+            //cc.m_pCurrentDoc = get_document();
+            //cc.m_typeinfoNewView = ::ca::get_type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(&cc, this, 101));
+            ::userbase::view * pview = create_view < userbase::view > ();
             if(pview != NULL)
             {
 //               ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
    /* xxx           xml::node node(get_app());
-               node.load(Application.file().as_string(System.dir().matter(
+               node.load(Application.file().as_string(Application.dir().matter(
                   "mplite_popup_lyricview.xml")));
                pmenuview->LoadMenu(&node);*/
-               pviewdata = new ::user::create_view::view_data();
-               pviewdata->m_pwnd = pview;
+               pcreatordata->m_pwnd = pview;
             }
             break;
          }
@@ -92,5 +91,6 @@ namespace userex
       pmenu->m_strMatter = pszMatter;
       pmenu->m_id = idCommand;
    }
+
 
 } // m_id userex

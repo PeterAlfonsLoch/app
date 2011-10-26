@@ -1,12 +1,12 @@
 #pragma once
 
-#include "gen_base_enum.h"
-#include "ex1/ex1_serializable.h"
+#include "gen/gen_base_enum.h"
 #include "gen/gen_variable_strict_compare.h"
 #include "gen/gen_holder.h"
 #include "gen/gen_raw_pointer.h"
 #include "gen/gen_full_pointer.h"
 #include "template/time.h"
+#include "ex1/ex1_byte_serializable.h"
 
 class stringa;
 
@@ -39,7 +39,7 @@ namespace gen
 
 
 class CLASS_DECL_ca var :
-   virtual public ex1::serializable,
+   virtual public ex1::byte_serializable,
    virtual public string_interface
 {
 public:
@@ -78,8 +78,8 @@ public:
 
    typedef base_enum < _etype, type_null > e_type;
 
-   
-   void set_type(e_type e_type);
+
+   void set_type(e_type e_type, bool bConvert = true);
    virtual e_type get_type() const;
 
    var();
@@ -87,15 +87,17 @@ public:
    var(int i);
    var(__int64 i64);
    var(unsigned int ui);
-   var(unsigned __int64 ui64);
+   var(uint64_t ui64);
+#ifdef _WINDOWS
    var(unsigned long ul);
+#endif
    var(double d);
    var(const char * psz);
    var(string str);
    var(bool * pb);
    var(int * pi);
    var(__int64 * pi);
-   var(unsigned __int64 * pui);
+   var(uint64_t * pui);
    var(const class ::time & time);
    var(const FILETIME & time);
    var(const SYSTEMTIME & time);
@@ -111,6 +113,8 @@ public:
    var(const gen::var_property & prop);
    var(const gen::pair_set_interface & set);
    var(const gen::str_str_interface & set);
+   var(const string_composite & composite);
+   var(const id & id);
    virtual ~var();
 
    e_type             m_etype;
@@ -119,10 +123,10 @@ public:
       gen::para_return     m_parareturn;
       int                  m_i;
       __int64              m_i64;
-      unsigned __int64     m_ui64;
+      uint64_t     m_ui64;
       int *                m_pi;
       __int64 *            m_pi64;
-      unsigned __int64 *   m_pui64;
+      uint64_t *   m_pui64;
       bool *               m_pb;
       string *             m_pstr;
       unsigned long        m_ul;
@@ -150,11 +154,11 @@ public:
    gen::property_set &              propset(::ca::application * papp = NULL);
    gen::property &                  prop();
    const class primitive::memory &  memory() const;
-   const stringa &                  stra() const;
-   const int_array &                inta() const;
-   const var_array &                vara()  const;
-   const gen::property_set &        propset() const;
-   const gen::property &            prop() const;
+   stringa                          stra() const;
+   int_array                        inta() const;
+   var_array                        vara()  const;
+   gen::property_set                propset() const;
+   gen::var_property                prop() const;
 
    bool is_scalar() const;
    bool is_array() const;
@@ -178,7 +182,7 @@ public:
    virtual void unset();
 
    virtual bool is_true() const;
-   
+
 
    virtual bool is_set() const;
    virtual bool is_new() const;
@@ -214,12 +218,14 @@ public:
    var & operator = (int * pi);
    var & operator = (__int64 i);
    var & operator = (__int64 * pi);
-   var & operator = (unsigned __int64 i);
-   var & operator = (unsigned __int64 * pi);
+   var & operator = (uint64_t i);
+   var & operator = (uint64_t * pi);
    var & operator = (const class ::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
+#ifdef _WINDOWS
    var & operator = (unsigned long ul);
+#endif
    var & operator = (unsigned int ui);
    var & operator = (double d);
    var & operator = (string str);
@@ -237,10 +243,14 @@ public:
    var & operator = (const gen::property_set & propset);
    var & operator = (const gen::pair_set_interface & propset);
    var & operator = (const gen::str_str_interface & propset);
+   var & operator = (const string_composite & composite);
+   var & operator = (const id & id);
 
    template < class T >
    T * ca2()
    {
+      if(m_etype == type_pvar && m_pvar != NULL)
+         return m_pvar->ca2 < T > ();
       if(m_etype != type_ca2 || m_pca2 == NULL)
          return NULL;
       return dynamic_cast < T * > (m_pca2);
@@ -260,7 +270,7 @@ public:
    bool strict_equal(double d) const;
    bool strict_equal(int i) const;
    bool strict_equal(bool b) const;
-   
+
    bool strict_different(const var & var) const;
    bool strict_different(const char * psz) const;
    bool strict_different(const string & str) const;
@@ -322,8 +332,8 @@ public:
    bool operator > (int i) const;
    bool operator > (bool b) const;
 
-   void write(ex1::output_stream & ostream);
-   void read(ex1::input_stream & ostream);
+   void write(ex1::byte_output_stream & ostream);
+   void read(ex1::byte_input_stream & ostream);
 
    string implode(const char * pszGlue) const;
 
@@ -337,6 +347,7 @@ public:
    var & operator[] (const char * pszKey);
    var & operator[] (int iKey);
    var at(int i) const;
+   var at(int i);
    var key(int i) const;
    int array_get_count() const;
    int array_get_upper_bound() const;
@@ -433,5 +444,9 @@ public:
    var & operator *= (double d);
    var & operator *= (const var & var);
 
+   void consume_number(const char * & psz);
+   void consume_number(const char * & psz, const char * pszEnd);
+   void parse_json(const char * & pszJson);
+   void parse_json(const char * & pszJson, const char * pszEnd);
 };
 

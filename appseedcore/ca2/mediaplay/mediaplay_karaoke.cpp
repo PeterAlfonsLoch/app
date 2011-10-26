@@ -5,9 +5,9 @@ namespace mediaplay
 
    karaoke::karaoke(::ca::application * papp) :
       ca(papp),
-      ikar::karaoke(papp)
+      ikar::karaoke(papp),
+      ::audio::WavePlayerInterface(papp)
    {
-      m_pwaveplayer = NULL;
    }
 
    karaoke::~karaoke()
@@ -24,19 +24,19 @@ namespace mediaplay
       return imedia::time((int) position);
    }
 
-   void karaoke::GetPosition(imedia::position & position)
+   void karaoke::get_position(imedia::position & position)
    {
-      if(m_pwaveplayer != NULL)
+      if(GetWavePlayer() != NULL)
       {
-         position = m_pwaveplayer->GetWaveOut()->GetPositionMillisForSynch();
+         position = (int64_t) GetWavePlayer()->GetWaveOut()->GetPositionMillisForSynch();
       }
    }
 
    void karaoke::get_time(imedia::time & time)
    {
-      if(m_pwaveplayer != NULL)
+      if(GetWavePlayer() != NULL)
       {
-         time = m_pwaveplayer->GetWaveOut()->GetPositionMillisForSynch();
+         time = GetWavePlayer()->GetWaveOut()->GetPositionMillisForSynch();
       }
    }
 
@@ -84,10 +84,10 @@ namespace mediaplay
       imedia::position_2darray & tka2DTokensTicks,
       ikar::data & data)
    {
-      
-      
+
+
       ikar::static_data & staticdata = data.GetStaticData();
-      
+
       if(staticdata.m_LyricsDisplayOffset < 480)
       {
          staticdata.m_LyricsDisplayOffset = 480;
@@ -97,7 +97,7 @@ namespace mediaplay
          staticdata.m_LyricsDisplayOffset = 720;
       }
       staticdata.m_LyricsDisplay = 30;
-      
+
       imedia::position_2darray tk2DBegPositions;
       imedia::position_2darray tk2DEndPositions;
       imedia::time_2darray ms2DTokensMillis;
@@ -106,20 +106,20 @@ namespace mediaplay
       imedia::time_2darray ms2DBegMillis;
       imedia::time_2darray ms2DEndMillis;
 
-      
+
 
 
       PositionToTime(
          ms2DTokensMillis,
          tka2DTokensTicks,
          0);
-      
+
       ms2DNoteOnMillis = ms2DTokensMillis;
       ms2DBegMillis = ms2DTokensMillis;
       imedia::time_array a;
       int i;
       for(int i = 0; i < ms2DTokensMillis.get_size(); i++)
-      { 
+      {
          int iSize = ms2DTokensMillis[i].get_size();
          a.set_size(iSize);
          iSize--;
@@ -135,14 +135,14 @@ namespace mediaplay
          ms2DNoteOffMillis.add(a);
          ms2DEndMillis.add(a);
       }
-      
+
       EventsTracksV1 lyricEventsForPositionCB;
       EventsTracksV1 lyricEventsForBouncingBall;
       EventsTracksV1 lyricEventsForScoring;
       EventsTracksV1 lyricEvents;
-      
-      
-      
+
+
+
       LyricEventsV2 *pLyricEventsV2;
       LyricEventsV2 *pLyricEventsV2_;
       LyricEventsV2 *pLyricEventsV2B;
@@ -176,14 +176,14 @@ namespace mediaplay
          pLyricEventsV2B->m_dwaNotesData.set_size(str2a[i].get_size());
          pLyricEventsV2C->m_dwaNotesData.set_size(str2a[i].get_size());
          pLyricEventsV2_->m_dwaNotesData.set_size(str2a[i].get_size());
-         
-         
-         
+
+
+
       }
-      
 
 
-      
+
+
       LyricEventsV1 *pLyricEventsV1;
 
 
@@ -206,7 +206,7 @@ namespace mediaplay
             ms2DTokensMillis[i],
             time1,
             time2);
-         
+
          pLyricEventsV2->m_msaNotesDuration.Diff(
             ms2DNoteOffMillis[i],
             ms2DNoteOnMillis[i]);
@@ -218,7 +218,7 @@ namespace mediaplay
             ms2DNoteOnMillis[i],
             time3,
             time4);
-         
+
          imedia::time time5(0x7fffffff);
 
          pLyricEventsV2->m_msaTokensDuration.ElementDiff(
@@ -261,7 +261,7 @@ namespace mediaplay
             ms2DTokensMillis[i],
             time1,
             time2);
-         
+
          pLyricEventsV2->m_msaNotesDuration.Diff(
             ms2DNoteOffMillis[i],
             ms2DNoteOnMillis[i]);
@@ -273,7 +273,7 @@ namespace mediaplay
             ms2DNoteOnMillis[i],
             time3,
             time4);
-         
+
          imedia::time time5(0x7fffffff);
 
          pLyricEventsV2->m_msaTokensDuration.ElementDiff(
@@ -293,9 +293,9 @@ namespace mediaplay
       {
          pLyricEventsV2 = (LyricEventsV2 *) lyricEventsForPositionCB.get_at(i);
          staticdata.m_eventsTracksForPositionCB.add(pLyricEventsV2);
-         
+
          staticdata.m_eventstracksV002.add(pLyricEventsV2);
-         
+
          TimeToPosition(
             pLyricEventsV2->m_tkaTokensPosition,
             ms2DTokensMillis[i],
@@ -325,7 +325,7 @@ namespace mediaplay
             ms2DBegMillis[i],
             time3,
             time4);
-         
+
          imedia::time time5(0x7fffffff);
 
          pLyricEventsV2->m_msaTokensDuration.ElementDiff(
@@ -335,7 +335,7 @@ namespace mediaplay
          pLyricEventsV2->PrepareForLyricsDisplay(this);
       }
 
-      
+
 
 
 
@@ -348,7 +348,7 @@ namespace mediaplay
       {
          pLyricEventsV2 = (LyricEventsV2 *) lyricEventsForBouncingBall.get_at(i);
          staticdata.m_eventsTracksForBouncingBall.add(pLyricEventsV2);
-         
+
          TimeToPosition(
             pLyricEventsV2->m_tkaTokensPosition,
             ms2DTokensMillis[i],
@@ -380,14 +380,14 @@ namespace mediaplay
             time4);
 
          imedia::time time5(0x7fffffff);
-         
+
          pLyricEventsV2->m_msaTokensDuration.ElementDiff(
             ms2DTokensMillis[i],
             time5);
-               
+
          pLyricEventsV2->PrepareForBouncingBall(this);
       }
-      
+
    }
 
    void karaoke::ParseSSAFile(ex1::file * pfile)
@@ -443,7 +443,7 @@ namespace mediaplay
          if(strLine.Left(10) == "Dialogue: ")
          {
             iStart = 10;
-            
+
             iFind = strLine.find(",", iStart);
             iStart = iFind + 1;
 
@@ -519,7 +519,7 @@ namespace mediaplay
             iLine++;
          }
       }
-      
+
 
    }
 
@@ -601,10 +601,10 @@ namespace mediaplay
             position = (int) (_tcstod(strToken, NULL) * 1000.0);
             m_positionaToken.add(position);
             //position = position + duration;
-            
-            
 
-            
+
+
+
 
             iStart = iFind + 1;
             iLineToken++;

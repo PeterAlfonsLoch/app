@@ -18,12 +18,14 @@ namespace rtp
       int                  m_iListenPort;
       int                  m_iRemotePort;
 
-      int                  have_more;
+      int                  m_iHaveMore;
       int                  format;
       int                  jittcomp;
       bool_t               adapt;
       int                  clockslide;
       int                  jitter;
+      bool                 m_bStreamReceived;
+      ::gen::memory_file   m_memfile;
 
       file(::ca::application * papp);
       virtual ~file();
@@ -33,15 +35,11 @@ namespace rtp
 
       virtual bool IsValid() const;
 
-#if core_level2
       using ex1::file::read;
-#endif
-      virtual DWORD_PTR read(void *lpBuf, DWORD_PTR nCount);
+      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
 
-#if core_level2
       using ex1::file::write;
-#endif
-      virtual void write(const void * lpBuf, DWORD_PTR nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
       virtual void close();
 

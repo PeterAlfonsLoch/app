@@ -12,7 +12,7 @@ class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
 
 
 template < class ENUM >
-class flags : 
+class flags :
    virtual public base_sort_serializable_int_ptr_array
 {
 public:

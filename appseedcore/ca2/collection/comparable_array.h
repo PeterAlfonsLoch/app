@@ -12,17 +12,7 @@ public:
    comparable_array();
    comparable_array(const comparable_array & base_array);
 
-   void QuickSort(bool bAsc = true)
-   {
-      if(bAsc)
-      {
-         sort::QuickSortAsc(*this);
-      }
-      else
-      {
-         sort::QuickSortDesc(*this);
-      }
-   }
+   void QuickSort(bool bAsc = true);
 
 
 };
@@ -38,7 +28,5 @@ ARRAY_TYPE(a)
 {
    operator = (a);
 }
-
-
 
 

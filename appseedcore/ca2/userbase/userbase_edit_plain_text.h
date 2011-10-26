@@ -8,7 +8,7 @@ namespace userbase
    {
    public:
       edit_plain_text(::ca::application * papp);
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
    };
 
 

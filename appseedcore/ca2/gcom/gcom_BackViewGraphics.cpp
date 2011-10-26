@@ -91,17 +91,17 @@ namespace gcom
          int cx = rectClient.width();
          int cy = rectClient.height();
 
-         CSingleLock sl1Back(&m_mutex1Back, TRUE);
+         single_lock sl1Back(&m_mutex1Back, TRUE);
          ::ca::graphics & dcBack = GetBackDC();
          GetDib(_graphics::DibBack)->create(cx, cy);
          dcBack.FillSolidRect(0, 0, cx, cy, RGB(127, 136, 145));
-         sl1Back.Unlock();
+         sl1Back.unlock();
       }
 
 
       void Graphics::OnImageLoaded(::ca::bitmap * pbitmap)
       {
-         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+         single_lock sl3Source(&m_mutex3Source, TRUE);
 
          Main & main = HelperGetMain();
 
@@ -131,9 +131,9 @@ namespace gcom
 
       void Graphics::OnDestroy()
       {
-         CSingleLock sl1Back(&m_mutex1Back, TRUE);
-         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
-         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+         single_lock sl1Back(&m_mutex1Back, TRUE);
+         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl3Source(&m_mutex3Source, TRUE);
       }
 
       bool Graphics::RenderBufferLevel2()
@@ -158,10 +158,10 @@ namespace gcom
 //         const int ciBufferBitmapInfoNotAvailable = 5;
          const int ciScaledBitmapInfoNotAvailable = 6;
 
-         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
-         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl3Source(&m_mutex3Source, TRUE);
 
-         HelperGetMain().DeferCheckLayout();
+         //HelperGetMain().DeferCheckLayout();
 
 //         ::ca::graphics & dcScreen = GetScreenDC();
          ::ca::graphics & dcBuffer = GetBufferDC();
@@ -178,7 +178,7 @@ namespace gcom
 
          try
          {   
-            //sl2Buffer.Lock();
+            //sl2Buffer.lock();
 
             dcBuffer.FillSolidRect(rectClient, RGB(63, 106, 150));
 
@@ -232,7 +232,7 @@ namespace gcom
                }
             }
 
-            //sl3Source.Lock();
+            //sl3Source.lock();
             ::ca::bitmap & bmpSource = GetSourceBitmap();
 
             if(bmpSource.get_os_data() != NULL 
@@ -394,9 +394,9 @@ namespace gcom
          int cx = rectClient.width();
          int cy = rectClient.height();
 
-         CSingleLock sl1Back(&m_mutex1Back, TRUE);
-         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
-         CSingleLock sl3Source(&m_mutex3Source, TRUE);
+         single_lock sl1Back(&m_mutex1Back, TRUE);
+         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl3Source(&m_mutex3Source, TRUE);
          
 
          ::ca::graphics & spgraphicsScreen    = GetScreenDC();
@@ -414,7 +414,9 @@ namespace gcom
          GetDib(_graphics::DibBuffer)->Fill(63, 106, 150);
 
          GetDib(_graphics::DibTransfer)->create(cx, cy); // Transfer
-         GetDib(_graphics::DibTransfer)->Fill(63, 150, 106);
+         color c;
+         c.set_rgb(iface.GetBackgroundColor());
+         GetDib(_graphics::DibTransfer)->Fill(c.m_uchR, c.m_uchG, c.m_uchB);
 
          GetDib(_graphics::DibFrame1)->create(cx, cy); // Frame1
          GetDib(_graphics::DibFrame1)->Fill(127, 136, 145);
@@ -467,15 +469,23 @@ namespace gcom
 
       void Graphics::BufferToBack()
       {
-         CSingleLock sl1Back(&m_mutex1Back, TRUE);
-         CSingleLock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl1Back(&m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&m_mutex2Buffer, FALSE);
+         if(!sl1Back.lock(millis(25)))
+            return;
+         if(!sl2Buffer.lock(millis(25)))
+            return;
          GetDib(_graphics::DibBack)->copy(GetDib(_graphics::DibBuffer));
       }
 
       void Graphics::BackToTransfer()
       {
-         CSingleLock sl1Back(&m_mutex1Back, TRUE);
          
+         single_lock sl1Back(&m_mutex1Back, FALSE);
+         
+         if(!sl1Back.lock(millis(25)))
+            return;
+
          GetDib(_graphics::DibTransfer)->copy(GetDib(_graphics::DibBack));
 
       }

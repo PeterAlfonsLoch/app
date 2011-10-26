@@ -65,7 +65,7 @@ MMRESULT audWaveIn::open(
       return MMSYSERR_NOERROR;
    }
    
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    MMRESULT mmr;
    ASSERT(m_hWaveIn == NULL);
    ASSERT(m_estate == state_initial);
@@ -206,7 +206,7 @@ audWaveBuffer & audWaveIn::GetBuffer()
 
 MMRESULT audWaveIn::close()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
 
    MMRESULT mmr;
 
@@ -238,7 +238,7 @@ MMRESULT audWaveIn::close()
 
 MMRESULT audWaveIn::Start()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    if(m_estate == StateRecording)
       return MMSYSERR_NOERROR;
    //ASSERT(m_estate == StateOpened || m_estate == StateStopped);
@@ -259,8 +259,9 @@ MMRESULT audWaveIn::Start()
 
 MMRESULT audWaveIn::Stop()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
-   ASSERT(m_estate == StateRecording);
+   single_lock sLock(&m_csHandle, TRUE);
+   if(m_estate != StateRecording)
+      return MMSYSERR_NOERROR;
    MMRESULT mmr;
    m_estate = state_stopping;
    try
@@ -326,7 +327,7 @@ UINT audWaveIn::GetState()
 
 MMRESULT audWaveIn::Reset()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    m_bResetting = true;
    
    MMRESULT mmr;

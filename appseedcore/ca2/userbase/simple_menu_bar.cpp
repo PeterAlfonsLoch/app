@@ -26,9 +26,9 @@ simple_menu_bar::~simple_menu_bar()
 {
 }
 
-void simple_menu_bar::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+void simple_menu_bar::install_message_handling(::user::win::message::dispatch * pdispatch)
 {
-   simple_toolbar::_001InstallMessageHandling(pdispatch);
+   simple_toolbar::install_message_handling(pdispatch);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_menu_bar::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_NCMOUSEMOVE    , pdispatch, this, &simple_menu_bar::_001OnNcMouseMove);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pdispatch, this, &simple_menu_bar::_001OnCreate);
@@ -54,14 +54,14 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
       m_pimagelistDisabled,
       m_prel,
       &m_font);
-   
+
    m_menu.LoadMenu(m_uiResourceID);*/
-   
+
 
 
    SendMessage(TB_SETUNICODEFORMAT, 1, 0);
    string str;
-  
+
    TBBUTTON tbb;
    memset(&tbb, 0, sizeof(tbb));
    tbb.iBitmap = NULL;
@@ -90,23 +90,23 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    return true;
 }
 
-void simple_menu_bar::SetMenuID(UINT uiResourceID) 
+void simple_menu_bar::SetMenuID(UINT uiResourceID)
 {
    m_uiResourceID = uiResourceID;
 }
 
-BOOL simple_menu_bar::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL simple_menu_bar::PreCreateWindow(CREATESTRUCT& cs)
 {
    return simple_toolbar::PreCreateWindow(cs);
 }
 
 
-/*afx_msg void simple_menu_bar::OnDropDown(NMHDR * pNotifyStruct, LRESULT* result )
+/*void simple_menu_bar::OnDropDown(NMHDR * pNotifyStruct, LRESULT* result )
 {
     LPNMTOOLBAR lpnmtb = (LPNMTOOLBAR) pNotifyStruct;
 
-//    m_pwthreadTracking = (CMenuTrackingThreadV033*) AfxBeginThread(&typeid(CMenuTrackingThreadV033));
-  //  m_pwthreadTracking->m_evInitialized.Lock();
+//    m_pwthreadTracking = (CMenuTrackingThreadV033*) AfxBeginThread(::ca::get_type_info < CMenuTrackingThreadV033 > ());
+  //  m_pwthreadTracking->m_evInitialized.lock();
     //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 3, (LPARAM) this);
     //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 4, lpnmtb->iItem);
     TRACE("MenuBarV033::OnDropDown simple_menu_bar::_TrackPopupMenu % d\n", lpnmtb->iItem);
@@ -122,15 +122,15 @@ BOOL simple_menu_bar::PreCreateWindow(CREATESTRUCT& cs)
 }*/
 
 
-bool simple_menu_bar::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+bool simple_menu_bar::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 {
    // TODO: add your specialized code here and/or call the base class
-   
+
    return simple_toolbar::_001OnCmdMsg(pcmdmsg);
 }
 
 
-void simple_menu_bar::_001OnMouseMove(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnMouseMove(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
@@ -154,24 +154,24 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int iItem)
     tpm.rcExclude.left   = rect.left;
     tpm.rcExclude.bottom = rect.bottom;
     tpm.rcExclude.right  = rect.right;
-    
+
 //    array_ptr_alloc <SimpleMenu , SimpleMenu &> * psma = NULL;
 
 
-    
+
 //    HWND hwndOld = AfxGetThreadState()->m_hTrackingWindow;
 //    m_hwndFilter = NULL;
     return VMSR_SUCCESS;
 }
 
-void simple_menu_bar::_001OnNcMouseMove(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnNcMouseMove(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    _001Hover(pmouse->m_pt);
 // trans   simple_toolbar::OnNcMouseMove(pmouse->m_nFlags, pmouse->m_pt);
 }
 
-void simple_menu_bar::pre_translate_message(gen::signal_object * pobj) 
+void simple_menu_bar::pre_translate_message(gen::signal_object * pobj)
 {
    SCAST_PTR(user::win::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_USER && pbase->m_hwnd == _get_handle())
@@ -185,7 +185,7 @@ void simple_menu_bar::pre_translate_message(gen::signal_object * pobj)
    return simple_toolbar::pre_translate_message(pobj);
 }
 
-void simple_menu_bar::_001OnCreate(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnCreate(gen::signal_object * pobj)
 {
 //   SCAST_PTR(::user::win::message::create, pcreate, pobj)
    if(pobj->previous())
@@ -198,12 +198,12 @@ void simple_menu_bar::_001OnCreate(gen::signal_object * pobj)
       pcreate->m_bRet = true;
       return;
    }
-   
+
    ASSERT(lpmfmh != NULL);
    lpmfmh->MessageFilterHook(this);*/
-   
+
    //m_menuhook.Install((userbase::frame_window *) (::user::interaction*)this);
-    
+
    SetFont(System.font_central().GetMenuFont());
 
    UpdateWindow();
@@ -221,23 +221,23 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
     if(code == MSGF_MENU)
     {
 /*        ASSERT(pmsg->hwnd == m_hwndFilter);*/
-    
+
         if(pmsg->message == WM_MOUSEMOVE)
         {
-            DWORD fwKeys = pmsg->wParam;        // key flags 
-            int xPos = LOWORD(pmsg->lParam);  // horizontal position of cursor 
-            int yPos = HIWORD(pmsg->lParam);  
+            DWORD fwKeys = pmsg->wParam;        // key flags
+            int xPos = LOWORD(pmsg->lParam);  // horizontal position of cursor
+            int yPos = HIWORD(pmsg->lParam);
             TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, xPos, yPos);
             point pt(xPos, yPos);
             ScreenToClient(&pt);
             _TrackPopupMenu(pt);
-        
+
         }
     }
 
     return 0;
 }
- 
+
 
 VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
 {
@@ -263,10 +263,10 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
 
 }
 
-void simple_menu_bar::_001OnKeyDown(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnKeyDown(gen::signal_object * pobj)
 {
    // TODO: add your message handler code here and/or call default
-   
+
    pobj->previous();
 }
 
@@ -276,7 +276,7 @@ void simple_menu_bar::_001OnKeyDown(gen::signal_object * pobj)
 {
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
-    
+
     for(int i = 0; i < tbc.GetButtonCount(); i++)
     {
         tbc.GetItemRect(i, rectItem);
@@ -290,7 +290,7 @@ VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
 {
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
-    
+
     for(int i = 0; i < tbc.GetButtonCount(); i++)
     {
         tbc.GetItemRect(i, rectItem);
@@ -302,10 +302,10 @@ VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
 
 
 
-void simple_menu_bar::_001OnDestroy(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnDestroy(gen::signal_object * pobj)
 {
    pobj->previous();
-   
+
 /*   MessageFilterHookManager * lpmfmh = NULL;
    if(MessageFilterHookManager::AppGetMessageFilterHookManager(&lpmfmh)
       && lpmfmh != NULL)
@@ -316,14 +316,14 @@ void simple_menu_bar::_001OnDestroy(gen::signal_object * pobj)
 
 bool simple_menu_bar::Initialize(
    image_list *   pimagelist,
-   image_list *   pimagelistDisabled,   
+   image_list *   pimagelistDisabled,
    int_int_spreadset * prel,
    ::ca::font *        pfont)
 {
-   
+
 //   m_menuhook.Initialize(
   //    pimagelist,
-      //pimagelistDisabled,   
+      //pimagelistDisabled,
       //prel,
       //pfont);
 
@@ -343,7 +343,7 @@ void simple_menu_bar::RemoveAllButtons()
    m_itema.remove_all();
 }
 
-void simple_menu_bar::_001OnMenuChar(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnMenuChar(gen::signal_object * pobj)
 {
    pobj->previous();
 }
@@ -565,7 +565,7 @@ BOOL simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
 //   ASSERT(_afxDropDownWidth != -1);
 
    // create the HWND
-   class rect rect; 
+   class rect rect;
    rect.null();
    if (!::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID))
       return FALSE;
@@ -578,7 +578,7 @@ BOOL simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
    return TRUE;
 }
 
-void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    int iItem = _001HitTest(pmouse->m_pt);
@@ -633,7 +633,7 @@ size simple_menu_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
    rect rectText;
 
    SimpleMenuBarButton & button = m_buttona[iItem];
-   
+
 
    EElement eelement = ElementItem;
    EElement eelementText = ElementText;
@@ -679,14 +679,14 @@ size simple_menu_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
       rect rect;
       _001GetItemRect(iItem, rect, ElementText);
       pdc->SetTextColor(RGB(192, 192, 192));
-      visual::graphics_extension::_DrawText(pdc, 
+      visual::graphics_extension::_DrawText(pdc,
          button.m_wstr,
          rect,
          DT_VCENTER | DT_LEFT);
    }
-   
+
    pdc->SetTextColor(RGB(0, 0, 0));
-   visual::graphics_extension::_DrawText(pdc, 
+   visual::graphics_extension::_DrawText(pdc,
       button.m_wstr,
       rectText,
       DT_VCENTER | DT_LEFT);
@@ -736,7 +736,7 @@ void simple_menu_bar::_001Hover()
    _001Hover(pt);
 }*/
 
-void simple_menu_bar::_001OnTimer(gen::signal_object * pobj) 
+void simple_menu_bar::_001OnTimer(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::timer, ptimer, pobj)
    if(ptimer->m_nIDEvent == TIMER_HOVER)
@@ -748,7 +748,7 @@ void simple_menu_bar::_001OnTimer(gen::signal_object * pobj)
 }
 
 /*
-BOOL simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics) 
+BOOL simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics)
 {
    return TRUE;
 }

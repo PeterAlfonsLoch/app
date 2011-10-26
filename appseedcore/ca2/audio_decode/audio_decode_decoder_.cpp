@@ -7,21 +7,35 @@ namespace audio_decode
       ca(papp),
       thread(papp)
    {
-      m_dwDecodeLength              = (DWORD_PTR) -1;
-      m_pmemory                     = new primitive::memory;
-      m_pmemory->set_app(papp);
-      m_pmemoryfileIn               = new gen::memory_file(papp, *m_pmemory);
-      m_pmemoryfileOut              = new gen::memory_file(papp, *m_pmemory);
-      m_pmemoryfileIn->m_bSynch     = true;
-      m_pmemoryfileOut->m_bSynch    = true;
+
+      m_dwDecodeLength                       = (DWORD_PTR) -1;
+      m_spmemory(new primitive::memory(NULL, 16 * 1024 * 1024, 0));
+      m_spmemory->set_app(papp);
+      m_spmemoryfileIn(new gen::memory_file(papp, m_spmemory));
+      m_spmemoryfileOut(new gen::memory_file(papp, m_spmemory));
+      m_spmemoryfileIn->m_bSynch             = true;
+      m_spmemoryfileOut->m_bSynch            = true;
+
       ::ca::thread_sp::m_p->m_bAutoDelete    = false;
       ::ca::thread_sp::m_p->m_ulFlags        &= ~ca::flag_auto_clean;
-      m_bInitialized                = false;
+      m_bAutoDelete                          = false;
+      m_ulFlags                              &= ~ca::flag_auto_clean;
+
+      m_bInitialized                         = false;
+
    }
 
    decoder::~decoder()
    {
+   }
 
+   void decoder::DecoderFinalize()
+   {
+      DecoderStop();
+   }
+
+   void decoder::DecoderStop()
+   {
    }
 
    bool decoder::DecoderGetAttribute(EAttribute eattribute, string & str)
@@ -72,17 +86,17 @@ namespace audio_decode
       if(m_dwDecodeLength == ((DWORD_PTR) -1))
          return false;
       else
-         return m_pmemoryfileOut->GetPosition() >= m_dwDecodeLength;
+         return m_spmemoryfileOut->get_position() >= m_dwDecodeLength;
    }
 
-   int decoder::DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize)
+   ::primitive::memory_size decoder::DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize)
    {
-      ::ca::lock lock(this);
-      int iRead = 0;
+      synch_lock lock(this);
+      ::primitive::memory_size iRead = 0;
       if(!m_bInitialized)
          iRead = 0;
       else
-         iRead = m_pmemoryfileOut->read(lpvoidBuffer, uiBufferSize);
+         iRead = m_spmemoryfileOut->read(lpvoidBuffer, uiBufferSize);
       m_iRead += iRead;
       if(iRead < uiBufferSize)
       {
@@ -93,9 +107,9 @@ namespace audio_decode
          }
          else
          {
-            memset(&((byte *)lpvoidBuffer)[iRead], 0, uiBufferSize - iRead);
+            memset(&((byte *)lpvoidBuffer)[iRead], 0, (size_t) (uiBufferSize - iRead));
             m_iaLostPosition.add(m_iReadExpanded + iRead);
-            m_iaLostCount.add(uiBufferSize - iRead);
+            m_iaLostCount.add((index) (uiBufferSize - iRead));
             m_iReadExpanded += uiBufferSize;
             return uiBufferSize;
          }
@@ -129,12 +143,15 @@ namespace audio_decode
       if(iCount < 0)
          return false;
 
-      ::ca::lock lock(this);
+      if(_DecoderEOF())
+         return false;
+
+      synch_lock lock(this);
       m_iaLostPosition.remove_all();
       m_iaLostCount.remove_all();
       m_iRead = 0;
       m_iReadExpanded = 0;
-      lock.Unlock();
+      lock.unlock();
 
       Begin();
 
@@ -145,63 +162,87 @@ namespace audio_decode
 
    int decoder::run()
    {
+      m_bRunning = true;
       primitive::memory memory;
       // 5 seconds of primitive::memory buffering per reading
-      memory.allocate(DecoderGetSamplesPerSecond() * DecoderGetChannelCount() * DecoderGetBitsPerSample() * 5 / 8);
+
+      if(!DecoderGetSeekable())
+      {
+         memory.allocate(((__int64) m_iBufferSize * DecoderGetSamplesPerSecond() * DecoderGetBitsPerSample() * DecoderGetChannelCount()) / (__int64)(128 * 1000));
+      }
+      else
+      {
+         memory.allocate(DecoderGetSamplesPerSecond() * DecoderGetChannelCount() * DecoderGetBitsPerSample()  / (8 * 8));
+      }
 
       // millis tutchi dummy implementation:
       // it is easy:
       // to keep the last memory and start decoding the next
-      while(m_pmemoryfileIn->get_length() > memory.get_size())
+      while(m_spmemoryfileIn->get_length() > memory.get_size())
       {
-         m_pmemoryfileIn->RemoveBegin(memory, min(m_pmemoryfileIn->get_length() - memory.get_size(), memory.get_size()));
+         m_spmemoryfileIn->remove_begin(memory, (::primitive::memory_size) min(m_spmemoryfileIn->get_length() - memory.get_size(), memory.get_size()));
       }
-      m_pmemoryfileIn->seek_to_end();
-      m_pmemoryfileOut->seek_to_end();
+      m_spmemoryfileIn->seek_to_end();
+      m_spmemoryfileOut->seek_to_end();
       m_dwDecodeLength = (DWORD_PTR) -1;
       m_bInitialized = false;
       m_bAutoDelete                 = false;
       m_ulFlags                    &= ~ca::flag_auto_clean;
       DecoderSeekBegin();
       int i = 0;
-      while(!_DecoderEOF())
+      try
       {
-         try
+         while(!_DecoderEOF() &&  m_bRun)
          {
-            int iRead = _DecoderFillBuffer(memory, memory.get_size());
-            m_pmemoryfileIn->write(memory, iRead);
-         }
-         catch(...)
-         {
-         }
-         if(!m_bInitialized)
-            m_bInitialized = true;
-         i++;
-         if(i % 2 == 1)
-         {
-//            Sleep(1984);
+            bool bAppRun = Application.m_bRun;
+            if(!bAppRun)
+               break;
+            bool bSysRun = System.m_bRun;
+            if(!bSysRun)
+               break;
+            try
+            {
+               ::primitive::memory_size uiRead = _DecoderFillBuffer(memory, memory.get_size());
+               m_spmemoryfileIn->write(memory, uiRead);
+            }
+            catch(...)
+            {
+               break;
+            }
+            if(!m_bInitialized)
+               m_bInitialized = true;
+            i++;
+            if(i % 2 == 1)
+            {
+   //            Sleep(1984);
+            }
          }
       }
-      m_dwDecodeLength = m_pmemory->get_size();
+      catch(...)
+      {
+      }
+      m_dwDecodeLength = m_spmemory->get_size();
+      m_bRunning = false;
+      _DecoderFinalize();
       return 0;
    }
 
-   DWORD decoder::DecoderGetLostMillis(DWORD dwExpandedMillis)
+   imedia::time decoder::DecoderGetLostMillis(imedia::time dwExpandedMillis)
    {
-      ::ca::lock lock(this);
+      synch_lock lock(this);
       imedia::position position;
-      position.m_i = ((__int64) dwExpandedMillis * DecoderGetSamplesPerSecond() * DecoderGetChannelCount()  * DecoderGetBitsPerSample()) / ((__int64) 8 * 1000);
+      position = ((__int64) dwExpandedMillis * DecoderGetSamplesPerSecond() * DecoderGetChannelCount()  * DecoderGetBitsPerSample()) / ((__int64) 8 * 1000);
       return ((__int64) DecoderGetLostPositionOffset(position) * 8 * 1000) / ((__int64) DecoderGetSamplesPerSecond() * DecoderGetChannelCount()  * DecoderGetBitsPerSample());
    }
 
    imedia::position decoder::DecoderGetLostPositionOffset(imedia::position positionExpanded)
    {
-      ::ca::lock lock(this);
+      synch_lock lock(this);
       imedia::position position = positionExpanded;
       imedia::position iTotalLostCount = 0;
       for(int i = 0; i < m_iaLostPosition.get_size(); i++)
       {
-         int iLostPosition = m_iaLostPosition[i];
+         int64_t iLostPosition = m_iaLostPosition[i];
          int iLostCount    = m_iaLostCount[i];
          if(position > (iLostPosition + iLostCount))
          {
@@ -220,6 +261,13 @@ namespace audio_decode
       return iTotalLostCount;
    }
 
+   void decoder::delete_this()
+   {
+      if(m_pplugin != NULL)
+      {
+         m_pplugin->DeleteDecoder(this);
+      }
+   }
 
 
 } // namespace auddev

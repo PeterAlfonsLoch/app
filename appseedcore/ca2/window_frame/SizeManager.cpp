@@ -93,6 +93,7 @@ namespace window_frame
          // now have priority with mouse messages
          m_pworkset->m_bSizingCapture = true;
          GetEventWindow()->set_capture();
+         pmouse->m_bRet = true;
       }
       else
       {
@@ -118,236 +119,16 @@ namespace window_frame
    {
       if(!m_pworkset->IsSizingEnabled())
          return false;
-      //GetEventWindow()->ClientToScreen(&point);
-      return Relay(pmouse);
-   }
-
-   bool SizeManager::_000OnLButtonUp(::user::win::message::mouse * pmouse) 
-   {
-      if(!m_pworkset->IsSizingEnabled())
-         return false;
-      //GetEventWindow()->ClientToScreen(&point);
-      return Relay(pmouse);
-   }
-
-   // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
-   // point screen coordinates
-   bool SizeManager::Relay(::user::win::message::mouse * pmouse)
-   {
-      ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE 
-         || pmouse->m_uiMessage == WM_LBUTTONUP
-         || pmouse->m_uiMessage == WM_NCMOUSEMOVE
-         || pmouse->m_uiMessage == WM_NCLBUTTONUP);
-      class point ptCursor = pmouse->m_pt;
-
-      rect rectEvent;
-      GetEventWindow()->GetWindowRect(rectEvent);
-
-      if(pmouse->m_uiMessage == WM_MOUSEMOVE
-         || pmouse->m_uiMessage == WM_LBUTTONUP)
-      {
-         //      GetEventWindow()->ClientToScreen(&ptCursor);
-      }
-
-      class rect rectMonitor;
-#if !core_level_1
-      rectMonitor = System.m_monitorinfoa[0].rcMonitor;
-#else
-      ::GetWindowRect(::GetDesktopWindow(), &rectMonitor);
-#endif
-
-//      ::ca::application * pApp = &System;
-      bool bSize = false;
-      rect rectWindow;
-      if(m_ehittestMode == HitTestNone)
-      {
-         bSize = false;
-         ::user::interaction * pWndCapture = System.get_capture_uie();
-         if(pWndCapture == NULL ||
-            pWndCapture->_get_handle() != GetEventWindow()->_get_handle())
-         {
-            EHitTest emode = hit_test(ptCursor);
-            m_ehittestCursor = emode;
-         }
-         else
-         {
-            if(m_ehittestCursor == HitTestNone)
-               return false;
-            EHitTest emode = hit_test(ptCursor);
-            if(emode != m_ehittestCursor)
-            {
-               m_ehittestCursor = emode;
-            }
-         }
-      }
-      else
-      {
-         class point pt = pmouse->m_pt;
-
-         if(m_ehittestMode == HitTestSizingTopLeft)
-         {
-            bSize = true;
-
-            rectWindow.top = pt.y;
-            rectWindow.left = pt.x;
-            rectWindow.bottom = m_rcWindowOrigin.bottom;
-            rectWindow.right = m_rcWindowOrigin.right;
-            bSize = rectWindow.width() > 0 &&
-               rectWindow.height() > 0;
-            if(rectWindow.width() < m_minSize.cx)
-            {
-               rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
-            }
-            if(rectWindow.height() < m_minSize.cy)
-            {
-               rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
-            }
-            rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
-            rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
-         }
-         else if(m_ehittestMode == HitTestSizingTop)
-         {
-            bSize = true;
-            rectWindow.top = pt.y;
-            rectWindow.left = m_rcWindowOrigin.left;
-            rectWindow.bottom = m_rcWindowOrigin.bottom;
-            rectWindow.right = m_rcWindowOrigin.right;
-            if(rectWindow.height() < m_minSize.cy)
-            {
-               rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
-            }
-            rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
-         }
-         else if(m_ehittestMode == HitTestSizingTopRight)
-         {
-            bSize = true;
-
-            rectWindow.top = pt.y;
-            rectWindow.left = m_rcWindowOrigin.left;
-            rectWindow.bottom = m_rcWindowOrigin.bottom;
-            rectWindow.right = pt.x;
-            if(rectWindow.width() < m_minSize.cx)
-            {
-               rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
-
-            }
-            if(rectWindow.height() < m_minSize.cy)
-            {
-               rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
-            }
-            rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
-            rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
-         }
-         else if(m_ehittestMode == HitTestSizingRight)
-         {
-            bSize = true;
-
-            rectWindow.top = m_rcWindowOrigin.top;
-            rectWindow.left = m_rcWindowOrigin.left;
-            rectWindow.bottom = m_rcWindowOrigin.bottom;
-            rectWindow.right = pt.x;
-            if(rectWindow.width() < m_minSize.cx)
-            {
-               rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
-
-            }
-            rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
-         }
-         else if(m_ehittestMode == HitTestSizingBottomRight)
-         {
-            bSize = true;
-
-            rectWindow.top = m_rcWindowOrigin.top;
-            rectWindow.left = m_rcWindowOrigin.left;
-            rectWindow.bottom = pt.y;
-            rectWindow.right = pt.x;
-            if(rectWindow.width() < m_minSize.cx)
-            {
-               rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
-
-            }
-            if(rectWindow.height() < m_minSize.cy)
-            {
-               rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
-            }
-            rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
-            rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
-         }
-         else if(m_ehittestMode == HitTestSizingBottom)
-         {
-            bSize = true;
-
-            rectWindow.top = m_rcWindowOrigin.top;
-            rectWindow.left = m_rcWindowOrigin.left;
-            rectWindow.bottom = pt.y;
-            rectWindow.right = m_rcWindowOrigin.right;
-            if(rectWindow.height() < m_minSize.cy)
-            {
-               rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
-            }
-            rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
-         }
-         else if(m_ehittestMode == HitTestSizingBottomLeft)
-         {
-            bSize = true;
-
-            rectWindow.top = m_rcWindowOrigin.top;
-            rectWindow.left = pt.x;
-            rectWindow.bottom = pt.y;
-            rectWindow.right = m_rcWindowOrigin.right;
-            if(rectWindow.width() < m_minSize.cx)
-            {
-               rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
-
-            }
-            if(rectWindow.height() < m_minSize.cy)
-            {
-               rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
-            }
-            rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
-            rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
-         }
-         else if(m_ehittestMode == HitTestSizingLeft)
-         {
-            bSize = true;
-
-            rectWindow.top = m_rcWindowOrigin.top;
-            rectWindow.left = pt.x;
-            rectWindow.bottom =  m_rcWindowOrigin.bottom;
-            rectWindow.right = m_rcWindowOrigin.right;
-            if(rectWindow.width() < m_minSize.cx)
-            {
-               rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
-
-            }
-            rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
-         }
-         bSize = pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP || pmouse->m_uiMessage == WM_MOUSEMOVE;
-         if(pmouse->m_uiMessage == WM_LBUTTONUP
-            || pmouse->m_uiMessage == WM_NCLBUTTONUP)
-         {
-            if(m_ehittestMode != HitTestNone)
-            {
-               System.release_capture_uie();
-               m_ehittestMode = HitTestNone;
-               return true;
-            }
-         }
-         if(bSize)
-         {
-            MoveWindow(GetSizingWindow(), rectWindow);
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow());
-            pinterface->WfiOnSize(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
-            NotifyFramework((EHitTest) m_ehittestMode);
-         }
-      }
+      ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
       if(m_ehittestMode != HitTestNone)
       {
+         SizeWindow(GetSizingWindow(), pmouse->m_pt, true);
          pmouse->m_ecursor = translate(m_ehittestMode);
          pmouse->set_lresult(1);
          pmouse->m_bRet = true;
          return true;
       }
+      m_ehittestCursor = hit_test(pmouse->m_pt);
       if(m_ehittestCursor != HitTestNone)
       {
          pmouse->m_ecursor = translate(m_ehittestCursor);
@@ -355,6 +136,28 @@ namespace window_frame
          pmouse->m_bRet = true;
          return true;
       }
+      return false;
+   }
+
+   bool SizeManager::_000OnLButtonUp(::user::win::message::mouse * pmouse) 
+   {
+      if(!m_pworkset->IsSizingEnabled())
+         return false;
+      ASSERT(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP);
+      if(m_ehittestMode != HitTestNone)
+      {
+         pmouse->m_bRet = true;
+         SizeWindow(GetSizingWindow(), pmouse->m_pt, false);
+         m_ehittestMode = HitTestNone;
+         System.release_capture_uie();
+         return true;
+      }
+      return false;
+   }
+
+   bool SizeManager::Relay(::user::win::message::mouse * pmouse)
+   {
+      UNREFERENCED_PARAMETER(pmouse);
       return false;
    }
 
@@ -399,6 +202,147 @@ namespace window_frame
       m_uiSWPFlags &= ~SWP_NOSIZE & ~SWP_NOMOVE;
 
    }
+
+   void SizeManager::SizeWindow(::user::interaction *pwnd, point pt, bool bTracking)
+   {
+      UNREFERENCED_PARAMETER(pwnd);
+      bool bSize = true;
+      rect rectWindow;
+      class rect rectMonitor;
+      rectMonitor = System.m_monitorinfoa[0].rcMonitor;
+      if(m_ehittestMode == HitTestSizingTopLeft)
+      {
+         rectWindow.top = pt.y;
+         rectWindow.left = pt.x;
+         rectWindow.bottom = m_rcWindowOrigin.bottom;
+         rectWindow.right = m_rcWindowOrigin.right;
+         bSize = rectWindow.width() > 0 &&
+            rectWindow.height() > 0;
+         if(rectWindow.width() < m_minSize.cx)
+         {
+            rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
+         }
+         if(rectWindow.height() < m_minSize.cy)
+         {
+            rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
+         }
+         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
+         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
+      }
+      else if(m_ehittestMode == HitTestSizingTop)
+      {
+         rectWindow.top = pt.y;
+         rectWindow.left = m_rcWindowOrigin.left;
+         rectWindow.bottom = m_rcWindowOrigin.bottom;
+         rectWindow.right = m_rcWindowOrigin.right;
+         if(rectWindow.height() < m_minSize.cy)
+         {
+            rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
+         }
+         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
+      }
+      else if(m_ehittestMode == HitTestSizingTopRight)
+      {
+         rectWindow.top = pt.y;
+         rectWindow.left = m_rcWindowOrigin.left;
+         rectWindow.bottom = m_rcWindowOrigin.bottom;
+         rectWindow.right = pt.x;
+         if(rectWindow.width() < m_minSize.cx)
+         {
+            rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
+
+         }
+         if(rectWindow.height() < m_minSize.cy)
+         {
+            rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
+         }
+         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
+         rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
+      }
+      else if(m_ehittestMode == HitTestSizingRight)
+      {
+         rectWindow.top = m_rcWindowOrigin.top;
+         rectWindow.left = m_rcWindowOrigin.left;
+         rectWindow.bottom = m_rcWindowOrigin.bottom;
+         rectWindow.right = pt.x;
+         if(rectWindow.width() < m_minSize.cx)
+         {
+            rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
+
+         }
+         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
+      }
+      else if(m_ehittestMode == HitTestSizingBottomRight)
+      {
+         rectWindow.top = m_rcWindowOrigin.top;
+         rectWindow.left = m_rcWindowOrigin.left;
+         rectWindow.bottom = pt.y;
+         rectWindow.right = pt.x;
+         if(rectWindow.width() < m_minSize.cx)
+         {
+            rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
+
+         }
+         if(rectWindow.height() < m_minSize.cy)
+         {
+            rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
+         }
+         rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
+         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
+      }
+      else if(m_ehittestMode == HitTestSizingBottom)
+      {
+         rectWindow.top = m_rcWindowOrigin.top;
+         rectWindow.left = m_rcWindowOrigin.left;
+         rectWindow.bottom = pt.y;
+         rectWindow.right = m_rcWindowOrigin.right;
+         if(rectWindow.height() < m_minSize.cy)
+         {
+            rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
+         }
+         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
+      }
+      else if(m_ehittestMode == HitTestSizingBottomLeft)
+      {
+         rectWindow.top = m_rcWindowOrigin.top;
+         rectWindow.left = pt.x;
+         rectWindow.bottom = pt.y;
+         rectWindow.right = m_rcWindowOrigin.right;
+         if(rectWindow.width() < m_minSize.cx)
+         {
+            rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
+
+         }
+         if(rectWindow.height() < m_minSize.cy)
+         {
+            rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
+         }
+         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
+         rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
+      }
+      else if(m_ehittestMode == HitTestSizingLeft)
+      {
+         rectWindow.top = m_rcWindowOrigin.top;
+         rectWindow.left = pt.x;
+         rectWindow.bottom =  m_rcWindowOrigin.bottom;
+         rectWindow.right = m_rcWindowOrigin.right;
+         if(rectWindow.width() < m_minSize.cx)
+         {
+            rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
+
+         }
+         rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
+      }
+      else
+      {
+         bSize = false;
+      }
+      MoveWindow(GetSizingWindow(), rectWindow);
+      WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetDrawWindow());
+      pinterface->WfiOnSize(bTracking);
+      NotifyFramework((EHitTest) m_ehittestMode);
+   }
+
 
    void SizeManager::MoveWindow(::user::interaction *pwnd, LPCRECT lpcrect)
    {

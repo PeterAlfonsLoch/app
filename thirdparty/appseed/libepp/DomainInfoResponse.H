@@ -38,7 +38,7 @@ namespace libepp
    public:
 
       /// Default constructor
-      DomainInfoResponse(bool reset = true) : Response(false)
+      DomainInfoResponse(::ca::application * papp, bool reset = true) : Response(false), _ds_list(papp)
       {
          if (reset) {
             this->reset();
@@ -233,14 +233,14 @@ namespace libepp
       */
       void add_dsInfo(const DSInfo &dsInfo)
       {
-         _ds_list.add_tail(dsInfo);
+         _ds_list.add(dsInfo);
       }
 
       /// Returns list of DSInfo objects
       /**
       @return list of DSInfo objects
       */
-      collection::list < DSInfo > get_dsInfo() const
+      ds_info_array get_dsInfo() const
       {
          return _ds_list;
       }
@@ -350,7 +350,7 @@ namespace libepp
       AuthInfo _authInfo;
 
       /// DS info
-      collection::list < DSInfo > _ds_list;
+      ds_info_array _ds_list;
 
       /// KeyData
       collection::list < KeyData > _dnskey_list;

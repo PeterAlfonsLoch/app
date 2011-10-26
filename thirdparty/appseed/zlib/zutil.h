@@ -20,7 +20,7 @@
 #  ifndef _WIN32_WCE
 #    include <stddef.h>
 #  endif
-#  include <string.h>
+//#  include <string.h>
 #  include <stdlib.h>
 #endif
 #ifdef NO_ERRNO_H
@@ -159,7 +159,7 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #      define _PTRDIFF_T_DEFINED
 #    endif
 #  else
-#    define fdopen(fd,type)  _fdopen(fd,type)
+//#    define fdopen(fd,type)  _fdopen(fd,type)
 #  endif
 #endif
 

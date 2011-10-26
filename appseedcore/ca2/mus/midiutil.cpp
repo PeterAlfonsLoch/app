@@ -1,18 +1,18 @@
 #include "StdAfx.h"
 
-MidiUtil::MidiUtil(::ca::application * papp) :
-ca(papp), 
+midi_util::midi_util(::ca::application * papp) :
+ca(papp),
    m_tracks(papp)
 {
 }
-MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seq, int iOpenMode)
+MMRESULT midi_util::ConvertKarToXF(::mus::midi::sequence & seq, int iOpenMode)
 {
    ::mus::midi::sequence seqKar(get_app());
    seqKar.OpenFile(seq,  ::mus::midi::OpenForPlaying);
    return ConvertKarToXF(seqKar, seq, iOpenMode);
 }
 
-MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::sequence & seqXF, int iOpenMode)
+MMRESULT midi_util::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::sequence & seqXF, int iOpenMode)
 {
    ::mus::midi::file &               karfile = seqKar.GetFile();
    ::mus::midi::file &               xffile = seqXF.GetFile();
@@ -23,8 +23,8 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
    imedia::position_2darray                  tune10002DTicks;
    dword_array            tune1000TrackIndexes;
    imedia::position_array                    tkaTicksKar;
-   MidiTrack *               pXFTrk;
-   MidiTrack *               pmiditrackKar;
+   midi_track *               pXFTrk;
+   midi_track *               pmiditrackKar;
    ::mus::midi::e_file_result      smfrc;
    stringa *             pKar1DTokens = NULL;
    imedia::position_array *                pKar1DTicks = NULL;
@@ -35,7 +35,7 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
    int                     i, j, k;
    bool                    bKarInfoValid = false;
    bool                    bTuneInfoValid = false;
-   MidiTracks &            tracks = m_tracks;
+   midi_tracks &            tracks = m_tracks;
    CTune1000Info           tki;
 
 
@@ -79,16 +79,16 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
          tune10002DTicks.add(lptka);
          tune1000TrackIndexes.add(pmiditrackKar->m_iIndex);
       }
-      MidiTrack * pTrackXF = tracks.CreateTrack();
+      midi_track * pTrackXF = tracks.CreateTrack();
       if((smfrc = pTrackXF->WorkCopyWork(
          pmiditrackKar,
-         MidiTrack::CopyExcludeXFMetaLyrics |
-         MidiTrack::CopyExcludeKarMetaLyrics)) != ::mus::midi::Success)
+         midi_track::CopyExcludeXFMetaLyrics |
+         midi_track::CopyExcludeKarMetaLyrics)) != ::mus::midi::Success)
          return smfrc;
    }
 
    {
-      MidiTrack * pTrackUnion = xffile.GetTracks().CreateTrack();
+      midi_track * pTrackUnion = xffile.GetTracks().CreateTrack();
       tracks.WorkCompactMidiTracksWork(*pTrackUnion, false);
    }
 
@@ -193,7 +193,7 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
       pXFTrk->GetEvent().SetDelta(0);
       pXFTrk->WorkWriteEvent();
    }
-   else 
+   else
    {
       sort::BubbleSortByPtrAtGetSize(m_kar2DTokens, false);
       sort::BubbleSortByPtrAtGetSize(kar2DTicks, false);
@@ -300,14 +300,14 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
       0x00,  //
       0x58,  // X
       0x46,  // F
-      0x30,  // 0 
+      0x30,  // 0
       0x32,   // 2
       0x00,
       0x11};
 
-      MidiTrack & trackXF = *(MidiTrack *) xffile.GetTracks().TrackAt(0);
+      midi_track & trackXF = *(midi_track *) xffile.GetTracks().TrackAt(0);
       trackXF.seek_begin();
-      MidiEventV008 eventV008;
+      midi_event_v008 eventV008;
       eventV008.SetPosition(0);
       eventV008.SetFullType(::mus::midi::Meta);
       eventV008.SetMetaType(::mus::midi::MetaSeqSpecific);
@@ -319,19 +319,19 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
       eventV008.clear();
       eventV008.SetPosition(0);
       eventV008.SetFullType(::mus::midi::Meta);
-      eventV008.SetMetaType(CXF::MetaSongName);
+      eventV008.SetMetaType(::mus::xf::MetaSongName);
       gen::international::OEMToMultiByte(
          gen::international::CodePageLatin1,
          memstorage,
          ki.m_strSongName);
       eventV008.SetParam(
-         memstorage.GetAllocation(),
-         memstorage.GetStorageSize());
+         memstorage.get_data(),
+         memstorage.get_size());
       trackXF.GetWorkTrack().insert_at(1, eventV008);
 
       for(i = 0; i < xffile.GetTracks().GetTrackCount(); i++)
       {
-         MidiTrack & trackXF = *(MidiTrack *) xffile.GetTracks().TrackAt(i);
+         midi_track & trackXF = *(midi_track *) xffile.GetTracks().TrackAt(i);
          trackXF.WorkSeekBegin();
          while(::mus::midi::Success == trackXF.WorkSeek(::mus::midi::SeekKarID))
          {
@@ -382,13 +382,13 @@ MMRESULT MidiUtil::ConvertKarToXF(::mus::midi::sequence & seqKar, ::mus::midi::s
 }
 
 
-void MidiUtil::
+void midi_util::
    PrepareNoteOnOffEvents(
-   MidiEventsV1 *pNoteOnEvents,
-   MidiEventsV1 *pNoteOffEvents,
+   midi_events_v1 *pNoteOnEvents,
+   midi_events_v1 *pNoteOffEvents,
    int iTrack,
    int iFormat,
-   MidiEventsV1 *pNoteOnOffEvents,
+   midi_events_v1 *pNoteOnOffEvents,
    imedia::position_array   & positiona)
 {
    UNREFERENCED_PARAMETER(iFormat);
@@ -398,10 +398,10 @@ void MidiUtil::
    ASSERT(pNoteOnEvents->get_size() == 0);
    ASSERT(pNoteOffEvents->get_size() == 0);
 
-   MidiEventsV1 & noteOnEvents = *pNoteOnEvents;
-   MidiEventsV1 & noteOffEvents = *pNoteOffEvents;
-   MidiEventV001 noteOn, noteOff;
-   MidiEventV001 noteOnB, noteOffB;
+   midi_events_v1 & noteOnEvents = *pNoteOnEvents;
+   midi_events_v1 & noteOffEvents = *pNoteOffEvents;
+   midi_event_v001 noteOn, noteOff;
+   midi_event_v001 noteOnB, noteOffB;
    imedia::position tkTokenPosition, tkNextTokenPosition;
    int iNotesCount = 0;
    int iSize;
@@ -421,7 +421,7 @@ void MidiUtil::
       tkTokenPosition = positiona.get_at(0);
       tkNextTokenPosition = positiona.get_at(1);
       for(l = 1, i = 0; i < iSize; i++)
-      {   
+      {
 
          pNoteOnOffEvents->GetEvent(&noteOn, i);
          if((noteOn.GetNoteVelocity() == 0) ||
@@ -552,13 +552,13 @@ void MidiUtil::
       {
       }
       else
-      {  
+      {
 
          // Extract All Note On and Note Off Events
 
          int iNoteOn, iNoteOff;
          for(iNoteOn = 0; iNoteOn < iNoteCount; iNoteOn++)
-         {   
+         {
             pNoteOnOffEvents->GetEvent(&noteOn, iNoteOn);
             if(noteOn.GetNoteVelocity() == 0 ||
                (noteOn._GetType() == ::mus::midi::NoteOff))
@@ -606,7 +606,7 @@ void MidiUtil::
          int iFoundCount;
          ticka.add(imedia::position(0xffffffff));
          for(iToken = 0; iToken < iSize; iToken++)
-         {   
+         {
             tkBegin = ticka.element_at(iToken);
             tkEnd = ticka.element_at(iToken + 1);
             iFoundCount = 0;
@@ -655,7 +655,7 @@ void MidiUtil::
          }
 
          for(l = 1, i = 0; i < iNoteCount; i++)
-         {   
+         {
          pNoteOnOffEvents->GetEvent(&noteOn, i);
          if(noteOn.GetNoteVelocity() == 0 ||
          (noteOn._GetType() == ::mus::midi::NoteOff))
@@ -763,7 +763,7 @@ void MidiUtil::
          }
          //          pNoteOnEvents- = noteOnEvents;
          //          pNoteOffEvents- = noteOffEvents;
-         */   
+         */
       }
    }
 
@@ -776,13 +776,13 @@ void MidiUtil::
 
 
 
-void MidiUtil::
+void midi_util::
    PrepareLevel2Events(
-   MidiEventsV1 *      peventsLevel2Beg,
-   MidiEventsV1 *      peventsLevel2End,
+   midi_events_v1 *      peventsLevel2Beg,
+   midi_events_v1 *      peventsLevel2End,
    int               iTrack,
    int               iFormat,
-   MidiEventsV1 *      peventsLevel2,
+   midi_events_v1 *      peventsLevel2,
    imedia::position_array & positiona)
 {
    UNREFERENCED_PARAMETER(iFormat);
@@ -790,12 +790,12 @@ void MidiUtil::
    ASSERT(peventsLevel2End->get_size() == 0);
    imedia::position_array ticka;
    ticka = positiona;
-   MidiEventV001 noteOn, noteOff;
-   MidiEventV001 noteOnB, noteOffB;
-   MidiEventsV1 & eventsBeg = *peventsLevel2Beg;
-   MidiEventsV1 & eventsEnd = *peventsLevel2End;
-   MidiEventV001 eventBeg, eventEnd;
-   MidiEventV001 eventBegB, eventEndB;
+   midi_event_v001 noteOn, noteOff;
+   midi_event_v001 noteOnB, noteOffB;
+   midi_events_v1 & eventsBeg = *peventsLevel2Beg;
+   midi_events_v1 & eventsEnd = *peventsLevel2End;
+   midi_event_v001 eventBeg, eventEnd;
+   midi_event_v001 eventBegB, eventEndB;
    imedia::position tkTokenPosition, tkNextTokenPosition;
    int iEventCount;
    int iSize;
@@ -808,7 +808,7 @@ void MidiUtil::
    {
    }
    else
-   {   
+   {
       tkTokenPosition = positiona.get_at(0);
       if(positiona.get_size() > 1)
       {
@@ -820,7 +820,7 @@ void MidiUtil::
       }
 
       for(l = 1, i = 0; i < iSize; i++)
-      {   
+      {
          peventsLevel2->GetEvent(&eventBeg, i);
          if(eventBeg.GetNoteVelocity() == 0 ||
             (eventBeg._GetType() == ::mus::midi::NoteOff))
@@ -905,7 +905,7 @@ void MidiUtil::
       int iFoundCount;
       ticka.add(imedia::position(0x7fffffff));
       for(iToken = 0; iToken < iSize; iToken++)
-      {   
+      {
          tkBegin = ticka.element_at(iToken);
          tkEnd = ticka.element_at(iToken + 1);
          iFoundCount = 0;
@@ -952,7 +952,7 @@ void MidiUtil::
 
 
 
-MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seq, int iOpenMode)
+MMRESULT midi_util::ConvertTune1000ToXF(::mus::midi::sequence &seq, int iOpenMode)
 {
    ::mus::midi::sequence seqTune1000(get_app());
    MMRESULT vmsr = seqTune1000.OpenFile(seq,  ::mus::midi::OpenForPlaying);
@@ -962,7 +962,7 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seq, int iOpenMode
 }
 
 
-MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus::midi::sequence &seqXF, int iOpenMode)
+MMRESULT midi_util::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus::midi::sequence &seqXF, int iOpenMode)
 {
    ::mus::midi::file &              tune1000file = seqTune1000.GetFile();
    ::mus::midi::file &              xffile = seqXF.GetFile();
@@ -972,8 +972,8 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
    imedia::position_array                  tkaTicks;
    stringa *               lpstraTokens;
    imedia::position_array *                 lptkaTicks;
-   MidiTrack *               pXFTrk;
-   MidiTrack *               pTune1000Trk;
+   midi_track *               pXFTrk;
+   midi_track *               pTune1000Trk;
    ::mus::midi::e_file_result      smfrc;
    string                  str;
    imedia::position                     tkPosition;
@@ -985,7 +985,7 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
    int                     i, j, k;
    bool                    bKarInfoValid;
    bool                    bTuneInfoValid = false;
-   MidiTracks &            tracks = m_tracks;
+   midi_tracks &            tracks = m_tracks;
 
 
    tracks.GetFlags().signalize(::mus::midi::DisablePlayLevel1Operations);
@@ -1005,8 +1005,8 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
       {
          bTuneInfoValid = ::mus::midi::Success == tune1000file.GetTracks().GetTune1000InfoHeader(&ki, i);
       }
-      pTune1000Trk = (MidiTrack *) tune1000file.GetTracks().TrackAt(i);
-      if(pTune1000Trk->get_type() != MidiTrackBase::TypeMidi)
+      pTune1000Trk = (midi_track *) tune1000file.GetTracks().TrackAt(i);
+      if(pTune1000Trk->get_type() != midi_track_base::TypeMidi)
          continue;
       pTune1000Trk->ToWorkStorage();
       pTune1000Trk->WorkSeekBegin();
@@ -1047,16 +1047,16 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
          }
       }
 
-      MidiTrack * pTrackXF = tracks.CreateTrack();
+      midi_track * pTrackXF = tracks.CreateTrack();
       if((smfrc = pTrackXF->WorkCopyWork(
          pTune1000Trk,
-         MidiTrack::CopyExcludeXFMetaLyrics |
-         MidiTrack::CopyExcludeKarMetaLyrics)) != ::mus::midi::Success)
+         midi_track::CopyExcludeXFMetaLyrics |
+         midi_track::CopyExcludeKarMetaLyrics)) != ::mus::midi::Success)
          return smfrc;
    }
-   
+
    {
-      MidiTrack * pTrackUnion = xffile.GetTracks().CreateTrack();
+      midi_track * pTrackUnion = xffile.GetTracks().CreateTrack();
       tracks.WorkCompactMidiTracksWork(*pTrackUnion, false);
    }
 
@@ -1174,14 +1174,14 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
       0x00,  //
       0x58,  // X
       0x46,  // F
-      0x30,  // 0 
+      0x30,  // 0
       0x32,   // 2
       0x00,
       0x11};
 
-      MidiTrack & trackXF = *(MidiTrack *) xffile.GetTracks().TrackAt(0);
+      midi_track & trackXF = *(midi_track *) xffile.GetTracks().TrackAt(0);
       trackXF.seek_begin();
-      MidiEventV008 eventV008;
+      midi_event_v008 eventV008;
       eventV008.SetPosition(0);
       eventV008.SetFullType(::mus::midi::Meta);
       eventV008.SetMetaType(::mus::midi::MetaSeqSpecific);
@@ -1193,19 +1193,19 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
       eventV008.clear();
       eventV008.SetPosition(0);
       eventV008.SetFullType(::mus::midi::Meta);
-      eventV008.SetMetaType(CXF::MetaSongName);
+      eventV008.SetMetaType(::mus::xf::MetaSongName);
       gen::international::OEMToMultiByte(
          gen::international::CodePageLatin1,
          memstorage,
          ki.m_strSongName);
       eventV008.SetParam(
-         memstorage.GetAllocation(),
-         memstorage.GetStorageSize());
+         memstorage.get_data(),
+         memstorage.get_size());
       trackXF.GetWorkTrack().insert_at(1, eventV008);
 
       for(i = 0; i < xffile.GetTracks().GetTrackCount(); i++)
       {
-         MidiTrack & trackXF = *(MidiTrack *) xffile.GetTracks().TrackAt(i);
+         midi_track & trackXF = *(midi_track *) xffile.GetTracks().TrackAt(i);
          trackXF.WorkSeekBegin();
          while(::mus::midi::Success == trackXF.WorkSeek(::mus::midi::SeekKarID))
          {
@@ -1238,7 +1238,7 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
 
 }
 
-::mus::midi::e_file_type MidiUtil::GetFileType(::mus::midi::sequence &seq)
+::mus::midi::e_file_type midi_util::GetFileType(::mus::midi::sequence &seq)
 {
    ::mus::midi::e_file_type e_type;
 
@@ -1249,7 +1249,7 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
       e_type = ::mus::midi::TypeKar;
    }
    else if(midifile.IsXFFile())
-   {   
+   {
       e_type = ::mus::midi::TypeXF;
    }
    else if(midifile.IsTune1000File())
@@ -1264,7 +1264,7 @@ MMRESULT MidiUtil::ConvertTune1000ToXF(::mus::midi::sequence &seqTune1000, ::mus
 
 }
 
-MMRESULT MidiUtil::ConvertToXF(::mus::midi::sequence &seq, int iOpenMode)
+MMRESULT midi_util::ConvertToXF(::mus::midi::sequence &seq, int iOpenMode)
 {
    int iFileType = GetFileType(seq);
    MMRESULT vmsr;
@@ -1284,7 +1284,7 @@ MMRESULT MidiUtil::ConvertToXF(::mus::midi::sequence &seq, int iOpenMode)
 
 }
 
-MMRESULT MidiUtil::ConvertKarToXF(stringa * pKar1DTokens, imedia::position_array * pKar1DTicks, MidiTrack * pXFTrk)
+MMRESULT midi_util::ConvertKarToXF(stringa * pKar1DTokens, imedia::position_array * pKar1DTicks, midi_track * pXFTrk)
 {
    BYTE XFLYRICSHEADER[] = "$Lyrc:1:270:L1";
    BYTE CUEPOINTSOLO[] = "&s";
@@ -1345,7 +1345,7 @@ MMRESULT MidiUtil::ConvertKarToXF(stringa * pKar1DTokens, imedia::position_array
 
 }
 
-MMRESULT MidiUtil::WorkConvertKarToXF(stringa * pKar1DTokens, imedia::position_array * pKar1DTicks, MidiTrack * pXFTrk)
+MMRESULT midi_util::WorkConvertKarToXF(stringa * pKar1DTokens, imedia::position_array * pKar1DTicks, midi_track * pXFTrk)
 {
    BYTE XFLYRICSHEADER[] = "$Lyrc:1:270:L1";
    BYTE CUEPOINTSOLO[] = "&s";
@@ -1401,7 +1401,7 @@ MMRESULT MidiUtil::WorkConvertKarToXF(stringa * pKar1DTokens, imedia::position_a
 }
 
 
-bool MidiUtil::ExtractLyrics(string &str, ::mus::midi::sequence &seq)
+bool midi_util::ExtractLyrics(string &str, ::mus::midi::sequence &seq)
 {
    UNREFERENCED_PARAMETER(str);
    UNREFERENCED_PARAMETER(seq);

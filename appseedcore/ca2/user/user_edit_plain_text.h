@@ -81,11 +81,18 @@ namespace user
 
       virtual DECL_GEN_SIGNAL(_002OnLButtonDown)
       virtual DECL_GEN_SIGNAL(_002OnLButtonUp)
+      virtual DECL_GEN_SIGNAL(_002OnRButtonDown)
+      virtual DECL_GEN_SIGNAL(_002OnRButtonUp)
       virtual DECL_GEN_SIGNAL(_002OnMouseMove)
       virtual DECL_GEN_SIGNAL(_002OnKeyDown)
       virtual DECL_GEN_SIGNAL(_002OnKeyUp)
       virtual DECL_GEN_SIGNAL(_002OnTimer)
       virtual DECL_GEN_SIGNAL(_002OnChar)
+
+      virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy)
+      virtual DECL_GEN_SIGNAL(_001OnEditFocusCopy)
+      virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste)
+      virtual DECL_GEN_SIGNAL(_001OnEditFocusPaste)
 
       DECL_GEN_VSIGNAL(_009OnChar)
 
@@ -114,7 +121,7 @@ namespace user
 
       void key_to_char(WPARAM wparam, LPARAM lparam);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
@@ -150,8 +157,6 @@ namespace user
       void _001GetText(string & str) const; 
       void _001GetSelText(string & str) const;
 
-      virtual void _001OnGetText();
-      void _001GetViewText(string & str);
       void _001GetViewSel(int &iSelStart, int &iSelEnd);
 
       void _001SetText(const char * psz);

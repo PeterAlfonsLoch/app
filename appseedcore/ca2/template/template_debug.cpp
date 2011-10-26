@@ -27,6 +27,9 @@ void WINAPI NotifyTool()
 DWORD_PTR __stdcall AtlTraceRegister(HINSTANCE hInst,
                         int (__cdecl *fnDebugReport)(int,const char *,int,const char *,const char *,va_list))
 {
+   UNREFERENCED_PARAMETER(hInst);
+   UNREFERENCED_PARAMETER(fnDebugReport);
+
    /*int iModule = g_Allocator.AddModule(hInst);
    trace_module* pModule = g_Allocator.GetModule(iModule);
    ATLASSERT(pModule != NULL);
@@ -42,6 +45,7 @@ DWORD_PTR __stdcall AtlTraceRegister(HINSTANCE hInst,
 
 BOOL __stdcall AtlTraceUnregister(DWORD_PTR dwModule)
 {
+   UNREFERENCED_PARAMETER(dwModule);
    /*int iModule = int( dwModule-1 );
    g_Allocator.RemoveModule( iModule );
 
@@ -246,7 +250,7 @@ void __stdcall AtlTraceGetUpdateEventNameA(__out_opt CHAR *pszEventName)
    }
 #pragma warning(push)
 #pragma warning(disable:4996)
-   // This API is deprecated because the size of the buffer cannot be 
+   // This API is deprecated because the size of the buffer cannot be
    // known. Therefore, we have to use unsafe version of strcpy. The
    // warning is disabled to prevent build problems.
    strcpy(pszEventName, g_pszUpdateEventName);
@@ -270,7 +274,7 @@ void __stdcall AtlTraceGetUpdateEventNameU(__out_opt WCHAR *pszEventName)
    }
 #pragma warning(push)
 #pragma warning(disable:4996)
-   // This API is deprecated because the size of the buffer cannot be 
+   // This API is deprecated because the size of the buffer cannot be
    // known. Therefore, we have to use unsafe version of wcscpy. The
    // warning is disabled to prevent build problems.
    wcscpy(pszEventName, gen::international::utf8_to_unicode(g_pszUpdateEventName));
@@ -292,11 +296,26 @@ void __stdcall AtlTraceGetUpdateEventNameU_s(__out_ecount_opt(cchEventName) WCHA
 void __cdecl AtlTraceVA(DWORD_PTR dwModule, const char *pszFileName, int nLine,
                   DWORD_PTR dwCategory, UINT nLevel, const CHAR *pszFormat, va_list ptr)
 {
+   UNREFERENCED_PARAMETER(dwModule);
+   UNREFERENCED_PARAMETER(pszFileName);
+   UNREFERENCED_PARAMETER(nLine);
+   UNREFERENCED_PARAMETER(dwCategory);
+   UNREFERENCED_PARAMETER(nLevel);
+   UNREFERENCED_PARAMETER(pszFormat);
+   UNREFERENCED_PARAMETER(ptr);
+
 }
 
 void __cdecl AtlTraceVU(DWORD_PTR dwModule, const char *pszFileName, int nLine,
                   DWORD_PTR dwCategory, UINT nLevel, const WCHAR *pszFormat, va_list ptr)
 {
+   UNREFERENCED_PARAMETER(dwModule);
+   UNREFERENCED_PARAMETER(pszFileName);
+   UNREFERENCED_PARAMETER(nLine);
+   UNREFERENCED_PARAMETER(dwCategory);
+   UNREFERENCED_PARAMETER(nLevel);
+   UNREFERENCED_PARAMETER(pszFormat);
+   UNREFERENCED_PARAMETER(ptr);
 
 }
 
@@ -446,7 +465,14 @@ static bool WINAPI ShouldTraceOutput(DWORD_PTR dwModule,
                        const trace_category **ppCategory,
                        trace_module ** ppmodule)
 {
-   bool bFound = false;
+   UNREFERENCED_PARAMETER(dwModule);
+   UNREFERENCED_PARAMETER(dwCategory);
+   UNREFERENCED_PARAMETER(nLevel);
+   UNREFERENCED_PARAMETER(ppCategory);
+   UNREFERENCED_PARAMETER(ppmodule);
+
+
+//   bool bFound = false;
 
    /*ATLASSERT(ppCategory && ppmodule);
    *ppCategory = NULL;
@@ -495,6 +521,6 @@ static bool WINAPI ShouldTraceOutput(DWORD_PTR dwModule,
    }*/
 
    return false;
-}                                                                     
+}
 
 };  // namespace _template

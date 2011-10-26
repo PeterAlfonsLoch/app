@@ -1,8 +1,9 @@
 #pragma once
 
-#include "include/cube.h"
-// this is a win application, by now
-#include "win/win.h"
+
+#include "include/ca2.h"
+#include "os/windows/os.h"
+
 
 #ifdef _CA2_FONTOPUS_WINSERVICE_1_DLL
     #define CLASS_DECL_CA2_WINSERVICE_1  _declspec(dllexport)
@@ -10,11 +11,14 @@
     #define CLASS_DECL_CA2_WINSERVICE_1  _declspec(dllimport)
 #endif
 
-#include "update_thread.h"
-#include "update_schedule_thread.h"
 
-#include "message_window.h"
 
-#include "thread.h"
+#include "winservice_1_update_thread.h"
+#include "winservice_1_update_schedule_thread.h"
+#include "winservice_1_message_window.h"
+#include "winservice_1_thread.h"
 
-#include "application.h"
+
+#include "winservice_1_application.h"
+
+

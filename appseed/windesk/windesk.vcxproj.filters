@@ -77,7 +77,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="windesk.def">
+    <None Include="app_windesk.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

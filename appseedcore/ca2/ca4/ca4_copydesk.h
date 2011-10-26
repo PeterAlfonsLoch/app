@@ -18,5 +18,10 @@ public:
 
    void set_plain_text(const char * psz);
    string get_plain_text();
+
+   
+   bool desk_to_dib(::ca::dib * pdib);
+   // todo
+   //bool dib_to_desk(::ca::dib * pdib);
    
 };

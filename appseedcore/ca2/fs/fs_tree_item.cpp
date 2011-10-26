@@ -13,7 +13,7 @@ namespace fs
    int tree_item::CompareArrangeByName(ex1::tree_item * pitem1, ex1::tree_item * pitem2, void * pparam)
    {
       UNREFERENCED_PARAMETER(pparam);
-      if(typeid(*pitem1) == typeid(*pitem2) && typeid(*pitem1) == typeid(tree_item))
+      if(typeid(*pitem1) == typeid(*pitem2) && typeid(*pitem1) == ::ca::get_type_info < tree_item > ())
       {
          return ((tree_item *) pitem1)->m_strName.CompareNoCase(((tree_item *) pitem2)->m_strName);
       }
@@ -37,6 +37,7 @@ namespace fs
 
    string tree_item::get_text(ex1::tree * ptree)
    {
+      UNREFERENCED_PARAMETER(ptree);
 		return m_strName;
    }
 

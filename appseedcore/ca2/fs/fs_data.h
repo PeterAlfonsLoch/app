@@ -29,10 +29,13 @@ namespace fs
       virtual string file_name(const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2);
 
+      virtual bool file_exists(const char * pszPath);
+
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ex1::filesp * get_file(const char * pszFilePath);
+      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception = NULL);
+      virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception = NULL);
 
    };
 

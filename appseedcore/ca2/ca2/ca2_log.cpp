@@ -1,4 +1,4 @@
-#include "StdAfx.h"  
+#include "StdAfx.h"
 
 namespace ca2
 {
@@ -19,33 +19,33 @@ namespace ca2
       m_straSeparator.add("\n");
 
       set_trace_category(_template::trace::category_General, "category_General", 3000);
-      set_trace_category(_template::trace::category_COM, "category_COM", 0);  
-      set_trace_category(_template::trace::category_QI, "category_QI", 0);   
+      set_trace_category(_template::trace::category_COM, "category_COM", 0);
+      set_trace_category(_template::trace::category_QI, "category_QI", 0);
       set_trace_category(_template::trace::category_Registrar, "category_Registrar", 0);
       set_trace_category(_template::trace::category_Refcount, "category_Refcount", 0);
       set_trace_category(_template::trace::category_Windowing, "category_Windowing", 0);
       set_trace_category(_template::trace::category_Controls, "category_Controls", 0);
-      set_trace_category(_template::trace::category_Hosting, "category_Hosting", 0); 
-      set_trace_category(_template::trace::category_DBClient, "category_DBClient", 0);  
+      set_trace_category(_template::trace::category_Hosting, "category_Hosting", 0);
+      set_trace_category(_template::trace::category_DBClient, "category_DBClient", 0);
       set_trace_category(_template::trace::category_DBProvider, "category_DBProvider", 0);
       set_trace_category(_template::trace::category_Snapin, "category_Snapin", 0);
-      set_trace_category(_template::trace::category_NotImpl, "category_NotImpl", 0);   
+      set_trace_category(_template::trace::category_NotImpl, "category_NotImpl", 0);
       set_trace_category(_template::trace::category_Allocation, "category_Allocation", 0);
       set_trace_category(_template::trace::category_Exception, "category_Exception", 0);
       set_trace_category(_template::trace::category_Time, "category_Time", 0);
       set_trace_category(_template::trace::category_Cache, "category_Cache", 0);
       set_trace_category(_template::trace::category_Stencil, "category_Stencil", 0);
       set_trace_category(_template::trace::category_String, "category_String", 0);
-      set_trace_category(_template::trace::category_Map, "category_Map", 0);   
-      set_trace_category(_template::trace::category_Util, "category_Util", 0);      
+      set_trace_category(_template::trace::category_Map, "category_Map", 0);
+      set_trace_category(_template::trace::category_Util, "category_Util", 0);
       set_trace_category(_template::trace::category_Security, "category_Security", 0);
       set_trace_category(_template::trace::category_Sync, "category_Sync", 0);
-      set_trace_category(_template::trace::category_ISAPI, "category_ISAPI", 0);      
+      set_trace_category(_template::trace::category_ISAPI, "category_ISAPI", 0);
 
-      set_trace_category(_template::trace::category_User, "category_User", 0);      
-      set_trace_category(_template::trace::category_User2, "category_User2", 0);      
-      set_trace_category(_template::trace::category_User3, "category_User3", 0);      
-      set_trace_category(_template::trace::category_User4, "category_User4", 0);      
+      set_trace_category(_template::trace::category_User, "category_User", 0);
+      set_trace_category(_template::trace::category_User2, "category_User2", 0);
+      set_trace_category(_template::trace::category_User3, "category_User3", 0);
+      set_trace_category(_template::trace::category_User4, "category_User4", 0);
 
 
       set_trace_category(radix::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
@@ -64,7 +64,7 @@ namespace ca2
    log::~log()
    {
    }
-   
+
    void log::print(const char * pszFormat, ...)
    {
       va_list ptr;
@@ -72,7 +72,7 @@ namespace ca2
       trace_v(NULL, -1, _template::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
-   
+
    bool log::initialize(const char * pszId)
    {
       return initialize(id(pszId));
@@ -80,7 +80,7 @@ namespace ca2
 
    bool log::initialize(id id)
    {
-      CSingleLock sl(&m_mutex, TRUE);
+      single_lock sl(&m_mutex, TRUE);
       if(m_bInitialized)
          return false;
       if(!::ca::log::initialize(id))
@@ -103,14 +103,14 @@ namespace ca2
       {
          m_bLog = is_debugger_attached();
       }
-      sl.Unlock();
+      sl.unlock();
       print("<log>Log Initialized!!</log>");
       return true;
    }
 
    bool log::finalize()
    {
-      CSingleLock sl(&m_mutex, TRUE);
+      single_lock sl(&m_mutex, TRUE);
       if(!m_bInitialized)
          return false;
       bool bOk = ::ca::log::finalize();
@@ -137,7 +137,10 @@ namespace ca2
 
    void log::trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
    {
-      CSingleLock sl(&((log *)this)->m_csTrace, TRUE);
+      UNREFERENCED_PARAMETER(nLevel);
+      UNREFERENCED_PARAMETER(nLine);
+      UNREFERENCED_PARAMETER(pszFileName);
+      single_lock sl(&((log *)this)->m_csTrace, TRUE);
 
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
@@ -175,7 +178,7 @@ namespace ca2
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
       strTick.Format(" %011d ", ::GetTickCount() - g_dwFirstTick);
-      
+
       if(!plog->m_spfile->IsOpened()
       || plog->m_iYear != time.GetYear()
       || plog->m_iMonth != time.GetMonth()

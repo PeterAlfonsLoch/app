@@ -5,7 +5,7 @@ namespace userbase
 
    menu_button::menu_button(::ca::application * papp) :
       ::user::interaction(papp),
-      ::user::button(papp), 
+      ::user::button(papp),
       button(papp),
       ca(papp)
    {
@@ -35,10 +35,10 @@ namespace userbase
          rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
          rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
          point_array pta;
-         pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom)); 
-         pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2)); 
-         pta.add(point(rectPopupArrow.left, rectPopupArrow.top)); 
-         pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom)); 
+         pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
+         pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+         pta.add(point(rectPopupArrow.left, rectPopupArrow.top));
+         pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
          pdc->Polygon(pta.get_data(), pta.get_size());
       }
       _001DrawCheck(pdc);
@@ -51,7 +51,7 @@ namespace userbase
       if(m_pguie == NULL)
          return;
       m_pguie->GetClientRect(rectClient);
-      
+
       rect = rectClient;
       rect.left   += 3 + 16;
       rect.top    += 3;
@@ -68,7 +68,7 @@ namespace userbase
 
    void menu_button::_001DrawCheck(::ca::graphics * pdc)
    {
-      UINT uiImage = 0xffffffffu; 
+      UINT uiImage = 0xffffffffu;
       if(m_pitem != NULL)
       {
          uiImage = BaseMenuCentral::GetMenuCentral(get_app())->CommandToImage(m_pitem->m_id);
@@ -99,9 +99,9 @@ namespace userbase
             pdc->Draw3dRect(rectImageBorder, GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DHILIGHT));
          }
          pimagelist->draw(
-            pdc, 
-            uiImage, 
-            rectImage.top_left(), 
+            pdc,
+            uiImage,
+            rectImage.top_left(),
             0);
       }
       else

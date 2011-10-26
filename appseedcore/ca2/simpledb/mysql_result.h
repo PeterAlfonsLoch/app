@@ -12,6 +12,7 @@ namespace mysql
       virtual ~result();
 
       void * fetch_row(); // MYSQL_ROW
+      unsigned long * fetch_lengths(); // MYSQL_ROW
       __int64 num_rows();
       int num_fields();
 

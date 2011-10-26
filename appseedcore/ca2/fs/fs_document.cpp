@@ -8,18 +8,15 @@ namespace fs
    document::document(::ca::application * papp) :
       ::ca::data_container(papp),
       ::document(papp),
-      userbase::document(papp)
+      userbase::document(papp),
+      ::ca::data(papp),
+      ::fs::data(papp),
+      ::fs::set(papp)
    {
-      m_pfsdata         = NULL;
    }
 
    document::~document()
    {
-   }
-
-   data * document::get_fs_data()
-   {
-      return m_pfsdata;
    }
 
    void document::assert_valid() const
@@ -40,4 +37,6 @@ namespace fs
    }
 
 
+
 } // namespace filemanager
+

@@ -96,7 +96,7 @@ void LineRegionsSupport::clearLine(int lno, const char * pszLine)
 {
    UNREFERENCED_PARAMETER(pszLine);
    if(!checkLine(lno))
-      return;   
+      return;
 
    LineRegion *ln = getLineRegions(lno);
    while(ln != NULL)
@@ -221,7 +221,7 @@ void LineRegionsSupport::addLineRegion(int lno, LineRegion *lr){
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

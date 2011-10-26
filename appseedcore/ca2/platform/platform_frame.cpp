@@ -27,6 +27,9 @@ namespace platform
       m_bHover             = false;
       m_bMouseLeaveTimer   = false;
       m_bOnDraw            = false;
+      m_dwLastSuperDock    = 0;
+
+      oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
       WfiEnableFullScreen();
    }
@@ -59,9 +62,9 @@ namespace platform
 
    #endif //_DEBUG
 
-   void frame::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_frame_window::_001InstallMessageHandling(pinterface);
+      simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &frame::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &frame::_001OnTimer);
@@ -109,8 +112,8 @@ namespace platform
          {
             OnHoverAction();
          }
-         System.get_cursor_pos(&pt);
-         if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
+         Bergedge.get_cursor_pos(&pt);
+         if(!m_bHoverMouse && pt.x <= 0)
          {
             m_dwLastHover = ::GetTickCount();
             m_bHoverMouse = true;
@@ -129,7 +132,7 @@ namespace platform
                m_bHideTimer = false;
                KillTimer(1001);
             }
-            else if(!m_bHideTimer)
+            else if(!m_bHideTimer && (::GetTickCount() - m_dwLastSuperDock) > 984)
             {
                m_bHideTimer = true;
                SetTimer(1001, 500, NULL);
@@ -243,13 +246,24 @@ namespace platform
 
    void frame::super_dock_on_bergedge()
    {
-      if(System.command_line().m_varQuery.propset().has_property("show_platform") == 0)
+      if(!Bergedge.m_bShowPlatform)
       {
          return;
       }
+      m_dwLastSuperDock = ::GetTickCount();
       rect rectDesktop;
-      bergedge::view * pview = GetTypedParent < bergedge::view >();
-      pview->GetWindowRect(rectDesktop);
+      
+      ::user::interaction * puiParent = GetTypedParent < bergedge::view >();
+      if(puiParent == NULL)
+         puiParent = GetTypedParent < ::user::place_holder > ();
+      if(puiParent == NULL)
+         puiParent = GetParent();
+      if(puiParent == NULL)
+      {
+         // There is no place to dock on to.
+         return;
+      }
+      puiParent->GetWindowRect(rectDesktop);
       ShowWindow(SW_RESTORE);
       switch(m_eposition)
       {
@@ -272,7 +286,7 @@ namespace platform
    window_frame::FrameSchema * frame::create_frame_schema()
    {
       window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-      pschema->m_pruntimeclassControlBoxButton = &typeid(MetaButton);
+      pschema->m_typeinfoControlBoxButton = ::ca::get_type_info < MetaButton > ();
       pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleTranslucidWarmGray);
       return pschema;
    }

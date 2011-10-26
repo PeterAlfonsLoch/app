@@ -47,7 +47,12 @@ namespace libepp
       };
 
       /// Default constructor
-      DomainUpdateCommand(bool reset = true) : Command(false)
+      DomainUpdateCommand(::ca::application * papp, bool reset = true) :
+         ca(papp), 
+         Command(false), 
+         _ds_list_chg(papp),
+         _ds_list_add(papp),
+         _ds_list_rem(papp)
       {
          if (reset) {
             this->reset();
@@ -298,14 +303,14 @@ namespace libepp
       */
       void insert_ds_add(const DSInfo &ds_info)
       {
-         _ds_list_add.add_tail(ds_info);
+         _ds_list_add.add(ds_info);
       }
 
       /// Returns the ds addition list
       /**
       @return list of ds records to be inserted into the domain object
       */
-      collection::list < DSInfo > get_ds_add() const
+      ds_info_array get_ds_add() const
       {
          return _ds_list_add;
       }
@@ -316,7 +321,7 @@ namespace libepp
       */
       void insert_ds_rem_1_1(const DSInfo &ds_info)
       {
-         _ds_list_rem.add_tail(ds_info);
+         _ds_list_rem.add(ds_info);
       }
 
       /// Inserts one ds into the ds removal list (RFC4310 - DEPRECATED!)
@@ -332,7 +337,7 @@ namespace libepp
       /**
       @return list of ds records to be removed from the domain object
       */
-      collection::list < DSInfo > get_ds_rem_1_1() const
+      ds_info_array get_ds_rem_1_1() const
       {
          return _ds_list_rem;
       }
@@ -352,14 +357,14 @@ namespace libepp
       */
       void insert_ds_chg(const DSInfo &ds_info)
       {
-         _ds_list_chg.add_tail(ds_info);
+         _ds_list_chg.add(ds_info);
       }
 
       /// Returns the ds change list
       /**
       @return list of ds records to be removed from the domain object
       */
-      collection::list < DSInfo > get_ds_chg() const
+      ds_info_array get_ds_chg() const
       {
          return _ds_list_chg;
       }
@@ -488,17 +493,17 @@ namespace libepp
       unsigned int _max_sig_life;
 
       /// list of DS RR to be added to the domain object
-      collection::list < DSInfo > _ds_list_add;
+      ds_info_array _ds_list_add;
 
       /// list of DS RR to be removed from the domain object
-      collection::list < DSInfo > _ds_list_rem;
+      ds_info_array _ds_list_rem;
 
       /// list of DS RR to be removed from the domain object (DEPRECATED,
       /// RFC 4310 only!)
       uint_array _ds_list_rem_1_0;
 
       /// list of DS to be changed in the domain object (RFC 4310 only!)
-      collection::list < DSInfo > _ds_list_chg;
+      ds_info_array _ds_list_chg;
 
       /// list of DNSKEY RR to be added to the domain object
       collection::list < KeyData > _dnskey_list_add;

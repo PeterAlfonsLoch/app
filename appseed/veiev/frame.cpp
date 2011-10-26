@@ -61,6 +61,7 @@ namespace veiev
       ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
 
+
       //m_menuhook.Initialize(
         // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
          //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
@@ -97,7 +98,7 @@ namespace veiev
       /*m_menubar._001SetImageList(&m_imagelist);
       m_menubar.SetItemImage(m_menubar._001GetItemCount() - 1, 0);*/
 
-      string str = Application.file().as_string(System.dir().matter("veiev\\toolbar.xml"));
+      string str = Application.file().as_string(Application.dir().matter("veiev\\toolbar.xml"));
 
 	   if (!m_toolbar.CreateEx(this) ||
 		    !m_toolbar.LoadXmlToolBar(str))
@@ -355,9 +356,9 @@ namespace veiev
    }
 
 
-   void frame::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_frame_window::_001InstallMessageHandling(pinterface);
+      simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_CLOSE, pinterface, this, &frame::_001OnClose);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &frame::_001OnTimer);
@@ -383,7 +384,7 @@ namespace veiev
    void frame::_001OnMove(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      /*if(m_wndframework.GetMovingManager()->IsMoving())
+      /*if(m_workset.GetMovingManager()->IsMoving())
       {
          HWND hwndDesktop = ::GetDesktopWindow();
          rect rectDesktop;

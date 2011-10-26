@@ -114,7 +114,7 @@ class CDockContext;                     // for dragging control bars
 // same as WM_SETMESSAGESTRING except not popped if IsTracking()
 #define WM_POPMESSAGESTRING 0x0375
 
-// WM_HELPPROMPTADDR is used internally to get the address of 
+// WM_HELPPROMPTADDR is used internally to get the address of
 //   m_dwPromptContext from the associated frame ::ca::window. This is used
 //   during message boxes to setup for F1 help while that msg box is
 //   displayed. lResult is the address of m_dwPromptContext.
@@ -147,6 +147,13 @@ class CDockContext;                     // for dragging control bars
 #define ON_MESSAGE_VOID(message, memberFxn) \
    { message, 0, 0, 0, AfxSig_vv, \
       (AFX_PMSG)(AFX_PMSGW)(void (AFX_MSG_CALL ::ca::window::*)(void))&memberFxn },
+
+#ifdef LINUX
+
+typedef void * HDWP;
+
+#endif
+
 
 // special struct for WM_SIZEPARENT
 struct AFX_SIZEPARENTPARAMS
@@ -192,7 +199,18 @@ protected:
 
 // some mirroring stuff will be in wingdi.h someday
 #ifndef LAYOUT_LTR
-#define LAYOUT_LTR                         0x00000000   
+#define LAYOUT_LTR                         0x00000000
+#endif
+
+
+#ifdef LINUX
+struct NMHDR
+{
+
+    int nId;
+};
+
+
 #endif
 
 

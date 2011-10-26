@@ -20,7 +20,7 @@ SimplePushButton::~SimplePushButton()
 {
 }
 
-void SimplePushButton::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void SimplePushButton::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimplePushButton::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &SimplePushButton::_001OnDestroy);

@@ -15,9 +15,9 @@ namespace colorertake5
      /** Writes string */
      virtual void write(string string);
      /** Writes @c num characters of string, starting at @c from position */
-     virtual void write(const string &string, int from, int num);
+     virtual void write(const string &string, ::primitive::memory_size from, ::primitive::memory_size num);
      /** Writes @c num characters of string, starting at @c from position */
-     virtual void write(string string, int from, int num);
+     virtual void write(string string, ::primitive::memory_size from, ::primitive::memory_size num);
      /** Writes single character */
      virtual void write(wchar_t c) = 0;
    protected:

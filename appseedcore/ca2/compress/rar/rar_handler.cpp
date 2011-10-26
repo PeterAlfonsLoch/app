@@ -71,7 +71,7 @@ namespace rar
    {
       { 0, "Volume" },
       { 1, "Comment" },
-      { 2, "Lock" },
+      { 2, "lock" },
       { 3, "Solid" },
       { 4, "NewVolName" }, // pack_comment in old versuons
       { 5, "Authenticity" },
@@ -349,7 +349,7 @@ namespace rar
    };
 
    //HRESULT handler::Open2(IInStream *stream,
-   HRESULT handler::Open2(ex1::input_stream * stream, const uint64 *maxCheckStartPosition, ::compress::archive_open_callback_interface *openCallback)
+   HRESULT handler::Open2(ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openCallback)
    {
       {
          ::compress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
@@ -369,7 +369,7 @@ namespace rar
 
          for (;;)
          {
-            ::ex1::input_stream * inStream;
+            ::ex1::byte_input_stream * inStream;
             if (!_archives.is_empty())
             {
                if (!openVolumeCallback)
@@ -473,7 +473,7 @@ namespace rar
       return S_OK;
    }
 
-   ex1::HRes handler::Open(ex1::input_stream * stream, const uint64 *maxCheckStartPosition, ::compress::archive_open_callback_interface *openCallback)
+   ex1::HRes handler::Open(ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openCallback)
    {
       Close();
       try
@@ -485,8 +485,8 @@ namespace rar
       }
       catch(const input_file_exception &)
       {
-         Close(); 
-         return S_FALSE; 
+         Close();
+         return S_FALSE;
       }
       catch(...)
       {
@@ -512,8 +512,8 @@ namespace rar
 
    ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems, int32 testMode, ::compress::archive_extract_callback_interface *extractCallback)
    {
-      ::crypto::get_text_password_interface * getTextPassword;
-      uint64 censoredTotalUnPacked = 0,
+      ::crypto::get_text_password_interface * getTextPassword = NULL;
+      file_size censoredTotalUnPacked = 0,
          // censoredTotalPacked = 0,
          importantTotalUnPacked = 0;
       // importantTotalPacked = 0;
@@ -659,7 +659,7 @@ namespace rar
 
          folderInStreamSpec->Init(&_archives, &_items, refItem);
 
-         uint64 packSize = currentPackSize;
+         file_size packSize = currentPackSize;
 
          // packedPos += item.PackSize;
          // unpackedPos += 0;
@@ -864,11 +864,11 @@ namespace rar
    // IMPL_ISetCompressCodecsInfo2(CHandler)
    ex1::HRes handler::SetCompressCodecsInfo(::compress::codecs_info_interface * compressCodecsInfo)
    {
-      _codecsInfo = compressCodecsInfo;  
-      return LoadExternalCodecs(_codecsInfo, _externalCodecs); 
+      _codecsInfo = compressCodecsInfo;
+      return LoadExternalCodecs(_codecsInfo, _externalCodecs);
 
    }
-   
+
 
    bool handler::IsSolid(int refIndex)
    {

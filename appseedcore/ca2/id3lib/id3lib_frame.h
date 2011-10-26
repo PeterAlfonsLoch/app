@@ -70,7 +70,7 @@ public:
 };
 
 class CLASS_DECL_ca ID3_Frames :
-   virtual public array_ptr < ID3_Frame >
+   virtual public array_del_ptr < ID3_Frame >
 {
 public:
 };

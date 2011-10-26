@@ -24,9 +24,9 @@ view::~view()
       m_spdocument->remove_view(this);
 }
 
-void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::user::interaction::_001InstallMessageHandling(pinterface);
+   ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &view::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
@@ -83,12 +83,12 @@ void view::_001OnCreate(::gen::signal_object * pobj)
 
    // if ok, wire in the current document
    ASSERT(::view::get_document() == NULL);
-   create_context* pContext = (create_context*)pcreate->m_lpcreatestruct->lpCreateParams;
+   ::ca::create_context* pContext = (::ca::create_context*)pcreate->m_lpcreatestruct->lpCreateParams;
 
    // A ::view should be created in a given context!
-   if (pContext != NULL && pContext->m_pCurrentDoc != NULL)
+   if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
    {
-      pContext->m_pCurrentDoc->add_view(this);
+      pContext->m_user->m_pCurrentDoc->add_view(this);
       ASSERT(::view::get_document() != NULL);
    }
    else
@@ -112,7 +112,7 @@ void view::_001OnDestroy(gen::signal_object * pobj)
 void view::PostNcDestroy()
 {
    ::user::interaction::PostNcDestroy();
-   if(is_set(::ca::ca::flag_auto_delete))
+   if(is_set_ca_flag(::ca::ca::flag_auto_delete))
    {
       // default for views is to allocate them on the heap
       //  the default post-cleanup is to 'delete this'.
@@ -166,7 +166,14 @@ bool view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (::view::get_document() != NULL)
    {
       // special state for saving ::view before routing to document
-      return ::view::get_document()->_001OnCmdMsg(pcmdmsg);
+      if(::view::get_document()->_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+   }
+
+   if(!GetParent()->IsFrameWnd())
+   {
+      if(GetParent()->_001OnCmdMsg(pcmdmsg))
+         return TRUE;
    }
 
    return FALSE;
@@ -518,34 +525,60 @@ void view::_001OnView(gen::signal_object * pobj)
 
 /////////////////////////////////////////////////////////////////////////////
 
-
 ::user::interaction* view::create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
-   create_context cc;
-   cc.m_typeinfoNewView   = &info;
-   cc.m_pLastView       = pviewLast;
-   cc.m_pCurrentDoc     = pdoc;
-   return create_view(&cc, pwndParent, id);
+   ::ca::create_context_sp cacc(get_app());
+   stacker < ::user::create_context > cc(cacc->m_user);
+   cc->m_typeinfoNewView    = &info;
+   cc->m_pLastView          = pviewLast;
+   if(pdoc == NULL)
+   {
+      cc->m_pCurrentDoc        = get_document();
+   }
+   else
+   {
+      cc->m_pCurrentDoc = pdoc;
+   }
+   if(pwndParent == NULL)
+   {
+      pwndParent = this;
+   }
+   if(id == NULL)
+   {
+      id = cc->m_typeinfoNewView.raw_name();
+   }
+   return s_create_view(cacc, pwndParent, id);
 }
 
-::user::interaction* view::create_view(create_context* pContext, ::user::interaction * pwndParent, id id)
+
+::user::interaction* view::s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+{
+   ::ca::create_context_sp cacc(pdoc->get_app());
+   stacker < ::user::create_context > cc(cacc->m_user);
+   cc->m_typeinfoNewView    = &info;
+   cc->m_pLastView          = pviewLast;
+   cc->m_pCurrentDoc        = pdoc;
+   return s_create_view(cacc, pwndParent, id);
+}
+
+::user::interaction* view::s_create_view(::ca::create_context* pContext, ::user::interaction * pwndParent, id id)
 {
 // trans   ASSERT(pwndParent->get_handle() != NULL);
 // trans   ASSERT(::IsWindow(pwndParent->get_handle()));
    ASSERT(pContext != NULL);
-   ASSERT(pContext->m_typeinfoNewView || pContext->m_puiNew != NULL);
+   ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
 
    ::ca::application * papp = pwndParent->get_app();
 
    ::user::interaction * pguie;
-   if(pContext->m_puiNew != NULL)
+   if(pContext->m_user->m_puiNew != NULL)
    {
-      pguie = dynamic_cast < ::user::interaction * > (pContext->m_puiNew);
+      pguie = dynamic_cast < ::user::interaction * > (pContext->m_user->m_puiNew);
    }
    else
    {
       // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-      pguie = dynamic_cast < ::user::interaction * > (App(papp).alloc(pContext->m_typeinfoNewView));
+      pguie = dynamic_cast < ::user::interaction * > (App(papp).alloc(pContext->m_user->m_typeinfoNewView));
       if (pguie == NULL)
       {
 //         TRACE1("Warning: Dynamic create of ::view type %hs failed.\n", pContext->m_typeinfoNewView.raw_name());
@@ -555,7 +588,7 @@ void view::_001OnView(gen::signal_object * pobj)
    ASSERT_KINDOF(::user::interaction, pguie);
 
    // views are always created with a border!
-   if (!pguie->create(NULL, NULL, AFX_WS_DEFAULT_VIEW, rect(0,0,0,0), pwndParent, id, (create_context *) pContext))
+   if (!pguie->create(NULL, NULL, AFX_WS_DEFAULT_VIEW, rect(0,0,0,0), pwndParent, id, pContext))
    {
       //TRACE0("Warning: could not create ::view for frame.\n");
       return NULL;        // can't continue without a ::view
@@ -613,4 +646,21 @@ document * view::get_document() const
     return NULL;
  }
 
- 
+void view::collaborate(::ca::job * pjob)
+{
+   {
+      ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
+      if(puserjob != NULL)
+      {
+         puserjob->m_pview = this;
+      }
+   }
+}
+
+
+
+int view::get_total_page_count(::ca::job * pjob)
+{
+   UNREFERENCED_PARAMETER(pjob);
+   return 1;
+}

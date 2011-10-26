@@ -4,12 +4,18 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca combo_box : 
+   class CLASS_DECL_ca combo_box :
       virtual public ::user::combo_box
    {
    public:
+
+
+
       combo_box();
-      virtual BOOL create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID);
+      virtual ~combo_box();
+
+
+      virtual bool create(::user::interaction* puiParent, id id);
 
       int get_count();
       int get_cur_sel();
@@ -72,15 +78,13 @@ namespace userbase
       void Paste();
 
    // Overridables (must override draw, measure and compare for owner draw)
+#ifdef WINDOWS
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
       virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
       virtual int CompareItem(LPCOMPAREITEMSTRUCT lpCompareItemStruct);
       virtual void DeleteItem(LPDELETEITEMSTRUCT lpDeleteItemStruct);
+#endif
 
-   // Implementation
-   public:
-      virtual ~combo_box();
-   protected:
       virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
    };
 

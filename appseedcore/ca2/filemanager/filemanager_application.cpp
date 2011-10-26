@@ -68,14 +68,9 @@ namespace filemanager
    }
  
 
-   void application::request(var & varFile, var & varRequest)
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
-      ::ca8::application::request(varFile, varRequest);
-   }
-
-   void application::on_request(var & varFile, var & varRequest)
-   {
-      FileManagerCallbackInterface::on_request(varFile, varRequest);
+      FileManagerCallbackInterface::on_request(pcreatecontext);
    }
 
    FileManagerTemplate * application::GetStdFileManagerTemplate(void)
@@ -90,39 +85,41 @@ namespace filemanager
 
    void application::InitializeFileManager(const char * pszMatter)
    {
+      if(is_system())
+      {
+         System.factory().creatable_small < ::filemanager::document > ();
+         System.factory().creatable_small < FileManagerChildFrame > ();
+         System.factory().creatable_small < FileManagerAView > ();
+         System.factory().creatable_small < FileManagerPathView > ();
+         System.factory().creatable_small < FileManagerSaveAsView > ();
+         System.factory().creatable_small < FileManagerLeftView > ();
+         System.factory().creatable_small < FileManagerView > ();
+         System.factory().creatable_small < ::filemanager::document > ();
+         System.factory().creatable_small < filemanager::SimpleFileListView > ();
+         System.factory().creatable_small < filemanager::SimpleFolderTreeView > ();
+         System.factory().creatable_small < filemanager::SimplePreview > ();
+         System.factory().creatable_small < FileManagerMainFrame > ();
+         System.factory().creatable_small < FileManagerTabView > ();
+         System.factory().creatable_small < file_manager_form_document > ();
+         System.factory().creatable_small < file_manager_form_child_frame > ();
+         System.factory().creatable_small < file_manager_form_view > ();
+         System.factory().creatable_small < folder_selection_list_view > ();
+         System.factory().creatable_small < folder_list_view > ();
+         System.factory().creatable_small < file_manager_operation_document > ();
+         System.factory().creatable_small < file_manager_operation_child_frame > ();
+         System.factory().creatable_small < file_manager_operation_view > ();
+         System.factory().creatable_small < file_manager_operation_info_view > ();
+         System.factory().creatable_small < file_manager_operation_list_view > ();
 
-      System.factory().creatable_small < ::filemanager::document > ();
-      System.factory().creatable_small < FileManagerChildFrame > ();
-      System.factory().creatable_small < FileManagerAView > ();
-      System.factory().creatable_small < FileManagerPathView > ();
-      System.factory().creatable_small < FileManagerSaveAsView > ();
-      System.factory().creatable_small < FileManagerLeftView > ();
-      System.factory().creatable_small < FileManagerView > ();
-      System.factory().creatable_small < ::filemanager::document > ();
-      System.factory().creatable_small < filemanager::SimpleFileListView > ();
-      System.factory().creatable_small < filemanager::SimpleFolderTreeView > ();
-      System.factory().creatable_small < filemanager::SimplePreview > ();
-      System.factory().creatable_small < FileManagerMainFrame > ();
-      System.factory().creatable_small < FileManagerTabView > ();
-      System.factory().creatable_small < file_manager_form_document > ();
-      System.factory().creatable_small < file_manager_form_child_frame > ();
-      System.factory().creatable_small < file_manager_form_view > ();
-      System.factory().creatable_small < folder_selection_list_view > ();
-      System.factory().creatable_small < folder_list_view > ();
-      System.factory().creatable_small < file_manager_operation_document > ();
-      System.factory().creatable_small < file_manager_operation_child_frame > ();
-      System.factory().creatable_small < file_manager_operation_view > ();
-      System.factory().creatable_small < file_manager_operation_info_view > ();
-      System.factory().creatable_small < file_manager_operation_list_view > ();
 
-
-      System.factory().creatable_small < ::filemanager::fs::simple::view > ();
-      System.factory().creatable_small < ::filemanager::fs::simple::tree_view > ();
-      System.factory().creatable_small < ::filemanager::fs::simple::list_view > ();
+         System.factory().creatable_small < ::filemanager::fs::simple::view > ();
+         System.factory().creatable_small < ::filemanager::fs::simple::tree_view > ();
+         System.factory().creatable_small < ::filemanager::fs::simple::list_view > ();
+      }
 
 
       m_ptemplateStd = new FileManagerTemplate(this);
-      shellimageset().initialize(this);
+      shellimageset().initialize();
       m_ptemplateStd->Initialize(this, 0, pszMatter);
 
       m_ptemplateFs = new FileManagerTemplate(this);
@@ -131,42 +128,35 @@ namespace filemanager
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          pszMatter,
-         &typeid(file_manager_form_document),
-         &typeid(file_manager_form_child_frame),
-         &typeid(file_manager_form_view));
+         ::ca::get_type_info < file_manager_form_document > (),
+         ::ca::get_type_info < file_manager_form_child_frame > (),
+         ::ca::get_type_info < file_manager_form_view > ());
 
       m_ptemplateOperation = new ::userbase::single_document_template(
          this,
          pszMatter,
-         &typeid(file_manager_operation_document),
-         &typeid(file_manager_operation_child_frame),
-         &typeid(file_manager_operation_view));
+         ::ca::get_type_info < file_manager_operation_document > (),
+         ::ca::get_type_info < file_manager_operation_child_frame > (),
+         ::ca::get_type_info < file_manager_operation_view > ());
    }
 
 
 
-   void application::OnFileManagerOpenFile(
-      ::filemanager::data * pdata,
-      ::fs::item_array & itema)
+   void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
-      item_action * pitemaction = dynamic_cast 
-         < item_action * > (this);
+
+      item_action * pitemaction = dynamic_cast < item_action * > (this);
       if(pitemaction != NULL)
       {
          if(pitemaction->file_manager_open_file(pdata, itema))
             return;
       }
-   
-      if(itema.get_size() > 0)
-      {
-         ::ShellExecuteW(
-            NULL, 
-            L"open", 
-            gen::international::utf8_to_unicode(itema[0].m_strPath),
-            NULL,
-            gen::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
-            SW_SHOW);
-      }
+
+
+      ::ca::create_context_sp cc(get_app());
+      cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
+      request(cc);
+
    }
 
 
@@ -178,7 +168,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);
       ASSERT(bOpenFileDialog == FALSE);
-      ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_ptemplateStd->open(this, true, true));
+      ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_ptemplateStd->open(this));
       FileManagerTabView * pview = pdoc->get_typed_view < FileManagerTabView >();
       HWND hwndDesktop = ::GetDesktopWindow();
       rect rectOpen;
@@ -204,7 +194,7 @@ namespace filemanager
       strId.Format("::filemanager::document(%s)", GetStdFileManagerTemplate()->m_strDISection);
       database::id dataid = strId;
       string strPath;
-      if(data_get(dataid, "InitialBrowsePath", ::ca::system::idEmpty, strPath))
+      if(data_get(dataid, "InitialBrowsePath", ::radix::system::idEmpty, strPath))
       {
          return strPath;
       }
@@ -216,7 +206,7 @@ namespace filemanager
       {
          strPath = Application.dir().userdata();
       }
-      if(data_set(dataid, "InitialBrowsePath", ::ca::system::idEmpty, strPath))
+      if(data_set(dataid, "InitialBrowsePath", ::radix::system::idEmpty, strPath))
       {
          return strPath;
       }

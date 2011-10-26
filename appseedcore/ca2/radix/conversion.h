@@ -1,18 +1,20 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #ifndef __AFXCONV_H__
 #define __AFXCONV_H__
 
+#ifdef _WINDOWS
 #ifndef _OBJBASE_H_
 #include <objbase.h>
+#endif
 #endif
 
 #pragma once

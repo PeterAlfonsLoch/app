@@ -6,7 +6,7 @@ namespace user
    keyboard_layout_id::keyboard_layout_id()
    {
    }
-   
+
    keyboard_layout_id::keyboard_layout_id(const keyboard_layout_id & id)
    {
       operator = (id);
@@ -78,6 +78,10 @@ namespace user
 
    bool keyboard_layout::load(const char * pszPath)
    {
+      int iMap;
+      int iChar;
+      int iKey;
+      int iCode;
       string str = Application.file().as_string(pszPath);
       if(str.is_empty())
          return false;
@@ -89,30 +93,43 @@ namespace user
          ::xml::node * pnode = node.child_at(i);
          if(pnode->m_strName.CompareNoCase("item") == 0)
          {
-            string str = pnode->attr("char");
+            string strKey = pnode->attr("key");
+            string strCode = pnode->attr("code");
+            string strChar = pnode->attr("char");
             string strValue = pnode->attr("value");
             string strEscape = pnode->attr("escape");
-            int iCode = 0;
+            iMap = 0;
             if(pnode->attr("shift").get_integer() == 1)
             {
-               iCode |= 0x80000000;
+               iMap |= 0x80000000;
             }
-            if(str.has_char())
+            if(strChar.has_char())
             {
-               iCode |= (int)(char)(str[0]);
+               iChar = iMap | (int)(unsigned char)(char)(strChar[0]);
                if(strValue.has_char())
                {
-                  m_mapKey[iCode] = strValue;
+                  m_mapChar[iChar] = strValue;
                }
                else
                {
-                  m_mapKey[iCode] = "escape=" + strEscape;
+                  m_mapChar[iChar] = "escape=" + strEscape;
                }
             }
-            else
+            if(strKey.has_char())
             {
-               str = pnode->attr("code");
-               iCode |= (int)(atoi(str));
+               iKey = iMap | (int)(atoi(strKey));
+               if(strValue.has_char())
+               {
+                  m_mapKey[iKey] = strValue;
+               }
+               else
+               {
+                  m_mapKey[iKey] = "escape=" + strEscape;
+               }
+            }
+            if(strCode.has_char())
+            {
+               iCode = iMap | (int)(atoi(strCode));
                if(strValue.has_char())
                {
                   m_mapCode[iCode] = strValue;
@@ -140,7 +157,10 @@ namespace user
       {
          if(!m_mapKey.Lookup(iKey, str))
          {
-            str = (char) (iKey & 0xff);
+            if(!m_mapChar.Lookup(iKey, str))
+            {
+               str = (char) (iKey & 0xff);
+            }
          }
       }
       if(gen::str::begins_eat(str, "escape="))

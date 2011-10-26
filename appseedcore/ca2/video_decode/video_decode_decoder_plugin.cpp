@@ -6,15 +6,10 @@ namespace video_decode
    decoder_plugin::decoder_plugin(::ca::application * papp)
    : ca(papp)
    {
-      m_hinstance = NULL;
    }
 
    decoder_plugin::~decoder_plugin(void)
    {
-      if(m_hinstance != NULL)
-      {
-         ::FreeLibrary(m_hinstance);
-      }
    }
 
 
@@ -23,7 +18,7 @@ namespace video_decode
       video_decode::decoder * pdecoder = m_lpfnNewDecoder(get_app());
       if(pdecoder == NULL)
       {
-         ::FreeLibrary(m_hinstance);
+         m_library.close();
          return NULL;
       }
       return pdecoder;
@@ -36,29 +31,27 @@ namespace video_decode
 
    bool decoder_plugin::Load(const char * pszTitle)
    {
-      HINSTANCE hinstance = ::LoadLibrary(pszTitle);
-      if(hinstance == NULL)
+      if(!m_library.open(pszTitle))
       {
          DWORD dwLastError = GetLastError();
          TRACE("LoadLibrary failed to open library %s %d %s", pszTitle, dwLastError, win::error_message(dwLastError));
          return false;
       }
-      m_lpfnNewDecoder = (video_decode::decoder *( * )(::ca::application * ))::GetProcAddress(hinstance, "NewDecoderInterface");
+      m_lpfnNewDecoder = m_library.get < video_decode::decoder *( * )(::ca::application * ) > ("video_decode_new_decoder");
       if(m_lpfnNewDecoder == NULL)
       {
-         ::FreeLibrary(hinstance);
+         m_library.close();
          TRACE("NewDecoderInterface function not found in library %s", pszTitle);
          return false;
       }
-      m_lpfnDeleteDecoder = (void( * )(video_decode::decoder *))::GetProcAddress(hinstance, "DeleteDecoderInterface");
+      m_lpfnDeleteDecoder = m_library.get < void( * )(video_decode::decoder *) >("video_decode_delete_decoder");
       if(m_lpfnDeleteDecoder == NULL)
       {
-         ::FreeLibrary(hinstance);
+         m_library.close();
          TRACE("DeleteDecoder function not found in library %s", pszTitle);
          return false;
       }
 
-      m_hinstance = hinstance;
       m_strTitle = pszTitle;
 
       return true;

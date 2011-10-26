@@ -34,7 +34,7 @@ namespace libepp
 
    /// EPP Hello Class
    class Hello :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:  
       /// Constructor

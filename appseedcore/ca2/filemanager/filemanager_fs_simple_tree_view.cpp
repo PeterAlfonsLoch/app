@@ -15,19 +15,14 @@ namespace filemanager
             ::userbase::view(papp),
             ::user::scroll_view(papp),
             ::user::tree(papp),
-            m_scrollbarVert(papp),
-            m_scrollbarHorz(papp),
             ex1::tree(papp)
          {
-
-            m_pscrollbarVert  = &m_scrollbarVert;
-            m_pscrollbarHorz  = &m_scrollbarHorz;
 
             m_etranslucency = TranslucencyPresent;
 
 
-            m_pdata = new ex1::simple_tree_data(get_app());
-            if(!m_pdata->initialize())
+            ::ca::data_container::m_spdata = new ex1::simple_tree_data(get_app());
+            if(!::ca::data_container::m_spdata->initialize_data())
                throw simple_exception();
          }
 
@@ -106,7 +101,7 @@ namespace filemanager
                {
                   folder.m_etype = FolderTypeArtist;
                }
-               else 
+               else
                {
                   // unknown folder type
                   ASSERT(FALSE);
@@ -155,7 +150,7 @@ namespace filemanager
                //     ptraRemove.remove_first(pdataitemChild);
                //}
 
-            
+
                m_foldera.add(folder);
                iNode++;
             }
@@ -183,9 +178,9 @@ namespace filemanager
 
          int FolderArray::FindAbsolute(__int64 iFolder)
          {
-            for(int i = 0; i < get_size(); i++)
+            for(int i = 0; i < this->get_size(); i++)
             {
-               if(element_at(i).m_iFolder == iFolder)
+               if(this->element_at(i).m_iFolder == iFolder)
                   return i;
             }
             return -1;
@@ -212,11 +207,10 @@ namespace filemanager
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
-         void tree_view::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+         void tree_view::install_message_handling(::user::win::message::dispatch * pdispatch)
          {
-            ::userbase::view::_001InstallMessageHandling(pdispatch);
-            ::user::tree::_001InstallMessageHandling(pdispatch);
-            InstallBuffering(this);
+            ::userbase::view::install_message_handling(pdispatch);
+            ::user::tree::install_message_handling(pdispatch);
          }
 
 

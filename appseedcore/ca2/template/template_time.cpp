@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 
 
+const char * const szInvalidDateTime = "Invalid DateTime";
+const char * const szInvalidDateTimeSpan = "Invalid DateTimeSpan";
+
 
 date_span::date_span()
 {
@@ -139,8 +142,8 @@ string time_span::Format(const char * pFormat) const
       AtlThrow( E_INVALIDARG );
 
    string strBuffer;
-   string hmsFormats [_CTIMESPANFORMATS] = {"%c","%02ld","%d"};
-   string dayFormats [_CTIMESPANFORMATS] = {"%c","%I64d","%I64d"};
+  // string hmsFormats [_CTIMESPANFORMATS] = {"%c","%02ld","%d"};
+//   string dayFormats [_CTIMESPANFORMATS] = {"%c","%I64d","%I64d"};
    strBuffer.Preallocate(maxTimeBufferSize);
    char ch;
 
@@ -326,7 +329,7 @@ time::time(const FILETIME& fileTime, int nDST)
    if (!FileTimeToSystemTime(&localTime, &sysTime))
    {
       m_time = 0;
-      AtlThrow(E_INVALIDARG);      
+      AtlThrow(E_INVALIDARG);
       return;
    }
 
@@ -475,12 +478,12 @@ struct tm* time::GetGmtTm(struct tm* ptm) const
    {
       struct tm * ptmTemp;
       ptmTemp = _gmtime64(&m_time);
-      
+
       if(ptmTemp == NULL)
          return NULL;
-      
+
       *ptm = *ptmTemp;
-      
+
       return ptm;
    }
    else
@@ -551,16 +554,16 @@ __time64_t time::get_time() const throw()
 }
 
 int time::GetYear() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
    ptm = GetLocalTm(&ttm);
-   return ptm ? (ptm->tm_year) + 1900 : 0 ; 
+   return ptm ? (ptm->tm_year) + 1900 : 0 ;
 }
 
 int time::GetMonth() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
@@ -574,7 +577,7 @@ int time::GetDay() const
    struct tm * ptm;
 
    ptm = GetLocalTm(&ttm);
-   return ptm ? ptm->tm_mday : 0 ; 
+   return ptm ? ptm->tm_mday : 0 ;
 }
 
 int time::GetHour() const
@@ -583,7 +586,7 @@ int time::GetHour() const
    struct tm * ptm;
 
    ptm = GetLocalTm(&ttm);
-   return ptm ? ptm->tm_hour : -1 ; 
+   return ptm ? ptm->tm_hour : -1 ;
 }
 
 int time::GetMinute() const
@@ -592,11 +595,11 @@ int time::GetMinute() const
    struct tm * ptm;
 
    ptm = GetLocalTm(&ttm);
-   return ptm ? ptm->tm_min : -1 ; 
+   return ptm ? ptm->tm_min : -1 ;
 }
 
 int time::GetSecond() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
@@ -605,7 +608,7 @@ int time::GetSecond() const
 }
 
 int time::GetDayOfWeek() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
@@ -614,16 +617,16 @@ int time::GetDayOfWeek() const
 }
 
 int time::GetGmtYear() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
    ptm = GetGmtTm(&ttm);
-   return ptm ? (ptm->tm_year) + 1900 : 0 ; 
+   return ptm ? (ptm->tm_year) + 1900 : 0 ;
 }
 
 int time::GetGmtMonth() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
@@ -637,7 +640,7 @@ int time::GetGmtDay() const
    struct tm * ptm;
 
    ptm = GetGmtTm(&ttm);
-   return ptm ? ptm->tm_mday : 0 ; 
+   return ptm ? ptm->tm_mday : 0 ;
 }
 
 int time::GetGmtHour() const
@@ -646,7 +649,7 @@ int time::GetGmtHour() const
    struct tm * ptm;
 
    ptm = GetGmtTm(&ttm);
-   return ptm ? ptm->tm_hour : -1 ; 
+   return ptm ? ptm->tm_hour : -1 ;
 }
 
 int time::GetGmtMinute() const
@@ -655,11 +658,11 @@ int time::GetGmtMinute() const
    struct tm * ptm;
 
    ptm = GetGmtTm(&ttm);
-   return ptm ? ptm->tm_min : -1 ; 
+   return ptm ? ptm->tm_min : -1 ;
 }
 
 int time::GetGmtSecond() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 
@@ -668,7 +671,7 @@ int time::GetGmtSecond() const
 }
 
 int time::GetGmtDayOfWeek() const
-{ 
+{
    struct tm ttm;
    struct tm * ptm;
 

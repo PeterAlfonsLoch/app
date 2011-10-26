@@ -57,6 +57,12 @@ namespace audio_decode_wave
       return true;
    }
 
+   bool decoder::_DecoderFinalize()
+   {
+      gen::release(m_inputfile.m_pfile.m_p);
+      return true;
+   }
+
    void decoder::DecoderMoveNext()
    {
    //   ReadNextFrame();
@@ -70,7 +76,7 @@ namespace audio_decode_wave
    }
    LPBYTE decoder::DecoderGetBuffer()
    {
-      return GetMemoryFile().GetAllocation();
+      return GetMemoryFile().get_data();
    }
    int decoder::DecoderGetBufferSize()
    {
@@ -95,7 +101,7 @@ namespace audio_decode_wave
       return 16;
    }
 
-   int decoder::_DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize)
+   ::primitive::memory_size decoder::_DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize)
    {
       if(_DecoderEOF())
          return 0;
@@ -118,7 +124,7 @@ namespace audio_decode_wave
 
          uiSize = min(uiRemain, GetMemoryFile().get_size());
 
-         uiSize = GetMemoryFile().RemoveBegin(&((unsigned char *)lpvoidBuffer)[uiPointer], uiSize);
+         uiSize = GetMemoryFile().remove_begin(&((unsigned char *)lpvoidBuffer)[uiPointer], uiSize);
 
          uiRemain -= uiSize;
          uiPointer += uiSize;
@@ -169,7 +175,7 @@ namespace audio_decode_wave
       m_bEof            = false;
       m_iReadPointer    = 0;
       m_memfile.Truncate(0);
-      int iLength = m_inputfile.m_pfile->get_length();
+      file_size iLength = m_inputfile.m_pfile->get_length();
       int iSampleSize = DecoderGetBitsPerSample() * DecoderGetChannelCount() / 8;
       m_inputfile.m_pfile->seek(
          m_inputfile.m_iStartOfData + 

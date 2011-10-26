@@ -1,20 +1,20 @@
 #include "StdAfx.h"
 
-MidiPlayerInterface::MidiPlayerInterface(::ca::application * papp) :
+midi_player_interface::midi_player_interface(::ca::application * papp) :
    ca(papp),
-   MidiPlayerCallback(papp)
+   midi_player_callback(papp)
 {
    m_pcentral = NULL;
    m_pmidiplayer = NULL;
 }
 
-MidiPlayerInterface::~MidiPlayerInterface()
+midi_player_interface::~midi_player_interface()
 {
 
 }
 
 
-bool MidiPlayerInterface::Initialize(midi_central * pcentral)
+bool midi_player_interface::Initialize(midi_central * pcentral)
 {
    
    if(!initialize())
@@ -26,7 +26,7 @@ bool MidiPlayerInterface::Initialize(midi_central * pcentral)
 }
 
 
-bool MidiPlayerInterface::Finalize()
+bool midi_player_interface::Finalize()
 {
    
    if(!finalize())
@@ -36,11 +36,11 @@ bool MidiPlayerInterface::Finalize()
 }
 
 
-bool MidiPlayerInterface::OpenMidiPlayer()
+bool midi_player_interface::OpenMidiPlayer()
 {
    try
    {
-      m_pmidiplayer = AfxBeginThread < MidiPlayer >(
+      m_pmidiplayer = AfxBeginThread < midi_player >(
          get_app(),
          THREAD_PRIORITY_NORMAL,
          0,
@@ -69,11 +69,11 @@ bool MidiPlayerInterface::OpenMidiPlayer()
       return false;
    }
    m_pmidiplayer->ResumeThread();
-   m_pmidiplayer->m_evInitialized.Lock();
+   m_pmidiplayer->m_evInitialized.wait();
    return true;
 }
 
-bool MidiPlayerInterface::OnOpenMidiPlayer()
+bool midi_player_interface::OnOpenMidiPlayer()
 {
    GetMidiPlayer()->SetInterface(this);
    return true;
@@ -81,9 +81,9 @@ bool MidiPlayerInterface::OnOpenMidiPlayer()
 
 
 // Event handling
-void MidiPlayerInterface::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEvent * pdata)
+void midi_player_interface::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEvent * pdata)
 {
-   MidiPlayerCallback::OnMidiPlayerNotifyEvent(pdata);
+   midi_player_callback::OnMidiPlayerNotifyEvent(pdata);
    switch(pdata->m_enotifyevent)
    {
    case ::mus::midi::player::NotifyEventSetSequence:
@@ -93,14 +93,14 @@ void MidiPlayerInterface::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEve
 
 }
 
-::mus::midi::sequence & MidiPlayerInterface::GetMidiSequence()
+::mus::midi::sequence & midi_player_interface::GetMidiSequence()
 {
    return *((::mus::midi::sequence *)NULL);
 }
 
-void MidiPlayerInterface::MusicTempoMinus()
+void midi_player_interface::MusicTempoMinus()
 {
-   MidiPlayer * pplayer = GetMidiPlayer();
+   midi_player * pplayer = GetMidiPlayer();
    ::mus::midi::sequence & sequence = GetMidiSequence();
    int iTempoShift = sequence.GetTempoShift() - 1;
    if(iTempoShift >= -10 || iTempoShift <= 10)
@@ -110,15 +110,15 @@ void MidiPlayerInterface::MusicTempoMinus()
    }
 }
 
-void MidiPlayerInterface::MusicTempoReset()
+void midi_player_interface::MusicTempoReset()
 {
-   MidiPlayer * pplayer = GetMidiPlayer();
+   midi_player * pplayer = GetMidiPlayer();
    pplayer->SetTempoShift(0);
    OnChangeMidiPlayerTempoShift();
 }
 
 
-void MidiPlayerInterface::MusicTransposeMinusTone()
+void midi_player_interface::MusicTransposeMinusTone()
 {
     ::mus::midi::sequence & sequence = GetMidiSequence();
     int iKeyShift = sequence.GetKeyShift() - 2;
@@ -129,7 +129,7 @@ void MidiPlayerInterface::MusicTransposeMinusTone()
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTempoReset(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTempoReset(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -144,9 +144,9 @@ void MidiPlayerInterface::MusicUpdateTempoReset(cmd_ui *pcmdui)
     }
 }
 
-void MidiPlayerInterface::MusicTempoPlus()
+void midi_player_interface::MusicTempoPlus()
 {
-   MidiPlayer * pplayer = GetMidiPlayer();
+   midi_player * pplayer = GetMidiPlayer();
     ::mus::midi::sequence & sequence = GetMidiSequence();
     int iTempoShift = sequence.GetTempoShift() + 1;
     if(iTempoShift >= -10 || iTempoShift <= 10)
@@ -156,7 +156,7 @@ void MidiPlayerInterface::MusicTempoPlus()
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTempoPlus(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTempoPlus(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -170,7 +170,7 @@ void MidiPlayerInterface::MusicUpdateTempoPlus(cmd_ui *pcmdui)
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTempoMinus(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTempoMinus(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -185,7 +185,7 @@ void MidiPlayerInterface::MusicUpdateTempoMinus(cmd_ui *pcmdui)
 
 }
 
-void MidiPlayerInterface::MusicTransposeMinus()
+void midi_player_interface::MusicTransposeMinus()
 {
     ::mus::midi::sequence & sequence = GetMidiSequence();
     int iKeyShift = sequence.GetKeyShift() - 1;
@@ -197,7 +197,7 @@ void MidiPlayerInterface::MusicTransposeMinus()
 
 }
 
-void MidiPlayerInterface::MusicTransposePlus()
+void midi_player_interface::MusicTransposePlus()
 {
     ::mus::midi::sequence & sequence = GetMidiSequence();
     int iKeyShift = sequence.GetKeyShift() + 1;
@@ -208,14 +208,14 @@ void MidiPlayerInterface::MusicTransposePlus()
     }
 }
 
-void MidiPlayerInterface::MusicTransposeReset()
+void midi_player_interface::MusicTransposeReset()
 {
     ::mus::midi::sequence & sequence = GetMidiSequence();
     sequence.SetKeyShift(0);
    OnChangeMidiPlayerTranspose();
 }
 
-void MidiPlayerInterface::MusicTransposePlusTone()
+void midi_player_interface::MusicTransposePlusTone()
 {
     ::mus::midi::sequence & sequence = GetMidiSequence();
     int iKeyShift = sequence.GetKeyShift() + 2;
@@ -226,7 +226,7 @@ void MidiPlayerInterface::MusicTransposePlusTone()
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTransposeMinus(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTransposeMinus(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -240,7 +240,7 @@ void MidiPlayerInterface::MusicUpdateTransposeMinus(cmd_ui *pcmdui)
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTransposePlus(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTransposePlus(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -254,7 +254,7 @@ void MidiPlayerInterface::MusicUpdateTransposePlus(cmd_ui *pcmdui)
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTransposeReset(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTransposeReset(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -268,7 +268,7 @@ void MidiPlayerInterface::MusicUpdateTransposeReset(cmd_ui *pcmdui)
     }
 }
 
-void MidiPlayerInterface::MusicUpdateTransposePlusTone(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTransposePlusTone(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -283,7 +283,7 @@ void MidiPlayerInterface::MusicUpdateTransposePlusTone(cmd_ui *pcmdui)
 
 }
 
-void MidiPlayerInterface::MusicUpdateTransposeMinusTone(cmd_ui *pcmdui)
+void midi_player_interface::MusicUpdateTransposeMinusTone(cmd_ui *pcmdui)
 {
     if(GetMidiPlayer())
     {
@@ -299,18 +299,18 @@ void MidiPlayerInterface::MusicUpdateTransposeMinusTone(cmd_ui *pcmdui)
 
 
 
-void MidiPlayerInterface::OnChangeMidiPlayerTempoShift()
+void midi_player_interface::OnChangeMidiPlayerTempoShift()
 {
 
 }
 
-void MidiPlayerInterface::OnChangeMidiPlayerTranspose()
+void midi_player_interface::OnChangeMidiPlayerTranspose()
 {
 
 }
 
 
-MidiPlayer * MidiPlayerInterface::GetMidiPlayer()
+midi_player * midi_player_interface::GetMidiPlayer()
 {
    return m_pmidiplayer;
 }

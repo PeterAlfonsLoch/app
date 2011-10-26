@@ -71,7 +71,7 @@ namespace user
          return;
 
       SetTimer(1, 5000, NULL);
-      ::ca::window * pwnd = m_pwnd;
+      ::user::interaction * pwnd = m_pwnd;
 
       rect rect;
       ::ca::graphics * pdc = pwnd->GetDC();
@@ -317,7 +317,7 @@ namespace user
    // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::create(::ca::window * pwnd)
+   bool tool_tip_window::create(::user::interaction * pwnd, id id)
    {
       m_pwnd = pwnd;
       if(m_font->get_os_data() != NULL)
@@ -329,7 +329,7 @@ namespace user
          WS_EX_TOOLWINDOW,
          System.RegisterWndClass(0, 0, 0, 0),
          NULL,
-         WS_POPUP, 0, 0, 0, 0, NULL, id()) != 0;
+         WS_POPUP, 0, 0, 0, 0, NULL, id) != 0;
    }
 
    ///////////////////////////////////////////////////////////

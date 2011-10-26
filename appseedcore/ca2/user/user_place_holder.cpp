@@ -13,9 +13,9 @@ namespace user
    {
    }
 
-   void place_holder::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void place_holder::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::user::control::_001InstallMessageHandling(pdispatch);
+      ::user::control::install_message_handling(pdispatch);
    }
 
    bool place_holder::can_merge(::user::interaction * pui)
@@ -41,13 +41,15 @@ namespace user
    {
       return m_uiptraHold.contains(pui);
    }
-      
+
    bool place_holder::hold(::user::interaction * pui)
    {
       if(pui == NULL)
       {
          return false;
       }
+      if(m_uiptraHold.contains(pui))
+         return true;
       for(int i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
       {
          System.hold(m_uiptraHold[i]);
@@ -97,9 +99,9 @@ namespace user
 
    }
 
-   bool place_holder::create(place_holder_container * pcontainer)
+   bool place_holder::create(place_holder_container * pcontainer, id id)
    {
-      return ::database::user::interaction::create(NULL, NULL, AFX_WS_DEFAULT_VIEW, rect(0,0,0,0), pcontainer, 100 + pcontainer->m_holdera.get_count());
+      return ::database::user::interaction::create(NULL, NULL, AFX_WS_DEFAULT_VIEW, rect(0,0,0,0), pcontainer, id) != FALSE;
    }
 
    interaction * place_holder::get_ui()
@@ -107,6 +109,52 @@ namespace user
       if(m_uiptraHold.get_count() <= 0)
          return NULL;
       return m_uiptraHold[0];
+   }
+
+   int place_holder_ptra::hold(::user::interaction * pui)
+   {
+
+      int count = 0;
+
+      for(int i = 0; i < this->get_count(); i++)
+      {
+         try
+         {
+            if(this->element_at(i)->hold(pui))
+            {
+               count++;
+            }
+         }
+         catch(...)
+         {
+         }
+      }
+
+      return count;
+
+   }
+
+   int place_holder_ptra::unhold(::user::interaction * pui)
+   {
+
+      int count = 0;
+
+      for(int i = 0; i < this->get_count(); i++)
+      {
+         try
+         {
+            if(this->element_at(i)->unhold(pui))
+            {
+               count++;
+            }
+         }
+         catch(...)
+         {
+         }
+      }
+
+      return count;
+
    }
 
 

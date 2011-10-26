@@ -60,9 +60,15 @@ extern const CHAR _vfxWndFrameOrView[];
 namespace userbase
 {
 
-   class tool_cmd_ui : public cmd_ui        // class private to this file !
+   class tool_cmd_ui : 
+      public cmd_ui        // class private to this file !
    {
    public: // re-implementations only
+
+
+      tool_cmd_ui(::ca::application * papp);
+      virtual ~tool_cmd_ui();
+
       virtual void Enable(BOOL bOn);
       virtual void SetCheck(int nCheck);
       virtual void SetText(const char * lpszText);

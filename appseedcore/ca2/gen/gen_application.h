@@ -4,31 +4,37 @@
 namespace gen
 {
 
+
    namespace lemon
    {
+
+
       class array;
-   }
+
+
+   } // namespace lemon
+
 
    class CLASS_DECL_ca application :
       public ex1::application,
       virtual public command_target_interface
    {
    public:
-      
-      
-      class base64               m_base64;
-      signal                     m_signalAppLanguageChange;
-      class gen::command_line *  m_pcommandline;
-      math::math *               m_pmath;
-      geometry::geometry *       m_pgeometry;
-      class savings *            m_psavings;
-      string                     m_strCa2ModulePath;
-      string                     m_strCa2ModuleFolder;
-      string                     m_strModulePath;
-      string                     m_strModuleFolder;
-      string                     m_strHelpFilePath;
 
-      
+
+      class base64                        m_base64;
+      signal                              m_signalAppLanguageChange;
+      math::math *                        m_pmath;
+      geometry::geometry *                m_pgeometry;
+      class savings *                     m_psavings;
+      string                              m_strCa2ModulePath;
+      string                              m_strCa2ModuleFolder;
+      string                              m_strModulePath;
+      string                              m_strModuleFolder;
+      string                              m_strHelpFilePath;
+      ::gen::command_thread *             m_pcommandthread;
+
+
       application();
       virtual ~application();
 
@@ -37,7 +43,6 @@ namespace gen
       math::math & math();
       geometry::geometry & geometry();
       class savings & savings();
-      class command_line & command_line();
 
       lemon::array * m_plemonarray;
 
@@ -57,7 +62,9 @@ namespace gen
 
 
       void EnableModelessEx(BOOL bEnable);
+#ifdef WINDOWS
       HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
+#endif
       bool GetResourceData(UINT nID, const char * lcszType, primitive::memory & storage);
       virtual string get_ca2_module_folder();
       virtual string get_ca2_module_file_path();
@@ -68,28 +75,44 @@ namespace gen
 
       static UINT   APPM_LANGUAGE;
       static WPARAM WPARAM_LANGUAGE_UPDATE;
-
+#ifdef WINDOWS
       virtual bool OnMessageWindowMessage(LPMSG lpmsg);
+#else
+      virtual bool OnMessageWindowMessage(XEvent * pev);
+#endif
 
       bool CreateFileFromRawResource(UINT nID, const char * lcszType, const char * lpcszFilePath);
       virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam);
-       
+
       virtual bool process_initialize();
-      virtual void on_process_initialize_command_line();
 
       virtual bool initialize_instance();
       virtual int exit_instance();
 
-      afx_msg void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
+      virtual bool verb();
+
+      void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
 
       virtual DECL_GEN_SIGNAL(OnAppLanguage)
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-         
+
 
       class base64 & base64();
 
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();
+
+      virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
+      virtual void memory_to_hex(string & strHex, primitive::memory & memory);
+
+      // Wall-eeeeee aliases
+      ::gen::command_thread & command_central();
+      ::gen::command_thread & command();
+      ::gen::command_thread & guideline();
+      ::gen::command_thread & directrix();
+      ::gen::command_thread & axiom();
+      ::gen::command_thread & creation();
+
 
    };
 
@@ -104,10 +127,11 @@ namespace gen
 } // namespace gen
 
 
-CLASS_DECL_ca void __cdecl wparse_cmdline (
+/*CLASS_DECL_ca void __cdecl wparse_cmdline (
     WCHAR *cmdstart,
     WCHAR **argv,
     WCHAR *args,
     int *numargs,
     int *numchars
     );
+*/

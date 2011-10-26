@@ -18,6 +18,7 @@ bool PcreUtil::match(::user::str_context * pcontext, string_array & stra, const 
    for(int i = 0; i < straCandidate.get_count(); i++)
    {
       string strCandidate = straCandidate[i];
+      strCandidate.replace("-", "\\-");
       string strExp(pszExp);
       strExp.replace("%1", strCandidate);
       stringa straResult;
@@ -51,14 +52,16 @@ int PcreUtil::match(string_array & stra, const char * lpcsz, CRegExp * re, int i
       int iEnd     = matches.e[i];
       stra.add(str.Mid(iStart, iEnd - iStart));
    }
-   
+
    return bMatch;
 }
 
 int PcreUtil::match(string_array & stra, const char * lpcsz, const char * lpcszExp, bool bCaseInsensitive, int iSize)
 {
-   CRegExp * re = CompileExpression(lpcszExp, bCaseInsensitive);
-   return match(stra, lpcsz, re, iSize);
+   CRegExp * pre = CompileExpression(lpcszExp, bCaseInsensitive);
+   int i = match(stra, lpcsz, pre, iSize);
+   delete pre;
+   return i;
 }
 
 
@@ -71,7 +74,7 @@ bool PcreUtil::find(const char * lpsz, CRegExp * re, int iSubString, int & iStar
 
    string str;
    string strToken;
- 
+
    if(iSubString < 0)
       iSubString = 0;
 
@@ -96,7 +99,7 @@ bool PcreUtil::find(const char * lpsz, CRegExp * re, int iSubString, int & iStar
    iEnd     = matches.e[iSubString];
    str      = strSubject.Left(iEnd);
    iEnd     = str.get_length();
-      
+
    return true;
 }
 
@@ -108,23 +111,26 @@ CRegExp * PcreUtil::CompileExpression(const char * lpszExp, bool bCaseInsensitiv
 
 bool PcreUtil::find(const char * lpsz, const char * lpszExp, int iSubString, int & iStart, int & iEnd)
 {
-   CRegExp * re;
+   CRegExp * pre;
 
    string str;
 
    str = lpszExp;
 
-   re = CompileExpression(lpszExp, false);
+   pre = CompileExpression(lpszExp, false);
 
-   ASSERT(re != NULL);
-   if(re == NULL)
+   if(pre == NULL)
       return false;
 
-   return find(lpsz, re, iSubString, iStart, iEnd);
+   bool bOk = find(lpsz, pre, iSubString, iStart, iEnd);
+
+   delete pre;
+
+   return bOk;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// 
+//
 // Name: add_tokens
 //
 // Purpose:
@@ -133,27 +139,27 @@ bool PcreUtil::find(const char * lpsz, const char * lpszExp, int iSubString, int
 //
 // Output:
 // 'true' if successfull.
-// 
+//
 ///////////////////////////////////////////////////////////////////////////////
 bool PcreUtil::add_tokens(
-   string_array & stra, 
-   const char * lpszSubject, 
+   string_array & stra,
+   const char * lpszSubject,
    const char * lpszExpression,
    int iSubString /* =0 */)
 {
-   CRegExp * re;
+   CRegExp * pre;
 
    string str;
 
    str = lpszExpression;
 
-   re = CompileExpression(lpszExpression, false);
+   pre = CompileExpression(lpszExpression, false);
 
-   ASSERT(re != NULL);
-   if(re == NULL)
+   ASSERT(pre != NULL);
+   if(pre == NULL)
       return false;
 
-   re->setPositionMoves(true);
+   pre->setPositionMoves(true);
 
    string strSubject;
 
@@ -172,19 +178,21 @@ bool PcreUtil::add_tokens(
    while(end < strlen(lpszSubject))
    {
       SMatches matches;
-      if(!re->parse(&lpszSubject[find], &matches))
+      if(!pre->parse(&lpszSubject[find], &matches))
          break;
       start   = matches.s[iSubString] + find;
       end     = matches.e[iSubString] + find;
-      
+
       strToken = strSubject.Mid(start, end - start);
 
       strToken = strToken;
 
-      stra.add(strToken);      
+      stra.add(strToken);
       find = end + 1;
    }
-//   strToken = strSubject.Mid(end, strSubject.get_length() - end);
+
+   delete pre;
+
    return true;
 }
 
@@ -197,7 +205,7 @@ bool PcreUtil::match(const char * lpsz, CRegExp * re)
 
    string str;
    string strToken;
- 
+
    SMatches matches;
 
    return re->parse(strSubject, &matches);
@@ -209,9 +217,10 @@ void PcreUtil::Format(string & str, string_array & wstraArg)
    for(int i = 0; i < wstraArg.get_size(); i++)
    {
       wstrExp.Format("/(%%%d)(\\d?!|$)/", i);
-      CRegExp * re = CompileExpression(wstrExp, false);
-      re->setPositionMoves(true);
-      ReplaceAll(str, re, 1, wstraArg[i]);
+      CRegExp * pre = CompileExpression(wstrExp, false);
+      pre->setPositionMoves(true);
+      ReplaceAll(str, pre, 1, wstraArg[i]);
+      delete pre;
    }
 }
 

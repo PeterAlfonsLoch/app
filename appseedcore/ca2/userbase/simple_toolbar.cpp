@@ -41,7 +41,7 @@ simple_toolbar::simple_toolbar(::ca::application * papp) :
    ca(papp),
    m_dibDraft(papp)
 {
-   m_iHover = 0x80000000;   
+   m_iHover = 0x80000000;
 
 
 
@@ -71,9 +71,9 @@ simple_toolbar::~simple_toolbar()
 
 }
 
-void simple_toolbar::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+void simple_toolbar::install_message_handling(::user::win::message::dispatch * pdispatch)
 {
-   ::userbase::control_bar::_001InstallMessageHandling(pdispatch);
+   ::userbase::control_bar::install_message_handling(pdispatch);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()
    IGUI_WIN_MSG_LINK(WM_CREATE         , pdispatch, this, &simple_toolbar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_toolbar::_001OnMouseMove);
@@ -109,7 +109,9 @@ BOOL simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
 
    dwStyle &= ~CBRS_ALL;
    dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
-   dwStyle |= dwCtrlStyle;
+   dwStyle |= dwCtrlStyle & 0xffff;
+
+   m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
    // initialize common controls
    //VERIFY(AfxDeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG));
@@ -119,7 +121,7 @@ BOOL simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
    //ASSERT(_afxDropDownWidth != -1);
 
    // create the HWND
-   class rect rect; 
+   class rect rect;
    rect.null();
    if (!::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID))
       return FALSE;
@@ -188,10 +190,10 @@ size simple_toolbar::CalcSimpleLayout()
       for (int i = 0; i < nCount; i++)
       {
          _001GetItemRect(i, rectItem);
-         rectSize.unite(rectSize, rectItem);   
+         rectSize.unite(rectSize, rectItem);
       }
-      sizeResult = rectSize.size();    
-        
+      sizeResult = rectSize.size();
+
       //delete[] m_itema;
    }
 
@@ -201,11 +203,6 @@ size simple_toolbar::CalcSimpleLayout()
    }
 
    return sizeResult;
-}
-
-void simple_toolbar::_001OnNcDraw(::ca::graphics *pdc)
-{
-   TransparentEraseNonClient(pdc);
 }
 
 void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
@@ -233,7 +230,7 @@ void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 }
 
 /*
-BOOL simple_toolbar::OnEraseBkgnd(::ca::graphics * pgraphics) 
+BOOL simple_toolbar::OnEraseBkgnd(::ca::graphics * pgraphics)
 {
    return true;
 }
@@ -247,7 +244,7 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
 
 void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
 {
-  
+
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);
 
    rect rectWindow;
@@ -319,8 +316,8 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
 
    //pdc->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0, SRCCOPY);
 
-   // 
-   
+   //
+
    // draw borders in non-client area
    DrawBorders(pdc, rectWindow);
 /*   pdc->FillSolidRect(
@@ -339,11 +336,11 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
 }
 
 
-void simple_toolbar::_001OnCreate(gen::signal_object * pobj) 
+void simple_toolbar::_001OnCreate(gen::signal_object * pobj)
 {
    if(pobj->previous())
       return;
-   
+
    m_dibDraft->create(20, 20);
 }
 
@@ -389,14 +386,6 @@ size simple_toolbar::CalcSize(int nCount)
    size sizeResult(0,0);
 
    int buttonx, buttony;
-   buttonx = m_sizeImage.cx 
-        + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
-        - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
-        + ITEMPADLEFT + ITEMPADRIGHT;
-   buttony = m_sizeImage.cy 
-            + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
-            - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
-            + ITEMPADTOP + ITEMPADBOTTOM;
 
 
 //   DWORD dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
@@ -408,10 +397,33 @@ size simple_toolbar::CalcSize(int nCount)
       //  to the other versions which calculate it at 2/3 of that value.
       //  This is actually a bug which should be fixed in IE 4.01, so we
       //  only do the 100% calculation specifically for IE4.
-      int cySep = m_itema[i].m_iImage;
+      simple_toolbar_item & item = m_itema[i];
+      int cySep = item.m_iImage;
 //      ASSERT(_afxComCtlVersion != -1);
 /*      if (!(GetStyle() & TBSTYLE_FLAT) && _afxComCtlVersion != VERSION_IE4)
          cySep = cySep * 2 / 3;*/
+      if (item.m_spdib.is_set())
+      {
+         buttonx =  item.m_spdib->width()
+              + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
+              - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
+              + ITEMPADLEFT + ITEMPADRIGHT;
+         buttony = item.m_spdib->height()
+                  + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
+                  - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
+                  + ITEMPADTOP + ITEMPADBOTTOM;
+      }
+      else
+      {
+         buttonx = m_sizeImage.cx
+              + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
+              - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
+              + ITEMPADLEFT + ITEMPADRIGHT;
+         buttony = m_sizeImage.cy
+                  + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
+                  - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
+                  + ITEMPADTOP + ITEMPADBOTTOM;
+      }
 
       if (m_itema[i].m_fsState & TBSTATE_HIDDEN)
          continue;
@@ -539,7 +551,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
    bool bHover = iItem == _001GetHoverItem();
 
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-   
+
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
    pdc->SelectObject(System.font_central().GetMenuFont());
@@ -591,7 +603,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
       eelementImage  = ElementImage;
       eelementText   = ElementText;
    }
-   
+
 
    _001GetItemRect(iItem, rectItem, eelement);
    _001GetItemRect(iItem, rectImage, eelementImage);
@@ -605,7 +617,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
       rectSeparator.bottom = rectImage.bottom;
       pdc->Draw3dRect(rectSeparator, RGB(92, 92, 92), RGB(255, 255, 255));
    }
-   else 
+   else
    {
       if(eelement == ElementItemHover)
       {
@@ -613,17 +625,20 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
          {
             _001GetItemRect(iItem, rectItem, ElementItem);
             _001GetItemRect(iItem, rectImage, ElementImage);
-            System.imaging().color_blend(
-               pdc,
-               rectItem.left,
-               rectItem.top,
-               rectItem.width(),
-               rectItem.height(),
-               RGB(255, 255, 250), 208);
+            if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+            {
+               System.imaging().color_blend(
+                  pdc,
+                  rectItem.left,
+                  rectItem.top,
+                  rectItem.width(),
+                  rectItem.height(),
+                  RGB(255, 255, 250), 208);
 
-            pdc->Draw3dRect(rectItem, 
-                              RGB(127, 127, 127),
-                              RGB(255, 255, 255));
+               pdc->Draw3dRect(rectItem,
+                                 RGB(127, 127, 127),
+                                 RGB(255, 255, 255));
+            }
             if(uiImage != 0xffffffffu)
             {
                if((nStyle & TBBS_DISABLED) == 0)
@@ -644,6 +659,8 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
          {
             rect rectShadow;
             _001GetItemRect(iItem, rectShadow, ElementItem);
+            if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+            {
 
             ::ca::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
             ::ca::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
@@ -658,9 +675,15 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
             pdc->Rectangle(rectItem);
             pdc->SelectObject(ppenOld);
             pdc->SelectObject(pbrushOld);
+            }
 
-
-            if(uiImage != 0xffffffffu)
+            if(item.m_spdib.is_set())
+            {
+               rect rect;
+               _001GetItemRect(iItem, rect, ElementImageHover);
+               System.imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
+            }
+            else if(uiImage != 0xffffffffu)
             {
                rect rect;
                _001GetItemRect(iItem, rect, ElementImage);
@@ -674,6 +697,8 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
       }
       else if(eelement == ElementItemPress)
       {
+            if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+            {
 
          ::ca::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
          ::ca::brush_sp brush(get_app(), RGB(255, 255, 255));
@@ -682,11 +707,18 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
          pdc->Rectangle(rectItem);
          pdc->SelectObject(ppenOld);
          pdc->SelectObject(pbrushOld);
+            }
 
    //      rect rect;
      //    _001GetItemRect(iItem, rect, ElementImage);
        //  m_pimagelistHue->draw(pdc, uiImage, rect.top_left(), 0);
-         if(uiImage != 0xffffffff)
+            if(item.m_spdib.is_set())
+            {
+               rect rect;
+               _001GetItemRect(iItem, rect, ElementImagePress);
+               System.imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
+            }
+         else if(uiImage != 0xffffffff)
          {
             pmenucentral->MenuV033GetImageList()->draw(
                pdc, uiImage, rectImage.top_left(), 0);
@@ -697,12 +729,18 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
       {
          if((nStyle & TBBS_CHECKED) != 0)
          {
-            pdc->Draw3dRect(rectItem, 
+            pdc->Draw3dRect(rectItem,
                               RGB(127, 127, 127),
                               RGB(255, 255, 255));
          }
 
-         if(uiImage != 0xffffffff)
+         if(item.m_spdib.is_set())
+         {
+            rect rect;
+            _001GetItemRect(iItem, rect, ElementImage);
+            System.imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
+         }
+         else if(uiImage != 0xffffffff)
          {
             if((nStyle & TBBS_DISABLED) == 0)
             {
@@ -762,7 +800,7 @@ BOOL simple_toolbar::LoadToolBar(const char * lpszResourceName)
 
    if (bResult)
    {
-      
+
       // set new sizes of the buttons
       size sizeImage(m_itema->wWidth, m_itema->wHeight);
       size sizeButton(m_itema->wWidth + 7, m_itema->wHeight + 7);
@@ -808,19 +846,23 @@ BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
          memset(&tb, 0, sizeof(tb));
          item.m_id = pattr->get_string();
          item.m_str = pchild->m_strValue;
+         if(pchild->attr("image").get_string().has_char())
+         {
+            item.m_spdib.create(get_app());
+            item.m_spdib.load_from_file(pchild->attr("image"));
+         }
          item.m_fsStyle &= ~TBBS_SEPARATOR;
-         m_itema.add(item);      
+         m_itema.add(item);
       }
       else if(pchild->m_strName == "separator")
       {
          item.m_id = "separator";
          item.m_str = "";
          item.m_fsStyle |= TBBS_SEPARATOR;
-         m_itema.add(item);      
+         m_itema.add(item);
       }
    }
-   
-//   GetParentFrame()->layout();
+
 
    return TRUE;
 }
@@ -852,7 +894,7 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
    simple_toolbar_item & item = m_itema[iItem];
 
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-   
+
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
    rect rect;
@@ -873,18 +915,37 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
          rect.left   = item.m_rect.left;
          rect.top    = item.m_rect.top;
          rect.right  = rect.left + item.m_rect.width();
-         rect.bottom = rect.top + m_sizeImage.cy + ITEMPADTOP + ITEMPADBOTTOM;
+         if(item.m_spdib.is_set())
+         {
+            rect.bottom = rect.top + item.m_spdib->height() + ITEMPADTOP + ITEMPADBOTTOM;
+         }
+         else if(uiImage != 0xffffffff)
+         {
+            rect.bottom = rect.top + m_sizeImage.cy + ITEMPADTOP + ITEMPADBOTTOM;
+         }
+         else
+         {
+            rect.bottom = rect.top + m_sizeImage.cy + ITEMPADTOP + ITEMPADBOTTOM;
+         }
          break;
       case ElementImage:
       case ElementImageHover:
       case ElementImagePress:
+         if(item.m_spdib.is_set())
+         {
+            rect.left   = item.m_rect.left + ITEMPADLEFT;
+            rect.top    = item.m_rect.top + ITEMPADTOP;
+            rect.right  = rect.left + item.m_spdib->width();
+            rect.bottom = rect.top + item.m_spdib->height();
+            break;
+         }
          if(uiImage == 0xffffffff)
          {
             rect.left   = 0;
             rect.top    = 0;
             rect.right  = 0;
             rect.bottom = 0;
-            return true;
+            break;
          }
          rect.left   = item.m_rect.left + ITEMPADLEFT;
          rect.top    = item.m_rect.top + ITEMPADTOP;
@@ -896,7 +957,11 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
       case ElementTextPress:
          {
             rect.left   = item.m_rect.left;
-            if(uiImage != 0xffffffff)
+            if(item.m_spdib.is_set())
+            {
+               rect.left   += ITEMPADLEFT + item.m_spdib->width();
+            }
+            else if(uiImage != 0xffffffff)
             {
                rect.left   += ITEMPADLEFT + m_sizeImage.cx;
             }
@@ -1057,9 +1122,9 @@ BOOL simple_toolbar::LoadBitmap(const char * lpszResourceName)
    m_bInternalImageList = true;
 
    m_pimagelist->create(
-      (char *) lpszResourceName, 
-      m_sizeImage.cx, 
-      1, 
+      (char *) lpszResourceName,
+      m_sizeImage.cx,
+      1,
       RGB(192, 192, 192));
 
    _001OnImageListAttrib();*/
@@ -1094,17 +1159,20 @@ void simple_toolbar::layout()
   //            - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
     //          + max(ITEMPADLEFT, ITEMPADRIGHT);
    int buttonx1, buttonx2, buttony, cx, cy;
-   buttonx1 = m_sizeImage.cx 
+   buttonx1 = m_sizeImage.cx
         + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
         - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
         + ITEMPADLEFT + ITEMPADRIGHT;
    buttonx2 = max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
         - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
         + ITEMPADLEFT + ITEMPADRIGHT;
-   buttony = m_sizeImage.cy 
+   buttony = m_sizeImage.cy
             + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
             - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
             + ITEMPADTOP + ITEMPADBOTTOM;
+
+   rect  rectClient;
+   GetClientRect(rectClient);
    class size sizeText;
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
@@ -1132,15 +1200,20 @@ void simple_toolbar::layout()
             cx = buttonx1;
             cy = item.m_iImage;
          }
+         else if(item.m_spdib.is_set())
+         {
+            cx = buttonx2 + sizeText.cx + item.m_spdib->width();
+            cy = max(buttony, item.m_spdib->height());
+         }
          else if(item.m_iImage >= 0)
          {
             cx = buttonx1 + sizeText.cx;
-            cy = buttony;  
+            cy = buttony;
          }
          else
          {
             cx = buttonx2 + sizeText.cx;
-            cy = buttony;  
+            cy = buttony;
          }
       }
       else
@@ -1150,15 +1223,20 @@ void simple_toolbar::layout()
             cx = item.m_iImage;
             cy = buttony;
          }
+         else if(item.m_spdib.is_set())
+         {
+            cx = buttonx2 + sizeText.cx + item.m_spdib->width();
+            cy = max(buttony, item.m_spdib->height());
+         }
          else if(uiImage != 0xffffffff)
          {
             cx = buttonx1 + sizeText.cx;
-            cy = buttony;  
+            cy = buttony;
          }
          else
          {
             cx = buttonx2 + sizeText.cx;
-            cy = buttony;  
+            cy = buttony;
          }
       }
       item.m_rect.right = ix + cx;
@@ -1173,10 +1251,51 @@ void simple_toolbar::layout()
          ix += cx;
       }
    }
+   if(m_itema.get_size() > 0)
+   {
+      point ptOffset;
+      if((m_dwCtrlStyle & TBSTYLE_ALIGN_LEFT) == TBSTYLE_ALIGN_LEFT)
+      {
+         ptOffset.x = 0;
+      }
+      else if((m_dwCtrlStyle & TBSTYLE_ALIGN_RIGHT) == TBSTYLE_ALIGN_RIGHT)
+      {
+         ptOffset.x = rectClient.width() - (m_itema.last_element().m_rect.right - m_itema[0].m_rect.left);
+      }
+      else if((m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER) == TBSTYLE_ALIGN_CENTER)
+      {
+         ptOffset.x = (rectClient.width() - (m_itema.last_element().m_rect.right - m_itema[0].m_rect.left)) / 2;
+      }
+      else
+      {
+         ptOffset.x = 0;
+      }
+      if((m_dwCtrlStyle & TBSTYLE_ALIGN_TOP) == TBSTYLE_ALIGN_TOP)
+      {
+         ptOffset.y = 0;
+      }
+      else if((m_dwCtrlStyle & TBSTYLE_ALIGN_BOTTOM) == TBSTYLE_ALIGN_BOTTOM)
+      {
+         ptOffset.y = rectClient.height() - (m_itema.last_element().m_rect.bottom - m_itema[0].m_rect.top);
+      }
+      else if((m_dwCtrlStyle & TBSTYLE_ALIGN_VCENTER) == TBSTYLE_ALIGN_VCENTER)
+      {
+         ptOffset.y = (rectClient.height() - (m_itema.last_element().m_rect.bottom - m_itema[0].m_rect.top)) / 2;
+      }
+      else
+      {
+         ptOffset.y = 0;
+      }
+      for(int iItem = 0; iItem < m_itema.get_size(); iItem++)
+      {
+         simple_toolbar_item & item = m_itema[iItem];
+         item.m_rect.offset(ptOffset);
+      }
+   }
 
 }
 
-void simple_toolbar::_001OnMouseMove(gen::signal_object * pobj) 
+void simple_toolbar::_001OnMouseMove(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    point pt = pmouse->m_pt;
@@ -1197,7 +1316,7 @@ void simple_toolbar::_001OnMouseMove(gen::signal_object * pobj)
    }
 }
 
-void simple_toolbar::_001OnLButtonDown(gen::signal_object * pobj) 
+void simple_toolbar::_001OnLButtonDown(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    point pt = pmouse->m_pt;
@@ -1209,13 +1328,13 @@ void simple_toolbar::_001OnLButtonDown(gen::signal_object * pobj)
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
-   
+
    _001RedrawWindow();
 
    pobj->previous();
 }
 
-void simple_toolbar::_001OnLButtonUp(gen::signal_object * pobj) 
+void simple_toolbar::_001OnLButtonUp(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    point pt = pmouse->m_pt;
@@ -1296,14 +1415,14 @@ void simple_toolbar::_001Hover(bool bRedraw)
    _001Hover(pt, bRedraw);
 }
 
-void simple_toolbar::_001OnTimer(gen::signal_object * pobj) 
+void simple_toolbar::_001OnTimer(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::timer, ptimer, pobj)
    if(ptimer->m_nIDEvent == TIMER_HOVER)
    {
       _001Hover();
    }
-   
+
    // trans ::userbase::control_bar::OnTimer(ptimer->m_nIDEvent);
 }
 
@@ -1410,7 +1529,7 @@ void SimpleToolCmdUI::Enable(BOOL bOn)
 
 void SimpleToolCmdUI::SetCheck(check::e_check echeck)
 {
-   ASSERT(echeck == check::checked 
+   ASSERT(echeck == check::checked
        || echeck == check::unchecked
        || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
@@ -1474,7 +1593,7 @@ void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::nc_calc_size, pnccalcsize, pobj)
    // calculate border space (will add to top/bottom, subtract from right/bottom)
-   class rect rect; 
+   class rect rect;
    rect.null();
    BOOL bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
    ::userbase::control_bar::CalcInsideRect(rect, bHorz);
@@ -1487,10 +1606,10 @@ void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
 }
 
 
-void simple_toolbar::_001OnNcHitTest(gen::signal_object * pobj) 
+void simple_toolbar::_001OnNcHitTest(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::nchittest, pnchittest, pobj)
-   pnchittest->set_lresult(HTCLIENT);   
+   pnchittest->set_lresult(HTCLIENT);
 }
 
 
@@ -1530,7 +1649,7 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
          dx += size.cx;
          dxNext = dx - CX_OVERLAP;
       }
-      else 
+      else
       {
          dx = m_sizeButton.cx;
          dxNext = dx - CX_OVERLAP;
@@ -1675,7 +1794,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
    size sizeResult(0,0);
 
    nCount = _001GetItemCount();
-   
+
 
    if (nCount > 0)
    {
@@ -1691,7 +1810,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             SizeToolBar(nCount, 0);
          else if (bDynamic && (nLength != -1))
          {
-            class rect rect; 
+            class rect rect;
             rect.null();
             CalcInsideRect(rect, (dwMode & LM_HORZ));
             BOOL bVert = (dwMode & LM_LENGTHY);
@@ -1780,7 +1899,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             buttona.cbSize = sizeof(buttona);
             buttona.dwMask =
                TBIF_COMMAND
-               | TBIF_STYLE 
+               | TBIF_STYLE
                | TBIF_SIZE;
 //            UINT uiID = GetItemID(i);
 ///            GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
@@ -1813,7 +1932,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
 
    //BLOCK: Adjust Margins
    {
-      class rect rect; 
+      class rect rect;
       rect.null();
       CalcInsideRect(rect, (dwMode & LM_HORZ));
       sizeResult.cy -= rect.height();
@@ -1928,12 +2047,12 @@ size simple_toolbar::CalcDynamicLayout(int nLength, DWORD dwMode)
    return CalcLayout(dwMode, nLength);
 }
 
-void simple_toolbar::_001OnMove(gen::signal_object * pobj) 
+void simple_toolbar::_001OnMove(gen::signal_object * pobj)
 {
    pobj->previous();
 }
 
-void simple_toolbar::_001OnMouseLeave(gen::signal_object * pobj) 
+void simple_toolbar::_001OnMouseLeave(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj)
    m_iHover = 0x80000000;

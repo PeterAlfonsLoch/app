@@ -2,8 +2,10 @@
 #include "ControlBoxButton.h"
 #include "FrameSchema.h"
 
+
 namespace window_frame
 {
+
 
    appearance::CTool001::CTool001(::ca::application * papp) :
       ca(papp)
@@ -39,24 +41,7 @@ namespace window_frame
 
       m_pworkset->m_pframeschema->OnInitializeAppearance();
 
-      ::user::interaction * pwnd = GetWnd();
-
-      if(pwnd->GetStyle() & (WS_CAPTION | WS_THICKFRAME))
-      {
-         pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_FRAMECHANGED);
-      }
-      if(m_pworkset->GetDrawWindow()->GetStyle() & (WS_CAPTION | WS_THICKFRAME))
-      {
-         m_pworkset->GetDrawWindow()->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_FRAMECHANGED);
-      }
-      if(m_pworkset->GetDrawWindow()->GetExStyle() & (WS_EX_CLIENTEDGE))
-      {
-         m_pworkset->GetDrawWindow()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
-      }
-      if(m_pworkset->GetDrawWindow()->GetExStyle() & (WS_EX_CLIENTEDGE))
-      {
-         m_pworkset->GetDrawWindow()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
-      }
+//      ::user::interaction * pwnd = GetWnd();
 
       return true;
    }
@@ -114,7 +99,7 @@ namespace window_frame
            SetAppearanceMode(AppearanceModeZoomed);
        else if(pwnd->IsIconic())
            SetAppearanceMode(AppearanceModeIconic);
-       else 
+       else
            SetAppearanceMode(AppearanceModeNormal);
    }
 
@@ -262,7 +247,7 @@ namespace window_frame
 
       CColorBezier bezier;
 
-            
+
 
 
       // top left corner
@@ -274,7 +259,7 @@ namespace window_frame
       bezier.m_pointset.add(rectA.left + ciStart, rectB.top);
       bezier.m_ppen = m_penHighlight;
       m_colorbezieraOutsideBorder.add(bezier);
-      
+
 
       // top left corner - bottom horizontal
       bezier.clear();
@@ -355,7 +340,7 @@ namespace window_frame
          m_pointsetBody.get_size(),
          1.0,
          &pt);
-      
+
       for(int i = 0; i < m_colorbezieraOutsideBorder.get_size(); i++)
       {
          CColorBezier & bezier = m_colorbezieraOutsideBorder[i];
@@ -391,4 +376,6 @@ namespace window_frame
       return m_pworkset->IsNotifyIconEnabled();
    }
 
+
 } // namespace window_frame
+

@@ -1,7 +1,6 @@
 #include "StdAfx.h"
 #include "mysql/mysql.h"
 
-//#include "gen/command_line.h"
 
 
 namespace simpledb
@@ -10,7 +9,7 @@ namespace simpledb
 
    application::application()
    {
-      m_pserver = NULL;
+      m_pserver      = NULL;
    }
 
 
@@ -18,15 +17,18 @@ namespace simpledb
    bool application::InitializeDataCentral()
    {
 
+      if(is_system())
+      {
+         /* initialize client library */
+         if (mysql_library_init (0, NULL, NULL))
+         {
+            TRACE("mysql_library_init() failed\n");
+            return false;
+         }
+      }
+
       m_pserver = new db_server(this);
 
-
-      /* initialize client library */
-      if (mysql_library_init (0, NULL, NULL))
-      {
-         TRACE("mysql_library_init() failed\n");
-         return false;
-      }
 
       m_pserver->add_client(this);
 
@@ -68,14 +70,36 @@ namespace simpledb
 
    bool application::FinalizeDataCentral()
    {
+
+      try
+      {
+         m_pserver->finalize();
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         delete m_pserver;
+      }
+      catch(...)
+      {
+      }
+
       if(is_system())
       {
-         
-         m_pserver->finalize();
-         delete m_pserver;
+
          m_pserver = NULL;
 
-         mysql_library_end();
+         try
+         {
+            mysql_library_end();
+         }
+         catch(...)
+         {
+         }
+
       }
 
       return true;
@@ -88,6 +112,18 @@ namespace simpledb
       if(!user::application::initialize())
          return false;
 
+      if(command().m_varTopicQuery["locale"].get_string().has_char())
+      {
+         string str = command().m_varTopicQuery["locale"];
+         set_locale(str, false);
+      }
+
+      if(command().m_varTopicQuery["style"].get_string().has_char())
+      {
+         string str = command().m_varTopicQuery["style"];
+         set_style(str, false);
+      }
+
 //      if(&AppUser(this) == NULL)
   //       return false;
 
@@ -97,6 +133,8 @@ namespace simpledb
          return false; 
       }
       ::database::client::initialize(this);
+
+//      ::ca2::application_request * prequest = System.get_application_request();
 
       string str;
       // if system locale has changed (compared to last recorded one by ca2)
@@ -122,7 +160,15 @@ namespace simpledb
       {
          data_set("system_locale", get_locale());
       }
-      if(data_get("locale", str))
+
+      if(command().m_varTopicQuery["locale"].get_string().has_char())
+      {
+         str = command().m_varTopicQuery["locale"];
+         data_set("system_locale", str);
+         data_set("locale", str);
+         set_locale(str, false);
+      }
+      else if(data_get("locale", str))
       {
          if(str.has_char())
          {
@@ -152,22 +198,42 @@ namespace simpledb
       {
          data_set("system_style", get_style());
       }
-      if(data_get("style", str))
+
+      if(command().m_varTopicQuery["style"].get_string().has_char())
+      {
+         str = command().m_varTopicQuery["style"];
+         data_set("system_style", str);
+         data_set("style", str);
+         set_style(str, false);
+      }
+      else if(data_get("style", str))
       {
          if(str.has_char())
          {
             set_style(str, false);
          }
       }
+      
+      // keyboard layout
       if(data_get("keyboard_layout", str))
       {
          if(str.has_char())
          {
             set_keyboard_layout(str, false);
          }
+         else
+         {
+            set_keyboard_layout(m_pkeyboard->get_current_system_layout(), false);
+            data_set("keyboard_layout", keyboard().layout().m_strPath);
+         }
       }
       else if(&keyboard().layout() != NULL)
       {
+         data_set("keyboard_layout", keyboard().layout().m_strPath);
+      }
+      else
+      {
+         set_keyboard_layout(m_pkeyboard->get_current_system_layout(), false);
          data_set("keyboard_layout", keyboard().layout().m_strPath);
       }
 
@@ -210,5 +276,7 @@ namespace simpledb
    {
       return *m_pserver;
    }
+
+
 
 } // namespace application

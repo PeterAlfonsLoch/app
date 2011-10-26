@@ -25,12 +25,7 @@ namespace mail
 
          void update();
 
-         virtual bool _001GetItemText(
-            ::user::list * plist,
-            string &str,
-            INT_PTR iItem,
-            INT_PTR iSubItem, 
-            INT_PTR iListItem);
+         virtual void _001GetItemText(::user::list_item * pitem);
 
          virtual INT_PTR _001GetItemCount();
 

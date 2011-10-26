@@ -106,7 +106,7 @@ namespace userbase
    BOOL mdi_child_window::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect, mdi_frame_window* pParentWnd,
-      create_context* pContext)
+      ::ca::create_context* pContext)
    {
       if (pParentWnd == NULL)
       {
@@ -193,7 +193,7 @@ namespace userbase
    }
 
    BOOL mdi_child_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-         ::user::interaction* pParentWnd, create_context* pContext)
+         ::user::interaction* pParentWnd, ::ca::create_context* pContext)
    {
       // only do this once
    //   ASSERT_VALID_IDR(nIDResource);
@@ -210,7 +210,7 @@ namespace userbase
       // if available - get MDI child menus from doc template
       multiple_document_template* ptemplate;
       if (pContext != NULL &&
-         (ptemplate = dynamic_cast < multiple_document_template * > (pContext->m_pNewDocTemplate)) != NULL)
+         (ptemplate = dynamic_cast < multiple_document_template * > (pContext->m_user->m_pNewDocTemplate)) != NULL)
       {
          ASSERT_KINDOF(multiple_document_template, ptemplate);
       }

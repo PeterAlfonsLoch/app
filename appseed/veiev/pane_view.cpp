@@ -125,10 +125,10 @@ namespace veiev
    }
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case PaneViewContextMenu:
          {
@@ -151,10 +151,8 @@ namespace veiev
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }
@@ -162,23 +160,23 @@ namespace veiev
          break;
       case PaneViewPrimaryCommand:
          {
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(typeid(primary_command_view), get_document(), this, 101));
+            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (::view::create_view(::ca::get_type_info < primary_command_view > (), get_document(), this, 101));
             if(pview != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
-               pviewdata->m_iExtendOnParent = 0;
+               pcreatordata->m_pdoc = get_document();
+               pcreatordata->m_pwnd = pview;
+               pcreatordata->m_iExtendOnParent = 0;
             }
          }
          break;
       case PaneViewSecondCommand:
          {
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(typeid(second_command_view), get_document(), this, 102));
+            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (::view::create_view(::ca::get_type_info < second_command_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
-               pviewdata->m_iExtendOnParent = 0;
+               pcreatordata->m_pdoc = get_document();
+               pcreatordata->m_pwnd = pview;
+               pcreatordata->m_iExtendOnParent = 0;
             }
          }
          break;
@@ -197,10 +195,8 @@ namespace veiev
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -228,10 +224,8 @@ namespace veiev
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -244,7 +238,6 @@ namespace veiev
          form_document * pdoc = Application.create_form(this, this);
          if(pdoc == NULL)
             return;
-         ::user::create_view::view_data * pviewdata = new ::user::create_view::view_data;
          ::view * pview = pdoc->get_typed_view < ::view > ();
          form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
@@ -258,10 +251,10 @@ namespace veiev
          pdoc->update_all_views(NULL, 0, &uh);
 
 
-         pviewdata->m_pwnd = dynamic_cast < ::ca::window * >(pview->GetParentFrame());
-//         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pviewdata->m_pwnd);
+         pcreatordata->m_pwnd = dynamic_cast < ::ca::window * >(pview->GetParentFrame());
+//         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
-         pviewdata->m_pdoc = pdoc;
+         pcreatordata->m_pdoc = pdoc;
       }
       break;
       default:
@@ -270,9 +263,9 @@ namespace veiev
       }
    }
 
-   void pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
+      ::userex::pane_tab_view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
 

@@ -10,20 +10,13 @@ namespace fs
       ::user::scroll_view(papp),
       m_headerctrl(papp),
       list_interface(papp),
-      m_scrollbarHorz(papp),
-      m_scrollbarVert(papp),
       user::list(papp),
       user::form(papp),
       user::form_list(papp),
       userbase::form_list(papp)
    {
-         m_pheaderctrl     = &m_headerctrl;
-         m_pheaderctrl->SetBaseListCtrlInterface(this);
-         m_pscrollbarVert  = &m_scrollbarVert;
-         m_pscrollbarHorz  = &m_scrollbarHorz;
 
       m_headerctrl.m_dataid = "veiev::list::header_ctrl";
-      m_pheaderctrl->m_plistctrlinterface = this;
 
       string str;
       str = "<veiev>\n";
@@ -52,9 +45,9 @@ namespace fs
    {
    }
 
-   void list::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void list::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::fs::list_interface::_001InstallMessageHandling(pinterface);
+      ::fs::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list::_001OnLButtonDblClk);
@@ -64,8 +57,6 @@ namespace fs
    void list::_001OnCreate(gen::signal_object * pobj)
    {
       pobj->previous();
-//         ::veiev::application * papp = dynamic_cast < ::veiev::application * > (get_app());
-//       papp->m_pveievlist = this;
       if(pobj->m_bRet)
          return;
       _001UpdateColumns();
@@ -76,8 +67,6 @@ namespace fs
    void list::_001OnTimer(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::timer, ptimer, pobj)
-
    }
 
 
@@ -135,8 +124,11 @@ namespace fs
    }
 #endif //_DEBUG
 
-   void list::on_update(::view * pSender, LPARAM lHint, ::radix::object * phint) 
+   void list::on_update(::view * pSender, LPARAM lHint, ::radix::object * phint)
    {
+      UNREFERENCED_PARAMETER(pSender);
+      UNREFERENCED_PARAMETER(lHint);
+      UNREFERENCED_PARAMETER(phint);
       /*if(phint != NULL)
       {
          if(base < FileManagerViewUpdateHint > :: bases(phint))
@@ -165,9 +157,10 @@ namespace fs
       }*/
    }
 
-   void list::_001OnLButtonDblClk(gen::signal_object * pobj) 
+   void list::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
 /*         index iItem;
       list_data * pdata = get_fs_list_data();
       if(_001HitTest_(pmouse->m_pt, iItem))
@@ -178,20 +171,20 @@ namespace fs
       }*/
    }
 
-   void list::_001OnCancelMode(gen::signal_object * pobj) 
+   void list::_001OnCancelMode(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    // trans   ::userbase::view::OnCancelMode();
-   
+
       // TODO: add your message handler code here
-   
+
    }
 
-   BOOL list::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL list::PreCreateWindow(CREATESTRUCT& cs)
    {
-   
+
       cs.style |= WS_CLIPCHILDREN;
-   
+
       return ::fs::list_interface::PreCreateWindow(cs);
    }
 

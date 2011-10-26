@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace netshareserver
 {
+
 
    class CLASS_DECL_NETSHARESERVER application :
       public ::cube::application
@@ -19,7 +21,8 @@ namespace netshareserver
 
       bool initialize_instance();
       virtual void netnode_run();
-      virtual bool bergedge_start();
+
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
       int CreateService();
       int RemoveService();

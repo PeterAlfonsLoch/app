@@ -35,9 +35,9 @@ void simple_button::_001OnDraw(::ca::graphics *pdc)
       (LPARAM) PRF_CHILDREN | PRF_CLIENT);*/
 }
 
-void simple_button::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_button::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::button::_001InstallMessageHandling(pinterface);
+   ::userbase::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETFOCUS, pinterface, this, &simple_button::_001OnSetFocus);
    //IGUI_WIN_MSG_LINK(WM_CTLCOLOR + WM_REFLECT_BASE  , this, this, &simple_button::_001OnCtlColor);
 }

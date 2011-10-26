@@ -19,12 +19,18 @@ LyricViewLine::OnVisible::OnVisible(::ca::application * papp) :
    m_fontLink(papp),
    m_fontJp1(papp)
 {
-   
+
 }
 
 LyricViewLine::LyricViewLine(::ca::application * papp) :
    ca(papp),
-   m_dibMain(papp)
+   m_dibMain(papp),
+   m_dibWork(papp),
+   m_dibWork2(papp),
+   m_dibWork3(papp),
+   m_dibWorkB(papp),
+   m_dibWorkB2(papp),
+   m_dibWorkB3(papp)
 {
    CommonConstruct();
 }
@@ -103,7 +109,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
    LPCRECT              lpcrect,
    LyricEventsV2 *      pEvents)
 {
-   
+
    UNREFERENCED_PARAMETER(lpcrect);
    UNREFERENCED_PARAMETER(dwCP);
 
@@ -125,7 +131,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
    ERenderResult            eresult;
    CToken            token;
    //::ca::graphics * pdcForeground = GetWndRender()->TwiGetDC();
-   
+
    ASSERT(tokenIndex >= 0);
    ASSERT(ptokena != NULL);
    ASSERT(pdcForeground != NULL);
@@ -138,7 +144,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
       //m_iStatus = XFPLYR_LINE_STATUS_NEW;
       return XFPLYR_LINE_SUCCESS_NO_LINE;
    }
-   
+
    m_bVisible = false;
    iChars = -1;
    iCharsFirst = 0;
@@ -152,8 +158,8 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
    m_tokenaMain.remove_all();
    m_tokenaJp1.remove_all();
 
-   
-   
+
+
    //m_strRaw.Empty();
    //m_iStatus = XFPLYR_LINE_STATUS_NEW; // default
    //rectPlacement.left = 0;
@@ -281,7 +287,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
                if(iStr == 0)
                {
                   eresult = XFPLYR_LINE_SUCCESS;
-                  break;   
+                  break;
                }
             }
             else if(strChar == ">")
@@ -321,7 +327,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
       iStr = 0;
       continue;
    }
-   
+
    if(tokenIndex >= ptokena->get_size())
    {
       if(m_tokenaRaw.get_size() > 0)
@@ -333,8 +339,8 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
          eresult = XFPLYR_LINE_SUCCESS_NO_LINE;
       }
    }
-   
-   
+
+
    SetTokenCount(m_tokenaRaw.get_size());
    //m_charsLength = iChars + 1;
    *nextTokenIndex = GetLastToken() + 1;
@@ -342,7 +348,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
    CalcMainTokenSet(dwCP);
    CalcMainLayout(pdcForeground, pfont);
    CalcNotesPositions(pEvents);
-   
+
 //   string strLanguage;
 //   strLanguage = m_ptemplate->GetTemplates()->m_wstrLanguage;
    if(dwCP == 932)
@@ -355,7 +361,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
       m_tokenaJp1.Prepare();
       CalcJp1Layout(pdcForeground, pfont);
    }
-   
+
    ASSERT(*nextTokenIndex >= 0);
    m_iMiddle = -1;
    m_iMiddle = 0;
@@ -371,7 +377,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
    }
 
    return eresult;
-   
+
 }
 
 LyricViewLine::ERenderResult LyricViewLine::to(
@@ -405,17 +411,17 @@ LyricViewLine::ERenderResult LyricViewLine::to(
 
    LyricEventsV2 *      pevent = karaokedata.GetStaticData().GetEvents();
 
-   
+
    // get placement rectangle
    class rect rectPlacement;
    GetPlacement(rectPlacement);
 
    ikar::dynamic_data & dynamicdata = karaokedata.GetDynamicData();
-   
+
    int iPlayingTokenIndex = dynamicdata.m_iPlayingTokenIndex;
-   
+
    bool bRenderEnable = m_pContainer->IsRenderEnabled();
-   
+
    size sizeMargin;
    m_ptemplate->GetMargin(sizeMargin);
 
@@ -423,14 +429,14 @@ LyricViewLine::ERenderResult LyricViewLine::to(
 
    sizeMargin.cx = (long) (10.0 * m_floatRateX);
    sizeMargin.cy = (long) (10.0 * m_floatRateX);
-   
+
    ::ca::pen * ppenLeft, * ppenRight;
    ::ca::pen * ppenLeftSmall, * ppenRightSmall;
    ::ca::pen * ppenLinkLeft, * ppenLinkRight;
    ::ca::pen * ppenLinkHoverLeft, * ppenLinkHoverRight;
    m_ptemplate->GetPens(&ppenLeft, &ppenRight, &ppenLeftSmall, &ppenRightSmall);
    m_ptemplate->GetLinkPens(ppenLinkLeft, ppenLinkRight, ppenLinkHoverLeft, ppenLinkHoverRight);
-   
+
    COLORREF cr, crOutline;
    COLORREF crLeft, crRight;
    COLORREF crLeftOutline, crRightOutline;
@@ -444,12 +450,12 @@ LyricViewLine::ERenderResult LyricViewLine::to(
       crLinkLeftOutline, crLinkRightOutline,
       crLinkHoverLeft, crLinkHoverRight,
       crLinkHoverLeftOutline, crLinkHoverRightOutline);
-   
+
    if(pdc != NULL)
    {
       pdc->SetBkMode(TRANSPARENT);
    }
-   
+
 //   TEXTMETRIC & textMetric = pfont->m_tm;
    if(!IsVisible())
    {
@@ -462,10 +468,10 @@ LyricViewLine::ERenderResult LyricViewLine::to(
 
       return XFPLYR_LINE_SUCCESS;
    }
-   
+
    iLToken = 0;
    iUToken = GetTokenCount() - 1;
-    
+
    if(m_tokenaRaw.get_size() <= 0)
       return XFPLYR_LINE_ERROR_OUT_OF_BOUND;
 
@@ -551,7 +557,7 @@ LyricViewLine::ERenderResult LyricViewLine::to(
    {
       dStandUp = sin((1.0 + m_dNoteFillRate * 5.0)  * 3.1415 / 6.0);
    }
-   
+
    if(bSSEmp && (iPlayingTokenIndex >= m_iFirstToken) && (iPlayingTokenIndex < (m_iFirstToken + m_iTokenCount)))
    {
       dynamicdata.feed_standup(dStandUp);
@@ -572,18 +578,18 @@ LyricViewLine::ERenderResult LyricViewLine::to(
          rect.left   = - iRadius * 2;
          rect.top    = iT - iRadius * 2;
          rect.bottom = iT + rectPlacement.height() + iRadius * 2;
-         rect.left   += token.GetPosition(0);
+         rect.left   += token.get_position(0);
          rect.right  = rect.left + token.m_dibEmboss->width();
 
          if(bSSEmp && ((m_iFirstToken + iToken) < dynamicdata.m_daStandUp.get_size()))
          {
             rect.top       -= (LONG) (dynamicdata.m_daStandUp[m_iFirstToken + iToken] * iStandUpHeight);
             rect.bottom    -= (LONG) (dynamicdata.m_daStandUp[m_iFirstToken + iToken] * iStandUpHeight);
-            System.imaging().color_blend(pdc, rect, token.m_dibEmboss->get_graphics(), null_point());
+            System.imaging().true_blend(pdc, rect, token.m_dibEmboss->get_graphics(), null_point(), m_dibWork, m_dibWork2, m_dibWork3);
          }
-         else 
+         else
          {
-            System.imaging().color_blend(pdc, rect, token.m_dibEmboss->get_graphics(), null_point());
+            System.imaging().true_blend(pdc, rect, token.m_dibEmboss->get_graphics(), null_point(), m_dibWorkB, m_dibWorkB2, m_dibWorkB3);
          }
       }
    }
@@ -596,19 +602,19 @@ LyricViewLine::ERenderResult LyricViewLine::to(
 
    if(m_floatRateX == 0.0)
       m_floatRateX = 1.0;
-   
+
    ::ca::font * pfontOld = NULL;
 //   VERIFY(hfontOld = (HFONT) ::SelectObject(pdc->m_hDC, m_hfont));
    if(pdc != NULL && m_ponvisible != NULL)
    {
       pfontOld = pdc->SelectObject(m_ponvisible->m_font);
    }
-   
+
    int iFirstChar;
    int charsLength;
    string str;
    int iTrimLength;
-   
+
    int iLastMiddle = m_iLastMiddle;
    int iMiddle = m_iMiddle;
 
@@ -619,14 +625,14 @@ LyricViewLine::ERenderResult LyricViewLine::to(
       //ASSERT(iPlayingNoteIndex <= 18 || iMiddle >= m_iMiddle);
       m_iMiddle = iMiddle;
    }
-   
+
    int iCharIndex;
    int iLength;
-   
+
    CTokenJp1 * ptokenjp1 = NULL;
-   
+
    GetSelRect(rectSel);
-   
+
    int iMaxChar;
    int iChar;
    enum ETool
@@ -639,7 +645,7 @@ LyricViewLine::ERenderResult LyricViewLine::to(
       ToolLinkRight,
       ToolRight,
    };
-   
+
    ETool etool = ToolNone;
    ETool etoolSelect = ToolNone;
 
@@ -679,18 +685,18 @@ LyricViewLine::ERenderResult LyricViewLine::to(
       token.GetText(str);
       iFirstChar = 0;
       charsLength = str.get_length();
-        
+
       str.trim_right();
       iTrimLength = str.get_length();
       if(iTrimLength == 0)
          continue;
-      
+
       iCharIndex   = iFirstChar;
       iLength      = iTrimLength;
       iMaxChar    = iFirstChar + iTrimLength - 1;
-      
+
       iChar       = iMaxChar;
-      while(iChar > 0 && token.GetPosition(iChar - 1) == token.GetPosition(iChar))
+      while(iChar > 0 && token.get_position(iChar - 1) == token.get_position(iChar))
       {
          iChar--;
       }
@@ -702,23 +708,23 @@ LyricViewLine::ERenderResult LyricViewLine::to(
          continue;
 
       iLength  = iChar - iCharIndex + 1;
-      iLeft    = token.GetPosition(iCharIndex);
-      iRight   = token.GetPosition(iCharIndex + iLength);
-      
+      iLeft    = token.get_position(iCharIndex);
+      iRight   = token.get_position(iCharIndex + iLength);
+
       strFinal = str.Mid(iCharIndex, iLength);
-      
+
       int iLeftOut         = iLeft;
       int iMiddleOut       = iMiddle;
 //      int iLastMiddleOut   = iLastMiddle;
 //      int iRightOut        = iRight;
-      
+
       if(iToken + m_iFirstToken == iPlayingTokenIndex)
       {
          if(iMiddleOut < iLeftOut)
             continue;
       }
 
-      
+
       ptokenjp1 = NULL;
       if(m_tokenaJp1.get_size() > 0)
       {
@@ -730,15 +736,15 @@ LyricViewLine::ERenderResult LyricViewLine::to(
       rectText.offset(m_ptTextOffset);
       if(bRenderEnable)
       {
-         
+
          int iL = iLeftOut + m_ptTextOffset.x ;
-         int iR = iRight + m_ptTextOffset.x ;
-         
+//         int iR = iRight + m_ptTextOffset.x ;
+
          rectTextOut.left     = iL;
          rectTextOut.top      = iT;
          rectTextOut.right    = iL + rectText.width();
          rectTextOut.bottom   = iT + rectText.height();
-         
+
          if(m_ponvisible != NULL)
          {
             pdc->SelectObject(m_ponvisible->m_font);
@@ -775,7 +781,7 @@ LyricViewLine::ERenderResult LyricViewLine::to(
             }
 printLeft:
             rectChar = rectTextOut;
-            rectChar.left += token.GetPosition(iMidStart + iCharIndex) - token.GetPosition(iCharIndex);
+            rectChar.left += token.get_position(iMidStart + iCharIndex) - token.get_position(iCharIndex);
             iMidLen = iCh - iMidStart + 1;
             if(iCh < 0)
             {
@@ -825,7 +831,7 @@ printLeft:
                   crOutline,
                   iMidLen,
                   iToken == iLToken,
-                  iToken == iUToken);   
+                  iToken == iUToken);
             }
             else
             {
@@ -841,10 +847,10 @@ printLeft:
          if(ptokenjp1 != NULL)
          {
             string str;
-            ptokenjp1->GetText(str);   
+            ptokenjp1->GetText(str);
             pdc->SelectObject(ppenLeftSmall);
             pdc->SetTextColor(crLeft);
-            
+
             if(!str.is_empty())
             {
                VERIFY(pdc->SelectObject(m_ponvisible->m_fontJp1));
@@ -858,7 +864,7 @@ printLeft:
                int iJpR = iL + size.cx;
                rectBlend.right = min(iJpR, iMiddle + 2);
                rectBlend.left = iL;
-               
+
                System.imaging().color_blend(pdc, rectBlend, RGB(120, 180, 100), 96);
                visual::api::SimpleTextOut(
                   pdc,
@@ -869,7 +875,7 @@ printLeft:
                   NULL,
                   NULL,
                   0);
-               
+
             }
          }
       }
@@ -910,18 +916,18 @@ printLeft:
       token.GetText(str);
       iFirstChar = 0;
       charsLength = str.get_length();
-        
+
       str.trim_right();
       iTrimLength = str.get_length();
       if(iTrimLength == 0)
          continue;
-      
+
       iCharIndex   = iFirstChar;
       iLength      = iTrimLength;
       iMaxChar    = iFirstChar + iTrimLength - 1;
-      
+
       iChar       = iMaxChar;
-      while(iChar > 0 && token.GetPosition(iChar - 1) == token.GetPosition(iChar))
+      while(iChar > 0 && token.get_position(iChar - 1) == token.get_position(iChar))
       {
          iChar--;
       }
@@ -933,12 +939,12 @@ printLeft:
          continue;
 
       iLength = iChar - iCharIndex + 1;
-      iLeft = token.GetPosition(iCharIndex);
-      iRight = token.GetPosition(iCharIndex + iLength);
-      
+      iLeft = token.get_position(iCharIndex);
+      iRight = token.get_position(iCharIndex + iLength);
+
       string strFinal;
       strFinal = str.Mid(iCharIndex, iLength);
-      
+
       int iLeftOut         = iLeft;
 //      int iMiddleOut       = iMiddle;
 //      int iLastMiddleOut   = iLastMiddle;
@@ -950,17 +956,17 @@ printLeft:
          ptokenjp1 = &m_tokenaJp1[iToken];
       }
       //About to play
-       
+
       rectText = rectPlacement;
       rectText.offset(m_ptTextOffset);
-      
+
       if(bRenderEnable)
       {
           pdc->SelectObject(m_ponvisible->m_font);
-         
+
 
          int iL = iLeftOut + m_ptTextOffset.x ;
-         int iR = iRight + m_ptTextOffset.x ;
+//         int iR = iRight + m_ptTextOffset.x ;
 
 
          int iT = iTop + m_ptTextOffset.y+ m_ptemplate->m_iJp1Provision;
@@ -969,7 +975,7 @@ printLeft:
          rectTextOut.top = iT;
          rectTextOut.right = iL + rectText.width();
          rectTextOut.bottom = iT + rectText.height();
-      
+
          iMidStart = 0;
          for(int iCh = 0; iCh < iLength; iCh++)
          {
@@ -1001,7 +1007,7 @@ printLeft:
             }
 printRight:
             rectChar = rectTextOut;
-            rectChar.left += token.GetPosition(iMidStart + iCharIndex) - token.GetPosition(iCharIndex);
+            rectChar.left += token.get_position(iMidStart + iCharIndex) - token.get_position(iCharIndex);
             iMidLen = iCh - iMidStart + 1;
             if(iCh < 0)
             {
@@ -1051,7 +1057,7 @@ printRight:
                   crOutline,
                   iMidLen,
                   iToken == iLToken,
-                  iToken == iUToken);   
+                  iToken == iUToken);
             }
             else
             {
@@ -1082,8 +1088,8 @@ printRight:
                size size = pdc->GetTextExtent(str);
 
                rectBlend.right = iL + size.cx;
-               
-               
+
+
                System.imaging().color_blend(pdc, rectBlend, RGB(200, 200, 180), 96);
                visual::api::SimpleTextOut(
                   pdc,
@@ -1094,9 +1100,9 @@ printRight:
                   NULL,
                   NULL,
                   0);
-               
+
             }
-            
+
          }
 
       }
@@ -1154,28 +1160,28 @@ void LyricViewLine::UpdateFillRate(double msElapsed, double msLength, int iOffse
    // fill rate is applied. When the filling event is faster,
    // the initial filling rate must be greater so the hint
    // is more obvious..
-   
+
    // minimum time where maximim fill rate is applied
    // msInitialFillingMinimumTime, msInitialFillintMinimumRate
    /*const double x0 = 70.0, y1 = 0.7;
-   
+
    // maximumm time where minimum fill rate is applied
    // msInitialFillingMaximumTime, msInitialFillingMaximumTime
    const double x1 = 5000.0, y0 = 0.35;
-   
+
    const double zr = 0.03;
-   // calcula o initial rate com base numa curva 
+   // calcula o initial rate com base numa curva
    // ir = (y1-y0)(db^(-length+x0))+y0
    // onde a base db ・calculada para ter somente zr
    // da diferen軋 (y1 - y0) para atingir
    // o patamar y0, depois que o tempo passa x1 segundos.
    // para isso db deve ser calculado como se segue.
-   
+
    double db = exp(log(zr) / (x0 - x1));
    double ir = (y1 - y0) *(pow(db, x0 - msLength)) + y0;
    double dFillRate = ir + ((1.0 - ir) * msElapsed / msLength);*/
 
-   
+
 }
 
 void LyricViewLine::CalcMainLayout(
@@ -1207,7 +1213,7 @@ void LyricViewLine::CalcMainLayout(
    pdc->SelectObject(pfont->GetFont());
    if(size.cx > rectClient.width())
    {
-      m_floatRateX = 
+      m_floatRateX =
          (float)
          rectClient.width()/
          (size.cx + 10);
@@ -1253,8 +1259,8 @@ void LyricViewLine::CalcMainLayout(
    if(m_iAlign == AlignLeft)
    {
       SetMainPosition(0, rectPlacement.left + m_iIndent);
-      for(const char * psz = gen::str::utf8_inc(pszMain); 
-         ; 
+      for(const char * psz = gen::str::utf8_inc(pszMain);
+         ;
          psz = gen::str::utf8_inc(psz))
       {
          int i = (const char *) psz - (const char *) strMain;
@@ -1278,8 +1284,8 @@ void LyricViewLine::CalcMainLayout(
       iMaxExtent = size.cx;
       iLeft = rectPlacement.right - iMaxExtent;
       SetMainPosition(0, iLeft);
-      for(const char * psz = gen::str::utf8_inc(pszMain); 
-         ; 
+      for(const char * psz = gen::str::utf8_inc(pszMain);
+         ;
          psz = gen::str::utf8_inc(psz))
       {
          int i = (const char *) psz - (const char *) pszMain;
@@ -1301,7 +1307,7 @@ void LyricViewLine::CalcMainLayout(
    pdc->SelectObject(pfontOld);
 
    return;
-   
+
 }
 
 
@@ -1317,7 +1323,7 @@ void LyricViewLine::CalcJp1Layout(
    spgraphics->CreateCompatibleDC(NULL);
    ::ca::graphics * pdc = (::ca::graphics *) spgraphics;
    size size;
-   
+
    int iJp1Provision = m_ptemplate->m_iJp1Provision;
    for(int i = 0; i < m_tokenaJp1.get_size(); i++)
    {
@@ -1337,14 +1343,14 @@ void LyricViewLine::CalcJp1Layout(
          pdc->GetTextMetrics(&tm);
          lf.lfWidth = tm.tmAveCharWidth * iJp1Provision / lf.lfHeight;
          lf.lfHeight = iJp1Provision;
-         
+
          VERIFY(m_ponvisible->m_fontJp1->CreateFontIndirect(&lf));
          VERIFY(pdc->SelectObject(m_ponvisible->m_fontJp1));
          pdc->GetTextMetrics(&tm);
          size = pdc->GetTextExtent(str);
          if(size.cx > tokenMain.width())
          {
-            token.m_floatRateX = 
+            token.m_floatRateX =
                (float)
                tokenMain.width()/
                size.cx;
@@ -1361,8 +1367,8 @@ void LyricViewLine::CalcJp1Layout(
          VERIFY(pdc->SelectObject(m_ponvisible->m_fontJp1));
          token.SetPosition(0, tokenMain.Left());
          const char * psz = str;
-         for(const char * pszInc = gen::str::utf8_inc(psz); 
-            ; 
+         for(const char * pszInc = gen::str::utf8_inc(psz);
+            ;
             pszInc = gen::str::utf8_inc(pszInc))
          {
             int j = (const char *) pszInc - (const char *) psz;
@@ -1377,7 +1383,7 @@ void LyricViewLine::CalcJp1Layout(
          //CTokenJp1 * ptokenjp1 = &m_tokenaJp1[i];
       }
    }
-   
+
    return;
 }
 
@@ -1386,7 +1392,7 @@ void LyricViewLine::CalcNotesPositions(LyricEventsV2 * pEvents)
 {
    UNREFERENCED_PARAMETER(pEvents);
    //int i, iStartNote, iNotesLength;
-   
+
    //for(i = 0; i < m_iTokensLength; i++)
    //{
    //   pEvents->GetTokenNotes(
@@ -1396,7 +1402,7 @@ void LyricViewLine::CalcNotesPositions(LyricEventsV2 * pEvents)
    //   m_tokensFirstNoteIndexes[i] = iStartNote;
    //   m_tokensNotesLengths[i] = iNotesLength;
    //}
-   
+
 }
 
 //BOOL LyricViewLine::IsEmptyTimedOut()
@@ -1424,14 +1430,14 @@ bool LyricViewLine::IsNewTimedOut()
    //}
    //    TRACE("LyricViewLine::IsNewTimedOut() = false m_iFirstToken = %d\n", m_iFirstToken);
    return false;
-   
+
 }
 
 bool LyricViewLine::IsCleanTimedOut()
 {
    //if(m_iStatus ==   XFPLYR_LINE_STATUS_NEW)
    //{
-   if(!m_bVisible 
+   if(!m_bVisible
       && m_dwCleanTime + 2000 < GetTickCount())
    {
       //          TRACE("LyricViewLine::IsCleanTimedOut() = true m_iFirstToken = %d\n", m_iFirstToken);
@@ -1440,23 +1446,23 @@ bool LyricViewLine::IsCleanTimedOut()
    //}
     //TRACE("LyricViewLine::IsCleanTimedOut() = false m_iFirstToken = %d\n", m_iFirstToken);
    return false;
-   
+
 }
 
 
 
-                            
+
                             void LyricViewLine::SetAutoSize(bool bAutoSize)
                             {
                                m_bAutoSizeX = bAutoSize;
                                m_bAutoSizeY = bAutoSize;
                             }
-                            
+
                             void LyricViewLine::SetAlign(int iAlign)
                             {
                                m_iAlign = iAlign;
                             }
-                            
+
                             /*void LyricViewLine::set(LPRECT lpRect)
                             {
                             rectPlacement.left     = lpRect->left;
@@ -1464,7 +1470,7 @@ bool LyricViewLine::IsCleanTimedOut()
                             rectPlacement.right    = lpRect->right;
                             rectPlacement.bottom   = lpRect->bottom;
                             }
-                            
+
                               void LyricViewLine::GetRect(LPRECT lpRect)
                               {
                               lpRect->left    = rectPlacement.left;
@@ -1472,18 +1478,18 @@ bool LyricViewLine::IsCleanTimedOut()
                               lpRect->right   = rectPlacement.right;
                               lpRect->bottom  = rectPlacement.bottom;
 }*/
-                            
+
                             void LyricViewLine::SetPendingLayoutUpdate(bool bPending)
                             {
                                m_bPendingLayoutUpdate = bPending;
                             }
-                            
-                            
+
+
                             void LyricViewLine::SetNewTime()
                             {
                                m_dwNewTime = GetTickCount();
                             }
-                            
+
 void LyricViewLine::Show(bool bVisible)
 {
    //SetTemplate(m_ptemplate);
@@ -1509,15 +1515,15 @@ void LyricViewLine::Show(bool bVisible)
    }
    Invalidate();
 }
-                            
-                            
+
+
                             void LyricViewLine::OnTimerAnimate(::ca::rgn * pModifiedRgn)
                             {
                                UNREFERENCED_PARAMETER(pModifiedRgn);
                                ASSERT(FALSE);
                                rect rectPlacement;
                                m_ptemplate->GetPlacement_(rectPlacement);
-                               
+
                                switch(m_iAnimateType)
                                {
                                case AnimateNoAnimate:
@@ -1540,34 +1546,34 @@ void LyricViewLine::Show(bool bVisible)
                                   ASSERT(FALSE);
                                }
                             }
-                            
+
                             void LyricViewLine::SetAnimateType(int iAnimateType)
                             {
                                m_iAnimateType = iAnimateType;
                                m_dAnimateProgress = 0.0;
-                               
+
                             }
-                            
+
                             void LyricViewLine::SetTextEffect(int iTextEffect)
                             {
                                m_iTextEffect = iTextEffect;
                             }
-                            
+
                             void LyricViewLine::SetEmbossPen(::ca::pen *lpPen)
                             {
                                m_lpPenEmboss = lpPen;
                             }
-                            
+
                             void LyricViewLine::SetForegroundColor(COLORREF cr)
                             {
                                m_crForeground = cr;
                             }
-                            
+
                             //primitive_array < visual::font *> * LyricViewLine::GetFonts()
                             //{
                             //  return &m_fonts;
                             //}
-                            
+
                             int LyricViewLine::MapToFontEffect(int iLineEffect)
                             {
                                switch(iLineEffect)
@@ -1580,46 +1586,46 @@ void LyricViewLine::Show(bool bVisible)
                                ASSERT(FALSE);
                                return -1;
                             }
-                            
+
                             void LyricViewLine::SetAnimateIncrement(double dIncrement)
                             {
                                m_dAnimateProgressIncrement = dIncrement;
                             }
-                            
+
                             //void LyricViewLine::SetRedrawMode(int iMode)
                             //{
                             //  m_iRedrawMode = iMode;
                             //}
-                            
+
                             //void LyricViewLine::SetRenderWindow(::ca::window *pWnd)
                             //{
                             //  m_pRenderWnd = pWnd;
                             //}
-                            
+
                             //void LyricViewLine::SetRenderCriticalSection(critical_section *pcs)
                             //{
                             //    m_pcsRender =   pcs;
                             //}
-                            
-                            
+
+
                             LyricViewLineTemplate * LyricViewLine::GetTemplate()
                             {
                                return m_ptemplate;
                             }
-                            
+
                             void LyricViewLine::SetTemplate(LyricViewLineTemplate *ptemplate)
                             {
-                               
+
                                m_ptemplate = ptemplate;
                                if(ptemplate != NULL)
                                {
                                  m_ptemplate->SetLine(this);
                                }
-                               
+
                                //    m_ptemplate->GetPlacement_(m_rectPlacement);
-                               
+
                             }
-                            
+
                             bool LyricViewLine::GetTokenX_(
                                int iTokenIndex,
                                double * pdLeft,
@@ -1627,10 +1633,10 @@ void LyricViewLine::Show(bool bVisible)
                             {
                                //   int iLeft;
                                //  int iRight;
-                               
+
                                ASSERT(iTokenIndex >= GetFirstToken());
                                ASSERT(iTokenIndex <= GetLastToken() + 1);
-                               
+
                                if(iTokenIndex == GetLastToken() + 1)
                                {
                                   *pdLeft   = 0.0;
@@ -1644,17 +1650,17 @@ void LyricViewLine::Show(bool bVisible)
                                   string str;
                                   token.GetText(str);
                                   str.trim_right();
-                                  *pdLeft      = token.GetPosition(0);
-                                  *pdRight   = token.GetPosition(str.get_length());
+                                  *pdLeft      = token.get_position(0);
+                                  *pdRight   = token.get_position(str.get_length());
                                }
                                if(*pdLeft == *pdRight)
                                   return false;
                                else
                                   return true;
-                               
+
                                //return ((double) iLeft + iRight) / 2.0;
                             }
-                            
+
 bool LyricViewLine::GetTokenBBCenter(
    int iTokenIndex,
    double * pdLeft,
@@ -1697,16 +1703,16 @@ bool LyricViewLine::GetTokenBBCenter(
 //return ((double) iLeft + iRight) / 2.0;
 return true;
 }
-                            
-                            
-                            
+
+
+
                             void LyricViewLine::SetPlacement(LPCRECT lpcrect,int iJp1Provision)
                             {
                                //m_rectPlacement = lprect;
                                m_ptemplate->SetPlacement_(lpcrect, iJp1Provision);
                             }
-                            
-                            
+
+
 bool LyricViewLine::CalcMainTokenSet(DWORD dwCP)
 {
    m_tokenaMain = m_tokenaRaw;
@@ -1725,7 +1731,7 @@ bool LyricViewLine::CToken::clear()
    m_iaPosition[0] = 0;
    return true;
 }
-                            
+
 bool LyricViewLine::CToken::AddChar(string strChar)
 {
    m_str += strChar;
@@ -1735,11 +1741,11 @@ bool LyricViewLine::CToken::AddChar(string strChar)
    }
    return true;
 }
-                            
-                            
-                            
-                            
-                            
+
+
+
+
+
 void LyricViewLine::CToken::SetPosition(int iPosition)
 {
    int i;
@@ -1753,7 +1759,7 @@ void LyricViewLine::CToken::SetPosition(int iPosition)
       m_iaPosition[i] += iPosition;
    }
 }
-                            
+
 bool LyricViewLine::GetMainString(string & wstrMain)
 {
    string str;
@@ -1765,7 +1771,7 @@ bool LyricViewLine::GetMainString(string & wstrMain)
    }
    return true;
 }
-                            
+
 bool LyricViewLine::SetMainPosition(int iChar, int iPosition)
 {
    int iToken = GetMainTokenIndex(iChar);
@@ -1792,7 +1798,7 @@ bool LyricViewLine::SetMainPosition(int iChar, int iPosition)
    }
    return true;
 }
-                            
+
 int LyricViewLine::GetMainTokenIndex(int iChar)
 {
    int i;
@@ -1821,26 +1827,26 @@ int LyricViewLine::GetMainTokenIndex(int iChar)
  }
  return i;
 }
-                            
+
 LyricViewLine::CToken & LyricViewLine::GetCharTokenMain(int iChar)
 {
    ASSERT(m_tokenaMain.get_size() > 0);
    return m_tokenaMain[GetMainTokenIndex(iChar)];
 }
-                            
+
                             void LyricViewLine::CToken::SetStartIndex(int iIndex)
                             {
                                m_iStartIndex = iIndex;
                             }
-                            
-                            
+
+
                             int LyricViewLine::GetMainPosition(int iChar)
                             {
                                CToken & token = GetCharTokenMain(iChar);
-                               return token.GetPosition(iChar - token.GetStartIndex());
+                               return token.get_position(iChar - token.GetStartIndex());
                             }
-                            
-                            
+
+
                             bool LyricViewLine::CToken::RawToMain(DWORD dwCP)
                             {
                                if(dwCP == 932)
@@ -1869,10 +1875,10 @@ LyricViewLine::CToken & LyricViewLine::GetCharTokenMain(int iChar)
                                }
                                //int iIndex = 0;
 //                               int iStart = 0;
-                               
+
                                return true;
                             }
-                            
+
                             bool LyricViewLine::CToken::RawToJp1()
                             {
                                string str;
@@ -1894,8 +1900,8 @@ LyricViewLine::CToken & LyricViewLine::GetCharTokenMain(int iChar)
                                m_iaPosition.set_size(m_str.get_length() + 1);
                                return true;
                             }
-                            
-                            
+
+
                             void LyricViewLine::CToken::SetPosition(int iChar, int iPosition)
                             {
                                if(iChar == 0)
@@ -1920,10 +1926,10 @@ LyricViewLine::CToken & LyricViewLine::GetCharTokenMain(int iChar)
                                  }
                               }
                             }
-                            
-                            
 
-                            
+
+
+
 bool LyricViewLine::CTokenSet::Prepare()
 {
    int i, j;
@@ -1932,9 +1938,9 @@ bool LyricViewLine::CTokenSet::Prepare()
    string strTemp;
 
    int iFirstToken = GetFirstToken();
-   for(i = 0; i < get_size(); i++)
+   for(i = 0; i < this->get_size(); i++)
    {
-      CToken & token = element_at(i);
+      CToken & token = this->element_at(i);
       token.SetStartIndex(iLen);
       token.GetText(str);
       iLen += str.get_length();
@@ -1954,9 +1960,9 @@ void LyricViewLine::CTokenSet::GetText(string &wstrParam)
 {
    string str;
    wstrParam.Empty();
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).GetText(str);
+      this->element_at(i).GetText(str);
       wstrParam += str;
    }
 }
@@ -1966,54 +1972,54 @@ bool LyricViewLine::CTokenJp1Set::Prepare()
 {
    int iLen = 0;
    string str;
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      CToken & token = element_at(i);
+      CToken & token = this->element_at(i);
       token.SetStartIndex(iLen);
       token.GetText(str);
       iLen += str.get_length();
       }
    return true;
 }
-                            
-                            
+
+
              LyricViewLine::CToken & LyricViewLine::CToken::operator = (const CToken & token)
              {
                 m_iaPosition.copy(token.m_iaPosition);
                 m_iStartIndex = token.m_iStartIndex;
                 m_str = token.m_str;
-                
+
                 return *this;
              }
-             
+
              LyricViewLine::CTokenJp1 & LyricViewLine::CTokenJp1::operator = (const CToken & token)
              {
                 CToken::operator =(token);
                 return *this;
              }
-             
+
              LyricViewLine::CTokenJp1 & LyricViewLine::CTokenJp1::operator = (const CTokenJp1 & token)
              {
                 CToken::operator =(token);
                 m_floatRateX = token.m_floatRateX;
                 return *this;
              }
-             
-             
+
+
              string LyricViewLine::GetMainString()
              {
                 string str;
                 GetMainString(str);
                 return str;
              }
-             
+
              bool LyricViewLine::CToken::Prepare()
              {
                 return true;
              }
-             
-             
-             
+
+
+
              void LyricViewLine::CTokenJp1Set::copy(const CTokenSet & src)
              {
                 remove_all();
@@ -2024,7 +2030,7 @@ bool LyricViewLine::CTokenJp1Set::Prepare()
                    add(tokenJp1);
                 }
              }
-             
+
              int LyricViewLine::CToken::width()
              {
                 if(m_iaPosition.get_size())
@@ -2032,21 +2038,21 @@ bool LyricViewLine::CTokenJp1Set::Prepare()
                 else
                    return 0;
              }
-             
+
              int LyricViewLine::CToken::Left()
              {
                 return m_iaPosition[0];
              }
-             
+
              int LyricViewLine::CToken::Right()
              {
                 if(m_iaPosition.get_size() > 0)
                    return m_iaPosition.last_element();
                 else
                    return m_iaPosition[0];
-                
+
              }
-             
+
              void LyricViewLine::CTokenJp1Set::copy(const CTokenJp1Set &src)
              {
                 remove_all();
@@ -2055,8 +2061,8 @@ bool LyricViewLine::CTokenJp1Set::Prepare()
                    add(src[i]);
                 }
              }
-                            
-   
+
+
 
 
 bool LyricViewLine::CalcChar(point pt, int &iToken, int &iChar)
@@ -2073,7 +2079,7 @@ bool LyricViewLine::CToken::CalcChar(point point, int &iChar)
 {
    for(int i = 0; i <= m_str.get_length(); i++)
    {
-      if(point.x < GetPosition(i))
+      if(point.x < get_position(i))
       {
          if(i <= 0)
             return false;
@@ -2085,23 +2091,23 @@ bool LyricViewLine::CToken::CalcChar(point point, int &iChar)
       }
    }
    return false;
-   
+
 }
 
 bool LyricViewLine::CTokenSet::CalcChar(point point, int &iToken, int &iChar)
 {
    int iPosition;
    int i;
-   for(i = 0; i < get_size(); i++)
+   for(i = 0; i < this->get_size(); i++)
    {
-      iPosition = element_at(i).GetPosition();
+      iPosition = this->element_at(i).get_position();
       if(point.x < iPosition)
       {
          if(i <= 0)
             return false;
          else
          {
-            if(element_at(i - 1).CalcChar(point, iChar))
+            if(this->element_at(i - 1).CalcChar(point, iChar))
             {
                iToken = i - 1;
                return true;
@@ -2111,10 +2117,10 @@ bool LyricViewLine::CTokenSet::CalcChar(point point, int &iToken, int &iChar)
          }
       }
    }
-   i = get_size() - 1;
+   i = this->get_size() - 1;
    if(i >= 0)
    {
-      if(element_at(i).CalcChar(point, iChar))
+      if(this->element_at(i).CalcChar(point, iChar))
       {
          iToken = i;
          return true;
@@ -2124,20 +2130,20 @@ bool LyricViewLine::CTokenSet::CalcChar(point point, int &iToken, int &iChar)
    }
    else
       return false;
-   
+
 }
 
 int LyricViewLine::CTokenSet::GetEndPosition()
 {
-   if(get_size() <= 0)
+   if(this->get_size() <= 0)
       return 0x80000000;
    else
-      return element_at(get_size() - 1).GetEndPosition();
+      return this->element_at(this->get_size() - 1).GetEndPosition();
 }
 
 int LyricViewLine::CToken::GetEndPosition()
 {
-   return GetPosition(m_str.get_length());
+   return get_position(m_str.get_length());
 }
 
 
@@ -2175,9 +2181,9 @@ void LyricViewLine::GetSelRect(LPRECT lprect)
       }
       if(iTokenEnd >= iTokenStart)
       {
-         lprect->left = m_tokenaMain.element_at(iTokenStart).GetPosition(iCharStart);
+         lprect->left = m_tokenaMain.element_at(iTokenStart).get_position(iCharStart);
          lprect->top = rect.top;
-         lprect->right = m_tokenaMain.element_at(iTokenEnd).GetPosition(iCharEnd);
+         lprect->right = m_tokenaMain.element_at(iTokenEnd).get_position(iCharEnd);
          lprect->bottom = rect.bottom;
       }
       else
@@ -2196,8 +2202,8 @@ void LyricViewLine::GetSelRect(LPRECT lprect)
       lprect->right = 0;
       lprect->bottom = 0;
    }
-   
-   
+
+
 }
 
 
@@ -2237,7 +2243,7 @@ user::e_line_hit LyricViewLine::hit_test(const POINT &ptCursorParam, int &iToken
          return ::user::line_hit_none;
       }
    }
-   
+
 }
 
 
@@ -2270,7 +2276,7 @@ void LyricViewLine::UpdateHover(point &ptCursor)
          GetKaraokeView()->_001RedrawWindow();
       }
    }
-   
+
 }
 
 bool LyricViewLine::IsInHover()
@@ -2378,7 +2384,7 @@ int LyricViewLine::GetMiddle(LyricEventsV2 * pevent)
       int iToken = iPlayingTokenIndex - m_iFirstToken;
       string str;
       m_tokenaMain[iToken].GetText(str);
-      
+
       int iFirstChar = 0;
 //      int charsLength = str.get_length();
       str.trim_right();
@@ -2390,8 +2396,8 @@ int LyricViewLine::GetMiddle(LyricEventsV2 * pevent)
             iFirstChar++;
          }
       }
-      int iLeft   = m_tokenaMain[iToken].GetPosition(iFirstChar);
-      int iRight  = m_tokenaMain[iToken].GetPosition(iTrimLength);
+      int iLeft   = m_tokenaMain[iToken].get_position(iFirstChar);
+      int iRight  = m_tokenaMain[iToken].get_position(iTrimLength);
       iMiddle     = (int) ((iRight - iLeft) * m_dNoteFillRate)  + iLeft;
     }
     return iMiddle;
@@ -2406,7 +2412,7 @@ void LyricViewLine::Invalidate(
    UNREFERENCED_PARAMETER(iPlayingNoteIndex);
    int iMiddleStart = m_iMiddle;
    int iMiddleEnd = m_iMiddle;
-   
+
    int iNewMiddle = GetMiddle(pevent);
 
    if(iNewMiddle == m_iMiddle)
@@ -2549,7 +2555,7 @@ bool LyricViewLine::OnMouseMove(UINT user, point pt)
 
    if(selection.GetState() == kar::LyricViewLineSelection::StateTracking)
    {
-      
+
       bool bInside;
       int iToken;
       int iChar;
@@ -2576,7 +2582,7 @@ bool LyricViewLine::OnMouseMove(UINT user, point pt)
       }
       else // bInside == true
       {
-         //DWORD fwKeys = user; // key flags 
+         //DWORD fwKeys = user; // key flags
          if(m_tokenaMain.get_size() <= 0)
             return false;
          if(CalcChar(pt, iToken, iChar))
@@ -2587,7 +2593,7 @@ bool LyricViewLine::OnMouseMove(UINT user, point pt)
          }
          else
          {
-            if(pt.x < m_tokenaMain.element_at(0).GetPosition())
+            if(pt.x < m_tokenaMain.element_at(0).get_position())
             {
                selection.SetSelBefore(*this);
             }
@@ -2625,7 +2631,7 @@ bool LyricViewLine::OnMouseMove(UINT user, point pt)
 
 BOOL LyricViewLine::OnSetCursor(HWND hwnd, UINT uiHitTest, UINT uiMessage)
 {
-   UNREFERENCED_PARAMETER(hwnd);   
+   UNREFERENCED_PARAMETER(hwnd);
    UNREFERENCED_PARAMETER(uiHitTest);
    UNREFERENCED_PARAMETER(uiMessage);
    if(IsInHover())
@@ -2749,7 +2755,7 @@ void LyricViewLine::PrepareURLLinks()
                         {
                            if(iIndex < (iArrobaIndex - 1))
                            {
-                              if(iIndex > 0 && 
+                              if(iIndex > 0 &&
                                  (isspace(str[iIndex])
                                  || str[iIndex] == '\\'
                                  || str[iIndex] == '/'
@@ -2762,7 +2768,7 @@ void LyricViewLine::PrepareURLLinks()
                            }
                            break;
                         }
-                        
+
                      }
                   }
                }
@@ -2775,7 +2781,7 @@ void LyricViewLine::PrepareURLLinks()
                break;
          }
       }
-      
+
 
       for(j = m_iaCharLink.get_size(); j < iIndex; j++)
       {
@@ -2928,7 +2934,7 @@ void LyricViewLine::EmbossedTextOut(
    {
       WCHAR wch = lpcsz[i];
 
-      
+
       pdc->SelectObject(m_font);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -2966,7 +2972,7 @@ void LyricViewLine::EmbossedTextOut(
          iTop  + cyExt,
          NULL);
       ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
-      
+
       //pdc->SelectObject(m_fontInt);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -2974,7 +2980,7 @@ void LyricViewLine::EmbossedTextOut(
          1,
          &sizeInt);
       ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
-      
+
       //pdc->SelectObject(m_fontExt);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -2985,7 +2991,7 @@ void LyricViewLine::EmbossedTextOut(
       cyExt = (size.cy - sizeExt.cy) / 2;
       ::TextOutW((HDC)pdc->get_os_data(), iLeft + cx + cxExt, iTop + cyExt, &wch, 1);
 
-      
+
 
       cx = size.cx;
    }
@@ -3020,7 +3026,7 @@ void LyricViewLine::EmbossedTextOut(
    if(m_dc1.get_os_data() == NULL)
    {
       m_dc1.CreateCompatibleDC(pdc);
-      
+
    }
    m_dc1.SelectObject(pdc->GetCurrentFont());
 
@@ -3029,7 +3035,7 @@ void LyricViewLine::EmbossedTextOut(
       m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
       m_dc1.SelectObject(m_bmp1);
    }
-   else 
+   else
    {
       BITMAP bm;
       m_bmp1.GetBitmap(&bm);
@@ -3050,7 +3056,7 @@ void LyricViewLine::EmbossedTextOut(
    System.imaging().channel_gray_blur(&m_dc1,0, 0, size.cx, size.cy,
       &m_dc1, 0, 0, 0, 2);
 
-   System.imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy, 
+   System.imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy,
       crOutline, &m_dc1, 0, 0);
 
 
@@ -3062,14 +3068,14 @@ void LyricViewLine::EmbossedTextOut(
    lb.lbStyle = BS_SOLID;
    lb.lbColor = crOutline;
    //::ca::pen_sp pen(get_app(), PS_SOLID, iWidth * 2 + 2, crOutline);
-   ::ca::pen_sp pen(get_app(), 
+   ::ca::pen_sp pen(get_app(),
       PS_SOLID
       | PS_GEOMETRIC
       | PS_ENDCAP_ROUND
       | PS_JOIN_ROUND,
       iWidth * 2,
       &lb);
-   
+
    ::ca::pen * ppenOld = pdc->SelectObject(pen);
    pdc->StrokePath();
    pdc->SelectObject(ppenOld);*/
@@ -3098,13 +3104,17 @@ void LyricViewLine::EmbossedTextOut(
    UNREFERENCED_PARAMETER(pdcCache);
    UNREFERENCED_PARAMETER(iLen);
    UNREFERENCED_PARAMETER(pdcCache);
+   UNREFERENCED_PARAMETER(iWidth);
+   UNREFERENCED_PARAMETER(crOutline);
+   UNREFERENCED_PARAMETER(bBegin);
+   UNREFERENCED_PARAMETER(bEnd);
 
    bool bSaveProcessing = System.savings().should_save(gen::resource_processing)
       || (m_bEnhancedEmboss && System.savings().should_save(gen::resource_blurred_text_embossing));
 
    if(bSaveProcessing)
    {
-      int iRadius = (int) (max(1.0f, m_floatRateX * 5.0));
+//      int iRadius = (int) (max(1.0f, m_floatRateX * 5.0));
       pdc->BeginPath();
       pdc->TextOut(iLeft, iTop, lpcsz);
       pdc->EndPath();
@@ -3114,7 +3124,7 @@ void LyricViewLine::EmbossedTextOut(
       //lb.lbColor = crOutline;
       //lb.lbHatch = 0;
       //::ca::pen_sp pen(get_app(), PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius * 2, &lb);
-   
+
       //::ca::pen * ppenOld = pdc->SelectObject(pen);
       pdc->StrokePath();
       //pdc->SelectObject(ppenOld);
@@ -3139,7 +3149,7 @@ void LyricViewLine::CacheEmboss(::ca::graphics * pdc, const char * lpcsz, int iL
       return;
 
    m_bCacheEmboss = true;
-   
+
    if(!m_bEnhancedEmboss)
       return;
 
@@ -3159,7 +3169,7 @@ void LyricViewLine::CacheEmboss(::ca::graphics * pdc, const char * lpcsz, int iL
       ::ca::bitmap * pbmpCache = dibEmboss.get_bitmap();
       pdcCache = dibEmboss.get_graphics();
       pbmpCache = dibEmboss.get_bitmap();
-   
+
       int iRadius = max(1, (int) (m_floatRateX * 5.0));
 
 
@@ -3190,11 +3200,13 @@ void LyricViewLine::CacheEmboss(::ca::graphics * pdc, const char * lpcsz, int iL
       System.imaging().channel_spread(pdcCache, null_point(), sizeBmp, pdcCache, null_point(), 0, iRadius / 2);
       System.imaging().channel_alpha_gray_blur(pdcCache, null_point(), sizeBmp,  pdcCache, null_point(), 0, iRadius);
       //System.imaging().channel_gray_blur(pdcCache, null_point(), sizeBmp,  pdcCache, null_point(), 0, 2);
-      System.imaging().pre_color_blend(pdcCache, pdcCache, RGB(96, 96, 92));
+      //System.imaging().pre_color_blend(pdcCache, pdcCache, RGB(96, 96, 92));
+      //System.imaging().pre_color_blend(pdcCache, pdcCache, RGB(255, 255, 255));
+      System.imaging().pre_color_blend(pdcCache, pdcCache, RGB(84, 84, 77));
       dibEmboss.channel_multiply(visual::rgba::channel_alpha, 1.2);
       //m_dibEmboss->channel_invert(visual::rgba::channel_alpha);
    }
-   
+
 }
 
 
@@ -3244,7 +3256,7 @@ void LyricViewLine::SetNoteFillRate(double dFillRate)
    m_dNoteFillRate = dFillRate;
 }
 
-void LyricViewLine::SetNoteMsLength(DWORD dwMsLength)
+void LyricViewLine::SetNoteMsLength(imedia::time dwMsLength)
 {
    m_dwNoteMsLength = dwMsLength;
 }
@@ -3306,12 +3318,12 @@ int LyricViewLine::CToken::GetStartIndex()
    return m_iStartIndex;
 }
 
-int LyricViewLine::CToken::GetPosition()
+int LyricViewLine::CToken::get_position()
 {
    return m_iaPosition[0];
-}   
+}
 
-int LyricViewLine::CToken::GetPosition(int iChar)
+int LyricViewLine::CToken::get_position(int iChar)
 {
    return m_iaPosition[iChar];
 }
@@ -3346,7 +3358,7 @@ bool kar::LyricViewLineSelectionItem::Intersect(LyricViewLine &viewline)
 
 }
 
-                            
+
 int LyricViewLine::GetFirstToken()
 {
    return m_iFirstToken;
@@ -3394,6 +3406,9 @@ kar::LyricViewLineSelection & LyricViewLines::GetSelection()
 
 kar::LyricViewLineSelection & LyricViewLine::GetSelection()
 {
-   return GetContainer()->GetSelection();
+   if(GetContainer() == NULL)
+      return *((kar::LyricViewLineSelection *) NULL);
+   else
+      return GetContainer()->GetSelection();
 }
 

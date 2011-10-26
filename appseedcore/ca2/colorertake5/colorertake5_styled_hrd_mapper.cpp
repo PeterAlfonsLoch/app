@@ -21,13 +21,13 @@ StyledHRDMapper::~StyledHRDMapper()
 //  delete rd;
 };
 
-void StyledHRDMapper::loadRegionMappings(ex1::input_stream & is)
+void StyledHRDMapper::loadRegionMappings(ex1::byte_input_stream & istream)
 {
 //  DocumentBuilder docbuilder;
 
   //Document *hrdbase = docbuilder.parse(is);
    string str;
-   is >> str;
+   istream >> str;
    xml::node hbase(m_papp);
    hbase.load(str);
    if(hbase.m_strName != "hrd")
@@ -59,7 +59,7 @@ void StyledHRDMapper::loadRegionMappings(ex1::input_stream & is)
     XML spfile-> Note, that this method writes all loaded
     defines from all loaded HRD files.
 */
-void StyledHRDMapper::saveRegionMappings(ex1::output_stream & writer) const
+void StyledHRDMapper::saveRegionMappings(ex1::byte_output_stream & writer) const
 {
    UNREFERENCED_PARAMETER(writer);
 
@@ -127,7 +127,7 @@ void StyledHRDMapper::setRegionDefine(const char * name, RegionDefine *rd)
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

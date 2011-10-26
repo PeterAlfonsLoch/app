@@ -444,7 +444,7 @@ namespace userbase
       //m_nCount = 0;
    }
 
-   void tool_bar::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void tool_bar::install_message_handling(::user::win::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &tool_bar::_001OnNcHitTest);
       //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &tool_bar::_001On);
@@ -1362,7 +1362,7 @@ namespace userbase
       {
          // initialize ::collection::map if necessary
          if (m_pStringMap == NULL)
-            m_pStringMap = new ::collection::string_to_pointer;
+            m_pStringMap = new ::collection::string_to_ptr;
 
          string str;
          str = lpszText;

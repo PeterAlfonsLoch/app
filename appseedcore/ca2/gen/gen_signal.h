@@ -26,7 +26,7 @@ namespace gen
       int                  m_iParam;
       bool                 m_bRet;
       signal *             m_psignal;
-      
+
 
 
       signal_object(::ca::application * papp = NULL);
@@ -35,6 +35,8 @@ namespace gen
 
 
       bool emit(); // returns m_bRet
+
+      bool all_previous(); // returns bRet
 
       bool previous(); // returns bRet
 
@@ -55,13 +57,15 @@ namespace gen
 
       signalizable();
       virtual ~signalizable();
-      
-      
+
+
       virtual void on_request_signal(request_signal * pobj);
 
       void register_signal(signal * psignal);
       void unregister_signal(signal * psignal);
-      
+      void unregister_target(gen::signalizable * psignalizable);
+      void filter_target(gen::signalizable * psignalizable);
+
    };
 
 
@@ -105,32 +109,31 @@ namespace gen
       bool has_handler();
       void emit(signal_object * pobject = NULL);
       void emit_previous(signal_object * pobject);
+      void emit_all_previous(signal_object * pobject);
       template < class T >
       void connect(T * psignalizable, void (T::*pfn)(signal_object *))
       {
-         signal_delegate_instance<T> * pdelegate = new signal_delegate_instance<T>(psignalizable);
+         signal_delegate_instance < T > * pdelegate = new signal_delegate_instance < T >(psignalizable);
          pdelegate->m_pfn = pfn;
-         m_delegateptra.add_unique(pdelegate);
+         m_delegatea.add_unique(pdelegate);
          psignalizable->register_signal(this);
       }
       template < class T >
       bool is_connected(T * psignalizable, void (T::*pfn)(signal_object *))
       {
-         for(int i = 0; i < m_delegateptra.get_size(); i++)
+         for(int i = 0; i < m_delegatea.get_size(); i++)
          {
-            signal_delegate_instance<T> * pdelegate = dynamic_cast < signal_delegate_instance<T> * > 
-               (m_delegateptra[i]);
-            if(pdelegate != NULL &&
-               pdelegate->m_psignalizable == psignalizable &&
-               pdelegate->m_pfn == pfn)
+            signal_delegate_instance < T > * pdelegate = m_delegatea.typed_ptr_at < signal_delegate_instance < T > > (i);
+            if(pdelegate != NULL && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
                return true;
          }
          return false;
       }
 
    protected:
-      comparable_eq_array < signal_delegate *, signal_delegate * > m_delegateptra;
+      array_del_ptr < signal_delegate > m_delegatea;
       void disconnect(signalizable * psignalizable);
+      void leave_only(signalizable * psignalizable);
    };
 
    template < class T>
@@ -161,7 +164,8 @@ namespace gen
       virtual signalid * copy() = 0;
    };
 
-   class CLASS_DECL_ca signalid_array : public base_array < signalid *, signalid * >
+   class CLASS_DECL_ca signalid_array :
+      virtual public base_array < signalid *, signalid * >
    {
    public:
       virtual ~signalid_array();
@@ -172,7 +176,7 @@ namespace gen
    {
       protected:
       public:
-            
+
          class CLASS_DECL_ca handler_item_base
          {
          public:
@@ -204,8 +208,12 @@ namespace gen
          public:
             signalid *        m_pid;
             gen::signal *     m_psignal;
-            
+
             handler_item_array  m_handlera;
+
+            signal();
+            virtual ~signal();
+
          };
 
          class CLASS_DECL_ca signal_ptr_array :
@@ -226,7 +234,7 @@ namespace gen
 
          void RemoveMessageHandler(gen::signalizable * psignalizable);
          // Prototype_bool_WPARAM_LPARAM;
-         
+
          template < class T >
          bool AddMessageHandler(
             signalid * pid,
@@ -244,7 +252,7 @@ namespace gen
                psignal->m_psignal->connect(psignalizable, pfn);
                handler_item <T> * pitem   = new handler_item<T>;
                pitem->m_psignalizable     = psignalizable;
-               psignal->m_handlera.add(pitem);         
+               psignal->m_handlera.add(pitem);
                m_signala.add(psignal);
             }
             else
@@ -266,15 +274,19 @@ namespace gen
          int                  m_iHandling;
          signal_array          m_signala;
 
+
+         dispatch();
+         virtual ~dispatch();
+
       };
 
 
 inline void dispatch::signal_array::
 GetSignalsById(dispatch::signal_ptr_array & signalptra, signalid * pid)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      signal & signal = element_at(i);
+      signal & signal = this->element_at(i);
       if(signal.m_pid->matches(pid))
       {
          signalptra.add(&signal);
@@ -284,9 +296,9 @@ GetSignalsById(dispatch::signal_ptr_array & signalptra, signalid * pid)
 
 inline dispatch::signal * dispatch::signal_array::GetSignalById(signalid * pid)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      signal & signal = element_at(i);
+      signal & signal = this->element_at(i);
       if(signal.m_pid->matches(pid))
       {
          return &signal;
@@ -304,6 +316,6 @@ inline dispatch::signal * dispatch::signal_array::GetSignalById(signalid * pid)
 #define BEG_GEN_SIGNAL(cl, function, signal_impl_class) void cl::function(gen::signal_object * pobj) \
 { SCAST_PTR(signal_impl_class, pobj, psignal);
 #define END_GEN_SIGNAL() }
-   
+
 
 #include "gen_request_signal.h"

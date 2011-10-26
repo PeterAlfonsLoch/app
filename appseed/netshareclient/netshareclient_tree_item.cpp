@@ -7,6 +7,7 @@ namespace netshareclient
 
    string tree_item::get_text(ex1::tree * ptree)
    {
+      UNREFERENCED_PARAMETER(ptree);
       if(m_strLogin.is_empty())
          return m_strAddress;
       else

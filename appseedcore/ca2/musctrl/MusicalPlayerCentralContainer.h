@@ -18,7 +18,7 @@ namespace musctrl
 
       bool Initialize(::ca::application * papp);
 
-      static inline MusicalPlayerCentral & AppGetMusicalPlayerCentral(::ca::application * papp);
+      static MusicalPlayerCentral & AppGetMusicalPlayerCentral(::ca::application * papp);
 
       inline MusicalPlayerCentral & GetMusicalPlayerCentral();
 

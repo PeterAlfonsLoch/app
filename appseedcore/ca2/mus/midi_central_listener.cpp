@@ -1,32 +1,32 @@
 #include "StdAfx.h"
 
-CMidiCentralListener::CMidiCentralListener()
+midi_central_listener::midi_central_listener()
 {
    m_pmidicentral = NULL;
 }
 
-CMidiCentralListener::CMidiCentralListener(midi_central * pcentral)
+midi_central_listener::midi_central_listener(midi_central * pcentral)
 {
    m_pmidicentral = NULL;
    SetMidiCentral(pcentral);
 }
 
-CMidiCentralListener::~CMidiCentralListener()
+midi_central_listener::~midi_central_listener()
 {
    m_pmidicentral->RemoveListener(this);
 }
 
-void CMidiCentralListener::OnAttributeChange(mus::EMidiCentralAttribute eattribute)
+void midi_central_listener::OnAttributeChange(mus::e_midi_central_attribute eattribute)
 {
    UNREFERENCED_PARAMETER(eattribute);
 }
 
-void CMidiCentralListener::OnAttributeChange(int iAttribute)
+void midi_central_listener::OnAttributeChange(int iAttribute)
 {
-   OnAttributeChange((mus::EMidiCentralAttribute) iAttribute);
+   OnAttributeChange((mus::e_midi_central_attribute) iAttribute);
 }
 
-void CMidiCentralListener::SetMidiCentral(midi_central *pcentral)
+void midi_central_listener::SetMidiCentral(midi_central *pcentral)
 {
    if(m_pmidicentral != NULL)
    {

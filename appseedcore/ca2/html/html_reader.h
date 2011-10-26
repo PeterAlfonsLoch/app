@@ -3,13 +3,21 @@
 namespace html
 {
 
-   class reader : public ::ILiteHTMLReaderEvents
+   class reader : 
+      virtual public ::ILiteHTMLReaderEvents
    {
-   public:
-      reader();
+   protected:
 
-      tag * m_ptagMain;
-      tag * m_ptag;
+
+      tag *       m_ptagMain;
+      tag *       m_ptag;
+
+
+   public:
+
+
+      reader();
+      virtual ~reader();
 
       virtual void BeginParse(DWORD dwAppData, bool &bAbort);
       virtual void StartTag(lite_html_tag *pTag, DWORD dwAppData, bool &bAbort);
@@ -17,6 +25,9 @@ namespace html
       virtual void Characters(const string &rText, DWORD dwAppData, bool &bAbort);
       virtual void Comment(const string &rComment, DWORD dwAppData, bool &bAbort);
       virtual void EndParse(DWORD dwAppData, bool bIsAborted);
+
+      tag * detach_main_tag();
+
    };
 
 

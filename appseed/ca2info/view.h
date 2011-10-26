@@ -20,7 +20,7 @@ namespace ca2info
 
       ca2info::socket * m_psocket;
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);

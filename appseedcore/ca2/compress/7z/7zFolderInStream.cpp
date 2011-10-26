@@ -31,7 +31,7 @@ namespace n7z
       _filePos = 0;
       while (_fileIndex < _numFiles)
       {
-         ::ca::smart_pointer<::ex1::input_stream> stream;
+         ::ca::smart_pointer<::ex1::byte_input_stream> stream;
          HRESULT result = _updateCallback->GetStream(_fileIndices[_fileIndex], &stream.m_p);
          if (result != S_OK && result != S_FALSE)
             return result;
@@ -75,14 +75,14 @@ namespace n7z
       return S_OK;
    }
 
-   DWORD_PTR CFolderInStream::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size CFolderInStream::read(void *data, ::primitive::memory_size size)
    {
-      DWORD_PTR processedSize = 0;
+      ::primitive::memory_size processedSize = 0;
       while (size > 0)
       {
          if (_fileIsOpen)
          {
-            uint32 processed2;
+            ::primitive::memory_size processed2;
             processed2 = _inStreamWithHash->read(data, size);
             if (processed2 == 0)
             {

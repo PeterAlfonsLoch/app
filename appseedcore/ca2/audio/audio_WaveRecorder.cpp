@@ -2,7 +2,7 @@
 
 audWaveRecorder::audWaveRecorder(::ca::application * papp) :
    ca(papp),
-   thread(papp), 
+   thread(papp),
    m_pluginset(papp),
    m_eventStopped(FALSE, TRUE)
 {
@@ -31,7 +31,7 @@ int audWaveRecorder::exit_instance()
    return thread::exit_instance();
 }
 
-void audWaveRecorder::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void audWaveRecorder::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(audMessageCommand, pinterface, this, &audWaveRecorder::OnaudCommandMessage);
 }
@@ -85,7 +85,7 @@ void audWaveRecorder::OnaudCommandMessage(gen::signal_object * pobj)
 bool audWaveRecorder::audCommandMessageProcedure(audWaveRecorderCommand &command)
 {
 //   bool bSetEvents = true;
-   command.m_bResult = true;  
+   command.m_bResult = true;
    switch(command.GetCommand())
    {
    case audCommandOpenWavFile:
@@ -126,7 +126,7 @@ bool audWaveRecorder::audCommandMessageProcedure(audWaveRecorderCommand &command
       {
          m_eventStopped.ResetEvent();
          m_pwavein->Stop();
-         m_pwavein->m_eventStopped.Lock((1984 + 1977) * 20);
+         m_pwavein->m_eventStopped.wait(millis((1984 + 1977) * 20));
          m_pwavein->close();
          m_pencoder->EncoderFinalize();
          m_eventStopped.SetEvent();

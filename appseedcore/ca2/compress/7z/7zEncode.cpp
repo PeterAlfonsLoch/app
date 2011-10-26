@@ -18,7 +18,7 @@ static const uint64 k_BCJ = 0x03030103;
 static const uint64 k_BCJ2 = 0x0303011B;
 
 
-namespace n7z 
+namespace n7z
 {
 
    static void ConvertBindInfoToFolderItemInfo(const ::compress::coder_mixer::CBindInfo &bindInfo,
@@ -53,7 +53,7 @@ namespace n7z
 
    HRESULT CEncoder::CreateMixerCoder(
       ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
-      const uint64 *inSizeForReduce)
+      const file_size *inSizeForReduce)
    {
       ex1::HRes hr;
       _mixerCoderSpec = new ::compress::coder_mixer::CCoderMixer2MT;
@@ -142,10 +142,10 @@ namespace n7z
    HRESULT CEncoder::Encode(
       ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
       ::ex1::reader *inStream,
-      const uint64 *inStreamSize, const uint64 *inSizeForReduce,
+      const file_size *inStreamSize, const file_size *inSizeForReduce,
       CFolder &folderItem,
       ::ex1::writer *outStream,
-      base_array<uint64> &packSizes,
+      base_array<file_size> &packSizes,
       ::compress::progress_info_interface *compressProgress)
    {
       ex1::HRes hr;
@@ -167,7 +167,7 @@ namespace n7z
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          inOutTempBuffers.add(::ex1::temp_io_buffer());
-         inOutTempBuffers.last_element().Create();
+         inOutTempBuffers.last_element().create();
          inOutTempBuffers.last_element().InitWriting();
       }
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
@@ -189,7 +189,7 @@ namespace n7z
 
       if (inStreamSize != NULL)
       {
-         base_array<const uint64 *> sizePointers;
+         base_array<const file_size *> sizePointers;
          for (uint32 i = 0; i < _bindInfo.Coders[mainCoderIndex].NumInStreams; i++)
             if (i == mainStreamIndex)
                sizePointers.add(inStreamSize);
@@ -262,15 +262,15 @@ namespace n7z
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          ex1::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
-         RINOK(inOutTempBuffer.WriteToStream(outStream));
-         packSizes.add(inOutTempBuffer.GetDataSize());
+         RINOK(inOutTempBuffer.write_to_stream(outStream));
+         packSizes.add((file_size) inOutTempBuffer.GetDataSize());
       }
 
       for (i = 0; i < (int)_bindReverseConverter->NumSrcInStreams; i++)
       {
          int binder = _bindInfo.FindBinderForInStream(
             _bindReverseConverter->DestOutToSrcInMap[i]);
-         uint64 streamSize;
+         file_size streamSize;
          if (binder < 0)
             streamSize = inStreamSizeCountSpec->GetSize();
          else
@@ -450,4 +450,4 @@ namespace n7z
       delete _bindReverseConverter;
    }
 
-} // namespace n7z 
+} // namespace n7z

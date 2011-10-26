@@ -143,7 +143,7 @@ namespace colorertak5
      /**
       * Parses input bytes in specified encoding and creates DOM tree.
       */
-     Document *parse(const byte *bytes, int GetLength, const char *codepage = 0);
+     Document *parse(const byte *bytes, int get_length, const char *codepage = 0);
 
      /**
       * Deletes all DOM tree structure.
@@ -200,10 +200,10 @@ namespace colorertak5
 
      inline int peek(int offset = 0){
        if (src_overflow){
-         if (opos+offset < src_overflow->GetLength()){
+         if (opos+offset < src_overflow->get_length()){
            return (*src_overflow)[opos+offset];
          }else{
-           offset -= (src_overflow->GetLength() - opos);
+           offset -= (src_overflow->get_length() - opos);
          }
        }
        if (ppos+offset >= src_length) return -1;
@@ -212,7 +212,7 @@ namespace colorertak5
 
      inline wchar_t get(){
        if (src_overflow){
-         if (opos == src_overflow->GetLength()){
+         if (opos == src_overflow->get_length()){
            delete src_overflow;
            src_overflow = null;
            opos = 0;
@@ -457,7 +457,7 @@ namespace colorertak5
 
      int getLength()
      {
-       return data->GetLength();
+       return data->get_length();
      }
 
    protected:

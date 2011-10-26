@@ -12,7 +12,7 @@ namespace querydb
       place_holder_container(papp)
    {
 
-      m_pcreateview = this;
+      m_pviewcreator = this;
       m_pviewdataOld = NULL;
 
       m_etranslucency      = TranslucencyPresent;
@@ -20,30 +20,7 @@ namespace querydb
       m_pviewdata              = NULL;
       m_pviewdataOld              = NULL;
 
-   /*   ::userbase::single_document_template* pdoctemplate;
-	   pdoctemplate = new ::userbase::single_document_template(
-		   IDR_ALBUM,
-		   &typeid(MediaLibraryDoc),
-		   &typeid(MediaLibraryChildFrame),
-		   &typeid(::mplite::library::view));
-      m_pdoctemplateAlbum = pdoctemplate;
 
-	   pdoctemplate = new ::userbase::single_document_template(
-		   IDR_ALBUM,
-		   &typeid(OptionsDoc),
-		   &typeid(OptionsChildFrame),
-		   &typeid(OptionsView));
-
-      
-      m_pdoctemplateOptions = pdoctemplate;
-
-	   pdoctemplate = new ::userbase::single_document_template(
-		   IDR_ALBUM,
-		   &typeid(GoodMixerDoc),
-		   &typeid(simple_child_frame),
-		   &typeid(MixerMainView));
-
-      m_pdoctemplateAudioControl = pdoctemplate;*/
       
 
    }
@@ -69,22 +46,18 @@ namespace querydb
 
    void pane_view::_001OnCreate(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
       SetTimer(3004, 184, NULL);
 
-      add_tab("3-action-launch", querydb::PaneViewThreeActionLaunch);
-      add_tab("menu", querydb::PaneViewContextMenu);
-      add_tab("win action area", querydb::PaneViewWinActionArea);
-      add_tab("options", querydb::PaneViewConfiguration);
-      add_tab("file manager", querydb::PaneViewFileManager);
+      add_tab("sql://query1.sql", "sql://query1.sql");
 
-      frame * pframe = dynamic_cast < frame *> (GetTopLevelParent());
+      frame * pframe = dynamic_cast < frame *> (GetTypedParent < ::querydb::frame >());
       pframe->m_ppaneview = this;
 
-      set_cur_tab_by_id(querydb::PaneViewWinActionArea);
+      set_cur_tab_by_id("sql://query1.sql");
 
 
 
@@ -92,11 +65,11 @@ namespace querydb
 
    void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint) 
    {
-      if(lHint == 0)
+      /*if(lHint == 0)
       {
                   frame * pframe = dynamic_cast < frame *> (GetTopLevelParent());
                   pframe->SetActiveView(this);
-      }
+      }*/
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(pHint != NULL)
       {
@@ -124,7 +97,7 @@ namespace querydb
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
                
-               int iTab;
+//               int iTab;
    //            if(puh->m_eview == PaneViewContextMenu)
      //          {
        //           m_tab._001AddSel(0);
@@ -145,27 +118,9 @@ namespace querydb
       frame * pframe = dynamic_cast < frame *> (GetParentFrame());
       if(get_view_id() == querydb::PaneViewFileManager)
       {
-         pframe->m_bAutoHideOnOutClick = false;
-         if(!pframe->IsZoomed())
-         {
-            pframe->ShowWindow(SW_MAXIMIZE);
-         }
-      }
-      else if(get_view_id() == querydb::PaneViewContextMenu)
-      {
-         querydb::menu_view * pview = dynamic_cast < querydb::menu_view *  > (get_view_uie());
-         pview->on_show();
-         pframe->m_bAutoHideOnOutClick = false;
-         if(!pframe->IsZoomed())
-         {
-            pframe->ShowWindow(SW_MAXIMIZE);
-         }
       }
       else
       {
-         pframe->m_bAutoHideOnOutClick = true;
-         //pframe->Dock();
-         //pframe->OnHoverAction(false);
       }
       pframe->SetActiveView(dynamic_cast < ::view *  > (get_view_uie()));
    }
@@ -179,247 +134,38 @@ namespace querydb
 
    void pane_view::_001OnShowWindow(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
    }
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
-      switch(pviewdata->m_id)
+      querydb::application * papp = dynamic_cast < querydb::application * > (get_app());
+      if(pcreatordata->m_id.is_text())
       {
-      case PaneViewContextMenu:
+         string strSql(pcreatordata->m_id);
+         if(gen::str::begins_eat_ci(strSql, "sql://"))
          {
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(typeid(querydb::menu_view), get_document(), this, 102));
-            if(pview != NULL)
-            {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
-            }
-         }
-         break;
-      case PaneViewWinActionArea:
-         {
-            ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (create_view(typeid(::userbase::split_view), get_document(), this, 101));
-            psplitview->SetPaneCount(2);
-            psplitview->SetSplitOrientation(userbase::split_layout::orientation_horizontal);
-            psplitview->SetPane(0, create_view(typeid(::querydb::query_view), get_document(), this, 102), false, 102);
-            psplitview->SetPane(1, create_view(typeid(::querydb::table_view), get_document(), this, 103), false, 103);
-            if(psplitview != NULL)
-            {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = psplitview;
-            }
-         }
-         break;
-      case PaneViewFileManager:
-         {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChild(papp, false, true, this);
+            document * pdoc = dynamic_cast < document * > (papp->m_ptemplateSql->open_document_file(strSql, true, this));
             if(pdoc != NULL)
             {
-               pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
-               pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
                ::view * pview = pdoc->get_view();
                if(pview != NULL)
                {
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
-
-
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
+                     pcreatordata->m_strTitle = System.file().name_(strSql);
                   }
                }
             }
-         }
-         break;
-      case PaneViewThreeActionLaunch:
-         {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
-            if(pdoc != NULL)
-            {
-               pdoc->get_filemanager_data()->m_iIconSize = 48;
-               pdoc->get_filemanager_data()->m_bListText = false;
-               pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_pcallback = this;
-               pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
-               pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
-               ::view * pview = pdoc->get_view();
-               string strDir = Application.dir().userappdata("querydb\\3-action-launch");
-               check_3click_dir(strDir);
-               pdoc->FileManagerBrowse(strDir);
-               if(pview != NULL)
-               {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
-                  {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
-
-
-                  }
-               }
-            }
-         }
-         break;
-      case PaneViewConfiguration:
-      {
-         form_document * pdoc = Application.create_form(this, this);
-         if(pdoc == NULL)
             return;
-         ::view * pview = pdoc->get_view();
-         form_update_hint uh;
-         uh.m_etype = form_update_hint::type_browse;
-         uh.m_strForm = "querydb\\configuration.html";
-         pdoc->update_all_views(NULL, 0, &uh);
-         
-         uh.m_etype = form_update_hint::type_get_form_view;
-         pdoc->update_all_views(NULL, 0, &uh);
-
-         uh.m_etype = form_update_hint::type_after_browse;
-         pdoc->update_all_views(NULL, 0, &uh);
-
-
-         pviewdata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
-         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pviewdata->m_pwnd);
-         //pframe->m_iTabId = iId;
-         pviewdata->m_pdoc = pdoc;
-
+         }
       }
-      break;
-   /*   case PaneViewPlaylist:
-         {
-            PlaylistDoc * pdoc = ((MusicalPlayerLightApp *) &Application)->GetPlaylistCentral().GetCurrentPlaylist(true, false);
-            
-            if(pdoc != NULL)
-            {
-               MusicalPlayerLightDoc * pplayerdoc = (MusicalPlayerLightDoc *) get_document();
-               if(pplayerdoc != NULL)
-               {
-                  pplayerdoc->AttachPlaylist(pdoc);
-               }
-               if(pdoc != NULL)
-               {
-                  POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
-                  {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                     if(pframe != NULL)
-                     {
-                        pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                        pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
-                     }
-                  }
-               }
-            }
-         }
-         break;
-      case PaneViewMediaLibrary:
-         {
-            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(NULL, FALSE);	
-            if(pdoc != NULL)
-            {
-               POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
-               if(pdoc != NULL)
-               {
-                  POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
-                  {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                     if(pframe != NULL)
-                     {
-                        pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                        pframe->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
-                        pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
-                     }
-                  }
-               }
-            }
-         }
-         break;
-      case PaneViewAudioControl:
-         {
-            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(NULL, FALSE);	
-            if(pdoc != NULL)
-            {
-               POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
-               if(pdoc != NULL)
-               {
-                  POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
-                  {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                     if(pframe != NULL)
-                     {
-                        pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                        pframe->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
-                        pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
-                     }
-                  }
-               }
-            }
-         }
-         break;
-      case PaneViewOptions:
-         {
-            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(NULL, FALSE);	
-            if(pdoc != NULL)
-            {
-               POSITION pos = pdoc->get_view_count();
-               ::view * pview = pdoc->get_view(pos);
-               if(pdoc != NULL)
-               {
-                  POSITION pos = pdoc->get_view_count();
-                  ::view * pview = pdoc->get_view(pos);
-                  if(pview != NULL)
-                  {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                     if(pframe != NULL)
-                     {
-                        pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                        pframe->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
-                        pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
-                     }
-                  }
-               }
-            }
-         }
-         break;*/
-      default:
-         ASSERT(FALSE);
-         break;
-      }
-      if(pviewdata->m_pwnd != NULL)
+      if(pcreatordata->m_pwnd != NULL)
       {
-         pviewdata->m_eflag.signalize(::user::create_view::view_data::flag_hide_all_others_on_show);
+         pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }
    }
 
@@ -427,12 +173,13 @@ namespace querydb
 
    void pane_view::_001OnMenuMessage(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
+      ::userex::pane_tab_view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
 	   //IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &pane_view::_001OnSize);
@@ -479,9 +226,9 @@ namespace querydb
       set_cur_tab_by_id(eviewNew);
    }
 
-   void pane_view::request(var & varFile, var & varQuery)
+   void pane_view::request(gen::command_line * pline)
    {
-      FileManagerCallbackInterface::request(varFile, varQuery);
+      FileManagerCallbackInterface::request(pline);
       GetParentFrame()->ShowWindow(SW_HIDE);
    }
 

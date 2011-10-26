@@ -14,15 +14,22 @@ namespace user
    public:
 
 
+
+
       class CLASS_DECL_ca pane
       {
       public:
-         
-         
+
+
          id                m_id;
          string            m_strTitleEx;
          ::visual::dib_sp  m_dib;
          place_holder *    m_pholder;
+         bool              m_bVisible;
+         bool              m_bPermanent;
+
+
+         pane();
 
 
          bool get_title(::ca::application * papp, string & str);
@@ -30,9 +37,17 @@ namespace user
 
       };
 
+
       class CLASS_DECL_ca pane_array :
          public array_ptr_alloc < pane, pane & >
       {
+      public:
+
+
+         virtual pane * get_by_id(id id);
+         count get_visible_count();
+
+
       };
 
 
@@ -63,17 +78,28 @@ namespace user
          int                              m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
+         ::ex1::match::any                m_matchanyRestore;
+         bool                             m_bEnableCloseAll;
 
 
          data(::ca::application * papp);
          virtual ~data();
 
+         virtual pane * get_pane_by_id(id id);
+
+         count get_visible_tab_count();
+
       };
 
-      ::visual::graphics_extension m_dcextension;
+      ::visual::graphics_extension     m_dcextension;
+      bool                             m_bRestoringTabs;
+      bool                             m_bShowTabs;
+      e_element                        m_eelement;
 
 
       tab(::ca::application * papp);
+            virtual ~tab();
+
 
 
       data * get_data();
@@ -81,10 +107,12 @@ namespace user
 
       virtual void on_show_view();
 
-      void  _001SetVertical(bool bSet = true);
+      virtual void  _001SetVertical(bool bSet = true);
       virtual void _001SelectTab(int iTab);
-      virtual ::user::interaction * get_tab_window(int iTab);
-      virtual ::user::place_holder * get_tab_holder(int iTab);
+      virtual void _001CloseTab(int iTab);
+      virtual pane * get_pane(int iTab, bool bVisible = true);
+      virtual ::user::interaction * get_tab_window(int iTab, bool bVisible = true);
+      virtual ::user::place_holder * get_tab_holder(int iTab, bool bVisible = true);
 
       void _000OnMouse(::user::win::message::mouse * pmouse);
 
@@ -93,34 +121,71 @@ namespace user
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(int iTab);
       virtual void _001OnDropTab(int iTab, e_position eposition);
-      void RemoveTab(int iTab);
-      void _001SetSel(int iSel);
-      void set_cur_tab_by_id(id id);
-      id get_cur_tab_id();
+      virtual void set_cur_tab_by_id(id id);
+
+      virtual id get_cur_tab_id();
       virtual id get_current_id();
-      void _001AddSel(int iSel);
-      int _001GetSel();
+
+      virtual void _001AddSel(int iSel);
+      virtual int _001GetSel();
+      virtual void _001SetSel(int iSel);
+
+      virtual int _001GetPaneCount();
+
       virtual void _001OnTabClick(int iTab);
-      ::ca::window * GetNotifyWnd();
-      int hit_test(point pt);
-      e_position DragHitTest(point pt);
-      void GetDragRect(LPRECT lprect, e_position eposition);
-      INT_PTR GetTabCount();
-      void GetTabRect(int iTab, LPRECT lprect);
-      void layout();
+      virtual void _001OnTabClose(int iTab);
+      virtual ::ca::window * GetNotifyWnd();
+      virtual int hit_test(point pt, e_element & eelement);
+      virtual e_position DragHitTest(point pt);
+      virtual void GetDragRect(LPRECT lprect, e_position eposition);
+      virtual INT_PTR GetTabCount();
+      virtual bool get_element_rect(int iTab, LPRECT lprect, e_element eelement);
+
+      virtual void layout();
+
       virtual void GetTabClientRect(LPRECT lprect);
       virtual void GetTabClientRect(__rect64 * lprect);
-      bool add_tab(const char * lpcsz, id id = class id());
-      bool remove_tab(id id = class id());
-      bool add_image_tab(const char * lpcsz, const char * pszImage, id id = class id());
-      virtual ~tab();
-      bool set_title(int iTab, const char * psz);
-      bool SetTitleById(id id, const char * psz);
-      int get_tab_by_id(id id);
-      id get_id_by_tab(int iTab);
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+
+      virtual bool add_tab(const char * lpcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false);
+      virtual bool set_tab(const char * lpcsz, id idTab = id(), bool bVisible = true);
+      virtual bool add_image_tab(const char * lpcsz, const char * pszImage, id idTab = id(), bool bVisible = true, bool bPermanent = false);
+      virtual bool set_image_tab(const char * lpcsz, const char * pszImage, id idTab = id(), bool bVisible = true);
+      virtual bool remove_tab_by_id(id idTab = id());
+      virtual void remove_tab(int iTab, bool bVisible = true);
+      virtual bool show_tab_by_id(id idTab = id(), bool bShow = true);
+      virtual bool show_tab(int iTab, bool bShow = true);
+
+
+      virtual bool set_title(int iTab, const char * psz);
+      virtual bool SetTitleById(id id, const char * psz);
+
+      virtual int get_tab_by_id(id id);
+      virtual id get_id_by_tab(int iTab, bool bVisible = true);
+      virtual pane * get_pane_by_id(id id);
+      virtual pane * ensure_pane_by_id(id id);
+      virtual void ensure_tab_by_id(id id);
+
+      virtual void on_change_pane_count();
+
+      virtual void get_text_id(stringa & stra);
+
+      virtual void get_prefixed_ci_id(stringa & stra, const char * pszPrefix);
+      virtual void get_suffixed_ci_id(stringa & stra, const char * pszSuffix);
+      virtual void get_presuffixed_ci_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
+
+      virtual void get_begins_ci_eat_id(stringa & stra, const char * pszPrefix);
+      virtual void get_ends_ci_eat_id(stringa & stra, const char * pszSuffix);
+      virtual void get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
+
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual void _001ConnectParent(::user::win::message::dispatch * pinterface);
-      
+
+
+      virtual bool has_restore_tab();
+      virtual void get_restore_tab(var_array & vara);
+      virtual void open_tabs(const var_array & vara);
+
+
 
       void _001OnDraw(::ca::graphics * pdc);
       DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -128,6 +193,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
       DECL_GEN_SIGNAL(_001OnCreate)
+      DECL_GEN_SIGNAL(_011OnCreate)
       DECL_GEN_SIGNAL(_001OnAppLanguage)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnTimer)

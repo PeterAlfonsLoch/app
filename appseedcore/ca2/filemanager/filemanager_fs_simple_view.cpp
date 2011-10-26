@@ -27,9 +27,9 @@ namespace filemanager
              //  delete m_pinetsession;
          }
 
-         void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+         void view::install_message_handling(::user::win::message::dispatch * pinterface)
          {
-            ::userbase::split_view::_001InstallMessageHandling(pinterface);
+            ::userbase::split_view::install_message_handling(pinterface);
          }
 
 
@@ -55,19 +55,13 @@ namespace filemanager
 
          
 
-            create_context cc;
-            cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  &typeid(tree_view);
-            m_ptree = dynamic_cast < tree_view * > (create_view(&cc, this, 100));
+            m_ptree = create_view < tree_view > ();
 
             m_ptree->m_pserver = this;
 
             SetPane(0, m_ptree, false);
 
-            cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  &typeid(list_view);
-
-            m_plist = dynamic_cast < list_view * > (create_view(&cc, this, 101));
+            m_plist = create_view < list_view > ();
 
             m_plist->m_pserver = this;
 
@@ -128,9 +122,7 @@ namespace filemanager
 
             if(m_prequestinterface != NULL)
             {
-               var varFile = strUrl;
-               var varQuery;
-               m_prequestinterface->request(varFile, varQuery);
+               m_prequestinterface->add_line_uri(strUrl);
             }
 
          }

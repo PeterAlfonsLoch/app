@@ -131,27 +131,18 @@ namespace window_frame
 
    }
 
-   void WorkSet::OnDraw(::ca::graphics *pdc)
+   void WorkSet::_001OnDraw(::ca::graphics *pdc)
    {
-      if(IsAppearanceEnabled())
+      if(IsAppearanceEnabled() && m_pframeschema != NULL)
       {
-         ::user::win::message::on_draw ondraw(get_app());
-         ondraw.m_pdc = pdc;
-         m_pframeschema->_000OnDraw(&ondraw);
-         //m_pappearance->OnDraw(pdc);
+         try
+         {
+            m_pframeschema->_001OnDraw(pdc);
+         }
+         catch(...)
+         {
+         }
       }
-   }
-
-   void WorkSet::OnDraw(::ca::graphics *pdc, LPCRECT lpcrect)
-   {
-      UNREFERENCED_PARAMETER(lpcrect);
-       if(IsAppearanceEnabled())
-       {
-         ::user::win::message::on_draw ondraw(get_app());
-         ondraw.m_pdc = pdc;
-         m_pframeschema->_000OnDraw(&ondraw);
-   //        m_pappearance->OnDraw(pdc, lpcrect);
-       }
    }
 
    void WorkSet::EnableMove(bool bEnable)
@@ -318,15 +309,6 @@ namespace window_frame
 
       _001InstallEventHandling(dynamic_cast<::user::win::message::dispatch*>(pwndEvent->m_pimpl));
 
-      ::user::interaction * pwndiDraw = GetDrawWindow();
-
-      if(pwndiDraw != NULL 
-         && m_pframeschema != NULL)
-      {
-         gen::connect(pwndiDraw->m_signalOnDraw, m_pframeschema, &FrameSchema::_000OnDraw);
-         gen::connect(pwndiDraw->m_signalOnNcDraw, m_pframeschema, &FrameSchema::_000OnNcDraw);
-      }
-
       return true;
    }
 
@@ -378,6 +360,9 @@ namespace window_frame
              return TRUE;
           case FrameSchema::ButtonDown:
              pinterface->WfiDown();
+             return TRUE;
+          case FrameSchema::ButtonNotifyIcon:
+             pinterface->WfiNotifyIcon();
              return TRUE;
 
           }
@@ -956,12 +941,16 @@ namespace window_frame
       SCAST_PTR(::user::win::message::activate, pactivate, pobj);
       pactivate->m_bRet = false;
       SetActiveFlag(pactivate->m_nState == WA_ACTIVE || pactivate->m_nState == WA_CLICKACTIVE);
+      if(IsFullScreen())
+      {
+         GetDrawWindow()->SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+      }
    }
 
    void WorkSet::_001OnNcActivate(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::nc_activate, pncactivate, pobj);
-      SetActiveFlag(pncactivate->m_bActive);
+      //SetActiveFlag(pncactivate->m_bActive);
       pncactivate->set_lresult(TRUE);
       pncactivate->m_bRet = true;
    }
@@ -1365,16 +1354,10 @@ namespace window_frame
 
    void WorkSet::AttachFrameSchema(FrameSchema * pframeschema)
    {
+
       m_pframeschema = pframeschema;
+
       pframeschema->m_pworkset = this;
-
-      ::user::interaction * pwndiDraw = GetDrawWindow();
-
-      if(pwndiDraw != NULL 
-         && m_pframeschema != NULL)
-      {
-         gen::connect(pwndiDraw->m_signalOnDraw, m_pframeschema, &FrameSchema::_000OnDraw);
-      }
 
       m_pframeschema->OnAttach();
 

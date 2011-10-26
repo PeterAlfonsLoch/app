@@ -1,5 +1,9 @@
 #pragma once
 
+
+typedef struct MD5state_st MD5_CTX;
+
+
 namespace ca4
 {
 
@@ -7,7 +11,7 @@ namespace ca4
       public ::radix::object
    {
    public:
-      file();
+
       class CLASS_DECL_ca path :
          public ::radix::object
       {
@@ -15,27 +19,34 @@ namespace ca4
          bool rename(const char * pszNew, const char * psz);
          file * m_pfile;
       };
+
+
+      path m_path;
+
+      file();
+
+
       string md5(const char * psz);
       string nessie(const char * psz);
 
+      string nessie(ex1::file * pfile);
+
       path & path36();
    
-         void dtf(const char * pszFile, const char * pszDir);
-         void dtf(const char * pszFile, stringa & stra, stringa & straRelative);
-         void ftd(const char * pszDir, const char * pszFile);
+      void dtf(const char * pszFile, const char * pszDir);
+      void dtf(const char * pszFile, stringa & stra, stringa & straRelative);
+      void ftd(const char * pszDir, const char * pszFile);
 
-         void is_valid_fileset(const char * pszFile);
+      void is_valid_fileset(const char * pszFile);
 
-         // 'n' (natural) terminated ascii number, example: 245765487n
-         static void write_n_number(ex1::file * pfile, MD5_CTX * pctx, int iNumber);
-         static void read_n_number(ex1::file * pfile, MD5_CTX * pctx, int & iNumber);
+      // 'n' (natural) terminated ascii number, example: 245765487n
+      static void write_n_number(ex1::file * pfile, MD5_CTX * pctx, int iNumber);
+      static void read_n_number(ex1::file * pfile, MD5_CTX * pctx, int & iNumber);
 
-         static void write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str);
-         static void read_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str);
+      static void write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str);
+      static void read_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str);
 
 
-   protected:
-      path m_path;
 
    };
 

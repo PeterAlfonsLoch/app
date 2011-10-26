@@ -6,7 +6,7 @@
 namespace ex1
 {
 
-   DWORD_PTR limited_input_stream::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size limited_input_stream::read(void *data, ::primitive::memory_size size)
    {
       if (_virtPos >= _size)
       {
@@ -22,7 +22,8 @@ namespace ex1
       if (newPos != _physPos)
       {
          _physPos = newPos;
-         RINOK(SeekToPhys());
+         //RINOK(SeekToPhys());
+         SeekToPhys();
       }
       size = _stream->read(data, size);
       _physPos += size;
@@ -30,7 +31,7 @@ namespace ex1
       return size;
    }
 
-   DWORD_PTR limited_input_stream::seek(INT_PTR offset, e_seek seekOrigin)
+   file_position limited_input_stream::seek(file_offset offset, e_seek seekOrigin)
    {
       switch(seekOrigin)
       {
@@ -45,16 +46,13 @@ namespace ex1
 
 
 
-   HRESULT CreateLimitedInStream(input_stream *inStream, uint64 pos, uint64 size, reader **resStream)
+   reader * create_limited_input_stream(byte_input_stream *inStream, uint64 pos, uint64 size)
    {
-      *resStream = 0;
       limited_input_stream *streamSpec = new limited_input_stream;
-      reader * streamTemp = streamSpec;
       streamSpec->SetStream(inStream);
-      RINOK(streamSpec->InitAndSeek(pos, size));
+      streamSpec->InitAndSeek(pos, size);
       streamSpec->seek_to_begin();
-      *resStream = streamTemp;
-      return S_OK;
+      return streamSpec;
    }
 
 } // namespace ex1

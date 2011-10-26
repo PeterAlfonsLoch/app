@@ -46,7 +46,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 #endif
 
    template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   class map : 
+   class map :
       virtual public base_object
    {
    public:
@@ -84,7 +84,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       //template < pair pairs[]>
       map(pair pairs[]);
 
-	   count get_count() const;
+	   countget_count() const;
 	   count get_size() const;
 	   BOOL is_empty() const;
 
@@ -174,7 +174,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
    template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
    const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetFirstAssoc() const
-   { 
+   {
 	   ASSERT_VALID(this);
 	   if(m_nCount == 0) return NULL;
 
@@ -193,7 +193,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
    template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
    typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetFirstAssoc()
-   { 
+   {
 	   ASSERT_VALID(this);
 	   if(m_nCount == 0) return NULL;
 
@@ -433,7 +433,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 	   pair * p = PLookup(key);
       if(p)
          return &p->m_value;
-      else 
+      else
          return NULL;
    }
 
@@ -543,10 +543,10 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
 	   ASSERT(m_pHashTable != NULL);  // never call on is_empty map
 	   ASSERT(pAssocRet != NULL);
-	
+
 	   if(m_pHashTable == NULL || pAssocRet == NULL)
 		   return NULL;
-		
+
 	   ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
 	   // find next association
@@ -574,10 +574,10 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
 	   ASSERT(m_pHashTable != NULL);  // never call on is_empty map
 	   ASSERT(pAssocRet != NULL);
-	
+
 	   if(m_pHashTable == NULL || pAssocRet == NULL)
 		   return NULL;
-		
+
 	   ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
 	   // find next association
@@ -629,9 +629,9 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 			   {
 				   KEY* pKey;
 				   VALUE* pValue;
-				   /* 
-				    * in some cases the & operator might be overloaded, and we cannot use it to 
-				    * obtain the address of a given object.  We then use the following trick to 
+				   /*
+				    * in some cases the & operator might be overloaded, and we cannot use it to
+				    * obtain the address of a given object.  We then use the following trick to
 				    * get the address
 				    */
 				   /*pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
@@ -694,7 +694,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
 
    template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   class attrib_map : 
+   class attrib_map :
       virtual public map < KEY, ARG_KEY, VALUE, ARG_VALUE >
    {
    public:
@@ -741,8 +741,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    };
 
    template < class VALUE, class ARG_VALUE >
-   string_map < VALUE, ARG_VALUE >::string_map(count nBlockSize) : 
-      map < string, string, VALUE, ARG_VALUE > (nBlockSize) 
+   string_map < VALUE, ARG_VALUE >::string_map(count nBlockSize) :
+      map < string, string, VALUE, ARG_VALUE > (nBlockSize)
    {
    }
 

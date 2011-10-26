@@ -29,10 +29,11 @@ public:
    virtual filemanager::data * get_filemanager_data();
 
 
+
    DECL_GEN_SIGNAL(_001OnAdd)
    DECL_GEN_SIGNAL(_001OnRemove)
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
    void CreateViews();
 

@@ -36,10 +36,10 @@ void
 base_array<m_iNodeNameIndex, TYPE, ARG_TYPE, ARRAY>::
 xml_export(output_tree & xmlof)
 {
-   xmlof.set_attr("count", get_size());
-   for(int i = 0; i < get_size(); i++)
+   xmlof.set_attr("count", this->get_size());
+   for(int i = 0; i < this->get_size(); i++)
    {
-      node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex), element_at(i));
+      node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex), this->element_at(i));
       pnode->add_attr("array_index", i);
    }
 }
@@ -53,14 +53,14 @@ xml_import(input_tree & xmlif)
    int iSize;
    xmlif.get_attr("count", iSize);
    set_size(iSize);
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
       attr_array attra(xmlif.m_pnode);
       attra.add("array_index", i);
-      xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex), attra, element_at(i));
+      xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex), attra, this->element_at(i));
    }
 }
 
-   
+
 
 } // namespace xml

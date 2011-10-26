@@ -6,20 +6,18 @@ namespace fs
 
 
    class CLASS_DECL_ca document :
-      virtual public ::userbase::document
+      virtual public ::userbase::document,
+      virtual public ::fs::set
    {
    public:
 
-
-      data *         m_pfsdata;
-      string         m_strFolder;
+      string                                    m_strFolder;
 
 
       document(::ca::application * papp);
       virtual ~document();
 
-      document * get_document();
-      virtual data *       get_fs_data();
+      document *                                get_document();
 
 
    #ifdef _DEBUG

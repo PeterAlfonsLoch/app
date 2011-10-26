@@ -44,9 +44,9 @@ winshelllink_view::~winshelllink_view()
 {
 }
 
-void winshelllink_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void winshelllink_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::view::_001InstallMessageHandling(pinterface);
+   ::userbase::view::install_message_handling(pinterface);
 
 	IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &winshelllink_view::_001OnDestroy);
 	IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &winshelllink_view::_001OnSize);
@@ -75,6 +75,7 @@ void winshelllink_view::_001InstallMessageHandling(::user::win::message::dispatc
 
 void winshelllink_view::OnDraw(::ca::graphics * pdcScreen)
 {
+   UNREFERENCED_PARAMETER(pdcScreen);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,6 +121,8 @@ void winshelllink_view::_001OnInitialUpdate(gen::signal_object * pobj)
 
 void winshelllink_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint) 
 {
+   UNREFERENCED_PARAMETER(pSender);
+   UNREFERENCED_PARAMETER(phint);
    if(lHint == 5432108)
    {
       SetTimer(5432108, 100, NULL);
@@ -136,7 +139,8 @@ void winshelllink_view::_001OnDestroy(gen::signal_object * pobj)
 
 void winshelllink_view::_001OnSize(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::size, psize, pobj)
+   UNREFERENCED_PARAMETER(pobj);
+//   SCAST_PTR(::user::win::message::size, psize, pobj)
 
    rect rectDesktop;
    Application.get_screen_rect(rectDesktop);
@@ -153,11 +157,11 @@ void winshelllink_view::_001OnSize(gen::signal_object * pobj)
    double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
    if(r < rScreen)
    {
-      iH = iW / rScreen;
+      iH = (int) (iW / rScreen);
    }
    else if(r > rScreen)
    {
-      iW = iH * rScreen;
+      iW = (int) (iH * rScreen);
    }
    m_iW = iW;
    m_iH = iH;
@@ -165,6 +169,7 @@ void winshelllink_view::_001OnSize(gen::signal_object * pobj)
 
 void winshelllink_view::_001OnPaint(gen::signal_object * pobj) 
 {
+   UNREFERENCED_PARAMETER(pobj);
 	//CPaintDC spgraphics(this); // device context for winshelllinking
    //spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
 }
@@ -172,6 +177,7 @@ void winshelllink_view::_001OnPaint(gen::signal_object * pobj)
 
 void winshelllink_view:: _001OnDraw(::ca::graphics * pdc)
 {
+   UNREFERENCED_PARAMETER(pdc);
 }
 
 void winshelllink_view::_001OnCreate(gen::signal_object * pobj) 
@@ -225,6 +231,7 @@ void winshelllink_view::Snapshot()
 
 int winshelllink_view::hit_test(point pt)
 {
+   UNREFERENCED_PARAMETER(pt);
 /*   GetAreaThumbRect(rectArea, m_iNotificationAreaButtonOffset);
    if(rectArea.contains(pt))
    {
@@ -235,14 +242,16 @@ int winshelllink_view::hit_test(point pt)
 
 void winshelllink_view::_001OnLButtonDown(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   UNREFERENCED_PARAMETER(pobj);
+//   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
 
 
 }
 
 void winshelllink_view::_001OnLButtonUp(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   UNREFERENCED_PARAMETER(pobj);
+   ///SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
    KillTimer(5432180);
 
 
@@ -250,14 +259,16 @@ void winshelllink_view::_001OnLButtonUp(gen::signal_object * pobj)
 
 void winshelllink_view::_001OnRButtonUp(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   UNREFERENCED_PARAMETER(pobj);
+   //SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
 
    
 }
 
 void winshelllink_view::_001OnOp(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj)
+   UNREFERENCED_PARAMETER(pobj);
+   //SCAST_PTR(::user::win::message::base, pbase, pobj)
 }
 
 
@@ -269,7 +280,7 @@ void winshelllink_view::area::UpdatePreserve()
       HWND hwnd = m_hwndaPreserve[i];
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
-      HICON hicon16_1 = NULL;
+//      HICON hicon16_1 = NULL;
       HICON hicon48_1 = NULL;
       HICON hicon_2 = NULL;
       if(!::SendMessageTimeout(hwnd, WM_GETICON, ICON_BIG, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &hicon_2))
@@ -302,12 +313,12 @@ void winshelllink_view::area::UpdatePreserve()
          bAutoDelete = true;
          DWORD dwProcessId;
          char szFilename[1024];
-         DWORD dwThreadId = ::GetWindowThreadProcessId(hwnd, &dwProcessId);
+         ::GetWindowThreadProcessId(hwnd, &dwProcessId);
          HANDLE hprocess = (HANDLE) OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ , FALSE, dwProcessId);
          memset(szFilename, 0, sizeof(szFilename));
          ::GetModuleFileNameEx((HMODULE) hprocess, NULL, szFilename, sizeof(szFilename));
          string strFilename = szFilename;
-         bool bPathCaption = strFilename.Right(13) == "\\explorer.exe";
+//         bool bPathCaption = strFilename.Right(13) == "\\explorer.exe";
          Application.shellimageset().GetIcon(m_pview->GetTopLevelParent()->_get_handle(), szFilename, L"", filemanager::_shell::IconNormal, &hicon16, &hicon48);
          hicon_2 = hicon16;
          ::CloseHandle(hprocess);
@@ -325,7 +336,7 @@ void winshelllink_view::area::UpdatePreserve()
          ::DestroyIcon(hicon48);
       }
    }
-restart:
+//restart:
    for(int i = 0; i < m_hwndaPreserve.get_size(); i++)
    {
       if(!m_hwnda.contains(m_hwndaPreserve[i]))
@@ -425,7 +436,7 @@ bool winshelllink_view::area::defer_do_op(int i)
             {
                DWORD dwProcessId;
                char szFilename[1024];
-               DWORD dwThreadId = ::GetWindowThreadProcessId(hwnd, &dwProcessId);
+               ::GetWindowThreadProcessId(hwnd, &dwProcessId);
                HANDLE hprocess = (HANDLE) OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ , FALSE, dwProcessId);
                memset(szFilename, 0, sizeof(szFilename));
                ::GetModuleFileNameEx((HMODULE) hprocess, NULL, szFilename, sizeof(szFilename));
@@ -464,7 +475,7 @@ void winshelllink_view::_001OnTimer(gen::signal_object * pobj)
    {
       point pt;
       Application.get_cursor_pos(&pt);
-      HWND hwnd = ::WindowFromPoint(pt);
+//      HWND hwnd = ::WindowFromPoint(pt);
    }
 }
 
@@ -501,7 +512,8 @@ winshelllink_view::show_window::show_window(HWND hwnd, int iShow, winshelllink_v
 
 void winshelllink_view::_001OnShowWindow(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj)
+   UNREFERENCED_PARAMETER(pobj);
+//   SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj)
 }
 
 

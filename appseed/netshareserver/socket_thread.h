@@ -10,26 +10,28 @@ namespace netshareserver
       public ::radix::thread
    {
    public:
+
+	   HANDLE                  m_hChildThreadId;
+	   PROCESS_INFORMATION     m_pi;
+      service *               m_pservice;
+
+      string                  m_strIp;
+      int                     m_iPort;
+
+      ::event                m_evCanInit;
+	   ::event                m_evInitialized;
+	   bool                    m_bInitialized;
+
+      socket *                m_psocket;
+
 	   socket_thread(::ca::application * papp);
-	   ~socket_thread(void);
+	   virtual ~socket_thread(void);
 
-	   HANDLE m_hChildThreadId;
-	   PROCESS_INFORMATION m_pi;
-      service * m_pservice;
-
-      string   m_strIp;
-      int      m_iPort;
-
-      ::CEvent m_evCanInit;
-	   ::CEvent m_evInitialized;
-	   bool m_bInitialized;
-
-      socket *    m_psocket;
 
 	   virtual bool initialize_instance();
 	   DECL_GEN_SIGNAL(OnApp)
 
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
 
    };
 

@@ -15,11 +15,15 @@ namespace win
 }
 
 #include "error_exception.h"
+#include "exception_range_error.h"
+#include "exception_runtime_error.h"
 #include "not_implemented.h"
+#include "exception_void_implementation.h"
 #include "interface_only.h"
 #include "not_supported.h"
+#include "not_licensed.h"
 
-#include "simple.h"
+#include "simple_exception.h"
 #include "assert.h"
 #include "misc.h"
 
@@ -33,7 +37,7 @@ namespace win
 
 #include "VMSException.h"
 
-
+#include "hresult_exception.h"
 
 #ifndef _AFX_JUMPBUF
 // Use portable 'jmp_buf' defined by ANSI by default.

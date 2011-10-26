@@ -1,9 +1,9 @@
 #pragma once
 
 
-
 namespace xml
 {
+
 
    class CLASS_DECL_ca application :
       virtual public ex2::application

@@ -1,6 +1,6 @@
 #include "resource.h"
 
-1                       TYPELIB                 "../iexca2plugin/iexca2.tlb"
+1                       TYPELIB                 "iexca2.tlb"
 
 
 1                       BITMAP                  "res/ca2-2c-h16.bmp"

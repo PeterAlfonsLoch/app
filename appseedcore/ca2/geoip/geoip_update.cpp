@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include <openssl/ssl.h>
 #include "include/zlib.h"
 
 

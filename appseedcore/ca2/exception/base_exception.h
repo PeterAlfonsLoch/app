@@ -1,8 +1,18 @@
 #pragma once
 
+
+#include "ca/ca_exception.h"
+#include "class.h"
+
+
+#undef delete
+
+
 class CLASS_DECL_ca base_exception :
-   virtual public ::ca::exception,
-   public call_stack
+   virtual public ::ca::exception
+#ifdef _WINDOWS
+   ,public call_stack
+#endif
 {
 public:
 
@@ -22,3 +32,4 @@ public:
    void PASCAL operator delete(void * pbData, const char * lpszFileName, int nLine);
 
 };
+

@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ex1
 {
+
 
    class CLASS_DECL_ca application :
       virtual public ::radix::application,
@@ -13,7 +15,7 @@ namespace ex1
 
       virtual void Ex1OnFactoryExchange();
 
-      virtual void on_request(var & varFile, var & varQuery);
+      virtual void on_request(::ca::create_context * pline);
 
    };
 

@@ -23,6 +23,6 @@ public:
     static void SetMixerCentral(MixerCentral * pmixercentral);
    virtual ~MixerCentral();
 
-   afx_msg void OnClose();
+   void OnClose();
 };
 

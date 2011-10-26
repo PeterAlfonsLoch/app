@@ -2,7 +2,7 @@
 
 
 #include "fontopus/fontopus.h"
-#include "icube/icube_application.h"
+#include "cube8/cube8_application.h"
 
 
 #include "database.h"

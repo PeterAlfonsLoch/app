@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-MidiEventV007::MidiEventV007(::mus::midi::file * pFile, MidiTrack * pTrack)
+midi_event_v007::midi_event_v007(::mus::midi::file * pFile, midi_track * pTrack)
 {
    m_abEvent[0] = 0;
    m_abEvent[1] = 0;
@@ -22,7 +22,7 @@ MidiEventV007::MidiEventV007(::mus::midi::file * pFile, MidiTrack * pTrack)
 
 }
 
-MidiEventV007::MidiEventV007(::mus::midi::file * pFile, MidiTrack * pTrack, MidiEventV001 * pEvent)
+midi_event_v007::midi_event_v007(::mus::midi::file * pFile, midi_track * pTrack, midi_event_v001 * pEvent)
 {
    m_abEvent[0] = pEvent->m_abEvent[0];
    m_abEvent[1] = pEvent->m_abEvent[1];
@@ -42,7 +42,7 @@ MidiEventV007::MidiEventV007(::mus::midi::file * pFile, MidiTrack * pTrack, Midi
     m_iFlags = 0;
 }
 
-MidiEventV007::~MidiEventV007()
+midi_event_v007::~midi_event_v007()
 {
    if(m_bAutoAllocation && m_hpbAllocation != NULL)
    {
@@ -50,7 +50,7 @@ MidiEventV007::~MidiEventV007()
    }
 }
 
-MidiEventV007 & MidiEventV007::operator = (const MidiEventV007 &eventSrc)
+midi_event_v007 & midi_event_v007::operator = (const midi_event_v007 &eventSrc)
 {
    m_abEvent[0]      = eventSrc.m_abEvent[0];
    m_abEvent[1]      = eventSrc.m_abEvent[1];
@@ -68,10 +68,10 @@ MidiEventV007 & MidiEventV007::operator = (const MidiEventV007 &eventSrc)
    return *this;
 }
 
- 
 
 
-//MidiEventV007 * MidiEventV007::operator =(MidiEventV007 *pEventSrc)
+
+//midi_event_v007 * midi_event_v007::operator =(midi_event_v007 *pEventSrc)
 //{
 //   abEvent[0]   = pEventSrc->abEvent[0];
 //   abEvent[1]   = pEventSrc->abEvent[1];
@@ -83,12 +83,12 @@ MidiEventV007 & MidiEventV007::operator = (const MidiEventV007 &eventSrc)
 //}
 
 
-BOOL MidiEventV007::IsAutoAllocated()
+BOOL midi_event_v007::IsAutoAllocated()
 {
    return m_bAutoAllocation;
 }
 
-void MidiEventV007::AutoAllocate()
+void midi_event_v007::AutoAllocate()
 {
    ASSERT(!m_bAutoAllocation);
    m_bAutoAllocation = true;
@@ -98,7 +98,7 @@ void MidiEventV007::AutoAllocate()
 }
 
 
-DWORD MidiEventV007::SetVDWord(
+DWORD midi_event_v007::SetVDWord(
    byte * hpbImage,
    DWORD dw)
 {
@@ -107,8 +107,8 @@ DWORD MidiEventV007::SetVDWord(
 
    ASSERT(m_bAutoAllocation);
    ASSERT(dw <= 0x0fffffff);
-   
-   
+
+
    dwBuffer = dw & 0x7f;
    dwUsed++;
    while ((dw >>= 7) > 0)
@@ -118,7 +118,7 @@ DWORD MidiEventV007::SetVDWord(
       dwBuffer |= (dw & 0x7f);
       dwUsed++;
    }
-   if(!AllocateAddUp(dwUsed))
+   if(!allocate_add_up(dwUsed))
       return 0;
 //   byte *   hpbImage = m_hpbImage;
    while (TRUE)
@@ -132,7 +132,7 @@ DWORD MidiEventV007::SetVDWord(
 
     return dwUsed;
 }
-BOOL MidiEventV007::allocate(DWORD dwNewLength)
+BOOL midi_event_v007::allocate(DWORD dwNewLength)
 {
    ASSERT(m_bAutoAllocation);
    if(m_hpbAllocation == NULL)
@@ -181,13 +181,13 @@ BOOL MidiEventV007::allocate(DWORD dwNewLength)
    }
 }
 
-BOOL MidiEventV007::AllocateAddUp(DWORD dwAddUp)
+BOOL midi_event_v007::allocate_add_up(DWORD dwAddUp)
 {
    ASSERT(m_bAutoAllocation);
    return allocate(m_cbImage + dwAddUp);
 }
 
-void MidiEventV007::SetAutoAllocation(BOOL bValue)
+void midi_event_v007::SetAutoAllocation(BOOL bValue)
 {
    if(bValue)
    {
@@ -215,20 +215,20 @@ void MidiEventV007::SetAutoAllocation(BOOL bValue)
    }
 }
 
-SMFRESULT MidiEventV007::CreateXFInfoHeaderEvent(imedia::position tkDelta, XFInfoHeader *pXfih)
+SMFRESULT midi_event_v007::CreateXFInfoHeaderEvent(imedia::position tkDelta, XFInfoHeader *pXfih)
 {
    SMFRESULT smfrc;
    primitive::memory memstorage;
    memstorage.allocate(pXfih->GetDataCount());
    //char * lpStr = pXfih->get_data();
    pXfih->get_data(
-      (char *) memstorage.GetAllocation(),
-      memstorage.GetStorageSize());
+      (char *) memstorage.get_data(),
+      memstorage.get_size());
    if(::mus::midi::Success != (smfrc = CreateMetaEvent(
-      tkDelta, 
-      CXF::MetaXFInfoHdr,
-      (byte *) memstorage.GetAllocation(),
-      memstorage.GetStorageSize())))
+      tkDelta,
+      ::mus::xf::MetaXFInfoHdr,
+      (byte *) memstorage.get_data(),
+      memstorage.get_size())))
    {
       return smfrc;
    }
@@ -236,13 +236,9 @@ SMFRESULT MidiEventV007::CreateXFInfoHeaderEvent(imedia::position tkDelta, XFInf
    return ::mus::midi::Success;
 }
 
-SMFRESULT MidiEventV007::CreateMetaEvent(
-   imedia::position tkDelta,
-   BYTE bMetaType,
-   byte * hpbParam,
-   DWORD cbParam)
+SMFRESULT midi_event_v007::CreateMetaEvent(imedia::position tkDelta, BYTE bMetaType, byte * hpbParam, DWORD cbParam)
 {
-   
+
    DWORD dwUsed;
 
    m_cbImage = 0;
@@ -255,15 +251,15 @@ SMFRESULT MidiEventV007::CreateMetaEvent(
 
    if(!(dwUsed = SetVDWord(m_tkDelta)))
    {
-//      TRACE("MidiEventV007::CreateMetaEvent NoMemory");
+//      TRACE("midi_event_v007::CreateMetaEvent NoMemory");
       return (SMFRESULT) ::mus::midi::ENoMemory;
    }
-   
+
    m_idxImage = dwUsed;
 
-   if(!AllocateAddUp(2))
+   if(!allocate_add_up(2))
    {
-      //TRACE("MidiEventV007::CreateMetaEvent NoMemory");
+      //TRACE("midi_event_v007::CreateMetaEvent NoMemory");
       return (SMFRESULT) ::mus::midi::ENoMemory;
    }
 
@@ -271,23 +267,23 @@ SMFRESULT MidiEventV007::CreateMetaEvent(
    m_idxImage++;
     *GetImage() = GetMetaType();
    m_idxImage++;
-   
+
    if(!(dwUsed = SetVDWord(cbParam)))
    {
-//      TRACE("MidiEventV007::CreateMetaEvent NoMemory");
+//      TRACE("midi_event_v007::CreateMetaEvent NoMemory");
       return (SMFRESULT) ::mus::midi::ENoMemory;
    }
 
    m_idxImage += dwUsed;
 
-    if(!AllocateAddUp(cbParam))
+    if(!allocate_add_up(cbParam))
    {
-      //TRACE("MidiEventV007::CreateMetaEvent NoMemory");
+      //TRACE("midi_event_v007::CreateMetaEvent NoMemory");
       return (SMFRESULT) ::mus::midi::ENoMemory;
    }
 
    m_hpbParm = GetImage();
-      
+
    memcpy(m_hpbParm, hpbParam, cbParam);
 
 //   m_hpbImage = m_hpbAllocation;
@@ -298,16 +294,16 @@ SMFRESULT MidiEventV007::CreateMetaEvent(
 
 }
 
-DWORD MidiEventV007::SetVDWord(
-   DWORD dw)
+DWORD midi_event_v007::SetVDWord(uint64_t ui)
 {
-    DWORD                   dwUsed  = 0;
-   DWORD               dwBuffer;
+   DWORD dw = throw_cast < DWORD > (ui);
+   DWORD dwUsed = 0;
+   DWORD dwBuffer;
 
    ASSERT(m_bAutoAllocation);
    ASSERT(dw <= 0x0fffffff);
-   
-   
+
+
    dwBuffer = dw & 0x7f;
    dwUsed++;
    while ((dw >>= 7) > 0)
@@ -317,7 +313,7 @@ DWORD MidiEventV007::SetVDWord(
       dwBuffer |= (dw & 0x7f);
       dwUsed++;
    }
-   if(!AllocateAddUp(dwUsed))
+   if(!allocate_add_up(dwUsed))
       return 0;
    byte *   hpbImage = GetImage();
    while (TRUE)
@@ -332,7 +328,7 @@ DWORD MidiEventV007::SetVDWord(
     return dwUsed;
 }
 
-void MidiEventV007::SetImage(byte * hpbImage)
+void midi_event_v007::SetImage(byte * hpbImage)
 {
    if(m_bAutoAllocation)
    {
@@ -345,7 +341,7 @@ void MidiEventV007::SetImage(byte * hpbImage)
 
 }
 
-byte * MidiEventV007::GetImage() const
+byte * midi_event_v007::GetImage() const
 {
    if(m_bAutoAllocation)
    {
@@ -358,7 +354,7 @@ byte * MidiEventV007::GetImage() const
 
 }
 
-byte * MidiEventV007::GetParam() const
+byte * midi_event_v007::GetParam() const
 {
    if(m_bAutoAllocation)
    {
@@ -375,7 +371,7 @@ byte * MidiEventV007::GetParam() const
 
 }
 
-/*void MidiEventV007::SetParam(byte * hpbParam)
+/*void midi_event_v007::SetParam(byte * hpbParam)
 {
    if(m_bAutoAllocation)
    {
@@ -392,7 +388,7 @@ byte * MidiEventV007::GetParam() const
 
 }*/
 
-void MidiEventV007::SetParam(void * hpbParam, int iSize)
+void midi_event_v007::SetParam(void * hpbParam, int iSize)
 {
     m_cbParm = iSize;
     if(m_bAutoAllocation)
@@ -410,7 +406,7 @@ void MidiEventV007::SetParam(void * hpbParam, int iSize)
 
 }
 
-VMSRESULT MidiEventV007::SetParam(ex1::file & file, int iLength)
+VMSRESULT midi_event_v007::SetParam(ex1::file & file, int iLength)
 {
    UNREFERENCED_PARAMETER(file);
    UNREFERENCED_PARAMETER(iLength);
@@ -419,25 +415,25 @@ VMSRESULT MidiEventV007::SetParam(ex1::file & file, int iLength)
 }
 
 
-int MidiEventV007::GetFlags() const
+int midi_event_v007::GetFlags() const
 {
     return m_iFlags;
 }
 
-void MidiEventV007::SetFlags(int iFlags)
+void midi_event_v007::SetFlags(int iFlags)
 {
     m_iFlags = iFlags;
 }
 
-void MidiEventV007::clear()
+void midi_event_v007::clear()
 {
-   m_tkDelta = 0;           
+   m_tkDelta = 0;
    m_tkPosition= 0;
-    m_abEvent[0]= 0;        
-   m_abEvent[1]= 0;        
-   m_abEvent[2]= 0;        
-    m_cbParm= 0;            
-    m_hpbParm= 0; 
+    m_abEvent[0]= 0;
+   m_abEvent[1]= 0;
+   m_abEvent[2]= 0;
+    m_cbParm= 0;
+    m_hpbParm= 0;
    m_cbImage= 0;
    m_idxImage= 0;
    m_idxParam= 0;
@@ -456,106 +452,106 @@ void MidiEventV007::clear()
 
 
 
-imedia::position MidiEventV007::GetDelta() const
+imedia::position midi_event_v007::GetDelta() const
 {
    return m_tkDelta;
 }
 
-void MidiEventV007::SetDelta(imedia::position tkDelta)
+void midi_event_v007::SetDelta(imedia::position tkDelta)
 {
    m_tkDelta = tkDelta;
 }
 
-imedia::position MidiEventV007::GetPosition() const
+imedia::position midi_event_v007::get_position() const
 {
    return m_tkPosition;
 }
 
-void MidiEventV007::SetPosition(imedia::position tkPosition)
+void midi_event_v007::SetPosition(imedia::position tkPosition)
 {
    m_tkPosition = tkPosition;
 }
 
-int MidiEventV007::GetImageSize() const
+int midi_event_v007::GetImageSize() const
 {
    return m_cbImage;
 }
 
-BYTE MidiEventV007::GetFullType() const
+BYTE midi_event_v007::GetFullType() const
 {
    return m_abEvent[0];
 }
-void MidiEventV007::SetFullType(BYTE bValue)
+void midi_event_v007::SetFullType(BYTE bValue)
 {
    m_abEvent[0] = bValue;
 }
-BYTE MidiEventV007::get_type() const
+BYTE midi_event_v007::get_type() const
 {
    return m_abEvent[0] & 0xf0;
 }
-void MidiEventV007::set_type(BYTE bValue)
+void midi_event_v007::set_type(BYTE bValue)
 {
    m_abEvent[0] &= 0x0f;
    m_abEvent[0] |= bValue & 0xf0;
 }
-BYTE MidiEventV007::GetTrack() const
+BYTE midi_event_v007::GetTrack() const
 {
    return m_abEvent[0] & 0x0f;
 }
-void MidiEventV007::SetTrack(BYTE bValue)
+void midi_event_v007::SetTrack(BYTE bValue)
 {
    m_abEvent[0] &= 0xf0;
    m_abEvent[0] |= bValue & 0x0f;
 }
-BYTE MidiEventV007::GetMetaType() const
+BYTE midi_event_v007::GetMetaType() const
 {
    return m_abEvent[1];
 }
-void MidiEventV007::SetMetaType(BYTE bValue)
+void midi_event_v007::SetMetaType(BYTE bValue)
 {
    m_abEvent[1] = bValue;
 }
-BYTE MidiEventV007::GetChB1() const
+BYTE midi_event_v007::GetChB1() const
 {
    return m_abEvent[1];
 }
-void MidiEventV007::SetChB1(BYTE bValue)
+void midi_event_v007::SetChB1(BYTE bValue)
 {
    m_abEvent[1] = bValue;
 }
-BYTE MidiEventV007::GetChB2() const
+BYTE midi_event_v007::GetChB2() const
 {
    return m_abEvent[2];
 }
-void MidiEventV007::SetChB2(BYTE bValue)
+void midi_event_v007::SetChB2(BYTE bValue)
 {
    m_abEvent[3] = bValue;
 }
-BYTE MidiEventV007::GetNotePitch() const
+BYTE midi_event_v007::GetNotePitch() const
 {
    return m_abEvent[1];
 }
-void MidiEventV007::SetNotePitch(BYTE bValue)
+void midi_event_v007::SetNotePitch(BYTE bValue)
 {
    m_abEvent[1] = bValue;
 }
-BYTE MidiEventV007::GetNoteVelocity() const
+BYTE midi_event_v007::GetNoteVelocity() const
 {
    return m_abEvent[2];
 }
-void MidiEventV007::SetNoteVelocity(BYTE bValue)
+void midi_event_v007::SetNoteVelocity(BYTE bValue)
 {
    m_abEvent[2] = bValue;
 }
-void MidiEventV007::SetImageSize(int cbSize)
+void midi_event_v007::SetImageSize(int cbSize)
 {
    m_cbImage = cbSize;
 }
-//   void MidiEventV007::SetParamSize(DWORD cbSize)
+//   void midi_event_v007::SetParamSize(DWORD cbSize)
 //   {
 //      m_cbParm = cbSize;
 //   }
-int MidiEventV007::GetParamSize() const
+int midi_event_v007::GetParamSize() const
 {
    return m_cbParm;
 }

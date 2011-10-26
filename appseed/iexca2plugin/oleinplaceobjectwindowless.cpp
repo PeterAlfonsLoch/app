@@ -156,16 +156,7 @@ namespace iexca2
          //return //DefWindowProc(hWnd, uMsg, wParam, lParam);
       case WM_USER + 1983 + 1976:
          {
-            update_spa_installed();
-            if(is_spa_installed())
-               update_spa_updated();
-            update_ca2_installed();
-            if(is_ca2_installed())
-               update_ca2_updated();
-            if(is_spa_installed() && is_spa_updated() && is_ca2_installed() && is_ca2_installed())
-               m_pinstance->npca2_plugin_start_bergedge_cube();
-            else
-               m_pinstance->starter_start("mplite");
+            m_pinstance->start_plugin();
          }
          return 0;
       case WM_ERASEBKGND:
@@ -183,7 +174,7 @@ namespace iexca2
          }
          break;
       default:
-         {
+         /*{
             if((msg == WM_LBUTTONUP
             || msg == WM_RBUTTONUP
             || msg == WM_MBUTTONUP) &&
@@ -221,10 +212,10 @@ namespace iexca2
                *plResult = 0;
             }
       
-         }
+         }*/
          break;
       }
-
+      *plResult = m_pinstance->message_handler(msg, wParam, lParam);
       return S_OK;
    }
 

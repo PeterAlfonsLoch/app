@@ -14,13 +14,9 @@ namespace windesk
    {
       m_iNewArea = 0;
       m_iArea = -1;
-      m_pcreateview = this;
-      m_pviewdataOld = NULL;
 
       m_etranslucency      = TranslucencyPresent;
 
-      m_pviewdata              = NULL;
-      m_pviewdataOld              = NULL;
 
       m_iDisplay = -1;
       m_ppropform = NULL;
@@ -45,7 +41,7 @@ namespace windesk
 
    void pane_view::_001OnCreate(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -93,7 +89,7 @@ namespace windesk
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
-               int iTab;
+//               int iTab;
    //            if(puh->m_eview == PaneViewContextMenu)
      //          {
        //           m_tab._001AddSel(0);
@@ -168,18 +164,18 @@ namespace windesk
    }
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case PaneViewContextMenu:
          {
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(typeid(windesk::menu_view), get_document(), this, 102));
+            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (::view::create_view(::ca::get_type_info < windesk::menu_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
+               pcreatordata->m_pdoc = get_document();
+               pcreatordata->m_pwnd = pview;
             }
          }
          break;
@@ -214,8 +210,8 @@ namespace windesk
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -240,8 +236,8 @@ namespace windesk
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -273,8 +269,8 @@ namespace windesk
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -302,10 +298,10 @@ namespace windesk
 
 
 
-         pviewdata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
-         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pviewdata->m_pwnd);
+         pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
+//         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
-         pviewdata->m_pdoc = pdoc;
+         pcreatordata->m_pdoc = pdoc;
       }
       break;
       case PaneViewFileProperties:
@@ -314,10 +310,10 @@ namespace windesk
             {
                m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
             }
-            pviewdata->m_pwnd = m_ppropform->open(this, m_itema);
-            if(pviewdata->m_pwnd == NULL)
+            pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
+            if(pcreatordata->m_pwnd == NULL)
                return;
-            pviewdata->m_pdoc = m_ppropform->m_ptabview->get_document();
+            pcreatordata->m_pdoc = m_ppropform->m_ptabview->get_document();
 
          }
          break;
@@ -331,12 +327,13 @@ namespace windesk
 
    void pane_view::_001OnMenuMessage(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
+      ::userex::pane_tab_view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1122  , this, this, &pane_view::_001OnMenuMessage);
@@ -526,7 +523,8 @@ namespace windesk
 
    void pane_view::_001OnRButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
       /*if(get_view_id() == windesk::PaneViewWinActionArea)
       {
          ::userbase::menu menu(get_app());
@@ -539,6 +537,7 @@ namespace windesk
 
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
+      UNREFERENCED_PARAMETER(pdata);
       if(get_view_id() == windesk::PaneViewWinActionArea)
       {
          ::userbase::menu menu(get_app());
@@ -555,8 +554,9 @@ namespace windesk
    {
    }
 */
-	void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, ::fs::item_array & itema)
+	void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema)
    {
+      UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
       set_cur_tab_by_id(windesk::PaneViewFileProperties);
    }
@@ -565,6 +565,7 @@ namespace windesk
 
    void pane_view::_001OnProperties(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == windesk::PaneViewWinActionArea)
       {
          ::ShellExecute(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
@@ -623,6 +624,8 @@ namespace windesk
    }
    bool pane_view::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
+      UNREFERENCED_PARAMETER(pview);
+      UNREFERENCED_PARAMETER(pevent);
       return false;
    }
 

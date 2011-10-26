@@ -15,7 +15,7 @@ namespace user
 
       bool bSelected    = ptree->is_selected(pitem);
       bool bHover       = ptree->is_hover(pitem);
-      
+
       if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ex1::tree_item_state_expandable)
       {
 
@@ -32,7 +32,7 @@ namespace user
          }
          pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0);
       }
-      
+
 
 //      gen::savings & savings = System.savings();
       if(bSelected) // selected
@@ -101,7 +101,7 @@ namespace user
                0);
          }
       }
-      
+
       string strItem = data.m_pitem->get_text();
 
       if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
@@ -136,7 +136,6 @@ namespace user
       m_crTextSelected           = RGB(255, 255, 255);
       m_crTextHighlight          = RGB(102, 153, 255);
       m_crTextSelectedHighlight  = RGB(172, 213, 255);
-      m_pdata           = NULL;
    }
 
    tree::~tree()
@@ -146,7 +145,7 @@ namespace user
 
    void tree::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -158,39 +157,6 @@ namespace user
 
       class rect rect;
       rect.null();
-
-      if(!m_pscrollbarHorz->create(
-         ::user::scroll_bar::orientation_horizontal,
-         WS_CHILD 
-         | WS_VISIBLE,
-         rect,
-         this,
-         1024))
-      {
-         pcreate->set_lresult(-1);
-         pobj->m_bRet = true;
-         return;
-      }
-
-      rect.null();
-
-      if(!m_pscrollbarVert->create(
-         ::user::scroll_bar::orientation_vertical,
-         WS_CHILD 
-         | WS_VISIBLE,
-         rect,
-         this,
-         1025))
-      {
-         pcreate->set_lresult(-1);
-         pobj->m_bRet = true;
-         return;
-      }
-
-
-   //   layout();
-
-      pcreate->set_lresult(0);
 
       if(IsWindowVisible())
       {
@@ -241,7 +207,7 @@ namespace user
 //      gen::savings & savings = System.savings();
       rect rectClientOffset = rectClient;
 
-      rect rectClipBox; 
+      rect rectClipBox;
       pdc->GetClipBox(rectClipBox);
       if(rectClipBox.is_null())
       {
@@ -289,7 +255,7 @@ namespace user
 
       rect rectClientOffset = rectClient;
 
-      /*rect rectClipBox; 
+      /*rect rectClipBox;
       pdc->GetClipBox(rectClipBox);
       if(rectClipBox.is_null())
       {
@@ -382,7 +348,7 @@ namespace user
 
       ::ex1::tree_item * pitem = m_pitemFirstVisible;
 
-      
+
 
 
       index iLevel = m_iFirstVisibleItemLevel;
@@ -504,7 +470,7 @@ namespace user
 
 
    /* trans   window_id wndidNotify = _001GetNotifyWnd();
-      
+
       LRESULT lresult = 0;
 
       if(wndidNotify)
@@ -525,7 +491,7 @@ namespace user
    // trans   pobj->m_bRet = lresult != 0;
    }
 
-   void tree::_001OnLButtonUp(gen::signal_object * pobj) 
+   void tree::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
       m_iClick++;
@@ -610,7 +576,7 @@ namespace user
    /*window_id tree::_001GetNotifyWnd()
    {
       ::ca::window * pwnd = get_guie();
-      
+
       window_id wndidNotify = pwnd->GetOwner()->GetSafeHwnd();
       if(wndidNotify == NULL)
          wndidNotify = pwnd->GetParent()->GetSafeHwnd();
@@ -642,7 +608,7 @@ namespace user
       index iy = pt.y;
 
       index iItem = -1;
-      
+
       index iItemHeight = _001GetItemHeight();
 
       if(iItemHeight != 0)
@@ -680,10 +646,10 @@ namespace user
       return 18;
    }
 
-   void tree::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void tree::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::user::window_interface::_001InstallMessageHandling(pdispatch);
-      ::user::scroll_view::_001InstallMessageHandling(pdispatch);
+      ::user::window_interface::install_message_handling(pdispatch);
+      ::user::scroll_view::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE        , pdispatch, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK , pdispatch, this, &tree::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP     , pdispatch, this, &tree::_001OnLButtonUp);
@@ -707,7 +673,7 @@ namespace user
 
    bool tree::_001GetItemElementRect(
       LPRECT lprect,
-      ::user::tree_draw_item &drawitem, 
+      ::user::tree_draw_item &drawitem,
       ::user::e_tree_element eelement)
    {
       switch(eelement)
@@ -749,19 +715,19 @@ namespace user
    }
 
    void tree::_001ExpandItem(
-      ::ex1::tree_item *pitem, 
+      ::ex1::tree_item *pitem,
       bool bExpand, /* = true */
       bool bRedraw, /*=true*/
       bool bLayout /*=true*/
       )
    {
-      ::ca::data::writing writing(m_pdata);
+      ::ca::data::writing writing(::ca::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
       if(bExpand)
       {
          if(!(pitem->m_dwState & ::ex1::tree_item_state_expanded))
          {
-            _001OnItemExpand(pitem);   
+            _001OnItemExpand(pitem);
 
             pitem->m_dwState |= ::ex1::tree_item_state_expanded;
             // scroll properly to show the highest possible number
@@ -817,7 +783,7 @@ namespace user
       }
    }
 
-   void tree::_001OnVScroll(gen::signal_object * pobj) 
+   void tree::_001OnVScroll(gen::signal_object * pobj)
    {
       //SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
       pobj->previous();
@@ -859,16 +825,6 @@ namespace user
       SetScrollSizes();
 
 
-      LayoutScrollBars();
-
-      rect rectClient;
-
-      GetClientRect(rectClient);
-
-   /*   if(m_pgdibuffer != NULL)
-      {
-         m_pgdibuffer->UpdateBuffer(rectClient.size());
-      }*/
 
    }
 
@@ -997,12 +953,12 @@ namespace user
          nOffset--;
          iProperIndex++;
       }
-      
+
       return pitem;
    }
 
    void tree::_001OnTreeDataChange()
-   { 
+   {
       layout();
    }
 

@@ -89,7 +89,7 @@ protected:
     int         m_iCurrentEvent;
 
    BOOL allocate(DWORD dwNewLength);
-   BOOL AllocateAddUp(DWORD dwAddUp);
+   BOOL allocate_add_up(DWORD dwAddUp);
 
 public:
     void SetLyricsTrack(bool bLyricsTrack);
@@ -139,7 +139,7 @@ protected:
 
 public:
    int GetMidiTrackIndex();
-   imedia::position GetPosition();
+   imedia::position get_position();
    int GetFlags();
    VMSRESULT GetNextEventPosition(imedia::position * tkPosition, imedia::position  tkMax);
     VMSRESULT WorkSeek(DWORD dwSeekWhat);
@@ -156,7 +156,7 @@ public:
     
     virtual VMSRESULT seek_begin();
    byte * GetImage();
-//   BOOL ContainsEvent(MidiEventBase * pEvent);
+//   BOOL ContainsEvent(midi_event_base * pEvent);
 //   BOOL Mirror();
 //   BOOL AllocateMirror(DWORD dwNewLength);
    bool IsSoftKaraokeFile(stringa * pstra = NULL);
@@ -186,7 +186,7 @@ public:
 //      XFInfoHeaderLS *pXfihls);
     //PSMF            pSmf;
     virtual VMSRESULT GetEvent(
-        MidiEventBase * pEvent,
+        midi_event_base * pEvent,
       imedia::position   tkMax,
       BOOL   bTkMaxInclusive);
 

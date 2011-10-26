@@ -6,7 +6,7 @@ class class_sort_array :
 	public BASE_ARRAY
 {
 public:
-   
+
    bool SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, int & iIndex);
    void SortInsert(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t);
 
@@ -27,18 +27,18 @@ bool
 class_sort_array < BASE_CLASS, TYPE, ARG_TYPE, BASE_ARRAY >::
 SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, int & iIndex)
 {
-   if(get_size() == 0)
+   if(this->get_size() == 0)
 	{
 		return false;
 	}
    int iIntProperty = (((TYPE &)t).*lpfnIntSortProperty)();
 	int iLBound = iIndex;
-	int iUBound = get_size() - 1;
+	int iUBound = this->get_size() - 1;
 	int iCompare;
 	while(true)
 	{
 		iIndex = (iUBound + iLBound) / 2;
-		iCompare = (element_at(iIndex).*lpfnIntSortProperty)() - iIntProperty;
+		iCompare = (this->element_at(iIndex).*lpfnIntSortProperty)() - iIntProperty;
 		if(iCompare == 0)
 		{
 			return true;
@@ -83,11 +83,11 @@ QuickSort(
 		int iUpperBound;
 		int iLPos, iUPos, iMPos;
 	//	TYPE t;
-    
-		if(get_size() >= 2)
+
+		if(this->get_size() >= 2)
 		{
 			stackLowerBound.push(0);
-			stackUpperBound.push(get_size() - 1);
+			stackUpperBound.push(this->get_size() - 1);
 			while(true)
 			{
 				iLowerBound = stackLowerBound.pop();
@@ -159,11 +159,11 @@ QuickSort(
 		int iUpperBound;
 		int iLPos, iUPos, iMPos;
 	//	TYPE t;
-    
-		if(get_size() >= 2)
+
+		if(this->get_size() >= 2)
 		{
 			stackLowerBound.push(0);
-			stackUpperBound.push(get_size() - 1);
+			stackUpperBound.push(this->get_size() - 1);
 			while(true)
 			{
 				iLowerBound = stackLowerBound.pop();

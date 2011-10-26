@@ -3,11 +3,6 @@
 namespace user
 {
    
-   enum e_message
-   {
-      message_event = WM_APP + 1000,
-      message_property = WM_APP + 1001,
-   };
 
    enum e_event
    {

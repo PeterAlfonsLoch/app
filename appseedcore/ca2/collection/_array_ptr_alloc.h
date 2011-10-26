@@ -57,7 +57,7 @@ inline array_ptr_alloc <TYPE, ARG_TYPE> & array_ptr_alloc < TYPE, ARG_TYPE >::op
 	index i;
    for(i = 0; i < m_ptra.get_size(); i++)
    {
-      element_at(i) = *a.m_ptra[i];
+      this->element_at(i) = *a.m_ptra[i];
    }
    for(; i < a.m_ptra.get_size(); i++)
    {
@@ -73,13 +73,13 @@ template <class TYPE, class ARG_TYPE>
 inline void array_ptr_alloc < TYPE, ARG_TYPE >::
 set_size(count iSize)
 {
-   while(get_size() < iSize)
+   while(this->get_size() < iSize)
    {
       add_new();
    }
-   while(get_size() > iSize && iSize >=0)
+   while(this->get_size() > iSize && iSize >=0)
    {
-      remove_at(get_size() - 1);
+      remove_at(this->get_size() - 1);
    }
 }
 
@@ -91,7 +91,7 @@ void array_ptr_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
 
    if(iIndex < m_ptra.get_size())
    {
-      element_at(iIndex) = t;
+      this->element_at(iIndex) = t;
    }
    else
    {
@@ -131,13 +131,13 @@ BubbleSortBySize(bool bAsc)
     TYPE t;
     if(bAsc)
     {
-        for(index i = 0; i < get_size(); i++)
-        for(index j = i + 1; j < get_size(); j++)
+        for(index i = 0; i < this->get_size(); i++)
+        for(index j = i + 1; j < this->get_size(); j++)
         {
-            if(element_at(i);get_size() > element_at(j);get_size())
+            if(this->element_at(i);this->get_size() > this->element_at(j);this->get_size())
             {
-                t = element_at(i);
-                set_at(i, element_at(j));
+                t = this->element_at(i);
+                set_at(i, this->element_at(j));
                 set_at(j, t);
             }
 
@@ -145,13 +145,13 @@ BubbleSortBySize(bool bAsc)
     }
     else
     {
-        for(index i = 0; i < get_size(); i++)
-        for(index j = i + 1; j < get_size(); j++)
+        for(index i = 0; i < this->get_size(); i++)
+        for(index j = i + 1; j < this->get_size(); j++)
         {
-            if(element_at(i).get_size() < element_at(j).get_size())
+            if(this->element_at(i).get_size() < this->element_at(j).get_size())
             {
-                t = element_at(i);
-                set_at(i, element_at(j));
+                t = this->element_at(i);
+                set_at(i, this->element_at(j));
                 set_at(j, t);
             }
 

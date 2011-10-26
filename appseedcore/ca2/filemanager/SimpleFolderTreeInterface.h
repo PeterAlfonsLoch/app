@@ -18,8 +18,8 @@ namespace filemanager
       virtual public FileManagerViewInterface
    {
    public:
-      
-      
+
+
       enum e_message
       {
          MessageMainPost,
@@ -44,7 +44,9 @@ namespace filemanager
       stringa              m_straUpdatePtrFilter;
       stringa              m_straMissingUpdate;
       bool                 m_bDelayedListUpdate;
+#ifdef WINDOWS
       ::collection::map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
+#endif
       ex1::tree_item *     m_pdataitemCreateImageListStep;
       string               m_strPath;
 
@@ -58,13 +60,13 @@ namespace filemanager
       virtual void _001UpdateImageList(ex1::tree_item * pitem);
 
       DECL_GEN_VSIGNAL(_001OnTimer)
-   
+
 
       int   m_iDefaultImage;
       int   m_iDefaultImageSelected;
       virtual void _017Synchronize();
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
-   
+      void install_message_handling(::user::win::message::dispatch * pinterface);
+
 
       void _StartCreateImageList();
       void _StopCreateImageList();
@@ -76,16 +78,17 @@ namespace filemanager
       virtual void _001OnItemCollapse(::ex1::tree_item * pitem);
 
 
-      virtual void _017OpenFolder(::fs::item & item);
-      
+      virtual void _017OpenFolder(const ::fs::item & item);
+
       virtual COLORREF get_background_color();
 
       int MapToCSIDL(EFolder efolder);
+#ifdef WINDOWS
       IShellFolder * _001GetFolder(EFolder efolder);
+#endif
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnNcDraw(::ca::graphics * pdc);
       DECL_GEN_SIGNAL(_001OnMainPostMessage)
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
@@ -95,7 +98,7 @@ namespace filemanager
       void _017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel);
       void _017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel);
       void _017EnsureVisible(const char * lpcsz);
-      
+
       ex1::tree_item * find_item(const char * lpcsz);
 
 

@@ -32,7 +32,7 @@ bool audWaveCentral::Initialize(::ca::application * papp)
    m_pwavein = AfxBeginThread < audWaveIn > (papp);
    if(m_pwavein != NULL)
    {
-      m_pwavein->m_evInitialized.Lock();
+      m_pwavein->m_evInitialized.wait();
    }
   
    return m_pwavein != NULL;

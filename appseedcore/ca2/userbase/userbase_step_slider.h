@@ -28,7 +28,7 @@ namespace userbase
 
       bool create(::user::interaction * pwndParent, id id);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
       virtual void _001OnDraw(::ca::graphics * pdc);
       void GetStepHoverRect(int iStep, LPRECT lprect);

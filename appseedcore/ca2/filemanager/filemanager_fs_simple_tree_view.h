@@ -39,8 +39,6 @@ namespace filemanager
             virtual public ::user::tree
          {
          public:
-            simple_scroll_bar                m_scrollbarVert;
-            simple_scroll_bar                m_scrollbarHorz;
 
             int                              m_iIconFolderNormal;
             int                              m_iIconFolderSelected;
@@ -53,7 +51,7 @@ namespace filemanager
 
             tree_view(::ca::application * papp);
 
-            virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+            virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
 
 

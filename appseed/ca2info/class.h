@@ -7,7 +7,7 @@ namespace ca2info
 
    class CLASS_DECL_CA2_STATUS ca2info_class :
       public ::user::form_callback,
-      public ::user::create_view,
+      public ::user::view_creator,
       public ip_enum
    {
    public:
@@ -25,7 +25,7 @@ namespace ca2info
       void update_view();
 
 
-      void on_create_view(view_data * pviewdata);
+      void on_create_view(::user::view_creator_data * pcreatordata);
 
       string                           m_strServer;
       int                              m_iView;
@@ -36,7 +36,7 @@ namespace ca2info
       stringa                        m_straIp;
 
       virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
-      virtual void OnBeforeNavigate2(const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
+      virtual void OnBeforeNavigate2(html::data * pdata, var & varUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
    };
 
 

@@ -39,6 +39,7 @@ namespace gen
       CLASS_DECL_ca bool is_assigned(const char * pszUtf8Char);
       CLASS_DECL_ca bool is_space_char(const char * pszUtf8Char);
       CLASS_DECL_ca bool is_whitespace(const char * pszUtf8Char);
+      CLASS_DECL_ca bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
 
       CLASS_DECL_ca bool is_number(const char * pszUtf8Char);
       CLASS_DECL_ca bool to_numeric_value(const char * pszUtf8Char, float *f);
@@ -53,6 +54,7 @@ namespace gen
       CLASS_DECL_ca int size_of_tables();
 
       CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8);
+      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8, const char * pszEnd);
 
    }
 

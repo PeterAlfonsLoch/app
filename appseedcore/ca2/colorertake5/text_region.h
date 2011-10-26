@@ -58,11 +58,11 @@ public:
   void assignParent(const RegionDefine *_parent){
     const TextRegion *parent = TextRegion::cast(_parent);
     if (parent == NULL) return;
-    if (stext == NULL || etext == NULL){
+    if (stext.is_empty() || etext.is_empty()){
       stext = parent->stext;
       etext = parent->etext;
     }
-    if (sback == NULL || eback == NULL){
+    if (sback.is_empty() || eback.is_empty()){
       sback = parent->sback;
       eback = parent->eback;
     }
@@ -108,7 +108,7 @@ public:
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

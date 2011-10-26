@@ -17,10 +17,10 @@ namespace userbase
    {
    }
 
-   void tree_window::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void tree_window::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
-      ::user::tree::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
+      ::user::tree::install_message_handling(pinterface);
    }
 
 } // namespace userbase

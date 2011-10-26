@@ -12,16 +12,14 @@ namespace fs
    public:
 
 
-      simple_scroll_bar             m_scrollbarVert;
-      simple_scroll_bar             m_scrollbarHorz;
 
 
       tree(::ca::application * papp);
       virtual ~tree();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
-      virtual void _017OpenFolder(item & item);
+      virtual void _017OpenFolder(const item & item);
       void StartAnimation();
       void RenameFile(int iLine, string & str);
 

@@ -53,6 +53,25 @@ void * MidAlloc(size_t size)
   return VirtualAlloc(0, size, MEM_COMMIT, PAGE_READWRITE);
 }
 
+void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew)
+{
+  #ifdef _SZ_ALLOC_DEBUG
+  if (address != 0)
+    fprintf(stderr, "\nFree_Mid; count = %10d", --g_allocCountMid);
+  #endif
+  if (address == 0)
+    return ::MidAlloc(sizeNew);
+  byte * pnew = (byte *) ::MidAlloc(sizeNew);
+  if(pnew == NULL)
+  {
+     MidFree(address);
+     return NULL;
+  }
+  memcpy(pnew, address, min(sizeOld, sizeNew));
+  MidFree(address);
+  return pnew;
+}
+
 void MidFree(void * address)
 {
   #ifdef _SZ_ALLOC_DEBUG

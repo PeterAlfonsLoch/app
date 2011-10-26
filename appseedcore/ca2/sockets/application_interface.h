@@ -9,7 +9,7 @@ namespace sockets
    public:
 
 
-      ::collection::string_map < SSL_CTX * > *     m_pclient_contexts;
+      ssl_client_context_map                       m_clientcontextmap;
       AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
 
       count                                        m_countHttpPostBoundary;
@@ -19,9 +19,11 @@ namespace sockets
       resolv_socket::timeout_t                     m_resolvtimeout;
       mutex                                        m_mutexResolvCache;
 
+      
+      application_interface();
 
 
-      void on_application_signal(::ca::application::signal_object * papplicationsignal);
+      void on_application_signal(::radix::application_signal_object * papplicationsignal);
       virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
    };
 

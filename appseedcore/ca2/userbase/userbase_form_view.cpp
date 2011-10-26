@@ -17,10 +17,10 @@ namespace userbase
    {
    }
 
-   void form_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void form_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::scroll_view::_001InstallMessageHandling(pinterface);
-      ::user::form::_001InstallMessageHandling(pinterface);
+      ::userbase::scroll_view::install_message_handling(pinterface);
+      ::user::form::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);
 
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
@@ -145,7 +145,7 @@ namespace userbase
       if(m_pcontainer != NULL)
          return m_pcontainer;
       else
-         return dynamic_cast < html::document_container * > (System.alloc(typeid(html::document_container)));
+         return dynamic_cast < html::document_container * > (System.alloc(::ca::get_type_info < html::document_container > ()));
    }
 
    /*

@@ -1,6 +1,15 @@
 #pragma once
 
 
+#ifdef LINUX
+
+
+typedef void * HKL;
+
+
+#endif
+
+
 namespace user
 {
 
@@ -17,7 +26,7 @@ namespace user
       keyboard_layout_id();
       keyboard_layout_id(const keyboard_layout_id & id);
 
-      
+
       keyboard_layout_id & operator = (const keyboard_layout_id & id);
 
 
@@ -41,10 +50,12 @@ namespace user
    public:
 
 
-      ::collection::int_to_string       m_mapKey;
-      ::collection::int_to_string       m_mapCode;
-      string                  m_strEscape;
-      gen::property_set       m_setEscape;
+      ::collection::int_to_string         m_mapChar;
+      ::collection::int_to_string         m_mapKey;
+      ::collection::int_to_string         m_mapCode;
+
+      string                              m_strEscape;
+      gen::property_set                   m_setEscape;
 
 
       keyboard_layout(::ca::application * papp);

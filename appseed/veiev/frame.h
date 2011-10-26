@@ -23,7 +23,7 @@ namespace veiev
 	   frame(::ca::application * papp);
       virtual ~frame();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 	   void ShowControlBars(bool bShow);
 	   void AnimateStatusBar();
@@ -46,7 +46,7 @@ namespace veiev
 
 
 
-	   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	   int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	   DECL_GEN_SIGNAL(_001OnTimer);
 
       DECL_GEN_SIGNAL(_001OnCreate)

@@ -21,6 +21,8 @@ AFX_DATADEF AUX_DATA afxData;
 // Initialization code
 AUX_DATA::AUX_DATA()
 {
+   try
+   {
    // Cache various target platform version information
    DWORD dwVersion = ::GetVersion();
    bWin95 = (dwVersion & 0x80000000) != 0;
@@ -46,6 +48,10 @@ AUX_DATA::AUX_DATA()
    // allocated on demand
    hbmMenuDot = NULL;
    hcurHelp = NULL;
+   }
+   catch(...)
+   {
+   }
 }
 
 

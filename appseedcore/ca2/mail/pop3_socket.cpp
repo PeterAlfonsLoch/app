@@ -94,7 +94,7 @@ namespace mail
 	   case state_listmessages:
          if(strLine == ".")
          {
-            
+
             m_ppop3->filter_id();
             if(retrieve())
                m_estate = state_receive_message;

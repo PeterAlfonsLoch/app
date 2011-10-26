@@ -4,7 +4,9 @@
 namespace user
 {
 
+
    class keyboard;
+
 
    class CLASS_DECL_ca application :
       virtual public database::application,
@@ -44,6 +46,8 @@ namespace user
 
 
       class window_map & window_map();
+
+
 
 
       // Pointer to document_manager used to manage document templates

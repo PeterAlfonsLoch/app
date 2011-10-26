@@ -1,5 +1,26 @@
 #pragma once
 
+
+#ifdef LINUX
+
+
+namespace ex1
+{
+
+
+    class file;
+
+
+} // namespace ex1
+
+
+
+typedef ::ex1::file * HFILE;
+
+
+#endif
+
+
 namespace zip
 {
 
@@ -13,10 +34,10 @@ namespace zip
       unz_file_info                    m_fi;
       BOOL                             m_bCloseOnDelete;
       string                           m_strFileName;
-      DWORD_PTR                        m_iPosition;
+      uint64_t                        m_iPosition;
       stringa                          m_straPath;
-      array_ptr < File, File & >       m_filea;
-      array_ptr < InFile, InFile & >   m_izfilea;
+      array_del_ptr < File, File & >       m_filea;
+      array_del_ptr < InFile, InFile & >   m_izfilea;
       stringa                          m_straPrefix;
 
       InFile(::ca::application * papp);
@@ -26,7 +47,7 @@ namespace zip
 
       operator HFILE() const;
 
-      virtual DWORD_PTR GetPosition() const;
+      virtual file_position get_position() const;
 
       virtual BOOL open(const char *,UINT,ex1::file_exception_sp *);
       virtual BOOL open(File * pzfile, const char * lpcszFileName);
@@ -39,15 +60,15 @@ namespace zip
       File * get_zip_file();
       const File * get_zip_file() const;
 
-      virtual INT_PTR seek(INT_PTR lOff, UINT nFrom);
-      virtual void SetLength(DWORD_PTR dwNewLen);
-      virtual DWORD_PTR get_length() const;
+      virtual file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      virtual void set_length(file_size dwNewLen);
+      virtual file_size get_length() const;
 
-      virtual DWORD_PTR read(void * lpBuf, DWORD_PTR nCount);
-      virtual void write(const void * lpBuf, DWORD_PTR nCount);
+      virtual ::primitive::memory_size read(void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
-      virtual void LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount);
-      virtual void UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount);
+      virtual void LockRange(file_position dwPos, file_size dwCount);
+      virtual void UnlockRange(file_position dwPos, file_size dwCount);
 
       virtual void Abort();
       virtual void Flush();
@@ -61,7 +82,7 @@ namespace zip
       virtual void dump(dump_context & dumpcontext) const;
    #endif
       enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
-      virtual DWORD_PTR GetBufferPtr(UINT nCommand, DWORD_PTR nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
    };
 

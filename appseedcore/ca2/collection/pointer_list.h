@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca pointer_list : 
+class CLASS_DECL_ca pointer_list :
    virtual public ::radix::object
 {
 public:
@@ -93,3 +93,74 @@ public:
 	typedef void * BASE_TYPE;
 	typedef void * BASE_ARG_TYPE;
 };
+
+
+
+inline ::count pointer_list::get_count() const
+   { return m_nCount; }
+inline ::count pointer_list::get_size() const
+   { return m_nCount; }
+inline bool pointer_list::is_empty() const
+   { return m_nCount == 0; }
+inline void *& pointer_list::get_head()
+   { ASSERT(m_pnodeHead != NULL);
+      return m_pnodeHead->data; }
+inline const void * pointer_list::get_head() const
+   { ASSERT(m_pnodeHead != NULL);
+      return m_pnodeHead->data; }
+inline void *& pointer_list::get_tail()
+   { ASSERT(m_pnodeTail != NULL);
+      return m_pnodeTail->data; }
+inline const void * pointer_list::get_tail() const
+   { ASSERT(m_pnodeTail != NULL);
+      return m_pnodeTail->data; }
+inline POSITION pointer_list::get_head_position() const
+   { return (POSITION) m_pnodeHead; }
+inline POSITION pointer_list::get_tail_position() const
+   { return (POSITION) m_pnodeTail; }
+inline void *& pointer_list::get_next(POSITION& rPosition) // return *position++
+   { node* pNode = (node*) rPosition;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      rPosition = (POSITION) pNode->pNext;
+      return pNode->data; }
+inline const void * pointer_list::get_next(POSITION& rPosition) const // return *position++
+   { node* pNode = (node*) rPosition;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      rPosition = (POSITION) pNode->pNext;
+      return pNode->data; }
+inline void *& pointer_list::get_previous(POSITION& rPosition) // return *position--
+   { node* pNode = (node*) rPosition;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      rPosition = (POSITION) pNode->pPrev;
+      return pNode->data; }
+inline const void * pointer_list::get_previous(POSITION& rPosition) const // return *position--
+   { node* pNode = (node*) rPosition;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      rPosition = (POSITION) pNode->pPrev;
+      return pNode->data; }
+inline void *& pointer_list::get_at(POSITION position)
+   { node* pNode = (node*) position;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      return pNode->data; }
+inline const void * pointer_list::get_at(POSITION position) const
+   { node* pNode = (node*) position;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      return pNode->data; }
+inline void pointer_list::set_at(POSITION pos, void * newElement)
+   { node* pNode = (node*) pos;
+      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      if( pNode == NULL )
+         AfxThrowInvalidArgException();
+      pNode->data = newElement; }

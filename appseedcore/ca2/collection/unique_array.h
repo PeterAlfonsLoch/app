@@ -29,7 +29,7 @@ public:
       while(iU - iL > 5)
       {
          find = (iL + iU) / 2;
-         TYPE tCmp = t - element_at(find);
+         TYPE tCmp = t - this->element_at(find);
          if(tCmp == (TYPE) 0)
          {
             return true;
@@ -43,9 +43,9 @@ public:
             iU = find - 1;
          }
       }
-      for(; find < get_size(); find++)
+      for(; find < this->get_size(); find++)
       {
-         TYPE tCmp = t - element_at(find);
+         TYPE tCmp = t - this->element_at(find);
          if(tCmp == (TYPE) 0)
          {
             return true;
@@ -86,9 +86,9 @@ public:
 
    bool find(const TYPE &t, index & find) const
    {
-      for(; find < get_size(); find++)
+      for(; find < this->get_size(); find++)
       {
-         if(element_at(find) == t)
+         if(this->element_at(find) == t)
             break;
       }
       return find;

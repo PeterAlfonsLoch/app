@@ -10,10 +10,10 @@ namespace n7z
       public ::compress::get_sub_stream_size_interface
    {
       ::compress::writer_with_crc *_crcStreamSpec;
-      ::ca::smart_pointer<::ex1::writer> _crcStream;
+      ::ca::smart_pointer < ::ex1::writer > _crcStream;
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
-      ::ca::smart_pointer<::compress::archive_extract_callback_interface> _extractCallback;
+      ::ca::smart_pointer < ::compress::archive_extract_callback_interface > _extractCallback;
       uint32 _ref2Offset;
       uint32 _startIndex;
       int _currentIndex;
@@ -30,7 +30,7 @@ namespace n7z
 
          CFolderOutStream();
 
-      void write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize);
+      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
       ex1::HRes  GetSubStreamSize(uint64 subStream, uint64 *value);
 
       ex1::HRes Init(

@@ -13,7 +13,7 @@ namespace ca2
       string dst;
       for (int i = 0; i < src.get_length(); i++)
       {
-         if (isalnum(src[i]))
+         if (isalnum((unsigned char) src[i]))
          {
             dst += src[i];
          }
@@ -43,7 +43,7 @@ namespace ca2
       string dst;
       for (int i = 0; i < src.get_length(); i++)
       {
-         if (src[i] == '%' && isxdigit(src[i + 1]) && isxdigit(src[i + 2]))
+         if (src[i] == '%' && isxdigit((unsigned char) (src[i + 1])) && isxdigit((unsigned char) (src[i + 2])))
          {
             char c1 = src[++i];
             char c2 = src[++i];
@@ -74,7 +74,7 @@ namespace ca2
          if (str[i] == '.')
             dots++;
          else
-         if (!isdigit(str[i]))
+         if (!isdigit((unsigned char) str[i]))
             return false;
       }
       if (dots != 3)
@@ -333,14 +333,18 @@ namespace ca2
          if (sa_len == sizeof(struct sockaddr_in))
          {
             struct sockaddr_in *p = (struct sockaddr_in *)sa;
-            return ::sockets::address_sp(new ::sockets::ipv4_address(get_app(), *p));
+            ::sockets::address_sp addr;
+            addr(new ::sockets::ipv4_address(get_app(), *p));
+            return addr;
          }
          break;
       case AF_INET6:
          if (sa_len == sizeof(struct sockaddr_in6))
          {
             struct sockaddr_in6 *p = (struct sockaddr_in6 *)sa;
-            return ::sockets::address_sp(new ::sockets::ipv6_address(get_app(), *p));
+            ::sockets::address_sp addr;
+            addr(new ::sockets::ipv6_address(get_app(), *p));
+            return addr;
          }
          break;
       }

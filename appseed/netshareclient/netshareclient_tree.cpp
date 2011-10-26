@@ -21,7 +21,7 @@ namespace netshareclient
    {
       m_pscrollbarHorz = &m_scrollbarHorz;
       m_pscrollbarVert = &m_scrollbarVert;
-      m_pdata = this;
+      ::ca::data_container::m_spdata = this;
 
    }
 
@@ -36,10 +36,10 @@ namespace netshareclient
    }
 
 
-   void tree::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void tree::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      netshareclient::tree_interface::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      netshareclient::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
    }
@@ -80,7 +80,7 @@ namespace netshareclient
 
          ex1::tree_item * pitem = insert_item(pitemAccount, ex1::RelativeLastChild, pitemParent);
          xml::node node(get_app());
-         if(node.load(System.http().get("http://netshareclient.api.veriterse.net/query?query=server_list&login=" + pprofile->m_strLogin)))
+         if(node.load(Application.http().get("http://netshareclient.api.veriterse.net/query?query=server_list&login=" + pprofile->m_strLogin)))
          {
             for(int i = 0; i < node.get_children_count(); i++)
             {
@@ -109,10 +109,10 @@ namespace netshareclient
       }
       if(papp->m_pnetshareclientlist == NULL)
       {
-         create_context cc;
+/*         create_context cc;
          cc.m_pCurrentDoc = get_document();
-         cc.m_typeinfoNewView = typeid(list);
-         create_view(typeid(list), get_document(), GetParent(), 101);
+         cc.m_typeinfoNewView = ::ca::get_type_info < list > ();*/
+         create_view(::ca::get_type_info < list > (), get_document(), GetParent(), 101);
       }
       if(papp->m_pnetshareclientlist == NULL)
          return;
@@ -123,10 +123,10 @@ namespace netshareclient
          {
             pdocument->m_pholderNetshareclientList->m_uiptraHold[0]->ShowWindow(SW_HIDE);
          }
-         pdocument->m_pholderNetshareclientList->hold(papp->netshareclient::application::m_prightview);
-         pdocument->m_pholderNetshareclientList->layout();
+//         pdocument->m_pholderNetshareclientList->hold(papp->netshareclient::application::m_prightview);
+  //       pdocument->m_pholderNetshareclientList->layout();
       }
-      else if(papp->netshareclient::application::m_pmainview == NULL)
+    /*  else if(papp->netshareclient::application::m_pmainview == NULL)
       {
          Application.hold(papp->netshareclient::application::m_prightview);
       }
@@ -135,9 +135,9 @@ namespace netshareclient
          papp->netshareclient::application::m_pmainview->get_pane_window(1)->ShowWindow(SW_HIDE);
          papp->netshareclient::application::m_pmainview->SetPane(1, papp->::netshareclient::application::m_prightview, false);
          papp->netshareclient::application::m_pmainview->layout();
-      }
+      }*/
 
-      pitemdata->m_pprofile->start_veiev_synch();
+      //pitemdata->m_pprofile->start_veiev_synch();
 
       //      get_document()->set_profile(pitemdata->m_pprofile);
 
@@ -152,12 +152,12 @@ namespace netshareclient
    {
       tree_item * pitem = (tree_item *) pdataitem;
       application * papp = dynamic_cast < application * > (get_app());
-      if(pitem->m_iIdentation == 0 && papp->m_pmainview != NULL)
+/*      if(pitem->m_iIdentation == 0 && papp->m_pmainview != NULL)
       {
          papp->m_pmainview->get_pane_window(1)->ShowWindow(SW_HIDE);
          papp->m_pmainview->SetPane(1, papp->::netshareclient::application::m_prightpaneview, false);
          papp->m_pmainview->layout();
-      }
+      }*/
 
    }
 

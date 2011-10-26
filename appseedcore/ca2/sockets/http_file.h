@@ -20,7 +20,7 @@ namespace http
       }
       inline file & operator << (gen::memory_file & memfile)
       {
-         write(memfile.GetAllocation(), memfile.get_length());
+         write(memfile.get_data(), (::primitive::memory_size) memfile.get_length());
          return *this;
       }
       inline file & operator << (ex1::file & file);

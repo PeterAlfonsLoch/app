@@ -99,7 +99,7 @@
 /* #undef HAVE_MLOCK */
 /* #undef HAVE_MLOCKALL */
 /* #undef HAVE_MMAP */
-#define HAVE_MMAP64 1
+/* #undef HAVE_MMAP64 */
 #define HAVE_PERROR 1
 /* #undef HAVE_POLL */
 /* #undef HAVE_PREAD */
@@ -116,7 +116,7 @@
 /* #undef HAVE_PTHREAD_KILL */
 /* #undef HAVE_PTHREAD_RWLOCK_RDLOCK */
 /* #undef HAVE_PTHREAD_SETPRIO_NP */
-#define HAVE_PTHREAD_SETSCHEDPARAM 1
+/* #undef HAVE_PTHREAD_SETSCHEDPARAM */
 /* #undef HAVE_PTHREAD_SIGMASK */
 /* #undef HAVE_PTHREAD_THREADMASK */
 /* #undef HAVE_PTHREAD_YIELD_NP */
@@ -167,7 +167,7 @@
 # define HAVE_CHAR 1
 #endif
 
-#define SIZEOF_CHARP 8
+#define SIZEOF_CHARP 4
 #if SIZEOF_CHARP
 # define HAVE_CHARP 1
 #endif
@@ -202,7 +202,7 @@
 # define HAVE_SIGSET_T 1
 #endif
 
-#define SIZEOF_SIZE_T 8
+#define SIZEOF_SIZE_T 4
 #if SIZEOF_SIZE_T
 # define HAVE_SIZE_T 1
 #endif

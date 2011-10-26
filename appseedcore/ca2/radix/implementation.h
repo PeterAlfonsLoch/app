@@ -191,13 +191,13 @@ CLASS_DECL_ca ::user::interaction * AfxGetParentOwner(::user::interaction * hWnd
 CLASS_DECL_ca BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
 
 
-// UNICODE/MBCS abstractions
+/*// UNICODE/MBCS abstractions
 #ifdef _MBCS
    extern CLASS_DECL_ca const BOOL _afxDBCS;
 #else
    #define _afxDBCS FALSE
 #endif
-
+   */
 // determine number of elements in an base_array (not bytes)
 #ifndef _countof
 #define _countof(base_array) (sizeof(base_array)/sizeof(base_array[0]))
@@ -212,22 +212,30 @@ int AFX_CDECL AfxCriticalNewHandler(size_t nSize);
 // locale-invariant comparison helpers till CRT gets that support
 inline int AfxInvariantStrICmp(const char *pszLeft, const char *pszRight)
 {
+#ifdef WINDOWS
     return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
                             NORM_IGNORECASE,
                             pszLeft,
                             -1,
                             pszRight,
                             -1)-CSTR_EQUAL;
+#else
+   return stricmp(pszLeft, pszRight);
+#endif
 }
 
 inline int AfxInvariantStrICmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
 {
+#ifdef WINDOWS
     return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
                             NORM_IGNORECASE,
                             pwszLeft,
                             -1,
                             pwszRight,
                             -1)-CSTR_EQUAL;
+#else
+   return wcsicmp(pwszLeft, pwszRight);
+#endif
 }
 
 
@@ -291,23 +299,24 @@ CLASS_DECL_ca void AfxCriticalTerm();
 class CLASS_DECL_ca CInternalGlobalLock :
    virtual public ::radix::object
 {
-public:   
-   
-   
+public:
+
+
    CInternalGlobalLock(int nLockType = INT_MAX)
    : m_nLockType(nLockType)
    {
       if (m_nLockType!=INT_MAX)
       {
-         Lock();
+         lock(INT_MAX);
       }
    }
    ~CInternalGlobalLock()
    {
-      Unlock();
+      unlock();
    }
-   void Lock(int nLockType = INT_MAX) //Pass locktype in first call to lock, to avoid error C2362: initialization of 'winMsgLock' is skipped by 'goto LReturnTrue'
-   {      
+   using ::radix::object::lock;
+   void lock(int nLockType = INT_MAX) //Pass locktype in first call to lock, to avoid error C2362: initialization of 'winMsgLock' is skipped by 'goto LReturnTrue'
+   {
       if (nLockType!=INT_MAX)
       {
          ENSURE(m_nLockType == INT_MAX || m_nLockType == nLockType);
@@ -316,13 +325,14 @@ public:
       ENSURE(m_nLockType != INT_MAX);
       AfxLockGlobals(m_nLockType);
    }
-   void Unlock()
-   {      
+   bool unlock()
+   {
       if (m_nLockType!=INT_MAX)
       {
-         AfxUnlockGlobals(m_nLockType);         
+         AfxUnlockGlobals(m_nLockType);
          m_nLockType = INT_MAX;
-      }      
+      }
+      return true;
    }
 private:
    int m_nLockType;

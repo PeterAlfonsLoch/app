@@ -12,7 +12,7 @@ public:
    DECL_GEN_SIGNAL(_001OnEditPaste)
 	DECL_GEN_SIGNAL(_001OnContextMenu)
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 
    primary_command_view(::ca::application * papp);

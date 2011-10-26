@@ -58,6 +58,7 @@ reply_init(TASK *t)
 static void
 reply_add_additional(TASK *t, RRLIST *rrlist, datasection_t section)
 {
+   UNREFERENCED_PARAMETER(section);
 	register RR *p;
 
 	if (!rrlist)
@@ -312,11 +313,11 @@ reply_add_hinfo(TASK *t, RR *r)
 
 	DNS_PUT16(dest, cpulen + oslen + 2);
 
-	*dest++ = cpulen;
+	*dest++ = (char) cpulen;
 	memcpy(dest, cpu, cpulen);
 	dest += cpulen;
 
-	*dest++ = oslen;
+	*dest++ = (char) oslen;
 	memcpy(dest, os, oslen);
 	dest += oslen;
 
@@ -409,15 +410,15 @@ reply_add_naptr(TASK *t, RR *r)
 	DNS_PUT16(dest, (uint16_t)rr->naptr_order);
 	DNS_PUT16(dest, (uint16_t)rr->naptr_pref);
 
-	*dest++ = flags_len;
+	*dest++ = (char) flags_len;
 	memcpy(dest, rr->naptr_flags, flags_len);
 	dest += flags_len;
 
-	*dest++ = service_len;
+	*dest++ = (char) service_len;
 	memcpy(dest, rr->naptr_service, service_len);
 	dest += service_len;
 
-	*dest++ = regex_len;
+	*dest++ = (char) regex_len;
 	memcpy(dest, rr->naptr_regex, regex_len);
 	dest += regex_len;
 
@@ -583,14 +584,14 @@ reply_add_txt(TASK *t, RR *r)
 	if (reply_start_rr(t, r, (char *) r->name, DNS_QTYPE_TXT, rr->ttl, "TXT") < 0)
 		return (-1);
 
-	size = len + 1;
+	size = (char) (len + 1);
 	r->length += SIZE16 + size;
 
 	if (!(dest = rdata_enlarge(t, SIZE16 + size)))
 		return dnserror(t, DNS_RCODE_SERVFAIL, ERR_INTERNAL);
 
 	DNS_PUT16(dest, size);
-	*dest++ = len;
+	*dest++ = (char) len;
 	memcpy(dest, rr->data, len);
 	dest += len;
 	return (0);
@@ -718,7 +719,7 @@ truncate_rrlist(TASK *t, off_t maxpkt, RRLIST *rrlist, datasection_t ds)
 	recs = rrlist->size;
 	for (rr = rrlist->head; rr; rr = rr->next)
 	{
-		if (rr->offset + rr->length >= maxpkt)
+		if (rr->offset + rr->length >= (size_t) maxpkt)
 		{
 			recs--;
 			if (ds != ADDITIONAL)

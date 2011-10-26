@@ -15,8 +15,8 @@ class CLASS_DECL_ca FileManagerTabView :
 public:
    FileManagerTabView(::ca::application * papp);
 
-   virtual void on_create_view(view_data * pviewdata);
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void on_create_view(::user::view_creator_data * pcreatordata);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
    void FileManagerBrowse(const char * lpcwstr);
 
 

@@ -210,7 +210,7 @@ namespace audio_decode_window_media
        WORD    cchName     = 0;
        BYTE*   pbValue     = NULL;
        unsigned short cbValue     = 0;
-       WORD    langIndex   = 0;
+//       WORD    langIndex   = 0;
        WORD    attIndex    = 0;
        WORD    wStreamNum  = 0xffff;
 
@@ -444,6 +444,12 @@ namespace audio_decode_window_media
       return true;
       
    }
+
+   bool decoder::_DecoderFinalize()
+   {
+      return true;
+   }
+
    void decoder::DecoderMoveNext()
    {
    }
@@ -477,7 +483,7 @@ namespace audio_decode_window_media
       return 16;
    }
 
-   int decoder::_DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize)
+   ::primitive::memory_size decoder::_DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize)
    {
       LPBYTE lpbBuffer = (LPBYTE) lpvoidBuffer;
       UINT uiRemain = uiBufferSize;
@@ -499,7 +505,7 @@ namespace audio_decode_window_media
             return uiPointer;
          }
 
-         uiSize = m_fileFrame.RemoveBegin(&lpbBuffer[uiPointer], uiRemain);
+         uiSize = m_fileFrame.remove_begin(&lpbBuffer[uiPointer], uiRemain);
 
          uiRemain -= uiSize;
          uiPointer += uiSize;

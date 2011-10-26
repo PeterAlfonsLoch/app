@@ -15,6 +15,13 @@ namespace user
       return m_pstr->matches(this, pszRoot, psz);
    }
 
+   bool str_context::begins(const char * pszRoot, const char * psz)
+   {
+      if(m_pstr == NULL)
+         return false;
+      return m_pstr->begins(this, pszRoot, psz);
+   }
+
    bool str_context::begins_eat(string & strTopic, const char * pszRoot)
    {
       if(m_pstr == NULL)
@@ -202,7 +209,7 @@ namespace user
          stra.add_unique(str);
    }
 
-/*   string persistent_ui_str::get(netnodeScriptInterface * pscript, const char * pszRoot, const char * pszLang, const char * pszStyle)
+/*   string persistent_ui_str::get(script_interface * pscript, const char * pszRoot, const char * pszLang, const char * pszStyle)
    {
       string str;
       str = operator[](pszRoot)[pszStyle][pszLang].m_str;
@@ -265,7 +272,7 @@ namespace user
                psz++;
             string strBody = gen::str::consume_quoted_value(psz);
             set(
-               strRoot, 
+               strRoot,
                pszLang,
                pszStyle,
                body(strBody));
@@ -313,6 +320,32 @@ namespace user
       return false;
    }
 
+   bool str::begins(str_context * pcontext, const char * pszTopic, const char * pszRoot)
+   {
+      string str;
+      if(pcontext != NULL)
+      {
+         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+         {
+            string strStyle = pcontext->param_style_ex()[i];
+            string strLocale = pcontext->param_locale_ex()[i];
+            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+               return true;
+            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+               return true;
+         }
+      }
+      str = (*this)["en"]["en"][pszRoot].m_str;
+      if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+         return true;
+      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+         return true;
+      return false;
+   }
+
    bool str::begins_eat(str_context * pcontext, string & strTopic, const char * pszRoot)
    {
       string str;
@@ -342,6 +375,7 @@ namespace user
    void str::get(stringa & stra, str_context * pcontext, const char * pszRoot)
    {
       string str;
+      string strRoot;
       if(pcontext != NULL)
       {
          for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
@@ -354,6 +388,31 @@ namespace user
             str = (*this)[strLocale][strLocale][pszRoot].m_str;
             if(str.has_char())
                stra.add_unique(str);
+         }
+         bool bOk = true;
+         int i = 0;
+         while(i < 32 && bOk)
+         {
+            bOk = false;
+            for(int j = 0; j < pcontext->param_locale_ex().get_count(); j++)
+            {
+               string strStyle = pcontext->param_style_ex()[i];
+               string strLocale = pcontext->param_locale_ex()[i];
+               strRoot.Format("%s[%d]", pszRoot, i);
+               str = (*this)[strLocale][strStyle][strRoot].m_str;
+               if(str.has_char())
+               {
+                  bOk = true;
+                  stra.add_unique(str);
+               }
+               str = (*this)[strLocale][strLocale][strRoot].m_str;
+               if(str.has_char())
+               {
+                  bOk = true;
+                  stra.add_unique(str);
+               }
+            }
+            i++;
          }
       }
       str = (*this)["en"]["en"][pszRoot].m_str;

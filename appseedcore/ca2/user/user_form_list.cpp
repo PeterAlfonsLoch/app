@@ -5,8 +5,8 @@ namespace user
 
    form_list::form_list(::ca::application * papp) :
       ca(papp),
-      form(papp), 
-      ::user::interaction(papp), 
+      form(papp),
+      ::user::interaction(papp),
       scroll_view(papp),
       list(papp)
    {
@@ -32,12 +32,12 @@ namespace user
       list::_001GetSelection(key, selection);
    }
 
-   void form_list::_001InstallMessageHandling( ::user::win::message::dispatch *pinterface)
+   void form_list::install_message_handling( ::user::win::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &form_list::_001OnKeyDown);
 
-      form::_001InstallMessageHandling(pinterface);
-      list::_001InstallMessageHandling(pinterface);
+      form::install_message_handling(pinterface);
+      list::install_message_handling(pinterface);
 
    }
 
@@ -59,8 +59,25 @@ namespace user
       control * pcontrol = _001GetControlBySubItem(iSubItem);
       if(pcontrol != NULL)
       {
-         //if(pcontrol->m_bEditOnSecondClick)
-         if(m_columna.GetBySubItem(iSubItem).m_bEditOnSecondClick)
+         if(pcontrol->descriptor().has_function(user::control::function_action))
+         {
+            if(pcontrol->descriptor().get_type() == user::control::type_button)
+            {
+
+
+               g_pwndLastLButtonDown      = NULL;
+
+               ::user::control_event ev;
+               ev.m_puie                  = pcontrol;
+               ev.m_eevent                = ::user::event_button_clicked;
+
+               m_iControlItem             = iItem;
+
+               SendMessage(::user::message_event, 0, (LPARAM) &ev);
+
+            }
+         }
+         else if(m_columna._001GetBySubItem(iSubItem)->m_bEditOnSecondClick)
          {
             if(m_iOnClickClickItem == iItem &&
                m_iOnClickClickSubItem == iSubItem)
@@ -90,9 +107,9 @@ namespace user
 
    control * form_list::_001GetControlBySubItem(index iSubItem)
    {
-      Column & column = m_columna.GetBySubItem(iSubItem);
-      if(column.m_iControl >= 0)
-         return m_controldescriptorset[column.m_iControl].m_pcontrol;
+      ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
+      if(pcolumn != NULL && pcolumn->m_iControl >= 0)
+         return m_controldescriptorset[pcolumn->m_iControl].m_pcontrol;
       else
          return NULL;
    }
@@ -100,7 +117,14 @@ namespace user
    void form_list::_001PlaceControl(control * pcontrol)
    {
       rect rect;
-      if(_001GetElementRect(rect, DisplayToStrict(pcontrol->m_iEditItem), pcontrol->m_iEditItem, _001MapSubItemToOrder(pcontrol->descriptor().m_iSubItem), -1, userbase::_list::ElementText))
+      draw_list_item item(this);
+      item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
+      item.m_iItem = pcontrol->m_iEditItem;
+      item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
+      item.m_iListItem = -1;
+      _001GetElementRect(&item, userbase::_list::ElementText);
+      if(item.m_bOk)
       {
          _001Update(pcontrol);
          pcontrol->SetWindowPos(
@@ -113,16 +137,11 @@ namespace user
          _001SetEditControl(pcontrol);
          pcontrol->SetFocus();
       }
-
-   }
-
-   void form_list::OnDrawInterfaceDraw(::ca::graphics *pdc)
-   {
-      _001OnDraw(pdc);
    }
 
    void form_list::_001SetEditControl(control * pcontrol)
    {
+
       if(pcontrol == NULL)
       {
          if(m_pcontrolEdit != NULL)
@@ -157,7 +176,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnHScroll(gen::signal_object * pobj) 
+   void form_list::_001OnHScroll(gen::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -181,12 +200,9 @@ namespace user
       return false;
    }
 
-   bool form_list::_001OnNotify(WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   void form_list::_001OnNotify(gen::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(wparam);
-      UNREFERENCED_PARAMETER(lparam);
-      UNREFERENCED_PARAMETER(lresult);
-      return false;
+      UNREFERENCED_PARAMETER(pobj);
    }
 
    void form_list::_001OnTimer(gen::signal_object * pobj)
@@ -194,11 +210,9 @@ namespace user
       list::_001OnTimer(pobj);
    }
 
-   bool form_list::_001OnMessageNotify(WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   void form_list::_001OnMessageNotify(gen::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(wparam);
-      UNREFERENCED_PARAMETER(lparam);
-      UNREFERENCED_PARAMETER(lresult);
+      UNREFERENCED_PARAMETER(pobj);
       // linux na verdade revamp
       /*
       lresult = user::NotifyRetContinue;
@@ -231,7 +245,7 @@ namespace user
          }
          break;
       }*/
-      return true;
+      //return true;
    }
 
    void form_list::_001UpdateColumns()
@@ -297,7 +311,7 @@ namespace user
    void form_list::_001OnKeyDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::key, pkey, pobj)
-      
+
       if(pkey->m_nChar == VK_RETURN)
       {
          _001SaveEdit(_001GetEditControl());
@@ -308,25 +322,18 @@ namespace user
       pkey->previous();
    }
 
-   void form_list::_001DrawSubItem(
-      ::ca::graphics * pdc,
-      draw_item * pdrawitem,
-      LPCRECT lpcrect,
-      INT_PTR iSubItem,
-      bool bItemHover,
-      bool bSubItemHover,
-      bool bFocus)
+   void form_list::_001DrawSubItem(draw_list_item * pdrawitem)
    {
-      control * pcontrol = _001GetControlBySubItem(iSubItem);
-      if(pcontrol != NULL)
+      ::user::list::_001DrawSubItem(pdrawitem);
+      if(pdrawitem->m_pcolumn->m_bCustomDraw)
       {
-         control_keep controlkeep(this, pdrawitem->m_itemId, iSubItem);
-         pcontrol->_003CallCustomDraw(
-            pdc, 
-            lpcrect,
-            bItemHover, 
-            bSubItemHover,
-            bFocus);
+         control * pcontrol = _001GetControlBySubItem(pdrawitem->m_iSubItem);
+         if(pcontrol != NULL)
+         {
+            pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
+            control_keep controlkeep(this, pdrawitem->m_iItem, pdrawitem->m_iSubItem);
+            pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics, pdrawitem);
+         }
       }
    }
 
@@ -356,7 +363,15 @@ namespace user
          }
       }
       rect rectControl;
-      _001GetElementRect(rectControl, DisplayToStrict(_001GetTopIndex()), _001GetTopIndex(), _001MapSubItemToOrder(pcontrol->descriptor().m_iSubItem), -1, userbase::_list::ElementSubItem);
+      rect rect;
+      draw_list_item item(this);
+      item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
+      item.m_iItem = pcontrol->m_iEditItem;
+      item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
+      item.m_iListItem = -1;
+      _001GetElementRect(&item, userbase::_list::ElementSubItem);
+      rectControl = item.m_rectSubItem;
       ClientToScreen(rectControl);
       rect64 rectForm;
       GetWindowRect(rectForm);
@@ -368,9 +383,32 @@ namespace user
       return rectClient.contains(point) != FALSE;
    }
 
+   void form_list::_001OnColumnChange()
+   {
+      ::user::list::_001OnColumnChange();
+      for(int i = 0; i < m_columna.get_size(); i++)
+      {
+         if(m_columna[i].m_iControl >= 0 && m_columna[i].m_iControl < m_controldescriptorset.get_size())
+         {
+            class control::descriptor * pdescriptor = m_controldescriptorset.ptr_at(m_columna[i].m_iControl);
+            if(pdescriptor != NULL)
+            {
+               if(m_columna[i].m_iSubItem >= 0)
+               {
+                  pdescriptor->m_iSubItem = m_columna[i].m_iSubItem;
+               }
+               else if(pdescriptor->m_iSubItem >= 0)
+               {
+                  m_columna[i].m_iSubItem = pdescriptor->m_iSubItem;
+               }
+            }
+         }
+      }
+   }
+
    void form_list::_000OnMouse(::user::win::message::mouse * pmouse)
    {
-      
+
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 /*      if(uiMessage == WM_LBUTTONDOWN)
@@ -382,9 +420,9 @@ namespace user
          if(_001DisplayHitTest(pt, iItem, iSubItem))
          {
             class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-            if(pcontrol != NULL 
+            if(pcontrol != NULL
             && pcontrol->m_pcontrol != NULL
-            && (pcontrol->m_etype == type_edit 
+            && (pcontrol->m_etype == type_edit
              || pcontrol->m_etype == type_edit_plain_text)
             && !range.HasSubItem(iItem, iSubItem))
             {
@@ -402,10 +440,10 @@ namespace user
          if(_001DisplayHitTest(pt, iItem, iSubItem))
          {
             class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-            if(pcontrol != NULL 
+            if(pcontrol != NULL
             && pcontrol->m_pcontrol != NULL
             && !pcontrol->m_pcontrol->IsWindowVisible()
-            && (pcontrol->m_etype == type_edit 
+            && (pcontrol->m_etype == type_edit
              || pcontrol->m_etype == type_edit_plain_text))
             {
                return false;
@@ -414,18 +452,39 @@ namespace user
       }*/
       control_keep controlkeep(this, pt);
       user::interaction * pui = get_top_child();
-      while(pui != NULL)
+      user::interaction * puiBefore;
+      bool bError;
+      try
       {
-         if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
+         while(pui != NULL)
          {
-            pui->_000OnMouse(pmouse);
-            if(pmouse->m_bRet)
-               return;
-            pui->SendMessage(pmouse);
-            if(pmouse->get_lresult() != 0)
-               return;
+            bError = false;
+            try
+            {
+               if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
+               {
+                  pui->_000OnMouse(pmouse);
+                  if(pmouse->m_bRet)
+                     return;
+                  pui->SendMessage(pmouse);
+                  if(pmouse->get_lresult() != 0)
+                     return;
+               }
+            }
+            catch(...)
+            {
+               bError = true;
+               puiBefore = pui;
+            }
+            pui = under_sibling(pui);
+            if(bError)
+            {
+               m_uiptraChild.remove(puiBefore);
+            }
          }
-         pui = pui->under_sibling();
+      }
+      catch(...)
+      {
       }
       try
       {
@@ -441,8 +500,18 @@ namespace user
 
    void form_list::control_get_client_rect(LPRECT lprect)
    {
+      if(_001GetEditControl() == NULL)
+      {
+         SetRectEmpty(lprect);
+         return;
+      }
       rect rectControl;
-      _001GetElementRect(rectControl, DisplayToStrict(m_iControlItem), m_iControlItem, _001MapSubItemToOrder(m_iControlSubItem), -1, userbase::_list::ElementSubItem);
+      draw_list_item item(this);
+      item.m_iItem = m_iEditItem;
+      item.m_iSubItem = _001GetEditControl()->descriptor().m_iSubItem;
+      item.m_iListItem = -1;
+      _001GetElementRect(&item, userbase::_list::ElementSubItem);
+      rectControl = item.m_rectSubItem;
       class rect rect(rectControl);
       *lprect = rect;
    }

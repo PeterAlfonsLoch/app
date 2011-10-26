@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis_v110|Win32">
+      <Configuration>basis_v110</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis_v110|x64">
+      <Configuration>basis_v110</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="basis|Win32">
       <Configuration>basis</Configuration>
       <Platform>Win32</Platform>
@@ -9,14 +17,52 @@
       <Configuration>basis</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|Win32">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|x64">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|Win32">
+      <Configuration>profiler</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|x64">
+      <Configuration>profiler</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AFC48570-75E4-46BD-B8AB-4590B257E1C8}</ProjectGuid>
     <RootNamespace>ca2</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>false</UseOfMfc>
@@ -30,40 +76,152 @@
     <UseOfAtl>false</UseOfAtl>
     <PlatformToolset>Windows7.1SDK</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">false</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</GenerateManifest>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">false</GenerateManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">false</EmbedManifest>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</PreBuildEventUseInBuild>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</PreBuildEventUseInBuild>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</PreBuildEventUseInBuild>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(VCInstallDir)lib</ReferencePath>
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(VCInstallDir)crt\src;</SourcePath>
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <PreBuildEvent>
@@ -75,10 +233,10 @@
       </Command>
     </CustomBuildStep>
     <ClCompile>
-      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../nodeapp/windows;$(SolutionDir)../../nodeapp/windows/include;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -98,6 +256,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <CompileAsManaged>false</CompileAsManaged>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -111,7 +270,172 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <PerUserRedirection>false</PerUserRedirection>
-      <AdditionalDependencies>libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
@@ -146,7 +470,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
     <PreBuildEvent>
       <Command>
       </Command>
@@ -158,8 +482,8 @@
     <ClCompile>
       <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../nodeapp/windows;$(SolutionDir)../../nodeapp/windows/include;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -176,6 +500,11 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <StringPooling>false</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -189,7 +518,242 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <PerUserRedirection>false</PerUserRedirection>
-      <AdditionalDependencies>libmysql.lib;libeay32.lib;ssleay32.lib;FreeImage.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <Profile>true</Profile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>WinInet.lib;libmysql.lib;libeay32.lib;FreeImage.lib;ssleay32.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>WinInet.lib;libmysql.lib;libeay32.lib;FreeImage.lib;ssleay32.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>WinINet.lib;libmysql.lib;libeay32.lib;ssleay32.lib;FreeImage.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
@@ -222,7 +786,87 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA_DLL</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <RegisterOutput>false</RegisterOutput>
+      <PerUserRedirection>false</PerUserRedirection>
+      <AdditionalDependencies>WinINet.lib;libmysql.lib;libeay32.lib;ssleay32.lib;FreeImage.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+      <Profile>true</Profile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+  </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="acube\acube.h" />
+    <ClInclude Include="acube\acube_application.h" />
     <ClInclude Include="bergedge\bergedge_bergedge.h" />
     <ClInclude Include="bergedge\bergedge.h" />
     <ClInclude Include="bergedge\bergedge_document.h" />
@@ -234,14 +878,30 @@
     <ClInclude Include="ca2\ca2.h" />
     <ClInclude Include="ca2\ca2_2.h" />
     <ClInclude Include="ca2\ca2_file_application.h" />
+    <ClInclude Include="ca2\ca2_library.h" />
     <ClInclude Include="ca2\ca2_main.h" />
     <ClInclude Include="ca2\ca2_inline.h" />
     <ClInclude Include="ca2\ca2_net.h" />
-    <ClInclude Include="ca2\ca2_seed.h" />
     <ClInclude Include="ca2\ca2_sockets_address.h" />
     <ClInclude Include="ca2\ca2_stra.h" />
     <ClInclude Include="ca2\ca2_file_system.h" />
+    <ClInclude Include="ca2\ca2_user.h" />
     <ClInclude Include="ca2\ca2_xml.h" />
+    <ClInclude Include="ca2\ca2_file_handler_tree_item.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_application.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_default.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_handler.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_library.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_menu_library.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_interface.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_data.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_item.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_document.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_frame.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_pane_view.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_pane_view_update_hint.h" />
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_view.h" />
     <ClInclude Include="ca2_res.h" />
     <ClInclude Include="ca2_system_allocate.h" />
     <ClInclude Include="ca4\ca4.h" />
@@ -257,7 +917,10 @@
     <ClInclude Include="ca4\ca4_http_get_socket.h" />
     <ClInclude Include="ca4\ca4_ip_enum.h" />
     <ClInclude Include="ca4\ca4_nessie.h" />
+    <ClInclude Include="ca4\ca4_oauth.h" />
     <ClInclude Include="ca4\ca4_patch.h" />
+    <ClInclude Include="ca4\ca4_port_forward.h" />
+    <ClInclude Include="ca4\ca4_twit.h" />
     <ClInclude Include="ca5\ca5.h" />
     <ClInclude Include="ca5\ca5_application.h" />
     <ClInclude Include="ca5\ca5_user_presence.h" />
@@ -271,19 +934,12 @@
     <ClInclude Include="ca8\ca8_Shell.h" />
     <ClInclude Include="ca8\ca8_validate.h" />
     <ClInclude Include="ca8\ca8_wait_message_dialog.h" />
-    <ClInclude Include="ca8_77\ca77.h" />
-    <ClInclude Include="ca8_77\ca77_application.h" />
-    <ClInclude Include="ca8_84\ca84.h" />
-    <ClInclude Include="ca8_84\ca84_application.h" />
     <ClInclude Include="calculator\frame.h" />
-    <ClInclude Include="calculator\mail_frame.h" />
-    <ClInclude Include="ca\ca.h" />
+    <ClInclude Include="ca\ca2_keep_alive.h" />
     <ClInclude Include="ca\ca_2.h" />
     <ClInclude Include="ca\ca_application_bias.h" />
-    <ClInclude Include="ca\ca_ca.h" />
-    <ClInclude Include="ca\ca_base.h" />
+    <ClInclude Include="ca\ca_create_context.h" />
     <ClInclude Include="ca\ca_dir_application.h" />
-    <ClInclude Include="ca\ca_system.h" />
     <ClInclude Include="ca\ca_data.h" />
     <ClInclude Include="ca\ca_data_container.h" />
     <ClInclude Include="ca\ca_data_listener.h" />
@@ -291,7 +947,13 @@
     <ClInclude Include="ca\ca_interlocked_long.h" />
     <ClInclude Include="ca\ca_interlocked_long_pulse.h" />
     <ClInclude Include="ca\ca_graphics.h" />
-    <ClInclude Include="collection\base_object_list.h" />
+    <ClInclude Include="ca\ca_job.h" />
+    <ClInclude Include="ca\ca_live_signal.h" />
+    <ClInclude Include="ca\ca_object.h" />
+    <ClInclude Include="ca\ca_print_job.h" />
+    <ClInclude Include="collection\array_release_ptr.h" />
+    <ClInclude Include="collection\array_smart_ptr.h" />
+    <ClInclude Include="collection\object_list.h" />
     <ClInclude Include="collection\comparable_eq_array.h" />
     <ClInclude Include="collection\comparable_eq_list.h" />
     <ClInclude Include="collection\comparable_list.h" />
@@ -306,8 +968,22 @@
     <ClInclude Include="collection\raw_array.h" />
     <ClInclude Include="collection\string_list.h" />
     <ClInclude Include="collection\string_to_string_map.h" />
+    <ClInclude Include="collection\typed_pointer_array.h" />
+    <ClInclude Include="collection\typed_pointer_list.h" />
+    <ClInclude Include="collection\typed_pointer_map.h" />
+    <ClInclude Include="collection\typed_ptr_array.h" />
+    <ClInclude Include="collection\typed_ptr_list.h" />
     <ClInclude Include="collection\unique_array.h" />
     <ClInclude Include="collection\_Base2DArray.h" />
+    <ClInclude Include="command\command.h" />
+    <ClInclude Include="command\command_application.h" />
+    <ClInclude Include="command\command_document.h" />
+    <ClInclude Include="command\command_form_callback.h" />
+    <ClInclude Include="command\command_frame.h" />
+    <ClInclude Include="command\command_pane_view.h" />
+    <ClInclude Include="command\command_pane_view_update_hint.h" />
+    <ClInclude Include="command\command_primary_view.h" />
+    <ClInclude Include="command\command_view.h" />
     <ClInclude Include="compress\7z\7zCompressionMode.h" />
     <ClInclude Include="compress\7z\7zDecode.h" />
     <ClInclude Include="compress\7z\7zEncode.h" />
@@ -402,8 +1078,42 @@
     <ClInclude Include="crypto\aes_cbc_coder.h" />
     <ClInclude Include="crypto\crypto_set_password_interface.h" />
     <ClInclude Include="crypto\rar20.h" />
+    <ClInclude Include="cube1\cube1.h" />
+    <ClInclude Include="cube1\cube1_application.h" />
+    <ClInclude Include="cube2\cube2.h" />
+    <ClInclude Include="cube2\cube2_application.h" />
+    <ClInclude Include="cube4\cube4.h" />
+    <ClInclude Include="cube4\cube4_application.h" />
+    <ClInclude Include="cube5\cube5.h" />
+    <ClInclude Include="cube5\cube5_application.h" />
+    <ClInclude Include="cube8\cube8.h" />
+    <ClInclude Include="cube8\cube8_application.h" />
+    <ClInclude Include="cube8\cube8_main.h" />
+    <ClInclude Include="cube8\cube8_system.h" />
+    <ClInclude Include="cube8\cube8_system_allocate.h" />
+    <ClInclude Include="cube8\cube8_system_ca_template.h" />
+    <ClInclude Include="cube8\cube8_system_template_trace.h" />
+    <ClInclude Include="cube\cube.h" />
+    <ClInclude Include="cube\cube_application.h" />
+    <ClInclude Include="cube\cube_library.h" />
     <ClInclude Include="database\database_01.h" />
     <ClInclude Include="database\database_field_definition.h" />
+    <ClInclude Include="datetime\datetime.h" />
+    <ClInclude Include="datetime\datetime_duration.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_object.h" />
+    <ClInclude Include="dynamic_source\dynamic_source.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_library.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_profiler.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_composite.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_impl.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_ptr.h" />
     <ClInclude Include="ex1\ex1_0.h" />
     <ClInclude Include="ex1\ex1_1.h" />
     <ClInclude Include="ex1\ex1_bitl_decoder.h" />
@@ -411,23 +1121,35 @@
     <ClInclude Include="ex1\ex1_bitm_decoder.h" />
     <ClInclude Include="ex1\ex1_bitm_encoder.h" />
     <ClInclude Include="ex1\ex1_buffer.h" />
+    <ClInclude Include="ex1\ex1_circular_buffer.h" />
     <ClInclude Include="ex1\ex1_clustered_input_stream.h" />
     <ClInclude Include="ex1\ex1_definition.h" />
     <ClInclude Include="ex1\ex1_dynamic_buffer.h" />
     <ClInclude Include="ex1\ex1_dynamic_buffered_writer.h" />
+    <ClInclude Include="ex1\ex1_file_exception.h" />
+    <ClInclude Include="ex1\ex1_file_status.h" />
     <ClInclude Include="ex1\ex1_fs_interface.h" />
     <ClInclude Include="ex1\ex1_in_buffer.h" />
     <ClInclude Include="ex1\ex1_io_temp_buffer.h" />
     <ClInclude Include="ex1\ex1_limited_input_stream.h" />
     <ClInclude Include="ex1\ex1_limited_writer.h" />
     <ClInclude Include="ex1\ex1_limited_reader.h" />
+    <ClInclude Include="ex1\ex1_match.h" />
     <ClInclude Include="ex1\ex1_output_stream_flush_interface.h" />
+    <ClInclude Include="ex1\ex1_plain_text_string_stream.h" />
     <ClInclude Include="ex1\ex1_out_buffer.h" />
+    <ClInclude Include="ex1\ex1_plain_text_serializable.h" />
+    <ClInclude Include="ex1\ex1_plain_text_stream.h" />
+    <ClInclude Include="ex1\ex1_plain_text_writable.h" />
+    <ClInclude Include="ex1\ex1_plain_text_writer.h" />
     <ClInclude Include="ex1\ex1_progress_interface.h" />
+    <ClInclude Include="ex1\ex1_reader.h" />
     <ClInclude Include="ex1\ex1_request_interface.h" />
+    <ClInclude Include="ex1\ex1_seekable.h" />
     <ClInclude Include="ex1\ex1_simple_tree_data.h" />
     <ClInclude Include="ex1\ex1_simple_tree_item_data.h" />
     <ClInclude Include="ex1\ex1_size_count_writer.h" />
+    <ClInclude Include="ex1\ex1_stream.h" />
     <ClInclude Include="ex1\ex1_stream_binder.h" />
     <ClInclude Include="ex1\ex1_system_exception.h" />
     <ClInclude Include="ex1\ex1_timeout_file.h" />
@@ -436,7 +1158,9 @@
     <ClInclude Include="ex1\ex1_tree_item_data.h" />
     <ClInclude Include="ex1\ex1_types.h" />
     <ClInclude Include="ex1\ex1_locked_in_stream.h" />
+    <ClInclude Include="ex1\ex1_writer.h" />
     <ClInclude Include="ex2\ex2_folder_watch.h" />
+    <ClInclude Include="ex2\ex2_transfer_file.h" />
     <ClInclude Include="exception\assert.h" />
     <ClInclude Include="exception\base_exception.h" />
     <ClInclude Include="exception\class.h" />
@@ -447,18 +1171,23 @@
     <ClInclude Include="exception\exception.h" />
     <ClInclude Include="exception\exception2.h" />
     <ClInclude Include="exception\exception_0.h" />
+    <ClInclude Include="exception\exception_range_error.h" />
+    <ClInclude Include="exception\exception_runtime_error.h" />
     <ClInclude Include="exception\exception_trap.h" />
+    <ClInclude Include="exception\exception_void_implementation.h" />
+    <ClInclude Include="exception\hresult_exception.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\invalid_argument.h" />
     <ClInclude Include="exception\memory.h" />
     <ClInclude Include="exception\memory_state.h" />
     <ClInclude Include="exception\misc.h" />
     <ClInclude Include="exception\not_implemented.h" />
+    <ClInclude Include="exception\not_licensed.h" />
     <ClInclude Include="exception\not_supported.h" />
     <ClInclude Include="exception\resource.h" />
     <ClInclude Include="exception\se_exception.h" />
     <ClInclude Include="exception\se_translator.h" />
-    <ClInclude Include="exception\simple.h" />
+    <ClInclude Include="exception\simple_exception.h" />
     <ClInclude Include="exception\SymEngine.h" />
     <ClInclude Include="exception\unhandled_report.h" />
     <ClInclude Include="exception\user.h" />
@@ -470,10 +1199,12 @@
     <ClInclude Include="filemanager\filemanager_fs_simple_view.h" />
     <ClInclude Include="filemanager\filemanager_iconoverlayer.h" />
     <ClInclude Include="filemanager_folder_list_data.h" />
+    <ClInclude Include="fontopus\fontopus_authentication_map.h" />
     <ClInclude Include="fontopus\fontopus_contact_list.h" />
     <ClInclude Include="fontopus\fontopus_license.h" />
     <ClInclude Include="fontopus\fontopus_user.h" />
     <ClInclude Include="fontopus\fontopus_usera.h" />
+    <ClInclude Include="fontopus\fontopus_user_authentication.h" />
     <ClInclude Include="fontopus\fontopus_validate.h" />
     <ClInclude Include="fontopus\fontopus_application.h" />
     <ClInclude Include="fontopus\fontopus.h" />
@@ -490,13 +1221,18 @@
     <ClInclude Include="fs\fs_list_item.h" />
     <ClInclude Include="fs\fs_list_item_array.h" />
     <ClInclude Include="fs\fs_main_view.h" />
+    <ClInclude Include="fs\fs_set.h" />
     <ClInclude Include="fs\fs_tree.h" />
     <ClInclude Include="fs\fs_tree_data.h" />
     <ClInclude Include="fs\fs_tree_interface.h" />
     <ClInclude Include="fs\fs_tree_item.h" />
     <ClInclude Include="fs\ifs.h" />
+    <ClInclude Include="fs\ifs_file.h" />
     <ClInclude Include="fs\native_fs.h" />
     <ClInclude Include="gen\gen_0.h" />
+    <ClInclude Include="gen\gen_byte_stream_memory_file.h" />
+    <ClInclude Include="gen\gen_command.h" />
+    <ClInclude Include="gen\gen_command_thread.h" />
     <ClInclude Include="gen\gen_request_signal.h" />
     <ClInclude Include="gen\gen_stringl.h" />
     <ClInclude Include="gen\gen_string_tokenizer.h" />
@@ -508,27 +1244,66 @@
     <ClInclude Include="gen\gen_signal_thread.h" />
     <ClInclude Include="html\data_callback.h" />
     <ClInclude Include="html\html_lite_html.h" />
-    <ClInclude Include="icube\icube.h" />
-    <ClInclude Include="icube\icube_application.h" />
-    <ClInclude Include="icube\icube_main.h" />
-    <ClInclude Include="icube\icube_system.h" />
-    <ClInclude Include="icube\icube_system_allocate.h" />
-    <ClInclude Include="icube\icube_system_ca_template.h" />
-    <ClInclude Include="icube\icube_system_template_trace.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp_compressor.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp_mixer.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp_receiver.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp_room.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp_server.h" />
+    <ClInclude Include="i2com\rtp\i2com_rtp_transmitter.h" />
+    <ClInclude Include="install\install.h" />
+    <ClInclude Include="install\install_install.h" />
+    <ClInclude Include="javascript\javascript.h" />
+    <ClInclude Include="javascript\javascript_tinyjs.h" />
+    <ClInclude Include="javascript\javascript_functions.h" />
+    <ClInclude Include="kissfft\kissfft.h" />
+    <ClInclude Include="kissfft\kissfft_fftd.h" />
+    <ClInclude Include="kissfft\kissfft_ifftd.h" />
+    <ClInclude Include="kissfft\kiss_fft.h" />
+    <ClInclude Include="kissfft\kiss_ifft.h" />
+    <ClInclude Include="kissfft\_kiss_fft_guts.h" />
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_item.h" />
-    <ClInclude Include="mail\mail_views.h" />
-    <ClInclude Include="multithreading\event.h" />
-    <ClInclude Include="multithreading\manual_reset_event.h" />
-    <ClInclude Include="multithreading\mutex.h" />
-    <ClInclude Include="multithreading\plain_service.h" />
-    <ClInclude Include="multithreading\semaphore.h" />
-    <ClInclude Include="multithreading\service_base.h" />
-    <ClInclude Include="multithreading\service_status.h" />
-    <ClInclude Include="multithreading\sync_object.h" />
-    <ClInclude Include="multithreading\thread_pool.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_base.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_data.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_item.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_view.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_application_interface.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_central.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_control_data.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_control_view.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_document.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_frame_window.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_label.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_main_view.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_mute_control.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_slider.h" />
+    <ClInclude Include="mixeruserbase\mixeruserbase_thread.h" />
+    <ClInclude Include="multithreading\multithreading_event.h" />
+    <ClInclude Include="multithreading\multithreading_file_change_event.h" />
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h" />
+    <ClInclude Include="multithreading\multithreading_base_sync_object.h" />
+    <ClInclude Include="multithreading\multithreading_critical_section.h" />
+    <ClInclude Include="multithreading\multithreading_multi_lock.h" />
+    <ClInclude Include="multithreading\multithreading_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_socket_event.h" />
+    <ClInclude Include="multithreading\multithreading_synch_lock.h" />
+    <ClInclude Include="multithreading\multithreading_sync_object_base.h" />
+    <ClInclude Include="multithreading\multithreading_waitable.h" />
+    <ClInclude Include="multithreading\multithreading_event_base.h" />
+    <ClInclude Include="multithreading\multithreading_wait_result.h" />
+    <ClInclude Include="multithreading\multithreading_mutex.h" />
+    <ClInclude Include="multithreading\multithreading_plain_service.h" />
+    <ClInclude Include="multithreading\multithreading_semaphore.h" />
+    <ClInclude Include="multithreading\multithreading_service_base.h" />
+    <ClInclude Include="multithreading\multithreading_service_status.h" />
+    <ClInclude Include="multithreading\multithreading_sync_object.h" />
+    <ClInclude Include="multithreading\multithreading_thread_pool.h" />
+    <ClInclude Include="multithreading_event_collection.h" />
     <ClInclude Include="mus\midi_midi.h" />
+    <ClInclude Include="mus\midi_player_command.h" />
     <ClInclude Include="nature\appearance_view.h" />
     <ClInclude Include="nature\nature_application.h" />
     <ClInclude Include="nature\database.h" />
@@ -538,6 +1313,11 @@
     <ClInclude Include="nature\pane_view.h" />
     <ClInclude Include="nature\pane_view_update_hint.h" />
     <ClInclude Include="nature\view.h" />
+    <ClInclude Include="netnode\netnode_application.h" />
+    <ClInclude Include="netnode\netnode_service.h" />
+    <ClInclude Include="netnode\netnode.h" />
+    <ClInclude Include="netnode\netnode_socket.h" />
+    <ClInclude Include="netnode\netnode_socket_thread.h" />
     <ClInclude Include="os_history.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\document.h" />
@@ -547,13 +1327,23 @@
     <ClInclude Include="platform\platform.h" />
     <ClInclude Include="platform\Resource.h" />
     <ClInclude Include="platform\view.h" />
+    <ClInclude Include="plugin\plugin.h" />
+    <ClInclude Include="plugin\plugin_plugin.h" />
+    <ClInclude Include="plugin\plugin_gen.h" />
+    <ClInclude Include="plugin\plugin_history.h" />
+    <ClInclude Include="plugin\plugin_host_interaction.h" />
+    <ClInclude Include="plugin\plugin_run_start_installer.h" />
+    <ClInclude Include="plugin\plugin_system.h" />
+    <ClInclude Include="plugin\plugin_instance.h" />
     <ClInclude Include="primitive\check.h" />
     <ClInclude Include="primitive\fixed_string.h" />
     <ClInclude Include="primitive\id.h" />
     <ClInclude Include="primitive\id_space.h" />
+    <ClInclude Include="primitive\memory_base.h" />
     <ClInclude Include="primitive\simple_string.h" />
     <ClInclude Include="primitive\string.h" />
     <ClInclude Include="primitive\var.h" />
+    <ClInclude Include="primitive\virtual_memory.h" />
     <ClInclude Include="radix\ca2_res.h" />
     <ClInclude Include="radix\heap.h" />
     <ClInclude Include="radix\inline.h" />
@@ -563,7 +1353,31 @@
     <ClInclude Include="radix\radix_2.h" />
     <ClInclude Include="radix\radix_object.h" />
     <ClInclude Include="radix\radix_os_history.h" />
+    <ClInclude Include="radix\radix_system.h" />
+    <ClInclude Include="rtprx\application.h" />
+    <ClInclude Include="rtprx\audio_decoder.h" />
+    <ClInclude Include="rtprx\document.h" />
+    <ClInclude Include="rtprx\frame.h" />
+    <ClInclude Include="rtprx\pane_view.h" />
+    <ClInclude Include="rtprx\pane_view_update_hint.h" />
+    <ClInclude Include="rtprx\rtprx.h" />
+    <ClInclude Include="rtprx\view.h" />
+    <ClInclude Include="rtptx\application.h" />
+    <ClInclude Include="rtptx\document.h" />
+    <ClInclude Include="rtptx\frame.h" />
+    <ClInclude Include="rtptx\pane_view.h" />
+    <ClInclude Include="rtptx\pane_view_update_hint.h" />
+    <ClInclude Include="rtptx\rtptx.h" />
+    <ClInclude Include="rtptx\view.h" />
+    <ClInclude Include="simpledb\simpledb_manager.h" />
+    <ClInclude Include="simpledb\simpledb_server.h" />
+    <ClInclude Include="simpledb\simpledb_service.h" />
+    <ClInclude Include="simpledb\simpledb_session.h" />
+    <ClInclude Include="simpledb\simpledb_socket.h" />
+    <ClInclude Include="simpledb\simpledb_socket_thread.h" />
+    <ClInclude Include="simpledb_record.h" />
     <ClInclude Include="sockets\http_file.h" />
+    <ClInclude Include="sockets\http_request_socket.h" />
     <ClInclude Include="sockets\sip_base.h" />
     <ClInclude Include="sockets\sip_base_client_socket.h" />
     <ClInclude Include="sockets\sip_request.h" />
@@ -571,14 +1385,29 @@
     <ClInclude Include="sockets\sip_tcp_client_socket.h" />
     <ClInclude Include="sockets\sip_transaction.h" />
     <ClInclude Include="sockets\sip_udp_client_socket.h" />
+    <ClInclude Include="sockets\sockets_http_batch_file.h" />
     <ClInclude Include="sockets\sockets_http_file.h" />
+    <ClInclude Include="sockets\sockets_ssl_client_context.h" />
+    <ClInclude Include="sockets\sockets_ssl_client_context_map.h" />
     <ClInclude Include="sockets\sync_socket_handler.h" />
     <ClInclude Include="sockets\tls_socket.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ca2_system_ca_template.h" />
     <ClInclude Include="template\template.h" />
+    <ClInclude Include="template\template_compare.h" />
+    <ClInclude Include="template\template_c_number.h" />
+    <ClInclude Include="template\template_equals.h" />
+    <ClInclude Include="template\template_hash.h" />
+    <ClInclude Include="template\template_insert_iterator.h" />
+    <ClInclude Include="template\template_iterator.h" />
+    <ClInclude Include="template\template_back_insert_iterator.h" />
+    <ClInclude Include="template\template_std_pair.h" />
+    <ClInclude Include="template\_template.h" />
+    <ClInclude Include="template\_template_xyz.h" />
     <ClInclude Include="userbase\simple_document.h" />
+    <ClInclude Include="userbase\simple_printer_list_view.h" />
     <ClInclude Include="userbase\simple_tree_view.h" />
+    <ClInclude Include="userbase\userbase_main_frame.h" />
     <ClInclude Include="userbase_tree_set.h" />
     <ClInclude Include="userbase_tree_set_interface.h" />
     <ClInclude Include="userex\mini_dock_frame_window.h" />
@@ -592,11 +1421,14 @@
     <ClInclude Include="user\user_document_manager.h" />
     <ClInclude Include="user\user_document_request_interface.h" />
     <ClInclude Include="user\user_inline.h" />
+    <ClInclude Include="user\user_job.h" />
     <ClInclude Include="user\user_keyboard.h" />
     <ClInclude Include="user\user_keyboard_layout.h" />
     <ClInclude Include="user\user_place_holder.h" />
     <ClInclude Include="user\user_place_holder_container.h" />
     <ClInclude Include="user\user_plain_text_data.h" />
+    <ClInclude Include="user\user_printer.h" />
+    <ClInclude Include="user\user_print_job.h" />
     <ClInclude Include="user\user_xfplayer_view_line_selection.h" />
     <ClInclude Include="veiev_post.h" />
     <ClInclude Include="video\video_command.h" />
@@ -615,7 +1447,50 @@
     <ClInclude Include="vms\veriwell_musical_studio.h" />
     <ClInclude Include="vms\vms.h" />
     <ClInclude Include="vms\vms_2.h" />
+    <ClInclude Include="webserver\webserver_alpha_select_performer.h" />
+    <ClInclude Include="webserver\webserver_annotate.h" />
+    <ClInclude Include="webserver\webserver_checkimage.h" />
+    <ClInclude Include="webserver\webserver_cynce.h" />
+    <ClInclude Include="webserver\webserver_cynce_database.h" />
+    <ClInclude Include="webserver\webserver_database.h" />
+    <ClInclude Include="webserver\webserver_database_string_integer.h" />
+    <ClInclude Include="webserver\webserver_fontopus_database.h" />
+    <ClInclude Include="webserver\webserver_fun.h" />
+    <ClInclude Include="webserver\webserver_fun_friend_search.h" />
+    <ClInclude Include="webserver\webserver_fun_fun.h" />
+    <ClInclude Include="webserver\webserver_fun_user.h" />
+    <ClInclude Include="webserver\webserver_karaoke_const.h" />
+    <ClInclude Include="webserver\webserver_kar_body_page.h" />
+    <ClInclude Include="webserver\webserver_kar_page_artists.h" />
+    <ClInclude Include="webserver\webserver_kar_page_category.h" />
+    <ClInclude Include="webserver\webserver_kar_page_song.h" />
+    <ClInclude Include="webserver\webserver_music.h" />
+    <ClInclude Include="webserver\webserver_music_music.h" />
+    <ClInclude Include="webserver\webserver_music_category.h" />
+    <ClInclude Include="webserver\webserver_music_database_cache.h" />
+    <ClInclude Include="webserver\webserver_music_in2_info_list.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list_artists.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list_category.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list_song.h" />
+    <ClInclude Include="webserver\webserver_music_karaoke_song_in2_list.h" />
+    <ClInclude Include="webserver\webserver_music_lyrics_song_in2_list.h" />
+    <ClInclude Include="webserver\webserver_music_performer.h" />
+    <ClInclude Include="webserver\webserver_music_person.h" />
+    <ClInclude Include="webserver\webserver_music_person_info.h" />
+    <ClInclude Include="webserver\webserver_music_song.h" />
+    <ClInclude Include="webserver\webserver_music_song_source.h" />
+    <ClInclude Include="webserver\webserver_note.h" />
+    <ClInclude Include="webserver\webserver_note_summary.h" />
+    <ClInclude Include="webserver\webserver_persistent_ui.h" />
+    <ClInclude Include="webserver\webserver_secure.h" />
+    <ClInclude Include="webserver\webserver_simage.h" />
+    <ClInclude Include="webserver\webserver_spider.h" />
+    <ClInclude Include="webserver\webserver_ui.h" />
+    <ClInclude Include="webserver\webserver_wb.h" />
+    <ClInclude Include="webserver\webserver.h" />
     <ClInclude Include="window_frame\FrameSchemaHardCoded008.h" />
+    <ClInclude Include="wstringtou.h" />
     <ClInclude Include="xml\application.h" />
     <ClInclude Include="xml\attr.h" />
     <ClInclude Include="xml\base_array.h" />
@@ -896,9 +1771,7 @@
     <ClInclude Include="database\database_stringhelper.h" />
     <ClInclude Include="database\database_update_hint.h" />
     <ClInclude Include="database\database_user_interaction.h" />
-    <ClInclude Include="primitive\align.h" />
     <ClInclude Include="primitive\color.h" />
-    <ClInclude Include="primitive\count.h" />
     <ClInclude Include="primitive\img.h" />
     <ClInclude Include="primitive\index.h" />
     <ClInclude Include="primitive\int_biunique.h" />
@@ -916,7 +1789,6 @@
     <ClInclude Include="primitive\shared_file.h" />
     <ClInclude Include="primitive\shared_memory.h" />
     <ClInclude Include="primitive\size.h" />
-    <ClInclude Include="primitive\types.h" />
     <ClInclude Include="visual\api.h" />
     <ClInclude Include="visual\buffered_graphics.h" />
     <ClInclude Include="visual\clip.h" />
@@ -941,21 +1813,12 @@
     <ClInclude Include="mail\application_interface.h" />
     <ClInclude Include="mail\configuration.h" />
     <ClInclude Include="mail\db_pop3.h" />
-    <ClInclude Include="mail\mail_tree.h" />
     <ClInclude Include="mail\mail_tree_interface.h" />
     <ClInclude Include="mail\mail.h" />
     <ClInclude Include="mail\mail_account.h" />
-    <ClInclude Include="mail\mail_child_frame.h" />
-    <ClInclude Include="mail\mail_document.h" />
-    <ClInclude Include="mail\mail_list.h" />
-    <ClInclude Include="mail\mail_view.h" />
-    <ClInclude Include="mail\main_document.h" />
-    <ClInclude Include="mail\main_frame.h" />
     <ClInclude Include="mail\pop3.h" />
     <ClInclude Include="mail\pop3_socket.h" />
-    <ClInclude Include="mail\right_pane_view.h" />
     <ClInclude Include="mail\simple_pop3.h" />
-    <ClInclude Include="mail\views.h" />
     <ClInclude Include="math\_double.h" />
     <ClInclude Include="math\_float.h" />
     <ClInclude Include="math\_integer.h" />
@@ -1102,7 +1965,6 @@
     <ClInclude Include="gen\gen_var.h" />
     <ClInclude Include="gen\gen_var_array.h" />
     <ClInclude Include="gen\gen_variable_strict_compare.h" />
-    <ClInclude Include="ca\ca_application.h" />
     <ClInclude Include="ca\ca_application_interface.h" />
     <ClInclude Include="ca\ca_bitmap.h" />
     <ClInclude Include="ca\ca_brush.h" />
@@ -1114,10 +1976,7 @@
     <ClInclude Include="ca\ca_3_graphics.h" />
     <ClInclude Include="ca\ca_graphics_object.h" />
     <ClInclude Include="ca\ca_igui.h" />
-    <ClInclude Include="ca\ca_lock.h" />
-    <ClInclude Include="ca\ca_log.h" />
     <ClInclude Include="ca\ca_message_window.h" />
-    <ClInclude Include="ca\ca_object.h" />
     <ClInclude Include="ca\ca_osi.h" />
     <ClInclude Include="ca\ca_palette.h" />
     <ClInclude Include="ca\ca_pen.h" />
@@ -1207,7 +2066,7 @@
     <ClInclude Include="radix\spreadset.h" />
     <ClInclude Include="radix\SymEngine.h" />
     <ClInclude Include="radix\this_build_number.h" />
-    <ClInclude Include="radix\thread.h" />
+    <ClInclude Include="radix\radix_thread.h" />
     <ClInclude Include="radix\types.h" />
     <ClInclude Include="radix\unhandled_report.h" />
     <ClInclude Include="radix\userset.h" />
@@ -1300,30 +2159,27 @@
     <ClInclude Include="mediamanager\AlbumBuildWnd.h" />
     <ClInclude Include="mediamanager\mediamanager.h" />
     <ClInclude Include="mediamanager\MediaManagerImpl.h" />
-    <ClInclude Include="mediaplaylist\enum.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_enum.h" />
     <ClInclude Include="mediaplaylist\mediaplaylist.h" />
-    <ClInclude Include="mediaplaylist\PlaylistAppInterface.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCallback.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCallbackContainer.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCallbackContainerInterface.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCallbackInterface.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCentral.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCentralCallbackInterface.h" />
-    <ClInclude Include="mediaplaylist\PlaylistCentralContainer.h" />
-    <ClInclude Include="mediaplaylist\PlaylistDoc.h" />
-    <ClInclude Include="mediaplaylist\PlaylistFrame.h" />
-    <ClInclude Include="mediaplaylist\PlaylistListView.h" />
-    <ClInclude Include="mediaplaylist\PlaylistView.h" />
-    <ClInclude Include="mediaplaylist\PlaylistViewUpdateHint.h" />
-    <ClInclude Include="mediaplay\document.h" />
-    <ClInclude Include="mediaplay\karaoke.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_callback_container_interface.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_callback_interface.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_central.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_central_callback_interface.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_central_container.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_document.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_frame.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_list_view.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_view.h" />
+    <ClInclude Include="mediaplaylist\mediaplaylist_view_update_hint.h" />
+    <ClInclude Include="mediaplay\mediaplay_document.h" />
+    <ClInclude Include="mediaplay\mediaplay_karaoke.h" />
     <ClInclude Include="mediaplay\mediaplay.h" />
-    <ClInclude Include="mediaplay\record_notify_view.h" />
-    <ClInclude Include="mediaplay\view.h" />
-    <ClInclude Include="mediaplay\data.h" />
-    <ClInclude Include="mediaplay\view_interface.h" />
-    <ClInclude Include="mediaplay\view_update_hint.h" />
-    <ClInclude Include="mediaplay\playlist_callback.h" />
+    <ClInclude Include="mediaplay\mediaplay_record_notify_view.h" />
+    <ClInclude Include="mediaplay\mediaplay_view.h" />
+    <ClInclude Include="mediaplay\mediaplay_data.h" />
+    <ClInclude Include="mediaplay\mediaplay_view_interface.h" />
+    <ClInclude Include="mediaplay\mediaplay_view_update_hint.h" />
+    <ClInclude Include="mediaplay\mediaplay_playlist_callback.h" />
     <ClInclude Include="mixer\application_interface.h" />
     <ClInclude Include="mixer\mixer.h" />
     <ClInclude Include="mixer\mixer_Mixer.h" />
@@ -1341,53 +2197,39 @@
     <ClInclude Include="mixer\label.h" />
     <ClInclude Include="mixer\level_control.h" />
     <ClInclude Include="mixer\toggle_control.h" />
-    <ClInclude Include="mixeruibase\application_interface.h" />
-    <ClInclude Include="mixeruibase\GoodMixerDoc.h" />
-    <ClInclude Include="mixeruibase\MixerControlData.h" />
-    <ClInclude Include="mixeruibase\mixercontrolview.h" />
-    <ClInclude Include="mixeruibase\MixerDoc.h" />
-    <ClInclude Include="mixeruibase\MixerFrameWnd.h" />
-    <ClInclude Include="mixeruibase\MixerMainView.h" />
-    <ClInclude Include="mixeruibase\mixeruibase.h" />
-    <ClInclude Include="mixeruibase\MixerVisualCentral.h" />
-    <ClInclude Include="mixeruibase\MixerVisualThread.h" />
-    <ClInclude Include="mixeruibase\label.h" />
-    <ClInclude Include="mixeruibase\mute_control.h" />
-    <ClInclude Include="mixeruibase\slider.h" />
-    <ClInclude Include="mus\Attributes.h" />
-    <ClInclude Include="mus\Intrisics.h" />
-    <ClInclude Include="mus\KaraokeUtil.h" />
-    <ClInclude Include="mus\LyricTrack.h" />
-    <ClInclude Include="mus\microke1_.h" />
+    <ClInclude Include="mus\mus_attributes.h" />
+    <ClInclude Include="mus\mus_karaoke_util.h" />
+    <ClInclude Include="mus\midi_lyric_track.h" />
+    <ClInclude Include="mus\mus_microke1.h" />
     <ClInclude Include="mus\midi.h" />
     <ClInclude Include="mus\midi_central.h" />
     <ClInclude Include="mus\midi_central_container.h" />
     <ClInclude Include="mus\midi_central_listener.h" />
-    <ClInclude Include="mus\MidiDocHelper.h" />
-    <ClInclude Include="mus\MidiEventBase.h" />
-    <ClInclude Include="mus\MidiEventsV1.h" />
-    <ClInclude Include="mus\MidiEventV001.h" />
-    <ClInclude Include="mus\MidiEventV007.h" />
-    <ClInclude Include="mus\MidiEventV008.h" />
-    <ClInclude Include="mus\MidiEventV016.h" />
-    <ClInclude Include="mus\MidiEventV508.h" />
+    <ClInclude Include="mus\midi_document_helper.h" />
+    <ClInclude Include="mus\midi_event_base.h" />
+    <ClInclude Include="mus\midi_events_v1.h" />
+    <ClInclude Include="mus\midi_event_v001.h" />
+    <ClInclude Include="mus\midi_event_v007.h" />
+    <ClInclude Include="mus\midi_event_v008.h" />
+    <ClInclude Include="mus\midi_event_v016.h" />
+    <ClInclude Include="mus\midi_event_v508.h" />
     <ClInclude Include="mus\midi_exception.h" />
     <ClInclude Include="mus\midi_file.h" />
-    <ClInclude Include="mus\MidiPlayer.h" />
-    <ClInclude Include="mus\MidiPlayerCallback.h" />
-    <ClInclude Include="mus\midiplayercallbackinterface.h" />
-    <ClInclude Include="mus\MidiPlayerInterface.h" />
-    <ClInclude Include="mus\MidiPlayerWnd.h" />
+    <ClInclude Include="mus\midi_player.h" />
+    <ClInclude Include="mus\midi_player_callback.h" />
+    <ClInclude Include="mus\midi_player_callback_interface.h" />
+    <ClInclude Include="mus\midi_player_interface.h" />
+    <ClInclude Include="mus\midi_player_window.h" />
     <ClInclude Include="mus\Midiplyr.h" />
     <ClInclude Include="mus\midi_sequence.h" />
-    <ClInclude Include="mus\MidiSequenceThread.h" />
-    <ClInclude Include="mus\MidiTrack.h" />
-    <ClInclude Include="mus\MidiTrackBase.h" />
-    <ClInclude Include="mus\MidiTracks.h" />
-    <ClInclude Include="mus\MidiTrackV008.h" />
-    <ClInclude Include="mus\MidiUtil.h" />
-    <ClInclude Include="mus\MidiViewHelper.h" />
-    <ClInclude Include="mus\MultimediaFile.h" />
+    <ClInclude Include="mus\midi_sequence_thread.h" />
+    <ClInclude Include="mus\midi_track.h" />
+    <ClInclude Include="mus\midi_track_base.h" />
+    <ClInclude Include="mus\midi_tracks.h" />
+    <ClInclude Include="mus\midi_track_v008.h" />
+    <ClInclude Include="mus\midi_util.h" />
+    <ClInclude Include="mus\midi_view_helper.h" />
+    <ClInclude Include="mus\multimedia_file.h" />
     <ClInclude Include="mus\mus.h" />
     <ClInclude Include="mus\mus_intrisics.h" />
     <ClInclude Include="mus\SoftKaraokeInfo.h" />
@@ -1406,12 +2248,11 @@
     <ClInclude Include="mus\Star350TrackV008.h" />
     <ClInclude Include="mus\Tune1000Info.h" />
     <ClInclude Include="mus\Uiutils.h" />
-    <ClInclude Include="mus\vmsgentempl.h" />
     <ClInclude Include="mus\vmsmusresource.h" />
     <ClInclude Include="mus\Xf.h" />
-    <ClInclude Include="mus\XFInfoHeader.h" />
-    <ClInclude Include="mus\XFInfoHeaderLS.h" />
-    <ClInclude Include="mus\XFInfoHeaders.h" />
+    <ClInclude Include="mus\xf_info_header.h" />
+    <ClInclude Include="mus\xf_info_header_ls.h" />
+    <ClInclude Include="mus\xf_info_headers.h" />
     <ClInclude Include="musctrl\musctrl.h" />
     <ClInclude Include="musctrl\MusicalPlayerCentral.h" />
     <ClInclude Include="musctrl\MusicalPlayerCentralContainer.h" />
@@ -1420,12 +2261,6 @@
     <ClInclude Include="imediamanager\imediamanager.h" />
     <ClInclude Include="imediamanager\PlayerInterface.h" />
     <ClInclude Include="imediamanager\PlaylistInterface.h" />
-    <ClInclude Include="kissfftf\fftfFftrd.h" />
-    <ClInclude Include="kissfftf\fftfFftri.h" />
-    <ClInclude Include="kissfftf\kissfftf.h" />
-    <ClInclude Include="kissfftf\_kiss_fft_guts.h" />
-    <ClInclude Include="kissfftf\kiss_fft.h" />
-    <ClInclude Include="kissfftf\kiss_fftr.h" />
     <ClInclude Include="x\x_charcategory.h" />
     <ClInclude Include="x\x_charcategory2.h" />
     <ClInclude Include="x\x_charcategory_names.h" />
@@ -1441,9 +2276,9 @@
     <ClInclude Include="ex1\ex1_file_set.h" />
     <ClInclude Include="ex1\ex1_file_system.h" />
     <ClInclude Include="ex1\ex1_resource.h" />
-    <ClInclude Include="ex1\ex1_serializable.h" />
+    <ClInclude Include="ex1\ex1_byte_serializable.h" />
     <ClInclude Include="ex1\ex1_str_stream.h" />
-    <ClInclude Include="ex1\ex1_stream.h" />
+    <ClInclude Include="ex1\ex1_byte_stream.h" />
     <ClInclude Include="ex1\ex1_stream2.h" />
     <ClInclude Include="ex1\ex1_text_file.h" />
     <ClInclude Include="ex1\ex1_tree_data.h" />
@@ -1490,7 +2325,7 @@
     <ClInclude Include="user\user_control_event.h" />
     <ClInclude Include="user\user_control_property.h" />
     <ClInclude Include="user\user_create_context.h" />
-    <ClInclude Include="user\user_create_view.h" />
+    <ClInclude Include="user\user_view_creator.h" />
     <ClInclude Include="user\user_document.h" />
     <ClInclude Include="user\user_document_interface.h" />
     <ClInclude Include="user\user_document_template.h" />
@@ -1506,7 +2341,7 @@
     <ClInclude Include="user\user_frame_window_interface.h" />
     <ClInclude Include="user\user_front_end.h" />
     <ClInclude Include="user\user_front_end_schema.h" />
-    <ClInclude Include="user\user_get_view.h" />
+    <ClInclude Include="user\user_view_container.h" />
     <ClInclude Include="user\user_interaction.h" />
     <ClInclude Include="user\user_keyboard_focus.h" />
     <ClInclude Include="user\user_list.h" />
@@ -1517,7 +2352,6 @@
     <ClInclude Include="user\user_list_header.h" />
     <ClInclude Include="user\user_mouse_focus.h" />
     <ClInclude Include="user\user_multiple_document_template.h" />
-    <ClInclude Include="user\user_on_draw_interface.h" />
     <ClInclude Include="user\user_scroll_bar.h" />
     <ClInclude Include="user\user_scroll_view.h" />
     <ClInclude Include="user\user_simple_list_data.h" />
@@ -1532,13 +2366,11 @@
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user_view.h" />
     <ClInclude Include="user\user_virtual_user_interface.h" />
-    <ClInclude Include="user\user_window_draw_client_tool.h" />
-    <ClInclude Include="user\user_window_draw_interface.h" />
+    <ClInclude Include="user\user_draw_interface.h" />
     <ClInclude Include="user\user_window_id.h" />
     <ClInclude Include="user\user_window_interface.h" />
     <ClInclude Include="user\user_window_map.h" />
     <ClInclude Include="user\user_window_message.h" />
-    <ClInclude Include="user\user_window_redraw_interface.h" />
     <ClInclude Include="user\user_window_util.h" />
     <ClInclude Include="user\user_xfplayer_view_line.h" />
     <ClInclude Include="user\user_xfplayer_view_lines.h" />
@@ -1563,10 +2395,10 @@
     <ClInclude Include="collection\array.h" />
     <ClInclude Include="collection\array_app_alloc.h" />
     <ClInclude Include="collection\array_parent_alloc.h" />
-    <ClInclude Include="collection\array_ptr.h" />
+    <ClInclude Include="collection\array_del_ptr.h" />
     <ClInclude Include="collection\array_ptr_alloc.h" />
     <ClInclude Include="collection\array_ptr_copy.h" />
-    <ClInclude Include="collection\array_smart_ptr.h" />
+    <ClInclude Include="collection\array_ptr.h" />
     <ClInclude Include="collection\base_array.h" />
     <ClInclude Include="collection\bit_array.h" />
     <ClInclude Include="collection\collection.h" />
@@ -1626,11 +2458,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="collection\collection.inl" />
+    <ClCompile Include="acube\acube_application.cpp" />
     <ClCompile Include="ca2\ca2_application_file.cpp" />
     <ClCompile Include="ca2\ca2_file_system.cpp" />
+    <ClCompile Include="ca2\ca2_library.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_handler.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_library.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_menu_library.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_tree_data.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_tree_interface.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_tree_item.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_application.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_document.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_frame.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_pane_view.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_pane_view_update_hint.cpp" />
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_view.cpp" />
     <ClCompile Include="ca4\ca4_http_application.cpp" />
     <ClCompile Include="ca4\ca4_compress.cpp" />
     <ClCompile Include="ca4\ca4_http.cpp" />
+    <ClCompile Include="ca4\ca4_oauth.cpp" />
     <ClCompile Include="ca4\ca4_patch.cpp" />
     <ClCompile Include="ca4\ca4_crypt.cpp" />
     <ClCompile Include="ca4\ca4_application.cpp" />
@@ -1641,6 +2488,8 @@
     <ClCompile Include="ca4\ca4_nessie.cpp" />
     <ClCompile Include="ca4\ca4_copydesk.cpp" />
     <ClCompile Include="ca4\ca4_enum.cpp" />
+    <ClCompile Include="ca4\ca4_port_forward.cpp" />
+    <ClCompile Include="ca4\ca4_twit.cpp" />
     <ClCompile Include="ca4\ca4_whirlpool.cpp" />
     <ClCompile Include="ca5\ca5_application.cpp" />
     <ClCompile Include="ca5\ca5_user_presence.cpp" />
@@ -1652,20 +2501,29 @@
     <ClCompile Include="ca8\ca8_network_configuration.cpp" />
     <ClCompile Include="ca8\ca8_Shell.cpp" />
     <ClCompile Include="ca8\ca8_wait_message_dialog.cpp" />
-    <ClCompile Include="ca8_77\ca77_application.cpp" />
-    <ClCompile Include="ca8_84\ca84_application.cpp" />
     <ClCompile Include="ca\ca_application_bias.cpp" />
+    <ClCompile Include="ca\ca_create_context.cpp" />
     <ClCompile Include="ca\ca_data_container.cpp" />
     <ClCompile Include="ca\ca_dir_application.cpp" />
-    <ClCompile Include="ca\ca_system.cpp" />
+    <ClCompile Include="ca\ca_job.cpp" />
+    <ClCompile Include="ca\ca_live_signal.cpp" />
+    <ClCompile Include="ca\ca_object.cpp" />
+    <ClCompile Include="ca\ca_print_job.cpp" />
     <ClCompile Include="collection\stringa.cpp" />
     <ClCompile Include="collection\stringl.cpp" />
     <ClCompile Include="collection\string_array.cpp" />
     <ClCompile Include="collection\string_sort_array.cpp" />
+    <ClCompile Include="command\command_application.cpp" />
+    <ClCompile Include="command\command_document.cpp" />
+    <ClCompile Include="command\command_form_callback.cpp" />
+    <ClCompile Include="command\command_frame.cpp" />
+    <ClCompile Include="command\command_pane_view.cpp" />
+    <ClCompile Include="command\command_pane_view_update_hint.cpp" />
+    <ClCompile Include="command\command_primary_view.cpp" />
+    <ClCompile Include="command\command_view.cpp" />
     <ClCompile Include="compress\compress_parse_properties.cpp">
       <FileType>Document</FileType>
     </ClCompile>
-    <None Include="multithreading\multithreading.inl" />
     <None Include="ca2.def" />
     <None Include="radix\radix.inl" />
     <None Include="user\user_interaction.inl" />
@@ -1681,7 +2539,6 @@
     <ClCompile Include="ca2\ca2_net.cpp" />
     <ClCompile Include="ca2\ca2_xml.cpp" />
     <ClCompile Include="ca2\socket_address.cpp" />
-    <ClCompile Include="calculator\mail_main_frame.cpp" />
     <ClCompile Include="ca\ca_history.cpp" />
     <ClCompile Include="ca\ca_data.cpp" />
     <ClCompile Include="ca\ca_data_listener.cpp" />
@@ -1707,42 +2564,6 @@
     <ClCompile Include="compress\7z\7zSpecStream.cpp" />
     <ClCompile Include="compress\7z\7zUpdate.cpp" />
     <ClCompile Include="compress\7z_crc_opt.cpp" />
-    <ClCompile Include="compress\bsdiff\blocksort.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\bsdiff.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\bspatch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\bzlib.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\compress.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\crctable.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\decompress.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\huffman.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\randtable.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="compress\bzip_helper.cpp" />
     <ClCompile Include="compress\compress_archive.cpp" />
     <ClCompile Include="compress\compress_archive_item_name.cpp" />
@@ -1783,31 +2604,92 @@
     <ClCompile Include="compress\zip\zip_in_file.cpp" />
     <ClCompile Include="compress\zip\zip_ioapi.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_iowin32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_memory_file.cpp" />
     <ClCompile Include="compress\zip\zip_unzip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_util.cpp" />
     <ClCompile Include="compress\zip\zip_zip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_DEBUG;_WINDOWS;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\7z_crc.cpp" />
     <ClCompile Include="crypto\crypto_rar20.cpp" />
     <ClCompile Include="crypto\crypto_sha1.cpp" />
     <ClCompile Include="crypto\my_aes.cpp" />
+    <ClCompile Include="cube1\cube1_application.cpp" />
+    <ClCompile Include="cube2\cube2_application.cpp" />
+    <ClCompile Include="cube5\cube4_application.cpp" />
+    <ClCompile Include="cube5\cube5_application.cpp" />
+    <ClCompile Include="cube8\cube8_application.cpp" />
+    <ClCompile Include="cube8\cube8_main.cpp" />
+    <ClCompile Include="cube8\cube8_system.cpp" />
+    <ClCompile Include="cube\cube_application.cpp" />
+    <ClCompile Include="cube\cube_library.cpp" />
     <ClCompile Include="database\database_field_definition.cpp" />
+    <ClCompile Include="datetime\datetime_duration.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_library.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_object.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_profiler.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_ptr.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_composite.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_impl.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp" />
+    <ClCompile Include="ex1\ex1_byte_serializable.cpp" />
+    <ClCompile Include="ex1\ex1_circular_buffer.cpp" />
     <ClCompile Include="ex1\ex1_clustered_input_stream.cpp" />
     <ClCompile Include="ex1\ex1_dynamic_buffered_writer.cpp" />
     <ClCompile Include="ex1\ex1_fs_interface.cpp" />
@@ -1817,28 +2699,49 @@
     <ClCompile Include="ex1\ex1_limited_reader.cpp" />
     <ClCompile Include="ex1\ex1_limited_writer.cpp" />
     <ClCompile Include="ex1\ex1_locked_in_stream.cpp" />
+    <ClCompile Include="ex1\ex1_match.cpp" />
+    <ClCompile Include="ex1\ex1_output_string_stream.cpp" />
     <ClCompile Include="ex1\ex1_out_buffer.cpp" />
+    <ClCompile Include="ex1\ex1_plain_text_serializable.cpp" />
+    <ClCompile Include="ex1\ex1_plain_text_stream.cpp" />
+    <ClCompile Include="ex1\ex1_reader.cpp" />
     <ClCompile Include="ex1\ex1_request_interface.cpp" />
+    <ClCompile Include="ex1\ex1_seekable.cpp" />
     <ClCompile Include="ex1\ex1_simple_tree_data.cpp" />
     <ClCompile Include="ex1\ex1_simple_tree_item_data.cpp" />
     <ClCompile Include="ex1\ex1_size_count_writer.cpp" />
+    <ClCompile Include="ex1\ex1_stream.cpp" />
     <ClCompile Include="ex1\ex1_stream_binder.cpp" />
     <ClCompile Include="ex1\ex1_timeout_file.cpp" />
     <ClCompile Include="ex1\ex1_tree.cpp" />
     <ClCompile Include="ex1\ex1_tree_item.cpp" />
     <ClCompile Include="ex1\ex1_tree_item_data.cpp" />
+    <ClCompile Include="ex1\ex1_writer.cpp" />
     <ClCompile Include="ex2\ex2_folder_watch.cpp" />
-    <ClCompile Include="exception\debug.cpp" />
-    <ClCompile Include="exception\dump.cpp" />
-    <ClCompile Include="exception\dump_context.cpp" />
-    <ClCompile Include="exception\dump_floating_point.cpp" />
-    <ClCompile Include="exception\dump_output.cpp" />
-    <ClCompile Include="exception\error_exception.cpp" />
-    <ClCompile Include="exception\except.cpp" />
+    <ClCompile Include="ex2\ex2_transfer_file.cpp" />
+    <ClCompile Include="exception\exception_archive_exception.cpp" />
+    <ClCompile Include="exception\exception_debug.cpp" />
+    <ClCompile Include="exception\exception_dump.cpp" />
+    <ClCompile Include="exception\exception_dump_context.cpp" />
+    <ClCompile Include="exception\exception_dump_floating_point.cpp" />
+    <ClCompile Include="exception\exception_dump_output.cpp" />
+    <ClCompile Include="exception\exception_error_exception.cpp" />
+    <ClCompile Include="exception\exception_base_exception.cpp" />
     <ClCompile Include="exception\exception.cpp" />
-    <ClCompile Include="exception\se_translator.cpp" />
-    <ClCompile Include="exception\SymEngine.cpp" />
-    <ClCompile Include="exception\VMSException.cpp" />
+    <ClCompile Include="exception\exception_interface_only.cpp" />
+    <ClCompile Include="exception\exception_invalid_arg_exception.cpp" />
+    <ClCompile Include="exception\exception_memory_exception.cpp" />
+    <ClCompile Include="exception\exception_not_implemented.cpp" />
+    <ClCompile Include="exception\exception_not_supported_exception.cpp" />
+    <ClCompile Include="exception\exception_range_error.cpp" />
+    <ClCompile Include="exception\exception_runtime_error.cpp" />
+    <ClCompile Include="exception\exception_simple_exception.cpp" />
+    <ClCompile Include="exception\exception_hresult_exception.cpp" />
+    <ClCompile Include="exception\exception_not_licensed_exception.cpp" />
+    <ClCompile Include="exception\exception_se_translator.cpp" />
+    <ClCompile Include="exception\exception_SymEngine.cpp" />
+    <ClCompile Include="exception\exception_VMSException.cpp" />
+    <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="filemanager\FileManagerSaveAsNameView.cpp" />
     <ClCompile Include="filemanager\filemanager_ContextMenu.cpp" />
     <ClCompile Include="filemanager\filemanager_folder_list_data.cpp" />
@@ -1864,12 +2767,17 @@
     <ClCompile Include="fs\fs_list_item.cpp" />
     <ClCompile Include="fs\fs_list_item_array.cpp" />
     <ClCompile Include="fs\fs_main_view.cpp" />
+    <ClCompile Include="fs\fs_set.cpp" />
+    <ClCompile Include="fs\ifs_file.cpp" />
     <ClCompile Include="fs\native_fs.cpp" />
     <ClCompile Include="fs\fs_tree.cpp" />
     <ClCompile Include="fs\fs_tree_data.cpp" />
     <ClCompile Include="fs\fs_tree_interface.cpp" />
     <ClCompile Include="fs\fs_tree_item.cpp" />
     <ClCompile Include="fs\ifs.cpp" />
+    <ClCompile Include="gen\gen_byte_stream_memory_file.cpp" />
+    <ClCompile Include="gen\gen_command.cpp" />
+    <ClCompile Include="gen\gen_command_thread.cpp" />
     <ClCompile Include="gen\gen_math_rng.cpp" />
     <ClCompile Include="gen\gen_parse.cpp" />
     <ClCompile Include="gen\gen_signal_thread.cpp" />
@@ -1878,20 +2786,87 @@
     <ClCompile Include="gen\simple_thread.cpp" />
     <ClCompile Include="html\html_data_callback.cpp" />
     <ClCompile Include="html\html_LiteHTMLTag.cpp" />
-    <ClCompile Include="icube\icube_application.cpp" />
-    <ClCompile Include="icube\icube_main.cpp" />
-    <ClCompile Include="icube\icube_system.cpp" />
-    <ClCompile Include="kissfftf\kiss_fft_shared.c">
+    <ClCompile Include="i2com\rtp\i2com_rtp.cpp" />
+    <ClCompile Include="i2com\rtp\i2com_rtp_compressor.cpp" />
+    <ClCompile Include="i2com\rtp\i2com_rtp_mixer.cpp" />
+    <ClCompile Include="i2com\rtp\i2com_rtp_receiver.cpp" />
+    <ClCompile Include="i2com\rtp\i2com_rtp_room.cpp" />
+    <ClCompile Include="i2com\rtp\i2com_rtp_server.cpp" />
+    <ClCompile Include="i2com\rtp\i2com_rtp_transmitter.cpp" />
+    <ClCompile Include="install\install_install.cpp" />
+    <ClCompile Include="javascript\javascript.cpp" />
+    <ClCompile Include="javascript\javascript_functions.cpp" />
+    <ClCompile Include="kissfft\kissfft_fftd.cpp" />
+    <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
+    <ClCompile Include="kissfft\kiss_fft.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_ifft.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft_shared.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="mail\mail_tree_data.cpp" />
     <ClCompile Include="mail\mail_tree_item.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_base.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_data.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_item.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_view.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_application_interface.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_document.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_label.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_control_data.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_control_view.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_frame_window.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_main_view.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_central.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_thread.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_mute_control.cpp" />
+    <ClCompile Include="mixeruserbase\mixeruibase_slider.cpp" />
+    <ClCompile Include="multithreading\multithreading_base_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
     <ClCompile Include="multithreading\multithreading_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp" />
     <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
     <ClCompile Include="multithreading\multithreading_service_base.cpp" />
-    <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_object_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_waitable.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp" />
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="mus\midi_player_command.cpp" />
+    <ClCompile Include="mus\xf.cpp" />
+    <ClCompile Include="mus\xf_info_header.cpp" />
+    <ClCompile Include="mus\xf_info_headers.cpp" />
+    <ClCompile Include="mus\xf_info_header_ls.cpp" />
     <ClCompile Include="nature\nature_appearance_view.cpp" />
     <ClCompile Include="nature\nature_application.cpp" />
     <ClCompile Include="nature\nature_database.cpp" />
@@ -1900,10 +2875,22 @@
     <ClCompile Include="nature\nature_pane_view.cpp" />
     <ClCompile Include="nature\nature_pane_view_update_hint.cpp" />
     <ClCompile Include="nature\nature_view.cpp" />
+    <ClCompile Include="netnode\netnode_application.cpp" />
+    <ClCompile Include="netnode\netnode_service.cpp" />
+    <ClCompile Include="netnode\netnode_socket.cpp" />
+    <ClCompile Include="netnode\netnode_socket_thread.cpp" />
     <ClCompile Include="ortp\ortp_file.cpp" />
+    <ClCompile Include="plugin\plugin_history.cpp" />
+    <ClCompile Include="plugin\plugin_host_interaction.cpp" />
+    <ClCompile Include="plugin\plugin_plugin.cpp" />
+    <ClCompile Include="plugin\plugin_run_start_installer.cpp" />
+    <ClCompile Include="plugin\plugin_system.cpp" />
+    <ClCompile Include="plugin\plugin_instance.cpp" />
+    <ClCompile Include="primitive\memory_base.cpp" />
     <ClCompile Include="primitive\strcore.cpp" />
     <ClCompile Include="primitive\string_manager.cpp" />
     <ClCompile Include="primitive\var.cpp" />
+    <ClCompile Include="primitive\virtual_memory.cpp" />
     <ClCompile Include="radix\radix_os_history.cpp" />
     <ClCompile Include="platform\platform_application.cpp" />
     <ClCompile Include="platform\platform_document.cpp" />
@@ -1919,26 +2906,67 @@
     <ClCompile Include="radix\assert.cpp" />
     <ClCompile Include="radix\heap.cpp" />
     <ClCompile Include="radix\plex_heap.cpp" />
+    <ClCompile Include="radix\radix_system.cpp" />
     <ClCompile Include="radix\wait_cursor.cpp" />
+    <ClCompile Include="rtprx\rtprx_application.cpp" />
+    <ClCompile Include="rtprx\rtprx_document.cpp" />
+    <ClCompile Include="rtprx\rtprx_frame.cpp" />
+    <ClCompile Include="rtprx\rtprx_pane_view.cpp" />
+    <ClCompile Include="rtprx\rtprx_pane_view_update_hint.cpp" />
+    <ClCompile Include="rtprx\rtprx_view.cpp" />
+    <ClCompile Include="rtptx\rtptx_application.cpp" />
+    <ClCompile Include="rtptx\rtptx_document.cpp" />
+    <ClCompile Include="rtptx\rtptx_frame.cpp" />
+    <ClCompile Include="rtptx\rtptx_pane_view.cpp" />
+    <ClCompile Include="rtptx\rtptx_pane_view_update_hint.cpp" />
+    <ClCompile Include="rtptx\rtptx_view.cpp" />
+    <ClCompile Include="simpledb\simpledb_manager.cpp" />
+    <ClCompile Include="simpledb\simpledb_server.cpp" />
+    <ClCompile Include="simpledb\simpledb_service.cpp" />
+    <ClCompile Include="simpledb\simpledb_session.cpp" />
+    <ClCompile Include="simpledb\simpledb_socket.cpp" />
+    <ClCompile Include="simpledb\simpledb_socket_thread.cpp" />
     <ClCompile Include="simpledb\simpledb_veiev_post.cpp" />
+    <ClCompile Include="simpledb_record_row.cpp" />
     <ClCompile Include="sockets\http_file.cpp" />
+    <ClCompile Include="sockets\sockets_http_batch_file.cpp" />
     <ClCompile Include="sockets\sockets_http_file.cpp" />
+    <ClCompile Include="sockets\sockets_http_request_socket.cpp" />
     <ClCompile Include="sockets\sockets_sip_base_client_socket.cpp" />
     <ClCompile Include="sockets\sockets_sip_request.cpp" />
     <ClCompile Include="sockets\sockets_sip_response.cpp" />
     <ClCompile Include="sockets\sockets_sip_tcp_client_socket.cpp" />
     <ClCompile Include="sockets\sockets_sip_transaction.cpp" />
     <ClCompile Include="sockets\sockets_sip_udp_client_socket.cpp" />
+    <ClCompile Include="sockets\sockets_ssl_client_context.cpp" />
+    <ClCompile Include="sockets\sockets_ssl_client_context_map.cpp" />
     <ClCompile Include="sockets\sockets_sync_socket_handler.cpp" />
     <ClCompile Include="sockets\sockets_tls_socket.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">StdAfx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">StdAfx.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="template\template_exception.cpp" />
+    <ClCompile Include="template\template_hash.cpp" />
     <ClCompile Include="userbase\simple_document.cpp" />
+    <ClCompile Include="userbase\simple_printer_list_view.cpp" />
     <ClCompile Include="userbase\simple_tree_view.cpp" />
+    <ClCompile Include="userbase\userbase_main_frame.cpp" />
+    <ClCompile Include="userbase\userbase_tool_cmd_ui.cpp" />
     <ClCompile Include="userex\userbase_mini_dock_frame_window.cpp" />
     <ClCompile Include="userex\userex_application.cpp" />
     <ClCompile Include="userex\userex_dialog.cpp" />
@@ -1949,12 +2977,15 @@
     <ClCompile Include="user\user_create_context.cpp" />
     <ClCompile Include="user\user_document_request_interface.cpp" />
     <ClCompile Include="user\user_frame_window.cpp" />
+    <ClCompile Include="user\user_job.cpp" />
     <ClCompile Include="user\user_keyboard.cpp" />
     <ClCompile Include="user\user_keyboard_layout.cpp" />
     <ClCompile Include="user\user_mdi_child_window.cpp" />
     <ClCompile Include="user\user_place_holder.cpp" />
     <ClCompile Include="user\user_place_holder_container.cpp" />
     <ClCompile Include="user\user_plain_text_data.cpp" />
+    <ClCompile Include="user\user_printer.cpp" />
+    <ClCompile Include="user\user_print_job.cpp" />
     <ClCompile Include="user\user_xfplayer_view_line_selection.cpp" />
     <ClCompile Include="video\video_player.cpp" />
     <ClCompile Include="video\video_player_command.cpp" />
@@ -1963,6 +2994,44 @@
     <ClCompile Include="video_decode\video_decode_decoder_plugin_set.cpp" />
     <ClCompile Include="video_decode\video_decode_decoder_plugin_set_ex1.cpp" />
     <ClCompile Include="visual\visual_fastblur.cpp" />
+    <ClCompile Include="webserver\webserver_alpha_select_performer.cpp" />
+    <ClCompile Include="webserver\webserver_checkimage.cpp" />
+    <ClCompile Include="webserver\webserver_cynce.cpp" />
+    <ClCompile Include="webserver\webserver_cynce_database.cpp" />
+    <ClCompile Include="webserver\webserver_database.cpp" />
+    <ClCompile Include="webserver\webserver_database_string_integer.cpp" />
+    <ClCompile Include="webserver\webserver_fontopus_database.cpp" />
+    <ClCompile Include="webserver\webserver_fun.cpp" />
+    <ClCompile Include="webserver\webserver_fun_friend_search.cpp" />
+    <ClCompile Include="webserver\webserver_fun_fun.cpp" />
+    <ClCompile Include="webserver\webserver_fun_user.cpp" />
+    <ClCompile Include="webserver\webserver_kar_body_page.cpp" />
+    <ClCompile Include="webserver\webserver_kar_page_artists.cpp" />
+    <ClCompile Include="webserver\webserver_kar_page_category.cpp" />
+    <ClCompile Include="webserver\webserver_kar_page_song.cpp" />
+    <ClCompile Include="webserver\webserver_music.cpp" />
+    <ClCompile Include="webserver\webserver_music_category.cpp" />
+    <ClCompile Include="webserver\webserver_music_database_cache.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_info_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list_artists.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list_category.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list_song.cpp" />
+    <ClCompile Include="webserver\webserver_music_karaoke_song_in2_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_lyrics_song_in2_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_performer.cpp" />
+    <ClCompile Include="webserver\webserver_music_person.cpp" />
+    <ClCompile Include="webserver\webserver_music_person_info.cpp" />
+    <ClCompile Include="webserver\webserver_music_song.cpp" />
+    <ClCompile Include="webserver\webserver_note.cpp" />
+    <ClCompile Include="webserver\webserver_note_summary.cpp" />
+    <ClCompile Include="webserver\webserver_persistent_ui.cpp" />
+    <ClCompile Include="webserver\webserver_secure.cpp" />
+    <ClCompile Include="webserver\webserver_simage.cpp" />
+    <ClCompile Include="webserver\webserver_spider.cpp" />
+    <ClCompile Include="webserver\webserver_user.cpp" />
+    <ClCompile Include="webserver\webserver_wb.cpp" />
+    <ClCompile Include="webserver\webserver_annotate.cpp" />
     <ClCompile Include="window_frame\FrameSchemaHardCoded008.cpp" />
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
@@ -1999,7 +3068,7 @@
     <ClCompile Include="window_frame\WorkSetListener.cpp" />
     <ClCompile Include="window_frame\WorkSetListenerArray.cpp" />
     <ClCompile Include="simpledb\simpledb_long_set.cpp" />
-    <ClCompile Include="simpledb\simpledb_server.cpp" />
+    <ClCompile Include="simpledb\simpledb_db_server.cpp" />
     <ClCompile Include="simpledb\simpledb_set.cpp" />
     <ClCompile Include="simpledb\simpledb_str_set.cpp" />
     <ClCompile Include="simpledb\simpledb_stra_set.cpp" />
@@ -2017,26 +3086,29 @@
     <ClCompile Include="srtp\srtp_srtp.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
       </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
+      </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="mail\mail_account.cpp" />
     <ClCompile Include="mail\mail_application.cpp" />
-    <ClCompile Include="mail\mail_child_frame.cpp" />
-    <ClCompile Include="mail\mail_configuration.cpp" />
     <ClCompile Include="mail\mail_db_pop3.cpp" />
-    <ClCompile Include="mail\mail_document.cpp" />
-    <ClCompile Include="mail\mail_tree.cpp" />
     <ClCompile Include="mail\mail_tree_interface.cpp" />
-    <ClCompile Include="mail\mail_frame.cpp" />
-    <ClCompile Include="mail\mail_list.cpp" />
     <ClCompile Include="mail\mail_list_interface.cpp" />
     <ClCompile Include="mail\mail_pop3.cpp" />
     <ClCompile Include="mail\mail_pop3_socket.cpp" />
-    <ClCompile Include="mail\mail_right_pane_view.cpp" />
     <ClCompile Include="mail\mail_simple_pop3.cpp" />
-    <ClCompile Include="mail\mail_view.cpp" />
-    <ClCompile Include="mail\mail_views.cpp" />
     <ClCompile Include="visual\visual_font_central.cpp" />
     <ClCompile Include="visual\visual_FreeImageFileProc.cpp" />
     <ClCompile Include="visual\visual_imaging.cpp" />
@@ -2069,7 +3141,7 @@
     <ClCompile Include="user\user_control.cpp" />
     <ClCompile Include="user\user_control_event.cpp" />
     <ClCompile Include="user\user_control_property.cpp" />
-    <ClCompile Include="user\user_create_view.cpp" />
+    <ClCompile Include="user\user_view_creator.cpp" />
     <ClCompile Include="user\user_document_interface.cpp" />
     <ClCompile Include="user\user_document_template_tnterface.cpp" />
     <ClCompile Include="user\user_draw_context.cpp" />
@@ -2081,7 +3153,7 @@
     <ClCompile Include="user\user_form_list.cpp" />
     <ClCompile Include="user\user_front_end.cpp" />
     <ClCompile Include="user\user_front_end_schema.cpp" />
-    <ClCompile Include="user\user_get_view.cpp" />
+    <ClCompile Include="user\user_view_container.cpp" />
     <ClCompile Include="user\user_interaction.cpp" />
     <ClCompile Include="user\user_keyboard_focus.cpp" />
     <ClCompile Include="user\user_list.cpp" />
@@ -2091,7 +3163,6 @@
     <ClCompile Include="user\user_list_data_interface.cpp" />
     <ClCompile Include="user\user_list_header.cpp" />
     <ClCompile Include="user\user_mouse_focus.cpp" />
-    <ClCompile Include="user\user_on_draw_interface.cpp" />
     <ClCompile Include="user\user_scroll_bar.cpp" />
     <ClCompile Include="user\user_scroll_view.cpp" />
     <ClCompile Include="user\user_str.cpp" />
@@ -2101,8 +3172,7 @@
     <ClCompile Include="user\user_tool_tip_tool.cpp" />
     <ClCompile Include="user\user_tool_tip_window.cpp" />
     <ClCompile Include="user\user_tree.cpp" />
-    <ClCompile Include="user\user_window_draw_client_tool.cpp" />
-    <ClCompile Include="user\user_window_draw_interface.cpp" />
+    <ClCompile Include="user\user_draw_interface.cpp" />
     <ClCompile Include="user\user_window_map.cpp" />
     <ClCompile Include="user\user_window_message.cpp" />
     <ClCompile Include="user\user_window_util.cpp" />
@@ -2326,95 +3396,233 @@
     <ClCompile Include="calculator\numeric_value.cpp" />
     <ClCompile Include="crypto\ae_xfm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes_cbc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes_icm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_null_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\gf2_8.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_hmac.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_null_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_sha1.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_alloc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_crypto_kernel.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_key.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\math_datatypes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\math_stat.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_rdb.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_rdbx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_ut_sim.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_ctr_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_rand_source.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ortp\avprofile.cpp" />
     <ClCompile Include="ortp\b64.cpp" />
@@ -2483,7 +3691,7 @@
     <ClCompile Include="radix\afxdbcs.cpp" />
     <ClCompile Include="radix\allocation.cpp" />
     <ClCompile Include="radix\allocator.cpp" />
-    <ClCompile Include="radix\application.cpp" />
+    <ClCompile Include="radix\radix_application.cpp" />
     <ClCompile Include="radix\auxdata.cpp" />
     <ClCompile Include="radix\radix_object.cpp" />
     <ClCompile Include="radix\BSTR.CPP" />
@@ -2497,7 +3705,6 @@
     <ClCompile Include="radix\factory.cpp" />
     <ClCompile Include="radix\fixed_alloc.cpp" />
     <ClCompile Include="radix\flags.cpp" />
-    <ClCompile Include="radix\install.cpp" />
     <ClCompile Include="radix\language_string.cpp" />
     <ClCompile Include="radix\LoadNSave.cpp" />
     <ClCompile Include="radix\machine_event_central.cpp" />
@@ -2548,12 +3755,9 @@
     <ClCompile Include="gen\gen_var.cpp" />
     <ClCompile Include="gen\gen_var_array.cpp" />
     <ClCompile Include="gen\gen_variable_strict_compare.cpp" />
-    <ClCompile Include="gen\muldiv64.cpp" />
-    <ClCompile Include="ca\ca_application.cpp" />
     <ClCompile Include="ca\ca_application_interface.cpp" />
     <ClCompile Include="ca\ca_bitmap.cpp" />
     <ClCompile Include="ca\ca_brush.cpp" />
-    <ClCompile Include="ca\ca_ca.cpp" />
     <ClCompile Include="ca\ca_dib.cpp" />
     <ClCompile Include="ca\ca_dir_system.cpp" />
     <ClCompile Include="ca\ca_draw_dib.cpp" />
@@ -2561,10 +3765,7 @@
     <ClCompile Include="ca\ca_font.cpp" />
     <ClCompile Include="ca\ca_graphics.cpp" />
     <ClCompile Include="ca\ca_graphics_object.cpp" />
-    <ClCompile Include="ca\ca_lock.cpp" />
-    <ClCompile Include="ca\ca_log.cpp" />
     <ClCompile Include="ca\ca_message_window.cpp" />
-    <ClCompile Include="ca\ca_object.cpp" />
     <ClCompile Include="ca\ca_osi.cpp" />
     <ClCompile Include="ca\ca_palette.cpp" />
     <ClCompile Include="ca\ca_pen.cpp" />
@@ -2585,7 +3786,7 @@
     <ClCompile Include="gcom\gcom_BackView.cpp" />
     <ClCompile Include="gcom\gcom_backview_interface.cpp" />
     <ClCompile Include="gcom\gcom_backview_thread.cpp" />
-    <ClCompile Include="gcom\gcom_backview_user_interface.cpp" />
+    <ClCompile Include="gcom\gcom_backview_user_interaction.cpp" />
     <ClCompile Include="gcom\gcom_BackViewGraphics.cpp" />
     <ClCompile Include="gcom\gcom_BackViewHelper.cpp" />
     <ClCompile Include="gcom\gcom_BackViewImageChange.cpp" />
@@ -2653,18 +3854,6 @@
     <ClCompile Include="mixer\mixer_label.cpp" />
     <ClCompile Include="mixer\mixer_level_control.cpp" />
     <ClCompile Include="mixer\mixer_toggle_control.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_application_interface.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_GoodMixerDoc.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerControlData.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerControlView.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerDoc.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerFrameWnd.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerMainView.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerVisualCentral.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_MixerVisualThread.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_label.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_mute_control.cpp" />
-    <ClCompile Include="mixeruibase\mixeruibase_slider.cpp" />
     <ClCompile Include="mus\Attributes.cpp" />
     <ClCompile Include="mus\KaraokeUtil.cpp" />
     <ClCompile Include="mus\LyricTrack.cpp" />
@@ -2712,28 +3901,10 @@
     <ClCompile Include="mus\Star350TrackV008.cpp" />
     <ClCompile Include="mus\Tune1000Info.cpp" />
     <ClCompile Include="mus\Uiutils.cpp" />
-    <ClCompile Include="mus\XF.cpp" />
-    <ClCompile Include="mus\XFInfoHeader.cpp" />
-    <ClCompile Include="mus\XFInfoHeaderLS.cpp" />
-    <ClCompile Include="mus\XFInfoHeaders.cpp" />
     <ClCompile Include="musctrl\musctrl_single_document_template.cpp" />
     <ClCompile Include="musctrl\MusicalPlayerCentral.cpp" />
     <ClCompile Include="musctrl\MusicalPlayerCentralContainer.cpp" />
     <ClCompile Include="musctrl\PlayerDocContainer.cpp" />
-    <ClCompile Include="kissfftf\fftfFftrd.cpp" />
-    <ClCompile Include="kissfftf\fftfFftri.cpp" />
-    <ClCompile Include="kissfftf\kiss_fft.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="kissfftf\kiss_fftr.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-      </PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="ca2\ca2_application.cpp" />
     <ClCompile Include="ca2\ca2_datetime.cpp" />
     <ClCompile Include="ca2\ca2_html.cpp" />
@@ -2749,9 +3920,8 @@
     <ClCompile Include="ex1\ex1_file_set.cpp" />
     <ClCompile Include="ex1\ex1_file_system.cpp" />
     <ClCompile Include="ex1\ex1_resource.cpp" />
-    <ClCompile Include="ex1\ex1_serializable.cpp" />
     <ClCompile Include="ex1\ex1_str_stream.cpp" />
-    <ClCompile Include="ex1\ex1_stream.cpp" />
+    <ClCompile Include="ex1\ex1_byte_stream.cpp" />
     <ClCompile Include="ex1\ex1_stream2.cpp" />
     <ClCompile Include="ex1\ex1_text_file.cpp" />
     <ClCompile Include="ex1\ex1_tree_data.cpp" />
@@ -2798,13 +3968,9 @@
     <ClCompile Include="primitive\memory_container.cpp" />
     <ClCompile Include="primitive\memory_file.cpp" />
     <ClCompile Include="primitive\natural.cpp" />
-    <ClCompile Include="primitive\point.cpp" />
     <ClCompile Include="primitive\primitive_scalar.cpp" />
-    <ClCompile Include="primitive\rectangle.cpp" />
     <ClCompile Include="primitive\shared_file.cpp" />
     <ClCompile Include="primitive\shared_memory.cpp" />
-    <ClCompile Include="primitive\size.cpp" />
-    <ClCompile Include="primitive\types.cpp" />
     <ClCompile Include="databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="databaseuser\database_list_data.cpp" />
     <ClCompile Include="template\template_base.cpp" />
@@ -2824,15 +3990,10 @@
     <ClCompile Include="collection\collection_numeric_array.cpp" />
     <ClCompile Include="collection\comparable_array.cpp" />
     <ClCompile Include="collection\key_sort_array.cpp" />
-    <ClCompile Include="collection\base_object_list.cpp" />
+    <ClCompile Include="collection\object_list.cpp" />
     <ClCompile Include="collection\pointer_list.cpp" />
     <ClCompile Include="collection\collection_string_list.cpp" />
-    <ClCompile Include="collection\map_pp.cpp" />
-    <ClCompile Include="collection\map_pw.cpp" />
-    <ClCompile Include="collection\map_so.cpp" />
-    <ClCompile Include="collection\map_sp.cpp" />
-    <ClCompile Include="collection\map_wo.cpp" />
-    <ClCompile Include="collection\map_wp.cpp" />
+    <ClCompile Include="collection\map_misc.cpp" />
     <ClCompile Include="collection\point_array.cpp" />
     <ClCompile Include="collection\rect_array.cpp" />
     <ClCompile Include="collection\Sort.cpp" />
@@ -2854,21 +4015,16 @@
     <ClCompile Include="audio\audio_WavePreBufferCallback.cpp" />
     <ClCompile Include="audio\audio_WaveRecorder.cpp" />
     <ClCompile Include="audio\audio_WaveRecorderInterface.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistAppInterface.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCallback.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCallbackContainer.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCallbackContainerInterface.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCallbackInterface.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCentral.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCentralCallbackInterface.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistCentralContainer.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistDoc.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistFrame.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistListView.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistView.cpp" />
-    <ClCompile Include="mediaplaylist\PlaylistViewUpdateHint.cpp" />
-    <ClCompile Include="..\..\ccvotagus\source\spalib\machine_event.cpp" />
-    <ClCompile Include="..\..\ccvotagus\source\spalib\machine_event_data.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_callback_container_interface.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_callback_interface.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_central.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_central_callback_interface.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_central_container.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_document.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_frame.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_list_view.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_view.cpp" />
+    <ClCompile Include="mediaplaylist\mediaplaylist_view_update_hint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\thirdparty\appseed\libcharguess\libcharguess.vcxproj">
@@ -2880,8 +4036,11 @@
     <ProjectReference Include="..\..\thirdparty\appseed\zlib\zlib.vcxproj">
       <Project>{6352ad78-a4ba-4f99-89eb-521c22c05322}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\_\_.vcxproj">
+    <ProjectReference Include="..\ca\ca.vcxproj">
       <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

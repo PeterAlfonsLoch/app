@@ -40,18 +40,32 @@ namespace ca4
       
          DECL_GEN_SIGNAL(get);
 
-         bool get(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
-         bool get(const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+         bool get(const char * pszUrl, primitive::memory_base & memory, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
+         bool get(const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         
 
 
          string get(const char * pszUrl, ::fontopus::user * puser = NULL);
+
+         using ::radix::object::request;
+         bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+         bool request(const char * pszRequest, const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
+
+
+         string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = NULL);
 
 
          bool download(const char * pszUrl, const char * pszFile, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL,  ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
          bool download(const char * pszUrl, const char * pszFile, const char * pszPost, gen::property_set & headers, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
          bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = NULL);
 
+
+         bool put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+         bool put(const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
+         
 
          void defer_auto_initialize_proxy_configuration();
          void auto_config_proxy(int i);

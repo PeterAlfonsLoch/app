@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include <math.h>
 
 void trim001(string & str)
 {
@@ -45,12 +46,48 @@ namespace html
          m_cxMin = -2;
       }
 
-      bool elemental::hit_test(point pt)
+      bool elemental::hit_test(data * pdata, point pt)
       {
+         UNREFERENCED_PARAMETER(pdata);
          if(pt.x > m_pt.x && pt.x < m_pt.x + m_size.cx)
             if(pt.y > m_pt.y && pt.y < m_pt.y + m_size.cy)
                return true;
          return false;
+      }
+
+      double elemental::bound_hit_test(data * pdata, point pt)
+      {
+         UNREFERENCED_PARAMETER(pdata);
+         double dx;
+         double dy;
+
+         if(pt.x < m_pt.x)
+         {
+            dx = m_pt.x - pt.x;
+         }
+         else if(pt.x > m_pt.x + m_size.cx)
+         {
+            dx = pt.x - (m_pt.x + m_size.cx);
+         }
+         else
+         {
+            dx = 0;
+         }
+
+         if(pt.y < m_pt.y)
+         {
+            dy = m_pt.y - pt.y;
+         }
+         else if(pt.y > m_pt.y + m_size.cy)
+         {
+            dy = pt.y - (m_pt.y + m_size.cy);
+         }
+         else
+         {
+            dy = 0;
+         }
+
+         return sqrt(dx * dx + dy * dy);
       }
 
       void elemental::OnLButtonDown(gen::signal_object * pobj)
@@ -124,6 +161,7 @@ namespace html
 
       void elemental::layout_phase3(data * pdata)
       {
+         UNREFERENCED_PARAMETER(pdata);
       }
 
       void elemental::set_xy(data * pdata)
@@ -133,14 +171,14 @@ namespace html
          {
             point pointBound = get_bound_point();
             set_xy(
-               pdata, 
-               pointBound.x, 
+               pdata,
+               pointBound.x,
                pdata->m_layoutstate.m_y + pdata->m_layoutstate.m_cy);
          }
          else
          {
             set_xy(
-               pdata, 
+               pdata,
                pdata->m_layoutstate.m_x + pdata->m_layoutstate.m_cx,
                pdata->m_layoutstate.m_y);
          }*/
@@ -239,7 +277,7 @@ namespace html
       {
          return m_size.cy;
       }
-      
+
       int elemental::get_last_line_height()
       {
          return m_size.cy;
@@ -323,7 +361,7 @@ namespace html
       {
          string strTag = m_pelemental->get_tag_name();
 
-/*         if(m_pelemental->m_style.m_edisplay == display_block ||  
+/*         if(m_pelemental->m_style.m_edisplay == display_block ||
             strTag == "br")
          {
             pdata->m_layoutstate.m_bLastBlock = true;
@@ -341,8 +379,8 @@ namespace html
          int y = 0x7fffffff;
          int cx = 0x80000000;
          int cy = 0x80000000;
-         
-         elemental * pelemental = m_pelemental->m_elementalptra.last_element()->m_pimpl;
+
+         //elemental * pelemental = m_pelemental->m_elementalptra.last_element()->m_pimpl;
          /*if(pelemental->get_cy() <= 0)
          {
             pelemental->set_cy(pdata, pelemental->get_bound_point().y + pelemental->get_bound_size().cy - pelemental->get_y());
@@ -391,6 +429,7 @@ namespace html
    void elemental::implement(data * pdata)
    {
       m_pdata = pdata;
+      ::ca::data::writing writing(pdata);
       implement_phase1(pdata);
       implement_phase2(pdata);
    }
@@ -450,7 +489,7 @@ namespace html
          }
       }
 
-    
+
       if(m_pimpl == NULL)
       {
          if(strTag == "html" || strTag == "body" || strTag == "head"
@@ -611,7 +650,7 @@ namespace html
       // implement must be called before
       ASSERT(m_pimpl != NULL);
       string strTag = get_tag_name();
-    
+
       if(m_pimpl != NULL)
       {
          if(strTag == "html" || strTag == "body" || strTag == "head" || m_pparent == NULL)
@@ -682,7 +721,7 @@ namespace html
       {
          m_elementalptra[i]->layout_phase1(pdata);
       }
-      if(m_pimpl->m_cxMin > 
+      if(m_pimpl->m_cxMin >
          m_pimpl->get_bound_size().cx)
       {
          m_pimpl->set_bound_size(pdata, size(m_pimpl->m_cxMin,
@@ -702,7 +741,7 @@ namespace html
       ASSERT(m_pimpl != NULL);
       string strTag = get_tag_name();
 //      tag * ptag = get_tag();
-    
+
       if(m_pimpl != NULL)
       {
          if(strTag == "html" || strTag == "body" || strTag == "head")
@@ -758,7 +797,7 @@ namespace html
       // implement must be called before
       ASSERT(m_pimpl != NULL);
       string strTag = get_tag_name();
-    
+
       if(m_pimpl != NULL)
       {
          if(strTag == "html" || strTag == "body" || strTag == "head")
@@ -1183,18 +1222,53 @@ namespace html
       m_pimpl->OnLButtonUp(pobj);
    }
 
-   elemental * elemental::hit_test(point pt)
+   elemental * elemental::hit_test(data * pdata, point pt)
    {
-      if(m_pimpl != NULL && m_pimpl->hit_test(pt))
+      if(m_pimpl != NULL)
       {
-         elemental * pelemental;
-         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         if(m_pimpl->hit_test(pdata, pt))
          {
-            pelemental = m_elementalptra[i]->hit_test(pt);
-            if(pelemental != NULL)
-               return pelemental;
+            elemental * pelemental;
+            for(int i = 0; i < m_elementalptra.get_size(); i++)
+            {
+               pelemental = m_elementalptra[i]->hit_test(pdata, pt);
+               if(pelemental != NULL)
+                  return pelemental;
+            }
+            return this;
          }
-         return this;
+         else if(pdata->m_bEdit)
+         {
+            return bound_hit_test(pdata, pt);
+         }
+      }
+      return NULL;
+   }
+
+   elemental * elemental::bound_hit_test(data * pdata, point pt)
+   {
+      double dMin = -1.0;
+      return bound_hit_test(pdata, pt, dMin);
+   }
+
+   elemental * elemental::bound_hit_test(data * pdata, point pt, double & dMin)
+   {
+      if(m_pimpl != NULL)
+      {
+         double d = m_pimpl->bound_hit_test(pdata, pt);
+         if(dMin < 0.0 || (d <= dMin && d >= 0.0))
+         {
+            dMin = d;
+//            elemental * pelemental;
+//            int iFound = 0;
+            for(int i = 0; i < m_elementalptra.get_size(); i++)
+            {
+               elemental * pelemental = m_elementalptra[i]->bound_hit_test(pdata, pt, dMin);
+               if(pelemental != NULL)
+                  return pelemental;
+            }
+            return this;
+         }
       }
       return NULL;
    }
@@ -1234,16 +1308,16 @@ namespace html
       m_pimpl->delete_implementation();
       for(int i = 0; i < m_elementalptra.get_size(); i++)
       {
-         if(m_elementalptra[i] != NULL) 
+         if(m_elementalptra[i] != NULL)
             m_elementalptra[i]->delete_implementation();
       }
    }
 
-   void elemental::get_html(string & str) const
+   void elemental::get_html(data * pdata, string & str) const
    {
       if(m_pbase->get_type() == base::type_value)
       {
-         str += m_propertyset["PropertyBody"].get_string();
+         str += Sys(pdata->m_papp).html().entities(m_propertyset["PropertyBody"].get_string());
       }
       else
       {
@@ -1261,11 +1335,18 @@ namespace html
             str += "\"";
          }
          str += ">";
-         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         if(m_elementalptra.get_size() <= 0)
          {
-            string strHtml;
-            m_elementalptra[i]->get_html(strHtml);
-            str += strHtml;
+            str += Sys(pdata->m_papp).html().entities(m_propertyset["PropertyBody"].get_string());
+         }
+         else
+         {
+            for(int i = 0; i < m_elementalptra.get_size(); i++)
+            {
+               string strHtml;
+               m_elementalptra[i]->get_html(pdata, strHtml);
+               str += strHtml;
+            }
          }
          str += "</";
          str += get_tag_name();

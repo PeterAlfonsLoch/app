@@ -2,7 +2,7 @@
 
 file_operation::file_operation(::ca::application * papp) :
    ca(papp),
-   m_fileSrc(papp), 
+   m_fileSrc(papp),
    m_fileDst(papp)
 {
    m_hwndCallback = NULL;
@@ -193,7 +193,7 @@ bool file_operation::step()
             }
             if(!open_src_dst(m_stra[m_iFile], strName))
             {
-               
+
                return false;
             }
          }
@@ -293,7 +293,7 @@ int file_operation::get_item_count()
 string file_operation::get_item_message(int iItem)
 {
    string str;
-   str.Format("Copying %s (%s) to %s", System.file().name_(m_stra[iItem]), 
+   str.Format("Copying %s (%s) to %s", System.file().name_(m_stra[iItem]),
       System.dir().name(m_stra[iItem]), m_str);
    return str;
 }

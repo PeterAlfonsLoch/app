@@ -94,7 +94,7 @@ namespace windesk
 
       virtual void _001OnDraw(::ca::graphics * pdc);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
 	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);

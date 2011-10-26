@@ -75,7 +75,7 @@ namespace database
 
    bool parameter_list::is_empty()
    {
-      return get_size() <= 0;
+      return this->get_size() <= 0;
    }
 
    int parameter_list::get_size()
@@ -92,6 +92,93 @@ namespace database
    {
       return m_fieldvaluea[i];
    }
+
+   record::record()
+   {
+   }
+
+   record::record(const record & record)
+   {
+      operator = (record);
+   }
+
+   record::~record()
+   {
+   }
+
+   record & record::operator = (const record & record)
+   {
+      if(this != &record)
+      {
+         var_array::operator = ((const var_array &) record);
+      }
+      return *this;
+   }
+
+
+   result_set::result_set()
+   {
+   }
+
+   result_set::result_set(::ca::application * papp) :
+      ca(papp)
+   {
+   }
+
+   result_set::result_set(const result_set & set) :
+      ca(set.get_app())
+   {
+      operator = (set);
+   }
+
+   result_set & result_set::operator = (const result_set & set)
+   {
+
+      if(&set != this)
+      {
+         record_header     = set.record_header;
+         records           = set.records;
+      }
+      return *this;
+
+   }
+
+   void result_set::write(::ex1::byte_output_stream & ostream)
+   {
+      record_header.write(ostream);
+      records.write(ostream);
+   }
+
+   void result_set::read(::ex1::byte_input_stream & istream)
+   {
+      record_header.read(istream);
+      records.read(istream);
+   }
+
+   void field_properties::write(::ex1::byte_output_stream & ostream)
+   {
+      ostream << name;
+      ostream << display_name;
+      ostream << (int) type;
+      ostream << field_table; //?
+      ostream << read_only;
+      ostream << field_len;
+      ostream << field_flags;
+      ostream << idx;
+   }
+
+   void field_properties::read(::ex1::byte_input_stream & istream)
+   {
+      istream >> name;
+      istream >> display_name;
+      istream >> (int &) type;
+      istream >> field_table; //?
+      istream >> read_only;
+      istream >> field_len;
+      istream >> field_flags;
+      istream >> idx;
+   }
+
 
 } // namespace vmssqlite
 

@@ -31,6 +31,7 @@
 int
 read_udp_query(int fd, int family)
 {
+   UNREFERENCED_PARAMETER(family);
 	struct sockaddr_in addr4;
 #if HAVE_IPV6
 	struct sockaddr_in6 addr6;
@@ -107,7 +108,7 @@ write_udp_reply(TASK *t)
 #if DEBUG_ENABLED && DEBUG_UDP
 	Debug("%s: WRITE %u UDP octets (id %u)", desctask(t), t->replylen, t->id);
 #endif
-   ::ca::get_thread()->m_papp->m_psystem->log().trace("%s: WRITE %u UDP octets (id %u)", desctask(t), t->replylen, t->id);
+   CaSys(::ca::get_thread()).log().trace("%s: WRITE %u UDP octets (id %u)", desctask(t), t->replylen, t->id);
 	return dequeue(Tasks, t);
 }
 /*--- write_udp_reply() -------------------------------------------------------------------------*/

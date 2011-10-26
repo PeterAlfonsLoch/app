@@ -30,40 +30,40 @@ namespace audio_decode_wave
 
       m_pfile->write(&m_fmtheader, sizeof(m_fmtheader));
 
-      m_iDataBlock = m_pfile->GetPosition();
+      m_iDataBlock = m_pfile->get_position();
 
       m_datablock.chunkHeader.WriteId("data");
       m_datablock.chunkHeader.dwChunkSize = 4;
       m_pfile->write(&m_datablock, sizeof(m_datablock));
-      m_iStartOfData = m_pfile->GetPosition();
+      m_iStartOfData = m_pfile->get_position();
 
 
    }
 
    void OutputFile::close()
    {
-      CSingleLock slFile(&m_csFile);
-      slFile.Lock();
+      single_lock slFile(&m_csFile);
+      slFile.lock();
 
       if(m_pfile != NULL)
       {
          m_pfile->seek(0, ::ex1::seek_begin);
-         m_riffheader.chunkHeader.dwChunkSize = m_pfile->get_length() - sizeof(CHUNK_HEADER);
+         m_riffheader.chunkHeader.dwChunkSize = (DWORD) (m_pfile->get_length() - sizeof(CHUNK_HEADER));
          m_pfile->write(&m_riffheader, sizeof(m_riffheader));
 
-         m_pfile->seek(m_iDataBlock, ::ex1::seek_begin);
+         m_pfile->seek((file_offset) m_iDataBlock, ::ex1::seek_begin);
          m_datablock.chunkHeader.WriteId("data");
-         m_datablock.chunkHeader.dwChunkSize = m_pfile->get_length() - m_iStartOfData;
+         m_datablock.chunkHeader.dwChunkSize = (DWORD) (m_pfile->get_length() - m_iStartOfData);
          m_pfile->write(&m_datablock, sizeof(m_datablock));
          m_pfile->close();
          m_pfile = NULL;
       }
    }
 
-   void OutputFile::write(LPVOID lpvoidBuffer, UINT uiBufferSize)
+   void OutputFile::write(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize)
    {
-      CSingleLock slFile(&m_csFile);
-      slFile.Lock();
+      single_lock slFile(&m_csFile);
+      slFile.lock();
 
       if(m_pfile != NULL)
       {

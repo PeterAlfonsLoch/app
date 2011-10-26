@@ -37,11 +37,9 @@
     <ClCompile Include="view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="backup.def">
+    <ClCompile Include="backup.cpp">
       <Filter>Source Files</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h">
@@ -74,5 +72,10 @@
     <ClInclude Include="view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_backup.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

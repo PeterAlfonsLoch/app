@@ -23,28 +23,28 @@ namespace ex1
       {
       public:
          
-         DWORD m_dwPosition;
+         file_position m_dwPosition;
 
          
          Item();
 
          virtual UINT read_ch(edit_file * pfile);
 
-         virtual DWORD get_position(bool bForward);
+         virtual file_position get_position(bool bForward);
          
          virtual BYTE * get_data() ;
          virtual EItemType get_type();
-         virtual DWORD_PTR get_extent();
-         virtual DWORD_PTR get_file_extent();
+         virtual ::primitive::memory_size get_extent();
+         virtual ::primitive::memory_size get_file_extent();
          virtual BYTE * reverse_get_data();
          virtual EItemType reverse_get_type();
-         virtual DWORD_PTR reverse_get_extent() ;
-         virtual DWORD_PTR reverse_get_file_extent() ;
-         virtual DWORD_PTR get_extent(bool bForward);
+         virtual ::primitive::memory_size reverse_get_extent() ;
+         virtual ::primitive::memory_size reverse_get_file_extent() ;
+         virtual ::primitive::memory_size get_extent(bool bForward);
          virtual EItemType get_type(bool bForward);
-         virtual DWORD_PTR get_file_extent(bool bForward);
+         virtual ::primitive::memory_size get_file_extent(bool bForward);
          virtual BYTE * get_data(bool bForward);
-         virtual INT_PTR get_delta_length() ;
+         virtual ::primitive::memory_offset get_delta_length() ;
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
@@ -60,19 +60,21 @@ namespace ex1
          
          primitive::memory m_memstorage;
 
-         
-         virtual EItemType get_type();
-         virtual DWORD_PTR get_extent() ;
-         virtual DWORD_PTR get_file_extent();
-         virtual BYTE * get_data() ;
-         virtual EItemType reverse_get_type() ;
-         virtual DWORD_PTR reverse_get_extent();
-         virtual DWORD_PTR reverse_get_file_extent();
-         virtual BYTE * reverse_get_data();
 
          virtual UINT read_ch(edit_file * pfile);
-         virtual INT_PTR get_delta_length() ;
+         
+         virtual EItemType get_type();
+         virtual ::primitive::memory_size get_extent() ;
+         virtual ::primitive::memory_size get_file_extent();
+         virtual BYTE * get_data() ;
+         virtual EItemType reverse_get_type() ;
+         virtual ::primitive::memory_size reverse_get_extent();
+         virtual ::primitive::memory_size reverse_get_file_extent();
+         virtual BYTE * reverse_get_data();
+
+         virtual ::primitive::memory_offset get_delta_length() ;
       };
+
       class InsertItem : public Item
       {
       public:
@@ -81,18 +83,20 @@ namespace ex1
          primitive::memory m_memstorage;
          
 
+         virtual UINT read_ch(edit_file * pfile);
+
          virtual EItemType get_type() ;
-         virtual DWORD_PTR get_extent() ;
-         virtual DWORD_PTR get_file_extent() ;
+         virtual ::primitive::memory_size get_extent() ;
+         virtual ::primitive::memory_size get_file_extent() ;
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type() ;
-         virtual DWORD_PTR reverse_get_extent() ;
-         virtual DWORD_PTR reverse_get_file_extent() ;
+         virtual ::primitive::memory_size reverse_get_extent() ;
+         virtual ::primitive::memory_size reverse_get_file_extent() ;
          virtual BYTE * reverse_get_data();
-         virtual INT_PTR get_delta_length();
+         virtual ::primitive::memory_offset get_delta_length();
 
-         virtual UINT read_ch(edit_file * pfile);
       };
+
       class EditItem : public Item
       {
       public:
@@ -103,16 +107,15 @@ namespace ex1
          
 
          virtual EItemType get_type();
-         virtual DWORD_PTR get_extent() ;
-         virtual DWORD_PTR get_file_extent();
+         virtual ::primitive::memory_size get_extent() ;
+         virtual ::primitive::memory_size get_file_extent();
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type();
-         virtual DWORD_PTR reverse_get_extent() ;
-         virtual DWORD_PTR reverse_get_file_extent();
+         virtual ::primitive::memory_size reverse_get_extent() ;
+         virtual ::primitive::memory_size reverse_get_file_extent();
          virtual BYTE * reverse_get_data() ;
-         virtual INT_PTR get_delta_length();
+         virtual ::primitive::memory_offset get_delta_length();
 
-         virtual UINT read_ch(edit_file * pfile);
       };
 
       class ItemPtrArray : public base_array < Item *, Item * >
@@ -129,14 +132,14 @@ namespace ex1
 
 
          virtual EItemType get_type();
-         virtual DWORD_PTR get_extent();
-         virtual DWORD_PTR get_file_extent();
+         virtual ::primitive::memory_size get_extent();
+         virtual ::primitive::memory_size get_file_extent();
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type();
-         virtual DWORD_PTR reverse_get_extent() ;
-         virtual DWORD_PTR reverse_get_file_extent();
+         virtual ::primitive::memory_size reverse_get_extent() ;
+         virtual ::primitive::memory_size reverse_get_file_extent();
          virtual BYTE * reverse_get_data() ;
-         virtual INT_PTR get_delta_length();
+         virtual ::primitive::memory_offset get_delta_length();
 
          virtual UINT read_ch(edit_file * pfile);
 
@@ -146,18 +149,18 @@ namespace ex1
 
       };
 
-      DWORD_PTR            m_dwPosition;
-      DWORD_PTR            m_dwInternalFilePosition;
-      DWORD_PTR            m_dwFileLength;
-      DWORD_PTR            m_dwReadPosition;
-      INT_PTR              m_iCurItem;
+      file_position           m_dwPosition;
+      file_size               m_dwInternalFilePosition;
+      file_size               m_dwFileLength;
+      file_position           m_dwReadPosition;
+      file_offset             m_iCurItem;
       
 
       //ItemPtrArray         m_itemptra;
       //tree_data            m_tree;
       ::ex1::tree_item *   m_ptreeitem;
       ::ex1::tree_item *   m_ptreeitemFlush;
-      INT_PTR              m_iBranch;
+      ::primitive::memory_offset              m_iBranch;
       ex1::file *          m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
@@ -171,20 +174,22 @@ namespace ex1
 
       virtual bool IsValid() const;
       //void load_string(string & str);
-      //void create(INT_PTR iSize = -1);
+      //void create(::primitive::memory_offset iSize = -1);
       //void seek_to_begin();
-      INT_PTR seek(INT_PTR lOff, UINT nFrom);
-      DWORD GetPosition() const;
+      file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      file_position get_position() const;
 
       //virtual string GetFilePath() const;
 
-      DWORD get_length() const;
-      //void Truncate(INT_PTR iPosition);
+      file_size get_length() const;
+      //void Truncate(::primitive::memory_offset iPosition);
       //void clear();
-      virtual DWORD_PTR read(void *lpBuf, DWORD_PTR nCount);
-      virtual void write(const void * lpBuf, DWORD_PTR nCount);
-      virtual void Insert(const void * lpBuf, DWORD_PTR nCount);
-      virtual void Delete(DWORD_PTR uiCount);
+      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void Insert(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void Delete(::primitive::memory_size uiCount);
+      virtual void Delete(file_size uiCount);
+      
 
 
       void Flush();
@@ -197,7 +202,7 @@ namespace ex1
       void Insert(InsertItem * pitem);
       bool CanUndo();
       bool CanRedo();
-      INT_PTR GetRedoBranchCount();
+      count GetRedoBranchCount();
       bool Undo();
       bool Redo();
       void MacroBegin();

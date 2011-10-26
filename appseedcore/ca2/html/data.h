@@ -107,7 +107,7 @@ namespace html
       virtual bool open_document(var varFile);
       virtual bool open_link(const char * pszPath);
 
-      virtual void OnBeforeNavigate2(const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
+      virtual void OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
 
       virtual ::user::form * get_form();
       virtual ::user::interaction* get_frame();

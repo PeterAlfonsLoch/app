@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="StdAfx.h" open="0" top="0" tabpos="8">
+		<Cursor position="28" topLine="0" />
+	</File>
+	<File name="allocate.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2656" topLine="87" />
+	</File>
+	<File name="allocate.h" open="0" top="0" tabpos="2">
+		<Cursor position="3603" topLine="78" />
+	</File>
+	<File name="ca.h" open="0" top="0" tabpos="5">
+		<Cursor position="416" topLine="7" />
+	</File>
+	<File name="ca_application.cpp" open="0" top="0" tabpos="18">
+		<Cursor position="301" topLine="1" />
+	</File>
+	<File name="ca_application.h" open="0" top="0" tabpos="1">
+		<Cursor position="811" topLine="22" />
+	</File>
+	<File name="ca_base.h" open="0" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="ca_c.c" open="0" top="0" tabpos="5">
+		<Cursor position="14" topLine="0" />
+	</File>
+	<File name="ca_c.h" open="0" top="0" tabpos="6">
+		<Cursor position="33" topLine="0" />
+	</File>
+	<File name="ca_ca.h" open="0" top="0" tabpos="1">
+		<Cursor position="1703" topLine="108" />
+	</File>
+	<File name="ca_seed.h" open="0" top="0" tabpos="4">
+		<Cursor position="441" topLine="0" />
+	</File>
+	<File name="ca_system.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="722" topLine="16" />
+	</File>
+	<File name="count.h" open="0" top="0" tabpos="4">
+		<Cursor position="16" topLine="0" />
+	</File>
+	<File name="debug.h" open="0" top="0" tabpos="0">
+		<Cursor position="12993" topLine="353" />
+	</File>
+	<File name="geometric_types.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="19" topLine="0" />
+	</File>
+	<File name="geometric_types.h" open="0" top="0" tabpos="5">
+		<Cursor position="1969" topLine="77" />
+	</File>
+	<File name="linux/linux.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="135" topLine="0" />
+	</File>
+	<File name="linux/linux.h" open="0" top="0" tabpos="3">
+		<Cursor position="1030" topLine="0" />
+	</File>
+	<File name="muldiv64.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="18634" topLine="608" />
+	</File>
+	<File name="muldiv64.h" open="0" top="0" tabpos="4">
+		<Cursor position="229" topLine="1" />
+	</File>
+	<File name="point.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4679" topLine="125" />
+	</File>
+	<File name="point.h" open="0" top="0" tabpos="8">
+		<Cursor position="1636" topLine="46" />
+	</File>
+	<File name="radix.h" open="0" top="0" tabpos="3">
+		<Cursor position="12" topLine="0" />
+	</File>
+	<File name="rectangle.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="11474" topLine="427" />
+	</File>
+	<File name="rectangle.h" open="0" top="0" tabpos="4">
+		<Cursor position="2984" topLine="68" />
+	</File>
+	<File name="size.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3933" topLine="175" />
+	</File>
+	<File name="size.h" open="0" top="0" tabpos="7">
+		<Cursor position="2343" topLine="75" />
+	</File>
+</CodeBlocks_layout_file>

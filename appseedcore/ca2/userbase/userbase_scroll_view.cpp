@@ -15,10 +15,10 @@ namespace userbase
    {
    }
 
-   void scroll_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void scroll_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      view::_001InstallMessageHandling(pinterface);
-      ::user::scroll_view::_001InstallMessageHandling(pinterface);
+      view::install_message_handling(pinterface);
+      ::user::scroll_view::install_message_handling(pinterface);
    }
 
 } // namespace userbase

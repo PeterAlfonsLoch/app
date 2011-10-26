@@ -1,6 +1,7 @@
 #pragma once
 
-#include "include/cube.h"
+
+#include "include/ca2.h"
 
 
 #ifdef _CA2_FONTOPUS_NETSHARESERVERCFG_DLL
@@ -9,6 +10,9 @@
     #define CLASS_DECL_CA2_NETSHARESERVERCFG  _declspec(dllimport)
 #endif
 
-#include "netshareserver.h"
-#include "application.h"
+
+#include "netshareservercfg_configuration.h"
+
+#include "netshareservercfg_application.h"
+
 

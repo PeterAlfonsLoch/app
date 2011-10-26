@@ -14,10 +14,10 @@ simple_edit_plain_text::simple_edit_plain_text(::ca::application * papp) :
 }
 
 
-void simple_edit_plain_text::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_edit_plain_text::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::user::interaction::_001InstallMessageHandling(pinterface);
-   ::user::edit_plain_text::_001InstallMessageHandling(pinterface);
+   ::user::interaction::install_message_handling(pinterface);
+   ::user::edit_plain_text::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_edit_plain_text::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_edit_plain_text::_001OnShowWindow);
 //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::edit_plain_text::_001OnLButtonDown);

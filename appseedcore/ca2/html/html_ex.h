@@ -21,7 +21,7 @@ namespace html
       html_ex(::ca::application * papp);
       virtual ~html_ex();
 
-      int resolve_entity(const char * lpszEntity, char &chSubst);
+      int resolve_entity(const char * lpszEntity, string & strChar);
    };
 
 } // namespace html

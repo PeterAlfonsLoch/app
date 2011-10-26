@@ -13,4 +13,15 @@ namespace user
 
    }
 
+
+   void list_cache_interface::_001GetGroupText(::user::list_item * pitem)
+   {
+
+
+      pitem->m_bOk = false;
+
+
+   }
+
+
 } // namespace user

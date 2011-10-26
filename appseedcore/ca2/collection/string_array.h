@@ -1,8 +1,17 @@
 #pragma once
 
-#define _VFXCOLL_INLINE inline 
 
-class CLASS_DECL_ca string_array : 
+namespace gen
+{
+
+
+   class property;
+
+
+} // namespace gen
+
+
+class CLASS_DECL_ca string_array :
    virtual public ::radix::object
 {
 public:
@@ -41,13 +50,27 @@ public:
 
    void set_at_grow(index nIndex, const string & newElement);
 
-   index add(const char * newElement);
+   index add(const char * psz);
+
+   index add(const wchar_t * pwsz);
+
+   index add(char ch);
+
+   index add(wchar_t wch);
+
+   void add(const var & var);
+
+   void add(const gen::property & prop);
+
+   void add(const id & id);
 
    index add(const string & newElement);
 
-   count add(const string_array& src);
+   count add(const string_array & src);
 
-   void copy(const string_array& src);
+   void copy(const string_array & src);
+
+
 
    // overloaded operator helpers
    string operator[](index nIndex) const;
@@ -59,13 +82,15 @@ public:
    void insert_at(index nIndex, const string & newElement, count nCount = 1);
 
    void remove_at(index nIndex, count nCount = 1);
-   
+
    void insert_at(index nStartIndex, const string_array & NewArray);
 
    void QuickSort(
       void swap(void * lpVoidSwapArg, const DWORD, const DWORD) = NULL,
       void * lpvoidSwapArg = NULL,
       bool bNoCase = false);
+
+   void get_quick_sort_ci(index_array & ia);
 
    string_array slice(index iStart, count iCount = -1);
 
@@ -96,77 +121,7 @@ protected:
    typedef const char * BASE_ARG_TYPE;
 };
 
-////////////////////////////////////////////////////////////////////////////
 
-_VFXCOLL_INLINE count string_array::get_size() const
-   { return m_nSize; }
-_VFXCOLL_INLINE count string_array::get_count() const
-   { return m_nSize; }
-_VFXCOLL_INLINE index string_array::get_lower_bound(index i) const
-   { return i >= 0 ? i : m_nSize + i; }
-_VFXCOLL_INLINE index string_array::get_upper_bound(count count) const
-   { return m_nSize - 1 - count; }
-inline index string_array::get_upper_bound(index i, count count) const
-{ 
-   if(count >= 0)
-   {
-      return min(get_upper_bound(), get_lower_bound(i) + count); 
-   }
-   else
-   {
-      return m_nSize + count; 
-   }
-}
-
-// same as clear
-inline void string_array::remove_all()
-{ 
-   set_size(0); 
-}
-
-// same as remove all
-inline void string_array::clear()
-{ 
-   set_size(0); 
-}
-
-_VFXCOLL_INLINE string string_array::get_at(index nIndex) const
-   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      return m_pData[nIndex]; }
-_VFXCOLL_INLINE void string_array::set_at(index nIndex, const char * newElement)
-   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      m_pData[nIndex] = newElement; }
-
-_VFXCOLL_INLINE void string_array::set_at(index nIndex, const string & newElement)
-   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      m_pData[nIndex] = newElement; }
-
-_VFXCOLL_INLINE string & string_array::element_at(index nIndex)
-   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      return m_pData[nIndex]; }
-
-_VFXCOLL_INLINE const string & string_array::element_at(index nIndex) const
-   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      return m_pData[nIndex]; }
-
-_VFXCOLL_INLINE const string* string_array::get_data() const
-   { return (const string*)m_pData; }
-_VFXCOLL_INLINE string* string_array::get_data()
-   { return (string*)m_pData; }
-_VFXCOLL_INLINE index string_array::add(const char * newElement)
-   { index nIndex = m_nSize;
-      set_at_grow(nIndex, newElement);
-      return nIndex; }
-
-_VFXCOLL_INLINE index string_array::add(const string & newElement)
-   { index nIndex = m_nSize;
-      set_at_grow(nIndex, newElement);
-      return nIndex; }
-
-_VFXCOLL_INLINE string string_array::operator[](index nIndex) const
-   { return get_at(nIndex); }
-_VFXCOLL_INLINE string & string_array::operator[](index nIndex)
-   { return element_at(nIndex); }
 
 static inline void ConstructElement(string* pNewData)
 {
@@ -178,9 +133,4 @@ static inline void ConstructElement(string* pNewData)
 static inline void DestructElement(string* pOldData)
 {
    pOldData->~string();
-}
-
-inline string & string_array::last_element()
-{
-   return element_at(get_upper_bound());
 }

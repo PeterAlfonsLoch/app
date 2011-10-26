@@ -1,7 +1,10 @@
 #include "StdAfx.h"
+#include <openssl/ssl.h>
+
 
 namespace sockets
 {
+
 
    tls_socket::tls_socket(::sockets::socket_handler_base& h) :
       ::ca::ca(h.get_app()),
@@ -21,4 +24,7 @@ namespace sockets
       InitializeContext(m_strCat, TLSv1_client_method());
    }
 
+
 } // namespace sockets
+
+

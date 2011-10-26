@@ -9,8 +9,8 @@ namespace gcom
    {
 
    #define HIDOUBLETOINT(d) (((d) > (int) (d)) ? ((int) (d)) + 1 : (int) (d))
-   
-   
+
+
       TransitionEffect::TransitionEffect(Main & view) :
          ::ca::ca(view.get_app()),
          Helper(view),
@@ -25,12 +25,12 @@ namespace gcom
          m_dwTransitionStepLastRunTime = GetTickCount();
          m_dwTransitionStepPostActive = GetTickCount();
          m_dwLastTransitionTime = GetTickCount();
-         
+
          m_dwLastTransitionTime = GetTickCount();
-         
+
          int iStart  = (int) TransitionEffectFirst;
          int iEnd    = (int) TransitionEffectLast;
-         
+
          //iStart   = (int) TransitionEffectFlyInTopBottom;
          //iEnd     = (int) TransitionEffectFlyInRightTop;
 
@@ -42,7 +42,7 @@ namespace gcom
 
          //iStart      = (int) TransitionEffectRadialUnveil;
          //iEnd      = (int) TransitionEffectRadialUnveil;
-         
+
 
          for(int i = iStart; i <= iEnd; i++)
          {
@@ -59,9 +59,9 @@ namespace gcom
       {
          m_eventThreadExit.ResetEvent();
          m_bDestroy = true;
-         ::WaitForSingleObject(m_eventThreadExit, 2000);
+         m_eventThreadExit.wait(seconds(2));
       }
-      
+
       void TransitionEffect::StepBack()
       {
          m_bActive = false;
@@ -149,63 +149,63 @@ namespace gcom
             m_iType = iTypeNew;
 
       }
-      
+
       void TransitionEffect::Initialize()
       {
          Main & main = HelperGetMain();
 
          Graphics & graphics = main.GetGraphics();
-         
+
          //ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-         
-         CSingleLock sl1Back(&graphics.m_mutex1Back, FALSE);
+
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
 //         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-         
-         
+
+
          main.OnAfterImageLoaded();
          m_bInitialized = true;
          m_bActive = true;
 
          HelperGetMain().DeferCheckLayout();
          m_eventStartTransition.SetEvent();
-         
+
       }
-      
+
       void TransitionEffect::_Final()
       {
          m_bActive = false;
-         
-         
+
+
          m_tool001.Finalize();
          m_bInitialized = false;
-         
+
       }
-      
+
       void TransitionEffect::Restart()
       {
 
          rect rectClient;
-         
+
          Main & main = HelperGetMain();
-         
+
          Interface & iface = main.GetInterface();
          iface.BackViewGetClientRect(rectClient);
-         
+
          int cx = rectClient.width();
          int cy = rectClient.height();
-         
+
          m_tool001.m_iStep = 1;
          m_tool001.m_iStepCount = -1;
          m_dwDelay = 200;
-         
+
          m_tool001.Initialize(m_etypea[m_iType], cx, cy, *this);
-         
+
          main.OnAfterImageLoaded();
-         
-         
+
+
       }
-      
+
       bool TransitionEffect::TestEnd()
       {
          if(m_tool001.m_iStepCount > 1
@@ -219,42 +219,42 @@ namespace gcom
             return true ;
 
          return false;
-         
+
       }
-      
+
       void TransitionEffect::End()
       {
          Main & main = HelperGetMain();
          main.ImageChangePostEvent(EventTransitionEffectFinished);
-         
+
       }
-      
+
       void TransitionEffect::Reset()
       {
          m_tool001.m_ia.remove_all();
          m_tool001.m_iStep = 0;
       }
-      
+
       void TransitionEffect::RunStepProcLevel2()
       {
-         
-         Main & viewinterface = HelperGetMain();
-         
+
+//         Main & viewinterface = HelperGetMain();
+
          keeper <bool> keepTransitionStepRunActive(
             &m_bTransitionStepRunActive,
             true,
             false,
    true);
 
-         
+
          int iRepeat = CalcRepeatCount();
 
-         
+
          rect_array recta;
 
          while(!TestEnd() && iRepeat > 0)
          {
-            RunStepProcLevel1(recta);  
+            RunStepProcLevel1(recta);
             iRepeat--;
          }
 
@@ -263,7 +263,7 @@ namespace gcom
          viewinterface.GetInterface().BackViewPostMessage(
             Interface::BackViewWparamUpdateScreenBaseRectArray,
             (LPARAM) precta);*/
-         
+
          m_dwLastTransitionTime = GetTickCount();
          m_dwTransitionStepLastRunTime = GetTickCount();
          m_bTransitionStepPostActive = false;
@@ -272,18 +272,18 @@ namespace gcom
          {
             End();
          }
-         
+
       }
-      
+
       void TransitionEffect::RunStepProcLevel1(rect_array & recta)
       {
-         
+
 //         Main & viewinterface = HelperGetMain();
-         
+
          if(TestEnd())
             return;
-         
-         
+
+
          if(m_tool001.m_iStep == 1
             && m_tool001.m_ia.get_size() <= 0)
          {
@@ -304,23 +304,23 @@ namespace gcom
                }
             }
          }
-         
+
          m_tool001.m_iStep++;
       }
-      
+
    /*   void TransitionEffect::RunStep_()
       {
          m_evRunStep.SetEvent();
       }*/
-      
-      
+
+
       void TransitionEffect::RenderBuffer(rect_array & recta)
       {
-         
+
          if(!m_bInitialized)
             Initialize();
 
-         
+
 
          Main & main = HelperGetMain();
 
@@ -329,24 +329,24 @@ namespace gcom
             main.GetVisualEffect().RenderBuffer(recta);
             return;
          }
-         
+
          Interface & iface = main.GetInterface();
          rect rectClient;
          iface.BackViewGetClientRect(rectClient);
-         
+
          int cx = rectClient.width();
          int cy = rectClient.height();
-         
+
          class imaging & imaging = System.imaging();
-         
+
          Graphics & graphics = main.GetGraphics();
 
          ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-         
+
 //         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-         
-         CSingleLock sl1Back(&graphics.m_mutex1Back, FALSE);
-         CSingleLock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
+
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
+         single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
          ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
          ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
@@ -364,18 +364,20 @@ namespace gcom
             End();
             return;
          }
-         
-         sl1Back.Lock();
-         sl2Buffer.Lock();
+
+         if(!sl1Back.lock(millis(184)))
+            return;
+         if(!sl2Buffer.lock(millis(184)))
+            return;
          dcBack.SelectClipRgn(NULL);
          dcBuffer.SelectClipRgn(NULL);
-         
+
          if(bitmapBuffer.get_os_data() == NULL)
          {
             End();
             return;
          }
-         
+
          BITMAP bmBack2;
          if(!bitmapBuffer.GetObject(sizeof(bmBack2), &bmBack2))
          {
@@ -412,9 +414,9 @@ namespace gcom
                   int iIndex = System.math().RandRange(
                            0,
                            m_tool001.m_pointa.get_size() - 1);
-                  
-                  
-                  
+
+
+
                   if(m_tool001.m_iStep <= 0)
                            break;;
                   point point;
@@ -440,12 +442,12 @@ namespace gcom
                   //dcBack.SelectClipRgn(NULL);
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(&rectUpdate, pointa, 4);
-                  
+
                   /*               if(lprect != NULL)
                   {
                   *lprect = rectUpdate;
                }*/
-                  
+
                   dcBack.BitBlt(
                      rectUpdate.left, rectUpdate.top,
                      rectUpdate.width(), rectUpdate.height(),
@@ -472,7 +474,7 @@ namespace gcom
                   int iIndex = System.math().RandRange(
                      0,
                      m_tool001.m_pointa.get_size() - 1);
-                  
+
                   if(m_tool001.m_iStep <= 0)
                      break;
                   point point;
@@ -496,12 +498,12 @@ namespace gcom
                      WINDING);
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(rectUpdate, pointa, 6);
-                  
+
                   /*               if(lprect != NULL)
                   {
                   *lprect = rectUpdate;
                      }*/
-                  
+
                   dcBack.BitBlt(
                      rectUpdate.left, rectUpdate.top,
                      rectUpdate.width(), rectUpdate.height(),
@@ -520,12 +522,12 @@ namespace gcom
                int finalY = 0;
                int finalW = cx;
                int finalH = cy;
-               
+
                const int tilesx = max(4, m_tool001.m_data.m_tiles.m_iTilesX);
                const int tilesy = max(4, m_tool001.m_data.m_tiles.m_iTilesY);
 //               const int tiles = max(16, m_tool001.m_data.m_tiles.m_iTiles);
-               
-               
+
+
                if(m_tool001.m_iStep > 0)
                {
                   if(m_tool001.m_ia.get_size() > 0)
@@ -533,9 +535,9 @@ namespace gcom
                      int iIndex = System.math().RandRange(
                         0,
                         m_tool001.m_ia.get_size() - 1);
-                     
+
                      //                  SendMessage(WM_USER, USERMESSAGE_WPARAM_RAND_LPINT, (LPARAM) &iRand);
-                     
+
                      /*                  int iIndex =
                      m_math.LinearMap(
                      0, m_tool001.m_ia.get_size() - 1,
@@ -554,7 +556,7 @@ namespace gcom
                      {
                         break;
                      }
-                     
+
                      int i = iStep % tilesx;
                      int j = iStep / tilesx;
                      double dUpdateH = (double) finalH / tilesy;
@@ -562,8 +564,8 @@ namespace gcom
                      double dX = dUpdateW * i;
                      double dY = dUpdateH * j;
                      rectUpdate.set(
-                        (int) dX, 
-                        (int) dY, 
+                        (int) dX,
+                        (int) dY,
                         (int) (dX + dUpdateW + 1.0),
                         (int) (dY + dUpdateH + 1.0));
                   }
@@ -575,7 +577,7 @@ namespace gcom
                   {
                   *lprect = rectUpdate;
                      }*/
-                  
+
                   ::ca::rgn_sp rgnClip(get_app());
                   if(m_etypea[m_iType] == TransitionEffectCirclypixelate_
                      || m_etypea[m_iType] == TransitionEffectEllipsoidalpixelate_)
@@ -608,11 +610,11 @@ namespace gcom
                         &dcBuffer,
                         rectUpdate.left, rectUpdate.top,
                         SRCCOPY);
-                     
+
                   }
                   recta.add(rectUpdate);
                }
-               
+
             }
             break;
          case TransitionEffectAccumulLinearFadingBottomTop:
@@ -624,14 +626,14 @@ namespace gcom
                int finalY = 0;
                int finalW = cx;
                int finalH = cy;
-               
+
                ::rect & rectUpdate = m_tool001.m_rect;
-               
+
                const int iTileCount = m_tool001.m_data.m_sliceframe.m_iTileCount;
                //            const int iFrameCount = m_tool001.m_data.m_sliceframe.m_iFrameCount;
                const int iTileMax = iTileCount - 1;
                int iGroupCount = m_tool001.m_data.m_sliceframe.m_iGroupCount;
-               
+
                int iIndex = m_tool001.m_iStep - 1;
                iIndex = min(iIndex, m_tool001.m_pointa.get_size() -1);
                if(iIndex >= 0)
@@ -643,9 +645,9 @@ namespace gcom
                   //int iGroup = iTile - iFrame;
                   double dRate = (double) iTile / iTileMax;
                   double dRateMinus = (double) (iTile - 1) / iTileMax;
-                  
-                  
-                  
+
+
+
                   //int iFrameComplement = iFrameCount - iFrame;
                   //int iFrameExp = iFrameComplement * iFrameComplement * iFrameComplement;
                   //int iFrameStd = iFrame * 2;
@@ -663,13 +665,13 @@ namespace gcom
                   (double) iFrameEx,
                   (double) 0, (double) iFrameCountEx);*/
                   //dAlpha /= 8.0;
-                  
+
                   //m_dwDelay = (DWORD) min(10, dAlpha * 10 / 255);
                 //  m_dwDelay = 0;
-                  
+
                   int iAlphaAccumul = 0;;
-                  
-                  
+
+
                   if(m_tool001.m_iStep > 0
                      && m_tool001.m_iStepCount > 0)
                   {
@@ -729,9 +731,9 @@ namespace gcom
                   {
                   *lprect = rectUpdate;
                }*/
-                  
-                  
-                  
+
+
+
                   if(iAlphaAccumul >= 0
                      && iAlphaAccumul <= 255)
                   {
@@ -797,19 +799,19 @@ namespace gcom
                int finalY = 0;
                int finalW = cx;
                int finalH = cy;
-               
+
                ::rect & rectUpdate = m_tool001.m_rect;
-               
+
                const int iTileCount = max(1, m_tool001.m_data.m_sliceframe.m_iTileCount);
                const int iFrameCount = max(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iTileMax = iTileCount;
-               
+
                int iIndex = m_tool001.m_iStep - 1;
                int iTile = iIndex % iTileCount;
                int iFrame = iIndex / iTileCount;
                double dRate = (double) iTile / iTileMax;
                double dRatePlus = (double) (iTile + 1) / iTileMax;
-               
+
                //int iFrameComplement = iFrameCount - iFrame;
                //int iFrameExp = iFrameComplement * iFrameComplement * iFrameComplement;
 //               int iFrameStd = iFrame * 2;
@@ -832,10 +834,10 @@ namespace gcom
                   double dMin = 4.0;
                   dAlpha = 140.0 * ::pow(iFrame / (iFrameCount - 1.0), dExp) + dMin;
                }
-               
+
 //               int iAlphaAccumul = 0;;
-               
-               
+
+
                if(m_tool001.m_iStep > 0
                   && m_tool001.m_iStepCount > 0)
                {
@@ -871,28 +873,28 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount -1;
-               
-               
-               
+
+
+
                int iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dRate = 1.0 - dFrameStd * dFrameStd;
                double dComplementRate = 1.0 - dRate;
-               
+
                rect rectBound;
                //graphics.GetFinalPlacement(rectBound);
                rectBound = rectClient;
-               
+
                rect rect(rectBound);
                Space space;
                space.Deviate(rect, rectBound, GetDirection(m_etypea[m_iType]), dComplementRate);
-               
+
                class rect rectIntersect;
                rectIntersect.intersect(rect, rectBound);
-               
+
                /*dcBack.FillSolidRect(               rectClient,
                   viewinterface.GetInterface().GetBackgroundColor());*/
                //dcBack.BitBlt(
@@ -909,7 +911,7 @@ namespace gcom
                   rectIntersect.top,
                   rectIntersect.width(),
                   rectIntersect.height(),
-                  &dcBuffer, 
+                  &dcBuffer,
                   rectIntersect.left - rect.left,
                   rectIntersect.top - rect.top,
                   SRCCOPY);
@@ -925,24 +927,24 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount;
-               
+
                int iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
                double dRate = 1.0 - dFrameStd * dFrameStd;
-               
+
                double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
-               
-               
+
+
                rect rect = rectClient;
-               
+
                Space space;
-               
+
                space.Slice(rect, rectClient, GetDirection(get_type()), dRate, dRatePlus);
-               
+
                dcBack.BitBlt(
                   rect.left,
                   rect.top,
@@ -964,10 +966,10 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
-               
+
                int iFrame = m_tool001.m_iStep - 1;
 //               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -975,18 +977,18 @@ namespace gcom
 //               double dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
                double dRate = 1.0 - dFrameStd * dFrameStd;
                double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
-               
+
                ::rect rectA;
                ::rect rectB;
                ::rect rectC;
 //               ::rect & rectUpdate = m_tool001.m_rect;
-               
-               
+
+
                Space space;
-               
+
                space.Slice(rectA, rectB, rectC, rectClient, GetDirection(get_type()), dRate, dRatePlus);
-               
-               
+
+
                dcBack.BitBlt(
                   rectA.left,
                   rectA.top,
@@ -1014,9 +1016,9 @@ namespace gcom
                   rectC.left,
                   rectC.top,
                   SRCCOPY);
-               recta.add(rectA);            
-               recta.add(rectB);            
-               recta.add(rectC);            
+               recta.add(rectA);
+               recta.add(rectB);
+               recta.add(rectC);
             }
             break;
          case TransitionEffectWipeCenter:
@@ -1025,10 +1027,10 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
-               
+
                int iFrame = m_tool001.m_iStep - 1;
 //               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1036,13 +1038,13 @@ namespace gcom
 //               double dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
                double dRate = 1.0 - dFrameStd * dFrameStd;
 //               double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
-               
+
                rect rect = rectClient;
-               
+
                Space space;
-               
+
                space.Scale(rect, dRate);
-               
+
                dcBack.BitBlt(
                   rect.left,
                   rect.top,
@@ -1061,10 +1063,10 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
-               
+
                int iFrame = m_tool001.m_iStep - 1;
 //               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1072,15 +1074,15 @@ namespace gcom
 //               double dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
                double dRate = 1.0 - dFrameStd * dFrameStd;
                double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
-               
+
                ::rect rectA;
                ::rect rectB;
                ::rect rectC;
                ::rect rectD;
                ::rect rect = rectClient;
-               
+
                Space space;
-               
+
                space.WipeIn(
                   rectA,
                   rectB,
@@ -1089,7 +1091,7 @@ namespace gcom
                   rect,
                   1.0 - dRatePlus,
                   1.0 - dRate);
-               
+
                dcBack.BitBlt(
                   rectA.left,
                   rectA.top,
@@ -1126,9 +1128,9 @@ namespace gcom
                   rectD.left,
                   rectD.top,
                   SRCCOPY);
-               recta.add(rectA);            
-               recta.add(rectB);            
-               recta.add(rectC);            
+               recta.add(rectA);
+               recta.add(rectB);
+               recta.add(rectC);
                recta.add(rectD);
             }
             break;
@@ -1145,28 +1147,28 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
-               
+
                int iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-               
+
                double dRate = dFrameStd * dFrameStd * dFrameStd;
-               
+
                rect rect = rectClient;
-               
+
                Space space;
-               
+
                space.Deviate(rect, rectClient, GetDirection(get_type()), dRate);
-               
+
                class rect rectIntersect;
-               
+
                rectIntersect.intersect(rect, rectClient);
-               
+
                dcBack.SetStretchBltMode(HALFTONE);
    //            dcBack.SetStretchBltMode(COLORONCOLOR);
-               
+
    /*            StretchDIBits(
                   dcBack,
                   rectIntersect.left,
@@ -1206,8 +1208,8 @@ namespace gcom
                   rectClient.height(),
                   SRCCOPY);*/
                dcBack.SelectClipRgn(NULL);
-               
-               recta.add(rectIntersect);            
+
+               recta.add(rectIntersect);
             }
             break;
          case TransitionEffectScaleCenter:
@@ -1216,23 +1218,23 @@ namespace gcom
 //               int finalY = 0;
 //               int finalW = cx;
 //               int finalH = cy;
-               
+
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
-               
+
                int iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-               
+
                double dRate = dFrameStd * dFrameStd;
-               
+
                rect rect = rectClient;
-               
+
                Space space;
-               
+
                space.Scale(rect, dRate);
-               
-               
-               
+
+
+
                dcBack.StretchBlt(
                   rectClient.left,
                   rectClient.top,
@@ -1245,7 +1247,7 @@ namespace gcom
                   rect.height(),
                   SRCCOPY);
                dcBack.SelectClipRgn(NULL);
-               recta.add(rectClient);            
+               recta.add(rectClient);
             }
             break;
          case TransitionEffectpixelate_BottomTop:
@@ -1258,10 +1260,10 @@ namespace gcom
                int finalW = cx;
                int finalH = cy;
 
-               
-               
+
+
                ::rect & rectUpdate = m_tool001.m_rect;
-               
+
                const int c1 = m_tool001.m_data.m_alphapixelate.m_c1;
 //               const int c2 = m_tool001.m_data.m_alphapixelate.m_c2;
 
@@ -1294,13 +1296,13 @@ namespace gcom
                {
                   double dRateMinus = (double) c / (double) c1;
                   double dRate = (double) nextc / (double) c1;
-                  
+
 
                   double dAlpha;
-                  
+
                   //dAlpha = 255.0 * (iSizeIndex + 1) / m_tool001.m_ia.get_size();
-                  
-                  
+
+
                   {
                      double dBeginSpanTime = 0.30;
                      double dEndSpanTime = 0.05;
@@ -1308,7 +1310,7 @@ namespace gcom
                      double dRate = 8.0;
                      double dMiddle = 0.87;
                      double dMiddleAlpha = 107.0;
-                     
+
                      if(dTime < dMiddle)
                      {
                         if(dTime < dBeginSpanTime)
@@ -1343,7 +1345,7 @@ namespace gcom
                      && yPixelMod > 0)
                   {
                      m_tool001.m_data.m_alphapixelate.m_iSizeIndex = iSizeIndex;
-                     
+
                      ::ca::dib * pdib2 = graphics.GetDib(2);
 
                      pdib->create(xPixelMod, yPixelMod);
@@ -1360,7 +1362,7 @@ namespace gcom
                         0, 0,
                         cx, cy,
                         SRCCOPY);
-                     
+
                      pdib2->get_graphics()->StretchBlt(
                         0, 0,
                         xPixelMod, yPixelMod,
@@ -1382,13 +1384,13 @@ namespace gcom
 
                      imaging.bitmap_blend(
                         pdib->get_graphics(),
-                        null_point(), 
+                        null_point(),
                         size(xPixelMod, yPixelMod),
                         pdib2->get_graphics(),
-                        null_point(), 
+                        null_point(),
                         (byte)(255.0 - dAlpha));
                   }
-                  
+
                   if(m_tool001.m_iStep > 0
                      && m_tool001.m_iStepCount > 0)
                   {
@@ -1405,7 +1407,7 @@ namespace gcom
                   {
                      rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
                   }
-                  
+
                   dcBack.SetStretchBltMode(HALFTONE);
                   dcBack.StretchBlt(
                      rectUpdate.left,
@@ -1444,14 +1446,14 @@ namespace gcom
 
                   int iIndex = m_tool001.m_iStep - 1;
                   m_tool001.m_data.m_radialunveil.m_iRadius += m_tool001.m_data.m_radialunveil.m_iRadiusIncrement;
-                  
+
 
                   m_dwDelay = m_tool001.m_pointa[iIndex].y;
 
                   int r = m_tool001.m_pointa[iIndex].x;
                   int d = r * 2;
-                     
-                  
+
+
 
                   int xm = cx / 2;
                   int ym = cy / 2;
@@ -1492,7 +1494,7 @@ namespace gcom
                      hWindow,
                      pdibT2,
                      xOff, yOff,
-                     pdibT2->width() - xOff * 2, 
+                     pdibT2->width() - xOff * 2,
                      pdibT2->height() - yOff * 2,
                      DDF_HALFTONE);
 
@@ -1503,10 +1505,10 @@ namespace gcom
                      wWindow, hWindow,
                      pdibT2,
                      xOff, yOff,
-                     pdibT2->width() - 2 * xOff -1, 
+                     pdibT2->width() - 2 * xOff -1,
                      pdibT2->width() - 2 * yOff -1, 0);*/
 
-                  
+
                   /*dc2.BitBlt(0, 0, wWindow, hWindow, pdib1->get_graphics(), 0, 0, SRCCOPY);
                   dc2.BitBlt(0, 0, wWindow, hWindow, NULL, 0, 0, DSTINVERT);
 
@@ -1518,7 +1520,7 @@ namespace gcom
                      0, 0,
                      wWindow, hWindow,
                      xOff, yOff,
-                     pdibT2->width() - 2 * xOff, 
+                     pdibT2->width() - 2 * xOff,
                      pdibT2->height() - 2 * yOff,
                      pdibT2->m_pcolorref,
                      &pdibT2->m_Info,
@@ -1536,19 +1538,19 @@ namespace gcom
                      &pdibBuffer->m_Info,
                      DIB_RGB_COLORS,
                      SRCPAINT);*/
-                  
 
-      
+
+
                   //dcBack.BitBlt(x1, y1, wWindow, hWindow, &dcFrame1, x1, y1, SRCCOPY);
-                  //dcBack.BitBlt(x1, y1, wWindow, hWindow, pdib1->get_graphics(), 
+                  //dcBack.BitBlt(x1, y1, wWindow, hWindow, pdib1->get_graphics(),
                     // x1, y1, SRCCOPY);
 
-                  //dcBack.BitBlt(x1, y1, wWindow, hWindow, pdib1->get_graphics(), 
+                  //dcBack.BitBlt(x1, y1, wWindow, hWindow, pdib1->get_graphics(),
                     // x1, y1, SRCCOPY);
 
                   imaging.bitmap_blend(
                      &dcBack,
-                     point(x1, y1), 
+                     point(x1, y1),
                      size(wWindow, hWindow),
                      &dcBuffer,
                      point(x1, y1),
@@ -1569,19 +1571,19 @@ namespace gcom
                   recta.add(rectUpdate);
                }
                break;
-            
+
          }
-         
-         CSingleLock sl(&graphics.m_mutex4Transfer, TRUE);
+
+         single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
          ::ca::rgn_sp rgnTransferClip(get_app());
          rgnTransferClip->CreateRectRgnIndirect(graphics.m_rectFinalPlacement);
          dcTransfer.SelectClipRgn(rgnTransferClip);
-         
+
          for(int i = 0; i < recta.get_size(); i++)
          {
             ::rect rectTransfer = recta[i];
-   
+
      //       drawdib.draw(
        /*        dcTransfer,
                rectTransfer.left,
@@ -1604,7 +1606,7 @@ namespace gcom
          }
          dcTransfer.SelectClipRgn(NULL);
       }
-         
+
       int TransitionEffect::CalcRepeatCount()
       {
          int iStepRepeatCount = m_tool001.m_iStepRepeatCount;
@@ -1631,31 +1633,31 @@ namespace gcom
             break;
          default:
             break;
-            
+
          }
          iStepRepeatCount = max(1, iStepRepeatCount);
          return iStepRepeatCount;
-         
+
       }
-      
+
       bool TransitionEffect::IsActive()
       {
          return m_tool001.m_iStep > 0;
       }
-      
+
       void TransitionEffect::OnNoPrecisionThousandMillisTimer()
       {
          if(m_pthreadRunStep == NULL)
             m_pthreadRunStep = CreateRunStepThread();
       }
-      
-      
+
+
       void TransitionEffect::OnTimer()
       {
          return;
 
          Main & main = HelperGetMain();
-         
+
          DWORD dwTime = GetTickCount();
          if(dwTime - m_dwTransitionStepLastRunTime >= 5 + m_dwDelay
             && !m_bTransitionStepRunActive
@@ -1664,19 +1666,19 @@ namespace gcom
          {
          /*            if(dwTime - m_dwTransitionStepLastRunTime >= 200)
          {
-               TRACE("dwTime - m_dwTransitionStepLastRunTime >= 200 %d\n",  dwTime - m_dwTransitionStepLastRunTime); 
+               TRACE("dwTime - m_dwTransitionStepLastRunTime >= 200 %d\n",  dwTime - m_dwTransitionStepLastRunTime);
                }
                if(!m_bTransitionStepRunActive)
                {
-               TRACE("!m_bTransitionStepRunActive\n"); 
+               TRACE("!m_bTransitionStepRunActive\n");
                }
                if(!m_bTransitionStepPostActive)
                {
-               TRACE("!m_bTransitionStepPostActive\n"); 
+               TRACE("!m_bTransitionStepPostActive\n");
                }
                if(dwTime - m_dwTransitionStepPostActive >= 2000)
                {
-               TRACE("!m_bTransitionStepPostActive % d\n", dwTime - m_dwTransitionStepPostActive); 
+               TRACE("!m_bTransitionStepPostActive % d\n", dwTime - m_dwTransitionStepPostActive);
          }*/
             m_bTransitionStepPostActive = true;
             m_dwTransitionStepPostActive = GetTickCount();
@@ -1686,25 +1688,25 @@ namespace gcom
          {
             ASSERT(TRUE);
          }
-         
+
       }
-      
-      
+
+
       ::radix::thread * TransitionEffect::CreateRunStepThread()
       {
          return AfxBeginThread(get_app(), ThreadProcRunStep, this, THREAD_PRIORITY_NORMAL, 0, 0, NULL);
       }
-      
+
       void TransitionEffect::_Init()
       {
          Main & main = HelperGetMain();
 
          Graphics & graphics = main.GetGraphics();
-      
+
          //ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-      
-         CSingleLock sl1Back(&graphics.m_mutex1Back, FALSE);
-         
+
+         single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
+
 //         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
@@ -1713,16 +1715,16 @@ namespace gcom
 
          rect rectClient;
          iface.BackViewGetClientRect(rectClient);
-      
+
          int cx = rectClient.width();
          int cy = rectClient.height();
 
-         CSingleLock sl(&graphics.m_mutex4Transfer, TRUE);
+         single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          if(dcTransfer.get_os_data() != NULL)
          {
             dcFrame1.BitBlt(0, 0, cx, cy, &dcTransfer, 0, 0, SRCCOPY);
          }
-         sl.Unlock();
+         sl.unlock();
          //graphics.GetDib(_graphics::DibFrame1)->from(dcBack, (HBITMAP) *dcBack.GetCurrentBitmap());
 
          m_tool001.m_iStep = 1;
@@ -1731,12 +1733,12 @@ namespace gcom
 
          m_tool001.Initialize(get_type(), cx, cy, *this);
       }
-      
+
       UINT AFX_CDECL TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
          srand((unsigned int) time(NULL));
-         CEvent event;
+         event event;
          MMRESULT mmr;
          int iResolution = 25;
          try
@@ -1747,7 +1749,7 @@ namespace gcom
                {
                   if(peffect->m_bDestroy)
                      break;
-                  peffect->m_eventStartTransition.Lock(500);
+                  peffect->m_eventStartTransition.wait(seconds(0.5));
                   peffect->m_eventStartTransition.ResetEvent();
                }
                if(peffect->m_bDestroy)
@@ -1765,8 +1767,8 @@ namespace gcom
                   mmr = timeSetEvent(
                      max(natural(iResolution), peffect->m_dwDelay),
                      iResolution,  // 5 ms resolution
-                     (LPTIMECALLBACK) (HANDLE) event,  
-                     NULL,      
+                     (LPTIMECALLBACK) (HANDLE) event,
+                     NULL,
                      TIME_ONESHOT | TIME_CALLBACK_EVENT_SET);
 
                   peffect->RunStepProcLevel2();
@@ -1774,7 +1776,7 @@ namespace gcom
                   if(peffect->TestEnd())
                      break;
 
-                  event.Lock(3000);
+                  event.wait(seconds(3));
                   event.ResetEvent();
                }
                if(peffect->m_bDestroy)
@@ -1801,7 +1803,7 @@ namespace gcom
 
       ETransitionEffect TransitionEffect::get_type()
       {
-         if(m_iType < 0 
+         if(m_iType < 0
             || m_iType >= m_etypea.get_size())
             return TransitionEffectInvalid;
          return m_etypea[m_iType];
@@ -1830,9 +1832,9 @@ namespace gcom
          default:
             return ::gcom::AlignNone;
          }
-         
+
       }
-      
+
       EDirection TransitionEffect::GetDirection(ETransitionEffect eeffect)
       {
          switch(eeffect)

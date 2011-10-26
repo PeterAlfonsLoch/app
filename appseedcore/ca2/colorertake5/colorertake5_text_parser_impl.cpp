@@ -298,7 +298,7 @@ namespace colorertake5
             /*        for (i = 0; i < match.cnMatch; i++)
             addRegion(gy, match.ns[i], match.ne[i], schemeNode->regionsn[i]);*/
 
-            /* skips regexp if it has zero GetLength */
+            /* skips regexp if it has zero get_length */
             if (match.e[0] == match.s[0]) break;
             gx = match.e[0];
             return MATCH_RE;
@@ -363,7 +363,7 @@ namespace colorertake5
                leaveScheme(gy, &matchend, schemeNode);
             };
             gx = matchend.e[0];
-            /* (is_empty-block.test) Check if the consumed scheme is zero-GetLength */
+            /* (is_empty-block.test) Check if the consumed scheme is zero-get_length */
             zeroLength = (match.s[0] == matchend.e[0] && ogy == gy);
 
             //        schemeNode->end->setBackTrace(o_str, o_match);
@@ -390,7 +390,7 @@ namespace colorertake5
             if (ssubst != schemeNode->scheme){
                vtlist->popvirt();
             }
-            /* (is_empty-block.test) skips block if it has zero GetLength and spread over single line */
+            /* (is_empty-block.test) skips block if it has zero get_length and spread over single line */
             if (zeroLength) break;
 
             return MATCH_SCHEME;
@@ -430,7 +430,7 @@ namespace colorertake5
             invisibleSchemesFilled = true;
             fillInvisibleSchemes(parent);
          };
-         // updates GetLength
+         // updates get_length
          if (len < 0) len = str.get_length();
          endLine = gy;
 
@@ -511,7 +511,7 @@ namespace colorertake5
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

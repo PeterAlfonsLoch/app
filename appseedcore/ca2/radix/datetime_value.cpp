@@ -77,11 +77,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               pcaapp->m_psystem->log().trace("strtotime: invalid char +");
+               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char +");
             }
             else if(bMinus)
             {
-               pcaapp->m_psystem->log().trace("strtotime: invalid char + on Minus state");
+               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char + on Minus state");
             }
             bAdd = true;
             bMinus = false;
@@ -91,11 +91,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               pcaapp->m_psystem->log().trace("strtotime: invalid char - on add state");
+               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char - on add state");
             }
             else if(bMinus)
             {
-               pcaapp->m_psystem->log().trace("strtotime: invalid char - on Minus state");
+               Sys(pcaapp->m_psystem).log().trace("strtotime: invalid char - on Minus state");
             }
             bAdd = false;
             bMinus = true;
@@ -123,7 +123,7 @@ namespace datetime
       gen::property_set set;
       bool bBaseTime = false;
       int iStart = 0;
-      
+
       // if is international date time 2009-04-31 21:45:59
       if(str.get_length() >= 19)
       {
@@ -134,7 +134,7 @@ namespace datetime
          && str.Mid(16, 1) == ":")
          {
             bBaseTime = true;
-            pcaapp->m_psystem->datetime().international().parse_str(str, set);
+            Sys(pcaapp->m_psystem).datetime().international().parse_str(str, set);
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = gen::str::get_word(strWord, " ");
@@ -174,7 +174,7 @@ namespace datetime
          && str.Mid(7, 1) == "-")
          {
             bBaseTime = true;
-            pcaapp->m_psystem->datetime().international().parse_str(str, set);
+            Sys(pcaapp->m_psystem).datetime().international().parse_str(str, set);
             time = class time(
                set["year"],
                set["month"],
@@ -218,16 +218,16 @@ namespace datetime
          int iCount = 0;
          bool bFirst = false;
          if(i1 != i2
-         && i1 >= 1 && i1 <= 12 
-         && i2 >= 1 && i2 <= 
-            pcaapp->m_psystem->datetime().get_month_day_count(time.GetYear(), i1))
+         && i1 >= 1 && i1 <= 12
+         && i2 >= 1 && i2 <=
+            Sys(pcaapp->m_psystem).datetime().get_month_day_count(time.GetYear(), i1))
          {
             bFirst = true;
             iCount++;
          }
-         if(i2 >= 1 && i2 <= 12 
+         if(i2 >= 1 && i2 <= 12
          && i1 >= 1 && i1 <=
-            pcaapp->m_psystem->datetime().get_month_day_count(time.GetYear(), i2))
+            Sys(pcaapp->m_psystem).datetime().get_month_day_count(time.GetYear(), i2))
          {
             iCount++;
          }
@@ -292,7 +292,7 @@ namespace datetime
    {
       return m_iYear + m_iMonth / 12.0 +  (m_iDay + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0)) / 365.2425;
    }
-   
+
    double value::get_months() const
    {
       return m_iYear / 12.0 + m_iMonth +  12.0 * (m_iDay + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0)) / 365.2425;
@@ -445,20 +445,20 @@ namespace datetime
             if(time.GetHour() == 0 && time.GetMinute() == 0)
             {
                str = time.Format("%Y-");
-               pcaapp->m_psystem->datetime().get_month_str(pcontext, time.GetMonth());
+               Sys(pcaapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
                str += time.Format("-%d");
             }
             else
             {
                str = time.Format("%Y-");
-               str += pcaapp->m_psystem->datetime().get_month_str(pcontext, time.GetMonth());
+               str += Sys(pcaapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
                str += time.Format("-%d %H:%M");
             }
          }
          else
          {
             str = time.Format("%Y-");
-            str += pcaapp->m_psystem->datetime().get_month_str(pcontext, time.GetMonth());
+            str += Sys(pcaapp->m_psystem).datetime().get_month_str(pcontext, time.GetMonth());
             str += time.Format("-%d %H:%M:%S");
          }
       }
@@ -558,7 +558,7 @@ datetime::value operator * (const datetime::value & val1, double d)
    if(val1.m_bSpan)
    {
       val.m_bSpan = true;
-      double dTotalSecond 
+      double dTotalSecond
          = (val1.m_iSecond + (val1.m_iMinute + (val1.m_iHour + (val1.m_iDay * 24.0)) * 60.0) * 60.0) * d;
       double dTotalMinute = dTotalSecond / 60.0;
       double dTotalHour = dTotalMinute / 60.0;
@@ -581,10 +581,10 @@ datetime::value operator / (const datetime::value & val1, double d)
    if(val1.m_bSpan)
    {
       val.m_bSpan = true;
-      double dTotalSecond 
-         = (val1.m_iSecond 
-         + (val1.m_iMinute 
-         + (val1.m_iHour 
+      double dTotalSecond
+         = (val1.m_iSecond
+         + (val1.m_iMinute
+         + (val1.m_iHour
          + (val1.m_iDay * 24.0)) * 60.0) * 60.0) / d;
       double dTotalMinute = dTotalSecond / 60.0;
       double dTotalHour = dTotalMinute / 60.0;

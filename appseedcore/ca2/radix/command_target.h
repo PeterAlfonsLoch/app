@@ -68,8 +68,8 @@ public:
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
             return false;
-         return pid->m_id.is_number() 
-             && pid->m_id >= m_iStart 
+         return pid->m_id.is_number()
+             && pid->m_id >= m_iStart
              && pid->m_id <= m_iEnd;
       };
 
@@ -92,17 +92,17 @@ public:
 
 
    template < class T >
-   bool connect_update_cmd_ui(const char * pszId, void (T::*pfn)(gen::signal_object *)) 
+   bool connect_update_cmd_ui(const char * pszId, void (T::*pfn)(gen::signal_object *))
    {
       return connect_update_cmd_ui(id(pszId), pfn);
    }
    template < class T >
-   bool connect_command(const char * pszId, void (T::*pfn)(gen::signal_object *)) 
+   bool connect_command(const char * pszId, void (T::*pfn)(gen::signal_object *))
    {
       return connect_command(id(pszId), pfn);
    }
    template < class T >
-   bool connect_update_cmd_ui(id id, void (T::*pfn)(gen::signal_object *)) 
+   bool connect_update_cmd_ui(id id, void (T::*pfn)(gen::signal_object *))
    {
       command_signalid signalid;
       gen::signalid * pid;
@@ -111,7 +111,7 @@ public:
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command(id id, void (T::*pfn)(gen::signal_object *)) 
+   bool connect_command(id id, void (T::*pfn)(gen::signal_object *))
    {
       command_signalid signalid;
       gen::signalid * pid;
@@ -120,9 +120,9 @@ public:
       return m_dispatchCommand.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_update_cmd_range_ui(int iStart, int iEnd, void (T::*pfn)(gen::signal_object *)) 
+   bool connect_update_cmd_range_ui(int iStart, int iEnd, void (T::*pfn)(gen::signal_object *))
    {
-      command_signalid signalrange;
+      command_signalrange signalrange;
       gen::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
@@ -130,7 +130,7 @@ public:
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command_range(int iStart, int iEnd, void (T::*pfn)(gen::signal_object *)) 
+   bool connect_command_range(int iStart, int iEnd, void (T::*pfn)(gen::signal_object *))
    {
       command_signalrange signalrange;
       gen::signalid * pid;
@@ -155,7 +155,7 @@ public:
 
 
 
-class CLASS_DECL_ca command_target : 
+class CLASS_DECL_ca command_target :
    virtual public gen::signalizable,
    virtual public command_target_interface
 {
@@ -176,7 +176,7 @@ public:
    // route and dispatch standard command message types
    //   (more sophisticated than OnCommand)
 //   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-      
+
 
 // Implementation
 public:
@@ -254,7 +254,7 @@ public: // re-implementations only
 // special cmd_ui derived classes are used for other UI paradigms
 //  like toolbar buttons and status indicators
 
-// pointer to afx_msg member function
+// pointer to member function
 #ifndef AFX_MSG_CALL
 #define AFX_MSG_CALL
 #endif
@@ -316,9 +316,14 @@ enum DSCREASON
 
 /////////////////////////////////////////////////////////////////////////////
 // ::ca::window implementation
-
-// structures (see afxext.h)
-class create_context;      // context for creating things
+namespace user
+{
+   class create_context;      // context for creating user interface things
+}
+namespace ca
+{
+   class create_context;      // context for creating things
+}
 struct CPrintInfo;          // print preview customization info
 
 /////////////////////////////////////////////////////////////////////////////

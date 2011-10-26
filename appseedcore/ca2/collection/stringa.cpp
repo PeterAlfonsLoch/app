@@ -2,7 +2,7 @@
 #include "radix/BSTR.h"
 
 // return string length or -1 if UNICODE string is found in the archive
-AFX_STATIC UINT _AfxReadStringLength(ex1::input_stream & ar);
+AFX_STATIC UINT _AfxReadStringLength(ex1::byte_input_stream & ar);
 
 stringa::stringa(::ca::application * papp) :
    ca(papp)
@@ -147,12 +147,12 @@ count stringa::add_unique_ci(const string_array & stra)
 index stringa::find_first_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(element_at(find).CompareNoCase(lpcsz) == 0)
+      if(this->element_at(find).CompareNoCase(lpcsz) == 0)
          return find;
    }
    return -1;
@@ -161,12 +161,12 @@ index stringa::find_first_ci(const char * lpcsz, index find, index last) const
 index stringa::find_first(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(element_at(find).Compare(lpcsz) == 0)
+      if(this->element_at(find).Compare(lpcsz) == 0)
          return find;
    }
    return -1;
@@ -175,12 +175,12 @@ index stringa::find_first(const char * lpcsz, index find, index last) const
 index stringa::find_first_begins_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins_ci(element_at(find), lpcsz))
+      if(gen::str::begins_ci(this->element_at(find), lpcsz))
          return find;
    }
    return -1;
@@ -189,12 +189,12 @@ index stringa::find_first_begins_ci(const char * lpcsz, index find, index last) 
 index stringa::find_first_begins(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins(element_at(find), lpcsz))
+      if(gen::str::begins(this->element_at(find), lpcsz))
          return find;
    }
    return -1;
@@ -203,12 +203,12 @@ index stringa::find_first_begins(const char * lpcsz, index find, index last) con
 index stringa::str_find_first_begins_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins_ci(lpcsz, element_at(find)))
+      if(gen::str::begins_ci(lpcsz, this->element_at(find)))
          return find;
    }
    return -1;
@@ -217,12 +217,12 @@ index stringa::str_find_first_begins_ci(const char * lpcsz, index find, index la
 index stringa::str_find_first_begins(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins(lpcsz, element_at(find)))
+      if(gen::str::begins(lpcsz, this->element_at(find)))
          return find;
    }
    return -1;
@@ -334,9 +334,9 @@ index stringa::add_normal(const char * lpcsz)
 count stringa::remove_empty()
 {
    count count = 0;
-   for(index i = 0; i < get_size();)
+   for(index i = 0; i < this->get_size();)
    {
-      if(element_at(i).is_empty())
+      if(this->element_at(i).is_empty())
       {
          remove_at(i);
          count++;
@@ -357,7 +357,7 @@ LPTSTR stringa::GetFormatV004()
 
     for(i = 0; i < m_nSize; i++)
     {
-        iTotalLength += element_at(i).get_length();
+        iTotalLength += this->element_at(i).get_length();
         iTotalLength++;
     }
 
@@ -377,14 +377,14 @@ LPTSTR stringa::GetFormatV004()
     LPTSTR lpszN = lpsz;
 
 //    size_t sizet;
-    
+
     int iLength;
 
-    
+
     for(i = 0; i < m_nSize; i++)
     {
-        string * pstr = &element_at(i);
-        
+        string * pstr = &this->element_at(i);
+
         iLength = pstr->get_length();
         strcat_s(lpszN, iLength, *pstr);
 
@@ -405,7 +405,7 @@ LPTSTR stringa::GetFormatV004()
 
     return lpsz;
 
-    
+
 
 }
 
@@ -429,15 +429,15 @@ stringa & stringa::operator =(const string_array & tokena)
       str = lpcszPrefix;
    if(str.is_empty())
    {
-      return get_size();
+      return this->get_size();
    }
-   else 
+   else
    {
       int iCount = 0;
       int iLen = str.get_length();
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         string & strLeft = element_at(i).Left(iLen);
+         string & strLeft = this->element_at(i).Left(iLen);
          if(strLeft.get_length() == iLen)
          {
             if(CompareNoCase(strLeft, str) == 0)
@@ -451,9 +451,9 @@ stringa & stringa::operator =(const string_array & tokena)
 }*/
 
 /*void stringa::ExtractPrefixNoSortNoCase(
-   stringa &stra, 
-   const char * lpcsz, 
-   int iLength, 
+   stringa &stra,
+   const char * lpcsz,
+   int iLength,
    int iMinLength)
 {
    ASSERT(iLength >= iMinLength);
@@ -475,7 +475,7 @@ stringa & stringa::operator =(const string_array & tokena)
          }
       }
    }
-   else 
+   else
    {
       int iLen = max(str.get_length(), iMinLength);
       for(int i = 0; i < stra.get_size(); i++)
@@ -498,9 +498,9 @@ stringa & stringa::operator =(const string_array & tokena)
 
 int stringa::FindFirstNoSortNoCase(const char * lpcsz)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(CompareNoCase(lpcsz, element_at(i)) == 0)
+      if(CompareNoCase(lpcsz, this->element_at(i)) == 0)
       {
          return i;
       }
@@ -510,30 +510,30 @@ int stringa::FindFirstNoSortNoCase(const char * lpcsz)
 */
 
 
-void stringa::write(ex1::output_stream & ostream)
+void stringa::write(ex1::byte_output_stream & ostream)
 {
    ostream << m_nSize;
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      ostream << element_at(i);
+      ostream << this->element_at(i);
    }
 }
 
-void stringa::read(ex1::input_stream & istream)
+void stringa::read(ex1::byte_input_stream & istream)
 {
    count iSize;
    istream >> iSize;
 
    set_size(iSize);
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      istream >> element_at(i);
+      istream >> this->element_at(i);
    }
 }
 
 
 
-ex1::input_stream & operator>>(ex1::input_stream & ar, string & string)
+ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string)
 {
    int nConvert = 0;   // if we get UNICODE, convert
 
@@ -582,7 +582,7 @@ ex1::input_stream & operator>>(ex1::input_stream & ar, string & string)
 //      if >= 0xff characters: 0xff, len:WORD, char chars
 //      if >= 0xfffe characters: 0xff, 0xffff, len:DWORD, TCHARs
 
-ex1::output_stream & operator<<(ex1::output_stream & ar, const string & string)
+ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string & string)
 {
     if (string.get_length() < 255)
    {
@@ -605,7 +605,7 @@ ex1::output_stream & operator<<(ex1::output_stream & ar, const string & string)
 }
 
 // return string length or -1 if UNICODE string is found in the archive
-AFX_STATIC UINT _AfxReadStringLength(ex1::input_stream & ar)
+AFX_STATIC UINT _AfxReadStringLength(ex1::byte_input_stream & ar)
 {
    DWORD nNewLen;
 
@@ -641,12 +641,12 @@ void stringa::implode(string & str, const char * lpcszSeparator, index start, co
    string strSeparator(lpcszSeparator);
    if(start < 0)
    {
-      start += get_size();
+      start += this->get_size();
    }
    index last;
    if(count < 0)
    {
-      last = get_size() + count;
+      last = this->get_size() + count;
    }
    else
    {
@@ -658,7 +658,7 @@ void stringa::implode(string & str, const char * lpcszSeparator, index start, co
       {
          str += strSeparator;
       }
-      str += element_at(i);
+      str += this->element_at(i);
    }
 }
 
@@ -676,12 +676,12 @@ void stringa::reverse_implode(string & str, const char * lpcszSeparator, index s
    string strSeparator(lpcszSeparator);
    if(start < 0)
    {
-      start += get_size();
+      start += this->get_size();
    }
    index last;
    if(count < 0)
    {
-      last = get_size() + count;
+      last = this->get_size() + count;
    }
    else
    {
@@ -693,7 +693,7 @@ void stringa::reverse_implode(string & str, const char * lpcszSeparator, index s
       {
          str += strSeparator;
       }
-      str += element_at(i);
+      str += this->element_at(i);
    }
 }
 
@@ -713,9 +713,9 @@ void stringa::explode(const char * lpcszSeparator, const char * psz)
 
 void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).replace(lpszSearch, lpszReplace);
+      this->element_at(i).replace(lpszSearch, lpszReplace);
    }
 }
 
@@ -726,14 +726,14 @@ void stringa::surround(const char * pszPrefix, const char * pszSuffix, int iStar
    string strSuffix(pszSuffix);
    int iEnd;
    if(iStart < 0)
-      iStart = get_size() + iStart;
+      iStart = this->get_size() + iStart;
    if(iCount < 0)
-      iEnd = get_size() + iCount;
-   else 
+      iEnd = this->get_size() + iCount;
+   else
       iEnd = iStart + iCount - 1;
    for(int i = iStart; i <= iEnd; i++)
    {
-      element_at(i) = strPrefix + element_at(i) + strSuffix;
+      this->element_at(i) = strPrefix + this->element_at(i) + strSuffix;
    }
 }
 
@@ -814,14 +814,14 @@ count stringa::preferred(stringa & stra)
 string stringa::pop(index i)
 {
    i = get_upper_bound(i);
-   string strRet = element_at(i);
+   string strRet = this->element_at(i);
    remove_at(i);
    return strRet;
 }
 
 void stringa::slice(stringa & stra, index iOffset)
 {
-   slice(stra, iOffset, get_count() - 1 - iOffset);
+   slice(stra, iOffset, this->get_count() - 1 - iOffset);
 }
 
 void stringa::slice(stringa & stra, index iOffset, count count)
@@ -829,7 +829,7 @@ void stringa::slice(stringa & stra, index iOffset, count count)
    index iUpperBound = get_upper_bound(iOffset, count);
    for(index i = get_lower_bound(iOffset); i <= iUpperBound; i++)
    {
-      stra.add(element_at(i));
+      stra.add(this->element_at(i));
    }
 }
 
@@ -847,7 +847,7 @@ void stringa::remove(index iOffset, count count)
 
 void stringa::splice(const stringa & stra, index iOffset)
 {
-   splice(stra, iOffset, get_count() - 1 - iOffset);
+   splice(stra, iOffset, this->get_count() - 1 - iOffset);
 }
 
 void stringa::splice(const stringa & stra, index iOffset, count count)
@@ -860,7 +860,7 @@ void stringa::splice(const stringa & stra, index iOffset, count count)
 
 void stringa::splice(const stringa & stra, index iOffset, stringa & straRemoved)
 {
-   splice(stra, iOffset, get_count() - 1 - iOffset, straRemoved);
+   splice(stra, iOffset, this->get_count() - 1 - iOffset, straRemoved);
 }
 
 void stringa::splice(const stringa & stra, index iOffset, count count, stringa & straRemoved)
@@ -872,20 +872,20 @@ void stringa::splice(const stringa & stra, index iOffset, count count, stringa &
 
 bool stringa::is_empty(count countMinimum)
 {
-   return get_size() < countMinimum;
+   return this->get_size() < countMinimum;
 }
 
 bool stringa::has_elements(count countMinimum)
 {
-   return get_count() >= countMinimum;
+   return this->get_count() >= countMinimum;
 }
 
 
 count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, index last)
 {
    if(last < 0)
-      last = get_size() + last;
-   if(last >= get_size())
+      last = this->get_size() + last;
+   if(last >= this->get_size())
       last = get_upper_bound();
    if(first < 0)
       first = 0;
@@ -897,7 +897,7 @@ count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, in
       iFind = find_first_begins_ci(lpcsz, i, last);
       if(iFind < 0)
          return count;
-      stra.add(element_at(iFind));
+      stra.add(this->element_at(iFind));
       i = iFind + 1;
       count++;
    }
@@ -906,8 +906,8 @@ count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, in
 count stringa::filter_begins_ci(const char * lpcsz, index first, index last)
 {
    if(last < 0)
-      last = get_size() + last;
-   if(last >= get_size())
+      last = this->get_size() + last;
+   if(last >= this->get_size())
       last = get_upper_bound();
    if(first < 0)
       first = 0;
@@ -926,38 +926,55 @@ count stringa::filter_begins_ci(const char * lpcsz, index first, index last)
       last -= iFind - i;
       i++;
       count++;
-      
+
    }
 }
 
 index stringa::get_random_index() const
 {
-   if(get_size() <= 0)
+   if(this->get_size() <= 0)
       return -1;
    return System.math().RandRange(0, get_upper_bound());
 }
 
 string & stringa::random_element()
 {
-   if(get_size() <= 0)
+   if(this->get_size() <= 0)
       throw "invalid call";
-   return element_at(get_random_index());
+   return this->element_at(get_random_index());
 }
 
 const string & stringa::random_element() const
 {
-   if(get_size() <= 0)
+   if(this->get_size() <= 0)
       throw "invalid call";
-   return element_at(get_random_index());
+   return this->element_at(get_random_index());
 }
 
 string stringa::pop_random_element()
 {
-   if(get_size() <= 0)
+   if(this->get_size() <= 0)
       throw "invalid call";
    index i = get_random_index();
-   string str = element_at(i);
+   string str = this->element_at(i);
    remove_at(i);
    return str;
 }
 
+
+
+void stringa::make_lower()
+{
+   for(index i = 0; i < this->get_count(); i++)
+   {
+      this->element_at(i).make_lower();
+   }
+}
+
+void stringa::make_upper()
+{
+   for(index i = 0; i < this->get_count(); i++)
+   {
+      this->element_at(i).make_upper();
+   }
+}

@@ -1,8 +1,12 @@
 #pragma once
 
-template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * >>
+
+#undef new
+
+
+template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
 class array_ptr_copy :
-   public array_ptr < TYPE, ARG_TYPE, BASE_PTRA >
+   public array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >
 {
 public:
    array_ptr_copy();
@@ -40,20 +44,20 @@ array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::array_ptr_copy(const array_ptr_cop
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::~array_ptr_copy()
 {
-   remove_all();
+   this->remove_all();
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline index array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(
    const TYPE & t)
 {
-   return m_ptra.add(gen::alloc<TYPE>(t));
+   return this->ptra().add(gen::alloc<TYPE>(t));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline index array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(TYPE * p)
 {
-   return array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add(p);
+   return array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add(p);
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
@@ -61,7 +65,7 @@ inline void array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::insert_at(
    int iIndex,
    ARG_TYPE t)
 {
-   m_ptra.insert_at(iIndex, gen::alloc<TYPE>(t));
+   this->ptra().insert_at(iIndex, gen::alloc<TYPE>(t));
 }
 
 
@@ -71,15 +75,15 @@ inline array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_copy < TYPE, ARG
    if(&a == this)
       return *this;
    int i;
-   for(i = 0; i < m_ptra.get_size(); i++)
+   for(i = 0; i < this->ptra().get_size(); i++)
    {
-      element_at(i) = *a.m_ptra[i];
+      this->element_at(i) = *a.ptra()[i];
    }
-   for(; i < a.m_ptra.get_size(); i++)
+   for(; i < a.ptra().get_size(); i++)
    {
-      m_ptra.add(gen::alloc<TYPE>(*a.m_ptra[i]));
+      this->ptra().add(gen::alloc<TYPE>(*a.ptra()[i]));
    }
-   m_ptra.set_size(a.m_ptra.get_size());
+   this->ptra().set_size(a.ptra().get_size());
    return *this;
 }
 
@@ -87,17 +91,17 @@ inline array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_copy < TYPE, ARG
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 void array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::copy(const array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & a)
 {
-   remove_all();
-   add(a);
+   this->remove_all();
+   this->add(a);
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 count array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(const array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & a)
 {
-   count countOld = get_count();
+   count countOld = this->get_count();
    for(int i = 0; i < a.get_size(); i++)
    {
-      add(a[i]);
+      this->add(a[i]);
    }
    return countOld;
 }
@@ -107,26 +111,31 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 const TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
 element_at(INT_PTR nIndex) const
 {
-   return *m_ptra.element_at(nIndex);
+   return *(this->ptra().element_at(nIndex));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
 element_at(INT_PTR nIndex)
 {
-   return *m_ptra.element_at(nIndex);
+   return *(this->ptra().element_at(nIndex));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 const TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
 operator[](INT_PTR nIndex) const
 {
-   return element_at(nIndex);
+   return this->element_at(nIndex);
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
 operator[](INT_PTR nIndex)
 {
-   return element_at(nIndex);
+   return this->element_at(nIndex);
 }
+
+
+#define new DEBUG_NEW
+
+

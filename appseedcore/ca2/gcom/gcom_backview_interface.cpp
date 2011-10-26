@@ -26,7 +26,7 @@ namespace gcom
       }
 
 
-      void Interface::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+      void Interface::install_message_handling(::user::win::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(MessageBackView, pinterface, this, &Interface::OnBackViewMessage);
          IGUI_WIN_MSG_LINK(MessageBackViewDequeue, pinterface, this, &Interface::OnDequeueMessage);
@@ -131,6 +131,7 @@ namespace gcom
 //         SCAST_PTR(::user::win::message::create, pcreate, pobj)
          if(pobj->previous())
             return;
+         initialize_user_interaction();
          GetMain().UpdateDrawingObjects();
       }
 
@@ -263,7 +264,7 @@ namespace gcom
             return;
 
          
-         CSingleLock sl(&graphics.m_mutex4Transfer, TRUE);
+         single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
          if(dcTransfer.get_os_data() == NULL)
             return;
@@ -279,7 +280,7 @@ namespace gcom
       {
          //if(main.IsFullScreen())
          //   return RGB(63, 106, 150)
-         return RGB(0, 0, 0);
+         return RGB(63, 150, 106);
       }
 
       // if the wnd interface draws something over the gcom::_backview
@@ -360,6 +361,10 @@ namespace gcom
       Main & Interface::GetMain()
       {
          return * m_pmain;
+      }
+
+      void Interface::initialize_user_interaction()
+      {
       }
 
    } // namespace backview

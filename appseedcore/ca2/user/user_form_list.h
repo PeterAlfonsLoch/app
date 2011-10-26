@@ -46,14 +46,12 @@ namespace user
          index            m_iSubItem;
       };
 
-      void _001DrawSubItem(
-         ::ca::graphics * pdc,
-         draw_item * pdrawitem,
-         LPCRECT lpcrect,
-         index iSubItem,
-         bool bItemHover,
-         bool bSubItemHover,
-         bool bFocus);
+
+      form_list(::ca::application * papp);
+      virtual ~form_list();
+
+
+      virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
       void _000OnMouse(::user::win::message::mouse * pmouse);
 
@@ -73,22 +71,17 @@ namespace user
       void _001UpdateColumns();
       control * _001GetEditControl();
       void _001SetEditControl(control * pcontrol);
-      virtual void OnDrawInterfaceDraw(::ca::graphics *pdc);
       virtual void _001PlaceControl(control * pcontrol);
       control * _001GetControlBySubItem(index iSubItem);
       virtual void _001OnClick(UINT uiFlags, point point);
       virtual void _001OnClick(UINT uiFlags, point point, index iItem, index iSubItem);
       DECL_GEN_VSIGNAL(_001OnTimer)
 
-#if !core_level_1
       using list::_001GetSelection;
-#endif
       virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
-      form_list(::ca::application * papp);
-      virtual ~form_list();
 
-      bool _001OnNotify(WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual bool _001OnMessageNotify(WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+      DECL_GEN_VSIGNAL(_001OnNotify)
+      DECL_GEN_VSIGNAL(_001OnMessageNotify)
 
       DECL_GEN_SIGNAL(_001OnVScroll)
       DECL_GEN_SIGNAL(_001OnHScroll)
@@ -97,9 +90,11 @@ namespace user
       virtual bool _001OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
-      virtual void _001InstallMessageHandling( ::user::win::message::dispatch *pinterface);
+      virtual void install_message_handling( ::user::win::message::dispatch *pinterface);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
+
+      virtual void _001OnColumnChange();
    };
 
 } // namespace user

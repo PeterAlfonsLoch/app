@@ -2,18 +2,18 @@
 
 #include "include/ca2.h"
 
+#define INT64_C(value) value##LL
+#define UINT64_C(value) value##ULL
+
 extern "C"
 {
 
 #include "libavcodec/avcodec.h"
 #include "libavformat/avformat.h"
+#include "libswscale/swscale.h"
 
 }
 
-
-#pragma comment(lib, "avcodec.lib")
-#pragma comment(lib, "avformat.lib")
-#pragma comment(lib, "avutil.lib")
 
 typedef INT_PTR ssize_t, *pssize_t;
 
@@ -22,6 +22,9 @@ typedef INT_PTR ssize_t, *pssize_t;
 #else
     #define CLASS_DECL_VIDDEC_FFMPEG_BRIDGE  _declspec(dllimport)
 #endif
+
+
+#include "file_avio.h"
 
 #include "Decoder.h"
 

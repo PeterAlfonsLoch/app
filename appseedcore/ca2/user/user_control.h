@@ -1,14 +1,17 @@
 #pragma once
 
 
-class Ex1FormInterfaceComboBox :
-   virtual public ::ca::ca
+class CLASS_DECL_ca Ex1FormInterfaceComboBox :
+   virtual public ::radix::object
 {
 public:
-   ::database::id    m_datakeyFill;
 
-   stringa        m_wstra;
-   dword_array    m_dwaData;
+
+   ::database::id       m_datakeyFill;
+   stringa              m_wstra;
+   dword_array          m_dwaData;
+
+
 };
 
 
@@ -23,6 +26,19 @@ namespace user
       virtual public view
    {
    public:
+
+      enum e_element
+      {
+         element_none,
+         element_tab,
+         element_close_tab_button,
+         element_status_image,
+         element_text,
+         element_icon,
+         element_border,
+         element_client,
+         element_area,
+      };
 
 
       enum EMessageParam
@@ -133,8 +149,9 @@ namespace user
 
       static const unsigned int  g_uiMessage;
       int                        m_iHover;
+      e_element                  m_eelementHover;
       descriptor *               m_pdescriptor;
-      ::user::window_interface *         m_pwndiCustomWindowProc;
+      ::user::window_interface * m_pwndiCustomWindowProc;
       bool                       m_bCustomWindowProc;
       int                        m_iEditItem;
       form *                     m_pform;
@@ -144,6 +161,9 @@ namespace user
 
       control();
       virtual ~control();
+
+
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
       virtual bool create_control(class control::descriptor * pdescriptor);
 
@@ -157,10 +177,10 @@ namespace user
 
       class descriptor & descriptor();
 
-      virtual void _003CallCustomDraw(::ca::graphics * pdc, LPCRECT lpcrectClient, bool bItemHover, bool bSubItemHover, bool bFocus);
+      virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(::user::window_interface * pwndi, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual void _003OnCustomDraw(::ca::graphics * pdc, LPCRECT lpcrectClient, bool bItemHover, bool bSubItemHover, bool bFocus);
-      virtual bool _003CustomWindowProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+      virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003CustomWindowProc(gen::signal_object * pobj);
 
       virtual form * get_form();
       virtual form_list * get_form_list();
@@ -177,10 +197,8 @@ namespace user
 
       virtual ::user::interaction * ControlExGetWnd();
       
-#if !core_level_1
       using ::user::interaction::GetClientRect;
       using ::user::interaction::GetWindowRect;
-#endif
       virtual void GetClientRect(LPRECT lprect);
       virtual void GetWindowRect(LPRECT lprect);
 
@@ -200,7 +218,9 @@ namespace user
 
       virtual void BaseControlExOnMouseMove(UINT nFlags, point point);
 
-      virtual int hit_test(point point);
+      virtual int hit_test(point point, e_element & eelement);
+
+      DECL_GEN_SIGNAL(_001OnMouseMove)
 
    };
 

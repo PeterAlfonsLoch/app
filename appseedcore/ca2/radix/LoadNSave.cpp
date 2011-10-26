@@ -55,6 +55,8 @@ namespace _template
 
    BOOL __stdcall AtlTraceLoadSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess /* = 0 */)
    {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(dwProcess);
       /*CHAR szFileName[_MAX_PATH];
       if(!pszFileName)
       {
@@ -193,6 +195,8 @@ namespace _template
 
    BOOL __stdcall AtlTraceSaveSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess /* = 0 */)
    {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(dwProcess);
 /*      ATLASSERT(pszFileName);
       if(!pszFileName)
          return FALSE;
@@ -309,6 +313,8 @@ return false;
 
    BOOL __stdcall AtlTraceLoadSettingsU(const CHAR *pszFileName, DWORD_PTR dwProcess /* = 0 */)
    {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(dwProcess);
       /*
       WCHAR szFileName[MAX_PATH];
       if(!pszFileName)
@@ -439,6 +445,8 @@ return false;
 
    BOOL __stdcall AtlTraceSaveSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess /* = 0 */)
    {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(dwProcess);
       /*
       ATLASSERT(pszFileName);
       if(!pszFileName)

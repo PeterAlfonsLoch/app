@@ -32,7 +32,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="filemanager.iconoverlay.syllomatter.def">
+    <None Include="filemanager_iconoverlay_syllomatter.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

@@ -3,14 +3,14 @@
 
 audWavePlayer::audWavePlayer(::ca::application * papp) :
    ca(papp),
-   thread(papp), 
-   m_decoderset(papp), 
+   thread(papp),
+   m_decoderset(papp),
    m_decodersetex1(papp)
 {
-   m_pdecoder = NULL;
-   m_pwaveout = NULL;
-   m_hwndCallback = NULL;
-   m_estate = state_initial;
+   m_pdecoder           = NULL;
+   m_pwaveout           = NULL;
+   m_hwndCallback       = NULL;
+   m_estate             = state_initial;
 }
 
 audWavePlayer::~audWavePlayer()
@@ -18,19 +18,37 @@ audWavePlayer::~audWavePlayer()
 
 }
 
-void audWavePlayer::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void audWavePlayer::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(audMessageCommand, pinterface, this, &audWavePlayer::OnaudCommandMessage);
 }
 
 bool audWavePlayer::DecoderOpen(audWavePlayerCommand & command)
 {
-   string strDecoder;
-   if(command.GetCommand() == audCommandOpenFile)
+
+   if(DecoderIsActive())
    {
       DecoderClose();
-      m_pdecoder = m_decodersetex1.GetNewDecoder(NULL, command.GetOpenFile(), command.m_bSeekable);
-      m_iOutBufferSampleCount =  48 * 1024;
+   }
+
+   string strDecoder;
+   if(command.GetCommand() == audCommandOpenDecoder)
+   {
+      m_iOutBufferSampleCount =  8 * 1024;
+      m_pdecoder(command.m_pdecoderOpen);
+   }
+   else if(command.GetCommand() == audCommandOpenFile)
+   {
+      if(command.m_bSeekable)
+      {
+         m_iOutBufferSampleCount =  48 * 1024;
+         m_pdecoder(m_decodersetex1.GetNewDecoder(NULL, command.GetOpenFile(), command.m_bSeekable));
+      }
+      else
+      {
+         m_iOutBufferSampleCount =  1024;
+         m_pdecoder(m_decodersetex1.GetNewDecoder(NULL, command.GetOpenFile(), command.m_bSeekable, 1024));
+      }
    }
    else
    {
@@ -75,8 +93,7 @@ bool audWavePlayer::DecoderOpen(audWavePlayerCommand & command)
       if(pplugin == NULL)
          return false;
 
-      DecoderClose();
-      m_pdecoder = pplugin->NewDecoder();
+      m_pdecoder(pplugin->NewDecoder());
       if(m_pdecoder != NULL)
       {
          if(command.GetCommand() == audCommandOpenRtpFile)
@@ -91,7 +108,7 @@ bool audWavePlayer::DecoderOpen(audWavePlayerCommand & command)
                delete m_pdecoder;
                return false;
             }
-            m_iOutBufferSampleCount = 1024; // samples are samples, bytes are bytes
+            m_iOutBufferSampleCount = 2 * ((44100 * (1024 * 8 * 2 * 2 * 4 / 128)) /  1000); // samples are samples, bytes are bytes
             // each sample may have e.g. n channels * sizeof(short) bytes
          }
          if(!m_pdecoder->DecoderInitialize(command.GetOpenFile()))
@@ -102,18 +119,17 @@ bool audWavePlayer::DecoderOpen(audWavePlayerCommand & command)
       }
    }
 
-
    return m_pdecoder != NULL;
+
 }
 
 
 void audWavePlayer::DecoderInitialize(ex1::file *pfile)
 {
    UNREFERENCED_PARAMETER(pfile);
-   ASSERT(DecoderIsActive());
+//   ASSERT(DecoderIsActive());
    //spfile->seek_to_begin();
    //m_pdecoder->DecoderInitialize(pfile);
-   m_pwaveout->SetDecoder(m_pdecoder);
 }
 
 bool audWavePlayer::DecoderIsActive()
@@ -123,11 +139,20 @@ bool audWavePlayer::DecoderIsActive()
 
 void audWavePlayer::DecoderClose()
 {
+
    if(m_pdecoder != NULL)
    {
-      delete m_pdecoder;
-      m_pdecoder = NULL;
+      try
+      {
+         m_pdecoder->DecoderFinalize();
+      }
+      catch(...)
+      {
+      }
    }
+
+   gen::release(m_pdecoder.m_p);
+
 }
 
 void audWavePlayer::DecoderRun()
@@ -154,12 +179,14 @@ int audWavePlayer::exit_instance()
    CoUninitialize();
    if(m_pwaveout != NULL)
    {
-      CEvent ev;
+      event ev;
       m_pwaveout->AttachEndEvent(&ev);
       m_pwaveout->PostThreadMessage(WM_QUIT, 0, 0);
-      ev.Lock();
+      ev.wait(seconds(60));
    }
-   
+
+   DecoderClose();
+
    return thread::exit_instance();
 }
 
@@ -177,10 +204,7 @@ void audWavePlayer::ExecuteCommand(audWavePlayerCommand & command)
       break;
    default:
       {
-         PostThreadMessage(
-            audMessageCommand,
-            (WPARAM) command.GetCommand(),
-            (LPARAM) (new audWavePlayerCommand(command)));
+         PostThreadMessage(audMessageCommand, (WPARAM) command.GetCommand(), (LPARAM) (new audWavePlayerCommand(command)));
       }
    }
 
@@ -201,6 +225,7 @@ audWavePlayerCommand & audWavePlayerCommand::operator =(const audWavePlayerComma
 {
    SetCommand(command.GetCommand());
    SetOpenFile(command.GetOpenFile());
+   SetOpenDecoder(command.m_pdecoderOpen);
    m_bResult      = command.m_bResult;
    m_pbResult     = command.m_pbResult;
    m_evptra       = command.m_evptra;
@@ -225,9 +250,20 @@ ex1::file * audWavePlayerCommand::GetOpenFile() const
    return m_pfileOpen;
 }
 
-void audWavePlayerCommand::SetOpenFile(ex1::file *pfile)
+void audWavePlayerCommand::SetOpenFile(ex1::file * pfile)
 {
    m_pfileOpen = pfile;
+}
+
+void audWavePlayerCommand::SetOpenDecoder(::audio_decode::decoder * pdecoder)
+{
+   m_pdecoderOpen = pdecoder;
+}
+
+void audWavePlayerCommand::OpenDecoder(::audio_decode::decoder * pdecoder)
+{
+   SetCommand(audCommandOpenDecoder);
+   SetOpenDecoder(pdecoder);
 }
 
 void audWavePlayerCommand::OpenRtpFile(ex1::file * pfile)
@@ -286,10 +322,9 @@ void audWavePlayerCommand::Play(const imedia::position & position)
 }
 
 void audWavePlayer::OnaudCommandMessage(gen::signal_object * pobj)
+{
    //WPARAM wparam, // audCommand enumeration
    //LPARAM lparam  // audCommand object pointer
-   //)
-{
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    audWavePlayerCommand * pcommand = (audWavePlayerCommand *) pbase->m_lparam;
    audCommandMessageProcedure(*pcommand);
@@ -302,11 +337,11 @@ void audWavePlayer::OnaudCommandMessage(gen::signal_object * pobj)
 
 bool audWavePlayer::audCommandMessageProcedure(audWavePlayerCommand &command)
 {
-//   bool bSetEvents = true;
-   command.m_bResult = true;  
+   command.m_bResult = true;
    EaudCommand ecommand = command.GetCommand();
    switch(ecommand)
    {
+   case audCommandOpenDecoder:
    case audCommandOpenCdaFile:
    case audCommandOpenMp3File:
    case audCommandOpenRtpFile:
@@ -326,21 +361,25 @@ bool audWavePlayer::audCommandMessageProcedure(audWavePlayerCommand &command)
          {
             DecoderClose();
          }
+
          if(!DecoderOpen(command))
          {
             command.m_bResult = false;
             break;
          }
-         DecoderInitialize(command.GetOpenFile());
+
+         if(!DecoderIsActive())
+         {
+            command.m_bResult = false;
+            break;
+         }
+
+         m_pwaveout->SetDecoder(m_pdecoder);
+
          OnEvent(EventOpenDecoder);
+
       }
       break;
-//xxx   case audCommandOpenDevice:
-     // {
-       //  m_pwaveout->open(this, 4, m_iOutBufferSampleCount);
-         //OnEvent(EventOpenDevice);
-      //}
-      //break;
    case audCommandExecutePlay:
       {
          if(m_commandlistStopOpen.get_count() > 0)
@@ -358,7 +397,7 @@ bool audWavePlayer::audCommandMessageProcedure(audWavePlayerCommand &command)
          if(m_pdecoder != NULL)
          {
             if(0 != m_pwaveout->OpenEx(
-                  this, 
+                  this,
                   16,
                   m_iOutBufferSampleCount,
                   m_pdecoder->DecoderGetSamplesPerSecond(),
@@ -370,7 +409,6 @@ bool audWavePlayer::audCommandMessageProcedure(audWavePlayerCommand &command)
                break;
             }
             OnEvent(EventOpenDevice);
-            //m_pdecoder->DecoderSeekBegin();
             m_pwaveout->Start(command.m_position);
             OnEvent(EventPlay);
          }
@@ -419,7 +457,7 @@ bool audWavePlayer::audCommandMessageProcedure(audWavePlayerCommand &command)
 }
 
 
-void audWavePlayer::AttachEndEvent(CEvent *pevent)
+void audWavePlayer::AttachEndEvent(event *pevent)
 {
    if(m_pwaveout)
    {
@@ -427,10 +465,11 @@ void audWavePlayer::AttachEndEvent(CEvent *pevent)
    }
 }
 
-void audWavePlayerCommand::AttachEvent(CEvent *pevent)
+void audWavePlayerCommand::AttachEvent(event *pevent)
 {
    m_evptra.add(pevent);
 }
+
 void audWavePlayerCommand::SetEvents()
 {
    for(int i = 0;  i < m_evptra.get_size(); i++)
@@ -630,10 +669,10 @@ void audWavePlayer::_Stop()
 {
    if(IsPlaying())
    {
-      m_eventStopped.ResetEvent();
+      m_pwaveout->m_eventStopped.ResetEvent();
       OnEvent(EventStop);
       m_pwaveout->Stop();
-      m_eventStopped.Lock(10000);
+      m_pwaveout->m_eventStopped.wait(seconds(10));
       m_pdecoder->DecoderSeekBegin();
    }
 }
@@ -646,8 +685,8 @@ void audWavePlayer::_Stop()
 
    while(true)
    {
-      pplayer->m_evOutBufferDone.Lock();
-      pplayer->m_evPreBufferDone.Lock();
+      pplayer->m_evOutBufferDone.lock();
+      pplayer->m_evPreBufferDone.lock();
       pplayer->PostThreadMessage(MessageKickBufferOut, 0, 0);
    }
 
@@ -678,12 +717,12 @@ void audWavePlayer::FadeOutAndStop()
    pfadeout->SetFinalScale(0, (short) pfadeout->m_iLength);
    pfadeout->Initialize();
    m_pwaveout->m_pprebuffer->m_pstreameffectOut = pfadeout;
-   //CSingleLock sl(& m_pwaveout->m_csPreBuffer, TRUE);
+   //single_lock sl(& m_pwaveout->m_csPreBuffer, TRUE);
    m_pwaveout->m_pprebuffer->ClearBuffer();
 }
 
 void audWavePlayer::FillTitleInfo(
-   stringa &wstraFormat, 
+   stringa &wstraFormat,
    string2a & wstr2aTitle)
 {
    if(m_pdecoder == NULL)
@@ -715,7 +754,7 @@ void audWavePlayer::FillTitleInfo(
    {
       strAttr.ReleaseBuffer();
       wstrAttr = strAttr;
-      wstraFormat.add(L"Album: %0");
+      wstraFormat.add("Album: %0");
       wstr2aTitle.add_new();
       wstr2aTitle[wstr2aTitle.get_upper_bound()].add(wstrAttr);
    }

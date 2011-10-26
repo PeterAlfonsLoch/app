@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 
 class CLASS_DECL_ca error_exception : 
    public base_exception

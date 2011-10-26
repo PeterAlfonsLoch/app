@@ -1,0 +1,4 @@
+#include "resource.h"
+
+IDI_CCVOTAGUS_CA2_SPA   ICON                    "res\\ca2v_2011_04_02.ico"
+ID_MP3_SMALL_BELL       MP3                     "res\\small_bell.mp3"

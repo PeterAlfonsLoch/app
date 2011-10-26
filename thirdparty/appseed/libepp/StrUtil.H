@@ -34,7 +34,7 @@ namespace libepp
 
    /// StrUtil Class: String Manipulation Utilities
    class StrUtil :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
 

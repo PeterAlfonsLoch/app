@@ -14,20 +14,24 @@ namespace fontopus
    public:
 
          
-      ::http::cookies *             m_phttpcookies;
+      ::http::cookies *                      m_phttpcookies;
 
-      string                        m_strLogin;
-      string                        m_strName;
-      string                        m_strPathPrefix;
-      string                        m_strPath;
-      string                        m_strDataPath;
-      string                        m_strAppDataPath;
-      string                        m_strSessid;
-      string                        m_strFunUserId;
+      string                                 m_strLogin;
+      string                                 m_strName;
+      string                                 m_strPathPrefix;
+      string                                 m_strPath;
+      string                                 m_strDataPath;
+      string                                 m_strAppDataPath;
+      string_to_string_map                   m_sessionidmap;
+      string                                 m_strFunUserId;
 
-      contact_list *                m_pcontactlist;
 
-      ::ca5::user::presence *       m_ppresence;
+      string                                 m_strFontopusServerSessId;
+      string                                 m_strRequestingServer;
+
+      contact_list *                         m_pcontactlist;
+
+      ::ca5::user::presence *                m_ppresence;
 
 
       user(::ca::application * papp);
@@ -38,6 +42,12 @@ namespace fontopus
 
       DECL_GEN_SIGNAL(veiev_synch);
       DECL_GEN_VSIGNAL(on_end_veiev_synch);
+
+
+      // if interactive flag is true, the function may interact with the user to authenticate her/him,
+      // otherwise it fails to get sessid if it hasn't been previously cached during System instance lifetime.
+      string get_sessid(const char * pszRequestingParty = NULL, bool bInteractive = true);
+      void   set_sessid(const char * pszSessid, const char * pszRequestingParty);
 
 
    };

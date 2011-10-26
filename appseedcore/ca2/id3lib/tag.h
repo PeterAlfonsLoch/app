@@ -67,19 +67,19 @@ public:
   bool       AttachFrame(ID3_Frame*);
   ID3_Frame* RemoveFrame(const ID3_Frame *);
 
-  size_t     Parse(const uchar*, size_t);
+  ::primitive::memory_size     Parse(const uchar*, size_t);
   bool       Parse(ID3_Reader& reader);
   size_t     to(uchar*, ID3_TagType = ID3TT_ID3V2) const;
-  size_t     to(ID3_Writer&, ID3_TagType = ID3TT_ID3V2) const;
+  file_size to(ID3_Writer&, ID3_TagType = ID3TT_ID3V2) const;
 
   size_t     Link(const char *fileInfo, flags_t = (flags_t) ID3TT_ALL);
   size_t     Link(ID3_Reader &reader, flags_t = (flags_t) ID3TT_ALL);
   flags_t    Update(flags_t = (flags_t) ID3TT_ALL);
   flags_t    Strip(flags_t = (flags_t) ID3TT_ALL);
 
-  size_t     GetPrependedBytes() const;
-  size_t     GetAppendedBytes() const;
-  size_t     GetFileSize() const;
+  ::primitive::memory_size   GetPrependedBytes() const;
+  ::primitive::memory_size     GetAppendedBytes() const;
+  file_size  GetFileSize() const;
   const char* GetFileName() const;
 
   ID3_Frame* Find(ID3_FrameID) const;

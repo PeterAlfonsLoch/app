@@ -90,7 +90,7 @@ void string_array::set_size(count nNewSize, count nGrowBy)
    else
    {
       // otherwise, grow base_array
-      int nGrowBy = m_nGrowBy;
+      nGrowBy = m_nGrowBy;
       if (nGrowBy == 0)
       {
          // heuristically determine growth when nGrowBy == 0
@@ -374,10 +374,10 @@ void string_array::QuickSort(
    int iLPos, iUPos, iMPos;
    string t;
 
-   if(get_size() >= 2)
+   if(this->get_size() >= 2)
    {
       stackLowerBound.push(0);
-      stackUpperBound.push(get_size() - 1);
+      stackUpperBound.push(this->get_size() - 1);
       while(true)
       {
          iLowerBound = stackLowerBound.pop();
@@ -391,8 +391,8 @@ void string_array::QuickSort(
             {
                if(iMPos == iUPos)
                   break;
-               if((bNoCase && element_at(iMPos).CompareNoCase(element_at(iUPos)) <= 0) ||
-                  (!bNoCase && element_at(iMPos).CompareNoCase(element_at(iUPos)) <= 0))
+               if((bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0) ||
+                  (!bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0))
                   iUPos--;
                else
                {
@@ -414,8 +414,8 @@ void string_array::QuickSort(
                if(iMPos == iLPos)
                   break;
 
-               if((bNoCase && element_at(iLPos).CompareNoCase(element_at(iMPos)) <= 0) ||
-                  (!bNoCase && element_at(iLPos).CompareNoCase(element_at(iMPos)) <= 0))
+               if((bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0) ||
+                  (!bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0))
                   iLPos++;
                else
                {
@@ -450,17 +450,93 @@ void string_array::QuickSort(
 
 }
 
+void string_array::get_quick_sort_ci(index_array & ia)
+{
+   dword_array stackLowerBound;
+   dword_array stackUpperBound;
+   int iLowerBound;
+   int iUpperBound;
+   int iLPos, iUPos, iMPos;
+   string t;
+   ia.remove_all();
+   ia.append_sequence(0, get_upper_bound());
+   if(this->get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(this->get_size() - 1);
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(this->element_at(ia[iMPos]).CompareNoCase(this->element_at(ia[iUPos])) <= 0)
+                  iUPos--;
+               else
+               {
+                  int i = ia[iMPos];
+                  ia[iMPos] = ia[iUPos];
+                  ia[iUPos] = i;
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+
+               if(this->element_at(ia[iLPos]).CompareNoCase(this->element_at(ia[iMPos])) <= 0)
+                  iLPos++;
+               else
+               {
+                  int i = ia[iLPos];
+                  ia[iLPos] = ia[iMPos];
+                  ia[iMPos] = i;
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
 string_array string_array::slice(index start, count count)
 {
    string_array stra;
    if(start < 0)
    {
-      start += get_count();
+      start += this->get_count();
    }
    index last;
    if(count < 0)
    {
-      last = get_count() - count;
+      last = this->get_count() - count;
    }
    else
    {
@@ -468,7 +544,7 @@ string_array string_array::slice(index start, count count)
    }
    for(index i = start; i <= last; i++)
    {
-      stra.add(element_at(i));
+      stra.add(this->element_at(i));
    }
    return stra;
 }
@@ -506,8 +582,187 @@ string & string_array::new_element(index i)
    }
    else
    {
-      return element_at(i);
+      return this->element_at(i);
+   }
+}
+
+index string_array::add(const char * psz)
+{
+   index nIndex = m_nSize;
+   set_at_grow(nIndex, psz);
+   return nIndex;
+}
+
+index string_array::add(const wchar_t * pwsz)
+{
+   index nIndex = m_nSize;
+   set_at_grow(nIndex, gen::international::unicode_to_utf8(pwsz));
+   return nIndex;
+}
+
+
+index string_array::add(char ch)
+{
+   if(ch == '\0')
+      return add("");
+   else
+   {
+      char str[16];
+      str[0] = ch;
+      str[1] = '\0';
+      return add(str);
+   }
+}
+
+index string_array::add(wchar_t wch)
+{
+   if(wch == L'\0')
+      return add("");
+   else
+   {
+      wchar_t wstr[16];
+      wstr[0] = wch;
+      wstr[1] = L'\0';
+      return add(wstr);
+   }
+}
+
+index string_array::add(const string & newElement)
+{
+   index nIndex = m_nSize;
+   set_at_grow(nIndex, newElement);
+   return nIndex;
+}
+
+
+void string_array::add(const var & var)
+{
+   if(var.is_empty())
+   {
+   }
+   else if(var.get_type() == var::type_stra)
+   {
+      add(var.stra());
+   }
+   else if(var.ca2 < string_array >() != NULL)
+   {
+      add(*var.ca2 < string_array >());
+   }
+   else if(var.get_type() == var::type_vara)
+   {
+      for(int i = 0; i < var.vara().get_count(); i++)
+      {
+         add(var.vara()[i].get_string());
+      }
+   }
+   else if(var.get_type() == var::type_propset)
+   {
+      for(int i = 0; i < var.propset().m_propertya.get_count(); i++)
+      {
+         add(var.propset().m_propertya[i].get_value().get_string());
+      }
+   }
+   else
+   {
+      add(var.get_string());
+   }
+}
+
+void string_array::add(const gen::property & prop)
+{
+   add(prop.get_value());
+}
+
+void string_array::add(const id & id)
+{
+   if(id.is_text())
+   {
+      add((const char *) id);
+   }
+   else if(id.is_number())
+   {
+      add(gen::str::itoa(id));
+   }
+   else if(id.is_empty())
+   {
+      add("");
+   }
+   else if(id.is_null())
+   {
+   }
+   else
+   {
    }
 }
 
 
+
+////////////////////////////////////////////////////////////////////////////
+
+ count string_array::get_size() const
+   { return m_nSize; }
+ count string_array::get_count() const
+   { return m_nSize; }
+ index string_array::get_lower_bound(index i) const
+   { return i >= 0 ? i : m_nSize + i; }
+ index string_array::get_upper_bound(count count) const
+   { return m_nSize - 1 - count; }
+inline index string_array::get_upper_bound(index i, count count) const
+{
+   if(count >= 0)
+   {
+      return min(get_upper_bound(), get_lower_bound(i) + count);
+   }
+   else
+   {
+      return m_nSize + count;
+   }
+}
+
+// same as clear
+inline void string_array::remove_all()
+{
+   set_size(0);
+}
+
+// same as remove all
+inline void string_array::clear()
+{
+   set_size(0);
+}
+
+ string string_array::get_at(index nIndex) const
+   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
+      return m_pData[nIndex]; }
+ void string_array::set_at(index nIndex, const char * newElement)
+   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
+      m_pData[nIndex] = newElement; }
+
+ void string_array::set_at(index nIndex, const string & newElement)
+   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
+      m_pData[nIndex] = newElement; }
+
+ string & string_array::element_at(index nIndex)
+   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
+      return m_pData[nIndex]; }
+
+ const string & string_array::element_at(index nIndex) const
+   { ASSERT(nIndex >= 0 && nIndex < m_nSize);
+      return m_pData[nIndex]; }
+
+ const string* string_array::get_data() const
+   { return (const string*)m_pData; }
+ string* string_array::get_data()
+   { return (string*)m_pData; }
+
+
+ string string_array::operator[](index nIndex) const
+   { return get_at(nIndex); }
+ string & string_array::operator[](index nIndex)
+   { return this->element_at(nIndex); }
+
+
+inline string & string_array::last_element()
+{
+   return this->element_at(get_upper_bound());
+}

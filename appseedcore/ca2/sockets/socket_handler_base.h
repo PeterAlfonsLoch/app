@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -44,14 +44,14 @@ namespace sockets
 
    class sockets::address;
 
-   /** socket container class, event generator. 
+   /** socket container class, event generator.
       \ingroup basic */
    class socket_handler_base : virtual public ::radix::object
    {
       friend class socket;
 
    public:
-      /** Connection pool class for internal use by the socket_handler_base. 
+      /** Connection pool class for internal use by the socket_handler_base.
          \ingroup internal */
       class PoolSocket : public socket
       {
@@ -80,7 +80,7 @@ namespace sockets
       /** get mutex reference for threadsafe operations. */
       virtual mutex & GetMutex() const = 0;
 
-      /** Register StdLog object for error callback. 
+      /** Register StdLog object for error callback.
          \param log Pointer to log class */
       virtual void RegStdLog(StdLog *log) = 0;
 
@@ -113,7 +113,7 @@ namespace sockets
       /** Return number of sockets handled by this handler.  */
       virtual size_t get_count() = 0;
 
-      /** Override and return false to deny all incoming connections. 
+      /** Override and return false to deny all incoming connections.
          \param p listen_socket class pointer (use GetPort to identify which one) */
       virtual bool OkToAccept(socket *p) = 0;
 
@@ -127,7 +127,7 @@ namespace sockets
       virtual socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&) = 0;
       /** Enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) = 0;
-      /** Check pool status. 
+      /** Check pool status.
          \return true if connection pool is enabled */
       virtual bool PoolEnabled() = 0;
 
@@ -144,7 +144,7 @@ namespace sockets
       virtual void SetSocks4Userid(const string & ) = 0;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       virtual void SetSocks4TryDirect(bool = true) = 0;
-      /** get socks4 server ip. 
+      /** get socks4 server ip.
          \return socks4 server ip */
       virtual ipaddr_t GetSocks4Host() = 0;
       /** get socks4 port number.
@@ -159,7 +159,7 @@ namespace sockets
       // -------------------------------------------------------------------------
       // DNS resolve server
       // -------------------------------------------------------------------------
-      /** Enable asynchronous DNS. 
+      /** Enable asynchronous DNS.
          \param port Listen port of asynchronous dns server */
       virtual void EnableResolver(port_t = 16667) = 0;
       /** Check resolver status.

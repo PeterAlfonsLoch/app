@@ -1,9 +1,9 @@
 #pragma once
 
 
-class MidiPlayer;
-class MidiPlayerCommand;
-class MidiSequenceThread;
+class midi_player;
+class midi_player_command;
+class midi_sequence_thread;
 
 namespace mus
 {
@@ -89,7 +89,7 @@ class LyricEventsV1;
 
 typedef base_array<LyricEventsV1 *, LyricEventsV1 *> EventsTracksV1;
 
-class MidiEventBase;
+class midi_event_base;
 
 class CLASS_DECL_ca MidiTempoMapEntry
 {
@@ -242,7 +242,7 @@ typedef struct tag_smffileinfo
 */
 #define PMSG_META       ((BYTE)0xC0)
 
-class MidiPlayer;
+class midi_player;
 
 
 
@@ -308,7 +308,7 @@ namespace mus
       class NotifyEvent
       {
       public:
-         MidiPlayer *   m_pplayer;
+         midi_player *   m_pplayer;
          ENotifyEvent   m_enotifyevent;
       };
 
@@ -390,8 +390,8 @@ namespace mus
       CLASS_DECL_ca MMRESULT TranslateSMFResult(::mus::midi::e_file_result smfrc);
       CLASS_DECL_ca DWORD GetVDWord(byte * & hpbMidiStream, DWORD dwLeft, DWORD &dwValue);
       CLASS_DECL_ca int GetMessageLen(BYTE bEvent);
-      CLASS_DECL_ca VMSRESULT SelectTypeCombo(simple_combo_box * lpcombo, MidiEventBase * lpevent);
-      CLASS_DECL_ca VMSRESULT SelectPitchCombo(simple_combo_box * lpcombo, MidiEventBase * lpevent);
+      CLASS_DECL_ca VMSRESULT SelectTypeCombo(simple_combo_box * lpcombo, midi_event_base * lpevent);
+      CLASS_DECL_ca VMSRESULT SelectPitchCombo(simple_combo_box * lpcombo, midi_event_base * lpevent);
       CLASS_DECL_ca VMSRESULT FillPitchCombo(simple_combo_box * lpcombo);
       CLASS_DECL_ca VMSRESULT FillTypeCombo(simple_combo_box * lpcombo);
       CLASS_DECL_ca double GetNoteFrequency(double dA3Frequency,BYTE bNote);

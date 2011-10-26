@@ -11,16 +11,10 @@ namespace fs
       ::user::scroll_view(papp),
       ::ex1::tree(papp),
       ::user::tree(papp),
-      ::fs::tree_interface(papp),
-      m_scrollbarHorz(papp),
-      m_scrollbarVert(papp)
+      ::fs::tree_interface(papp)
    {
          
       m_etranslucency = TranslucencyPresent;
-      m_pscrollbarVert  = &m_scrollbarVert;
-      m_pscrollbarHorz  = &m_scrollbarHorz;
-      m_pscrollbarHorz = &m_scrollbarHorz;
-      m_pscrollbarVert = &m_scrollbarVert;
 
    }
 
@@ -41,9 +35,9 @@ namespace fs
    }
 #endif //_DEBUG
 
-   void tree::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void tree::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::fs::tree_interface::_001InstallMessageHandling(pinterface);
+      ::fs::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &tree::_001OnLButtonDblClk);
@@ -52,6 +46,9 @@ namespace fs
 
    void tree::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
    {
+      UNREFERENCED_PARAMETER(pSender);
+      UNREFERENCED_PARAMETER(lHint);
+      
       //FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)
       {
@@ -284,10 +281,11 @@ namespace fs
 
    void tree::_001OnShellCommand(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::command, pcommand, pobj)
+      //SCAST_PTR(::user::win::message::command, pcommand, pobj)
+      UNREFERENCED_PARAMETER(pobj);
    }
 
-   void tree::_017OpenFolder(::fs::item &item)
+   void tree::_017OpenFolder(const ::fs::item &item)
    {
       get_document()->file_manager_browse(item.m_strPath);
    }

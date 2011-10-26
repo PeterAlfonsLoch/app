@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "view.h"
 #include "kar/KaraokeBouncingBall.h"
 
 namespace mediaplay
@@ -12,9 +11,10 @@ namespace mediaplay
       ::userbase::view(papp),
       KaraokeView(papp),
       view_interface(papp),
-      MidiPlayerInterface(papp),
+      midi_player_interface(papp),
       audio::WavePlayerInterface(papp),
-      audio::WaveRecorderInterface(papp)
+      audio::WaveRecorderInterface(papp),
+      midi_player_callback(papp)
    {
       m_dataid = "mediaplay::view";
       m_viewlineaStatus.set_size(1);
@@ -25,10 +25,10 @@ namespace mediaplay
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      ::mediaplay::view_interface::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      ::mediaplay::view_interface::install_message_handling(pinterface);
       m_plinesTitle->InstallMessageHandling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &view::_001OnDestroy);
@@ -43,21 +43,21 @@ namespace mediaplay
       //connect_command(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
       //connect_command(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
 
-      ::user::win::message::connect(
+      IGUI_WIN_MSG_LINK(
          WM_APP + 111,
          pinterface,
-         this, 
+         this,
          &::mediaplay::view_interface::_001OnMessageX);
 
 
-      ::user::win::message::connect(
-         WM_SIZE, 
+      IGUI_WIN_MSG_LINK(
+         WM_SIZE,
          pinterface,
-         this, 
+         this,
          &::mediaplay::view_interface::_001OnSize);
-      
-      ::user::win::message::connect(
-         WM_TIMER, 
+
+      IGUI_WIN_MSG_LINK(
+         WM_TIMER,
          pinterface,
          this,
          &::mediaplay::view_interface::_001OnTimer);
@@ -76,17 +76,6 @@ namespace mediaplay
    }
    #endif //_DEBUG
 
-   /////////////////////////////////////////////////////////////////////////////
-   // view message handlers
-
-   // vmpLightView.cpp : implementation of the view class
-   //
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // view
-
-
    BOOL view::PreCreateWindow(CREATESTRUCT& cs)
    {
       cs.lpszClass = System.RegisterWndClass(
@@ -96,12 +85,12 @@ namespace mediaplay
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::userbase::view::PreCreateWindow(cs);
    }
-   void view::_001OnInitialUpdate(gen::signal_object * pobj) 
+   void view::_001OnInitialUpdate(gen::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
 
 
-      
+
    }
 
    ::user::interaction* view::KaraokeGetWnd()
@@ -110,7 +99,7 @@ namespace mediaplay
    }
 
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       UNREFERENCED_PARAMETER(lHint);
       UNREFERENCED_PARAMETER(pSender);
@@ -154,7 +143,7 @@ namespace mediaplay
             else if(puh->is_type_of(::mediaplay::view_update_hint::TypeGetWavePlayer)
                && puh->m_pmidiplayer == NULL)
             {
-               puh->m_pwaveplayer = m_pwaveplayer;
+               puh->m_pwaveplayer = GetWavePlayer();
             }
             else if(puh->is_type_of(::mediaplay::view_update_hint::TypeAttachPlaylist)
                && puh->m_pplaylistdoc != NULL)
@@ -213,14 +202,14 @@ namespace mediaplay
                PrepareLyricTemplateLines();
                keepHardWriting.KeepAway();
 
-               if(!data_get("GlobalLyricsDelay", ::ca::system::idEmpty, m_iDelay))
+               if(!data_get("GlobalLyricsDelay", ::radix::system::idEmpty, m_iDelay))
                   m_iDelay = 0;
             }
          }
       }
    }
 
-   void view::_001OnDestroy(gen::signal_object * pobj) 
+   void view::_001OnDestroy(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -232,28 +221,31 @@ namespace mediaplay
 
       Finalize();
 
-      if(_ExecuteIsPlaying())
-      {
-         _ExecuteStop();
-      }
 
       if(m_pwaverecorder->IsRecording())
       {
          _StopRecording();
-         m_pwaverecorder->m_eventStopped.Lock((1984 + 197) * 20);
+         m_pwaverecorder->m_eventStopped.wait(millis((1984 + 197) * 20));
       }
 
-      if(m_pwaveplayer != NULL)
+      if(_ExecuteIsPlaying())
       {
-         m_pwaveplayer->PostThreadMessage(WM_QUIT, 0, 0);
+         _ExecuteStopAndQuit();
       }
-      
-      m_bDestroy = true;   
+      else
+      {
+         if(GetWavePlayer() != NULL)
+         {
+            GetWavePlayer()->PostThreadMessage(WM_QUIT, 0, 0);
+         }
+      }
+
+      m_bDestroy = true;
    }
 
 
 
-   void view::_001OnSize(gen::signal_object * pobj) 
+   void view::_001OnSize(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::size, psize, pobj)
 
@@ -285,115 +277,32 @@ namespace mediaplay
 
    }
 
-   /*void view::_001OnPaint(gen::signal_object * pobj) 
+   /*void view::_001OnPaint(gen::signal_object * pobj)
    {
       CPaintDC spgraphics(this); // device context for painting
       _001OnDraw(&spgraphics);
    }
    */
 
-#ifdef WIN32
-   BOOL win_SHGetSpecialFolderPath(HWND hwnd, string &str, int csidl, BOOL fCreate)
-   {
-      string wstrPath;
-      wchar_t * lpsz = (wchar_t *) malloc(MAX_PATH * sizeof(WCHAR) * 4);
-      BOOL b = ::SHGetSpecialFolderPathW(
-         hwnd,
-         lpsz,
-         csidl,
-         fCreate);
-      gen::international::unicode_to_utf8(str, lpsz);
-      free(lpsz);
-      return b;
-   }
-#endif
 
-   void view::_001OnCreate(gen::signal_object * pobj) 
+   void view::_001OnCreate(gen::signal_object * pobj)
    {
       if(pobj->previous())
          return;
-      
-      m_pwaveplayer->SetCallback(this);
+
+      GetWavePlayer()->SetCallback(this);
 
 
-      //m_bPassthroughBackground = GetTypedParent < bergedge::frame >() != NULL && System.command_line().m_varQuery["show_platform"] == 1;
-      if(GetTypedParent < bergedge::frame >() != NULL)
+      if(m_bEnableShowGcomBackground)
       {
-         m_bPassthroughBackground = true;
-      }
-      else
-      {
-         m_bPassthroughBackground = false;
-         data_get("PassthroughBackground", ::ca::system::idEmpty, m_bPassthroughBackground);   
-      }
-      
+         
+         bool bShowGcomBackground = true;
+         
+         if(!data_get("ShowGcomBackground", ::radix::system::idEmpty, bShowGcomBackground))
+            bShowGcomBackground = true;
 
-      gcom::backview::user::interaction * pbackview = NULL;
-
-      if(m_bPassthroughBackground)
-      {
-         if(GetTypedParent< bergedge::frame >() != NULL)
-         {
-            pbackview = GetTypedParent< bergedge::frame >()->m_pview;
-            pbackview->m_dataid = m_dataid;
-         }
-      }
-      else
-      {
-         pbackview = this;
-      }
-
-      if(pbackview != NULL)
-      {
-         if(pbackview->m_spfilesetBackgroundImage.is_set())
-         {
-            pbackview->m_spfilesetBackgroundImage.delete_this();
-         }
-         simpledb::file_set * pimagefileset = new simpledb::file_set(get_app());
-         pimagefileset->initialize(get_app());
-         pimagefileset->m_dataid = "ca2_fontopus_votagus.nature.ImageDirectorySet";
-
-         stringa straFilter;
-         straFilter.add("\\*.bmp");
-         straFilter.add("\\*.jpg");
-         straFilter.add("\\*.png");
-         pimagefileset->m_p->add_filter(straFilter);
-
-         bool bInit;
-         if(!pimagefileset->data_get("initialize_default", ::ca::system::idEmpty, bInit))
-         {
-              bInit = true;
-         }
-         if(bInit)
-         {
-            pimagefileset->data_set("initialize_default", ::ca::system::idEmpty, false);
-#ifdef WIN32
-            string strDir;
-            win_SHGetSpecialFolderPath(
-               NULL,
-               strDir,
-               CSIDL_WINDOWS,
-               FALSE);
-            strDir = System.dir().path(strDir, "Web\\Wallpaper");
-            pimagefileset->add_search(strDir);
-#else
-            zz
-#endif
-         }
-         pimagefileset->refresh();
-
-         pbackview->m_spfilesetBackgroundImage.m_p = dynamic_cast < ex2::file_set * > (pimagefileset->m_p);
-
-         pbackview->Enable(true);
-         pbackview->SetBackgroundImageChangeInterval(1000);
-         if(pbackview->m_dwTimerStep > 0)
-         {
-            pbackview->KillTimer(pbackview->m_dwTimerStep);
-         }
-         pbackview->m_dwTimerStep = TimerBackView;
-         pbackview->SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
-         pbackview->layout();
-         pbackview->GetMain().m_bPendingLayout = true;
+         show_gcom_background(bShowGcomBackground);
+         
       }
 
 
@@ -407,13 +316,13 @@ namespace mediaplay
 
       ::ca::graphics * pdc = GetDC();
       HDC hdc = (HDC)pdc->get_os_data();
-      
+
       if (!(PixelFormat=ChoosePixelFormat(hdc, &m_pixelformatdescriptor)))   // Did Windows find A Matching Pixel Format?
       {
    //      MessageBox(NULL,"Can't find A Suitable PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
          return -1;                        // Return FALSE
       }
-      
+
       if(!SetPixelFormat(hdc, PixelFormat,&m_pixelformatdescriptor))      // Are We Able To Set The Pixel Format?
       {
    //      MessageBox(NULL,"Can't Set The PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
@@ -436,11 +345,11 @@ namespace mediaplay
 
 
       int i;
-      if(data_get("GradualFilling", ::ca::system::idEmpty, i))
+      if(data_get("GradualFilling", ::radix::system::idEmpty, i))
       {
          m_bGradualFilling = i != 0;
       }
-      if(data_get("BouncingBall", ::ca::system::idEmpty, i))
+      if(data_get("BouncingBall", ::radix::system::idEmpty, i))
       {
          m_bBouncingBall = i != 0;
       }
@@ -448,7 +357,7 @@ namespace mediaplay
       SetTimer(TimerLyric, 40, NULL); // max. 25 fps
       SetTimer(10, 784, NULL);
       SetTimer(gen::Timer::ID_HOVER, 100, NULL);
-      
+
 
       m_lyrictemplatelines.remove_all();
       m_lyrictemplatelines.set_size(4);
@@ -465,7 +374,7 @@ namespace mediaplay
 
 
    }
-   void view::_001OnContextMenu(gen::signal_object * pobj) 
+   void view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
@@ -503,7 +412,7 @@ namespace mediaplay
                (::ca::window *) pframe);
          }
       }*/
-      
+
    }
 
 
@@ -517,7 +426,7 @@ namespace mediaplay
 
    void view::_001OnWavePlayerEvent(gen::signal_object * pobj)
    {
-      
+
       SCAST_PTR(::user::win::message::base, pbase, pobj)
       audWavePlayer::e_event eevent = (audWavePlayer::e_event) pbase->m_wparam;
       switch(eevent)
@@ -525,20 +434,20 @@ namespace mediaplay
       case audWavePlayer::EventOpenDecoder:
          {
 
-            data * pviewdata = get_data();
-            if(pviewdata->GetMode() == data::ModeWave)
+            data * pcreatordata = get_data();
+            if(pcreatordata->GetMode() == data::ModeWave)
             {
                stringa wstraFormat;
                string2a wstr2aTitle;
-               m_pwaveplayer->FillTitleInfo(wstraFormat, wstr2aTitle);
+               GetWavePlayer()->FillTitleInfo(wstraFormat, wstr2aTitle);
                if(wstraFormat.get_size() <= 0)
                {
                   wstraFormat.add(L"%0");
                   wstr2aTitle.add_new();
                   wstr2aTitle[wstr2aTitle.get_upper_bound()].add(get_document()->get_title());
                }
-               pviewdata->GetKaraokeData().GetStaticData().m_straTitleFormat = wstraFormat;
-               pviewdata->GetKaraokeData().GetStaticData().m_str2aTitle = wstr2aTitle;
+               pcreatordata->GetKaraokeData().GetStaticData().m_straTitleFormat = wstraFormat;
+               pcreatordata->GetKaraokeData().GetStaticData().m_str2aTitle = wstr2aTitle;
                GetKaraokeData().GetStaticData().m_dwDefaultCodePage = CP_UTF8;
             }
             keeper < bool > keepHardWriting(&m_bHardWriting, true, false, true);
@@ -591,10 +500,10 @@ namespace mediaplay
    }*/
 
 
-   void view::_001OnSetCursor(gen::signal_object * pobj) 
+   void view::_001OnSetCursor(gen::signal_object * pobj)
    {
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-      
+
       pobj->previous();
    }
 
@@ -603,5 +512,8 @@ namespace mediaplay
    {
       return ::mediaplay::view_interface::get_data();
    }
+
+   
+
 
 } // namespace mediaplay

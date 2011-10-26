@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 
 calendar::calendar(::ca::application * papp) :
+   ca(papp),
    m_font(papp),
    m_fontYear(papp),
    m_fontMonth(papp),
@@ -132,15 +133,7 @@ void calendar::_001GetHtml(::html::file * pfile)
       class time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
       timeLastDayOfMonth -= time_span(1, 0, 0, 0);
       int iFirstDayOfWeek = time.GetDayOfWeek();
-      int iFirstWeek;
-      if(pfile->m_strSchema.find("<monday-first>")>=0)
-      {
-         iFirstWeek = atoi(time.Format("%W"));
-      }
-      else
-      {
-         iFirstWeek = atoi(time.Format("%U"));
-      }
+//      int iFirstWeek;
       int iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
       int iLastDayPreviousMonth = (time - time_span(1, 0, 0, 0)).GetDay();
       rect rectDay;
@@ -183,8 +176,17 @@ void calendar::_001GetHtml(::html::file * pfile)
          pfile->print("<tr>");
          if(pfile->m_strSchema.find("<left-week-of-the-year>") >= 0)
          {
+            int w ;       if(pfile->m_strSchema.find("<monday-first>")>=0)
+      {
+         w = atoi(System.datetime().strftime("%V", class ::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+      }
+      else
+      {
+         w = atoi( class ::time(iYear, iMonth, iDay, 0, 0, 0).Format("%U"));
+      }
+
             pfile->print("<td>");
-            pfile->print(gen::str::itoa(iWeek + iFirstWeek));
+            pfile->print(gen::str::itoa(w));
             pfile->print("</td>");
          }
          for(int iWeekDay = 1; iWeekDay <=7; iWeekDay++)

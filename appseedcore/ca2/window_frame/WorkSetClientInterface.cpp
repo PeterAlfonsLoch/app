@@ -6,7 +6,7 @@ namespace window_frame
 
    WorkSetClientInterface::WorkSetClientInterface(::ca::application * papp) :
       ca(papp),
-      m_wndframework(papp)
+      m_workset(papp)
    {
 
    }
@@ -63,7 +63,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiClose()
    {
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       if(!WfiOnBeforeClose())
          return false;
       WfiOnClose();
@@ -73,22 +73,22 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiRestore()
    {
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       if(!WfiOnBeforeRestore())
          return false;
       WfiOnRestore();
-      m_wndframework.SetAppearanceMode(AppearanceModeNormal);
+      m_workset.SetAppearanceMode(AppearanceModeNormal);
       WfiOnAfterRestore();
       return true;
    }
 
    bool WorkSetClientInterface::WfiMaximize()
    {
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       if(!WfiOnBeforeMaximize())
          return false;
       WfiOnMaximize();
-      m_wndframework.SetAppearanceMode(AppearanceModeZoomed);
+      m_workset.SetAppearanceMode(AppearanceModeZoomed);
       WfiOnAfterMaximize();
       return true;
    }
@@ -97,23 +97,23 @@ namespace window_frame
    {
       if(bFullScreen)
       {
-         if(!m_wndframework.IsFullScreenEnabled())
+         if(!m_workset.IsFullScreenEnabled())
             return false;
-         m_wndframework.m_pappearance->SetAutomaticModeSwitching(false);
+         m_workset.m_pappearance->SetAutomaticModeSwitching(false);
          if(!WfiOnBeforeFullScreen(bFullScreen))
             return false;
-         m_eappearancemodeFullScreen = m_wndframework.GetAppearanceMode();
-         m_wndframework.SetAppearanceMode(AppearanceModeFullScreen);
+         m_eappearancemodeFullScreen = m_workset.GetAppearanceMode();
+         m_workset.SetAppearanceMode(AppearanceModeFullScreen);
          WfiOnFullScreen(bFullScreen);
          WfiOnAfterFullScreen(bFullScreen);
-         if(m_wndframework.GetAppearance()->m_pworkset != NULL
-         && m_wndframework.GetAppearance()->m_pworkset->m_pframeschema != NULL)
+         if(m_workset.GetAppearance()->m_pworkset != NULL
+         && m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL)
          {
-            ASSERT(m_wndframework.GetAppearance()->m_pworkset != NULL);
-            ASSERT(m_wndframework.GetAppearance()->m_pworkset->m_pframeschema != NULL);
-            m_wndframework.GetAppearance()->m_pworkset->m_pframeschema->OnAppearanceModeChange();
+            ASSERT(m_workset.GetAppearance()->m_pworkset != NULL);
+            ASSERT(m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL);
+            m_workset.GetAppearance()->m_pworkset->m_pframeschema->OnAppearanceModeChange();
          }
-         m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+         m_workset.m_pappearance->SetAutomaticModeSwitching(true);
          return true;
       }
       else
@@ -138,8 +138,6 @@ namespace window_frame
             case AppearanceModeIconic:
                return WfiMinimize();
             default:
-               // Not expected
-               ASSERT(FALSE);
                break;
             }
          }
@@ -150,48 +148,48 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiNotifyIcon()
    {
-      if(!m_wndframework.IsNotifyIconEnabled())
+      if(!m_workset.IsNotifyIconEnabled())
          return false;
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(false);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(false);
       if(!WfiOnBeforeNotifyIcon())
          return false;
       WfiOnNotifyIcon();
       WfiOnAfterNotifyIcon();
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       return true;
    }
 
 
    bool WorkSetClientInterface::WfiMinimize()
    {
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       if(!WfiOnBeforeMinimize())
          return false;
       WfiOnMinimize();
-      m_wndframework.SetAppearanceMode(AppearanceModeIconic);
+      m_workset.SetAppearanceMode(AppearanceModeIconic);
       WfiOnAfterMinimize();
       return true;
    }
 
    bool WorkSetClientInterface::WfiDown()
    {
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       if(!WfiOnBeforeDown())
          return false;
       WfiOnDown();
       WfiOnAfterDown();
-      m_wndframework.m_pframeschema->UpdateControlBox();
+      m_workset.m_pframeschema->UpdateControlBox();
       return true;
    }
 
    bool WorkSetClientInterface::WfiUp()
    {
-      m_wndframework.m_pappearance->SetAutomaticModeSwitching(true);
+      m_workset.m_pappearance->SetAutomaticModeSwitching(true);
       if(!WfiOnBeforeUp())
          return false;
       WfiOnUp();
       WfiOnAfterUp();
-      m_wndframework.m_pframeschema->UpdateControlBox();
+      m_workset.m_pframeschema->UpdateControlBox();
       return true;
    }
 
@@ -210,7 +208,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiOnBeforeMaximize()
    {
-      if(m_wndframework.IsFullScreen()
+      if(m_workset.IsFullScreen()
          && !WfiFullScreen(false, false))
          return false;
       return true;
@@ -218,7 +216,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiOnBeforeMinimize()
    {
-      if(m_wndframework.IsFullScreen()
+      if(m_workset.IsFullScreen()
          && !WfiFullScreen(false, false))
          return false;
       return true;
@@ -226,7 +224,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiOnBeforeRestore()
    {
-      if(m_wndframework.IsFullScreen()
+      if(m_workset.IsFullScreen()
          && !WfiFullScreen(false, false))
          return false;
       return true;
@@ -234,7 +232,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiOnBeforeUp()
    {
-      if(m_wndframework.IsFullScreen()
+      if(m_workset.IsFullScreen()
          && !WfiFullScreen(false, false))
          return false;
       return true;
@@ -242,7 +240,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiOnBeforeDown()
    {
-      if(m_wndframework.IsFullScreen()
+      if(m_workset.IsFullScreen()
          && !WfiFullScreen(false, false))
          return false;
       return true;
@@ -256,7 +254,7 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiOnBeforeNotifyIcon()
    {
-      if(!m_wndframework.IsNotifyIconEnabled())
+      if(!m_workset.IsNotifyIconEnabled())
          return false;
       return true;
    }
@@ -327,18 +325,23 @@ namespace window_frame
 
    bool WorkSetClientInterface::WfiIsFullScreen()
    {
-      return m_wndframework.IsFullScreen();
+      return m_workset.IsFullScreen();
    }
 
    bool WorkSetClientInterface::WfiIsFullScreenEnabled()
    {
-      return m_wndframework.IsFullScreenEnabled();
+      return m_workset.IsFullScreenEnabled();
    }
 
 
    void WorkSetClientInterface::WfiEnableFullScreen(bool bEnable)
    {
-      m_wndframework.EnableFullScreen(bEnable);
+      m_workset.EnableFullScreen(bEnable);
+   }
+
+   void WorkSetClientInterface::_001OnDraw(::ca::graphics * pgraphics)
+   {
+      m_workset._001OnDraw(pgraphics);
    }
 
 } // namespace window_frame

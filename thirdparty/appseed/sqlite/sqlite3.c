@@ -19,7 +19,7 @@
 **
 ** This amalgamation was generated on 2008-03-17 18:47:08 UTC.
 */
-#include "_/_c.h" // manual
+#include "ca/ca_c.h" // manual
 #define SQLITE_CORE 1
 #define SQLITE_AMALGAMATION 1
 #ifndef SQLITE_PRIVATE
@@ -651,7 +651,7 @@ typedef struct sqlite3 sqlite3;
   typedef unsigned SQLITE_INT64_TYPE sqlite_uint64;
 #elif defined(_MSC_VER) || defined(__BORLANDC__)
   typedef __int64 sqlite_int64;
-  typedef unsigned __int64 sqlite_uint64;
+  typedef uint64_t sqlite_uint64;
 #else
   typedef long long int sqlite_int64;
   typedef unsigned long long int sqlite_uint64;

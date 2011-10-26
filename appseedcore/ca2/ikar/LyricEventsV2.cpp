@@ -92,7 +92,7 @@ LyricEventsV2::~LyricEventsV2()
 {
    *piStartNote = m_dwaTokensFirstNote[iTokenIndex];
    *piNotesCount = m_dwaTokensNotesCount[iTokenIndex];
-   
+
 }*/
 void LyricEventsV2::PrepareForScoring(ikar::karaoke * pinterface)
 {
@@ -102,8 +102,8 @@ void LyricEventsV2::PrepareForScoring(ikar::karaoke * pinterface)
       m_msaNotesPosition.get_size() <= 0)
       return;
    int iNote, iToken;//, k;;
-   DWORD msTokenPosition, msNextTokenPosition;
-   DWORD msNotePosition, msNextNotePosition; //, msLastNotePosition;
+   imedia::time msTokenPosition, msNextTokenPosition;
+   imedia::time msNotePosition, msNextNotePosition; //, msLastNotePosition;
    //DWORD msNoteDuration;
 //   DWORD msTokenDuration;
    // Corta a duração das notas se necessário,
@@ -121,7 +121,7 @@ void LyricEventsV2::PrepareForScoring(ikar::karaoke * pinterface)
          msNextNotePosition = 0x7fffffff;
       else
          msNextNotePosition = m_msaNotesPosition[iNote];
-      
+
       if(i > m_msaTokensPosition.get_size())
          break;
       else if (i == m_msaTokensPosition.get_size())
@@ -129,7 +129,7 @@ void LyricEventsV2::PrepareForScoring(ikar::karaoke * pinterface)
       else
          msNextTokenPosition = m_msaTokensPosition[i];
 
-      
+
       k  = 0;
 //      while(msNotePosition >= msTokenPosition &&
 //         msNotePosition < msNextTokenPosition)
@@ -178,7 +178,7 @@ void LyricEventsV2::PrepareForScoring(ikar::karaoke * pinterface)
          msNextNotePosition = 0x7fffffff;
       else
          msNextNotePosition = m_msaNotesPosition[iNote];
-      
+
       if(iToken > m_msaTokensPosition.get_size())
          break;
       else if (iToken == m_msaTokensPosition.get_size())
@@ -236,7 +236,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
       return;
 
    int iNoteIndex;
-   
+
    int iToken, iNextToken;
    int iNote, iNextNote;
 
@@ -276,7 +276,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
       iNextNote      = iNote + 1;
 
       // Calculate the next token position
-      if(iNextToken > positionaToken.get_size())  
+      if(iNextToken > positionaToken.get_size())
          break;
       else if (iNextToken == positionaToken.get_size())
       {
@@ -308,7 +308,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
 
       timeToken         = timeaToken   [iToken];
       timeNote          = timeaNote    [iNote];
-      
+
       // Detect same position notes.
       if(positionNextNote == positionNote)
       {
@@ -319,7 +319,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
                dwSamePositionNotes.add(iNote);
             }
             dwSamePositionNotes.add(iNextNote);
-            
+
             iNote++;
             iNextNote++;
 
@@ -343,7 +343,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
          }
          if (dwSamePositionNotes.get_size() > 0)
          {
-            
+
             iNoteIndex = dwSamePositionNotes.element_at(0);
             timeLongestNoteDuration = m_msaNotesDuration[iNoteIndex];
 
@@ -362,9 +362,9 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
                m_msaNotesPosition.remove_at(iNoteIndex);
                m_tkaNotesPosition.remove_at(iNoteIndex);
                dwSamePositionNotes.remove_at(dwSamePositionNotes.get_size() - 1);
-               
+
             }
-            
+
             iNoteIndex = dwSamePositionNotes.element_at(0);
             m_msaNotesDuration[iNoteIndex] = timeLongestNoteDuration;
             iNextNote = iNoteIndex + 1;
@@ -375,7 +375,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
 
 
    // Clip notes to token bounds
-   // set notes durations consecutive until the 
+   // set notes durations consecutive until the
    // last token note.
 
    positionLastNote = 0;
@@ -393,7 +393,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
       iNextNote      = iNote + 1;
 
       // Calculate the next token position
-      if(iNextToken >= positionaToken.get_size())  
+      if(iNextToken >= positionaToken.get_size())
          break;
 
       // Calculate the next note position
@@ -435,10 +435,10 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
          break;
    }
 
-   
-   
-   
-   
+
+
+
+
    // create the mapping between tokens and notes
    iToken      = 0;
    iNextToken  = 1;
@@ -452,7 +452,7 @@ void LyricEventsV2::PrepareForLyricsDisplay(ikar::karaoke * pinterface)
       iNextNote      = iNote + 1;
 
       // Calculate the next token position
-      if(iNextToken > positionaToken.get_size())  
+      if(iNextToken > positionaToken.get_size())
          break;
       else if (iNextToken == positionaToken.get_size())
          positionNextToken = 0x7fffffff;
@@ -520,7 +520,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
       return;
 
    int iNoteIndex;
-   
+
    int iToken, iNextToken;
    int iNote, iNextNote;
 
@@ -528,8 +528,8 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
    imedia::time timeNote, timeNextNote, timeLastNote;
    imedia::time timeNoteDuration, timeTokenDuration;
    imedia::time timeLongestNoteDuration;
-   int timePosition;
-   int timeDuration;
+   imedia::time timePosition;
+   imedia::time timeDuration;
    imedia::time timeSpan;
    base_array<DWORD, DWORD> dwSamePositionNotes;
 
@@ -561,7 +561,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
       iNextNote      = iNote + 1;
 
       // Calculate the next token position
-      if(iNextToken > positionaToken.get_size())  
+      if(iNextToken > positionaToken.get_size())
          break;
       else if (iNextToken == positionaToken.get_size())
       {
@@ -593,7 +593,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
 
       timeToken         = timeaToken   [iToken];
       timeNote          = timeaNote    [iNote];
-      
+
       // Detect same position notes.
       if(positionNextNote == positionNote)
       {
@@ -604,7 +604,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
                dwSamePositionNotes.add(iNote);
             }
             dwSamePositionNotes.add(iNextNote);
-            
+
             iNote++;
             iNextNote++;
 
@@ -628,7 +628,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
          }
          if (dwSamePositionNotes.get_size() > 0)
          {
-            
+
             iNoteIndex = dwSamePositionNotes.element_at(0);
             timeLongestNoteDuration = m_msaNotesDuration[iNoteIndex];
 
@@ -647,9 +647,9 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
                m_msaNotesPosition.remove_at(iNoteIndex);
                m_tkaNotesPosition.remove_at(iNoteIndex);
                dwSamePositionNotes.remove_at(dwSamePositionNotes.get_size() - 1);
-               
+
             }
-            
+
             iNoteIndex = dwSamePositionNotes.element_at(0);
             m_msaNotesDuration[iNoteIndex] = timeLongestNoteDuration;
             iNextNote = iNoteIndex + 1;
@@ -660,7 +660,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
 
 
    // Clip notes to token bounds
-   // set notes durations consecutive until the 
+   // set notes durations consecutive until the
    // last token note.
 
    positionLastNote = 0;
@@ -678,7 +678,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
       iNextNote      = iNote + 1;
 
       // Calculate the next token position
-      if(iNextToken >= positionaToken.get_size())  
+      if(iNextToken >= positionaToken.get_size())
          break;
 
       // Calculate the next note position
@@ -699,7 +699,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
          }
 
          timeDuration = (int)m_msaTokensPosition[iNextToken] - (int)m_msaNotesPosition[iNote];
-         
+
          m_msaNotesDuration[iNote] = timeDuration;
 
          iNote++;
@@ -730,12 +730,12 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
 
 
    m_dwaBeatNote.remove_all();
-   
+
    iNote       = -1;
 
    int iOffset = 0;
    imedia::position tkStart = 0;
-   
+
    while(true)
    {
       iNextNote      = iNote + 1;
@@ -745,7 +745,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
       bool bAlreadyBeatNote = (tkStart % tkQuarterNote) < (tkQuarterNote / 16);
       if(!bAlreadyBeatNote || tkStart == 0)
       {
-         imedia::position tkAdd = tkQuarterNote;      
+         imedia::position tkAdd = tkQuarterNote;
          while(true)
          {
             imedia::position tkBeg = (tkStart % tkQuarterNote) + tkAdd;
@@ -778,8 +778,8 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
       tkStart = m_tkaNotesPosition[iNote];
    }
 
-   
-   
+
+
    // create the mapping between tokens and notes
    iToken      = -1;
    iNextToken  = 1;
@@ -793,7 +793,7 @@ void LyricEventsV2::PrepareForBouncingBall(ikar::karaoke * pinterface)
       iNextNote      = iNote + 1;
 
       // Calculate the next token position
-      if(iNextToken > positionaToken.get_size())  
+      if(iNextToken > positionaToken.get_size())
          break;
       else if (iNextToken == positionaToken.get_size())
          positionNextToken = 0x7fffffff;
@@ -994,9 +994,9 @@ void LyricEventsV2::GetMillisIntervalNotes(
 
 }
 
-DWORD LyricEventsV2::GetTotalNotesMillis()
+imedia::time LyricEventsV2::GetTotalNotesMillis()
 {
-   DWORD dwRet = 0;
+   imedia::time dwRet = 0;
    for(int i = 0; i < m_msaNotesDuration.get_size(); i++)
    {
       dwRet += m_msaNotesDuration[i];

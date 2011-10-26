@@ -40,7 +40,7 @@ namespace libepp
 
    /// EPP Session Class
    class Session :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
       /// Constructor

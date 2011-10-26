@@ -18,12 +18,12 @@ namespace mysql
          close();
       }
    }
-      
-      
+
+
    bool database::connect(
-      const char * pszHost, 
+      const char * pszHost,
       const char * pszUser,
-      const char * pszPassword, 
+      const char * pszPassword,
       const char * pszDatabase,
       int iPort,
       const char * pszSocketName,
@@ -38,13 +38,13 @@ namespace mysql
          return false;
       }
       if(mysql_real_connect(
-         (MYSQL *) m_pmysql, 
-         pszHost, 
+         (MYSQL *) m_pmysql,
+         pszHost,
          pszUser,
          pszPassword,
-         pszDatabase, 
+         pszDatabase,
          iPort,
-         pszSocketName, 
+         pszSocketName,
          uiFlags) == NULL)
       {
          trace_error1( "mysql_real_connect() failed\n");
@@ -164,6 +164,24 @@ namespace mysql
          return gen::g_nullconst;
       else
          return var(row[0]);
+   }
+   bool database::query_blob(primitive::memory_base & memory, const char * pszSql)
+   {
+      result * presult = query(pszSql);
+      if(presult == NULL)
+         return false;
+      MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
+      if(row == NULL)
+         return false;
+      else if(row[0] == NULL)
+         return false;
+      else
+      {
+         unsigned long * pul =  presult->fetch_lengths();
+         memory.allocate(*pul);
+         memcpy(memory.get_data(), row[0], memory.get_size());
+         return true;
+      }
    }
    var database::query_items(const char * pszSql)
    {

@@ -10,6 +10,10 @@ namespace radix
       ::radix::thread::s_bAllocReady = bReady;
    }
 
+   thread::thread()
+   {
+   }
+
    thread::thread(::ca::application * papp)
    {
       if(papp == NULL)
@@ -28,6 +32,10 @@ namespace radix
       ::ca::thread_sp::create(papp);
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
+   }
+
+   thread::~thread()
+   {
    }
 
    void * thread::get_os_data()
@@ -82,7 +90,14 @@ namespace radix
 
    bool thread::post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam)
    {
-      return m_p->post_message(pguie, message, wParam, lParam);
+      if(m_p != NULL)
+      {
+         return m_p->post_message(pguie, message, wParam, lParam);
+      }
+      else
+      {
+         return false;
+      }
    }
 
    bool thread::PreInitInstance()
@@ -172,7 +187,7 @@ namespace radix
    {
       if(m_p != NULL)
       {
-         m_p->remove(pui);
+         m_p->remove(pui, false);
       }
       if(pui == GetMainWnd()
       || pui->m_pguie == GetMainWnd()
@@ -249,7 +264,7 @@ namespace radix
       m_p->set_run(bRun);
    }
 
-   CEvent & thread::get_finish_event()
+   event & thread::get_finish_event()
    {
       return m_p->get_finish_event();
    }
@@ -296,10 +311,7 @@ namespace radix
    }
 
 
-   thread::~thread()
-   {
-   }
-   #ifdef _DEBUG
+#ifdef _DEBUG
    void thread::assert_valid() const
    {
       m_p->assert_valid();
@@ -308,7 +320,7 @@ namespace radix
    {
       m_p->dump(dumpcontext);
    }
-   #endif
+#endif
 
    // 'delete this' only if m_bAutoDelete == TRUE
    void thread::Delete()

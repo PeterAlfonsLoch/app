@@ -31,6 +31,9 @@ SRegInfo::~SRegInfo()
     case ReWord:
       delete un.word;
       break;
+    case ReSymb:
+      delete un.symbol;
+      break;
 //#ifdef NAMED_MATCHES_IN_HASH
     case ReNamedBrackets:
     case ReBkBrackName:
@@ -473,6 +476,7 @@ SRegInfo *next, *temp;
     if (expr[i] == ')' || expr[i] == ']' || expr[i] == '}') return EBRACKETS;
     next->op = ReSymb;
     next->un.symbol = new string(gen::str::utf8_char(&((const char *)expr)[i]));
+    i += next->un.symbol->get_length() - 1;
   };
 
   // operators fixes

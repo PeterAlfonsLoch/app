@@ -18,7 +18,7 @@ public:
   void resize(int lineCount);
 
   /**
-   * Return current get_size of this line regions structure
+   * Return current this->get_size of this line regions structure
    */
   int get_size();
 
@@ -113,7 +113,7 @@ protected:
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

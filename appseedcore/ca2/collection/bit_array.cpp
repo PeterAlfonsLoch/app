@@ -13,7 +13,7 @@ bit_array::bit_array()
 
 bit_array::~bit_array()
 {
-   if(m_pdata != NULL && INT_PTR(m_pdata) != 1) 
+   if(m_pdata != NULL && INT_PTR(m_pdata) != 1)
       delete[] m_pdata;
 }
 
@@ -148,7 +148,7 @@ void bit_array::clear_range(int s, int e)
 
 void bit_array::add_bit_array(bit_array & ba)
 {
-   if(INT_PTR(m_pdata) == 1) 
+   if(INT_PTR(m_pdata) == 1)
       return;
    if(!&ba || !ba.m_pdata)
       return;
@@ -164,7 +164,7 @@ void bit_array::add_bit_array(bit_array & ba)
 
 void bit_array::clear_bit_array(bit_array & ba)
 {
-  if(m_pdata == NULL) 
+  if(m_pdata == NULL)
      return;
   if(&ba == NULL || ba.m_pdata == NULL)
      return;
@@ -182,7 +182,7 @@ void bit_array::clear_bit_array(bit_array & ba)
 
 void bit_array::intersect_bit_array(bit_array & ba)
 {
-   if(m_pdata == NULL) 
+   if(m_pdata == NULL)
       return;
    if(ba.m_pdata == NULL)
    {
@@ -207,7 +207,7 @@ void bit_array::add_bit_array(char *bits, int count)
 
 void bit_array::clear_bit_array(char *bits, int count)
 {
-   if(m_pdata == NULL) 
+   if(m_pdata == NULL)
       return;
    ensure_size(count * 8, true);
    for(int i = 0; i < count && i < m_iDataCount*4;i++)
@@ -216,9 +216,9 @@ void bit_array::clear_bit_array(char *bits, int count)
 
 bool bit_array::get_bit(int pos) const
 {
-   if(m_pdata == NULL) 
+   if(m_pdata == NULL)
       return false;
-   if(INT_PTR(m_pdata) == 1) 
+   if(INT_PTR(m_pdata) == 1)
       return true;
    if(pos >= m_iBitCount)
       return false;
@@ -244,7 +244,7 @@ bool bit_array::get_bit(int pos) const
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

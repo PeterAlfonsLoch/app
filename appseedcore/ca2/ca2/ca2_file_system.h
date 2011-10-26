@@ -42,16 +42,19 @@ namespace ca2
 
          var length(const char * path);
 
-      
+
          void replace(const char * pszContext, const char * pszFind, const char * pszReplace);
 
          bool exists(const char * path);
-      
+
          void  get_ascendants_path(const char * lpcsz, stringa & stra);
          void  get_ascendants_name(const char * lpcsz, stringa & stra);
 
          template < class T >
-         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::output_stream &, const char *), const char * lpszSource)
+         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
+         #ifdef LINUX
+         ;
+         #else
          {
             System.dir().mk(System.dir().name(pszOutput));
             ex1::filesp fileOut(get_app());
@@ -59,22 +62,27 @@ namespace ca2
                return false;
             return (p->*lpfnOuput)(fileOut, lpszSource);
          }
+         #endif
 
          template < class T >
-         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::output_stream &, ::ex1::input_stream &), const char * lpszSource)
+         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
+         #ifdef LINUX
+         ;
+         #else
          {
             System.dir().mk(System.dir().name(pszOutput));
             ex1::filesp fileOut(get_app());
             if(!fileOut->open(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write))
                return false;
             ex1::filesp fileIn(get_app());
-            if(!fileIn->open(pszOutput, ex1::file::type_binary | ex1::file::mode_read))
+            if(!fileIn->open(lpszInput, ex1::file::type_binary | ex1::file::mode_read))
                return false;
             return (p->*lpfnOuput)(fileOut, fileIn);
          }
+         #endif
 
          template < class T >
-         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::output_stream &, ::ex1::input_stream &), ::ex1::input_stream & istream)
+         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), ::ex1::reader & istream)
          {
             return (p->*lpfnOuput)(get(pszOutput), istream);
          }
@@ -85,9 +93,9 @@ namespace ca2
 
          ex1::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          ex1::filesp get(const char * name);
-      
+
          template < class T >
-         string time_square(T * p, bool (T::*lpfnOuput)(::ex1::output_stream &, const char *), const char * lpszSource)
+         string time_square(T * p, bool (T::*lpfnOutput)(::ex1::writer &, const char *), const char * lpszSource)
          {
             string strTime = time_square();
             if(strTime.has_char())
@@ -100,19 +108,25 @@ namespace ca2
          bool mk_time(const char * lpcszCandidate);
 
          string as_string(var varFile, ::ca::application * papp);
-         void as_memory(var varFile, primitive::memory & mem, ::ca::application * papp);
+         string as_string(var varFile, var varQuery, ::ca::application * papp);
+         void as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp);
          void lines(stringa & stra, var varFile, ::ca::application * papp);
 
-         bool put_contents(const char * lpcszFileName, const char * lpcszContents);
-         bool put_contents_utf8(const char * lpcszFileName, const char * lpcszContents);
-         bool put_contents(const char * lpcszFileName, ex1::file & file);
-         bool put_contents(const char * lpcszFileName, primitive::memory & mem);
+         bool put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp);
+         bool put_contents(var varFile, const char * lpcszContents, ::ca::application * papp);
+         bool put_contents(var varFile, ex1::file & file, ::ca::application * papp);
+         bool put_contents(var varFile, primitive::memory & mem, ::ca::application * papp);
+         bool put_contents_utf8(var varFile, const char * lpcszContents, ::ca::application * papp);
 
          bool is_read_only(const char * psz);
 
          string sys_temp(const char * pszName, const char * pszExtension);
          string sys_temp_unique(const char * pszName);
-      
+
+
+         string replace_extension(const char * pszFile, const char * pszExtension);
+         void set_extension(string & str, const char * pszExtension);
+
 
       protected:
          class system::path m_path;

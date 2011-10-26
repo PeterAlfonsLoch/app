@@ -7,6 +7,7 @@
 [Add.Code]
    iexca2.dll=iexca2.dll
    iexca2.inf=iexca2.inf
+   installer.exe=installer.exe
 
 [iexca2.dll]
    file=thiscab
@@ -15,4 +16,7 @@
    RegisterServer=Yes
 
 [iexca2.inf]
+   file=thiscab
+
+[installer.exe]
    file=thiscab

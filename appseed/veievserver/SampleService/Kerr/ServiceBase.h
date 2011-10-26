@@ -12,7 +12,6 @@
 #pragma once
 
 #include "ServiceStatus.h"
-#include <string>
 
 namespace Kerr
 {

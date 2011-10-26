@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ca5
 {
+
 
    class CLASS_DECL_ca application :
       virtual public ::userbase::application,
@@ -13,9 +15,11 @@ namespace ca5
       virtual ~application();
 
       virtual bool initialize();
+      virtual bool finalize();
 
 
       virtual void defer_initialize_user_presence();
+      virtual void defer_finalize_user_presence();
 
 
    };

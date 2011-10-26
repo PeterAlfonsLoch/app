@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 
+
 namespace ex1
 {
 
@@ -21,5 +22,29 @@ namespace ex1
       delete (simple_tree_item_data *) pitem;
    }
 
+   bool simple_tree_data::initialize_data()
+   {
+      
+      if(!ex1::tree_data::initialize_data())
+         return false;
+
+      return true;
+
+   }
+
+   bool simple_tree_data::finalize_data()
+   {
+      
+      bool bOk = true;
+
+      if(!ex1::tree_data::finalize_data())
+         bOk = false;
+
+      return bOk;
+
+   }
+
 
 } // namespace ex1
+
+

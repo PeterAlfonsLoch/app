@@ -22,6 +22,7 @@ namespace userex
       simple_list_view(papp)
    {
       m_eview = ViewList;
+      m_scrollinfo.m_rectMargin.null();
    }
    
    hour_list_view::~hour_list_view()
@@ -46,16 +47,16 @@ namespace userex
 
 
 
-   void hour_list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void hour_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_list_view::_001InstallMessageHandling(pinterface);
+      simple_list_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &hour_list_view::_001OnCreate);
    }
 
-   bool hour_list_view::_001GetItemText(string &str, index iItem, index iSubItem, index iListItem)
+   void hour_list_view::_001GetItemText(::user::list_item * pitem)
    {
-      str.Format("%d", iItem);
-      return true;
+      pitem->m_strText.Format("%d", pitem->m_iItem);
+      pitem->m_bOk = true;
    }
    count hour_list_view::_001GetItemCount()
    {
@@ -65,7 +66,7 @@ namespace userex
    void hour_list_view::_001InsertColumns()
    {
 
-      Column column;
+      ::user::list_column column;
 
       column.m_iWidth               = 33;
       column.m_iSubItem             = 0;
@@ -79,6 +80,7 @@ namespace userex
       if(pobj->m_bRet)
          return;
       _001UpdateColumns();
+      _001OnUpdateItemCount();
    }
 
    void hour_list_view::_001OnSelectionChange()

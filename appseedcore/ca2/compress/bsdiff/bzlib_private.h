@@ -1,21 +1,21 @@
 
 /*-------------------------------------------------------------*/
-/*--- Private header file for the library.                  ---*/
+/*--- Private header _FILE for the library.                  ---*/
 /*---                                       bzlib_private.h ---*/
 /*-------------------------------------------------------------*/
 
 /* ------------------------------------------------------------------
-   This file is part of bzip2/libbzip2, a program and library for
+   This _FILE is part of bzip2/libbzip2, a program and library for
    lossless, block-sorting data compression.
 
    bzip2/libbzip2 version 1.0.4 of 20 December 2006
    Copyright (C) 1996-2006 Julian Seward <jseward@bzip.org>
 
    Please read the WARNING, DISCLAIMER and PATENTS sections in the 
-   README file.
+   README _FILE.
 
    This program is released under the terms of the license contained
-   in the file LICENSE.
+   in the _FILE LICENSE.
    ------------------------------------------------------------------ */
 
 
@@ -25,13 +25,12 @@
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-
 #include <stdlib.h>
 
 #ifndef BZ_NO_STDIO
-#include <stdio.h>
+/*#include <stdio.h>
 #include <ctype.h>
-#include <string.h>
+#include <string.h>*/
 #endif
 
 #include "bzlib.h"
@@ -66,7 +65,7 @@ extern void BZ2_bz__AssertH__fail ( int errcode );
 #if BZ_DEBUG
 #define AssertD(cond,msg) \
    { if (!(cond)) {       \
-      fprintf ( stderr,   \
+      fprintf ( stderr_dup,   \
         "\n\nlibbzip2(debug build): internal error\n\t%s\n", msg );\
       exit(1); \
    }}
@@ -75,17 +74,17 @@ extern void BZ2_bz__AssertH__fail ( int errcode );
 #endif
 
 #define VPrintf0(zf) \
-   fprintf(stderr,zf)
+   fprintf_dup(stderr_dup,zf)
 #define VPrintf1(zf,za1) \
-   fprintf(stderr,zf,za1)
+   fprintf_dup(stderr_dup,zf,za1)
 #define VPrintf2(zf,za1,za2) \
-   fprintf(stderr,zf,za1,za2)
+   fprintf_dup(stderr_dup,zf,za1,za2)
 #define VPrintf3(zf,za1,za2,za3) \
-   fprintf(stderr,zf,za1,za2,za3)
+   fprintf_dup(stderr_dup,zf,za1,za2,za3)
 #define VPrintf4(zf,za1,za2,za3,za4) \
-   fprintf(stderr,zf,za1,za2,za3,za4)
+   fprintf_dup(stderr_dup,zf,za1,za2,za3,za4)
 #define VPrintf5(zf,za1,za2,za3,za4,za5) \
-   fprintf(stderr,zf,za1,za2,za3,za4,za5)
+   fprintf_dup(stderr_dup,zf,za1,za2,za3,za4,za5)
 
 #else
 

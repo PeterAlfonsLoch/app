@@ -92,9 +92,10 @@ void html_document::data_on_after_change(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-void html_document::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
 {
-   UNREFERENCED_PARAMETER(lpszUrl);
+   UNREFERENCED_PARAMETER(pdata);
+   UNREFERENCED_PARAMETER(varFile);
    UNREFERENCED_PARAMETER(nFlags);
    UNREFERENCED_PARAMETER(lpszTargetFrameName);
    UNREFERENCED_PARAMETER(baPostedData);
@@ -104,6 +105,7 @@ void html_document::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, 
 
 bool html_document::on_open_document(var varFile)
 {
+   ::ca::data::writing writing(get_html_data());
    if(!get_html_data()->open_document(varFile))
       return FALSE;
    set_path_name(get_html_data()->m_strPathName);

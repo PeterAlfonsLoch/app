@@ -25,9 +25,6 @@
     <ClCompile Include="menu_right_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -40,10 +37,16 @@
     <ClCompile Include="view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="table_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="query_edit_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="query_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="table_view.cpp">
+    <ClCompile Include="querydb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,9 +66,6 @@
     <ClInclude Include="menu_right_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menu_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="pane_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,15 +81,18 @@
     <ClInclude Include="querydb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="query_view.h">
+    <ClInclude Include="table_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="table_view.h">
+    <ClInclude Include="query_edit_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="query_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="querydb.def">
+    <None Include="app_querydb.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

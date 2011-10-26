@@ -2,26 +2,26 @@
  *   PROJECT - HTML Reader Class Library
  *
  *   LiteHTMLAttributes.cpp
- *   
- *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
- *   Copyright (c) 2004. 
  *
- *   This code may be used in compiled form in any way you desire 
- *   (including commercial use). The code may be redistributed 
- *   unmodified by any means PROVIDING it is not sold for profit 
- *   without the authors written consent, and providing that this 
- *   notice and the authors name and all copyright notices remains 
- *   intact. However, this file and the accompanying source code may 
- *   not be hosted on a website or bulletin board without the authors 
+ *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
+ *   Copyright (c) 2004.
+ *
+ *   This code may be used in compiled form in any way you desire
+ *   (including commercial use). The code may be redistributed
+ *   unmodified by any means PROVIDING it is not sold for profit
+ *   without the authors written consent, and providing that this
+ *   notice and the authors name and all copyright notices remains
+ *   intact. However, this file and the accompanying source code may
+ *   not be hosted on a website or bulletin board without the authors
  *   written permission.
- *   
+ *
  *   This file is provided "AS IS" with no expressed or implied warranty.
  *   The author accepts no liability for any damage/loss of business that
  *   this product may cause.
  *
- *   Although it is not necessary, but if you use this code in any of 
- *   your application (commercial or non-commercial), please INFORM me 
- *   so that I may know how useful this library is. This will encourage 
+ *   Although it is not necessary, but if you use this code in any of
+ *   your application (commercial or non-commercial), please INFORM me
+ *   so that I may know how useful this library is. This will encourage
  *   me to keep updating it.
  */
 #include "StdAfx.h"
@@ -31,7 +31,7 @@
 const COLORREF LiteHTMLElemAttr::_clrInvalid = (COLORREF)0xFFFFFFFF;
 const unsigned short LiteHTMLElemAttr::_percentMax = USHRT_MAX;
 
-// the reason behind setting the block size of our collection 
+// the reason behind setting the block size of our collection
 // to 166 is that we have a total of 166 known named colors
 //LiteHTMLElemAttr::CNamedColors LiteHTMLElemAttr::_namedColors(166 /* block size */
 
@@ -53,7 +53,7 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
 
    const char *   lpszBegin = lpszString;
    const char *   lpszEnd;
-   char   ch = 0;
+//   char   ch = 0;
 
    // skip leading white-space characters
    while (::_istspace(*lpszBegin))
@@ -66,20 +66,20 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    lpszEnd = lpszBegin;
    do
    {
-      // attribute name may contain letters (a-z, A-Z), digits (0-9), 
+      // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::_istalnum(*lpszEnd)) && 
-          (*lpszEnd != '-') && (*lpszEnd != ':') && 
+      if ( (!::_istalnum(*lpszEnd)) &&
+          (*lpszEnd != '-') && (*lpszEnd != ':') &&
           (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
          ASSERT(lpszEnd != lpszBegin);
 
-         // only white-space characters, a null-character, an 
-         // equal-sign, a greater-than symbol, or a forward-slash 
-         // can act as the separator between an attribute and its 
+         // only white-space characters, a null-character, an
+         // equal-sign, a greater-than symbol, or a forward-slash
+         // can act as the separator between an attribute and its
          // value
-         if (*lpszEnd == NULL || ::_istspace(*lpszEnd) || 
-            *lpszEnd == '=' || 
+         if (*lpszEnd == NULL || ::_istspace(*lpszEnd) ||
+            *lpszEnd == '=' ||
             *lpszEnd == '>' || *lpszEnd == '/')
          {
             break;
@@ -94,7 +94,7 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
 
    // extract attribute name
    string   strAttrName(lpszBegin, int(lpszEnd - lpszBegin));
-   
+
    if (*lpszEnd != '=')
    {
       m_strName = strAttrName;
@@ -103,7 +103,7 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    }
    else
    {
-      // skip white-space characters after equal-sign 
+      // skip white-space characters after equal-sign
       // and the equal-sign itself
       do {
          lpszEnd = ::_tcsinc(lpszEnd);
@@ -119,7 +119,7 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
             strChar = "&#039;";
          }
       }
-      
+
       // is attribute value wrapped in quotes?
       if(strChar == "\'" || strChar == "\"" || strChar == "&#039;")
       {
@@ -128,7 +128,7 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          {
             lpszEnd = ::_tcsinc(lpszEnd);
          }
-         // Loop until we find the same quote character that 
+         // Loop until we find the same quote character that
          // was used at the starting of the attribute value.
          // Anything within these quotes is considered valid!
          // NOTE that the entity references are resolved later.
@@ -139,14 +139,14 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
       else
       {
          strChar.Empty();
-         do 
-         { 
+         do
+         {
             lpszEnd = ::_tcsinc(lpszEnd);
          }
-         // loop until we find a tag ending delimeter or any 
-         // white-space character, or until we reach at the 
+         // loop until we find a tag ending delimeter or any
+         // white-space character, or until we reach at the
          // end of the string buffer
-         while (*lpszEnd != NULL && !::_istspace(*lpszEnd) && 
+         while (*lpszEnd != NULL && !::_istspace(*lpszEnd) &&
                *lpszEnd != '/' && *lpszEnd != '>');
       }
 
@@ -154,9 +154,9 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
       if (lpszEnd == lpszBegin)   // is_empty attribute value?
          m_strValue.Empty();
       else
-         // use putValue() instead of direct assignment; 
-         // this will automatically normalize data before 
-         // assigning according to the specs and will 
+         // use putValue() instead of direct assignment;
+         // this will automatically normalize data before
+         // assigning according to the specs and will
          // also resolve entity references!!!
          putValue(preader, string(lpszBegin,int(lpszEnd - lpszBegin)));
 
@@ -172,17 +172,17 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
 /**
  * LiteHTMLAttributes::parseFromStr
  *
- * @param lpszString - string to parse. It can contain pairs such as: 
+ * @param lpszString - string to parse. It can contain pairs such as:
  *
  *          1. NAME
  *          2. NAME=VALUE
  *          3. NAME='VALUE'
  *          4. NAME="VALUE"
  *
- *        NAME consist of letters, digits, underscores, 
+ *        NAME consist of letters, digits, underscores,
  *        colons, hyphens, and periods
  *
- *        NOTE that white-spaces between NAME and equal-sign AND 
+ *        NOTE that white-spaces between NAME and equal-sign AND
  *        equal-sign and VALUE is allowed.
  *
  * @return number of TCHARs successfully parsed
@@ -196,12 +196,12 @@ DWORD_PTR LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const c
    CElemAttrArray      *pcoll = NULL;
    LiteHTMLElemAttr   oElemAttr;
    const DWORD_PTR         nStrLen = ::_tcslen(lpszString);
-   DWORD_PTR            nRetVal = 0U, 
+   DWORD_PTR            nRetVal = 0U,
                   nTemp = 0U;
 
    do
    {
-      // try to parse an attribute/value 
+      // try to parse an attribute/value
       // pair from the rest of the string
       if (!(nTemp = oElemAttr.parseFromStr(preader, &lpszString[nRetVal])))
       {
@@ -229,7 +229,7 @@ DWORD_PTR LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const c
       // advance seek pointer
       nRetVal += nTemp;
    }
-   
+
    // do we still have something in the buffer to parse?
    while (nRetVal < nStrLen);
 
@@ -272,7 +272,7 @@ LCleanExit:
                return (NULL);
             }
          }
-         
+
          VERIFY(m_parrAttrib->add(pItem) >= 0);
       }
       return (pItem);
@@ -284,7 +284,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszV
    ASSERT(AfxIsValidString(lpszValue));
 
    m_strValue = lpszValue;
-      
+
    // ignore leading white-spaces
    m_strValue.trim_left();
 
@@ -300,20 +300,16 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszV
 
    /** resolve entity reference(s) */
    int    iCurPos = -1, iParseLen = 0;
-   char     chSubst = 0;
+   string strChar;
    do
    {
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = preader->m_papp->m_psystem->html_ex().resolve_entity(m_strValue.Mid(iCurPos), chSubst);
+      iParseLen = Sys(preader->m_papp).html_ex().resolve_entity(m_strValue.Mid(iCurPos), strChar);
       if (iParseLen)
       {
-         m_strValue.replace
-         (
-            m_strValue.Mid(iCurPos, iParseLen), 
-            string(chSubst)
-         );
+         m_strValue.replace(m_strValue.Mid(iCurPos, iParseLen), strChar);
       }
    }
    while (true);
@@ -328,7 +324,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
       string      strKey(m_strValue);
 
       strKey.make_lower();
-      if (preader->m_papp->m_psystem->html_ex().m_namedColors.Lookup(m_strValue, crTemp))
+      if (Sys(preader->m_papp).html_ex().m_namedColors.Lookup(m_strValue, crTemp))
          return (true);
    }
    return (false);
@@ -342,9 +338,31 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
       string      strKey(m_strValue);
 
       strKey.make_lower();
-      if (preader->m_papp->m_psystem->html_ex().m_namedColors.Lookup(strKey, crTemp))
+      if (Sys(preader->m_papp).html_ex().m_namedColors.Lookup(strKey, crTemp))
          return (crTemp >= 0x80000000 && crTemp <= 0x80000018);
    }
+   return (false);
+}
+
+bool LiteHTMLElemAttr::isHexColorValue(void) const
+{
+   // zero-length attribute value?
+   if (m_strValue.is_empty())
+      return (false);
+
+   if (m_strValue[0] == '#')
+   {
+      if (m_strValue.get_length() > 1)
+      {
+         for (int i = 1; i < m_strValue.get_length(); i++)
+         {
+            if (!::isdigit((unsigned char) m_strValue[i]))
+               return (false);
+         }
+         return (true);
+      }
+   }
+
    return (false);
 }
 
@@ -356,7 +374,7 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    {
       string   strKey(m_strValue);
       strKey.make_lower();
-      if (preader->m_papp->m_psystem->html_ex().m_namedColors.Lookup(strKey, crTemp))
+      if (Sys(preader->m_papp).html_ex().m_namedColors.Lookup(strKey, crTemp))
       {
          // is this a system named color value?
          if (crTemp >= 0x80000000 && crTemp <= 0x80000018)

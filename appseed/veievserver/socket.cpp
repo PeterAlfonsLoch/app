@@ -526,7 +526,7 @@ namespace veievserver
       if(!db.query(strSql))
          return false;
 
-      System.file().put_contents(get_elemental_file_path(varElemental),"mail\r\n" +  m_strHeaders + "\r\n" + m_strData);
+      Application.file().put_contents(get_elemental_file_path(varElemental),"mail\r\n" +  m_strHeaders + "\r\n" + m_strData);
 
       strSql = "INSERT INTO elemental_agent(`datetime`, `index`, `agent`, `type`) VALUES('" + varElemental.propset()["datetime"].get_string() + "', '" + varElemental.propset()["index"].get_string() + "', '" + varFrom.get_string() + "', 1)";
       if(!db.query(strSql))

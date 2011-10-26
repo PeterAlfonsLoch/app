@@ -7,12 +7,18 @@ namespace visual
       virtual public ::radix::object
    {
    public:
+
+
       enum Effects
       {
          EffectSimple = 0,
          EffectEmbossed = 1
       };
-   private:
+
+#ifdef WINDOWS
+      TEXTMETRIC      m_tm;
+#endif
+
       int            m_iFontHiHeight;
       //static const DWORD m_dwAllocationAddUp;
       //LPVOID         m_lpData;
@@ -24,24 +30,20 @@ namespace visual
 
       glyph_set      m_glyphset;
 
-   protected:
-      ::ca::font_sp         m_pFont;
-      ::ca::font *         m_pOldFont;
+      ::ca::font_sp        m_spfont;
+      ::ca::font *         m_pfontOld;
 
       LPBYTE         m_lpBitmap;
 
-   public:
 
       font(::ca::application * papp);
       virtual ~font();
 
-   protected:
       glyph * GetGlyph(WCHAR wchar);
       glyph * GetGlyph(CHAR ch);
       glyph * GetGlyph(UINT ui);
       //glyph * GetNewGlyph();
 
-   public:
       void OnUpdateFont();
       void OnSetFont();
       int GetMegaHeight();
@@ -49,7 +51,8 @@ namespace visual
       BOOL AddGlyph(WCHAR wchar);
       BOOL AddGlyph(CHAR ch);
       BOOL AddGlyph(UINT ui);
-      TEXTMETRIC      m_tm;
+
+
       void AddXFGlyphs(string2a *p2DTokens);
       //void OffsetDataPointers(LPVOID lpData);
 
@@ -70,7 +73,7 @@ namespace visual
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
-         string                 &str,   
+         string                 &str,
          LPINT                 lpiCharsPositions,
          int                     iCharsPositions,
          int                  iOffset);
@@ -79,7 +82,7 @@ namespace visual
          ::ca::graphics                     *pdc,
          int                     x,
          int                     y,
-         string                 &str,   
+         string                 &str,
          LPINT                lpiCharsPositions,
          int                     iCharsPositions);
 
@@ -88,7 +91,7 @@ namespace visual
          LPCRECT               lpcrect,
          double               dRateX,
          double               dHeight,
-         string              &str,   
+         string              &str,
          LPINT                  lpiCharsPositions,
          int                  iCharsPositions,
          int                  iOffset,
@@ -96,7 +99,6 @@ namespace visual
 
       ::ca::font * GetFont();
       void clear();
-      void SetFont(::ca::font *pFont);
 
    };
 

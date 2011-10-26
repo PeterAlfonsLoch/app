@@ -10,7 +10,7 @@
 
 #include "iaudio/iaudio.h"
 #include "audio_decode/audio_decode.h"
-#include "kissfftf/kissfftf.h"
+#include "kissfft/kissfft.h"
 
 
 #include "audio_global.h"
@@ -32,5 +32,8 @@
 #include "WaveRecorder.h"
 #include "WaveRecorderInterface.h"
 #include "WaveIn.h"
+
+#include "WaveEffectCrescendo.h"
+#include "WaveEffectDevocalizer.h"
 
 #include "WaveCentral.h"

@@ -38,11 +38,11 @@ namespace libepp
    public:
 
       /// Constructor
-      DomainInfo(const ActionType type = DOMAIN_INFO) : Action(type)
+      DomainInfo(::ca::application * papp, const ActionType type = DOMAIN_INFO) : Action(type)
       {
          if (type == DOMAIN_INFO) {
             _command = pointer_object<DomainInfoCommand>(new DomainInfoCommand());
-            _response = pointer_object<DomainInfoResponse>(new DomainInfoResponse());
+            _response = pointer_object<DomainInfoResponse>(new DomainInfoResponse(papp));
          }
       }
 

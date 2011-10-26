@@ -10,26 +10,32 @@ class CLASS_DECL_ca audWavePlayerCommand
 public:
 
 
-   EaudCommand          m_ecommand;
-   ex1::file *          m_pfileOpen;
-   base_array < CEvent *, CEvent * > m_evptra;
-   bool                 m_bResult;
-   bool *               m_pbResult;
-   bool                 m_bSeekable;
-   imedia::position     m_position;
+   EaudCommand                         m_ecommand;
+   ex1::filesp                         m_pfileOpen;
+   base_array < event *, event * >     m_evptra;
+   bool                                m_bResult;
+   bool *                              m_pbResult;
+   bool                                m_bSeekable;
+   imedia::position                    m_position;
+   ::audio_decode::decoder *           m_pdecoderOpen;
 
 
    audWavePlayerCommand();
    audWavePlayerCommand(const audWavePlayerCommand & command);
 
+
    void SetOpenFile(ex1::file * pfile);
+   void SetOpenDecoder(::audio_decode::decoder * pdecoder);
    ex1::file * GetOpenFile() const;
    void SetCommand(EaudCommand ecommand);
    EaudCommand GetCommand() const;
 
+
    void SetEvents();
-   void AttachEvent(CEvent * pevent);
+   void AttachEvent(event * pevent);
    
+
+   void OpenDecoder(::audio_decode::decoder * pdecoder);
    void OpenRtpFile(ex1::file * pfile);
    void OpenMp3File(ex1::file * pfile);
    void OpenAiffFile(ex1::file * pfile);

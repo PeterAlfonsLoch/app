@@ -25,10 +25,10 @@ namespace ex1
 
       virtual void CreateStreams(ex1::reader **inStream, ex1::writer **outStream);
 
-      virtual DWORD_PTR read(void *lpBuf, DWORD_PTR nCount);
+      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void CloseRead();
 
-      virtual void write(const void *lpBuf, DWORD_PTR nCount, DWORD_PTR * dwWritten);
+      virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
       virtual void CloseWrite();
 
       virtual void ReInit();

@@ -15,8 +15,8 @@ namespace ex1
       public reader
    {
       reader * _stream;
-      uint64 _size;
-      uint64 _pos;
+      file_size _size;
+      file_size _pos;
       bool _wasFinished;
    public:
       void SetStream(reader *stream) { _stream = stream; }
@@ -24,15 +24,15 @@ namespace ex1
       {
          //_stream.Release(); 
       }
-      void Init(uint64 streamSize)
+      void Init(file_size streamSize)
       {
          _size = streamSize;
          _pos = 0;
          _wasFinished = false;
       }
 
-      DWORD_PTR read(void *data, DWORD_PTR size);
-      uint64 GetSize() const { return _pos; }
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      file_size GetSize() const { return _pos; }
       bool WasFinished() const { return _wasFinished; }
    };
 

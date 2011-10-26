@@ -34,7 +34,7 @@ namespace gcom
          return ::radix::thread::exit_instance();
       }
 
-      void thread::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+      void thread::install_message_handling(::user::win::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);
@@ -62,7 +62,7 @@ namespace gcom
          backview::Main * pinterface = m_pbackviewinterface;
          backview::Main::CGraphics & graphics = pinterface->BackViewGetGraphics();
           TRACE("\nCXfplayerThreadV1::OnImageLoaded before lock %X\n", m_nThreadID);
-          CSingleLock slGdi(pinterface->BackViewGetSourceBitmapCriticalSection(), true);
+          single_lock slGdi(pinterface->BackViewGetSourceBitmapCriticalSection(), true);
           //TRACE("\nCXfplayerThreadV1::OnImageLoaded after lock %X\n", m_nThreadID);
          HBITMAP hBitmapOld = (HBITMAP) graphics.m_bmpBackViewSource.Detach();
          graphics.m_bmpBackViewSource.Attach(hbitmap);
@@ -94,7 +94,7 @@ namespace gcom
                   }
               }
           }
-         slGdi.Unlock();
+         slGdi.unlock();
 
          if(pbmpOld == NULL)
          {
@@ -138,7 +138,7 @@ namespace gcom
          
         /*   RECT rect;
          pinterface->GetWnd().GetClientRect(&rect);
-          TRACE("CXfplayerThreadV1::OnImageStretched slGdi.Lock\n");
+          TRACE("CXfplayerThreadV1::OnImageStretched slGdi.lock\n");
 
 
          pinterface->BackViewUpdateBuffer(false);
@@ -234,13 +234,13 @@ namespace gcom
       //      CXfplayerDoc * pDoc = pApp->GetOnlyDocument();
       //      CXfplayerView * pview = pDoc->GetLyricView();
       //      //pview->PostMessage(WM_USER, lparam, 0);
-      //      CSingleLock slGdi(&pview->m_mutexGdi, TRUE);
+      //      single_lock slGdi(&pview->m_mutexGdi, TRUE);
       //      pview->m_voiceSpectrum.to(&pview->m_dcBuffer, &pview->m_dcBack, pApp->GetWaveIn()->GetFormatEx(), 0.0, 0.0);
       //      RECT rect;
       //      pview->m_voiceSpectrum.GetPlacement(&rect);
       //      //InvalidateRect(&rect, FALSE);
       //      pview->to(&rect, TRUE);
-      //      slGdi.Unlock();
+      //      slGdi.unlock();
       //
          }
          else if(pbase->m_wparam == 4)
@@ -254,13 +254,13 @@ namespace gcom
       //      CXfplayerDoc * pDoc = pApp->GetOnlyDocument();
       //      CXfplayerView * pview = pDoc->GetLyricView();
       //      //pview->PostMessage(WM_USER, lparam, 0);
-      //      CSingleLock slGdi(&pview->m_mutexGdi, TRUE);
+      //      single_lock slGdi(&pview->m_mutexGdi, TRUE);
       //      pview->m_voiceSpectrum.to(&pview->m_dcBuffer, &pview->m_dcBack, pApp->GetWaveIn()->GetFormatEx(), lpSum->dDeltaScore, lpSum->dScoreAddUp);
       //      RECT rect;
       //      pview->m_voiceSpectrum.GetPlacement(&rect);
       //      //InvalidateRect(&rect, FALSE);
       //      pview->to(&rect, TRUE);
-      //      slGdi.Unlock();
+      //      slGdi.unlock();
       //      delete lpSum;
 
          }
@@ -349,7 +349,7 @@ namespace gcom
             cx = 1;
          if(cy <= 0)
             cy = 1;
-         CSingleLock sl(&m_mutexBitmap, TRUE);
+         single_lock sl(&m_mutexBitmap, TRUE);
       /*   if(m_bitmap.m_hObject == NULL)
              return;*/
          /*double horizRate, vertRate, rate;

@@ -40,7 +40,7 @@ public:
       UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch);
 
 
-   virtual int RunModalLoop(DWORD dwFlags = 0);
+   //virtual int RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
 
 
    virtual BOOL DestroyWindow();
@@ -55,7 +55,7 @@ public:
    LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
 
    // as hosting ::ca::window
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
    // as virtual ::ca::window
    virtual void _002InstallMessageHandling(::user::win::message::dispatch * pinterface);
    size              m_size;
@@ -82,7 +82,7 @@ public:
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
-      create_context* pContext = NULL);
+      ::ca::create_context* pContext = NULL);
    virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
@@ -98,9 +98,8 @@ public:
    virtual ::user::interaction* GetTopLevelParent();
    virtual ::user::interaction* EnsureTopLevelParent();
    frame_window* GetTopLevelFrame();
-#if !core_level_1
+
    using ::user::interaction::GetWindowText;
-#endif
    int GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
    void GetWindowText(string & str);
 
@@ -112,8 +111,9 @@ public:
    DECL_GEN_SIGNAL(_001OnMove)
    DECL_GEN_SIGNAL(_001OnDestroy)
    DECL_GEN_SIGNAL(_001OnNcDestroy)
+   DECL_GEN_SIGNAL(_001OnClose)
 
    void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, LPARAM lParam = 0, BOOL bDeep = true, BOOL bOnlyPerm = 0);
 
-
+   virtual BOOL PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 };

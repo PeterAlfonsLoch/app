@@ -1,5 +1,6 @@
 ﻿#include "StdAfx.h"
 
+
 namespace ca2
 {
 
@@ -15,6 +16,7 @@ namespace ca2
    }
 
 
+
    string html::entities(const char * psz)
    {
       if(psz == NULL)
@@ -23,7 +25,7 @@ namespace ca2
       string strChar;
       while(*psz != '\0')
       {
-         int iChar = (int) *psz;
+         int iChar = (int) gen::ch::uni_index(gen::str::utf8_char(psz));
          if(iChar == '&')
          {
             str += "&amp;";
@@ -44,16 +46,16 @@ namespace ca2
          {
             str += "&gt;";
          }
-         else if(iChar < 0)
+         else if(iChar < 128)
+         {
+            str += (char) iChar;
+         }
+         else
          {
             strChar.Format("&#%d;", iChar);
             str += strChar;
          }
-         else
-         {
-            str += (char) iChar;
-         }
-         psz++;
+         psz = gen::str::utf8_inc(psz);
       }
       return str;
    }

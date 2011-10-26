@@ -1,19 +1,27 @@
 #pragma once
 
+
 namespace userbase
 {
 
-   class CLASS_DECL_ca mdi_child_window : virtual public frame_window
+   class CLASS_DECL_ca mdi_child_window :
+      virtual public frame_window
    {
    public:
+
+      BOOL m_bPseudoInactive;     // TRUE if ::ca::window is MDI active according to
+                           //  windows, but not according to ca2 API...
+
+
       mdi_child_window(::ca::application * papp);
+
 
       virtual BOOL create(const char * lpszClassName,
                const char * lpszWindowName,
                DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
                const RECT& rect = rectDefault,
                mdi_frame_window* pParentWnd = NULL,
-               create_context* pContext = NULL);
+               ::ca::create_context* pContext = NULL);
 
       mdi_frame_window* GetMDIFrame();
 
@@ -32,7 +40,7 @@ namespace userbase
 
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-                  ::user::interaction* pParentWnd, create_context* pContext = NULL);
+                  ::user::interaction* pParentWnd, ::ca::create_context* pContext = NULL);
          // 'pParentWnd' parameter is required for MDI Child
       virtual BOOL DestroyWindow();
       virtual void pre_translate_message(gen::signal_object * pobj);
@@ -40,8 +48,6 @@ namespace userbase
       virtual void OnUpdateFrameMenu(BOOL bActive, ::user::interaction* pActivateWnd,
          HMENU hMenuAlt);
 
-      BOOL m_bPseudoInactive;     // TRUE if ::ca::window is MDI active according to
-                           //  windows, but not according to ca2 API...
 
       virtual ::user::interaction* GetMessageBar();
       virtual void on_update_frame_title(BOOL bAddToTitle);
@@ -49,15 +55,20 @@ namespace userbase
       BOOL UpdateClientEdge(LPRECT lpRect = NULL);
 
       //{{AFX_MSG(mdi_child_window)
-      afx_msg void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
-      afx_msg int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
-      afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-      afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-      afx_msg void OnSize(UINT nType, int cx, int cy);
-      afx_msg void OnWindowPosChanging(LPWINDOWPOS lpWndPos);
-      afx_msg BOOL OnNcActivate(BOOL bActive);
-      afx_msg void OnDestroy();
-      afx_msg BOOL OnToolTipText(UINT nID, NMHDR* pNMHDR, LRESULT* pResult);
+      void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
+      int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
+      int OnCreate(LPCREATESTRUCT lpCreateStruct);
+      BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+      void OnSize(UINT nType, int cx, int cy);
+      void OnWindowPosChanging(LPWINDOWPOS lpWndPos);
+      BOOL OnNcActivate(BOOL bActive);
+      void OnDestroy();
+      BOOL OnToolTipText(UINT nID, NMHDR* pNMHDR, LRESULT* pResult);
+
+   private:
+      using ::frame_window::OnUpdateFrameMenu;
+      using ::frame_window::create;
+
    };
 
 

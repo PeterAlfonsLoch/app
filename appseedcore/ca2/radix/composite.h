@@ -6,6 +6,49 @@ namespace gen
 {
 
    template < class TYPE >
+   inline TYPE * alloc()
+   {
+      return new TYPE();
+   }
+
+   template < class TYPE >
+   inline TYPE * alloc(const TYPE & t)
+   {
+      return new TYPE(t);
+   }
+
+   // strict or simple delete
+   template < class TYPE >
+   inline void _sdel(TYPE * pt)
+   {
+      delete pt;
+   }
+
+   // strict or simple delete
+   template < class TYPE >
+   inline void sdel(TYPE * & pt)
+   {
+      if(pt != NULL)
+      {
+         TYPE * ptCopy = pt;
+         pt = NULL;
+         _sdel(ptCopy);
+      }
+   }
+
+   // delete
+   template < class TYPE >
+   inline void del(TYPE * & pt)
+   {
+      if(pt != NULL)
+      {
+         TYPE * ptCopy = pt;
+         pt = NULL;
+         ptCopy->delete_this();
+      }
+   }
+
+   template < class TYPE >
    class composite
    {
    public:
@@ -29,13 +72,13 @@ namespace gen
    template < class TYPE >
    composite<TYPE>::composite()
    {
-      m_pptr = alloc<TYPE>();
+      m_pptr = ::gen::alloc<TYPE>();
    }
 
    template < class TYPE >
    composite<TYPE>::composite(TYPE & t)
    {
-      m_pptr = alloc<TYPE>();
+      m_pptr = ::gen::alloc<TYPE>();
    }
 
    template < class TYPE >
@@ -84,48 +127,6 @@ namespace gen
    }
 
 
-   template < class TYPE >
-   inline TYPE * alloc()
-   {
-      return new TYPE();
-   }
-
-   template < class TYPE >
-   inline TYPE * alloc(const TYPE & t)
-   {
-      return new TYPE(t);
-   }
-
-   // strict or simple delete
-   template < class TYPE >
-   inline void _sdel(TYPE * pt)
-   {
-      delete pt;
-   }
-
-   // strict or simple delete
-   template < class TYPE >
-   inline void sdel(TYPE * & pt)
-   {
-      if(pt != NULL)
-      {
-         TYPE * ptCopy = pt;
-         pt = NULL;
-         _sdel(ptCopy);
-      }
-   }
-
-   // delete
-   template < class TYPE >
-   inline void del(TYPE * & pt)
-   {
-      if(pt != NULL)
-      {
-         TYPE * ptCopy = pt;
-         pt = NULL;
-         ptCopy->delete_this();
-      }
-   }
 
 } // namespace gen
 

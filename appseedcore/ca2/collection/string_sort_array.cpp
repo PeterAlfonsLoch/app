@@ -22,11 +22,11 @@ void str_sort_array::Sort()
    int iUpperBound;
    int iLPos, iUPos, iMPos;
    string str;
-   
-   if(get_size() >= 2)
+
+   if(this->get_size() >= 2)
    {
       stackLowerBound.push(0);
-      stackUpperBound.push(get_size() - 1);
+      stackUpperBound.push(this->get_size() - 1);
       while(true)
       {
          iLowerBound = stackLowerBound.pop();
@@ -94,12 +94,12 @@ index str_sort_array::SortFind(const char * lpcsz)
    int iPos, iLoPos, iHiPos;
    int iCompare;
    iLoPos = 0;
-   iHiPos = get_size() - 1;
+   iHiPos = this->get_size() - 1;
    string strFind(lpcsz);
    while(iLoPos <= iHiPos)
    {
       iPos = (iHiPos + iLoPos) / 2;
-      iCompare = fCompare(strFind, element_at(iPos));
+      iCompare = fCompare(strFind, this->element_at(iPos));
       if(iCompare == 0)
       {
          return iPos;
@@ -122,24 +122,24 @@ index str_sort_array::SortFind(const char * lpcsz)
     int iPos, iLoPos, iHiPos;
     int iCompare;
     iLoPos = 0;
-    iHiPos = get_size() - 1;
+    iHiPos = this->get_size() - 1;
     string strFind(lpcsz);
     while(iLoPos <= iHiPos)
     {
         iPos = (iHiPos + iLoPos) / 2;
-        iCompare = _tcsicmp(strFind, element_at(iPos));
-//      TRACE("strFind %s element_at(iPos) %s\n", strFind, element_at(iPos));
-        // if(strFind == element_at(iPos))
+        iCompare = _tcsicmp(strFind, this->element_at(iPos));
+//      TRACE("strFind %s this->element_at(iPos) %s\n", strFind, this->element_at(iPos));
+        // if(strFind == this->element_at(iPos))
         if(iCompare == 0)
         {
             return iPos;
         }
-        // strFind > element_at(iPos)
+        // strFind > this->element_at(iPos)
         else if(iCompare > 0)
         {
             iLoPos = iPos + 1;
         }
-        // strFind < element_at(iPos)
+        // strFind < this->element_at(iPos)
         else
         {
             iHiPos = iPos - 1;

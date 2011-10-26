@@ -237,20 +237,20 @@ void HRCParserImpl::addPrototype(xml::node *elem)
             }
             continue;
          };
-         type->m_strSourceLocation = 
+         type->m_strSourceLocation =
             System.dir().path(
                System.dir().name(m_strCurrentSourceLocation),
                   locationLink);
-         /*type->m_strSource = 
+         /*type->m_strSource =
             Application.file().as_string(
                type->m_strSourceLocation);*/
-         
+
       };
       if (content->m_strName == "filename" || content->m_strName == "firstline")
       {
          if (content->get_children_count() > 0)
          {
-            if (errorHandler != NULL) 
+            if (errorHandler != NULL)
                errorHandler->warning(string("Bad '")+content->m_strName+"' element in prototype '"+typeName+"'");
                continue;
          }
@@ -538,12 +538,12 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
                ? (blkel->first_child())->m_strValue
                : blkel->attr("match");
 
-            if(blkel->m_strName == "start") 
+            if(blkel->m_strName == "start")
             {
                sParam = p;
                eStart = blkel;
             }
-            if(blkel->m_strName == "end")   
+            if(blkel->m_strName == "end")
             {
                eParam = p;
                eEnd = blkel;
@@ -681,7 +681,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
       };
    };
    // drop last unused node
-   if (next != NULL) 
+   if (next != NULL)
       delete next.get();
 };
 
@@ -725,7 +725,7 @@ void HRCParserImpl::loadBlockRegions(SchemeNode *node, xml::node *el)
    node->region = getNCRegion(el, string("region"));
    for (i = 0; i < REGIONS_NUM; i++)
    {
-      rg_tmpl[6] = '0'; 
+      rg_tmpl[6] = '0';
       rg_tmpl[7] = (char) ((i<0xA?i:i+7)+'0');
       rg_tmpl[8] = 0;
       node->regions[i] = getNCRegion(el, string(rg_tmpl));
@@ -936,7 +936,7 @@ class region* HRCParserImpl::getNCRegion(xml::node *el, const char * tag)
 * The Initial Developer of the Original Code is
 * Cail Lomecb <cail@nm.ru>.
 * Portions created by the Initial Developer are Copyright (C) 1999-2005
-* the Initial Developer. 
+* the Initial Developer.
 *
 * Contributor(s):
 *  Eugene Efremov <4mirror@mail.ru>

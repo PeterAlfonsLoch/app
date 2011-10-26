@@ -383,8 +383,8 @@ AFX_STATIC void _AfxAppendFilterSuffix(string & filter, OPENFILENAME& ofn,
          {
             // a file based document template - add to filter list
 
-            // If you hit the following ASSERT, your document template 
-            // string is formatted incorrectly.  The section of your 
+            // If you hit the following ASSERT, your document template
+            // string is formatted incorrectly.  The section of your
             // document template string that specifies the allowable file
             // extensions should be formatted as follows:
             //    .<ext1>;.<ext2>;.<ext3>
@@ -460,11 +460,11 @@ void document_manager::close_all_documents(BOOL bEndSession)
 
 BOOL document_manager::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate)
 {
-   return 
+   return
       System.do_prompt_file_name(
          fileName,
          nIDSTitle,
-         lFlags, 
+         lFlags,
          bOpenFileDialog,
          ptemplate);
 }
@@ -484,14 +484,15 @@ int document_manager::get_document_count()
 
 BOOL document_manager::OnDDECommand(__in LPTSTR lpszCommand)
 {
-   string strCommand = lpszCommand;
+   UNREFERENCED_PARAMETER(lpszCommand);
+   /*string strCommand = lpszCommand;
    document * pDoc = NULL;
 
    // open format is "[open("%s")]" - no whitespace allowed, one per line
    // print format is "[print("%s")]" - no whitespace allowed, one per line
    // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-   gen::command_line & cmdInfo = System.command_line();
-   cmdInfo.m_nShellCommand = gen::command_line::FileDDE;
+   gen::command & cmdInfo = System.command();
+   command.m_nShellCommand = gen::command_line::FileDDE;
 
    if (strCommand.Left(7) == _T("[open(\""))
    {
@@ -535,13 +536,13 @@ BOOL document_manager::OnDDECommand(__in LPTSTR lpszCommand)
             nCmdShow = SW_RESTORE;
          else
             nCmdShow = SW_SHOW; */
-      }
-      pMainWnd->ShowWindow(nCmdShow);
+      //}
+      /*pMainWnd->ShowWindow(nCmdShow);
 /* trans      if (nCmdShow != SW_MINIMIZE)
          pMainWnd->SetForegroundWindow(); */
 
       // then open the document
-      System.open_document_file(cmdInfo.m_varFile);
+      /*System.open_document_file(cmdInfo.m_varFile);
 
 
       // next time, show the ::ca::window as default
@@ -656,7 +657,8 @@ void document_manager::_001OnFileNew()
    ASSERT_KINDOF(document_template, ptemplate);
 
    ptemplate->open_document_file(NULL, TRUE, System.m_puiInitialPlaceHolderContainer);
-      // if returns NULL, the ::fontopus::user has already been alerted
+      // if returns NULL, the ::fontopus::user has already been alerted*/
+   return TRUE;
 }
 
 void document_manager::on_file_open()
@@ -667,7 +669,9 @@ void document_manager::on_file_open()
       0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL))
       return; // open cancelled
 
-   System.open_document_file(newName);
+   ::ca::create_context_sp createcontext(get_app());
+   createcontext->m_spCommandLine->m_varFile = newName;
+   System.open_document_file(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
 }
 
@@ -705,12 +709,14 @@ void document_manager::dump(dump_context & dumpcontext) const
 #endif
 
 
-void document_manager::request(var & varFile, var & varQuery)
+void document_manager::request(::ca::create_context * pcreatecontext)
 {
-   if(varFile.is_empty())
+
+   if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
       AfxThrowInvalidArgException();
    }
+
    // find the highest confidence
    count count = m_templateptra.get_count();
    document_template::Confidence bestMatch = document_template::noAttempt;
@@ -726,7 +732,7 @@ void document_manager::request(var & varFile, var & varQuery)
    LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
    if (lpszLast != NULL)
       *lpszLast = 0;*/
-   
+
    //if( AfxFullPath(szPath, szTemp) == FALSE )
    //{
    //   ASSERT(FALSE);
@@ -746,7 +752,7 @@ void document_manager::request(var & varFile, var & varQuery)
 
       document_template::Confidence match;
       ASSERT(pOpenDocument == NULL);
-      match = ptemplate->MatchDocType(varFile, pOpenDocument);
+      match = ptemplate->MatchDocType(pcreatecontext->m_spCommandLine->m_varFile, pOpenDocument);
       if (match > bestMatch)
       {
          bestMatch = match;
@@ -784,7 +790,7 @@ void document_manager::request(var & varFile, var & varQuery)
       else
          TRACE(::radix::trace::category_AppMsg, 0, "Error: Can not find a ::view for document to activate.\n");
 
-      varQuery["document"] = pOpenDocument;
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
    }
 
    if (pBestTemplate == NULL)
@@ -794,7 +800,7 @@ void document_manager::request(var & varFile, var & varQuery)
       return;
    }
 
-   pBestTemplate->request(varFile, varQuery);
+   pBestTemplate->request(pcreatecontext);
 }
 
 int document_manager::get_open_document_count()
@@ -826,3 +832,8 @@ document_manager::~document_manager()
 }
 
 
+
+
+void document_manager::_001OnFileNew()
+{
+}

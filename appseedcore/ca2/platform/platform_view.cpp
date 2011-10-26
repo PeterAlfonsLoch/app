@@ -27,8 +27,8 @@ namespace platform
 
    view::view(::ca::application * papp) :
       ca(papp),
-      ::user::interaction(papp), 
-      ::user::scroll_view(papp), 
+      ::user::interaction(papp),
+      ::user::scroll_view(papp),
       ::userbase::view(papp),
       ::userbase::scroll_view(papp),
       ::user::form(papp),
@@ -108,9 +108,9 @@ namespace platform
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      form_view::_001InstallMessageHandling(pinterface);
+      form_view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -160,7 +160,7 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // ::view printing
 
-   void view::_001OnInitialUpdate(gen::signal_object * pobj) 
+   void view::_001OnInitialUpdate(gen::signal_object * pobj)
    {
       form_view::_001OnInitialUpdate(pobj);
       load_links();
@@ -169,11 +169,11 @@ namespace platform
 
 //      string strFile = System.file().time_square();
 
-  //    System.file().put_contents(strFile, str);
+  //    Application.file().put_contents(strFile, str);
 
     //  get_document()->open_document(strFile);
 
-      
+
    }
 
    ::user::interaction* view::get_guie()
@@ -181,7 +181,7 @@ namespace platform
       return this;
    }
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -190,12 +190,12 @@ namespace platform
 
       }
    }
-   
+
    database::user::interaction* view::BackViewGetWnd()
    {
       return this;
    }
-   void view::_001OnDestroy(gen::signal_object * pobj) 
+   void view::_001OnDestroy(gen::signal_object * pobj)
    {
       form_view::_001OnDestroy(pobj);
 
@@ -204,11 +204,11 @@ namespace platform
 
 
 
-   void view::_001OnPaint(gen::signal_object * pobj) 
+   void view::_001OnPaint(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //CPaintDC spgraphics(this); // device context for platforming
-      
+
 
      // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
@@ -236,11 +236,14 @@ namespace platform
       //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
    }*/
 
-   void view::_001OnCreate(gen::signal_object * pobj) 
+   void view::_001OnCreate(gen::signal_object * pobj)
    {
 
       if(pobj->previous())
          return;
+
+      SetTimer(198477, 230, NULL);
+
 
       //FIBITMAP * pfi;
 
@@ -293,11 +296,11 @@ namespace platform
       System.imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, RGB(235, 245, 255), 31);
 
    }
-   void view::_001OnContextMenu(gen::signal_object * pobj) 
+   void view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
-      
+
    }
 
    document * view::get_document()
@@ -305,7 +308,7 @@ namespace platform
       return dynamic_cast < document * > (form_view::get_document());
    }
 
-   
+
 
    void view::SetScreen(int iScreen)
    {
@@ -331,12 +334,15 @@ namespace platform
             if(pevent->m_puie->m_id == m_linka[i].m_strBrief)
             {
                SetScreen(1);
-               var varFile;
-               var varQuery;
                string strApp = m_linka[i].m_strSrc;
                gen::str::ends_eat_ci(strApp, ".dll");
-               ::ca::application_bias bias;
-               get_bergedge()->request_application(strApp, varFile, varQuery, &bias);
+
+               ::ca::create_context_sp cc(&Application.command_central());
+
+               cc->m_spCommandLine->m_strApp   = strApp;
+               cc->m_spCommandLine->m_varFile  = Bergedge.m_varTopicFile;
+
+               Bergedge.command().request(cc);
             }
          }
       }
@@ -368,7 +374,7 @@ namespace platform
       rect rectClient;
       GetClientRect(rectClient);
 
-      
+
 
       if(rectClient.width() <= 0
          || rectClient.height() <= 0)
@@ -400,8 +406,8 @@ namespace platform
          ClientToScreen(rectWindow);
          spdib->create(rectClient.width(), rectClient.height());
          spdib2->get_graphics()->BitBlt(
-            0, 0, rectClient.width(), rectClient.height(), 
-            pdc, 0, 0, 
+            0, 0, rectClient.width(), rectClient.height(),
+            pdc, 0, 0,
             SRCCOPY);
          imaging.blur(spdib->get_graphics(), null_point(), rectClient.size(), spdib2->get_graphics(), null_point(), 2);
          imaging.bitmap_blend(spdib->get_graphics(), null_point(), rectWindow.size(), m_dibBk->get_graphics(), null_point(), 49);
@@ -410,23 +416,26 @@ namespace platform
 
 
       class rect rectThumb;
-      get_bergedge()->m_pbergedgedocument->get_bergedge_view()->GetWindowRect(rectThumb);
-      if(rectThumb.area() > 0)
+      if(m_pbergedge != NULL && &Bergedge != NULL)
       {
-         ::ca::dib_sp dib(get_app());
-         dib->create(1920, 1080);
-         keeper < bool > keepOnDraw(&dynamic_cast <::platform::frame * >(GetParentFrame())->m_bOnDraw, true, false, true);
-         get_bergedge()->m_pbergedgedocument->get_bergedge_view()->_000OnDraw(dib->get_graphics());
-         dib->get_graphics()->SetViewportOrg(0, 0);
-         keepOnDraw.KeepAway();
-         
-         ::ca::dib_sp dibThumb(get_app());
-         double dRate = 184.0 / rectThumb.width();
-         dibThumb->create((int) (dRate * rectThumb.width()), (int) (dRate * rectThumb.height()));
-         dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
-         dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->width(), dibThumb->height(), dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
+         Bergedge.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
+         if(rectThumb.area() > 0)
+         {
+            ::ca::dib_sp dib(get_app());
+            dib->create(1920, 1080);
+            keeper < bool > keepOnDraw(&dynamic_cast <::platform::frame * >(GetParentFrame())->m_bOnDraw, true, false, true);
+            Bergedge.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
+            dib->get_graphics()->SetViewportOrg(0, 0);
+            keepOnDraw.KeepAway();
 
-         imaging.bitmap_blend(pdc, point(10, 10), dibThumb->size(), dibThumb->get_graphics(), null_point(), (byte) (255.0 * 0.67));
+            ::ca::dib_sp dibThumb(get_app());
+            double dRate = 184.0 / rectThumb.width();
+            dibThumb->create((int) (dRate * rectThumb.width()), (int) (dRate * rectThumb.height()));
+            dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
+            dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->width(), dibThumb->height(), dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
+
+            imaging.bitmap_blend(pdc, point(10, 10), dibThumb->size(), dibThumb->get_graphics(), null_point(), (byte) (255.0 * 0.67));
+         }
       }
 
 /*      pdc->SetBkMode(TRANSPARENT);
@@ -471,7 +480,7 @@ namespace platform
          pdc->TextOut(10, 170, m_strStatus2);
       }
 
-      
+
       rect rectArea;
 
       GetAreaThumbRect(rectArea, m_iV);
@@ -494,13 +503,19 @@ namespace platform
       {
          imaging.color_blend(pdc, rectArea, RGB(140, 255, 110), 80);
       }
-      
+
 
    }
 
-   void view::open_document_file(var varFile)
+   void view::open_document_file(::ca::create_context * pcreatecontext)
    {
-      get_bergedge()->open_document_file(varFile);
+      try
+      {
+         Bergedge.open_document_file(pcreatecontext);
+      }
+      catch(...)
+      {
+      }
    }
 
 
@@ -526,24 +541,28 @@ namespace platform
    }
 
 
-   int view::hit_test(point pt)
+   int view::hit_test(point pt, e_element & eelement)
    {
       rect rectArea;
       GetAreaThumbRect(rectArea, m_iV);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_iV;
       }
       GetAreaThumbRect(rectArea, m_i_veriwell);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_i_veriwell;
       }
       GetAreaThumbRect(rectArea, m_i_winactionarea);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_i_winactionarea;
       }
+      eelement = element_none;
       return -1;
    }
 
@@ -584,8 +603,8 @@ namespace platform
    void view::mt_show_window(HWND hwnd, int iShow)
    {
       AfxBeginThread(
-         get_app(), 
-         &view::ThreadProcShowWindow, 
+         get_app(),
+         &view::ThreadProcShowWindow,
          new show_window(hwnd, iShow),
          THREAD_PRIORITY_HIGHEST);
    }
@@ -598,6 +617,7 @@ namespace platform
 
    void view::_001OnTimer(gen::signal_object * pobj)
    {
+
       SCAST_PTR(::user::win::message::timer, ptimer, pobj)
 
       if(ptimer->m_nIDEvent == 21977)
@@ -641,7 +661,8 @@ namespace platform
       KillTimer(5432180);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      int iHitArea = hit_test(pt);
+      e_element eelement;
+      int iHitArea = hit_test(pt, eelement);
 /*      if(m_bDragTask && !m_bShowCalendar && !m_bShutDown)
       {
          m_bDragTask = false;
@@ -784,9 +805,9 @@ namespace platform
                " uninstall _set_windesk",
                System.dir().ca2("ccvotagus"),
                SW_HIDE);
-            
+
             return;
-            // spa boot should cling (installer should catch 
+            // spa boot should cling (installer should catch
             // exit could and restart main application)
          }
       }
@@ -845,7 +866,7 @@ namespace platform
                SwitchArea(iHitArea);
                m_dw3003Time = ::GetTickCount();
                SetTimer(3003, 300, NULL);
-               
+
             }
             else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))
             {
@@ -861,7 +882,7 @@ namespace platform
                   if(hwnd != m_areaa[m_iArea].m_taska[0].m_hwnd)
                   {
                      mt_show_window(hwnd, -1);
-                     
+
                   }
                   else
                   {
@@ -882,7 +903,8 @@ namespace platform
       pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      int iHitArea = hit_test(pt); 
+      e_element eelement;
+      int iHitArea = hit_test(pt, eelement);
       if(m_iHitArea < 0 && iHitArea >=0)
          track_mouse_hover();
       m_iHitArea =  iHitArea;
@@ -897,7 +919,7 @@ namespace platform
       }
       m_linka.remove_all();
 
-      string str = Application.file().as_string(System.dir().matter("platform\\main_link.xml"));
+      string str = Application.file().as_string(Application.dir().matter("platform\\main_link.xml"));
       xml::node node(get_app());
       node.load(str);
       //str = "<html><head></head><body>";
@@ -908,7 +930,7 @@ namespace platform
          {
             link * plink = new link(get_app());
             m_linka.add(plink);
-            
+
             plink->m_iId               = i;
 
             plink->m_strBrief          = node.child_at(i)->attr("brief");
@@ -945,11 +967,6 @@ namespace platform
          m_linka[i].m_button.SetWindowPos(ZORDER_TOP, 11, y, 300, h, SWP_SHOWWINDOW);
          y+=h;
       }
-   }
-
-   bergedge::bergedge * view::get_bergedge()
-   {
-      return get_document()->get_bergedge();
    }
 
 } // namespace platform

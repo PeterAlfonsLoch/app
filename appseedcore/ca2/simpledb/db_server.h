@@ -56,17 +56,23 @@ public:
    ::sqlite::base * GetImplDatabase();
    MidiInstrumentSet * GetMidiInstrumentSet();
 
-   virtual bool data_server_load(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::serializable & var, ::database::update_hint * phint = NULL);
-   virtual bool data_server_save(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::serializable & var, ::database::update_hint * phint = NULL);
+
+   using database::server::data_server_load;
+   virtual bool data_server_load(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint = NULL);
+   
+   using database::server::data_server_save;
+   virtual bool data_server_save(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint = NULL);
+
+
    virtual bool data_pulse_change(::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh);
 
    void close();
 
    bool load(const char * lpKey, string & str);
-   bool load(const char * lpKey, primitive::memory & storage);
+   bool load(const char * lpKey, ::ex1::writable & writer);
    
    bool save(const char * lpKey, const char * psz);
-   bool save(const char * lpKey, primitive::memory & storage);
+   bool save(const char * lpKey, ::ex1::readable & reader);
    
 
    static string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);

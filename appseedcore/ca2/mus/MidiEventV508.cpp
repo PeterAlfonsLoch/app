@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "malloc.h"
 
-MidiEventV508::MidiEventV508()
+midi_event_v508::midi_event_v508()
 {
    m_iFlags = 0;
    m_iAllocate = 0;
@@ -11,7 +11,7 @@ MidiEventV508::MidiEventV508()
    m_lpdwData[2] = 0;
 }
 
-MidiEventV508::~MidiEventV508()
+midi_event_v508::~midi_event_v508()
 {
 
 }
@@ -36,11 +36,11 @@ AFX_STATIC fixed_alloc _vmsAlloc512(ROUND4(512));
 //}
 
 
-void MidiEventV508::clear()
+void midi_event_v508::clear()
 {
    memset(m_lpbData, 0, sizeof(m_lpbData));
 }
-VMSRESULT MidiEventV508::GetMidiEventV001(MidiEventV001 * lpMidiEventV001,  DWORD dwPositionTicks)
+VMSRESULT midi_event_v508::GetMidiEventV001(midi_event_v001 * lpMidiEventV001,  DWORD dwPositionTicks)
 {
    UNREFERENCED_PARAMETER(dwPositionTicks);
    lpMidiEventV001->SetFullType(GetFullType());
@@ -49,14 +49,14 @@ VMSRESULT MidiEventV508::GetMidiEventV001(MidiEventV001 * lpMidiEventV001,  DWOR
    //   lpMidiEventV001->SetParamSize(GetParamSize());
    lpMidiEventV001->SetParam(GetParam(), GetParamSize());
    lpMidiEventV001->SetDelta(GetDelta());
-   lpMidiEventV001->SetPosition(GetPosition());
+   lpMidiEventV001->SetPosition(get_position());
    lpMidiEventV001->SetImage(NULL);
    lpMidiEventV001->SetImageSize(GetImageSize());
    return VMSR_SUCCESS;
 }
 
 
-/*MidiEventBase & MidiEventV508::operator =(MidiEventBase &eventSrc)
+/*midi_event_base & midi_event_v508::operator =(midi_event_base &eventSrc)
 {
 _SetFullType(eventSrc.GetFullType());
 _SetChB1(eventSrc.GetChB1());
@@ -72,7 +72,7 @@ SetFlags(eventSrc.GetFlags());
 return *this;
 }*/
 
-MidiEventV508 & MidiEventV508::operator =(const MidiEventV508 &eventSrc)
+midi_event_v508 & midi_event_v508::operator =(const midi_event_v508 &eventSrc)
 {
    _SetFullType(eventSrc._GetFullType());
    _SetChB1(eventSrc._GetChB1());
@@ -85,7 +85,7 @@ MidiEventV508 & MidiEventV508::operator =(const MidiEventV508 &eventSrc)
 
 
 
-VMSRESULT MidiEventV508::WriteParam(LPVOID lpData, int iSize)
+VMSRESULT midi_event_v508::WriteParam(LPVOID lpData, int iSize)
 {
    if(!_Allocate(iSize))
       return VMSR_E_NOMEMORY;
@@ -93,7 +93,7 @@ VMSRESULT MidiEventV508::WriteParam(LPVOID lpData, int iSize)
    return VMSR_SUCCESS;
 }
 
-VMSRESULT MidiEventV508::SetParam(ex1::file & file, int iLength)
+VMSRESULT midi_event_v508::SetParam(ex1::file & file, int iLength)
 {
    byte * hpbParam = GetParam();
    if(iLength <= 0 && iLength != -1)
@@ -105,7 +105,7 @@ VMSRESULT MidiEventV508::SetParam(ex1::file & file, int iLength)
    }
    else if(iLength == -1)
    {
-      iLength = file.get_length();
+      iLength = (int) file.get_length();
    }
    if(hpbParam == NULL)
    {   
@@ -129,7 +129,7 @@ VMSRESULT MidiEventV508::SetParam(ex1::file & file, int iLength)
 
    return VMSR_SUCCESS;
 }
-VMSRESULT MidiEventV508::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningStatus)
+VMSRESULT midi_event_v508::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningStatus)
 {
    BYTE                    bEvent;
    int                     iGotTotal;
@@ -195,7 +195,7 @@ VMSRESULT MidiEventV508::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningSt
          return VMSR_E_INVALIDFILE;
       }
 
-      if (0 == (dwGot = MidiEventBase::GetVDWord(hpbImage, *lpiLeft - iGotTotal, &cbEvent)))
+      if (0 == (dwGot = midi_event_base::GetVDWord(hpbImage, *lpiLeft - iGotTotal, &cbEvent)))
       {
          return VMSR_E_INVALIDFILE;
       }
@@ -222,17 +222,17 @@ VMSRESULT MidiEventV508::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningSt
 
 }
 
-int MidiEventV508::GetFlags()  const
+int midi_event_v508::GetFlags()  const
 {
    return m_iFlags;
 }
 
-void MidiEventV508::SetFlags(int iFlags)
+void midi_event_v508::SetFlags(int iFlags)
 {
    m_iFlags = iFlags;
 }
 
-void MidiEventV508::_Free()
+void midi_event_v508::_Free()
 {
    void * pvoid = m_pvoid;
    if(pvoid == NULL)
@@ -268,7 +268,7 @@ void MidiEventV508::_Free()
 }
 
 
-bool MidiEventV508::_Allocate(int iSize)
+bool midi_event_v508::_Allocate(int iSize)
 {
    if(iSize == 0)
    {
@@ -328,7 +328,7 @@ bool MidiEventV508::_Allocate(int iSize)
    return true;
 }
 
-void MidiEventV508::SetParamSize(int iSize)
+void midi_event_v508::SetParamSize(int iSize)
 {
    UNREFERENCED_PARAMETER(iSize);
    throw not_implemented_exception();
@@ -336,210 +336,210 @@ void MidiEventV508::SetParamSize(int iSize)
 
 
 
-imedia::position MidiEventV508::GetDelta() const
+imedia::position midi_event_v508::GetDelta() const
 {
     return 0;
 }
 
-void MidiEventV508::SetDelta(imedia::position tkDelta)
+void midi_event_v508::SetDelta(imedia::position tkDelta)
 {
    UNREFERENCED_PARAMETER(tkDelta);
    ASSERT(FALSE);
 }
 
-imedia::position MidiEventV508::GetPosition() const
+imedia::position midi_event_v508::get_position() const
 {
    return 0xffffffff;
 }
 
-void MidiEventV508::SetPosition(imedia::position tkPosition)
+void midi_event_v508::SetPosition(imedia::position tkPosition)
 {
    UNREFERENCED_PARAMETER(tkPosition);
    ASSERT(FALSE);
 }
 
-BYTE MidiEventV508::GetFullType() const
+BYTE midi_event_v508::GetFullType() const
 {
    return m_lpbData[0];
 }
 
-void MidiEventV508::SetFullType(BYTE bValue)
+void midi_event_v508::SetFullType(BYTE bValue)
 {
    m_lpbData[0] = bValue;
 }
 
-BYTE MidiEventV508::get_type() const
+BYTE midi_event_v508::get_type() const
 {
    return m_lpbData[0] & 0xf0;
 }
 
-void MidiEventV508::set_type(BYTE bValue)
+void midi_event_v508::set_type(BYTE bValue)
 {
    m_lpbData[0] &= 0x0f;
    m_lpbData[0] |= bValue & 0xf0;
 }
-BYTE MidiEventV508::GetTrack() const
+BYTE midi_event_v508::GetTrack() const
 {
    return m_lpbData[0] & 0x0f;
 }
-void MidiEventV508::SetTrack(BYTE bValue)
+void midi_event_v508::SetTrack(BYTE bValue)
 {
    m_lpbData[0] &= 0xf0;
    m_lpbData[0] |= bValue & 0x0f;
 }
-BYTE MidiEventV508::GetMetaType() const
+BYTE midi_event_v508::GetMetaType() const
 {
    return m_lpbData[1];
 }
-void MidiEventV508::SetMetaType(BYTE bValue)
+void midi_event_v508::SetMetaType(BYTE bValue)
 {
    m_lpbData[1] = bValue;
 }
-BYTE MidiEventV508::GetChB1() const
+BYTE midi_event_v508::GetChB1() const
 {
    return m_lpbData[1];
 }
-void MidiEventV508::SetChB1(BYTE bValue)
+void midi_event_v508::SetChB1(BYTE bValue)
 {
    m_lpbData[1] = bValue;
 }
-BYTE MidiEventV508::GetChB2() const
+BYTE midi_event_v508::GetChB2() const
 {
    return m_lpbData[2];
 }
-void MidiEventV508::SetChB2(BYTE bValue)
+void midi_event_v508::SetChB2(BYTE bValue)
 {
    m_lpbData[2] = bValue;
 }
-BYTE MidiEventV508::GetNotePitch() const
+BYTE midi_event_v508::GetNotePitch() const
 {
    return m_lpbData[1];
 }
-void MidiEventV508::SetNotePitch(BYTE bValue)
+void midi_event_v508::SetNotePitch(BYTE bValue)
 {
    m_lpbData[1] = bValue;
 }
-BYTE MidiEventV508::GetNoteVelocity() const
+BYTE midi_event_v508::GetNoteVelocity() const
 {
    return m_lpbData[2];
 }
-void MidiEventV508::SetNoteVelocity(BYTE bValue)
+void midi_event_v508::SetNoteVelocity(BYTE bValue)
 {
    m_lpbData[2] = bValue;
 }
-byte * MidiEventV508::GetImage() const
+byte * midi_event_v508::GetImage() const
 {
    return (byte *) m_lpdwData[0];
 }
 
-void MidiEventV508::SetImage(byte * hpbImage)
+void midi_event_v508::SetImage(byte * hpbImage)
 {
    UNREFERENCED_PARAMETER(hpbImage);
    ASSERT(FALSE);
 }
 
-int MidiEventV508::GetImageSize() const
+int midi_event_v508::GetImageSize() const
 {
     return 0xffffffff;
 }
-void MidiEventV508::SetImageSize(int cbImage)
+void midi_event_v508::SetImageSize(int cbImage)
 {
    UNREFERENCED_PARAMETER(cbImage);
    ASSERT(FALSE);
 }
 
-void MidiEventV508::SetParam(void * pVoid, int iSize)
+void midi_event_v508::SetParam(void * pVoid, int iSize)
 {
    WriteParam(pVoid, iSize);
 }
 
-byte * MidiEventV508::GetParam() const
+byte * midi_event_v508::GetParam() const
 {
    return (byte *) m_lpdwData[2];
 }
 
-int MidiEventV508::GetParamSize() const
+int midi_event_v508::GetParamSize() const
 {
    return m_lpdwData[1];
 }
 
-BYTE MidiEventV508::_GetType() const
+BYTE midi_event_v508::_GetType() const
 {
    return m_lpbData[0] & 0xf0;
 }
 
-BYTE MidiEventV508::_GetTrack() const
+BYTE midi_event_v508::_GetTrack() const
 {
    return m_lpbData[0] & 0x0f;
 }
 
-BYTE MidiEventV508::_GetFullType() const
+BYTE midi_event_v508::_GetFullType() const
 {
    return m_lpbData[0];
 }
 
-BYTE MidiEventV508::_GetMetaType() const
+BYTE midi_event_v508::_GetMetaType() const
 {
    return m_lpbData[1];
 }
 
-void MidiEventV508::_SetMetaType(BYTE bValue)
+void midi_event_v508::_SetMetaType(BYTE bValue)
 {
    m_lpbData[1] = bValue;
 }
 
-void MidiEventV508::_SetFullType(BYTE bValue)
+void midi_event_v508::_SetFullType(BYTE bValue)
 {
    m_lpbData[0] = bValue;
 }
 
-BYTE MidiEventV508::_GetChB1() const
+BYTE midi_event_v508::_GetChB1() const
 {
    return m_lpbData[1];
 }
 
-void MidiEventV508::_SetChB1(BYTE bValue)
+void midi_event_v508::_SetChB1(BYTE bValue)
 {
    m_lpbData[1] = bValue;
 }
 
-BYTE MidiEventV508::_GetChB2() const
+BYTE midi_event_v508::_GetChB2() const
 {
    return m_lpbData[2];
 }
 
-void MidiEventV508::_SetChB2(BYTE bValue)
+void midi_event_v508::_SetChB2(BYTE bValue)
 {
    m_lpbData[2] = bValue;
 }
 
-byte * MidiEventV508::_GetImage() const
+byte * midi_event_v508::_GetImage() const
 {
    return (byte *) m_lpdwData[0];
 }
 
-void MidiEventV508::_SetImage(byte * hpbImage)
+void midi_event_v508::_SetImage(byte * hpbImage)
 {
    UNREFERENCED_PARAMETER(hpbImage);
    ASSERT(FALSE);
 }
 
-int MidiEventV508::_GetImageSize() const
+int midi_event_v508::_GetImageSize() const
 {
     return 0xffffffff;
 }
-void MidiEventV508::_SetImageSize(int cbImage)
+void midi_event_v508::_SetImageSize(int cbImage)
 {
    UNREFERENCED_PARAMETER(cbImage);
    ASSERT(FALSE);
 }
 
-int MidiEventV508::_GetFlags()  const
+int midi_event_v508::_GetFlags()  const
 {
     return m_iFlags;
 }
 
-void MidiEventV508::_SetFlags(int iFlags)
+void midi_event_v508::_SetFlags(int iFlags)
 {
     m_iFlags = iFlags;
 }

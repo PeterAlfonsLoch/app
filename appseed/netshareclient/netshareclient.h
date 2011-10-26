@@ -1,6 +1,6 @@
 #pragma once
 
-#include "include/cube.h"
+#include "include/ca2.h"
 
 
 #ifdef _CA2_FONTOPUS_NETSHARECLIENT_DLL
@@ -8,6 +8,20 @@
 #else
     #define CLASS_DECL_CA2_NETSHARECLIENT  _declspec(dllimport)
 #endif
+
+
+namespace netshareclient
+{
+
+   class application;
+
+
+} // namespace netshareclient
+
+
+#undef App
+#define App(pcaapp) (pcaapp->cast_app < ::netshareclient::application > ())
+
 
 #include "area.h"
 #include "tunnel.h"

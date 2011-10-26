@@ -3,17 +3,12 @@
 namespace visual
 {
 
-   //const DWORD font::m_dwAllocationAddUp = 4096;
-   //mutex font::m_mutex;
    font::font(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_spfont(papp)
    {
-      //m_pFont = NULL;
-   /////   m_lpData = NULL;
-      m_pDC = NULL;
-   //   m_iUsedGlyphs = 0;
-   //   m_dwAllocation = 0;
-   //   m_dwSize = 0;
+      m_pDC       = NULL;
+      m_pfontOld  = NULL;
    }
 
    font::~font()
@@ -21,41 +16,20 @@ namespace visual
    }
 
 
-   void font::SetFont(::ca::font *pFont)
-   {
-      if(m_pFont != NULL)
-         clear();
-      m_pFont = pFont;
-      OnSetFont();
-   }
 
    void font::clear()
    {
       m_glyphset.remove_all();
-      //m_glyphArray.remove_all();
-   //   m_iUsedGlyphs = 0;
-   //   m_dwSize = 0;
-   //   m_pFont = NULL;
    }
 
    ::ca::font * font::GetFont()
    {
-      return m_pFont;
+      return m_spfont;
    }
 
-   void font::EmbossedTextOut(
-       ::ca::graphics                     *pdc,
-       LPCRECT               lpcrect,
-       double               dRateX,
-      double               dHeight,
-      string                 &str)
+   void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
    {
-      ::visual::api::EmbossedTextOut(
-         pdc,
-         lpcrect,
-         dRateX,
-         dHeight,
-         str);
+      ::visual::api::EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str);
       return;
       SetDC(pdc);
       SelectFont();
@@ -78,7 +52,7 @@ namespace visual
                &ptOffset);
          }
       }
-      
+
 
 
       UnselectFont();
@@ -86,37 +60,21 @@ namespace visual
 
    /*   SetDC(pgraphics);
       SelectFont();
-      
+
       pgraphics->TextOut(x, y, str);
       pgraphics->BeginPath();
       pgraphics->TextOut(x, y, str);
       pgraphics->EndPath();
       pgraphics->StrokePath();
-      
+
       UnselectFont();
       ClearDC();*/
 
    }
 
-   void font::EmbossedTextOut(
-       ::ca::graphics                     *pdc,
-       LPCRECT               lpcrect,
-      double               dRateX,
-      double               dHeight,
-       string                 &str,   
-       LPINT                lpiCharsPositions,
-       int                     iCharsPositions,
-      int                  iOffset)
+   void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int iCharsPositions, int iOffset)
    {
-      ::visual::api::EmbossedTextOut(
-         pdc,
-         lpcrect,
-         dRateX,
-         dHeight,
-         str,
-         lpiCharsPositions,
-         iCharsPositions,
-         iOffset);
+      ::visual::api::EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
       return;
 
       SetDC(pdc);
@@ -124,7 +82,7 @@ namespace visual
 
       const rect rectOffset(lpcrect);
       point ptOffset;
-      
+
 
       glyph * lpglyph;
       int iSize = str.get_length();
@@ -153,7 +111,7 @@ namespace visual
          lpiCharsPositions,
          iCharsPositions,
          iOffset);*/
-      
+
       UnselectFont();
       ClearDC();
    /*   SetDC(pgraphics);
@@ -178,7 +136,7 @@ namespace visual
        ::ca::graphics                     * pgraphics,
        int                     x,
        int                     y,
-       string                 &str,   
+       string                 &str,
        LPINT                   lpiCharsPositions,
        int                     iCharsPositions)
    {
@@ -210,9 +168,9 @@ namespace visual
 
    BOOL font::AddGlyph(UINT user)
    {
-   //   CSingleLock sl(&m_mutex);
-   //   sl.Lock(INFINITE);
-      
+   //   single_lock sl(&m_mutex);
+   //   sl.lock(INFINITE);
+
       return TRUE;
 
       if(m_glyphset.find_first(user) >= 0)
@@ -230,7 +188,7 @@ namespace visual
       mat2.eM22.value = 1;
       mat2.eM22.fract = 0;
       GLYPHMETRICS gm;
-      
+
       DWORD cbBuffer = m_pDC->GetGlyphOutline(
          user,
          GGO_NATIVE,
@@ -248,7 +206,7 @@ namespace visual
       LPTTPOLYGONHEADER lpPH = (LPTTPOLYGONHEADER) malloc(cbBuffer);
       if(lpPH == NULL)
          return FALSE;
-      
+
       m_pDC->GetGlyphOutline(
          user,
          GGO_NATIVE,
@@ -271,7 +229,7 @@ namespace visual
 
    void font::SelectFont()
    {
-      m_pOldFont = m_pDC->SelectObject(m_pFont);
+      m_pfontOld = m_pDC->SelectObject(m_spfont);
    }
 
    void font::ClearDC()
@@ -281,87 +239,10 @@ namespace visual
 
    void font::UnselectFont()
    {
-      ASSERT(m_pOldFont != NULL);
-      m_pDC->SelectObject(m_pOldFont);
-      m_pOldFont = NULL;
+      ASSERT(m_pfontOld != NULL);
+      m_pDC->SelectObject(m_pfontOld);
+      m_pfontOld = NULL;
    }
-
-   //LPVOID font::Alloc(DWORD dwSize)
-   //{
-   //   LPVOID lpData = m_lpData;
-   //   DWORD dwFree = GetFreeSize();
-   /*   if(dwFree < dwSize)
-      {
-         m_dwAllocation += dwSize + m_dwAllocationAddUp;
-         HANDLE hHeap = GetProcessHeap();
-         if(m_lpData == NULL)
-            lpData = HeapAlloc(hHeap, 0, m_dwAllocation);
-         else
-            lpData = HeapReAlloc(hHeap, 0, m_lpData, m_dwAllocation);
-         if(lpData == NULL)
-            return NULL;
-         if(lpData != m_lpData)
-         {
-            OffsetDataPointers(lpData);
-            m_lpData = lpData;
-         }
-      }
-      lpData = (LPBYTE) lpData + m_dwSize;
-      m_dwSize += dwSize;
-      return lpData;*/
-   //   return NULL;
-
-   //}
-
-   //DWORD font::GetFreeSize()
-   //{
-   //   return m_dwAllocation - m_dwSize;
-   //}
-
-   /*void font::OffsetDataPointers(LPVOID lpData)
-   {
-      glyph * pGlyph;
-      bool bPlus;
-      DWORD dwOffset;
-      if(lpData > m_lpData)
-      {
-         bPlus = true;
-         dwOffset = (LPBYTE) lpData - (LPBYTE) m_lpData;
-      }
-      else
-      {
-         bPlus = false;
-         dwOffset = (LPBYTE) m_lpData - (LPBYTE) lpData;
-      }
-      int i, iSize;
-      iSize = m_glyphArray.get_size();
-      for(i = 0; i < iSize; i++)
-      {
-         pGlyph = m_glyphArray[i];
-      }
-
-   }*/
-
-
-
-   /*glyph * font::GetNewGlyph()
-   {
-   //   glyph * pGlyph;
-   //   if(m_iUsedGlyphs == m_glyphArray.get_size())
-   //   {
-         glyph glyph;
-         m_glyphArray.add(glyph);
-         return &m_glyphArray.element_at(m_glyphArray.get_upper_bound());
-   /*   }
-      else
-      {
-         ASSERT(m_iUsedGlyphs < m_glyphArray.get_size());
-         pGlyph = m_glyphArray[m_iUsedGlyphs];
-         pGlyph->clear();
-         m_iUsedGlyphs++;
-         return pGlyph;
-      }*/
-   //}
 
 
 
@@ -388,7 +269,7 @@ namespace visual
       int               i, j, k;
       BOOL             forceInsertion = FALSE;
       stringa *   p1DTokens;
-      
+
       ASSERT(p2DTokens != NULL);
       SelectFont();
       for(i = 0; i < p2DTokens->get_size(); i++)
@@ -452,7 +333,7 @@ namespace visual
        LPCRECT               lpcrect,
       double               dRateX,
       double               dHeight,
-      string                 &str,   
+      string                 &str,
       LPINT                lpiCharsPositions,
        int                     iCharsPositions,
       int                  iOffset,
@@ -500,7 +381,7 @@ namespace visual
    {
       ::ca::graphics_sp spgraphics(&System);
       spgraphics->CreateCompatibleDC(NULL);
-      ::ca::font * pFontOld = spgraphics->SelectObject(m_pFont);
+      ::ca::font * pFontOld = spgraphics->SelectObject(m_spfont);
       spgraphics->GetTextMetrics(&m_tm);
       m_iFontHiHeight = m_tm.tmAscent + m_tm.tmDescent;
       spgraphics->SelectObject(pFontOld);

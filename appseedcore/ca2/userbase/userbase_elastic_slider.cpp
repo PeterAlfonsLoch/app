@@ -10,7 +10,7 @@ namespace userbase
       m_daScalar.set_size(100);
 
       m_etranslucency = TranslucencyPresent;
-      
+
       m_bSlide = false;
       m_iScalar = 0;
    }
@@ -20,9 +20,9 @@ namespace userbase
    }
 
 
-   void elastic_slider::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void elastic_slider::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::user::interaction::_001InstallMessageHandling(pdispatch);
+      ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &elastic_slider::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pdispatch, this, &elastic_slider::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &elastic_slider::_001OnLButtonDown);
@@ -38,7 +38,7 @@ namespace userbase
 
    void elastic_slider::_001OnTimer(gen::signal_object * pobj)
    {
-      
+
       SCAST_PTR(::user::win::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
@@ -62,7 +62,7 @@ namespace userbase
       ScreenToClient(&pt);
       if(rect.contains(pt))
       {
-         
+
          CalcTension(pt);
          set_capture();
          m_dwLastTime = ::GetTickCount();
@@ -79,7 +79,7 @@ namespace userbase
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
       if(m_bSlide)
       {
-         
+
          m_bSlide= false;
          Slide();
          pmouse->m_bRet = true;
@@ -95,7 +95,7 @@ namespace userbase
 
    void elastic_slider::Slide()
    {
-      
+
       UpdatePosition();
       m_pscalarVelocity->SetScalar(m_iVelocity, CalcScalar());
    }
@@ -142,7 +142,7 @@ namespace userbase
       {
          dScalar = 0.0;
       }
-      m_daScalar[m_iScalar] =  dScalar; 
+      m_daScalar[m_iScalar] =  dScalar;
       m_iScalar = (m_iScalar + 1) % m_daScalar.get_size();
       m_dwLastTime = dwTime;
       return m_daScalar.GetMean(); // Low Pass Filter
@@ -151,7 +151,7 @@ namespace userbase
    void elastic_slider::SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int iVelocity, DoubleScalar * pscalarPosition, int iPosition)
    {
       m_escalar = ScalarStreamingVelocity;
-      
+
       m_pscalarVelocity = pscalarVelocity;
       m_iVelocity = iVelocity;
 
@@ -161,7 +161,7 @@ namespace userbase
 
    void elastic_slider::UpdatePosition()
    {
-      
+
       double dMin = m_pscalarPosition->GetMinScalar(m_iPosition);
       double dCur = m_pscalarPosition->GetScalar(m_iPosition);
       double dMax = m_pscalarPosition->GetMaxScalar(m_iPosition);

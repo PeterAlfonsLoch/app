@@ -228,8 +228,8 @@ namespace gcom
                            m_etypea;
 
          Tool001            m_tool001;
-         CEvent            m_eventStartTransition;
-         CEvent            m_eventThreadExit;
+         event            m_eventStartTransition;
+         event            m_eventThreadExit;
          bool              m_bDestroy;
       
       protected:

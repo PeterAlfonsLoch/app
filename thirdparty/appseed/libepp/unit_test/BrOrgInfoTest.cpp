@@ -24,7 +24,6 @@
  */
 /* $Id: BrOrgInfoTest.cpp 1015 2009-03-12 19:28:56Z eduardo $ */
 #if USE_BR_ORG
-#include <string>
 #include <memory>
 #include <iostream>
 

@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -35,7 +35,7 @@ namespace sockets
 
 
 
-   http_post_socket::http_post_socket(socket_handler_base& h) : 
+   http_post_socket::http_post_socket(socket_handler_base& h) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -56,7 +56,7 @@ namespace sockets
       m_fields(h.get_app()),
       m_bMultipart(false)
    {
-      CSingleLock lock(&System.m_mutexHttpPostBoundary, true);
+      single_lock lock(&System.m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
       for (int i = 0; i < 12; i++)
@@ -111,9 +111,28 @@ namespace sockets
       }
       else
       {
+
+
          string body;
 
-         body = m_fields.get_http_post();
+         if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
+         {
+            ::xml::node * pnode = m_fields["xml"].ca2 < ::xml::node >();
+            body = pnode->get_xml();
+            body.trim();
+            if(outheader("Content-type").get_string().find_ci("application/xml") < 0)
+            {
+               outheader("Content-type") = "application/xml; " + outheader("Content-type").get_string();
+            }
+         }
+         else
+         {
+            body = m_fields.get_http_post();
+            if(outheader("Content-type").get_string().find_ci("application/x-www-form-urlencoded") < 0)
+            {
+               outheader("Content-type") = "application/x-www-form-urlencoded; " + outheader("Content-type").get_string();
+            }
+         }
 
          // only fields, no files, add urlencoding
          /*for (std::collection::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
@@ -141,16 +160,23 @@ namespace sockets
          // build header, send body
          m_request.attr("http_method") = "POST";
          m_request.attr("http_version") = "HTTP/1.1";
-         outheader("Host") = GetUrlHost(); // oops - this is actually a request header that we're adding..
-         outheader("User-agent") = MyUseragent();
-         outheader("Accept") = "text/html, text/plain, */*;q=0.01";
-         outheader("Connection") = "close";
-         outheader("Content-type") = "application/x-www-form-urlencoded";
+         string strHost = GetUrlHost();
+         outheader("Host") = strHost; // oops - this is actually a request header that we're adding..
+         string strUserAgent = MyUseragent();
+         if(!(bool)m_request.attr("minimal_headers"))
+         {
+            outheader("User-agent") = "ca2_netnode";
+            outheader("Accept") = "text/html, text/plain, application/xml, */*;q=0.01";
+            outheader("Connection") = "close";
+         }
          outheader("Content-length") = body.get_length();
          SendRequest();
 
+         if(body.get_length() > 0)
+         {
          // send body
          Send( body );
+         }
       }
    }
 
@@ -252,7 +278,7 @@ namespace sockets
                {
                   primitive::memory mem;
                   mem.FullLoad(file);
-                  SendBuf((const char *) mem.GetAllocation(), mem.GetStorageSize());
+                  SendBuf((const char *) mem.get_data(), mem.get_size());
                }
             }
             Send("\r\n");

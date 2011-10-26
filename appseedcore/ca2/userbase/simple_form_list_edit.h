@@ -13,10 +13,10 @@ public:
    ::user::list * GetBaseListInterface();
    virtual ~SimpleFormListEdit();
 
-   afx_msg BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
-   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-   afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-   afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-   afx_msg int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
+   BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
+   int OnCreate(LPCREATESTRUCT lpCreateStruct);
+   void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+   void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+   int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
 
 };

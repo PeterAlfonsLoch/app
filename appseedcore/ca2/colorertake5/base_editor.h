@@ -256,7 +256,7 @@ private:
   int wStart, wSize;
   // line count
   int lineCount;
-  // get_size of line regions
+  // this->get_size of line regions
   int lrSize;
   // position of last validLine
   int invalidLine;
@@ -299,7 +299,7 @@ protected:
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

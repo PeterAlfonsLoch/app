@@ -80,9 +80,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(SolutionDir)../../../time/spa/x86/"
-$(SolutionDir)../../thirdparty/binary/signtool sign /f "C:\cecyn1.at.hotmail.com\ccvotagus\cgcl\2011-02-ca2.p12" /p ca2514GrenLund "$(TargetPath)" 
-copy "$(TargetPath)" "$(SolutionDir)../../../time/spa/x86/spa_bspatch.dll"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -97,7 +96,7 @@ copy "$(TargetPath)" "$(SolutionDir)../../../time/spa/x86/spa_bspatch.dll"</Comm
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../Sockets;..;$(SolutionDir)../ca2core/fontopus/app/source/main;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <SmallerTypeCheck>false</SmallerTypeCheck>

@@ -256,7 +256,7 @@ namespace ca2
       while(i < iLen)
       {
          ch = strCandidate[i];
-         if(isalpha(ch))
+         if(isalpha((unsigned char) ch))
             i++;
          else if(ch == '.')
             i++;
@@ -270,7 +270,24 @@ namespace ca2
       return false;
       
    }
-   string url::set(const char * pszUrl, const char * pszKey, var var)
+
+   var & url::set(var & varUrl, const char * pszKey, var var)
+   {
+      return varUrl = set_key(varUrl, pszKey, var);
+   }
+
+   gen::property & url::set(gen::property & propUrl, const char * pszKey, var var)
+   {
+      propUrl.set_value(set_key(propUrl.get_value(), pszKey, var));
+      return propUrl;
+   }
+
+   string url::set(string & strUrl, const char * pszKey, var var)
+   {
+      return strUrl = set_key(strUrl, pszKey, var);
+   }
+
+   string url::set_key(const char * pszUrl, const char * pszKey, var var)
    {
       string strUrl(pszUrl);
       int iPos = strUrl.find("?");
@@ -281,14 +298,29 @@ namespace ca2
          query_set(strUrl.Mid(iPos + 1), pszKey, var);
    }
 
-   string url::remove(const char * pszUrl, const char * pszKey)
+   var & url::remove(var & varUrl, const char * pszKey)
+   {
+      return varUrl = remove_key(varUrl, pszKey);
+   }
+
+   gen::property & url::remove(gen::property & propUrl, const char * pszKey)
+   {
+      propUrl.set_string(remove_key(propUrl.get_value(), pszKey));
+      return propUrl;
+   }
+
+   string url::remove(string & strUrl, const char * pszKey)
+   {
+      return strUrl = remove_key(strUrl, pszKey);
+   }
+
+   string url::remove_key(const char * pszUrl, const char * pszKey)
    {
       string strUrl(pszUrl);
       int iPos = strUrl.find("?");
       if(iPos < 0)
          return strUrl;
-      return strUrl.Left(iPos)
-         + gen::str::has_char(query_remove(strUrl.Mid(iPos + 1), pszKey), "?");
+      return strUrl.Left(iPos) + gen::str::has_char(query_remove(strUrl.Mid(iPos + 1), pszKey), "?");
    }
 
    string url::query_set(const char * pszQuery, const char * pszKey, var var)
@@ -350,7 +382,8 @@ namespace ca2
       || strLocale == "kz"
       || strLocale == "ru"
       || strLocale == "pl"
-      || strLocale == "tr")
+      || strLocale == "tr"
+      || strLocale == "ee")
       {
          return true;
       }
@@ -513,6 +546,31 @@ namespace ca2
    string url::set_script(const char * pszUrl, const char * pszScript)
    {
       return get_protocol(pszUrl) + "://" + get_root(pszUrl) + string(pszScript) + gen::str::has_char(get_query(pszUrl), "?");
+   }
+
+   string url::override_if_empty(const char * pszDst, const char * pszSrc, bool bOverrideQuery)
+   {
+      string strProtocol = get_protocol(pszDst);
+      string strProtocolOver = get_protocol(pszSrc);
+      string strRoot = get_root(pszDst);
+      string strRootOver = get_root(pszSrc);
+      string strScript = get_script(pszDst);
+      string strScriptOver = get_script(pszSrc);
+      string strQuery = get_query(pszDst);
+      string strQueryOver = get_query(pszSrc);
+
+      if(strProtocol.is_empty())
+         strProtocol = strProtocolOver;
+      if(strRoot.is_empty())
+         strRoot = strRootOver;
+      if(strScript.is_empty())
+         strScript = strScriptOver;
+      if(bOverrideQuery && strQuery.is_empty())
+         strQuery = strQueryOver;
+      if(!gen::str::begins(strScript, "/"))
+         strScript = "/" + strScript;
+      
+      return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
    }
 
 } // namespace ca2

@@ -108,6 +108,21 @@ namespace ca
       throw interface_only_exception();
    }
 
+   bool dib::from(::ca::dib * pdib)
+   {
+      if(!create(pdib->size()))
+         return false;
+      try
+      {
+         memcpy(get_data(), pdib->get_data(), (size_t) (sizeof(COLORREF) * area()));
+      }
+      catch(...)
+      {
+         return false;
+      }
+      return true;
+   }
+
    bool dib::from(::ca::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
@@ -197,53 +212,60 @@ namespace ca
       }
    }
 
-   void dib::mult_alpha()
+   void dib::mult_alpha(::ca::dib * pdib, bool bPreserveAlpha)
    {
+      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(bPreserveAlpha);
+
       BYTE *dst=(BYTE*)get_data();
       __int64 size = area();
 
+
+      // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+
+
       while (size >= 8)
       {
-         dst[0] = LOBYTE(((int)dst[0] * (int)dst[3]) / 255);
-         dst[1] = LOBYTE(((int)dst[1] * (int)dst[3]) / 255);
-         dst[2] = LOBYTE(((int)dst[2] * (int)dst[3]) / 255);
+         dst[0] = LOBYTE(((int)dst[0] * (int)dst[3])>> 8);
+         dst[1] = LOBYTE(((int)dst[1] * (int)dst[3])>> 8);
+         dst[2] = LOBYTE(((int)dst[2] * (int)dst[3])>> 8);
 
-         dst[4+0] = LOBYTE(((int)dst[4+0] * (int)dst[4+3]) / 255);
-         dst[4+1] = LOBYTE(((int)dst[4+1] * (int)dst[4+3]) / 255);
-         dst[4+2] = LOBYTE(((int)dst[4+2] * (int)dst[4+3]) / 255);
+         dst[4+0] = LOBYTE(((int)dst[4+0] * (int)dst[4+3])>> 8);
+         dst[4+1] = LOBYTE(((int)dst[4+1] * (int)dst[4+3])>> 8);
+         dst[4+2] = LOBYTE(((int)dst[4+2] * (int)dst[4+3])>> 8);
 
-         dst[8+0] = LOBYTE(((int)dst[8+0] * (int)dst[8+3]) / 255);
-         dst[8+1] = LOBYTE(((int)dst[8+1] * (int)dst[8+3]) / 255);
-         dst[8+2] = LOBYTE(((int)dst[8+2] * (int)dst[8+3]) / 255);
+         dst[8+0] = LOBYTE(((int)dst[8+0] * (int)dst[8+3])>> 8);
+         dst[8+1] = LOBYTE(((int)dst[8+1] * (int)dst[8+3])>> 8);
+         dst[8+2] = LOBYTE(((int)dst[8+2] * (int)dst[8+3])>> 8);
 
-         dst[12+0] = LOBYTE(((int)dst[12+0] * (int)dst[12+3]) / 255);
-         dst[12+1] = LOBYTE(((int)dst[12+1] * (int)dst[12+3]) / 255);
-         dst[12+2] = LOBYTE(((int)dst[12+2] * (int)dst[12+3]) / 255);
+         dst[12+0] = LOBYTE(((int)dst[12+0] * (int)dst[12+3])>> 8);
+         dst[12+1] = LOBYTE(((int)dst[12+1] * (int)dst[12+3])>> 8);
+         dst[12+2] = LOBYTE(((int)dst[12+2] * (int)dst[12+3])>> 8);
 
-         dst[16+0] = LOBYTE(((int)dst[16+0] * (int)dst[16+3]) / 255);
-         dst[16+1] = LOBYTE(((int)dst[16+1] * (int)dst[16+3]) / 255);
-         dst[16+2] = LOBYTE(((int)dst[16+2] * (int)dst[16+3]) / 255);
+         dst[16+0] = LOBYTE(((int)dst[16+0] * (int)dst[16+3])>> 8);
+         dst[16+1] = LOBYTE(((int)dst[16+1] * (int)dst[16+3])>> 8);
+         dst[16+2] = LOBYTE(((int)dst[16+2] * (int)dst[16+3])>> 8);
 
-         dst[20+0] = LOBYTE(((int)dst[20+0] * (int)dst[20+3]) / 255);
-         dst[20+1] = LOBYTE(((int)dst[20+1] * (int)dst[20+3]) / 255);
-         dst[20+2] = LOBYTE(((int)dst[20+2] * (int)dst[20+3]) / 255);
+         dst[20+0] = LOBYTE(((int)dst[20+0] * (int)dst[20+3])>> 8);
+         dst[20+1] = LOBYTE(((int)dst[20+1] * (int)dst[20+3])>> 8);
+         dst[20+2] = LOBYTE(((int)dst[20+2] * (int)dst[20+3])>> 8);
 
-         dst[24+0] = LOBYTE(((int)dst[24+0] * (int)dst[24+3]) / 255);
-         dst[24+1] = LOBYTE(((int)dst[24+1] * (int)dst[24+3]) / 255);
-         dst[24+2] = LOBYTE(((int)dst[24+2] * (int)dst[24+3]) / 255);
+         dst[24+0] = LOBYTE(((int)dst[24+0] * (int)dst[24+3])>> 8);
+         dst[24+1] = LOBYTE(((int)dst[24+1] * (int)dst[24+3])>> 8);
+         dst[24+2] = LOBYTE(((int)dst[24+2] * (int)dst[24+3])>> 8);
 
-         dst[28+0] = LOBYTE(((int)dst[28+0] * (int)dst[28+3]) / 255);
-         dst[28+1] = LOBYTE(((int)dst[28+1] * (int)dst[28+3]) / 255);
-         dst[28+2] = LOBYTE(((int)dst[28+2] * (int)dst[28+3]) / 255);
+         dst[28+0] = LOBYTE(((int)dst[28+0] * (int)dst[28+3])>> 8);
+         dst[28+1] = LOBYTE(((int)dst[28+1] * (int)dst[28+3])>> 8);
+         dst[28+2] = LOBYTE(((int)dst[28+2] * (int)dst[28+3])>> 8);
 
          dst += 4 * 8;
          size -= 8;
       }
       while(size--)
       {
-         dst[0] = LOBYTE(((int)dst[0] * (int)dst[3]) / 255);
-         dst[1] = LOBYTE(((int)dst[1] * (int)dst[3]) / 255);
-         dst[2] = LOBYTE(((int)dst[2] * (int)dst[3]) / 255);
+         dst[0] = LOBYTE(((int)dst[0] * (int)dst[3])>> 8);
+         dst[1] = LOBYTE(((int)dst[1] * (int)dst[3])>> 8);
+         dst[2] = LOBYTE(((int)dst[2] * (int)dst[3])>> 8);
          dst += 4;
       }
    }
@@ -406,7 +428,7 @@ fill_last:
       lpb2 += ((int)echannel) % 4;
       for(register __int64 i = 0; i < size; i++)
       {
-         *lpb1 = (BYTE)(((unsigned int)*lpb1 * (unsigned int)*lpb2) / ((unsigned int)255)); 
+         *lpb1 = (BYTE)(((unsigned int)*lpb1 * (unsigned int)*lpb2) / 255); 
          lpb1 += 4;
          lpb2 += 4;
       }
@@ -583,6 +605,47 @@ fill_last:
          dst+=4;
          src+=4;
          alf+=4;
+      }
+
+      return true;
+   }
+
+   bool dib::blend(dib * pdib, dib * pdibRate)
+   {
+      if(size() != pdib->size() ||
+         size() != pdibRate->size())
+         return false;
+
+      BYTE *src=(BYTE*)pdib->get_data();
+      BYTE *dst=(BYTE*)get_data();
+      BYTE *alf=(BYTE*)pdibRate->get_data();
+      int size=width()*height();
+
+      while(size >= 2)
+      {
+         dst[00] = (BYTE) (((((int)src[00] - (int)dst[00]) * (int)alf[00]) + (int)dst[00] * (int)255) / 255);
+         dst[01] = (BYTE) (((((int)src[01] - (int)dst[01]) * (int)alf[01]) + (int)dst[01] * (int)255) / 255);
+         dst[02] = (BYTE) (((((int)src[02] - (int)dst[02]) * (int)alf[02]) + (int)dst[02] * (int)255) / 255);
+         dst[03] = (BYTE) (((((int)src[03] - (int)dst[03]) * (int)alf[03]) + (int)dst[03] * (int)255) / 255);
+         dst[04] = (BYTE) (((((int)src[04] - (int)dst[04]) * (int)alf[04]) + (int)dst[04] * (int)255) / 255);
+         dst[05] = (BYTE) (((((int)src[05] - (int)dst[05]) * (int)alf[05]) + (int)dst[05] * (int)255) / 255);
+         dst[06] = (BYTE) (((((int)src[06] - (int)dst[06]) * (int)alf[06]) + (int)dst[06] * (int)255) / 255);
+         dst[07] = (BYTE) (((((int)src[07] - (int)dst[07]) * (int)alf[07]) + (int)dst[07] * (int)255) / 255);
+         dst+=4 * 2;
+         src+=4 * 2;
+         alf+=4 * 2;
+         size-=2;
+      }
+      while(size > 0)
+      {
+         dst[00] = (BYTE) (((((int)src[00] - (int)dst[00]) * (int)alf[00]) + (int)dst[00] * (int)255) / 255);
+         dst[01] = (BYTE) (((((int)src[01] - (int)dst[01]) * (int)alf[01]) + (int)dst[01] * (int)255) / 255);
+         dst[02] = (BYTE) (((((int)src[02] - (int)dst[02]) * (int)alf[02]) + (int)dst[02] * (int)255) / 255);
+         dst[03] = (BYTE) (((((int)src[03] - (int)dst[03]) * (int)alf[03]) + (int)dst[03] * (int)255) / 255);
+         dst+=4;
+         src+=4;
+         alf+=4;
+         size--;
       }
 
       return true;
@@ -2016,7 +2079,7 @@ fill_last:
    }
 
 
-   void dib::xor(dib * pdib)
+   void dib::do_xor(dib * pdib)
    {
       if(width() != pdib->width()
          || height() != pdib->height())
@@ -2322,6 +2385,66 @@ fill_last:
          lpSrc += 4;
          iArea--;
       }
+   }
+
+   void dib::write(::ex1::byte_output_stream & ostream)
+   {
+      ostream << (int) width();
+      ostream << (int) height();
+      if(area() <= 0)
+         return;
+      ostream.write(get_data(), (::primitive::memory_size)(sizeof(COLORREF) * area()));
+   }
+
+   void dib::read(::ex1::byte_input_stream & istream)
+   {
+      int width;
+      int height;
+      istream >> width;
+      if(width < 0)
+         return;
+      istream >> height;
+      if(height < 0)
+         return;
+      if((width * height) <= 0)
+         return;
+      if(!create(width, height))
+         throw 0;
+      istream.read(get_data(), (::primitive::memory_size)(sizeof(COLORREF) * area()));
+   }
+
+   void dib::set_rgb ( int R, int G, int B )
+   {
+      UNREFERENCED_PARAMETER(R);
+      UNREFERENCED_PARAMETER(G);
+      UNREFERENCED_PARAMETER(B);
+      throw not_implemented_exception();
+   }
+
+   bool dib::rgb_from(::ca::dib * pdib)
+   {
+      if(!create(pdib->size()))
+         return false;
+      try
+      {
+         byte * puchSrc = (byte *) get_data();
+         byte * puchDst = (byte *) pdib->get_data();
+         __int64 iArea = pdib->area();
+         while(iArea > 0)
+         {
+            *puchDst++ = *puchSrc++;
+            *puchDst++ = *puchSrc++;
+            *puchDst++ = *puchSrc++;
+            puchDst++;
+            puchSrc++;
+            iArea--;
+         }
+      }
+      catch(...)
+      {
+         return false;
+      }
+      return true;
    }
 
 } // namespace ca

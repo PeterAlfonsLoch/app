@@ -1,9 +1,15 @@
 #pragma once
 
+
 namespace gen
 {
+
+
    class command_line;
-}
+
+
+} // namespace gen
+
 
 class db_server;
 
@@ -11,16 +17,14 @@ class db_server;
 namespace simpledb
 {
 
+
    class CLASS_DECL_ca application :
       virtual public ::user::application
    {
-   protected:
-
-
-      db_server   * m_pserver;
-
-
    public:
+
+
+      db_server   *  m_pserver;
 
 
       application();
@@ -36,9 +40,11 @@ namespace simpledb
       virtual void on_set_style(const char * lpcsz, bool bUser);
       virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
 
-   protected:
+
       virtual bool InitializeDataCentral();
       virtual bool FinalizeDataCentral();
+
+
    };
 
 

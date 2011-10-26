@@ -22,7 +22,7 @@ string convert_to_string(uint64 value, uint32 base)
   return sz;
 }
 
-string convert_to_string(uint64 value)
+string uint64_to_string(uint64 value)
 {
   char sz[32];
   int pos = 0;
@@ -35,19 +35,19 @@ string convert_to_string(uint64 value)
   return sz;
 }
 
-string convert_to_string(uint32 value, uint32 base)
+string uint32_base_to_string(uint32 value, uint32 base)
 {
    return convert_to_string((uint64) value, base);
 }
 
 
-string converto_to_string(int64 value)
+string int64_to_string(int64 value)
 {
-   return value < 0 ? "-" + converto_to_string((uint64) -value) : converto_to_string((uint64) value);
+   return value < 0 ? "-" + uint64_to_string((uint64) -value) : uint64_to_string((uint64) value);
 }
 
 
-string convert_to_zero_padded_hex(uint32 value)
+string uint32_to_zero_padded_hex(uint32 value)
 {
    char sz[9];
    for (int i = 0; i < 8; i++)

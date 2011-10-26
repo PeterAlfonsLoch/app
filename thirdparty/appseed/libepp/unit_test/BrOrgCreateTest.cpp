@@ -25,7 +25,6 @@
 /* $Id: BrOrgCreateTest.cpp 1058 2010-07-05 18:31:53Z cesar $ */
 #if USE_BR_ORG
 #include <memory>
-#include <string>
 
 #include "libepp_nicbr.H"
 

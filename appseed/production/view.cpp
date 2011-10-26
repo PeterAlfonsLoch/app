@@ -53,9 +53,9 @@ namespace production
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::scroll_view::_001InstallMessageHandling(pinterface);
+      ::userbase::scroll_view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -212,7 +212,7 @@ namespace production
       rgnClip->CreateRectRgnIndirect(rectClip);
       //pdc->Draw3dRect(rectText, RGB(200, 200, 200), RGB(200, 200, 200));
       pdc->SelectClipRgn(rgnClip);
-      //CSingleLock sl(&m_pproduction->m_mutexStatus, TRUE);
+      //single_lock sl(&m_pproduction->m_mutexStatus, TRUE);
       for(int i = iStart; i < m_pproduction->m_straStatus.get_size() && y < rectText.bottom; i++)
       {
          rcItem = rectText;
@@ -294,14 +294,18 @@ namespace production
 
       m_pproduction->m_pview  = this;
 
+      m_pproduction->twitter_auth();
+//      m_pproduction->twitter_twit("starting ca2 production application");
 
-      if(Application.command_line().m_varQuery.has_property("start"))
+
+
+      if(Application.command().m_varTopicQuery.has_property("start"))
       {
          make_production();
       }
-      else if(Application.command_line().m_varQuery.has_property("start_deferred"))
+      else if(Application.command().m_varTopicQuery.has_property("start_deferred"))
       {
-         production_loop(Application.command_line().m_varQuery["start_deferred"]);
+         production_loop(Application.command().m_varTopicQuery["start_deferred"]);
       }
 
    }
@@ -353,19 +357,22 @@ namespace production
       }
    }
 
-   int view::hit_test(point pt)
+   int view::hit_test(point pt, ::user::control::e_element & eelement)
    {
       rect rectArea;
       GetAreaThumbRect(rectArea, m_iV);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_iV;
       }
       GetAreaThumbRect(rectArea, m_iVs);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_iVs;
       }
+      eelement = element_none;
       return -1;
    }
 
@@ -384,7 +391,8 @@ namespace production
 
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
-      int iHitArea = hit_test(point);
+      ::user::control::e_element eelement;
+      int iHitArea = hit_test(point, eelement);
       if(iHitArea == m_iV)
       {
          make_production();
@@ -462,7 +470,7 @@ namespace production
    {
       m_iStep = 1;
       application * papp = dynamic_cast < application * > (get_app());
-      m_pproduction->start(papp->m_eversion);
+      m_pproduction->start_production(papp->m_eversion);
    }
 
 
@@ -479,13 +487,13 @@ namespace production
       if(pbase->m_wparam == 1)
       {
          int iLineHeight = m_iLineHeight;
-         CSingleLock sl(&m_pproduction->m_mutexStatus, TRUE);
+         single_lock sl(&m_pproduction->m_mutexStatus, TRUE);
          if(m_pproduction->m_straStatus.get_size() > 0)
          {
             m_scrollinfo.m_sizeTotal.cx = 80;
             m_scrollinfo.m_sizeTotal.cy = m_pproduction->m_straStatus.get_size() * iLineHeight + 84;
             m_scrollinfo.m_ptScroll.y = max(0, m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy + iLineHeight);
-            LayoutScrollBars();
+            _001LayoutScrollBars();
          }
          else
          {

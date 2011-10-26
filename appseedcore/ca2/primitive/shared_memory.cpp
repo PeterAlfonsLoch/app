@@ -3,59 +3,43 @@
 namespace primitive
 {
 
-   shared_memory::shared_memory(const shared_memory & s)
+   shared_memory::shared_memory(const memory_base & s)
    {
-      operator = (s);
+      m_nAllocFlags        = 0;
+      m_hGlobalMemory      = NULL;
+      m_bAllowGrow         = TRUE;
+      m_pbStorage          = NULL;
+      memory_base::operator             = (s);
    }
 
-   shared_memory::shared_memory(primitive::memory_container < shared_memory > * pmsc, DWORD dwAllocationAddUp, UINT nAllocFlags)
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
    {
-      m_iOffset = 0;
-      Construct(pmsc, dwAllocationAddUp, nAllocFlags);
+      m_nAllocFlags        = nAllocFlags;
+      m_hGlobalMemory      = NULL;
+      m_bAllowGrow         = TRUE;
+      m_pbStorage          = NULL;
+      m_pcontainer         = pcontainer;
+      m_dwAllocationAddUp  = dwAllocationAddUp;
    }
 
-   void shared_memory::Construct(primitive::memory_container < shared_memory > * pmsc, DWORD dwAllocationAddUp, UINT nAllocFlags)
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
    {
-      m_nAllocFlags = nAllocFlags;
-      m_hGlobalMemory = NULL;
-      m_bAllowGrow = TRUE;
-      m_iOffset = 0;
-      m_bLockMode = false;
-      m_bLock = false;
-      m_pmsc = pmsc;
-
-      m_pbStorage = NULL;
-      m_cbStorage = 0;
-
-      m_dwAllocation = 0;
-      m_dwAllocationAddUp = dwAllocationAddUp;
-   }
-
-
-   shared_memory::shared_memory(primitive::memory_container < shared_memory > * pmsc, void * pMemory, memory_size dwSize)
-   {
-      m_iOffset = 0;
-      Construct(pmsc);
+      m_pcontainer      = pcontainer;
+      m_nAllocFlags     = 0;
+      m_hGlobalMemory   = NULL;
+      m_bAllowGrow      = TRUE;
+      m_pbStorage       = NULL;
       allocate(dwSize);
-      ASSERT(fx_is_valid_address(pMemory, dwSize, FALSE));
-      memcpy(m_pbStorage, pMemory, dwSize);
+      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
    }
 
    shared_memory::~shared_memory()
    {
-      if(m_pbStorage != NULL)
-      {
-         free(m_pbStorage);
-         m_pbStorage = NULL;
-      }
+      free_data();
    }
 
-   memory_size shared_memory::GetStorageSize() const
-   {
-      return m_cbStorage;
-   }
-
-   LPBYTE shared_memory::GetAllocation() const
+   LPBYTE shared_memory::internal_get_data() const
    {
       if(IsEnabled())
          return m_pbStorage + m_iOffset;
@@ -69,59 +53,43 @@ namespace primitive
    LPBYTE shared_memory::DetachStorage()
    {
       LPBYTE pbStorage = m_pbStorage;
-      Construct(m_pmsc);
+      m_hGlobalMemory      = NULL;
+      m_pbStorage          = NULL;
+      m_cbStorage          = 0;
+      m_dwAllocation       = 0;
       return pbStorage;
    }
 
 
-   bool shared_memory::operator ==(shared_memory& s)
-   {
-      bool b = false;
-      Lock();
-      s.Lock();
-       if(GetStorageSize() == s.GetStorageSize())
-         b = memcmp(GetAllocation(), s.GetAllocation(), GetStorageSize()) == 0;
-      s.Unlock(),
-      Unlock();
-       return b;
-   }
-   void shared_memory::AllocateAddUp(memory_size dwAddUp)
-   {
-      allocate(m_cbStorage + dwAddUp);
-   }
-
-   bool shared_memory::allocate(memory_size dwNewLength)
+   bool shared_memory::allocate_internal(memory_size dwNewLength)
    {
       if(!IsEnabled())
       {
          ASSERT(FALSE);
          return false;
       }
-   
+
       if(dwNewLength <= 0)
       {
-         m_iOffset = 0;
-         m_cbStorage = 0;
          return true;
       }
-   
+
 
       _RemoveOffset();
-   
-   
+
+
       if(m_pbStorage == NULL)
       {
 
          m_iOffset = 0;
-         DWORD dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         m_pbStorage = (LPBYTE) Alloc(dwAllocation);
+         memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+         m_pbStorage = (LPBYTE) Alloc((SIZE_T) dwAllocation);
          if(m_pbStorage != NULL)
          {
             m_dwAllocation = dwAllocation;
-            m_cbStorage = dwNewLength;
-            if(m_pmsc != NULL)
+            if(m_pcontainer != NULL)
             {
-               m_pmsc->OffsetStorageKeptPointers((int) m_pbStorage);
+               m_pcontainer->offset_kept_pointers((int) m_pbStorage);
             }
             return true;
          }
@@ -134,76 +102,32 @@ namespace primitive
       {
          if(dwNewLength > m_dwAllocation)
          {
-            DWORD dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = Realloc(m_pbStorage, dwAllocation);
+            memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+            LPVOID lpVoid = Realloc(m_pbStorage, (SIZE_T) dwAllocation);
             if(lpVoid == NULL)
             {
-   //            DWORD dw = GetLastError();
                return false;
             }
             else
             {
                int iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pmsc != NULL)
+               if(m_pcontainer != NULL)
                {
-                  m_pmsc->OffsetStorageKeptPointers(iOffset);
+                  m_pcontainer->offset_kept_pointers(iOffset);
                }
-            
+
                m_dwAllocation = dwAllocation;
                m_pbStorage = (LPBYTE) lpVoid;
-               m_cbStorage = dwNewLength;
                return true;
             }
          }
          else
          {
-            m_cbStorage = dwNewLength;
             return true;
          }
-      
       }
    }
 
-   void shared_memory::FullLoad(ex1::file & file)
-   {
-   
-      if(!IsEnabled())
-      {
-         ASSERT(false);
-         return;
-      }
-   
-      DWORD dwTemp;
-      DWORD cbStorage = file.get_length();
-      file.seek_to_begin();
-      allocate(cbStorage);
-      try
-      {
-         dwTemp = file.read(GetAllocation(), cbStorage);
-      }
-      catch(ex1::file_exception_sp * pe)
-      {
-           TRACE0("smfOpenFile: read error on image!");
-   #ifdef _DEBUG
-          (*pe)->dump(afxdump);
-   #endif 
-          delete pe;
-      }
-      if (cbStorage != dwTemp)
-      {
-         TRACE0("smfOpenFile: read error on image!");
-      }
-   }
-
-   void shared_memory::Lock()
-   {
-      m_csLock.Lock();
-   }
-
-   void shared_memory::Unlock()
-   {
-      m_csLock.Unlock();
-   }
 
    bool shared_memory::IsLocked() const
    {
@@ -216,69 +140,31 @@ namespace primitive
          return IsLocked();
       else
          return true;
-      
+
    }
 
-   void shared_memory::copy_from(const shared_memory *pstorage)
+   void shared_memory::copy_from(const memory_base *pstorage)
    {
       ASSERT(pstorage != NULL);
-      allocate(pstorage->GetStorageSize());
-      memcpy(GetAllocation(), pstorage->GetAllocation(), GetStorageSize());
+      allocate(pstorage->get_size());
+      memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
 
    }
 
    void shared_memory::set_data(void *pdata, memory_size uiSize)
    {
       allocate(uiSize);
-      memcpy(GetAllocation(), pdata, uiSize);
-   }
-
-   /*void shared_memory::delete_begin(memory_size iSize)
-   {
-      ASSERT(iSize >= 0);
-      ASSERT(iSize <= GetStorageSize());
-      if(iSize >= 0 &&
-         iSize <= GetStorageSize())
-      {
-         m_iOffset += iSize;
-         if(m_pmsc != NULL)
-         {
-            m_pmsc->OffsetStorageKeptPointers(iSize);
-         }
-         m_cbStorage -= iSize;
-      }
-   }*/
-
-   void shared_memory::_RemoveOffset()
-   {
-      if(m_pbStorage != NULL
-         && m_cbStorage > m_iOffset) 
-      {
-         memmove(m_pbStorage, m_pbStorage + m_iOffset, m_cbStorage - m_iOffset);
-      }
-      m_iOffset = 0;
-   }
-
-   shared_memory & shared_memory::operator =(const shared_memory & s)
-   {
-      if(this != &s)
-      {
-         Construct(s.m_pmsc);
-         copy_from(&s);
-      }
-      return *this;
+      memcpy(get_data(), pdata, (size_t) uiSize);
    }
 
 
-
-
-   void shared_memory::To(string & str, int iStart, int iEnd)
+   void shared_memory::To(string & str, memory_position iStart, memory_position iEnd)
    {
       iStart = max(iStart, 0);
       if(iEnd == -1)
-         iEnd = GetStorageSize() - 1;
-      char * pch = (char *) GetAllocation();
-      for(int i = iStart; i <= iEnd; i++)
+         iEnd = this->get_size() - 1;
+      char * pch = (char *) get_data();
+      for(memory_position i = iStart; i <= iEnd; i++)
       {
          if(((pch[i] & 0xf0) >> 4) < 10)
             str += (char)(((pch[i] & 0xf0) >> 4) + '0');
@@ -296,7 +182,7 @@ namespace primitive
       char ch;
       int iLen = strlen(psz);
       allocate(iLen / 2);
-      char * pch = (char *) GetAllocation();
+      char * pch = (char *) get_data();
       while(*psz != '\0')
       {
          ch = 0;
@@ -360,18 +246,6 @@ namespace primitive
    }
 
 
-   UINT shared_memory::read(ex1::file & file)
-   {
-      DWORD dwEnd = file.get_length();
-      DWORD dwPos = file.GetPosition();
-      DWORD dwRemain = dwEnd - dwPos;
-      allocate(dwRemain);
-      DWORD dwRead = file.read(GetAllocation(), dwRemain);
-      allocate(dwRead);
-      return dwRead;
-   }
-
-
    void shared_memory::from_string(const wchar_t * pwsz)
    {
       from_string(gen::international::unicode_to_utf8(pwsz));
@@ -380,42 +254,16 @@ namespace primitive
    void shared_memory::from_string(const char * psz)
    {
       allocate(strlen(psz));
-      memcpy(GetAllocation(), psz, GetStorageSize());
+      memcpy(get_data(), psz, this->get_size());
    }
 
    void shared_memory::to_string(string & str)
    {
-      LPTSTR lpsz = str.GetBufferSetLength(GetStorageSize() + 1);
-      memcpy(lpsz, GetAllocation(), GetStorageSize());
-      lpsz[GetStorageSize()] = '\0';
+      LPTSTR lpsz = str.GetBufferSetLength(this->get_size() + 1);
+      memcpy(lpsz, get_data(), this->get_size());
+      lpsz[this->get_size()] = '\0';
       str.ReleaseBuffer();
    }
-
-
-   void shared_memory::write(ex1::output_stream & ostream)
-   {
-      ostream.write(GetAllocation(), GetStorageSize());
-   }
-
-   void shared_memory::read(ex1::input_stream & istream)
-   {
-      UINT uiRead;
-      UINT uiBufSize = 1024 + 1024;
-      UINT uiSize = 0;
-   
-      while(true)
-      {
-         allocate(uiSize + uiBufSize);
-         uiRead = istream.read(&GetAllocation()[uiSize], uiBufSize);
-         if(uiRead < uiBufSize)
-         {
-            allocate(uiSize + uiRead);
-            break;
-         }
-         uiSize += uiBufSize;
-      }
-   }
-
 
 
    void shared_memory::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
@@ -424,7 +272,7 @@ namespace primitive
       ASSERT(m_hGlobalMemory == NULL);        // do once only
       ASSERT(m_pbStorage == NULL);     // do once only
 
-      if (hGlobalMemory == NULL) 
+      if (hGlobalMemory == NULL)
       {
          AfxThrowInvalidArgException();
       }
@@ -466,7 +314,7 @@ namespace primitive
       ::GlobalFree(m_hGlobalMemory);
    }
 
-   HGLOBAL shared_memory::Detach()
+   HGLOBAL shared_memory::detach()
    {
       HGLOBAL hMem;
       ASSERT(m_hGlobalMemory != NULL);
@@ -482,31 +330,20 @@ namespace primitive
       return hMem;
    }
 
-   void shared_memory::delete_begin(memory_size iSize)
-   {
-      ASSERT(iSize >= 0);
-      ASSERT(iSize <= GetStorageSize());
-      if(iSize >= 0 &&
-         iSize <= GetStorageSize())
-      {
-         m_iOffset += iSize;
-         if(m_pmsc != NULL)
-         {
-            m_pmsc->OffsetStorageKeptPointers(iSize);
-         }
-         m_cbStorage -= iSize;
-      }
-   }
 
-   void shared_memory::eat_begin(void * pdata, memory_size iSize)
+   void shared_memory::free_data()
    {
-      ASSERT(iSize >= 0);
-      ASSERT(iSize <= GetStorageSize());
-      if(iSize >= 0 &&
-         iSize <= GetStorageSize())
+      if(m_pbStorage != NULL)
       {
-         memcpy(pdata, GetAllocation(), iSize);
-         delete_begin(iSize);
+         m_dwAllocation    = 0;
+         try
+         {
+            Free(m_pbStorage);
+         }
+         catch(...)
+         {
+         }
+         m_pbStorage       = NULL;
       }
    }
 

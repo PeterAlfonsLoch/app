@@ -7,7 +7,7 @@ public:
 	// Accessing elements
 	TYPE get_at(int nIndex) const
 		{ return (TYPE)BASE_CLASS::GetAt(nIndex); }
-	TYPE& element_at(int nIndex)
+	TYPE & element_at(int nIndex)
 		{ return (TYPE&)BASE_CLASS::ElementAt(nIndex); }
 	void set_at(int nIndex, TYPE ptr)
 		{ BASE_CLASS::SetAt(nIndex, ptr); }

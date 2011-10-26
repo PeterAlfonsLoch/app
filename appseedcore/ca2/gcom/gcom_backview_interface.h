@@ -47,9 +47,9 @@ namespace gcom
 
          void Shutdown();
 
-         void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+         void install_message_handling(::user::win::message::dispatch * pinterface);
 
-         COLORREF GetBackgroundColor();
+         virtual COLORREF GetBackgroundColor();
          void BackViewRender(::ca::graphics * pdc, int x, int y, int w, int h);
          void BackViewRender(::ca::graphics * pdc, LPCRECT lpcrect);
          void Enable(bool bEnable);
@@ -64,6 +64,9 @@ namespace gcom
          void OnImageLoaded(::ca::bitmap * pbitmap);
          void UpdateDrawingObjects();
          void OnDestroy();
+
+
+         virtual void initialize_user_interaction();
 
          thread *     GetIdleThread();
          thread *     GetHighestThread();

@@ -7,6 +7,12 @@ namespace veiev
       virtual public ::userbase::view
    {
    public:
+
+
+      view_interface(::ca::application * papp);
+      virtual ~view_interface();
+
+
    };
 
 } // namespace veiev

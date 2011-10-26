@@ -6,57 +6,60 @@
 
 string_manager::string_manager()
 {
-/*   BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   m_palloca = new fixed_alloc_array();
+   //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(32), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(32), 1024));
    }
    catch(...)
    {
    }
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(64), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(64), 1024));
    }
    catch(...)
    {
    }
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(128), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(128), 1024));
    }
    catch(...)
    {
    }
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(256), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(256), 1024));
    }
    catch(...)
    {
    }
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(512), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(512), 1024));
    }
    catch(...)
    {
    }
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(768), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(768), 1024));
    }
    catch(...)
    {
    }
    try
    {
-      m_alloca.add(new fixed_alloc(ROUND4(1024), 1024));
+      m_palloca->add(new fixed_alloc(ROUND4(1024), 1024));
    }
    catch(...)
    {
    }
-   AfxEnableMemoryTracking(bEnable);*/
+   //AfxEnableMemoryTracking(bEnable);
+
+   
    
    m_nil.SetManager(this);
 }
@@ -82,11 +85,12 @@ string_data * string_manager::allocate( int nChars, int nCharSize )
    
    try
    {
-//      pData = (string_data *) m_alloca.alloc(nTotalSize);
-      pData = (string_data *) ca2_alloc(nTotalSize);
+      pData = (string_data *) m_palloca->alloc(nTotalSize);
+//      pData = (string_data *) ca2_alloc(nTotalSize);
    }
    catch(...)
    {
+      return NULL;
    }
 
    //AfxEnableMemoryTracking(bEnable);
@@ -103,9 +107,9 @@ string_data * string_manager::allocate( int nChars, int nCharSize )
 
 void string_manager::Free( string_data * pData )
 {
-   //size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
-   //m_alloca.free(pData, nTotalSize);
-   ca2_free(pData, 0);
+   size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
+   m_palloca->free(pData, nTotalSize);
+   //ca2_free(pData, 0);
 }
 
 string_data * string_manager::Reallocate( string_data * pOldData, int nChars, int nCharSize )
@@ -134,8 +138,8 @@ string_data * string_manager::Reallocate( string_data * pOldData, int nChars, in
    try
    {
 
-      //pNewData = (string_data *) m_alloca.realloc(pOldData, nOldTotalSize, nNewTotalSize);
-      pNewData = (string_data *) ca2_realloc(pOldData, nNewTotalSize, 0, NULL, 0);
+      pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
+      //pNewData = (string_data *) ca2_realloc(pOldData, nNewTotalSize, 0, NULL, 0);
 
    }
    catch(...)

@@ -9,8 +9,6 @@ namespace filemanager
    SimpleFolderListView::SimpleFolderListView(::ca::application * papp) :
       ca(papp),
       m_headerctrl(papp),
-      m_scrollbarVert(papp),
-      m_scrollbarHorz(papp),
       ::userbase::view(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
@@ -18,19 +16,16 @@ namespace filemanager
    {
       m_pheaderctrl     = &m_headerctrl;
       m_pheaderctrl->SetBaseListCtrlInterface(this);
-      m_pscrollbarVert  = &m_scrollbarVert;
-      m_pscrollbarHorz  = &m_scrollbarHorz;
    }
 
 SimpleFolderListView::~SimpleFolderListView()
 {
 }
 
-void SimpleFolderListView::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void SimpleFolderListView::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::view::_001InstallMessageHandling(pinterface);
-   SimpleFolderListInterface::_001InstallMessageHandling(pinterface);
-   InstallBuffering(pinterface);
+   ::userbase::view::install_message_handling(pinterface);
+   SimpleFolderListInterface::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &SimpleFolderListView::_001OnLButtonDblClk);
    IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &SimpleFolderListView::_001OnCancelMode);
 }

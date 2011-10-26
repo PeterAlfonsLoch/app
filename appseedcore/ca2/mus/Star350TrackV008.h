@@ -1,4 +1,4 @@
-// MidiTrackV008.h: interface for the Star350TrackV008 class.
+// midi_track_v008.h: interface for the Star350TrackV008 class.
 //
 //////////////////////////////////////////////////////////////////////
 

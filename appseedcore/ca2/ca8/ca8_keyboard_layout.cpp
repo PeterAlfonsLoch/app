@@ -28,21 +28,16 @@ namespace ca8
       SetPaneCount(2);
 
       SetSplitOrientation(orientation_vertical);
-  
+
       set_position_rate(0, 0.30);
 
-   
 
-      create_context cc;
-      cc.m_pCurrentDoc = get_document();
-      cc.m_typeinfoNewView =  &typeid(simple_list_view);
-
-      m_plistview = dynamic_cast < simple_list_view * > (view::create_view(&cc, this, 100));
+      m_plistview = create_view < simple_list_view > ();
 
       m_plistview->m_bHoverSelect = false;
       m_plistview->m_bMultiSelect = false;
 
-      ::user::list::Column column;
+      ::user::list_column column;
       column.m_iWidth = 584;
       m_plistview->_001InsertColumn(column);
       if(m_plistview == NULL)
@@ -61,7 +56,7 @@ namespace ca8
             m_layoutida.add(layoutid);
          }
       }
-   
+
       m_layoutida.QuickSort(true);
       if(&System.keyboard().layout() != NULL)
       {
@@ -84,7 +79,7 @@ namespace ca8
             m_plistview->_001SetSelection(range);
          }
       }
-      
+
       m_plistview->m_pdata = this;
       m_plistview->m_pformcallback = this;
       m_plistview->_001OnUpdateItemCount();
@@ -107,7 +102,7 @@ namespace ca8
 
    void keyboard_layout::on_show()
    {
-      if(!m_pdoc->on_open_document(System.dir().matter("keyboard layout configuration/form.html")))
+      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
       {
          return;
       }
@@ -167,7 +162,7 @@ namespace ca8
                string strPort;
                ptext->_001GetText(strPort);
                node.add_attr("port", strPort);
-               System.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
+               Application.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
             }
          }
       }
@@ -175,20 +170,12 @@ namespace ca8
    }
 
 
-   bool keyboard_layout::_001GetItemText(
-         ::user::list * plist,
-         string &str,
-         INT_PTR iItem,
-         INT_PTR iSubItem, 
-         INT_PTR iListItem)
+   void keyboard_layout::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(plist);
-      UNREFERENCED_PARAMETER(iSubItem);
-      UNREFERENCED_PARAMETER(iListItem);
-      if(iItem <  0 || iItem >= m_layoutida.get_size())
-         return false;
-      str = m_layoutida[iItem].m_strName;
-      return true;
+      if(pitem->m_iItem <  0 || pitem->m_iItem >= m_layoutida.get_size())
+         return_(pitem->m_bOk, false);
+      pitem->m_strText = m_layoutida[pitem->m_iItem].m_strName;
+      pitem->m_bOk = true;
    }
 
    INT_PTR keyboard_layout::_001GetItemCount()
@@ -196,6 +183,6 @@ namespace ca8
       return m_layoutida.get_size();
    }
 
-   
+
 
 } // namespace ca8

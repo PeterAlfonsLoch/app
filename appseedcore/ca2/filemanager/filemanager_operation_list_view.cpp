@@ -6,25 +6,20 @@
 file_manager_operation_list_view::file_manager_operation_list_view(::ca::application * papp) :
    ca(papp),
    m_headerctrl(papp),
-   m_scrollbarVert(papp),
-   m_scrollbarHorz(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
    ::user::list(papp)
 {
    m_dwLast123Update = ::GetTickCount();
-   m_pcache = &m_cache;
+   m_pcache = &m_listcache;
    m_pheaderctrl     = &m_headerctrl;
    m_pheaderctrl->SetBaseListCtrlInterface(this);
-   m_pscrollbarVert  = &m_scrollbarVert;
-   m_pscrollbarHorz  = &m_scrollbarHorz;
 }
 
-void file_manager_operation_list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void file_manager_operation_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::view::_001InstallMessageHandling(pinterface);
-   ::user::list::_001InstallMessageHandling(pinterface);
-   InstallBuffering(pinterface);
+   ::userbase::view::install_message_handling(pinterface);
+   ::user::list::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_manager_operation_list_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_list_view::_001OnCreate);
 }
@@ -46,30 +41,25 @@ file_manager_operation_document * file_manager_operation_list_view::get_document
    return dynamic_cast < file_manager_operation_document * > (::userbase::view::get_document());
 }
 
-bool file_manager_operation_list_view::_001GetItemText(
-      string  &str,
-      INT_PTR iItem,
-      INT_PTR iSubItem, 
-      INT_PTR iListItem)
+void file_manager_operation_list_view::_001GetItemText(::user::list_item * pitem)
 {
-   UNREFERENCED_PARAMETER(iListItem);
-   if(iSubItem == 0)
+   if(pitem->m_iSubItem == 0)
    {
-      str = get_document()->m_thread.get_item_message(iItem);
-      return true;
+      pitem->m_strText = get_document()->m_thread.get_item_message(pitem->m_iItem);
+      pitem->m_bOk = true;
    }
    else
    {
       double d;
-      d = get_document()->m_thread.get_item_progress(iItem);
-      str.Format("%0.1f%%", d * 100.0);
-      return true;
+      d = get_document()->m_thread.get_item_progress(pitem->m_iItem);
+      pitem->m_strText.Format("%0.1f%%", d * 100.0);
+      pitem->m_bOk = true;
    }
 }
 
 void file_manager_operation_list_view::_001InsertColumns()
 {
-   Column column;
+   ::user::list_column column;
    column.m_iWidth               = 500;
    column.m_iSubItem             = 0;
    column.m_sizeIcon.cx          = 16;
@@ -132,7 +122,7 @@ void file_manager_operation_list_view::OnFileOperationStep(int iOperation, bool 
    {
       m_dwLast123Update = ::GetTickCount();
       _001OnUpdateItemCount();
-      m_cache._001Invalidate();
+      m_listcache._001Invalidate();
       int iItem = 0;
       for(int i = 0; i < get_document()->m_thread.m_iOperation; i++)
       {

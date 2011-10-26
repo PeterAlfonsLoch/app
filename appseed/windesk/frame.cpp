@@ -118,9 +118,9 @@ namespace windesk
    }
 
 
-   void frame::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_frame_window::_001InstallMessageHandling(pinterface);
+      simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &frame::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &frame::_001OnMove);
@@ -138,7 +138,8 @@ namespace windesk
 
    void frame::_001OnMove(gen::signal_object * pobj)
    {
-      if(m_wndframework.GetMovingManager()->IsMoving())
+      UNREFERENCED_PARAMETER(pobj);
+      if(m_workset.GetMovingManager()->IsMoving())
       {
          rect rectDesktop;
          Application.get_screen_rect(rectDesktop);
@@ -190,15 +191,19 @@ namespace windesk
 
    void frame::_001OnMouseActivate(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       //pobj->m_bRet = true;
    }
    void frame::_001OnChildActivate(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
      // pobj->m_bRet = true;
    }
    void frame::_001OnActivate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::activate, pactivate, pobj);
+      //SCAST_PTR(::user::win::message::activate, pactivate, pobj);
+      UNREFERENCED_PARAMETER(pobj);
+      
    //   pobj->m_bRet = true;
    }
    void frame::_001OnNcActivate(gen::signal_object * pobj)
@@ -247,6 +252,7 @@ namespace windesk
 
    void frame::_001OnDestroy(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       show_task_bar(SW_SHOW);
    }
 
@@ -268,7 +274,7 @@ namespace windesk
       if(pbase->m_wparam == 0)
       {
          CheckLayout();
-         windesk::application * papp = dynamic_cast < windesk::application * > (get_app());
+//         windesk::application * papp = dynamic_cast < windesk::application * > (get_app());
       }
       else if(pbase->m_wparam == 1)
       {
@@ -334,8 +340,8 @@ namespace windesk
 
    void frame::_001On1257821(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
-
+//      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      UNREFERENCED_PARAMETER(pobj);
       SendMessageToDescendants(1257821);
 
    }
@@ -356,7 +362,7 @@ namespace windesk
    window_frame::FrameSchema * frame::create_frame_schema()
    {
       window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-      pschema->m_pruntimeclassControlBoxButton = &typeid(MetaButton);
+      pschema->m_typeinfoControlBoxButton = ::ca::get_type_info < MetaButton > ();
       pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleTranslucidWarmGray);
       return pschema;
    }
@@ -501,19 +507,19 @@ namespace windesk
             switch(m_iArea)
             {
             case 0:
-               strWallpaper = System.dir().matter("cgcliscstlife1_23.bmp");
+               strWallpaper = Application.dir().matter("cgcliscstlife1_23.bmp");
                break;
             case 1:
-               strWallpaper = System.dir().matter("cgcliscstlife1_24.bmp");
+               strWallpaper = Application.dir().matter("cgcliscstlife1_24.bmp");
                break;
             case 2:
-               strWallpaper = System.dir().matter("cgcliscstlife1_25.bmp");
+               strWallpaper = Application.dir().matter("cgcliscstlife1_25.bmp");
                break;
             case 3:
-               strWallpaper = System.dir().matter("cgcliscstlife1_26.bmp");
+               strWallpaper = Application.dir().matter("cgcliscstlife1_26.bmp");
                break;
             default:         
-               strWallpaper = System.dir().matter("cgcliscstlife1_23.bmp");
+               strWallpaper = Application.dir().matter("cgcliscstlife1_23.bmp");
                break;
             }
             m_dibBk.load_from_file(strWallpaper);

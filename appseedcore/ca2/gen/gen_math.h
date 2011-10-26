@@ -16,14 +16,13 @@ namespace gen
       private:
          double         dPi;
 #if WINVER >= 0x500
-         HCRYPTPROV     hCryptProv;
+/*         HCRYPTPROV     hCryptProv;
          HCRYPTKEY      hOriginalKey;
-         HCRYPTKEY      hDuplicateKey;
+         HCRYPTKEY      hDuplicateKey;*/
 #endif
          DWORD          dwMode;
          BYTE           pbData[16];
          rng            m_rng;
-         char           m_chRngReSeedCountDown;
       public:
          math(::ca::application * papp);
          virtual ~math();
@@ -32,6 +31,7 @@ namespace gen
          int gen_rand();
          void gen_rand(void * buf, DWORD dwLen);
          unsigned long rnd();
+         int random_context_entropy(int iMin, int iMax, int iLevel = 3);
          int rand_max();
          double LinearMap(
             double dMin, double dMax,

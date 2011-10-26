@@ -50,10 +50,10 @@ sql_open(char *user, char *password, char *host, char *database)
 	if (_sql_password) Free(_sql_password);
 	if (_sql_host) Free(_sql_host);
 	if (_sql_database) Free(_sql_database);
-	_sql_user = user ? strdup(user) : NULL;
-	_sql_password = password ? strdup(password) : NULL;
-	_sql_host = host ? strdup(host) : NULL;
-	_sql_database = database ? strdup(database) : NULL;
+	_sql_user = user ? _strdup(user) : NULL;
+	_sql_password = password ? _strdup(password) : NULL;
+	_sql_host = host ? _strdup(host) : NULL;
+	_sql_database = database ? _strdup(database) : NULL;
 
 #if USE_PGSQL
 	sql = PQsetdbLogin(host, portp, NULL, NULL, database, user, password);
@@ -405,7 +405,7 @@ sql_num_rows(SQL_RES *res)
 #if USE_PGSQL
 	return res->tuples;
 #else
-	return mysql_num_rows(res);
+	return (long) mysql_num_rows(res);
 #endif
 }
 /*--- sql_num_rows() ----------------------------------------------------------------------------*/

@@ -20,7 +20,7 @@ to see if it sets flags right.
 
 namespace compress
 {
-   namespace rar3 
+   namespace rar3
    {
 
       uint32 mem_bit_decoder::ReadBits(int numBits)
@@ -1094,12 +1094,12 @@ namespace compress
 
          uint32 GetValue32(const void *addr)
          {
-            return GetUi32(addr); 
-         } 
+            return GetUi32(addr);
+         }
 
          void SetValue32(void *addr, uint32 value)
          {
-            SetUi32(addr, value); 
+            SetUi32(addr, value);
          }
 
       } // namespace vm

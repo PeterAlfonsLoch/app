@@ -38,8 +38,8 @@ namespace libepp
    public:
 
       /// Constructor
-      BrDomainUpdate(const ActionType type = BR_DOMAIN_UPDATE)
-         : DomainUpdate(type)
+      BrDomainUpdate(::ca::application * papp, const ActionType type = BR_DOMAIN_UPDATE)
+         : DomainUpdate(papp, type)
       {
          if (type == BR_DOMAIN_UPDATE) {
             _command = pointer_object<BrDomainUpdateCommand>(new BrDomainUpdateCommand());

@@ -16,7 +16,7 @@ namespace compress
       uint32 _crc;
       bool _wasFinished;
 
-      DWORD_PTR read(void *data, DWORD_PTR size);
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       void SetStream(::ex1::reader *stream) { _stream = stream;  }
       void Init()
       {

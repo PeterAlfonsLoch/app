@@ -45,10 +45,9 @@ namespace filemanager
          {
          }
 
-         void list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+         void list_view::install_message_handling(::user::win::message::dispatch * pinterface)
          {
-            simple_list_view::_001InstallMessageHandling(pinterface);
-            InstallBuffering(pinterface);
+            simple_list_view::install_message_handling(pinterface);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_view::_001OnLButtonDblClk);
             IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list_view::_001OnTimer);
             IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &list_view::_001OnSize);
@@ -84,7 +83,7 @@ namespace filemanager
 
             // dbbreak  DBCentralInterface * pDataCentral = db();
 
-            Column column;
+            ::user::list_column column;
             /*
 
             column.m_iWidth = 50;
@@ -123,76 +122,85 @@ namespace filemanager
          }
 
 
-         index list_view::_001GetItemImage(index iItem, index iSubItem, index iListItem)
+         void list_view::_001GetItemImage(::user::list_item * pitem)
          {
-            UNREFERENCED_PARAMETER(iListItem);
-            if(iItem < 0 || iItem >= m_itema.get_size())
-               return -1;
-            if(iSubItem == SubItemTitle)
+            if(pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
             {
-               switch(m_itema[iItem].m_etype)
+               pitem->m_bOk = false;
+               return;
+            }
+            if(pitem->m_iSubItem == SubItemTitle)
+            {
+               pitem->m_bOk = true;
+               switch(m_itema[pitem->m_iItem].m_etype)
                {
                case ItemTypeFolder:
-                  return m_iIconFolder;
+                  pitem->m_iImage = m_iIconFolder;
+                  break;
                case ItemTypeArtist:
-                  return m_iIconArtist;
+                  pitem->m_iImage = m_iIconArtist;
+                  break;
                case ItemTypeSong:
-                  return m_iIconSong;
+                  pitem->m_iImage = m_iIconSong;
+                  break;
                default:
-                  //ASSERT(FALSE);
-                  return -1;
+                  pitem->m_bOk = false;
+                  break;
                }
+               return;
             }
             else
             {
-               return -1;
+               pitem->m_bOk = false;
+               return;
             }
 
          }
 
-         bool list_view::_001GetItemText(string &str, index iItem, index iSubItem, index iListItem)
+         void list_view::_001GetItemText(::user::list_item * pitem)
          {
-            UNREFERENCED_PARAMETER(iListItem);
-            if(iItem < 0 || iItem >= m_itema.get_size())
-               return false;
-            switch(iSubItem)
+            if(pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+            {
+               pitem->m_bOk = false;
+               return;
+            }
+            switch(pitem->m_iSubItem)
             {
             case SubItemId:
-               str.Empty();
+               pitem->m_strText.Empty();
                break;
             case SubItemTitle:
-               str = m_itema[iItem].m_strTitle;
+               pitem->m_strText = m_itema[pitem->m_iItem].m_strTitle;
                break;
             case SubItemArtist:
-               str.Empty();
+               pitem->m_strText.Empty();
                break;
             case SubItemFileName:
-               str.Empty();
+               pitem->m_strText.Empty();
                break;;
             case SubItemFilePath:
-               str.Empty();
+               pitem->m_strText.Empty();
                break;
             default:
                //ASSERT(FALSE);
-               str.Empty();
+               pitem->m_strText.Empty();
                break;
             }
-
-            return true;
+            pitem->m_bOk = true;
          }
 
-         bool list_view::_001SearchGetItemText(string &str, index iItem, index iSubItem, index iListItem)
+         void list_view::_001SearchGetItemText(::user::list_item * pitem)
          {
 /*            UNREFERENCED_PARAMETER(iListItem);
             MediaLibraryDoc * pdoc = get_document();
-            CSingleLock sl(pdoc->m_pcsAlbum1, TRUE);
+            single_lock sl(pdoc->m_pcsAlbum1, TRUE);
             ::sqlite::set * pds = pdoc->m_pdsAlbum1;
 
             if((iSubItem != SubItemFileName &&
                iSubItem != SubItemFilePath) &&
                (mediamanager::get(get_app())->
                GetAlbumBuild().m_fileinfo.m_iaUpdate.get_size() > 0
-               || 
+               ||
                mediamanager::get(get_app())->
                GetAlbumBuild().m_fileinfo.m_iaRemove.get_size() > 0))
             {
@@ -252,7 +260,7 @@ namespace filemanager
             }
             str.Empty();
             return false;*/
-            return false;
+            return_(pitem->m_bOk, false);
          }
 
 /*         MediaLibraryDoc * list_view::get_document()
@@ -260,14 +268,14 @@ namespace filemanager
             return dynamic_cast < MediaLibraryDoc * > (::view::get_document());
          }*/
 
-         void list_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+         void list_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
             if(phint == NULL)
             {
                _001UpdateColumns();
-               //_001SetItemCountEx(get_document()->GetSongCount());   
+               //_001SetItemCountEx(get_document()->GetSongCount());
 //               mediamanager::get(get_app())->GetAlbumBuild().SetCallbackWnd(this);
             }
             else
@@ -294,7 +302,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnLButtonDblClk(gen::signal_object * pobj) 
+         void list_view::_001OnLButtonDblClk(gen::signal_object * pobj)
          {
             SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
                index iItem;
@@ -312,7 +320,7 @@ namespace filemanager
             }
          }
 
-         void list_view::_001OnClick(UINT nFlags, point point) 
+         void list_view::_001OnClick(UINT nFlags, point point)
          {
             UNREFERENCED_PARAMETER(nFlags);
             index iItem;
@@ -326,13 +334,21 @@ namespace filemanager
                else
                {
                   m_pserver->open_file(m_iParentFolder, m_itema[iItem].m_strFileName, m_itema[iItem].m_strExtension);
-               }      
+               }
             }
          }
 
          bool list_view::GetSongPath(string &str, int iItem)
          {
-            return _001GetItemText(str, iItem, SubItemFilePath, -1);
+            ::user::list_item item(this);
+            item.m_iItem = iItem;
+            item.m_iSubItem = SubItemFilePath;
+            item.m_iListItem = -1;
+            _001GetItemText(&item);
+            if(!item.m_bOk)
+               return false;
+            str = item.m_strText;
+            return true;
          }
 
          void list_view::_001OnSort()
@@ -377,7 +393,7 @@ namespace filemanager
             strSql += ";";
 
 
-/*            CSingleLock sl(get_document()->m_pcsAlbum1, TRUE);
+/*            single_lock sl(get_document()->m_pcsAlbum1, TRUE);
             get_document()->m_pdsAlbum1->query(strSql);*/
 
             m_cache._001Invalidate();
@@ -442,7 +458,7 @@ namespace filemanager
             return 0;
          }
 
-         void list_view::_001OnTimer(gen::signal_object * pobj) 
+         void list_view::_001OnTimer(gen::signal_object * pobj)
          {
             SCAST_PTR(::user::win::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)
@@ -586,7 +602,7 @@ namespace filemanager
             m_iDisplayItemCount  = -1;
          }
 
-         void list_view::_001OnSize(gen::signal_object * pobj) 
+         void list_view::_001OnSize(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
@@ -607,7 +623,7 @@ namespace filemanager
          }
          }*/
 
-         /*list_view::FillTask::FillTask(list_view * pview, LPWString lpcsz)         
+         /*list_view::FillTask::FillTask(list_view * pview, LPWString lpcsz)
          :
          m_pview(pview),m_wstrFile(lpcsz)
          {
@@ -652,11 +668,11 @@ namespace filemanager
          void list_view::KickBuild(int iItem)
          {
             UNREFERENCED_PARAMETER(iItem);
-            int iTopIndex = _001GetTopIndex();
-            int iDisplayItemCount = _001GetDisplayItemCount();
+            int iTopIndex = m_iTopIndex;
+            int iDisplayItemCount = m_nDisplayCount;
 
-            if(m_bKickActive && 
-               m_buildhelper.m_iTopIndex == iTopIndex && 
+            if(m_bKickActive &&
+               m_buildhelper.m_iTopIndex == iTopIndex &&
                m_buildhelper.m_iDisplayItemCount == iDisplayItemCount)
                return;
 
@@ -671,7 +687,7 @@ namespace filemanager
             ia.remove_all();
 
             int iId;
-            CSingleLock sl(pdoc->m_pcsAlbum1, TRUE);
+            single_lock sl(pdoc->m_pcsAlbum1, TRUE);
             ::sqlite::set * pds = pdoc->m_pdsAlbum1;
             for(int i = 0; i < iDisplayItemCount; i++)
             {
@@ -690,7 +706,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnContextMenu(gen::signal_object * pobj) 
+         void list_view::_001OnContextMenu(gen::signal_object * pobj)
          {
 
             SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
@@ -726,7 +742,7 @@ namespace filemanager
             }*/
          }
 
-         void list_view::_001OnAlbumExecutePlay(gen::signal_object * pobj) 
+         void list_view::_001OnAlbumExecutePlay(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             Range range;
@@ -738,12 +754,12 @@ namespace filemanager
                for(int j = item.GetLBound(); j <= item.GetUBound(); j++)
                {
                   GetSongPath(str, j);
-                  PlaylistDoc * pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
+                  mediaplaylist::document * pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
                   if(pdoc != NULL)
                   {
                      pdoc->AddSong(
                         str,
-                        PlaylistDoc::AddSongAndPlayIfNotPlaying, 
+                        mediaplaylist::document::AddSongAndPlayIfNotPlaying,
                         false,
                         true);
                   }
@@ -753,7 +769,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnUpdateAlbumExecutePlay(gen::signal_object * pobj) 
+         void list_view::_001OnUpdateAlbumExecutePlay(gen::signal_object * pobj)
          {
             SCAST_PTR(::user::win::message::update_cmd_ui, pupdatecmdui, pobj)
                Range range;
@@ -762,22 +778,22 @@ namespace filemanager
             pupdatecmdui->m_bRet = true;
          }
 
-         void list_view::_001OnExecutePrevious(gen::signal_object * pobj) 
+         void list_view::_001OnExecutePrevious(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnUpdateExecutePrevious(gen::signal_object * pobj) 
+         void list_view::_001OnUpdateExecutePrevious(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnExecuteNext(gen::signal_object * pobj) 
+         void list_view::_001OnExecuteNext(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnUpdateExecuteNext(gen::signal_object * pobj) 
+         void list_view::_001OnUpdateExecuteNext(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
@@ -829,7 +845,7 @@ namespace filemanager
                   {
                      item.m_etype = ItemTypeArtist;
                   }
-                  else 
+                  else
                   {
                      // unknown item type
                      ASSERT(FALSE);
@@ -886,9 +902,9 @@ namespace filemanager
 
          /*int ItemArray::FindAbsolute(const char * lpszId)
          {
-            for(int i = 0; i < get_size(); i++)
+            for(int i = 0; i < this->get_size(); i++)
             {
-               if(element_at(i).m_id == lpszId)
+               if(this->element_at(i).m_id == lpszId)
                   return i;
             }
             return -1;
@@ -898,11 +914,11 @@ namespace filemanager
          bool Item::IsFolder()
          {
             return m_iFolder >= 0;
-            return m_etype == ItemTypeFolder || 
-               m_etype == ItemTypeArtist;  
+            return m_etype == ItemTypeFolder ||
+               m_etype == ItemTypeArtist;
          }
 
-         void list_view::_001OnEraseBkgnd(gen::signal_object * pobj) 
+         void list_view::_001OnEraseBkgnd(gen::signal_object * pobj)
          {
             SCAST_PTR(::user::win::message::erase_bkgnd, perasebkgnd, pobj)
                perasebkgnd->m_bRet = true;

@@ -9,7 +9,7 @@ namespace user
       {
          if(System.m_pkeyboardfocus == this)
          {
-            System.set_keyboard_focus(NULL);
+            Application.set_keyboard_focus(NULL);
          }
       }
    }
@@ -67,7 +67,7 @@ namespace user
       interaction * puiThis = dynamic_cast < interaction * > (this);
       if(puiThis == NULL)
          return NULL;
-      CSingleLock (&puiThis->m_pthread->m_mutex, TRUE);
+      single_lock (&puiThis->m_pthread->m_mutex, TRUE);
       interaction * pui = puiThis->above_sibling();
       while(pui != NULL)
       {
@@ -87,7 +87,7 @@ namespace user
 
    bool keyboard_focus::keyboard_set_focus()
    {
-      System.set_keyboard_focus(dynamic_cast < ::user::interaction * > (this));
+      Application.set_keyboard_focus(dynamic_cast < ::user::interaction * > (this));
       return true;
    }
 

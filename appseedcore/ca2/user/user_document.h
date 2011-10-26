@@ -1,9 +1,9 @@
 #pragma once
 
 
-class CLASS_DECL_ca document : 
+class CLASS_DECL_ca document :
    virtual public command_target,
-   virtual public ex1::serializable,
+   virtual public ex1::byte_serializable,
    virtual public ::ca::data_container
 {
 public:
@@ -11,7 +11,7 @@ public:
 
    document(::ca::application * papp);
 
-   
+
    virtual void on_alloc(::ca::application * papp);
 
    const string & get_title() const;
@@ -33,7 +33,7 @@ public:
    virtual ::view * get_view(index index = 0) const;
 
 
-   template < class T > 
+   template < class T >
    T * get_typed_view_count() const
    {
       count count = 0;
@@ -46,7 +46,7 @@ public:
       return count;
    }
 
-   template < class T > 
+   template < class T >
    T * get_typed_view(index indexFind = 0) const
    {
       if(indexFind < 0 || indexFind >= m_viewptra.get_count())
@@ -136,17 +136,17 @@ public:
    virtual void on_final_release();
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-      
+
    friend class document_template;
 
-   virtual void write(ex1::output_stream & ostream);
-   virtual void read(ex1::input_stream & istream);
+   virtual void write(ex1::byte_output_stream & ostream);
+   virtual void read(ex1::byte_input_stream & istream);
 
 
 protected:
-   afx_msg void on_file_close();
-   afx_msg void on_file_save();
-   afx_msg void on_file_save_as();
-   afx_msg void on_file_send_mail();
-   afx_msg void on_update_file_send_mail(cmd_ui* pCmdUI);
+   void on_file_close();
+   void on_file_save();
+   void on_file_save_as();
+   void on_file_send_mail();
+   void on_update_file_send_mail(cmd_ui* pCmdUI);
 };

@@ -50,8 +50,8 @@ namespace userbase
       e_orientation GetSplitOrientation();
       int GetMaxPos(int iPane);
       int GetMinPos(int iPane);
-      bool InsertPaneAt(int iIndex, ::user::interaction *pWnd, bool bFixedSize, class id id = class id());
-      bool SetPane(int iIndex, ::user::interaction *pWnd, bool bFixedSize, class id id = class id());
+      bool InsertPaneAt(int iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
+      bool SetPane(int iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
       bool RemovePaneAt(int iIndex);
       void SetPaneFixedSize(int iIndex, SIZE * pSize);
       void SetVisible(bool bNewValue);
@@ -63,7 +63,7 @@ namespace userbase
       virtual ::user::place_holder * get_pane_holder(int iPane);
       virtual id _001GetPaneId(int iPane);
 
-      
+
       int get_pane_count();
 
       int get_split_count();
@@ -75,9 +75,9 @@ namespace userbase
       int GetMinPos();
       int GetPos(int xPos, int yPos);
       void RelayChildEvent(int iIndex, const MSG *  lpMsg);
-      
+
       void SetSplitOrientation(e_orientation eorientation);
-      
+
       bool SetPaneCount(int iPaneCount);
 
       friend class split_bar;

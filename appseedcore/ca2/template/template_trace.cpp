@@ -36,6 +36,8 @@ namespace _template
 
    void CTrace::TraceV(const char *pszFileName, int nLine, DWORD_PTR dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
    {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(nLine);
 /*      const trace_category *pCategory;
       trace_module * pmodule = NULL;
       static const int nCount = 1024;
@@ -129,6 +131,11 @@ namespace _template
 
    CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
    {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(nLine);
+      UNREFERENCED_PARAMETER(dwCategory);
+      UNREFERENCED_PARAMETER(nLevel);
+      
       string str;
       str.Format(pszFmt, args);
       ::OutputDebugStringW(gen::international::utf8_to_unicode(str));

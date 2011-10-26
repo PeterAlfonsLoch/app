@@ -33,7 +33,7 @@ namespace musctrl
       pdoctemplate = new single_document_template(
          dynamic_cast < ::ca::application * > (m_papp),
          m_strMatter,
-         m_pruntimeclassDocument,
+         m_typeinfoDocument,
          m_typeinfoFrameWnd,
          m_typeinfoView);
       m_pdoctemplate = pdoctemplate;

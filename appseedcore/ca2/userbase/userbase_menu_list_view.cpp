@@ -13,9 +13,9 @@ namespace userbase
       m_bAutoClose         = false;
    }
 
-   void menu_list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void menu_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      menu_list_window::_001InstallMessageHandling(pinterface);
+      menu_list_window::install_message_handling(pinterface);
    }
 
    menu_list_view::~menu_list_view()

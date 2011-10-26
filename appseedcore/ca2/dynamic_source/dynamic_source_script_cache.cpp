@@ -1,0 +1,94 @@
+#include "StdAfx.h"
+
+
+namespace dynamic_source
+{
+
+
+   script_cache::script_cache(::ca::application * papp) :
+      ca(papp)
+   {
+
+   }
+
+   script_cache::~script_cache(void)
+   {
+      POSITION pos = m_map.get_start_position();
+      string strKey;
+      script * pscript = NULL;
+      while(pos != NULL)
+      {
+         m_map.get_next_assoc(pos, strKey, (void * &) pscript);
+         try
+         {
+            if(pscript != NULL)
+            {
+               delete pscript;
+            }
+         }
+         catch(...)
+         {
+         }
+      }
+   }
+
+
+   script * script_cache::get(const char * lpcszName)
+   {
+      single_lock sl(&m_cs, TRUE);
+
+      string strName(lpcszName);
+      if(System.file().extension(strName).is_empty())
+      {
+         strName += ".ds";
+      }
+
+      script * pscript;
+      if(m_map.Lookup(strName, (void *&) pscript))
+      {
+         return pscript;
+      }
+      pscript = new script(get_app());
+      pscript->m_pmanager = m_pmanager;
+      pscript->m_strName = strName;
+      cache(pscript);
+      return pscript;
+   }
+
+   script_instance * script_cache::create_instance(const char * lpcszName)
+   {
+      string strName(lpcszName);
+      strName = m_pmanager->real_path(lpcszName);
+      if(strName.is_empty())
+         strName =  m_pmanager->real_path(string(lpcszName) + ".ds");
+      strName.replace("\\", "/");
+      single_lock sl(&m_cs, TRUE);
+      script * pscript  = get(strName);
+      sl.unlock();
+      return pscript->create_instance();
+   }
+
+
+   void script_cache::cache(script * pscript)
+   {
+      single_lock sl(&m_cs, TRUE);
+      m_map.set_at(pscript->m_strName, pscript);
+   }
+
+   void script_cache::set_all_out_of_date()
+   {
+      single_lock sl(&m_cs, TRUE);
+      script * pscript = NULL;
+      string strName;
+      POSITION pos = m_map.get_start_position();
+      while(pos != NULL)
+      {
+         m_map.get_next_assoc(pos, strName, (void * &) pscript);
+         pscript->m_bShouldBuild = true;
+      }
+   }
+
+
+} // namespace dynamic_source
+
+

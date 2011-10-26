@@ -20,19 +20,19 @@ namespace compress
       void Init(bool solid = false);
 
       // distance >= 0, len > 0,
-      bool CopyBlock(uint32 distance, uint32 len)
+      bool CopyBlock(file_size distance, file_size len)
       {
-         uint32 pos = _pos - distance - 1;
+         file_size pos = _pos - distance - 1;
          if (distance >= _pos)
          {
-            if (!_overDict || distance >= _bufferSize)
+            if (!_overDict || distance >= m_memory.get_size())
                return false;
-            pos += _bufferSize;
+            pos += m_memory.get_size();
          }
-         if (_limitPos - _pos > len && _bufferSize - pos > len)
+         if (_limitPos - _pos > len && m_memory.get_size() - pos > len)
          {
-            const byte *src = _buffer + pos;
-            byte *dest = _buffer + _pos;
+            const byte *src = m_memory.get_data() + ::primitive::memory_position(pos);
+            byte *dest = m_memory.get_data() + ::primitive::memory_position(_pos);
             _pos += len;
             do
             *dest++ = *src++;
@@ -40,9 +40,9 @@ namespace compress
          }
          else do
          {
-            if (pos == _bufferSize)
+            if (pos == m_memory.get_size())
                pos = 0;
-            _buffer[_pos++] = _buffer[pos++];
+            m_memory.get_data()[_pos++] = m_memory.get_data()[pos++];
             if (_pos == _limitPos)
                FlushWithCheck();
          }
@@ -52,17 +52,17 @@ namespace compress
 
       void PutByte(byte b)
       {
-         _buffer[_pos++] = b;
+         m_memory.get_data()[_pos++] = b;
          if (_pos == _limitPos)
             FlushWithCheck();
       }
 
-      byte GetByte(uint32 distance) const
+      byte GetByte(file_size distance) const
       {
-         uint32 pos = _pos - distance - 1;
-         if (pos >= _bufferSize)
-            pos += _bufferSize;
-         return _buffer[pos];
+         file_size pos = _pos - distance - 1;
+         if (pos >= m_memory.get_size())
+            pos += m_memory.get_size();
+         return m_memory.get_data()[(index)pos];
       }
    };
 

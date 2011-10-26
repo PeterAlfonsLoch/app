@@ -18,6 +18,7 @@ namespace user
 
       void InstallMessageHandling(win::message::dispatch * pinterface);
 
+
       bool UpdateBuffer(int cx, int cy);
       bool UpdateBuffer(class size size);
       bool UpdateBuffer(class point point);

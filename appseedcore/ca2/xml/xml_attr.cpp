@@ -84,7 +84,7 @@ namespace xml
       }
       return true;
    }
-    
+
    bool attr_array::contains(stringa & stra) => str_str_interface::contains_key
    {
       for(index i = 0; i < stra.get_count(); i++)
@@ -98,20 +98,20 @@ namespace xml
    index attr_array::find(attr & attr, index iStart)
    {
       ASSERT(iStart >= 0);
-      for(index i = iStart; i < get_count(); i++)
+      for(index i = iStart; i < this->get_count(); i++)
       {
-         if(element_at(i) == attr)
+         if(this->element_at(i) == attr)
             return i;
       }
       return -1;
    }
-    
+
    var attr_array::get_value(const char * psz)
    {
       index iFind = str_str_interface_find(psz);
       if(iFind < 0)
          return gen::g_nullconst;
-      return var(element_at(iFind).m_strValue);
+      return var(this->element_at(iFind).m_strValue);
    }
 
 
@@ -120,7 +120,7 @@ namespace xml
       index iFind = str_str_interface_find(psz, iStart);
       if(iFind < 0)
          return false;
-      strValue = element_at(iFind).m_strValue;
+      strValue = this->element_at(iFind).m_strValue;
       return true;
    }
 
@@ -138,7 +138,7 @@ namespace xml
       int iFind = str_str_interface_find(pszKey);
       if(iFind >= 0)
       {
-         element_at(iFind).m_strValue = pszValue;
+         this->element_at(iFind).m_strValue = pszValue;
       }
       else
       {
@@ -152,22 +152,22 @@ namespace xml
 
    const string_composite attr_array::str_str_interface_get_value(int i) const
    {
-      return element_at(i).m_strValue;
+      return this->element_at(i).m_strValue;
    }
 
    string_composite attr_array::str_str_interface_get_value(int i)
    {
-      return element_at(i).m_strValue;
+      return this->element_at(i).m_strValue;
    }
 
    const string_composite attr_array::str_str_interface_get_key(int i) const
    {
-      return element_at(i).m_strName;
+      return this->element_at(i).m_strName;
    }
 
    int attr_array::str_str_interface_get_count() const
    {
-      return get_count();
+      return this->get_count();
    }
 
 

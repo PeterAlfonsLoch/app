@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ca8
 {
+
 
    class CLASS_DECL_ca application :
       public userex::application
@@ -22,8 +24,6 @@ namespace ca8
       virtual bool initialize1();
       virtual bool initialize();
       
-      bool _001ProcessShellCommand(gen::command_line & rCmdInfo);
-
       string message_box(const char * pszMatter, gen::property_set & propertyset);
 #if !core_level_1
       using ::radix::application::simple_message_box;

@@ -24,7 +24,6 @@
  */
 /* $Id: BrDomainCreateTest.cpp 1057 2010-07-05 17:17:33Z eduardo $ */
 #if USE_BR_DOMAINS
-#include <string>
 #include <memory>
 #include <iostream>
 

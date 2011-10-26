@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "c/c_c.h"
 #include "zlib/zlib.h"
 #include "ioapi.h"
 
@@ -72,6 +73,7 @@ voidpf ZCALLBACK fopen_file_func (opaque, filename, mode)
 {
     FILE* file = NULL;
     const char* mode_fopen = NULL;
+    errno_t err = 0;
     if ((mode & ZLIB_FILEFUNC_MODE_READWRITEFILTER)==ZLIB_FILEFUNC_MODE_READ)
         mode_fopen = "rb";
     else
@@ -81,9 +83,13 @@ voidpf ZCALLBACK fopen_file_func (opaque, filename, mode)
     if (mode & ZLIB_FILEFUNC_MODE_CREATE)
         mode_fopen = "wb";
 
+    
     if ((filename!=NULL) && (mode_fopen != NULL))
-        file = fopen(filename, mode_fopen);
-    return file;
+        err = fopen_s(&file, filename, mode_fopen);
+    if(err != 0)
+       return NULL;
+    else
+      return file;
 }
 
 

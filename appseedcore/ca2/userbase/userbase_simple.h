@@ -29,6 +29,14 @@
 
 
 
+
+
+#include "simple_printer_list_view.h"
+
+
+
+
+
 #include "simple_form_list_view.h"
 #include "simple_tab_view.h"
 

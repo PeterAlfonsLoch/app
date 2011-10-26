@@ -26,14 +26,12 @@ namespace fs
 
       void update();
 
-      virtual bool _001GetItemText(
-         ::user::list * plist,
-	      string &str,
-	      INT_PTR iItem,
-	      INT_PTR iSubItem, 
-	      INT_PTR iListItem);
+      virtual void _001GetItemText(::user::list_item * pitem);
 
       virtual count _001GetItemCount();
+
+      virtual void _001GetItemImage(::user::list_item * pitem);
+
 
    };
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace sort  
+namespace sort
 {
 
 	template <class T> void sort( T & t1, T & t2)
@@ -836,7 +836,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByPtrAtGetSize(
-      array_ptr_alloc < TYPE, ARG_TYPE > & a, 
+      array_ptr_alloc < TYPE, ARG_TYPE > & a,
       bool bAsc = true);
 
    template <class TYPE, class ARG_TYPE>
@@ -886,7 +886,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByGetSize(
-      base_array < TYPE, ARG_TYPE > & a, 
+      base_array < TYPE, ARG_TYPE > & a,
       bool bAsc)
    {
       TYPE t;
@@ -924,7 +924,7 @@ namespace sort
 
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByPtrAtGetSize(
-      array_ptr_alloc < TYPE, ARG_TYPE > & a, 
+      array_ptr_alloc < TYPE, ARG_TYPE > & a,
       bool bAsc)
    {
       TYPE t;

@@ -4,7 +4,7 @@ LIBRARY      "video_decode_ffmpeg"
 
 EXPORTS
     ; Explicit exports can go here
-	NewDecoderInterface 
-	DeleteDecoderInterface 
+	video_decode_new_decoder
+	video_decode_delete_decoder
 ;	NewEncoderInterface
 ;	DeleteEncoderInterface	

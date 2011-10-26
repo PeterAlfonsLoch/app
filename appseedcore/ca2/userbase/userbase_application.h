@@ -4,10 +4,12 @@
 namespace userbase
 {
 
+
    class front_end_schema;
    class document_manager;
    class document_template;
    class document;
+
 
    class CLASS_DECL_ca application :
       virtual public simpledb::application,

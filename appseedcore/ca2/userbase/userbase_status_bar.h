@@ -1,9 +1,12 @@
 #pragma once
 
+
 namespace userbase
 {
 
+
    class status_bar_control;   // forward reference (see afxcmn.h for definition)
+
 
    struct AFX_STATUSPANE
    {
@@ -20,23 +23,31 @@ namespace userbase
       AFX_STATUSPANE(const AFX_STATUSPANE & pane);
    };
 
-   class CLASS_DECL_ca status_bar : public ::userbase::control_bar
-   {
-      
 
-   // Construction
+   class CLASS_DECL_ca status_bar :
+      public ::userbase::control_bar
+   {
    public:
+
+
+
+      array_ptr_alloc < AFX_STATUSPANE >     m_panea;
+      int                                    m_nMinHeight;
+
+
       status_bar();
+      virtual ~status_bar();
+
+      using ::userbase::control_bar::create;
       virtual BOOL create(::user::interaction* pParentWnd,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          UINT nID = AFX_IDW_STATUS_BAR);
+      using ::userbase::control_bar::CreateEx;
       virtual BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          UINT nID = AFX_IDW_STATUS_BAR);
       BOOL SetIndicators(stringa & stra);
 
-   // Attributes
-   public:
       void SetBorders(LPCRECT lpRect);
       void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
 
@@ -60,11 +71,10 @@ namespace userbase
       status_bar_control& GetStatusBarCtrl();
 
    // Overridables
+#ifdef WINDOWS
       virtual void DrawItem(LPDRAWITEMSTRUCT);
+#endif
 
-   // Implementation
-   public:
-      virtual ~status_bar();
       virtual size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
       BOOL PreCreateWindow(CREATESTRUCT& cs);
       //BOOL AllocElements(int nElements, int cbElement);
@@ -78,8 +88,6 @@ namespace userbase
    #endif
       virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
 
-      array_ptr_alloc < AFX_STATUSPANE > m_panea;
-      int m_nMinHeight;
 
       AFX_STATUSPANE* _GetPanePtr(int nIndex);
       void UpdateAllPanes(BOOL bUpdateRects, BOOL bUpdateText);
@@ -95,10 +103,14 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnSetMinHeight)
 
       virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+
+
    };
 
+
 } // namespace userbase
+
 
 // Styles for status bar panes
 #define SBPS_NORMAL     0x0000

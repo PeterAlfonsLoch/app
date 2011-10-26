@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 
-MidiTrack::MidiTrack(::ca::application * papp) :
+midi_track::midi_track(::ca::application * papp) :
    ca(papp),
-   MidiTrackBase(papp),
-   primitive::memory_container < primitive::memory > (papp)
+   midi_track_base(papp),
+   primitive::memory_container (papp)
 {
    m_bWorkTrackEnd = false;
    m_ptracks = NULL;
@@ -14,7 +14,7 @@ MidiTrack::MidiTrack(::ca::application * papp) :
    m_cbLeft = 0;
    m_hpbImage = NULL;
 
-   
+
    m_smti.m_tkLength = 0;
    m_smti.m_cbLength = 0;
 
@@ -24,43 +24,43 @@ MidiTrack::MidiTrack(::ca::application * papp) :
 
    m_tkDelta = 0;
 
-   KeepStoragePointer((void **) &m_hpbImage);
-   KeepStoragePointer((void **) &m_hpbEventImage);
+   keep_pointer((void **) &m_hpbImage);
+   keep_pointer((void **) &m_hpbEventImage);
 
 }
 
-MidiTrack::MidiTrack(const MidiTrack & track) :
+midi_track::midi_track(const midi_track & track) :
    ca(track.get_app()),
-   MidiTrackBase(track.get_app()),
-   primitive::memory_container < primitive::memory > (track)
+   midi_track_base(track.get_app()),
+   primitive::memory_container (track)
 {
    operator =(track);
 }
 
-MidiTrack::~MidiTrack()
+midi_track::~midi_track()
 {
    m_hpbImage = NULL;
 }
 
-void MidiTrack::Initialize(MidiTracks * pTracks)
+void midi_track::Initialize(midi_tracks * pTracks)
 {
     m_ptracks = pTracks;
 }
 
 #ifdef _DEBUG
 
-void MidiTrack::dump(dump_context & dumpcontext) const
+void midi_track::dump(dump_context & dumpcontext) const
 {
    dumpcontext << "\n";
-   dumpcontext << "MidiTrack";
+   dumpcontext << "midi_track";
    dumpcontext << "\n";
    imedia::position tk = 0;
    for(int i = 0; i < m_trackWorkStorage.GetEventCount(); i++)
    {
-      MidiEventV008 & event = const_cast < MidiTrackV008 & > (m_trackWorkStorage).EventAt(i);
+      midi_event_v008 & event = const_cast < midi_track_v008 & > (m_trackWorkStorage).EventAt(i);
       dumpcontext << "delta " << event._GetDelta();
       dumpcontext << "type " << event.GetFullType();
-      
+
       tk = tk + imedia::position(event._GetDelta());
 
       dumpcontext << "\n";
@@ -89,15 +89,15 @@ void MidiTrack::dump(dump_context & dumpcontext) const
 // A var length DWORD stored in a MIDI file contains one or more
 // bytes. Each byte except the last has the high bit set; only the
 // low 7 bits are significant.
-//  
+//
 ////////////////////////////////////////////////////////////////////////////
-DWORD MidiTrack::GetVDWord(
+DWORD midi_track::GetVDWord(
    DWORD * pDw)
 {
    return GetVDWord(m_cbLeft, pDw);
 }
 
-DWORD MidiTrack::GetVDWord(
+DWORD midi_track::GetVDWord(
    DWORD dwLeft,
    DWORD * pDw)
 {
@@ -107,7 +107,7 @@ DWORD MidiTrack::GetVDWord(
 
     ASSERT(hpbImage != NULL);
     ASSERT(pDw != NULL);
-    
+
     *pDw = 0;
 
     do
@@ -120,14 +120,14 @@ DWORD MidiTrack::GetVDWord(
         b = *hpbImage++;
         dwLeft--;
         dwUsed++;
-        
+
         *pDw = (*pDw << 7) | (b & 0x7F);
     } while (b&0x80);
 
     return dwUsed;
 }
 
-DWORD MidiTrack::SetVDWord(
+DWORD midi_track::SetVDWord(
    DWORD dwLeft,
    DWORD dw)
 {
@@ -138,7 +138,7 @@ DWORD MidiTrack::SetVDWord(
    ASSERT(!m_bAutoAllocation);
    ASSERT(hpbImage != NULL);
    ASSERT(dw <= 0x0fffffff);
-   
+
    if(!dwLeft)
       return 0;
    dwBuffer = dw & 0x7f;
@@ -162,12 +162,12 @@ DWORD MidiTrack::SetVDWord(
       else
          break;
    }
-      
+
    return dwUsed;
 }
 
 
-DWORD MidiTrack::SetVDWord(
+DWORD midi_track::SetVDWord(
    DWORD dw)
 {
    DWORD                   dwUsed  = 0;
@@ -175,8 +175,8 @@ DWORD MidiTrack::SetVDWord(
 
    ASSERT(m_bAutoAllocation);
    ASSERT(dw <= 0x0fffffff);
-   
-   
+
+
    dwBuffer = dw & 0x7f;
    dwUsed++;
    while ((dw >>= 7) > 0)
@@ -188,7 +188,7 @@ DWORD MidiTrack::SetVDWord(
    }
    try
    {
-      AllocateAddUp(dwUsed);
+      allocate_add_up(dwUsed);
    }
    catch(memory_exception * pe)
    {
@@ -256,7 +256,7 @@ DWORD MidiTrack::SetVDWord(
 
 
 
-::mus::midi::e_file_result MidiTrack::ReadDelta()
+::mus::midi::e_file_result midi_track::ReadDelta()
 {
    imedia::position tkDelta;
 
@@ -303,8 +303,8 @@ DWORD MidiTrack::SetVDWord(
 
 }
 
-::mus::midi::e_file_result MidiTrack::GetEvent(
-   MidiEventBase *&    pevent,
+::mus::midi::e_file_result midi_track::GetEvent(
+   midi_event_base *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
@@ -317,8 +317,8 @@ DWORD MidiTrack::SetVDWord(
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::GetEvent(
-   MidiEventV001 *&    pevent,
+::mus::midi::e_file_result midi_track::GetEvent(
+   midi_event_v001 *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
@@ -357,7 +357,7 @@ DWORD MidiTrack::SetVDWord(
 * information about one m_event in the file will be returned in pEvent.
 *
 * Merging data from all tracks into one stream is performed here.
-* 
+*
 * m_event.tkDelta will contain the tick delta for the m_event.
 *
 * m_event.abEvent will contain a description of the m_event.
@@ -411,7 +411,7 @@ DWORD MidiTrack::SetVDWord(
 *  Mark and return end_of_file
 *
 *****************************************************************************/
-::mus::midi::e_file_result MidiTrack::ReadEvent(
+::mus::midi::e_file_result midi_track::ReadEvent(
    imedia::position   tkMax,
    BOOL   bTkMaxInclusive)
 {
@@ -421,7 +421,7 @@ DWORD MidiTrack::SetVDWord(
    DWORD                   cbEvent;
    ::mus::midi::e_file_result      mfr;
    byte *                  hpbImage;
-   
+
    if(m_estate == StateOnDelta)
    {
       mfr = ReadDelta();
@@ -429,32 +429,32 @@ DWORD MidiTrack::SetVDWord(
       {
          _GetFlags().signalize(::mus::midi::EndOfTrack);
          return ::mus::midi::SEndOfTrack;
-      }  
+      }
    }
-   
-   
+
+
    // Probably you have forgotten to call MoveNext
    ASSERT(m_estate == StateOnEvent);
-   
+
    m_event.clear();
-   
+
    // We MUST have at least three bytes here (cause we haven't hit
    // the end-of-track meta yet, which is three bytes long). Checking
    // against three means we don't have to check how much is left
    // in the track again for any short m_event, which is most cases.
-   
+
    if(m_cbLeft < 3)
    {
       //Attention
       return ::mus::midi::EInvalidFile;
    }
-   
-   
+
+
    m_tkPosition += m_tkDelta;
-   
+
    m_event.SetPosition(m_tkPosition);
    m_event.SetDelta(m_tkDelta);
-   
+
    if(bTkMaxInclusive)
    {
       if(m_tkPosition > tkMax)
@@ -469,11 +469,11 @@ DWORD MidiTrack::SetVDWord(
          return ::mus::midi::SReachedTkMax;
       }
    }
-   
-   hpbImage = m_hpbImage; 
-   
+
+   hpbImage = m_hpbImage;
+
    bEvent = *hpbImage++;
-   
+
    if (bEvent < ::mus::midi::Msg)
    {
       if(0 == m_ptracks->m_uchRunningStatus)
@@ -481,7 +481,7 @@ DWORD MidiTrack::SetVDWord(
          //Attention
          return ::mus::midi::EInvalidFile;
       }
-      
+
       dwGotTotal = 1;
       m_event.SetFullType(m_ptracks->m_uchRunningStatus);
       m_event.SetChB1(bEvent);
@@ -494,7 +494,7 @@ DWORD MidiTrack::SetVDWord(
    else if (::mus::midi::SysEx > bEvent)
    {
       m_ptracks->m_uchRunningStatus = bEvent;
-      
+
       dwGotTotal = 2;
       m_event.SetFullType(bEvent);
       m_event.SetChB1(*hpbImage++);
@@ -534,37 +534,37 @@ DWORD MidiTrack::SetVDWord(
          ASSERT(FALSE);
          return ::mus::midi::EInvalidFile;
       }
-      
+
       //hpbImage  += dwGot;
       dwGotTotal  += dwGot;
-      
+
       if(dwGotTotal + cbEvent > m_cbLeft)
       {
          //Attention
          ASSERT(FALSE);
          return ::mus::midi::EInvalidFile;
       }
-      
+
       m_event.SetParam(hpbImage, cbEvent);
-      
+
       hpbImage += cbEvent;
       dwGotTotal += cbEvent;
    }
-   
+
    ASSERT(m_cbLeft >= dwGotTotal);
-   
+
    m_hpbImage = hpbImage ;
    m_cbLeft -= dwGotTotal;
    m_dwUsed = dwGotTotal;
    m_estate = StateOnEventRead;
-   
+
    //m_event.m_cbImage = hpbImage - m_hpbEventImage;
-   
-   
+
+
    return ::mus::midi::Success;
 }
 
-VMSRESULT MidiTrack::ReadEvent(MidiEventV008 &midiEvent)
+VMSRESULT midi_track::ReadEvent(midi_event_v008 &midiEvent)
 {
    BYTE                       bEvent;
    int                        iGotTotal;
@@ -579,7 +579,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV008 &midiEvent)
       {
          _GetFlags().signalize(::mus::midi::EndOfTrack);
          return ::mus::midi::SEndOfTrack;
-      }  
+      }
    }
    else if(m_estate == StateOnEventRead)
    {
@@ -643,8 +643,8 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV008 &midiEvent)
       {
          return VMSR_E_INVALIDFILE;
       }
-        
-      if (0 == (dwGot = MidiEventBase::GetVDWord(m_hpbImage, m_cbLeft - iGotTotal, &cbEvent)))
+
+      if (0 == (dwGot = midi_event_base::GetVDWord(m_hpbImage, m_cbLeft - iGotTotal, &cbEvent)))
       {
          return VMSR_E_INVALIDFILE;
       }
@@ -673,7 +673,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV008 &midiEvent)
    return VMSR_SUCCESS;
 }
 
-VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
+VMSRESULT midi_track::ReadEvent(midi_event_v001 &midiEvent)
 {
    BYTE                       bEvent;
    int                        iGotTotal;
@@ -688,7 +688,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       {
          _GetFlags().signalize(::mus::midi::EndOfTrack);
          return ::mus::midi::SEndOfTrack;
-      }  
+      }
    }
    else if(m_estate == StateOnEventRead)
    {
@@ -771,8 +771,8 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       {
          return VMSR_E_INVALIDFILE;
       }
-        
-      dwGot = MidiEventBase::GetVDWord(m_hpbImage, m_cbLeft - iGotTotal, &cbEvent);
+
+      dwGot = midi_event_base::GetVDWord(m_hpbImage, m_cbLeft - iGotTotal, &cbEvent);
 
       m_hpbImage  += dwGot;
       iGotTotal  += dwGot;
@@ -797,7 +797,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    midiEvent._SetImageSize(iGotTotal);
 
    /*TRACE("%04d ", midiEvent.GetDelta());
-   
+
    switch(midiEvent.get_type())
    {
    case ::mus::midi::NoteOff:
@@ -818,7 +818,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 
 
 
-::mus::midi::e_file_result MidiTrack::GetNextXFInfoHeader(XFInfoHeader * pXfih)
+::mus::midi::e_file_result midi_track::GetNextXFInfoHeader(XFInfoHeader * pXfih)
 {
    ASSERT(pXfih != NULL);
    ::mus::midi::e_file_result smfrc;
@@ -833,7 +833,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       TRACE("Country: %s\n", pXfih->m_strCountry);
       TRACE("Category: %s\n", pXfih->m_strCategory);
       TRACE("Beat: %s\n", pXfih->m_strBeat);
-        
+
       pXfih->m_straComposer.get_format_string(str, "/");
       TRACE("Composer: %s\n", str);
 
@@ -852,7 +852,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    return smfrc;
 }
 
-::mus::midi::e_file_result MidiTrack::GetNextXFInfoHeaderLS(XFInfoHeaderLS * pXfihls)
+::mus::midi::e_file_result midi_track::GetNextXFInfoHeaderLS(XFInfoHeaderLS * pXfihls)
 {
    ASSERT(pXfihls != NULL);
    ::mus::midi::e_file_result smfrc;
@@ -866,7 +866,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    return smfrc;
 }
 
-::mus::midi::e_file_result MidiTrack::GetNextXFInfoHeaderLS(XFInfoHeaderLS * pXfihls, const string &strLanguage)
+::mus::midi::e_file_result midi_track::GetNextXFInfoHeaderLS(XFInfoHeaderLS * pXfihls, const string &strLanguage)
 {
    XFInfoHeaderLS xfihls;
    while(::mus::midi::Success == GetNextXFInfoHeaderLS(&xfihls))
@@ -880,7 +880,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    return ::mus::midi::SEndOfFile;
 }
 
-::mus::midi::e_file_result MidiTrack::GetNextXFSongName(string &str)
+::mus::midi::e_file_result midi_track::GetNextXFSongName(string &str)
 {
    //LPTSTR pSongName = NULL;
    ::mus::midi::e_file_result smfrc;
@@ -898,7 +898,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 
 
 
-::mus::midi::e_file_result MidiTrack::ReadXFInfoHeader_(
+::mus::midi::e_file_result midi_track::ReadXFInfoHeader_(
    LPTSTR *ppSongName,
     XFInfoHeader **ppXfih,
     XFInfoHeaderLS **ppXfihls)
@@ -914,22 +914,22 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    BOOL               okSongName = FALSE;
    BOOL               okInfoHeader = FALSE;
    BOOL               okInfoHeaderLS = FALSE;
-   
+
    *ppXfih = NULL;
    *ppXfihls = NULL;
    *ppSongName = NULL;
-   
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::EInvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
     if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
     {
         return ::mus::midi::SEndOfFile;
@@ -957,15 +957,15 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             _GetFlags().signalize(::mus::midi::EndOfFile);
             }
-            
+
             TRACE( "smfReadEvents: ReadXFInfoHeader_() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
-          (CXF::MetaSongName == m_event.GetMetaType()))
+          (::mus::xf::MetaSongName == m_event.GetMetaType()))
         {
          string str;
          gen::international::MultiByteToOEM(
@@ -977,7 +977,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
          okSongName = TRUE;
         }
       else if ((::mus::midi::Meta == m_event.GetFullType()) &&
-          (CXF::MetaXFInfoHdr == m_event.GetMetaType()))
+          (::mus::xf::MetaXFInfoHdr == m_event.GetMetaType()))
         {
          string_tokenizer wstrtokenizer;
          gen::international::multibyte_to_utf8(
@@ -999,7 +999,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
             TRACE("Country: %s\n", (*ppXfih)->m_strCountry);
             TRACE("Category: %s\n", (*ppXfih)->m_strCategory);
             TRACE("Beat: %s\n", (*ppXfih)->m_strBeat);
-                
+
             (*ppXfih)->m_straComposer.get_format_string(str, "/");
             TRACE("Composer: %s\n", str);
 
@@ -1041,7 +1041,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    return (_GetFlags().is_signalized(::mus::midi::EndOfFile)) ? ::mus::midi::SEndOfFile : ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::WriteXFInfoHeader(
+::mus::midi::e_file_result midi_track::WriteXFInfoHeader(
    const char * pszSongName,
    XFInfoHeader *pXfih,
    XFInfoHeaderLS *pXfihls)
@@ -1051,18 +1051,18 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 //    CMidiEvent              m_event;
    imedia::position               tkLastDelta = 0 ;
    primitive::memory   memstorage;
-   
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::EInvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
     if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
     {
         return ::mus::midi::SEndOfFile;
@@ -1072,9 +1072,9 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    if(pszSongName != NULL)
    {
       m_event.SetFullType(::mus::midi::Meta);
-      m_event.SetMetaType(CXF::MetaSongName);
+      m_event.SetMetaType(::mus::xf::MetaSongName);
       memstorage.allocate(gen::international::Utf8ToMultiByteCount(gen::international::CodePageLatin1, pszSongName));
-      m_event.SetParam((byte *) memstorage.GetAllocation(), memstorage.GetStorageSize() - 1);
+      m_event.SetParam((byte *) memstorage.get_data(), memstorage.get_size() - 1);
       gen::international::utf8_to_multibyte(
          gen::international::CodePageLatin1,
          (char *) m_event.GetParam(),
@@ -1090,16 +1090,16 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    if(pXfih != NULL)
    {
       m_event.SetFullType(::mus::midi::Meta);
-      m_event.SetMetaType(CXF::MetaXFInfoHdr);
+      m_event.SetMetaType(::mus::xf::MetaXFInfoHdr);
       string str;
       pXfih->ToData(str);
-      
+
       gen::international::utf8_to_multibyte(gen::international::CodePageLatin1, memstorage, str);
 //      memstorage.allocate(
 //         International
 //         ::StringToLatin1Count(str)@);
-      m_event.SetParam((byte *) memstorage.GetAllocation(),
-      memstorage.GetStorageSize() - 1);
+      m_event.SetParam((byte *) memstorage.get_data(),
+      memstorage.get_size() - 1);
 //      gen::international::StringToLatin1(
 //         (char *) m_event.GetParam() ,
 //         m_event.GetParamSize(),
@@ -1110,7 +1110,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 //      m_event.GetParamSize() = strlen((const char *) m_event.GetParam());
       if((smfrc = WriteCompleteEvent(0x7fffffff, false)) != ::mus::midi::Success)
          return smfrc;
-      
+
       TRACE("****WriteXFInfoHeader");
       TRACE("Date: %s\n", (char *) m_event.GetParam());
 //      free(m_event.GetParam());
@@ -1118,19 +1118,19 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    if(pXfihls != NULL)
    {
       m_event.SetFullType(::mus::midi::Meta);
-      m_event.SetMetaType(CXF::MetaXFInfoHdr);
+      m_event.SetMetaType(::mus::xf::MetaXFInfoHdr);
       string str;
       pXfihls->ToData(str);
       memstorage.allocate(
          gen::international::Utf8ToMultiByteCount(gen::international::CodePageLatin1, str));
-      m_event.SetParam((byte *) memstorage.GetAllocation(),
-       memstorage.GetStorageSize() - 1);
+      m_event.SetParam((byte *) memstorage.get_data(),
+       memstorage.get_size() - 1);
       gen::international::utf8_to_multibyte(
          gen::international::CodePageLatin1,
          (char *) m_event.GetParam() ,
          m_event.GetParamSize(),
          str);
-//      m_event.GetParam() = (byte *) 
+//      m_event.GetParam() = (byte *)
 //         International
 //         ::UnicodeToAnsiDup(str);
 //      m_event.GetParamSize() = strlen((const char *) m_event.GetParam());
@@ -1142,7 +1142,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 }
 
 
-::mus::midi::e_file_result MidiTrack::ReadKarTokens(
+::mus::midi::e_file_result midi_track::ReadKarTokens(
    stringa &  tokena,
    imedia::position_array *   lptkaTicks)
 {
@@ -1150,12 +1150,12 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
-   
+
    ASSERT(lptkaTicks != NULL);
    tokena.remove_all();
    lptkaTicks->remove_all();
-   
-   
+
+
    while(m_tkPosition == 0)
    {
       smfrc = ReadEvent(tkMax, TRUE);
@@ -1199,8 +1199,8 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       {
          break;
       }
-      
-      
+
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
          (::mus::midi::MetaKarLyric == m_event.GetMetaType()))
       {
@@ -1222,12 +1222,12 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
          break;
       }
    }
-   
-   
+
+
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::ReadAnsiXFTokens(
+::mus::midi::e_file_result midi_track::ReadAnsiXFTokens(
       stringa &  tokena,
       imedia::position_array *   lptkaTicks)
 {
@@ -1238,15 +1238,15 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
-   
+
    //m_ptracks->seek_begin();
-   
-   //MidiEventV008 event;
-   
+
+   //midi_event_v008 event;
+
    /*    while(::mus::midi::Success == ReadEvent(tkMax, TRUE))
    {
    if ((::mus::midi::Meta == m_event.GetFullType()) &&
-   (CXF::MetaLyric == m_event.GetMetaType()))
+   (::mus::xf::MetaLyric == m_event.GetMetaType()))
    {
          string str;
          International
@@ -1259,7 +1259,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
          lptkaTicks->add(m_tkPosition);
          }
 }*/
-   
+
    while(TRUE)
    {
       smfrc = ReadEvent(tkMax, TRUE);
@@ -1267,30 +1267,30 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       {
          break;
       }
-      
-      
+
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
-         (CXF::MetaLyric == m_event.GetMetaType()))
+         (::mus::xf::MetaLyric == m_event.GetMetaType()))
       {
          gen::international::multibyte_to_utf8(gen::international::CodePageLatin1, str, (const char *) m_event.GetParam(), m_event.GetParamSize());
          TRACE("%s\n", str);
          tokena.add(str);
          lptkaTicks->add(m_tkPosition);
       }
-      
-      
+
+
       smfrc = MoveNext();
       if (::mus::midi::Success != smfrc)
       {
          break;
       }
    }
-   
-   
+
+
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::ReadShiftJisXFTokens(
+::mus::midi::e_file_result midi_track::ReadShiftJisXFTokens(
       stringa &  tokena,
       imedia::position_array *   lptkaTicks)
 {
@@ -1301,7 +1301,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
    string str;
-   
+
    while(TRUE)
    {
       smfrc = ReadEvent(tkMax, TRUE);
@@ -1309,31 +1309,31 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       {
          break;
       }
-      
-      
+
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
-         (CXF::MetaLyric == m_event.GetMetaType()))
+         (::mus::xf::MetaLyric == m_event.GetMetaType()))
       {
          gen::international::multibyte_to_utf8(gen::international::CodePageShiftJIS, str, (const char *) m_event.GetParam(), m_event.GetParamSize());
          TRACE("%s\n", str);
          tokena.add(str);
          lptkaTicks->add(m_tkPosition);
       }
-      
-      
+
+
       smfrc = MoveNext();
       if (::mus::midi::Success != smfrc)
       {
          break;
       }
    }
-   
-   
+
+
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
 
-::mus::midi::e_file_result   MidiTrack::seek_begin()
+::mus::midi::e_file_result   midi_track::seek_begin()
 {
    if(m_bAutoAllocation)
    {
@@ -1370,7 +1370,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
 }
 
 
-/*BOOL MidiTrack::allocate(DWORD dwNewLength)
+/*BOOL midi_track::allocate(DWORD dwNewLength)
 {
    ASSERT(m_bAutoAllocation);
 //   if(m_bMirrorAllocation)
@@ -1425,7 +1425,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    }
 }*/
 
-/*BOOL MidiTrack::AllocateMirror(DWORD dwNewLength)
+/*BOOL midi_track::AllocateMirror(DWORD dwNewLength)
 {
    ASSERT(m_bMirrorAllocation);
    if(m_hpbMirrorAllocation == NULL)
@@ -1470,7 +1470,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    }
 }*/
 
-::mus::midi::e_file_result MidiTrack::WriteDelta()
+::mus::midi::e_file_result midi_track::WriteDelta()
 {
    ASSERT(m_estate == StateOnDelta);
    ASSERT(m_bAutoAllocation);
@@ -1479,7 +1479,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
       TRACE("No Memory Available.");
       return ::mus::midi::ENoMemory;
    }
-   
+
    m_hpbImage += m_dwUsed;
    m_cbLeft -= m_dwUsed;
    //m_smti.m_cbLength += m_dwUsed;
@@ -1488,7 +1488,7 @@ VMSRESULT MidiTrack::ReadEvent(MidiEventV001 &midiEvent)
    return ::mus::midi::Success;
 }
 
-void MidiTrack::SetAutoAllocation(BOOL bValue)
+void midi_track::SetAutoAllocation(BOOL bValue)
 {
    if(bValue)
    {
@@ -1507,7 +1507,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
          {
             allocate(sizeof(CHUNKHDR));
          }
-         m_hpbImage = GetAllocation();
+         m_hpbImage = get_data();
       }
    }
    else
@@ -1526,7 +1526,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 
 }
 
-::mus::midi::e_file_result MidiTrack::WriteCompleteEvent(imedia::position tkMax, bool bUseEventPosition)
+::mus::midi::e_file_result midi_track::WriteCompleteEvent(imedia::position tkMax, bool bUseEventPosition)
 {
 
    ASSERT(m_estate == StateOnDelta);
@@ -1546,8 +1546,8 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 
     if(bUseEventPosition)
     {
-        ASSERT(m_event.GetPosition() >= m_tkPosition);
-       m_tkDelta = m_event.GetPosition() - m_tkPosition;
+        ASSERT(m_event.get_position() >= m_tkPosition);
+       m_tkDelta = m_event.get_position() - m_tkPosition;
     }
     else
     {
@@ -1559,21 +1559,21 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    {
       return smfrc;
    }
-    
+
    m_tkPosition += m_tkDelta;
-    
+
    if (m_tkPosition > tkMax)
     {
         return ::mus::midi::SReachedTkMax;
     }
-   
+
    bEvent = m_event.GetFullType();
 
    if(bEvent < ::mus::midi::Msg)
    {
       try
       {
-         AllocateAddUp(1);
+         allocate_add_up(1);
       }
       catch(memory_exception * pe)
       {
@@ -1581,14 +1581,14 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
          return ::mus::midi::ENoMemory;
       }
 
-         
+
       dwUsedTotal = 1;
       *m_hpbImage++ = m_event.GetChB1();
         if (3 == ::mus::midi::GetMessageLen(m_ptracks->m_uchRunningStatus))
         {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception * pe)
          {
@@ -1604,7 +1604,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
       m_ptracks->m_uchRunningStatus = bEvent;
       try
       {
-         AllocateAddUp(2);
+         allocate_add_up(2);
       }
       catch(memory_exception * pe)
       {
@@ -1618,7 +1618,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception *)
          {
@@ -1634,7 +1634,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         {
          try
          {
-            AllocateAddUp(2);
+            allocate_add_up(2);
          }
          catch(memory_exception *)
          {
@@ -1652,7 +1652,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception *)
          {
@@ -1667,7 +1667,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         }
 
       cbEvent = m_event.GetParamSize();
-        
+
       if(!(dwUsed = SetVDWord(cbEvent)))
       {
          return ::mus::midi::ENoMemory;
@@ -1679,14 +1679,14 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 
       try
       {
-         AllocateAddUp(cbEvent);
+         allocate_add_up(cbEvent);
       }
       catch(memory_exception * pe)
       {
          pe->Delete();
          return ::mus::midi::ENoMemory;
       }
-      
+
       memcpy(m_hpbImage, m_event.GetParam(), cbEvent);
 
         m_hpbImage += cbEvent;
@@ -1700,7 +1700,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 }
 
 
-::mus::midi::e_file_result MidiTrack::WriteCompleteEvent(MidiEventBase & event, imedia::position tkMax, bool bUseEventPosition)
+::mus::midi::e_file_result midi_track::WriteCompleteEvent(midi_event_base & event, imedia::position tkMax, bool bUseEventPosition)
 {
 
    ASSERT(m_estate == StateOnDelta);
@@ -1720,8 +1720,8 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 
     if(bUseEventPosition)
     {
-        ASSERT(event.GetPosition() >= m_tkPosition);
-       m_tkDelta = event.GetPosition() - m_tkPosition;
+        ASSERT(event.get_position() >= m_tkPosition);
+       m_tkDelta = event.get_position() - m_tkPosition;
     }
     else
     {
@@ -1733,14 +1733,14 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    {
       return smfrc;
    }
-    
+
    m_tkPosition += m_tkDelta;
-    
+
    if (m_tkPosition > tkMax)
     {
         return ::mus::midi::SReachedTkMax;
     }
-   
+
    bEvent = event.GetFullType();
 
    if(bEvent < ::mus::midi::Msg)
@@ -1751,7 +1751,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    {
       try
       {
-         AllocateAddUp(1);
+         allocate_add_up(1);
       }
       catch(memory_exception * pe)
       {
@@ -1759,14 +1759,14 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
          return ::mus::midi::ENoMemory;
       }
 
-         
+
       dwUsedTotal = 1;
       *m_hpbImage++ = event.GetChB1();
         if (3 == ::mus::midi::GetMessageLen(m_ptracks->m_uchRunningStatus))
         {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception * pe)
          {
@@ -1782,7 +1782,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
       m_ptracks->m_uchRunningStatus = bEvent;
       try
       {
-         AllocateAddUp(2);
+         allocate_add_up(2);
       }
       catch(memory_exception * pe)
       {
@@ -1796,7 +1796,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception *)
          {
@@ -1812,7 +1812,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         {
          try
          {
-            AllocateAddUp(2);
+            allocate_add_up(2);
          }
          catch(memory_exception *)
          {
@@ -1830,7 +1830,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception *)
          {
@@ -1845,7 +1845,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
         }
 
       cbEvent = event.GetParamSize();
-        
+
       if(!(dwUsed = SetVDWord(cbEvent)))
       {
          return ::mus::midi::ENoMemory;
@@ -1857,14 +1857,14 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 
       try
       {
-         AllocateAddUp(cbEvent);
+         allocate_add_up(cbEvent);
       }
       catch(memory_exception * pe)
       {
          pe->Delete();
          return ::mus::midi::ENoMemory;
       }
-      
+
       memcpy(m_hpbImage, event.GetParam(), cbEvent);
 
         m_hpbImage += cbEvent;
@@ -1877,7 +1877,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    return ::mus::midi::Success;
 }
 
-/*::mus::midi::e_file_result MidiTrack::copy(MidiTrack *pTrk)
+/*::mus::midi::e_file_result midi_track::copy(midi_track *pTrk)
 {
    if(m_bAutoAllocation)
    {
@@ -1894,7 +1894,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    }
 }*/
 
-::mus::midi::e_file_result MidiTrack::WriteHeader(CHUNKHDR *pHdr)
+::mus::midi::e_file_result midi_track::WriteHeader(CHUNKHDR *pHdr)
 {
    ASSERT(m_bAutoAllocation);
    byte * hpbAllocation = GetAllocationImage();
@@ -1912,7 +1912,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::WriteHeaderLength()
+::mus::midi::e_file_result midi_track::WriteHeaderLength()
 {
    ASSERT(!m_bAutoAllocation);
    //byte * hpbAllocation = GetAllocationImage();
@@ -1928,7 +1928,7 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
 }
 
 
-::mus::midi::e_file_result MidiTrack::WriteXFLyricEvent(string &str, imedia::position tkPosition)
+::mus::midi::e_file_result midi_track::WriteXFLyricEvent(string &str, imedia::position tkPosition)
 {
    ::mus::midi::e_file_result smfrc;
    if(tkPosition < m_tkPosition)
@@ -1936,25 +1936,25 @@ void MidiTrack::SetAutoAllocation(BOOL bValue)
    else
       m_event.SetDelta(tkPosition - m_tkPosition);
    m_event.SetFullType(::mus::midi::Meta);
-   m_event.SetMetaType(CXF::MetaLyric);
+   m_event.SetMetaType(::mus::xf::MetaLyric);
 
    gen::international::utf8_to_multibyte(gen::international::CodePageLatin1, m_memstorageHelper, str);
-   m_event.SetParam((byte *) m_memstorageHelper.GetAllocation(), m_memstorageHelper.GetStorageSize() - 1);
+   m_event.SetParam((byte *) m_memstorageHelper.get_data(), m_memstorageHelper.get_size() - 1);
    smfrc = WriteCompleteEvent(0x7fffffff, false);
    return smfrc;
 }
 
 
-byte * MidiTrack::GetAllocationImage()
+byte * midi_track::GetAllocationImage()
 {
-   return GetAllocation();
+   return get_data();
 }
 
-::mus::midi::e_file_result MidiTrack::copy(MidiTrack *pTrk, int iMode)
+::mus::midi::e_file_result midi_track::copy(midi_track *pTrk, int iMode)
 {
-   MidiEventV001 * pevent;
+   midi_event_v001 * pevent;
    imedia::position tkDelta;
-   
+
    SetAutoAllocation();
    seek_begin();
    allocate(sizeof(CHUNKHDR));
@@ -1979,7 +1979,7 @@ byte * MidiTrack::GetAllocationImage()
          if((iMode & CopyExcludeXFMetaLyrics) > 0)
          {
             if(pevent->_GetFullType() == ::mus::midi::Meta &&
-               pevent->_GetMetaType() == CXF::MetaLyric)
+               pevent->_GetMetaType() == ::mus::xf::MetaLyric)
             {
                bCopy = false;
             }
@@ -2018,7 +2018,7 @@ byte * MidiTrack::GetAllocationImage()
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::CopyWork(MidiTrack *pTrk, int iMode)
+::mus::midi::e_file_result midi_track::CopyWork(midi_track *pTrk, int iMode)
 {
    imedia::position tkDelta;
 
@@ -2032,7 +2032,7 @@ byte * MidiTrack::GetAllocationImage()
 
    for(int i = 0; i < pTrk->m_trackWorkStorage.GetEventCount(); i++)
    {
-      MidiEventV008 & event = pTrk->m_trackWorkStorage.EventAt(i);
+      midi_event_v008 & event = pTrk->m_trackWorkStorage.EventAt(i);
       bCopy = true;
       if(event.GetFlags() != 0)
       {
@@ -2043,7 +2043,7 @@ byte * MidiTrack::GetAllocationImage()
          if((iMode & CopyExcludeXFMetaLyrics) > 0)
          {
             if(event._GetFullType() == ::mus::midi::Meta &&
-               event._GetMetaType() == CXF::MetaLyric)
+               event._GetMetaType() == ::mus::xf::MetaLyric)
             {
                bCopy = false;
             }
@@ -2079,7 +2079,7 @@ byte * MidiTrack::GetAllocationImage()
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::WorkCopyWork(MidiTrack *pTrk, int iMode)
+::mus::midi::e_file_result midi_track::WorkCopyWork(midi_track *pTrk, int iMode)
 {
    imedia::position tkDelta;
    bool bCopy;
@@ -2091,7 +2091,7 @@ byte * MidiTrack::GetAllocationImage()
    tkDelta = 0;
    for(int i = 0; i < pTrk->m_trackWorkStorage.GetEventCount(); i++)
    {
-      MidiEventV008 & event = pTrk->m_trackWorkStorage.EventAt(i);
+      midi_event_v008 & event = pTrk->m_trackWorkStorage.EventAt(i);
 //      ASSERT(event.GetFullType() >= ::mus::midi::Msg);
       bCopy = true;
       if(event.GetFlags() != 0)
@@ -2103,7 +2103,7 @@ byte * MidiTrack::GetAllocationImage()
          if((iMode & CopyExcludeXFMetaLyrics) > 0)
          {
             if(event.GetFullType() == ::mus::midi::Meta &&
-               event.GetMetaType() == CXF::MetaLyric)
+               event.GetMetaType() == ::mus::xf::MetaLyric)
             {
                bCopy = false;
             }
@@ -2134,7 +2134,7 @@ byte * MidiTrack::GetAllocationImage()
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::GetNextKarInfo(
+::mus::midi::e_file_result midi_track::GetNextKarInfo(
    SoftKaraokeInfo *pKarI)
 {
    ASSERT(pKarI != NULL);
@@ -2147,20 +2147,20 @@ byte * MidiTrack::GetAllocationImage()
    bool               okAuthor = false;
     bool               okCopyright = false;
    int                  nTCount = 0;
-   
-   
-   
+
+
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::EInvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
     if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
     {
         return ::mus::midi::SEndOfFile;
@@ -2186,17 +2186,17 @@ byte * MidiTrack::GetAllocationImage()
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             _GetFlags().signalize(::mus::midi::EndOfFile);
             }
-            
+
             TRACE( "smfReadEvents: GetNextKarInfo() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
          (::mus::midi::MetaKarHeader == m_event.GetMetaType()))
         {
-         
+
          string str;
          gen::international::MultiByteToMultiByte(
             gen::international::CodePageLatin1,
@@ -2253,7 +2253,7 @@ byte * MidiTrack::GetAllocationImage()
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             _GetFlags().signalize(::mus::midi::EndOfFile);
             }
-            
+
             TRACE( "smfReadEvents: GetNextKarInfo() -> %u", (UINT)smfrc);
             break;
         }
@@ -2276,7 +2276,7 @@ byte * MidiTrack::GetAllocationImage()
 }
 
 
-::mus::midi::e_file_result MidiTrack::GetNextTune1000Info(
+::mus::midi::e_file_result midi_track::GetNextTune1000Info(
    CTune1000Info *pTune1000I)
 {
    ASSERT(pTune1000I != NULL);
@@ -2291,19 +2291,19 @@ byte * MidiTrack::GetAllocationImage()
    bool               okTOther = FALSE;
    int               nTCount = 0;
    int               nCount = 0;
-   
-   
+
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::EInvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
     if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
     {
         return ::mus::midi::SEndOfFile;
@@ -2329,22 +2329,22 @@ byte * MidiTrack::GetAllocationImage()
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             _GetFlags().signalize(::mus::midi::EndOfFile);
             }
-            
+
             TRACE( "smfReadEvents: GetNextTune1000Info() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
          (::mus::midi::MetaTrackName == m_event.GetMetaType()
           || ::mus::midi::MetaKarLyric == m_event.GetMetaType()  ))
         {
-         
+
          string str;
          gen::international::multibyte_to_utf8(
             gen::international::CodePageLatin1,
-            str, 
+            str,
             (const char *) m_event.GetParam(), m_event.GetParamSize());
          if(str.Mid(0, 2).Compare("@T") == 0)
          {
@@ -2395,7 +2395,7 @@ byte * MidiTrack::GetAllocationImage()
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             _GetFlags().signalize(::mus::midi::EndOfFile);
             }
-            
+
             TRACE( "smfReadEvents: GetNextTune1000Info() -> %u", (UINT)smfrc);
             break;
         }
@@ -2415,7 +2415,7 @@ byte * MidiTrack::GetAllocationImage()
    return okSongName || okOther ? ::mus::midi::Success : ::mus::midi::SEndOfFile;
 }
 
-::mus::midi::e_file_result MidiTrack::GetStandardEventsV1(MidiEventsV1 *pEvents, int iFilter, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::GetStandardEventsV1(midi_events_v1 *pEvents, int iFilter, int iTrack, bool bAnyTrack)
 {
 
    imedia::position tkMax = m_smti.m_tkLength;
@@ -2430,8 +2430,8 @@ byte * MidiTrack::GetAllocationImage()
          {
             break;
          }
-         
-         
+
+
 
          if ((iFilter == m_event._GetType()))
          {
@@ -2453,8 +2453,8 @@ byte * MidiTrack::GetAllocationImage()
          {
             break;
          }
-         
-         
+
+
 
          if ((iFilter == m_event._GetType()) &&
             (iTrack == m_event._GetTrack() ))
@@ -2472,7 +2472,7 @@ byte * MidiTrack::GetAllocationImage()
 
 }
 
-::mus::midi::e_file_result MidiTrack::GetNoteOnOffEventsV1(MidiEventsV1 *pEvents, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::GetNoteOnOffEventsV1(midi_events_v1 *pEvents, int iTrack, bool bAnyTrack)
 {
 
    imedia::position tkMax = m_smti.m_tkLength;
@@ -2487,8 +2487,8 @@ byte * MidiTrack::GetAllocationImage()
          {
             break;
          }
-         
-         
+
+
 
          if ((::mus::midi::NoteOn == m_event._GetType()) ||
             (::mus::midi::NoteOff == m_event._GetType() ))
@@ -2506,8 +2506,8 @@ byte * MidiTrack::GetAllocationImage()
          {
             break;
          }
-         
-         
+
+
 
          if (((::mus::midi::NoteOn == m_event._GetType()) ||
             (::mus::midi::NoteOff == m_event._GetType())) &&
@@ -2530,7 +2530,7 @@ byte * MidiTrack::GetAllocationImage()
 // it returns in pevents, note on, note off,
 // and maximum and minimum peaks of pitch bend
 
-::mus::midi::e_file_result MidiTrack::GetLevel2Events(MidiEventsV1 *pevents, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::GetLevel2Events(midi_events_v1 *pevents, int iTrack, bool bAnyTrack)
 {
 
    imedia::position tkMax = m_smti.m_tkLength;
@@ -2543,7 +2543,7 @@ byte * MidiTrack::GetAllocationImage()
       Up,
       Down,
    } edirection = Up;
-   MidiEventV001 eventLastPitchBend;
+   midi_event_v001 eventLastPitchBend;
    if(bAnyTrack)
    {
       while(TRUE)
@@ -2553,8 +2553,8 @@ byte * MidiTrack::GetAllocationImage()
          {
             break;
          }
-         
-         
+
+
 
          if ((::mus::midi::NoteOn == m_event._GetType()) ||
             (::mus::midi::NoteOff == m_event._GetType() ))
@@ -2611,8 +2611,8 @@ byte * MidiTrack::GetAllocationImage()
          {
             break;
          }
-         
-         
+
+
 
          if (iTrack == m_event._GetTrack())
          {
@@ -2666,7 +2666,7 @@ byte * MidiTrack::GetAllocationImage()
 
 }
 
-bool MidiTrack::IsTune1000File()
+bool midi_track::IsTune1000File()
 {
    seek_begin();
    stringa strArray;
@@ -2684,14 +2684,14 @@ bool MidiTrack::IsTune1000File()
 
 }
 
-bool MidiTrack::IsSoftKaraokeFile(bool bWork, stringa * pstra)
+bool midi_track::IsSoftKaraokeFile(bool bWork, stringa * pstra)
 {
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    ::mus::midi::e_file_result               smfrc;
    imedia::position               tkLastDelta = 0 ;
    bool               bIsSoftKaraokeFile = false;
    bool                    bSoftKaraoke = false;
-   
+
    smfrc = _SeekBegin(bWork);
    if (::mus::midi::Success != smfrc)
    {
@@ -2732,7 +2732,7 @@ bool MidiTrack::IsSoftKaraokeFile(bool bWork, stringa * pstra)
          string str;
          gen::international::MultiByteToOEM(
             gen::international::CodePageLatin1,
-            str, 
+            str,
             (const char *) pevent->GetParam(), pevent->GetParamSize());
          string strMid =  str.Mid(0, 19);
          //if(strMid.Compare("@T") == 0 ||
@@ -2754,7 +2754,7 @@ bool MidiTrack::IsSoftKaraokeFile(bool bWork, stringa * pstra)
          break;
 
       smfrc = _MoveNext(bWork);
-   
+
       if (::mus::midi::Success != smfrc)
       {
          break;
@@ -2766,18 +2766,18 @@ bool MidiTrack::IsSoftKaraokeFile(bool bWork, stringa * pstra)
 }
 
 
-/*BOOL MidiTrack::Mirror()
+/*BOOL midi_track::Mirror()
 {
    memcpy(m_hpbMirrorAllocation, m_hpbAllocation, m_dwAllocation);
    return TRUE;
 }
 
-::mus::midi::e_file_result MidiTrack::InsertCompleteEvent(imedia::position tkMax)
+::mus::midi::e_file_result midi_track::InsertCompleteEvent(imedia::position tkMax)
 {
 
 }*/
 
-/*BOOL MidiTrack::ContainsEvent(MidiEventBase *pEvent)
+/*BOOL midi_track::ContainsEvent(midi_event_base *pEvent)
 {
    byte * hpbImageStart = GetImage();
    byte * hpbImageEnd = hpbImageStart + m_smti.m_cbLength + sizeof(CHUNKHDR);
@@ -2785,12 +2785,12 @@ bool MidiTrack::IsSoftKaraokeFile(bool bWork, stringa * pstra)
       pEvent->GetImage() < hpbImageEnd;
 }*/
 
-DWORD MidiTrack::GetTrackImageLength()
+DWORD midi_track::GetTrackImageLength()
 {
    return m_smti.m_cbLength + sizeof(CHUNKHDR);
 }
 
-byte * MidiTrack::GetTrackImage()
+byte * midi_track::GetTrackImage()
 {
     if(m_bAutoAllocation)
     {
@@ -2815,12 +2815,12 @@ byte * MidiTrack::GetTrackImage()
     }
 }
 
-DWORD MidiTrack::GetTrackBodyLength()
+DWORD midi_track::GetTrackBodyLength()
 {
    return m_smti.m_cbLength + sizeof(CHUNKHDR);
 }
 
-byte * MidiTrack::GetTrackBody()
+byte * midi_track::GetTrackBody()
 {
     if(m_bAutoAllocation)
     {
@@ -2848,24 +2848,24 @@ byte * MidiTrack::GetTrackBody()
     }
 }
 
-::mus::midi::e_file_result MidiTrack::seek(DWORD dwSeekWhat)
+::mus::midi::e_file_result midi_track::seek(DWORD dwSeekWhat)
 {
    ::mus::midi::e_file_result               smfrc;
    imedia::position               tkLastDelta = 0 ;
 //   BOOL               okSongName = FALSE;
 //   BOOL               okInfoHeader = FALSE;
 //   BOOL               okInfoHeaderLS = FALSE;
-   
+
    //   if(m_tkPosition != 0)
    //   {
    //      return   ::mus::midi::EInvalidTkPosition;
    //   }
-   
+
    if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
    {
       return ::mus::midi::SEndOfFile;
    }
-   
+
    while(true)
    {
       smfrc = ReadEvent(0, TRUE);
@@ -2878,14 +2878,14 @@ byte * MidiTrack::GetTrackBody()
       case ::mus::midi::SeekXFSongName:
          {
             if ((::mus::midi::Meta == m_event.GetFullType()) &&
-               (CXF::MetaSongName == m_event.GetMetaType()))
+               (::mus::xf::MetaSongName == m_event.GetMetaType()))
                return ::mus::midi::Success;
             break;
          }
       case ::mus::midi::SeekXFInfoHeader:
          {
             if ((::mus::midi::Meta == m_event.GetFullType()) &&
-               (CXF::MetaXFInfoHdr == m_event.GetMetaType()))
+               (::mus::xf::MetaXFInfoHdr == m_event.GetMetaType()))
             {
                string_tokenizer str;
                gen::international::multibyte_to_utf8(gen::international::CodePageLatin1, str, (const char *) m_event.GetParam(), m_event.GetParamSize());
@@ -2897,7 +2897,7 @@ byte * MidiTrack::GetTrackBody()
       case ::mus::midi::SeekXFInfoHeaderLS:
          {
             if ((::mus::midi::Meta == m_event.GetFullType()) &&
-               (CXF::MetaXFInfoHdr == m_event.GetMetaType()))
+               (::mus::xf::MetaXFInfoHdr == m_event.GetMetaType()))
             {
                string_tokenizer str;
                gen::international::multibyte_to_utf8(gen::international::CodePageLatin1, str, (const char *) m_event.GetParam(), m_event.GetParamSize());
@@ -2920,7 +2920,7 @@ byte * MidiTrack::GetTrackBody()
          }
       default:;
       }
-      
+
       smfrc = MoveNext();
       if (::mus::midi::Success != smfrc)
          break;
@@ -2928,7 +2928,7 @@ byte * MidiTrack::GetTrackBody()
    return smfrc;
 }
 
-VMSRESULT MidiTrack::WorkSeek(DWORD dwSeekWhat)
+VMSRESULT midi_track::WorkSeek(DWORD dwSeekWhat)
 {
    ::mus::midi::e_file_result     smfrc = ::mus::midi::SNotFound;
    imedia::position               tkLastDelta = 0 ;
@@ -2944,7 +2944,7 @@ VMSRESULT MidiTrack::WorkSeek(DWORD dwSeekWhat)
    int iSize = m_trackWorkStorage.GetEventCount() - 1;
    while(m_iWorkCurrentEvent < iSize)
    {
-      MidiEventV008 & event = m_trackWorkStorage.EventAt(m_iWorkCurrentEvent + 1);
+      midi_event_v008 & event = m_trackWorkStorage.EventAt(m_iWorkCurrentEvent + 1);
       m_iWorkCurrentEvent++;
       m_tkPosition += event._GetDelta();
       switch(dwSeekWhat)
@@ -2952,7 +2952,7 @@ VMSRESULT MidiTrack::WorkSeek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFSongName:
          {
             if((::mus::midi::Meta == event.GetFullType()) &&
-               (CXF::MetaSongName == event.GetMetaType()))
+               (::mus::xf::MetaSongName == event.GetMetaType()))
                return ::mus::midi::Success;
             if(m_tkPosition > 0)
                return ::mus::midi::SNotFound;
@@ -2961,7 +2961,7 @@ VMSRESULT MidiTrack::WorkSeek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFInfoHeader:
          {
             if ((::mus::midi::Meta == event.GetFullType()) &&
-            (CXF::MetaXFInfoHdr == event.GetMetaType()))
+            (::mus::xf::MetaXFInfoHdr == event.GetMetaType()))
             {
                string_tokenizer str;
                gen::international::multibyte_to_utf8(gen::international::CodePageLatin1, str, (const char *) event.GetParam(), event.GetParamSize());
@@ -2975,7 +2975,7 @@ VMSRESULT MidiTrack::WorkSeek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFInfoHeaderLS:
          {
             if ((::mus::midi::Meta == event.GetFullType()) &&
-             (CXF::MetaXFInfoHdr == event.GetMetaType()))
+             (::mus::xf::MetaXFInfoHdr == event.GetMetaType()))
             {
                string_tokenizer str;
                gen::international::multibyte_to_utf8(gen::international::CodePageLatin1, str, (const char *) event.GetParam(), event.GetParamSize());
@@ -3012,11 +3012,11 @@ VMSRESULT MidiTrack::WorkSeek(DWORD dwSeekWhat)
 
 }
 
-bool MidiTrack::IsXFFile()
+bool midi_track::IsXFFile()
 {
    if(m_trackWorkStorage.GetEventCount() > 0)
    {
-      MidiEventV008 * pevent;
+      midi_event_v008 * pevent;
       ::mus::midi::e_file_result               smfrc;
       imedia::position               tkLastDelta = 0 ;
       bool               bIsXFFile = false;
@@ -3027,12 +3027,12 @@ bool MidiTrack::IsXFFile()
          TRACE( "smfReadEvents: IsXFFile() -> %u", (UINT)smfrc);
          return bIsXFFile;
       }
-   
+
 
       while(TRUE)
       {
          WorkGetEvent(pevent, 0x7fffffff, TRUE);
-        
+
          if ((::mus::midi::Meta == pevent->GetFullType()) &&
              (::mus::midi::MetaSeqSpecific == pevent->GetMetaType()))
            {
@@ -3041,7 +3041,7 @@ bool MidiTrack::IsXFFile()
                    pevent->GetParam()[2] == 0x00 && //
                    pevent->GetParam()[3] == 0x58 && // X
                    pevent->GetParam()[4] == 0x46 && // F
-                   pevent->GetParam()[5] == 0x30) // 0 
+                   pevent->GetParam()[5] == 0x30) // 0
                {
                    bIsXFFile = pevent->GetParam()[6] == 0x32 && m_tkPosition == 0;
                bIsXFFile |= (pevent->GetParam()[6] == 0x31);
@@ -3063,21 +3063,21 @@ bool MidiTrack::IsXFFile()
       ::mus::midi::e_file_result               smfrc;
       imedia::position               tkLastDelta = 0 ;
       bool               bIsXFFile = false;
-      
+
       smfrc = seek_begin();
       if (::mus::midi::Success != smfrc)
       {
          TRACE( "smfReadEvents: IsXFFile() -> %u", (UINT)smfrc);
          return bIsXFFile;
       }
-      
-      
+
+
       while(TRUE)
       {
          smfrc = ReadEvent(0, true);
          if(smfrc != ::mus::midi::Success)
             return false;
-         
+
          if ((::mus::midi::Meta == m_event.GetFullType()) &&
             (::mus::midi::MetaSeqSpecific == m_event.GetMetaType()))
          {
@@ -3086,7 +3086,7 @@ bool MidiTrack::IsXFFile()
                m_event.GetParam()[2] == 0x00 && //
                m_event.GetParam()[3] == 0x58 && // X
                m_event.GetParam()[4] == 0x46 && // F
-               m_event.GetParam()[5] == 0x30) // 0 
+               m_event.GetParam()[5] == 0x30) // 0
             {
                bIsXFFile = m_event.GetParam()[6] == 0x32 && m_tkPosition == 0;
                bIsXFFile |= (m_event.GetParam()[6] == 0x31);
@@ -3106,7 +3106,7 @@ bool MidiTrack::IsXFFile()
 
 }
 
-::mus::midi::e_file_result MidiTrack::ReadTune1000Tokens(
+::mus::midi::e_file_result midi_track::ReadTune1000Tokens(
    stringa &  tokena,
    imedia::position_array *lptkaTicks)
 {
@@ -3114,11 +3114,11 @@ bool MidiTrack::IsXFFile()
    string str;
    tokena.remove_all();
    lptkaTicks->remove_all();
-   
+
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
-   
+
    while(true)
    {
       smfrc = ReadEvent(tkMax, TRUE);
@@ -3126,14 +3126,14 @@ bool MidiTrack::IsXFFile()
       {
          break;
       }
-      
-      
+
+
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
          (::mus::midi::MetaLyric == m_event.GetMetaType()))
       {
 /*         gen::international::MultiByteToUnicode(
             CodePageLatin1,
-            str, 
+            str,
             (char *) m_event.GetParam(),
             m_event.GetParamSize());*/
          LPTSTR lpsz = str.GetBufferSetLength(m_event.GetParamSize() + 1);
@@ -3149,20 +3149,20 @@ bool MidiTrack::IsXFFile()
          break;
       }
    }
-   
+
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
 
-VMSRESULT MidiTrack::FromWorkTrack(bool b)
+VMSRESULT midi_track::FromWorkTrack(bool b)
 {
    UNREFERENCED_PARAMETER(b);
    return FromWorkTrack(m_trackWorkStorage);
 }
 
-VMSRESULT MidiTrack::FromWorkTrack(MidiTrackV008 & track)
+VMSRESULT midi_track::FromWorkTrack(midi_track_v008 & track)
 {
-    
+
    SetAutoAllocation();
    allocate(sizeof(CHUNKHDR));
    seek_begin();
@@ -3174,20 +3174,20 @@ VMSRESULT MidiTrack::FromWorkTrack(MidiTrackV008 & track)
       WriteEvent(track.EventAt(i));
    }
 
-   m_smti.m_cbLength = get_size() - sizeof(CHUNKHDR);
-   m_trackWorkStorage.m_chunkHeader.dwLength = get_size() - sizeof(CHUNKHDR);
+   m_smti.m_cbLength = this->get_size() - sizeof(CHUNKHDR);
+   m_trackWorkStorage.m_chunkHeader.dwLength = this->get_size() - sizeof(CHUNKHDR);
    WriteHeader(&track.m_chunkHeader);
 
    return VMSR_SUCCESS;
 }
 
 
-VMSRESULT MidiTrack::ToWorkStorage()
+VMSRESULT midi_track::ToWorkStorage()
 {
-   MidiEventV001 eventWork;
+   midi_event_v001 eventWork;
 
    int iCurrentEvent = m_iCurrentEvent;
-   
+
    ASSERT(GetTrackImage());
 
    memcpy(&m_trackWorkStorage.m_chunkHeader, GetTrackImage(), sizeof(CHUNKHDR));
@@ -3209,12 +3209,12 @@ VMSRESULT MidiTrack::ToWorkStorage()
    return VMSR_SUCCESS;
 }
 
-MidiTrackV008 & MidiTrack::GetWorkTrack()
+midi_track_v008 & midi_track::GetWorkTrack()
 {
     return m_trackWorkStorage;
 }
 
-::mus::midi::e_file_result MidiTrack::WriteEvent(MidiEventV008 & eventMidi)
+::mus::midi::e_file_result midi_track::WriteEvent(midi_event_v008 & eventMidi)
 {
    ASSERT(m_estate == StateOnDelta);
    ASSERT(m_bAutoAllocation);
@@ -3233,7 +3233,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
    {
       return smfrc;
    }
-    
+
    m_tkPosition += eventMidi._GetDelta();
 
    bEvent = eventMidi.GetFullType();
@@ -3243,7 +3243,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
    {
       try
       {
-         AllocateAddUp(1);
+         allocate_add_up(1);
       }
       catch(memory_exception * pe)
       {
@@ -3257,7 +3257,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
       {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception * pe)
          {
@@ -3272,7 +3272,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
       m_ptracks->m_uchRunningStatus = bEvent;
       try
       {
-         AllocateAddUp(2);
+         allocate_add_up(2);
       }
       catch(memory_exception * pe)
       {
@@ -3285,7 +3285,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
       {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception * pe)
          {
@@ -3301,7 +3301,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
       {
          try
          {
-            AllocateAddUp(2);
+            allocate_add_up(2);
          }
          catch(memory_exception * pe)
          {
@@ -3319,7 +3319,7 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
       {
          try
          {
-            AllocateAddUp(1);
+            allocate_add_up(1);
          }
          catch(memory_exception * pe)
          {
@@ -3332,49 +3332,49 @@ MidiTrackV008 & MidiTrack::GetWorkTrack()
       {
          ASSERT(FALSE);
       }
-      
+
       cbEvent = eventMidi.GetParamSize();
-      
+
       if(!(dwUsed = SetVDWord(cbEvent)))
       {
          return ::mus::midi::ENoMemory;
       }
-      
+
       m_hpbImage     += dwUsed;
-      
+
       try
       {
-         AllocateAddUp(cbEvent);
+         allocate_add_up(cbEvent);
       }
       catch(memory_exception * pe)
       {
          pe->Delete();
          return ::mus::midi::ENoMemory;
       }
-      
+
       memcpy(m_hpbImage, eventMidi.GetParam(), cbEvent);
-      
+
       m_hpbImage     += cbEvent;
    }
-   
+
    m_estate = StateOnDelta;
-   
+
    return ::mus::midi::Success;
 }
 
-int MidiTrack::GetCurrentEvent()
+int midi_track::GetCurrentEvent()
 {
     return m_iCurrentEvent;
 }
 
-void MidiTrack::WorkDeleteEvent()
+void midi_track::WorkDeleteEvent()
 {
     m_trackWorkStorage.remove_at(m_iWorkCurrentEvent);
 ///    m_iCurrentEvent--;
 }
 
 
-/*MidiTrack & MidiTrack::operator =(MidiTrack &eventSrc)
+/*midi_track & midi_track::operator =(midi_track &eventSrc)
 {
     m_bAutoAllocation = eventSrc.m_bAutoAllocation;
     m_ptracks->m_uchRunningStatus = eventSrc.m_ptracks->m_uchRunningStatus;
@@ -3405,7 +3405,7 @@ void MidiTrack::WorkDeleteEvent()
 
 }*/
 
-::mus::midi::e_file_result MidiTrack::GetPosition(imedia::position & tkPosition, imedia::position tkMax)
+::mus::midi::e_file_result midi_track::get_position(imedia::position & tkPosition, imedia::position tkMax)
 {
    UNREFERENCED_PARAMETER(tkMax);
    ASSERT(m_estate == StateOnDelta);
@@ -3427,12 +3427,12 @@ void MidiTrack::WorkDeleteEvent()
 
 }
 
-/*int MidiTrack::GetFlags()
+/*int midi_track::GetFlags()
 {
     return m_fdwTrack;
 }*/
 
-imedia::position MidiTrack::GetPosition()
+imedia::position midi_track::get_position()
 {
    if(m_estate == StateOnDelta || m_estate == StateOnEventRead)
    {
@@ -3444,14 +3444,14 @@ imedia::position MidiTrack::GetPosition()
    }
 }
 
-int MidiTrack::GetMidiTrackIndex()
+int midi_track::GetMidiTrackIndex()
 {
     seek_begin();
     int iFirstTrack = -1;
     int iTrack = -1;
     while(::mus::midi::Success == ReadEvent(0x7fffffff, true))
     {
-        MidiEventV001 & event = GetEvent();
+        midi_event_v001 & event = GetEvent();
         if(event.GetFullType() < ::mus::midi::SysEx)
         {
             iTrack = event._GetTrack();
@@ -3472,7 +3472,7 @@ int MidiTrack::GetMidiTrackIndex()
 
 }
 
-::mus::midi::e_file_result MidiTrack::MoveNext()
+::mus::midi::e_file_result midi_track::MoveNext()
 {
    if(m_estate != StateOnEventRead)
    {
@@ -3491,12 +3491,12 @@ int MidiTrack::GetMidiTrackIndex()
 
 }
 
-::mus::midi::e_file_result MidiTrack::ReadEvent()
+::mus::midi::e_file_result midi_track::ReadEvent()
 {
    return ReadEvent(0x7fffffff, true);
 }
 
-::mus::midi::e_file_result MidiTrack::GetDelta(imedia::position &tkDeltaParam)
+::mus::midi::e_file_result midi_track::GetDelta(imedia::position &tkDeltaParam)
 {
    imedia::position tkDelta;
 
@@ -3530,11 +3530,11 @@ int MidiTrack::GetMidiTrackIndex()
 
 }
 
-::mus::midi::e_file_result MidiTrack::SeekXFLyricsHeader()
+::mus::midi::e_file_result midi_track::SeekXFLyricsHeader()
 {
    ::mus::midi::e_file_result               smfrc;
    imedia::position               tkLastDelta = 0 ;
-   
+
 
     if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
     {
@@ -3552,7 +3552,7 @@ int MidiTrack::GetMidiTrackIndex()
          break;
       }
       if ((::mus::midi::Meta == m_event.GetFullType()) &&
-         (CXF::MetaLyricsHeader == m_event.GetMetaType()))
+         (::mus::xf::MetaLyricsHeader == m_event.GetMetaType()))
       {
          string str;
          gen::international::MultiByteToOEM(
@@ -3572,11 +3572,11 @@ int MidiTrack::GetMidiTrackIndex()
 
 }
 
-::mus::midi::e_file_result MidiTrack::ReadXFLyricsHeader(XFLyricsHeader *pxflh)
+::mus::midi::e_file_result midi_track::ReadXFLyricsHeader(::mus::xf_lyrics_id *pxflh)
 {
    if (::mus::midi::Meta != m_event.GetFullType())
       return ::mus::midi::EFail;
-   if(CXF::MetaLyricsHeader != m_event.GetMetaType())
+   if(::mus::xf::MetaLyricsHeader != m_event.GetMetaType())
       return ::mus::midi::EFail;
    string_tokenizer tokenizer;
    string strToken;
@@ -3587,7 +3587,7 @@ int MidiTrack::GetMidiTrackIndex()
       return ::mus::midi::EFail;
    if(strToken.CollateNoCase("$Lyrc") != 0)
       return ::mus::midi::EFail;
-   
+
    string strMidiChannel;
    if(!tokenizer.GetNextToken(strMidiChannel, ":"))
       return ::mus::midi::EFail;
@@ -3598,26 +3598,26 @@ int MidiTrack::GetMidiTrackIndex()
 
    string strLanguage;
    tokenizer.GetNextToken(strLanguage, ":");
-   
+
    pxflh->m_strLanguage = strLanguage;
 
-   
+
    tokenizer.Restart(strMidiChannel);
    string strChannel;
    while(tokenizer.GetNextToken(strChannel, ","))
    {
       pxflh->m_MelodyTracks.add(_tcstoul(strChannel, NULL, 10));
    }
-   
+
    pxflh->m_tkDisplayOffset = _tcstoul(strOffsetValue, NULL, 10);
 
 
    return ::mus::midi::Success;
-   
+
 
 }
 
-::mus::midi::e_file_result MidiTrack::WorkReadXFTokens(UINT uiCodePage, stringa &  tokena, imedia::position_array & positiona, int_array & iaTokenLine)
+::mus::midi::e_file_result midi_track::WorkReadXFTokens(UINT uiCodePage, stringa &  tokena, imedia::position_array & positiona, int_array & iaTokenLine)
 {
 
    string str;
@@ -3627,7 +3627,7 @@ int MidiTrack::GetMidiTrackIndex()
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
 
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    int iLine = 0;
 
    if(!_WorkIsEOT())
@@ -3638,7 +3638,7 @@ int MidiTrack::GetMidiTrackIndex()
          _WorkGetEvent(pevent, tkMax, TRUE);
 
          if ((::mus::midi::Meta == pevent->GetFullType()) &&
-         (CXF::MetaLyric == pevent->GetMetaType()))
+         (::mus::xf::MetaLyric == pevent->GetMetaType()))
          {
             gen::international::multibyte_to_utf8(uiCodePage, str, (const char * ) pevent->GetParam(), pevent->GetParamSize());
             if(str[0] == '<')
@@ -3665,7 +3665,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-/*::mus::midi::e_file_result MidiTrack::WorkReadXFTokens(
+/*::mus::midi::e_file_result midi_track::WorkReadXFTokens(
    stringa &  tokena,
    imedia::position_array & positiona,
    int_array & iaTokenLine)
@@ -3678,7 +3678,7 @@ int MidiTrack::GetMidiTrackIndex()
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
 
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    int iLine = 0;
 
    if(!_WorkIsEOT())
@@ -3688,7 +3688,7 @@ int MidiTrack::GetMidiTrackIndex()
          _WorkGetEvent(pevent, tkMax, TRUE);
 
          if ((::mus::midi::Meta == pevent->GetFullType()) &&
-         (CXF::MetaLyric == pevent->GetMetaType()))
+         (::mus::xf::MetaLyric == pevent->GetMetaType()))
          {
          LPTSTR lpsz = str.GetBuffer(pevent->GetParamSize() + 1);
          memcpy(lpsz, pevent->GetParam(), pevent->GetParamSize());
@@ -3718,7 +3718,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }*/
 
-::mus::midi::e_file_result MidiTrack::WriteXFLyricTrack(
+::mus::midi::e_file_result midi_track::WriteXFLyricTrack(
    stringa &  tokena,
    imedia::position_array & positiona)
 {
@@ -3728,12 +3728,12 @@ int MidiTrack::GetMidiTrackIndex()
    string str;
    imedia::position tkPosition;
 
-   MidiEventV008 event;
+   midi_event_v008 event;
 
 
 
    WorkSeekBegin();
-   
+
    event.SetFullType(::mus::midi::Meta);
    event.SetMetaType(::mus::midi::MetaXFLyricsHeader);
    event.SetParam(XFLYRICSHEADER, sizeof(XFLYRICSHEADER) - 1);
@@ -3778,7 +3778,7 @@ int MidiTrack::GetMidiTrackIndex()
 
 }
 
-::mus::midi::e_file_result MidiTrack::WorkReadEmptyXFTokens(
+::mus::midi::e_file_result midi_track::WorkReadEmptyXFTokens(
    stringa &  tokena,
    imedia::position_array & positiona)
 {
@@ -3789,7 +3789,7 @@ int MidiTrack::GetMidiTrackIndex()
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
 
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
 
    if(!_WorkIsEOT())
    {
@@ -3824,7 +3824,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::WorkReadXFTokens(UINT uiCodePage, stringa &  tokena, imedia::position_array * lptkaTicks)
+::mus::midi::e_file_result midi_track::WorkReadXFTokens(UINT uiCodePage, stringa &  tokena, imedia::position_array * lptkaTicks)
 {
    ASSERT(lptkaTicks != NULL);
    string str;
@@ -3834,7 +3834,7 @@ int MidiTrack::GetMidiTrackIndex()
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
 
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
 
    if(!_WorkIsEOT())
    {
@@ -3843,7 +3843,7 @@ int MidiTrack::GetMidiTrackIndex()
          _WorkGetEvent(pevent, tkMax, TRUE);
 
          if((::mus::midi::Meta == pevent->GetFullType()) &&
-            (CXF::MetaLyric == pevent->GetMetaType()))
+            (::mus::xf::MetaLyric == pevent->GetMetaType()))
          {
             gen::international::multibyte_to_utf8(uiCodePage, str, (const char * ) pevent->GetParam(), pevent->GetParamSize());
             tokena.add(str);
@@ -3865,7 +3865,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-/*::mus::midi::e_file_result MidiTrack::WorkReadAnsiXFTokens(stringa &  tokena, imedia::position_array *   lptkaTicks)
+/*::mus::midi::e_file_result midi_track::WorkReadAnsiXFTokens(stringa &  tokena, imedia::position_array *   lptkaTicks)
 {
    ASSERT(lptkaTicks != NULL);
    string str;
@@ -3875,17 +3875,17 @@ int MidiTrack::GetMidiTrackIndex()
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
 
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
 
    if(!_WorkIsEOT())
    {
       while(TRUE)
       {
-         
+
          _WorkGetEvent(pevent, tkMax, TRUE);
 
          if ((::mus::midi::Meta == pevent->GetFullType()) &&
-            (CXF::MetaLyric == pevent->GetMetaType()))
+            (::mus::xf::MetaLyric == pevent->GetMetaType()))
          {
             gen::international::multibyte_to_utf8(gen::international::CodePageLatin1, str, (const char *) pevent->GetParam(), pevent->GetParamSize());
             TRACE("%s\n", str);
@@ -3906,7 +3906,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::WorkReadShiftJisXFTokens(stringa &  tokena, imedia::position_array *   lptkaTicks)
+::mus::midi::e_file_result midi_track::WorkReadShiftJisXFTokens(stringa &  tokena, imedia::position_array *   lptkaTicks)
 {
    ASSERT(lptkaTicks != NULL);
    tokena.remove_all();
@@ -3915,7 +3915,7 @@ int MidiTrack::GetMidiTrackIndex()
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
    string str;
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
 
    if(!_WorkIsEOT())
    {
@@ -3923,7 +3923,7 @@ int MidiTrack::GetMidiTrackIndex()
       {
          _WorkGetEvent(pevent, tkMax, TRUE);
          if ((::mus::midi::Meta == pevent->GetFullType()) &&
-         (CXF::MetaLyric == pevent->GetMetaType()))
+         (::mus::xf::MetaLyric == pevent->GetMetaType()))
          {
             gen::international::MultiByteToUnicode(
                gen::international::CodePageShiftJIS,
@@ -3945,7 +3945,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }*/
 
-::mus::midi::e_file_result MidiTrack::WorkReadKarTokens(
+::mus::midi::e_file_result midi_track::WorkReadKarTokens(
    stringa &  tokena,
    imedia::position_array *   lptkaTicks)
 {
@@ -3963,7 +3963,7 @@ int MidiTrack::GetMidiTrackIndex()
    {
       if(tkPosition > 0)
          break;
-      MidiEventV008 & event = m_trackWorkStorage.EventAt(i);
+      midi_event_v008 & event = m_trackWorkStorage.EventAt(i);
       tkPosition = event._GetPosition();
       if((::mus::midi::Meta == event.GetFullType()) &&
          (::mus::midi::MetaKarLyric == event.GetMetaType()))
@@ -3988,7 +3988,7 @@ int MidiTrack::GetMidiTrackIndex()
    }
    for(; i < m_trackWorkStorage.GetEventCount(); i++)
    {
-      MidiEventV008 & event = m_trackWorkStorage.EventAt(i);
+      midi_event_v008 & event = m_trackWorkStorage.EventAt(i);
       tkPosition = event._GetPosition();
       if ((::mus::midi::Meta == event.GetFullType()) &&
          (::mus::midi::MetaKarLyric == event.GetMetaType()))
@@ -4009,7 +4009,7 @@ int MidiTrack::GetMidiTrackIndex()
    return tokena.get_size() == 0 ? ::mus::midi::SEndOfTrack : ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTrack::WorkReadTune1000Tokens(
+::mus::midi::e_file_result midi_track::WorkReadTune1000Tokens(
    stringa &  tokena,
    imedia::position_array *lptkaTicks)
 {
@@ -4025,7 +4025,7 @@ int MidiTrack::GetMidiTrackIndex()
 
    for(int i = 0; i < m_trackWorkStorage.GetEventCount(); i++)
    {
-      MidiEventV008 & event = m_trackWorkStorage.EventAt(i);
+      midi_event_v008 & event = m_trackWorkStorage.EventAt(i);
       tkPosition = event._GetPosition();
       if ((::mus::midi::Meta == event.GetFullType()) &&
          (::mus::midi::MetaLyric == event.GetMetaType()))
@@ -4048,10 +4048,10 @@ int MidiTrack::GetMidiTrackIndex()
 
 
 
-::mus::midi::e_file_result MidiTrack::WorkMoveNext()
+::mus::midi::e_file_result midi_track::WorkMoveNext()
 {
    m_estate = StateOnEventRead;
-   
+
    m_iWorkCurrentEvent++;
    if(m_iWorkCurrentEvent >= m_trackWorkStorage.GetEventCount())
    {
@@ -4060,7 +4060,7 @@ int MidiTrack::GetMidiTrackIndex()
       m_smti.m_tkLength = m_tkPosition;
       return ::mus::midi::SEndOfTrack;
    }
-   
+
    m_tkPosition  += m_trackWorkStorage.EventAt(m_iWorkCurrentEvent).GetDelta();
 
    return ::mus::midi::Success;
@@ -4068,8 +4068,8 @@ int MidiTrack::GetMidiTrackIndex()
 }
 
 
-void MidiTrack::WorkGetEvent(
-   MidiEventBase *&    pevent,
+void midi_track::WorkGetEvent(
+   midi_event_base *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
@@ -4081,8 +4081,8 @@ void MidiTrack::WorkGetEvent(
    pevent = &m_trackWorkStorage.EventAt(m_iWorkCurrentEvent);
 }
 
-void MidiTrack::WorkGetEvent(
-   MidiEventV008 *&    pevent,
+void midi_track::WorkGetEvent(
+   midi_event_v008 *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
@@ -4094,7 +4094,7 @@ void MidiTrack::WorkGetEvent(
 }
 
 
-::mus::midi::e_file_result   MidiTrack::WorkSeekBegin()
+::mus::midi::e_file_result   midi_track::WorkSeekBegin()
 {
    m_iWorkCurrentEvent  = -1;
    m_tkPosition         = 0;
@@ -4102,7 +4102,7 @@ void MidiTrack::WorkGetEvent(
    return _WorkMoveNext();
 }
 
-::mus::midi::e_file_result   MidiTrack::WorkSeekEnd()
+::mus::midi::e_file_result   midi_track::WorkSeekEnd()
 {
    m_iWorkCurrentEvent = m_trackWorkStorage.GetEventCount();
    m_bWorkTrackEnd = true;
@@ -4115,14 +4115,14 @@ void MidiTrack::WorkGetEvent(
    }
    else
    {
-      m_tkPosition = m_trackWorkStorage.EventAt(m_trackWorkStorage.GetEventCount() - 1).GetPosition();
+      m_tkPosition = m_trackWorkStorage.EventAt(m_trackWorkStorage.GetEventCount() - 1).get_position();
    }
    return ::mus::midi::SEndOfTrack;
 }
 
-::mus::midi::e_file_result MidiTrack::WorkGetNoteOnOffEventsV1(MidiEventsV1 *pEvents, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::WorkGetNoteOnOffEventsV1(midi_events_v1 *pEvents, int iTrack, bool bAnyTrack)
 {
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
@@ -4133,11 +4133,11 @@ void MidiTrack::WorkGetEvent(
          while(TRUE)
          {
             _WorkGetEvent(pevent, tkMax, TRUE);
-            
+
             if ((::mus::midi::NoteOn == pevent->_GetType()) ||
                (::mus::midi::NoteOff == pevent->_GetType() ))
             {
-            
+
                pEvents->AddEvent(pevent, m_tkPosition);
             }
             smfrc = _WorkMoveNext();
@@ -4175,9 +4175,9 @@ void MidiTrack::WorkGetEvent(
 // it returns in pevents, note on, note off,
 // and maximum and minimum peaks of pitch bend
 
-::mus::midi::e_file_result MidiTrack::WorkGetLevel2Events(MidiEventsV1 *pevents, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::WorkGetLevel2Events(midi_events_v1 *pevents, int iTrack, bool bAnyTrack)
 {
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
@@ -4188,7 +4188,7 @@ void MidiTrack::WorkGetEvent(
       Up,
       Down,
    } edirection = Up;
-   MidiEventV001 eventLastPitchBend;
+   midi_event_v001 eventLastPitchBend;
    if(!_WorkIsEOT())
    {
       if(bAnyTrack)
@@ -4196,11 +4196,11 @@ void MidiTrack::WorkGetEvent(
          while(TRUE)
          {
             _WorkGetEvent(pevent, tkMax, TRUE);
-            
+
             if ((::mus::midi::NoteOn == pevent->_GetType()) ||
                (::mus::midi::NoteOff == pevent->_GetType() ))
             {
-            
+
                pevents->AddEvent(pevent, m_tkPosition);
             }
             else if (::mus::midi::PitchBend == pevent->_GetType())
@@ -4251,7 +4251,7 @@ void MidiTrack::WorkGetEvent(
          while(TRUE)
          {
             _WorkGetEvent(pevent, tkMax, TRUE);
-            
+
 
             if (iTrack == pevent->_GetTrack())
             {
@@ -4308,10 +4308,10 @@ void MidiTrack::WorkGetEvent(
 
 }
 
-::mus::midi::e_file_result MidiTrack::WorkGetStandardEventsV1(MidiEventsV1 *pEvents, int iFilter, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::WorkGetStandardEventsV1(midi_events_v1 *pEvents, int iFilter, int iTrack, bool bAnyTrack)
 {
-   MidiEventV008 * pevent;
-   
+   midi_event_v008 * pevent;
+
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
@@ -4368,7 +4368,7 @@ void MidiTrack::WorkGetEvent(
             {
                if (iFilter == pevent->_GetType())
                {
-                  
+
                   pEvents->AddEvent(pevent);
                }
             }
@@ -4385,10 +4385,10 @@ void MidiTrack::WorkGetEvent(
 
 }
 
-::mus::midi::e_file_result MidiTrack::WorkGetStandardEventsV1OnlyMelodic(MidiEventsV1 *pEvents, int iFilter, int iTrack, bool bAnyTrack)
+::mus::midi::e_file_result midi_track::WorkGetStandardEventsV1OnlyMelodic(midi_events_v1 *pEvents, int iFilter, int iTrack, bool bAnyTrack)
 {
-   MidiEventV008 * pevent;
-   
+   midi_event_v008 * pevent;
+
    imedia::position tkMax = m_smti.m_tkLength;
    ::mus::midi::e_file_result smfrc;
    imedia::position tkLastPosition = 0;
@@ -4425,7 +4425,7 @@ void MidiTrack::WorkGetEvent(
          if ((iFilter == pevent->_GetType()) &&
             (iTrack == pevent->_GetTrack() ))
          {
-            
+
             pEvents->AddEvent(pevent);
          }
 
@@ -4440,7 +4440,7 @@ void MidiTrack::WorkGetEvent(
 
 }
 
-MidiTrack & MidiTrack::operator =(const MidiTrack &track)
+midi_track & midi_track::operator =(const midi_track &track)
 {
    m_bAutoAllocation = track.m_bAutoAllocation;
    m_cbLeft = track.m_cbLeft;
@@ -4460,30 +4460,30 @@ MidiTrack & MidiTrack::operator =(const MidiTrack &track)
    m_tkDelta = track.m_tkDelta;
    m_tkPosition = track.m_tkPosition;
    m_trackWorkStorage = track.m_trackWorkStorage;
-   primitive::memory_container < primitive::memory > ::operator =(track);
-   KeepStoragePointer((void **) &m_hpbImage);
-   KeepStoragePointer((void **) &m_hpbEventImage);
+   primitive::memory_container::operator =(track);
+   keep_pointer((void **) &m_hpbImage);
+   keep_pointer((void **) &m_hpbEventImage);
    return *this;
 }
 
-void MidiTrack::allocate(DWORD dwNewLength)
+void midi_track::allocate(DWORD dwNewLength)
 {
    ASSERT(m_bAutoAllocation);
    if(m_hpbImage == NULL)
    {
       m_hpbImage = (byte *) sizeof(CHUNKHDR);
    }
-   primitive::memory_container < primitive::memory > ::allocate(dwNewLength);
-   m_smti.m_cbLength = primitive::memory_container < primitive::memory > ::get_size() - sizeof(CHUNKHDR);
+   primitive::memory_container::allocate(dwNewLength);
+   m_smti.m_cbLength = primitive::memory_container::get_size() - sizeof(CHUNKHDR);
 }
 
-::mus::midi::e_file_result MidiTrack::WorkWriteXFInfoHeader(const char * pSongName, XFInfoHeader * pXfih, XFInfoHeaderLS * pXfihls)
+::mus::midi::e_file_result midi_track::WorkWriteXFInfoHeader(const char * pSongName, XFInfoHeader * pXfih, XFInfoHeaderLS * pXfihls)
 {
 
 //   ::mus::midi::e_file_result               smfrc;
    imedia::position               tkLastDelta = 0 ;
    primitive::memory   memstorage;
-   
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::EInvalidTkPosition;
@@ -4493,30 +4493,30 @@ void MidiTrack::allocate(DWORD dwNewLength)
    if(pSongName != NULL)
    {
       m_event.SetFullType(::mus::midi::Meta);
-      m_event.SetMetaType(CXF::MetaSongName);
+      m_event.SetMetaType(::mus::xf::MetaSongName);
       memstorage.allocate(gen::international::Utf8ToMultiByteCount(gen::international::CodePageLatin1, pSongName));
-      m_event.SetParam((byte *) memstorage.GetAllocation(), memstorage.GetStorageSize() - 1);
+      m_event.SetParam((byte *) memstorage.get_data(), memstorage.get_size() - 1);
       gen::international::utf8_to_multibyte(gen::international::CodePageLatin1, (char *) m_event.GetParam(), m_event.GetParamSize(), pSongName);
       WorkWriteEvent();
    }
    if(pXfih != NULL)
    {
       m_event.SetFullType(::mus::midi::Meta);
-      m_event.SetMetaType(CXF::MetaXFInfoHdr);
+      m_event.SetMetaType(::mus::xf::MetaXFInfoHdr);
       string str;
       pXfih->ToData(str);
       gen::international::utf8_to_multibyte(gen::international::CodePageLatin1, memstorage, str);
-      m_event.SetParam((byte *) memstorage.GetAllocation(), memstorage.GetStorageSize() - 1);
+      m_event.SetParam((byte *) memstorage.get_data(), memstorage.get_size() - 1);
       WorkWriteEvent();
    }
    if(pXfihls != NULL)
    {
       m_event.SetFullType(::mus::midi::Meta);
-      m_event.SetMetaType(CXF::MetaXFInfoHdr);
+      m_event.SetMetaType(::mus::xf::MetaXFInfoHdr);
       string str;
       pXfihls->ToData(str);
       memstorage.allocate(gen::international::Utf8ToMultiByteCount(gen::international::CodePageLatin1, str));
-      m_event.SetParam((byte *) memstorage.GetAllocation(), memstorage.GetStorageSize() - 1);
+      m_event.SetParam((byte *) memstorage.get_data(), memstorage.get_size() - 1);
       gen::international::utf8_to_multibyte(gen::international::CodePageLatin1, (char *) m_event.GetParam(), m_event.GetParamSize(), str);
       WorkWriteEvent();
    }
@@ -4526,10 +4526,10 @@ void MidiTrack::allocate(DWORD dwNewLength)
 // event position is set to the current track position
 // track position is updated accordingly to the event delta
 // so the delta must have been filled correctly.
-::mus::midi::e_file_result MidiTrack::WorkWriteEvent()
+::mus::midi::e_file_result midi_track::WorkWriteEvent()
 {
    m_tkPosition += m_event.GetDelta();
-   m_event.SetPosition(GetPosition());
+   m_event.SetPosition(get_position());
    m_trackWorkStorage.add(m_event);
    return ::mus::midi::Success;
 }
@@ -4537,7 +4537,7 @@ void MidiTrack::allocate(DWORD dwNewLength)
 // event position is set to the current track position
 // track position is updated accordingly to the event delta
 // so the delta must have been filled correctly.
-::mus::midi::e_file_result MidiTrack::WorkWriteEvent(MidiEventV008 & event)
+::mus::midi::e_file_result midi_track::WorkWriteEvent(midi_event_v008 & event)
 {
    m_tkPosition += event.GetDelta();
    m_trackWorkStorage.add(event);
@@ -4545,7 +4545,7 @@ void MidiTrack::allocate(DWORD dwNewLength)
 }
 
 /*
-::mus::midi::e_file_result MidiTrack::WorkWriteXFLyricEvent(string &str, imedia::position tkPosition)
+::mus::midi::e_file_result midi_track::WorkWriteXFLyricEvent(string &str, imedia::position tkPosition)
 {
    ::mus::midi::e_file_result smfrc;
    if(tkPosition < m_tkPosition)
@@ -4553,17 +4553,17 @@ void MidiTrack::allocate(DWORD dwNewLength)
    else
       m_event.SetDelta(tkPosition - m_tkPosition);
    m_event.SetFullType(::mus::midi::Meta);
-   m_event.SetMetaType(CXF::MetaLyric);
+   m_event.SetMetaType(::mus::xf::MetaLyric);
 
    gen::international::UnicodeToMultiByte(gen::international::CodePageLatin1, m_memstorageHelper, str);
-   m_event.SetParam((byte *) m_memstorageHelper.GetAllocation(),
-      m_memstorageHelper.GetStorageSize() - 1);
+   m_event.SetParam((byte *) m_memstorageHelper.get_data(),
+      m_memstorageHelper.get_size() - 1);
    smfrc = WorkWriteEvent();
    return smfrc;
 }
 */
 
-::mus::midi::e_file_result MidiTrack::WorkWriteXFLyricEvent(string &str, imedia::position tkPosition)
+::mus::midi::e_file_result midi_track::WorkWriteXFLyricEvent(string &str, imedia::position tkPosition)
 {
    ::mus::midi::e_file_result smfrc;
    if(tkPosition < m_tkPosition)
@@ -4571,10 +4571,10 @@ void MidiTrack::allocate(DWORD dwNewLength)
    else
       m_event.SetDelta(tkPosition - m_tkPosition);
    m_event.SetFullType(::mus::midi::Meta);
-   m_event.SetMetaType(CXF::MetaLyric);
+   m_event.SetMetaType(::mus::xf::MetaLyric);
    m_memstorageHelper.allocate(str.get_length());
-   m_event.SetParam((byte *) m_memstorageHelper.GetAllocation(),
-      m_memstorageHelper.GetStorageSize());
+   m_event.SetParam((byte *) m_memstorageHelper.get_data(),
+      m_memstorageHelper.get_size());
    memcpy(
       (char *) m_event.GetParam() ,
       (const char *) str,
@@ -4583,16 +4583,16 @@ void MidiTrack::allocate(DWORD dwNewLength)
    return smfrc;
 }
 
-void MidiTrack::WorkClear()
+void midi_track::WorkClear()
 {
    m_trackWorkStorage.clear();
 }
 
-::mus::midi::e_file_result MidiTrack::WorkSeekXFLyricsHeader()
+::mus::midi::e_file_result midi_track::WorkSeekXFLyricsHeader()
 {
    ::mus::midi::e_file_result               smfrc;
    imedia::position               tkLastDelta = 0 ;
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
 
    if (_GetFlags().is_signalized(::mus::midi::EndOfFile))
    {
@@ -4613,7 +4613,7 @@ void MidiTrack::WorkClear()
          break;
       }
       if ((::mus::midi::Meta == pevent->GetFullType()) &&
-         (CXF::MetaLyricsHeader == pevent->GetMetaType()))
+         (::mus::xf::MetaLyricsHeader == pevent->GetMetaType()))
       {
          string str;
          gen::international::MultiByteToOEM(
@@ -4634,13 +4634,13 @@ void MidiTrack::WorkClear()
 }
 
 
-::mus::midi::e_file_result MidiTrack::WorkReadXFLyricsHeader(XFLyricsHeader *pxflh)
+::mus::midi::e_file_result midi_track::WorkReadXFLyricsHeader(::mus::xf_lyrics_id *pxflh)
 {
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    WorkGetEvent(pevent, 0, TRUE);
    if (::mus::midi::Meta != pevent->GetFullType())
       return ::mus::midi::EFail;
-   if(CXF::MetaLyricsHeader != pevent->GetMetaType())
+   if(::mus::xf::MetaLyricsHeader != pevent->GetMetaType())
       return ::mus::midi::EFail;
    string_tokenizer tokenizer;
    string strToken;
@@ -4649,7 +4649,7 @@ void MidiTrack::WorkClear()
       return ::mus::midi::EFail;
    if(strToken.CollateNoCase("$Lyrc") != 0)
       return ::mus::midi::EFail;
-   
+
    string strMidiChannel;
    if(!tokenizer.GetNextToken(strMidiChannel, ":"))
       return ::mus::midi::EFail;
@@ -4660,42 +4660,42 @@ void MidiTrack::WorkClear()
 
    string strLanguage;
    tokenizer.GetNextToken(strLanguage, ":");
-   
+
    pxflh->m_strLanguage = strLanguage;
 
-   
+
    tokenizer.Restart(strMidiChannel);
    string strChannel;
    while(tokenizer.GetNextToken(strChannel, ","))
    {
       pxflh->m_MelodyTracks.add(strtoul(strChannel, NULL, 10));
    }
-   
+
    pxflh->m_tkDisplayOffset = strtoul(strOffsetValue, NULL, 10);
 
 
    return ::mus::midi::Success;
-   
+
 
 }
 
-::mus::midi::file_flags & MidiTrack::GetFlags()
+::mus::midi::file_flags & midi_track::GetFlags()
 {
-   return m_flags;   
+   return m_flags;
 }
 
-MidiTrackBase::e_type MidiTrack::get_type()
+midi_track_base::e_type midi_track::get_type()
 {
    return TypeMidi;
 }
 
-bool MidiTrack::WorkIsEOT()
+bool midi_track::WorkIsEOT()
 {
    return m_bWorkTrackEnd;
 
 }
 
-::mus::midi::e_file_result MidiTrack::WorkSetEOT()
+::mus::midi::e_file_result midi_track::WorkSetEOT()
 {
    m_bWorkTrackEnd = true;
    _GetFlags().signalize(::mus::midi::EndOfFile);
@@ -4703,7 +4703,7 @@ bool MidiTrack::WorkIsEOT()
    return ::mus::midi::SEndOfTrack;
 }
 
-::mus::midi::e_file_result MidiTrack::_SeekBegin(bool bWork)
+::mus::midi::e_file_result midi_track::_SeekBegin(bool bWork)
 {
    if(bWork)
    {
@@ -4715,10 +4715,10 @@ bool MidiTrack::WorkIsEOT()
    }
 }
 
-void MidiTrack::_GetEvent(
+void midi_track::_GetEvent(
    bool bWork,
-   MidiEventV008 *&pevent, 
-   imedia::position tkMax, 
+   midi_event_v008 *&pevent,
+   imedia::position tkMax,
    bool bTkMaxInclusive
    )
 {
@@ -4741,7 +4741,7 @@ void MidiTrack::_GetEvent(
    }
 }
 
-::mus::midi::e_file_result MidiTrack::_MoveNext(bool bWork)
+::mus::midi::e_file_result midi_track::_MoveNext(bool bWork)
 {
    if(bWork)
    {
@@ -4757,20 +4757,20 @@ void MidiTrack::_GetEvent(
 
 }
 
-MidiTrack::State MidiTrack::GetState()
+midi_track::State midi_track::GetState()
    {
       return m_estate;
    }
 
 
-MidiEventV001 & MidiTrack::GetEvent()
+midi_event_v001 & midi_track::GetEvent()
    {
       return m_event;
    }
 
 
-void MidiTrack::_WorkGetEvent(
-   MidiEventV008 *&    pevent,
+void midi_track::_WorkGetEvent(
+   midi_event_v008 *&    pevent,
    imedia::position                  tkMax,
    BOOL                  bTkMaxInclusive)
 {
@@ -4781,7 +4781,7 @@ void MidiTrack::_WorkGetEvent(
    pevent = &m_trackWorkStorage.EventAt(m_iWorkCurrentEvent);
 }
 
-imedia::position MidiTrack::_WorkGetPosition()
+imedia::position midi_track::_WorkGetPosition()
 {
    ASSERT(m_estate == StateOnEventRead);
    ASSERT(!_WorkIsEOT());
@@ -4789,7 +4789,7 @@ imedia::position MidiTrack::_WorkGetPosition()
 }
 
 
-::mus::midi::e_file_result MidiTrack::_WorkMoveNext()
+::mus::midi::e_file_result midi_track::_WorkMoveNext()
 {
    m_estate = StateOnEventRead;
    m_iWorkCurrentEvent++;
@@ -4801,17 +4801,17 @@ imedia::position MidiTrack::_WorkGetPosition()
    return ::mus::midi::Success;
 }
 
-bool MidiTrack::_WorkIsEOT()
+bool midi_track::_WorkIsEOT()
 {
    return m_bWorkTrackEnd;
 }
 
-::mus::midi::file_flags & MidiTrack::_GetFlags()
+::mus::midi::file_flags & midi_track::_GetFlags()
 {
    return m_flags;
 }
 
-imedia::position MidiTrack::WorkGetPosition()
+imedia::position midi_track::WorkGetPosition()
 {
    return m_tkPosition;
 }

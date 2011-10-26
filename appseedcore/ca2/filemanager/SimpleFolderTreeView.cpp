@@ -17,15 +17,11 @@ namespace filemanager
       ::user::tree(papp),
       SimpleFolderTreeInterface(papp),
       m_headerctrl(papp),
-      m_scrollbarVert(papp),
-      m_scrollbarHorz(papp),
       ex1::tree(papp),
       ::fs::tree_interface(papp),
       ::fs::tree(papp)
    {
       m_etranslucency = TranslucencyPresent;
-      m_pscrollbarVert  = &m_scrollbarVert;
-      m_pscrollbarHorz  = &m_scrollbarHorz;
    }
 
    SimpleFolderTreeView::~SimpleFolderTreeView()
@@ -287,7 +283,7 @@ namespace filemanager
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
-   void SimpleFolderTreeView::_017OpenFolder(::fs::item &item)
+   void SimpleFolderTreeView::_017OpenFolder(const ::fs::item &item)
    {
       GetFileManager()->FileManagerBrowse(item);
 
@@ -313,9 +309,9 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void SimpleFolderTreeView::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      SimpleFolderTreeInterface::_001InstallMessageHandling(pinterface);
+      SimpleFolderTreeInterface::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &SimpleFolderTreeView::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &SimpleFolderTreeView::_001OnContextMenu);
@@ -324,6 +320,7 @@ namespace filemanager
 
       connect_command_range(SHELL_COMMAND_FIRST, SHELL_COMMAND_LAST, &SimpleFolderTreeView::_001OnShellCommand);
    }
+
 
 } // namespace filemanager
 

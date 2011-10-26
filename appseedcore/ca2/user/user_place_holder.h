@@ -6,7 +6,7 @@ namespace user
 
    class place_holder_container;
 
-   class CLASS_DECL_ca place_holder : 
+   class CLASS_DECL_ca place_holder :
       virtual public control
    {
    public:
@@ -19,11 +19,11 @@ namespace user
       virtual ~place_holder();
 
 
-      virtual bool create(place_holder_container * pcontainer);
+      using ::user::control::create;
+      virtual bool create(place_holder_container * pcontainer, id id);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
-      
       virtual bool can_merge(::user::interaction * pui);
       virtual bool merge(::user::interaction * pui);
       virtual bool hold(::user::interaction * pui);
@@ -35,6 +35,16 @@ namespace user
 
       ::user::interaction * get_ui();
 
+
+   };
+
+   class CLASS_DECL_ca place_holder_ptra :
+      virtual public comparable_array < place_holder * >
+   {
+   public:
+
+      int hold(::user::interaction * pui);
+      int unhold(::user::interaction * pui);
 
    };
 

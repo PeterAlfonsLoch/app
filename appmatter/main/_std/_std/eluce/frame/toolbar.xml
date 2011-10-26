@@ -1,0 +1,4 @@
+<toolbar>
+	<button id="file_new_paste" >Paste as new image</button>
+	<button id="file_save_as" >Save as PNG file</button>
+</toolbar>

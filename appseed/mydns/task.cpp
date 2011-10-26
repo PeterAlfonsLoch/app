@@ -45,11 +45,11 @@ new_task(TASK *t, unsigned char *data, size_t len)
 
 	/* Query needs to at least contain a proper header */
 	if (len < DNS_HEADERSIZE)
-		 ::ca::get_thread()->m_papp->m_psystem->log().trace("mydns::new_task::query so small it has no header");
+		 CaSys(::ca::get_thread()).log().trace("mydns::new_task::query so small it has no header");
 
 	/* Refuse queries that are too long */
-	if (len > (t->protocol == SOCK_STREAM ? DNS_MAXPACKETLEN_TCP : DNS_MAXPACKETLEN_UDP))
-		 ::ca::get_thread()->m_papp->m_psystem->log().trace("mydns::new_task::query too large");
+	if (len > (size_t) (t->protocol == SOCK_STREAM ? DNS_MAXPACKETLEN_TCP : DNS_MAXPACKETLEN_UDP))
+		 CaSys(::ca::get_thread()).log().trace("mydns::new_task::query too large");
 
 	/* Parse query header data */
 	src = data;
@@ -265,6 +265,8 @@ _task_init(
 	const char *file, int line
 )
 {
+   UNREFERENCED_PARAMETER(file);
+   UNREFERENCED_PARAMETER(line);
 	TASK *ptaskNew;
 
 	if (!(ptaskNew = (TASK *) calloc(1, sizeof(TASK))))
@@ -272,7 +274,7 @@ _task_init(
 
 	ptaskNew->status = status;
 	ptaskNew->fd = fd;
-	ptaskNew->recursive_fd = -1;
+	ptaskNew->recursive_fd = (SOCKET) -1;
 	ptaskNew->protocol = protocol;
 	ptaskNew->family = family;
 #if HAVE_IPV6
@@ -308,6 +310,8 @@ _task_init(
 void
 _task_free(TASK *t, const char *file, int line)
 {
+   UNREFERENCED_PARAMETER(file);
+   UNREFERENCED_PARAMETER(line);
 	if (!t)
 		return;
 
@@ -369,10 +373,12 @@ task_output_info(TASK *t, char *update_desc)
 {
 #if !DISABLE_DATE_LOGGING
 	struct timeval tv;
-	time_t tt;
-	struct tm *tm;
+//	time_t tt;
+//	struct tm *tm;
 	char datebuf[80];
 #endif
+
+   memset(&tv, 0, sizeof(tv));
 
 	/* If we've already outputted the info for this (i.e. multiple DNS UPDATE requests), ignore */
 	if (t->info_already_out)

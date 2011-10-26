@@ -5,9 +5,10 @@ namespace ca
 
    graphics::graphics()
    {
-      m_puistrcontext = NULL;
-      m_pdrawcontext = NULL;
-      m_pdibAlphaBlend = NULL;
+      m_puistrcontext         = NULL;
+      m_pdrawcontext          = NULL;
+      m_pdibAlphaBlend        = NULL;
+      m_pjob                  = NULL;
    }
 
    ::user::str_context * graphics::str_context()
@@ -1967,6 +1968,38 @@ namespace ca
    bool graphics::alpha_blend(size size,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(size, pgraphicsSrc, null_point(), blend);
+   }
+
+   client_graphics::client_graphics(::ca::window * pwindow)
+   {
+      m_pwindow = pwindow;
+      m_p = App(pwindow->get_app()).graphics_from_os_data(pwindow->GetDC());
+   }
+   
+   client_graphics::~client_graphics()
+   {
+      m_pwindow->ReleaseDC(m_p);
+   }
+
+   window_graphics::window_graphics(::ca::window * pwindow)
+   {
+      m_pwindow = pwindow;
+      m_p = App(pwindow->get_app()).graphics_from_os_data(pwindow->GetWindowDC());
+   }
+   
+   window_graphics::~window_graphics()
+   {
+      m_pwindow->ReleaseDC(m_p);
+   }
+
+   paint_graphics::paint_graphics(::ca::window * pwindow)
+   {
+      m_pwindow = pwindow;
+      m_p = App(pwindow->get_app()).graphics_from_os_data(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
+   }
+   paint_graphics::~paint_graphics()
+   {
+      ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
    }
 
 } // namespace ca

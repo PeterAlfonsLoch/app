@@ -60,7 +60,7 @@ char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOf
 
 #ifndef AtlThrow
 #ifndef _ATL_CUSTOM_THROW
-#define AtlThrow _template::AtlThrowImpl
+#define AtlThrow _template::atl_throw_impl
 #endif
 #endif // AtlThrow
 
@@ -174,7 +174,7 @@ do {                                           \
 #define ATLENSURE_RETURN(expr) ATLENSURE_RETURN_HR(expr, E_FAIL)
 #endif
 
-#if defined(VC6) || defined(VC71)
+#if defined(VC6) || defined(VC71) || defined(LINUX)
 #define _SECURE_ATL 0
 #elif !defined(_SECURE_ATL)
 #define _SECURE_ATL 1
@@ -246,7 +246,7 @@ do { \
 #define ATL_FORCEINLINE __forceinline
 #endif
 
-#if defined(_ATL_DISABLE_NOINLINE) || defined(VC6)
+#if defined(_ATL_DISABLE_NOINLINE) || defined(VC6) || defined(LINUX)
 #define ATL_NOINLINE
 #else
 #define ATL_NOINLINE __declspec( noinline )
@@ -332,7 +332,7 @@ do { \
 #ifdef _AFX
 #define _ATLCATCH( e ) catch( base_exception* e )
 #else
-#define _ATLCATCH( e ) catch( CAtlException e )
+#define _ATLCATCH( e ) catch( atl_exception e )
 #endif
 
 #define _ATLCATCHALL() __pragma(warning(push)) __pragma(warning(disable: 4571)) catch( ... ) __pragma(warning(pop))
@@ -372,7 +372,7 @@ this end
    }
 #else
 #define _AFX_COM_END_PART \
-   catch(CAtlException e) \
+   catch(atl_exception e) \
    { \
       __hrAtlComMethod=e.m_hr; \
    }
@@ -460,12 +460,6 @@ this end
 #endif   // _ATL_NO_SERVICE
 #endif   // NOSERVICE
 
-#ifndef _ATL_NO_DEBUG_CRT
-// Warning: if you define the above symbol, you will have
-// to provide your own definition of the ATLASSERT(x) macro
-// in order to compile _template
-   #include <crtdbg.h>
-#endif
 
 #endif // RC_INVOKED
 

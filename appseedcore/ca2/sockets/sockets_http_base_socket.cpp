@@ -44,7 +44,7 @@ namespace sockets
    {
       http_socket::OnHeader(key, value);
 
-   
+
       if(key == "content-length")
       {
          m_iContentLength = atoi(value);
@@ -138,18 +138,18 @@ namespace sockets
 
          gzip gz(&file);
 
-         gz.write(response().file().GetAllocation(), response().file().get_size());
+         gz.write(response().file().get_data(), response().file().get_size());
 
          gz.finish();
-      
+
          response().file().Truncate(0);
-         response().file().write(file.GetAllocation(), file.get_size());
+         response().file().write(file.get_data(), file.get_size());
       }
       m_response.m_propertysetHeader.set("Content-Length", (__int64) m_response.file().get_size());
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
          m_response.m_propertysetHeader.add(
-            "Set-Cookie", 
+            "Set-Cookie",
             m_response.cookies().element_at(i).get_cookie_string());
       }
       if(m_response.m_propertysetHeader.has_property("Location"))
@@ -200,7 +200,7 @@ namespace sockets
    {
    }
 
-            
+
 
    string http_base_socket::set_cookie(
          const char * name,

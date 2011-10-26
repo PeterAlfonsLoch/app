@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -51,7 +51,7 @@ namespace sockets
    #ifdef _DEBUG
    #define DEB(x) x
    #else
-   #define DEB(x) 
+   #define DEB(x)
    #endif
 
 
@@ -65,7 +65,7 @@ namespace sockets
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(socket_handler_base& h) : 
+   tcp_socket::tcp_socket(socket_handler_base& h) :
    ::ca::ca(h.get_app()),
    socket(h),
    stream_socket(h)
@@ -99,7 +99,7 @@ namespace sockets
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(socket_handler_base& h,size_t isize,size_t osize) : 
+   tcp_socket::tcp_socket(socket_handler_base& h,size_t isize,size_t osize) :
    ::ca::ca(h.get_app()),
    socket(h),
    stream_socket(h)
@@ -667,7 +667,7 @@ namespace sockets
    #else
 			   if (Errno != EWOULDBLOCK)
    #endif
-			   {	
+			   {
 				   Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::fatal);
 				   OnDisconnect();
 				   SetCloseAndDelete(true);
@@ -876,7 +876,7 @@ namespace sockets
 		   {
 			   ibuf.read( (char *)&m_socks4_dstip, 4);
 			   SetSocks4(false);
-			
+
 			   switch (m_socks4_cd)
 			   {
 			   case 90:

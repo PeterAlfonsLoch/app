@@ -27,7 +27,7 @@ namespace userbase
       set_app(papp);
       if(!GetImageList().create(
          16, 16,
-         ILC_COLOR24 | ILC_MASK, 
+         ILC_COLOR24 | ILC_MASK,
          0, 10))
       {
          return FALSE;
@@ -43,10 +43,10 @@ namespace userbase
          m_rel.set_at(uiaMenuV003Map[user][0], i);
          user++;
       }
-      
+
    /*   System.imaging().CreateGrayVRCPImageList(
-         NULL, 
-         &GetImageListDisable(), 
+         NULL,
+         &GetImageListDisable(),
          &GetImageList());*/
 
       return VMSR_SUCCESS;

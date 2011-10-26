@@ -18,6 +18,9 @@ namespace ca8
 
    bool application::initialize1()
    {
+
+      m_dwAlive = ::GetTickCount();
+
       if(!html::application::initialize1())     
          return false;
       return true;
@@ -25,7 +28,13 @@ namespace ca8
 
    bool application::initialize()
    {
-      System.factory().creatable_small < keyboard_layout > ();
+
+      m_dwAlive = ::GetTickCount();
+
+      if(is_system())
+      {
+         System.factory().creatable_small < keyboard_layout > ();
+      }
       
       m_pshellimageset = new filemanager::_shell::ImageSet(this);
 
@@ -34,8 +43,8 @@ namespace ca8
       if(!userex::application::initialize())     
          return false;
 
-      xml::node nodeUser(get_app());
-      string strUser = Application.file().as_string(Application.dir().userappdata("langstyle_settings.xml"));
+      xml::node nodeUser(this);
+      string strUser = App(this).file().as_string(App(this).dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
       if(nodeUser.load(strUser))
@@ -62,8 +71,19 @@ namespace ca8
 
       if(!m_strLicense.is_empty())    
       {
-         if(!System.is_licensed(m_strLicense))
-         {              
+         // call application's is_licensed function
+         // because if delay is needed for authentication -
+         // or either asking for authentication -
+         // current application startup won't be
+         // exited by timeout.
+         int iRetry = 3;
+retry_license:
+         iRetry--;
+         if(!App(this).is_licensed(m_strLicense))
+         {      
+            App(this).license().m_mapInfo.remove_key(m_strLicense);
+            if(iRetry > 0)
+               goto retry_license;
             return false;      
          }   
       }     
@@ -77,80 +97,6 @@ namespace ca8
    {
       return *m_pshellimageset;
    }
-
-   bool application::_001ProcessShellCommand(gen::command_line& rCmdInfo)
-   {
-      BOOL bResult = TRUE;
-      switch (rCmdInfo.m_nShellCommand)
-      {
-      case gen::command_line::FileNew:
-         if (!System._001SendCommand("file::new"))
-            _001OnFileNew();
-         if (System.GetMainWnd() == NULL)
-            bResult = FALSE;
-         break;
-
-         // If we've been asked to open a file, call open_document_file()
-
-      case gen::command_line::FileOpen:
-         if (!_001OpenDocumentFile(rCmdInfo.m_varFile))
-            bResult = FALSE;
-         break;
-
-         // If the user wanted to print, hide our main ::ca::window and
-         // fire a message to ourselves to start the printing
-
-      case gen::command_line::FilePrintTo:
-      case gen::command_line::FilePrint:
-         System.m_nCmdShow = SW_HIDE;
-//         ASSERT(System.m_pCmdInfo == NULL);
-         _001OpenDocumentFile(rCmdInfo.m_varFile);
-         System.GetMainWnd()->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
-         bResult = FALSE;
-         break;
-
-         // If we're doing DDE, hide ourselves
-
-      case gen::command_line::FileDDE:
-         command_line().m_nCmdShow = m_nCmdShow;
-         m_nCmdShow = SW_HIDE;
-         break;
-
-      // If we've been asked to unregister, unregister and then terminate
-      case gen::command_line::AppUnregister:
-         {
-            //((CVmsGenApp *) &System)->UnregisterShellFileTypes();
-   //xxx         System.UnregisterShellFileTypes();
-   //xxx         BOOL bUnregistered = ((CVmsGenApp *) &System)->Unregister();
-
-            // if you specify /EMBEDDED, we won't make an success/failure box
-            // this use of /EMBEDDED is not related to OLE
-
-   /*         if (!rCmdInfo.m_bRunEmbedded)
-            {
-               if (bUnregistered)
-                  System.simple_message_box(AFX_IDP_UNREG_DONE);
-               else
-                  System.simple_message_box(AFX_IDP_UNREG_FAILURE);
-            }
-            bResult = FALSE;    // that's all we do
-
-            // If nobody is using it already, we can use it.
-            // We'll flag that we're unregistering and not save our state
-            // on the way out. This new object gets deleted by the
-            // cast object destructor.
-
-            if (m_pcmdinfo == NULL)
-            {
-               m_pcmdinfo = new command_line;
-               m_pcmdinfo->m_nShellCommand = command_line::AppUnregister;
-            }*/
-         }
-         break;
-      }
-      return bResult != FALSE;
-   }
-
 
    string application::message_box(const char * pszMatter, gen::property_set & propertyset)
    {

@@ -11,34 +11,40 @@ namespace audio_decode_libmpg123
    class CLASS_DECL_AUDDEC_LIBMPG123_BRIDGE decoder :
       public audio_decode::decoder
    {
-
    protected:
+
+
       class ReadFrame
       {
       public:
-         ex1::file *       m_pfileIn;
-         ex1::file *       m_pfileOut;
-         primitive::memory            m_memoryIn;
-         primitive::memory            m_memoryOut;
-         int               m_iChannels;
-         int               m_iEncoding;
-         long              m_lSamplesPerSecond;
+         sp(ex1::file)        m_pfileIn;
+         sp(ex1::file)        m_pfileOut;
+         primitive::memory    m_memoryIn;
+         primitive::memory    m_memoryOut;
+         int                  m_iChannels;
+         int                  m_iEncoding;
+         long                 m_lSamplesPerSecond;
 
-         int               m_iRet;
+         int                  m_iRet;
 
       protected:
-         bool              m_bFileInEof;
-         bool              m_bDecEof;
-         DWORD             m_dwPos;
+         bool                 m_bFileInEof;
+         bool                 m_bDecEof;
+         DWORD                m_dwPos;
 
          
       public:
          bool                 m_bSeekable;
-         mpg123_handle *     m_phandle;
+         mpg123_handle *      m_phandle;
+         decoder *            m_pdecoder;
          bool m_bInit;
          ReadFrame();
          ~ReadFrame();
+         
+         
          bool Initialize(ex1::file * pfileIn, ex1::file * pfileOut);
+         bool Finalize();
+
 
          bool _ReadFrame();
          bool _seekable_read_frame();
@@ -47,12 +53,14 @@ namespace audio_decode_libmpg123
       public:
          bool IsEof(void);
       };
+
+
    protected:
       int                  m_iSamMul;
       int                  m_iSamDiv;
 
       int                  m_iReadPointer;
-      gen::memory_file   m_memfile;
+      gen::memory_file     m_memfile;
       bool                 m_bStop;
       ID3_Tag              m_id3tag;
       ID3_Reader           m_id3reader;
@@ -60,6 +68,7 @@ namespace audio_decode_libmpg123
       ReadFrame            m_readframe;
       char *               m_szId3[0x410];
       __int64              m_nSampleCount;
+      ::ex1::filesp        m_spfile;
       
    public:
 	   void GuessParameters();
@@ -74,8 +83,9 @@ namespace audio_decode_libmpg123
       
 
       virtual bool      _DecoderInitialize(ex1::file *pfile);
+      virtual bool      _DecoderFinalize();
       virtual bool      _DecoderEOF();
-      virtual int       _DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize);
+      virtual ::primitive::memory_size  _DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize);
       
       virtual void      DecoderMoveNext();
       virtual LPBYTE    DecoderGetBuffer();

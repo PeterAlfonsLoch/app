@@ -9,39 +9,19 @@ namespace gen
 
 
    application::application()
-   {  
-      m_plemonarray = new lemon::array(this);
+   {
+      m_plemonarray              = new lemon::array(this);
       m_base64.set_app(this);
-      m_pmath = new math::math(this);
-      m_pgeometry = new geometry::geometry(this);
+      m_pmath                    = new math::math(this);
+      m_pgeometry                = new geometry::geometry(this);
       //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
-      m_iResourceId = 8001;
-      m_psavings = new class savings(this);
-      
+      m_iResourceId              = 8001;
+      m_psavings                 = new class savings(this);
+      m_pcommandthread           = new ::gen::command_thread(this);
    }
 
    application::~application()
    {
-      if(m_plemonarray != NULL)
-      {
-         delete m_plemonarray;
-         m_plemonarray = NULL;
-      }
-      if(m_pmath != NULL)
-      {
-         delete m_pmath;
-         m_pmath = NULL;
-      }
-      if(m_pgeometry != NULL)
-      {
-         delete m_pgeometry;
-         m_pgeometry = NULL;
-      }
-      if(m_psavings != NULL)
-      {
-         delete m_psavings;
-         m_psavings = NULL;
-      }
    }
 
    math::math & application::math()
@@ -70,7 +50,7 @@ namespace gen
 
    bool application::process_initialize()
    {
-      
+
       if(is_system())
       {
          {
@@ -109,17 +89,13 @@ namespace gen
       if(is_system())
       {
          System.factory().cloneable_large < stringa > ();
+         System.factory().cloneable_large < ::primitive::memory > ();
       }
       return true;
    }
 
-   void application::on_process_initialize_command_line()
+   bool application::initialize_instance()
    {
-   }
-
-   bool application::initialize_instance() 
-   {
-
 
       if(!ex1::application::initialize_instance())
         return FALSE;
@@ -127,11 +103,78 @@ namespace gen
 
       return TRUE;
    }
-      
 
-   int application::exit_instance() 
+
+   int application::exit_instance()
    {
 
+      try
+      {
+         if(m_plemonarray != NULL)
+         {
+            delete m_plemonarray;
+         }
+      }
+      catch(...)
+      {
+      }
+      m_plemonarray = NULL;
+
+
+
+      try
+      {
+         if(m_pmath != NULL)
+         {
+            delete m_pmath;
+         }
+      }
+      catch(...)
+      {
+      }
+      m_pmath = NULL;
+
+
+
+      try
+      {
+         if(m_pgeometry != NULL)
+         {
+            delete m_pgeometry;
+         }
+      }
+      catch(...)
+      {
+      }
+      m_pgeometry = NULL;
+
+
+
+      try
+      {
+         if(m_psavings != NULL)
+         {
+            delete m_psavings;
+         }
+      }
+      catch(...)
+      {
+      }
+      m_psavings = NULL;
+
+
+
+      try
+      {
+         if(m_pcommandthread != NULL)
+         {
+            delete m_pcommandthread;
+         }
+      }
+      catch(...)
+      {
+      }
+      m_pcommandthread = NULL;
 
 
       return ex1::application::exit_instance();
@@ -159,7 +202,7 @@ namespace gen
          return false;
       HRSRC hrsrc = ::FindResource(
          hinst,
-         MAKEINTRESOURCE(nID), 
+         MAKEINTRESOURCE(nID),
          lpcszType);
       if(hrsrc == NULL)
          return false;
@@ -175,7 +218,7 @@ namespace gen
            {
               // create the .mdb file
               ex1::filesp f(get_app());
-              
+
               if(f->open(lpcszFilePath, ::ex1::file::mode_create | ::ex1::file::mode_write ))
               {
                  // write the ::fontopus::user-defined resource to the .mdb file
@@ -195,9 +238,9 @@ namespace gen
    //         afxdump << "File could not be opened " << pe->m_cause << "\n";
          #endif
            }
-           
 
-         #ifndef WIN32 //Unlock Resource is obsolete in the Win32 API
+
+         #ifndef WIN32 //unlock Resource is obsolete in the Win32 API
             ::UnlockResource(hres);
          #endif
                ::FreeResource(hres);
@@ -251,7 +294,7 @@ namespace gen
    }
 
 
-   void application::OnUpdateRecentFileMenu(cmd_ui * pcmdui) 
+   void application::OnUpdateRecentFileMenu(cmd_ui * pcmdui)
    {
       UNREFERENCED_PARAMETER(pcmdui);
       /*TRACE("\nCVmsGenApp::OnUpdateRecentFileMenu");
@@ -265,7 +308,7 @@ namespace gen
             pcmdui->m_pMenu->DeleteMenu(pcmdui->m_nID + iMRU, MF_BYCOMMAND);
          return;
       }
-      
+
       ASSERT(m_pRecentFileList->m_arrNames != NULL);
 
       ::userbase::menu* pMenu = pcmdui->m_pMenu;
@@ -302,7 +345,7 @@ namespace gen
       for (int iMRU = 0; iMRU < m_pRecentFileList->m_nSize; iMRU++)
          pcmdui->m_pMenu->DeleteMenu(pcmdui->m_nID + iMRU, MF_BYCOMMAND);
 
-       
+
 
       char szCurDir[_MAX_PATH];
       GetCurrentDirectory(_MAX_PATH, szCurDir);
@@ -335,7 +378,7 @@ namespace gen
          // insert mnemonic + the file name
          char buf[10];
          wsprintf(buf, "&%d ", (iMRU+1+m_pRecentFileList->m_nStart) % 10);
-           
+
    //      pcmdui->m_pMenu->InsertMenu(pcmdui->m_nIndex++,
    //         MF_STRING | MF_BYPOSITION, pcmdui->m_nID++,
    //         string(buf) + strTemp);
@@ -368,22 +411,22 @@ namespace gen
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(storage);
 /*      HINSTANCE hinst = ::AfxFindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
-      
+
       if(hinst == NULL)
          return false;
-      
+
       HRSRC hrsrc = ::FindResource(
          hinst,
-         MAKEINTRESOURCE(nID), 
+         MAKEINTRESOURCE(nID),
          lpcszType);
-      
+
       if(hrsrc == NULL)
          return false;
 
       HGLOBAL hres = ::LoadResource(hinst, hrsrc);
       if(hres == NULL)
          return false;
-      
+
       DWORD dwResSize = ::SizeofResource(hinst, hrsrc);
 
       if(hres != NULL)
@@ -399,9 +442,9 @@ namespace gen
    //            afxdump << "File could not be opened " << pe->m_cause << "\n";
             #endif
          }
-         
 
-         #ifndef WIN32 //Unlock Resource is obsolete in the Win32 API
+
+         #ifndef WIN32 //unlock Resource is obsolete in the Win32 API
          ::UnlockResource(hres);
          #endif
          ::FreeResource(hres);
@@ -418,7 +461,7 @@ namespace gen
       {
          return NULL;
       }
-      return SetEnhMetaFileBits(storage.GetStorageSize(), storage.GetAllocation());
+      return SetEnhMetaFileBits(storage.get_size(), storage.get_data());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -438,7 +481,7 @@ namespace gen
 
    #ifndef _AFX_NO_OLE_SUPPORT
       // check if notify hook installed
-   /*   gen::frame_window_interface* pFrameWnd = 
+   /*   gen::frame_window_interface* pFrameWnd =
          dynamic_cast < gen::frame_window_interface * > (pMainWnd);
       ASSERT(pFrameWnd != NULL);
       if (pFrameWnd->GetNotifyHook() != NULL)
@@ -493,7 +536,7 @@ namespace gen
    }
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-         
+
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -509,7 +552,7 @@ namespace gen
    {
       return file_title(get_module_file_path());
    }
-      
+
    string application::get_module_name()
    {
       return file_name(get_module_file_path());
@@ -517,259 +560,126 @@ namespace gen
 
    string application::get_local_mutex_id()
    {
-      return command_line().m_varQuery["local_mutex_id"];
+      return command().m_varTopicQuery["local_mutex_id"];
    }
 
    string application::get_global_mutex_id()
    {
-      return command_line().m_varQuery["global_mutex_id"];
+      return command().m_varTopicQuery["global_mutex_id"];
    }
 
-   class command_line & application::command_line()
+   bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
    {
-      return *m_pcommandline;
+      count len = strlen(pszHex);
+      count count = (len + 1) / 2;
+      memory.allocate(count);
+      index i = 0;
+      byte b;
+      while(*pszHex != '\0')
+      {
+         char ch = (char) tolower(*pszHex);
+         if(ch >= '0' && ch <= '9')
+         {
+            b = ch - '0';
+         }
+         else if(ch >= 'a' && ch <= 'f')
+         {
+            b = ch - 'a' + 10;
+         }
+         else
+         {
+            return false;
+         }
+         pszHex++;
+         if(*pszHex == '\0')
+         {
+            memory.get_data()[i] = b;
+            return true;
+         }
+         b = b << 4;
+         ch = (char) tolower(*pszHex);
+         if(ch >= '0' && ch <= '9')
+         {
+            b |= (ch - '0');
+         }
+         else if(ch >= 'a' && ch <= 'f')
+         {
+            b |= (ch - 'a' + 10);
+         }
+         else
+         {
+            return false;
+         }
+         pszHex++;
+         memory.get_data()[i] = b;
+         i++;
+      }
+      return true;
+   }
+
+   int nibble_to_low_hex(byte nibble)
+   {
+      if(nibble >= 0 && nibble <= 9)
+      {
+         return nibble + '0';
+      }
+      else if(nibble >= 10 && nibble <= 15)
+      {
+         return nibble + 'a' - 10;
+      }
+      else
+      {
+         return -1;
+      }
+   }
+
+   void application::memory_to_hex(string & strHex, primitive::memory & memory)
+   {
+      count count = memory.get_size();
+      LPSTR lpsz = strHex.GetBufferSetLength(count * 2);
+      for(index i = 0; i < count; i++)
+      {
+         *lpsz++ = (char) nibble_to_low_hex((memory.get_data()[i] >> 4) & 0xf);
+         *lpsz++ = (char) nibble_to_low_hex(memory.get_data()[i] & 0xf);
+      }
+      strHex.ReleaseBuffer(count * 2);
+   }
+
+   ::gen::command_thread & application::command_central()
+   {
+      return *m_pcommandthread;
+   }
+
+   ::gen::command_thread & application::command()
+   {
+      return *m_pcommandthread;
+   }
+
+   ::gen::command_thread & application::guideline()
+   {
+      return *m_pcommandthread;
+   }
+
+   ::gen::command_thread & application::directrix()
+   {
+      return *m_pcommandthread;
+   }
+
+   ::gen::command_thread & application::axiom()
+   {
+      return *m_pcommandthread;
+   }
+
+   bool application::verb()
+   {
+      axiom().run();
+      return true;
+   }
+
+   ::gen::command_thread & application::creation()
+   {
+      return *m_pcommandthread;
    }
 
 } // namespace gen
-
-
-
-#define NULWCHAR     L'\0'
-#define TABWCHAR     L'\t'
-#define SLASHWCHAR   L'\\'
-#define SPACEWCHAR   L' '
-#define DQUOTEWCHAR  L'\"'
-
-/***
-*static void parse_cmdline(cmdstart, argv, args, numargs, numchars)
-*
-*Purpose:
-*       Parses the command line and sets up the argv[] base_array.
-*       On entry, cmdstart should point to the command line,
-*       argv should point to primitive::memory for the argv base_array, args
-*       points to primitive::memory to place the text of the arguments.
-*       If these are NULL, then no storing (only coujting)
-*       is done.  On exit, *numargs has the number of
-*       arguments (plus one for a final NULL argument),
-*       and *numchars has the number of bytes used in the buffer
-*       pointed to by args.
-*
-*Entry:
-*       _TSCHAR *cmdstart - pointer to command line of the form
-*           <progname><nul><args><nul>
-*       _TSCHAR **argv - where to build argv base_array; NULL means don't
-*                       build base_array
-*       _TSCHAR *args - where to place argument text; NULL means don't
-*                       store text
-*
-*Exit:
-*       no return value
-*       int *numargs - returns number of argv entries created
-*       int *numchars - number of characters used in args buffer
-*
-*Exceptions:
-*
-*******************************************************************************/
-
-void __cdecl wparse_cmdline (
-    WCHAR *cmdstart,
-    WCHAR **argv,
-    WCHAR *args,
-    int *numargs,
-    int *numchars
-    )
-{
-        WCHAR *p;
-        WCHAR c;
-        int inquote;                    /* 1 = inside quotes */
-        int copychar;                   /* 1 = copy char to *args */
-        unsigned numslash;              /* num of backslashes seen */
-
-        *numchars = 0;
-        *numargs = 1;                   /* the program name at least */
-
-        /* first scan the program name, copy it, and count the bytes */
-        p = cmdstart;
-        if (argv)
-            *argv++ = args;
-
-#ifdef WILDCARD
-        /* To handle later wild card expansion, we prefix each entry by
-        it's first character before quote handling.  This is done
-        so _[w]cwild() knows whether to expand an entry or not. */
-        if (args)
-            *args++ = *p;
-        ++*numchars;
-
-#endif  /* WILDCARD */
-
-        /* A quoted program name is handled here. The handling is much
-           simpler than for other arguments. Basically, whatever lies
-           between the leading double-quote and next one, or a terminal null
-           character is simply accepted. Fancier handling is not required
-           because the program name must be a legal NTFS/HPFS file name.
-           Note that the double-quote characters are not copied, nor do they
-           contribute to numchars. */
-        if ( *p == DQUOTEWCHAR ) {
-            /* scan from just past the first double-quote through the next
-               double-quote, or up to a null, whichever comes first */
-            while ( (*(++p) != DQUOTEWCHAR) && (*p != NULWCHAR) ) {
-
-/*#ifdef _MBCS
-                if (_ismbblead(*p)) {
-                    ++*numchars;
-                    if ( args )
-                        *args++ = *p++;
-                }
-#endif  /* _MBCS */
-                ++*numchars;
-                if ( args )
-                    *args++ = *p;
-            }
-            /* append the terminating null */
-            ++*numchars;
-            if ( args )
-                *args++ = NULWCHAR;
-
-            /* if we stopped on a double-quote (usual case), skip over it */
-            if ( *p == DQUOTEWCHAR )
-                p++;
-        }
-        else {
-            /* Not a quoted program name */
-            do {
-                ++*numchars;
-                if (args)
-                    *args++ = *p;
-
-                c = (WCHAR) *p++;
-/*#ifdef _MBCS
-                if (_ismbblead(c)) {
-                    ++*numchars;
-                    if (args)
-                        *args++ = *p;   /* copy 2nd byte too */
-    //                p++;  /* skip over trail byte */
-  //              }
-//#endif  /* _MBCS */
-
-            } while ( c != SPACEWCHAR && c != NULWCHAR && c != TABWCHAR );
-
-            if ( c == NULWCHAR ) {
-                p--;
-            } else {
-                if (args)
-                    *(args-1) = NULWCHAR;
-            }
-        }
-
-        inquote = 0;
-
-        /* loop on each argument */
-        for(;;) {
-
-            if ( *p ) {
-                while (*p == SPACEWCHAR || *p == TABWCHAR)
-                    ++p;
-            }
-
-            if (*p == NULWCHAR)
-                break;              /* end of args */
-
-            /* scan an argument */
-            if (argv)
-                *argv++ = args;     /* store ptr to arg */
-            ++*numargs;
-
-#ifdef WILDCARD
-        /* To handle later wild card expansion, we prefix each entry by
-        it's first character before quote handling.  This is done
-        so _[w]cwild() knows whether to expand an entry or not. */
-        if (args)
-            *args++ = *p;
-        ++*numchars;
-
-#endif  /* WILDCARD */
-
-        /* loop through scanning one argument */
-        for (;;) {
-            copychar = 1;
-            /* Rules: 2N backslashes + " ==> N backslashes and begin/end quote
-               2N+1 backslashes + " ==> N backslashes + literal "
-               N backslashes ==> N backslashes */
-            numslash = 0;
-            while (*p == SLASHWCHAR) {
-                /* count number of backslashes for use below */
-                ++p;
-                ++numslash;
-            }
-            if (*p == DQUOTEWCHAR) {
-                /* if 2N backslashes before, start/end quote, otherwise
-                    copy literally */
-                if (numslash % 2 == 0) {
-                    if (inquote) {
-                        if (p[1] == DQUOTEWCHAR)
-                            p++;    /* Double quote inside quoted string */
-                        else        /* skip first quote char and copy second */
-                            copychar = 0;
-                    } else
-                        copychar = 0;       /* don't copy quote */
-
-                    inquote = !inquote;
-                }
-                numslash /= 2;          /* divide numslash by two */
-            }
-
-            /* copy slashes */
-            while (numslash--) {
-                if (args)
-                    *args++ = SLASHWCHAR;
-                ++*numchars;
-            }
-
-            /* if at end of arg, break loop */
-            if (*p == NULWCHAR || (!inquote && (*p == SPACEWCHAR || *p == TABWCHAR)))
-                break;
-
-            /* copy character into argument */
-/*#ifdef _MBCS
-            if (copychar) {
-                if (args) {
-                    if (_ismbblead(*p)) {
-                        *args++ = *p++;
-                        ++*numchars;
-                    }
-                    *args++ = *p;
-                } else {
-                    if (_ismbblead(*p)) {
-                        ++p;
-                        ++*numchars;
-                    }
-                }
-                ++*numchars;
-            }
-            ++p;
-#else  /* _MBCS */
-            if (copychar) {
-                if (args)
-                    *args++ = *p;
-                ++*numchars;
-            }
-            ++p;
-//#endif  /* _MBCS */
-            }
-
-            /* null-terminate the argument */
-
-            if (args)
-                *args++ = NULWCHAR;          /* terminate string */
-            ++*numchars;
-        }
-
-        /* We put one last argument in -- a null ptr */
-        if (argv)
-            *argv++ = NULL;
-        ++*numargs;
-}
-
-
 

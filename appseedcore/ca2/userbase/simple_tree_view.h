@@ -7,13 +7,11 @@ class CLASS_DECL_ca simple_tree_view :
 {
 public:
 
-   simple_scroll_bar             m_scrollbarVert;
-   simple_scroll_bar             m_scrollbarHorz;
    
    simple_tree_view(::ca::application * papp);   
    virtual ~simple_tree_view();
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 
    DECL_GEN_SIGNAL(_001OnCreate)

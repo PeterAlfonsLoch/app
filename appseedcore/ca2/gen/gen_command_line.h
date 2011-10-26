@@ -1,52 +1,92 @@
 #pragma once
 
+
+namespace fs
+{
+
+
+   class item_array;
+
+
+} // namespace fs
+
+
 namespace gen
 {
 
-   class CLASS_DECL_ca command_line : public ::radix::object
+
+   class command_thread;
+
+
+   class CLASS_DECL_ca command_line :
+      virtual public ::radix::object
    {
    public:
 
-      //plain char* version on UNICODE for source-code backwards compatibility
-      //virtual void ParseParam(const WCHAR* pszParam, BOOL bFlag, BOOL bLast);
-      virtual void ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast);
 
-      BOOL m_bShowSplash;
-      BOOL m_bRunEmbedded;
-      BOOL m_bRunAutomated;
-      int   m_nCmdShow;
-      enum { FileNew, FileOpen, FilePrint, FilePrintTo, FileDDE, AppUnregister, FileNothing = -1 } m_nShellCommand;
+      enum e_command
+      {
+         command_file_new,
+         command_file_open, 
+         command_file_print,
+         command_file_print_to,
+         command_file_dde, 
+         command_app_unregister,
+         command_file_nothing = -1
+      };
 
-      // not valid for FileNew
-      var         m_varFile;
 
-      // valid only for FilePrintTo
-      string      m_strPrinterName;
-      string      m_strDriverName;
-      string      m_strPortName;
+      e_command                     m_ecommand;
+      BOOL                          m_bShowSplash;
+      BOOL                          m_bRunEmbedded;
+      BOOL                          m_bRunAutomated;
+      int                           m_nCmdShow;
 
-      var         m_varQuery;
+      // not valid for file_new
+      var                           m_varFile;
 
-      command_line();
+      // valid only for file_print_to
+      string                        m_strPrinterName;
+      string                        m_strDriverName;
+      string                        m_strPortName;
+
+      var                           m_varQuery;
+      ::fs::item_array *            m_pitema;
+
+      ::ca::application *           m_pappFork;
+      string                        m_strApp;
+      ::user::interaction *         m_puiParent;
+      index                         m_iEdge;
+      manual_reset_event            m_eventReady;
+      ::ca::application_bias *      m_pbiasCreate;
+
+
+
+      command_line(::ca::application * papp);
       ~command_line();
 
-      void ParseParamFlag(const char* pszParam);
-      //void ParseParamNotFlag(const CHAR* pszParam);
-      void ParseParamNotFlag(const char* pszParam);
-      void ParseLast(BOOL bLast);
+      void common_construct();
 
-      command_line & operator = (const command_line & info)
-      {
-         m_bShowSplash     = info.m_bShowSplash;
-         m_bRunEmbedded    = info.m_bRunEmbedded;
-         m_bRunAutomated   = info.m_bRunAutomated;
-         m_varFile         = info.m_varFile;
-         m_strPrinterName  = info.m_strPrinterName;
-         m_strPortName     = info.m_strPortName;
-         return *this;
-      }
+      command_line & operator = (const command_line & info);
+
+      virtual void ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast);
+      virtual void ParseParamFlag(const char* pszParam);
+      virtual void ParseParamNotFlag(const char* pszParam);
+      virtual void ParseLast(BOOL bLast);
+
+
+      virtual void _001ParseCommandLine(const char * pszCommandLine);
+      virtual void _001ParseCommandLineUri(const char * pszCommandLine);
+
+      virtual void _001ParseCommandFork(const char * pszCommandFork);
+      virtual void _001ParseCommandForkUri(const char * pszCommandFork);
 
 
    };
 
+
+
+
+
 } // namespace gen
+

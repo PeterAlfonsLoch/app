@@ -5,6 +5,8 @@
 
 /* @(#) $Id$ */
 
+#include "c/c_c.h"
+
 #ifndef ZCONF_H
 #define ZCONF_H
 

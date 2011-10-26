@@ -169,7 +169,7 @@ public:
    ex1::HRes QueryInterface)(REFIID, LPVOID*);
 
    ex1::HRes read)(void *, ULONG, ULONG*);
-   ex1::HRes write)(const void *, ULONG cb, ULONG*);
+   ex1::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
    ex1::HRes seek)(LARGE_INTEGER, DWORD, ULARGE_INTEGER*);
    ex1::HRes set_size)(ULARGE_INTEGER);
    ex1::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,

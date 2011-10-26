@@ -3,9 +3,9 @@
 
 
 
-#define snprintf _snprintf 
-#define FILETIME_TO_USEC(ft) (((unsigned __int64) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10) 
- 
+#define snprintf _snprintf
+#define FILETIME_TO_USEC(ft) (((uint64_t) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10)
+
 
 #define SEGMENT_RECORD_LENGTH 3
 #define STANDARD_RECORD_LENGTH 3
@@ -15,7 +15,7 @@
 
 /* 128 bit address in network order */
 typedef struct in6_addr geoipv6_t;
- 
+
 #define GEOIP_CHKBIT_V6(bit,ptr) (ptr[((127UL - bit) >> 3)] & (1UL << (~(127 - bit) & 7)))
 
 typedef struct GeoIPTag {
@@ -97,11 +97,15 @@ extern const char GeoIP_country_code3[253][4];
 extern const char * GeoIP_country_name[253];
 extern const char GeoIP_country_continent[253][3];
 
+#ifdef LINUX
+#define GEOIP_API
+#else
 #ifdef _CA_DLL
 #define GEOIP_API __declspec(dllexport)
 #else
 #define GEOIP_API __declspec(dllimport)
 #endif  /* DLL */
+#endif
 
 GEOIP_API void GeoIP_setup_custom_directory(char *dir);
 GEOIP_API GeoIP* GeoIP_open_type (int type, int flags);

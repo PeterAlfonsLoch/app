@@ -31,7 +31,7 @@ namespace rar
       throw input_file_exception(cause);
    }
 
-   HRESULT input_file::Open(::ex1::input_stream *inStream, const uint64 *searchHeaderSizeLimit)
+   HRESULT input_file::Open(::ex1::byte_input_stream *inStream, const file_position *searchHeaderSizeLimit)
    {
       try
       {
@@ -50,15 +50,15 @@ namespace rar
       //m_Stream.Release();
    }
 
-   HRESULT input_file::ReadBytesSpec(void *data, size_t *resSize)
+   HRESULT input_file::ReadBytesSpec(void * data, ::primitive::memory_size * resSize)
    {
       if (m_CryptoMode)
       {
-         size_t size = *resSize;
+         ::primitive::memory_size size = *resSize;
          *resSize = 0;
          const byte *bufData = m_DecryptedDataAligned;
-         uint32 bufSize = m_DecryptedDataSize;
-         size_t i;
+         ::primitive::memory_size bufSize = m_DecryptedDataSize;
+         ::primitive::memory_size i;
          for (i = 0; i < size && m_CryptoPos < bufSize; i++)
             ((byte *)data)[i] = bufData[m_CryptoPos++];
          *resSize = i;
@@ -67,15 +67,15 @@ namespace rar
       return ReadStream(m_Stream, data, resSize);
    }
 
-   bool input_file::ReadBytesAndTestSize(void *data, uint32 size)
+   bool input_file::ReadBytesAndTestSize(void *data, ::primitive::memory_size size)
    {
-      size_t processed = size;
+      ::primitive::memory_size processed = size;
       if (ReadBytesSpec(data, &processed) != S_OK)
          return false;
       return processed == size;
    }
 
-   HRESULT input_file::Open2(::ex1::input_stream *stream, const uint64 *searchHeaderSizeLimit)
+   HRESULT input_file::Open2(::ex1::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
    {
       m_CryptoMode = false;
       try
@@ -127,8 +127,8 @@ namespace rar
          (uint32)Get16(buf) != (crc_calc(buf + 2, headerSize - 2) & 0xFFFF))
          return S_FALSE;
 
-      size_t commentSize = blockSize - headerSize; 
-      _comment.SetCapacity(commentSize);
+      ::primitive::memory_size commentSize = blockSize - headerSize; 
+      _comment.SetCapacity((size_t) commentSize);
       RINOK(ReadStream_FALSE(stream, _comment, commentSize));
       AddToSeekValue(commentSize);
       m_Stream = stream;
@@ -383,7 +383,7 @@ namespace rar
                m_DecryptedDataAligned = (byte *)((ptrdiff_t)((byte *)m_DecryptedData + kAlign - 1) & ~(ptrdiff_t)(kAlign - 1));
             }
             RINOK(m_RarAES->Init());
-            size_t decryptedDataSizeT = kDecryptedBufferSize;
+            ::primitive::memory_size decryptedDataSizeT = kDecryptedBufferSize;
             RINOK(ReadStream(m_Stream, m_DecryptedDataAligned, &decryptedDataSizeT));
             m_DecryptedDataSize = (uint32)decryptedDataSizeT;
             m_DecryptedDataSize = m_RarAES->Filter(m_DecryptedDataAligned, m_DecryptedDataSize);
@@ -393,7 +393,7 @@ namespace rar
          }
 
          m_FileHeaderData.EnsureCapacity(7);
-         size_t processed = 7;
+         ::primitive::memory_size processed = 7;
          RINOK(ReadBytesSpec((byte *)m_FileHeaderData, &processed));
          if (processed != 7)
          {
@@ -472,12 +472,12 @@ namespace rar
       }
    }
 
-   void input_file::SeekInArchive(uint64 position)
+   void input_file::SeekInArchive(file_position position)
    {
-      m_Stream->seek(position, ex1::seek_begin);
+      m_Stream->seek((file_offset) position, ex1::seek_begin);
    }
 
-   ::ex1::reader* input_file::CreateLimitedStream(uint64 position, uint64 size)
+   ::ex1::reader* input_file::CreateLimitedStream(file_position position, file_size size)
    {
       ::ex1::limited_reader *streamSpec = new ::ex1::limited_reader;
       ::ex1::reader * inStream = streamSpec;

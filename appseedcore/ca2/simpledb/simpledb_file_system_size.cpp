@@ -33,7 +33,7 @@ file_size_table::file_size_table(::ca::application * papp) :
    m_pwndServer = NULL;
    m_hwndServer = NULL;
 
-   SECURITY_ATTRIBUTES MutexAttributes;
+/*   SECURITY_ATTRIBUTES MutexAttributes;
    ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
    MutexAttributes.nLength = sizeof( MutexAttributes );
    MutexAttributes.bInheritHandle = FALSE; // object uninheritable
@@ -55,12 +55,15 @@ file_size_table::file_size_table(::ca::application * papp) :
       {
          // Make the security attributes point
          // to the security descriptor
-         MutexAttributes.lpSecurityDescriptor = &SD;
-         m_pmutex = new mutex(FALSE, "Global\\ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         m_pevExec = new CEvent(FALSE, FALSE, "Global\\ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-         m_pevDone = new CEvent(FALSE, FALSE, "Global\\ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
-      }
-   }
+         MutexAttributes.lpSecurityDescriptor = &SD;*/
+         //m_pmutex = new mutex(FALSE, "Global\\ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pevExec = new event(FALSE, FALSE, "Global\\ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pevDone = new event(FALSE, FALSE, "Global\\ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
+         //m_pmutex = new mutex(FALSE, "Local\\ca2::fontopus::file_system_size::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pevExec = new event(FALSE, FALSE, "Local\\ca2::fontopus::file_system_size::exec_event::7807e510-5579-11dd-ae16-0800200c7784");
+         //m_pevDone = new event(FALSE, FALSE, "Local\\ca2::fontopus::file_system_size::done_event::7807e510-5579-11dd-ae16-0800200c7784");
+/*      }
+   }*/
    m_pwnd  = new FileSystemSizeWnd(papp);
    m_pwnd->CreateClient();
 }
@@ -94,7 +97,7 @@ void file_size_table::item::ls(::ca::application * papp, int & iIteration)
       base_array < bool, bool > baIsDir;
       if(path().is_empty())
       {
-         papp->m_psystem->dir().root_ones(straName);
+         Sys(papp).dir().root_ones(straName);
          for(int i = 0; i < straName.get_size(); i++)
          {
             item item;
@@ -110,7 +113,7 @@ void file_size_table::item::ls(::ca::application * papp, int & iIteration)
       }
       else
       {
-         papp->m_psystem->dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
+         Sys(papp).dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
          for(int i = 0; i < straName.get_size(); i++)
          {
             item item;
@@ -170,10 +173,10 @@ file_size_table::item * file_size_table::item::FindItem(::ca::application * papp
       if(iFindName < 0)
          return NULL;
       return m_itema[iFindName].FindItem(papp, strPath.Mid(iFind + 1), iIteration);
-      
+
    }
 }
- 
+
 
 int file_size_table::item::FindName(::ca::application * papp, const char * pszName, int & iIteration)
 {
@@ -240,10 +243,10 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 bool DBFileSystemSizeSet::get_cache_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
 {
    return false;
-   CSingleLock sl(m_table.m_pmutex, FALSE);
+   single_lock sl(m_table.m_pmutex, FALSE);
   // Wait for mutex. Once it is obtained, no other client may
   // communicate with the server
-   if(!sl.Lock(0))
+   if(!sl.lock(duration::zero()))
       return false;
    if(!m_table.check_map())
       return false;
@@ -267,7 +270,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(__int64 & i64Size, const char * pszP
     // Signal server to process this request
     m_table.m_pevExec->SetEvent();
     // Wait for server to finish
-    if (m_table.m_pevDone->Lock(0))
+    if (m_table.m_pevDone->lock(0))
     {
       // Server finished processing data, handle data returned by the Server
        i64Size = m_table.m_pgetfssize->m_iSize;
@@ -284,8 +287,8 @@ bool DBFileSystemSizeSet::get_cache_fs_size(__int64 & i64Size, const char * pszP
 bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
 {
    int iIteration = 0;
-   CSingleLock sl(m_table.m_pmutex, FALSE);
-   if(!sl.Lock(0))
+   single_lock sl(m_table.m_pmutex, FALSE);
+   if(!sl.lock(duration::zero()))
       return false;
    if(!get_fs_size(i64Size, pszPath, bPending, iIteration))
       return false;
@@ -295,8 +298,8 @@ bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, b
 
 bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending, int & iIteration)
 {
-   CSingleLock sl(m_table.m_pmutex, FALSE);
-   if(!sl.Lock(0))
+   single_lock sl(m_table.m_pmutex, FALSE);
+   if(!sl.lock(duration::zero()))
       return false;
    if(iIteration >= m_iMaxIteration)
    {
@@ -330,9 +333,9 @@ FileSystemSizeWnd::FileSystemSizeWnd(::ca::application * papp) :
 {
 }
 
-void FileSystemSizeWnd::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void FileSystemSizeWnd::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   m_p->_001InstallMessageHandling(pinterface);
+   m_p->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &FileSystemSizeWnd::_001OnTimer);
 }
@@ -350,7 +353,7 @@ bool FileSystemSizeWnd::CreateClient()
 bool FileSystemSizeWnd::CreateServer()
 {
    m_bServer = true;
-   if(!m_p->create(NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server", 0, 
+   if(!m_p->create(NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server", 0,
       rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), id()))
       return false;
    m_p->SetTimer(100, 100, NULL);
@@ -374,13 +377,13 @@ bool FileSystemSizeWnd::get_fs_size(__int64 & i64Size, const char * pszPath, boo
    size.m_bRet = false;
 
 
-   gen::memory_file file(get_app());
+   gen::byte_stream_memory_file file(get_app());
    size.write(file);
 
    COPYDATASTRUCT data;
    data.dwData = 0;
-   data.cbData = file.get_length();
-   data.lpData = file.GetAllocation();
+   data.cbData = (::primitive::memory_size) file.get_length();
+   data.lpData = file.get_data();
    HWND hwndWparam = (HWND) m_p->get_os_data();
    WPARAM wparam = (WPARAM) hwndWparam;
    if(::SendMessage(hwnd, WM_COPYDATA, wparam, (LPARAM) &data))
@@ -407,10 +410,10 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
       db_server * pcentral = &System.db();
       file_size_table::get_fs_size size;
-      gen::memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      gen::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
-      CSingleLock sl(&m_cs, TRUE);
+      single_lock sl(&m_cs, TRUE);
       size.m_hwnd = (HWND) pbase->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
          size.m_iSize,
@@ -422,7 +425,7 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      gen::memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      gen::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
@@ -441,18 +444,18 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
       {
          COPYDATASTRUCT data;
          data.dwData = 1;
-         
-         
-         gen::memory_file file(get_app());
+
+
+         gen::byte_stream_memory_file file(get_app());
 
          while(m_sizea.get_size() > 0)
          {
-            CSingleLock sl(&m_cs, TRUE);
+            single_lock sl(&m_cs, TRUE);
             file_size_table::get_fs_size & size = m_sizea[0];
             file.Truncate(0);
             size.write(file);
-            data.cbData = file.get_length();
-            data.lpData = file.GetAllocation();
+            data.cbData = (::primitive::memory_size) file.get_length();
+            data.lpData = file.get_data();
             ::SendMessage((HWND) size.m_hwnd, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.remove_at(0);
          }
@@ -461,7 +464,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
 }
 
 FileSystemSizeServerThread::FileSystemSizeServerThread(::ca::application * papp) :
-   ca(papp), 
+   ca(papp),
    thread(papp)
 {
 }
@@ -473,7 +476,7 @@ bool FileSystemSizeServerThread::initialize_instance()
    return true;
 }
 
-void FileSystemSizeWnd::ClientStartServer()  
+void FileSystemSizeWnd::ClientStartServer()
 {
    db_server * pcentral = &System.db();
    if(GetTickCount() - m_dwLastStartTime > 2000)
@@ -484,8 +487,8 @@ void FileSystemSizeWnd::ClientStartServer()
    pcentral->m_pfilesystemsizeset->m_table.m_hwndServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server");
 }
 
-      
-void file_size_table::get_fs_size::write(ex1::output_stream & ostream)
+
+void file_size_table::get_fs_size::write(ex1::byte_output_stream & ostream)
 {
    ostream << m_strPath;
    ostream << m_bPending;
@@ -494,7 +497,7 @@ void file_size_table::get_fs_size::write(ex1::output_stream & ostream)
    ostream << (int) m_hwnd;
 }
 
-void file_size_table::get_fs_size::read(ex1::input_stream & istream)
+void file_size_table::get_fs_size::read(ex1::byte_input_stream & istream)
 {
    istream >> m_strPath;
    istream >> m_bPending;
@@ -503,4 +506,4 @@ void file_size_table::get_fs_size::read(ex1::input_stream & istream)
    istream >> (int &) m_hwnd;
 }
 
-   
+

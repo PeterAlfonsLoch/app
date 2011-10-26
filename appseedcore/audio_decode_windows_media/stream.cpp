@@ -70,13 +70,13 @@ namespace audio_decode_window_media
          return E_INVALIDARG;
       }
 
-      if(dlibMove.HighPart || (dlibMove.LowPart & 0x8000000))
-         return E_INVALIDARG;
+      //if(dlibMove.HighPart || (dlibMove.LowPart & 0x8000000))
+        // return E_INVALIDARG;
 
-      ULONG ul;
+      file_position ul;
       try
       {
-         ul = m_pfile->seek(dlibMove.LowPart, dwOrigin);
+         ul = m_pfile->seek(MAKELONG64(dlibMove.LowPart, dlibMove.HighPart), (::ex1::e_seek) dwOrigin);
       }
       catch(ex1::file_exception_sp *)
       {
@@ -84,8 +84,8 @@ namespace audio_decode_window_media
       }
       if(plibNewPosition != NULL)
       {
-         plibNewPosition->LowPart  = ul;
-         plibNewPosition->HighPart = 0;
+         plibNewPosition->LowPart  = LODWORD(ul);
+         plibNewPosition->HighPart = HIDWORD(ul);
       }
       return NOERROR;
    }
@@ -168,8 +168,8 @@ namespace audio_decode_window_media
          return NOERROR;
       }
       pstatstg->type = STGTY_LOCKBYTES;
-      pstatstg->cbSize.HighPart = 0;
-      pstatstg->cbSize.LowPart = status.m_size;
+      pstatstg->cbSize.HighPart = HIDWORD(status.m_size);
+      pstatstg->cbSize.LowPart = LODWORD(status.m_size);
       win::TimeToFileTime(get_app(), status.m_mtime, &pstatstg->mtime);
       win::TimeToFileTime(get_app(), status.m_ctime, &pstatstg->ctime);
       win::TimeToFileTime(get_app(), status.m_atime, &pstatstg->atime);

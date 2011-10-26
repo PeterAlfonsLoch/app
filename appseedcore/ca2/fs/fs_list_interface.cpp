@@ -18,12 +18,12 @@ namespace fs
       m_pdata           = new list_data(papp);
       //m_pdata->m_plist  = this;
       SetDataInterface(m_pdata);
-         
+
    }
 
    void list_interface::_001InsertColumns()
    {
-      Column column;
+      ::user::list_column column;
       column.m_iWidth = 200;
       column.m_iSubItem = 0;
 
@@ -47,11 +47,6 @@ namespace fs
    bool list_interface::_001OnUpdateItemCount(DWORD dwFlags)
    {
       return ::user::list::_001OnUpdateItemCount(dwFlags);
-   }
-
-   data * list_interface::get_fs_data()
-   {
-      return get_document()->get_fs_data();
    }
 
    void list_interface::GetSelectedFilePath(stringa & base_array)
@@ -99,6 +94,7 @@ namespace fs
 
    void list_interface::_017UpdateZipList(const char * lpcsz)
    {
+      UNREFERENCED_PARAMETER(lpcsz);
    }
 
    void list_interface::_017UpdateList(const char * lpcsz)
@@ -107,7 +103,7 @@ namespace fs
       //UNREFERENCED_PARAMETER(lpsz);
       stringa straStrictOrder;
       data_get(
-         data_get_current_sort_id(), 
+         data_get_current_sort_id(),
          string(data_get_current_list_layout_id()) + ".straStrictOrder",
          straStrictOrder);
       index_biunique iaDisplayToStrict;
@@ -124,7 +120,7 @@ namespace fs
       /*if(m_bStatic)
       {
          stringa stra;
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
          for(int i = 0; i < stra.get_size(); i++)
          {
             item.m_flags.unsignalize_all();
@@ -138,7 +134,7 @@ namespace fs
             item.m_iImage = -1;
             item.m_strPath = stra[i];
             item.m_strName = get_fs_data()->file_title(stra[i]);
-            
+
             m_itema.add_item(item);
          }
          _001OnUpdateItemCount();
@@ -163,18 +159,18 @@ namespace fs
       stringa straTitle;
       if(strlen(lpcsz) == 0)
       {
-         get_fs_data()->root_ones(straPath);
+         get_document()->root_ones(straPath);
          straTitle = straPath;
       }
       else
       {
-         get_fs_data()->ls(lpcsz, &straPath, & straTitle);
+         get_document()->ls(lpcsz, &straPath, & straTitle);
       }
 
       for(int i = 0; i < straPath.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
-         if(get_fs_data()->is_dir(straPath[i]))
+         if(get_document()->is_dir(straPath[i]))
          {
             item.m_flags.signalize(::fs::FlagFolder);
          }
@@ -185,7 +181,7 @@ namespace fs
          item.m_strPath = straPath[i];
          item.m_strName = straTitle[i];
          m_straStrictOrder.add(straPath[i]);
-         
+
          get_fs_list_data()->m_itema.SetItemAt(iSize, item);
          iSize++;
          if(iSize >= iMaxSize)
@@ -214,8 +210,8 @@ namespace fs
                iaDisplayToStrictNew.remove_b(strictOld);
             }
          }*/
-         // segundo, reordena conforme a 
-         // ordem que a listagem de arquivos fornecida pelo 
+         // segundo, reordena conforme a
+         // ordem que a listagem de arquivos fornecida pelo
          // sistema operacional pode ser fornecida.
          for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
          {
@@ -257,7 +253,7 @@ namespace fs
       if(m_eview == ViewIcon)
       {
          data_set(
-            data_get_current_sort_id(), 
+            data_get_current_sort_id(),
             string(data_get_current_list_layout_id()) + ".straStrictOrder",
             m_straStrictOrder);
          m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
@@ -271,7 +267,7 @@ namespace fs
       if(m_lpiidlAbsolute == NULL)
          return;
 
-      CSingleLock slBrowse(&m_csBrowse, TRUE);
+      single_lock slBrowse(&m_csBrowse, TRUE);
       LPMALLOC lpmalloc = NULL;
       IShellFolder * lpsfDesktop;
       HRESULT hr;
@@ -302,11 +298,11 @@ namespace fs
 
    }
 
-   void list_interface::_001InstallMessageHandling(::user::win::message::dispatch *pinterface)
+   void list_interface::install_message_handling(::user::win::message::dispatch *pinterface)
    {
 
 
-      ::user::form_list::_001InstallMessageHandling(pinterface);
+      ::user::form_list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &list_interface::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &list_interface::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &list_interface::_001OnShowWindow);
@@ -336,7 +332,7 @@ namespace fs
 
          imaging.bitmap_blend(
             pdc,
-            null_point(), 
+            null_point(),
             rectClipBox.size(),
             m_gdibuffer.GetBuffer(),
             null_point(),
@@ -373,11 +369,11 @@ namespace fs
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
-            iItemRange < range.get_item_count(); 
+            iItemRange < range.get_item_count();
             iItemRange++)
       {
          ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound(); 
+         for(iItem = itemrange.GetLBound();
                iItem <= itemrange.GetUBound();
                iItem++)
          {
@@ -420,11 +416,11 @@ namespace fs
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
-            iItemRange < range.get_item_count(); 
+            iItemRange < range.get_item_count();
             iItemRange++)
       {
          ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = itemrange.GetLBound(); 
+         for(iItem = itemrange.GetLBound();
                iItem <= itemrange.GetUBound();
                iItem++)
          {
@@ -463,12 +459,12 @@ namespace fs
       _001ClearSelection();
    }
 
-   void list_interface::_017OpenContextMenuFolder(::fs::item &item)
+   void list_interface::_017OpenContextMenuFolder(const ::fs::item &item)
    {
       UNREFERENCED_PARAMETER(item);
    }
 
-   void list_interface::_017OpenContextMenuFile(::fs::item_array &itema)
+   void list_interface::_017OpenContextMenuFile(const ::fs::item_array &itema)
    {
       UNREFERENCED_PARAMETER(itema);
    }
@@ -477,13 +473,13 @@ namespace fs
    {
    }
 
-   void list_interface::_017OpenFolder(::fs::item &item)
+   void list_interface::_017OpenFolder(const ::fs::item &item)
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);
    }
 
-   void list_interface::_017OpenFile(::fs::item_array &itema)
+   void list_interface::_017OpenFile(const ::fs::item_array &itema)
    {
       UNREFERENCED_PARAMETER(itema);
       ASSERT(FALSE);
@@ -507,14 +503,15 @@ namespace fs
 
    void list_interface::_001OnButtonAction(::user::control * pcontrol)
    {
-      list_data * pdata = get_fs_list_data();
+      UNREFERENCED_PARAMETER(pcontrol);
+//      list_data * pdata = get_fs_list_data();
       /* FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
 
       if(pcallback != NULL)
       {
          ::fs::item item;
-         int iItem = pcontrol->GetEditItem();    
+         int iItem = pcontrol->GetEditItem();
          int iStrict;
          if(m_eview == ViewIcon)
          {
@@ -538,11 +535,11 @@ namespace fs
       _001GetSelection(range);
       int_array iaItem;
       for(iItemRange = 0;
-            iItemRange < range.get_item_count(); 
+            iItemRange < range.get_item_count();
             iItemRange++)
       {
          ItemRange itemrange = range.ItemAt(iItemRange);
-         for(iItem = max(0, itemrange.GetLBound()); 
+         for(iItem = max(0, itemrange.GetLBound());
                iItem <= itemrange.GetUBound();
                iItem++)
          {
@@ -569,7 +566,7 @@ namespace fs
 
    void list_interface::_001OnVScroll(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::scroll, pscroll, pobj)
+//      SCAST_PTR(::user::win::message::scroll, pscroll, pobj)
       //m_iCreateImageListStep = pscroll->m_nPos;
       //m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
@@ -590,7 +587,7 @@ namespace fs
       list_item item;
       item.m_strPath = pszPath;
       item.m_strName = pszTitle;
-      if(get_fs_data()->is_dir(pszPath))
+      if(get_document()->is_dir(pszPath))
       {
          item.m_flags.signalize(FlagFolder);
       }
@@ -626,7 +623,7 @@ namespace fs
       Range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
-         range.get_item_count() == 1 
+         range.get_item_count() == 1
          && range.ItemAt(0).GetLBound() == range.ItemAt(0).GetUBound());
       pobj->m_bRet = true;
    }
@@ -713,8 +710,8 @@ namespace fs
       if(strict >= 0 && pdata->m_itema.get_item(strict).IsFolder())
       {
          string strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
-         string strName = get_fs_data()->file_name(strPath);
-         get_fs_data()->file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
+         string strName = get_document()->file_name(strPath);
+         get_document()->file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
          _017Synchronize();
       }
       else
@@ -747,20 +744,20 @@ namespace fs
       return dynamic_cast < document * > (::userbase::form_list::get_document());
    }
 
-   bool list_interface::_001GetItemText(string &str, index iItem, index iSubItem, index iListItem)
+   void list_interface::_001GetItemText(::user::list_item * pitem)
    {
-      return ::userbase::form_list::_001GetItemText(str, iItem, iSubItem, iListItem);
+      return ::userbase::form_list::_001GetItemText(pitem);
    }
 
-   index list_interface::_001GetItemImage(index iItem, index iSubItem, index iListItem)
+   void list_interface::_001GetItemImage(::user::list_item * pitem)
    {
-      return ::userbase::form_list::_001GetItemImage(iItem, iSubItem, iListItem);
+      return ::userbase::form_list::_001GetItemImage(pitem);
    }
 
 
    void list_interface::_001CreateImageList()
    {
-      
+
 /*      icon_key iconkey;
       icon icon;
       for(POSITION pos = m_iconmap.get_start_position();
@@ -804,15 +801,15 @@ namespace fs
       }
    endloop:
       m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      ::ca::lock lock(m_plist->m_pthread);
+      synch_lock lock(m_plist->m_pthread);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
    }
 
    bool list_interface::_001CreateImageListStep()
    {
-      
-      if(m_iCreateImageListStep < 0 
+
+      if(m_iCreateImageListStep < 0
          || m_iCreateImageListStep >= m_itema.get_item_count())
       {
          if(m_bRestartCreateImageList)
@@ -825,13 +822,13 @@ namespace fs
             return false;
          }
       }
-      if(m_iCreateImageListStep < 0 
+      if(m_iCreateImageListStep < 0
          || m_iCreateImageListStep >= m_itema.get_item_count())
       {
          return false;
       }
 
-      Column &column = m_columna.GetBySubItem(m_iNameSubItem);
+      ::user::list_column &column = m_columna.GetBySubItem(m_iNameSubItem);
 
       if(column.m_iSubItem == m_iNameSubItem)
       {
@@ -840,7 +837,7 @@ namespace fs
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = System.shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->_get_handle(),
-            item.m_strPath, 
+            item.m_strPath,
             gen::international::utf8_to_unicode(item.m_strExtra),
             _shell::IconNormal);
 

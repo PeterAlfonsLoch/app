@@ -30,7 +30,7 @@ public:
         );
 
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
    virtual bool initialize_instance();
    virtual int exit_instance();

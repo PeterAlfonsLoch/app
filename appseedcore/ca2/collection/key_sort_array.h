@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Sort.h"
+#include "sort.h"
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
-class key_sort_array  
+class key_sort_array
 {
 public:
    key_sort_array();
@@ -14,11 +14,11 @@ public:
    bool FindFirst(KEY k, int & iIndex, int iStart, int iEnd);
 
    int add(ARG_TYPE type);
-   
+
    int GetSize();
 
    TYPE & ElementAt(int iIndex);
-   
+
 protected:
 
 
@@ -49,15 +49,6 @@ ElementAt(int iIndex)
    return m_array.ElementAt(iIndex);
 }
 
-template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
-void key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
-SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)())
-{
-   m_lpfnKeyProperty= lpfnKeyProperty;
-   Sort::QuickSortByKey < KEY, TYPE, ARG_TYPE >(
-      m_array,
-      m_lpfnKeyProperty);
-}
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 bool key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
@@ -78,7 +69,7 @@ FindFirst(KEY k, int & iIndex, int iStart, int iEnd)
    int iLBound = iStart;
    int iMaxBound = iEnd;
    int iUBound = iMaxBound;
-   
+
    while(true)
    {
       iIndex = (iUBound + iLBound) / 2;

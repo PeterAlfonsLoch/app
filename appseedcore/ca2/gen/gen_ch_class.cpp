@@ -2,7 +2,10 @@
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
 
-extern bool is_legal_uni_index(__int64 c);
+inline bool is_legal_uni_index(__int64 c)
+{
+   return c >= ((uint64_t) 0xffff) ? false : true;
+}
 
 namespace gen
 {

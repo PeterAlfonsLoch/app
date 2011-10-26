@@ -21,28 +21,20 @@ namespace platform
    bool application::initialize_instance()
    {
 
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
-
-      gen::command_line cmdInfo;
-      _001ParseCommandLine(cmdInfo);
-
-      SetRegistryKey("ca2core");
 
       ::userbase::single_document_template* pDocTemplate;
       pDocTemplate = new ::userbase::single_document_template(
          this,
          "system/form",
-         &typeid(document),
-         &typeid(frame),       // main SDI frame ::ca::window
-         &typeid(pane_view));
+         ::ca::get_type_info < document > (),
+         ::ca::get_type_info < frame > (),       // main SDI frame ::ca::window
+         ::ca::get_type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
-
-
-      gen::command_line cmdinfo;
 
       return true;
    }

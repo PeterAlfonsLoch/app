@@ -1,5 +1,5 @@
 ﻿#include "StdAfx.h"
-#include <math.h> 
+#include <math.h>
 
 
 Star350Tracks::Star350Tracks(Star350File * pfile) :
@@ -44,7 +44,7 @@ Star350Tracks::~Star350Tracks()
 * information about one event in the file will be returned in pEvent.
 *
 * Merging data from all tracks into one stream is performed here.
-* 
+*
 * pEvent->tkDelta will contain the tick delta for the event.
 *
 * pEvent->abEvent will contain a description of the event.
@@ -99,7 +99,7 @@ Star350Tracks::~Star350Tracks()
 *
 *****************************************************************************/
 SMFRESULT Star350Tracks::GetNextEvent(
-   MidiEventBase *      pEvent,
+   midi_event_base *      pEvent,
    imedia::position                   tkMax,
    BOOL               bTkMaxInclusive,
    bool bOnlyMTrk,
@@ -111,8 +111,8 @@ SMFRESULT Star350Tracks::GetNextEvent(
    int                  idxTrack;
 //    imedia::position                   tkEventDelta;
     imedia::position                   tkEventPosition;
-    int                     iRelTime;
-    int                     iMinRelTime;
+    imedia::position                     iRelTime;
+    imedia::position                     iMinRelTime;
    SMFRESULT            smfrc;
 
     ASSERT(pEvent != NULL);
@@ -139,16 +139,16 @@ SMFRESULT Star350Tracks::GetNextEvent(
             if(!base < Star350EventTrack >::bases(pTrk))
                 continue;
         }
-            
+
         if (pTrk->GetFlags() & SMF_TF_EOT)
             continue;
-        
+
 
         if(pTrk->GetNextEventPosition(&tkEventPosition, tkMax) != VMSR_SUCCESS)
         {
             continue;
         }
-        
+
         iRelTime = tkEventPosition - m_tkPosition;
 
         if (iRelTime < iMinRelTime)
@@ -185,7 +185,7 @@ SMFRESULT Star350Tracks::GetNextEvent(
          return Star350File::ReachedTkMax;
       }
    }
-    
+
    smfrc = pTrk->GetEvent(pEvent, tkMax, bTkMaxInclusive);
 
    if(smfrc != Star350File::Success)
@@ -193,9 +193,9 @@ SMFRESULT Star350Tracks::GetNextEvent(
 
    //pEvent->operator =(*pTrk->GetEvent());
 
-    imedia::position tkPosition = pTrk->GetPosition();
+    imedia::position tkPosition = pTrk->get_position();
 
-    iRelTime = pTrk->GetPosition() - m_tkPosition;
+    iRelTime = pTrk->get_position() - m_tkPosition;
     if(iRelTime < 0)
         iRelTime = 0;
 
@@ -230,7 +230,7 @@ SMFRESULT Star350Tracks::GetNextEventTkPosition(
     imedia::position                   tkMinRelTime;
 //    DWORD                   dwGot;
     VMSRESULT               vmsr;
-    
+
 
 //    ASSERT(pSmf != NULL);
     ASSERT(pTkPosition != NULL);
@@ -242,7 +242,7 @@ SMFRESULT Star350Tracks::GetNextEventTkPosition(
 
     pTrkFound       = NULL;
     tkMinRelTime    = MAX_TICKS;
-    
+
     //for (pTrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; pTrk++)
    for (idxTrack = 0; idxTrack < m_nSize; idxTrack++)
     {
@@ -258,9 +258,9 @@ SMFRESULT Star350Tracks::GetNextEventTkPosition(
 //               return Star350File::InvalidFile;
 //         }
 //      }
-   
+
 //      tkEventDelta = pTrk->m_tkDelta;
-        
+
         if (VMSR_SUCCESS != (vmsr = pTrk->GetNextEventPosition(&tkEventPosition, tkMax)))
         {
             continue;
@@ -288,7 +288,7 @@ SMFRESULT Star350Tracks::GetNextEventTkPosition(
     {
         return Star350File::ReachedTkMax;
     }
-        
+
 
 //    dwGot = pTrk->m_dwUsed;
 //   tkEventDelta = pTrk->m_tkDelta;
@@ -313,7 +313,7 @@ void Star350Tracks::seek_begin()
 {
    for (int i = 0; i < m_nSize; i++)
     {
-      Star350TrackBase * pTrk = element_at(i);
+      Star350TrackBase * pTrk = this->element_at(i);
       pTrk->seek_begin();
     }
     m_tkPosition = 0;
@@ -408,7 +408,7 @@ void Star350Tracks::seek_begin()
          pTrk->GetNextXFSongName(pxfihs->m_strSongName);
       }
       pTrk->seek_begin();
-      
+
       if(Star350File::Success == pTrk->GetNextXFInfoHeaderLS(&xfihls))
       {
          pxfihs->m_xfaInfoHeaderLS.add(xfihls);
@@ -454,7 +454,7 @@ void Star350Tracks::seek_begin()
 //   }
 //   else
 //   {
-    if(get_size() > 0)
+    if(this->get_size() > 0)
     {
       Star350EventTrack *pTrk = (Star350EventTrack *) operator [](0);
         ASSERT(base < Star350EventTrack >::bases(pTrk));
@@ -504,13 +504,13 @@ void Star350Tracks::seek_begin()
       {
          if(m_pfile->GetFormat() == 0)
          {
-            pTrack = (Star350EventTrack *) element_at(0);
+            pTrack = (Star350EventTrack *) this->element_at(0);
          }
          else
          {
             if(i >= m_nSize)
                break;
-            pTrack = (Star350EventTrack *) element_at(i);
+            pTrack = (Star350EventTrack *) this->element_at(i);
          }
             if(!base < Star350EventTrack >::bases(pTrack))
                 continue;
@@ -565,7 +565,7 @@ void Star350Tracks::seek_begin()
       {
          delete eventsArray.get_at(i);
       }
-      eventsArray.remove_all();   
+      eventsArray.remove_all();
       if(iBestMatch >= 0)
    //      break;
       {
@@ -574,12 +574,12 @@ void Star350Tracks::seek_begin()
       }
       tkTolerance += tkToleranceAddUp;
         eventsMatches.remove_all();
-   
+
    }
 //   if(iBestMatch >= 0)
    if(dwaBestMatchesIndexes.get_size() > 0)
    {
-      
+
       int iWorstMatches = 0x7fffffff;
       for(i = 0; i < dwaBestMatchesIndexes.get_size(); i++)
       {
@@ -622,13 +622,13 @@ void Star350Tracks::seek_begin()
       {
          if(m_pfile->GetFormat() == 0)
          {
-            pTrack = (Star350EventTrack *) element_at(0);
+            pTrack = (Star350EventTrack *) this->element_at(0);
          }
          else
          {
             if(i >= m_nSize)
                goto Skip090;
-            pTrack = (Star350EventTrack *) element_at(iBestMatch);
+            pTrack = (Star350EventTrack *) this->element_at(iBestMatch);
          }
          pEvents = new CMidiEventsV1();
          pTrack->seek_begin();
@@ -652,13 +652,13 @@ Skip090:;
     }
    else
     {
-        Star350EventTrack * pTrack = (Star350EventTrack *)element_at(1);
+        Star350EventTrack * pTrack = (Star350EventTrack *)this->element_at(1);
         pTrack->seek_begin();
         if(!base < Star350EventTrack >::bases(pTrack) || !(bIsSoftKaraokeFile = pTrack->IsSoftKaraokeFile(lpFile)))
         {
             if(m_nSize >= 3)
             {
-                Star350EventTrack * pTrack = (Star350EventTrack *)element_at(2);
+                Star350EventTrack * pTrack = (Star350EventTrack *)this->element_at(2);
                 if(!base < Star350EventTrack >::bases(pTrack))
                 {
                     bIsSoftKaraokeFile = false;
@@ -678,12 +678,12 @@ Skip090:;
     return bIsSoftKaraokeFile;
 }*/
 
-/*Star350EventTrack * Star350Tracks::GetEventTrack(MidiEventBase *pEvent)
+/*Star350EventTrack * Star350Tracks::GetEventTrack(midi_event_base *pEvent)
 {
    int i;
    for(i = 0; i < m_nSize; i++)
    {
-      Star350EventTrack * pTrack = &element_at(i);
+      Star350EventTrack * pTrack = &this->element_at(i);
       if(pTrack->ContainsEvent(pEvent))
          return pTrack;
    }
@@ -694,7 +694,7 @@ Star350EventTrack * Star350Tracks::seek(DWORD dwSeekWhat)
 {
    for(int i = 0; i < m_nSize; i++)
    {
-      Star350EventTrack * pTrack = (Star350EventTrack *)element_at(i);
+      Star350EventTrack * pTrack = (Star350EventTrack *)this->element_at(i);
         if(!base < Star350EventTrack >::bases(pTrack))
             continue;
       pTrack->seek_begin();
@@ -715,7 +715,7 @@ bool Star350Tracks::IsXFFile()
     {
         for(int i = 0; i < m_nSize; i++)
         {
-          Star350EventTrack * pTrack = (Star350EventTrack *)element_at(i);
+          Star350EventTrack * pTrack = (Star350EventTrack *)this->element_at(i);
             if(!base < Star350EventTrack >::bases(pTrack))
                 continue;
             if(pTrack->IsXFFile())
@@ -734,7 +734,7 @@ bool Star350Tracks::IsXFFile()
 {
    for(int i = 0; i < m_nSize; i++)
    {
-      Star350EventTrack * pTrack = (Star350EventTrack *)element_at(i);
+      Star350EventTrack * pTrack = (Star350EventTrack *)this->element_at(i);
         if(!base < Star350EventTrack >::bases(pTrack))
             continue;
       pTrack->FromWorkStorage();
@@ -747,7 +747,7 @@ void Star350Tracks::ToWorkStorage()
 
     for(int i = 0; i < m_nSize; i++)
    {
-      Star350EventTrack * pTrack = (Star350EventTrack *)element_at(i);
+      Star350EventTrack * pTrack = (Star350EventTrack *)this->element_at(i);
         if(!base < Star350EventTrack >::bases(pTrack))
             continue;
       pTrack->ToWorkStorage();
@@ -780,7 +780,7 @@ void Star350Tracks::ToWorkStorage()
     midiEvent.SetParam(NULL, 0);
     *trackUnion.GetEvent() = midiEvent;
     trackUnion.WriteCompleteEvent(0x7fffffff, false);
-    
+
     CHUNKHDR hdr;
     hdr.fourccType = FOURCC_MTrk;
     hdr.dwLength = trackUnion.m_smti.m_cbLength;
@@ -794,7 +794,7 @@ void Star350Tracks::ToWorkStorage()
 /*VMSRESULT Star350Tracks::ExpandTrack(int iTrackIndex)
 {
 //    Star350EventTrack trackUnion;
-    Star350EventTrack * ptrackParam = (Star350EventTrack *) element_at(iTrackIndex);
+    Star350EventTrack * ptrackParam = (Star350EventTrack *) this->element_at(iTrackIndex);
     ASSERT(base < Star350EventTrack >::bases(ptrackParam));
     remove_at(iTrackIndex);
     ptrackParam->seek_begin();
@@ -841,8 +841,8 @@ void Star350Tracks::ToWorkStorage()
             midiEvent.SetParam(NULL, 0);
             *ptrack->GetEvent() = midiEvent;
             ptrack->WriteCompleteEvent(0x7fffffff, false);
-    
-    
+
+
             CHUNKHDR hdr;
             hdr.fourccType = FOURCC_MTrk;
             hdr.dwLength = ptrack->m_smti.m_cbLength;
@@ -856,8 +856,8 @@ void Star350Tracks::ToWorkStorage()
 
 int Star350Tracks::GetMidiTrackIndex(int iIndex)
 {
-   if(base < Star350EventTrack > :: bases(element_at(iIndex)))
-        return ((Star350EventTrack*)element_at(iIndex))->GetMidiTrackIndex();
+   if(base < Star350EventTrack > :: bases(this->element_at(iIndex)))
+        return ((Star350EventTrack*)this->element_at(iIndex))->GetMidiTrackIndex();
     else
         return -1;
 }
@@ -865,9 +865,9 @@ int Star350Tracks::GetMidiTrackIndex(int iIndex)
 VMSRESULT Star350Tracks::SetLyricDelay(int iDelay)
 {
     m_iLyricDelay = iDelay;
-    for(int i = 0; i < get_size(); i++)
+    for(int i = 0; i < this->get_size(); i++)
     {
-        Star350LyricTrack * pltrack = dynamic_cast<Star350LyricTrack *>(element_at(i));
+        Star350LyricTrack * pltrack = dynamic_cast<Star350LyricTrack *>(this->element_at(i));
         if(pltrack != NULL)
         {
             pltrack->m_iDelay = iDelay;

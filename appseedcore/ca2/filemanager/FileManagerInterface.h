@@ -6,11 +6,24 @@ class CLASS_DECL_ca FileManagerInterface :
    virtual public ::database::client
 {
 public:
+   
+   
+   ::critical_section      m_csItemIdListAbsolute;
+   ::fs::item              m_item;
+   string                  m_strTopic;
+
+
+
+   FileManagerInterface();
+   virtual ~FileManagerInterface();
+
+
+
    virtual ::filemanager::data * get_filemanager_data() = 0;
    ::critical_section * GetItemIdListCriticalSection();
    ::fs::item & get_item();
 
-   virtual bool FileManagerBrowse(::fs::item & item);
+   virtual bool FileManagerBrowse(const ::fs::item & item);
    virtual bool FileManagerBrowse(const char * lpcsz);
 
    virtual void FileManagerOneLevelUp();
@@ -24,10 +37,8 @@ public:
    virtual void FileManagerSaveOK();
    virtual void FileManagerSaveCancel();
 
-   FileManagerInterface();
-   virtual ~FileManagerInterface();
 
-   ::critical_section   m_csItemIdListAbsolute;
-   ::fs::item      m_item;
-   string               m_strTopic;
+   virtual ::fs::data * get_fs_data();
+
+
 };

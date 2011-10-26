@@ -152,7 +152,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="veiev.def">
+    <None Include="app_veiev.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

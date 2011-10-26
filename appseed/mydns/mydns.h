@@ -24,6 +24,19 @@
 
 #include "include/ca2.h"
 
+#define LOG_ERR 1
+#define LOG_WARNING 2
+#define _CRT_SECURE_NO_WARNINGS
+#include <winsock2.h>
+#include <io.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+
+
+#define HAVE_INET_PTON 1
+
 #ifdef _CA2_FONTOPUS_MYDNS_DLL
     #define CLASS_DECL_CA2_MYDNS  _declspec(dllexport)
 #else
@@ -866,12 +879,6 @@ extern char		*name_unencode(char *, size_t, char *, char *, size_t);
    <stdint.h> don't define. */
 #undef uintmax_t
 
-#define LOG_ERR 1
-#define LOG_WARNING 2
-#include <winsock2.h>
-
-
-#define _CRT_SECURE_NO_WARNINGS
 
 #include "mydns.h"
 #include "mydnsutil.h"
@@ -882,10 +889,6 @@ extern char		*name_unencode(char *, size_t, char *, char *, size_t);
 
 typedef int socklen_t;
 
-#include <io.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
 
 #include "service.h"

@@ -25,6 +25,7 @@ namespace user
 
 
       using scroll_view::create;
+      using ::user::control::_001IsPointInside;
       virtual bool _001IsPointInside(control * pcontrol, point64 pt);
 
 
@@ -38,7 +39,7 @@ namespace user
       virtual void _001RemoveControls();
       bool _001Validate(control * pcontrol, var & var);
       bool _001SaveEdit(control * pcontrol);
-      DECL_GEN_SIGNAL(_001OnCommand)
+      virtual bool _001OnCommand(id id);
       DECL_GEN_VSIGNAL(_001OnNotify)
       DECL_GEN_VSIGNAL(_001OnMessageNotify)
       virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
@@ -53,7 +54,7 @@ namespace user
       DECL_GEN_VSIGNAL(_000OnPosCreate)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch *pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
       virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::radix::object* phint);
       virtual void _001Update(control * pcontrol);
@@ -85,6 +86,8 @@ namespace user
       bool BaseOnControlEvent(::user::control_event * pevent);
       void _001SetControlFactory(void);
 
+
+      virtual void OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
 
    };
 

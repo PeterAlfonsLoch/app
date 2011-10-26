@@ -1,7 +1,7 @@
 #pragma once
 
 class __declspec(dllexport) UpdateDnsBkApp :
-   public ::icube::application
+   public ::cube8::application
 {
 public:
    UpdateDnsBkApp(void);

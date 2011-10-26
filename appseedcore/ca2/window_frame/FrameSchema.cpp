@@ -5,7 +5,18 @@ namespace window_frame
 {
 
    FrameSchema::FrameSchema(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_fontMarlett(papp),
+      m_brushControlBoxBack(papp),
+      m_brushControlBoxBackSel(papp),
+      m_brushControlBoxBackFocus(papp),
+      m_brushControlBoxBackDisabled(papp),
+      m_penControlBoxBack(papp),
+      m_penControlBoxBackSel(papp),
+      m_penControlBoxBackFocus(papp),
+      m_penControlBoxBackDisabled(papp),
+      m_dibmap(papp),
+      m_schema(papp)
    {
       SetControlBoxButtonId(ButtonClose      , "window_frame::ButtonClose");
       SetControlBoxButtonId(ButtonUp         , "window_frame::ButtonUp");
@@ -136,14 +147,9 @@ namespace window_frame
       return false;
    }
 
-   void FrameSchema::_000OnDraw(gen::signal_object * pobj)
+   void FrameSchema::_001OnDraw(::ca::graphics * pdc)
    {
-      UNREFERENCED_PARAMETER(pobj);
-   }
-
-   void FrameSchema::_000OnNcDraw(gen::signal_object * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
+      UNREFERENCED_PARAMETER(pdc);
    }
 
    void FrameSchema::OnInitializeAppearance()
@@ -287,14 +293,152 @@ namespace window_frame
 
    void FrameSchema::ColorGlass(::ca::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha)
    {
-//      ::user::interaction * pwndiDraw = m_pworkset->GetDrawWindow();
-      class imaging & imaging = System.imaging();
-      imaging.color_blend(pdc, lprect, cr, bAlpha);
+      System.imaging().color_blend(pdc, lprect, cr, bAlpha, m_dibmap[rect(lprect).size()]);
    }
 
    void FrameSchema::OnMove(::user::interaction * pwnd)
    {
       UNREFERENCED_PARAMETER(pwnd);
+   }
+
+   void FrameSchema::hide_button(EButton ebutton, bool bHide)
+   {
+      m_buttonmapPresent[ebutton] = !bHide;
+   }
+
+   bool FrameSchema::has_button(EButton ebutton)
+   {
+      bool bPresent;
+      if(m_buttonmapPresent.Lookup(ebutton, bPresent))
+         return bPresent;
+      else
+      {
+         m_buttonmapPresent[ebutton] = true;
+         return true;
+      }
+   }
+
+   ControlBoxButton * FrameSchema::get_button(EButton ebutton)
+   {
+      ControlBoxButton * pbutton = NULL;
+      m_buttonmap.Lookup(ebutton, pbutton);
+      return pbutton;
+   }
+
+   bool FrameSchema::create_button(EButton ebutton)
+   {
+      ::user::interaction * pwnd = m_pworkset->GetDrawWindow();
+
+      ControlBoxButton * pbutton;
+      if(!m_buttonmap.Lookup(ebutton, pbutton))
+      {
+         m_buttonmap.set_at(ebutton, dynamic_cast < ControlBoxButton * > (System.alloc(m_typeinfoControlBoxButton)));
+      }
+      string strCaption;
+      GetControlBoxButtonCaption(ebutton, strCaption);
+      id id = GetControlId(ebutton);
+
+      if(m_buttonmap.Lookup(ebutton, pbutton))
+      {
+         if(!pbutton->IsWindow()
+            && !pbutton->create(pwnd, id))
+            return false;
+         UpdateControlBoxButton(ebutton);
+      }
+      else
+      {
+         return false;
+      }
+      return true;
+   }
+
+
+   bool FrameSchema::GetControlBoxButtonCaption(EButton ebutton, string &strCaption)
+   {
+      bool bOk = true;
+      switch(ebutton)
+      {
+      case ButtonClose:
+         strCaption = (CHAR) 114;
+         break;
+      case ButtonUp:
+         strCaption = (CHAR) 53;
+         break;
+      case ButtonDown:
+         strCaption = (CHAR) 54;
+         break;
+      case ButtonMinimize:
+         strCaption = (CHAR) 48;
+         break;
+      case ButtonMaximize:
+         strCaption = (CHAR) 49;
+         break;
+      case ButtonRestore:
+         strCaption = (CHAR) 50;
+         break;
+      case ButtonNotifyIcon:
+         strCaption = (CHAR) 0x69;
+         break;
+
+      default:
+         bOk = false;
+      }
+      return bOk;
+
+   }
+
+
+   void FrameSchema::UpdateControlBoxButtons()
+   {
+      POSITION pos = m_buttonmap.get_start_position();
+      EButton ebutton;
+      ControlBoxButton * pbutton;
+      while(pos != NULL)
+      {
+         m_buttonmap.get_next_assoc(pos, ebutton, pbutton);
+         UpdateControlBoxButton(ebutton);
+      }
+   }
+
+   void FrameSchema::UpdateControlBoxButton(EButton ebutton)
+   {
+      ControlBoxButton * pbutton;
+      if(m_buttonmap.Lookup(ebutton, pbutton))
+      {
+         string strCaption;
+         GetControlBoxButtonCaption(ebutton, strCaption);
+         pbutton->SetParent(m_pworkset->GetDrawWindow());
+         pbutton->SetWindowText(strCaption);
+         pbutton->SetFont(m_fontMarlett);
+         pbutton->SetEllipseBrushs(m_brushControlBoxBack, m_brushControlBoxBackSel, m_brushControlBoxBackFocus, m_brushControlBoxBackDisabled);
+         pbutton->SetEllipsePens(m_penControlBoxBack, m_penControlBoxBackSel, m_penControlBoxBackFocus, m_penControlBoxBackDisabled);
+         pbutton->SetTextColors(m_crControlBoxFore, m_crControlBoxForeSel, m_crControlBoxForeFocus, m_crControlBoxForeDisabled);
+      }
+   }
+
+
+   bool FrameSchema::CreateButtons()
+   {
+      create_button(ButtonClose);
+      create_button(ButtonUp);
+      create_button(ButtonDown);
+      create_button(ButtonMinimize);
+      create_button(ButtonMaximize);
+      create_button(ButtonRestore);
+      create_button(ButtonNotifyIcon);
+      return true;
+   }
+
+
+   int FrameSchema::UpdateControlBox()
+   {
+      return 0;
+   }
+
+
+   COLORREF FrameSchema::get_border_main_body_color()
+   {
+      return RGB(63, 150, 106);
    }
 
 }

@@ -1,0 +1,1364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis_v110|Win32">
+      <Configuration>basis_v110</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis_v110|x64">
+      <Configuration>basis_v110</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|Win32">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|x64">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|Win32">
+      <Configuration>profiler</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|x64">
+      <Configuration>profiler</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{437699AD-7464-4E5F-ACF3-7167487A9E3D}</ProjectGuid>
+    <RootNamespace>app_tesseract</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>app_tesseract</ProjectName>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">false</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">false</GenerateManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">false</EmbedManifest>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(VCInstallDir)lib</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)lib\amd64</ReferencePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(VCInstallDir)lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)lib\amd64;$(WindowsSdkDir)lib\x64;</LibraryPath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(VCInstallDir)crt\src;</SourcePath>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXEXT;_CA2_FONTOPUS_TESSERACT_DLL;_AFXDLL;USE_SSL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>copy "$(SolutionDir)..\..\..\thirdparty\binary\libapr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libapriconv-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libaprutil-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libeay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsasl.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_client-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_delta-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_diff-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_fs-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_ra-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_repos-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_subr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_wc-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\list.txt" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\ssleay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\svn.exe" $(OutDir)</Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXEXT;_CA2_FONTOPUS_TESSERACT_DLL;_AFXDLL;USE_SSL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>copy "$(SolutionDir)..\..\..\thirdparty\binary\libapr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libapriconv-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libaprutil-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libeay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsasl.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_client-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_delta-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_diff-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_fs-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_ra-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_repos-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_subr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_wc-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\list.txt" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\ssleay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\svn.exe" $(OutDir)</Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXEXT;_CA2_FONTOPUS_CUBE_DLL;_AFXDLL;USE_SSL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>copy "$(SolutionDir)..\..\..\thirdparty\binary\libapr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libapriconv-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libaprutil-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libeay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsasl.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_client-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_delta-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_diff-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_fs-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_ra-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_repos-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_subr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_wc-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\list.txt" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\ssleay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\svn.exe" $(OutDir)</Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AFXEXT;_CA2_FONTOPUS_CUBE_DLL;_AFXDLL;USE_SSL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <CompileAsManaged>false</CompileAsManaged>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;libssl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <Profile>true</Profile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>copy "$(SolutionDir)..\..\..\thirdparty\binary\libapr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libapriconv-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libaprutil-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libeay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsasl.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_client-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_delta-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_diff-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_fs-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_ra-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_repos-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_subr-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\libsvn_wc-1.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\list.txt" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\ssleay32.dll" $(OutDir)
+copy "$(SolutionDir)..\..\..\thirdparty\binary\svn.exe" $(OutDir)</Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA2_FONTOPUS_TESSERACT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>libeay32.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA2_FONTOPUS_TESSERACT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>libeay32.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA2_FONTOPUS_CUBE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>libeay32.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CA2_FONTOPUS_CUBE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>libeay32.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <Profile>true</Profile>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuild>
+      <Command>copy "$(SolutionDir)..\..\thirdparty\binary\avcodec-52.dll" "$(OutDir)avcodec-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avformat-52.dll" "$(OutDir)avformat-52.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\avutil-49.dll" "$(OutDir)avutil-49.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbisfile.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </CustomBuild>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="atesseract\atesseract_application.cpp" />
+    <ClCompile Include="i2com\i2com_contact_view.cpp" />
+    <ClCompile Include="mail\mail_application.cpp" />
+    <ClCompile Include="mail\mail_child_frame.cpp" />
+    <ClCompile Include="mail\mail_configuration.cpp" />
+    <ClCompile Include="mail\mail_document.cpp" />
+    <ClCompile Include="mail\mail_frame.cpp" />
+    <ClCompile Include="mail\mail_list.cpp" />
+    <ClCompile Include="mail\mail_right_pane_view.cpp" />
+    <ClCompile Include="mail\mail_tree.cpp" />
+    <ClCompile Include="mail\mail_view.cpp" />
+    <ClCompile Include="mail\mail_views.cpp" />
+    <ClCompile Include="simpledb\cfg\simpledbcfg_application.cpp" />
+    <ClCompile Include="simpledb\cfg\simpledbcfg_area.cpp" />
+    <ClCompile Include="simpledb\cfg\simpledbcfg_document.cpp" />
+    <ClCompile Include="simpledb\cfg\simpledbcfg_frame.cpp" />
+    <ClCompile Include="simpledb\cfg\simpledbcfg_netnode.cpp" />
+    <ClCompile Include="simpledb\cfg\simpledbcfg_view.cpp" />
+    <ClCompile Include="simpledb\mail_main_frame.cpp" />
+    <ClCompile Include="simpledb\simpledb_application.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="biteditor\biteditor_application.cpp" />
+    <ClCompile Include="biteditor\biteditor_ascii_box.cpp" />
+    <ClCompile Include="biteditor\biteditor_child_frame.cpp" />
+    <ClCompile Include="biteditor\biteditor_document.cpp" />
+    <ClCompile Include="biteditor\biteditor_frame.cpp" />
+    <ClCompile Include="biteditor\biteditor_front_child_frame.cpp" />
+    <ClCompile Include="biteditor\biteditor_front_document.cpp" />
+    <ClCompile Include="biteditor\biteditor_front_view.cpp" />
+    <ClCompile Include="biteditor\biteditor_hex_box.cpp" />
+    <ClCompile Include="biteditor\biteditor_main_document.cpp" />
+    <ClCompile Include="biteditor\biteditor_pane_view_update_hint.cpp" />
+    <ClCompile Include="biteditor\biteditor_tab_view.cpp" />
+    <ClCompile Include="biteditor\biteditor_view.cpp" />
+    <ClCompile Include="devedge\_devedge_child_frame.cpp" />
+    <ClCompile Include="devedge\_devedge_FrontThread.cpp" />
+    <ClCompile Include="devedge\devedge_application.cpp" />
+    <ClCompile Include="devedge\devedge_application_interface.cpp" />
+    <ClCompile Include="devedge\devedge_document.cpp" />
+    <ClCompile Include="devedge\devedge_file.cpp" />
+    <ClCompile Include="devedge\devedge_folder.cpp" />
+    <ClCompile Include="devedge\devedge_FrontChildFrame.cpp" />
+    <ClCompile Include="devedge\devedge_FrontDoc.cpp" />
+    <ClCompile Include="devedge\devedge_FrontView.cpp" />
+    <ClCompile Include="devedge\devedge_headers.cpp" />
+    <ClCompile Include="devedge\devedge_HtmlChildFrame.cpp" />
+    <ClCompile Include="devedge\devedge_HtmlDoc.cpp" />
+    <ClCompile Include="devedge\devedge_HtmlEditChildFrame.cpp" />
+    <ClCompile Include="devedge\devedge_HtmlEditDoc.cpp" />
+    <ClCompile Include="devedge\devedge_HtmlEditView.cpp" />
+    <ClCompile Include="devedge\devedge_HtmlView.cpp" />
+    <ClCompile Include="devedge\devedge_main_document.cpp" />
+    <ClCompile Include="devedge\devedge_main_frame.cpp" />
+    <ClCompile Include="devedge\devedge_pane_view.cpp" />
+    <ClCompile Include="devedge\devedge_pane_view_update_hint.cpp" />
+    <ClCompile Include="devedge\devedge_project.cpp" />
+    <ClCompile Include="devedge\devedge_solution_document.cpp" />
+    <ClCompile Include="devedge\devedge_solution_view.cpp" />
+    <ClCompile Include="devedge\devedge_source.cpp" />
+    <ClCompile Include="devedge\devedge_view.cpp" />
+    <ClCompile Include="status\status_application.cpp" />
+    <ClCompile Include="status\status_class.cpp" />
+    <ClCompile Include="status\status_document.cpp" />
+    <ClCompile Include="status\status_frame.cpp" />
+    <ClCompile Include="status\status_view.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_application.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_document.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_filemanager_document.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_filemanager_frame.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_filemanager_template.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_frame.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_list_view.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_main_document.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_main_frame.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_pane_view.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_pane_view_update_hint.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_svn_view.cpp" />
+    <ClCompile Include="syllomatter\syllomatter_view.cpp" />
+    <ClCompile Include="tarsila\tarsila_application.cpp" />
+    <ClCompile Include="tarsila\tarsila_document.cpp" />
+    <ClCompile Include="tarsila\tarsila_frame.cpp" />
+    <ClCompile Include="tarsila\tarsila_view.cpp" />
+    <ClCompile Include="tesseract\tesseract.cpp" />
+    <ClCompile Include="tesseract\tesseract_application.cpp" />
+    <ClCompile Include="tesseract\tesseract_library.cpp" />
+    <ClCompile Include="vericalc\vericalc_application.cpp" />
+    <ClCompile Include="vericalc\vericalc_document.cpp" />
+    <ClCompile Include="vericalc\vericalc_frame.cpp" />
+    <ClCompile Include="vericalc\vericalc_pane_view.cpp" />
+    <ClCompile Include="vericalc\vericalc_pane_view_update_hint.cpp" />
+    <ClCompile Include="vericalc\vericalc_view.cpp" />
+    <ClCompile Include="veriedit\veriedit_application.cpp" />
+    <ClCompile Include="veriedit\veriedit_document.cpp" />
+    <ClCompile Include="veriedit\veriedit_frame.cpp" />
+    <ClCompile Include="veriedit\veriedit_edit_view.cpp" />
+    <ClCompile Include="veriedit\veriedit_main_document.cpp" />
+    <ClCompile Include="veriedit\veriedit_main_frame.cpp" />
+    <ClCompile Include="veriedit\veriedit_pane_view.cpp" />
+    <ClCompile Include="veriedit\veriedit_pane_view_update_hint.cpp" />
+    <ClCompile Include="verifile\verifile_application.cpp" />
+    <ClCompile Include="verisimplevideo\verisimplevideo_application.cpp" />
+    <ClCompile Include="verisimplevideo\verisimplevideo_document.cpp" />
+    <ClCompile Include="verisimplevideo\verisimplevideo_frame.cpp" />
+    <ClCompile Include="verisimplevideo\verisimplevideo_pane_view.cpp" />
+    <ClCompile Include="verisimplevideo\verisimplevideo_pane_view_update_hint.cpp" />
+    <ClCompile Include="verisimplevideo\verisimplevideo_view.cpp" />
+    <ClCompile Include="veriview\veriview_autocomplete.cpp" />
+    <ClCompile Include="veriview\veriview_a_view.cpp" />
+    <ClCompile Include="veriview\veriview_address_view.cpp" />
+    <ClCompile Include="veriview\veriview_application.cpp" />
+    <ClCompile Include="veriview\veriview_document.cpp" />
+    <ClCompile Include="veriview\veriview_main_document.cpp" />
+    <ClCompile Include="veriview\veriview_main_frame.cpp" />
+    <ClCompile Include="veriview\veriview_pane_view.cpp" />
+    <ClCompile Include="veriview\veriview_pane_view_update_hint.cpp" />
+    <ClCompile Include="veriview\veriview_view.cpp" />
+    <ClCompile Include="winservice_filesystemsize\winservice_filesystemsizeapplication.cpp" />
+    <ClCompile Include="winservice_filesystemsize\winservice_filesystemsizeservice.cpp" />
+    <ClCompile Include="i2com\i2com_application.cpp" />
+    <ClCompile Include="i2com\i2com_child_frame.cpp" />
+    <ClCompile Include="i2com\i2com_comm_form_view.cpp" />
+    <ClCompile Include="i2com\i2com_comm_view.cpp" />
+    <ClCompile Include="i2com\i2com_contact_view_html.cpp" />
+    <ClCompile Include="i2com\i2com_document.cpp" />
+    <ClCompile Include="i2com\i2com_form_view.cpp" />
+    <ClCompile Include="i2com\i2com_frame.cpp" />
+    <ClCompile Include="i2com\i2com_im_edit_view.cpp" />
+    <ClCompile Include="i2com\i2com_im_stream_view.cpp" />
+    <ClCompile Include="i2com\i2com_im_view.cpp" />
+    <ClCompile Include="i2com\i2com_msn_socket.cpp" />
+    <ClCompile Include="i2com\i2com_simple_contact_list.cpp" />
+    <ClCompile Include="i2com\i2com_view.cpp" />
+    <ClCompile Include="i2com\i2com_view_update_hint.cpp" />
+    <ClCompile Include="paint\_paint_document.cpp" />
+    <ClCompile Include="paint\_paint_frame.cpp" />
+    <ClCompile Include="paint\_paint_pane_view.cpp" />
+    <ClCompile Include="paint\_paint_pane_view_update_hint.cpp" />
+    <ClCompile Include="paint\_paint_view.cpp" />
+    <ClCompile Include="paint\paint_application.cpp" />
+    <ClCompile Include="paint\paint_document.cpp" />
+    <ClCompile Include="paint\paint_elemental.cpp" />
+    <ClCompile Include="paint\paint_image.cpp" />
+    <ClCompile Include="paint\paint_input_button.cpp" />
+    <ClCompile Include="paint\paint_input_text.cpp" />
+    <ClCompile Include="paint\paint_style.cpp" />
+    <ClCompile Include="paint\paint_text.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_application.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_document.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_document_template.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_HtmlFrame.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_HtmlView.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_http_thread.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_http_window.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_main_frame.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_MultiFrameViewSingleDocTemplate.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_OptionsView.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_registry.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_time.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_tool_bar.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_user_hour.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_util.cpp" />
+    <ClCompile Include="whiteboard\whiteboard_view.cpp" />
+    <ClCompile Include="eluce\eluce_application.cpp" />
+    <ClCompile Include="eluce\eluce_document.cpp" />
+    <ClCompile Include="eluce\eluce_frame.cpp" />
+    <ClCompile Include="eluce\eluce_pane_view.cpp" />
+    <ClCompile Include="eluce\eluce_pane_view_update_hint.cpp" />
+    <ClCompile Include="eluce\eluce_view.cpp" />
+    <ClCompile Include="netnodecfg\netnodecfg_application.cpp" />
+    <ClCompile Include="netnodecfg\netnodecfg_area.cpp" />
+    <ClCompile Include="netnodecfg\netnodecfg_document.cpp" />
+    <ClCompile Include="netnodecfg\netnodecfg_frame.cpp" />
+    <ClCompile Include="netnodecfg\netnodecfg_configuration.cpp" />
+    <ClCompile Include="netnodecfg\netnodecfg_view.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="atesseract\atesseract_application.h" />
+    <ClInclude Include="atesseract\atesseract.h" />
+    <ClInclude Include="i2com\i2com_contact_view.h" />
+    <ClInclude Include="mail\mail_application.h" />
+    <ClInclude Include="mail\mail_configuration.h" />
+    <ClInclude Include="mail\mail.h" />
+    <ClInclude Include="mail\mail_child_frame.h" />
+    <ClInclude Include="mail\mail_document.h" />
+    <ClInclude Include="mail\mail_frame.h" />
+    <ClInclude Include="mail\mail_list.h" />
+    <ClInclude Include="mail\mail_tree.h" />
+    <ClInclude Include="mail\mail_view.h" />
+    <ClInclude Include="mail\mail_views.h" />
+    <ClInclude Include="mail\mail_main_document.h" />
+    <ClInclude Include="mail\mail_main_frame.h" />
+    <ClInclude Include="mail\mail_right_pane_view.h" />
+    <ClInclude Include="simpledb\simpledb_application.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg_application.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg_area.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg_document.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg_frame.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg_simpledb.h" />
+    <ClInclude Include="simpledb\cfg\simpledbcfg_view.h" />
+    <ClInclude Include="simpledb\simpledb.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="biteditor\ascii_box.h" />
+    <ClInclude Include="biteditor\biteditor.h" />
+    <ClInclude Include="biteditor\biteditor_application.h" />
+    <ClInclude Include="biteditor\biteditor_child_frame.h" />
+    <ClInclude Include="biteditor\biteditor_document.h" />
+    <ClInclude Include="biteditor\biteditor_frame.h" />
+    <ClInclude Include="biteditor\biteditor_view.h" />
+    <ClInclude Include="biteditor\front_child_frame.h" />
+    <ClInclude Include="biteditor\front_document.h" />
+    <ClInclude Include="biteditor\front_view.h" />
+    <ClInclude Include="biteditor\hex_box.h" />
+    <ClInclude Include="biteditor\main_document.h" />
+    <ClInclude Include="biteditor\pane_view_update_hint.h" />
+    <ClInclude Include="biteditor\tab_view.h" />
+    <ClInclude Include="biteditor\targetver.h" />
+    <ClInclude Include="biteditor\uidata.h" />
+    <ClInclude Include="devedge\application.h" />
+    <ClInclude Include="devedge\application_interface.h" />
+    <ClInclude Include="devedge\devedge.h" />
+    <ClInclude Include="devedge\devedge_child_frame.h" />
+    <ClInclude Include="devedge\devedge_internal.h" />
+    <ClInclude Include="devedge\devedgeFrontThread.h" />
+    <ClInclude Include="devedge\document.h" />
+    <ClInclude Include="devedge\file.h" />
+    <ClInclude Include="devedge\folder.h" />
+    <ClInclude Include="devedge\FrontChildFrame.h" />
+    <ClInclude Include="devedge\FrontDoc.h" />
+    <ClInclude Include="devedge\FrontView.h" />
+    <ClInclude Include="devedge\headers.h" />
+    <ClInclude Include="devedge\HtmlChildFrame.h" />
+    <ClInclude Include="devedge\HtmlDoc.h" />
+    <ClInclude Include="devedge\HtmlEditChildFrame.h" />
+    <ClInclude Include="devedge\HtmlEditDoc.h" />
+    <ClInclude Include="devedge\HtmlEditView.h" />
+    <ClInclude Include="devedge\HtmlView.h" />
+    <ClInclude Include="devedge\main_document.h" />
+    <ClInclude Include="devedge\main_frame.h" />
+    <ClInclude Include="devedge\pane_view.h" />
+    <ClInclude Include="devedge\pane_view_update_hint.h" />
+    <ClInclude Include="devedge\project.h" />
+    <ClInclude Include="devedge\solution_document.h" />
+    <ClInclude Include="devedge\solution_view.h" />
+    <ClInclude Include="devedge\source.h" />
+    <ClInclude Include="devedge\view.h" />
+    <ClInclude Include="status\application.h" />
+    <ClInclude Include="status\class.h" />
+    <ClInclude Include="status\document.h" />
+    <ClInclude Include="status\frame.h" />
+    <ClInclude Include="status\status.h" />
+    <ClInclude Include="status\view.h" />
+    <ClInclude Include="syllomatter\application.h" />
+    <ClInclude Include="syllomatter\filemanager_document.h" />
+    <ClInclude Include="syllomatter\filemanager_frame.h" />
+    <ClInclude Include="syllomatter\filemanager_template.h" />
+    <ClInclude Include="syllomatter\main_document.h" />
+    <ClInclude Include="syllomatter\main_frame.h" />
+    <ClInclude Include="syllomatter\svn_view.h" />
+    <ClInclude Include="syllomatter\syllomatter.h" />
+    <ClInclude Include="syllomatter\syllomatter_document.h" />
+    <ClInclude Include="syllomatter\syllomatter_frame.h" />
+    <ClInclude Include="syllomatter\syllomatter_list_view.h" />
+    <ClInclude Include="syllomatter\syllomatter_pane_view.h" />
+    <ClInclude Include="syllomatter\syllomatter_pane_view_update_hint.h" />
+    <ClInclude Include="syllomatter\syllomatter_view.h" />
+    <ClInclude Include="tarsila\application.h" />
+    <ClInclude Include="tarsila\document.h" />
+    <ClInclude Include="tarsila\frame.h" />
+    <ClInclude Include="tarsila\tarsila.h" />
+    <ClInclude Include="tarsila\view.h" />
+    <ClInclude Include="tesseract\tesseract.h" />
+    <ClInclude Include="tesseract\tesseract_application.h" />
+    <ClInclude Include="tesseract\tesseract_library.h" />
+    <ClInclude Include="vericalc\application.h" />
+    <ClInclude Include="vericalc\document.h" />
+    <ClInclude Include="vericalc\frame.h" />
+    <ClInclude Include="vericalc\pane_view.h" />
+    <ClInclude Include="vericalc\pane_view_update_hint.h" />
+    <ClInclude Include="vericalc\vericalc.h" />
+    <ClInclude Include="vericalc\view.h" />
+    <ClInclude Include="veriedit\user_printer.h" />
+    <ClInclude Include="veriedit\user_printer_list_view.h" />
+    <ClInclude Include="veriedit\veriedit.h" />
+    <ClInclude Include="veriedit\veriedit_application.h" />
+    <ClInclude Include="veriedit\veriedit_document.h" />
+    <ClInclude Include="veriedit\veriedit_edit_view.h" />
+    <ClInclude Include="veriedit\veriedit_frame.h" />
+    <ClInclude Include="veriedit\veriedit_main_document.h" />
+    <ClInclude Include="veriedit\veriedit_main_frame.h" />
+    <ClInclude Include="veriedit\veriedit_pane_view.h" />
+    <ClInclude Include="veriedit\veriedit_pane_view_update_hint.h" />
+    <ClInclude Include="verifile\application.h" />
+    <ClInclude Include="verifile\verifile.h" />
+    <ClInclude Include="verisimplevideo\application.h" />
+    <ClInclude Include="verisimplevideo\colorspace.h" />
+    <ClInclude Include="verisimplevideo\document.h" />
+    <ClInclude Include="verisimplevideo\frame.h" />
+    <ClInclude Include="verisimplevideo\pane_view.h" />
+    <ClInclude Include="verisimplevideo\pane_view_update_hint.h" />
+    <ClInclude Include="verisimplevideo\verisimplevideo.h" />
+    <ClInclude Include="verisimplevideo\view.h" />
+    <ClInclude Include="veriview\autocomplete.h" />
+    <ClInclude Include="veriview\a_view.h" />
+    <ClInclude Include="veriview\address_view.h" />
+    <ClInclude Include="veriview\application.h" />
+    <ClInclude Include="veriview\document.h" />
+    <ClInclude Include="veriview\main_document.h" />
+    <ClInclude Include="veriview\main_frame.h" />
+    <ClInclude Include="veriview\pane_view.h" />
+    <ClInclude Include="veriview\pane_view_update_hint.h" />
+    <ClInclude Include="veriview\veriview.h" />
+    <ClInclude Include="veriview\view.h" />
+    <ClInclude Include="winservice_filesystemsize\application.h" />
+    <ClInclude Include="winservice_filesystemsize\service.h" />
+    <ClInclude Include="winservice_filesystemsize\winservice_filesystemsize.h" />
+    <ClInclude Include="eluce\application.h" />
+    <ClInclude Include="eluce\colorspace.h" />
+    <ClInclude Include="eluce\document.h" />
+    <ClInclude Include="eluce\eluce.h" />
+    <ClInclude Include="eluce\frame.h" />
+    <ClInclude Include="eluce\pane_view.h" />
+    <ClInclude Include="eluce\pane_view_update_hint.h" />
+    <ClInclude Include="eluce\view.h" />
+    <ClInclude Include="i2com\application.h" />
+    <ClInclude Include="i2com\child_frame.h" />
+    <ClInclude Include="i2com\comm_form_view.h" />
+    <ClInclude Include="i2com\comm_view.h" />
+    <ClInclude Include="i2com\i2com_contact_view_html.h" />
+    <ClInclude Include="i2com\document.h" />
+    <ClInclude Include="i2com\form_view.h" />
+    <ClInclude Include="i2com\frame.h" />
+    <ClInclude Include="i2com\i2com.h" />
+    <ClInclude Include="i2com\im_edit_view.h" />
+    <ClInclude Include="i2com\im_stream_view.h" />
+    <ClInclude Include="i2com\im_view.h" />
+    <ClInclude Include="i2com\msn_socket.h" />
+    <ClInclude Include="i2com\view.h" />
+    <ClInclude Include="i2com\view_update_hint.h" />
+    <ClInclude Include="paint\application.h" />
+    <ClInclude Include="paint\document.h" />
+    <ClInclude Include="paint\elemental.h" />
+    <ClInclude Include="paint\image.h" />
+    <ClInclude Include="paint\input_button.h" />
+    <ClInclude Include="paint\input_text.h" />
+    <ClInclude Include="paint\paint.h" />
+    <ClInclude Include="paint\paint_document.h" />
+    <ClInclude Include="paint\paint_frame.h" />
+    <ClInclude Include="paint\paint_view.h" />
+    <ClInclude Include="paint\pane_view.h" />
+    <ClInclude Include="paint\pane_view_update_hint.h" />
+    <ClInclude Include="paint\style.h" />
+    <ClInclude Include="paint\text.h" />
+    <ClInclude Include="whiteboard\application.h" />
+    <ClInclude Include="whiteboard\definition.h" />
+    <ClInclude Include="whiteboard\document.h" />
+    <ClInclude Include="whiteboard\document_template.h" />
+    <ClInclude Include="whiteboard\html_frame.h" />
+    <ClInclude Include="whiteboard\html_view.h" />
+    <ClInclude Include="whiteboard\http_thread.h" />
+    <ClInclude Include="whiteboard\http_window.h" />
+    <ClInclude Include="whiteboard\main_frame.h" />
+    <ClInclude Include="whiteboard\MultiFrameViewSingleDocTemplate.h" />
+    <ClInclude Include="whiteboard\options_view.h" />
+    <ClInclude Include="whiteboard\registry.h" />
+    <ClInclude Include="whiteboard\site.h" />
+    <ClInclude Include="whiteboard\sites.h" />
+    <ClInclude Include="whiteboard\time.h" />
+    <ClInclude Include="whiteboard\toolbar.h" />
+    <ClInclude Include="whiteboard\user_hour.h" />
+    <ClInclude Include="whiteboard\util.h" />
+    <ClInclude Include="whiteboard\view.h" />
+    <ClInclude Include="whiteboard\whiteboard.h" />
+    <ClInclude Include="netnodecfg\netnodecfg_application.h" />
+    <ClInclude Include="netnodecfg\netnodecfg_area.h" />
+    <ClInclude Include="netnodecfg\netnodecfg_document.h" />
+    <ClInclude Include="netnodecfg\netnodecfg_frame.h" />
+    <ClInclude Include="netnodecfg\netnodecfg_configuration.h" />
+    <ClInclude Include="netnodecfg\netnodecfg.h" />
+    <ClInclude Include="netnodecfg\netnodecfg_view.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_tesseract.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseedcore\ca2\ca2.vcxproj">
+      <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseedcore\ca\ca.vcxproj">
+      <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseedcore\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

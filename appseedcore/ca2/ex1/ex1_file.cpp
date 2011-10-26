@@ -11,31 +11,29 @@ namespace ex1
 
    file::file()
    {
-      m_preader = this;
-      m_pwriter = this;
    }
 
 
-   DWORD_PTR file::read(void *lpBuf, DWORD_PTR nCount)
+   ::primitive::memory_size file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
-      return io_stream::read(lpBuf, nCount);
+      return ::ex1::reader::read(lpBuf, nCount);
    }
 
-   void file::write(const void * lpBuf, DWORD_PTR nCount)
+   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      io_stream::write(lpBuf, nCount);
+      ::ex1::writer::write(lpBuf, nCount);
    }
 
 
-   void file::write(output_stream & ostream)
+   void file::write(byte_output_stream & ostream)
    {
       seek_to_begin();
-      ex1::io_stream::write(ostream);
+      ex1::reader::write(ostream);
    }
     
-   void file::read(input_stream & istream)
+   void file::read(byte_input_stream & istream)
    {
-      ex1::io_stream::read(istream);
+      ex1::writer::read(istream);
       seek_to_begin();
    }
 
@@ -57,14 +55,14 @@ namespace ex1
       return FALSE;
    }
 
-   INT_PTR file::seek(INT_PTR lOff, UINT nFrom)
+   file_position file::seek(file_offset lOff, ::ex1::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
       return 0;
    }
 
-   DWORD_PTR file::GetPosition() const
+   file_position file::get_position() const
    {
       return 0;
    }
@@ -81,30 +79,30 @@ namespace ex1
    {
    }
 
-   void file::LockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+   void file::LockRange(file_position dwPos, file_size dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void file::UnlockRange(DWORD_PTR dwPos, DWORD_PTR dwCount)
+   void file::UnlockRange(file_position dwPos, file_size dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void file::SetLength(DWORD_PTR dwNewLen)
+   void file::set_length(file_size dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   DWORD_PTR file::get_length() const
+   file_size file::get_length() const
    {
       return 0;
    }
 
    // file does not support direct buffering (CMemFile does)
-   DWORD_PTR file::GetBufferPtr(UINT nCommand, DWORD_PTR nCount, void ** ppBufStart, void ** ppBufMax)
+   uint64_t file::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
    {
       UNREFERENCED_PARAMETER(nCommand);
       UNREFERENCED_PARAMETER(nCount);

@@ -69,7 +69,7 @@ dns_make_question(uint16_t id, dns_qtype_t qtype, char *name, int rd, size_t *le
 			*dest++ = *c;
 		if (mark && (*c == '.' || !c[1]))					/* Store current label length at 'mark' */
 		{
-			if ((*mark = dest - mark - 1) > DNS_MAXLABELLEN)
+			if ((*mark = (char) (dest - mark - 1)) > DNS_MAXLABELLEN)
 			{
 				if (length) *length = (int)ERR_Q_LABEL_TOO_LONG;
 				return NULL;	/* Label too long */

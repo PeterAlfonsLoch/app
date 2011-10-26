@@ -81,7 +81,7 @@ mydns_rr_get_type(char *type)
 	register char *c;
 
 	for (c = type; *c; c++)
-		*c = toupper(*c);
+		*c = (char) toupper(*c);
 
 	switch (type[0])
 	{
@@ -153,6 +153,7 @@ mydns_rr_get_type(char *type)
 static inline void
 mydns_rr_parse_rp(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 {
+   UNREFERENCED_PARAMETER(row);
 	char *c;
 
 	/* If no space, set txt to '.' */
@@ -189,6 +190,8 @@ mydns_rr_parse_rp(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 static inline void
 mydns_rr_parse_srv(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 {
+   UNREFERENCED_PARAMETER(row);
+   UNREFERENCED_PARAMETER(origin);
 	char *weight, *port, *target;
 
 	/* Clamp 'aux' if necessary */
@@ -199,9 +202,9 @@ mydns_rr_parse_srv(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 	target = rr->data;
 	if ((weight = strsep(&target, " \t")))
 	{
-		rr->srv_weight = atoi(weight);
+		rr->srv_weight = (uint16_t) atoi(weight);
 		if ((port = strsep(&target, " \t")))
-			rr->srv_port = atoi(port);
+			rr->srv_port = (uint16_t) atoi(port);
 		memmove(rr->data, target, strlen(target)+1);
 	}
 }
@@ -215,6 +218,8 @@ mydns_rr_parse_srv(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 static inline int
 mydns_rr_parse_naptr(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 {
+   UNREFERENCED_PARAMETER(row);
+   UNREFERENCED_PARAMETER(origin);
 	char int_tmp[12], data_copy[DNS_MAXNAMELEN * 2 + 2], *p;
 
 	strncpy(data_copy, rr->data, sizeof(data_copy) - 1);
@@ -222,11 +227,11 @@ mydns_rr_parse_naptr(SQL_ROW row, const char *origin, MYDNS_RR *rr)
 
 	if (!strsep_quotes(&p, int_tmp, sizeof(int_tmp)))
 		return (-1);
-	rr->naptr_order = atoi(int_tmp);
+	rr->naptr_order = (uint16_t) atoi(int_tmp);
 
 	if (!strsep_quotes(&p, int_tmp, sizeof(int_tmp)))
 		return (-1);
-	rr->naptr_pref = atoi(int_tmp);
+	rr->naptr_pref = (uint16_t) atoi(int_tmp);
 
 	if (!strsep_quotes(&p, rr->naptr_flags, sizeof(rr->naptr_flags)))
 		return (-1);

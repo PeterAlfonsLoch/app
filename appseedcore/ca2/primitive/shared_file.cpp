@@ -5,7 +5,8 @@ namespace primitive
 
    shared_file::shared_file(::ca::application * papp, UINT nAllocFlags, UINT nGrowBytes) :
       ca(papp),
-      primitive::memory_container < primitive::shared_memory > (papp)
+      memory_container(papp),
+      memory_file(papp)
    {
       UNREFERENCED_PARAMETER(nGrowBytes);
       UNREFERENCED_PARAMETER(nAllocFlags);
@@ -17,13 +18,13 @@ namespace primitive
 
    void shared_file::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
    {
-      get_memory()->SetHandle(hGlobalMemory, bAllowGrow);
+      (dynamic_cast < shared_memory * >(get_memory()))->SetHandle(hGlobalMemory, bAllowGrow);
    }
 
 
-   HGLOBAL shared_file::Detach()
+   HGLOBAL shared_file::detach_storage()
    {
-      return get_memory()->Detach();
+      return (dynamic_cast < shared_memory * >(get_memory()))->detach();
    }
 
 } // namespace primitive

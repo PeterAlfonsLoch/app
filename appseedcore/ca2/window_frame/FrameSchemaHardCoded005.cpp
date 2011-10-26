@@ -19,15 +19,6 @@ namespace window_frame
    FrameSchemaHardCoded005::FrameSchemaHardCoded005(::ca::application * papp) :
       ca(papp),
       FrameSchema(papp),
-      m_fontMarlett(papp),
-      m_brushControlBoxBack(papp),
-      m_brushControlBoxBackSel(papp),
-      m_brushControlBoxBackFocus(papp),
-      m_brushControlBoxBackDisabled(papp),
-      m_penControlBoxBack(papp),
-      m_penControlBoxBackSel(papp),
-      m_penControlBoxBackFocus(papp),
-      m_penControlBoxBackDisabled(papp),
       m_penText1(papp),
       m_penFace1(papp),
       m_penHilight1(papp),
@@ -35,6 +26,8 @@ namespace window_frame
       m_penDkShadow1(papp)
    {   
       SetStyle(StyleLightGreen);
+
+//      SetStyle(StyleLightBlue);
 
 
    }
@@ -253,14 +246,11 @@ namespace window_frame
       }
 
 
-      layout();
-
       return false;
    }
 
-   void FrameSchemaHardCoded005::_000OnDraw(gen::signal_object * pobj)
+   void FrameSchemaHardCoded005::_001OnDraw(::ca::graphics * pdc)
    {
-      IGUI_PARAM_CDC(pdc)
       if(!m_pworkset->IsAppearanceEnabled())
          return;
       ASSERT(m_pworkset->GetDrawWindow() != NULL);
@@ -428,12 +418,6 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded005::_000OnNcDraw(gen::signal_object * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-   }
-
-
    void FrameSchemaHardCoded005::SetMoveableBorderColor(COLORREF cr)
    {
        m_crMoveableBorder          = cr;
@@ -494,10 +478,7 @@ namespace window_frame
          rect rect;
          GetBorderRect(lpcrectClient, rect, eside);
          class imaging & imaging = System.imaging();
-         imaging.color_blend(pdc,
-            rect,
-            crMoveableBorder,
-            127);
+         imaging.color_blend(pdc, rect, crMoveableBorder, 127, m_dibmap[rect.size()]);
       }
       else if(m_estyle == StyleLightBlue)
       {
@@ -525,11 +506,10 @@ namespace window_frame
       {
          rect rect;
          GetBorderRect(lpcrectClient, rect, eside);
+         
          class imaging & imaging = System.imaging();
-         imaging.color_blend(pdc,
-            rect,
-            crMoveableBorder,
-            127);
+         
+         imaging.color_blend(pdc, rect, crMoveableBorder, 127,m_dibmap[rect.size()]);
 
          class rect rectClientB = rectA;
 
@@ -741,71 +721,57 @@ namespace window_frame
       int cx = rect.width();
       int cy = rect.height();
       
-//      gen::savings & savings = System.savings();
+
       class imaging & imaging = System.imaging();
+
+      if(m_dibmap[size(cx, 1)].is_null())
+         m_dibmap[size(cx, 1)].create(get_app());
+
+      if(m_dibmap[size(1, cy - 2)].is_null())
+         m_dibmap[size(1, cy - 2)].create(get_app());
 
       if(eborder & MoveManager::BorderTop)
       {
          if(System.savings().is_trying_to_save(gen::resource_processing))
          {
-            pdc->FillSolidRect(x, y, cx - 1, 1, crTopLeft);
+            pdc->FillSolidRect(x, y, cx, 1, crTopLeft);
          }
          else
          {
-            imaging.color_blend(
-               pdc,
-               x, y,
-               cx - 1, 1,
-               crTopLeft,
-               127);
+            imaging.color_blend(pdc, point(x, y), size(cx, 1), crTopLeft, 127, m_dibmap[size(cx, 1)]);
          }
       }
       if(eborder & MoveManager::BorderLeft)
       {
          if(System.savings().is_trying_to_save(gen::resource_processing))
          {
-            pdc->FillSolidRect(x, y, 1, cy - 1, crTopLeft);
+            pdc->FillSolidRect(x, y + 1, 1, cy - 2, crTopLeft);
          }
          else
          {
-            imaging.color_blend(
-               pdc,
-               x, y,
-               1, cy - 1,
-               crTopLeft,
-               127);
+            imaging.color_blend(pdc, point(x, y + 1), size(1, cy - 2), crTopLeft, 127, m_dibmap[size(1, cy - 2)]);
          }
       }
       if(eborder & MoveManager::BorderRight)
       {
          if(System.savings().is_trying_to_save(gen::resource_processing))
          {
-            pdc->FillSolidRect(x + cx, y, 1, cy, crBottomRight);
+            pdc->FillSolidRect(x + cx - 1, y + 1, 1, cy - 2, crBottomRight);
          }
          else
          {
-            imaging.color_blend(
-               pdc,
-               x + cx, y,
-               1, cy,
-               crTopLeft,
-               127);
+            imaging.color_blend(pdc, point(x + cx - 1, y + 1), size(1, cy - 2), crBottomRight, 127, m_dibmap[size(1, cy - 2)]);
          }
       }
       if(eborder & MoveManager::BorderBottom)
       {
          if(System.savings().is_trying_to_save(gen::resource_processing))
          {
-            pdc->FillSolidRect(x, y + cy, cx, -1, crBottomRight);
+            pdc->FillSolidRect(x, y + cy - 1, cx, 1, crBottomRight);
          }
          else
          {
-            imaging.color_blend(
-               pdc,
-               x, y + cy,
-               cx, -1,
-               crTopLeft,
-               127);
+            imaging.color_blend(pdc, point(x, y + cy - 1), size(cx, 1), crBottomRight, 127, m_dibmap[size(cx, 1)]);
          }
       }
 
@@ -1035,6 +1001,19 @@ namespace window_frame
             }
             break;
        }
+      color c;
+      c.set_rgb(m_crMoveableBorder);
+      c.hls_rate(0.0, -0.16, -0.23);
+      m_schema.m_button.m_crBkNormal = c.get_rgb();
+      c.set_rgb(m_crMoveableBorder);
+      c.hls_rate(0.0, -0.49, -0.33);
+      m_schema.m_button.m_crTextNormal = c.get_rgb();
+      c.set_rgb(m_crMoveableBorder);
+      c.hls_rate(0.0, 0.23, 0.11);
+      m_schema.m_button.m_crBkHover = c.get_rgb();
+      c.set_rgb(m_crMoveableBorder);
+      c.hls_rate(0.0, -0.33, -0.11);
+      m_schema.m_button.m_crTextHover = c.get_rgb();
    }
 
    #define BEVEL_SMALL 2
@@ -1267,8 +1246,11 @@ namespace window_frame
       m_rectControlBox.bottom = rect.bottom;
       
       rect.left = rect.right - iButtonSize;
-      GetButton(ButtonClose)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
-      GetButton(ButtonClose)->UpdateWndRgn();
+      if(get_button(ButtonClose) != NULL)
+      {
+         get_button(ButtonClose)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
+         get_button(ButtonClose)->UpdateWndRgn();
+      }
 
       rect.right -= - m_iButtonMargin;
 
@@ -1278,97 +1260,112 @@ namespace window_frame
       {
          rect.right = rect.left - m_iButtonMargin;
          rect.left = rect.right - iButtonSize;
-         GetButton(ButtonUp)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
-         GetButton(ButtonUp)->UpdateWndRgn();
+         get_button(ButtonUp)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
+         get_button(ButtonUp)->UpdateWndRgn();
       }
       else
       {
-         if(GetButton(ButtonUp)->IsWindowVisible())
-            GetButton(ButtonUp)->ShowWindow(SW_HIDE);
+         if(get_button(ButtonUp)->IsWindowVisible())
+            get_button(ButtonUp)->ShowWindow(SW_HIDE);
       }
-      if(pappearance->WndFrameworkDownUpGetDownEnable() && pappearance->IsEnabled())
+      if(get_button(ButtonDown) != NULL)
       {
-         rect.right = rect.left - m_iButtonMargin;
-         rect.left = rect.right - iButtonSize;
-         GetButton(ButtonDown)->::user::interaction::SetWindowPos(
-            ZORDER_TOP, 
-            rect.left, 
-            rect.top, 
-            rect.width(), 
-            rect.height(), 
-            SWP_SHOWWINDOW | SWP_NOREDRAW);
-         GetButton(ButtonDown)->UpdateWndRgn();
+         if(pappearance->WndFrameworkDownUpGetDownEnable() && pappearance->IsEnabled())
+         {
+            rect.right = rect.left - m_iButtonMargin;
+            rect.left = rect.right - iButtonSize;
+            get_button(ButtonDown)->::user::interaction::SetWindowPos(
+               ZORDER_TOP, 
+               rect.left, 
+               rect.top, 
+               rect.width(), 
+               rect.height(), 
+               SWP_SHOWWINDOW | SWP_NOREDRAW);
+            get_button(ButtonDown)->UpdateWndRgn();
+         }
+         else
+         {
+               if(get_button(ButtonDown)->IsWindowVisible())
+                  get_button(ButtonDown)->ShowWindow(SW_HIDE);
+         }
       }
-      else
+      if(get_button(ButtonMaximize) != NULL)
       {
-         if(GetButton(ButtonDown)->IsWindowVisible())
-            GetButton(ButtonDown)->ShowWindow(SW_HIDE);
-      }
-      if(pappearance->IsZoomed() || !pappearance->IsEnabled())
-      {
-         GetButton(ButtonMaximize)->ShowWindow(SW_HIDE);
-      }
-      else
-      {
-         rect.right = rect.left - m_iButtonMargin;
-         rect.left = rect.right - iButtonSize;
-         GetButton(ButtonMaximize)->::user::interaction::SetWindowPos(
-            ZORDER_TOP, 
-            rect.left, 
-            rect.top,
-            rect.width(), 
-            rect.height(), 
-            SWP_SHOWWINDOW | SWP_NOREDRAW);
-         GetButton(ButtonMaximize)->UpdateWndRgn();
+         if(pappearance->IsZoomed() || !pappearance->IsEnabled() || !has_button(ButtonMaximize))
+         {
+            get_button(ButtonMaximize)->ShowWindow(SW_HIDE);
+         }
+         else
+         {
+            rect.right = rect.left - m_iButtonMargin;
+            rect.left = rect.right - iButtonSize;
+            get_button(ButtonMaximize)->::user::interaction::SetWindowPos(
+               ZORDER_TOP, 
+               rect.left, 
+               rect.top,
+               rect.width(), 
+               rect.height(), 
+               SWP_SHOWWINDOW | SWP_NOREDRAW);
+            get_button(ButtonMaximize)->UpdateWndRgn();
+         }
       }
       
-      if(
-         (pappearance->IsIconic()
-       || pappearance->IsFullScreen()
-       || pappearance->IsZoomed())
+      if(get_button(ButtonRestore) != NULL)
+      {
+         if(
+            (pappearance->IsIconic()
+          || pappearance->IsFullScreen()
+          || pappearance->IsZoomed())
 
-          && pappearance->IsEnabled())
-      {
-         rect.right = rect.left - m_iButtonMargin;
-         rect.left = rect.right - iButtonSize;
-         GetButton(ButtonRestore)->::user::interaction::SetWindowPos(
-            ZORDER_TOP,
-            rect.left, 
-            rect.top,
-            rect.width(), 
-            rect.height(),
-            SWP_SHOWWINDOW | SWP_NOREDRAW);
-         GetButton(ButtonRestore)->UpdateWndRgn();
-      }
-      else
-      {
-         if(GetButton(ButtonRestore)->IsWindowVisible())
-         GetButton(ButtonRestore)->ShowWindow(SW_HIDE);
-      }
-
-      if(pappearance->IsIconic() || !pappearance->IsEnabled())
-      {
-         GetButton(ButtonMinimize)->ShowWindow(SW_HIDE);
-      }
-      else
-      {
-         rect.right = rect.left - m_iButtonMargin;
-         rect.left = rect.right - iButtonSize;
-         GetButton(ButtonMinimize)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
-         GetButton(ButtonMinimize)->UpdateWndRgn();
+             && pappearance->IsEnabled())
+         {
+            rect.right = rect.left - m_iButtonMargin;
+            rect.left = rect.right - iButtonSize;
+            get_button(ButtonRestore)->::user::interaction::SetWindowPos(
+               ZORDER_TOP,
+               rect.left, 
+               rect.top,
+               rect.width(), 
+               rect.height(),
+               SWP_SHOWWINDOW | SWP_NOREDRAW);
+            get_button(ButtonRestore)->UpdateWndRgn();
+         }
+         else
+         {
+            if(get_button(ButtonRestore)->IsWindowVisible())
+            get_button(ButtonRestore)->ShowWindow(SW_HIDE);
+         }
       }
 
-      if(pappearance->IsNotifyIconEnabled() && pappearance->IsEnabled())
+      if(get_button(ButtonMinimize) != NULL)
       {
-         rect.right = rect.left - m_iButtonMargin;
-         rect.left = rect.right - iButtonSize;
-         GetButton(ButtonNotifyIcon)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
-         GetButton(ButtonNotifyIcon)->UpdateWndRgn();
+         if(pappearance->IsIconic() || !pappearance->IsEnabled() || !has_button(ButtonMinimize))
+         {
+            get_button(ButtonMinimize)->ShowWindow(SW_HIDE);
+         }
+         else
+         {
+            rect.right = rect.left - m_iButtonMargin;
+            rect.left = rect.right - iButtonSize;
+            get_button(ButtonMinimize)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
+            get_button(ButtonMinimize)->UpdateWndRgn();
+         }
       }
-      else
+
+      if(get_button(ButtonNotifyIcon) != NULL)
       {
-         if(GetButton(ButtonNotifyIcon)->IsWindowVisible())
-         GetButton(ButtonNotifyIcon)->ShowWindow(SW_HIDE);
+         if(pappearance->IsNotifyIconEnabled() && pappearance->IsEnabled())
+         {
+            rect.right = rect.left - m_iButtonMargin;
+            rect.left = rect.right - iButtonSize;
+            get_button(ButtonNotifyIcon)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOREDRAW);
+            get_button(ButtonNotifyIcon)->UpdateWndRgn();
+         }
+         else
+         {
+            if(get_button(ButtonNotifyIcon)->IsWindowVisible())
+            get_button(ButtonNotifyIcon)->ShowWindow(SW_HIDE);
+         }
       }
 
       m_rectControlBox.left = rect.left;
@@ -1395,8 +1392,7 @@ namespace window_frame
          return;
 
 
-      layout();
-
+      m_pworkset->GetWndDraw()->layout();
 
    }
 
@@ -1548,37 +1544,12 @@ namespace window_frame
       
       if(GetAppearance()->IsIconic())
       {
-         bool bChangeStyle = !(pwnd->GetStyle() & WS_CAPTION);
-         if(bChangeStyle)
-         {
-            pwnd->ModifyStyle(0, WS_CAPTION | WS_THICKFRAME, 0);
-            
-            //            SetWindowPos(&wndTop, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | ;
-         }
-         rectWindow -= rectWindow.top_left();
-         ::ca::rgn_sp rgnMain(get_app());
-         rgnMain->CreateRectRgnIndirect(rectWindow);
-         if(bChangeStyle)
-         {
-            //            ModifyStyle(0, WS_CAPTION | WS_THICKFRAME, SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_FRAMECHANGED);
-            pwnd->SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_NOSIZE | SWP_NOMOVE | SWP_FRAMECHANGED);
-         }
       }
       else if(GetAppearance()->IsFullScreen())
       {
-         if((pwnd->GetStyle() & WS_CAPTION))
-         {
-            pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_FRAMECHANGED);
-         }
-         
-   //      SetWindowRgn(pwnd->_get_handle(), NULL, TRUE);
       }
       else if(GetAppearance()->IsZoomed())
       {
-         if((pwnd->GetStyle() & WS_CAPTION))
-         {
-            pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_FRAMECHANGED);
-         }
          
          rect rectClient;
          pwnd->GetClientRect(rectClient);
@@ -1596,11 +1567,6 @@ namespace window_frame
       }
       else 
       {
-         if((pwnd->GetStyle() & WS_CAPTION))
-         {
-            pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_FRAMECHANGED);
-         }
-
          rect rectNClient;
 
          pwnd->GetWindowRect(rectNClient);
@@ -1608,7 +1574,7 @@ namespace window_frame
          rectNClient -= rectNClient.top_left();
          
          //OnNcCalcSize(rectClient);
-         
+         /*
          rect rectRgn = rectNClient;
          rect rectA = rectRgn;
          rectA.top      += 2;
@@ -1655,7 +1621,7 @@ namespace window_frame
          rectB.bottom = ptCenter.y + GRIP_CENTER_LARGE_CY / 2;
          rgnAdd->SetRectRgn(rectB);
          CombineRgn(hrgnMain, hrgnMain, (HRGN) rgnAdd->get_os_data(), RGN_OR);
-         
+         */
    //      SetWindowRgn(pwnd->_get_handle(), hrgnMain, TRUE);
       }
 
@@ -1663,40 +1629,8 @@ namespace window_frame
 
    void FrameSchemaHardCoded005::UpdateWndStyle()
    {
-      ::user::interaction * pwnd = GetWnd();
+//      ::user::interaction * pwnd = GetWnd();
 
-       if(GetAppearance()->IsIconic())
-       {
-       }
-       else if(GetAppearance()->IsFullScreen())
-       {
-           if((pwnd->GetStyle() & WS_CAPTION))
-           {
-               pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_FRAMECHANGED);
-           }
-
-       }
-       else if(GetAppearance()->IsZoomed())
-       {
-           if((pwnd->GetStyle() & WS_CAPTION))
-           {
-               pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW | SWP_NOREDRAW | SWP_FRAMECHANGED);
-           }
-       }
-      else 
-      {
-         if((pwnd->GetStyle() & WS_CAPTION))
-         {
-            UINT uiFlag = SWP_NOSIZE | SWP_NOMOVE;
-            if(pwnd->IsWindowVisible())
-            {
-               uiFlag |= SWP_FRAMECHANGED;
-            }
-            pwnd->ModifyStyle(WS_CAPTION | WS_THICKFRAME | 
-               WS_BORDER | DS_MODALFRAME |
-               DS_3DLOOK, 0, uiFlag);
-         }
-      }
 
 
    }
@@ -1761,152 +1695,11 @@ namespace window_frame
       return false;
    }
 
-   bool FrameSchemaHardCoded005::CreateButtons()
-   {
-      CreateButton(ButtonClose);
-      CreateButton(ButtonUp);
-      CreateButton(ButtonDown);
-      CreateButton(ButtonMinimize);
-      CreateButton(ButtonMaximize);
-      CreateButton(ButtonRestore);
-      CreateButton(ButtonNotifyIcon);
-      return true;
-   }
-
-   bool FrameSchemaHardCoded005::CreateButton(EButton ebutton)
-   {
-      ::user::interaction * pwnd = m_pworkset->GetDrawWindow();
-
-      ControlBoxButton * pbutton;
-      if(!m_buttonmap.Lookup(ebutton, pbutton))
-      {
-         m_buttonmap.set_at(ebutton, dynamic_cast < ControlBoxButton * > (System.alloc(m_pruntimeclassControlBoxButton)));
-      }
-      string strCaption;
-      GetControlBoxButtonCaption(ebutton, strCaption);
-      id id = GetControlId(ebutton);
-
-      if(m_buttonmap.Lookup(ebutton, pbutton))
-      {
-         if(!pbutton->IsWindow()
-            && !pbutton->create(pwnd, id))
-            return false;
-         UpdateControlBoxButton(ebutton);
-      }
-      else
-      {
-         return false;
-      }
-      return true;
-   }
-
-   void FrameSchemaHardCoded005::UpdateControlBoxButtons()
-   {
-      POSITION pos = m_buttonmap.get_start_position();
-      EButton ebutton;
-      ControlBoxButton * pbutton;
-      while(pos != NULL)
-      {
-         m_buttonmap.get_next_assoc(pos, ebutton, pbutton);
-         UpdateControlBoxButton(ebutton);
-      }
-   }
-
-   void FrameSchemaHardCoded005::UpdateControlBoxButton(EButton ebutton)
-   {
-      ControlBoxButton * pbutton;
-      if(m_buttonmap.Lookup(ebutton, pbutton))
-      {
-         string strCaption;
-         GetControlBoxButtonCaption(ebutton, strCaption);
-         pbutton->SetParent(m_pworkset->GetDrawWindow());
-         pbutton->SetWindowText(strCaption);
-         pbutton->SetFont(m_fontMarlett);
-         pbutton->SetEllipseBrushs(m_brushControlBoxBack, m_brushControlBoxBackSel, m_brushControlBoxBackFocus, m_brushControlBoxBackDisabled);
-         pbutton->SetEllipsePens(m_penControlBoxBack, m_penControlBoxBackSel, m_penControlBoxBackFocus, m_penControlBoxBackDisabled);
-         pbutton->SetTextColors(m_crControlBoxFore, m_crControlBoxForeSel, m_crControlBoxForeFocus, m_crControlBoxForeDisabled);
-      }
-   }
-
-
-   bool FrameSchemaHardCoded005::GetControlBoxButtonCaption(EButton ebutton, string &strCaption)
-   {
-      bool bOk = true;
-      switch(ebutton)
-      {
-      case ButtonClose:
-         strCaption = (CHAR) 114;
-         break;
-      case ButtonUp:
-         strCaption = (CHAR) 53;
-         break;
-      case ButtonDown:
-         strCaption = (CHAR) 54;
-         break;
-      case ButtonMinimize:
-         strCaption = (CHAR) 48;
-         break;
-      case ButtonMaximize:
-         strCaption = (CHAR) 49;
-         break;
-      case ButtonRestore:
-         strCaption = (CHAR) 50;
-         break;
-      case ButtonNotifyIcon:
-         strCaption = (CHAR) 0x69;
-         break;
-         
-      default:
-         bOk = false;
-      }
-      return bOk;
-      
-   }
-
-   /*UINT FrameSchemaHardCoded005::GetControlBoxButtonId(EButton ebutton)
-   {
-      UINT uiId = -1;
-      switch(ebutton)
-      {
-      case ButtonClose:
-         uiId = ID_VMSGUI_CLOSE;
-         break;
-      case ButtonUp:
-         uiId = ID_VMSGUI_UP;
-         break;
-      case ButtonDown:
-         uiId = ID_VMSGUI_DOWN;
-         break;
-      case ButtonMinimize:
-         uiId = ID_VMSGUI_WINDOW_MINIMIZE;
-         break;
-      case ButtonMaximize:
-         uiId = ID_VMSGUI_WINDOW_MAXIMIZE;
-         break;
-      case ButtonRestore:
-         uiId = ID_VMSGUI_WINDOW_RESTORE;
-         break;
-      case ButtonNotifyIcon:
-         uiId = ID_VMSGUI_NOTIFY_ICON;
-         break;
-
-      }
-      return uiId;
-   }*/
-
-
-
-
-
-   ControlBoxButton * FrameSchemaHardCoded005::GetButton(EButton ebutton)
-   {
-      ControlBoxButton * pbutton = NULL;
-      m_buttonmap.Lookup(ebutton, pbutton);
-      return pbutton;
-   }
 
    void FrameSchemaHardCoded005::layout()
    {
+
+      m_dibmap.remove_all();
       
       rect rectWindow;
 

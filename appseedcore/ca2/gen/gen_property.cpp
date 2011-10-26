@@ -109,7 +109,7 @@ namespace gen
       return -1;
    }
 
-   bool str_str_interface::contains_key(stringa & stra) 
+   bool str_str_interface::contains_key(stringa & stra)
    {
       for(index i = 0; i < stra.get_count(); i++)
       {
@@ -182,7 +182,7 @@ namespace gen
    {
       return get_value() + psz;
    }
-   
+
    string property::operator + (const string & str) const
    {
       return get_value() + str;
@@ -325,7 +325,6 @@ namespace gen
       m_strName = pszName;
    }
 
-
    var_property::var_property(int iId)
    {
       m_strName.Format("id=%d", iId);
@@ -335,6 +334,10 @@ namespace gen
    {
       m_strName = pszName;
       set_value(var);
+   }
+
+   var_property::~var_property()
+   {
    }
 
    var_property & var_property::operator = (const var_property & prop)
@@ -373,7 +376,7 @@ namespace gen
       set_value(value);
       if(m_pset != NULL)
          m_pset->OnAfterPropertyChange(variableOld, this);
-   
+
    }
 
    bool property::is_set(int iIndex) const
@@ -411,6 +414,24 @@ namespace gen
       return get_value(iIndex).implode(pszGlue);
    }
 
+   void property::parse_json(const string & str)
+   {
+      const char * pszJson = str;
+      parse_json(pszJson, str.get_length());
+   }
+
+   void property::parse_json(const char * & pszJson, strsize length)
+   {
+      parse_json(pszJson, pszJson + length - 1);
+   }
+
+   void property::parse_json(const char * & pszJson, const char * pszEnd)
+   {
+       gen::str::consume_spaces(pszJson, 0, pszEnd);
+       m_strName = gen::str::consume_quoted_value(pszJson, pszEnd);
+       gen::str::consume(pszJson, ":", 1, pszEnd);
+       get_value().parse_json(pszJson, pszEnd);
+   }
 
    stringa & property::stra(int iIndex)
    {
@@ -493,16 +514,16 @@ namespace gen
 
    var property::at(int iIndex) const
    {
-      return element_at(iIndex);
+      return this->element_at(iIndex);
    }
 
-   void property::write(ex1::output_stream & ostream)
+   void property::write(ex1::byte_output_stream & ostream)
    {
       ostream << m_strName;
       ostream << get_value();
    }
 
-   void property::read(ex1::input_stream & istream)
+   void property::read(ex1::byte_input_stream & istream)
    {
       istream >> m_strName;
       istream >> get_value();
@@ -2028,104 +2049,201 @@ restart_finding:
       m_signal.emit(&signal_object);
    }
 
-   void property_set::_008Parse(const char * pszCmdLine)
+
+   void property_set::_008ParseCommandLine(const char * pszCmdLineParam, var & varFile)
    {
-      if(*pszCmdLine == '\0')
+      string strApp;
+      _008Parse(false, pszCmdLineParam, varFile, strApp);
+   }
+
+   void property_set::_008ParseCommandFork(const char * pszCmdLineParam, var & varFile, string & strApp)
+   {
+      _008Parse(true, pszCmdLineParam, varFile, strApp);
+   }
+
+   void property_set::_008Parse(bool bApp, const char * pszCmdLineParam, var & varFile, string & strApp)
+   {
+
+      const char * pszCmdLine =  pszCmdLineParam;
+
+      if(pszCmdLine == NULL)
          return;
-      pszCmdLine++;
-      if(*pszCmdLine == '\0')
-         return;
+
       string str;
       string strKey;
       string strValue;
       bool bQuote = false;
-      bool bKey = true;
-      // find " : "
-      while(*pszCmdLine != '\0')
+      bool bKey = false;
+      bool bTwoDots = false;
+      bool bFile = !bApp;
+      bool bRun = true;
+
+
+      const char * pszStart = pszCmdLine;
+      while(bRun)
       {
-         if(*(pszCmdLine - 1) == ' '
-         &&  *pszCmdLine == ':'
-         && *(pszCmdLine + 1) == ' ')
+         bRun = bRun && *pszCmdLine != '\0';
+         if(!bQuote && *pszCmdLine != '\0' && gen::ch::is_space_char(pszCmdLine))
          {
-            pszCmdLine += 2;
-            break;
+            pszStart = gen::str::utf8_inc(pszCmdLine);
          }
-         pszCmdLine++;
-      }
-      while(*pszCmdLine != '\0')
-      {
-         if(*pszCmdLine == '\"' && *(pszCmdLine - 1) != '\\')
+         if(pszStart <= pszCmdLine && (((bApp || bFile) && ((!bQuote && isspace(*pszCmdLine)) || (bQuote && *pszCmdLine == '\"' && (*(pszCmdLine - 1)) != '\\') || !bRun)) || (!bTwoDots && !bQuote && *pszCmdLine == ':')))
          {
-            if(bQuote)
+            if(!bTwoDots && !bQuote && *pszCmdLine == ':')
             {
-               if(bKey)
+               bTwoDots    = true;
+               bFile       = false;
+               bApp        = false;
+            }
+            if(bApp)
+            {
+               strApp = string(pszStart, pszCmdLine - pszStart);
+               bApp = false;
+               bFile = true;
+            }
+            else if(bFile)
+            {
+               if(varFile.is_empty())
                {
-                  strKey = str;
-                  str.Empty();
+                  varFile = string(pszStart, pszCmdLine - pszStart);
+                  if(bQuote)
+                  {
+                     pszCmdLine++;
+                     pszStart = pszCmdLine;
+                     bRun = bRun && *pszCmdLine != '\0';
+                  }
+               }
+               else if(varFile.get_type() == var::type_string)
+               {
+                  varFile.stra().add(varFile);
+                  varFile.stra().add(string(pszStart, pszCmdLine - pszStart));
+               }
+               else if(varFile.get_type() == var::type_stra)
+               {
+                  varFile.stra().add(string(pszStart, pszCmdLine - pszStart));
+               }
+               else if(varFile.get_type() == var::type_propset)
+               {
+                  varFile.propset()["stra"].stra().add(string(pszStart, pszCmdLine - pszStart));
                }
                else
                {
-                  strValue = str;
-                  str.Empty();
-                  add(strKey, var(strValue));
-                  strKey.Empty();
+                  varFile.propset()["varFile"] = varFile;
+                  varFile.propset()["stra"].stra().add(string(pszStart, pszCmdLine - pszStart));
                }
             }
+            if(bTwoDots)
+            {
+               bApp = false;
+               bFile = false;
+            }
+            bQuote = false;
          }
-         else
+         else if(bRun && *pszCmdLine == '\"' && (pszCmdLine == pszCmdLineParam || (*(pszCmdLine - 1)) != '\\'))
          {
-            if(bQuote)
+            bQuote = true;
+            pszStart = pszCmdLine + 1;
+         }
+         else if(bTwoDots)
+         {
+            if(*pszCmdLine == '\"' && *(pszCmdLine - 1) != '\\')
             {
-               str += *pszCmdLine;
-            }
-            else if(*pszCmdLine == '=')
-            {
-               strKey = str;
-               str.Empty();
-
-               bKey = false;
-            }
-            else if(*pszCmdLine == '\n' || *pszCmdLine == '\r'
-               || *pszCmdLine == '\t' || *pszCmdLine == ' ')
-            {
-               if(bKey)
+               if(bQuote)
                {
-                  strKey = str;
-                  add(strKey, var(strValue));
-                  strKey.Empty();
-                  str.Empty();
+                  if(bKey)
+                  {
+                     strKey = str;
+                     str.Empty();
+                  }
+                  else
+                  {
+                     strValue = str;
+                     str.Empty();
+                     add(strKey, var(strValue));
+                     strKey.Empty();
+                     strValue.Empty();
+                  }
                }
-               else if(!strKey.is_empty())
-               {
-                  strValue = str;
-                  add(strKey, var(strValue));
-                  strKey.Empty();
-                  str.Empty();
-               }
-               bKey = true;
             }
             else
             {
-               str += *pszCmdLine;
+               if(bQuote)
+               {
+                  str += *pszCmdLine;
+               }
+               else if(*pszCmdLine == '=')
+               {
+                  strKey = str;
+                  str.Empty();
+
+                  bKey = false;
+               }
+               else if(*pszCmdLine == '\n' || *pszCmdLine == '\r'
+                  || *pszCmdLine == '\t' || *pszCmdLine == ' '
+                     || *pszCmdLine == '\0' || !bRun)
+               {
+                  if(bKey)
+                  {
+                     strKey = str;
+                     add(strKey, var(strValue));
+                     strKey.Empty();
+                     strValue.Empty();
+                     str.Empty();
+                  }
+                  else if(!strKey.is_empty())
+                  {
+                     strValue = str;
+                     add(strKey, var(strValue));
+                     strKey.Empty();
+                     strValue.Empty();
+                     str.Empty();
+                  }
+                  bKey = true;
+               }
+               else
+               {
+                  str += *pszCmdLine;
+               }
             }
          }
          pszCmdLine++;
       }
-      if(bKey)
+   }
+
+   void property_set::parse_json(const char * & pszJson)
+   {
+      parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+   }
+
+   void property_set::parse_json(const char * & pszJson, const char * pszEnd)
+   {
+      gen::str::consume_spaces(pszJson, 0, pszEnd);
+      gen::str::consume(pszJson, "{", 1, pszEnd);
+      gen::str::consume_spaces(pszJson, 0, pszEnd);
+      while(true)
       {
-         strKey = str;
-         add(strKey, var(strValue));
-         strKey.Empty();
-         str.Empty();
-      }
-      else if(!strKey.is_empty())
-      {
-         strValue = str;
-         add(strKey, var(strValue));
-         strKey.Empty();
-         str.Empty();
+         m_propertya.set_size(m_propertya.get_size() + 1);
+         m_propertya.last_element().parse_json(pszJson, pszEnd);
+         gen::str::consume_spaces(pszJson, 0, pszEnd);
+         if(*pszJson == ',')
+         {
+            pszJson++;
+            continue;
+         }
+         else if(*pszJson == '}')
+         {
+            pszJson++;
+            return;
+         }
+         else
+         {
+            string str = "not expected character : ";
+            str += pszJson;
+            throw str;
+         }
       }
    }
+
 
    void property_set::parse_url_query(const char * pszUrlQuery)
    {
@@ -2241,13 +2359,15 @@ restart_finding:
       return strPost;
    }
 
+
+
    string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
    {
    //   std::ostringstream ostring;
    //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
-      
-   //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark 
-   //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue) 
+
+   //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
+   //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
    //      << (CHAR)opt->value_quotation_mark << L" ";
    //   return ostring.str();
 
@@ -2261,10 +2381,20 @@ restart_finding:
       str = name();
       str += "=";
       str += opt->value_quotation_mark;
+      string strValue;
       if(opt->reference_value && opt->m_pentities)
-         str += opt->m_pentities->entity_to_ref(get_string());
+         strValue = opt->m_pentities->entity_to_ref(get_string());
       else
-         str += get_string();
+         strValue = get_string();
+
+      strValue.replace("\\", "\\\\"); // should be first
+      strValue.replace("\n", "\\n");
+      strValue.replace("\t", "\\t");
+      strValue.replace("\r", "\\r");
+      strValue.replace("'", "\\'");
+      strValue.replace("\"", "\\\"");
+
+      str += strValue;
       str += opt->value_quotation_mark;
       str += " ";
 
@@ -2278,7 +2408,7 @@ restart_finding:
       int iPos;
       char ch;
       char chNext;
-   
+
       for(iPos = 0; iPos < str.get_length(); iPos++)
       {
          ch = str[iPos];
@@ -2341,7 +2471,7 @@ restart_finding:
       ASSERT(psz != NULL);
       ASSERT(psz[0] == '$'); // until now accepts only one var
       ASSERT(strlen(psz) >= 2);
-      str = operator [](&psz[1]);   
+      str = operator [](&psz[1]);
       replace_ex1(str);
       return str;
    }
@@ -2351,7 +2481,7 @@ restart_finding:
       m_propertya.remove_all();
    }
 
-   void property_set::write(ex1::output_stream & ostream)
+   void property_set::write(ex1::byte_output_stream & ostream)
    {
       ostream << m_bAutoAdd;
       ostream << m_bMultiValue;
@@ -2359,7 +2489,7 @@ restart_finding:
       ostream << m_propertya;
    }
 
-   void property_set::read(ex1::input_stream & istream)
+   void property_set::read(ex1::byte_input_stream & istream)
    {
       istream >> m_bAutoAdd;
       istream >> m_bMultiValue;
@@ -2480,7 +2610,27 @@ restart_finding:
       return *this;
    }
 
-   
+   property_set & property_set::merge(const property_set & set)
+   {
+      if(&set != this)
+      {
+         for(int i = 0; i < set.m_propertya.get_count(); i++)
+         {
+            ((var_property &)operator[](set.m_propertya[i].name())).m_vara = set.m_propertya[i].m_vara;
+         }
+      }
+      return *this;
+   }
+
+   property_set & property_set::operator += (const property_set & set)
+   {
+      return add(set);
+   }
+
+   property_set & property_set::operator |= (const property_set & set)
+   {
+      return merge(set);
+   }
 
    property_set & property_set::operator = (const pair_set_interface & set)
    {
@@ -2539,14 +2689,14 @@ restart_finding:
       return *this;
    }
 
-   
+
 
 
    index property_set::str_find(const property & property, index find) const
    {
       if(find < 0)
          find = 0;
-      for(; find < get_count(); find++)
+      for(; find < this->get_count(); find++)
       {
          if(m_propertya[find].str_compare(property) == 0)
             return find;
@@ -2559,9 +2709,9 @@ restart_finding:
    bool property_set::str_contains(const property_set & set) const
    {
 
-      for(index i = 0; i < m_propertya.get_count(); i++)
+      for(index i = 0; i < set.m_propertya.get_count(); i++)
       {
-         if(str_find(m_propertya[i]) < 0)
+         if(str_find(set.m_propertya[i]) < 0)
             return false;
       }
       return true;
@@ -2657,7 +2807,7 @@ restart_finding:
    {
    }
 
-  
+
 
    relation_set::~relation_set()
    {

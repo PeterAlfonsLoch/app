@@ -1,7 +1,0 @@
-; winservice_1.def
-
-LIBRARY  "winservice_1"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-

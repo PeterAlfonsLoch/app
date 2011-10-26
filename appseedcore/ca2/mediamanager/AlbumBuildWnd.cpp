@@ -39,7 +39,7 @@ namespace  mediamanager
       KillTimer(1124);
    }
 
-   void AlbumBuildWnd::_001OnTimer(gen::signal_object * pobj) 
+   void AlbumBuildWnd::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -69,7 +69,7 @@ namespace  mediamanager
          {
             KillTimer(1124);
 
-            CSingleLock slRead1(&palbumbuild->m_csRead1, TRUE);
+            single_lock slRead1(&palbumbuild->m_csRead1, TRUE);
             ::sqlite::set * pds = palbumbuild->m_pdsRead1;
 
             if(m_iFieldIndexTitle < 0)
@@ -102,7 +102,7 @@ namespace  mediamanager
             int iUpdatedId;
 
             System.GetThread()->SetThreadPriority(THREAD_PRIORITY_HIGHEST);
-         
+
 
             int iRemove = max(30, ia.get_size());
 
@@ -137,7 +137,7 @@ namespace  mediamanager
                   iUpdated++;
                   iUpdatedId = palbumbuild->m_fileinfo.m_iaUpdate[iFind];
                   palbumbuild->Update(
-                     wstrPath, 
+                     wstrPath,
                      palbumbuild->m_fileinfo.m_timeaUpdate[iFind],
                      palbumbuild->m_fileinfo.m_iaUpdate[iFind]);
                   pds->FieldValueAt(m_iFieldIndexTitle)     = palbumbuild->GetAlbumRecord().m_wstrTitle;
@@ -185,7 +185,7 @@ namespace  mediamanager
       else if(nIDEvent == 1124)
       {
          AlbumBuild * palbumbuild = GetAlbumBuild();
-         CSingleLock slRead1(&palbumbuild->m_csRead1, TRUE);
+         single_lock slRead1(&palbumbuild->m_csRead1, TRUE);
          ::sqlite::set * pds = palbumbuild->m_pdsRead1;
 
          if(m_iFieldIndexTitle < 0)

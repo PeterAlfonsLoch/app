@@ -10,12 +10,12 @@ namespace video
    protected:
       e_command      m_ecommand;
       ex1::file *    m_pfileOpen;
-      base_array < CEvent *, CEvent * > m_evptra;
+      base_array < event *, event * > m_evptra;
    public:
       bool       m_bResult;
       bool *     m_pbResult;
       void SetEvents();
-      void AttachEvent(CEvent * pevent);
+      void AttachEvent(event * pevent);
       player_command();
       player_command(const player_command & command);
       player_command & operator =(const player_command & command);

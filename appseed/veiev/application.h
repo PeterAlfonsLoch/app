@@ -4,7 +4,7 @@ namespace veiev
 {
 
    class CLASS_DECL_CA2_VEIEV application :
-      public ::cube::application
+      public ::tesseract::application
    {
    public:
 
@@ -23,16 +23,9 @@ namespace veiev
       virtual ~application(void);
 
       bool initialize_instance();
-      BOOL exit_instance();
 
 
-	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-
-
-      virtual void _001OnFileNew();
-   		
-
-      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
    };
 

@@ -69,16 +69,18 @@ namespace netshareserver
 
    bool application::initialize_instance()
    {
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       savings().save(gen::resource_display_bandwidth);
 
       m_strAppName                     = "netshareserver";
-      System.get_twf()->m_bProDevianMode      = false;
+      //System.get_twf()->m_bProDevianMode      = false;
       m_bSessionSynchronizedCursor  = false;
       m_bSessionSynchronizedScreen  = false;
+
       return true;
+
    }
 
    void application::netnode_run()
@@ -94,63 +96,59 @@ namespace netshareserver
    }
 
 
-   bool application::bergedge_start()
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
-      if (command_line().m_varQuery.has_property("debugbreak"))
+      if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("debugbreak"))
       {
          ::DebugBreak();
       }
-      if (command_line().m_varQuery.has_property("run"))
+      if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("run"))
       {
          netnode_run();
       }
-      else if(command_line().m_varQuery.has_property("service"))
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("service"))
       {
-         return true;
+         //return true;
       }
-      else if (command_line().m_varQuery.has_property("install"))
+      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("install"))
       {
-         return false;
+         //return false;
       }
-      else if (command_line().m_varQuery.has_property("remove"))
+      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove"))
       {
       }
-      else if(command_line().m_varQuery.has_property("create_service"))
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
       {
          CreateService();
-         return false;
+         //return false;
       }
-      else if(command_line().m_varQuery.has_property("remove"))
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove"))
       {
          RemoveService();
-         return false;
+         //return false;
       }
       else
       {
          netnode_run();
       }
-      return true;
+      //return true;
    }
 
    int application::run()
    {
-      gen::command_line commandline;
-
-      _001ParseCommandLine(commandline);
-
-      if (command_line().m_varQuery.has_property("run"))
+      if (command().m_varTopicQuery.has_property("run"))
       {
-         return ca84::application::run();
+         return cube2::application::run();
       }
-      else if (command_line().m_varQuery.has_property("service"))
+      else if (command().m_varTopicQuery.has_property("service"))
       {
          class service service(this);
          service_base::run(service);
-         return ca84::application::run();
+         return cube2::application::run();
       }
       else
       {
-         return ca84::application::run();
+         return cube2::application::run();
       }
       return TRUE;
    }
@@ -159,7 +157,8 @@ namespace netshareserver
 } // namespace netshareserver
 
 
-CLASS_DECL_NETSHARESERVER ::ca::application * get_new_app()
+ca2::library * get_new_library()
 {
-   return new ::netshareserver::application;
+   return new ::ca2::single_application_library < netshareserver::application > ();
 }
+

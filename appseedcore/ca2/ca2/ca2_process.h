@@ -15,7 +15,7 @@ namespace ca2
          process_thread(::ca::application * papp);
          ::gen::process m_process;
          string m_strRead;
-         CEvent m_evReady;
+         event m_evReady;
          int run();
       };
 

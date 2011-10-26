@@ -16,8 +16,15 @@ namespace ca
       {
       public:
 
+
          application();
          virtual ~application();
+
+
+         virtual string locale_style(const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string locale_style_matter(const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string matter(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+
 
          virtual string usersystemappdata(const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string userappdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
@@ -29,6 +36,7 @@ namespace ca
          virtual string default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
          virtual string userquicklaunch(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
          virtual string userprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
+
 
       };
 

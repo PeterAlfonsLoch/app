@@ -48,9 +48,9 @@ bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
    }
 }
 
-void menu_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void menu_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   form_view::_001InstallMessageHandling(pinterface);
+   form_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_USER + 123, pinterface, this, &menu_view::_001OnUser123);

@@ -71,11 +71,11 @@ public:
       bool Prepare();
       void SetPosition(int iChar, int iPosition);
       bool RawToMain(DWORD dwCP);
-      int GetPosition();
+      int get_position();
       int GetStartIndex();
       void SetStartIndex(int iIndex);
       void SetPosition(int iPosition);
-      int GetPosition(int iChar);
+      int get_position(int iChar);
       void GetText(string & str);
       bool AddChar(string tch);
       bool clear();
@@ -175,6 +175,13 @@ public:
    LOGFONT                  m_logfont;
    LOGFONT                  m_logfontInt;
    LOGFONT                 m_logfontExt;
+
+   ::ca::dib_sp               m_dibWork;
+   ::ca::dib_sp               m_dibWork2;
+   ::ca::dib_sp               m_dibWork3;
+   ::ca::dib_sp               m_dibWorkB;
+   ::ca::dib_sp               m_dibWorkB2;
+   ::ca::dib_sp               m_dibWorkB3;
    
    bool                    m_iLinkCount;
    LyricViewLineTemplate * m_ptemplate;
@@ -182,7 +189,7 @@ public:
    int                     m_iFirstToken;
    int                     m_iLastToken;
    double                  m_dNoteFillRate;
-   DWORD                     m_dwNoteMsLength;
+   imedia::time             m_dwNoteMsLength;
    int                     m_iFillRateNote;
    int                     m_iFillRateToken;
 
@@ -372,12 +379,9 @@ public:
 public:
    bool MaybeURL(const char * lpcsz);
    void SetNoteFillRate(double dFillRate);
-   void SetNoteMsLength(DWORD dwMsLength);
+   void SetNoteMsLength(imedia::time dwMsLength);
    double GetFillRate();
-   void CacheEmboss(
-      ::ca::graphics *             pdc,
-      const char *      lpcsz,
-      int               iLen);
+   void CacheEmboss(::ca::graphics * pdc, const char * lpcsz, int iLen);
 
 /*   void EmbossedTextOut(
       ::ca::graphics *             pdc,

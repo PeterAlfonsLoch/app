@@ -1,13 +1,9 @@
 #include "StdAfx.h"
-#include "application.h"
-#include "backup\frame.h"
-#include "html/html_frame.h"
-#include "html/html_document.h"
-#include "html/html_view.h"
-#include "pane_view.h"
+
 
 namespace backup
 {
+
 
    application::application()
    {
@@ -22,31 +18,26 @@ namespace backup
    bool application::initialize_instance()
    {
 
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       m_eversion = production_class::version_backup;
 
 
-      factory().creatable_small < backup::document > ();
-      factory().creatable_small < backup::frame > ();
-      factory().creatable_small < backup::view > ();
-      factory().creatable_small < backup::pane_view > ();
+      System.factory().creatable_small < backup::document > ();
+      System.factory().creatable_small < backup::frame > ();
+      System.factory().creatable_small < backup::view > ();
+      System.factory().creatable_small < backup::pane_view > ();
 
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
-      gen::command_line cmdInfo;
-      _001ParseCommandLine(cmdInfo);
-
-      SetRegistryKey("ca2core");
-
 	   m_pdoctemplateMain = new ::userbase::single_document_template(
          this,
 		   "production/frame",
-         &typeid(backup::document),
-		   &typeid(backup::frame),
-		   &typeid(backup::pane_view));
+         ::ca::get_type_info < backup::document > (),
+		   ::ca::get_type_info < backup::frame > (),
+		   ::ca::get_type_info < backup::pane_view > ());
 
       return true;
    }

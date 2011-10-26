@@ -4,7 +4,7 @@ Star350LyricTrack::Star350LyricTrack(Star350File * pfile)
 {
     m_pfile = pfile;
     m_iDelay = 0;
-    
+
 
 
 }
@@ -20,8 +20,8 @@ VMSRESULT Star350LyricTrack::GetNextEventPosition(imedia::position *ptkPosition,
     {
         return Star350File::EndOfTrack;
     }
-    MidiEventV008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
-    
+    midi_event_v008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
+
     imedia::position tkPosition = -1;
 //    if(m_iCurrentEvent == m_iLastEvent &&
   //      m_iDelay == m_iLastDelay)
@@ -53,7 +53,7 @@ int Star350LyricTrack::GetFlags()
 }
 
 VMSRESULT Star350LyricTrack::GetEvent(
-    MidiEventBase * pEvent,
+    midi_event_base * pEvent,
     imedia::position   tkMax,
    BOOL   bTkMaxInclusive)
 {
@@ -62,7 +62,7 @@ VMSRESULT Star350LyricTrack::GetEvent(
     {
         return Star350File::EndOfTrack;
     }
-    MidiEventV008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
+    midi_event_v008 & event = m_trackWorkStorage.EventAt(m_iCurrentEvent);
     imedia::position tkPosition = m_tkPosition + event.GetDelta();
     if(tkPosition > tkMax)
     {
@@ -74,7 +74,7 @@ VMSRESULT Star350LyricTrack::GetEvent(
     return VMSR_SUCCESS;
 }
 
-imedia::position Star350LyricTrack::GetPosition()
+imedia::position Star350LyricTrack::get_position()
 {
     imedia::position tkPosition = m_tkPosition;
 //    int iMsPosition  = m_pfile->TicksToMillisecs(tkPosition);
@@ -96,7 +96,7 @@ VMSRESULT Star350LyricTrack::seek_begin()
 /*VMSRESULT Star350LyricTrack::Prepare(CLyricEventsV1 & events)
 {
     m_trackWorkStorage.m_events.remove_all();
-    MidiEventV008 event;
+    midi_event_v008 event;
     imedia::position tkPosition;
     imedia::position tkLastPosition = 0;
     events.m_iCurrentToken = 0;
@@ -135,7 +135,7 @@ VMSRESULT Star350LyricTrack::seek_begin()
 /*VMSRESULT Star350LyricTrack::Prepare(CLyricEventsV2 & events)
 {
     m_trackWorkStorage.m_events.remove_all();
-    MidiEventV008 event;
+    midi_event_v008 event;
     imedia::position tkPosition;
     imedia::position tkLastPosition = 0;
     events.m_iCurrentToken = 0;
@@ -148,7 +148,7 @@ VMSRESULT Star350LyricTrack::seek_begin()
    //CArchive ar(&memFile, CArchive::store);
     while(events.m_iCurrentNote < events.m_msaNotesPosition.GetEventCount())
     {
-      
+
         dwArray.remove_all();
       events.GetNoteTokens(events.m_iCurrentNote, dwArray);
       if(dwArray.GetEventCount() > 0)
@@ -178,7 +178,7 @@ VMSRESULT Star350LyricTrack::seek_begin()
                 m_trackWorkStorage.m_events.add(event);
                 lvaPending.remove_all();
             }
-            
+
         }
         tkLastPosition = tkPosition;
         events.m_iCurrentNote++;

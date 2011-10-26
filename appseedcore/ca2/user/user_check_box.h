@@ -20,7 +20,7 @@ namespace user
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, bool bUser);
 
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)

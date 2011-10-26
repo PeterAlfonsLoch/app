@@ -9,12 +9,14 @@ form_document::form_document(::ca::application * papp) :
 {
 }
 
-void form_document::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
 {
-   string strUrl(lpszUrl);
+   UNREFERENCED_PARAMETER(pdata);
+   string strUrl(varFile);
    if(gen::str::begins_eat(strUrl, "ext://"))
    {
-      ::ShellExecute(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+      Application.open_link(strUrl, lpszTargetFrameName);
+      //::ShellExecute(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
       *pbCancel = true;
       return;
    }
@@ -28,7 +30,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, const char * lpszUrl, 
       && get_html_data()->m_pform->m_pcallback != NULL
       && get_html_data()->m_pform->m_pcallback != dynamic_cast < ::user::form_callback * > (this))
    {
-      get_html_data()->m_pform->m_pcallback->OnBeforeNavigate2(get_html_data(), lpszUrl, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
+      get_html_data()->m_pform->m_pcallback->OnBeforeNavigate2(get_html_data(), varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
    }
 }
 

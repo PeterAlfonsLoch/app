@@ -26,8 +26,7 @@ namespace filemanager
 
       bool initialize();
 
-      virtual void request(var & varFile, var & varRequest);
-      virtual void on_request(var & varFile, var & varRequest);
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
       virtual void InitializeFileManager(const char * pszMatter);
       virtual FileManagerTemplate * GetStdFileManagerTemplate(void);

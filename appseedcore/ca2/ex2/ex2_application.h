@@ -1,16 +1,50 @@
 #pragma once
 
+
 class file_system;
 typedef ca::smart_pointer < file_system > file_system_sp;
 class Ex1FactoryImpl;
 
+
 namespace gen
 {
+
+
    class command_line;
-}
+
+
+} // namespace gen
+
+namespace user
+{
+
+
+   class printer;
+
+
+} // namespace user
+
+
+namespace visual
+{
+
+
+   class icon;
+
+
+} // namespace visual
+
+
+#ifdef LINUX
+
+typedef ::visual::icon * HICON;
+
+#endif
+
 
 namespace ex2
 {
+
 
    class CLASS_DECL_ca application :
       public gen::application,
@@ -23,9 +57,15 @@ namespace ex2
       application();
       virtual ~application();
 
+
+      virtual void construct();
+      virtual void construct(const char * pszId);
+
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(void * pdata);
+
+
+      virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
       virtual bool process_initialize();
 
@@ -38,18 +78,13 @@ namespace ex2
       virtual bool finalize();
 
       virtual int exit_instance();
-      
+
       virtual ::ex1::file_system & file_system();
       virtual BOOL _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual ::document * _001OpenDocumentFile(var varFile);
-      virtual void _001OnFileNew();
+      DECL_GEN_SIGNAL(_001OnFileNew);
 
-      virtual void _001ParseCommandLine(gen::command_line& rCmdInfo);
-      virtual bool _001ProcessShellCommand(gen::command_line& rCmdInfo);
-
-      virtual void Ex1SetCommandLineInfo(gen::command_line & rCmdInfo);
-      virtual void Ex1GetCommandLineInfo(gen::command_line & rCmdInfo);
 
       virtual ::ca::application * get_app() const;
 
@@ -78,6 +113,9 @@ namespace ex2
 
       virtual ::ca::window * window_from_os_data(void * pdata);
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);
+
+      virtual ::user::printer * get_printer(const char * pszDeviceName);
+
 
 
       virtual ::ca::window * get_desktop_window();

@@ -74,6 +74,7 @@ namespace html
 
       void table::layout_phase3(data * pdata)
       {
+         UNREFERENCED_PARAMETER(pdata);
          int cx = 0;
          int cy = 0;
          for(int i = 0; i < m_columna.get_size(); i++)
@@ -85,7 +86,7 @@ namespace html
             cy += m_rowptra[i]->m_cyMax;
          }
          m_size.cx = cx;
-         m_size.cy = cy; 
+         m_size.cy = cy;
       }
 
 

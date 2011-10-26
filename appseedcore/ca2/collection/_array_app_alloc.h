@@ -93,7 +93,7 @@ inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::op
 	int i;
    for(i = 0; i < m_ptra.get_size(); i++)
    {
-      element_at(i) = *a.m_ptra[i];
+      this->element_at(i) = *a.m_ptra[i];
    }
    for(; i < a.m_ptra.get_size(); i++)
    {
@@ -121,13 +121,13 @@ template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::
 set_size(int iSize)
 {
-   while(get_size() < iSize)
+   while(this->get_size() < iSize)
    {
       add(dynamic_cast < TYPE * > (Application.alloc(typeid(TYPE))));
    }
-   while(get_size() > iSize)
+   while(this->get_size() > iSize)
    {
-      remove_at(get_size() - 1);
+      remove_at(this->get_size() - 1);
    }
 }
 

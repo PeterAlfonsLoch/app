@@ -6,7 +6,7 @@ namespace zip
 
    memory_file::memory_file(::ca::application * papp) :
       ::gen::memory_file(papp),
-      ::primitive::memory_container < ::primitive::memory > (papp)
+      ::primitive::memory_container(papp)
    {
       m_filefuncdef.opaque = (voidpf) this;
       m_filefuncdef.zopen_file   = open_file_func;
@@ -36,7 +36,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
-      return pfile->read(buf, size);
+      return (uLong) pfile->read(buf, size);
    }
 
    uLong  memory_file::write_file_func (voidpf opaque, voidpf stream, const void * buf, uLong size)
@@ -52,14 +52,14 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
-      return pfile->GetPosition();      
+      return (long) pfile->get_position();      
    }
 
    long   memory_file::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int origin)
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
-      if(pfile->seek(offset, origin) == 0xffffffff)
+      if(pfile->seek(offset, (::ex1::e_seek) origin) == 0xffffffff)
          return -1;
       else
          return 0;

@@ -39,7 +39,7 @@ public:
   /** Returns bit value at position @c pos. */
   bool get_bit(int pos) const;
 
-  
+
 
 #define CNAME "bit_array"
 #include "primitive/memory_operator.h"
@@ -52,7 +52,7 @@ private:
   int * m_pdata;
   int m_iDataCount;
   int m_iBitCount;
-  
+
 };
 
 /* ***** BEGIN LICENSE BLOCK *****
@@ -73,7 +73,7 @@ private:
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

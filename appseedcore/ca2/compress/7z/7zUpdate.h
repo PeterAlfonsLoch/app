@@ -9,7 +9,7 @@
 #include "../IArchive.h"*/
 
 
-namespace n7z 
+namespace n7z
 {
 
    struct CUpdateItem
@@ -37,7 +37,7 @@ namespace n7z
       bool ATimeDefined;
       bool MTimeDefined;
 
-      bool HasStream() const { return !IsDir && !IsAnti && get_count != 0; }
+      bool HasStream() const { return !IsDir && !IsAnti && this->get_count != 0; }
 
       CUpdateItem():
       IsAnti(false),
@@ -70,8 +70,8 @@ namespace n7z
    };
 
    HRESULT Update(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
-      ::ex1::input_stream *inStream,
+      ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+      ::ex1::byte_input_stream *inStream,
       const CArchiveDatabaseEx *db,
       const array_ptr_alloc<CUpdateItem> &updateItems,
       COutArchive &archive,
@@ -81,6 +81,6 @@ namespace n7z
       const CUpdateOptions &options,
       ::crypto::get_text_password_interface *getDecoderPassword
       );
-} // namespace n7z 
+} // namespace n7z
 
 

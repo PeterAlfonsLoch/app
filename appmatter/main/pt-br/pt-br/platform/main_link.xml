@@ -15,7 +15,9 @@
 <link name="netshare server setup" src="netshareservercfg.dll" brief="Netshare Server Setup" />
 <link name="RTP receiver" src="rtprx.dll" brief="RTP receiver" />
 <link name="RTP transmission" src="rtptx.dll" brief="RTP transmission" />
+<link name="Globo" src="projection.dll" brief="Globo" />
 <link name="Status" src="status.dll" brief="Status" />
+<link name="veiev" src="veiev.dll" brief="veiev" />
 <link name="veriedit editor de texto" src="veriedit.dll" brief="Editor de Texto" />
 <link name="verifile gerenciador de arquivos" src="verifile.dll" brief="Gerenciador de Arquivos" />
 <link name="verisimplevideo reprodutor de vídeos" src="verisimplevideo.dll" brief="verisimplevideo video player" />

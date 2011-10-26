@@ -327,7 +327,7 @@ namespace ex1
             if(pitemRelative->m_pchild == NULL)
             {
                pitemRelative->m_pchild      = pitemNew;
-      
+
                pitemNew->m_pparent  = pitemRelative;
             }
             else
@@ -338,7 +338,7 @@ namespace ex1
 
                pitemNew->m_pparent              = pitemRelative;
                pitemNew->m_pnext                = pitemOldFirstChild;
-               
+
                pitemOldFirstChild->m_pprevious  = pitemNew;
             }
          }
@@ -348,7 +348,7 @@ namespace ex1
             if(pitemRelative->m_pchild == NULL)
             {
                pitemRelative->m_pchild         = pitemNew;
-      
+
                pitemNew->m_pparent     = pitemRelative;
             }
             else
@@ -357,7 +357,7 @@ namespace ex1
 
                pitemNew->m_pparent     = pitemRelative;
                pitemNew->m_pprevious   = pitemOldLastChild;
-               
+
                pitemOldLastChild->m_pnext = pitemNew;
             }
          }
@@ -405,7 +405,7 @@ namespace ex1
             if(pitemRelative->m_pnext == NULL)
             {
                pitemRelative->m_pnext          = pitemNew;
-         
+
                pitemNew->m_pparent     = pitemRelative->m_pparent;
                pitemNew->m_pprevious   = pitemRelative;
                pitemNew->m_pnext       = NULL;

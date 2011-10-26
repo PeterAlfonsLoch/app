@@ -101,7 +101,7 @@ LRESULT CMDIFrameWnd::OnCommandHelp(WPARAM wParam, LPARAM lParam)
    return FALSE;
 }
 
-BOOL CMDIFrameWnd::OnCreateClient(LPCREATESTRUCT lpcs, create_context*)
+BOOL CMDIFrameWnd::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context*)
 {
    return CreateClient(lpcs);
 }
@@ -233,8 +233,7 @@ BOOL CMDIFrameWnd::PreCreateWindow(CREATESTRUCT& cs)
    return TRUE;
 }
 
-BOOL CMDIFrameWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-   ::user::interaction* pParentWnd, create_context* pContext)
+BOOL CMDIFrameWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,  ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
    if (!frame_window::LoadFrame(pszMatter, dwDefaultStyle,
      pParentWnd, pContext))
@@ -343,7 +342,7 @@ CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ca::type_info pClass,
    }
 
    string strFullString, strTitle;
-   strFullString = Application.file().as_string(System.dir().path(System.dir().matter(pszMatter, "string.txt"));
+   strFullString = Application.file().as_string(System.dir().path(Application.dir().matter(pszMatter, "string.txt"));
    if(strFullString.get_length() > 0)
       AfxExtractSubString(strTitle, strFullString, document_template::docName);
 
@@ -472,7 +471,7 @@ BOOL CMDIChildWnd::PreCreateWindow(CREATESTRUCT& cs)
 BOOL CMDIChildWnd::create(const char * lpszClassName,
    const char * lpszWindowName, DWORD dwStyle,
    const RECT& rect, CMDIFrameWnd* pParentWnd,
-   create_context* pContext)
+   ::ca::create_context * pContext)
 {
    if (pParentWnd == NULL)
    {
@@ -559,7 +558,7 @@ BOOL CMDIChildWnd::create(const char * lpszClassName,
 }
 
 BOOL CMDIChildWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-      ::user::interaction* pParentWnd, create_context* pContext)
+      ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
    UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -595,7 +594,7 @@ BOOL CMDIChildWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
    }
 
    string strFullString, strTitle;
-   strFullString = Application.file().as_string(System.dir().path(System.dir().matter(pszMatter, "string.txt"));
+   strFullString = Application.file().as_string(System.dir().path(Application.dir().matter(pszMatter, "string.txt"));
    if(strFullString.get_length() > 0)
       AfxExtractSubString(strTitle, strFullString, 0);    // first sub-string
 
@@ -901,9 +900,9 @@ void CMDIChildWnd::on_update_frame_title(BOOL bAddToTitle)
    {
       char szText[256+_MAX_PATH];
       if (pdocument == NULL)
-         _template::checked::tcsncpy_s(szText, _countof(szText), m_strTitle, _TRUNCATE);
+         _template::checked::strncpy_s(szText, _countof(szText), m_strTitle, _TRUNCATE);
       else
-         _template::checked::tcsncpy_s(szText, _countof(szText), pdocument->get_title(), _TRUNCATE);
+         _template::checked::strncpy_s(szText, _countof(szText), pdocument->get_title(), _TRUNCATE);
       if (m_nWindow > 0)
       {
          char szWinNumber[16+1];
@@ -911,7 +910,7 @@ void CMDIChildWnd::on_update_frame_title(BOOL bAddToTitle)
          
          if( lstrlen(szText) + lstrlen(szWinNumber) < _countof(szText) )
          {
-            _template::checked::tcscat_s( szText, _countof(szText), szWinNumber ); 
+            _template::checked::strcat_s( szText, _countof(szText), szWinNumber ); 
          }
       }
 
@@ -1011,7 +1010,7 @@ int CMDIChildWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
    // call base class with lParam context (not MDI one)
    MDICREATESTRUCT* lpmcs;
    lpmcs = (MDICREATESTRUCT*)lpCreateStruct->lpCreateParams;
-   create_context* pContext = (create_context*)lpmcs->lParam;
+   ::ca::create_context* pContext = (::ca::create_context*)lpmcs->lParam;
 
    return OnCreateHelper(lpCreateStruct, pContext);
 }
@@ -1103,7 +1102,8 @@ void CMDIFrameWnd::OnWindowNew()
    // otherwise we have a new frame !
    document_template * ptemplate = pdocument->get_document_template();
    ASSERT_VALID(ptemplate);
-   frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild);
+   ::ca::create_context_sp cc(get_app());
+   frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild, cc);
    if (pFrame == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to create new frame.\n");

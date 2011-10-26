@@ -66,7 +66,7 @@ namespace production
       
 
       void GetAreaThumbRect(LPRECT lprect, int iArea);
-      int hit_test(point pt);
+      int hit_test(point pt, ::user::control::e_element & eelement);
 
 
 
@@ -78,7 +78,7 @@ namespace production
       virtual void _001OnDraw(::ca::graphics * pdc);
 
       virtual void _001OnTabClick(int iTab);
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object * pHint);
 

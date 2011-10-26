@@ -1,0 +1,7 @@
+; app_veiev.def
+
+LIBRARY  "app_veiev"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+

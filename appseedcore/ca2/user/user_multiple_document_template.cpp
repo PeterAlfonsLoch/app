@@ -59,12 +59,14 @@ void multiple_document_template::remove_document(document * pdocument)
    }
 }
 
-void multiple_document_template::request(var & varFile, var & varQuery)
+
+void multiple_document_template::request(::ca::create_context * pcreatecontext)
 {
-   varQuery["document"] = (::ca::ca *) NULL;
-   bool bMakeVisible = varQuery["make_visible_boolean"];
-   ::user::interaction * pwndParent = varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
-   ::view * pviewAlloc = varQuery["allocation_view"].ca2 < ::view > ();
+
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+   bool bMakeVisible = pcreatecontext->m_bMakeVisible;
+//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
+//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
    document * pdocument = create_new_document();
    if (pdocument == NULL)
    {
@@ -77,7 +79,7 @@ void multiple_document_template::request(var & varFile, var & varQuery)
 
    BOOL bAutoDelete = pdocument->m_bAutoDelete;
    pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
-   frame_window* pFrame = create_new_frame(pdocument, NULL, pwndParent, pviewAlloc);
+   frame_window* pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
    pdocument->m_bAutoDelete = bAutoDelete;
    if (pFrame == NULL)
    {
@@ -88,7 +90,7 @@ void multiple_document_template::request(var & varFile, var & varQuery)
    }
    ASSERT_VALID(pFrame);
 
-   if(varFile.is_empty())
+   if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
       // create a new document - with default document name
       set_default_title(pdocument);
@@ -112,14 +114,19 @@ void multiple_document_template::request(var & varFile, var & varQuery)
    {
       // open an existing document
       wait_cursor wait(get_app());
-      if (!pdocument->on_open_document(varFile))
+      if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
       {
          // ::fontopus::user has be alerted to what failed in on_open_document
          TRACE(::radix::trace::category_AppMsg, 0, "document::on_open_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }
-      pdocument->set_path_name(varFile);
+      pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
+   }
+
+   if(!pcreatecontext->m_bHold)
+   {
+      pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
    }
 
    InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
@@ -130,7 +137,7 @@ void multiple_document_template::request(var & varFile, var & varQuery)
 
    gen::add_ref(pdocument);
 
-   varQuery["document"] = pdocument;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 }
 
 void multiple_document_template::set_default_title(document * pdocument)

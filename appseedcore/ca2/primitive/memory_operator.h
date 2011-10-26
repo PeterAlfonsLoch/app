@@ -2,13 +2,13 @@
 #if COLORER_FEATURE_USE_CHUNK_ALLOC
 
   void *operator new(size_t get_size){
-    return chunk_alloc(get_size);
+    return chunk_alloc(this->get_size);
   };
   void operator delete(void *ptr){
     chunk_free(ptr);
   };
   void *operator new[](size_t get_size){
-    return chunk_alloc(get_size);
+    return chunk_alloc(this->get_size);
   };
   void operator delete[](void *ptr){
     chunk_free(ptr);
@@ -34,7 +34,7 @@
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

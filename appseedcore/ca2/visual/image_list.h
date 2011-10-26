@@ -9,12 +9,20 @@ protected:
    int            m_iGrow;
 public:
    ::ca::dib_sp   m_spdib;
+
+
+   ::ca::dib_sp   m_spdibWork;
+   ::ca::dib_sp   m_spdibWork2;
+   ::ca::dib_sp   m_spdibWork3;
+
+
 protected:
    bool _grow();
    int _get_alloc_count();
 public:
 
-   
+
+   using ::ex1::request_interface::create;
    bool create(int cx, int cy, UINT nFlags, int nInitial, int nGrow);
     //bool create(const char * lpszBitmapID, int cx, int nGrow, COLORREF crMask);
 
@@ -33,7 +41,9 @@ public:
    image_list(::ca::application * papp);
    virtual ~image_list();
 
+#ifdef WINDOWS
    BOOL get_image_info(int nImage, IMAGEINFO* pImageInfo) const;
+#endif
 
    void remove_all();
 

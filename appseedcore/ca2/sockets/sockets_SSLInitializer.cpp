@@ -21,8 +21,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "StdAfx.h"
-
+#include <openssl/ssl.h>
 #include <openssl/rand.h>
+
 
 #ifdef _DEBUG
 #define DEB(x) x
@@ -35,7 +36,7 @@ namespace sockets
 {
    RAND_METHOD rand_meth;
 
-   ::icube::system * g_psystem = NULL;
+   ::cube8::system * g_psystem = NULL;
 
    void rand_seed(const void * buf, int num)
    {
@@ -80,7 +81,7 @@ namespace sockets
       bio_err = NULL;
       m_rand_size = 1024;
 
-      g_psystem = papp->m_psystem;
+      g_psystem = &Sys(papp->m_psystem);
 
       /* An error write context */
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
@@ -92,7 +93,7 @@ namespace sockets
       CRYPTO_set_locking_callback(SSL_locking_function);
       CRYPTO_set_id_callback(SSL_id_function);
 
-      
+
 
       rand_meth.add = &rand_add;
       rand_meth.bytes = &rand_bytes;
@@ -105,7 +106,7 @@ namespace sockets
 
 
 
-   /*   char *randfile = 
+   /*   char *randfile =
       char *home = getenv("HOME");
       if (!randfile && !home)
       {
@@ -119,14 +120,14 @@ namespace sockets
       //primitive::memory memstorage;
       //memstorage.allocate(1984 + 1977);
       //memstorage.allocate(1984 + 1977);
-      //System.math().gen_rand(memstorage.GetAllocation(), memstorage.GetStorageSize());
+      //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
 
-      /*for(int i = 0; i < memstorage.GetStorageSize(); i += 3)
+      /*for(int i = 0; i < memstorage.get_size(); i += 3)
       {
          int iValue = System.math().RandRange(0, 0x00ffffff);
-         memstorage.GetAllocation()[i] = iValue & 0xff;
-         memstorage.GetAllocation()[i+1] = (iValue >> 8) & 0xff;
-         memstorage.GetAllocation()[i+2] = (iValue >> 16) & 0xff;
+         memstorage.get_data()[i] = iValue & 0xff;
+         memstorage.get_data()[i+1] = (iValue >> 8) & 0xff;
+         memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
       }*/
 
       /*m_rand_file = System.file().time_square();
@@ -136,7 +137,7 @@ namespace sockets
       //{
 
 
-         
+
       int iWritten = RAND_write_file(m_rand_file);
       m_rand_size = iWritten;
       //}
@@ -149,7 +150,7 @@ namespace sockets
 
       spfile->open(m_rand_file, ::ex1::file::type_binary | ::ex1::file::mode_read);
 
-      
+
       //memstorage.FullLoad(spfile);
 
       /* Load randomness */
@@ -158,11 +159,11 @@ namespace sockets
    TRACE("SSLInitializer: PRNG not initialized\n");
       }*/
       /*RAND_add(
-            memstorage.GetAllocation(),
-            memstorage.GetStorageSize(),
-            memstorage.GetStorageSize());*/
+            memstorage.get_data(),
+            memstorage.get_size(),
+            memstorage.get_size());*/
 
-      //RAND_seed(memstorage.GetAllocation(), memstorage.GetStorageSize());
+      //RAND_seed(memstorage.get_data(), memstorage.get_size());
 
    }
 
@@ -197,11 +198,11 @@ namespace sockets
       }
       if (mode & CRYPTO_LOCK)
       {
-         mmap[n]->Lock();
+         mmap[n]->lock();
       }
       else
       {
-         mmap[n]->Unlock();
+         mmap[n]->unlock();
       }
    }
 
@@ -217,3 +218,4 @@ namespace sockets
 
 
 } // namespace sockets
+

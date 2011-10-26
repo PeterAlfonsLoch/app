@@ -1,5 +1,5 @@
 /*
-Copyright(C) Nishant Sivakumar. 
+Copyright(C) Nishant Sivakumar.
 URLs - http://blog.voidnish.com and http://www.voidnish.com
 Contact : nish@voidnish.com
 */
@@ -14,7 +14,7 @@ namespace userbase
 
    // notification_area
 
-   notification_area::notification_area() : 
+   notification_area::notification_area() :
       m_hfontHidden(NULL),
       m_hfontRegular(NULL)
    {
@@ -24,8 +24,8 @@ namespace userbase
 
    notification_area::~notification_area()
    {
-      ::DeleteObject(m_hfontHidden);   
-      ::DeleteObject(m_hfontRegular);   
+      ::DeleteObject(m_hfontHidden);
+      ::DeleteObject(m_hfontRegular);
    }
 
    void notification_area::Initialize(::ca::application * papp)
@@ -51,7 +51,7 @@ namespace userbase
 
       m_pil16->remove_all();
 
-      if(m_hwndTray == NULL)   
+      if(m_hwndTray == NULL)
       {
          m_hwndTray = FindTrayToolbarWindow();
          if(m_hwndTray == NULL)
@@ -75,35 +75,35 @@ namespace userbase
       TrayItemInfo info = {0};
 
       for(int i=0; i<count; i++)
-      {      
-         ::SendMessage(m_hwndTray, TB_GETBUTTON, i, (LPARAM)data.get_data());      
-         data.ReadData(&tb);         
+      {
+         ::SendMessage(m_hwndTray, TB_GETBUTTON, i, (LPARAM)data.get_data());
+         data.ReadData(&tb);
          data.ReadData<TRAYDATA>(&tray,(LPCVOID)tb.dwData);
 
          DWORD dwProcessId = 0;
          GetWindowThreadProcessId(tray.hwnd,&dwProcessId);
 
-         info.sProcessPath = GetFilenameFromPid(dwProcessId);      
+         info.sProcessPath = GetFilenameFromPid(dwProcessId);
 
          wchar_t TipChar;
          wchar_t sTip[1024] = {0};
-         wchar_t* pTip = (wchar_t*)tb.iString;      
+         wchar_t* pTip = (wchar_t*)tb.iString;
 
          if(!(tb.fsState&TBSTATE_HIDDEN))
-         {         
+         {
             int x = 0;
-            do 
-            {   
+            do
+            {
                if(x == 1023)
                {
-                  wcscpy(sTip,L"[ToolTip was either too long or not set]");   
+                  wcscpy(sTip,L"[ToolTip was either too long or not set]");
                   break;
                }
-               data.ReadData<wchar_t>(&TipChar, (LPCVOID)pTip++);                                                         
+               data.ReadData<wchar_t>(&TipChar, (LPCVOID)pTip++);
             }while(sTip[x++] = TipChar);
          }
          else
-            wcscpy(sTip,L"[Hidden icon]");            
+            wcscpy(sTip,L"[Hidden icon]");
 
          info.sTip = gen::international::unicode_to_utf8(sTip);
 
@@ -116,7 +116,7 @@ namespace userbase
          int iconindex = 0;
          ICONINFO  iinfo;
          if(GetIconInfo(tray.hIcon,&iinfo) != 0)
-         {         
+         {
             iconindex = m_pil16->add_icon_os_data(tray.hIcon);
          }
          ::DestroyIcon(tray.hIcon);
@@ -133,10 +133,10 @@ namespace userbase
          //int index = GetListCtrl().InsertItem(&lv);
          //GetListCtrl().SetItemText(index,1,info.sTip);
          //GetListCtrl().SetItemText(index,2,info.sProcessPath);
-      }   
+      }
 
       //if( (count>0) && (defindex>=0) && (defindex<count) )
-      //   GetListCtrl().SetItemState(defindex, 
+      //   GetListCtrl().SetItemState(defindex,
       //      LVIS_FOCUSED|LVIS_SELECTED,
       //      LVIS_FOCUSED|LVIS_SELECTED);
    }
@@ -147,16 +147,16 @@ namespace userbase
    /*   POSITION pos = GetListCtrl().GetFirstSelectedItemPosition();
       if(pos)
       {
-         int index = GetListCtrl().GetNextSelectedItem(pos);   
+         int index = GetListCtrl().GetNextSelectedItem(pos);
          OpenClipboard();
          EmptyClipboard();
          HGLOBAL hText = GlobalAlloc(GMEM_MOVEABLE, sizeof char * 512);
-         LPTSTR pStr = (LPTSTR)GlobalLock(hText);      
-         _stprintf(pStr, "Tray Tip : %s\r\nOwner : %s", 
+         LPTSTR pStr = (LPTSTR)GlobalLock(hText);
+         _stprintf(pStr, "Tray Tip : %s\r\nOwner : %s",
             m_infoa[index].sTip, m_infoa[index].sProcessPath);
-         GlobalUnlock(hText);   
-         SetClipboardData(CF_TEXT, hText);   
-         CloseClipboard();   
+         GlobalUnlock(hText);
+         SetClipboardData(CF_TEXT, hText);
+         CloseClipboard();
       }*/
    }
 
@@ -182,14 +182,14 @@ namespace userbase
       ::PostMessage(m_infoa[iItem].hwnd,
          m_infoa[iItem].uCallbackMessage,
          m_infoa[iItem].uID,
-         lParam);      
+         lParam);
    }
 
    void notification_area::MoveLeft(int iItem)
    {
       if(iItem > 0)
       {
-         ::SendMessage(m_hwndTray, TB_MOVEBUTTON, iItem, iItem-1);      
+         ::SendMessage(m_hwndTray, TB_MOVEBUTTON, iItem, iItem-1);
          ListTrayIcons(iItem - 1);
       }
    }
@@ -198,7 +198,7 @@ namespace userbase
    {
       if(iItem < (m_infoa.get_size() - 1))
       {
-         ::SendMessage(m_hwndTray, TB_MOVEBUTTON, iItem, iItem+1);      
+         ::SendMessage(m_hwndTray, TB_MOVEBUTTON, iItem, iItem+1);
          ListTrayIcons(iItem + 1);
       }
    }
@@ -210,7 +210,7 @@ namespace userbase
    }
 
    /*
-      Copyright(C) Nishant Sivakumar. 
+      Copyright(C) Nishant Sivakumar.
       URLs - http://blog.voidnish.com and http://www.voidnish.com
       Contact : nish@voidnish.com
    */
@@ -221,9 +221,9 @@ namespace userbase
       char d = 'A';
       while(d <= 'Z')
       {
-         char szDeviceName[3] = {d,':','\0'};   
+         char szDeviceName[3] = {d,':','\0'};
          char szTarget[512] = {0};
-         if(QueryDosDevice(szDeviceName, szTarget, 511) != 0)         
+         if(QueryDosDevice(szDeviceName, szTarget, 511) != 0)
             if(_tcscmp(lpDevicePath, szTarget) == 0)
                return d;
          d++;
@@ -241,7 +241,7 @@ namespace userbase
          {
             hWnd = ::FindWindowEx(hWnd,NULL,"SysPager", NULL);
             if(hWnd != NULL)
-            {            
+            {
                hWnd = ::FindWindowEx(hWnd, NULL,"ToolbarWindow32", NULL);
             }
          }
@@ -250,23 +250,22 @@ namespace userbase
    }
 
    string GetFilenameFromPid(DWORD pid)
-   {   
+   {
       string strRet = "[Unknown Process]";
       char ImageFileName[1024] = {0};
       HANDLE ph = OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,pid);
       if(ph)
       {
-         GetProcessImageFileName(ph,ImageFileName, 1023);
          CloseHandle(ph);
 
          string sTmp = ImageFileName;
          string strSearch = "\\Device\\HarddiskVolume";
          int ind = sTmp.find(strSearch);
          if(ind != -1)
-         {                        
+         {
             ind = sTmp.find('\\', ind + strSearch.get_length());
             if(ind != -1)
-            {                           
+            {
                string sReplace = "#:";
                sReplace.set_at(0,GetDriveLetter(sTmp.Left(ind)));
 

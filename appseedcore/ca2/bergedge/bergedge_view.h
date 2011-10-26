@@ -8,6 +8,7 @@ namespace bergedge
 
    class CLASS_DECL_ca view :
       virtual public ::userbase::scroll_view,
+      virtual public ::user::place_holder,
       virtual public gcom::backview::user::interaction
    {
    public:
@@ -65,7 +66,7 @@ namespace bergedge
 
       virtual void pre_translate_message(gen::signal_object * pobj);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void OnDraw(::ca::graphics * pgraphics);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
@@ -74,7 +75,7 @@ namespace bergedge
 
       void GetAreaThumbRect(LPRECT lprect, int iArea);
 
-      int hit_test(point pt);
+      int hit_test(point pt, e_element & eelement);
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
       
@@ -89,7 +90,7 @@ namespace bergedge
       string GetNextBackgroundImagePath();
       void SetCurrentBackgroundImagePath(string &str);
 
-      virtual void layout();
+      //virtual void layout();
 
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnPaint)

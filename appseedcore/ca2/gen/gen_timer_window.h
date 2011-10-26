@@ -17,7 +17,7 @@ namespace gen
    public:
        TimerCallback * m_pTimerCallback;
        TimerCallback * m_pTimerCallbackFinal;
-       CEvent           m_evFree;
+       event           m_evFree;
    protected:
       bool            m_bEnable;
    //    bool             m_bSkipConcurrency;
@@ -39,10 +39,10 @@ namespace gen
       BOOL create(TimerCallback * pCallback);
       virtual ~TimerWnd();
 
-      afx_msg void OnTimer(UINT nIDEvent);
-      afx_msg void OnDestroy();
-      afx_msg void OnClose();
-      afx_msg LRESULT OnUserMessage(WPARAM wparam, LPARAM lparam);
+      void OnTimer(UINT nIDEvent);
+      void OnDestroy();
+      void OnClose();
+      LRESULT OnUserMessage(WPARAM wparam, LPARAM lparam);
    };
 
 } // namespace gen

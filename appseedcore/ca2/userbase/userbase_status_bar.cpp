@@ -29,7 +29,7 @@ namespace userbase
    //   AllocElements(0, 0);    // destroys existing elements
    }
 
-   void status_bar::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void status_bar::install_message_handling(::user::win::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &status_bar::_001OnNcHitTest);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &status_bar::_001OnNcCalcSize);
@@ -64,7 +64,7 @@ namespace userbase
       VERIFY(System.DeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG, NULL));
 
       // create the HWND
-      class rect rect; 
+      class rect rect;
       rect.null();
       return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);
    }
@@ -417,7 +417,7 @@ namespace userbase
          // Note: DELETE_EXCEPTION(e) not required
          return FALSE;
       }
-      
+
 
       if (!bUpdate)
       {
@@ -458,7 +458,7 @@ namespace userbase
       }
 
       // get border information
-      class rect rect; 
+      class rect rect;
       rect.null();
       CalcInsideRect(rect, bHorz);
       int rgBorders[3];
@@ -495,7 +495,7 @@ namespace userbase
    {
       SCAST_PTR(::user::win::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
-      class rect rect; 
+      class rect rect;
       rect.null();
       ::userbase::control_bar::CalcInsideRect(rect, TRUE);
       ASSERT(rect.top >= 2);
@@ -552,7 +552,7 @@ namespace userbase
 
    void status_bar::_001OnDraw(::ca::graphics * pdc)
    {
-      
+
       UNREFERENCED_PARAMETER(pdc);
       UpdateAllPanes(FALSE, TRUE);
 

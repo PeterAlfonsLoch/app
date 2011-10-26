@@ -8,6 +8,7 @@
 #include "compress/compress.h"
 #include "colorertake5/colorertake5.h"
 #include "sockets/sockets.h"
+#include "javascript/javascript.h"
 
 
 ////////////////////////////////////////////////////////////////
@@ -37,7 +38,10 @@ namespace ca8
 #include "ca4_http_system.h"
 #include "ca4_http_get_socket.h"
 #include "ca4_ip_enum.h"
+#include "ca4_port_forward.h"
 
+#include "ca4_oauth.h"
+#include "ca4_twit.h"
 
 #include "ca4_application.h"
 

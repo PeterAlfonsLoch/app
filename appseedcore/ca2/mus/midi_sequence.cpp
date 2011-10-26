@@ -5,7 +5,7 @@
 *  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
 *  A PARTICULAR PURPOSE.
 *
-*  Copyright (C) 1993 - 1997 ca2. 
+*  Copyright (C) 1993 - 1997 ca2.
 *
 ******************************************************************************
 *
@@ -27,7 +27,7 @@ namespace mus
       sequence::sequence(::ca::application * papp) :
          ca(papp),
          ikar::karaoke(papp),
-         m_evMmsgDone(FALSE, TRUE), 
+         m_evMmsgDone(FALSE, TRUE),
          m_memfile(papp)
       {
          m_pthread = NULL;
@@ -78,7 +78,7 @@ namespace mus
 
 
       /***************************************************************************
-      *  
+      *
       * seqAllocBuffers
       *
       * allocate buffers for this instance.
@@ -153,17 +153,17 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqFreeBuffers
       *
       * Free buffers for this instance.
       *
       * pSeq                      - The sequencer instance to free buffers for.
-      *   
+      *
       * seqFreeBuffers frees all allocated primitive::memory belonging to the
       * given sequencer instance pSeq. It must be the last call
       * performed on the instance before it is destroyed.
-      *       
+      *
       ****************************************************************************/
       VOID sequence::FreeBuffers()
       {
@@ -184,7 +184,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqOpenFile
       *
       * Associates a MIDI file with the given sequencer instance.
@@ -193,10 +193,10 @@ namespace mus
       *
       * Returns
       *   MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If there is already a file open
       *     on this instance.
-      *     
+      *
       *   MCIERR_OUT_OF_MEMORY If there was insufficient primitive::memory to
       *     allocate internal buffers on the file.
       *
@@ -252,7 +252,7 @@ namespace mus
          cbBuffer = min(m_cbBuffer, GetStateMaxSize());
 
 
-   Seq_Open_File_Cleanup:    
+   Seq_Open_File_Cleanup:
          if (MMSYSERR_NOERROR != rc)
             CloseFile();
          else
@@ -276,8 +276,8 @@ namespace mus
       MMRESULT sequence::OpenFile(
          primitive::memory * pmemorystorage,
          int openMode,
-         mus::EStorage estorage)   
-      {                            
+         mus::EStorage estorage)
+      {
          MMRESULT                rc = MMSYSERR_NOERROR;
          SMFFILEINFO             sfi;
          e_file_result    smfrc;
@@ -324,7 +324,7 @@ namespace mus
       MMRESULT sequence::OpenFile(
          ex1::file & ar,
          int openMode)
-      {                            
+      {
          MMRESULT                rc      = MMSYSERR_NOERROR;
          //    SMFOPENFILESTRUCT       sofs;
          SMFFILEINFO             sfi;
@@ -385,7 +385,7 @@ namespace mus
          return rc;
       }
       /***************************************************************************
-      *  
+      *
       * seqCloseFile
       *
       * Deassociates a MIDI file with the given sequencer instance.
@@ -394,10 +394,10 @@ namespace mus
       *
       * Returns
       *   MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     stopped.
-      *     
+      *
       * A call to seqCloseFile must be paired with a prior call to
       * seqOpenFile. All buffers associated with the file will be
       * freed and the file will be closed. The sequencer must be
@@ -406,7 +406,7 @@ namespace mus
       ***************************************************************************/
       MMRESULT sequence::CloseFile()
       {
-         CSingleLock sl(&m_mutex, true);
+         single_lock sl(&m_mutex, true);
 
          //if (StatusNoFile == GetState())
          //   return MCIERR_UNSUPPORTED_FUNCTION;
@@ -417,7 +417,7 @@ namespace mus
          ** and buffers in the ready queue
          */
 
-         //    CSingleLock slStream(&m_csStream, false);
+         //    single_lock slStream(&m_csStream, false);
 
          //    for (lpmh = m_lpmhFree; lpmh; lpmh = lpmh->lpNext)
          //    for (lpmh = m_buffera[0]; lpmh != NULL; lpmh = lpmh->lpNext)
@@ -427,22 +427,22 @@ namespace mus
 
          if (m_lpmhPreroll != NULL)
          {
-         slStream.Lock();
+         slStream.lock();
          if(m_hMidiStream != NULL)
          {
          midiOutUnprepareHeader((HMIDIOUT) m_hMidiStream, m_lpmhPreroll, sizeof(*m_lpmhPreroll));
          }
-         slStream.Unlock();
+         slStream.unlock();
          }
          m_lpmhPreroll = NULL;*/
-         //    slStream.Lock();
+         //    slStream.lock();
          if (m_hMidiStream != NULL)
          {
             m_buffera.midiOutUnprepareHeader((HMIDIOUT) m_hMidiStream);
             midiStreamClose( m_hMidiStream);
             m_hMidiStream = NULL;
          }
-         //  slStream.Unlock();
+         //  slStream.unlock();
 
          SetState(StatusNoFile);
 
@@ -450,7 +450,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqPreroll
       *
       * Prepares the file for playback at the given position.
@@ -462,7 +462,7 @@ namespace mus
       *
       * Returns
       *   MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     opened or prerolled.
       *
@@ -475,9 +475,9 @@ namespace mus
       *
       * Unprepare the buffers (they're only ever sent here; the sequencer
       * engine merges them into a single stream during normal playback) and
-      * refill them with the first chunk of data from the track. 
+      * refill them with the first chunk of data from the track.
       *
-      *     
+      *
       ****************************************************************************/
       MMRESULT sequence::Preroll(
          ::radix::thread *         pthread,
@@ -485,7 +485,7 @@ namespace mus
          bool                  bThrow)
       {
          UNREFERENCED_PARAMETER(pthread);
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
          int i;
          //   midi_callback_data *      lpData = &m_midicallbackdata;
          e_file_result     smfrc;
@@ -613,7 +613,7 @@ namespace mus
 
          smfrc = m_pfile->WorkSeek(m_tkBase, lpmh);
 
-         m_tkPrerollBase = GetFile().GetPosition();
+         m_tkPrerollBase = GetFile().get_position();
 
 
 
@@ -644,7 +644,7 @@ namespace mus
                m_flags.signalize(FlagEOF);
                break;
             }
-         } 
+         }
 
          mmrc = m_buffera.midiOutPrepareHeader((HMIDIOUT) m_hMidiStream);
          if (mmrc != MMSYSERR_NOERROR)
@@ -678,7 +678,7 @@ namespace mus
                goto seq_Preroll_Cleanup;
             }
          }
-         m_uBuffersInMMSYSTEM += m_buffera.get_size(); 
+         m_uBuffersInMMSYSTEM += m_buffera.get_size();
 
    seq_Preroll_Cleanup:
 
@@ -696,7 +696,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqStart
       *
       * Starts playback at the current position.
@@ -705,21 +705,21 @@ namespace mus
       *
       * Returns
       *   MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     stopped.
       *
       *   MCIERR_DEVICE_NOT_READY If the underlying MIDI device could
       *     not be opened or fails any call.
-      * 
+      *
       * The sequencer must be prerolled before seqStart may be called.
       *
       * Just feed everything in the ready queue to the device.
-      *       
+      *
       ***************************************************************************/
       MMRESULT sequence::Start()
       {
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
          if (StatusPreRolled != GetState())
          {
             TRACE( "seqStart(): State is wrong! [%u]", GetState());
@@ -735,7 +735,7 @@ namespace mus
          {
             mmrc = midiStreamRestart(m_hMidiStream);
          }
-         sl.Unlock();
+         sl.unlock();
          if(mmrc == MMSYSERR_NOERROR)
          {
             m_pthread->PostMidiSequenceEvent(
@@ -748,7 +748,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqPause
       *
       * Pauses playback of the instance.
@@ -757,7 +757,7 @@ namespace mus
       *
       * Returns
       *   MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     playing.
       *
@@ -765,12 +765,12 @@ namespace mus
       * Pausing the sequencer will cause all currently on notes to be turned
       * off. This may cause playback to be slightly inaccurate on restart
       * due to missing notes.
-      *       
+      *
       ***************************************************************************/
       MMRESULT sequence::Pause()
 
       {
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
 
          //    assert(NULL != pSeq);
 
@@ -780,13 +780,13 @@ namespace mus
          SetState(StatusPaused);
 
          MMRESULT mmrc = 0;
-         //    CSingleLock slStream(&m_csStream, false);
-         //  slStream.Lock();
+         //    single_lock slStream(&m_csStream, false);
+         //  slStream.lock();
          if(m_hMidiStream != NULL)
          {
             mmrc = midiStreamPause(m_hMidiStream);;
          }
-         //slStream.Unlock();
+         //slStream.unlock();
 
          SetLevelMeter(0);
 
@@ -794,7 +794,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqRestart
       *
       * Restarts playback of an instance after a pause.
@@ -803,7 +803,7 @@ namespace mus
       *
       * Returns
       *    MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *    MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     paused.
       *
@@ -814,7 +814,7 @@ namespace mus
       {
          //    assert(NULL != pSeq);
 
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
 
          if (StatusPaused != GetState())
             return MCIERR_UNSUPPORTED_FUNCTION;
@@ -823,18 +823,18 @@ namespace mus
          m_evMmsgDone.ResetEvent();
 
          //    MMRESULT mmrc = 0;
-         //    CSingleLock slStream(&m_csStream, false);
-         //  slStream.Lock();
+         //    single_lock slStream(&m_csStream, false);
+         //  slStream.lock();
          if(m_hMidiStream != NULL)
          {
             midiStreamRestart(m_hMidiStream);
          }
-         //slStream.Unlock();
+         //slStream.unlock();
          return MMSYSERR_NOERROR;
       }
 
       /***************************************************************************
-      *  
+      *
       * seqStop
       *
       * Totally stops playback of an instance.
@@ -843,7 +843,7 @@ namespace mus
       *
       * Returns
       *   MMSYSERR_NOERROR If the operation is successful.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     paused or playing.
       *
@@ -852,7 +852,7 @@ namespace mus
       ***************************************************************************/
       MMRESULT sequence::Stop()
       {
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
 
          // Automatic success if we're already stopped
          if (GetState() != StatusPlaying
@@ -879,7 +879,7 @@ namespace mus
             }
          }
 
-         //m_eventMidiPlaybackEnd.Lock();
+         //m_eventMidiPlaybackEnd.lock();
 
          SetLevelMeter(0);
 
@@ -887,7 +887,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqTime
       *
       * Determine the current position in playback of an instance.
@@ -902,7 +902,7 @@ namespace mus
       *
       *   MCIERR_DEVICE_NOT_READY If the underlying device fails to report
       *     the position.
-      *    
+      *
       *   MCIERR_UNSUPPORTED_FUNCTION If the sequencer instance is not
       *     paused or playing.
       *
@@ -910,11 +910,10 @@ namespace mus
       * may be called.
       *
       ***************************************************************************/
-      MMRESULT sequence::get_time(
-         imedia::position &                  pTicks)
+      MMRESULT sequence::GetTicks(imedia::position &  pTicks)
       {
-         CSingleLock sl(&m_mutex);
-         if(!sl.Lock(184))
+         single_lock sl(&m_mutex);
+         if(!sl.lock(millis(184)))
             return MCIERR_INTERNAL;
 
          MMRESULT                mmr;
@@ -938,8 +937,8 @@ namespace mus
             if (StatusPreRolled != GetState())
             {
                mmt.wType = TIME_TICKS;
-               //            CSingleLock slStream(&m_csStream, false);
-               //          slStream.Lock();
+               //            single_lock slStream(&m_csStream, false);
+               //          slStream.lock();
                if(m_hMidiStream == NULL)
                {
                   TRACE("m_hmidi == NULL!!!!");
@@ -963,7 +962,7 @@ namespace mus
                   }
                   pTicks += mmt.u.ticks;
                }
-               //        slStream.Unlock();
+               //        slStream.unlock();
             }
          }
 
@@ -972,16 +971,13 @@ namespace mus
 
       void sequence::get_time(imedia::time & time)
       {
-         DWORD dw;
-         GetMillis(dw);
-         time = dw;
+         GetMillis(time);
       }
 
-      MMRESULT sequence::GetMillis(
-         DWORD &                  pTicks)
+      MMRESULT sequence::GetMillis(imedia::time & time)
       {
-         CSingleLock sl(&m_mutex);
-         if(!sl.Lock(184))
+         single_lock sl(&m_mutex);
+         if(!sl.lock(millis(184)))
             return MCIERR_INTERNAL;
 
          MMRESULT                mmr;
@@ -998,15 +994,15 @@ namespace mus
             return MCIERR_UNSUPPORTED_FUNCTION;
          }
 
-         pTicks = 0;
+         time = 0;
          if (StatusOpened != GetState())
          {
-            pTicks = m_tkBase;
+            time = TicksToMillisecs(m_tkBase);
             if (StatusPreRolled != GetState())
             {
                mmt.wType = TIME_MS;
-               //            CSingleLock slStream(&m_csStream, false);
-               //          slStream.Lock();
+               //            single_lock slStream(&m_csStream, false);
+               //          slStream.lock();
                if(m_hMidiStream == NULL)
                {
                   TRACE("m_hmidi == NULL!!!!");
@@ -1028,9 +1024,9 @@ namespace mus
                   {
                      return MCIERR_DEVICE_NOT_READY;
                   }
-                  pTicks += mmt.u.ms;
+                  time += mmt.u.ms;
                }
-               //        slStream.Unlock();
+               //        slStream.unlock();
             }
          }
 
@@ -1038,7 +1034,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqMillisecsToTicks
       *
       * Given a millisecond offset in the output stream, returns the associated
@@ -1051,14 +1047,13 @@ namespace mus
       * Returns the number of ticks into the stream.
       *
       ***************************************************************************/
-      imedia::position sequence::MillisecsToTicks(
-         DWORD                   msOffset)
+      imedia::position sequence::MillisecsToTicks(imedia::time msOffset)
       {
          return m_pfile->MillisecsToTicks(msOffset);
       }
 
       /***************************************************************************
-      *  
+      *
       * seqTicksToMillisecs
       *
       * Given a tick offset in the output stream, returns the associated
@@ -1088,7 +1083,7 @@ namespace mus
 
          sequence * psequence = lpData->m_psequence;
 
-         MidiSequenceThread * pthread = psequence->m_pthread;
+         midi_sequence_thread * pthread = psequence->m_pthread;
          ASSERT(NULL != lpmidihdr);
 
          --m_uBuffersInMMSYSTEM;
@@ -1118,7 +1113,7 @@ namespace mus
          {
             //
             // Reached EOF, just put the buffer back on the free
-            // list 
+            // list
             //
             if(bSpecialModeV001End)
             {
@@ -1180,7 +1175,7 @@ namespace mus
                }
                else if(m_uiSpecialModeV001Operation == SPMV001TempoChange)
                {
-                  MidiEventV016 event;
+                  midi_event_v016 event;
                   m_pfile->GetTempoEvent(event);
                   m_pfile->StreamEvent(event.GetDelta(), &event, lpmidihdr, 0x7fffffff, 256);
                   // lpmidihdr->dwBytesRecorded = sizeof(gmModeOn);
@@ -1251,7 +1246,7 @@ namespace mus
                      break;
                   case EVENT_ID_NOTE_ON:
                      {
-                        gen::memory_file memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(DWORD));
+                        gen::byte_stream_memory_file memFile(get_app(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(DWORD));
                         for(int i = 0; i < m_iaLevel.get_size(); i++)
                         {
                            BYTE b;
@@ -1279,10 +1274,10 @@ namespace mus
       }
 
       void CALLBACK sequence::MidiOutProc(
-         HMIDIOUT hmo,      
-         UINT wMsg,         
-         DWORD dwInstance,  
-         DWORD dwParam1,    
+         HMIDIOUT hmo,
+         UINT wMsg,
+         DWORD dwInstance,
+         DWORD dwParam1,
          DWORD dwParam2)
       {
          UNREFERENCED_PARAMETER(hmo);
@@ -1303,7 +1298,7 @@ namespace mus
       }
 
       /***************************************************************************
-      *  
+      *
       * seqMIDICallback
       *
       * Called by the system when a buffer is done
@@ -1312,7 +1307,7 @@ namespace mus
       *
       ***************************************************************************/
       /*void sequence
-      ::MidiOutCallbackDeprecated(HMIDISTRM hms, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2_, MidiPlayer * lpMidiPlayer, CXfplayerView * pview)
+      ::MidiOutCallbackDeprecated(HMIDISTRM hms, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2_, midi_player * lpMidiPlayer, CXfplayerView * pview)
       {
       //TRACE("sequence::MIDICallback current thread %X\n", GetCurrentThreadId());
       LPMIDIHDR               lpmh      = (LPMIDIHDR)dw1;
@@ -1374,7 +1369,7 @@ namespace mus
       if (uMsg != MM_MOM_DONE)
       return;
 
-      MidiPlayer * pthread = lpData->m_pthread;
+      midi_player * pthread = lpData->m_pthread;
       ASSERT(NULL != lpmh);
 
       pSeq = (sequence *)(lpmh->dwUser);
@@ -1401,7 +1396,7 @@ namespace mus
       {
       /*
       ** Reached EOF, just put the buffer back on the free
-      ** list 
+      ** list
       */
       //      if (lpmh != pSeq->m_lpmhPreroll)
       //      {
@@ -1450,7 +1445,7 @@ namespace mus
       }*/
 
       /***************************************************************************
-      *  
+      *
       * TranslateSMFResult
       *
       * Translates an error from the SMF layer into an appropriate MCI error.
@@ -1458,7 +1453,7 @@ namespace mus
       * smfrc                     - The return code from any SMF function.
       *
       * Returns
-      *   A parallel error from the MCI error codes.   
+      *   A parallel error from the MCI error codes.
       *
       ***************************************************************************/
 
@@ -1544,8 +1539,8 @@ namespace mus
 
       int sequence::SetKeyShift(int iKeyShift)
       {
-         /*//    CSingleLock slStream(&m_csStream, false);
-         //  slStream.Lock();
+         /*//    single_lock slStream(&m_csStream, false);
+         //  slStream.lock();
          if(m_hMidiStream)
          {
          midiStreamPause(m_hMidiStream);
@@ -1553,7 +1548,7 @@ namespace mus
          return false;
          midiStreamRestart(m_hMidiStream);
          }
-         //slStream.Unlock();
+         //slStream.unlock();
          return true;
          void sequence::SetKeyShift(int iShift)
          {*/
@@ -1600,7 +1595,7 @@ namespace mus
 
       MMRESULT sequence::CloseStream()
       {
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
          if(IsPlaying())
          {
             Stop();
@@ -1634,7 +1629,7 @@ namespace mus
       void sequence::OnMidiPlaybackEnd(sequence::Event * pevent)
       {
          UNREFERENCED_PARAMETER(pevent);
-         CSingleLock sl(&m_mutex, TRUE);
+         single_lock sl(&m_mutex, TRUE);
          //   LPMIDIHDR lpmh = pevent->m_lpmh;
          //   midi_callback_data * lpData = &m_midicallbackdata;
          MMRESULT mmrc;
@@ -1689,7 +1684,7 @@ namespace mus
             break;
          case EventMidiStreamOut:
             {
-               CSingleLock sl(&m_mutex, TRUE);
+               single_lock sl(&m_mutex, TRUE);
 
                LPMIDIHDR lpmh = pevent->m_lpmh;
                //         midi_callback_data * lpData = &m_midicallbackdata;
@@ -1702,8 +1697,8 @@ namespace mus
                else
                {
                   mmrc = m_pfile->WorkStreamRender(
-                     lpmh, 
-                     m_tkEnd, 
+                     lpmh,
+                     m_tkEnd,
                      m_cbPrerollNominalMax);
                }
 
@@ -1732,13 +1727,13 @@ namespace mus
                }
                ++m_uBuffersInMMSYSTEM;
 
-               //         CSingleLock slStream(&m_csStream, false);
-               //         slStream.Lock();
+               //         single_lock slStream(&m_csStream, false);
+               //         slStream.lock();
                if(m_hMidiStream != NULL)
                {
                   mmrc = midiStreamOut(m_hMidiStream, lpmh, sizeof(*lpmh));
                }
-               //         slStream.Unlock();
+               //         slStream.unlock();
 
                if (MMSYSERR_NOERROR != mmrc)
                {
@@ -1764,15 +1759,15 @@ namespace mus
 
       imedia::position sequence::GetPositionTicks()
       {
-         CSingleLock sl(&m_mutex);
-         if(!sl.Lock(0))
+         single_lock sl(&m_mutex);
+         if(!sl.lock(millis(0)))
             return -1;
          MMTIME mmt;
          mmt.wType = TIME_TICKS;
          if(MMSYSERR_NOERROR ==
             midiStreamPosition(
             m_hMidiStream,
-            &mmt,  
+            &mmt,
             sizeof(mmt)))
             return mmt.u.ticks + m_tkPrerollBase;
          else
@@ -1792,28 +1787,21 @@ namespace mus
             m_flags.unsignalize(sequence::FlagTempoChange);
       }
 
-      void sequence::PlayerLink::SetCommand(MidiPlayerCommand *pcommand)
+      void sequence::PlayerLink::SetCommand(midi_player_command *pcommand)
       {
-         if(m_pcommand != NULL)
-         {
-            m_pcommand->Release();
-         }
-         m_pcommand = pcommand;
-         m_pcommand->AddRef();
+         m_spcommand = pcommand;
       }
 
       void sequence::PlayerLink::OnFinishCommand(EMidiPlayerCommand ecommand)
       {
-         if(m_pcommand != NULL)
+         if(m_spcommand.is_set())
          {
-            if(ecommand == m_pcommand->GetCommand())
+            if(ecommand == m_spcommand->GetCommand())
             {
-               m_pcommand->OnFinish();
+               m_spcommand->OnFinish();
             }
-            m_pcommand->Release();
-            m_pcommand = NULL;
+            gen::release(m_spcommand.m_p);
          }
-
       }
 
       sequence::e_flag sequence::PlayerLink::GetFlag()
@@ -1847,7 +1835,6 @@ namespace mus
       sequence::PlayerLink::PlayerLink()
       {
          m_eflag = FlagNull;
-         m_pcommand = NULL;
       }
 
       bool sequence::IsNull()
@@ -1861,13 +1848,15 @@ namespace mus
       {
          return imedia::position(MillisecsToTicks((DWORD) millis));
       }
+
       imedia::time sequence::PositionToTime(imedia::position tk)
       {
          return imedia::time(TicksToMillisecs((imedia::position) (DWORD) tk));
       }
-      void sequence::GetPosition(imedia::position & position)
+
+      void sequence::get_position(imedia::position & position)
       {
-         get_time(position);
+         GetTicks(position);
       }
 
       bool sequence::IsOpened()
@@ -1891,7 +1880,7 @@ namespace mus
       {
          UNREFERENCED_PARAMETER(str2a);
          file & file = GetFile();
-         MidiTracks & tracks = file.GetTracks();
+         midi_tracks & tracks = file.GetTracks();
 
          ASSERT(!file.IsNull());
          file.GetTracks().seek_begin();
@@ -1920,21 +1909,21 @@ namespace mus
          imedia::time_2darray ms2DNoteOffMillis;
          imedia::time_2darray ms2DBegMillis;
          imedia::time_2darray ms2DEndMillis;
-         MidiEventsV1 midiEvents;
+         midi_events_v1 midiEvents;
 
 
 
 
          // Note on and off events
-         // and maximum and minimum 
+         // and maximum and minimum
          // pitch bend peaks.
-         MidiEventsV1 midiEventsLevel2;
+         midi_events_v1 midiEventsLevel2;
 
-         MidiEventsV1 noteOnEvents;
-         MidiEventsV1 noteOffEvents;
+         midi_events_v1 noteOnEvents;
+         midi_events_v1 noteOffEvents;
 
-         MidiEventsV1 eventsLevel2Beg;
-         MidiEventsV1 eventsLevel2End;
+         midi_events_v1 eventsLevel2Beg;
+         midi_events_v1 eventsLevel2End;
          EventsTracksV1 lyricEventsForPositionCB;
          EventsTracksV1 lyricEventsForBouncingBall;
          EventsTracksV1 lyricEventsForScoring;
@@ -1955,7 +1944,7 @@ namespace mus
          LyricEventsV2 *pLyricEventsV2_;
          LyricEventsV2 *pLyricEventsV2B;
          LyricEventsV2 *pLyricEventsV2C;
-         MidiEventsV1 *pMidiEventsV1;
+         midi_events_v1 *pMidiEventsV1;
          tk2DNoteOnPositions.set_size(tka2DTokensTicks.get_size());
          tk2DNoteOffPositions.set_size(tka2DTokensTicks.get_size());
          tk2DBegPositions.set_size(tka2DTokensTicks.get_size());
@@ -2012,32 +2001,32 @@ namespace mus
                if(file.GetFormat() == 0)
                {
                   tracks.TrackAt(0)->WorkSeekBegin();
-                  ((MidiTrack *)tracks.TrackAt(0))->WorkGetNoteOnOffEventsV1(
-                     &midiEvents, 
+                  ((midi_track *)tracks.TrackAt(0))->WorkGetNoteOnOffEventsV1(
+                     &midiEvents,
                      pLyricEventsV2->m_iTrack,
                      file.GetFormat() == 1);
                   tracks.TrackAt(0)->WorkSeekBegin();
-                  ((MidiTrack *)tracks.TrackAt(0))->WorkGetLevel2Events(
-                     &midiEventsLevel2, 
+                  ((midi_track *)tracks.TrackAt(0))->WorkGetLevel2Events(
+                     &midiEventsLevel2,
                      pLyricEventsV2->m_iTrack,
                      file.GetFormat() == 1);
                }
                else
                {
                   tracks.TrackAt(pLyricEventsV2->m_iTrack)->seek_begin();
-                  ((MidiTrack *)tracks.TrackAt(pLyricEventsV2->m_iTrack))->GetLevel2Events(
-                     &midiEvents, 
+                  ((midi_track *)tracks.TrackAt(pLyricEventsV2->m_iTrack))->GetLevel2Events(
+                     &midiEvents,
                      pLyricEventsV2->m_iTrack,
                      file.GetFormat() == 1);
                   tracks.TrackAt(pLyricEventsV2->m_iTrack)->seek_begin();
-                  ((MidiTrack *)tracks.TrackAt(pLyricEventsV2->m_iTrack))->GetLevel2Events(
-                     &midiEventsLevel2, 
+                  ((midi_track *)tracks.TrackAt(pLyricEventsV2->m_iTrack))->GetLevel2Events(
+                     &midiEventsLevel2,
                      pLyricEventsV2->m_iTrack,
                      file.GetFormat() == 1);
                }
             }
 
-            MidiUtil miditutil(get_app());
+            midi_util miditutil(get_app());
 
             miditutil.PrepareNoteOnOffEvents(
                &noteOnEvents,
@@ -2308,7 +2297,7 @@ namespace mus
       void sequence::Prepare(int iTrack, ikar::data & data)
       {
          file & file = GetFile();
-         MidiTracks & tracks = file.GetTracks();
+         midi_tracks & tracks = file.GetTracks();
          string2a & str2a = data.GetStaticData().m_str2aRawTokens;
          imedia::position_2darray position2a;
          int2a ia2TokenLine;
@@ -2335,7 +2324,7 @@ namespace mus
       void sequence::Prepare(ikar::data & data)
       {
          file & file = GetFile();
-         MidiTracks & tracks = file.GetTracks();
+         midi_tracks & tracks = file.GetTracks();
          string2a & str2a = data.GetStaticData().m_str2aRawTokens;
          imedia::position_2darray position2a;
          int2a i2aTokenLine;
@@ -2372,7 +2361,7 @@ namespace mus
 
          staticdata.m_dwDefaultCodePage = 1252; // Latin (Default of All Default Code Pages)
 
-         CXF xf;
+         ::mus::xf xf;
          if(xfihs.m_xfaInfoHeaderLS.get_count())
          {
             staticdata.m_dwDefaultCodePage = xf.SymbolCharCodeToCodePage(xfihs.m_xfaInfoHeaderLS[0].m_strLanguage);
@@ -2402,8 +2391,8 @@ namespace mus
       void sequence::buffer::Initialize(int iSize, DWORD dwUser)
       {
          m_storage.allocate(iSize);
-         m_midihdr.lpData           = (char *) m_storage.GetAllocation();
-         m_midihdr.dwBufferLength   = m_storage.GetStorageSize();
+         m_midihdr.lpData           = (char *) m_storage.get_data();
+         m_midihdr.dwBufferLength   = m_storage.get_size();
          m_midihdr.dwUser           = dwUser;
          m_bPrepared                = false;
 
@@ -2415,31 +2404,31 @@ namespace mus
 
          int i;
 
-         /*   for(int i = 0; i < get_size() - 1; i++)
+         /*   for(int i = 0; i < this->get_size() - 1; i++)
          {
-         element_at(i).SetNextMidiHdr(element_at(i + 1).GetMidiHdr());
+         this->element_at(i).SetNextMidiHdr(this->element_at(i + 1).GetMidiHdr());
          }
 
-         if(get_size() > 1)
+         if(this->get_size() > 1)
          {
-         element_at(get_upper_bound()).SetNextMidiHdr(element_at(0).GetMidiHdr());
+         this->element_at(get_upper_bound()).SetNextMidiHdr(this->element_at(0).GetMidiHdr());
          }
          else
          {
-         element_at(0).SetNextMidiHdr(NULL);
+         this->element_at(0).SetNextMidiHdr(NULL);
          }*/
 
-         for(i = 0; i < get_size(); i++)
+         for(i = 0; i < this->get_size(); i++)
          {
-            element_at(i).Initialize(iSize, dwUser);
+            this->element_at(i).Initialize(iSize, dwUser);
          }
       }
 
       void sequence::BufferArray::Reset()
       {
-         for(int i = 0; i < get_size(); i++)
+         for(int i = 0; i < this->get_size(); i++)
          {
-            element_at(i).Reset();
+            this->element_at(i).Reset();
          }
       }
 
@@ -2489,9 +2478,9 @@ namespace mus
       {
          MMRESULT mmr = MMSYSERR_NOERROR;
 
-         for (int i = 0; i < get_size(); i++)
+         for (int i = 0; i < this->get_size(); i++)
          {
-            MMRESULT mmrBuffer = element_at(i).midiOutUnprepareHeader(hmidiout);
+            MMRESULT mmrBuffer = this->element_at(i).midiOutUnprepareHeader(hmidiout);
             if(mmrBuffer != MMSYSERR_NOERROR)
             {
                mmr = mmrBuffer;
@@ -2503,15 +2492,15 @@ namespace mus
       MMRESULT sequence::BufferArray::midiOutPrepareHeader(HMIDIOUT hmidiout)
       {
          MMRESULT mmrc = MMSYSERR_NOERROR;
-         for(int i = 0; i < get_size(); i++)
+         for(int i = 0; i < this->get_size(); i++)
          {
-            mmrc = element_at(i).midiOutPrepareHeader(
+            mmrc = this->element_at(i).midiOutPrepareHeader(
                hmidiout);
             if(mmrc != MMSYSERR_NOERROR)
             {
                for(; i >= 0; i--)
                {
-                  element_at(i).midiOutUnprepareHeader(hmidiout);
+                  this->element_at(i).midiOutUnprepareHeader(hmidiout);
                }
                return mmrc;
             }
@@ -2539,15 +2528,15 @@ namespace mus
       MMRESULT sequence::BufferArray::midiStreamOut(HMIDISTRM hmidiout)
       {
          MMRESULT mmrc = MMSYSERR_NOERROR;
-         for(int i = 0; i < get_size(); i++)
+         for(int i = 0; i < this->get_size(); i++)
          {
-            mmrc = element_at(i).midiStreamOut(
+            mmrc = this->element_at(i).midiStreamOut(
                hmidiout);
             if(mmrc != MMSYSERR_NOERROR)
             {
                //         for(; i >= 0; i--)
                //       {
-               //        element_at(i).midiOutUnprepareHeader(hmidiout);
+               //        this->element_at(i).midiOutUnprepareHeader(hmidiout);
                //   }
                return mmrc;
             }

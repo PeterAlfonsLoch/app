@@ -44,7 +44,7 @@ VMSRESULT Star350EventV016::GetEventV001(Star350EventV001 * lpMidiEventV001,  DW
    //   lpMidiEventV001->SetParamSize(GetParamSize());
    lpMidiEventV001->SetParam(GetParam(), GetParamSize());
    lpMidiEventV001->SetDelta(GetDelta());
-   lpMidiEventV001->SetPosition(GetPosition());
+   lpMidiEventV001->SetPosition(get_position());
    lpMidiEventV001->SetImage(NULL);
    lpMidiEventV001->SetImageSize(GetImageSize());
    return VMSR_SUCCESS;
@@ -128,7 +128,7 @@ VMSRESULT Star350EventV016::SetParam(ex1::file & file, int iLength)
     }
     else if(iLength == -1)
     {
-        iLength = file.get_length();
+        iLength = (int) file.get_length();
     }
     if(hpbParam == NULL)
     {   
@@ -258,7 +258,7 @@ VMSRESULT Star350EventV016::FromData(LPVOID lpData, LPINT lpiLeft, EventType evt
                 return VMSR_E_INVALIDFILE;
             }
         
-            if (0 == (dwGot = MidiEventBase::GetVDWord(hpbImage, *lpiLeft - iGotTotal, &cbEvent)))
+            if (0 == (dwGot = midi_event_base::GetVDWord(hpbImage, *lpiLeft - iGotTotal, &cbEvent)))
             {
                 return VMSR_E_INVALIDFILE;
             }
@@ -354,7 +354,7 @@ void Star350EventV016::SetDelta(imedia::position tkDelta)
    ASSERT(FALSE);
 }
 
-imedia::position Star350EventV016::GetPosition() const
+imedia::position Star350EventV016::get_position() const
 {
    ASSERT(FALSE);
     return 0xffffffff;

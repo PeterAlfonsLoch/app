@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -38,7 +38,7 @@ namespace sockets
    #ifdef _DEBUG
    #define DEB(x) x; fflush(stderr);
    #else
-   #define DEB(x) 
+   #define DEB(x)
    #endif
 
 
@@ -84,7 +84,7 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
-      m_mutex.Lock();
+      m_mutex.lock();
       FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
       FD_ZERO(&m_efds);
@@ -100,33 +100,30 @@ namespace sockets
       {
          POSITION pos = m_sockets.get_start_position();
          SOCKET s;
-         //TRACE("Emptying sockets list in socket_handler destructor, %d instances\n", (int)m_sockets.get_size());
          while(pos != NULL)
          {
             socket * p = NULL;
             m_sockets.get_next_assoc(pos, s, p);
-            
-            if (p)
+            if(p)
             {
-   TRACE("  fd %d\n", p -> GetSocket());
-               p -> close();
-   TRACE("  fd closed %d\n", p -> GetSocket());
-   //            p -> OnDelete(); // hey, I turn this back on. what's the worst that could happen??!!
-               // MinionSocket breaks, calling MinderHandler methods in OnDelete -
-               // MinderHandler is already gone when that happens...
-
-               // only delete socket when controlled
-               // ie master sockethandler can delete non-detached sockets
-               // and a slave sockethandler can only delete a detach socket
-               if (p -> DeleteByHandler()
-                  && !(m_slave ^ p -> IsDetached()) 
-                  )
+               try
                {
-                  p -> SetErasedByHandler();
-                  delete p;
+                  p->close();
+               }
+               catch(...)
+               {
+               }
+               if(m_slave)
+               {
+                  try
+                  {
+                     delete p;
+                  }
+                  catch(...)
+                  {
+                  }
                }
             }
-   TRACE("next\n");
          }
       }
       m_sockets.remove_all();
@@ -136,14 +133,14 @@ namespace sockets
       }
       if (m_b_use_mutex)
       {
-         m_mutex.Unlock();
+         m_mutex.unlock();
       }
    }
 
 
    mutex& socket_handler::GetMutex() const
    {
-      return m_mutex; 
+      return m_mutex;
    }
 
 
@@ -354,10 +351,10 @@ namespace sockets
       dw1 = ::GetTickCount();
       if (m_b_use_mutex)
       {
-         m_mutex.Unlock();
+         m_mutex.unlock();
          n = select( (int)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
-         m_mutex.Lock();
+         m_mutex.lock();
       }
       else
       {
@@ -404,10 +401,19 @@ namespace sockets
                   FD_SET(i, &efds);
                   t = true;
                }
-               socket * plookup;
-               if (t && m_sockets.Lookup(i, plookup))
+               socket * psocket;
+               if (t && m_sockets.Lookup(i, psocket))
                {
                   TRACE("Bad fd in fd_set: %d\n", i);
+                  TRACE("Deleting and removing socket: %d\n", i);
+                  try
+                  {
+                     delete psocket;
+                  }
+                  catch(...)
+                  {
+                  }
+                  m_sockets.remove_key(i);
                }
             }
 
@@ -546,6 +552,7 @@ namespace sockets
             }
          }
       }
+      bool check_max_fd = false;
       // check detach of socket if master handler - EVENT
       if (!m_slave && m_fds_detach.get_size())
       {
@@ -569,7 +576,12 @@ namespace sockets
                   p -> DetachSocket();
                   // Adding the file descriptor to m_fds_erase will now also remove the
                   // socket from the detach queue - tnx knightmad
-                  m_fds_erase.add_tail(p -> GetSocket());
+//                 m_fds_erase.add_tail(p -> GetSocket());
+
+                  m_fds_detach.remove(socket);
+                  m_fds.remove(socket);
+                  m_sockets.remove_key(socket);
+                  check_max_fd = true;
                }
             }
          }
@@ -670,8 +682,8 @@ namespace sockets
                {
                   tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
                   // new graceful tcp - flush and close timeout 5s
-                  if (tcp && p -> IsConnected() && tcp -> GetFlushBeforeClose() && 
-                     !tcp -> IsSSL() && 
+                  if (tcp && p -> IsConnected() && tcp -> GetFlushBeforeClose() &&
+                     !tcp -> IsSSL() &&
                      p -> TimeSinceClose() < 5)
                   {
    TRACE(" close(1)\n");
@@ -739,7 +751,7 @@ namespace sockets
                      {
                         p -> SetErasedByHandler();
                      }
-                     
+
                   }
                }
             }
@@ -748,75 +760,36 @@ namespace sockets
       }
 
       // check erased sockets
-      bool check_max_fd = false;
       while(m_fds_erase.get_size())
       {
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
+         sockets::socket * psocket = NULL;
+         if(m_sockets.Lookup(socket, psocket))
          {
-            class socket * p = NULL;
-            if(m_sockets.Lookup(socket, p))
+            if(m_slave)
             {
-               /* Sometimes a SocketThread class can finish its run before the master
-                  sockethandler gets here. In that case, the SocketThread has set the
-                  'ErasedByHandler' flag on the socket which will make us end up with a
-                  double delete on the socket instance. 
-                  The fix is to make sure that the master sockethandler only can delete
-                  non-detached sockets, and a slave sockethandler only can delete
-                  detach sockets. */
-               if (p -> ErasedByHandler()
-                  && !(m_slave ^ p -> IsDetached()) 
-                  )
+               if(psocket != NULL)
                {
-                  bool again = false;
-                  do
+                  try
                   {
-                     again = false;
-                     POSITION posSrc = m_trigger_src.get_start_position();
-                     while(posSrc != NULL)
-                     {
-                        int id = 0;
-                        class socket * src = NULL;
-                        m_trigger_src.get_next_assoc(posSrc, id, src);
-                        if (src == p)
-                        {
-                           POSITION posDst = m_trigger_dst[id].get_start_position();
-                           while(posDst != NULL)
-                           {
-                              class socket * dst = NULL;
-                              bool b = false;
-                              m_trigger_dst[id].get_next_assoc(posDst, dst, b);
-                              if (Valid(dst))
-                              {
-                                 dst->OnCancelled(id);
-                              }
-                           }
-                           m_trigger_src.remove_key(id);
-                           m_trigger_dst.remove_key(id);
-                           again = true;
-                           break;
-                        }
-                     }
-                  } while (again);
-                  delete p;
+                     delete psocket;
+                  }
+                  catch(...)
+                  {
+                  }
                }
-               m_sockets.remove_key(socket);
             }
+            m_sockets.remove_key(socket);
          }
          check_max_fd = true;
       }
-      
+
       // calculate max file descriptor for select() call
       if (check_max_fd)
       {
-         m_maxsock = 0;
-         POSITION pos = m_fds.get_head_position();
-         while(pos != NULL)
-         {
-            SOCKET s = m_fds.get_next(pos);
-            m_maxsock = s > m_maxsock ? s : m_maxsock;
-         }
+         m_maxsock = m_fds.maximum(0);
       }
       // remove add's that fizzed
       while(m_delete.get_size() > 0)
@@ -824,7 +797,7 @@ namespace sockets
          socket * p = m_delete.remove_head();
          p -> OnDelete();
          if (p -> DeleteByHandler()
-            && !(m_slave ^ p -> IsDetached()) 
+            && !(m_slave ^ p -> IsDetached())
             )
          {
             p -> SetErasedByHandler();
@@ -1042,15 +1015,15 @@ namespace sockets
       return m_bTryDirect;
    }
 
-   bool socket_handler::ResolverEnabled() 
-   { 
-      return m_resolver ? true : false; 
+   bool socket_handler::ResolverEnabled()
+   {
+      return m_resolver ? true : false;
    }
 
 
-   port_t socket_handler::GetResolverPort() 
-   { 
-      return m_resolver_port; 
+   port_t socket_handler::GetResolverPort()
+   {
+      return m_resolver_port;
    }
 
    socket_handler_base::PoolSocket *socket_handler::FindConnection(int type,const string & protocol,sockets::address& ad)
@@ -1083,9 +1056,9 @@ namespace sockets
    }
 
 
-   bool socket_handler::PoolEnabled() 
-   { 
-      return m_b_enable_pool; 
+   bool socket_handler::PoolEnabled()
+   {
+      return m_b_enable_pool;
    }
 
 

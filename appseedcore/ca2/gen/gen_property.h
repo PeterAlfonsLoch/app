@@ -15,7 +15,7 @@ namespace gen
    class CLASS_DECL_ca pair_set_interface
    {
    public:
-      
+
       pair_set_interface();
 
 
@@ -35,7 +35,7 @@ namespace gen
    class CLASS_DECL_ca str_str_interface
    {
    public:
-      
+
       str_str_interface();
 
 
@@ -58,7 +58,7 @@ namespace gen
 
 
    class CLASS_DECL_ca property :
-      public ex1::serializable,
+      public ex1::byte_serializable,
       virtual public string_interface
    {
    public:
@@ -340,8 +340,8 @@ namespace gen
       bool operator > (int i) const;
       bool operator > (bool b) const;
 
-      void write(ex1::output_stream & ostream);
-      void read(ex1::input_stream & ostream);
+      void write(ex1::byte_output_stream & ostream);
+      void read(ex1::byte_input_stream & ostream);
 
 
       string operator + (const char * psz) const;
@@ -443,6 +443,11 @@ namespace gen
       property & operator *= (const property & prop);
 
 
+      void parse_json(const string & str);
+      void parse_json(const char * & pszJson, strsize length);
+      void parse_json(const char * & pszJson, const char * pszEnd);
+
+
    };
 
    class CLASS_DECL_ca var_property :
@@ -460,6 +465,7 @@ namespace gen
       var_property(int iId);
       var_property(const char * pszName, var & var);
       var_property(const var_property & prop);
+      virtual ~var_property();
 
       virtual var & get_value(int iIndex = -1);
       virtual var get_value(int iIndex = -1) const;
@@ -503,13 +509,13 @@ namespace gen
    };
 
    class CLASS_DECL_ca var_property_array :
-      public ex1::serializable_array < array_ptr_alloc < var_property, var_property & > >
+      public ex1::byte_serializable_array < array_ptr_alloc < var_property, var_property & > >
    {
    public:
    };
 
    class CLASS_DECL_ca property_set :
-      public ex1::serializable
+      public ex1::byte_serializable
    {
    public:
       property_set(::ca::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false, bool bKeyCaseInsensitive = true);
@@ -604,7 +610,9 @@ namespace gen
       void OnBeforePropertyChange(property * pproperty);
       void OnAfterPropertyChange(const var & variableOld, property * pproperty);
 
-      void _008Parse(const char * pszCmdLine);
+      void _008ParseCommandLine(const char * pszCmdLine, var & varFile);
+      void _008ParseCommandFork(const char * pszCmdLine, var & varFile, string & strApp);
+      void _008Parse(bool bApp, const char * pszCmdLine, var & varFile, string & strApp);
 
       var_property_array m_propertya;
       signal m_signal;
@@ -619,12 +627,14 @@ namespace gen
 
       string ex2_eval(const char * psz);
 
+      void parse_json(const char * & pszJson);
+      void parse_json(const char * & pszJson, const char * pszEnd);
       void parse_url_query(const char * pszUrlQuery);
       void parse_http_headers(const char * pszHeaders);
       string get_http_post();
 
-      virtual void write(ex1::output_stream & ostream);
-      virtual void read(ex1::input_stream & ostream);
+      virtual void write(ex1::byte_output_stream & ostream);
+      virtual void read(ex1::byte_input_stream & ostream);
 
       virtual string implode(const char * pszGlue) const;
       count get_count() const;
@@ -634,12 +644,15 @@ namespace gen
       property_set & operator = (const pair_set_interface & set);
       property_set & operator = (const str_str_interface & set);
 
+      property_set & operator += (const property_set & set);
+      property_set & operator |= (const property_set & set);
 
       property_set & add(const property_set & set);
+      property_set & merge(const property_set & set);
 
    };
 
-   class CLASS_DECL_ca relation_set : 
+   class CLASS_DECL_ca relation_set :
       public property_set
    {
    public:

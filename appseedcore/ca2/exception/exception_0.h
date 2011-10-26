@@ -4,14 +4,15 @@
 #define DEBUG_NEW new(__FILE__, __LINE__)
 
 
+
 /////////////////////////////////////////////////////////////////////////////
 // Standard exception throws
 
-CLASS_DECL_ca void __declspec(noreturn) AfxThrowMemoryException();
-CLASS_DECL_ca void __declspec(noreturn) AfxThrowNotSupportedException();
-CLASS_DECL_ca void __declspec(noreturn) AfxThrowInvalidArgException();
-//CLASS_DECL_ca void __declspec(noreturn) AfxThrowArchiveException(int cause, const char * lpszArchiveName = NULL);
-CLASS_DECL_ca void __declspec(noreturn) AfxThrowFileException(int cause, LONG lOsError = -1, const char * lpszFileName = NULL);
+CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowMemoryException();
+CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowNotSupportedException();
+CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowInvalidArgException();
+//CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowArchiveException(int cause, const char * lpszArchiveName = NULL);
+CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowFileException(int cause, LONG lOsError = -1, const char * lpszFileName = NULL);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,7 +29,7 @@ inline errno_t AfxCrtErrorCheck(errno_t error)
    case ERANGE:
       AfxThrowInvalidArgException();
       break;
-#if !defined(VC6)
+#if defined(_WINDOWS)
    case STRUNCATE:
 #endif
    case 0:
@@ -53,7 +54,11 @@ inline int __cdecl clearerr_s(FILE *stream)
 
 inline void __cdecl Afx_clearerr_s(FILE *stream)
 {
+#ifdef _WINDOWS
    AFX_CRT_ERRORCHECK(::clearerr_s(stream));
+#else
+   ::clearerr(stream);
+#endif
 }
 
 

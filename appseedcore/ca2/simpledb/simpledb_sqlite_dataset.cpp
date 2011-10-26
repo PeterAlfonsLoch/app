@@ -46,28 +46,28 @@ namespace sqlite
       else return NULL;
    }
 
-   void set::make_query(stringa &_sql) 
+   void set::make_query(stringa &_sql)
    {
       string query;
 
-      try 
+      try
       {
 
          if(autocommit)
             db->start_transaction();
 
-         if(db == NULL) 
+         if(db == NULL)
             throw database::DbErrors("No base Connection");
 
          //close();
 
-         for (int i = 0; i <_sql.get_size(); i++) 
+         for (int i = 0; i <_sql.get_size(); i++)
          {
             query = _sql.element_at(i);
-            char* err=NULL; 
+            char* err=NULL;
             set::parse_sql(query);
             //cout << "Executing: "<<query<<"\n\n";
-            if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK) 
+            if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
                throw database::DbErrors(db->getErrorMsg());
@@ -75,44 +75,44 @@ namespace sqlite
          } // end of for
 
 
-         if(db->in_transaction() && autocommit) 
+         if(db->in_transaction() && autocommit)
             db->commit_transaction();
 
          active = true;
-         ds_state = database::dsSelect;      
+         ds_state = database::dsSelect;
          refresh();
 
       } // end of try
-      catch(...) 
+      catch(...)
       {
          if (db->in_transaction()) db->rollback_transaction();
       }
    }
 
 
-   void set::make_insert() 
+   void set::make_insert()
    {
       make_query(insert_sql);
       last();
    }
 
 
-   void set::make_edit() 
+   void set::make_edit()
    {
       make_query(update_sql);
    }
 
 
-   void set::make_deletion() 
+   void set::make_deletion()
    {
       make_query(delete_sql);
    }
 
 
-   void set::fill_fields() 
+   void set::fill_fields()
    {
       //cout <<"rr "<<result.records.size()<<"|" << frecno <<"\n";
-      if ((db == NULL) 
+      if ((db == NULL)
       || (result.record_header.get_size() == 0)
       || (result.records.get_size() < frecno))
          return;
@@ -129,7 +129,7 @@ namespace sqlite
       }
 
       //Filling result
-      if (result.records.get_size() != 0) 
+      if (result.records.get_size() != 0)
       {
          for (int i = 0; i < result.records[frecno].get_size(); i++)
          {
@@ -142,7 +142,7 @@ namespace sqlite
          {
             fields_object[i].m_value = "";
             edit_object[i].m_value = "";
-         }    
+         }
 
    }
 
@@ -157,7 +157,7 @@ namespace sqlite
       }
       exec_res.record_header.remove_all();
       exec_res.records.remove_all();
-      //if ((strncmp("select",sql,6) == 0) || (strncmp("SELECT",sql,6) == 0)) 
+      //if ((strncmp("select",sql,6) == 0) || (strncmp("SELECT",sql,6) == 0))
       if(m_iLastResult = db->setErr(sqlite3_exec((sqlite3 *) handle(),sql,&callback,&exec_res,&errmsg)) == SQLITE_OK)
       {
          m_strQueryErrorMessage = "";
@@ -241,12 +241,12 @@ namespace sqlite
 
    void set::open()
    {
-      if (!select_sql.is_empty()) 
+      if (!select_sql.is_empty())
       {
          //cout <<select_sql <<"  open\n\n";
-         query(select_sql); 
+         query(select_sql);
       }
-      else 
+      else
       {
          ds_state = database::dsInactive;
       }
@@ -265,11 +265,11 @@ namespace sqlite
    }
 
 
-   void set::cancel() 
+   void set::cancel()
    {
       if ((ds_state == database::dsInsert) || (ds_state==database::dsEdit))
       {
-         if(result.record_header.get_size()) 
+         if(result.record_header.get_size())
          {
             ds_state = database::dsSelect;
          }
@@ -287,19 +287,19 @@ namespace sqlite
    }
 
 
-   bool set::eof() 
+   bool set::eof()
    {
       return feof;
    }
 
 
-   bool set::bof() 
+   bool set::bof()
    {
       return fbof;
    }
 
 
-   void set::first() 
+   void set::first()
    {
       ::database::set::first();
       this->fill_fields();
@@ -321,27 +321,27 @@ namespace sqlite
    void set::next(void)
    {
       ::database::set::next();
-      if (!eof()) 
+      if (!eof())
          fill_fields();
    }
 
 
    bool set::seek(int pos)
    {
-      if (ds_state == database::dsSelect) 
+      if (ds_state == database::dsSelect)
       {
          set::seek(pos);
          fill_fields();
-         return true;   
+         return true;
       }
       return false;
    }
 
 
 
-   long set::nextid(const char *seq_name) 
+   long set::nextid(const char *seq_name)
    {
-      if(handle()) 
+      if(handle())
          return db->nextid(seq_name);
       else
          return DB_UNEXPECTED_RESULT;
@@ -366,7 +366,7 @@ namespace sqlite
       bool found = false;
       if(ds_state == database::dsSelect)
       {
-         for (int i=0; i < fields_object.get_size(); i++) 
+         for (int i=0; i < fields_object.get_size(); i++)
          {
             if(result.record_header[i].name == f_name)
             {
@@ -436,7 +436,7 @@ namespace sqlite
 
    int set::GetFieldIndex(const char *f_name)
    {
-      for (int i=0; i < fields_object.get_size(); i++) 
+      for (int i=0; i < fields_object.get_size(); i++)
       {
          if(result.record_header[i].name == f_name)
          {
@@ -453,7 +453,7 @@ namespace sqlite
       if(ds_state == database::dsSelect)
       {
          int i;
-         for(i=0; i < fields_object.get_size(); i++) 
+         for(i=0; i < fields_object.get_size(); i++)
             if(result.record_header[i].name == fieldname)
             {
                iFound = i;
@@ -461,7 +461,7 @@ namespace sqlite
             }
             if (iFound < 0) throw database::DbErrors("Field not found: %s",fieldname);
             int iNumRows = num_rows();
-            for(i=0; i < iNumRows; i++) 
+            for(i=0; i < iNumRows; i++)
                if(result.records[i][iFound] == value)
                {
                   seek(i);
@@ -518,11 +518,11 @@ namespace sqlite
 
    int callback(void * res_ptr,int ncol, char** reslt,char** cols){
 
-      database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr); 
+      database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
       int sz = r->records.get_size();
 
       //if (reslt == NULL ) cout << "EMPTY!!!\n";
-      if (r->record_header.get_size() <= 0) 
+      if (r->record_header.get_size() <= 0)
       {
          r->record_header.set_size(ncol, 32);
          for (int i=0; i < ncol; i++)
@@ -555,7 +555,7 @@ namespace sqlite
       if (reslt != NULL)
       {
          for (int i=0; i<ncol; i++)
-         { 
+         {
             if (reslt[i] == NULL)
             {
                v = "";
@@ -584,7 +584,7 @@ namespace sqlite
       }
       //cout <<"Fsz:"<<r->record_header.size()<<"\n";
       // cout << "Recs:"<<r->records.size() <<" m_value |" <<reslt<<"|"<<cols<<"|"<<"\n\n";
-      return 0;  
+      return 0;
    }
 
 

@@ -1,5 +1,16 @@
 #pragma once
 
+
+namespace filemanager
+{
+
+
+   class document;
+
+
+} // namespace filemanager
+
+
 namespace userex
 {
 
@@ -7,28 +18,38 @@ namespace userex
 
    class CLASS_DECL_ca pane_tab_view :
       virtual public ::userbase::tab_view,
-      virtual public ::user::create_view
+      virtual public ::user::view_creator
    {
    public:
+
+
+      pane_view * m_ppaneview;
+
+
       pane_tab_view(::ca::application * papp);
       virtual ~pane_tab_view();
 
-#if !core_level_1
-      using ::userbase::tab_view::create_view;
-      using ::user::create_view::create_view;
-      using ::userbase::tab_view::get_view_uie;
-      using ::user::create_view::get_view_uie;
-      using ::user::tab_callback::on_show_view;
-#endif
+
       virtual ::user::interaction* get_view_uie();
+
       virtual id get_view_id();
 
       virtual void on_show_view();
 
+      virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);
 
       virtual void GetTabClientRect(LPRECT lprect);
 
-      pane_view * m_ppaneview;
+      virtual bool on_hold(::user::interaction * pui, ::user::place_holder * pholder);
+
+      virtual ::user::view_creator_data * ensure(id id);
+
+      virtual void on_create_view(::user::view_creator_data * pcreatordata);
+
+      virtual filemanager::document * get_filemanager_document();
+
+      virtual void _001OnTabClose(int iTab);
+
    };
 
 

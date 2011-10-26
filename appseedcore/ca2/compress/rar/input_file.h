@@ -41,7 +41,7 @@ namespace rar
    {
       UINT Flags;
       byte EncryptVersion;
-      unsigned __int64 StartPosition;
+      uint64_t StartPosition;
 
       bool IsSolid() const { return (Flags & header::archive::kSolid) != 0; }
       bool IsCommented() const {  return (Flags & header::archive::kComment) != 0; }
@@ -58,31 +58,31 @@ namespace rar
    public:
       
       
-      pointer_object<ex1::input_stream>   m_Stream;
+      pointer_object<ex1::byte_input_stream>          m_Stream;
 
-      unsigned __int64                    m_StreamStartPosition;
+      file_position                                   m_StreamStartPosition;
 
-      input_file_info                     _header;
-      ex1::char_dynamic_buffer            m_NameBuffer;
-      ex1::wchar_dynamic_buffer           _unicodeNameBuffer;
+      input_file_info                                 _header;
+      ex1::char_dynamic_buffer                        m_NameBuffer;
+      ex1::wchar_dynamic_buffer                       _unicodeNameBuffer;
 
-      ex1::byte_buffer                    _comment;
+      ex1::byte_buffer                                _comment;
 
-      ex1::byte_dynamic_buffer            m_FileHeaderData;
+      ex1::byte_dynamic_buffer                        m_FileHeaderData;
 
-      header::NBlock::CBlock              m_BlockHeader;
+      header::NBlock::CBlock                          m_BlockHeader;
 
-      crypto::rar29::decoder *            m_RarAESSpec;
-      pointer_object<compress::filter_interface>     m_RarAES;
+      crypto::rar29::decoder *                        m_RarAESSpec;
+      pointer_object<compress::filter_interface>      m_RarAES;
 
 
-      byte *m_CurData; // it must point to start of Rar::Block
-      uint32 m_CurPos;
-      uint32 m_PosLimit;
+      byte *                                          m_CurData; // it must point to start of Rar::Block
+      uint32                                          m_CurPos;
+      uint32                                          m_PosLimit;
 
-      ex1::byte_buffer m_DecryptedData;
-      byte *m_DecryptedDataAligned;
-      uint32 m_DecryptedDataSize;
+      ex1::byte_buffer                                m_DecryptedData;
+      byte *                                          m_DecryptedDataAligned;
+      ::primitive::memory_size                        m_DecryptedDataSize;
 
       bool m_CryptoMode;
       uint32 m_CryptoPos;
@@ -91,10 +91,10 @@ namespace rar
       void ReadName(CItemEx &item, int nameSize);
       void ReadHeaderReal(CItemEx &item);
 
-      HRESULT ReadBytesSpec(void *data, size_t *size);
-      bool ReadBytesAndTestSize(void *data, uint32 size);
+      HRESULT ReadBytesSpec(void * data, ::primitive::memory_size * size);
+      bool ReadBytesAndTestSize(void * data, ::primitive::memory_size size);
 
-      HRESULT Open2(ex1::input_stream *stream, const uint64 *searchHeaderSizeLimit);
+      HRESULT Open2(ex1::byte_input_stream *stream, const file_position *searchHeaderSizeLimit);
 
       void ThrowExceptionWithCode(input_file_exception::CCauseType cause);
       void ThrowUnexpectedEndOfArchiveException();
@@ -118,14 +118,14 @@ namespace rar
       }
 
 
-      HRESULT Open(ex1::input_stream *inStream, const uint64 *searchHeaderSizeLimit);
+      HRESULT Open(ex1::byte_input_stream *inStream, const file_position *searchHeaderSizeLimit);
       void Close();
       HRESULT GetNextItem(CItemEx &item, crypto::get_text_password_interface *getTextPassword, bool &decryptionError, string &errorMessage);
 
       void GetArchiveInfo(input_file_info &archiveInfo) const;
 
-      void SeekInArchive(uint64 position);
-      ex1::reader * CreateLimitedStream(uint64 position, uint64 size);
+      void SeekInArchive(file_position position);
+      ex1::reader * CreateLimitedStream(file_position position, file_size size);
    };
 
 }

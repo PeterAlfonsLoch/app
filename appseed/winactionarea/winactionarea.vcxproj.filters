@@ -10,74 +10,77 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp">
+    <ClCompile Include="winactionarea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="document.cpp">
+    <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="form_callback.cpp">
+    <ClCompile Include="winactionarea_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="frame.cpp">
+    <ClCompile Include="winactionarea_document.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu_right_view.cpp">
+    <ClCompile Include="winactionarea_form_callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu_view.cpp">
+    <ClCompile Include="winactionarea_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pane_view.cpp">
+    <ClCompile Include="winactionarea_menu_right_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pane_view_update_hint.cpp">
+    <ClCompile Include="winactionarea_menu_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="winactionarea_pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view.cpp">
+    <ClCompile Include="winactionarea_pane_view_update_hint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winactionarea_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="document.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="form_callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_right_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pane_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pane_view_update_hint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="winactionarea.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="winactionarea_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_form_callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_menu_right_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_menu_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_pane_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_pane_view_update_hint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winactionarea_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="winactionarea.def">
+    <None Include="app_winactionarea.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

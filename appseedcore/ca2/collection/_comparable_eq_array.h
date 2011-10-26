@@ -9,8 +9,8 @@ public:
    comparable_eq_array(const comparable_eq_array & base_array);
 
    index find_first(const TYPE &t, index find = 0, index last = -1) const;
-   count get_count() const;
-   count get_count(const TYPE & t, index start = 0, index last = -1, count countMax = -1) const;
+   countget_count() const;
+   countget_count(const TYPE & t, index start = 0, index last = -1, count countMax = -1) const;
    bool contains(const TYPE & t, index start = 0, index last = -1, count countMin = 1, count countMax = -1) const;
    index remove_first(const TYPE & t, index find = 0, index last = -1);
    index remove(const TYPE & t, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
@@ -55,12 +55,12 @@ index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 find_first(const TYPE & t, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
+      last += this->get_count();
    for(; find <= last; find++)
    {
-      if(element_at(find) == t)
+      if(this->element_at(find) == t)
          return find;
    }
    return -1;
@@ -68,7 +68,7 @@ find_first(const TYPE & t, index find, index last) const
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 inline count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-get_count() const
+this->get_count() const
 {
    return ARRAY_TYPE::get_count();
 }
@@ -76,7 +76,7 @@ get_count() const
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-get_count(const TYPE & t, index find, index last, count countMax) const
+this->get_count(const TYPE & t, index find, index last, count countMax) const
 {
    count count = 0;
    while((countMax >= 0 && count <= countMax)
@@ -110,9 +110,9 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
 intersect(const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
 {
-   for(INT_PTR i = 0; i < get_size();)
+   for(INT_PTR i = 0; i < this->get_size();)
    {
-      if(a.contains(element_at(i)))
+      if(a.contains(this->element_at(i)))
       {
          i++;
       }

@@ -13,10 +13,7 @@ public:
    virtual void pre_subclass_window();
 
    virtual void _001OnDraw(::ca::graphics * pdc);
-   virtual void _001OnNcDraw(::ca::graphics * pdc);
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
-
-   afx_msg BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
 };

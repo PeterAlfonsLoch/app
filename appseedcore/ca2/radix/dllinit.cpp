@@ -312,7 +312,7 @@ HINSTANCE AfxFindStringResourceHandle(UINT nID)
 
 // AfxLoadString must not only check for the appropriate string segment
 //   in the resource file, but also that the string is non-zero
-int AfxLoadString(UINT nID, __out_ecount_opt(nMaxBuf) wchar_t * lpszBuf, UINT nMaxBuf)
+/*int AfxLoadString(UINT nID, __out_ecount_opt(nMaxBuf) wchar_t * lpszBuf, UINT nMaxBuf)
 {
    ASSERT(fx_is_valid_address(lpszBuf, nMaxBuf*sizeof(WCHAR)));
    if( lpszBuf == NULL || nMaxBuf == 0)
@@ -339,7 +339,8 @@ int AfxLoadString(UINT nID, __out_ecount_opt(nMaxBuf) wchar_t * lpszBuf, UINT nM
 
    return nCharsToCopy;
 }
-
+*/
+/*
 int AfxLoadString(UINT nID, __out_ecount_opt(nMaxBuf) char * lpszBuf, UINT nMaxBuf)
 {
    ASSERT(fx_is_valid_address(lpszBuf, nMaxBuf*sizeof(CHAR)));
@@ -365,6 +366,7 @@ int AfxLoadString(UINT nID, __out_ecount_opt(nMaxBuf) char * lpszBuf, UINT nMaxB
 
    return nBytes;
 }
+*/
 
 /////////////////////////////////////////////////////////////////////////////
 // Library initialization and cleanup
@@ -423,6 +425,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
+      use_ca2_allocator();
 
       // initialize this DLL's extension module
       VERIFY(AfxInitExtensionModule(coreDLL, hInstance));
@@ -511,7 +514,7 @@ static void _AfxForceVectorDelete()
    new gdi_object[2];
    new CListBox[2];
    new CCheckListBox[2];
-   new CMapPtrToPtr[2];
+   new map_ptr_to_ptr[2];
    new CMapPtrToWord[2];
    new CMapStringToOb[2];
    new CMapStringToPtr[2];
@@ -522,7 +525,7 @@ static void _AfxForceVectorDelete()
    new ::userbase::menu[2];
    new CMetaFileDC[2];
    new CObArray[2];
-   new base_object_list[2];
+   new object_list[2];
    new ::ca::paletter_sp[2];
    new ::ca::pen_sp[2];
    new CPtrArray[2];
@@ -577,10 +580,10 @@ static void _AfxForceVectorDelete()
 
    new semaphore[2];
    new mutex[2];
-   new CEvent[2];
+   new event[2];
    new critical_section[2];
 
-#ifdef _AFX_OLE_IMPL
+#ifdef _CA_DLL
    new COleDataSource[2];
    new COleDispatchDriver[2];
    new COleDropSource[2];
@@ -602,13 +605,13 @@ static void _AfxForceVectorDelete()
    new CRichEditCntrItem[2];
 #endif
 
-#ifdef _AFX_DB_IMPL
+#ifdef _CA_DLL
    new CDatabase[2];
    new CLongBinary[2];
 #endif
 
 // Net
-#ifdef _AFX_NET_IMPL
+#ifdef _CA_DLL
    new CAsyncSocket[2];
    new CSocket[2];
 #endif

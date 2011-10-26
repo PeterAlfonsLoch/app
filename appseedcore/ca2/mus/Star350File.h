@@ -9,7 +9,7 @@ class Star350InfoHeader;
 class Star350Tracks;
 
 class CLASS_DECL_ca Star350File :
-   public primitive::memory_container < primitive::memory >
+   public primitive::memory_container
 {
 public:
    Star350File(::ca::application * papp);
@@ -78,8 +78,8 @@ public:
    inline bool IsOpened();
    critical_section   m_cs;
    VMSRESULT GetPreviousEvent(
-      MidiEventBase * pPreviousEvent,
-      MidiEventBase * pEvent);
+      midi_event_base * pPreviousEvent,
+      midi_event_base * pEvent);
    void delete_contents();
 
 
@@ -148,42 +148,29 @@ public:
         DWORD cbPrerollNomimalMax);
 
     VMSRESULT ReadEvent(
-        MidiEventBase * pEvent,
+        midi_event_base * pEvent,
       LPMIDIHDR lpmh,
       imedia::position tkMax,
         DWORD cbPrerollNomimalMax);
 
-   SMFRESULT seek(
-      imedia::position tkPosition,
-      LPMIDIHDR lpmh);
+   SMFRESULT seek(imedia::position tkPosition, LPMIDIHDR lpmh);
 
-   SMFRESULT seek(
-      imedia::position tkPosition);
+   SMFRESULT seek(imedia::position tkPosition);
 
-   static DWORD GetStateMaxSize(
-      void);
+   static DWORD GetStateMaxSize(void);
 
    SMFRESULT BuildIndex();
 
 
-   SMFRESULT GetNextEvent(
-      MidiEventBase * pevent,
-      imedia::position tkMax,
-      BOOL   bTkMaxInclusive);
+   SMFRESULT GetNextEvent(midi_event_base * pevent, imedia::position tkMax, BOOL   bTkMaxInclusive);
 
-   SMFRESULT GetNextEventTkPosition(
-      imedia::position * pTkPosition,
-      imedia::position tkMax);
+   SMFRESULT GetNextEventTkPosition(imedia::position * pTkPosition, imedia::position tkMax);
 
 protected:
-   SMFRESULT InsertParmData(
-      imedia::position tkDelta,                                            
-      LPMIDIHDR lpmh);
+   SMFRESULT InsertParmData(imedia::position tkDelta, LPMIDIHDR lpmh);
 
 
-   SMFRESULT InsertPadEvent(
-      imedia::position            tkDelta,
-      LPMIDIHDR         lpmh);
+   SMFRESULT InsertPadEvent(imedia::position            tkDelta, LPMIDIHDR         lpmh);
 
 
 private:

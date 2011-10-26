@@ -8,6 +8,7 @@ namespace netshareclient
    {
    public:
 
+
       bergedge *                                   m_pclient;
       ::userbase::single_document_template *       m_pdoctemplate;
       list *                                       m_pnetshareclientlist;
@@ -18,15 +19,9 @@ namespace netshareclient
       virtual ~application(void);
 
       virtual bool initialize_instance();
-      virtual int  exit_instance();
 
-      virtual bool bergedge_start();
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
-      virtual void _001OnFileNew();
-
-	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-
-      ::document * _001OpenDocumentFile(var varFile);
 
    };
 

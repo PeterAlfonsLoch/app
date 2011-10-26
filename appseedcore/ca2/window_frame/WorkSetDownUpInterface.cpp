@@ -11,14 +11,14 @@ namespace window_frame
    {
       if(m_pupdowntarget != NULL)
       {
-         m_pupdowntarget->Attach(this);
+         m_pupdowntarget->UpDownTargetAttach(this);
       }
    }
    void CWorkSetDownUpInterface::window_frame_Detach()
    {
       if(m_pupdowntarget != NULL)
       {
-         m_pupdowntarget->Detach(this);
+         m_pupdowntarget->UpDownTargetDetach(this);
       }
    }
 

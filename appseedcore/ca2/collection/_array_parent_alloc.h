@@ -55,7 +55,7 @@ inline array_parent_alloc <TYPE, ARG_TYPE> & array_parent_alloc < TYPE, ARG_TYPE
 	int i;
    for(i = 0; i < m_ptra.get_size(); i++)
    {
-      element_at(i) = *a.m_ptra[i];
+      this->element_at(i) = *a.m_ptra[i];
    }
    for(; i < a.m_ptra.get_size(); i++)
    {
@@ -71,13 +71,13 @@ template <class TYPE, class ARG_TYPE>
 inline void array_parent_alloc < TYPE, ARG_TYPE >::
 set_size(index iSize)
 {
-   while(get_size() < iSize)
+   while(this->get_size() < iSize)
    {
       add_new();
    }
-   while(get_size() > iSize)
+   while(this->get_size() > iSize)
    {
-      remove_at(get_size() - 1);
+      remove_at(this->get_size() - 1);
    }
 }
 
@@ -89,7 +89,7 @@ void array_parent_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
 
    if(iIndex < m_ptra.get_size())
    {
-      element_at(iIndex) = t;
+      this->element_at(iIndex) = t;
    }
    else
    {

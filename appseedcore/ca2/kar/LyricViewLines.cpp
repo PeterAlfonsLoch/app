@@ -24,8 +24,8 @@ index LyricViewLines::GetTokenLine(index iToken)
 
 index LyricViewLines::GetTokenLine(index iToken, LyricViewLine ** viewLine)
 {
-   int iLoBound = 0;
-   int iHiBound = get_size() - 1;
+//   int iLoBound = 0;
+   int iHiBound = this->get_size() - 1;
    int iIndex = 0;
    int iLastNonEmpty = -1;
    while(iIndex <= iHiBound)
@@ -56,7 +56,7 @@ int iLineIndex = viewLines.element_at(iIndex).m_iRelativeLineIndex;
 if(iLineIndex >= 0 &&
 iLineIndex < m_nSize)
 {
-*pViewLine = &element_at(iLineIndex);
+*pViewLine = &this->element_at(iLineIndex);
 return iLineIndex;
 }
 return -1;
@@ -82,13 +82,13 @@ void LyricViewLines::OnChildSetVisible(LyricViewLine & viewline)
       int iLine = iCurrentLine;
       if(iLine <= m_iFirstVisibleLine && m_iFirstVisibleLine >= 0)
       {
-         while(!element_at(iLine).IsVisible())
+         while(!this->element_at(iLine).IsVisible())
          {
             iLine++;
-            if(iLine >= get_size())
+            if(iLine >= this->get_size())
                break;
          }
-         if(iLine >= get_size())
+         if(iLine >= this->get_size())
          {
             m_iFirstVisibleLine = -1;
          }
@@ -100,7 +100,7 @@ void LyricViewLines::OnChildSetVisible(LyricViewLine & viewline)
       iLine = iCurrentLine;
       if(iLine >= m_iLastVisibleLine)
       {
-         while(!element_at(iLine).IsVisible())
+         while(!this->element_at(iLine).IsVisible())
          {
             iLine--;
             if(iLine < 0)
@@ -115,9 +115,9 @@ void LyricViewLines::OnChildSetVisible(LyricViewLine & viewline)
 
 void LyricViewLines::Prepare()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      LyricViewLine & rline = element_at(i);
+      LyricViewLine & rline = this->element_at(i);
       rline.m_pContainer = this;
       rline.m_iLineIndex = i;
    }
@@ -136,9 +136,9 @@ void LyricViewLines::Prepare(LyricViewLine *lpViewLine)
 
 void LyricViewLines::SetEffect(int iEffect)
 {
-   for(int i = 0 ; i < get_size(); i++)
+   for(int i = 0 ; i < this->get_size(); i++)
    {
-      element_at(i).SetTextEffect(iEffect);
+      this->element_at(i).SetTextEffect(iEffect);
    }
 
 }
@@ -164,7 +164,7 @@ bool LyricViewLines::UpdateFalseVisibility(
    // true visiblity
    iFirstCandidateLine = max(0, GetTokenLine(karaokedata.GetDynamicData().m_iPlayingTokenIndex, NULL));
    iFirstLine = iFirstCandidateLine;
-   iLastLine = get_size() - 1;
+   iLastLine = this->get_size() - 1;
    iLastCandidateLine = iLastLine;
    int iLine;
    for(iLine = iFirstLine; iLine <= iLastLine; iLine++)
@@ -182,15 +182,15 @@ bool LyricViewLines::UpdateFalseVisibility(
    }
 
    // Calculates the first ans last visible lines
-   iFirstLine = max(0, min(get_size() - 1, GetFirstVisibleLine()));
-   iLastLine  = min(get_size() - 1, max(0, GetLastVisibleLine()));
+   iFirstLine = max(0, min(this->get_size() - 1, GetFirstVisibleLine()));
+   iLastLine  = min(this->get_size() - 1, max(0, GetLastVisibleLine()));
 
    // Clears A
    dwa.remove_all();
    dwaCleared.remove_all();
    for(iLine = iFirstLine; iLine <= iLastLine; iLine++)
    {
-      LyricViewLine & viewline = element_at(iLine);
+      LyricViewLine & viewline = this->element_at(iLine);
       if(viewline.IsVisible())
       {
          if((iLine < iFirstCandidateLine ||
@@ -228,17 +228,17 @@ bool LyricViewLines::BBUpdateFalseVisibility(
    dword_array dwa;
    dword_array dwaCleared;
 
-   LyricViewLineTemplates & lvlts = *element_at(0).GetTemplate()->GetTemplates();
+   LyricViewLineTemplates & lvlts = *this->element_at(0).GetTemplate()->GetTemplates();
 
    // Calculates the first and the last line eligible for
    // true visiblity
    //iFirstCandidateLine = max(0, GetTokenLine(karaokedata.GetDynamicData().m_iPlayingTokenIndex));
    iFirstCandidateLine = max(0, iLineIndex);
-   iLastCandidateLine = min(get_size() - 1, iFirstCandidateLine + lvlts.get_size() - 1);
+   iLastCandidateLine = min(this->get_size() - 1, iFirstCandidateLine + lvlts.get_size() - 1);
 
    // Calculates the first ans last visible lines
-  // iFirstLine = max(0, min(get_size() - 1, GetFirstVisibleLine()));
-   //iLastLine  = min(get_size() - 1, max(0, GetLastVisibleLine()));
+  // iFirstLine = max(0, min(this->get_size() - 1, GetFirstVisibleLine()));
+   //iLastLine  = min(this->get_size() - 1, max(0, GetLastVisibleLine()));
 
    // Clears A
    dwa.remove_all();
@@ -290,7 +290,7 @@ bool LyricViewLines::UpdateTrueVisibility(
 
    if(iFirstEligibleIndex >= 0)
    {
-      lpviewline = &element_at(iFirstEligibleIndex);
+      lpviewline = &this->element_at(iFirstEligibleIndex);
       if(!lpviewline->IsVisible())
       {
          if(lpviewline->IsPlaying(karaokedata.GetDynamicData().m_iPlayingTokenIndex))
@@ -323,7 +323,7 @@ bool LyricViewLines::Arrange(
    if(m_iLine != iLineIndex)
    {
       return BBArrange(
-         pdcForeground, 
+         pdcForeground,
          pdcBackground,
          bDraw,
          iLineIndex,
@@ -365,13 +365,13 @@ bool LyricViewLines::BBArrange(
    if(iLineIndex < 0)
       iLineIndex = 0;
 
-   if(iLineIndex >= get_size())
+   if(iLineIndex >= this->get_size())
       return false;
 
    {
       ikar::dynamic_data & dynamicdata = karaokedata.GetDynamicData();
       ikar::static_data & staticdata = karaokedata.GetStaticData();
-      LyricViewLine & rvl = element_at(iLineIndex);
+      LyricViewLine & rvl = this->element_at(iLineIndex);
       if(rvl.GetLastToken() - 1 == dynamicdata.m_iPlayingTokenIndex)
       {
 
@@ -423,10 +423,10 @@ bool LyricViewLines::BBArrange(
 
    //TRACE("LyricViewLines::BBArrange oldline=%d line=%d\n", iOldLine, iLineIndex);
 
-   if(get_size() <= 0)
+   if(this->get_size() <= 0)
       return false;
 
-   LyricViewLineTemplates & lvlts = *element_at(0).GetTemplate()->GetTemplates();
+   LyricViewLineTemplates & lvlts = *this->element_at(0).GetTemplate()->GetTemplates();
 
    long ly;
 
@@ -445,13 +445,13 @@ bool LyricViewLines::BBArrange(
 
    for(i = 0; i < iCount; i++)
    {
-      if(iLineIndex + i >= get_size())
+      if(iLineIndex + i >= this->get_size())
       {
          lvlts[i].SetLine(NULL);
          continue;
       }
 
-      LyricViewLine & rvl = element_at(iLineIndex + i);
+      LyricViewLine & rvl = this->element_at(iLineIndex + i);
       LyricViewLineTemplate & lvlt = lvlts.element_at(i);
 
       // Show only if it is not visible or if the template is not correct
@@ -496,7 +496,7 @@ bool LyricViewLines::BBArrange(
    if(iLineIndex > iOldLine)
    {
       string strLine;
-      element_at(iLineIndex).m_tokenaRaw.GetText(strLine);
+      this->element_at(iLineIndex).m_tokenaRaw.GetText(strLine);
       if(strLine.has_char())
       {
          m_dBBArrangeRate = 0.0;
@@ -603,7 +603,7 @@ bool LyricViewLines::BBArrange(
 
    /*    for(int i = 0; i < iLineIndex; i++)
    {
-   LyricViewLine & rvl = element_at(i);
+   LyricViewLine & rvl = this->element_at(i);
    if(rvl.GetVisible())
    {
    rvl.SetVisible(false);
@@ -619,9 +619,9 @@ bool LyricViewLines::BBArrange(
 
    }
    }
-   for(i = iLineIndex + lvlts.get_size(); i < get_size(); i++)
+   for(i = iLineIndex + lvlts.get_size(); i < this->get_size(); i++)
    {
-   LyricViewLine & rvl = element_at(i);
+   LyricViewLine & rvl = this->element_at(i);
    if(rvl.GetVisible())
    {
    rvl.SetVisible(false);
@@ -655,17 +655,17 @@ bool LyricViewLines::BBArrange(
    iStartIndex = GetFirstVisibleLine();
    if(iStartIndex < 0)
    iStartIndex = 0;
-   if(iStartIndex >= get_size())
-   iStartIndex = get_size() - 1;
+   if(iStartIndex >= this->get_size())
+   iStartIndex = this->get_size() - 1;
    iEndIndex = GetLastVisibleLine();
    //        if(iEndIndex < iStartIndex)
    //          iEndIndex = iStartIndex;
-   if(iEndIndex >= get_size())
-   iEndIndex = get_size() - 1;
+   if(iEndIndex >= this->get_size())
+   iEndIndex = this->get_size() - 1;
 
    for(i = iStartIndex; i <= iEndIndex; i++)
    {
-   LyricViewLine & rvl = element_at(i);
+   LyricViewLine & rvl = this->element_at(i);
    if(rvl.IsVisible())
    {
    rvl.Show(false);
@@ -682,13 +682,13 @@ bool LyricViewLines::BBArrange(
 
    int iSize = lvlts.get_size();
 
-   if(iLineIndex + iSize > get_size())
-   iSize = get_size() - iLineIndex;
+   if(iLineIndex + iSize > this->get_size())
+   iSize = this->get_size() - iLineIndex;
 
    for(i = 0; i < iSize; i++)
    {
    //        if(iLineIndex + i
-   LyricViewLine & rvl = element_at(iLineIndex + i);
+   LyricViewLine & rvl = this->element_at(iLineIndex + i);
    //         if(m_iBBPendingLine <= 0
    //          || i < m_iBBPendingLine)
    //     {
@@ -801,14 +801,14 @@ bool LyricViewLines::GetTokenBBCenter(int iTokenIndex, double * pdLeft, double *
 
 bool LyricViewLines::GetLink(string &str, int iLine, int iToken, int iChar)
 {
-   return element_at(iLine).GetLink(str, iToken, iChar);
+   return this->element_at(iLine).GetLink(str, iToken, iChar);
 }
 
 void LyricViewLines::InvalidateAll()
 {
-   for(int iLine = 0; iLine < get_size(); iLine++)
+   for(int iLine = 0; iLine < this->get_size(); iLine++)
    {
-      element_at(iLine).Invalidate();
+      this->element_at(iLine).Invalidate();
    }
 }
 
@@ -847,7 +847,7 @@ LyricViewLine & LyricViewLines::Lookup(index iLine)
       //      {
       //       m_linemap.set_at_grow(iLine, iIndex);
       //  }
-      return element_at(iLine);
+      return this->element_at(iLine);
    }
    //   else
    // {
@@ -857,11 +857,11 @@ LyricViewLine & LyricViewLines::Lookup(index iLine)
 }
 
 void LyricViewLines::GetBBNoteFillRate(
-                                       imedia::time time, 
-                                       imedia::position position, 
-                                       LyricEventsV2 * pevents, 
+                                       imedia::time time,
+                                       imedia::position position,
+                                       LyricEventsV2 * pevents,
                                        double * pdRate,
-                                       double * pdBegX, 
+                                       double * pdBegX,
                                        double * pdEndX)
 {
    int iTokenIndex = pevents->GetPositionToken(position);
@@ -891,8 +891,8 @@ void LyricViewLines::GetBBNoteFillRate(
       {
          timeSpan = 0;
       }
-      int msElapsed = timeSpan;
-      int msTotalLength = pevents->m_msaNotesDuration[iNoteIndex];
+      imedia::time msElapsed = timeSpan;
+      imedia::time msTotalLength = pevents->m_msaNotesDuration[iNoteIndex];
       if(msElapsed <= 0)
       {
          *pdRate = 0.0;
@@ -919,7 +919,7 @@ void LyricViewLines::GetBBNoteFillRate(
       else
       {
          msTotalLength = 0;
-         int msUntilLength = 0;
+         imedia::time msUntilLength = 0;
          for(int i = 0; i < iCount - 1; i++)
          {
             int iIndex = pevents->m_riiTokenNote.b(iTokenIndex)[i];
@@ -930,7 +930,7 @@ void LyricViewLines::GetBBNoteFillRate(
                {
                   msUntilLength += pevents->m_msaNotesDuration[iIndex];
                }
-            }  
+            }
          }
          if(msTotalLength == 0)
          {
@@ -984,9 +984,9 @@ double LyricViewLines::GetNoteFillRate(
       {
          timeSpan = 0;
       }
-      int msElapsed = timeSpan;
-      int msTotalLength = 0;
-      int msUntilLength = 0;
+      imedia::time msElapsed = timeSpan;
+      imedia::time msTotalLength = 0;
+      imedia::time msUntilLength = 0;
       int iUntil = 0;
       int iCount = pevents->m_riiTokenNote.b(iTokenIndex).get_count();
       for(int i = 0; i < iCount; i++)
@@ -1033,7 +1033,7 @@ void LyricViewLines::RenderEnable(bool bEnable)
 
 kar::KaraokeView * LyricViewLines::GetKaraokeView()
 {
-   return m_pkaraokeview; 
+   return m_pkaraokeview;
 }
 
 void LyricViewLines::SetKaraokeView(kar::KaraokeView *pview)
@@ -1044,9 +1044,9 @@ void LyricViewLines::SetKaraokeView(kar::KaraokeView *pview)
 
 void LyricViewLines::PrepareURLLinks()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      LyricViewLine &line = element_at(i);
+      LyricViewLine &line = this->element_at(i);
       line.PrepareURLLinks();
    }
 
@@ -1075,11 +1075,11 @@ bool LyricViewLines::IsRenderEnabled()
 
 LyricViewLine & LyricViewLines::get(index iLine)
 {
-   return element_at(iLine);
+   return this->element_at(iLine);
 }
 
 count LyricViewLines::GetLineCount()
 {
-   return get_size();
+   return this->get_size();
 }
 

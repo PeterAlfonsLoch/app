@@ -5,7 +5,8 @@ namespace visual
 
    cursor::cursor(::ca::application * papp) :
       ca(papp),
-      m_dib(papp)
+      m_dib(papp),
+      m_dibWork(papp)
    {
    }
 
@@ -29,7 +30,7 @@ namespace visual
 
    bool cursor::load_from_matter(const char * pszMatter)
    {
-      return load_from_file(System.dir().matter(pszMatter));
+      return load_from_file(Application.dir().matter(pszMatter));
    }
 
    bool cursor::to(::ca::graphics * pgraphics, int x, int y)
@@ -41,7 +42,9 @@ namespace visual
          point(x - m_ptHotspot.x, y - m_ptHotspot.y),
          m_dib->size(),
          m_dib->get_graphics(), 
-         null_point()); 
+         null_point(),
+         m_dibWork,
+         m_dibWork2); 
    }
 
    bool cursor::to(::ca::graphics * pgraphics, point pt)

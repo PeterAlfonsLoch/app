@@ -11,6 +11,7 @@ namespace userbase
       m_dMaximumRate    = 0.9;
       m_dRate           = -1.0;
       m_dwPosition      = 1;
+      m_dwMaxPosition   = (DWORD) -1;
    }
 
    split_bar::~split_bar()
@@ -34,12 +35,12 @@ namespace userbase
          System.simple_message_box(NULL, "Could not create Split Bar");
          return FALSE;
       }
-      
+
       return TRUE;
    }
 
 
-   void split_bar::_001OnSize(gen::signal_object * pobj) 
+   void split_bar::_001OnSize(gen::signal_object * pobj)
    {
       //SCAST_PTR(::user::win::message::size, psize, pobj)
       pobj->previous();
@@ -56,7 +57,7 @@ namespace userbase
             lpcsz = MAKEINTRESOURCE(IDC_SIZEWE);
          }
          m_hcursor = ::LoadCursor(NULL, lpcsz);
-         
+
       }
    }
 
@@ -67,17 +68,17 @@ namespace userbase
    }
 
 
-   BOOL split_bar::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL split_bar::PreCreateWindow(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_BORDER;
-      
+
       return ::user::interaction::PreCreateWindow(cs);
    }
 
 
-   void split_bar::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void split_bar::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &split_bar::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_bar::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &split_bar::_001OnLButtonDown);
@@ -88,7 +89,7 @@ namespace userbase
    void split_bar::_001OnLButtonDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
-      CSingleLock sl(&m_pparent->m_mutex, TRUE);
+      single_lock sl(&m_pparent->m_mutex, TRUE);
       m_pparent->m_iIndex = m_iIndex;
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
          && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
@@ -103,7 +104,7 @@ namespace userbase
    void split_bar::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
-      CSingleLock sl(&m_pparent->m_mutex, TRUE);
+      single_lock sl(&m_pparent->m_mutex, TRUE);
       if(m_pparent->m_iIndex == m_iIndex)
       {
          m_pparent->m_iState = split_layout::stateInitial;
@@ -116,13 +117,13 @@ namespace userbase
    void split_bar::_001OnMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
-      CSingleLock sl(&m_pparent->m_mutex, TRUE);
+      single_lock sl(&m_pparent->m_mutex, TRUE);
       point ptClient = pmouse->m_pt;
       m_pparent->ScreenToClient(&ptClient);
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
          && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
       {
-         SetCursor(m_hcursor);   
+         SetCursor(m_hcursor);
       }
       if((m_pparent->m_iState == split_layout::stateDragging) && (m_iIndex == m_pparent->m_iIndex))
       {
@@ -168,12 +169,12 @@ namespace userbase
          {
             bMove = nPos != (int) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
          }
-            
-         TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex].m_dwPosition);            
-         TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);            
+
+         TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex].m_dwPosition);
+         TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
          if(bMove)
          {
-            
+
             m_pparent->m_splitbara[m_iIndex].m_dwPosition = nPos;
             m_pparent->m_splitbara[m_iIndex].m_dRate = dRate;
             m_pparent->layout();

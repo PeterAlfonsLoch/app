@@ -14,6 +14,6 @@ public:
 
    virtual ~FileManagerMainFrame();
 
-   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+   int OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
 

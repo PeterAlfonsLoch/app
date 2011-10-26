@@ -187,9 +187,9 @@ namespace html
    {
    }
 
-   int html_ex::resolve_entity(const char * lpszEntity, char &chSubst)
+   int html_ex::resolve_entity(const char * lpszEntity, string & strChar)
    {
-      return m_entityresolver.resolveEntity(lpszEntity, chSubst);
+      return m_entityresolver.resolveEntity(lpszEntity, strChar);
    }
 
 } // namespace html

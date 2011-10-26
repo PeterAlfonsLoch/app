@@ -27,12 +27,18 @@ namespace ca4
       int encrypt(string & str, const char * psz, const char * pszKey);
       int decrypt(string & str, const char * psz, const char * pszKey);
 
-      DWORD crc32(DWORD dwPrevious, const char * psz, int iCount = -1);
+      static DWORD crc32(DWORD dwPrevious, const void * pvoid, ::primitive::memory_size size);
+      static DWORD crc32(DWORD dwPrevious, const char * psz);
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      bool file_set(const char * pszFile, const char * pszData, const char * pszSalt);
-      bool file_get(const char * pszFile, string & str, const char * pszSalt);
+      string md5(primitive::memory & mem);
+      string sha1(primitive::memory & mem);
+
+      void hmac(primitive::memory & key, const char * message, byte result[20]);
+
+      bool file_set(var varFile, const char * pszData, const char * pszSalt, ::ca::application * papp);
+      bool file_get(var varFile, string & str, const char * pszSalt, ::ca::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

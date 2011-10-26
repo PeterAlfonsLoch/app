@@ -248,7 +248,7 @@ size_t RenderV2ToFile(const ID3_TagImpl& tag, ex1::file & file)
     createFile(sTempFile, tmpOut);
 
     tmpOut.write(tagData, tagSize);
-    file.seek(tag.GetPrependedBytes(), ::ex1::seek_begin);
+    file.seek((file_offset) tag.GetPrependedBytes(), ::ex1::seek_begin);
     char *tmpBuffer[BUFSIZ];
     int nBytes;
     while((nBytes = file.read((char *)tmpBuffer, BUFSIZ)) > 0)
@@ -386,7 +386,7 @@ flags_t ID3_TagImpl::Strip(flags_t ulTagFlag)
     // of the file, we'll effectively move all the data that comes after the
     // tag back n bytes, where n is the size of the id3v2 tag.  Once we've
     // copied the data, we'll truncate the file.
-    file.seek(this->GetPrependedBytes(), ::ex1::seek_begin);
+    file.seek((file_offset) this->GetPrependedBytes(), ::ex1::seek_begin);
     uchar aucBuffer[BUFSIZ];
 
     // The nBytesRemaining variable indicates how many bytes are to be copied
@@ -425,7 +425,7 @@ flags_t ID3_TagImpl::Strip(flags_t ulTagFlag)
         long offset = nBytesRead + this->GetPrependedBytes();
         file.seek(-offset, ::ex1::seek_current);
         file.write((char *)aucBuffer, nBytesRead);
-        file.seek(this->GetPrependedBytes(), ::ex1::seek_current);
+        file.seek((file_offset) this->GetPrependedBytes(), ::ex1::seek_current);
         nBytesCopied += nBytesRead;
       }
 

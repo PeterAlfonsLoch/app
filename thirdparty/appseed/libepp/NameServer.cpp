@@ -4,7 +4,7 @@
 namespace libepp
 {
 
-   string NSIPAddr::get_xml() const
+   string NSIPAddr::get_xml(::ca::application * papp) const
    {
 
       string str;
@@ -12,23 +12,23 @@ namespace libepp
       str += "<domain:hostAddr";
       if(version.has_char()) 
       {
-         str += " ip='" + Application.xml().special_chars(version) + "'";
+         str += " ip='" + Sys(papp).xml().special_chars(version) + "'";
       }
-      str += ">" + Application.xml().special_chars(addr) + "</domain:hostAddr>";
+      str += ">" + Sys(papp).xml().special_chars(addr) + "</domain:hostAddr>";
 
       return str;
 
    }
 
 
-   string NSIPAddrArray::get_xml() const
+   string NSIPAddrArray::get_xml(::ca::application * papp) const
    {
 
       string str;
 
       for(int j = 0; j < get_count(); j++)
       {
-         str += element_at(j).get_xml();
+         str += element_at(j).get_xml(papp);
       }
 
       return str;
@@ -36,15 +36,15 @@ namespace libepp
    }
 
 
-   string NameServer::get_xml() const
+   string NameServer::get_xml(::ca::application * papp) const
    {
     
       string str;
       
       
       str = "<domain:hostAttr>";
-      str += "<domain:hostName>" + Application.xml().special_chars(name) + "</domain:hostName>";
-      str += ips.get_xml();
+      str += "<domain:hostName>" + Sys(papp).xml().special_chars(name) + "</domain:hostName>";
+      str += ips.get_xml(papp);
       str += "</domain:hostAttr>";
 
       return str;
@@ -52,7 +52,7 @@ namespace libepp
    }
 
 
-   string NameServerArray::get_xml() const
+   string NameServerArray::get_xml(::ca::application * papp) const
    {
 
       string str;
@@ -60,7 +60,7 @@ namespace libepp
       str += "<domain:ns>";
       for(int i = 0; i < get_count(); i++) 
       {
-         str += element_at(i).get_xml();
+         str += element_at(i).get_xml(papp);
       }
       str += "</domain:ns>";
 

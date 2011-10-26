@@ -1,7 +1,14 @@
 #pragma once
 
+
 #include "WaveBuffer.h"
 
+#if !defined(WINDOWS)
+
+typedef void * HWAVEOUT;
+typedef int MMRESULT;
+
+#endif
 
 namespace iaudio
 {
@@ -52,7 +59,7 @@ public:
    critical_section                    m_csPreBuffer;
    int                                 m_iLastBufferId;
 
-   base_array < CEvent *, CEvent * >   m_evptraEnd;
+   base_array < event *, event * >   m_evptraEnd;
    critical_section                    m_csHandle;
    ::radix::thread *                   m_pthreadCallback;
    HWAVEOUT                            m_hwaveout;
@@ -63,23 +70,23 @@ public:
    int                                 m_iBufferInMMSys;
    iaudio::WaveStreamEffect *          m_peffect;
    DWORD                               m_dwLostSampleCount;
-   CEvent                              m_eventStopped;
+   event                              m_eventStopped;
 
-   
+
    audWaveOut(::ca::application * papp);
    virtual ~audWaveOut();
 
 
    audio_decode::decoder * SetDecoder(audio_decode::decoder * pdecoder);
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
    int GetBufferInMMSystemCount();
-   DWORD GetPositionMillis();
-   DWORD GetPositionMillisForSynch();
+   imedia::time GetPositionMillis();
+   imedia::time GetPositionMillisForSynch();
    imedia::position get_position();
    imedia::position get_position_for_synch();
-   void AttachEndEvent(CEvent * pevent);
+   void AttachEndEvent(event * pevent);
    bool Stop();
    e_state GetState();
    void BufferReady(LPWAVEHDR lpwavehdr);
@@ -105,7 +112,7 @@ public:
 
    virtual bool initialize_instance();
    virtual int exit_instance();
-   
+
    DECL_GEN_SIGNAL(OnMultimediaOpen)
    DECL_GEN_SIGNAL(OnMultimediaDone)
    DECL_GEN_SIGNAL(OnMultimediaClose)

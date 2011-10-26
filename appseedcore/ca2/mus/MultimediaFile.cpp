@@ -1,13 +1,14 @@
 #include "StdAfx.h"
-#include "MultimediaFile.h"
+#include "multimedia_file.h"
 
-CMultimediaFile::CMultimediaFile()
+
+multimedia_file::multimedia_file()
 : ex1::filesp()
 {
 
 }
 
-CMultimediaFile::~CMultimediaFile()
+multimedia_file::~multimedia_file()
 {
 
 }

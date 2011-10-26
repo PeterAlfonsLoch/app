@@ -1,6 +1,7 @@
 #pragma once
 
-#include "include/cube.h"
+
+#include "include/ca2.h"
 
 
 #ifdef _NETSHARESERVER_DLL

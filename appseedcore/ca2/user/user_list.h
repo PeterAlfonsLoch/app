@@ -21,26 +21,216 @@ namespace userbase
          ElementImage,
          ElementText,
          ElementSubItem,
+         ElementGroupImage,
+         ElementGroupItemText,
       };
    }
 }
 
-
-
-
 namespace user
 {
+
+
    class list_cache_interface;
    class list_header;
    class scroll_bar;
    class list_data;
+   class list;
+   class list_column_array;
 
-   class CLASS_DECL_ca draw_item
+
+   class CLASS_DECL_ca list_column
    {
    public:
-      HDC         m_hdc;
-      index       m_itemId;
-      rect        m_rectItem;
+
+
+      index                            m_iKey;
+      index                            m_iKeyVisible;
+      index                            m_iKeyNonVisible;
+
+
+      bool                             m_bVisible;
+      index                            m_iNextGlobalOrderKey;
+      ::user::list_column_array *      m_pcontainer;
+      index                            m_iOrder;
+      id                               m_uiText;
+      UINT                             m_uiSmallBitmap;
+      COLORREF                         m_crSmallMask;
+      int                              m_iSmallImageWidth;
+      int                              m_iSubItem;
+      image_list *                     m_pil;
+      image_list *                     m_pilHover;
+      ::visual::icon_int_map           m_mapIcon;
+      size                             m_sizeIcon;
+      bool                             m_bIcon;
+      int                              m_iWidth;
+      bool                             m_bCustomDraw;
+
+      // form list attributes
+      bool                             m_bEditOnSecondClick;
+      int                              m_iControl;
+      ::database::id                   m_datakey;
+
+
+
+
+      list_column();
+      list_column(const list_column & pcolumn);
+      virtual ~list_column();
+
+
+      static index CompareOrderSectEndNonVisible(list_column * columna, list_column * columnb);
+      static index CompareOrder(list_column * columna, list_column * columnb);
+
+      static index CompareKey(list_column * columna, list_column * columnb);
+
+      bool operator ==(const ::user::list_column & pcolumn) const;
+      list_column & operator = (const list_column & column);
+
+   };
+
+   class CLASS_DECL_ca list_column_array :
+      public array_ptr_alloc < ::user::list_column >
+   {
+   public:
+
+
+      index               m_iFirstGlobalOrderKey;
+      list         *       m_plist;
+
+
+      list_column_array(::ca::application * papp);
+
+
+      void Initialize(list * plist);
+      index MapConfigIdToKey(const ::database::id & key);
+
+
+
+
+
+      index add(list_column & column);
+
+      void OnChange();
+
+      void remove(index iColumn);
+
+
+      ::count NonVisibleGetCount();
+      index NonVisibleMapSubItemToColumn(index iSubItem);
+      void ShowSubItem(index iSubItem, bool bShow);
+
+      index _001GetSubItemKey(index iSubItem);
+
+      list_column * _001GetBySubItem(index iSubItem);
+      list_column * _001GetByKey(index iKey);
+      list_column * _001GetByConfigId(const ::database::id & key);
+      list_column * _001GetVisible(index iKeyVisible);
+      list_column * _001GetNonVisible(index iKeyNonVisible);
+
+      list_column * GlobalOrderGetPrevious(index iKey);
+      list_column * GlobalOrderGetNext(index iKey);
+
+      index VisibleMapSubItemToColumn(index iSubItem);
+      ::count VisibleGetCount();
+
+      ::count get_count();
+
+
+      void remove_all();
+      void GlobalToVisibleOrder();
+
+      void VisibleToGlobalOrder(index iKeyA, index iKeyB);
+
+      void VisibleToGlobalOrder();
+
+      void DISaveOrder();
+
+      void DILoadOrder();
+
+      index VisibleGetOrderFromKey(index iKey);
+
+      index OrderToKey(index iOrder);
+
+   };
+
+
+   class CLASS_DECL_ca list_item :
+      virtual public ::radix::object
+   {
+   public:
+
+      list *         m_plist;
+      index          m_iGroup;
+      index          m_iItem;
+      index          m_iDisplayItem;
+      index          m_iColumn;
+      index          m_iColumnKey;
+      index          m_iOrder;
+      index          m_iSubItem;
+      index          m_iListItem;
+      string         m_strText;
+      COLORREF       m_cr;
+      int            m_iState;
+      index          m_iImage;
+      bool           m_bOk;
+
+      index          m_iGroupTopIndex;
+      index          m_iGroupCount;
+
+      list_column *  m_pcolumn;
+
+
+      list_item(list * plist);
+
+   };
+
+   class CLASS_DECL_ca draw_list_item :
+      virtual public list_item,
+      virtual public draw_context
+   {
+   public:
+
+      rect                 m_rectGroup;
+      rect                 m_rectItem;
+      rect                 m_rectSubItem;
+      rect                 m_rectListItem;
+      rect                 m_rectImage;
+      rect                 m_rectText;
+      rect *               m_prectClient;
+
+
+      index                m_iGroupRectGroup;
+
+      index                m_iItemRectItem;
+
+      index                m_iWidthColumn;
+      int                  m_iColumnWidth;
+      list_column *        m_pcolumnWidth;
+
+      index                m_iSubItemRectItem;
+      index                m_iSubItemRectSubItem;
+      index                m_iSubItemRectOrder;
+      index                m_iSubItemRectColumn;
+      list_column *        m_pcolumnSubItemRect;
+
+
+      index                m_iListItemRectItem;
+      index                m_iListItemRectSubItem;
+      index                m_iListItemRectListItem;
+
+      ::ca::font *         m_pfont;
+      int                  m_iDrawTextFlags;
+
+      draw_list_item(list * plist);
+
+
+      image_list * get_image_list();
+      bool draw_image();
+      bool draw_group_image();
+      void update_item_color();
+      void set_text_color();
+      void draw_text();
 
    };
 
@@ -61,7 +251,7 @@ namespace user
       enum ItemState
       {
          ItemStateHover = 1,
-         ItemStateSelected = 2, 
+         ItemStateSelected = 2,
       };
 
       enum e_flag
@@ -72,13 +262,9 @@ namespace user
 
 
 
-      enum EColumn
-      {
-         ColumnInvalid,
-      };
 
       class Range;
-      class ColumnArray;
+      class ::user::list_column_array;
 
       class CListItemRange
       {
@@ -90,7 +276,7 @@ namespace user
 
       class CLASS_DECL_ca CSubItemRange
       {
-      
+
       public:
          CSubItemRange();
          CSubItemRange(CSubItemRange & subitemrange);
@@ -99,8 +285,8 @@ namespace user
          index      m_iUBound;
       protected:
          CListItemRange    m_listitemrange;
-         
-         
+
+
       public:
          void Set(index iLBoundSubItem, index iUBoundSubItem, index iLBoundListItem, index iUBoundListItem);
          bool HasSubItem(index iSubItem) const;
@@ -119,11 +305,11 @@ namespace user
          index      m_iLBound;
          index      m_iUBound;
          CSubItemRange  m_subitemrange;
-      
 
-         
 
-         
+
+
+
       public:
          void Offset(index iOffset);
          void Set(index iLBoundItem, index iUBoundItem, index iLBoundSubItem, index iUBoundSubItem, index iLBoundListItem, index iUBoundListItem);
@@ -150,159 +336,43 @@ namespace user
 
          bool HasItem(index iItem) const;
          bool HasSubItem(index iItem, index iSubItem) const;
-         bool RemoveItem(index iItem); 
+         bool RemoveItem(index iItem);
          bool OnRemoveItem(index iItem);
          void clear();
          void add_item(const ItemRange & itemrange);
          ItemRange & ItemAt(index iIndex);
-         count get_item_count() const;
+         ::count get_item_count() const;
       };
 
 
 
-      class CLASS_DECL_ca Column
-      {
-         friend ::user::list;
-         friend ColumnArray;
-
-         public:
-         
-            Column();
-            Column(const Column & column);
-            virtual ~Column();
-         static const Column null;
-      protected:
-
-         index          m_iKey;
-         index          m_iKeyVisible;
-         index          m_iKeyNonVisible;
-         
-         bool           m_bVisible;
-         index          m_iNextGlobalOrderKey;
-         ColumnArray *  m_pcontainer;
-      public:
-         index          m_iOrder;
-         UINT            m_uiText;
-         UINT            m_uiSmallBitmap;
-         COLORREF         m_crSmallMask;
-         int            m_iSmallImageWidth;
-         int            m_iSubItem;
-         image_list *      m_pil;
-         image_list *      m_pilHover;
-         ::collection::map < int, int, HICON, HICON > m_mapIcon;
-         size          m_sizeIcon;
-         bool           m_bIcon;
-         int            m_iWidth;
-         bool           m_bCustomDraw;
-
-         // Form List Attributes
-      public:
-         bool           m_bEditOnSecondClick;
-         int            m_iControl;
-         ::database::id m_datakey;
-
-      public:
-         index GetKey();
-         bool operator ==(const Column & column) const;
-
-         bool IsNull() const;
-
-         bool IsVisible();
-
-         void SetVisible(bool bVisible);
-
-         static index CompareOrderSectEndNonVisible(Column & columna, Column & columnb);
-         static index CompareOrder(Column & columna, Column & columnb);
-
-         static index CompareKey(Column & columna, Column & columnb);
-
-         Column & operator = (const Column & column);
-
-      };
-
-      class CLASS_DECL_ca ColumnArray :
-         public base_array < Column, Column & >
-      {
-      public:
-         ColumnArray(::ca::application * papp);
-
-      protected:
-         index               m_iFirstGlobalOrderKey;
-         ::user::list         * m_plist;
-
-      public:
-         void Initialize(::user::list * plist);
-         index MapConfigIdToKey(const ::database::id & key);
-         Column & GetByConfigId(const ::database::id & key);
-         Column & GetByKey(index iKey);
-         Column & GetBySubItem(index iSubItem);
-         Column & GlobalOrderGetPrevious(index iKey);
-         Column & GlobalOrderGetNext(index iKey);
-
-         Column & VisibleGet(index iKeyVisible);
-         Column & NonVisibleGet(index iKeyNonVisible);
-
-         index add(Column &column);
-
-         void OnChange();
-
-         void remove(index iColumn);
-
-
-         count NonVisibleGetCount();
-         index NonVisibleMapSubItemToColumn(index iSubItem);
-         void ShowSubItem(index iSubItem, bool bShow);
-         index MapSubItemToKey(index iSubItem);
-
-         index VisibleMapSubItemToColumn(index iSubItem);
-         count VisibleGetCount();
-
-         count get_count();
-
-
-         void remove_all();
-         void GlobalToVisibleOrder();
-
-         void VisibleToGlobalOrder(index iKeyA, index iKeyB);
-
-         void VisibleToGlobalOrder();
-
-         void DISaveOrder();
-
-         void DILoadOrder();
-
-         index VisibleGetOrderFromKey(index iKey);
-
-         index OrderToKey(index iOrder);
-
-      };
 
       class CLASS_DECL_ca list_layout :
-         virtual public ex1::serializable
+         virtual public ex1::byte_serializable
       {
       public:
          list_layout();
          virtual ~list_layout();
-         
+
          index_array   m_iaDisplayToStrict;
          int            m_iWidth;
 
-         virtual void write(::ex1::output_stream & ostream);
-         virtual void read(::ex1::input_stream & istream);
+         virtual void write(::ex1::byte_output_stream & ostream);
+         virtual void read(::ex1::byte_input_stream & istream);
       };
 
       class CLASS_DECL_ca icon_layout :
-         virtual public ex1::serializable
+         virtual public ex1::byte_serializable
       {
       public:
          icon_layout();
          virtual ~icon_layout();
-         
+
          index_biunique   m_iaDisplayToStrict;
          int            m_iWidth;
 
-         virtual void write(::ex1::output_stream & ostream);
-         virtual void read(::ex1::input_stream & istream);
+         virtual void write(::ex1::byte_output_stream & ostream);
+         virtual void read(::ex1::byte_input_stream & istream);
       };
 
    public:
@@ -365,85 +435,103 @@ namespace user
 
 
 
-      bool                       m_bSortEnable;
-      bool                       m_bHeaderCtrl;
-      bool                       m_bSingleColumnMode;
-      list_cache_interface *     m_pcache;
-      list_header *              m_pheaderctrl;
+      bool                          m_bSortEnable;
+      bool                          m_bHeaderCtrl;
+      bool                          m_bSingleColumnMode;
+      list_cache_interface *        m_pcache;
+      list_header *                 m_pheaderctrl;
 
-      LOGFONT                     m_logfont;
-      visual::graphics_extension           m_dcextension;
+      LOGFONT                       m_logfont;
+      visual::graphics_extension    m_dcextension;
 
-      COLORREF                     m_crText;
-      COLORREF                     m_crTextSelected;
-      COLORREF                     m_crTextFocused;
-      COLORREF                     m_crTextHighlight;
-      COLORREF                     m_crTextSelectedHighlight;
+      COLORREF                      m_crText;
+      COLORREF                      m_crTextSelected;
+      COLORREF                      m_crTextFocused;
+      COLORREF                      m_crTextHighlight;
+      COLORREF                      m_crTextSelectedHighlight;
 
-      index                      m_iClick;
-      
-      index                      m_iItemFocus;
+      index                         m_iClick;
 
-      bool                        m_bLockViewUpdate;
-      int                        m_iItemHeight;
-      int                        m_iItemWidth;
+      index                         m_iItemFocus;
 
-      short                      m_iWheelDelta;
-      
-      index                      m_iItemHover;
-      index                      m_iSubItemHover;
+      bool                          m_bLockViewUpdate;
+      int                           m_iItemHeight;
+      int                           m_iItemWidth;
 
-      index                    m_iLastItemSel;
-      index                    m_iLastSubItemSel;
-      index                    m_iItemEnter;
-      index                    m_iSubItemEnter;
-      index                    m_iMouseFlagEnter;
-      index                    m_iItemSel;
-      index                    m_iSubItemSel;
-      
+      short                         m_iWheelDelta;
 
-      Range                        m_rangeSelection;
-      Range                        m_rangeHighlight;
+      index                         m_iItemHover;
+      index                         m_iSubItemHover;
+
+      index                         m_iLastItemSel;
+      index                         m_iLastSubItemSel;
+      index                         m_iItemEnter;
+      index                         m_iSubItemEnter;
+      index                         m_iMouseFlagEnter;
+      index                         m_iItemSel;
+      index                         m_iSubItemSel;
 
 
+      Range                         m_rangeSelection;
+      Range                         m_rangeHighlight;
 
-      index                     m_iShiftFirstSelection;
-      UINT                        m_uiLButtonUpFlags;
-      point                        m_ptLButtonUp;
-      UINT                        m_uiRButtonUpFlags;
-      point                        m_ptRButtonUp;
-      CRegExp                    m_reFilter1;
-      int                        m_iFilter1Step;
-      bool                       m_bFilter1;
 
-      bool                        m_bTopText;
-      string                       m_strTopText;
-      rect                        m_rectTopText;
-      list_data *                m_pdata;
-      ::ca::font_sp              m_font;
-      ::ca::font_sp              m_fontHover;
-      ::ca::pen_sp               m_penFocused;
-      ::ca::pen_sp               m_penHighlight;
-      EView                      m_eview;
-      flags < e_flag >           m_flags;
-      icon_layout                m_iconlayout;
-      list_layout                m_listlayout;
 
+      index                         m_iShiftFirstSelection;
+      UINT                          m_uiLButtonUpFlags;
+      point                         m_ptLButtonUp;
+      UINT                          m_uiRButtonUpFlags;
+      point                         m_ptRButtonUp;
+      CRegExp                       m_reFilter1;
+      int                           m_iFilter1Step;
+      bool                          m_bFilter1;
+
+      bool                          m_bTopText;
+      string                        m_strTopText;
+      rect                          m_rectTopText;
+      list_data *                   m_pdata;
+      ::ca::font_sp                 m_font;
+      ::ca::font_sp                 m_fontHover;
+      ::ca::pen_sp                  m_penFocused;
+      ::ca::pen_sp                  m_penHighlight;
+      EView                         m_eview;
+      flags < e_flag >              m_flags;
+      icon_layout                   m_iconlayout;
+      list_layout                   m_listlayout;
+
+
+      index                         m_iTopIndex;
+      index                         m_iTopGroup;
+      count                         m_nDisplayCount;
+      count                         m_nItemCount;
+      count                         m_nGroupCount;
+
+
+      image_list *                  m_pilGroup;
+      image_list *                  m_pilGroupHover;
+      bool                          m_bGroup;
+      bool                          m_bLateralGroup;
+      int                           m_iLateralGroupWidth;
+      int                           m_iGroupMinHeight;
+      index                         m_iGroupHover;
+
+      draw_list_item *              m_pdrawlistitem;
+
+      ::user::list_column_array     m_columna;
 
       list(::ca::application * papp);
       virtual ~list();
 
 
-      
-      virtual void OnDrawInterfaceDraw(::ca::graphics *pdc);
+
       int _001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem);
       int _001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem);
 
 
-      
 
-      
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+
+
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       list_data * GetDataInterface();
       void UpdateHover();
@@ -458,7 +546,7 @@ namespace user
       int _001CalcColumnWidth(index iColumn);
       int _001CalcListWidth();
       virtual void _001OnSort();
-      
+
       // Sort
       virtual index _001Compare(index iItem1, index iItem2);
       virtual index _001Compare(index iItem1, index iItem2, index iSubItem);
@@ -476,7 +564,13 @@ namespace user
       void _001OnListHeaderItemDblClk(index iHeaderItem);
       void Filter1(string & str);
       bool Filter1Step();
-      count _001GetDisplayCount();
+
+
+      index _001CalcDisplayTopIndex();
+      count _001CalcDisplayItemCount();
+      int _001GetGroupHeight(index iGroup);
+
+
       void FilterInclude(int_array & base_array);
       void FilterInclude(index iItem);
       void FilterExcludeAll();
@@ -497,11 +591,10 @@ namespace user
       index _001ConfigIdToSubItem(const ::database::id & key);
       virtual bool _001HasConfigId(const ::database::id & key);
       void _001GetSelection(::database::id & key, ::database::selection & selection);
-      
+
       void _001SetSingleColumnMode(bool bHeaderCtrl);
-      bool _001InsertColumn(Column & column);
+      bool _001InsertColumn(::user::list_column & column);
       void SetDataInterface(list_data * pinterface);
-      count _001GetDisplayItemCount();
       void CacheHint();
       void SetCacheInterface(list_cache_interface * pinterface);
       //void AddMessageHandling(::user::win::message::dispatch * pinterface);
@@ -510,7 +603,6 @@ namespace user
       void _001SetTopText(const wchar_t * lpcwsz);
       bool DIDDXHeaderLayout(bool bSave);
       virtual void DIOnSectionSet();
-      ColumnArray   m_columna;
 
 
       virtual void data_get_DisplayToStrict();
@@ -527,52 +619,40 @@ namespace user
 
       bool CreateHeaderCtrl();
 
-      virtual void   _001OnDraw(
-                     ::ca::graphics *pdc);
+      virtual void _001OnDraw(::ca::graphics *pdc);
 
-      virtual void   _001DrawItem(
-                     ::ca::graphics * pdc,
-                     draw_item * pdrawitem);
+      virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 
-      virtual void   _001DrawSubItem(
-                     ::ca::graphics * pdc,
-                     draw_item * pdrawitem,
-                     LPCRECT lpcrec,
-                     index iSubItem,
-                     bool bItemHover,
-                     bool bSubItemHover,
-                     bool bFocus);
+      virtual void _001DrawGroup(draw_list_item * pdrawitem);
 
-      virtual index      _001GetItemImage(
-                     index iItem, 
-                     index iSubItem,
-                     index iListItem);
+      virtual void _001DrawItems(draw_list_item * pdrawitem, index iItemFirst, index iItemLast);
 
-      virtual bool   _001GetItemText(
-                     string &str,
-                     index iItem,
-                     index iSubItem, 
-                     index iListItem);
+      virtual void _001DrawItem(draw_list_item * pdrawitem);
 
-      virtual COLORREF      _001GetItemColor(
-                     index  iItem, 
-                     index iSubItem,
-                     index iListItem,
-                     int iState);
+      virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
-      virtual bool   _001SearchGetItemText(
-                     string &str,
-                     index iItem,
-                     index iSubItem, 
-                     index iListItem);
+      virtual void _001GetItemImage(list_item * pitem);
+
+      virtual void _001GetItemText(list_item * pitem);
+
+      virtual void _001GetItemColor(list_item * pitem);
+
+      virtual void _001SearchGetItemText(list_item * pitem);
+
+      virtual ::count _001GetGroupItemCount(index iGroup);
+
+      virtual ::count _001GetGroupMetaItemCount(index iGroup);
+
+      virtual void _001GetGroupText(list_item * pitem);
+
+      virtual void _001GetGroupImage(list_item * pitem);
+
+      virtual void _001InsertColumns();
+
+      ::count _001GetColumnCount();
 
 
-      virtual void   _001InsertColumns();
 
-      count _001GetColumnCount();
-
-
-      
 
       void layout();
 
@@ -586,18 +666,18 @@ namespace user
 
       virtual void _001OnInitialize();
 
-      void _001AddColumn(Column &column);
+      void _001AddColumn(list_column & pcolumn);
 
+      void _001GetGroupRect(draw_list_item * pitem);
+      void _001GetItemRect(draw_list_item * pitem);
+      void _001GetSubItemRect(draw_list_item * pitem);
+      void _001GetElementRect(draw_list_item * pitem, userbase::_list::EElement eelement);
 
-      bool _001GetItemRect(index iItem, index iDisplayItem, LPRECT lprect);
-      bool _001GetElementRect(LPRECT lprect, index iItem, index iDisplayItem, index iOrderParam, index iListItem, userbase::_list::EElement eelement);
-
-      void _001OnColumnChange();
+      virtual void _001OnColumnChange();
 
       void _001SetColumnWidth(index iColumn, int iWidth);
 
-      int _001GetColumnWidth(index iColumn);
-
+      void _001GetColumnWidth(draw_list_item * pdrawitem);
 
       index _001MapSubItemToOrder(index iSubItem);
 
@@ -614,8 +694,8 @@ namespace user
       void _001DeleteColumn(index iColumn);
 
 
-      virtual count _001GetItemCount();
-      index _001GetTopIndex();
+      virtual ::count _001GetItemCount();
+      virtual ::count _001GetGroupCount();
       bool _001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, userbase::_list::EElement &eelement);
       bool _001HitTest_(point point, index &iItem, index &iSubItem);
       bool _001HitTest_(POINT pt, index &iItemParam);
@@ -660,7 +740,7 @@ namespace user
       virtual bool _001IsEditing();
 
 
-      count _001GetSelectedItemCount();
+      ::count _001GetSelectedItemCount();
 
       id _001GetColumnTextId(index iColumn);
 
@@ -685,7 +765,7 @@ namespace user
 
       virtual void _001UpdateColumns();
 
-      
+
       void _001RemoveAllColumns();
 
 
@@ -693,9 +773,7 @@ namespace user
 
       void _001SetBackBuffer(visual::CBuffer *ptwb);
 
-      void TwiOnDraw(::ca::graphics *pdc);
-
-      void _001CreateImageList(Column &column);
+      void _001CreateImageList(list_column * pcolumn);
 
       bool _001IsItemVisible(index iItem);
 

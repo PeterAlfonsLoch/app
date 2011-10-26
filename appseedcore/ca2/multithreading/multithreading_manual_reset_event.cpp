@@ -18,20 +18,10 @@
 //
 //*****************************************************************************
 manual_reset_event::manual_reset_event(bool bInitiallyOwn) :
-    ::CEvent(bInitiallyOwn, true)
+    ::event(bInitiallyOwn, true)
 {
 }
 
-//*****************************************************************************
-//
-//      Name:           Signaled
-//      Description:    Determines whether the event is currently signaled.
-//
-//*****************************************************************************
-bool manual_reset_event::is_signaled() const
-{
-    return WAIT_OBJECT_0 == ::WaitForSingleObject(m_hObject, 0);
-}
 
 //*****************************************************************************
 //

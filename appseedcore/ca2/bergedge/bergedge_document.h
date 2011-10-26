@@ -1,8 +1,13 @@
 #pragma once
 
+
 namespace bergedge
 {
+
+
    class system;
+   class view;
+
 
    class CLASS_DECL_ca document :
       public ::userbase::document
@@ -12,7 +17,6 @@ namespace bergedge
 
       platform::document *                m_pplatformdocument;
       nature::document *                  m_pnaturedocument;
-      ::bergedge::bergedge *              m_pbergedge;
       
 
       document(::ca::application * papp); 
@@ -23,7 +27,7 @@ namespace bergedge
 
       ::bergedge::bergedge * get_bergedge();
 
-      ::view * get_bergedge_view();
+      view * get_bergedge_view();
       
       virtual BOOL on_new_document();
       
@@ -34,4 +38,7 @@ namespace bergedge
 
    };
 
+
 } // namespace bergedge
+
+

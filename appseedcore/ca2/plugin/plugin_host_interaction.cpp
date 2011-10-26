@@ -1,0 +1,250 @@
+#include "StdAfx.h"
+
+
+#ifdef Application
+#undef Application
+#endif
+
+#define Application System
+
+
+
+namespace plugin
+{
+   
+   host_interaction::host_interaction(::ca::application * papp) :
+      ::ca::ca(papp)
+   {
+      m_pframe = NULL;
+   }
+
+   host_interaction::~host_interaction()
+   {
+      if(m_papp != NULL)
+      {
+         try
+         {
+            delete m_papp;
+         }
+         catch(...)
+         {
+         }
+      }
+   }
+
+   void host_interaction::install_message_handling(::user::win::message::dispatch * pinterface)
+   {
+      
+      ::user::interaction::install_message_handling(pinterface);
+
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE         , pinterface, this, &host_interaction::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(message_check        , pinterface, this, &host_interaction::_001OnCheck);
+      IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &host_interaction::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &host_interaction::_001OnTimer);
+
+      /*
+      IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED  , pinterface, this, &host_interaction::on_ignore_message);
+      IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &host_interaction::on_ignore_message);
+      IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &host_interaction::on_ignore_message);
+      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &host_interaction::on_ignore_message);
+      IGUI_WIN_MSG_LINK(WM_IME_SETCONTEXT    , pinterface, this, &host_interaction::on_ignore_message);
+      IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &host_interaction::on_ignore_message);
+      IGUI_WIN_MSG_LINK(WM_CHILDACTIVATE     , pinterface, this, &host_interaction::on_ignore_message);
+      */
+
+   }
+
+   void host_interaction::_001OnMouseMove(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+   }
+   
+   void host_interaction::_001OnCreate(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      Application.m_bSessionSynchronizedCursor = false;
+   }
+
+   void host_interaction::_001OnCheck(gen::signal_object * pobj)
+   {
+      SCAST_PTR(user::win::message::base, pbase, pobj);
+      if(pbase->m_wparam == 0)
+      {
+         if(pbase->m_lparam != 0)
+         {
+            m_pplugin->ready_on_main_thread();
+         }
+      }
+      else if(pbase->m_wparam == 1)
+      {
+         m_pplugin->redraw();
+      }
+      else if(pbase->m_wparam == 2)
+      {
+         vsstring * pstrLink = (vsstring *) pbase->m_lparam;
+         string strLink(*pstrLink);
+         gen::property_set setQuery(get_app());
+         setQuery.parse_url_query(strLink);
+         if(setQuery.has_property("karfile_url"))
+         {
+            System.url().set(strLink, "karfile_url", (const char *) m_pplugin->get_host_location_url());
+         }
+         else if(setQuery["ruri"].get_string().get_length() <= 0)
+         {
+            System.url().set(strLink, "ruri", (const char *) m_pplugin->get_host_location_url());
+         }
+         m_pplugin->open_url(strLink);
+         delete pstrLink;
+      }
+   }
+
+   void host_interaction::_001OnTimer(gen::signal_object * pobj)
+   {
+      SCAST_PTR(user::win::message::timer, ptimer, pobj);
+      if(ptimer->m_nIDEvent == 19841115)
+      {
+         KillTimer(19841115);
+         m_pplugin->ready_on_main_thread();
+      }
+   }
+
+
+
+   void host_interaction::_000OnDraw(::ca::graphics * pdc)
+   {
+      
+      rect rectWindow;
+      m_pguie->GetWindowRect(rectWindow);
+      point ptPreviousViewportOrg = pdc->GetViewportOrg();
+      pdc->SetViewportOrg(rectWindow.top_left());
+
+      rect rectClient;
+      GetClientRect(rectClient);
+
+      _001DrawChildren(pdc);
+
+      pdc->SetViewportOrg(rectWindow.top_left());
+      pdc->SelectClipRgn(NULL);
+      point ptCursor;
+      Application.get_cursor_pos(&ptCursor);
+      ScreenToClient(&ptCursor);
+      ::visual::cursor * pcursor = Application.get_cursor();
+      if(pcursor != NULL)
+      {
+         pcursor->to(pdc, ptCursor); 
+      }
+
+   }
+
+   bool host_interaction::defer_check(e_check echeck)
+   {
+
+      if(!m_pplugin->is_ok())
+         return false;
+
+      return SendMessage((UINT)message_check, 0, (LPARAM) echeck) != 0;
+   }
+
+
+   void host_interaction::layout()
+   {
+      if(m_pframe != NULL)
+      {
+         class rect rect;
+         GetClientRect(rect);
+         m_pframe->SetWindowPos(0, 0, 0, rect.width(), rect.height(), SWP_SHOWWINDOW);
+      }
+      else
+      {
+         user::interaction * pui = get_top_child();
+         if(pui != NULL)
+         {
+            class rect rectClient;
+            GetClientRect(rectClient);
+            class rect rectWindow;
+            pui->GetWindowRect(rectWindow);
+            ScreenToClient(rectWindow);
+            if(rectWindow != rectClient)
+            {
+               pui->SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+            }
+            else
+            {
+               pui->ShowWindow(SW_SHOW);
+               pui->layout();
+            }
+         }
+      }
+   }
+
+   BOOL host_interaction::IsWindowVisible()
+   {
+      // it is a regular operational system invisible window whose visibility should be controlled by plugin.
+      // So, do not let children be invisible because this invisible host is invisible...
+      return true;
+   }
+
+   void host_interaction::GetWindowRect(__rect64 * lprect)
+   {
+      RECT rect;
+      m_pplugin->get_window_rect(&rect);
+      ::copy(lprect, &rect);
+   }
+   
+
+   BOOL host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::rgn* prgnUpdate, UINT flags)
+   { 
+      UNREFERENCED_PARAMETER(lpRectUpdate);
+      UNREFERENCED_PARAMETER(prgnUpdate);
+      UNREFERENCED_PARAMETER(flags);
+      if(!m_pplugin->m_bOnPaint && (::GetTickCount() - m_pplugin->m_last_redraw) >= 84)
+      {
+         PostMessage(message_check, 1);
+      }
+      return TRUE;
+   }
+
+   ::user::interaction * host_interaction::get_os_focus_uie()
+   {
+      return Application.window_from_os_data(m_pplugin->get_host_window());
+   }
+
+   void host_interaction::_user_message_handler(gen::signal_object * pobj)
+   {
+      ::user::interaction::_user_message_handler(pobj);
+      pobj->m_bRet = true;
+   }
+
+   void host_interaction::_on_start_user_message_handler()
+   {
+      ::user::interaction::_on_start_user_message_handler();
+      m_pfnDispatchWindowProc = reinterpret_cast < void (::user::win::message::dispatch::*)(gen::signal_object * pobj) > (&host_interaction::_user_message_handler);
+   }
+
+
+   void host_interaction::on_ignore_message(gen::signal_object * pobj)
+   {
+      // avoid host interaction call DefWindowProc for certain Windows messages
+//      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      
+      pobj->m_bRet = true;
+   }
+
+
+   void host_interaction::_000OnMouse(::user::win::message::mouse * pmouse)
+   {
+      if(&Bergedge != NULL)
+      {
+         Bergedge.m_ptCursor = pmouse->m_pt;
+      }
+      else
+      {
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_papp != NULL && m_uiptraChild[0]->m_papp->m_pbergedge != NULL)
+         {
+            set_app(m_uiptraChild[0]->m_papp);
+         }
+      }
+      ::user::interaction::_000OnMouse(pmouse);
+   }
+
+} // namespace plugin

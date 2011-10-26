@@ -3,18 +3,18 @@
 
 
 //extern UINT grbChanMsgLen[];
-MidiEventV016::MidiEventV016()
+midi_event_v016::midi_event_v016()
 {
     m_tkDelta = 0;
     m_iFlags = 0;
 }
 
-MidiEventV016::MidiEventV016(MidiEventV016 & event)
+midi_event_v016::midi_event_v016(midi_event_v016 & event)
 {
    operator =(event);
 }
 
-MidiEventV016::~MidiEventV016()
+midi_event_v016::~midi_event_v016()
 {
 
 }
@@ -34,12 +34,12 @@ MidiEventV016::~MidiEventV016()
 //}
 
 
-void MidiEventV016::clear()
+void midi_event_v016::clear()
 {
     m_tkDelta = 0;
-   MidiEventV508::clear();
+   midi_event_v508::clear();
 }
-VMSRESULT MidiEventV016::GetMidiEventV001(MidiEventV001 * lpMidiEventV001,  DWORD dwPositionTicks)
+VMSRESULT midi_event_v016::GetMidiEventV001(midi_event_v001 * lpMidiEventV001,  DWORD dwPositionTicks)
 {
    UNREFERENCED_PARAMETER(dwPositionTicks);
     lpMidiEventV001->SetFullType(GetFullType());
@@ -48,14 +48,14 @@ VMSRESULT MidiEventV016::GetMidiEventV001(MidiEventV001 * lpMidiEventV001,  DWOR
 //   lpMidiEventV001->SetParamSize(GetParamSize());
    lpMidiEventV001->SetParam(GetParam(), GetParamSize());
    lpMidiEventV001->SetDelta(GetDelta());
-   lpMidiEventV001->SetPosition(GetPosition());
+   lpMidiEventV001->SetPosition(get_position());
    lpMidiEventV001->SetImage(NULL);
    lpMidiEventV001->SetImageSize(GetImageSize());
     return VMSR_SUCCESS;
 }
 
 
-/*MidiEventBase & MidiEventV016::operator =(MidiEventBase &eventSrc)
+/*midi_event_base & midi_event_v016::operator =(midi_event_base &eventSrc)
 {
    SetFullType(eventSrc.GetFullType());
    SetChB1(eventSrc.GetChB1());
@@ -71,7 +71,7 @@ VMSRESULT MidiEventV016::GetMidiEventV001(MidiEventV001 * lpMidiEventV001,  DWOR
    return *this;
 }*/
 
-MidiEventV016 & MidiEventV016::operator =(const MidiEventV016 &eventSrc)
+midi_event_v016 & midi_event_v016::operator =(const midi_event_v016 &eventSrc)
 {
    SetFullType(eventSrc.GetFullType());
    SetChB1(eventSrc.GetChB1());
@@ -84,9 +84,9 @@ MidiEventV016 & MidiEventV016::operator =(const MidiEventV016 &eventSrc)
 
 
 
-VMSRESULT MidiEventV016::WriteParam(LPVOID lpData, int iSize)
+VMSRESULT midi_event_v016::WriteParam(LPVOID lpData, int iSize)
 {
-   return MidiEventV508::WriteParam(lpData, iSize);
+   return midi_event_v508::WriteParam(lpData, iSize);
     byte * hpbParam = GetParam();
     if(iSize <= 0)
     {
@@ -118,7 +118,7 @@ VMSRESULT MidiEventV016::WriteParam(LPVOID lpData, int iSize)
     return VMSR_SUCCESS;
 }
 
-VMSRESULT MidiEventV016::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningStatus)
+VMSRESULT midi_event_v016::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningStatus)
 {
    BYTE                    bEvent;
    int                     iGotTotal;
@@ -184,7 +184,7 @@ VMSRESULT MidiEventV016::FromData(LPVOID lpData, LPINT lpiLeft, BYTE &bRunningSt
             return VMSR_E_INVALIDFILE;
         }
         
-        if (0 == (dwGot = MidiEventBase::GetVDWord(hpbImage, *lpiLeft - iGotTotal, &cbEvent)))
+        if (0 == (dwGot = midi_event_base::GetVDWord(hpbImage, *lpiLeft - iGotTotal, &cbEvent)))
         {
             return VMSR_E_INVALIDFILE;
         }

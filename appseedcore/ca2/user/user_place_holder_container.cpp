@@ -14,28 +14,40 @@ namespace user
    {
    }
 
-   void place_holder_container::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void place_holder_container::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::user::control::_001InstallMessageHandling(pdispatch);
+      ::user::control::install_message_handling(pdispatch);
    }
 
-
-   place_holder * place_holder_container::hold(::user::interaction * pui)
+   place_holder *place_holder_container::get_new_place_holder()
    {
       if(!m_holdera.add_new())
          return NULL;
-      if(!m_holdera.last_element().create(this))
+      if(!m_holdera.last_element().create(this, m_holdera.get_upper_bound()))
       {
          m_holdera.remove_last();
          return NULL;
       }
-      if(!on_hold(pui, &m_holdera.last_element()))
-      {
-         m_holdera.remove_last();
-         return NULL;
-      }
-      return &m_holdera.last_element();;
+      return &m_holdera.last_element();
    }
+
+   bool place_holder_container::remove_place_holder(place_holder * pholder)
+   {
+      bool bRemove = m_holdera.remove(pholder) > 0;
+      return bRemove;
+   }
+
+   place_holder * place_holder_container::hold(::user::interaction * pui)
+   {
+      place_holder * pholder = get_new_place_holder();
+      if(!on_hold(pui, pholder))
+      {
+         remove_place_holder(pholder);
+         return NULL;
+      }
+      return pholder;
+   }
+
 
    bool place_holder_container::unhold(::user::interaction * pui)
    {
@@ -72,10 +84,37 @@ namespace user
    }
 
 
-   bool place_holder_container::create(::user::interaction * puiParent)
+   bool place_holder_container::create(::user::interaction * puiParent, id id)
    {
-      return ::database::user::interaction::create(NULL, NULL, AFX_WS_DEFAULT_VIEW, rect(0,0,0,0), puiParent, 100);
+      return ::database::user::interaction::create(NULL, NULL, AFX_WS_DEFAULT_VIEW, rect(0,0,0,0), puiParent, id) != FALSE;
    }
 
+   place_holder_ptra place_holder_container_ptra::hold(::user::interaction * pui)
+   {
+      place_holder_ptra holderptra;
+      place_holder * pholder;
+      for(int i = 0; i < this->get_count(); i++)
+      {
+         pholder = this->element_at(i)->hold(pui);
+         if(pholder != NULL)
+         {
+            holderptra.add(pholder);
+         }
+      }
+      return holderptra;
+   }
+
+   int place_holder_container_ptra::unhold(::user::interaction * pui)
+   {
+      int count = 0;
+      for(int i = 0; i < this->get_count(); i++)
+      {
+         if(this->element_at(i)->unhold(pui))
+         {
+            count++;
+         }
+      }
+      return count;
+   }
 
 } // namespace user

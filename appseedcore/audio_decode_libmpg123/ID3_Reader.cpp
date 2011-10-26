@@ -15,23 +15,25 @@ namespace audio_decode_libmpg123
 
    }
 
-   ::ID3_Reader::pos_type ID3_Reader::getEnd()
+   file_position ID3_Reader::getEnd()
    {
-      return m_pfile->get_length();
+      return (file_position) m_pfile->get_length();
    }
+
    void ID3_Reader::close()
    {
       m_pfile->close();
    }
-   ::ID3_Reader::pos_type ID3_Reader::getCur()
+
+   file_position ID3_Reader::getCur()
    {
-      return m_pfile->GetPosition();
+      return m_pfile->get_position();
    }
 
 
-   ::ID3_Reader::pos_type ID3_Reader::setCur(pos_type pos)
+   file_position ID3_Reader::setCur(file_position pos)
    {
-      return m_pfile->seek(pos , ::ex1::seek_begin);
+      return m_pfile->seek((file_offset) pos, ::ex1::seek_begin);
    }
 
    bool ID3_Reader::peek(char * pch)
@@ -39,7 +41,7 @@ namespace audio_decode_libmpg123
       return m_pfile->peek(pch);
    }
 
-   ::ID3_Reader::size_type ID3_Reader::readChars(char buf[], size_type len)
+   ::primitive::memory_size ID3_Reader::readChars(char buf[], ::primitive::memory_size len)
    {
       return m_pfile->read(buf, len);
    }

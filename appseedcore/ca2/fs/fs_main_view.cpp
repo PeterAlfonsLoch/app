@@ -14,9 +14,9 @@ namespace fs
    {
    }
 
-   void main_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void main_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::split_view::_001InstallMessageHandling(pinterface);
+      ::userbase::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &main_view::_001OnCreate);
    }
 
@@ -26,24 +26,24 @@ namespace fs
       if(pobj->m_bRet)
          return;
 
-      application * papp = dynamic_cast < application * > (get_app());
+//      application * papp = dynamic_cast < application * > (get_app());
       //papp->m_pmainview = this;
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
       set_position_rate(0, 0.2);
-      create_context cc;
+      ::ca::create_context_sp cc(get_app());
 
-      cc.m_pCurrentDoc = get_document();
-      cc.m_typeinfoNewView = &typeid(tree);
-      ::user::interaction* pwnd = create_view(typeid(tree), get_document(), this, 100);
+//      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
+  //    cc->m_usercreatecontext.m_typeinfoNewView = ::ca::get_type_info < tree > ();
+      ::user::interaction* pwnd = create_view(::ca::get_type_info < tree > (), get_document(), this, 100);
       SetPane(0, pwnd, false);
-      tree * ptree = dynamic_cast < tree * > (pwnd);
+//      tree * ptree = dynamic_cast < tree * > (pwnd);
 
 
-      cc.m_pCurrentDoc = get_document();
-      cc.m_typeinfoNewView = typeid(list);
-      pwnd = create_view(typeid(list), get_document(), this, 101);
-      list * plist = dynamic_cast < list * > (pwnd);
+//      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
+  //    cc->m_usercreatecontext.m_typeinfoNewView = ::ca::get_type_info < list > ();
+      pwnd = create_view(::ca::get_type_info < list > (), get_document(), this, 101);
+//      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
       layout();
       SetTimer(123, 1000, NULL);
@@ -57,7 +57,7 @@ namespace fs
       SCAST_PTR(::user::win::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 123)
       {
-         Application.TimerStep();
+//         Application.TimerStep();
       }
 
    }
@@ -67,10 +67,6 @@ namespace fs
       return dynamic_cast < document * > (::userbase::split_view::get_document());
    }
 
-   data * main_view::get_fs_data()
-   {
-      return get_document()->get_fs_data();
-   }
 
 } // namespace fs
 

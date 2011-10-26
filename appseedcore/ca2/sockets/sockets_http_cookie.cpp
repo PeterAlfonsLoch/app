@@ -2,7 +2,7 @@
 
 namespace http
 {
-   
+
    cookie::cookie()
    {
       m_bSecure = false;
@@ -73,9 +73,9 @@ cookies::~cookies()
 
 int cookies::find_cookie(const char * name)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(element_at(i).m_strName == name)
+      if(this->element_at(i).m_strName == name)
       {
          return i;
       }
@@ -96,9 +96,9 @@ http::cookie & cookies::cookie(const char * name)
       {
          return *((http::cookie *) NULL);
       }
-      return element_at(iFind);;
+      return this->element_at(iFind);;
    }
-   return element_at(iFind);
+   return this->element_at(iFind);
 }
 
 void cookies::add(const char * psz)
@@ -154,7 +154,7 @@ void cookies::add(const char * psz)
       add(cookie);
       return;
    }
-   element_at(iFind) = cookie;
+   this->element_at(iFind) = cookie;
    return;
 }
 
@@ -162,9 +162,9 @@ void cookies::add(const char * psz)
 string cookies::get_cookie_header()
 {
    string strCookie;
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      strCookie += (const char *) (element_at(i).m_strName + "=" + element_at(i).m_varValue.get_string());
+      strCookie += (const char *) (this->element_at(i).m_strName + "=" + this->element_at(i).m_varValue.get_string());
       strCookie += ";";
    }
    return strCookie;
@@ -230,7 +230,7 @@ string cookies::expire(time_t t)
 {
    if(t == 0)
       t = time(NULL);
-   
+
    //time_t t = time((time_t *)&iExpire);
    struct tm tp;
 #ifdef _WIN32

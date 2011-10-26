@@ -7,9 +7,40 @@ namespace window_frame
    class CLASS_DECL_ca WorkSetClientInterface :
       virtual public database::user::interaction
    {
+   public:
+
+      
+      WorkSet              m_workset;
+      EAppearanceMode      m_eappearancemodeFullScreen;
       
 
-   protected:
+      WorkSetClientInterface(::ca::application * papp);
+      virtual ~WorkSetClientInterface();
+
+
+      ::user::interaction* WfiGetWindow();
+
+
+      virtual void _001OnDraw(::ca::graphics * pca);
+
+
+      void WfiEnableFullScreen(bool bEnable = true);
+      virtual bool WfiIsFullScreen();
+      virtual bool WfiIsFullScreenEnabled();
+      virtual bool WfiOnBeginSizing(UINT nType, point pt);
+      virtual bool WfiOnBeginMoving(point pt);
+      virtual bool WfiOnSize(bool bTracking);
+      virtual bool WfiOnMove(bool bTracking);
+      
+      virtual bool WfiClose();
+      virtual bool WfiRestore();
+      virtual bool WfiMinimize();
+      virtual bool WfiMaximize();
+      virtual bool WfiFullScreen(bool bFullScreen, bool bRestore);
+      virtual bool WfiUp();
+      virtual bool WfiDown();
+      virtual bool WfiNotifyIcon();
+
       virtual void WfiOnDown();
       virtual void WfiOnUp();
       virtual void WfiOnRestore();
@@ -34,31 +65,9 @@ namespace window_frame
       virtual void WfiOnAfterClose();
       virtual void WfiOnAfterFullScreen(bool bFullScreen);
       virtual void WfiOnAfterNotifyIcon();
-      ::user::interaction* WfiGetWindow();
-      WorkSetClientInterface(::ca::application * papp);
-      virtual ~WorkSetClientInterface();
 
-   public:
-      WorkSet            m_wndframework;
-      EAppearanceMode   m_eappearancemodeFullScreen;
 
-   public:
-      void WfiEnableFullScreen(bool bEnable = true);
-      virtual bool WfiIsFullScreen();
-      virtual bool WfiIsFullScreenEnabled();
-      virtual bool WfiOnBeginSizing(UINT nType, point pt);
-      virtual bool WfiOnBeginMoving(point pt);
-      virtual bool WfiOnSize(bool bTracking);
-      virtual bool WfiOnMove(bool bTracking);
-      
-      virtual bool WfiClose();
-      virtual bool WfiRestore();
-      virtual bool WfiMinimize();
-      virtual bool WfiMaximize();
-      virtual bool WfiFullScreen(bool bFullScreen, bool bRestore);
-      virtual bool WfiUp();
-      virtual bool WfiDown();
-      virtual bool WfiNotifyIcon();
+
    };
 
 } // namespace window_frame

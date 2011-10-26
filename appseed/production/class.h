@@ -21,6 +21,9 @@ public:
    string      m_strBuildTook;
    string      m_strSpc;
    string      m_strSignTool;
+   string      m_strSignPass;
+   bool        m_bReleased;
+   string      m_strStartTime;
 
    production_class(::ca::application * papp);
    virtual ~production_class();
@@ -47,16 +50,19 @@ public:
       virtual public thread
    {
    public:
-      compress_thread(production_class * pproduction);
+      compress_thread(production_class * pproduction, manual_reset_event * peventFinished);
 
-      manual_reset_event m_evFinished;
-      production_class * m_pproduction;
+      manual_reset_event * m_pevFinished;
+      production_class *   m_pproduction;
+      DWORD                m_dwThreadAffinityMask;
       int run();
    };
 
-   void start(e_version eversion);
+   void start_production(e_version eversion);
    void start_loop(e_version eversion, int iLoopCount);
    void step();
+
+   void defer_quit();
 
    void add_status(const char * psz);
    void change_status(const char * psz);
@@ -91,6 +97,11 @@ public:
    string m_strBase;
    int m_iBaseLen;
    stringa m_straFiles;
+   stringa m_straManifest;
+   stringa m_straSignature;
+   stringa     m_straRelative;
+   stringa     m_straPath;
+
 
    bool m_bClean;
    bool m_bBuild;
@@ -104,9 +115,17 @@ public:
    virtual void release();
    virtual bool release_npca2(const char * pszPlatform);
    virtual bool release_iexca2(const char * pszPlatform);
+   virtual bool release_crxca2(const char * pszPlatform);
+
+   virtual void add_path(const char * pszDir, const char * pszRelative);
 
    bool sync_source(const char * psz, const char * pszRevision);
    bool commit_for_new_build_and_new_release();
+   bool commit_source(const char * psz);
+
+
+   virtual bool twitter_auth();
+   virtual string twitter_twit(const char * pszMessage);
 
 
    void compress(const char * lpszRelative);
@@ -117,5 +136,16 @@ public:
    string   m_strIndexMd5;
    
    void OnUpdateRelease();
+
+   string xpi_digest(primitive::memory & mem);
+
+   void xpi_sign_dir(const char * pszDir);
+   void xpi_section(const char * pszManifest, const char * pszSignature);
+
+   bool create_xpi(const char * pszPlatform, bool bSigned = true);
+   bool create_unsigned_xpi(const char * pszPlatform);
+   bool create_signed_xpi(const char * pszPlatform);
+   
+   void build(const char * psz);
 
 };

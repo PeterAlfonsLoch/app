@@ -5,52 +5,21 @@
 namespace collection
 {
 
-#if core_level_1
-template<class TYPE>
-AFX_INLINE void AFXAPI ConstructElements(TYPE* pElements, int nCount)
-{
-   ASSERT(nCount == 0 ||
-      fx_is_valid_address(pElements, nCount * sizeof(TYPE)));
 
-   // first do bit-wise zero initialization
-   memset((void*)pElements, 0, nCount * sizeof(TYPE));
-
-   // then call the constructor(s)
-   for (; nCount--; pElements++)
-      ::new((void *) pElements) TYPE;
-}
-
-template<class TYPE>
-AFX_INLINE void AFXAPI DestructElements(TYPE* pElements, int nCount)
-{
-   ASSERT(nCount == 0 ||
-      fx_is_valid_address(pElements, nCount * sizeof(TYPE)));
-
-   // call the destructor(s)
-   for (; nCount--; pElements++)
-      pElements->~TYPE();
-}
-
-template<class TYPE>
-AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
-{
-   ASSERT(nCount == 0 ||
-      fx_is_valid_address(pDest, nCount * sizeof(TYPE)));
-   ASSERT(nCount == 0 ||
-      fx_is_valid_address(pSrc, nCount * sizeof(TYPE)));
-
-   // default is element-copy using assignment
-   while (nCount--)
-      *pDest++ = *pSrc++;
-}
-#endif
-
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   class map : 
+   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash, class EQUALS = _template::equals >
+   class map :
       virtual public ::radix::object
    {
    public:
-   #if !core_level_1
+
+      typedef KEY          BASE_KEY;
+      typedef ARG_KEY      BASE_ARG_KEY;
+      typedef VALUE        BASE_VALUE;
+      typedef ARG_VALUE    BASE_ARG_VALUE;
+      typedef HASH         BASE_HASH;
+      typedef EQUALS       BASE_EQUALS;
+
+
       class pair
       {
       public:
@@ -58,34 +27,98 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
          VALUE m_value;
          pair(const KEY & key) : m_key(key) {}
       };
-   #else
-      class pair
-      {
-      public:
-         /*const*/ KEY m_key;
-         VALUE m_value;
-         /*pair(const KEY & key) : m_key(key) {}*/
-      };
-   #endif
 
       class assoc : public pair
       {
       public:
-         friend class map<KEY,ARG_KEY,VALUE,ARG_VALUE>;
+         friend class map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>;
          assoc* pNext;
          UINT nHashValue;  // needed for efficient iteration
-   #if !core_level_1
          assoc(const KEY & key) : pair(key) {}
-   #endif
       };
+
+
+      class iterator
+      {
+      public:
+
+
+         pair *   m_ppair;
+         map *    m_pmap;
+
+
+         iterator()
+         {
+            m_ppair  = NULL;
+            m_pmap   = NULL;
+         }
+
+         iterator(pair * ppair, map * pmap)
+         {
+            m_ppair  = ppair;
+            m_pmap   = pmap;
+         }
+
+         pair & operator * ()
+         {
+            return *m_ppair;
+         }
+
+         const pair & operator * () const
+         {
+            return *m_ppair;
+         }
+
+         pair & operator -> ()
+         {
+            return *m_ppair;
+         }
+
+         const pair & operator -> () const
+         {
+            return *m_ppair;
+         }
+
+
+         pair & operator ++ ()
+         {
+            if(m_ppair != NULL && m_pmap != NULL)
+               m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+            return *m_ppair;
+         }
+
+         bool operator == (const iterator & it)
+         {
+            if(this == &it)
+               return true;
+            if(m_ppair == NULL && it.m_ppair == NULL && it.m_pmap == NULL)
+               return true;
+            if(m_pmap != it.m_pmap)
+               return false;
+            return m_ppair == it.m_ppair;
+         }
+
+      };
+
+      iterator begin()
+      {
+         return iterator(PGetFirstAssoc(), this);
+      }
+
+
+      iterator end()
+      {
+         return iterator(NULL, this);
+      }
 
       void construct(count nBlockSize = 10);
       map(count nBlockSize = 10);
-      //template < pair pairs[]>
-      map(pair pairs[]);
+      map(pair pairs[], int iCount);
 
       count get_count() const;
       count get_size() const;
+      count size() const;
+      ::count count() const;
       BOOL is_empty() const;
 
       // Lookup
@@ -106,6 +139,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       // removing existing (key, ?) pair
       BOOL remove_key(ARG_KEY key);
       void remove_all();
+      void clear();
 
       // iterating all (key, value) pairs
       POSITION get_start_position() const;
@@ -129,10 +163,10 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    protected:
       assoc** m_pHashTable;
       UINT m_nHashTableSize;
-      count m_nCount;
+      ::count m_nCount;
       assoc* m_pFreeList;
-      struct plex* m_pBlocks;
-      count m_nBlockSize;
+      struct ::plex* m_pBlocks;
+      ::count m_nBlockSize;
 
       assoc* NewAssoc(ARG_KEY key);
       void FreeAssoc(assoc*);
@@ -148,33 +182,41 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    };
 
    /////////////////////////////////////////////////////////////////////////////
-   // map<KEY, ARG_KEY, VALUE, ARG_VALUE> inline functions
+   // map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS> inline functions
 
 
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   inline count map<KEY, ARG_KEY, VALUE, ARG_VALUE>::get_count() const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_count() const
       { return m_nCount; }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   inline count map<KEY, ARG_KEY, VALUE, ARG_VALUE>::get_size() const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_size() const
       { return m_nCount; }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   inline BOOL map<KEY, ARG_KEY, VALUE, ARG_VALUE>::is_empty() const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::count() const
+      { return m_nCount; }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::size() const
+      { return m_nCount; }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline BOOL map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::is_empty() const
       { return m_nCount == 0; }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   inline void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::set_at(ARG_KEY key, ARG_VALUE newValue)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::set_at(ARG_KEY key, ARG_VALUE newValue)
       { (*this)[key] = newValue; }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   inline POSITION map<KEY, ARG_KEY, VALUE, ARG_VALUE>::get_start_position() const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline POSITION map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_start_position() const
       { return (m_nCount == 0) ? NULL : BEFORE_START_POSITION; }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetFirstAssoc() const
-   { 
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PGetFirstAssoc() const
+   {
       ASSERT_VALID(this);
       if(m_nCount == 0) return NULL;
 
@@ -191,9 +233,9 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return pAssocRet;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetFirstAssoc()
-   { 
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PGetFirstAssoc()
+   {
       ASSERT_VALID(this);
       if(m_nCount == 0) return NULL;
 
@@ -210,14 +252,14 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return pAssocRet;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   inline UINT map<KEY, ARG_KEY, VALUE, ARG_VALUE>::GetHashTableSize() const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline UINT map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::GetHashTableSize() const
       { return m_nHashTableSize; }
 
    /////////////////////////////////////////////////////////////////////////////
-   // map<KEY, ARG_KEY, VALUE, ARG_VALUE> out-of-line functions
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::construct(count nBlockSize)
+   // map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS> out-of-line functions
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::construct(::count nBlockSize)
    {
       ASSERT(nBlockSize > 0);
 
@@ -229,25 +271,24 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       m_nBlockSize = nBlockSize;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::map(count nBlockSize)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(::count nBlockSize)
    {
       construct(nBlockSize);
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::map(pair pairs[])
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(pair pairs[], int iCount)
    {
       construct();
-      int iCount = sizeof(pairs) / sizeof(pair);
       for(int i = 0; i < iCount; i++)
       {
          set_at(pairs[i].m_key, pairs[i].m_value);
       }
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::InitHashTable(
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::InitHashTable(
       UINT nHashSize, BOOL bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default
@@ -273,8 +314,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       m_nHashTableSize = nHashSize;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::remove_all()
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_all()
    {
       ASSERT_VALID(this);
 
@@ -304,16 +345,22 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       m_pBlocks = NULL;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::~map()
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::clear()
+   {
+      remove_all();
+   }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::~map()
    {
       remove_all();
       ASSERT(m_nCount == 0);
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::assoc*
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::NewAssoc(ARG_KEY key)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc*
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::NewAssoc(ARG_KEY key)
    {
       if (m_pFreeList == NULL)
       {
@@ -351,8 +398,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return pAssoc;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::FreeAssoc(assoc* pAssoc)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::FreeAssoc(assoc* pAssoc)
    {
    #if !core_level_1
       pAssoc->assoc::~assoc();
@@ -370,12 +417,12 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
          remove_all();
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::assoc*
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::GetAssocAt(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc*
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::GetAssocAt(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
    // find association (or return NULL)
    {
-      nHashValue = HashKey<ARG_KEY>(key);
+      nHashValue = HASH::HashKey(key);
       nHashBucket = nHashValue % m_nHashTableSize;
 
       if (m_pHashTable == NULL)
@@ -385,16 +432,16 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       assoc* pAssoc;
       for (pAssoc = m_pHashTable[nHashBucket]; pAssoc != NULL; pAssoc = pAssoc->pNext)
       {
-         if (pAssoc->nHashValue == nHashValue && CompareElements(&pAssoc->m_key, &key))
+         if (pAssoc->nHashValue == nHashValue && EQUALS::CompareElements(&pAssoc->m_key, &key))
             return pAssoc;
       }
       return NULL;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   BOOL map<KEY, ARG_KEY, VALUE, ARG_VALUE>::Lookup(ARG_KEY key, VALUE& rValue) const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   BOOL map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Lookup(ARG_KEY key, VALUE& rValue) const
    {
-      ASSERT_VALID(this);
+      //ASSERT_VALID(this);
 
       UINT nHashBucket, nHashValue;
       assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
@@ -405,38 +452,38 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return TRUE;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PLookup(ARG_KEY key) const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PLookup(ARG_KEY key) const
    {
-      ASSERT_VALID(this);
+      //ASSERT_VALID(this);
 
       UINT nHashBucket, nHashValue;
       assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
       return pAssoc;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PLookup(ARG_KEY key)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PLookup(ARG_KEY key)
    {
-      ASSERT_VALID(this);
+      //ASSERT_VALID(this);
 
       UINT nHashBucket, nHashValue;
       assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
       return pAssoc;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   VALUE * map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pget(ARG_KEY key)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pget(ARG_KEY key)
    {
       pair * p = PLookup(key);
       if(p)
          return &p->m_value;
-      else 
+      else
          return NULL;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   VALUE& map<KEY, ARG_KEY, VALUE, ARG_VALUE>::operator[](ARG_KEY key)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::operator[](ARG_KEY key)
    {
       ASSERT_VALID(this);
 
@@ -460,8 +507,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return pAssoc->m_value;  // return new reference
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   BOOL map<KEY, ARG_KEY, VALUE, ARG_VALUE>::remove_key(ARG_KEY key)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   BOOL map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_key(ARG_KEY key)
    // remove key - return TRUE if removed
    {
       ASSERT_VALID(this);
@@ -471,13 +518,13 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
       UINT nHashValue;
       assoc** ppAssocPrev;
-      nHashValue = HashKey<ARG_KEY>(key);
+      nHashValue = HASH::HashKey(key);
       ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
       assoc* pAssoc;
       for (pAssoc = *ppAssocPrev; pAssoc != NULL; pAssoc = pAssoc->pNext)
       {
-         if ((pAssoc->nHashValue == nHashValue) && CompareElements(&pAssoc->m_key, &key))
+         if ((pAssoc->nHashValue == nHashValue) && EQUALS::CompareElements(&pAssoc->m_key, &key))
          {
             // remove it
             *ppAssocPrev = pAssoc->pNext;  // remove from list
@@ -489,8 +536,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return FALSE;  // not found
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::get_next_assoc(POSITION& rNextPosition,
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc(POSITION& rNextPosition,
       KEY& rKey, VALUE& rValue) const
    {
       ASSERT_VALID(this);
@@ -510,7 +557,7 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
             }
          }
          if(pAssocRet == NULL)
-            throw error_exception("map<KEY, ARG_KEY, VALUE, ARG_VALUE>::get_next_assoc : must find something");
+            throw error_exception("map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc : must find something");
       }
 
       // find next association
@@ -532,9 +579,9 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       rValue = pAssocRet->m_value;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair*
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetNextAssoc(const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* pPairRet) const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair*
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PGetNextAssoc(const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* pPairRet) const
    {
       ASSERT_VALID(this);
 
@@ -542,10 +589,10 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
       ASSERT(m_pHashTable != NULL);  // never call on is_empty map
       ASSERT(pAssocRet != NULL);
-   
+
       if(m_pHashTable == NULL || pAssocRet == NULL)
          return NULL;
-      
+
       ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
       // find next association
@@ -563,9 +610,9 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return pAssocNext;
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair*
-   map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetNextAssoc(const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* pPairRet)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair*
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::PGetNextAssoc(const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pair* pPairRet)
    {
       ASSERT_VALID(this);
 
@@ -573,10 +620,10 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
 
       ASSERT(m_pHashTable != NULL);  // never call on is_empty map
       ASSERT(pAssocRet != NULL);
-   
+
       if(m_pHashTable == NULL || pAssocRet == NULL)
          return NULL;
-      
+
       ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
       // find next association
@@ -594,8 +641,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       return pAssocNext;
    }
 
-      template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE >
-      VALUE map <KEY, ARG_KEY, VALUE, ARG_VALUE> ::
+      template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+      VALUE map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS> ::
          get(ARG_KEY argkey, ARG_VALUE valueDefault)
       {
          pair * ppair = PLookup(argkey);
@@ -606,8 +653,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       }
 
    /*
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::Serialize(CArchive& ar)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Serialize(CArchive& ar)
    {
       ASSERT_VALID(this);
 
@@ -628,9 +675,9 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
             {
                KEY* pKey;
                VALUE* pValue;
-               /* 
-                * in some cases the & operator might be overloaded, and we cannot use it to 
-                * obtain the address of a given object.  We then use the following trick to 
+               /*
+                * in some cases the & operator might be overloaded, and we cannot use it to
+                * obtain the address of a given object.  We then use the following trick to
                 * get the address
                 */
                /*pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
@@ -656,8 +703,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    */
 
    #ifdef _DEBUG
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::dump(dump_context & dumpcontext) const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & dumpcontext) const
    {
       ::radix::object::dump(dumpcontext);
 
@@ -680,8 +727,8 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       dumpcontext << "\n";
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::assert_valid() const
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
    {
       ::radix::object::assert_valid();
 
@@ -692,9 +739,9 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    #endif //_DEBUG
 
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   class attrib_map : 
-      virtual public map < KEY, ARG_KEY, VALUE, ARG_VALUE >
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash, class EQUALS = _template::equals >
+   class attrib_map :
+      virtual public map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS >
    {
    public:
       attrib_map();
@@ -703,24 +750,24 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       attrib_map & operator = (const attrib_map & map);
    };
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   attrib_map<KEY, ARG_KEY, VALUE, ARG_VALUE>::attrib_map()
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::attrib_map()
    {
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   attrib_map<KEY, ARG_KEY, VALUE, ARG_VALUE>::attrib_map(const attrib_map & attribmap)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::attrib_map(const attrib_map & attribmap)
    {
       operator = (attribmap);
    }
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
-   attrib_map<KEY, ARG_KEY, VALUE, ARG_VALUE> & attrib_map<KEY, ARG_KEY, VALUE, ARG_VALUE>::operator = (const attrib_map & attribmap)
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS> & attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::operator = (const attrib_map & attribmap)
    {
       if(this != &attribmap)
       {
-         remove_all();
-         const pair * ppair = attribmap.PGetFirstAssoc();
+         this->remove_all();
+         const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS >::pair * ppair = attribmap.PGetFirstAssoc();
          while(ppair != NULL)
          {
             set_at(ppair->m_key, ppair->m_value);
@@ -736,12 +783,26 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
       virtual public attrib_map < string, string, VALUE, ARG_VALUE >
    {
    public:
-      string_map(count nBlockSize = 10);
+      string_map(::count nBlockSize = 10);
    };
 
    template < class VALUE, class ARG_VALUE >
-   string_map < VALUE, ARG_VALUE >::string_map(count nBlockSize) : 
-      map < string, string, VALUE, ARG_VALUE > (nBlockSize) 
+   string_map < VALUE, ARG_VALUE >::string_map(::count nBlockSize) :
+      map < string, string, VALUE, ARG_VALUE > (nBlockSize)
+   {
+   }
+
+   template < class VALUE, class ARG_VALUE = const VALUE & >
+   class int_map :
+      virtual public attrib_map < int, int, VALUE, ARG_VALUE >
+   {
+   public:
+      int_map(::count nBlockSize = 10);
+   };
+
+   template < class VALUE, class ARG_VALUE >
+   int_map < VALUE, ARG_VALUE >::int_map(::count nBlockSize) :
+      map < int, int, VALUE, ARG_VALUE > (nBlockSize)
    {
    }
 
@@ -759,10 +820,70 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    };
 
 
-   class CLASS_DECL_ca string_to_pointer :
+   class CLASS_DECL_ca string_to_ptr :
       virtual public ::collection::string_map < void *, void * >
    {
    public:
+   };
+
+   template < class T >
+   class CLASS_DECL_ca string_to_pointer :
+      virtual public string_to_ptr
+   {
+   public:
+
+      class pair
+      {
+      public:
+         const string m_key;
+         T * m_value;
+      };
+
+      BOOL Lookup(string key, T * & rValue) const
+      {
+         return string_to_ptr::Lookup(key, rValue);
+      }
+      const pair *PLookup(string key) const
+      {
+         return reinterpret_cast < const string_to_pointer::pair * > (string_to_ptr::PLookup(key));
+      }
+      pair *PLookup(string key)
+      {
+         return reinterpret_cast < string_to_pointer::pair * > (string_to_ptr::PLookup(key));
+      }
+
+
+      T ** pget(string key)
+      {
+         return (T**) string_to_ptr::pget(key);
+      }
+      T * get(string key)
+      {
+         T ** p = (T **) string_to_ptr::pget(key);
+         if(p == NULL)
+            return NULL;
+         else
+            return (T*) *p;
+      }
+
+   // Operations
+      // Lookup and add if not there
+      T * & operator[](string key)
+      {
+         return (T * &) string_to_ptr::operator[](key);
+      }
+
+
+      pair * PGetFirstAssoc()
+      {
+         return (pair *) string_to_ptr::PGetFirstAssoc();
+      }
+
+      pair * PGetNextAssoc(pair * & rPpair)
+      {
+         return (pair *) string_to_ptr::PGetNextAssoc((string_to_ptr::pair * &) rPpair);
+      }
+
    };
 
 
@@ -772,6 +893,16 @@ AFX_INLINE void AFXAPI CopyElements(TYPE* pDest, const TYPE* pSrc, int nCount)
    public:
    };
 
+
 } // namespace collection
+
+template < class KEY, class VALUE >
+class std_map :
+   virtual public ::collection::map < KEY, const KEY & , VALUE, const VALUE & >
+{
+public:
+
+};
+
 
 #define new DEBUG_NEW

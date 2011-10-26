@@ -19,6 +19,21 @@ namespace ca
       {
       }
 
+      string application::locale_style(const char * pszLocale, const char * pszStyle)
+      {
+         return System.dir().locale_style(get_app(), pszLocale, pszStyle);
+      }
+
+      string application::locale_style_matter(const char * pszLocale, const char * pszStyle)
+      {
+         return System.dir().locale_style_matter(get_app(), pszLocale, pszStyle);
+      }
+
+      string application::matter(const char * lpcsz, const char * lpcsz2)
+      {
+         return System.dir().matter(get_app(), lpcsz, lpcsz2);
+      }
+
       string application::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
       {
          return System.dir().usersystemappdata(get_app(), lpcszPrefix, lpcsz, lpcsz2);

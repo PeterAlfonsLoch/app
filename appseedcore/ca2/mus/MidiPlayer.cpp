@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 #include "vmsmusresource.h"
 
-MidiPlayer::MidiPlayer(::ca::application * papp)
+midi_player::midi_player(::ca::application * papp)
 : thread(papp)
 {
    m_psequencethread = 
-      AfxBeginThread < MidiSequenceThread >(
+      AfxBeginThread < midi_sequence_thread >(
          papp,
          THREAD_PRIORITY_NORMAL,
          0,
@@ -13,17 +13,17 @@ MidiPlayer::MidiPlayer(::ca::application * papp)
    m_puie               = NULL;
 }
 
-MidiPlayer::~MidiPlayer()
+midi_player::~midi_player()
 {
    
 }
 
-bool MidiPlayer::initialize_instance()
+bool midi_player::initialize_instance()
 {
    
    m_psequencethread->ResumeThread();
 
-   TRACE("MidiPlayer::initialize_instance %X\n", get_os_int());
+   TRACE("midi_player::initialize_instance %X\n", get_os_int());
    SetMainWnd(NULL);
    ASSERT(GetMainWnd() == NULL);
 
@@ -34,7 +34,7 @@ bool MidiPlayer::initialize_instance()
    return true;
 }
 
-int MidiPlayer::exit_instance()
+int midi_player::exit_instance()
 {
    // TODO:  perform any per-thread cleanup here
    //   if(!GetSequence().IsNull())
@@ -49,50 +49,51 @@ int MidiPlayer::exit_instance()
    return thread::exit_instance();
 }
 
-void MidiPlayer::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void midi_player::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   IGUI_WIN_MSG_LINK(MessageNotifyEvent, pinterface, this, &MidiPlayer::OnNotifyEvent);
-   IGUI_WIN_MSG_LINK(MM_MOM_DONE, pinterface, this, &MidiPlayer::OnMultimediaMidiOutputMessageDone);
-   IGUI_WIN_MSG_LINK(MM_MOM_POSITIONCB, pinterface, this, &MidiPlayer::OnMultimediaMidiOutputMessagePositionCB);
-   IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &MidiPlayer::OnUserMessage);
+   IGUI_WIN_MSG_LINK(MessageNotifyEvent, pinterface, this, &midi_player::OnNotifyEvent);
+   IGUI_WIN_MSG_LINK(MM_MOM_DONE, pinterface, this, &midi_player::OnMultimediaMidiOutputMessageDone);
+   IGUI_WIN_MSG_LINK(MM_MOM_POSITIONCB, pinterface, this, &midi_player::OnMultimediaMidiOutputMessagePositionCB);
+   IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &midi_player::OnUserMessage);
 }
 
-bool MidiPlayer::Play(imedia::position tkStart, DWORD dwEllapse)
+bool midi_player::Play(imedia::position tkStart, DWORD dwEllapse)
 {
-   MidiPlayerCommand * pcommand = MidiPlayerCommand::CreateObject();
+
+   midi_player_command * pcommand = new midi_player_command(get_app());
 
    pcommand->m_ecommand = MidiPlayerCommandPlay;
    pcommand->m_dwEllapse = dwEllapse;
-   pcommand->m_flags.signalize(MidiPlayerCommand::flag_ticks);
+   pcommand->m_flags.signalize(midi_player_command::flag_ticks);
    pcommand->m_ticks = tkStart;
 
    m_psequencethread->ExecuteCommand(pcommand);
    
-   bool bFinished = pcommand->Lock();
+   bool bFinished = pcommand->wait_ready();
    
-   pcommand->Release();
+   pcommand->release();
 
    return bFinished;
 }
 
-bool MidiPlayer::Play(double dRate, DWORD dwEllapse)
+bool midi_player::Play(double dRate, DWORD dwEllapse)
 {
-   MidiPlayerCommand * pcommand = MidiPlayerCommand::CreateObject();
+   midi_player_command * pcommand = new midi_player_command(get_app());
 
    pcommand->m_ecommand = MidiPlayerCommandPlay;
    pcommand->m_dwEllapse = dwEllapse;
-   pcommand->m_flags.signalize(MidiPlayerCommand::flag_dRate);
+   pcommand->m_flags.signalize(midi_player_command::flag_dRate);
    pcommand->m_dRate = dRate;
 
    m_psequencethread->ExecuteCommand(pcommand);
    
-   bool bFinished = pcommand->Lock();
+   bool bFinished = pcommand->wait_ready();
    
-   pcommand->Release();
+   pcommand->release();
 
    return bFinished;
 }
-imedia::position MidiPlayer::RateToTicks(double dRate)
+imedia::position midi_player::RateToTicks(double dRate)
 {
    ASSERT(dRate >= 0.0);
    ASSERT(dRate <= 1.0);
@@ -101,33 +102,31 @@ imedia::position MidiPlayer::RateToTicks(double dRate)
 
 
 
-bool MidiPlayer::IsPlaying()
+bool midi_player::IsPlaying()
 {
    ASSERT(!GetSequence().IsNull());
    return (bool) GetSequence().IsPlaying();
    
 }
 
-bool MidiPlayer::ExecuteCommand(
-   EMidiPlayerCommand ecommand,
-   DWORD dwEllapse)
+bool midi_player::ExecuteCommand(EMidiPlayerCommand ecommand, DWORD dwEllapse)
 {
-   MidiPlayerCommand * pcommand = MidiPlayerCommand::CreateObject();
+   midi_player_command * pcommand = new midi_player_command(get_app());
 
    pcommand->m_ecommand = ecommand;
    pcommand->m_dwEllapse = dwEllapse;
 
    m_psequencethread->ExecuteCommand(pcommand);
    
-   bool bFinished = pcommand->Lock();
+   bool bFinished = pcommand->wait_ready();
    
-   pcommand->Release();
+   pcommand->release();
 
-   return true;
+   return bFinished;
 }
 
 
-void MidiPlayer::CloseFile()
+void midi_player::CloseFile()
 {
    MMRESULT            mmrc;
    if(MMSYSERR_NOERROR != (mmrc = GetSequence().CloseFile()) &&
@@ -137,7 +136,7 @@ void MidiPlayer::CloseFile()
    }
 }
 
-void MidiPlayer::Pause()
+void midi_player::Pause()
 {
    if (GetSequence().GetState() == ::mus::midi::sequence::StatusPaused)
    {
@@ -150,7 +149,7 @@ void MidiPlayer::Pause()
    
 }
 
-void MidiPlayer::SetPosition(double dRate)
+void midi_player::SetPosition(double dRate)
 {
    if (::mus::midi::sequence::StatusPlaying != GetSequence().GetState() &&
       ::mus::midi::sequence::StatusStopping != GetSequence().GetState() &&
@@ -169,7 +168,7 @@ void MidiPlayer::SetPosition(double dRate)
    
 }
 
-void MidiPlayer::OnMmsgDone(::mus::midi::sequence * pSeq)
+void midi_player::OnMmsgDone(::mus::midi::sequence * pSeq)
 {
    ASSERT(FALSE);
    ASSERT(FALSE);
@@ -201,7 +200,7 @@ void MidiPlayer::OnMmsgDone(::mus::midi::sequence * pSeq)
    
 }
 
-void MidiPlayer::pre_translate_message(gen::signal_object * pobj) 
+void midi_player::pre_translate_message(gen::signal_object * pobj) 
 {
    SCAST_PTR(user::win::message::base, pbase, pobj);
    ASSERT(GetMainWnd() == NULL);
@@ -239,7 +238,7 @@ void MidiPlayer::pre_translate_message(gen::signal_object * pobj)
    return thread::pre_translate_message(pobj);
 }
 
-void MidiPlayer::SaveFile(const char * lpszPathName)
+void midi_player::SaveFile(const char * lpszPathName)
 {
    MMRESULT            mmrc;
    if((mmrc = GetSequence().SaveFile(lpszPathName)) != 
@@ -250,7 +249,7 @@ void MidiPlayer::SaveFile(const char * lpszPathName)
    
 }
 /*
-void MidiPlayer::OnMidiPlaybackEnd(
+void midi_player::OnMidiPlaybackEnd(
 WPARAM wParam, LPARAM lParam)
 {
 ::mus::midi::sequence * pSeq = (::mus::midi::sequence *) wParam;
@@ -263,7 +262,7 @@ LPMIDIHDR lpmh = (LPMIDIHDR) lParam;
     GetSequence().OnEvent(::mus::midi::sequence::EventMidiPlaybackEnd);
 }*/
 
-//void MidiPlayer::OnMidiSequenceEvent(gen::signal_object * pobj)
+//void midi_player::OnMidiSequenceEvent(gen::signal_object * pobj)
 //{
 /*   ::mus::midi::sequence::Event * pevent = (::mus::midi::sequence::Event *) lparam;
    ::mus::midi::sequence * pseq = (::mus::midi::sequence *) pevent->m_psequence;
@@ -382,7 +381,7 @@ LPMIDIHDR lpmh = (LPMIDIHDR) lParam;
 //}
 
 
-void MidiPlayer::OnUserMessage(gen::signal_object * pobj)
+void midi_player::OnUserMessage(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    if(pbase->m_wparam == 3377)
@@ -393,34 +392,34 @@ void MidiPlayer::OnUserMessage(gen::signal_object * pobj)
 }
 
 
-void MidiPlayer::PostGMReset()
+void midi_player::PostGMReset()
 {
    m_psequencethread->PostGMReset();
 }
 
-void MidiPlayer::PostTempoChange()
+void midi_player::PostTempoChange()
 {
    m_psequencethread->PostTempoChange();
 }
 
-void MidiPlayer::SendTempoChange()
+void midi_player::SendTempoChange()
 {
    m_psequencethread->SendTempoChange();
 }
 
 
-VMSRESULT MidiPlayer::Initialize(thread * pthread)
+VMSRESULT midi_player::Initialize(thread * pthread)
 {
    UNREFERENCED_PARAMETER(pthread);
    return VMSR_SUCCESS;
 }
 
-//void MidiPlayer::SetView(CXfplayerView *pview)
+//void midi_player::SetView(CXfplayerView *pview)
 //{
 //    m_pView = pview;
 //}
 
-VMSRESULT MidiPlayer::SetInterface(MidiPlayerInterface * pinterface)
+VMSRESULT midi_player::SetInterface(midi_player_interface * pinterface)
 {
    m_pinterface = pinterface;
    GetSequence().m_pthread   = m_psequencethread;
@@ -432,7 +431,7 @@ VMSRESULT MidiPlayer::SetInterface(MidiPlayerInterface * pinterface)
 }
 
 
-bool MidiPlayer::SetMidiOutDevice(UINT uiDevice)
+bool midi_player::SetMidiOutDevice(UINT uiDevice)
 {
    UNREFERENCED_PARAMETER(uiDevice);
    OnMidiOutDeviceChange();
@@ -441,7 +440,7 @@ bool MidiPlayer::SetMidiOutDevice(UINT uiDevice)
 
 
 
-bool MidiPlayer::SetTempoShift(int iTempoShift)
+bool midi_player::SetTempoShift(int iTempoShift)
 {
 //   if(IsPlaying())
    {/*
@@ -455,7 +454,7 @@ bool MidiPlayer::SetTempoShift(int iTempoShift)
       link.m_tkRestart = tk + GetSequence().m_tkBase;
       //m_bChangingTempo = true;
       GetSequence().Stop();
-      //GetSequence().m_evMmsgDone.Lock();
+      //GetSequence().m_evMmsgDone.lock();
       */
    bool bPlay = IsPlaying();
    imedia::position ticks = 0;
@@ -477,7 +476,7 @@ bool MidiPlayer::SetTempoShift(int iTempoShift)
 }
 
 
-void MidiPlayer::PostNotifyEvent(::mus::midi::player::ENotifyEvent eevent)
+void midi_player::PostNotifyEvent(::mus::midi::player::ENotifyEvent eevent)
 {
    if(m_puie != NULL)
    {
@@ -488,7 +487,7 @@ void MidiPlayer::PostNotifyEvent(::mus::midi::player::ENotifyEvent eevent)
    }
 }
 
-void MidiPlayer::SendMmsgDone(::mus::midi::sequence *pSeq, ::mus::midi::LPMIDIDONEDATA lpmdd)
+void midi_player::SendMmsgDone(::mus::midi::sequence *pSeq, ::mus::midi::LPMIDIDONEDATA lpmdd)
 {
    if(m_puie != NULL)
    {
@@ -497,18 +496,18 @@ void MidiPlayer::SendMmsgDone(::mus::midi::sequence *pSeq, ::mus::midi::LPMIDIDO
    
 }
 
-UINT MidiPlayer::GetMidiOutDevice()
+UINT midi_player::GetMidiOutDevice()
 {
    midi_central * pcentral = m_pinterface->m_pcentral;
    return pcentral->GetMidiOutDevice();
 }
 
-void MidiPlayer::SetCallbackWindow(::user::interaction * puie)
+void midi_player::SetCallbackWindow(::user::interaction * puie)
 {
    m_puie = puie;
 }
 
-void MidiPlayer::OnAttributeChange(mus::EMidiCentralAttribute eattribute)
+void midi_player::OnAttributeChange(mus::e_midi_central_attribute eattribute)
 {
    switch(eattribute)
    {
@@ -519,13 +518,13 @@ void MidiPlayer::OnAttributeChange(mus::EMidiCentralAttribute eattribute)
    
 }
 
-void MidiPlayer::OnMidiOutDeviceChange()
+void midi_player::OnMidiOutDeviceChange()
 {
    GetSequence().SetMidiOutDevice(GetMidiOutDevice());
    if(GetSequence().IsPlaying())
    {
       imedia::position tkPosition = 0;
-      GetSequence().get_time(tkPosition);
+      GetSequence().get_position(tkPosition);
       ::mus::midi::sequence::PlayerLink & link = GetSequence().GetPlayerLink();
       link.ModifyFlag(
          ::mus::midi::sequence::FlagTempoChange,
@@ -537,7 +536,7 @@ void MidiPlayer::OnMidiOutDeviceChange()
 }
 
 
-void MidiPlayer::OnMultimediaMidiOutputMessageDone(gen::signal_object * pobj)
+void midi_player::OnMultimediaMidiOutputMessageDone(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    HMIDISTRM hmidistream = (HMIDISTRM) pbase->m_wparam;
@@ -546,7 +545,7 @@ void MidiPlayer::OnMultimediaMidiOutputMessageDone(gen::signal_object * pobj)
    GetSequence().OnDone(hmidistream, lpmidihdr);
 }
 
-void MidiPlayer::OnMultimediaMidiOutputMessagePositionCB(gen::signal_object * pobj)
+void midi_player::OnMultimediaMidiOutputMessagePositionCB(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    LPMIDIHDR lpmidihdr = (LPMIDIHDR) pbase->m_wparam;
@@ -556,7 +555,7 @@ void MidiPlayer::OnMultimediaMidiOutputMessagePositionCB(gen::signal_object * po
 
 
 
-void MidiPlayer::OnNotifyEvent(gen::signal_object * pobj)
+void midi_player::OnNotifyEvent(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    ::mus::midi::player::NotifyEvent * pdata = (::mus::midi::player::NotifyEvent *) pbase->m_lparam;
@@ -571,73 +570,10 @@ void MidiPlayer::OnNotifyEvent(gen::signal_object * pobj)
    }
 }
 
-void MidiPlayerCommand::AddRef()
-{
-   CSingleLock sl(&m_csRefCount, TRUE);
-   m_iRefCount++;
-}
-
-void MidiPlayerCommand::Release()
-{
-   CSingleLock sl(&m_csRefCount, TRUE);
-   m_iRefCount--;
-   if(m_iRefCount <= 0)
-   {
-      sl.Unlock();
-      delete this;
-   }
-}
-
-
-MidiPlayerCommand * MidiPlayerCommand::CreateObject()
-{
-   MidiPlayerCommand * pobject = new MidiPlayerCommand();
-   pobject->AddRef();
-   return pobject;
-}
-
-/*MidiPlayerCommand::MidiPlayerCommand(EMidiPlayerCommand ecommand, DWORD dwEllapse)
-{
-   m_ecommand = ecommand;
-   m_dwEllapse = dwEllapse;
-   
-}
-*/
-
-MidiPlayerCommand::MidiPlayerCommand()
-{
-   m_iRefCount = 0;
-   m_bReady = false;
-}
-
-EMidiPlayerCommand MidiPlayerCommand::GetCommand()
-{
-   return m_ecommand;
-}
-
-DWORD MidiPlayerCommand::GetEllapse()
-{
-   return m_dwEllapse;
-}
-
-bool MidiPlayerCommand::Lock()
-{
-   DWORD dwStart = ::GetTickCount();
-   while(!m_bReady && (::GetTickCount() - dwStart) < m_dwEllapse)
-   {
-      Sleep(84);
-   }
-   return m_bReady;
-}
-
-void MidiPlayerCommand::OnFinish()
-{
-   m_bReady = true;
-}
 
 
 
-void MidiPlayer::SendReset()
+void midi_player::SendReset()
 {
    HMIDIOUT hmidiout = NULL;
    MMRESULT mmrc;
@@ -682,7 +618,7 @@ End:
    midiOutClose( hmidiout);
 }
 
-::mus::midi::sequence & MidiPlayer::GetSequence()
+::mus::midi::sequence & midi_player::GetSequence()
 {
    return m_pinterface->GetMidiSequence();
 }

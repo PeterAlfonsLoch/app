@@ -12,13 +12,12 @@ namespace musctrl
    public:
       
       
-      ::ca::type_info      m_pruntimeclassDocument;
-      ::ca::type_info      m_typeinfoFrameWnd;
-      ::ca::type_info      m_typeinfoView;
-      ::ca::type_info      m_pruntimeclassIPFrame;
-      string               m_strMatter;
-      //UINT            m_uiResourceIdEmbedding;
-      //UINT            m_uiResourceIdInPlace;
+      ::ca::type_info               m_typeinfoDocument;
+      ::ca::type_info               m_typeinfoFrameWnd;
+      ::ca::type_info               m_typeinfoView;
+      ::ca::type_info               m_typeinfoIPFrame;
+
+      string                        m_strMatter;
       single_document_template *    m_pdoctemplate;
 
 

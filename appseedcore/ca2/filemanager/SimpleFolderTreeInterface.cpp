@@ -72,11 +72,9 @@ namespace filemanager
       {
          stringa stra;
 
-         get_fs_data()->get_ascendants_path(lpcsz, stra);
+         get_document()->get_ascendants_path(lpcsz, stra);
 
          m_straUpdatePtrFilter = stra;
-
-
 
          //for(int i = stra.get_size() - 1; i >= 0; i--)
          for(int i = 0; i < stra.get_size(); i++)
@@ -87,8 +85,15 @@ namespace filemanager
             {
                string str;
                str = strAscendant;
-               get_fs_data()->eat_end_level(str, 1);
-               _017UpdateList(str, NULL, 1);
+               if(i == 0)
+               {
+                  _017UpdateList("", NULL, 1);
+               }
+               else
+               {
+                  get_document()->eat_end_level(str, 1);
+                  _017UpdateList(str, NULL, 1);
+               }
             }
             pitem = find_item(strAscendant);
             if(pitem == NULL)
@@ -153,7 +158,7 @@ namespace filemanager
             }
          }
 
-         CSingleLock slBrowse(&m_csBrowse, TRUE);
+         single_lock slBrowse(&m_csBrowse, TRUE);
 
          if(strlen(lpcsz) == 0)
          {
@@ -173,7 +178,7 @@ namespace filemanager
       {
          int i;
 
-         ::fs::tree_item * pitemChild;
+//         ::fs::tree_item * pitemChild;
 
          string szPath(lpcsz);
 
@@ -319,7 +324,7 @@ namespace filemanager
             m_pitem = pitemParent;
          }
 
-         if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL 
+         if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
          && !(dynamic_cast < user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
          {
             GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
@@ -328,7 +333,7 @@ namespace filemanager
          ::fs::tree_item * pitemFolder = NULL;
 
          string strRawName1 = typeid(*pitemParent).raw_name();
-         string strRawName2 = typeid(::fs::tree_item).raw_name();
+         string strRawName2 = ::ca::get_type_info < ::fs::tree_item > ().raw_name();
          if(strRawName1 == strRawName2)
          {
             pitemFolder = (::fs::tree_item *) pitemParent;
@@ -341,7 +346,7 @@ namespace filemanager
 
          if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
          {
-            if(get_fs_data()->has_subdir(pitemFolder->m_strPath))
+            if(get_document()->has_subdir(pitemFolder->m_strPath))
             {
                pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
             }
@@ -370,30 +375,30 @@ namespace filemanager
          stringa straTitle;
          if(strlen(lpcsz) == 0)
          {
-            get_fs_data()->root_ones(straPath);
+            get_document()->root_ones(straPath);
             straTitle = straPath;
          }
          else
          {
-            get_fs_data()->ls(lpcsz, &straPath, & straTitle);
+            get_document()->ls(lpcsz, &straPath, & straTitle);
          }
          int i;
 
          for(i = 0; i < straPath.get_size(); i++)
          {
-            
+
             pitemChild = new ::fs::tree_item;
 
             pitemChild->m_pdata = get_fs_tree_data();
 
-            pitemChild->m_strPath = get_fs_data()->dir_path(straPath[i], "");
+            pitemChild->m_strPath = get_document()->dir_path(straPath[i], "");
 
             //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
             //{
             //   continue;
             //}
             pitemChild->m_strName = straTitle[i];
-            if(!get_fs_data()->is_dir(straPath[i]))
+            if(!get_document()->is_dir(straPath[i]))
             {
                if(zip::Util(get_app()).IsUnzipable(pitemChild->m_strPath))
                {
@@ -494,22 +499,22 @@ namespace filemanager
 
          /*   IShellFolder * lpsf = item.m_spshellfolder;
 
-         item.m_iImage = 
+         item.m_iImage =
          _shell::g_imageset.GetImage(
-         hwnd, 
-         lpsf, 
-         item.m_lpiidlAbsolute, 
-         item.m_lpiidlRelative, 
-         gen::international::utf8_to_unicode(item.m_strExtra), 
+         hwnd,
+         lpsf,
+         item.m_lpiidlAbsolute,
+         item.m_lpiidlRelative,
+         gen::international::utf8_to_unicode(item.m_strExtra),
          _shell::IconNormal);
 
-         item.m_iImageSelected = 
+         item.m_iImageSelected =
          _shell::g_imageset.GetImage(
-         hwnd, 
-         lpsf, 
-         item.m_lpiidlAbsolute, 
-         item.m_lpiidlRelative, 
-         gen::international::utf8_to_unicode(item.m_strExtra), 
+         hwnd,
+         lpsf,
+         item.m_lpiidlAbsolute,
+         item.m_lpiidlRelative,
+         gen::international::utf8_to_unicode(item.m_strExtra),
          _shell::IconOpen);*/
 
 
@@ -594,49 +599,11 @@ namespace filemanager
          _017Browse(GetFileManagerItem().m_strPath);
       }
 
-      void SimpleFolderTreeInterface::_001InstallMessageHandling(::user::win::message::dispatch *pinterface)
+      void SimpleFolderTreeInterface::install_message_handling(::user::win::message::dispatch *pinterface)
       {
-         ::fs::tree::_001InstallMessageHandling(pinterface);
+         ::fs::tree::install_message_handling(pinterface);
          IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &SimpleFolderTreeInterface::_001OnMainPostMessage);
          IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFolderTreeInterface::_001OnTimer);
-      }
-
-      void SimpleFolderTreeInterface::_001OnNcDraw(::ca::graphics *pdc)
-      {
-         //if(m_iAnimate <= 0)
-         {
-            // Normal Drawing
-            ::user::tree::_001OnNcDraw(pdc);
-         }
-         /*else
-         {
-         // Animation Drawing
-         rect rectClipBox;
-         pdc->GetClipBox(rectClipBox);
-
-         rect rectClient;
-         GetClientRect(rectClient);
-
-         rect rectUpdate;
-         rectUpdate.intersect(rectClipBox, rectClient);
-
-         class imaging & imaging = System.imaging();
-         //::user::tree::_001DrawBackground(pdc, rectClipBox);
-         imaging.color_blend(
-         pdc,
-         rectUpdate,
-         RGB(255, 255, 255),
-         127);
-
-         /*      imaging.bitmap_blend(
-         pdc,
-         0, 0, 
-         rectClipBox.width(), rectClipBox.height(),
-         m_gdibuffer.GetBuffer(),
-         0, 0,
-         255 - m_iAnimate * 25);*/
-         //}
-
       }
 
       void SimpleFolderTreeInterface::StartAnimation()
@@ -714,7 +681,7 @@ namespace filemanager
 
       void SimpleFolderTreeInterface::_001OnItemExpand(::ex1::tree_item * pitem)
       {
-         if(typeid(*pitem->m_pitemdata) == typeid(::fs::tree_item))
+         if(typeid(*pitem->m_pitemdata) == ::ca::get_type_info < ::fs::tree_item > ())
          {
             _017UpdateList(((::fs::tree_item *)pitem->m_pitemdata)->m_strPath, pitem, 1);
          }
@@ -741,7 +708,7 @@ namespace filemanager
          _017OpenFolder(item);
       }
 
-      void SimpleFolderTreeInterface::_017OpenFolder(::fs::item & item)
+      void SimpleFolderTreeInterface::_017OpenFolder(const ::fs::item & item)
       {
          UNREFERENCED_PARAMETER(item);
          ASSERT(FALSE);

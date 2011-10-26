@@ -39,7 +39,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="updatednsbk.def">
+    <None Include="app_updatednsbk.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

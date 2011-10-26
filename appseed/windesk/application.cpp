@@ -21,14 +21,14 @@ namespace windesk
    bool application::initialize_instance()
    {
 
-   factory().creatable_small < document >();
-   factory().creatable_small < frame >();
-   factory().creatable_small < view >();
-   factory().creatable_small < windesk::pane_view >();
-   factory().creatable_small < windesk::menu_right_view >();
-   factory().creatable_small < windesk::menu_view >();
+      System.factory().creatable_small < document >();
+      System.factory().creatable_small < frame >();
+      System.factory().creatable_small < view >();
+      System.factory().creatable_small < windesk::pane_view >();
+      System.factory().creatable_small < windesk::menu_right_view >();
+      System.factory().creatable_small < windesk::menu_view >();
 
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
 
@@ -42,9 +42,9 @@ namespace windesk
 	   pDocTemplate = new ::userbase::multiple_document_template(
          this,
 		   "system/form",
-		   &typeid(document),
-		   &typeid(frame),
-		   &typeid(pane_view));
+		   ::ca::get_type_info < document > (),
+		   ::ca::get_type_info < frame > (),
+		   ::ca::get_type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
@@ -64,18 +64,17 @@ namespace windesk
       {
 
    #ifdef DEBUG
-         if (command_line().m_varQuery.has_property("debugbreak"))
+         if (command().m_varTopicQuery.has_property("debugbreak"))
          {
             ::DebugBreak();
          }
    #endif
-         if (command_line().m_varQuery.has_property("run"))
+         if (command().m_varTopicQuery.has_property("run"))
          {
          }
       }
-      catch (const _template::CAtlException& e)
+      catch(...)
       {
-         System.log().print("Error: %x", e.m_hr);
       }
       ::ca::rgn_sp rgn(get_app());
       rgn->CreateRectRgn(0, 0, 0, 0);
@@ -138,6 +137,8 @@ namespace windesk
 
    bool application::on_assert_failed_line(const char * lpszFileName, int iLine)
    {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(iLine);
       if(m_pwndMain != NULL)
       {
          m_pwndMain->PostMessage(12578);
@@ -149,7 +150,7 @@ namespace windesk
    bool application::final_handle_exception(::ca::exception & e)
    {
 
-      return ca84::application::final_handle_exception(e);
+      return cube2::application::final_handle_exception(e);
    }
 
 
@@ -199,6 +200,9 @@ namespace windesk
          /* [in] */ POINTL pt,
          /* [out][in] */ __RPC__inout DWORD *pdwEffect)
    {
+      UNREFERENCED_PARAMETER(grfKeyState);
+      UNREFERENCED_PARAMETER(pt);
+      UNREFERENCED_PARAMETER(pdwEffect);
       return E_FAIL;
    }
      
@@ -213,6 +217,10 @@ namespace windesk
          /* [in] */ POINTL pt,
          /* [out][in] */ __RPC__inout DWORD *pdwEffect)
    {
+      UNREFERENCED_PARAMETER(pDataObj);
+      UNREFERENCED_PARAMETER(grfKeyState);
+      UNREFERENCED_PARAMETER(pt);
+      UNREFERENCED_PARAMETER(pdwEffect);
       return E_FAIL;
    }
 
@@ -235,7 +243,7 @@ namespace windesk
 
    void application::data_on_after_change(gen::signal_object * pobj)
    {
-      ca84::application::data_on_after_change(pobj);
+      cube2::application::data_on_after_change(pobj);
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2_fontopus_votagus")
       {

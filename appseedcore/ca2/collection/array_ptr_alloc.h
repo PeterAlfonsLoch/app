@@ -38,7 +38,7 @@ array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::array_ptr_alloc(const array_ptr_a
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::~array_ptr_alloc()
 {
-   remove_all();
+   this->remove_all();
 }
 
 
@@ -51,21 +51,20 @@ inline TYPE * array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
-inline array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::operator = (
-   const array_ptr_alloc <TYPE, ARG_TYPE, BASE_PTRA > & a)
+inline array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::operator = (const array_ptr_alloc <TYPE, ARG_TYPE, BASE_PTRA > & a)
 {
    if(&a == this)
       return *this;
    index i;
-   for(i = 0; i < m_ptra.get_size(); i++)
+   for(i = 0; i < this->get_size(); i++)
    {
-      element_at(i) = *a.m_ptra[i];
+      this->element_at(i) = a[i];
    }
-   for(; i < a.m_ptra.get_size(); i++)
+   for(; i < a.get_size(); i++)
    {
-      m_ptra.add(gen::alloc<TYPE>(*a.m_ptra[i]));
+      this->ptra().add(gen::alloc<TYPE>(a[i]));
    }
-   m_ptra.set_size(a.m_ptra.get_size());
+   this->ptra().set_size(a.get_size());
    return *this;
 }
 
@@ -75,13 +74,13 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::
 set_size(count iSize)
 {
-   while(get_size() < iSize)
+   while(this->get_size() < iSize)
    {
       add_new();
    }
-   while(get_size() > iSize && iSize >=0)
+   while(this->get_size() > iSize && iSize >=0)
    {
-      remove_at(get_size() - 1);
+      remove_at(this->get_size() - 1);
    }
 }
 
@@ -91,17 +90,17 @@ void array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, AR
 {
    ASSERT(iIndex >= 0);
 
-   if(iIndex < m_ptra.get_size())
+   if(iIndex < this->ptra().get_size())
    {
-      element_at(iIndex) = t;
+      this->element_at(iIndex) = t;
    }
    else
    {
-      for(index i = get_size(); i < iIndex; i++)
+      for(index i = this->get_size(); i < iIndex; i++)
       {
-         m_ptra.add(gen::alloc<TYPE>());
+         this->ptra().add(gen::alloc<TYPE>());
       }
-      m_ptra.add(gen::alloc<TYPE>(t));
+      this->ptra().add(gen::alloc<TYPE>(t));
    }
 }
 
@@ -113,7 +112,7 @@ void array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, AR
 // Two dimensional base_array
 //
 ///////////////////////////////////////////////////////////////////////////////
-template < class TYPE, class ARG_TYPE, class BASE_PTRA = comparable_array < base_array < TYPE, ARG_TYPE & > * >>
+template < class TYPE, class ARG_TYPE, class BASE_PTRA = comparable_array < base_array < TYPE, ARG_TYPE & > * > >
 class Base2DArray:
 public array_ptr_alloc < base_array < TYPE, ARG_TYPE >, base_array < TYPE, ARG_TYPE > &, BASE_PTRA >
 {
@@ -129,41 +128,39 @@ BubbleSortBySize(bool bAsc)
     TYPE t;
     if(bAsc)
     {
-        for(index i = 0; i < get_size(); i++)
-        for(index j = i + 1; j < get_size(); j++)
+        for(index i = 0; i < this->get_size(); i++)
         {
-            if(element_at(i);get_size() > element_at(j);get_size())
-            {
-                t = element_at(i);
-                set_at(i, element_at(j));
-                set_at(j, t);
-            }
+           for(index j = i + 1; j < this->get_size(); j++)
+           {
+               if(this->element_at(i).get_size() > this->element_at(j).get_size())
+               {
+                   t = this->element_at(i);
+                   set_at(i, this->element_at(j));
+                   set_at(j, t);
+               }
 
+           }
         }
     }
     else
     {
-        for(index i = 0; i < get_size(); i++)
-        for(index j = i + 1; j < get_size(); j++)
+        for(index i = 0; i < this->get_size(); i++)
         {
-            if(element_at(i).get_size() < element_at(j).get_size())
-            {
-                t = element_at(i);
-                set_at(i, element_at(j));
-                set_at(j, t);
-            }
+           for(index j = i + 1; j < this->get_size(); j++)
+           {
+               if(this->element_at(i).get_size() < this->element_at(j).get_size())
+               {
+                   t = this->element_at(i);
+                   set_at(i, this->element_at(j));
+                   set_at(j, t);
+               }
 
+           }
         }
     }
-
-    return;
 }
 
 
-
-
-
-
-
-
 #define new DEBUG_NEW
+
+

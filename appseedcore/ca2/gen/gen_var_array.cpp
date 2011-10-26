@@ -39,17 +39,17 @@ count var_array::add(const var_array & vara)
    {
       add(vara[i]);
    }
-   return get_count();
+   return this->get_count();
 }
 
 string var_array::implode(const char * pszGlue) const
 {
    string str;
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       if(i > 0)
          str += pszGlue;
-      str += element_at(i).get_string();
+      str += this->element_at(i).get_string();
    }
    return str;
 }
@@ -57,12 +57,12 @@ string var_array::implode(const char * pszGlue) const
 index var_array::find_first(const char * psz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(element_at(find).get_string() == psz)
+      if(this->element_at(find).get_string() == psz)
          return find;
    }
    return -1;
@@ -71,12 +71,12 @@ index var_array::find_first(const char * psz, index find, index last) const
 index var_array::find_first_ci(const char * psz, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(element_at(find).get_string().CompareNoCase(psz) == 0)
+      if(this->element_at(find).get_string().CompareNoCase(psz) == 0)
          return find;
    }
    return -1;
@@ -86,12 +86,12 @@ index var_array::find_first_ci(const char * psz, index find, index last) const
 index var_array::find_first(const var & var, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
-   for(; find < get_count(); find++)
+      last += this->get_count();
+   for(; find < this->get_count(); find++)
    {
-      if(element_at(find) == var)
+      if(this->element_at(find) == var)
          return find;
    }
    return -1;
@@ -288,4 +288,37 @@ var_array & var_array::operator = (const var_array & vara)
       }
    }
    return *this;
+}
+
+void var_array::parse_json(const char * & pszJson)
+{
+   parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+}
+
+void var_array::parse_json(const char * & pszJson, const char * pszEnd)
+{
+   gen::str::consume_spaces(pszJson, 0, pszEnd);
+   gen::str::consume(pszJson, "[", 1, pszEnd);
+   while(true)
+   {
+      var * pvar = add_new();
+      pvar->parse_json(pszJson, pszEnd);
+      gen::str::consume_spaces(pszJson, 0, pszEnd);
+      if(*pszJson == ',')
+      {
+         pszJson++;
+         continue;
+      }
+      else if(*pszJson == ']')
+      {
+         pszJson++;
+         return;
+      }
+      else
+      {
+         string str = "not expected character : ";
+         str += pszJson;
+         throw str;
+      }
+   }
 }

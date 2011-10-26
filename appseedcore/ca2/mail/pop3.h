@@ -26,7 +26,7 @@ namespace mail
 
       ::sockets::socket_handler     m_handler;
       pop3_socket *                 m_psocket;
-      CEvent                        m_evFinish;
+      event                        m_evFinish;
       bool                          m_bRun;
       bool                          m_bSynch;
 

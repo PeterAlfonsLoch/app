@@ -47,7 +47,7 @@
 #endif
 #endif
 
-  
+
 
 using namespace dami;
 
@@ -66,7 +66,7 @@ size_t dami::renderNumber(uchar *buffer, uint32 val, size_t size)
 
 #if defined(HAVE_ICONV_H)
 
-namespace 
+namespace
 {
   string convert_i(iconv_t cd, string source)
   {
@@ -83,22 +83,22 @@ namespace
 #define ID3LIB_BUFSIZ 1024
     char buf[ID3LIB_BUFSIZ];
     char* target_str = buf;
-    size_t target_size = ID3LIB_BUFSIZ;
-    
+    size_t tarthis->get_size = ID3LIB_BUFSIZ;
+
     do
     {
       errno = 0;
-      size_t nconv = iconv(cd, 
-                           &source_str, &source_size, 
-                           &target_str, &target_size);
+      size_t nconv = iconv(cd,
+                           &source_str, &source_size,
+                           &target_str, &tarthis->get_size);
       if (nconv == (size_t) -1 && errno != EINVAL && errno != E2BIG)
       {
-// errno is probably EILSEQ here, which means either an invalid byte sequence or a valid but unconvertible byte sequence 
+// errno is probably EILSEQ here, which means either an invalid byte sequence or a valid but unconvertible byte sequence
         return target;
       }
-      target.append(buf, ID3LIB_BUFSIZ - target_size);
+      target.append(buf, ID3LIB_BUFSIZ - tarthis->get_size);
       target_str = buf;
-      target_size = ID3LIB_BUFSIZ;
+      tarthis->get_size = ID3LIB_BUFSIZ;
     }
     while (source_size > 0);
     return target;
@@ -116,15 +116,15 @@ namespace
       case ID3TE_UTF16:
         format = ID3_ICONV_FORMAT_UTF16;
         break;
-        
+
       case ID3TE_UTF16BE:
         format = ID3_ICONV_FORMAT_UTF16BE;
         break;
-        
+
       case ID3TE_UTF8:
         format = ID3_ICONV_FORMAT_UTF8;
         break;
-        
+
       default:
         break;
     }
@@ -140,35 +140,35 @@ ID3_Err dami::createFile(string name, ex1::file & file)
   {
     file.close();
   }
-    
+
   file.open(name, ex1::file::mode_read_write | ex1::file::type_binary | ex1::file::mode_create);
   if (!file)
   {
     return ID3E_ReadOnly;
   }
-    
+
   return ID3E_NoError;
 }
 
 
 ID3_Err dami::openWritableFile(string name, ex1::file & file)
 {
-  
-   if(!file.m_papp->m_psystem->file().exists(name))
+
+   if(!Sys(file.m_papp).file().exists(name))
    {
       return ID3E_NoFile;
    }
-    
+
    if(file.IsOpened())
    {
       file.close();
    }
-  
+
    if(!file.open(name,  ex1::file::mode_read_write | ex1::file::type_binary))
    {
       return ID3E_ReadOnly;
    }
-    
+
    return ID3E_NoError;
 }
 
@@ -179,12 +179,12 @@ ID3_Err dami::openReadableFile(string name, ex1::file & file)
    {
       file.close();
    }
-  
+
    if(!file.open(name, ex1::file::type_binary | ex1::file::mode_read))
    {
       return ID3E_NoFile;
    }
-    
+
    return ID3E_NoError;
 }
 

@@ -43,8 +43,10 @@ namespace audio_decode_cd
 	   virtual ~decoder();
 
       virtual bool      _DecoderInitialize(ex1::file *pfile);
+      virtual bool      _DecoderFinalize();
+
       virtual bool      _DecoderEOF();
-      virtual int       _DecoderFillBuffer(LPVOID lpvoidBuffer, UINT uiBufferSize);
+      virtual ::primitive::memory_size  _DecoderFillBuffer(LPVOID lpvoidBuffer, ::primitive::memory_size uiBufferSize);
 
       virtual void      DecoderSeekBegin();
       virtual void      DecoderMoveNext();

@@ -20,9 +20,9 @@ namespace nature
    {
    }
 
-   void appearance_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void appearance_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
+      ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &appearance_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &appearance_view::_001OnSize);
       connect_command("edit_add", &appearance_view::_001OnEditAdd);
@@ -103,16 +103,16 @@ namespace nature
       
    }
 
-   void appearance_view::on_create_view(view_data * pviewdata)
+   void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       filemanager::application & filemanagerapp = System;
       folder_selection_list_view * pview;
       pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
-         &typeid(folder_selection_list_view), 
+         ::ca::get_type_info < folder_selection_list_view > (), 
          get_document(),
          this,
-         pviewdata->m_id));
-      switch(pviewdata->m_id)
+         pcreatordata->m_id));
+      switch(pcreatordata->m_id)
       {
       case view_image_folder:
          pview->Initialize(filemanagerapp.GetStdFileManagerTemplate(), "Image", "ca2_fontopus_votagus.nature.ImageDirectorySet", true);
@@ -120,9 +120,9 @@ namespace nature
       }
       pview->connect_command("edit_add", &folder_selection_list_view::_001OnAdd);
       pview->connect_command("edit_remove", &folder_selection_list_view::_001OnRemove);
-      pviewdata->m_pdoc = pview->get_document();
-      pviewdata->m_pwnd = pview;
-      pviewdata->m_eflag.signalize(view_data::flag_hide_all_others_on_show);
+      pcreatordata->m_pdoc = pview->get_document();
+      pcreatordata->m_pwnd = pview;
+      pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
    }
 
    void appearance_view::_001OnEditAdd(gen::signal_object * pobj)

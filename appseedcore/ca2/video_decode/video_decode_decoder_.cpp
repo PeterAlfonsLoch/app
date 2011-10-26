@@ -5,13 +5,16 @@ namespace video_decode
 
    decoder::decoder(::ca::application * papp) :
       ca(papp),
-      m_diba(papp)
+      m_memfileAudio(papp),
+      m_memfileAudioBuffer(papp),
+      m_transferfileAudio(papp, &m_memfileAudio)
    {
-      m_iPlayDib = 0;
-      m_iDib = 0;
-      m_iLastDib = -1;
-      m_diba.set_size(11);
-      m_ptsa.set_size(m_diba.get_size());
+      m_transferfileAudio.m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -2;
+      m_iDib                     = 0;
+      m_bDraw                    = false;
+      m_iFrameDelayTolerance     = 2984;
+      m_bEmpty                   = false;
+      m_bStop                    = false;
    }
 
    decoder::~decoder()
@@ -59,20 +62,9 @@ namespace video_decode
 
    bool decoder::step()
    {
-      if(m_iPlayDib == m_iLastDib)
-      {
-         return false;
-      }
+      // wait until get full or return false immediatelly on end
       if(!decode())
          return false;
-      m_iPlayDib++;
-      if(m_iPlayDib >= m_diba.get_size())
-         m_iPlayDib = 0;
-      if(m_iPlayDib == m_iLastDib)
-      {
-         return false;
-      }
-      Sleep(max(0, m_ptsa[m_iPlayDib] - 1));
       return true;
    }
 
@@ -80,10 +72,15 @@ namespace video_decode
    {
       if(!DecoderNextFrame())
          return false;
-      m_iDib++;
-      if(m_iDib >= m_diba.get_size())
-         m_iDib = 0;
       return true;
+   }
+   
+   ::ca::dib * decoder::decoder_get_frame(int iFrame)
+   {
+      UNREFERENCED_PARAMETER(iFrame);
+      return NULL;
    }
 
 } // namespace auddev
+
+

@@ -1,0 +1,7 @@
+; md5.def : Declares the module parameters for the DLL.
+
+LIBRARY      "app_md5"
+	;DESCRIPTION  'app_md5 Windows Dynamic Link Library'
+
+EXPORTS
+get_new_library

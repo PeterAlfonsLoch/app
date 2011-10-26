@@ -1,7 +1,0 @@
-; netshareclient.def
-
-LIBRARY  "netshareclient"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-

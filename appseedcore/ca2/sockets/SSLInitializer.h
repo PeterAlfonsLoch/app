@@ -22,7 +22,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-#include "openssl/ssl.h"
+//#include "openssl/ssl.h"
+
+typedef struct bio_st BIO;
 
 namespace sockets
 {

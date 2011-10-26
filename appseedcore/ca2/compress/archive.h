@@ -94,10 +94,10 @@ namespace compress
       CA2_COMPRESS_INTERFACE_archive_ExtractCallback(= 0)
    };
 
-//virtual ex1::HRes GetStream(const char * name, ex1::input_stream **inStream) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
+//virtual ex1::HRes GetStream(const char * name, ex1::byte_input_stream **inStream) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
    #define CA2_COMPRESS_INTERFACE_archive_OpenVolumeCallback(specifier) \
      virtual ex1::HRes GetProperty(int propID, var *value) specifier; \
-     virtual ex1::HRes GetStream(const char * name, ex1::input_stream **inStream) specifier; \
+     virtual ex1::HRes GetStream(const char * name, ex1::byte_input_stream **inStream) specifier; \
 
    class CLASS_DECL_ca archive_open_volume_callback_interface
    {
@@ -109,7 +109,7 @@ namespace compress
    class CLASS_DECL_ca input_archive_get_stream_interface
    {
    public:
-      virtual ex1::HRes GetStream(uint32 index, ex1::input_stream **stream) = 0;
+      virtual ex1::HRes GetStream(uint32 index, ex1::byte_input_stream **stream) = 0;
    };
 
 
@@ -127,9 +127,9 @@ namespace compress
      testMode != 0 means "test files without writing to outStream"
    */
 
-     //virtual ex1::HRes Open(::ex1::input_stream * stream, const uint64 *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
+     //virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const uint64 *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
    #define CA2_COMPRESS_INTERFACE_input_archive(specifier) \
-     virtual ex1::HRes Open(::ex1::input_stream * stream, const uint64 *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \
+     virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \
      virtual ex1::HRes Close() specifier; \
      virtual ex1::HRes GetNumberOfItems(uint32 *numItems) specifier; \
      virtual ex1::HRes GetProperty(uint32 index, int propID, var *value) specifier; \
@@ -151,7 +151,7 @@ namespace compress
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes open_input_stream(ex1::input_stream *stream) = 0;
+      virtual ex1::HRes open_input_stream(ex1::byte_input_stream *stream) = 0;
    };
 
    #define CA2_COMPRESS_INTERFACE_archive_update_callback(specifier) \
@@ -162,7 +162,7 @@ namespace compress
          uint32 *indexInArchive /* -1 if there is no in archive, or if doesn't matter */ \
          )  specifier; \
      virtual ex1::HRes GetProperty(uint32 index, int propID, var *value) specifier; \
-     virtual ex1::HRes GetStream(uint32 index, ex1::input_stream **inStream) specifier; \
+     virtual ex1::HRes GetStream(uint32 index, ex1::byte_input_stream **inStream) specifier; \
      virtual ex1::HRes SetOperationResult(int32 operationResult) specifier; \
 
    class CLASS_DECL_ca archive_update_callback_interface :
@@ -175,7 +175,7 @@ namespace compress
    #define CA2_COMPRESS_INTERFACE_archive_update_callback2(specifier) \
      CA2_COMPRESS_INTERFACE_archive_update_callback(specifier) \
      virtual ex1::HRes GetVolumeSize(uint32 index, uint64 *size) specifier; \
-     virtual ex1::HRes GetVolumeStream(uint32 index, ex1::output_stream **volumeStream) specifier; \
+     virtual ex1::HRes GetVolumeStream(uint32 index, ex1::byte_output_stream **volumeStream) specifier; \
 
    class CLASS_DECL_ca archive_update_callback2_interface :
       virtual public archive_update_callback_interface

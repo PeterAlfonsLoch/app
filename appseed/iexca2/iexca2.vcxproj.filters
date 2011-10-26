@@ -13,50 +13,140 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
-    <Filter Include="Source Files\spaboot">
-      <UniqueIdentifier>{b6a3898b-5905-48b3-92e3-057c5cb450fa}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="connectioncontainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dataobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iexca2_host.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objectsafety.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="olecontrol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oleinplaceactiveobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oleinplaceobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oleinplaceobjectwindowless.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oleobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="persistpropbag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="persiststorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="persiststreaminit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="provideclassinfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="supporterrorinfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewobject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="iexca2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\npca2\npca2_base.cpp">
+    <ClCompile Include="..\..\appseedcore\c\_crt0dll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\file.cpp">
-      <Filter>Source Files\spaboot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\heap.cpp">
-      <Filter>Source Files\spaboot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\http.cpp">
-      <Filter>Source Files\spaboot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\starter_start.cpp">
-      <Filter>Source Files\spaboot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\str.cpp">
-      <Filter>Source Files\spaboot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\md5.cpp">
-      <Filter>Source Files\spaboot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\install_spaboot\mem.cpp">
-      <Filter>Source Files\spaboot</Filter>
+    <ClCompile Include="iexca2_i.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iexca2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\npca2\npca2_base.h">
+    <ClInclude Include="connectioncontainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\ccvotagus\source\install_spaboot\install_spaboot.h">
+    <ClInclude Include="control.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\ccvotagus\source\install_spaboot\md5.h">
+    <ClInclude Include="dataobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iexca2_h.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iexca2_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objectsafety.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="olecontrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oleinplaceactiveobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oleinplaceobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oleinplaceobjectwindowless.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oleobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="persistpropbag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="persiststorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="persiststreaminit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="provideclassinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="setting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="supporterrorinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="x_entry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -75,5 +165,10 @@
     <None Include="res\ca2-2C-h84.BMP">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="iexca2.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

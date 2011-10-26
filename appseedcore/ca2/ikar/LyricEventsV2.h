@@ -6,7 +6,7 @@ namespace ikar
 }
 
 
-class CLASS_DECL_ca LyricEventsV2 : 
+class CLASS_DECL_ca LyricEventsV2 :
    public LyricEventsV1
 {
 public:
@@ -19,8 +19,8 @@ public:
    dword_array                     m_dwaNotesData;
    dword_array                     m_dwaBeatNote; // for Bouncing Ball
    int_int_spreadset                m_riiNoteBeat;
-   
-   
+
+
    LyricEventsV2();
    virtual ~LyricEventsV2();
 
@@ -29,7 +29,7 @@ public:
    int GetPositionToken(imedia::position tkPosition);
    int GetNoteFirstToken(int iNote);
    static void swap(void * lpVoidSwapArg, int iA, int iB);
-   DWORD GetTotalNotesMillis();
+   imedia::time GetTotalNotesMillis();
    void GetMillisIntervalNotes(int_array & iaIndexes, imedia::time msMin,  imedia::time msMax);
    void GetMillisNotes_(int *iStartNote, int *iNotesCount, imedia::time msMin, imedia::time msMax);
    BYTE GetNotePitch(int iIndex);
@@ -44,7 +44,7 @@ public:
    void PrepareForLyricsDisplay(ikar::karaoke * pinterface);
    void PrepareForScoring(ikar::karaoke * pinterface);
 
-   
+
    inline int GetTokenLastNote(int iToken)
    {
       unique_int_sort_array & iaNote = GetTokenNoteArray(iToken);

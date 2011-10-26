@@ -10,6 +10,7 @@ namespace fs
    {
    public:
 
+
       string                  m_strPath;
       critical_section        m_csBrowse;
       bool                    m_bCreateImageList;
@@ -24,7 +25,6 @@ namespace fs
       int                     m_iDefaultImageSelected;
 
          
-      
       tree_interface(::ca::application * papp);
       virtual ~tree_interface();
 
@@ -37,7 +37,6 @@ namespace fs
       void _017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel);
 
       document * get_document();
-      virtual data * get_fs_data();
       virtual tree_data * get_fs_tree_data();
 
       virtual void _001InsertColumns();
@@ -46,7 +45,7 @@ namespace fs
    
 
       virtual void _017Synchronize();
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
    
 
       void _StartCreateImageList();
@@ -58,14 +57,13 @@ namespace fs
       virtual void _001OnItemCollapse(::ex1::tree_item * pitem);
 
 
-      virtual void _017OpenFolder(item & item);
+      virtual void _017OpenFolder(const item & item);
       
       virtual COLORREF get_background_color();
 
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnNcDraw(::ca::graphics * pdc);
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
@@ -86,6 +84,7 @@ namespace fs
       void _StartDelayedListUpdate(void);
       void _StopDelayedListUpdate(void);
       void _DelayedListUpdate(void);
+
 
    };
 

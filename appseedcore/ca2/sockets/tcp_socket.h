@@ -47,45 +47,6 @@ namespace sockets
    {
       /** \defgroup internal Internal utility */
    protected:
-      /** buffer class containing one read/write circular buffer. 
-         \ingroup internal */
-      class CircularBuffer
-      {
-      public:
-         CircularBuffer(size_t size);
-         ~CircularBuffer();
-
-         /** append l bytes from p to buffer */
-         bool write(const char *p,size_t l);
-         /** copy l bytes from buffer to dest */
-         bool read(char *dest,size_t l);
-         /** skip l bytes from buffer */
-         bool remove(size_t l);
-         /** read l bytes from buffer, returns as string. */
-         string read_string(size_t l);
-
-         /** total buffer length */
-         size_t get_length();
-         /** pointer to circular buffer beginning */
-         const char *GetStart();
-         /** return number of bytes from circular buffer beginning to buffer physical end */
-         size_t GetL();
-         /** return free space in buffer, number of bytes until buffer overrun */
-         size_t Space();
-
-         /** return total number of bytes written to this buffer, ever */
-         unsigned long ByteCounter(bool clear = false);
-
-      private:
-         CircularBuffer(const CircularBuffer& s) { UNREFERENCED_PARAMETER(s); }
-         CircularBuffer& operator=(const CircularBuffer& ) { return *this; }
-         char *buf;
-         size_t m_max;
-         size_t m_q;
-         size_t m_b;
-         size_t m_t;
-         unsigned long m_count;
-      };
       /** Output buffer struct.
          \ingroup internal */
       struct OUTPUT {
@@ -153,6 +114,10 @@ namespace sockets
    public:
 
       bool m_bCertCommonNameCheckEnabled;
+
+
+      sp(ssl_client_context)     m_spsslclientcontext;
+      string                     m_strInitSSLClientContext;
 
 
       /** Constructor with standard values on input/output buffers. */
@@ -312,7 +277,7 @@ namespace sockets
       /** SSL; get ssl password. */
       const string & GetPassword();
 
-      CircularBuffer ibuf; ///< Circular input buffer
+      ex1::circular_buffer ibuf; ///< Circular input buffer
    public:
 
       virtual string get_url();

@@ -26,16 +26,11 @@
 
 #pragma comment(lib, "Wtsapi32.lib")
 
-#include "include/ca2.h"
-#include "win/win.h"
-#include "../npca2plugin/spa.h"
-#include "../npca2plugin/npca2_gen.h"
-#include "../npca2plugin/npca2_host_interaction.h"
-#include "../npca2plugin/npca2_starter_start.h"
-#include "../npca2plugin/npca2_plugin.h"
-#include "../npca2plugin/npca2_system.h"
-#include "../npca2plugin/npca2_history.h"
-#include "../npca2plugin/npca2_run_start_installer.h"
+#include "include/ca.h"
+#include "os/os/os.h"
+
+#define CLASS_DECL_CA2_NPCA2
+#define SPALIB_LIB
 
 
 #include <ole2.h>
@@ -112,7 +107,7 @@ namespace iexca2
 
 
 
-#include "plugin.h"
+#include "iexca2_host.h"
 
 #include "iexca2_h.h"
 

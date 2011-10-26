@@ -16,7 +16,7 @@ namespace user
       int      nTrackPos;
    };
 
-   class CLASS_DECL_ca scroll_bar : 
+   class CLASS_DECL_ca scroll_bar :
       virtual public ::user::interaction
    {
    public:
@@ -39,9 +39,8 @@ namespace user
       virtual bool _001GetScrollInfo(scroll_info * psi) = 0;
       virtual bool _001SetScrollInfo(scroll_info * psi, bool bRedraw = true) = 0;
 
-#if !core_level_1
+
       using user::interaction::create;
-#endif
       virtual BOOL create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
 
       virtual void send_scroll_message(UINT nSBCode);

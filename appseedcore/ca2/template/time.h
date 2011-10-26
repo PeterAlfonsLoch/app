@@ -94,12 +94,14 @@ public:
 
    struct tm* GetGmtTm( struct tm* ptm ) const;
    struct tm* GetLocalTm( struct tm* ptm ) const;
+/*
 #if !_SECURE_ATL
    _ATL_INSECURE_DEPRECATE("Pass an output time structure to time::GetGmtTm")
    struct tm* GetGmtTm() const NOTHROW;
    _ATL_INSECURE_DEPRECATE("Pass an output time structure to time::GetLocalTm")
    struct tm* GetLocalTm() const NOTHROW;
 #endif
+*/
 
    bool get_as_system_time( SYSTEMTIME& st ) const NOTHROW;
 
@@ -126,10 +128,10 @@ public:
    tstring Format(tstring & str, const char * pszFormat ) const;
    template < class tstring >
    tstring FormatGmt(tstring & str, const char * pszFormat ) const;
-   template < class tstring >
+/*   template < class tstring >
    tstring Format(tstring & str, UINT nFormatID ) const;
    template < class tstring >
-   tstring FormatGmt(tstring & str, UINT nFormatID ) const;
+   tstring FormatGmt(tstring & str, UINT nFormatID ) const;*/
    string Format(const char * pszFormat);
    string FormatGmt(const char * pszFormat);
 
@@ -217,22 +219,22 @@ public:
 };
 
 // Used only if these strings could not be found in resources.
-extern __declspec(selectany) const char * const szInvalidDateTime = "Invalid DateTime";
-extern __declspec(selectany) const char * const szInvalidDateTimeSpan = "Invalid DateTimeSpan";
+extern CLASS_DECL_ca const char * const szInvalidDateTime;
+extern CLASS_DECL_ca const char * const szInvalidDateTimeSpan;
 
 const int maxTimeBufferSize = 128;
 const long maxDaysInSpan  =   3615897L;
 
 
 
- 
 
 
- 
+
+
 
 enum _CTIMESPANFORMATSTEP
 {
-   _CTFS_NONE   = 0,   
+   _CTFS_NONE   = 0,
    _CTFS_FORMAT = 1,
    _CTFS_NZ     = 2
 };
@@ -270,13 +272,13 @@ inline time::time( const DBTIMESTAMP& dbts, int nDST ) NOTHROW
 }
 #endif
 
-inline string time::Format(const char * pFormat) 
+inline string time::Format(const char * pFormat)
 {
    string str;
    Format(str, pFormat);
    return str;
 }
-inline string time::FormatGmt(const char * pFormat) 
+inline string time::FormatGmt(const char * pFormat)
 {
    string str;
    FormatGmt(str, pFormat);
@@ -292,9 +294,9 @@ inline tstring time::Format(tstring & str, const char * pszFormat) const
    }
 
    char szBuffer[maxTimeBufferSize];
-#if core_level_1
+#if defined(LINUX)
    struct tm* ptmTemp = localtime(&m_time);
-   if (ptmTemp == NULL || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+   if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
     {
       szBuffer[0] = '\0';
     }
@@ -326,9 +328,9 @@ inline tstring time::FormatGmt(tstring & str, const char * pszFormat) const
 
    char szBuffer[maxTimeBufferSize];
 
-#if core_level_1
+#if defined(LINUX)
    struct tm* ptmTemp = gmtime(&m_time);
-   if (ptmTemp == NULL || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+   if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
     {
       szBuffer[0] = '\0';
     }
@@ -350,6 +352,7 @@ inline tstring time::FormatGmt(tstring & str, const char * pszFormat) const
    return szBuffer;
 }
 
+/*
 template < class tstring >
 inline tstring time::Format(tstring & str, UINT nFormatID) const
 {
@@ -365,4 +368,4 @@ inline tstring time::FormatGmt(tstring & str, UINT nFormatID) const
    ATLENSURE(strFormat.load_string(nFormatID));
    return FormatGmt(str, strFormat);
 }
-
+*/

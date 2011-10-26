@@ -40,7 +40,7 @@ public:
       }
       return count;
    }
-   
+
    template < class CAST >
    index find_first(CAST * pt, index find = 0, index last = -1) const
    {
@@ -60,7 +60,7 @@ public:
 
 
    count get_size() const;
-   count get_count() const;
+   countget_count() const;
    index get_upper_bound() const;
    bool is_empty() const;
 
@@ -75,7 +75,7 @@ public:
 
    const TYPE* ptr_at(index nIndex) const;
    TYPE* ptr_at(index nIndex);
-   
+
    const TYPE* last_ptr() const;
    TYPE* last_ptr();
 
@@ -93,7 +93,7 @@ public:
 
 
    comparable_array < TYPE * > m_ptra;
-   
+
 };
 template <class TYPE, class ARG_TYPE>
 array_smart_ptr < TYPE, ARG_TYPE >::array_smart_ptr()
@@ -187,12 +187,12 @@ inline const TYPE & array_smart_ptr < TYPE, ARG_TYPE >::
 template <class TYPE, class ARG_TYPE>
 inline const TYPE & array_smart_ptr < TYPE, ARG_TYPE >::operator[](index iIndex) const
 {
-   return element_at(iIndex);
+   return this->element_at(iIndex);
 }
 template <class TYPE, class ARG_TYPE>
 inline 	TYPE& array_smart_ptr < TYPE, ARG_TYPE >::operator[](index iIndex)
 {
-   return element_at(iIndex);
+   return this->element_at(iIndex);
 }
 
 
@@ -201,9 +201,9 @@ index array_smart_ptr < TYPE, ARG_TYPE >::
 find_first(TYPE & t, int (*lpfnCompare)(TYPE &t1, TYPE &t2), index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
+      last += this->get_count();
    for(; find <= last; find++)
    {
       if(lpfnCompare(*m_ptra[find], t) == 0)
@@ -217,9 +217,9 @@ index array_smart_ptr < TYPE, ARG_TYPE >::
 raw_find_first(TYPE * pt, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
+      last += this->get_count();
    for(; find <= last; find++)
    {
       if(m_ptra[find] == pt)
@@ -267,19 +267,19 @@ template <class TYPE, class ARG_TYPE>
 inline void array_smart_ptr < TYPE, ARG_TYPE >::
 set_size(int iSize)
 {
-   while(get_size() < iSize)
+   while(this->get_size() < iSize)
    {
       add(NULL);
    }
-   while(get_size() > iSize)
+   while(this->get_size() > iSize)
    {
-      remove_at(get_size() - 1);
+      remove_at(this->get_size() - 1);
    }
 }
 
 template <class TYPE, class ARG_TYPE>
 inline const TYPE* array_smart_ptr < TYPE, ARG_TYPE >::
-ptr_at(index index) const 
+ptr_at(index index) const
 {
    return m_ptra[index];
 }

@@ -169,11 +169,31 @@ var::var(const gen::var_property & prop)
    operator = (prop);
 }
 
+var::var(const string_composite & composite)
+{
+   m_etype = type_new;
+   m_pca2 = NULL;
+   operator = (composite);
+}
+
+var::var(const id & id)
+{
+   m_etype = type_new;
+   m_pca2 = NULL;
+   operator = (id);
+}
+
 var::~var()
 {
    if(m_pca2 != NULL)
    {
-      gen::release(m_pca2);
+      try
+      {
+         gen::release(m_pca2);
+      }
+      catch(...)
+      {
+      }
    }
 }
 
@@ -231,7 +251,7 @@ class var & var::operator ++(int)
       m_ul++;
       break;
    default:
-      set_type(type_integer);
+      set_type(type_integer, false);
       m_i = 1;
       break;
    }
@@ -240,7 +260,7 @@ class var & var::operator ++(int)
 
 
 
-void var::set_type(class e_type e_type)
+void var::set_type(class e_type e_type, bool bConvert)
 {
    if(m_pca2 != NULL)
    {
@@ -249,27 +269,30 @@ void var::set_type(class e_type e_type)
    }
    if(e_type == m_etype)
       return;
-   switch(e_type)
+   if(bConvert)
    {
-   case type_integer:
-      m_i      = get_integer();
-      break;
-   case type_ulong:
-      m_ul     = get_ulong();
-      break;
-   case type_double:
-      m_d      = get_double();
-      break;
-   case type_string:
-      m_str    = get_string();
-      break;
+      switch(e_type)
+      {
+      case type_integer:
+         m_i      = get_integer();
+         break;
+      case type_ulong:
+         m_ul     = get_ulong();
+         break;
+      case type_double:
+         m_d      = get_double();
+         break;
+      case type_string:
+         m_str    = get_string();
+         break;
+      }
    }
    m_etype = e_type;
 }
 
 void var::unset()
 {
-   set_type(type_new);
+   set_type(type_new, false);
 }
 
 bool var::ok() const
@@ -294,7 +317,7 @@ void var::set_string(const char * psz)
    }
    else
    {
-      set_type(type_string);
+      set_type(type_string, false);
       m_str = psz;
    }
 }
@@ -302,7 +325,7 @@ void var::set_string(const char * psz)
 
 class var & var::operator = (gen::para_return & eret)
 {
-   set_type(type_parareturn);
+   set_type(type_parareturn, false);
    m_parareturn = eret;
    return *this;
 }
@@ -319,7 +342,7 @@ class var & var::operator = (bool b)
    }
    else
    {
-      set_type(type_bool);
+      set_type(type_bool, false);
       m_b = b;
    }
    return *this;
@@ -327,7 +350,7 @@ class var & var::operator = (bool b)
 
 class var & var::operator = (bool * pb)
 {
-   set_type(type_pbool);
+   set_type(type_pbool, false);
    m_pb = pb;
    return *this;
 }
@@ -344,7 +367,7 @@ class var & var::operator = (int i)
    }
    else
    {
-      set_type(type_integer);
+      set_type(type_integer, false);
       m_i = i;
    }
    return *this;
@@ -363,14 +386,14 @@ class var & var::operator = (__int64 i)
    }
    else
    {
-      set_type(type_int64);
+      set_type(type_int64, false);
       m_i64 = i;
    }
    return *this;
 }
 
 
-class var & var::operator = (unsigned __int64 ui)
+class var & var::operator = (uint64_t ui)
 {
    if(get_type() == type_puint64)
    {
@@ -382,7 +405,7 @@ class var & var::operator = (unsigned __int64 ui)
    }
    else
    {
-      set_type(type_uint64);
+      set_type(type_uint64, false);
       m_ui64 = ui;
    }
    return *this;
@@ -391,56 +414,56 @@ class var & var::operator = (unsigned __int64 ui)
 
 class var & var::operator = (int * pi)
 {
-   set_type(type_pinteger);
+   set_type(type_pinteger, false);
    m_pi = pi;
    return *this;
 }
 
 class var & var::operator = (__int64 * pi)
 {
-   set_type(type_pint64);
+   set_type(type_pint64, false);
    m_pi64 = pi;
    return *this;
 }
 
-class var & var::operator = (unsigned __int64 * pui)
+class var & var::operator = (uint64_t * pui)
 {
-   set_type(type_pint64);
+   set_type(type_pint64, false);
    m_pui64 = pui;
    return *this;
 }
 
 class var & var::operator = (const class ::time & time)
 {
-   set_type(type_time);
+   set_type(type_time, false);
    m_time = time.get_time();
    return *this;
 }
 
 class var & var::operator = (const FILETIME & filetime)
 {
-   set_type(type_filetime);
+   set_type(type_filetime, false);
    m_filetime = filetime;
    return *this;
 }
 
 class var & var::operator = (unsigned long ul)
 {
-   set_type(type_ulong);
+   set_type(type_ulong, false);
    m_ul = ul;
    return *this;
 }
 
 class var & var::operator = (unsigned int ui)
 {
-   set_type(type_uint);
+   set_type(type_uint, false);
    m_ui = ui;
    return *this;
 }
 
 class var & var::operator = (double d)
 {
-   set_type(type_double);
+   set_type(type_double, false);
    m_d = d;
    return *this;
 }
@@ -454,7 +477,7 @@ class var & var::operator = (string str)
 
 class var & var::operator = (string * pstr)
 {
-   set_type(type_pstring);
+   set_type(type_pstring, false);
    m_pstr = pstr;
    return *this;
 }
@@ -496,7 +519,7 @@ class var & var::operator = (const class var & var)
    {
       switch(((class var &)var).get_type())
       {
-      case type_pvar: 
+      case type_pvar:
          // should dereference (this operator here means a content copy)
          *this  = *((class var &)var).m_pvar;
          return *this;
@@ -510,7 +533,7 @@ class var & var::operator = (const class var & var)
          return *this;
       }
 
-      set_type(((class var &)var).get_type());
+      set_type(((class var &)var).get_type(), false);
       switch(((class var &)var).get_type())
       {
       case type_bool:
@@ -602,6 +625,50 @@ class var & var::operator = (const gen::str_str_interface & propsetParam)
    propset() = propsetParam;
    return *this;
 }
+
+var & var::operator = (const string_composite & composite)
+{
+
+   string str;
+   count count = composite.get_length();
+   char * psz = str.GetBufferSetLength(count);
+   composite.get_string(psz);
+   str.ReleaseBuffer(count);
+   operator = (str);
+
+   return *this;
+
+}
+
+class var & var::operator = (const id & id)
+{
+
+   if(id.is_empty())
+   {
+      set_type(type_empty, false);
+   }
+   else if(id.is_null())
+   {
+      set_type(type_null, false);
+   }
+   else if(id.is_number())
+   {
+      operator = ((index ) id);
+   }
+   else if(id.is_text())
+   {
+      operator = ((const char *) id);
+   }
+   else
+   {
+      m_etype = type_new;
+      m_pca2 = NULL;
+   }
+
+   return *this;
+
+}
+
 
 var::operator string &()
 {
@@ -812,11 +879,11 @@ bool var::is_new_or_null() const
    return is_new() || is_null();
 }
 
-void var::read(ex1::input_stream & is)
+void var::read(ex1::byte_input_stream & is)
 {
    int i;
    is >> i;
-   set_type(e_type(i));
+   set_type(e_type(i), false);
    switch(get_type())
    {
    case type_string:
@@ -872,14 +939,26 @@ void var::read(ex1::input_stream & is)
          ::ca::type_info info;
          is >> info;
          m_pca2 = System.alloc(info);
-         serializable * pserializable = dynamic_cast < serializable * > (m_pca2);
+         if(m_pca2 == NULL)
+         {
+            throw "object allocation is not implemented";
+         }
+         ::ex1::byte_serializable * pserializable = dynamic_cast < ::ex1::byte_serializable * > (m_pca2);
          if(pserializable != NULL)
          {
             pserializable->read(is);
          }
          else
          {
-            throw "object is not serializable";
+            ::ex1::plain_text_serializable * pserializable = dynamic_cast < ::ex1::plain_text_serializable * > (m_pca2);
+            if(pserializable != NULL)
+            {
+               pserializable->read(is.m_spreader);
+            }
+            else
+            {
+               throw "object serialization is not implemented";
+            }
          }
       }
       break;
@@ -888,7 +967,7 @@ void var::read(ex1::input_stream & is)
    }
 }
 
-void var::write(ex1::output_stream & ostream)
+void var::write(ex1::byte_output_stream & ostream)
 {
    int i = get_type();
    ostream << i;
@@ -931,14 +1010,22 @@ void var::write(ex1::output_stream & ostream)
       {
          ::ca::type_info info(typeid(*m_pca2));
          ostream << info;
-         serializable * pserializable = dynamic_cast < serializable * >(m_pca2);
+         byte_serializable * pserializable = dynamic_cast < byte_serializable * >(m_pca2);
          if(pserializable != NULL)
          {
             pserializable->write(ostream);
          }
          else
          {
-            throw "object is not serializable";
+            ::ex1::plain_text_serializable * pserializable = dynamic_cast < ::ex1::plain_text_serializable * >(m_pca2);
+            if(pserializable != NULL)
+            {
+               pserializable->write(ostream.m_spwriter);
+            }
+            else
+            {
+               throw "object is not serializable";
+            }
          }
       }
       break;
@@ -1515,7 +1602,6 @@ class primitive::memory & var::memory()
    if(m_pca2 == NULL)
    {
       m_pca2 = new class primitive::memory();
-      gen::add_ref(m_pca2);
    }
    return *dynamic_cast < class primitive::memory * > (m_pca2);
 }
@@ -1527,19 +1613,14 @@ stringa & var::stra()
    if(get_type() != type_stra)
    {
       stringa * pstra = new stringa();
-      for(int i = 0; i < array_get_count(); i++)
-      {
-         pstra->add((const char *) at(i));
-      }
-      set_type(type_stra);
+      pstra->add(*this);
+      set_type(type_stra, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pstra;
-      gen::add_ref(m_pca2);
    }
    else if(m_pca2 == NULL)
    {
       m_pca2 = new stringa();
-      gen::add_ref(m_pca2);
    }
    return *dynamic_cast < stringa * > (m_pca2);
 }
@@ -1553,15 +1634,13 @@ int_array & var::inta()
       {
          pia->add((int) at(i));
       }
-      set_type(type_inta);
+      set_type(type_inta, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pia;
-      gen::add_ref(m_pca2);
    }
    else if(m_pca2 == NULL)
    {
       m_pca2 = new int_array();
-      gen::add_ref(m_pca2);
    }
    return *dynamic_cast < int_array * > (m_pca2);
 }
@@ -1577,29 +1656,23 @@ const class primitive::memory & var::memory() const
 }
 
 
-const stringa & var::stra() const
+stringa var::stra() const
 {
-   if(get_type() != type_stra)
-   {
-      throw 0;
-   }
-   return *dynamic_cast < const stringa * > (m_pca2);
+   var varTime = *this;
+   return varTime.stra();
 }
 
-const int_array & var::inta() const
+int_array var::inta() const
 {
-   if(get_type() != type_inta)
-   {
-      throw 0;
-   }
-   return *dynamic_cast < const int_array * > (m_pca2);
+   var varTime = *this;
+   return varTime.inta();
 }
 
 class var & var::operator = (::ca::ca * pca2)
 {
    if(m_pca2 == pca2)
       return *this;
-   set_type(type_ca2);
+   set_type(type_ca2, false);
    m_pca2 = dynamic_cast < ::ca::object * > (pca2);
    gen::add_ref(m_pca2);
    return *this;
@@ -1609,10 +1682,11 @@ class var & var::operator = (var * pvar)
 {
    if(m_pvar == pvar)
       return *this;
-   set_type(type_pvar);
+   set_type(type_pvar, false);
    m_pvar = pvar;
    return *this;
 }
+
 
 var_array & var::vara()
 {
@@ -1627,20 +1701,18 @@ var_array & var::vara()
       {
          pvara->add(at(i));
       }
-      set_type(type_vara);
+      set_type(type_vara, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pvara;
-      gen::add_ref(m_pca2);
    }
    else if(m_pca2 == NULL)
    {
       m_pca2 = new var_array();
-      gen::add_ref(m_pca2);
    }
    return *dynamic_cast < var_array * > (m_pca2);
 }
 
-const var_array & var::vara() const
+var_array var::vara() const
 {
    if(get_type() == type_pvar)
    {
@@ -1648,7 +1720,8 @@ const var_array & var::vara() const
    }
    else if(get_type() != type_vara)
    {
-      throw 0;
+      var varTime = *this;
+      return varTime.vara();
    }
    return *dynamic_cast < const var_array * > (m_pca2);
 }
@@ -1667,17 +1740,15 @@ gen::property_set & var::propset(::ca::application * papp)
       {
          ppropset->add(NULL, at(i));
       }
-      set_type(type_propset);
+      set_type(type_propset, false);
       //ASSERT(m_pca2 == NULL);
       m_pca2 = ppropset;
       pset = ppropset;
-      gen::add_ref(m_pca2);
    }
    else if(m_pca2 == NULL)
    {
       pset = new gen::property_set();
       m_pca2 = pset;
-      gen::add_ref(m_pca2);
    }
    else
    {
@@ -1690,13 +1761,10 @@ gen::property_set & var::propset(::ca::application * papp)
    return *pset;
 }
 
-const gen::property_set & var::propset() const
+gen::property_set var::propset() const
 {
-   if(get_type() != type_propset)
-   {
-      throw 0;
-   }
-   return *dynamic_cast < const gen::property_set * > (m_pca2);
+   var varTime = *this;
+   return varTime.propset();
 }
 
 gen::property & var::prop()
@@ -1708,16 +1776,16 @@ gen::property & var::prop()
    if(m_pca2 == NULL)
    {
       m_pca2 = new gen::var_property();
-      gen::add_ref(m_pca2);
    }
    return *dynamic_cast < gen::property * > (m_pca2);
 }
 
-const gen::property & var::prop() const
+gen::var_property var::prop() const
 {
    if(get_type() != type_prop)
    {
-      throw 0;
+      var varTime = *this;
+      return varTime.prop();
    }
    return *dynamic_cast < const gen::property * > (m_pca2);
 }
@@ -1859,31 +1927,79 @@ var var::at(int i) const
       return vara()[i];
    case type_propset:
       return propset().m_propertya[i];
+   case type_pvar:
+      return m_pvar->at(i);
    default:
-   throw "not supported";
+      if(i == 0)
+      {
+         return *this;
+      }
+      else
+      {
+         throw "index out of bounds";
+      }
    }
 }
+
+var var::at(int i)
+{
+   switch(m_etype)
+   {
+   case type_inta:
+      return &inta()[i];
+   case type_stra:
+      return &stra()[i];
+   case type_vara:
+      return &vara()[i];
+   case type_propset:
+      return &propset().m_propertya[i].get_value();
+   case type_pvar:
+      return m_pvar->at(i);
+   default:
+      if(i == 0)
+      {
+         return this;
+      }
+      else
+      {
+         throw "index out of bounds";
+      }
+   }
+}
+
 int var::array_get_count() const
 {
-   if(is_array())
-      return get_count();
-   else
+   if(m_etype == type_new
+   || m_etype == type_null
+   || m_etype == type_empty
+   || m_etype == type_empty_argument)
+   {
       return -1; // indicates that this var is not an base_array
+   }
+   else if(is_array())
+      return this->get_count();
+   else
+      return 1; // this var is an scalar or object that can be retrieved through "array_" methods
 }
 
 int var::array_get_upper_bound() const
 {
-   if(is_array())
-      return get_count() - 1;
-   else
+   if(m_etype == type_new
+   || m_etype == type_null
+   || m_etype == type_empty
+   || m_etype == type_empty_argument)
+   {
       return -1; // indicates that this var is not an base_array
+   }
+   else if(is_array())
+      return this->get_count() - 1;
+   else
+      return 0; // this var is an scalar or object that can be retrieved through "array_" methods
 }
 bool var::array_contains(const char * psz, index find, count count) const
 {
    switch(m_etype)
    {
-   case type_bool:
-      return false;
    case type_inta:
       return inta().contains(atoi(psz), find, count);
    case type_stra:
@@ -1893,8 +2009,18 @@ bool var::array_contains(const char * psz, index find, count count) const
    case type_propset:
       return propset().contains_value(psz, find, count);
    default:
-      return false;
+      {
+         index upperbound = min(array_get_upper_bound(), find + count - 1);
+         for(int i = find; i <= upperbound; i++)
+         {
+            if(at(i) == psz)
+            {
+               return true;
+            }
+         }
+      }
    }
+   return false;
 }
 
 bool var::array_contains_ci(const char * psz, index find, index last) const
@@ -1912,8 +2038,18 @@ bool var::array_contains_ci(const char * psz, index find, index last) const
    case type_propset:
       return propset().contains_value_ci(psz, find, last);
    default:
-      return false;
+      {
+         index upperbound = min(array_get_upper_bound(), last);
+         for(int i = find; i <= upperbound; i++)
+         {
+            if(at(i).get_string().CompareNoCase(psz) == 0)
+            {
+               return true;
+            }
+         }
+      }
    }
+   return false;
 }
 
 
@@ -2823,7 +2959,7 @@ bool var::is_double() const
       return true;
    }
    // simple, lazy, slow, and a bit incorrect
-   // incorrect because atof and atoi returns partials results even if it 
+   // incorrect because atof and atoi returns partials results even if it
    // encounters non-numerical symbols
    else
    {
@@ -2891,7 +3027,7 @@ e:
                   goto dot2;
                }
                if(isdigit(str[i]))
-               {  
+               {
                   i++;
                   break;
                }
@@ -2935,7 +3071,7 @@ bool var::is_integer() const
       return true;
    }
    // simple, lazy, slow, and a bit incorrect
-   // incorrect because atof and atoi returns partials results even if it 
+   // incorrect because atof and atoi returns partials results even if it
    // encounters non-numerical symbols
    else
    {
@@ -2975,7 +3111,7 @@ bool var::is_ulong() const
       return true;
    }
    // simple, lazy, slow, and a bit incorrect
-   // incorrect because atof and atoi returns partials results even if it 
+   // incorrect because atof and atoi returns partials results even if it
    // encounters non-numerical symbols
    else
    {
@@ -3053,5 +3189,125 @@ bool var::has_property(const char * pszName) const
 
 
 
+void var::consume_number(const char * & psz)
+{
+   consume_number(psz, psz + strlen(psz) - 1);
+}
 
+void var::consume_number(const char * & psz, const char * pszEnd)
+{
+   const char * pszParse = psz;
+   bool bSigned = false;
+   bool bFloat = false;
+   gen::str::consume_spaces(pszParse, 0, pszEnd);
+   const char * pszStart = pszParse;
+   if(*pszParse == '-')
+   {
+      bSigned = true;
+      pszParse++;
+   }
+   if(*pszParse == '.')
+   {
+      bFloat = true;
+      pszParse++;
+   }
+   while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   {
+      pszParse++;
+   }
+   if(*pszParse == 'e' || *pszParse == 'E')
+   {
+      pszParse++;
+      bFloat = true;
+      if(*pszParse == '-')
+      {
+         bSigned = true;
+         pszParse++;
+      }
+      if(*pszParse == '.')
+      {
+         bFloat = true;
+         pszParse++;
+      }
+      while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      {
+         pszParse++;
+      }
+      goto end;
+   }
+   if(*pszParse == '.')
+   {
+      bFloat = true;
+      pszParse++;
+   }
+   while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   {
+      pszParse++;
+   }
+   if(*pszParse == 'e' || *pszParse == 'E')
+   {
+      pszParse++;
+      bFloat = true;
+      if(*pszParse == '-')
+      {
+         bSigned = true;
+         pszParse++;
+      }
+      if(*pszParse == '.')
+      {
+         bFloat = true;
+         pszParse++;
+      }
+      while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      {
+         pszParse++;
+      }
+      goto end;
+   }
+end:
+   if(pszParse == pszStart)
+   {
+      throw "empty string : not a number";
+   }
+   if(bFloat)
+   {
+      operator = (atof(string(pszStart, pszParse - pszStart)));
+   }
+   else
+   {
+      operator = (atoi(string(pszStart, pszParse - pszStart)));
+   }
+   psz = pszParse;
+}
 
+void var::parse_json(const char * & pszJson)
+{
+   parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+}
+
+void var::parse_json(const char * & pszJson, const char * pszEnd)
+{
+   gen::str::consume_spaces(pszJson, 0, pszEnd);
+   if(*pszJson == '{')
+   {
+      propset().parse_json(pszJson, pszEnd);
+   }
+   else if(*pszJson == '\"')
+   {
+      operator = (gen::str::consume_quoted_value(pszJson, pszEnd));
+   }
+   else if(isdigit(*pszJson) || *pszJson == '-'  || *pszJson == '.')
+   {
+      consume_number(pszJson, pszEnd);
+   }
+   else if(*pszJson == '[')
+   {
+      vara().parse_json(pszJson, pszEnd);
+   }
+   else
+   {
+      string str = "not expected character : ";
+      str += pszJson;
+      throw str;
+   }
+}

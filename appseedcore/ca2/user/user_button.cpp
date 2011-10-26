@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "window_frame/FrameSchema.h"
 
 namespace user
 {
@@ -10,6 +11,7 @@ namespace user
       m_iHover    = -1;
       m_bEnabled  = true;
       m_echeck    = check::unchecked;
+      m_pschema   = NULL;
    }
 
    button::~button(void)
@@ -18,11 +20,12 @@ namespace user
    }
 
 
-   void button::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void button::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::window_interface::_001InstallMessageHandling(pinterface);
+      ::user::window_interface::install_message_handling(pinterface);
 
    //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
+      USER_MESSAGE_LINK(message_create             , pinterface, this, &button::on_create);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN             , pinterface, this, &button::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP               , pinterface, this, &button::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE               , pinterface, this, &button::_001OnMouseMove);
@@ -40,14 +43,51 @@ namespace user
 
       rect rectClient;
       GetClientRect(rectClient);
-      pdc->FillSolidRect(rectClient, RGB(127, 127, 127));
-      if(m_iHover == 0)
+      if(m_pschema == NULL)
       {
-         pdc->SetTextColor(RGB(0, 100, 255));
+         if(m_iHover == 0)
+         {
+            pdc->FillSolidRect(rectClient, RGB(127, 127, 127));
+            pdc->SetTextColor(RGB(0, 100, 255));
+         }
+         else
+         {
+            pdc->FillSolidRect(rectClient, RGB(127, 127, 127));
+            pdc->SetTextColor(RGB(0, 0, 0));
+         }
       }
       else
       {
-         pdc->SetTextColor(RGB(0, 0, 0));
+         if(m_iHover == 0)
+         {
+            color c;
+            c.set_rgb(m_pschema->m_crBkHover);
+            c.hls_rate(0.0, -0.33, -0.23);
+            COLORREF crBorder = c.get_rgb();
+            pdc->Draw3dRect(rectClient, crBorder, crBorder);
+            rectClient.deflate(1, 1);
+            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
+            //rectClient.deflate(1, 1);
+            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
+            //rectClient.deflate(1, 1);
+            pdc->FillSolidRect(rectClient, m_pschema->m_crBkHover);
+            pdc->SetTextColor(m_pschema->m_crTextHover);
+         }
+         else
+         {
+            color c;
+            c.set_rgb(m_pschema->m_crBkNormal);
+            c.hls_rate(0.0, -0.33, -0.23);
+            COLORREF crBorder = c.get_rgb();
+            pdc->Draw3dRect(rectClient, crBorder, crBorder);
+            rectClient.deflate(1, 1);
+            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
+            //rectClient.deflate(1, 1);
+            //pdc->Draw3dRect(rectClient, crBorder, crBorder);
+            //rectClient.deflate(1, 1);
+            pdc->FillSolidRect(rectClient, m_pschema->m_crBkNormal);
+            pdc->SetTextColor(m_pschema->m_crTextNormal);
+         }
       }
       pdc->DrawText(str, m_rectText, DT_LEFT | DT_TOP);
    }
@@ -217,6 +257,27 @@ namespace user
       SCAST_PTR(::user::win::message::base, pbase, pobj)
       _001Layout();
       pbase->m_bRet = false;
+   }
+
+   void button::on_create(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      //SCAST_PTR(::user::win::message::create, pcreate, pobj)
+
+      ::simple_frame_window * pframewindow = GetTypedParent < ::simple_frame_window > ();
+      if(pframewindow != NULL)
+      {
+         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
+         {
+            pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
+         }
+         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
+         {
+            pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
+         }
+         m_pschema = &pframewindow->m_workset.m_pframeschema->m_schema.m_button;
+      }
+
    }
 
    void button::_001Layout()

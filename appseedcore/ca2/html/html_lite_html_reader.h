@@ -11,16 +11,16 @@ class lite_html_reader;   // forward declaration
 
 /**
  ILiteHTMLReaderEvents
- This class presents an interface that must be implemented 
- by all those classes that want to handle the notifications 
+ This class presents an interface that must be implemented
+ by all those classes that want to handle the notifications
  sent by the lite_html_reader while parsing an HTML document.
- The order of events handled by the ILiteHTMLReaderEvents 
- handler is determined by the order of information within 
- the document being parsed. It's important to note that the 
- interface includes a series of methods that the lite_html_reader 
- invokes during the parsing operation. The reader passes the 
- appropriate information to the method's parameters. To perform 
- some type of processing for a method, you simply add code to 
+ The order of events handled by the ILiteHTMLReaderEvents
+ handler is determined by the order of information within
+ the document being parsed. It's important to note that the
+ interface includes a series of methods that the lite_html_reader
+ invokes during the parsing operation. The reader passes the
+ appropriate information to the method's parameters. To perform
+ some type of processing for a method, you simply add code to
  the method in your own ILiteHTMLReaderEvents implementation.
 
  @version 1.0 (Mar 06, 2004)
@@ -51,14 +51,14 @@ protected:
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
-   
+
    virtual void Characters(const string &rText, DWORD dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rText);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
-   
+
    virtual void Comment(const string &rComment, DWORD dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rComment);
@@ -74,29 +74,34 @@ protected:
 
 public:
    virtual ~ILiteHTMLReaderEvents() = 0
+#ifdef WINDOWS
    {
    }
+#else
+   ;
+#endif
+
 };
 
 /**
  lite_html_reader
-  This class allows you to parse HTML text in a simple, and fast 
-  way by handling events that it generates as it finds specific 
-  symbols in the text. This class is similar to the SAX (Simple 
-  API for XML) implementation, which is an XML DOM parser. Like 
-  SAX, the lite_html_reader class reads a section of HTML text, 
-  generates an event, and moves on to the next section. This 
+  This class allows you to parse HTML text in a simple, and fast
+  way by handling events that it generates as it finds specific
+  symbols in the text. This class is similar to the SAX (Simple
+  API for XML) implementation, which is an XML DOM parser. Like
+  SAX, the lite_html_reader class reads a section of HTML text,
+  generates an event, and moves on to the next section. This
   results in low primitive::memory consumption.
- 
+
   @version 1.0 (Mar 26, 2004)
   @author Gurmeet S. Kochar
- 
+
   @todo add support for multiple event handlers.
-  @todo add support for tag validation, a new interface, that 
-        validator classes must implement, so reader can then 
-        make a call, such as isValidTag(...), to validate tag 
+  @todo add support for tag validation, a new interface, that
+        validator classes must implement, so reader can then
+        make a call, such as isValidTag(...), to validate tag
         information and act accordingly.
-  @todo add more reader options (ReaderOptionsEnum). Until now, 
+  @todo add more reader options (ReaderOptionsEnum). Until now,
         there is only one.
  */
 class lite_html_reader :
@@ -104,29 +109,29 @@ class lite_html_reader :
 {
 public:
    enum EventMaskEnum {
-      /** @since 1.0 */ 
+      /** @since 1.0 */
       notifyStartStop      = 0x00000001L,   // raise BeginParse and EndParse?
-      
-      /** @since 1.0 */ 
+
+      /** @since 1.0 */
       notifyTagStart      = 0x00000002L,   // raise StartTag?
-      
-      /** @since 1.0 */ 
+
+      /** @since 1.0 */
       notifyTagEnd      = 0x00000004L,   // raise EndTag?
-      
-      /** @since 1.0 */ 
+
+      /** @since 1.0 */
       notifyCharacters   = 0x00000008L,   // raise Characters?
-      
-      /** @since 1.0 */ 
+
+      /** @since 1.0 */
       notifyComment      = 0x00000010L,   // raise Comment?
    };
 
    enum ReaderOptionsEnum {
-      /** @since 1.0 */ 
+      /** @since 1.0 */
       resolveEntities,   // determines whether entity references should be resolved
 
-      // TODO: 
+      // TODO:
       // TODO: add more reader options
-      // TODO: 
+      // TODO:
    };
 
 // Construction/Destruction
@@ -138,12 +143,12 @@ public:
       m_dwAppData = 0L;   // reasonable default!
       m_dwBufPos = 0L;   // start from the very beginning
       m_dwBufLen = 0L;   // buffer length is unknown yet
-      
+
       // default is to raise all of the events
-      m_eventMask = (EventMaskEnum)(notifyStartStop  | 
-                             notifyTagStart   | 
-                             notifyTagEnd     | 
-                             notifyCharacters | 
+      m_eventMask = (EventMaskEnum)(notifyStartStop  |
+                             notifyTagStart   |
+                             notifyTagEnd     |
+                             notifyCharacters |
                              notifyComment    );
 
       m_pEventHandler = NULL;   // no event handler is associated
@@ -152,8 +157,8 @@ public:
 
 public:
    /**
-    * Returns an event mask which signifies the notification 
-    * messages a lite_html_reader will send while parsing HTML 
+    * Returns an event mask which signifies the notification
+    * messages a lite_html_reader will send while parsing HTML
     * text.
     *
     * @return event mask
@@ -180,7 +185,7 @@ public:
    }
 
    /**
-    * Changes the current event mask by adding and removing 
+    * Changes the current event mask by adding and removing
     * flags specified by addFlags and removeFlags, respectively.
     *
     * @param addFlags - flags to add in the current event mask
@@ -199,7 +204,7 @@ public:
    }
 
    /**
-    * Returns a 32-bit application-specific data 
+    * Returns a 32-bit application-specific data
     * previously set by a call to setAppData()
     *
     * @return 32-bit application-specific data
@@ -210,7 +215,7 @@ public:
       { return (m_dwAppData); }
 
    /**
-    * Allows you to store 32-bit application-specific 
+    * Allows you to store 32-bit application-specific
     * data that will be passed to event handlers on each call
     *
     * @param dwNewAppData - System-specific data
@@ -227,7 +232,7 @@ public:
    }
 
    /**
-    * Returns a pointer to an event handler registered with 
+    * Returns a pointer to an event handler registered with
     * a lite_html_reader by a previous call to setEventHandler().
     *
     * @return pointer to a ILiteHTMLReaderEvents
@@ -238,13 +243,13 @@ public:
       { return (m_pEventHandler); }
 
    /**
-    * Registers an event handler with a lite_html_reader. If no 
-    * event handler is registered with the reader, all events 
-    * raised by the reader will be ignored. An application can 
-    * change the event handler even when the parsing process 
+    * Registers an event handler with a lite_html_reader. If no
+    * event handler is registered with the reader, all events
+    * raised by the reader will be ignored. An application can
+    * change the event handler even when the parsing process
     * is in progress.
     *
-    * @param pNewHandler - pointer to an event handler. 
+    * @param pNewHandler - pointer to an event handler.
     *        This parameter can be NULL also.
     *
     * @return pointer to the previous event handler
@@ -274,15 +279,15 @@ public:
 protected:
    /** Parsing Helpers */
 
-   // parses an HTML document, and returns the 
+   // parses an HTML document, and returns the
    // number of characters successfully parsed
    virtual UINT parseDocument(void);
 
-   // parses an HTML comment from the buffer starting from 
+   // parses an HTML comment from the buffer starting from
    // the current buffer position and returns true on sucess
    virtual bool parseComment(string &rComment);
 
-   // parses an HTML tag from the buffer starting from 
+   // parses an HTML tag from the buffer starting from
    // the current buffer position and returns true on success
    virtual bool parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag);
 
@@ -334,12 +339,12 @@ protected:
    char UngetChar(void);
 
    /** Other Helpers */
-   
+
    /**
     * Determines if the specified event's notification is to be raised
     *
     * @return true if notification is to be raised, false otherwise.
-    *         false is returned also when there is no event handler 
+    *         false is returned also when there is no event handler
     *         associated with the reader.
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -347,11 +352,11 @@ protected:
    bool getEventNotify(DWORD dwEvent) const ;
 
    /**
-    * Determines if the character specified by ch is 
-    * a white-space character. White-space characters 
+    * Determines if the character specified by ch is
+    * a white-space character. White-space characters
     * are defined as ASCII 0x9-0xD,0x20
     *
-    * @returns true if character is a white-space, 
+    * @returns true if character is a white-space,
     *          false otherwise
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -417,123 +422,4 @@ protected:
    const char *   m_lpszBuffer;
    string m_strBuffer;
 };
-
-/**
- * Returns the current value for the specified option.
- *
- * @param option - option to inquire
- * @param bCurVal - this will receive the current value for the option.
- *
- * @return true if value was retrieved successfully; otherwise false.
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
-inline bool lite_html_reader::getBoolOption(ReaderOptionsEnum option, bool& bCurVal) const
-{
-   bool bSuccess = false;
-
-   switch (option)
-   {
-   case resolveEntities:
-      {
-         bCurVal = m_bResolveEntities;
-         bSuccess = true;
-         break;
-      }
-   default:
-      {
-         bSuccess = false;
-         break;
-      }
-   }
-   return (bSuccess);
-}
-
-/**
- * Changes the value of an option and returns 
- * true/false indicating if the specified option 
- * was set successfully.
- *
- * @param option - option to change 
- *                 (one of the ReaderOptionsEnum constants)
- * @param bNewVal - value to set
- *
- * @return true if option was set successfully; otherwise false.
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
-inline bool lite_html_reader::setBoolOption(ReaderOptionsEnum option, bool bNewVal)
-{
-   bool bSuccess = false;
-
-   switch (option)
-   {
-   case resolveEntities:
-      {
-         m_bResolveEntities = bNewVal;
-         bSuccess = true;
-         break;
-      }
-   default:
-      {
-         bSuccess = false;
-         break;
-      }
-   }
-   return (bSuccess);
-}
-
-/**
- * Parses an HTML comment starting from the current buffer position.
- *
- * @param rComment - this will receive the comment (without delimeters)
- *
- * @return true if successful, false otherwise
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
-inline bool lite_html_reader::parseComment(string &rComment)
-{
-   ASSERT(m_lpszBuffer != NULL);
-   ASSERT(m_dwBufPos >= 0L);
-   ASSERT(m_dwBufPos + 4 < m_dwBufLen);
-
-   // HTML comments begin with '<!' delimeter and 
-   // are immediately followed by two hyphens '--'
-   if (::_tcsncmp(&m_lpszBuffer[m_dwBufPos], "<!--", 4))
-      return (false);
-
-   const char *   lpszBegin = &m_lpszBuffer[m_dwBufPos + 4];   
-   // HTML comments end with two hyphen symbols '--'
-   const char *   lpszEnd = ::_tcsstr(lpszBegin, "--");
-
-   // comment ending delimeter could not be found?
-   if (lpszEnd == NULL)
-      // consider everything after current buffer position a comment
-   {
-      rComment = lpszBegin;
-      m_dwBufPos += (4 + rComment.get_length());
-      return (true);
-   }
-
-   string   strComment(lpszBegin, int(lpszEnd - lpszBegin));
-   
-   // end of buffer?
-   if (lpszEnd + (sizeof(char) * 2) >= m_lpszBuffer + m_dwBufLen)
-      return (false);
-
-   // skip white-space characters after comment ending delimeter '--'
-   lpszEnd += (sizeof(char) * 2);
-   while (::_istspace(*lpszEnd))
-      lpszEnd = ::_tcsinc(lpszEnd);
-
-   // comment has not been terminated properly
-   if (*lpszEnd != '>')
-      return (false);
-
-   lpszEnd = ::_tcsinc(lpszEnd);
-   m_dwBufPos += (lpszEnd - &m_lpszBuffer[m_dwBufPos]);
-   rComment = strComment;
-   return (true);
-}
 

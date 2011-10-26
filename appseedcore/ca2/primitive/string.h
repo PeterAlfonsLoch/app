@@ -1,16 +1,12 @@
 #pragma once
 
 
-#include "template/base.h"
+//#include "template/base.h"
 
-#include "radix/fixed_alloc.h"
+//#include "radix/fixed_alloc.h"
 
 
 CLASS_DECL_ca string_manager_interface * AfxGetStringManager();
-
-#if core_level_1
-CLASS_DECL_ca int __cdecl _vscprintf(const char * pszFormat, va_list args );
-#endif
 
 
 class string;
@@ -25,7 +21,7 @@ public:
    // the string returned by get_string should be valid
    // during all lifetime of an derived object of
    // string_interface
-   virtual int get_length() const;
+   virtual strsize get_length() const;
 
    virtual void get_string(char * psz) const;
 
@@ -51,7 +47,7 @@ public:
    inline string_composite(const string * pstr) : m_pstring(const_cast < string *  > (pstr)) , m_pinterface(NULL) {}
    inline string_composite(string_interface & strinterface) : m_pinterface(&strinterface), m_pstring(NULL) {}
    inline string_composite(const string_interface & strinterface) : m_pinterface(const_cast < string_interface * > (&strinterface)) , m_pstring(NULL) {}
-   virtual int get_length() const;
+   virtual strsize get_length() const;
    virtual void get_string(char * psz) const;
    virtual void set_string(const char * psz);
    virtual void set_string(string & str) { m_pstring = &str; m_pinterface = NULL; }
@@ -65,14 +61,18 @@ private:
 };
 
 
-CLASS_DECL_ca int strtoi(const char * psz);
+CLASS_DECL_ca strsize strtoi(const char * psz);
 
-CLASS_DECL_ca int strtoi(const wchar_t * psz);
+CLASS_DECL_ca strsize strtoi(const wchar_t * psz);
 
 
-inline int _AtlGetConversionACP()
+inline strsize _AtlGetConversionACP()
 {
-   return CP_UTF8;
+#ifdef _WINDOWS
+    return CP_UTF8;
+#else
+    return 0;
+#endif
 }
 
 
@@ -123,49 +123,49 @@ class crt_char_traits :
 public:
 
    static char*         __cdecl  CharNext(const char* p ) throw();
-   static int           __cdecl  IsDigit(char ch ) throw();
-   static int           __cdecl  IsSpace(char ch ) throw();
-   static int           __cdecl  StringCompare(const char * pszA,const char * pszB ) throw();
-   static int           __cdecl  StringCompareIgnore(const char * pszA,const char * pszB ) throw();
-   static int           __cdecl  StringCollate(const char * pszA,const char * pszB ) throw();
-   static int           __cdecl  StringCollateIgnore(const char * pszA,const char * pszB ) throw();
+   static strsize           __cdecl  IsDigit(const char * pch ) throw();
+   static strsize           __cdecl  IsSpace(const char * pch ) throw();
+   static strsize           __cdecl  StringCompare(const char * pszA,const char * pszB ) throw();
+   static strsize           __cdecl  StringCompareIgnore(const char * pszA,const char * pszB ) throw();
+   static strsize           __cdecl  StringCollate(const char * pszA,const char * pszB ) throw();
+   static strsize           __cdecl  StringCollateIgnore(const char * pszA,const char * pszB ) throw();
    static const char *  __cdecl  StringFindString(const char * pszBlock,const char * pszMatch ) throw();
    static char *        __cdecl  StringFindString(char * pszBlock,const char * pszMatch ) throw();
    static const char *  __cdecl  StringFindChar(const char * pszBlock,char chMatch ) throw();
-   static const char *  __cdecl  StringFindCharRev(const char * psz,char ch, int iStart ) throw();
-   static const char *  __cdecl  StringFindStrRev(const char * psz,const char * pszFind, int iStart ) throw();
+   static const char *  __cdecl  StringFindCharRev(const char * psz,char ch, strsize iStart ) throw();
+   static const char *  __cdecl  StringFindStrRev(const char * psz,const char * pszFind, strsize iStart ) throw();
    static const char *  __cdecl  StringScanSet(const char * pszBlock,const char * pszMatch ) throw();
-   static int           __cdecl  StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw();
-   static int           __cdecl  StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw();
+   static strsize           __cdecl  StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw();
+   static strsize           __cdecl  StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw();
    static char *        __cdecl  StringUppercase( char * psz ) throw();
    static char *        __cdecl  StringLowercase( char * psz ) throw();
    static char *        __cdecl  StringUppercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringLowercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringReverse( char * psz ) throw();
-   static int           __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
-   static int           __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
+   static strsize           __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
+   static strsize           __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
 #if _SECURE_ATL
-   static int           __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
+   static strsize           __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
 #endif
-   static int           __cdecl  GetcharLength(const char * pszSrc ) throw();
-   static int           __cdecl  GetcharLength(const char * pszSrc, int nLength ) throw();
-   static int           __cdecl  GetcharLength(const wchar_t * pszSource ) throw();
-   static int           __cdecl  GetcharLength(const wchar_t * pszSource, int nLength ) throw();
-   static void          __cdecl  ConvertTochar(char * pszDest,int nDestLength, const char * pszSrc, int nSrcLength = -1 ) throw();
-   static void          __cdecl  ConvertTochar(char * pszDest,int nDestLength, const wchar_t * pszSrc,int nSrcLength = -1) throw();
+   static strsize           __cdecl  GetcharLength(const char * pszSrc ) throw();
+   static strsize           __cdecl  GetcharLength(const char * pszSrc, strsize nLength ) throw();
+   static strsize           __cdecl  GetcharLength(const wchar_t * pszSource ) throw();
+   static strsize           __cdecl  GetcharLength(const wchar_t * pszSource, strsize nLength ) throw();
+   static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength = -1 ) throw();
+   static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength = -1) throw();
    static void                   ConvertToOem(char* pstrString) throw();
    static void                   ConvertToAnsi(char* pstrString) throw();
    static void                   ConvertToOem(char* pstrString,size_t size);
    static void                   ConvertToAnsi(char* pstrString,size_t size);
-   static void          __cdecl  FloodCharacters(char ch,int nLength, char* pch ) throw();
-   static BSTR          __cdecl  AllocSysString( const char* pchData, int nDataLength ) throw();
-   static BOOL          __cdecl  ReAllocSysString( const char* pchData,BSTR* pbstr,int nDataLength ) throw();
+   static void          __cdecl  FloodCharacters(char ch,strsize nLength, char* pch ) throw();
+   static BSTR          __cdecl  AllocSysString( const char* pchData, strsize nDataLength ) throw();
+   static BOOL          __cdecl  ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw();
    static DWORD         __cdecl  FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
    static DWORD         __cdecl  format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
-   static int           __cdecl  SafeStringLen( const char * psz ) throw();
-   static int           __cdecl  SafeStringLen( const wchar_t * psz ) throw();
-   static int           __cdecl  GetCharLen(const wchar_t* pch ) throw();
-   static int           __cdecl  GetCharLen(const char* pch ) throw();
+   static strsize           __cdecl  SafeStringLen( const char * psz ) throw();
+   static strsize           __cdecl  SafeStringLen( const wchar_t * psz ) throw();
+   static strsize           __cdecl  GetCharLen(const wchar_t* pch ) throw();
+   static strsize           __cdecl  GetCharLen(const char* pch ) throw();
    static DWORD         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize ) throw();
 
 };
@@ -206,6 +206,7 @@ public:
 
 };
 
+class fixed_alloc_array;
 
 class string_manager :
    public string_manager_interface
@@ -214,14 +215,14 @@ public:
    string_manager();
 
 public:
-   virtual string_data * allocate( int nChars, int nCharSize );
+   virtual string_data * allocate( strsize nChars, strsize nCharSize );
    virtual void Free( string_data * pData );
-   virtual string_data * Reallocate( string_data * pData, int nChars, int nCharSize );
+   virtual string_data * Reallocate( string_data * pData, strsize nChars, strsize nCharSize );
    virtual string_data * GetNilString() ;
    virtual string_manager_interface * Clone() ;
 
 protected:
-   fixed_alloc_array m_alloca;
+   fixed_alloc_array * m_palloca;
 
    nil_string_data  m_nil;
 };
@@ -236,6 +237,7 @@ public:
    operator class string_composite ();
    operator class string_composite const () const;
    operator PCXSTR() const throw();
+   PCXSTR c_str() const throw();
    void construct() throw();
    string() throw();
    explicit string( string_manager_interface * pstringmanager ) throw();
@@ -251,7 +253,7 @@ public:
    CSTRING_EXPLICIT string( const unsigned char* pszSrc );
 //ctors to prevent from oldSyntax template ctor (above) hijack certain types.
 //ca2 API dll instantiate all string methods inside the dll and declares dllimport for
-//all methods in ::fontopus::user build (see afxstr.h), so need to include the methods in ca2 API dll builds.
+//all methods in user build (see afxstr.h), so need to include the methods in ca2 API dll builds.
 #if defined(_ApplicationFrameworkDLL) && defined(_MFC_DLL_BLD) || !defined(__cplusplus_cli) && defined(_MANAGED)
 
    /*CSTRING_EXPLICIT*/ string(char* pszSrc );
@@ -259,16 +261,17 @@ public:
    CSTRING_EXPLICIT string(wchar_t* pszSrc );
 #endif
 
-   string(const unsigned char* pszSrc,string_manager_interface * pstringmanager );
-   CSTRING_EXPLICIT string(char ch,int nLength = 1 );
-   string(wchar_t ch,int nLength = 1 );
-   string(const XCHAR* pch,int nLength );
-   string(const XCHAR* pch,int nLength,string_manager_interface * pstringmanager );
-   string(const YCHAR* pch,int nLength );
-   string(const YCHAR* pch,int nLength,string_manager_interface * pstringmanager );
+   string(const unsigned char* pszSrc, string_manager_interface * pstringmanager);
+   CSTRING_EXPLICIT string(char ch, strsize nLength = 1);
+   string(strsize nLength, char ch);
+   string(wchar_t ch, strsize nLength = 1 );
+   string(const XCHAR* pch, strsize nLength);
+   string(const XCHAR* pch, strsize nLength, string_manager_interface * pstringmanager );
+   string(const YCHAR* pch, strsize nLength);
+   string(const YCHAR* pch, strsize nLength, string_manager_interface * pstringmanager );
    ~string() throw();
 
-   
+
 
    // Assignment operators
    string& operator=(const string_interface & str );
@@ -282,7 +285,7 @@ public:
    string& operator=(wchar_t ch );
    string& operator+=(const simple_string& str );
    string& operator+=(PCXSTR pszSrc );
-   template< int t_nSize >
+   template< strsize t_nSize >
    string& operator+=(const static_string<t_nSize >& strSrc );
    string& operator+=(PCYSTR pszSrc );
    string& operator+=(char ch );
@@ -292,51 +295,145 @@ public:
    // Override from base class
    string_manager_interface * GetManager() const throw();
 
-   // Comparison
-   int Compare(PCXSTR psz ) const;
-   int CompareNoCase(PCXSTR psz ) const throw();
-   int Collate(PCXSTR psz ) const throw();
-   int CollateNoCase(PCXSTR psz ) const throw();
 
+   string & assign(const string & str);
+   string & assign(const string & str, strsize pos, strsize n);
+   string & assign(const char * s, strsize n);
+   string & assign(const char * s);
+   string & assign(strsize n, char c);
+   string & assign(strsize n, strsize c);
+   string & assign(int64 n, int64 c);
+   string & assign(unsigned int n, unsigned int c);
+   string & assign(uint64 n, uint64 c);
+   template <class InputIterator>
+   string & assign (InputIterator first, InputIterator last);
+
+   // Comparison
+   strsize Compare(PCXSTR psz ) const;
+   strsize CompareNoCase(PCXSTR psz ) const throw();
+   strsize Collate(PCXSTR psz ) const throw();
+   strsize CollateNoCase(PCXSTR psz ) const throw();
+
+   strsize compare(PCXSTR psz ) const;
+   strsize compare_no_case(PCXSTR psz ) const throw();
+   strsize collate(PCXSTR psz ) const throw();
+   strsize collate_no_case(PCXSTR psz ) const throw();
+
+   strsize compare(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   strsize compare_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   strsize collate(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   strsize collate_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
+
+   strsize compare(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   strsize compare_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   strsize collate(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   strsize collate_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+
+   bool contains(char ch, strsize start = 0, strsize count = -1);
+   bool contains(wchar_t wch, strsize start = 0, strsize count = -1);
+   bool contains(int i, strsize start = 0, strsize count = -1); // utf8 char index
+   bool contains(const char * psz, strsize start = 0, strsize count = -1);
+   bool contains(const string & str, strsize start = 0, strsize count = -1);
+
+   bool contains_ci(char ch, strsize start = 0, strsize count = -1);
+   bool contains_ci(wchar_t wch, strsize start = 0, strsize count = -1);
+   bool contains_ci(int i, strsize start = 0, strsize count = -1); // utf8 char index
+   bool contains_ci(const char * psz, strsize start = 0, strsize count = -1);
+   bool contains_ci(const string & str, strsize start = 0, strsize count = -1);
+
+   bool contains_wci(char ch, strsize start = 0, strsize count = -1);
+   bool contains_wci(wchar_t wch, strsize start = 0, strsize count = -1);
+   bool contains_wci(int i, strsize start = 0, strsize count = -1); // utf8 char index
+   bool contains_wci(const char * psz, strsize start = 0, strsize count = -1);
+   bool contains_wci(const string & str, strsize start = 0, strsize count = -1);
    // Advanced manipulation
 
    // Delete 'nCount' characters, starting at index 'iIndex'
-   int Delete(int iIndex,int nCount = 1 );
+   strsize Delete(strsize iIndex, strsize nCount = 1);
+
+   string & erase(strsize start = 0, strsize count = -1);
+
 
    // Insert character 'ch' before index 'iIndex'
-   int Insert(int iIndex,XCHAR ch );
+   strsize Insert(strsize iIndex,XCHAR ch );
 
    // Insert string 'psz' before index 'iIndex'
-   int Insert(int iIndex,PCXSTR psz );
+   strsize Insert(strsize iIndex,PCXSTR psz );
 
    // replace all occurrences of character 'chOld' with character 'chNew'
-   int replace(XCHAR chOld,XCHAR chNew );
+   strsize replace(XCHAR chOld,XCHAR chNew );
 
    // replace all occurrences of string 'pszOld' with string 'pszNew'
-   int replace(PCXSTR pszOld,PCXSTR pszNew );
+   strsize replace(PCXSTR pszOld,PCXSTR pszNew );
+
+   string & replace(strsize iStart, strsize nCount, const char * psz);
 
    // remove all occurrences of character 'chRemove'
-   int remove(XCHAR chRemove );
+   strsize remove(XCHAR chRemove );
 
-   string Tokenize(PCXSTR pszTokens, int& iStart ) const;
+   string Tokenize(PCXSTR pszTokens, strsize& iStart ) const;
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'
-   int find(XCHAR ch,int iStart = 0 ) const throw();
+   strsize find(XCHAR ch, strsize start = 0, strsize count = -1) const throw();
+   strsize find_ci(XCHAR ch, strsize start = 0, strsize count = -1) const throw();
 
    // look for a specific sub-string
 
    // find the first occurrence of string 'pszSub', starting at index 'iStart'
-   int find(PCXSTR pszSub,int iStart = 0 ) const throw();
+   strsize find(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
+   strsize find_w(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
+   strsize find_ci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
+   strsize find_wci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
 
    // find the first occurrence of any of the characters in string 'pszCharSet'
-   int FindOneOf(PCXSTR pszCharSet ) const throw();
+   strsize FindOneOf(PCXSTR pszCharSet, strsize iStart = 0, strsize n = -1 ) const throw();
+
+   strsize find_first_in(const string & str, strsize pos = 0) const;
+   strsize find_first_in(const char * s, strsize pos, strsize n) const;
+   strsize find_first_in(const char * s, strsize pos = 0) const;
+   strsize find_first_in(char c, strsize pos = 0) const;
+
+   strsize find_first_not_in(const string & str, strsize pos = 0) const;
+   strsize find_first_not_in(const char * s, strsize pos, strsize n) const;
+   strsize find_first_not_in(const char * s, strsize pos = 0) const;
+   strsize find_first_not_in(char c, strsize pos = 0) const;
+
+   strsize find_last_not_in(const string & str, strsize pos = -1) const;
+   strsize find_last_not_in(const char * s, strsize pos, strsize n) const;
+   strsize find_last_not_in(const char * s, strsize pos = -1) const;
+   strsize find_last_not_in(char c, strsize pos = -1) const;
+
+   strsize find_last_in(const string & str, strsize pos = -1) const;
+   strsize find_last_in(const char * s, strsize pos, strsize n) const;
+   strsize find_last_in(const char * s, strsize pos = -1) const;
+   strsize find_last_in(char c, strsize pos = -1) const;
+
+   strsize find_first_of(const string & str, strsize pos = 0) const;
+   strsize find_first_of(const char * s, strsize pos, strsize n) const;
+   strsize find_first_of(const char * s, strsize pos = 0) const;
+   strsize find_first_of(char c, strsize pos = 0) const;
+
+   strsize find_first_not_of(const string & str, strsize pos = 0) const;
+   strsize find_first_not_of(const char * s, strsize pos, strsize n) const;
+   strsize find_first_not_of(const char * s, strsize pos = 0) const;
+   strsize find_first_not_of(char c, strsize pos = 0) const;
+
+   strsize find_last_not_of(const string & str, strsize pos = -1) const;
+   strsize find_last_not_of(const char * s, strsize pos, strsize n) const;
+   strsize find_last_not_of(const char * s, strsize pos = -1) const;
+   strsize find_last_not_of(char c, strsize pos = -1) const;
+
+   strsize find_last_of(const string & str, strsize pos = -1) const;
+   strsize find_last_of(const char * s, strsize pos, strsize n) const;
+   strsize find_last_of(const char * s, strsize pos = -1) const;
+   strsize find_last_of(char c, strsize pos = -1) const;
 
    // find the last occurrence of character 'ch'
-   int reverse_find(XCHAR ch, int iStart = -1 ) const throw();
+   strsize reverse_find(XCHAR ch, strsize iStart = -1 ) const throw();
 
    // find the last occurrence of character 'ch'
-   int reverse_find( PCXSTR ch, int iStart = -1 ) const throw();
+   strsize reverse_find( PCXSTR ch, strsize iStart = -1 ) const throw();
 
    // manipulation
 
@@ -389,22 +486,24 @@ public:
    // Very simple sub-string extraction
 
    // Return the substring starting at index 'iFirst'
-   string Mid(int iFirst ) const;
+   string Mid(strsize iFirst ) const;
 
-   string substr(int iFirst) const;
+   string substr(strsize iFirst) const;
 
    // Return the substring starting at index 'iFirst', with length 'nCount'
-   string Mid(int iFirst,int nCount ) const;
+   string Mid(strsize iFirst,strsize nCount ) const;
 
-   string substr(int iFirst, int nCount) const;
+   string substr(strsize iFirst, strsize nCount) const;
 
    void clear();
 
+   strsize length() const;
+
    // Return the substring consisting of the rightmost 'nCount' characters
-   string Right(int nCount ) const;
+   string Right(strsize nCount ) const;
 
    // Return the substring consisting of the leftmost 'nCount' characters
-   string Left(int nCount ) const;
+   string Left(strsize nCount ) const;
 
    // Return the substring consisting of the leftmost characters in the set 'pszCharSet'
    string SpanIncluding(PCXSTR pszCharSet ) const;
@@ -440,10 +539,10 @@ public:
    BOOL GetEnvironmentVariable(PCXSTR pszVar );
 
    // Load the string from resource 'nID'
-   //BOOL load_string(id id);
+   bool load_string(::ca::application * papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
-/*    BOOL load_string(HINSTANCE hInstance,UINT nID )
+/*    BOOL load_string(HINSTANCE hInstance,strsize nID )
    {
       const ATLSTRINGRESOURCEIMAGE* pImage = AtlGetStringResourceImage( hInstance, nID );
       if( pImage == NULL )
@@ -451,7 +550,7 @@ public:
          return( FALSE );
       }
 
-      int nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
+      strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
       PXSTR pszBuffer = GetBuffer( nLength );
       str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
       ReleaseBufferSetLength( nLength );
@@ -460,7 +559,7 @@ public:
    }*/
 
    // Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-    /*BOOL load_string(HINSTANCE hInstance,UINT nID,WORD wLanguageID )
+    /*BOOL load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
    {
       const ATLSTRINGRESOURCEIMAGE* pImage = AtlGetStringResourceImage( hInstance, nID, wLanguageID );
       if( pImage == NULL )
@@ -468,7 +567,7 @@ public:
          return( FALSE );
       }
 
-      int nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
+      strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
       PXSTR pszBuffer = GetBuffer( nLength );
       str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
       ReleaseBufferSetLength( nLength );
@@ -490,45 +589,45 @@ public:
    friend bool CLASS_DECL_ca operator==(PCXSTR psz1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator==(string str1,PCYSTR psz2 ) THROWS;
    friend bool CLASS_DECL_ca operator==(PCYSTR psz1,string str2 ) THROWS;
-   friend bool CLASS_DECL_ca operator==(string str1, int i);
-   friend bool CLASS_DECL_ca operator==(int i, string str1);
+   friend bool CLASS_DECL_ca operator==(string str1, strsize i);
+   friend bool CLASS_DECL_ca operator==(strsize i, string str1);
    friend bool CLASS_DECL_ca operator!=(string str1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator!=(string str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator!=(PCXSTR psz1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator!=(string str1,PCYSTR psz2 ) THROWS;
    friend bool CLASS_DECL_ca operator!=(PCYSTR psz1,string str2 ) THROWS;
-   friend bool CLASS_DECL_ca operator!=(string str1, int i);
-   friend bool CLASS_DECL_ca operator!=(int i, string str1);
+   friend bool CLASS_DECL_ca operator!=(string str1, strsize i);
+   friend bool CLASS_DECL_ca operator!=(strsize i, string str1);
    friend bool CLASS_DECL_ca operator<(string str1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator<(string str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator<(PCXSTR psz1,string str2 ) throw();
-   friend bool CLASS_DECL_ca operator<(string str1, int i);
-   friend bool CLASS_DECL_ca operator<(int i, string str1);
+   friend bool CLASS_DECL_ca operator<(string str1, strsize i);
+   friend bool CLASS_DECL_ca operator<(strsize i, string str1);
    friend bool CLASS_DECL_ca operator>(string str1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator>(string str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator>(PCXSTR psz1,string str2 ) throw();
-   friend bool CLASS_DECL_ca operator>(string str1, int i);
-   friend bool CLASS_DECL_ca operator>(int i, string str1);
+   friend bool CLASS_DECL_ca operator>(string str1, strsize i);
+   friend bool CLASS_DECL_ca operator>(strsize i, string str1);
    friend bool CLASS_DECL_ca operator<=(string str1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator<=(string str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator<=(PCXSTR psz1,string str2 ) throw();
-   friend bool CLASS_DECL_ca operator<=(string str1, int i);
-   friend bool CLASS_DECL_ca operator<=(int i, string str1);
+   friend bool CLASS_DECL_ca operator<=(string str1, strsize i);
+   friend bool CLASS_DECL_ca operator<=(strsize i, string str1);
    friend bool CLASS_DECL_ca operator>=(string str1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator>=(string str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator>=(PCXSTR psz1,string str2 ) throw();
-   friend bool CLASS_DECL_ca operator>=(string str1, int i);
-   friend bool CLASS_DECL_ca operator>=(int i, string str1);
+   friend bool CLASS_DECL_ca operator>=(string str1, strsize i);
+   friend bool CLASS_DECL_ca operator>=(strsize i, string str1);
    friend bool CLASS_DECL_ca operator==(XCHAR ch1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator==(string str1,XCHAR ch2 ) throw();
    friend bool CLASS_DECL_ca operator!=(XCHAR ch1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator!=(string str1,XCHAR ch2 ) throw();
 
-
+   typedef strsize size_type;
 };
 
 
-template< int t_nSize >
+template< strsize t_nSize >
 string& string::operator+=(const static_string<t_nSize >& strSrc )
 {
 simple_string::operator+=( strSrc );
@@ -544,35 +643,141 @@ simple_string::operator=( strSrc );
 return( *this );
 }
 
-inline int string_composite::get_length() const 
+template < class InputIterator >
+string & string::assign ( InputIterator first, InputIterator last )
 {
-   if(m_pstring != NULL) 
-      return m_pstring->get_length(); 
-   else 
-      return m_pinterface->get_length(); 
+   Empty();
+   for(InputIterator it = first; it <= last; it++)
+   {
+      *this += *it;
+   }
 }
 
-inline void string_composite::get_string(char * psz) const 
+
+
+inline strsize string::find_first_in(const string & str, strsize pos) const
 {
-   if(m_pstring != NULL) 
+   return find_first_of(str, pos);
+}
+
+inline strsize string::find_first_in(const char * s, strsize pos, strsize n) const
+{
+   return find_first_of(s, pos, n);
+}
+
+inline strsize string::find_first_in(const char * s, strsize pos) const
+{
+   return find_first_of(s, pos);
+}
+
+inline strsize string::find_first_in(char c, strsize pos) const
+{
+   return find_first_of(c, pos);
+}
+
+inline strsize string::find_first_not_in(const string & str, strsize pos) const
+{
+   return find_first_not_of(str, pos);
+}
+
+inline strsize string::find_first_not_in(const char * s, strsize pos, strsize n) const
+{
+   return find_first_not_of(s, pos, n);
+}
+
+inline strsize string::find_first_not_in(const char * s, strsize pos) const
+{
+   return find_first_not_of(s, pos);
+}
+
+inline strsize string::find_first_not_in(char c, strsize pos) const
+{
+   return find_first_not_of(c, pos);
+}
+
+inline strsize string::find_last_not_in(const string & str, strsize pos) const
+{
+   return find_first_not_of(str, pos);
+}
+
+inline strsize string::find_last_not_in(const char * s, strsize pos, strsize n) const
+{
+   return find_last_not_of(s, pos, n);
+}
+
+inline strsize string::find_last_not_in(const char * s, strsize pos) const
+{
+   return find_last_not_of(s, pos);
+}
+
+inline strsize string::find_last_not_in(char c, strsize pos) const
+{
+   return find_last_not_of(c, pos);
+}
+
+inline strsize string::find_last_in(const string & str, strsize pos) const
+{
+   return find_last_of(str, pos);
+}
+
+inline strsize string::find_last_in(const char * s, strsize pos, strsize n) const
+{
+   return find_last_of(s, pos, n);
+}
+
+inline strsize string::find_last_in(const char * s, strsize pos) const
+{
+   return find_last_of(s, pos);
+}
+
+inline strsize string::find_last_in(char c, strsize pos) const
+{
+   return find_last_of(c, pos);
+}
+
+inline strsize string::length() const
+{
+   return get_length();
+}
+
+
+
+
+
+
+
+
+
+
+inline strsize string_composite::get_length() const
+{
+   if(m_pstring != NULL)
+      return m_pstring->get_length();
+   else
+      return m_pinterface->get_length();
+}
+
+inline void string_composite::get_string(char * psz) const
+{
+   if(m_pstring != NULL)
       m_pstring->get_string(psz);
    else
       m_pinterface->get_string(psz);
 }
 
-inline void string_composite::set_string(const char * psz) 
-{  
+inline void string_composite::set_string(const char * psz)
+{
    if(m_pstring != NULL)
       m_pstring->set_string(psz);
-   else 
-      m_pinterface->set_string(psz); 
+   else
+      m_pinterface->set_string(psz);
 }
 
 class CLASS_DECL_ca const_empty_string :
    public string_interface
 {
 public:
-   int get_length() const;
+   strsize get_length() const;
    void get_string(char * pszstr) const;
    void set_string(const char * psz);
 };
@@ -599,11 +804,6 @@ namespace gen
 #include "gen/gen_ch_class.h"
 #include "gen/gen_international.h"
 #include "gen/gen_str.h"
-
-
-
-
-
 
 inline bool id::operator == (const string & str) const
 {
@@ -655,3 +855,5 @@ inline bool id::operator >= (const string_interface & str) const
 {
    return id_cmp(this, string(str)) >= 0;
 }
+
+

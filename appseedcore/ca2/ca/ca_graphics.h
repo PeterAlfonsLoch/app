@@ -1,9 +1,12 @@
 #pragma once
 
+
+#include "user/user_draw_context.h"
+
+
 namespace user
 {
    class str_context;
-   class draw_context;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -13,18 +16,20 @@ namespace ca
 {
 
    class dib;
+   class job;
 
-   class CLASS_DECL_ca graphics : 
-      virtual public ::radix::object
+   class CLASS_DECL_ca graphics :
+      virtual public _template::simple_chain < ::user::draw_context >
    {
    public:
 
-      ::user::str_context *     m_puistrcontext;
+      ::user::str_context *      m_puistrcontext;
 
-      ::user::draw_context *    m_pdrawcontext;
+      ::user::draw_context *     m_pdrawcontext;
 
       ::ca::dib *                m_pdibAlphaBlend;
       point                      m_ptAlphaBlend;
+      ::ca::job *                m_pjob;
 
       graphics();
 
@@ -34,6 +39,7 @@ namespace ca
 
       virtual ::user::str_context * str_context();
       virtual ::user::draw_context * draw_context();
+
 
 
       //virtual void SetAttribDC(HDC hDC);  // Set the Attribute DC
@@ -68,7 +74,9 @@ namespace ca
       virtual int GetDeviceCaps(int nIndex) const;
       virtual UINT SetBoundsRect(LPCRECT lpRectBounds, UINT flags);
       virtual UINT GetBoundsRect(LPRECT lpRectBounds, UINT flags);
+#ifdef WINDOWS
       virtual BOOL ResetDC(const DEVMODE* lpDevMode);
+#endif
 
    // Drawing-Tool Functions
       virtual point GetBrushOrg() const;
@@ -109,8 +117,10 @@ namespace ca
       virtual int SetStretchBltMode(int nStretchMode);
       virtual COLORREF SetTextColor(COLORREF crColor);
 
+#ifdef WINDOWS
       virtual BOOL GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
       virtual BOOL SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
+#endif
 
    #if (_WIN32_WINNT >= 0x0500)
 
@@ -127,9 +137,11 @@ namespace ca
       virtual int GetGraphicsMode() const;
 
       // World transform
+#ifdef WINDOWS
       virtual BOOL SetWorldTransform(const XFORM* pXform);
       virtual BOOL ModifyWorldTransform(const XFORM* pXform,DWORD iMode);
       virtual BOOL GetWorldTransform(XFORM* pXform) const;
+#endif
 
       // Mapping Functions
       virtual int GetMapMode() const;
@@ -228,19 +240,22 @@ namespace ca
          HBRUSH hBrush = NULL);
       virtual BOOL DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags,
          ::ca::brush* pBrush = NULL);
+#ifdef WINDOWS
       virtual BOOL DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          HBRUSH hBrush = NULL);
       virtual BOOL DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          ::ca::brush* pBrush = NULL);
+#endif
       virtual BOOL DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          BOOL bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = NULL);
       virtual BOOL DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          BOOL bPrefixText = TRUE, int nTextLen = 0, ::ca::brush* pBrush = NULL);
+#ifdef WINDOWS
       virtual BOOL DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
       virtual BOOL DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, ::ca::brush* pBrush = NULL);
-
+#endif
    // Ellipse and Polygon Functions
       virtual BOOL Chord(int x1, int y1, int x2, int y2, int x3, int y3,
          int x4, int y4);
@@ -250,7 +265,7 @@ namespace ca
       virtual BOOL Ellipse(LPCRECT lpRect);
       virtual BOOL Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       virtual BOOL Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      virtual BOOL Polygon(const POINT* lpPoints, int nCount);   
+      virtual BOOL Polygon(const POINT* lpPoints, int nCount);
       virtual BOOL PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
       virtual BOOL Rectangle(int x1, int y1, int x2, int y2);
       virtual BOOL Rectangle(LPCRECT lpRect);
@@ -279,13 +294,13 @@ namespace ca
          int nWidth, int nHeight, ::ca::bitmap& maskBitmap, int xMask, int yMask);
       virtual BOOL SetPixelV(int x, int y, COLORREF crColor);
       virtual BOOL SetPixelV(POINT point, COLORREF crColor);
-      virtual BOOL GradientFill(TRIVERTEX* pVertices, ULONG nVertices, 
+      virtual BOOL GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
         void * pMesh, ULONG nMeshElements, DWORD dwMode);
       virtual BOOL TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
-        ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, 
+        ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
         UINT clrTransparent);
       virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
-        ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, 
+        ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
         BLENDFUNCTION blend);
       virtual bool alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
       virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
@@ -312,18 +327,20 @@ namespace ca
       virtual int _AFX_FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect,
                UINT nFormat);
       virtual int _AFX_FUNCNAME(DrawText)(const string & str, LPRECT lpRect, UINT nFormat);
-
+#ifdef WINDOWS
       virtual int _AFX_FUNCNAME(DrawTextEx)(LPTSTR lpszString, int nCount, LPRECT lpRect,
                UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int _AFX_FUNCNAME(DrawTextEx)(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+#endif
 
       virtual int DrawText(const char * lpszString, int nCount, LPRECT lpRect,
                UINT nFormat);
       virtual int DrawText(const string & str, LPRECT lpRect, UINT nFormat);
-
+#ifdef WINDOWS
       virtual int DrawTextEx(LPTSTR lpszString, int nCount, LPRECT lpRect,
                UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int DrawTextEx(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+#endif
    #pragma pop_macro("DrawText")
    #pragma pop_macro("DrawTextEx")
 
@@ -348,17 +365,21 @@ namespace ca
       virtual int GetTextFace(string & rString) const;
    #pragma push_macro("GetTextMetrics")
    #undef GetTextMetrics
+#ifdef WINDOWS
       virtual BOOL _AFX_FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const;
       virtual BOOL GetTextMetrics(LPTEXTMETRIC lpMetrics) const;
+#endif
    #pragma pop_macro("GetTextMetrics")
+#ifdef WINDOWS
       virtual BOOL GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const;
+#endif
       virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
       virtual int GetTextCharacterExtra() const;
       virtual int SetTextCharacterExtra(int nCharExtra);
-
+#ifdef WINDOWS
       virtual DWORD GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
       virtual DWORD GetCharacterPlacement(string & str, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
-
+#endif
    #if (_WIN32_WINNT >= 0x0500)
 
       virtual BOOL GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
@@ -381,9 +402,12 @@ namespace ca
       virtual BOOL GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       virtual DWORD SetMapperFlags(DWORD dwFlag);
       virtual size GetAspectRatioFilter() const;
-
+#ifdef WINDOWS
       virtual BOOL GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const;
+#endif
       virtual DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) const;
+#ifdef WINDOWS
+
       virtual int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const;
       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
       virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
@@ -391,6 +415,7 @@ namespace ca
 
       virtual BOOL GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
          LPABCFLOAT lpABCF) const;
+#endif
       virtual BOOL GetCharWidth(UINT nFirstChar, UINT nLastChar,
          float* lpFloatBuffer) const;
 
@@ -412,7 +437,9 @@ namespace ca
 
       // Escape helpers
       virtual int StartDoc(const char * lpszDocName);  // old Win3.0 version
+   #ifdef WINDOWS
       virtual int StartDoc(LPDOCINFO lpDocInfo);
+   #endif
       virtual int StartPage();
       virtual int EndPage();
       virtual int SetAbortProc(BOOL (CALLBACK* lpfn)(HDC, int));
@@ -420,8 +447,10 @@ namespace ca
       virtual int EndDoc();
 
    // MetaFile Functions
+#ifdef WINDOWS
       virtual BOOL PlayMetaFile(HMETAFILE hMF);
       virtual BOOL PlayMetaFile(HENHMETAFILE hEnhMetaFile, LPCRECT lpBounds);
+#endif
       virtual BOOL AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData);
          // can be used for enhanced metafiles only
 
@@ -469,6 +498,45 @@ namespace ca
    };
 
    typedef smart_pointer < graphics > graphics_sp;
+
+   class CLASS_DECL_ca client_graphics :
+      virtual public graphics_sp
+   {
+   public:
+
+      ::ca::window * m_pwindow;
+
+      client_graphics(::ca::window * pwindow);
+      virtual ~client_graphics();
+
+   };
+
+   class CLASS_DECL_ca window_graphics :
+      virtual public graphics_sp
+   {
+   public:
+
+      ::ca::window * m_pwindow;
+
+      window_graphics(::ca::window * pwindow);
+      virtual ~window_graphics();
+
+   };
+
+   class CLASS_DECL_ca paint_graphics :
+      virtual public graphics_sp
+   {
+   public:
+
+      ::ca::window *    m_pwindow;
+#ifdef WINDOWS
+      PAINTSTRUCT       m_ps;
+#endif
+
+      paint_graphics(::ca::window * pwindow);
+      virtual ~paint_graphics();
+
+   };
 
 } // namespace ca
 

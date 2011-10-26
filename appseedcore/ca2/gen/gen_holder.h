@@ -29,7 +29,7 @@ namespace gen
 
 
    public:
-      
+
       virtual void on_delete(::ca::ca * pca)
       {
          if(m_pca == pca)
@@ -56,33 +56,9 @@ namespace gen
          set_p(p);
       }
 
-      virtual ~holder()
-      {
-         if(m_pca != NULL)
-         {
-            m_pca->m_papp->m_psystem->unregister_delete(m_pca, this);
-         }
-      }
+      virtual ~holder();
 
-      void set_p(T * p)
-      {
-         if(m_p == p)
-            return;
-         if(m_pca != NULL)
-         {
-            m_pca->m_papp->m_psystem->unregister_delete(m_p, this);
-         }
-         m_pca = dynamic_cast < ::ca::ca * > (p);
-         if(m_pca == NULL)
-         {
-            m_p = NULL;
-         }
-         else
-         {
-            m_p = p;
-            m_pca->m_papp->m_psystem->register_delete(m_pca, this);
-         }
-      }
+      void set_p(T * p);
 
       holder & operator = (T * p)
       {
@@ -145,32 +121,18 @@ namespace gen
    class holder_array :
       virtual public ::radix::object
    {
-   protected:
-      
+   public:
+
 
       raw_array < T * > m_ptra;
       raw_array < ::ca::ca * > m_captra;
 
 
-   public:
-
       holder_array()
       {
       }
 
-      holder_array(const holder_array & a)
-      {
-         m_ptra      = a.m_ptra;
-         m_captra    = a.m_captra;
-         for(index i = 0; i < m_captra.get_count(); i++)
-         {
-            m_captra[i]->m_papp->m_psystem->register_delete(m_captra[i], this);
-         }
-         if(m_captra.get_count() > 0)
-         {
-            m_papp = m_captra.last_element()->m_papp;
-         }
-      }
+      holder_array(const holder_array & a);
 
       virtual ~holder_array()
       {
@@ -187,111 +149,33 @@ namespace gen
          UNREFERENCED_PARAMETER(p);
       }
 
-      virtual count remove_all()
-      {
-         for(index i = 0; i < m_captra.get_count(); i++)
-         {
-            m_papp->m_psystem->unregister_delete(m_captra[i], this);
-         }
-         m_ptra.remove_all();
-         return m_captra.remove_all();
-      }
+      virtual count remove_all();
 
       count set_size(count c)
       {
-         if(c > get_size())
+         if(c > this->get_size())
             throw "This array can only be clipped or mantained in size. The array will not grow.";
 
-         while(get_size() > c)
+         while(this->get_size() > c)
          {
             remove_last();
          }
 
-         return get_size();
+         return this->get_size();
       }
 
-      virtual index remove_at(index iRemove, count count = 1)
-      {
-         for(index i = iRemove; i < m_captra.get_count() && i < (iRemove + count); i++)
-         {
-            m_papp->m_psystem->unregister_delete(m_captra[i], this);
-         }
-         m_ptra.remove_at(iRemove, count);
-         return m_captra.remove_at(iRemove, count);
-      }
+      virtual index remove_at(index iRemove, count count = 1);
 
       index add(T * p)
       {
          return add_unique(p);
       }
 
-      index add_unique(T * p)
-      {
-         ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
-         if(pca == NULL)
-            return -1;
-         if(pca->m_papp == NULL)
-            return -1;
-         if(pca->m_papp->m_psystem == NULL)
-            return -1;
-         index iFind = find(p);
-         if(iFind >= 0)
-            return iFind;
-         m_papp = pca->m_papp;
-         pca->m_papp->m_psystem->register_delete(pca, this);
-         m_ptra.add(p);
-         return m_captra.add(pca);
-      }
+      index add_unique(T * p);
 
-      index insert_at(index i, T * p)
-      {
-         ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
-         if(pca == NULL)
-            return -1;
-         if(pca->m_papp == NULL)
-            return -1;
-         if(pca->m_papp->m_psystem == NULL)
-            return -1;
-         index iFind = find(p);
-         if(iFind >= 0)
-         {
-            if(iFind != i)
-            {
-               throw "Could not insert the element at the specified position. The array already contains this element.";
-            }
-            return iFind;
-         }
-         m_papp = pca->m_papp;
-         pca->m_papp->m_psystem->register_delete(pca, this);
-         m_ptra.insert_at(i, p);
-         m_captra.insert_at(i, pca);
-         return i;
-      }
+      index insert_at(index i, T * p);
 
-      index set_at(index i, T * p)
-      {
-         ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
-         if(pca == NULL)
-            return -1;
-         if(pca->m_papp == NULL)
-            return -1;
-         if(pca->m_papp->m_psystem == NULL)
-            return -1;
-         index iFind = find(p);
-         if(iFind >= 0)
-         {
-            if(iFind != i)
-            {
-               throw "Could not set the element to the specified position. The array already contains this element.";
-            }
-            return iFind;
-         }
-         m_captra[i]->m_papp->m_psystem->unregister_delete(m_captra[i], this);
-         m_papp = pca->m_papp;
-         pca->m_papp->m_psystem->register_delete(pca, this);
-         m_ptra.set_at(i, p);
-         m_captra.set_at(i, pca);
-      }
+      index set_at(index i, T * p);
 
 
       index find(T * p)
@@ -311,7 +195,7 @@ namespace gen
          return m_ptra.is_empty();
       }
 
-      T * get_at(index i) 
+      T * get_at(index i)
       {
          return m_ptra[i];
       }
@@ -395,37 +279,13 @@ namespace gen
          return m_ptra.get_count();
       }
 
-      count remove(T * p)
-      {
-         ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
-         if(pca == NULL)
-            return 0;
-         if(pca->m_papp == NULL)
-            return 0;
-         if(pca->m_papp->m_psystem == NULL)
-            return 0;
-         count count = remove(pca);
-         pca->m_papp->m_psystem->unregister_delete(pca, this);
-         return count;
-      }
+      count remove(T * p, bool bCallNativeArrayBaseTypeOnDelete = false);
 
-      holder_array & operator = (const holder_array & a)
+      holder_array & operator = (const holder_array & a);
+
+      bool has_elements(count countMinimum = 1)
       {
-         if(&a != this)
-         {
-            remove_all();
-            m_ptra      = a.m_ptra;
-            m_captra    = a.m_captra;
-            for(index i = 0; i < m_captra.get_count(); i++)
-            {
-               m_captra[i]->m_papp->m_psystem->register_delete(m_captra[i], this);
-            }
-            if(m_captra.get_count() > 0)
-            {
-               m_papp = m_captra.last_element()->m_papp;
-            }
-         }
-         return *this;
+         return this->get_count() >= countMinimum;
       }
 
    protected:
@@ -460,13 +320,13 @@ namespace gen
 
    };
 
-   
+
    template < class KEY, class ARG_KEY, class T >
    class holder_map :
       virtual public ::radix::object
    {
-   protected:
-      
+   public:
+
 
       typedef ::collection::map < KEY, ARG_KEY, T *, T * > key_map;
       typedef ::collection::map < ::ca::ca *, ::ca::ca *, KEY, ARG_KEY > ca_map;
@@ -475,7 +335,6 @@ namespace gen
       ca_map         m_camap;
 
 
-   public:
 
 
       virtual void on_delete(::ca::ca * pca)
@@ -509,7 +368,7 @@ namespace gen
 
       T * get_value(ARG_KEY key)
       {
-         key_map::pair * ppair = m_keymap.PLookup(key);
+         typename key_map::pair * ppair = m_keymap.PLookup(key);
          if(ppair == NULL)
             return NULL;
          return ppair->m_value;
@@ -517,16 +376,16 @@ namespace gen
 
       void remove_key(ARG_KEY key)
       {
-         key_map::pair * ppair = m_keymap.PLookup(key);
+         typename key_map::pair * ppair = m_keymap.PLookup(key);
          if(ppair == NULL)
             return;
-         remove(dynamic_cast < ::ca::ca * > (p));
+         remove(dynamic_cast < ::ca::ca * > (ppair->m_value));
          m_keymap.remove_key(key);
       }
 
       void remove(::ca::ca * pca)
       {
-         ca_map::pair * ppair = m_camap.PLookup(pca);
+          typename ca_map::pair * ppair = m_camap.PLookup(pca);
          if(ppair == NULL)
             return;
          m_keymap.remove_key(ppair->m_value);
@@ -549,7 +408,7 @@ template < class DERIVED  > class pointer_array;
 // One of the features is to notify the pointer
 // object pointer arrays (listeners) when the
 // pointer object is deleted.
-template < class DERIVED > 
+template < class DERIVED >
 class pointer
 {
 public:
@@ -609,7 +468,7 @@ void pointer < DERIVED >::pointer_clear_references()
       {
          *m_deriveda.element_at(i) = NULL;
       }
-      comparable_array < pointer_array < DERIVED > *, pointer_array < DERIVED > * > 
+      comparable_array < pointer_array < DERIVED > *, pointer_array < DERIVED > * >
          listenera = m_listenera;
       for(i = 0; i < listenera.get_size() ; i++)
       {
@@ -635,19 +494,19 @@ void pointer < DERIVED >::pointer_clear_references()
    }
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 DERIVED * pointer < DERIVED >::derived()
 {
    return dynamic_cast < DERIVED * > ( this );
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 const DERIVED * pointer < DERIVED >::derived() const
 {
    return dynamic_cast < const DERIVED * > ( this );
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer < DERIVED >::add_reference(DERIVED * & pderived)
 {
    if(pderived != NULL
@@ -657,7 +516,7 @@ void pointer < DERIVED >::add_reference(DERIVED * & pderived)
    }
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer < DERIVED >::
 add_listener(pointer_array<DERIVED > * plistener)
 {
@@ -668,7 +527,7 @@ add_listener(pointer_array<DERIVED > * plistener)
    }
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer < DERIVED >::
 remove_listener(pointer_array<DERIVED > * plistener)
 {
@@ -689,7 +548,7 @@ remove_listener(pointer_array<DERIVED > * plistener)
 namespace gen
 {
 
-   template < class DERIVED > 
+   template < class DERIVED >
    static void add_reference(DERIVED * & lpderived)
    {
       pointer<DERIVED> * lppi = dynamic_cast<pointer<DERIVED> *>(lpderived);
@@ -741,7 +600,7 @@ public:
 template < class DERIVED >
 void pointer_array < DERIVED >::get_array(raw_array < DERIVED * > & a)
 {
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       a.add(derived_at(i));
    }
@@ -750,51 +609,51 @@ void pointer_array < DERIVED >::get_array(raw_array < DERIVED * > & a)
 template < class DERIVED >
 void pointer_array < DERIVED >::get_array(comparable_array < DERIVED * > & a)
 {
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       a.add(derived_at(i));
    }
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED >::
 pointer_array()
 {
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED >::
 pointer_array(const pointer_array & a)
 {
    operator = (a);
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED >::
 ~pointer_array()
 {
    remove_all();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer_array < DERIVED >::
 remove_all()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i)->remove_listener(this);
+      this->element_at(i)->remove_listener(this);
    }
    comparable_array < pointer < DERIVED > *, pointer < DERIVED > * >::remove_all();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer_array < DERIVED >::
 OnPointerClear(DERIVED * p)
 {
    remove(dynamic_cast < pointer < DERIVED > * > (p));
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 index pointer_array < DERIVED >::
 add(pointer < DERIVED > * p)
 {
@@ -824,7 +683,7 @@ set_at(int iIndex, pointer < DERIVED > * p)
 }
 
 
-template < class DERIVED > 
+template < class DERIVED >
 count pointer_array < DERIVED >::
 remove(pointer < DERIVED > * p)
 {
@@ -837,21 +696,21 @@ remove(pointer < DERIVED > * p)
    return 0;
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 DERIVED * pointer_array < DERIVED >::
 derived_at(index idx)
 {
-   return element_at(idx)->derived();
+   return this->element_at(idx)->derived();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 const DERIVED * pointer_array < DERIVED >::
 derived_at(index idx) const
 {
-   return element_at(idx)->derived();
+   return this->element_at(idx)->derived();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED > &
 pointer_array < DERIVED >::
 operator = (const pointer_array & a)

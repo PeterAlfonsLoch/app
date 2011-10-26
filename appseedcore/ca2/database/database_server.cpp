@@ -3,31 +3,84 @@
 namespace database
 {
 
-   bool server::data_server_load(class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
+   bool server::data_server_load(class id idSection, class id id, class id idIndex, ::ex1::writable & writable, update_hint * puh)
    {
-      return data_server_load(idSection, id, idIndex, (ex1::serializable &) var, puh);
+      return var_load(idSection, id, idIndex, writable, puh);
    }
 
-   bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::serializable & obj, update_hint * puh)
+   bool server::data_server_load(class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      UNREFERENCED_PARAMETER(idSection);
-      UNREFERENCED_PARAMETER(id);
-      UNREFERENCED_PARAMETER(idIndex);
-      UNREFERENCED_PARAMETER(obj);
-      UNREFERENCED_PARAMETER(puh);
-      return false;
+      return data_server_load(idSection, id, idIndex, (ex1::byte_serializable &) var, puh);
+   }
+
+   bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::byte_output_stream & ostream, update_hint * puh)
+   {
+      return data_server_load(idSection, id, idIndex, (ex1::writable &) ostream, puh);
+   }
+
+   bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::plain_text_output_stream & ostream, update_hint * puh)
+   {
+      return data_server_load(idSection, id, idIndex, (ex1::writable &) ostream, puh);
+   }
+
+   bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::byte_serializable & obj, update_hint * puh)
+   {
+      ::gen::byte_stream_memory_file memfile(get_app());
+      if(!data_server_load(idSection, id, idIndex, memfile, puh))
+         return false;
+      memfile.seek_to_begin();
+      obj.read(memfile);
+      return true;
+   }
+
+   bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh)
+   {
+      _template_std_stringstream strstream;
+      if(!data_server_load(idSection, id, idIndex, strstream, puh))
+         return false;
+      strstream.m_dwPos = 0;
+      obj.read(strstream);
+      return true;
+   }
+
+   bool server::data_server_save(class id idSection, class id id, class id idIndex, ::ex1::readable & readable, update_hint * puh)
+   {
+      return var_save(idSection, id, idIndex, readable, puh);
    }
 
    bool server::data_server_save(class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      return data_server_save(idSection, id, idIndex, (ex1::serializable &) var, puh);
+      return data_server_save(idSection, id, idIndex, (ex1::byte_serializable &) var, puh);
    }
 
-   bool server::data_server_save(class id idSection, class id id, class id idIndex, ex1::serializable & obj, update_hint * puh)
+   bool server::data_server_save(class id idSection, class id id, class id idIndex, ex1::byte_input_stream & istream, update_hint * puh)
    {
-      UNREFERENCED_PARAMETER(puh);
-      UNREFERENCED_PARAMETER(obj);
-      return false;
+      return data_server_save(idSection, id, idIndex, (ex1::readable &) istream, puh);
+   }
+
+   bool server::data_server_save(class id idSection, class id id, class id idIndex, ex1::plain_text_input_stream & istream, update_hint * puh)
+   {
+      return data_server_save(idSection, id, idIndex, (ex1::readable &) istream, puh);
+   }
+
+   bool server::data_server_save(class id idSection, class id id, class id idIndex, ex1::byte_serializable & obj, update_hint * puh)
+   {
+      ::gen::byte_stream_memory_file memfile(get_app());
+      obj.write(memfile);
+      memfile.seek_to_begin();
+      if(!data_server_save(idSection, id, idIndex, memfile, puh))
+         return false;
+      return true;
+   }
+
+   bool server::data_server_save(class id idSection, class id id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh)
+   {
+      _template_std_stringstream strstream;
+      obj.write(strstream);
+      strstream.m_dwPos = 0;
+      if(!data_server_save(idSection, id, idIndex, strstream, puh))
+         return false;
+      return true;
    }
 
    bool server::data_pulse_change(class id idSection, class id key, class id idIndex, update_hint * puh)
@@ -74,12 +127,33 @@ namespace database
       var var;
       if(data_server_load(idSection, id, idIndex, var, phint))
          return var;
-      return gen::e_fail;
+      return gen::g_newconst;
    }
 
    bool server::data_save(class id idSection, class id id, class id idIndex, var var, update_hint * phint)
    {
       return data_server_save(idSection, id, idIndex, var, phint);
    }
+
+   bool server::var_load(class id idSection, class id id, class id idIndex, ex1::writable & writable, update_hint * puh)
+   {
+      var var;
+      if(!data_server_load(idSection, id, idIndex, var, puh))
+         return false;
+      ::ex1::byte_output_stream ostream(&writable);
+      var.write(ostream);
+      return true;
+   }
+
+   bool server::var_save(class id idSection, class id id, class id idIndex, ex1::readable & readable, update_hint * puh)
+   {
+      var var;
+      ::ex1::byte_input_stream istream(&readable);
+      var.read(istream);
+      if(!data_server_save(idSection, id, idIndex, var, puh))
+         return false;
+      return true;
+   }
+
 
 } // namespace database

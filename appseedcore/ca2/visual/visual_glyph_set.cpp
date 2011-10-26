@@ -16,7 +16,7 @@ namespace visual
    {
       int i = find_first(user);
       if(i >= 0)
-         return &element_at(i);
+         return &this->element_at(i);
       else
          return NULL;
    }
@@ -25,7 +25,7 @@ namespace visual
       UINT user)
    {
       int iLoBound = 0;
-      int iHiBound = get_size() - 1;
+      int iHiBound = this->get_size() - 1;
       int iIndex = 0;;
       while(true)
       {
@@ -34,9 +34,9 @@ namespace visual
             return -1;
          }
          iIndex = (iHiBound + iLoBound) / 2;
-         if(user == element_at(iIndex).m_ui)
+         if(user == this->element_at(iIndex).m_ui)
             break;
-         else if(user < element_at(iIndex).m_ui)
+         else if(user < this->element_at(iIndex).m_ui)
          {
             iHiBound = iIndex - 1;
             if(iHiBound < iLoBound)
@@ -44,7 +44,7 @@ namespace visual
                return -1;
             }
          }
-         else if(user > element_at(iIndex).m_ui)
+         else if(user > this->element_at(iIndex).m_ui)
          {
             iLoBound = iIndex + 1;
             if(iLoBound > iHiBound)
@@ -61,7 +61,7 @@ namespace visual
          iIndex--;
          if(iIndex < 0)
             break;
-         if(user != element_at(iIndex).m_ui)
+         if(user != this->element_at(iIndex).m_ui)
             break;
          iLastIndex = iIndex;
       }
@@ -77,10 +77,10 @@ namespace visual
       int iLPos, iUPos, iMPos;
       glyph glyph;
 
-      if(get_size() >= 2)
+      if(this->get_size() >= 2)
       {
          stackLowerBound.push(0UL);
-         stackUpperBound.push(get_size() - 1);
+         stackUpperBound.push(this->get_size() - 1);
          while(true)
          {
             iLowerBound = stackLowerBound.pop();
@@ -94,12 +94,12 @@ namespace visual
                {
                   if(iMPos == iUPos)
                      break;
-                  if(element_at(iMPos) <= element_at(iUPos))
+                  if(this->element_at(iMPos) <= this->element_at(iUPos))
                      iUPos--;
                   else
                   {
-                     glyph = element_at(iMPos);
-                     set_at(iMPos, element_at(iUPos));
+                     glyph = this->element_at(iMPos);
+                     set_at(iMPos, this->element_at(iUPos));
                      set_at(iUPos, glyph);
                      break;
                   }
@@ -111,12 +111,12 @@ namespace visual
                {
                   if(iMPos == iLPos)
                      break;
-                  if(element_at(iLPos) <= element_at(iMPos))
+                  if(this->element_at(iLPos) <= this->element_at(iMPos))
                      iLPos++;
                   else
                   {
-                     glyph = element_at(iMPos);
-                     set_at(iMPos, element_at(iLPos));
+                     glyph = this->element_at(iMPos);
+                     set_at(iMPos, this->element_at(iLPos));
                      set_at(iLPos, glyph);
                      break;
                   }

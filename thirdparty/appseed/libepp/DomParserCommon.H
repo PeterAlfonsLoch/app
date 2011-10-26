@@ -34,7 +34,7 @@ namespace libepp
 
    /// EPP DomParser Class
    class DomParserCommon :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
      /// Constructor

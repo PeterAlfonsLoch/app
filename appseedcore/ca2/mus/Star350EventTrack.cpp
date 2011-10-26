@@ -16,7 +16,7 @@ Star350EventTrack::Star350EventTrack()
    m_bRunningStatus = 0;
 
    m_fdwTrack = 0;
-   
+
    m_smti.m_tkLength = 0;
    m_smti.m_cbLength = 0;
 
@@ -58,7 +58,7 @@ Star350EventTrack::~Star350EventTrack()
    m_bRunningStatus = 0;
 
    m_fdwTrack = 0;
-   
+
    m_smti.m_tkLength = 0;
    m_smti.m_cbLength = 0;
 }
@@ -93,7 +93,7 @@ SMFRESULT Star350EventTrack::ReadDelta()
 }
 
 VMSRESULT Star350EventTrack::GetEvent(
-        MidiEventBase * pEvent,
+        midi_event_base * pEvent,
       imedia::position   tkMax,
       BOOL   bTkMaxInclusive)
 {
@@ -102,7 +102,7 @@ VMSRESULT Star350EventTrack::GetEvent(
     {
         return vmsr;
     }
-    *pEvent = * (MidiEventBase *) m_pevent;
+    *pEvent = * (midi_event_base *) m_pevent;
     return VMSR_SUCCESS;
 }
 
@@ -131,7 +131,7 @@ VMSRESULT Star350EventTrack::GetEvent(
 * information about one m_event in the file will be returned in pEvent.
 *
 * Merging data from all tracks into one stream is performed here.
-* 
+*
 * m_pevent->tkDelta will contain the tick delta for the m_pevent->
 *
 * m_pevent->abEvent will contain a description of the m_pevent->
@@ -240,11 +240,11 @@ SMFRESULT Star350EventTrack::ReadEvent(
       }
    }
 
-    
+
 //    m_tkPosition = m_tkPosition;
 
     bEvent = *m_hpbImage++;
-    
+
     if (::mus::midi::Msg > bEvent)
     {
         if (0 == m_bRunningStatus)
@@ -264,7 +264,7 @@ SMFRESULT Star350EventTrack::ReadEvent(
     else if (::mus::midi::SysEx > bEvent)
     {
         m_bRunningStatus = bEvent;
-        
+
         dwGotTotal = 2;
         m_pevent->m_abEvent[0] = bEvent;
         m_pevent->m_abEvent[1] = *m_hpbImage++;
@@ -297,7 +297,7 @@ SMFRESULT Star350EventTrack::ReadEvent(
         {
             return (SMFRESULT) ::mus::midi::EInvalidFile;
         }
-        
+
         if (0 == (dwGot = GetVDWord( m_cbLeft - 2, &cbEvent)))
         {
             return (SMFRESULT) ::mus::midi::EInvalidFile;
@@ -323,7 +323,7 @@ SMFRESULT Star350EventTrack::ReadEvent(
     m_cbLeft -= dwGotTotal;
    m_dwUsed = dwGotTotal;
    m_nState = StateOnDelta;
-   
+
    m_pevent->m_cbImage = m_hpbImage - m_hpbEventImage;
     m_iCurrentEvent++;
 
@@ -348,7 +348,7 @@ SMFRESULT Star350EventTrack::ReadEvent(
 * A var length DWORD stored in a MIDI file contains one or more
 * bytes. Each byte except the last has the high bit set; only the
 * low 7 bits are significant.
-*  
+*
 *****************************************************************************/
 DWORD Star350EventTrack::GetVDWord(
    DWORD * pDw)
@@ -366,7 +366,7 @@ DWORD Star350EventTrack::GetVDWord(
 
     ASSERT(hpbImage != NULL);
     ASSERT(pDw != NULL);
-    
+
     *pDw = 0;
 
     do
@@ -379,7 +379,7 @@ DWORD Star350EventTrack::GetVDWord(
         b = *hpbImage++;
         dwLeft--;
         dwUsed++;
-        
+
         *pDw = (*pDw << 7) | (b & 0x7F);
     } while (b&0x80);
 
@@ -398,9 +398,9 @@ DWORD Star350EventTrack::SetVDWord(
    ASSERT(!m_bAutoAllocation);
     ASSERT(hpbImage != NULL);
    ASSERT(dw <= 0x0fffffff);
-   
+
 //   udwb.dw = dw;
-   
+
    if(!dwLeft)
       return 0;
    dwBuffer = dw & 0x7f;
@@ -426,7 +426,7 @@ DWORD Star350EventTrack::SetVDWord(
    }
 
 
-      
+
 //    pDw = 0;
 
   //  do
@@ -439,7 +439,7 @@ DWORD Star350EventTrack::SetVDWord(
 //        b = *hpbImage++;
   //      dwLeft--;
     //    dwUsed++;
-        
+
 //        *pDw = (*pDw << 7) | (b & 0x7F);
   //  } while (b&0x80);
 
@@ -455,8 +455,8 @@ DWORD Star350EventTrack::SetVDWord(
 
    ASSERT(m_bAutoAllocation);
    ASSERT(dw <= 0x0fffffff);
-   
-   
+
+
    dwBuffer = dw & 0x7f;
    dwUsed++;
    while ((dw >>= 7) > 0)
@@ -466,7 +466,7 @@ DWORD Star350EventTrack::SetVDWord(
       dwBuffer |= (dw & 0x7f);
       dwUsed++;
    }
-   if(!AllocateAddUp(dwUsed))
+   if(!allocate_add_up(dwUsed))
       return 0;
    byte *   hpbImage = m_hpbImage;
    while (TRUE)
@@ -620,22 +620,22 @@ DWORD Star350EventTrack::SetVDWord(
    BOOL               okSongName = FALSE;
    BOOL               okInfoHeader = FALSE;
    BOOL               okInfoHeaderLS = FALSE;
-   
+
    *ppXfih = NULL;
    *ppXfihls = NULL;
    *ppSongName = NULL;
-   
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::InvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
 /*    if (m_fdwTrack & ::mus::midi::EndOfFile)
     {
         return ::mus::midi::SEndOfFile;
@@ -672,15 +672,15 @@ DWORD Star350EventTrack::SetVDWord(
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: ReadXFInfoHeader_() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
-          (CXF::MetaSongName == m_pevent->GetMetaType()))
+          (::mus::xf::MetaSongName == m_pevent->GetMetaType()))
         {
          string str;
          International
@@ -690,7 +690,7 @@ DWORD Star350EventTrack::SetVDWord(
          okSongName = TRUE;
         }
       else if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
-          (CXF::MetaXFInfoHdr == m_pevent->GetMetaType()))
+          (::mus::xf::MetaXFInfoHdr == m_pevent->GetMetaType()))
         {
          string_tokenizer str;
          International
@@ -741,7 +741,7 @@ DWORD Star350EventTrack::SetVDWord(
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: ReadXFInfoHeader_() -> %u", (UINT)smfrc);
             break;
         }
@@ -770,19 +770,19 @@ DWORD Star350EventTrack::SetVDWord(
    SMFRESULT               smfrc;
 //    CMidiEvent              m_event;
    imedia::position               tkLastDelta = 0 ;
-   
-   
+
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::InvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
 /*    if (m_fdwTrack & ::mus::midi::EndOfFile)
     {
         return ::mus::midi::SEndOfFile;
@@ -792,7 +792,7 @@ DWORD Star350EventTrack::SetVDWord(
    if(pSongName != NULL)
    {
       m_pevent->SetFullType(::mus::midi::Meta);
-      m_pevent->SetMetaType(CXF::MetaSongName);
+      m_pevent->SetMetaType(::mus::xf::MetaSongName);
       m_pevent->m_hpbParm = (byte *)
          International
          ::UnicodeToAnsiDup(pSongName);
@@ -804,7 +804,7 @@ DWORD Star350EventTrack::SetVDWord(
    if(pXfih != NULL)
    {
       m_pevent->SetFullType(::mus::midi::Meta);
-      m_pevent->SetMetaType(CXF::MetaXFInfoHdr);
+      m_pevent->SetMetaType(::mus::xf::MetaXFInfoHdr);
       string str;
       pXfih->ToData(str);
       m_pevent->m_hpbParm = (byte *)
@@ -813,7 +813,7 @@ DWORD Star350EventTrack::SetVDWord(
       m_pevent->m_cbParm = strlen((const char *) m_pevent->m_hpbParm);
       if((smfrc = WriteCompleteEvent(0x7fffffff, false)) != ::mus::midi::Success)
          return smfrc;
-      
+
       TRACE("****WriteXFInfoHeader");
       TRACE("Date: %s\n", (char *) m_pevent->m_hpbParm);
       delete m_pevent->m_hpbParm;
@@ -821,10 +821,10 @@ DWORD Star350EventTrack::SetVDWord(
    if(pXfihls != NULL)
    {
       m_pevent->SetFullType(::mus::midi::Meta);
-      m_pevent->SetMetaType(CXF::MetaXFInfoHdr);
+      m_pevent->SetMetaType(::mus::xf::MetaXFInfoHdr);
       string str;
       pXfihls->ToData(str);
-      m_pevent->m_hpbParm = (byte *) 
+      m_pevent->m_hpbParm = (byte *)
          International
          ::UnicodeToAnsiDup(str);
       m_pevent->m_cbParm = strlen((const char *) m_pevent->m_hpbParm);
@@ -876,7 +876,7 @@ DWORD Star350EventTrack::SetVDWord(
             {
                 m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: ReadKarTokens() -> %u", (UINT)smfrc);
             break;
         }
@@ -886,7 +886,7 @@ DWORD Star350EventTrack::SetVDWord(
             (::mus::midi::MetaKarLyric == m_pevent->GetMetaType()))
         {
 #ifdef _UNICODE
-         
+
          gen::international::Latin1ToString(str, (char *) m_pevent->hpbParm, m_pevent->cbParm);
 #else
          string str((const char *) m_pevent->m_hpbParm, m_pevent->m_cbParm);
@@ -927,7 +927,7 @@ DWORD Star350EventTrack::SetVDWord(
             {
                 m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: ReadKarTokens() -> %u", (UINT)smfrc);
             break;
         }
@@ -941,7 +941,7 @@ DWORD Star350EventTrack::SetVDWord(
 #else
          string str((const char *) m_pevent->m_hpbParm, m_pevent->m_cbParm);
 #endif
-   
+
          lpstraTokens->add(str);
          lptkaTicks->add(m_tkPosition);
         }
@@ -994,14 +994,14 @@ DWORD Star350EventTrack::SetVDWord(
             {
                 m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: ReadXFTokens() -> %u", (UINT)smfrc);
             break;
         }
 
 
        if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
-         (CXF::MetaLyric == m_pevent->GetMetaType()))
+         (::mus::xf::MetaLyric == m_pevent->GetMetaType()))
         {
 //#ifdef _UNICODE
 //         string *pStr = new string((char *) m_pevent->hpbParm, m_pevent->cbParm);
@@ -1169,7 +1169,7 @@ SMFRESULT Star350EventTrack::WriteDelta()
       TRACE("No Memory Available.");
       return (SMFRESULT) ::mus::midi::ENoMemory;
    }
-   
+
    m_hpbImage += m_dwUsed;
    m_cbLeft -= m_dwUsed;
    //m_smti.m_cbLength += m_dwUsed;
@@ -1195,7 +1195,7 @@ void Star350EventTrack::SetAutoAllocation(BOOL bValue)
                 allocate(cbSize - sizeof(CHUNKHDR));
                 memcpy(m_hpbAllocation, hpb, cbSize);
             }
-            
+
       }
    }
    else
@@ -1247,14 +1247,14 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
    {
       return smfrc;
    }
-    
+
    m_tkPosition += m_tkDelta;
-    
+
    if (m_tkPosition > tkMax)
     {
         return ::mus::midi::SReachedTkMax;
     }
-   
+
    bEvent = m_pevent->GetFullType();
 
    if(bEvent < ::mus::midi::Msg)
@@ -1263,13 +1263,13 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
    }
    else if(bEvent == m_bRunningStatus)
    {
-      if(!AllocateAddUp(1))
+      if(!allocate_add_up(1))
          return (SMFRESULT) ::mus::midi::ENoMemory;
       dwUsedTotal = 1;
       *m_hpbImage++ = m_pevent->m_abEvent[1];
         if (3 == ::mus::midi::GetMessageLen(m_bRunningStatus))
         {
-         if(!AllocateAddUp(1))
+         if(!allocate_add_up(1))
             return (SMFRESULT) ::mus::midi::ENoMemory;
             *m_hpbImage++ = m_pevent->m_abEvent[2];
             dwUsedTotal++;
@@ -1278,14 +1278,14 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
    else if(bEvent < ::mus::midi::SysEx)
    {
       m_bRunningStatus = bEvent;
-      if(!AllocateAddUp(2))
+      if(!allocate_add_up(2))
          return (SMFRESULT) ::mus::midi::ENoMemory;
       dwUsedTotal = 2;
       *m_hpbImage++ = bEvent;
       *m_hpbImage++ = m_pevent->m_abEvent[1];
         if (3 == ::mus::midi::GetMessageLen(m_bRunningStatus))
         {
-         if(!AllocateAddUp(1))
+         if(!allocate_add_up(1))
             return (SMFRESULT) ::mus::midi::ENoMemory;
             *m_hpbImage++ = m_pevent->m_abEvent[2];
             dwUsedTotal++;
@@ -1296,7 +1296,7 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
         m_bRunningStatus = 0;
         if (::mus::midi::Meta == bEvent)
         {
-         if(!AllocateAddUp(2))
+         if(!allocate_add_up(2))
             return (SMFRESULT) ::mus::midi::ENoMemory;
          *m_hpbImage++ = ::mus::midi::Meta;
             if (::mus::midi::MetaEOT == (*m_hpbImage++ = m_pevent->GetMetaType()))
@@ -1308,7 +1308,7 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
         }
         else if (::mus::midi::SysEx == bEvent || ::mus::midi::SysExEnd == bEvent)
         {
-         if(!AllocateAddUp(1))
+         if(!allocate_add_up(1))
             return (SMFRESULT) ::mus::midi::ENoMemory;
             *m_hpbImage++ = bEvent;
             dwUsedTotal = 1;
@@ -1319,7 +1319,7 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
         }
 
       cbEvent = m_pevent->m_cbParm;
-        
+
       if(!(dwUsed = SetVDWord(cbEvent)))
       {
          return (SMFRESULT) ::mus::midi::ENoMemory;
@@ -1329,9 +1329,9 @@ SMFRESULT Star350EventTrack::WriteCompleteEvent(imedia::position tkMax, bool bUs
         dwUsedTotal  += dwUsed;
 
 
-      if(!AllocateAddUp(cbEvent))
+      if(!allocate_add_up(cbEvent))
          return (SMFRESULT) ::mus::midi::ENoMemory;
-      
+
       memcpy(m_hpbImage, m_pevent->m_hpbParm, cbEvent);
 
         m_hpbImage += cbEvent;
@@ -1402,7 +1402,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *ptrk)
    else
       m_pevent->m_tkDelta = tkPosition - m_tkPosition;
    m_pevent->SetFullType(::mus::midi::Meta);
-   m_pevent->SetMetaType(CXF::MetaLyric);
+   m_pevent->SetMetaType(::mus::xf::MetaLyric);
 #ifdef _UNICODE
    char * lpStr = gen::international::UnicodeToAnsiDup(str);
    m_pevent->m_hpbParm = (byte *) lpStr;
@@ -1428,7 +1428,7 @@ byte * Star350EventTrack::GetAllocationImage()
    return m_hpbAllocation;
 }
 
-BOOL Star350EventTrack::AllocateAddUp(DWORD dwAddUp)
+BOOL Star350EventTrack::allocate_add_up(DWORD dwAddUp)
 {
    return allocate(m_smti.m_cbLength + dwAddUp);
 }
@@ -1463,7 +1463,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             if((iMode & CopyExcludeXFMetaLyrics) > 0)
           {
              if(pEvent->GetFullType() == ::mus::midi::Meta &&
-                pEvent->GetMetaType() == CXF::MetaLyric)
+                pEvent->GetMetaType() == ::mus::xf::MetaLyric)
              {
                     bCopy = false;
                 }
@@ -1513,20 +1513,20 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
    bool               okAuthor = false;
     bool               okCopyright = false;
    int                  nTCount = 0;
-   
-   
-   
+
+
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::InvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
 /*    if (m_fdwTrack & ::mus::midi::EndOfFile)
     {
         return ::mus::midi::SEndOfFile;
@@ -1561,17 +1561,17 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: GetNextKarInfo() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
          (::mus::midi::MetaKarHeader == m_pevent->GetMetaType()))
         {
-         
+
          string str;
          International
             ::Latin1ToString(str, (const char *) m_pevent->m_hpbParm, m_pevent->m_cbParm);
@@ -1625,7 +1625,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: GetNextKarInfo() -> %u", (UINT)smfrc);
             break;
         }
@@ -1660,20 +1660,20 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
    bool               okSongName = FALSE;
    bool               okOther = FALSE;
    int                  nTCount = 0;
-   
-   
-   
+
+
+
    if(m_tkPosition != 0)
    {
       return   ::mus::midi::InvalidTkPosition;
    }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
 /*    if (m_fdwTrack & ::mus::midi::EndOfFile)
     {
         return ::mus::midi::SEndOfFile;
@@ -1708,18 +1708,18 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: GetNextTune1000Info() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
          (::mus::midi::MetaTrackName == m_pevent->GetMetaType()
              ))
         {
-         
+
          string str;
          International
             ::Latin1ToString(str, (const char *) m_pevent->m_hpbParm, m_pevent->m_cbParm);
@@ -1766,7 +1766,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
 //                m_fdwSMF |= ::mus::midi::EndOfFile;
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: GetNextTune1000Info() -> %u", (UINT)smfrc);
             break;
         }
@@ -1822,12 +1822,12 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             {
                m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: GetStandardEventsV1() -> %u", (UINT)smfrc);
             break;
          }
-         
-         
+
+
 
          if ((iFilter == m_pevent->GetType_()))
          {
@@ -1859,12 +1859,12 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             {
                m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: GetStandardEventsV1() -> %u", (UINT)smfrc);
             break;
          }
-         
-         
+
+
 
          if ((iFilter == m_pevent->GetType_()) &&
             (iTrack == m_pevent->GetTrack() ))
@@ -1916,12 +1916,12 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             {
                m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: GetNoteOnOffEventsV1() -> %u", (UINT)smfrc);
             break;
          }
-         
-         
+
+
 
          if ((::mus::midi::NoteOn == m_pevent->GetType_()) ||
             (::mus::midi::NoteOff == m_pevent->GetType_() ))
@@ -1954,12 +1954,12 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             {
                m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: GetNoteOnOffEventsV1() -> %u", (UINT)smfrc);
             break;
          }
-         
-         
+
+
 
          if (((::mus::midi::NoteOn == m_pevent->GetType_()) ||
             (::mus::midi::NoteOff == m_pevent->GetType_())) &&
@@ -1985,20 +1985,20 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
    imedia::position               tkLastDelta = 0 ;
    bool               bIsSoftKaraokeFile = false;
     bool                    bSoftKaraoke = false;
-   
-   
+
+
    //ASSERT(m_tkPosition == 0);
     seek_begin();
 //   {
 //      return   ::mus::midi::InvalidTkPosition;
 //   }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
 /*   ASSERT(!(m_fdwTrack & ::mus::midi::EndOfFile));
     //if (m_fdwTrack & ::mus::midi::EndOfFile)
     //{
@@ -2032,13 +2032,13 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             {
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: IsSoftKaraokeFile() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
           (::mus::midi::MetaTrackName == m_pevent->GetMetaType()))
         {
@@ -2060,7 +2060,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
         else if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
           (::mus::midi::MetaKarHeader == m_pevent->GetMetaType()))
         {
-         
+
          string str;
          International
             ::Latin1ToString(str, (const char *) m_pevent->m_hpbParm, m_pevent->m_cbParm);
@@ -2081,7 +2081,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
                     lpFile->write_string(strFormat);
                 }
             }
-            
+
         }
         if(nArrobaCount > 0 && bSoftKaraoke)
             break;
@@ -2100,7 +2100,7 @@ SMFRESULT Star350EventTrack::copy(Star350EventTrack *pTrk, int iMode)
             {
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: IsSoftKaraokeFile() -> %u", (UINT)smfrc);
             break;
         }
@@ -2122,7 +2122,7 @@ SMFRESULT Star350EventTrack::InsertCompleteEvent(imedia::position tkMax)
 
 }*/
 
-/*BOOL Star350EventTrack::ContainsEvent(MidiEventBase *pEvent)
+/*BOOL Star350EventTrack::ContainsEvent(midi_event_base *pEvent)
 {
    byte * hpbImageStart = GetImage();
    byte * hpbImageEnd = hpbImageStart + m_smti.m_cbLength + sizeof(CHUNKHDR);
@@ -2154,7 +2154,7 @@ SMFRESULT Star350EventTrack::seek(DWORD dwSeekWhat)
 //   BOOL               okSongName = FALSE;
 //   BOOL               okInfoHeader = FALSE;
 //   BOOL               okInfoHeaderLS = FALSE;
-   
+
 //   if(m_tkPosition != 0)
 //   {
 //      return   ::mus::midi::InvalidTkPosition;
@@ -2186,14 +2186,14 @@ SMFRESULT Star350EventTrack::seek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFSongName:
          {
             if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
-               (CXF::MetaSongName == m_pevent->GetMetaType()))
+               (::mus::xf::MetaSongName == m_pevent->GetMetaType()))
                return ::mus::midi::Success;
             break;
          }
       case ::mus::midi::SeekXFInfoHeader:
          {
             if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
-            (CXF::MetaXFInfoHdr == m_pevent->GetMetaType()))
+            (::mus::xf::MetaXFInfoHdr == m_pevent->GetMetaType()))
             {
                string_tokenizer str;
                gen::international::MultiByteToOEM(
@@ -2207,7 +2207,7 @@ SMFRESULT Star350EventTrack::seek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFInfoHeaderLS:
          {
          if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
-          (CXF::MetaXFInfoHdr == m_pevent->GetMetaType()))
+          (::mus::xf::MetaXFInfoHdr == m_pevent->GetMetaType()))
               {
                string_tokenizer str;
                gen::international::MultiByteToOEM(
@@ -2260,14 +2260,14 @@ VMSRESULT Star350EventTrack::WorkSeek(DWORD dwSeekWhat)
     {
         Star350EventV008 & event = m_ptrackWorkStorage->m_events.element_at(m_iCurrentEvent + 1);
         m_iCurrentEvent++;
-        
+
         m_tkPosition += event.GetDelta();
       switch(dwSeekWhat)
       {
       case ::mus::midi::SeekXFSongName:
          {
             if ((::mus::midi::Meta == event.GetFullType()) &&
-               (CXF::MetaSongName == event.GetMetaType()))
+               (::mus::xf::MetaSongName == event.GetMetaType()))
                return ::mus::midi::Success;
                 if(m_tkPosition > 0)
                     return ::mus::midi::SNotFound;
@@ -2276,7 +2276,7 @@ VMSRESULT Star350EventTrack::WorkSeek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFInfoHeader:
          {
             if ((::mus::midi::Meta == event.GetFullType()) &&
-            (CXF::MetaXFInfoHdr == event.GetMetaType()))
+            (::mus::xf::MetaXFInfoHdr == event.GetMetaType()))
             {
                string_tokenizer str;
                gen::international::MultiByteToOEM(
@@ -2292,7 +2292,7 @@ VMSRESULT Star350EventTrack::WorkSeek(DWORD dwSeekWhat)
       case ::mus::midi::SeekXFInfoHeaderLS:
          {
          if ((::mus::midi::Meta == event.GetFullType()) &&
-          (CXF::MetaXFInfoHdr == event.GetMetaType()))
+          (::mus::xf::MetaXFInfoHdr == event.GetMetaType()))
               {
                string_tokenizer str;
                gen::international::MultiByteToOEM(
@@ -2338,19 +2338,19 @@ bool Star350EventTrack::IsXFFile()
    SMFRESULT               smfrc;
    imedia::position               tkLastDelta = 0 ;
    bool               bIsXFFile = false;
-   
-   
+
+
    ASSERT(m_tkPosition == 0);
 //   {
 //      return   ::mus::midi::InvalidTkPosition;
 //   }
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
    ASSERT(!(m_fdwTrack & ::mus::midi::EndOfFile));
     //if (m_fdwTrack & ::mus::midi::EndOfFile)
     //{
@@ -2383,13 +2383,13 @@ bool Star350EventTrack::IsXFFile()
             {
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: IsXFFile() -> %u", (UINT)smfrc);
             break;
         }
       if(m_tkPosition > 0)
          break;
-        
+
       if ((::mus::midi::Meta == m_pevent->GetFullType()) &&
           (::mus::midi::MetaSeqSpecific == m_pevent->GetMetaType()))
         {
@@ -2398,7 +2398,7 @@ bool Star350EventTrack::IsXFFile()
                 m_pevent->m_hpbParm[2] == 0x00 && //
                 m_pevent->m_hpbParm[3] == 0x58 && // X
                 m_pevent->m_hpbParm[4] == 0x46 && // F
-                m_pevent->m_hpbParm[5] == 0x30 && // 0 
+                m_pevent->m_hpbParm[5] == 0x30 && // 0
                 m_pevent->m_hpbParm[6] == 0x32 )  // 2
             {
                 bIsXFFile = true;
@@ -2420,7 +2420,7 @@ bool Star350EventTrack::IsXFFile()
             {
             m_fdwTrack |= ::mus::midi::EndOfFile;
             }
-            
+
             TRACE( "smfReadEvents: IsXFFile() -> %u", (UINT)smfrc);
             break;
         }
@@ -2465,7 +2465,7 @@ SMFRESULT Star350EventTrack::ReadTune1000Tokens(stringa * lpstraTokens, imedia::
             {
                 m_fdwTrack |= SMF_TF_EOT;
             }
-            
+
             TRACE1("smfReadEvents: ReadTune1000Tokens() -> %u", (UINT)smfrc);
             break;
         }
@@ -2479,7 +2479,7 @@ SMFRESULT Star350EventTrack::ReadTune1000Tokens(stringa * lpstraTokens, imedia::
 #else
          string str((const char *) m_pevent->m_hpbParm, m_pevent->m_cbParm);
 #endif
-   
+
          lpstraTokens->add(str);
          lptkaTicks->add(m_tkPosition);
         }
@@ -2500,7 +2500,7 @@ VMSRESULT Star350EventTrack::ReadEvent(Star350EventV008 &midiEvent)
    int                     iGotTotal;
    DWORD                   dwGot;
    DWORD                   cbEvent;
-    
+
     SMFRESULT               smfrc;
 //if(m_nState == StateOnDelta)
 //   {
@@ -2540,7 +2540,7 @@ VMSRESULT Star350EventTrack::ReadEvent(Star350EventV008 &midiEvent)
     }
 //    byte *                  hpbImage = (byte *) m_hpbImage;
     bEvent = *m_hpbImage++;
-    
+
     if (::mus::midi::Msg > bEvent)
     {
 //        ASSERT(FALSE);
@@ -2556,7 +2556,7 @@ VMSRESULT Star350EventTrack::ReadEvent(Star350EventV008 &midiEvent)
     else if (::mus::midi::SysEx > bEvent)
     {
         m_bRunningStatus = bEvent;
-        
+
         iGotTotal = 2;
         midiEvent.SetFullType(bEvent);
         midiEvent.SetChB1(*m_hpbImage++);
@@ -2575,7 +2575,7 @@ VMSRESULT Star350EventTrack::ReadEvent(Star350EventV008 &midiEvent)
             midiEvent.SetMetaType(*m_hpbImage++);
             if (::mus::midi::MetaEOT == midiEvent.GetMetaType())
             {
-                
+
                 m_fdwTrack |= SMF_TF_EOT;
             m_smti.m_tkLength = m_tkPosition;
             }
@@ -2591,8 +2591,8 @@ VMSRESULT Star350EventTrack::ReadEvent(Star350EventV008 &midiEvent)
         {
             return VMSR_E_INVALIDFILE;
         }
-        
-        if (0 == (dwGot = MidiEventBase::GetVDWord(m_hpbImage, m_cbLeft - iGotTotal, &cbEvent)))
+
+        if (0 == (dwGot = midi_event_base::GetVDWord(m_hpbImage, m_cbLeft - iGotTotal, &cbEvent)))
         {
             return VMSR_E_INVALIDFILE;
         }
@@ -2664,7 +2664,7 @@ VMSRESULT Star350EventTrack::ToWorkStorage()
         }
         eventWork.clear();
     }
-    
+
     m_iCurrentEvent = iCurrentEvent;
     return VMSR_SUCCESS;
 
@@ -2692,21 +2692,21 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
     ** against three means we don't have to check how much is left
     ** in the track again for any short m_event, which is most cases.
     */
-   
+
 /*   m_tkDelta = eventMidi.GetDelta();
 
    if((smfrc = WriteDelta()) != ::mus::midi::Success)
    {
       return smfrc;
    }
-    
+
    m_tkPosition += m_tkDelta;
-    
+
 //   if (m_tkPosition > tkMax)
   //  {
     //    return ::mus::midi::SReachedTkMax;
     //}
-   
+
    bEvent = eventMidi.GetFullType();
 
    if(bEvent < ::mus::midi::Msg)
@@ -2715,13 +2715,13 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
    }
    else if(bEvent == m_bRunningStatus)
    {
-      if(!AllocateAddUp(1))
+      if(!allocate_add_up(1))
          return ::mus::midi::ENoMemory;
       dwUsedTotal = 1;
       *m_hpbImage++ = eventMidi.GetChB1();
         if (3 == grbChanMsgLen[(m_bRunningStatus >> 4) & 0x0F])
         {
-         if(!AllocateAddUp(1))
+         if(!allocate_add_up(1))
             return ::mus::midi::ENoMemory;
             *m_hpbImage++ = eventMidi.GetChB2();
             dwUsedTotal++;
@@ -2730,14 +2730,14 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
    else if(bEvent < ::mus::midi::SysEx)
    {
       m_bRunningStatus = bEvent;
-      if(!AllocateAddUp(2))
+      if(!allocate_add_up(2))
          return ::mus::midi::ENoMemory;
       dwUsedTotal = 2;
       *m_hpbImage++ = bEvent;
       *m_hpbImage++ = eventMidi.GetChB1();
         if (3 == grbChanMsgLen[(m_bRunningStatus >> 4) & 0x0F])
         {
-         if(!AllocateAddUp(1))
+         if(!allocate_add_up(1))
             return ::mus::midi::ENoMemory;
             *m_hpbImage++ = eventMidi.GetChB2();
             dwUsedTotal++;
@@ -2748,7 +2748,7 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
         m_bRunningStatus = 0;
         if (::mus::midi::Meta == bEvent)
         {
-         if(!AllocateAddUp(2))
+         if(!allocate_add_up(2))
             return ::mus::midi::ENoMemory;
          *m_hpbImage++ = ::mus::midi::Meta;
             if (::mus::midi::MetaEOT == (*m_hpbImage++ = eventMidi.GetMetaType()))
@@ -2760,7 +2760,7 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
         }
         else if (::mus::midi::SysEx == bEvent || ::mus::midi::SysExEnd == bEvent)
         {
-         if(!AllocateAddUp(1))
+         if(!allocate_add_up(1))
             return ::mus::midi::ENoMemory;
             *m_hpbImage++ = bEvent;
             dwUsedTotal = 1;
@@ -2771,7 +2771,7 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
         }
 
       cbEvent = eventMidi.GetParamSize();
-        
+
       if(!(dwUsed = SetVDWord(cbEvent)))
       {
          return ::mus::midi::ENoMemory;
@@ -2781,9 +2781,9 @@ Star350TrackV008 * Star350EventTrack::GetWorkTrack()
         dwUsedTotal  += dwUsed;
 
 
-      if(!AllocateAddUp(cbEvent))
+      if(!allocate_add_up(cbEvent))
          return ::mus::midi::ENoMemory;
-      
+
       memcpy(m_hpbImage, eventMidi.GetParam(), cbEvent);
 
         m_hpbImage += cbEvent;
@@ -2866,7 +2866,7 @@ int Star350EventTrack::GetFlags()
     return m_fdwTrack;
 }
 
-imedia::position Star350EventTrack::GetPosition()
+imedia::position Star350EventTrack::get_position()
 {
     return m_tkPosition;
 }

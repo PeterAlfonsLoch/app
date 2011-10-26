@@ -4,7 +4,7 @@
 
 typedef struct{
   const unsigned char *stream;
-  int GetLength;
+  ::primitive::memory_size get_length;
   int pointer;
   int error;
 } MemoryFile;
@@ -17,18 +17,18 @@ voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const char *filename, int mo
   return (voidpf)0x666888;
 }
 
-uLong ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uLong get_size){
+uLong ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uLong this->get_size){
 
   MemoryFile *mf = (MemoryFile*)opaque;
 
-  if (mf->pointer+(int)get_size > mf->GetLength) get_size = mf->GetLength - mf->pointer;
-  memmove(buf, mf->stream+mf->pointer, get_size);
-  mf->pointer += get_size;
-  return get_size;
+  if (mf->pointer+(int)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
+  memmove(buf, mf->stream+mf->pointer, this->get_size);
+  mf->pointer += this->get_size;
+  return this->get_size;
 };
 
 
-uLong ZCALLBACK mem_write_file_func (voidpf opaque, voidpf stream, const void *buf, uLong get_size)
+uLong ZCALLBACK mem_write_file_func (voidpf opaque, voidpf stream, const void *buf, uLong this->get_size)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   return 0;
@@ -49,19 +49,19 @@ long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uLong offset, i
     case ZLIB_FILEFUNC_SEEK_CUR :
       cpointer = mf->pointer;
       cpointer += offset;
-      if (cpointer > mf->GetLength) return -1;
+      if (cpointer > mf->get_length) return -1;
       mf->pointer = cpointer;
       break;
     case ZLIB_FILEFUNC_SEEK_END :
-      cpointer = mf->GetLength;
+      cpointer = mf->get_length;
       cpointer += offset;
-      if (cpointer > mf->GetLength) return -1;
+      if (cpointer > mf->get_length) return -1;
       mf->pointer = cpointer;
       break;
     case ZLIB_FILEFUNC_SEEK_SET :
       cpointer = 0;
       cpointer += offset;
-      if (cpointer > mf->GetLength) return -1;
+      if (cpointer > mf->get_length) return -1;
       mf->pointer = cpointer;
       break;
     default:
@@ -113,7 +113,7 @@ void fill_mem_filefunc (zlib_filefunc_def*  pzlib_filefunc_def, MemoryFile *sour
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

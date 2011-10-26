@@ -239,7 +239,7 @@ int Main::PulseEvent(e_event eevent)
       }
    }
 
-   CSingleLock sl(&m_mutexStateMachine, true);
+   single_lock sl(&m_mutexStateMachine, true);
    switch(m_estate)
    {
    case StateTiming:

@@ -10,50 +10,53 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="message_window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thread.cpp">
+    <ClCompile Include="winservice_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="update_schedule_thread.cpp">
+    <ClCompile Include="winservice_1_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="update_thread.cpp">
+    <ClCompile Include="winservice_1_message_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winservice_1_update_schedule_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winservice_1_update_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winservice_1_thread2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="message_window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="update_schedule_thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="update_thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="winservice_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="winservice_1_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winservice_1_message_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winservice_1_update_schedule_thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winservice_1_update_thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winservice_1_thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="winservice_1.def">
+    <None Include="app_winservice_1.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

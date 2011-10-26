@@ -122,7 +122,7 @@ namespace sockets
    TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
          // %! check cache
          {
-            CSingleLock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.m_mutexResolvCache, true);
             string result;
             if(System.m_resolvcache[m_query].Lookup(m_data, result))
             {
@@ -182,7 +182,7 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            CSingleLock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             System.m_resolvcache[m_query][m_data] = value;
             System.m_resolvtimeout[m_query][m_data] = time(NULL);
@@ -199,7 +199,7 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            CSingleLock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             System.m_resolvcache[m_query][m_data] = value;
             System.m_resolvtimeout[m_query][m_data] = time(NULL);
@@ -218,7 +218,7 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            CSingleLock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             System.m_resolvcache[m_query][m_data] = value;
             System.m_resolvtimeout[m_query][m_data] = time(NULL);
@@ -236,7 +236,7 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            CSingleLock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             System.m_resolvcache[m_query][m_data] = value;
             System.m_resolvtimeout[m_query][m_data] = time(NULL);
@@ -377,7 +377,7 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            CSingleLock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.m_mutexResolvCache, true);
             string value;
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
             System.m_resolvcache[m_query][m_data] = value;

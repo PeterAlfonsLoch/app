@@ -1,0 +1,29 @@
+#include "StdAfx.h"
+
+HDC GetDC(HWND hwnd)
+{
+
+   HDC hdc = new device_context;
+
+   hdc->m_display    = XOpenDisplay(NULL);
+   hdc->m_hwnd       = hwnd;
+   hdc->m_d          = (Drawable) (hwnd == NULL ? (void *) DefaultRootWindow(hdc->m_display) : hwnd);
+   hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
+
+   return hdc;
+
+}
+
+BOOL ReleaseDC(HWND hwnd, HDC hdc)
+{
+
+   if(hdc == NULL)
+      return FALSE;
+
+   XFreeGC(hdc->m_display, hdc->m_gc);
+   XCloseDisplay(hdc->m_display);
+
+   delete hdc;
+   return TRUE;
+
+}

@@ -50,7 +50,7 @@ int CMixerThread::exit_instance()
    return thread::exit_instance();
 }
 
-void CMixerThread::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void CMixerThread::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(CMixerThread::MessageMixerThread, pinterface, this, &CMixerThread::OnMixerMessage);
    IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &CMixerThread::OnUserMessage);
@@ -250,11 +250,11 @@ void CMixerThread::OnUserMessage(gen::signal_object * pobj)
             {
                 if(lpdata->bVisible)
                 {
-                    lpdata->lpDataCentral->m_csBuildAlbumThreadData.Lock();
-                    lpdata->m_evStarted.Lock();
+                    lpdata->lpDataCentral->m_csBuildAlbumThreadData.lock();
+                    lpdata->m_evStarted.lock();
                     //lpdata->m_ptaskdlg->m_pCloseWindow = pAlbum;
         //            lpdata->m_ptaskdlg->m_lparamClose = 10;
-                    lpdata->lpDataCentral->m_csBuildAlbumThreadData.Unlock();
+                    lpdata->lpDataCentral->m_csBuildAlbumThreadData.unlock();
                 }
             }*/
         }

@@ -3,7 +3,10 @@
 
 image_list::image_list(::ca::application * papp) :
    ca(papp),
-   m_spdib(get_app())
+   m_spdib(get_app()),
+   m_spdibWork(get_app()),
+   m_spdibWork2(get_app()),
+   m_spdibWork3(get_app())
 {
    m_iSize = 0;
    m_iGrow = 1;
@@ -87,12 +90,7 @@ bool image_list::draw(::ca::graphics *pdc, int iImage, point pt, int iFlag)
    UNREFERENCED_PARAMETER(iFlag);
    if(m_spdib->get_graphics()->get_os_data() == NULL)
       return false;
-   return System.imaging().bitmap_blend(
-      pdc,
-      pt,
-      m_size,
-      m_spdib->get_graphics(),
-      point(iImage * m_size.cx, 0));
+   return System.imaging().true_blend(pdc, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), m_spdibWork, m_spdibWork2, m_spdibWork3);
 }
 
 bool image_list::draw(
@@ -110,8 +108,7 @@ bool image_list::draw(
    sz.cy = min(m_size.cy, sz.cy);
    ptOffset.x = min(m_size.cx, ptOffset.x);
    ptOffset.y = min(m_size.cy, ptOffset.y);
-   return System.imaging().bitmap_blend(pdc, pt, sz, m_spdib->get_graphics(), 
-      point(iImage * m_size.cx + ptOffset.x, ptOffset.y));
+   return System.imaging().true_blend(pdc, pt, sz, m_spdib->get_graphics(),  point(iImage * m_size.cx + ptOffset.x, ptOffset.y), m_spdibWork, m_spdibWork2, m_spdibWork3);
 }
 
 int image_list::add_icon_os_data(void * pvoid)
@@ -195,14 +192,16 @@ int image_list::add_icon(const char * psz)
 
 int image_list::add_matter_icon(const char * pszMatter)
 {
-   return add_icon(System.dir_matter(pszMatter));
+   return add_icon(Application.dir().matter(pszMatter));
 }
 
 
 int image_list::add_file(const char * lpcsz)
 {
-   FIBITMAP * pfi = System.imaging().LoadImageFile(lpcsz, get_app());
-   if(pfi == NULL)
+   
+   ::visual::dib_sp dib(get_app());
+
+   if(!dib.load_from_file(lpcsz))
       return -1;
 
    int iItem = m_iSize;
@@ -213,35 +212,7 @@ int image_list::add_file(const char * lpcsz)
 
    m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, RGB(192, 192, 192));
 
-   ::ca::bitmap * pbmp = System.imaging().FItoHBITMAP(pfi, false);
-
-
-   ::ca::graphics_sp dcImage(get_app());
-   dcImage->CreateCompatibleDC(NULL);
-
-   dcImage->SelectObject(pbmp);
-
-   m_spdib->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, dcImage, 0, 0, SRCCOPY);
-
-   BITMAPINFO * pbi = FreeImage_GetInfo(pfi);
-
-//   FREE_IMAGE_COLOR_TYPE ecolortype = FreeImage_GetColorType(pfi);
-   
-//   int iIndex = FreeImage_GetTransparentIndex(pfi);
-
-//   BOOL bHasBackgroundColor = FreeImage_HasBackgroundColor(pfi);
-
-   RGBQUAD bkcolor;
-
-   if(pbi->bmiHeader.biBitCount == 32)
-   {
-   }
-   else if(FreeImage_GetBackgroundColor(pfi, &bkcolor))
-   {
-      m_spdib->transparent_color(bkcolor);
-   }
-
-   FreeImage_Unload(pfi);
+   m_spdib->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, dib->get_graphics(), 0, 0, SRCCOPY);
 
    m_iSize++;
    return iItem;
@@ -249,12 +220,12 @@ int image_list::add_file(const char * lpcsz)
 
 int image_list::add_matter(const char * lpcsz)
 {
-   return add_file(System.dir().matter(lpcsz));
+   return add_file(Application.dir().matter(lpcsz));
 }
 
 int image_list::add_std_matter(const char * lpcsz)
 {
-   return add_file(System.dir().matter(lpcsz));
+   return add_file(Application.dir().matter(lpcsz));
 }
 
 int image_list::_get_alloc_count()

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="c" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/lib_" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../../../time/intermediate/appseedcore/_" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-fPIC" />
+					<Add option="-fno-pie" />
+					<Add option="-fno-stack-protector" />
+					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../.." />
+					<Add directory="../ca2" />
+					<Add directory="../../nodeapp/linux" />
+					<Add directory="../../nodeapp/linux/include" />
+					<Add directory="../../.." />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fPIC" />
+		</Compiler>
+		<Unit filename="StdAfx.h" />
+		<Unit filename="_.cpp" />
+		<Unit filename="_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h" />
+		<Unit filename="_argcargv.cpp" />
+		<Unit filename="_atol.cpp" />
+		<Unit filename="_crt0dll.cpp" />
+		<Unit filename="_heap.h" />
+		<Unit filename="_initterm.cpp" />
+		<Unit filename="_libct.h" />
+		<Unit filename="_math.cpp" />
+		<Unit filename="_mem.cpp" />
+		<Unit filename="_printf.cpp" />
+		<Unit filename="_std_file.cpp" />
+		<Unit filename="_types.h" />
+		<Unit filename="atol.h" />
+		<Unit filename="c.h" />
+		<Unit filename="c_c.h" />
+		<Unit filename="c_natural.h" />
+		<Unit filename="c_types.h" />
+		<Unit filename="ca_c.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ca_seed.h" />
+		<Unit filename="conv.cpp" />
+		<Unit filename="conv.h" />
+		<Unit filename="count.h" />
+		<Unit filename="cpu_architecture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cpu_architecture.h" />
+		<Unit filename="dir.cpp" />
+		<Unit filename="dir.h" />
+		<Unit filename="dir2.cpp" />
+		<Unit filename="dll_main.cpp" />
+		<Unit filename="file.cpp" />
+		<Unit filename="file.h" />
+		<Unit filename="file_spa.cpp" />
+		<Unit filename="gdi.cpp" />
+		<Unit filename="gdi.h" />
+		<Unit filename="heap.cpp" />
+		<Unit filename="heap.h" />
+		<Unit filename="hotplugin/StdAfx.cpp" />
+		<Unit filename="hotplugin/hotplugin.h" />
+		<Unit filename="hotplugin/hotplugin_host.cpp" />
+		<Unit filename="hotplugin/hotplugin_host.h" />
+		<Unit filename="hotplugin/hotplugin_plugin.cpp" />
+		<Unit filename="hotplugin/hotplugin_plugin.h" />
+		<Unit filename="http.cpp" />
+		<Unit filename="http.h" />
+		<Unit filename="index.h" />
+		<Unit filename="keep_true.h" />
+		<Unit filename="library.h" />
+		<Unit filename="linux.h" />
+		<Unit filename="linux/linux.cpp" />
+		<Unit filename="linux/linux.h" />
+		<Unit filename="linux/linux_cross_win_file.cpp" />
+		<Unit filename="linux/linux_cross_win_file.h" />
+		<Unit filename="linux/linux_cross_win_gdi.cpp" />
+		<Unit filename="linux/linux_cross_win_gdi.h" />
+		<Unit filename="linux/linux_http.cpp" />
+		<Unit filename="linux/linux_http.h" />
+		<Unit filename="linux/linux_http_lib.cpp" />
+		<Unit filename="linux/linux_http_lib.h" />
+		<Unit filename="linux/linux_library.cpp" />
+		<Unit filename="linux/linux_process.cpp" />
+		<Unit filename="linux/linux_process.h" />
+		<Unit filename="linux/linux_small_ipc_channel.cpp" />
+		<Unit filename="math.h" />
+		<Unit filename="md5.cpp" />
+		<Unit filename="md5.h" />
+		<Unit filename="mem.h" />
+		<Unit filename="mutex_lock.cpp" />
+		<Unit filename="mutex_lock.h" />
+		<Unit filename="natural.h" />
+		<Unit filename="printf.h" />
+		<Unit filename="process.cpp" />
+		<Unit filename="process.h" />
+		<Unit filename="radix.h" />
+		<Unit filename="simple_array.cpp" />
+		<Unit filename="simple_array.h" />
+		<Unit filename="simple_critical_section.cpp" />
+		<Unit filename="simple_critical_section.h" />
+		<Unit filename="simple_map.h" />
+		<Unit filename="simple_mutex.cpp" />
+		<Unit filename="simple_mutex.h" />
+		<Unit filename="simple_obj.cpp" />
+		<Unit filename="simple_obj.h" />
+		<Unit filename="small_ipc_channel." />
+		<Unit filename="small_ipc_channel.h" />
+		<Unit filename="spa/res/Resource.h" />
+		<Unit filename="spa/res/browser_plugin_spaboot.rc" />
+		<Unit filename="spa/res/ccvotagus_ca2_spa.rc" />
+		<Unit filename="spa/res/ccvotagus_ca2_spa_xxx.rc" />
+		<Unit filename="spa/res/ccvotagus_ca2_spa_yyy.rc" />
+		<Unit filename="spa/res/install_spaboot.rc" />
+		<Unit filename="spa/res/spa.rc" />
+		<Unit filename="spa/res/spaboot.rc" />
+		<Unit filename="spa/res/spaboot_for_iexca2.rc" />
+		<Unit filename="spa/spa.cpp" />
+		<Unit filename="spa/spa.h" />
+		<Unit filename="spa/spa.rc" />
+		<Unit filename="spa/spa_boot.cpp" />
+		<Unit filename="spa/spa_boot.h" />
+		<Unit filename="spa/spa_bz.cpp" />
+		<Unit filename="spa/spa_canvas.cpp" />
+		<Unit filename="spa/spa_canvas.h" />
+		<Unit filename="spa/spa_cube_run.cpp" />
+		<Unit filename="spa/spa_cube_run.h" />
+		<Unit filename="spa/spa_focus.cpp" />
+		<Unit filename="spa/spa_focus.h" />
+		<Unit filename="spa/spa_http.cpp" />
+		<Unit filename="spa/spa_http.h" />
+		<Unit filename="spa/spa_install_ca2.cpp" />
+		<Unit filename="spa/spa_install_ca2.h" />
+		<Unit filename="spa/spa_installer.cpp" />
+		<Unit filename="spa/spa_installer.h" />
+		<Unit filename="spa/spa_installer_square.cpp" />
+		<Unit filename="spa/spa_installer_square.h" />
+		<Unit filename="spa/spa_machine_event.cpp" />
+		<Unit filename="spa/spa_machine_event.h" />
+		<Unit filename="spa/spa_machine_event_data.cpp" />
+		<Unit filename="spa/spa_machine_event_data.h" />
+		<Unit filename="spa/spa_main.cpp" />
+		<Unit filename="spa/spa_plugin.cpp" />
+		<Unit filename="spa/spa_plugin.h" />
+		<Unit filename="spa/spa_res.h" />
+		<Unit filename="spa/spa_small_bell.cpp" />
+		<Unit filename="spa/spa_small_bell.h" />
+		<Unit filename="spa/spa_spa.cpp" />
+		<Unit filename="spa/spa_spa.h" />
+		<Unit filename="spa/spa_starter_start.cpp" />
+		<Unit filename="spa/spa_starter_start.h" />
+		<Unit filename="spa/spa_trace.cpp" />
+		<Unit filename="spa/spa_trace.h" />
+		<Unit filename="spa/spa_window.cpp" />
+		<Unit filename="spa/spa_window.h" />
+		<Unit filename="sprintf.cpp" />
+		<Unit filename="sprintf.h" />
+		<Unit filename="std_file.h" />
+		<Unit filename="str.cpp" />
+		<Unit filename="str.h" />
+		<Unit filename="stra.cpp" />
+		<Unit filename="stra.h" />
+		<Unit filename="strdup.cpp" />
+		<Unit filename="strw.cpp" />
+		<Unit filename="strx.cpp" />
+		<Unit filename="template.cpp" />
+		<Unit filename="template.h" />
+		<Unit filename="types.h" />
+		<Unit filename="verisimple_string.cpp" />
+		<Unit filename="verisimple_string.h" />
+		<Unit filename="verisimple_wstring.cpp" />
+		<Unit filename="verisimple_wstring.h" />
+		<Unit filename="vsstringtow.cpp" />
+		<Unit filename="vsstringtow.h" />
+		<Unit filename="wstringtovss.cpp" />
+		<Unit filename="wstringtovss.h" />
+		<Unit filename="xmlite.cpp" />
+		<Unit filename="xmlite.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

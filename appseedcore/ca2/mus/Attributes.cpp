@@ -3,12 +3,12 @@
 namespace mus
 {
 
-   CAttributes::CAttributes()
+   attributes::attributes()
    {
 
    }
 
-   CAttributes::~CAttributes()
+   attributes::~attributes()
    {
 
    }

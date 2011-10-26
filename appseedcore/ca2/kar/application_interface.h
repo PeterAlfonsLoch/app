@@ -7,7 +7,7 @@ namespace kar
       virtual public ::ca::application_interface
    {
    public:
-      void on_application_signal(::ca::application::signal_object * pobj);
+      void on_application_signal(::radix::application_signal_object * pobj);
    };
 
 

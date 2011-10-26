@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ca4
 {
+
 
    class CLASS_DECL_ca patch :
       public ::radix::object
@@ -16,4 +18,6 @@ namespace ca4
       friend class application;
    };
 
+
 } // namespace ca4
+

@@ -11,12 +11,12 @@
 
 #include "7zOut.h"
 */
-static HRESULT WriteBytes(::ex1::writer *stream, const void *data, size_t size)
+static HRESULT WriteBytes(::ex1::writer *stream, const void *data, ::primitive::memory_size size)
 {
   while (size > 0)
   {
-    DWORD_PTR curSize = (DWORD_PTR)min(size, (size_t)0xFFFFFFFF);
-    DWORD_PTR processedSize;
+    ::primitive::memory_size curSize = size;
+    ::primitive::memory_size processedSize;
     stream->write(data, curSize, &processedSize);
     if (processedSize == 0)
       return E_FAIL;
@@ -105,7 +105,7 @@ HRESULT COutArchive::Create(::ex1::writer *stream, bool endMarker)
   SeqStream = stream;
   if (!endMarker)
   {
-    Stream = dynamic_cast < ::ex1::output_stream * > (SeqStream.m_p);
+    Stream = dynamic_cast < ::ex1::byte_output_stream * > (SeqStream.m_p);
     if (!Stream)
     {
       return E_NOTIMPL;
@@ -279,7 +279,7 @@ void COutArchive::WriteFolder(const CFolder &folder)
     const CCoderInfo &coder = folder.Coders[i];
     {
       size_t propsSize = coder.Props.GetCapacity();
-      
+
       uint64 id = coder.MethodID;
       int idSize;
       for (idSize = 1; idSize < sizeof(id); idSize++)
@@ -367,7 +367,7 @@ void COutArchive::WriteHashDigests(
 
 void COutArchive::WritePackInfo(
     uint64 dataOffset,
-    const base_array<uint64> &packSizes,
+    const base_array<file_size> &packSizes,
     const bool_array &packCRCsDefined,
     const base_array<uint32> &packCRCs)
 {
@@ -381,7 +381,7 @@ void COutArchive::WritePackInfo(
     WriteNumber(packSizes[i]);
 
   WriteHashDigests(packCRCsDefined, packCRCs);
-  
+
   WriteByte(NID::kEnd);
 }
 
@@ -399,7 +399,7 @@ void COutArchive::WriteUnpackInfo(const array_ptr_alloc<CFolder> &folders)
     for (int i = 0; i < folders.get_count(); i++)
       WriteFolder(folders[i]);
   }
-  
+
   WriteByte(NID::kCodersUnpackSize);
   int i;
   for (i = 0; i < folders.get_count(); i++)
@@ -425,7 +425,7 @@ void COutArchive::WriteUnpackInfo(const array_ptr_alloc<CFolder> &folders)
 void COutArchive::WriteSubStreamsInfo(
     const array_ptr_alloc<CFolder> &folders,
     const base_array<CNum> &numUnpackStreamsInFolders,
-    const base_array<uint64> &unpackSizes,
+    const base_array<file_size> &unpackSizes,
     const bool_array &digestsDefined,
     const base_array<uint32> &digests)
 {
@@ -442,7 +442,7 @@ void COutArchive::WriteSubStreamsInfo(
       break;
     }
   }
- 
+
 
   bool needFlag = true;
   CNum index = 0;
@@ -537,7 +537,7 @@ void COutArchive::WriteUInt64DefVector(const CUInt64DefVector &v, byte type)
     return;
 
   WriteAlignedBoolHeader(v.Defined, numDefined, type, 8);
-  
+
   for (i = 0; i < v.Defined.get_count(); i++)
     if (v.Defined[i])
       WriteUInt64(v.Values[i]);
@@ -546,8 +546,12 @@ void COutArchive::WriteUInt64DefVector(const CUInt64DefVector &v, byte type)
 HRESULT COutArchive::EncodeStream(
     ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
     CEncoder &encoder, const ::ex1::byte_buffer &data,
-    base_array<uint64> &packSizes, array_ptr_alloc<CFolder> &folders)
+    base_array<file_size> &packSizes, array_ptr_alloc<CFolder> &folders)
 {
+   UNREFERENCED_PARAMETER(codecsInfo);
+   UNREFERENCED_PARAMETER(externalCodecs);
+   UNREFERENCED_PARAMETER(encoder);
+   UNREFERENCED_PARAMETER(packSizes);
    throw "implement below";
   //CBufInStream *streamSpec = new CBufInStream;
   //::ca::smart_pointer<::ex1::reader> stream = streamSpec;
@@ -555,7 +559,7 @@ HRESULT COutArchive::EncodeStream(
   CFolder folderItem;
   folderItem.UnpackCRCDefined = true;
   folderItem.UnpackCRC = crc_calc(data, data.GetCapacity());
-  uint64 dataSize64 = data.GetCapacity();
+//  uint64 dataSize64 = data.GetCapacity();
   throw "uncomment below if implement above";
 /*  RINOK(encoder.Encode(
       codecsInfo, externalCodecs,
@@ -570,7 +574,7 @@ void COutArchive::WriteHeader(
     uint64 &headerOffset)
 {
   int i;
-  
+
   uint64 packedSize = 0;
   for (i = 0; i < db.PackSizes.get_count(); i++)
     packedSize += db.PackSizes[i];
@@ -590,7 +594,7 @@ void COutArchive::WriteHeader(
 
     WriteUnpackInfo(db.Folders);
 
-    base_array<uint64> unpackSizes;
+    base_array<file_size> unpackSizes;
     bool_array digestsDefined;
     base_array<uint32> digests;
     for (i = 0; i < db.Files.get_count(); i++)
@@ -678,7 +682,7 @@ void COutArchive::WriteHeader(
 
   {
     /* ---------- Names ---------- */
-    
+
     int numDefined = 0;
     size_t namesDataSize = 0;
     for (int i = 0; i < db.Files.get_count(); i++)
@@ -688,7 +692,7 @@ void COutArchive::WriteHeader(
         numDefined++;
       namesDataSize += (name.get_length() + 1) * 2;
     }
-    
+
     if (numDefined > 0)
     {
       namesDataSize++;
@@ -714,7 +718,7 @@ void COutArchive::WriteHeader(
   if (headerOptions.WriteATime) WriteUInt64DefVector(db.ATime, NID::kATime);
   if (headerOptions.WriteMTime) WriteUInt64DefVector(db.MTime, NID::kMTime);
   WriteUInt64DefVector(db.StartPos, NID::kStartPos);
-  
+
   {
     /* ---------- Write Attrib ---------- */
     bool_array boolVector;
@@ -784,11 +788,11 @@ HRESULT COutArchive::WriteDatabase(
       ::ex1::byte_buffer buf;
       buf.SetCapacity(_countSize);
       _outByte2.Init((byte *)buf, _countSize);
-      
+
       _countMode = false;
       _writeToStream = false;
       WriteHeader(db, headerOptions, headerOffset);
-      
+
       if (_countSize != _outByte2.GetPos())
         return E_FAIL;
 
@@ -796,7 +800,7 @@ HRESULT COutArchive::WriteDatabase(
       encryptOptions.PasswordIsDefined = options->PasswordIsDefined;
       encryptOptions.Password = options->Password;
       CEncoder encoder(headerOptions.CompressMainHeader ? *options : encryptOptions);
-      base_array<uint64> packSizes;
+      base_array<file_size> packSizes;
       array_ptr_alloc<CFolder> folders;
       RINOK(EncodeStream(
           codecsInfo, externalCodecs,
@@ -804,7 +808,7 @@ HRESULT COutArchive::WriteDatabase(
           packSizes, folders));
 
       _writeToStream = true;
-      
+
       if (folders.get_count() == 0)
         throw 1;
 

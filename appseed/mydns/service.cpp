@@ -40,8 +40,8 @@ int	run_as_root = 0;											/* Run as root user? */
 uint32_t answer_then_quit = 0;								/* Answer this many queries then quit */
 char	hostname[256];												/* Hostname of local machine */
 
-extern int *tcp4_fd, *udp4_fd;								/* Listening FD's (IPv4) */
-extern int num_tcp4_fd, num_udp4_fd;						/* Number of listening FD's (IPv4) */
+extern SOCKET *tcp4_fd, *udp4_fd;								/* Listening FD's (IPv4) */
+extern unsigned int num_tcp4_fd, num_udp4_fd;						/* Number of listening FD's (IPv4) */
 #if HAVE_IPV6
 extern int *tcp6_fd, *udp6_fd;								/* Listening FD's (IPv6) */
 extern int num_tcp6_fd, num_udp6_fd;						/* Number of listening FD's (IPv6) */
@@ -115,8 +115,8 @@ static void
 cmdline()
 {
 //   err_debug = 1;
-	char	*optstr;
-	int	want_dump_config = 0, optc, optindex;
+//	char	*optstr;
+	int	want_dump_config = 0;//, optc;//, optindex;
 #ifdef xxx
 	/*struct option const longopts[] =
 	{
@@ -236,7 +236,7 @@ cmdline()
 	db_verify_tables();											/* Make sure tables are OK */
 
 	/* Random numbers are just for round robin and load balancing */
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 }
 /*--- cmdline() ---------------------------------------------------------------------------------*/
 
@@ -700,13 +700,14 @@ namespace mydns
    **************************************************************************************************/
    void service::ServiceThread()
    {
-	   register int n;
-	   int plain_maxfd = 0, maxfd, rv, want_timeout = 0;
+	   register unsigned int n;
+	   SOCKET plain_maxfd = 0, maxfd;
+      int rv, want_timeout = 0;
 	   fd_set rfd, start_rfd, wfd;
 	   struct timeval tv;
 	   register TASK	*t, *next_task;
 
-      m_papp->m_psystem->set_thread(m_papp->m_psystem);
+      CaSys(m_papp).set_thread(&Sys(m_papp));
 
       WSADATA wsaData;
 

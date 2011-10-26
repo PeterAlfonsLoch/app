@@ -13,13 +13,7 @@ namespace veiev
       place_holder_container(papp)
    {
 
-      m_pcreateview        = this;
-      m_pviewdataOld       = NULL;
-
       m_etranslucency      = TranslucencyPresent;
-
-      m_pviewdata          = NULL;
-      m_pviewdataOld       = NULL;
 
    }
 
@@ -98,42 +92,42 @@ namespace veiev
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void right_pane_view::on_create_view(view_data * pviewdata)
+   void right_pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 //      application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case pane_configuration:
          {
             if(m_cfg.initialize(this))
             {
-               pviewdata->m_pdoc = m_cfg.m_pdoc;
-               pviewdata->m_pwnd = m_cfg.m_pview->GetParentFrame();
+               pcreatordata->m_pdoc = m_cfg.m_pdoc;
+               pcreatordata->m_pwnd = m_cfg.m_pview->GetParentFrame();
             }
          }
          break;
       case pane_text:
          {
-            pviewdata->m_pdoc = get_document();
-            pviewdata->m_pwnd = ::view::create_view(typeid(veiev::view), get_document(), this, 2);
-            m_pveievview = dynamic_cast < veiev::view * > (pviewdata->m_pwnd);
+            pcreatordata->m_pdoc = get_document();
+            pcreatordata->m_pwnd = ::view::create_view(::ca::get_type_info < veiev::view > (), get_document(), this, 2);
+            m_pveievview = dynamic_cast < veiev::view * > (pcreatordata->m_pwnd);
          }
          break;
       default:
          ASSERT(FALSE);
          break;
       }
-      if(pviewdata->m_pwnd != NULL)
+      if(pcreatordata->m_pwnd != NULL)
       {
-         pviewdata->m_eflag.signalize(::user::create_view::view_data::flag_hide_all_others_on_show);
+         pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }
    }
 
 
 
-   void right_pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void right_pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
+      ::userex::pane_tab_view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &right_pane_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1122  , this, this, &right_pane_view::_001OnMenuMessage);

@@ -18,7 +18,7 @@ namespace database
       m_bOk = true;
    }
 
-   bool change_event::data_get(ex1::serializable & obj)
+   bool change_event::data_get(ex1::byte_serializable & obj)
    {
       if(m_pserver != NULL)
       {

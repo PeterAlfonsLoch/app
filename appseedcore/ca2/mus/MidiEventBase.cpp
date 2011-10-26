@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
 
-DWORD MidiEventBase::SetVDWord(
+DWORD midi_event_base::SetVDWord(
    byte * hpbImage,
    DWORD dwLeft,
    DWORD dw)
@@ -11,8 +11,8 @@ DWORD MidiEventBase::SetVDWord(
 
     ASSERT(hpbImage != NULL);
    ASSERT(dw <= 0x0fffffff);
-   
-   
+
+
    if(!dwLeft)
       return 0;
    dwBuffer = dw & 0x7f;
@@ -42,33 +42,33 @@ DWORD MidiEventBase::SetVDWord(
 }
 
 
-MidiEventBase & MidiEventBase::operator = (const MidiEventBase &eventSrc)
+midi_event_base & midi_event_base::operator = (const midi_event_base &eventSrc)
 {
    SetFullType(eventSrc.GetFullType());
    SetChB1(eventSrc.GetChB1());
    SetChB2(eventSrc.GetChB2());
    SetParam(eventSrc.GetParam(), eventSrc.GetParamSize());
    SetDelta(eventSrc.GetDelta());
-   SetPosition(eventSrc.GetPosition());
+   SetPosition(eventSrc.get_position());
    SetImage(eventSrc.GetImage());
    SetImageSize(eventSrc.GetImageSize());
    SetFlags(eventSrc.GetFlags());
    return *this;
 }
 
-MidiEventBase & MidiEventBase::operator = (const MidiEventV008 &eventSrc)
+midi_event_base & midi_event_base::operator = (const midi_event_v008 &eventSrc)
 {
    SetFullType(eventSrc.GetFullType());
    SetChB1(eventSrc.GetChB1());
    SetChB2(eventSrc.GetChB2());
    SetParam(eventSrc.GetParam(), eventSrc.GetParamSize());
    SetDelta(eventSrc.GetDelta());
-   SetPosition(eventSrc.GetPosition());
+   SetPosition(eventSrc.get_position());
    SetFlags(eventSrc.GetFlags());
    return *this;
 }
 
-DWORD MidiEventBase::GetVDWord(
+DWORD midi_event_base::GetVDWord(
    byte * hpbImage,
    DWORD dwLeft,
    DWORD * pDw)
@@ -78,7 +78,7 @@ DWORD MidiEventBase::GetVDWord(
 
     ASSERT(hpbImage != NULL);
     ASSERT(pDw != NULL);
-    
+
     *pDw = 0;
 
     do
@@ -91,21 +91,21 @@ DWORD MidiEventBase::GetVDWord(
         b = *hpbImage++;
         dwLeft--;
         dwUsed++;
-        
+
         *pDw = (*pDw << 7) | (b & 0x7F);
     } while (b&0x80);
 
     return dwUsed;
 }
 
-void MidiEventBase::SetParam(primitive::memory & memstorage)
+void midi_event_base::SetParam(primitive::memory & memstorage)
 {
    SetParam(
-      memstorage.GetAllocation(),
-      memstorage.GetStorageSize());
+      memstorage.get_data(),
+      memstorage.get_size());
 }
 
-int MidiEventBase::GetPitchBendLevel() const
+int midi_event_base::GetPitchBendLevel() const
 {
    ASSERT(get_type() == ::mus::midi::PitchBend);
    return GetChB1() | (GetChB2() << 8);

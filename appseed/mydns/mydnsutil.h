@@ -408,8 +408,8 @@ extern char		*getoptstr(struct option const longopts[]);
 
 
 /* ip.c */
-extern void		_sockclose(int);
-#define			sockclose(fd)	_sockclose((fd)), (fd) = -1
+extern void		_sockclose(SOCKET);
+#define			sockclose(fd)	_sockclose((fd)), (fd) = (SOCKET)-1
 extern char		*ipaddr(int, void *);
 #if HAVE_IPV6
 extern int		is_ipv6(char *);

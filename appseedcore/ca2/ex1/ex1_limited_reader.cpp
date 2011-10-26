@@ -8,11 +8,11 @@
 namespace ex1
 {
 
-   DWORD_PTR limited_reader::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size limited_reader::read(void *data, ::primitive::memory_size size)
    {
      uint32 realProcessedSize = 0;
      uint32 sizeToRead = (uint32)min((_size - _pos), (uint64)size);
-     HRESULT result = S_OK;
+//     HRESULT result = S_OK;
      if (sizeToRead > 0)
      {
        realProcessedSize = _stream->read(data, sizeToRead);

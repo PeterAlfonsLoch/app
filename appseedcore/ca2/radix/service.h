@@ -10,6 +10,7 @@ namespace ca2
       virtual ~service();
       int stop(const char * pszName);
       int remove(const char * pszName);
+      using ::ex1::request_interface::create;
       int create(
             const char * pszName,
             const char * pszDisplayName,

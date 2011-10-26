@@ -22,7 +22,7 @@ namespace user
       keeper < bool > keepCaching(&m_bCaching, true, false, true);
 
       //static critical_section l_cs;
-      //CSingleLock sl(&l_cs, TRUE);
+      //single_lock sl(&l_cs, TRUE);
       INT_PTR iIndex, i;
       stringa * pwstra;
       string str;
@@ -30,22 +30,23 @@ namespace user
       int iItemEnd = iItemStart + iItemCount - 1;
       if(iItemCount > m_cacheArray.get_size())
       {
-         
+
          while(iItemCount + 200> m_cacheArray.get_size())
          {
             //pwstra = new stringa();
             m_cacheArray.add(stringa());
          }
       }
-      
+
    //   critical_section * pCs = &pSet->m_cs;
+      draw_list_item item(plist);
       i = 0;
       int iCacheIndex = m_iCacheNextIndex;
       for(iIndex = iItemStart; iIndex <= iItemEnd; iIndex++)
       {
          if(m_cacheMap.Lookup(iIndex, pwstra))
             continue;
-         
+
          if(iCacheIndex >= m_cacheArray.get_size())
          {
             iCacheIndex = 0;
@@ -61,56 +62,53 @@ namespace user
          }
          for(i = 0; i < plist->m_columna.get_count(); i++)
          {
-            plist->_001GetItemText(
-               str,
-               iIndex,
-               plist->m_columna.GetByKey(i).m_iSubItem,
-               -1);
-            pwstra->set_at(i, str);
+            item.m_iItem = iIndex;
+            item.m_iSubItem = plist->m_columna._001GetByKey(i)->m_iSubItem;
+            item.m_iListItem = -1;
+            plist->_001GetItemText(&item);
+            pwstra->set_at(i, item.m_strText);
          }
-   //      pCs->Unlock();
-   //      pSong->m_iIndex = iIndex;      
+   //      pCs->unlock();
+   //      pSong->m_iIndex = iIndex;
          m_cacheMap.set_at(iIndex, pwstra);
          i++;
       }
       m_iCacheNextIndex = iCacheIndex;
    }
 
-   bool list_cache::_001GetItemText(
-      ::user::list * plist,
-      string &str,
-      INT_PTR iItem,
-      INT_PTR iSubItem, 
-      INT_PTR iListItem)
+   void list_cache::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(iListItem);
-      if(m_bCaching)
-         return false;
-      if(iItem < 0)
-         return false;
-   //   if(m_wstr2a.get_size() <= 0)
-     //    return false;
-      INT_PTR iColumnKey = plist->m_columna.MapSubItemToKey(iSubItem);
-      if(iColumnKey < 0)
-         return false;
-   //   if(iColumnKey > m_wstr2a.get_size())
-     ///    return false;
-      stringa * pwstra;
-      if(!m_cacheMap.Lookup(iItem, pwstra))
-      {
-   //      TRACE("CAlbumSongList::OnGetdispinfo iKey=%d iItemIdx=%d\n", iKey, iItemIndx);
-   //      TRACE("CAlbumSongList::OnGetdispinfo iItemIdx=%d\n", iItemIndx);
-         _001CacheHint(plist, iItem, 1);
-         if(!m_cacheMap.Lookup(iItem, pwstra))
-            return false;
-   //      TRACE("XXXXXXXXXXXXXXXXX CANNOT CACHE!!!! CAlbumSongList::OnGetdispinfo iKey=%d iItemIdx=%d\n", iKey, iItemIndx);
-   //            TRACE("XXXXXXXXXXXXXXXXX CANNOT CACHE!!!! CAlbumSongList::OnGetdispinfo iItemIdx=%d\n", iItemIndx);
-      }
-      if(iColumnKey >= pwstra->get_size())
-         return false;
 
-      str = pwstra->element_at(iColumnKey);
-      return true;
+      if(m_bCaching)
+         return_(pitem->m_bOk, false);
+
+      if(pitem->m_iItem < 0)
+         return_(pitem->m_bOk, false);
+
+      if(pitem->m_iColumnKey < 0)
+      {
+         if(pitem->m_pcolumn == NULL)
+         {
+            pitem->m_pcolumn = pitem->m_plist->m_columna._001GetBySubItem(pitem->m_iSubItem);
+         }
+         pitem->m_iColumnKey = pitem->m_pcolumn->m_iKey;
+         if(pitem->m_iColumnKey < 0)
+            return_(pitem->m_bOk, false);
+      }
+
+      stringa * pwstra;
+      if(!m_cacheMap.Lookup(pitem->m_iItem, pwstra))
+      {
+         _001CacheHint(pitem->m_plist, pitem->m_iItem, 1);
+         if(!m_cacheMap.Lookup(pitem->m_iItem, pwstra))
+            return_(pitem->m_bOk, false);
+      }
+      if(pitem->m_iColumnKey >= pwstra->get_size())
+         return_(pitem->m_bOk, false);
+
+      pitem->m_strText = pwstra->element_at(pitem->m_iColumnKey);
+
+      pitem->m_bOk = true;
    }
 
    void list_cache::_001Invalidate()

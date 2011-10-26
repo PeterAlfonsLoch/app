@@ -90,10 +90,14 @@ namespace platform
       return get_typed_view < view > ();
    }
 
+   pane_view * document::get_platform_pane_view()
+   {
+      return get_typed_view < pane_view > ();
+   }
 
    frame * document::get_platform_frame()
    {
-      ::view * pview = get_platform_view();
+      pane_view * pview = get_platform_pane_view();
       if(pview == NULL)
          return NULL;
       frame * pplatformframe = pview->GetTypedParent < frame >();

@@ -11,7 +11,7 @@ public:
    MixerWnd(::ca::application * papp);
    virtual ~MixerWnd();
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnMixerControlChange)
    DECL_GEN_SIGNAL(_001OnMixerLineChange)

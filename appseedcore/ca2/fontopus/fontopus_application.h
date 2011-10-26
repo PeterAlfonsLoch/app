@@ -6,11 +6,12 @@ namespace fontopus
 
 
    class CLASS_DECL_ca application :
-      virtual public ::mail::application
+      virtual public ::cube2::application
    {
    public:
 
 
+      bool           m_bIsCreatingUser;
       user *         m_puser;
 
       

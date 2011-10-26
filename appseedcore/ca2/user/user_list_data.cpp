@@ -16,47 +16,44 @@ namespace user
 
    }
 
-   bool simple_list_data::_001GetItemText(
-      list * plist,
-      string &str,
-      INT_PTR iItem,
-      INT_PTR iSubItem, 
-      INT_PTR iListItem)
+   void simple_list_data::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(plist);
-      UNREFERENCED_PARAMETER(iListItem);
+
       if(!m_bEnable)
-         return false;
-      if(iItem < 0)
-         return false;
-      if(iItem >= m_array.get_size())
-         return false;
-      stringa & stra = m_array.element_at(iItem);
-      if(iSubItem < 0)
-         return false;
-      if(iSubItem >= stra.get_size())
-         return false;
-      
-      str = stra.element_at(iSubItem);
-      return true;
+         return_(pitem->m_bOk, false);
+
+      if(pitem->m_iSubItem < 0)
+         return_(pitem->m_bOk, false);
+
+      if(pitem->m_iSubItem >= m_array.get_size())
+         return_(pitem->m_bOk, false);
+
+      stringa & stra = m_array[pitem->m_iSubItem];
+
+      if(pitem->m_iItem < 0)
+         return_(pitem->m_bOk, false);
+
+      if(pitem->m_iItem >= stra.get_size())
+         return_(pitem->m_bOk, false);
+
+
+      pitem->m_strText = stra.element_at(pitem->m_iItem);
+
+      pitem->m_bOk = true;
+
+
    }
 
    void simple_list_data::SetItemText(INT_PTR iItem, INT_PTR iSubItem, const char * lpcsz)
    {
 
-      while(iItem >= m_array.get_size())
+      while(iSubItem >= m_array.get_size())
       {
          m_array.add(stringa());
       }
 
-      stringa & stra = m_array.element_at(iItem);
+      m_array[iSubItem].set_at_grow(iItem, lpcsz);
 
-      while(iSubItem >= stra.get_size())
-      {
-         stra.add(L"");
-      }
-
-      stra.set_at(iSubItem, lpcsz);
    }
 
    void simple_list_data::SetItemText(list * plist, index iItem, index iSubItem, const char * lpcsz)
@@ -70,12 +67,9 @@ namespace user
       m_bEnable = bEnable;
    }
 
-   void simple_list_data::GetColumnData(stringa &stra, INT_PTR iColumn)
+   void simple_list_data::GetColumnData(stringa & stra, INT_PTR iColumn)
    {
-      for(int i = 0; i < m_array.get_size(); i++)
-      {
-         stra.add(m_array[i][iColumn]);
-      }
+      stra = m_array[iColumn];
 
    }
 
@@ -84,11 +78,15 @@ namespace user
       GetColumnData(stra, 0);
    }
 
-   void simple_list_data::SetColumnData(list * plist, stringa &stra, INT_PTR iColumn)
+   void simple_list_data::SetColumnData(list * plist, stringa & stra, INT_PTR iColumn)
    {
-      for(int i = 0; i < stra.get_size(); i++)
+      m_array.set_at_grow(iColumn, stra);
+      for(int iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
       {
-         SetItemText(i, iColumn, stra[i]);
+         if(iColumn != iSubItem)
+         {
+            m_array[iSubItem].set_size(stra.get_count());
+         }
       }
       plist->_001OnUpdateItemCount();
 
@@ -105,13 +103,19 @@ namespace user
          return false;
       if(iItem >= m_array.get_size())
          return false;
-      m_array.remove_at(iItem);
+      for(int iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
+      {
+         m_array[iSubItem].remove_at(iItem);
+      }
       return true;
    }
 
    INT_PTR simple_list_data::_001GetItemCount()
    {
-      return m_array.get_size();
+      if(m_array.get_size() <= 0)
+         return 0;
+      else
+         return m_array[0].get_size();
    }
 
 } // namespace user

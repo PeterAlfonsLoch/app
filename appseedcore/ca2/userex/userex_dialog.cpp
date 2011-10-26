@@ -1,15 +1,7 @@
 #include "StdAfx.h"
 
 dialog::dialog(::ca::application * papp) :
-   ca(papp),
-   ::userbase::view(papp),
-   ::user::scroll_view(papp),
-   ::userbase::scroll_view(papp),
-   ::userbase::form_view(papp),
-   form(papp),
-   html_form(papp),
-   html_form_view(papp),
-   form_view(papp)
+   ca(papp)
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;
@@ -18,13 +10,27 @@ dialog::dialog(::ca::application * papp) :
 
 dialog::~dialog()
 {
+   if(m_pdocument != NULL)
+   {
+      m_pdocument->on_close_document();
+      m_pdocument = NULL;
+   }
+   if(m_pframe != NULL)
+   {
+//      m_pframe->DestroyWindow();
+     // m_pframe = NULL;
+   }
 }
 
 
 bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
 {
 
-   m_pdocument = System.create_form(this, this, System.m_puiInitialPlaceHolderContainer);
+   gen::property_set set(get_app());
+
+   set["hold"] = false;
+
+   m_pdocument = Application.create_form(this, Bergedge.get_view(), set);
    if(m_pdocument == NULL)
    {
       string str;
@@ -34,20 +40,21 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
    }
    m_pdocument->get_html_data()->m_propertyset = propertyset;
    
-   m_pdocument->on_open_document(System.dir().matter(pszMatter));
+   m_pdocument->on_open_document(Application.dir().matter(pszMatter));
    
-   m_pcallback = this;
-   m_pframe = dynamic_cast < simple_frame_window * > (GetParentFrame());
+   m_pframe = dynamic_cast < simple_frame_window * > (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bCustomFrame      = true;
    m_pframe->m_bblur_Background  = true;
+   m_pframe->m_etranslucency     = ::user::interaction::TranslucencyPresent;
 
    on_position_parent_frame();
 
    on_show(pszMatter, m_pdocument->get_html_data()->m_propertyset);
 
    m_pframe->RunModalLoop();
-   m_pframe->DestroyWindow();
+
    return true;
+
 }
 
 void dialog::on_show(const char * pszMatter, gen::property_set & propertyset)
@@ -56,10 +63,10 @@ void dialog::on_show(const char * pszMatter, gen::property_set & propertyset)
    UNREFERENCED_PARAMETER(propertyset);
 }
 
-void dialog::EndModalLoop(int nResult)
+void dialog::EndModalLoop(id nResult)
 {
-   GetTopLevelFrame()->EndModalLoop(nResult);
-   GetParentFrame()->ShowWindow(SW_HIDE);
+   m_pframe->EndModalLoop(nResult);
+   m_pframe->ShowWindow(SW_HIDE);
 }
 
 
@@ -71,9 +78,9 @@ void dialog::EndModalLoop(int nResult)
 void dialog::on_position_parent_frame()
 {
    rect rectOpen;
-   System.get_screen_rect(rectOpen);
+   Bergedge.get_screen_rect(rectOpen);
    int iWidth = rectOpen.width();
-   int iHeight = rectOpen.width();
+   int iHeight = rectOpen.height();
    rectOpen.deflate(iWidth / 5, iHeight / 5);
    m_pframe->SetWindowPos(ZORDER_TOP, rectOpen.left,
       rectOpen.top,

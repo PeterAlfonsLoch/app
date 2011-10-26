@@ -47,8 +47,9 @@ namespace ca
          virtual bool  is(const char * lpcsz);
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath);
          virtual bool  is_inside_time(const char * lpcsz);
-         virtual void root_ones(stringa & stra);
-         virtual bool mk(const char * lpcsz);
+         virtual void  root_ones(stringa & stra);
+         virtual bool  mk(const char * lpcsz);
+         virtual bool  rm(const char * psz, bool bRecursive = true);
 
          virtual string name(const char * psz);
 
@@ -65,8 +66,9 @@ namespace ca
          virtual void time_square(string &str);
          virtual string time_log(const char * pszId);
 
-         virtual string locale_style();
-         virtual string matter(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string locale_style(::ca::application * papp, const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string locale_style_matter(::ca::application * papp, const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string matter(::ca::application * papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
          virtual string trash_that_is_not_trash(const char * psz);
 

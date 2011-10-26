@@ -16,7 +16,8 @@ namespace gcom
          {
          public:
 
-            int m_iBackgroundUpdateMillis;
+            int            m_iBackgroundUpdateMillis;
+            color          m_colorBackground;
 
             interaction(::ca::application * papp);
             virtual ~interaction();
@@ -37,6 +38,11 @@ namespace gcom
 
             virtual string BackViewGetNextBackgroundImagePath();
             virtual void BackViewSetCurrentBackgroundImagePath(const char * psz);
+
+            COLORREF GetBackgroundColor();
+
+            virtual void initialize_user_interaction();
+
          };
 
       } // namespace user

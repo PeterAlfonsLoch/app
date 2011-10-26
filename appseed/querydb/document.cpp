@@ -7,8 +7,10 @@ namespace querydb
       ca(papp),
       ::ca::data_container(papp),
       ::document(papp),
-      ::userbase::document(papp)
+      ::userbase::document(papp),
+      m_server(papp)
    {
+      m_server.open("simpledb");
    }
 
    BOOL document::on_new_document()
@@ -86,18 +88,28 @@ namespace querydb
 
    void document::data_on_after_change(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
    }
 
-   BOOL document::on_open_document(const char * lpszPathName)
+   bool document::on_open_document(var varFile)
    {
-      string str = Application.file().as_string(lpszPathName);
-      if(str.is_empty())
-      {
-         System.sync_load_url(str, lpszPathName, &ApplicationUser);
-      }
-   //  m_document.load(str);
+      string str = Application.file().as_string(varFile);
       update_all_views(NULL, 123);
       return TRUE;
+   }
+
+
+   bool document::query(const char * pszQuery)
+   {
+      m_strQuery = pszQuery;
+      m_server.sql(pszQuery, m_var);
+      update_all_views(NULL, 1234);
+      return true;
+   }
+
+   string document::get_query_string()
+   {
+      return m_strQuery;
    }
 
 } // namespace querydb

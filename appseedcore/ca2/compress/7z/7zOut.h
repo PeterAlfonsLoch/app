@@ -76,7 +76,7 @@ namespace n7z
 
       void WritePackInfo(
          uint64 dataOffset,
-         const base_array<uint64> &packSizes,
+         const base_array<file_size> &packSizes,
          const bool_array &packCRCsDefined,
          const base_array<uint32> &packCRCs);
 
@@ -85,7 +85,7 @@ namespace n7z
       void WriteSubStreamsInfo(
          const array_ptr_alloc<CFolder> &folders,
          const base_array<CNum> &numUnpackStreamsInFolders,
-         const base_array<uint64> &unpackSizes,
+         const base_array<file_size> &unpackSizes,
          const bool_array &digestsDefined,
          const base_array<uint32> &hashDigests);
 
@@ -94,9 +94,9 @@ namespace n7z
       void WriteUInt64DefVector(const CUInt64DefVector &v, byte type);
 
       HRESULT EncodeStream(
-         ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
          CEncoder &encoder, const ::ex1::byte_buffer &data,
-         base_array<uint64> &packSizes, array_ptr_alloc<CFolder> &folders);
+         base_array<file_size> &packSizes, array_ptr_alloc<CFolder> &folders);
       void WriteHeader(
          const CArchiveDatabase &db,
          const CHeaderOptions &headerOptions,
@@ -115,15 +115,15 @@ namespace n7z
       HRESULT WriteFinishSignature();
       HRESULT WriteStartHeader(const CStartHeader &h);
       HRESULT WriteFinishHeader(const CFinishHeader &h);
-      ::ca::smart_pointer<::ex1::output_stream> Stream;
+      ::ca::smart_pointer < ::ex1::byte_output_stream > Stream;
 
-      COutArchive() { _outByte.Create(1 << 16); }
-      ::ca::smart_pointer<::ex1::writer> SeqStream;
+      COutArchive() { _outByte.create(1 << 16); }
+      ::ca::smart_pointer < ::ex1::writer > SeqStream;
       HRESULT Create(::ex1::writer *stream, bool endMarker);
       void Close();
       HRESULT SkipPrefixArchiveHeader();
       HRESULT WriteDatabase(
-         ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
          const CArchiveDatabase &db,
          const CCompressionMethodMode *options,
          const CHeaderOptions &headerOptions);

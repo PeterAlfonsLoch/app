@@ -10,9 +10,10 @@
    in read operations - helps on ECOS */
 #define SOCKETS_DYNAMIC_TEMP
 
-#include <openssl/ssl.h>
+//#include <openssl/ssl.h>
 #include "SSLInitializer.h"
 
+/*
 // platform specific stuff
 #if (defined(__unix__) || defined(unix)) && !defined(USG)
 #include <sys/param.h>
@@ -29,7 +30,9 @@
 #endif
 #endif
 
-#ifndef _WIN32 
+*/
+
+#ifndef _WIN32
 // ----------------------------------------
 // common unix includes / defines
 #include <unistd.h>
@@ -77,7 +80,7 @@ namespace sockets {
 // ----------------------------------------
 // App specific adaptions
 
-#ifdef SOLARIS 
+#ifdef SOLARIS
 // ----------------------------------------
 // Solaris
 typedef unsigned short port_t;
@@ -119,10 +122,10 @@ namespace sockets {
 #  error FreeBSD versions prior to 400014 does not support ipv6
 # endif
 
-#elif defined MACOSX 
+#elif defined MACOSX
 // ----------------------------------------
 // Mac App X
-#include <string.h>
+//#include <string.h>
 #ifdef __DARWIN_UNIX03
 typedef unsigned short port_t;
 #else
@@ -143,7 +146,7 @@ namespace sockets {
 #define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
 
-#elif defined _WIN32 
+#elif defined _WIN32
 // ----------------------------------------
 // Win32
 #ifdef _MSC_VER
@@ -170,7 +173,7 @@ class WSAInitializer // Winsock Initializer
 {
 public:
    WSAInitializer() {
-      if (WSAStartup(0x101,&m_wsadata)) 
+      if (WSAStartup(0x101,&m_wsadata))
       {
          exit(-1);
       }
@@ -184,9 +187,9 @@ private:
 
 } // namespace sockets
 
-#else 
+#else
 // ----------------------------------------
-// LINUX 
+// LINUX
 typedef unsigned long ipaddr_t;
 typedef unsigned short port_t;
 namespace sockets {
@@ -201,7 +204,7 @@ namespace sockets
 {
    /** List type containing file descriptors. */
    class CLASS_DECL_ca socket_id_list :
-      public ::comparable_eq_list<SOCKET>
+      public ::comparable_list<SOCKET>
    {
    };
 
@@ -222,6 +225,8 @@ namespace sockets
 #include "exception.h"
 #include "ipv4_address.h"
 #include "ipv6_address.h"
+#include "sockets_ssl_client_context.h"
+#include "sockets_ssl_client_context_map.h"
 #include "socket.h"
 #include "stream_socket.h"
 #include "sctp_socket.h"
@@ -248,6 +253,7 @@ namespace sockets
 #include "listen_socket.h"
 #include "http_tunnel.h"
 #include "http_client_socket.h"
+#include "http_request_socket.h"
 #include "http_get_socket.h"
 #include "http_post_socket.h"
 #include "http_put_socket.h"
@@ -280,11 +286,15 @@ namespace sockets
 #include "resolv_server.h"
 
 #include "sockets_http_file.h"
+#include "sockets_http_batch_file.h"
 
 #include "StdLog.h"
 #include "trace_log.h"
 
 #include "sync_socket_handler.h"
+
+
+
 
 #include "application_interface.h"
 

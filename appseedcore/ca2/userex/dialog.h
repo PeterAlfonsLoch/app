@@ -1,7 +1,6 @@
 #pragma once
 
 class CLASS_DECL_ca dialog :
-   virtual public form_view,
    virtual public ::user::form_callback
 {
 public:
@@ -16,7 +15,7 @@ public:
 
    virtual void on_position_parent_frame();
 
-   virtual void EndModalLoop(int nResult);
+   virtual void EndModalLoop(id nResult);
 
    virtual bool show(const char * pszMatter, gen::property_set & propertyset);
    

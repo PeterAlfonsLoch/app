@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace windesk
 {
+
 
    menu_right_view::menu_right_view(::ca::application * papp) :
       ca(papp),
@@ -11,5 +13,9 @@ namespace windesk
 
    void menu_right_view::OnDraw(::ca::graphics * pdc)
    {
+      UNREFERENCED_PARAMETER(pdc);
    }
+
+
 } // namespace windesk
+

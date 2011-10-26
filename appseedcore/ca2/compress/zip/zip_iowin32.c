@@ -13,13 +13,6 @@
 #include "ioapi.h"
 #include "iowin32.h"
 
-#ifndef INVALID_HANDLE_VALUE
-#define INVALID_HANDLE_VALUE (0xFFFFFFFF)
-#endif
-
-#ifndef INVALID_SET_FILE_POINTER
-#define INVALID_SET_FILE_POINTER ((DWORD)-1)
-#endif
 
 voidpf ZCALLBACK win32_open_file_func OF((
    voidpf opaque,

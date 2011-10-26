@@ -10,9 +10,8 @@ namespace userbase
       public ::user::interaction,
       public menu_base
    {
-      friend class ::user::front_end;
-
    public:
+
 
       enum e_message
       {
@@ -53,9 +52,6 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnEnable)
 
 
-      virtual ::ca::application * get_app();
-      
-   protected:
       bool _TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent, menu * pmenuParent);
       ::user::interaction *     m_hwndParent;
       menu *        m_pmenuParent;
@@ -78,7 +74,7 @@ namespace userbase
       BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnShowWindow)
    };

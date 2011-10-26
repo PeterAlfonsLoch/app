@@ -55,7 +55,9 @@ extern "C" {
 #include "ioapi.h"
 #endif
 
-#ifdef _CA_DLL
+#ifdef LINUX
+#define CLASS_DECL_ca
+#elif defined(_CA_DLL)
 #define CLASS_DECL_ca _declspec(dllexport)
 #else
 #define CLASS_DECL_ca _declspec(dllimport)

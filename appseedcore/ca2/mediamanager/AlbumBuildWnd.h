@@ -27,6 +27,8 @@ namespace  mediamanager
       void Initialize(AlbumBuild * palbumbuild);
       AlbumBuild * GetAlbumBuild();
       void KickBuild();
+      
+      using ::ex1::request_interface::create;
       using ::user::interaction::create;
       bool create();
 

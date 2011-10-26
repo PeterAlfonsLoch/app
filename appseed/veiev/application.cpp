@@ -13,7 +13,7 @@ namespace veiev
    {
       m_strAppName            = "veiev";
       m_strBaseSupportId      = "votagus_ca2_veiev";
-      //m_strLicense            = "veiev";
+      m_strLicense            = "veiev";
       m_eexclusiveinstance    = ::radix::ExclusiveInstanceLocal;
 
       m_pveievlist            = NULL;
@@ -31,38 +31,29 @@ namespace veiev
    bool application::initialize_instance()
    {
 
-      factory().creatable_small < document >();
-      factory().creatable_small < frame >();
-      factory().creatable_small < veiev::view >();
-      factory().creatable_small < veiev::pane_view >();
-      factory().creatable_small < primary_command_view >();
-      factory().creatable_small < second_command_view >();
-      factory().creatable_small < simple_tree_view > ();
-      factory().creatable_small < veiev::right_split_view >();
-      factory().creatable_small < veiev::list >();
-      factory().creatable_small < veiev::main_view >();
-      factory().creatable_small < veiev::right_pane_view >();
-      factory().creatable_small < veiev::right_view >();
-      factory().creatable_small < veiev::tree >();
+      System.factory().creatable_small < document >();
+      System.factory().creatable_small < frame >();
+      System.factory().creatable_small < veiev::view >();
+      System.factory().creatable_small < veiev::pane_view >();
+      System.factory().creatable_small < primary_command_view >();
+      System.factory().creatable_small < second_command_view >();
+      System.factory().creatable_small < simple_tree_view > ();
+      System.factory().creatable_small < veiev::right_split_view >();
+      System.factory().creatable_small < veiev::list >();
+      System.factory().creatable_small < veiev::main_view >();
+      System.factory().creatable_small < veiev::right_pane_view >();
+      System.factory().creatable_small < veiev::right_view >();
+      System.factory().creatable_small < veiev::tree >();
 
 
-/*      factory().creatable_small < veiev::tree_view >();
-      ;
-      factory().creatable_small < veiev::list_view >();*/
-
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
-      mail::application::InitializeMail();
+      ::tesseract::mail::application::InitializeMail();
 
-
-      gen::command_line cmdInfo;
-      _001ParseCommandLine(cmdInfo);
-
-      SetRegistryKey("ca2core");
 
 	   ::userbase::single_document_template* pDocTemplate;
 
@@ -70,9 +61,9 @@ namespace veiev
 	   pDocTemplate = new ::userbase::single_document_template(
          this,
 		   "veiev/frame",
-		   &typeid(document),
-		   &typeid(frame),
-         &typeid(veiev::main_view));
+		   ::ca::get_type_info < document > (),
+		   ::ca::get_type_info < frame > (),
+         ::ca::get_type_info < veiev::main_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplateVeiev = pDocTemplate;
 
@@ -80,45 +71,35 @@ namespace veiev
 	   pDocTemplate = new ::userbase::single_document_template(
          this,
 		   "veiev/frame",
-		   &typeid(document),
-		   &typeid(frame),
-		   &typeid(pane_view));
+		   ::ca::get_type_info < document > (),
+		   ::ca::get_type_info < frame > (),
+		   ::ca::get_type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
       return true;
    }
 
-   int application::exit_instance()
-   {
-      return 0;
-   }
 
-   bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-		
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
-      return gen::application::_001OnCmdMsg(pcmdmsg);
-   }
 
-   void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
-   {
-      UNREFERENCED_PARAMETER(pdata);
-      if(itema.get_size() > 0)
+      if(m_ptemplate_html->get_document() == NULL)
+      {
+         m_ptemplate_html->open_document_file(pcreatecontext);
+      }
+
+      if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
          ::ShellExecuteW(
             NULL, 
             L"open", 
-            gen::international::utf8_to_unicode(itema[0].m_strPath),
+            gen::international::utf8_to_unicode(pcreatecontext->m_spCommandLine->m_varFile),
             NULL,
-            gen::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
+            gen::international::utf8_to_unicode(System.dir().name(pcreatecontext->m_spCommandLine->m_varFile)),
             SW_SHOW);
       }
-   
-   }
 
-   void application::_001OnFileNew()
-   {
-      m_ptemplate_html->open_document_file(NULL, TRUE, Application.m_puiInitialPlaceHolderContainer);
    }
 
 } // namespace veiev

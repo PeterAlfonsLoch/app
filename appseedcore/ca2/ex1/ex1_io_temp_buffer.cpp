@@ -18,17 +18,17 @@ namespace ex1
 
    static LPCTSTR kTempFilePrefixString = TEXT("7zt");
 
-   temp_io_buffer::temp_io_buffer(): _buf(NULL) { }
+   temp_io_buffer::temp_io_buffer()
+   { 
+   }
 
-   void temp_io_buffer::Create()
+   void temp_io_buffer::create()
    {
-      if (!_buf)
-         _buf = new Byte[kTempBufSize];
+      m_memory.allocate(kTempBufSize);
    }
 
    temp_io_buffer::~temp_io_buffer()
    {
-      delete []_buf;
    }
 
    void temp_io_buffer::InitWriting()
@@ -39,7 +39,7 @@ namespace ex1
       _crc = CRC_INIT_VAL;
    }
 
-   bool temp_io_buffer::WriteToFile(const void *data, uint32 size)
+   bool temp_io_buffer::write_to_file(const void *data, ::primitive::memory_size size)
    {
       if (size == 0)
          return true;
@@ -56,22 +56,22 @@ namespace ex1
       return (processed == size);
    }
 
-   bool temp_io_buffer::Write(const void *data, uint32 size)
+   bool temp_io_buffer::write(const void *data, ::primitive::memory_size size)
    {
       if (_bufPos < kTempBufSize)
       {
-         uint32 cur = MyMin(kTempBufSize - _bufPos, size);
-         memcpy(_buf + _bufPos, data, cur);
+         uint32 cur = min(kTempBufSize - _bufPos, size);
+         memcpy(m_memory.get_data() + _bufPos, data, cur);
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;
          size -= cur;
          data = ((const Byte *)data) + cur;
          _size += cur;
       }
-      return WriteToFile(data, size);
+      return write_to_file(data, size);
    }
 
-   HRESULT temp_io_buffer::WriteToStream(writer *stream)
+   HRESULT temp_io_buffer::write_to_stream(writer *stream)
    {
       _outFile->close();
 
@@ -80,8 +80,9 @@ namespace ex1
 
       if (_bufPos > 0)
       {
-         RINOK(WriteStream(stream, _buf, _bufPos));
-         crc = crc_update(crc, _buf, _bufPos);
+         RINOK(WriteStream(stream, m_memory.get_data(), (::primitive::memory_size) _bufPos));
+         //WriteStream(stream, m_memory.get_data(), _bufPos);
+         crc = crc_update(crc, m_memory.get_data(), (::primitive::memory_size) _bufPos);
          size += _bufPos;
       }
       if (_tempFileCreated)
@@ -93,21 +94,21 @@ namespace ex1
          {
             uint32 processed;
             throw "should implement below ReadPart from InFile";
-            /*if (!inFile.ReadPart(_buf, kTempBufSize, processed))
+            /*if (!inFile.ReadPart(m_memory.get_data(), kTempBufSize, processed))
                return E_FAIL;*/
             if (processed == 0)
                break;
-            RINOK(WriteStream(stream, _buf, processed));
-            crc = crc_update(crc, _buf, processed);
+            RINOK(WriteStream(stream, m_memory.get_data(), processed));
+            crc = crc_update(crc, m_memory.get_data(), processed);
             size += processed;
          }
       }
       return (_crc == crc && size == _size) ? S_OK : E_FAIL;
    }
 
-   void temp_io_writer::write(const void *data, DWORD_PTR size, DWORD_PTR * processed)
+   void temp_io_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processed)
    {
-      if (!_buf->Write(data, size))
+      if (!_buf->write(data, size))
       {
          if (processed != NULL)
             *processed = 0;

@@ -1,8 +1,5 @@
 #include "StdAfx.h"
 
-
-#include "ccvotagus/source/spalib/machine_event_data.h"
-
 class CLASS_DECL_ca plex_heap     // warning var length structure
 {
 public:
@@ -76,10 +73,10 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
    ASSERT(nAllocSize >= sizeof(node));
    ASSERT(nBlockSize > 1);
-   
+
    if (nAllocSize < sizeof(node))
       nAllocSize = sizeof(node);
-   if (nBlockSize <= 1)
+   if (nBlockSize <= 0)
       nBlockSize = 64;
 
    m_nAllocSize = nAllocSize;
@@ -130,12 +127,12 @@ void * plex_heap_alloc::Alloc()
 
 void plex_heap_alloc::Free(void * p)
 {
-   
+
    if(p == NULL)
       return;
-   
+
    p = &((byte *)p)[-16];
-   
+
    if(p == NULL)
       return;
 
@@ -151,54 +148,54 @@ void plex_heap_alloc::Free(void * p)
 
 plex_heap_alloc_array::plex_heap_alloc_array()
 {
-   m_hmutex = ::CreateMutex(NULL, FALSE, NULL);
 
-   add(new plex_heap_alloc(8));
-   add(new plex_heap_alloc(16));
-   add(new plex_heap_alloc(24));
-   add(new plex_heap_alloc(32));
-   add(new plex_heap_alloc(48));
-   add(new plex_heap_alloc(64));
-   add(new plex_heap_alloc(96));
-   add(new plex_heap_alloc(128));
-   add(new plex_heap_alloc(192));
-   add(new plex_heap_alloc(256));
+   add(new plex_heap_alloc(8, 256));
+   add(new plex_heap_alloc(16, 256));
+   add(new plex_heap_alloc(24, 256));
+   add(new plex_heap_alloc(32, 256));
+   add(new plex_heap_alloc(48, 256));
+
+   add(new plex_heap_alloc(64, 128));
+   add(new plex_heap_alloc(96, 128));
+   add(new plex_heap_alloc(128, 128));
+   add(new plex_heap_alloc(192, 128));
+   add(new plex_heap_alloc(256, 128));
+
    add(new plex_heap_alloc(384));
    add(new plex_heap_alloc(512));
    add(new plex_heap_alloc(768));
    add(new plex_heap_alloc(1024));
    add(new plex_heap_alloc(1024 * 2));
-   add(new plex_heap_alloc(1024 * 4));
-   add(new plex_heap_alloc(1024 * 8));
-   add(new plex_heap_alloc(1024 * 16));
-   add(new plex_heap_alloc(1024 * 32));
-   add(new plex_heap_alloc(1024 * 64));
-   add(new plex_heap_alloc(1024 * 128, 16));
-   add(new plex_heap_alloc(1024 * 256, 16));
-   add(new plex_heap_alloc(1024 * 512, 16));
-   add(new plex_heap_alloc(1024 * 1024, 16));
-   add(new plex_heap_alloc(1024 * 1024 * 2, 8));
-   add(new plex_heap_alloc(1024 * 1024 * 4, 4));
-   add(new plex_heap_alloc(1024 * 1024 * 8, 2));
+
+   add(new plex_heap_alloc(1024 * 4, 32));
+   add(new plex_heap_alloc(1024 * 8, 16));
+   add(new plex_heap_alloc(1024 * 16, 8));
+   add(new plex_heap_alloc(1024 * 32, 4));
+   add(new plex_heap_alloc(1024 * 64, 2));
+
+   add(new plex_heap_alloc(1024 * 128, 1));
+   add(new plex_heap_alloc(1024 * 192, 1));
+   add(new plex_heap_alloc(1024 * 256, 1));
+   add(new plex_heap_alloc(1024 * 384, 1));
+   add(new plex_heap_alloc(1024 * 512, 1));
+   add(new plex_heap_alloc(1024 * 768, 1));
+   add(new plex_heap_alloc(1024 * 1024, 1));
+   add(new plex_heap_alloc(1024 * 1024 * 2, 1));
 
 }
 
 plex_heap_alloc_array::~plex_heap_alloc_array()
 {
+   mutex_lock lock(&m_mutex, true);
+   for(int i = 0; i < this->get_count(); i++)
    {
-      mutex_lock lock(m_hmutex);
-      for(int i = 0; i < get_count(); i++)
-      {
-         delete element_at(i);
-      }
+      delete this->element_at(i);
    }
-   ::CloseHandle(m_hmutex);
-   m_hmutex = NULL;
 }
 
 void * plex_heap_alloc_array::alloc(size_t nAllocSize)
 {
-   mutex_lock lock(m_hmutex);
+   mutex_lock lock(&m_mutex, true);
    plex_heap_alloc * palloc = find(nAllocSize);
    if(palloc != NULL)
    {
@@ -212,7 +209,7 @@ void * plex_heap_alloc_array::alloc(size_t nAllocSize)
 
 void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
 {
-   mutex_lock lock(m_hmutex);
+   mutex_lock lock(&m_mutex, true);
    plex_heap_alloc * palloc = find(nAllocSize);
    if(palloc != NULL)
    {
@@ -227,7 +224,7 @@ void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
 
 void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
 {
-   mutex_lock lock(m_hmutex);
+   mutex_lock lock(&m_mutex, true);
    plex_heap_alloc * pallocOld = find(nOldAllocSize);
    plex_heap_alloc * pallocNew = find(nNewAllocSize);
    if(pallocOld == NULL && pallocNew == NULL)
@@ -256,20 +253,20 @@ void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t 
 
 plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
-   mutex_lock lock(m_hmutex);
+   mutex_lock lock(&m_mutex, true);
    size_t nFoundSize = MAX_DWORD_PTR;
    int iFound = -1;
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
-      if(element_at(i)->m_nAllocSize >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || element_at(i)->m_nAllocSize < nFoundSize))
+      if(this->element_at(i)->m_nAllocSize >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->m_nAllocSize < nFoundSize))
       {
          iFound = i;
-         nFoundSize = element_at(i)->m_nAllocSize;
+         nFoundSize = this->element_at(i)->m_nAllocSize;
          break;
       }
    }
    if(iFound >= 0)
-      return element_at(iFound);
+      return this->element_at(iFound);
    else
       return NULL;
 }

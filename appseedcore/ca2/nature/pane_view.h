@@ -19,10 +19,10 @@ namespace nature
       using ::userbase::tab_view::on_show_view;
 #endif
 
-      virtual void on_create_view(view_data * pdata);
+      virtual void on_create_view(::user::view_creator_data * pdata);
       virtual void on_show_view() ;
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       void on_update(::view * pview, LPARAM lHint, ::radix::object* pHint);
 

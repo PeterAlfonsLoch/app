@@ -17,8 +17,8 @@ namespace backup
 	   virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      void on_create_view(view_data * pviewdata);
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void on_create_view(::user::view_creator_data * pcreatordata);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
 
 	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 

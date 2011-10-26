@@ -34,7 +34,7 @@ namespace windesk
       visual::dib_sp                   m_dibBk;
       
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       void message_window_message_handler(gen::signal_object * pobj);
 

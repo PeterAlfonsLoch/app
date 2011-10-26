@@ -17,9 +17,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="service.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="md5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,6 +27,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="md5_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pane_view_update_hint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -46,9 +49,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="service.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="md5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,7 +63,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="md5.def">
+    <None Include="app_md5.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

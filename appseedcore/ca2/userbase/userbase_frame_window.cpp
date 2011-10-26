@@ -56,11 +56,11 @@ namespace userbase
    }
 
 
-   void frame_window::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void frame_window::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
-      ::frame_window::_001InstallMessageHandling(pinterface);
-      frame_window_interface::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
+      ::frame_window::install_message_handling(pinterface);
+      frame_window_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame_window::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &frame_window::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI, pinterface, this, &frame_window::_001OnIdleUpdateCmdUI);
@@ -139,6 +139,10 @@ namespace userbase
    void frame_window::_001OnCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
+
+      if(pobj->previous())
+         return;
+
    }
 
 
@@ -339,19 +343,9 @@ namespace userbase
 
 
 
-
-
-
-
-   ::ca::application * frame_window::get_app()
-   {
-      return m_papp;
-   }
-
-
    bool frame_window::BaseOnControlEvent(::user::control_event * pevent)
    {
-      if(m_wndframework.BaseOnControlEvent(pevent))
+      if(m_workset.BaseOnControlEvent(pevent))
          return true;
       return ::frame_window::BaseOnControlEvent(pevent);
    }
@@ -359,7 +353,7 @@ namespace userbase
 
    bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
-      if(m_wndframework._001OnCmdMsg(pcmdmsg))
+      if(m_workset._001OnCmdMsg(pcmdmsg))
          return true;
       return ::frame_window::_001OnCmdMsg(pcmdmsg);
    }

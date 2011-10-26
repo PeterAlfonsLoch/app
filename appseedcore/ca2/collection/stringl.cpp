@@ -16,12 +16,12 @@ void stringl::implode(string & str, const char * lpcszSeparator, index start, co
    string strSeparator(lpcszSeparator);
    if(start < 0)
    {
-      start += get_size();
+      start += this->get_size();
    }
    index last;
    if(count < 0)
    {
-      last = get_size() + count;
+      last = this->get_size() + count;
    }
    else
    {
@@ -54,12 +54,12 @@ void stringl::reverse_implode(string & str, const char * lpcszSeparator, index s
    string strSeparator(lpcszSeparator);
    if(start < 0)
    {
-      start += get_size();
+      start += this->get_size();
    }
    index last;
    if(count < 0)
    {
-      last = get_size() + count;
+      last = this->get_size() + count;
    }
    else
    {
@@ -114,7 +114,7 @@ void stringl::add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, B
 }
 
 
-void stringl::write(ex1::output_stream & ostream)
+void stringl::write(ex1::byte_output_stream & ostream)
 {
    ostream << m_nCount;
    POSITION pos = get_head_position();
@@ -124,7 +124,7 @@ void stringl::write(ex1::output_stream & ostream)
    }
 }
 
-void stringl::read(ex1::input_stream & istream)
+void stringl::read(ex1::byte_input_stream & istream)
 {
    int iSize;
    istream >> iSize;

@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace window_frame
 {
 
@@ -24,21 +25,64 @@ namespace window_frame
          ButtonNotifyIcon,
       };
 
-   /*
-      class CLASS_DECL_ca ButtonIdSpace :
-         public BaseIdSpaceHolder
-      {
-      public:
-         ButtonIdSpace();
-      };
-   */
+
+      ::ca::brush_sp                m_brushControlBoxBack;
+      ::ca::brush_sp                m_brushControlBoxBackSel;
+      ::ca::brush_sp                m_brushControlBoxBackFocus;
+      ::ca::brush_sp                m_brushControlBoxBackDisabled;
+
+      ::ca::pen_sp                  m_penControlBoxBack;
+      ::ca::pen_sp                  m_penControlBoxBackSel;
+      ::ca::pen_sp                  m_penControlBoxBackFocus;
+      ::ca::pen_sp                  m_penControlBoxBackDisabled;
+      
+      COLORREF                      m_crControlBoxFore;
+      COLORREF                      m_crControlBoxForeSel;
+      COLORREF                      m_crControlBoxForeFocus;
+      COLORREF                      m_crControlBoxForeDisabled;
+
+      ::ca::dibmap                  m_dibmap;
+
+      ::ca::font_sp                 m_fontMarlett;
+
+      ::user::front_end_schema      m_schema;
+
+      ::ca::type_info                                                                     m_typeinfoControlBoxButton;
+
+
+      ::collection::map < EButton, EButton, ControlBoxButton *, ControlBoxButton * >      m_buttonmap;
+
+      WorkSet *                                                                           m_pworkset;
+
+      ::collection::map < EButton, EButton, id, id >                                      m_mapButtonId;
+      ::collection::map < id, id, EButton, EButton >                                      m_mapIdButton;
+
+      ::collection::map < EButton, EButton, bool, bool >                                  m_buttonmapPresent;
+
+
+      FrameSchema(::ca::application * papp);
+      virtual ~FrameSchema();
+
+
+      virtual COLORREF get_border_main_body_color();
+
 
       virtual void OnMove(::user::interaction * pwnd);
       virtual void SetControlBoxButtonId(EButton ebutton, id id);
       virtual id GetControlId(EButton ebutton);
       virtual EButton GetButtonId(id id);
 
-      virtual int UpdateControlBox() = 0;
+      virtual ControlBoxButton * get_button(EButton ebutton);
+      virtual bool create_button(EButton ebutton);
+      virtual bool GetControlBoxButtonCaption(EButton ebutton, string & str);
+      virtual bool CreateButtons();
+      virtual int UpdateControlBox();
+      virtual void UpdateControlBoxButton(EButton ebutton);
+      virtual void UpdateControlBoxButtons();
+
+
+      virtual bool has_button(EButton ebutton);
+      virtual void hide_button(EButton ebutton, bool bHide = true);
 
       virtual void OnAttach();
       virtual void _000OnBeforeMove(LPCRECT lpcrectWindow);
@@ -52,19 +96,14 @@ namespace window_frame
       virtual void OnInitializeAppearance();
       virtual void OnNcCalcSize(LPRECT lprect);
       virtual void OnAppearanceModeChange();
-      DECL_GEN_VSIGNAL(_000OnDraw)
-      DECL_GEN_VSIGNAL(_000OnNcDraw);
-      FrameSchema(::ca::application * papp);
-      virtual ~FrameSchema();
+      
+      
+      virtual void _001OnDraw(::ca::graphics * pca);
 
 
       virtual void Glass(::ca::graphics * pdc, LPRECT lprect);
       virtual void ColorGlass(::ca::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha);
 
-      WorkSet *      m_pworkset;
-
-      ::collection::map < EButton, EButton, id, id > m_mapButtonId;
-      ::collection::map < id, id, EButton, EButton > m_mapIdButton;
 
       // point should be in screen coordinates
 
@@ -83,4 +122,7 @@ namespace window_frame
 
    };
 
+
 } // namespace window_frame
+
+

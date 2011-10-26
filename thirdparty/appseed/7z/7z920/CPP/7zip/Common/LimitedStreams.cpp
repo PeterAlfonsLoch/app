@@ -115,7 +115,7 @@ STDMETHODIMP CClusterInStream::Seek(Int64 offset, UInt32 seekOrigin, UInt64 *new
 }
 
 
-HRESULT CreateLimitedInStream(IInStream *inStream, UInt64 pos, UInt64 size, ISequentialInStream **resStream)
+HRESULT create_limited_input_stream(IInStream *inStream, UInt64 pos, UInt64 size, ISequentialInStream **resStream)
 {
   *resStream = 0;
   CLimitedInStream *streamSpec = new CLimitedInStream;

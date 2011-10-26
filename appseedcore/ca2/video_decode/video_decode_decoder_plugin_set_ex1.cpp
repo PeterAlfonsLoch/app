@@ -18,7 +18,7 @@ namespace video_decode
    {
       stringa straTitle;
       System.dir().ls_pattern(System.dir().ca2module(), "video_decode_*.dll", NULL, &straTitle);
-      
+
 
       stringa straPreferred;
       //straPreferred.add("video_decode_libmpg123.dll");

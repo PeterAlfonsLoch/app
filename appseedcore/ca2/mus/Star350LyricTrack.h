@@ -25,11 +25,11 @@ public:
 
 public:
    VMSRESULT seek_begin();
-   imedia::position GetPosition();
+   imedia::position get_position();
    virtual VMSRESULT GetNextEventPosition(imedia::position *tkPosition, imedia::position tkMax);
    virtual int GetFlags();
    virtual VMSRESULT GetEvent(
-      MidiEventBase * pEvent,
+      midi_event_base * pEvent,
       imedia::position   tkMax,
       BOOL   bTkMaxInclusive);
 
@@ -38,7 +38,7 @@ public:
    int               m_iDelay; // in milliseconds
 
 protected:
-   MidiTrackV008     m_trackWorkStorage;
+   midi_track_v008     m_trackWorkStorage;
    int               m_iFlags;
    imedia::position             m_tkPosition;
    int               m_iCurrentEvent;

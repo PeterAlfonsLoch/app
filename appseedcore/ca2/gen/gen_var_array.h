@@ -3,7 +3,7 @@
 #include "collection/stringa.h"
 
 class CLASS_DECL_ca var_array : 
-   public array_ptr_alloc < var >
+   public ::ex1::byte_serializable_array < array_ptr_alloc < var > >
 {
 public:
    var_array();
@@ -48,4 +48,9 @@ public:
    var_array & operator = (const int_array & inta);
    var_array & operator = (const gen::property_set & propset);
    var_array & operator = (const var_array & vara);
+
+
+   void parse_json(const char * & pszJson);
+   void parse_json(const char * & pszJson, const char * pszEnd);
+
 };

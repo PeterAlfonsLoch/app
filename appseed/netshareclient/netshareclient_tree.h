@@ -26,7 +26,7 @@ namespace netshareclient
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
       void _001OnOpenItem(::ex1::tree_item *pdataitem);
 

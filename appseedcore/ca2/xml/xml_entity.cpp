@@ -40,25 +40,25 @@ namespace xml
 
    entity * entities::get_entity( int m_chEntity )
    {
-      for( int i = 0 ; i < get_size(); i ++ )
+      for( int i = 0 ; i < this->get_size(); i ++ )
       {
-         if( element_at(i).m_chEntity == m_chEntity )
-            return (class entity *)(&element_at(i));
+         if( this->element_at(i).m_chEntity == m_chEntity )
+            return (class entity *)(&this->element_at(i));
       }
       return NULL;
    }
 
    entity * entities::get_entity(const char * pszEntity)
    {
-      for( int i = 0 ; i < get_size(); i ++ )
+      for( int i = 0 ; i < this->get_size(); i ++ )
       {
-         const char * pszRef = element_at(i).m_strRef;
+         const char * pszRef = this->element_at(i).m_strRef;
          const char * psz = pszEntity;
          while(*pszRef)
             if(*pszRef++ != *psz++)
                break;
          if(!*pszRef)   // found!
-            return (class entity *)(&element_at(i));
+            return (class entity *)(&this->element_at(i));
       }
       return NULL;
    }
@@ -91,9 +91,9 @@ namespace xml
          ps++;
       }
       *ps = '\0';
-      
+
       // total copied characters
-      return ps-str;   
+      return ps-str;
    }
 
    int entities::entity_to_ref( const char * str, char * estr, int estrlen )
@@ -116,7 +116,7 @@ namespace xml
          ps++;
       }
       *pes = '\0';
-      
+
       // total copied characters
       return pes-estr;
    }

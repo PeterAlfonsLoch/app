@@ -33,14 +33,15 @@ namespace libepp
 {
 
    /// EPP DomainCreate Class
-   class DomainCreate : public Action
+   class DomainCreate : 
+      public Action
    {
    public:
       /// Constructor
-      DomainCreate(const ActionType type = DOMAIN_CREATE) : Action(type)
+      DomainCreate(::ca::application * papp, const ActionType type = DOMAIN_CREATE) : Action(type)
       {
          if (type == DOMAIN_CREATE) {
-            _command = pointer_object<DomainCreateCommand>(new DomainCreateCommand());
+            _command = pointer_object<DomainCreateCommand>(new DomainCreateCommand(papp));
             _response = pointer_object<DomainCreateResponse>(new DomainCreateResponse());
          }
       }

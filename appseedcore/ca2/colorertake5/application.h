@@ -1,9 +1,9 @@
 #pragma once
 
 
-
 namespace colorertake5
 {
+
 
    class CLASS_DECL_ca application :
       virtual public ca2::application

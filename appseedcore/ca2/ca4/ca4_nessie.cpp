@@ -26,7 +26,6 @@ namespace ca4
       return str;
    }
 
-
    string file::nessie(const char * psz)
    {
       ex1::filesp spfile(get_app());
@@ -40,12 +39,17 @@ namespace ca4
          gen::del(pe);
          return "";
       }
+      return nessie(spfile);
+   }
+
+   string file::nessie(ex1:: file * pfile)
+   {
       int iBufSize = 1024 * 256;
       unsigned char * buf = new unsigned char[iBufSize];
       NESSIEstruct ns;
       NESSIEinit(&ns);
-      int iRead;
-      while((iRead = spfile->read(buf, iBufSize)) > 0)
+      uint64_t iRead;
+      while((iRead = pfile->read(buf, iBufSize)) > 0)
       {
          NESSIEadd(buf, 8*iBufSize, &ns);
       }

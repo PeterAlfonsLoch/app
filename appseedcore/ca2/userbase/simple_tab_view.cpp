@@ -67,10 +67,10 @@ void simple_tab_view::_001OnDraw(::ca::graphics * pdc)
    ::user::tab::_001OnDraw(pdc);
 }
 
-void simple_tab_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_tab_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::view::_001InstallMessageHandling(pinterface);
-   ::user::tab::_001InstallMessageHandling(pinterface);
+   ::userbase::view::install_message_handling(pinterface);
+   ::user::tab::install_message_handling(pinterface);
 }
 
 

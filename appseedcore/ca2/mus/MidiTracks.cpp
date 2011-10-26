@@ -1,11 +1,11 @@
 ﻿#include "StdAfx.h"
-#include <math.h> 
+#include <math.h>
 
-BYTE MidiTracks::m_paramEventNoteOnPositionCB[] = {EVENT_ID_NOTE_ON};
-int MidiTracks::m_iparamEventNoteOnPositionCB = 1;
+BYTE midi_tracks::m_paramEventNoteOnPositionCB[] = {EVENT_ID_NOTE_ON};
+int midi_tracks::m_iparamEventNoteOnPositionCB = 1;
 
-MidiTracks::MidiTracks(::ca::application * papp, ::mus::midi::file * pFile) :
-   ca(papp), 
+midi_tracks::midi_tracks(::ca::application * papp, ::mus::midi::file * pFile) :
+ca(papp),
    m_tracka(papp)
 {
    m_tracka.Initialize(this);
@@ -23,22 +23,22 @@ MidiTracks::MidiTracks(::ca::application * papp, ::mus::midi::file * pFile) :
 
 }
 
-MidiTracks::~MidiTracks()
+midi_tracks::~midi_tracks()
 {
 }
 
 #ifdef _DEBUG
 
-void MidiTracks::dump(dump_context & dumpcontext) const
+void midi_tracks::dump(dump_context & dumpcontext) const
 {
    dumpcontext << "\n";
    dumpcontext << "\n";
-   dumpcontext << "MidiTracks";
+   dumpcontext << "midi_tracks";
    dumpcontext << "\n";
    for(int i = 0; i < GetMidiTrackCount(); i++)
    {
-      MidiTrack * ptrack = (MidiTrack *) MidiTrackAt(i);
-      dumpcontext << "MidiTrack " << i;
+      midi_track * ptrack = (midi_track *) MidiTrackAt(i);
+      dumpcontext << "midi_track " << i;
       dumpcontext << "\n";
       ptrack->dump(dumpcontext);
    }
@@ -74,7 +74,7 @@ void MidiTracks::dump(dump_context & dumpcontext) const
 * information about one event in the file will be returned in pEvent.
 *
 * Merging data from all tracks into one stream is performed here.
-* 
+*
 * pEvent->tkDelta will contain the tick delta for the event.
 *
 * pEvent->abEvent will contain a description of the event.
@@ -128,89 +128,88 @@ void MidiTracks::dump(dump_context & dumpcontext) const
 *  Mark and return end_of_file
 *
 *****************************************************************************/
-::mus::midi::e_file_result MidiTracks::GetNextEvent(
-   MidiEventV001 *&         pevent,
+::mus::midi::e_file_result midi_tracks::GetNextEvent(
+   midi_event_v001 *&         pevent,
    imedia::position                   tkMax,
    BOOL                     bTkMaxInclusive,
    bool                    bOnlyMTrk,
    bool                    bOnlyMidiTrack)
 {
-   MidiTrackBase *      ptrack;
-   MidiTrackBase *      ptrkFound;
-   int                  idxTrackFound;
-   int                  idxTrack;
-//    imedia::position                   tkEventDelta;
-   imedia::position                tkEventPosition;
-   imedia::position                  tkEventFound;
-   int                  iRelTime;
-   int                  iMinRelTime;
-   ::mus::midi::e_file_result  mfr;
+   midi_track_base *             ptrack;
+   midi_track_base *             ptrkFound;
+   int                           idxTrackFound;
+   int                           idxTrack;
+   imedia::position              tkEventPosition;
+   imedia::position              tkEventFound;
+   imedia::position              iRelPosition;
+   imedia::position              iMinRelPosition;
+   ::mus::midi::e_file_result    mfr;
 
    ASSERT(pevent != NULL);
 
 
-    iMinRelTime = 0x7fffffff;
+   iMinRelPosition = 0x7fffffff;
    ptrkFound = NULL;
 
    for (idxTrack = 0; idxTrack < GetTrackCount(); idxTrack++)
-    {
+   {
       ptrack = TrackAt(idxTrack);
-        if(bOnlyMTrk)
-        {
-           if(ptrack->IsType(MidiTrackBase::TypeMidi))
-            {
-                MidiTrack * ptrackMidi = (MidiTrack *) ptrack;
-                CHUNKHDR FAR * pCh = (CHUNKHDR FAR *) ptrackMidi->GetTrackImage();
-                if (pCh->fourccType != FOURCC_MTrk)
-                 continue;
-            }
-        }
-        else if(bOnlyMidiTrack)
-        {
-           if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-                continue;
-        }
-            
-        if (ptrack->GetFlags().is_signalized(::mus::midi::EndOfTrack))
+      if(bOnlyMTrk)
+      {
+         if(ptrack->IsType(midi_track_base::TypeMidi))
+         {
+            midi_track * ptrackMidi = (midi_track *) ptrack;
+            CHUNKHDR FAR * pCh = (CHUNKHDR FAR *) ptrackMidi->GetTrackImage();
+            if (pCh->fourccType != FOURCC_MTrk)
+               continue;
+         }
+      }
+      else if(bOnlyMidiTrack)
+      {
+         if(!ptrack->IsType(midi_track_base::TypeMidi))
             continue;
-        
+      }
 
-        if(ptrack->GetPosition(tkEventPosition, tkMax) != VMSR_SUCCESS)
-        {
-            continue;
-        }
-        
-        iRelTime = tkEventPosition - m_tkPosition;
-      ASSERT(iRelTime >= 0);
+      if (ptrack->GetFlags().is_signalized(::mus::midi::EndOfTrack))
+         continue;
 
-        if (iRelTime < iMinRelTime)
-        {
-            iMinRelTime = iRelTime;
-            ptrkFound = ptrack;
+
+      if(ptrack->get_position(tkEventPosition, tkMax) != VMSR_SUCCESS)
+      {
+         continue;
+      }
+
+      iRelPosition = tkEventPosition - m_tkPosition;
+      ASSERT(iRelPosition >= 0);
+
+      if(iRelPosition < iMinRelPosition)
+      {
+         iMinRelPosition = iRelPosition;
+         ptrkFound = ptrack;
          idxTrackFound = idxTrack;
          tkEventFound = tkEventPosition;
-        }
-    }
+      }
+   }
 
-    if (ptrkFound == NULL)
-    {
-        return ::mus::midi::SEndOfFile;
-    }
+   if (ptrkFound == NULL)
+   {
+      return ::mus::midi::SEndOfFile;
+   }
 
-    ptrack = ptrkFound;
+   ptrack = ptrkFound;
 
-    imedia::position tkPosition = tkEventFound;
+   imedia::position tkPosition = tkEventFound;
 
-    iRelTime = tkPosition - m_tkPosition;
-   ASSERT(iRelTime >= 0);
-    if(iRelTime < 0)
-        iRelTime = 0;
+   iRelPosition = tkPosition - m_tkPosition;
+   ASSERT(iRelPosition >= 0);
+   if(iRelPosition < 0)
+      iRelPosition = 0;
 
    if(!GetFlags().is_signalized(::mus::midi::DisablePlayLevel1Operations))
    {
-      if(iRelTime != 0)
+      if(iRelPosition != 0)
       {
-         m_tkLevelLastUpdateInterval += iRelTime;
+         m_tkLevelLastUpdateInterval += iRelPosition;
          if(m_tkLevelLastUpdateInterval > 24)
          {
             m_tkLevelLastUpdateInterval = 0;
@@ -231,31 +230,31 @@ void MidiTracks::dump(dump_context & dumpcontext) const
    }
 
 
-   if(ptrack->get_type() == MidiTrackBase::TypeLyric)
-    {
-        ASSERT(true);
-    }
+   if(ptrack->get_type() == midi_track_base::TypeLyric)
+   {
+      ASSERT(true);
+   }
 
    if(bTkMaxInclusive)
    {
-      if (m_tkPosition + iMinRelTime > tkMax)
+      if (m_tkPosition + iMinRelPosition > tkMax)
       {
          return ::mus::midi::SReachedTkMax;
       }
    }
    else
    {
-      if (m_tkPosition + iMinRelTime >= tkMax)
+      if (m_tkPosition + iMinRelPosition >= tkMax)
       {
          return ::mus::midi::SReachedTkMax;
       }
    }
-    
+
    mfr = ptrack->GetEvent(pevent, tkMax, bTkMaxInclusive);
 
    if(pevent->GetParamSize() == 21)
    {
-//      AfxDebugBreak();
+      //      AfxDebugBreak();
    }
    if(mfr != ::mus::midi::Success)
       return mfr;
@@ -265,50 +264,50 @@ void MidiTracks::dump(dump_context & dumpcontext) const
 
 
 
-   
-   pevent->SetDelta(iRelTime);
-   m_tkPosition += iRelTime;
-    m_iCurrentTrack = idxTrackFound;
+
+   pevent->SetDelta(iRelPosition);
+   m_tkPosition += iRelPosition;
+   m_iCurrentTrack = idxTrackFound;
    ptrack->MoveNext();
-    return ::mus::midi::Success;
+   return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTracks::GetNextEvent(
-   MidiEventV001 *&    pevent,
-   imedia::position                tkMax, 
+::mus::midi::e_file_result midi_tracks::GetNextEvent(
+   midi_event_v001 *&    pevent,
+   imedia::position                tkMax,
    BOOL                 bTkMaxInclusive,
    int                  iTrack)
 {
-   MidiTrackBase *      ptrack;
-   MidiTrackBase *      ptrkFound;
-   int                  idxTrackFound;
-   int                  idxTrack;
-   imedia::position                tkEventPosition;
-   int                  iRelTime;
-   int                  iMinRelTime;
-   ::mus::midi::e_file_result  mfr;
+   midi_track_base *             ptrack;
+   midi_track_base *             ptrkFound;
+   int                           idxTrackFound;
+   int                           idxTrack;
+   imedia::position              tkEventPosition;
+   imedia::position              iRelPosition;
+   imedia::position              iMinRelPosition;
+   ::mus::midi::e_file_result    mfr;
 
    while(true)
    {
-      iMinRelTime = 0x7fffffff;
+      iMinRelPosition = 0x7fffffff;
       ptrkFound = NULL;
       for (idxTrack = 0; idxTrack < GetTrackCount(); idxTrack++)
       {
          ptrack = TrackAt(idxTrack);
-            
+
          if (ptrack->GetFlags().is_signalized(::mus::midi::EndOfTrack))
             continue;
 
-         if(ptrack->GetPosition(tkEventPosition, tkMax) != VMSR_SUCCESS)
+         if(ptrack->get_position(tkEventPosition, tkMax) != VMSR_SUCCESS)
          {
             continue;
          }
-        
-         iRelTime = tkEventPosition - m_tkPosition;
 
-         if(iRelTime < iMinRelTime)
+         iRelPosition = tkEventPosition - m_tkPosition;
+
+         if(iRelPosition < iMinRelPosition)
          {
-            iMinRelTime = iRelTime;
+            iMinRelPosition = iRelPosition;
             ptrkFound = ptrack;
             idxTrackFound = idxTrack;
          }
@@ -321,21 +320,21 @@ void MidiTracks::dump(dump_context & dumpcontext) const
 
       ptrack = ptrkFound;
 
-      if(ptrack->get_type() == MidiTrackBase::TypeLyric)
+      if(ptrack->get_type() == midi_track_base::TypeLyric)
       {
          ASSERT(true);
       }
 
       if(bTkMaxInclusive)
       {
-         if(m_tkPosition + iMinRelTime > tkMax)
+         if(m_tkPosition + iMinRelPosition > tkMax)
          {
             return ::mus::midi::SReachedTkMax;
          }
       }
       else
       {
-         if(m_tkPosition + iMinRelTime >= tkMax)
+         if(m_tkPosition + iMinRelPosition >= tkMax)
          {
             return ::mus::midi::SReachedTkMax;
          }
@@ -347,17 +346,17 @@ void MidiTracks::dump(dump_context & dumpcontext) const
       if(mfr != ::mus::midi::Success)
          return mfr;
 
-      imedia::position tkPosition = ptrack->GetPosition();
+      imedia::position tkPosition = ptrack->get_position();
 
-      iRelTime = tkPosition - m_tkPosition;
-      if(iRelTime < 0)
-         iRelTime = 0;
+      iRelPosition = tkPosition - m_tkPosition;
+      if(iRelPosition < 0)
+         iRelPosition = 0;
 
       if(pevent != NULL)
       {
-         pevent->SetDelta(iRelTime);
+         pevent->SetDelta(iRelPosition);
       }
-      m_tkPosition = m_tkPosition + iRelTime;
+      m_tkPosition = m_tkPosition + iRelPosition;
       m_iCurrentTrack = idxTrackFound;
       if(m_iCurrentTrack == iTrack)
          break;
@@ -381,128 +380,128 @@ void MidiTracks::dump(dump_context & dumpcontext) const
 //
 //
 //
-::mus::midi::e_file_result MidiTracks::GetNextEventTkPosition(
-    imedia::position *               pTkPosition,
-    imedia::position                   tkMax)
+::mus::midi::e_file_result midi_tracks::GetNextEventTkPosition(
+   imedia::position *               pTkPosition,
+   imedia::position                   tkMax)
 {
-   MidiTrackBase *         ptrack;
-   MidiTrackBase *         pTrkFound ;
+   midi_track_base *         ptrack;
+   midi_track_base *         pTrkFound ;
    int                  idxTrack;
-    //imedia::position               tkEventDelta;
-    imedia::position               tkEventPosition;
-    imedia::position               tkEventPositionFound;
-    imedia::position                   tkRelTime;
-    imedia::position                   tkMinRelTime;
-//    DWORD                   dwGot;
-    VMSRESULT               vmsr;
-    
+   //imedia::position               tkEventDelta;
+   imedia::position               tkEventPosition;
+   imedia::position               tkEventPositionFound;
+   imedia::position                   tkRelTime;
+   imedia::position                   tkMinRelTime;
+   //    DWORD                   dwGot;
+   VMSRESULT               vmsr;
 
-//    ASSERT(pSmf != NULL);
-    ASSERT(pTkPosition != NULL);
 
-    if (GetFlags().is_signalized(::mus::midi::EndOfTrack))
-    {
-        return ::mus::midi::SEndOfFile;
-    }
+   //    ASSERT(pSmf != NULL);
+   ASSERT(pTkPosition != NULL);
 
-    pTrkFound       = NULL;
-    tkMinRelTime    = MAX_TICKS;
-    
-    //for (ptrack = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrack++)
+   if (GetFlags().is_signalized(::mus::midi::EndOfTrack))
+   {
+      return ::mus::midi::SEndOfFile;
+   }
+
+   pTrkFound       = NULL;
+   tkMinRelTime    = MAX_TICKS;
+
+   //for (ptrack = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrack++)
    for (idxTrack = 0; idxTrack < GetTrackCount(); idxTrack++)
-    {
+   {
       ptrack = TrackAt(idxTrack);
-        if (ptrack->GetFlags().is_signalized(::mus::midi::EndOfTrack))
-            continue;
+      if (ptrack->GetFlags().is_signalized(::mus::midi::EndOfTrack))
+         continue;
 
-//      if(ptrack->GetState() == MidiTrack::StateOnDelta)
-//      {
-//         if(ptrack->ReadDelta() != ::mus::midi::Success)
-//         {
-//            TRACE("Hit end of track w/o end marker!\n");
-//               return ::mus::midi::InvalidFile;
-//         }
-//      }
-   
-//      tkEventDelta = ptrack->m_tkDelta;
-        
-        if (VMSR_SUCCESS != (vmsr = ptrack->GetPosition(tkEventPosition, tkMax)))
-        {
-            continue;
-        }
+      //      if(ptrack->GetState() == midi_track::StateOnDelta)
+      //      {
+      //         if(ptrack->ReadDelta() != ::mus::midi::Success)
+      //         {
+      //            TRACE("Hit end of track w/o end marker!\n");
+      //               return ::mus::midi::InvalidFile;
+      //         }
+      //      }
 
-       tkRelTime = tkEventPosition - m_tkPosition;
+      //      tkEventDelta = ptrack->m_tkDelta;
 
-        if (tkRelTime < tkMinRelTime)
-        {
-            tkMinRelTime = tkRelTime;
-            pTrkFound = ptrack;
-            tkEventPositionFound = tkEventPosition;
-        }
-    }
+      if (VMSR_SUCCESS != (vmsr = ptrack->get_position(tkEventPosition, tkMax)))
+      {
+         continue;
+      }
 
-    if (pTrkFound == NULL)
-    {
-        GetFlags().signalize(::mus::midi::EndOfTrack);
-        return ::mus::midi::SEndOfFile;
-    }
+      tkRelTime = tkEventPosition - m_tkPosition;
 
-    ptrack = pTrkFound;
+      if (tkRelTime < tkMinRelTime)
+      {
+         tkMinRelTime = tkRelTime;
+         pTrkFound = ptrack;
+         tkEventPositionFound = tkEventPosition;
+      }
+   }
 
-    if (m_tkPosition + tkMinRelTime > tkMax)
-    {
-        return ::mus::midi::SReachedTkMax;
-    }
-        
+   if (pTrkFound == NULL)
+   {
+      GetFlags().signalize(::mus::midi::EndOfTrack);
+      return ::mus::midi::SEndOfFile;
+   }
 
-//    dwGot = ptrack->m_dwUsed;
-//   tkEventDelta = ptrack->m_tkDelta;
-    //ptrack->cbLeft   -= dwGot;
+   ptrack = pTrkFound;
 
-    /* We MUST have at least three bytes here (cause we haven't hit
-    ** the end-of-track meta yet, which is three bytes long). Checking
-    ** against three means we don't have to check how much is left
-    ** in the track again for any short event, which is most cases.
-    */
-    //if (ptrack->cbLeft < 3)
-    //{
-        //return ::mus::midi::InvalidFile;
-    //}
+   if (m_tkPosition + tkMinRelTime > tkMax)
+   {
+      return ::mus::midi::SReachedTkMax;
+   }
 
-//    *pTkPosition = ptrack->m_tkPosition + tkEventDelta;
-    *pTkPosition = tkEventPositionFound;
-    return ::mus::midi::Success;
+
+   //    dwGot = ptrack->m_dwUsed;
+   //   tkEventDelta = ptrack->m_tkDelta;
+   //ptrack->cbLeft   -= dwGot;
+
+   /* We MUST have at least three bytes here (cause we haven't hit
+   ** the end-of-track meta yet, which is three bytes long). Checking
+   ** against three means we don't have to check how much is left
+   ** in the track again for any short event, which is most cases.
+   */
+   //if (ptrack->cbLeft < 3)
+   //{
+   //return ::mus::midi::InvalidFile;
+   //}
+
+   //    *pTkPosition = ptrack->m_tkPosition + tkEventDelta;
+   *pTkPosition = tkEventPositionFound;
+   return ::mus::midi::Success;
 }
 
-void MidiTracks::seek_begin()
+void midi_tracks::seek_begin()
 {
    for (int i = 0; i < GetTrackCount(); i++)
-    {
-      MidiTrackBase * ptrack = TrackAt(i);
+   {
+      midi_track_base * ptrack = TrackAt(i);
       ptrack->seek_begin();
-    }
-    m_tkPosition = 0;
+   }
+   m_tkPosition = 0;
    GetFlags().unsignalize(::mus::midi::EndOfTrack);
 }
 
-::mus::midi::e_file_result MidiTracks::GetXFTokens(
-      string2a &
-            token2a,
-      imedia::position_2darray *p2DTicks,
-      base_array<XFLyricsHeader, XFLyricsHeader &> * pxflh2a)
+::mus::midi::e_file_result midi_tracks::GetXFTokens(
+   string2a &
+   token2a,
+   imedia::position_2darray *p2DTicks,
+   ::mus::xf_lyrics_id_array * pxflh2a)
 {
    ASSERT(p2DTicks != NULL);
    ASSERT(pxflh2a != NULL);
    stringa  tokena;
    imedia::position_array * lptkaTicks = NULL;
-   XFLyricsHeader xflh;
+   ::mus::xf_lyrics_id xflh;
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(i);
-   if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-    {
-        continue;
-    }
+      midi_track *ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+      {
+         continue;
+      }
 
       ptrack->seek_begin();
       ::mus::midi::e_file_result smfr;
@@ -511,10 +510,10 @@ void MidiTracks::seek_begin()
       {
          smfr = ptrack->ReadXFLyricsHeader(&xflh);
       }
-      
 
-        tokena.remove_all();
-        lptkaTicks = new imedia::position_array();
+
+      tokena.remove_all();
+      lptkaTicks = new imedia::position_array();
       if(xflh.m_strLanguage == L"JP")
       {
          smfr = ptrack->ReadShiftJisXFTokens(tokena, lptkaTicks);
@@ -529,16 +528,16 @@ void MidiTracks::seek_begin()
          p2DTicks->add(lptkaTicks);
          pxflh2a->add(xflh);
       }
-        else
-        {
-            delete lptkaTicks;
-        }
-        lptkaTicks = NULL;
+      else
+      {
+         delete lptkaTicks;
+      }
+      lptkaTicks = NULL;
    }
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTracks::GetKarTokens(
+::mus::midi::e_file_result midi_tracks::GetKarTokens(
    string2a &    token2a,
    imedia::position_2darray *       p2DTicks
    )
@@ -548,28 +547,28 @@ void MidiTracks::seek_begin()
    imedia::position_array * lptkaTicks = NULL;
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track *ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       ptrack->seek_begin();
-        tokena.remove_all();
-        lptkaTicks = new imedia::position_array();
+      tokena.remove_all();
+      lptkaTicks = new imedia::position_array();
       if(::mus::midi::Success == ptrack->ReadKarTokens(tokena, lptkaTicks))
       {
          token2a.add(tokena);
          p2DTicks->add(lptkaTicks);
       }
-        else
-        {
-            delete lptkaTicks;
-        }
-        lptkaTicks = NULL;
+      else
+      {
+         delete lptkaTicks;
+      }
+      lptkaTicks = NULL;
    }
    return ::mus::midi::Success;
 }
 
 
-::mus::midi::e_file_result MidiTracks::GetXFInfoHeaders(
+::mus::midi::e_file_result midi_tracks::GetXFInfoHeaders(
    CXFInfoHeaders *pxfihs)
 {
    ASSERT(pxfihs != NULL);
@@ -582,9 +581,9 @@ void MidiTracks::seek_begin()
    XFInfoHeaderLS xfihls;
    for(nIndex = 0; nIndex < nSize; nIndex++)
    {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(nIndex);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track *ptrack = (midi_track *)TrackAt(nIndex);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       if(pxfihs->m_xfInfoHeader.is_empty())
       {
          ptrack->seek_begin();
@@ -593,7 +592,7 @@ void MidiTracks::seek_begin()
          ptrack->GetNextXFSongName(pxfihs->m_strSongName);
       }
       ptrack->seek_begin();
-      
+
       if(::mus::midi::Success == ptrack->GetNextXFInfoHeaderLS(&xfihls))
       {
          pxfihs->m_xfaInfoHeaderLS.add(xfihls);
@@ -609,53 +608,53 @@ void MidiTracks::seek_begin()
 }
 
 
-::mus::midi::e_file_result MidiTracks::GetKarInfoHeader(
+::mus::midi::e_file_result midi_tracks::GetKarInfoHeader(
    SoftKaraokeInfo *pKarI)
 {
    ASSERT(pKarI != NULL);
    if(GetTrackCount() >=3)
    {
-      MidiTrack *ptrack = (MidiTrack *) TrackAt(2);
-      ASSERT(ptrack->IsType(MidiTrackBase::TypeMidi));
+      midi_track *ptrack = (midi_track *) TrackAt(2);
+      ASSERT(ptrack->IsType(midi_track_base::TypeMidi));
       return ptrack->GetNextKarInfo(pKarI);
    }
    else
    {
-      MidiTrack *ptrack = (MidiTrack *) TrackAt(0);
-        ASSERT(ptrack->IsType(MidiTrackBase::TypeMidi));
+      midi_track *ptrack = (midi_track *) TrackAt(0);
+      ASSERT(ptrack->IsType(midi_track_base::TypeMidi));
       return ptrack->GetNextKarInfo(pKarI);
    }
 
 }
 
-::mus::midi::e_file_result MidiTracks::GetTune1000InfoHeader(
+::mus::midi::e_file_result midi_tracks::GetTune1000InfoHeader(
    CTune1000Info *pTune1000I, int iTrack)
 {
    ASSERT(pTune1000I != NULL);
-//   if(GetTrackCount() >=3)
-//   {
-//      MidiTrack *ptrack = TrackAt(2);
-//      return ptrack->GetNextTune1000Info(pTune1000I);
-//   }
-//   else
-//   {
-    if(iTrack >= 0 && iTrack < GetTrackCount())
-    {
-      MidiTrack *ptrack = (MidiTrack *) TrackAt(iTrack);
-      ASSERT(ptrack->IsType(MidiTrackBase::TypeMidi));
+   //   if(GetTrackCount() >=3)
+   //   {
+   //      midi_track *ptrack = TrackAt(2);
+   //      return ptrack->GetNextTune1000Info(pTune1000I);
+   //   }
+   //   else
+   //   {
+   if(iTrack >= 0 && iTrack < GetTrackCount())
+   {
+      midi_track *ptrack = (midi_track *) TrackAt(iTrack);
+      ASSERT(ptrack->IsType(midi_track_base::TypeMidi));
       return ptrack->GetNextTune1000Info(pTune1000I);
-    }
-    else
-    {
-        return ::mus::midi::SNotFound;
-    }
+   }
+   else
+   {
+      return ::mus::midi::SNotFound;
+   }
 
-//   }
+   //   }
 
 }
 
-int MidiTracks::CalcMelodyTrack(
-   MidiEventsV1 ** ppEventsRet,
+int midi_tracks::CalcMelodyTrack(
+   midi_events_v1 ** ppEventsRet,
    imedia::position_array *pTicks,
    WORD wFileFormat)
 {
@@ -669,11 +668,11 @@ int MidiTracks::CalcMelodyTrack(
    imedia::position tkPositionA, tkPositionB;
    const imedia::position tkToleranceAddUp = WORDSWAP(m_pFile->m_pFileHeader->wDivision) / 4;
 
-   MidiTrack * ptrack;
-   MidiEventsV1 * pEvents;
-//   primitive_array < MidiEventsV1 *> eventsArray;
-   //primitive_array < primitive_array < MidiEventsV1 *>> eventsArray2D;
-   
+   midi_track * ptrack;
+   midi_events_v1 * pEvents;
+   //   primitive_array < midi_events_v1 *> eventsArray;
+   //primitive_array < primitive_array < midi_events_v1 *>> eventsArray2D;
+
    int2a i2aEventMatch;
    bool bAnyTrack = m_pFile->GetFormat() == 1;
    const int max_tracks_search = 16;
@@ -687,13 +686,13 @@ int MidiTracks::CalcMelodyTrack(
       iTrackCount = max_tracks_search;
    }
 
-   
-   
-   
-   
-   
+
+
+
+
+
    int iToleranceStep;
-   int iToleranceStepCount;   
+   int iToleranceStepCount;
 
 
    for(iTrack = 0; iTrack < iTrackCount; iTrack++)
@@ -701,24 +700,24 @@ int MidiTracks::CalcMelodyTrack(
       i2aEventMatch.add_new();
       if(m_pFile->GetFormat() == 0)
       {
-         ptrack = (MidiTrack *) MidiTrackAt(0);
+         ptrack = (midi_track *) MidiTrackAt(0);
       }
       else
       {
          if(iTrack >= iTrackCount)
             break;
-         ptrack = (MidiTrack *) MidiTrackAt(iTrack);
+         ptrack = (midi_track *) MidiTrackAt(iTrack);
       }
-      pEvents = new MidiEventsV1();
+      pEvents = new midi_events_v1();
       ptrack->WorkSeekBegin();
       ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, iTrack, bAnyTrack);
-  //    eventsArray.add(pEvents);
+      //    eventsArray.add(pEvents);
       iToleranceStep = 0;
       for(tkTolerance = 0;
          tkTolerance <= WORDSWAP(m_pFile->m_pFileHeader->wDivision);
          tkTolerance += tkToleranceAddUp)
       {
-         
+
          k = 0;
          iMatches = 0;
          for(j = 0; j < pTicks->get_size(); j++)
@@ -793,99 +792,99 @@ int MidiTracks::CalcMelodyTrack(
 
 
 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-/*   while(tkTolerance <= DWORDSWAP(m_pFile->m_pFileHeader->wDivision))
+
+
+
+
+
+
+
+
+
+
+   /*   while(tkTolerance <= DWORDSWAP(m_pFile->m_pFileHeader->wDivision))
    {
-      for(i = 0; i < iSize; i++)
-      {
-         if(m_pFile->GetFormat() == 0)
-         {
-            ptrack = (MidiTrack *) MidiTrackAt(0);
-         }
-         else
-         {
-            if(i >= GetTrackCount())
-               break;
-            ptrack = (MidiTrack *) MidiTrackAt(i);
-         }
-         pEvents = new MidiEventsV1();
-         ptrack->WorkSeekBegin();
-         ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, i, bAnyTrack);
-         eventsArray.add(pEvents);
-         k = 0;
-         iMatches = 0;
-         for(j = 0; j < pTicks->get_size(); j++)
-         {
-            if(k >= pEvents->m_tkaEventsPosition.get_size())
-                {
-                    //iMatches -= 3;
-               break;
-                }
-            tkPositionA = pTicks->get_at(j);
-            while(tkPositionA - tkTolerance >
-               (tkPositionB = pEvents->m_tkaEventsPosition.get_at(k)))
-            {
-               iMatches--; // 2001-05-05 Ser・que funciona?ｿ
-               k++;
-               if(k >= pEvents->m_tkaEventsPosition.get_size())
-                  break;
-            }
-            if(tkPositionB >= tkPositionA - tkTolerance &&
-               tkPositionB <= tkPositionA + tkTolerance)
-            {
-               iMatches++;
-            }
-            else
-            {
-               //iMatches--;
-               iMatches -= 3;
-            }
-         }
-         iMatches -= 3 * (pTicks->get_size() - j);
-//         TRACE("iMatches %d iTrack %d\n", iMatches, i);
-         eventsMatches.add(iMatches);
-      }
-      iMatches = 0x80000000;
-      iBestMatch = 0x80000000;
-      for(i = 0; i < eventsMatches.get_size(); i++)
-      {
-         if(eventsMatches.get_at(i) > iMatches)
-         {
-            iBestMatch = i;
-            iMatches = eventsMatches.get_at(i);
-         }
-      }
-      for(i = 0; i < iSize; i++)
-      {
-         delete eventsArray.get_at(i);
-      }
-      eventsArray.remove_all();   
-      if(iBestMatch >= 0)
+   for(i = 0; i < iSize; i++)
+   {
+   if(m_pFile->GetFormat() == 0)
+   {
+   ptrack = (midi_track *) MidiTrackAt(0);
+   }
+   else
+   {
+   if(i >= GetTrackCount())
+   break;
+   ptrack = (midi_track *) MidiTrackAt(i);
+   }
+   pEvents = new midi_events_v1();
+   ptrack->WorkSeekBegin();
+   ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, i, bAnyTrack);
+   eventsArray.add(pEvents);
+   k = 0;
+   iMatches = 0;
+   for(j = 0; j < pTicks->get_size(); j++)
+   {
+   if(k >= pEvents->m_tkaEventsPosition.get_size())
+   {
+   //iMatches -= 3;
+   break;
+   }
+   tkPositionA = pTicks->get_at(j);
+   while(tkPositionA - tkTolerance >
+   (tkPositionB = pEvents->m_tkaEventsPosition.get_at(k)))
+   {
+   iMatches--; // 2001-05-05 Ser・que funciona?ｿ
+   k++;
+   if(k >= pEvents->m_tkaEventsPosition.get_size())
+   break;
+   }
+   if(tkPositionB >= tkPositionA - tkTolerance &&
+   tkPositionB <= tkPositionA + tkTolerance)
+   {
+   iMatches++;
+   }
+   else
+   {
+   //iMatches--;
+   iMatches -= 3;
+   }
+   }
+   iMatches -= 3 * (pTicks->get_size() - j);
+   //         TRACE("iMatches %d iTrack %d\n", iMatches, i);
+   eventsMatches.add(iMatches);
+   }
+   iMatches = 0x80000000;
+   iBestMatch = 0x80000000;
+   for(i = 0; i < eventsMatches.get_size(); i++)
+   {
+   if(eventsMatches.get_at(i) > iMatches)
+   {
+   iBestMatch = i;
+   iMatches = eventsMatches.get_at(i);
+   }
+   }
+   for(i = 0; i < iSize; i++)
+   {
+   delete eventsArray.get_at(i);
+   }
+   eventsArray.remove_all();
+   if(iBestMatch >= 0)
    //      break;
-      {
-         dwaBestMatchesIndexes.add(iBestMatch);
-         dwaBestMatchesScores.add(iMatches);
-      }
-      tkTolerance += tkToleranceAddUp;
-        eventsMatches.remove_all();
-   
+   {
+   dwaBestMatchesIndexes.add(iBestMatch);
+   dwaBestMatchesScores.add(iMatches);
+   }
+   tkTolerance += tkToleranceAddUp;
+   eventsMatches.remove_all();
+
    }*/
 
 
 
-//   if(iBestMatch >= 0)
+   //   if(iBestMatch >= 0)
    if(dwaBestMatchesIndexes.get_size() > 0)
    {
-      
+
       int iWorstMatches = 0xffffffff;
       for(i = 0; i < dwaBestMatchesIndexes.get_size(); i++)
       {
@@ -913,30 +912,30 @@ int MidiTracks::CalcMelodyTrack(
             iMatches = (int) dwaBestMatchesScores.get_at(i);
          }
       }
-/*      for(i = 0; i < iSize; i++)
+      /*      for(i = 0; i < iSize; i++)
       {
-         if(i == iBestMatch)
-         {
-            *ppEventsRet = eventsArray.get_at(i);
-         }
-         else
-         {
-            delete eventsArray.get_at(i);
-         }
+      if(i == iBestMatch)
+      {
+      *ppEventsRet = eventsArray.get_at(i);
+      }
+      else
+      {
+      delete eventsArray.get_at(i);
+      }
       }*/
       if(iBestMatch >= 0)
       {
          if(m_pFile->GetFormat() == 0)
          {
-            ptrack = (MidiTrack *) TrackAt(0);
+            ptrack = (midi_track *) TrackAt(0);
          }
          else
          {
             if(i >= GetTrackCount())
                goto Skip090;
-            ptrack = (MidiTrack *) TrackAt(iBestMatch);
+            ptrack = (midi_track *) TrackAt(iBestMatch);
          }
-         pEvents = new MidiEventsV1();
+         pEvents = new midi_events_v1();
          ptrack->WorkSeekBegin();
          ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, iBestMatch, bAnyTrack);
          *ppEventsRet = pEvents;
@@ -949,8 +948,8 @@ Skip090:;
 
 }
 
-int MidiTracks::WorkCalcMelodyTrack(
-   MidiEventsV1 ** ppEventsRet,
+int midi_tracks::WorkCalcMelodyTrack(
+   midi_events_v1 ** ppEventsRet,
    imedia::position_array & positiona,
    int_array & iaTokenLine,
    WORD wFileFormat)
@@ -967,24 +966,24 @@ int MidiTracks::WorkCalcMelodyTrack(
    //const imedia::position tkToleranceAddUp = 60;
    const imedia::position tkToleranceTotal = m_pFile->GetDivision();
    const imedia::position tkToleranceAddUp = tkToleranceTotal / 4;
-   MidiTrack * ptrack;
-   MidiEventsV1 * pEvents;
-   primitive_array < MidiEventsV1 *> eventsArray;
-   //primitive_array < primitive_array < MidiEventsV1 *>> eventsArray2D;
+   midi_track * ptrack;
+   midi_events_v1 * pEvents;
+   primitive_array < midi_events_v1 *> eventsArray;
+   //primitive_array < primitive_array < midi_events_v1 *>> eventsArray2D;
    int_array eventsMatches;
    bool bAnyTrack = m_pFile->GetFormat() == 1;
    const int max_tracks_search = 16;
-/*   if(m_pFile->GetFormat() == 1)
+   /*   if(m_pFile->GetFormat() == 1)
    {
-      iSize = GetMidiTrackCount();
+   iSize = GetMidiTrackCount();
    }
    else
    {
-      iSize = max_tracks_search;
+   iSize = max_tracks_search;
    }*/
    double_array daCorrel;
-//   bool bAnyTrack = m_pFile->GetFormat() == 1;
-//   const int max_tracks_search = 16;
+   //   bool bAnyTrack = m_pFile->GetFormat() == 1;
+   //   const int max_tracks_search = 16;
    int iTrack, iTrackCount;
    if(m_pFile->GetFormat() == 1)
    {
@@ -1012,81 +1011,81 @@ int MidiTracks::WorkCalcMelodyTrack(
 
    /// old begin /////////////////////////////////////////////
 
-/*   while(tkTolerance <= WORDSWAP(m_pFile->m_pFileHeader->wDivision))
+   /*   while(tkTolerance <= WORDSWAP(m_pFile->m_pFileHeader->wDivision))
    {
-      for(i = 0; i < iSize; i++)
-      {
-         if(m_pFile->GetFormat() == 0)
-         {
-            ptrack = (MidiTrack *) MidiTrackAt(0);
-         }
-         else
-         {
-            if(i >= GetTrackCount())
-               break;
-            ptrack = (MidiTrack *) MidiTrackAt(i);
-         }
-         pEvents = new MidiEventsV1();
-         ptrack->WorkSeekBegin();
-         ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, i, bAnyTrack);
-         eventsArray.add(pEvents);
-         k = 0;
-         iMatches = 0;
-         for(j = 0; j < positiona.get_size(); j++)
-         {
-            if(k >= pEvents->m_tkaEventsPosition.get_size())
-                {
-                    //iMatches -= 3;
-               break;
-                }
-            tkPositionA = positiona.get_at(j);
-            while(tkPositionA - tkTolerance >
-               (tkPositionB = pEvents->m_tkaEventsPosition.get_at(k)))
-            {
-               iMatches--; // 2001-05-05 Ser・que funciona?ｿ
-               k++;
-               if(k >= pEvents->m_tkaEventsPosition.get_size())
-                  break;
-            }
-            if(tkPositionB >= tkPositionA - tkTolerance &&
-               tkPositionB <= tkPositionA + tkTolerance)
-            {
-               iMatches++;
-            }
-            else
-            {
-               //iMatches--;
-               iMatches -= 3;
-            }
-         }
-         iMatches -= 3 * (positiona.get_size() - j);
-//         TRACE("iMatches %d iTrack %d\n", iMatches, i);
-         eventsMatches.add(iMatches);
-      }
-      iMatches = 0x80000000;
-      iBestMatch = 0x80000000;
-      for(i = 0; i < eventsMatches.get_size(); i++)
-      {
-         if(eventsMatches.get_at(i) > iMatches)
-         {
-            iBestMatch = i;
-            iMatches = eventsMatches.get_at(i);
-         }
-      }
-      for(i = 0; i < iSize; i++)
-      {
-         delete eventsArray.get_at(i);
-      }
-      eventsArray.remove_all();   
-      if(iBestMatch >= 0)
+   for(i = 0; i < iSize; i++)
+   {
+   if(m_pFile->GetFormat() == 0)
+   {
+   ptrack = (midi_track *) MidiTrackAt(0);
+   }
+   else
+   {
+   if(i >= GetTrackCount())
+   break;
+   ptrack = (midi_track *) MidiTrackAt(i);
+   }
+   pEvents = new midi_events_v1();
+   ptrack->WorkSeekBegin();
+   ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, i, bAnyTrack);
+   eventsArray.add(pEvents);
+   k = 0;
+   iMatches = 0;
+   for(j = 0; j < positiona.get_size(); j++)
+   {
+   if(k >= pEvents->m_tkaEventsPosition.get_size())
+   {
+   //iMatches -= 3;
+   break;
+   }
+   tkPositionA = positiona.get_at(j);
+   while(tkPositionA - tkTolerance >
+   (tkPositionB = pEvents->m_tkaEventsPosition.get_at(k)))
+   {
+   iMatches--; // 2001-05-05 Ser・que funciona?ｿ
+   k++;
+   if(k >= pEvents->m_tkaEventsPosition.get_size())
+   break;
+   }
+   if(tkPositionB >= tkPositionA - tkTolerance &&
+   tkPositionB <= tkPositionA + tkTolerance)
+   {
+   iMatches++;
+   }
+   else
+   {
+   //iMatches--;
+   iMatches -= 3;
+   }
+   }
+   iMatches -= 3 * (positiona.get_size() - j);
+   //         TRACE("iMatches %d iTrack %d\n", iMatches, i);
+   eventsMatches.add(iMatches);
+   }
+   iMatches = 0x80000000;
+   iBestMatch = 0x80000000;
+   for(i = 0; i < eventsMatches.get_size(); i++)
+   {
+   if(eventsMatches.get_at(i) > iMatches)
+   {
+   iBestMatch = i;
+   iMatches = eventsMatches.get_at(i);
+   }
+   }
+   for(i = 0; i < iSize; i++)
+   {
+   delete eventsArray.get_at(i);
+   }
+   eventsArray.remove_all();
+   if(iBestMatch >= 0)
    //      break;
-      {
-         dwaBestMatchesIndexes.add(iBestMatch);
-         dwaBestMatchesScores.add(iMatches);
-      }
-      tkTolerance += tkToleranceAddUp;
-        eventsMatches.remove_all();
-   
+   {
+   dwaBestMatchesIndexes.add(iBestMatch);
+   dwaBestMatchesScores.add(iMatches);
+   }
+   tkTolerance += tkToleranceAddUp;
+   eventsMatches.remove_all();
+
    }*/
 
 
@@ -1139,15 +1138,15 @@ int MidiTracks::WorkCalcMelodyTrack(
    {
       if(m_pFile->GetFormat() == 0)
       {
-         ptrack = (MidiTrack *) MidiTrackAt(0);
+         ptrack = (midi_track *) MidiTrackAt(0);
       }
       else
       {
          if(iTrack >= GetTrackCount())
             break;
-         ptrack = (MidiTrack *) MidiTrackAt(iTrack);
+         ptrack = (midi_track *) MidiTrackAt(iTrack);
       }
-      pEvents = new MidiEventsV1();
+      pEvents = new midi_events_v1();
       ptrack->WorkSeekBegin();
       ptrack->WorkGetStandardEventsV1(pEvents, ::mus::midi::NoteOn, iTrack, bAnyTrack);
       dCorrel = 0.0;
@@ -1169,7 +1168,7 @@ int MidiTracks::WorkCalcMelodyTrack(
             if(j >= pEvents->m_tkaEventsPosition.get_count())
                break;
             imedia::position tkEvent = pEvents->m_tkaEventsPosition.element_at(j);
-            double dDiff = tkEvent - tkPosition;
+            double dDiff = (double) (tkEvent - tkPosition);
             // to favor a causal relation
             if(dDiff < 0.0)
             {
@@ -1199,7 +1198,7 @@ int MidiTracks::WorkCalcMelodyTrack(
                }
                else
                {
-                  dCorrel += 1984 / (dDiff * 5.0 + (iTry * 77.0));  
+                  dCorrel += 1984 / (dDiff * 5.0 + (iTry * 77.0));
                }
             }
             j++;
@@ -1228,22 +1227,22 @@ int MidiTracks::WorkCalcMelodyTrack(
 
 }
 
-bool MidiTracks::IsTune1000File()
+bool midi_tracks::IsTune1000File()
 {
-    bool bIsTune1000File = false;
+   bool bIsTune1000File = false;
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack * ptrack = (MidiTrack *)TrackAt(i);
+      midi_track * ptrack = (midi_track *)TrackAt(i);
       ptrack->seek_begin();
-      if(ptrack->IsType(MidiTrackBase::TypeMidi) && (bIsTune1000File = ptrack->IsTune1000File()))
+      if(ptrack->IsType(midi_track_base::TypeMidi) && (bIsTune1000File = ptrack->IsTune1000File()))
       {
          break;
       }
    }
-    return bIsTune1000File;
+   return bIsTune1000File;
 }
 
-bool MidiTracks::IsSoftKaraokeFile(bool bWork, stringa * pstra)
+bool midi_tracks::IsSoftKaraokeFile(bool bWork, stringa * pstra)
 {
    if(GetTrackCount() < 2)
    {
@@ -1251,9 +1250,9 @@ bool MidiTracks::IsSoftKaraokeFile(bool bWork, stringa * pstra)
    }
    else
    {
-      MidiTrack * ptrack = (MidiTrack *)TrackAt(1);
+      midi_track * ptrack = (midi_track *)TrackAt(1);
       ptrack->_SeekBegin(bWork);
-      if(ptrack->IsType(MidiTrackBase::TypeMidi)
+      if(ptrack->IsType(midi_track_base::TypeMidi)
          && ptrack->IsSoftKaraokeFile(bWork, pstra))
       {
          return true;
@@ -1262,8 +1261,8 @@ bool MidiTracks::IsSoftKaraokeFile(bool bWork, stringa * pstra)
       {
          if(GetTrackCount() >= 3)
          {
-            MidiTrack * ptrack = (MidiTrack *)TrackAt(2);
-            if(!ptrack->IsType(MidiTrackBase::TypeMidi))
+            midi_track * ptrack = (midi_track *)TrackAt(2);
+            if(!ptrack->IsType(midi_track_base::TypeMidi))
             {
                return false;
             }
@@ -1285,211 +1284,211 @@ bool MidiTracks::IsSoftKaraokeFile(bool bWork, stringa * pstra)
             return false;
          }
       }
-    }
+   }
 }
 
-/*MidiTrack * MidiTracks::GetEventTrack(CMidiEventBase *pEvent)
+/*midi_track * midi_tracks::GetEventTrack(CMidiEventBase *pEvent)
 {
-   int i;
-   for(i = 0; i < get_size(); i++)
-   {
-      MidiTrack * ptrack = &TrackAt(i);
-      if(ptrack->ContainsEvent(pEvent))
-         return ptrack;
-   }
-   return NULL;
+int i;
+for(i = 0; i < this->get_size(); i++)
+{
+midi_track * ptrack = &TrackAt(i);
+if(ptrack->ContainsEvent(pEvent))
+return ptrack;
+}
+return NULL;
 } */
 
-MidiTrack * MidiTracks::seek(DWORD dwSeekWhat)
+midi_track * midi_tracks::seek(DWORD dwSeekWhat)
 {
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack * ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track * ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       ptrack->seek_begin();
       if(ptrack->seek(dwSeekWhat) == ::mus::midi::Success)
-        {
-            m_iCurrentTrack = i;
+      {
+         m_iCurrentTrack = i;
          return ptrack;
-        }
+      }
    }
    return NULL;
 }
 
-bool MidiTracks::IsXFFile()
+bool midi_tracks::IsXFFile()
 {
-    if(GetTrackCount() <= 0)
-        return false;
-    else
-    {
-        for(int i = 0; i < GetTrackCount(); i++)
-        {
-          MidiTrack * ptrack = (MidiTrack *)TrackAt(i);
-            if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-                continue;
-            if(ptrack->IsXFFile())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+   if(GetTrackCount() <= 0)
+      return false;
+   else
+   {
+      for(int i = 0; i < GetTrackCount(); i++)
+      {
+         midi_track * ptrack = (midi_track *)TrackAt(i);
+         if(!ptrack->IsType(midi_track_base::TypeMidi))
+            continue;
+         if(ptrack->IsXFFile())
+         {
+            return true;
+         }
+      }
+      return false;
+   }
 
 }
 
 
 
-void MidiTracks::FromWorkStorage()
+void midi_tracks::FromWorkStorage()
 {
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack * ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track * ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       ptrack->FromWorkTrack(false);
    }
 
 }
 
-void MidiTracks::ToWorkStorage()
+void midi_tracks::ToWorkStorage()
 {
    for(int i = 0; i < GetMidiTrackCount(); i++)
    {
-      MidiTrack * ptrack = MidiTrackAt(i);
+      midi_track * ptrack = MidiTrackAt(i);
       ptrack->ToWorkStorage();
    }
 }
 
-VMSRESULT MidiTracks::CompactTracks(
-    MidiTrack & trackUnion,
-    bool bOnlyMTrk,
-    bool bOnlyMidiTrack)
+VMSRESULT midi_tracks::CompactTracks(
+   midi_track & trackUnion,
+   bool bOnlyMTrk,
+   bool bOnlyMidiTrack)
 {
-//    MidiTrack trackUnion;
-    trackUnion.SetAutoAllocation();
-    seek_begin();
-    MidiEventV001 * pevent;
-    while(::mus::midi::Success == GetNextEvent(pevent, 0x7fffffff, true, bOnlyMTrk, bOnlyMidiTrack))
-    {
-        if(pevent->GetFlags() != 0 ||
+   //    midi_track trackUnion;
+   trackUnion.SetAutoAllocation();
+   seek_begin();
+   midi_event_v001 * pevent;
+   while(::mus::midi::Success == GetNextEvent(pevent, 0x7fffffff, true, bOnlyMTrk, bOnlyMidiTrack))
+   {
+      if(pevent->GetFlags() != 0 ||
          (pevent->GetFullType() == ::mus::midi::Meta &&
-            pevent->GetMetaType() == ::mus::midi::MetaEOT))
-        {
-        }
-        else
-        {
-            trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
-        }
-    }
-    pevent->SetFullType(::mus::midi::Meta);
-    pevent->SetMetaType(::mus::midi::MetaEOT);
-    pevent->SetParam(NULL, 0);
-    trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
-    
-    CHUNKHDR hdr;
-    hdr.fourccType = FOURCC_MTrk;
-    hdr.dwLength = trackUnion.m_smti.m_cbLength;
-    trackUnion.WriteHeader(&hdr);
+         pevent->GetMetaType() == ::mus::midi::MetaEOT))
+      {
+      }
+      else
+      {
+         trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
+      }
+   }
+   pevent->SetFullType(::mus::midi::Meta);
+   pevent->SetMetaType(::mus::midi::MetaEOT);
+   pevent->SetParam(NULL, 0);
+   trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
+
+   CHUNKHDR hdr;
+   hdr.fourccType = FOURCC_MTrk;
+   hdr.dwLength = trackUnion.m_smti.m_cbLength;
+   trackUnion.WriteHeader(&hdr);
 
 
-    return VMSR_SUCCESS;
+   return VMSR_SUCCESS;
 
 }
 
-VMSRESULT MidiTracks::WorkCompactTracks(
-    MidiTrack & trackUnion,
-    bool bOnlyMTrk)
+VMSRESULT midi_tracks::WorkCompactTracks(
+   midi_track & trackUnion,
+   bool bOnlyMTrk)
 {
-//    MidiTrack trackUnion;
-    trackUnion.SetAutoAllocation();
-    WorkSeekBegin();
-    MidiEventV008 * pevent;
-    while(::mus::midi::Success == WorkGetNextRawEvent(pevent, 0x7fffffff, true, bOnlyMTrk))
-    {
-        if(pevent->GetFlags() != 0 ||
+   //    midi_track trackUnion;
+   trackUnion.SetAutoAllocation();
+   WorkSeekBegin();
+   midi_event_v008 * pevent;
+   while(::mus::midi::Success == WorkGetNextRawEvent(pevent, 0x7fffffff, true, bOnlyMTrk))
+   {
+      if(pevent->GetFlags() != 0 ||
          (pevent->GetFullType() == ::mus::midi::Meta &&
-            pevent->GetMetaType() == ::mus::midi::MetaEOT))
-        {
-        }
-        else
-        {
-            if(pevent->_GetType() == ::mus::midi::NoteOn)
+         pevent->GetMetaType() == ::mus::midi::MetaEOT))
+      {
+      }
+      else
+      {
+         if(pevent->_GetType() == ::mus::midi::NoteOn)
+         {
+            if(pevent->_GetTrack() != 3)
             {
-                if(pevent->_GetTrack() != 3)
-                {
-//                    int i = 1 + 2;
-                }
+               //                    int i = 1 + 2;
             }
-            
-            trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
-        }
-    }
-    pevent->SetFullType(::mus::midi::Meta);
-    pevent->SetMetaType(::mus::midi::MetaEOT);
-    pevent->SetParam(NULL, 0);
-    trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
-    
-    CHUNKHDR hdr;
-    hdr.fourccType = FOURCC_MTrk;
-    hdr.dwLength = trackUnion.m_smti.m_cbLength;
-    trackUnion.WriteHeader(&hdr);
+         }
+
+         trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
+      }
+   }
+   pevent->SetFullType(::mus::midi::Meta);
+   pevent->SetMetaType(::mus::midi::MetaEOT);
+   pevent->SetParam(NULL, 0);
+   trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
+
+   CHUNKHDR hdr;
+   hdr.fourccType = FOURCC_MTrk;
+   hdr.dwLength = trackUnion.m_smti.m_cbLength;
+   trackUnion.WriteHeader(&hdr);
 
 
-    return VMSR_SUCCESS;
+   return VMSR_SUCCESS;
 
 }
 
-VMSRESULT MidiTracks::WorkCompactMidiTracks(
-    MidiTrack & trackUnion,
-    bool bOnlyMTrk)
+VMSRESULT midi_tracks::WorkCompactMidiTracks(
+   midi_track & trackUnion,
+   bool bOnlyMTrk)
 {
-//    MidiTrack trackUnion;
-    trackUnion.SetAutoAllocation();
-    WorkSeekBegin();
-    MidiEventV008 * pevent;
-    while(::mus::midi::Success == WorkGetNextRawMidiEvent(pevent, 0x7fffffff, true, bOnlyMTrk))
-    {
-        if(pevent->GetFlags() != 0 ||
+   //    midi_track trackUnion;
+   trackUnion.SetAutoAllocation();
+   WorkSeekBegin();
+   midi_event_v008 * pevent;
+   while(::mus::midi::Success == WorkGetNextRawMidiEvent(pevent, 0x7fffffff, true, bOnlyMTrk))
+   {
+      if(pevent->GetFlags() != 0 ||
          (pevent->GetFullType() == ::mus::midi::Meta &&
-            pevent->GetMetaType() == ::mus::midi::MetaEOT))
-        {
-        }
-        else
-        {
-            if(pevent->_GetType() == ::mus::midi::NoteOn)
+         pevent->GetMetaType() == ::mus::midi::MetaEOT))
+      {
+      }
+      else
+      {
+         if(pevent->_GetType() == ::mus::midi::NoteOn)
+         {
+            if(pevent->_GetTrack() != 3)
             {
-                if(pevent->_GetTrack() != 3)
-                {
-//                    int i = 1 + 2;
-                }
+               //                    int i = 1 + 2;
             }
-            
-            trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
-        }
-    }
-    pevent->SetFullType(::mus::midi::Meta);
-    pevent->SetMetaType(::mus::midi::MetaEOT);
-    pevent->SetParam(NULL, 0);
-    trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
-    
-    CHUNKHDR hdr;
-    hdr.fourccType = FOURCC_MTrk;
-    hdr.dwLength = trackUnion.m_smti.m_cbLength;
-    trackUnion.WriteHeader(&hdr);
+         }
+
+         trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
+      }
+   }
+   pevent->SetFullType(::mus::midi::Meta);
+   pevent->SetMetaType(::mus::midi::MetaEOT);
+   pevent->SetParam(NULL, 0);
+   trackUnion.WriteCompleteEvent(*pevent, 0x7fffffff, false);
+
+   CHUNKHDR hdr;
+   hdr.fourccType = FOURCC_MTrk;
+   hdr.dwLength = trackUnion.m_smti.m_cbLength;
+   trackUnion.WriteHeader(&hdr);
 
 
-    return VMSR_SUCCESS;
+   return VMSR_SUCCESS;
 
 }
 
-VMSRESULT MidiTracks::WorkCompactTracksWork(
-   MidiTrack & trackUnion,
+VMSRESULT midi_tracks::WorkCompactTracksWork(
+   midi_track & trackUnion,
    bool bOnlyMTrk)
 {
    trackUnion.GetWorkTrack().remove_all();
    WorkSeekBegin();
-   MidiEventV008 * pevent;
+   midi_event_v008 * pevent;
    imedia::position tkLastPosition = 0;
    imedia::position tkPosition = 0;
    while(WorkGetNextRawEvent(
@@ -1499,7 +1498,7 @@ VMSRESULT MidiTracks::WorkCompactTracksWork(
       bOnlyMTrk)
       == ::mus::midi::Success)
    {
-      tkPosition = GetPosition();
+      tkPosition = get_position();
       if(pevent->GetFlags() != 0 ||
          (pevent->GetFullType() == ::mus::midi::Meta &&
          pevent->GetMetaType() == ::mus::midi::MetaEOT))
@@ -1513,37 +1512,37 @@ VMSRESULT MidiTracks::WorkCompactTracksWork(
       }
       tkLastPosition = tkPosition;
    }
-    pevent->SetFullType(::mus::midi::Meta);
-    pevent->SetMetaType(::mus::midi::MetaEOT);
-    pevent->SetParam(NULL, 0);
-    trackUnion.GetWorkTrack().add(*pevent);
+   pevent->SetFullType(::mus::midi::Meta);
+   pevent->SetMetaType(::mus::midi::MetaEOT);
+   pevent->SetParam(NULL, 0);
+   trackUnion.GetWorkTrack().add(*pevent);
 
-    return VMSR_SUCCESS;
+   return VMSR_SUCCESS;
 
 }
 
-VMSRESULT MidiTracks::WorkCompactMidiTracksWork(
-    MidiTrack & trackUnion,
-    bool bOnlyMTrk)
+VMSRESULT midi_tracks::WorkCompactMidiTracksWork(
+   midi_track & trackUnion,
+   bool bOnlyMTrk)
 {
    trackUnion.GetWorkTrack().remove_all();
    WorkSeekBegin();
-   MidiEventV008 * pevent = NULL;
+   midi_event_v008 * pevent = NULL;
    imedia::position tkLastPosition = 0;
    imedia::position tkPosition = 0;
 
    while(
       WorkGetNextRawMidiEvent(
-         pevent, 
-         0x7fffffff, 
-         true, 
-         bOnlyMTrk)
-         == ::mus::midi::Success)
+      pevent,
+      0x7fffffff,
+      true,
+      bOnlyMTrk)
+      == ::mus::midi::Success)
    {
-      tkPosition = GetPosition();
+      tkPosition = get_position();
       if(pevent->GetFlags() != 0 ||
          (pevent->GetFullType() == ::mus::midi::Meta &&
-          pevent->GetMetaType() == ::mus::midi::MetaEOT))
+         pevent->GetMetaType() == ::mus::midi::MetaEOT))
       {
       }
       else
@@ -1554,7 +1553,7 @@ VMSRESULT MidiTracks::WorkCompactMidiTracksWork(
       }
       tkLastPosition = tkPosition;
    }
-   MidiEventV008 event;
+   midi_event_v008 event;
    event.SetDelta(0);
    event.SetFullType(::mus::midi::Meta);
    event.SetMetaType(::mus::midi::MetaEOT);
@@ -1566,106 +1565,106 @@ VMSRESULT MidiTracks::WorkCompactMidiTracksWork(
 }
 
 // put in Format 1?ｿ
-VMSRESULT MidiTracks::ExpandTrack(index iTrackIndex)
+VMSRESULT midi_tracks::ExpandTrack(index iTrackIndex)
 {
-//    MidiTrack trackUnion;
-    MidiTrack * ptrackParam = (MidiTrack *) TrackAt(iTrackIndex);
-    ASSERT(ptrackParam->IsType(MidiTrackBase::TypeMidi));
-    remove_at(iTrackIndex);
-    ptrackParam->seek_begin();
-    ::collection::map<int, int, MidiTrack *, MidiTrack *> mapTracks;
-    MidiTrack * ptrack;
+   //    midi_track trackUnion;
+   midi_track * ptrackParam = (midi_track *) TrackAt(iTrackIndex);
+   ASSERT(ptrackParam->IsType(midi_track_base::TypeMidi));
+   remove_at(iTrackIndex);
+   ptrackParam->seek_begin();
+   ::collection::map<int, int, midi_track *, midi_track *> mapTracks;
+   midi_track * ptrack;
    ptrackParam->ToWorkStorage();
    ptrackParam->WorkSeekBegin();
-   MidiEventV008 * pevent;
-    while(true)
-    {
-       ptrackParam->WorkGetEvent(
+   midi_event_v008 * pevent;
+   while(true)
+   {
+      ptrackParam->WorkGetEvent(
          pevent,
          0x7fffffff,
          true);
-        if(pevent->GetFullType() == ::mus::midi::Meta &&
-            pevent->GetMetaType() == ::mus::midi::MetaEOT)
-        {
-        }
-        else if(pevent->GetFullType() < ::mus::midi::SysEx)
-        {
-            if(!mapTracks.Lookup(pevent->_GetTrack(), ptrack))
-            {
-                ptrack = CreateTrack();
-                ptrack->SetAutoAllocation();
-                mapTracks.set_at(pevent->_GetTrack(), ptrack);
-            }
-            ptrack->GetWorkTrack().add(*pevent);
-        }
-        else
-        {
-            if(!mapTracks.Lookup(0, ptrack))
-            {
-                ptrack = CreateTrack();
-                ptrack->SetAutoAllocation();
-                mapTracks.set_at(0, ptrack);
-            }
-            ptrack->GetWorkTrack().add(*pevent);
-        }
+      if(pevent->GetFullType() == ::mus::midi::Meta &&
+         pevent->GetMetaType() == ::mus::midi::MetaEOT)
+      {
+      }
+      else if(pevent->GetFullType() < ::mus::midi::SysEx)
+      {
+         if(!mapTracks.Lookup(pevent->_GetTrack(), ptrack))
+         {
+            ptrack = CreateTrack();
+            ptrack->SetAutoAllocation();
+            mapTracks.set_at(pevent->_GetTrack(), ptrack);
+         }
+         ptrack->GetWorkTrack().add(*pevent);
+      }
+      else
+      {
+         if(!mapTracks.Lookup(0, ptrack))
+         {
+            ptrack = CreateTrack();
+            ptrack->SetAutoAllocation();
+            mapTracks.set_at(0, ptrack);
+         }
+         ptrack->GetWorkTrack().add(*pevent);
+      }
       if(::mus::midi::Success != ptrackParam->WorkMoveNext())
          break;
-    }
-    for(int i = 0; i < 15; i++)
-    {
-        if(mapTracks.Lookup(i, ptrack))
-        {
-            ptrack->GetEvent().SetFullType(::mus::midi::Meta);
-            ptrack->GetEvent().SetMetaType(::mus::midi::MetaEOT);
-            ptrack->GetEvent().SetParam(NULL, 0);
-            ptrack->GetEvent().SetDelta(0);
-            ptrack->WorkWriteEvent();
-    
-    
-            CHUNKHDR hdr;
-            hdr.fourccType = FOURCC_MTrk;
-            hdr.dwLength = ptrack->m_smti.m_cbLength;
-            ptrack->WriteHeader(&hdr);
-            ptrack->Initialize(this);
+   }
+   for(int i = 0; i < 15; i++)
+   {
+      if(mapTracks.Lookup(i, ptrack))
+      {
+         ptrack->GetEvent().SetFullType(::mus::midi::Meta);
+         ptrack->GetEvent().SetMetaType(::mus::midi::MetaEOT);
+         ptrack->GetEvent().SetParam(NULL, 0);
+         ptrack->GetEvent().SetDelta(0);
+         ptrack->WorkWriteEvent();
+
+
+         CHUNKHDR hdr;
+         hdr.fourccType = FOURCC_MTrk;
+         hdr.dwLength = ptrack->m_smti.m_cbLength;
+         ptrack->WriteHeader(&hdr);
+         ptrack->Initialize(this);
          ptrack->FromWorkTrack(false);
-        }
-    }
-    return VMSR_SUCCESS;
+      }
+   }
+   return VMSR_SUCCESS;
 }
 
-index MidiTracks::GetMidiTrackIndex(index iIndex)
+index midi_tracks::GetMidiTrackIndex(index iIndex)
 {
-    if(TrackAt(iIndex)->get_type() == MidiTrackBase::TypeMidi)
-        return ((MidiTrack*)TrackAt(iIndex))->GetMidiTrackIndex();
-    else
-        return -1;
+   if(TrackAt(iIndex)->get_type() == midi_track_base::TypeMidi)
+      return ((midi_track*)TrackAt(iIndex))->GetMidiTrackIndex();
+   else
+      return -1;
 }
 
-VMSRESULT MidiTracks::SetLyricDelay(int iDelay)
+VMSRESULT midi_tracks::SetLyricDelay(int iDelay)
 {
-    m_iLyricDelay = iDelay;
-    for(int i = 0; i < GetTrackCount(); i++)
-    {
-        MidiLyricTrack * pltrack = dynamic_cast<MidiLyricTrack *>(TrackAt(i));
-        if(pltrack != NULL)
-        {
-            pltrack->SetDelay(iDelay);
-        }
-    }
-    return VMSR_SUCCESS;
+   m_iLyricDelay = iDelay;
+   for(int i = 0; i < GetTrackCount(); i++)
+   {
+      midi_lyric_track * pltrack = dynamic_cast<midi_lyric_track *>(TrackAt(i));
+      if(pltrack != NULL)
+      {
+         pltrack->SetDelay(iDelay);
+      }
+   }
+   return VMSR_SUCCESS;
 }
 
-VMSRESULT MidiTracks::GetLyricDelay(int *lpiDelay)
+VMSRESULT midi_tracks::GetLyricDelay(int *lpiDelay)
 {
-    *lpiDelay = m_iLyricDelay;
-    return VMSR_SUCCESS;
+   *lpiDelay = m_iLyricDelay;
+   return VMSR_SUCCESS;
 }
 
-void MidiTracks::OnStop()
+void midi_tracks::OnStop()
 {
    int i;
    m_tkLevelLastUpdateInterval = 0;
-   
+
    for(i = 0; i < m_iaLevel.get_size(); i++)
    {
       m_iaLevel.element_at(i) = 0;
@@ -1678,56 +1677,56 @@ void MidiTracks::OnStop()
 
 }
 
-::mus::midi::e_file_result MidiTracks::GetVolumeEvent(::ca::application * papp, MidiEventV008 *& pevent)
+::mus::midi::e_file_result midi_tracks::GetVolumeEvent(::ca::application * papp, midi_event_v008 *& pevent)
 {
    pevent = &m_midieventVolume;
    pevent->clear();
    pevent->SetFullType(::mus::midi::Meta);
    pevent->SetFlags(1);
    pevent->SetDelta(0);
-   pevent->SetPosition(GetPosition());
-   gen::memory_file memFile(papp);
+   pevent->SetPosition(get_position());
+   gen::byte_stream_memory_file memFile(papp);
    memFile << EVENT_ID_NOTE_ON;
    for(int i = 0; i < m_iaLevel.get_size(); i++)
    {
       memFile << (BYTE) m_iaLevel.element_at(i);
    }
    memFile.Flush();
-   DWORD dwLength = memFile.get_length();
-   LPBYTE lpData = memFile.DetachStorage();
-   pevent->SetParam(lpData, dwLength);
-   
+   file_size dwLength = memFile.get_length();
+   LPBYTE lpData = dynamic_cast < ::primitive::memory * > (memFile.get_memory())->detach();
+   pevent->SetParam(lpData, (int) dwLength);
+
    m_bVolumeEventSent = true;
 
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTracks::GetVolumeEvent(::ca::application * papp, MidiEventV001 *& pevent)
+::mus::midi::e_file_result midi_tracks::GetVolumeEvent(::ca::application * papp, midi_event_v001 *& pevent)
 {
    pevent = &m_midieventV001Volume;
    pevent->clear();
    pevent->SetFullType(::mus::midi::Meta);
    pevent->SetFlags(1);
    pevent->SetDelta(0);
-   pevent->SetPosition(GetPosition());
-   gen::memory_file memFile(papp);
+   pevent->SetPosition(get_position());
+   gen::byte_stream_memory_file memFile(papp);
    memFile << EVENT_ID_NOTE_ON;
    for(int i = 0; i < m_iaLevel.get_size(); i++)
    {
       memFile << (BYTE) m_iaLevel.element_at(i);
    }
    memFile.Flush();
-   DWORD dwLength = memFile.get_length();
-   LPBYTE lpData = memFile.DetachStorage();
-   pevent->SetParam(lpData, dwLength);
-   
+   file_size dwLength = memFile.get_length();
+   LPBYTE lpData = memFile.detach_primitive_storage();
+   pevent->SetParam(lpData, (int) dwLength);
+
    m_bVolumeEventSent = true;
 
    return ::mus::midi::Success;
 }
 
 
-bool MidiTracks::WorkGetLongestXFLyrics(string &wstrParam)
+bool midi_tracks::WorkGetLongestXFLyrics(string &wstrParam)
 {
    string2a wstr2a;
    imedia::position_2darray position2a;
@@ -1777,7 +1776,7 @@ bool MidiTracks::WorkGetLongestXFLyrics(string &wstrParam)
    string wstrLine;
    bLineFirstToken = true;
    bLineLastToken = false;
-   
+
    for(i = 0; i < iSize;)
    {
       str = stra.element_at(i);
@@ -1893,11 +1892,11 @@ bool MidiTracks::WorkGetLongestXFLyrics(string &wstrParam)
    return true;
 }
 
-bool MidiTracks::WorkGetLongestSoftKaraokeLyrics(string &wstrParam)
+bool midi_tracks::WorkGetLongestSoftKaraokeLyrics(string &wstrParam)
 {
    string2a wstr2a;
    imedia::position_2darray tick2a;
-   base_array<XFLyricsHeader, XFLyricsHeader&> xflh2a;
+   ::mus::xf_lyrics_id_array xflh2a;
    if(WorkGetSoftKaraokeTokens(
       wstr2a,
       &tick2a,
@@ -1940,7 +1939,7 @@ bool MidiTracks::WorkGetLongestSoftKaraokeLyrics(string &wstrParam)
    iSize = stra.get_size();
    int iLen;
    string wstrFinal;
-   
+
    for(i = 0; i < iSize; i++)
    {
       str = stra.element_at(i);
@@ -1973,30 +1972,30 @@ bool MidiTracks::WorkGetLongestSoftKaraokeLyrics(string &wstrParam)
 
 
 
-MidiLyricTrack * MidiTracks::CreateLyricTrack()
+midi_lyric_track * midi_tracks::CreateLyricTrack()
 {
    return m_tracka.CreateLyricTrack();
 }
 
-::mus::midi::e_file_result MidiTracks::WorkGetNextEvent(
-   MidiEventV008 *&         pevent,
+::mus::midi::e_file_result midi_tracks::WorkGetNextEvent(
+   midi_event_v008 *&         pevent,
    imedia::position                   tkMax,
    BOOL                     bTkMaxInclusive,
    bool                    bOnlyMTrk)
 {
-   MidiTrackBase *         ptrack;
-   MidiTrackBase *         ptrkFound;
-   int                     idxTrackFound;
-   int                     idxTrack;
-   imedia::position                   tkEventPosition;
-   imedia::position                     tkEventFound;
-   int                     iRelTime;
-   int                     iMinRelTime;
+   midi_track_base *          ptrack;
+   midi_track_base *          ptrkFound;
+   int                        idxTrackFound;
+   int                        idxTrack;
+   imedia::position           tkEventPosition;
+   imedia::position           tkEventFound;
+   imedia::time               iRelTime;
+   imedia::time               iMinRelTime;
 
    iMinRelTime = 0x7fffffff;
    ptrkFound = NULL;
    bool bNextEventLookUp;
-   
+
    for(idxTrack = 0; idxTrack < GetActiveTrackCount(); idxTrack++)
    {
       ptrack = ActiveTrackAt(idxTrack);
@@ -2009,9 +2008,9 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
 
       if(bOnlyMTrk)
       {
-         if(ptrack->IsType(MidiTrackBase::TypeMidi))
+         if(ptrack->IsType(midi_track_base::TypeMidi))
          {
-            MidiTrack * pmiditrack = (MidiTrack *) ptrack;
+            midi_track * pmiditrack = (midi_track *) ptrack;
             CHUNKHDR FAR * pCh = (CHUNKHDR FAR *) pmiditrack->GetTrackImage();
             if (pCh->fourccType != FOURCC_MTrk)
                continue;
@@ -2065,10 +2064,10 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
    {
       return ::mus::midi::SEndOfFile;
    }
-   
+
    ptrack = ptrkFound;
 
-    
+
 
    imedia::position tkPosition = tkEventFound;
 
@@ -2103,7 +2102,7 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
    }
 
 
-   if(ptrack->get_type() == MidiTrackBase::TypeLyric)
+   if(ptrack->get_type() == midi_track_base::TypeLyric)
    {
       ASSERT(true);
    }
@@ -2122,7 +2121,7 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
          return ::mus::midi::SReachedTkMax;
       }
    }
-    
+
    ptrack->WorkGetEvent(pevent, tkMax, bTkMaxInclusive);
 
    if(!GetFlags().is_signalized(::mus::midi::DisablePlayLevel1Operations))
@@ -2135,27 +2134,27 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
    }
 
    m_iCurrentTrack = idxTrackFound;
-   m_tkPosition = ptrack->GetPosition();
+   m_tkPosition = ptrack->get_position();
    ptrack->WorkMoveNext();
-   
-   
+
+
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTracks::WorkGetNextRawEvent(
-   MidiEventV008 *&         pevent,
+::mus::midi::e_file_result midi_tracks::WorkGetNextRawEvent(
+   midi_event_v008 *&         pevent,
    imedia::position                   tkMax,
    BOOL                     bTkMaxInclusive,
    bool                    bOnlyMTrk)
 {
-   MidiTrackBase *         ptrack;
-   MidiTrackBase *         ptrkFound;
+   midi_track_base *         ptrack;
+   midi_track_base *         ptrkFound;
    int                     idxTrackFound;
    int                     idxTrack;
    imedia::position                   tkEventPosition;
    imedia::position                     tkEventFound;
-   int                     iRelTime;
-   int                     iMinRelTime;
+   imedia::time               iRelTime;
+   imedia::time               iMinRelTime;
 
 
 
@@ -2168,9 +2167,9 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
       ASSERT(!ptrack->WorkIsEOT());
       if(bOnlyMTrk)
       {
-         if(ptrack->IsType(MidiTrackBase::TypeMidi))
+         if(ptrack->IsType(midi_track_base::TypeMidi))
          {
-            MidiTrack * ptrackMidi = (MidiTrack *) ptrack;
+            midi_track * ptrackMidi = (midi_track *) ptrack;
             CHUNKHDR FAR * pCh = (CHUNKHDR FAR *) ptrackMidi->GetTrackImage();
             if (pCh->fourccType != FOURCC_MTrk)
                continue;
@@ -2205,23 +2204,23 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
       }
       ASSERT(iRelTime >= 0);
 
-        if (iRelTime < iMinRelTime)
-        {
-            iMinRelTime = iRelTime;
-            ptrkFound = ptrack;
+      if (iRelTime < iMinRelTime)
+      {
+         iMinRelTime = iRelTime;
+         ptrkFound = ptrack;
          idxTrackFound = idxTrack;
          tkEventFound = tkEventPosition;
-        }
-    }
+      }
+   }
 
-    if (ptrkFound == NULL)
-    {
-        return ::mus::midi::SEndOfFile;
-    }
+   if (ptrkFound == NULL)
+   {
+      return ::mus::midi::SEndOfFile;
+   }
 
-    ptrack = ptrkFound;
+   ptrack = ptrkFound;
 
-    imedia::position tkPosition = tkEventFound;
+   imedia::position tkPosition = tkEventFound;
 
    iRelTime = tkPosition - m_tkPosition;
    ASSERT(iRelTime >= 0);
@@ -2230,7 +2229,7 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
 
 
 
-   if(ptrack->get_type() == MidiTrackBase::TypeLyric)
+   if(ptrack->get_type() == midi_track_base::TypeLyric)
    {
       ASSERT(true);
    }
@@ -2249,12 +2248,12 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
          return ::mus::midi::SReachedTkMax;
       }
    }
-    
+
    ptrack->WorkGetEvent(pevent, tkMax, bTkMaxInclusive);
    m_iCurrentTrack = idxTrackFound;
-   m_tkPosition = ptrack->GetPosition();
+   m_tkPosition = ptrack->get_position();
    ptrack->WorkMoveNext();
-   
+
    if(ptrack->WorkIsEOT())
    {
       DeactivateTrack(ptrack);
@@ -2262,20 +2261,20 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
    return ::mus::midi::Success;
 }
 
-::mus::midi::e_file_result MidiTracks::WorkGetNextRawMidiEvent(
-   MidiEventV008 *&         pevent,
+::mus::midi::e_file_result midi_tracks::WorkGetNextRawMidiEvent(
+   midi_event_v008 *&         pevent,
    imedia::position                   tkMax,
    BOOL                     bTkMaxInclusive,
    bool                    bOnlyMTrk)
 {
-   MidiTrack *         ptrack;
-   MidiTrack *         ptrkFound;
+   midi_track *         ptrack;
+   midi_track *         ptrkFound;
    int                     idxTrackFound;
    int                     idxTrack;
    imedia::position                   tkEventPosition;
    imedia::position                     tkEventFound;
-   int                     iRelTime;
-   int                     iMinRelTime;
+   imedia::time                     iRelTime;
+   imedia::time                     iMinRelTime;
 
    iMinRelTime = 0x7fffffff;
    ptrkFound = NULL;
@@ -2290,7 +2289,7 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
       }
       if(bOnlyMTrk)
       {
-         MidiTrack * ptrackMidi = (MidiTrack *) ptrack;
+         midi_track * ptrackMidi = (midi_track *) ptrack;
          CHUNKHDR FAR * pCh = (CHUNKHDR FAR *) ptrackMidi->GetTrackImage();
          if (pCh->fourccType != FOURCC_MTrk)
             continue;
@@ -2341,7 +2340,7 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
 
    ptrack = ptrkFound;
 
-    imedia::position tkPosition = tkEventFound;
+   imedia::position tkPosition = tkEventFound;
 
    iRelTime = tkPosition - m_tkPosition;
    ASSERT(iRelTime >= 0);
@@ -2350,7 +2349,7 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
 
 
 
-   if(ptrack->get_type() == MidiTrackBase::TypeLyric)
+   if(ptrack->get_type() == midi_track_base::TypeLyric)
    {
       ASSERT(true);
    }
@@ -2369,13 +2368,13 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
          return ::mus::midi::SReachedTkMax;
       }
    }
-    
+
    ptrack->_WorkGetEvent(pevent, tkMax, bTkMaxInclusive);
-   
+
    m_iCurrentTrack = idxTrackFound;
-   m_tkPosition = ptrack->GetPosition();
+   m_tkPosition = ptrack->get_position();
    ptrack->_WorkMoveNext();
-   
+
    if(ptrack->_WorkIsEOT())
    {
       DeactivateTrack(ptrack);
@@ -2383,28 +2382,28 @@ MidiLyricTrack * MidiTracks::CreateLyricTrack()
    return ::mus::midi::Success;
 }
 
-void MidiTracks::WorkSeekBegin()
+void midi_tracks::WorkSeekBegin()
 {
    m_trackaActive = m_tracka;
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrackBase * ptrack = (MidiTrack *) TrackAt(i);
+      midi_track_base * ptrack = (midi_track *) TrackAt(i);
       ptrack->WorkSeekBegin();
    }
    m_tkPosition = 0;
    GetFlags().unsignalize(::mus::midi::EndOfTrack);
 }
 
-void MidiTracks::WorkSeekEnd()
+void midi_tracks::WorkSeekEnd()
 {
    imedia::position tkPosition = 0;
    for (int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrackBase * ptrack = (MidiTrack *) TrackAt(i);
+      midi_track_base * ptrack = (midi_track *) TrackAt(i);
       ptrack->WorkSeekEnd();
-      if(ptrack->GetPosition() > tkPosition)
+      if(ptrack->get_position() > tkPosition)
       {
-         tkPosition = ptrack->GetPosition();
+         tkPosition = ptrack->get_position();
       }
    }
    m_tkPosition = tkPosition;
@@ -2412,22 +2411,22 @@ void MidiTracks::WorkSeekEnd()
 }
 
 
-::mus::midi::e_file_result MidiTracks::WorkGetXFTokens(UINT uiCodePage, string2a & token2a, imedia::position_2darray *p2DTicks, base_array<XFLyricsHeader, XFLyricsHeader &> * pxflh2a)
+::mus::midi::e_file_result midi_tracks::WorkGetXFTokens(UINT uiCodePage, string2a & token2a, imedia::position_2darray *p2DTicks, ::mus::xf_lyrics_id_array * pxflh2a)
 {
    ASSERT(p2DTicks != NULL);
    ASSERT(pxflh2a != NULL);
    stringa  tokena;
    imedia::position_array * lptkaTicks = NULL;
-   XFLyricsHeader xflh;
+   ::mus::xf_lyrics_id xflh;
    ASSERT(FALSE);
 
    imedia::position_array positiona;
 
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track *ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       ptrack->WorkSeekBegin();
       ::mus::midi::e_file_result smfr;
       smfr = ptrack->WorkSeekXFLyricsHeader();
@@ -2442,8 +2441,8 @@ void MidiTracks::WorkSeekEnd()
       ptrack->WorkSeekBegin();
       smfr = ptrack->WorkReadXFTokens(uiCodePage, tokena, lptkaTicks);
 
-      if(smfr == ::mus::midi::Success 
-      || smfr == ::mus::midi::SEndOfTrack)
+      if(smfr == ::mus::midi::Success
+         || smfr == ::mus::midi::SEndOfTrack)
       {
          token2a.add(tokena);
          p2DTicks->add(lptkaTicks);
@@ -2459,68 +2458,68 @@ void MidiTracks::WorkSeekEnd()
 }
 
 
-/*::mus::midi::e_file_result MidiTracks::WorkGetXFTokens(
-      string2a &
-            token2a,
-      imedia::position_2darray *p2DTicks,
-      base_array<XFLyricsHeader, XFLyricsHeader &> * pxflh2a)
+/*::mus::midi::e_file_result midi_tracks::WorkGetXFTokens(
+string2a &
+token2a,
+imedia::position_2darray *p2DTicks,
+::mus::xf_lyrics_id_array * pxflh2a)
 {
-   ASSERT(p2DTicks != NULL);
-   ASSERT(pxflh2a != NULL);
-   stringa  tokena;
-   imedia::position_array * lptkaTicks = NULL;
-   XFLyricsHeader xflh;
-   for(int i = 0; i < GetTrackCount(); i++)
-   {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
-      ptrack->WorkSeekBegin();
-      ::mus::midi::e_file_result smfr;
-      smfr = ptrack->WorkSeekXFLyricsHeader();
-      if(smfr == ::mus::midi::Success)
-      {
-         smfr = ptrack->WorkReadXFLyricsHeader(&xflh);
-      }
+ASSERT(p2DTicks != NULL);
+ASSERT(pxflh2a != NULL);
+stringa  tokena;
+imedia::position_array * lptkaTicks = NULL;
+::mus::xf_lyrics_id xflh;
+for(int i = 0; i < GetTrackCount(); i++)
+{
+midi_track *ptrack = (midi_track *)TrackAt(i);
+if(!ptrack->IsType(midi_track_base::TypeMidi))
+continue;
+ptrack->WorkSeekBegin();
+::mus::midi::e_file_result smfr;
+smfr = ptrack->WorkSeekXFLyricsHeader();
+if(smfr == ::mus::midi::Success)
+{
+smfr = ptrack->WorkReadXFLyricsHeader(&xflh);
+}
 
 
-        tokena.remove_all();
-        lptkaTicks = new imedia::position_array();
-      ptrack->WorkSeekBegin();
-      smfr = ptrack->WorkReadXFTokens(tokena, lptkaTicks);
-      if(::mus::midi::Success == smfr)
-      {
-         token2a.add(tokena);
-         p2DTicks->add(lptkaTicks);
-         pxflh2a->add(xflh);
-      }
-        else
-        {
-            delete lptkaTicks;
-        }
-        lptkaTicks = NULL;
-   }
-   return ::mus::midi::Success;
+tokena.remove_all();
+lptkaTicks = new imedia::position_array();
+ptrack->WorkSeekBegin();
+smfr = ptrack->WorkReadXFTokens(tokena, lptkaTicks);
+if(::mus::midi::Success == smfr)
+{
+token2a.add(tokena);
+p2DTicks->add(lptkaTicks);
+pxflh2a->add(xflh);
+}
+else
+{
+delete lptkaTicks;
+}
+lptkaTicks = NULL;
+}
+return ::mus::midi::Success;
 }*/
 
 
 
-::mus::midi::e_file_result MidiTracks::WorkGetXFTokens(UINT uiCodePage, string2a & token2a, imedia::position_2darray & position2a, int2a & i2aTokenLine, base_array<XFLyricsHeader, XFLyricsHeader &> * pxflh2a)
+::mus::midi::e_file_result midi_tracks::WorkGetXFTokens(UINT uiCodePage, string2a & token2a, imedia::position_2darray & position2a, int2a & i2aTokenLine, ::mus::xf_lyrics_id_array * pxflh2a)
 {
    stringa  tokena;
    int_array iaTokenLine;
    imedia::position_array positiona;
-   XFLyricsHeader xflh;
+   ::mus::xf_lyrics_id xflh;
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track *ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       ptrack->WorkSeekBegin();
       ::mus::midi::e_file_result smfr;
       if(pxflh2a != NULL)
       {
-      
+
          smfr = ptrack->WorkSeekXFLyricsHeader();
          if(smfr == ::mus::midi::Success)
          {
@@ -2549,16 +2548,16 @@ void MidiTracks::WorkSeekEnd()
 }
 
 
-::mus::midi::e_file_result MidiTracks::WorkGetEmptyXFTokens(int iTrack, string2a & token2a, imedia::position_2darray & position2a, base_array<XFLyricsHeader, XFLyricsHeader &> * pxflh2a)
+::mus::midi::e_file_result midi_tracks::WorkGetEmptyXFTokens(int iTrack, string2a & token2a, imedia::position_2darray & position2a, ::mus::xf_lyrics_id_array * pxflh2a)
 {
    UNREFERENCED_PARAMETER(pxflh2a);
    stringa  tokena;
    imedia::position_array positiona;
-   XFLyricsHeader xflh;
+   ::mus::xf_lyrics_id xflh;
    ::mus::midi::e_file_result smfrc;
    string str;
    WorkSeekBegin();
-   MidiEventV008 * pevent = NULL;
+   midi_event_v008 * pevent = NULL;
    int i = 0;
    while(true)
    {
@@ -2579,7 +2578,7 @@ void MidiTracks::WorkSeekEnd()
          {
             str = "---";
          }
-         
+
          TRACE("%s\n", str);
          tokena.add(str);
          positiona.add(imedia::position(m_tkPosition));
@@ -2592,18 +2591,18 @@ void MidiTracks::WorkSeekEnd()
    return smfrc;
 }
 
-::mus::midi::e_file_result MidiTracks::WorkGetSoftKaraokeTokens(string2a & token2a, imedia::position_2darray * p2DTicks, base_array<XFLyricsHeader, XFLyricsHeader &> * pxflh2a)
+::mus::midi::e_file_result midi_tracks::WorkGetSoftKaraokeTokens(string2a & token2a, imedia::position_2darray * p2DTicks, ::mus::xf_lyrics_id_array * pxflh2a)
 {
    ASSERT(p2DTicks != NULL);
    ASSERT(pxflh2a != NULL);
    stringa  tokena;
    imedia::position_array * lptkaTicks = NULL;
-   XFLyricsHeader xflh;
+   ::mus::xf_lyrics_id xflh;
    for(int i = 0; i < GetTrackCount(); i++)
    {
-      MidiTrack *ptrack = (MidiTrack *)TrackAt(i);
-        if(!ptrack->IsType(MidiTrackBase::TypeMidi))
-            continue;
+      midi_track *ptrack = (midi_track *)TrackAt(i);
+      if(!ptrack->IsType(midi_track_base::TypeMidi))
+         continue;
       ptrack->WorkSeekBegin();
       tokena.remove_all();
       lptkaTicks = new imedia::position_array();
@@ -2639,7 +2638,7 @@ void MidiTracks::WorkSeekEnd()
 }
 
 
-::mus::midi::e_file_result MidiTracks::WorkQuantizeVR()
+::mus::midi::e_file_result midi_tracks::WorkQuantizeVR()
 {
    for(int i = 0; i < m_tracka.GetTrackCount(); i++)
    {
@@ -2648,18 +2647,18 @@ void MidiTracks::WorkSeekEnd()
    return ::mus::midi::Success;
 }
 
-MidiTrack * MidiTracks::CreateTrack(index iIndex, FOURCC fourcc)
+midi_track * midi_tracks::CreateTrack(index iIndex, FOURCC fourcc)
 {
    return m_tracka.CreateTrack(iIndex, fourcc);
 }
 
-void MidiTracks::remove_all()
+void midi_tracks::remove_all()
 {
    m_tracka.remove_all();
    m_trackaActive.remove_all();
 }
 
-MidiTrack * MidiTracks::CreateTrack(FOURCC fourcc)
+midi_track * midi_tracks::CreateTrack(FOURCC fourcc)
 {
    return m_tracka.CreateTrack(fourcc);
 }
@@ -2667,18 +2666,18 @@ MidiTrack * MidiTracks::CreateTrack(FOURCC fourcc)
 
 
 
-// remove all MidiTrack tracks
+// remove all midi_track tracks
 
-void MidiTracks::RemoveAllMidiTracks()
+void midi_tracks::RemoveAllMidiTracks()
 {
    m_tracka.RemoveAllMidiTracks();
 }
 
-void MidiTracks::DeactivateTrack(MidiTrackBase * ptrack)
+void midi_tracks::DeactivateTrack(midi_track_base * ptrack)
 {
    m_trackaActive.RemoveTrack(ptrack);
 }
-void MidiTracks::clear()
+void midi_tracks::clear()
 {
    remove_all();
    m_tkPosition         = 0;
@@ -2688,7 +2687,7 @@ void MidiTracks::clear()
 }
 
 
-void MidiTracks::remove_at(index iIndex)
+void midi_tracks::remove_at(index iIndex)
 {
    m_tracka.remove_at(iIndex);
 }
@@ -2697,45 +2696,45 @@ void MidiTracks::remove_at(index iIndex)
 
 
 
-void MidiTracks::SetAutoAllocation(bool bSet)
+void midi_tracks::SetAutoAllocation(bool bSet)
 {
    for (int i = 0; i < GetTrackCount(); i++)
-    {
-      MidiTrackBase * ptrack = TrackAt(i);
-      if(ptrack->IsType(MidiTrackBase::TypeMidi))
+   {
+      midi_track_base * ptrack = TrackAt(i);
+      if(ptrack->IsType(midi_track_base::TypeMidi))
       {
-         MidiTrack * pmiditrack = (MidiTrack *) ptrack;
+         midi_track * pmiditrack = (midi_track *) ptrack;
          pmiditrack->SetAutoAllocation(bSet);
       }
-    }
+   }
 
 }
 
 
 
-::mus::midi::file_flags & MidiTracks::GetFlags()
+::mus::midi::file_flags & midi_tracks::GetFlags()
 {
    return m_flagsFile;
 }
 
 
 
-MidiTrack * MidiTracks::TrackPtrAllocArray::CreateTrack(FOURCC fourcc)
+midi_track * midi_tracks::TrackPtrAllocArray::CreateTrack(FOURCC fourcc)
 {
    return CreateTrack(GetMidiTrackCount(), fourcc);
 }
 
-MidiTrack * MidiTracks::TrackPtrAllocArray::CreateTrack(index iIndex, FOURCC fourcc)
+midi_track * midi_tracks::TrackPtrAllocArray::CreateTrack(index iIndex, FOURCC fourcc)
 {
    if(iIndex >= m_miditracka.get_size())
    {
       while(iIndex >= m_miditracka.get_size())
       {
-         m_miditracka.add(new MidiTrack(get_app()));
+         m_miditracka.add(new midi_track(get_app()));
          m_tracka.add(m_miditracka.last_ptr());
       }
    }
-   MidiTrack * ptrack = m_miditracka.ptr_at(iIndex);
+   midi_track * ptrack = m_miditracka.ptr_at(iIndex);
    ptrack->WorkClear();
    ptrack->Initialize(m_ptracks);
    ptrack->GetWorkTrack().m_chunkHeader.fourccType = fourcc;
@@ -2744,19 +2743,19 @@ MidiTrack * MidiTracks::TrackPtrAllocArray::CreateTrack(index iIndex, FOURCC fou
    return ptrack;
 }
 
-MidiLyricTrack * MidiTracks::TrackPtrAllocArray::CreateLyricTrack()
+midi_lyric_track * midi_tracks::TrackPtrAllocArray::CreateLyricTrack()
 {
    return CreateLyricTrack(GetLyricTrackCount());
 }
 
-MidiLyricTrack * MidiTracks::TrackPtrAllocArray::CreateLyricTrack(index iIndex)
+midi_lyric_track * midi_tracks::TrackPtrAllocArray::CreateLyricTrack(index iIndex)
 {
-   MidiLyricTrack * ptrack;
+   midi_lyric_track * ptrack;
    if(iIndex >= m_lyrictracka.get_size())
    {
       while(iIndex >= m_lyrictracka.get_size())
       {
-         ptrack = new MidiLyricTrack(get_app());
+         ptrack = new midi_lyric_track(get_app());
          m_lyrictracka.add(ptrack);
          m_tracka.add(ptrack);
       }
@@ -2766,94 +2765,94 @@ MidiLyricTrack * MidiTracks::TrackPtrAllocArray::CreateLyricTrack(index iIndex)
    return ptrack;
 }
 
-void MidiTracks::TrackPtrAllocArray::RemoveTrack(MidiTrackBase * ptrack)
+void midi_tracks::TrackPtrAllocArray::RemoveTrack(midi_track_base * ptrack)
 {
    m_miditracka      -= ptrack;
    m_lyrictracka     -= ptrack;
    m_tracka          -= ptrack;
 }
 
-void MidiTracks::TrackPtrArray::RemoveTrack(MidiTrackBase * ptrack)
+void midi_tracks::TrackPtrArray::RemoveTrack(midi_track_base * ptrack)
 {
    m_miditracka      -= ptrack;
    m_lyrictracka     -= ptrack;
    m_tracka          -= ptrack;
 }
 
-void MidiTracks::TrackPtrAllocArray::copy(TrackPtrAllocArray & base_array)
+void midi_tracks::TrackPtrAllocArray::copy(TrackPtrAllocArray & base_array)
 {
    m_miditracka         = base_array.m_miditracka;
    m_lyrictracka        = base_array.m_lyrictracka;
    m_tracka.ptr_copy(base_array.m_tracka);
 }
 
-void MidiTracks::TrackPtrArray::copy(TrackPtrAllocArray & base_array)
+void midi_tracks::TrackPtrArray::copy(TrackPtrAllocArray & base_array)
 {
    m_miditracka.ptr_copy(base_array.m_miditracka);
    m_lyrictracka.ptr_copy(base_array.m_lyrictracka);
    m_tracka.ptr_copy(base_array.m_tracka);
 }
 
-MidiTracks::TrackPtrArray & MidiTracks::TrackPtrArray::operator = (TrackPtrAllocArray & base_array)
+midi_tracks::TrackPtrArray & midi_tracks::TrackPtrArray::operator = (TrackPtrAllocArray & base_array)
 {
    copy(base_array);
    return *this;
 }
 
-void MidiTracks::TrackPtrAllocArray::remove_at(index iIndex)
+void midi_tracks::TrackPtrAllocArray::remove_at(index iIndex)
 {
-   MidiTrackBase * ptrack  = m_tracka.ptr_at(iIndex);
+   midi_track_base * ptrack  = m_tracka.ptr_at(iIndex);
    m_miditracka            -= ptrack;
    m_lyrictracka           -= ptrack;
    m_tracka                -= ptrack;
 }
 
-void MidiTracks::TrackPtrAllocArray::remove_all()
+void midi_tracks::TrackPtrAllocArray::remove_all()
 {
    m_tracka.remove_all();
    m_miditracka.remove_all();
    m_lyrictracka.remove_all();
 }
 
-void MidiTracks::TrackPtrArray::remove_all()
+void midi_tracks::TrackPtrArray::remove_all()
 {
    m_tracka.remove_all();
    m_miditracka.remove_all();
    m_lyrictracka.remove_all();
 }
 
-void MidiTracks::TrackPtrAllocArray::RemoveAllMidiTracks()
+void midi_tracks::TrackPtrAllocArray::RemoveAllMidiTracks()
 {
    while(m_miditracka.get_size() > 0)
    {
-      MidiTrack * ptrack = m_miditracka.ptr_at(0);
+      midi_track * ptrack = m_miditracka.ptr_at(0);
       m_tracka -= ptrack;
       m_miditracka.remove_at(0);
    }
 }
 
-MidiTracks::TrackPtrAllocArray::TrackPtrAllocArray(::ca::application * papp)
-: ca(papp)
+midi_tracks::TrackPtrAllocArray::TrackPtrAllocArray(::ca::application * papp)
+   : ca(papp)
 {
    m_ptracks = NULL;
 }
 
-void MidiTracks::TrackPtrAllocArray::Initialize(MidiTracks *ptracks)
+void midi_tracks::TrackPtrAllocArray::Initialize(midi_tracks *ptracks)
 {
    m_ptracks = ptracks;
 }
 
-MidiTracks::TrackPtrArray::TrackPtrArray()
+midi_tracks::TrackPtrArray::TrackPtrArray()
 {
    m_ptracks = NULL;
 }
 
-void MidiTracks::TrackPtrArray::Initialize(MidiTracks *ptracks)
+void midi_tracks::TrackPtrArray::Initialize(midi_tracks *ptracks)
 {
    m_ptracks = ptracks;
 }
 
-imedia::position MidiTracks::CalcTkLength()
+imedia::position midi_tracks::CalcTkLength()
 {
    imedia::position tk = 0;
    for(int i = 0; i < GetMidiTrackCount(); i++)
@@ -2868,47 +2867,47 @@ imedia::position MidiTracks::CalcTkLength()
 
 
 
-MidiTrackBase * MidiTracks::TrackAt(index iIndex)
+midi_track_base * midi_tracks::TrackAt(index iIndex)
 {
    return m_tracka.TrackAt(iIndex);
 }
 
-// MidiTracks::TrackPtrAllocArray
-MidiTrackBase * MidiTracks::TrackPtrAllocArray::TrackAt(index iIndex)
+// midi_tracks::TrackPtrAllocArray
+midi_track_base * midi_tracks::TrackPtrAllocArray::TrackAt(index iIndex)
 {
    return m_tracka.ptr_at(iIndex);
 }
 
-count MidiTracks::TrackPtrAllocArray::GetTrackCount() const
+count midi_tracks::TrackPtrAllocArray::GetTrackCount() const
 {
    return m_tracka.get_size();
 }
 
-count MidiTracks::TrackPtrAllocArray::GetMidiTrackCount() const
+count midi_tracks::TrackPtrAllocArray::GetMidiTrackCount() const
 {
    return m_miditracka.get_size();
 }
 
-count MidiTracks::TrackPtrAllocArray::GetLyricTrackCount()
+count midi_tracks::TrackPtrAllocArray::GetLyricTrackCount()
 {
    return m_lyrictracka.get_size();
 }
 
-MidiTrack * MidiTracks::TrackPtrAllocArray::MidiTrackAt(index iIndex)
+midi_track * midi_tracks::TrackPtrAllocArray::MidiTrackAt(index iIndex)
 {
    ASSERT(iIndex >= 0);
    ASSERT(iIndex < GetMidiTrackCount());
    return m_miditracka.ptr_at(iIndex);
 }
 
-MidiTrack * MidiTracks::TrackPtrAllocArray::MidiTrackAt(index iIndex) const
+midi_track * midi_tracks::TrackPtrAllocArray::MidiTrackAt(index iIndex) const
 {
    ASSERT(iIndex >= 0);
    ASSERT(iIndex < GetMidiTrackCount());
-   return const_cast < MidiTrack *> (m_miditracka.ptr_at(iIndex));
+   return const_cast < midi_track *> (m_miditracka.ptr_at(iIndex));
 }
 
-MidiLyricTrack * MidiTracks::TrackPtrAllocArray::LyricTrackAt(index iIndex)
+midi_lyric_track * midi_tracks::TrackPtrAllocArray::LyricTrackAt(index iIndex)
 {
    ASSERT(iIndex >= 0);
    ASSERT(iIndex < GetLyricTrackCount());
@@ -2916,35 +2915,35 @@ MidiLyricTrack * MidiTracks::TrackPtrAllocArray::LyricTrackAt(index iIndex)
 
 }
 
-// MidiTracks::TrackPtrArray
-MidiTrackBase * MidiTracks::TrackPtrArray::TrackAt(index iIndex)
+// midi_tracks::TrackPtrArray
+midi_track_base * midi_tracks::TrackPtrArray::TrackAt(index iIndex)
 {
    return &m_tracka.element_at(iIndex);
 }
 
-count MidiTracks::TrackPtrArray::GetTrackCount() const
+count midi_tracks::TrackPtrArray::GetTrackCount() const
 {
    return m_tracka.get_size();
 }
 
-count MidiTracks::TrackPtrArray::GetMidiTrackCount() const
+count midi_tracks::TrackPtrArray::GetMidiTrackCount() const
 {
    return m_miditracka.get_size();
 }
 
-count MidiTracks::TrackPtrArray::GetLyricTrackCount()
+count midi_tracks::TrackPtrArray::GetLyricTrackCount()
 {
    return m_lyrictracka.get_size();
 }
 
-MidiTrack * MidiTracks::TrackPtrArray::MidiTrackAt(index iIndex)
+midi_track * midi_tracks::TrackPtrArray::MidiTrackAt(index iIndex)
 {
    ASSERT(iIndex >= 0);
    ASSERT(iIndex < GetMidiTrackCount());
    return m_miditracka.ptr_at(iIndex);
 }
 
-MidiLyricTrack * MidiTracks::TrackPtrArray::LyricTrackAt(index iIndex)
+midi_lyric_track * midi_tracks::TrackPtrArray::LyricTrackAt(index iIndex)
 {
    ASSERT(iIndex >= 0);
    ASSERT(iIndex < GetLyricTrackCount());
@@ -2952,48 +2951,48 @@ MidiLyricTrack * MidiTracks::TrackPtrArray::LyricTrackAt(index iIndex)
 
 }
 
-count MidiTracks::GetTrackCount()
+count midi_tracks::GetTrackCount()
 {
    return m_tracka.GetTrackCount();
 }
 
 
-MidiTrack * MidiTracks::MidiTrackAt(index iIndex)
+midi_track * midi_tracks::MidiTrackAt(index iIndex)
 {
    return m_tracka.MidiTrackAt(iIndex);
 }
 
-MidiTrack * MidiTracks::MidiTrackAt(index iIndex) const
+midi_track * midi_tracks::MidiTrackAt(index iIndex) const
 {
    return m_tracka.MidiTrackAt(iIndex);
 }
 
-MidiTrack * MidiTracks::ActiveMidiTrackAt(index iIndex)
+midi_track * midi_tracks::ActiveMidiTrackAt(index iIndex)
 {
    return m_trackaActive.MidiTrackAt(iIndex);
 }
 
-MidiTrackBase * MidiTracks::ActiveTrackAt(index iIndex)
+midi_track_base * midi_tracks::ActiveTrackAt(index iIndex)
 {
    return m_trackaActive.TrackAt(iIndex);
 }
 
-count MidiTracks::GetMidiTrackCount() const
+count midi_tracks::GetMidiTrackCount() const
 {
    return m_tracka.GetMidiTrackCount();
 }
 
-count MidiTracks::GetActiveTrackCount() const
+count midi_tracks::GetActiveTrackCount() const
 {
    return m_trackaActive.GetTrackCount();
 }
 
-count MidiTracks::GetActiveMidiTrackCount() const
+count midi_tracks::GetActiveMidiTrackCount() const
 {
    return m_trackaActive.GetMidiTrackCount();
 }
 
-imedia::position MidiTracks::GetPosition()
+imedia::position midi_tracks::get_position()
 {
    return m_tkPosition;
 }

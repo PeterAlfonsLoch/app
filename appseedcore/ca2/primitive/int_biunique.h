@@ -2,7 +2,7 @@
 
 template < class T, class T_to_T = ::collection::attrib_map < T, T, T, T > >
 class  biunique :
-   virtual public ex1::serializable
+   virtual public ex1::byte_serializable
 {
 public:
    biunique(::ca::application * papp = NULL);
@@ -52,8 +52,8 @@ public:
 
    void copy_data(const biunique & ia);
 
-   virtual void write(ex1::output_stream & ostream);
-   virtual void read(ex1::input_stream & ostream);
+   virtual void write(ex1::byte_output_stream & ostream);
+   virtual void read(ex1::byte_input_stream & ostream);
 
    biunique & operator = (const biunique & ia);
 
@@ -174,13 +174,13 @@ void biunique < T, T_to_T > ::set(T a, T b)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_max_a() const
 {
-   return m_iMaxA;   
+   return m_iMaxA;
 }
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_max_b() const
 {
-   return m_iMaxB;   
+   return m_iMaxB;
 }
 
 
@@ -341,10 +341,10 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_write(ex1::output_stream & ostream, ::collection::map < t1, t2, t3, t4 > & m)
+void serialize_write(ex1::byte_output_stream & ostream, ::collection::map < t1, t2, t3, t4 > & m)
 {
    count count = m.get_count();
-   ::collection::map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
+   typename ::collection::map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
    ostream << count;
    while(ppair != NULL)
    {
@@ -355,7 +355,7 @@ void serialize_write(ex1::output_stream & ostream, ::collection::map < t1, t2, t
 }
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_read(ex1::input_stream & istream, ::collection::map < t1, t2, t3, t4 > & m)
+void serialize_read(ex1::byte_input_stream & istream, ::collection::map < t1, t2, t3, t4 > & m)
 {
    try
    {
@@ -381,7 +381,7 @@ void serialize_read(ex1::input_stream & istream, ::collection::map < t1, t2, t3,
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::write(ex1::output_stream & ostream)
+void biunique < T, T_to_T > ::write(ex1::byte_output_stream & ostream)
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;
@@ -400,7 +400,7 @@ void biunique < T, T_to_T > ::write(ex1::output_stream & ostream)
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::read(ex1::input_stream & istream)
+void biunique < T, T_to_T > ::read(ex1::byte_input_stream & istream)
 {
    try
    {
@@ -413,7 +413,7 @@ void biunique < T, T_to_T > ::read(ex1::input_stream & istream)
       {
          T_to_T ab;
          serialize_read(istream, ab);
-         T_to_T::pair * ppair = ab.PGetFirstAssoc();
+         typename T_to_T::pair * ppair = ab.PGetFirstAssoc();
          while(ppair != NULL)
          {
             set(ppair->m_key, ppair->m_value);
@@ -442,7 +442,7 @@ void biunique < T, T_to_T > ::read(ex1::input_stream & istream)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_a()
 {
-   T_to_T::pair * ppair =
+   typename T_to_T::pair * ppair =
       m_ab.PGetFirstAssoc();
    T iMaxA = -1;
    while(ppair != NULL)
@@ -457,7 +457,7 @@ T biunique < T, T_to_T > ::calc_max_a()
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_b()
 {
-   T_to_T::pair * ppair =
+   typename T_to_T::pair * ppair =
       m_ba.PGetFirstAssoc();
    T iMaxB = -1;
    while(ppair != NULL)

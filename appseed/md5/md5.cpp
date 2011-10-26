@@ -12,22 +12,22 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	{
 	case DLL_PROCESS_ATTACH:
 		{
-			TRACE("md5.dll DLL_PROCESS_ATTACH");
+         ::OutputDebugStringA("md5.dll DLL_PROCESS_ATTACH");
 		}
 		break;
 	case DLL_THREAD_ATTACH:
 		{
-			TRACE("md5.dll DLL_THREAD_ATTACH");
+			::OutputDebugStringA("md5.dll DLL_THREAD_ATTACH");
 		}
 		break;
 	case DLL_THREAD_DETACH:
 		{
-			TRACE("md5.dll DLL_THREAD_DETACH");
+			::OutputDebugStringA("md5.dll DLL_THREAD_DETACH");
 		}
 		break;
 	case DLL_PROCESS_DETACH:
 		{
-			TRACE("md5.dll DLL_PROCESS_DETACH");
+			::OutputDebugStringA("md5.dll DLL_PROCESS_DETACH");
 		}
 		break;
 	}

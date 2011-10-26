@@ -11,7 +11,7 @@ audWaveEffectDevocalizer::audWaveEffectDevocalizer(::ca::application * papp,
    ca(papp),
    m_groupa(papp)
 {
-   
+
 
    m_iChannelCount = 2;
 
@@ -21,8 +21,10 @@ audWaveEffectDevocalizer::audWaveEffectDevocalizer(::ca::application * papp,
    m_iDivisionCount = iDivisionCount;
    m_iGroupCount = iGroupCount;
    m_iSampleCount = iSampleCount;
-   m_pfftd = new _vmskissfftf::Fftrd(m_iSampleCount);
-   m_pffti = new _vmskissfftf::Fftri(m_iSampleCount);
+   m_spfftd.destroy();
+   m_spifftd.destroy();
+   m_spfftd(new kissfft::fftd(m_iSampleCount));
+   m_spifftd(new kissfft::ifftd(m_iSampleCount));
 
    double fMinFreq = 110.0; // Hz
    double fMaxFreq = 1000.0; // Hz
@@ -76,17 +78,13 @@ audWaveEffectDevocalizer::audWaveEffectDevocalizer(::ca::application * papp,
    }
 
    m_chunk.Initialize(this);
-   
+
    m_iDivisionSampleCount = m_iSampleCount / m_iDivisionCount;
 
 }
 
 audWaveEffectDevocalizer::~audWaveEffectDevocalizer()
 {
-   if(m_pfftd != NULL)
-      delete m_pfftd;
-   if(m_pffti != NULL)
-      delete m_pffti;
 }
 
 void audWaveEffectDevocalizer::Chunk::Initialize(audWaveEffectDevocalizer * pparent)
@@ -94,8 +92,8 @@ void audWaveEffectDevocalizer::Chunk::Initialize(audWaveEffectDevocalizer * ppar
    m_pparent = pparent;
    int iSampleCount = pparent->m_iSampleCount;
    int iChannelCount = m_pparent->m_iChannelCount;
-   m_psh = new short[iSampleCount * iChannelCount];
-   memset(m_psh, 0, sizeof(short) * iSampleCount * iChannelCount);
+   m_sha.set_size(iSampleCount * iChannelCount);
+   memset(m_sha.get_data(), 0, sizeof(short) * iSampleCount * iChannelCount);
 }
 
 
@@ -120,7 +118,7 @@ bool audWaveEffectDevocalizer::Process(short * pshIn, short * pshOut)
    m_iInputDivisionCount += m_iDivisionCount;
 
    int iChunk = (m_iFirstChunk + m_iChunkCount - 1) % m_chunka.get_size();
-   
+
 
    m_chunka[iChunk].Input(pshIn);
 
@@ -139,7 +137,7 @@ int audWaveEffectDevocalizer::Process16bits(short * pshStream, int iCount)
   /* bool bDiff     = false;
    bool bFilter   = true;
 
-   double * pfL = m_pfL1;         
+   double * pfL = m_pfL1;
    double * pfR = m_pfR1;
    short * psh = pshStream;
    double * pfL2;
@@ -153,9 +151,9 @@ int audWaveEffectDevocalizer::Process16bits(short * pshStream, int iCount)
       *pfR++ = *psh++;
    }
 
-   pfL = m_pfL1;         
+   pfL = m_pfL1;
    pfR = m_pfR1;
-   double * pfL3 = m_pfL3;         
+   double * pfL3 = m_pfL3;
    double * pfR3 = m_pfR3;
 
    iDivisor = 0;
@@ -193,7 +191,7 @@ int audWaveEffectDevocalizer::Process16bits(short * pshStream, int iCount)
       m_faMax.AddCoupledSwapInterface(&m_iaMax);
       //double pfMax[iMaxCount];
       //int piMax[iMaxCount];
-   
+
       m_pfftd->Fft(m_pfL1, m_pcpxL);
       double fMean;
       double fArea = 0.0;
@@ -233,7 +231,7 @@ int audWaveEffectDevocalizer::Process16bits(short * pshStream, int iCount)
       int wDiv = 10;
       //goto breakFilter1;
       m_faMax.QuickSort();
-      
+
       double wHalf;
 
       //if(false)
@@ -318,11 +316,11 @@ int audWaveEffectDevocalizer::Process16bits(short * pshStream, int iCount)
    }
 
 
-   pfL  = m_pfL1;         
+   pfL  = m_pfL1;
    pfR  = m_pfR1;
-   pfL2 = m_pfL2;         
+   pfL2 = m_pfL2;
    pfR2 = m_pfR2;
-   pfL3 = m_pfL3;         
+   pfL3 = m_pfL3;
    pfR3 = m_pfR3;
 
    for(i = 0; i < 16 * 1024; i++)
@@ -363,19 +361,18 @@ void audWaveEffectDevocalizer::Group::Initialize(audWaveEffectDevocalizer * ppar
    {
       m_channela[i].Initialize(this);
    }
-   m_pfMod = new double[iSampleCount];
+   m_daMod.set_size(iSampleCount);
 }
 
 void audWaveEffectDevocalizer::Group::Channel::Initialize(Group * pgroup)
 {
    m_pgroup = pgroup;
    int iSampleCount = m_pgroup->m_pparent->m_iSampleCount;
-   m_pf1    = new double[iSampleCount];
-   m_pf2    = new double[iSampleCount];
-   m_pf3    = new double[iSampleCount];
-   m_pcpx   = new kiss_fft_cpx[iSampleCount / 2 + 1];
+   m_da1.set_size(iSampleCount);
+   m_da2.set_size(iSampleCount);
+   m_da3.set_size(iSampleCount);
+   m_cpxa.set_size(iSampleCount / 2 + 1);
    m_faMax.set_size(m_pgroup->m_pparent->m_iMax - m_pgroup->m_pparent->m_iMin + 1);
-//   m_faMax.AddCoupledSwapInterface(&m_iaMax);
    m_iaMax.set_size(m_pgroup->m_pparent->m_iMax - m_pgroup->m_pparent->m_iMin + 1);
 }
 
@@ -407,11 +404,11 @@ bool audWaveEffectDevocalizer::GroupToOutput()
          m_f2aMax[k].QuickSort();
       }
 
-      
+
 
       int n = m_iDivisionSampleCount * m_iChannelCount * m_iOutDivision;
 
-      m_groupa[m_iOutputGroup].Output1(&m_chunkaOut[m_iOutChunk].m_psh[n]);
+      m_groupa[m_iOutputGroup].Output1(&m_chunkaOut[m_iOutChunk].m_sha[n]);
 
       int iOutDiv2 = m_iOutDivision;
       int iOutChk2 = m_iOutChunk;
@@ -427,7 +424,7 @@ bool audWaveEffectDevocalizer::GroupToOutput()
       n = m_iDivisionSampleCount * m_iChannelCount * iOutDiv2;
       if(m_iGroupCount > 1)
       {
-         m_groupa[m_iOutputGroup].Output2(&m_chunkaOut[iOutChk2].m_psh[n]);
+         m_groupa[m_iOutputGroup].Output2(&m_chunkaOut[iOutChk2].m_sha[n]);
       }
 
       m_iOutputGroup = (m_iOutputGroup + 1) % m_groupa.get_size();
@@ -466,7 +463,7 @@ bool audWaveEffectDevocalizer::Output(short * psh)
       return false;
    }
 
-   memcpy(psh, m_chunkaOut[m_iFirstOutput].m_psh, m_iSampleCount * sizeof(short) * m_iChannelCount);
+   memcpy(psh, m_chunkaOut[m_iFirstOutput].m_sha.get_data(), m_iSampleCount * sizeof(short) * m_iChannelCount);
 
    m_iFirstOutput++;
    if(m_iFirstOutput >= m_chunkaOut.get_size())
@@ -479,7 +476,7 @@ bool audWaveEffectDevocalizer::Output(short * psh)
 
 bool audWaveEffectDevocalizer::Chunk::Input(short * pshStream)
 {
-   memcpy(m_psh, pshStream, m_pparent->m_iSampleCount * 2 * m_pparent->m_iChannelCount);
+   memcpy(m_sha.get_data(), pshStream, m_pparent->m_iSampleCount * 2 * m_pparent->m_iChannelCount);
    return true;
 }
 
@@ -499,12 +496,12 @@ void audWaveEffectDevocalizer::Group::Channel::Input(bool bFilter)
 
    if(false)
    {
-      m_pgroup->iDivisor += 1;
+      m_pgroup->m_dDivisor += 1,9;
 
       double fMod;
 //      const int iMaxCount = 3;
-   
-      m_pgroup->m_pparent->m_pfftd->Fft(m_pf1, m_pcpx);
+
+      m_pgroup->m_pparent->m_spfftd->fft(m_da1.get_data(), m_cpxa.get_data());
       double fMean;
       double fArea = 0.0;
       double fDiv;
@@ -513,10 +510,10 @@ void audWaveEffectDevocalizer::Group::Channel::Input(bool bFilter)
       int iBinCount = iSampleCount / 2 + 1;
       for(i = 0; i < iBinCount; i++)
       {
-         m_pcpx[i].r /= 16384 / 2;
-         m_pcpx[i].i /= 16384 / 2;
-         m_pgroup->m_pfMod[i] = (double) ::sqrt(m_pcpx[i].r * m_pcpx[i].r + m_pcpx[i].i * m_pcpx[i].i);
-         fArea += m_pgroup->m_pfMod[i];
+         m_cpxa[i].r /= 16384.0 / 2.0;
+         m_cpxa[i].i /= 16384.0 / 2.0;
+         m_pgroup->m_daMod[i] = (double) ::sqrt(m_cpxa[i].r * m_cpxa[i].r + m_cpxa[i].i * m_cpxa[i].i);
+         fArea += m_pgroup->m_daMod[i];
       }
       fMean = fArea / iBinCount;
       int j;
@@ -537,7 +534,7 @@ void audWaveEffectDevocalizer::Group::Channel::Input(bool bFilter)
                fDiv = (double) fabs(fTonic * (wHalf - abs(k) + 1));
                if((iBin + k)> iBinCount)
                   break;
-               fMod += m_pgroup->m_pfMod[iBin + k] / fDiv;
+               fMod += m_pgroup->m_daMod[iBin + k] / fDiv;
             }
             //fMod += m_pgroup->m_pfMod[iBin];
          }
@@ -557,14 +554,14 @@ void audWaveEffectDevocalizer::Group::Channel::Input(bool bFilter)
          }
       }
 //      int wDiv = 10;
-      
+
 
 
 
    }
    if(bFilter)
    {
-      m_pgroup->iDivisor += 1.5 ;
+      m_pgroup->m_dDivisor += 1.5 ;
 
       double fDivisor = iSampleCount / 4.0f;
       if(m_pgroup->m_pparent->m_iGroupCount > 1)
@@ -573,8 +570,8 @@ void audWaveEffectDevocalizer::Group::Channel::Input(bool bFilter)
       }
 
 //      const int iMaxCount = 3;
-   
-      m_pgroup->m_pparent->m_pfftd->Fft(m_pf1, m_pcpx);
+
+      m_pgroup->m_pparent->m_spfftd->fft(m_da1.get_data(), m_cpxa.get_data());
 //      double fArea = 0.0;
       int iBinCount = iSampleCount / 2 + 1;
       int iLBin = m_pgroup->m_pparent->GetFrequencyIndex(220.0);
@@ -582,28 +579,28 @@ void audWaveEffectDevocalizer::Group::Channel::Input(bool bFilter)
 
       for(i = 0; i < iLBin; i++)
       {
-         m_pcpx[i].r /= fDivisor;
-         m_pcpx[i].i /= fDivisor;
+         m_cpxa[i].r /= fDivisor;
+         m_cpxa[i].i /= fDivisor;
       }
       for(; i < iUBin; i++)
       {
-         m_pcpx[i].r = 0.0f;
-         m_pcpx[i].i = 0.0f;
+         m_cpxa[i].r = 0.0f;
+         m_cpxa[i].i = 0.0f;
       }
       for(; i < iBinCount; i++)
       {
-         m_pcpx[i].r /= fDivisor;
-         m_pcpx[i].i /= fDivisor;
+         m_cpxa[i].r /= fDivisor;
+         m_cpxa[i].i /= fDivisor;
       }
-      
+
 
 
 
    }
    else
    {
-      double * pf2 = m_pf2;
-      m_pgroup->iDivisor += 1;
+      double * pf2 = m_da2.get_data();
+      m_pgroup->m_dDivisor += 1;
       for(i = 0; i < iSampleCount; i++)
       {
          *pf2++ = 0;
@@ -616,8 +613,8 @@ bool audWaveEffectDevocalizer::Group::Input(short * pshStream)
    bool bDiff     = true;
    bool bFilter   = true;
 
-   double * pfL = m_channela[0].m_pf1;         
-   double * pfR = m_channela[1].m_pf1;
+   double * pfL = m_channela[0].m_da1.get_data();
+   double * pfR = m_channela[1].m_da1.get_data();
    short * psh = pshStream;
    double * pfL2;
    double * pfR2;
@@ -634,16 +631,16 @@ bool audWaveEffectDevocalizer::Group::Input(short * pshStream)
    }
 
 
-   pfL   = m_channela[0].m_pf1;         
-   pfR   = m_channela[1].m_pf1;
-   pfL3_ = m_channela[0].m_pf3;         
-   pfR3_ = m_channela[1].m_pf3;
+   pfL   = m_channela[0].m_da1.get_data();
+   pfR   = m_channela[1].m_da1.get_data();
+   pfL3_ = m_channela[0].m_da3.get_data();
+   pfR3_ = m_channela[1].m_da3.get_data();
 
-   iDivisor = 0;
+   m_dDivisor = 0;
 
    if(bDiff)
    {
-      iDivisor += 1;
+      m_dDivisor += 1.0;
       for(i = 0; i < iSampleCount; i++)
       {
          *pfL3_ = (double) ((*pfL - *pfR) / 1.0);
@@ -656,7 +653,7 @@ bool audWaveEffectDevocalizer::Group::Input(short * pshStream)
    }
    else
    {
-      iDivisor += 1;
+      m_dDivisor += 1.0;
       for(i = 0; i < iSampleCount; i++)
       {
          *pfL3_++ = 0.0f;
@@ -670,11 +667,11 @@ bool audWaveEffectDevocalizer::Group::Input(short * pshStream)
 
    if(!bDiff && !bFilter)
    {
-      pfL   = m_channela[0].m_pf1;         
-      pfR   = m_channela[1].m_pf1;
-      pfL2  = m_channela[0].m_pf2;         
-      pfR2  = m_channela[1].m_pf2;
-      iDivisor += 1;
+      pfL   = m_channela[0].m_da1.get_data();
+      pfR   = m_channela[1].m_da1.get_data();
+      pfL2  = m_channela[0].m_da2.get_data();
+      pfR2  = m_channela[1].m_da2.get_data();
+      m_dDivisor += 1.0;
       for(i = 0; i < iSampleCount; i++)
       {
          *pfL2++ = *pfL++;
@@ -691,7 +688,7 @@ void audWaveEffectDevocalizer::Group::Channel::Output(
    int_array & iaMax)
 {
 
-//   double * pfL = m_pf1;         
+//   double * pfL = m_pf1;
    double wHalf;
 
    int iSampleCount = m_pgroup->m_pparent->m_iSampleCount;
@@ -736,8 +733,8 @@ void audWaveEffectDevocalizer::Group::Channel::Output(
                fDiv = fTonic * (wHalf - abs(j));
                if(iBin + j> iMaxVoiceBin)
                   break;
-               m_pcpx[iBin + j].r /= fDiv;
-               m_pcpx[iBin + j].i /= fDiv;
+               m_cpxa[iBin + j].r /= fDiv;
+               m_cpxa[iBin + j].i /= fDiv;
                ia[iBin + j] = 1;
             }
          }
@@ -753,7 +750,7 @@ void audWaveEffectDevocalizer::Group::Channel::Output(
       }
    }
 */
-   m_pgroup->m_pparent->m_pffti->Fft(m_pcpx, m_pf2);
+   m_pgroup->m_pparent->m_spifftd->ifft(m_cpxa.get_data(), m_da2.get_data());
 }
 
 bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
@@ -764,8 +761,8 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
       m_channela[i].Output(m_pparent->m_f2aMax[i], m_pparent->m_i2aMax[i]);
    }
 
-   double * pfL = m_channela[0].m_pf1;         
-   double * pfR = m_channela[1].m_pf1;
+   double * pfL = m_channela[0].m_da1.get_data();
+   double * pfR = m_channela[1].m_da1.get_data();
    short * psh = pshStream;
    double * pfL2;
    double * pfR2;
@@ -773,12 +770,12 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
    double * pfR3_;
 
 
-   pfL  = m_channela[0].m_pf1;
-   pfR  = m_channela[1].m_pf1;
-   pfL2 = m_channela[0].m_pf2;
-   pfR2 = m_channela[1].m_pf2;
-   pfL3_ = m_channela[0].m_pf3;
-   pfR3_ = m_channela[1].m_pf3;
+   pfL  = m_channela[0].m_da1.get_data();
+   pfR  = m_channela[1].m_da1.get_data();
+   pfL2 = m_channela[0].m_da2.get_data();
+   pfR2 = m_channela[1].m_da2.get_data();
+   pfL3_ = m_channela[0].m_da3.get_data();
+   pfR3_ = m_channela[1].m_da3.get_data();
 
    int iCount = m_pparent->m_iDivisionSampleCount * 2;
 
@@ -788,15 +785,15 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
       *pfR++ = *pfR2++ + *pfR3_++;
    }
 
-   pfL  = m_channela[0].m_pf1;
-   pfR  = m_channela[1].m_pf1;
+   pfL  = m_channela[0].m_da1.get_data();
+   pfR  = m_channela[1].m_da1.get_data();
    psh = pshStream;
 
-   iDivisor *= 1.2f;
+   m_dDivisor *= 1.2f;
 
    if(m_pparent->m_iGroupCount > 1)
    {
-      iDivisor /= 3.2f;
+      m_dDivisor /= 3.2f;
    }
 
    //iDivisor = 1;
@@ -809,7 +806,7 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
    {
       for(i = 0; i < iCount; i++)
       {
-         f = ((double)*psh + *pfL++) / iDivisor;
+         f = ((double)*psh + *pfL++) / m_dDivisor;
 
          if(f >= 32767.0f)
             *psh = 32767;
@@ -819,7 +816,7 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
             *psh = (short) f;
          psh++;
 
-         f = ((double)*psh + *pfR++) / iDivisor;
+         f = ((double)*psh + *pfR++) / m_dDivisor;
          if(f >= 32767.0f)
             *psh = 32767;
          else if(f <= -32768.0f)
@@ -833,7 +830,7 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
    {
       for(i = 0; i < iCount; i++)
       {
-         f = *pfL++ / iDivisor;
+         f = *pfL++ / m_dDivisor;
          if(f >= 32767.0f)
             *psh = 32767;
          else if(f <= -32768.0f)
@@ -842,7 +839,7 @@ bool audWaveEffectDevocalizer::Group::Output1(short * pshStream)
             *psh = (short) f;
          psh++;
 
-         f = *pfR++ / iDivisor;
+         f = *pfR++ / m_dDivisor;
          if(f >= 32767.0f)
             *psh = 32767;
          else if(f <= -32768.0f)
@@ -860,12 +857,12 @@ bool audWaveEffectDevocalizer::Group::Output2(short * pshStream)
 {
 
    int iCount = m_pparent->m_iDivisionSampleCount;
-   double * pfL = &m_channela[0].m_pf1[iCount];         
-   double * pfR = &m_channela[1].m_pf1[iCount];
+   double * pfL = &m_channela[0].m_da1[iCount];
+   double * pfR = &m_channela[1].m_da1[iCount];
 
    short * psh = pshStream;
-   
-   
+
+
 
    for(int i = 0; i < iCount; i++)
    {
@@ -898,21 +895,17 @@ void audWaveEffectDevocalizer::PrepareChunk(int iDivision)
    int iUDivision = (iDivision + m_iDivisionCount - 1) % m_iDivisionCount;
 
    s = m_iSampleCount * m_iChannelCount;
-   
+
    i = s * iLDivision / m_iDivisionCount;
    n = s - i;
-   memcpy(m_chunk.m_psh, 
-      &m_chunka[iLChunk].m_psh[i],
-      n * 2);
+   memcpy(m_chunk.m_sha.get_data(), &m_chunka[iLChunk].m_sha[i], n * 2);
 
    int j = n;
 
    if(iUChunk != iLChunk)
    {
       n = s * (iUDivision + 1) / m_iDivisionCount;
-      memcpy(&m_chunk.m_psh[j], 
-         m_chunka[iUChunk].m_psh,
-         n * 2);
+      memcpy(&m_chunk.m_sha[j], m_chunka[iUChunk].m_sha.get_data(), n * 2);
    }
 }
 
@@ -921,7 +914,7 @@ void audWaveEffectDevocalizer::InputChunk()
    m_iInputGroupCount++;
    m_iFirstInputGroup = (m_iFirstInputGroup + 1) % m_groupa.get_size();
 
-   m_groupa[m_iFirstInputGroup].Input(m_chunk.m_psh);
+   m_groupa[m_iFirstInputGroup].Input(m_chunk.m_sha.get_data());
 
 
 }

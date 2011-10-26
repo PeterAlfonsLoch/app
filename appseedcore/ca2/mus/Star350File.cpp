@@ -6,7 +6,7 @@
 
 
 //extern CXfplayerApp theApp;
-const char Star350File::m_lpchHeader[] = 
+const char Star350File::m_lpchHeader[] =
     {'S',
      'T',
      'A',
@@ -89,14 +89,14 @@ SMFRESULT Star350File::OpenFile(
    int openMode)
 {
     SMFRESULT               smfrc = Success;
-      
+
     if(IsOpened())
     {
         CloseFile();
     }
 
    m_ptracks->m_iMelodyTrackTipA = -1;
-   
+
    m_iOpenMode = openMode;
 
     m_fdwSMF = 0;
@@ -125,9 +125,9 @@ SMFRESULT Star350File::OpenFile(
    }
 
     LPBYTE lpbImage;
-    
+
     lpbImage = GetImage();
-    
+
     memcpy(lpbImage, file.GetImage(), cbImage);
 
     /* If the file exists, parse it just enough to pull out the header and
@@ -152,7 +152,7 @@ smf_Open_File_Cleanup:
       //   GetImage() = NULL;
         //}
     }
-    
+
     return smfrc;
 }
 
@@ -162,18 +162,18 @@ SMFRESULT Star350File::OpenFile(
    mus::EStorage estorage)
 {
    ASSERT(pmemorystorage != NULL);
-    
+
    if(IsOpened())
    {
       CloseFile();
    }
 
    SMFRESULT               smfrc = Success;
-      
+
    m_ptracks->m_iMelodyTrackTipA = -1;
-   
+
    m_iOpenMode = openMode;
-   
+
    m_fdwSMF = 0;
 
 
@@ -185,11 +185,11 @@ SMFRESULT Star350File::OpenFile(
    {
       if(m_estorage == mus::StorageAttach)
       {
-         Detach();
+         detach();
       }
       else if(m_estorage == mus::StorageOwn)
       {
-         delete Detach();
+         delete detach();
       }
       Attach(pmemorystorage);
    }
@@ -197,7 +197,7 @@ SMFRESULT Star350File::OpenFile(
    {
       if(m_estorage == mus::StorageAttach)
       {
-         Detach();
+         detach();
       }
       FullLoad(pmemorystorage);
    }
@@ -223,7 +223,7 @@ SMFRESULT Star350File::OpenFile(
     {
           SetOpened();
     }
-    
+
     return smfrc;
 }
 
@@ -231,7 +231,7 @@ SMFRESULT Star350File::OpenFile(
 *
 * smfOpenFile
 *
-* This function opens a MIDI file for access. 
+* This function opens a MIDI file for access.
 *
 * psofs                     - Specifies the file to open and associated
 *                             parameters. Contains a valid HSMF handle
@@ -244,12 +244,12 @@ SMFRESULT Star350File::OpenFile(
 *     did not exist or could not be created on the disk.
 *
 *   InvalidFile The specified file was corrupt or not a MIDI file.
-* 
+*
 *   NoMemory There was insufficient primitive::memory to open the file.
 *
 *   SMF_INVALID_PARM The given flags or time division in the
 *     SMFOPENFILESTRUCT were invalid.
-* 
+*
 *****************************************************************************/
 SMFRESULT Star350File::OpenFile(
    //const char * lpcFilePath,
@@ -257,7 +257,7 @@ SMFRESULT Star350File::OpenFile(
    int openMode)
 {
 //    HMMIO                   hmmio = (HMMIO)NULL;
-//   CMultimediaFile         mmfile;
+//   multimedia_file         mmfile;
     SMFRESULT               smfrc = Success;
 //    MMIOINFO                mmioinfo;
 //    MMCKINFO                ckRIFF;
@@ -268,15 +268,15 @@ SMFRESULT Star350File::OpenFile(
     {
         CloseFile();
     }
-      
+
    m_ptracks->m_iMelodyTrackTipA = -1;
-   
+
    m_iOpenMode = openMode;
 
 //   ASSERT(lpcFilePath != NULL);
 
 //   LPTSTR lpFilePath = _tcsdup(lpcFilePath);
-    
+
     /* Verify that the file can be opened or created
     */
 //    memset(&mmioinfo, 0, sizeof(mmioinfo));
@@ -299,25 +299,25 @@ SMFRESULT Star350File::OpenFile(
 //    if ((HMMIO)NULL == hmmio)
   //  {
     //    TRACE(_T( "smfOpenFile: mmioOpen failed!"));
-//      return OpenFailed;        
+//      return OpenFailed;
 //    }
 
     /* Now see if we can create the handle structure
     */
 
 //   lstrcpy(m_szName, lpFilePath);
-   
+
     m_fdwSMF = 0;
 
-    /* Pull the entire file into a block of primitive::memory. 
+    /* Pull the entire file into a block of primitive::memory.
     */
 //    memset(&ckRIFF, 0, sizeof(ckRIFF));
-    
+
  /*   if (0 == mmioDescend(hmmio, &ckRIFF, NULL, MMIO_FINDRIFF) &&
         ckRIFF.fccType == FOURCC_RMID)
     {
         ckDATA.ckid = FOURCC_data;
-        
+
         if (0 == mmioDescend(hmmio, &ckDATA, &ckRIFF, MMIO_FINDCHUNK))
         {
             m_cbImage   = ckDATA.cksize;
@@ -340,13 +340,13 @@ SMFRESULT Star350File::OpenFile(
     else*/
     //{
         //mmioSeek(hmmio, 0L, SEEK_SET);
-   
-      
-        
+
+
+
         //m_cbImage = mmioSeek(hmmio, 0L, SEEK_END);
         //mmioSeek(hmmio, 0L, SEEK_SET);
     //}
-    
+
 //   m_cbImage = mmfile.get_length();
 //    ex1::filesp * pFile = ar.GetFile();
   //  m_cbImage = pFile->get_length();
@@ -365,7 +365,7 @@ SMFRESULT Star350File::OpenFile(
         //smfrc = NoMemory;
         //goto smf_Open_File_Cleanup;
     //}
-   
+
    //dwTemp = (DWORD)mmioRead(hmmio, (char *) GetImage(), m_cbImage);
 //   try
 //   {
@@ -413,7 +413,7 @@ SMFRESULT Star350File::OpenFile(
       //   GetImage() = NULL;
         //}
     }
-    
+
     return smfrc;
 }
 
@@ -431,15 +431,15 @@ SMFRESULT Star350File::OpenFile(
 *
 * Any track handles opened from this file handle are invalid after this
 * call.
-*        
+*
 *****************************************************************************/
 SMFRESULT Star350File::CloseFile()
 {
 
-    CSingleLock(&m_cs, TRUE);
+    single_lock(&m_cs, TRUE);
     delete_contents();
     SetOpened(false);
-    
+
     return Success;
 }
 
@@ -464,7 +464,7 @@ SMFRESULT Star350File::GetFileInfo(
 //    assert(pSmf != NULL);
     ASSERT(psfi != NULL);
 
-    /* 
+    /*
     ** Just fill in the structure with useful information.
     */
     psfi->dwTracks      = m_dwTracks;
@@ -472,7 +472,7 @@ SMFRESULT Star350File::GetFileInfo(
     psfi->dwFormat      = m_dwFormat;
     psfi->dwTimeDivision= m_dwTimeDivision;
     psfi->tkLength      = m_tkLength;
-    
+
     return Success;
 }
 
@@ -499,7 +499,7 @@ SMFRESULT Star350File::GetFileInfo(
 /*DWORD Star350File::TicksToMillisecs(
     imedia::position                   tkOffset)
 {
-   CSingleLock(&m_cs, true);
+   single_lock(&m_cs, true);
    if(!IsOpened())
       return 0x7fffffff;
 
@@ -527,13 +527,13 @@ SMFRESULT Star350File::GetFileInfo(
         uSMPTE = -(int)(char)((m_dwTimeDivision >> 8)&0xFF);
         if (29 == uSMPTE)
             uSMPTE = 30;
-        
+
         dwTicksPerSec = (DWORD)uSMPTE *
                         (DWORD)(BYTE)(m_dwTimeDivision & 0xFF);
-        
+
         return (DWORD)muldiv32(tkOffset, 1000L, dwTicksPerSec);
     }
-       
+
     /* Walk the tempo ::collection::map and find the nearest tick position. Linearly
     ** calculate the rest (using MATH.ASM)
     */
@@ -542,7 +542,7 @@ SMFRESULT Star350File::GetFileInfo(
    //pTempo = m_tempoMaps.get_at(0);
 
     //assert(pTempo != NULL);
-    
+
     //for (idx = 0; idx < m_cTempoMap; idx++, pTempo++)
 //   for (idx = 0; idx < m_tempoMaps.get_size(); idx++)
 //   {
@@ -561,7 +561,7 @@ SMFRESULT Star350File::GetFileInfo(
     /*return pTempo->msBase + muldiv32(tkOffset-pTempo->tkTempo,
                                      pTempo->dwTempo,
                                      1000L*m_dwTimeDivision);
-    
+
 }*/
 
 
@@ -590,7 +590,7 @@ SMFRESULT Star350File::GetFileInfo(
 /*imedia::position Star350File::MillisecsToTicks(
     DWORD                   msOffset)
 {
-   CSingleLock(&m_cs, true);
+   single_lock(&m_cs, true);
    if(!IsOpened())
       return 0x7fffffff;
 
@@ -602,7 +602,7 @@ SMFRESULT Star350File::GetFileInfo(
     imedia::position                   tkOffset;
 
 //    assert(pSmf != NULL);
-    
+
     /* SMPTE time is easy -- no tempo ::collection::map, just linear conversion
     ** Note that 30-Drop means nothing to us here since we're not
     ** converting to a colonized format, which is where dropping
@@ -613,20 +613,20 @@ SMFRESULT Star350File::GetFileInfo(
         uSMPTE = -(int)(char)((m_dwTimeDivision >> 8)&0xFF);
         if (29 == uSMPTE)
             uSMPTE = 30;
-        
+
         dwTicksPerSec = (DWORD)uSMPTE *
                         (DWORD)(BYTE)(m_dwTimeDivision & 0xFF);
 
         return (DWORD)muldiv32(msOffset, dwTicksPerSec, 1000L);
     }
-    
+
     /* Walk the tempo ::collection::map and find the nearest millisecond position. Linearly
     ** calculate the rest (using MATH.ASM)
     */
     //pTempo = m_pTempoMap;
    /*pTempo = &m_tempoMaps.element_at(0);
     ASSERT(pTempo != NULL);
-    
+
     //for (idx = 0; idx < m_cTempoMap; idx++, pTempo++)
    for (idx = 0; idx < m_tempoMaps.get_size(); idx++)
    {
@@ -642,7 +642,7 @@ SMFRESULT Star350File::GetFileInfo(
 /*    tkOffset = pTempo->tkTempo + muldiv32(msOffset-pTempo->msBase,
                                      1000L*m_dwTimeDivision,
                                      pTempo->dwTempo);
-    
+
     if (tkOffset > m_tkLength)
     {
         TRACE( "sMTT: Clipping ticks to file length!");
@@ -722,7 +722,7 @@ SMFRESULT Star350File::GetFileInfo(
 
 }*/
 VMSRESULT Star350File::ReadEvent(
-    MidiEventBase * pEvent,                               
+    midi_event_base * pEvent,
     LPMIDIHDR               lpmh,
     imedia::position                   tkMax,
     DWORD                   cbPrerollNominalMax)
@@ -742,7 +742,7 @@ VMSRESULT Star350File::ReadEvent(
         ASSERT(m_hpbPendingUserEvent);
         m_fdwSMF &= ~FlagInsertSysEx;
       m_dwPendingUserEvent = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((DWORD)MEVT_COMMENT)<<24)) & 0xFF000000L);
-        
+
         smfrc = InsertParmData(pEvent->GetDelta(), lpmh);
         if (Success != smfrc)
         {
@@ -764,11 +764,11 @@ VMSRESULT Star350File::ReadEvent(
             }
 //            if((pEvent->GetType_() == ::mus::midi::NoteOn ||
   //              pEvent->GetType_() == ::mus::midi::NoteOff)
-    //            && !((m_keyframe.rbProgram[pEvent->GetTrack()] == 0) 
+    //            && !((m_keyframe.rbProgram[pEvent->GetTrack()] == 0)
       //          && (pEvent->GetTrack() == 9 ||
         //        pEvent->GetTrack() == 15)))
             {
-                
+
                 int iNotePitch = pEvent->GetNotePitch();
                 iNotePitch += m_iKeyShift;
                 while(iNotePitch >= 0x80)
@@ -788,7 +788,7 @@ VMSRESULT Star350File::ReadEvent(
                       ((DWORD)pEvent->GetFullType()) |
                       (((DWORD)pEvent->GetChB1()) << 8) |
                       (((DWORD)pEvent->GetChB2()) << 16);
-            
+
             lpmh->dwBytesRecorded += 3*sizeof(DWORD);
         }
         else if (pEvent->GetFullType() == ::mus::midi::Meta &&
@@ -811,7 +811,7 @@ VMSRESULT Star350File::ReadEvent(
                       ((DWORD)pEvent->GetParam()[2]);
 //            dwTempo = (DWORD) ((double) dwTempo / GetTempoShiftRate());
             DWORD dw = (((DWORD)MEVT_TEMPO)<<24)| dwTempo;
-            
+
 
             *lpdw++ = (DWORD)pEvent->GetDelta();
             *lpdw++ = 0;
@@ -849,7 +849,7 @@ VMSRESULT Star350File::ReadEvent(
 //            }
 
 //            lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
-            
+
 
             //smfrc = smfInsertParmData(pSmf, pEvent->tkDelta, lpmh);
             //if (Success != smfrc)
@@ -859,7 +859,7 @@ VMSRESULT Star350File::ReadEvent(
             //}
 //         _CrtSetReportFile(_CRT_WARN, debugFile);
 //         _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
-         
+
          //_RPT0(_CRT_WARN, "Lyric:");
          //_RPT1(_CRT_WARN, "%s", lpmh->lpData);
          //_RPT0(_CRT_WARN, "\n");
@@ -887,7 +887,7 @@ VMSRESULT Star350File::ReadEvent(
          {
             m_fdwSMF |= FlagInsertSysEx;
             ++m_cbPendingUserEvent;
-            
+
             /* Falling through...
             */
 
@@ -925,13 +925,13 @@ VMSRESULT Star350File::ReadEvent(
 * lpmh                      - Contains information about the buffer to fill.
 *
 * tkMax                     - Specifies a cutoff point in the stream
-*                             beyond which events will not be read.        
+*                             beyond which events will not be read.
 *
 * Return@rdes
 *   Success The events were successfully read.
 *   SMF_END_OF_TRACK There are no more events to read in this track.
 *   InvalidFile A disk error occured on the file.
-* 
+*
 * @xref <f smfWriteEvents>
 *****************************************************************************/
 SMFRESULT Star350File::ReadEvents(
@@ -941,7 +941,7 @@ SMFRESULT Star350File::ReadEvents(
 {
 //    PSMF                    pSmf = (PSMF)hSmf;
    SMFRESULT               smfrc;
-    MidiEventV008          event;
+    midi_event_v008          event;
     LPDWORD                 lpdw;
 //    DWORD                   dwTempo;
    imedia::position               tkDelta;
@@ -961,12 +961,12 @@ SMFRESULT Star350File::ReadEvents(
     //assert(pSmf != NULL);
     ASSERT(lpmh != NULL);
 
-    /* 
+    /*
     ** read events from the track and pack them into the buffer in polymsg
     ** format.
-    ** 
+    **
     ** If a SysEx or meta would go over a buffer boundry, split it.
-    */ 
+    */
     lpmh->dwBytesRecorded = 0;
     if (m_dwPendingUserEvent)
     {
@@ -986,7 +986,7 @@ SMFRESULT Star350File::ReadEvents(
       //      return smfrc;
         //}
    //}
-    
+
     lpdw = (LPDWORD)(lpmh->lpData + lpmh->dwBytesRecorded);
 
     if (m_fdwSMF & FlagEof)
@@ -1017,7 +1017,7 @@ SMFRESULT Star350File::ReadEvents(
         {
             break;
         }
-        
+
         /* If we know ahead of time we won't have room for the
         ** event, just break out now. We need 2 DWORD's for the
         ** terminator event and at least 2 DWORD's for any
@@ -1038,10 +1038,10 @@ SMFRESULT Star350File::ReadEvents(
 
       //smfrc = GetNextEventTkPosition(&tkPosition, tkMax);
 
-        
+
 /*        if (Success != smfrc)
         {
-         smfrc = GetNextEvent((MidiEventV001 *)&event, tkMax, TRUE);
+         smfrc = GetNextEvent((midi_event_v001 *)&event, tkMax, TRUE);
          ASSERT(Success != smfrc); */
 
             /* smfGetNextEvent doesn't set this because smfSeek uses it
@@ -1056,7 +1056,7 @@ SMFRESULT Star350File::ReadEvents(
             {
                 m_fdwSMF |= FlagEof;
             }
-            
+
             TRACE( "smfReadEvents: ReadEvents() -> %u", (UINT)smfrc);
             break;
         }*/
@@ -1103,7 +1103,7 @@ SMFRESULT Star350File::ReadEvents(
                         iTrackFound = i;
                      }
                         }
-            
+
             }
          }
          if(iTrackFound < 0)
@@ -1148,7 +1148,7 @@ SMFRESULT Star350File::ReadEvents(
 
             iTrackFound = -1;
             tkLastDelta = tkDelta;
-         }   
+         }
          if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4*sizeof(DWORD))
          {
             break;
@@ -1193,14 +1193,14 @@ SMFRESULT Star350File::ReadEvents(
             {
                 m_fdwSMF |= FlagEof;
             }
-            
+
             TRACE( "smfReadEvents: ReadEvents() -> %u", (UINT)smfrc);
             break;
         }
         VMSRESULT vmsr;
       event.SetDelta(event.GetDelta() - tkLastDelta);
         vmsr = ReadEvent(&event, lpmh, tkMax, cbPrerollNominalMax);
-        
+
     }
 
     return (m_fdwSMF & FlagEof) ? EndOfFile : Success;
@@ -1217,13 +1217,13 @@ SMFRESULT Star350File::ReadEvents(
 * lpmh                      - Contains information about the buffer to fill.
 *
 * tkMax                     - Specifies a cutoff point in the stream
-*                             beyond which events will not be read.        
+*                             beyond which events will not be read.
 *
 * Return@rdes
 *   Success The events were successfully read.
 *   SMF_END_OF_TRACK There are no more events to read in this track.
 *   InvalidFile A disk error occured on the file.
-* 
+*
 * @xref <f smfWriteEvents>
 *****************************************************************************/
 
@@ -1273,7 +1273,7 @@ SMFRESULT Star350File::ReadEvents(
    tkDelta = m_pendingLyricEventArray[0].m_tkDelta;
 
    ASSERT(tkDelta >= 0);
-    
+
     /* Can't fit 4 DWORD's? (tkDelta + stream-id + event + some data)
     ** Can't do anything.
     */
@@ -1281,7 +1281,7 @@ SMFRESULT Star350File::ReadEvents(
 //   m_dwPendingUserEvent = MEVT_F_CALLBACK |
 //             (((DWORD)MEVT_LONGMSG)<<24);
 //   m_cbPendingUserEvent = 2 * sizeof(DWORD);
-    
+
     if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4 * sizeof(DWORD))
     {
         if (0 == tkDelta)
@@ -1310,12 +1310,12 @@ SMFRESULT Star350File::ReadEvents(
 //   DWORD dwa = MEVT_F_CALLBACK;
 //   DWORD dwb = MEVT_LONGMSG;
 //   DWORD dwc = MEVT_F_LONG;
-//   DWORD dwd = MEVT_COMMENT; 
+//   DWORD dwd = MEVT_COMMENT;
 
     ASSERT((dwSize & 3L) == 0);
     dwRounded = dwSize;
     //dwRounded = (dwLength + 3) & (~3L);
-   
+
    //tkOffset = tkDelta;
    *lpdw++ = (DWORD) tkDelta;
    *lpdw++ = 0;
@@ -1326,7 +1326,7 @@ SMFRESULT Star350File::ReadEvents(
 //   if(m_cbPendingLyricEventV1 >= (3 * sizeof(DWORD)))
 //   {
 //      // Offset Lyric CallBack Event Code
-//      *lpdw++ = m_pPendingLyricEventV1->m_Union.m_Event.m_nType; 
+//      *lpdw++ = m_pPendingLyricEventV1->m_Union.m_Event.m_nType;
 //   }
 //   if(m_cbPendingLyricEventV1 >= (2 * sizeof(DWORD)))
 //   {
@@ -1364,7 +1364,7 @@ SMFRESULT Star350File::InsertPadEvent(
    ASSERT(tkDelta >= 0);
 //    assert(pSmf != NULL);
     ASSERT(lpmh != NULL);
-    
+
     /* Can't fit 4 DWORD's? (tkDelta + stream-id + event + some data)
     ** Can't do anything.
     */
@@ -1377,7 +1377,7 @@ SMFRESULT Star350File::InsertPadEvent(
    {
       return Success;
    }
-    
+
     if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4 * sizeof(DWORD))
     {
         if (0 == tkDelta)
@@ -1397,10 +1397,10 @@ SMFRESULT Star350File::InsertPadEvent(
    //DWORD dwa = MEVT_F_CALLBACK;
 //   DWORD dwb = MEVT_LONGMSG;
 //   DWORD dwc = MEVT_F_LONG;
-//   DWORD dwd = MEVT_COMMENT; 
+//   DWORD dwd = MEVT_COMMENT;
 
    dwRounded = (dwLength + 3) & (~3L);
-   
+
    //tkOffset = tkDelta;
    *lpdw++ = (DWORD) tkDelta;
    *lpdw++ = 0;
@@ -1411,7 +1411,7 @@ SMFRESULT Star350File::InsertPadEvent(
 //   if(m_cbPendingLyricEventV1 >= (3 * sizeof(DWORD)))
 //   {
 //      // Offset Lyric CallBack Event Code
-//      *lpdw++ = m_pPendingLyricEventV1->m_Union.m_Event.m_nType; 
+//      *lpdw++ = m_pPendingLyricEventV1->m_Union.m_Event.m_nType;
 //   }
 //   if(m_cbPendingLyricEventV1 >= (2 * sizeof(DWORD)))
 //   {
@@ -1451,7 +1451,7 @@ SMFRESULT Star350File::InsertPadEvent(
 * Returns
 *   Success The events were successfully read.
 *   InvalidFile A disk error occured on the file.
-* 
+*
 * Fills as much data as will fit while leaving room for the buffer
 * terminator.
 *
@@ -1460,7 +1460,7 @@ SMFRESULT Star350File::InsertPadEvent(
 *
 *****************************************************************************/
  SMFRESULT Star350File::InsertParmData(
-    imedia::position                   tkDelta,                                            
+    imedia::position                   tkDelta,
     LPMIDIHDR               lpmh)
 {
     DWORD                   dwLength;
@@ -1469,12 +1469,12 @@ SMFRESULT Star350File::InsertPadEvent(
 
 //    assert(pSmf != NULL);
     ASSERT(lpmh != NULL);
-    
+
     /* Can't fit 4 DWORD's? (tkDelta + stream-id + event + some data)
     ** Can't do anything.
     */
     ASSERT(lpmh->dwBufferLength >= lpmh->dwBytesRecorded);
-    
+
     if (lpmh->dwBufferLength - lpmh->dwBytesRecorded < 4*sizeof(DWORD))
     {
         if (0 == tkDelta)
@@ -1497,7 +1497,7 @@ SMFRESULT Star350File::InsertPadEvent(
     *lpdw++ = (m_dwPendingUserEvent & 0xFF000000L) | (dwLength & 0x00FFFFFFL);
 
     dwRounded = (dwLength + 3) & (~3L);
-    
+
     if (m_fdwSMF & FlagInsertSysEx)
     {
       LPBYTE lpb = (LPBYTE) lpdw;
@@ -1536,7 +1536,7 @@ SMFRESULT Star350File::InsertPadEvent(
 * hSmf                      - Handle of file to seek within
 *
 * tkPosition                - The position to seek to in the track.
-*         
+*
 * lpmh                      - A buffer to contain the state information.
 *
 * Returns
@@ -1548,7 +1548,7 @@ SMFRESULT Star350File::InsertPadEvent(
 *     contain all of the state data.
 *
 * The state information in the buffer includes patch changes, tempo changes,
-* time signature, key signature, 
+* time signature, key signature,
 * and controller information. Only the most recent of these paramters before
 * the current position will be stored. The state buffer will be returned
 * in polymsg format so that it may be directly transmitted over the MIDI
@@ -1562,7 +1562,7 @@ SMFRESULT Star350File::InsertPadEvent(
 *
 * The meta events (tempo, time signature, key signature) will be the
 * first events in the buffer if they exist.
-* 
+*
 * Use smfGetStateMaxSize to determine the maximum size of the state
 * information buffer. State information that will not fit into the given
 * buffer will be lost.
@@ -1587,7 +1587,7 @@ SMFRESULT Star350File::seek(
 //    UINT                    idx;
 //    UINT                    idxChannel;
 //    UINT                    idxController;
-    
+
 //    static KEYFRAME         kf;
 
 /*    EventsTracksV1 * pEventsArray = &m_eventsTracksForPositionCB;
@@ -1656,17 +1656,17 @@ SMFRESULT Star350File::seek(
 
 //    memset(&m_keyframe, 0xFF, sizeof(m_keyframe));
   //  memset(&m_keyframe.rbProgram, 0x00, sizeof(m_keyframe.rbProgram));
-    
+
     m_ptracks->m_tkPosition = 0;
     m_fdwSMF &= ~FlagEof;
    m_ptracks->m_fdwSMF &= ~FlagEof;
-    
+
    m_ptracks->seek_begin();
     //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 
     while (Success == (smfrc = GetNextEvent(&event, tkPosition, FALSE)))
     {
-      
+
 /*        if (::mus::midi::Meta == (bEvent = event.GetFullType()))
         {
             if (event.GetMetaType() == ::mus::midi::MetaTempo)
@@ -1794,7 +1794,7 @@ SMFRESULT Star350File::seek(
    //   ptrk = m_tracks[idxTrack];
       //  ptrk->tkPosition        = tkPosition;
     //}
-    
+
     return Success;
 }
 
@@ -1803,12 +1803,12 @@ SMFRESULT Star350File::seek(
 {
     SMFRESULT               smfrc;
     Star350EventV001              event;
-    
+
 
     m_ptracks->m_tkPosition = 0;
     m_fdwSMF &= ~FlagEof;
    m_ptracks->m_fdwSMF &= ~FlagEof;
-    
+
    m_ptracks->seek_begin();
     //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 
@@ -1818,7 +1818,7 @@ SMFRESULT Star350File::seek(
     {
         return smfrc;
     }
-    
+
     return Success;
 }
 
@@ -1839,7 +1839,7 @@ DWORD Star350File::GetStateMaxSize(
     VOID)
 {
     return  3*sizeof(DWORD) +           /* Tempo                */
-            3*16*sizeof(DWORD) +        /* Patch changes        */  
+            3*16*sizeof(DWORD) +        /* Patch changes        */
             3*16*120*sizeof(DWORD) +    /* Controller changes   */
             3*sizeof(DWORD);            /* time alignment NOP   */
 }
@@ -1857,7 +1857,7 @@ DWORD Star350File::GetStateMaxSize(
 *  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
 *  A PARTICULAR PURPOSE.
 *
-*  Copyright (C) 1993 - 1997 ca2. 
+*  Copyright (C) 1993 - 1997 ca2.
 *
 ******************************************************************************
 *
@@ -1871,7 +1871,7 @@ DWORD Star350File::GetStateMaxSize(
 
 
 Star350File::Star350File(::ca::application * papp) :
-   primitive::memory_container < primitive::memory > (papp)
+   primitive::memory_container(papp)
 {
    m_estorage = mus::StorageNone;
 
@@ -1913,15 +1913,15 @@ Star350File::Star350File(::ca::application * papp) :
 
     m_pinfoheader = new Star350InfoHeader();
 
-    KeepStoragePointer((void **) &m_pchHeader);
-    KeepStoragePointer((void **) &m_pevheader);
+    keep_pointer((void **) &m_pchHeader);
+    keep_pointer((void **) &m_pevheader);
 
 
 }
 
 Star350File::~Star350File()
 {
-   
+
    CloseFile();
 
    if(m_pinfoheader != NULL)
@@ -1932,7 +1932,7 @@ Star350File::~Star350File()
 
    if(m_estorage == mus::StorageAttach)
    {
-      Detach();
+      detach();
    }
 
 }
@@ -1950,18 +1950,18 @@ Star350File::~Star350File()
 *   Success The events were successfully read.
 *   NoMemory Out of primitive::memory to build key frames.
 *   InvalidFile A disk or parse error occured on the file.
-* 
+*
 * This function validates the format of and existing MIDI or RMI file
 * and builds the handle structure which will refer to it for the
 * lifetime of the instance.
-*  
+*
 * The file header information will be read and verified, and
 * smfBuildTrackIndices will be called on every existing track
 * to build keyframes and validate the track format.
 *
 *****************************************************************************/
 SMFRESULT Star350File::BuildIndex()
-    
+
 {
    SMFRESULT               smfrc = Success;
    LPSTAR350CHUNKHDR       pch;
@@ -1971,12 +1971,12 @@ SMFRESULT Star350File::BuildIndex()
 //   BOOL                    fFirst = TRUE;
 //   Star350TrackBase *     ptrk = NULL;
    Star350EventTrack *    ptrkevent;
-   MidiEventV001          event;
+   midi_event_v001          event;
    byte *                  hpbEvents;
 
    dwLeft   = GetImageSize();
    hpbImage = GetImage();
-    
+
    if (dwLeft < sizeof(m_lpchHeader))
       return InvalidFile;
 
@@ -1988,21 +1988,21 @@ SMFRESULT Star350File::BuildIndex()
    if(memcmp(
         m_lpchHeader,
         m_pchHeader,
-        sizeof(m_lpchHeader)) 
+        sizeof(m_lpchHeader))
             != 0)
         return InvalidFile;
 
     byte * hpb;
     if(VMS_FAILED(m_pinfoheader->FromStorage(hpbImage, &hpb)))
         return InvalidFile;
-    
+
     dwLeft -= hpb - hpbImage;
     hpbImage = hpb;
 
     /*
     ** We've successfully parsed the header. Now try to build the track
     ** index.
-    ** 
+    **
     ** We only check out the track header chunk here; the track will be
     ** preparsed after we do a quick integretiy check.
     */
@@ -2039,10 +2039,10 @@ SMFRESULT Star350File::BuildIndex()
 
 //    m_ptracks->set_size(m_dwTracks);
 
-    
+
     //pSmf = *ppSmf = pSmfTemp;
 //    pTrk = m_rTracks;
-    
+
     for (idx=0; idx < m_dwTracks; idx++)
     {
       ptrkevent = new Star350EventTrack();
@@ -2058,8 +2058,8 @@ SMFRESULT Star350File::BuildIndex()
 
 //        if (pCh->fourccType != FOURCC_MTrk)
 //         return InvalidFile;
-            
-        
+
+
         ptrkevent->m_idxTrack      = (DWORD)(hpbImage - GetImage());
         //ptrkevent->m_smti.m_cbLength = DWORDSWAP(pCh->dwLength);
         ptrkevent->m_smti.m_cbLength = pch->dwLength;
@@ -2102,10 +2102,10 @@ SMFRESULT Star350File::BuildIndex()
                TRACE("Track longer than file!");
                return InvalidFile;
             }
-         
+
             dwLeft   -= ptrkevent->m_smti.m_cbLength;
          hpbImage += ptrkevent->m_smti.m_cbLength;
-            
+
             ptrkevent->Initialize(m_ptracks);
       }
       else
@@ -2123,7 +2123,7 @@ SMFRESULT Star350File::BuildIndex()
          dwLeft   -= cbLength;
          hpbImage += cbLength;
       }
-        
+
         //pTrk++;
     }*/
 
@@ -2135,11 +2135,11 @@ SMFRESULT Star350File::BuildIndex()
     ** (1) Build tempo ::collection::map so we can convert to/from ticks quickly
     ** (2) Determine actual tick length of file
     ** (3) Validate all events in all tracks
-    */ 
+    */
     m_ptracks->m_tkPosition = 0;
     m_fdwSMF &= ~FlagEof;
-    
-   
+
+
     //for (pTrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; pTrk++)
 //   for (idxTrack = m_dwTracks; idxTrack--;)
   //  {
@@ -2153,12 +2153,12 @@ SMFRESULT Star350File::BuildIndex()
 //    }
 
    m_ptracks->seek_begin();
-   
+
 /*   if(m_iOpenMode == OpenForPlaying)
    {
         while (Success == (smfrc = GetNextEvent((Star350EventV001 *)&event, MAX_TICKS, TRUE)))
-        {   
-        if (::mus::midi::Meta == event.m_abEvent[0] && 
+        {
+        if (::mus::midi::Meta == event.m_abEvent[0] &&
             ::mus::midi::MetaTempo == event.m_abEvent[1])
         {
             if (3 != event.m_cbParm)
@@ -2171,7 +2171,7 @@ SMFRESULT Star350File::BuildIndex()
                 /* Inserting first event and the absolute time is zero.
                 ** Use defaults of 500,000 uSec/qn from MIDI spec
                 */
-                
+
 //            pTempo = new CMidiTempoMapEntry();
 /*                CMidiTempoMapEntry tempo;
                 tempo.tkTempo = 0;
@@ -2229,7 +2229,7 @@ SMFRESULT Star350File::BuildIndex()
           //if (!hLocal)
     //      if(!pTempo)
     //         return NoMemory;
-          
+
 
           //m_pTempoMap = (PTEMPOMAPENTRY)LocalLock(m_hTempoMap = hLocal);
        //   m_pTempoMap = (PTEMPOMAPENTRY) (m_hTempoMap = hLocal);
@@ -2246,7 +2246,7 @@ SMFRESULT Star350File::BuildIndex()
           pTempo->dwTempo = ::mus::midi::DefaultTempo;
        }
     }*/
-    
+
     hpbImage = hpbEvents + 4 + *(DWORD*)hpbEvents;
     hpbImage += 18;
     for(DWORD dw = 0; dw < m_dwLyricTrack; dw++)
@@ -2256,7 +2256,7 @@ SMFRESULT Star350File::BuildIndex()
     string str((CHAR *) (hpbImage + sizeof(DWORD)), *(DWORD*)hpbImage);
     m_strLyrics = str;
 
-   
+
 
     if (EndOfFile == smfrc || Success == smfrc)
     {
@@ -2267,13 +2267,13 @@ SMFRESULT Star350File::BuildIndex()
 //   {
 //         smfrc = Success;
 //   }
-        
+
     return smfrc;
 }
 
 
 SMFRESULT Star350File::GetNextEvent(
-    MidiEventBase *       pEvent,
+    midi_event_base *       pEvent,
     imedia::position                   tkMax,
    BOOL               bTkMaxInclusive)
 {
@@ -2290,7 +2290,7 @@ SMFRESULT Star350File::GetNextEvent(
     }*/
     /*if(m_meaOnQuarterNote.get_size() > 0)
     {
-        imedia::position tkMod = m_ptracks->m_tkPosition  % WORDSWAP(m_pevheader->wDivision); 
+        imedia::position tkMod = m_ptracks->m_tkPosition  % WORDSWAP(m_pevheader->wDivision);
         imedia::position tkQuarterNote;
         if(tkMod == 0)
         {
@@ -2316,14 +2316,14 @@ SMFRESULT Star350File::GetNextEvent(
        pEvent,
       tkMax,
       bTkMaxInclusive,
-        false, 
+        false,
         false);
    if(smfrc == EndOfFile)
       m_fdwSMF |= FlagEof;
     return smfrc;
 
-   
-   
+
+
 }
 
 SMFRESULT Star350File::GetNextEventTkPosition(
@@ -2344,7 +2344,7 @@ SMFRESULT Star350File::GetNextEventTkPosition(
 
 
 
-/*   
+/*
 *   mysmfGetTrackEventData
 *
 *
@@ -2353,11 +2353,11 @@ SMFRESULT Star350File::GetNextEventTkPosition(
 ****/
 DWORD mysmfGetTrackEventData(
     Star350File * pSmf,
-   MidiEventV001 *      pEvent,
+   midi_event_v001 *      pEvent,
     BYTE *            pData[])
 {
    DWORD               len;
-   byte *                  hpbImage;                                  
+   byte *                  hpbImage;
    DWORD index;
 
     ASSERT(pSmf != NULL);
@@ -2368,12 +2368,12 @@ DWORD mysmfGetTrackEventData(
    *pData = (unsigned char *) LocalAlloc(LPTR,len);
 
    hpbImage = pEvent->m_hpbParm;
-   
+
    for(index = 0; len; index++)
    {
       *pData[index] = *hpbImage++;
    }
-   
+
     return len;
 }
 
@@ -2410,7 +2410,7 @@ DWORD mysmfGetTrackEventData(
 //   }
    byte * hpbDest, hpbSrc;
    hpbDest = GetImage();
-    
+
     CHUNKHDR * lpch = (CHUNKHDR *) hpbDest;
     lpch->fourccType = FOURCC_MThd;
     lpch->dwLength = DWORDSWAP(dwAllocation);
@@ -2419,7 +2419,7 @@ DWORD mysmfGetTrackEventData(
    hpbDest += sizeof(CHUNKHDR);
 //   memcpy(hpbDest, pFh, sizeof(MIDIFILEHDR));
    hpbDest += sizeof(MIDIFILEHDR);
-    
+
    for(i = 0; i < m_ptracks->get_size(); i++)
    {
         pTrk = m_ptracks->element_at(i);
@@ -2500,11 +2500,11 @@ DWORD mysmfGetTrackEventData(
    HMMIO                   hmmio = (HMMIO)NULL;
     SMFRESULT               smfrc = Success;
     MMIOINFO                mmioinfo;
-      
+
    ASSERT(lpcFilePath != NULL);
 
    LPTSTR lpFilePath = _tcsdup(lpcFilePath);
-    
+
     /* Verify that the file can be opened or created
     */
     /*memset(&mmioinfo, 0, sizeof(mmioinfo));
@@ -2521,7 +2521,7 @@ DWORD mysmfGetTrackEventData(
         TRACE(_T( "smfOpenFile: mmioOpen failed!"));
         return SaveFailed;
    }
-   
+
    return Success;
 }*/
 
@@ -2536,7 +2536,7 @@ SMFRESULT Star350File::SaveFile(ex1::file &ar)
 //   return m_ptracks->IsSoftKaraokeFile(lpFile);
 //}
 
-/*SMFRESULT Star350File::DeleteEvent(MidiEventBase *pEvent)
+/*SMFRESULT Star350File::DeleteEvent(midi_event_base *pEvent)
 {
    SMFRESULT   smfrc;
    if(pEvent->GetImage() > 0)
@@ -2545,7 +2545,7 @@ SMFRESULT Star350File::SaveFile(ex1::file &ar)
       {
          // if this event being deleted has non-zero delta,
          // the previous event must have it delta corrected;
-         MidiEventV001   previousEvent;
+         midi_event_v001   previousEvent;
          if(Success != (smfrc = GetPreviousEvent(
             &previousEvent,
             pEvent)))
@@ -2584,8 +2584,8 @@ SMFRESULT Star350File::SaveFile(ex1::file &ar)
 } */
 
 VMSRESULT Star350File::GetPreviousEvent(
-   MidiEventBase  * pPreviousEvent,
-   MidiEventBase  * pEvent)
+   midi_event_base  * pPreviousEvent,
+   midi_event_base  * pEvent)
 {
    UNREFERENCED_PARAMETER(pPreviousEvent);
     SMFRESULT               smfrc;
@@ -2595,11 +2595,11 @@ VMSRESULT Star350File::GetPreviousEvent(
     m_ptracks->m_tkPosition = 0;
     m_fdwSMF &= ~FlagEof;
    m_ptracks->m_fdwSMF &= ~FlagEof;
-    
+
    m_ptracks->seek_begin();
     //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
 
-    while(Success == (smfrc = GetNextEvent(&event, pEvent->GetPosition(), TRUE)))
+    while(Success == (smfrc = GetNextEvent(&event, pEvent->get_position(), TRUE)))
    {
       if(event.GetImage() == pEvent->GetImage())
       {
@@ -2613,11 +2613,11 @@ VMSRESULT Star350File::GetPreviousEvent(
     {
         return smfrc;
     }
-    
+
     return Success;
 
 }
-/*BOOL Star350File::AllocateAddUp(DWORD dwAddUp)
+/*BOOL Star350File::allocate_add_up(DWORD dwAddUp)
 {
    return allocate(m_cbImage + dwAddUp);
 }
@@ -2667,7 +2667,7 @@ BOOL Star350File::allocate(DWORD dwNewLength)
    }
 }*/
 
-/*SMFRESULT Star350File::ReplaceSameDeltaEvent(MidiEventBase &eventNew)
+/*SMFRESULT Star350File::ReplaceSameDeltaEvent(midi_event_base &eventNew)
 {
     int iCurrentTrack = m_ptracks->m_iCurrentTrack;
     if(iCurrentTrack < 0)
@@ -2680,25 +2680,25 @@ BOOL Star350File::allocate(DWORD dwNewLength)
 
     CMidiTrackV008 & trackWork = ptrkevent->GetWorkTrack();
 
-    MidiEventV008 & event = trackWork.m_events.element_at(iCurrentEvent);
+    midi_event_v008 & event = trackWork.m_events.element_at(iCurrentEvent);
 
     event = eventNew;
     return Star350File::Success;
 }*/
-/*SMFRESULT Star350File::ReplaceSameDeltaEvent(MidiEventBase *pEventOld, CMidiEventV007 *pEventNew)
+/*SMFRESULT Star350File::ReplaceSameDeltaEvent(midi_event_base *pEventOld, CMidiEventV007 *pEventNew)
 {
    ASSERT(pEventOld->GetDeltaTicks() == pEventNew->GetDeltaTicks());
    ASSERT(pEventNew->IsAutoAllocated());
    CMidiTrack * pTrack = m_ptracks->GetEventTrack(pEventOld);
    if(pTrack == NULL)
       return TrackNotFound;
-   byte * hpbImage = pEventOld->GetImage(); 
+   byte * hpbImage = pEventOld->GetImage();
    byte * hpbFileImage = GetImage();
    if(pEventOld->GetImageSize() != pEventNew->m_cbImage)
    {
       int iAddUp = pEventNew->m_cbImage - pEventOld->GetImageSize();
       pEventNew->m_pTrack = pTrack;
-      AllocateAddUp(iAddUp);
+      allocate_add_up(iAddUp);
       hpbImage += hpbFileImage - GetImage();
       pTrack->m_smti.m_cbLength += iAddUp;
       pTrack->WriteHeaderLength();
@@ -2711,7 +2711,7 @@ BOOL Star350File::allocate(DWORD dwNewLength)
    memcpy(hpbImage, pEventNew->GetImage(), pEventNew->m_cbImage);
 
    WriteHeader();
-   
+
    return Success;*/
 
 /*   ASSERT(pEventOld->GetDeltaTicks() == pEventNew->GetDeltaTicks());
@@ -2719,13 +2719,13 @@ BOOL Star350File::allocate(DWORD dwNewLength)
    CMidiTrack * pTrack = m_ptracks->GetEventTrack(pEventOld);
    if(pTrack == NULL)
       return TrackNotFound;
-   byte * hpbImage = pEventOld->GetImage(); 
+   byte * hpbImage = pEventOld->GetImage();
    byte * hpbFileImage = GetImage();
    if(pEventOld->GetImageSize() != pEventNew->m_cbImage)
    {
       int iAddUp = pEventNew->m_cbImage - pEventOld->GetImageSize();
       pEventNew->m_pTrack = pTrack;
-      AllocateAddUp(iAddUp);
+      allocate_add_up(iAddUp);
       hpbImage += hpbFileImage - GetImage();
       pTrack->m_smti.m_cbLength += iAddUp;
       pTrack->WriteHeaderLength();
@@ -2738,12 +2738,12 @@ BOOL Star350File::allocate(DWORD dwNewLength)
    memcpy(hpbImage, pEventNew->GetImage(), pEventNew->m_cbImage);
 
    WriteHeader();
-   
+
    return Success;
 
 }*/
 
-/*SMFRESULT Star350File::ChangeEventDelta(MidiEventBase *pEvent, imedia::position tkNewDelta)
+/*SMFRESULT Star350File::ChangeEventDelta(midi_event_base *pEvent, imedia::position tkNewDelta)
 {
    SMFRESULT smfrc;
    if(pEvent->GetDelta() != tkNewDelta)
@@ -2752,9 +2752,9 @@ BOOL Star350File::allocate(DWORD dwNewLength)
       if(pTrack == NULL)
          return TrackNotFound;
       BYTE buffer[256];
-      DWORD dwSetUsed = MidiEventBase::SetVDWord(buffer, 256, tkNewDelta);
+      DWORD dwSetUsed = midi_event_base::SetVDWord(buffer, 256, tkNewDelta);
       imedia::position tkOldDelta;
-      DWORD dwGetUsed = MidiEventBase::GetVDWord(pEvent->GetImage(), 256, &tkOldDelta);
+      DWORD dwGetUsed = midi_event_base::GetVDWord(pEvent->GetImage(), 256, &tkOldDelta);
       ASSERT(tkOldDelta == pEvent->GetDelta());
       byte * hpbImage = pEvent->GetImage();
       if(dwSetUsed != dwGetUsed)
@@ -2780,7 +2780,7 @@ BOOL Star350File::allocate(DWORD dwNewLength)
             return smfrc;
          }
       }
-      MidiEventBase::SetVDWord(hpbImage, dwSetUsed, tkNewDelta);
+      midi_event_base::SetVDWord(hpbImage, dwSetUsed, tkNewDelta);
       return Success;
    }
    else
@@ -2928,7 +2928,7 @@ void Star350File::ToWorkStorage()
 
     if(MMSYSERR_NOERROR != (smfrc = BuildIndex()))
         return smfrc;
-    
+
     return VMSR_SUCCESS;
 }*/
 
@@ -2952,7 +2952,7 @@ bool Star350File::IsStar350(const char * lpcszPath)
 bool Star350File::IsStar350(primitive::memory & storage)
 {
    bool bResult = OpenFile(
-                     &storage, 
+                     &storage,
                      OpenForIdentifying,
                      mus::StorageAttach) !=
             InvalidFile;
@@ -2960,7 +2960,7 @@ bool Star350File::IsStar350(primitive::memory & storage)
    CloseFile();
 
    return bResult;
-    
+
 }
 
 /*bool Star350File::IsStar350()
@@ -2977,12 +2977,12 @@ bool Star350File::IsStar350(primitive::memory & storage)
 //    CMidiTrack *            pTrk = NULL;
     CMidiTrackBase *        pTrk = NULL;
     CMidiTrack *            ptrkevent;
-   MidiEventV001          event;
+   midi_event_v001          event;
    CMidiTempoMapEntry *    pTempo;
    DWORD               idxTrack;
    DWORD               cbLength;
 
-    
+
 
 //    assert(ppSmf != NULL);
 
@@ -2998,7 +2998,7 @@ bool Star350File::IsStar350(primitive::memory & storage)
     */
 /*    dwLeft   = m_cbImage;
     hpbImage = GetImage();
-    
+
     if (dwLeft < sizeof(m_lpchHeader))
         return fa;
 
@@ -3010,9 +3010,9 @@ bool Star350File::IsStar350(primitive::memory & storage)
     if(memcmp(
         m_lpchHeader,
         m_pHeader,
-        sizeof(m_lpchHeader)) 
+        sizeof(m_lpchHeader))
             != 0)
-        return InvalidFile; 
+        return InvalidFile;
 }*/
 
 void Star350File::GetLyricsText(string &str)
@@ -3032,12 +3032,12 @@ int Star350File::GetLyricTrack()
 
 LPBYTE Star350File::GetImage()
 {
-    return GetAllocation();
+    return get_data();
 }
 
 DWORD Star350File::GetImageSize()
-{   
-    return get_size();
+{
+    return this->get_size();
 }
 
 

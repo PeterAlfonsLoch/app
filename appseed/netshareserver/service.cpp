@@ -19,7 +19,7 @@ namespace netshareserver
    
    void service::ServiceThread()
    {
-      ::ca::application * pcaapp = get_app();
+//      ::ca::application * pcaapp = get_app();
 
       m_stopping = false;
 
@@ -30,7 +30,7 @@ namespace netshareserver
          m_threadptra.add(AfxBeginThread < socket_thread > (&Application));
          socket_thread * pthread = m_threadptra.last_element();
          {
-            CSingleLock sl(&pthread->m_evInitialized, TRUE);
+            single_lock sl(&pthread->m_evInitialized, TRUE);
             pthread->m_strIp = stra[i];
             pthread->m_iPort = 443;
             pthread->m_pservice = this;

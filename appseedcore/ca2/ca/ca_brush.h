@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca brush : 
+   class CLASS_DECL_ca brush :
       virtual public graphics_object
    {
    public:
@@ -16,7 +16,9 @@ namespace ca
       virtual BOOL CreateHatchBrush(int nIndex, COLORREF crColor);
       virtual BOOL CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
       virtual BOOL CreatePatternBrush(::ca::bitmap* pBitmap);
+#ifdef WINDOWS
       virtual BOOL CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
+#endif
       virtual BOOL CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
       virtual BOOL CreateSysColorBrush(int nIndex);
 
@@ -44,7 +46,7 @@ namespace ca
       {
       }
 
-      brush_sp(::ca::application * papp) : 
+      brush_sp(::ca::application * papp) :
          smart_pointer < brush > (papp)
       {
       }
@@ -53,20 +55,20 @@ namespace ca
       brush_sp(::ca::application * papp, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
-         m_p->construct(crColor); 
+         m_p->construct(crColor);
       }
 
       // CreateHatchBrush
       brush_sp(::ca::application * papp, int nIndex, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
-         m_p->construct(nIndex, crColor); 
+         m_p->construct(nIndex, crColor);
       }
       // CreatePatternBrush
       brush_sp(::ca::application * papp, bitmap * pbitmap) :
          smart_pointer < brush > (papp)
       {
-         m_p->construct(pbitmap); 
+         m_p->construct(pbitmap);
       }
 
       brush_sp & operator = (brush * pbrush)

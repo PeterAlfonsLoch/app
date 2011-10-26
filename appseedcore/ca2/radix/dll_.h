@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef WINDOWS
+
 // AFX_EXTENSION_MODULE - special struct used during DLL initialization
 
 struct CLASS_DECL_ca AFX_EXTENSION_MODULE
@@ -17,7 +19,7 @@ class COleObjectFactory;
 
 class CLASS_DECL_ca CDynLinkLibrary : public command_target
 {
-   
+
 public:
 
 // Constructor
@@ -58,5 +60,6 @@ CLASS_DECL_ca void AfxCoreInitModule();
 HINSTANCE AfxLoadLibrary(const char * lpszModuleName);
 HINSTANCE AfxLoadLibraryEx( const char * lpFileName,  HANDLE hFile,  DWORD dwFlags);
 BOOL AfxFreeLibrary(HINSTANCE hInstLib);
- 
 
+
+#endif

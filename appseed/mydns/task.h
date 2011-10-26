@@ -74,10 +74,10 @@ typedef struct _named_task
 {
 	unsigned long	internal_id;								/* Internal task ID */
 	taskstat_t		status;										/* Current status of query */
-	int				fd;											/* Socket FD */
+	SOCKET				fd;											/* Socket FD */
 	time_t			timeout;										/* Time task expires (timeout) */
 
-	int				recursive_fd;								/* Connection with recursive forwarder */
+	SOCKET				recursive_fd;								/* Connection with recursive forwarder */
 
 	int				protocol;									/* Type of socket (SOCK_DGRAM/SOCK_STREAM) */
 	int				family;										/* Socket family (AF_INET/AF_INET6) */

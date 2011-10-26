@@ -5,23 +5,19 @@ simple_tree_view::simple_tree_view(::ca::application * papp) :
    data_container(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
-   m_scrollbarVert(papp),
-   m_scrollbarHorz(papp),
    ex1::tree(papp),
    user::tree(papp)
 {
-   m_pscrollbarVert  = &m_scrollbarVert;
-   m_pscrollbarHorz  = &m_scrollbarHorz;
 }
 
 simple_tree_view::~simple_tree_view()
 {
 }
 
-void simple_tree_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_tree_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::view::_001InstallMessageHandling(pinterface);
-   ::user::tree::_001InstallMessageHandling(pinterface);
+   ::userbase::view::install_message_handling(pinterface);
+   ::user::tree::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_tree_view::_001OnCreate);
 }
 

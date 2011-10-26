@@ -30,9 +30,9 @@ namespace userbase
       m_nMRUWidth = 32767;
    }
 
-   void control_bar::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void control_bar::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CTLCOLOR          , pinterface, this, &control_bar::_001OnCtlColor);
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI   , pinterface, this, &control_bar::_001OnIdleUpdateCmdUI);
@@ -1049,22 +1049,6 @@ namespace userbase
       return FALSE;
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-
-
-   /*void control_bar::_001OnDraw(::ca::graphics *pdc)
-   {
-      //DoPaint(pdc);
-   }*/
-
-   void control_bar::_001OnNcDraw(::ca::graphics *pdc)
-   {
-      return;
-      DoPaint(pdc);
-   }
-
-   //int control_bar::get_count()
-   //   { return m_nCount; }
    DWORD control_bar::GetBarStyle()
       { return m_dwStyle; }
    void control_bar::SetBorders(LPCRECT lpRect)

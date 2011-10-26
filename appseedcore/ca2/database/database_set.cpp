@@ -27,7 +27,7 @@ namespace database
      autocommit = true;
 
      select_sql = "";
-    
+
 
    }
 
@@ -39,7 +39,7 @@ namespace database
      delete_sql.remove_all();
 
 
-     
+
    }
 
 
@@ -50,7 +50,7 @@ namespace database
      va_start(ap, t);
      vprintf(sqlCmd, DB_BUFF_MAX-1, sqlFrmt, ap);
      va_end(ap);
-     
+
       switch (t) {
           case sqlSelect: set_select_sql(sqlCmd);
                           break;
@@ -62,8 +62,8 @@ namespace database
                           break;
           case sqlExec: sql = sqlCmd;
                        break;
-             
-     }    
+
+     }
    }*/
 
 
@@ -92,7 +92,7 @@ namespace database
          by_what = "'" + edit_object[i].m_value + "'";
          sql = pars.replace(fpattern,by_what);
       }
-     
+
    //   string_list before_array, after_array;
    //   int tag = 0;
    //   bool eol_reached = false,
@@ -120,7 +120,7 @@ namespace database
    //     which_field = right_side.before(which_after);
 
    //    // checking whather we reach end of line
-   //    if ((which_field == "\0") && (which_before != "\0")) {             
+   //    if ((which_field == "\0") && (which_before != "\0")) {
    //       which_field = right_side;
    //       eol_reached = true;
    //       }
@@ -145,7 +145,7 @@ namespace database
 
    //    if (!eol_reached)  {
 
-   //       sq.assign(bef + changed_field + which_after + aft);   
+   //       sq.assign(bef + changed_field + which_after + aft);
    //       }
    //    else {
    //       if (!was_changed && (which_field != "\0")) {
@@ -172,6 +172,13 @@ namespace database
    }
 
 
+   var set::query_item(const char *sql)
+   {
+      if(!query(sql))
+         return gen::g_nullconst;
+      return GetSelectFieldValue(0);
+   }
+
    bool set::seek(int pos)
    {
       frecno = (pos<num_rows()-1)? pos: num_rows()-1;
@@ -182,7 +189,7 @@ namespace database
 
    void set::refresh()
    {
-      int row = frecno;            
+      int row = frecno;
       if ((row != 0) && active)
       {
          close();
@@ -191,7 +198,7 @@ namespace database
       }
       else
       {
-         open();      
+         open();
       }
    }
 
@@ -257,7 +264,7 @@ namespace database
        return;
      }
      for (int i=0; i<fields_object.get_size(); i++) {
-          edit_object[i].m_value = fields_object[i].m_value; 
+          edit_object[i].m_value = fields_object[i].m_value;
      }
      ds_state = dsEdit;
    }
@@ -304,7 +311,7 @@ namespace database
       {
          if (ds_state == dsEdit || ds_state == dsInsert)
          {
-            for (int i=0; i < edit_object.get_size(); i++) 
+            for (int i=0; i < edit_object.get_size(); i++)
             {
                if (edit_object[i].m_properties.name == f_name)
                {
@@ -315,7 +322,7 @@ namespace database
          }
          else
          {
-            for (int i=0; i < fields_object.get_size(); i++) 
+            for (int i=0; i < fields_object.get_size(); i++)
             {
                if (fields_object[i].m_properties.name == f_name)
                {
@@ -350,7 +357,7 @@ namespace database
    {
       if (ds_state != dsInactive)
       {
-         for (int i=0; i < fields_object.get_size(); i++) 
+         for (int i=0; i < fields_object.get_size(); i++)
          {
             if (fields_object[i].m_properties.name == f_name)
             {
@@ -449,7 +456,7 @@ namespace database
        return NULL;
    }
 
-   int set::fieldSize(int n) 
+   int set::fieldSize(int n)
    {
      if ( n < field_count() && n >= 0)
        return fields_object[n].m_properties.field_len;
@@ -457,9 +464,9 @@ namespace database
        return 0;
    }
 
-   int set::fieldIndex(const char *fn) 
+   int set::fieldIndex(const char *fn)
    {
-      for (int i=0; i < fields_object.get_size(); i++) 
+      for (int i=0; i < fields_object.get_size(); i++)
       {
          if(fields_object[i].m_properties.name == fn)
             return i;

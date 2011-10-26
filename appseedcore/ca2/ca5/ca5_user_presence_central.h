@@ -11,10 +11,13 @@ namespace ca5
       {
       public:
 
+
          presence_central(::ca::application * papp);
          virtual ~presence_central();
 
+
          virtual bool initialize();
+         virtual bool finalize();
 
          virtual bool is_initialized();
 

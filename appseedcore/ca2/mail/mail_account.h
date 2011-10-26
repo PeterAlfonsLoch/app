@@ -3,7 +3,7 @@
 namespace mail
 {
 
-   class account :
+   class CLASS_DECL_ca account :
       virtual public ::radix::object
    {
    public:

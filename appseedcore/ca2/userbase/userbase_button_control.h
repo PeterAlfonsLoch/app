@@ -7,7 +7,7 @@ class CLASS_DECL_ca BaseButtonControl :
    virtual public ::userbase::button
 {
 public:
-   BaseButtonControl(::ca::application * papp);
+
 
    image_list *      m_pimagelistNormal;
    image_list *      m_pimagelistItemHover;
@@ -16,19 +16,24 @@ public:
    int               m_iImageItemHover;
    int               m_iImageSubItemHover;
 
+
+   BaseButtonControl(::ca::application * papp);
+   virtual ~BaseButtonControl();
+
+
    virtual void _003CustomWindowProc(gen::signal_object * pobj);
 
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+   virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();
    void _001OnDraw(::ca::graphics * pdc);
 
-   virtual ~BaseButtonControl();
+   
 
 };
 

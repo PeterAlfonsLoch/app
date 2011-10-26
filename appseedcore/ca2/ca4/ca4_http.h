@@ -35,6 +35,7 @@ namespace ca4
          string                     m_strUrl;
          gen::property_set          m_setPost;
          gen::property_set          m_setHeaders;
+         gen::property_set          m_set;
          ::http::cookies *          m_pcookies;
          ::fontopus::user *         m_puser;
          string                     m_strVersion;

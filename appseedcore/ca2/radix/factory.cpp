@@ -11,14 +11,16 @@ void itemswap(void * pswaparg, index i1, index i2)
    pitemptra->swap(i1, i2);
 }
 
-factory::factory()
+factory::factory(::ca::application * papp) :
+   ca(papp)
 {
    m_pmutex = new mutex();
+   m_bSimpleFactoryRequest = false;
 }
 
 factory::~factory()
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    for(int i = 0; i < m_itemptra.get_count(); i++)
    {
       delete m_itemptra[i];
@@ -29,22 +31,39 @@ factory::~factory()
    }
 }
 
-::ca::ca * factory::create(::ca::application * papp, const ::ca::type_info & info)
+::ca::ca * factory::create(::ca::application * papp, ::ca::type_info & info)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   if(info.m_spmutex.is_null())
+   {
+      info.m_spmutex(new mutex());
+   }
+   single_lock slInfo(info.m_spmutex, TRUE);
+   if(info.m_pfactoryitem != NULL)
+   {
+      if(m_bSimpleFactoryRequest)
+      {
+         return info.m_pfactoryitem->create(papp);
+      }
+      info.m_pfactoryitem = NULL;
+   }
+   single_lock sl(m_pmutex, TRUE);
    const char * pszRawName = info.raw_name();
    void * pvoid = (void *) pszRawName;
    index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
    if(iFind < 0)
       return NULL;
    factory_item_base * pitem = m_itemptra.element_at(iFind);
-   //sl.Unlock();
+   if(m_bSimpleFactoryRequest)
+   {
+      m_typeinfoptraSimpleFactoryRequest.add(&info);
+      info.m_pfactoryitem = pitem;
+   }
    return pitem->create(papp);
 }
 
 ::ca::ca * factory::base_clone(::ca::ca * pobject)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    if(pobject == NULL)
       return NULL;
    class id id = typeid(*pobject).raw_name();
@@ -54,7 +73,7 @@ factory::~factory()
    if(iFind < 0)
       return NULL;
    factory_item_base * pitem = m_itemptra.element_at(iFind);
-   //sl.Unlock();
+   //sl.unlock();
    return pitem->clone(pobject);
 }
 
@@ -62,7 +81,7 @@ factory::~factory()
 
 void factory::set_at(const char * pszId, factory_item_base * pitem)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    m_ida.add((void *) (const char *) (id) pszId);
    m_itemptra.add(pitem);
    sort::QuickSort(m_ida, &idcmp, &itemswap, (void *) &m_itemptra);
@@ -70,7 +89,7 @@ void factory::set_at(const char * pszId, factory_item_base * pitem)
 
 factory_allocator * factory::get_allocator(const char * pszType)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    void * pvoid = NULL;
    try
    {
@@ -89,7 +108,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
 void factory::set_at(const char * pszType, factory_allocator * pallocator)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    void * pvoid = (void *) (const char *) (id) pszType;
    index iFind = m_idaAllocator.find_first(pvoid, &idcmp, 0, -1);
    if(iFind >= 0)
@@ -101,8 +120,9 @@ void factory::set_at(const char * pszType, factory_allocator * pallocator)
 
 void factory::discard(::ca::ca * pobject)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    factory_allocator * pallocator = get_allocator(typeid(*pobject).raw_name());
+   sl.unlock();
    if(pallocator == NULL)
    {
       if(::IsDebuggerPresent())
@@ -110,4 +130,31 @@ void factory::discard(::ca::ca * pobject)
       return;
    }
    pallocator->discard(pobject);
+}
+
+
+void factory::enable_simple_factory_request(bool bEnable)
+{
+   m_bSimpleFactoryRequest = bEnable;
+   if(!bEnable)
+   {
+      for(int i = 0; i < m_typeinfoptraSimpleFactoryRequest.get_count(); i++)
+      {
+         try
+         {
+            m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem->m_pallocator = NULL;
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem = NULL;
+         }
+         catch(...)
+         {
+         }
+      }
+      m_typeinfoptraSimpleFactoryRequest.remove_all();
+   }
 }

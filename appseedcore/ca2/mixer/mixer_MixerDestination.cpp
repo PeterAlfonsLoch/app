@@ -27,7 +27,7 @@ void MixerDestination::operator delete(void *it)
 {
     ((MixerDestination *) it)->~MixerDestination();
     free(it);
-    
+
 }
 
 MMRESULT MixerDestination::GetSourcesInfo()
@@ -50,9 +50,9 @@ MMRESULT MixerDestination::GetSourcesInfo()
 MMRESULT MixerDestination::GetAllControls()
 {
    GetLineControls();
-   
+
    MixerSourceArray & sourcea = m_mixersourcea;
-   
+
    for(int i = 0; i < sourcea.get_size(); i++)
    {
       sourcea[i].GetLineControls();
@@ -64,7 +64,7 @@ void MixerDestination::SendOnChangeAllControls()
 {
    MixerSource::SendOnChangeAllControls();
    MixerSourceArray & sourcea = m_mixersourcea;
-   
+
    for(int i = 0; i < sourcea.get_size(); i++)
    {
       sourcea[i].SendOnChangeAllControls();

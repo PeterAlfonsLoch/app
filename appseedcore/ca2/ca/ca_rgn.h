@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca rgn : 
+   class CLASS_DECL_ca rgn :
       virtual public graphics_object
    {
    public:
@@ -17,8 +17,10 @@ namespace ca
             int nCount, int nPolyFillMode);
       virtual BOOL CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3);
       virtual BOOL CreateFromPath(::ca::graphics * pgraphics);
+   #ifdef WINDOWS
       virtual BOOL CreateFromData(const XFORM* lpXForm, int nCount,
          const RGNDATA* pRgnData);
+   #endif
 
    // Operations
       virtual void SetRectRgn(int x1, int y1, int x2, int y2);
@@ -33,8 +35,9 @@ namespace ca
       virtual BOOL PtInRegion(int x, int y) const;
       virtual BOOL PtInRegion(POINT point) const;
       virtual BOOL RectInRegion(LPCRECT lpRect) const;
+#ifdef WINDOWS
       virtual int GetRegionData(LPRGNDATA lpRgnData, int nCount) const;
-
+#endif
    };
 
    typedef smart_pointer < rgn > rgn_sp;

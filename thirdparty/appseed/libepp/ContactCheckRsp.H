@@ -30,9 +30,6 @@
 #ifndef __CONTACT_CHECK_RSP_H__
 #define __CONTACT_CHECK_RSP_H__
 
-#include <string>
-#include <map>
-
 #include "libepp.H"
 
 #include "Response.H"

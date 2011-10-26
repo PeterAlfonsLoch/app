@@ -14,20 +14,23 @@ inline UINT HashKey(::ca::type_info key)
 class CLASS_DECL_ca factory_allocator
 {
 public:
-   
+
    DWORD                   m_uiAllocSize;
    int                     m_iCount;
-   string                  m_strName;
+   __int64                 m_iAllocCount;
+   id                      m_idType;
 
-   factory_allocator(int iCount, UINT uiAllocSize, const char * pszName) : 
+   factory_allocator(int iCount, UINT uiAllocSize, id idType) :
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
-      m_strName(pszName)
+      m_idType(idType)
    {
+      m_iAllocCount = 0;
    }
 
    inline void * alloc()
    {
+      m_iAllocCount++;
       return ca2_alloc(m_uiAllocSize);
    }
 
@@ -40,23 +43,15 @@ class factory_allocator_impl :
    public factory_allocator
 {
 public:
-   
-   factory_allocator_impl(int iCount) : 
-      factory_allocator(iCount, sizeof(TYPE), typeid(TYPE).raw_name())
+
+   factory_allocator_impl(int iCount) :
+      factory_allocator(iCount, sizeof(TYPE), ::ca::get_type_info < TYPE > ().raw_name())
    {
    }
 
    virtual void discard(::ca::ca * pca)
    {
-      TYPE * ptype = NULL;
-      try
-      {
-         ptype = dynamic_cast < TYPE * > (pca);
-      }
-      catch(...)
-      {
-         return;
-      }
+      TYPE * ptype = (TYPE *) pca->m_pthis;
       if(ptype == NULL)
          return;
       try
@@ -66,23 +61,31 @@ public:
       catch(...)
       {
       }
-      ca2_free(ptype, 0);
+      try
+      {
+         ca2_free(ptype);
+         m_iAllocCount--;
+      }
+      catch(...)
+      {
+      }
       //m_alloc.Free(ptype);
    }
 };
 
 
-class CLASS_DECL_ca factory_item_base
+class CLASS_DECL_ca factory_item_base :
+   virtual public ::radix::object
 {
 public:
 
    factory_allocator * m_pallocator;
 
-   inline factory_item_base(factory_allocator * pallocator) : m_pallocator(pallocator) {}
-   
+   inline factory_item_base(::ca::application * papp, factory_allocator * pallocator) : ca(papp), m_pallocator(pallocator) {}
+
    virtual ::ca::ca * create(::ca::application * papp) = 0;
    virtual ::ca::ca * clone(::ca::ca * pobject) = 0;
-   
+
 };
 
 template < class CREATABLE_TYPE >
@@ -91,7 +94,7 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(factory_allocator * pallocator) : factory_item_base(pallocator) {}
+   inline creatable_factory_item(::ca::application * papp, factory_allocator * pallocator) : ca(papp), factory_item_base(papp, pallocator) {}
 
    virtual ::ca::ca * create(::ca::application * papp)
    {
@@ -99,7 +102,9 @@ public:
 #undef new
       CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 #define new DEBUG_NEW
-      pt->::ca::ca::set(::ca::ca::flag_discard_to_factory);
+      pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
+      pt->m_pfactoryitembase = this;
+      pt->m_pthis = pt;
       return dynamic_cast < ::ca::ca * > (pt);
    }
 
@@ -117,16 +122,18 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(factory_allocator * pallocator) : creatable_factory_item(pallocator) {}
+   inline cloneable_factory_item(::ca::application * papp, factory_allocator * pallocator) : ::ca::ca(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
    virtual ::ca::ca * clone(::ca::ca * pobject)
    {
       const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject);
-      void * pv = m_pallocator->alloc();
+      void * pv = this->m_pallocator->alloc();
 #undef new
       CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
 #define new DEBUG_NEW
-      pt->::ca::ca::set(::ca::ca::flag_discard_to_factory);
+      pt->::ca::ca::set_ca_flag(::ca::ca::flag_discard_to_factory);
+      pt->m_pfactoryitembase = this;
+      pt->m_pthis = pt;
       return dynamic_cast < ::ca::ca * > (pt);
    }
 
@@ -136,7 +143,15 @@ class CLASS_DECL_ca factory :
    virtual public ::radix::object
 {
 public:
-   factory();
+
+
+
+   bool                             m_bSimpleFactoryRequest;
+   raw_array < ::ca::type_info * >  m_typeinfoptraSimpleFactoryRequest;
+
+
+
+   factory(::ca::application * papp);
    virtual ~factory();
 
    template < class T >
@@ -164,25 +179,25 @@ public:
    }
 
    template < class T >
-   void creatable_small(const std_type_info & info)
+   void creatable_small(::ca::type_info info)
    {
       creatable < T > (info, 32);
    }
 
    template < class T >
-   void cloneable_small(const std_type_info & info)
+   void cloneable_small(::ca::type_info info)
    {
       cloneable < T > (info, 32);
    }
 
    template < class T >
-   void creatable_large(const std_type_info & info)
+   void creatable_large(::ca::type_info info)
    {
       creatable < T > (info, 1024);
    }
 
    template < class T >
-   void cloneable_large(const std_type_info & info)
+   void cloneable_large(::ca::type_info info)
    {
       cloneable < T > (info, 1024);
    }
@@ -190,28 +205,28 @@ public:
    template < class T >
    void creatable(int iCount)
    {
-      set_at(typeid(T).raw_name(), new creatable_factory_item<T>(get_allocator<T>(iCount)));
+      set_at(::ca::get_type_info < T > ().raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
    void cloneable(int iCount)
    {
-      set_at(typeid(T).raw_name(), new cloneable_factory_item<T>(get_allocator<T>(iCount)));
+      set_at(::ca::get_type_info < T > ().raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
-   void creatable(const std_type_info & info, int iCount)
+   void creatable(::ca::type_info info, int iCount)
    {
-      set_at(info.raw_name(), new creatable_factory_item<T>(get_allocator<T>(iCount)));
+      set_at(info.raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
-   void cloneable(const std_type_info & info, int iCount)
+   void cloneable(::ca::type_info  info, int iCount)
    {
-      set_at(info.raw_name(), new cloneable_factory_item<T>(get_allocator<T>(iCount)));
+      set_at(info.raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
-   virtual ::ca::ca * create(::ca::application * papp, const ::ca::type_info & info);
+   virtual ::ca::ca * create(::ca::application * papp, ::ca::type_info & info);
    virtual ::ca::ca * base_clone(::ca::ca * pobject);
    template < class T >
    T * clone(T * pobject)
@@ -222,11 +237,11 @@ public:
    template < class T >
    factory_allocator * get_allocator(int iCount)
    {
-      factory_allocator * pallocator = get_allocator(typeid(T).raw_name());
+      factory_allocator * pallocator = get_allocator(::ca::get_type_info < T > ().raw_name());
       if(pallocator != NULL)
          return pallocator;
       pallocator = new factory_allocator_impl<T>(iCount);
-      set_at(typeid(T).raw_name(), pallocator);
+      set_at(::ca::get_type_info < T > ().raw_name(), pallocator);
       return pallocator;
    }
 
@@ -236,6 +251,8 @@ public:
    factory_allocator * get_allocator(const char * pszType);
 
    void discard(::ca::ca * pobject);
+
+   void enable_simple_factory_request(bool bEnable = true);
 
 
 private:

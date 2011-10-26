@@ -17,6 +17,6 @@ public:
    virtual void _001OnDraw(::ca::graphics * pdc);
    virtual ~simple_static();
 
-   afx_msg LRESULT OnSetIcon(WPARAM wparam, LPARAM lparam);
+   LRESULT OnSetIcon(WPARAM wparam, LPARAM lparam);
 };
 

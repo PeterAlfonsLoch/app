@@ -22,100 +22,47 @@ namespace querydb
       ::user::form_list(papp),
       ::userbase::form_list(papp),
       ::userbase::view(papp),
-      simple_list_view(papp),
-      m_il(papp)
+      simple_list_view(papp)
    {
-      m_il.create(48, 48, 0, 0, 0);
    }
 
-   void menu_right_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void menu_right_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      simple_list_view::_001InstallMessageHandling(pinterface);
+      simple_list_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_right_view::_001OnCreate);
    }
 
    void menu_right_view::_001OnCreate(gen::signal_object * pobj)
    {
-
-      wchar_t wbuf[4096];
-      HWND hwnd = _get_handle();
-      char buf[4096];
-      memset(buf, 0, sizeof(buf));
-      SHGetSpecialFolderPath(
-         NULL,
-         buf,
-         CSIDL_SYSTEM,
-         FALSE);
-      stringa straPath;
-      stringa straTitle;
-      System.dir().ls_pattern(buf, "*.cpl", &straPath, &straTitle);
-
-      for(int i = 0; i < straPath.get_count(); i++)
-      {
-         HMODULE hmodule = ::LoadLibrary(straPath[i]);
-         if(hmodule == NULL)
-            continue;
-         pfnCPlApplet fnCPlApplet = (pfnCPlApplet) ::GetProcAddress(hmodule, "CPlApplet");
-         if(fnCPlApplet != NULL)
-         {
-            fnCPlApplet(hwnd, CPL_INIT, 0, 0);
-            int iCount = fnCPlApplet(hwnd, CPL_GETCOUNT, 0, 0);
-            for(int j = 0; j < iCount; j++)
-            {
-               CPLINFO info;
-               memset(&info, 0, sizeof(info));
-               fnCPlApplet(hwnd, CPL_INQUIRE, j, (LPARAM) &info);
-               cpl_program cpl;
-               cpl.m_iImage = m_il.add(&::visual::icon((HICON)
-                  ::LoadImage((HINSTANCE) hmodule, MAKEINTRESOURCE(info.idIcon), IMAGE_ICON,
-                  48, 48, 0)));
-               cpl.m_iIndex =  j;
-               cpl.m_strApplet = straTitle[i];
-               ::LoadStringW((HINSTANCE) hmodule, info.idName, wbuf, sizeof(wbuf) / sizeof(wchar_t));
-               cpl.m_strName = gen::international::unicode_to_utf8(wbuf);
-               ::LoadStringW((HINSTANCE) hmodule, info.idInfo, wbuf, sizeof(wbuf) / sizeof(wchar_t));
-               cpl.m_strDescription = gen::international::unicode_to_utf8(wbuf);
-               m_cpla.add(cpl);
-               fnCPlApplet(hwnd, CPL_STOP, j, (LPARAM) &info);
-            }
-            fnCPlApplet(hwnd, CPL_EXIT, 0, 0);
-         }
-         ::FreeLibrary(hmodule);
-      }
       ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
       _001SetView(ViewIcon);
       _001UpdateColumns();
       _001OnUpdateItemCount();
    }
 
-   index menu_right_view::_001GetItemImage(index iItem, index iSubItem, index iListItem)
+   void menu_right_view::_001GetItemImage(::user::list_item * plistitem)
    {
-      return m_cpla[iItem].m_iImage;
+      UNREFERENCED_PARAMETER(plistitem);
    }
 
    count menu_right_view::_001GetItemCount()
    {
-      return m_cpla.get_count();
+      return 0;
    }
 
-   bool menu_right_view::_001GetItemText(string &str, index iItem, index iSubItem, index iListItem)
+   void menu_right_view::_001GetItemText(::user::list_item * plistitem)
    {
-      if(iItem >= 0 && iItem < m_cpla.get_count())
-      {
-         str = m_cpla[iItem].m_strName;
-         return true;
-      }
-      return false;
+      UNREFERENCED_PARAMETER(plistitem);
    }
 
 
    void menu_right_view::_001InsertColumns()
    {
-      Column column;
+      ::user::list_column column;
       column.m_sizeIcon.cx          = 48  ;
       column.m_sizeIcon.cy          = 48;
-      column.m_pilHover             = &m_il;
-      column.m_pil                  = &m_il;
+      //column.m_pilHover             = &m_il;
+      //column.m_pil                  = &m_il;
       column.m_iWidth               = 100;
 	   _001AddColumn(column);
    }
@@ -123,6 +70,8 @@ namespace querydb
 
 void menu_right_view::_001OnClick(UINT nFlags, point point) 
 {
+   UNREFERENCED_PARAMETER(nFlags);
+   UNREFERENCED_PARAMETER(point);
    int iItemRange, iItem;
    Range range;
    _001GetSelection(range);
@@ -137,9 +86,9 @@ void menu_right_view::_001OnClick(UINT nFlags, point point)
       {
          if(iItem < 0)
             continue;
-         if(iItem >= m_cpla.get_count())
-            continue;
-         ::ShellExecute(NULL, NULL, "control.exe", m_cpla[iItem].m_strApplet, NULL, SW_SHOWNORMAL);
+         //if(iItem >= m_cpla.get_count())
+           // continue;
+         //::ShellExecute(NULL, NULL, "control.exe", m_cpla[iItem].m_strApplet, NULL, SW_SHOWNORMAL);
       }
    }
    _001ClearSelection();

@@ -39,6 +39,7 @@ namespace sockets
       tcp_socket(h),
       http_client_socket(h)
    {
+      m_content_length = -1;
    }
 
 
@@ -49,6 +50,7 @@ namespace sockets
       tcp_socket(h),
       http_client_socket(h, url_in)
    {
+      m_content_length = -1;
    }
 
 
@@ -81,27 +83,52 @@ namespace sockets
 
 
 
-   void http_put_socket::OnConnect()
+   void http_put_socket::step()
    {
-      m_request.attr("http_method") = "PUT";
-      m_request.attr("http_version") = "HTTP/1.1";
-      outheader("Host") = GetUrlHost();
-      outheader("Content-type") =  m_content_type;
-      outheader("Content-length") = m_content_length;
-      outheader("User-agent") = MyUseragent();
+
+      if(m_file.is_set())
+      {
+         m_content_length = (long) m_file->get_length();
+      }
+
+
+      m_request.attr("http_method")    = "PUT";
+      m_request.attr("http_version")   = "HTTP/1.1";
+      outheader("Host")                = GetUrlHost();
+      if(m_content_type.has_char())
+      {
+         outheader("Content-type")     = m_content_type;
+      }
+      outheader("Content-length")      = m_content_length;
+      outheader("User-agent")          = MyUseragent();
+      outheader("Connection")          = "close";
       SendRequest();
 
-      FILE *fil = fopen(m_filename, "rb");
-      if (fil)
+      if(m_file.is_set())
       {
          size_t n;
          char buf[32768];
-         while ((n = fread(buf, 1, 32768, fil)) > 0)
+         m_file->seek_to_begin();
+         while ((n = m_file->read(buf, 32768)) > 0)
          {
             SendBuf(buf, n);
          }
-         fclose(fil);
       }
+      else
+      {
+         FILE *fil = fopen(m_filename, "rb");
+         if (fil)
+         {
+            size_t n;
+            char buf[32768];
+            while ((n = fread(buf, 1, 32768, fil)) > 0)
+            {
+               SendBuf(buf, n);
+            }
+            fclose(fil);
+         }
+      }
+      
    }
 
 }

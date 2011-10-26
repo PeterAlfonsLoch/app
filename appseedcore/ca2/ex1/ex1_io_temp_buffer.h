@@ -20,27 +20,31 @@ namespace ex1
    public:
       //NWindows::NFile::NDirectory::CTempFile _tempFile;
       //NWindows::NFile::NIO::COutFile _outFile;
-      ex1::filesp       _tempFile;
-      ex1::filesp       _outFile;
-      byte *            _buf;
-      uint32            _bufPos;
-      string            _tempFileName;
-      bool              _tempFileCreated;
-      uint64            _size;
-      uint32            _crc;
+      ex1::filesp                      _tempFile;
+      ex1::filesp                      _outFile;
+      string                           _tempFileName;
+      bool                             _tempFileCreated;
+      uint32                           _crc;
+      ::primitive::memory              m_memory;
+      ::primitive::memory_position     _bufPos;
+      ::primitive::memory_size         _size;
 
 
       temp_io_buffer();
       virtual ~temp_io_buffer();
 
-      bool WriteToFile(const void *data, uint32 size);
-      void Create();
+      bool write_to_file(const void * data, ::primitive::memory_size size);
+      using ::ex1::request_interface::create;
+      void create();
 
       void InitWriting();
-      bool Write(const void *data, uint32 size);
+      bool write(const void *data, ::primitive::memory_size size);
 
-      HRESULT WriteToStream(writer *stream);
-      uint64 GetDataSize() const { return _size; }
+      HRESULT write_to_stream(writer *stream);
+      ::primitive::memory_size GetDataSize() const 
+      { 
+         return _size; 
+      }
    };
 
    class temp_io_writer :
@@ -52,7 +56,7 @@ namespace ex1
       {
          _buf = buffer; 
       }
-      void write(const void *data, DWORD_PTR size, DWORD_PTR * processedSize);
+      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize);
    };
 
 } // namespace ex1

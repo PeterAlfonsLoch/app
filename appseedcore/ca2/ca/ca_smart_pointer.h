@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "collection/base_array.h"
+
+
 namespace ca
 {
 
@@ -41,10 +45,14 @@ namespace ca
 
       inline smart_pointer & operator() (T * p);
 
+
+      void oattrib(T * p);
+
+
       T * clone() const;
       void create(::ca::application * papp);
-      
-      
+
+
       void destroy();
       inline T * detach();
 
@@ -62,7 +70,7 @@ namespace ca
    template < class T >
    smart_pointer < T > ::smart_pointer(const smart_pointer < T > & t) :
       ca(&t != NULL ? t.get_app() : NULL)
-   {     
+   {
       m_p = NULL;
       operator = (t);
    }
@@ -87,7 +95,7 @@ namespace ca
 
    template < class T >
    smart_pointer < T > ::smart_pointer(DWORD_PTR dw) :
-      ca(dw != NULL ? ((T *) dw)->get_app() : NULL)
+      ca(dw != 0 ? ((T *) dw)->get_app() : NULL)
    {
       m_p = NULL;
       operator = ((T *) dw);
@@ -95,7 +103,7 @@ namespace ca
 
    template < class T >
    smart_pointer < T > ::smart_pointer(int i) :
-      ca(i != NULL ? ((T *) i)->get_app() : NULL)
+      ca(i != 0 ? ((T *) i)->get_app() : NULL)
    {
       m_p = NULL;
       operator = ((T *) i);
@@ -170,14 +178,17 @@ namespace ca
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (T * p)
    {
-      if(m_p != NULL)
+      if(m_p != p)
       {
-         gen::release(m_p);
-      }
-      m_p = p;
-      if(m_p != NULL)
-      {
-         gen::add_ref(m_p);
+         if(m_p != NULL)
+         {
+            gen::release(m_p);
+         }
+         m_p = p;
+         if(m_p != NULL)
+         {
+            gen::add_ref(m_p);
+         }
       }
       return *this;
    }
@@ -219,8 +230,29 @@ namespace ca
       return p;
    }
 
+   template < class T >
+   void smart_pointer < T > ::oattrib(T * p)
+   {
+      if(p == NULL)
+      {
+         operator = (NULL);
+         return;
+      }
+      if(is_null())
+         create(p->get_app());
+      *m_p = *p;
+   }
+
+   template < class T >
+   class smart_ptra :
+      virtual public base_array < ::ca::smart_pointer < T > >
+   {
+   public:
+   };
+
 
 } // namespace ca
 
 
 #define sp(TYPE) ::ca::smart_pointer < TYPE >
+#define spa(TYPE) ::base_array < ::ca::smart_pointer < TYPE > >

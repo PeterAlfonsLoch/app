@@ -72,7 +72,7 @@ namespace platform
       ::user::front_end_schema::button  
                            m_buttonschema;
 
-      array_ptr < link, link & > 
+      array_del_ptr < link, link & > 
                            m_linka;
 
       int m_iScreen;
@@ -91,6 +91,7 @@ namespace platform
       string m_strStatus1;
       string m_strStatus2;
 
+
       
       view(::ca::application * papp);
       virtual ~view();
@@ -102,13 +103,9 @@ namespace platform
 
       void SetScreen(int iScreen);
 
-      virtual void open_document_file(var varFile);
+      virtual void open_document_file(::ca::create_context * pcreatecontext);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
-
-
-      bergedge::bergedge *   get_bergedge();
-
 
       virtual database::user::interaction* BackViewGetWnd();
       virtual ::user::interaction* get_guie();
@@ -116,7 +113,7 @@ namespace platform
       virtual void _001OnDraw(::ca::graphics * pdc);
 
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
@@ -138,7 +135,7 @@ namespace platform
       void check_apps();
 
       void GetAreaThumbRect(LPRECT lprect, int iArea);
-      int hit_test(point pt);
+      int hit_test(point pt, e_element & eelement);
 
 
       void mt_show_window(HWND hwnd, int iShow);

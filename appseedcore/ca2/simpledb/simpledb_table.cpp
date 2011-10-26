@@ -28,17 +28,20 @@ namespace simpledb
 
       for(int i = 0; i < pfields->get_children_count(); i++)
       {
-         ::xml::node * pfield = m_nodeMeta.child_at(i);
+         ::xml::node * pfield = pfields->child_at(i);
          if(pfield->m_strName != "field")
             continue;
          database::field_definition_item item;
-         item.m_strName = pfield->attr("name");
+         item = *pfield;
          m_fielddefinition.add(item);
       }
 
       string strFixedPath = m_nodeMeta.attr("fixed_path");
+      if(strFixedPath.is_empty())
+         strFixedPath = strMetaPath = System.dir().ca2("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "fixed.txt");
 
-      if(!m_spfileFixed->open(strMetaPath, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive))
+      if(!m_spfileFixed->open(strMetaPath, ::ex1::file::mode_create | ::ex1::file::modeNoTruncate | ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive |
+         ::ex1::file::defer_create_directory))
          throw 0;
 
    }

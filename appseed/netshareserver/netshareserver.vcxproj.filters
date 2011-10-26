@@ -60,7 +60,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="netshareserver.def">
+    <None Include="app_netshareserver.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

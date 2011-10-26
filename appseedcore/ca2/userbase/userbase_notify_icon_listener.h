@@ -12,6 +12,7 @@ namespace userbase
       virtual void OnNotifyIconMessage(UINT uiNotifyIcon, UINT message);
       virtual void OnNotifyIconContextMenu(UINT uiNotifyIcon);
       virtual void OnNotifyIconLButtonDblClk(UINT uiNotifyIcon);
+      virtual void OnNotifyIconLButtonDown(UINT uiNotifyIcon);
 
 
    };

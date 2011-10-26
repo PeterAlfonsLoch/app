@@ -12,11 +12,11 @@ namespace impl
    public:
 
       
-      base_array < size, size & > m_sizea;
-      stringa m_straLines;
-      stringa m_straWordSpace;
-      bool m_bLink;
-      string m_strLink;
+      base_array < size >           m_sizea;
+      stringa                       m_straLines;
+      stringa                       m_straWordSpace;
+      bool                          m_bLink;
+      string                        m_strLink;
 
 
       text(::ca::application * papp);
@@ -38,7 +38,8 @@ namespace impl
       virtual bool has_link();
       virtual string link();
 
-      virtual int hit_test(point pt);
+      using user::edit_plain_text::hit_test;
+      virtual int hit_test(data * pdoc, point pt);
 
       virtual int char_hit_test(::ca::graphics * pdc, int px, int py);
 

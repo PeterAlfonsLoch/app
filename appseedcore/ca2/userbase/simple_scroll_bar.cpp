@@ -23,10 +23,9 @@ simple_scroll_bar::~simple_scroll_bar()
 }
 
 
-void simple_scroll_bar::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_scroll_bar::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::user::interaction::_001InstallMessageHandling(pinterface);
-   InstallBuffering(pinterface);
+   ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_scroll_bar::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &simple_scroll_bar::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &simple_scroll_bar::_001OnLButtonUp);
@@ -35,9 +34,10 @@ void simple_scroll_bar::_001InstallMessageHandling(::user::win::message::dispatc
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &simple_scroll_bar::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_scroll_bar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_scroll_bar::_001OnShowWindow);
+   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-BOOL simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, create_context* pContext) 
+BOOL simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -759,8 +759,9 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 
 //   gen::savings & savings = System.savings();
 
+   pdc->SelectClipRgn(NULL);
 
-   ::user::scroll_info si;
+/*   ::user::scroll_info si;
 
    rect rectClipBox;
 
@@ -775,11 +776,14 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       rectClipBox.intersect(rectClipBox, rectClient);
-   }
+   }*/
+   
+   rect rectClient;
+   GetClientRect(rectClient);
 
    if(System.savings().is_trying_to_save(gen::resource_processing))
    {
-      pdc->FillSolidRect(rectClipBox, RGB(255,255,255));
+      pdc->FillSolidRect(rectClient, RGB(255,255,255));
    }
    else
    {
@@ -787,25 +791,35 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
       class imaging & imaging = System.imaging();
       imaging.color_blend(
          pdc,
-         rectClipBox.left, rectClipBox.top,
-         rectClipBox.width(), rectClipBox.height(),
+         rectClient.left, rectClient.top,
+         rectClient.width(), rectClient.height(),
          RGB(255,255,255),
          127);
    }
+   //rectClipBox.left -= 400;
+   //rectClipBox.right -=17;
+     //pdc->FillSolidRect(rectClipBox, RGB(255,255,0));
 
+   //_001GetScrollInfo(&si);
 
-   _001GetScrollInfo(&si);
-
-   pdc->SelectObject(m_brushNull);
-   pdc->SelectObject(m_penDraw);
+   ::ca::brush * pbrushOld = pdc->SelectObject(m_brushNull);
+   ::ca::pen * ppenOld = pdc->SelectObject(m_penDraw);
 
    rect rectTrack;
 
    GetTrackRect(rectTrack);
 
+   class ::rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
    pdc->Rectangle(rectTrack);
    pdc->Polygon(m_ptaA, 4);
    pdc->Polygon(m_ptaB, 4);
+
+   pdc->SelectObject(pbrushOld);
+   pdc->SelectObject(ppenOld);
+
 
 
 }
@@ -818,12 +832,7 @@ void simple_scroll_bar::_001OnShowWindow(gen::signal_object * pobj)
    // xxx   TwiOnShowWindow(bShow, nStatus);
 }
 
-void simple_scroll_bar::OnDrawInterfaceDraw(::ca::graphics *pdc)
+void simple_scroll_bar::_001OnDestroy(gen::signal_object * pobj)
 {
-
-   /*   TwiOnDraw(m_gdibuffer.GetBuffer());
-   m_gdibuffer.BitBlt(pdc);*/
-   _001OnDraw(pdc);
-
+   UNREFERENCED_PARAMETER(pobj);
 }
-

@@ -38,20 +38,23 @@
 #ifndef __PLUGININSTANCEBASE_H__
 #define __PLUGININSTANCEBASE_H__
 
-//#include "npplat.h"
+#include "npplat.h"
 
 
-extern "C"  typedef  void     ( *    LPFN_NS_PluginShutdown                )();
+/*extern "C"  typedef  void     ( *    LPFN_NS_PluginShutdown                )();
 extern "C"  typedef  NPError  ( *    LPFN_fillNetscapeFunctionTable        )(NPNetscapeFuncs * aNPNFuncs);
 extern "C"  typedef  NPError  ( *    LPFN_NS_PluginInitialize              )();
-extern "C"  typedef  NPError  ( *    LPFN_fillPluginFunctionTable          )(NPPluginFuncs* aNPPFuncs);
+extern "C"  typedef  NPError  ( *    LPFN_fillPluginFunctionTable          )(NPPluginFuncs* aNPPFuncs);*/
 
 
-extern LPFN_NS_PluginShutdown           pfn_NS_PluginShutdown;
+/*extern LPFN_NS_PluginShutdown           pfn_NS_PluginShutdown;
 extern LPFN_fillNetscapeFunctionTable   pfn_fillNetscapeFunctionTable;
 extern LPFN_NS_PluginInitialize         pfn_NS_PluginInitialize;
-extern LPFN_fillPluginFunctionTable     pfn_fillPluginFunctionTable;
+extern LPFN_fillPluginFunctionTable     pfn_fillPluginFunctionTable;*/
 
+typedef short            int16;
+typedef unsigned short   uint16;
+//typedef long             int32;
 
 
 struct nsPluginCreateData

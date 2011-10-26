@@ -1,15 +1,15 @@
 #include "StdAfx.h"
 
-MidiPlayerCallback::MidiPlayerCallback(::ca::application * papp) :
+midi_player_callback::midi_player_callback(::ca::application * papp) :
    m_wnd(papp)
 {
 }
 
-MidiPlayerCallback::~MidiPlayerCallback()
+midi_player_callback::~midi_player_callback()
 {
 }
 
-bool MidiPlayerCallback::initialize()
+bool midi_player_callback::initialize()
 {
    if(!m_wnd.create())
       return false;
@@ -17,7 +17,7 @@ bool MidiPlayerCallback::initialize()
    return true;
 }
 
-bool MidiPlayerCallback::finalize()
+bool midi_player_callback::finalize()
 {
    if(!m_wnd.IsWindow())
       return true;
@@ -26,13 +26,13 @@ bool MidiPlayerCallback::finalize()
 }
 
 
-void MidiPlayerCallback::OnMmsgDone(::mus::midi::sequence *pSeq, ::mus::midi::LPMIDIDONEDATA lpmdd)
+void midi_player_callback::OnMmsgDone(::mus::midi::sequence *pSeq, ::mus::midi::LPMIDIDONEDATA lpmdd)
 {
    UNREFERENCED_PARAMETER(pSeq);
    UNREFERENCED_PARAMETER(lpmdd);
 }
 
-void MidiPlayerCallback::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEvent * pdata)
+void midi_player_callback::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEvent * pdata)
 {
    switch(pdata->m_enotifyevent)
    {
@@ -42,7 +42,7 @@ void MidiPlayerCallback::OnMidiPlayerNotifyEvent(::mus::midi::player::NotifyEven
    }
 }
 
-void MidiPlayerCallback::OnMidiLyricEvent(base_array<LyricEventV1, LyricEventV1&> * pevents)
+void midi_player_callback::OnMidiLyricEvent(base_array<LyricEventV1, LyricEventV1&> * pevents)
 {
    UNREFERENCED_PARAMETER(pevents);
 }

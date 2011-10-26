@@ -23,14 +23,13 @@ namespace fs
       virtual bool _001OnUpdateItemCount(DWORD dwFlags = 0);
 
       document * get_document();
-      virtual data * get_fs_data();
       virtual list_data * get_fs_list_data();
 
       virtual COLORREF get_background_color();
       void add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
       virtual void _017Synchronize();
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       image_list * GetActionButtonImageList(index i);
 
@@ -41,12 +40,12 @@ namespace fs
       void _001OnInitializeForm(user::control * pcontrol);
       void _001OnButtonAction(user::control * pcontrol);
 
-      virtual void _017OpenFile(item_array & itema);
-      virtual void _017OpenFolder(item & item);
+      virtual void _017OpenFile(const item_array & itema);
+      virtual void _017OpenFolder(const item & item);
       virtual void _017OpenSelected(bool bOpenFile);
       virtual void _017OpenContextMenuSelected();
-      virtual void _017OpenContextMenuFolder(item &item);
-      virtual void _017OpenContextMenuFile(item_array &itema);
+      virtual void _017OpenContextMenuFolder(const item &item);
+      virtual void _017OpenContextMenuFile(const item_array &itema);
       virtual void _017OpenContextMenu();
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
@@ -54,10 +53,10 @@ namespace fs
       virtual void _001OnDraw(::ca::graphics * pdc);
       void _017UpdateList();
       void GetSelectedFilePath(stringa & base_array);
-      void _001CreateImageList();
+      virtual void _001CreateImageList();
       bool _001CreateImageListStep();
-      virtual index _001GetItemImage(index iItem, index iSubItem, index iListItem);
-      virtual bool _001GetItemText(string & str, index iItem, index iSubItem, index iListItem);
+      virtual void _001GetItemImage(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();
       void _017UpdateList(const char * lpcsz);
       void _017UpdateZipList(const char * lpcsz);

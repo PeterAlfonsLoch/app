@@ -25,6 +25,6 @@ namespace compress
      }
    };
 
-   HRESULT SetMethodProperties(const method &method, const uint64 *inSizeForReduce, ::ca::ca *coder);
+   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca * coder);
 
 } // namespace compress

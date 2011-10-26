@@ -1,9 +1,7 @@
 #pragma once
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-class CLASS_DECL_ca string_to_string_map : 
+class CLASS_DECL_ca string_to_string_map :
    public ::radix::object
 {
 public:
@@ -15,7 +13,7 @@ public:
       pair(const string & key) : m_key(key) {}
 	};
 
-	class assoc : 
+	class assoc :
       public pair
 	{
    public:
@@ -104,3 +102,23 @@ protected:
 	typedef string BASE_VALUE;
 	typedef const char * BASE_ARG_VALUE;
 };
+
+
+
+inline INT_PTR string_to_string_map::get_count() const
+   { return m_nCount; }
+inline INT_PTR string_to_string_map::get_size() const
+   { return m_nCount; }
+inline bool string_to_string_map::is_empty(::count countMinimum) const
+   { return m_nCount < countMinimum; }
+inline bool string_to_string_map::has_elements(::count countMinimum) const
+   { return m_nCount >= countMinimum; }
+inline void string_to_string_map::set_at(const char * key, const char * newValue)
+   { (*this)[key] = newValue; }
+inline POSITION string_to_string_map::get_start_position() const
+   { return (m_nCount == 0) ? NULL : BEFORE_START_POSITION; }
+inline UINT string_to_string_map::GetHashTableSize() const
+   { return m_nHashTableSize; }
+
+
+

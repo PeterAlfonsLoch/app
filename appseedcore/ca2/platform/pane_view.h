@@ -9,9 +9,9 @@ namespace platform
    public:
       pane_view(::ca::application * papp); 
 
-      virtual void on_create_view(view_data * pviewdata);
+      virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       virtual ~pane_view();
    #ifdef _DEBUG

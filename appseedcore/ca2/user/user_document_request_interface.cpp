@@ -4,19 +4,30 @@
 namespace user
 {
 
-   ::document * document_request_interface::open_document_file(
-      var varFile, 
-      bool bMakeVisible, 
-      ::user::interaction * puiParent,
-      ::view * pviewAlloc)
+   ::document * document_request_interface::open_document_file(::ca::create_context * pcreatecontext)
    {
 
-      var varQuery;
-      varQuery["make_visible_boolean"] = bMakeVisible;
-      varQuery["parent_user_interaction"] = puiParent;
-      varQuery["allocation_view"] = pviewAlloc;
-      request(varFile, varQuery);
-      return varQuery["document"].ca2 < ::document > ();
+      ::ca::create_context_sp cc(&Application.creation(), NULL, true, NULL);
+
+      if(pcreatecontext == NULL)
+      {
+         pcreatecontext = cc;
+      }
+
+      request(pcreatecontext);
+
+      return pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::document > ();
+
+   }
+
+   ::document * document_request_interface::open_document_file(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
+   {
+      
+      ::ca::create_context_sp cc(&Application.creation(), varFile, bMakeVisible, puiParent);
+
+
+      return open_document_file(cc);
+
    }
 
 } // namespace user

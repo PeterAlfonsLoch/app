@@ -23,10 +23,10 @@ MixerControl::~MixerControl()
     if(m_mixercontroldetails.paDetails != NULL)
         free(m_mixercontroldetails.paDetails);
     mixer::control * pcontrol;
-    for(int i = 0; i < get_size(); i++)
+    for(int i = 0; i < this->get_size(); i++)
     {
-        
-        if((pcontrol = element_at(i)) != NULL)
+
+        if((pcontrol = this->element_at(i)) != NULL)
         {
            delete pcontrol;
         }
@@ -57,8 +57,8 @@ bool MixerControl::CreateWindowsVolumeV001(
    UINT                        lcMultipleItems;
    int                         nRange;
    int                         nPageInc;
-    
-    
+
+
    ASSERT(m_pmixersource != NULL);
 
    lcChannels = (UINT)m_pmixersource->m_mixerline.cChannels;
@@ -150,7 +150,7 @@ bool MixerControl::CreateWindowsVolumeV001(
    mcdVolumeLabel.m_uiLineID = ((MIXERLINE *) m_pmixersource)->dwLineID;
    mcdVolumeLabel.m_uiControlID = m_mixercontrol.dwControlID;
    add(plabelVolume);
-    
+
 
    if(lcChannels == 2)
    {
@@ -173,7 +173,7 @@ bool MixerControl::CreateWindowsVolumeV001(
       pcontrol->SetPageSize(mcdvBalance.nPageInc);
 
       add(pcontrol);
-    
+
       mixer::label * plabel = m_pmixersource->GetDevice()->GetMixer()->GetCallback()->CreateLabel();
       if(plabel == NULL)
          return false;
@@ -203,8 +203,8 @@ bool MixerControl::_001CreateMuteControl(
     UINT                        cb;
     UINT                        lcChannels;
     UINT                        lcMultipleItems;
-    
-    
+
+
     ASSERT(m_pmixersource != NULL);
 
     lcChannels = (UINT)m_pmixersource->m_mixerline.cChannels;
@@ -221,7 +221,7 @@ bool MixerControl::_001CreateMuteControl(
       //  return false;
 
     int iItemCount = lcChannels * lcMultipleItems;
-    
+
     cb = iItemCount * sizeof(MIXERCONTROLDETAILS_BOOLEAN);
     m_mixercontroldetails.cbDetails = sizeof(MIXERCONTROLDETAILS_BOOLEAN);
     if(m_mixercontroldetails.paDetails != NULL)
@@ -255,7 +255,7 @@ bool MixerControl::_001CreateMuteControl(
       mcdmMute.m_uiLineID = ((MIXERLINE *) m_pmixersource)->dwLineID;
       add(pbtMute);
    }
-    
+
     *nNextID = nID;
     return true;
 }
@@ -275,9 +275,9 @@ mixer::control * MixerControl::GetControl(
     int iType)
 {
     mixer::control  * pWnd = NULL;
-    for(int i = 0; i < get_size(); i++)
+    for(int i = 0; i < this->get_size(); i++)
     {
-        pWnd = element_at(i);
+        pWnd = this->element_at(i);
         if(pWnd == NULL)
             continue;
         if(pWnd->m_pdata->get_type() == iType)
@@ -291,12 +291,12 @@ mixer::control * MixerControl::GetControl(
 mixer::control * MixerControl::GetControlByIndex(
     int iIndex)
 {
-   return element_at(iIndex);
+   return this->element_at(iIndex);
 }
 
 void MixerControl::OnMixerControlChange()
 {
-    if(get_size() <= 0)
+    if(this->get_size() <= 0)
         return;
     MMRESULT                        mmrc;
 //    HWND                            htxt;
@@ -341,7 +341,7 @@ void MixerControl::OnMixerControlChange()
 //    pmxctrl     = pmaci->pmxctrl;
 //    pmxcd_u     = &pmaci_fader->pmxcd_u[0];
 //    nRange      = pmaci_fader->nRange;
-    
+
    cChannels = (UINT)m_pmixersource->m_mixerline.cChannels;
    if (MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
       cChannels = 1;
@@ -376,21 +376,21 @@ void MixerControl::OnMixerControlChange()
         ASSERT(cMultipleItems == 1);
         if(cChannels == 2)
         {
-            mixer::LevelControl * pslVolume = 
+            mixer::LevelControl * pslVolume =
                (mixer::LevelControl *)
                   (GetControl(MixerCtrlData::TypeStereoVolume));
             MixerCtrlDataVolume * lpmcdVolume = (MixerCtrlDataVolume *) GetWindowData(MixerCtrlData::TypeStereoVolume);
-            mixer::LevelControl * pslBalance = 
+            mixer::LevelControl * pslBalance =
                (mixer::LevelControl *)
                   (GetControl(MixerCtrlData::TypeStereoBalance));
             double dActualBalance = pslBalance->GetPos();
-    
+
             nRange = lpmcdVolume->nRange;
             pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
             int nLeftValue = (int)MulDivRN(pmxcd_u[0].dwValue - m_mixercontrol.Bounds.dwMinimum, nRange, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum);
             int nRightValue = (int)MulDivRN(pmxcd_u[1].dwValue - m_mixercontrol.Bounds.dwMinimum, nRange, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum);
-    
-        
+
+
             int nMaxValue = max(nLeftValue, nRightValue);
             int nBalance = nMaxValue == 0 ?
                 nRange / 2 :
@@ -415,7 +415,7 @@ void MixerControl::OnMixerControlChange()
             mixer::LevelControl * pslVolume = (mixer::LevelControl *)
                (GetControl(MixerCtrlData::TypeStereoVolume));
             MixerCtrlDataVolume * lpmcdVolume = (MixerCtrlDataVolume *) GetWindowData(MixerCtrlData::TypeStereoVolume);
-    
+
             nRange = lpmcdVolume->nRange;
             pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
             int nValue = (int)MulDivRN(pmxcd_u[0].dwValue - m_mixercontrol.Bounds.dwMinimum, nRange, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum);
@@ -425,12 +425,12 @@ void MixerControl::OnMixerControlChange()
     }
    else if((m_mixercontrol.dwControlType & MIXERCONTROL_CT_UNITS_MASK) == MIXERCONTROL_CT_UNITS_BOOLEAN)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
          mixer::toggle_control * pmutecontrol = (mixer::toggle_control *)
             GetControlByIndex(i);
-            
-               
+
+
          PMIXERCONTROLDETAILS_BOOLEAN pmxcd_f = (PMIXERCONTROLDETAILS_BOOLEAN) m_mixercontroldetails.paDetails;
          BOOL fValue = (BOOL) pmxcd_f[cMultipleItems - i - 1].fValue;
 
@@ -442,9 +442,9 @@ void MixerControl::OnMixerControlChange()
 MixerCtrlData * MixerControl::GetWindowData(int iType)
 {
    mixer::control * pWnd = NULL;
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      pWnd = element_at(i);
+      pWnd = this->element_at(i);
       if(pWnd == NULL)
          continue;
       if(pWnd->m_pdata->get_type() == iType)
@@ -478,7 +478,7 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
                 MixerCtrlData * pData;
                 if(NULL != (pData = GetWindowDataByDlgCtrlID(lpnmhdr->idFrom)))
                 {
-                    
+
                     if(pData->get_type() == MixerCtrlData::TypeStereoBalance ||
                         pData->get_type() == MixerCtrlData::TypeStereoVolume)
                     {
@@ -529,7 +529,7 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
                                 nLeftValue = nMaxValue;
                                 nRightValue = nMinValue;
                             }
-        
+
                             PMIXERCONTROLDETAILS_UNSIGNED   pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
                             pmxcd_u[0].dwValue = (int)MulDivRN(
                                 nLeftValue ,
@@ -540,8 +540,8 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
                                 m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum,
                                 nRange) +  m_mixercontrol.Bounds.dwMinimum;
                             MMRESULT mmrc = mixerSetControlDetails(
-                               (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer, 
-                               &m_mixercontroldetails, 
+                               (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer,
+                               &m_mixercontroldetails,
                                MIXER_GETCONTROLDETAILSF_VALUE);
                             if (MMSYSERR_NOERROR == mmrc)
                             {
@@ -553,7 +553,7 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
   //                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
     //                                      m_mixercontrol.dwControlID, m_pmixersource->GetDevice()->m_hMixer, mmrc);
                             }
-        
+
                         }
                         else if(m_mixercontroldetails.cChannels == 1)
                         {
@@ -564,8 +564,8 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
                             PMIXERCONTROLDETAILS_UNSIGNED pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
                             pmxcd_u[0].dwValue = (int)MulDivRN(nValue, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum, nRange) + m_mixercontrol.Bounds.dwMinimum;
                             MMRESULT mmrc = mixerSetControlDetails(
-                               (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer, 
-                               &m_mixercontroldetails, 
+                               (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer,
+                               &m_mixercontroldetails,
                                MIXER_GETCONTROLDETAILSF_VALUE);
                             if (MMSYSERR_NOERROR == mmrc)
                             {
@@ -581,10 +581,10 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
                         return true;
                     }
                 }*/
-                
+
 //            }
         }
-    
+
     }
     return false;
 
@@ -593,9 +593,9 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
 mixer::control * MixerControl::GetControlByDlgCtrlID(UINT nID)
 {
     mixer::control * pWnd = NULL;
-    for(int i = 0; i < get_size(); i++)
+    for(int i = 0; i < this->get_size(); i++)
     {
-        pWnd = element_at(i);
+        pWnd = this->element_at(i);
         if(pWnd == NULL)
             continue;
         if((UINT) pWnd->_GetDlgCtrlID() == nID)
@@ -610,9 +610,9 @@ mixer::control * MixerControl::GetControlByDlgCtrlID(UINT nID)
 MixerCtrlData * MixerControl::GetWindowDataByDlgCtrlID(UINT nID)
 {
    mixer::control * pWnd = NULL;
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      pWnd = element_at(i);
+      pWnd = this->element_at(i);
       if(pWnd == NULL)
          continue;
       if((UINT) pWnd->GetWnd()->GetDlgCtrlId() == nID)
@@ -717,7 +717,7 @@ void MixerControl::OnVHScroll(UINT nSBCode, UINT nPos, ::user::interaction * pSc
                         m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum,
                         nRange) +  m_mixercontrol.Bounds.dwMinimum;
                      MMRESULT mmrc = mixerSetControlDetails(
-                        (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer, 
+                        (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer,
                         &m_mixercontroldetails,
                         MIXER_GETCONTROLDETAILSF_VALUE);
                      if (MMSYSERR_NOERROR == mmrc)
@@ -741,7 +741,7 @@ void MixerControl::OnVHScroll(UINT nSBCode, UINT nPos, ::user::interaction * pSc
                      PMIXERCONTROLDETAILS_UNSIGNED pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
                      pmxcd_u[0].dwValue = (int)MulDivRN(nValue, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum, nRange) + m_mixercontrol.Bounds.dwMinimum;
                      MMRESULT mmrc = mixerSetControlDetails(
-                        (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer, 
+                        (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer,
                         &m_mixercontroldetails,
                         MIXER_GETCONTROLDETAILSF_VALUE);
                      if (MMSYSERR_NOERROR == mmrc)
@@ -770,7 +770,7 @@ BOOL MixerControl::OnCommand(WPARAM wParam, LPARAM lParam)
 {
    UNREFERENCED_PARAMETER(lParam);
    WORD wNotifyCode = HIWORD(wParam);
-   WORD wID = LOWORD(wParam); 
+   WORD wID = LOWORD(wParam);
 
    mixer::control * pwnd = GetControlByDlgCtrlID((UINT)wID);
 
@@ -791,20 +791,20 @@ BOOL MixerControl::OnCommand(WPARAM wParam, LPARAM lParam)
                if(MIXERCONTROL_CONTROLF_UNIFORM & m_mixercontrol.fdwControl)
                   m_mixercontroldetails.cChannels = 1;
 
-               
+
                int iSel = pmutecontrol->get_data().m_iIndex;
 
                //m_mixercontroldetails.cChannels      = cChannels;
                m_mixercontroldetails.cMultipleItems = m_mixercontrol.cMultipleItems;
                int cMultipleItems = m_mixercontrol.cMultipleItems;
                PMIXERCONTROLDETAILS_BOOLEAN   pmxcd_f = (PMIXERCONTROLDETAILS_BOOLEAN) m_mixercontroldetails.paDetails;
-               for(int i = 0; i < get_size(); i++)
+               for(int i = 0; i < this->get_size(); i++)
                {
                   BOOL fValue = i == iSel ? 1 : 0;
                   pmxcd_f[cMultipleItems - i - 1].fValue = fValue;
                }
                MMRESULT mmrc = mixerSetControlDetails(
-                  (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer, 
+                  (HMIXEROBJ)m_pmixersource->GetDevice()->m_hMixer,
                   &m_mixercontroldetails,
                   MIXER_GETCONTROLDETAILSF_VALUE);
                if(MMSYSERR_NOERROR == mmrc)
@@ -838,7 +838,7 @@ DWORD MixerControl::GetControlType() const
 
 INT_PTR MixerControl::add(mixer::control * pcontrol)
 {
-   pcontrol->m_pdata->m_iIndex = get_size();
+   pcontrol->m_pdata->m_iIndex = this->get_size();
    return ControlArray::add(pcontrol);
 }
 

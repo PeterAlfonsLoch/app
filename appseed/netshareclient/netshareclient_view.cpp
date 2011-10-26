@@ -15,9 +15,9 @@ namespace netshareclient
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -30,12 +30,7 @@ namespace netshareclient
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &view::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_USER + 1024, pinterface, this, &view::_001OnUser1024);
-
-   //	IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &view::_001OnTabClick);
-   //	IGUI_WIN_MSG_LINK(WM_APP + 119      , this, this, &view::_001OnWavePlayerEvent);
-	   //connect_command(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
-	   //connect_command(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
-	   //connect_command(ID_FILE_PRINT_PREVIEW, ::userbase::view::OnFilePrintPreview)
+      IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &view::_001OnMouseLeave);
 
 
    }
@@ -123,7 +118,7 @@ namespace netshareclient
 
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
-      CSingleLock sl(&m_parea->m_cs, TRUE);
+      single_lock sl(&m_parea->m_cs, TRUE);
 
       //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)spgraphics, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
 
@@ -224,7 +219,7 @@ namespace netshareclient
          FIBITMAP * pfi1 = FreeImage_Load(FIF_PNG, "C:\\file1.png", 0);
 
       FIBITMAP * pfi2 = FreeImage_ConvertTo32Bits(pfi1);
-      CSingleLock sl(&m_parea->m_cs, TRUE);
+      single_lock sl(&m_parea->m_cs, TRUE);
       void * pdata = FreeImage_GetBits(pfi2);
    //   if(str == "I")
       {
@@ -250,19 +245,18 @@ namespace netshareclient
       ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       m_pthread->m_tunnel.m_ptCursor = ptCursor;
-      //pmouse->m_bRet = true;
-      //pmouse->set_lresult(1);
+      Bergedge.m_bDrawCursor = false;
       rect rectClient;
       GetClientRect(rectClient);
       bool bHover = rectClient.contains(ptCursor);
       pmouse->m_ecursor = ::visual::cursor_none;
       m_ecursor = ::visual::cursor_none;
+      track_mouse_hover();
       if(!m_bHover)
       {
          if(bHover)
          {
             m_bHover = true;
-            track_mouse_hover();
          }
       }
       else
@@ -272,60 +266,74 @@ namespace netshareclient
             m_bHover = false;
          }
       }
-      if(!bHover)
+   }
+
+   void view::_001OnMouseLeave(gen::signal_object * pobj) 
+   {
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+
+      m_bHover = false;
+      Bergedge.m_bDrawCursor = true;
+
+      rect rectClient;
+      GetClientRect(rectClient);
+
+      point ptCursor;
+      Bergedge.get_cursor_pos(&ptCursor);
+      ScreenToClient(&ptCursor);
+
+      if(ptCursor.x < (rectClient.width() / 2))
       {
-         if(ptCursor.x < (rectClient.width() / 2))
+         if(ptCursor.y < (rectClient.height() / 2))
          {
-            if(ptCursor.y < (rectClient.height() / 2))
+            if(ptCursor.x < ptCursor.y)
             {
-               if(ptCursor.x < ptCursor.y)
-               {
-                  ptCursor.x = 0;
-               }
-               else
-               {
-                  ptCursor.y = 0;
-               }
+               ptCursor.x = 0;
             }
             else
             {
-               if(ptCursor.x < (rectClient.height() - ptCursor.y))
-               {
-                  ptCursor.x = 0;
-               }
-               else
-               {
-                  ptCursor.y = rectClient.height();
-               }
+               ptCursor.y = 0;
             }
          }
          else
          {
-            if(ptCursor.y < (rectClient.height() / 2))
+            if(ptCursor.x < (rectClient.height() - ptCursor.y))
             {
-               if((rectClient.width() - ptCursor.x) < ptCursor.y)
-               {
-                  ptCursor.x = rectClient.width();
-               }
-               else
-               {
-                  ptCursor.y = 0;
-               }
+               ptCursor.x = 0;
             }
             else
             {
-               if((rectClient.width() - ptCursor.x) < (rectClient.height() - ptCursor.y))
-               {
-                  ptCursor.x = rectClient.width();
-               }
-               else
-               {
-                  ptCursor.y = rectClient.height();
-               }
+               ptCursor.y = rectClient.height();
             }
          }
-         m_pthread->m_tunnel.m_ptCursor = ptCursor;
       }
+      else
+      {
+         if(ptCursor.y < (rectClient.height() / 2))
+         {
+            if((rectClient.width() - ptCursor.x) < ptCursor.y)
+            {
+               ptCursor.x = rectClient.width();
+            }
+            else
+            {
+               ptCursor.y = 0;
+            }
+         }
+         else
+         {
+            if((rectClient.width() - ptCursor.x) < (rectClient.height() - ptCursor.y))
+            {
+               ptCursor.x = rectClient.width();
+            }
+            else
+            {
+               ptCursor.y = rectClient.height();
+            }
+         }
+      }
+      m_pthread->m_tunnel.m_ptCursor = ptCursor;
    }
 
    void view::_001OnLButtonDown(gen::signal_object * pobj) 

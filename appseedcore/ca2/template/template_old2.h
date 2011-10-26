@@ -75,11 +75,11 @@ void SerializeElements(CArchive& ar, TYPE* pElements, count nCount)
 }
 
 template<class TYPE>
-void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements, 
+void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 	count nCount)
 {
 	ENSURE(nCount == 0 || pElements != NULL);
-	ASSERT((nCount == 0) || 
+	ASSERT((nCount == 0) ||
 		(AfxIsValidAddress(pElements, nCount*sizeof(TYPE))));
 
 	if (nCount == 0 || pElements == NULL)
@@ -176,7 +176,7 @@ UINT HashKey(const struct tagVARIANT& variable);
 
 
 template<class TYPE, class ARG_TYPE = const TYPE&>
-class base_array : 
+class base_array :
    virtual public base_object
 {
 public:
@@ -185,7 +185,7 @@ public:
 
 // Attributes
 	count get_size() const;
-	count get_count() const;
+	countget_count() const;
 	bool is_empty() const;
 	index get_upper_bound() const;
 	void set_size(index nNewSize, count nGrowBy = -1);
@@ -201,8 +201,8 @@ public:
 	const TYPE& get_at(index nIndex) const;
 	TYPE& get_at(index nIndex);
 	void set_at(index nIndex, ARG_TYPE newElement);
-	const TYPE& element_at(index nIndex) const;
-	TYPE& element_at(index nIndex);
+	const TYPE & element_at(index nIndex) const;
+	TYPE & element_at(index nIndex);
 
 	// Direct Access to the element data (may return NULL)
 	const TYPE* get_data() const;
@@ -259,44 +259,44 @@ inline void base_array<TYPE, ARG_TYPE>::remove_all()
 	{ set_size(0, -1); }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		m_pData[nIndex] = newElement; 
+		m_pData[nIndex] = newElement;
 	else
-		AfxThrowInvalidArgException();		
+		AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE* base_array<TYPE, ARG_TYPE>::get_data() const
@@ -314,7 +314,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 	{ return get_at(nIndex); }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
-	{ return element_at(nIndex); }
+	{ return this->element_at(nIndex); }
 
 /////////////////////////////////////////////////////////////////////////////
 // base_array<TYPE, ARG_TYPE> out-of-line functions
@@ -420,7 +420,7 @@ void base_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
 			nNewMax = nNewSize;  // no slush
 
 		ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
-		
+
 		if(nNewMax  < m_nMaxSize)
 			AfxThrowInvalidArgException();
 
@@ -455,7 +455,7 @@ index base_array<TYPE, ARG_TYPE>::append(const base_array& src)
 {
 	ASSERT_VALID(this);
 	ASSERT(this != &src);   // cannot append to itself
-	
+
 	if(this == &src)
 		AfxThrowInvalidArgException();
 
@@ -510,7 +510,7 @@ void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
 	ASSERT_VALID(this);
 	ASSERT(nIndex >= 0);
-	
+
 	if(nIndex < 0)
 		AfxThrowInvalidArgException();
 
@@ -677,7 +677,7 @@ public:
 
 // Attributes (head and tail)
 	// count of elements
-	count get_count() const;
+	countget_count() const;
 	count get_size() const;
 	BOOL is_empty() const;
 
@@ -1155,7 +1155,7 @@ void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 		{
 			ASSERT(AfxIsValidAddress(pNode, sizeof(node)));
 			TYPE* pData;
-			/* 
+			/*
 			 * in some cases the & operator might be overloaded, and we cannot use it to obtain
 			 * the address of a given object.  We then use the following trick to get the address
 			 */
@@ -1229,7 +1229,7 @@ public:
 	// Accessing elements
 	TYPE get_at(index nIndex) const
 		{ return (TYPE)BASE_CLASS::get_at(nIndex); }
-	TYPE& element_at(index nIndex)
+	TYPE & element_at(index nIndex)
 		{ return (TYPE&)BASE_CLASS::element_at(nIndex); }
 	void set_at(index nIndex, TYPE ptr)
 		{ BASE_CLASS::set_at(nIndex, ptr); }
@@ -1314,7 +1314,7 @@ public:
 	{
 		try
 		{
-			return BASE_CLASS::InsertBefore(position, newElement); 
+			return BASE_CLASS::InsertBefore(position, newElement);
 		}
 		catch(...)
 		{
@@ -1327,7 +1327,7 @@ public:
 	{
 		try
 		{
-			return BASE_CLASS::InsertAfter(position, newElement); 
+			return BASE_CLASS::InsertAfter(position, newElement);
 		}
 		catch(...)
 		{
@@ -1353,10 +1353,10 @@ public:
 
 	// transfer add before head or tail
 	POSITION TransferAddHead(TYPE newElement)
-	{ 
+	{
 		try
 		{
-			return BASE_CLASS::AddHead(newElement); 
+			return BASE_CLASS::AddHead(newElement);
 		}
 		catch(...)
 		{
@@ -1365,10 +1365,10 @@ public:
 		}
 	}
 	POSITION TransferAddTail(TYPE newElement)
-	{ 
+	{
 		try
 		{
-			return BASE_CLASS::AddTail(newElement); 
+			return BASE_CLASS::AddTail(newElement);
 		}
 		catch(...)
 		{

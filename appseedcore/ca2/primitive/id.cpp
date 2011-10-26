@@ -4,51 +4,51 @@
 
 id::id(const char * psz)
 {
-   operator = (::ca::system::id(psz));
+   operator = (::radix::system::id(psz));
 }
 
 #ifdef _AMD64_
 id::id(int i)
 {
-   operator = (::ca::system::id(i));
+   operator = (::radix::system::id(i));
 }
 #endif
 
 id::id(unsigned int user)
 {
-   operator = (::ca::system::id((index)user));
+   operator = (::radix::system::id((index)user));
 }
 
 id::id(index i)
 {
-   operator = (::ca::system::id(i));
+   operator = (::radix::system::id(i));
 }
 
 id::id(const string & str)
 {
-   operator = (::ca::system::id((const char * ) str));
+   operator = (::radix::system::id((const char * ) str));
 }
 
 id::id(const string_interface & str)
 {
-   operator = (::ca::system::id(string(str)));
+   operator = (::radix::system::id(string(str)));
 }
 
 id & id::operator = (const char * psz)
 {
-   operator = (::ca::system::id(psz));
+   operator = (::radix::system::id(psz));
    return *this;
 }
 
 id & id::operator = (const string & str)
 {
-   operator = (::ca::system::id(str));
+   operator = (::radix::system::id(str));
    return *this;
 }
 
 id & id::operator = (const string_interface & str)
 {
-   operator = (::ca::system::id(string(str)));
+   operator = (::radix::system::id(string(str)));
    return *this;
 }
 
@@ -88,7 +88,7 @@ id_space::id_space()
 
 id_space::~id_space()
 {
-   
+
    /*try
    {
       if(m_pmutex != NULL)
@@ -102,13 +102,13 @@ id_space::~id_space()
 
    try
    {
-      for(index i = 0; i < get_count(); i++)
+      for(index i = 0; i < this->get_count(); i++)
       {
          try
          {
-            if(element_at(i).is_text())
+            if(this->element_at(i).is_text())
             {
-               free((void *) element_at(i).m_psz);
+               free((void *) this->element_at(i).m_psz);
             }
          }
          catch(...)
@@ -123,7 +123,7 @@ id_space::~id_space()
 
 id id_space::operator()(const char * psz)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    id idSearch;
    idSearch.raw_set(psz);
    index iIndex = 0;
@@ -145,9 +145,9 @@ id id_space::operator()(const char * psz)
 
 id id_space::operator()(index i)
 {
-   CSingleLock sl(m_pmutex, TRUE);
+   single_lock sl(m_pmutex, TRUE);
    id idSearch;
-   idSearch.raw_set((unsigned __int64) i);
+   idSearch.raw_set((uint64_t) i);
    index iIndex = 0;
    if(!m_pida->BaseSortFind(idSearch, iIndex))
    {

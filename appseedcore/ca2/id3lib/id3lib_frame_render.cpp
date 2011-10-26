@@ -83,7 +83,7 @@ void ID3_FrameImpl::to(ID3_Writer& writer) const
   //     we won't be decompressing, since this is the usual behavior
   string flds;
   io::stringWriter fldWriter(flds);
-  size_t origSize = 0;
+  file_size origSize = 0;
   if (!this->GetCompression())
   {
     renderFields(fldWriter, *this);
@@ -137,7 +137,7 @@ void ID3_FrameImpl::to(ID3_Writer& writer) const
     // No-man's land!  Not part of the header, not part of the data
     if (hdr.GetCompression())
     {
-      io::writeBENumber(writer, origSize, sizeof(uint32));
+      io::writeBENumber(writer, (uint32_t) origSize, sizeof(uint32));
       ID3D_NOTICE( "ID3_FrameImpl::to(): frame is compressed, wrote origSize = " << origSize );
     }
     if (hdr.GetEncryption())

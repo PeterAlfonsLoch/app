@@ -24,16 +24,22 @@ namespace fontopus
 
    void user::veiev_synch(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
       int iRestart = 0;
 restart:
       if(iRestart >= 10)
          return;
       string strPath;
-      var rec = System.db().veiev_post().last();
+      var rec = Application.db().veiev_post().last();
       rec.propset().set_app(get_app());
       rec.propset().remove_by_name("message");
-      strPath = "http://veiev.api.veriterse.net/get?" + string("sessid=") + ApplicationUser.m_strSessid + "&" + rec.propset().get_http_post();
-      string str = Application.http().get(strPath);
+      strPath = "http://europe001.veiev.api.veriterse.net/get?" + rec.propset().get_http_post();
+      gen::property_set post(get_app());
+      gen::property_set headers(get_app());
+      gen::property_set set(get_app());
+      set["interactive_user"] = true;
+      string str;
+      Application.http().get(strPath, str, post, headers, set);
       str.trim();
       if(str.has_char())
       {
@@ -60,7 +66,7 @@ restart:
                   {
                      strBody = pnodeBody->m_strValue;
                      pnodeBody->attrs()["message"] = strBody;
-                     System.db().veiev_post().write(pnodeBody->attrs());
+                     Application.db().veiev_post().write(pnodeBody->attrs());
                   }
                }
             }
@@ -74,8 +80,57 @@ restart:
 
    void user::on_end_veiev_synch(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
    }
 
+   string user::get_sessid(const char * pszText, bool bInteractive)
+   {
+      if(pszText == NULL)
+      {
+         pszText = "https://fontopus.com/";
+      }
+      string strText(pszText);
+      if(strText.is_empty())
+      {
+         strText = "https://fontopus.com/";
+      }
+      strText = System.url().get_server(strText);
+      if(strText.is_empty())
+         strText = pszText;
+      string strSessId = m_sessionidmap[strText];
+      if(strSessId.has_char())
+         return strSessId;
+      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
+      user * puser = authuser.get_user(pszText);
+      if(puser == NULL)
+         strSessId = "not_auth";
+      else
+      {
+         strSessId = puser->m_strFontopusServerSessId;
+         if(puser->m_strRequestingServer != strText)
+            strSessId = "not_auth";
+         else if(strSessId.is_empty())
+            strSessId = "not_auth";
+         delete puser;
+      }
+      m_sessionidmap[strText] = strSessId;
+      return strSessId;
+    }
+
+   void user::set_sessid(const char * pszSessid, const char * pszText)
+   {
+      if(pszText == NULL)
+      {
+         pszText = "https://fontopus.com/";
+      }
+      string strText(pszText);
+      if(strText.is_empty())
+      {
+         strText = "https://fontopus.com/";
+      }
+      strText = System.url().get_server(strText);
+      m_sessionidmap[strText] = pszSessid;
+   }
 
 
 } // namespace fontopus

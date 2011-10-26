@@ -5,16 +5,18 @@ namespace gen
 {
 
    class CLASS_DECL_ca system :
-      public ::ca::system
+      public ::radix::system
    {
    public:
+
+
 
 
       system();
       virtual ~system();
 
 
-      using ::ca::system::id;
+      using ::radix::system::id;
       inline class id id(const var & var);
       inline class id id(const gen::property & prop);
 

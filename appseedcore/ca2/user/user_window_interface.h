@@ -3,23 +3,19 @@
 #include "user_window_util.h"
 #include "user_text_interface.h"
 #include "user_check_interface.h"
-#include "user_window_redraw_interface.h"
 
 
 namespace user
 {
    class interaction;
    class frame_window_interface;
-   class window_draw_client_tool;
-   class window_redraw_interface;
 
    class CLASS_DECL_ca window_interface :
       virtual public elemental,
-      virtual public on_draw_interface,
       virtual public command_target,
       virtual public text_interface,
       virtual public check_interface,
-      virtual public window_redraw_interface
+      virtual public draw_interface
    {
    public:
 
@@ -55,16 +51,16 @@ namespace user
       interaction *                       m_pguie;
       // window rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
-      // m_rectWindow should be sychronized and recalculated based 
+      // m_rectWindow should be sychronized and recalculated based
       // on m_rectParentClient values of the window and its ascendants.
-      rect64                              m_rectParentClient; 
+      rect64                              m_rectParentClient;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
-      window_draw_interface *             m_pdrawinterfaceBackground;
+      draw_interface *             m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
       ETranslucency                       m_etranslucency;
-      
-      
+
+
 
 
       window_interface();
@@ -80,9 +76,6 @@ namespace user
       //virtual bool _001IsFrameWnd();
       //user::frame_window_interface * _001GetParentFrame() const;
       //bool Attach(HWND hwnd);
-      //virtual bool OnDrawInterfacePaint();
-      //void OnDrawInterfaceNcPaint(int i, gen::signal_object * pobj);
-      //virtual void _001OnNcDraw(::ca::graphics * pdc);
 
       virtual void PreSubClassWindow();
 
@@ -103,7 +96,7 @@ namespace user
 
       virtual window_interface * window_interface_get_parent();
 
-      
+
       /*HWND GetHandle() const;
       DWORD GetStyle() const;
       DWORD GetExStyle() const;
@@ -123,10 +116,10 @@ namespace user
       int GetWindowText(wchar_t * lpsz, int iLen) const;
       int GetWindowTextLen() const;*/
 
-      
 
 
-      virtual void _001InstallMessageHandling(win::message::dispatch * pinterface);
+
+      virtual void install_message_handling(win::message::dispatch * pinterface);
 
       virtual void _on_start_user_message_handler();
       static window_interface * g_pwndLastLButtonDown;
@@ -171,12 +164,12 @@ namespace user
 
 
 
-      
+
 
       virtual void _001RedrawWindow();
       virtual void _001DrawBackground(::ca::graphics * pdc, LPRECT lprect);
 
-         
+
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty)
 
@@ -220,8 +213,6 @@ namespace user
       void TwfGetWndArray(user::LPWndArray & wndpa);
       void TwfGetWndArray(user::HWNDArray & hwnda);
 
-      void TwiRender(user::window_draw_client_tool & tool);
-
       virtual bool Redraw(rect_array & recta);
       virtual bool Redraw(LPCRECT lprect = NULL, ::ca::rgn * prgn = NULL);
       virtual bool Redraw(::ca::graphics * pdc);
@@ -236,6 +227,10 @@ namespace user
 #include "user/user_buffer.h"
 #include "user/user_window_map.h"
 #include "gen/gen_keeper.h"
+#include "ex1/ex1_seekable.h"
+#include "ex1/ex1_reader.h"
+#include "ex1/ex1_writer.h"
 #include "ex1/ex1_stream.h"
+#include "ex1/ex1_byte_stream.h"
 #include "ex1/ex1_stream2.h"
 #include "ex1/ex1_str_stream.h"

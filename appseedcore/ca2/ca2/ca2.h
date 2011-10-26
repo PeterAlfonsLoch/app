@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #include "ex2/ex2.h"
 
 
@@ -9,6 +8,7 @@
 
 
 #include "xml/xml.h"
+
 
 #include "template/trace.h"
 
@@ -38,12 +38,14 @@ namespace ca2
 
 #include "radix/service.h"
 #include "radix/machine_event_central.h"
-#include "radix/install.h"
+
+
+#include "install/install.h"
 
 
 #include "ca/ca_osi.h"
 
-#include "process.h"
+#include "gen/gen_process.h"
 
 
 #include "ca2_log.h"
@@ -55,6 +57,15 @@ namespace ca2
 #include "ca2_datetime.h"
 #include "ca2_net.h"
 
+
+#include "ca2_library.h"
+
+
+#include "filehandler/ca2_filehandler.h"
+
+
 #include "ca2_application.h"
+
+
 
 

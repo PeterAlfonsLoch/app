@@ -27,7 +27,7 @@ base_editor::~base_editor()
    }
    breakParse = true;
    while(validationProcess); /// @todo wait until validation is finished
-   if(internalRM) 
+   if(internalRM)
    {
       if(regionMapper != NULL)
       {
@@ -44,7 +44,7 @@ base_editor::~base_editor()
    }
 }
 
-void base_editor::initialize(line_source *lineSource) 
+void base_editor::initialize(line_source *lineSource)
 {
    ParserFactory *parserFactory = &Application.parser_factory();
   if (parserFactory == NULL || lineSource == NULL){

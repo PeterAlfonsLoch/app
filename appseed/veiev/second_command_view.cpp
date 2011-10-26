@@ -13,16 +13,16 @@ namespace veiev
    {
    }
 
-   void second_command_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void second_command_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::split_view::_001InstallMessageHandling(pinterface);
+      ::userbase::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &second_command_view::_001OnCreate);
    }
 
    void second_command_view::_001OnCreate(gen::signal_object * pobj)
    {
-      ex1::tree_item * pitem;
-      ex1::simple_tree_item_data * pitemdata;
+//      ex1::tree_item * pitem;
+//      ex1::simple_tree_item_data * pitemdata;
       pobj->previous();
       if(pobj->m_bRet)
          return;
@@ -31,15 +31,15 @@ namespace veiev
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
       set_position_rate(0, 0.2);
-      create_context cc;
+      //create_context cc;
 
-      ::user::interaction* pwnd = create_view(typeid(simple_tree_view), get_document(), this, 100);
+      ::user::interaction* pwnd = create_view(::ca::get_type_info < simple_tree_view > (), get_document(), this, 100);
       SetPane(0, pwnd, false);
       simple_tree_view * ptree = dynamic_cast <simple_tree_view * > (pwnd);
       ptree->m_etranslucency = user::interaction::TranslucencyPresent;
 
-      ::mail::document * pdocumentMail = dynamic_cast < mail::document * > (Application.::mail::application::m_ptemplate_html->open_document_file(NULL, FALSE));
-      mail::tree * ptreeMail = pdocumentMail->get_typed_view < mail::tree >();
+      ::tesseract::mail::document * pdocumentMail = dynamic_cast < ::tesseract::mail::document * > (Application.::tesseract::mail::application::m_ptemplate_html->open_document_file(NULL, FALSE));
+      ::tesseract::mail::tree * ptreeMail = pdocumentMail->get_typed_view < ::tesseract::mail::tree >();
       ptree->merge(ptreeMail);
 
 
@@ -75,7 +75,7 @@ namespace veiev
 
 //      ptree->m_treeptra.add(ptreeFile);
 
-      pwnd = create_view(typeid(veiev::right_split_view), get_document(), this, 101);
+      pwnd = create_view(::ca::get_type_info < veiev::right_split_view > (), get_document(), this, 101);
       SetPane(1, pwnd, false);
 
       pdocumentMail->m_pholderMailList = get_pane_holder(1);

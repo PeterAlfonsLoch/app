@@ -28,6 +28,7 @@ namespace windesk
 
    void menu_view::OnDraw(::ca::graphics * pgraphics)
    {
+      UNREFERENCED_PARAMETER(pgraphics);
    }
 
    #ifdef _DEBUG
@@ -47,7 +48,7 @@ namespace windesk
 
    void menu_view::_001OnCreate(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -57,8 +58,8 @@ namespace windesk
      
       set_position_rate(0, 0.3);
 
-      SetPane(0, ::user::create_view::create(MenuViewLeft)->m_pwnd, false);
-      SetPane(1, ::user::create_view::create(MenuViewRight)->m_pwnd, false);
+      SetPane(0, ::user::view_creator::create(MenuViewLeft)->m_pwnd, false);
+      SetPane(1, ::user::view_creator::create(MenuViewRight)->m_pwnd, false);
 
    }
 
@@ -77,10 +78,10 @@ namespace windesk
    }
 
 
-   void menu_view::on_create_view(view_data * pviewdata)
+   void menu_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       filemanager::application * pfilemanagerapp = dynamic_cast < filemanager::application * > (get_app());
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case MenuViewLeft:
          {
@@ -107,8 +108,8 @@ namespace windesk
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -118,15 +119,15 @@ namespace windesk
          break;
       case MenuViewRight:
          {
-            create_context cc;
+/*            create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  &typeid(menu_right_view);
+            cc.m_typeinfoNewView =  ::ca::get_type_info < menu_right_view > ();*/
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(typeid(menu_right_view), get_document(), this, 101));
+            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(::ca::get_type_info < menu_right_view > (), get_document(), this, 101));
             if(pview != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
+               pcreatordata->m_pdoc = get_document();
+               pcreatordata->m_pwnd = pview;
             }
          }
          break;
@@ -140,11 +141,12 @@ namespace windesk
 
    void menu_view::_001OnMenuMessage(gen::signal_object * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
    }
 
-   void menu_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void menu_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::split_view::_001InstallMessageHandling(pinterface);
+      ::userbase::split_view::install_message_handling(pinterface);
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_view::_001OnCreate);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &menu_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_USER + 1122  , pinterface, this, &menu_view::_001OnMenuMessage);
@@ -155,6 +157,7 @@ namespace windesk
          ::filemanager::data * pdata, 
          ::fs::item_array & itema)
    {
+      UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)
       {
          int i = (int) ::ShellExecuteW(

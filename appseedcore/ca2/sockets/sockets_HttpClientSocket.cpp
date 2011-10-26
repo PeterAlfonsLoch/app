@@ -31,10 +31,7 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_tunnel(h),
-      m_data_ptr(NULL),
-      m_data_size(0),
-      m_content_length(0),
-      m_data_ptr_set(false),
+      m_content_length((size_t)-1),
       m_fil(NULL),
       m_content_ptr(0),
       m_b_complete(false),
@@ -50,10 +47,7 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_tunnel(h),
-      m_data_ptr(NULL),
-      m_data_size(0),
-      m_content_length(0),
-      m_data_ptr_set(false),
+      m_content_length((size_t)-1),
       m_fil(NULL),
       m_content_ptr(0),
       m_b_complete(false),
@@ -61,6 +55,7 @@ namespace sockets
    {
       string url;
       url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
+      m_request.attr("http_protocol") = m_protocol;
       m_request.attr("request_uri") = url;
       m_response.attr("request_uri") = url;
       m_strUrl = url_in;
@@ -70,10 +65,6 @@ namespace sockets
 
    http_client_socket::~http_client_socket()
    {
-      if (m_data_ptr && !m_data_ptr_set)
-      {
-         delete[] m_data_ptr;
-      }
       if (m_fil)
       {
          fclose(m_fil);
@@ -88,23 +79,27 @@ namespace sockets
          Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::gen::log::level::fatal);
          SetCloseAndDelete();
       }
-      m_content = m_request.attr("http_version").get_string() + " " +
-                  m_request.attr("http_status_code") + " " + 
-                  m_request.attr("http_status") + "\r\n";
+      m_content = m_response.attr("http_version").get_string() + " " +
+                  m_response.attr("http_status_code") + " " +
+                  m_response.attr("http_status") + "\r\n";
    }
 
 
    void http_client_socket::OnHeader(const string & key,const string & value)
    {
       m_content += key + ": " + value + "\r\n";
+      m_response.m_propertysetHeader[key] = value;
       if (!strcasecmp(key, "content-length"))
       {
          m_content_length = atoi(value);
       }
-      else
-      if (!strcasecmp(key, "content-type"))
+      else if(!strcasecmp(key, "content-type"))
       {
          m_content_type = value;
+      }
+      else if(!strcasecmp(key, "set-cookie"))
+      {
+         m_response.m_cookies.add(value);
       }
    }
 
@@ -115,44 +110,51 @@ namespace sockets
       {
          m_fil = fopen(m_filename, "wb");
       }
-      else
-      if (!m_data_ptr && m_content_length)
+      else if(m_pfile != NULL)
       {
-         m_data_ptr = new unsigned char[m_content_length];
-         m_data_size = m_content_length;
+         if(m_content_length != ((size_t) (-1)))
+         {
+            gen::memory_file * pmemoryfile = dynamic_cast < gen::memory_file * > (m_pfile);
+            if(pmemoryfile != NULL)
+            {
+               pmemoryfile->allocate_internal(m_content_length);
+            }
+         }
       }
+      else
+      {
+         if(m_content_length != ((size_t) (-1)))
+         {
+            //m_memoryData.allocate(m_content_length);
+         }
+      }
+
    }
 
+   void http_client_socket::OnDataComplete()
+   {
+      SetCloseAndDelete();
+   }
 
    void http_client_socket::OnData(const char *buf,size_t len)
    {
       OnDataArrived(buf, len);
       if(m_pfile)
       {
-         ::ca::lock lock(m_pfile);
-         DWORD_PTR dwCur = m_pfile->seek(0, ::ex1::seek_current);
-         m_pfile->seek(0, ::ex1::seek_end);
          m_pfile->write(buf, len);
-         m_pfile->seek(dwCur, ::ex1::seek_begin);
       }
       else if (m_fil)
       {
          fwrite(buf, 1, len, m_fil);
       }
       else
-      if (m_data_ptr)
       {
-         if (m_content_ptr + len > m_data_size)
-         {
-            Handler().LogError(this, "OnData", -1, "content buffer overflow", ::gen::log::level::error);
-         }
-         else
-         {
-            memcpy(m_data_ptr + m_content_ptr, buf, len);
-         }
+         gen::memory_file memfile(get_app(), &m_memoryData);
+         memfile.seek_to_end();
+         memfile.write(buf, len);
       }
       m_content_ptr += len;
-      if (m_content_ptr == m_content_length && m_content_length)
+      if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
          if (m_fil)
          {
@@ -189,87 +191,71 @@ namespace sockets
       }
    }
 
-
    void http_client_socket::SetFilename(const string & x)
    {
       m_filename = x;
    }
-
-
-   void http_client_socket::SetDataPtr(unsigned char *buf,size_t len)
-   {
-      m_data_ptr = buf;
-      m_data_size = len;
-      m_data_ptr_set = true;
-   }
-
 
    const string & http_client_socket::GetContent()
    {
       return m_content;
    }
 
-
    size_t http_client_socket::GetContentLength()
    {
-      return m_content_length;
+      if(m_content_length == ((size_t)-1))
+      {
+         return 0;
+      }
+      else
+      {
+         return m_content_length;
+      }
    }
-
 
    size_t http_client_socket::GetContentPtr()
    {
       return m_content_ptr;
    }
 
-
    size_t http_client_socket::GetPos()
    {
       return m_content_ptr;
    }
-
 
    bool http_client_socket::Complete()
    {
       return m_b_complete;
    }
 
-
    const unsigned char *http_client_socket::GetDataPtr() const
    {
-      return m_data_ptr;
+      return m_memoryData.get_data();
    }
-
 
    void http_client_socket::OnContent()
    {
    }
-
 
    void http_client_socket::SetCloseOnComplete(bool x)
    {
       m_b_close_when_complete = x;
    }
 
-
    const string & http_client_socket::GetUrlProtocol()
    {
       return m_protocol;
    }
-
-
-
 
    const string & http_client_socket::GetUrlFilename()
    {
       return m_url_filename;
    }
 
-
    const string & http_client_socket::GetContentType()
    {
       return m_content_type;
    }
-
 
    void http_client_socket::Url(const string & url_in, string & host, port_t & port)
    {

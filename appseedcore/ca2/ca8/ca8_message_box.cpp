@@ -3,15 +3,7 @@
 message_box::message_box(::ca::application * papp) :
    ca(papp),
    dialog(papp),
-   wait_message_dialog(papp),
-   ::userbase::view(papp),
-   user::scroll_view(papp),
-   userbase::scroll_view(papp),
-   form(papp),
-   html_form(papp),
-   html_form_view(papp),
-   ::form_view(papp),
-   userbase::form_view(papp)
+   wait_message_dialog(papp)
 {
 }
 

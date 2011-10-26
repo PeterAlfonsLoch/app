@@ -1,7 +1,7 @@
 /*
- Copyright (c) 2002 
- Author: Konstantin Boukreev 
- E-mail: konstantin@mail.primorye.ru 
+ Copyright (c) 2002
+ Author: Konstantin Boukreev
+ E-mail: konstantin@mail.primorye.ru
  Created: 16.01.2002 12:36:26
  Version: 1.0.0
 
@@ -16,7 +16,7 @@
  the exception class holding the call stack's information
 
  exception2 : std::exception
-  
+
  try {
  }
  catch(exception2& ex) {
@@ -27,29 +27,31 @@
 
 #pragma once
 
+#ifdef _WINDOWS
+
 #include "SymEngine.h"
 
 CLASS_DECL_ca BOOL IsWow64();
 
 class call_stack
-{   
+{
 public:
-   
+
    call_stack (unsigned int uiSkip = 3) :
-      m_str((uiSkip == 0xffffffff) ? "" : call_stack::get(uiSkip))      
+      m_str((uiSkip == 0xffffffff) ? "" : call_stack::get(uiSkip))
    {
    }
 
    static string get(unsigned int uiSkip = 2)
    {
-      string str;   
+      string str;
 #ifdef WIN32
       if(!IsWow64())
       {
-         SymEngine::stack_trace(str, uiSkip);         
+         SymEngine::stack_trace(str, uiSkip);
       }
 #endif
-      return str;      
+      return str;
    }
 
    const char * stack_trace() const { return m_str; }
@@ -64,3 +66,4 @@ private:
 
 
 
+#endif

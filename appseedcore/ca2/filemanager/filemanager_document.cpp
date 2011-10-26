@@ -3,6 +3,7 @@
 #include "SimpleFileListInterface.h"
 
 
+
 namespace filemanager
 {
 
@@ -11,7 +12,10 @@ namespace filemanager
       ::ca::data_container(papp),
       ::document(papp),
       ::userbase::document(papp),
-      ::fs::document(papp)
+      ::fs::document(papp),
+      ::ca::data(papp),
+      ::fs::data(papp),
+      ::fs::set(papp)
    {
       set_data(new filemanager::data(papp));
       command_signalid id;
@@ -35,13 +39,24 @@ namespace filemanager
 
    BOOL document::on_new_document()
    {
+
       if (!::userbase::document::on_new_document())
          return FALSE;
 
 
+      
+      m_spafsdata.remove_all();
+
+
+      m_spafsdata.add(Application.fs());
+
+
+      stringa stra;
+      root_ones(stra);
 
 
       return TRUE;
+
    }
 
    #ifdef _DEBUG
@@ -102,10 +117,16 @@ namespace filemanager
 
    bool document::_001OnCommand(id id)
    {
-      if(id == get_filemanager_data()->m_ptemplate->m_strLevelUp)
+      
+      if(get_filemanager_data() != NULL
+      && get_filemanager_data()->m_ptemplate != NULL)
       {
-         FileManagerOneLevelUp();
-         return true;
+//         FileManagerTemplate * ptemplate = get_filemanager_data()->m_ptemplate;
+         if(id == get_filemanager_data()->m_ptemplate->m_strLevelUp)
+         {
+            FileManagerOneLevelUp();
+            return true;
+         }
       }
       return ::userbase::document::_001OnCommand(id);
    }
@@ -252,7 +273,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get("InitialBrowsePath", ::ca::system::idEmpty, str))
+      if(data_get("InitialBrowsePath", ::radix::system::idEmpty, str))
       {
          FileManagerBrowse(str);
       }
@@ -274,7 +295,7 @@ namespace filemanager
 
    void document::OpenFolder(::fs::item &item)
    {
-      data_set("InitialBrowsePath", ::ca::system::idEmpty, item.m_strPath);
+      data_set("InitialBrowsePath", ::radix::system::idEmpty, item.m_strPath);
       get_filemanager_data()->OnFileManagerOpenFolder(item);
       FileManagerBrowse(item.m_strPath);
    }
@@ -380,9 +401,11 @@ namespace filemanager
 
 
 
-   data * document::get_filemanager_data()
+   ::filemanager::data * document::get_filemanager_data()
    {
-      return dynamic_cast < data * > (::ca::data_container::get_data());
+      return dynamic_cast < ::filemanager::data * > (::ca::data_container::get_data());
    }
 
 } // namespace filemanager
+
+

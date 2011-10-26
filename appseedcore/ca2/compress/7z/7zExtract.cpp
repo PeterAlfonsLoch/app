@@ -70,8 +70,8 @@ namespace n7z
      const CArchiveDatabaseEx &_db = volume.Database;
      IInStream *_inStream = volume.Stream;
      */
-  
-     array_ptr<CExtractFolderInfo> extractFolderInfoVector;
+
+     array_del_ptr<CExtractFolderInfo> extractFolderInfoVector;
      for (uint32 ii = 0; ii < numItems; ii++)
      {
        // uint32 fileIndex = allFilesMode ? indexIndex : indices[indexIndex];
@@ -120,9 +120,9 @@ namespace n7z
            importantTotalUnpacked += unpackSize;
            extractFolderInfoVector.last_element().UnpackSize = unpackSize;
          }
-      
+
          CExtractFolderInfo &efi = extractFolderInfoVector.last_element();
-      
+
          // const CFolderInfo &folderInfo = m_dam_Folders[folderIndex];
          CNum startIndex = db.FolderStartFileIndex[folderIndex];
          for (CNum index = efi.ExtractStatuses.get_count();
@@ -164,7 +164,7 @@ namespace n7z
 
        if (i >= extractFolderInfoVector.get_count())
          break;
-    
+
        const CExtractFolderInfo &efi = extractFolderInfoVector[i];
        curUnpacked = efi.UnpackSize;
        curPacked = 0;

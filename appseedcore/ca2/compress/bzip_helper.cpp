@@ -20,15 +20,22 @@ static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 typedef void *(*bzalloc)(void *,int,int);
 typedef void (*bzfree)(void *,void *);
 
-bzip::bzip(ex1::file * pfileDest)
+bzip::bzip(ex1::file * pfileDest) :
+   m_ostream(pfileDest)
 {
-   m_postream = pfileDest;
    construct();
 }
 
-bzip::bzip(ex1::output_stream & ostream)
+bzip::bzip(ex1::writer & writer) :
+   m_ostream(&writer)
 {
-   m_postream = &ostream;
+   construct();
+}
+
+
+bzip::bzip(ex1::byte_output_stream & ostream) :
+   m_ostream(ostream)
+{
    construct();
 }
 
@@ -36,7 +43,7 @@ bzip::~bzip()
 {
 }
 
-bool bzip::write(void * buf, int len)
+bool bzip::write(void * buf, ::primitive::memory_size len)
 {
    int32_t n, n2, ret;
 
@@ -45,12 +52,12 @@ bool bzip::write(void * buf, int len)
    if (len == 0)
    { m_z_err = BZ_OK; return true; };
 
-   m_zstream.avail_in = len;
+   m_zstream.avail_in = (unsigned int) len;
    m_zstream.next_in  = (char *) buf;
 
    while (true) {
       m_zstream.avail_out = BZ_MAX_UNUSED;
-      m_zstream.next_out = (char *) m_memory.GetAllocation();
+      m_zstream.next_out = (char *) m_memory.get_data();
       ret = BZ2_bzCompress ( &(m_zstream), BZ_RUN );
       if (ret != BZ_RUN_OK)
       { BZ_SETERR(ret); return false; };
@@ -60,7 +67,7 @@ bool bzip::write(void * buf, int len)
          bool bWriteOk = true;
          try
          {
-            m_postream->write (m_memory.GetAllocation(), n);
+            m_ostream.write (m_memory.get_data(), n);
             n2 = n;
          }
          catch(...)
@@ -94,14 +101,14 @@ void bzip::construct()
    m_z_err = BZ_OK;
    m_crc = crc32(0L, Z_NULL, 0);
    int err = BZ2_bzCompressInit(&m_zstream, blockSize100k, verbosity, workFactor);
-   if (err != Z_OK || m_memory.GetAllocation() == Z_NULL)
+   if (err != Z_OK || m_memory.get_data() == Z_NULL)
    {
       return;
    }
    //GZIP header[10]={0x1f,0x8b,Z_DEFLATED, 0 /*flags*/, 0,0,0,0 /*time*/, 0 /*xflags*/, OS_CODE};
    //m_postream->write(header,10);
-   m_zstream.next_out      = (char *) m_memory.GetAllocation();
-   m_zstream.avail_out     = m_memory.GetStorageSize();
+   m_zstream.next_out      = (char *) m_memory.get_data();
+   m_zstream.avail_out     = (unsigned int) m_memory.get_size();
 }
 
 
@@ -117,11 +124,11 @@ void bzip::finish()
       while (true)
       {
          m_zstream.avail_out = BZ_MAX_UNUSED;
-         m_zstream.next_out = (char *) m_memory.GetAllocation();
+         m_zstream.next_out = (char *) m_memory.get_data();
          ret = BZ2_bzCompress ( &(m_zstream), BZ_FINISH );
          if (ret != BZ_FINISH_OK && ret != BZ_STREAM_END)
          {
-            BZ_SETERR(ret); 
+            BZ_SETERR(ret);
             return;
          };
 
@@ -131,7 +138,7 @@ void bzip::finish()
             bool bWriteOk = true;
             try
             {
-               m_postream->write((char *) m_memory.GetAllocation(), n);
+               m_ostream.write((char *) m_memory.get_data(), n);
                n2 = n;
             }
             catch(...)
@@ -139,9 +146,9 @@ void bzip::finish()
                bWriteOk = false;
             }
             if (n != n2 || !bWriteOk)
-            { 
-               BZ_SETERR(BZ_IO_ERROR); 
-               return; 
+            {
+               BZ_SETERR(BZ_IO_ERROR);
+               return;
             }
          }
 

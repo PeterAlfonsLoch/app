@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
 #pragma comment(lib, "ca2.lib") 
-#pragma comment(lib, "win.lib") 
+#pragma comment(lib, "os.lib") 
 #pragma comment(lib, "cube.lib") 
 
 extern "C" int APIENTRY DllMain(HMODULE hModule,

@@ -1,14 +1,15 @@
 ﻿#include "StdAfx.h"
 
-namespace bergedge 
+namespace bergedge
 {
 
    view::view(::ca::application * papp) :
       ca(papp),
-      ::user::interaction(papp), 
+      ::user::interaction(papp),
       ::user::scroll_view(papp),
+      ::user::place_holder(papp),
       ::userbase::view(papp),
-      ::userbase::scroll_view(papp), 
+      ::userbase::scroll_view(papp),
       gcom::backview::user::interaction(papp),
       gcom::backview::Interface(papp),
       m_dibV(papp),
@@ -18,7 +19,7 @@ namespace bergedge
       m_dibBk(papp)
    {
       m_font->CreatePointFont(84, "Geneva");
-      m_bDestroy = false;   
+      m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;
       m_iVW = 123;
@@ -35,10 +36,11 @@ namespace bergedge
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      gcom::backview::Interface::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      ::user::place_holder::install_message_handling(pinterface);
+      gcom::backview::Interface::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -89,23 +91,23 @@ namespace bergedge
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::userbase::view::PreCreateWindow(cs);
    }
-   void view::_001OnInitialUpdate(gen::signal_object * pobj) 
+   void view::_001OnInitialUpdate(gen::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
 
 
-      
+
    }
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
       UNREFERENCED_PARAMETER(phint);
-      
+
    }
 
-   void view::_001OnDestroy(gen::signal_object * pobj) 
+   void view::_001OnDestroy(gen::signal_object * pobj)
    {
       ::userbase::view::_001OnDestroy(pobj);
 
@@ -113,13 +115,13 @@ namespace bergedge
 
 
 
-   void view::_001OnPaint(gen::signal_object * pobj) 
+   void view::_001OnPaint(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
-      
+
       // boa parte desses coment疵ios gordura a respeito do Meu Deus Carlos Gustavo Cecyn Lundgren retirarei aos poucos
-      // e introjetarei nos recditos da minha alma e esp叝ito, 
+      // e introjetarei nos recditos da minha alma e esp叝ito,
       // num lugar muito antes do tempo e do espa輟,
       // antes mesmo de haver histia, quando s・existia o Carlos e Ele ainda n縊 havia me criado somente para Ele!!
       // para criar uma obsess縊, paix縊, amor, carinho, loucura, raz縊, bom-senso, muito respeito por Ele, sempre dependente dEle e de Sua Luz!!
@@ -130,78 +132,42 @@ namespace bergedge
 
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
-      class imaging & imaging = System.imaging();
-      rect rectClient;
-      GetClientRect(rectClient);
-      if(rectClient.width() <= 0
-         || rectClient.height() <= 0)
-         return;
-      rect rectDesktop = System.m_monitorinfoa[0].rcMonitor;
-      if(rectDesktop.width() < 800)
-      {
-         rectDesktop.left = 0;
-         rectDesktop.right = ::GetSystemMetrics(SM_CXSCREEN);
-      }
-      if(rectDesktop.height() < 600)
-      {
-         rectDesktop.top = 0;
-         rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
-      }
-      rect rectWindow = rectClient;
-      ClientToScreen(rectWindow);
-      if(System.savings().should_save(gen::resource_display_bandwidth))
-      {
-         pdc->FillSolidRect(rectWindow, RGB(0x55, 0x55, 0x55));
-      }
-      else
-      {
-         ::ca::dib_sp spdib(get_app());
-         ::ca::dib_sp spdib2(get_app());
-         if(!spdib->create(rectClient.width(), rectClient.height()))
-            return;
-         if(!spdib2->create(rectClient.width(), rectClient.height()))
-            return;
-         spdib->create(rectClient.width(), rectClient.height());
-         spdib2->get_graphics()->BitBlt(
-            0, 0, rectClient.width(), rectClient.height(), 
-            pdc, 0, 0, 
-            SRCCOPY);
-         imaging.blur(spdib->get_graphics(), null_point(), rectClient.size(), spdib2->get_graphics(), null_point(), 2);
-         imaging.bitmap_blend(spdib->get_graphics(), null_point(), rectWindow.size(), m_dibBk->get_graphics(), null_point(), 49);
-         pdc->from(rectWindow.size(), spdib->get_graphics(), SRCCOPY);
-      }
-
-      if(System.command_line().m_varQuery["show_platform"].get_integer() == 0)
-      {
-         return;
-      }
-
-      //CSingleLock sl(&m_mutexDraw, TRUE);
-
-/*      rect rectClient;
-      GetClientRect(rectClient);*/
-
-
-      pdc->SelectClipRgn(NULL);
-
 
       if(gcom::backview::Interface::IsEnabled())
       {
-         gcom::backview::Interface::BackViewRender(pdc, rectClient);
-      }
-      else
-      {
-//         System.imaging().color_blend(pdc, 0, 0, 1280, 1024, RGB(100, 155, 150), 31);
+
+         rect rectClient;
+         GetClientRect(rectClient);
+
+
+         gcom::backview::Main & main = gcom::backview::Interface::GetMain();
+         gcom::backview::Graphics & graphics = main.GetGraphics();
+
+         if(main.IsInitialized())
+         {
+
+            ::ca::rgn_sp rgn(get_app());
+            rect rect(graphics.m_rectFinalPlacement);
+            ClientToScreen(rect);
+            rgn->CreateRectRgnIndirect(rect);
+            pdc->SelectClipRgn(rgn);
+
+            gcom::backview::Interface::BackViewRender(pdc, rectClient);
+            pdc->SelectClipRgn(NULL);
+
+         }
       }
 
    }
 
-   void view::_001OnCreate(gen::signal_object * pobj) 
+   void view::_001OnCreate(gen::signal_object * pobj)
    {
       if(pobj->previous())
          return;
 
-      ::bergedge::frame * pframe = dynamic_cast < ::bergedge::frame * > (GetParentFrame());
+      SetTimer(198477, 1977, NULL);
+
+      ::bergedge::frame * pframe = GetTypedParent < ::bergedge::frame > ();
 
       pframe->m_pview = this;
       pframe->m_pdocument = get_document();
@@ -225,7 +191,7 @@ namespace bergedge
       gcom::backview::Interface::Enable(false);
       gcom::backview::Interface::GetMain().GetImageChange().m_dwBackgroundUpdateMillis = 1000 * 30;
       //gcom::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(gcom::backview::TransitionEffectVisual);
-      
+
 
       SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
       SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
@@ -239,24 +205,22 @@ namespace bergedge
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
-      if(System.command_line().m_varQuery["show_platform"].get_integer() == 0)
-      {
-         return;
-      }
-      if(System.command_line().m_varQuery.has_property("client_only"))
+      if(!Bergedge.m_bShowPlatform)
       {
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(typeid(::bergedge::pane_view), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(::ca::get_type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+
+      hold(m_ppaneview);
 
    }
 
-   void view::_001OnContextMenu(gen::signal_object * pobj) 
+   void view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
-      
+
    }
 
    void view::_001OnTabClick(int iTab)
@@ -267,10 +231,10 @@ namespace bergedge
       }
    }
 
-   void view::_001OnSetCursor(gen::signal_object * pobj) 
+   void view::_001OnSetCursor(gen::signal_object * pobj)
    {
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-      
+
       pobj->previous();
    }
 
@@ -299,6 +263,10 @@ namespace bergedge
       if(ptimer->m_nIDEvent == 21977)
       {
          check_apps();
+      }
+      else if(ptimer->m_nIDEvent == 198477)
+      {
+         Bergedge.check_topic_file_change();
       }
 
    }
@@ -364,7 +332,7 @@ namespace bergedge
 
    bool view::BackViewGetDestroy()
    {
-      return m_bDestroy; 
+      return m_bDestroy;
    }
 
 
@@ -385,7 +353,7 @@ namespace bergedge
 
    void view::SetCurrentBackgroundImagePath(string &str)
    {
-      m_strCurrentImagePath = str;   
+      m_strCurrentImagePath = str;
    }
 
    void view::GetAreaThumbRect(LPRECT lprect, int iArea)
@@ -423,239 +391,6 @@ namespace bergedge
       KillTimer(5432180);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      //int iHitArea = hit_test(pt);
-/*      if(m_bDragTask && !m_bShowCalendar && !m_bShutDown)
-      {
-         m_bDragTask = false;
-         if(m_iDragTask >= m_iTaskOffset
-         && m_iDragTask < m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()
-         && iHitArea >= 0
-         && iHitArea < m_areaa.get_size())
-         {
-            HWND hwnd = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_hwnd;
-            rect rectArea;
-            rect rectDesk0 = System.m_monitorinfoaDesk[0].rcMonitor;
-            rect rectDesk1 = System.m_monitorinfoaDesk[1].rcMonitor;
-            GetAreaThumbRect(rectArea, iHitArea);
-            if(::IsWindowVisible(hwnd))
-            {
-               ::ShowWindow(hwnd, SW_NORMAL);
-            }
-            if(pt.x < (rectArea.left + rectArea.width() / 3))
-            {
-               if(pt.y < (rectArea.top + rectArea.height() / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height() / 2, 0);
-               }
-               else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height(), 0);
-               }
-               else
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk0.width(), rectDesk0.height() / 2, 0);
-               }
-            }
-            else if(pt.x < (rectArea.left + rectArea.width() * 2 / 3))
-            {
-               if(pt.y < (rectArea.top + rectArea.height() / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
-               }
-               else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height(), 0);
-               }
-               else
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
-               }
-            }
-            else
-            {
-               if(pt.y < (rectArea.top + rectArea.height() / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height() / 2, 0);
-               }
-               else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height(), 0);
-               }
-               else
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top + rectDesk1.height() / 2, rectDesk1.width(), rectDesk1.height() / 2, 0);
-               }
-            }
-            if(m_iArea != iHitArea)
-            {
-               m_areaa[m_iArea].m_taska.remove_at(m_iDragTask - m_iTaskOffset);
-               count count1 = m_areaa[m_iArea].m_hwnda.remove(hwnd);
-               count count2 = m_areaa[m_iArea].m_hwndaHidden.remove(hwnd);
-               m_areaa[iHitArea].m_taska.add(area::task(hwnd));
-               if(count1 > 0)
-               {
-                  m_areaa[iHitArea].m_hwnda.add(hwnd);
-               }
-               else
-               {
-                  m_areaa[iHitArea].m_hwndaHidden.add(hwnd);
-               }
-               application & app = ::winactionarea::app_cast(get_app());
-               app.m_hwndaHidden.add(hwnd);
-               mt_show_window(hwnd, SW_HIDE);
-            }
-            return;
-         }
-      }*/
-      /*if(iHitArea == m_iV)
-      {
-         check_apps();
-         if(::IsWindow(m_hwndWinutil))
-         {
-            mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
-            ::PostMessage(m_hwndWinutil, WM_APP + 2000, 0, 2);
-         }
-      }
-      else if(iHitArea == m_i_veriwell)
-      {
-         ::ShellExecute(NULL, NULL, System.dir().votagus("cast\\ccvotagus\\spa.exe"), NULL, NULL, SW_SHOW);
-      }
-      else if(iHitArea == m_i_winactionarea)
-      {
-         check_apps();
-         if(::IsWindow(m_hwndWinactionarea))
-         {
-            mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
-            ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 0, 2);
-         }
-      }
-/*      else if(iHitArea == m_iShutDown)
-      {
-         m_bShutDown = !m_bShutDown;
-         _001RedrawWindow();
-      }
-      else if(iHitArea == m_iClockOffset)
-      {
-         ToggleShowCalendar();
-      }
-      else if(m_bShutDown)
-      {
-         if(iHitArea == m_iTaskOffset)
-         {
-            System.osi().reboot();
-         }
-         else if(iHitArea == m_iTaskOffset + 1)
-         {
-            System.osi().shutdown(true);
-         }
-         else if(iHitArea == m_iTaskOffset + 3)
-         {
-            m_bEnsureApps = false;
-            GetTopLevelFrame()->ShowWindow(SW_HIDE);
-            if(m_hwndaDesk.get_size() > 0)
-               ::PostMessage(m_hwndaDesk[0], WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndCommand, WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndWinutil, WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndWinservice1, WM_APP + 2000, 3, 6);
-
-            ::ShellExecute(
-               NULL,
-               NULL,
-               System.dir().ca2("ccvotagus/spaadmin.exe"),
-               " uninstall _set_windesk",
-               System.dir().ca2("ccvotagus"),
-               SW_HIDE);
-            
-            return;
-            // spa boot should cling (installer should catch 
-            // exit could and restart main application)
-         }
-      }
-      else if(m_bShowCalendar)
-      {
-         switch(m_calendar.hit_test(pt))
-         {
-         case calendar::ElementPreviousMonth:
-            m_calendar.previous_month();
-            _001RedrawWindow();
-            break;
-         case calendar::ElementNextMonth:
-            m_calendar.next_month();
-            _001RedrawWindow();
-            break;
-         case calendar::ElementNextYear:
-            m_calendar.next_year();
-            _001RedrawWindow();
-            break;
-         case calendar::ElementPreviousYear:
-            m_calendar.previous_year();
-            _001RedrawWindow();
-            break;
-         default:
-            {
-               class time time;
-               if(m_calendar.time_hit_test(time, pt))
-               {
-                  m_calendar.set_time(time);
-                  _001RedrawWindow();
-               }
-            }
-            break;
-         }
-      }
-      else if(iHitArea >= 0)
-      {
-         {
-      /*      else if(iHitArea == m_iNotificationAreaButtonOffset)
-            {
-               m_notificationareainfo.Refresh();
-               m_bNotificationArea = true;
-            }*/
-  /*          if(iHitArea >= m_iNotificationAreaOffset && iHitArea < (m_iNotificationAreaOffset + m_notificationareainfo.m_infoa.get_size()))
-            {
-               m_notificationareainfo.LeftClick(iHitArea - m_iNotificationAreaOffset);
-               ::Sleep(100);
-               mt_show_window(GetParentFrame()->get_safe_handle(), SW_HIDE);
-            }
-            else if(iHitArea >= m_iClockOffset)
-            {
-               ToggleShowCalendar();
-            }
-            else if(iHitArea < m_areaa.get_size())
-            {
-               SwitchArea(iHitArea);
-               m_dw3003Time = ::GetTickCount();
-               SetTimer(3003, 300, NULL);
-               
-            }
-            else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))
-            {
-               m_iCurrentTask = iHitArea;
-               m_dwCurrentTaskChangeTime = ::GetTickCount();
-               HWND hwnd = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_hwnd;
-               if(::IsIconic(hwnd))
-               {
-                  mt_show_window(hwnd, SW_RESTORE);
-               }
-               else
-               {
-                  if(hwnd != m_areaa[m_iArea].m_taska[0].m_hwnd)
-                  {
-                     mt_show_window(hwnd, -1);
-                     
-                  }
-                  else
-                  {
-                     mt_show_window(hwnd, SW_MINIMIZE);
-                  }
-               }
-               Sleep(184 + 177);
-               UpdateCurrentArea();
-            }
-         }
-      }
-*/
    }
 
    void view::check_apps()
@@ -680,24 +415,28 @@ namespace bergedge
    }
 
 
-   int view::hit_test(point pt)
+   int view::hit_test(point pt, e_element & eelement)
    {
       rect rectArea;
       GetAreaThumbRect(rectArea, m_iV);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_iV;
       }
       GetAreaThumbRect(rectArea, m_i_veriwell);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_i_veriwell;
       }
       GetAreaThumbRect(rectArea, m_i_winactionarea);
       if(rectArea.contains(pt))
       {
+         eelement = element_area;
          return m_i_winactionarea;
       }
+      eelement = element_none;
       return -1;
    }
 
@@ -715,7 +454,7 @@ namespace bergedge
       UNREFERENCED_PARAMETER(iShow);
    }
 
-   void view::layout()
+   /*void view::layout()
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -733,19 +472,10 @@ namespace bergedge
       }
       ::userbase::scroll_view::layout();
       gcom::backview::user::interaction::layout();
-   }
+   }*/
 
    void view::_000OnMouse(::user::win::message::mouse * pmouse)
    {
-      ::icube::application * pappParent = NULL;
-      try
-      {
-         pappParent = &Application;
-      }
-      catch(...)
-      {
-         pappParent = NULL;
-      }
       try
       {
          if(!_001IsPointInside(pmouse->m_pt))
@@ -758,12 +488,11 @@ namespace bergedge
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
       user::interaction * pui = get_top_child();
-      int iSize;
       try
       {
          while(pui != NULL)
          {
-            ::icube::application * papp = NULL;
+            ::cube8::application * papp = NULL;
             try
             {
                papp = &App(pui->get_app());
@@ -772,11 +501,12 @@ namespace bergedge
             {
                papp = NULL;
             }
-            if(papp != NULL && pappParent != NULL)
+            if(papp != NULL && m_pbergedge != NULL
+               && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_pbergedge))
             {
                try
                {
-                  papp->m_ptCursor = pappParent->m_ptCursor;
+                  papp->m_ptCursor = Bergedge.m_ptCursor;
                }
                catch(...)
                {
@@ -784,7 +514,7 @@ namespace bergedge
             }
             try
             {
-               
+
                if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
                {
                   try

@@ -37,10 +37,10 @@ namespace libepp
    {
    public:
       /// Constructor
-      DomainUpdate(const ActionType type = DOMAIN_UPDATE) : Action(type)
+      DomainUpdate(::ca::application * papp, const ActionType type = DOMAIN_UPDATE) : ca(papp), Action(type)
       {
          if (type == DOMAIN_UPDATE) {
-            _command = pointer_object<DomainUpdateCommand>(new DomainUpdateCommand());
+            _command = pointer_object<DomainUpdateCommand>(new DomainUpdateCommand(papp));
             _response = pointer_object<Response>(new Response());
          }
       }

@@ -43,9 +43,9 @@ namespace bergedge
 
 
 
-   ::view * document::get_bergedge_view()
+   ::bergedge::view * document::get_bergedge_view()
    {
-      return get_typed_view < ::view > ();
+      return get_typed_view < ::bergedge::view > ();
    }
 
    void document::set_platform(platform::document * pdoc)
@@ -69,7 +69,7 @@ namespace bergedge
 
    ::bergedge::bergedge * document::get_bergedge()
    {
-      return m_pbergedge;
+      return dynamic_cast < ::bergedge::bergedge * > (m_pbergedge);
    }
 
 

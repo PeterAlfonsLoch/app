@@ -29,13 +29,13 @@ bool KaraokeUtil::IsStar350File(primitive::memory & storage)
 
 VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::sequence *pmidiseq, ::mus::midi::e_file_open_mode eOpenMode)
 {
-   MidiTrack * pmiditrk;
+   midi_track * pmiditrk;
    Star350EventTrack * pstartrk;
-    
+
    ::mus::midi::file & xffile = pmidiseq->GetFile();
 
    SMFRESULT smfrc;
-   MidiTracks tracks(get_app());
+   midi_tracks tracks(get_app());
    VMSRESULT vmsr;
 
    pstarfile->ToWorkStorage();
@@ -73,7 +73,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
 
    //tracks.FromWorkStorage();
 
-   MidiTrack * pTrackUnion = xffile.GetTracks().CreateTrack();
+   midi_track * pTrackUnion = xffile.GetTracks().CreateTrack();
    //if(VMS_FAILED(vmsr = tracks.CompactTracks(*pTrackUnion, false, false)))
       //return vmsr;
    if(VMS_FAILED(vmsr = tracks.WorkCompactTracksWork(*pTrackUnion, false)))
@@ -94,7 +94,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
       &xfInfoHeader,
       NULL);
 
-   MidiEventV008 eventV008;
+   midi_event_v008 eventV008;
    eventV008.SetFullType(::mus::midi::Meta);
    eventV008.SetMetaType(::mus::midi::MetaEOT);
    eventV008.SetParam(NULL, 0);
@@ -123,7 +123,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
    pmiditrk->WriteHeader(&chHdr);*/
 
 //   xffile.ToWorkStorage();
-    
+
 
    BYTE XFVERSIONID[] = {
       0x43,  // YAMAHA ID
@@ -131,12 +131,12 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
       0x00,  //
       0x58,  // X
       0x46,  // F
-      0x30,  // 0 
+      0x30,  // 0
       0x32,   // 2
       0x00,
       0x11};
 
-   MidiTrack & trackXF = *(MidiTrack *) xffile.GetTracks().TrackAt(0);
+   midi_track & trackXF = *(midi_track *) xffile.GetTracks().TrackAt(0);
    trackXF.seek_begin();
    eventV008.SetFullType(::mus::midi::Meta);
    eventV008.SetMetaType(::mus::midi::MetaSeqSpecific);
@@ -146,10 +146,10 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
 
 /*    char * lpstr = CInternational
       ::UnicodeToAnsiDup(ki.m_strSongName);
-    
+
     eventV008.clear();
     eventV008.SetFullType(::mus::midi::Meta);
-   eventV008.SetMetaType(CXF::MetaSongName);
+   eventV008.SetMetaType(::mus::xf::MetaSongName);
     //eventV008.SetParamSize(strlen(lpstr));
    eventV008.SetParam((byte *) lpstr, strlen(lpstr));
     trackXF.GetWorkTrack().m_events.insert_at(1, eventV008);
@@ -157,7 +157,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
     int i;
     for(i = 0; i < xffile.GetTracks().GetTrackCount(); i++)
     {
-        MidiTrack & trackXF = *(MidiTrack *) xffile.GetTracks().TrackAt(i);
+        midi_track & trackXF = *(midi_track *) xffile.GetTracks().TrackAt(i);
         trackXF.seek_begin();
         while(::mus::midi::Success == trackXF.WorkSeek(::mus::midi::SeekKarID))
         {
@@ -168,7 +168,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
       return smfrc;
 
    MIDIFILEHDR fileHdr;
-    
+
    fileHdr.wFormat = WORDSWAP(0);
    fileHdr.wDivision = WORDSWAP(pstarfile->m_pevheader->wDivision);
    fileHdr.wTracks = WORDSWAP(1) ;
@@ -180,11 +180,11 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
 
    if((smfrc = xffile.Build()) != ::mus::midi::Success)
       return smfrc;
-   
+
    SMFFILEINFO             sfi;
 
    xffile.GetFileInfo(&sfi);
-    
+
    pmidiseq->m_dwTimeDivision = sfi.dwTimeDivision;
    pmidiseq->m_tkLength       = sfi.tkLength;
 //   pmidiseq->m_cTrk           = sfi.dwTracks;
@@ -196,14 +196,14 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350File *pstarfile, ::mus::midi::s
 
 VMSRESULT KaraokeUtil::ConvertStar350ToXF(
    Star350File * pstarfile,
-   Star350EventTrack *pstartrk, MidiTrack *pmiditrk)
+   Star350EventTrack *pstartrk, midi_track *pmiditrk)
 {
    Star350EventV008 * lpstarev;
-   MidiEventV008 midiev;
-   base_array <MidiEventV008, MidiEventV008 &> midieva;
-   MidiEventV001 midiev1;
-   MidiEventV001 * lpmidiev1 = NULL;
-   base_array <MidiEventV001, MidiEventV001 &> eventsPending;
+   midi_event_v008 midiev;
+   base_array <midi_event_v008, midi_event_v008 &> midieva;
+   midi_event_v001 midiev1;
+   midi_event_v001 * lpmidiev1 = NULL;
+   base_array <midi_event_v001, midi_event_v001 &> eventsPending;
    imedia::position tkMinPosition = 0x7fffffff;
    imedia::position tkPosition = 0;
    imedia::position tkLastPosition = 0;
@@ -219,7 +219,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
       pstarfile->GetLyricsText(strLyrics);
 
       pmiditrk->WorkSeekBegin();
-         
+
       midiev.SetFullType(::mus::midi::Meta);
       midiev.SetMetaType(::mus::midi::MetaXFLyricsHeader);
       midiev.SetParam(XFLYRICSHEADER, sizeof(XFLYRICSHEADER) - 1);
@@ -292,11 +292,11 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
       {
          lpstarev = &pstartrk->GetWorkTrack()->m_events.element_at(i);
          tkPosition += lpstarev->GetDelta();
-        
+
          while(tkPosition >= tkMinPosition)
          {
             ASSERT(tkMinPosition >= tkLastPosition);
-                
+
             lpmidiev1->SetDelta(tkMinPosition - tkLastPosition);
             tkLastPosition = tkMinPosition;
 
@@ -304,7 +304,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
             midiev = *lpmidiev1;
             midiev.SetPosition(tkMinPosition);
             pmiditrk->GetWorkTrack().add(midiev);
-                
+
             eventsPending.remove_at(0);
             if(eventsPending.get_size() <= 0)
             {
@@ -314,7 +314,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
             else
             {
                lpmidiev1 = &eventsPending.element_at(0);
-               tkMinPosition = lpmidiev1->GetPosition();
+               tkMinPosition = lpmidiev1->get_position();
             }
          }
 
@@ -353,36 +353,36 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
                midiev1.SetNotePitch(midiev.GetNotePitch());
                midiev1.SetPosition(tkPosition + lpstarev->GetDuration());
                eventsPending.add(midiev1);
-               
+
                sort::QuickSort(
-                  (base_array<MidiEventV001, MidiEventV001 &> &) eventsPending,
-                  MidiEventV001::CompareTkPosition,
-                  MidiEventV001::swap);
-               
+                  (base_array<midi_event_v001, midi_event_v001 &> &) eventsPending,
+                  midi_event_v001::CompareTkPosition,
+                  midi_event_v001::swap);
+
                //                eventsPending.QuickSort(eventsPending.CompareTkPosition);
-               //                SortQuickSort<MidiEventV001, MidiEventV001 &>
+               //                SortQuickSort<midi_event_v001, midi_event_v001 &>
                //                  (
                //                &,
-               //              SortCompareTkPosition<MidiEventV001 *>,
+               //              SortCompareTkPosition<midi_event_v001 *>,
                //            CSort::swap,
                //          NULL)
                lpmidiev1 = &eventsPending.element_at(0);
-               tkMinPosition = lpmidiev1->GetPosition();
+               tkMinPosition = lpmidiev1->get_position();
             }
          }
       }
       while(lpmidiev1 != NULL)
       {
          ASSERT(tkMinPosition >= tkLastPosition);
-         
+
          lpmidiev1->SetDelta(tkMinPosition - tkLastPosition);
          tkLastPosition = tkMinPosition;
-         
+
          midiev.clear();
          midiev = *lpmidiev1;
          midiev.SetPosition(tkMinPosition);
          pmiditrk->GetWorkTrack().add(midiev);
-         
+
          eventsPending.remove_at(0);
          if(eventsPending.get_size() <= 0)
          {
@@ -392,7 +392,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
          else
          {
             lpmidiev1 = &eventsPending.element_at(0);
-            tkMinPosition = lpmidiev1->GetPosition();
+            tkMinPosition = lpmidiev1->get_position();
          }
       }
       midiev.clear();
@@ -401,9 +401,9 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
       midiev.SetPosition(tkPosition);
       midiev.SetDelta(0);
       pmiditrk->GetWorkTrack().add(midiev);
-      
+
     }
-    
+
     CHUNKHDR hdr;
     hdr.fourccType = FOURCC_MTrk;
     hdr.dwLength = pmiditrk->m_smti.m_cbLength;
@@ -412,11 +412,9 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
     return VMSR_SUCCESS;
 }
 
-VMSRESULT KaraokeUtil::ConvertStar350ToXF(
-    Star350EventV008 *pstarev,
-    base_array <MidiEventV008, MidiEventV008 &> *pmidieva)
+VMSRESULT KaraokeUtil::ConvertStar350ToXF(Star350EventV008 *pstarev, base_array <midi_event_v008, midi_event_v008 &> *pmidieva)
 {
-   MidiEventV008 midiev;
+   midi_event_v008 midiev;
    if(pstarev->GetStar350Type() == Star350EventBase::EventTypeTrackName)
    {
       midiev.SetFullType(::mus::midi::Meta);
@@ -424,7 +422,7 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
       BYTE b = 0;
       midiev.WriteParam(&b, 1);
       pmidieva->add(midiev);
-      
+
       midiev.SetFullType(::mus::midi::Meta);
       midiev.SetMetaType(::mus::midi::MetaTrackName);
       midiev.WriteParam(pstarev->GetParam(), pstarev->GetParamSize());
@@ -434,14 +432,14 @@ VMSRESULT KaraokeUtil::ConvertStar350ToXF(
    {
       midiev.SetFullType(::mus::midi::Meta);
       midiev.SetMetaType(::mus::midi::MetaTempo);
-      
+
       unsigned char pb[3];
       unsigned char ch;
       memcpy(pb, pstarev->GetParam(), pstarev->GetParamSize());
       ch = pb[0];
       pb[0] = pb[2];
       pb[2] = ch;
-      
+
       midiev.WriteParam(pb, 3);
       pmidieva->add(midiev);
    }

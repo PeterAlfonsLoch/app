@@ -33,8 +33,8 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
    {
       bool bInside;
       point ptCursor(
-         LOWORD(pbase->m_lparam),  // horizontal position of cursor 
-         HIWORD(pbase->m_lparam));  // vertical position of cursor 
+         LOWORD(pbase->m_lparam),  // horizontal position of cursor
+         HIWORD(pbase->m_lparam));  // vertical position of cursor
 
       rect rectPlacement;
       viewline.GetPlacement(rectPlacement);
@@ -43,7 +43,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
       {
          if(message == WM_LBUTTONUP
             || message == WM_MOUSEMOVE)
-         {   
+         {
             if(ptCursor.y < rectPlacement.top
                ||
                (ptCursor.y <= rectPlacement.bottom &&
@@ -66,9 +66,9 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
       }
       else if(bInside)
       {
-         //DWORD fwKeys = pbase->m_wparam; // key flags 
+         //DWORD fwKeys = pbase->m_wparam; // key flags
          if(message == WM_LBUTTONDOWN)
-         {   
+         {
             if(viewline.CalcChar(ptCursor, iChar))
             {
                iLine = viewline.m_iIndex;
@@ -88,13 +88,13 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
             //                viewline.get_interaction()->_001RedrawWindow();
             OnSelEvent(viewline, EventStart);
             pbase->m_bRet = true;
-            return;         
+            return;
          }
          else if(
             (message == WM_LBUTTONUP
             || message == WM_MOUSEMOVE)
             && GetState() == StateTracking)
-         {   
+         {
             if(viewline.CalcChar(ptCursor, iChar))
             {
                iLine = viewline.m_iIndex;
@@ -138,7 +138,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
             return;
          }
          else if(message == WM_MOUSEMOVE)
-         {   
+         {
             point pt;
             System.get_cursor_pos(&pt);
             viewline.UpdateHover(pt);
@@ -181,7 +181,7 @@ void XfplayerViewLineSelection::OnSelEvent(XfplayerViewLine & viewline, Xfplayer
       //         m_item.NormalizeSel();
       Select(
          m_item.GetLineStart(),
-         m_item.GetLineEnd(), 
+         m_item.GetLineEnd(),
          m_item.GetCharStart(),
          m_item.GetCharEnd(), false);
       m_estate = state_initial;
@@ -270,7 +270,7 @@ void XfplayerViewLineSelection::NormalizeSel(XfplayerViewLine & viewline)
 {
    UNREFERENCED_PARAMETER(viewline);
    ASSERT(FALSE);
-   /*   string str;   
+   /*   string str;
    if(m_item.m_iLineStart < 0)
    {
    }
@@ -432,7 +432,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(XfplayerViewLine & viewline, UINT 
    }
    else if(bInside)
    {
-      //             DWORD fwKeys = user; // key flags 
+      //             DWORD fwKeys = user; // key flags
       if(viewline.CalcChar(pt1, iChar))
       {
          iLine = viewline.m_iIndex;
@@ -452,7 +452,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(XfplayerViewLine & viewline, UINT 
       }
       //               viewline.get_interaction()->_001RedrawWindow();
       OnSelEvent(viewline, EventStart);
-      return true;         
+      return true;
    }
 
    return false;
@@ -493,9 +493,9 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
    }
    else if(bInside && GetState() == StateTracking)
    {
-      //DWORD fwKeys = user; // key flags 
+      //DWORD fwKeys = user; // key flags
       if(GetState() == StateTracking)
-      {   
+      {
          if(viewline.m_iaPosition.get_size() <= 0)
             return false;
          if(viewline.CalcChar(pt1, iChar))
@@ -574,9 +574,9 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
    }
    else if(bInside)
    {
-      //DWORD fwKeys = user; // key flags 
+      //DWORD fwKeys = user; // key flags
       if(GetState() == StateTracking)
-      {   
+      {
          if(viewline.m_iaPosition.get_size() <= 0)
             return false;
          if(viewline.CalcChar(pt1, iChar))

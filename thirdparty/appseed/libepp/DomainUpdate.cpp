@@ -60,7 +60,7 @@ namespace libepp
          //nameservers to add
          if (ns_cnt.has_elements())
          {
-            to_parse["add"] += ns_cnt.get_xml();
+            to_parse["add"] += ns_cnt.get_xml(get_app());
          }
 
          //contacts to add
@@ -93,7 +93,7 @@ namespace libepp
          //nameservers to remove
          if(ns_cnt.has_elements()) 
          {
-            to_parse["rem"] += ns_cnt.get_xml();
+            to_parse["rem"] += ns_cnt.get_xml(get_app());
          }
 
          //contacts to remove
@@ -161,10 +161,10 @@ namespace libepp
          // DNSSEC Extension
          if (get_command()->has_secdns_extension())
          {
-            collection::list < DSInfo > ds_add_list = get_command()->get_ds_add();
-            collection::list < DSInfo > ds_rem_list = get_command()->get_ds_rem_1_1();
+            ds_info_array ds_add_list = get_command()->get_ds_add();
+            ds_info_array ds_rem_list = get_command()->get_ds_rem_1_1();
             uint_array ds_rem_list_1_0 = get_command()->get_ds_rem();
-            collection::list < DSInfo > ds_chg_list = get_command()->get_ds_chg();
+            ds_info_array ds_chg_list = get_command()->get_ds_chg();
             collection::list < KeyData > dnskey_add_list = get_command()->get_dnskey_add();
             collection::list < KeyData > dnskey_rem_list = get_command()->get_dnskey_rem();
 
@@ -181,9 +181,9 @@ namespace libepp
                {
                   // DS Add List
                   to_parse["ds_ext"] += "<secDNS:add>";
-                  for(POSITION pos = ds_add_list.get_head_position(); pos != NULL;) 
+                  for(int i = 0; i < ds_add_list.get_count(); i++) 
                   {
-                     to_parse["ds_ext"] += ds_add_list.get_next(pos).get_xml_format();
+                     to_parse["ds_ext"] += ds_add_list[i].get_xml_format();
                   }
                   to_parse["ds_ext"] += "</secDNS:add>";
                } 
@@ -201,9 +201,9 @@ namespace libepp
                {
                   // DS Change List
                   to_parse["ds_ext"] += "<secDNS:chg>";
-                  for(POSITION pos = ds_chg_list.get_head_position(); pos != NULL;) 
+                  for(int i = 0; i < ds_chg_list.get_count(); i++) 
                   {
-                     to_parse["ds_ext"] += ds_chg_list.get_next(pos).get_xml_format();
+                     to_parse["ds_ext"] += ds_chg_list[i].get_xml_format();
                   }
                   to_parse["ds_ext"] += "</secDNS:chg>";
                }
@@ -253,9 +253,9 @@ namespace libepp
                   if(ds_rem_list.has_elements() && !get_command()->getRemoveAll())
                   {
                      to_parse["ds_ext"] += "<secDNS:rem>";
-                     for(POSITION pos = ds_rem_list.get_head_position(); pos != NULL;) 
+                     for(int i = 0; i < ds_rem_list.get_count(); i++) 
                      {
-                        to_parse["ds_ext"] += ds_rem_list.get_next(pos).get_xml_format(get_command()->get_secDnsVersion());
+                        to_parse["ds_ext"] += ds_rem_list[i].get_xml_format(get_command()->get_secDnsVersion());
                      }
                      to_parse["ds_ext"] += "</secDNS:rem>";
                   }
@@ -263,9 +263,9 @@ namespace libepp
                   if(ds_add_list.has_elements()) 
                   {
                      to_parse["ds_ext"] += "<secDNS:add>";
-                     for(POSITION pos = ds_add_list.get_head_position(); pos != NULL;) 
+                     for(int i = 0; i < ds_add_list.get_count(); i++) 
                      {
-                        to_parse["ds_ext"] += ds_add_list.get_next(pos).get_xml_format(get_command()->get_secDnsVersion());
+                        to_parse["ds_ext"] += ds_add_list[i].get_xml_format(get_command()->get_secDnsVersion());
                      }
                      to_parse["ds_ext"] += "</secDNS:add>";
                   }

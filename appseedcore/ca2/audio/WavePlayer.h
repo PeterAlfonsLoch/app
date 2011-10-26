@@ -67,14 +67,13 @@ public:
 
    audio_decode::decoder_plugin_set_ex1      m_decodersetex1;
    audio_decode::decoder_plugin_set          m_decoderset;
-   ::user::interaction *                     m_hwndCallback;
-   audio_decode::decoder *                   m_pdecoder;
+   ph(::user::interaction)                   m_hwndCallback;
+   sp(audio_decode::decoder)                 m_pdecoder;
    audWaveOut *                              m_pwaveout;
    
    EDeviceState                              m_edevicestate;
    EDecoderState                             m_edecoderstate;
    e_state                                   m_estate;
-   CEvent                                    m_eventStopped;
    int                                       m_iOutBufferSampleCount;
    int                                       m_iBufferId;
 
@@ -90,7 +89,7 @@ public:
    void DecoderClose();
    void DecoderRun();
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
    bool audCommandMessageProcedure(audWavePlayerCommand & command);
    void FillTitleInfo(stringa & wstraFormat, string2a & wstr2aTitle);
@@ -112,7 +111,7 @@ public:
    void OnEvent(e_event event);
    bool DeviceIsOpened();
    bool DecoderIsOpened();
-   void AttachEndEvent(CEvent * pevent);
+   void AttachEndEvent(event * pevent);
 
    void ExecuteCommand(audWavePlayerCommand & command);
 

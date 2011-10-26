@@ -10,23 +10,30 @@ namespace simpledb
       public ::database::base
    {
    public:
-      friend class set;
+
+      ::ex1::filesp                 m_spfileMeta;
+      ::xml::node                   m_nodeMeta;
+      ::collection::string_map < table *, table * > m_mapTable;
+      int                           m_iErrorCode;
+
 
       base(::ca::application * papp);
 
-      ::ex1::filesp m_spfileMeta;
-      ::xml::node m_nodeMeta;
-      ::collection::map < string, string, table *, table * > m_mapTable;
 
       virtual int connect();
 
 
-      virtual class set * create_dataset();
-
-   protected:
+      virtual class ::simpledb::set * create_dataset() const;
 
       table * get_table(const char * pszName);
       table * create_table(const char * pszName);
+
+
+      // class ::database::base
+      virtual class ::database::set * CreateDataset() const;
+      virtual int setErr(int err_code);
+      virtual long nextid(const char* sname);
+
 
 
    };

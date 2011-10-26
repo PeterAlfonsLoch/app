@@ -56,12 +56,10 @@ namespace userbase
    {
    public:
 
-#if !core_level_1
-      using window_frame::WorkSetListener::Attach;
-#endif
 
       frame_window(::ca::application * papp);
       virtual ~frame_window();
+
 
       void CommonConstruct();
 
@@ -77,9 +75,9 @@ namespace userbase
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      afx_msg void OnUpdateControlBarMenu(cmd_ui * pcmdui);
-      afx_msg BOOL OnBarCheck(UINT nID);
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void OnUpdateControlBarMenu(cmd_ui * pcmdui);
+      BOOL OnBarCheck(UINT nID);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       mini_dock_frame_window* CreateFloatingFrame(DWORD dwStyle);
       DWORD CanDock(rect rect, DWORD dwDockStyle,
@@ -91,8 +89,8 @@ namespace userbase
       void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar,
          LPCRECT lpRect = NULL);
       virtual void NotifyFloatingWindows(DWORD dwFlags);
+      using window_frame::WorkSetListener::Attach;
 
-   public:
    #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -109,11 +107,7 @@ namespace userbase
 
 
 
-      // implementation helpers
-   public:
       ::user::interaction* WindowDataGetWnd();
-      ::ca::application * get_app();
-   protected:
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 

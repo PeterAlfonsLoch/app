@@ -7,6 +7,7 @@ virtual_user_interface::virtual_user_interface()
    m_bCreate         = false;
    m_pthread         = NULL;
    m_pparent         = NULL;
+   m_bEnabled        = true;
 }
 
 virtual_user_interface::virtual_user_interface(::ca::application * papp) :
@@ -17,6 +18,7 @@ virtual_user_interface::virtual_user_interface(::ca::application * papp) :
    m_bCreate         = false;
    m_pthread         = NULL;
    m_pparent         = NULL;
+   m_bEnabled        = true;
 }
 
 virtual_user_interface::~virtual_user_interface()
@@ -42,7 +44,7 @@ BOOL virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
 
 bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags)
 {
-   ::ca::lock lock(m_pguie);
+   synch_lock lock(m_pguie);
    rect64 rectOld = m_rectParentClient;
    if(nFlags & SWP_NOMOVE)
    {
@@ -74,7 +76,7 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
    {
       m_pguie->m_rectParentClient = m_rectParentClient;
    }
-   lock.Unlock();
+   lock.unlock();
    m_bRectOk = false;
    if(m_pguie != NULL)
    {
@@ -98,12 +100,27 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
       {
          if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
          {
-            CSingleLock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
-            index iFind = GetParent()->m_uiptraChild.find(m_pguie);
-            if(iFind >= 0)
+            single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex);
+            if(sl.lock(millis(84)))
             {
-               GetParent()->m_uiptraChild.remove(m_pguie);
-               GetParent()->m_uiptraChild.insert_at(0, m_pguie);
+               index iFind = GetParent()->m_uiptraChild.find(m_pguie);
+               if(iFind >= 0)
+               {
+                  try
+                  {
+                     GetParent()->m_uiptraChild.remove(m_pguie);
+                  }
+                  catch(...)
+                  {
+                  }
+                  try
+                  {
+                     GetParent()->m_uiptraChild.insert_at(0, m_pguie);
+                  }
+                  catch(...)
+                  {
+                  }
+               }
             }
          }
       }
@@ -123,7 +140,7 @@ bool virtual_user_interface::create_message_window()
       pwnd->m_pguieForward = this;
       string strName = "ca2::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).raw_name();
-      if(!pwnd->::ca::window::create(NULL, strName, 0, 
+      if(!pwnd->::ca::window::create(NULL, strName, 0,
       rect(0, 0, 0, 0), ::ca::window::from_handle(HWND_MESSAGE), NULL))
       {
          delete pwnd;
@@ -153,8 +170,8 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->add(m_pguie);
-   
-   
+
+
    //m_pguie = this;
 //   m_hwnd = pparent->_get_handle();
    /*::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
@@ -191,6 +208,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
       m_pparent   = pparent;
    }
    m_id      = id;
+   m_pguie->m_id      = id;
    CREATESTRUCT cs;
    cs.dwExStyle = dwExStyle;
    cs.lpszClass = lpszClassName;
@@ -206,10 +224,10 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = lpParam;
    m_pguie->PreCreateWindow(cs);
-   //m_pguie->_001InstallMessageHandling(dynamic_cast < ::user::win::message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (this));
    SendMessage(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, 0);
-   SendMessage(WM_SIZE, 0, 0); 
+   SendMessage(WM_SIZE, 0, 0);
    on_set_parent(pparent);
    return true;
 }
@@ -220,7 +238,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pparent, id id,
-      create_context* pContext)
+      ::ca::create_context* pContext)
 {
    if(m_bCreate)
    {
@@ -268,7 +286,8 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
       pparent->m_uiptraChild.add(m_pguie);
    }
    m_id      = id;
-   //m_pguie->_001InstallMessageHandling(dynamic_cast < ::user::win::message::dispatch * > (this));
+   m_pguie->m_id      = id;
+   //m_pguie->install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.lpszClass = lpszClassName;
@@ -288,7 +307,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
    if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
    {
       m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
-      SendMessage(WM_SIZE, 0, 0); 
+      SendMessage(WM_SIZE, 0, 0);
    }
    on_set_parent(pparent);
    return true;
@@ -344,8 +363,8 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    }
    m_id      = id;
    m_pguie->m_id = id;
-   //_001InstallMessageHandling(dynamic_cast < ::user::win::message::dispatch * > (pparent));
-   //m_pguie->_001InstallMessageHandling(dynamic_cast < ::user::win::message::dispatch * > (this));
+   //install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (pparent));
+   //m_pguie->install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.lpszClass = NULL;
@@ -363,7 +382,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    m_pguie->PreCreateWindow(cs);
    SendMessage(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, 0, 0, cs.cx, cs.cy, 0);
-   SendMessage(WM_SIZE, 0, 0); 
+   SendMessage(WM_SIZE, 0, 0);
    on_set_parent(pparent);
    return true;
 }
@@ -403,13 +422,13 @@ void virtual_user_interface::VirtualOnSize()
 }
 
 
-void virtual_user_interface::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void virtual_user_interface::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &virtual_user_interface::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_NCDESTROY   , pinterface, this, &virtual_user_interface::_001OnNcDestroy);
    if(m_pguie != this)
    {
-      m_pguie->_001InstallMessageHandling(pinterface);
+      m_pguie->install_message_handling(pinterface);
    }
    IGUI_WIN_MSG_LINK(WM_SIZE        , pinterface, this, &virtual_user_interface::_001OnSize);
    IGUI_WIN_MSG_LINK(WM_MOVE        , pinterface, this, &virtual_user_interface::_001OnMove);
@@ -495,7 +514,7 @@ DWORD virtual_user_interface::GetStyle()
       dwStyle |= WS_VISIBLE;
    return dwStyle;
 }
- 
+
 DWORD virtual_user_interface::GetExStyle()
 {
    return 0;
@@ -514,9 +533,9 @@ void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
 void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
    UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
 {
-//   ::ca::lock lock(m_pguie);
+//   synch_lock lock(m_pguie);
 
-   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || 
+   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
          (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
    // walk kids in order, control bars get the resize notification
@@ -631,7 +650,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nI
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
 
-/*   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || 
+/*   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
          (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
    // walk kids in order, control bars get the resize notification
@@ -854,9 +873,10 @@ void virtual_user_interface::message_handler(gen::signal_object * pobj)
 
 ::user::interaction * virtual_user_interface::SetParent(::user::interaction * pguieParent)
 {
-   if(pguieParent == this
+   if((pguieParent == this
    || pguieParent == m_pguie
    || pguieParent == m_pimpl)
+   && pguieParent != NULL)
    {
       return m_pparent;
    }
@@ -873,6 +893,8 @@ void virtual_user_interface::message_handler(gen::signal_object * pobj)
       }
    }
    m_pparent = pguieParent;
+   if(pguieParent == NULL)
+      return pparentOld;
    if(m_pguie != NULL)
    {
       m_pparent->m_uiptraChild.add(m_pguie);
@@ -888,7 +910,7 @@ void virtual_user_interface::message_handler(gen::signal_object * pobj)
 BOOL virtual_user_interface::IsWindow()
 {
    return
-      m_bCreate 
+      m_bCreate
    && m_pthread != NULL;
 }
 
@@ -898,14 +920,20 @@ BOOL virtual_user_interface::ShowWindow(int nCmdShow)
    if(nCmdShow != SW_HIDE)
    {
       m_bVisible = true;
-      m_pguie->m_bVisible = true;
+      if(m_pguie != NULL)
+      {
+         m_pguie->m_bVisible = true;
+      }
    }
    else
    {
       m_bVisible = false;
-      m_pguie->m_bVisible = false;
+      if(m_pguie != NULL)
+      {
+         m_pguie->m_bVisible = false;
+      }
    }
-   return TRUE;
+   return m_bVisible ? TRUE : FALSE;
 }
 
 
@@ -945,7 +973,7 @@ BOOL virtual_user_interface::KillTimer(UINT_PTR nIDEvent)
 
 ::user::interaction * virtual_user_interface::GetDescendantWindow(id id)
 {
-   CSingleLock sl(&m_pthread->m_mutex, TRUE);
+   single_lock sl(&m_pthread->m_mutex, TRUE);
    for(int i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
    {
       if(m_pguie->m_uiptraChild[i]->GetDlgCtrlId() == id)
@@ -1015,7 +1043,7 @@ void virtual_user_interface::_001OnDestroy(gen::signal_object * pobj)
 void virtual_user_interface::_001OnNcDestroy(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   
+
    ::user::interaction * puie = m_pguie;
    m_pguie = NULL;
    PostNcDestroy();
@@ -1031,18 +1059,18 @@ void virtual_user_interface::on_delete(::ca::ca * pui)
    ::user::interaction::on_delete(pui);
 }
 
-int virtual_user_interface::RunModalLoop(DWORD dwFlags)
+/*int virtual_user_interface::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
 {
    if(dynamic_cast < virtual_user_interface * > (GetTopLevelFrame()) == this)
-      return ::user::interaction::RunModalLoop(dwFlags);
+      return ::user::interaction::RunModalLoop(dwFlags, pliveobject);
    else
-      return get_wnd()->m_pguie->RunModalLoop(dwFlags);
+      return RunModalLoop(dwFlags, pliveobject);
 }
-
+*/
 
 void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm)
 {
-   
+
    // walk through HWNDs to avoid creating temporary window objects
    // unless we need to call this function recursively
    if(m_pguie == NULL)
@@ -1070,7 +1098,7 @@ void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wPa
       }
       try
       {
-         pui = pui->under_sibling();
+         pui = under_sibling(pui);
       }
       catch(...)
       {
@@ -1088,7 +1116,21 @@ void virtual_user_interface::_001OnMove(gen::signal_object * pobj)
 void virtual_user_interface::_001OnSize(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   m_pguie->layout();
+   if(m_pguie != NULL)
+   {
+      m_pguie->layout();
+   }
+}
+
+void virtual_user_interface::_001OnClose(gen::signal_object * pobj)
+{
+   UNREFERENCED_PARAMETER(pobj);
+   if(!IsWindow())
+      return;
+   pobj->m_bRet = true;
+   ShowWindow(SW_HIDE);
+   DestroyWindow();
+   
 }
 
 BOOL virtual_user_interface::IsWindowVisible()
@@ -1105,4 +1147,17 @@ BOOL virtual_user_interface::IsWindowVisible()
    if(!m_bVisible)
       return FALSE;
    return TRUE;
+}
+
+
+BOOL virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+{
+   if(m_pthread != NULL)
+   {
+      return m_pthread->post_message(this, uiMessage, wparam, lparam);
+   }
+   else
+   {
+      return FALSE;
+   }
 }

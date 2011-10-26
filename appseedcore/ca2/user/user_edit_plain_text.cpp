@@ -18,71 +18,19 @@ namespace user
 
       m_pdata              = NULL;
       m_bOwnData           = false;
-      
+
       m_bMultiLine         = true;
       m_bColorerTake5      = false;
       m_bReadOnly          = false;
-      
+
 
       m_straSep.add("\n");
       m_straSep.add("\r");
       m_straSep.add("\r\n");
 
 
-/*      m_imapAbnt2.set_at(188, ",");
-      m_imapAbnt2.set_at(190, ".");
-      m_imapAbnt2.set_at(190 | 0x80000000, ">");
-      m_imapAbnt2.set_at(189, "-");
-      m_imapAbnt2.set_at(189 | 0x80000000, "_");
-      m_imapAbnt2.set_at('1' | 0x80000000, "!");
-      m_imapAbnt2.set_at('2' | 0x80000000, "@");
-      m_imapAbnt2.set_at('3' | 0x80000000, "#");
-      m_imapAbnt2.set_at('4' | 0x80000000, "$");
-      m_imapAbnt2.set_at('5' | 0x80000000, "%");
-      m_imapAbnt2.set_at('6' | 0x80000000, "ｨ");
-      m_imapAbnt2.set_at('7' | 0x80000000, "&");
-      m_imapAbnt2.set_at('8' | 0x80000000, "*");
-      m_imapAbnt2.set_at('9' | 0x80000000, "(");
-      m_imapAbnt2.set_at('0' | 0x80000000, ")");
 
-      m_imapAbnt.set_at(191, ";");
-      m_imapAbnt.set_at(191 | 0x80000000, ":");
-      m_imapAbnt.set_at(226, "\\");
-      m_imapAbnt.set_at(226 | 0x80000000, "|");
-      m_imapAbnt.set_at(189, "-");
-      m_imapAbnt.set_at(189 | 0x80000000, "_");
-      m_imapAbnt.set_at(187, "=");
-      m_imapAbnt.set_at(187 | 0x80000000, "+");
-      m_imapAbnt.set_at(219, "ｴ");
-      m_imapAbnt.set_at(219 | 0x80000000, "`");
-      m_imapAbnt.set_at(222, "~");
-      m_imapAbnt.set_at(222 | 0x80000000, "^");
-      m_imapAbnt.set_at(221, "[");
-      m_imapAbnt.set_at(221 | 0x80000000, "{");
-      m_imapAbnt.set_at(220, "]");
-      m_imapAbnt.set_at(220 | 0x80000000, "}");
-      m_imapAbnt.set_at(188, ",");
-      m_imapAbnt.set_at(188 | 0x80000000, "<");
-      m_imapAbnt.set_at(190, ".");
-      m_imapAbnt.set_at(190 | 0x80000000, ">");
-      m_imapAbnt.set_at(193, "/");
-      m_imapAbnt.set_at(193 | 0x80000000, "?");
-      m_imapAbnt.set_at(192, "\'");
-      m_imapAbnt.set_at(192 | 0x80000000, "\"");
-      m_imapAbnt.set_at('1' | 0x80000000, "!");
-      m_imapAbnt.set_at('2' | 0x80000000, "@");
-      m_imapAbnt.set_at('3' | 0x80000000, "#");
-      m_imapAbnt.set_at('4' | 0x80000000, "$");
-      m_imapAbnt.set_at('5' | 0x80000000, "%");
-      m_imapAbnt.set_at('6' | 0x80000000, "ｨ");
-      m_imapAbnt.set_at('7' | 0x80000000, "&");
-      m_imapAbnt.set_at('8' | 0x80000000, "*");
-      m_imapAbnt.set_at('9' | 0x80000000, "(");
-      m_imapAbnt.set_at('0' | 0x80000000, ")");
-
-      m_pkeymap = &m_imapAbnt;*/
-
-      m_y                  = -1;      
+      m_y                  = -1;
       m_iaLineIndex.set_size(0, 100000);
       m_iaLineEndIndex.set_size(0, 100000);
       m_iaCLineIndex.set_size(0, 1000);
@@ -104,9 +52,9 @@ namespace user
       }
    }
 
-   void edit_plain_text::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void edit_plain_text::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      scroll_view::_001InstallMessageHandling(pinterface);
+      scroll_view::install_message_handling(pinterface);
    /*   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &edit_plain_text::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &edit_plain_text::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &edit_plain_text::_001OnPaint);
@@ -119,6 +67,8 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &edit_plain_text::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &edit_plain_text::_002OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &edit_plain_text::_002OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pinterface, this, &edit_plain_text::_002OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &edit_plain_text::_002OnRButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &edit_plain_text::_002OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &edit_plain_text::_002OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &edit_plain_text::_002OnKeyUp);
@@ -126,7 +76,12 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &::user::edit_plain_text::_002OnTimer);
 
-   /*   IGUI_WIN_MSG_LINK(WM_RBUTTONUP, 
+      connect_update_cmd_ui("edit_focus_copy", &edit_plain_text::_001OnUpdateEditFocusCopy);
+      connect_command("edit_focus_copy", &edit_plain_text::_001OnEditFocusCopy);
+      connect_update_cmd_ui("edit_focus_paste", &edit_plain_text::_001OnUpdateEditFocusPaste);
+      connect_command("edit_focus_paste", &edit_plain_text::_001OnEditFocusPaste);
+
+   /*   IGUI_WIN_MSG_LINK(WM_RBUTTONUP,
          this,
          this,
          &edit_plain_text::_002OnRButtonUp); */
@@ -142,7 +97,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   void edit_plain_text::_001OnInitialUpdate(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnInitialUpdate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
@@ -151,19 +106,20 @@ namespace user
       _001OnCalcLayout(pdc);
       ReleaseDC(pdc);
 
+
       AfxBeginThread(get_app(), ThreadProcScrollSize, (LPVOID) this);
 
-      
+
    }
 
-   void edit_plain_text::_001OnDestroy(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnDestroy(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
 
-   void edit_plain_text::VirtualOnSize() 
+   void edit_plain_text::VirtualOnSize()
    {
       _001OnUpdate();
 
@@ -197,11 +153,11 @@ namespace user
       LayoutKaraokeBouncingBall();*/
    }
 
-   void edit_plain_text::_001OnPaint(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnPaint(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //CPaintDC spgraphics(this); // device context for painting
-      
+
 
       //spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
@@ -225,19 +181,40 @@ namespace user
 
    void edit_plain_text::_001OnDraw(::ca::graphics * pdc)
    {
-      
-      COLORREF crBk = RGB(120, 80, 110);
-      COLORREF crBkSel = RGB(120, 240, 150);
-      COLORREF crSel = RGB(10, 30, 20);
-      COLORREF cr = RGB(255, 255, 255);
 
-      cr = RGB(0, 0, 0);
-      crBk = RGB(250, 248, 240);
-      crBkSel = RGB(0, 0, 127);
-      crSel = RGB(255, 255, 255);
+      COLORREF crBk;
+      COLORREF crBkSel;
+      COLORREF crSel;
+      COLORREF cr;
+
+      cr          = RGB(100, 100, 84);
+      crBk        = RGB(250, 248, 240);
+      crBkSel     = RGB(0, 0, 127);
+      crSel       = RGB(255, 255, 255);
+
+      ::ca::job * pjob = pdc->m_pjob;
+
+      ::user::print_job * pprintjob = NULL;
+      if(pjob!= NULL)
+         pprintjob = dynamic_cast < ::user::print_job * > (pjob);
+      else
+         pprintjob = NULL;
+
 
       rect rectClient;
       GetClientRect(rectClient);
+
+      if(pprintjob != NULL)
+      {
+         TRACE("Print Job Is Printing page %d", pprintjob->m_iPrintingPage);
+      }
+
+
+
+      //rectClient.deflate(0, 0, 1, 1);
+
+
+
       if(_001IsBackgroundBypass())
       {
       }
@@ -255,9 +232,9 @@ namespace user
       && !System.savings().is_trying_to_save(gen::resource_blur_background))
       {
          class imaging & imaging = System.imaging();
-         rect rectClient;
-         GetWindowRect(rectClient);
-         rectClient.offset(rectClient.top_left());
+         //rect rectClient;
+//         GetWindowRect(rectClient);
+  //       rectClient.offset(rectClient.top_left());
          if(rectClient.size() != m_dibBk->size())
          {
             m_dibBk->create(rectClient.size());
@@ -272,8 +249,8 @@ namespace user
             m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
             m_fastblur.blur();
             imaging.bitmap_blend(
-               m_fastblur->get_graphics(), 
-               null_point(), 
+               m_fastblur->get_graphics(),
+               null_point(),
                rectClient.size(),
                m_dibBk->get_graphics(),
                null_point(),
@@ -284,7 +261,7 @@ namespace user
                SRCCOPY);
          }
       }
-      else 
+      else
       {
          class imaging & imaging = System.imaging();
          //_001DrawBackground(pdc, rectClipBox);
@@ -294,6 +271,12 @@ namespace user
             RGB(200, 255, 255),
             127);
       }
+
+      color c;
+      c.set_rgb(RGB(227, 227, 210));
+      c.hls_rate(0.0, -0.33, -0.23);
+      COLORREF crBorder = c.get_rgb();
+      pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
       if(m_pdata == NULL)
          return;
@@ -314,14 +297,16 @@ namespace user
 
       ::ca::rgn_sp rgn(get_app());
 
+      rectClient.deflate(2, 2);
+
       //ClientToScreen(rectClient);
       rgn->CreateRectRgnIndirect(rectClient);
 
       int left = rectClient.left;
 
    //   pdc->SelectClipRgn(&rgn);
-      
-      if(System.get_keyboard_focus() == this)
+
+      if(Application.get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }
@@ -329,9 +314,7 @@ namespace user
       {
          m_bFocus = false;
       }
-      string str;
-      _001GetViewText(str);
-      
+
       int iSelStart;
       int iSelEnd;
       int lim = 0;
@@ -343,7 +326,7 @@ namespace user
       rectClient.right = rectClient.left + m_size.cx;*/
 //      pdc->FillSolidRect(rectClient, crBk);
 
-      
+
       int y = rectClient.top;
       _001GetViewSel(iSelStart, iSelEnd);
       int iCursor = iSelEnd;
@@ -386,10 +369,10 @@ namespace user
          {
             for(; pregion != NULL; pregion = pregion->next)
             {
-               if(pregion->special || pregion->rdef == NULL) 
+               if(pregion->special || pregion->rdef == NULL)
                   continue;
                int end = pregion->end;
-               if(end == -1) 
+               if(end == -1)
                   end = strLine.get_length();
                int x = pregion->start;
                int len = end - pregion->start;
@@ -482,7 +465,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnCreate(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnCreate(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::create, pcreate, pobj);
 
@@ -491,7 +474,7 @@ namespace user
 
 
 
-      if(get_document() != NULL 
+      if(get_document() != NULL
       && get_document()->get_data() != NULL
       && dynamic_cast < plain_text_data * > (get_document()->get_data()) != NULL)
       {
@@ -502,7 +485,13 @@ namespace user
          set_plain_text_data(new user::plain_text_data(get_app()), true);
       }
 
-      if(!m_pdata->initialize())
+      ::ca::data * pdataParentLock = oprop("parent_lock_data").ca2 < ::ca::data > ();
+      if(pdataParentLock != NULL)
+      {
+         m_pdata->m_spdataParentLock = pdataParentLock;
+      }
+
+      if(!m_pdata->initialize_data())
          throw simple_exception();
 
       m_pdata->m_ptreeitem          = get_base_item();
@@ -519,7 +508,7 @@ namespace user
       m_bGetTextNeedUpdate = true;
       m_bPassword = false;
 
-      
+
       SetTimer(100, 100, NULL);
       m_iSelStart  = 0;
       m_iSelEnd = 0;
@@ -529,14 +518,14 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnContextMenu(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
-      
+
    }
 
-   void edit_plain_text::_001OnRButtonUp(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnRButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
       //int iItem;
@@ -581,20 +570,20 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSetCursor(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnSetCursor(gen::signal_object * pobj)
    {
       //::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-      
+
       pobj->previous();
    }
 
-   void edit_plain_text::_002OnTimer(gen::signal_object * pobj) 
+   void edit_plain_text::_002OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::timer, ptimer, pobj)
-      if(ptimer->m_nIDEvent >= 100 
+      if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
-         if(this == System.get_keyboard_focus())
+         if(this == Application.get_keyboard_focus())
          {
             _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
          }
@@ -611,7 +600,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_002OnKeyDown(gen::signal_object * pobj) 
+   void edit_plain_text::_002OnKeyDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::key, pkey, pobj)
 
@@ -685,7 +674,7 @@ namespace user
       pkey->m_bRet      = true;
    }
 
-   void edit_plain_text::_002OnKeyUp(gen::signal_object * pobj) 
+   void edit_plain_text::_002OnKeyUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
@@ -704,7 +693,7 @@ namespace user
       m_bKeyPressed = false;
    }
 
-   void edit_plain_text::_002OnChar(gen::signal_object * pobj) 
+   void edit_plain_text::_002OnChar(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::user::win::message::key, pkey, pobj)
@@ -718,7 +707,7 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnHScroll(gen::signal_object * pobj) 
+   void edit_plain_text::_001OnHScroll(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(should_load_full_file())
@@ -772,16 +761,16 @@ namespace user
       }
 
       //LRESULT lresult;
-      bool bShift = (::GetKeyState(VK_SHIFT) & 0x80000000) != 0;
+      bool bShift = Application.is_key_pressed(VK_SHIFT);
       if(key.m_nChar < 256 && isalpha(key.m_nChar))
       {
          if(bShift)
          {
-            key.m_nChar = toupper(key.m_nChar);  
+            key.m_nChar = toupper(key.m_nChar);
          }
          else
          {
-            key.m_nChar = tolower(key.m_nChar);  
+            key.m_nChar = tolower(key.m_nChar);
          }
       }
       _001OnChar(&key);
@@ -792,13 +781,14 @@ namespace user
    UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
    {
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
+      ::ca::data::writing writing(pview->m_pdata);
 
       ::ca::graphics_sp graphics(pview->get_app());
       graphics->CreateCompatibleDC(NULL);
       ::ca::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
       //pview->ReleaseDC(pdc);
-
+      pview->_001OnUpdate();
       return 0;
    }
 
@@ -808,11 +798,11 @@ namespace user
       ::ca::data::writing writing(m_pdata);
       if(m_pdata == NULL)
          return;
-      int iSize = m_pdata->m_editfile.get_length();
-      char * psz = str.GetBufferSetLength(iSize + 1);
+      file_size iSize = m_pdata->m_editfile.get_length();
+      char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
-      m_pdata->m_editfile.read(psz, iSize);
-      psz[iSize] = '\0';
+      m_pdata->m_editfile.read(psz, (::primitive::memory_size) iSize);
+      psz[(::primitive::memory_position) iSize] = '\0';
       str.ReleaseBuffer();
   //    str.replace("\n", "\r\n");
    }
@@ -820,19 +810,19 @@ namespace user
 
    void edit_plain_text::_001GetSelText(string & str) const
    {
-      int iEnd;
-      int iStart;
+      file_position iEnd;
+      file_position iStart;
       if(m_iSelEnd < 0)
       {
          if(m_iSelStart < 0)
          {
-            iEnd = m_pdata->m_editfile.get_length();
+            iEnd = (file_position) m_pdata->m_editfile.get_length();
             iStart = 0;
          }
          else
          {
             iStart = m_iSelStart;
-            iEnd = m_pdata->m_editfile.get_length();
+            iEnd = (file_position) m_pdata->m_editfile.get_length();
          }
       }
       else
@@ -850,15 +840,15 @@ namespace user
       }
       if(iEnd < iStart)
       {
-         int iSwap   = iEnd;
+         file_position iSwap   = iEnd;
          iEnd        = iStart;
          iStart      = iSwap;
       }
-      int iSize = iEnd - iStart;
-      char * psz = str.GetBufferSetLength(iSize + 1);
-      m_pdata->m_editfile.seek(iStart, ::ex1::seek_begin);
-      m_pdata->m_editfile.read(psz, iSize);
-      psz[iSize] = '\0';
+      file_position iSize = iEnd - iStart;
+      char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
+      m_pdata->m_editfile.seek((file_offset) iStart, ::ex1::seek_begin);
+      m_pdata->m_editfile.read(psz, (::primitive::memory_size) (iSize));
+      psz[(::primitive::memory_position)iSize] = '\0';
       str.ReleaseBuffer();
       str.replace("\n", "\r\n");
    }
@@ -866,7 +856,7 @@ namespace user
    void edit_plain_text::_001SetSelText(const char * psz)
    {
       m_pdata->m_editfile.seek(m_iSelStart, ::ex1::seek_begin);
-      m_pdata->m_editfile.Delete(m_iSelEnd - m_iSelStart);
+      m_pdata->m_editfile.Delete((file_size) (m_iSelEnd - m_iSelStart));
       m_pdata->m_editfile.seek(m_iSelStart, ::ex1::seek_begin);
       m_pdata->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate();
@@ -880,7 +870,6 @@ namespace user
       _001RedrawWindow();
    }
 
-
    void edit_plain_text::_002OnLButtonDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
@@ -888,15 +877,18 @@ namespace user
       ScreenToClient(&pt);
       m_bMouseDown = true;
       ::ca::graphics * pdc = GetDC();
+      if(pdc == NULL)
+         return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
       ReleaseDC(pdc);
       _001RedrawWindow();
-      System.set_keyboard_focus(this);
-      System.set_mouse_focus_LButtonDown(this);
+      Application.set_keyboard_focus(this);
+      Application.set_mouse_focus_LButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
+
    void edit_plain_text::_002OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
@@ -913,6 +905,44 @@ namespace user
       //System.simple_message_box(m_strText);
    }
 
+   void edit_plain_text::_002OnRButtonDown(gen::signal_object * pobj)
+   {
+      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      point pt = pmouse->m_pt;
+      ScreenToClient(&pt);
+      m_bMouseDown = true;
+      ::ca::graphics * pdc = GetDC();
+      m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
+      m_iSelEnd = m_iSelStart;
+      ReleaseDC(pdc);
+      _001RedrawWindow();
+      Application.set_keyboard_focus(this);
+      Application.set_mouse_focus_RButtonDown(this);
+      pmouse->m_bRet = true;
+      pmouse->set_lresult(1);
+   }
+
+   void edit_plain_text::_002OnRButtonUp(gen::signal_object * pobj)
+   {
+      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      point pt = pmouse->m_pt;
+      ScreenToClient(&pt);
+      ::ca::graphics * pdc = GetDC();
+      m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
+      m_iColumn = SelToColumn(m_iSelEnd);
+      ReleaseDC(pdc);
+      _001RedrawWindow();
+      m_bMouseDown = false;
+
+      ::userbase::menu menu(get_app());
+      menu.LoadXmlMenu("system\\edit_focus_popup.xml");
+      ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
+      menuPopup.TrackPopupMenu(0, pmouse->m_pt.x, pmouse->m_pt.y, GetParentFrame());
+
+      pmouse->set_lresult(1);
+      pmouse->m_bRet = true;
+   }
+
    void edit_plain_text::_001OnCalcLayoutProc(user::elemental * pview, ::ca::graphics * pdc)
    {
       ::ca::data::writing writing(m_pdata);
@@ -924,7 +954,7 @@ namespace user
       }
       int y = 0;
 ///      int i = 1;
-      size size3 = pdc->GetTextExtent("gqYALﾍ");
+      size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
 
       rect rectClient;
 
@@ -938,19 +968,17 @@ namespace user
       y = m_iLineHeight * m_iaLineIndex.get_size();
       if(y <= 0)
          y = 200;
-   //   pview->SetScrollSizes(MM_TEXT, 
+   //   pview->SetScrollSizes(MM_TEXT,
      //    m_size);
    }
 
    void edit_plain_text::_001OnCalcLayout(::ca::graphics * pdc)
    {
-      
+
       if(m_pfont != NULL)
       {
          pdc->SelectObject(m_pfont);
       }
-      string str;
-      _001GetViewText(str);
       stringa & straLines = m_lines.lines;
       int iSelStart;
       int iSelEnd;
@@ -960,7 +988,7 @@ namespace user
 //      int y = 0;
 //      bool bFound = false;
       string strLine;
-      size size3 = pdc->GetTextExtent("gqYALﾍWM");
+      size size3 = pdc->GetTextExtent(unitext("gqYALﾍWM"));
       size size;
       m_scrollinfo.m_sizeTotal.cx = 0;
       maxcy = size3.cy;
@@ -987,8 +1015,6 @@ namespace user
    int edit_plain_text::SelToLine(int iSel)
    {
       iSel -= m_iViewOffset;
-      string str;
-      _001GetViewText(str);
       stringa & straLines = m_lines.lines;
       int i1;
       int i2 = 0;
@@ -1019,8 +1045,6 @@ namespace user
          }
          iLine++;
       }
-      string str;
-      _001GetViewText(str);
       stringa & straLines = m_lines.lines;
       if(iLine >= straLines.get_size())
       {
@@ -1054,8 +1078,6 @@ namespace user
    int edit_plain_text::SelToColumn(int iSel)
    {
       iSel -= m_iViewOffset;
-      string str;
-      _001GetViewText(str);
       stringa & straLines = m_lines.lines;
       int i1;
       int i2 = 0;
@@ -1090,8 +1112,6 @@ namespace user
       {
          py += m_scrollinfo.m_ptScroll.y % m_iLineHeight;
       }
-      string str;
-      _001GetViewText(str);
       stringa & straLines = m_lines.lines;
       int iSelStart;
       int iSelEnd;
@@ -1103,7 +1123,7 @@ namespace user
       string strLine;
       string strExtent;
       size size3;
-      visual::graphics_extension(get_app()).GetTextExtent(pdc, "gqYALﾍ", size3);
+      visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gqYALﾍ"), size3);
       int iOffset = 0;
       stringa stra;
       for(int i = 0; i < straLines.get_size(); i++)
@@ -1157,7 +1177,7 @@ namespace user
          if(pszEnd[0] == '\0')
             break;
       }
-      return natural_min(iOffset + strLine.get_length() + m_iViewOffset, m_pdata->m_editfile.get_length());
+      return (strsize) natural_min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
    }
 
    void edit_plain_text::_002OnMouseMove(gen::signal_object * pobj)
@@ -1168,95 +1188,16 @@ namespace user
       ScreenToClient(&pt);
 
       pmouse->m_ecursor = ::visual::cursor_text_select;
-         
+
       if(m_bMouseDown)
       {
          ::ca::graphics * pdc = GetDC();
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
          ReleaseDC(pdc);
-         _001RedrawWindow();
+       //  _001RedrawWindow();
       }
 
    }
-
-   void edit_plain_text::_001OnGetText()
-   {
-      //if(m_bGetTextNeedUpdate)
-      {
-//         int iHeight = 0;
-         //char flag;
-         m_iViewOffset = 0;
-         //int iLineSize;
-         rect rectClient;
-         GetClientRect(rectClient);
-
-         if(m_iLineHeight == 0)
-         {
-            m_iLineOffset = 0;
-         }
-         else
-         {
-            m_iLineOffset = max(0, m_scrollinfo.m_ptScroll.y / m_iLineHeight);
-         }
-
-         int iLine = 0;
-         int iCLine = iLine / 100;
-         int i;
-
-         m_iViewOffset = 0;
-
-         for(iLine = 0, i = 0; i < iCLine; i++, iLine += 100)
-         {
-            m_iViewOffset += m_iaCLineIndex[i];
-         }
-         for(; iLine < m_iLineOffset && iLine < m_iaLineIndex.get_size(); iLine++)
-         {
-            m_iViewOffset += m_iaLineIndex[iLine];
-         }
-         m_iViewSize = 0;
-         if(m_iLineHeight == 0)
-         {
-            m_iLineCount = 1;
-         }
-         else
-         {
-            m_iLineCount = (rectClient.height() / m_iLineHeight) + 1;
-         }
-         for(i = 0; i < m_iLineCount && iLine < m_iaLineIndex.get_size(); i++, iLine++)
-         {
-            m_iViewSize += m_iaLineIndex[iLine];
-         }
-         m_lines.lines.set_size(0, 100);
-         string str;
-         m_pdata->m_editfile.seek(m_iViewOffset, ::ex1::seek_begin);
-         iLine = m_iLineOffset;
-         i = 0;
-         int iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
-         int iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : min(m_iaLineIndex.get_size(), m_iLineCount) - 1;
-         for(int iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++, iLine++)
-         {
-            int iLen = m_iaLineIndex[iLine];
-            LPTSTR lpsz = str.GetBufferSetLength(iLen + 1);
-            m_pdata->m_editfile.read(lpsz, iLen);
-            lpsz[iLen] = '\0';
-            str.ReleaseBuffer();
-            m_lines.lines.add(str);
-         }
-         m_y = m_scrollinfo.m_ptScroll.y;
-      }
-      visibleTextEvent(m_iLineOffset, m_iLineCount);
-   }
-
-
-   void edit_plain_text::_001GetViewText(string & str)
-   {
-      UNREFERENCED_PARAMETER(str);
-      _001OnGetText();
-      //int iSize = min(m_editfile.get_length() - m_iViewOffset, m_iViewSize);
-      //char * psz = str.GetBufferSetLength(iSize + 1);
-      //m_editfile.seek(m_iViewOffset, ::ex1::seek_begin);
-   }
-
 
    void edit_plain_text::_001GetViewSel(int &iSelStart, int &iSelEnd)
    {
@@ -1340,7 +1281,7 @@ namespace user
                iLineSize++;
             }
          }
-         
+
          i++;
       }
       m_iaLineIndex.add(iLineSize);
@@ -1376,9 +1317,25 @@ namespace user
             return;
          }
       }
+      else if(pkey->m_nChar == 'z')
+      {
+         if(Application.is_key_pressed(VK_CONTROL))
+         {
+            Undo();
+            return;
+         }
+      }
+      else if(pkey->m_nChar == 'y')
+      {
+         if(Application.is_key_pressed(VK_CONTROL))
+         {
+            Redo();
+            return;
+         }
+      }
 
-      bool bShift = (::GetKeyState(VK_SHIFT) & 0x80000000) != 0;
-      
+      bool bShift = Application.is_key_pressed(VK_SHIFT);
+
       if(pkey->m_nChar == VK_BACK)
       {
          if(!m_bReadOnly)
@@ -1392,7 +1349,7 @@ namespace user
                psetsel->m_iPreviousSelEnd = m_iSelEnd;
                ::sort::sort(i1, i2);
                m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
-               m_pdata->m_editfile.Delete(i2 - i1);
+               m_pdata->m_editfile.Delete((file_size)(i2 - i1));
                IndexRegisterDelete(i1, i2 - i1);
                m_iSelEnd = i1;
                m_iSelStart = m_iSelEnd;
@@ -1420,7 +1377,7 @@ namespace user
                int iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_iSelEnd -= iMultiByteUtf8DeleteCount;
                m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
-               m_pdata->m_editfile.Delete(iMultiByteUtf8DeleteCount);
+               m_pdata->m_editfile.Delete((file_size) iMultiByteUtf8DeleteCount);
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_iSelStart = m_iSelEnd;
                psetsel->m_iSelStart = m_iSelStart;
@@ -1566,7 +1523,7 @@ namespace user
             int i2 = m_iSelEnd;
             ::sort::sort(i1, i2);
             m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
-            m_pdata->m_editfile.Delete(i2 - i1);
+            m_pdata->m_editfile.Delete((file_size) (i2 - i1));
             IndexRegisterDelete(i1, i2 - i1);
             m_iSelEnd = i1;
             m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
@@ -1587,7 +1544,7 @@ namespace user
                iCode |= 0x80000000;
             }
             string strMap;
-            str = System.keyboard().process_key(iCode, iChar, 0);
+            str = Application.keyboard().process_key(iCode, iChar, 0);
             m_iSelEnd += str.get_length();
             m_iSelStart = m_iSelEnd;
            m_pdata-> m_editfile.Insert(str, str.get_length());
@@ -1627,7 +1584,7 @@ namespace user
             {
                ::sort::sort(i1, i2);
                m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
-               m_pdata->m_editfile.Delete(i2 - i1);
+               m_pdata->m_editfile.Delete((file_size) (i2 - i1));
                m_iSelEnd = i1;
                m_iSelStart = m_iSelEnd;
             }
@@ -1642,7 +1599,7 @@ namespace user
                const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
                int iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
-               m_pdata->m_editfile.Delete(iMultiByteUtf8DeleteCount);
+               m_pdata->m_editfile.Delete((file_size) (iMultiByteUtf8DeleteCount));
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_iSelStart = m_iSelEnd;
             }
@@ -1668,8 +1625,8 @@ namespace user
    void edit_plain_text::OneLineUp()
    {
       m_scrollinfo.m_ptScroll.y -= m_iLineHeight;
-      if(m_scrollinfo.m_ptScroll.y < 0)
-         m_scrollinfo.m_ptScroll.y = 0;
+      if(m_scrollinfo.m_ptScroll.y < m_scrollinfo.m_rectMargin.top)
+         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_rectMargin.top;
       int iHeight = 0;
       //char flag;
       m_iViewOffset = 0;
@@ -1759,9 +1716,10 @@ namespace user
    }
    void edit_plain_text::_001OnUpdate()
    {
+
       string str;
       _001GetText(str);
-      
+
       if(m_iSelStart > str.get_length())
          m_iSelStart = str.get_length();
       else if(m_iSelStart < 0)
@@ -1779,6 +1737,7 @@ namespace user
       dc->CreateCompatibleDC(NULL);
       _001OnCalcLayout(dc);
       lineCountEvent(m_lines.lines.get_count());
+      _001OnSetText();
    }
 
 
@@ -1842,6 +1801,10 @@ namespace user
       m_pdata->m_ptreeitem = m_pdata->m_ptreeitem->get_previous();
       CreateLineIndex();
       m_bGetTextNeedUpdate = true;
+
+      _001OnUpdate();
+      _001OnAfterChangeText();
+
       return true;
    }
    bool edit_plain_text::Redo()
@@ -1861,7 +1824,7 @@ namespace user
       {
          ptreeitem = m_pdata->m_ptreeitem->get_expandable_child(m_pdata->m_iBranch);
       }
-      else 
+      else
          ptreeitem = m_pdata->m_ptreeitem->get_next();
       if(ptreeitem == NULL)
          return false;
@@ -1870,6 +1833,10 @@ namespace user
       pcommand->Redo(m_pdata);
       CreateLineIndex();
       m_bGetTextNeedUpdate = true;
+
+      _001OnUpdate();
+      _001OnAfterChangeText();
+
       return true;
    }
 
@@ -1880,13 +1847,13 @@ namespace user
 
    bool edit_plain_text::CanRedo()
    {
-      return m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count() 
+      return m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count()
          || m_pdata->m_ptreeitem->get_next(false, false) != NULL;
    }
 
    int edit_plain_text::GetRedoBranchCount()
    {
-      return m_pdata->m_ptreeitem->get_expandable_children_count() 
+      return m_pdata->m_ptreeitem->get_expandable_children_count()
            + (m_pdata->m_ptreeitem->m_pnext != NULL ? 1 : 0)
            + (m_pdata->m_ptreeitem->m_pchild != NULL ? 1 : 0);
    }
@@ -1897,7 +1864,7 @@ namespace user
    {
       ::ca::data::writing writing(m_pdata);
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
-      m_pdata->m_editfile.Delete(m_pdata->m_editfile.get_length());
+      m_pdata->m_editfile.Delete((::primitive::memory_size)m_pdata->m_editfile.get_length());
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
       m_pdata->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate();
@@ -1940,15 +1907,80 @@ namespace user
 
    void edit_plain_text::clipboard_paste()
    {
+
       string str;
       str = System.copydesk().get_plain_text();
       str.replace("\r\n", "\n");
       _001SetSelText(str);
+      MacroBegin();
+      MacroRecord(new plain_text_data::FileCommand());
+      MacroEnd();
    }
 
 
    void edit_plain_text::_001OnSetText()
    {
+      m_iViewOffset = 0;
+      rect rectClient;
+      GetClientRect(rectClient);
+
+      if(m_iLineHeight == 0)
+      {
+         m_iLineOffset = 0;
+      }
+      else
+      {
+         m_iLineOffset = max(0, m_scrollinfo.m_ptScroll.y / m_iLineHeight);
+      }
+
+      int iLine = 0;
+      int iCLine = iLine / 100;
+      int i;
+
+      m_iViewOffset = 0;
+
+      for(iLine = 0, i = 0; i < iCLine; i++, iLine += 100)
+      {
+         m_iViewOffset += m_iaCLineIndex[i];
+      }
+      for(; iLine < m_iLineOffset && iLine < m_iaLineIndex.get_size(); iLine++)
+      {
+         m_iViewOffset += m_iaLineIndex[iLine];
+      }
+      m_iViewSize = 0;
+      if(m_iLineHeight == 0)
+      {
+         m_iLineCount = 1;
+      }
+      else
+      {
+         m_iLineCount = (rectClient.height() / m_iLineHeight) + 1;
+      }
+      for(i = 0; i < m_iLineCount && iLine < m_iaLineIndex.get_size(); i++, iLine++)
+      {
+         m_iViewSize += m_iaLineIndex[iLine];
+      }
+      m_lines.lines.set_size(0, 100);
+      string str;
+      m_pdata->m_editfile.seek(m_iViewOffset, ::ex1::seek_begin);
+      iLine = m_iLineOffset;
+      i = 0;
+      int iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
+      int iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : min(m_iaLineIndex.get_size(), m_iLineCount) - 1;
+      for(int iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++, iLine++)
+      {
+         int iLen = m_iaLineIndex[iLine];
+         LPTSTR lpsz = str.GetBufferSetLength(iLen + 1);
+         m_pdata->m_editfile.read(lpsz, iLen);
+         lpsz[iLen] = '\0';
+         str.ReleaseBuffer();
+         m_lines.lines.add(str);
+      }
+
+      m_y = m_scrollinfo.m_ptScroll.y;
+
+      visibleTextEvent(m_iLineOffset, m_iLineCount);
+
    }
 
    bool edit_plain_text::should_load_full_file()
@@ -2062,6 +2094,34 @@ namespace user
       {
          listen(m_pdata);
       }
+   }
+
+   void edit_plain_text::_001OnUpdateEditFocusCopy(gen::signal_object * pobj)
+   {
+      SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
+      string str;
+      _001GetSelText(str);
+      pupdatecmdui->m_pcmdui->Enable(str.has_char());
+   }
+
+   void edit_plain_text::_001OnEditFocusCopy(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      string str;
+      _001GetSelText(str);
+      System.copydesk().set_plain_text(str);
+   }
+
+   void edit_plain_text::_001OnUpdateEditFocusPaste(gen::signal_object * pobj)
+   {
+      SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
+      pupdatecmdui->m_pcmdui->Enable(System.copydesk().get_plain_text().has_char());
+   }
+
+   void edit_plain_text::_001OnEditFocusPaste(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      _001SetSelText(System.copydesk().get_plain_text());
    }
 
 } // namespace ex1

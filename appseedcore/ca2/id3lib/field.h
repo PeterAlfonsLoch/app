@@ -85,7 +85,7 @@ public:
 };
 
 class ID3_Fields :
-   public array_ptr < ID3_Field >
+   public array_del_ptr < ID3_Field >
 {
 public:
 };

@@ -51,9 +51,9 @@ simple_frame_window::~simple_frame_window()
 /////////////////////////////////////////////////////////////////////////////
 // simple_frame_window message handlers
 
-void simple_frame_window::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void simple_frame_window::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   userbase::frame_window::_001InstallMessageHandling(pinterface);
+   userbase::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_NCACTIVATE     , pinterface, this, &simple_frame_window::_001OnNcActivate);
    IGUI_WIN_MSG_LINK(WM_DDE_INITIATE   , pinterface, this, &simple_frame_window::_001OnDdeInitiate);
@@ -64,6 +64,10 @@ void simple_frame_window::_001InstallMessageHandling(::user::win::message::dispa
    IGUI_WIN_MSG_LINK(WM_SYSCOMMAND     , pinterface, this, &simple_frame_window::_001OnSysCommand);
    IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO  , pinterface, this, &simple_frame_window::_001OnGetMinMaxInfo);
    IGUI_WIN_MSG_LINK(WM_USER + 184     , pinterface, this, &simple_frame_window::_001OnUser184);
+   IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pinterface, this, &simple_frame_window::_001OnMouseMove);
+
+   connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
+   connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
 }
 
 bool simple_frame_window::IsFullScreen()
@@ -81,8 +85,38 @@ bool simple_frame_window::IsFullScreen()
 
 void simple_frame_window::_001OnDestroy(gen::signal_object * pobj) 
 {
+   try
+   {
+      if(m_papp != NULL && &Application != NULL)
+      {
+         Application.remove_frame(this);
+      }
+   }
+   catch(...)
+   {
+   }
 
-   System.remove_frame(this);
+   try
+   {
+      if(m_pbergedge != NULL && &Bergedge != NULL)
+      {
+         Bergedge.remove_frame(this);
+      }
+   }
+   catch(...)
+   {
+   }
+
+   try
+   {
+      if(m_psystem != NULL && &System != NULL)
+      {
+         System.remove_frame(this);
+      }
+   }
+   catch(...)
+   {
+   }
 
    pobj->previous();
 
@@ -91,24 +125,36 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 window_frame::FrameSchema * simple_frame_window::create_frame_schema()
 {
    window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-   pschema->m_pruntimeclassControlBoxButton = typeid(MetaButton);
+   pschema->m_typeinfoControlBoxButton = ::ca::get_type_info < MetaButton > ();
    return pschema;
 }
 
 void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 {
+   
+   
    SCAST_PTR(::user::win::message::create, pcreate, pobj)
-//      user::application & app = System;
+
 
    if(pobj->previous())
       return;
 
+
+
+
+   ::user::place_holder * pplaceholder = dynamic_cast < ::user::place_holder * > (GetParent());
+
+   if(pplaceholder != NULL)
+   {
+      ::user::place_holder_container * pcontainer = dynamic_cast < ::user::place_holder_container * > (pplaceholder->GetParent());
+      if(pcontainer != NULL)
+      {
+         pcontainer->on_hold(this, pplaceholder);
+      }
+   }
+
    if(m_bCustomFrame)
    {
-//      ModifyStyle(
-  //       WS_CAPTION | WS_THICKFRAME,
-    //     0, SWP_FRAMECHANGED);
-
       WNDCLASS wndclass;
 
       char szBuf [64];
@@ -124,8 +170,8 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 
       window_frame::FrameSchema * pschema = create_frame_schema();
       m_pframeschema = pschema;
-      m_wndframework.AttachFrameSchema(m_pframeschema);
-      if(!m_wndframework.update(
+      m_workset.AttachFrameSchema(m_pframeschema);
+      if(!m_workset.update(
          this,
          this,
          this,
@@ -135,34 +181,19 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
          return;
       }
 
-       //m_wndframework.SetAppearanceTransparency(window_frame::Transparent);
-
-   
-      m_wndframework.layout();
-
-      
-//      SetTimer(1257784, 784, NULL);
-      //GetWindowRect(m_rectClient);
-      //SetLayeredWindowAttributes(RGB(127, 192, 215), 255, LWA_ALPHA);
-      //_001RedrawWindow();
-
-      
-
-
    }
+   
    defer_synch_layered();
 
-   //visual::api::EnableOpenGL(*this, m_hdcOpenGL, m_hglrc);
-
-
    pcreate->m_bRet = false;
+
 }
 
 void simple_frame_window::_001OnSize(gen::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(!m_wndframework.GetMovingManager()->IsMoving()
-   && !m_wndframework.GetSizingManager()->IsSizing())
+   if(!m_workset.GetMovingManager()->IsMoving()
+   && !m_workset.GetSizingManager()->IsSizing())
    {
       _001RedrawWindow();
    }
@@ -177,8 +208,8 @@ void simple_frame_window::_001OnSize(gen::signal_object * pobj)
 void simple_frame_window::_001OnMove(gen::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(!m_wndframework.GetMovingManager()->IsMoving()
-   && !m_wndframework.GetSizingManager()->IsSizing())
+   if(!m_workset.GetMovingManager()->IsMoving()
+   && !m_workset.GetSizingManager()->IsSizing())
    {
       _001RedrawWindow();
    }
@@ -190,7 +221,7 @@ void simple_frame_window::_001OnMove(gen::signal_object * pobj)
 
 }
 
-BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, create_context* pContext) 
+BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext) 
 {
 // trans   HICON hicon = GetIcon(false);
    return userbase::frame_window::OnCreateClient(lpcs, pContext);
@@ -198,21 +229,14 @@ BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, create_context* pC
 
 BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs) 
 {
+
    if(cs.lpszClass == NULL)
    {
-      cs.lpszClass = System.RegisterWndClass(
-         CS_HREDRAW | CS_VREDRAW,
-         //CS_OWNDC,
-         0, 0, 0);
+      cs.lpszClass = System.RegisterWndClass(CS_HREDRAW | CS_VREDRAW, 0, 0, 0);
    }
 
    if(!userbase::frame_window::PreCreateWindow(cs))
       return FALSE;
-
-   cs.style &= ~WS_VISIBLE;
-
-   //cs.dwExStyle |= WS_EX_LAYERED;
-   cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
    if(cs.hMenu != NULL)
    {
@@ -220,14 +244,16 @@ BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs)
       cs.hMenu = NULL;
    }
 
+   cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
+
    return TRUE;
 }
 
 void simple_frame_window::layout() 
 {
-   if(m_bCustomFrame)
+   if(m_bCustomFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
    {
-      m_wndframework.layout();
+      m_workset.layout();
    }
    else
    {
@@ -274,26 +300,43 @@ void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
    //   m_statusbar.ShowWindow(nShow);
       m_menubar.ShowWindow(nShow);
       m_dialogbar.ShowWindow(nShow);*/
+      
+      
+      POSITION pos = m_toolbarmap.m_keymap.get_start_position();
+
+      id idKey;
+      ::user::interaction * pbar;
+      while(pos != NULL)
+      {
+          m_toolbarmap.m_keymap.get_next_assoc(pos, idKey, pbar);
+          try
+          {
+             pbar->ShowWindow(nShow);
+          }
+          catch(...)
+          {
+          }
+      }
+
+      layout();
 
    }
 
 void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 {
-   HWND hwndTrayWindow = FindWindowA("Shell_traywnd", "");
+   /*HWND hwndTrayWindow = NULL;
+   if(GetParent() == NULL)
+   {
+      hwndTrayWindow = FindWindowA("Shell_traywnd", "");
+   }*/
    if(bFullScreen)
    {
-      ModifyStyle(
-         WS_BORDER |
-         WS_CAPTION |
-         WS_THICKFRAME,
-         0,
-         0);
 
       ShowControlBars(false);
 
-      DWORD dwStyle = GetStyle();
+  //    DWORD dwStyle = GetStyle();
 
-      DWORD dwStyleEx = GetExStyle();
+//      DWORD dwStyleEx = GetExStyle();
 
       rect rectDesktop;
          
@@ -304,37 +347,30 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
       else
       {
          System.get_screen_rect(rectDesktop);
-         ::AdjustWindowRectEx(
+         /*::AdjustWindowRectEx(
             &rectDesktop,
             dwStyle,
             FALSE,
-            dwStyleEx);
+            dwStyleEx);*/
       }
 
       m_FullScreenWindowRect = rectDesktop;
-         
-      SetWindowPos(
-         ZORDER_TOP,
-         rectDesktop.left, rectDesktop.top,
-         rectDesktop.width(), rectDesktop.height(),
-         SWP_FRAMECHANGED |
-         SWP_SHOWWINDOW);
 
-      ::SetWindowPos(hwndTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
+      //if(GetParent() == NULL)
+      {
+         SetWindowPos(
+            ZORDER_TOP,
+            rectDesktop.left, rectDesktop.top,
+            rectDesktop.width(), rectDesktop.height(),
+            SWP_FRAMECHANGED |
+            SWP_SHOWWINDOW);
+
+         //::SetWindowPos(hwndTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
+      }
    }
    else
    {
       ShowControlBars(true);
-      if(!m_bCustomFrame)
-      {
-         ModifyStyle(
-            0,
-            WS_BORDER |
-            WS_CAPTION |
-            WS_THICKFRAME,
-            SWP_FRAMECHANGED);
-      }
-      ::SetWindowPos(hwndTrayWindow, 0, 0, 0, 0, 0, SWP_SHOWWINDOW);
    }
 }
 
@@ -343,6 +379,12 @@ void simple_frame_window::_001OnViewFullScreen(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    ToggleFullScreen();
+}
+
+void simple_frame_window::_001OnMouseMove(gen::signal_object * pobj) 
+{
+   UNREFERENCED_PARAMETER(pobj);
+//   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
 }
 
 void simple_frame_window::_001OnUpdateViewFullScreen(gen::signal_object * pobj) 
@@ -376,6 +418,29 @@ void simple_frame_window::_001OnSysCommand(gen::signal_object * pobj)
          return;
       }
    }
+
+   if(m_bCustomFrame)
+   {
+      if(pbase->m_wparam == SC_MAXIMIZE)
+      {
+         WfiMaximize();
+         pbase->m_bRet = true;
+         pbase->set_lresult(0);
+      }
+      else if(pbase->m_wparam == SC_RESTORE)
+      {
+         WfiRestore();
+         pbase->m_bRet = true;
+         pbase->set_lresult(0);
+      }
+      else if(pbase->m_wparam == SC_MINIMIZE)
+      {
+         WfiMinimize();
+         pbase->m_bRet = true;
+         pbase->set_lresult(0);
+      }
+   }
+
 }
 
 
@@ -413,11 +478,7 @@ void simple_frame_window::SetBorderRect(LPCRECT lpcrect)
 void simple_frame_window::SetCustomFrame(bool bCustom)
 {
    m_bCustomFrame = bCustom;
-   m_wndframework.Enable(bCustom);
-   if(!bCustom)
-   {
-      ModifyStyle(0, WS_CAPTION | WS_THICKFRAME, SWP_FRAMECHANGED);
-   }
+   m_workset.Enable(bCustom);
    layout();
    _001RedrawWindow();
 
@@ -475,33 +536,30 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       return;
    }
 
-   userbase::application & app = System;
-
    if(is_application_main_window())
    {
-      if(app.GetVisibleTopLevelFrameCountExcept(this) <= 0)
+      if(Application.GetVisibleTopLevelFrameCountExcept(this) <= 0)
       {
          // attempt to save all documents
-         if (!System.save_all_modified())
+         if (!Application.save_all_modified())
             return;     // don't close it
 
          // hide the application's windows before closing all the documents
-         System.HideApplication();
+         Application.HideApplication();
 
          // close all documents first
-         System.close_all_documents(FALSE);
+         Application.close_all_documents(FALSE);
 
-         app._001CloseAllDocuments(FALSE);
+         Application._001CloseAllDocuments(FALSE);
 
 
          // there are cases where destroying the documents may destroy the
          //  main ::ca::window of the application.
          //bool bAfxContextIsDll = afxContextIsDLL;
          //if (!bAfxContextIsDll && papp->GetVisibleFrameCount() <= 0)
-         if(app.GetVisibleFrameCount() <= 0 && app.m_puiInitialPlaceHolderContainer == NULL)
+         if(Application.GetVisibleFrameCount() <= 0)
          {
-            AfxPostQuitMessage(0);
-   //         papp->PostThreadMessage(WM_QUIT, 0, 0);
+            Application.PostThreadMessageA(WM_QUIT, 0, 0);
             return;
          }
          return;
@@ -521,9 +579,9 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
 void simple_frame_window::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp) 
 {
    UNREFERENCED_PARAMETER(bCalcValidRects);
-   if(m_wndframework.IsEnabled() && m_wndframework.m_pframeschema != NULL)
+   if(m_workset.IsEnabled() && m_workset.m_pframeschema != NULL)
    {
-      m_wndframework.OnNcCalcSize(&lpncsp->rgrc[0]);
+      m_workset.OnNcCalcSize(&lpncsp->rgrc[0]);
    }
    else
    {
@@ -544,14 +602,14 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
    if (!IsWindowEnabled())
       pncactivate->m_bActive = FALSE;
 
-   if(m_bCustomFrame)
+   /*if(m_bCustomFrame)
    {
-      m_wndframework.SetActiveFlag(pncactivate->m_bActive);
+      m_workset.SetActiveFlag(pncactivate->m_bActive);
       pncactivate->set_lresult(TRUE); // bStop
       pncactivate->m_bRet = true;
       return;
    }
-   else
+   else*/
    {
       // do not call the base class because it will call Default()
       //  and we may have changed bActive.
@@ -563,8 +621,10 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
 
 
 
-BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, create_context* pContext)
+BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
+
+   UNREFERENCED_PARAMETER(pParentWnd);
 
    Application.defer_initialize_twf();
 
@@ -583,8 +643,7 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
    // attempt to create the ::ca::window
    const char * lpszClass = (const char *) GetIconWndClass(dwDefaultStyle, pszMatter);
    const char * lpszTitle = m_strTitle;
-   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0),
-     pParentWnd, /*nIDResource*/ NULL, pContext))
+   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), Application.get_request_parent_ui(this, pContext), /*nIDResource*/ NULL, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }
@@ -699,37 +758,11 @@ void simple_frame_window::pre_translate_message(gen::signal_object * pobj)
 
 
 
-bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
-{
-   return (m_pupdowntarget != NULL) && ((GetStyle() & WS_CHILD) != 0);
-}
-
-bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
-{
-   return (m_pupdowntarget != NULL) && ((GetStyle() & WS_CHILD) == 0);
-}
-
-
-void simple_frame_window::WfiOnDown()
-{
-   window_frame_Attach();
-}
-
-void simple_frame_window::WfiOnUp()
-{
-   window_frame_Detach();
-}
 
 
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
-   if(Application.m_bClientOnly)
-   {
-      WindowDataEnableSaveWindowRect(false);
-      WfiFullScreen(true, false);
-      WindowDataEnableSaveWindowRect(true);
-   }
-   else if(m_bFrameMoveEnable)
+   if(m_bFrameMoveEnable)
    {
       WindowDataLoadWindowRect(bForceRestore);
       WindowDataEnableSaveWindowRect(true);
@@ -739,7 +772,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
 {
-   if(System.savings().is_trying_to_save(gen::resource_processing))
+   if(System.savings().is_trying_to_save(gen::resource_processing)
+   || System.savings().is_trying_to_save(gen::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -783,7 +817,11 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if(System.savings().is_trying_to_save(gen::resource_processing)
+      if(System.savings().is_trying_to_save(gen::resource_translucent_background))
+      {
+         //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
+      }
+      else if(System.savings().is_trying_to_save(gen::resource_processing)
       || System.savings().is_trying_to_save(gen::resource_blur_background))
       {
          imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
@@ -799,19 +837,22 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
             m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
          }
-         m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
-         m_fastblur.blur();
-         imaging.bitmap_blend(
-            m_fastblur->get_graphics(), 
-            null_point(), 
-            rectClient.size(),
-            m_dibBk->get_graphics(),
-            null_point(),
-            49);
-         pdc->from(rectClient.size(),
-            m_fastblur->get_graphics(),
-            null_point(),
-            SRCCOPY);
+         if(m_fastblur.is_set() && m_fastblur->area() > 0)
+         {
+            m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
+            m_fastblur.blur();
+            imaging.bitmap_blend(
+               m_fastblur->get_graphics(), 
+               null_point(), 
+               rectClient.size(),
+               m_dibBk->get_graphics(),
+               null_point(),
+               49);
+            pdc->from(rectClient.size(),
+               m_fastblur->get_graphics(),
+               null_point(),
+               SRCCOPY);
+         }
       }
       pdc->SelectClipRgn(NULL);
    }
@@ -822,25 +863,40 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
 void simple_frame_window::on_set_parent(::user::interaction* pguieParent)
 {
    userbase::frame_window::on_set_parent(pguieParent);
-   if(pguieParent != NULL)
+   if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
    {
-      m_bCustomFrameBefore = m_bCustomFrame;
-      m_bCustomFrame = false;
-      m_wndframework.Enable(false);
-      layout();
+      // an updowntarget always show the frame for upping/downing
+      if(!m_bCustomFrame)
+      {
+         m_bCustomFrame = m_bCustomFrameBefore;
+      }
+      if(!m_workset.IsEnabled())
+      {
+         m_workset.Enable(true);
+         layout();
+      }
    }
    else
    {
-      m_bCustomFrame = m_bCustomFrameBefore;
-      m_wndframework.Enable(m_bCustomFrame);
-      layout();
+      if(pguieParent != NULL)
+      {
+         m_bCustomFrameBefore = m_bCustomFrame;
+         m_bCustomFrame = false;
+         m_workset.Enable(false);
+         layout();
+      }
+      else
+      {
+         m_bCustomFrame = m_bCustomFrameBefore;
+         m_workset.Enable(m_bCustomFrame);
+         layout();
+      }
    }
-
 }
 
 void simple_frame_window::GetClientRect(LPRECT lprect)
 {
-   if(m_bCustomFrame && m_pframeschema != NULL)
+   if(m_bCustomFrame && m_pframeschema != NULL && !WfiIsFullScreen())
    {
       m_pframeschema->GetWndClientRect(lprect);
    }
@@ -853,11 +909,11 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
 
 bool simple_frame_window::is_application_main_window()
 {
-   return  System.GetMainWnd() == this;
+   return Application.GetMainWnd() == this;
 }
 
 
-void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar)
+void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle, DWORD dwStyle)
 {
    ::user::interaction * pui = m_toolbarmap[idToolBar];
    simple_toolbar * ptoolbar;
@@ -868,13 +924,13 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar)
    else
    {
       ptoolbar = new simple_toolbar(get_app());
-      ptoolbar->CreateEx(this);
+      ptoolbar->CreateEx(this, dwCtrlStyle, dwStyle);
       pui = ptoolbar;
       m_toolbarmap.set_at(idToolBar, pui);
    }
    if(ptoolbar != NULL)
    {
-      ptoolbar->LoadXmlToolBar(Application.file().as_string(System.dir().matter(pszToolBar)));
+      ptoolbar->LoadXmlToolBar(Application.file().as_string(Application.dir().matter(pszToolBar)));
       layout();
    }
 }
@@ -889,4 +945,44 @@ void simple_frame_window::_001OnUser184(gen::signal_object * pobj)
       InitialFramePosition(true);
       pbase->m_bRet = true;
    }
+}
+
+// persistent frame implemenation using updowntarget
+bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
+{
+   return 
+      m_pupdowntarget != NULL
+   && m_pupdowntarget->is_up_down_target()
+   && m_pupdowntarget->up_down_target_is_down();
+}
+
+bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
+{
+   return 
+      m_pupdowntarget != NULL
+   && m_pupdowntarget->is_up_down_target()
+   && m_pupdowntarget->up_down_target_is_up();
+}
+
+void simple_frame_window::WfiOnDown()
+{
+   window_frame_Attach();
+}
+
+void simple_frame_window::WfiOnUp()
+{
+   window_frame_Detach();
+}
+
+
+BOOL simple_frame_window::create(const char * lpszClassName,
+         const char * lpszWindowName,
+         DWORD dwStyle,
+         const RECT& rect,
+         ::user::interaction* pParentWnd,        // != NULL for popups
+         const char * lpszMenuName,
+         DWORD dwExStyle,
+         ::ca::create_context* pContext)
+{
+   return ::userbase::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }

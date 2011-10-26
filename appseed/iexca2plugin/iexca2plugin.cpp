@@ -27,9 +27,12 @@
 
 #include <string.h>
 
-#pragma comment(lib, "win.lib")
-
 #undef new
+
+void __cdecl _ca2_purecall(void)
+{
+    throw "simple_exception";
+}
 
 
 bool g_bApp = false;
@@ -354,14 +357,13 @@ DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 	{
       g_hinstance = hinstance;
       char lpszDir[MAX_PATH * 8];
-      get_ca2_folder(lpszDir);
+      strcpy_dup(lpszDir, dir::ca2());
 #ifdef _X86_
-      strcat(lpszDir, "\\ca2\\stage\\x86\\");
+      strcat(lpszDir, "\\stage\\x86\\");
 #else
-      strcat(lpszDir, "\\ca2\\stage\\x64\\");
+      strcat(lpszDir, "\\stage\\x64\\");
 #endif
       ::SetDllDirectory(lpszDir);
-      defer_install_spa();
 	}
 	else if (dwReason == DLL_PROCESS_DETACH)
 	{

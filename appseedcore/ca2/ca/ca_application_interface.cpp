@@ -13,7 +13,7 @@ namespace ca
    }
 
    /* template for application_interface implementation
-   void application_interface::on_application_signal(::ca::application::signal_object * psignal)
+   void application_interface::on_application_signal(::radix::application_signal_object * psignal)
    {
    }
    */

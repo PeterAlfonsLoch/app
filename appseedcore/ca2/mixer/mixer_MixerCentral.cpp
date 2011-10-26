@@ -82,7 +82,7 @@ MMRESULT MixerCentral::CreateNewDestination(DWORD dwComponentType)
 
 bool MixerCentral::Initialize()
 {
-//   m_pmixerthread = (CMixerThread *) AfxBeginThread(&typeid(CMixerThread));
+//   m_pmixerthread = (CMixerThread *) AfxBeginThread(::ca::get_type_info < CMixerThread > ());
 //   if(m_pmixerthread == NULL)
 //      return false;
 //   return true«

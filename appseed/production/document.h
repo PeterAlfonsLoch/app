@@ -21,7 +21,7 @@ namespace production
 	   virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      BOOL on_open_document(const char * lpszPathName);
+      bool on_open_document(var varFile);
 
    };
 

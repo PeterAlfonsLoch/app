@@ -1,14 +1,15 @@
 #pragma once
 
+
 namespace userbase
 {
+
 
    class notify_icon_listener;
 
 
    class CLASS_DECL_ca notify_icon :
-      virtual public ::ca::window_sp,
-      virtual public gen::signalizable
+      virtual public ::user::interaction
    {
    public:
 
@@ -21,7 +22,9 @@ namespace userbase
 
       UINT     m_uiId;
       bool     m_bCreated;
+#ifdef WINDOWS
       NOTIFYICONDATA m_nid;
+#endif
       notify_icon_listener * m_plistener;
 
 
@@ -34,12 +37,18 @@ namespace userbase
 
 
       bool ModifyIcon(HICON hicon);
-      bool create(UINT uiId, notify_icon_listener * plistener, HICON hicon);
+
+      using ::user::interaction::create;
+      bool create(UINT id, notify_icon_listener * plistener, HICON hicon);
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage)
 
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
+
 
    };
 
+
 } // namespace userbase
+
+

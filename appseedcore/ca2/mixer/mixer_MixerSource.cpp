@@ -34,9 +34,9 @@ MMRESULT MixerSource::GetLineControls()
       //        EndDialog(hwnd, FALSE);
       return MMSYSERR_NOERROR;
    }
-   
+
    m_mixercontrola.set_size(iControlCount);
-   
+
    if(m_mixerlinecontrols.pamxctrl != NULL)
       delete[] (MIXERCONTROL *) m_mixerlinecontrols.pamxctrl;
    m_mixerlinecontrols.cbStruct       = sizeof(MIXERLINECONTROLS);
@@ -51,9 +51,9 @@ MMRESULT MixerSource::GetLineControls()
    {
       m_mixerlinecontrols.pamxctrl[i].cbStruct = sizeof(MIXERCONTROL);
    }
-   
+
    mmrc = mixerGetLineControls(
-      (HMIXEROBJ)GetDevice()->m_hMixer, 
+      (HMIXEROBJ)GetDevice()->m_hMixer,
       &m_mixerlinecontrols,
       MIXER_GETLINECONTROLSF_ALL);
    if (MMSYSERR_NOERROR != mmrc)
@@ -71,10 +71,10 @@ MMRESULT MixerSource::GetLineControls()
       PMIXERCONTROL       pamxctrl;
       //        LPMIXERCONTROLDETAILS lpmcd;
       MixerControl *     lpMixerControl;
-      
+
       //        if (0 != (APP_OPTF_DEBUGLOG & gfuAppOptions))
       //          MixAppDebugLog(NULL);
-      
+
       for (int i = 0; (UINT) i < m_mixerlinecontrols.cControls; i++)
       {
          lpMixerControl = m_mixercontrola.ptr_at(i);
@@ -85,7 +85,7 @@ MMRESULT MixerSource::GetLineControls()
          *pamxctrl = m_mixerlinecontrols.pamxctrl[i];
          lpMixerControl->Prepare();
          //            CMixer::GetControlTypeName(pamxctrl, lpMixerControl->m_strTypeName);
-         
+
          switch (pamxctrl->dwControlType)
          {
             //            case MIXERCONTROL_CONTROLTYPE_FADER:
@@ -93,7 +93,7 @@ MMRESULT MixerSource::GetLineControls()
             //          case MIXERCONTROL_CONTROLTYPE_BASS:
             //        case MIXERCONTROL_CONTROLTYPE_TREBLE:
             //      case MIXERCONTROL_CONTROLTYPE_EQUALIZER:
-            
+
             //    case MIXERCONTROL_CONTROLTYPE_BOOLEAN:
             //  case MIXERCONTROL_CONTROLTYPE_ONOFF:
          case MIXERCONTROL_CONTROLTYPE_MUTE:
@@ -102,7 +102,7 @@ MMRESULT MixerSource::GetLineControls()
             //        case MIXERCONTROL_CONTROLTYPE_STEREOENH:
             m_bHasV001Controls = true;
             break;
-            
+
          default:;
          }
          //
@@ -115,26 +115,26 @@ MMRESULT MixerSource::GetLineControls()
          //            pamxctrl[u].fdwControl,
          //          pamxctrl[u].cMultipleItems,
          //        (char *)pamxctrl[u].szName);
-         
+
          //            if (0 != (APP_OPTF_DEBUGLOG & gfuAppOptions))
          //          {
          //            MixAppDebugLog(ach);
          //          MixAppDebugLog(gszCRLF);
          //    }
-         
+
          //            nIndex = ListBox_AddString(ptlb->hlb, ach);
          //          ListBox_SetItemData(ptlb->hlb, nIndex, pamxctrl[u].dwControlID);
       }
-      
+
       //    ListBox_SetCurSel(ptlb->hlb, 0);
       //  EnableWindow(GetDlgItem(hwnd, IDD_LINECONTROLS_BTN_INFO), TRUE);
       //EnableWindow(GetDlgItem(hwnd, IDD_LINECONTROLS_BTN_SETTINGS), TRUE);
    }
-   
+
    //    SetWindowRedraw(ptlb->hlb, TRUE);
    //  LocalFree((HLOCAL)pamxctrl);
    return mmrc;
-   
+
 }
 
 /*MMRESULT MixerSource::GetControl(DWORD dwControlType, DWORD dwControlFlags,  MixerControl ** ppControl)
@@ -210,10 +210,10 @@ MMRESULT MixerSource::mixerGetLineInfo(DWORD dwSource, DWORD dwDestination, DWOR
    m_mixerline.cbStruct       = sizeof(MIXERLINE);
    m_mixerline.dwDestination  = dwDestination;
    m_mixerline.dwSource       = dwSource;
-      
+
    MMRESULT mmrc = ::mixerGetLineInfo(
-                     (HMIXEROBJ)GetDevice()->m_hMixer, 
-                     &m_mixerline, 
+                     (HMIXEROBJ)GetDevice()->m_hMixer,
+                     &m_mixerline,
                      fdwInfo);
    if (MMSYSERR_NOERROR != mmrc)
    {

@@ -11,15 +11,17 @@ namespace filemanager
       ::fs::tree_data(papp),
       ::fs::list_data(papp)
    {
-      m_iIconSize          = 16;
-      m_bListText          = true;
-      m_bListSelection     = true;
-      m_bFileSize          = false;
-      m_bPassBk            = false;
-      m_bIconView          = false;
-      m_pholderFileList    = NULL;
-      m_ptreeFileTreeMerge = NULL;
-      m_pdocumentSave      = NULL;
+      m_iIconSize                = 16;
+      m_bListText                = true;
+      m_bListSelection           = true;
+      m_bFileSize                = false;
+      m_bPassBk                  = false;
+      m_bIconView                = false;
+      m_pholderFileList          = NULL;
+      m_ptreeFileTreeMerge       = NULL;
+      m_pdocumentSave            = NULL;
+      m_ptemplate                = NULL;
+      m_bSetBergedgeTopicFile    = false;
    }
 
    data::~data()
@@ -27,7 +29,7 @@ namespace filemanager
 
    }
 
-   void data::OnFileManagerOpenContextMenuFolder(::fs::item & item)
+   void data::OnFileManagerOpenContextMenuFolder(const ::fs::item & item)
    {
       ASSERT(m_pcallback != NULL);
       if(m_pcallback != NULL)
@@ -36,7 +38,7 @@ namespace filemanager
       }
    }
 
-   void data::OnFileManagerOpenContextMenuFile(::fs::item_array & itema)
+   void data::OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema)
    {
       ASSERT(m_pcallback != NULL);
       if(m_pcallback != NULL)
@@ -54,7 +56,7 @@ namespace filemanager
       }
    }
 
-   void data::OnFileManagerOpenFile(::fs::item_array & itema)
+   void data::OnFileManagerOpenFile(const ::fs::item_array & itema)
    {
       ASSERT(m_pcallback != NULL);
       if(is_saving() && itema.get_count() == 1)
@@ -75,7 +77,7 @@ namespace filemanager
       }
    }
 
-   void data::OnFileManagerOpenFolder(::fs::item & item)
+   void data::OnFileManagerOpenFolder(const ::fs::item & item)
    {
       ASSERT(m_pcallback != NULL);
       if(m_pcallback != NULL)
@@ -84,7 +86,7 @@ namespace filemanager
       }
    }
 
-   void data::OnFileManagerItemUpdate(cmd_ui * pcmdui, ::fs::item_array & itema)
+   void data::OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema)
    {
       ASSERT(m_pcallback != NULL);
       if(m_pcallback != NULL)
@@ -92,7 +94,7 @@ namespace filemanager
          m_pcallback->OnFileManagerItemUpdate(this, pcmdui, itema);
       }
    }
-   void data::OnFileManagerItemCommand(const char * pszId, ::fs::item_array & itema)
+   void data::OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema)
    {
       ASSERT(m_pcallback != NULL);
       if(m_pcallback != NULL)
@@ -102,7 +104,7 @@ namespace filemanager
    }
 
 
-   void data::FileManagerBrowse(::fs::item & item)
+   void data::FileManagerBrowse(const ::fs::item & item)
    {
       ASSERT(m_pmanager != NULL);
       if(m_pmanager != NULL)

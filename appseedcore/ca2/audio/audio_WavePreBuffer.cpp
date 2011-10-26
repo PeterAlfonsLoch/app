@@ -6,27 +6,17 @@ audWavePreBuffer::audWavePreBuffer(::ca::application * papp) :
    m_thread(papp)
 {
    m_thread.SetPreBuffer(this);
-   m_pshL1              = NULL;
-   m_pshL2              = NULL;
    m_iChunkCount        = 0;
    m_iChunkSampleCount  = 0;
    m_pstreameffectOut   = NULL;
    m_iOutCount          = 0;
    m_iMinFreeBuffer     = 0;
-   m_pdevocalizer       = NULL;
    m_pdecoder           = NULL;
    m_position           = 0;
 }
 
 audWavePreBuffer::~audWavePreBuffer()
 {
-   if(m_pshL1 != NULL)
-      delete [] m_pshL1;
-   m_pshL1 = NULL;
-
-   if(m_pshL2 != NULL)
-      delete [] m_pshL2;
-   m_pshL2 = NULL;
 
 }
 
@@ -42,7 +32,10 @@ bool audWavePreBuffer::open(audWavePreBufferCallback * pcallback, int iChannelCo
    m_iChunkCount = iChunkCount;
    m_iChunkSampleCount = iChunkSampleCount;
    m_pcallback = pcallback;
-   m_pdevocalizer = new audWaveEffectDevocalizer(get_app(), false, iChunkSampleCount, 44100, 2, 2);
+
+   // no m_speffect by default, removed devocalizer during memory usage optimization 16:35 2011-04-05
+   //m_spdevocalizer.destroy();
+   //m_spdevocalizer(new audWaveEffectDevocalizer(get_app(), false, iChunkSampleCount, 44100, 2, 2));
    return true;
 }
 
@@ -71,7 +64,7 @@ short * audWavePreBuffer::GetInBuffer(int iChunk)
 
 short * audWavePreBuffer::GetOutBufferId(int iId)
 {
-   return &m_pshL2[_IdToChunk(iId) * m_iChunkSampleCount * m_iChannelCount];
+   return &m_shaL2[_IdToChunk(iId) * m_iChunkSampleCount * m_iChannelCount];
 }
 
 int audWavePreBuffer::GetChunkByteCount()
@@ -87,10 +80,10 @@ bool audWavePreBuffer::IdFree(int iId)
 
 bool audWavePreBuffer::_FreeId(int iId)
 {
-   CSingleLock sl(&m_cs, TRUE);
-//   int iChunk = _IdToChunk(iId);
+   single_lock sl(&m_cs, TRUE);
+
    m_iOutCount--;
-   
+
    if(m_iOutCount < 0)
       m_iOutCount = 0;
 
@@ -100,20 +93,20 @@ bool audWavePreBuffer::_FreeId(int iId)
    if(m_pdecoder->DecoderEOF())
       return false;
 
-   int iBytesRecorded = m_pdecoder->DecoderFillBuffer(pchunk1->m_psh, GetChunkByteCount());
+   ::primitive::memory_size iBytesRecorded = m_pdecoder->DecoderFillBuffer(pchunk1->m_psh, GetChunkByteCount());
 
-   int iRemain = GetChunkByteCount() - iBytesRecorded;
+   int64_t iRemain = GetChunkByteCount() - iBytesRecorded;
    if(iRemain > 0)
    {
       LPBYTE lpb = (LPBYTE) pchunk1->m_psh;
-      memset(&lpb[iBytesRecorded], 0, iRemain);
+      memset(&lpb[iBytesRecorded], 0, (size_t) iRemain);
    }
 
-   if(m_pdevocalizer != NULL
-      && !m_pdevocalizer->Process(pchunk1->m_psh, pchunk2->m_psh))
+   memcpy(pchunk2->m_psh, pchunk1->m_psh, GetChunkByteCount());
+   /*if(m_speffect != NULL && !m_speffect->Process16bits(pchunk1->m_psh, pchunk2->m_psh))
    {
       return false;
-   }
+   }*/
 
    if(!_PreOutputId(pchunk2))
    {
@@ -130,7 +123,7 @@ bool audWavePreBuffer::_DeferKick()
 {
    return false;
    /*
-   CSingleLock sl(&m_cs, TRUE);
+   single_lock sl(&m_cs, TRUE);
    if(m_iaFree.get_size() == 0)
       return false;
    int iId = m_iaFree[0];
@@ -200,21 +193,22 @@ bool audWavePreBuffer::_PreOutputId(Chunk * pchunk)
 
 void audWavePreBuffer::_Kick()
 {
-   CSingleLock sl(&m_cs, TRUE);
+   single_lock sl(&m_cs, TRUE);
 
    while(_DeferKick() && m_bPlay);
 }
 
 bool audWavePreBuffer::IsDevocalized()
 {
-   return m_pdevocalizer != NULL && m_pdevocalizer->IsEnabled();
+   return m_speffect != NULL; // && m_speffect->IsEnabled();
 }
 
 void audWavePreBuffer::Devocalize(bool bSet)
 {
-   if(m_pdevocalizer == NULL)
+   UNREFERENCED_PARAMETER(bSet);
+   if(m_speffect == NULL)
       return;
-   m_pdevocalizer->Enable(bSet);
+   //m_speffect->Enable(bSet);
 }
 
 bool audWavePreBuffer::IsEOF()
@@ -225,7 +219,7 @@ bool audWavePreBuffer::IsEOF()
 
 void audWavePreBuffer::ClearBuffer()
 {
-//   CSingleLock sl(&m_cs, TRUE);
+//   single_lock sl(&m_cs, TRUE);
 
 /*
    for(int iId = m_iNextId; iId < iOldNextId; iId++)
@@ -244,7 +238,7 @@ void audWavePreBuffer::ClearBuffer()
 
 void audWavePreBuffer::Reset()
 {
-   CSingleLock sl(&m_cs, TRUE);
+   single_lock sl(&m_cs, TRUE);
    m_iOutCount = 0;
    m_chunkaL1.Reset();
    m_chunkaL2.Reset();
@@ -262,32 +256,19 @@ bool audWavePreBuffer::_UpdateBuffer(int iChannelCount, int iChunkCount, int iCh
 
    int iTotalChunkCount = (iChunkCount + iMinL1BufferCount);
 
-   if(m_pshL1 != NULL)
-      delete [] m_pshL1;
-   if(m_pshL2 != NULL)
-      delete [] m_pshL2;
-   m_pshL1 = new short[iTotalChunkCount * iChannelCount * iChunkSampleCount];
-
-   
-   if(m_pshL1 == NULL)
-      return false;
-   m_pshL2 = new short[iTotalChunkCount * iChannelCount * iChunkSampleCount];
-   if(m_pshL2 == NULL)
-   {
-      delete [] m_pshL1;
-      return false;
-   }
+   m_shaL1.set_size(iTotalChunkCount * iChannelCount * iChunkSampleCount);
+   m_shaL2.set_size(iTotalChunkCount * iChannelCount * iChunkSampleCount);
 
    m_chunkaL1.set_size(iTotalChunkCount);
    for(iChunk = 0; iChunk < iTotalChunkCount; iChunk++)
    {
-      m_chunkaL1[iChunk].m_psh = &m_pshL1[iChunk * iChannelCount * iChunkSampleCount];
+      m_chunkaL1[iChunk].m_psh = &m_shaL1[iChunk * iChannelCount * iChunkSampleCount];
    }
-   
+
    m_chunkaL2.set_size(iTotalChunkCount);
    for(iChunk = 0; iChunk < iTotalChunkCount; iChunk++)
    {
-      m_chunkaL2[iChunk].m_psh = &m_pshL2[iChunk * iChannelCount * iChunkSampleCount];
+      m_chunkaL2[iChunk].m_psh = &m_shaL2[iChunk * iChannelCount * iChunkSampleCount];
    }
 
    return true;
@@ -306,9 +287,9 @@ int audWavePreBuffer::_IdToChunk(int iId)
 
 void audWavePreBuffer::ChunkArray::Reset()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).Reset();
+      this->element_at(i).Reset();
    }
 }
 
@@ -319,7 +300,7 @@ void audWavePreBuffer::Chunk::Reset()
 
 audWavePreBuffer::Chunk * audWavePreBuffer::ChunkArray::GetChunkById(int iId)
 {
-   return &element_at(iId % get_size());
+   return &this->element_at(iId % this->get_size());
 }
 
 audWavePreBuffer::Thread::Thread(::ca::application * papp) :
@@ -342,14 +323,13 @@ audWavePreBuffer::Thread::~Thread()
 int audWavePreBuffer::Thread::run()
 {
    audWavePreBuffer * pprebuffer = m_pprebuffer;
-   CSingleLock slStep(&m_evStep);
+   m_evStep.wait();
    m_estate = StateRunning;
    while(GetState() == StateRunning)
    {
       pprebuffer->_Kick();
       m_evStep.ResetEvent();
-      slStep.Lock(100);
-      slStep.Unlock();
+      m_evStep.wait(millis(100));
    }
    m_estate = state_initial;
    return 0;
@@ -386,10 +366,18 @@ void audWavePreBuffer::Start(const imedia::position & position)
       primitive::memory mem;
       mem.allocate(1024 * 128);
       imedia::position positionSkip = position;
+      ::primitive::memory_size iBytesRecorded;
       while(positionSkip > 0)
       {
-         int iBytesRecorded = m_pdecoder->DecoderFillBuffer(mem.GetAllocation(), min(positionSkip.m_i, mem.GetStorageSize()));
-         positionSkip.m_i -= iBytesRecorded;
+         if(positionSkip > mem.get_size())
+         {
+            iBytesRecorded = m_pdecoder->DecoderFillBuffer(mem.get_data(), mem.get_size());
+         }
+         else
+         {
+            iBytesRecorded = m_pdecoder->DecoderFillBuffer(mem.get_data(), (::primitive::memory_size) positionSkip);
+         }
+         positionSkip -= iBytesRecorded;
       }
    }
 }
@@ -415,4 +403,5 @@ __int64 audWavePreBuffer::GetMillisLength()
 
 void audWavePreBuffer::on_delete(::ca::ca * pdecoder)
 {
+   UNREFERENCED_PARAMETER(pdecoder);
 }

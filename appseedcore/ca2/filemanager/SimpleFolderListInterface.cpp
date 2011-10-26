@@ -20,7 +20,7 @@ namespace filemanager
    void SimpleFolderListInterface::_001InsertColumns()
    {
 
-      Column column;
+      ::user::list_column column;
 
       column.m_iWidth = 200;
       column.m_iSubItem = 1;
@@ -31,12 +31,10 @@ namespace filemanager
 
    }
 
-   bool SimpleFolderListInterface::_001GetItemText(string & str, index iItem, index iSubItem, index iListItem)
+   void SimpleFolderListInterface::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(iSubItem);
-      UNREFERENCED_PARAMETER(iListItem);
-      str = m_foldera.GetFolder(iItem).m_wstrName;
-      return true;
+      pitem->m_strText = m_foldera.GetFolder(pitem->m_iItem).m_wstrName;
+      pitem->m_bOk = true;
    }
 
 
@@ -78,16 +76,16 @@ namespace filemanager
 
       _001OnUpdateItemCount();
 
-      Column & column = m_columna.GetBySubItem(1);
+      ::user::list_column * pcolumn = m_columna._001GetBySubItem(1);
 
 
-      _001CreateImageList(column);
+      _001CreateImageList(pcolumn);
 
    }
 
    void SimpleFolderListInterface::_017UpdateList()
    {
-   
+
       Folder folder;
 
    //   HRESULT hr;
@@ -119,24 +117,24 @@ namespace filemanager
    }
 
 
-   void SimpleFolderListInterface::_001CreateImageList(Column &column)
+   void SimpleFolderListInterface::_001CreateImageList(::user::list_column * pcolumn)
    {
    //   HRESULT hr;
-      if(column.m_iSubItem == 1)
+      if(pcolumn->m_iSubItem == 1)
       {
    //      char szPath[MAX_PATH * 4];
    //      UINT uiFlags;
-         if(column.m_pil == NULL)
+         if(pcolumn->m_pil == NULL)
          {
-            column.m_pil = new image_list(get_app());
+            pcolumn->m_pil = new image_list(get_app());
          }
-         image_list * pil = column.m_pil;
+         image_list * pil = pcolumn->m_pil;
          //if(pil->GetSafeHandle() != NULL)
             //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))
          if(pil->create(16, 16, ILC_COLOR32, 0, 1))
          {
-         
+
             string str;
             HICON hicon = NULL;
             int iIndex;
@@ -222,7 +220,7 @@ namespace filemanager
       }
       else
       {
-         ::user::list::_001CreateImageList(column);
+         ::user::list::_001CreateImageList(pcolumn);
       }
    }
 
@@ -236,9 +234,9 @@ namespace filemanager
       //Folder folder;
 
 
-      //for(int i = 0; i < get_size(); i++)
+      //for(int i = 0; i < this->get_size(); i++)
       //{
-         //Folder & folder = element_at(i);
+         //Folder & folder = this->element_at(i);
       //}
       remove_all();
 
@@ -248,12 +246,12 @@ namespace filemanager
    SimpleFolderListInterface::Folder &
    SimpleFolderListInterface::FolderArray::GetFolder(int i)
    {
-      return element_at(i);
+      return this->element_at(i);
    }
 
    int SimpleFolderListInterface::FolderArray::GetFolderCount()
    {
-      return get_size();
+      return this->get_size();
    }
 
    void SimpleFolderListInterface::FolderArray::AddFolder(Folder &folder)
@@ -261,18 +259,18 @@ namespace filemanager
       add(folder);
    }
 
-   index SimpleFolderListInterface::_001GetItemImage(index iItem, index iSubItem, index iListItem)
+   void SimpleFolderListInterface::_001GetItemImage(::user::list_item * pitem)
    {
-      if(iSubItem == 1)
+      if(pitem->m_iSubItem == 1)
       {
-         return m_foldera.GetFolder(iItem).m_iImage;
+         pitem->m_iImage = m_foldera.GetFolder(pitem->m_iItem).m_iImage;
+         pitem->m_bOk = true;
       }
       else
-         return ::user::list::_001GetItemImage(iItem, iSubItem, iListItem);
+      {
+         ::user::list::_001GetItemImage(pitem);
+      }
    }
-
-
-
 
    void SimpleFolderListInterface::_017Synchronize()
    {
@@ -289,9 +287,9 @@ namespace filemanager
       return m_foldera.GetFolderCount();
    }
 
-   void SimpleFolderListInterface::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void SimpleFolderListInterface::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::list::_001InstallMessageHandling(pinterface);
+      ::user::list::install_message_handling(pinterface);
    }
 
    COLORREF SimpleFolderListInterface::get_background_color()

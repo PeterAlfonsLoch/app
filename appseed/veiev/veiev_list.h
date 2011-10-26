@@ -31,7 +31,7 @@ namespace veiev
 
       void _001OnClick(UINT uiFlags, point point);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
       
 
    };

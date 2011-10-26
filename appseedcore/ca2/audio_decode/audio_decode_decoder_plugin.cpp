@@ -26,6 +26,7 @@ audio_decode::decoder * decoder_plugin::NewDecoder()
       ::FreeLibrary(m_hinstance);
       return NULL;
    }
+   pdecoder->m_pplugin = this;
    return pdecoder;
 }
 
@@ -36,9 +37,7 @@ void decoder_plugin::DeleteDecoder(audio_decode::decoder * pdecoder)
 
 bool decoder_plugin::Load(const char * pszTitle)
 {
-#if !core_level_1 && !core_level_2
    SetDllDirectory(System.dir().ca2module());
-#endif
    HINSTANCE hinstance = ::LoadLibrary(pszTitle);
    if(hinstance == NULL)
    {

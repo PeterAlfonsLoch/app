@@ -4,7 +4,7 @@ namespace ca2info
 {
 
    class CLASS_DECL_CA2_STATUS application :
-      public ca84::application
+      public cube2::application
    {
    public:
 

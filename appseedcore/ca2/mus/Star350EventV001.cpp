@@ -20,9 +20,9 @@ Star350EventV001::~Star350EventV001()
 
 }
 
-/*MidiEventBase & Star350EventV001::operator = (const MidiEventBase & eventSrc)
+/*midi_event_base & Star350EventV001::operator = (const midi_event_base & eventSrc)
 {
-   return MidiEventBase::operator = (eventSrc);
+   return midi_event_base::operator = (eventSrc);
 }*/
 
 Star350EventV001 & Star350EventV001::operator =(const Star350EventV001 &eventSrc)
@@ -32,7 +32,7 @@ Star350EventV001 & Star350EventV001::operator =(const Star350EventV001 &eventSrc
    SetChB2(eventSrc.GetChB2());
    SetParam(eventSrc.GetParam(), eventSrc.GetParamSize());
    SetDelta(eventSrc.GetDelta());
-   SetPosition(eventSrc.GetPosition());
+   SetPosition(eventSrc.get_position());
    SetImage(eventSrc.GetImage());
    SetImageSize(eventSrc.GetImageSize());
    return *this;
@@ -110,7 +110,7 @@ void Star350EventV001::SetDelta(imedia::position tkDelta)
    m_tkDelta = tkDelta;
 }
 
-imedia::position Star350EventV001::GetPosition() const
+imedia::position Star350EventV001::get_position() const
 {
    return m_tkPosition;
 }

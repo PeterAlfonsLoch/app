@@ -1,6 +1,6 @@
 #pragma once
 
-#include "include/cube.h"
+#include "include/ca2.h"
 
 #ifdef _CA2_FONTOPUS_PRODUCTION_DLL
     #define CLASS_DECL_CA2_PRODUCTION  _declspec(dllexport)
@@ -16,6 +16,7 @@ namespace production
 #undef App
 #define App(pcaapp) production::app_cast(pcaapp)
 
+#include "twitter_authorization.h"
 
 #include "class.h"
 #include "frame.h"

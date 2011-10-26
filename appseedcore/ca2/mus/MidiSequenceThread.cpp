@@ -2,45 +2,45 @@
 #include "vmsmusresource.h"
 
 
-MidiSequenceThread::MidiSequenceThread(::ca::application * papp) :
+midi_sequence_thread::midi_sequence_thread(::ca::application * papp) :
    ca(papp),
    thread(papp)
 {
 }
 
-MidiSequenceThread::~MidiSequenceThread()
+midi_sequence_thread::~midi_sequence_thread()
 {
 }
 
-bool MidiSequenceThread::initialize_instance()
+bool midi_sequence_thread::initialize_instance()
 {
    SetThreadPriority(THREAD_PRIORITY_HIGHEST);
    return true;
 }
 
-int MidiSequenceThread::exit_instance()
+int midi_sequence_thread::exit_instance()
 {
    return thread::exit_instance();
 }
 
-void MidiSequenceThread::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void midi_sequence_thread::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   IGUI_WIN_MSG_LINK(MIDIPLAYERMESSAGE_COMMAND, pinterface, this, &MidiSequenceThread::OnCommand);
-   IGUI_WIN_MSG_LINK(MIDISEQUENCEMESSAGE_EVENT, pinterface, this, &MidiSequenceThread::OnMidiSequenceEvent);
+   IGUI_WIN_MSG_LINK(MIDIPLAYERMESSAGE_COMMAND, pinterface, this, &midi_sequence_thread::OnCommand);
+   IGUI_WIN_MSG_LINK(MIDISEQUENCEMESSAGE_EVENT, pinterface, this, &midi_sequence_thread::OnMidiSequenceEvent);
 }
 
-void MidiSequenceThread::Stop(DWORD dwEllapse)
+void midi_sequence_thread::Stop(DWORD dwEllapse)
 {
    GetSequence()->Stop();
-   m_eventStop.Lock(dwEllapse);
+   m_eventStop.wait(millis(dwEllapse));
 }
 
-::mus::midi::sequence * MidiSequenceThread::GetSequence()
+::mus::midi::sequence * midi_sequence_thread::GetSequence()
 {
    return m_psequence;
 }
 
-BOOL MidiSequenceThread::PostMidiSequenceEvent(
+BOOL midi_sequence_thread::PostMidiSequenceEvent(
    ::mus::midi::sequence * pseq,
    ::mus::midi::sequence::e_event eevent)
 {
@@ -50,7 +50,7 @@ BOOL MidiSequenceThread::PostMidiSequenceEvent(
       (LPMIDIHDR) NULL);
 }
 
-BOOL MidiSequenceThread::PostMidiSequenceEvent(
+BOOL midi_sequence_thread::PostMidiSequenceEvent(
    ::mus::midi::sequence * pseq,
    ::mus::midi::sequence::e_event eevent,
    LPMIDIHDR lpmh)
@@ -65,7 +65,7 @@ BOOL MidiSequenceThread::PostMidiSequenceEvent(
       (LPARAM) pevent);
 }
 
-void MidiSequenceThread::OnMidiSequenceEvent(gen::signal_object * pobj)
+void midi_sequence_thread::OnMidiSequenceEvent(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
 
@@ -189,20 +189,20 @@ void MidiSequenceThread::OnMidiSequenceEvent(gen::signal_object * pobj)
    delete pevent;
 }
 
-void MidiSequenceThread::PostNotifyEvent(::mus::midi::player::ENotifyEvent eevent)
+void midi_sequence_thread::PostNotifyEvent(::mus::midi::player::ENotifyEvent eevent)
 {
    if(m_pplayer != NULL)
    {
       ::mus::midi::player::NotifyEvent * pdata = new ::mus::midi::player::NotifyEvent;
       pdata->m_enotifyevent = eevent;
       m_pplayer->PostThreadMessage(
-         MidiPlayer::MessageNotifyEvent,
+         midi_player::MessageNotifyEvent,
          0, 
          (LPARAM) pdata);      
    }
 }
 
-void MidiSequenceThread::Play(imedia::position tkStart)
+void midi_sequence_thread::Play(imedia::position tkStart)
 {
    ASSERT(GetSequence() != NULL);
    ASSERT(GetSequence()->GetState() == ::mus::midi::sequence::StatusOpened);
@@ -211,7 +211,7 @@ void MidiSequenceThread::Play(imedia::position tkStart)
    GetSequence()->Start();
 }
 
-void MidiSequenceThread::Play(double dRate)
+void midi_sequence_thread::Play(double dRate)
 {
    ASSERT(GetSequence() != NULL);
    ASSERT(GetSequence()->GetState() == ::mus::midi::sequence::StatusOpened);
@@ -221,7 +221,7 @@ void MidiSequenceThread::Play(double dRate)
 }
 
 
-void MidiSequenceThread::PrerollAndWait(imedia::position tkStart)
+void midi_sequence_thread::PrerollAndWait(imedia::position tkStart)
 {
    ::mus::midi::PREROLL                 preroll;
    
@@ -247,7 +247,7 @@ void MidiSequenceThread::PrerollAndWait(imedia::position tkStart)
 }
 
 
-void MidiSequenceThread::PrerollAndWait(double dRate)
+void midi_sequence_thread::PrerollAndWait(double dRate)
 {
    ::mus::midi::PREROLL                 preroll;
    
@@ -279,7 +279,7 @@ void MidiSequenceThread::PrerollAndWait(double dRate)
 }
 
 
-void MidiSequenceThread::PostGMReset()
+void midi_sequence_thread::PostGMReset()
 {
    ASSERT(!GetSequence()->IsPlaying());
    GetSequence()->SetSpecialModeV001Operation(::mus::midi::sequence::SPMV001GMReset);
@@ -288,7 +288,7 @@ void MidiSequenceThread::PostGMReset()
    
 }
 
-void MidiSequenceThread::PostTempoChange()
+void midi_sequence_thread::PostTempoChange()
 {
    ASSERT(!GetSequence()->IsPlaying());
    GetSequence()->SetSpecialModeV001Operation(::mus::midi::sequence::SPMV001TempoChange);
@@ -296,32 +296,33 @@ void MidiSequenceThread::PostTempoChange()
    GetSequence()->Start();
 }
 
-void MidiSequenceThread::SendTempoChange()
+void midi_sequence_thread::SendTempoChange()
 {
    ASSERT(!GetSequence()->IsPlaying());
    GetSequence()->m_evMmsgDone.ResetEvent();
    PostTempoChange();
-   GetSequence()->m_evMmsgDone.Lock();
+   GetSequence()->m_evMmsgDone.wait();
 }
 
 
-void MidiSequenceThread::ExecuteCommand(MidiPlayerCommand * pcommand)
+void midi_sequence_thread::ExecuteCommand(::ca::smart_pointer < midi_player_command > spcommand)
 {
-   pcommand->AddRef();
+   spcommand->add_ref();
    PostThreadMessage(
       MIDIPLAYERMESSAGE_COMMAND,
       0,
-      (LPARAM) pcommand);
+      (LPARAM) (midi_player_command *) spcommand);
 }
 
 
-void MidiSequenceThread::OnCommand(gen::signal_object * pobj)
+void midi_sequence_thread::OnCommand(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
-   MidiPlayerCommand * pcommand = (MidiPlayerCommand *) pbase->m_lparam;
+   ::ca::smart_pointer < midi_player_command > spcommand;
+   spcommand((midi_player_command *) pbase->m_lparam);
    try
    {
-      _ExecuteCommand(pcommand);
+      _ExecuteCommand(spcommand);
    }
    catch(midi_exception * pe)
    {
@@ -330,35 +331,37 @@ void MidiSequenceThread::OnCommand(gen::signal_object * pobj)
    catch(...)
    {
    }
-   pcommand->Release();
 }
 
 
-void MidiSequenceThread::_ExecuteCommand(MidiPlayerCommand * pcommand)
+void midi_sequence_thread::_ExecuteCommand(::ca::smart_pointer < midi_player_command > spcommand)
 {
-   switch(pcommand->GetCommand())
+   switch(spcommand->GetCommand())
    {
    case MidiPlayerCommandPlay:
       {
-         if(pcommand->m_flags.is_signalized(MidiPlayerCommand::flag_dRate))
+         if(spcommand->m_flags.is_signalized(midi_player_command::flag_dRate))
          {
-            Play(pcommand->m_dRate);
+            Play(spcommand->m_dRate);
          }
-         else if(pcommand->m_flags.is_signalized(MidiPlayerCommand::flag_ticks))
+         else if(spcommand->m_flags.is_signalized(midi_player_command::flag_ticks))
          {
-            Play(pcommand->m_ticks);
+            Play(spcommand->m_ticks);
          }
          else 
          {
             Play();
          }
-         pcommand->OnFinish();
+         spcommand->OnFinish();
       }
       break;
    case MidiPlayerCommandCloseDevice:
       {
-         GetSequence()->CloseFile();
-         pcommand->OnFinish();
+         if(GetSequence() != NULL)
+         {
+            GetSequence()->CloseFile();
+         }
+         spcommand->OnFinish();
       }
       break;
    case MidiPlayerCommandStop:
@@ -366,7 +369,7 @@ void MidiSequenceThread::_ExecuteCommand(MidiPlayerCommand * pcommand)
          m_eventStop.ResetEvent();
          MMRESULT            mmrc;
          ::mus::midi::sequence::PlayerLink & link = GetSequence()->GetPlayerLink();
-         link.SetCommand(pcommand);
+         link.SetCommand(spcommand);
          link.ModifyFlag(::mus::midi::sequence::FlagStop, ::mus::midi::sequence::FlagNull);
          if(MMSYSERR_NOERROR != (mmrc = GetSequence()->Stop()))
          {
@@ -378,7 +381,7 @@ void MidiSequenceThread::_ExecuteCommand(MidiPlayerCommand * pcommand)
       {
          MMRESULT            mmrc;
          ::mus::midi::sequence::PlayerLink & link = GetSequence()->GetPlayerLink();
-         link.SetCommand(pcommand);
+         link.SetCommand(spcommand);
          link.ModifyFlag(
             ::mus::midi::sequence::FlagStopAndRestart,
             ::mus::midi::sequence::FlagNull);

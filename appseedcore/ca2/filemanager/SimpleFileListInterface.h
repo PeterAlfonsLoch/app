@@ -1,5 +1,6 @@
 #pragma once
 
+
 class FileManagerInterface;
 class ::fs::item;
 
@@ -143,7 +144,7 @@ namespace filemanager
       //virtual void schedule_file_size(const char * psz) = 0;
    // Attributes
       virtual void _017Synchronize();
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       image_list * GetActionButtonImageList(index i);
 
@@ -154,12 +155,12 @@ namespace filemanager
       void _001OnInitializeForm(user::control * pcontrol);
       void _001OnButtonAction(user::control * pcontrol);
 
-      virtual void _017OpenFile(::fs::item_array & itema);
-      virtual void _017OpenFolder(::fs::item & item);
+      virtual void _017OpenFile(const ::fs::item_array & itema);
+      virtual void _017OpenFolder(const ::fs::item & item);
       virtual void _017OpenSelected(bool bOpenFile);
       virtual void _017OpenContextMenuSelected();
-      virtual void _017OpenContextMenuFolder(::fs::item &item);
-      virtual void _017OpenContextMenuFile(::fs::item_array &itema);
+      virtual void _017OpenContextMenuFolder(const ::fs::item &item);
+      virtual void _017OpenContextMenuFile(const ::fs::item_array &itema);
       virtual void _017OpenContextMenu();
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
@@ -172,8 +173,8 @@ namespace filemanager
       virtual bool TwiHasTranslucency();
       void _001CreateImageList();
       bool _001CreateImageListStep();
-      virtual index _001GetItemImage(index iItem, index iSubItem, index iListItem);
-      virtual bool _001GetItemText(string & str, index iItem, index iSubItem, index iListItem);
+      virtual void _001GetItemImage(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();
       void _017Browse(const char * lpcsz);
       void _017UpdateList(const char * lpcsz);
@@ -193,6 +194,10 @@ namespace filemanager
       virtual bool query_drop(index iDisplayDrop, index iDisplayDrag);
       virtual bool do_drop(index iDisplayDrop, index iDisplayDrag);
 
+
    };
 
+
 } // namespace filemanager
+
+

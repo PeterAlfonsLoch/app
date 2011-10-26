@@ -216,6 +216,7 @@ update_rrdump(TASK *t, char *section, int which, UQRR *rr)
 static char *
 update_gobble_rr(TASK *t, MYDNS_SOA *soa, char *query, size_t querylen, char *current, UQRR *rr)
 {
+   UNREFERENCED_PARAMETER(soa);
 	char *src = current;
 
 	if (!(src = name_unencode(query, querylen, src, rr->name, sizeof(rr->name))))
@@ -326,11 +327,11 @@ parse_update_query(TASK *t, MYDNS_SOA *soa, UQ *q)
 static char *
 text_retrieve(char *src, char *end, char *data, size_t datalen, int one_word_only)
 {
-	int n, x;														/* Offset in 'data' */
+	size_t n, x;														/* Offset in 'data' */
 
 	for (n = 0; src < end && n < datalen; )
 	{
-		int len = *src++;
+		size_t len = *src++;
 
 		if (n)
 			data[n++] = ' ';
@@ -356,6 +357,8 @@ text_retrieve(char *src, char *end, char *data, size_t datalen, int one_word_onl
 static int
 update_get_rr_data(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr, char *data, size_t datalen, uint32_t *aux)
 {
+   UNREFERENCED_PARAMETER(soa);
+   UNREFERENCED_PARAMETER(q);
 	char	*src = (char *) rr->rdata;
 	char	*end = (char *) rr->rdata + rr->rdlength;
 
@@ -473,6 +476,7 @@ update_get_rr_data(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr, char *data, size_t 
 static int
 update_in_zone(TASK *t, char *name, char *origin)
 {
+   UNREFERENCED_PARAMETER(t);
 	char nbuf[DNS_MAXNAMELEN+1], obuf[DNS_MAXNAMELEN+1];
 
 	strncpy(nbuf, name, sizeof(nbuf)-1);
@@ -501,8 +505,9 @@ update_in_zone(TASK *t, char *name, char *origin)
 static int
 update_zone_has_name(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 {
+   UNREFERENCED_PARAMETER(q);
 	SQL_RES	*res = NULL;
-	SQL_ROW	row;
+//	SQL_ROW	row;
 	char		query[512];
 	size_t	querylen;
 	char		*xname = NULL;
@@ -548,8 +553,9 @@ update_zone_has_name(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 static int
 update_zone_has_rrset(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 {
+   UNREFERENCED_PARAMETER(q);
 	SQL_RES	*res = NULL;
-	SQL_ROW	row;
+//	SQL_ROW	row;
 	char		query[512];
 	size_t	querylen;
 	char		*xname = NULL;
@@ -734,8 +740,8 @@ check_prerequisite(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 		/* Add this name/type to the "tmprr" list (in the UQRR struct) */
 		/* First, check to make sure it's unique */
 		for (n = 0, unique = 1; n < q->num_tmprr && unique; n++)
-			if (q->tmprr[n]->type == rr->type && !stricmp(q->tmprr[n]->name, rr->name)
-				 && !stricmp(q->tmprr[n]->data, data) && q->tmprr[n]->aux == aux)
+			if (q->tmprr[n]->type == rr->type && !_stricmp(q->tmprr[n]->name, rr->name)
+				 && !_stricmp(q->tmprr[n]->data, data) && q->tmprr[n]->aux == aux)
 				unique = 0;
 
 		if (unique)
@@ -808,6 +814,7 @@ update_rrtype_ok(dns_qtype_t type)
 static int
 prescan_update(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 {
+   UNREFERENCED_PARAMETER(soa);
 	/* Class must be ANY, NONE, or the same as the zone's dnsclass */
 	if ((rr->dnsclass != DNS_CLASS_ANY) && (rr->dnsclass != DNS_CLASS_NONE) && (rr->dnsclass != q->dnsclass))
 	{
@@ -877,7 +884,7 @@ update_add_rr(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 	uint32_t	aux;
 	char		*xname = NULL, *xdata = NULL;
 	SQL_RES	*res = NULL;
-	SQL_ROW	row;
+//	SQL_ROW	row;
 	char		query[512];
 	size_t	querylen = 0;
 	int		duplicate = 0;
@@ -988,11 +995,12 @@ update_add_rr(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 static int
 update_delete_rrset_all(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 {
+   UNREFERENCED_PARAMETER(q);
 	char		*xname = NULL, *xhost = NULL;
 	char		query[512];
 	size_t	querylen;
 	SQL_RES	*res = NULL;
-	SQL_ROW	row;
+//	SQL_ROW	row;
 
 #if DEBUG_ENABLED && DEBUG_UPDATE
 	Debug("%s: UPDATE_DELETE_RRSET_ALL: %s %u %s %s", desctask(t),
@@ -1056,7 +1064,7 @@ update_delete_rr(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 	char		query[512];
 	size_t	querylen;
 	SQL_RES	*res = NULL;
-	SQL_ROW	row;
+//	SQL_ROW	row;
 
 #if DEBUG_ENABLED && DEBUG_UPDATE
 	Debug("%s: UPDATE_DELETE_RR: %s %u %s %s", desctask(t),
@@ -1128,11 +1136,12 @@ update_delete_rr(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 static int
 update_delete_rrset(TASK *t, MYDNS_SOA *soa, UQ *q, UQRR *rr)
 {
+   UNREFERENCED_PARAMETER(q);
 	char		*xname = NULL, *xhost = NULL;
 	char		query[512];
 	size_t	querylen;
 	SQL_RES	*res = NULL;
-	SQL_ROW	row;
+//	SQL_ROW	row;
 
 #if DEBUG_ENABLED && DEBUG_UPDATE
 	Debug("%s: UPDATE_DELETE_RRSET: %s %u %s %s", desctask(t),
@@ -1332,7 +1341,7 @@ check_tmprr(TASK *t, MYDNS_SOA *soa, UQ *q)
 
 		/* Mark all <NAME,TYPE> matches in tmprr with checked=1, and count the number of RRs */
 		for (i = 0; i < q->num_tmprr; i++)
-			if (q->tmprr[i]->type == current_type && !stricmp(q->tmprr[i]->name, current_name))
+			if (q->tmprr[i]->type == current_type && !_stricmp(q->tmprr[i]->name, current_name))
 			{
 				q->tmprr[i]->checked = 1;
 				total_prereq_rr++;
@@ -1356,7 +1365,7 @@ check_tmprr(TASK *t, MYDNS_SOA *soa, UQ *q)
 		/* Also, for each matching <NAME,TYPE>, check to see if the record exists in the database.
 			If it does, set matched=1.  If it does not, return NXRRSET */
 		for (i = 0; i < q->num_tmprr; i++)
-			if (q->tmprr[i]->type == current_type && !stricmp(q->tmprr[i]->name, current_name))
+			if (q->tmprr[i]->type == current_type && !_stricmp(q->tmprr[i]->name, current_name))
 			{
 				int found_match = 0;								/* Did we find a match for this RR? */
 
@@ -1367,7 +1376,7 @@ check_tmprr(TASK *t, MYDNS_SOA *soa, UQ *q)
 				for (rr = rr_first; rr && !found_match; rr = rr->next)
 				{
 					/* See if the DATA (and possibly the AUX) matches */
-					if (!stricmp(rr->data, q->tmprr[i]->data))
+					if (!_stricmp(rr->data, q->tmprr[i]->data))
 					{
 						if (current_type == DNS_QTYPE_MX || current_type == DNS_QTYPE_SRV)
 						{

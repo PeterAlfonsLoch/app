@@ -23,12 +23,12 @@ namespace mail
       m_pdata->m_plist = this;
       SetDataInterface(m_pdata);
 
-      
+
    }
 
    void list_interface::_001InsertColumns()
    {
-      Column column;
+      ::user::list_column column;
       column.m_iWidth = 200;
       column.m_iSubItem = 0;
 
@@ -50,39 +50,34 @@ namespace mail
    }
 
 
-   bool list_interface::data::_001GetItemText(
-      ::user::list * plist,
-      string &str,
-      INT_PTR iItem,
-      INT_PTR iSubItem, 
-      INT_PTR iListItem)
+   void list_interface::data::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(plist);
-      UNREFERENCED_PARAMETER(iListItem);
-      CSingleLock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
+      single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
       string strId;
-      strId = m_straId[iItem];
-      if(iSubItem == 0)
+      strId = m_straId[pitem->m_iItem];
+      if(pitem->m_iSubItem == 0)
       {
-         m_plist->m_paccount->m_pop3.m_pdataset->query("select sender from inbox where id = '" + strId + "'");
+         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->query_item("select sender from inbox where id = '" + strId + "'");
       }
-      else if(iSubItem == 1)
+      else if(pitem->m_iSubItem == 1)
       {
-         m_plist->m_paccount->m_pop3.m_pdataset->query("select subject from inbox where id = '" + strId + "'");
+         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->query_item("select subject from inbox where id = '" + strId + "'");
       }
-      else if(iSubItem == 2)
+      else if(pitem->m_iSubItem == 2)
       {
-         m_plist->m_paccount->m_pop3.m_pdataset->query("select sentdatetime from inbox where id = '" + strId + "'");
+         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->query_item("select sentdatetime from inbox where id = '" + strId + "'");
       }
       if(m_plist->m_paccount->m_pop3.m_pdataset->num_rows() == 1)
       {
-         str = m_plist->m_paccount->m_pop3.m_pdataset->FieldValueAt(0);
-         return true;
+         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->FieldValueAt(0);
       }
       else
       {
-         return false;
+         pitem->m_bOk = false;
+         return;
       }
+      pitem->m_bOk = true;
+      return;
    }
 
    INT_PTR list_interface::data::_001GetItemCount()
@@ -94,7 +89,7 @@ namespace mail
    {
       if(m_plist->m_paccount == NULL)
          return;
-      CSingleLock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
+      single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
       m_straId.remove_all();
       ::sqlite::set * pdataset = m_plist->m_paccount->m_pop3.m_pdataset;
       pdataset->query_items(m_straId, "select id from inbox");

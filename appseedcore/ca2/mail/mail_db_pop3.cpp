@@ -10,7 +10,7 @@ namespace mail
 
       m_pdatabase = new ::sqlite::base(papp);
 
-      CSingleLock slDataset(&m_csDataset, TRUE);
+      single_lock slDataset(&m_csDataset, TRUE);
       m_pdataset = (::sqlite::set *) m_pdatabase->CreateDataset();
       m_bRun = false;
 
@@ -25,7 +25,7 @@ namespace mail
    {
       string strPass;
       System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), m_paccount->m_strEmail, "license_auth/00003"),
-         strPass, "user_vault");
+         strPass, "user_vault", get_app());
       return strPass;
    }
 
@@ -72,7 +72,7 @@ namespace mail
 
    void db_pop3::filter_id()
    {
-      CSingleLock slDataset(&m_csDataset, TRUE);
+      single_lock slDataset(&m_csDataset, TRUE);
       for(int i = 0; i < m_straId.get_size();)
       {
          m_pdataset->query("select count(*) from inbox where id = '" + m_straId[i] + "'");
@@ -205,22 +205,22 @@ namespace mail
       {
          if(baAlpha[i])
          {
-            if(straDate[i] == "Jan" 
+            if(straDate[i] == "Jan"
                || straDate[i] == "January" )
             {
                strMonth = "01";
             }
-            else if(straDate[i] == "Feb" 
+            else if(straDate[i] == "Feb"
                || straDate[i] == "February" )
             {
                strMonth = "02";
             }
-            else if(straDate[i] == "Mar" 
+            else if(straDate[i] == "Mar"
                || straDate[i] == "March" )
             {
                strMonth = "03";
             }
-            else if(straDate[i] == "Apr" 
+            else if(straDate[i] == "Apr"
                || straDate[i] == "April" )
             {
                strMonth = "04";
@@ -229,72 +229,72 @@ namespace mail
             {
                strMonth = "05";
             }
-            else if(straDate[i] == "Jun" 
+            else if(straDate[i] == "Jun"
                || straDate[i] == "June" )
             {
                strMonth = "06";
             }
-            else if(straDate[i] == "Jul" 
+            else if(straDate[i] == "Jul"
                || straDate[i] == "July" )
             {
                strMonth = "07";
             }
-            else if(straDate[i] == "Aug" 
+            else if(straDate[i] == "Aug"
                || straDate[i] == "August" )
             {
                strMonth = "08";
             }
-            else if(straDate[i] == "Sep" 
+            else if(straDate[i] == "Sep"
                || straDate[i] == "September" )
             {
                strMonth = "09";
             }
-            else if(straDate[i] == "Oct" 
+            else if(straDate[i] == "Oct"
                || straDate[i] == "October" )
             {
                strMonth = "10";
             }
-            else if(straDate[i] == "Nov" 
+            else if(straDate[i] == "Nov"
                || straDate[i] == "November" )
             {
                strMonth = "11";
             }
-            else if(straDate[i] == "Dec" 
+            else if(straDate[i] == "Dec"
                || straDate[i] == "December" )
             {
                strMonth = "12";
             }
-            else if(straDate[i] == "Sun" 
+            else if(straDate[i] == "Sun"
                || straDate[i] == "Sunday" )
             {
                strWeekday = "01";
             }
-            else if(straDate[i] == "Mon" 
+            else if(straDate[i] == "Mon"
                || straDate[i] == "Monday" )
             {
                strWeekday = "02";
             }
-            else if(straDate[i] == "Tue" 
+            else if(straDate[i] == "Tue"
                || straDate[i] == "Tuesday" )
             {
                strWeekday = "03";
             }
-            else if(straDate[i] == "Wed" 
+            else if(straDate[i] == "Wed"
                || straDate[i] == "Wednesday" )
             {
                strWeekday = "04";
             }
-            else if(straDate[i] == "Thu" 
+            else if(straDate[i] == "Thu"
                || straDate[i] == "Thursday" )
             {
                strWeekday = "05";
             }
-            else if(straDate[i] == "Fri" 
+            else if(straDate[i] == "Fri"
                || straDate[i] == "Friday" )
             {
                strWeekday = "06";
             }
-            else if(straDate[i] == "Sat" 
+            else if(straDate[i] == "Sat"
                || straDate[i] == "Saturday" )
             {
                strWeekday = "07";
@@ -327,7 +327,7 @@ namespace mail
                   strYear = straDate[1];
                   strDay = straDate[0];
                }
-               else 
+               else
                {
                   strDay = straDate[1];
                }
@@ -370,7 +370,7 @@ namespace mail
       }
 ret:
       string strRet;
-      strRet.Format("%04d-%02d-%02d %02d:%02d:%02d", 
+      strRet.Format("%04d-%02d-%02d %02d:%02d:%02d",
          atoi(strYear),
          atoi(strMonth),
          atoi(strDay),
@@ -382,7 +382,7 @@ ret:
 
    void db_pop3::store()
    {
-      CSingleLock slDataset(&m_csDataset, TRUE);
+      single_lock slDataset(&m_csDataset, TRUE);
       stringa straHeaders;
       straHeaders.add_tokens(m_strHeaders, "\r\n", TRUE);
       string strSentDateTime;
@@ -415,7 +415,7 @@ ret:
          }
       }
       string strSql;
-      
+
       strSql.Format("insert into inbox (id, headers, body, sentdatetime, subject, sender) values ('%s', '%s', '%s', '%s', '%s', '%s')",
          m_pdatabase->escape(m_id),
          m_pdatabase->escape(m_strHeaders),
@@ -424,31 +424,18 @@ ret:
          m_pdatabase->escape(strSubject),
          m_pdatabase->escape(strSender));
       m_pdataset->exec(strSql);
-      slDataset.Unlock();
+      slDataset.unlock();
       update_lists();
    }
 
 
    void db_pop3::update_lists()
    {
-      if(get_mail_tree() != NULL)
-      {
-         get_mail_tree()->update_list();
-      }
-      if(get_mail_list() != NULL)
-      {
-         get_mail_list()->_001OnUpdateItemCount();
-      }
+
+      Application.update_pop3_mail_lists();
    }
 
-   tree *           db_pop3::get_mail_tree()
-   {
-      return App(m_papp).m_pmailtree;
-   }
-
-   list *             db_pop3::get_mail_list()
-   {
-      return App(m_papp).m_pmaillist;
-   }
 
 } // namespace mail
+
+

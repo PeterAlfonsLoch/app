@@ -426,7 +426,7 @@ bool Mp3Info::Parse(ID3_Reader& reader, size_t mp3size)
   else                /* MPEG 2 */
     sideinfo_len = (_mp3_header_output->channelmode == MP3CHANNELMODE_SINGLE_CHANNEL) ? 4 + 9 : 4 + 17;
 
-  int vbr_header_offest = beg + sideinfo_len;
+  int vbr_header_offest = (int) (beg + sideinfo_len);
   int vbr_frames = 0;
 
   sideinfo_len += 2; // add two for the crc itself

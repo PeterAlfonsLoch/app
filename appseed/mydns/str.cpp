@@ -214,9 +214,9 @@ hinfo_parse(char *hinfo, char *cpu, char *os, size_t destlen)
 
 	for (s = hinfo, d = cpu; *s; s++)
 	{
-		if (!cpu_done && ((d - cpu) > (destlen - 1)))	/* Have we exceeded length for 'cpu'? */
+		if (!cpu_done && ((size_t)(d - cpu) > (destlen - 1)))	/* Have we exceeded length for 'cpu'? */
 			return (-1);
-		if (cpu_done && ((d - os) > (destlen - 1)))		/* Have we exceeded length for 'os'? */
+		if (cpu_done && ((size_t)(d - os) > (destlen - 1)))		/* Have we exceeded length for 'os'? */
 			return (-1);
 
 		if (!cpu_done && isspace(*s) && !quote)			/* Time to move from 'cpu' to 'os'? */

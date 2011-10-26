@@ -19,14 +19,14 @@ public:
    /** read up to \c len chars into buf and advance the internal position
    ** accordingly.  Returns the number of characters read into buf.
    **/
-   virtual size_type readChars(char buf[], size_type len)
+   virtual ::primitive::memory_size readChars(char buf[], ::primitive::memory_size len)
    {
       return m_file.read((char *)buf, len);
    }
 
-   virtual pos_type getBeg() { return 0; }
-   virtual pos_type getCur() { return m_file.GetPosition(); }
-   virtual pos_type getEnd() 
+   virtual file_position getBeg() { return 0; }
+   virtual file_position getCur() { return m_file.get_position(); }
+   virtual file_position getEnd() 
    { 
       pos_type cur = this->getCur();
       m_file.seek_to_end();
@@ -37,7 +37,7 @@ public:
 
    /** Set the value of the internal position for reading.
    **/
-   virtual pos_type setCur(pos_type pos) { m_file.seek(pos, ::ex1::seek_begin); return pos; }
+   virtual file_position setCur(file_position pos) { m_file.seek((file_offset) pos, ::ex1::seek_begin); return pos; }
 
 
 };
@@ -52,7 +52,7 @@ protected:
    {
       m_pchBeg = buf;
       m_pchCur = buf;
-      m_pchEnd = buf + size;
+      m_pchEnd = buf + (::primitive::memory_position)size;
    };
 public:
    ID3_MemoryReader()
@@ -79,30 +79,30 @@ public:
    /** read up to \c len chars into buf and advance the internal position
    ** accordingly.  Returns the number of characters read into buf.
    **/
-   virtual size_type readChars(char buf[], size_type len);
+   virtual ::primitive::memory_size readChars(char buf[], ::primitive::memory_size len);
 
-   virtual pos_type getCur() 
+   virtual file_position getCur() 
    { 
       return m_pchCur - m_pchBeg; 
    }
 
-   virtual pos_type getBeg()
+   virtual file_position getBeg()
    {
       return m_pchBeg - m_pchBeg;
    }
 
-   virtual pos_type getEnd()
+   virtual file_position getEnd()
    {
       return m_pchEnd - m_pchBeg;
    }
 
    /** Set the value of the internal position for reading.
    **/
-   virtual pos_type setCur(pos_type pos)
+   virtual file_position setCur(file_position pos)
    {
       pos_type end = getEnd();
       size_type size = (pos < end) ? pos : end;
-      m_pchCur = m_pchBeg + size;
+      m_pchCur = m_pchBeg + (::primitive::memory_position)size;
       return getCur();
    }
 };

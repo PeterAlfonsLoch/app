@@ -12,25 +12,25 @@
 #define _ATL_QUOTES_SPACE 2
 
 
-
-extern "C" const __declspec(selectany) GUID LIBID_ATLLib =                 {0x44EC0535,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3}};
-extern "C" const __declspec(selectany) CLSID CLSID_Registrar =              {0x44EC053A,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3}};
-extern "C" const __declspec(selectany) IID IID_IRegistrar =              {0x44EC053B,0x400F,0x11D0,{0x9D,0xCD,0x00,0xA0,0xC9,0x03,0x91,0xD3}};
-extern "C" const __declspec(selectany) IID IID_IAxWinHostWindow =           {0xb6ea2050,0x048a,0x11d1,{0x82,0xb9,0x00,0xc0,0x4f,0xb9,0x94,0x2e}};
-extern "C" const __declspec(selectany) IID IID_IAxWinAmbientDispatch =        {0xb6ea2051,0x048a,0x11d1,{0x82,0xb9,0x00,0xc0,0x4f,0xb9,0x94,0x2e}};
-extern "C" const __declspec(selectany) IID IID_IInternalConnection =        {0x72AD0770,0x6A9F,0x11d1,{0xBC,0xEC,0x00,0x60,0x08,0x8F,0x44,0x4E}};
-extern "C" const __declspec(selectany) IID IID_IDocHostUIHandlerDispatch =     {0x425B5AF0,0x65F1,0x11d1,{0x96,0x11,0x00,0x00,0xF8,0x1E,0x0D,0x0D}};
-extern "C" const __declspec(selectany) IID IID_IAxWinHostWindowLic =        {0x3935BDA8,0x4ED9,0x495c,{0x86,0x50,0xE0,0x1F,0xC1,0xE3,0x8A,0x4B}};
-extern "C" const __declspec(selectany) IID IID_IAxWinAmbientDispatchEx =     {0xB2D0778B,0xAC99,0x4c58,{0xA5,0xC8,0xE7,0x72,0x4E,0x53,0x16,0xB5}};
-
+/*
+extern "C" const GUID LIBID_ATLLib;
+extern "C" const CLSID CLSID_Registrar;
+extern "C" const IID IID_IRegistrar;
+extern "C" const IID IID_IAxWinHostWindow;
+extern "C" const IID IID_IAxWinAmbientDispatch;
+extern "C" const IID IID_IInternalConnection;
+extern "C" const IID IID_IDocHostUIHandlerDispatch;
+extern "C" const IID IID_IAxWinHostWindowLic;
+extern "C" const IID IID_IAxWinAmbientDispatchEx;
+*/
 
 #ifndef _delayimp_h
-extern "C" IMAGE_DOS_HEADER __ImageBase;
+//extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
 
- 
+
 namespace _template
 {
 
@@ -39,7 +39,7 @@ namespace _template
 #define _ATL_CATMAP_ENTRY_IMPLEMENTED 1
 #define _ATL_CATMAP_ENTRY_REQUIRED 2
 
-typedef HRESULT (WINAPI _ATL_CREATORFUNC)(void * pv, REFIID riid, LPVOID* ppv);
+/*typedef HRESULT (WINAPI _ATL_CREATORFUNC)(void * pv, REFIID riid, LPVOID* ppv);
 typedef HRESULT (WINAPI _ATL_CREATORARGFUNC)(void * pv, REFIID riid, LPVOID* ppv, DWORD_PTR dw);
 typedef HRESULT (WINAPI _ATL_MODULEFUNC)(DWORD_PTR dw);
 typedef const char * (WINAPI _ATL_DESCRIPTIONFUNC)();
@@ -52,7 +52,7 @@ struct _ATL_TERMFUNC_ELEM
    DWORD_PTR dw;
    _ATL_TERMFUNC_ELEM* pNext;
 };
-
+*/
 /*
 struct _ATL_OBJMAP_ENTRY20
 {
@@ -66,9 +66,9 @@ struct _ATL_OBJMAP_ENTRY20
 };
 */
 
-// Can't inherit from _ATL_OBJMAP_ENTRY20 
+// Can't inherit from _ATL_OBJMAP_ENTRY20
 // because it messes up the OBJECT_MAP macros
-struct _ATL_OBJMAP_ENTRY30 
+/*struct _ATL_OBJMAP_ENTRY30
 {
    const CLSID* pclsid;
    HRESULT (WINAPI *pfnUpdateRegistry)(BOOL bRegister);
@@ -100,10 +100,10 @@ struct _ATL_OBJMAP_ENTRY30
    void (WINAPI *pfnObjectMain)(bool bStarting);
 };
 
-typedef _ATL_OBJMAP_ENTRY30 _ATL_OBJMAP_ENTRY;
+typedef _ATL_OBJMAP_ENTRY30 _ATL_OBJMAP_ENTRY;*/
 
 // Auto Object Map
-extern "C"
+/*extern "C"
 {
 __declspec(selectany) _ATL_OBJMAP_ENTRY* __pobjMapEntryFirst = NULL;
 __declspec(selectany) _ATL_OBJMAP_ENTRY* __pobjMapEntryLast = NULL;
@@ -122,17 +122,17 @@ struct _AtlCreateWndData
    DWORD m_dwThreadID;
    _AtlCreateWndData* m_pNext;
 };
-
-
+*/
+/*
 // perfmon registration/unregistration function definitions
 typedef HRESULT (*_ATL_PERFREGFUNC)(HINSTANCE hDllInstance);
 typedef HRESULT (*_ATL_PERFUNREGFUNC)();
 __declspec(selectany) _ATL_PERFREGFUNC _pPerfRegFunc = NULL;
 __declspec(selectany) _ATL_PERFUNREGFUNC _pPerfUnRegFunc = NULL;
-
+*/
 /////////////////////////////////////////////////////////////////////////////
 // Threading Model Support
-
+/*
 template< class TLock >
 class CComCritSecLock
 {
@@ -140,8 +140,8 @@ public:
    CComCritSecLock( TLock& cs, bool bInitialLock = true );
    ~CComCritSecLock() throw();
 
-   HRESULT Lock() throw();
-   void Unlock() throw();
+   HRESULT lock() throw();
+   void unlock() throw();
 
 // Implementation
 private:
@@ -162,7 +162,7 @@ inline CComCritSecLock< TLock >::CComCritSecLock( TLock& cs, bool bInitialLock )
    {
       HRESULT hr;
 
-      hr = Lock();
+      hr = lock();
       if( FAILED( hr ) )
       {
          AtlThrow( hr );
@@ -175,17 +175,17 @@ inline CComCritSecLock< TLock >::~CComCritSecLock() throw()
 {
    if( m_bLocked )
    {
-      Unlock();
+      unlock();
    }
 }
 
 template< class TLock >
-inline HRESULT CComCritSecLock< TLock >::Lock() throw()
+inline HRESULT CComCritSecLock< TLock >::lock() throw()
 {
    HRESULT hr;
 
    ATLASSERT( !m_bLocked );
-   hr = m_cs.Lock();
+   hr = m_cs.lock();
    if( FAILED( hr ) )
    {
       return( hr );
@@ -196,14 +196,14 @@ inline HRESULT CComCritSecLock< TLock >::Lock() throw()
 }
 
 template< class TLock >
-inline void CComCritSecLock< TLock >::Unlock() throw()
+inline void CComCritSecLock< TLock >::unlock() throw()
 {
    ATLASSUME( m_bLocked );
-   m_cs.Unlock();
+   m_cs.unlock();
    m_bLocked = false;
-}
+}*/
 
-class CComMultiThreadModelNoCS
+/*class CComMultiThreadModelNoCS
 {
 public:
    static ULONG WINAPI Increment(LPLONG p) throw() {return InterlockedIncrement(p);}
@@ -212,9 +212,9 @@ public:
    typedef CComFakeCriticalSection AutoDeleteCriticalSection;
    typedef CComFakeCriticalSection CriticalSection;
    typedef CComMultiThreadModelNoCS ThreadModelNoCS;
-};
+};*/
 
-class CComMultiThreadModel
+/*class CComMultiThreadModel
 {
 public:
    static ULONG WINAPI Increment(LPLONG p) throw() {return InterlockedIncrement(p);}
@@ -223,9 +223,9 @@ public:
    typedef CComAutoDeleteCriticalSection AutoDeleteCriticalSection;
    typedef CComCriticalSection CriticalSection;
    typedef CComMultiThreadModelNoCS ThreadModelNoCS;
-};
+};*/
 
-class CComSingleThreadModel
+/*class CComSingleThreadModel
 {
 public:
    static ULONG WINAPI Increment(LPLONG p) throw() {return ++(*p);}
@@ -234,15 +234,16 @@ public:
    typedef CComFakeCriticalSection AutoDeleteCriticalSection;
    typedef CComFakeCriticalSection CriticalSection;
    typedef CComSingleThreadModel ThreadModelNoCS;
-};
+};*/
 
+/*
 typedef CComMultiThreadModel CComObjectThreadModel;
 typedef CComMultiThreadModel CComGlobalsThreadModel;
-
+*/
 
 
 // Used by COM related code in _template
-struct _ATL_COM_MODULE70
+/*struct _ATL_COM_MODULE70
 {
    UINT cbSize;
    HINSTANCE m_hInstTypeLib;
@@ -250,40 +251,40 @@ struct _ATL_COM_MODULE70
    _ATL_OBJMAP_ENTRY** m_ppAutoObjMapLast;
    CComCriticalSection m_csObjMap;
 };
-typedef _ATL_COM_MODULE70 _ATL_COM_MODULE;
+typedef _ATL_COM_MODULE70 _ATL_COM_MODULE;*/
 
 
 // Used by Windowing code in _template
-struct _ATL_WIN_MODULE70
+/*struct _ATL_WIN_MODULE70
 {
    UINT cbSize;
    CComCriticalSection m_csWindowCreate;
    _AtlCreateWndData* m_pCreateWndList;
    CSimpleArray<ATOM> m_rgWindowClassAtoms;
 };
-typedef _ATL_WIN_MODULE70 _ATL_WIN_MODULE;
+typedef _ATL_WIN_MODULE70 _ATL_WIN_MODULE;*/
 
 
-struct _ATL_MODULE70
+/*struct _ATL_MODULE70
 {
    UINT cbSize;
    LONG m_nLockCnt;
    _ATL_TERMFUNC_ELEM* m_pTermFuncs;
    CComCriticalSection m_csStaticDataInitAndTypeInfo;
 };
-typedef _ATL_MODULE70 _ATL_MODULE;
+typedef _ATL_MODULE70 _ATL_MODULE;*/
 
 
 /////////////////////////////////////////////////////////////////////////////
 //This define makes debugging asserts easier.
-#define _ATL_SIMPLEMAPENTRY ((_template::_ATL_CREATORARGFUNC*)1)
+/*#define _ATL_SIMPLEMAPENTRY ((_template::_ATL_CREATORARGFUNC*)1)
 
 struct _ATL_INTMAP_ENTRY
 {
    const IID* piid;       // the interface id (IID)
    DWORD_PTR dw;
    _ATL_CREATORARGFUNC* pFunc; //NULL:end, 1:offset, n:ptr
-};
+};*/
 
 /////////////////////////////////////////////////////////////////////////////
 // Global Functions
@@ -291,13 +292,13 @@ struct _ATL_INTMAP_ENTRY
 /////////////////////////////////////////////////////////////////////////////
 // QI Support
 
-ATLAPI AtlInternalQueryInterface(void * pThis,
-   const _ATL_INTMAP_ENTRY* pEntries, REFIID iid, void ** ppvObject);
+/*ATLAPI AtlInternalQueryInterface(void * pThis,
+   const _ATL_INTMAP_ENTRY* pEntries, REFIID iid, void ** ppvObject);*/
 
 /////////////////////////////////////////////////////////////////////////////
 // Inproc Marshaling helpers
 
-ATLAPI AtlFreeMarshalStream(IStream* pStream);
+/*ATLAPI AtlFreeMarshalStream(IStream* pStream);
 ATLAPI AtlMarshalPtrInProc(IUnknown* pUnk, const IID& iid, IStream** ppStream);
 ATLAPI AtlUnmarshalPtr(IStream* pStream, const IID& iid, IUnknown** ppUnk);
 
@@ -308,37 +309,37 @@ ATLAPI_(BOOL) AtlWaitWithMessageLoop(HANDLE hEvent);
 
 ATLAPI AtlAdvise(IUnknown* pUnkCP, IUnknown* pUnk, const IID& iid, LPDWORD pdw);
 ATLAPI AtlUnadvise(IUnknown* pUnkCP, const IID& iid, DWORD dw);
-
+*/
 /////////////////////////////////////////////////////////////////////////////
 // IDispatch Error handling
 
-ATLAPI AtlSetErrorInfo(const CLSID& clsid, LPCOLESTR lpszDesc,
-   DWORD dwHelpID, LPCOLESTR lpszHelpFile, const IID& iid, HRESULT hRes,
-   HINSTANCE hInst);
+//ATLAPI AtlSetErrorInfo(const CLSID& clsid, LPCOLESTR lpszDesc,
+  // DWORD dwHelpID, LPCOLESTR lpszHelpFile, const IID& iid, HRESULT hRes,
+//   HINSTANCE hInst);
 
 /////////////////////////////////////////////////////////////////////////////
 // Module
 
-ATLAPI AtlComModuleRegisterClassObjects(_ATL_COM_MODULE* pComModule, DWORD dwClsContext, DWORD dwFlags);
-ATLAPI AtlComModuleRevokeClassObjects(_ATL_COM_MODULE* pComModule);
+//ATLAPI AtlComModuleRegisterClassObjects(_ATL_COM_MODULE* pComModule, DWORD dwClsContext, DWORD dwFlags);
+//ATLAPI AtlComModuleRevokeClassObjects(_ATL_COM_MODULE* pComModule);
 
-ATLAPI AtlComModuleGetClassObject(_ATL_COM_MODULE* pComModule, REFCLSID rclsid, REFIID riid, LPVOID* ppv);
+//ATLAPI AtlComModuleGetClassObject(_ATL_COM_MODULE* pComModule, REFCLSID rclsid, REFIID riid, LPVOID* ppv);
 
-ATLAPI AtlComModuleRegisterServer(_ATL_COM_MODULE* pComModule, BOOL bRegTypeLib, const CLSID* pCLSID = NULL);
-ATLAPI AtlComModuleUnregisterServer(_ATL_COM_MODULE* pComModule, BOOL bUnRegTypeLib, const CLSID* pCLSID = NULL);
+//ATLAPI AtlComModuleRegisterServer(_ATL_COM_MODULE* pComModule, BOOL bRegTypeLib, const CLSID* pCLSID = NULL);
+//ATLAPI AtlComModuleUnregisterServer(_ATL_COM_MODULE* pComModule, BOOL bUnRegTypeLib, const CLSID* pCLSID = NULL);
 
-ATLAPI AtlRegisterClassCategoriesHelper( REFCLSID clsid, const struct _ATL_CATMAP_ENTRY* pCatMap, BOOL bRegister );
+//ATLAPI AtlRegisterClassCategoriesHelper( REFCLSID clsid, const struct _ATL_CATMAP_ENTRY* pCatMap, BOOL bRegister );
 
 /*ATLAPI AtlUpdateRegistryFromResourceD(HINSTANCE hInst, LPCOLESTR lpszRes,
    BOOL bRegister, struct _ATL_REGMAP_ENTRY* pMapEntries, IRegistrar* pReg = NULL);*/
 
-ATLAPI AtlRegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
+/*ATLAPI AtlRegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
 ATLAPI AtlUnRegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
 ATLAPI AtlLoadTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex, BSTR* pbstrPath, ITypeLib** ppTypeLib);
 
-ATLAPI_(DWORD) AtlGetVersion(void * pReserved);
+ATLAPI_(DWORD) AtlGetVersion(void * pReserved);*/
 
-ATLAPI AtlModuleAddTermFunc(_ATL_MODULE* pModule, _ATL_TERMFUNC* pFunc, DWORD_PTR dw);
+/*ATLAPI AtlModuleAddTermFunc(_ATL_MODULE* pModule, _ATL_TERMFUNC* pFunc, DWORD_PTR dw);
 ATLAPI_(void) AtlCallTermFunc(_ATL_MODULE* pModule);
 
 ATLAPI AtlWinModuleInit(_ATL_WIN_MODULE* pWinModule);
@@ -346,7 +347,7 @@ ATLAPIINL AtlWinModuleTerm(_ATL_WIN_MODULE* pWinModule, HINSTANCE hInst);
 
 ATLAPI_(void) AtlWinModuleAddCreateWndData(_ATL_WIN_MODULE* pWinModule, _AtlCreateWndData* pData, void * pObject);
 ATLAPI_(void *) AtlWinModuleExtractCreateWndData(_ATL_WIN_MODULE* pWinModule);
-
+*/
 /////////////////////////////////////////////////////////////////////////////
 // get Registrar object from _template DLL.
 
@@ -354,7 +355,7 @@ ATLAPI_(void *) AtlWinModuleExtractCreateWndData(_ATL_WIN_MODULE* pWinModule);
 
 /////////////////////////////////////////////////////////////////////////////
 // GUID comparison
-inline BOOL WINAPI InlineIsEqualUnknown(REFGUID rguid1)
+/*inline BOOL WINAPI InlineIsEqualUnknown(REFGUID rguid1)
 {
    return (
      ((PLONG) &rguid1)[0] == 0 &&
@@ -367,10 +368,10 @@ inline BOOL WINAPI InlineIsEqualUnknown(REFGUID rguid1)
      ((PLONG) &rguid1)[3] == 0x46000000);
 #endif
 }
+*/
 
 
-
-template <class T>
+/*template <class T>
 const char * AtlDebugGetClassName(T*)
 {
 //#ifdef _DEBUG
@@ -379,23 +380,23 @@ const char * AtlDebugGetClassName(T*)
 //#else
 //   return NULL;
 //#endif
-}
+}*/
 
 // Validation macro for OUT pointer
 // Used in QI and CreateInstance
-#define _ATL_VALIDATE_OUT_POINTER(x)\
+/*#define _ATL_VALIDATE_OUT_POINTER(x)\
    do {               \
    ATLASSERT(x != NULL);   \
    if (x == NULL)         \
       return E_POINTER;   \
    *x = NULL;            \
-   } while(0)
+   } while(0)*/
 
    /////////////////////////////////////////////////////////////////////////////
    // Win32 libraries
 
    //#ifndef _ATL_NO_DEFAULT_LIBS
-   #pragma comment(lib, "kernel32.lib")
+   /*#pragma comment(lib, "kernel32.lib")
    #pragma comment(lib, "user32.lib")
    #pragma comment(lib, "advapi32.lib")
    //#pragma comment(lib, "ole32.lib")
@@ -403,7 +404,7 @@ const char * AtlDebugGetClassName(T*)
    //#pragma comment(lib, "oleaut32.lib")
    #pragma comment(lib, "uuid.lib")
    #pragma comment(lib, "shlwapi.lib")
-   //#endif  // !_ATL_NO_DEFAULT_LIBS
+   //#endif  // !_ATL_NO_DEFAULT_LIBS*/
 
 
    inline index add_throw(index i1, index i2)
@@ -421,7 +422,7 @@ const char * AtlDebugGetClassName(T*)
    }
 
 }   // namespace _template
- 
+
 
 
 

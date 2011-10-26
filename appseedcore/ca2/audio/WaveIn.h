@@ -15,13 +15,21 @@ class audWaveBuffer;
    audWaveIn *         m_pwavein;
 } WAVEPROCDATAMESSAGE, * LPWAVEPROCDATAMESSAGE;*/
 
-
 class audWaveInListener;
+
+
+#ifdef LINUX
+#include <alsa/asoundlib.h>
+#endif
+
+
 
 class CLASS_DECL_ca audWaveIn :
    public ::radix::thread
 {
 public:
+
+
    enum  e_state
    {
       state_initial,
@@ -30,25 +38,37 @@ public:
       state_stopping,
       StateStopped,
    };
-   audio_decode::encoder *       m_pencoder;
-   
-   critical_section               m_csHandle;
-   bool                           m_bResetting;
-   int                           m_iRefCount;
-   int                           m_iBuffer;
-   e_state                        m_estate;
-   audWaveBuffer *                m_pwavebuffer;
-   HWAVEIN                        m_hWaveIn;
-   WAVEFORMATEX                  m_waveFormatEx;
-   //thread *                    m_pthreadCallback;
-   audWaveInListenerSet          m_listenerset;
 
-   CEvent                        m_evInitialized;
-   CEvent                        m_eventExitInstance;
-   CEvent                        m_eventStopped;
+
+   audio_decode::encoder *          m_pencoder;
+
+   critical_section                 m_csHandle;
+   bool                             m_bResetting;
+   int                              m_iRefCount;
+   int                              m_iBuffer;
+   e_state                          m_estate;
+   audWaveBuffer *                  m_pwavebuffer;
+
+#ifdef WINDOWS
+   HWAVEIN                          m_hWaveIn;
+#else
+   snd_pcm_t                        m_pcm;
+   snd_pcm_hw_params_t              m_hwparams;
+#endif
+
+   WAVEFORMATEX                     m_waveFormatEx;
+
+
+   audWaveInListenerSet             m_listenerset;
+
+   event                            m_evInitialized;
+   event                            m_eventExitInstance;
+   event                            m_eventStopped;
+
 
    audWaveIn(::ca::application * papp);
    virtual ~audWaveIn();
+
 
    bool InitializeEncoder();
 
@@ -60,17 +80,19 @@ public:
    critical_section & GetHandleCriticalSection();
    bool IsOpened();
    bool IsRecording();
+#ifdef WINDOWS
    HWAVEIN GetSafeHwavein();
+#endif
    DWORD GetAnalysisMillis();
    bool IsResetting();
-   
+
    UINT GetState();
    LPWAVEFORMATEX GetFormatEx();
    // Reference count
    int Release();
    int AddRef();
-   
-   
+
+
    audWaveBuffer & GetBuffer();
 
    // Operations
@@ -87,10 +109,11 @@ public:
    virtual int exit_instance();
    virtual void pre_translate_message(gen::signal_object * pobj);
 
-   static void CALLBACK WaveInProc(
-      HWAVEIN hwi,       
-      UINT uMsg,         
-      DWORD dwInstance,  
-      DWORD dwParam1,    
+#ifdef WINDOWS
+   static void CALLBACK WaveInProc(HWAVEIN hwi, UINT uMsg,
+      DWORD dwInstance,
+      DWORD dwParam1,
       DWORD dwParam2);
+#endif
+
 };

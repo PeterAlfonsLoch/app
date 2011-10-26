@@ -19,9 +19,9 @@ folder_selection_list_view::~folder_selection_list_view(void)
 {
 }
 
-void folder_selection_list_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void folder_selection_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::userbase::split_view::_001InstallMessageHandling(pinterface);
+   ::userbase::split_view::install_message_handling(pinterface);
 }
 
 
@@ -45,7 +45,7 @@ void folder_selection_list_view::Initialize(FileManagerTemplate * ptemplate, con
 
    m_plistview->_001UpdateColumns();
 
-   if(data_get("InitialBrowsePath", ::ca::system::idEmpty, str))
+   if(data_get("InitialBrowsePath", ::radix::system::idEmpty, str))
    {
       FileManagerBrowse(str);
    }
@@ -65,11 +65,7 @@ void folder_selection_list_view::CreateViews()
   
    set_position_rate(0, 0.30);
 
-   create_context cc;
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView = &typeid(filemanager::SimpleFolderTreeView);
-
-   m_ptreeview = dynamic_cast < filemanager::SimpleFolderTreeView * > (create_view(&cc, this, 1));
+   m_ptreeview = create_view  < filemanager::SimpleFolderTreeView > ();
 
    if(m_ptreeview == NULL)
    {
@@ -80,10 +76,7 @@ void folder_selection_list_view::CreateViews()
 
    SetPane(0, m_ptreeview, false);
 
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(folder_list_view);
-
-   m_plistview = dynamic_cast < folder_list_view * > (create_view(&cc, this, 2));
+   m_plistview = create_view < folder_list_view > ();
 
    if(m_plistview == NULL)
    {

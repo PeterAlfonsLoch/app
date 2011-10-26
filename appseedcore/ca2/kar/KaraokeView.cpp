@@ -7,7 +7,7 @@ namespace kar
 
    KaraokeView::KaraokeView(::ca::application * papp) :
 ca(papp),
-   m_lyrictemplatelines(papp), 
+   m_lyrictemplatelines(papp),
    m_penLeft(papp),
    m_penRight(papp),
    m_penLeftSmall(papp),
@@ -30,8 +30,6 @@ ca(papp),
 
    m_lyrictemplatelines.SetKaraokeView(this);
 
-   ::ca::font_sp font(get_app());
-   GetLyricFont()->SetFont(font);
 
    m_bBouncingBall = false;
    m_bGradualFilling = false;
@@ -74,7 +72,7 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
 
 
 
-   int iLineIndex; 
+   int iLineIndex;
 
    ::ca::graphics * pdc = pevent->m_pdc;
 
@@ -85,9 +83,9 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
    ikar::dynamic_data & dynamicdata = data.GetDynamicData();
    ikar::karaoke * pinterface = data.GetInterface();
 
-   CSingleLock slKaraokeData(&data.m_mutex, FALSE);
+   single_lock slKaraokeData(&data.m_mutex, FALSE);
 
-   if(!slKaraokeData.Lock(0))
+   if(!slKaraokeData.lock(duration::zero()))
       return;
 
    int iPlayingIndex = -1;
@@ -126,7 +124,7 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
    int iTokenIndex = pevents->GetPositionToken(position);
    //int iTokenFirstNoteIndex = pevents->GetTokenFirstNote(iTokenIndex);
    int iNoteIndex = pevents->GetPositionNote(position);
-   //iNoteIndex = max(iNoteIndex, iTokenFirstNoteIndex); 
+   //iNoteIndex = max(iNoteIndex, iTokenFirstNoteIndex);
    //      int iNextTokenIndex = iTokenIndex;
 
 
@@ -178,9 +176,9 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
    {
       timeSpan = 0;
    }
-   int msElapsed = timeSpan;
-   int msTotalLength = 0;
-   int msUntilLength = 0;
+   imedia::time msElapsed = timeSpan;
+   imedia::time msTotalLength = 0;
+   imedia::time msUntilLength = 0;
    int iUntil = 0;
    int iCount = pevents->m_riiTokenNote.b(iTokenIndex).get_count();
    for(int i = 0; i < iCount; i++)
@@ -260,7 +258,7 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
    {
       ASSERT(m_lpbouncingball != NULL);
       imedia::position tkPosition;
-      pinterface->GetPosition(tkPosition);
+      pinterface->get_position(tkPosition);
 
       int iTokenIndexA = dynamicdata.m_iPlayingTokenIndex;
 
@@ -276,7 +274,8 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
             pdc,
             false,
             pviewline,
-            peventsBB);
+            peventsBB,
+            true);
       }
 
 
@@ -332,6 +331,33 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
                true);
          }
       }
+
+   }
+
+   if(m_bBouncingBall)
+   {
+      ASSERT(m_lpbouncingball != NULL);
+      imedia::position tkPosition;
+      pinterface->get_position(tkPosition);
+
+      int iTokenIndexA = dynamicdata.m_iPlayingTokenIndex;
+
+      if(iTokenIndexA < 0)
+      {
+         iTokenIndexA = 0;
+      }
+
+      //          int iNoteIndexA = pevents->GetTokenFirstNote(iTokenIndexA);
+      if(0 <= (iLineIndex = lyriclines.GetTokenLine(iTokenIndexA, &pviewline)))
+      {
+         m_lpbouncingball->to(
+            pdc,
+            false,
+            pviewline,
+            peventsBB,
+            false);
+      }
+
 
    }
 
@@ -409,584 +435,10 @@ void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
    }
 
 
-   slKaraokeData.Unlock();
+   slKaraokeData.unlock();
 
 }
 
-/*void KaraokeView::OnLyricEvent(LyricEventV1 *pevent, bool bRepaint)
-{
-int iLineIndex; 
-
-
-
-ikar::data & data = GetKaraokeData();
-ikar::static_data & staticdata = data.GetStaticData();
-ikar::dynamic_data & dynamicdata = data.GetDynamicData();
-ikar::karaoke * pinterface = data.GetInterface();
-
-
-
-
-
-//int iEventType = pevent->m_iType;
-//   int iTokenIndex = pevent->m_iCurrentToken;
-// int iNextTokenIndex = pevent->m_iCurrentToken;
-//   int iNoteIndex = pevent->m_iCurrentNote;
-
-int iPlayingIndex = -1;
-
-
-//primitive_array < visual::font *> * pfonts = GetLyricFonts();
-visual::font * pfont = GetLyricFont();
-ASSERT(pfont != NULL);
-
-
-LyricEventsV2 * pevents = NULL;
-LyricEventsV2 * peventsBB = NULL;
-if(staticdata.m_eventstracksV002.get_size() > 0)
-{
-pevents = (LyricEventsV2 *) staticdata.m_eventstracksV002.operator [](0);
-ASSERT(pevents != NULL);
-ASSERT(pevents->GetClassOrder() == 2);
-}
-if(staticdata.m_eventsTracksForBouncingBall.get_size() > 0)
-{
-peventsBB = (LyricEventsV2 *) staticdata.m_eventsTracksForBouncingBall.operator [](0);
-ASSERT(peventsBB != NULL);
-ASSERT(peventsBB->GetClassOrder() == 2);
-}
-if(pevents == NULL)
-return;
-
-imedia::position position;
-KaraokeGetPosition(position);
-imedia::time time = pinterface->PositionToTime(position);
-
-dynamicdata.m_position  = position;
-dynamicdata.m_time      = time;
-
-
-
-int iNoteIndex = pevents->GetPositionNote(position);
-int iTokenIndex = pevents->GetPositionToken(position);
-int iNextTokenIndex = iTokenIndex;
-
-imedia::position   positionToken;
-imedia::time       timeToken;
-imedia::position   positionNote;
-imedia::time       timeNote;
-
-if(iTokenIndex >= 0)
-{
-positionToken = pevents->m_tkaTokensPosition[iTokenIndex];
-timeToken = pevents->m_msaTokensPosition[iTokenIndex];
-}
-else
-{
-positionToken = 0;
-timeToken = 0;
-}
-if(iNoteIndex >= 0)
-{
-positionNote = pevents->m_tkaNotesPosition[iNoteIndex];
-timeNote = pevents->m_msaNotesPosition[iNoteIndex];
-}
-else
-{
-positionNote = 0;
-timeNote = 0;
-}
-
-
-imedia::time timeAdvance = time + imedia::time(1000);
-imedia::position positionAdvance = pinterface->TimeToPosition(timeAdvance);
-
-int iNoteIndexAdvance = pevents->GetPositionNote(positionAdvance);
-int iTokenIndexAdvance = pevents->GetPositionToken(positionAdvance);
-
-imedia::position   positionTokenAdvance;
-imedia::time       timeTokenAdvance;
-
-if(iTokenIndexAdvance >= 0)
-{
-positionTokenAdvance = pevents->m_tkaTokensPosition[iTokenIndexAdvance];
-timeTokenAdvance = pevents->m_msaTokensPosition[iTokenIndexAdvance];
-}
-else
-{
-positionTokenAdvance = 0;
-timeTokenAdvance = 0;
-}
-
-
-dynamicdata.m_iBufferTokenIndex = iTokenIndexAdvance;
-dynamicdata.m_iPlayingTokenIndex = iTokenIndex;
-dynamicdata.m_iPlayingNoteIndex = iNoteIndex;
-
-//   TRACE("CXfplayerView::OnLyricEvent\n");
-//   TRACE("iEventType == ");
-switch(iEventType)
-{
-case ikar::EventAdvanceShow:
-TRACE("ikar::EventAdvanceShow Token %d\n", iTokenIndex);
-dynamicdata.m_iBufferTokenIndex = iTokenIndex;
-break;
-case ikar::EventRunningElement:
-TRACE("ikar::EventRunningElement Token % d Note %d\n", iTokenIndex, iNoteIndex);
-dynamicdata.m_iPlayingTokenIndex = iTokenIndex;
-dynamicdata.m_iPlayingNoteIndex = iNoteIndex;
-break;
-case ikar::event_timer:
-//      TRACE("ikar::event_timer\n");
-iTokenIndex = dynamicdata.m_iPlayingTokenIndex;
-iNextTokenIndex = dynamicdata.m_iPlayingTokenIndex;
-iNoteIndex = dynamicdata.m_iPlayingNoteIndex;
-//      if(seq.GetState() != CMidiSequence::StatusPlaying) TODO
-//    {
-//     return;
-//}
-break;
-case ikar::EventSetElement:
-TRACE("ikar::EventSetElement\n");
-dynamicdata.m_iPlayingTokenIndex = iTokenIndex;
-dynamicdata.m_iPlayingNoteIndex = iNoteIndex;
-break;
-default:
-TRACE("Unknown(%d)\n", iEventType);
-}
-
-LyricViewLine * pviewline;
-LyricViewLines & lyriclines = GetLyricLines();
-
-#ifdef _DEBUG
-{
-int i = lyriclines.GetTokenLine(iTokenIndex, &pviewline);
-TRACE("Token = %d ",
-dynamicdata.m_iPlayingTokenIndex);
-
-if(dynamicdata.m_iPlayingTokenIndex >= 0 &&
-dynamicdata.m_iPlayingTokenIndex < staticdata.m_str2aRawTokens[0].get_size())
-{
-TRACE("(%s)",
-staticdata.m_str2aRawTokens[0][dynamicdata.m_iPlayingTokenIndex]);
-}
-
-TRACE(", Note = %d \n", dynamicdata.m_iPlayingNoteIndex);
-}
-
-
-#endif
-
-rect_array recta;
-
-
-if(m_lyrictemplatelines.get_size() <= 0)
-{
-return;
-
-}
-
-
-
-lyriclines.RenderEnable(false);
-
-// Se a linha do 'token' j・est・em uma das linhas,
-// n縊 ・necess疵io prepar・lo.
-if(iEventType == 1 &&
-!m_bBouncingBall)
-{
-
-int i;
-i = lyriclines.GetTokenLine(iTokenIndex, &pviewline);
-if(i >= 0 &&
-pviewline->IsVisible())
-{
-return;
-}
-}
-
-//   _vmsgcom::_backView::CInterface & backview = GetBackViewInterface();
-//   CSingleLock sl1Back(&backview.GetBackCS(), TRUE);
-::user::interaction * pwnd = KaraokeGetWnd();
-::ca::graphics * pdcScreen = GetGdi();
-
-// Prepara todos System aparatos para se desenhar
-rect clientRect;
-pwnd->GetClientRect(&clientRect);
-if(!pdcScreen->SetMapMode(MM_TEXT))
-{
-TRACE("GetLastError%d", GetLastError());
-TRACE0("Could not set ::collection::map mode to MM_TEXT.\n");
-}
-
-int count;
-if(m_bBouncingBall)
-{
-ASSERT(m_lpbouncingball != NULL);
-imedia::position tkPosition;
-pinterface->GetPosition(tkPosition);
-//       m_lpbouncingball->SetPosition(tkPosition);
-
-int iTokenIndexA = dynamicdata.m_iPlayingTokenIndex;
-
-if(iTokenIndexA < 0)
-{
-iTokenIndexA = 0;
-}
-
-int iNoteIndexA = pevents->GetTokenFirstNote(iTokenIndexA);
-if(0 <= (iLineIndex = 
-lyriclines.GetTokenLine(iTokenIndexA, &pviewline)))
-{
-m_lpbouncingball->to(
-pdcScreen,
-false,
-pviewline,
-recta,
-peventsBB);
-}
-
-
-}
-
-if(m_bBouncingBall)
-{
-//  if(m_lpbouncingball->HasPendingBBArrange() &&
-if(   GetTickCount() - m_dwLastShiftUpdate >  140 &&
-lyriclines.GetLineCount() > 0 &&
-(m_lpbouncingball->GetBBArrangeLine() !=
-lyriclines.GetLineCount() - 1))
-{
-m_dwLastShiftUpdate = GetTickCount();
-m_lpbouncingball->ClearPendingBBArrange();
-lyriclines.BBArrange(
-pdcScreen,
-NULL,
-false,
-m_lpbouncingball->GetBBArrangeLine(),
-&clientRect,
-recta,
-data,
-&count,
-pfont,
-m_lpbouncingball->GetBBArrangeRate());
-}
-}
-
-
-//   UpdateScreen(recta);
-//   recta.remove_all();
-
-
-
-//XfplayerViewLine oViewLine;
-//XfplayerViewLine oTemplateLine;
-
-LyricViewLineTemplate * lpTemplateLine;
-
-int iPlayingLineIndex = lyriclines.GetTokenLine(dynamicdata.m_iPlayingTokenIndex, &pviewline);
-
-// Desenha as linhas
-//if(iEventType == ikar::EventAdvanceShow &&
-if(!m_bBouncingBall)
-{
-
-// Limpeza de todas as linhas j・tocadas...
-// ou seja, as linhas j・tocadas v縊 ser
-// deixadas em branco
-lyriclines.UpdateFalseVisibility(
-pdcScreen,
-NULL,
-false,
-&clientRect,
-recta,
-data,
-pfont);
-
-// se encontrar a linha do correspondente
-// ao token atual (iTokenIndex),
-// torna a linha vis咩el.
-if(0 <= (iLineIndex = lyriclines.GetTokenLine(iTokenIndexAdvance, &pviewline)))
-{
-if(!pviewline->IsVisible())
-{
-lpTemplateLine = &m_lyrictemplatelines.element_at(pviewline->m_iRelativeLineIndex);
-pviewline->Show();
-pviewline->m_dFillRate = 0.0;
-pviewline->SetNewTime();
-pviewline->to(
-pdcScreen,
-&clientRect,
-recta,
-data,
-&count,
-true);
-}
-}
-
-}
-//   else if(
-//    iEventType == ikar::EventRunningElement
-//  || iEventType == ikar::event_timer
-//|| iEventType == ikar::EventSetElement)
-{
-if(iEventType == ikar::EventSetElement)
-{
-lyriclines.UpdateTrueVisibility(
-pdcScreen,
-NULL,
-false,
-&clientRect,
-recta,
-data,
-pfont);
-}
-// Encontra a linha do token sendo indicado para
-// grifo.
-int i;
-if((iLineIndex =
-lyriclines.GetTokenLine(iTokenIndex, &pviewline)) >= 0)
-{
-iPlayingIndex = iLineIndex;
-if(m_bGradualFilling)
-{
-if((iEventType == ikar::EventRunningElement ||
-iEventType == ikar::EventSetElement))
-{
-if(pviewline->m_dFillRate < 1.0 && iTokenIndex > 0)
-{
-int iTokenIndexA, iNoteIndexA;
-::base_array<DWORD, DWORD> dwNotes;
-if(iNoteIndex <= pevents->GetTokenFirstNote(iTokenIndex))
-{
-iTokenIndexA = iTokenIndex - 1;
-iNoteIndexA = pevents->GetTokenLastNote(iTokenIndexA);
-}
-else
-{
-iTokenIndexA = iTokenIndex;
-iNoteIndexA = iNoteIndex - 1;
-}
-pviewline->m_dFillRate = 1.0;
-pviewline->Invalidate(
-dynamicdata.m_iPlayingTokenIndex,
-dynamicdata.m_iPlayingNoteIndex,
-pevents);
-pviewline->to(
-pdcScreen,
-&clientRect,
-recta,
-data,
-&count,
-true);
-}
-//      if(iEventType == ikar::EventRunningElement)
-//    {
-//     pviewline->SetPlayStartTime();
-//   if(iNoteIndex < pevents->m_msaNotesDuration.get_size())
-//    pviewline->UpdateFillRate(0, pevents->m_msaNotesDuration[iNoteIndex]);
-//                  else
-//                   pviewline->m_dFillRate = 1.0;
-//           }
-else if(iEventType == ikar::EventSetElement)
-{
-imedia::position tkCurrentPosition;
-imedia::position tkNextPosition;
-if(iTokenIndex >= pevents->m_tkaTokensPosition.get_size())
-{
-pinterface->GetPositionLength(tkCurrentPosition);
-pinterface->GetPositionLength(tkNextPosition);
-}
-else if(iTokenIndex + 1 >= pevents->m_tkaTokensPosition.get_size())
-{
-tkCurrentPosition = pevents->m_tkaTokensPosition.get_at(iTokenIndex);   
-pinterface->GetPositionLength(tkNextPosition);
-}
-else
-{
-tkCurrentPosition = pevents->m_tkaTokensPosition.get_at(iTokenIndex);
-tkNextPosition = pevents->m_tkaTokensPosition.get_at(iTokenIndex + 1);
-}
-imedia::position tkNumerator = pevent->m_tkPosition - tkCurrentPosition;
-imedia::position tkDenominator = tkNextPosition - tkCurrentPosition;
-if(tkDenominator == 0)
-if(tkNumerator > 0)
-pviewline->m_dFillRate = 1.0; 
-else
-pviewline->m_dFillRate = 0.0; 
-else
-pviewline->m_dFillRate = (double) tkNumerator / tkDenominator; 
-}
-}
-//            else
-{
-//imedia::time msNow(GetTickCount());
-//imedia::time msNow(time);
-
-if(iNoteIndex >= pevents->m_msaNotesDuration.get_size())
-{
-pviewline->m_dFillRate = 1.0;
-}
-else if(iNoteIndex < 0)
-{
-pviewline->m_dFillRate = 0.0;
-}
-else
-{
-pviewline->UpdateFillRate(
-//    msNow - pviewline->GetPlayStartTime(), 
-time - timeNote,
-pevents->m_msaNotesDuration[iNoteIndex] + imedia::time(100)); 
-}
-}
-}
-else
-{
-pviewline->m_dFillRate = 1.0;
-}
-
-pviewline->Invalidate(
-dynamicdata.m_iPlayingTokenIndex,
-dynamicdata.m_iPlayingNoteIndex,
-pevents);
-pviewline->to(
-pdcScreen,
-&clientRect,
-recta,
-data,
-&count,
-true);
-
-if(!m_bBouncingBall &&
-//            (iEventType == ikar::EventRunningElement || iEventType == ikar::EventSetElement ||
-//          (iEventType == ikar::event_timer &&
-( (        GetTickCount() - m_dwAdvancingTime < 2000)))
-{
-m_dwAdvancingTime = GetTickCount();
-//            if(iEventType == ikar::EventRunningElement || iEventType == ikar::EventSetElement)
-{
-lyriclines.UpdateFalseVisibility(
-pdcScreen,
-NULL,
-false,
-&clientRect,
-recta,
-data,
-pfont);
-}
-
-LyricViewLine * lpPlayingViewLine = NULL;
-//            int iPlayingLineIndex;
-//          iPlayingLineIndex = lyriclines.GetTokenLine(dynamicdata.m_iPlayingTokenIndex, &lpPlayingViewLine);
-//            TRACE("iPlayingLineIndes = %d\n", iPlayingLineIndex);
-if(iPlayingLineIndex >= 0 && lpPlayingViewLine != NULL)
-{
-
-int iLastLineIndex;
-int iForeLineIndex;
-
-LyricViewLine * lpLastViewLine = NULL;
-LyricViewLine * lpForeViewLine = NULL;
-
-CDWArray dwaVisibleLines;
-for(i = iPlayingLineIndex + 1;
-i < iPlayingLineIndex + m_lyrictemplatelines.get_size() &&
-i < lyriclines.GetLineCount();
-i++)
-{
-iLineIndex = i;
-//                TRACE("iLineIndex = %d\n", iLineIndex);
-if(iLineIndex >= 0 &&
-iLineIndex < lyriclines.GetLineCount())
-
-{
-
-pviewline = &lyriclines.get(iLineIndex);
-if(dwaVisibleLines.HasItem(pviewline->m_iRelativeLineIndex))
-break;
-if(pviewline->m_iRelativeLineIndex == lpPlayingViewLine->m_iRelativeLineIndex)
-break;
-
-iLastLineIndex = iLineIndex - 1;
-if(iLastLineIndex >= 0 &&
-iLastLineIndex < lyriclines.GetLineCount())
-lpLastViewLine = &lyriclines.get(iLastLineIndex);
-else
-lpLastViewLine = NULL;
-
-iForeLineIndex = iLineIndex;
-while(true)
-{
-iForeLineIndex--;
-if(iForeLineIndex < 0)
-{
-lpForeViewLine = NULL;
-break;
-}
-lpForeViewLine = &lyriclines.get(iForeLineIndex);
-if(lpForeViewLine->m_iRelativeLineIndex == pviewline->m_iRelativeLineIndex)
-break;
-}
-if(!pviewline->IsVisible() &&
-(
-//                          iEventType == ikar::EventSetElement
-//                        ||
-(
-(
-(lpLastViewLine == NULL)
-//                            || lpLastViewLine->GetStatus(pDoc->dynamicdata.m_iPlayingTokenIndex) != XfplayerViewLine::StatusNew
-|| lpLastViewLine->IsNewTimedOut()
-)
-&&
-(
-(lpForeViewLine == NULL)
-|| lpForeViewLine->IsCleanTimedOut()
-)   
-)
-))
-
-{
-//                            TRACE("NEW LINE IN ADVANCE iLineIndex = %d\n", iLineIndex);
-lpTemplateLine = &m_lyrictemplatelines.element_at(pviewline->m_iRelativeLineIndex);
-pviewline->Show();
-
-pviewline->m_dFillRate = 0.0;
-pviewline->SetNewTime();
-pviewline->to(
-pdcScreen,
-&clientRect,
-recta,
-data,
-&count,
-true);
-//pviewline->SetStatus(XfplayerViewLine::StatusNew);
-}
-else
-{
-if(!pviewline->IsVisible())
-break;
-}
-dwaVisibleLines.add(pviewline->m_iRelativeLineIndex);
-
-}
-}
-}
-}
-}
-}
-
-//   UpdateScreen(recta);
-//   recta.remove_all();
-
-
-
-
-
-pdcScreen->Release();    
-
-UpdateScreen(recta);   
-
-} */
 
 visual::font * KaraokeView::GetLyricFont()
 {
@@ -1014,7 +466,7 @@ void KaraokeView::PrepareLyricTemplateLines()
 
    ::ca::dib_sp spdib(get_app());
    spdib->create(184, 184);
-   ::ca::graphics * pdc = spdib->get_graphics();   
+   ::ca::graphics * pdc = spdib->get_graphics();
 
    rect clientRect;
    GetClientRect(&clientRect);
@@ -1038,13 +490,13 @@ void KaraokeView::PrepareLyricTemplateLines()
          pviewline->SetFirstLineFlag(i == 0);
          pviewline->SetColors(m_crLeft, m_crRight, m_crLeftOutline, m_crRightOutline);
          pviewline->SetPens(
-            m_penLeft, 
+            m_penLeft,
             m_penRight,
             m_penLeftSmall,
             m_penRightSmall,
-            m_penLinkLeft, 
+            m_penLinkLeft,
             m_penLinkRight,
-            m_penHoverLeft, 
+            m_penHoverLeft,
             m_penHoverRight
             );
 
@@ -1087,7 +539,7 @@ void KaraokeView::PrepareLyricLines()
 
    LyricEventsV2 * pevents;
 
-   if(!peventsarray || 
+   if(!peventsarray ||
       staticdata.m_str2aRawTokens.get_size() <= 0)
       pevents = NULL;
    else if(peventsarray->get_size() < staticdata.m_str2aRawTokens.get_size())
@@ -1105,13 +557,13 @@ void KaraokeView::PrepareLyricLines()
    rect clientRect;
 
    GetClientRect(&clientRect);
-   TRACE("CXfplayerView::PrepareLyricLines 1 slGdi.Lock\n");
+   TRACE("CXfplayerView::PrepareLyricLines 1 slGdi.lock\n");
 
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
    ::ca::graphics * pdc = spgraphics;
 
-   
+
    LyricViewLine::ERenderResult elvlr;
    int iTokenIndex = 0;
    int iNextTokenIndex;
@@ -1167,7 +619,7 @@ void KaraokeView::PrepareLyricLines()
             &clientRect,
             pevents);
          rviewline.m_tokenaRaw.GetText(strLine);
-         wstrLine = gen::international::utf8_to_unicode(strLine); 
+         wstrLine = gen::international::utf8_to_unicode(strLine);
          strLine.trim();
          if(strLine.is_empty())
          {
@@ -1217,7 +669,7 @@ void KaraokeView::PrepareLyricLines()
                break;
             }
          }
-         if(iEmptyCount < (m_lyrictemplatelines.get_size() - 1)) 
+         if(iEmptyCount < (m_lyrictemplatelines.get_size() - 1))
          {
             iTemplate++;
             if(iTemplate >= m_lyrictemplatelines.get_size())
@@ -1341,7 +793,7 @@ void KaraokeView::PrepareLyricLines()
                rectClient.left,
                rectClient.top + pos,
                rectClient.right,
-               rectClient.top + pos + iFontMegaHeight); 
+               rectClient.top + pos + iFontMegaHeight);
             rline.SetPlacement(rect);
             pos += iFontMegaHeight;
          }
@@ -1408,7 +860,7 @@ void KaraokeView::PrepareLyricLines()
                rectClient.bottom  - pos,
                rectClient.right,
                //m_lineSongLabel.m_iTop - pos + iFontMegaHeight); TODO
-               rectClient.bottom  - pos + iFontMegaHeight); 
+               rectClient.bottom  - pos + iFontMegaHeight);
             lpTemplateLine->SetPlacement_(rect, iMainDeltaY);
             pos += iFontMegaHeight;
          }
@@ -1530,7 +982,7 @@ void KaraokeView::PrepareLyricLines()
             rectClient.left,
             rectClient.top + pos,
             rectClient.right,
-            rectClient.top + pos + iFontMegaHeight); 
+            rectClient.top + pos + iFontMegaHeight);
          rline.SetPlacement(rect);
          pos += iFontMegaHeight;
       }
@@ -1556,9 +1008,6 @@ void KaraokeView::PrepareLyricLines()
       GetClientRect(rectClient);
 
       //      int count = 0;
-
-      //visual::font *      pfont = GetLyricFont();
-
 
       ikar::data & data = GetKaraokeData();
       if(&data == NULL)
@@ -1622,14 +1071,39 @@ void KaraokeView::PrepareLyricLines()
 
       LyricViewLines & lyriclines = GetLyricLines();
       lyriclines.RenderEnable();
-      if(m_lyrictemplatelines.get_size() > 0 && 
+      if(m_lyrictemplatelines.get_size() > 0 &&
          true)
       {
+      if(m_bBouncingBall &&
+         pevents != NULL)
+      {
+         ASSERT(m_lpbouncingball != NULL);
+
+         int iTokenIndexA = dynamicdata.m_iPlayingTokenIndex;
+
+         if(iTokenIndexA < 0)
+         {
+            iTokenIndexA = 0;
+         }
+         LyricViewLine * pviewline = NULL;
+         int iLineIndex;
+         //         int iNoteIndexA = pevents->GetTokenFirstNote(iTokenIndexA);
+         if(0 <= (iLineIndex =
+            lyriclines.GetTokenLine(iTokenIndexA, &pviewline)))
+         {
+            m_lpbouncingball->to(
+               pdc,
+               true,
+               pviewline,
+               peventsBB,
+               true);
+         }
+      }
          /*for(int i = 0; i < m_lyrictemplatelines.get_size(); i++)
          {
          LyricViewLineTemplate & linetemplate = m_lyrictemplatelines.element_at(i);
          LyricViewLine * pline = linetemplate.GetLine();
-         if(pline != NULL 
+         if(pline != NULL
          && pline->IsVisible())
          {
          m_bTitleVisible = false;
@@ -1689,14 +1163,15 @@ void KaraokeView::PrepareLyricLines()
          LyricViewLine * pviewline = NULL;
          int iLineIndex;
          //         int iNoteIndexA = pevents->GetTokenFirstNote(iTokenIndexA);
-         if(0 <= (iLineIndex = 
+         if(0 <= (iLineIndex =
             lyriclines.GetTokenLine(iTokenIndexA, &pviewline)))
          {
             m_lpbouncingball->to(
                pdc,
                true,
                pviewline,
-               peventsBB);
+               peventsBB,
+               false);
          }
       }
    }
@@ -1750,7 +1225,7 @@ void KaraokeView::PrepareLyricLines()
    {
       ikar::data & data = GetKaraokeData();
       ikar::karaoke * pinterface = data.GetInterface();
-      pinterface->GetPosition(position);
+      pinterface->get_position(position);
       imedia::time time = pinterface->PositionToTime(position);
       imedia::time timeDuration;
       timeDuration = KaraokeGetLyricsDelay();
@@ -1808,7 +1283,7 @@ void KaraokeView::PrepareLyricLines()
       DWORD dwCodePage = KaraokeGetCodePage(str);
       gen::international::MultiByteToMultiByte(
          CP_UTF8,
-         str, 
+         str,
          dwCodePage,
          str);
    }

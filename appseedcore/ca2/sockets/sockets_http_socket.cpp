@@ -21,7 +21,7 @@ namespace sockets
       m_chunk_size(0),
       m_chunk_state(0)
    {
-      m_request.attr("http_version") = "HTTP/1.0";
+      m_request.attr("http_version") = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
    }
@@ -175,9 +175,9 @@ namespace sockets
          string str = pa.getword();
          if (str.get_length() > 4 &&  gen::str::begins_ci(str, "http/")) // response
          {
-            m_request.attr("http_version") = str;
-            m_request.attr("http_status_code") = pa.getword();
-            m_request.attr("http_status") = pa.getrest();
+            m_response.attr("http_version") = str;
+            m_response.attr("http_status_code") = pa.getword();
+            m_response.attr("http_status") = pa.getrest();
             m_bResponse = true;
          }
          else // request
@@ -285,6 +285,11 @@ namespace sockets
       string strTrace;
       strLine = m_response.attr("http_version").get_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
       msg = strLine + "\r\n";
+      if(m_response.m_propertysetHeader["host"].get_string().has_char())
+      {
+         strLine = "Host: " + m_response.m_propertysetHeader["host"];
+         msg += strLine + "\r\n";
+      }
       strTrace = strLine;
       strTrace.replace("%", "%%");
       TRACE(strTrace + "\n");
@@ -293,6 +298,8 @@ namespace sockets
          string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
          string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
          if(!http_filter_response_header(strKey, strValue))
+            continue;
+         if(strKey.CompareNoCase("host") == 0)
             continue;
          strLine = strKey + ": " + strValue;
          msg += strLine + "\r\n";
@@ -313,7 +320,7 @@ namespace sockets
          while(iSize > 0)
          {
             int iSend = min(iSize, 1024 * 16);
-            SendBuf(&((const char *) response().file().GetAllocation())[response().file().get_size() - iSize], iSend);
+            SendBuf(&((const char *) response().file().get_data())[response().file().get_size() - iSize], iSend);
             iSize -= iSend;
          }
       }
@@ -325,10 +332,20 @@ namespace sockets
    void http_socket::SendRequest()
    {
       string msg;
-      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      string strLine;
+      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("http_protocol") + "://" +  m_response.m_propertysetHeader["host"] +  m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      if(m_response.m_propertysetHeader["host"].get_string().has_char())
+      {
+         strLine = "Host: " + m_response.m_propertysetHeader["host"];
+         msg += strLine + "\r\n";
+      }
       for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_count(); i++)
       {
-         msg += m_response.m_propertysetHeader.m_propertya[i].name() + ": " + m_response.m_propertysetHeader.m_propertya[i].get_string() + "\r\n";
+         string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
+         string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
+         if(strKey.CompareNoCase("host") == 0)
+            continue;
+         msg += strKey + ": " + strValue + "\r\n";
       }
       msg += "\r\n";
       Send( msg );
@@ -379,7 +396,8 @@ namespace sockets
    {
       ::gen::parse pa(url_in,"/");
       protocol = pa.getword(); // http
-      if (!strcasecmp(protocol, "https:"))
+      protocol.trim(":");
+      if (!strcasecmp(protocol, "https"))
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();
@@ -402,6 +420,16 @@ namespace sockets
       url = "/" + pa.getrest();
       {
          ::gen::parse pa(url,"/");
+/*         index iEnd = url.find("?");
+         bool bHasQuery = iEnd > 0;
+         if(!bHasQuery)
+            iEnd = url.get_length();
+         string strScript;
+         strScript = System.url().url_encode(url.Mid(1, iEnd - 1));
+         string strChar;
+         strChar.Format("%%%02X", '_');
+         strScript.replace("_", strChar);
+         url = "/" + strScript + (bHasQuery ? url.Mid(iEnd + 1) : "");*/
          string tmp = pa.getword();
          while (tmp.get_length())
          {

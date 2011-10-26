@@ -3,11 +3,14 @@
 namespace kar
 {
 
-   void application_interface::on_application_signal(::ca::application::signal_object * pobj)
+   void application_interface::on_application_signal(::radix::application_signal_object * pobj)
    {
-      if(pobj->m_esignal == ::ca::application::signal_initialize1)
+      if(pobj->m_esignal == ::ca::application_signal_initialize1)
       {
-         System.factory().cloneable_large < LyricViewLine > ();
+         if(App(get_app()).is_system())
+         {
+            System.factory().cloneable_large < LyricViewLine > ();
+         }
       }
    }
 

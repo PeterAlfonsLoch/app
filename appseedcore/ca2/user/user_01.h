@@ -4,9 +4,7 @@
 
 
 #include "user_element_2d.h"
-#include "user_window_draw_interface.h"
-#include "user_window_redraw_interface.h"
-#include "user_on_draw_interface.h"
+#include "user_draw_interface.h"
 #include "user_mouse_focus.h"
 #include "user_keyboard_focus.h"
 #include "user_elemental.h"
@@ -112,8 +110,8 @@ public:
    virtual BOOL LoadFrame(const char * pszMatter,
             DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
             ::user::interaction* pParentWnd = NULL,
-            create_context* pContext = NULL);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, create_context* pContext);
+            ::ca::create_context* pContext = NULL);
+   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual void pre_translate_message(gen::signal_object * pobj);
    virtual void on_update_frame_title(BOOL bAddToTitle);
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
@@ -126,13 +124,13 @@ protected:
    virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 
    DECL_GEN_SIGNAL(_001OnDestroy)
-   afx_msg void OnSize(UINT nType, int cx, int cy);
-   afx_msg void OnUpdateMDIWindowCmd(cmd_ui* pCmdUI);
-   afx_msg BOOL OnMDIWindowCmd(UINT nID);
-   afx_msg void OnWindowNew();
-   afx_msg LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
-   afx_msg void OnIdleUpdateCmdUI();
-   afx_msg LRESULT OnMenuChar(UINT nChar, UINT, ::userbase::menu*);
+   void OnSize(UINT nType, int cx, int cy);
+   void OnUpdateMDIWindowCmd(cmd_ui* pCmdUI);
+   BOOL OnMDIWindowCmd(UINT nID);
+   void OnWindowNew();
+   LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
+   void OnIdleUpdateCmdUI();
+   LRESULT OnMenuChar(UINT nChar, UINT, ::userbase::menu*);
 };
 
 class CLASS_DECL_ca CMDIChildWnd : public frame_window
@@ -145,7 +143,7 @@ public:
             DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
             const RECT& rect = rectDefault,
             CMDIFrameWnd* pParentWnd = NULL,
-            create_context* pContext = NULL);
+            ::ca::create_context* pContext = NULL);
 
 // Attributes
    CMDIFrameWnd* GetMDIFrame();
@@ -169,7 +167,7 @@ public:
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-               ::user::interaction* pParentWnd, create_context* pContext = NULL);
+               ::user::interaction* pParentWnd, ::ca::create_context* pContext = NULL);
       // 'pParentWnd' parameter is required for MDI Child
    virtual BOOL DestroyWindow();
    virtual void pre_translate_message(gen::signal_object * pobj);
@@ -186,14 +184,14 @@ protected:
    virtual LRESULT DefWindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam);
    BOOL UpdateClientEdge(LPRECT lpRect = NULL);
 
-   afx_msg void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
-   afx_msg int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
-   afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-   afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-   afx_msg void OnSize(UINT nType, int cx, int cy);
-   afx_msg void OnWindowPosChanging(LPWINDOWPOS lpWndPos);
-   afx_msg BOOL OnNcActivate(BOOL bActive);
-   afx_msg void OnDestroy();
+   void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
+   int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
+   int OnCreate(LPCREATESTRUCT lpCreateStruct);
+   BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+   void OnSize(UINT nType, int cx, int cy);
+   void OnWindowPosChanging(LPWINDOWPOS lpWndPos);
+   BOOL OnNcActivate(BOOL bActive);
+   void OnDestroy();
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -210,11 +208,13 @@ protected:
 #pragma warning( disable: 4264 )
 class CLASS_DECL_ca CMiniFrameWnd : public frame_window
 {
-   // // DECLARE_DYNCREATE(CMiniFrameWnd)
-
-// Constructors
 public:
+
+
    CMiniFrameWnd();
+   ~CMiniFrameWnd();
+
+
    virtual BOOL create(const char * lpClassName, const char * lpWindowName,
       DWORD dwStyle, const RECT& rect,
       virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
@@ -222,21 +222,17 @@ public:
       DWORD dwStyle, const RECT& rect,
       virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
 
-// Implementation
-public:
-   ~CMiniFrameWnd();
 
-   afx_msg BOOL OnNcActivate(BOOL bActive);
-   afx_msg LRESULT OnNcHitTest(point point);
-   afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
-   afx_msg void OnGetMinMaxInfo(MINMAXINFO* pMMI);
-   afx_msg LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
-   afx_msg LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   afx_msg BOOL OnNcCreate(LPCREATESTRUCT lpcs);
+   BOOL OnNcActivate(BOOL bActive);
+   LRESULT OnNcHitTest(point point);
+   void OnSysCommand(UINT nID, LPARAM lParam);
+   void OnGetMinMaxInfo(MINMAXINFO* pMMI);
+   LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
+   LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
+   BOOL OnNcCreate(LPCREATESTRUCT lpcs);
 
 public:
-   static void PASCAL CalcBorders(LPRECT lpClientRect,
-      DWORD dwStyle = WS_THICKFRAME | WS_CAPTION, DWORD dwExStyle = 0);
+   static void PASCAL CalcBorders(LPRECT lpClientRect, DWORD dwStyle = 0, DWORD dwExStyle = 0);
 
 protected:
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

@@ -2,7 +2,7 @@
 
 #include "_comparable_primitive_array.h"
 #include "primitive/numeric_info.h"
-#include "primitive/types.h"
+//#include "primitive/types.h"
 
 
 template < class TYPE >
@@ -82,7 +82,7 @@ public:
       while(iU - iL > 5)
       {
          find = (iL + iU) / 2;
-         TYPE tCmp = t - element_at(find);
+         TYPE tCmp = t - this->element_at(find);
          if(tCmp == numeric_info::get_null_value  < TYPE >())
          {
             return true;
@@ -96,9 +96,9 @@ public:
             iU = find - 1;
          }
       }
-      for(; find < get_size(); find++)
+      for(; find < this->get_size(); find++)
       {
-         TYPE tCmp = t - element_at(find);
+         TYPE tCmp = t - this->element_at(find);
          if(tCmp == numeric_info::get_null_value  < TYPE >())
          {
             return true;
@@ -168,17 +168,17 @@ template < class TYPE >
 index numeric_array < TYPE >::
 Cmp(const numeric_array  < TYPE > & array1)
 {
-   count iMinSize = min(array1.get_size(), get_size());
+   count iMinSize = min(array1.get_size(), this->get_size());
    index i = 0;
    while(true)
    {
       if(i >= iMinSize)
       {
-         return get_size() - array1.get_size();
+         return this->get_size() - array1.get_size();
       }
-      if(element_at(i) > array1.element_at(i))
+      if(this->element_at(i) > array1.element_at(i))
          return 1;
-      else if(element_at(i) < array1.element_at(i))
+      else if(this->element_at(i) < array1.element_at(i))
          return -1;
       i++;
    }
@@ -216,7 +216,7 @@ void numeric_array < TYPE >::Diff(
    TYPE t;
    for(i = 0; i < array1.get_size(); i++)
    {
-      t = array1.get_at(i) - array2.get_at(i); 
+      t = array1.get_at(i) - array2.get_at(i);
       set_at(i, t);
    }
 }
@@ -248,10 +248,10 @@ void numeric_array < TYPE >::ElementDiff(
 template < class TYPE >
 index numeric_array < TYPE >::find_first_maximum_value()
 {
-   TYPE tMax = element_at(0);
+   TYPE tMax = this->element_at(0);
    for(index i = 1; i < m_nSize; i++)
    {
-     if(element_at(i) > tMax)
+     if(this->element_at(i) > tMax)
          return i;
    }
    return -1;
@@ -261,18 +261,18 @@ TYPE & numeric_array < TYPE >::
      get_maximum_value()
 {
    ASSERT(m_nSize > 0);
-   return element_at(find_first_maximum_value());
+   return this->element_at(find_first_maximum_value());
 }
 
 template < class TYPE >
 TYPE numeric_array < TYPE >::GetMean()
 {
    double dSum = 0.0;
-   for(index i = 0; i < get_size(); i++)
+   for(index i = 0; i < this->get_size(); i++)
    {
-      dSum += element_at(i);
+      dSum += this->element_at(i);
    }
-   return (TYPE) (dSum / (double) get_size());
+   return (TYPE) (dSum / (double) this->get_size());
 }
 
 template < class TYPE >
@@ -291,9 +291,9 @@ template < class TYPE >
 void numeric_array < TYPE >::divide(TYPE div)
 {
    index i;
-   for(i = 0; i < get_size(); i++)
+   for(i = 0; i < this->get_size(); i++)
    {
-      element_at(i) = element_at(i) / div;
+      this->element_at(i) = this->element_at(i) / div;
    }
 }
 
@@ -313,7 +313,7 @@ unique_number_sort_array(const unique_number_sort_array < TYPE > & a) :
 }
 
 
-class CLASS_DECL_ca index_array : 
+class CLASS_DECL_ca index_array :
    virtual public numeric_array < index >
 {
 public:
@@ -325,7 +325,7 @@ public:
    index_array operator + (const index_array & inta) const;
 };
 
-class CLASS_DECL_ca count_array : 
+class CLASS_DECL_ca count_array :
    virtual public numeric_array < count >
 {
 public:
@@ -338,7 +338,7 @@ public:
 };
 
 
-class CLASS_DECL_ca int_array : 
+class CLASS_DECL_ca int_array :
    virtual public numeric_array < int >
 {
 public:
@@ -351,7 +351,7 @@ public:
 };
 
 
-class CLASS_DECL_ca int64_array : 
+class CLASS_DECL_ca int64_array :
    virtual public numeric_array < int64_t >
 {
 public:
@@ -363,7 +363,7 @@ public:
    int64_array operator + (const int64_array & inta) const;
 };
 
-class CLASS_DECL_ca unique_int_sort_array : 
+class CLASS_DECL_ca unique_int_sort_array :
    virtual public unique_number_sort_array < int >
 {
 public:
@@ -375,7 +375,7 @@ public:
    unique_int_sort_array operator + (const unique_int_sort_array & inta) const;
 };
 
-class CLASS_DECL_ca float_array : 
+class CLASS_DECL_ca float_array :
    virtual public numeric_array < float >
 {
 public:
@@ -384,7 +384,7 @@ public:
    virtual ~float_array();
 };
 
-class CLASS_DECL_ca double_array : 
+class CLASS_DECL_ca double_array :
    virtual public numeric_array < double >
 {
 public:
@@ -393,7 +393,7 @@ public:
    virtual ~double_array();
 };
 
-class CLASS_DECL_ca byte_array : 
+class CLASS_DECL_ca byte_array :
    virtual public numeric_array < byte >
 {
 public:
@@ -401,7 +401,7 @@ public:
 };
 
 
-class CLASS_DECL_ca word_array : 
+class CLASS_DECL_ca word_array :
    virtual public numeric_array < word >
 {
 public:
@@ -411,10 +411,10 @@ public:
 
 
 class CLASS_DECL_ca dword_array :
-   virtual public numeric_array < dword >  
+   virtual public numeric_array < dword >
 {
 public:
-	
+
 	dword_array();
 	dword_array(const dword_array & base_array);
 	virtual ~dword_array();
@@ -423,7 +423,7 @@ public:
 
 
 class CLASS_DECL_ca uint_array :
-   public numeric_array < uint >  
+   public numeric_array < uint >
 {
 public:
 	uint_array();

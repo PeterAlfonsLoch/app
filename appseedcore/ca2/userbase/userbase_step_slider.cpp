@@ -21,9 +21,9 @@ namespace userbase
    }
 
 
-   void step_slider::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void step_slider::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::user::interaction::_001InstallMessageHandling(pdispatch);
+      ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &step_slider::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pdispatch, this, &step_slider::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &step_slider::_001OnLButtonDown);
@@ -85,6 +85,10 @@ namespace userbase
 
    void step_slider::_001OnDraw(::ca::graphics * pdc)
    {
+      
+      if(m_pscalar == NULL)
+         return;
+
       rect rectClient;
       GetClientRect(rectClient);
       class imaging & imaging = System.imaging();

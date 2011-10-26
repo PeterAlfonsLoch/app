@@ -14,15 +14,13 @@ namespace filemanager
 
       ContextMenu                   m_contextmenu;
       simple_list_header_control    m_headerctrl;
-      simple_scroll_bar             m_scrollbarVert;
-      simple_scroll_bar             m_scrollbarHorz;
 
 
 
-      virtual void _017OpenFolder(::fs::item & item);
+      virtual void _017OpenFolder(const ::fs::item & item);
       void StartAnimation();
       void RenameFile(int iLine, string & str);
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 

@@ -24,12 +24,17 @@ namespace datetime
    class CLASS_DECL_ca scanner
    {
    public:
-      scanner();
-      ~scanner();
-      const char * input;
-      const char * next_input;
+      
+      
+      const char *            input;
+      const char *            next_input;
 
-      class token * m_ptoken;
+      class token *           m_ptoken;
+      ::user::str_context *   m_pstrcontext;
+
+
+      scanner(::user::str_context * pstrcontext);
+      ~scanner();
 
       void initialize(const char * psz);
       void peek();

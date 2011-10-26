@@ -45,7 +45,7 @@ getoptstr(struct option const longopts[])
 	{
 		if (longopts[n].val)
 		{
-			*c++ = longopts[n].val;
+			*c++ = (char) longopts[n].val;
 			if (longopts[n].has_arg == required_argument)
 				*c++ = ':';
 			else if (longopts[n].has_arg == optional_argument)

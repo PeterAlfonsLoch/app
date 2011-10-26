@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="all32">
-		<Project filename="../../appseedcore/_/_.cbp" />
-		<Project filename="../../thirdparty/appseed/sqlite/sqlite.cbp" />
-		<Project filename="../../thirdparty/appseed/libcharguess/libcharguess.cbp" />
-		<Project filename="../../appseedcore/ca2/ca2.cbp" />
-		<Project filename="../../nodeapp/platform/linux/x86/linux/linux.cbp" active="1" />
+		<Project filename="../../appseedcore/c/_.cbp" />
+		<Project filename="../../appseedcore/ca/ca.cbp">
+			<Depends filename="../../appseedcore/c/_.cbp" />
+		</Project>
+		<Project filename="../../appseedcore/ca2/ca2.cbp">
+			<Depends filename="../../appseedcore/c/_.cbp" />
+			<Depends filename="../../appseedcore/ca/ca.cbp" />
+			<Depends filename="../../thirdparty/appseed/zlib/zlib.cbp" />
+		</Project>
+		<Project filename="../../os/linux/os.cbp" active="1">
+			<Depends filename="../../appseedcore/c/_.cbp" />
+			<Depends filename="../../appseedcore/ca/ca.cbp" />
+			<Depends filename="../../appseedcore/ca2/ca2.cbp" />
+		</Project>
+		<Project filename="../../thirdparty/appseed/zlib/zlib.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

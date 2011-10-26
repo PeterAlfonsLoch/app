@@ -16,35 +16,42 @@ typedef  GZIP* LPGZIP;
 static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 
-gzip::gzip(ex1::file * pfileDest)
+gzip::gzip(ex1::file * pfileDest) :
+   m_ostream(pfileDest)
 {
-   m_postream = pfileDest;
    construct();
 }
-gzip::gzip(ex1::output_stream & ostreamDest)
+gzip::gzip(ex1::writer & writer) :
+   m_ostream(&writer)
 {
-   m_postream = &ostreamDest;
    construct();
 }
+
+gzip::gzip(ex1::byte_output_stream & ostreamDest) :
+   m_ostream(&ostreamDest)
+{
+   construct();
+}
+
 gzip::~gzip()
 {
 }
 
-   bool gzip::write(void * buf, int iSize)
+   bool gzip::write(void * buf, ::primitive::memory_size iSize)
    {
       m_crc = crc32(m_crc, (const Bytef *) buf, iSize);
       m_zstream.next_in       = (Bytef*)buf;
-      m_zstream.avail_in      = iSize;
+      m_zstream.avail_in      = (uInt) iSize;
       while (m_zstream.avail_in != 0)
       {
          if(m_zstream.avail_out == 0)
          {
-            m_zstream.next_out = m_memory.GetAllocation();
-            m_postream->write(m_memory.GetAllocation(), m_memory.GetStorageSize());
-            m_zstream.avail_out = m_memory.GetStorageSize();
+            m_zstream.next_out = m_memory.get_data();
+            m_ostream.write(m_memory.get_data(), m_memory.get_size());
+            m_zstream.avail_out = (uInt) m_memory.get_size();
         }
         m_z_err = deflate(&(m_zstream), Z_NO_FLUSH);
-        if(m_z_err != Z_OK) 
+        if(m_z_err != Z_OK)
            break;
       }
       return true;
@@ -66,15 +73,15 @@ gzip::~gzip()
       m_z_err = Z_OK;
       m_crc = crc32(0L, Z_NULL, 0);
       int err = deflateInit2(&(m_zstream), iLevel,Z_DEFLATED, -MAX_WBITS, DEF_MEM_LEVEL, iStrategy);
-      if (err != Z_OK || m_memory.GetAllocation() == Z_NULL)
+      if (err != Z_OK || m_memory.get_data() == Z_NULL)
       {
          destroy();
          return;
       }
       GZIP header[10]={0x1f,0x8b,Z_DEFLATED, 0 /*flags*/, 0,0,0,0 /*time*/, 0 /*xflags*/, OS_CODE};
-      m_postream->write(header,10);
-      m_zstream.next_out      = m_memory.GetAllocation();
-      m_zstream.avail_out     = m_memory.GetStorageSize();
+      m_ostream.write(header,10);
+      m_zstream.next_out      = m_memory.get_data();
+      m_zstream.avail_out     = (uInt) m_memory.get_size();
    }
 
 
@@ -83,13 +90,13 @@ gzip::~gzip()
 
    void gzip::finish()
    {
-      if(_finish() != Z_OK) 
-      { 
-         destroy(); 
+      if(_finish() != Z_OK)
+      {
+         destroy();
          return;
       }
       putLong(m_crc);
-      putLong (m_zstream.total_in);  
+      putLong (m_zstream.total_in);
       destroy();
    }
 
@@ -100,13 +107,13 @@ gzip::~gzip()
       m_zstream.avail_in = 0; /* should be zero already anyway */
       for (;;)
       {
-         len = m_memory.GetStorageSize() - m_zstream.avail_out;
+         len = (int) (m_memory.get_size() - m_zstream.avail_out);
 
          if (len != 0)
          {
-            m_postream->write(m_memory.GetAllocation(), len);
-            m_zstream.next_out = m_memory.GetAllocation();
-            m_zstream.avail_out = m_memory.GetStorageSize();
+            m_ostream.write(m_memory.get_data(), len);
+            m_zstream.next_out   = m_memory.get_data();
+            m_zstream.avail_out  = (uInt) m_memory.get_size();
          }
          if(done)
             break;
@@ -140,7 +147,7 @@ gzip::~gzip()
    {
       for(int n = 0; n < 4; n++) {
          unsigned char c=(unsigned char)(x & 0xff);
-         m_postream->write(&c,1);
+         m_ostream.write(&c,1);
          x >>= 8;
       }
    }
@@ -149,4 +156,4 @@ gzip::~gzip()
 
 
 
-   
+

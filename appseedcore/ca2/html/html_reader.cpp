@@ -1,11 +1,25 @@
 #include "StdAfx.h"
 
+
 namespace html
 {
    reader::reader()
    {
       m_ptag = NULL;
       m_ptagMain = NULL;
+   }
+
+   reader::~reader()
+   {
+
+      if(m_ptagMain != NULL)
+      {
+         delete m_ptagMain;
+      }
+
+      m_ptag      = NULL;
+      m_ptagMain  = NULL;
+
    }
 
    void reader::BeginParse(DWORD dwAppData, bool &bAbort)
@@ -82,6 +96,20 @@ namespace html
    {
       UNUSED_ALWAYS(dwAppData);
       UNUSED_ALWAYS(bIsAborted);
+   }
+
+   tag * reader::detach_main_tag()
+   {
+      
+      tag * ptagMain    = m_ptagMain;
+
+
+      m_ptagMain        = NULL;
+      m_ptag            = NULL;
+
+
+      return ptagMain;
+
    }
 
 } // namespace html

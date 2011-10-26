@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -28,6 +28,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "StdAfx.h"
+#include <openssl/ssl.h>
+
+
 #ifdef _WIN32
 //#include <stdlib.h>
 #else
@@ -51,7 +54,7 @@ namespace sockets
    #ifdef _DEBUG
    #define DEB(x) x
    #else
-   #define DEB(x) 
+   #define DEB(x)
    #endif
 
 
@@ -65,7 +68,7 @@ namespace sockets
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(socket_handler_base& h) : 
+   tcp_socket::tcp_socket(socket_handler_base& h) :
    ::ca::ca(h.get_app()),
    socket(h),
    stream_socket(h)
@@ -99,7 +102,7 @@ namespace sockets
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(socket_handler_base& h,size_t isize,size_t osize) : 
+   tcp_socket::tcp_socket(socket_handler_base& h,size_t isize,size_t osize) :
    ::ca::ca(h.get_app()),
    socket(h),
    stream_socket(h)
@@ -247,8 +250,9 @@ namespace sockets
       if (n == -1)
       {
          // check error code that means a connect is in progress
+         int iError = ::WSAGetLastError();
    #ifdef _WIN32
-         if (Errno == WSAEWOULDBLOCK)
+         if (iError == WSAEWOULDBLOCK || iError == 0)
    #else
          if (Errno == EINPROGRESS)
    #endif
@@ -265,13 +269,15 @@ namespace sockets
          else
          if (Reconnect())
          {
-            Handler().LogError(this, "connect: failed, reconnect pending", Errno, StrError(Errno), ::gen::log::level::info);
+            string strError = StrError(iError);
+            Handler().LogError(this, "connect: failed, reconnect pending", iError, StrError(iError), ::gen::log::level::info);
             Attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
          {
-            Handler().LogError(this, "connect: failed", Errno, StrError(Errno), ::gen::log::level::fatal);
+            string strError = StrError(iError);
+            Handler().LogError(this, "connect: failed", iError, StrError(iError), ::gen::log::level::fatal);
             SetCloseAndDelete();
             closesocket(s);
             return false;
@@ -676,7 +682,7 @@ namespace sockets
    #else
             if (Errno != EWOULDBLOCK)
    #endif
-            {   
+            {
                Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::fatal);
                OnDisconnect();
                SetCloseAndDelete(true);
@@ -885,7 +891,7 @@ namespace sockets
          {
             ibuf.read( (char *)&m_socks4_dstip, 4);
             SetSocks4(false);
-         
+
             switch (m_socks4_cd)
             {
             case 90:
@@ -1017,6 +1023,10 @@ namespace sockets
    {
       if(!IsSSLServer()) // client
       {
+         if(m_spsslclientcontext->m_psession != NULL)
+         {
+            SSL_set_session(m_ssl, m_spsslclientcontext->m_psession);
+         }
          int r = SSL_connect(m_ssl);
          if (r > 0)
          {
@@ -1025,7 +1035,8 @@ namespace sockets
             long x509_err = cert_common_name_check(m_strHost);
             if(x509_err != X509_V_OK
             && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
-            && x509_err != X509_V_ERR_APPLICATION_VERIFICATION)
+            && x509_err != X509_V_ERR_APPLICATION_VERIFICATION
+            && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
                Handler().LogError(this, "SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::gen::log::level::info);
                SetSSLNegotiate(false);
@@ -1052,14 +1063,36 @@ namespace sockets
                OnConnect();
             }
             Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection established", ::gen::log::level::info);
+            if(m_spsslclientcontext->m_psession == NULL)
+            {
+               m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
+            }
             return true;
          }
          else if(!r)
          {
+            if(m_spsslclientcontext->m_psession != NULL)
+            {
+
+               if(m_spsslclientcontext->m_iRetry == 0)
+               {
+                  m_spsslclientcontext->m_iRetry = 1;
+                  SSL_clear(m_ssl);
+                  SSL_SESSION_free(m_spsslclientcontext->m_psession);
+                  m_spsslclientcontext->m_psession = NULL;
+                  goto skip;
+               }
+               else
+               {
+                  m_spsslclientcontext->m_iRetry = 0;
+               }
+            }
+            r = SSL_get_error(m_ssl, r);
             Handler().LogError(this, "SSLNegotiate/SSL_connect", 0, "Connection failed", ::gen::log::level::info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLConnectFailed();
+            skip:;
          }
          else
          {
@@ -1122,7 +1155,7 @@ namespace sockets
 
    void tcp_socket::InitSSLClient()
    {
-      InitializeContext("", SSLv23_method());
+      InitializeContext(m_strInitSSLClientContext, SSLv23_method());
    }
 
 
@@ -1133,26 +1166,28 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context, SSL_METHOD *meth_in)
+   void tcp_socket::InitializeContext(const string & context, SSL_METHOD * pmethod)
    {
       /* create our context*/
-      ::collection::string_map < SSL_CTX * > & client_contexts = *System.m_pclient_contexts;
-      if(client_contexts.PLookup(context) == NULL)
+      if(m_spsslclientcontext.is_null())
       {
-         ERR_load_ERR_strings();
-         SSL_METHOD *meth = meth_in ? meth_in : SSLv3_method();
-         client_contexts[context] = SSL_CTX_new(meth);
-         char buf[255];
-         UINT err = ERR_get_error();
-//         UINT uiReason = ERR_GET_REASON(err);
-         ERR_error_string(err, buf);
-//         const char * pszReason = ERR_reason_error_string(err);
-         m_ssl_ctx = client_contexts[context];
-         SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
+         ::collection::string_map < sp(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
+         if(clientcontextmap.PLookup(context) == NULL)
+         {
+            m_spsslclientcontext(new ssl_client_context(get_app(), pmethod));
+            if(context.has_char())
+            {
+               clientcontextmap[context] = m_spsslclientcontext;
+            }
+         }
+         else
+         {
+            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_value;
+         }
       }
-      else
+      if(m_spsslclientcontext.is_set())
       {
-         m_ssl_ctx = client_contexts[context];
+         m_ssl_ctx = m_spsslclientcontext->m_pcontext;
       }
    }
 
@@ -1316,7 +1351,7 @@ namespace sockets
 
    size_t tcp_socket::GetInputLength()
    {
-      return ibuf.get_length();
+      return (size_t) ibuf.get_length();
    }
 
 
@@ -1410,145 +1445,6 @@ namespace sockets
    #endif
    }
 
-
-   tcp_socket::CircularBuffer::CircularBuffer(size_t size)
-   :buf(new char[2 * size])
-   ,m_max(size)
-   ,m_q(0)
-   ,m_b(0)
-   ,m_t(0)
-   ,m_count(0)
-   {
-   }
-
-
-   tcp_socket::CircularBuffer::~CircularBuffer()
-   {
-      delete[] buf;
-   }
-
-
-   bool tcp_socket::CircularBuffer::write(const char *s,size_t l)
-   {
-      if (m_q + l > m_max)
-      {
-         return false; // overflow
-      }
-      m_count += (unsigned long)l;
-      if (m_t + l > m_max) // block crosses circular border
-      {
-         size_t l1 = m_max - m_t; // size left until circular border crossing
-         // always copy full block to buffer(buf) + top pointer(m_t)
-         // because we have doubled the buffer size for performance reasons
-         memcpy(buf + m_t, s, l);
-         memcpy(buf, s + l1, l - l1);
-         m_t = l - l1;
-         m_q += l;
-      }
-      else
-      {
-         memcpy(buf + m_t, s, l);
-         memcpy(buf + m_max + m_t, s, l);
-         m_t += l;
-         if (m_t >= m_max)
-            m_t -= m_max;
-         m_q += l;
-      }
-      return true;
-   }
-
-
-   bool tcp_socket::CircularBuffer::read(char *s,size_t l)
-   {
-      if (l > m_q)
-      {
-         return false; // not enough chars
-      }
-      if (m_b + l > m_max) // block crosses circular border
-      {
-         size_t l1 = m_max - m_b;
-         if (s)
-         {
-            memcpy(s, buf + m_b, l1);
-            memcpy(s + l1, buf, l - l1);
-         }
-         m_b = l - l1;
-         m_q -= l;
-      }
-      else
-      {
-         if (s)
-         {
-            memcpy(s, buf + m_b, l);
-         }
-         m_b += l;
-         if (m_b >= m_max)
-            m_b -= m_max;
-         m_q -= l;
-      }
-      if (!m_q)
-      {
-         m_b = m_t = 0;
-      }
-      return true;
-   }
-
-
-   bool tcp_socket::CircularBuffer::remove(size_t l)
-   {
-      return read(NULL, l);
-   }
-
-
-   size_t tcp_socket::CircularBuffer::get_length()
-   {
-      return m_q;
-   }
-
-
-   const char *tcp_socket::CircularBuffer::GetStart()
-   {
-      return buf + m_b;
-   }
-
-
-   size_t tcp_socket::CircularBuffer::GetL()
-   {
-      return (m_b + m_q > m_max) ? m_max - m_b : m_q;
-   }
-
-
-   size_t tcp_socket::CircularBuffer::Space()
-   {
-      return m_max - m_q;
-   }
-
-
-   unsigned long tcp_socket::CircularBuffer::ByteCounter(bool clear)
-   {
-      if (clear)
-      {
-         unsigned long x = m_count;
-         m_count = 0;
-         return x;
-      }
-      return m_count;
-   }
-
-
-   string tcp_socket::CircularBuffer::read_string(size_t l)
-   {
-      char *sz = new char[l + 1];
-      if (!read(sz, l)) // failed, debug printout in read() method
-      {
-         delete[] sz;
-         return "";
-      }
-      sz[l] = 0;
-      string tmp = sz;
-      delete[] sz;
-      return tmp;
-   }
 
 
    void tcp_socket::OnConnectTimeout()
@@ -1652,7 +1548,7 @@ namespace sockets
 
    long tcp_socket::cert_common_name_check(const char * common_name)
    {
-     
+
       if(!m_bCertCommonNameCheckEnabled)
       {
          return X509_V_OK;
@@ -1660,13 +1556,13 @@ namespace sockets
 
       X509 *cert = NULL;
       X509_NAME *subject = NULL;
-  
+
       cert = SSL_get_peer_certificate(m_ssl);
       bool ok = false;
       if (cert != NULL && strlen(common_name) > 0)
       {
          char data[256];
-         if ((subject = X509_get_subject_name(cert)) != NULL && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0) 
+         if ((subject = X509_get_subject_name(cert)) != NULL && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
          {
             data[255] = 0;
             if (_strnicmp(data, common_name, 255) == 0)
@@ -1675,7 +1571,7 @@ namespace sockets
             }
          }
       }
-  
+
       if(cert)
       {
          X509_free(cert);
@@ -1685,7 +1581,7 @@ namespace sockets
       {
          return SSL_get_verify_result(m_ssl);
       }
-  
+
       return X509_V_ERR_APPLICATION_VERIFICATION;
    }
 
@@ -1694,5 +1590,8 @@ namespace sockets
       m_bCertCommonNameCheckEnabled = bEnable;
    }
 
-}
+
+} // namespace sockets
+
+
 

@@ -29,7 +29,7 @@ bool glyph::operator <= (const glyph & glyph) const
 /****************************************************************************
  *  FUNCTION   : IntFromFixed
  *  RETURNS    : int value approximating the FIXED value.
- ****************************************************************************/ 
+ ****************************************************************************/
 int PASCAL NEAR IntFromFixed(FIXED f)
 {
     if (f.fract >= 0x8000)
@@ -41,7 +41,7 @@ int PASCAL NEAR IntFromFixed(FIXED f)
 /****************************************************************************
  *  FUNCTION   : fxDiv2
  *  RETURNS    : (val1 + val2)/2 for FIXED values
- ****************************************************************************/ 
+ ****************************************************************************/
 FIXED PASCAL NEAR fxDiv2(FIXED fxVal1, FIXED fxVal2)
 {
     long l;
@@ -58,7 +58,7 @@ FIXED PASCAL NEAR fxDiv2(FIXED fxVal1, FIXED fxVal2)
  *
  *
  *  RETURNS    : number of Bezier points placed into the pPts POINT base_array.
- ****************************************************************************/ 
+ ****************************************************************************/
 UINT MakeBezierFromLine( POINT *pPts, POINT startpt, POINT endpt )
 {
     UINT cTotal = 0;
@@ -80,7 +80,7 @@ UINT MakeBezierFromLine( POINT *pPts, POINT startpt, POINT endpt )
     // ending point of Bezier
     pPts[cTotal] = endpt;
     cTotal++;
-    
+
     return cTotal;
 }
 
@@ -92,7 +92,7 @@ UINT MakeBezierFromLine( POINT *pPts, POINT startpt, POINT endpt )
  *
  *
  *  RETURNS    : number of Bezier points placed into the pPts POINT base_array.
- ****************************************************************************/ 
+ ****************************************************************************/
 UINT MakeBezierFromQBSpline( POINT *pPts, POINTFX *pSpline )
 {
     POINT   P0,         // Quadratic on curve start point
@@ -113,7 +113,7 @@ UINT MakeBezierFromQBSpline( POINT *pPts, POINTFX *pSpline )
     // Cubic P0 is the on curve start point
     pPts[cTotal] = P0;
     cTotal++;
-    
+
     // Cubic P1 in terms of Quadratic P0 and P1
     pPts[cTotal].x = P0.x + 2*(P1.x - P0.x)/3;
     pPts[cTotal].y = P0.y + 2*(P1.y - P0.y)/3;
@@ -135,14 +135,14 @@ UINT MakeBezierFromQBSpline( POINT *pPts, POINTFX *pSpline )
 /****************************************************************************
  *  FUNCTION   : AppendPolyLineToBezier
  *
- *  PURPOSE    : Converts line segments into their Bezier point 
- *               representation and appends them to a list of Bezier points. 
+ *  PURPOSE    : Converts line segments into their Bezier point
+ *               representation and appends them to a list of Bezier points.
  *
  *               WARNING - The base_array must have at least one valid
  *               start point prior to the address of the element passed.
  *
  *  RETURNS    : number of Bezier points added to the POINT base_array.
- ****************************************************************************/ 
+ ****************************************************************************/
 //UINT AppendPolyLineToBezier( LPPOINT pt, POINTFX start, LPTTPOLYCURVE lpCurve )
 UINT AppendPolyLineToBezier(
    point_array      &pointsset,
@@ -158,7 +158,7 @@ UINT AppendPolyLineToBezier(
 
     endpt.x = IntFromFixed(start.x);
     endpt.y = IntFromFixed(start.y);
-   
+
    //points.set_size(points.get_size() + lpCurve->cpfx * 3);
     for (i = 0; i < lpCurve->cpfx; i++)
     {
@@ -189,21 +189,21 @@ UINT AppendPolyLineToBezier(
 /****************************************************************************
  *  FUNCTION   : AppendQuadBSplineToBezier
  *
- *  PURPOSE    : Converts Quadratic spline segments into their Bezier point 
- *               representation and appends them to a list of Bezier points. 
+ *  PURPOSE    : Converts Quadratic spline segments into their Bezier point
+ *               representation and appends them to a list of Bezier points.
  *
  *               WARNING - The base_array must have at least one valid
  *               start point prior to the address of the element passed.
  *
  *  RETURNS    : number of Bezier points added to the POINT base_array.
- ****************************************************************************/ 
+ ****************************************************************************/
 //UINT AppendQuadBSplineToBezier( LPPOINT pt, POINTFX start, LPTTPOLYCURVE lpCurve )
 UINT AppendQuadBSplineToBezier(
    point_array & pointset,
    POINTFX start,
    LPTTPOLYCURVE lpCurve,
    UINT cTotal )
- 
+
 {
     WORD                i;
 //    UINT                cTotal = 0;
@@ -212,7 +212,7 @@ UINT AppendQuadBSplineToBezier(
 
     // The initial A point is on the curve.
     spline[0] = start;
-   
+
     for (i = 0; i < lpCurve->cpfx;)
     {
         // The B point.
@@ -224,11 +224,11 @@ UINT AppendQuadBSplineToBezier(
             // The last C point is described explicitly
             // i.e. it is on the curve.
             spline[2] = lpCurve->apfx[i++];
-        }     
+        }
         else
         {
             // C is midpoint between B and next B point
-            // because that is the on curve point of 
+            // because that is the on curve point of
             // a Quadratic B-Spline.
             spline[2].x = fxDiv2(
                 lpCurve->apfx[i-1].x,
@@ -242,7 +242,7 @@ UINT AppendQuadBSplineToBezier(
 
         // convert the Q Spline to a Bezier
         MakeBezierFromQBSpline( bezier, spline );
-        
+
         // append the Bezier to the existing ones
                                     // Point 0 is Point 3 of previous.
 //        pt[cTotal++] = bezier[1];   // Point 1
@@ -252,7 +252,7 @@ UINT AppendQuadBSplineToBezier(
       pointset.add(bezier[2]);
       pointset.add(bezier[3]);
 
-        // New A point for next slice of spline is the 
+        // New A point for next slice of spline is the
         // on curve C point of this B-Spline
         spline[0] = spline[2];
     }
@@ -267,13 +267,13 @@ UINT AppendQuadBSplineToBezier(
  *
  *
  *  RETURNS    : number of points aded to the pt POINT base_array.
- ****************************************************************************/ 
+ ****************************************************************************/
 //UINT CloseContour( LPPOINT pt, UINT cTotal )
 UINT CloseContour(
    point_array & pointset,
    UINT cTotal )
 {
-    POINT               endpt, 
+    POINT               endpt,
                         startpt;    // definition of a line
     POINT               bezier[4];
 
@@ -304,7 +304,7 @@ UINT CloseContour(
  *  FUNCTION   : DrawT2Outline
  *
  *  PURPOSE    : Decode the GGO_NATIVE outline, create a sequence of Beziers
- *               for each contour, draw with PolyBezier.  color and relative 
+ *               for each contour, draw with PolyBezier.  color and relative
  *               positioning provided by caller. The coordinates of hDC are
  *               assumed to have MM_TEXT orientation.
  *
@@ -314,11 +314,11 @@ UINT CloseContour(
  *               prior to calling this function.
  *
  *  RETURNS    : none.
- ****************************************************************************/ 
+ ****************************************************************************/
 void glyph::Initialize(
    LPTTPOLYGONHEADER lpHeader,
    DWORD size,
-   int iFontHiHeight) 
+   int iFontHiHeight)
 {
     WORD                i;
     UINT                cTotal = 0; // Total points in a contour.
@@ -335,7 +335,7 @@ void glyph::Initialize(
                                 // of line expanding to three points of a bezier
 
    lpStart = lpHeader;
-   
+
 
     // Loop until we have processed the entire buffer of contours.
     // The buffer may contain one or more contours that begin with
@@ -350,13 +350,13 @@ void glyph::Initialize(
          point_array pointset;
          //pPoints = new CPoints();
 //         pPoints->m_lpPoints = pt;
-         
+
          //pt = (LPPOINT)malloc( dwBuffSize );
 //         pt = (LPPOINT) new BYTE(dwBuffSize);
             // Convert the starting point. It is an on curve point.
-            // All other points are continuous from the "last" 
+            // All other points are continuous from the "last"
             // point of the contour. Thus the start point the next
-            // bezier is always pt[cTotal-1] - the last point of the 
+            // bezier is always pt[cTotal-1] - the last point of the
             // previous bezier. See PolyBezier.
          pointset.add(
             IntFromFixed(lpHeader->pfxStart.x),
@@ -366,11 +366,11 @@ void glyph::Initialize(
             //pt[0].x = IntFromFixed(lpHeader->pfxStart.x);
             //pt[0].y = IntFromFixed(lpHeader->pfxStart.y);
 
-            // get to first curve of contour - 
+            // get to first curve of contour -
             // it starts at the next byte beyond header
             lpCurve = (LPTTPOLYCURVE) (lpHeader + 1);
 
-            // Walk this contour and process each curve( or line ) segment 
+            // Walk this contour and process each curve( or line ) segment
             // and add it to the Beziers
             while ((DWORD)lpCurve < (DWORD)(((char *)lpHeader) + lpHeader->cb))
             {
@@ -378,12 +378,12 @@ void glyph::Initialize(
                 // Format assumption:
                 //   The bytes immediately preceding a POLYCURVE
                 //   structure contain a valid POINTFX.
-                // 
-                //   If this is first curve, this points to the 
+                //
+                //   If this is first curve, this points to the
                 //      pfxStart of the POLYGONHEADER.
                 //   Otherwise, this points to the last point of
                 //      the previous POLYCURVE.
-                // 
+                //
                 //   In either case, this is representative of the
                 //      previous curve's last point.
                 //**********************************************
@@ -416,7 +416,7 @@ void glyph::Initialize(
             // All contours are implied closed by TrueType definition.
             // Depending on the specific font and glyph being used, these
             // may not always be needed.
-         
+
 //            if ( pt[cTotal-1].x != pt[0].x || pt[cTotal-1].y != pt[0].y )
             if (pointset.last_element().x != pointset.first_element().x ||
             pointset.last_element().y != pointset.first_element().y )
@@ -448,7 +448,7 @@ void glyph::Initialize(
     }
 
    // free( pt );
-} 
+}
 
 
 
@@ -461,7 +461,7 @@ void glyph::clear()
 
 void glyph::GetGlyphRect(int x, int y, LPRECT lpRect)
 {
-   
+
    lpRect->left   = x - m_gm.gmptGlyphOrigin.x;
    lpRect->top      = y - m_gm.gmptGlyphOrigin.y;
    lpRect->right   = x + m_gm.gmBlackBoxX;

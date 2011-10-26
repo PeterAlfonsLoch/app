@@ -1,26 +1,32 @@
 #include "StdAfx.h"
 
+
 BaseComparableEq::BaseComparableEq(void)
 {
 }
 
+
 BaseComparableEq::~BaseComparableEq(void)
 {
 }
+
 
 bool BaseComparableEq::operator ==(const BaseComparableEq & comparableeq) const
 {
    return typeid(*this) == typeid(comparableeq);
 }
 
+
 bool BaseComparableEq::operator !=(const BaseComparableEq & comparableeq) const
 {
    return typeid(*this) != typeid(comparableeq);
 }
 
+
 BaseComparable::BaseComparable(void)
 {
 }
+
 
 BaseComparable::~BaseComparable(void)
 {
@@ -29,8 +35,9 @@ BaseComparable::~BaseComparable(void)
 
 int BaseComparable::Compare(const BaseComparable & comparable) const
 {
-   return strcmp(typeid(*this).name(), typeid(comparable).name());
+   return strcmp(typeid(*this).raw_name(), typeid(comparable).raw_name());
 }
+
 
 bool BaseComparable::operator ==(const BaseComparableEq & comparableeq) const
 {
@@ -40,6 +47,7 @@ bool BaseComparable::operator ==(const BaseComparableEq & comparableeq) const
    return Compare(*pcomparable) == 0;
 }
 
+
 bool BaseComparable::operator !=(const BaseComparableEq & comparableeq) const
 {
    const BaseComparable * pcomparable = dynamic_cast < const BaseComparable * > (&comparableeq);
@@ -48,25 +56,30 @@ bool BaseComparable::operator !=(const BaseComparableEq & comparableeq) const
    return Compare(*pcomparable) != 0;
 }
 
+
 bool BaseComparable::operator >(const BaseComparable & comparable) const
 {
    return Compare(comparable) > 0;
 }
+
 
 bool BaseComparable::operator <(const BaseComparable & comparable) const
 {
    return Compare(comparable) < 0;
 }
 
+
 bool BaseComparable::operator >=(const BaseComparable & comparable) const
 {
    return Compare(comparable) >= 0;
 }
 
+
 bool BaseComparable::operator <=(const BaseComparable & comparable) const
 {
    return Compare(comparable) <= 0;
 }
+
 
 int BaseComparable::ComparePtr(const BaseComparable * pcomparable1, const BaseComparable * pcomparable2)
 {
@@ -93,3 +106,4 @@ int BaseComparable::ComparePtr(const BaseComparable * pcomparable1, const BaseCo
       }
    }
 }
+

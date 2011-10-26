@@ -59,7 +59,7 @@ name_unencode(char *start, size_t slen, char *current, char *dest, size_t destsi
 		{
 			uint16_t current_offset, new_offset;
 
-			current_offset = s - start;
+			current_offset = (uint16_t) (s - start);
 
 			DNS_GET16(uint16_t, new_offset, s);
 			new_offset &= ~0xC000;
@@ -93,7 +93,7 @@ name_unencode(char *start, size_t slen, char *current, char *dest, size_t destsi
 			for (n = 0; n < len; n++)							/* Get label */
 			{
 				CHECK_DEST_SPACE(1);
-				*d++ = tolower(*s++);
+				*d++ = (char) tolower(*s++);
 			}
 			CHECK_DEST_SPACE(1);
 			*d++ = '.';

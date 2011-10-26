@@ -146,7 +146,7 @@ conf_clobber(CONF **confp, char *name, char *value)
 		if (c->name && !memcmp(c->name, name, strlen(c->name)) && c->defaulted)
 		{
 			Free(c->value);
-			c->value = strdup(value);
+			c->value = _strdup(value);
 		}
 }
 /*--- conf_clobber() ----------------------------------------------------------------------------*/
@@ -194,9 +194,9 @@ conf_set(CONF **confp, char *name, char *value, int defaulted)
 	/* Add pconfNew item to array */
 	if (!(pconfNew = (CONF *)calloc(1, sizeof(CONF))))
 		Err("calloc");
-	if (!(pconfNew->name = strdup(name)))
+	if (!(pconfNew->name = _strdup(name)))
 		Err("strdup");
-	if (!(pconfNew->value = value ? (char *)strdup(value) : (char *)NULL))
+	if (!(pconfNew->value = value ? (char *)_strdup(value) : (char *)NULL))
 		Err("strdup");
 	pconfNew->defaulted = defaulted;
 	pconfNew->next = conf;

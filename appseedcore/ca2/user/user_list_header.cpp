@@ -72,18 +72,34 @@ namespace user
 
    bool list_header::GetItemRect(LPRECT lprect, EElement eelement, index iItem)
    {
+      
       if(iItem < 0)
          return false;
+
       list * plist = m_plistctrlinterface;
       if(iItem >= plist->_001GetColumnCount())
          return false;
 
-      int xLast = 0;
-      int x = 0;
+      int x;
+      if(plist->m_bGroup && plist->m_bLateralGroup)
+      {
+         x = plist->m_iLateralGroupWidth;
+      }
+      else
+      {
+         x = 0;
+      }
+      int xLast = x;
+      draw_list_item item(plist);
       for(int i = 0; i <= iItem; i++)
       {
          xLast = x;
-         x += plist->_001GetColumnWidth(ItemToColumnKey(i));
+         item.m_iWidthColumn = ItemToColumnKey(i);
+         plist->_001GetColumnWidth(&item);
+         if(item.m_bOk)
+         {
+            x += item.m_iColumnWidth;
+         }
       }
 
       rect rect;
@@ -275,18 +291,24 @@ namespace user
 //      bool bLoad = !bSave;
       int iOldWidth;
       int iWidth;
-      str.Format("Column[%d].width", iColumn);
+      str.Format("::user::list_column[%d].width", iColumn);
+      draw_list_item item(m_plistctrlinterface);
       if(bSave)
       {
-         iWidth = m_plistctrlinterface->_001GetColumnWidth(iColumn);
-         if(data_get(str, ::ca::system::idEmpty, iOldWidth))
+         item.m_iWidthColumn = iColumn;
+         m_plistctrlinterface->_001GetColumnWidth(&item);
+         if(item.m_bOk)
          {
-            if(iOldWidth == iWidth)
-               bSave = false;
+            iWidth = item.m_iColumnWidth;
+            if(data_get(str, ::radix::system::idEmpty, iOldWidth))
+            {
+               if(iOldWidth == iWidth)
+                  bSave = false;
+            }
          }
          if(bSave)
          {
-            if(!data_set(str, ::ca::system::idEmpty, iWidth))
+            if(!data_set(str, ::radix::system::idEmpty, iWidth))
                return false;
          }
       }
@@ -294,7 +316,7 @@ namespace user
       {
          if(data_get(
             str,
-            ::ca::system::idEmpty,
+            ::radix::system::idEmpty,
             iWidth))
          {
             constraint::constraint_min(iWidth, 50);
@@ -308,7 +330,6 @@ namespace user
 
    void list_header::AddMessageHandling(::user::win::message::dispatch *pinterface)
    {
-      _001InstallOnDrawInterface(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &list_header::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &list_header::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_header::_001OnLButtonDblClk);
@@ -355,10 +376,10 @@ namespace user
 
                   INT_PTR iKeyA = plist->m_columna.OrderToKey(iItem);
                   INT_PTR iKeyB = plist->m_columna.OrderToKey(iItem);
-                  INT_PTR iOrderA = plist->m_columna.GetByKey(iKeyA).m_iOrder;
-                  INT_PTR iOrderB = plist->m_columna.GetByKey(iKeyB).m_iOrder;
-                  plist->m_columna.GetByKey(iKeyA).m_iOrder = iOrderB;
-                  plist->m_columna.GetByKey(iKeyB).m_iOrder = iOrderA;
+                  INT_PTR iOrderA = plist->m_columna._001GetByKey(iKeyA)->m_iOrder;
+                  INT_PTR iOrderB = plist->m_columna._001GetByKey(iKeyB)->m_iOrder;
+                  plist->m_columna._001GetByKey(iKeyA)->m_iOrder = iOrderB;
+                  plist->m_columna._001GetByKey(iKeyB)->m_iOrder = iOrderA;
                   plist->_001OnColumnChange();
                   plist->DISaveOrder();
                   plist->Redraw();
@@ -470,6 +491,7 @@ namespace user
 
    void list_header::_001OnDraw(::ca::graphics *pdc)
    {
+      
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -489,24 +511,7 @@ namespace user
 
       class imaging & imaging = System.imaging();
 
-//      gen::savings & savings = System.savings();
-
-
-
-   //xxx   if(!System.savings().is_trying_to_save(gen::resource_processing))
-      {
-         //_001DrawBackground(pdc, rectUpdate);
-         imaging.color_blend(
-            pdc,
-            rectUpdate,
-            RGB(127, 127, 117),
-            192);
-
-      }
-
-   //    BOOL bWin4 = afxData.bWin4;
-   //   bWin4 = FALSE;
-   //   _AfxFillPSOnStack();
+      imaging.color_blend(pdc, rectUpdate, RGB(127, 127, 117), 128);
 
       ::ca::draw_item drawitem;
       drawitem.m_pgraphics = pdc;
@@ -518,7 +523,7 @@ namespace user
          GetItemRect(&drawitem.rcItem, ElementItemBox, iItem);
          DrawItem(&drawitem);
          GetItemRect(rectDivider, ElementDivider, iItem);
-         pdc->Draw3dRect(rectDivider, GetSysColor(COLOR_3DDKSHADOW), GetSysColor(COLOR_3DHILIGHT));
+         pdc->Draw3dRect(rectDivider, GetSysColor(COLOR_BTNSHADOW), GetSysColor(COLOR_BTNHIGHLIGHT));
       }
 
    }

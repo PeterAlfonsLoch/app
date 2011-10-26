@@ -9,7 +9,7 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_socket(h),
-      m_fileBody(h.get_app(), m_memoryBody)
+      m_fileBody(h.get_app(), &m_memoryBody)
    {
       SetLineProtocol();
       m_bOk = false;
@@ -31,8 +31,9 @@ namespace sockets
       {
          step();
       }
-      else if(GetUrlPort() == 80)
+      else if(GetUrlPort() == 80 || GetUrlPort() == 8080)
       {
+         m_response.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
          m_bOk = true;
          step();
       }
@@ -139,10 +140,11 @@ namespace sockets
    {
       if(bConfigProxy)
       {
-         ::sockets::application_interface * psocketsapp = 
+         /*::sockets::application_interface * psocketsapp =
             dynamic_cast < ::sockets::application_interface  * >
                (get_app());
-         psocketsapp->http_config_proxy(get_url(), this);
+         psocketsapp->http_config_proxy(get_url(), this);*/
+         System.http_config_proxy(get_url(), this);
       }
       if(m_bDirect)
       {

@@ -9,24 +9,24 @@ namespace ex1
    {
    public:
       sp(writer)     _stream;
-      uint64         _size;
-      
+      file_size         _size;
+
       void SetStream(writer * stream)
       {
-         _stream = stream; 
+         _stream = stream;
       }
 
       void Init()
-      { 
-         _size = 0; 
+      {
+         _size = 0;
       }
-      
-      uint64 get_size() const
-      { 
+
+      file_size get_size() const
+      {
          return _size;
       }
 
-      void write(const void *data, DWORD_PTR size, DWORD_PTR * processedSize);
+      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize);
 
    };
 

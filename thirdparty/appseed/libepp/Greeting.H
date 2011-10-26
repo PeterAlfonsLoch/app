@@ -34,7 +34,7 @@ namespace libepp
 
    /// EPP Greeting Class
    class Greeting :
-      virtual public base_object
+      virtual public ::radix::object
    {
    public:
 

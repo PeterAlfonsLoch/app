@@ -16,7 +16,7 @@ namespace gen
    }
 
 
-   bool process::create_child_process(const char * pszCmdLine, bool bPiped)
+   bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir)
    {
       string szCmdline = pszCmdLine;
  
@@ -74,7 +74,7 @@ namespace gen
          TRUE,          // handles are inherited 
          CREATE_NEW_CONSOLE,             // creation flags 
          NULL,          // use parent's environment 
-         NULL,          // use parent's current directory 
+         pszDir,
          &m_si,  // STARTUPINFO pointer 
          &m_pi);  // receives PROCESS_INFORMATION 
    

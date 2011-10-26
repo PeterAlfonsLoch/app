@@ -28,7 +28,7 @@ namespace veiev
          var                  m_varCache;
          int                  m_iCachePage;
          int                  m_iCachePageSize;
-         int                  m_iMessageCount;
+         __int64_t            m_iMessageCount;
 
 
          data(::ca::application * papp);
@@ -36,12 +36,7 @@ namespace veiev
 
          void update();
 
-         virtual bool _001GetItemText(
-            ::user::list * plist,
-	         string &str,
-	         INT_PTR iItem,
-	         INT_PTR iSubItem, 
-	         INT_PTR iListItem);
+         virtual void _001GetItemText(::user::list_item * pitem);
 
          bool get_record(int iItem, var & var);
 

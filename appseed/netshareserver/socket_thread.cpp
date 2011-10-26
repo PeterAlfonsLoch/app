@@ -17,7 +17,7 @@ namespace netshareserver
    {
    }
 
-   void socket_thread::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void socket_thread::install_message_handling(::user::win::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_APP, pinterface, this, &socket_thread::OnApp);
    }
@@ -90,8 +90,8 @@ namespace netshareserver
             {
                ll.EnableSSL();
             }
-            System.http().get("http://i2com.api.veriterse.net/register_netshareserver?address=" + m_strIp);
-	         if (ll.Bind(m_strIp, m_iPort))
+            Application.http().get("http://i2com.api.veriterse.net/register_netshareserver?address=" + m_strIp);
+	         if (ll.Bind(m_strIp, (port_t) m_iPort))
 	         {
                string strMessage;
                strMessage.Format("could not bind to address %s %d", m_strIp, m_iPort);

@@ -1,23 +1,35 @@
 #pragma once
 
+
 namespace filemanager
 {
 
-   class ContextMenu  : 
+
+   class ContextMenu  :
       virtual public ::radix::object
    {
    public:
+
+
+#ifdef WINDOWS
+      IContextMenu *    m_pcontextmenu;
+      IContextMenu2 *   m_pcontextmenu2;
+#endif
+      UINT              m_uiMinId;
+
+
       ContextMenu();
       virtual ~ContextMenu();
-   public:
+
+
       void OnCommand(UINT uiId);
       void GetMessageString(UINT nID, string & rstrMessage);
       void GetVerb(UINT nID, string & rwstrMessage);
 
-      IContextMenu *    m_pcontextmenu;
-      IContextMenu2 *   m_pcontextmenu2;
-      UINT              m_uiMinId;            
 
    };
 
+
 } // namespace filemanager
+
+

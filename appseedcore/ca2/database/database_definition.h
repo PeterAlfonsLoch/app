@@ -25,7 +25,7 @@ namespace database
                error handling
 
    ******************************************************************/
-   class CLASS_DECL_ca DbErrors 
+   class CLASS_DECL_ca DbErrors
    {
 
    public:
@@ -40,7 +40,7 @@ namespace database
    enum sqlType {sqlSelect,sqlUpdate,sqlInsert,sqlDelete,sqlExec};
 
    enum EDataType
-   { 
+   {
       DataTypeString,
       DataTypeBoolean,
       DataTypeChar,
@@ -60,7 +60,8 @@ namespace database
 
 
 
-   class CLASS_DECL_ca field_properties
+   class CLASS_DECL_ca field_properties :
+      virtual public ::ex1::byte_serializable
    {
    public:
 
@@ -81,6 +82,9 @@ namespace database
       field_properties & operator = (const field_properties & field_properties);
 
 
+      virtual void write(::ex1::byte_output_stream & ostream);
+      virtual void read(::ex1::byte_input_stream & istream);
+
    };
 
    class CLASS_DECL_ca field
@@ -99,26 +103,52 @@ namespace database
       field & operator = (const field & field);
 
 
-   }; 
+   };
 
    class CLASS_DECL_ca record :
-      public var_array
+      virtual public var_array
    {
+   public:
+
+      record();
+      record(const record & record);
+      virtual ~record();
+
+
+      record & operator = (const record & record);
+
    };
 
    class CLASS_DECL_ca query_data :
-      public base_array <record, record &>
+      public ::ex1::byte_serializable_array < base_array < record, record & > >
    {
    };
 
    typedef base_array <field, field &> CFields;
-   typedef base_array <field_properties, field_properties &> record_properties;
+   typedef ::ex1::byte_serializable_array < base_array < field_properties, field_properties & > > record_properties;
 
-   class CLASS_DECL_ca result_set
+   class CLASS_DECL_ca result_set :
+      virtual public ::ex1::byte_serializable
    {
    public:
+
+
       record_properties       record_header;
       query_data              records;
+
+
+      result_set();
+      result_set(::ca::application * papp);
+      result_set(const result_set & set);
+
+
+      virtual void write(::ex1::byte_output_stream & ostream);
+      virtual void read(::ex1::byte_input_stream & istream);
+
+
+      result_set & operator = (const result_set & set);
+
+
    };
 
    class CLASS_DECL_ca parameter_list

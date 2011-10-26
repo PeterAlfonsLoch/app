@@ -137,10 +137,10 @@ void XfplayerViewLine::AddChar(
    {
         m_iaPosition.set_size(m_iaPosition.get_size() + 10);
    }
-    
+
    m_str += wch;
     ASSERT(m_str.get_length() - 1 == index);
-   
+
 
 }
 
@@ -189,7 +189,7 @@ bool XfplayerViewLine::to(
    pdc->SelectObject(m_font);
 
    pdc->SetBkMode(TRANSPARENT);
-   
+
    point iMargin;
    iMargin.x = 3;
    iMargin.y = 3;
@@ -316,7 +316,7 @@ bool XfplayerViewLine::to(
                   }
                }
             }
-               
+
          }
        }
        break;
@@ -385,13 +385,13 @@ bool XfplayerViewLine::to(
                   dBlend);
               }
            }
-           
+
            if(&rectaModified != NULL)
            {
               rect baserect;
               rgn.GetRgnBox(baserect);
               rectaModified.add(baserect);
-              
+
            }
            rgn.delete_object();
       }
@@ -429,7 +429,7 @@ bool XfplayerViewLine::to(
    pdc->SelectObject(m_font);
 
    pdc->SetBkMode(TRANSPARENT);
-   
+
    point iMargin;
    {
       LOGPEN logPen;
@@ -458,7 +458,7 @@ bool XfplayerViewLine::to(
          lpRect);
       pdc->SelectObject(m_font);
    }
-    
+
 
    switch(m_iAnimateType)
    {
@@ -497,12 +497,12 @@ bool XfplayerViewLine::to(
                     break;
                 }
             }*/
-            
+
             string strFinal(m_str);
             string wstrLeft = strFinal.Right(strFinal.get_length() - i);
             int iLeftOffset;
             iLeftOffset = iLeftDiff - (int) m_dAnimateProgress;
-                        
+
            pdc->SelectObject(&pen);
            pdc->SetTextColor(crColor);
            pdc->SelectObject(m_font);
@@ -529,7 +529,7 @@ bool XfplayerViewLine::to(
                 MapToFontEffect(m_iTextEffect));   */
             int iSpacing = 100;
             int iMaxCounter = max(
-               (int) m_iaPosition.element_at(m_str.get_length()) 
+               (int) m_iaPosition.element_at(m_str.get_length())
                   - m_iaPosition.element_at(0) + iSpacing, m_iRight - m_iLeft);
             int iRight = iMaxCounter - (int) m_dAnimateProgress;
             if(iRight < m_iRight)
@@ -565,7 +565,7 @@ bool XfplayerViewLine::to(
                   0,
                     MapToFontEffect(m_iTextEffect));   */
                 }
-            
+
         }
         break;
     default:
@@ -679,7 +679,7 @@ bool XfplayerViewLine::to(
             m_iBottom = m_iTop + size.cy;
          }
       }
-   
+
    }
 
    else
@@ -735,7 +735,7 @@ void XfplayerViewLine::CalcCharsPositions(
    size = pdc->GetTextExtent(wstrMain);
    if(size.cx > rectClient.width())
    {
-      m_floatRateX = 
+      m_floatRateX =
          (float)
          rectClient.width()/
          size.cx;
@@ -749,7 +749,7 @@ void XfplayerViewLine::CalcCharsPositions(
    TEXTMETRIC tm;
    pdc->GetTextMetrics(&tm);
    lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
-   
+
    if(m_font->get_os_data() != NULL)
       m_font->delete_object();
 
@@ -858,7 +858,7 @@ void XfplayerViewLine::CalcCharsPositions(
    pdc->SelectObject(pfont->GetFont());
    if(size.cx > rectClient.width())
    {
-      m_floatRateX = 
+      m_floatRateX =
          (float)
          rectClient.width()/
          size.cx;
@@ -999,7 +999,7 @@ void XfplayerViewLine::Show(bool bShow)
         {
             m_pContainer->OnChildSetVisible(this, m_bVisible);
         }
-        
+
     }
     else if(!bShow && m_bVisible)
     {
@@ -1038,7 +1038,7 @@ void XfplayerViewLine::OnTimerAnimate(
                     /*to(
                         pdcForeground,
                         false,
-                        rect, rectaModified, 
+                        rect, rectaModified,
                         false);*/
                 }
             }
@@ -1256,7 +1256,7 @@ void XfplayerViewLine::EmbossedTextOut(
    {
       WCHAR wch = lpcsz[i];
 
-      
+
       pdc->SelectObject(m_font);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -1294,7 +1294,7 @@ void XfplayerViewLine::EmbossedTextOut(
          iTop  + cyExt,
          NULL);
       ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
-      
+
       //pdc->SelectObject(m_fontInt);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -1302,7 +1302,7 @@ void XfplayerViewLine::EmbossedTextOut(
          1,
          &sizeInt);
       ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
-      
+
       //pdc->SelectObject(m_fontExt);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -1313,7 +1313,7 @@ void XfplayerViewLine::EmbossedTextOut(
       cyExt = (size.cy - sizeExt.cy) / 2;
       ::TextOutW((HDC)pdc->get_os_data(), iLeft + cx + cxExt, iTop + cyExt, &wch, 1);
 
-      
+
 
       cx = size.cx;
    }
@@ -1348,7 +1348,7 @@ void XfplayerViewLine::EmbossedTextOut(
    if(m_dc1.get_os_data() == NULL)
    {
       m_dc1.CreateCompatibleDC(pdc);
-      
+
    }
    m_dc1.SelectObject(pdc->GetCurrentFont());
 
@@ -1357,7 +1357,7 @@ void XfplayerViewLine::EmbossedTextOut(
       m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
       m_dc1.SelectObject(m_bmp1);
    }
-   else 
+   else
    {
       BITMAP bm;
       m_bmp1.GetBitmap(&bm);
@@ -1378,7 +1378,7 @@ void XfplayerViewLine::EmbossedTextOut(
    System.imaging().channel_gray_blur(&m_dc1,0, 0, size.cx, size.cy,
       &m_dc1, 0, 0, 0, 2);
 
-   System.imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy, 
+   System.imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy,
       crOutline, &m_dc1, 0, 0);
 
 
@@ -1390,14 +1390,14 @@ void XfplayerViewLine::EmbossedTextOut(
    lb.lbStyle = BS_SOLID;
    lb.lbColor = crOutline;
    //::ca::pen_sp pen(get_app(), PS_SOLID, iWidth * 2 + 2, crOutline);
-   ::ca::pen_sp pen(get_app(), 
+   ::ca::pen_sp pen(get_app(),
       PS_SOLID
       | PS_GEOMETRIC
       | PS_ENDCAP_ROUND
       | PS_JOIN_ROUND,
       iWidth * 2,
       &lb);
-   
+
    ::ca::pen * ppenOld = pdc->SelectObject(pen);
    pdc->StrokePath();
    pdc->SelectObject(ppenOld);*/
@@ -1442,7 +1442,7 @@ void XfplayerViewLine::EmbossedTextOut(
          | PS_JOIN_ROUND,
          iWidth * 2,
          &lb);
-   
+
       ::ca::pen * ppenOld = pdc->SelectObject(pen);
       pdc->StrokePath();
       pdc->SelectObject(ppenOld);
@@ -1466,20 +1466,20 @@ void XfplayerViewLine::EmbossedTextOut(
 
 
       }
- 
+
       size size = pdc->GetTextExtent(string(lpcsz, iLen));
-      
+
       size.cx += (long) (max(1.0, m_floatRateX * 5.0) * 2.0);
       size.cy += (long) (max(1.0, m_floatRateX * 5.0) * 2.0);
 
-      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), size, 
+      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), size,
          pdcCache, point(iLeft, 0), dBlend);
 
 
       System.imaging().AlphaTextOut(
          pdc,
          iLeft, iTop,
-         lpcsz, iLen, 
+         lpcsz, iLen,
          cr,
          dBlend);
    }
@@ -1506,9 +1506,9 @@ void XfplayerViewLine::GetLogFont(LOGFONT &lf)
 
 void XfplayerViewLine::CacheEmboss(
    ::ca::application * papp,
-   ::ca::graphics * pdc, 
-   const char * lpcsz, 
-   int iLen, 
+   ::ca::graphics * pdc,
+   const char * lpcsz,
+   int iLen,
    ::ca::dib * pdibCache)
 {
    UNREFERENCED_PARAMETER(papp);
@@ -1540,8 +1540,8 @@ void XfplayerViewLine::CacheEmboss(
    pdcCache->FillSolidRect(0, 0, size.cx,size.cy, RGB(0, 0, 0));
    pdcCache->SetTextColor(RGB(255, 255, 255));
    m_dcextension.TextOut(
-      pdcCache, 
-      (int) (max(1.0, m_floatRateX * 5.0)), 
+      pdcCache,
+      (int) (max(1.0, m_floatRateX * 5.0)),
       (int) (max(1.0, m_floatRateX * 5.0)),
       lpcsz, iLen);
 
@@ -1553,14 +1553,14 @@ void XfplayerViewLine::CacheEmboss(
          8, 4, 4, 4, 8,
          8, 8, 8, 8, 8,
       };*/
-   System.imaging().channel_spread(pdcCache, null_point(), size, pdcCache, null_point(), 0, 
+   System.imaging().channel_spread(pdcCache, null_point(), size, pdcCache, null_point(), 0,
       long (max(1.0, m_floatRateX * 2.3)));
    System.imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, 5);
    System.imaging().pre_color_blend(pdcCache, pdcCache, RGB(92, 92, 92));
    pdibCache->channel_multiply(::visual::rgba::channel_alpha, 1.1);
 
 
-   
+
    pdc->SelectObject(pfontOld);
 }
 
@@ -1592,7 +1592,7 @@ void XfplayerViewLine::PrepareURLLinks()
       m_iaLinkStart.add(iStart);
       m_iaLinkEnd.add(iEnd - 1);
    }
-   
+
 
 }
 
@@ -1665,7 +1665,7 @@ int XfplayerViewLine::GetCharLink(int iChar)
          return user::line_hit_none;
       }
    }
-   
+
 }
 
 bool XfplayerViewLine::CalcChar(point pt, int &iChar)
@@ -1704,7 +1704,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
 
    if(selection.GetState() == LyricViewLineSelection::StateTracking)
    {
-      
+
       bool bInside;
       int iToken;
       int iChar;
@@ -1731,7 +1731,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
       }
       else // bInside == true
       {
-         DWORD fwKeys = user; // key flags 
+         DWORD fwKeys = user; // key flags
          if(m_tokenaMain.get_size() <= 0)
             return false;
          if(CalcChar(pt, iToken, iChar))
@@ -1742,7 +1742,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
          }
          else
          {
-            if(pt.x < m_tokenaMain.element_at(0).GetPosition())
+            if(pt.x < m_tokenaMain.element_at(0).get_position())
             {
                selection.SetSelBefore(*this);
             }
@@ -1784,7 +1784,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
 
 void XfplayerViewLine::OnSetCursor(gen::signal_object * pobj)
 {
-   UNREFERENCED_PARAMETER(pobj);   
+   UNREFERENCED_PARAMETER(pobj);
    //if(IsInHover())
    //{
      // ::SetCursor(get_interaction()->KaraokeGetHandCursor());
@@ -1826,7 +1826,7 @@ void XfplayerViewLine::OnLButtonUp(gen::signal_object * pobj)
 
 void XfplayerViewLine::OnTimer(gen::signal_object * pobj)
 {
-   UNREFERENCED_PARAMETER(pobj);   
+   UNREFERENCED_PARAMETER(pobj);
    //if(GetSelection().OnTimer(*this, user))
      // return true;
 }
@@ -1874,7 +1874,7 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
          //get_interaction()->_001RedrawWindow();
       }
    }
-   
+
 }
 
 

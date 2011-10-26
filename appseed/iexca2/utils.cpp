@@ -24,9 +24,6 @@
 
 #include "StdAfx.h"
 
-#include <wchar.h>
-#include <wctype.h>
-
 #include <Commdlg.h>
 
 /*
@@ -51,14 +48,33 @@ char *CStrFromWSTR(UINT codePage, LPCWSTR wstr, UINT len)
         }
     }
     return NULL;
-};
+}
 
 char *CStrFromBSTR(UINT codePage, BSTR bstr)
 {
     return CStrFromWSTR(codePage, bstr, SysStringLen(bstr));
-};
+}
 
+BSTR BSTRFromCStr(UINT codePage, LPCSTR s)
+{
+    int wideLen = MultiByteToWideChar(codePage, 0, s, -1, NULL, 0);
+    if( wideLen > 0 )
+    {
+        WCHAR* wideStr = (WCHAR*)CoTaskMemAlloc(wideLen*sizeof(WCHAR));
+        if( NULL != wideStr )
+        {
+            BSTR bstr;
 
+            ZeroMemory(wideStr, wideLen*sizeof(WCHAR));
+            MultiByteToWideChar(codePage, 0, s, -1, wideStr, wideLen);
+            bstr = SysAllocStringLen(wideStr, wideLen-1);
+            CoTaskMemFree(wideStr);
+
+            return bstr;
+        }
+    }
+    return NULL;
+}
 /*
 **  properties
 */
@@ -89,7 +105,7 @@ HRESULT GetObjectProperty(LPUNKNOWN object, DISPID dispID, VARIANT& v)
         pDisp->Release();
     }
     return hr;
-};
+}
 
 HDC CreateDevDC(DVTARGETDEVICE *ptd)
 {
@@ -124,7 +140,7 @@ HDC CreateDevDC(DVTARGETDEVICE *ptd)
         hdc = CreateDC(lpszDriverName, lpszDeviceName, lpszPortName, lpDevMode);
     }
         return hdc;
-};
+}
 
 #define HIMETRIC_PER_INCH 2540
 
@@ -138,7 +154,7 @@ void DPFromHimetric(HDC hdc, LPPOINT pt, int count)
         pt->y = pt->y*lpY/HIMETRIC_PER_INCH;
         ++pt;
     }
-};
+}
 
 void HimetricFromDP(HDC hdc, LPPOINT pt, int count)
 {
@@ -150,7 +166,7 @@ void HimetricFromDP(HDC hdc, LPPOINT pt, int count)
         pt->y = pt->y*HIMETRIC_PER_INCH/lpY;
         ++pt;
     }
-};
+}
 
 
 LPWSTR CombineURL(LPCWSTR baseUrl, LPCWSTR url)
@@ -158,19 +174,19 @@ LPWSTR CombineURL(LPCWSTR baseUrl, LPCWSTR url)
     if( NULL != url )
     {
         // check whether URL is already absolute
-        const wchar_t *end=wcschr(url, L':');
+        const wchar_t *end=wcschr_dup(url, L':');
         if( (NULL != end) && (end != url) )
         {
             // validate protocol header
             const wchar_t *start = url;
             wchar_t c = *start;
-            if( iswalpha(c) )
+            if( iswalpha_dup(c) )
             {
                 ++start;
                 while( start != end )
                 {
                     c = *start;
-                    if( ! (iswalnum(c)
+                    if( ! (iswalnum_dup(c)
                        || (L'-' == c)
                        || (L'+' == c)
                        || (L'.' == c)
@@ -180,11 +196,11 @@ LPWSTR CombineURL(LPCWSTR baseUrl, LPCWSTR url)
                     ++start;
                 }
                 /* we have a protocol header, therefore URL is absolute */
-                UINT len = wcslen(url);
+                UINT len = wcslen_dup(url);
                 wchar_t *href = (LPWSTR)CoTaskMemAlloc((len+1)*sizeof(wchar_t));
                 if( href )
                 {
-                    memcpy(href, url, len*sizeof(wchar_t));
+                    memcpy_dup(href, url, len*sizeof(wchar_t));
                     href[len] = L'\0';
                 }
                 return href;
@@ -195,12 +211,12 @@ relativeurl:
 
         if( baseUrl )
         {
-            size_t baseLen = wcslen(baseUrl);
-            wchar_t *href = (LPWSTR)CoTaskMemAlloc((baseLen+wcslen(url)+1)*sizeof(wchar_t));
+            size_t baseLen = wcslen_dup(baseUrl);
+            wchar_t *href = (LPWSTR)CoTaskMemAlloc((baseLen+wcslen_dup(url)+1)*sizeof(wchar_t));
             if( href )
             {
                 /* prepend base URL */
-                wcscpy(href, baseUrl);
+                wcscpy_dup(href, baseUrl);
 
                 /*
                 ** relative url could be empty,
@@ -214,7 +230,7 @@ relativeurl:
                 */
 
                 /* skip over protocol part  */
-                wchar_t *pathstart = wcschr(href, L':');
+                wchar_t *pathstart = wcschr_dup(href, L':');
                 wchar_t *pathend;
                 if( pathstart )
                 {
@@ -226,7 +242,7 @@ relativeurl:
                         }
                     }
                     /* skip over host part */
-                    pathstart = wcschr(pathstart, L'/');
+                    pathstart = wcschr_dup(pathstart, L'/');
                     pathend = href+baseLen;
                     if( ! pathstart )
                     {
@@ -251,7 +267,7 @@ relativeurl:
                 if( L'/' == *url )
                 {
                     /* replace path completely */
-                    wcscpy(pathstart, url);
+                    wcscpy_dup(pathstart, url);
                     return href;
                 }
 
@@ -306,7 +322,7 @@ relativeurl:
                 /* skip over '/' separator */
                 ++pathend;
                 /* concatenate remaining base URL and relative URL */
-                wcscpy(pathend, url);
+                wcscpy_dup(pathend, url);
             }
             return href;
         }

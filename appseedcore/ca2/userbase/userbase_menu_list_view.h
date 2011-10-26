@@ -16,7 +16,7 @@ namespace userbase
       menu_list_view(::ca::application * papp);
       virtual ~menu_list_view();
 
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
 
       virtual void GuieProc(gen::signal_object * pobj);
 

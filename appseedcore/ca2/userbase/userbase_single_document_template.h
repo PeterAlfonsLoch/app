@@ -8,12 +8,7 @@ namespace userbase
       virtual public ::single_document_template
    {
    public:
-      single_document_template(
-         ::ca::application * papp, 
-         const char * pszMatter,
-         ::ca::type_info pDocClass,
-         ::ca::type_info pFrameClass, 
-         ::ca::type_info pViewClass);
+      single_document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
       virtual ~single_document_template();
       
       

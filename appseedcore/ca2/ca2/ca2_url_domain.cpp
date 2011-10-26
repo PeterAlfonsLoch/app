@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-   
+
    void url_domain::create(const char * pszServerName)
    {
       m_strOriginalName = pszServerName;
@@ -34,7 +34,7 @@
          m_strRadix     = m_stra[m_iCount - 4] + "." + m_stra[m_iCount - 3];
          m_strPrefix    = m_stra.implode(".", 0, m_iCount - 4);
       }
-      else if(m_stra[m_iCount - 1] == "am" 
+      else if(m_stra[m_iCount - 1] == "am"
          && (m_stra[m_iCount - 2] == "north" ||
          m_stra[m_iCount - 2] == "south"))
       {
@@ -68,9 +68,11 @@
          m_strName   = m_strDomain;
       m_strTopLevel = m_stra[m_iCount - 1];
    }
-   
+
    bool CLASS_DECL_ca server_is_top_domain(string strTop1, string strTop2)
    {
+      if(strTop2 == "com")
+         return true;
       if(strTop1 == "ar")
       {
          if(strTop2 == "com")
@@ -140,6 +142,13 @@
          || strTop2 == "eu"
          || strTop2 == "uk"
          || strTop2.get_length() == 2)
+         {
+            return true;
+         }
+      }
+      else if(strTop1 == "de")
+      {
+         if(strTop2 == "com")
          {
             return true;
          }
@@ -304,7 +313,7 @@
          {
             return true;
          }
-         
+
       }
       else if(strTop1 == "pl")
       {

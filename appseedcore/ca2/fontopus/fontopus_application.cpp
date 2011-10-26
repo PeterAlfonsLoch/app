@@ -7,6 +7,7 @@ namespace fontopus
    application::application()
    {
       m_puser              = NULL;
+      m_bIsCreatingUser    = false;
    }
 
    void application::construct()
@@ -23,7 +24,7 @@ namespace fontopus
    bool application::initialize_instance()
    {
 
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       return TRUE;
@@ -33,7 +34,7 @@ namespace fontopus
    {
       try
       {
-         ::mail::application::exit_instance();
+         ::cube2::application::exit_instance();
       }
       catch(...)
       {
@@ -82,12 +83,41 @@ namespace fontopus
 
    user * application::login()
    {
+      /*::ca::application * papp;
+      if(m_puiInitialPlaceHolderContainer != NULL)
+      {
+         papp = m_puiInitialPlaceHolderContainer->m_papp;
+      }
+      else if(System.m_puiInitialPlaceHolderContainer != NULL)
+      {
+         papp = System.m_puiInitialPlaceHolderContainer->m_papp;
+      }
+      else
+      {
+         papp = this;
+      }*/
+      //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
       class validate authuser(this, "system\\user\\authenticate.xhtml", true);
+      authuser.oprop("defer_registration") = "defer_registration";
       return authuser.get_user();
    }
 
    bool application::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
+      /*::ca::application * papp;
+      if(m_puiInitialPlaceHolderContainer != NULL)
+      {
+         papp = m_puiInitialPlaceHolderContainer->m_papp;
+      }
+      else if(System.m_puiInitialPlaceHolderContainer != NULL)
+      {
+         papp = System.m_puiInitialPlaceHolderContainer->m_papp;
+      }
+      else
+      {
+         papp = this;
+      }*/
+      //class validate authuser(papp, psz);
       class validate authuser(this, psz);
       validate::auth * pauth = authuser.get_auth();
       if(pauth == NULL)
@@ -151,6 +181,9 @@ namespace fontopus
    {
       if(m_puser == NULL)
       {
+         if(m_bIsCreatingUser)
+            return NULL;
+         keeper < bool > keepCreatingUser(&m_bIsCreatingUser, true, false, true);
          m_puser = create_current_user();
       }
       return m_puser;

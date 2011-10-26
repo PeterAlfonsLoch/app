@@ -26,7 +26,7 @@ namespace compress
       ::MidFree(_buffer);
    }
 
-   ex1::HRes copy_coder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 * /* inSize */, const uint64 *outSize, progress_info_interface *progress)
+   ex1::HRes copy_coder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
    {
       if (_buffer == 0)
       {
@@ -38,7 +38,7 @@ namespace compress
       TotalSize = 0;
       for (;;)
       {
-         uint32 size = kBufferSize;
+         ::primitive::memory_size size = kBufferSize;
          if (outSize != 0)
             if (size > *outSize - TotalSize)
                size = (uint32)(*outSize - TotalSize);

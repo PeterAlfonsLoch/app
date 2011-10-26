@@ -19,7 +19,7 @@ namespace ca5
       bool presence_central_container::initialize_central_container(::ca::application * papp)
       {
 
-         if(!System.is_licensed("user_presence", false))
+         if(!App(papp).is_licensed("user_presence", false))
          {
             TRACE("user presence not licensed for this user");
             return false;
@@ -54,6 +54,27 @@ namespace ca5
          return m_pcentral->is_initialized();
 
       }
+
+      bool presence_central_container::finalize_central_container()
+      {
+
+         if(!is_initialized())
+         {
+            return true;
+         }
+
+         if(m_pcentral == NULL)
+            return true;
+
+         m_pcentral->finalize();
+
+         delete m_pcentral;
+
+         m_pcentral = NULL;
+
+         return true;
+      }
+
 
    } // namespace user
 

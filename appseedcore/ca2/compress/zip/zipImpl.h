@@ -45,13 +45,15 @@
 #ifndef _zip_H
 #define _zip_H
 
-#ifdef _CA_DLL
+#ifdef LINUX
+#define CLASS_DECL_ca
+#elif defined(_CA_DLL)
 #define CLASS_DECL_ca _declspec(dllexport)
 #else
 #define CLASS_DECL_ca _declspec(dllimport)
 #endif
 
-#include "_/_c.h"
+#include "ca/ca_c.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -46,7 +46,7 @@ namespace libepp
       if (responsible_f == true) 
       {
          string responsible = get_command()->get_responsible();
-         to_parse["responsible"] = "<brorg:responsible>" + Application.xml().special_chars(responsible) + "</brorg:responsible>";
+         to_parse["responsible"] = "<brorg:responsible>" + System.xml().special_chars(responsible) + "</brorg:responsible>";
       }
 
       _xml = su.parse(_xml, to_parse, "$(", ")$");

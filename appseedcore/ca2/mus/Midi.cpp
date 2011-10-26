@@ -1,5 +1,5 @@
-#include "StdAfx.h" 
-#include "vmsmusresource.h" 
+#include "StdAfx.h"
+#include "vmsmusresource.h"
 #include <math.h>
 
 
@@ -12,7 +12,7 @@ namespace mus
       DWORD const midi::DefaultTempo = 500000L;
 
       const UINT midi::grbChanMsgLen[] =
-      { 
+      {
           0,                      /* 0x   not a status byte   */
           0,                      /* 1x   not a status byte   */
           0,                      /* 2x   not a status byte   */
@@ -28,7 +28,7 @@ namespace mus
           2,                      /* Cx   Program change      */
           2,                      /* Dx   Chan pressure       */
           3,                      /* Ex   Pitch bend change   */
-          0,                      /* Fx   SysEx (see below)   */             
+          0,                      /* Fx   SysEx (see below)   */
       } ;
 
 
@@ -177,7 +177,7 @@ namespace mus
       };
 
 
-      const UINT midi::voiceText[]
+      /*const UINT midi::voiceText[]
               =
       {
       IDS_VOICE_1   ,
@@ -309,11 +309,11 @@ namespace mus
       IDS_VOICE_127   ,
 
       };
-
+      */
 
       double midi::GetNoteFrequency(double dA3Frequency, BYTE bNote)
       {
-   
+
          return dA3Frequency * pow(2.0, (double) (bNote - 69) / 12);
 
       }
@@ -322,7 +322,7 @@ namespace mus
       {
          UNREFERENCED_PARAMETER(lpcombo);
       /*   lpcombo->ResetContent();
-    
+
          string str;
          str.load_string(IDS_MIDI_NOTEOFF);
          int iItem = lpcombo->AddString(str);
@@ -357,11 +357,11 @@ namespace mus
               int iItem = lpcombo->AddString(pitchText[i]);
               lpcombo->SetItemData(iItem, i);
           }
-        */  
+        */
           return VMSR_SUCCESS;
       }
 
-      VMSRESULT midi::SelectTypeCombo(simple_combo_box *lpcombo, MidiEventBase *lpevent)
+      VMSRESULT midi::SelectTypeCombo(simple_combo_box *lpcombo, midi_event_base *lpevent)
       {
          UNREFERENCED_PARAMETER(lpcombo);
          UNREFERENCED_PARAMETER(lpevent);
@@ -381,7 +381,7 @@ namespace mus
           return VMSR_SUCCESS;
       }
 
-      VMSRESULT midi::SelectPitchCombo(simple_combo_box *lpcombo, MidiEventBase *lpevent)
+      VMSRESULT midi::SelectPitchCombo(simple_combo_box *lpcombo, midi_event_base *lpevent)
       {
          UNREFERENCED_PARAMETER(lpcombo);
          UNREFERENCED_PARAMETER(lpevent);
@@ -413,7 +413,7 @@ namespace mus
          DWORD               dwValue;
 
           ASSERT(hpbImage != NULL);
-    
+
           dwValue = 0;
 
           do
@@ -426,7 +426,7 @@ namespace mus
               b = *hpbImage++;
               dwLeft--;
               dwUsed++;
-        
+
               dwValue = (dwValue << 7) | (b & 0x7F);
           } while (b&0x80);
 
@@ -475,13 +475,13 @@ namespace mus
          VOID)
       {
          return  3*sizeof(DWORD) +           /* Tempo                */
-            3*16*sizeof(DWORD) +        /* Patch changes        */  
+            3*16*sizeof(DWORD) +        /* Patch changes        */
             3*16*120*sizeof(DWORD) +    /* Controller changes   */
             3*sizeof(DWORD);            /* time alignment NOP   */
       }
 
 
-   
+
    } // namespace midi
 
 } // namespace mus

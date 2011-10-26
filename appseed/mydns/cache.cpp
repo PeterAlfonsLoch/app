@@ -185,7 +185,7 @@ cache_init(void)
 static void
 cache_size_update(CACHE *C)
 {
-	register int n;
+	register uint32_t n;
 	register CNODE *N;
 
 	C->size = 0;
@@ -223,7 +223,7 @@ cache_status(CACHE *C)
 {
 	if (C)
 	{
-		register int ct, collisions;
+		register uint32_t ct, collisions;
 		register CNODE *n;
 
 		/* Update cache size (bytes) */
@@ -364,7 +364,7 @@ cache_free_node(CACHE *ThisCache, uint32_t hash, CNODE *n)
 void
 cache_empty(CACHE *ThisCache)
 {
-	register int ct;
+	register uint32_t ct;
 	register CNODE *n, *tmp;
 
 	if (!ThisCache) return;
@@ -386,7 +386,7 @@ cache_empty(CACHE *ThisCache)
 void
 cache_cleanup(CACHE *ThisCache)
 {
-	register int	ct;
+	register uint32_t	ct;
 	register CNODE	*n, *tmp;
 
 	if (!ThisCache)
@@ -412,7 +412,7 @@ cache_cleanup(CACHE *ThisCache)
 void
 cache_purge_zone(CACHE *ThisCache, uint32_t zone)
 {
-	register int	ct;
+	register uint32_t	ct;
 	register CNODE	*n, *tmp;
 
 	if (!ThisCache)
@@ -503,6 +503,7 @@ void *
 zone_cache_find(TASK *t, uint32_t zone, char *origin, dns_qtype_t type,
 					 char *name, size_t namelen, int *errflag, MYDNS_SOA *parent)
 {
+   UNREFERENCED_PARAMETER(t);
 	register uint32_t	hash = 0;
 	register CNODE		*n;
 	MYDNS_SOA			*soa = NULL;

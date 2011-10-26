@@ -16,9 +16,18 @@ namespace simpledb
 //
 #include "simpledb_set.h"
 #include "simpledb_base.h"
+#include "simpledb_record.h"
 #include "simpledb_table.h"
 //
 /////////////////////////////////////////////////////////
+
+
+#include "simpledb_socket.h"
+#include "simpledb_socket_thread.h"
+#include "simpledb_server.h"
+#include "simpledb_session.h"
+#include "simpledb_manager.h"
+#include "simpledb_service.h"
 
 
 #include "sqlite_set.h"

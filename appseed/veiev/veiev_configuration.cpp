@@ -31,21 +31,21 @@ namespace veiev
 
       m_strEmail = pszEmail;
       
-      if(!m_pdoc->on_open_document(System.dir().matter("mail/configuration.xhtml")))
+      if(!m_pdoc->on_open_document(Application.dir().matter("mail/configuration.xhtml")))
       {
          return;
       }
 
       ::user::interaction * pguie = m_pview->GetChildByName("mail_server");
       text_interface * ptext = dynamic_cast < text_interface * > (pguie);
-      string strUrl = System.url().set("https://fontopus.com/get_user_string", "key" , "mail_server");
-      strUrl = System.url().set(strUrl, "user" , m_strEmail);
+      string strUrl = System.url().set_key("https://fontopus.com/get_user_string", "key" , "mail_server");
+      System.url().set(strUrl, "user" , m_strEmail);
       ptext->_001SetText(System.http().get(strUrl));
 
       pguie = m_pview->GetChildByName("mail_login");
       ptext = dynamic_cast < text_interface * > (pguie);
-      strUrl = System.url().set("https://fontopus.com/get_user_string", "key" , "mail_login");
-      strUrl = System.url().set(strUrl, "user" , m_strEmail);
+      strUrl = System.url().set_key("https://fontopus.com/get_user_string", "key" , "mail_login");
+      System.url().set(strUrl, "user" , m_strEmail);
       ptext->_001SetText(System.http().get(strUrl));
 
    }
@@ -61,18 +61,18 @@ namespace veiev
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
             string str;
             ptext->_001GetText(str);
-            string strUrl = System.url().set("https://fontopus.com/set_user_string", "key" , "mail_server");
-            strUrl = System.url().set(strUrl, "user" , m_strEmail);
-            strUrl = System.url().set(strUrl, "value" , str);
+            string strUrl = System.url().set_key("https://fontopus.com/set_user_string", "key" , "mail_server");
+            System.url().set(strUrl, "user" , m_strEmail);
+            System.url().set(strUrl, "value" , str);
             str = System.http().get(strUrl);
             ptext->_001SetText(str);
 
             pguie = m_pview->GetChildByName("mail_login");
             ptext = dynamic_cast < text_interface * > (pguie);
             ptext->_001GetText(str);
-            strUrl = System.url().set("https://fontopus.com/set_user_string", "key" , "mail_login");
-            strUrl = System.url().set(strUrl, "user" , m_strEmail);
-            strUrl = System.url().set(strUrl, "value" , str);
+            strUrl = System.url().set_key("https://fontopus.com/set_user_string", "key" , "mail_login");
+            System.url().set(strUrl, "user" , m_strEmail);
+            System.url().set(strUrl, "value" , str);
             str = System.http().get(strUrl);
             ptext->_001SetText(str);
 
@@ -82,7 +82,7 @@ namespace veiev
             pguie = m_pview->GetChildByName("mail_password");
             ptext = dynamic_cast < text_interface * > (pguie);
             ptext->_001GetText(str);
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), m_strEmail, "license_auth/00003"), str, validate.calc_ca2_hash());
+            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), m_strEmail, "license_auth/00003"), str, validate.calc_ca2_hash(), get_app());
          }
       }
       return false;

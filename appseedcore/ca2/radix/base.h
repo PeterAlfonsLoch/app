@@ -1,7 +1,5 @@
 #pragma once
 
-#include "gen/gen_holder.h"
-
 /////////////////////////////////////////////////////////////////////////////
 // class ::radix::object is the root of all compliant objects
 template < class T >

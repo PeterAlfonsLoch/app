@@ -61,9 +61,9 @@ namespace mediaplay
       virtual_user_interface::_001OnDraw(pdc);
    }
 
-   void record_notify_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void record_notify_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::win::message::connect(WM_TIMER, pinterface, this, &record_notify_view::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &record_notify_view::_001OnTimer);
    }
 
    void record_notify_view::GetParentClientRect(LPRECT lprect)

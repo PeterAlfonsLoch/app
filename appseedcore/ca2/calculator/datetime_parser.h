@@ -7,7 +7,13 @@ namespace datetime
       virtual public ::radix::object
    {
    public:
-      parser(::ca::application * papp);
+
+      
+      scanner                       m_scanner;
+      array_ptr_alloc < element >   m_elementa;
+
+
+      parser(::ca::application * papp, ::user::str_context * pcontext);
       virtual ~parser();
 
 
@@ -17,8 +23,6 @@ namespace datetime
       element * term(element * pelement1);
       element * factor();
 
-      scanner m_scanner;
-      array_ptr_alloc < element > m_elementa;
 
       void error(const char * pszMessage);
       void syntax_error(const char * pszMessage);

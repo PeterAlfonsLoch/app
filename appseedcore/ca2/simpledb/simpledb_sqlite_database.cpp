@@ -11,7 +11,7 @@ base::base(::ca::application * papp) :
    ca(papp)
 {
 
-  active = false;   
+  active = false;
   _in_transaction = false;      // for transaction
 
   error = "Unknown database error";//S_NO_CONNECTION;
@@ -23,15 +23,15 @@ base::base(::ca::application * papp) :
   conn = NULL;
 }
 
-base::~base() 
+base::~base()
 {
   disconnect();
 }
 
 
-database::set * base::CreateDataset() const 
+database::set * base::CreateDataset() const
 {
-   return new class set((base*)this); 
+   return new class set((base*)this);
 }
 
 int base::status(void)
@@ -125,7 +125,7 @@ int base::create() {
 int base::drop() {
   if (active == false) return DB_ERROR;
   disconnect();
-  if (!_unlink(db)) 
+  if (!_unlink(db))
      return DB_ERROR;
   return DB_COMMAND_OK;
 };
@@ -150,7 +150,7 @@ long base::nextid(const char* sname) {
     id = res.records[0][0].get_integer()+1;
     sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table,id,sname);
     if (last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
-    return id;    
+    return id;
   }
   return DB_UNEXPECTED_RESULT;
 }
@@ -176,7 +176,7 @@ void base::rollback_transaction() {
   if (active) {
     sqlite3_exec((sqlite3 *) conn,"rollback",NULL,NULL,NULL);
     _in_transaction = false;
-  }  
+  }
 }
 
 string base::escape(const char * psz)

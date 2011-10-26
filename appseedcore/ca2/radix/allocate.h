@@ -4,7 +4,6 @@
 #pragma once
 
 #include "heap.h"
-#include "plex_heap.h"
 
 
 CLASS_DECL_ca void * MyAlloc(size_t size);
@@ -14,7 +13,9 @@ CLASS_DECL_ca void MyFree(void *address);
 
 void SetLargePageSize();
 
+
 CLASS_DECL_ca void * MidAlloc(size_t size);
+CLASS_DECL_ca void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew);
 CLASS_DECL_ca void MidFree(void *address);
 CLASS_DECL_ca void * BigAlloc(size_t size);
 CLASS_DECL_ca void BigFree(void *address);
@@ -28,7 +29,7 @@ CLASS_DECL_ca void BigFree(void *address);
 
 #endif
 
-
+CLASS_DECL_ca void   use_base_ca2_allocator();
 CLASS_DECL_ca void * base_ca2_alloc(size_t size);
 CLASS_DECL_ca void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine);
 CLASS_DECL_ca void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine);
@@ -91,6 +92,7 @@ CLASS_DECL_ca BOOL AfxDumpMemoryLeaks();
 CLASS_DECL_ca int AFX_CDECL AfxNewHandler(size_t /* nSize */);
 
 #undef new
+#undef delete
 
 void * __cdecl operator new(size_t nSize);
 
@@ -129,16 +131,16 @@ void __cdecl operator delete[](void * p);
 
 inline void PASCAL ::radix::object::operator delete(void * p)
 {
-   ca2_free(p, _AFX_CLIENT_BLOCK);
+   ca2_free_dbg(p, _AFX_CLIENT_BLOCK);
 }
 
 inline void PASCAL ::radix::object::operator delete(void * p, void *)
 {
-   ca2_free(p, _AFX_CLIENT_BLOCK);
+   ca2_free_dbg(p, _AFX_CLIENT_BLOCK);
 }
 
 inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
 {
-   ca2_free(pObject, _AFX_CLIENT_BLOCK); 
+   ca2_free_dbg(pObject, _AFX_CLIENT_BLOCK); 
 }
 

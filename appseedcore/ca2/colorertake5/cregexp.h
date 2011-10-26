@@ -130,7 +130,7 @@ struct SMatches
 /** Regular expressions internal tree node.
     @ingroup cregexp
 */
-class SRegInfo
+class CLASS_DECL_ca SRegInfo
 {
 public:
   SRegInfo();
@@ -206,13 +206,13 @@ public:
 
 \par 2.1. According to Unicode RE level 1 support:
    - No surrogate symbols support,
-   - No string GetLength changes on case mappings (only 1 <-> 1 mappings),
+   - No string get_length changes on case mappings (only 1 <-> 1 mappings),
 \par 2.2. Algorithmic problems:
    - Stack recursion implementation.
 
     @ingroup cregexp
 */
-class CRegExp
+class CLASS_DECL_ca CRegExp
 {
 public:
   /**

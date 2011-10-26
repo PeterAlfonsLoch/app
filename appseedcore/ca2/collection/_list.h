@@ -21,7 +21,7 @@ namespace collection
 
    // Attributes (head and tail)
 	   // count of elements
-	   count get_count() const;
+	   countget_count() const;
 	   count get_size() const;
 	   BOOL is_empty() const;
 
@@ -635,7 +635,7 @@ namespace collection
 		   {
 			   ASSERT(fx_is_valid_address(pNode, sizeof(node)));
 			   TYPE* pData;
-			   /* 
+			   /*
 			    * in some cases the & operator might be overloaded, and we cannot use it to obtain
 			    * the address of a given object.  We then use the following trick to get the address
 			    */

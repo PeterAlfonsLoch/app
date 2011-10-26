@@ -118,9 +118,6 @@
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT ""
 
-/* Define to the full name of this package. */
-#define PACKAGE_NAME ""
-
 /* Define to the full name and version of this package. */
 #define PACKAGE_STRING ""
 
@@ -165,10 +162,12 @@
 #ifdef inline
 #undef inline
 #endif
-#define inline 
+#define inline
 
 /* Define to `unsigned' if <sys/types.h> does not define. */
 /* #undef size_t */
+
+#ifdef WINDOWS
 
 #if (_MSC_VER >= 1400) // VC8+
 #ifndef _CRT_SECURE_NO_DEPRECATE
@@ -179,17 +178,22 @@
 #endif
 #endif // VC8+
 
+
+
+
 #ifndef uint32_t
-typedef unsigned __int8      uint8_t;
-typedef unsigned __int16   uint16_t;
-typedef unsigned __int32   uint32_t;
-typedef unsigned __int64    uint64_t;
-typedef __int8      int8_t;
-typedef __int16      int16_t;
-typedef __int32      int32_t;
-typedef __int64      int64_t;
+typedef unsigned __int8       uint8_t;
+typedef unsigned __int16      uint16_t;
+typedef unsigned __int32      uint32_t;
+typedef unsigned __int64      uint64_t;
+typedef __int8                int8_t;
+typedef __int16               int16_t;
+typedef __int32               int32_t;
+typedef __int64               int64_t;
 #endif
 
 #ifdef _MSC_VER
 #pragma warning(disable:4311)
+#endif
+
 #endif

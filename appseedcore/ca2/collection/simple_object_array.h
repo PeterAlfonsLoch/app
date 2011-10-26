@@ -1,6 +1,6 @@
 #pragma once
 
-class simple_object_array : 
+class simple_object_array :
    virtual public ex1::serializable
 {
 public:

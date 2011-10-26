@@ -12,18 +12,20 @@ namespace bergedge
       m_dibBk(papp),
       place_holder_container(papp)
    {
-      m_iNewArea = 0;
-      m_iArea = -1;
-      m_pcreateview = this;
-      m_pviewdataOld = NULL;
+      m_iNewArea        = 0;
+      m_iArea           = -1;
+      m_pviewdataOld    = NULL;
 
-      m_etranslucency      = TranslucencyTotal;
+      m_etranslucency   = TranslucencyTotal;
 
-      m_pviewdata              = NULL;
-      m_pviewdataOld              = NULL;
+      m_pviewdata       = NULL;
+      m_pviewdataOld    = NULL;
 
-      m_iDisplay = -1;
-      m_ppropform = NULL;
+      m_iDisplay        = -1;
+      m_ppropform       = NULL;
+      m_dataid          = "ca2_fontopus_votagus::bergedge::pane_view";
+
+      get_data()->m_matchanyRestore.add(new ::ex1::match::prefix("app:"));
 
    }
 
@@ -31,7 +33,7 @@ namespace bergedge
    {
    }
 
-   #ifdef _DEBUG
+#ifdef _DEBUG
    void pane_view::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -41,9 +43,9 @@ namespace bergedge
    {
       ::userbase::view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+#endif //_DEBUG
 
-   void pane_view::_001OnCreate(gen::signal_object * pobj) 
+   void pane_view::_001OnCreate(gen::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -52,16 +54,18 @@ namespace bergedge
       ::bergedge::frame * pframe = dynamic_cast < ::bergedge::frame * > (GetParentFrame());
       pframe->m_ppaneview = this;
 
+      add_tab("application", "::bergedge::pane_view_application");
       add_tab("3-action-launch", ::bergedge::PaneViewThreeActionLaunch);
       add_tab("menu", ::bergedge::PaneViewContextMenu);
       add_tab("win desk", ::bergedge::PaneViewWinActionArea);
       add_tab("options", ::bergedge::PaneViewConfiguration);
       add_tab("file manager", ::bergedge::PaneViewFileManager);
 
-      
+      set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
+
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint) 
+   void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
@@ -98,11 +102,31 @@ namespace bergedge
       }
    }
 
-   void pane_view::on_show_view() 
+   void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
       frame * pframe = dynamic_cast < frame *> (GetParentFrame());
-      if(get_view_id() == ::bergedge::PaneViewFileManager)
+      if(get_view_id().is_text())
+      {
+         string strId = get_view_id();
+         if(gen::str::begins_eat(strId, "app:"))
+         {
+            ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (m_pviewdata->m_pwnd);
+            if(pframeApp != NULL)
+            {
+               pframeApp->WfiFullScreen(true, false);
+            }
+         }
+         else if(strId == "::bergedge::pane_view_application")
+         {
+            string strDirName;
+            strDirName.Format("application-%d", 0);
+            string strDir = Application.dir().userappdata("bergedge", strDirName);
+            ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pviewdata->m_pdoc);
+            pdoc->FileManagerBrowse(strDir);
+         }
+      }
+      else if(get_view_id() == ::bergedge::PaneViewFileManager)
       {
 //         pframe->m_bAutoHideOnOutClick = false;
          pframe->ShowWindow(SW_MAXIMIZE);
@@ -151,31 +175,98 @@ namespace bergedge
       }
    }
 
-   BOOL pane_view::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL pane_view::PreCreateWindow(CREATESTRUCT& cs)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
+      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
       return ::userbase::view::PreCreateWindow(cs);
    }
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       class bergedge * papp = dynamic_cast < class bergedge * > (get_app());
-      switch(pviewdata->m_id)
+      if(pcreatordata->m_id.is_text())
+      {
+         string strId = pcreatordata->m_id;
+
+         if(gen::str::begins_eat(strId, "app:"))
+         {
+            ::ca::application * pappTab;
+            if(!Bergedge.m_mapApplication.Lookup(strId, pappTab))
+            {
+               ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+               pbiasCreate->m_puiParent = pcreatordata->m_pholder;
+               Bergedge.command().add_fork(strId, pbiasCreate);
+            }
+
+     		   string strIcon = Application.dir().matter(System.dir().path(strId, "mainframe/icon48.png"));
+	   	   if(System.file().exists(strIcon))
+            {
+               pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
+               ppane->m_dib.create(papp);
+               ppane->m_dib.load_from_file(strIcon);
+               layout();
+            }
+         }
+         else if(strId == "::bergedge::pane_view_application")
+         {
+            pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
+            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
+            if(pdoc != NULL)
+            {
+               pdoc->get_filemanager_data()->m_iIconSize = 48;
+               pdoc->get_filemanager_data()->m_bListText = true;
+               pdoc->get_filemanager_data()->m_bListSelection = false;
+               pdoc->get_filemanager_data()->m_bIconView = true;
+               pdoc->get_filemanager_data()->m_pcallback = this;
+               pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
+               pdoc->get_filemanager_data()->m_bPassBk = true;
+               pdoc->Initialize(true);
+               pdoc->update_all_views(NULL, 1234);
+               pdoc->update_all_views(NULL, 1234525);
+               ::view * pview = pdoc->get_view();
+               string strDirName;
+               strDirName.Format("application-%d", 0);
+               string strDir = Application.dir().userappdata("bergedge", strDirName);
+               POSITION pos = System.m_mapAppLibrary.get_start_position();
+               string strApp;
+               string strLibrary;
+               while(pos != NULL)
+               {
+                  System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
+                  Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\n" + strApp);
+               }
+               pdoc->FileManagerBrowse(strDir);
+               if(pview != NULL)
+               {
+                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                  if(pframe != NULL)
+                  {
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
+
+
+                  }
+               }
+            }
+         }
+      }
+      switch(pcreatordata->m_id)
       {
       case PaneViewContextMenu:
          {
-/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(typeid(bergedge::menu_view), get_document(), this, 102));
+/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(::ca::get_type_info < bergedge::menu_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = pview;
+               pcreatordata->m_pdoc = get_document();
+               pcreatordata->m_pwnd = pview;
             }*/
          }
          break;
       case PaneViewWinActionArea:
          {
+            pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
             ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
             if(pdoc != NULL)
             {
@@ -203,10 +294,8 @@ namespace bergedge
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
 
 
                   }
@@ -220,6 +309,7 @@ namespace bergedge
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
+               pdoc->get_filemanager_data()->m_bSetBergedgeTopicFile = true;
                pdoc->Initialize(true);
                pdoc->update_all_views(NULL, 1234);
                pdoc->update_all_views(NULL, 123458);
@@ -229,12 +319,8 @@ namespace bergedge
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
-
-
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }
@@ -246,13 +332,15 @@ namespace bergedge
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
-               pdoc->get_filemanager_data()->m_bListText = false;
+               pdoc->get_filemanager_data()->m_bListText = true;
                pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_pcallback = this;
+               pdoc->get_filemanager_data()->m_pcallback = &Bergedge;
+               pdoc->get_filemanager_data()->m_bIconView = true;
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
                pdoc->Initialize(true);
                pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
+               //pdoc->update_all_views(NULL, 123458);
+               pdoc->update_all_views(NULL, 1234525);
                ::view * pview = pdoc->get_view();
                string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
                check_3click_dir(strDir);
@@ -262,12 +350,8 @@ namespace bergedge
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
-
-
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }
@@ -283,7 +367,7 @@ namespace bergedge
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "bergedge\\options.xhtml";
          pdoc->update_all_views(NULL, 0, &uh);
-         
+
          uh.m_etype = form_update_hint::type_get_form_view;
          pdoc->update_all_views(NULL, 0, &uh);
 
@@ -293,8 +377,8 @@ namespace bergedge
 
 
 
-         pviewdata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
-         pviewdata->m_pdoc = pdoc;
+         pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
+         pcreatordata->m_pdoc = pdoc;
       }
       break;
       case PaneViewFileProperties:
@@ -303,15 +387,14 @@ namespace bergedge
             {
                m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
             }
-            pviewdata->m_pwnd = m_ppropform->open(this, m_itema);
-            if(pviewdata->m_pwnd == NULL)
+            pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
+            if(pcreatordata->m_pwnd == NULL)
                return;
-            pviewdata->m_pdoc = m_ppropform->m_ptabview->get_document();
+            pcreatordata->m_pdoc = m_ppropform->m_ptabview->get_document();
 
          }
          break;
       default:
-         ASSERT(FALSE);
          break;
       }
    }
@@ -324,12 +407,10 @@ namespace bergedge
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userex::pane_tab_view::_001InstallMessageHandling(pinterface);
-
+      ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
-      //IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &pane_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_USER + 1122  , this, this, &pane_view::_001OnMenuMessage);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &pane_view::_001OnRButtonUp);
       connect_command("properties", &pane_view::_001OnProperties);
@@ -357,14 +438,14 @@ namespace bergedge
    }
 
    /*void pane_view::OnFileManagerOpenFile(
-         ::filemanager::data * pdata, 
+         ::filemanager::data * pdata,
          ::fs::item_array & itema)
    {
       if(itema.get_size() > 0)
       {
          int i = (int) ::ShellExecuteW(
-            GetTopLevelParent()->_get_handle(), 
-            NULL, 
+            GetTopLevelParent()->_get_handle(),
+            NULL,
             L"\"" + gen::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             NULL,
             L"\"" + gen::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
@@ -404,7 +485,15 @@ namespace bergedge
 
    void pane_view::check_3click_dir(const char * psz)
    {
-      stringa straPath;
+      if(System.dir().is(psz))
+      {
+         return;
+      }
+      System.dir().mk(psz);
+      string strDir(psz);
+
+      Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+/*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
       System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
@@ -413,7 +502,7 @@ namespace bergedge
          string str = System.dir().path(psz, straRelative[i]);
          System.dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str, TRUE);
-      }
+      }*/
    }
 
    void pane_view::check_desktop_dir(const char * psz)
@@ -488,7 +577,7 @@ namespace bergedge
          case 3:on_create_on_crea
             strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_26.bmp");
             break;
-         default:         
+         default:
             strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_23.bmp");
             break;
          }
@@ -497,13 +586,13 @@ namespace bergedge
          ::ca::graphics * pdc = GetDC();
 
          pfi = System.imaging().LoadImageFile(strWallpaper);
-         
+
          m_dibBk.From((HDC)pdc->get_os_data(), pfi, true);
 
          ReleaseDC(pdc);*/
          //_001RedrawWindow();
       }
-      
+
       //m_dibBk.to(pdc, 0, 0, rectClient.right, rectClient.bottom);
       ::userex::pane_tab_view::_001OnDraw(pdc);
    }
@@ -548,14 +637,14 @@ namespace bergedge
    {
    }
 */
-   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
       set_cur_tab_by_id(::bergedge::PaneViewFileProperties);
    }
 
-   
+
 
    void pane_view::_001OnProperties(gen::signal_object * pobj)
    {
@@ -576,7 +665,7 @@ namespace bergedge
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus", 
+            "ca2_fontopus_votagus",
             "savings",
             gen::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
@@ -587,7 +676,7 @@ namespace bergedge
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus", 
+            "ca2_fontopus_votagus",
             "savings",
             gen::resource_processing);
    //   control.add_function(user::control::function_static);
@@ -598,18 +687,18 @@ namespace bergedge
       control.m_id = "save_memory";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus", 
+            "ca2_fontopus_votagus",
             "savings",
             gen::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
-      
+
       control.m_bTransparent = true;
       control.set_type(user::control::type_check_box);
       control.m_id = "enable_wallpaper";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus", 
+            "ca2_fontopus_votagus",
             "bergedge",
             0);
    //   control.add_function(user::control::function_static);
@@ -622,5 +711,6 @@ namespace bergedge
       UNREFERENCED_PARAMETER(pevent);
       return false;
    }
+
 
 } // namespace bergedge

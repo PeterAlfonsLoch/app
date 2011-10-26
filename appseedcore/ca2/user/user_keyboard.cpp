@@ -9,7 +9,7 @@ namespace user
       m_playout = NULL;
    }
 
-      
+
    class keyboard_layout & keyboard::layout()
    {
       return *m_playout;

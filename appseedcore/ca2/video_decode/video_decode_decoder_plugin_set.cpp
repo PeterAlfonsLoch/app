@@ -14,10 +14,10 @@ namespace video_decode
 
    decoder_plugin * decoder_plugin_set::FindPlugin(const char * pszTitle)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         if(element_at(i).GetPluginTitle().CompareNoCase(pszTitle) == 0)
-            return &element_at(i);
+         if(this->element_at(i).GetPluginTitle().CompareNoCase(pszTitle) == 0)
+            return &this->element_at(i);
       }
       return NULL;
    }

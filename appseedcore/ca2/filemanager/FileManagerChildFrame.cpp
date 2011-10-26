@@ -16,9 +16,9 @@ FileManagerChildFrame::~FileManagerChildFrame()
 {
 }
 
-void FileManagerChildFrame::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void FileManagerChildFrame::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   simple_child_frame::_001InstallMessageHandling(pinterface);
+   simple_child_frame::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &FileManagerChildFrame::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerChildFrame::_001OnCreate);
@@ -46,7 +46,7 @@ bool FileManagerChildFrame::CreateBars()
       strToolBar = pdoc->get_filemanager_data()->m_ptemplate->m_strToolBar;
    }
 
-   string str = Application.file().as_string(System.dir().matter(strToolBar));
+   string str = Application.file().as_string(Application.dir().matter(strToolBar));
 
 
    if (!m_toolbar.CreateEx(this) ||

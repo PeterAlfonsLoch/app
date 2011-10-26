@@ -115,7 +115,7 @@ recursive_fwd_write(TASK *t)
 #endif
 
 	/* Send to remote server */
-	if ((rv = sendto(t->recursive_fd, query, querylen, 0,
+	if ((size_t) (rv = sendto(t->recursive_fd, query, querylen, 0,
 						  (struct sockaddr *)&recursive_sa, sizeof(struct sockaddr_in))) != querylen)
 	{
 		if (errno == EAGAIN)

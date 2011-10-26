@@ -14,7 +14,7 @@ void rgb_quad_array::create_web_palette()
    // Do nothing
    const DWORD STANDARD_PALETTE[] = {00,51,102,153,204,255};
    const INT STANDARD_COLOR_SIZE = 6;
-//   const INT STANDARD_PALETTE_VAL_DIF = 51; 
+//   const INT STANDARD_PALETTE_VAL_DIF = 51;
    set_size(216);
 //   DWORD dwColorMapTable[216] = {0};
    int nColorMapIdx = 0;
@@ -24,10 +24,10 @@ void rgb_quad_array::create_web_palette()
       {
          for(int nRedIdx = 0; nRedIdx < STANDARD_COLOR_SIZE; ++nRedIdx)
          {
-            element_at(nColorMapIdx).rgbRed      = (BYTE) STANDARD_PALETTE[nRedIdx];
-            element_at(nColorMapIdx).rgbGreen    = (BYTE) STANDARD_PALETTE[nGreenIdx];
-            element_at(nColorMapIdx).rgbBlue     = (BYTE) STANDARD_PALETTE[nBlueIdx];
-            element_at(nColorMapIdx).rgbReserved = 0;
+            this->element_at(nColorMapIdx).rgbRed      = (BYTE) STANDARD_PALETTE[nRedIdx];
+            this->element_at(nColorMapIdx).rgbGreen    = (BYTE) STANDARD_PALETTE[nGreenIdx];
+            this->element_at(nColorMapIdx).rgbBlue     = (BYTE) STANDARD_PALETTE[nBlueIdx];
+            this->element_at(nColorMapIdx).rgbReserved = 0;
             ++nColorMapIdx;
          }
       }

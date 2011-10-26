@@ -17,7 +17,7 @@ namespace ikar
 
       virtual imedia::position TimeToPosition(imedia::time time) = 0;
       virtual imedia::time PositionToTime(imedia::position position) = 0;
-      virtual void GetPosition(imedia::position & position) = 0;
+      virtual void get_position(imedia::position & position) = 0;
       virtual void get_time(imedia::time & position) = 0;
       virtual void GetTimeLength(imedia::time & time) = 0;
       virtual void GetPositionLength(imedia::position & position) = 0;

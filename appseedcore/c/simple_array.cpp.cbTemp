@@ -1,0 +1,14 @@
+#include "StdAfx.h"
+
+
+double simple_double_array::average()
+{
+   if(get_count() == 0)
+      return 0.0;
+   double d = 0.0;
+   for(index i = 0; i < get_count(); i++)
+   {
+      d += this->element_at(i) / ((double) get_count());
+   }
+   return d;
+}

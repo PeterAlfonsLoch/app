@@ -12,9 +12,9 @@ public:
 
      simple_toolbar           m_toolbar;
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
-   afx_msg void OnChangeEditSearch();
+   void OnChangeEditSearch();
 
    inline FileManagerInterface * GetFileManager()
    { 

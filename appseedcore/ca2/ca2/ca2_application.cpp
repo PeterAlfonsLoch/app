@@ -5,28 +5,22 @@
 namespace ca2
 {
 
-   application_request::application_request()
-   {
-      m_iEdge        = -1;
-      m_puiParent    = NULL;
-      m_pbiasCreate  = NULL;
-   }
-
    application::application()
    {
       m_eexclusiveinstance       = ::radix::ExclusiveInstanceNone;
       m_pmutexLocal              = NULL;
       m_pmutexGlobal             = NULL;
       m_peventReady              = NULL;
+      m_pmapKeyPressed           = NULL;
    }
 
    application::~application()
    {
    }
 
-   void application::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void application::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::ex2::application::_001InstallMessageHandling(pdispatch);
+      ::ex2::application::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &::ca2::application::_001OnApplicationRequest);
    }
 
@@ -41,9 +35,15 @@ namespace ca2
       return m_strStyle;
    }
 
-   string application::get_locale_style_dir()
+   string application::get_locale_style_dir(const char * pszLocale, const char * pszStyle)
    {
-      return System.dir().path(get_locale(), get_style());
+      string strLocale(pszLocale);
+      string strStyle(pszStyle);
+      if(strLocale.is_empty())
+         strLocale = get_locale();
+      if(strStyle.is_empty())
+         strStyle = get_style();
+      return System.dir().path(strLocale, strStyle);
    }
 
    void application::set_locale(const char * lpcsz, bool bUser)
@@ -93,8 +93,6 @@ namespace ca2
 
    bool application::bergedge_start()
    {
-      if(!_001ProcessShellCommand(command_line()))
-         return false;
       if(!gen::application::bergedge_start())
          return false;
       return true;
@@ -136,6 +134,8 @@ namespace ca2
 
    bool application::initialize1()
    {
+
+      m_dwAlive = ::GetTickCount();
 
       if(m_biasCalling.m_strLicense.has_char() && m_strLicense.is_empty())
       {
@@ -214,9 +214,9 @@ namespace ca2
 
 
 
-      return ex2::application::initialize();
+      return ex2::application::initialize1();
    }
-   
+
    bool application::finalize()
    {
       try
@@ -229,7 +229,7 @@ namespace ca2
       return true;
    }
 
-BOOL Is_Vista_or_Later () 
+BOOL Is_Vista_or_Later ()
 {
    OSVERSIONINFOEX osvi;
    DWORDLONG dwlConditionMask = 0;
@@ -254,8 +254,8 @@ BOOL Is_Vista_or_Later ()
    // Perform the test.
 
    return VerifyVersionInfo(
-      &osvi, 
-      VER_MAJORVERSION | VER_MINORVERSION | 
+      &osvi,
+      VER_MAJORVERSION | VER_MINORVERSION |
       VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
       dwlConditionMask);
 }
@@ -264,14 +264,31 @@ BOOL Is_Vista_or_Later ()
    bool application::initialize()
    {
 
+      m_dwAlive = ::GetTickCount();
 
-      if(command_line().m_varQuery.propset().has_property("install"))
+      if(is_system())
+      {
+         if(guideline().m_varTopicQuery.propset().has_property("save_processing"))
+         {
+            System.savings().save(gen::resource_processing);
+         }
+         if(guideline().m_varTopicQuery.propset().has_property("save_blur_back"))
+         {
+            System.savings().save(gen::resource_blur_background);
+         }
+         if(guideline().m_varTopicQuery.propset().has_property("save_transparent_back"))
+         {
+            System.savings().save(gen::resource_translucent_background);
+         }
+      }
+
+      if(directrix().m_varTopicQuery.propset().has_property("install"))
       {
          // ex2 level app install
          if(!Ex2OnAppInstall())
             return false;
       }
-      else if(command_line().m_varQuery.propset().has_property("uninstall"))
+      else if(directrix().m_varTopicQuery.propset().has_property("uninstall"))
       {
          // ex2 level app uninstall
          if(!Ex2OnAppUninstall())
@@ -280,13 +297,13 @@ BOOL Is_Vista_or_Later ()
       else
       {
          // when this process is started in the context of a system account,
-         // for example, this code ensure that the process will 
+         // for example, this code ensure that the process will
          // impersonate a loggen on ::fontopus::user
          HANDLE hprocess;
          HANDLE htoken;
 
          hprocess = ::GetCurrentProcess();
-         
+
          if(!OpenProcessToken(
                hprocess,
                TOKEN_ALL_ACCESS,
@@ -306,18 +323,6 @@ BOOL Is_Vista_or_Later ()
       return true;
    }
 
-   void application::request_application(::ca2::application_request * prequest)
-   {
-      if(prequest->m_strApp.has_char() && prequest->m_iEdge >= 0)
-      {
-         System.request_application(prequest->m_iEdge, prequest->m_strApp, prequest->m_varFile, prequest->m_varQuery, prequest->m_pbiasCreate);
-      }
-      else
-      {
-         request(prequest->m_varFile, prequest->m_varQuery);
-      }
-   }
-
    void application::pre_translate_message(gen::signal_object * pobj)
    {
       SCAST_PTR(user::win::message::base, pbase, pobj);
@@ -334,15 +339,22 @@ BOOL Is_Vista_or_Later ()
    void application::_001OnApplicationRequest(gen::signal_object * pobj)
    {
       SCAST_PTR(user::win::message::base, pbase, pobj);
-      ::ca2::application_request * prequest = (::ca2::application_request *) pbase->m_lparam;
-      try
+      if(pbase->m_wparam == 2)
       {
-         request_application(prequest);
+         // when wparam == 2 lparam is a pointer to a gen::command_fork
+         // that should be treated as gen::command_line on request, i.e.,
+         // a fork whose Forking part has been done, now
+         // the parameters are going to be passed to this new application
+         ::ca::create_context * pcreatecontext = (::ca::create_context *) pbase->m_lparam;
+         try
+         {
+            on_request(pcreatecontext);
+         }
+         catch(...)
+         {
+         }
+         pcreatecontext->m_spCommandLine->m_eventReady.SetEvent();
       }
-      catch(...)
-      {
-      }
-      prequest->m_eventReady.SetEvent();
    }
 
 
@@ -391,25 +403,34 @@ BOOL Is_Vista_or_Later ()
       strShortName = get_module_file_path();
 
       // strip out path
-      string strFileName = ::PathFindFileName(strShortName);
+      //string strFileName = ::PathFindFileName(strShortName);
       // strip out extension
-      LPTSTR pszFileName = strFileName.GetBuffer();
-      ::PathRemoveExtension(pszFileName);
-      strFileName.ReleaseBuffer();
+      //LPTSTR pszFileName = strFileName.GetBuffer();
+      //::PathRemoveExtension(pszFileName);
+      //strFileName.ReleaseBuffer();
 
-      m_atomApp = ::GlobalAddAtom(strFileName);
-      m_atomSystemTopic = ::GlobalAddAtom("system");
+//      m_atomApp = ::GlobalAddAtom(strFileName);
+  //    m_atomSystemTopic = ::GlobalAddAtom("system");
    }
 
 
    string application::load_string(id id)
    {
       string str;
-      if(!load_cached_string(str, id, true))
+      if(!load_string(str, id))
       {
          return (const char *) id;
       }
       return str;
+   }
+
+   bool application::load_string(string & str, id id)
+   {
+      if(!load_cached_string(str, id, true))
+      {
+         return false;
+      }
+      return true;
    }
 
    bool application::load_cached_string(string & str, id id, bool bLoadStringTable)
@@ -482,7 +503,7 @@ BOOL Is_Vista_or_Later ()
          strMatter += "\\stringtable.xml";
       }
       ::xml::node node(get_app());
-      string strFilePath = System.dir().matter(strMatter);
+      string strFilePath = Application.dir().matter(strMatter);
       if(!System.file().exists(strFilePath))
       {
          if(m_stringtablemap[pszId] != NULL)
@@ -510,22 +531,28 @@ BOOL Is_Vista_or_Later ()
    int application::run()
    {
       TRACE("::ca2::application::run");
-      if(command_line().m_varQuery.has_property("install"))
+      /*if(directrix().m_varTopicQuery.has_property("install"))
       {
          on_run_install();
       }
-      else if(command_line().m_varQuery.has_property("uninstall"))
+      else if(directrix().m_varTopicQuery.has_property("uninstall"))
       {
          on_run_uninstall();
-      }
+      }*/
       return ex2::application::run();
    }
 
    bool application::open_link(const char * pszLink, const char * pszTarget)
    {
-      UNREFERENCED_PARAMETER(pszTarget);
-      ::ShellExecute(NULL, "open", pszLink, NULL, NULL, SW_SHOWNORMAL);
-      return true;
+      if(is_system())
+      {
+         ::ShellExecuteA(NULL, "open", pszLink, NULL, NULL, SW_SHOW);
+         return true;
+      }
+      else
+      {
+         return System.open_link(pszLink, pszTarget);
+      }
    }
 
    ::user::interaction * application::uie_from_point(point pt)
@@ -583,7 +610,7 @@ BOOL Is_Vista_or_Later ()
    {
       if(m_strId == "bergedge" || m_strAppName == "bergedge")
       {
-         if(!command_line().m_varQuery.has_property("bergedge_start"))
+         if(!directrix().m_varTopicQuery.has_property("bergedge_start"))
          {
             System.PostThreadMessage(WM_QUIT, 0, 0);
          }
@@ -607,7 +634,7 @@ BOOL Is_Vista_or_Later ()
 
       if(m_strId == "bergedge")
       {
-         if(!command_line().m_varQuery.has_property("bergedge_start"))
+         if(!directrix().m_varTopicQuery.has_property("bergedge_start"))
          {
             System.PostThreadMessage(WM_QUIT, 0, 0);
          }
@@ -619,6 +646,67 @@ BOOL Is_Vista_or_Later ()
 
       return true;
    }
+
+
+   bool application::is_key_pressed(int iKey)
+   {
+      if(is_bergedge() || is_system() || (m_pbergedge == NULL && m_psystem == NULL))
+      {
+         if(is_system() && m_pbergedge != NULL && !is_bergedge())
+         {
+            return Berg(this).is_key_pressed(iKey);
+         }
+         if(m_pmapKeyPressed  == NULL)
+         {
+            m_pmapKeyPressed = new ::collection::map < int, int, bool, bool >;
+         }
+         bool bPressed = false;
+         m_pmapKeyPressed->Lookup(iKey, bPressed);
+         return bPressed;
+      }
+      else if(m_pbergedge != NULL)
+      {
+         return Berg(this).is_key_pressed(iKey);
+      }
+      else if(m_psystem != NULL)
+      {
+         return Sys(this).is_key_pressed(iKey);
+      }
+      else
+      {
+         throw "not expected";
+      }
+
+   }
+
+   void application::set_key_pressed(int iKey, bool bPressed)
+   {
+      if(is_bergedge() || is_system() || (m_pbergedge == NULL && m_psystem == NULL))
+      {
+         if(is_system() && m_pbergedge != NULL && !is_bergedge())
+         {
+            return Berg(this).set_key_pressed(iKey, bPressed);
+         }
+         if(m_pmapKeyPressed  == NULL)
+         {
+            m_pmapKeyPressed = new ::collection::map < int, int, bool, bool >;
+         }
+         (*m_pmapKeyPressed)[iKey] = bPressed;
+      }
+      else if(m_pbergedge != NULL)
+      {
+         return Berg(this).set_key_pressed(iKey, bPressed);
+      }
+      else if(m_psystem != NULL)
+      {
+         return Sys(this).set_key_pressed(iKey, bPressed);
+      }
+      else
+      {
+         throw "not expected";
+      }
+   }
+
 
 } //namespace _001ca1api00001
 

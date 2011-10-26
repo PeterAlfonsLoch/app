@@ -1,10 +1,9 @@
 #pragma once
 
+
 #include "ca4/ca4.h"
 #include "database/database.h"
 #include "visual/visual.h"
-
-
 
 
 namespace user
@@ -47,11 +46,9 @@ namespace user
 #include "user_front_end_schema.h"
 #include "user_front_end.h"
 
-#include "user_get_view.h"
-#include "user_create_view.h"
+#include "user_view_container.h"
+#include "user_view_creator.h"
 
-
-#include "user_window_redraw_interface.h"
 
 #include "user_keyboard_layout.h"
 #include "user_keyboard.h"
@@ -99,4 +96,14 @@ namespace user
 
 #include "user_document_manager.h"
 
+#include "user_job.h"
+
+#include "user_printer.h"
+
+#include "user_print_job.h"
+
+
 #include "user_application.h"
+
+
+#include "ca2/ca2_user.h"

@@ -5,9 +5,9 @@
 namespace compress
 {
 
-   DWORD_PTR size_count_reader2::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size size_count_reader2::read(void *data, ::primitive::memory_size size)
    {
-     uint32 realProcessedSize = realProcessedSize = _stream->read(data, size);
+     ::primitive::memory_size realProcessedSize = realProcessedSize = _stream->read(data, size);
      _size += realProcessedSize;
      return realProcessedSize;
    }

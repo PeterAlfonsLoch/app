@@ -92,9 +92,10 @@ _error_out(
 	const char *msg 
 )
 {
+   UNREFERENCED_PARAMETER(priority);
 	static char out[ERROR_MAXMSGLEN + 2];
 	static int  repeat = 0;
-	int len;
+	int len = 0;
 
 	/* Construct 'out' - the output */
 #if SHOW_PID_IN_ERRORS
@@ -104,14 +105,14 @@ _error_out(
 		len = _snprintf(out, sizeof(out) - 2, "%s [%d]: %s", progname, getpid(), msg);
 #else
 	if (err_file && errappend)
-		::ca::get_thread()->m_papp->m_psystem->log().trace("%s: %s: %s", progname, msg, strerror(errno));
+		CaSys(::ca::get_thread()).log().trace("%s: %s: %s", progname, msg, strerror(errno));
 	else if (err_file)
-		::ca::get_thread()->m_papp->m_psystem->log().trace("%s: %s", progname, msg);
+		CaSys(::ca::get_thread()).log().trace("%s: %s", progname, msg);
 #endif
 	else if (errappend)
-		::ca::get_thread()->m_papp->m_psystem->log().trace("%s: %s", msg, strerror(errno));
+		CaSys(::ca::get_thread()).log().trace("%s: %s", msg, strerror(errno));
 	else
-		::ca::get_thread()->m_papp->m_psystem->log().trace("%s", msg);
+		CaSys(::ca::get_thread()).log().trace("%s", msg);
 
 	/* Don't output the same error message again and again */
 	if (strcmp(out, err_last))
@@ -119,7 +120,7 @@ _error_out(
 		if (repeat)
 		{
 			//if (err_file)
-				::ca::get_thread()->m_papp->m_psystem->log().trace( _("%s: last message repeated %d times\n"), progname, repeat + 1);
+				CaSys(::ca::get_thread()).log().trace( _("%s: last message repeated %d times\n"), progname, repeat + 1);
 			//else
 				//syslog(priority, _("last message repeated %d times"), repeat + 1);
 		}

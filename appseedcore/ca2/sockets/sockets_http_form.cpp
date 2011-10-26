@@ -33,7 +33,7 @@ namespace http
          ::gen::parse pa(content_type,";=");
          char *tempcmp = NULL;
          size_t tc = 0;
-         size_t l = 0;
+         int iBoundaryLength = 0;
          string str = pa.getword();
          m_strBoundary = "";
          while (!str.is_empty())
@@ -41,8 +41,8 @@ namespace http
             if (!strcmp(str,"boundary"))
             {
                m_strBoundary = pa.getword();
-               l = m_strBoundary.get_length();
-               tempcmp = new char[l + extra];
+               iBoundaryLength = m_strBoundary.get_length();
+               tempcmp = new char[iBoundaryLength + extra];
             }
             //
             str = pa.getword();
@@ -53,7 +53,7 @@ namespace http
             string current_name;
             string current_filename;
             string slask;
-            while(infil ->read_string(slask))
+            while((slask.has_char() && !strncmp(slask,m_strBoundary,m_strBoundary.get_length())) || infil ->read_string(slask))
             {
                content_type = "";
                current_name = "";
@@ -65,27 +65,30 @@ namespace http
                if (!strcmp(slask, m_strBoundary))
                {
                   // get headers until is_empty line
-                  while (infil -> read_string(slask))
+                  while(infil->read_string(slask))
                   {
+                     slask.trim();
+                     if(slask.is_empty())
+                        break;
                      ::gen::parse pa(slask,";");
                      string h = pa.getword();
-                     if (!strcasecmp(h,"Content-type:"))
+                     if(!strcasecmp(h,"Content-type:"))
                      {
                         content_type = pa.getword();
                      }
                      else
-                     if (!strcasecmp(h,"Content-Disposition:"))
+                     if(!strcasecmp(h,"Content-Disposition:"))
                      {
                         h = pa.getword();
                         if (!strcmp(h,"form-data"))
                         {
                            pa.EnableQuote(true);
                            h = pa.getword();
-                           while (!h.is_empty())
+                           while(h.has_char())
                            {
-                              ::gen::parse pa2(slask,"=");
+                              ::gen::parse pa2(h,"=");
                               string name = pa2.getword();
-                              string h = pa2.getrest();
+                              h = pa2.getrest();
                               if (!strcmp(name,"name"))
                               {
                                  if (!h.is_empty() && h[0] == '"')
@@ -144,61 +147,51 @@ namespace http
                   else // current_filename.get_length() > 0
                   {
                      // read until m_strBoundary...
-                     FILE *fil;
+//                     FILE *fil;
                      int out = 0;
                      char c;
-                     char fn[2000]; // where post'd file will be saved
-   #ifdef _WIN32
+                     string strTempFile = System.file().time_square();
+                     ex1::filesp spfile(Application.get_file(strTempFile, ::ex1::file::type_binary | ::ex1::file::mode_create | ::ex1::file::mode_write));
+                     if(spfile.is_set())
                      {
-                        char tmp_path[2000];
-                        ::GetTempPathA(2000, tmp_path);
-                        if (tmp_path[strlen(tmp_path) - 1] != '\\')
-                        {
-                           strcat(tmp_path, "\\");
-                        }
-                        sprintf(fn,"%s%s",tmp_path,current_filename);
-                     }
-   #else
-                     sprintf(fn,"/tmp/%s",current_filename);
-   #endif
-                     if ((fil = fopen(fn, "wb")) != NULL)
-                     {
-                        
                         while (infil -> read(&c,1))
                         {
                            if (out)
                            {
-                              fwrite(&tempcmp[tc],1,1,fil); // %! ??? should we write value of 'c' here?
+                              spfile->write(&tempcmp[tc], 1); // %! ??? should we write value of 'c' here?
                            }
                            tempcmp[tc] = c;
                            tc++;
-                           if (tc >= l + extra)
+                           if (tc >= iBoundaryLength + extra)
                            {
                               tc = 0;
                               out = 1;
                            }
                            if (tc)
                            {
-                              if (!strncmp(tempcmp + tc + extra, m_strBoundary, l - tc) &&
-                                    !strncmp(tempcmp, m_strBoundary.Mid(l - tc), tc))
+                              if (!strncmp(tempcmp + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
+                                    !strncmp(tempcmp, m_strBoundary.Mid(iBoundaryLength - tc), tc))
                               {
                                  break;
                               }
                            }
                            else
                            {
-                              if (!strncmp(tempcmp + extra, m_strBoundary, l))
+                              if (!strncmp(tempcmp + extra, m_strBoundary, iBoundaryLength))
                               {
                                  break;
                               }
                            }
                            
                         }
-                        fclose(fil);
+
+                        spfile->close();
 
                         //cgi = new CGI(current_name,fn,fn);
                         //m_cgi.push_back(cgi);
-                        m_setPost[current_name] = fn;
+                        m_setPost[current_name]["name"]           = current_filename;
+                        m_setPost[current_name]["tmp_name"]       = strTempFile;
+                        m_setPost[current_name]["content_type"]   = content_type;
                      
                         slask = m_strBoundary;
                         
@@ -215,10 +208,9 @@ namespace http
                   // Probably '<m_strBoundary>--'
                   break;
                }
-            } // while (!infil -> eof())
-            delete[] slask;
-         } // if (m_strBoundary)
-         if (tempcmp)
+            } 
+         }
+         if(tempcmp != NULL)
          {
             delete[] tempcmp;
          }

@@ -19,7 +19,7 @@ namespace netshareclient
 
    void list_interface::_001InsertColumns()
    {
-      Column column;
+      ::user::list_column column;
       column.m_iWidth = 200;
       column.m_iSubItem = 0;
 
@@ -78,30 +78,23 @@ namespace netshareclient
       return true;
    }
 
-   bool list_interface::data::_001GetItemText(
-      ::user::list * plist,
-      string &str,
-      INT_PTR iItem,
-      INT_PTR iSubItem, 
-      INT_PTR iListItem)
+   void list_interface::data::_001GetItemText(::user::list_item * pitem)
    {
-      UNREFERENCED_PARAMETER(plist);
-      UNREFERENCED_PARAMETER(iListItem);
-      CSingleLock slDataset(App(m_plist->get_app()).db().GetImplCriticalSection(), TRUE);
+      single_lock slDataset(App(m_plist->get_app()).db().GetImplCriticalSection(), TRUE);
       class var var;
-      if(!get_record(iItem, var))
-         return false;
-      if(iSubItem < 0)
-         return false;
-      if(iSubItem >= var.propset().m_propertya.get_size())
-         return false;
-      str = var.propset().m_propertya[iSubItem];
-      return true;
+      if(!get_record(pitem->m_iItem, var))
+         return_(pitem->m_bOk, false);
+      if(pitem->m_iSubItem < 0)
+         return_(pitem->m_bOk, false);
+      if(pitem->m_iSubItem >= var.propset().m_propertya.get_size())
+         return_(pitem->m_bOk, false);
+      pitem->m_strText = var.propset().m_propertya[pitem->m_iSubItem];
+      pitem->m_bOk = true;
    }
 
    INT_PTR list_interface::data::_001GetItemCount()
    {
-      return m_iMessageCount;
+      return (INT_PTR) m_iMessageCount;
    }
 
    void list_interface::data::update()

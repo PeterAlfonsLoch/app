@@ -2,7 +2,7 @@
 
 html_form_view::html_form_view(::ca::application * papp) :
    ca(papp),
-   html_form(papp), 
+   html_form(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
@@ -16,9 +16,9 @@ html_form_view::~html_form_view()
 {
 }
 
-void html_form_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void html_form_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   html_form::_001InstallMessageHandling(pinterface);
+   html_form::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &html_form_view::_001OnDestroy);
 //   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &html_form_view::_001OnSize);
@@ -80,7 +80,7 @@ BOOL html_form_view::PreCreateWindow(CREATESTRUCT& cs)
    cs.style &= ~WS_EX_CLIENTEDGE;
    return html_form::PreCreateWindow(cs);
 }
-void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj) 
+void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
 {
    html_form::_001OnInitialUpdate(pobj);
 
@@ -99,7 +99,7 @@ void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
 }
 
 
-void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -126,7 +126,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
                pdc = GetDC();
                get_html_data()->m_pguie = this;
                get_html_data()->implement(pdc);
-               _001InitializeFormPreData();   
+               _001InitializeFormPreData();
                /*   ::view * pview = dynamic_cast <::view *>(get_guie());
                   if(pview != NULL)
                   {
@@ -166,8 +166,8 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
          }
       }
    }
-   
-   
+
+
 }
 
 
@@ -203,7 +203,7 @@ void html_form_view::_001OnSetFocus(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data()->m_focusptra.get_size() > 0)
    {
-      System.set_keyboard_focus(get_html_data()->m_focusptra[0]);
+      Application.set_keyboard_focus(get_html_data()->m_focusptra[0]);
    }
 }
 

@@ -25,23 +25,23 @@ private:
 class trace_settings
 {
 public:
-   trace_settings() : 
-      m_nLevel(0), 
-      m_eStatus(Inherit), 
+   trace_settings() :
+      m_nLevel(0),
+      m_eStatus(Inherit),
       m_nRefCount(0),
       m_nCookie(0)
       {
       }
 
    UINT m_nLevel;
-   enum Status
+   enum e_status
    {
-      Inherit = 0, 
-      Enabled, 
+      Inherit = 0,
+      Enabled,
       Disabled
    };
 
-   Status m_eStatus;
+   e_status m_eStatus;
 
    // Only valid if (m_nRefCount > 0) && (m_nCookie != 0)
    LONG m_nRefCount;
@@ -57,7 +57,11 @@ public:
       {
          return( false );
       }
+#ifdef WINDOWS
       LONG nNewRefCount = ::InterlockedIncrement( &m_nRefCount );
+#else
+      LONG nNewRefCount = ::__sync_add_and_fetch( &m_nRefCount, 1 );
+#endif
       if( nNewRefCount == 1 )
       {
          // We are the first ones here
@@ -67,7 +71,7 @@ public:
       return( false );
    }
 
-   // Marks the object as valid.  
+   // Marks the object as valid.
    void MarkValid( LONG nCookie )
    {
       ATLASSERT( nCookie != 0 );
@@ -78,7 +82,11 @@ public:
    // release the reference after a successful TryAddRef
    bool TryAddRef()
    {
+#ifdef WINDOWS
       LONG nNewRefCount = ::InterlockedIncrement( &m_nRefCount );
+#else
+      LONG nNewRefCount = ::__sync_add_and_fetch( &m_nRefCount, 1 );
+#endif
       if( (nNewRefCount > 1) && (m_nCookie != 0) )
       {
          // The object is valid, and we now own a reference to it
@@ -95,7 +103,11 @@ public:
    // Releases a reference to the object.  If the objects refcount hits zero, the object is invalidated
    void Release()
    {
+#ifdef WINDOWS
       LONG nNewRefCount = ::InterlockedDecrement( &m_nRefCount );
+#else
+      LONG nNewRefCount = ::__sync_add_and_fetch( &m_nRefCount, -1 );
+#endif
       if( nNewRefCount == 0 )
       {
          // We just released the last reference, so mark as invalid
@@ -132,7 +144,7 @@ public:
    void DebugReport(fnDebugReport_t pfnCrtDebugReport);
    int DebugReport(int,const CHAR *,int,const CHAR *,const CHAR *, ...);
    int DebugReport(int,const CHAR *,int,const CHAR *,const CHAR *, va_list args);
-   
+
 
    class function_list
    {

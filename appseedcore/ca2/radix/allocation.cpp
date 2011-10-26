@@ -1,5 +1,20 @@
 #include "StdAfx.h"
 
+
+
+
+void use_base_ca2_allocator()
+{
+
+   g_pfnca2_alloc       = &_ca2_alloc;
+   g_pfnca2_alloc_dbg   = &_ca2_alloc_dbg;
+   g_pfnca2_realloc     = &_ca2_realloc;
+   g_pfnca2_free        = &_ca2_free;
+   g_pfnca2_msize       = &_ca2_msize;
+
+}
+
+
 void * base_ca2_alloc(size_t size)
 {
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
@@ -13,7 +28,13 @@ void * base_ca2_alloc(size_t size)
 
 void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 {
-   byte * p = (byte *) _malloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
+   UNREFERENCED_PARAMETER(nBlockUse);
+   UNREFERENCED_PARAMETER(szFileName);
+   UNREFERENCED_PARAMETER(nLine);
+   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
+   //TODO: to do the dbg version
+   //byte * p = (byte *) _malloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
+   byte * p = (byte *) ca2_heap_alloc(nSize + 4 + 32);
    if(p == NULL)
    {
       AfxThrowMemoryException();
@@ -36,7 +57,10 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * 
       }
       else if(p[0] == 1)
       {
-         p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
+         //   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
+   //TODO: to do the dbg version
+         p = (byte *) ca2_heap_realloc(p, nSize + 4 + 32);
+         //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
       }
       else
       {
@@ -71,7 +95,11 @@ void base_ca2_free(void * pvoid, int iBlockType)
       }
       else if(p[0] == 1)
       {
-         _free_dbg(p, iBlockType);
+         //   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
+   //TODO: to do the dbg version
+
+         ca2_heap_free(p);
+         //_free_dbg(p, iBlockType);
       }
       else
       {
@@ -85,6 +113,7 @@ void base_ca2_free(void * pvoid, int iBlockType)
 }
 
 
+/*
 /////////////////////////////////////////////////////////////////////////////
 // Debug primitive::memory globals and implementation helpers
 
@@ -267,7 +296,7 @@ BOOL AfxDumpMemoryLeaks()
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic primitive::memory routines
 
-int AFX_CDECL AfxNewHandler(size_t /* nSize */)
+int AFX_CDECL AfxNewHandler(size_t /* nSize */ /*)
 {
    AfxThrowMemoryException();
 }
@@ -288,9 +317,10 @@ _PNH AfxGetNewHandler(void)
    return _afxNewHandler;
 #endif
 }*/
-
+/*
 
 AFX_STATIC_DATA const _PNH _pfnUninitialized = (_PNH)-1;
 
 #undef new
 
+*/

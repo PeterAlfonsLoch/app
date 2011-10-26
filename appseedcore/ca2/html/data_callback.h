@@ -10,7 +10,7 @@ namespace html
    public:
 
 
-      virtual void OnBeforeNavigate2(data * pdata, const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
+      virtual void OnBeforeNavigate2(data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
 
 
    };

@@ -12,7 +12,7 @@
 
 #include "Rar3Decoder.h"*/
 
-namespace compress 
+namespace compress
 {
 
    namespace rar3
@@ -848,7 +848,7 @@ namespace compress
       }
 
       ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream,
-         const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface *progress)
+         const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress)
       {
          try
          {

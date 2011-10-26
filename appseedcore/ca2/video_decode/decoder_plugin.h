@@ -12,7 +12,7 @@ namespace video_decode
       friend class decoder_plugin_set;
    protected:
       string                     m_strTitle;
-      HINSTANCE                  m_hinstance;
+      ::ca::library              m_library;
       decoder *                  (* m_lpfnNewDecoder)(::ca::application * papp);
       void                       (* m_lpfnDeleteDecoder)(decoder * pdecoder);
 

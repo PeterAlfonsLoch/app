@@ -12,9 +12,11 @@ namespace ca
    //////////////////////////////////////////////////////////////////////
 
    class CLASS_DECL_ca dib :
-      virtual public ::radix::object
+      virtual public ::radix::object,
+      virtual public ::ex1::byte_serializable
    {
    public:
+
 
       virtual ::ca::graphics * get_graphics();
       virtual ::ca::bitmap_sp get_bitmap();
@@ -32,6 +34,7 @@ namespace ca
       virtual bool dc_select(bool bSelect = true);
 
       virtual COLORREF GetAverageColor();
+      virtual bool blend(dib * pdib, dib * pdibRate);
       virtual bool Blend(dib *pdib, dib * pdibA, int A);
       virtual bool bitmap_blend(::ca::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);
@@ -42,18 +45,23 @@ namespace ca
       virtual int sin10(int i, int iAngle);
 
       virtual bool is_rgb_black();
-      virtual void xor(dib * pdib);
+      virtual void do_xor(dib * pdib);
 
       virtual void ToAlpha(int i);
       virtual void ToAlphaAndFill(int i, COLORREF cr);
       virtual void GrayToARGB(COLORREF cr);
 
       virtual void from_alpha();
-      virtual void mult_alpha();
+      virtual void mult_alpha(::ca::dib * pdibWork, bool bPreserveAlpha = true);
 
       virtual void rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
       virtual void rotate(dib * pdib, double dAngle, double dScale);
       virtual void Rotate034(dib * pdib, double dAngle, double dScale);
+
+
+      virtual void set_rgb(int R, int G, int B);
+      virtual bool rgb_from(::ca::dib * pdib);
+
 
 
       virtual void SetIconMask(::visual::icon * picon, int cx, int cy);
@@ -67,7 +75,7 @@ namespace ca
       virtual void Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask);
       virtual void channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, visual::rgba::echannel echannel);
       virtual void transparent_color(color color);
-      
+
 
       virtual BOOL create(size size);
       virtual BOOL create(int iWidth, int iHeight);
@@ -79,6 +87,7 @@ namespace ca
       virtual void DivideARGB(int iDivide);
       virtual void DivideA(int iDivide);
 
+      virtual bool from(::ca::dib * pdib);
       virtual bool from(::ca::graphics * pdc);
       virtual bool from(point ptDst, ::ca::graphics * pdc, point ptSrc, size size);
 
@@ -89,8 +98,8 @@ namespace ca
       virtual bool to(::ca::graphics * pgraphics, LPCRECT lpcrect);
       virtual bool to(::ca::graphics * pgraphics, point pt, size size, point ptSrc);
 
-      
-      
+
+
       virtual void fill_channel(int C, visual::rgba::echannel echannel);
       virtual void Fill (int A, int R, int G, int B );
       virtual void Fill ( int R, int G, int B );
@@ -123,7 +132,7 @@ namespace ca
       virtual void FillRect ( int x, int y, int w, int h, int R, int G, int B );
       virtual void FillGlassRect ( int x, int y, int w, int h, int R, int G, int B, int A );
       virtual void FillStippledGlassRect ( int x, int y, int w, int h, int R, int G, int B );
-      
+
       virtual void BlendRect ( dib *dib, int x, int y, int A );
       virtual void DarkenRect ( dib *dib, int x, int y );
       virtual void DifferenceRect ( dib *dib, int x, int y );
@@ -146,56 +155,34 @@ namespace ca
       virtual int height();
       virtual __int64 area();
       virtual double pi();
-      virtual size size();
+      virtual class size size();
+
+      virtual void write(::ex1::byte_output_stream & ostream);
+      virtual void read(::ex1::byte_input_stream & istream);
+
+
    };
 
+   typedef smart_pointer < dib > dib_sp;
 
-   class CLASS_DECL_ca dib_sp :
-      virtual public smart_pointer < dib >
+
+   class CLASS_DECL_ca dibmap :
+      virtual public ::collection::map < size, size, ::ca::dib_sp, ::ca::dib_sp >
    {
    public:
 
-      dib_sp()
+      dibmap(::ca::application * papp) :
+         ca(papp)
       {
       }
 
-      dib_sp(const smart_pointer < dib > & d) :
-         smart_pointer < dib > (d)
-      {
-      }
 
-      dib_sp(const dib_sp & t) :
-         smart_pointer < dib >(t)
+      inline ::ca::dib_sp & operator[](class size key)
       {
-         m_p = t.clone();
-      }
-
-
-      dib_sp(dib * p) :
-         smart_pointer < dib >(p)
-      {
-      }
-
-      dib_sp(::ca::application * papp) :
-         smart_pointer < dib >(papp)
-      {
-         m_p = NULL;
-         create(papp);
-      }
-
-      dib_sp & operator = (dib * p)
-      {
-         m_p = p;
-         return *this;
-      }
-
-      dib_sp & operator = (const dib_sp & t)
-      {
-         if(this != &t)
-         {
-            m_p = t.clone();
-         }
-         return *this;
+         ::ca::dib_sp & dib = ::collection::map < class size, class size, ::ca::dib_sp, ::ca::dib_sp >::operator [](key);
+         if(dib.is_null())
+            dib.create(get_app());
+         return dib;
       }
 
    };

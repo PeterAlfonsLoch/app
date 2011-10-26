@@ -19,7 +19,7 @@ namespace database
       change_event();
       change_event(var & var);
 
-      bool data_get(ex1::serializable & obj);
+      bool data_get(ex1::byte_serializable & obj);
    };
 
 } // namespace event

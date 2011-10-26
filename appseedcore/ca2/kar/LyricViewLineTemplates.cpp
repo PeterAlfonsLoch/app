@@ -56,7 +56,7 @@ LyricViewLineTemplates::~LyricViewLineTemplates()
     if(iLineIndex >= 0 &&
         iLineIndex < m_nSize)
     {
-        *pViewLine = &element_at(iLineIndex);
+        *pViewLine = &this->element_at(iLineIndex);
         return iLineIndex;
     }
     return -1;
@@ -83,7 +83,7 @@ LyricViewLineTemplates::~LyricViewLineTemplates()
     {
         iIndex = iLineIndex;
         if(iIndex >= m_iFirstVisible)
-            while(!element_at(iIndex).GetVisible())
+            while(!this->element_at(iIndex).GetVisible())
             {
                 iIndex++;
                 if(iIndex >= m_nSize)
@@ -92,7 +92,7 @@ LyricViewLineTemplates::~LyricViewLineTemplates()
         m_iFirstVisible = iIndex;
         iIndex = iLineIndex;
         if(iIndex <= m_iLastVisible)
-            while(!element_at(iIndex).GetVisible())
+            while(!this->element_at(iIndex).GetVisible())
             {
                 iIndex--;
                 if(iIndex < 0)
@@ -115,9 +115,9 @@ int LyricViewLineTemplates::GetLastVisibleLineIndex()
 
 void LyricViewLineTemplates::Prepare()
 {
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
-      element_at(i).m_ptemplates = this;
+      this->element_at(i).m_ptemplates = this;
    }
    m_iFirstVisible   = -1;
    m_iLastVisible    = -1;
@@ -130,34 +130,34 @@ void LyricViewLineTemplates::Prepare(LyricViewLineTemplate *lpViewLine)
 
 /*void LyricViewLineTemplates::SetForegroundDC(::ca::graphics *lpDC)
 {
-    for(int i = 0 ; i < get_size(); i++)
+    for(int i = 0 ; i < this->get_size(); i++)
     {
-        element_at(i).SetForegroundDC(lpDC);
+        this->element_at(i).SetForegroundDC(lpDC);
     }
 }
 
 void LyricViewLineTemplates::SetBackgroundDC(::ca::graphics *lpDC)
 {
-    for(int i = 0 ; i < get_size(); i++)
+    for(int i = 0 ; i < this->get_size(); i++)
     {
-        element_at(i).SetBackgroundDC(lpDC);
+        this->element_at(i).SetBackgroundDC(lpDC);
     }
 }
 
 void LyricViewLineTemplates::SetEffect(int iEffect)
 {
-    for(int i = 0 ; i < get_size(); i++)
+    for(int i = 0 ; i < this->get_size(); i++)
     {
-        element_at(i).SetTextEffect(iEffect);
+        this->element_at(i).SetTextEffect(iEffect);
     }
 
 }
 
 void LyricViewLineTemplates::SetRenderWindow(::ca::window * pWnd)
 {
-    for(int i = 0 ; i < get_size(); i++)
+    for(int i = 0 ; i < this->get_size(); i++)
     {
-        element_at(i).SetRenderWindow(pWnd);
+        this->element_at(i).SetRenderWindow(pWnd);
     }
 }*/
 
@@ -172,9 +172,9 @@ void LyricViewLineTemplates::relay_event(gen::signal_object * pobj)
       return;
    }
 
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).relay_event(pobj);
+      this->element_at(i).relay_event(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -197,10 +197,10 @@ LyricViewLines & LyricViewLineTemplates::GetLines()
 
 user::e_line_hit LyricViewLineTemplates::hit_test(POINT &ptCursor, int &iLine, int &iToken, int &iChar)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
       user::e_line_hit etest =
-         element_at(i).hit_test(ptCursor, iLine, iToken, iChar);
+         this->element_at(i).hit_test(ptCursor, iLine, iToken, iChar);
       if(etest != ::user::line_hit_none)
       {
          return  etest;
@@ -211,9 +211,9 @@ user::e_line_hit LyricViewLineTemplates::hit_test(POINT &ptCursor, int &iLine, i
 
 void LyricViewLineTemplates::clear_lines()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      LyricViewLineTemplate & linetemplate = element_at(i);
+      LyricViewLineTemplate & linetemplate = this->element_at(i);
       linetemplate.clear();
    }
    m_plines->RemoveAllLines();
@@ -231,30 +231,30 @@ void LyricViewLineTemplates::SetKaraokeView(kar::KaraokeView *pview)
 
 void LyricViewLineTemplates::InstallMessageHandling(::user::win::message::dispatch *pinterface)
 {
-   ::user::win::message::connect(
+   IGUI_WIN_MSG_LINK(
       WM_MOUSEMOVE,
-      pinterface, 
-      this, 
+      pinterface,
+      this,
       &LyricViewLineTemplates::OnMouseMove);
-   ::user::win::message::connect(
+   IGUI_WIN_MSG_LINK(
       WM_SETCURSOR,
-      pinterface, 
-      this, 
+      pinterface,
+      this,
       &LyricViewLineTemplates::OnSetCursor);
-   ::user::win::message::connect(
+   IGUI_WIN_MSG_LINK(
       WM_TIMER,
-      pinterface, 
-      this, 
+      pinterface,
+      this,
       &LyricViewLineTemplates::OnTimer);
-   ::user::win::message::connect(
+   IGUI_WIN_MSG_LINK(
       WM_LBUTTONDOWN,
-      pinterface, 
-      this, 
+      pinterface,
+      this,
       &LyricViewLineTemplates::OnLButtonDown);
-   ::user::win::message::connect(
+   IGUI_WIN_MSG_LINK(
       WM_LBUTTONUP,
-      pinterface, 
-      this, 
+      pinterface,
+      this,
       &LyricViewLineTemplates::OnLButtonUp);
 
 }
@@ -262,9 +262,9 @@ void LyricViewLineTemplates::InstallMessageHandling(::user::win::message::dispat
 void LyricViewLineTemplates::OnMouseMove(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(element_at(i).OnMouseMove(pmouse->m_nFlags, pmouse->m_pt))
+      if(this->element_at(i).OnMouseMove(pmouse->m_nFlags, pmouse->m_pt))
       {
          pmouse->m_bRet = true;
          return;
@@ -276,9 +276,9 @@ void LyricViewLineTemplates::OnMouseMove(gen::signal_object * pobj)
 void LyricViewLineTemplates::OnLButtonDown(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(element_at(i).OnLButtonDown(pmouse->m_nFlags, pmouse->m_pt))
+      if(this->element_at(i).OnLButtonDown(pmouse->m_nFlags, pmouse->m_pt))
       {
          pmouse->set_lresult(1);
          pmouse->m_bRet = true;
@@ -292,9 +292,9 @@ void LyricViewLineTemplates::OnLButtonDown(gen::signal_object * pobj)
 void LyricViewLineTemplates::OnLButtonUp(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(element_at(i).OnLButtonUp(pmouse->m_nFlags, pmouse->m_pt))
+      if(this->element_at(i).OnLButtonUp(pmouse->m_nFlags, pmouse->m_pt))
       {
          pmouse->set_lresult(1);
          pmouse->m_bRet = true;
@@ -308,9 +308,9 @@ void LyricViewLineTemplates::OnLButtonUp(gen::signal_object * pobj)
 void LyricViewLineTemplates::OnTimer(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::timer, ptimer, pobj);
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(element_at(i).OnTimer(ptimer->m_nIDEvent))
+      if(this->element_at(i).OnTimer(ptimer->m_nIDEvent))
       {
          ptimer->m_bRet = false;
          return;
@@ -322,11 +322,11 @@ void LyricViewLineTemplates::OnTimer(gen::signal_object * pobj)
 void LyricViewLineTemplates::OnSetCursor(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::set_cursor, psetcursor, pobj)
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      if(element_at(i).OnSetCursor(
-         (HWND) psetcursor->m_pWnd->get_os_data(), 
-         psetcursor->m_nHitTest, 
+      if(this->element_at(i).OnSetCursor(
+         (HWND) psetcursor->m_pWnd->get_os_data(),
+         psetcursor->m_nHitTest,
          psetcursor->m_message))
       {
          psetcursor->m_bRet = true;

@@ -39,10 +39,8 @@ namespace rar
       bool IsSolid(int refIndex);
       void AddErrorMessage(const string &s);
 
-      //HRESULT Open2(ex1::input_stream *stream, // seekable input stream
-      HRESULT Open2(ex1::input_stream *stream,
-         const uint64 *maxCheckStartPosition,
-         compress::archive_open_callback_interface *openCallback);
+      //HRESULT Open2(ex1::byte_input_stream *stream, // seekable input stream
+      HRESULT Open2(ex1::byte_input_stream * stream, const file_position * maxCheckStartPosition,  compress::archive_open_callback_interface *openCallback);
 
    /*public:
       MY_QUERYINTERFACE_BEGIN2(IInArchive)

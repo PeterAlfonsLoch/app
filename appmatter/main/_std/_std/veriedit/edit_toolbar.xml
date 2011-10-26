@@ -1,0 +1,10 @@
+<toolbar>
+<button id="file_new">New</button>
+<button id="file_save">Save</button>
+<button id="file_save_as">Save As</button>
+<button id="file_save_as_fs">Save As Fs</button>
+<button id="edit_undo">Undo</button>
+<button id="edit_redo">Redo</button>
+<button id="file_put">Put</button>
+<button id="media_transfer" image="matter://full_screen_16.png">Transfer to media</button>
+</toolbar>

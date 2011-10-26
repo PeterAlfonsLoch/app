@@ -37,8 +37,8 @@ namespace nature
       void OnHoverAction();
 
 
-      afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-      afx_msg void OnTimer(UINT nIDEvent);
+      int OnCreate(LPCREATESTRUCT lpCreateStruct);
+      void OnTimer(UINT nIDEvent);
 
    };
 

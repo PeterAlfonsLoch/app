@@ -20,10 +20,10 @@ namespace querydb
 
       void rotate();
       
-      void on_create_view(view_data * pviewdata);
+      void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       //void check_menu_dir(const char * psz);
       void check_3click_dir(const char * psz);
@@ -32,7 +32,7 @@ namespace querydb
 	   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 
-      void request(var & varFile, var & varQuery);
+      void request(gen::command_line * pline);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)
 	   virtual ~pane_view();

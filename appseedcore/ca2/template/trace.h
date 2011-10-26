@@ -5,17 +5,21 @@
 #include "debug.h"
 #include "ca/ca_log.h"
 
+#ifdef WINDOWS
+
 extern "C" IMAGE_DOS_HEADER __ImageBase;
+
+#endif
 
 
 namespace _template
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
-   
+
    CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
    //CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
-   
+
    //extern CLASS_DECL_ca PFN_trace_v trace_v;
 
    namespace trace
@@ -29,33 +33,33 @@ namespace _template
       enum e_category
       {
          category_General,
-         category_COM,  
-         category_QI,   
+         category_COM,
+         category_QI,
          category_Registrar,
          category_Refcount,
          category_Windowing,
          category_Controls,
-         category_Hosting, 
-         category_DBClient,  
+         category_Hosting,
+         category_DBClient,
          category_DBProvider,
          category_Snapin,
-         category_NotImpl,   
+         category_NotImpl,
          category_Allocation,
          category_Exception,
          category_Time,
          category_Cache,
          category_Stencil,
          category_String,
-         category_Map,   
-         category_Util,      
+         category_Map,
+         category_Util,
          category_Security,
          category_Sync,
-         category_ISAPI,      
+         category_ISAPI,
 
-         category_User,      
-         category_User2,      
-         category_User3,      
-         category_User4,      
+         category_User,
+         category_User2,
+         category_User3,
+         category_User4,
       };
    }
 
@@ -86,7 +90,7 @@ namespace _template
    class CLASS_DECL_ca CTrace
    {
    public:
-   
+
       ::ca::application * m_papp;
 
       CTrace(::ca::application * papp)
@@ -139,7 +143,7 @@ namespace _template
    private:
       static int __cdecl CrtHookProc(int eReportType, char* pszMessage, int* pnRetVal)
       {
-      
+
          if (eReportType == _CRT_ASSERT)
          {
             ::OutputDebugStringA( "ASSERTION FAILED\n" );
@@ -166,15 +170,19 @@ namespace _template
       static _CRT_REPORT_HOOK s_pfnPrevHook;
    };
 
+   #ifdef WINDOWS
+
    __declspec( selectany ) _CRT_REPORT_HOOK CNoUIAssertHook::s_pfnPrevHook = NULL;
+
+   #endif
 
    #define DECLARE_NOUIASSERT() _template::CNoUIAssertHook _g_NoUIAssertHook;
 
    #endif  // _ATL_NO_DEBUG_CRT
 
    #ifndef ATLTRACE
-   #define ATLTRACE _template::CTraceFileAndLineInfo(m_papp, __FILE__, __LINE__)
-   #define APPTRACE(papp) _template::CTraceFileAndLineInfo(papp, __FILE__, __LINE__)
+   #define ATLTRACE ::_template::CTraceFileAndLineInfo(m_papp, __FILE__, __LINE__)
+   #define APPTRACE(papp) ::_template::CTraceFileAndLineInfo(papp, __FILE__, __LINE__)
    #define ATLTRACE2 ATLTRACE
    #endif
 

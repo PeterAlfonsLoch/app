@@ -13,7 +13,7 @@ public:
 
 
    mus::midi_central_container *             m_pcontainer;
-   CMidiCentralListenerPtrArray              m_listenerptra;
+   midi_central_listener_ptr_array              m_listenerptra;
    UINT                                      m_uiMidiOutDevice;
 
 
@@ -21,8 +21,8 @@ public:
    virtual ~midi_central();
 
 
-   void RemoveListener(CMidiCentralListener * plistener);
-   void AddListener(CMidiCentralListener * plistener);
+   void RemoveListener(midi_central_listener * plistener);
+   void AddListener(midi_central_listener * plistener);
    UINT GetMidiOutDevice();
    void SetMidiOutDevice(UINT uiDevice);
    bool Initialize(mus::midi_central_container * pcontainer);

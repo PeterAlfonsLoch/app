@@ -63,11 +63,11 @@ public:
 namespace userbase
 {
 
-   class CLASS_DECL_ca ::userbase::control_bar :
+   class CLASS_DECL_ca control_bar :
       virtual public ::user::interaction
    {
    public:
-      ::userbase::control_bar();
+      control_bar();
 
    // Attributes
    public:
@@ -97,7 +97,6 @@ namespace userbase
 
    // Implementation
    public:
-      virtual void _001OnNcDraw(::ca::graphics * pdc);
       virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void message_handler(gen::signal_object * pobj);
       virtual ~control_bar();
@@ -135,6 +134,7 @@ namespace userbase
       userbase::frame_window * m_pDockSite; // current dock site, if dockable
       BaseDockBar* m_pDockBar;   // current dock bar, if dockable
       BaseDockContext* m_pDockContext;   // used during dragging
+      DWORD m_dwCtrlStyle;
 
       virtual void pre_translate_message(gen::signal_object * pobj);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -175,7 +175,7 @@ namespace userbase
    //   DECL_GEN_SIGNAL(_001OnPaint)
    //   virtual void _001OnDraw(::ca::graphics * pdc);
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
       friend class userbase::frame_window;
       friend class BaseDockBar;

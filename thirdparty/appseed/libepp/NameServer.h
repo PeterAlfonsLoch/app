@@ -18,7 +18,7 @@ namespace libepp
          return addr < ip.addr;
       }
 
-      string get_xml() const;
+      string get_xml(::ca::application * papp) const;
 
    };
 
@@ -28,7 +28,7 @@ namespace libepp
    {
    public:
 
-      string get_xml() const;
+      string get_xml(::ca::application * papp) const;
 
    };
 
@@ -46,7 +46,7 @@ namespace libepp
          return name < n.name;
       }
 
-      string get_xml() const;
+      string get_xml(::ca::application * papp) const;
 
    };
 
@@ -55,7 +55,7 @@ namespace libepp
    {
    public:
 
-      string get_xml() const;
+      string get_xml(::ca::application * papp) const;
 
    };
 

@@ -23,10 +23,10 @@ public:
    virtual VMSRESULT GetNextEventPosition(imedia::position *tkPosition, imedia::position tkMax) = 0;
    virtual int GetFlags() = 0;
    virtual VMSRESULT GetEvent(
-      MidiEventBase * pEvent,
+      midi_event_base * pEvent,
       imedia::position   tkMax,
       BOOL   bTkMaxInclusive) = 0;
-   virtual imedia::position GetPosition() = 0;
+   virtual imedia::position get_position() = 0;
    virtual VMSRESULT seek_begin() = 0;
 };
 

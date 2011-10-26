@@ -52,7 +52,7 @@ namespace gcom
          Main & main = HelperGetMain();
          load_image loadimage(main.GetIdleThread(), &main, lpcwszImagePath);
          //m_evImageLoad.ResetEvent();
-         main.GetIdleThread()->m_evInitialized.Lock();
+         main.GetIdleThread()->m_evInitialized.wait();
          main.GetIdleThread()->LoadImageAsync(loadimage);
          return true;
       }
@@ -90,9 +90,9 @@ namespace gcom
          Main & main = HelperGetMain();
          string str;
          ::ca::bitmap * pbitmap = System.imaging().LoadImageSync(lpcwszImagePath, get_app());
-         TRACE("ImageChange::OnLoadImageSyn lpcwszImagePath.Lock\n");
+         TRACE("ImageChange::OnLoadImageSyn lpcwszImagePath.lock\n");
          Graphics & graphics = main.GetGraphics();
-         CSingleLock sl3Source(&graphics.m_mutex3Source, TRUE);
+         single_lock sl3Source(&graphics.m_mutex3Source, TRUE);
          ::ca::graphics_sp spgraphics(get_app());
          spgraphics->CreateCompatibleDC(NULL);
          spgraphics->SelectObject(pbitmap);

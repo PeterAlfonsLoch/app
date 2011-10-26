@@ -24,7 +24,7 @@ public:
 
    
    class get_fs_size :
-      public ex1::serializable
+      public ex1::byte_serializable
    {
    public:
    
@@ -41,15 +41,15 @@ public:
       get_fs_size & operator = (const get_fs_size & getfssize);
 
 
-      virtual void write(ex1::output_stream & ostream);
-      virtual void read(ex1::input_stream & istream);
+      virtual void write(ex1::byte_output_stream & ostream);
+      virtual void read(ex1::byte_input_stream & istream);
 
 
    };
 
 
-   ::CEvent * m_pevExec;
-   ::CEvent * m_pevDone;
+   ::event * m_pevExec;
+   ::event * m_pevDone;
    ::mutex * m_pmutex;
 
 
@@ -151,7 +151,7 @@ public:
 
    bool get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending);
 
-   void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::user::win::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCopyData)
    DECL_GEN_SIGNAL(_001OnTimer)

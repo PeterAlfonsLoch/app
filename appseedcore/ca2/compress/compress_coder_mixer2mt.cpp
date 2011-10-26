@@ -25,14 +25,13 @@ namespace compress
       {
          InStreamPointers.remove_all();
          OutStreamPointers.remove_all();
-         uint32 i;
-         for (i = 0; i < NumInStreams; i++)
+         for(uint32 i = 0; i < NumInStreams; i++)
          {
             if (InSizePointers[i] != NULL)
                InSizePointers[i] = &InSizes[i];
             InStreamPointers.add((::ex1::reader *)InStreams[i]);
          }
-         for (i = 0; i < NumOutStreams; i++)
+         for(uint32 i = 0; i < NumOutStreams; i++)
          {
             if (OutSizePointers[i] != NULL)
                OutSizePointers[i] = &OutSizes[i];
@@ -45,20 +44,19 @@ namespace compress
             Result = Coder2->Code(&InStreamPointers.first_element(), &InSizePointers.first_element(), NumInStreams,
             &OutStreamPointers.first_element(), &OutSizePointers.first_element(), NumOutStreams, progress);
          {
-            int i;
-            for (i = 0; i < InStreams.get_count(); i++)
+            for(int i = 0; i < InStreams.get_count(); i++)
             {
                gen::release(InStreams[i].m_p);
             }
-            for (i = 0; i < OutStreams.get_count(); i++)
+            for(int i = 0; i < OutStreams.get_count(); i++)
             {
                gen::release(OutStreams[i].m_p);
             }
          }
       }
 
-      static void SetSizes(const uint64 **srcSizes, base_array<uint64> &sizes,
-         base_array<const uint64 *> &sizePointers, uint32 numItems)
+      static void SetSizes(const file_size **srcSizes, base_array<file_size> &sizes,
+         base_array<const file_size *> &sizePointers, uint32 numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
@@ -66,7 +64,7 @@ namespace compress
          {
             if (srcSizes == 0 || srcSizes[i] == NULL)
             {
-               sizes.add(0);
+               sizes.add((file_size) 0);
                sizePointers.add(NULL);
             }
             else
@@ -78,7 +76,7 @@ namespace compress
       }
 
 
-      void CCoder2::SetCoderInfo(const uint64 **inSizes, const uint64 **outSizes)
+      void CCoder2::SetCoderInfo(const file_size **inSizes, const file_size **outSizes)
       {
          SetSizes(inSizes, InSizes, InSizePointers, NumInStreams);
          SetSizes(outSizes, OutSizes, OutSizePointers, NumOutStreams);
@@ -140,10 +138,10 @@ namespace compress
             coderInfo.InStreams.remove_all();
             uint32 j;
             for (j = 0; j < coderStreamsInfo.NumInStreams; j++)
-               coderInfo.InStreams.add(NULL);
+               coderInfo.InStreams.add_new();
             coderInfo.OutStreams.remove_all();
             for (j = 0; j < coderStreamsInfo.NumOutStreams; j++)
-               coderInfo.OutStreams.add(NULL);
+               coderInfo.OutStreams.add_new();
          }
 
          for (i = 0; i < _bindInfo.BindPairs.get_count(); i++)
@@ -195,10 +193,10 @@ namespace compress
       }
 
       ex1::HRes CCoderMixer2MT::Code(::ex1::reader **inStreams,
-         const uint64 ** /* inSizes */,
+         const file_size ** /* inSizes */,
          uint32 numInStreams,
          ::ex1::writer **outStreams,
-         const uint64 ** /* outSizes */,
+         const file_size ** /* outSizes */,
          uint32 numOutStreams,
          ::compress::progress_info_interface *progress)
       {

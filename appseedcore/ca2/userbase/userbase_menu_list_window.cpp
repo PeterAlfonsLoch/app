@@ -7,7 +7,7 @@ namespace userbase
    const int g_base_menu_indent = 11;
 
 
-   menu_list_window::menu_list_window(::ca::application * papp) : 
+   menu_list_window::menu_list_window(::ca::application * papp) :
       ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -15,7 +15,7 @@ namespace userbase
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
       m_pwndNotify         = NULL;
-      m_pitem              = new menu_item(papp);
+      m_pitem(new menu_item(papp));
       m_etranslucency      = TranslucencyPresent;
       m_pschema            = NULL;
       m_bAutoClose         = true;
@@ -40,9 +40,9 @@ namespace userbase
    {
    }
 
-   void menu_list_window::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void menu_list_window::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      control::_001InstallMessageHandling(pinterface);
+      control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_list_window::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &menu_list_window::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_list_window::_001OnTimer);
@@ -81,15 +81,15 @@ namespace userbase
       if(!IsWindow())
       {
 
-         if(!create(NULL, NULL, 
-            WS_VISIBLE | WS_CHILD, 
+         if(!create(NULL, NULL,
+            WS_VISIBLE | WS_CHILD,
             rect(0, 0, 0, 0), pwndParent, 0))
             return false;
 
          if(!m_buttonClose.create(this, ChildIdClose))
             return false;
 
-         m_buttonClose._001InstallMessageHandling(this);
+         m_buttonClose.install_message_handling(this);
 
          m_buttonClose._001SetButtonText("r");
          m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
@@ -106,7 +106,7 @@ namespace userbase
 
       pwndParent->GetClientRect(rectClient);
 
-      
+
       SetWindowPos(NULL, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
       SetTimer(BaseWndMenuCmdUi, 300, NULL);
@@ -124,8 +124,8 @@ namespace userbase
       if(!IsWindow())
       {
 
-         if(!create(NULL, NULL, 
-            WS_VISIBLE | WS_CHILD, 
+         if(!create(NULL, NULL,
+            WS_VISIBLE | WS_CHILD,
             rect(0, 0, 0, 0), pwndFill, 0))
             return false;
 
@@ -143,7 +143,7 @@ namespace userbase
          if(!m_buttonClose.create(this, ChildIdClose))
             return false;
 
-         m_buttonClose._001InstallMessageHandling(this);
+         m_buttonClose.install_message_handling(this);
 
          m_buttonClose._001SetButtonText("r");
          m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
@@ -160,7 +160,7 @@ namespace userbase
 
       pwndFill->GetClientRect(rectClient);
 
-      
+
       SetWindowPos(NULL, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
       SetTimer(BaseWndMenuCmdUi, 300, NULL);
@@ -170,13 +170,13 @@ namespace userbase
 
    void menu_list_window::_UpdateCmdUi(menu_item * pitemParent)
    {
-      if(pitemParent->m_pitema == NULL)
+      if(pitemParent->m_spitema == NULL)
          return;
       menu_button_cmd_ui cmdui(get_app());
-      cmdui.m_pitema = pitemParent->m_pitema;
-      for(int i = 0; i < pitemParent->m_pitema->get_size(); i++)
+      cmdui.m_pitema = pitemParent->m_spitema;
+      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_pitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          cmdui.m_nIndex = i;
          cmdui.m_id = pitem->m_id;
          cmdui.m_pOther = (::user::interaction *) &pitem->m_button;
@@ -201,11 +201,11 @@ namespace userbase
 
    void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca::graphics * pdc, int & iMaxWidth, int & iMaxHeight)
    {
-      if(pitemParent->m_pitema == NULL)
+      if(pitemParent->m_spitema == NULL)
          return;
-      for(int i = 0; i < pitemParent->m_pitema->get_size(); i++)
+      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_pitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          size size = pdc->GetTextExtent(pitem->m_button._001GetButtonText());
          size.cx += pitem->m_iLevel * g_base_menu_indent;
          if(pitem->IsPopup())
@@ -222,6 +222,8 @@ namespace userbase
 
    void menu_list_window::layout()
    {
+      if(GetParent() == NULL)
+         return;
       rect rectClient;
       GetParent()->GetClientRect(rectClient);
       ::ca::graphics * pdc = GetDC();
@@ -250,7 +252,7 @@ namespace userbase
          //m_buttonClose.ShowWindow(SW_NORMAL);
       }
 
-      
+
 
       ReleaseDC(pdc);
    }
@@ -258,11 +260,11 @@ namespace userbase
 
    void menu_list_window::_LayoutButtons(menu_item * pitemParent, int iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound)
    {
-      if(pitemParent->m_pitema == NULL)
+      if(pitemParent->m_spitema == NULL)
          return;
-      for(int i = 0; i < pitemParent->m_pitema->get_size(); i++)
+      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_pitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          if(pitem->m_id  == "separator")
          {
             lprect->bottom = lprect->top + 3;
@@ -280,11 +282,11 @@ namespace userbase
             lprect->bottom = lprect->top + m_iItemHeight - 2;
          }
          pitem->m_button.SetWindowPos(
-            NULL, 
-            lprect->left + pitem->m_iLevel * g_base_menu_indent, 
-            lprect->top, 
+            NULL,
+            lprect->left + pitem->m_iLevel * g_base_menu_indent,
+            lprect->top,
             iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-            lprect->bottom - lprect->top, 
+            lprect->bottom - lprect->top,
             0);
 
          lprect->top = lprect->bottom + 2;
@@ -317,11 +319,11 @@ namespace userbase
 
    void menu_list_window::_CreateButtons(menu_item * pitemParent)
    {
-      if(pitemParent->m_pitema == NULL)
+      if(pitemParent->m_spitema == NULL)
          return;
-      for(int i = 0; i < pitemParent->m_pitema->get_size(); i++)
+      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         menu_item * pitem = pitemParent->m_pitema->ptr_at(i);
+         menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          if(!pitem->m_button.IsWindow())
          {
             pitem->m_button.create(this, pitem->m_id);
@@ -386,6 +388,15 @@ namespace userbase
          }
       }
       return true;
+   }
+
+   void menu_list_window::clear()
+   {
+      /*if(IsWindow())
+      {
+         DestroyWindow();
+      }*/
+      ::userbase::menu_base::clear();
    }
 
 } // namespace userbase

@@ -36,11 +36,11 @@ namespace window_frame
       bool                     m_bDockEnable;
       bool                    m_bNotifyIconEnable;
       bool                     m_bFullScreenEnable;
-      
+
       UINT                    m_uiSWPFlags;
 
       WorkSetListenerArray    m_wfla;
-       
+
       MoveManager *            m_pmovemanager;
       SizeManager *            m_psizemanager;
       SysMenuManager *         m_psystemmenumanager;
@@ -49,7 +49,7 @@ namespace window_frame
       bool                    m_bMovingEnabled;
       bool                    m_bSizingEnabled;
       bool                    m_bSysMenuEnabled;
-       
+
       appearance *            m_pappearance;
 
       WorkSet(::ca::application * papp);
@@ -76,18 +76,18 @@ namespace window_frame
       void _001InstallEventHandling(::user::win::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
-      DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnLButtonUp)
-      DECL_GEN_SIGNAL(_001OnNcLButtonDown)
-      DECL_GEN_SIGNAL(_001OnNcMouseMove)
-      DECL_GEN_SIGNAL(_001OnNcLButtonUp)
-      DECL_GEN_SIGNAL(_001OnNcHitTest)
-      DECL_GEN_SIGNAL(_001OnTimer)
-      DECL_GEN_SIGNAL(_001OnSize)
-      DECL_GEN_SIGNAL(_001OnMove)
+         DECL_GEN_SIGNAL(_001OnMouseMove)
+         DECL_GEN_SIGNAL(_001OnLButtonUp)
+         DECL_GEN_SIGNAL(_001OnNcLButtonDown)
+         DECL_GEN_SIGNAL(_001OnNcMouseMove)
+         DECL_GEN_SIGNAL(_001OnNcLButtonUp)
+         DECL_GEN_SIGNAL(_001OnNcHitTest)
+         DECL_GEN_SIGNAL(_001OnTimer)
+         DECL_GEN_SIGNAL(_001OnSize)
+         DECL_GEN_SIGNAL(_001OnMove)
 
-      // point should be in screen coordinates
-      EHitTest hit_test(point ptCursor);
+         // point should be in screen coordinates
+         EHitTest hit_test(point ptCursor);
 
 
       bool IsNotifyIconEnabled();
@@ -101,18 +101,18 @@ namespace window_frame
       void WindowProcBefore(::user::interaction * pwnd, gen::signal_object * pobj);
       void WindowProcHover(::user::interaction * pwnd, gen::signal_object * pobj);
       DECL_GEN_SIGNAL(_001OnActivate)
-      DECL_GEN_SIGNAL(_001OnCommand)
-      DECL_GEN_SIGNAL(_001OnNcActivate)
-      void RemoveListener(WorkSetListener * plistener);
+         DECL_GEN_SIGNAL(_001OnCommand)
+         DECL_GEN_SIGNAL(_001OnNcActivate)
+         void RemoveListener(WorkSetListener * plistener);
       void AddListener(WorkSetListener * plistener);
       void OnSizingGripMove(EGrip egrip);
-      
+
       bool IsHoverModeOn();
       bool IsHoverActive();
       void OnMoving();
       void OnMove();
       void SetDockMask(EDock emask);
-      
+
       virtual void OnDock();
       void EnableDock(bool bEnable = true);
       void layout();
@@ -124,8 +124,8 @@ namespace window_frame
       //void OnDown();
       //void OnUp();
       void AppearanceUpdateControlBox();
-       ::user::interaction * GetWndDraw();
-       ::user::interaction * GetWndRegion();
+      ::user::interaction * GetWndDraw();
+      ::user::interaction * GetWndRegion();
 
       bool update(
          ::user::interaction * pwndDraw,
@@ -141,33 +141,32 @@ namespace window_frame
       EAppearanceMode GetAppearanceMode();
       void SetAppearanceMode(EAppearanceMode nMode);
       void SetAppearanceMode();
-      
+
       void GetRegionClientRect(LPRECT lprect);
       void GetDrawClientRect(LPRECT lprect);
       //void SetWindow(::user::interaction * pwnd);
       void relay_event(gen::signal_object * pobj);
       void message_handler(gen::signal_object * pobj);
-       
-       void OnDraw(::ca::graphics * pdc);
-       void OnDraw(::ca::graphics * pdc, LPCRECT lpcrect);
 
-       virtual bool BaseOnControlEvent(::user::control_event * pevent);
+      void _001OnDraw(::ca::graphics * pdc);
 
-       
-       void EnableMove(bool bEnable);
-       void EnableSize(bool bEnable);
-       void EnableSysMenu(bool bEnable);
-       void EnableApperance(bool bEnable);
+      virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-       bool IsMovingEnabled();
-       bool IsSizingEnabled();
-       bool IsSysMenuEnabled();
-       bool IsAppearanceEnabled();
 
-       /*void OnSizeRegion(
-           UINT nType,
-           int cx,
-           int cy );*/
+      void EnableMove(bool bEnable);
+      void EnableSize(bool bEnable);
+      void EnableSysMenu(bool bEnable);
+      void EnableApperance(bool bEnable);
+
+      bool IsMovingEnabled();
+      bool IsSizingEnabled();
+      bool IsSysMenuEnabled();
+      bool IsAppearanceEnabled();
+
+      /*void OnSizeRegion(
+      UINT nType,
+      int cx,
+      int cy );*/
 
 
       bool IsFullScreen();

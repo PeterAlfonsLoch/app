@@ -102,17 +102,18 @@ namespace user
       {
          m_pwindowmap = System.m_pwindowmap;
       }
-      
+
       m_pkeyboard = new ::user::keyboard(this);
 
-      set_keyboard_layout(m_pkeyboard->get_current_system_layout(), false);
-      
 
-      System.factory().cloneable_small < int_biunique > ();
-      System.factory().cloneable_small < ::user::edit_plain_text > ();
-      System.factory().cloneable_small < XfplayerViewLine > ();
-      System.factory().creatable_small < place_holder > ();
-      System.factory().creatable_small < place_holder_container > ();
+      if(is_system())
+      {
+         System.factory().cloneable_small < int_biunique > ();
+         System.factory().cloneable_small < ::user::edit_plain_text > ();
+         System.factory().cloneable_small < XfplayerViewLine > ();
+         System.factory().creatable_small < place_holder > ();
+         System.factory().creatable_small < place_holder_container > ();
+      }
 
       if(!::ca4::application::initialize())
          return false;
@@ -128,10 +129,13 @@ namespace user
 
    int application::exit_instance()
    {
-      if(m_pwindowmap != NULL)
+      if(is_system())
       {
-         delete m_pwindowmap;
-         m_pwindowmap = NULL;
+         if(m_pwindowmap != NULL)
+         {
+            delete m_pwindowmap;
+            m_pwindowmap = NULL;
+         }
       }
       try
       {
@@ -163,9 +167,9 @@ namespace user
       switch(e_type)
       {
       case user::control::type_button:
-         return typeid(::user::button);
+         return ::ca::get_type_info < ::user::button > ();
       case user::control::type_edit_plain_text:
-         return typeid(::user::edit_plain_text);
+         return ::ca::get_type_info < ::user::edit_plain_text > ();
       }
       return ::ca::type_info();
    }

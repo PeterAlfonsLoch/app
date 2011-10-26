@@ -10,13 +10,15 @@
 #include "gen_math.h"
 #include "gen_geometry.h"
 
-#include "MulDiv32.h"
+#include "muldiv32.h"
 
 #define EX1ASSERT_VALID(pobj) ASSERT(pobj->Ex1IsObjValid())
 
 
 #include "simple_thread.h"
 #include "go_thread.h"
+
+
 
 #include "radix/keep_ptr.h"
 #include "radix/sensitive_ptr.h"
@@ -50,12 +52,14 @@
 #include "radix/pipe.h"
 #include "gen_process.h"
 
-#include "primitive/memory_container.h"
-#include "primitive/memory_file.h"
+#include "primitive/memory.h"
 
 #include "gen_savings.h"
 
+#include "gen_command.h"
 #include "gen_command_line.h"
+#include "gen_command_thread.h"
+
 #include "gen_base64.h"
 #include "gen_system.h"
 
@@ -68,6 +72,7 @@
 
 
 #include "gen_memory_file.h"
+#include "gen_byte_stream_memory_file.h"
 
 
 
@@ -80,8 +85,8 @@ inline bool IsRefNull(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca ex1::input_stream &  operator >>(ex1::input_stream & istream, string & string);
-CLASS_DECL_ca ex1::output_stream &  operator <<(ex1::output_stream & ostream, const string & string);
+CLASS_DECL_ca ex1::byte_input_stream &  operator >>(ex1::byte_input_stream & istream, string & string);
+CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
 #include "radix/win_registry.h"

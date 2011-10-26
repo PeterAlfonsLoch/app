@@ -4,40 +4,36 @@
 namespace flag
 {
 
-enum EPaneView
-{
-   PaneViewNone,
-   PaneViewContextMenu,
-   PaneViewVideo,
-   PaneViewFileManager,
-   PaneViewThreeActionLaunch,
-   PaneViewConfiguration,
-};
-
-
-class CLASS_DECL_CA2_FLAG pane_view_update_hint :
-   public ::radix::object  
-{
-public:
-   enum e_type
+   enum EPaneView
    {
-      TypeGetView,
-      TypeSetView,
-      TypeOnShowKaraoke,
-      TypeOnShowView,
+      PaneViewNone,
+      PaneViewFlag,
+      PaneViewFileManager,
    };
-   // DECLARE_DYNAMIC(pane_view_update_hint)
-public:
-	void set_type(e_type e_type);
-	bool is_type_of(e_type e_type);
 
-	pane_view_update_hint();
-	virtual ~pane_view_update_hint();
 
-   EPaneView m_eview;
-protected:
-   e_type m_etype;
+   class CLASS_DECL_CA2_FLAG pane_view_update_hint :
+      public ::radix::object  
+   {
+   public:
+      enum e_type
+      {
+         TypeGetView,
+         TypeSetView,
+         TypeOnShowKaraoke,
+         TypeOnShowView,
+      };
+   public:
+	   void set_type(e_type e_type);
+	   bool is_type_of(e_type e_type);
 
-};
+	   pane_view_update_hint();
+	   virtual ~pane_view_update_hint();
+
+      EPaneView m_eview;
+   protected:
+      e_type m_etype;
+
+   };
 
 } // namespace flag

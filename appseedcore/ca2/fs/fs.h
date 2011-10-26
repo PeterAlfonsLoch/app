@@ -25,6 +25,8 @@ namespace fs
 #include "fs_item_array.h"
 
 #include "fs_data.h"
+#include "fs_set.h"
+#include "ifs_file.h"
 #include "ifs.h"
 #include "native_fs.h"
 

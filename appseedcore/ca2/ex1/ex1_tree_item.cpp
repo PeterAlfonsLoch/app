@@ -174,7 +174,7 @@ namespace ex1
             return pitem;
       }
    }
-   
+
    tree_item * tree_item::get_child_by_user_data(DWORD_PTR iUserData)
    {
       tree_item * pitem = m_pchild;
@@ -270,7 +270,7 @@ namespace ex1
          if(iLevel <= 0)
             break;
       }
-      for(int i = 0; i < ptra.get_size(); i++)   
+      for(int i = 0; i < ptra.get_size(); i++)
       {
          m_ptree->delete_item(ptra[i]);
       }
@@ -400,12 +400,12 @@ namespace ex1
    {
       return m_ptree->hover(this);
    }
-   
+
    bool tree_item::is_hover()
    {
       return m_ptree->is_hover(this);
    }
-   
+
    bool tree_item::is_selected()
    {
       return m_ptree->is_selected(this);

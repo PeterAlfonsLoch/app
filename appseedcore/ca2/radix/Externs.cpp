@@ -25,12 +25,12 @@ static bool WINAPI Init()
    
    if(ret == -1 || ret >= MAX_PATH)
    {
-      throw _template::CAtlException( E_FAIL );
+      throw _template::atl_exception( E_FAIL );
    }
    // surely four megs is enough?
   // if( !g_Allocator.Init(szFileMappingName, 4*1024*1024 ) )
    //{
-    //  throw _template::CAtlException( E_OUTOFMEMORY );
+    //  throw _template::atl_exception( E_OUTOFMEMORY );
    //}
 
    return true;

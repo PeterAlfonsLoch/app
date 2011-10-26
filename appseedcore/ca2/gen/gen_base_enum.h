@@ -5,17 +5,20 @@ class base_enum_names :
    public ::collection::map < TYPE, TYPE, string, string >
 {
 public:
-   base_enum_names(pair pairs[]);
+
+   typedef typename ::collection::map < TYPE, TYPE, string, string >::pair BASE_ENUM_PAIR;
+
+   base_enum_names(BASE_ENUM_PAIR pairs[]);
 };
 
 
 template <class TYPE>
-base_enum_names < TYPE > ::base_enum_names(pair pairs[]) :
-::collection::map < TYPE, TYPE, string, string >(pairs) 
+base_enum_names < TYPE > ::base_enum_names(BASE_ENUM_PAIR pairs[]) :
+::collection::map < TYPE, TYPE, string, string >(pairs)
 {
 }
 
-template <class TYPE, TYPE edefault = 0>
+template < class TYPE, TYPE edefault = 0 >
 class base_enum
 {
 public:
@@ -47,7 +50,7 @@ public:
 
    //string get_name();
    //void set_by_name(const char * psz);
-   
+
 };
 
 template <class TYPE, TYPE edefault>
@@ -154,14 +157,14 @@ base_enum<TYPE, edefault>::operator TYPE () const
 }
 
 /*template <class TYPE, TYPE edefault>
-string 
+string
 base_enum<TYPE, edefault>::get_name()
 {
    return get_name(m_evalue);
 }
 
 template <class TYPE, TYPE edefault>
-void 
+void
 base_enum<TYPE, edefault>::
 set_by_name(const char * psz)
 {

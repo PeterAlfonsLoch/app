@@ -1,24 +1,28 @@
 #pragma once
 
-#include "kissfftf/kiss_fftr.h"
 
+#if !defined(WINDOWS)
 
-namespace _vmskissfftf
+typedef struct tag_WAVEFORMATEX
 {
-   class Fftrd;
-   class Fftri;
-}
+   UINT    uiChannels;
+} WAVEFORMATEX, * LPWAVEFORMATEX;
 
-
-//#include "aflibFFT.h"
+#endif
 
 #define WAVEBUFFERDATA signed short
 #define LPWAVEBUFFERDATA signed short *
+
+
+typedef raw_array < WAVEBUFFERDATA > wave_buffer_data_array;
+
 
 class CLASS_DECL_ca audWaveBuffer :
    virtual public ::radix::object
 {
 public:
+
+
    class buffer
    {
    protected:
@@ -30,52 +34,52 @@ public:
       int         m_iIndex;
       WAVEHDR     m_wavehdr;
       void *      m_pData;
-      
+
    };
+
 
    class BufferArray :
       public base_array <buffer, buffer>
    {
    };
-         
-   unsigned int         m_uiBufferSize;
-   unsigned int         m_uiAnalysisSize;
-   unsigned int         m_uiAnalysisSizeOrder;
-   unsigned int         m_uiAllocationSize;
-   unsigned int         m_uiInterestSize;
-   unsigned int         m_uiSkippedSamplesCount;
-
-   DWORD_PTR            m_dwCurrentBuffer;
-   LPWAVEBUFFERDATA      m_pucData;
-   LPWAVEBUFFERDATA      m_pucBuffer;
-   LPBYTE               m_lpbData;
-   LPBYTE               m_lpbBuffer;
-   
-   double *             m_pdSetA;
-   double *             m_pdSetB;
 
 
-   double *             m_pdModuleSet;
-   double *             m_pdResultSet;
-   critical_section     m_csResult;
-   critical_section     m_csProcLevel1;
-   critical_section     m_csProcLevel2;
-   BufferArray          m_buffera;
-   _vmskissfftf::Fftrd *  m_pfft;
-   kiss_fft_cpx * m_pcpx;
+   unsigned int                  m_uiBufferSize;
+   unsigned int                  m_uiAnalysisSize;
+   unsigned int                  m_uiAnalysisSizeOrder;
+   unsigned int                  m_uiAllocationSize;
+   unsigned int                  m_uiInterestSize;
+   unsigned int                  m_uiSkippedSamplesCount;
 
-    double m_dNominalMaxLevel; // Divisor que faz o nível máximo ser um.
-   //void * m_rfftwplan;
-//    int                         m_iMaxLevel;
-//    double                      m_dMaxLevel;
-//    Carray<double, double>  m_daMaxLevel;
+   DWORD_PTR                     m_dwCurrentBuffer;
+   wave_buffer_data_array        m_bdaData;
+   wave_buffer_data_array        m_bdaBuffer;
+   raw_array < byte >            m_baData;
+   raw_array < byte >            m_baBuffer;
+
+   raw_array < double >          m_daSetA;
+   raw_array < double >          m_daSetB;
+
+   raw_array < double >          m_daModuleSet;
+   raw_array < double >          m_daResultSet;
+
+   critical_section              m_csResult;
+   critical_section              m_csProcLevel1;
+   critical_section              m_csProcLevel2;
+   BufferArray                   m_buffera;
+   kissfft::fftd *               m_pfft;
+   raw_array < kiss_fft_cpx >    m_pcpxa;
+
+   double                        m_dNominalMaxLevel; // Divisor que faz o nível máximo ser um.
+
+   WAVEFORMATEX                  m_waveformatexIn;
+   WAVEFORMATEX                  m_waveformatexOut;
 
 
    audWaveBuffer(::ca::application * papp);
    virtual ~audWaveBuffer();
 
-   WAVEFORMATEX         m_waveformatexIn;
-   WAVEFORMATEX         m_waveformatexOut;
+
    double GetMaxLevel();
    void InterestCompressModuleSet();
    DWORD_PTR GetBufferCount();
@@ -106,5 +110,8 @@ public:
    double * FFTGetResult();
    LPVOID   PCMOutGetInBuffer();
    UINT     PCMOutGetInBufferSize();
-   
+
+
 };
+
+

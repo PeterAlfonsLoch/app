@@ -99,8 +99,8 @@ namespace
     return 0;
   }
 
-  bool readTwoChars(ID3_Reader& reader, 
-                    char& ch1, 
+  bool readTwoChars(ID3_Reader& reader,
+                    char& ch1,
                     char& ch2)
   {
     if (reader.atEnd())
@@ -155,7 +155,7 @@ string io::readUnicodestring(ID3_Reader& reader)
 
 string io::readUnicodeText(ID3_Reader& reader, size_t len)
 {
-  gen::memory_file unicode(reader.get_app());
+  gen::byte_stream_memory_file unicode(reader.get_app());
   wchar_t wch;
   char ch1, ch2;
   if (!readTwoChars(reader, ch1, ch2))
@@ -201,7 +201,7 @@ string io::readUnicodeText(ID3_Reader& reader, size_t len)
     }
   }
   unicode << L'\0';
-  return gen::international::unicode_to_utf8((const wchar_t *) unicode.GetAllocation());
+  return gen::international::unicode_to_utf8((const wchar_t *) unicode.get_data());
 }
 
 primitive::memory io::readAllBinary(ID3_Reader& reader)
@@ -212,8 +212,8 @@ primitive::memory io::readAllBinary(ID3_Reader& reader)
 primitive::memory io::readBinary(ID3_Reader& reader, size_t len)
 {
   primitive::memory binary;
-  
-  
+
+
   size_t remaining = len;
   const size_t SIZE = 1024;
   char buf[SIZE];
@@ -221,10 +221,10 @@ primitive::memory io::readBinary(ID3_Reader& reader, size_t len)
   {
     size_t numRead = reader.readChars(buf, min(remaining, SIZE));
     remaining -= numRead;
-    binary.AllocateAddUp(numRead);
-    memcpy(&binary.GetAllocation()[binary.GetStorageSize() - numRead], reinterpret_cast<char *>(buf), numRead);
+    binary.allocate_add_up(numRead);
+    memcpy(&binary.get_data()[binary.get_size() - numRead], reinterpret_cast<char *>(buf), numRead);
   }
-  
+
   return binary;
 }
 
@@ -304,8 +304,8 @@ size_t io::writeBENumber(ID3_Writer& writer, uint32 val, size_t len)
 {
   ID3_Writer::char_type bytes[sizeof(uint32)];
   ID3_Writer::size_type size = min(len, sizeof(uint32));
-  renderNumber(bytes, val, size);
-  return writer.writeChars(bytes, size);
+  renderNumber(bytes, val, (size_t) size);
+  return writer.writeChars(bytes, (::primitive::memory_size) size);
 }
 
 size_t io::writeTrailingSpaces(ID3_Writer& writer, string buf, size_t len)
@@ -313,12 +313,12 @@ size_t io::writeTrailingSpaces(ID3_Writer& writer, string buf, size_t len)
   ID3_Writer::pos_type beg = writer.getCur();
   ID3_Writer::size_type strLen = buf.get_length();
   ID3_Writer::size_type size = min((unsigned int)len, (unsigned int)strLen);
-  writer.writeChars(buf, size);
+  writer.writeChars(buf, (::primitive::memory_size) size);
   for (; size < len; ++size)
   {
     writer.writeChar('\0');
   }
-  return writer.getCur() - beg;
+  return (size_t) (writer.getCur() - beg);
 }
 
 size_t io::writeUInt28(ID3_Writer& writer, uint32 val)
@@ -327,7 +327,7 @@ size_t io::writeUInt28(ID3_Writer& writer, uint32 val)
   const unsigned short BITSUSED = 7;
   const uint32 MAXVAL = ID3LIB_MASK(BITSUSED * sizeof(uint32));
   val = min(val, MAXVAL);
-  // This loop renders the value to the character buffer in reverse order, as 
+  // This loop renders the value to the character buffer in reverse order, as
   // it is easy to extract the last 7 bits of an integer.  This is why the
   // loop shifts the value of the integer by 7 bits for each iteration.
   for (size_t i = 0; i < sizeof(uint32); ++i)
@@ -340,7 +340,7 @@ size_t io::writeUInt28(ID3_Writer& writer, uint32 val)
     // right by that many bits for the next iteration
     val >>= BITSUSED;
   }
-  
+
   // Should always to 4 bytes
   return writer.writeChars(data, sizeof(uint32));
 }
@@ -363,7 +363,7 @@ size_t io::writeText(ID3_Writer& writer, const stringa & data)
       writer.writeChars(data[i], data[i].get_length());
       writer.writeChar('\0');
   }
-  return writer.getCur() - beg;
+  return (size_t) (writer.getCur() - beg);
 }
 
 /*

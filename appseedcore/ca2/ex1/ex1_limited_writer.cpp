@@ -7,7 +7,7 @@ namespace ex1
 {
 
 
-   void limited_writer::write(const void *data, DWORD_PTR size, DWORD_PTR * processedSize)
+   void limited_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
       if (processedSize != NULL)
          *processedSize = 0;

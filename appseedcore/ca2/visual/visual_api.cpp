@@ -34,7 +34,7 @@ namespace visual
       LPCRECT        lpcrect,
       float            lRateX,
       float            lHeight,
-      const char *   psz,   
+      const char *   psz,
       LPINT          lpiCharsPositions,
       int            iCharsPositions,
       int            iOffset) = NULL;
@@ -63,7 +63,7 @@ namespace visual
       {
          (*lpDrawAndFillBeziers1)(
             pdc,
-            lppoints, 
+            lppoints,
             iCount,
             (float) dRateX,
             lppointOffset);
@@ -102,7 +102,7 @@ namespace visual
       {
          (*lpDrawAndFillBeziers1)(
             pdc,
-            lppoints, 
+            lppoints,
             iCount,
             (float) dRateX,
             lppointOffset);
@@ -141,7 +141,7 @@ namespace visual
       {
          (*lpDrawAndFillBeziers2)(
             pdc,
-            lpglyph, 
+            lpglyph,
             (float) dRateX,
             lppointOffset);
       }
@@ -174,7 +174,7 @@ namespace visual
       LPCRECT            lpcrect,
       double            dRateX,
       double            dHeight,
-      const char *      psz,   
+      const char *      psz,
       LPINT             lpiCharsPositions,
       int               iCharsPositions,
       int               iOffset)
@@ -182,7 +182,7 @@ namespace visual
       if(IsGdippEnabled())
       {
          (*lpEmbossedTextOut2)(pdc,
-            lpcrect, 
+            lpcrect,
             (float) dRateX,
             (float) dHeight,
             psz,
@@ -218,7 +218,7 @@ namespace visual
          pdc->EndPath();
          pdc->StrokePath();
 
-         
+
    //      VERIFY(::SetMapMode(pdc->m_hDC, iOldMapMode));
    //      VERIFY(::SetViewportOrgEx(
    //         pdc->m_hDC,
@@ -231,19 +231,19 @@ namespace visual
 
    void api::EmbossedTextOut(
       ::ca::graphics *          pdc,
-      const char *   psz, 
+      const char *   psz,
       int            iLeft,
       int            iTop,
       int            iWidth,
       COLORREF       crText,
-      COLORREF       crOutline, 
+      COLORREF       crOutline,
       int            iLen)
    {
       if(IsGdippEnabled())
       {
          ASSERT(FALSE);
    /*      (*lpEmbossedTextOut2)(pdc,
-            lpcrect, 
+            lpcrect,
             floatRateX,
             floatHeight,
             str,
@@ -292,7 +292,7 @@ namespace visual
    //      pdc->EndPath();
    //      pdc->StrokePath();
 
-         
+
    //      VERIFY(::SetMapMode(pdc->m_hDC, iOldMapMode));
    //      VERIFY(::SetViewportOrgEx(
    //         pdc->m_hDC,
@@ -307,7 +307,7 @@ namespace visual
       LPCRECT        lpcrect,
       double         dRateX,
       double         dHeight,
-      const char *   psz,   
+      const char *   psz,
       LPINT          lpiCharsPositions,
       int            iCharsPositions,
       int            iOffset)
@@ -317,7 +317,7 @@ namespace visual
       UNREFERENCED_PARAMETER(iOffset);
       UNREFERENCED_PARAMETER(iCharsPositions);
       UNREFERENCED_PARAMETER(lpiCharsPositions);
-   
+
 
       if(IsGdippEnabled())
       {
@@ -349,7 +349,7 @@ namespace visual
             psz);
       }
       else
-      {   
+      {
          pdc->TextOut(lpcrect->left, lpcrect->top, psz);
          pdc->BeginPath();
          pdc->TextOut(lpcrect->left, lpcrect->top, psz);
@@ -361,7 +361,7 @@ namespace visual
 
    bool api::GetProcsAddress()
    {
-      if((lpDrawAndFillBeziers1 = 
+      if((lpDrawAndFillBeziers1 =
          (void (*)(
             ::ca::graphics                     *pdc,
             LPPOINT             lppoints,
@@ -372,7 +372,7 @@ namespace visual
          g_hinstanceGdipp,
          "DrawAndFillBeziers1")) == NULL)
          return false;
-      if((lpDrawAndFillBeziers2 = 
+      if((lpDrawAndFillBeziers2 =
          (void(*)(
          ::ca::graphics                     *pdc,
          base_array<point_array, point_array &> *
@@ -382,9 +382,9 @@ namespace visual
          ::GetProcAddress(
          g_hinstanceGdipp,
          "DrawAndFillBeziers2")) == NULL)
-         return false;   
+         return false;
 
-      if((lpEmbossedTextOut1 = 
+      if((lpEmbossedTextOut1 =
          (void (*)(
             ::ca::graphics         * pgraphics,
             LPCRECT               lpcrect,
@@ -396,13 +396,13 @@ namespace visual
          "EmbossedTextOut1")) == NULL)
          return false;
 
-      if((lpEmbossedTextOut2 = 
+      if((lpEmbossedTextOut2 =
          (void (*)(
          ::ca::graphics                     * pgraphics,
          LPCRECT               lpcrect,
          float               floatRateX,
          float               floatHeight,
-         const char *         psz,   
+         const char *         psz,
          LPINT                lpiCharsPositions,
          int                     iCharsPositions,
          int                  iOffset))
@@ -411,14 +411,14 @@ namespace visual
          "EmbossedTextOut2")) == NULL)
          return false;
 
-      if((lpStartup = 
+      if((lpStartup =
          (bool (*)())
          ::GetProcAddress(
          g_hinstanceGdipp,
          "Startup")) == NULL)
          return false;
 
-      if((lpShutdown = 
+      if((lpShutdown =
          (bool (*)())
          ::GetProcAddress(
          g_hinstanceGdipp,
@@ -439,7 +439,7 @@ namespace visual
 
          }
       }
-      return true;   
+      return true;
    }
    bool api::close()
    {
@@ -459,12 +459,15 @@ namespace visual
 
    void api::EnableOpenGL(HWND hWnd, HDC & hDC, HGLRC & hRC)
    {
-      PIXELFORMATDESCRIPTOR pfd;
+      UNREFERENCED_PARAMETER(hWnd);
+      UNREFERENCED_PARAMETER(hDC);
+      UNREFERENCED_PARAMETER(hRC);
+/*      PIXELFORMATDESCRIPTOR pfd;
       int format;
-      
+
       // get the device context (DC)
       hDC = GetDC( hWnd );
-      
+
       // set the pixel format for the DC
       ZeroMemory( &pfd, sizeof( pfd ) );
       pfd.nSize = sizeof( pfd );
@@ -477,19 +480,20 @@ namespace visual
       pfd.iLayerType = PFD_MAIN_PLANE;
       format = ChoosePixelFormat( hDC, &pfd );
       SetPixelFormat( hDC, format, &pfd );
-      
+
       // create and enable the to context (RC)
       hRC = wglCreateContext( hDC );
       wglMakeCurrent( hDC, hRC );
-      
+      */
    }
 
    // Disable OpenGL
 
    void api::DisableOpenGL(HWND hWnd, HDC hDC, HGLRC hRC)
    {
-      wglMakeCurrent( NULL, NULL );
-      wglDeleteContext( hRC );
+      UNREFERENCED_PARAMETER(hRC);
+/*      wglMakeCurrent( NULL, NULL );
+      wglDeleteContext( hRC );*/
       ReleaseDC( hWnd, hDC );
    }
 

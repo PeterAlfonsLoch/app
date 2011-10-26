@@ -127,6 +127,8 @@ namespace database
      virtual const void * getExecRes()=0;
    /* as open, but with our query exept Sql */
      virtual bool query(const char *sql) = 0;
+
+     virtual var query_item(const char *sql);
    /* close SQL Query*/
      virtual void close();
    /* This function looks for field Field_name with value equal Field_value

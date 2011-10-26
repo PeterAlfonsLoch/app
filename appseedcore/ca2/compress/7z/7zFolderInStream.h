@@ -11,8 +11,8 @@ namespace n7z
       public ::compress::get_sub_stream_size_interface
    {
       ::compress::reader_with_crc *_inStreamWithHashSpec;
-      ::ca::smart_pointer<::ex1::reader> _inStreamWithHash;
-      ::ca::smart_pointer<::compress::archive_update_callback_interface> _updateCallback;
+      ::ca::smart_pointer < ::ex1::reader > _inStreamWithHash;
+      ::ca::smart_pointer < ::compress::archive_update_callback_interface > _updateCallback;
 
       bool _currentSizeIsDefined;
       bool _fileIsOpen;
@@ -31,7 +31,7 @@ namespace n7z
       base_array<uint32> CRCs;
       base_array<uint64> Sizes;
 
-      DWORD_PTR read(void *data, DWORD_PTR size);
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       virtual ex1::HRes GetSubStreamSize(uint64 subStream, uint64 *value);
 
       CFolderInStream();

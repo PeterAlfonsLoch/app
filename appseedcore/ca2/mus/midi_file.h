@@ -3,12 +3,12 @@
 #define C_TEMPO_MAP_CHK     16
 
 class LyricEventV1;
-class MidiEventsV1;
-class MidiEventV001;
-class MidiEventV007;
-class MidiEventV008;
-class MidiEventV016;
-class MidiTracks;
+class midi_events_v1;
+class midi_event_v001;
+class midi_event_v007;
+class midi_event_v008;
+class midi_event_v016;
+class midi_tracks;
 class XFInfoHeader;
 
 
@@ -19,7 +19,7 @@ namespace mus
    {
 
       class CLASS_DECL_ca file :
-         virtual public primitive::memory_container < primitive::memory >
+         virtual public primitive::memory_container
       {
       public:
 
@@ -63,16 +63,16 @@ namespace mus
          byte *                              m_hpbPendingUserEvent;
 
 
-         primitive_array < MidiEventV008 *>  m_mepaImmediate;
-         primitive_array < MidiEventV008 *>  m_mepaOnQuarterNote;
+         primitive_array < midi_event_v008 *>  m_mepaImmediate;
+         primitive_array < midi_event_v008 *>  m_mepaOnQuarterNote;
 
-         MidiEventV008 *                     m_pmePendingLyric;
+         midi_event_v008 *                     m_pmePendingLyric;
          bool                                m_bPendingLyric;
 
-         MidiTracks *                        m_ptracks;
+         midi_tracks *                        m_ptracks;
 
          double GetTempoShiftRate();
-         MidiTracks & GetTracks();
+         midi_tracks & GetTracks();
          file_flags & GetFlags();
          bool IsTrackMute(int iIndex);
          void MuteAll(bool bMute = true, int iExcludeTrack = -1);
@@ -82,7 +82,7 @@ namespace mus
          e_file_result CalcTkLength();
          e_file_result CreateTempoMap();
          MMRESULT ImmediatePutTempoChange();
-         VMSRESULT GetTempoEvent(MidiEventBase & event);
+         VMSRESULT GetTempoEvent(midi_event_base & event);
          void OnStop();
          DWORD GetImageSize();
          LPBYTE GetImage();
@@ -106,15 +106,15 @@ namespace mus
          critical_section   m_cs;
          e_file_result RebuildIndex();
          e_file_result WriteHeader(MIDIFILEHDR * lpmfh);
-         e_file_result ChangeEventDelta(MidiEventBase *pEvent, imedia::position tkNewDelta);
-         e_file_result ReplaceSameDeltaEvent(MidiEventBase & pEventNew);
+         e_file_result ChangeEventDelta(midi_event_base *pEvent, imedia::position tkNewDelta);
+         e_file_result ReplaceSameDeltaEvent(midi_event_base & pEventNew);
          //   VMSRESULT allocate(DWORD dwNewLength);
-         //VMSRESULT AllocateAddUp(DWORD dwAddUp);
+         //VMSRESULT allocate_add_up(DWORD dwAddUp);
 
          e_file_result GetPreviousEvent(
-            MidiEventBase * pPreviousEvent,
-            MidiEventBase * pEvent);
-         //e_file_result DeleteEvent(MidiEventBase  *pEvent);
+            midi_event_base * pPreviousEvent,
+            midi_event_base * pEvent);
+         //e_file_result DeleteEvent(midi_event_base  *pEvent);
          e_file_result SaveFile(const char * lpFilePath);
 
 
@@ -125,10 +125,10 @@ namespace mus
 
 
 
-         int CalcMelodyTrack(MidiEventsV1 ** ppEvents, imedia::position_array * pTicks);
+         int CalcMelodyTrack(midi_events_v1 ** ppEvents, imedia::position_array * pTicks);
 
          int WorkCalcMelodyTrack(
-            MidiEventsV1 ** ppEvents, 
+            midi_events_v1 ** ppEvents, 
             imedia::position_array & positiona,
             int_array & iaTokenLine);
 
@@ -150,16 +150,16 @@ namespace mus
             DWORD cbPrerollNomimalMax);
 
          e_file_result WorkGetNextEvent(
-            MidiEventV008 *&    pevent,
+            midi_event_v008 *&    pevent,
             imedia::position                tkMax,
             BOOL                  bTkMaxInclusive);
 
          e_file_result WorkGetNextRawEvent(
-            MidiEventV008 *&    pevent,
+            midi_event_v008 *&    pevent,
             imedia::position                tkMax,
             BOOL                  bTkMaxInclusive);
 
-         e_file_result WorkGetNextRawMidiEvent(MidiEventV008 * & pevent, imedia::position tkMax, BOOL bTkMaxInclusive);
+         e_file_result WorkGetNextRawMidiEvent(midi_event_v008 * & pevent, imedia::position tkMax, BOOL bTkMaxInclusive);
 
          e_file_result WorkSeek(imedia::position tkPosition, LPMIDIHDR lpmh);
 
@@ -170,7 +170,7 @@ namespace mus
 
 
          int GetDivision();
-         imedia::position GetPosition();
+         imedia::position get_position();
          void AttachSeekSync(EventsTracksV1 * ptracksv1);
 
          bool IsNull();
@@ -211,89 +211,45 @@ namespace mus
             imedia::position_array *pTickArray,
             int tkOffset);
 
-         void TicksToMillisecs(
-            imedia::time_2darray *p2DMillisArray, 
-            imedia::position_2darray * p2DTicksArray, int tkOffset);
+         void TicksToMillisecs(imedia::time_2darray *p2DMillisArray, imedia::position_2darray * p2DTicksArray, int tkOffset);
 
-         void PositionToTime(
-            imedia::time_2darray  & timea,
-            imedia::position_2darray  & positiona,
-            int tkOffset);
+         void PositionToTime(imedia::time_2darray  & timea, imedia::position_2darray  & positiona, int tkOffset);
 
-         void PositionToTime(
-            imedia::time_array  & timea,
-            imedia::position_array  & positiona,
-            int tkOffset);
+         void PositionToTime(imedia::time_array  & timea, imedia::position_array  & positiona, int tkOffset);
 
-         imedia::position MillisecsToTicks(
-            DWORD msOffset);
+         imedia::position MillisecsToTicks(imedia::time msOffset);
 
-         imedia::time PositionToTime(
-            imedia::position msOffset);
+         imedia::time PositionToTime(imedia::position msOffset);
 
-         imedia::position TimeToPosition(
-            imedia::time msOffset);
+         imedia::position TimeToPosition(imedia::time msOffset);
 
-         void MillisecsToTicks(
-            imedia::position_array *pTickArray,
-            imedia::time_array *pMillisArray,
-            imedia::time msOffset);
+         void MillisecsToTicks(imedia::position_array * pTickArray, imedia::time_array *pMillisArray, imedia::time msOffset);
 
-         void TimeToPosition(
-            imedia::position_array & positiona,
-            imedia::time_array & timea,
-            imedia::time msOffset);
+         void TimeToPosition(imedia::position_array & positiona, imedia::time_array & timea, imedia::time msOffset);
 
-         e_file_result StreamRender(
-            LPMIDIHDR lpmh,
-            imedia::position tkMax,
-            DWORD cbPrerollNomimalMax);
+         e_file_result StreamRender(LPMIDIHDR lpmh, imedia::position tkMax, DWORD cbPrerollNomimalMax);
 
-         VMSRESULT StreamEvent(
-            imedia::position             tkDelta,
-            MidiEventBase *  pEvent,
-            LPMIDIHDR         lpmh,
-            imedia::position             tkMax,
-            DWORD             cbPrerollNomimalMax);
+         VMSRESULT StreamEvent(imedia::position tkDelta, midi_event_base * Event, LPMIDIHDR lpmh, imedia::position tkMax, DWORD cbPrerollNomimalMax);
 
-         VMSRESULT StreamEventF1(
-            DWORD tkDelta,
-            base_array < MidiEventV008 *, MidiEventV008 * > & eventptra,
-            LPMIDIHDR lpmh,
-            imedia::position tkMax,
-            DWORD cbPrerollNomimalMax);
+         VMSRESULT StreamEventF1(imedia::position tkDelta, base_array < midi_event_v008 *, midi_event_v008 * > & eventptra, LPMIDIHDR lpmh, imedia::position tkMax, DWORD cbPrerollNomimalMax);
 
-         e_file_result seek(
-            imedia::position tkPosition,
-            LPMIDIHDR lpmh);
+         e_file_result seek(imedia::position tkPosition, LPMIDIHDR lpmh);
 
-         e_file_result seek(
-            imedia::position tkPosition);
+         e_file_result seek(imedia::position tkPosition);
 
          e_file_result Build();
 
-         e_file_result GetNextEvent(
-            MidiEventV001 *& pevent,
-            imedia::position tkMax,
-            BOOL   bTkMaxInclusive);
+         e_file_result GetNextEvent(midi_event_v001 *& pevent, imedia::position tkMax, BOOL   bTkMaxInclusive);
 
-         e_file_result GetNextEventTkPosition(
-            imedia::position * pTkPosition,
-            imedia::position tkMax);
+         e_file_result GetNextEventTkPosition(imedia::position * pTkPosition, imedia::position tkMax);
 
          void _SyncSeek(imedia::position tkPosition, EventsTracksV1 * ptracksv1);
          void _SyncSeek(imedia::position tkPosition);
-         e_file_result InsertParmData(
-            imedia::position tkDelta,                                            
-            LPMIDIHDR lpmh);
+         e_file_result InsertParmData(imedia::position tkDelta, LPMIDIHDR lpmh);
 
-         VMSRESULT InsertLyricEvents(
-            LyricEventV1 * pLyricEvent,
-            LPMIDIHDR lpmh);
+         VMSRESULT InsertLyricEvents(LyricEventV1 * pLyricEvent, LPMIDIHDR lpmh);
 
-         e_file_result InsertPadEvent(
-            imedia::position            tkDelta,
-            LPMIDIHDR         lpmh);
+         e_file_result InsertPadEvent(imedia::position tkDelta, LPMIDIHDR lpmh);
 
          void SetOpened(bool bOpened = true);
       };

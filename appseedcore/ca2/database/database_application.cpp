@@ -13,6 +13,10 @@ namespace database
 
    bool application::initialize()
    {
+      if(is_system())
+      {
+         System.factory().creatable_large < ::database::result_set > ();
+      }
       return true;
    }
 

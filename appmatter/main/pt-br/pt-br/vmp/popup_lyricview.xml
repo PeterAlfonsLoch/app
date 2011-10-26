@@ -1,23 +1,26 @@
-<menubar>
-	<menubar id="view">
+﻿<menubar>
+	<item id="file_open">Abrir</item>
+	<item id="view_playlist">Lista de Reprodução</item>
+	<menubar id="view" title="Exibir">
 		<item id="file_open">Abrir</item>
 		<item id="view_encoding">view_encoding</item>
 		<item id="view_full_screen" img="full_screen_16.png">Tela Inteira</item>
 		<item id="view_gradual_filling" img="gradual_filling_16.png">Preenchimento Gradual</item>
 		<item id="karaoke_bouncing_ball">Bolinha Sincronizada</item>
-		<item id="view_audio_spectrum">Espectro de �udio</item>
+		<item id="view_audio_spectrum">Espectro de Áudio</item>
+		<item id="view_playlist">Lista de Reprodução</item>
 		<item id="execute_play">Executar</item>
 		<item id="execute_stop">Parar</item>
 	</menubar>
-	<menubar id="execute">
+	<menubar id="execute" title="Reprodução">
 		<item id="execute_play">Executar</item>
 		<item id="execute_stop">Parar</item>
 		<item id="execute_pause">Pausar</item>
-		<item id="execute_playlist_play">Executar da lista de reprodu��o</item>
+		<item id="execute_playlist_play">Executar da lista de reprodução</item>
 		<item id="execute_previous">Anterior</item>
-		<item id="execute_next">Pr�ximo</item>
+		<item id="execute_next">Próximo</item>
 		<item id="execute_minus">Minus One</item>
-		<item id="execute_auto_record">Grava��o autom�tica</item>
+		<item id="execute_auto_record">Gravação automática</item>
 	</menubar>
 
 </menubar>

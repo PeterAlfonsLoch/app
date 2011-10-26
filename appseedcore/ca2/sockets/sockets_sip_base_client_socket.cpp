@@ -24,7 +24,7 @@ namespace sockets
       SetLineProtocol();
    }
 
-   sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) : 
+   sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
       ::ca::ca(s.get_app()),
       socket(s.m_handler),
       m_request(s.get_app()),
@@ -287,7 +287,7 @@ namespace sockets
       for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
          strLine = m_response.m_propertysetHeader.m_propertya[i].name() +
-                   ": " + 
+                   ": " +
                    m_response.m_propertysetHeader.m_propertya[i].get_string();
          msg += strLine + "\r\n";
          strTrace = strLine;
@@ -300,7 +300,7 @@ namespace sockets
 
    void sip_base_client_socket::SendResponseBody()
    {
-      //SendBuf((const char *) response().file().GetAllocation(), response().file().get_size());
+      //SendBuf((const char *) response().file().get_data(), response().file().get_size());
    }
 
 

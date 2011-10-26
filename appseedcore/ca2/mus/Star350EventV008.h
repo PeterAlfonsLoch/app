@@ -18,8 +18,8 @@ public:
    virtual ~Star350EventV008();
    virtual void clear();
 
-   virtual MidiEventBase & operator = (const MidiEventBase & eventSrc) { return MidiEventBase::operator = (eventSrc); }
-   virtual MidiEventBase & operator = (const MidiEventV008 & eventSrc) { return MidiEventBase::operator = (eventSrc); }
+   virtual midi_event_base & operator = (const midi_event_base & eventSrc) { return midi_event_base::operator = (eventSrc); }
+   virtual midi_event_base & operator = (const midi_event_v008 & eventSrc) { return midi_event_base::operator = (eventSrc); }
 
    virtual Star350EventBase & operator = (const Star350EventBase & eventSrc) { return Star350EventBase::operator = (eventSrc); }
    virtual Star350EventV016 & operator = (const Star350EventV016 & eventSrc) { return Star350EventV016::operator = (eventSrc); }

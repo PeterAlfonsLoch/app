@@ -74,7 +74,7 @@ inline array_ptr_copy <TYPE, ARG_TYPE> & array_ptr_copy < TYPE, ARG_TYPE >::oper
 	int i;
    for(i = 0; i < m_ptra.get_size(); i++)
    {
-      element_at(i) = *a.m_ptra[i];
+      this->element_at(i) = *a.m_ptra[i];
    }
    for(; i < a.m_ptra.get_size(); i++)
    {
@@ -95,7 +95,7 @@ void array_ptr_copy < TYPE, ARG_TYPE >::copy(const array_ptr_copy < TYPE, ARG_TY
 template <class TYPE, class ARG_TYPE>
 count array_ptr_copy < TYPE, ARG_TYPE >::add(const array_ptr_copy < TYPE, ARG_TYPE > & a)
 {
-   count countOld = get_count();
+   count countOld = this->get_count();
    for(int i = 0; i < a.get_size(); i++)
    {
       add(a[i]);
@@ -106,14 +106,14 @@ count array_ptr_copy < TYPE, ARG_TYPE >::add(const array_ptr_copy < TYPE, ARG_TY
 
 template <class TYPE, class ARG_TYPE>
 const TYPE & array_ptr_copy < TYPE, ARG_TYPE >::
-element_at(INT_PTR nIndex) const
+this->element_at(INT_PTR nIndex) const
 {
    return *m_ptra.element_at(nIndex);
 }
 
 template <class TYPE, class ARG_TYPE>
 TYPE & array_ptr_copy < TYPE, ARG_TYPE >::
-element_at(INT_PTR nIndex)
+this->element_at(INT_PTR nIndex)
 {
    return *m_ptra.element_at(nIndex);
 }
@@ -122,12 +122,12 @@ template <class TYPE, class ARG_TYPE>
 const TYPE & array_ptr_copy < TYPE, ARG_TYPE >::
 operator[](INT_PTR nIndex) const
 {
-   return element_at(nIndex);
+   return this->element_at(nIndex);
 }
 
 template <class TYPE, class ARG_TYPE>
 TYPE & array_ptr_copy < TYPE, ARG_TYPE >::
 operator[](INT_PTR nIndex)
 {
-   return element_at(nIndex);
+   return this->element_at(nIndex);
 }

@@ -8,7 +8,7 @@ template < class DERIVED > class reference_array;
 // One of the features is to notify the pointer
 // object pointer arrays (listeners) when the
 // pointer object is deleted.
-template < class DERIVED > 
+template < class DERIVED >
 class reference :
    public pointer < DERIVED >
 {
@@ -43,7 +43,7 @@ reference < DERIVED >::~reference()
 
 
 
-template < class DERIVED > 
+template < class DERIVED >
 void reference < DERIVED >::
 add_ref()
 {
@@ -51,7 +51,7 @@ add_ref()
    on_add_ref();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void reference < DERIVED >::
 release()
 {
@@ -68,19 +68,19 @@ release()
    }
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void reference < DERIVED >::
 on_add_ref()
 {
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void reference < DERIVED >::
 on_release()
 {
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void reference < DERIVED >::
 on_final_release()
 {
@@ -137,30 +137,30 @@ public:
 
 };
 
-template < class DERIVED > 
+template < class DERIVED >
 reference_array < DERIVED >::
 ~reference_array()
 {
    remove_all();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void reference_array < DERIVED >::
 remove_all()
 {
    int i;
-   for(i = 0; i < get_size(); i++)
+   for(i = 0; i < this->get_size(); i++)
    {
-      element_at(i)->remove_listener(this);
+      this->element_at(i)->remove_listener(this);
    }
-   for(i = 0; i < get_size(); i++)
+   for(i = 0; i < this->get_size(); i++)
    {
       reference_at(i)->release();
    }
    comparable_array < pointer < DERIVED > *, pointer < DERIVED > * >::remove_all();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 index reference_array < DERIVED >::
 add(reference < DERIVED > * p)
 {
@@ -187,7 +187,7 @@ set_at(int iIndex, reference < DERIVED > * p)
 }
 
 
-template < class DERIVED > 
+template < class DERIVED >
 count reference_array < DERIVED >::
 remove(reference < DERIVED > * p)
 {
@@ -202,19 +202,19 @@ remove(reference < DERIVED > * p)
 }
 
 
-template < class DERIVED > 
-reference < DERIVED > * 
+template < class DERIVED >
+reference < DERIVED > *
 reference_array < DERIVED >::
 reference_at(index idx)
 {
-   return dynamic_cast < reference < DERIVED > * > (element_at(idx));
+   return dynamic_cast < reference < DERIVED > * > (this->element_at(idx));
 }
 
-template < class DERIVED > 
-const reference < DERIVED > * 
+template < class DERIVED >
+const reference < DERIVED > *
 reference_array < DERIVED >::
 reference_at(index idx) const
 {
-   return dynamic_cast < const reference < DERIVED > * > (element_at(idx));
+   return dynamic_cast < const reference < DERIVED > * > (this->element_at(idx));
 }
 

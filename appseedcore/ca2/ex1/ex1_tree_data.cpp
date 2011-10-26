@@ -11,15 +11,15 @@ namespace ex1
 
    tree_data::~tree_data()
    {
-      finalize();
+      finalize_data();
    }
 
-   bool tree_data::initialize()
+   bool tree_data::initialize_data()
    {
       return true;
    }
 
-   bool tree_data::finalize()
+   bool tree_data::finalize_data()
    {
       return true;
    }

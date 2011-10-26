@@ -30,10 +30,10 @@ void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisibl
       iIndex = iLineIndex;
       if(iIndex >= m_iFirstVisible)
       {
-         while(!element_at(iIndex).IsVisible())
+         while(!this->element_at(iIndex).IsVisible())
          {
             iIndex++;
-            if(iIndex >= get_size())
+            if(iIndex >= this->get_size())
                break;
          }
       }
@@ -41,7 +41,7 @@ void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisibl
       iIndex = iLineIndex;
       if(iIndex <= m_iLastVisible)
       {
-         while(!element_at(iIndex).IsVisible())
+         while(!this->element_at(iIndex).IsVisible())
          {
             iIndex--;
             if(iIndex < 0)
@@ -65,10 +65,10 @@ int XfplayerViewLines::GetLastVisibleLineIndex()
 
 void XfplayerViewLines::Prepare()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).m_pContainer = this;
-      element_at(i).m_iIndex = i;
+      this->element_at(i).m_pContainer = this;
+      this->element_at(i).m_iIndex = i;
    }
 }
 
@@ -84,20 +84,20 @@ void XfplayerViewLines::set_user_interaction(::user::interaction * pinteraction)
 
 void XfplayerViewLines::SetEffect(int iEffect)
 {
-    for(int i = 0 ; i < get_size(); i++)
+    for(int i = 0 ; i < this->get_size(); i++)
     {
-        element_at(i).SetTextEffect(iEffect);
+        this->element_at(i).SetTextEffect(iEffect);
     }
 }
 
 void XfplayerViewLines::SetRenderWindow(::ca::window * pWnd)
 {
-   UNREFERENCED_PARAMETER(pWnd);   
+   UNREFERENCED_PARAMETER(pWnd);
 }
 
 int XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 {
-   for(int iLine = 0; iLine < get_size(); iLine++)
+   for(int iLine = 0; iLine < this->get_size(); iLine++)
    {
       if(ptr_at(iLine) == pline)
          return iLine;
@@ -107,10 +107,10 @@ int XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 
 ::user::e_line_hit XfplayerViewLines::hit_test(POINT &ptCursor, int &iLine, int &iChar)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
       ::user::e_line_hit etest =
-         element_at(i).hit_test(ptCursor, iChar);
+         this->element_at(i).hit_test(ptCursor, iChar);
       if(etest != user::line_hit_none)
       {
          iLine = i;
@@ -132,11 +132,11 @@ void XfplayerViewLines::InstallMessageHandling(::user::win::message::dispatch *p
 
 void XfplayerViewLines::OnMouseMove(gen::signal_object * pobj)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).m_pContainer = this;
-      element_at(i).m_iIndex = i;
-      element_at(i).OnMouseMove(pobj);
+      this->element_at(i).m_pContainer = this;
+      this->element_at(i).m_iIndex = i;
+      this->element_at(i).OnMouseMove(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -144,11 +144,11 @@ void XfplayerViewLines::OnMouseMove(gen::signal_object * pobj)
 
 void XfplayerViewLines::OnLButtonDown(gen::signal_object * pobj)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).m_pContainer = this;
-      element_at(i).m_iIndex = i;
-      element_at(i).OnLButtonDown(pobj);
+      this->element_at(i).m_pContainer = this;
+      this->element_at(i).m_iIndex = i;
+      this->element_at(i).OnLButtonDown(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -156,9 +156,9 @@ void XfplayerViewLines::OnLButtonDown(gen::signal_object * pobj)
 
 void XfplayerViewLines::OnLButtonUp(gen::signal_object * pobj)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).OnLButtonUp(pobj);
+      this->element_at(i).OnLButtonUp(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -166,10 +166,10 @@ void XfplayerViewLines::OnLButtonUp(gen::signal_object * pobj)
 
 void XfplayerViewLines::OnTimer(gen::signal_object * pobj)
 {
-   
-   for(int i = 0; i < get_size(); i++)
+
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).OnTimer(pobj);
+      this->element_at(i).OnTimer(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -177,9 +177,9 @@ void XfplayerViewLines::OnTimer(gen::signal_object * pobj)
 
 void XfplayerViewLines::OnSetCursor(gen::signal_object * pobj)
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i).OnSetCursor(pobj);
+      this->element_at(i).OnSetCursor(pobj);
       if(pobj->m_bRet)
          return;
    }
@@ -187,7 +187,7 @@ void XfplayerViewLines::OnSetCursor(gen::signal_object * pobj)
 
 void XfplayerViewLines::SetBlend(double dBlend)
 {
-   for(int iLine = 0; iLine < get_size(); iLine++)
+   for(int iLine = 0; iLine < this->get_size(); iLine++)
    {
       ptr_at(iLine)->SetBlend(dBlend);
    }

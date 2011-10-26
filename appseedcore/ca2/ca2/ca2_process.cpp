@@ -21,7 +21,7 @@ namespace ca2
       {
          Sleep(100);
       }
-      thread.m_evReady.Lock();
+      thread.m_evReady.wait();
       return thread.m_strRead;
    }
 
@@ -66,6 +66,8 @@ namespace ca2
             break;
          }
       }
+      ::CloseHandle(pi.hProcess);
+      ::CloseHandle(pi.hThread);
       return dwExitCode;
    }
 
@@ -102,6 +104,8 @@ namespace ca2
          return false;
       }
       free(lpCommand);
+      ::CloseHandle(pi.hProcess);
+      ::CloseHandle(pi.hThread);
       return true;
    }
    

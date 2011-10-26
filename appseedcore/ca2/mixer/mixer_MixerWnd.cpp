@@ -12,9 +12,9 @@ MixerWnd::~MixerWnd()
 {
 }
 
-void MixerWnd::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void MixerWnd::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::user::interaction::_001InstallMessageHandling(pinterface);
+   ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(MM_MIXM_CONTROL_CHANGE, pinterface, this, &MixerWnd::_001OnMixerControlChange);
    IGUI_WIN_MSG_LINK(MM_MIXM_LINE_CHANGE, pinterface, this, &MixerWnd::_001OnMixerLineChange);
 }

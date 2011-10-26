@@ -15,7 +15,7 @@ namespace gcom
          DWORD                        m_dwBackgroundUpdateMillis;
          EImagePlacement                     m_eplacement;
          
-         CEvent                        m_evImageChangeFinish;
+         event                        m_evImageChangeFinish;
          DWORD                        m_dwLoadCounter;
          DWORD                        m_dwBackgroundLastUpdateTime;
          DWORD                        m_dwBackgroundPreTransitionStartTime;

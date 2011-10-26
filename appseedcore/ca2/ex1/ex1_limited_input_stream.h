@@ -7,25 +7,26 @@ namespace ex1
 {
 
    class limited_input_stream:
-      public input_stream
+      public byte_input_stream
    {
-      input_stream *    _stream;
+      byte_input_stream *    _stream;
       uint64            _virtPos;
       uint64            _physPos;
       uint64            _size;
       uint64         _startOffset;
 
-      DWORD_PTR SeekToPhys()
+      uint64_t SeekToPhys()
       { 
          return _stream->seek((INT_PTR) _physPos, seek_begin); 
       }
    public:
-      void SetStream(input_stream *stream)
+      void SetStream(byte_input_stream *stream)
       { 
          _stream = stream; 
       }
 
-      HRESULT InitAndSeek(uint64 startOffset, uint64 size)
+      //HRESULT InitAndSeek(uint64 startOffset, uint64 size)
+      uint64_t InitAndSeek(uint64 startOffset, uint64 size)
       {
          _startOffset = startOffset;
          _physPos = startOffset;
@@ -34,11 +35,11 @@ namespace ex1
          return SeekToPhys();
       }
 
-      DWORD_PTR read(void * data, DWORD_PTR size);
-      DWORD_PTR seek(INT_PTR offset, e_seek seekOrigin);
+      ::primitive::memory_size read(void * data, ::primitive::memory_size size);
+      file_position seek(file_offset offset, e_seek seekOrigin);
 
    };
 
-   HRESULT CreateLimitedInStream(input_stream *inStream, uint64 pos, uint64 size, reader * * resStream);
+   reader * create_limited_input_stream(byte_input_stream *inStream, uint64 pos, uint64 size);
 
 } // namespace ex1

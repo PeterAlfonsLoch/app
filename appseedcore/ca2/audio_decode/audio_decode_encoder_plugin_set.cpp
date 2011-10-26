@@ -14,10 +14,10 @@ namespace audio_decode
 
    encoder_plugin * encoder_plugin_set::FindPlugin(int iId)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         if(element_at(i).GetPluginId() == iId)
-            return &element_at(i);
+         if(this->element_at(i).GetPluginId() == iId)
+            return &this->element_at(i);
       }
       return NULL;
    }

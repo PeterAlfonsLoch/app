@@ -1,0 +1,8 @@
+; app_netshareclient.def
+
+LIBRARY  "app_netshareclient"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+get_new_library
+

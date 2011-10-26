@@ -14,7 +14,7 @@ namespace sip
 
 
    // --------------------------------------------------------------------------------------
-   request::request(const request& src) : 
+   request::request(const request& src) :
    ::ca::ca(((request&) src).get_app()),
    transaction(src),
    m_null(src.m_null),
@@ -111,7 +111,7 @@ namespace sip
       attr("server_name") = "";
       attr("server_port") = 0;
       attr("https") = false;*/
-      
+
    //   m_file = std::auto_ptr<IFile>(NULL);
       m_form.clear();
       m_cookies.remove_all();

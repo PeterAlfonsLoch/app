@@ -4,17 +4,27 @@
 // you need to profile the top start for bergedge
 // from profiler in beggining bottom for veriwellfair
 
+#ifdef LINUX
+#include <sys/time.h>                // for gettimeofday()
+#endif
+
 namespace ca
 {
    namespace profiler
    {
-      extern CLASS_DECL_ca __int64 g_iFrequency;
+
+#ifdef WINDOWS
+
+      extern CLASS_DECL_ca int64_t g_iFrequency;
+
+#endif
 
       void initialize();
 
-      __forceinline __int64 micros()
+      inline int64_t micros()
       {
-         __int64 iCount;
+#ifdef WINDOWS
+         int64_t iCount;
          if(g_iFrequency
          && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
          {
@@ -24,11 +34,19 @@ namespace ca
          {
             return ::GetTickCount() * 1000;
          }
+#else
+         timeval t;
+         gettimeofday(&t, NULL);
+         return t.tv_sec * 1000 * 1000 + t.tv_usec;
+#endif
       }
 
-      __forceinline float millis()
+      inline float millis()
       {
          return micros() / 1000.0f;
       }
    }
 } // namespace gen
+
+
+

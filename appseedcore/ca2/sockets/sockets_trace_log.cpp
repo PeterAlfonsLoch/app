@@ -44,11 +44,11 @@ namespace sockets
    
       if (sock)
       {
-         phandler->m_papp->m_psystem->log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall, iError, strSystemError, strLevel);
+         Sys(phandler->m_papp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall, iError, strSystemError, strLevel);
       }
       else
       {
-         phandler->m_papp->m_psystem->log().trace("%s: %d %s (%s)\n", strCall, iError, strSystemError, strLevel);
+         Sys(phandler->m_papp).log().trace("%s: %d %s (%s)\n", strCall, iError, strSystemError, strLevel);
       }
    }
 

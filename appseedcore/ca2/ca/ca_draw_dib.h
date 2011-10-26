@@ -1,6 +1,8 @@
 #pragma once
 
+#ifdef _WINDOWS
 #include <vfw.h>
+#endif
 
 namespace ca
 {
@@ -31,11 +33,13 @@ namespace ca
       virtual BOOL draw(::ca::graphics * pdc, int xDst, int yDst, int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi, LPVOID lpBits, int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags );
       virtual BOOL draw(::ca::dib * pdib, ::ca::graphics * pdc, int xDst, int yDst, int dxDst, int dyDst, UINT wFlags );
       virtual BOOL draw(::ca::graphics * pdc, int xDst, int yDst, int dxDst, int dyDst, ::ca::dib * dib, int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags );
-      
+
       virtual LPVOID GetBuffer(LPBITMAPINFOHEADER lpbi, DWORD dwSize, DWORD dwFlags);
 
       virtual BOOL ProfileDisplay(LPBITMAPINFOHEADER lpbi);
 
+#ifdef WINDOWS
+      // palette
       virtual ::ca::palette * get_palette();
       virtual BOOL set_palette(::ca::palette *);
       virtual BOOL ChangePalette(::ca::draw_dib * pdd, int iStart, int iLen, LPPALETTEENTRY lppe );
@@ -44,7 +48,7 @@ namespace ca
       virtual BOOL Start(LONG rate);
       virtual BOOL Stop();
       virtual BOOL time(LPDRAWDIBTIME lpddtime);
-
+#endif
    };
 
    typedef smart_pointer < draw_dib > draw_dib_sp;

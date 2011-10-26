@@ -30,8 +30,8 @@
 
 #include "libepp.H"
 
-#define HandlerBase base_object
-#define HandlerBase base_object
+#define HandlerBase ::radix::object
+#define HandlerBase ::radix::object
 #define SAXParseException simple_exception
 
 namespace libepp {

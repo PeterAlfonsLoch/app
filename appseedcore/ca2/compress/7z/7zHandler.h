@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace n7z 
+namespace n7z
 {
 
 #ifndef __7Z_SET_PROPERTIES
@@ -58,13 +58,13 @@ namespace n7z
       virtual ex1::HRes SetProperties(const char **names, const var *values, int32 numProperties);
 
    private:
-      ::ca::smart_pointer<::ex1::input_stream> _inStream;
+      ::ca::smart_pointer < ::ex1::byte_input_stream > _inStream;
       n7z::CArchiveDatabaseEx _db;
       //#ifndef _NO_CRYPTO
       bool _passwordIsDefined;
       //#endif
 
-      
+
 
 #ifdef EXTRACT_ONLY
 
@@ -79,7 +79,7 @@ namespace n7z
       base_array<CBind> _binds;
 
       ::ex1::HRes SetCompressionMethod(CCompressionMethodMode &method,
-         array_ptr_alloc<::compress::COneMethodInfo> &methodsInfo
+         array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
          , uint32 numThreads
          );
 
@@ -98,7 +98,7 @@ namespace n7z
 //#endif
 
       ///DECL_EXTERNAL_CODECS_VARS
-      ::compress::codecs_info_interface * _codecsInfo; 
+      ::compress::codecs_info_interface * _codecsInfo;
       base_array < ::compress::codec_info_ex > _externalCodecs;
    };
 

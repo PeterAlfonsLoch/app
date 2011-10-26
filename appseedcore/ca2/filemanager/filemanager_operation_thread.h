@@ -9,7 +9,7 @@ class CLASS_DECL_ca file_manager_operation_thread :
 public:
    filemanager::estate              m_estate;
    file_manager_operation_view *    m_pview;
-   array_ptr < file_operation, file_operation & > m_fileoperationa;
+   array_del_ptr < file_operation, file_operation & > m_fileoperationa;
    int                              m_iOperation;
    bool                             m_bStep;
    mutex                            m_mutexFileOperationA;

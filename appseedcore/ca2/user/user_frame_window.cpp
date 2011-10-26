@@ -339,7 +339,7 @@ void frame_window::BeginModalState()
    //  modeless windows anyway...
    ::user::interaction * pParent = EnsureTopLevelParent();
 
-   base_array<::user::interaction *,::user::interaction *> arrDisabledWnds;   
+   base_array<::user::interaction *,::user::interaction *> arrDisabledWnds;
    // disable all windows connected to this frame (and add them to the list)
    ::user::interaction * hWnd = System.get_desktop_window()->GetWindow(GW_CHILD);
    while (hWnd != NULL)
@@ -348,8 +348,8 @@ void frame_window::BeginModalState()
          AfxIsDescendant(pParent, hWnd) &&
          hWnd->SendMessage(WM_DISABLEMODAL, 0, 0) == 0)
       {
-         hWnd->EnableWindow(FALSE);         
-         arrDisabledWnds.add(hWnd);            
+         hWnd->EnableWindow(FALSE);
+         arrDisabledWnds.add(hWnd);
       }
       hWnd = hWnd->GetWindow( GW_HWNDNEXT);
    }
@@ -477,7 +477,7 @@ BOOL frame_window::create(const char * lpszClassName,
    ::user::interaction * pParentWnd,
    const char * lpszMenuName,
    DWORD dwExStyle,
-   create_context* pContext)
+   ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(lpszMenuName);
@@ -547,14 +547,14 @@ BOOL frame_window::create(const char * lpszClassName,
 }
 */
 
-BOOL frame_window::OnCreateClient(LPCREATESTRUCT, create_context* pContext)
+BOOL frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext)
 {
    // default create client will create a ::view if asked for it
-   if (pContext != NULL && 
-      (pContext->m_typeinfoNewView ||
-       pContext->m_puiNew != NULL))
+   if (pContext != NULL &&
+      (pContext->m_user->m_typeinfoNewView ||
+       pContext->m_user->m_puiNew != NULL))
    {
-      if (view::create_view(pContext, this, AFX_IDW_PANE_FIRST) == NULL)
+      if (view::s_create_view(pContext, this, AFX_IDW_PANE_FIRST) == NULL)
          return FALSE;
    }
    return TRUE;
@@ -571,16 +571,17 @@ void frame_window::_001OnCreate(gen::signal_object * pobj)
       }
    }
 
-   SCAST_PTR(::user::win::message::create, pcreate, pobj)
-   ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
-   create_context* pContext = (create_context*) pcreate->m_lpcreatestruct->lpCreateParams;
    if(pobj->previous())
       return;
+
+   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+   ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
+   ::ca::create_context* pContext = (::ca::create_context*) pcreate->m_lpcreatestruct->lpCreateParams;
    pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
    pcreate->m_bRet = pcreate->get_lresult() == -1;
 }
 
-int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, create_context* pContext)
+int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
 {
 // trans   if (user::frame_window_interface::OnCreate(lpcs) == -1)
       //return -1;
@@ -608,8 +609,8 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
 //      ATL_MAKEINTRESOURCE(nIDResource), ATL_RT_GROUP_ICON);
    //HICON hIcon = ::LoadIcon(hInst, ATL_MAKEINTRESOURCE(nIDResource));
    HICON hIcon = (HICON) ::LoadImage(
-      NULL, 
-      System.dir_matter(pszMatter, "icon.ico"), IMAGE_ICON,
+      NULL,
+      Application.dir().matter(pszMatter, "icon.ico"), IMAGE_ICON,
       16, 16,
       LR_LOADFROMFILE);
 
@@ -632,11 +633,11 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
             wndcls.hCursor, wndcls.hbrBackground, hIcon);
       }
    }
-   return NULL;        // just use the default 
+   return NULL;        // just use the default
 }
 
 BOOL frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-   ::user::interaction * pParentWnd, create_context* pContext)
+   ::user::interaction * pParentWnd, ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
    UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -740,13 +741,27 @@ void frame_window::InitialUpdateFrame(document * pDoc, BOOL bMakeVisible)
       pDoc->update_frame_counts();
    on_update_frame_title(TRUE);
 
+   ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (GetParent());
+   if(pholder != NULL)
+   {
+      if(!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
+      || !oprop("should_not_be_automatically_holded_on_initial_update_frame"))
+      {
+         pholder->hold(this);
+         pholder->layout();
+      }
+   }
+
    if(bMakeVisible)
    {
+      if(dynamic_cast < ::user::place_holder * > (GetParent()) == NULL)
+      {
+         InitialFramePosition();
+      }
       if(!IsWindowVisible())
       {
          ShowWindow(SW_SHOW);
       }
-      InitialFramePosition();
    }
 
 }
@@ -769,7 +784,7 @@ void frame_window::InitialFramePosition(bool bForceRestore)
          System.get_desktop_window()->GetWindowRect(rectDesktop);
       }
       if(!rectDesktop.contains(rectWindow)
-      ||  rectWindow.width() < 100 
+      ||  rectWindow.width() < 100
       ||  rectWindow.height() < 100)
       {
          SetWindowPos(ZORDER_TOP, 100, 100, 650, 450, 0);
@@ -777,8 +792,8 @@ void frame_window::InitialFramePosition(bool bForceRestore)
       else
       {
          SetWindowPos(
-            ZORDER_TOP, 
-            rectWindow.left, 
+            ZORDER_TOP,
+            rectWindow.left,
             rectWindow.top,
             rectWindow.width(),
             rectWindow.height(),
@@ -884,7 +899,7 @@ void frame_window::_001OnDestroy(gen::signal_object * pobj)
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window command/message routing
-void frame_window::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void frame_window::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &frame_window::_001OnDestroy);
@@ -899,14 +914,26 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
+   pview = dynamic_cast < ::view * > (this->GetChildById(AFX_IDW_PANE_FIRST));
+   if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
    // then pump through frame
    if (user::frame_window_interface::_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
    // last but not least, pump through cast
-   ::radix::application* pApp = &System;
+   ::radix::application* pApp = dynamic_cast < ::radix::application * > (get_app());
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
+
+   command_target_interface * pcommandtargetinterface= dynamic_cast < command_target_interface * > (Application.get_keyboard_focus());
+
+   if(pcommandtargetinterface != NULL)
+   {
+      if(pcommandtargetinterface->_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+   }
 
    return FALSE;
 }
@@ -976,7 +1003,7 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
    BOOL bStayActive =
       (pTopLevel == pActive ||
       (pActive && pTopLevel == dynamic_cast < frame_window * > (pActive->GetTopLevelFrame()) &&
-      (pActive == pTopLevel || 
+      (pActive == pTopLevel ||
          (pActive && pActive->SendMessage(WM_FLOATSTATUS, FS_SYNCACTIVE) != 0))));
    pTopLevel->m_nFlags &= ~WF_STAYACTIVE;
    if (bStayActive)
@@ -1067,7 +1094,11 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
    {
       char szFileName[_MAX_PATH];
       ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
-      pApp->open_document_file(szFileName);
+
+      ::ca::create_context_sp createcontext(get_app());
+      createcontext->m_spCommandLine->m_varFile = szFileName;
+
+      pApp->open_document_file(createcontext);
    }
    ::DragFinish(hDropInfo);
 }
@@ -1104,7 +1135,7 @@ void frame_window::OnEndSession(BOOL bEnding)
 LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 {
    ::radix::application* pApp = &System;
-   if (pApp != NULL && 
+   if (pApp != NULL &&
       LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
       (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
       (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
@@ -1147,7 +1178,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
       GlobalUnlock(hData);
       pe->Delete();
    }
-   
+
 
    // acknowledge now - before attempting to execute
    ::PostMessage((HWND)wParam, WM_DDE_ACK, (WPARAM)_get_handle(),
@@ -1393,7 +1424,7 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          if (m_nWindow > 0)
          {
             char szText[32];
-            
+
             // :%d will produce a maximum of 11 TCHARs
             _stprintf_s(szText, _countof(szText), ":%d", m_nWindow);
             WindowText += szText;
@@ -1415,7 +1446,7 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          if (m_nWindow > 0)
          {
             char szText[32];
-            
+
             // :%d will produce a maximum of 11 TCHARs
             _stprintf_s(szText, _countof(szText), ":%d", m_nWindow);
             WindowText += szText;
@@ -1742,6 +1773,7 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
    {
       if(pbase->m_wparam == SC_RESTORE)
       {
+         m_eappearance = appearance_normal;
          InitialFramePosition(true);
          pbase->m_bRet = true;
          pbase->set_lresult(0);

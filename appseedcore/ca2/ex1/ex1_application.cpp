@@ -16,7 +16,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    void application::Ex1OnFactoryExchange()
    {
    #ifdef WIN32
-      HMODULE hmodule = ::LoadLibraryA("win.dll");
+      HMODULE hmodule = ::LoadLibraryA("os.dll");
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
    #else
@@ -25,9 +25,9 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
-   void application::on_request(var & varFile, var & varQuery)
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
-      ::radix::application::on_request(varFile, varQuery);
+      ::radix::application::on_request(pcreatecontext);
    }
 
 

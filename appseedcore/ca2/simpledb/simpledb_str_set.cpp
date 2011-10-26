@@ -2,6 +2,7 @@
 #include "db_str_set.h"
 
 db_str_set::db_str_set(db_server * pserver) : 
+   ca(pserver->get_app()),
    db_set(pserver, "stringtable")
 {
    //::simpledb::base * pdb = db()->m_pbase;
@@ -48,7 +49,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pdataserver == NULL)
       return false;
 
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strKey;
    strKey = lpKey;
@@ -60,7 +61,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       strKey);
 
    
-   slDatabase.Lock();
+   slDatabase.lock();
    try
    {
       m_pdataset->query(strSql);
@@ -82,7 +83,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 {
    if(db() == NULL)
       return false;
-   CSingleLock slDatabase(db()->GetImplCriticalSection());
+   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strKey;
    strKey = lpKey;
@@ -94,7 +95,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    ::sqlite::base * pdb   = db()->GetImplDatabase();
    string strSql;
    string str;
-   slDatabase.Lock();
+   slDatabase.lock();
    if(load(lpKey, str))
    {
       strSql.Format(

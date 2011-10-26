@@ -9,8 +9,8 @@ namespace audio_decode
    public:
       decoder_plugin_set_ex1(::ca::application * papp);
 
-      decoder * GetNewDecoder(const char * lpcszFileName, ex1::file * pfile = NULL, bool bSeekable = true);
-      decoder * GetNewDecoder(const char * lpcszFileName, ex1::file * pfile, const char * pszModule, bool bSeekable = true);
+      decoder * GetNewDecoder(const char * lpcszFileName, ex1::file * pfile = NULL, bool bSeekable = true, int iReadBlockSize = -1);
+      decoder * GetNewDecoder(const char * lpcszFileName, ex1::file * pfile, const char * pszModule, bool bSeekable = true, int iReadBlockSize = -1);
 
    public:
       virtual ~decoder_plugin_set_ex1(void);

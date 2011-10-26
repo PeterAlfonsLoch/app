@@ -10,8 +10,8 @@ public:
 
    POSITION find_first(const TYPE &t, POSITION pos = NULL, POSITION posLast = NULL) const;
    POSITION find_last(const TYPE &t, POSITION pos = NULL, POSITION posLast = NULL) const;
-   count get_count() const;
-   count get_count(const TYPE & t, POSITION start = NULL, POSITION last = NULL, count countMax = -1) const;
+   countget_count() const;
+   countget_count(const TYPE & t, POSITION start = NULL, POSITION last = NULL, count countMax = -1) const;
    bool contains(const TYPE & t, POSITION posStart = NULL, POSITION posLast = NULL, count countMin = 1, count countMax = -1) const;
    bool rcontains(const TYPE & t, POSITION posStart = NULL, POSITION posLast = NULL, count countMin = 1, count countMax = -1) const;
    bool remove_first(const TYPE & t);
@@ -102,14 +102,14 @@ find_last(const TYPE & t, POSITION pos, POSITION posLast) const
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 inline count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-get_count() const
+this->get_count() const
 {
    return LIST_TYPE::get_count();
 }
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-get_count(const TYPE & t, POSITION find, POSITION last, count countMax) const
+this->get_count(const TYPE & t, POSITION find, POSITION last, count countMax) const
 {
    count count = 0;
    while((countMax >= 0 && count <= countMax)

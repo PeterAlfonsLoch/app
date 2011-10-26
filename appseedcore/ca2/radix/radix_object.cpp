@@ -21,9 +21,9 @@ namespace radix
    { 
       try
       {
-         if(::icube::get_heap_itema() != NULL)
+         if(::ca::get_thread_state() != NULL)
          {
-            ::icube::get_heap_itema()->set_heap_alloc(this);
+            ::ca::get_thread_state()->m_heapitema.set_heap_alloc(this);
          }
       }
       catch(...)
@@ -44,9 +44,9 @@ namespace radix
    {
       try
       {
-         if(::icube::get_heap_itema() != NULL)
+         if(::ca::get_thread_state() != NULL)
          {
-            ::icube::get_heap_itema()->set_heap_alloc(this);
+            ::ca::get_thread_state()->m_heapitema.set_heap_alloc(this);
          }
       }
       catch(...)
@@ -109,25 +109,53 @@ namespace radix
    }
 
 
-   var & object::oprop(id id)
+   gen::property & object::oprop(const char * psz)
    {
-      return System.oprop(this, id);
+      return propset()[psz];
    }
 
-   var & object::oprop(id id) const 
+   gen::property & object::oprop(const char * psz) const 
    {
-      return const_cast < var & > (System.oprop(const_cast < object * > (this), id));
+      return const_cast < object * > (this)->propset()[psz];
    }
 
+   gen::property_set & object::propset()
+   {
+      return System.propset(this);
+   }
 
 
 
 #undef new
    void * PASCAL object::operator new(size_t size, void * p)
    { 
+      UNREFERENCED_PARAMETER(size);
       return p; 
    }
 #define new DEBUG_NEW
+#ifndef _DEBUG
+// _DEBUG versions in afxmem.cpp
+void PASCAL object::operator delete(void * p)
+   { ::operator delete(p); }
+#if _MSC_VER >= 1200
+void PASCAL object::operator delete(void * p, void *)
+   { ::operator delete(p); }
+#endif
+void * PASCAL object::operator new(size_t nSize)
+   { return ::operator new(nSize); }
+// _DEBUG versions in objcore.cpp
+//void ::radix::object::AssertValid() const
+//   { /* no asserts in release builds */ }
+//void ::radix::object::Dump(dump_context&) const
+//   { /* no dumping in release builds */ }
+#endif //!_DEBUG
+
+
+   ::gen::command_thread & object::command_thread()
+   {
+      return Application.command();
+   }
+
 
 } //  namespace radix
 
@@ -173,3 +201,7 @@ void Afxassert_validObject(const ::radix::object * pOb, const char * lpszFileNam
    }*/
    pOb->assert_valid();
 }
+
+
+
+

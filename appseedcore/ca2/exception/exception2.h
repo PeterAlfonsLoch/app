@@ -39,7 +39,7 @@ namespace
       {}
       static string get(unsigned skip = 2)
       {
-         std::stringstream ss(std::ios::out);      
+         stringstream ss(std::ios::out);      
          sym_engine::stack_trace(ss, skip);         
          return ss.str();      
       }

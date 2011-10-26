@@ -2,7 +2,6 @@
 
 class ::userbase::single_document_template;
 class view;
-class create_context;
 
 namespace nature
 {
@@ -25,10 +24,10 @@ namespace nature
       using ::userbase::tab_view::on_show_view;
 #endif
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual void on_show_view();
 
-      void on_create_view(view_data * pviewdata);
+      void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual ~appearance_view();

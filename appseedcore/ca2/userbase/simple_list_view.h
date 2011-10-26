@@ -7,18 +7,15 @@ class CLASS_DECL_ca simple_list_view :
 public:
 
    simple_list_header_control    m_headerctrl;
-   simple_scroll_bar             m_scrollbarVert;
-   simple_scroll_bar             m_scrollbarHorz;
    
    simple_list_view(::ca::application * papp);   
    virtual ~simple_list_view();
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
    HWND GetHandle();
    ::user::interaction* OnDrawInterfaceGetWnd();
    virtual ::user::interaction* _GetWnd();
-   virtual void OnDrawInterfaceDraw(::ca::graphics * pdc);
 
    virtual void OnDraw(::ca::graphics * pgraphics);     
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

@@ -308,6 +308,6 @@ ID3_TagImpl & ID3_TagImpl::operator=( const ID3_Tag &rTag )
 
 size_t ID3_GetDataSize(const ID3_TagImpl& tag)
 {
-  return tag.GetFileSize() - tag.GetPrependedBytes() - tag.GetAppendedBytes();
+  return (size_t) (tag.GetFileSize() - tag.GetPrependedBytes() - tag.GetAppendedBytes());
 }
 

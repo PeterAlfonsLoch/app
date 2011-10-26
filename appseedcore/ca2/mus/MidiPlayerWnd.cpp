@@ -1,25 +1,25 @@
 #include "StdAfx.h"
 
-MidiPlayerWnd::MidiPlayerWnd(::ca::application * papp) :
+midi_player_window::midi_player_window(::ca::application * papp) :
    ca(papp)
 {
    m_pcallback = NULL;
 }
 
-MidiPlayerWnd::~MidiPlayerWnd()
+midi_player_window::~midi_player_window()
 {
 }
 
-void MidiPlayerWnd::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void midi_player_window::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   ::user::interaction::_001InstallMessageHandling(pinterface);
-   IGUI_WIN_MSG_LINK(MMSG_DONE                        , pinterface, this, &MidiPlayerWnd::_001OnMmsgDone);
-   IGUI_WIN_MSG_LINK(MidiPlayer::MessageNotifyEvent   , pinterface, this, &MidiPlayerWnd::_001OnNotifyEvent);
-   IGUI_WIN_MSG_LINK(WM_USER                          , pinterface, this, &MidiPlayerWnd::_001OnUserMessage);
-   IGUI_WIN_MSG_LINK(WM_APP + 3388                    , pinterface, this, &MidiPlayerWnd::_001OnApp3388Message);
+   ::user::interaction::install_message_handling(pinterface);
+   IGUI_WIN_MSG_LINK(MMSG_DONE                        , pinterface, this, &midi_player_window::_001OnMmsgDone);
+   IGUI_WIN_MSG_LINK(midi_player::MessageNotifyEvent   , pinterface, this, &midi_player_window::_001OnNotifyEvent);
+   IGUI_WIN_MSG_LINK(WM_USER                          , pinterface, this, &midi_player_window::_001OnUserMessage);
+   IGUI_WIN_MSG_LINK(WM_APP + 3388                    , pinterface, this, &midi_player_window::_001OnApp3388Message);
 }
 
-void MidiPlayerWnd::_001OnMmsgDone(gen::signal_object * pobj)
+void midi_player_window::_001OnMmsgDone(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    if(GetCallback() != NULL)
@@ -37,7 +37,7 @@ void MidiPlayerWnd::_001OnMmsgDone(gen::signal_object * pobj)
    }
 }
 
-void MidiPlayerWnd::_001OnNotifyEvent(gen::signal_object * pobj)
+void midi_player_window::_001OnNotifyEvent(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    ::mus::midi::player::NotifyEvent * pdata = (::mus::midi::player::NotifyEvent *) pbase->m_lparam;
@@ -55,27 +55,27 @@ void MidiPlayerWnd::_001OnNotifyEvent(gen::signal_object * pobj)
 }
 
 
-MidiPlayerCallback * MidiPlayerWnd::GetCallback()
+midi_player_callback * midi_player_window::GetCallback()
 {
    return m_pcallback;
 }
 
-void MidiPlayerWnd::SetCallback(MidiPlayerCallback *pcallback)
+void midi_player_window::SetCallback(midi_player_callback *pcallback)
 {
    m_pcallback = pcallback;
 }
 
 
-bool MidiPlayerWnd::create()
+bool midi_player_window::create()
 {
-   if(!create_message_window("ca2::music::::mus::midi::MidiPlayerWnd"))
+   if(!create_message_window("ca2::music::::mus::midi::midi_player_window"))
    {
       return false;
    }
    return true;
 }
 
-void MidiPlayerWnd::_001OnUserMessage(gen::signal_object * pobj)
+void midi_player_window::_001OnUserMessage(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    switch(pbase->m_wparam)
@@ -94,7 +94,7 @@ void MidiPlayerWnd::_001OnUserMessage(gen::signal_object * pobj)
    pbase->set_lresult(0);
 }
 
-void MidiPlayerWnd::_001OnApp3388Message(gen::signal_object * pobj)
+void midi_player_window::_001OnApp3388Message(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    MSG msg;

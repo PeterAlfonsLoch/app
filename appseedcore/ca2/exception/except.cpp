@@ -123,17 +123,17 @@ BOOL simple_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
    return m_bLoaded;
 }
 
-void __declspec(noreturn) AfxThrowMemoryException()
+void DECLSPEC_NO_RETURN AfxThrowMemoryException()
 {
    throw memory_exception();
 }
 
-void __declspec(noreturn) AfxThrowNotSupportedException()
+void DECLSPEC_NO_RETURN AfxThrowNotSupportedException()
 {
    throw not_supported_exception();
 }
 
-void __declspec(noreturn) AfxThrowInvalidArgException()
+void DECLSPEC_NO_RETURN AfxThrowInvalidArgException()
 {
    throw invalid_argument_exception();
 }

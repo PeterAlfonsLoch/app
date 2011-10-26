@@ -1,48 +1,52 @@
 #include "StdAfx.h"
 
+
 namespace imedia
 {
 
+
    time::time() :
-      m_i(0)
+      c_number < int64_t >(0)
    {
    }
 
    time::time(int i) :
-      m_i(i)
+      c_number < int64_t >(static_cast < int64_t > (i))
    {
    }
 
    time::time(unsigned int ui) :
-      m_i((int) ui)
+      c_number < int64_t >(static_cast < int64_t > (ui))
    {
    }
 
    time::time(unsigned long ul) :
-      m_i((int) ul)
+      c_number < int64_t >(static_cast < int64_t > (ul))
    {
    }
 
-#ifdef _AMD64_
-   time::time(LONG_PTR l) :
-      m_i((int) l)
+   time::time(int64_t i) :
+      c_number < int64_t >(i)
    {
    }
-#endif
 
+   time::time(uint64_t ui) :
+      c_number < int64_t >(static_cast < int64_t > (ui))
+   {
+   }
 
    time::time(double d) :
-      m_i((int) d)
+      c_number < int64_t >((int) d)
    {
    }
 
    // return milliseconds
-   time::operator int()
+   /*time::operator int64_t()
    {
       return m_i;
    }
 
-   time::operator int() const
+   time::operator int64_t() const
    {
       return m_i;
    }
@@ -67,18 +71,18 @@ namespace imedia
    int time::Compare(const time & t1, const time & t2)
    {
       return (int)(t2 - t1);
-   }
+   }*/
 
 
 } // namespace imedia
 
 
-CLASS_DECL_ca ex1::input_stream &  operator >>(ex1::input_stream & istream, ::imedia::time & t)
+CLASS_DECL_ca ex1::byte_input_stream &  operator >>(ex1::byte_input_stream & istream, ::imedia::time & t)
 {
-   return istream >> t.m_i;
+   return istream >> t.m_number;
 }
 
-CLASS_DECL_ca ex1::output_stream &  operator <<(ex1::output_stream & ostream, const ::imedia::time & t)
+CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & ostream, const ::imedia::time & t)
 {
-   return ostream << t.m_i;
+   return ostream << t.m_number;
 }

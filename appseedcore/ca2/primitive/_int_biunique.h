@@ -48,7 +48,7 @@ public:
    T add_b_in_first_free_a(T b);
    T add_b_in_first_free_a_mod_w(T b, T w, T mod);
    T add_unique(T b);
-   T get_size() const;
+   T this->get_size() const;
 
    void copy_data(const biunique & ia);
 
@@ -174,13 +174,13 @@ void biunique < T, T_to_T > ::set(T a, T b)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_max_a() const
 {
-   return m_iMaxA;   
+   return m_iMaxA;
 }
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_max_b() const
 {
-   return m_iMaxB;   
+   return m_iMaxB;
 }
 
 

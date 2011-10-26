@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\hotplugin">
+      <UniqueIdentifier>{9d8bb5d1-8473-4205-8d1b-cc3fc13881a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hotplugin">
+      <UniqueIdentifier>{2c2e6da8-9ea3-4fe5-9edc-6f1255f2efb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\C Source Files">
+      <UniqueIdentifier>{c16d98b4-da20-4734-888b-e00d251b991d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\C Header Files">
+      <UniqueIdentifier>{8ede97ef-076e-466c-b7e2-5ae91573513a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windows">
+      <UniqueIdentifier>{a13a8bda-ed40-417d-bbf6-cbf59c3a81cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\spa">
+      <UniqueIdentifier>{6bf137f8-a742-466c-bf79-11663e2ace1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\spa">
+      <UniqueIdentifier>{50051563-f9fc-42ae-8ed5-686f5775ffd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bspatch">
+      <UniqueIdentifier>{254aa1d9-6362-42f9-af93-f43b19cc8e40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bspatch">
+      <UniqueIdentifier>{0c59ef3d-595c-4dfa-bd9a-848d8b417db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\spa\windows">
+      <UniqueIdentifier>{e120fc57-bfcd-4599-b6ab-0aed95ad0253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\spa\windows">
+      <UniqueIdentifier>{265ce0d3-b4a9-48b5-b486-03e4aece3a30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows">
+      <UniqueIdentifier>{ad978b40-9de8-4303-900d-8ddbb7990312}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="radix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="count.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hotplugin\hotplugin.h">
+      <Filter>Header Files\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ca_seed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hotplugin\hotplugin_host.h">
+      <Filter>Header Files\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="hotplugin\hotplugin_plugin.h">
+      <Filter>Header Files\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c_natural.h">
+      <Filter>Header Files\C Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="natural.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c_types.h">
+      <Filter>Header Files\C Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu_architecture.h">
+      <Filter>Header Files\C Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_mutex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mutex_lock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_critical_section.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gdi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xmlite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wstringtovss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vsstringtow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="verisimple_wstring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="verisimple_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="template.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_obj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="registry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linux.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keep_true.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="index.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="heap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="conv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_machine_event.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_machine_event_data.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ca2\compress\bsdiff\bsdiff.h">
+      <Filter>Header Files\bspatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ca2\compress\bsdiff\bzlib.h">
+      <Filter>Header Files\bspatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ca2\compress\bsdiff\bzlib_private.h">
+      <Filter>Header Files\bspatch</Filter>
+    </ClInclude>
+    <ClInclude Include="_libct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_atol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_boot.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_ca2_install_canvas.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_command_start.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_cube_run.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_focus.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_http.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_install_ca2.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_installer.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_plugin.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_small_bell.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_spa.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_starter_start.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\spa_trace.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="str.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="std_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="spa\resource.h">
+      <Filter>Header Files\spa</Filter>
+    </ClInclude>
+    <ClInclude Include="printf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sprintf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_http.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_process.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_registry.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ca_c.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu_architecture.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mutex_lock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_critical_section.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gdi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xmlite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wstringtovss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vsstringtow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="verisimple_wstring.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="verisimple_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="template.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strdup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="heap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dir2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dir.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="conv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file_spa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dll_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_machine_event.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_machine_event_data.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="_std_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_printf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_trace.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_boot.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_bz.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_cube_run.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_focus.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_http.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_install_ca2.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_installer.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_spa.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="_atol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_starter_start.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_small_bell.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="_mem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_initterm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_crt0dll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_plugin.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\blocksort.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\bsdiff.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\bspatch.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\bzlib.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\compress.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\crctable.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\decompress.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\huffman.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ca2\compress\bsdiff\randtable.cpp">
+      <Filter>Source Files\bspatch</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_main.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="str.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sprintf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_installer_square.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_canvas.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_window.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="strw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\windows\spa_windows_boot.cpp">
+      <Filter>Source Files\spa\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\windows\spa_windows_service.cpp">
+      <Filter>Source Files\spa\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\windows\spa_windows_win.cpp">
+      <Filter>Source Files\spa\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_http.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_launcher.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_library.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_lock.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_message_loop.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_process.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_registry.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_small_ipc_channel.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="c.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="c64.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

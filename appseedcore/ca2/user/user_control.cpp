@@ -12,15 +12,14 @@ namespace user
 
    control::descriptor::~descriptor()
    {
-      if(m_bCreated)
+      if(m_bCreated || m_bSubclassed)
       {
-         gen::del(m_pcontrol);
-      }
-      else if(m_bSubclassed)
-      {
+         m_pcontrol->DestroyWindow();
          gen::del(m_pcontrol);
       }
    }
+
+
 
    void control::descriptor::clear()
    {
@@ -118,9 +117,9 @@ namespace user
 
    control * control::descriptor_set::get_control_by_id(id id)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         class descriptor & descriptor = element_at(i);
+         class descriptor & descriptor = this->element_at(i);
          if(descriptor.m_id == id)
          {
             return descriptor.m_pcontrol;
@@ -134,9 +133,9 @@ namespace user
       control * pcontrol = dynamic_cast < control * > (puie);
       if(pcontrol == NULL)
          return NULL;
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         class descriptor & descriptor = element_at(i);
+         class descriptor & descriptor = this->element_at(i);
          if(descriptor.m_pcontrol == pcontrol)
          {
             return &descriptor;
@@ -147,9 +146,9 @@ namespace user
 
    class control::descriptor * control::descriptor_set::get_by_sub_item(int iSubItem)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         class descriptor & descriptor = element_at(i);
+         class descriptor & descriptor = this->element_at(i);
          if(descriptor.m_iSubItem == iSubItem)
          {
             return &descriptor;
@@ -164,20 +163,18 @@ namespace user
 
    }
 
-
-
-
-   void control::_003OnCustomDraw(::ca::graphics *pdc, LPCRECT lpcrectClient, bool bItemHover, bool bSubItemHover, bool bFocus)
+   void control::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::user::draw_context * pdrawcontextOld = pdc->m_pdrawcontext;
-      pdc->m_pdrawcontext = new ::user::draw_context();
-      pdc->draw_context()->m_rectClient = *lpcrectClient;
-      pdc->draw_context()->m_bItemHover = bItemHover;
-      pdc->draw_context()->m_bSubItemHover = bSubItemHover;
-      pdc->draw_context()->m_bFocus = bFocus;
+      ::view::install_message_handling(pdispatch);
+      IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
+   }
+
+
+   void control::_003OnCustomDraw(::ca::graphics *pdc, ::user::draw_context * pdrawcontext)
+   {
+      pdc->chain(pdrawcontext);
       _001OnDraw(pdc);
-      delete pdc->m_pdrawcontext;
-      pdc->m_pdrawcontext = pdrawcontextOld;
+      pdc->unchain(pdrawcontext);
    }
 
    bool control::_003IsCustomMessage()
@@ -186,30 +183,23 @@ namespace user
    }
 
 
-   void control::_003CallCustomDraw(
-      ::ca::graphics *pdc, 
-      LPCRECT lpcrectClient,
-      bool bItemHover, 
-      bool bSubItemHover, 
-      bool bFocus)
+   void control::_003CallCustomDraw(::ca::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
-      _003OnCustomDraw(pdc, lpcrectClient, bItemHover, bSubItemHover, bFocus);
+      _003OnCustomDraw(pdc, pdrawcontext);
    }
 
    bool control::_003CallCustomWindowProc(::user::window_interface * pwndi, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
       m_pwndiCustomWindowProc = pwndi;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      return _003CustomWindowProc(message, wparam, lparam, lresult);
+      user::win::message::base base(get_app(), (HWND) pwndi->get_os_data(), message, wparam, lparam, lresult);
+      _003CustomWindowProc(&base);
+      return base.m_bRet;
    }
 
-   bool control::_003CustomWindowProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   void control::_003CustomWindowProc(gen::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wparam);
-      UNREFERENCED_PARAMETER(lparam);
-      UNREFERENCED_PARAMETER(lresult);
-      return false;
+      UNREFERENCED_PARAMETER(pobj);
    }
 
    bool control::operator == (const class descriptor & descriptor) const
@@ -230,7 +220,7 @@ namespace user
       switch(m_etype)
       {
       case type_edit:
-      //         m_typeinfo = &typeid(CSimpleFormListEdit);
+      //         m_typeinfo = ::ca::get_type_info < CSimpleFormListEdit > ();
          break;
       case type_combo_box:
          {
@@ -703,8 +693,10 @@ namespace user
 
       class point ptCursor;
       System.get_cursor_pos(&ptCursor);
-      
-      int iHover = hit_test(ptCursor);
+
+      e_element eelement;
+
+      int iHover = hit_test(ptCursor, eelement);
       if(iHover != -1)
       {
          if(m_iHover == -1 || System.get_capture_uie() != pwnd)
@@ -724,17 +716,36 @@ namespace user
          }
       }
    }
+
+
+   void control::_001OnMouseMove(gen::signal_object * pobj)
+   {
+      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+
+      m_iHover = hit_test(pmouse->m_pt, m_eelementHover);
+
+   }
+
+
+
+
    // the value -1 indicates outside the control,
-   // other values may be control specific and are client hits 
-   int control::hit_test(point ptScreen)
+   // other values may be control specific and are client hits
+   int control::hit_test(point ptScreen, e_element & eelement)
    {
       ::user::interaction * pwnd = ControlExGetWnd();
       rect rectWindow;
       pwnd->GetWindowRect(rectWindow);
       if(rectWindow.contains(ptScreen))
+      {
+         eelement = element_client;
          return 0;
+      }
       else
+      {
+         eelement = element_none;
          return -1;
+      }
    }
 
 
@@ -748,5 +759,7 @@ namespace user
       m_cmdui(NULL)
    {
    }
+
+
 
 } // namespace ex1

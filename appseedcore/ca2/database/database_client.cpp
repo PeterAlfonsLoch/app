@@ -57,22 +57,22 @@ namespace database
 
    bool client::data_set(class id id, bool b, update_hint * phint)
    {
-      return data_set(id, ::ca::system::idEmpty, b, phint);
+      return data_set(id, ::radix::system::idEmpty, b, phint);
    }
 
    bool client::data_set(class id id, const char * lpcsz, update_hint * phint)
    {
-      return data_set(id, ::ca::system::idEmpty, lpcsz, phint);
+      return data_set(id, ::radix::system::idEmpty, lpcsz, phint);
    }
 
    bool client::data_get(class id id, bool & b)
    {
-      return data_get(id, ::ca::system::idEmpty, b);
+      return data_get(id, ::radix::system::idEmpty, b);
    }
 
    bool client::data_get(class id id, string & str)
    {
-      return data_get(id, ::ca::system::idEmpty, str);
+      return data_get(id, ::radix::system::idEmpty, str);
    }
 
    bool client::data_set(class id id, class id idIndex, bool b, update_hint * phint)
@@ -92,9 +92,9 @@ namespace database
 
 
    bool client::data_set(
-      class id id, 
-      class id idIndex, 
-      var & var, 
+      class id id,
+      class id idIndex,
+      var & var,
       update_hint * puh)
    {
       if(m_pdataserver != NULL)
@@ -131,31 +131,30 @@ namespace database
 
    bool client::data_set(class id id, int i, update_hint * puh)
    {
-      return data_set(id, ::ca::system::idEmpty, i, puh);
+      return data_set(id, ::radix::system::idEmpty, i, puh);
    }
 
+   bool client::data_set(class id id, int64_t i, update_hint * puh)
+   {
+      return data_set(id, ::radix::system::idEmpty, i, puh);
+   }
 
    bool client::data_get(class id id, int & i)
    {
-      return data_get(id, ::ca::system::idEmpty, i);
+      return data_get(id, ::radix::system::idEmpty, i);
    }
 
+   bool client::data_get(class id id, int64_t & i)
+   {
+      return data_get(id, ::radix::system::idEmpty, i);
+   }
 
-   bool client::data_set(
-      class id id, 
-      class id idIndex, 
-      const char * lpsz,
-      update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, const char * lpsz, update_hint * puh)
    {
       return data_set(m_dataid, id, idIndex, lpsz, puh);
    }
 
-   bool client::data_set(
-      class id dataid,
-      class id id, 
-      class id idIndex, 
-      const char * lpsz,
-      update_hint * puh)
+   bool client::data_set(class id dataid, class id id, class id idIndex, const char * lpsz, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -166,11 +165,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(
-      class id id, 
-      class id idIndex, 
-      const wchar_t * lpsz,
-      update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, const wchar_t * lpsz, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -191,7 +186,7 @@ namespace database
          selection_item & item = selection.get_item(iItem);
          if(!data_set(
             item.m_id,
-            item.m_idIndex, 
+            item.m_idIndex,
             lpsz,
             puh))
          {
@@ -202,10 +197,7 @@ namespace database
       return bOk;
    }
 
-   bool client::data_set(
-      selection & selection, 
-      var & var, 
-      update_hint * puh)
+   bool client::data_set(selection & selection, var & var, update_hint * puh)
    {
       int iCount = selection.get_item_count();
       bool bOk = true;
@@ -225,11 +217,16 @@ namespace database
       return bOk;
    }
 
-   bool client::data_set(
-      class id id, 
-      class id idIndex, 
-      ex1::serializable & obj,
-      update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, ex1::readable & readable, update_hint * puh)
+   {
+      if(m_pdataserver != NULL)
+      {
+         return m_pdataserver->data_server_save(m_dataid, id, idIndex, readable, puh);
+      }
+      return false;
+   }
+
+   bool client::data_set(class id id, class id idIndex, ex1::byte_serializable & obj, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -240,11 +237,27 @@ namespace database
       return false;
    }
 
-   bool client::data_set(
-      class id id, 
-      class id idIndex, 
-      ex1::input_stream & istream,
-      update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, ex1::byte_input_stream & istream, update_hint * puh)
+   {
+      if(m_pdataserver != NULL)
+      {
+         return m_pdataserver->data_server_save(m_dataid, id, idIndex, istream, puh);
+      }
+      return false;
+   }
+
+   bool client::data_set(class id id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh)
+   {
+      if(m_pdataserver != NULL)
+      {
+         if(!m_pdataserver->data_server_save(m_dataid, id, idIndex, obj, puh))
+            return false;
+         return true;
+      }
+      return false;
+   }
+
+   bool client::data_set(class id id, class id idIndex, ex1::plain_text_input_stream & istream, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -263,10 +276,7 @@ namespace database
    }
 
 
-   bool client::data_get(
-      class id id, 
-      class id idIndex, 
-      var & var)
+   bool client::data_get(class id id, class id idIndex, var & var)
    {
       if(m_pdataserver != NULL)
       {
@@ -325,7 +335,18 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ex1::serializable & obj)
+   bool client::data_get(class id id, class id idIndex, ex1::writable & writable)
+   {
+      if(m_pdataserver != NULL)
+      {
+         if(!m_pdataserver->data_server_load(m_dataid, id, idIndex, writable))
+            return false;
+         return true;
+      }
+      return false;
+   }
+
+   bool client::data_get(class id id, class id idIndex, ex1::byte_serializable & obj)
    {
       if(m_pdataserver != NULL)
       {
@@ -336,10 +357,29 @@ namespace database
       return false;
    }
 
-   bool client::data_get(
-      class id id,
-      class id idIndex,
-      ex1::output_stream & ostream)
+   bool client::data_get(class id id, class id idIndex, ex1::byte_output_stream & ostream)
+   {
+      if(m_pdataserver != NULL)
+      {
+         if(!m_pdataserver->data_server_load(m_dataid, id, idIndex, ostream))
+            return false;
+         return true;
+      }
+      return false;
+   }
+
+   bool client::data_get(class id id, class id idIndex, ex1::plain_text_serializable & obj)
+   {
+      if(m_pdataserver != NULL)
+      {
+         if(!m_pdataserver->data_server_load(m_dataid, id, idIndex, obj))
+            return false;
+         return true;
+      }
+      return false;
+   }
+
+   bool client::data_get(class id id, class id idIndex, ex1::plain_text_output_stream & ostream)
    {
       if(m_pdataserver != NULL)
       {
@@ -369,9 +409,9 @@ namespace database
 
    client_array::~client_array()
    {
-      for(int i = 0; i < get_count(); i++)
+      for(int i = 0; i < this->get_count(); i++)
       {
-         element_at(i)->m_pdataserver = NULL;
+         this->element_at(i)->m_pdataserver = NULL;
       }
    }
 
@@ -385,12 +425,12 @@ namespace database
 
    int client_array::GetClientCount()
    {
-      return get_size();
+      return this->get_size();
    }
 
    client * client_array::ClientAt(int iClient)
    {
-      return element_at(iClient);
+      return this->element_at(iClient);
    }
 
    void client_array::RemoveClient(client *pclient)

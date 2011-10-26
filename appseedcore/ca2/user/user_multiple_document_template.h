@@ -13,7 +13,7 @@ public:
    virtual void remove_document(document * pDoc);
    virtual count get_document_count() const;
    virtual document * get_document(index index) const;
-   virtual void request(var & varFile, var & varQuery);
+   virtual void request(::ca::create_context * pcreatecontext);
    virtual void set_default_title(document * pdocument);
 
 #ifdef _DEBUG

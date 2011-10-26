@@ -17,8 +17,8 @@ namespace html
             bf.SourceConstantAlpha = 255;
             bf.BlendOp = AC_SRC_OVER;
             bf.AlphaFormat = AC_SRC_ALPHA;
-            ::ca::lock lockImage(&pdata->m_imagea[m_iImage], false);
-            if(lockImage.Lock(0))
+            single_lock lockImage(&pdata->m_imagea[m_iImage]);
+            if(lockImage.lock(duration::zero()))
             {
                pdata->m_pdc->alpha_blend(
                   get_x(), get_y(), get_cx(), get_cy(),
@@ -35,7 +35,7 @@ namespace html
          if(pelemental->m_pbase->get_type() == html::base::type_tag)
          {
             m_iImage = pdata->get_image_index(pelemental->m_propertyset["src"]);
-            ::ca::lock lockImage(pdata->m_papp->m_psystem->get_twf());
+            synch_lock lockImage(Sys(pdata->m_papp).get_twf());
             m_cxMax = pdata->m_imagea[m_iImage].m_spdib->width();
             m_cxMin = pdata->m_imagea[m_iImage].m_spdib->height();
          }
@@ -45,9 +45,9 @@ namespace html
       {
          if(m_pelemental->m_pbase->get_type() == html::base::type_tag)
          {
-            ::ca::lock lockImage(&pdata->m_imagea[m_iImage], false);
+            single_lock lockImage(&pdata->m_imagea[m_iImage]);
 
-            if(lockImage.Lock(0))
+            if(lockImage.lock(duration::zero()))
             {
                pdata->m_layoutstate.m_cx = pdata->m_imagea[m_iImage].m_spdib->width();
                if(pdata->m_imagea[m_iImage].m_spdib->height() > pdata->m_layoutstate.m_cy)

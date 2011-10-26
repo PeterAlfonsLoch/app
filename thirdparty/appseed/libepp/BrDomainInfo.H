@@ -38,7 +38,7 @@ namespace libepp
    public:
 
       /// Constructor
-      BrDomainInfo(const ActionType type = BR_DOMAIN_INFO) : DomainInfo(type)
+      BrDomainInfo(::ca::application * papp, const ActionType type = BR_DOMAIN_INFO) : DomainInfo(papp, type)
       {
          if (type == BR_DOMAIN_INFO) {
             _command = pointer_object<BrDomainInfoCommand>(new BrDomainInfoCommand());

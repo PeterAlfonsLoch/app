@@ -92,7 +92,7 @@ namespace user
       if(pdescriptor->m_pcontrol != NULL)
       {
          ::ca::type_info ti = typeid(pdescriptor->m_pcontrol);
-         if(ti == typeid(::user::list))
+         if(ti == ::ca::get_type_info < ::user::list > ())
          {
             if(pdescriptor->m_etype == control::type_simple_list)
             {
@@ -101,7 +101,7 @@ namespace user
                plist->_001SetSingleColumnMode(false);
             }
          }
-         /*else if(ti == typeid(simple_static))
+         /*else if(ti == ::ca::get_type_info < simple_static > ())
          {
             simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
             pstatic->m_bTransparent = pcontrol->m_bTransparent;
@@ -253,7 +253,6 @@ namespace user
 
    bool form::_001SaveEdit(control * pcontrol)
    {
-      ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
          return false;
       ASSERT(pcontrol->descriptor().get_type() == control::type_edit
@@ -270,7 +269,7 @@ namespace user
          ptext->_001GetText(str);
       }
       else
-      {   
+      {
          pedit->_001GetText(str);
       }
 
@@ -379,9 +378,9 @@ namespace user
       base_sort_serializable_int_ptr_array ia;
       if(m_pdataserver->data_server_load(
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection,
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey, 
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex, 
-         dynamic_cast < ::ex1::serializable & > (ia)))
+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
+         dynamic_cast < ::ex1::byte_serializable & > (ia)))
       {
          check_box * pcheck = dynamic_cast < check_box * > (pcontrol);
          if(pcheck != NULL)
@@ -407,7 +406,7 @@ namespace user
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       int i;
-      if(data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, i))
+      if(data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
       {
    /* linux      simple_button * pbutton = (simple_button *) GetDlgItem(pcontrol->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -478,7 +477,7 @@ namespace user
                case var::type_integer:
                   {
                      string str;
-                     str.Format("%d", var.m_i); 
+                     str.Format("%d", var.m_i);
                      ptext->_001SetText(str);
                   }
                   break;
@@ -501,11 +500,11 @@ namespace user
 
       ::user::list * plist = dynamic_cast<::user::list *>(GetDlgItem(pcontrol->m_id));
 
-      if(typeid(plist->GetDataInterface()) == typeid(::user::simple_list_data))
+      if(typeid(plist->GetDataInterface()) == ::ca::get_type_info < ::user::simple_list_data > ())
       {
          ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
          stringa stra;
-         data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, stra);
+         data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, stra);
          ASSERT(plist != NULL);
          pdata->set_data(plist, stra);
       }
@@ -544,7 +543,7 @@ namespace user
          return false;
 
       int i;
-      if(!data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, i))
+      if(!data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
          return false;
 
       bData = (i != 0) ? 1 : 0;
@@ -560,7 +559,7 @@ namespace user
          return false;
 
       int i = bData ? 1 : 0;
-      data_set(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, i);
+      data_set(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i);
       return true;
 
    }
@@ -583,7 +582,7 @@ namespace user
       }
    }
 
-   void form::_001InstallMessageHandling( ::user::win::message::dispatch *pinterface)
+   void form::install_message_handling( ::user::win::message::dispatch *pinterface)
    {
    /*   InstallOnDrawInterface(pinterface);
       VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
@@ -595,9 +594,9 @@ namespace user
       VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
       VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      IGUI_WIN_MSG_LINK(::user::win::message::message_pos_create, pinterface, this, &form::_000OnPosCreate);
-      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
-      IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
+      IGUI_MSG_LINK(::user::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+//      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
+  //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
       // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
       IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
 
@@ -610,13 +609,12 @@ namespace user
    void form::_001GetSelection(
       ::database::id & id, ::database::selection &selection)
    {
-      selection.add_item(id, ::ca::system::idEmpty);
+      selection.add_item(id, ::radix::system::idEmpty);
    }
 
-   void form::_001OnCommand(gen::signal_object * pobj)
+   bool form::_001OnCommand(id id)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
-      pbase->m_bRet = OnCommand(pbase->m_wparam, pbase->m_lparam);
+      return scroll_view::_001OnCommand(id);
    }
 
 
@@ -634,7 +632,7 @@ namespace user
    }
 
    bool form::_001Validate(
-      control * pcontrol, 
+      control * pcontrol,
       var & var)
    {
       UNREFERENCED_PARAMETER(pcontrol);
@@ -728,7 +726,7 @@ namespace user
    {
       SCAST_PTR(::user::win::message::base, pbase, pobj)
       keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
-      
+
       _017OnAppLanguage();
 
       pbase->m_bRet = false;
@@ -791,7 +789,7 @@ namespace user
                {
                   //xxx pcontrol->m_pwnd->UnsubclassWindow();
                }
-   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(&typeid(::ca::window)));
+   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(::ca::get_type_info < ::ca::window > ()));
                if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol) != NULL)
                {
                   //window_id wndidTemp = GetDlgItem(pcontrol->m_id)->GetSafeHwnd();
@@ -804,7 +802,7 @@ namespace user
             if(descriptor.m_pcontrol != NULL)
             {
                ::ca::type_info ti = typeid(descriptor.m_pcontrol);
-               if(ti == typeid(::user::list))
+               if(ti == ::ca::get_type_info < ::user::list > ())
                {
                   if(descriptor.m_etype == control::type_simple_list)
                   {
@@ -813,7 +811,7 @@ namespace user
                      plist->_001SetSingleColumnMode(false);
                   }
                }
-   /*            else if(pcontrol->m_typeinfo->IsDerivedFrom(&typeid(simple_static)))
+   /*            else if(pcontrol->m_typeinfo->IsDerivedFrom(::ca::get_type_info < simple_static > ()))
                {
                   simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
                   pstatic->m_bTransparent = pcontrol->m_bTransparent;
@@ -874,7 +872,7 @@ namespace user
          user::keyboard_focus * pfocus = pevent->m_puie->keyboard_get_next_focusable();
          if(pfocus != NULL)
          {
-            System.set_keyboard_focus(pfocus);
+            Application.set_keyboard_focus(pfocus);
          }
       }
       else if(pevent->m_eevent == ::user::event_button_clicked)
@@ -908,7 +906,7 @@ namespace user
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-               dynamic_cast < ::ex1::serializable & > (ia));
+               dynamic_cast < ::ex1::byte_serializable & > (ia));
             check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie);
             if(pcheck->_001GetCheck() == check::checked)
             {
@@ -930,7 +928,7 @@ namespace user
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-               dynamic_cast < ::ex1::serializable & > (ia));
+               dynamic_cast < ::ex1::byte_serializable & > (ia));
          }
       }
       return false;
@@ -940,7 +938,7 @@ namespace user
    {
       if(m_bInitialized)
          return true;
-      _001InitializeFormPreData();   
+      _001InitializeFormPreData();
    /*   ::view * pview = dynamic_cast <::view *>(get_guie());
       if(pview != NULL)
       {
@@ -984,4 +982,13 @@ namespace user
       return false;
    }
 
+void form::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+{
+   UNREFERENCED_PARAMETER(varFile);
+   UNREFERENCED_PARAMETER(nFlags);
+   UNREFERENCED_PARAMETER(lpszTargetFrameName);
+   UNREFERENCED_PARAMETER(baPostedData);
+   UNREFERENCED_PARAMETER(lpszHeaders);
+   UNREFERENCED_PARAMETER(pbCancel);
+}
 } // namespace user

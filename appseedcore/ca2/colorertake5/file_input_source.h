@@ -16,9 +16,9 @@ public:
 
   const byte *openStream();
   void closeStream();
-  int get_length() const;
+  file_size get_length() const;
 protected:
-  ex1::input_stream & createRelative(string relPath);
+  ex1::byte_input_stream & createRelative(string relPath);
 
   string *baseLocation;
   byte *stream;

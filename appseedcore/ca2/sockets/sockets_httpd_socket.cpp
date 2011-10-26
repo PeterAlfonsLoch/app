@@ -6,7 +6,7 @@ Copyright (C) 2001-2007  Anders Hedstrom (grymse@alhem.net)
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -26,8 +26,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "StdAfx.h"
+#include <openssl/ssl.h>
 
-namespace sockets 
+
+namespace sockets
 {
 
    #define TMPSIZE 10000
@@ -78,16 +80,16 @@ namespace sockets
       else*/
       {
          primitive::memory mem;
-         System.base64().decode(str64, mem);
+         System.base64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
-         m_response.header("Content-length") = (__int64) mem.GetStorageSize();
+         m_response.header("Content-length") = (__int64) mem.get_size();
          m_response.header("Content-type") = type;
    //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
-         SendBuf((char *)mem.GetAllocation(), mem.GetStorageSize());
+         SendBuf((char *)mem.get_data(), mem.get_size());
       }
    }
 
@@ -104,7 +106,7 @@ namespace sockets
 
    /* 1997-12-16 09:50:40 */
 
-      if (dt.get_length() == 19) 
+      if (dt.get_length() == 19)
       {
          tp.tm_year = atoi(dt.Mid(0,4)) - 1900;
          i = atoi(dt.Mid(5,2)) - 1;
@@ -128,7 +130,7 @@ namespace sockets
           months[tp.tm_mon],
           tp.tm_year + 1900,
           tp.tm_hour,tp.tm_min,tp.tm_sec);
-      } 
+      }
       else
       {
          *s = 0;
@@ -178,6 +180,6 @@ namespace sockets
    }
 
 
-}
+} // namespace sockets
 
 

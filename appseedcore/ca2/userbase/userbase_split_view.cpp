@@ -15,9 +15,9 @@ namespace userbase
    {
    }
 
-   void split_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void split_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      view::_001InstallMessageHandling(pinterface);
+      view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_view::_001OnShowWindow);
    }

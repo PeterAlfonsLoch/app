@@ -16,8 +16,24 @@ namespace simpledb
 
       strMetaPath = System.dir().ca2("database/" + db, "meta.xml");
 
-      if(!m_spfileMeta->open(strMetaPath, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive))
-         return DB_ERROR;
+      try
+      {
+         if(!m_spfileMeta->open(strMetaPath, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive))
+            return DB_ERROR;
+      }
+      catch(...)
+      {
+         strMetaPath = System.dir().appdata("database/" + db, "meta.xml");
+         try
+         {
+            if(!m_spfileMeta->open(strMetaPath, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive))
+               return DB_ERROR;
+         }
+         catch(...)
+         {
+            return DB_ERROR;
+         }
+      }
 
       if(!m_nodeMeta.load(m_spfileMeta))
          return DB_ERROR;
@@ -43,10 +59,52 @@ namespace simpledb
       return new table(this, pszName);
    }
 
-   set * base::create_dataset()
+   ::simpledb::set * base::create_dataset() const
    {
-      return new ::simpledb::set();
+      return new ::simpledb::set(const_cast < simpledb::base * > (this));
    }
 
-      
+
+   class ::database::set * base::CreateDataset() const
+   {
+      return create_dataset();
+   }
+
+   int base::setErr(int err_code)
+   {
+      m_iErrorCode = err_code;
+      return m_iErrorCode;
+   }
+
+
+   long base::nextid(const char* sname)
+   {
+      UNREFERENCED_PARAMETER(sname);
+      if (!active)
+         return DB_UNEXPECTED_RESULT;
+      /*int id;
+      database::result_set res;
+      char sqlcmd[512];
+      sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table, sname);
+      if(last_err = sqlite3_exec((sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK)
+      {
+         return DB_UNEXPECTED_RESULT;
+      }
+      if (res.records.get_size() == 0)
+      {
+         id = 1;
+         sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table,id,sname);
+         if (last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+         return id;
+      }
+      else
+      {
+         id = res.records[0][0].get_integer()+1;
+         sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table,id,sname);
+         if (last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+         return id;
+      }*/
+      return DB_UNEXPECTED_RESULT;
+   }
+
 } // namespace simpledb

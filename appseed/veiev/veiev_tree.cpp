@@ -19,7 +19,7 @@ namespace veiev
    {
       m_pscrollbarHorz = &m_scrollbarHorz;
       m_pscrollbarVert = &m_scrollbarVert;
-      m_pdata = this;
+      ::ca::data_container::m_spdata = this;
 
    }
 
@@ -34,10 +34,10 @@ namespace veiev
    }
 
 
-   void tree::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void tree::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      veiev::tree_interface::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      veiev::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
    }
@@ -71,9 +71,10 @@ namespace veiev
 
       m_pitem = pitemParent;
 
-      for(int i = 0; i <  System.userset().get_size(); i++)
-      {
-         ::fontopus::user * pprofile = System.userset()[i];
+      //for(int i = 0; i <  ApplicationUser.m_s.userset().get_size(); i++)
+      //{
+        // ::fontopus::user * pprofile = System.userset()[i];
+          ::fontopus::user * pprofile = &ApplicationUser;
 
          tree_item * pitemAccount      = new veiev::tree_item;
          pitemAccount->m_strName       = pprofile->m_strLogin;
@@ -91,7 +92,7 @@ namespace veiev
             pitemBox->m_pprofile          = pprofile;
             insert_item(pitemBox, ex1::RelativeLastChild, pitem);
          }
-      }
+      //}
    }
 
    void tree::_001OnOpenItem(::ex1::tree_item * pitem)
@@ -100,10 +101,10 @@ namespace veiev
       application * papp = dynamic_cast < application * > (get_app());
       if(papp->m_pveievlist == NULL)
       {
-         create_context cc;
-         cc.m_pCurrentDoc = get_document();
-         cc.m_typeinfoNewView = typeid(right_view);
-         create_view(typeid(right_view), get_document(), GetParent(), 101);
+//         create_context cc;
+  //       cc.m_pCurrentDoc = get_document();
+    //     cc.m_typeinfoNewView = ::ca::get_type_info < right_view > ();
+         create_view(::ca::get_type_info < right_view > (), get_document(), GetParent(), 101);
       }
       if(papp->m_pveievlist == NULL)
          return;

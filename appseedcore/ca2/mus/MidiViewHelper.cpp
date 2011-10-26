@@ -1,19 +1,19 @@
 #include "StdAfx.h"
-#include "MidiViewHelper.h"
+#include "midi_view_helper.h"
+#include "midi_document_helper.h"
 
-#include "MidiDocHelper.h"
 
-MidiViewHelper::MidiViewHelper()
+midi_view_helper::midi_view_helper()
 {
 
 }
 
-MidiViewHelper::~MidiViewHelper()
+midi_view_helper::~midi_view_helper()
 {
 
 }
 
-MidiDocHelper * MidiViewHelper::HelperGetMidiDocHelper()
+MidiDocHelper * midi_view_helper::HelperGetMidiDocHelper()
 {
    ::view * pview = dynamic_cast<::view *>(this);
    ASSERT(pview);

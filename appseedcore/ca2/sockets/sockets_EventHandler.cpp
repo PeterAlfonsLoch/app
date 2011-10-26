@@ -8,7 +8,7 @@ Copyright (C) 2005,2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -34,7 +34,7 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::ca::application * papp, StdLog *p) : 
+   EventHandler::EventHandler(::ca::application * papp, StdLog *p) :
       ca(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
@@ -43,7 +43,7 @@ namespace sockets
 
    EventHandler::EventHandler(::ca::application * papp, mutex & m,StdLog *p) :
       ca(papp),
-      socket_handler(papp, m, p), 
+      socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)
    {
    }

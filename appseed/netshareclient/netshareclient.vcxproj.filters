@@ -117,7 +117,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="netshareclient.def">
+    <None Include="app_netshareclient.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

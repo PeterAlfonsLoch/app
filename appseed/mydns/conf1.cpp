@@ -19,6 +19,7 @@
 **************************************************************************************************/
 
 #include "StdAfx.h"
+#include <Ws2tcpip.h>
 
 /* Make this nonzero to enable debugging for this source file */
 #define	DEBUG_CONF	1
@@ -147,7 +148,7 @@ dump_config(void)
 				while ((cp = strchr(value, ',')))
 					*cp = CONF_FS_CHAR;
 			}
-			if (!(vbuf = strdup(value)))
+			if (!(vbuf = _strdup(value)))
 				Err("strdup");
 			for (cp = vbuf; (v = strsep(&cp, CONF_FS_STR));)
 				if ((len = strlen(c->name) + strlen(v)) > w)
@@ -215,7 +216,7 @@ dump_config(void)
 			char *cp, *vbuf, *v;
 			while ((cp = strchr(value, ',')))
 				*cp = CONF_FS_CHAR;
-			if (!(vbuf = strdup(value)))
+			if (!(vbuf = _strdup(value)))
 				Err("strdup");
 			for (cp = vbuf; (v = strsep(&cp, CONF_FS_STR));)
 			{
@@ -350,12 +351,12 @@ conf_set_recursive(void)
 			return;
 		}
 		recursive_sa.sin_family = AF_INET;
-		recursive_sa.sin_port = htons(port);
+		recursive_sa.sin_port = htons((u_short) port);
 #if DEBUG_ENABLED
 		Debug(_("recursive forwarding service through %s:%u"), ipaddr(AF_INET, &recursive_sa.sin_addr), port);
 #endif
 		forward_recursive = 1;
-		if (!(recursive_fwd_server = strdup(address)))
+		if (!(recursive_fwd_server = _strdup(address)))
 			recursive_fwd_server = (char *)  _("forwarder");
 	}
 }
@@ -370,8 +371,8 @@ void
 load_config(void)
 {
 	int n;
-	struct passwd *pwd = NULL;
-	struct group *grp = NULL;
+//	struct passwd *pwd = NULL;
+//	struct group *grp = NULL;
 
 	/* Load config */
 	conf_load(&Conf, opt_conf);

@@ -10,27 +10,56 @@ namespace netshareserver
       m_dibDiff(get_app()),
       m_dibFrame(get_app())
    { 
-      m_papp         = NULL;
       m_pframe       = NULL;
       m_bDrawCursor  = true;
       m_pbergedge    = NULL;
+      m_pevReady     = NULL;
    }
 
 
    ::bergedge::bergedge * session::get_bergedge()
    {
-      return m_papp->m_psystem->get_bergedge(m_iEdge);
+      return Sys(m_papp).get_bergedge(m_iEdge);
    }
 
 
    void session::initialize()
    {
+
+
       m_iFrameCount     = 256;
       m_iFrame          = 0;
+      m_pevReady        = new manual_reset_event();
 
-      m_iEdge = System.get_new_bergedge();
+      m_pevReady->ResetEvent();
+
+      ::ca::application_bias biasCreation;
+
+      biasCreation.m_puiParent                     = this;
+      biasCreation.m_pcallback                     = this;
+
+      m_iEdge = System.get_new_bergedge(&biasCreation);
 
       m_pbergedge = System.get_bergedge(m_iEdge);
+
+      m_pbergedge->m_bShowPlatform                 = true;
+      m_pbergedge->m_bSessionSynchronizedCursor    = false;
+      m_pbergedge->m_bSessionSynchronizedScreen    = false;
+
+
+      m_pbergedge->m_bShowPlatform = true;
+
+      ::ca::create_context_sp cc(m_pbergedge);
+
+      cc->m_bMakeVisible = true;
+      cc->m_puiParent = this;
+
+      m_pbergedge->create_bergedge(cc);
+
+
+      m_pframe = m_pbergedge->get_view()->GetTypedParent < ::bergedge::frame > ();
+      m_pbergedge->m_bSessionSynchronizedCursor  = false;
+      m_pbergedge->m_bSessionSynchronizedScreen  = false;
 
 /*      start_bergedge start;
 
@@ -52,17 +81,13 @@ namespace netshareserver
 
       ::DeleteObject(start.m_hEventReady);*/
 
-      m_pframe = dynamic_cast < bergedge::frame * > (get_bergedge()->get_document()->get_bergedge_view()->GetParentFrame());
+      //single_lock sl(m_pevReady, TRUE);
 
-      
-      ::ca::get_thread()->SetMainWnd(m_pframe);
-      m_pframe->m_bCustomFrame = false;
-      m_pframe->layout();
    }
 
    void session::take_screenshot()
    {
-      CSingleLock slSnaphost(&m_mutexSnapshot, TRUE);
+      single_lock slSnaphost(&m_mutexSnapshot, TRUE);
 
 
 
@@ -72,39 +97,38 @@ namespace netshareserver
       rect rectScreen;
       rectScreen = m_pbergedge->m_rectScreen;
 
-      rect rectDesk;
-      m_pbergedge->get_screen_rect(rectDesk);
 
 
-      m_dibScreen->create(rectScreen.width(), rectScreen.height());
 
-      ::ca::dib_sp dib(get_app());
+      //rect rectDesk;
+      //m_pbergedge->get_screen_rect(rectDesk);
+
+      //static int i = 0;
+
+
+      //m_dibScreen->create(rectScreen.width(), rectScreen.height());
+
+      //::ca::dib_sp dib(get_app());
       try
       {
          try
          {
-            m_dibScreen->create(rectScreen.size());
+            if(!m_dibScreen->create(rectScreen.size()))
+               return;
             m_dibUser->create(rectScreen.size());
+            m_dibUser->get_graphics()->SetViewportOrg(null_point());
             m_dibDiff->create(rectScreen.size());
-            dib->create(rectDesk.size());
-            if(rectDesk.area() > 0)
-            {
-               m_pframe->_000OnDraw(dib->get_graphics());
-            }
-            rect rectWindow;
-            m_pframe->GetWindowRect(rectWindow);
-            dib->get_graphics()->SetViewportOrg(null_point());
-            dib->get_graphics()->SelectClipRgn(NULL);
-            //dib->get_graphics()->FillSolidRect(300, 300, 100, 100, RGB(255, 0, 0));
+            m_dibScreen->get_graphics()->SetViewportOrg(null_point());
+            m_dibScreen->Fill(0, 0, 0, 0);
+            m_pframe->_001Print(m_dibScreen->get_graphics());
+
             if(m_bDrawCursor)
             {
                point ptCursor;
                m_pbergedge->get_cursor_pos(&ptCursor);
                ::visual::cursor * pcursor = m_pbergedge->get_cursor();
-               pcursor->to(dib->get_graphics(), ptCursor); 
-               //dib->get_graphics()->TextOut(ptCursor.x, ptCursor.y, "Exception");
+               pcursor->to(m_dibScreen->get_graphics(), ptCursor); 
             }
-            m_dibScreen->from(null_point(), dib->get_graphics(), rectWindow.top_left(), rectScreen.size());
          }
          catch(...)
          {
@@ -119,17 +143,17 @@ namespace netshareserver
 
    }
 
-   void session::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
-   {
+   //void session::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   //{
 
-      MSG * pmsg = new MSG;
+      /*MSG * pmsg = new MSG;
       pmsg->message = uiMessage;
       pmsg->wParam = wparam;
       pmsg->lParam = lparam;
       UINT message = WM_APP+1;
-      m_pframe->SendMessage(WM_APP + 1, 0, (LPARAM) pmsg);
+      m_pframe->SendMessage(WM_APP + 1, 0, (LPARAM) pmsg);*/
 
-   }
+   //}
 
    /*
    UINT AFX_CDECL session::ThreadProcStart(LPVOID lpv)
@@ -147,9 +171,9 @@ namespace netshareserver
       if(!papp->process_initialize())
          return 0;
       
-      papp->command_line().m_varQuery["show_platform"] = 1;
+      papp->command().m_varTopicQuery["show_platform"] = 1;
       
-     papp->command_line().m_varQuery["show_platform"] = 1;
+     papp->command().m_varTopicQuery["show_platform"] = 1;
 
       if(!papp->initialize_instance())
          return 0;
@@ -219,5 +243,45 @@ namespace netshareserver
       return iExitCode;
    }*/
 
+   BOOL session::IsWindowVisible()
+   {
+      return TRUE;
+   }
+
+   void session::on_application_bias_callback_signal(::radix::application_signal_object * papplicationsignal)
+   {
+      try
+      {
+         if(papplicationsignal != NULL)
+         {
+            if(papplicationsignal->m_esignal == ::ca::application_signal_start)
+            {
+               create_message_window("netshareserver::session");
+               dynamic_cast < ::ca::window * > (m_pimpl)->m_bOSNativeMouseMessagePosition = false;
+               m_pbergedge = dynamic_cast < bergedge::bergedge * > (papplicationsignal->m_papp);
+               m_pframe = dynamic_cast < bergedge::frame * > (m_pbergedge->get_document()->get_bergedge_view()->GetParentFrame());
+               ::ca::get_thread()->SetMainWnd(m_pframe);
+               m_pframe->m_bCustomFrame = false;
+               m_pframe->layout();
+               m_pevReady->SetEvent();
+            }
+         }
+      }
+      catch(...)
+      {
+      }
+
+   }
+
+   void session::layout()
+   {
+      if(m_pframe == NULL)
+         return;
+      System.frames().add_unique(this);
+
+      rect rectClient;
+      GetClientRect(rectClient);
+      m_pframe->SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+   }
 
 } // namespace netshareserver

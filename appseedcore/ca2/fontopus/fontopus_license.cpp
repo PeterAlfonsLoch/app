@@ -30,8 +30,8 @@ namespace fontopus
       class info info;
       m_mapInfo.Lookup(pszId, info);
       info.m_strId = pszId;
-      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
-      info.m_bLicensed = authuser.get_license(pszId, bInteractive);
+      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
+      info.m_bLicensed = authuser.get_license(pszId);
       m_mapInfo.set_at(pszId, info);
       return info.m_bLicensed;
    }

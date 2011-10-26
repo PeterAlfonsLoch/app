@@ -51,10 +51,10 @@ namespace gen
    //    {
    //    try
    //    {
-   //    CSingleLock sl(&m_mutexSkipConcurrency, false);
+   //    single_lock sl(&m_mutexSkipConcurrency, false);
    //    if(m_bSkipConcurrency)
    //    {
-   //        if(!sl.Lock(0))
+   //        if(!sl.lock(0))
    //            return;
    //    }
 

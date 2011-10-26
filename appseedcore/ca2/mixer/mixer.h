@@ -1,7 +1,9 @@
 #pragma once
 
 #include "userex/userex.h"
+#ifdef _WINDOWS
 #include <mmsystem.h>
+#endif
 
 #include "control.h"
 #include "level_control.h"

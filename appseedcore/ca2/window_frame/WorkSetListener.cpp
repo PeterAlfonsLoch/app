@@ -57,6 +57,7 @@ namespace window_frame
 
    void WorkSetListener::on_delete(::ca::ca * p)
    {
+      UNREFERENCED_PARAMETER(p);
       //m_listenerpapa.remove(p);
    }
 

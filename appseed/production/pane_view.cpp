@@ -15,39 +15,7 @@ namespace production
       place_holder_container(papp)
    {
 
-      m_pcreateview = this;
-      m_pviewdataOld = NULL;
-
       m_etranslucency      = TranslucencyPresent;
-
-      m_pviewdata              = NULL;
-      m_pviewdataOld              = NULL;
-
-   /*   ::userbase::single_document_template* pdoctemplate;
-	   pdoctemplate = new ::userbase::single_document_template(
-		   IDR_ALBUM,
-		   &typeid(MediaLibraryDoc),
-		   &typeid(MediaLibraryChildFrame),
-		   &typeid(::mplite::library::view));
-      m_pdoctemplateAlbum = pdoctemplate;
-
-	   pdoctemplate = new ::userbase::single_document_template(
-		   IDR_ALBUM,
-		   &typeid(OptionsDoc),
-		   &typeid(OptionsChildFrame),
-		   &typeid(OptionsView));
-
-      
-      m_pdoctemplateOptions = pdoctemplate;
-
-	   pdoctemplate = new ::userbase::single_document_template(
-		   IDR_ALBUM,
-		   &typeid(GoodMixerDoc),
-		   &typeid(simple_child_frame),
-		   &typeid(MixerMainView));
-
-      m_pdoctemplateAudioControl = pdoctemplate;*/
-      
 
    }
 
@@ -162,10 +130,10 @@ namespace production
    }
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case PaneViewContextMenu:
          {
@@ -190,8 +158,8 @@ namespace production
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }
@@ -199,21 +167,22 @@ namespace production
          break;
       case PaneViewProduction:
          {
-            create_context cc;
-            cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  &typeid(production::view);
-
-            ::user::interaction * puie = dynamic_cast < ::user::interaction * > (create_view(&cc, this, 101));
+            ::user::interaction * puie = ::view::create_view < ::production::view > ();
             if(puie != NULL)
             {
-               pviewdata->m_pdoc = get_document();
-               pviewdata->m_pwnd = puie;
+               pcreatordata->m_pdoc = get_document();
+               pcreatordata->m_pwnd = puie;
             }
          }
          break;
       case PaneViewFileManager:
          {
-            get_document()->m_pfilemanagerdoc = papp->GetStdFileManagerTemplate()->open(papp, false, true, this);
+            ::ca::create_context_sp cc(get_app());
+            cc->m_bMakeVisible = false;
+            cc->m_bTransparentBackground = true;
+            cc->m_puiParent = this;
+
+            get_document()->m_pfilemanagerdoc = papp->GetStdFileManagerTemplate()->open(papp, cc);
             ::filemanager::document * pdoc = get_document()->m_pfilemanagerdoc;
             if(pdoc != NULL)
             {
@@ -227,10 +196,10 @@ namespace production
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
-                     pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     //pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
+                     //pframe->SetParent(this);
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }
@@ -258,8 +227,8 @@ namespace production
                   {
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      pframe->SetParent(this);
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }
@@ -287,10 +256,10 @@ namespace production
          pdoc->update_all_views(NULL, 0, &uh);
 
 
-         pviewdata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
-         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pviewdata->m_pwnd);
-         pviewdata->m_pdoc = pdoc;
-         pviewdata->m_pwnd = pframe;
+         pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
+         form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
+         pcreatordata->m_pdoc = pdoc;
+         pcreatordata->m_pwnd = pframe;
 
       }
       break;
@@ -316,10 +285,10 @@ namespace production
                      {
                         pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                         pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
+                        pcreatordata = new ViewData();
+                        pcreatordata->m_eview = eview;
+                        pcreatordata->m_pdoc = pdoc;
+                        pcreatordata->m_pwnd = pframe;
                      }
                   }
                }
@@ -345,10 +314,10 @@ namespace production
                         pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                         pframe->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
                         pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
+                        pcreatordata = new ViewData();
+                        pcreatordata->m_eview = eview;
+                        pcreatordata->m_pdoc = pdoc;
+                        pcreatordata->m_pwnd = pframe;
                      }
                   }
                }
@@ -374,10 +343,10 @@ namespace production
                         pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                         pframe->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
                         pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
+                        pcreatordata = new ViewData();
+                        pcreatordata->m_eview = eview;
+                        pcreatordata->m_pdoc = pdoc;
+                        pcreatordata->m_pwnd = pframe;
                      }
                   }
                }
@@ -403,10 +372,10 @@ namespace production
                         pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                         pframe->ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
                         pframe->SetParent(this);
-                        pviewdata = new ViewData();
-                        pviewdata->m_eview = eview;
-                        pviewdata->m_pdoc = pdoc;
-                        pviewdata->m_pwnd = pframe;
+                        pcreatordata = new ViewData();
+                        pcreatordata->m_eview = eview;
+                        pcreatordata->m_pdoc = pdoc;
+                        pcreatordata->m_pwnd = pframe;
                      }
                   }
                }
@@ -429,9 +398,9 @@ namespace production
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::tab_view::_001InstallMessageHandling(pinterface);
+      ::userbase::tab_view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &pane_view::_001OnUserMessage);
 	   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);

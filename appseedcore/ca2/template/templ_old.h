@@ -79,11 +79,11 @@ void SerializeElements(CArchive& ar, TYPE* pElements, count nCount)
 }
 
 template<class TYPE>
-void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements, 
+void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 	count nCount)
 {
 	ENSURE(nCount == 0 || pElements != NULL);
-	ASSERT((nCount == 0) || 
+	ASSERT((nCount == 0) ||
 		(AfxIsValidAddress(pElements, nCount*sizeof(TYPE))));
 
 	if (nCount == 0 || pElements == NULL)
@@ -166,11 +166,11 @@ namespace gen
           pvar->vt = VT_ARRAY | vt;
           SAFEARRAYBOUND rgsabound[1];
           rgsabound[0].lLbound = 0;
-          rgsabound[0].cElements = get_size();
+          rgsabound[0].cElements = this->get_size();
           pvar->parray = SafeArrayCreate(vt, 1, rgsabound);
           if(pvar->parray == NULL)
               return false;
-          for(int i = 0; i < get_size(); i++)
+          for(int i = 0; i < this->get_size(); i++)
           {
               SafeArrayPutElement(pvar->parray, (long *) &i, &ar.element_at(i));
           }
@@ -180,10 +180,10 @@ namespace gen
 	   bool CopySafeArray(base_array < TYPE, ARG_TYPE > & ar, VARIANT * var)
       {
       //    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-          ASSERT(pvar->vt == (VT_ARRAY | VT_I4)); 
+          ASSERT(pvar->vt == (VT_ARRAY | VT_I4));
           ar.remove_all();
           UINT uiDim;
-          
+
           if(1 != (uiDim = SafeArrayGetDim(pvar->parray)))
           {
               ASSERT(FALSE);
@@ -193,7 +193,7 @@ namespace gen
           HRESULT hr;
           long lLBound;
           long lUBound;
-          
+
           if(FAILED(hr = SafeArrayGetLBound(pvar->parray, uiDim, &lLBound)))
           {
               return false;
@@ -234,44 +234,44 @@ inline index base_array<TYPE, ARG_TYPE>::get_upper_bound() const
 	{ return m_nSize-1; }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		m_pData[nIndex] = newElement; 
+		m_pData[nIndex] = newElement;
 	else
-		AfxThrowInvalidArgException();		
+		AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
-{ 
+{
 	ASSERT(nIndex >= 0 && nIndex < m_nSize);
 	if(nIndex >= 0 && nIndex < m_nSize)
-		return m_pData[nIndex]; 
-	AfxThrowInvalidArgException();		
+		return m_pData[nIndex];
+	AfxThrowInvalidArgException();
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -303,7 +303,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 	{ return get_at(nIndex); }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
-	{ return element_at(nIndex); }
+	{ return this->element_at(nIndex); }
 
 /////////////////////////////////////////////////////////////////////////////
 // base_array<TYPE, ARG_TYPE> out-of-line functions
@@ -331,7 +331,7 @@ base_array<TYPE, ARG_TYPE>::~base_array()
 template<class TYPE, class ARG_TYPE>
 count base_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
 {
-   count countOld = get_count();
+   count countOld = this->get_count();
 	ASSERT_VALID(this);
 	ASSERT(nNewSize >= 0);
 
@@ -412,7 +412,7 @@ count base_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
 			nNewMax = nNewSize;  // no slush
 
 		ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
-		
+
 		if(nNewMax  < m_nMaxSize)
 			AfxThrowInvalidArgException();
 
@@ -510,7 +510,7 @@ void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
 	ASSERT_VALID(this);
 	ASSERT(nIndex >= 0);
-	
+
 	if(nIndex < 0)
 		AfxThrowInvalidArgException();
 
@@ -705,7 +705,7 @@ public:
    //template < pair pairs[]>
    map(pair pairs[]);
 
-	count get_count() const;
+	countget_count() const;
 	count get_size() const;
 	BOOL is_empty() const;
 
@@ -800,7 +800,7 @@ inline POSITION map<KEY, ARG_KEY, VALUE, ARG_VALUE>::GetStartPosition() const
 
 template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
 const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetFirstAssoc() const
-{ 
+{
 	ASSERT_VALID(this);
 	if(m_nCount == 0) return NULL;
 
@@ -819,7 +819,7 @@ const typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALU
 
 template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE>
 typename map<KEY, ARG_KEY, VALUE, ARG_VALUE>::pair* map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetFirstAssoc()
-{ 
+{
 	ASSERT_VALID(this);
 	if(m_nCount == 0) return NULL;
 
@@ -1153,10 +1153,10 @@ map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetNextAssoc(const typename map<KEY, ARG_K
 
 	ASSERT(m_pHashTable != NULL);  // never call on empty map
 	ASSERT(pAssocRet != NULL);
-	
+
 	if(m_pHashTable == NULL || pAssocRet == NULL)
 		return NULL;
-		
+
 	ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
 	// find next association
@@ -1184,10 +1184,10 @@ map<KEY, ARG_KEY, VALUE, ARG_VALUE>::PGetNextAssoc(const typename map<KEY, ARG_K
 
 	ASSERT(m_pHashTable != NULL);  // never call on empty map
 	ASSERT(pAssocRet != NULL);
-	
+
 	if(m_pHashTable == NULL || pAssocRet == NULL)
 		return NULL;
-		
+
 	ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
 	// find next association
@@ -1267,9 +1267,9 @@ void map<KEY, ARG_KEY, VALUE, ARG_VALUE>::Serialize(CArchive& ar)
 			{
 				KEY* pKey;
 				VALUE* pValue;
-				/* 
-				 * in some cases the & operator might be overloaded, and we cannot use it to 
-				 * obtain the address of a given object.  We then use the following trick to 
+				/*
+				 * in some cases the & operator might be overloaded, and we cannot use it to
+				 * obtain the address of a given object.  We then use the following trick to
 				 * get the address
 				 */
 				/*pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
@@ -1398,7 +1398,7 @@ public:
 	{
 		try
 		{
-			return BASE_CLASS::InsertBefore(position, newElement); 
+			return BASE_CLASS::InsertBefore(position, newElement);
 		}
 		catch(...)
 		{
@@ -1411,7 +1411,7 @@ public:
 	{
 		try
 		{
-			return BASE_CLASS::InsertAfter(position, newElement); 
+			return BASE_CLASS::InsertAfter(position, newElement);
 		}
 		catch(...)
 		{
@@ -1437,10 +1437,10 @@ public:
 
 	// transfer add before head or tail
 	POSITION TransferAddHead(TYPE newElement)
-	{ 
+	{
 		try
 		{
-			return BASE_CLASS::AddHead(newElement); 
+			return BASE_CLASS::AddHead(newElement);
 		}
 		catch(...)
 		{
@@ -1449,10 +1449,10 @@ public:
 		}
 	}
 	POSITION TransferAddTail(TYPE newElement)
-	{ 
+	{
 		try
 		{
-			return BASE_CLASS::AddTail(newElement); 
+			return BASE_CLASS::AddTail(newElement);
 		}
 		catch(...)
 		{

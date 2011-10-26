@@ -62,7 +62,7 @@ namespace userbase
 
    menu_item * menu::GetSubMenu(int i)
    {
-      return m_pitem->m_pitema->ptr_at(i);
+      return m_pitem->m_spitema->ptr_at(i);
    }
 
    bool menu::TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent)
@@ -75,7 +75,7 @@ namespace userbase
 
    bool menu::_TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent, menu * pmenuParent)
    {
-      
+
       UNREFERENCED_PARAMETER(iFlags);
 
 
@@ -91,22 +91,12 @@ namespace userbase
       LPVOID lpvoid = NULL;
       if(!CreateEx(WS_EX_LAYERED |
          WS_EX_TOOLWINDOW,
-         lpcsz, NULL, 
-         0, 
-         rect(0, 0, 0, 0), System.m_puiInitialPlaceHolderContainer, id(), lpvoid))
+         lpcsz, NULL,
+         0,
+         rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
          return false;
 
       SetOwner(hwndParent);
-
-//      DWORD dwStyle = GetStyle();
-//      DWORD dwStyleEx = GetExStyle();
-
-      DWORD dwStyleRemove = WS_BORDER | WS_CAPTION;
-
-      ModifyStyle(dwStyleRemove, 0, 0);
-
-      //DWORD dwStyleNew = GetStyle();
-//      DWORD dwStyleExNew = GetExStyle();
 
       if(!m_buttonClose.create(this, ChildIdClose))
          return false;
@@ -121,10 +111,16 @@ namespace userbase
 
    //   ModifyStyle(
 
-      m_ptTrack.x = x;
-      m_ptTrack.y = y;
-      
-      SetWindowPos(ZORDER_TOPMOST, x, y, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
+      point pt(x, y);
+
+      if(GetParent() != NULL)
+      {
+         GetParent()->ScreenToClient(&pt);
+      }
+
+      m_ptTrack = pt;
+
+      SetWindowPos(ZORDER_TOPMOST, pt.x, pt.y, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
       SetTimer(BaseWndMenuCmdUi, 100, NULL);
 
@@ -141,10 +137,10 @@ namespace userbase
       int iMaxHeight = size.cy;
       int iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
-      for(int i = 0; i < m_pitem->m_pitema->get_size(); i++)
+      for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
       {
-         class size size = pdc->GetTextExtent(m_pitem->m_pitema->ptr_at(i)->m_button._001GetButtonText());
-         if(m_pitem->m_pitema->ptr_at(i)->IsPopup())
+         class size size = pdc->GetTextExtent(m_pitem->m_spitema->ptr_at(i)->m_button._001GetButtonText());
+         if(m_pitem->m_spitema->ptr_at(i)->IsPopup())
             size.cx += 12 + 16;
          if(size.cy > iMaxHeight)
             iMaxHeight = size.cy;
@@ -154,9 +150,9 @@ namespace userbase
       m_iItemHeight = iMaxHeight + 6 + 2;
       m_size.cx = iMaxWidth + 4 + 20 + 8;
 
-      int iItemCount = m_pitem->m_pitema->get_size();
+      int iItemCount = m_pitem->m_spitema->get_size();
       int iSeparatorCount = m_pitem->m_iSeparatorCount;
-//      int iFullHeightItemCount = m_pitem->m_iFullHeightItemCount; 
+//      int iFullHeightItemCount = m_pitem->m_iFullHeightItemCount;
 
    //   int iMaxHeight = 0;
      // int iMaxWidth = 0;
@@ -164,7 +160,7 @@ namespace userbase
       string str;
       for(int i = 0; i < iItemCount; i++)
       {
-         menu_item * pitem = m_pitem->m_pitema->ptr_at(i);
+         menu_item * pitem = m_pitem->m_spitema->ptr_at(i);
          if(pitem->m_id == "separator")
          {
             rect.bottom = rect.top + 3;
@@ -185,10 +181,10 @@ namespace userbase
             rect rectPopupArrow(rect);
             rectPopupArrow.left = rectPopupArrow.right - 5;
             base_array < point, point & > pta;
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2)); 
-            pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2)); 
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2)); 
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2)); 
+            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
+            pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+            pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));
+            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
             pdc->Polygon(pta.get_data(), pta.get_size());
          }*/
          rect.top = rect.bottom;
@@ -205,7 +201,7 @@ namespace userbase
          2, 0, 0, SWP_NOSIZE);
       //m_buttonClose.ShowWindow(SW_NORMAL);
 
-      
+
 
       ReleaseDC(pdc);
 
@@ -257,10 +253,10 @@ namespace userbase
             rect rectPopupArrow(rect);
             rectPopupArrow.left = rectPopupArrow.right - 5;
             base_array < point, point & > pta;
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2)); 
-            pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2)); 
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2)); 
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2)); 
+            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
+            pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+            pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));
+            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
             pdc->Polygon(pta.get_data(), pta.get_size());
          }
          rect.top = rect.bottom;
@@ -315,7 +311,7 @@ namespace userbase
             PostMessage(MessageDestroyWindow);
             return true;
          }
-         
+
       }
 
    }
@@ -343,7 +339,7 @@ namespace userbase
          }
          else
          {
-            menu_item * pitem = m_pitem->m_pitema->find(pevent->m_puie->m_id);
+            menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
             if(pitem != NULL && !pitem->m_bPopup)
             {
                if(gen::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
@@ -370,11 +366,12 @@ namespace userbase
          {
             if(pevent->m_puie->m_id != m_idSubMenu)
             {
-               if(m_idSubMenu.has_char())
+               if(m_psubmenu != NULL
+               && m_idSubMenu.has_char())
                {
                   m_psubmenu->SendMessage(WM_CLOSE);
                   m_psubmenu = NULL;
-                  m_idSubMenu.is_empty();
+                  m_idSubMenu = "";
                }
    /*
                   SetTimer(BaseWndMenuTimer, BaseWndMenuTiming, NULL);
@@ -389,16 +386,16 @@ namespace userbase
                }
                else*/
                {
-                  menu_item * pitem = m_pitem->m_pitema->find(pevent->m_puie->m_id);
+                  menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
                   if(pitem != NULL)
                   {
                      if(pitem->m_bPopup)
                      {
                         m_idSubMenu = pevent->m_puie->m_id;
-                        m_psubmenu = new menu(get_app(), m_pitem->m_pitema->find(pevent->m_puie->m_id));
+                        m_psubmenu = new menu(get_app(), m_pitem->m_spitema->find(pevent->m_puie->m_id));
                         rect rect;
-                        m_pitem->m_pitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
-                        m_psubmenu->_TrackPopupMenu(0, 
+                        m_pitem->m_spitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
+                        m_psubmenu->_TrackPopupMenu(0,
                            rect.right,
                            rect.top, m_hwndParent, this);
                      }
@@ -433,10 +430,10 @@ namespace userbase
          if(m_idTimerMenu.has_char())
          {
             m_idSubMenu = m_idTimerMenu;
-            m_psubmenu = new menu(get_app(), m_pitem->m_pitema->find(m_idTimerMenu));
+            m_psubmenu = new menu(get_app(), m_pitem->m_spitema->find(m_idTimerMenu));
             rect rect;
-            m_pitem->m_pitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
-            m_psubmenu->_TrackPopupMenu(0, 
+            m_pitem->m_spitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
+            m_psubmenu->_TrackPopupMenu(0,
                rect.right,
                rect.top, m_hwndParent, this);
          }
@@ -444,15 +441,15 @@ namespace userbase
       }
       else if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
       {
-         if(m_pitem->m_pitema != NULL)
+         if(m_pitem->m_spitema != NULL)
          {
             menu_button_cmd_ui cmdui(get_app());
-            cmdui.m_pitema          = m_pitem->m_pitema;
-            for(int i = 0; i < m_pitem->m_pitema->get_size(); i++)
+            cmdui.m_pitema          = m_pitem->m_spitema;
+            for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
             {
                cmdui.m_nIndex = i;
-               cmdui.m_id = m_pitem->m_pitema->ptr_at(i)->m_id;
-               cmdui.m_pOther = (::user::interaction *) &m_pitem->m_pitema->ptr_at(i)->m_button;
+               cmdui.m_id = m_pitem->m_spitema->ptr_at(i)->m_id;
+               cmdui.m_pOther = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
 
                ::user::interaction * pwndParent = m_hwndParent;
                if(pwndParent != NULL)
@@ -471,9 +468,9 @@ namespace userbase
       pobj->m_bRet = false;
    }
 
-   void menu::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void menu::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI  , pinterface, this, &menu::_001OnIdleUpdateCmdUI);
       IGUI_WIN_MSG_LINK(WM_CREATE           , pinterface, this, &menu::_001OnCreate);
@@ -499,15 +496,15 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::user::win::message::base, pbase, pobj)
-      if(m_pitem->m_pitema != NULL)
+      if(m_pitem->m_spitema != NULL)
       {
          menu_button_cmd_ui cmdui(get_app());
-         cmdui.m_pitema          = m_pitem->m_pitema;
-         for(int i = 0; i < m_pitem->m_pitema->get_size(); i++)
+         cmdui.m_pitema          = m_pitem->m_spitema;
+         for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
          {
             cmdui.m_nIndex = i;
-            cmdui.m_id = m_pitem->m_pitema->ptr_at(i)->m_id;
-            cmdui.m_pOther = (::user::interaction *) &m_pitem->m_pitema->ptr_at(i)->m_button;
+            cmdui.m_id = m_pitem->m_spitema->ptr_at(i)->m_id;
+            cmdui.m_pOther = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
 
             ::user::interaction * pwndParent = m_hwndParent;
             if(pwndParent != NULL)
@@ -522,16 +519,11 @@ namespace userbase
                if(pwndParent->_001SendUpdateCmdUi(&cmdui))
                   continue;
             }
-            
+
          }
       }
    }
 
-
-   ::ca::application * menu::get_app()
-   {
-      return menu_base::get_app();
-   }
 
    void menu::_001OnEnable(gen::signal_object * pobj)
    {

@@ -2,6 +2,24 @@
 
 namespace gen
 {
+   namespace str
+   {
+      const char trailingBytesForUTF8[256] = {
+         -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
+      };
+   }
+}
+
+
+namespace gen
+{
 
    int  str::compare(const char * psz1, const char * psz2)
    {
@@ -47,6 +65,11 @@ namespace gen
       return true;
    }
 
+   bool str::begins_with(const char * lpcsz, const char * lpcszPrefix)
+   {
+      return str::begins(lpcsz, lpcszPrefix);
+   }
+
    bool str::begins_ci(const char * lpcsz, const char * lpcszPrefix)
    {
       string str(lpcsz);
@@ -83,6 +106,19 @@ namespace gen
          return true;
       }
       return false;
+   }
+
+   bool str::begins_eat_ci(string & str, const char * lpcszPrefix, const char * pszSeparator)
+   {
+      if(str.CompareNoCase(lpcszPrefix) == 0)
+      {
+         str.Empty();
+         return true;
+      }
+      else
+      {
+         return begins_eat_ci(str, string(lpcszPrefix) + pszSeparator);
+      }
    }
 
    bool str::ends(const char * lpcsz, const char * lpcszSuffix)
@@ -185,6 +221,15 @@ namespace gen
       return find_ww(strFind, str, iStart);
    }
 
+   int str::find_awwci(const char * pszFind, const char * psz, int iStart)
+   {
+      string strFind(pszFind);
+      strFind.make_lower();
+      string str(psz);
+      str.make_lower();
+      return find_aww(strFind, str, iStart);
+   }
+
    int str::find_ww(const char * pszFind, const char * psz, int iStart)
    {
       if(psz == NULL)
@@ -197,7 +242,7 @@ namespace gen
       if(iStart == 0)
       {
          if(strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+         && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
             return i;
          }
@@ -218,7 +263,51 @@ namespace gen
             if(*pszIter == '\0')
                break;
             if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+            {
+               return iStart + i;
+            }
+         }
+         i += strChar.get_length();
+         pszIter = utf8_inc(pszIter);
+      }
+      return -1;
+   }
+
+   int str::find_aww(const char * pszFind, const char * psz, int iStart)
+   {
+      if(psz == NULL)
+         return -1;
+      const char * pszIter = &psz[iStart];
+      if(pszIter == NULL)
+         return -1;
+      string strFind(pszFind);
+      int i = 0;
+      if(iStart == 0)
+      {
+         if(strFind == string(pszIter, strFind.get_length())
+         && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
+         {
+            return i;
+         }
+      }
+      while(*pszIter != '\0')
+      {
+         string strChar = utf8_char(pszIter);
+         if(!gen::ch::is_letter(strChar))
+         {
+            do
+            {
+               i += strChar.get_length();
+               pszIter = utf8_inc(pszIter);
+               strChar = utf8_char(pszIter);
+            } 
+            while(!gen::ch::is_letter(strChar) && *pszIter != '\0');
+
+            if(*pszIter == '\0')
+               break;
+            if(strFind == string(pszIter, strFind.get_length())
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
             {
                return iStart + i;
             }
@@ -402,6 +491,13 @@ namespace gen
       return str;
    }
 
+   string str::i64toa(int64_t i)
+   {
+      string str;
+      str.Format("%I64d", i);
+      return str;
+   }
+
    __int64 str::get_hex(const char * pszUtf8Char)
    {
       string low = gen::ch::to_lower_case(pszUtf8Char);
@@ -445,36 +541,24 @@ namespace gen
 
    const char * str::utf8_inc(const char * psz)
    {
-      if(*psz == '\0')
-      {
-         return psz;
-      }
-      else if((*psz & 0x80) == 0)
-      {
-         return psz + 1;
-      }
-      else if((*psz & 0xE0) == 0xC0)
-      {
-         return psz + 2;
-      }
-      else if((*psz & 0xF0) == 0xE0)
-      {
-         return psz + 3;
-      }
-      else if((*psz & 0xF8) == 0xF0)
-      {
-         return psz + 4;
-      }
-      else if((*psz & 0xFC) == 0xF8)
-      {
-         return psz + 5;
-      }
-      else if((*psz & 0xFE) == 0xFC)
-      {
-         return psz + 6;
-      }
-      return psz + 1;
+      char len =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
+      if(len == 0)      return psz;
+      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(len == 1)      return psz;
+      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(len == 2)      return psz;
+      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(len == 3)      return psz;
+      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(len == 4)      return psz;
+      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(len == 5)      return psz;
+      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(len == 6)      return psz;
+      throw "invalid utf8 character";
    }
+
+
 
    const char * str::utf8_dec(const char * pszBeg, const char * psz)
    {
@@ -542,7 +626,27 @@ namespace gen
       const char * pszNext = utf8_inc(psz);
       if(pszNext == NULL)
          return "";
-      return string(psz, pszNext  - psz);
+      return string(psz, pszNext - psz);
+   }
+
+   string str::utf8_char(const char * psz, const char * pszEnd)
+   {
+      const char * pszNext = __utf8_inc(psz);
+      if(pszNext > pszEnd)
+         return "";
+      return string(psz, pszNext - psz);
+   }
+
+   bool str::utf8_char(string & str, const char * & psz, const char * pszEnd)
+   {
+      const char * pszNext = __utf8_inc(psz);
+      if(pszNext > pszEnd)
+      {
+         return false;
+      }
+      str = string(psz, pszNext - psz);
+      psz = pszNext;
+      return true;
    }
 
    string str::utf8_char(const char * pszBeg, const char * psz, int i)
@@ -699,6 +803,34 @@ namespace gen
      pszXml += len;
    }
 
+   void str::consume(const char * & pszXml, const char * psz, const char * pszEnd)
+   {
+      UNREFERENCED_PARAMETER(pszEnd);
+     int idx;
+     int len = strlen(psz);
+     for(idx = 0; idx < len; idx++)
+     {
+        if(pszXml[idx] != psz[idx])
+        {
+           throw "Name does not match expected";
+        }
+     }
+     pszXml += len;
+   }
+
+   void str::consume(const char * & pszXml, const char * psz, int len, const char * pszEnd)
+   {
+      UNREFERENCED_PARAMETER(pszEnd);
+     int idx;
+     for(idx = 0; idx < len; idx++)
+     {
+        if(pszXml[idx] != psz[idx])
+        {
+           throw "Name does not match expected";
+        }
+     }
+     pszXml += len;
+   }
 
    void str::consume_spaces(const char * & pszXml, int iMinimumCount)
    {
@@ -707,6 +839,25 @@ namespace gen
       while(gen::ch::is_whitespace(psz))
       {
          psz = utf8_inc(psz);
+         i++;
+      }
+      if(i < iMinimumCount)
+      {
+         throw "Space is required";
+      }
+      pszXml = psz;
+   }
+
+
+   void str::consume_spaces(const char * & pszXml, int iMinimumCount, const char * pszEnd)
+   {
+      const char * psz = pszXml;
+      int i = 0;
+      while(gen::ch::is_whitespace(psz, pszEnd))
+      {
+         psz = __utf8_inc(psz);
+         if(psz > pszEnd)
+            throw "premature end";
          i++;
       }
       if(i < iMinimumCount)
@@ -750,16 +901,17 @@ namespace gen
    string str::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string qc = utf8_char(psz);
+      string qc = utf8_char(psz); // quote character
       if(qc != "\"" && qc != "\\")
       {
          throw "Quote character is required here";
       }
       string str;
+      string qc2;
       while(true)
       {
          psz = utf8_inc(psz);
-         string qc2 = utf8_char(psz);
+         qc2 = utf8_char(psz);
          //string str = gen::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
@@ -772,6 +924,47 @@ namespace gen
       psz = utf8_inc(psz);
       pszXml = psz;
       return str;
+   }
+
+   string str::consume_quoted_value(const char * & pszXml, const char * pszEnd)
+   {
+      const char * psz = pszXml;
+      string qc; // quote character
+      if(!utf8_char(qc, psz, pszEnd))
+      {
+         throw "Quote character is required here, premature end";
+      }
+      if(qc != "\"" && qc != "\\")
+      {
+         throw "Quote character is required here";
+      }
+      const char * pszValueStart = psz;
+      const char * pszValueEnd = psz;
+      const char * pszNext = psz;
+      const char * pszQc = qc;
+      string qc2;
+      register char qclen = (char) qc.get_length();
+      register char i;
+      while(true)
+      {
+         pszNext = __utf8_inc(psz);
+         if(pszNext > pszEnd)
+         {
+            throw "Quote character is required here, premature end";
+         }
+         for(i = 0; i < qclen && psz < pszNext; i++)
+         {
+            if(*psz != pszQc[i])
+               break;
+            psz++;
+         }
+         if(i == qclen) 
+            break;
+         psz = pszNext;
+         pszValueEnd = psz;
+      }
+      pszXml = psz;
+      return string(pszValueStart, pszValueEnd - pszValueStart);
    }
 
    string str::consume_c_quoted_value(const char * & pszXml)
@@ -1027,6 +1220,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          }
       }
    }
+
+
+   bool CLASS_DECL_ca str::while_begins_with_chars_eat(string & str, const char * lpcszChars)
+   {
+      int i = 0;
+      for(i = 0; i < str.get_length(); i++)
+      {
+         if(strchr(lpcszChars, str[i]) == NULL)
+            break;
+      }
+      str = str.Mid(i);
+      return i > 0;
+   }
+
+   bool CLASS_DECL_ca str::while_begins_with_chars_eat_ci(string & str, const char * lpcszChars) // case insensitive
+   {
+      int i = 0;
+      for(i = 0; i < str.get_length(); i++)
+      {
+         if(strchr(lpcszChars, tolower(str[i])) == NULL)
+            break;
+      }
+      str = str.Mid(i);
+      return i > 0;
+   }
+
 
 /** End \file Utility.cpp
  **   \date  2004-02-13

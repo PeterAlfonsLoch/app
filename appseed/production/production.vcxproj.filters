@@ -40,11 +40,9 @@
     <ClCompile Include="view_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="production.def">
+    <ClCompile Include="twitter_authorization.cpp">
       <Filter>Source Files</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h">
@@ -80,5 +78,13 @@
     <ClInclude Include="view_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="twitter_authorization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_production.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

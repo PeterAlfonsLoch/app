@@ -94,8 +94,8 @@ namespace compress
          OutSizePointers.set_size(0, NumOutStreams);
       }
 
-      static void SetSizes(const uint64 **srcSizes, base_array<uint64> &sizes,
-         base_array<const uint64 *> &sizePointers, uint32 numItems)
+      static void SetSizes(const file_size **srcSizes, base_array<file_size> &sizes,
+         base_array<const file_size *> &sizePointers, uint32 numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
@@ -103,7 +103,7 @@ namespace compress
          {
             if (srcSizes == 0 || srcSizes[i] == NULL)
             {
-               sizes.add(0);
+               sizes.add((file_size) 0);
                sizePointers.add(NULL);
             }
             else
@@ -114,8 +114,8 @@ namespace compress
          }
       }
 
-      void CCoderInfo2::SetCoderInfo(const uint64 **inSizes,
-         const uint64 **outSizes)
+      void CCoderInfo2::SetCoderInfo(const file_size **inSizes,
+         const file_size **outSizes)
       {
          SetSizes(inSizes, InSizes, InSizePointers, NumInStreams);
          SetSizes(outSizes, OutSizes, OutSizePointers, NumOutStreams);

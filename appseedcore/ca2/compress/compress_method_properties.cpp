@@ -8,7 +8,7 @@ namespace compress
    static const uint64 k_LZMA = 0x030101;
    static const uint64 k_LZMA2 = 0x21;
 
-   HRESULT SetMethodProperties(const method &method, const uint64 *inSizeForReduce, IUnknown *coder)
+   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, IUnknown *coder)
    {
       bool tryReduce = false;
       uint32 reducedDictionarySize = 1 << 10;
@@ -60,7 +60,7 @@ namespace compress
                   if (tryReduce)
                      if (atoi(prop.name()) == NCoderPropID::kDictionarySize)
                         if (value.is_integer())
-                           if (reducedDictionarySize < value.get_integer())
+                           if (reducedDictionarySize < value.get_ulong())
                               value = (unsigned long) reducedDictionarySize;
                }
                ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;

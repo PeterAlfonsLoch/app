@@ -14,7 +14,7 @@ namespace ex1
       bool        _overflow;
       bool        _overflowIsAllowed;
    public:
-      void write(const void * data, DWORD_PTR size, DWORD_PTR * processedSize);
+      void write(const void * data, ::primitive::memory_size size, ::primitive::memory_size * processedSize);
       void SetStream(writer * stream) { _stream = stream; }
       void ReleaseStream() 
       { 

@@ -5,7 +5,7 @@ namespace veiev
 
    class CLASS_DECL_CA2_VEIEV configuration :
       public ::user::form_callback,
-      public ::user::create_view
+      public ::user::view_creator
    {
    public:
       form_document *               m_pdoc;

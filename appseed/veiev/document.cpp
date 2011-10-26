@@ -82,12 +82,12 @@ namespace veiev
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   BOOL document::on_open_document(const char * lpszPathName)
+   bool document::on_open_document(var varFile)
    {
-      string str = Application.file().as_string(lpszPathName);
+      string str = Application.file().as_string(varFile);
    //  m_document.load(str);
       update_all_views(NULL, 123);
-      return TRUE;
+      return true;
    }
 
 

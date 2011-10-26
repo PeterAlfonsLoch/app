@@ -12,9 +12,7 @@ namespace md5
       virtual ~pane_view();
 
       void on_create_view(view_data * pviewdata);
-      void _001InstallMessageHandling(user::win::message::dispatch * pinterface);
-
-	   virtual void on_update(::view * pSender, LPARAM lHint, base_object* pHint);
+      void install_message_handling(user::win::message::dispatch * pinterface);
 
    #ifdef _DEBUG
 	   virtual void assert_valid() const;

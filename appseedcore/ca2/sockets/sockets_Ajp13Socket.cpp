@@ -28,7 +28,7 @@ namespace sockets
    #ifdef _DEBUG
    #define DEB(x) x
    #else
-   #define DEB(x) 
+   #define DEB(x)
    #endif
 
 
@@ -254,7 +254,7 @@ namespace sockets
       // check content length
       if (!m_response.ContentLength() && m_response.file().get_length())
       {
-         m_response.SetContentLength( m_response.file().get_length() );
+         m_response.SetContentLength((long) m_response.file().get_length() );
       }
 
       // Send Headers

@@ -135,9 +135,9 @@ namespace user
       ::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
    }
 
-   void check_box::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void check_box::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &check_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &check_box::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &check_box::_001OnMouseMove);

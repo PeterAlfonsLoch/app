@@ -40,3 +40,18 @@
 "datetimestr_weekday_tiny[4]" = "木"
 "datetimestr_weekday_tiny[5]" = "金"
 "datetimestr_weekday_tiny[6]" = "土"
+
+
+"calendar:now" = "今"
+"calendar:today" = "今日"
+"calendar:tomorrow" = "あした"
+"calendar:second" = "秒"
+"calendar:seconds" = "秒"
+"calendar:minute" = "分"
+"calendar:minutes" = "分"
+"calendar:hour" = "時"
+"calendar:hours" = "時"
+"calendar:days" = "日"
+"calendar:day" = "日"
+"calendar:year" = "年"
+"calendar:years" = "年"

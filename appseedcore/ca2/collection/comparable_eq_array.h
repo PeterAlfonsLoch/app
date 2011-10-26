@@ -1,3 +1,6 @@
+#pragma once
+
+
 template < class TYPE, class ARG_TYPE = const TYPE&, class ARRAY_TYPE = base_array < TYPE, ARG_TYPE > >
 class comparable_eq_array :
    virtual public ARRAY_TYPE
@@ -7,12 +10,15 @@ public:
    comparable_eq_array(const comparable_eq_array & base_array);
 
    index find_first(const TYPE &t, index find = 0, index last = -1) const;
-   count get_count() const;
-   count get_count(const TYPE & t, index start = 0, index last = -1, count countMax = -1) const;
-   bool contains(const TYPE & t, index start = 0, index last = -1, count countMin = 1, count countMax = -1) const;
+   ::count get_count() const;
+   ::count get_count(const TYPE & t, index start = 0, index last = -1, ::count countMax = -1) const;
+   bool contains(const TYPE & t, index start = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
    index remove_first(const TYPE & t, index find = 0, index last = -1);
-   index remove(const TYPE & t, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
-   count remove(const comparable_eq_array & a);
+   index remove(const TYPE & t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
+   typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
+   index erase(const TYPE & t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count remove(const comparable_eq_array & a);
 
 
 
@@ -57,19 +63,19 @@ index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 find_first(const TYPE & t, index find, index last) const
 {
    if(find < 0)
-      find += get_count();
+      find += this->get_count();
    if(last < 0)
-      last += get_count();
+      last += this->get_count();
    for(; find <= last; find++)
    {
-      if(element_at(find) == t)
+      if(this->element_at(find) == t)
          return find;
    }
    return -1;
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-inline count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+inline ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 get_count() const
 {
    return ARRAY_TYPE::get_count();
@@ -77,10 +83,10 @@ get_count() const
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-get_count(const TYPE & t, index find, index last, count countMax) const
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+get_count(const TYPE & t, index find, index last, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((countMax >= 0 && count <= countMax)
       && (find = find_first(t, find, last)) >= 0)
       count++;
@@ -89,9 +95,9 @@ get_count(const TYPE & t, index find, index last, count countMax) const
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-contains(const TYPE & t, index find, index last, count countMin, count countMax) const
+contains(const TYPE & t, index find, index last, ::count countMin, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first(t, find, last)) >= 0)
       count++;
@@ -112,15 +118,15 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
 intersect(const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
 {
-   for(INT_PTR i = 0; i < get_size();)
+   for(INT_PTR i = 0; i < this->get_size();)
    {
-      if(a.contains(element_at(i)))
+      if(a.contains(this->element_at(i)))
       {
          i++;
       }
       else
       {
-         remove_at(i);
+         this->remove_at(i);
       }
    }
 }
@@ -188,15 +194,23 @@ index comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
 remove_first(const TYPE & t, index find, index last)
 {
    if((find = find_first(t, find, last)) >= 0)
-      remove_at(find);
+   {
+      try
+      {
+         this->remove_at(find);
+      }
+      catch(...)
+      {
+      }
+   }
    return find;
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-index comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
-remove(const TYPE & t, index find, index last, count countMin, count countMax)
+::count comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
+remove(const TYPE & t, index find, index last, ::count countMin, ::count countMax)
 {
-   count count = 0;
+   ::count count = 0;
    if(contains(t, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
          && (find = remove_first(t, find, last)) >= 0)
@@ -204,11 +218,33 @@ remove(const TYPE & t, index find, index last, count countMin, count countMax)
    return count;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE > 
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+::count comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
+erase(const TYPE & t, index find, index last, ::count countMin, ::count countMax)
+{
+   return remove(t, find, last, countMin, countMax);
+}
+
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+typename ARRAY_TYPE::iterator comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
+erase(typename  ARRAY_TYPE::iterator it)
+{
+   return ARRAY_TYPE::erase(it);
+}
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+typename ARRAY_TYPE::iterator comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
+erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last)
+{
+   return ARRAY_TYPE::erase(first, last);
+}
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 index comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
 remove(const comparable_eq_array & a)
 {
-   count count = 0;
+   ::count count = 0;
    for(index i = 0; i < a.get_count(); i++)
    {
       count += remove(a[i]);
@@ -220,11 +256,11 @@ remove(const comparable_eq_array & a)
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 bool comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::operator == (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
-   if(get_size() != a.get_size())
+   if(this->get_size() != a.get_size())
       return false;
-   for(index i = 0; i < get_size(); i++)
+   for(index i = 0; i < this->get_size(); i++)
    {
-      if(!(element_at(i) == a.element_at(i)))
+      if(!(this->element_at(i) == a.element_at(i)))
          return false;
    }
    return true;

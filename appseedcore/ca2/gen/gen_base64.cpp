@@ -137,7 +137,7 @@ namespace gen
 
    }
 
-   void base64::encode(ex1::input_stream & istream, ex1::output_stream & ostream)
+   void base64::encode(ex1::plain_text_output_stream & ostream, ex1::byte_input_stream & istream)
    {
       int i,hiteof= FALSE;
       byte igroup[3],ogroup[4];
@@ -179,7 +179,7 @@ namespace gen
    }
 
 
-   void base64::decode(ex1::input_stream & istream, ex1::output_stream & ostream)
+   void base64::decode(ex1::byte_output_stream & ostream, ex1::plain_text_input_stream & istream)
    {
       int i;
       byte a[4],b[4],o[3];
@@ -222,73 +222,62 @@ namespace gen
       primitive::memory storage;
       int iLen = strlen(psz);
       storage.allocate(iLen);
-      memcpy(storage.GetAllocation(), psz, iLen);
+      memcpy(storage.get_data(), psz, iLen);
       return encode(storage);
    }
 
-   string base64::encode(primitive::memory & storageBinary)
+   string base64::encode(byte * p, count c)
+   {
+      primitive::memory storage;
+      storage.allocate(c);
+      memcpy(storage.get_data(), p, c);
+      return encode(storage);
+   }
+
+   string base64::encode(primitive::memory_base & storageBinary)
    {
       string strRet;
-      gen::memory_file file(&System, storageBinary);
-      ex1::str_writer writer;
-      writer.m_pstr = &strRet;
-      writer.m_dwPos = 0;
-      ex1::output_stream ostream;
-      ostream.m_pwriter = &writer;
-      encode(file, ostream);
-      return strRet;
+      gen::byte_stream_memory_file file(&System, &storageBinary);
+      _template_std_ostringstream ostream;
+      encode(ostream, file);
+      return ostream.str();
    }
 
    string base64::decode(const char * pszBase64)
    {
       primitive::memory storage;
-      decode(pszBase64, storage);
+      decode(storage, pszBase64);
       string str;
       memcpy(
-         str.GetBufferSetLength(storage.GetStorageSize()),
-         storage.GetAllocation(),
-         storage.GetStorageSize());
+         str.GetBufferSetLength(storage.get_size()),
+         storage.get_data(),
+         storage.get_size());
       str.ReleaseBuffer();
       return str;
    }
 
-   void base64::decode(const char * pszBase64, primitive::memory & storageBinary)
+   void base64::decode(primitive::memory & storageBinary, const char * pszBase64)
    {
-      string strSrc(pszBase64);
-      gen::memory_file file(&System, storageBinary);
-      ex1::str_reader reader;
-      reader.m_pstr = &strSrc;
-      reader.m_dwPos = 0;
-      ex1::input_stream is;
-      is.m_preader = &reader;
-      decode(is, file);
+      _template_std_istringstream istream(pszBase64);
+      gen::byte_stream_memory_file memfile(&System, &storageBinary);
+      decode(memfile, istream);
    }
 
-   string base64::serialize(ex1::serializable & serializable)
+   string base64::serialize(ex1::byte_serializable & serializable)
    {
-      string strRet;
-      gen::memory_file file(&System);
+      gen::byte_stream_memory_file file(&System);
       serializable.write(file);
       file.seek_to_begin();
-      ex1::str_writer writer;
-      writer.m_pstr = &strRet;
-      writer.m_dwPos = 0;
-      ex1::output_stream ostream;
-      ostream.m_pwriter = &writer;
-      encode(file, ostream);
-      return strRet;
+      _template_std_ostringstream writer;
+      encode(writer, file);
+      return writer.str();
    }
 
-   void base64::unserialize(const char * pszBase64, ex1::serializable & serializable)
+   void base64::unserialize(ex1::byte_serializable & serializable, const char * pszBase64)
    {
-      string strSrc(pszBase64);
-      gen::memory_file file(&System);
-      ex1::str_reader reader;
-      reader.m_pstr = &strSrc;
-      reader.m_dwPos = 0;
-      ex1::input_stream is;
-      is.m_preader = &reader;
-      decode(is, file);
+      gen::byte_stream_memory_file file(&System);
+      _template_std_istringstream reader(pszBase64);
+      decode(file, reader);
       file.seek_to_begin();
       serializable.read(file);
    }

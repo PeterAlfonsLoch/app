@@ -10,6 +10,7 @@ namespace platform
 {
 
    class view;
+   class pane_view;
    class frame;
 
    class CLASS_DECL_ca document :
@@ -25,6 +26,7 @@ namespace platform
       virtual ~document();
 
       view *                  get_platform_view();
+      pane_view *             get_platform_pane_view();
       frame *                 get_platform_frame();
       bergedge::bergedge *    get_bergedge();
       

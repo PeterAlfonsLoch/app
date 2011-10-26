@@ -194,4 +194,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app_mydns.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

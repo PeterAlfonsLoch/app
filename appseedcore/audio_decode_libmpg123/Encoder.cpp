@@ -71,11 +71,11 @@ namespace audio_decode_lame
       {
          iEncode = lame_encode_buffer_interleaved(gf, 
             (short *)lpvoidBuffer,
-            uiBufferSize / 4, (unsigned char *) m_memory.GetAllocation(),
-            m_memory.GetStorageSize());
+            uiBufferSize / 4, (unsigned char *) m_memory.get_data(),
+            m_memory.get_size());
          if(iEncode == -1)
          {
-            m_memory.AllocateAddUp(128 * 1024);
+            m_memory.allocate_add_up(128 * 1024);
             continue;
          }
          else
@@ -86,7 +86,7 @@ namespace audio_decode_lame
       }
       if(iEncode > 0)
       {
-         m_pfile->write(m_memory.GetAllocation(), iEncode);
+         m_pfile->write(m_memory.get_data(), iEncode);
       }
    }
 

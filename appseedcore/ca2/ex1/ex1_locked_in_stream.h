@@ -11,16 +11,16 @@ namespace ex1
    public:
 
       
-      sp(input_stream)     _stream;
+      sp(byte_input_stream)     _stream;
       critical_section     _criticalSection;
 
 
-      void Init(input_stream *stream)
+      void Init(byte_input_stream *stream)
       { 
          _stream = stream; 
       }
       
-      DWORD_PTR read(uint64 startPos, void * data, DWORD_PTR size);
+      ::primitive::memory_size read(file_position startPos, void * data, ::primitive::memory_size size);
 
    };
 
@@ -31,16 +31,16 @@ namespace ex1
 
 
       locked_in_stream *_lockedInStream;
-      uint64 _pos;
+      file_size _pos;
 
 
-      void Init(locked_in_stream *lockedInStream, uint64 startPos)
+      void Init(locked_in_stream *lockedInStream, file_size startPos)
       {
          _lockedInStream = lockedInStream;
          _pos = startPos;
       }
 
-      DWORD_PTR read(void *data, DWORD_PTR size);
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
 
    };
 

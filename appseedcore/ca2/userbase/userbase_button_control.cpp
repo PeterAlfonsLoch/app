@@ -17,9 +17,9 @@ BaseButtonControl::~BaseButtonControl()
 {
 }
 
-void BaseButtonControl::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+void BaseButtonControl::install_message_handling(::user::win::message::dispatch * pdispatch)
 {
-   button::_001InstallMessageHandling(pdispatch);
+   button::install_message_handling(pdispatch);
 }
 
 
@@ -37,19 +37,21 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
    bool bItemHover;
    bool bSubItemHover;
 
-   if(pdc->draw_context() != NULL)
+   ::user::draw_context * pdrawcontext = pdc->::_template::simple_chain < ::user::draw_context >::get_last();
+
+   if(pdrawcontext != NULL)
    {
-      rectClient = pdc->draw_context()->m_rectClient;
-      bItemHover = pdc->draw_context()->m_bItemHover;
-      bSubItemHover = pdc->draw_context()->m_bSubItemHover;
+      rectClient     = pdrawcontext->m_rectClient;
+      bItemHover     = pdrawcontext->m_bListItemHover;
+      bSubItemHover  = pdrawcontext->m_bListSubItemHover;
    }
    else
    {
       if(get_form() != NULL)
          return;
       GetClientRect(rectClient);
-      bItemHover = get_hover() >= 0;
-      bSubItemHover = get_hover() >= 0;
+      bItemHover     = get_hover() >= 0;
+      bSubItemHover  = get_hover() >= 0;
    }
 
    point pt = rectClient.top_left();

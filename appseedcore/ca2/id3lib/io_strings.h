@@ -43,14 +43,14 @@ namespace dami
     class CLASS_DECL_ca stringReader : public ID3_Reader
     {
       const string &  _string;
-      pos_type _cur;
+      strsize _cur;
      public:
       stringReader(const string & string) : _string(string), _cur(0) { ; }
       virtual ~stringReader() { ; }
 
       virtual void close() { ; }
-      virtual bool peek(char * pch) 
-      { 
+      virtual bool peek(char * pch)
+      {
         if (!this->atEnd())
         {
            *pch = _string.operator [](_cur);
@@ -58,39 +58,39 @@ namespace dami
         }
         return false;
       }
-    
+
       /** read up to \c len chars into buf and advance the internal position
        ** accordingly.  Returns the number of characters read into buf.
        **/
-      virtual size_type readChars(char buf[], size_type len)
+      virtual ::primitive::memory_size readChars(char buf[], ::primitive::memory_size len)
       {
-        size_type size = min((unsigned int)len, (unsigned int)(_string.get_length() - _cur));
+        strsize size = min((unsigned int)len, (unsigned int)(_string.get_length() - _cur));
         memcpy(reinterpret_cast<char *>(buf), &((const char *)_string)[_cur], size);
         _cur += size;
         return size;
       }
-      
-      virtual pos_type getCur() 
-      { 
+
+      virtual file_position getCur()
+      {
         return _cur;
       }
-      
-      virtual pos_type getBeg()
+
+      virtual file_position getBeg()
       {
         return 0;
       }
-      
-      virtual pos_type getEnd()
+
+      virtual file_position getEnd()
       {
         return _string.get_length();
       }
-      
+
       /** Set the value of the internal position for reading.
        **/
-      virtual pos_type setCur(pos_type pos)
+      virtual file_position setCur(file_position pos)
       {
         pos_type end = this->getEnd();
-        _cur = (pos < end) ? pos : end;
+        _cur = (strsize)((pos < end) ? pos : end);
         return _cur;
       }
 
@@ -99,9 +99,9 @@ namespace dami
         return _cur >= _string.get_length();
       }
 
-      virtual size_type skipChars(size_type len)
+      virtual ::primitive::memory_size skipChars(::primitive::memory_size len)
       {
-        size_type size = min((unsigned int)len, (unsigned int)(_string.get_length() - _cur));
+        strsize size = min((unsigned int)len, (unsigned int)(_string.get_length() - _cur));
         _cur += size;
         return size;
       }
@@ -110,67 +110,67 @@ namespace dami
     class CLASS_DECL_ca BstringReader : public ID3_Reader
     {
       const primitive::memory&  _string;
-      pos_type _cur;
+      primitive::memory_position _cur;
      public:
       BstringReader(const primitive::memory& string) : _string(string), _cur(0) { ; }
       virtual ~BstringReader() { ; }
 
       virtual void close() { ; }
-      virtual bool peek(char * pch) 
-      { 
+      virtual bool peek(char * pch)
+      {
         if (!this->atEnd())
         {
-          *pch = _string.GetAllocation()[_cur];
+          *pch = _string.get_data()[_cur];
           return true;
         }
         return false;
       }
-    
+
       /** read up to \c len chars into buf and advance the internal position
        ** accordingly.  Returns the number of characters read into buf.
        **/
-      virtual size_type readChars(char buf[], size_type len)
+      virtual ::primitive::memory_size readChars(char buf[], ::primitive::memory_size len)
       {
-        size_type size = min((unsigned int)len, (unsigned int)(_string.GetStorageSize() - _cur));
-        memcpy(reinterpret_cast<char *>(buf), &_string.GetAllocation()[_cur], size);
+        ::primitive::memory_size size = min((unsigned int)len, (unsigned int)(_string.get_size() - _cur));
+        memcpy(reinterpret_cast<char *>(buf), &_string.get_data()[_cur], size);
         _cur += size;
         return size;
       }
-      
-      virtual pos_type getCur() 
-      { 
-        return _cur;
+
+      virtual file_position getCur()
+      {
+        return (file_position) _cur;
       }
-      
-      virtual pos_type getBeg()
+
+      virtual file_position getBeg()
       {
         return 0;
       }
-      
-      virtual pos_type getEnd()
+
+      virtual file_position getEnd()
       {
-        return _string.GetStorageSize();
+        return (file_position) _string.get_size();
       }
-      
+
       /** Set the value of the internal position for reading.
        **/
-      virtual pos_type setCur(pos_type pos)
+      virtual file_position setCur(file_position pos)
       {
-        pos_type end = this->getEnd();
-        _cur = (pos < end) ? pos : end;
-        return _cur;
+        file_position end = this->getEnd();
+        _cur = (::primitive::memory_position) ((pos < end) ? pos : end);
+        return (file_position) _cur;
       }
 
       virtual bool atEnd()
       {
-        return _cur >= _string.GetStorageSize();
+        return _cur >= _string.get_size();
       }
 
-      virtual size_type skipChars(size_type len)
+      virtual ::primitive::memory_size skipChars(::primitive::memory_size len)
       {
-        size_type size = min((unsigned int)len,(unsigned int)( _string.GetStorageSize() - _cur));
+         ::primitive::memory_position size = min((unsigned int)len,(unsigned int)( _string.get_size() - _cur));
         _cur += size;
-        return size;
+        return (::primitive::memory_size) size;
       }
     };
 
@@ -183,18 +183,18 @@ namespace dami
 
       void close() { ; }
       void flush() { ; }
-      virtual size_type writeChars(const char buf[], size_type len)
-      { 
+      virtual ::primitive::memory_size writeChars(const char buf[], ::primitive::memory_size len)
+      {
         _string += string(reinterpret_cast<const char *>(buf), len);
         return len;
       }
-      size_type writeChars(const char_type buf[], size_type len)
+      ::primitive::memory_size writeChars(const char_type buf[], ::primitive::memory_size len)
       {
         _string += string(reinterpret_cast<const char *>(buf), len);
         return len;
       }
 
-      pos_type getCur()
+      file_position getCur()
       {
         return _string.get_length();
       }
@@ -209,23 +209,23 @@ namespace dami
 
       void close() { ; }
       void flush() { ; }
-      virtual size_type writeChars(const char buf[], size_type len)
-      { 
-         _string.AllocateAddUp(len);
-        memcpy(&_string.GetAllocation()[_string.GetStorageSize() - len], 
+      virtual ::primitive::memory_size writeChars(const char buf[], ::primitive::memory_size len)
+      {
+         _string.allocate_add_up(len);
+        memcpy(&_string.get_data()[_string.get_size() - len],
            reinterpret_cast<const char *>(buf), len);
         return len;
       }
-      size_type writeChars(const char_type buf[], size_type len)
+      ::primitive::memory_size writeChars(const char_type buf[], ::primitive::memory_size len)
       {
-        memcpy(&_string.GetAllocation()[_string.GetStorageSize() - len], 
+        memcpy(&_string.get_data()[_string.get_size() - len],
            reinterpret_cast<const char *>(buf), len);
         return len;
       }
 
-      pos_type getCur()
+      file_position getCur()
       {
-        return _string.GetStorageSize();
+        return (file_position) _string.get_size();
       }
     };
   };

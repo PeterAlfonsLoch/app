@@ -27,6 +27,12 @@ public:
    COLORREF          m_crTextDisabled;
    HWND              m_hwndPreviousFocus;
 
+   ::ca::brush_sp    m_brushEllipse;
+   ::ca::pen_sp      m_penEllipse;
+
+   ::ca::dib_sp      m_dib1;
+   ::ca::dib_sp      m_dib2;
+
    bool              m_bFocus;
 
 
@@ -36,7 +42,7 @@ public:
    virtual void _001OnDraw(::ca::graphics * pdc);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch *pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch *pinterface);
    void UpdateWndRgn();
    void SetEllipsePens(
         ::ca::pen * ppen,
@@ -63,6 +69,6 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonUp)
    DECL_GEN_SIGNAL(_001OnSize)
    DECL_GEN_SIGNAL(_001OnTimer)
-   afx_msg LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
+   LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
 };
 

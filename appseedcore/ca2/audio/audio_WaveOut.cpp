@@ -21,14 +21,10 @@ audWaveOut::audWaveOut(::ca::application * papp) :
 
 audWaveOut::~audWaveOut()
 {
-   if(m_pwavebuffer != NULL)
-   {
-      delete m_pwavebuffer;
-   }
 
 }
 
-void audWaveOut::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void audWaveOut::install_message_handling(::user::win::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(MM_WOM_OPEN, pinterface, this, &audWaveOut::OnMultimediaOpen);
    IGUI_WIN_MSG_LINK(MM_WOM_DONE, pinterface, this, &audWaveOut::OnMultimediaDone);
@@ -49,6 +45,7 @@ int audWaveOut::exit_instance()
    if(GetState() == StatePlaying)
    {
       Stop();
+      m_eventStopped.wait(seconds(60));
    }
    if(GetSafeHandle() != NULL)
    {
@@ -58,15 +55,23 @@ int audWaveOut::exit_instance()
    {
       m_evptraEnd[i]->SetEvent();
    }
+
+   if(m_pwavebuffer != NULL)
+   {
+      delete m_pwavebuffer;
+      m_pwavebuffer = NULL;
+   }
+
+
    return thread::exit_instance();
 }
 
 MMRESULT audWaveOut::open(
-   thread * pthreadCallback, 
+   thread * pthreadCallback,
    int iBufferCount,
    int iBufferSampleCount)
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    if(m_hwaveout != NULL &&
       m_estate != state_initial)
       return MMSYSERR_NOERROR;
@@ -83,11 +88,11 @@ MMRESULT audWaveOut::open(
    m_waveformatex.nAvgBytesPerSec = m_waveformatex.nSamplesPerSec * m_waveformatex.nBlockAlign;
    m_waveformatex.cbSize = 0;
    audWaveCentral & wc = dynamic_cast < audWaveCentralContainer * > (get_app())->GetAudioWaveCentral();
-    
+
    if(MMSYSERR_NOERROR == (mmr = waveOutOpen(
-      &m_hwaveout,            
-      wc.m_uiWaveInDevice,            
-      &m_waveformatex,  
+      &m_hwaveout,
+      wc.m_uiWaveInDevice,
+      &m_waveformatex,
       get_os_int(),
       (DWORD) NULL,
       CALLBACK_THREAD)))
@@ -95,9 +100,9 @@ MMRESULT audWaveOut::open(
    m_waveformatex.nSamplesPerSec = 22050;
    m_waveformatex.nAvgBytesPerSec = m_waveformatex.nSamplesPerSec * m_waveformatex.nBlockAlign;
    if(MMSYSERR_NOERROR == (mmr = waveOutOpen(
-      &m_hwaveout,            
-      WAVE_MAPPER,            
-      &m_waveformatex,  
+      &m_hwaveout,
+      WAVE_MAPPER,
+      &m_waveformatex,
       (DWORD) get_os_int(),
       (DWORD) NULL,
       CALLBACK_THREAD)))
@@ -105,9 +110,9 @@ MMRESULT audWaveOut::open(
    m_waveformatex.nSamplesPerSec = 11025;
    m_waveformatex.nAvgBytesPerSec = m_waveformatex.nSamplesPerSec * m_waveformatex.nBlockAlign;
    if(MMSYSERR_NOERROR == (mmr = waveOutOpen(
-      &m_hwaveout,            
-      WAVE_MAPPER,            
-      &m_waveformatex,  
+      &m_hwaveout,
+      WAVE_MAPPER,
+      &m_waveformatex,
       (DWORD) get_os_int(),
       (DWORD) NULL,
       CALLBACK_THREAD)))
@@ -191,7 +196,7 @@ Opened:
    for(i = 0; i < iSize; i++)
    {
       if(MMSYSERR_NOERROR != (mmr =  waveOutPrepareHeader(
-         m_hwaveout,  
+         m_hwaveout,
          GetBuffer().GetHdr(i),
          sizeof(WAVEHDR))))
       {
@@ -204,14 +209,14 @@ Opened:
 }
 
 MMRESULT audWaveOut::OpenEx(
-   thread * pthreadCallback, 
+   thread * pthreadCallback,
    int iBufferCount,
    int iBufferSampleCount,
    UINT uiSamplesPerSec,
    UINT uiChannelCount,
    UINT uiBitsPerSample)
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    if(m_hwaveout != NULL &&
        m_estate != state_initial)
       return MMSYSERR_NOERROR;
@@ -229,13 +234,13 @@ MMRESULT audWaveOut::OpenEx(
    m_waveformatex.cbSize            = 0;
 
    audWaveCentral & wc = dynamic_cast < audWaveCentralContainer * > (get_app())->GetAudioWaveCentral();
-    
+
    try
    {
       if(MMSYSERR_NOERROR == (mmr = waveOutOpen(
-         &m_hwaveout,            
-         wc.m_uiWaveInDevice,            
-         &m_waveformatex,  
+         &m_hwaveout,
+         wc.m_uiWaveInDevice,
+         &m_waveformatex,
          get_os_int(),
          (DWORD) NULL,
          CALLBACK_THREAD)))
@@ -329,7 +334,7 @@ Opened:
    for(i = 0; i < iSize; i++)
    {
       if(MMSYSERR_NOERROR != (mmr =  waveOutPrepareHeader(
-         m_hwaveout,  
+         m_hwaveout,
          GetBuffer().GetHdr(i),
          sizeof(WAVEHDR))))
       {
@@ -344,7 +349,7 @@ Opened:
 
 MMRESULT audWaveOut::Start(const imedia::position & position)
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    if(m_estate == StatePlaying)
       return MMSYSERR_NOERROR;
    ASSERT(m_estate == StateOpened || m_estate == StateStopped);
@@ -361,7 +366,7 @@ MMRESULT audWaveOut::Start(const imedia::position & position)
 
 MMRESULT audWaveOut::close()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    if(m_estate == StatePlaying)
    {
       Stop();
@@ -375,7 +380,7 @@ MMRESULT audWaveOut::close()
    for(i = 0; i < iSize; i++)
    {
       if(MMSYSERR_NOERROR != (mmr = waveOutUnprepareHeader(
-         m_hwaveout,  
+         m_hwaveout,
          GetBuffer().GetHdr(i),
          sizeof(WAVEHDR))))
       {
@@ -397,20 +402,13 @@ void audWaveOut::OnMultimediaOpen(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-   
+
 void audWaveOut::OnMultimediaDone(gen::signal_object * pobj)
 {
    SCAST_PTR(::user::win::message::base, pbase, pobj);
    m_iBufferInMMSys--;
    LPWAVEHDR lpwavehdr = (LPWAVEHDR) pbase->m_lparam;
    OutBufferDone(lpwavehdr);
-   try
-   {
-      Application.GetPlaylistCentral().GetCurrentPlaylist()->data_set("current_song_position", get_position_for_synch().m_i);
-   }
-   catch(...)
-   {
-   }
 }
 
 void audWaveOut::OnMultimediaClose(gen::signal_object * pobj)
@@ -418,14 +416,20 @@ void audWaveOut::OnMultimediaClose(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-afx_msg void audWaveOut::OnBufferReady(gen::signal_object * pobj)
+void audWaveOut::OnBufferReady(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }
 
 void audWaveOut::BufferReady(LPWAVEHDR lpwavehdr)
 {
-   ASSERT(GetState() == StatePlaying);
+
+   if(GetState() != StatePlaying)
+   {
+      TRACE("ERROR audWaveOut::BufferReady while GetState() != StatePlaying");
+      return;
+   }
+
    MMRESULT mmr;
 
    if(m_peffect != NULL)
@@ -435,9 +439,9 @@ void audWaveOut::BufferReady(LPWAVEHDR lpwavehdr)
          lpwavehdr->dwBytesRecorded / 2);
    }
 
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    mmr = waveOutWrite(
-         m_hwaveout,  
+         m_hwaveout,
          lpwavehdr,
          sizeof(WAVEHDR));
    VERIFY(MMSYSERR_NOERROR == mmr);
@@ -450,29 +454,30 @@ void audWaveOut::BufferReady(LPWAVEHDR lpwavehdr)
 
 bool audWaveOut::Stop()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
-   if(m_estate != StatePlaying
-      && m_estate != StatePaused)
+
+   single_lock sLock(&m_csHandle, TRUE);
+
+   if(m_estate != StatePlaying && m_estate != StatePaused)
       return false;
 
+   m_eventStopped.ResetEvent();
 
    m_pprebuffer->Stop();
 
-   m_eventStopped.ResetEvent();
    m_estate = StateStopping;
 
    // waveOutReset
-   // The waveOutReset function stops playback on the given 
-   // waveform-audio output device and resets the current position 
-   // to zero. All pending playback buffers are marked as done and 
+   // The waveOutReset function stops playback on the given
+   // waveform-audio output device and resets the current position
+   // to zero. All pending playback buffers are marked as done and
    // returned to the application.
    m_mmr = waveOutReset(m_hwaveout);
 
-   
+
 
    if(m_mmr == MMSYSERR_NOERROR)
    {
-      m_estate = StateOpened;   
+      m_estate = StateOpened;
    }
 
    return m_mmr == MMSYSERR_NOERROR;
@@ -481,18 +486,18 @@ bool audWaveOut::Stop()
 
 bool audWaveOut::Pause()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    ASSERT(m_estate == StatePlaying);
-   
+
    if(m_estate != StatePlaying)
       return false;
 
 
 
    // waveOutReset
-   // The waveOutReset function stops playback on the given 
-   // waveform-audio output device and resets the current position 
-   // to zero. All pending playback buffers are marked as done and 
+   // The waveOutReset function stops playback on the given
+   // waveform-audio output device and resets the current position
+   // to zero. All pending playback buffers are marked as done and
    // returned to the application.
    m_mmr = waveOutPause(m_hwaveout);
 
@@ -508,19 +513,19 @@ bool audWaveOut::Pause()
 
 bool audWaveOut::Restart()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    ASSERT(m_estate == StatePaused);
-   
+
    if(m_estate != StatePaused)
       return false;
 
-   
+
 
 
    // waveOutReset
-   // The waveOutReset function stops playback on the given 
-   // waveform-audio output device and resets the current position 
-   // to zero. All pending playback buffers are marked as done and 
+   // The waveOutReset function stops playback on the given
+   // waveform-audio output device and resets the current position
+   // to zero. All pending playback buffers are marked as done and
    // returned to the application.
    m_mmr = waveOutRestart(m_hwaveout);
 
@@ -535,28 +540,27 @@ bool audWaveOut::Restart()
 }
 
 
-void audWaveOut::AttachEndEvent(CEvent *pevent)
+void audWaveOut::AttachEndEvent(event *pevent)
 {
 m_evptraEnd.add(pevent);
 }
 
-DWORD audWaveOut::GetPositionMillisForSynch()
+imedia::time audWaveOut::GetPositionMillisForSynch()
 {
-   DWORD dwMillis = GetPositionMillis();
+   int64_t dwMillis = GetPositionMillis();
    __int64 dwPosition = m_pprebuffer->m_position * 8;
    dwPosition /= m_waveformatex.wBitsPerSample;
    dwPosition *= 1000;
    dwPosition /= m_waveformatex.nChannels * m_waveformatex.nSamplesPerSec;
    if(m_pprebuffer != NULL && m_pprebuffer->m_pdecoder != NULL)
-
       return dwMillis + dwPosition - m_pprebuffer->m_pdecoder->DecoderGetLostMillis(dwMillis + dwPosition) - (((__int64) m_dwLostSampleCount) /  ((__int64) m_waveformatex.nSamplesPerSec));
    else
       return dwMillis + dwPosition - ((m_dwLostSampleCount) * 1000 / m_waveformatex.nSamplesPerSec);
 }
 
-DWORD audWaveOut::GetPositionMillis()
+imedia::time audWaveOut::GetPositionMillis()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    MMRESULT                mmr;
    MMTIME                  mmt;
 
@@ -585,7 +589,7 @@ DWORD audWaveOut::GetPositionMillis()
          i *= 8 * 1000;
          i /= m_waveformatex.wBitsPerSample * m_waveformatex.nChannels * m_waveformatex.nSamplesPerSec;
          return (DWORD) i;
-         
+
       }
       else
       {
@@ -602,14 +606,14 @@ imedia::position audWaveOut::get_position_for_synch()
 {
    imedia::position position = get_position();
    if(m_pprebuffer != NULL && m_pprebuffer->m_pdecoder != NULL)
-      return m_pprebuffer->m_position + position.m_i - m_pprebuffer->m_pdecoder->DecoderGetLostPositionOffset(position.m_i) - m_dwLostSampleCount * m_waveformatex.wBitsPerSample * m_waveformatex.nChannels / 8;
+      return m_pprebuffer->m_position + position - m_pprebuffer->m_pdecoder->DecoderGetLostPositionOffset(position) - m_dwLostSampleCount * m_waveformatex.wBitsPerSample * m_waveformatex.nChannels / 8;
    else
-      return m_pprebuffer->m_position + position.m_i - m_dwLostSampleCount * m_waveformatex.wBitsPerSample * m_waveformatex.nChannels / 8;
+      return m_pprebuffer->m_position + position - m_dwLostSampleCount * m_waveformatex.wBitsPerSample * m_waveformatex.nChannels / 8;
 }
 
 imedia::position audWaveOut::get_position()
 {
-   CSingleLock sLock(&m_csHandle, TRUE);
+   single_lock sLock(&m_csHandle, TRUE);
    MMRESULT                mmr;
    MMTIME                  mmt;
 
@@ -633,8 +637,8 @@ imedia::position audWaveOut::get_position()
       if(mmt.wType == TIME_MS)
       {
          imedia::position position = mmt.u.ms;
-         position.m_i *= m_waveformatex.wBitsPerSample * m_waveformatex.nChannels * m_waveformatex.nSamplesPerSec;
-         position.m_i /= 8 * 1000;
+         position *= m_waveformatex.wBitsPerSample * m_waveformatex.nChannels * m_waveformatex.nSamplesPerSec;
+         position /= 8 * 1000;
          return position;
       }
       else
@@ -703,8 +707,8 @@ audio_decode::decoder * audWaveOut::SetDecoder(audio_decode::decoder * pdecoder)
 
 void audWaveOut::OutBufferDone(LPWAVEHDR lpwavehdr)
 {
-//   audWaveBuffer::buffer * pbuffer = &GetBuffer().GetBuffer(lpwavehdr->dwUser);
-   CSingleLock sl(&m_csOut, TRUE);
+
+   single_lock sl(&m_csOut, TRUE);
    if(m_pprebuffer->IsEOF() || GetState() == StateStopping)
    {
       if(GetBufferInMMSystemCount() <= 0)
@@ -716,13 +720,14 @@ void audWaveOut::OutBufferDone(LPWAVEHDR lpwavehdr)
    {
       _Free(lpwavehdr);
    }
+
 }
 
 
 void audWaveOut::OnPreBufferDone(int iId)
 {
    UNREFERENCED_PARAMETER(iId);
-   CSingleLock sl(&m_csPreBuffer, TRUE);
+   single_lock sl(&m_csPreBuffer, TRUE);
 }
 
 
@@ -731,9 +736,9 @@ void audWaveOut::_Free(LPWAVEHDR lpwavehdr)
    m_lphdraFree.add(lpwavehdr);
    if(!m_pprebuffer->IdFree(lpwavehdr->dwUser))
       return;
-   
+
    memcpy(
-      lpwavehdr->lpData, 
+      lpwavehdr->lpData,
       m_pprebuffer->GetOutBufferId(lpwavehdr->dwUser),
       m_pprebuffer->GetChunkByteCount());
 
@@ -746,15 +751,15 @@ void audWaveOut::OnPlaybackEnd()
 
    if(m_pprebuffer->m_pstreameffectOut != NULL)
    {
-      delete m_pprebuffer->m_pstreameffectOut;
+      iaudio::WaveStreamEffect * peffect = m_pprebuffer->m_pstreameffectOut;
       m_pprebuffer->m_pstreameffectOut = NULL;
+      delete peffect;
    }
-   
+
    m_eventStopped.SetEvent();
 
    m_pplayer->OnEvent(audWavePlayer::EventPlaybackEnd);
 
-   Stop();
 }
 
 

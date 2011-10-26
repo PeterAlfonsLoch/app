@@ -1,90 +1,180 @@
-#include "npca2.h"
-#include "../../../ccvotagus/source/install_spaboot/install_spaboot.h"
+﻿#include "npca2.h"
+#include "host.h"
+#include "c/c.h"
+
+
+
+NPIdentifier sFoo_id;
+NPIdentifier sBar_id;
+NPIdentifier sDocument_id;
+NPIdentifier sLocation_id;
+NPIdentifier sBody_id;
+NPIdentifier sCreateElement_id;
+NPIdentifier sCreateTextNode_id;
+NPIdentifier sAppendChild_id;
+NPIdentifier sPluginType_id;
+NPObject *sWindowObj;
+
+
+
+enum e_message
+{
+   message_none,
+   message_ok,
+   message_failed,
+   message_unknown,
+};
 
 HANDLE g_hinstanceNpca2Plugin = NULL; 
+extern HANDLE g_hinstancePluginbase; 
 
-LPFN_NS_PluginShutdown           pfn_NS_PluginShutdown            = NULL;
-LPFN_fillNetscapeFunctionTable   pfn_fillNetscapeFunctionTable    = NULL;
-LPFN_NS_PluginInitialize         pfn_NS_PluginInitialize          = NULL;
-LPFN_fillPluginFunctionTable     pfn_fillPluginFunctionTable      = NULL;
-
-int npca2plugin_start();
+int hotnpca2plugin_start();
 int npca2plugin_start(const char * path);
 
+HWND g_hwndMessage = NULL;
+e_message g_emessage = message_none;
+
+ATOM MyRegisterClass(HINSTANCE hInstance);
 
 
-bool defer_check()
+bool defer_check(::npca2::host * phost)
 {
 
-   if(g_hinstanceNpca2Plugin != NULL
-   && pfn_NS_PluginShutdown            != NULL
-   && pfn_fillNetscapeFunctionTable    != NULL
-   && pfn_NS_PluginInitialize          != NULL
-   && pfn_fillPluginFunctionTable      != NULL)
-   {
-      return true;
-   }
+   MyRegisterClass((HINSTANCE) g_hinstancePluginbase);
 
-   initialize_heap();
-
-   initialize_http_dup();
-
-   int iRet = npca2plugin_start();
+   g_hwndMessage = ::CreateWindowExA(0, "spaboot_message_window_class", "ca2::fontopus::ccvotagus::install:callback_window", 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, NULL, NULL);
 
 
-   if(iRet != 0)
-      return false;
-
-   char lpszDir[MAX_PATH * 3];
-   char lpszFile[MAX_PATH * 3];
-
-   get_ca2_folder(lpszDir);
-   strcat_dup(lpszDir, "\\ca2");
-   strcat_dup(lpszDir, "\\stage\\");
-   spa_platform_cat_dup(lpszDir);
-   strcpy_dup(lpszFile, lpszDir);
-   strcat_dup(lpszFile, "\\npca2plugin.dll");
-
-   ::SetDllDirectory(lpszDir);
-
-   g_hinstanceNpca2Plugin = ::LoadLibrary(lpszFile); 
-
-   if(g_hinstanceNpca2Plugin == NULL)
-      return false;
-
-   pfn_NS_PluginShutdown            = (LPFN_NS_PluginShutdown           ) ::GetProcAddress((HMODULE) g_hinstanceNpca2Plugin, "_NS_PluginShutdown");
-   pfn_fillNetscapeFunctionTable    = (LPFN_fillNetscapeFunctionTable   ) ::GetProcAddress((HMODULE) g_hinstanceNpca2Plugin, "_fillNetscapeFunctionTable");
-   pfn_NS_PluginInitialize          = (LPFN_NS_PluginInitialize         ) ::GetProcAddress((HMODULE) g_hinstanceNpca2Plugin, "_NS_PluginInitialize");
-   pfn_fillPluginFunctionTable      = (LPFN_fillPluginFunctionTable     ) ::GetProcAddress((HMODULE) g_hinstanceNpca2Plugin, "_fillPluginFunctionTable");
-
-   if(pfn_NS_PluginShutdown            == NULL)
-      return false;
-   if(pfn_fillNetscapeFunctionTable    == NULL)
-      return false;
-   if(pfn_NS_PluginInitialize          == NULL)
-      return false;
-   if(pfn_fillPluginFunctionTable      == NULL)
-      return false;
+   phost->start_plugin();
+   phost->initialize();
 
    return true;
 }
 
 
-
-
-
-int npca2plugin_start()
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-   char szModulePath[MAX_PATH * 3];
-   ::GetModuleFileNameA((HINSTANCE) g_hinstancePluginbase, szModulePath, sizeof(szModulePath));
+	switch (message)
+	{
+   case WM_COPYDATA:
+      {
+         COPYDATASTRUCT * pcds = (COPYDATASTRUCT *) lParam;
+         if(pcds->dwData == 15111984)
+         {
+            const char * pszMessage = strndup_dup((const char *)pcds->lpData, pcds->cbData);
+            if(stricmp_dup(pszMessage, "ok"))
+            {
+               g_emessage = message_ok;
+            }
+            else if(stricmp_dup(pszMessage, "failed"))
+            {
+               g_emessage = message_failed;
+            }
+            else if(stricmp_dup(pszMessage, "unknown"))
+            {
+               g_emessage = message_unknown;
+            }
 
-   char path[MAX_PATH * 3];
-   char * file = NULL;
-   ::GetFullPathNameA(szModulePath, sizeof(path), path, &file);
-   file[0] = '\0';
+         }
+      }
+      break;
+   default:
+      return DefWindowProc(hWnd, message, wParam, lParam);
+   }
+	return 0;
+}
 
-   strcat_dup(path, "install_spaboot.exe");
 
-   return npca2plugin_start(path);
+
+ATOM MyRegisterClass(HINSTANCE hInstance)
+{
+	WNDCLASSEX wcex;
+
+	wcex.cbSize = sizeof(WNDCLASSEX);
+
+	wcex.style			   = 0;
+	wcex.lpfnWndProc	   = WndProc;
+	wcex.cbClsExtra	   = 0;
+	wcex.cbWndExtra	   = 0;
+	wcex.hInstance		   = hInstance;
+	wcex.hIcon			   = NULL;
+	wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
+	//wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_CCVOTAGUS_CA2_SPA);
+   wcex.lpszMenuName	   = NULL;
+	wcex.lpszClassName	= "spaboot_message_window_class";
+	wcex.hIconSm		   = NULL;
+
+	return RegisterClassEx(&wcex);
+}
+
+
+DWORD CALLBACK ThreadProcDeferCheck(LPVOID param)
+{
+   ::npca2::host * phost = (::npca2::host *) param;
+   defer_check(phost);
+   return 0;
+}
+
+
+void start_defer_check_thread(::npca2::host * phost)
+{
+   //Sleep(15 * 1000);
+   ::CreateThread(NULL, 0, &ThreadProcDeferCheck, (LPVOID) phost, 0, 0);
+}
+
+
+
+
+void FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr)
+{
+   ::SetBkColor(hdc, clr);
+   ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+}
+
+
+BOOL TextOutU(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+{
+   SIZE size;
+   size.cx = 0;
+   size.cy = 0;
+   BOOL b = TextOut(hdc, size.cx + x, y, pszUtf8, strlen_dup(pszUtf8));
+   return b;
+}
+
+
+
+
+
+extern "C" NPError _NS_PluginInitialize()
+{
+   return NPERR_NO_ERROR;
+}
+
+extern "C" void _NS_PluginShutdown()
+{
+}
+
+#undef new
+
+/*extern "C" int __cdecl _purecall(void)
+{
+   return 0;
+}*/
+
+nsPluginInstanceBase * NS_NewPluginInstance(nsPluginCreateData * aCreateDataStruct)
+{
+
+   if(!aCreateDataStruct)
+    return NULL;
+
+   return new ::npca2::host(aCreateDataStruct->instance);
 
 }
+
+void NS_DestroyPluginInstance(nsPluginInstanceBase * aPlugin)
+{
+   if(aPlugin)
+      ca2_free(aPlugin);
+}
+

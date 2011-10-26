@@ -56,9 +56,9 @@
 #  define REV(w) (((w)>>24)+(((w)>>8)&0xff00)+ \
                 (((w)&0xff00)<<8)+(((w)&0xff)<<24))
    zlib_local unsigned long crc32_little OF((unsigned long,
-                        const unsigned char FAR *, unsigned));
+                        const unsigned char FAR *, uint64_t));
    zlib_local unsigned long crc32_big OF((unsigned long,
-                        const unsigned char FAR *, unsigned));
+                        const unsigned char FAR *, uint64_t));
 #  define TBLS 8
 #else
 #  define TBLS 1
@@ -219,7 +219,7 @@ const unsigned long FAR * ZEXPORT get_crc_table()
 unsigned long ZEXPORT crc32(crc, buf, len)
     unsigned long crc;
     const unsigned char FAR *buf;
-    unsigned len;
+    uint64_t len;
 {
     if (buf == Z_NULL) return 0UL;
 
@@ -262,7 +262,7 @@ unsigned long ZEXPORT crc32(crc, buf, len)
 zlib_local unsigned long crc32_little(crc, buf, len)
     unsigned long crc;
     const unsigned char FAR *buf;
-    unsigned len;
+    uint64_t len;
 {
     register u4 c;
     register const u4 FAR *buf4;
@@ -302,7 +302,7 @@ zlib_local unsigned long crc32_little(crc, buf, len)
 zlib_local unsigned long crc32_big(crc, buf, len)
     unsigned long crc;
     const unsigned char FAR *buf;
-    unsigned len;
+    uint64_t len;
 {
     register u4 c;
     register const u4 FAR *buf4;

@@ -202,11 +202,13 @@ namespace userbase
 
    int tool_bar_control::GetButtonText(UINT uiID, string &str)
    {
+      UNREFERENCED_PARAMETER(uiID);
+      UNREFERENCED_PARAMETER(str);
       TBBUTTONINFOW tbbi;
       tbbi.cbSize = sizeof(tbbi);
       tbbi.dwMask = TBIF_TEXT;
            
-      int nSize = 256;
+//      int nSize = 256;
       while(true)
       {
 /*         tbbi.pszText = str.GetBuffer(nSize);
@@ -320,12 +322,28 @@ namespace userbase
       { ASSERT(IsWindow()); SendMessage( TB_LOADIMAGES, iBitmapID, (LPARAM)hinst); }
    BOOL tool_bar_control::SetButtonWidth(int cxMin, int cxMax)
       { ASSERT(IsWindow()); return (BOOL) SendMessage( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)); }
-   image_list* tool_bar_control::SetDisabledImageList(image_list* pImageList)
-      { ASSERT(IsWindow()); return NULL; }
-   image_list* tool_bar_control::SetHotImageList(image_list* pImageList)
-      { ASSERT(IsWindow()); return NULL; }
-   image_list* tool_bar_control::SetImageList(image_list* pImageList)
-      { ASSERT(IsWindow()); return NULL; }
+
+image_list* tool_bar_control::SetDisabledImageList(image_list* pImageList)
+{
+   UNREFERENCED_PARAMETER(pImageList);
+   ASSERT(IsWindow()); 
+   return NULL; 
+}
+
+image_list* tool_bar_control::SetHotImageList(image_list* pImageList)
+{
+   UNREFERENCED_PARAMETER(pImageList);
+   ASSERT(IsWindow()); 
+   return NULL; 
+}
+
+image_list* tool_bar_control::SetImageList(image_list* pImageList)
+{ 
+   UNREFERENCED_PARAMETER(pImageList);
+   ASSERT(IsWindow()); 
+   return NULL; 
+}
+
    BOOL tool_bar_control::SetIndent(int iIndent)
       { ASSERT(IsWindow()); return (BOOL) SendMessage( TB_SETINDENT, iIndent, 0L); }
    BOOL tool_bar_control::SetMaxTextRows(int iMaxRows)

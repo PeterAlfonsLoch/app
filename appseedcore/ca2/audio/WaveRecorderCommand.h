@@ -8,14 +8,14 @@ class CLASS_DECL_ca audWaveRecorderCommand
 protected:
    EaudCommand                         m_ecommand;
    ex1::file *                         m_pfileOpen;
-   base_array < CEvent *, CEvent * >   m_evptra;
+   base_array < event *, event * >   m_evptra;
 public:
    bool                                m_bResult;
    bool *                              m_pbResult;
 //      void CloseDevice();
 //    void OpenDevice();
    void SetEvents();
-   void AttachEvent(CEvent * pevent);
+   void AttachEvent(event * pevent);
    audWaveRecorderCommand();
    audWaveRecorderCommand(const audWaveRecorderCommand & command);
    audWaveRecorderCommand & operator =(const audWaveRecorderCommand & command);

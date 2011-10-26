@@ -1,5 +1,7 @@
 ﻿#include "StdAfx.h"
-
+#include <openssl/crypto.h>
+#include <openssl/pem.h>
+#include <openssl/err.h>
 
 production_class::production_class(::ca::application * papp) :
    ca(papp),
@@ -10,6 +12,7 @@ production_class::production_class(::ca::application * papp) :
    m_bBuild       = true;
    m_bFinished    = true;
    m_eversion     = version_stage;
+   m_bReleased    = true;
    m_iRelease     = 0;
 
    {
@@ -44,7 +47,7 @@ void production_class::start_loop(e_version eversion, int iLoopCount)
    Begin();
 }
 
-void production_class::start(e_version eversion)
+void production_class::start_production(e_version eversion)
 {
 	m_bLoop = false;
    if(m_iRelease > 0)
@@ -67,30 +70,46 @@ void production_class::step()
    Begin();
 }
 
+void production_class::defer_quit()
+{
+   if(!m_bReleased)
+      return;
+   if(m_iLoopCount > 0)
+   {
+      if(m_iLoop > m_iLoopCount)
+      {
+         System.PostThreadMessage(WM_QUIT, 0, 0);
+      }
+   }
+
+}
+
+
 int production_class::run()
 {
    restart:
    if(m_iStep == 1)
    {
+      
       m_strSignTool = System.dir().ca2("app/thirdparty/binary/signtool.exe");
-      m_strSpc = "C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\2011-02-ca2.p12";
+      m_strSpc = "C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\2011-05-ca2.p12";
+      m_strSignPass = Application.file().as_string("C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\2011-05-ca2.pass");
 
       m_iLoop++;
-      if(m_iLoopCount > 0)
-      {
-         if(m_iLoop > m_iLoopCount)
-         {
-            Application.PostThreadMessage(WM_QUIT, 0, 0);
-            return 0;
-         }
-      }
+      defer_quit();
 
-      m_strBase = Application.file().as_string(System.dir().ca2("app\\stage\\app\\matter\\stage_path.txt"));
+      m_strBase = Application.command().m_varTopicQuery["base_dir"];
+
 
    //   goto skipCompress;
    //goto skipBuild;
       if(!sync_source("app", NULL))
 	      return 1;
+
+      if(!sync_source("app-veriwell", NULL))
+	      return 1;
+
+
 
       string strRevision;
 
@@ -112,10 +131,22 @@ int production_class::run()
       {
          goto restart;
       }
+
+      string strSVNKey;
+
+      strSVNKey = "app:" + strSVN;
+      
+      strSvnVersionCmd.Format("svnversion %s", System.dir().path(m_strBase, "app-veriwell"));
+      strRevision = System.process().get_output(strSvnVersionCmd);
+      strRevision.trim();
+      strSVNKey = "app:" + strSVN + ", app-veriwell:" + strRevision;
+
+      m_bReleased = false;
       m_iLoop = -1;
-      string strStartTime;
-      m_timeStart.FormatGmt(strStartTime, "%Y-%m-%d %H-%M-%S");
-      add_status("Build starting at " + strStartTime + " - build version!");
+      m_timeStart.FormatGmt(m_strStartTime, "%Y-%m-%d %H-%M-%S");
+      add_status("Build starting at " + m_strStartTime + " - build version!");
+      //twitter_auth();
+      //twitter_twit("new build starting : " + m_strStartTime);
       {
          // good pratice to initialize authentication of ca2status.com with fontopus.com auth information
          string str;
@@ -125,9 +156,13 @@ int production_class::run()
          
          Application.http().get("http://ca2.cc/status/");
 
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #CCAA55;\">" + strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> release.</span>";
+         post["new_status"] = "<h3 style=\"margin-bottom:0px; color: #FF5522;\">" + m_strStartTime + "</h3><span style=\"color: #CC5522; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> release.</span>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      //string strTwit = "by ca2production through ca2twit-lib : starting new build " + m_strBuild + " : check http://ca2.cc/status/?email=production@ca2.cc";
+      //twitter_auth();
+      //twitter_twit(strTwit);
 
       }
       add_status(unitext("by Grace of God and CGCL1984+kaarurosu日歩路主!!"));
@@ -142,7 +177,7 @@ int production_class::run()
       gen::property_set post;
       gen::property_set headers;
       string strStatus;
-      m_strTag = strTime + " " + strSVN;
+      m_strTag = strTime + " " + strSVNKey;
       m_strTagPath = System.dir().path("C:\\ca2\\build\\stage", m_strTag +".txt");
 
       string strBuildH;
@@ -177,6 +212,17 @@ int production_class::run()
       if(m_bClean)
       {
          add_status("Cleaning ca2 fontopus ccvotagus ...");
+         {
+            string str;
+            gen::property_set post;
+            gen::property_set headers;
+            gen::property_set params;
+         
+            post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Cleaning...</span>";
+         
+            Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+         }
          gen::process process;
          string strPath;
          strPath = System.dir().ca2("app\\stage\\app\\matter\\stage_clean.bat");
@@ -202,9 +248,9 @@ int production_class::run()
       string strDedicaverse = Application.file().as_string("C:/cecyn1.at.hotmail.com/ccvotagus/dedicaverse.txt");
 
       //System.dir().mk(System.dir().path(m_strBase, "time"));
-      System.file().put_contents(System.dir().path(m_strBase, "app\\build.txt"), m_strBuild);
-      System.file().put_contents_utf8(System.dir().path(m_strBase, "app\\seed\\this_version_info.h"), strBuildH);
-      System.file().put_contents_utf8(System.dir().path(m_strBase, "app\\seed\\this_version_info.txt"), strBuildH + "\r\n\r\n" + strDedicaverse + "\r\n\r\n" + strCgclcst);
+      Application.file().put_contents(System.dir().path(m_strBase, "app\\build.txt"), m_strBuild);
+      Application.file().put_contents_utf8(System.dir().path(m_strBase, "app\\seed\\this_version_info.h"), strBuildH);
+      Application.file().put_contents_utf8(System.dir().path(m_strBase, "app\\seed\\this_version_info.txt"), strBuildH + "\r\n\r\n" + strDedicaverse + "\r\n\r\n" + strCgclcst);
 
       if(!commit_for_new_build_and_new_release())
          return 2;
@@ -214,37 +260,31 @@ int production_class::run()
 
       if(m_bBuild)
       {
-         add_status("Building ca2 fontopus ccvotagus ...");
-         gen::process process;
-         string strPath;
-         strPath = System.dir().ca2("app\\stage\\app\\matter\\stage_build.bat");
-         if(!process.create_child_process(strPath, false))
-         {
-            DWORD dw = GetLastError();
-            string str;
-            str.Format("Error creating build process: %d", dw);
-            add_status(str);
-            return 0;   
-         }
-         i = 1;
-         while(!process.has_exited(&dwExitCode))
-         {
-            Sleep(5000);
-            str.Format("%d Building ca2 fontopus ccvotagus ...", i);
-            add_status(str);
-            i++;
-         }
+         //build("app");
+         build("app-veriwell");
       }
 
+      {
+         string str;
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set params;
+         
+         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Cleaning...</span>";
+         
+         Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      }
 
       add_status("Cleaning site...");
       string strPath = System.dir().ca2("time\\stage\\app\\matter\\job.bat");
+
 
       //System.http().ms_download("http://spaignition.api.veriterse.net/clean", 
 	   //   System.dir().votagus("time\\spaignition_update.txt"), NULL, post, headers, ca2::app(get_app()).user().get_user());
       add_status("Cleaning ccvotagus folder...");
       gen::process process;
-      System.file().put_contents(strPath, "rmdir /s /q C:\\ca2\\vrel\\stage");
+      Application.file().put_contents(strPath, "rmdir /s /q C:\\ca2\\vrel\\stage");
       if(!process.create_child_process(strPath, false))
       {
          DWORD dw = GetLastError();
@@ -289,10 +329,45 @@ int production_class::run()
          TRACE("file(%05d)=%s\n", i, lpcsz);
       }
       m_pview->PostMessage(WM_USER, 2);
+      {
+         string str;
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set params;
+         
+         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Copying...</span>";
+         
+         Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      }
    }
    else if(m_iStep == 2)
    {
+      string m_strStartTime;
+      m_timeStart.FormatGmt(m_strStartTime, "%Y-%m-%d %H-%M-%S");
+      {
+         string str;
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set params;
+         
+         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Compressing...</span>";
+         
+         Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      }
       compress();
+      {
+         string str;
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set params;
+         
+         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Resources...</span>";
+         
+         Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      }
       generate_appmatter_spa();
       release();
       if(!release_npca2("x86"))
@@ -311,11 +386,31 @@ int production_class::run()
       {
          return 1;
       }*/
+      if(!release_crxca2("x86"))
+      {
+         return 1;
+      }
+      /*if(!release_crxca2("x64"))
+      {
+         return 1;
+      }*/
       System.dir().mk("C:\\home\\ccvotagus\\ca2_spa\\stage\\app\\");
-      System.file().put_contents("C:\\home\\ccvotagus\\ca2_spa\\stage\\app\\build.txt", m_strBuild);
-      System.file().put_contents(m_strCCVrelNew + "\\app\\build.txt", m_strBuild);
+      Application.file().put_contents("C:\\home\\ccvotagus\\ca2_spa\\stage\\app\\build.txt", m_strBuild);
+      Application.file().put_contents(m_strCCVrelNew + "\\app\\build.txt", m_strBuild);
       System.dir().mk(System.dir().name(m_strTagPath));
-      System.file().put_contents(m_strTagPath, m_strTag);
+      Application.file().put_contents(m_strTagPath, m_strTag);
+
+      {
+         string str;
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set params;
+         
+         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Packaging...</span>";
+         
+         Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      }
 
       add_status("dtf - fileset - file from directory app");
       System.file36().dtf(m_strCCVrelNew + "\\ca2_spa_app.fileset", m_strCCVrelNew + "\\app");
@@ -341,6 +436,20 @@ int production_class::run()
          + m_strVersionShift + "&format_build=" + m_strFormatBuild;
       prelease->Begin();*/
 
+
+      {
+         string str;
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set params;
+         
+         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Releasing...</span>";
+         
+         Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+      }
+
+      Application.http().get("http://fontopus.com/update_plugins?authnone");
 
       add_status("ca2.se - freigeben auf Deutschland, Hessen, Frankfurt, ServerLoft...");
       prelease = new class release(this);
@@ -474,11 +583,9 @@ int production_class::run()
          DWORD dwSeg = ((m_dwEndTick - m_dwStartTick) / 1000) % 60;
          string strTime;
       
-      string strStartTime;
-      m_timeStart.FormatGmt(strStartTime, "%Y-%m-%d %H-%M-%S");
       string strEndTime;
       m_timeEnd.FormatGmt(strEndTime, "%Y-%m-%d %H-%M-%S");
-      add_status("Build started at " + strStartTime);
+      add_status("Build started at " + m_strStartTime);
       add_status("Build ending at " + strEndTime);
       strTime.Format("Build took: %dm %ds", dwMin, dwSeg);
       add_status(strTime);
@@ -514,7 +621,7 @@ void production_class::compress(const char * lpcszRelative)
       strStatus.Format("signing %s", System.file().name_(lpcszRelative));
       add_status(strStatus);
 
-      string strCmd = "\"" + m_strSignTool + "\" sign /f \"" + m_strSpc + "\" /p ca2514GrenLund \"" + strSrcFile + "\"";
+      string strCmd = "\"" + m_strSignTool + "\" sign /f \"" + m_strSpc + "\" /p " + m_strSignPass + " \"" + strSrcFile + "\"";
       System.process().synch(strCmd);
 
       add_status("Signing code ...");
@@ -563,7 +670,7 @@ void production_class::compress()
    string strBz;
    string strUn;
    int i = 0;
-   CSingleLock sl(&m_mutexCompress, TRUE);
+   single_lock sl(&m_mutexCompress, TRUE);
    for(;i < m_straFiles.get_size();i++)
    {
       string & strFile = m_straFiles[i];
@@ -586,7 +693,7 @@ void production_class::compress()
       //add_status(strStatus);
       m_straCompress.add(strFile.Mid(m_iBaseLen));
    }
-   sl.Unlock();
+   sl.unlock();
 
    UINT uiProcessorCount = get_current_process_affinity_order();
 
@@ -599,18 +706,21 @@ void production_class::compress()
    }
    else
    {
-      sync_object_base ** psynca = new sync_object_base * [uiProcessorCount];
+      array_ptr_alloc < manual_reset_event > eventa;
+      eventa.set_size(uiProcessorCount);
+      
       for(UINT ui = 0; ui < uiProcessorCount; ui++)
       {
-         compress_thread * pthread = new compress_thread(this);
+         compress_thread * pthread = new compress_thread(this, eventa.ptr_at(ui));
          threada.add(pthread);
-         psynca[ui] = &pthread->m_evFinished;
+         pthread->m_dwThreadAffinityMask = 1 << ui;
          pthread->m_bAutoDelete = FALSE;
          pthread->m_p->m_bAutoDelete = FALSE;
          pthread->Begin();
       }
-      CMultiLock ml(psynca, uiProcessorCount);
-      ml.Lock();
+      sync_object_ptra syncobjectptra(eventa.m_ptra.get_data(), eventa.get_count());
+      multi_lock ml(syncobjectptra);
+      ml.lock();
       add_status("finished multi-threaded compression task");
       Sleep(584);
    }
@@ -629,32 +739,34 @@ void production_class::compress()
 
 bool production_class::compress_next()
 {
-   CSingleLock sl(&m_mutexCompress, TRUE);
+   single_lock sl(&m_mutexCompress, TRUE);
    if(m_straCompress.get_size() <= 0)
       return false;
    string strNext = m_straCompress[0];
    m_straCompress.remove_at(0);
-   sl.Unlock();
+   sl.unlock();
    compress(strNext);
    return true;
 }
 
 
-      production_class::compress_thread::compress_thread(production_class * pproduction) :
-ca(pproduction->get_app()),
-   thread(pproduction->get_app())
-      {
-         m_evFinished.ResetEvent();
-         m_pproduction = pproduction;
-      }
+production_class::compress_thread::compress_thread(production_class * pproduction, manual_reset_event * peventFinished) :
+   ca(pproduction->get_app()),
+   thread(pproduction->get_app()),
+   m_pevFinished(peventFinished)
+{
+   m_pevFinished->ResetEvent();
+   m_pproduction = pproduction;
+}
 
 int production_class::compress_thread::run()
 {
+   SetThreadAffinityMask(::GetCurrentThread(), m_dwThreadAffinityMask);
    SetThreadPriority(THREAD_PRIORITY_HIGHEST);
    while(m_pproduction->compress_next())
    {
    }
-   m_evFinished.SetEvent();
+   m_pevFinished->SetEvent();
    return 0;
 }
 
@@ -739,6 +851,22 @@ bool production_class::commit_for_new_build_and_new_release()
    strStatus = unitext("Commit for new Build and new Release!! signature CGCL1984+kaarurosu日歩路主!!");
    add_status(strStatus);
 
+
+   if(!commit_source("app"))
+      return false;
+
+   if(!commit_source("os"))
+      return false;
+
+	return true;
+}
+
+bool production_class::commit_source(const char * psz)
+{
+   string strStatus;
+   strStatus = unitext("Commit ") + psz;
+   add_status(strStatus);
+
    string str;
    string strBase = m_strBase;
 	STARTUPINFO si;
@@ -750,7 +878,7 @@ bool production_class::commit_for_new_build_and_new_release()
 	si.wShowWindow = SW_HIDE; 
    str.Format("svn commit --force-log --encoding utf-8 --file %s %s", 
    System.dir().path(m_strBase, "app\\seed\\this_version_info.txt"),
-   System.dir().path(strBase, "app"));
+   System.dir().path(strBase, psz));
    if(!::CreateProcess(NULL, (LPTSTR) (const char *) str, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi))
    {
 	   strStatus.Format("     Error: Check svn installation!!");
@@ -767,13 +895,12 @@ bool production_class::commit_for_new_build_and_new_release()
       if(dwExitCode != STILL_ACTIVE)
          break;
       Sleep(2300);
-      str.Format("%d: Commit for new Build and new Release ...", i);
+      str.Format("%d: Commit for new Build and new Release : %s ...", i, psz);
       add_status(str);
       i++;
    }
 	return true;
 }
-
 
 bool production_class::get_file_list(const char * pszBase, const char * pszDir, string & strRemote, stringa & stra, stringa & straTitle, stringa & straRelative, bool bFileSet)
 {
@@ -904,7 +1031,7 @@ void production_class::release()
 
    strRelative = "app\\stage\\metastage\\index-" + m_strFormatBuild + ".spa";
    string strIndex = System.dir().path(m_strVrel, strRelative);
-   System.file().put_contents(
+   Application.file().put_contents(
       strIndex,
       strContents);
 
@@ -916,7 +1043,7 @@ void production_class::release()
 
    string strRelativeMd5 = "app\\stage\\metastage\\index-" + m_strFormatBuild + ".md5";
    strMd5 =  System.dir().path(m_strVrel, strRelativeMd5);
-   System.file().put_contents(strMd5 , m_strIndexMd5);
+   Application.file().put_contents(strMd5 , m_strIndexMd5);
 
    //string strStage = System.dir().path("C:\\home\\ccvotagus\\ca2_spa\\" + m_strVersionShift, strRelative) + ".bz"; 
    //::DeleteFileW(gen::international::utf8_to_unicode(
@@ -983,13 +1110,260 @@ void production_class::generate_appmatter_spa()
       strContents += "\n";
    }
    strRelative = "app\\stage\\metastage\\app_appmatter.expand_fileset.spa";
-   System.file().put_contents(
+   Application.file().put_contents(
       System.dir().path(m_strVrel, strRelative),
       strContents);
    ::DeleteFileW(gen::international::utf8_to_unicode(
       System.dir().path(m_strCCVotagus, strRelative) + ".bz"));
    compress(strRelative);
 }
+
+
+/*#!/usr/bin/env python
+import os, sys, re, hashlib, zipfile, base64, M2Crypto
+ 
+def signDir(source_dir, key_file, output_file):
+  source_dir = os.path.abspath(source_dir)
+ 
+  # Build file list
+  filelist = []
+  for dirpath, dirs, files in os.walk(source_dir):
+    for file in files:
+      abspath = os.path.join(dirpath, file)
+      relpath = os.path.relpath(abspath, source_dir).replace('\\', '/')
+      handle = open(abspath, 'rb')
+      filelist.append((abspath, relpath, handle.read()))
+      handle.close()
+ 
+  # Generate manifest.mf and zigbert.sf data
+  manifest_sections = []
+  signature_sections = []
+  def digest(data):
+    md5 = hashlib.md5()
+    md5.update(data)
+    sha1 = hashlib.sha1()
+    sha1.update(data)
+    return 'Digest-Algorithms: MD5 SHA1\nMD5-Digest: %s\nSHA1-Digest: %s\n' % \
+           (base64.b64encode(md5.digest()), base64.b64encode(sha1.digest()))
+  def section(manifest, signature):
+    manifest_sections.append(manifest)
+    signature_sections.append(signature + digest(manifest))
+  section('Manifest-Version: 1.0\n', 'Signature-Version: 1.0\n')
+  for filepath, relpath, data in filelist:
+    section('Name: %s\n%s' % (relpath, digest(data)), 'Name: %s\n' % relpath)
+  manifest = '\n'.join(manifest_sections)
+  signature = '\n'.join(signature_sections)
+ 
+  # Generate zigbert.rsa (detached zigbert.sf signature)
+  handle = open(key_file, 'rb')
+  key_data = handle.read()
+  handle.close()
+  certstack = M2Crypto.X509.X509_Stack()
+  first = True
+  certificates = re.finditer(r'-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----', key_data, re.S)
+  # Ignore first certificate, we will sign with this one. Rest of them needs to
+  # be added to the stack manually however.
+  certificates.next()
+  for match in certificates:
+    certstack.push(M2Crypto.X509.load_cert_string(match.group(0)))
+ 
+  mime = M2Crypto.SMIME.SMIME()
+  mime.load_key(key_file)
+  mime.set_x509_stack(certstack)
+  pkcs7 = mime.sign(M2Crypto.BIO.MemoryBuffer(signature),
+                    M2Crypto.SMIME.PKCS7_DETACHED | M2Crypto.SMIME.PKCS7_BINARY)
+  pkcs7_buffer = M2Crypto.BIO.MemoryBuffer()
+  pkcs7.write_der(pkcs7_buffer)
+ 
+  # Write everything into a ZIP file, with zigbert.rsa as first file
+  zip = zipfile.ZipFile(output_file, 'w', zipfile.ZIP_DEFLATED)
+  zip.writestr('META-INF/zigbert.rsa', pkcs7_buffer.read())
+  zip.writestr('META-INF/zigbert.sf', signature)
+  zip.writestr('META-INF/manifest.mf', manifest)
+  for filepath, relpath, data in filelist:
+    zip.writestr(relpath, data)
+ 
+if __name__ == '__main__':
+  if len(sys.argv) < 4:
+    print 'Usage: %s source_dir key_file output_file' % sys.argv[0]
+    sys.exit(2)
+  signDir(sys.argv[1], sys.argv[2], sys.argv[3])*/
+
+
+
+
+
+
+
+
+
+
+
+/*  def digest(data):
+    md5 = hashlib.md5()
+    md5.update(data)
+    sha1 = hashlib.sha1()
+    sha1.update(data)
+    return 'Digest-Algorithms: MD5 SHA1\nMD5-Digest: %s\nSHA1-Digest: %s\n' % \
+           (base64.b64encode(md5.digest()), base64.b64encode(sha1.digest()))
+           */
+string production_class::xpi_digest(primitive::memory & mem)
+{
+   primitive::memory memMd5;
+   primitive::memory memSha1;
+   System.hex_to_memory(memMd5, System.crypt().md5(mem));
+   System.hex_to_memory(memSha1, System.crypt().sha1(mem));
+   return string("Digest-Algorithms: MD5 SHA1\n") +
+                 "MD5-Digest: " + System.base64().encode(memMd5) +  "\n" +
+                 "SHA1-Digest: " + System.base64().encode(memSha1) + "\n";
+           
+}
+
+
+void production_class::xpi_section(const char * pszManifest, const char * pszSignature)
+{
+   m_straManifest.add(pszManifest);
+   primitive::memory memManifest(pszManifest);
+   m_straSignature.add(string(pszSignature) + xpi_digest(memManifest));
+}
+
+void production_class::add_path(const char * pszDir, const char * pszRelative)
+{
+   m_straRelative.add(pszRelative);
+   m_straPath.add(System.dir().path(pszDir, pszRelative));
+}
+
+void production_class::xpi_sign_dir(const char * pszDir)
+{
+
+   m_straRelative.remove_all();
+   m_straPath.remove_all();
+
+   add_path(pszDir, "META-INF\\zigbert.rsa");
+   add_path(pszDir, "install.rdf");
+   add_path(pszDir, "chrome.manifest");
+   add_path(pszDir, "plugins\\installer.exe");
+   add_path(pszDir, "plugins\\npca2.dll");
+   add_path(pszDir, "skin\\classic\\ca2-5c-32.png");
+   add_path(pszDir, "META-INF\\manifest.mf");
+   add_path(pszDir, "META-INF\\zigbert.sf");
+
+   string strSignerPath = "C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\npca2signer.pem";
+   string strKeyPath = "C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\npca2key.pem";
+   string strOthersPath = "C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\npca2others.pem";
+ 
+   
+   // Generate manifest.mf and zigbert.sf data
+
+   m_straManifest.remove_all();
+   m_straSignature.remove_all();
+
+   string strComment = "Created-By: ca2 production "+ m_strBuild + "\nComments: PLEASE DO NOT EDIT THIS FILE. YOU WILL BREAK IT.\n";
+
+
+   xpi_section("Manifest-Version: 1.0\n" + strComment, "Signature-Version: 1.0\n" + strComment);
+   
+   primitive::memory mem;
+
+   for(int i = 0; i < m_straPath.get_count(); i++)
+   {
+      string strRelative = m_straRelative[i];
+      if(gen::str::begins_ci(strRelative, "META-INF\\"))
+         continue;
+      strRelative.replace("\\", "/");
+      mem.allocate(0);
+      Application.file().as_memory(m_straPath[i], mem);
+      xpi_section("Name: " + strRelative + "\n" + xpi_digest(mem), "Name: " + strRelative + "\n");
+   }
+
+
+   string strManifest = m_straManifest.implode("\n");
+   string strSignature = m_straSignature.implode("\n");
+
+   Application.file().put_contents(System.dir().path(pszDir, "META-INF/manifest.mf"), strManifest);
+   Application.file().put_contents(System.dir().path(pszDir, "META-INF/zigbert.sf"), strSignature);
+  
+
+   X509 * signer = NULL;
+   {
+      string strSigner = Application.file().as_string(strSignerPath);
+      BIO * pbio = BIO_new_mem_buf((void *) (LPCTSTR) strSigner, strSigner.get_length());
+      //signer = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
+      signer = PEM_read_bio_X509(pbio, NULL, 0, NULL);
+      BIO_free(pbio);
+   }
+
+   EVP_PKEY * pkey;
+   {
+      string strKey = Application.file().as_string(strKeyPath);
+      BIO * pbio = BIO_new_mem_buf((void *) (LPCTSTR) strKey, strKey.get_length());
+      pkey = PEM_read_bio_PrivateKey(pbio, NULL, NULL, NULL);
+      BIO_free(pbio);
+   }
+   
+
+   STACK * pstack509 = NULL;
+   {
+      string strOthers = Application.file().as_string(strOthersPath);
+      raw_array < X509 * > xptra;
+      int iStart = 0;
+      int iFind;
+      string strEnd = "-----END CERTIFICATE-----";
+      string strCertificate;
+      int iEndLen = strEnd.get_length();
+      int iCount = 0;
+      while((iFind = strOthers.find("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
+      {
+         int iEnd = strOthers.find(strEnd, iFind);
+         if(iEnd < 0)
+            break;
+         strCertificate = strOthers.Mid(iFind, iEnd + iEndLen - iFind);
+         X509 * x;
+         BIO * pbio = BIO_new(BIO_s_mem());
+         BIO_puts(pbio, strCertificate);
+         //x = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
+         x = PEM_read_bio_X509(pbio, NULL, 0, NULL);
+         BIO_free(pbio);
+         if(x == NULL)
+         {
+            return;
+         }
+         xptra.add(x);
+         iCount++;
+         iStart = iEnd + iEndLen;
+      }
+      pstack509 = sk_X509_new_null();
+
+      for(int i = 0; i < xptra.get_count(); i++)
+      {
+         sk_X509_push(pstack509, xptra[i]);
+      }
+   }
+
+   BIO * input = BIO_new_mem_buf((void *) (LPCTSTR) strSignature, strSignature.get_length());
+
+   PKCS7 * pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
+
+   BIO_free(input);
+   sk_X509_free(pstack509);
+   EVP_PKEY_free(pkey);
+   X509_free(signer);
+
+   BIO * output = BIO_new(BIO_s_mem());
+
+   i2d_PKCS7_bio(output, pkcs7);
+
+   char * pchData = NULL;
+   long count = BIO_get_mem_data(output, &pchData);
+
+   Application.file().put_contents(System.dir().path(pszDir, "META-INF/zigbert.rsa"), pchData, count);
+
+   BIO_free(output);
+   PKCS7_free(pkcs7);
+
+}
+
+
 
 bool production_class::release_npca2(const char * pszPlatform)
 {
@@ -1003,7 +1377,7 @@ bool production_class::release_npca2(const char * pszPlatform)
    string strNpca2Version;
 
    strNpca2Version.Format(
-      "%d.%d.%d.%d.%d.%d",
+      "%d.%d%02d.%d%02d.%d",
       atoi(m_strFormatBuild.Mid(0, 4)),
       atoi(m_strFormatBuild.Mid(5, 2)),
       atoi(m_strFormatBuild.Mid(8, 2)),
@@ -1013,40 +1387,174 @@ bool production_class::release_npca2(const char * pszPlatform)
       );
    
 
-   string strChromeManifest = Application.file().as_string(System.dir().ca2("app/stage/app/matter/npca2/chrome.manifest"));
+   string strChromeManifest = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/chrome.manifest"));
    strChromeManifest.replace("%BUILD%", strNpca2Version);
    strChromeManifest.replace("%PLATFORM%", strPlatform);
-   System.file().put_contents(System.dir().path(strDir, "npca2", "chrome.manifest"), strChromeManifest);
+   Application.file().put_contents(System.dir().path(strDir, "npca2", "chrome.manifest"), strChromeManifest);
 
-   string strIcon = System.dir().matter("ca2-5c-32.png");
+   string strIcon = Application.dir().matter("ca2-5c-32.png");
    System.file().copy(System.dir().path(strDir, "npca2/skin/classic", "ca2-5c-32.png"), strIcon);
 
-   string strInstall = Application.file().as_string(System.dir().ca2("app/stage/app/matter/npca2/install.rdf"));
+   string strInstall = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/install.rdf"));
    strInstall.replace("%BUILD%", strNpca2Version);
    strInstall.replace("%PLATFORM%", strPlatform);
-   System.file().put_contents(System.dir().path(strDir, "npca2", "install.rdf"), strInstall);
+   Application.file().put_contents(System.dir().path(strDir, "npca2", "install.rdf"), strInstall);
 
 
-   string strWindows = Application.file().as_string(System.dir().ca2("app/stage/app/matter/npca2/windows.rdf"));
+   string strWindows = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/windows.rdf"));
    strWindows.replace("%BUILD%", strNpca2Version);
    strWindows.replace("%PLATFORM%", strPlatform);
-   System.file().put_contents(System.dir().path(strDir, "windows.rdf"), strWindows);
+   Application.file().put_contents(System.dir().path(strDir, "windows.rdf"), strWindows);
    
 
-   System.file().copy(System.dir().path(strDir, "npca2/components/windows/npca2.dll"), System.dir().path(m_strVrel, "stage/" + strPlatform + "/npca2.dll"));
+   add_status("Signing npca2.dll ...");
+   string strFile = System.dir().path(strDir, "npca2/plugins", "npca2.dll");
+   System.file().copy(strFile, System.dir().path(m_strVrel, "stage/" + strPlatform + "/npca2.dll"));
+   string strCmd = "\"" + m_strSignTool + "\" sign /f \"" + m_strSpc + "\" /p " + m_strSignPass + " \"" + strFile + "\"";
+   System.process().synch(strCmd);
+
+   
+
+   add_status("Signing installer.exe ...");
+   strFile = System.dir().path(strDir, "npca2/plugins", "installer.exe");
+   System.file().copy(strFile, System.dir().path(m_strVrel, "stage/" + strPlatform + "/installer.exe"));
+   strCmd = "\"" + m_strSignTool + "\" sign /f \"" + m_strSpc + "\" /p " + m_strSignPass + " \"" + strFile + "\"";
+   System.process().synch(strCmd);
+
+   add_status("Signing code ...");
 
    System.file().del(System.dir().path(strDir, "npca2.xpi"));
+
+   create_xpi(pszPlatform, false);
+
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\xpi\\"+strPlatform+"\\npca2.xpi", System.dir().path(strDir, "npca2.xpi"));
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\rdf\\"+strPlatform+"\\windows.rdf", System.dir().path(strDir, "windows.rdf"));
+
+   return true;
+}
+
+bool production_class::create_xpi(const char * pszPlatform, bool bSigned)
+{
+
+   string strPlatform(pszPlatform);
+
+   string strDir;
+   strDir = System.dir().path(m_strBase, "time/npca2/" + strPlatform);
+
+   System.dir().rm(System.dir().path(strDir, "npca2/META-INF"));
+
+
+   if(bSigned)
+   {
+      return create_signed_xpi(pszPlatform);
+   }
+   else
+   {
+      return create_unsigned_xpi(pszPlatform);
+   }
+
+}
+
+bool production_class::create_signed_xpi(const char * pszPlatform)
+{
+
+   string strPlatform(pszPlatform);
+
+   string strDir;
+   strDir = System.dir().path(m_strBase, "time/npca2/" + strPlatform);
+
+   add_status("Signing extension ...");
+
+   xpi_sign_dir(System.dir().path(strDir, "npca2/"));
+
+   string str;
+
+   string strXpi = System.dir().path(strDir, "npca2.xpi") ;
+
+   string strPath;
+
+   gen::process process;
+
+   DWORD dwExitCode;
+
+   for(int i = 0; i < m_straRelative.get_count(); i++)
+   {
+      strPath = "zip \"" + strXpi + "\" \"" + m_straRelative[i] + "\"";
+      if(!process.create_child_process(strPath, false,  System.dir().path(strDir, "npca2/")))
+      {
+         DWORD dw = GetLastError();
+         string str;
+         str.Format("Error compressing npca2: %d", dw);
+         add_status(str);
+         return 0;   
+      }
+      while(!process.has_exited(&dwExitCode))
+      {
+         Sleep(5000);
+         str.Format("%d Compressing npca2 ...", i);
+         add_status(str);
+      }
+   }
+   return true;
+}
+
+bool production_class::create_unsigned_xpi(const char * pszPlatform)
+{
+
+   string strPlatform(pszPlatform);
+
+   string strDir;
+   strDir = System.dir().path(m_strBase, "time/npca2/" + strPlatform);
+
+   add_status("Creating unsigned extension ...");
+   string str;
+   DWORD dwExitCode;
+   string strXpi = System.dir().path(strDir, "npca2.xpi") ;
+   gen::process process;
+   string strPath = "zip -r -D \""+strXpi+"\" * ";
+   if(!process.create_child_process(strPath, false,  System.dir().path(strDir, "npca2/")))
+   {
+      DWORD dw = GetLastError();
+      string str;
+      str.Format("Error compressing npca2: %d", dw);
+      add_status(str);
+      return 0;   
+   }
+   int i = 1;
+   while(!process.has_exited(&dwExitCode))
+   {
+      Sleep(5000);
+      str.Format("%d Compressing npca2 ...", i);
+      add_status(str);
+      i++;
+   }
+
+   return true;
+
+}
+
+bool production_class::release_iexca2(const char * pszPlatform)
+{
+
+   string strStatus;
+   strStatus.Format("releasing iexca2");
+   add_status(strStatus);
+
+   string strPlatform(pszPlatform);
+
+
+   System.dir().mk(System.dir().path(m_strBase, "time\\iexca2\\"+strPlatform));
 
    DWORD dwExitCode;
    string str;
    gen::process process;
    string strPath;
-   strPath = System.dir().ca2("app\\thirdparty\\binary\\7za.exe") + " a -tzip -r \"" + System.dir().path(strDir, "npca2.xpi") + "\" \"" + System.dir().path(strDir, "npca2/*") + "\"";
-   if(!process.create_child_process(strPath, false))
+   strPath = System.dir().path(m_strBase, "app\\stage\\app\\matter\\makecabx86.bat");
+   if(!process.create_child_process(strPath, false, System.dir().name(strPath)))
    {
       DWORD dw = GetLastError();
       string str;
-      str.Format("Error compressing npca2: %d", dw);
+      str.Format("Error creating iexca2.cab: %d", dw);
       add_status(str);
       return 0;   
    }
@@ -1055,22 +1563,10 @@ bool production_class::release_npca2(const char * pszPlatform)
    while(!process.has_exited(&dwExitCode))
    {
       Sleep(5000);
-      str.Format("%d Compressing npca2 ...", i);
+      str.Format("%d Creating iexca2.cab ...", i);
       add_status(str);
       i++;
    }
-   
-   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\xpi\\"+strPlatform+"\\npca2.xpi", System.dir().path(strDir, "npca2.xpi"));
-   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\rdf\\"+strPlatform+"\\windows.rdf", System.dir().path(strDir, "windows.rdf"));
-
-   return true;
-}
-
-
-bool production_class::release_iexca2(const char * pszPlatform)
-{
-   
-   string strPlatform(pszPlatform);
 
    System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\cab\\"+strPlatform+"\\iexca2.cab", System.dir().path(m_strBase, "time\\iexca2\\"+strPlatform+"\\iexca2.cab"));
 
@@ -1078,17 +1574,66 @@ bool production_class::release_iexca2(const char * pszPlatform)
 
 }
 
+bool production_class::release_crxca2(const char * pszPlatform)
+{
+   
+   string strPlatform(pszPlatform);
+
+   string strDir;
+   strDir = System.dir().path(m_strBase, "time/crxca2/" + strPlatform + "/crxca2");
+
+   string strCrxca2Version;
+
+   strCrxca2Version.Format(
+      "%d.%d%02d.%d%02d.%d",
+      atoi(m_strFormatBuild.Mid(0, 4)),
+      atoi(m_strFormatBuild.Mid(5, 2)),
+      atoi(m_strFormatBuild.Mid(8, 2)),
+      atoi(m_strFormatBuild.Mid(11, 2)),
+      atoi(m_strFormatBuild.Mid(14, 2)),
+      atoi(m_strFormatBuild.Mid(17, 2))
+      );
+
+   string strManifestJson = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/crxca2/manifest.json"));
+   strManifestJson.replace("%BUILD%", strCrxca2Version);
+   strManifestJson.replace("%PLATFORM%", strPlatform);
+   Application.file().put_contents(System.dir().path(strDir,  "manifest.json"), strManifestJson);
+
+   string strIcon = Application.dir().matter("ca2-5c-32.png");
+   System.file().copy(System.dir().path(strDir, "ca2-5c-32.png"), strIcon);
+
+   add_status("Signing npca2.dll ...");
+   string strFile = System.dir().path(strDir, "npca2.dll");
+   System.file().copy(strFile, System.dir().path(m_strVrel, "stage/" + strPlatform + "/npca2.dll"));
+   string strCmd = "\"" + m_strSignTool + "\" sign /f \"" + m_strSpc + "\" /p " + m_strSignPass + " \"" + strFile + "\"";
+   System.process().synch(strCmd);
+
+   add_status("Signing installer.exe ...");
+   strFile = System.dir().path(strDir, "installer.exe");
+   System.file().copy(strFile, System.dir().path(m_strVrel, "stage/" + strPlatform + "/installer.exe"));
+   strCmd = "\"" + m_strSignTool + "\" sign /f \"" + m_strSpc + "\" /p " + m_strSignPass + " \"" + strFile + "\"";
+   System.process().synch(strCmd);
+
+   add_status("Creating crxca2.crx ...");
+   strCmd = "C:\\Users\\production\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe --no-message-box --pack-extension=\"" +strDir + "\" --pack-extension-key=\"C:\\cecyn1.at.hotmail.com\\ccvotagus\\cgcl\\npca2key.pem\"";
+   System.process().synch(strCmd);
+
+   System.file().copy("C:\\netnode\\net\\netseed\\ds\\ca2\\front\\cc\\ca2\\_std\\_std\\crx\\"+strPlatform+"\\crxca2.crx", System.dir().path(System.dir().name(strDir), "crxca2.crx"));
+
+   return true;
+}
+
 
 void production_class::add_status(const char * psz)
 {
-   CSingleLock sl(&m_mutexStatus, TRUE);
+   single_lock sl(&m_mutexStatus, TRUE);
    m_straStatus.add(psz);
    m_pview->SendMessage(WM_USER, 1);
 }
 
 void production_class::change_status(const char * psz)
 {
-   CSingleLock sl(&m_mutexStatus, TRUE);
+   single_lock sl(&m_mutexStatus, TRUE);
    if(m_straStatus.get_count() == 0)
    {
       m_straStatus.add(psz);
@@ -1117,7 +1662,12 @@ bool production_class::release::initialize_instance()
 }
 int production_class::release::run()
 {
-   Application.http().get(m_strRelease);
+   string str;
+   gen::property_set post(get_app());
+   gen::property_set headers(get_app());
+   gen::property_set set(get_app());
+   set["disable_ca2_sessid"] = true;
+   Application.http().get(m_strRelease, str, post, headers, set);
    m_pproduction->m_iRelease--;
    m_pproduction->OnUpdateRelease();
    return 0;
@@ -1132,9 +1682,17 @@ void production_class::OnUpdateRelease()
       gen::property_set post;
       gen::property_set headers;
       gen::property_set params;
-      post["new_status"] = "<h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild +"</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+"<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://fontopus.com/\">fontopus.com</a> or <a href=\"http://bergedge.com/\">bergedge.com</a> for simple gateway implementations.</span>";
+      string strEndTime;
+      m_timeEnd.FormatGmt(strEndTime, "%Y-%m-%d %H-%M-%S");
+      post["new_status"] = "<h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild + "</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://bergedge.com/\">bergedge.com</a> or <a href=\"http://veriaxs.com/\">veriaxs.com</a> for simple gateway implementations.</span>";
       string str;
       Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+      string strTwit;
+      strTwit = "ca2twit-lib : new build " + m_strBuild + " : http://ca2.cc/status/?email=production%40ca2.cc";
+      twitter_auth();
+      twitter_twit(strTwit);
+      m_bReleased = true;
+      defer_quit();
    }
    else if(m_iRelease > 0)
    {
@@ -1142,4 +1700,245 @@ void production_class::OnUpdateRelease()
       strStatus.Format("There are %d releases in command list!!", m_iRelease);
       add_status(strStatus);
    }
+}
+
+
+bool production_class::twitter_auth()
+{
+   ::ca4::twit twitterObj(get_app());
+   string tmpStr( "" );
+   string replyMsg( "" );
+
+    /* OAuth flow begins */
+    /* Step 0: Set OAuth related params. These are got by registering your app at twitter.com */
+    twitterObj.get_oauth().setConsumerKey(string( "K0pfcpC7Ua1ygWiMWHHSQ" ) );
+    twitterObj.get_oauth().setConsumerSecret(string( "LmgKZmcM5NExmp8cPisHvtuYGxU0KMKH61wNYc0Pn8Q" ) );
+
+    string strPathKey = Application.dir().userappdata("twitterClient_token_key.txt");
+    string strPathSecret = Application.dir().userappdata("twitterClient_token_secret.txt");
+    /* Step 1: Check if we alredy have OAuth access token from a previous run */
+//    char szKey[1024];
+    string myOAuthAccessTokenKey = Application.file().as_string(strPathKey);
+    string myOAuthAccessTokenSecret = Application.file().as_string(strPathSecret);
+
+    if( myOAuthAccessTokenKey.has_char() && myOAuthAccessTokenSecret.has_char() )
+    {
+        /* If we already have these keys, then no need to go through auth again */
+        twitterObj.get_oauth().setOAuthTokenKey( myOAuthAccessTokenKey );
+        twitterObj.get_oauth().setOAuthTokenSecret( myOAuthAccessTokenSecret );
+    }
+    else
+    {
+        /* Step 2: Get request token key and secret */
+        twitterObj.oAuthRequestToken( tmpStr );
+
+        /* Step 3: Ask user to visit web link and get PIN */
+        string szOAuthVerifierPin;
+
+        ::twitter::authorization authapp(get_app(), tmpStr, "twitter\\authorization.xhtml", true);
+        szOAuthVerifierPin = authapp.get_pin();
+
+        tmpStr = szOAuthVerifierPin;
+        twitterObj.get_oauth().setOAuthPin( tmpStr );
+
+        /* Step 4: Exchange request token with access token */
+        twitterObj.oAuthAccessToken();
+
+        /* Step 5: Now, save this access token key and secret for future use without PIN */
+        twitterObj.get_oauth().getOAuthTokenKey( myOAuthAccessTokenKey );
+        twitterObj.get_oauth().getOAuthTokenSecret( myOAuthAccessTokenSecret );
+
+        /* Step 6: Save these keys in a file or wherever */
+
+        Application.file().put_contents(strPathKey, myOAuthAccessTokenKey);
+        Application.file().put_contents(strPathSecret, myOAuthAccessTokenSecret);
+
+    }
+
+    return true;
+}
+string production_class::twitter_twit(const char * pszMessage)
+{
+
+      ::ca4::twit twitterObj(get_app());
+   string tmpStr( "" );
+   string replyMsg( "" );
+
+    /* OAuth flow begins */
+    /* Step 0: Set OAuth related params. These are got by registering your app at twitter.com */
+    twitterObj.get_oauth().setConsumerKey(string( "K0pfcpC7Ua1ygWiMWHHSQ" ) );
+    twitterObj.get_oauth().setConsumerSecret(string( "LmgKZmcM5NExmp8cPisHvtuYGxU0KMKH61wNYc0Pn8Q" ) );
+
+    string strPathKey = Application.dir().userappdata("twitterClient_token_key.txt");
+    string strPathSecret = Application.dir().userappdata("twitterClient_token_secret.txt");
+    /* Step 1: Check if we alredy have OAuth access token from a previous run */
+//    char szKey[1024];
+    string myOAuthAccessTokenKey = Application.file().as_string(strPathKey);
+    string myOAuthAccessTokenSecret = Application.file().as_string(strPathSecret);
+
+    if( myOAuthAccessTokenKey.has_char() && myOAuthAccessTokenSecret.has_char() )
+    {
+        /* If we already have these keys, then no need to go through auth again */
+        twitterObj.get_oauth().setOAuthTokenKey( myOAuthAccessTokenKey );
+        twitterObj.get_oauth().setOAuthTokenSecret( myOAuthAccessTokenSecret );
+    }
+    else
+    {
+       return "failed";
+    }
+
+    /* OAuth flow ends */
+
+   // /* Set twitter username and password */
+    //twitterObj.setTwitterUsername( userName );
+    //twitterObj.setTwitterPassword( passWord );
+
+    /* Post a new status message */
+    int iRetry = 0;
+Retry2:
+    tmpStr = pszMessage;
+    replyMsg = "";
+    if( twitterObj.statusUpdate( tmpStr ) )
+    {
+        replyMsg=twitterObj.get_response(  );
+        //printf( "\ntwitterClient:: twitCurl::statusUpdate web response:\n%s\n", replyMsg.c_str() );
+    }
+    else
+    {
+       if(iRetry >= 3)
+       {
+          replyMsg ="failed";
+       }
+       else
+       {
+         goto retry1;
+       }
+         
+        //printf( "\ntwitterClient:: twitCurl::statusUpdate error:\n%s\n", replyMsg.c_str() );
+    }
+    return replyMsg;
+retry1:
+    System.file().del(strPathKey);
+    System.file().del(strPathSecret);
+    twitter_auth();
+    iRetry++;
+    goto Retry2;
+
+}
+
+    /* Destroy a status message */
+    /*memset( statusMsg, 0, 1024 );
+    printf( "\nEnter status message id to delete: " );
+    gets( statusMsg );
+    tmpStr = statusMsg;
+    replyMsg = "";
+    if( twitterObj.statusDestroyById( tmpStr ) )
+    {
+        twitterObj.getLastWebResponse( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::statusDestroyById web response:\n%s\n", replyMsg.c_str() );
+    }
+    else
+    {
+        twitterObj.getLastCurlError( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::statusDestroyById error:\n%s\n", replyMsg.c_str() );
+    }
+
+    /* Get user timeline */
+    /*replyMsg = "";
+    printf( "\nGetting user timeline\n" );
+    if( twitterObj.timelineUserGet() )
+    {
+        twitterObj.getLastWebResponse( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::timelineUserGet web response:\n%s\n", replyMsg.c_str() );
+    }
+    else
+    {
+        twitterObj.getLastCurlError( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::timelineUserGet error:\n%s\n", replyMsg.c_str() );
+    }
+
+    /* Get public timeline */
+    /*replyMsg = "";
+    printf( "\nGetting public timeline\n" );
+    if( twitterObj.timelinePublicGet() )
+    {
+        twitterObj.getLastWebResponse( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::timelinePublicGet web response:\n%s\n", replyMsg.c_str() );
+    }
+    else
+    {
+        twitterObj.getLastCurlError( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::timelinePublicGet error:\n%s\n", replyMsg.c_str() );
+    }
+
+    /* Get friend ids */
+    /*replyMsg = "";
+    printf( "\nGetting friend ids\n" );
+    tmpStr = "techcrunch";
+    if( twitterObj.friendsIdsGet( tmpStr, false ) )
+    {
+        twitterObj.getLastWebResponse( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::friendsIdsGet web response:\n%s\n", replyMsg.c_str() );
+    }
+    else
+    {
+        twitterObj.getLastCurlError( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::friendsIdsGet error:\n%s\n", replyMsg.c_str() );
+    }
+
+    /* Get trends */
+    /*if( twitterObj.trendsDailyGet() )
+    {
+        twitterObj.getLastWebResponse( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::trendsDailyGet web response:\n%s\n", replyMsg.c_str() );
+    }
+    else
+    {
+        twitterObj.getLastCurlError( replyMsg );
+        printf( "\ntwitterClient:: twitCurl::trendsDailyGet error:\n%s\n", replyMsg.c_str() );
+    }*/
+
+    //return 0;
+
+
+
+void production_class::build(const char * psz)
+{
+   
+   string strApp(psz);
+
+   add_status("Building ca2 fontopus ccvotagus " + strApp + "...");
+   {
+      string str;
+      gen::property_set post;
+      gen::property_set headers;
+      gen::property_set params;
+         
+      post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"color: #885522; display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Building " + strApp + "...</span>";
+         
+      Application.http().get("http://ca2.cc/status/", str, post, headers, params);
+
+   }
+   gen::process process;
+   string strPath;
+   strPath = System.dir().ca2(strApp + "\\stage\\app\\matter\\stage_build.bat");
+   if(!process.create_child_process(strPath, false))
+   {
+      DWORD dw = GetLastError();
+      string str;
+      str.Format("Error creating build process: %d for build of " + strApp, dw);
+      add_status(str);
+      return;   
+   }
+   int i = 1;
+   DWORD dwExitCode;
+   string str;
+   while(!process.has_exited(&dwExitCode))
+   {
+      Sleep(5000);
+      str.Format("%d Building ca2 fontopus ccvotagus " + strApp + "...", i);
+      add_status(str);
+      i++;
+   }
+
 }

@@ -29,7 +29,7 @@ namespace gen
             m_dwa[i] = (1812433253UL * (m_dwa[i - 1] ^ (m_dwa[i - 1] >> 30)) + i);
          }
       }
-               
+
 
       unsigned long rng::get()
       {

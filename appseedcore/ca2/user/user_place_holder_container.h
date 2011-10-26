@@ -17,10 +17,14 @@ namespace user
       virtual ~place_holder_container();
 
 
-      void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+      void install_message_handling(::user::win::message::dispatch * pdispatch);
 
 
-      virtual bool create(::user::interaction * puiParent);
+      virtual bool create(::user::interaction * puiParent, id id);
+
+      
+      virtual place_holder * get_new_place_holder();
+      virtual bool remove_place_holder(place_holder * pholder);
 
 
       virtual place_holder * hold(::user::interaction * pui);
@@ -28,6 +32,17 @@ namespace user
 
       virtual bool on_hold(::user::interaction * pui, place_holder * pholder);
       virtual bool on_unhold(::user::interaction * pui, place_holder * pholder);
+
+   };
+
+
+   class CLASS_DECL_ca place_holder_container_ptra :
+      virtual public comparable_array < place_holder_container * >
+   {
+   public:
+
+      virtual place_holder_ptra hold(::user::interaction * pui);   
+      virtual int unhold(::user::interaction * pui);
 
    };
 

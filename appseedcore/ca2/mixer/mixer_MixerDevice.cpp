@@ -70,9 +70,9 @@ MMRESULT MixerDevice::open(UINT uiMixerId, DWORD dwCallback, DWORD dwInstance, D
 MMRESULT MixerDevice::GetCaps()
 {
    MMRESULT mmrc;
-   
+
    mmrc = mixerGetDevCaps(
-      (UINT) m_hMixer, 
+      (UINT) m_hMixer,
       &m_mixercaps,
       sizeof(MIXERCAPS));
    if (MMSYSERR_NOERROR != mmrc)
@@ -88,16 +88,16 @@ MMRESULT MixerDevice::GetCaps()
 MMRESULT MixerDevice::GetDestinations()
 {
    MixerDestination *    lpDestination;
-  
+
    m_mixerdestinationa.set_size(m_mixercaps.cDestinations);
-   
+
    for (int i = 0; (UINT) i < m_mixercaps.cDestinations; i++)
    {
       lpDestination = m_mixerdestinationa.ptr_at(i);
       lpDestination->SetDevice(this);
       lpDestination->mixerGetLineInfo(0, i, MIXER_GETLINEINFOF_DESTINATION);
       //        CMixer::GetComponentName(lpmxl, lpDestination->m_strComponent);
-      
+
       //        //
       //      //
       //    //
@@ -110,25 +110,25 @@ MMRESULT MixerDevice::GetDestinations()
       // mxl.cControls,
       // mxl.cConnections,
       //(char *)mxl.szName);
-      
+
       //        if (0 != (APP_OPTF_DEBUGLOG & gfuAppOptions))
       //      {
       //        MixAppDebugLog(ach);
       //      MixAppDebugLog(gszCRLF);
       //  }
-      
+
       //        nIndex = ListBox_AddString(ptlb->hlb, ach);
       //      ListBox_SetItemData(ptlb->hlb, nIndex, mxl.dwLineID);
-      
+
    }
-   
-   
+
+
    //
    //
    //
    //    SetWindowRedraw(ptlb->hlb, TRUE);
    return MMSYSERR_NOERROR;
-   
+
 }
 
 MMRESULT MixerDevice::GetDestination(DWORD dwComponentType, MixerDestination **ppDestination)
@@ -152,7 +152,7 @@ MMRESULT MixerDevice::GetDestination(DWORD dwComponentType, MixerDestination **p
 void MixerDevice::MapControls()
 {
    m_mapIDToControl.remove_all();
-   
+
    for(int i = 0; i < m_mixerdestinationa.get_size(); i++)
    {
       MixerDestination & destination = m_mixerdestinationa[i];
@@ -268,9 +268,9 @@ MMRESULT MixerDevice::close()
 bool MixerDevice::OnCommand(WPARAM wparam, LPARAM lparam)
 {
    UINT uiID = LOWORD(wparam);
-   
+
    MixerControl * pcontrol;
-   
+
    if(m_mapDlgItemIDToControl.Lookup(uiID, pcontrol)
       && pcontrol->OnCommand(wparam, lparam))
             return TRUE;

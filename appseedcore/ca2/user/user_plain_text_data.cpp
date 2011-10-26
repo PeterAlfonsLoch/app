@@ -15,7 +15,7 @@ namespace user
       m_pfile              = NULL;
       m_iBranch            = 0;
    }
-         
+
    plain_text_data::~plain_text_data()
    {
       if(m_pfile != NULL)
@@ -38,24 +38,28 @@ namespace user
    {
       return CommandUndefined;
    }
-   
+
    void plain_text_data::Command::Undo(plain_text_data * pedit)
    {
+      UNREFERENCED_PARAMETER(pedit);
    }
-   
+
    void plain_text_data::Command::Redo(plain_text_data * pedit)
    {
+      UNREFERENCED_PARAMETER(pedit);
    }
 
 
 
    void plain_text_data::SetSelCommand::Undo(plain_text_data * pdoc)
    {
+      UNREFERENCED_PARAMETER(pdoc);
       m_iSelStart = m_iPreviousSelStart;
       m_iSelEnd = m_iPreviousSelEnd;
    }
    void plain_text_data::SetSelCommand::Redo(plain_text_data * pdoc)
    {
+      UNREFERENCED_PARAMETER(pdoc);
       m_iSelStart = m_iSelStart;
       m_iSelEnd = m_iSelEnd;
    }
@@ -82,14 +86,14 @@ namespace user
    {
       for(int i = get_upper_bound(); i >= 0; i--)
       {
-         element_at(i)->Undo(pdoc);
+         this->element_at(i)->Undo(pdoc);
       }
    }
    void plain_text_data::GroupCommand::Redo(plain_text_data * pdoc)
    {
-      for(int i = 0; i < get_size(); i++)
+      for(int i = 0; i < this->get_size(); i++)
       {
-         element_at(i)->Redo(pdoc);
+         this->element_at(i)->Redo(pdoc);
       }
    }
 

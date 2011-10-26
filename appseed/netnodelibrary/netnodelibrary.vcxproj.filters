@@ -19,16 +19,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="netnodelibrary.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="netnodelibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="netnodelibrary.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

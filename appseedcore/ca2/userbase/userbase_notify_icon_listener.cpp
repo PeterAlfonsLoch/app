@@ -23,6 +23,9 @@ namespace userbase
       case WM_LBUTTONDBLCLK:
         OnNotifyIconLButtonDblClk(uiNotifyIcon);
         break;
+      case WM_LBUTTONDOWN:
+        OnNotifyIconLButtonDown(uiNotifyIcon);
+        break;
       }
    }
 
@@ -32,6 +35,11 @@ namespace userbase
    }
 
    void notify_icon_listener::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
+   {
+      UNREFERENCED_PARAMETER(uiNotifyIcon);
+   }
+
+   void notify_icon_listener::OnNotifyIconLButtonDown(UINT uiNotifyIcon)
    {
       UNREFERENCED_PARAMETER(uiNotifyIcon);
    }

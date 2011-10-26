@@ -26,9 +26,6 @@ namespace mail
       virtual string get_host();
       virtual string get_transaction();
 
-      tree * get_mail_tree();
-      list * get_mail_list();
-
       virtual void start();
 
       void update_lists();

@@ -1,4 +1,6 @@
 #include "StdAfx.h"
+#include <openssl/ssl.h>
+
 
 void NESSIEinit(struct NESSIEstruct * const structpointer);
 void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);
@@ -53,10 +55,10 @@ namespace ca4
       unsigned char * buf = new unsigned char[iBufSize];
       MD5_CTX ctx;
       MD5_Init(&ctx);
-      int iRead;
+      uint64_t iRead;
       while((iRead = spfile->read(buf, iBufSize)) > 0)
       {
-         MD5_Update(&ctx, buf, iRead);
+         MD5_Update(&ctx, buf, (unsigned long) iRead);
       }
       MD5_Final(buf,&ctx);
       string str;
@@ -86,14 +88,15 @@ namespace ca4
          throw "failed";
       string strVersion;
       strVersion = "fileset v1";
-         MD5_CTX ctx;
+      MD5_CTX ctx;
       write_ex1_string(spfile, NULL, strVersion);
-         ex1::filesp file2(get_app());
-         int iBufSize = 1024 * 1024;
-         int uiRead;
-      unsigned char * buf = (unsigned char *)  malloc(iBufSize);
+      ex1::filesp file2(get_app());
+      ::primitive::memory_size iBufSize = 1024 * 1024;
+      ::primitive::memory_size uiRead;
+      primitive::memory buf;
+      buf.allocate(iBufSize);
       string strMd5 = "01234567012345670123456701234567";
-      int iPos;
+      uint64_t iPos;
       for(int i = 0; i < stra.get_size(); i++)
       {
          if(gen::str::ends_ci(stra[i], ".zip"))
@@ -102,25 +105,25 @@ namespace ca4
          else if(System.dir().is(stra[i]))
             continue;
          write_n_number(spfile, NULL, 1);
-         iPos = spfile->GetPosition();
+         iPos = spfile->get_position();
          write_ex1_string(spfile, NULL, strMd5);
          MD5_Init(&ctx);
          write_ex1_string(spfile, &ctx, straRelative[i]);
          if(!file2->open(stra[i], ::ex1::file::mode_read | ::ex1::file::type_binary))
             throw "failed";
-         write_n_number(spfile, &ctx, file2->get_length());
+         write_n_number(spfile, &ctx, (int) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
          {
             spfile->write(buf, uiRead);
-            MD5_Update(&ctx, buf, uiRead);
+            MD5_Update(&ctx, buf, (unsigned long) uiRead);
          }
          spfile->seek(iPos, ::ex1::seek_begin);
          MD5_Final(buf,&ctx);
          strMd5.Empty();
          string strFormat;
-         for(int i = 0; i < 16; i++)
+         for(int j = 0; j < 16; j++)
          {
-            strFormat.Format("%02x", buf[i]);
+            strFormat.Format("%02x", buf[j]);
             strMd5 += strFormat;
          }
          write_ex1_string(spfile, NULL, strMd5);
@@ -142,11 +145,12 @@ namespace ca4
       string strMd5;
       string strMd5New;
       int iBufSize = 1024 * 1024;
-      unsigned char * buf = (unsigned char *)  malloc(iBufSize);
+      primitive::memory buf;
+      buf.allocate(iBufSize);
       int iLen;
       MD5_CTX ctx;
       ex1::filesp file2(get_app());
-      UINT uiRead;
+      ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
       {
          while(true)
@@ -164,12 +168,12 @@ namespace ca4
             read_n_number(spfile, &ctx, iLen);
             while(iLen > 0)
             {
-             uiRead = spfile->read(buf, min(iBufSize, iLen ));
+             uiRead = spfile->read(buf, (UINT)  (min(iBufSize, iLen )));
              if(uiRead == 0)
                 break;
                file2->write(buf, uiRead);
-               MD5_Update(&ctx, buf, uiRead);
-               iLen -= uiRead;
+               MD5_Update(&ctx, buf, (unsigned long) uiRead);
+               iLen -= (unsigned long) uiRead;
             }
             file2->close();
             MD5_Final(buf,&ctx);
@@ -199,7 +203,7 @@ namespace ca4
 
    void file::read_n_number(ex1::file * pfile, MD5_CTX * pctx, int & iNumber)
    {
-      UINT uiRead;
+      uint64_t uiRead;
       string str;
       char ch;
       while((uiRead = pfile->read(&ch, 1)) == 1)

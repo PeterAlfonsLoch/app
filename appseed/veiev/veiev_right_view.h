@@ -7,7 +7,7 @@ namespace veiev
    {
    public:
       right_view(::ca::application * papp);
-      void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::user::win::message::dispatch * pinterface);
       DECL_GEN_SIGNAL(_001OnCreate)
 
       document * get_document();

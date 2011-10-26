@@ -29,7 +29,7 @@ namespace netshareclient
 
       int run();
 
-      virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
       virtual void _001OnTabClick(int iTab);
@@ -43,6 +43,7 @@ namespace netshareclient
 	   DECL_GEN_SIGNAL(_001OnSetCursor)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnMouseMove)
+      DECL_GEN_SIGNAL(_001OnMouseLeave)
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnUser1024) 

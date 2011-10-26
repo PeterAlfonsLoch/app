@@ -1,6 +1,5 @@
 #pragma once
 
-#include "user/user_window_draw_client_tool.h"
 #include "multithreading/multithreading.h"
 #include "user/user_window_util.h"
 
@@ -21,12 +20,11 @@ namespace ca
    public:
 
 
-      bool              m_bRun;
-      bool              m_bDrawCursor;
-      bool              m_bProDevianMode;
-      ::user::buffer *  m_pbuffer;
-      int               m_iFramesPerSecond;
-      CEvent            m_eventFree;
+      bool                 m_bRun;
+      bool                 m_bProDevianMode;
+      ::user::buffer *     m_pbuffer;
+      DWORD                m_iFramesPerSecond;
+      event                m_eventFree;
 
 
       window_draw();

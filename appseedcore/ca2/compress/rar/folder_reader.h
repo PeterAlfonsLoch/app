@@ -15,7 +15,7 @@ namespace rar
      int NumItems;
    };
 
-   class folder_reader:
+   class folder_reader :
       public ex1::reader
    {
    public:
@@ -30,7 +30,7 @@ namespace rar
      ex1::reader * _stream;
      uint_array CRCs;
 
-     DWORD_PTR read(void * data, DWORD_PTR size);
+     ::primitive::memory_size read(void * data, ::primitive::memory_size size);
 
      HRESULT OpenStream();
      HRESULT CloseStream();

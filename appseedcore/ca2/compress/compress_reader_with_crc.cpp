@@ -9,9 +9,9 @@ namespace compress
 {
 
 
-DWORD_PTR reader_with_crc::read(void *data, DWORD_PTR size)
+::primitive::memory_size reader_with_crc::read(void *data, ::primitive::memory_size size)
 {
-  DWORD_PTR realProcessedSize = _stream->read(data, size);
+  ::primitive::memory_size realProcessedSize = _stream->read(data, size);
   _size += realProcessedSize;
   if (size > 0 && realProcessedSize == 0)
     _wasFinished = true;
@@ -19,9 +19,9 @@ DWORD_PTR reader_with_crc::read(void *data, DWORD_PTR size)
   return realProcessedSize;
 }
 
-DWORD_PTR input_stream_with_crc::read(void *data, DWORD_PTR size)
+::primitive::memory_size input_stream_with_crc::read(void *data, ::primitive::memory_size size)
 {
-  DWORD_PTR realProcessedSize = _stream->read(data, size);
+  ::primitive::memory_size realProcessedSize = _stream->read(data, size);
   /*
   if (size > 0 && realProcessedSize == 0)
     _wasFinished = true;
@@ -31,7 +31,7 @@ DWORD_PTR input_stream_with_crc::read(void *data, DWORD_PTR size)
   return realProcessedSize;
 }
 
-DWORD_PTR input_stream_with_crc::seek(INT_PTR offset, ex1::e_seek seekOrigin)
+file_position input_stream_with_crc::seek(file_offset offset, ex1::e_seek seekOrigin)
 {
   if (seekOrigin != ::ex1::seek_begin || offset != 0)
     throw E_FAIL;

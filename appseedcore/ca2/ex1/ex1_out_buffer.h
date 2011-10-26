@@ -24,50 +24,42 @@ namespace ex1
    class CLASS_DECL_ca out_buffer :
       virtual public ::radix::object
    {
-   protected:
-      byte *_buffer;
-      uint32 _pos;
-      uint32 _limitPos;
-      uint32 _streamPos;
-      uint32 _bufferSize;
-      writer * _stream;
-      uint64 _processedSize;
-      byte  *_buffer2;
-      bool _overDict;
-
-      HRESULT FlushPart();
    public:
+      ::primitive::virtual_memory      m_memory;
+      file_position                        _pos;
+      file_position                        _limitPos;
+      file_position                        _streamPos;
+      writer *                         _stream;
+      uint64                           _processedSize;
+      byte *                           _buffer2;
+      bool                             _overDict;
+
       HRESULT ErrorCode;
 
-      out_buffer(): _buffer(0), _pos(0), _stream(0), _buffer2(0) {}
-      ~out_buffer() { Free(); }
+      out_buffer();
+      ~out_buffer();
 
-      bool Create(uint32 bufferSize);
-      void Free();
+      using ::ex1::request_interface::create;
+      bool create(::primitive::memory_size bufferSize);
+      void free();
 
-      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
+      void SetMemStream(byte *buffer);
       void SetStream(writer *stream);
       void Init();
       HRESULT Flush();
       void FlushWithCheck();
-      void ReleaseStream()
-      { 
-         // _stream.Release(); 
-      }
+      void ReleaseStream();
+      HRESULT FlushPart();
 
-      void WriteByte(byte b)
-      {
-         _buffer[_pos++] = b;
-         if(_pos == _limitPos)
-            FlushWithCheck();
-      }
-      void WriteBytes(const void *data, size_t size)
-      {
-         for (size_t i = 0; i < size; i++)
-            WriteByte(((const byte *)data)[i]);
-      }
+      void WriteByte(byte b);
+      void WriteBytes(const void *data, size_t size);
 
       uint64 GetProcessedSize() const;
+
+
    };
 
+
 } // namespace ex1
+
+

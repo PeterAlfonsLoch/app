@@ -43,9 +43,9 @@ SimpleMDIChildWindow::SimpleMDIChildWindow(::ca::application * papp) :
    m_bPseudoInactive = FALSE;
 }
 
-void SimpleMDIChildWindow::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void SimpleMDIChildWindow::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   simple_frame_window::_001InstallMessageHandling(pinterface);
+   simple_frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimpleMDIChildWindow::_001OnCreate);
 }
 
@@ -122,7 +122,7 @@ BOOL SimpleMDIChildWindow::PreCreateWindow(CREATESTRUCT& cs)
 BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
    const char * lpszWindowName, DWORD dwStyle,
    const RECT& rect, SimpleMDIFrameWindow* pParentWnd,
-   create_context* pContext)
+   ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(lpszClassName);
    UNREFERENCED_PARAMETER(lpszWindowName);
@@ -216,7 +216,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
 }
 
 BOOL SimpleMDIChildWindow::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-      ::user::interaction* pParentWnd, create_context* pContext)
+      ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
    // only do this once
    //ASSERT_VALID_IDR(nIDResource);
@@ -233,7 +233,7 @@ BOOL SimpleMDIChildWindow::LoadFrame(const char * pszMatter, DWORD dwDefaultStyl
    // if available - get MDI child menus from doc template
    multiple_document_template* ptemplate;
    if (pContext != NULL &&
-      (ptemplate = dynamic_cast < multiple_document_template * > (pContext->m_pNewDocTemplate)) != NULL)
+      (ptemplate = dynamic_cast < multiple_document_template * > (pContext->m_user->m_pNewDocTemplate)) != NULL)
    {
       ASSERT_KINDOF(multiple_document_template, ptemplate);
    }
@@ -477,9 +477,9 @@ void SimpleMDIChildWindow::on_update_frame_title(BOOL bAddToTitle)
    {
       char szText[256+_MAX_PATH];
       if (pdocument == NULL)
-         _template::checked::tcsncpy_s(szText, _countof(szText), m_strTitle, _TRUNCATE);
+         _template::checked::strncpy_s(szText, _countof(szText), m_strTitle, _TRUNCATE);
       else
-         _template::checked::tcsncpy_s(szText, _countof(szText), pdocument->get_title(), _TRUNCATE);
+         _template::checked::strncpy_s(szText, _countof(szText), pdocument->get_title(), _TRUNCATE);
       if (m_nWindow > 0)
       {
          char szWinNumber[16+1];
@@ -487,7 +487,7 @@ void SimpleMDIChildWindow::on_update_frame_title(BOOL bAddToTitle)
          
          if( lstrlen(szText) + lstrlen(szWinNumber) < _countof(szText) )
          {
-            _template::checked::tcscat_s( szText, _countof(szText), szWinNumber ); 
+            _template::checked::strcat_s( szText, _countof(szText), szWinNumber ); 
          }
       }
 
@@ -592,7 +592,7 @@ void SimpleMDIChildWindow::_001OnCreate(gen::signal_object * pobj)
    // call base class with lParam context (not MDI one)
    MDICREATESTRUCT* lpmcs;
    lpmcs = (MDICREATESTRUCT*)pcreate->m_lpcreatestruct->lpCreateParams;
-   create_context* pContext = (create_context*)lpmcs->lParam;
+   ::ca::create_context* pContext = (::ca::create_context*)lpmcs->lParam;
    pcreate->previous();
    pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
    pcreate->m_bRet = true;
@@ -691,7 +691,8 @@ void SimpleMDIFrameWindow::OnWindowNew()
    // otherwise we have a new frame !
    document_template * ptemplate = pdocument->get_document_template();
    ASSERT_VALID(ptemplate);
-   ::frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild);
+   ::ca::create_context_sp cc(get_app());
+   ::frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild, cc);
    if (pFrame == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to create new frame.\n");

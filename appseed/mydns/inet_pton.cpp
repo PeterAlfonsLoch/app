@@ -17,6 +17,9 @@
 
 #include "StdAfx.h"
 
+
+#define HAVE_INET_PTON 1
+
 #ifndef HAVE_INET_PTON
 
 #if defined(LIBC_SCCS) && !defined(lint)

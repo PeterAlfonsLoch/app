@@ -41,7 +41,6 @@ namespace window_frame
       EGrip GetGripMask();
       void SetGripMask(EGrip egrip);
       bool IsSizing();
-      void MoveWindow(::user::interaction * pwnd, LPCRECT lpcrect);
       void SetSWPFlags(UINT uiFlags);
       void SetMinSize(size size);
       ::visual::e_cursor translate(EHitTest ehittest);
@@ -51,6 +50,8 @@ namespace window_frame
       ::user::interaction* GetEventWindow();
 
 
+      void SizeWindow(::user::interaction * pwnd, point pt, bool bTracking);
+      void MoveWindow(::user::interaction * pwnd, LPCRECT lpcrect);
 
       void message_handler(::user::interaction * pwnd, gen::signal_object * pobj);
    };

@@ -44,8 +44,8 @@ namespace libepp
          string strValue;
          organization_list.get_next_assoc(pos, strKey, strValue);
          to_parse["organization_list"] += "<brorg:cd>";
-         to_parse["organization_list"] += "<brorg:id>" + Application.xml().special_chars(strKey) + "</brorg:id>";
-         to_parse["organization_list"] += "<brorg:organization>" + Application.xml().special_chars(strValue) + "</brorg:organization>";
+         to_parse["organization_list"] += "<brorg:id>" + System.xml().special_chars(strKey) + "</brorg:id>";
+         to_parse["organization_list"] += "<brorg:organization>" + System.xml().special_chars(strValue) + "</brorg:organization>";
          to_parse["organization_list"] += "</brorg:cd>";      
       }
 

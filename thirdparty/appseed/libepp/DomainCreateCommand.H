@@ -37,7 +37,7 @@ namespace libepp
    {
    public:
       /// Default constructor
-      DomainCreateCommand(bool reset = true) : Command(false)
+      DomainCreateCommand(::ca::application * papp, bool reset = true) : ca(papp), Command(false), _ds_list(papp)
       {
          if (reset) {
             this->reset();
@@ -156,14 +156,14 @@ namespace libepp
       */
       void add_dsInfo(const DSInfo &ds_info)
       {
-         _ds_list.add_tail(ds_info);
+         _ds_list.add(ds_info);
       }
 
       /// Returns DS information list
       /**
       @return DS information list
       */
-      collection::list < DSInfo > get_dsInfo() const
+      ds_info_array get_dsInfo() const
       {
          return _ds_list;
       }
@@ -264,7 +264,7 @@ namespace libepp
       unsigned int _max_sig_life;
 
       /// DS info
-      collection::list < DSInfo > _ds_list;
+      ds_info_array _ds_list;
 
       /// KeyData
       collection::list < KeyData > _dnskey_list;

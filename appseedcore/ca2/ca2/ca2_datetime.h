@@ -28,6 +28,11 @@ namespace ca2
          string get_gmt_date_time();
       };
 
+
+      class ca2::datetime::international m_international;
+      class ca2::datetime::str m_str;
+
+
       datetime(::ca::application * papp);
 
       int get_month_day_count(int year, int month);
@@ -49,8 +54,10 @@ namespace ca2
       class international & international();
       class str & str();
 
-      class ca2::datetime::international m_international;
-      class ca2::datetime::str m_str;
+      string strftime(const char * psz, time_t timeParam);
+      string strftime(const char * psz);
+
+
    };
 
 

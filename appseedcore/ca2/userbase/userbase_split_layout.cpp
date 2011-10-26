@@ -76,8 +76,8 @@ namespace userbase
       point ptCursor = lpMsg->pt;
       if(lpMsg->message == WM_LBUTTONDOWN)
       {
-         
-         int   fwKeys = lpMsg->wParam;        // key flags 
+
+         int   fwKeys = lpMsg->wParam;        // key flags
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::userbase::split_bar & splitbar = m_splitbara.element_at(iIndex);
@@ -99,17 +99,17 @@ namespace userbase
       }
       else if(lpMsg->message == WM_MOUSEMOVE)
       {
-         int   fwKeys = lpMsg->wParam;        // key flags 
+         int   fwKeys = lpMsg->wParam;        // key flags
          point ptClient = ptCursor;
          _GetWnd()->ScreenToClient(&ptClient);
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {
-            if(m_mutex.Lock())
+            if(m_mutex.lock())
             {
    //      TRACE("split_layout::RelayChildEvent LOWORD(lpMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
    //      TRACE("split_layout::RelayChildEvent HIWORD(lpMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
-            
-               
+
+
 
                int nPos;
                bool bMove;
@@ -134,16 +134,16 @@ namespace userbase
                {
                   bMove = nPos != (int) m_splitbara[m_iIndex].m_dwPosition;
                }
-               TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex].m_dwPosition);            
-               TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);            
+               TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_splitbara[m_iIndex].m_dwPosition);
+               TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
                if(bMove)
                {
-                  
+
                   m_splitbara[m_iIndex].m_dwPosition = nPos;
                   m_splitbara[m_iIndex].m_dRate = 0.0;
                   layout();
                }
-               m_mutex.Unlock();
+               m_mutex.unlock();
             }
          }
          else
@@ -195,7 +195,7 @@ namespace userbase
          for(int i = 0 ; i < m_splitbara.get_count(); i++)
          {
 
-            if((m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate 
+            if((m_splitbara[i].m_dRate < m_splitbara[i].m_dMinimumRate
             || m_splitbara[i].m_dRate > m_splitbara[i].m_dMaximumRate)
             && m_splitbara[i].m_dwPosition > 0)
             {
@@ -215,11 +215,11 @@ namespace userbase
             }
 
 
-            m_splitbara[i].m_dwPosition = (DWORD) (m_splitbara[i].m_dRate * iDimension);
+            m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (DWORD) (m_splitbara[i].m_dRate * iDimension));
 
          }
       }
-      
+
       rect rectA;
       rect rectB;
       int i;
@@ -227,7 +227,7 @@ namespace userbase
       split_layout::Pane * pcomponent;
       ::user::interaction * pwnd;
       UINT uiFlags;
-      
+
       if(IsWindowVisible())
       {
          uiFlags = SWP_SHOWWINDOW;
@@ -239,10 +239,10 @@ namespace userbase
 
       for(i = 0; i < iSplitBarCount; i++)
       {
-         
+
          CalcSplitBarRect(i, &rectA);
          ClientToScreen(rectA);
-         
+
          pwnd = &m_splitbara.element_at(i);
          ScreenToClient(rectA);
          pwnd->SetWindowPos(
@@ -426,7 +426,7 @@ namespace userbase
          lpRect->left   = nPos - m_iMarging / 2;
          lpRect->right   = nPos + m_iMarging / 2;
       }
-      
+
    }
 
    void split_layout::SetVisible(bool bNewValue)
@@ -481,7 +481,7 @@ namespace userbase
 
 
       }*/
-      
+
    }
 
 
@@ -502,7 +502,12 @@ namespace userbase
             return false;
       }
 
-      m_panea.insert_at(iIndex, Pane());
+      {
+
+         Pane paneNew;
+         m_panea.insert_at(iIndex, paneNew);
+
+      }
 
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_pane_count());
@@ -645,10 +650,10 @@ namespace userbase
       CalcSplitBarRect(iSplitBar, &splitRect);
       if(uiMessage == WM_LBUTTONDOWN)
       {
-         
-         int   fwKeys = wParam;        // key flags 
-//         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor 
-//         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor 
+
+         int   fwKeys = wParam;        // key flags
+//         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor
+//         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::userbase::split_bar * pSplitBar = &m_splitbara.element_at(iSplitBar);
@@ -659,9 +664,9 @@ namespace userbase
       }
       else if(uiMessage == WM_LBUTTONUP)
       {
-//         int   fwKeys = wParam;        // key flags 
-//         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor 
-//         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor 
+//         int   fwKeys = wParam;        // key flags
+//         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor
+//         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
             System.release_capture_uie();
@@ -673,16 +678,16 @@ namespace userbase
       }
       else if(uiMessage == WM_MOUSEMOVE)
       {
-         int   fwKeys = wParam;        // key flags 
-         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor 
-         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor 
+         int   fwKeys = wParam;        // key flags
+         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor
+         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
-            if(m_mutex.Lock(0))
+            if(m_mutex.lock(duration::zero()))
             {
          TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
          TRACE("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));
-            
+
 
                int nPos;
                bool bMove;
@@ -709,12 +714,12 @@ namespace userbase
                }
                if(bMove)
                {
-                  
+
                   m_splitbara[m_iIndex].m_dwPosition = nPos;
                   m_splitbara[m_iIndex].m_dRate = 0.0;
                   layout();
                }
-               m_mutex.Unlock();
+               m_mutex.unlock();
             }
          }
          else
@@ -751,7 +756,7 @@ namespace userbase
       return pane.m_id;
    }
 
-   
+
    split_layout::Pane::Pane()
    {
       m_pholder = NULL;

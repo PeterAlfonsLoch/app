@@ -37,7 +37,7 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_socket(h),
-      m_content_length(0),
+      m_content_length(-1),
       m_read_ptr(0)
    {
    }
@@ -91,7 +91,7 @@ namespace sockets
 
    void http_debug_socket::OnHeaderComplete()
    {
-      if (m_content_length || IsChunked())
+      if (m_content_length || m_content_length != ((size_t)(-1)) || IsChunked())
       {
          Send("</pre><h3>Request Body</h3><pre style='background: #e0e0e0'>");
       }
@@ -107,7 +107,7 @@ namespace sockets
    {
       SendBuf(p,l);
       m_read_ptr += (int)l;
-      if (m_read_ptr >= m_content_length && m_content_length)
+      if (m_read_ptr >= m_content_length && m_content_length && m_content_length != ((size_t)(-1)))
       {
          Send("</pre><hr></body></html>");
          SetCloseAndDelete();

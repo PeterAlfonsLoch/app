@@ -25,7 +25,7 @@ inline UINT string_to_string_map::HashKey(const char * key) const
    {
       AfxThrowInvalidArgException();
    }
-   
+
    while (*key)
       nHash = (nHash<<5) + nHash + *key++;
    return nHash;
@@ -354,10 +354,10 @@ const string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair
 
    assoc* pAssocRet = (assoc*)pAssoc;
    ASSERT(pAssocRet != NULL);
-   
+
    if(m_pHashTable == NULL || pAssocRet == NULL)
       return NULL;
-      
+
    ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION );
 
    // find next association
@@ -385,7 +385,7 @@ string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair *pAss
 
    if(m_pHashTable == NULL || pAssocRet == NULL)
       return NULL;
-   
+
    ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION );
 
    // find next association
@@ -485,7 +485,7 @@ void string_to_string_map::assert_valid() const
 
 void string_to_string_map::_001ReplaceVars(string & str)
 {
-   if(get_count() == 0)
+   if(this->get_count() == 0)
       return;
    pair * ppair = PGetFirstAssoc();
    string strFind;

@@ -1,4 +1,7 @@
 #include "StdAfx.h"
+#include <openssl/rsa.h>
+#include <openssl/engine.h>
+#include <openssl/err.h>
 
 
 typedef string ( *SALT)(::ca::application *, const char * , stringa &);
@@ -6,21 +9,33 @@ typedef string ( *SALT)(::ca::application *, const char * , stringa &);
 namespace fontopus
 {
 
-   validate::validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth) :
+   validate::validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth, bool bInteractive) :
       ca(papp),
       m_loginthread(papp),
       m_netcfg(papp)
    {
-      m_bInteractive    = true;
+      m_bInteractive    = bInteractive;
       m_bVotagusAuth    = bVotagusAuth;
       m_strForm         = pszForm;
       m_puser           = NULL;
+      ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
+      if(pradixapp != NULL)
+      {
+         try
+         {
+            pradixapp->keep_alive();
+         }
+         catch(...)
+         {
+         }
+      }
+      //Sleep(15 * 1000);
       m_ptemplatePane   = new ::userbase::single_document_template(
          papp,
          "system/auth",
-         &typeid(form_document),
-         &typeid(simple_frame_window),
-         &typeid(userex::pane_tab_view));
+         ::ca::get_type_info < form_document > (),
+         ::ca::get_type_info < simple_frame_window > (),
+         ::ca::get_type_info < userex::pane_tab_view > ());
       m_pauth           = NULL;
       m_pviewAuth       = NULL;
       m_pdocAuth        = NULL;
@@ -33,53 +48,98 @@ namespace fontopus
       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
    }
 
-   ::fontopus::user * validate::get_user()
+   ::fontopus::user * validate::get_user(const char * pszRequestingParty, const char * pszSessId)
    {
       m_loginthread.m_strSalt.Empty();
-      if(!strcmp(Application.get_module_name(), "netnodeapp")
-         || !strcmp(Application.get_module_name(), "netnodecfgapp")
-         || Application.get_license_id() == "netnodecfg"
-         || Application.get_license_id() == "netnode"
-         || Application.get_license_id() == "veievserver"
-         || Application.command_line().m_varQuery["app"] == "netnodecfg")
+      if(command_thread().property("app") == "simpledbcfg"
+      || command_thread().property("app") == "netnode"
+      || command_thread().property("app") == "veievserver"
+      || command_thread().property("app") == "simpledbcfg"
+      || command_thread().property("app") == "netnodecfg")
       {
          m_puser = Application.allocate_user();
-         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command_line().m_varQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
       }
-      else if(Application.get_license_id() == "mydns"
-         || Application.command_line().m_varQuery.has_property("install")
-         || Application.command_line().m_varQuery.has_property("uninstall"))
+      else if(command_thread().property("app") == "mydns"
+           || command_thread().has_property("install")
+           || command_thread().has_property("uninstall"))
       {
          m_puser = Application.allocate_user();
-         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command_line().m_varQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
       }
       //else if(!strcmp(System.get_module_name(), "productionapp")
       //   || !strcmp(System.get_module_name(), "productionbasisapp")
       //   || !strcmp(System.get_module_name(), "backupapp")
-      //   || System.command_line().m_varQuery["app"] == "production"
+      //   || System.command().m_varTopicQuery["app"] == "production"
       //   || System.get_license_id() == "winservice_filesystemsize")
-      else if(!strcmp(Application.get_module_name(), "backupapp")
-         || Application.get_license_id() == "winservice_filesystemsize")
+      else if(command_thread().property("app") == "backup"
+           || command_thread().property("app") == "winservice_filesystemsize")
       {
          m_puser = Application.allocate_user();
-         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command_line().m_varQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = camilosasuketsumanuma;
          return m_puser;
       }
       string strDir;
       string strUsername;
       string strPasshash;
-      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "");
+      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
       m_loginthread.m_strUsername = strUsername;
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash());
+      string strHost(pszRequestingParty);
+
+      stringa straRequestingServer;
+      straRequestingServer.add("fontopus.com");
+      straRequestingServer.add("fontopus.eu");
+      straRequestingServer.add("fontopus.asia");
+      if(strHost.is_empty())
+      {
+
+         strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+         if(!straRequestingServer.contains_ci(strHost))
+         {
+            strHost = "https://fontopus.com/";
+         }
+      }
+      if(System.url().get_server(strHost).has_char())
+      {
+         strHost = System.url().get_server(strHost);
+      }
+
+      if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
+         && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
+      {
+         m_loginthread.m_puser = Application.allocate_user();
+         m_loginthread.m_puser->m_sessionidmap[Application.command_thread().m_varTopicQuery["fontopus"].get_string()] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
+         m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
+         m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread().m_varTopicQuery["sessid"].get_string();
+         m_loginthread.m_puser->m_strRequestingServer = strHost;
+         xml::node nodeBasicInfo(get_app());
+         if(nodeBasicInfo.load(Application.http().get("https://"+Application.command_thread().m_varTopicQuery["fontopus"].get_string()+"/ca2api/account/get_basic_info", m_loginthread.m_puser)))
+         {
+            string strLogin;
+            if(nodeBasicInfo.get_attr("login", strLogin) && strLogin.find("@") > 0)
+            {
+               m_loginthread.m_puser->m_strLogin = strLogin;
+               return  m_loginthread.m_puser;
+            }
+         }
+      }
+
+      m_loginthread.m_puser = Application.allocate_user();
+
+      if(pszSessId != NULL && string(pszSessId).get_length() > 16)
+      {
+         m_loginthread.m_puser->m_sessionidmap[strHost] = pszSessId;
+      }
+
+      m_loginthread.m_strRequestingServer = strHost;
+      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
       if(strUsername.has_char() && strPasshash.has_char())
       {
-         
-         m_loginthread.m_puser = System.allocate_user();
 
          m_loginthread.m_strPassword.Empty();
          m_loginthread.m_strPasshash = strPasshash;
@@ -97,43 +157,77 @@ namespace fontopus
 
          return m_puser;
       }
-      m_loginthread.m_strModHash.Empty();
-      m_loginthread.m_strKeyHash.Empty();
-      m_loginthread.m_strCa2Hash.Empty();
-      ensure_main_document();
-      page1();
-      m_pviewAuth->SetTimer(1984, 484, NULL);
-      m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
-      m_ptemplatePane->close_all_documents(FALSE);
-      return m_puser;
+      else if(m_bInteractive)
+      {
+
+         m_loginthread.m_strModHash.Empty();
+         m_loginthread.m_strKeyHash.Empty();
+         m_loginthread.m_strCa2Hash.Empty();
+         ensure_main_document();
+         page1();
+         m_pviewAuth->SetTimer(1984, 484, NULL);
+         ::ca::live_signal livesignal;
+         livesignal.keep(get_app());
+         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
+         m_ptemplatePane->close_all_documents(FALSE);
+         return m_puser;
+      }
+      else
+      {
+         return NULL;
+      }
    }
 
    void validate::ensure_main_document()
    {
       if(m_pdoc != NULL)
          return;
-      m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(NULL, FALSE, System.m_puiInitialPlaceHolderContainer));
+      ::ca::create_context_sp createcontext(get_app());
+      createcontext->m_bMakeVisible = false;
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
+      m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
       userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
-      pview->set_create_view(this);
+      pview->set_view_creator(this);
       m_ptabview = pview;
-      pview->add_tab("ca2open", 1);
-      pview->add_tab("network", 2);
-      pview->add_image_tab("", System.dir().matter("image/keyboard-h21.png"), 3);
+      pview->set_tab("ca2open", 1);
+      pview->set_tab("network", 2);
+      pview->set_image_tab("", Application.dir().matter("image/keyboard-h21.png"), 3);
       pview->set_cur_tab_by_id(1);
    }
 
-   bool validate::get_license(const char * psz, bool bInteractive)
+   bool validate::get_license(const char * psz)
    {
-      m_bInteractive = bInteractive;
       string strLicense(psz);
       if(strLicense == "netnodeapp"
          || strLicense == "netnodecfgapp"
-         || strLicense == "netnodecfg"
+         || strLicense == "simpledbcfg"
          || strLicense == "netnode"
          || strLicense == "veievserver"
          || strLicense == "mydns"
-         || System.command_line().m_varQuery.has_property("install")
-         || System.command_line().m_varQuery.has_property("uninstall"))
+         || Application.command().m_varTopicQuery.has_property("install")
+         || Application.command().m_varTopicQuery.has_property("uninstall")
+         || strLicense == "netnodecfg")
+      {
+         return true;
+      }
+      else if(strLicense == "flag"
+         || strLicense == "alarm"
+         || strLicense == "biteditor"
+         || strLicense == "md5"
+         || strLicense == "vmp"
+         || strLicense == "veiev"
+         || strLicense == "netshareservercfg"
+         || strLicense == "netshareserver"
+         || strLicense == "veriedit"
+         || strLicense == "netshareclient"
+         || strLicense == "verisimplevideo"
+         || strLicense == "eluce"
+         || strLicense == "whiteboard"
+         || strLicense == "bergedge"
+         || strLicense == "app.sysutils.igd"
+         || strLicense == "projection"
+         || strLicense == "querydb"
+         )
       {
          return true;
       }
@@ -142,22 +236,73 @@ namespace fontopus
       //   || !strcmp(System.get_module_name(), "backupapp")
       //   || System.get_license_id() == "winservice_filesystemsize")
       else if(strLicense == "backupapp"
-         || strLicense == "winservice_filesystemsize")
+         || strLicense == "winservice_filesystemsize"
+         || strLicense == "production")
+      {
+         return true;
+      }
+      else if(strLicense == "i2com")
       {
          return true;
       }
       m_strLicense = psz;
       m_loginthread.m_strLicense = m_strLicense;
-      string strDir;
+      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      stringa straRequestingServer;
+      straRequestingServer.add("fontopus.com");
+      straRequestingServer.add("fontopus.eu");
+      straRequestingServer.add("fontopus.asia");
+      if(!straRequestingServer.contains_ci(strHost))
+      {
+         strHost = "fontopus.com";
+      }
+
+      if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
+         && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
+      {
+         strHost = Application.command_thread().m_varTopicQuery["fontopus"].get_string();
+      }
+
+      string strAuthUrl("https://"+ strHost +"/ca2api/account/auth");
+
+      gen::property_set post;
+      gen::property_set headers;
+      gen::property_set set;
+
+      string strAuth;
+      post["entered_license"] = m_strLicense;
+      //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
+//      DWORD dwTimeTelmo1 = GetTickCount();
+
+      post["entered_license"] = m_strLicense;
+
+      Application.http().get(strAuthUrl, strAuth, post, headers, set);
+
+      m_loginthread.m_strFontopusServer = strHost;
+
+      xml::node node(get_app());
+      node.load(strAuth);
+      if(node.m_strName == "response")
+      {
+         if(node.attr("id") == "auth")
+         {
+            return true;
+         }
+      }
+      if(m_bInteractive)
+      {
+         ensure_main_document();
+         authentication_failed(-1, "");
+      }
+      return false;
+/*      string strDir;
       string strUsername;
       string strPasshash;
-      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "");
+      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
       m_loginthread.m_strUsername = strUsername;
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash());
+      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
       if(strUsername.has_char() && strPasshash.has_char())
       {
-         
-         m_loginthread.m_puser = System.allocate_user();
 
          m_loginthread.m_strPassword.Empty();
          m_loginthread.m_strPasshash = strPasshash;
@@ -174,7 +319,7 @@ namespace fontopus
          }
          return m_bLicense;
       }
-      else if(bInteractive)
+      else if(m_bInteractive)
       {
          m_loginthread.m_strModHash.Empty();
          m_loginthread.m_strKeyHash.Empty();
@@ -182,43 +327,44 @@ namespace fontopus
          ensure_main_document();
          page1();
          m_pviewAuth->SetTimer(1984, 484, NULL);
-         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
+         ::ca::live_signal livesignal;
+         livesignal.keep(get_app());
+         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptemplatePane->close_all_documents(FALSE);
          return m_bLicense;
       }
       else
       {
          return false;
-      }
+      }*/
    }
 
    void validate::page1()
    {
-      m_loginthread.m_puser = System.allocate_user();
       m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
-      string strUrl;
-      strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
-      string strAppName;
-      if(System.m_strAppName == "winactionarea")
-      {
-         strAppName = "_set_windesk";
-      }
-      else
-      {
-         strAppName = System.m_strAppName;
-      }
-      strUrl += strAppName;
-      strUrl += "&key=name";
-      m_pdocAuth->get_html_data()->m_propertyset["application_name"] = System.http().get(strUrl);
-      if(m_strLicense.is_empty())
-      {
-         m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
-      }
-      else
-      {
-         m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
-      }
-      if(!m_pdocAuth->on_open_document(System.dir().matter(m_strForm)))
+      //string strUrl;
+      //strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
+      //string strAppName;
+      //if(System.m_strAppName == "winactionarea")
+      //{
+        // strAppName = "_set_windesk";
+      //}
+      //else
+      //{
+        // strAppName = System.m_strAppName;
+      //}
+      //strUrl += strAppName;
+      //strUrl += "&key=name";
+      //m_pdocAuth->get_html_data()->m_propertyset["application_name"] = System.http().get(strUrl);
+      //if(m_strLicense.is_empty())
+      //{
+        // m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
+      //}
+      //else
+      //{
+        // m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
+      //}
+      if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
       {
          authentication_failed(0, "Cannot open form for authentication!!");
          return;
@@ -228,11 +374,11 @@ namespace fontopus
       text_interface * ptext = dynamic_cast < text_interface * > (pguie);
       ptext->_001SetText(m_loginthread.m_strUsername);
       if(m_loginthread.m_strUsername.is_empty())
-         System.set_keyboard_focus(pguie);
+         Application.set_keyboard_focus(pguie);
       else
       {
          pguie = m_pviewAuth->GetChildByName("password");
-         System.set_keyboard_focus(pguie);
+         Application.set_keyboard_focus(pguie);
       }
    }
 
@@ -256,81 +402,115 @@ namespace fontopus
       {
          pframe->m_bblur_Background = true;
       }
-      if(System.m_puiInitialPlaceHolderContainer != NULL)
+/*      if(System.m_puiInitialPlaceHolderContainer != NULL)
       {
          System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
       }
-      else
+      else*/
       {
          m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);
       }
-      m_ptabview->GetParentFrame()->SetWindowPos(
+      m_ptabview->GetTopLevelFrame()->SetWindowPos(
          ZORDER_TOP,
          rectOpen.left, rectOpen.top,
-         rectOpen.width(), rectOpen.height(), 
+         rectOpen.width(), rectOpen.height(),
          SWP_SHOWWINDOW);
-      m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
-      m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
+      if(m_ptabview->GetTopLevelFrame()->GetParent() != NULL)
+      {
+         try
+         {
+            m_ptabview->GetTopLevelFrame()->GetParent()->layout();
+         }
+         catch(...)
+         {
+         }
+      }
+      else
+      {
+      }
+      /*UINT ui1 = GetCurrentThreadId();
+      UINT ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
+      if(::AttachThreadInput(ui1, ui2, TRUE)) 
+      {
+         TRACE("AttachedThreadInput");
+      }*/
+      if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
+      {
+         TRACE("fontopus_validate tab_view top_level_frame set_foreground_window OK");
+         if(m_ptabview->GetTopLevelFrame()->BringWindowToTop())
+         {
+            TRACE("fontopus_validate tab_view top_level_frame bring_window_to_top OK");
+         }
+      }
+
+      
+
+      /*
+      m_ptabview->GetTopLevelFrame()->ActivateFrame();
+      m_ptabview->GetTopLevelFrame()->SetFocus();*/
+      
+
+      //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
+      //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
    }
 
    void validate::pageMessage(const char * pszMatter, gen::property_set & set)
    {
       ensure_main_document();
       m_pdocAuth->get_html_data()->m_propertyset = set;
-      m_pdocAuth->on_open_document(System.dir().matter(pszMatter));
+      m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
       display_main_frame();
-      m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
+      ::ca::live_signal livesignal;
+      livesignal.keep(get_app());
+      m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
    }
 
-   void validate::on_create_view(view_data * pviewdata)
+   void validate::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case 1:
          {
-            m_pdocAuth = System.create_form(this, m_ptabview);
+            m_pdocAuth = System.create_child_form(this, pcreatordata->m_pholder);
             if(m_pdocAuth != NULL)
             {
                m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
                m_pviewAuth->m_pcallback = this;
-               pviewdata->m_pdoc = m_pdocAuth;
-               pviewdata->m_pwnd = m_pviewAuth->GetParentFrame();
+               pcreatordata->m_pdoc = m_pdocAuth;
+               pcreatordata->m_pwnd = m_pviewAuth->GetParentFrame();
             }
          }
          break;
       case 2:
          {
-            if(m_netcfg.initialize(m_ptabview))
+            if(m_netcfg.initialize_child(pcreatordata->m_pholder))
             {
-               pviewdata->m_pdoc = m_netcfg.m_pdoc;
-               pviewdata->m_pwnd = m_netcfg.m_pview->GetParentFrame();
+               pcreatordata->m_pdoc = m_netcfg.m_pdoc;
+               pcreatordata->m_pwnd = m_netcfg.m_pview->GetParentFrame();
             }
 
          }
          break;
       case 3:
          {
-            create_context cc;
-            cc.m_pCurrentDoc = m_ptabview->get_document();
-            cc.m_typeinfoNewView =  &typeid(::ca8::keyboard_layout);
 
-            m_pkeyboardlayout = dynamic_cast < ::ca8::keyboard_layout * > (view::create_view(&cc, m_ptabview, 100));
+            m_pkeyboardlayout = m_ptabview->create_view < ::ca8::keyboard_layout > ();
             m_pkeyboardlayout->CreateViews();
-            pviewdata->m_pdoc = m_pkeyboardlayout->m_pdoc;
-            pviewdata->m_pwnd = m_pkeyboardlayout;
+            pcreatordata->m_pdoc = m_pkeyboardlayout->m_pdoc;
+            pcreatordata->m_pwnd = m_pkeyboardlayout;
          }
          break;
       }
-      if(pviewdata->m_pwnd != NULL)
+      if(pcreatordata->m_pwnd != NULL)
       {
-         pviewdata->m_eflag.signalize(::user::create_view::view_data::flag_hide_all_others_on_show);
+         pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }
 
    }
    void validate::on_show_view()
    {
-      switch(get_view_id())
+      switch(m_ptabview->get_view_id())
       {
       case 1:
          {
@@ -354,8 +534,9 @@ namespace fontopus
       thread(papp),
       simple_thread(papp)
    {
-      m_bOk = false;
-      m_puser = NULL;
+      m_bOk                = false;
+      m_puser              = NULL;
+      m_bFontopusServer    = false;
    }
 
    login_thread::~login_thread()
@@ -366,7 +547,7 @@ namespace fontopus
    {
       straHash.remove_all();
       straSource.remove_all();
-#if !core_level_1 && !core_level_2
+/*#if !core_level_1 && !core_level_2
       SetDllDirectory(NULL);
 #endif
       ::LoadLibraryA("salt.dll");
@@ -401,7 +582,7 @@ namespace fontopus
          }
       }
       straHash.QuickSort();
-      delete pmodulea;
+      delete pmodulea;*/
    }
 
    string validate::calc_mod_hash()
@@ -419,7 +600,7 @@ namespace fontopus
    {
       if(m_loginthread.m_strKeyHash.has_char())
          return m_loginthread.m_strKeyHash;
-#if !core_level_1 && !core_level_2
+/*#if !core_level_1 && !core_level_2
       ::SetDllDirectoryA(System.get_ca2_module_folder());
 #endif
       HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
@@ -430,10 +611,10 @@ namespace fontopus
          m_loginthread.m_strKeyHash = salt(get_app(), m_loginthread.m_strUsername, straSource);
          return m_loginthread.m_strKeyHash;
       }
-      else
+      else */
       {
-         m_loginthread.m_strKeyHash.Empty();
-         return "";
+         m_loginthread.m_strKeyHash = "ca2t12n";
+         return "ca2t12n";
       }
    }
 
@@ -441,16 +622,17 @@ namespace fontopus
    {
       if(m_loginthread.m_strCa2Hash.has_char())
          return m_loginthread.m_strCa2Hash;
-      stringa straHash;
+      /*stringa straHash;
       stringa straSource;
       get_mod(straHash, straSource);
       straHash.insert_at(0, m_loginthread.m_strUsername);
 #if !core_level_1 && !core_level_2
       ::SetDllDirectoryA(System.get_ca2_module_folder());
-#endif
-      HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
+#endif*/
+      /*HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
       SALT salt = (SALT) ::GetProcAddress(hmoduleSalt, "salt");
-      m_loginthread.m_strCa2Hash = salt(get_app(), straHash.implode(";"), straSource);
+      m_loginthread.m_strCa2Hash = salt(get_app(), straHash.implode(";"), straSource);*/
+      m_loginthread.m_strCa2Hash = "ca2t12n";
       return m_loginthread.m_strCa2Hash;
    }
 
@@ -526,16 +708,28 @@ namespace fontopus
       {
          if(node.attr("id") == "auth")
          {
+            System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
+            System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
-            m_puser->m_strSessid = node.attr("sessid");
+            m_puser->m_strFontopusServerSessId = node.attr("sessid");
+            m_puser->m_strRequestingServer = m_strRequestingServer;
             m_puser->m_strFunUserId = node.attr("secureuserid");
             m_strPasshash = node.attr("passhash");
             iAuth = 1;
+            if(m_bFontopusServer)
+            {
+               Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"), m_strRequestingServer);
+            }
             execute();
             if(m_strLicense.has_char())
             {
                m_strValidUntil = node.attr("valid_until");
             }
+         }
+         else if(node.attr("id") == "registration_deferred")
+         {
+            delete m_puser;
+            iAuth = 5;
          }
          else
          {
@@ -563,16 +757,38 @@ namespace fontopus
 
    string login_thread::Login(ca4::http::e_status * pestatus)
    {
-      string strLogin;
-      // online validation throught NetLogin
-      for(int i = 0; i < 3; i++)
+      if(m_straRequestingServer.get_count() <= 0)
       {
-         strLogin = NetLogin(pestatus);
-         if(strLogin.has_char())
-            return strLogin;
+         stringa straRequestingServer;
+         straRequestingServer.add("fontopus.com");
+         straRequestingServer.add("fontopus.eu");
+         straRequestingServer.add("fontopus.asia");
+         if(straRequestingServer.contains_ci(m_strRequestingServer))
+         {
+            m_bFontopusServer = true;
+            straRequestingServer.remove(m_strRequestingServer);
+            straRequestingServer.insert_at(0, m_strRequestingServer);
+            m_straRequestingServer = straRequestingServer;
+         }
+      }
+      if(m_straRequestingServer.get_count() > 0)
+      {
+         string strLogin;
+         for(int i = 0; i < m_straRequestingServer.get_count(); i++)
+         {
+            m_strRequestingServer  = m_straRequestingServer[i];
+            strLogin = NetLogin(pestatus);
+            if(strLogin.has_char())
+               return strLogin;
+         }
+         return "";
+      }
+      else
+      {
+         return NetLogin(pestatus);
       }
       // entering offline validation
-      if(m_strLicense.is_empty()) // user auth
+/*      if(m_strLicense.is_empty()) // user auth
       {
          if(m_strPasshash.has_char()) // validated some time before
          {
@@ -623,7 +839,7 @@ namespace fontopus
             // should license at least 5 seconds after last licensing
             if(timeLicense > timeNow && timeNow > (timeLast + 5))
             {
-               return "<response id=\"auth\" sessid=\"\" secureuserid=\"\">"; 
+               return "<response id=\"auth\" sessid=\"\" secureuserid=\"\">";
             }
             else
             {
@@ -634,48 +850,173 @@ namespace fontopus
          {
             return "";  // no password, no validation, at least one time connected to ca2open ca2anima
          }
-      }
+      }*/
    }
 
 
    string login_thread::NetLogin(ca4::http::e_status * pestatus)
    {
 
-      //string strSaltUrl("https://fontopus.com/ca2api/account/salt");
-      string strAuthUrl("https://fontopus.com/ca2api/account/auth");
-      string document;
-      gen::property_set post;
-      gen::property_set headers;
-      gen::property_set set;
-
-      /*if(m_strPasshash.is_empty())
+      if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
       {
-         post["entered_login"] = m_strUser;
-         string strSalt;
-         if(!Application.http().get(strSaltUrl, strSalt, post, headers, m_puser->m_phttpcookies, m_puser, NULL, pestatus))
-            return "";
-         if(strSalt.is_empty())
-            return "";
-         m_strPasshash = System.crypt().nessie(strSalt + System.crypt().nessie(m_strPassword));
-      }*/
-      post["entered_login"] = m_strUsername;
+         return System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
+      }
+
+      string strGetFontopus("http://" + m_strRequestingServer + "/get_fontopus");
+
+      m_strFontopusServer.Empty();
+
+      ::ca::application * papp = get_app();
+
+      {
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set set;
+         set["disable_ca2_sessid"] = true;
+         set["app"] = papp;
+         Application.http().get(strGetFontopus, m_strFontopusServer, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+      }
+
+      if(m_strFontopusServer.is_empty() || m_strFontopusServer.get_length() > 64
+      || m_strFontopusServer.find("fontopus.") < 0)
+         return "";
+
+
+      if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
+      {
+         return System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
+      }
+
+      if(!gen::str::begins(m_strFontopusServer, "fontopus."))
+         return "";
+
+
+      string strLogin;
+
+      {
+
+         string strLoginUrl("https://"+ m_strFontopusServer +"/ca2api/account/login");
+
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set set;
+
+         if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
+         {
+            m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], strLoginUrl);
+         }
+         else
+         {
+            m_puser->set_sessid("not_auth", strLoginUrl);
+         }
+         set["app"] = papp;
+
+         DWORD dwTimeTelmo1 = GetTickCount();
+         Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+         DWORD dwTimeTelmo2 = GetTickCount();
+
+         TRACE("Total time Application.http().get(\"" + strLoginUrl + "\") : %d", (dwTimeTelmo2 - dwTimeTelmo1));
+
+      }
+
+      strLogin.trim();
+
+      if(strLogin.is_empty())
+         return "";
+
+      xml::node node(get_app());
+
+      if(!node.load(strLogin))
+         return "";
+
+      if(node.m_strName != "login")
+         return "";
+
+      string strSessId = node.attr("sessid");
+
+      if(strSessId.is_empty())
+         return "";
+
+      string strRsaModulus = node.attr("rsa_modulus");
+
+      if(strRsaModulus.is_empty())
+         return "";
+
+      string strPass;
       if(m_strPasshash.is_empty())
       {
-         post["entered_password"] = m_strPassword;
+         strPass = System.crypt().nessie(m_strPassword);
       }
       else
       {
-         post["entered_passhash"] = m_strPasshash;
-      }
-      if(m_strLicense.has_char())
-      {
-         post["entered_license"] = m_strLicense;
+         strPass = m_strPasshash;
       }
 
+      RSA * rsa = RSA_new();
+
+      BN_hex2bn(&rsa->n, strRsaModulus);
+      BN_hex2bn(&rsa->e, "10001");
+
+
+      primitive::memory memory;
+      primitive::memory memIn;
+
+      Application.hex_to_memory(memIn, strPass);
+
+      memory.allocate(2048);
+
+      int i = RSA_public_encrypt(memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), memory.get_data(), rsa, RSA_PKCS1_PADDING);
+
+      const char * psz = ERR_error_string(ERR_get_error(), NULL);
+
+      TRACE(psz);
+
+      memory.allocate(i);
+
+      string strHex;
+      Application.memory_to_hex(strHex, memory);
+
+      RSA_free(rsa);
+
       m_puser->m_strLogin = m_strUsername;
-      string strLogin;
-      Application.http().get(strAuthUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-      return strLogin;
+
+      string strAuth;
+
+      {
+
+         string strAuthUrl("https://"+ m_strFontopusServer +"/ca2api/account/auth?" + oprop("defer_registration").get_string());
+
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set set;
+
+         if(m_strPasshash.is_empty())
+         {
+            post["entered_password"] = strHex;
+         }
+         else
+         {
+            post["entered_passhash"] = strHex;
+         }
+         string strCrypt;
+
+         post["entered_login"] = m_strUsername;
+         if(m_strLicense.has_char())
+         {
+            post["entered_license"] = m_strLicense;
+         }
+
+         m_puser->set_sessid(strSessId, strAuthUrl);
+         set["app"] = papp;
+         DWORD dwTimeTelmo1 = GetTickCount();
+         Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+         DWORD dwTimeTelmo2 = GetTickCount();
+
+         TRACE("Total time Application.http().get(\"" + strAuthUrl + "\") : %d", (dwTimeTelmo2 - dwTimeTelmo1));
+
+      }
+
+      return strAuth;
    }
 
    void login_thread::execute()
@@ -688,11 +1029,11 @@ namespace fontopus
          strFilename = System.file().time_square();
          System.http().download(
             m_httpexecutea[i].m_strUrl,
-            strFilename, 
+            strFilename,
             m_httpexecutea[i].m_propertysetPost,
             m_httpexecutea[i].m_propertysetHeaders,
             set,
-            m_puser->m_phttpcookies, 
+            m_puser->m_phttpcookies,
             m_puser);
          strResponse = Application.file().as_string(strFilename);
          TRACE0(strResponse);
@@ -712,6 +1053,7 @@ namespace fontopus
             if(m_loginthread.get_os_data() != NULL)
                return true;
             m_pviewAuth->KillTimer(1984);
+            m_loginthread.oprop("defer_registration") = oprop("defer_registration");
             if(m_bVotagusAuth)
             {
                m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
@@ -754,10 +1096,10 @@ namespace fontopus
          if(!System.file().exists(strPathUsername) || !System.file().exists(strPathPasshash))
             return true;
 
-         System.crypt().file_get(strPathUsername, strUsername, "");
+         System.crypt().file_get(strPathUsername, strUsername, "", get_app());
          m_loginthread.m_strUsername = strUsername;
 
-         System.crypt().file_get(strPathPasshash, strPasshash, calc_key_hash());
+         System.crypt().file_get(strPathPasshash, strPasshash, calc_key_hash(), get_app());
 
          if(strUsername.is_empty() || strPasshash.is_empty())
             return true;
@@ -796,13 +1138,14 @@ namespace fontopus
             if(strName.is_empty())
                strName = m_strLicense;
             propertyset["project"] = strName;
-            propertyset["contribute_link"] = "ext://http://fontopus.com/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.m_strSessid;
+            strUrl = "ext://https://"+ m_loginthread.m_strFontopusServer + "/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+            propertyset["contribute_link"] = strUrl;
             pageMessage("err\\user\\authentication\\not_licensed.xhtml", propertyset);
          }
       }
       else if(iAuth == -1)
       {
-         propertyset["register_link"] = "ext://http://fontopus.com/register?email="+ System.url().url_encode(m_loginthread.m_strUsername);
+         propertyset["register_link"] = "ext://http://"+ m_loginthread.m_strFontopusServer + "/register?email="+ System.url().url_encode(m_loginthread.m_strUsername);
          pageMessage("err\\user\\authentication\\wrong_fontopus_login.xhtml", propertyset);
          try
          {
@@ -824,12 +1167,27 @@ namespace fontopus
       }
       else if(iAuth == -2)
       {
-         propertyset["server"] = "fontopus.com";
-         pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
+         if(m_bInteractive)
+         {
+            propertyset["server"] = "fontopus.com";
+            pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
+         }
+      }
+      else if(iAuth == 5)
+      {
+         if(m_bInteractive)
+         {
+            propertyset["server"] = "fontopus.com";
+            propertyset["email"] = strUsername;
+            pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
+         }
       }
       else
       {
-         pageMessage("err\\user\\authentication\\failed.xhtml", propertyset);
+         if(m_bInteractive)
+         {
+            pageMessage("err\\user\\authentication\\failed.xhtml", propertyset);
+         }
       }
       delete m_pauth;
    }
@@ -843,20 +1201,20 @@ namespace fontopus
 
       string strUsernamePrevious;
       string strPasshashPrevious;
-      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsernamePrevious, "");
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsernamePrevious, "license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
+      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsernamePrevious, "", get_app());
+      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsernamePrevious, "license_auth/00002.data"), strPasshashPrevious, calc_key_hash(), get_app());
 
-      if(strUsernamePrevious != strUsername ||
-         strPasshashPrevious != strPasshash)
+      if((strUsername.has_char() && strPasshash.has_char())
+      && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
       {
-         System.crypt().file_set(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "");
-         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash());
+         System.crypt().file_set(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
+         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
          if(strPassword.has_char())
          {
             string strSalt = System.crypt().v5_get_password_salt();
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash());
+            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
             string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash());
+            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
          }
       }
       if(m_loginthread.m_strLicense.has_char())
@@ -864,7 +1222,7 @@ namespace fontopus
          stringa straLicense;
          straLicense.add(m_loginthread.m_strValidUntil);
          straLicense.add(System.datetime().international().get_gmt_date_time());
-         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash());
+         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
       }
       m_bLicense = true;
       m_puser = m_loginthread.m_puser;
@@ -876,13 +1234,11 @@ namespace fontopus
 
    validate::auth * validate::get_auth()
    {
-      form_document * pdoc = dynamic_cast < form_document * > (
-         m_ptemplatePane->open_document_file(
-         NULL,
-         TRUE,
-         System.m_puiInitialPlaceHolderContainer));
+      ::ca::create_context_sp createcontext(get_app());
+      createcontext->m_bMakeVisible = true;
+      form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
       userex::pane_tab_view * pview = pdoc->get_typed_view < userex::pane_tab_view > ();
-      pview->set_create_view(this);
+      pview->set_view_creator(this);
       rect rectOpen;
       System.get_screen_rect(rectOpen);
       int iWidth = rectOpen.width();
@@ -895,7 +1251,9 @@ namespace fontopus
       pview->add_tab("login", 1);
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
-      pview->GetTopLevelFrame()->RunModalLoop();
+         ::ca::live_signal livesignal;
+         livesignal.keep(get_app());
+      pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;
    }
 

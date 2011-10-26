@@ -51,10 +51,10 @@ namespace netshareclient
    }
 
 
-   void list::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void list::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      netshareclient::list_interface::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      netshareclient::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list::_001OnTimer);
    }
@@ -88,14 +88,18 @@ namespace netshareclient
       if(range.get_item_count() > 0)
       {
          ItemRange & itemrange = range.ItemAt(0);
-         string str;
-         m_pdata->_001GetItemText(this, str, itemrange.GetLBound(), 0, 0);
-         get_document()->netshare(str);
+         ::user::list_item item(this);
+         item.m_iItem = itemrange.GetLBound();
+         item.m_iSubItem = 0;
+         item.m_iListItem = 0;
+         m_pdata->_001GetItemText(&item);
+         get_document()->netshare(item.m_strText);
       }
    }
 
    void list::open_profile(const char * pszFolder)
    {
+      UNREFERENCED_PARAMETER(pszFolder);
       _001OnUpdateItemCount();
    }
 

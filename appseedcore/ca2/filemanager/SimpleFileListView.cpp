@@ -11,8 +11,8 @@ namespace filemanager
 
    SimpleFileListView::SimpleFileListView(::ca::application * papp) :
       ca(papp),
-      ::user::interaction(papp), 
-      ::user::form(papp), 
+      ::user::interaction(papp),
+      ::user::form(papp),
       ::user::form_list(papp),
       SimpleFileListInterface(papp),
       ::userbase::view(papp),
@@ -29,8 +29,6 @@ namespace filemanager
 
       m_pheaderctrl     = &m_headerctrl;
       m_pheaderctrl->SetBaseListCtrlInterface(this);
-      m_pscrollbarVert  = &m_scrollbarVert;
-      m_pscrollbarHorz  = &m_scrollbarHorz;
 
       connect_update_cmd_ui("edit_copy", &SimpleFileListView::_001OnUpdateEditCopy);
       connect_command("edit_copy", &SimpleFileListView::_001OnEditCopy);
@@ -52,12 +50,10 @@ namespace filemanager
    {
    }
 
-   void SimpleFileListView::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void SimpleFileListView::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
-      SimpleFileListInterface::_001InstallMessageHandling(pinterface);
-      InstallBuffering(pinterface);
-      m_gdibuffer.InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
+      SimpleFileListInterface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &SimpleFileListView::_001OnContextMenu);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFileListView::_001OnTimer);
       connect_command_range(SHELL_COMMAND_FIRST, SHELL_COMMAND_LAST, &SimpleFileListView::_001OnShellCommand);
@@ -81,7 +77,7 @@ namespace filemanager
    }
    #endif //_DEBUG
 
-   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(lHint == 123)
@@ -155,7 +151,7 @@ namespace filemanager
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
-               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::ca::system::idEmpty, str))
+               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::radix::system::idEmpty, str))
                {
                   stringa stra;
                   stra.add_tokens(str, ";", true);
@@ -205,7 +201,7 @@ namespace filemanager
                   {
                      ptext->_001SetText(get_fs_list_data()->m_itema.get_item(range.ItemAt(0).GetLBound()).m_strName);
                   }
-               }  
+               }
             }
             file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
             if(pmanageruh != NULL)
@@ -221,7 +217,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFileListView::_001OnClick(UINT nFlags, point point) 
+   void SimpleFileListView::_001OnClick(UINT nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
@@ -235,7 +231,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFileListView::_001OnRightClick(UINT nFlags, point point) 
+   void SimpleFileListView::_001OnRightClick(UINT nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
@@ -251,9 +247,9 @@ namespace filemanager
    }
 
    /*bool SimpleFileListView::OnSetData(
-      const ::database::id & key, 
-      int iLine, 
-      int iColumn, 
+      const ::database::id & key,
+      int iLine,
+      int iColumn,
       var & var, ::database::update_hint * puh)
    {
       if(key.get_value() == _vms::FILE_MANAGER_ID_FILE_NAME)
@@ -268,9 +264,9 @@ namespace filemanager
    }
 
    bool SimpleFileListView::get_data(
-      const ::database::id & key, 
-      int iLine, 
-      int iColumn, 
+      const ::database::id & key,
+      int iLine,
+      int iColumn,
       var & var)
    {
       if(key.get_value() == _vms::FILE_MANAGER_ID_FILE_NAME)
@@ -286,7 +282,7 @@ namespace filemanager
 
    void SimpleFileListView::RenameFile(int iLine, string &wstrNameNew)
    {
-      
+
       string str = get_fs_list_data()->m_itema.get_item(iLine).m_strPath;
 
       int iFind = str.reverse_find(L'\\');
@@ -299,7 +295,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListView::_001OnContextMenu(gen::signal_object * pobj) 
+   void SimpleFileListView::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
       index iItem;
@@ -347,7 +343,7 @@ namespace filemanager
                   NULL,
                   (void **) &m_contextmenu.m_pcontextmenu);
 
-            
+
                if(SUCCEEDED(hr))
                {
                   hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
@@ -386,7 +382,7 @@ namespace filemanager
                NULL,
                (void **) &m_contextmenu.m_pcontextmenu);
 
-            
+
             if(SUCCEEDED(hr))
             {
                hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
@@ -410,11 +406,11 @@ namespace filemanager
       }
    }
 
-   BOOL SimpleFileListView::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL SimpleFileListView::PreCreateWindow(CREATESTRUCT& cs)
    {
-      
+
       cs.style |= WS_CLIPCHILDREN;
-      
+
       return ::userbase::view::PreCreateWindow(cs);
    }
 
@@ -460,8 +456,8 @@ namespace filemanager
          {
             __int64 i64Size;
             bool bPendingSize;
-            ::ca::lock lock(m_pthread, false);
-            if(!lock.Lock(1984))
+            single_lock lock(m_pthread);
+            if(!lock.lock(millis(1984)))
                return;
             if(i >= get_fs_list_data()->m_itema.get_count())
                i = 0;
@@ -473,7 +469,7 @@ namespace filemanager
             catch(...)
             {
             }
-            lock.Unlock();
+            lock.unlock();
             i++;
             Sleep(23);
          }
@@ -483,10 +479,35 @@ namespace filemanager
    }
 
 
-   void SimpleFileListView::_001OnTimer(gen::signal_object * pobj) 
+   void SimpleFileListView::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::timer, ptimer, pobj)
-      if(ptimer->m_nIDEvent == 1234567)
+      if(ptimer->m_nIDEvent == 198477)
+      {
+         if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
+         {
+            stringa stra;
+            GetSelectedFilePath(stra);
+            if(stra.get_count() <= 0)
+            {
+               Bergedge.m_varTopicFile.unset();
+            }
+            else if(stra.get_count() == 1)
+            {
+               Bergedge.m_varTopicFile = stra[0];
+            }
+            else
+            {
+               Bergedge.m_varTopicFile = stra;
+            }
+
+         }
+         else
+         {
+            KillTimer(198477);
+         }
+      }
+      else if(ptimer->m_nIDEvent == 1234567)
       {
          ASSERT(FALSE);
          m_iAnimate += 2;
@@ -494,7 +515,7 @@ namespace filemanager
          {
             m_iAnimate = 0;
             KillTimer(ptimer->m_nIDEvent);
-            
+
          }
          RedrawWindow();
       }
@@ -535,7 +556,7 @@ namespace filemanager
       //SetTimer(1234567, 50, NULL);
    }
 
-   bool SimpleFileListView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   bool SimpleFileListView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       ::fs::item_array itema;
       GetSelected(itema);
@@ -544,13 +565,13 @@ namespace filemanager
       return ::userbase::view::_001OnCmdMsg(pcmdmsg);
    }
 
-   void SimpleFileListView::_001OnShellCommand(gen::signal_object * pobj) 
+   void SimpleFileListView::_001OnShellCommand(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
-   void SimpleFileListView::_001OnFileManagerItemCommand(gen::signal_object * pobj) 
+   void SimpleFileListView::_001OnFileManagerItemCommand(gen::signal_object * pobj)
    {
       SCAST_PTR(BaseCommand, pcommand, pobj)
       ::fs::item_array itema;
@@ -558,7 +579,7 @@ namespace filemanager
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
-          iItemRange < range.get_item_count(); 
+          iItemRange < range.get_item_count();
           iItemRange++)
       {
          ItemRange itemrange = range.ItemAt(iItemRange);
@@ -572,7 +593,7 @@ namespace filemanager
          itema);
    }
 
-   void SimpleFileListView::_001OnFileManagerItemUpdate(gen::signal_object * pobj) 
+   void SimpleFileListView::_001OnFileManagerItemUpdate(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::update_cmd_ui, pupdatecmdui, pobj)
       ::fs::item_array itema;
@@ -580,7 +601,7 @@ namespace filemanager
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
-          iItemRange < range.get_item_count(); 
+          iItemRange < range.get_item_count();
           iItemRange++)
       {
          ItemRange itemrange = range.ItemAt(iItemRange);
@@ -595,12 +616,12 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListView::_017OpenContextMenuFolder(::fs::item &item)
+   void SimpleFileListView::_017OpenContextMenuFolder(const ::fs::item & item)
    {
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item);
    }
 
-   void SimpleFileListView::_017OpenContextMenuFile(::fs::item_array &itema)
+   void SimpleFileListView::_017OpenContextMenuFile(const ::fs::item_array & itema)
    {
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFile(itema);
    }
@@ -610,12 +631,12 @@ namespace filemanager
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenu();
    }
 
-   void SimpleFileListView::_017OpenFolder(::fs::item &item)
+   void SimpleFileListView::_017OpenFolder(const ::fs::item &item)
    {
       GetFileManager()->FileManagerBrowse(item);
    }
 
-   void SimpleFileListView::_017OpenFile(::fs::item_array &itema)
+   void SimpleFileListView::_017OpenFile(const ::fs::item_array &itema)
    {
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
    }
@@ -666,7 +687,7 @@ namespace filemanager
       System.m_strCopy = str;
    */
 
-      
+
       System.copydesk().set_filea(stra);
 
    }
@@ -683,7 +704,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
-      
+
       System.copydesk().get_filea(stra);
       string strDir;
       strDir = GetFileManagerItem().m_strPath;
@@ -724,7 +745,7 @@ namespace filemanager
       _017UpdateList();
    }
 
-   void SimpleFileListView::_001OnUpdateOpenWith(gen::signal_object * pobj) 
+   void SimpleFileListView::_001OnUpdateOpenWith(gen::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
@@ -732,10 +753,10 @@ namespace filemanager
          if(pcmdui1 != NULL)
          {
             ::userbase::menu_item_ptra * pitema = pcmdui1->m_pitema;
-            
+
             ::userbase::menu_base * pbase = pitema->ptr_at(pcmdui->m_pcmdui->m_nIndex)->m_pbase;
             pitema->remove_at(pcmdui->m_pcmdui->m_nIndex);
-            
+
 
             int iStartIndex = pcmdui->m_pcmdui->m_nIndex;
             int iIndex = iStartIndex;
@@ -752,7 +773,7 @@ namespace filemanager
             string strOpenWithKey;
             strOpenWithKey = strExt + "\\OpenWithList";
 
-            
+
 
 
             win::registry::Key key;
@@ -777,10 +798,10 @@ namespace filemanager
                iIndex++;
             }
             pcmdui->m_pcmdui->m_nIndex = iStartIndex;
-            
+
             pcmdui->m_pcmdui->m_nIndexMax = iIndex;
 
-            
+
             pbase->layout();
 
          }
@@ -833,7 +854,7 @@ namespace filemanager
          ::fs::item_array itema;
          GetSelected(itema);
          string strPath = itema[0].m_strPath;
-         ::ShellExecute(NULL, "open", m_straOpenWith[iPos], strPath, 
+         ::ShellExecute(NULL, "open", m_straOpenWith[iPos], strPath,
             System.dir().name(strPath), SW_SHOW);
          return true;
       }
@@ -841,7 +862,7 @@ namespace filemanager
       {
          return ::userbase::view::_001OnCommand(id);
       }
-      
+
    }
 
    void SimpleFileListView::_001OnUpdateSpafy(gen::signal_object * pobj)
@@ -904,8 +925,8 @@ namespace filemanager
       string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-      System.file().put_contents(strList, strFileList);
-      System.file().put_contents(strCheck, strFileCheck);
+      Application.file().put_contents(strList, strFileList);
+      Application.file().put_contents(strCheck, strFileCheck);
 
    }
 
@@ -927,8 +948,8 @@ namespace filemanager
       string strFileCheck;
       for(int i = 0; i < pdata->m_itema.get_count(); i++)
       {
-         if(get_fs_data()->is_dir(pdata->m_itema.get_item(i).m_strPath)
-            && get_fs_data()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
+         if(::fs::list_interface::get_document()->is_dir(pdata->m_itema.get_item(i).m_strPath)
+            && ::fs::list_interface::get_document()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
             System.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int j = 0; j < straSub.get_size(); j++)
@@ -975,8 +996,8 @@ namespace filemanager
       string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-      System.file().put_contents(strList, strFileList);
-      System.file().put_contents(strCheck, strFileCheck);
+      Application.file().put_contents(strList, strFileList);
+      Application.file().put_contents(strCheck, strFileCheck);
 
    }
 

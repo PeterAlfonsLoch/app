@@ -252,13 +252,15 @@ namespace sockets
 
    void socket::SetRemoteAddress(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
-      m_remote_address = System.cast_clone < sockets::address > (&ad);
+      m_remote_address(System.cast_clone < sockets::address > (&ad));
    }
 
 
    sockets::address_sp socket::GetRemoteSocketAddress()
    {
-      return dynamic_cast < sockets::address * > (System.clone(m_remote_address.m_p));
+      sockets::address_sp addr;
+      addr(dynamic_cast < sockets::address * > (System.clone(m_remote_address.m_p)));
+      return addr;
    }
 
 
@@ -787,7 +789,6 @@ namespace sockets
    {
       SetDetached();
       m_pThread = new SocketThread(this);
-      m_pThread->m_bRelease = true;
    }
 
 
@@ -830,18 +831,14 @@ namespace sockets
    socket::SocketThread::SocketThread(socket * p) :
       ::ca::ca(p->get_app()),
       thread(p->get_app()),
-      simple_thread(p->get_app()),
-      go_thread(p->get_app(), false),
       m_socket(p)
    {
-      start();
+      Begin();
    }
 
    socket::SocketThread::SocketThread(const SocketThread& s) :
-      ::ca::ca(((SocketThread & )s).get_app()), 
-      go_thread(((SocketThread & )s).get_app()), 
+      ::ca::ca(((SocketThread & )s).get_app()),
       thread(((SocketThread & )s).get_app()),
-      simple_thread(((SocketThread & )s).get_app()),
       m_socket(s.GetSocket())
    {
    }
@@ -852,7 +849,7 @@ namespace sockets
    }
 
 
-   void socket::SocketThread::go()
+   int socket::SocketThread::run()
    {
       socket_handler h(get_app());
       h.SetSlave();
@@ -861,12 +858,16 @@ namespace sockets
       m_socket -> OnDetached();
       while (h.get_count() && get_run())
       {
-         h.Select(30, 0);
+         try
+         {
+            h.Select(30, 0);
+         }
+         catch(...)
+         {
+            break;
+         }
       }
-      // m_socket now deleted oops
-      // yeah oops m_socket delete its socket thread, that means this
-      // so socket will no longer delete its socket thread, instead we do this:
-      set_auto_delete(true);
+      return 0;
    }
 
 

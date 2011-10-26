@@ -15,11 +15,11 @@ namespace sockets
       
       
       string m_filename; ///< Filename to write response to
-      unsigned char *m_data_ptr; ///< Ptr to buffer where to store response
-      size_t m_data_size; ///< Max size of data buffer
+      primitive::memory    m_memoryData; ///< Ptr to buffer where to store response
+      //size_t m_data_size; ///< Max size of data buffer
       size_t m_content_length; ///< Content-length header received from remote
       string m_content; ///< Received http headers
-      bool m_data_ptr_set; ///< buffer set from outside, do not delete
+      //bool m_data_ptr_set; ///< buffer set from outside, do not delete
       FILE *m_fil; ///< Output file
       size_t m_content_ptr; ///< Number of bytes received from body
       bool m_b_complete; ///< The entire content-length number of bytes has been received
@@ -51,9 +51,6 @@ namespace sockets
       void SetFilename(const string & );
       const string & Filename() const { return m_filename; }
 
-      /** Store response in this buffer. */
-      void SetDataPtr(unsigned char *,size_t);
-
       /** get response headers. */
       const string & GetContent();
 
@@ -83,6 +80,8 @@ namespace sockets
 
       /** get filename part of url. */
       const string & GetUrlFilename();
+
+      virtual void OnDataComplete();
 
    };
 

@@ -4,8 +4,8 @@
 
 struct CLASS_DECL_ca plex     // warning var length structure
 {
-   plex*          pNext;
-   __int64        size;
+   plex*                            pNext;
+   ::primitive::memory_size         size;
    // BYTE data[maxNum*elementSize];
 
    void * data() { return ((byte*)(this+1)) + CA2_PALACE_SAFE_ZONE_BORDER_SIZE; }

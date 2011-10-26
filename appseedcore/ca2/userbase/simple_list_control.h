@@ -8,12 +8,9 @@ public:
    simple_list_control(::ca::application * papp);
 
    simple_list_header_control       m_headerctrl;
-   simple_scroll_bar                m_scrollbarVert;
-   simple_scroll_bar                m_scrollbarHorz;
    ::user::simple_list_data         m_listctrldata;
 
    virtual ::user::interaction* OnDrawInterfaceGetWnd();
-   virtual void OnDrawInterfaceDraw(::ca::graphics * pdc);
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual void pre_subclass_window();
@@ -25,5 +22,5 @@ public:
    void set_data(stringa & stra);
    virtual ~simple_list_control();
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 };

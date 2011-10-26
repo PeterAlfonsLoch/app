@@ -91,7 +91,7 @@ namespace zip
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
       ex1::file * pfile = pzipfile->m_pfile;
-      return pfile->read(buf, size);
+      return (uLong) pfile->read(buf, size);
    }
    uLong  File::write_file_func (voidpf opaque, voidpf stream, const void * buf, uLong size)
    {
@@ -106,7 +106,7 @@ namespace zip
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
       ex1::file * pfile = pzipfile->m_pfile;
-      return pfile->GetPosition();      
+      return (long) pfile->get_position();      
    }
 
    long   File::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int origin)
@@ -114,7 +114,7 @@ namespace zip
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
       ex1::file * pfile = pzipfile->m_pfile;
-      if(pfile->seek(offset, origin) == 0xffffffff)
+      if(pfile->seek(offset, (::ex1::e_seek) origin) == 0xffffffff)
          return -1;
       else
          return 0;

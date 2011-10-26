@@ -10,7 +10,7 @@ template < class DERIVED  > class pointer_array;
 // One of the features is to notify the pointer
 // object pointer arrays (listeners) when the
 // pointer object is deleted.
-template < class DERIVED > 
+template < class DERIVED >
 class pointer
 {
 public:
@@ -70,7 +70,7 @@ void pointer < DERIVED >::pointer_clear_references()
 		{
 			*m_deriveda.element_at(i) = NULL;
 		}
-		comparable_array < pointer_array < DERIVED > *, pointer_array < DERIVED > * > 
+		comparable_array < pointer_array < DERIVED > *, pointer_array < DERIVED > * >
 			listenera = m_listenera;
 		for(i = 0; i < listenera.get_size() ; i++)
 		{
@@ -96,19 +96,19 @@ void pointer < DERIVED >::pointer_clear_references()
 	}
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 DERIVED * pointer < DERIVED >::derived()
 {
 	return dynamic_cast < DERIVED * > ( this );
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 const DERIVED * pointer < DERIVED >::derived() const
 {
 	return dynamic_cast < const DERIVED * > ( this );
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer < DERIVED >::add_reference(DERIVED * & pderived)
 {
 	if(pderived != NULL
@@ -118,7 +118,7 @@ void pointer < DERIVED >::add_reference(DERIVED * & pderived)
 	}
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer < DERIVED >::
 add_listener(pointer_array<DERIVED > * plistener)
 {
@@ -129,7 +129,7 @@ add_listener(pointer_array<DERIVED > * plistener)
 	}
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer < DERIVED >::
 remove_listener(pointer_array<DERIVED > * plistener)
 {
@@ -150,7 +150,7 @@ remove_listener(pointer_array<DERIVED > * plistener)
 namespace gen
 {
 
-   template < class DERIVED > 
+   template < class DERIVED >
    static void add_reference(DERIVED * & lpderived)
    {
 	   pointer<DERIVED> * lppi = dynamic_cast<pointer<DERIVED> *>(lpderived);
@@ -202,7 +202,7 @@ public:
 template < class DERIVED >
 void pointer_array < DERIVED >::get_array(raw_array < DERIVED * > & a)
 {
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       a.add(derived_at(i));
    }
@@ -211,51 +211,51 @@ void pointer_array < DERIVED >::get_array(raw_array < DERIVED * > & a)
 template < class DERIVED >
 void pointer_array < DERIVED >::get_array(comparable_array < DERIVED * > & a)
 {
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
       a.add(derived_at(i));
    }
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED >::
 pointer_array()
 {
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED >::
 pointer_array(const pointer_array & a)
 {
    operator = (a);
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED >::
 ~pointer_array()
 {
    remove_all();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer_array < DERIVED >::
 remove_all()
 {
-   for(int i = 0; i < get_size(); i++)
+   for(int i = 0; i < this->get_size(); i++)
    {
-      element_at(i)->remove_listener(this);
+      this->element_at(i)->remove_listener(this);
    }
    comparable_array < pointer < DERIVED > *, pointer < DERIVED > * >::remove_all();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 void pointer_array < DERIVED >::
 OnPointerClear(DERIVED * p)
 {
    remove(dynamic_cast < pointer < DERIVED > * > (p));
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 index pointer_array < DERIVED >::
 add(pointer < DERIVED > * p)
 {
@@ -285,7 +285,7 @@ set_at(int iIndex, pointer < DERIVED > * p)
 }
 
 
-template < class DERIVED > 
+template < class DERIVED >
 count pointer_array < DERIVED >::
 remove(pointer < DERIVED > * p)
 {
@@ -298,21 +298,21 @@ remove(pointer < DERIVED > * p)
    return 0;
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 DERIVED * pointer_array < DERIVED >::
 derived_at(index idx)
 {
-   return element_at(idx)->derived();
+   return this->element_at(idx)->derived();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 const DERIVED * pointer_array < DERIVED >::
 derived_at(index idx) const
 {
-   return element_at(idx)->derived();
+   return this->element_at(idx)->derived();
 }
 
-template < class DERIVED > 
+template < class DERIVED >
 pointer_array < DERIVED > &
 pointer_array < DERIVED >::
 operator = (const pointer_array & a)

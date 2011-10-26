@@ -28,7 +28,7 @@ using namespace NWindows;*/
 extern string ConvertMethodIdToString(uint64 id);
 
 
-namespace n7z 
+namespace n7z
 {
 
 CHandler::CHandler()
@@ -200,14 +200,14 @@ bool CHandler::IsEncrypted(uint32 index2) const
 ex1::HRes CHandler::GetProperty(uint32 index, int propID,  var *value)
 {
   var prop;
-  
+
   /*
   const CRef2 &ref2 = _refs[index];
   if (ref2.Refs.is_empty())
     return E_FAIL;
   const CRef &ref = ref2.Refs.Front();
   */
-  
+
   const CFileItem &item = _db.Files[index];
   uint32 index2 = index;
 
@@ -272,7 +272,7 @@ ex1::HRes CHandler::GetProperty(uint32 index, int propID,  var *value)
             bool methodIsKnown = FindMethod(
               _codecsInfo, &_externalCodecs,
               coder.MethodID, methodName);
-            
+
             if (!methodIsKnown)
               methodsString += ConvertMethodIdToString(coder.MethodID);
             else
@@ -381,8 +381,8 @@ ex1::HRes CHandler::GetProperty(uint32 index, int propID,  var *value)
   return S_OK;
 }
 
-ex1::HRes CHandler::Open(::ex1::input_stream *stream,
-    const uint64 *maxCheckStartPosition,
+ex1::HRes CHandler::Open(::ex1::byte_input_stream *stream,
+    const file_position *maxCheckStartPosition,
     ::compress::archive_open_callback_interface *openArchiveCallback)
 {
   Close();
@@ -475,11 +475,11 @@ ex1::HRes CHandler::SetProperties(const wchar_t **names, const PROPVARIANT *valu
    // IMPL_ISetCompressCodecsInfo2(CHandler)
    ex1::HRes CHandler::SetCompressCodecsInfo(::compress::codecs_info_interface * compressCodecsInfo)
    {
-      _codecsInfo = compressCodecsInfo;  
-      return LoadExternalCodecs(_codecsInfo, _externalCodecs); 
+      _codecsInfo = compressCodecsInfo;
+      return LoadExternalCodecs(_codecsInfo, _externalCodecs);
 
    }
-   
+
 
    /*bool CHandler::IsSolid(int refIndex)
    {
@@ -499,4 +499,4 @@ ex1::HRes CHandler::SetProperties(const wchar_t **names, const PROPVARIANT *valu
       _errorMessage += s;
    }*/
 
-} // namespace n7z 
+} // namespace n7z

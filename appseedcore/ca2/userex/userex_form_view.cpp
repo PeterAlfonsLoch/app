@@ -15,9 +15,9 @@ form_view::form_view(::ca::application * papp) :
 }
 
 
-void form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
 {
-   
+
    html_form_view::on_update(pSender, lHint, phint);
    if(phint != NULL)
    {
@@ -29,7 +29,7 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint
             if(!puh->m_strForm.is_empty())
             {
                string str;
-               str = System.dir().matter(puh->m_strForm);
+               str = Application.dir().matter(puh->m_strForm);
                if(get_document()->on_open_document(str))
                {
                   m_strPath = puh->m_strForm;
@@ -58,7 +58,6 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint
                }
             }
          }
-         layout();
       }
    }
    if(m_pcallback != NULL)
@@ -94,9 +93,9 @@ bool form_view::BaseOnControlEvent(::user::control_event * pevent)
    return false;
 }
 
-void form_view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void form_view::install_message_handling(::user::win::message::dispatch * pinterface)
 {
-   html_form_view::_001InstallMessageHandling(pinterface);
+   html_form_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &form_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_USER + 123, pinterface, this, &form_view::_001OnUser123);

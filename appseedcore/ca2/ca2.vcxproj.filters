@@ -122,12 +122,6 @@
     <Filter Include="Header Files\imediamanager">
       <UniqueIdentifier>{727a78ca-51a2-4fb3-b8a2-ff20f9a0ff9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\kissfftf">
-      <UniqueIdentifier>{aaa2d16d-5026-4098-9e28-0718450ef810}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\kissfftf\C Header Files">
-      <UniqueIdentifier>{ba12af7c-5233-4b5f-93b1-2e8a7e4705ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\x">
       <UniqueIdentifier>{1d3ba52d-047b-42b4-8186-26db7f837f62}</UniqueIdentifier>
     </Filter>
@@ -249,9 +243,6 @@
     <Filter Include="Source Files\radix">
       <UniqueIdentifier>{5d1eda33-58d2-418b-b8e1-f0b3a6e63c2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gen">
-      <UniqueIdentifier>{4f00468e-dc74-4b39-aa67-13094cb2cf11}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ca">
       <UniqueIdentifier>{59b3ac64-a2aa-445f-be01-eecf4c2cd6c5}</UniqueIdentifier>
     </Filter>
@@ -285,26 +276,11 @@
     <Filter Include="Source Files\mixer">
       <UniqueIdentifier>{362c30ab-145a-4693-954a-a4d9c789a2a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\mixer\Control Source Files">
-      <UniqueIdentifier>{3f3a1cc4-4e23-4e7c-8b4a-f7b3d0bb5300}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\mixeruibase">
-      <UniqueIdentifier>{40d3b716-1956-44af-a80c-d7a850e52840}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\mixeruibase\Control">
-      <UniqueIdentifier>{6e4e8850-636b-407e-9d55-8f1dbdcb07a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\mus">
       <UniqueIdentifier>{b93a7db2-5f9d-4898-912c-415e89b15cf8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\musctrl">
       <UniqueIdentifier>{61e67d39-ee44-484a-83fe-8d27ab83ead2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\kissfftf">
-      <UniqueIdentifier>{b3a83a3c-cd76-4568-a069-bc1d4d3fcc69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\kissfftf\C Source Files">
-      <UniqueIdentifier>{b4ec7bfe-17de-48fb-af78-c3c64c04437e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ca2">
       <UniqueIdentifier>{4f16415c-ba81-44bb-a02d-48b702873bbc}</UniqueIdentifier>
@@ -339,9 +315,6 @@
     <Filter Include="Source Files\mediaplaylist">
       <UniqueIdentifier>{a971405c-6b95-4250-8389-fba6727d75bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ccvotagus">
-      <UniqueIdentifier>{9f23f1d5-4d2b-490e-bd95-d80619ef53d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\sockets">
       <UniqueIdentifier>{e8608cc9-9594-4203-aa0f-28c220ceb46e}</UniqueIdentifier>
     </Filter>
@@ -372,17 +345,11 @@
     <Filter Include="Header Files\sockets\SIP framework">
       <UniqueIdentifier>{2561b8c5-ee59-4557-91a1-2573fa14e340}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\video">
-      <UniqueIdentifier>{f32378f3-11e1-4ae7-9902-86f300c30c77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\video">
       <UniqueIdentifier>{8ff5a5c9-4f65-4f77-847b-7cd541b24e63}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\video_decode">
       <UniqueIdentifier>{a5bd6f2b-6a66-4b42-a9e2-73cdc5b13000}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\video_decode">
-      <UniqueIdentifier>{8ea01584-3dfa-4eb2-8b36-d72ce791f23f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\bergedge">
       <UniqueIdentifier>{0c9905cf-a7c8-4a21-bdac-25c74713d49e}</UniqueIdentifier>
@@ -432,14 +399,8 @@
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{ed8218cf-f28e-443b-9e2d-656e54a3e295}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress\rar">
-      <UniqueIdentifier>{2ca188a2-6755-4dc0-a6e1-a267640c6d3f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\compress\zip">
       <UniqueIdentifier>{62b1711e-19c5-47a6-b0a2-e850b5e769e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\zip\C Source">
-      <UniqueIdentifier>{e63013e7-025e-4196-a964-427b03101b3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\compress\rar">
       <UniqueIdentifier>{8a718e97-b0e8-4468-930d-b4aceb828e7d}</UniqueIdentifier>
@@ -449,12 +410,6 @@
     </Filter>
     <Filter Include="Header Files\compress\bsdiff">
       <UniqueIdentifier>{958873ce-63b9-43c2-b183-2ed7c40c3521}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\bsdiff">
-      <UniqueIdentifier>{c0e9e6b4-9171-454b-9d89-21ac36276e54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\bsdiff\C Source Files">
-      <UniqueIdentifier>{6ea5512e-da53-459e-86b9-8c51dbf00e26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\compress\7z">
       <UniqueIdentifier>{1ed2d19e-7c0e-473e-843b-915471f27785}</UniqueIdentifier>
@@ -486,32 +441,176 @@
     <Filter Include="Header Files\ca8">
       <UniqueIdentifier>{cf957f8c-9b8e-4306-81ad-79fe0ac9d9ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca8_84">
-      <UniqueIdentifier>{8d40a564-fe84-4d55-be02-b96e478467cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ca8_77">
-      <UniqueIdentifier>{cbde5755-3b49-433b-b71e-6bb11f219406}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ca8">
       <UniqueIdentifier>{37a484be-f47e-403c-a4dd-6261df39636c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca8_77">
-      <UniqueIdentifier>{ff8c0a10-4a60-4d46-bd97-dd96a4308bda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca8_84">
-      <UniqueIdentifier>{8e95f0ec-d6c9-453a-b39f-88cc42eb38cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\icube">
-      <UniqueIdentifier>{c8707312-474b-4b9f-94fc-5e57cf4bf05a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\icube">
-      <UniqueIdentifier>{bcd0fba0-f3cc-4f34-92a5-9aa9663c6a26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\fs">
       <UniqueIdentifier>{39200a6e-41ed-4e4f-938a-9877715c7fa5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\fs">
       <UniqueIdentifier>{9b499a53-318b-4200-a2bd-ca232086ffff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\kissfft">
+      <UniqueIdentifier>{aaa2d16d-5026-4098-9e28-0718450ef810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\kissfft\C Header Files">
+      <UniqueIdentifier>{ba12af7c-5233-4b5f-93b1-2e8a7e4705ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\kissfft">
+      <UniqueIdentifier>{b3a83a3c-cd76-4568-a069-bc1d4d3fcc69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\kissfft\C Source Files">
+      <UniqueIdentifier>{b4ec7bfe-17de-48fb-af78-c3c64c04437e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gen">
+      <UniqueIdentifier>{4f00468e-dc74-4b39-aa67-13094cb2cf11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\plugin">
+      <UniqueIdentifier>{b3543bad-6dde-4e60-b27b-fd1cfc4c19b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plugin">
+      <UniqueIdentifier>{3b2beda1-fba3-4d58-9c66-8dfc73febc30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\install">
+      <UniqueIdentifier>{a6760858-e468-4719-8e8f-46d620c50ea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\install">
+      <UniqueIdentifier>{a439d8d6-9d14-4c1f-8ff1-e61fe6d51ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\video">
+      <UniqueIdentifier>{f32378f3-11e1-4ae7-9902-86f300c30c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cube1">
+      <UniqueIdentifier>{3ae76f26-7080-4cbf-9b09-8f873866a33a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cube2">
+      <UniqueIdentifier>{3698667e-f04d-4252-be5e-2f7d593980ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cube8">
+      <UniqueIdentifier>{16714bfb-665f-4160-9213-06229da61d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cube1">
+      <UniqueIdentifier>{8f436963-203b-401b-be85-ac7b2a6caeca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cube2">
+      <UniqueIdentifier>{03278054-3a46-42ac-9bb8-37dc5a23be5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cube8">
+      <UniqueIdentifier>{6595ec7c-2ef0-42b0-8063-ea9962d7750f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cube5">
+      <UniqueIdentifier>{762f3891-0dab-4cb6-a6ae-2f313e719234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cube4">
+      <UniqueIdentifier>{ee3c9f59-c1cd-4fad-857a-70419f19d12b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cube4">
+      <UniqueIdentifier>{2c0daf66-2f34-446a-87be-96dbaa4185b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simpledb\mysql">
+      <UniqueIdentifier>{b55cba09-a872-4f32-9414-a5f09f3fba33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simpledb\sqlite">
+      <UniqueIdentifier>{5ff92a4a-49b5-44d7-818c-b7d03a02d886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cube5">
+      <UniqueIdentifier>{ef6bff8f-4bd8-4700-a6b8-4f74e8475f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\command">
+      <UniqueIdentifier>{e3e5d7ab-3499-4bdc-b9c8-e3c7a8ae1472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mixeruserbase">
+      <UniqueIdentifier>{40d3b716-1956-44af-a80c-d7a850e52840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mixeruserbase\Control">
+      <UniqueIdentifier>{6e4e8850-636b-407e-9d55-8f1dbdcb07a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mixer\Control">
+      <UniqueIdentifier>{3f3a1cc4-4e23-4e7c-8b4a-f7b3d0bb5300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress\C Source">
+      <UniqueIdentifier>{e63013e7-025e-4196-a964-427b03101b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress\rar">
+      <UniqueIdentifier>{2ca188a2-6755-4dc0-a6e1-a267640c6d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\javascript">
+      <UniqueIdentifier>{ce5d1f68-eef9-409e-8d8d-c51cc99ea3b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\javascript">
+      <UniqueIdentifier>{a9b49b5e-c4ad-46b4-8bfe-9063c5b7dae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\datetime">
+      <UniqueIdentifier>{14b8073a-6d32-4535-a09a-29c8760ff52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\datetime">
+      <UniqueIdentifier>{97310aad-ebc9-412d-ab36-c7eac2a7e90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dynamic_source">
+      <UniqueIdentifier>{fe8c7753-325c-4e15-b5ee-94e56ac03138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dynamic_source">
+      <UniqueIdentifier>{04b53f09-684f-4e04-8e56-cbca9f97b4b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\netnode">
+      <UniqueIdentifier>{554fd788-1480-47ec-8303-7a3007ff59c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\netnode">
+      <UniqueIdentifier>{83355911-fce0-4ddb-b5da-39a6b1d1f894}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\webserver">
+      <UniqueIdentifier>{9fe40b78-5dbe-4c43-a754-2a0952232279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\webserver">
+      <UniqueIdentifier>{2982a131-c512-4cbd-bf65-d4776d87b9be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\rtprx">
+      <UniqueIdentifier>{dc01a5b6-b91c-4e5b-b176-3d6572d2d21b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\rtptx">
+      <UniqueIdentifier>{6f3e970e-964d-40a9-a075-ad3b580d7e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rtptx">
+      <UniqueIdentifier>{2904ec26-1eca-40a8-a9df-f886553b0716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rtprx">
+      <UniqueIdentifier>{447c6faa-c8fa-45e4-b561-f930779defa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\i2com">
+      <UniqueIdentifier>{9319e3e7-bff9-4347-ac97-14546a5cb0c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\i2com\rtp">
+      <UniqueIdentifier>{5d506778-cc72-4979-8cbe-907ab88e835f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\i2com">
+      <UniqueIdentifier>{50353352-fd43-4675-ba15-8114b3fb6b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\i2com\rtp">
+      <UniqueIdentifier>{87430f11-505e-4890-8794-e5166950bb00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cube">
+      <UniqueIdentifier>{1dc943eb-290c-401d-911c-fa18555112ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\acube">
+      <UniqueIdentifier>{b580e072-5e39-4a25-8f02-cb5bbeef3a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cube">
+      <UniqueIdentifier>{40e8a375-fdd0-45ff-a3d8-6afaa3864c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\acube">
+      <UniqueIdentifier>{140bfcf3-96f2-4d8d-b62a-0b8fb974f6cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\video_decode">
+      <UniqueIdentifier>{8ea01584-3dfa-4eb2-8b36-d72ce791f23f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\colorertake5\command">
+      <UniqueIdentifier>{1d64b2d1-e419-4b46-856c-b798f27cc5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2\filehandler">
+      <UniqueIdentifier>{af023d87-0ce2-48d2-8658-b6f7103535c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2\filehandler">
+      <UniqueIdentifier>{4c396f4d-ff88-4ef0-a73f-047d1d479291}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1331,13 +1430,7 @@
     <ClInclude Include="database\database_user_interaction.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\align.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\color.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\count.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\img.h">
@@ -1389,9 +1482,6 @@
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\size.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\types.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="visual\api.h">
@@ -1472,37 +1562,13 @@
     <ClInclude Include="mail\mail_account.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
-    <ClInclude Include="mail\mail_child_frame.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_document.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_list.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_view.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\main_document.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\main_frame.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
     <ClInclude Include="mail\pop3.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
     <ClInclude Include="mail\pop3_socket.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
-    <ClInclude Include="mail\right_pane_view.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
     <ClInclude Include="mail\simple_pop3.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\views.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
     <ClInclude Include="math\_double.h">
@@ -1556,12 +1622,6 @@
     <ClInclude Include="simpledb\im_post.h">
       <Filter>Header Files\simpledb</Filter>
     </ClInclude>
-    <ClInclude Include="simpledb\mysql_database.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\mysql_result.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
     <ClInclude Include="simpledb\simpledb.h">
       <Filter>Header Files\simpledb</Filter>
     </ClInclude>
@@ -1572,12 +1632,6 @@
       <Filter>Header Files\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="simpledb\simpledb_table.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\sqlite_base.h">
-      <Filter>Header Files\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\sqlite_set.h">
       <Filter>Header Files\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="window_frame\Appearance.h">
@@ -1949,9 +2003,6 @@
     <ClInclude Include="radix\this_build_number.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\thread.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\types.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -2183,55 +2234,10 @@
     <ClInclude Include="mediamanager\MediaManagerImpl.h">
       <Filter>Header Files\mediamanager</Filter>
     </ClInclude>
-    <ClInclude Include="mediaplaylist\enum.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
     <ClInclude Include="mediaplaylist\mediaplaylist.h">
       <Filter>Header Files\mediaplaylist</Filter>
     </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistAppInterface.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCallback.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCallbackContainer.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCallbackContainerInterface.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCallbackInterface.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCentral.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCentralCallbackInterface.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistCentralContainer.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistDoc.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistFrame.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistListView.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistView.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplaylist\PlaylistViewUpdateHint.h">
-      <Filter>Header Files\mediaplaylist</Filter>
-    </ClInclude>
     <ClInclude Include="mediaplay\mediaplay.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplay\playlist_callback.h">
       <Filter>Header Files\mediaplay</Filter>
     </ClInclude>
     <ClInclude Include="mixer\application_interface.h">
@@ -2285,121 +2291,7 @@
     <ClInclude Include="mixer\toggle_control.h">
       <Filter>Header Files\mixer\Control</Filter>
     </ClInclude>
-    <ClInclude Include="mixeruibase\application_interface.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\GoodMixerDoc.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\MixerControlData.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\mixercontrolview.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\MixerDoc.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\MixerFrameWnd.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\MixerMainView.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\mixeruibase.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\MixerVisualCentral.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\MixerVisualThread.h">
-      <Filter>Header Files\mixeruserbase</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\label.h">
-      <Filter>Header Files\mixeruserbase\Control</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\mute_control.h">
-      <Filter>Header Files\mixeruserbase\Control</Filter>
-    </ClInclude>
-    <ClInclude Include="mixeruibase\slider.h">
-      <Filter>Header Files\mixeruserbase\Control</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\Attributes.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\Intrisics.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\KaraokeUtil.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\LyricTrack.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiDocHelper.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventBase.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventsV1.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventV001.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventV007.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventV008.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventV016.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiEventV508.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiPlayer.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiPlayerCallback.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\midiplayercallbackinterface.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiPlayerInterface.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiPlayerWnd.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
     <ClInclude Include="mus\Midiplyr.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiSequenceThread.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiTrack.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiTrackBase.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiTracks.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiTrackV008.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiUtil.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MidiViewHelper.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\MultimediaFile.h">
       <Filter>Header Files\mus</Filter>
     </ClInclude>
     <ClInclude Include="mus\mus.h">
@@ -2456,22 +2348,10 @@
     <ClInclude Include="mus\Uiutils.h">
       <Filter>Header Files\mus</Filter>
     </ClInclude>
-    <ClInclude Include="mus\vmsgentempl.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
     <ClInclude Include="mus\vmsmusresource.h">
       <Filter>Header Files\mus</Filter>
     </ClInclude>
     <ClInclude Include="mus\Xf.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\XFInfoHeader.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\XFInfoHeaderLS.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
-    <ClInclude Include="mus\XFInfoHeaders.h">
       <Filter>Header Files\mus</Filter>
     </ClInclude>
     <ClInclude Include="musctrl\musctrl.h">
@@ -2497,24 +2377,6 @@
     </ClInclude>
     <ClInclude Include="imediamanager\PlaylistInterface.h">
       <Filter>Header Files\imediamanager</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfftf\fftfFftrd.h">
-      <Filter>Header Files\kissfftf</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfftf\fftfFftri.h">
-      <Filter>Header Files\kissfftf</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfftf\kissfftf.h">
-      <Filter>Header Files\kissfftf</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfftf\_kiss_fft_guts.h">
-      <Filter>Header Files\kissfftf\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfftf\kiss_fft.h">
-      <Filter>Header Files\kissfftf\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfftf\kiss_fftr.h">
-      <Filter>Header Files\kissfftf\C Header Files</Filter>
     </ClInclude>
     <ClInclude Include="x\x_charcategory.h">
       <Filter>Header Files\x</Filter>
@@ -2561,13 +2423,7 @@
     <ClInclude Include="ex1\ex1_resource.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
-    <ClInclude Include="ex1\ex1_serializable.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
     <ClInclude Include="ex1\ex1_str_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_stream.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1_stream2.h">
@@ -2744,16 +2600,10 @@
     <ClInclude Include="collection\array_parent_alloc.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="collection\array_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="collection\array_ptr_alloc.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="collection\array_ptr_copy.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_smart_ptr.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="collection\base_array.h">
@@ -2875,12 +2725,6 @@
     </ClInclude>
     <ClInclude Include="sockets\IEventHandler.h">
       <Filter>Header Files\sockets\Timer Events</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\mutex.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\sync_object.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="sockets\smtp_socket.h">
       <Filter>Header Files\sockets\SMTP</Filter>
@@ -3005,15 +2849,6 @@
     <ClInclude Include="sockets\Socket.h">
       <Filter>Header Files\sockets\Basic Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="mediaplay\document.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplay\view.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplay\data.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
     <ClInclude Include="ikar\data.h">
       <Filter>Header Files\ikar</Filter>
     </ClInclude>
@@ -3029,29 +2864,8 @@
     <ClInclude Include="ikar\karaoke.h">
       <Filter>Header Files\ikar</Filter>
     </ClInclude>
-    <ClInclude Include="mediaplay\karaoke.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplay\record_notify_view.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplay\view_interface.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="mediaplay\view_update_hint.h">
-      <Filter>Header Files\mediaplay</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ex2\ex2_folder_watch.h">
       <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_base.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="bergedge\bergedge.h">
       <Filter>Header Files\bergedge</Filter>
@@ -3107,24 +2921,6 @@
     <ClInclude Include="fontopus\fontopus.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\manual_reset_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\plain_service.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service_status.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\thread_pool.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="window_frame\FrameSchemaHardCoded008.h">
       <Filter>Header Files\window_frame</Filter>
     </ClInclude>
@@ -3155,9 +2951,6 @@
     <ClInclude Include="exception\exception.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\simple.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\assert.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -3178,9 +2971,6 @@
     </ClInclude>
     <ClInclude Include="exception\memory.h">
       <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="exception\class.h">
       <Filter>Header Files\exception</Filter>
@@ -3242,9 +3032,6 @@
     <ClInclude Include="exception\base_exception.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\mail_frame.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
     <ClInclude Include="calculator\frame.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
@@ -3279,9 +3066,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_create_context.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_create_view.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_document.h">
@@ -3329,9 +3113,6 @@
     <ClInclude Include="user\user_front_end_schema.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_get_view.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_inline.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3369,9 +3150,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_multiple_document_template.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_on_draw_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_scroll_bar.h">
@@ -3413,12 +3191,6 @@
     <ClInclude Include="user\user_virtual_user_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_window_draw_client_tool.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_window_draw_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_window_id.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -3432,9 +3204,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_window_util.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_window_redraw_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_window_message.h">
@@ -3460,9 +3229,6 @@
     </ClInclude>
     <ClInclude Include="visual\visual_01.h">
       <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_views.h">
-      <Filter>Header Files\mail</Filter>
     </ClInclude>
     <ClInclude Include="primitive\simple_string.h">
       <Filter>Header Files\primitive</Filter>
@@ -3501,9 +3267,6 @@
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="mail\mail_tree_interface.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_tree.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
     <ClInclude Include="mail\mail_tree_data.h">
@@ -3589,9 +3352,6 @@
     </ClInclude>
     <ClInclude Include="html\data.h">
       <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\semaphore.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_data.h">
       <Filter>Header Files\filemanager</Filter>
@@ -3965,9 +3725,6 @@
     <ClInclude Include="mus\midi_central_listener.h">
       <Filter>Header Files\mus</Filter>
     </ClInclude>
-    <ClInclude Include="mus\microke1_.h">
-      <Filter>Header Files\mus</Filter>
-    </ClInclude>
     <ClInclude Include="mus\midi_file.h">
       <Filter>Header Files\mus</Filter>
     </ClInclude>
@@ -4157,9 +3914,6 @@
     <ClInclude Include="ca2\ca2_process.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_seed.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\ca2_sockets_address.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
@@ -4194,9 +3948,6 @@
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="collection\pointer_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\base_object_list.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="collection\string_to_string_map.h">
@@ -4234,9 +3985,6 @@
     </ClInclude>
     <ClInclude Include="user\user_document_request_interface.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_system.h">
-      <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen_system.h">
       <Filter>Header Files\gen</Filter>
@@ -4403,16 +4151,7 @@
     <ClInclude Include="ca\ca_osi.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_object.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_message_window.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_log.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_lock.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_interlocked_long_pulse.h">
@@ -4461,9 +4200,6 @@
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_application_interface.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_3_graphics.h">
@@ -4547,18 +4283,6 @@
     <ClInclude Include="ca8\ca8_wait_message_dialog.h">
       <Filter>Header Files\ca8</Filter>
     </ClInclude>
-    <ClInclude Include="ca8_77\ca77.h">
-      <Filter>Header Files\ca8_77</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8_77\ca77_application.h">
-      <Filter>Header Files\ca8_77</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8_84\ca84.h">
-      <Filter>Header Files\ca8_84</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8_84\ca84_application.h">
-      <Filter>Header Files\ca8_84</Filter>
-    </ClInclude>
     <ClInclude Include="fontopus\fontopus_application.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
@@ -4567,24 +4291,6 @@
     </ClInclude>
     <ClInclude Include="bergedge\bergedge_bergedge.h">
       <Filter>Header Files\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube.h">
-      <Filter>Header Files\icube</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube_main.h">
-      <Filter>Header Files\icube</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube_system.h">
-      <Filter>Header Files\icube</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube_system_allocate.h">
-      <Filter>Header Files\icube</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube_system_ca_template.h">
-      <Filter>Header Files\icube</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube_system_template_trace.h">
-      <Filter>Header Files\icube</Filter>
     </ClInclude>
     <ClInclude Include="nature\nature_application.h">
       <Filter>Header Files\nature</Filter>
@@ -4624,9 +4330,6 @@
     </ClInclude>
     <ClInclude Include="fontopus\fontopus_usera.h">
       <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="icube\icube_application.h">
-      <Filter>Header Files\icube</Filter>
     </ClInclude>
     <ClInclude Include="ca4\ca4_http.h">
       <Filter>Header Files\ca4</Filter>
@@ -4715,13 +4418,979 @@
     <ClInclude Include="ca\ca_application_bias.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
+    <ClInclude Include="sockets\sockets_http_batch_file.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\ifs_file.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\_kiss_fft_guts.h">
+      <Filter>Header Files\kissfft\C Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_fft.h">
+      <Filter>Header Files\kissfft\C Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_ifft.h">
+      <Filter>Header Files\kissfft\C Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft_fftd.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kissfft_ifftd.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_del_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_release_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_smart_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_circular_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\hresult_exception.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_port_forward.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\not_licensed.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_user_authentication.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_authentication_map.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_ssl_client_context_map.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_ssl_client_context.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_oauth.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_twit.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_request_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_match.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_instance.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_history.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_host_interaction.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_system.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_gen.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_plugin.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\plugin_run_start_installer.h">
+      <Filter>Header Files\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_system.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install_install.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_thread.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_transfer_file.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_player_command.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_player.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_player_window.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_player_callback.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_player_callback_interface.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_player_interface.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_sequence_thread.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_track.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_track_base.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_tracks.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_track_v008.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_util.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_view_helper.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\multimedia_file.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\xf_info_header.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\xf_info_header_ls.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\xf_info_headers.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_event_base.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_events_v1.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_event_v001.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_event_v007.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_event_v008.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_event_v016.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_event_v508.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_document_helper.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\mus_microke1.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\mus_karaoke_util.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\midi_lyric_track.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\mus_attributes.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\simple_exception.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="cube1\cube1.h">
+      <Filter>Header Files\cube1</Filter>
+    </ClInclude>
+    <ClInclude Include="cube1\cube1_application.h">
+      <Filter>Header Files\cube1</Filter>
+    </ClInclude>
+    <ClInclude Include="cube2\cube2.h">
+      <Filter>Header Files\cube2</Filter>
+    </ClInclude>
+    <ClInclude Include="cube2\cube2_application.h">
+      <Filter>Header Files\cube2</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8_application.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8_main.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8_system.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8_system_allocate.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8_system_ca_template.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="cube8\cube8_system_template_trace.h">
+      <Filter>Header Files\cube8</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_printer.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_print_job.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_print_job.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_job.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="userbase\simple_printer_list_view.h">
+      <Filter>Header Files\userbase</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_job.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="wstringtou.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_view_creator.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_view_container.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_manager.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_socket_thread.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_server.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_session.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_socket.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\mysql_database.h">
+      <Filter>Header Files\simpledb\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\mysql_result.h">
+      <Filter>Header Files\simpledb\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\sqlite_base.h">
+      <Filter>Header Files\simpledb\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\sqlite_set.h">
+      <Filter>Header Files\simpledb\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="cube4\cube4.h">
+      <Filter>Header Files\cube4</Filter>
+    </ClInclude>
+    <ClInclude Include="cube4\cube4_application.h">
+      <Filter>Header Files\cube4</Filter>
+    </ClInclude>
+    <ClInclude Include="cube5\cube5.h">
+      <Filter>Header Files\cube5</Filter>
+    </ClInclude>
+    <ClInclude Include="cube5\cube5_application.h">
+      <Filter>Header Files\cube5</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_service.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca2_keep_alive.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_live_signal.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_application.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_document.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_form_callback.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_frame.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_pane_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_pane_view_update_hint.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_primary_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_command.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_command_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_draw_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_label.h">
+      <Filter>Header Files\mixeruserbase\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_mute_control.h">
+      <Filter>Header Files\mixeruserbase\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_slider.h">
+      <Filter>Header Files\mixeruserbase\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_application_interface.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_central.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_control_data.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_control_view.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_document.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_frame_window.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_main_view.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase_thread.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="mixeruserbase\mixeruserbase.h">
+      <Filter>Header Files\mixeruserbase</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\virtual_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\memory_base.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_compare.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_hash.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_equals.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_serializable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_reader.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_writable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_byte_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_byte_serializable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_byte_stream_memory_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_seekable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_string_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\javascript_functions.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\javascript_tinyjs.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\javascript.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_waitable.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_wait_result.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_sync_object.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_sync_object_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_range_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_runtime_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_critical_section.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_base_sync_object.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_void_implementation.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading_event_collection.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_mutex.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_plain_service.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_semaphore.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_status.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_thread_pool.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_file_change_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_socket_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\datetime.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_c_number.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_synch_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime\datetime_duration.h">
+      <Filter>Header Files\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb_record.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_exception.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_status.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_composite.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_impl.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_ptr.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_object.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_profiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_socket_thread.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_socket.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_application.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_service.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_alpha_select_performer.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_annotate.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_checkimage.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_cynce.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_cynce_database.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_database.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_database_string_integer.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_fontopus_database.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_kar_body_page.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_kar_page_artists.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_kar_page_category.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_kar_page_song.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_karaoke_const.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_category.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_database_cache.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_in2_info_list.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_in2_list.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_in2_list_artists.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_in2_list_category.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_in2_list_song.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_karaoke_song_in2_list.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_lyrics_song_in2_list.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_performer.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_person.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_person_info.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_song.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_song_source.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_note.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_note_summary.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_persistent_ui.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_secure.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_simage.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_spider.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_wb.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_ui.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_fun.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_fun_user.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_fun_friend_search.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_fun_fun.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music_music.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="webserver\webserver_music.h">
+      <Filter>Header Files\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_view.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_list_view.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_view.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_data.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_item.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_tree_base.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_callback_container_interface.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_callback_interface.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_central.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_central_callback_interface.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_central_container.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_enum.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_document.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_frame.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplaylist\mediaplaylist_view_update_hint.h">
+      <Filter>Header Files\mediaplaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_data.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_document.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_karaoke.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_playlist_callback.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_record_notify_view.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_view.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_view_interface.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="mediaplay\mediaplay_view_update_hint.h">
+      <Filter>Header Files\mediaplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\application.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\document.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\frame.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\pane_view.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\pane_view_update_hint.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\rtptx.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtptx\view.h">
+      <Filter>Header Files\rtptx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\application.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\audio_decoder.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\document.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\frame.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\pane_view.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\pane_view_update_hint.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\rtprx.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="rtprx\view.h">
+      <Filter>Header Files\rtprx</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp_compressor.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp_mixer.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp_receiver.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp_room.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp_server.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="i2com\rtp\i2com_rtp_transmitter.h">
+      <Filter>Header Files\i2com\rtp</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_ptr_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_ptr_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="userbase\userbase_main_frame.h">
+      <Filter>Header Files\userbase</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_create_context.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_application.h">
+      <Filter>Header Files\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube.h">
+      <Filter>Header Files\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="acube\acube.h">
+      <Filter>Header Files\acube</Filter>
+    </ClInclude>
+    <ClInclude Include="acube\acube_application.h">
+      <Filter>Header Files\acube</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_library.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_library.h">
+      <Filter>Header Files\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\object_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_std_pair.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_back_insert_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_insert_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_template_xyz.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_template.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_set.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_file_handler_tree_item.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_library.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_menu_library.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_data.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_handler.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_item.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_item.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_user.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_interface.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_application.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_document.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_frame.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_pane_view.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_pane_view_update_hint.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_view.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\filehandler\ca2_filehandler_default.h">
+      <Filter>Header Files\ca2\filehandler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="collection\collection.inl">
       <Filter>Header Files\collection</Filter>
-    </None>
-    <None Include="multithreading\multithreading.inl">
-      <Filter>Header Files\multithreading</Filter>
     </None>
     <None Include="ca2.def">
       <Filter>Source Files</Filter>
@@ -4857,22 +5526,7 @@
     <ClCompile Include="mail\mail_application.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
-    <ClCompile Include="mail\mail_child_frame.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_configuration.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
     <ClCompile Include="mail\mail_db_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_document.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_frame.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_list.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
     <ClCompile Include="mail\mail_list_interface.cpp">
@@ -4884,16 +5538,7 @@
     <ClCompile Include="mail\mail_pop3_socket.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
-    <ClCompile Include="mail\mail_right_pane_view.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
     <ClCompile Include="mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_view.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_views.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
     <ClCompile Include="visual\visual_api.cpp">
@@ -4962,9 +5607,6 @@
     <ClCompile Include="user\user_control_property.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_create_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_document_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4998,9 +5640,6 @@
     <ClCompile Include="user\user_front_end_schema.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_get_view.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_interaction.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5028,9 +5667,6 @@
     <ClCompile Include="user\user_mouse_focus.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_on_draw_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_scroll_bar.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5056,12 +5692,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_tree.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window_draw_client_tool.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window_draw_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_window_map.cpp">
@@ -5302,9 +5932,6 @@
       <Filter>Source Files\userbase</Filter>
     </ClCompile>
     <ClCompile Include="userbase\simple_push_button.cpp">
-      <Filter>Source Files\userbase</Filter>
-    </ClCompile>
-    <ClCompile Include="userbase\simple_scroll_bar.cpp">
       <Filter>Source Files\userbase</Filter>
     </ClCompile>
     <ClCompile Include="userbase\simple_static.cpp">
@@ -5937,9 +6564,6 @@
     <ClCompile Include="radix\afxdbcs.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\application.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\auxdata.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5974,9 +6598,6 @@
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\flags.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\install.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\language_string.cpp">
@@ -6126,12 +6747,6 @@
     <ClCompile Include="gen\gen_variable_strict_compare.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
-    <ClCompile Include="gen\muldiv64.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_application_interface.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -6139,9 +6754,6 @@
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_brush.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_ca.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_dib.cpp">
@@ -6162,16 +6774,7 @@
     <ClCompile Include="ca\ca_graphics_object.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_lock.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_log.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_message_window.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_object.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_osi.cpp">
@@ -6205,9 +6808,6 @@
       <Filter>Source Files\gcom</Filter>
     </ClCompile>
     <ClCompile Include="gcom\gcom_backview_thread.cpp">
-      <Filter>Source Files\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="gcom\gcom_backview_user_interface.cpp">
       <Filter>Source Files\gcom</Filter>
     </ClCompile>
     <ClCompile Include="gcom\gcom_BackViewGraphics.cpp">
@@ -6358,52 +6958,16 @@
       <Filter>Source Files\mixer</Filter>
     </ClCompile>
     <ClCompile Include="mixer\mixer_control.cpp">
-      <Filter>Source Files\mixer\Control Source Files</Filter>
+      <Filter>Source Files\mixer\Control</Filter>
     </ClCompile>
     <ClCompile Include="mixer\mixer_label.cpp">
-      <Filter>Source Files\mixer\Control Source Files</Filter>
+      <Filter>Source Files\mixer\Control</Filter>
     </ClCompile>
     <ClCompile Include="mixer\mixer_level_control.cpp">
-      <Filter>Source Files\mixer\Control Source Files</Filter>
+      <Filter>Source Files\mixer\Control</Filter>
     </ClCompile>
     <ClCompile Include="mixer\mixer_toggle_control.cpp">
-      <Filter>Source Files\mixer\Control Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_application_interface.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_GoodMixerDoc.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerControlData.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerControlView.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerDoc.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerFrameWnd.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerMainView.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerVisualCentral.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_MixerVisualThread.cpp">
-      <Filter>Source Files\mixeruibase</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_label.cpp">
-      <Filter>Source Files\mixeruibase\Control</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_mute_control.cpp">
-      <Filter>Source Files\mixeruibase\Control</Filter>
-    </ClCompile>
-    <ClCompile Include="mixeruibase\mixeruibase_slider.cpp">
-      <Filter>Source Files\mixeruibase\Control</Filter>
+      <Filter>Source Files\mixer\Control</Filter>
     </ClCompile>
     <ClCompile Include="mus\Attributes.cpp">
       <Filter>Source Files\mus</Filter>
@@ -6525,18 +7089,6 @@
     <ClCompile Include="mus\Uiutils.cpp">
       <Filter>Source Files\mus</Filter>
     </ClCompile>
-    <ClCompile Include="mus\XF.cpp">
-      <Filter>Source Files\mus</Filter>
-    </ClCompile>
-    <ClCompile Include="mus\XFInfoHeader.cpp">
-      <Filter>Source Files\mus</Filter>
-    </ClCompile>
-    <ClCompile Include="mus\XFInfoHeaderLS.cpp">
-      <Filter>Source Files\mus</Filter>
-    </ClCompile>
-    <ClCompile Include="mus\XFInfoHeaders.cpp">
-      <Filter>Source Files\mus</Filter>
-    </ClCompile>
     <ClCompile Include="musctrl\musctrl_single_document_template.cpp">
       <Filter>Source Files\musctrl</Filter>
     </ClCompile>
@@ -6548,21 +7100,6 @@
     </ClCompile>
     <ClCompile Include="musctrl\PlayerDocContainer.cpp">
       <Filter>Source Files\musctrl</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfftf\fftfFftrd.cpp">
-      <Filter>Source Files\kissfftf</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfftf\fftfFftri.cpp">
-      <Filter>Source Files\kissfftf</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfftf\kiss_fft.c">
-      <Filter>Source Files\kissfftf\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfftf\kiss_fftr.c">
-      <Filter>Source Files\kissfftf\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_application.cpp">
-      <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_datetime.cpp">
       <Filter>Source Files\ca2</Filter>
@@ -6607,9 +7144,6 @@
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
     <ClCompile Include="ex1\ex1_str_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_stream.cpp">
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
     <ClCompile Include="ex1\ex1_stream2.cpp">
@@ -6750,25 +7284,13 @@
     <ClCompile Include="primitive\natural.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\point.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_scalar.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\rectangle.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\shared_file.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\shared_memory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\size.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\types.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="databaseuser\database_key_list_data.cpp">
@@ -6828,24 +7350,6 @@
     <ClCompile Include="collection\key_sort_array.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
-    <ClCompile Include="collection\map_pp.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\map_pw.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\map_so.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\map_sp.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\map_wo.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\map_wp.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
     <ClCompile Include="collection\point_array.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
@@ -6868,9 +7372,6 @@
       <Filter>Source Files\audio</Filter>
     </ClCompile>
     <ClCompile Include="audio\audio_WaveCentralContainer.cpp">
-      <Filter>Source Files\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\audio_WaveEffectCrescendo.cpp">
       <Filter>Source Files\audio</Filter>
     </ClCompile>
     <ClCompile Include="audio\audio_WaveEffectDevocalizer.cpp">
@@ -6908,51 +7409,6 @@
     </ClCompile>
     <ClCompile Include="audio\audio_WaveRecorderInterface.cpp">
       <Filter>Source Files\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistAppInterface.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCallback.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCallbackContainer.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCallbackContainerInterface.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCallbackInterface.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCentral.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCentralCallbackInterface.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistCentralContainer.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistDoc.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistFrame.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistListView.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistView.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplaylist\PlaylistViewUpdateHint.cpp">
-      <Filter>Source Files\mediaplaylist</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\spalib\machine_event.cpp">
-      <Filter>Source Files\ccvotagus</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ccvotagus\source\spalib\machine_event_data.cpp">
-      <Filter>Source Files\ccvotagus</Filter>
     </ClCompile>
     <ClCompile Include="collection\simple_list.cpp">
       <Filter>Source Files\collection</Filter>
@@ -7074,9 +7530,6 @@
     <ClCompile Include="mediaplay\mediaplay_karaoke.cpp">
       <Filter>Source Files\mediaplay</Filter>
     </ClCompile>
-    <ClCompile Include="mediaplay\mediaplay_record_notify_view.cpp">
-      <Filter>Source Files\mediaplay</Filter>
-    </ClCompile>
     <ClCompile Include="mediaplay\mediaplay_view_update_hint.cpp">
       <Filter>Source Files\mediaplay</Filter>
     </ClCompile>
@@ -7158,40 +7611,10 @@
     <ClCompile Include="multithreading\multithreading_service_base.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_sync_object.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="window_frame\FrameSchemaHardCoded008.cpp">
       <Filter>Source Files\window_frame</Filter>
     </ClCompile>
-    <ClCompile Include="exception\debug.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\dump.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\dump_context.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\dump_floating_point.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\dump_output.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\except.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\se_translator.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\SymEngine.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\VMSException.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="primitive\id.cpp">
@@ -7205,9 +7628,6 @@
     </ClCompile>
     <ClCompile Include="gen\simple_thread.cpp">
       <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\mail_main_frame.cpp">
-      <Filter>Source Files\mail</Filter>
     </ClCompile>
     <ClCompile Include="user\user_virtual_user_interface.cpp">
       <Filter>Source Files\user</Filter>
@@ -7290,9 +7710,6 @@
     <ClCompile Include="mail\mail_tree_interface.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
-    <ClCompile Include="mail\mail_tree.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
     <ClCompile Include="ex1\ex1_tree_item.cpp">
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
@@ -7337,9 +7754,6 @@
     </ClCompile>
     <ClCompile Include="ex1\ex1_timeout_file.cpp">
       <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\base_object_list.cpp">
-      <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="collection\pointer_list.cpp">
       <Filter>Source Files\collection</Filter>
@@ -7435,43 +7849,16 @@
       <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_ioapi.c">
-      <Filter>Source Files\compress\zip\C Source</Filter>
+      <Filter>Source Files\compress\C Source</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_iowin32.c">
-      <Filter>Source Files\compress\zip\C Source</Filter>
+      <Filter>Source Files\compress\C Source</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_unzip.c">
-      <Filter>Source Files\compress\zip\C Source</Filter>
+      <Filter>Source Files\compress\C Source</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_zip.c">
-      <Filter>Source Files\compress\zip\C Source</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\bsdiff.cpp">
-      <Filter>Source Files\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\bspatch.cpp">
-      <Filter>Source Files\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\blocksort.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\bzlib.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\compress.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\crctable.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\decompress.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\huffman.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bsdiff\randtable.c">
-      <Filter>Source Files\compress\bsdiff\C Source Files</Filter>
+      <Filter>Source Files\compress\C Source</Filter>
     </ClCompile>
     <ClCompile Include="compress\bzip_helper.cpp">
       <Filter>Source Files\compress</Filter>
@@ -7569,9 +7956,6 @@
     <ClCompile Include="ex1\ex1_limited_writer.cpp">
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
-    <ClCompile Include="ex1\ex1_serializable.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
     <ClCompile Include="mus\midi_central.cpp">
       <Filter>Source Files\mus</Filter>
     </ClCompile>
@@ -7643,9 +8027,6 @@
     </ClCompile>
     <ClCompile Include="compress\7z_crc_opt.cpp">
       <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfftf\kiss_fft_shared.c">
-      <Filter>Source Files\kissfftf\C Source Files</Filter>
     </ClCompile>
     <ClCompile Include="compress\7z\7zDecode.cpp">
       <Filter>Source Files\compress\7z</Filter>
@@ -7740,9 +8121,6 @@
     <ClCompile Include="xml\xml_application.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="exception\error_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_data_container.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -7766,9 +8144,6 @@
     </ClCompile>
     <ClCompile Include="ex1\ex1_request_interface.cpp">
       <Filter>Source Files\ex1\interface</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_system.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="user\user_document_request_interface.cpp">
       <Filter>Source Files\user</Filter>
@@ -7884,20 +8259,8 @@
     <ClCompile Include="ca5\ca5_user_presence_central_container.cpp">
       <Filter>Source Files\ca5</Filter>
     </ClCompile>
-    <ClCompile Include="ca8_77\ca77_application.cpp">
-      <Filter>Source Files\ca8_77</Filter>
-    </ClCompile>
-    <ClCompile Include="ca8_84\ca84_application.cpp">
-      <Filter>Source Files\ca8_84</Filter>
-    </ClCompile>
     <ClCompile Include="ca4\ca4_crypt.cpp">
       <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="icube\icube_main.cpp">
-      <Filter>Source Files\icube</Filter>
-    </ClCompile>
-    <ClCompile Include="icube\icube_system.cpp">
-      <Filter>Source Files\icube</Filter>
     </ClCompile>
     <ClCompile Include="ca8\ca8_application.cpp">
       <Filter>Source Files\ca8</Filter>
@@ -7946,9 +8309,6 @@
     </ClCompile>
     <ClCompile Include="bergedge\bergedge_bergedge.cpp">
       <Filter>Source Files\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="icube\icube_application.cpp">
-      <Filter>Source Files\icube</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_application_file.cpp">
       <Filter>Source Files\ca2</Filter>
@@ -8033,6 +8393,735 @@
     </ClCompile>
     <ClCompile Include="ca\ca_application_bias.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_batch_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\ifs_file.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft.c">
+      <Filter>Source Files\kissfft\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft_shared.c">
+      <Filter>Source Files\kissfft\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kissfft_fftd.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_ifft.c">
+      <Filter>Source Files\kissfft\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_circular_buffer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_port_forward.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_twit.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_oauth.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_request_socket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplay\mediaplay_record_notify_view.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_match.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\plugin_instance.cpp">
+      <Filter>Source Files\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\plugin_history.cpp">
+      <Filter>Source Files\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\plugin_host_interaction.cpp">
+      <Filter>Source Files\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\plugin_plugin.cpp">
+      <Filter>Source Files\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\plugin_system.cpp">
+      <Filter>Source Files\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_system.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_application.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="install\install_install.cpp">
+      <Filter>Source Files\install</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\plugin_run_start_installer.cpp">
+      <Filter>Source Files\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="ex2\ex2_transfer_file.cpp">
+      <Filter>Source Files\ex2</Filter>
+    </ClCompile>
+    <ClCompile Include="mus\midi_player_command.cpp">
+      <Filter>Source Files\mus</Filter>
+    </ClCompile>
+    <ClCompile Include="template\template_exception.cpp">
+      <Filter>Source Files\template</Filter>
+    </ClCompile>
+    <ClCompile Include="mus\xf.cpp">
+      <Filter>Source Files\mus</Filter>
+    </ClCompile>
+    <ClCompile Include="mus\xf_info_header.cpp">
+      <Filter>Source Files\mus</Filter>
+    </ClCompile>
+    <ClCompile Include="mus\xf_info_header_ls.cpp">
+      <Filter>Source Files\mus</Filter>
+    </ClCompile>
+    <ClCompile Include="mus\xf_info_headers.cpp">
+      <Filter>Source Files\mus</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_base_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_simple_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_hresult_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_licensed_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_se_translator.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_SymEngine.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_VMSException.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump_output.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump_floating_point.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump_context.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_dump.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_debug.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_error_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_memory_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_supported_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_archive_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_arg_exception.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="cube8\cube8_application.cpp">
+      <Filter>Source Files\cube8</Filter>
+    </ClCompile>
+    <ClCompile Include="cube8\cube8_main.cpp">
+      <Filter>Source Files\cube8</Filter>
+    </ClCompile>
+    <ClCompile Include="cube8\cube8_system.cpp">
+      <Filter>Source Files\cube8</Filter>
+    </ClCompile>
+    <ClCompile Include="cube2\cube2_application.cpp">
+      <Filter>Source Files\cube2</Filter>
+    </ClCompile>
+    <ClCompile Include="cube1\cube1_application.cpp">
+      <Filter>Source Files\cube1</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_printer.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_print_job.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_job.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_printer_list_view.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_job.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_print_job.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_view_creator.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_view_container.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_db_server.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_socket_thread.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_manager.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_session.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_socket.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube5_application.cpp">
+      <Filter>Source Files\cube5</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube4_application.cpp">
+      <Filter>Source Files\cube4</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_WaveEffectCrescendo.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_service.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_live_signal.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_application.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_document.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_form_callback.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_frame.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_pane_view.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_pane_view_update_hint.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_primary_view.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_view.cpp">
+      <Filter>Source Files\colorertake5\command</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_command.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_command_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_draw_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_application_interface.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_label.cpp">
+      <Filter>Source Files\mixeruserbase\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_mute_control.cpp">
+      <Filter>Source Files\mixeruserbase\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_slider.cpp">
+      <Filter>Source Files\mixeruserbase\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_document.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_control_data.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_control_view.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_frame_window.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_main_view.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_central.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="mixeruserbase\mixeruibase_thread.cpp">
+      <Filter>Source Files\mixeruserbase</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\memory_base.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\virtual_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\map_misc.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_plain_text_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_output_string_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_scroll_bar.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_plain_text_serializable.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_reader.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_writer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_byte_stream_memory_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_seekable.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_byte_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_byte_serializable.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="javascript\javascript.cpp">
+      <Filter>Source Files\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="javascript\javascript_functions.cpp">
+      <Filter>Source Files\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_range_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_runtime_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_waitable.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_void_implementation.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_implemented.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_interface_only.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_base_sync_object.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_sync_object_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime\datetime_duration.cpp">
+      <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb_record_row.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_tool_cmd_ui.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_composite.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_impl.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_ptr.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_object.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_profiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_socket.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_socket_thread.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_application.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_service.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_wb.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_user.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_spider.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_simage.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_persistent_ui.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_note_summary.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_note.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_song.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_person_info.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_person.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_performer.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_lyrics_song_in2_list.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_karaoke_song_in2_list.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_in2_list_song.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_in2_list_category.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_in2_list_artists.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_in2_list.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_in2_info_list.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_database_cache.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music_category.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_music.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_kar_page_song.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_kar_page_category.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_kar_page_artists.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_kar_body_page.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_fun_user.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_fun_fun.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_fun_friend_search.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_fun.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_fontopus_database.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_database_string_integer.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_database.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_cynce_database.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_cynce.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_checkimage.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_alpha_select_performer.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_annotate.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="webserver\webserver_secure.cpp">
+      <Filter>Source Files\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_view.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_view.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_data.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_base.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_tree_item.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_callback_container_interface.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_callback_interface.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_central.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_central_callback_interface.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_central_container.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_document.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_frame.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_list_view.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="mediaplaylist\mediaplaylist_view_update_hint.cpp">
+      <Filter>Source Files\mediaplaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="template\template_hash.cpp">
+      <Filter>Source Files\template</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="gcom\gcom_backview_user_interaction.cpp">
+      <Filter>Source Files\gcom</Filter>
+    </ClCompile>
+    <ClCompile Include="rtptx\rtptx_application.cpp">
+      <Filter>Source Files\rtptx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtptx\rtptx_document.cpp">
+      <Filter>Source Files\rtptx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtptx\rtptx_frame.cpp">
+      <Filter>Source Files\rtptx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtptx\rtptx_pane_view.cpp">
+      <Filter>Source Files\rtptx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtptx\rtptx_pane_view_update_hint.cpp">
+      <Filter>Source Files\rtptx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtptx\rtptx_view.cpp">
+      <Filter>Source Files\rtptx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtprx\rtprx_application.cpp">
+      <Filter>Source Files\rtprx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtprx\rtprx_document.cpp">
+      <Filter>Source Files\rtprx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtprx\rtprx_frame.cpp">
+      <Filter>Source Files\rtprx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtprx\rtprx_pane_view.cpp">
+      <Filter>Source Files\rtprx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtprx\rtprx_pane_view_update_hint.cpp">
+      <Filter>Source Files\rtprx</Filter>
+    </ClCompile>
+    <ClCompile Include="rtprx\rtprx_view.cpp">
+      <Filter>Source Files\rtprx</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp_compressor.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp_mixer.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp_receiver.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp_room.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp_server.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="i2com\rtp\i2com_rtp_transmitter.cpp">
+      <Filter>Source Files\i2com\rtp</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_main_frame.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_create_context.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="acube\acube_application.cpp">
+      <Filter>Source Files\acube</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_application.cpp">
+      <Filter>Source Files\cube</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_library.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_library.cpp">
+      <Filter>Source Files\cube</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\object_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_set.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_tree_data.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_tree_item.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_menu_library.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_library.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_handler.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_tree_interface.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_application.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_document.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_frame.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_pane_view.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_pane_view_update_hint.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\filehandler\ca2_filehandler_view.cpp">
+      <Filter>Source Files\ca2\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_application.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

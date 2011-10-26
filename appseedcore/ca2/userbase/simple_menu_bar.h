@@ -9,56 +9,56 @@ class CLASS_DECL_ca simple_menu_bar :
    public simple_toolbar
 {
 public:
-   simple_menu_bar(::ca::application * papp);
 
-   int      m_iTopMenuCount;
 
-   ::userbase::menu m_menu;
-   
-
-   BOOL create(::user::interaction* pParentWnd,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
-      UINT nID = AFX_IDW_TOOLBAR);
-   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
-      rect rcBorders = rect(0, 0, 0, 0),
-      UINT nID = AFX_IDW_TOOLBAR);
-
-protected:
-   int m_iHover;
-/*   array_ptr_alloc < SimpleMenuBarButton , SimpleMenuBarButton &>
-               m_buttona;*/
-   
+   int                  m_iHover;
+/* array_ptr_alloc < SimpleMenuBarButton , SimpleMenuBarButton &>
+                        m_buttona;*/
 
    image_list *         m_pimagelist;
    image_list *         m_pimagelistDisabled;
    int_int_spreadset *  m_prel;
 
-   bool           m_bTracking;
-   int            m_iTracking;
-   UINT            m_uiResourceID;
+   bool                 m_bTracking;
+   int                  m_iTracking;
+   UINT                 m_uiResourceID;
+   int                  m_iTopMenuCount;
+   ::userbase::menu     m_menu;
+
+
+   simple_menu_bar(::ca::application * papp);
+   virtual ~simple_menu_bar();
+
+
+   using ::simple_toolbar::create;
+   BOOL create(::user::interaction* pParentWnd,
+      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
+      UINT nID = AFX_IDW_TOOLBAR);
+   using ::simple_toolbar::CreateEx;
+#ifdef WINDOWS
+   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
+      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+      rect rcBorders = rect(0, 0, 0, 0),
+      UINT nID = AFX_IDW_TOOLBAR);
+#else
+   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
+      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+      rect rcBorders = rect(0, 0, 0, 0),
+      UINT nID = AFX_IDW_TOOLBAR);
+#endif
+
 
    LRESULT CALLBACK MessageProc(
         int code,       // hook code
         WPARAM wParam,  // undefined
         LPARAM lParam   // address of structure with message data
         );
- 
-// Operations
-public:
 
-// Overrides
-   // ClassWizard generated virtual function overrides
-   //{{AFX_VIRTUAL(simple_menu_bar)
-   public:
-   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
+   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    virtual void pre_translate_message(gen::signal_object * pobj);
    protected:
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-   //}}AFX_VIRTUAL
 
-// Implementation
-public:
    virtual int _001GetHoverItem();
    virtual void OnUpdateHover();
    void _001OnClick(int iItem);
@@ -92,10 +92,7 @@ public:
    VMSRESULT _TrackPopupMenu(int iItem);
    bool LoadMenuBar(UINT nIDResource);
    void SetMenuID(UINT nIDResource);
-   virtual ~simple_menu_bar();
 
-   // Generated message ::collection::map functions
-protected:
    DECL_GEN_SIGNAL(_001OnMouseMove)
    DECL_GEN_SIGNAL(_001OnNcMouseMove)
    DECL_GEN_SIGNAL(_001OnCreate)
@@ -109,6 +106,9 @@ protected:
 
    DECL_GEN_SIGNAL(_001OnAppLanguage)
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pdispatch);
+   virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
+
+
 };
+
 

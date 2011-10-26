@@ -3,11 +3,10 @@
 namespace userbase
 {
 
-   BOOL combo_box::create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd,
-         UINT nID)
+   bool combo_box::create(::user::interaction* pParentWnd, id id)
    {
       ::user::interaction* pWnd = this;
-      return pWnd->create("COMBOBOX", NULL, dwStyle, rect, pParentWnd, nID);
+      return pWnd->create(pParentWnd, id);
    }
 
    combo_box::~combo_box()

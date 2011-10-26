@@ -10,7 +10,9 @@ class CLASS_DECL_ca plex_heap_alloc_array :
 {
 public: 
 
-   HANDLE      m_hmutex;
+
+   simple_mutex         m_mutex;
+
 
    plex_heap_alloc_array();
    virtual ~plex_heap_alloc_array();

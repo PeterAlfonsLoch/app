@@ -102,12 +102,12 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
             {
                if(!base < FileManagerSaveAsView >::bases(get_pane_window(0)))
                {
-                  create_context cc;
-                  cc.m_pCurrentDoc = get_document();
-                  cc.m_typeinfoNewView =  &typeid(FileManagerSaveAsView);
-                  cc.m_pCurrentFrame = this;
+                  //::ca::create_context cc;
+                  //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
+                  //cc.m_usercreatecontext.m_typeinfoNewView =  ::ca::get_type_info < FileManagerSaveAsView > ();
+                  //cc.m_usercreatecontext.m_pCurrentFrame = this;
 
-                  FileManagerSaveAsView * ptopview = dynamic_cast < FileManagerSaveAsView * > (create_view(&cc, this, 100));
+                  FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView > ();
                   if(ptopview == NULL)
                   {
                      System.simple_message_box(NULL, "Could not create folder tree ::view");
@@ -119,7 +119,9 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                   + " - " + System.datetime().international().get_gmt_date_time() 
                   + "." + System.file().extension(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name());
                   strName.replace(":", "-");
+                  strName = System.dir().path(GetFileManager()->get_item().m_strPath, strName);
                   ptopview->_001SetText(strName);
+                  GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic = strName;
                   set_position(0, 49);
                   set_position(1, 49 + 49);
                   layout();
@@ -161,7 +163,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
 
                if(bSave && System.file().exists(strPath))
                {
-                  if(System.simple_message_box(System.m_puiInitialPlaceHolderContainer, "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                  if(System.simple_message_box(Bergedge.get_document()->get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                   {
                      bSave = false;
                   }
@@ -218,12 +220,7 @@ void FileManagerAView::CreateViews()
 
    
 
-   create_context cc;
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(FileManagerPathView);
-   cc.m_pCurrentFrame = this;
-
-   FileManagerPathView * ptopview = dynamic_cast < FileManagerPathView * > (create_view(&cc, this, 100));
+   FileManagerPathView * ptopview = create_view < FileManagerPathView > ();
    if(ptopview == NULL)
    {
       System.simple_message_box(NULL, "Could not create folder tree ::view");
@@ -231,10 +228,8 @@ void FileManagerAView::CreateViews()
    SetPane(0, ptopview, false);
    //ptopview->CreateViews();
 
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(FileManagerView);
 
-   FileManagerView * pmediaview = dynamic_cast < FileManagerView * > (create_view(&cc, this, 100));
+   FileManagerView * pmediaview = create_view < FileManagerView > ();
 
    if(pmediaview == NULL)
    {
@@ -374,12 +369,7 @@ void FileManagerView::CreateViews()
 
    
 
-   create_context cc;
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(FileManagerLeftView);
-   cc.m_pCurrentFrame = this;
-   
-   FileManagerLeftView * pleftview = dynamic_cast < FileManagerLeftView * > (create_view(&cc, this, 100));
+   FileManagerLeftView * pleftview = create_view < FileManagerLeftView > ();
 
    if(pleftview == NULL)
    {
@@ -388,10 +378,7 @@ void FileManagerView::CreateViews()
    SetPane(0, pleftview, false);
    pleftview->CreateViews();
 
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(filemanager::SimpleFileListView);
-
-   m_pfilelist = dynamic_cast < filemanager::SimpleFileListView * > (create_view(&cc, this, 101));
+   m_pfilelist = create_view < filemanager::SimpleFileListView > ();
    
    if(m_pfilelist == NULL)
    {
@@ -399,10 +386,7 @@ void FileManagerView::CreateViews()
    }
    SetPane(1, m_pfilelist, false);
 
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(filemanager::SimplePreview);
-
-   m_ppreview = dynamic_cast < filemanager::SimplePreview * > (create_view(&cc, this, 102));
+   m_ppreview = create_view < filemanager::SimplePreview > ();
    m_ppreview->ShowWindow(SW_HIDE);
 }
 

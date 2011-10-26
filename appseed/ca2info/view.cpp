@@ -15,9 +15,9 @@ namespace ca2info
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -115,6 +115,7 @@ namespace ca2info
 
    void view::_001OnPaint(gen::signal_object * pobj) 
    {
+      UNREFERENCED_PARAMETER(pobj);
 	   //CPaintDC spgraphics(this); // device context for painting
       
 
@@ -124,7 +125,8 @@ namespace ca2info
 
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
-//      CSingleLock sl(&m_parea->m_cs, TRUE);
+      UNREFERENCED_PARAMETER(pdc);
+//      single_lock sl(&m_parea->m_cs, TRUE);
 
       //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)spgraphics, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
 

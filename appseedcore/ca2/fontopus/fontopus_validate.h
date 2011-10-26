@@ -33,6 +33,9 @@ namespace fontopus
 
       user *                     m_puser;
 
+      string                     m_strFontopusServerAuthUrl;
+      string                     m_strRequestingServer;
+      string                     m_strFontopusServer;
       string                     m_strUsername;
       string                     m_strPassword;
       string                     m_strPasshash;
@@ -40,6 +43,9 @@ namespace fontopus
       string                     m_strModHash;
       string                     m_strKeyHash;
       string                     m_strCa2Hash;
+
+      stringa                    m_straRequestingServer;
+      bool                       m_bFontopusServer;
       
       
       string                     m_strValidUntil;
@@ -63,11 +69,12 @@ namespace fontopus
 
    class CLASS_DECL_ca validate :
       virtual public ::user::form_callback,
-      virtual public ::user::create_view,
+      virtual public ::user::view_creator,
       virtual public ::user::tab_callback,
       virtual public login_thread_callback
    {
    public:
+
 
       class CLASS_DECL_ca auth
       {
@@ -104,12 +111,10 @@ namespace fontopus
       ::ca8::keyboard_layout *                  m_pkeyboardlayout;
       bool                                      m_bInteractive;
 
-      validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false);
+
+      validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
       virtual ~validate();
 
-#if !core_level_1
-      using ::user::tab_callback::on_show_view;
-#endif
 
       virtual void get_mod(stringa & straHash, stringa & straSource);
       virtual string calc_mod_hash();
@@ -127,14 +132,15 @@ namespace fontopus
       void page1();
       void pageMessage(const char * pszMatter, gen::property_set & set);
 
-      ::fontopus::user * get_user();
+      ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
       auth * get_auth();
-      bool get_license(const char * pszId, bool bInteractive = true);
+      bool get_license(const char * pszId);
 
       void authentication_failed(int iAuth, const char * pszResponse);
       void authentication_succeeded();
 
-      void on_create_view(view_data * pviewdata);
+      void on_create_view(::user::view_creator_data * pcreatordata);
+
       virtual void on_show_view();
 
       

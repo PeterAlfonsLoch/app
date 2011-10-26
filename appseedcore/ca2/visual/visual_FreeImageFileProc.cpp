@@ -124,7 +124,7 @@ int _stdcall __SeekProc2 (fi_handle handle, long offset, int origin)
       origin = ::ex1::seek_current;
    else if(origin == SEEK_END)
       origin = ::ex1::seek_end;
-   if(pfile->seek(offset, origin) == 0xFFFFFFFF)
+   if(pfile->seek(offset, (::ex1::e_seek) origin) == 0xFFFFFFFF)
       return -1;
    else
       return 0;
@@ -132,7 +132,7 @@ int _stdcall __SeekProc2 (fi_handle handle, long offset, int origin)
 long _stdcall __TellProc2 (fi_handle handle)
 {
    ex1::file * pfile = (ex1::file *) handle;
-   return pfile->GetPosition();
+   return (long) pfile->get_position();
 }
 
    //static unsigned _stdcall  __ReadProc3 (void *buffer, unsigned size, unsigned count, fi_handle handle);
@@ -178,7 +178,7 @@ int _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int origin)
       origin = ::ex1::seek_current;
    else if(origin == SEEK_END)
       origin = ::ex1::seek_end;
-   if(pfile->seek(offset, origin) == 0xFFFFFFFF)
+   if(pfile->seek(offset, (::ex1::e_seek) origin) == 0xFFFFFFFF)
       return -1;
    else
       return 0;
@@ -187,6 +187,6 @@ int _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int origin)
 long _stdcall ___Ex1File__TellProc(fi_handle handle)
 {
    ex1::file * pfile = (ex1::file *) handle;
-   return pfile->GetPosition();
+   return (long) pfile->get_position();
 }
 

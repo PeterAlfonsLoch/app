@@ -32,7 +32,7 @@ namespace win
       }
       str.ReleaseBuffer();
       return true;
-      
+
    }
 
 

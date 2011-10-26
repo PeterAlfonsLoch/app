@@ -7,9 +7,10 @@
 
 /* @(#) $Id$ */
 
+#include "zutil.h"
+
 #include <stdio.h>
 
-#include "zutil.h"
 
 #ifdef NO_DEFLATE       /* for compatibility with old definition */
 #  define NO_GZCOMPRESS
@@ -178,7 +179,7 @@ zlib_local gzFile gz_open (path, mode, fd)
     s->stream.avail_out = Z_BUFSIZE;
 
     errno = 0;
-    s->file = fd < 0 ? F_OPEN(path, fmode) : (FILE*)fdopen(fd, fmode);
+    s->file = fd < 0 ? F_OPEN(path, fmode) : (FILE*)_fdopen(fd, fmode);
 
     if (s->file == NULL) {
         return destroy(s), (gzFile)Z_NULL;

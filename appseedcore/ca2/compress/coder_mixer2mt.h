@@ -10,13 +10,13 @@ namespace compress
       struct CCoder2: public CCoderInfo2, public ::radix::thread
       {
          HRESULT Result;
-         base_array< sp(::ex1::reader) > InStreams;
-         base_array< sp(::ex1::writer) > OutStreams;
-         base_array<::ex1::reader*> InStreamPointers;
-         base_array<::ex1::writer*> OutStreamPointers;
+         base_array < sp(::ex1::reader) > InStreams;
+         base_array < sp(::ex1::writer) > OutStreams;
+         base_array < ::ex1::reader * > InStreamPointers;
+         base_array < ::ex1::writer * > OutStreamPointers;
 
          CCoder2(::ca::application * papp, uint32 numInStreams, uint32 numOutStreams);
-         void SetCoderInfo(const uint64 **inSizes, const uint64 **outSizes);
+         void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
          virtual int run();
          void Code(progress_info_interface *progress);
       };
@@ -42,7 +42,7 @@ namespace compress
          public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         base_array<::ex1::stream_binder> _streamBinders;
+         base_array < ::ex1::stream_binder > _streamBinders;
          int _progressCoderIndex;
 
          void AddCoderCommon();
@@ -52,10 +52,10 @@ namespace compress
          array_app_alloc<CCoder2> _coders;
 
          ex1::HRes Code(::ex1::reader **inStreams,
-            const uint64 **inSizes,
+            const file_size **inSizes,
             uint32 numInStreams,
             ::ex1::writer **outStreams,
-            const uint64 **outSizes,
+            const file_size **outSizes,
             uint32 numOutStreams,
             progress_info_interface *progress);
 
@@ -65,7 +65,7 @@ namespace compress
          void SetProgressCoderIndex(int coderIndex) {  _progressCoderIndex = coderIndex; }
 
          void ReInit();
-         void SetCoderInfo(uint32 coderIndex, const uint64 **inSizes, const uint64 **outSizes)
+         void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes)
          {  _coders[coderIndex].SetCoderInfo(inSizes, outSizes); }
          uint64 GetWriteProcessedSize(uint32 binderIndex) const
          {  return _streamBinders[binderIndex].ProcessedSize; }

@@ -120,7 +120,7 @@ namespace html
                   {
                      get_table()->m_columna[i].m_cxMin = -1;
                   }
-                  
+
                }
             }
             if(cxMax >= -1
@@ -176,7 +176,7 @@ namespace html
             }
             prow->m_size.cy = m_cyMax;
          }
-         m_size.cy = m_cyMax; 
+         m_size.cy = m_cyMax;
          m_sizeBound.cy = m_cyMax;
 
          elemental::final_layout(pdata);

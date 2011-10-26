@@ -71,7 +71,7 @@ namespace gcom
 
          } ONSTRETCHIMAGESTRUCTURE, *LPONSTRETCHIMAGESTRUCTURE;
 
-         CEvent                  m_evInitialized;
+         event                  m_evInitialized;
          mutex                     m_mutexBitmap;
          backview::Main   *          m_pbackviewinterface;   
 
@@ -83,7 +83,7 @@ namespace gcom
 
          void SetMain(backview::Main * pmain);
 
-         void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+         void install_message_handling(::user::win::message::dispatch * pinterface);
 
           static DWORD WINAPI ThreadProcStretchImage(LPVOID lpParameter);
           static UINT AFX_CDECL ThreadProcLoadImage(LPVOID lpParameter);

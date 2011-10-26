@@ -2,7 +2,7 @@
 
 template <class TYPE, class ARG_TYPE = const TYPE &>
 class array_app_alloc :
-   public array_ptr < TYPE, ARG_TYPE >
+   public array_del_ptr < TYPE, ARG_TYPE >
 {
 public:
    array_app_alloc(::ca::application * papp);
@@ -32,7 +32,7 @@ public:
 
 template <class TYPE, class ARG_TYPE>
 array_app_alloc < TYPE, ARG_TYPE >::array_app_alloc(::ca::application * papp) :
-   ca(papp)
+ ::ca::ca(papp)
 {
 }
 
@@ -56,9 +56,8 @@ array_app_alloc < TYPE, ARG_TYPE >::~array_app_alloc()
 template <class TYPE, class ARG_TYPE>
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(get_app(), typeid(TYPE)));
-   gen::add_ref(pt);
-   m_ptra.add(pt);
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
+   this->ptra().add(pt);
    return pt;
 }
 
@@ -67,10 +66,9 @@ template <class TYPE, class ARG_TYPE>
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    const TYPE & t)
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(get_app(), typeid(TYPE)));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
    *pt = t;
-   gen::add_ref(pt);
-   return m_ptra.add(pt);
+   return this->ptra().add(pt);
 }
 
 template <class TYPE, class ARG_TYPE>
@@ -78,7 +76,7 @@ inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    TYPE * pt)
 {
    gen::add_ref(pt);
-   return array_ptr < TYPE, ARG_TYPE >::add(pt);
+   return array_del_ptr < TYPE, ARG_TYPE >::add(pt);
 }
 
 template <class TYPE, class ARG_TYPE>
@@ -86,10 +84,9 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(
    int iIndex,
    ARG_TYPE t)
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(get_app(), typeid(TYPE)));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
    *pt = t;
-   gen::add_ref(pt);
-   m_ptra.insert_at(iIndex, pt);
+   this->ptra().insert_at(iIndex, pt);
 }
 
 
@@ -97,14 +94,13 @@ template <class TYPE, class ARG_TYPE>
 inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::operator = (const array_app_alloc <TYPE, ARG_TYPE> & a)
 {
    remove_all();
-   for(int i = 0; i < a.m_ptra.get_size(); i++)
+   for(int i = 0; i < a.ptra().get_size(); i++)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(get_app(), typeid(TYPE)));
-      *pt = *a.m_ptra[i];
-      gen::add_ref(pt);
-      m_ptra.add(pt);
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
+      *pt = *a.ptra()[i];
+      this->ptra().add(pt);
    }
-   m_ptra.set_size(a.m_ptra.get_size());
+   this->ptra().set_size(a.ptra().get_size());
    return *this;
 }
 
@@ -125,23 +121,23 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
 {
    ASSERT(iIndex >= 0);
 
-   if(iIndex < m_ptra.get_size())
+   if(iIndex < this->ptra().get_size())
    {
-      element_at(iIndex) = t;
+      this->element_at(iIndex) = t;
    }
    else
    {
-      INT_PTR iOldSize = m_ptra.get_size();
-      m_ptra.set_size(iIndex + 1);
-      INT_PTR iEmptySize = m_ptra.get_size() - 1;
+      INT_PTR iOldSize = this->ptra().get_size();
+      this->ptra().set_size(iIndex + 1);
+      INT_PTR iEmptySize = this->ptra().get_size() - 1;
       index i;
-      if(m_papp == NULL)
-         m_papp = t.m_papp;
+      if(this->get_app() == NULL)
+         set_app(t.get_app());
       for(i = iOldSize; i < iEmptySize; i++)
       {
-         m_ptra.element_at(i) = dynamic_cast < TYPE * > (System.alloc(get_app(), typeid(TYPE)));
+         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
       }
-      m_ptra.element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
+      this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
    }
 }
 
@@ -149,15 +145,14 @@ template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::
 set_size(int iSize)
 {
-   while(get_size() < iSize)
+   while(this->get_size() < iSize)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(get_app(), typeid(TYPE)));
-      gen::add_ref(pt);
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
       add(pt);
    }
-   while(get_size() > iSize)
+   while(this->get_size() > iSize)
    {
-      remove_at(get_size() - 1);
+      remove_at(this->get_size() - 1);
    }
 }
 
@@ -165,8 +160,14 @@ set_size(int iSize)
 template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::remove_at(index iIndex)
 {
-   gen::release(m_ptra.element_at(iIndex));
-   m_ptra.remove_at(iIndex);
+   try
+   {
+      gen::release(this->ptra().element_at(iIndex));
+   }
+   catch(...)
+   {
+   }
+   this->ptra().remove_at(iIndex);
 }
 
 template <class TYPE, class ARG_TYPE>
@@ -174,12 +175,12 @@ inline count array_app_alloc < TYPE, ARG_TYPE >::remove_all(bool bRelease /*=tru
 {
    if(bRelease)
    {
-      for(int iIndex = 0; iIndex < m_ptra.get_size(); iIndex++)
+      for(int iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
-         gen::release(m_ptra.element_at(iIndex));
+         gen::release(this->ptra().element_at(iIndex));
       }
    }
-   return m_ptra.remove_all();
+   return this->ptra().remove_all();
 }
 
 template <class TYPE, class ARG_TYPE>
@@ -187,7 +188,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::remove_last(bool bRelease /*=tru
 {
    if(bRelease)
    {
-      gen::release(m_ptra.last_element());
+      gen::release(this->ptra().last_element());
    }
-   m_ptra.remove_last();
+   this->ptra().remove_last();
 }

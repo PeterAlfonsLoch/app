@@ -66,7 +66,7 @@ mydns_set_soa_where_clause(char *where)
 {
 	if (where && strlen(where))
 	{
-		if (!(mydns_soa_where_clause = strdup(where)))
+		if (!(mydns_soa_where_clause = _strdup(where)))
 			Errx("out of primitive::memory");
 	}
 }

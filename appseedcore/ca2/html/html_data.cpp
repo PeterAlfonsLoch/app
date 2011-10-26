@@ -7,7 +7,6 @@ namespace html
       ca(papp),
       m_spdib(papp)
    {
-      
    }
 
    bool data::image::load_image()
@@ -20,8 +19,9 @@ namespace html
       ca(papp),
       ::ca::data(papp),
       m_imagea(papp),
-      m_elemental(this)
+      m_elemental(NULL)
    {
+      m_elemental.m_pdata        = this;
       m_pcookies                 = NULL;
       m_puser                    = NULL;
       m_pform                    = NULL;
@@ -30,10 +30,17 @@ namespace html
       m_bImplemented             = false;
       m_bImplement               = false;
       m_bLayout                  = false;
+      m_ptag                     = NULL;
+      m_pcallback                = NULL;
    }
-   
+
    data::~data()
    {
+      if(m_ptag != NULL)
+      {
+         delete m_ptag;
+         m_ptag = NULL;
+      }
    }
 
    font * data::get_font(elemental * pelemental)
@@ -128,6 +135,7 @@ namespace html
    void data::delete_contents()
    {
       ::ca::data::writing writing(this);
+      m_elemental.m_propertyset.m_propertya.remove_all();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
       for(int i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
@@ -153,7 +161,11 @@ namespace html
       html::reader reader;
       htmlreader.setEventHandler(&reader);
       htmlreader.read(psz);
-      m_ptag = reader.m_ptagMain;
+      if(m_ptag != NULL)
+      {
+         delete m_ptag;
+      }
+      m_ptag = reader.detach_main_tag();
       if(m_ptag == NULL)
       {
          m_ptag = new tag(NULL);
@@ -187,17 +199,17 @@ namespace html
 
       if(pkey->m_nChar == VK_TAB)
       {
-         user::keyboard_focus * pfocus = System.get_keyboard_focus();
+         user::keyboard_focus * pfocus = Application.get_keyboard_focus();
          if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();
          if(pfocus != NULL)
-            System.set_keyboard_focus(pfocus);
+            Application.set_keyboard_focus(pfocus);
          pkey->m_bRet = true;
          return;
       }
-   
+
    }
-   
+
    void data::layout(::ca::graphics * pdc)
    {
       int iCount = 24;
@@ -300,8 +312,17 @@ namespace html
 
    bool data::load_image(image * pimage)
    {
-      ::ca::lock lockImage(pimage);
-      return pimage->load_image();
+      synch_lock lockImage(pimage);
+      bool bRet = false;
+      try
+      {
+         bRet = pimage->load_image();
+      }
+      catch(...)
+      {
+         bRet = false;
+      }
+      return bRet;
    }
 
    void data::on_image_loaded(image * pimage)
@@ -327,7 +348,7 @@ namespace html
 
    bool data::open_link(const char * pszPath)
    {
-      if(m_pform != NULL)
+      if(m_pform != NULL && m_pform->get_document() != NULL)
       {
          return m_pform->get_document()->on_open_document(pszPath);
       }
@@ -340,7 +361,7 @@ namespace html
       {
          return open_document(strPath);
       }
-      else 
+      else
       {
          return open_document(System.dir().path(System.dir().name(m_strPathName), strPath));
       }
@@ -348,6 +369,7 @@ namespace html
 
    bool data::open_document(var varFile)
    {
+      ::ca::data::writing writing(this);
    string strPathName;
    if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
    {
@@ -368,7 +390,7 @@ namespace html
       byte_array ba;
       BOOL bCancel = FALSE;
       OnBeforeNavigate2(
-         strPathName,
+         varFile,
          0,
          0,
          ba,
@@ -397,12 +419,12 @@ namespace html
          string filename;
          filename = System.file().time_square();
          System.http().download(
-            "https://fontopus.com/ca2api/auth", 
-            filename, 
-            post, 
-            headers, 
+            "https://fontopus.com/ca2api/auth",
+            filename,
+            post,
+            headers,
             set,
-            puser->m_phttpcookies, 
+            puser->m_phttpcookies,
             puser);
          string strResponse = Application.file().as_string(filename);
       }
@@ -421,9 +443,9 @@ namespace html
          ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
          if(puser != NULL && puser->m_strSessid.has_char())
          {
-            strPath = System.url().set(strPath, "sessid", puser->m_strSessid);
+            System.url().set(strPath, "sessid", puser->m_strSessid);
          }*/
-         /*if(!System.sync_load_url(str, strPath, 
+         /*if(!System.sync_load_url(str, strPath,
             puser, m_pcookies))
                       return FALSE;*/
       }
@@ -445,11 +467,15 @@ namespace html
       return TRUE;
    }
 
-   void data::OnBeforeNavigate2(const char * lpszUrl, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+   void data::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
    {
       if(m_pcallback != NULL)
       {
-         m_pcallback->OnBeforeNavigate2(this, lpszUrl, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
+         m_pcallback->OnBeforeNavigate2(this, varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
+      }
+      else if(m_pform != NULL)
+      {
+         m_pform->OnBeforeNavigate2(varFile, nFlags, lpszTargetFrameName, baPostedData, lpszHeaders, pbCancel);
       }
    }
 

@@ -17,10 +17,10 @@ namespace filemanager
    {
    }
 
-   void SimplePreview::_001InstallMessageHandling(::user::win::message::dispatch * pdispatch)
+   void SimplePreview::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
-      ::userbase::view::_001InstallMessageHandling(pdispatch);
-      SimplePreviewInterface::_001InstallMessageHandling(pdispatch);
+      ::userbase::view::install_message_handling(pdispatch);
+      SimplePreviewInterface::install_message_handling(pdispatch);
    }
 
 

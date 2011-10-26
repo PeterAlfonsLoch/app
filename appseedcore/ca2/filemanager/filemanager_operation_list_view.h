@@ -10,7 +10,7 @@ public:
 
    file_manager_operation_list_view(::ca::application * papp);
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
 
    void _001InsertColumns();
 
@@ -20,22 +20,16 @@ public:
    DECL_GEN_SIGNAL(_001OnTimer)
 
    virtual count _001GetItemCount();
-   virtual bool _001GetItemText(
-      string &str,
-      index iItem,
-      index iSubItem, 
-      index iListItem);
+   virtual void _001GetItemText(::user::list_item * pitem);
 
    void OnFileOperationStep(int iOperation, bool bFinal);
 
-   ::user::list_cache              m_cache;
-   simple_list_header_control    m_headerctrl;
-   simple_scroll_bar             m_scrollbarVert;
-   simple_scroll_bar             m_scrollbarHorz;
+   ::user::list_cache               m_listcache;
+   simple_list_header_control       m_headerctrl;
 
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
-   DWORD                   m_dwLast123Update;
+   DWORD                            m_dwLast123Update;
 
    
 

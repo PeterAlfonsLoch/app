@@ -8,6 +8,7 @@ namespace http
       DWORD_PTR nRead;
       char ch;
       bool bR = false;
+      str.Empty();
       while((nRead = read(&ch, sizeof(ch))) > 0)
       {
          str += ch;
@@ -42,9 +43,9 @@ namespace http
          {
             AfxThrowMemoryException();
          }
-         while((nRead = file.read(mem.GetAllocation(), mem.GetStorageSize())) > 0)
+         while((nRead = file.read(mem.get_data(), mem.get_size())) > 0)
          {
-            write(mem.GetAllocation(), nRead);
+            write(mem.get_data(), nRead);
          }
          return *this;
       }

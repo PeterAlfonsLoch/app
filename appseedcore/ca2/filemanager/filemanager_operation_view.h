@@ -18,22 +18,26 @@ public:
       MessageMainPostFileOperationFinal,
    };
 
+
+   file_manager_operation_list_view * m_plistview;
+   file_manager_operation_info_view * m_pinfoview;
+
+   ::user::view_creator * m_pviewcreator;
+
+
    file_manager_operation_view(::ca::application * papp);
    virtual ~file_manager_operation_view();
 
    file_manager_operation_document * get_document();
 
-   virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
    
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnMainPostMessage)
    DECL_GEN_SIGNAL(_001OnDestroy)
 
 
-   file_manager_operation_list_view * m_plistview;
-   file_manager_operation_info_view * m_pinfoview;
-
-   ::user::create_view * m_pcreateview;
 
 };
       
+

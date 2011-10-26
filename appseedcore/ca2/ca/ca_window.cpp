@@ -214,7 +214,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   void window::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void window::install_message_handling(::user::win::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception();   
@@ -735,12 +735,6 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   void window::_001Print(::ca::graphics * pgraphics)
-   {
-      UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception();   
-   }
-
    void window::OnEnterIdle(UINT /*nWhy*/, window* /*pWho*/)
    {
       throw interface_only_exception();   
@@ -814,23 +808,24 @@ namespace ca
    }
 
 
-   int window::RunModalLoop(DWORD dwFlags)
+/*   id window::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
       UNREFERENCED_PARAMETER(dwFlags);
+      UNREFERENCED_PARAMETER(pliveobject);
       throw interface_only_exception();   
    }
 
-   BOOL window::ContinueModal(int iLevel)
+   bool window::ContinueModal(int iLevel)
    {
       UNREFERENCED_PARAMETER(iLevel);
       throw interface_only_exception();   
    }
 
-   void window::EndModalLoop(int nResult)
+   void window::EndModalLoop(id nResult)
    {
       UNREFERENCED_PARAMETER(nResult);
       throw interface_only_exception();   
-   }
+   }*/
 
    BOOL window::IsFrameWnd()
    {
@@ -1119,7 +1114,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   void window::BringWindowToTop()
+   bool window::BringWindowToTop()
    {
       throw interface_only_exception();   
    }

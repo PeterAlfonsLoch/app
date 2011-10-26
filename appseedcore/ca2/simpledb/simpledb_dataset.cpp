@@ -39,6 +39,10 @@ namespace simpledb
       {
          return sql_do_select(pszSql);
       }
+      else if(strInstruction == "insert")
+      {
+         return sql_do_insert(pszSql);
+      }
 
       return false;
    }
@@ -51,11 +55,11 @@ namespace simpledb
       }*/
 /*      m_resultsetExec.record_header.remove_all();
       m_resultsetExec.records.remove_all();
-   database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr); 
+   database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
    int sz = r->records.get_size();
- 
+
    //if (reslt == NULL ) cout << "EMPTY!!!\n";
-   if (r->record_header.get_size() <= 0) 
+   if (r->record_header.get_size() <= 0)
    {
       r->record_header.set_size(ncol, 32);
       for (int i=0; i < ncol; i++)
@@ -84,11 +88,11 @@ namespace simpledb
 
    database::SqlRecord rec;
    var v;
- 
+
    if (reslt != NULL)
    {
       for (int i=0; i<ncol; i++)
-      { 
+      {
          if (reslt[i] == NULL)
          {
             v = "";
@@ -117,8 +121,8 @@ namespace simpledb
    }
    //cout <<"Fsz:"<<r->record_header.size()<<"\n";
    // cout << "Recs:"<<r->records.size() <<" m_value |" <<reslt<<"|"<<cols<<"|"<<"\n\n";
-  return 0;  
-      //if ((strncmp("select",sql,6) == 0) || (strncmp("SELECT",sql,6) == 0)) 
+  return 0;
+      //if ((strncmp("select",sql,6) == 0) || (strncmp("SELECT",sql,6) == 0))
       if(m_iLastResult = db->setErr(sqlite3_exec(handle(),sql,&callback,&m_resultsetExec,&errmsg)) == SQLITE_OK)
       {
          m_strQueryErrorMessage = "";
@@ -134,11 +138,11 @@ namespace simpledb
       }
    }
 
-   database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr); 
+   database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
    int sz = r->records.get_size();
- 
+
    //if (reslt == NULL ) cout << "EMPTY!!!\n";
-   if (r->record_header.get_size() <= 0) 
+   if (r->record_header.get_size() <= 0)
    {
       r->record_header.set_size(ncol, 32);
       for (int i=0; i < ncol; i++)
@@ -167,11 +171,11 @@ namespace simpledb
 
    database::SqlRecord rec;
    var v;
- 
+
    if (reslt != NULL)
    {
       for (int i=0; i<ncol; i++)
-      { 
+      {
          if (reslt[i] == NULL)
          {
             v = "";
@@ -208,27 +212,37 @@ namespace simpledb
       stringa straField;
 
       string str;
-      for(;;)
+
+
+      gen::str::consume_spaces(pszSql, 0);
+
+      if(gen::str::begins_consume(pszSql, "*"))
       {
-         str = sql_consume_field(pszSql);
-         if(str.is_empty())
+         gen::str::consume_spaces(pszSql, 0);
+      }
+      else
+      {
+         for(;;)
          {
-            return false;
-         }
-         straField.add(str);
-         try
-         {
-            gen::str::consume(pszSql, ",");
-         }
-         catch(...)
-         {
-            str = sql_consume_keyword(pszSql);
-            if(str != "from")
+            str = sql_consume_field(pszSql);
+            if(str.is_empty())
+            {
                return false;
-            else 
+            }
+            straField.add(str);
+            try
+            {
+               gen::str::consume(pszSql, ",");
+            }
+            catch(...)
+            {
                break;
+            }
          }
       }
+      str = sql_consume_keyword(pszSql);
+      if(str != "from")
+         return false;
 
       stringa straTable;
       for(;;)
@@ -245,52 +259,204 @@ namespace simpledb
          }
          catch(...)
          {
-            str = sql_consume_keyword(pszSql);
-            if(str == "inner")
+            try
             {
+
                str = sql_consume_keyword(pszSql);
-               if(str != "join")
+               if(str == "inner")
+               {
+                  str = sql_consume_keyword(pszSql);
+                  if(str != "join")
+                     return false;
+                  straTable.add("join:inner");
+               }
+               else if(str == "left")
+               {
+                  str = sql_consume_keyword(pszSql);
+                  if(str != "outer")
+                     return false;
+                  str = sql_consume_keyword(pszSql);
+                  if(str != "join")
+                     return false;
+                  straTable.add("join:left_outer");
                   return false;
-               straTable.add("join:inner");
+               }
+               else if(str == "right")
+               {
+                  str = sql_consume_keyword(pszSql);
+                  if(str != "outer")
+                     return false;
+                  str = sql_consume_keyword(pszSql);
+                  if(str != "join")
+                     return false;
+                  straTable.add("join:right_outer");
+                  return false;
+               }
+               else if(str == "on")
+               {
+                  str = sql_consume_join_on(pszSql);
+                  if(str.is_empty())
+                     return false;
+                  straTable.add("on:" + str);
+               }
             }
-            else if(str == "left")
+            catch(...)
             {
-               str = sql_consume_keyword(pszSql);
-               if(str != "outer")
-                  return false;
-               str = sql_consume_keyword(pszSql);
-               if(str != "join")
-                  return false;
-               straTable.add("join:left_outer");
-               return false;
-            }
-            else if(str == "right")
-            {
-               str = sql_consume_keyword(pszSql);
-               if(str != "outer")
-                  return false;
-               str = sql_consume_keyword(pszSql);
-               if(str != "join")
-                  return false;
-               straTable.add("join:right_outer");
-               return false;
-            }
-            else if(str == "on")
-            {
-               str = sql_consume_join_on(pszSql);
-               if(str.is_empty())
-                  return false;
-               straTable.add("on:" + str);
+               break;
             }
          }
       }
 
-      
+      if(straTable.get_count() == 1)
+      {
+         string strTable = straTable[0];
+         if(gen::str::begins_eat_ci(strTable, "table:"))
+         {
+            simpledb::table table(dynamic_cast < simpledb::base * > (db), strTable);
+            simpledb::record_row recrow;
+            recrow.m_ptable = &table;
+            file_position posEnd = (file_position)table.m_spfileFixed->get_length();
+            table.m_spfileFixed->seek_to_begin();
+            ex1::byte_stream stream(table.m_spfileFixed);
+            while(true)
+            {
+               if(table.m_spfileFixed->get_position() >= posEnd)
+                  break;
+               try
+               {
+                  recrow.read(stream);
+               }
+               catch(...)
+               {
+                  return false;
+               }
+               database::record rec;
+               rec.::var_array::operator = (recrow.m_var.vara());
+               m_resultset.records.add(rec);
+               recrow.m_var.vara().remove_all();
+            }
+         }
+      }
 
+
+   }
+
+   bool set::sql_do_insert(const char * & pszSql)
+   {
+
+      try
+      {
+         string str = sql_consume_keyword(pszSql);
+         if(str != "into")
+            return false;
+
+         string strTable;
+         strTable = sql_consume_table(pszSql);
+         if(strTable.is_empty())
+         {
+            return false;
+         }
+
+         str = sql_consume_keyword(pszSql);
+         if(str != "values")
+            return false;
+
+         gen::str::consume_spaces(pszSql, 0);
+
+         if(!gen::str::begins_consume(pszSql, "("))
+            return false;
+
+         gen::str::consume_spaces(pszSql, 0);
+
+         stringa straValue;
+         for(;;)
+         {
+            try
+            {
+               str = sql_consume_value(pszSql);
+            }
+            catch(...)
+            {
+               break;
+            }
+            straValue.add(str);
+            gen::str::consume_spaces(pszSql, 0);
+            if(gen::str::begins_consume(pszSql, ")"))
+               break;
+            if(!gen::str::begins_consume(pszSql, ","))
+               return false;
+
+         }
+
+
+         if(straValue.get_count() <= 0)
+            return false;
+
+
+         simpledb::table table(dynamic_cast < simpledb::base * > (db), strTable);
+         simpledb::record_row rec;
+         rec.m_ptable = &table;
+         rec.m_var = straValue;
+         table.m_spfileFixed->seek_to_end();
+         ex1::byte_stream stream(table.m_spfileFixed);
+         rec.write(stream);
+
+         {
+            database::record rec;
+            rec.add(string("one row inserted"));
+            m_resultset.records.add(rec);
+         }
+         return true;
+      }
+      catch(...)
+      {
+         database::record rec;
+         rec.add(string("could not add row"));
+         m_resultset.records.add(rec);
+         return false;
+      }
+
+
+   }
+
+   string set::consume_quoted_value(const char * & pszXml)
+   {
+      const char * psz = pszXml;
+      string qc = gen::str::utf8_char(psz);
+      if(qc != "\'")
+      {
+         throw "Quote character is required here";
+      }
+      string str;
+      while(true)
+      {
+         psz = gen::str::utf8_inc(psz);
+         string qc2 = gen::str::utf8_char(psz);
+         //string str = gen::international::utf8_to_unicode(qc2);
+         if(qc2.is_empty())
+         {
+            throw "Quote character is required here, premature end";
+         }
+         if(qc2 == qc)
+            break;
+         str += qc2;
+      }
+      psz = gen::str::utf8_inc(psz);
+      pszXml = psz;
+      return str;
+   }
+
+   string set::sql_consume_value(const char * & pszSql)
+   {
+      gen::str::consume_spaces(pszSql, 0);
+      string str = consume_quoted_value(pszSql);
+      str.make_lower();
+      return str;
    }
 
    string set::sql_consume_keyword(const char * & pszSql)
    {
+      gen::str::consume_spaces(pszSql, 0);
       string str = gen::str::consume_nc_name(pszSql);
       str.make_lower();
       return str;
@@ -298,11 +464,13 @@ namespace simpledb
 
    string set::sql_consume_field(const char * & pszSql)
    {
+      gen::str::consume_spaces(pszSql, 0);
       return gen::str::consume_nc_name(pszSql);
    }
 
    string set::sql_consume_table(const char * & pszSql)
    {
+      gen::str::consume_spaces(pszSql, 0);
       return gen::str::consume_nc_name(pszSql);
    }
 
@@ -317,28 +485,28 @@ namespace simpledb
       return dynamic_cast < base * > (db);
    }
 
-   void set::make_query(stringa &_sql) 
+   void set::make_query(stringa &_sql)
    {
       string query;
 
-      try 
+      try
       {
 
          if(autocommit)
             db->start_transaction();
 
-         if(db == NULL) 
+         if(db == NULL)
             throw database::DbErrors("No base Connection");
 
          //close();
 
-         for (int i = 0; i <_sql.get_size(); i++) 
+         for (int i = 0; i <_sql.get_size(); i++)
          {
             query = _sql.element_at(i);
-            char* err=NULL; 
+//            char* err=NULL;
             set::parse_sql(query);
             //cout << "Executing: "<<query<<"\n\n";
-/*            if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK) 
+/*            if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
                throw database::DbErrors(db->getErrorMsg());
@@ -346,44 +514,44 @@ namespace simpledb
          } // end of for
 
 
-         if(db->in_transaction() && autocommit) 
+         if(db->in_transaction() && autocommit)
             db->commit_transaction();
 
          active = true;
-         ds_state = database::dsSelect;      
+         ds_state = database::dsSelect;
          refresh();
 
       } // end of try
-      catch(...) 
+      catch(...)
       {
          if (db->in_transaction()) db->rollback_transaction();
       }
    }
 
 
-   void set::make_insert() 
+   void set::make_insert()
    {
       //make_query(insert_sql);
       last();
    }
 
 
-   void set::make_edit() 
+   void set::make_edit()
    {
       //make_query(update_sql);
    }
 
 
-   void set::make_deletion() 
+   void set::make_deletion()
    {
       //make_query(delete_sql);
    }
 
 
-   void set::fill_fields() 
+   void set::fill_fields()
    {
       //cout <<"rr "<<m_resultset.records.size()<<"|" << frecno <<"\n";
-      /*if ((db == NULL) 
+      /*if ((db == NULL)
       || (m_resultset.record_header.get_size() == 0)
       || (m_resultset.records.get_size() < frecno))
          return;
@@ -400,7 +568,7 @@ namespace simpledb
       }
 
       //Filling m_resultset
-      if (m_resultset.records.get_size() != 0) 
+      if (m_resultset.records.get_size() != 0)
       {
          for (int i = 0; i < m_resultset.records[frecno].get_size(); i++)
          {
@@ -413,7 +581,7 @@ namespace simpledb
          {
             fields_object[i].m_value = "";
             edit_object[i].m_value = "";
-         }    
+         }
          */
    }
 
@@ -432,6 +600,7 @@ namespace simpledb
 
    bool set::query(const char *query)
    {
+      UNREFERENCED_PARAMETER(query);
       if(db == NULL)
       {
          TRACE("set::query: base is not Defined");
@@ -488,12 +657,12 @@ namespace simpledb
 
    void set::open()
    {
-      if (!select_sql.is_empty()) 
+      if (!select_sql.is_empty())
       {
          //cout <<select_sql <<"  open\n\n";
-         query(select_sql); 
+         query(select_sql);
       }
-      else 
+      else
       {
          ds_state = database::dsInactive;
       }
@@ -512,11 +681,11 @@ namespace simpledb
    }
 
 
-   void set::cancel() 
+   void set::cancel()
    {
       if ((ds_state == database::dsInsert) || (ds_state==database::dsEdit))
       {
-         if(m_resultset.record_header.get_size()) 
+         if(m_resultset.record_header.get_size())
          {
             ds_state = database::dsSelect;
          }
@@ -534,19 +703,19 @@ namespace simpledb
    }
 
 
-   bool set::eof() 
+   bool set::eof()
    {
       return feof;
    }
 
 
-   bool set::bof() 
+   bool set::bof()
    {
       return fbof;
    }
 
 
-   void set::first() 
+   void set::first()
    {
       ::database::set::first();
       this->fill_fields();
@@ -568,27 +737,28 @@ namespace simpledb
    void set::next(void)
    {
       ::database::set::next();
-      if (!eof()) 
+      if (!eof())
          fill_fields();
    }
 
 
    bool set::seek(int pos)
    {
-      if (ds_state == database::dsSelect) 
+      if (ds_state == database::dsSelect)
       {
          set::seek(pos);
          fill_fields();
-         return true;   
+         return true;
       }
       return false;
    }
 
 
 
-   long set::nextid(const char *seq_name) 
+   long set::nextid(const char *seq_name)
    {
-/*      if(handle()) 
+      UNREFERENCED_PARAMETER(seq_name);
+/*      if(handle())
          return db->nextid(seq_name);
       else*/
          return DB_UNEXPECTED_RESULT;
@@ -613,7 +783,7 @@ namespace simpledb
       bool found = false;
       if(ds_state == database::dsSelect)
       {
-         for (int i=0; i < fields_object.get_size(); i++) 
+         for (int i=0; i < fields_object.get_size(); i++)
          {
             if(m_resultset.record_header[i].name == f_name)
             {
@@ -683,7 +853,7 @@ namespace simpledb
 
    int set::GetFieldIndex(const char *f_name)
    {
-      for (int i=0; i < fields_object.get_size(); i++) 
+      for (int i=0; i < fields_object.get_size(); i++)
       {
          if(m_resultset.record_header[i].name == f_name)
          {
@@ -700,7 +870,7 @@ namespace simpledb
       if(ds_state == database::dsSelect)
       {
          int i;
-         for(i=0; i < fields_object.get_size(); i++) 
+         for(i=0; i < fields_object.get_size(); i++)
             if(m_resultset.record_header[i].name == fieldname)
             {
                iFound = i;
@@ -708,7 +878,7 @@ namespace simpledb
             }
             if (iFound < 0) throw database::DbErrors("Field not found: %s",fieldname);
             int iNumRows = num_rows();
-            for(i=0; i < iNumRows; i++) 
+            for(i=0; i < iNumRows; i++)
                if(m_resultset.records[i][iFound] == value)
                {
                   seek(i);
@@ -765,11 +935,11 @@ namespace simpledb
 
    int callback(void * res_ptr,int ncol, char** reslt,char** cols){
 
-      database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr); 
+      database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
       int sz = r->records.get_size();
 
       //if (reslt == NULL ) cout << "EMPTY!!!\n";
-      if (r->record_header.get_size() <= 0) 
+      if (r->record_header.get_size() <= 0)
       {
          r->record_header.set_size(ncol, 32);
          for (int i=0; i < ncol; i++)
@@ -802,7 +972,7 @@ namespace simpledb
       if (reslt != NULL)
       {
          for (int i=0; i<ncol; i++)
-         { 
+         {
             if (reslt[i] == NULL)
             {
                v = "";
@@ -831,7 +1001,7 @@ namespace simpledb
       }
       //cout <<"Fsz:"<<r->record_header.size()<<"\n";
       // cout << "Recs:"<<r->records.size() <<" m_value |" <<reslt<<"|"<<cols<<"|"<<"\n\n";
-      return 0;  
+      return 0;
    }
 
 

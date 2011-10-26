@@ -15,9 +15,16 @@ namespace ca2
       string get_object(const char *); // page?id=1
       string get_script(const char *); // page
       string get_query(const char *); // id=1
-      string set(const char * pszUrl, const char * pszKey, var var);
+      string set_key(const char * pszUrl, const char * pszKey, var var);
+      string set(string & strUrl, const char * pszKey, var var);
+      var & set(var & varUrl, const char * pszKey, var var);
+      gen::property & set(gen::property & propUrl, const char * pszKey, var var);
       string set_script(const char * pszUrl, const char * pszScript);
-      string remove(const char * pszUrl, const char * pszKey);
+      string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
+      string remove_key(const char * pszUrl, const char * pszKey);
+      string remove(string & strUrl, const char * pszKey);
+      var & remove(var & varUrl, const char * pszKey);
+      gen::property & remove(gen::property & propUrl, const char * pszKey);
       // Example: page?id=1
       string object_get_script(const char *); // page
       string object_get_query(const char *); // id=1

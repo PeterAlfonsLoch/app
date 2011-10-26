@@ -78,10 +78,10 @@ namespace filemanager
       {
          if(lpiidl == NULL)
             return NULL;
-      
+
          LPMALLOC lpmalloc = NULL;
          HRESULT hr;
-      
+
          hr = SHGetMalloc(&lpmalloc);
 
          int iLen = _017ItemIDListGetLen(lpiidl);
@@ -102,7 +102,7 @@ namespace filemanager
       {
          if(lpiidl == NULL)
             return NULL;
-      
+
          int iLen = _017ItemIDListGetLen(lpiidl);
 
 
@@ -127,10 +127,10 @@ namespace filemanager
 
       LPITEMIDLIST _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl)
       {
-      
+
          LPMALLOC lpmalloc = NULL;
          HRESULT hr;
-      
+
          hr = SHGetMalloc(&lpmalloc);
 
          int iLenParent = _017ItemIDListGetLen(lpiidlParent);
@@ -151,10 +151,10 @@ namespace filemanager
 
       LPITEMIDLIST _017ItemIDListGetLast(LPITEMIDLIST lpiidl)
       {
-      
+
    if(lpiidl == NULL)
             return NULL;
-      
+
          LPMALLOC lpmalloc = NULL;
          HRESULT hr;
          hr = SHGetMalloc(&lpmalloc);
@@ -162,7 +162,7 @@ namespace filemanager
          LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
          LPSHITEMID  lpshiidLast = lpshiid;
          USHORT cb;
-      
+
          while(true)
          {
             cb = *((USHORT *) lpshiid);
@@ -172,13 +172,13 @@ namespace filemanager
             lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
          }
          int iCount = *((USHORT *) lpshiidLast);
-      
+
          if(iCount == 0)
             return NULL;
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iCount + 2);
-      
+
          memcpy(lpiidlRet, lpshiidLast, iCount);
 
          *((USHORT *)&(((LPBYTE)lpiidlRet)[iCount])) = 0;
@@ -208,7 +208,7 @@ namespace filemanager
       {
          if(lpiidl == NULL)
             return NULL;
-      
+
          LPMALLOC lpmalloc = NULL;
          HRESULT hr;
          hr = SHGetMalloc(&lpmalloc);
@@ -216,7 +216,7 @@ namespace filemanager
          LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
          LPSHITEMID  lpshiidLast = lpshiid;
          USHORT cb;
-      
+
          while(true)
          {
             cb = *((USHORT *) lpshiid);
@@ -226,13 +226,13 @@ namespace filemanager
             lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
          }
          int iCount = ((LPBYTE)lpshiidLast) - ((LPBYTE) lpiidl);
-      
+
          if(iCount == 0)
             return NULL;
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iCount + 2);
-      
+
          memcpy(lpiidlRet, lpiidl, iCount);
 
          *((USHORT *)&(((LPBYTE)lpiidlRet)[iCount])) = 0;
@@ -252,13 +252,13 @@ namespace filemanager
          {
             return false;
          }
-      
+
 
          LPSHITEMID  lpshiid1 = (LPSHITEMID) lpiidl1;
          LPSHITEMID  lpshiid2 = (LPSHITEMID) lpiidl2;
          USHORT cb1;
          USHORT cb2;
-      
+
          while(true)
          {
             cb1 = *((USHORT *) lpshiid1);
@@ -452,11 +452,11 @@ namespace filemanager
    }
 
 
-   
 
 
-   ImageSet::ImageSet(::ca::application * papp)
-   : ca(papp)
+
+   ImageSet::ImageSet(::ca::application * papp) :
+      ca(papp)
    {
       m_pil16 = new image_list(papp);
       m_pil16->create(16, 16, 0, 10, 10);
@@ -473,9 +473,8 @@ namespace filemanager
       delete m_pil48Hover;
    }
 
-   void ImageSet::initialize(::ca::application * papp)
+   void ImageSet::initialize()
    {
-      m_papp = papp;
       m_pil16->add_matter("filemanager\\check_off_16.png");
       m_pil16->add_matter("filemanager\\check_on_16.png");
       m_pil48->add_matter("filemanager\\check_off_16.png");
@@ -485,8 +484,8 @@ namespace filemanager
    }
 
    int ImageSet::GetImage(
-      const char * lpcsz, 
-      EFileAttribute eattribute, 
+      const char * lpcsz,
+      EFileAttribute eattribute,
       EIcon eicon)
    {
       ImageKey imagekey;
@@ -530,7 +529,7 @@ namespace filemanager
             64);
 
          m_imagemap.set_at(imagekey, iImage);
-   
+
       }
       return iImage;
    }
@@ -539,8 +538,8 @@ namespace filemanager
    int ImageSet::GetImage(
       HWND hwnd,
       IShellFolder * lpsf,
-      LPITEMIDLIST lpiidlAbsolute, 
-      LPITEMIDLIST lpiidlChild, 
+      LPITEMIDLIST lpiidlAbsolute,
+      LPITEMIDLIST lpiidlChild,
       const wchar_t * lpcszExtra,
       EIcon eicon)
    {
@@ -644,7 +643,7 @@ namespace filemanager
             if(strPath == "*")
             {
                int iFind = strFilePath.reverse_find('.');
-            
+
                imagekey.m_iIcon         = -1;
                imagekey.m_strExtension  = strFilePath.Mid(iFind);
                imagekey.m_strPath.Empty();
@@ -659,7 +658,7 @@ namespace filemanager
       }
       if(!m_imagemap.Lookup(imagekey, iImage))
       {
-      
+
          if(imagekey.m_iIcon == -1)
          {
             if(imagekey.m_strExtension == "folder")
@@ -830,7 +829,7 @@ namespace filemanager
             catch(...)
             {
             }
-         }  
+         }
       }
 
       if(lpiextracticon != NULL)
@@ -848,8 +847,8 @@ namespace filemanager
    bool ImageSet::GetIcon(
       HWND hwnd,
       IShellFolder * lpsf,
-      LPITEMIDLIST lpiidlAbsolute, 
-      LPITEMIDLIST lpiidlChild, 
+      LPITEMIDLIST lpiidlAbsolute,
+      LPITEMIDLIST lpiidlChild,
       const wchar_t * lpcszExtra,
       EIcon eicon,
       HICON * phicon16,
@@ -955,7 +954,7 @@ namespace filemanager
             if(strPath == "*")
             {
                int iFind = strFilePath.reverse_find('.');
-            
+
                imagekey.m_iIcon         = -1;
                imagekey.m_strExtension  = strFilePath.Mid(iFind);
                imagekey.m_strPath.Empty();
@@ -1114,7 +1113,7 @@ namespace filemanager
             {
             }
          }
-   
+
       if(lpiextracticon != NULL)
       {
          lpiextracticon->Release();
@@ -1127,7 +1126,7 @@ namespace filemanager
 
    int ImageSet::GetImage(
       HWND hwnd,
-      LPITEMIDLIST lpiidlAbsolute, 
+      LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
       EIcon eicon)
    {
@@ -1137,7 +1136,7 @@ namespace filemanager
 
       LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
       int iImage = GetImage(
-         hwnd, 
+         hwnd,
          lpsf,
          lpiidlAbsolute,
          lpiidlChild,
@@ -1147,16 +1146,38 @@ namespace filemanager
       lpsf->Release();
 
       _017ItemIDListFree(lpiidlChild);
-   
+
       return iImage;
    }
 
    int ImageSet::GetImage(
       HWND hwnd,
-      const char * psz, 
+      const char * psz,
       const wchar_t * lpcszExtra,
       EIcon eicon)
    {
+      string strPath(psz);
+
+      if(gen::str::ends_ci(strPath, ".ca2"))
+      {
+         int iImage = -1;
+         string str = Application.file().as_string(strPath);
+         if(gen::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         {
+            str.trim();
+            HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            iImage = m_pil16->add_icon_os_data(hicon16);
+            m_pil48Hover->add_icon_os_data(hicon48);
+            System.imaging().Createcolor_blend_ImageList(
+               m_pil48,
+               m_pil48Hover,
+               RGB(255, 255, 240),
+               64);
+         }
+         return iImage;
+      }
+
       LPITEMIDLIST lpiidlAbsolute;
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
       int iImage = GetImage(hwnd, lpiidlAbsolute, lpcszExtra, eicon);
@@ -1166,9 +1187,9 @@ namespace filemanager
 
    bool ImageSet::GetIcon(
       HWND hwnd,
-      const char * psz, 
+      const char * psz,
       const wchar_t * lpcszExtra,
-      EIcon eicon, 
+      EIcon eicon,
       HICON * phicon16,
       HICON * phicon48)
    {
@@ -1181,7 +1202,7 @@ namespace filemanager
 
    bool ImageSet::GetIcon(
       HWND hwnd,
-      LPITEMIDLIST lpiidlAbsolute, 
+      LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
       EIcon eicon,
       HICON * phicon16,
@@ -1193,7 +1214,7 @@ namespace filemanager
 
       LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
       bool bGet = GetIcon(
-         hwnd, 
+         hwnd,
          lpsf,
          lpiidlAbsolute,
          lpiidlChild,
@@ -1205,7 +1226,7 @@ namespace filemanager
       lpsf->Release();
 
       _017ItemIDListFree(lpiidlChild);
-   
+
       return bGet;
    }
 
@@ -1273,7 +1294,7 @@ index Shell::GetCSIDLSort(index iCsidl)
 }
 
 void Shell::GetAscendants(
-   LPITEMIDLIST lpiidl, 
+   LPITEMIDLIST lpiidl,
    base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
 {
    if(lpiidl == NULL)

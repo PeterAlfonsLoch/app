@@ -49,6 +49,7 @@ namespace window_frame
       m_ptWindowOrigin = rectWindow.top_left();
       GetEventWindow()->set_capture();
       m_bMoving = true;
+      pmouse->m_bRet = true;
       return true;
    }
 
@@ -80,10 +81,13 @@ namespace window_frame
           || pmouse->m_uiMessage == WM_NCLBUTTONUP);
       if(!m_bMoving)
          return false;
-
+      pmouse->m_bRet = true;
       ::user::interaction * puieCapture = System.get_capture_uie();
       if(puieCapture == NULL)
+      {
+         m_bMoving = false;
          return false;
+      }
       ::user::interaction * puieEventWindow = GetEventWindow();
       if(puieCapture != puieEventWindow)
       {

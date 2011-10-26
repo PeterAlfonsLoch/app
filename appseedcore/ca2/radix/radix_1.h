@@ -4,13 +4,6 @@
 #include "radix.h"
 
 
-#include "_/_.h"
-
-
-#pragma pointers_to_members( full_generality, virtual_inheritance )
-
-
-#include "operational_system/operational_system.h"        // Target version control
 
 
 // Since ca2 API itself is built with wchar_t as a native type, it will not have
@@ -32,69 +25,10 @@
 #endif
 
 
-
-#if core_level_1
-
-
+#ifdef _WINDOWS
 #include <new.h>
-#include <new>
-#include <memory>
-
-
-#elif defined(_INC_NEW) && defined(WIN32)
-
-   #include <new.h>
-
 #endif
 
-#ifdef XXXXXXXXXXXXXXXXXXXX
-
-
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <exception>
-#include <locale>
-#include <iosfwd>
-#include <stdlib.h>
-#include <vector>
-#include <bitset>
-#include <limits.h>
-#include <list>
-#include <stdio.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <wchar.h>
-#include <malloc.h>
-#if defined(WIN32)
-#include <mbstring.h>
-#endif
-#include <errno.h>
-#if defined(WIN32)
-#include <tchar.h>
-#endif
-#include <string.h>
-#include <stddef.h>
-#include <tchar.h>
-#include <limits.h>
-#include <errno.h>
-#include <process.h>    // for _beginthreadex, _endthreadex
-#include <stdio.h>
-#include <stdarg.h>
-
-
-
-
-#ifndef _WIN32
-#include <sys/select.h>
-#include <sys/time.h>
-#endif
-
-
-#endif
-
-CLASS_DECL_ca HMODULE LoadCa2Library(const char * psz);
 
 
 #ifdef _WIN64
@@ -108,13 +42,13 @@ CLASS_DECL_ca HMODULE LoadCa2Library(const char * psz);
 // Forward declations
 namespace radix
 {
-   class object;               
+   class object;
 }
-class base_exception;            
-class simple_exception;          
-class memory_exception;          
-class not_supported_exception;   
-class invalid_argument_exception;      
+class base_exception;
+class simple_exception;
+class memory_exception;
+class not_supported_exception;
+class invalid_argument_exception;
 namespace ex1
 {
    class file_exception;
@@ -123,7 +57,6 @@ namespace ex1
 class stdio_file;
 namespace primitive
 {
-   template < class MEMORY >
    class memory_file;
 }
 namespace ex1
@@ -136,9 +69,9 @@ class dump_context;
 /////////////////////////////////////////////////////////////////////////////
 // Other includes from standard "C" runtimes
 
-#ifndef _INC_STRING
-   #include <string.h>
-#endif
+//#ifndef _INC_STRING
+  // #include <string.h>
+//#endif
 #ifndef _INC_STDIO
    #include <stdio.h>
 #endif
@@ -163,21 +96,12 @@ class dump_context;
 
 #include <malloc.h>
 
-#ifndef _AFX_NO_DEBUG_CRT
-#ifndef _INC_CRTDBG
-   #include <crtdbg.h>
-#endif
-#endif // _AFX_NO_DEBUG_CRT
-
-#ifdef _AFX_OLD_EXCEPTIONS
-#error ca2 API does not support MFC setjmp/longjmp exception handling.
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // Basic types
 // abstract iteration position
-struct __POSITION {};
-typedef __POSITION* POSITION;
+//struct __POSITION {};
+//typedef __POSITION* POSITION;
 
 // Standard constants
 #undef FALSE
@@ -265,17 +189,20 @@ typedef __POSITION* POSITION;
 #include "primitive/primitive.h"
 
 
-#include "base.h"
 #include "composite.h"
 #include "comparable.h"
 
 #include "gen/gen_ptri.h"
 #include "gen/gen_object.h"
 
+#include "template/template_c_number.h"
+#include "datetime/datetime_duration.h"
+#include "multithreading/multithreading_sync_object_base.h"
+#include "primitive/id.h"
+
 #include "radix_object.h"
 
 #include "exception/exception.h"
-
 
 #include "ca/ca_smart_pointer.h"
 
@@ -310,7 +237,7 @@ namespace ex1
 #ifdef _AFX_ENABLE_INLINES
 #define _AFX_INLINE inline
 
-#if !defined(_AFX_CORE_IMPL) || !defined(_ApplicationFrameworkDLL) || defined(_DEBUG)
+#if !defined(_CA_DLL) || !defined(_ApplicationFrameworkDLL) || defined(_DEBUG)
 #define _AFX_PUBLIC_INLINE inline
 #else
 #define _AFX_PUBLIC_INLINE
@@ -330,7 +257,6 @@ namespace ex1
 #endif
 
 
-
 #include "allocate.h"
 
 #include "pointer_object.h"
@@ -338,6 +264,13 @@ namespace ex1
 
 #include "collection/collection.h"
 #include "template/template.h"
+
+#include "plex_heap.h"
+
+#include "gen/gen_holder.h"
+
+#include "base.h"
+
 
 #include "ca/ca_interlocked_long.h"
 #include "ca/ca_interlocked_long_pulse.h"
@@ -348,4 +281,3 @@ namespace ex1
 
 #include "ca/ca_type_info.h"
 #include "factory.h"
-

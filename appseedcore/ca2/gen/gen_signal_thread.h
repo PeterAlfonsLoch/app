@@ -36,8 +36,14 @@ namespace gen
 
       int run()
       {
-         (m_psignalizableSrc->*m_pfnSrc)(m_pobj);
-         (m_psignalizableDst->*m_pfnDst)(m_pobj);
+         try
+         {
+            (m_psignalizableSrc->*m_pfnSrc)(m_pobj);
+            (m_psignalizableDst->*m_pfnDst)(m_pobj);
+         }
+         catch(...)
+         {
+         }
          delete m_pobj;
          return 0;
       }

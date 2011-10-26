@@ -3,14 +3,16 @@
 namespace ex1
 {
 
-   timeout_file::timeout_file(::ca::application * papp, ex1::file * pfile, DWORD_PTR uiExpectedSize) :
+   // uiExpectedSize = (uint64_t) -1 - initially unknown size
+   // uiExpectedSize = (uint64_t) -2 - permanent or until end unknown size
+   timeout_file::timeout_file(::ca::application * papp, ex1::file * pfile, uint64_t uiExpectedSize) :
       ca(papp)
    {
       UNREFERENCED_PARAMETER(uiExpectedSize);
       m_pfile           = pfile;
-      //if(uiExpectedSize == (DWORD_PTR) -1)
+      //if(uiExpectedSize == (uint64_t) -1)
       {
-         m_uiExpectedSize = 0;
+         m_uiExpectedSize = uiExpectedSize;
       }
       //else
       {
@@ -26,12 +28,14 @@ namespace ex1
 
    bool timeout_file::IsValid() const
    {
+      single_lock sl((const_cast < timeout_file * > (this))->m_spmutex, TRUE);
       return m_pfile != NULL;
    }
 
-   INT_PTR timeout_file::seek(INT_PTR lOff, UINT nFrom)
+   file_position timeout_file::seek(file_offset lOff, ::ex1::e_seek nFrom)
    {
-      DWORD_PTR dwFuture;
+      single_lock sl(m_spmutex, TRUE);
+      uint64_t dwFuture;
       switch(nFrom)
       {
       case ::ex1::seek_begin:
@@ -39,14 +43,14 @@ namespace ex1
          break;
       case ::ex1::seek_current:
          {
-            DWORD_PTR dwCurrent = m_pfile->GetPosition();
+            uint64_t dwCurrent = m_pfile->get_position();
             dwFuture = dwCurrent + lOff;
          }
          break;
       case ::ex1::seek_end:
          {
-            DWORD_PTR dwCurrent = get_length();
-            if(dwCurrent == ((DWORD_PTR)-1))
+            uint64_t dwCurrent = get_length();
+            if(dwCurrent == ((uint64_t)-1))
                dwFuture = 0;
             else
             {
@@ -57,65 +61,92 @@ namespace ex1
          }
          break;
       default:
-         return INT_PTR(-1);
+         return file_size::allset_value();
       }
       m_dwLastCall = ::GetTickCount();
       while(true)
       {
-         if(dwFuture == m_pfile->GetPosition())
+         if(dwFuture == m_pfile->get_position())
             break;
          m_pfile->seek(dwFuture, ::ex1::seek_begin);
-         if(dwFuture == m_pfile->GetPosition())
+         if(dwFuture == m_pfile->get_position())
             break;
          Sleep(max(11, m_dwSleep));
       }
-      return m_pfile->GetPosition();
+      return m_pfile->get_position();
    }
 
-   DWORD_PTR timeout_file::GetPosition() const
+   file_position timeout_file::get_position() const
    {
-      return m_pfile->GetPosition();
+      single_lock sl((const_cast < timeout_file * > (this))->m_spmutex, TRUE);
+      return m_pfile->get_position();
    }
 
-   DWORD_PTR timeout_file::get_length() const
+   file_size timeout_file::get_length() const
    {
-      return m_uiExpectedSize;
+      if(m_uiExpectedSize == (uint64_t) -2)
+         return (uint64_t) -2;
+      if(m_uiExpectedSize == (uint64_t) -1)
+      {
+         (const_cast < timeout_file * > (this))->m_dwLastCall = ::GetTickCount();
+         while(m_uiExpectedSize == (uint64_t) -1)
+         {
+            if(::GetTickCount() - m_dwLastCall > m_dwTimeOut)
+               break;
+            Sleep(max(11, m_dwSleep));
+         }
+         TRACE("timeout_file::m_uiExpectedSize = %d", m_uiExpectedSize);
+      }
+      if(m_uiExpectedSize == (uint64_t) -1)
+         return 0;
+      else
+         return m_uiExpectedSize;
    }
 
-   DWORD_PTR timeout_file::read(void *lpBuf, DWORD_PTR nCount)
+   ::primitive::memory_size timeout_file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
+      single_lock sl(m_spmutex);
       if(m_pfile == NULL)
          return 0;
-      UINT uiRead = 0;
-      UINT uiReadNow = 0;
+      ::primitive::memory_size uiRead = 0;
+      ::primitive::memory_size uiReadNow = 0;
       m_dwLastCall = ::GetTickCount();
       while(nCount > 0)
       {
+         sl.lock();
          uiReadNow = m_pfile->read(&((byte *)lpBuf)[uiRead], nCount);
+         sl.unlock();
          if(uiReadNow > 0)
          {
             m_dwLastCall = ::GetTickCount();
          }
          uiRead += uiReadNow;
          nCount -= uiReadNow;
-         if(nCount <= 0 || (::GetTickCount() - m_dwLastCall > m_dwTimeOut) || (m_pfile->GetPosition() >= m_uiExpectedSize && m_uiExpectedSize > 0 && m_uiExpectedSize != ((DWORD_PTR) -1)))
+         if(nCount <= 0 || (::GetTickCount() - m_dwLastCall > m_dwTimeOut) || 
+            (m_pfile->get_position() >= m_uiExpectedSize && 
+                  m_uiExpectedSize != ((uint64_t) -1)
+                  && m_uiExpectedSize != ((uint64_t) -2)))
             break;
          Sleep(max(11, m_dwSleep));
       }
       return uiRead;
    }
 
-   void timeout_file::write(const void * lpBuf, DWORD_PTR nCount)
+   void timeout_file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
+      single_lock sl(m_spmutex, TRUE);
       m_pfile->write(lpBuf, nCount);
    }
+
    void timeout_file::Flush()
    {
+      single_lock sl(m_spmutex, TRUE);
       m_pfile->Flush();
    }
 
-   void timeout_file::SetLength(DWORD_PTR dwNewLen)
+   void timeout_file::set_length(file_size dwNewLen)
    {
+      single_lock sl(m_spmutex, TRUE);
       m_uiExpectedSize = dwNewLen;
    }
 

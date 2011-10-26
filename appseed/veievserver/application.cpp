@@ -70,7 +70,7 @@ namespace veievserver
 
    bool application::initialize_instance()
    {
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
       return true;
    }
@@ -134,17 +134,17 @@ namespace veievserver
 
       if (command_line().m_varQuery.has_property("run"))
       {
-         return ca84::application::run();
+         return cube2::application::run();
       }
       else if (command_line().m_varQuery.has_property("service"))
       {
          class service service(this);
          service_base::run(service);
-         return ca84::application::run();
+         return cube2::application::run();
       }
       else
       {
-         return ca84::application::run();
+         return cube2::application::run();
       }
       return TRUE;
    }

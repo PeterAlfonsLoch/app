@@ -18,18 +18,23 @@ namespace ca
       virtual public IFACE
    {
    public:
-      interface_application()
-      {
-         m_papp->m_signal.connect(this, &::ca::interface_application < IFACE >::on_signal);
-      }
+
+
+      interface_application();
 
       void on_signal(gen::signal_object * pobj)
       {
-         SCAST_PTR(::ca::application::signal_object, papplicationsignal, pobj);
+         SCAST_PTR(::radix::application_signal_object, papplicationsignal, pobj);
          // should implement the following function in IFACE, even if is_empty
-         // void on_application_signal(::ca::application::signal_object * papplicationsignal);
+         // void on_application_signal(::radix::application_signal_object * papplicationsignal);
          on_application_signal(papplicationsignal);
       }
+
+
    };
 
+
+
 } // namespace mixeruserbase
+
+

@@ -25,7 +25,7 @@ namespace nature
       System.factory().creatable_small < nature::frame > ();
       System.factory().creatable_small < nature::appearance_view > ();
 
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
@@ -37,9 +37,9 @@ namespace nature
       pDocTemplate = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         &typeid(document),
-         &typeid(frame),       // main SDI frame ::ca::window
-         &typeid(pane_view));
+         ::ca::get_type_info < document > (),
+         ::ca::get_type_info < frame > (),       // main SDI frame ::ca::window
+         ::ca::get_type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
@@ -57,7 +57,7 @@ namespace nature
    {
       try
       {
-         ::fontopus::application::exit_instance();
+         ::cube8::application::exit_instance();
       }
       catch(...)
       {
@@ -74,12 +74,6 @@ namespace nature
          
    {
       return gen::application::_001OnCmdMsg(pcmdmsg);
-   }
-
-   void application::request(var & varFile, var & varQuery)
-   {
-      //UNREFERENCED_PARAMETER(pdata);
-      //m_ptemplate_html->open_document_file(itema[0].m_strPath);
    }
 
    bool application::InitializeLocalDataCentral()

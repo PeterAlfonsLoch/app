@@ -5,15 +5,12 @@ namespace ikar
 
    data_container::data_container()
    {
-
-      m_pdata = NULL;
-
    }
 
 
    data_container::~data_container()
    {
-
+      gen::release(m_pdata.m_p);
    }
 
 

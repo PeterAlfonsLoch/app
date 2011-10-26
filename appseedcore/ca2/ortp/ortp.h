@@ -52,10 +52,10 @@
  * - rtprecv.c rtpsend.c show how to receive and send a single RTP stream.
  * - mrtprecv.c mrtpsend.c show how to receive and send multiple RTP streams
  *   simultaneously
- * 
+ *
  */
 
-/** 
+/**
  * \file ortp.h
  * \brief General purpose library functions.
  *
@@ -66,6 +66,8 @@
 
 #if defined(WIN32) || defined(_WIN32_WCE)
 #include "ortp-config-win32.h"
+#elif defined(LINUX)
+#include "ortp-config-linux.h"
 #else
 #include "ortp-config.h"
 #endif

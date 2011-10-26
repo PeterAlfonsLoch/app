@@ -4,12 +4,22 @@
 namespace bergedge
 {
 
+
    bergedge::bergedge()
    {
-      m_pnaturedocument       = NULL;
-      m_pplatformdocument     = NULL;
-      m_pbergedgedocument     = NULL;
-      
+
+      m_bDrawCursor              = true;
+      m_pnaturedocument          = NULL;
+      m_pplatformdocument        = NULL;
+      m_pbergedgedocument        = NULL;
+      m_bShowPlatform            = false;
+      m_pappCurrent              = NULL;
+      m_pbergedge                = this;
+
+
+      m_pfsdata                  = new ::fs::native(this);
+
+
    }
 
    bergedge::~bergedge()
@@ -37,7 +47,7 @@ namespace bergedge
 
       while(pos != NULL)
       {
-         
+
          strId.Empty();
          pcaapp = NULL;
 
@@ -48,26 +58,6 @@ namespace bergedge
          papp->PostThreadMessageA(WM_QUIT, 0, 0);
       }
 
-      //System.delete_temp();
-
-      /*for(int i = m_appptra.get_upper_bound(); i >= 0; i--)
-      {
-         App(m_appptra[i]).m_pdocmanager->close_all_documents(true);
-         m_appptra[i]->PostThreadMessageA(WM_QUIT, 0, 0);
-      }
-      System.m_ptemplate_platform->close_all_documents(false);
-      System.m_ptemplate_bergedge->close_all_documents(false);*/
-   /*restart_remove:
-      system_map::pair * ppair = System.m_systemmap.PGetFirstAssoc();
-      while(ppair != NULL)
-      {
-         if(ppair->m_value == this)
-         {
-            System.m_systemmap.remove_key(ppair->m_key);
-            goto restart_remove;
-         }
-         ppair = System.m_systemmap.PGetNextAssoc(ppair);
-      }*/
    }
 
    void bergedge::construct()
@@ -81,11 +71,8 @@ namespace bergedge
 
    bool bergedge::initialize_instance()
    {
-      //m_puser                 = new ::fontopus::user(this);
-      //m_puser->m_strLogin     = "bergedge";
-      //create_user(m_puser);
 
-      if(!ca84::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return false;
 
       initialize_bergedge_application_interface();
@@ -133,7 +120,7 @@ namespace bergedge
 
 
    bool bergedge::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-         
+
    {
       return gen::application::_001OnCmdMsg(pcmdmsg);
    }
@@ -144,7 +131,7 @@ namespace bergedge
    }
 
    void bergedge::OnFileManagerOpenFile(
-         ::filemanager::data * pdata, 
+         ::filemanager::data * pdata,
          ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
@@ -153,12 +140,12 @@ namespace bergedge
 
    void bergedge::load_string_table()
    {
-      ca77::application::load_string_table();
-      ca77::application::load_string_table("platform");
+      cube1::application::load_string_table();
+      cube1::application::load_string_table("platform");
    }
 
    bool bergedge::file_manager_open_file(
-            ::filemanager::data * pdata, 
+            ::filemanager::data * pdata,
             ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
@@ -188,44 +175,60 @@ namespace bergedge
       m_ptemplate_bergedge    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         &typeid(document),
-         &typeid(frame),
-         &typeid(view));
+         ::ca::get_type_info < document > (),
+         ::ca::get_type_info < frame > (),
+         ::ca::get_type_info < view > ());
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         &typeid(platform::document),
-         &typeid(platform::frame),
-         &typeid(platform::pane_view));
+         ::ca::get_type_info < platform::document > (),
+         ::ca::get_type_info < platform::frame > (),
+         ::ca::get_type_info < platform::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         &typeid(nature::document),
-         &typeid(nature::frame),
-         &typeid(nature::pane_view));
+         ::ca::get_type_info < nature::document > (),
+         ::ca::get_type_info < nature::frame > (),
+         ::ca::get_type_info < nature::view > ());
       m_pnaturedocument = NULL;
    }
 
-   document * bergedge::force_get_document()
+   bool bergedge::create_bergedge(::ca::create_context * pcreatecontext)
    {
       if(m_pbergedgedocument == NULL)
       {
-         m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(NULL, true, m_papp->m_puiInitialPlaceHolderContainer));
-         m_pbergedgedocument->m_pbergedge = this;
-      }
-      if(System.command_line().m_varQuery["show_platform"].get_integer() == 1 && m_pplatformdocument == NULL
-      && !System.command_line().m_varQuery.has_property("client_only"))
-      {
-         m_pplatformdocument  = dynamic_cast < platform::document * > (m_ptemplate_platform->open_document_file(NULL, true, m_pbergedgedocument->get_bergedge_view()));
-         m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
-         //m_pnaturedocument    = 
-         // dynamic_cast < nature::document * > (
-          //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
 
-         m_pbergedgedocument->set_platform(m_pplatformdocument);
-         //m_pbergedgedocument->set_nature(m_pnaturedocument);
+         ::ca::create_context_sp createcontextBergedge(get_app());
+         createcontextBergedge.oattrib(pcreatecontext);
+         createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
+         createcontextBergedge->m_bMakeVisible = false;
+
+         m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
+         m_pbergedgedocument->m_pbergedge = this;
+      
       }
-      return m_pbergedgedocument;
+      if(m_bShowPlatform)
+      {
+         if(m_pplatformdocument == NULL)
+         {
+
+            ::ca::create_context_sp createcontextPlatform;
+            createcontextPlatform.oattrib(pcreatecontext);
+            createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
+            createcontextPlatform->m_bMakeVisible = true;
+            createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
+
+            m_pplatformdocument  = dynamic_cast < platform::document * > (m_ptemplate_platform->open_document_file(createcontextPlatform));
+            m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
+            //m_pnaturedocument    =
+            // dynamic_cast < nature::document * > (
+             //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
+
+            m_pbergedgedocument->set_platform(m_pplatformdocument);
+            //m_pbergedgedocument->set_nature(m_pnaturedocument);
+         }
+      }
+      return m_pbergedgedocument != NULL;
    }
 
    void bergedge::launch_app(const char * psz)
@@ -238,130 +241,150 @@ namespace bergedge
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void bergedge::request_application(::ca2::application_request * prequest)
+   void bergedge::on_request(::ca::create_context * pcreatecontext)
    {
-      
+
+      m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
+
+
       string strApp;
 
-      if(prequest->m_strApp == "bergedge")
+      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
+         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
+         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only")))
       {
-         if(prequest->m_varQuery.has_property("bergedge_start"))
+         m_bShowPlatform = true;
+      }
+
+      bool bCreate = true;
+      if(pcreatecontext->m_spCommandLine->m_strApp.is_empty())
+      {
+         if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
          {
-            strApp = prequest->m_varQuery["bergedge_start"];
+            if(!open_by_file_extension(pcreatecontext))
+            {
+               if(m_pappCurrent != NULL)
+               {
+                  App(m_pappCurrent).request(pcreatecontext->m_spCommandLine);
+               }
+            }
+         }
+         else if(m_bShowPlatform)
+         {
+            create_bergedge(pcreatecontext);
+            if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
+            {
+               ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+               if(pframe != NULL)
+               {
+                  pframe->ShowWindow(SW_SHOW);
+                  pframe->InitialFramePosition();
+               }
+            }
+         }
+         bCreate = false;
+      }
+      if(bCreate)
+      {
+         if(pcreatecontext->m_spCommandLine->m_strApp == "bergedge")
+         {
+            if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("bergedge_start"))
+            {
+               strApp = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_start"];
+            }
+            else
+            {
+               strApp = "bergedge";
+            }
          }
          else
          {
-            strApp = "bergedge";
+            strApp = pcreatecontext->m_spCommandLine->m_strApp;
+         }
+
+         if(strApp.is_empty() || strApp == "bergedge")
+         {
+            return;
+         }
+
+         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+         if(papp == NULL)
+            return;
+
+         if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
+         || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+         {
+            return;
+         }
+
+         pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
+
+         if(strApp != "bergedge")
+         {
+
+
+            DWORD_PTR dw = WM_APP + 2043;
+
+            papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+
+            pcreatecontext->m_spCommandLine->m_eventReady.wait();
+
+
+         }
+
+         m_pappCurrent = papp;
+
+      }
+
+
+
+      
+      if(m_bShowPlatform)
+      {
+         ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie());
+         if(pframeApp != NULL)
+         {
+            pframeApp->WfiFullScreen(true, false);
+         }
+         ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame());
+         if(pframe != NULL)
+         {
+            pframe->ShowWindow(SW_SHOW);
          }
       }
       else
       {
-         strApp = prequest->m_strApp;
+         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
+         {
+            ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+            if(pframe != NULL)
+            {
+               pframe->ShowWindow(SW_SHOW);
+               if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
+               {
+                  pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
+               }
+               else
+               {
+                  pframe->InitialFramePosition();
+               }
+            }
+         }
       }
 
-      if(strApp.is_empty())
-      {
-         force_get_document();
-         return;
-      }
-
-      ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strApp, true, true, prequest->m_pbiasCreate));
-      if(papp == NULL)
-         return;
-
-      if(prequest->m_varQuery.has_property("install")
-      || prequest->m_varQuery.has_property("uninstall"))
-      {
-         return;
-      }
-
-      prequest->m_eventReady.ResetEvent();
-      
-      int iEdge               = prequest->m_iEdge;
-
-      prequest->m_strApp.Empty();
-      prequest->m_iEdge = -1;
-
-      DWORD_PTR dw = WM_APP + 2043;
-      papp->PostThreadMessage(dw, 0, (LPARAM) prequest);
-      CSingleLock sl(&prequest->m_eventReady, TRUE);
-
-      prequest->m_strApp      = strApp;
-      prequest->m_iEdge       = iEdge;
-/*      if(papp != NULL)
-      {
-         papp->m_prunapp = prunapp;
-         
-         papp->m_bSessionSynchronizedCursor  = System.m_bSessionSynchronizedCursor;
-         papp->m_bSessionSynchronizedScreen  = System.m_bSessionSynchronizedScreen;
-
-         papp->m_hInstance = System.m_hInstance;
-         if(!papp->InitApplication())
-            return;
-         
-         if(!papp->process_initialize())
-            return;
-         papp->command_line().m_varQuery.parse_url_query(prunapp->m_strQuery);
-         for(int i = 0; i < prunapp->m_setParameters.get_count(); i++)
-         {
-            papp->command_line().m_varQuery[prunapp->m_setParameters.m_propertya[i].name()] =
-               prunapp->m_setParameters.m_propertya[i].get_value();
-         }
-         gen::command_line & rCmdInfo = papp->command_line();
-         if(rCmdInfo.m_setParameters.has_property("uri"))
-         {
-            if(rCmdInfo.m_strFileName.has_char())
-            {
-               rCmdInfo.m_strFileName += ";";
-               rCmdInfo.m_strFileName += rCmdInfo.m_setParameters["uri"];
-            }
-            else
-            {
-               rCmdInfo.m_strFileName = rCmdInfo.m_setParameters["uri"];
-            }
-            if(rCmdInfo.m_nShellCommand == gen::command_line::FileNew)
-               rCmdInfo.m_nShellCommand = gen::command_line::FileOpen;
-         }
-         if(rCmdInfo.m_setParameters.has_property("uri_replace"))
-         {
-            rCmdInfo.m_strFileName = rCmdInfo.m_setParameters["uri_replace"];
-            if(rCmdInfo.m_nShellCommand == gen::command_line::FileNew)
-               rCmdInfo.m_nShellCommand = gen::command_line::FileOpen;
-         }
-         papp->m_puiInitialPlaceHolderContainer = prunapp->m_puiParent;
-         papp->command_line().m_varQuery["local_mutex_id"] = "bergedge::edgify_app : papp->command_line().m_varQuery[\"local_mutex_id\"] = " + gen::str::itoa(prunapp->m_iEdge);
-         if(!papp->initialize_instance())
-            return;
-         papp->initialize_bergedge_application_interface();
-         document * pdoc = papp->get_edge(prunapp->m_iEdge, prunapp->m_bMakeVisible, prunapp->m_puiParent);
-         papp->m_puiInitialPlaceHolderContainer = pdoc->get_bergedge_view();
-         if(!papp->command_line().m_varQuery.has_property("install")
-         && !papp->command_line().m_varQuery.has_property("uninstall"))
-         {
-            if(!papp->bergedge_start())
-               return;
-         }
-         if(papp->does_launch_window_on_startup())
-         {
-            int iRetry = 100;
-            while(papp->m_pwndMain == NULL && (iRetry > 0))
-            {
-               Sleep(100);
-               iRetry--;
-            }
-            if(papp->m_pwndMain != NULL)
-            {
-               papp->m_pwndMain->SetParent(papp->m_puiInitialPlaceHolderContainer);
-               papp->m_pwndMain->ModifyStyle(0, WS_CHILD);
-               papp->m_pwndMain->SetWindowPos(NULL, 0, 0, 400, 400, SWP_SHOWWINDOW);
-            }
-         }
-      }*/
    }
+
 
    ::bergedge::document * bergedge::get_document()
    {
       return m_pbergedgedocument;
+   }
+
+   ::bergedge::view * bergedge::get_view()
+   {
+      if(get_document() == NULL)
+         return NULL;
+      return get_document()->get_bergedge_view();
    }
 
    ::platform::document * bergedge::get_platform()
@@ -374,48 +397,144 @@ namespace bergedge
       return m_pnaturedocument;
    }
 
-   bool bergedge::pre_process_command_line()
+   bool bergedge::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
    {
-      return platform::application::pre_process_command_line();
+      
+      ::ca::create_context_sp cc(get_app());
+
+      cc->m_spCommandLine->m_varFile = pszPathName;
+
+      if(pbiasCreate != NULL)
+      {
+         cc->m_spApplicationBias->operator=(*pbiasCreate);
+      }
+
+      return open_by_file_extension(cc);
+
    }
 
-   void bergedge::open_by_file_extension(const char * pszPathName)
+   bool bergedge::open_by_file_extension(::ca::create_context * pcreatecontext)
    {
+
       string strId;
-      if(gen::str::ends_ci(pszPathName, ".cgcl")
-      || gen::str::ends_ci(pszPathName, ".cpp")
-      || gen::str::ends_ci(pszPathName, ".html"))
+      string strOriginalPathName(pcreatecontext->m_spCommandLine->m_varFile);
+      string strPathName(strOriginalPathName);
+
+      strPathName.trim();
+      strPathName.trim("\"");
+
+      int iFind = strPathName.find("?");
+      if(iFind >= 0)
       {
-         strId = "devedge";
+         strPathName = strPathName.Left(iFind);
       }
-      else if(gen::str::ends_ci(pszPathName, ".txt"))
+
+      if(gen::str::ends_ci(strPathName, ".cgcl"))
       {
-         strId = "veriedit";
       }
-      else if(gen::str::ends_ci(pszPathName, ".kar")
-      || gen::str::ends_ci(pszPathName, ".mid")
-      || gen::str::ends_ci(pszPathName, ".mp3")
-      || gen::str::ends_ci(pszPathName, ".mk1"))
+
+      string strProtocol = System.url().get_protocol(strPathName);
+      if(strProtocol == "ca2app")
       {
-         strId = "mplite";
-      }
-      else if(gen::str::ends_ci(pszPathName, ".flv"))
-      {
-         strId = "verisimplevideo";
+         strId = System.url().get_server(strPathName);
+         pcreatecontext->m_spCommandLine->m_varFile = System.url().get_object(strPathName);
       }
       else
       {
-         strId = System.file().extension(pszPathName);
+         
+         string strExtension = System.file().extension(strPathName);
+
+         stringa straApp;
+
+         System.filehandler().get_extension_app(straApp, strExtension);
+     
+
+         if(straApp.get_count() == 1)
+         {
+            strId = straApp[0];
+         }
+         else
+         {
+            strId = "default_file_handler";
+         }
+
       }
-      ::user::application * papp = dynamic_cast < ::user::application * > (application_get(strId));
+
+
+      /*|| gen::str::ends_ci(strPathName, ".cpp")
+      || gen::str::ends_ci(strPathName, ".html"))
+      {
+         strId = "devedge";
+      }
+      else if(gen::str::ends_ci(strPathName, ".ca2"))
+      {
+         strId = Application.file().as_string(strOriginalPathName);
+         if(gen::str::begins_eat(strId, "ca2prompt\r\n"))
+         {
+            strId.trim();
+         }
+         return false;
+      }
+      else if(gen::str::ends_ci(strPathName, ".txt")
+      || gen::str::ends_ci(strOriginalPathName, ".pac"))
+      {
+         strId = "veriedit";
+      }
+      else if(gen::str::ends_ci(strPathName, ".ogv")
+         || gen::str::ends_ci(strPathName, ".flv"))
+      {
+         strId = "verisimplevideo";
+      }
+      else if(gen::str::ends_ci(strPathName, ".kar")
+      || gen::str::ends_ci(strPathName, ".mid")
+      || gen::str::ends_ci(strPathName, ".mp3")
+      || gen::str::ends_ci(strPathName, ".mk1"))
+      {
+         strId = "mplite";
+      }
+      else if(gen::str::ends_ci(strPathName, ".flv"))
+      {
+         strId = "verisimplevideo";
+      }
+      else if(gen::str::ends_ci(strPathName, ".bmp")
+           || gen::str::ends_ci(strPathName, ".jpg")
+           || gen::str::ends_ci(strPathName, ".jpeg")
+           || gen::str::ends_ci(strPathName, ".png")
+           || gen::str::ends_ci(strPathName, ".gif"))
+      {
+         strId = "eluce";
+      }
+      else if(gen::str::begins(strPathName, "rtprx://"))
+      {
+         strId = "rtprx";
+      }
+      else if(gen::str::begins(strPathName, "rtptx://"))
+      {
+         strId = "rtptx";
+      }
+      else
+      {
+#ifdef WINDOWS
+         ::ShellExecuteW(
+            NULL,
+            L"open",
+            gen::international::utf8_to_unicode(strPathName),
+            NULL,
+            NULL,
+            SW_SHOW);
+#endif
+         return true;
+      }*/
+      ::user::application * papp = dynamic_cast < ::user::application * > (application_get(strId, true, true, pcreatecontext->m_spApplicationBias));
       if(papp == NULL)
-         return;
-      papp->open_document_file(pszPathName);
+         return false;
+      papp->::ex1::request_interface::create(pcreatecontext);
+      return true;
    }
 
    bool bergedge::InitializeLocalDataCentral()
    {
-      
+
       m_pdatabase = new nature::database(this);
 
       if(m_pdatabase == NULL)
@@ -445,11 +564,11 @@ namespace bergedge
       if(eexclusive == ::radix::ExclusiveInstanceLocalId)
       {
          gen::memory_file file(get_app());
-         file.from_string(command_line().m_varFile);
+         file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
-         data.cbData = file.get_length();
-         data.lpData = file.GetAllocation();
+         data.cbData = (DWORD) file.get_length();
+         data.lpData = file.get_data();
          HWND hwnd = (HWND) ::FindWindowA(NULL, "ca2::fontopus::message_wnd::bergedge::");
 
          ::SendMessage(hwnd, WM_COPYDATA, NULL, (LPARAM) &data);
@@ -457,73 +576,66 @@ namespace bergedge
    }
 
 
-   void bergedge::request(var & varFile, var & varQuery)
+   void bergedge::request(::ca::create_context * pcreatecontext)
    {
-      if(m_pappCurrent != NULL)
+      if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
-         App(m_pappCurrent).request(varFile, varQuery);
+         if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+         {
+            string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+            if(gen::str::begins_eat(strCommand, "ca2prompt\r")
+            || gen::str::begins_eat(strCommand, "ca2prompt\n"))
+            {
+               strCommand.trim();
+               command().add_fork_uri(strCommand);
+            }
+            return;
+         }
+         else
+         {
+            on_request(pcreatecontext);
+         }
       }
-/*      else
+      else if(m_pappCurrent != NULL && m_pappCurrent != this 
+         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
+         ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
-         gen::property_set & set = varQuery.propset();
-         bergedge::document * pdocument   = NULL;
-         bool bSynch                      = false;
-         bool bMakeVisible                = true;
-         int iEdge                        = 0;
-
-         if(set.has_property("install")
-         || set.has_property("uninstall"))
+         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
          {
-            bMakeVisible   = false;
+            get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
-
-         pdocument      = get_edge(iEdge, bMakeVisible);
-         m_puiInitialPlaceHolderContainer = pdocument->get_bergedge_view();
-
-         gen::property_set setParameters(get_app());
-         if(set.has_property("bergedge_start"))
-         {
-            ::bergedge::application * papp = get_app(set["bergedge_start"]);
-            if(papp != NULL)
-               papp->request(varFile, varQuery);
-         }
-         else if(set.has_property("app")
-         && set["app"] != "bergedge")
-         {
-            ::bergedge::application * papp = get_app(set["bergedge_start"]);
-            bergedge_run_app(
-               iEdge,
-               command_line().m_varQuery["app"].get_string(), 
-               bMakeVisible,
-               NULL,
-               setParameters);
-         }
-         else if(command_line().m_nShellCommand == gen::command_line::FileOpen)
-         {
-            open_by_file_extension(iEdge, command_line().m_strFileName, bMakeVisible, bSynch);
-         }
-         else if(command_line().m_varQuery["file"].get_value().get_type() == var::type_propset)
-         {
-            open_by_file_extension(iEdge, command_line().m_varQuery["file"].propset()["url"].get_string(), bMakeVisible, bSynch);
-         }
-      }*/
+         App(m_pappCurrent).request(pcreatecontext);
+      }
+      else
+      {
+         on_request(pcreatecontext);
+      }
    }
 
-
-   void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
+   void bergedge::request_topic_file(var & varQuery)
    {
-      
+      request(m_varTopicFile, varQuery);
+   }
+
+   void bergedge::request_topic_file()
+   {
+      request(m_varTopicFile);
+   }
+
+   /*void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
+   {
+
       ::ca2::application_request request;
-      
+
       request.m_iEdge         = m_iEdge;
       request.m_strApp        = pszId;
       request.m_varFile       = varFile;
       request.m_varQuery      = varQuery;
       request.m_pbiasCreate   = pbiasCreate;
-      
+
       request_application(&request);
 
-   }
+   }*/
 
    ::ca::application * bergedge::application_get(const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
@@ -551,7 +663,188 @@ namespace bergedge
       }
    }
 
+   bool bergedge::is_bergedge()
+   {
+      return true;
+   }
+
+   ::ca::application * bergedge::get_current_application()
+   {
+      return m_pappCurrent;
+   }
+
+
+   void bergedge::check_topic_file_change()
+   {
+      if(m_varCurrentViewFile != m_varTopicFile)
+      {
+         m_varCurrentViewFile = m_varTopicFile;
+         request_topic_file();
+      }
+   }
+
+   ::user::interaction * bergedge::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   {
+
+      return get_request_parent_ui((::user::interaction * ) pmainframe, pcreatecontext);
+
+   }
+
+   ::user::interaction * bergedge::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
+   {
+
+
+      ::user::interaction * puiParent = NULL;
+
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
+
+      if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
+      {
+         puiParent = pcreatecontext->m_puiParent;
+      }
+
+      if(puiParent == NULL && pcreatecontext->m_spCommandLine->m_pbiasCreate != NULL)
+      {
+         puiParent = pcreatecontext->m_spCommandLine->m_pbiasCreate->m_puiParent;
+      }
+
+      if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      {
+         puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
+      }
+
+
+/*      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
+      {
+         pui = m_puiInitialPlaceHolderContainer;
+      }*/
+
+/*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
+      {
+         pui = Bergedge.get_document()->get_bergedge_view();
+      }
+
+      return pui;
+
+   }*/
+
+      if(pinteraction->get_app()->is_bergedge() || pcreatecontext->m_bClientOnly ||
+         Application.directrix().m_varTopicQuery["client_only"] != 0 ||
+         pcreatecontext->m_bOuterPopupAlertLike)
+      {
+         return puiParent;
+      }
+
+      if(!create_bergedge(pcreatecontext))
+      {
+         return NULL;
+      }
+
+
+
+
+      cube8::application & app = App(pinteraction->get_app());
+
+      string strAppName = app.m_strAppName;
+
+      if(strAppName != "bergedge")
+      {
+
+         if(get_document() != NULL)
+         {
+
+            if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+            {
+
+               get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+
+               puiParent = get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
+
+            }
+            else
+            {
+
+               puiParent = get_document()->get_typed_view < ::bergedge::view >();
+
+            }
+
+         }
+
+      }
+
+      return puiParent;
+
+   }
+
+   ::user::place_holder_ptra bergedge::get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   {
+
+      UNREFERENCED_PARAMETER(pcreatecontext);
+
+      ::user::place_holder_ptra holderptra;
+
+
+      cube8::application & app = App(pmainframe->get_app());
+
+      string strAppName = app.m_strAppName;
+
+      if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+      {
+
+         get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+
+         holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
+
+      }
+      else
+      {
+
+         holderptra.add(get_document()->get_typed_view < ::bergedge::view >());
+
+      }
+
+      return holderptra;
+
+   }
+
+   bool bergedge::place(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   {
+
+      get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
+
+      return true;
+
+   }
+
+   void bergedge::get_screen_rect(LPRECT lprect)
+   {
+      if(get_document() != NULL && get_view() != NULL)
+      {
+         get_view()->GetWindowRect(lprect);
+      }
+      else 
+      {
+         System.get_screen_rect(lprect);
+      }
+   }
+
+   bool bergedge::on_install()
+   {
+
+      string strFormat;
+
+      string strSentinelPath;
+
+      strSentinelPath = System.dir().ca2("stage/x86/sentinel.exe");
+
+      win::registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+      keyKar.SetValue("ca2 sentinel", "\"" + strSentinelPath + "\"");
+
+      return platform::application::on_install();
+   }
 
 } // namespace bergedge
+
 
 

@@ -71,7 +71,7 @@ namespace filemanager
             list_view(::ca::application * papp);
             ::filemanager::fs::simple::view * m_pserver;
 
-            void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
+            void install_message_handling(::user::win::message::dispatch * pinterface);
        
             ::user::list_cache        m_cache;
             bool                 m_bKickActive;
@@ -119,11 +119,11 @@ namespace filemanager
             virtual void _001OnSort();
             bool GetSongPath(string & str, int iItem);
 
-            virtual index _001GetItemImage(index iItem, index iSubItem, index iListItem);
+            virtual void _001GetItemImage(::user::list_item * pitem);
             virtual void _001InsertColumns();
-            virtual bool _001GetItemText(string &str, index iItem, index iSubItem, index iListItem);
+            virtual void _001GetItemText(::user::list_item * pitem);
             virtual count _001GetItemCount();
-            virtual bool _001SearchGetItemText(string &str, index iItem, index iSubItem, index iListItem);
+            virtual void _001SearchGetItemText(::user::list_item * pitem);
 
             virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 

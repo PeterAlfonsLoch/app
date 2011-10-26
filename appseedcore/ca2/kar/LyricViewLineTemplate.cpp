@@ -1,7 +1,8 @@
 #include "StdAfx.h"
 
+
 LyricViewLineTemplate::LyricViewLineTemplate(::ca::application * papp) :
-ca(papp)
+   ca(papp)
 {
    m_crLinkLeft               = RGB(200, 200, 255);
    m_crLinkRight              = RGB(100, 100, 255);
@@ -11,10 +12,11 @@ ca(papp)
    m_crLinkHoverRight         = RGB(240, 242, 255);
    m_crLinkHoverLeftOutline   = RGB(0, 0, 255);
    m_crLinkHoverRightOutline  = RGB(200, 200, 255);
+   m_pline                    = NULL;
 }
 
 LyricViewLineTemplate::LyricViewLineTemplate(LyricViewLineTemplates * ptemplates) :
-ca(ptemplates->get_app())
+   ca(ptemplates->get_app())
 {
    m_pline = NULL;
    m_crLinkLeft               = RGB(200, 200, 255);
@@ -26,11 +28,11 @@ ca(ptemplates->get_app())
    m_crLinkHoverLeftOutline   = RGB(0, 0, 255);
    m_crLinkHoverRightOutline  = RGB(200, 200, 255);
    m_ptemplates               = ptemplates;
-   
-
+   m_pline                    = NULL;
 }
+
 LyricViewLineTemplate::LyricViewLineTemplate(LyricViewLineTemplate & linetemplate) :
-ca(linetemplate.get_app())
+   ca(linetemplate.get_app())
 {
    operator =(linetemplate);
 }
@@ -51,15 +53,15 @@ int LyricViewLineTemplate::SetPens(
    ::ca::pen * ppenHoverRight
    )
 {
-   UNREFERENCED_PARAMETER(ppenLinkLeft);
-   UNREFERENCED_PARAMETER(ppenLinkRight);
-   UNREFERENCED_PARAMETER(ppenHoverLeft);
-   UNREFERENCED_PARAMETER(ppenHoverRight);
 
-   m_ppenLeft        = ppenLeft;
-   m_ppenRight       = ppenRight;
-   m_ppenLeftSmall   = ppenLeftSmall;
-   m_ppenRightSmall  = ppenRightSmall;
+   m_ppenLeft              = ppenLeft;
+   m_ppenRight             = ppenRight;
+   m_ppenLeftSmall         = ppenLeftSmall;
+   m_ppenRightSmall        = ppenRightSmall;
+   m_ppenLinkLeft          = ppenLinkLeft;
+   m_ppenLinkRight         = ppenLinkRight;
+   m_ppenLinkHoverLeft     = ppenHoverLeft;
+   m_ppenLinkHoverRight    = ppenHoverRight;
 
    LOGPEN leftLogPen;
    LOGPEN rightLogPen;

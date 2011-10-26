@@ -10,9 +10,9 @@ namespace ca
    {
       if(pdata != NULL)
       {
-         if(pdata->m_lockedlongWriting == 1)
+         if(pdata->m_lockedlongWriting == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
          {
-            pdata->m_papp->m_psystem->wait_twf();
+            Sys(pdata->m_papp).wait_twf();
          }
       }
    }
@@ -26,9 +26,9 @@ namespace ca
    {
       if(pdata != NULL)
       {
-         if(pdata->m_lockedlongSaving == 1)
+         if(pdata->m_lockedlongSaving == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_in_use()))
          {
-            pdata->m_papp->m_psystem->wait_twf();
+            Sys(pdata->m_papp).wait_twf();
          }
       }
    }
@@ -54,7 +54,7 @@ namespace ca
 
    bool data::is_in_use() const
    {
-      return m_lockedlongWriting > 0 || m_lockedlongSaving > 0;
+      return m_lockedlongWriting > 0 || m_lockedlongSaving > 0 || (m_spdataParentLock.is_set() && m_spdataParentLock->is_in_use());
    }
 
    void data::on_update_data(int iHint)
@@ -65,4 +65,15 @@ namespace ca
       }
    }
 
+   bool data::initialize_data()
+   {
+      return true;
+   }
+
+   bool data::finalize_data()
+   {
+      return true;
+   }
+
 } // namespace ca
+

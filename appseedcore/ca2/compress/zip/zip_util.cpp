@@ -60,7 +60,7 @@ namespace zip
          while(true)
          {
             //string strPathBuffer;
-            //System.file().time_square(strPathBuffer);      // buffer for path 
+            //System.file().time_square(strPathBuffer);      // buffer for path
 
 
              CHAR szTitle[_MAX_PATH];
@@ -71,14 +71,15 @@ namespace zip
                szTitle,
                _MAX_PATH,
                NULL, // extra Field
-               0, 
+               0,
                NULL, // comment
                0);
             string strTitle(szTitle);
-            if(strRemain != strTitle && ((strRemain.is_empty() && !strTitle.find("/"))
+            if(strRemain != strTitle && ((strRemain.is_empty() && 
+               (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
             || (strRemain.has_char() && gen::str::begins_eat_ci(strTitle, strRemain))))
             {
-               if(bRecursive || strTitle.find("/") < 0)
+               if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
                   if(pstraPath != NULL)
                   {
@@ -94,7 +95,7 @@ namespace zip
                   }
                   if(pbaIsDir != NULL)
                   {
-                     pbaIsDir->add(gen::str::ends(szTitle, "/") 
+                     pbaIsDir->add(gen::str::ends(szTitle, "/")
                                 || gen::str::ends(szTitle, "\\")
                                 || gen::str::ends(szTitle, ".zip"));
                   }
@@ -128,7 +129,7 @@ namespace zip
       }
       else
          return false;
-      
+
       InFile infile(get_app());
 
       strZip.replace("\\", "/");
@@ -141,7 +142,7 @@ namespace zip
 
 
       //string wstrFileName(lpszFileName);
-//      array_ptr < File, File & > filea;
+//      array_del_ptr < File, File & > filea;
 
       /*int iStart = 0;
       int iFind;
@@ -163,7 +164,7 @@ namespace zip
       stringa wstraPrefix;
       string str;
       int i;
-      array_ptr < InFile, InFile & > izfilea;
+      array_del_ptr < InFile, InFile & > izfilea;
    //   array_ptr_alloc < buffered_file, buffered_file & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
       {
@@ -198,7 +199,7 @@ namespace zip
                const int BUFSIZE = 4096;
                WCHAR lpPathBuffer[BUFSIZE];
                GetTempPathW(BUFSIZE,   // length of the buffer
-                  lpPathBuffer);      // buffer for path 
+                  lpPathBuffer);      // buffer for path
 
 
                 CHAR szTitle[_MAX_PATH];
@@ -209,7 +210,7 @@ namespace zip
                   szTitle,
                   _MAX_PATH,
                   NULL, // extra Field
-                  0, 
+                  0,
                   NULL, // comment
                   0);
 
@@ -225,14 +226,14 @@ namespace zip
                {
                   return true;
                }
-               
+
      //          unzCloseCurrentFile(pf);
             }
             if(unzGoToNextFile(pf) != UNZ_OK)
             {
                break;
             }
-         }           
+         }
       }*/
       return false;
    }
@@ -275,7 +276,7 @@ namespace zip
          return false;
 
       File file(get_app());
-     
+
       return file.open(lpszFileName);
    }
 

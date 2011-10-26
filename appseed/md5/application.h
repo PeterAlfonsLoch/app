@@ -7,26 +7,20 @@ namespace md5
       virtual public cube::application
    {
    public:
+
+
+      ::userbase::single_document_template *       m_ptemplatePaneView;
+      ::userbase::single_document_template *       m_ptemplateMd5;
+
+
       application(void);
       virtual ~application(void);
 
-      ::userbase::single_document_template *    m_ptemplateAlarm;
-      ::userbase::multiple_document_template *    m_ptemplateAlatel;
 
-      bool initialize_instance();
-      int exit_instance();
+      virtual bool initialize_instance();
 
-      bool bergedge_start();
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
-      void _001OnFileNew();
-
-	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
-
-      void OnFileManagerOpenFile(
-         ::filemanager::data * pdata, 
-         FileManagerItemArray & itema);
-
-      ::document * _001OpenDocumentFile(var varFile);
 
    };
 

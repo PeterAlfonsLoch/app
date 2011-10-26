@@ -10,6 +10,7 @@ class var;
 namespace gen
 {
 
+
    class CLASS_DECL_ca object :
       virtual public ptri
    {
@@ -24,4 +25,7 @@ namespace gen
 
    };
 
+
 } // namespace gen
+
+

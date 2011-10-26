@@ -74,11 +74,7 @@ void FileManagerLeftView::CreateViews()
 
    
 
-   create_context cc;
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(filemanager::SimpleFileListView);
-
-   filemanager::SimpleFileListView * plist = dynamic_cast < filemanager::SimpleFileListView * > (view::create_view(&cc, this, 100));
+   filemanager::SimpleFileListView * plist = create_view < filemanager::SimpleFileListView >();
 
    if(plist == NULL)
    {
@@ -91,10 +87,7 @@ void FileManagerLeftView::CreateViews()
 
    plist->add_item("V:\\", "votagus");
 
-   cc.m_pCurrentDoc = get_document();
-   cc.m_typeinfoNewView =  &typeid(filemanager::SimpleFolderTreeView);
-
-  filemanager:: SimpleFolderTreeView * pmediaview = dynamic_cast < filemanager::SimpleFolderTreeView * > (create_view(&cc, this, 100));
+  filemanager:: SimpleFolderTreeView * pmediaview = create_view < filemanager::SimpleFolderTreeView > ();
 
    if(pmediaview == NULL)
    {

@@ -5,10 +5,28 @@ namespace ca
 
 
    CLASS_DECL_ca PFN_get_thread g_pfn_get_thread = NULL;
+   CLASS_DECL_ca PFN_get_thread_state g_pfn_get_thread_state = NULL;
+
+   thread::thread()
+   {
+      m_dwAlive                     = ::GetTickCount();
+      m_bReady                      = false;
+      m_bRun                        = true;
+      m_pappDelete                  = NULL;
+      m_ptimera                     = NULL;
+   }
+
 
    thread * get_thread()
    {
       return g_pfn_get_thread();
+   }
+
+   thread_state * get_thread_state()
+   {
+      if(g_pfn_get_thread_state == NULL)
+         return NULL;
+      return g_pfn_get_thread_state();
    }
 
    void thread::set_p(::radix::thread * p)
@@ -32,6 +50,10 @@ namespace ca
 
    void thread::CommonConstruct()
    {
+      m_pappDelete      = NULL;
+      m_puiMain         = NULL;
+      m_peventReady     = NULL;
+      m_bReady          = false;
 /*      m_ptimera = NULL; 
       m_puieptra = NULL;
       GetMainWnd() = NULL;
@@ -61,12 +83,17 @@ namespace ca
    }
 
 
-   void * thread::get_os_data()
+   void * thread::get_os_data() const
    {
       throw interface_only_exception();   
    }
 
-   INT_PTR thread::get_os_int()
+   INT_PTR thread::get_os_int() const
+   {
+      throw interface_only_exception();   
+   }
+
+   void thread::start()
    {
       throw interface_only_exception();   
    }
@@ -319,7 +346,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   CEvent & thread::get_finish_event()
+   event & thread::get_finish_event()
    {
       throw interface_only_exception();   
    }
@@ -373,6 +400,58 @@ namespace ca
       return 0;
    }
 
+   void thread::on_keep_alive()
+   {
+      m_dwAlive = ::GetTickCount();
+   }
+      
+   bool thread::is_alive()
+   {
+      if((::GetTickCount() - m_dwAlive) > ((1984 + 1977) * 91))
+         return false;
+      return true;
+   }
+
+   bool thread::verb()
+   {
+      return true;
+   }
+
+   bool thread::is_auto_delete()
+   {
+      throw not_implemented_exception();
+   }
+
+	void thread::wait()
+	{
+      throw not_implemented_exception();
+   }
+
+	///  \brief		waits for signaling the thread for a specified time
+	///  \param		duration time period to wait for thread
+	///  \return	result of waiting action as defined in wait_result
+   wait_result thread::wait(const duration & duration)
+	{
+      UNREFERENCED_PARAMETER(duration);
+		throw not_implemented_exception();
+		return wait_result();
+	}
+
+	///  \brief		sets thread priority
+	///  \param		new priority
+	void thread::set_priority(int priority)
+	{
+      UNREFERENCED_PARAMETER(priority);
+      throw not_implemented_exception();
+   }
+
+	///  \brief		gets thread priority
+	///  \param		priority
+	int thread::priority()
+	{ 
+      throw not_implemented_exception();
+      return 0x80000000;
+   }
 
 } // namespace ca
 

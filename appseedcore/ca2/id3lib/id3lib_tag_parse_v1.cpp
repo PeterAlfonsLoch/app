@@ -112,11 +112,11 @@ bool id3::v1::parse(ID3_TagImpl& tag, ID3_Reader& reader)
   string comment = io::readTrailingSpaces(reader, ID3_V1_LEN_COMMENT-2);
   // fixes bug for when tracknumber is 0x20
   primitive::memory trackno = io::readBinary(reader, ID3_V1_LEN_COMMENT-28);
-  if (trackno.GetAllocation()[0] == '\0')
+  if (trackno.get_data()[0] == '\0')
   {
-    if (trackno.GetAllocation()[1] != '\0')
+    if (trackno.get_data()[1] != '\0')
     { //we've got a tracknumber
-      size_t track = trackno.GetAllocation()[1];
+      size_t track = trackno.get_data()[1];
       field = id3::v2::getTrack(tag);
       if (field.get_length() == 0 || field == "00")
       {
@@ -132,17 +132,17 @@ bool id3::v1::parse(ID3_TagImpl& tag, ID3_Reader& reader)
     const int paddingsize = (ID3_V1_LEN_COMMENT-2) - comment.get_length();
     const char * padding = "                            "; //28 spaces
 
-    if (trackno.GetAllocation()[1] == '\0' || trackno.GetAllocation()[1] == 0x20 && trackno.GetAllocation()[0] != 0x20)
+    if (trackno.get_data()[1] == '\0' || trackno.get_data()[1] == 0x20 && trackno.get_data()[0] != 0x20)
     {
       // if there used to be spaces they are gone now, we need to rebuild them
       comment += string(padding, paddingsize);
-      comment += string((const char *)trackno.GetAllocation(), 1);
+      comment += string((const char *)trackno.get_data(), 1);
     }
-    else if (trackno.GetAllocation()[1] != '\0' && trackno.GetAllocation()[1] != 0x20 &&  trackno.GetAllocation()[0] != 0x20)
+    else if (trackno.get_data()[1] != '\0' && trackno.get_data()[1] != 0x20 &&  trackno.get_data()[0] != 0x20)
     {
       // if there used to be spaces they are gone now, we need to rebuild them
       comment += string(padding, paddingsize);
-      comment += string((const char *)trackno.GetAllocation(), 2);
+      comment += string((const char *)trackno.get_data(), 2);
     }
   }
   ID3D_NOTICE( "id3::v1::parse: comment = \"" << comment << "\"" );

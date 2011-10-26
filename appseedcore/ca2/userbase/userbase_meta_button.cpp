@@ -4,12 +4,20 @@
 MetaButton::MetaButton(::ca::application * papp) :
    ca(papp),
    ::user::button(papp),
-   ::userbase::button(papp)
+   ::userbase::button(papp),
+   m_dib1(papp),
+   m_dib2(papp),
+   m_brushEllipse(papp),
+   m_penEllipse(papp)
 {
 
    m_pbrushEllipse = NULL;
    m_ppenEllipse = NULL;
    m_bFocus = false;
+
+   m_brushEllipse->CreateSolidBrush(RGB(128, 128, 128));
+   m_penEllipse->CreateStockObject(NULL_PEN);
+
 }
 
 MetaButton::~MetaButton()
@@ -101,26 +109,17 @@ void MetaButton::_001OnDraw(::ca::graphics * pdcTwi)
    rect rectClient;
    ::user::interaction::GetClientRect(rectClient);
 
-   if(rectClient.area() == 0)
+   if(rectClient.area() <= 0)
       return;
 
-   ::ca::dib_sp dib(get_app());
-   ::ca::dib_sp dib2(get_app());
 
-   dib->create(rectClient.size());
-   dib2->create(rectClient.size());
+   ::ca::graphics * pgraphics1 = m_dib1->get_graphics();
+//   ::ca::graphics * pgraphics2 = m_dib2->get_graphics();
 
-   ::ca::graphics * pgraphics = dib->get_graphics();
-   ::ca::graphics * pgraphics2 = dib2->get_graphics();
+   pgraphics1->SelectObject(GetFont());
+   pgraphics1->SetBkMode(TRANSPARENT);
 
-   pgraphics->SelectObject(GetFont());
-   pgraphics->SetBkMode(TRANSPARENT);
-
-   // linux UINT state = GetState();
-   UINT state = 0;
    pbrushEllipse = m_pbrushEllipse;
-   const int ihilite = 0x0004; // hilighted
-   const int ifocus = 0x0008; // focus
 
    if(!IsWindowEnabled())
    {
@@ -128,38 +127,28 @@ void MetaButton::_001OnDraw(::ca::graphics * pdcTwi)
       {
          pbrushEllipse = m_pbrushEllipseDisabled;
       }
-   }
-   else if((state & ihilite) != 0)
-   {
-      if(m_pbrushEllipseSel != NULL)
-      {
-         pbrushEllipse = m_pbrushEllipseSel;
-      }
-   }
-   else if(((state & ifocus) != 0 || m_bFocus))
-   {
-      if(m_pbrushEllipseFocus != NULL)
-      {
-         pbrushEllipse = m_pbrushEllipseFocus;   // third image for focused
-      }
-   }
-
-   if(!IsWindowEnabled())
-   {
       if(m_ppenEllipseDisabled != NULL)
       {
          ppenEllipse = m_ppenEllipseDisabled;
       }
    }
-   else if((state & ihilite) != 0)
+   else if(m_iHover >= 0)
    {
+      if(m_pbrushEllipseSel != NULL)
+      {
+         pbrushEllipse = m_pbrushEllipseSel;
+      }
       if(m_ppenEllipseSel != NULL)
       {
          ppenEllipse = m_ppenEllipseSel;
       }
    }
-   else if((state & ifocus) != 0)
+   else if(m_bFocus)
    {
+      if(m_pbrushEllipseFocus != NULL)
+      {
+         pbrushEllipse = m_pbrushEllipseFocus;   // third image for focused
+      }
       if(m_ppenEllipseFocus != NULL)
       {
          ppenEllipse = m_ppenEllipseFocus;   // third image for focused
@@ -170,43 +159,26 @@ void MetaButton::_001OnDraw(::ca::graphics * pdcTwi)
    crText = m_crText;
    if(!IsWindowEnabled())
       crText = m_crTextDisabled;
-   else if(state & ihilite)
+   else if(m_iHover >= 0)
       crText = m_crTextSel;
-   else if ((state & ifocus) || m_bFocus)
+   else if (m_bFocus)
       crText = m_crTextFocus;   // third image for focused
 
 
-   pgraphics2->FillSolidRect(rectClient, RGB(0, 0, 0));
-
-   ::ca::brush_sp brushEllipse(get_app());
-   brushEllipse->CreateSolidBrush(RGB(128, 128, 128));
-   ::ca::pen_sp penNull(get_app());
-   penNull->CreateStockObject(NULL_PEN);
-
-   pgraphics2->SelectObject(penNull);
-   pgraphics2->SelectObject(brushEllipse);
-   pgraphics2->Ellipse(rectClient);
-   dib2->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_green);
 
 
    string str;
    GetWindowText(str);
 
-   pgraphics->SelectObject(pbrushEllipse);
-   pgraphics->SelectObject(ppenEllipse);
-   pgraphics->Ellipse(rectClient);
+   pgraphics1->SelectObject(pbrushEllipse);
+   pgraphics1->SelectObject(ppenEllipse);
+   pgraphics1->Ellipse(rectClient);
 
-   pgraphics->SetTextColor(crText);
-   pgraphics->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+   pgraphics1->SetTextColor(crText);
+   pgraphics1->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-   System.imaging().bitmap_blend(
-      pdcTwi,
-      rectClient.top_left(),
-      rectClient.size(),
-      pgraphics,
-      null_point(),
-      pgraphics2,
-      null_point());
+   System.imaging().bitmap_blend(pdcTwi, rectClient.top_left(), rectClient.size(), m_dib1, null_point(), m_dib2, null_point());
+
 }
 
 void MetaButton::_001OnShowWindow(gen::signal_object * pobj) 
@@ -235,7 +207,7 @@ void MetaButton::_001OnLButtonUp(gen::signal_object * pobj)
    //ControlBoxButton::OnLButtonUp(nFlags, point);
 }
 
-afx_msg LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
+LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
 {
    LPMSG lpmsg = (LPMSG) lParam;
    if(wParam == WM_MOUSEMOVE)
@@ -263,6 +235,25 @@ void MetaButton::_001OnSize(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    UpdateWndRgn();
+
+   rect rectClient;
+
+   GetClientRect(rectClient);
+
+   if(rectClient.area() <= 0)
+      return;
+
+   m_dib1->create(rectClient.size());
+   m_dib2->create(rectClient.size());
+
+
+   m_dib2->get_graphics()->FillSolidRect(rectClient, RGB(0, 0, 0));
+
+
+   m_dib2->get_graphics()->SelectObject(m_penEllipse);
+   m_dib2->get_graphics()->SelectObject(m_brushEllipse);
+   m_dib2->get_graphics()->Ellipse(rectClient);
+   m_dib2->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_green);
 
 }
 
@@ -318,14 +309,17 @@ void MetaButton::UpdateWndRgn()
       ::ca::rgn_sp rgn(get_app());
       rgn->CreateEllipticRgnIndirect(rectClient);
       //ModifyStyleEx(0, WS_EX_TRANSPARENT, SWP_SHOWWINDOW);
-      SetWindowRgn((HRGN) rgn->detach_os_data(), TRUE);
+      if(SetWindowRgn((HRGN) rgn->get_os_data(), TRUE))
+      {
+         rgn->detach_os_data();
+      }
    }
 
 }
 
-void MetaButton::_001InstallMessageHandling(::user::win::message::dispatch *pinterface)
+void MetaButton::install_message_handling(::user::win::message::dispatch *pinterface)
 {
-   ::userbase::button::_001InstallMessageHandling(pinterface);
+   ::userbase::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &MetaButton::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &MetaButton::_001OnMouseLeave);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);

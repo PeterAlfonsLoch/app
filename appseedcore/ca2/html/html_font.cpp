@@ -62,7 +62,7 @@ namespace html
          iLen = min(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
          strncpy(lf.lfFaceName, stra[0], iLen);
          lf.lfFaceName[iLen] = '\0';
-         /*                  
+         /*
          if(stra[0] == "Courier New")
          {
             string strHard = "Times New Roman";

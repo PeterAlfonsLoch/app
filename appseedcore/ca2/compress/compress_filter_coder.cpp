@@ -39,7 +39,7 @@ namespace compress
       return S_OK;
    }
 
-   ::ex1::HRes filter_coder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 * /* inSize */, const uint64 *outSize, progress_info_interface *progress)
+   ::ex1::HRes filter_coder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size * /* inSize */, const file_size *outSize, progress_info_interface *progress)
    {
       RINOK(Init());
       uint32 bufferPos = 0;
@@ -49,7 +49,7 @@ namespace compress
 
       while (!_outSizeIsDefined || _nowPos64 < _outSize)
       {
-         size_t processedSize = kBufferSize - bufferPos;
+         ::primitive::memory_size processedSize = kBufferSize - bufferPos;
 
          // Change it: It can be optimized using ReadPart
          RINOK(ReadStream(inStream, _buffer + bufferPos, &processedSize));
@@ -97,13 +97,13 @@ namespace compress
    }
 
 
-   void filter_coder::write(const void * data, DWORD_PTR size, DWORD_PTR * processedSize)
+   void filter_coder::write(const void * data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
    {
       if (processedSize != NULL)
          *processedSize = 0;
       while (size > 0)
       {
-         uint32 sizeTemp = min(size, kBufferSize - _bufferPos);
+         ::primitive::memory_size sizeTemp = min(size, kBufferSize - _bufferPos);
          memcpy(_buffer + _bufferPos, data, sizeTemp);
          size -= sizeTemp;
          if (processedSize != NULL)
@@ -166,7 +166,7 @@ namespace compress
       return S_OK;
    }
 
-   DWORD_PTR filter_coder::read(void *data, DWORD_PTR size)
+   ::primitive::memory_size filter_coder::read(void *data, ::primitive::memory_size size)
    {
       DWORD_PTR processedSize = 0;
       while (size > 0)
@@ -186,7 +186,7 @@ namespace compress
             _buffer[i] = _buffer[_convertedPosEnd + i];
          _bufferPos = i;
          _convertedPosBegin = _convertedPosEnd = 0;
-         size_t processedSizeTemp = kBufferSize - _bufferPos;
+         ::primitive::memory_size processedSizeTemp = kBufferSize - _bufferPos;
          RINOK(ReadStream(_inStream, _buffer + _bufferPos, &processedSizeTemp));
          _bufferPos += (uint32)processedSizeTemp;
          _convertedPosEnd = Filter->Filter(_buffer, _bufferPos);

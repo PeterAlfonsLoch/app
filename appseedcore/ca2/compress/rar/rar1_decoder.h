@@ -61,7 +61,7 @@ namespace compress
 
          void InitStructures();
 
-         HRESULT CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface *progress);
+         HRESULT CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
 
       public:
          decoder();
@@ -74,7 +74,7 @@ namespace compress
             m_InBitStream.ReleaseStream();
          }
 
-         virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const uint64 *inSize, const uint64 *outSize, ::compress::progress_info_interface *progress);
+         virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
 
          virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32 size);
 

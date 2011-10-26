@@ -1,9 +1,6 @@
 #include "StdAfx.h"
 
-document_template::document_template(
-   ::ca::application * papp,
-   const char * pszMatter, ::ca::type_info pDocClass,
-   ::ca::type_info pFrameClass, ::ca::type_info pViewClass) :
+document_template::document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
    ca(papp)
 {
 
@@ -74,14 +71,14 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    {
       // see if extension matches
       ASSERT(strFilterExt[0] == '.');
-      const char * lpszDot = ::PathFindExtension(lpszPathName);
-      if (lpszDot != NULL)
-        {
-            if(System.file().path().is_equal(lpszDot, static_cast<const char *>(strFilterExt)))
-            {
-             return yesAttemptNative; // extension matches, looks like ours
-            }
-        }
+      string strExtension = System.file().extension(lpszPathName);
+      if(strExtension.has_char())
+      {
+         if(strExtension.CompareNoCase(strFilterExt) == 0)
+         {
+            return yesAttemptNative; // extension matches, looks like ours
+         }
+      }
    }
 
    // otherwise we will guess it may work
@@ -113,25 +110,25 @@ document * document_template::create_new_document()
 /////////////////////////////////////////////////////////////////////////////
 // Default frame creation
 
-frame_window* document_template::create_new_frame(document * pdocument, frame_window* pOther, ::user::interaction * pwndParent, ::user::interaction * puiAlloc)
+frame_window* document_template::create_new_frame(document * pdocument, frame_window* pOther, ::ca::create_context * pcreatecontext)
 {
    if (pdocument != NULL)
       ASSERT_VALID(pdocument);
    // create a frame wired to the specified document
 
    ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
-   create_context context;
-   context.m_pCurrentFrame    = pOther;
-   context.m_pCurrentDoc      = pdocument;
-   if(puiAlloc != NULL)
+   stacker < ::user::create_context > context(pcreatecontext->m_user);
+   context->m_pCurrentFrame    = pOther;
+   context->m_pCurrentDoc      = pdocument;
+   if(pcreatecontext->m_pviewAlloc != NULL)
    {
-      context.m_puiNew           = puiAlloc;   
+      context->m_puiNew           = pcreatecontext->m_pviewAlloc;   
    }
    else
    {
-      context.m_typeinfoNewView  = m_typeinfoView;
+      context->m_typeinfoNewView  = m_typeinfoView;
    }
-   context.m_pNewDocTemplate  = this;
+   context->m_pNewDocTemplate  = this;
 
    if (!m_typeinfoFrame)
    {
@@ -148,13 +145,13 @@ frame_window* document_template::create_new_frame(document * pdocument, frame_wi
    }
    ASSERT_KINDOF(frame_window, pFrame);
 
-   if (!context.m_typeinfoNewView)
+   if(!context->m_typeinfoNewView)
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: creating frame with no default ::view.\n");
 
    // create new from resource
    if (!pFrame->LoadFrame(m_strMatter,
          WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,   // default frame styles
-         pwndParent, &context))
+         pcreatecontext->m_puiParent, pcreatecontext))
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: document_template couldn't create a frame.\n");
       // frame will be deleted in PostNcDestroy cleanup
@@ -229,11 +226,18 @@ BOOL document_template::save_all_modified()
 
 void document_template::close_all_documents(BOOL)
 {
-   count count = get_document_count();
-   for(index index = 0; index < count; index++)
+   for(index index = 0; index < get_document_count(); index++)
    {
-      document * pdocument = get_document(index);
-      pdocument->on_close_document();
+      try
+      {
+         document * pdocument = get_document(index);
+         pdocument->on_close_document();
+         remove_document(pdocument);
+         delete pdocument;
+      }
+      catch(...)
+      {
+      }
    }
 }
 

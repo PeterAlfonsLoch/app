@@ -565,39 +565,6 @@
     <ClInclude Include="XmlException.H">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TransportTLS_want_to_remove.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransportTLSCommon_want_to_remove.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransportTLSCommon_want_to_remove_cpp.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransportTLS_want_to_remove_cpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TransportException_want_to_remove.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shell_StrUtil_want_not_to_use.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shell_Print_want_not_to_use.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shell_ObjectSet_want_not_to_use.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shell_Global_want_not_to_use.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shell_CommandFunctions_want_not_to_use.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shell_Command_want_not_to_use.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BeautifierHandlers_need_to_adapt.H">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -607,8 +574,10 @@
     <ClInclude Include="NameServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shepp_want_not_to_use_cpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libepp.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

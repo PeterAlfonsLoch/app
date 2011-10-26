@@ -147,10 +147,10 @@ namespace userbase
       m_pguie->ReleaseDC(pdc);
    }
 
-   void button::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void button::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::user::interaction::_001InstallMessageHandling(pinterface);
-      ::user::button::_001InstallMessageHandling(pinterface);
+      ::user::interaction::install_message_handling(pinterface);
+      ::user::button::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
    }
 

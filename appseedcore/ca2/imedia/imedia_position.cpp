@@ -4,56 +4,43 @@ namespace imedia
 {
    
    position::position() :
-      m_i(0)
+      c_number < int64_t >(0)
    {
    }
 
    position::position(int i) :
-      m_i(i)
+      c_number < int64_t >(static_cast < int64_t > (i))
    {
    }
 
    position::position(unsigned int ui) :
-      m_i((int) ui)
+      c_number < int64_t >(static_cast < int64_t > (ui))
    {
    }
 
    position::position(unsigned long ul) :
-      m_i((int) ul)
+      c_number < int64_t >(static_cast < int64_t > (ul))
    {
    }
 
-#ifdef _AMD64_
-   position::position(LONG_PTR l) :
-      m_i((int) l)
+   position::position(int64_t i) :
+      c_number < int64_t >(i)
    {
    }
-#endif
+
+   position::position(uint64_t ui) :
+      c_number < int64_t >(static_cast < int64_t > (ui))
+   {
+   }
 
    position::position(double d) :
-      m_i((int) d)
+      c_number < int64_t >((int) d)
    {
-   }
-
-   position::operator int()
-   {
-      return m_i;
-   }
-
-   position::operator int() const
-   {
-      return m_i;
-   }
-
-   position & position::operator += (const position & pos)
-   {
-      m_i += pos.m_i;
-      return *this;
    }
 
    void position::set_to_maximum()
    {
-      m_i = numeric_info::get_maximum_value < ::imedia::position >();
+      m_number = numeric_info::get_maximum_value < ::imedia::position >();
    }
 
 
@@ -62,12 +49,12 @@ namespace imedia
 
 
 
-CLASS_DECL_ca ex1::input_stream &  operator >>(ex1::input_stream & istream, ::imedia::position & pos)
+CLASS_DECL_ca ex1::byte_input_stream &  operator >>(ex1::byte_input_stream & istream, ::imedia::position & pos)
 {
-   return istream >> pos.m_i;
+   return istream >> pos.m_number;
 }
 
-CLASS_DECL_ca ex1::output_stream &  operator <<(ex1::output_stream & ostream, const ::imedia::position & pos)
+CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & ostream, const ::imedia::position & pos)
 {
-   return ostream << pos.m_i;
+   return ostream << pos.m_number;
 }

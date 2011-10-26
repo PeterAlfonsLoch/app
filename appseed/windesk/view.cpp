@@ -57,9 +57,9 @@ namespace windesk
    {
    }
 
-   void view::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::user::win::message::dispatch * pinterface)
    {
-      ::userbase::view::_001InstallMessageHandling(pinterface);
+      ::userbase::view::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -88,6 +88,7 @@ namespace windesk
 
    void view::OnDraw(::ca::graphics * pdcScreen)
    {
+      UNREFERENCED_PARAMETER(pdcScreen);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -132,12 +133,15 @@ namespace windesk
 
    void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
    {
-   	
+      UNREFERENCED_PARAMETER(pSender);
+      UNREFERENCED_PARAMETER(lHint);
+      UNREFERENCED_PARAMETER(phint);
    }
 
    void view::_001OnSize(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::size, psize, pobj)
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(::user::win::message::size, psize, pobj)
 
       rect rectDesktop;
       Application.get_screen_rect(rectDesktop);
@@ -154,11 +158,11 @@ namespace windesk
       double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
       if(r < rScreen)
       {
-         iH = iW / rScreen;
+         iH = (int) (iW / rScreen);
       }
       else if(r > rScreen)
       {
-         iW = iH * rScreen;
+         iW = (int) (iH * rScreen);
       }
       m_iW = iW;
       m_iH = iH;
@@ -166,6 +170,7 @@ namespace windesk
 
    void view::_001OnPaint(gen::signal_object * pobj) 
    {
+      UNREFERENCED_PARAMETER(pobj);
    //	CPaintDC spgraphics(this); // device context for winactionareaing
      // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
@@ -173,7 +178,7 @@ namespace windesk
 
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
-      class imaging & imaging = Application.imaging();
+//      class imaging & imaging = Application.imaging();
       rect rectClient;
       GetClientRect(rectClient);
       //pdc->FillSolidRect(rectClient, RGB(205, 200, 191));
@@ -242,17 +247,17 @@ namespace windesk
       wstring wstrDateTime = gen::international::utf8_to_unicode(strDateTime);
       ::DrawTextW((HDC)pdc->get_os_data(), wstrDateTime, wstrDateTime.get_length(), rectArea, DT_VCENTER | DT_LEFT | DT_SINGLELINE);
       {
-         COLORREF crBk;
+//         COLORREF crBk;
          if(!m_bShutDown)
          {
          }
          rect rectText;
          rect rectIcon;
          rect rectPad;
-         WCHAR szWindowText[1024];
-         ::ca::brush * pbrBk;
+//         WCHAR szWindowText[1024];
+//         ::ca::brush * pbrBk;
          ::ca::brush * pbrOld = pdc->GetCurrentBrush();
-         bool bCurrentAreaTime = (::GetTickCount() - m_dwCurrentAreaTime) < 1000;
+//         bool bCurrentAreaTime = (::GetTickCount() - m_dwCurrentAreaTime) < 1000;
          if(m_bShutDown)
          {
             wstring wstr;
@@ -281,10 +286,10 @@ namespace windesk
          rect rectText;
          rect rectIcon;
          rect rectPad;
-         WCHAR szWindowText[1024];
+//         WCHAR szWindowText[1024];
          ::ca::brush * pbrBk;
          ::ca::brush * pbrOld = pdc->GetCurrentBrush();
-         bool bCurrentAreaTime = (::GetTickCount() - m_dwCurrentAreaTime) < 1000;
+//         bool bCurrentAreaTime = (::GetTickCount() - m_dwCurrentAreaTime) < 1000;
          for(int i = 0; i < m_notificationareainfo.m_infoa.get_size(); i++)
          {
             
@@ -556,7 +561,8 @@ namespace windesk
 
    void view::_001OnOp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+//      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      UNREFERENCED_PARAMETER(pobj);
    }
 
 
@@ -626,7 +632,8 @@ namespace windesk
 
    void view::_001OnShowWindow(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj)
+//      SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj)
+      UNREFERENCED_PARAMETER(pobj);
    }
 
 
@@ -667,10 +674,10 @@ namespace windesk
        LPARAM lParam)
    {
       view * pview = (view *) lParam;
-      DWORD dwThreadId;
-      DWORD dwProcessId;
-      HICON hicon16;
-      HICON hicon48;
+//      DWORD dwThreadId;
+//      DWORD dwProcessId;
+//      HICON hicon16;
+//      HICON hicon48;
       DWORD dwptr;
       if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 1, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 2)
       {
