@@ -257,9 +257,6 @@
     <ClInclude Include="spa\windows\spa_windows.h">
       <Filter>Header Files\spa\windows</Filter>
     </ClInclude>
-    <ClInclude Include="windows\windows.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -272,20 +269,29 @@
     <ClInclude Include="message_loop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="windows\windows_http.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\windows_process.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\windows_registry.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="spa\windows\spa_windows_service.h">
       <Filter>Header Files\spa\windows</Filter>
     </ClInclude>
     <ClInclude Include="spa\windows\spa_windows_win.h">
       <Filter>Header Files\spa\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_http.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_process.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_registry.h">
+      <Filter>Header Files\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -484,29 +490,8 @@
     <ClCompile Include="strx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="windows\windows_small_ipc_channel.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\windows_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\windows_message_loop.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\windows_registry.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\windows_process.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\windows_library.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\windows_http.cpp">
-      <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="spa\windows\spa_windows_boot.cpp">
       <Filter>Source Files\spa\windows</Filter>
@@ -517,7 +502,28 @@
     <ClCompile Include="spa\windows\spa_windows_win.cpp">
       <Filter>Source Files\spa\windows</Filter>
     </ClCompile>
-    <ClCompile Include="windows\windows_lock.cpp">
+    <ClCompile Include="windows\c_os_http.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_launcher.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_library.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_lock.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_message_loop.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_process.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_registry.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_small_ipc_channel.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>

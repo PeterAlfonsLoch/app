@@ -710,6 +710,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="c_types.h" />
     <ClInclude Include="std_file.h" />
     <ClInclude Include="str.h" />
+    <ClInclude Include="version.config.h" />
+    <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
     <ClInclude Include="windows\c_os_http.h" />
     <ClInclude Include="windows\c_os_process.h" />

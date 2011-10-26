@@ -644,10 +644,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="spa\windows\spa_windows_service.h" />
     <ClInclude Include="spa\windows\spa_windows_win.h" />
     <ClInclude Include="spa\windows\spa_windows.h" />
-    <ClInclude Include="windows\windows_http.h" />
-    <ClInclude Include="windows\windows_process.h" />
-    <ClInclude Include="windows\windows_registry.h" />
-    <ClInclude Include="windows\windows.h" />
+    <ClInclude Include="version.config.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="windows\c_os.h" />
+    <ClInclude Include="windows\c_os_http.h" />
+    <ClInclude Include="windows\c_os_process.h" />
+    <ClInclude Include="windows\c_os_registry.h" />
     <ClInclude Include="_libct.h" />
     <ClInclude Include="library.h" />
     <ClInclude Include="linux.h" />
@@ -771,13 +773,14 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     </ClCompile>
     <ClCompile Include="strw.cpp" />
     <ClCompile Include="strx.cpp" />
-    <ClCompile Include="windows\windows_http.cpp" />
-    <ClCompile Include="windows\windows_process.cpp" />
-    <ClCompile Include="windows\windows_registry.cpp" />
-    <ClCompile Include="windows\windows_launcher.cpp" />
-    <ClCompile Include="windows\windows_message_loop.cpp" />
-    <ClCompile Include="windows\windows_lock.cpp" />
-    <ClCompile Include="windows\windows_small_ipc_channel.cpp" />
+    <ClCompile Include="windows\c_os_http.cpp" />
+    <ClCompile Include="windows\c_os_launcher.cpp" />
+    <ClCompile Include="windows\c_os_library.cpp" />
+    <ClCompile Include="windows\c_os_lock.cpp" />
+    <ClCompile Include="windows\c_os_message_loop.cpp" />
+    <ClCompile Include="windows\c_os_process.cpp" />
+    <ClCompile Include="windows\c_os_registry.cpp" />
+    <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_argcargv.cpp" />
     <ClCompile Include="_atol.cpp" />
@@ -837,7 +840,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="verisimple_string.cpp" />
     <ClCompile Include="verisimple_wstring.cpp" />
     <ClCompile Include="vsstringtow.cpp" />
-    <ClCompile Include="windows\windows_library.cpp" />
     <ClCompile Include="wstringtovss.cpp" />
     <ClCompile Include="xmlite.cpp" />
     <ClCompile Include="str.cpp" />

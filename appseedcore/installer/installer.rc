@@ -1,5 +1,8 @@
 #include "resource.h"
 
-IDI_CCVOTAGUS_CA2_SPA   ICON                    "res\\ca2v_2011_04_02.ico"
 ID_MP3_SMALL_BELL       MP3                     "res\\small_bell.mp3"
-2001                    VERSION                 "..\\..\\..\\version.txt"
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+IDI_CCVOTAGUS_CA2_SPA   ICON                    "res\\fluidbasis_2011_10_26.ico"
+#else
+IDI_CCVOTAGUS_CA2_SPA   ICON                    "res\\ca2v_2011_04_02.ico"
+#endif

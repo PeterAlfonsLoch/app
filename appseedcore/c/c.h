@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "version.h"
+
+
 extern "C"
 {
 
