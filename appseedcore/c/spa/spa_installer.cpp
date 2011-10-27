@@ -236,6 +236,13 @@ namespace spa
          keep_true keeptrueInstalling(g_bInstalling);
          m_dwInstallStartTime = ::GetTickCount();
 
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+         m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.veriterse.net";
+#else
+         m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.veriterse.net";
+#endif
+
+
    install_begin:;
       {
          m_strSpa.remove_all();
@@ -284,11 +291,6 @@ namespace spa
 #ifdef _WINDOWS
          HKEY hkey;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-         m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.veriterse.net";
-#else
-         m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.veriterse.net";
-#endif
 
          strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
          vsstring strInstallFilterList = ms_get_dup(strUrl);
@@ -2188,7 +2190,13 @@ namespace spa
          g_strLastHost = g_strCurrentHost + ";" + g_strLastHost;
       }
       vsstring strUrl;
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
+#else
+      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
+#endif
+
       if(!g_strLastHost.is_empty())
       {
          strUrl += "&last_host=" + g_strLastHost;
@@ -2209,7 +2217,11 @@ namespace spa
             }
             else
             {
+#if CA2_PLATFORM_VERSION == CA2_BASIS
                strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
+#else
+               strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
+#endif
             }
          }
          else

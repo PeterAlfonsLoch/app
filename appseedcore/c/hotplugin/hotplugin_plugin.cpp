@@ -247,7 +247,11 @@ namespace hotplugin
 
    dH *= 6.0;
 
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+   dH += 5.0;
+#else 
    dH += 2.0;
+#endif
    if(dH >= 6.0)
       dH -= 6.0;
 
