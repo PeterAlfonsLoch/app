@@ -2593,8 +2593,7 @@ namespace spa
       || is_application_opened("winshelllink")
       || is_application_opened("command")
       || is_application_opened("winservice_filesystemsize")
-      || is_application_opened("filemanager")
-      || is_application_opened("mplite");
+      || is_application_opened("filemanager");
    }
 
    void installer::machine_signalize_close_application()

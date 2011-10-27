@@ -66,7 +66,7 @@ namespace spa
       }
       else
       {
-         m_phost->starter_start("mplite");
+         m_phost->starter_start("bergedge");
       }
 
    }
