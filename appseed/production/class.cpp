@@ -1412,14 +1412,14 @@ bool production_class::release_npca2(const char * pszPlatform)
    string strInstall = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/install.rdf"));
    strInstall.replace("%BUILD%", strNpca2Version);
    strInstall.replace("%PLATFORM%", strPlatform);
-   strChromeManifest.replace("%VERSION%", strVersionUrl);
+   strInstall.replace("%VERSION%", strVersionUrl);
    Application.file().put_contents(System.dir().path(strDir, "npca2", "install.rdf"), strInstall);
 
 
    string strWindows = Application.file().as_string(System.dir().path(m_strBase, "app/stage/app/matter/npca2/windows.rdf"));
    strWindows.replace("%BUILD%", strNpca2Version);
    strWindows.replace("%PLATFORM%", strPlatform);
-   strChromeManifest.replace("%VERSION%", strVersionUrl);
+   strWindows.replace("%VERSION%", strVersionUrl);
    Application.file().put_contents(System.dir().path(strDir, "windows.rdf"), strWindows);
    
 
@@ -1754,8 +1754,16 @@ bool production_class::twitter_auth()
 
     /* OAuth flow begins */
     /* Step 0: Set OAuth related params. These are got by registering your app at twitter.com */
+   if(m_eversion == version_basis)
+   {
+    twitterObj.get_oauth().setConsumerKey(string( "mKYvWA6cZkUEUwjoygUuVw" ) );
+    twitterObj.get_oauth().setConsumerSecret(string( "JwtNLBLyXlPvGLqKA4c8w4XH0PPLmkoVzm0TOocvSyY" ) );
+   }
+   else
+   {
     twitterObj.get_oauth().setConsumerKey(string( "K0pfcpC7Ua1ygWiMWHHSQ" ) );
     twitterObj.get_oauth().setConsumerSecret(string( "LmgKZmcM5NExmp8cPisHvtuYGxU0KMKH61wNYc0Pn8Q" ) );
+   }
 
     string strPathKey = Application.dir().userappdata("twitterClient_token_key.txt");
     string strPathSecret = Application.dir().userappdata("twitterClient_token_secret.txt");
@@ -1809,8 +1817,16 @@ string production_class::twitter_twit(const char * pszMessage)
 
     /* OAuth flow begins */
     /* Step 0: Set OAuth related params. These are got by registering your app at twitter.com */
+   if(m_eversion == version_basis)
+   {
+    twitterObj.get_oauth().setConsumerKey(string( "mKYvWA6cZkUEUwjoygUuVw" ) );
+    twitterObj.get_oauth().setConsumerSecret(string( "JwtNLBLyXlPvGLqKA4c8w4XH0PPLmkoVzm0TOocvSyY" ) );
+   }
+   else
+   {
     twitterObj.get_oauth().setConsumerKey(string( "K0pfcpC7Ua1ygWiMWHHSQ" ) );
     twitterObj.get_oauth().setConsumerSecret(string( "LmgKZmcM5NExmp8cPisHvtuYGxU0KMKH61wNYc0Pn8Q" ) );
+   }
 
     string strPathKey = Application.dir().userappdata("twitterClient_token_key.txt");
     string strPathSecret = Application.dir().userappdata("twitterClient_token_secret.txt");

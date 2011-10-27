@@ -46,7 +46,11 @@ namespace twitter
    {
       if(m_pdoc != NULL)
          return;
-      m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file());
+      ::ca::create_context_sp createcontext(get_app());
+      createcontext->m_bMakeVisible = false;
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
+      createcontext->m_bOuterPopupAlertLike = true;
+      m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
       userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
       pview->set_view_creator(this);
       m_ptabview = pview;

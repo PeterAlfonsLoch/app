@@ -43,13 +43,16 @@ namespace html
          if(strTag == "a")
          {
             m_bLink = true;
-            if(!pelemental->m_pparent->m_propertyset.is_new_or_null("href"))
+            if(m_strLink.is_empty())
             {
-               m_strLink = pelemental->m_pparent->m_propertyset["href"];
-            }
-            else if(!pelemental->m_propertyset.is_new_or_null("href"))
-            {
-               m_strLink = pelemental->m_propertyset["href"];
+               if(!pelemental->m_pparent->m_propertyset.is_new_or_null("href"))
+               {
+                  m_strLink = pelemental->m_pparent->m_propertyset["href"];
+               }
+               else if(!pelemental->m_propertyset.is_new_or_null("href"))
+               {
+                  m_strLink = pelemental->m_propertyset["href"];
+               }
             }
          }
          if(!IsWindow() && pdata->m_bEdit)

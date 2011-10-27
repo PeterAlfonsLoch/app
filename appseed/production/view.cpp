@@ -535,7 +535,9 @@ namespace production
 
    production_class * view::create_production_class()
    {
-      return new production_class(get_app());
+      production_class * pclass = new production_class(get_app());
+      pclass->m_eversion = Application.m_eversion;
+      return pclass;
    }
 
 } // namespace production
