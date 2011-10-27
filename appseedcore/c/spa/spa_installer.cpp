@@ -994,7 +994,7 @@ namespace spa
             {
                if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0)
                {
-                  trace_add(_unitext(" up-to-date ✓"));
+                  trace_add(_unitext(" up-to-date c"));
                   return true;
                }
             }
@@ -1133,7 +1133,7 @@ namespace spa
             if(iRetry > 0)
             {
               // sprintf_dup(sz, _unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
-               trace_add(_unitext(" ✓"));
+               trace_add(_unitext(" c"));
             }
             else
             {
@@ -1142,7 +1142,7 @@ namespace spa
                // normal cases.
                //sprintf_dup(sz, _unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
                //trace_add(sz);
-               trace_add(_unitext(" ✓"));
+               trace_add(_unitext(" c"));
             }
          }
          else
@@ -1200,7 +1200,7 @@ namespace spa
          }
          if(bOk)
          {
-            sprintf_dup(sz, _unitext("%0.2fkbytes compressed ✓"), (iGzLen / 1000.0));
+            sprintf_dup(sz, _unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
             trace(sz);
          }
          else
