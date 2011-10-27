@@ -102,6 +102,7 @@ namespace spa
       bool m_bLoginStartup;
       bool m_bMsDownload;
       vsstring m_strTitle;
+      vsstring m_strSpaIgnitionBaseUrl;
       DWORD m_dwCurFileLen;
 
 

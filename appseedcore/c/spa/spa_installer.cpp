@@ -284,11 +284,17 @@ namespace spa
 #ifdef _WINDOWS
          HKEY hkey;
 
-         strUrl = "http://spaignition.api.veriterse.net/install_filter_list";
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+         m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.veriterse.net";
+#else
+         m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.veriterse.net";
+#endif
+
+         strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
          vsstring strInstallFilterList = ms_get_dup(strUrl);
          XNode nodeInstallFilter;
          nodeInstallFilter.Load(strInstallFilterList);
-         strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
+         strUrl = m_strSpaIgnitionBaseUrl + "query?node=install_application&id=";
          strUrl += m_strStart;
          strUrl += "&key=install_filter";
          vsstring strInstallFilter = ms_get_dup(strUrl);
@@ -1904,7 +1910,7 @@ namespace spa
 
       char szFormat[256];
       vsstring strUrl;
-      strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
+      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strStart;
       strUrl += "&key=post_install_count";
       vsstring strCount = ms_get_dup(strUrl);
@@ -1912,7 +1918,7 @@ namespace spa
       set_progress(0.2);
       for(int i = 0; i < iCount; i++)
       {
-         strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
+         strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
          strUrl += m_strStart;
          strUrl += "&key=post_install";
          sprintf_dup(szFormat, "[%d]", i);
@@ -2098,7 +2104,7 @@ namespace spa
    {
       vsstring strUrl;
       trace(("get application name from server http://spaignition.api.veriterse.net/ using id \"" + m_strStart + "\" "));
-      strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
+      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strStart;
       strUrl += "&key=name";
 
@@ -2148,7 +2154,7 @@ namespace spa
                return -1;
             }
             iRetry++;
-            m_strBuild = ms_get_dup("http://spaignition.api.veriterse.net/query?node=build", false, &::ms_get_callback, (void *) this);
+            m_strBuild = ms_get_dup(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
             m_strBuild.trim();
             if(m_strBuild.length() != 19)
             {
@@ -2182,11 +2188,7 @@ namespace spa
          g_strLastHost = g_strCurrentHost + ";" + g_strLastHost;
       }
       vsstring strUrl;
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-      strUrl = "http://basis.spaignition.api.veriterse.net/query?node=spa_host&version=basis";
-#else
-      strUrl = "http://stage.spaignition.api.veriterse.net/query?node=spa_host&version=stage";
-#endif
+      strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
       if(!g_strLastHost.is_empty())
       {
          strUrl += "&last_host=" + g_strLastHost;
@@ -2207,11 +2209,7 @@ namespace spa
             }
             else
             {
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-               strUrl = "http://basis.spaignition.api.veriterse.net/query?node=spa_host&version=basis";
-#else
-               strUrl = "http://stage.spaignition.api.veriterse.net/query?node=spa_host&version=stage";
-#endif
+               strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=basis";
             }
          }
          else
