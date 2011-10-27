@@ -229,6 +229,7 @@
       <PreprocessorDefinitions>WIN32</PreprocessorDefinitions>
       <Culture>
       </Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/appseedcore</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
@@ -426,6 +427,13 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <ResourceCompile>
+      <Culture>
+      </Culture>
+    </ResourceCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/appseedcore</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">
     <ClCompile>
