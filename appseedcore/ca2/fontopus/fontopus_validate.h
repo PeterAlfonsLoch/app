@@ -3,7 +3,8 @@
 namespace fontopus
 {
 
-   class CLASS_DECL_ca login_thread_callback
+   class CLASS_DECL_ca login_thread_callback :
+      virtual public ::radix::object
    {
    public:
       virtual void on_login_thread_response(int iAuth, const char * pszResponse);
