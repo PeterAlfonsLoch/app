@@ -1375,13 +1375,13 @@ void database_cache::tmp_performer_update(bool bVerbose)
 		var rows = musicdb().query_rows(strSql);
 
 
-	   var classa;
+	   stringa classa;
 
       string topicid;
       string topictype;
       string classid;
       string cl;
-      var parent_class;
+      stringa parent_class;
 
 		if(rows.array_get_count() > 0)
 		{
@@ -1389,13 +1389,13 @@ void database_cache::tmp_performer_update(bool bVerbose)
 			topicid		= row.at(0);
 			topictype	= row.at(1);
 			classid		= row.at(2);
-			classa.stra().add(classid);
+			classa.add(classid);
 		}
 
       string oldtopicid;
       string oldtopictype;
 
-		var classa_added;
+		stringa classa_added;
 		for(int i = 1; i < rows.array_get_count(); i++)
 		{
          var row = rows.at(i);
@@ -1404,13 +1404,13 @@ void database_cache::tmp_performer_update(bool bVerbose)
 			classid		= row.at(2);
 			if(oldtopicid != topicid || topictype != oldtopictype)
 			{
-				classa.stra().QuickSort();
+				classa.QuickSort();
 				string classa_test = classa.implode(",");
-				if(!classa_added.stra().contains(classa_test))
+				if(!classa_added.contains(classa_test))
 				{
 					array_ptr_alloc < stringa > a;
                a.remove_all();
-               gen::lemon::array_makecombination(a, classa.stra());
+               gen::lemon::array_makecombination(a, classa);
 					for(int i = 0; i < a.get_count(); i++)
 					{
                   stringa & comb = a[i];
@@ -1418,11 +1418,11 @@ void database_cache::tmp_performer_update(bool bVerbose)
 						{
 							cl = comb[0];
 							parent_class = comb;
-                     parent_class.stra().remove(cl);
+                     parent_class.remove(cl);
 							if(bVerbose)
 							{
 								print("class = " + cl);
-								print(" parent_class =" + parent_class.stra().implode(";"));
+								print(" parent_class =" + parent_class.implode(";"));
 								print("\n");
 							}
 //							tmp_class_update_classida_item($oldtopictype, $class, $parent_class, bVerbose);
@@ -1431,13 +1431,13 @@ void database_cache::tmp_performer_update(bool bVerbose)
 							tmp_class_update_classida_item(2, cl, parent_class, bVerbose);
 						}
 					}
-					classa_added.stra().add(classa_test);
+					classa_added.add(classa_test);
 				}
-				classa.stra().remove_all();
+				classa.remove_all();
  				oldtopicid		= topicid;
 				oldtopictype 	= topictype;
 			}
-			classa.stra().add(classid);
+			classa.add(classid);
 		}
 
       tmp_class_update_classida_item(0, cl, parent_class, bVerbose);

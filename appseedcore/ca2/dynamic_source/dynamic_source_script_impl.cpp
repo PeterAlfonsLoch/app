@@ -2131,6 +2131,7 @@ namespace dynamic_source
       {
          m_pinstanceMain->m_pmusicdb = get_manager()->new_musicdb(0);
          m_pinstanceMain->m_pmusicdb->m_pinterface = m_pinstanceMain;
+         m_pinstanceMain->m_pmusicdb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pmusicdb;
    }
@@ -2141,6 +2142,7 @@ namespace dynamic_source
       {
          m_pinstanceMain->m_pmusicsedb = get_manager()->new_musicdb(1);
          m_pinstanceMain->m_pmusicsedb->m_pinterface = m_pinstanceMain;
+         m_pinstanceMain->m_pmusicsedb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pmusicsedb;
    }
@@ -2151,6 +2153,7 @@ namespace dynamic_source
       {
          m_pinstanceMain->m_padmindb = new ::webserver::fontopus_database(get_app());
          m_pinstanceMain->m_padmindb->m_pinterface = m_pinstanceMain;
+         m_pinstanceMain->m_padmindb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
          m_pinstanceMain->m_padmindb->initialize(2);
       }
       return *m_pinstanceMain->m_padmindb;

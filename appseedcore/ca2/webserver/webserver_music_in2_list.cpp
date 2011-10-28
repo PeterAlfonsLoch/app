@@ -452,7 +452,7 @@ namespace music
 
    string in2_list::multi_page_get_nav_link(var page)
    {
-      return m_call_url.get_string() + "?page=" + gen::str::itoa(page) + "&" + m_params.get_http_post();
+      return System.url().set_key(m_call_url.get_string(), "page", gen::str::itoa(page)); // + "&" + m_params.get_http_post();
    }
 
    void in2_list::print_slist_closure()

@@ -31,6 +31,7 @@ namespace user
 
 
       bool operator < (const keyboard_layout_id & layout) const;
+      bool operator <= (const keyboard_layout_id & layout) const;
       bool operator == (const keyboard_layout_id & layout) const;
 
 

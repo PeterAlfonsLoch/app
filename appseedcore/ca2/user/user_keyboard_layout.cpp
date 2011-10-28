@@ -23,6 +23,20 @@ namespace user
       return *this;
    }
 
+   bool keyboard_layout_id::operator <= (const keyboard_layout_id & layout) const
+   {
+      int iCompare = m_strName.CompareNoCase(layout.m_strName);
+      if(iCompare <= 0)
+         return true;
+      else if(iCompare == 0)
+      {
+         iCompare = m_strPath.CompareNoCase(layout.m_strPath);
+         return iCompare <= 0;
+      }
+      else
+         return false;
+   }
+
 
    bool keyboard_layout_id::operator < (const keyboard_layout_id & layout) const
    {

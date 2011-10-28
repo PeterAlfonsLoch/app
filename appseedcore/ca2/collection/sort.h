@@ -293,7 +293,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) < 0)
+                  if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
                      iUPos--;
                   else
                   {
@@ -311,7 +311,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) < 0)
+                  if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
                      iLPos++;
                   else
                   {
@@ -370,7 +370,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) < 0)
+                  if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
                      iUPos--;
                   else
                   {
@@ -388,7 +388,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) < 0)
+                  if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
                      iLPos++;
                   else
                   {
@@ -445,7 +445,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(a.element_at(iMPos) < a.element_at(iUPos))
+                  if(a.element_at(iMPos) <= a.element_at(iUPos))
                      iUPos--;
                   else
                   {
@@ -460,7 +460,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(a.element_at(iLPos) < a.element_at(iMPos))
+                  if(a.element_at(iLPos) <= a.element_at(iMPos))
                      iLPos++;
                   else
                   {
@@ -514,7 +514,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(a.element_at(iUPos) < a.element_at(iMPos))
+                  if(a.element_at(iUPos) <= a.element_at(iMPos))
                      iUPos--;
                   else
                   {
@@ -529,7 +529,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(a.element_at(iMPos) < a.element_at(iLPos))
+                  if(a.element_at(iMPos) <= a.element_at(iLPos))
                      iLPos++;
                   else
                   {
@@ -584,7 +584,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(a.element_at(iMPos) < a.element_at(iUPos))
+                  if(a.element_at(iMPos) <= a.element_at(iUPos))
                      iUPos--;
                   else
                   {
@@ -599,7 +599,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(a.element_at(iLPos) < a.element_at(iMPos))
+                  if(a.element_at(iLPos) <= a.element_at(iMPos))
                      iLPos++;
                   else
                   {
