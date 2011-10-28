@@ -57,10 +57,10 @@ namespace md5
 
 
 
-   void pane_view::on_create_view(view_data * pviewdata)
+   void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       ::md5::application * papp = dynamic_cast < ::md5::application * > (get_app());
-      switch(pviewdata->m_id)
+      switch(pcreatordata->m_id)
       {
       case pane_view_md5:
          {
@@ -73,9 +73,9 @@ namespace md5
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
-                     pviewdata->m_eflag.signalize(::user::view_creator::view_data::flag_hide_all_others_on_show);
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
+                     pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
                   }
                }
             }
@@ -93,8 +93,8 @@ namespace md5
                   userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
-                     pviewdata->m_pdoc = pdoc;
-                     pviewdata->m_pwnd = pframe;
+                     pcreatordata->m_pdoc = pdoc;
+                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }

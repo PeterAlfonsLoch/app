@@ -66,7 +66,7 @@ namespace user
 
 
 
-      virtual int hit_test(point pt);
+      virtual int hit_test(point pt, e_element & eelement);
 
       virtual ::ca::font * _001GetFont(void);
       void _001SetButtonText(const char * lpcszText);

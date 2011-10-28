@@ -19,8 +19,8 @@ namespace radix
       thread(::ca::application * papp);
       thread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam);
 
-      virtual void * get_os_data();
-      virtual INT_PTR get_os_int();
+      virtual void * get_os_data() const;
+      virtual INT_PTR get_os_int() const;
 
       virtual bool Begin(int nPriority = ::get_thread_priority_normal(), UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 

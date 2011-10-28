@@ -38,12 +38,12 @@ namespace radix
    {
    }
 
-   void * thread::get_os_data()
+   void * thread::get_os_data() const
    {
       return m_p->get_os_data();
    }
 
-   INT_PTR thread::get_os_int()
+   INT_PTR thread::get_os_int() const
    {
       return m_p->get_os_int();
    }

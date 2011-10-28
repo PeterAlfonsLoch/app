@@ -1,8 +1,10 @@
 #include "StdAfx.h"
 #include "window_frame/FrameSchema.h"
 
+
 namespace user
 {
+
 
    button::button(::ca::application * papp) :
       ca(papp),
@@ -16,7 +18,7 @@ namespace user
 
    button::~button(void)
    {
-      
+
    }
 
 
@@ -24,7 +26,7 @@ namespace user
    {
       ::user::window_interface::install_message_handling(pinterface);
 
-   //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
+      //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
       USER_MESSAGE_LINK(message_create             , pinterface, this, &button::on_create);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN             , pinterface, this, &button::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP               , pinterface, this, &button::_001OnLButtonUp);
@@ -32,7 +34,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE              , pinterface, this, &button::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::_001OnSize);
       //IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
-   //   IGUI_WIN_MSG_LINK(CVmsGenApp::APPM_LANGUAGE  , pinterface, this, &button::_001OnAppLanguage);
+      //   IGUI_WIN_MSG_LINK(CVmsGenApp::APPM_LANGUAGE  , pinterface, this, &button::_001OnAppLanguage);
    }
 
    void button::_001OnDraw(::ca::graphics * pdc)
@@ -95,7 +97,10 @@ namespace user
    void button::_001OnLButtonDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
-      if(hit_test(pmouse->m_pt) >= 0)
+
+         e_element eelement;
+
+      if(hit_test(pmouse->m_pt, eelement) >= 0)
       {
          g_pwndLastLButtonDown = this;
          pmouse->set_lresult(1);
@@ -111,7 +116,10 @@ namespace user
    void button::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
-      if(hit_test(pmouse->m_pt) >= 0 && g_pwndLastLButtonDown == this)
+
+         e_element eelement;
+
+      if(hit_test(pmouse->m_pt, eelement) >= 0 && g_pwndLastLButtonDown == this)
       {
          g_pwndLastLButtonDown = NULL;
          ::user::control_event ev;
@@ -130,73 +138,82 @@ namespace user
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
       }
-      
+
    }
 
    void button::_001OnMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
-      if(get_form_list() == NULL)
-      {
-         int iHover = hit_test(pmouse->m_pt);
-         if(iHover != m_iHover)
+         if(get_form_list() == NULL)
          {
-            int iOldHover = m_iHover;
-            m_iHover = iHover;
-            _001RedrawWindow();
-            if(iOldHover == -1)
+
+            e_element eelement;
+
+            int iHover = hit_test(pmouse->m_pt, eelement);
+            if(iHover != m_iHover)
             {
-               ::user::control_event ev;
-               ev.m_puie = this;
-               ev.m_eevent = ::user::event_mouse_enter;
-               GetParent()->SendMessage(
-                 ::user::message_event, 0, (LPARAM) &ev);
+               int iOldHover = m_iHover;
+               m_iHover = iHover;
+               _001RedrawWindow();
+               if(iOldHover == -1)
+               {
+                  ::user::control_event ev;
+                  ev.m_puie = this;
+                  ev.m_eevent = ::user::event_mouse_enter;
+                  GetParent()->SendMessage(
+                     ::user::message_event, 0, (LPARAM) &ev);
+               }
+               else if(iHover == -1)
+               {
+                  ::user::control_event ev;
+                  ev.m_puie = this;
+                  ev.m_eevent = ::user::event_mouse_leave;
+                  GetParent()->SendMessage(
+                     ::user::message_event, 0, (LPARAM) &ev);
+               }
+               track_mouse_hover();
             }
-            else if(iHover == -1)
-            {
-               ::user::control_event ev;
-               ev.m_puie = this;
-               ev.m_eevent = ::user::event_mouse_leave;
-               GetParent()->SendMessage(
-                 ::user::message_event, 0, (LPARAM) &ev);
-            }
-            track_mouse_hover();
+            pobj->m_bRet = false;
          }
-         pobj->m_bRet = false;
-      }
    }
 
    void button::_001OnMouseLeave(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::base, pbase, pobj)
-      if(get_form_list() == NULL)
-      {
-         int iOldHover = m_iHover;
-         m_iHover = -1;
-         if(iOldHover >= 0)
+         if(get_form_list() == NULL)
          {
-            _001RedrawWindow();
-            ::user::control_event ev;
-            ev.m_puie = this;
-            ev.m_eevent = ::user::event_mouse_leave;
-            if(GetParent() != NULL)
+            int iOldHover = m_iHover;
+            m_iHover = -1;
+            if(iOldHover >= 0)
             {
-               GetParent()->SendMessage(message_event, 0, (LPARAM) &ev);
+               _001RedrawWindow();
+               ::user::control_event ev;
+               ev.m_puie = this;
+               ev.m_eevent = ::user::event_mouse_leave;
+               if(GetParent() != NULL)
+               {
+                  GetParent()->SendMessage(message_event, 0, (LPARAM) &ev);
+               }
+               track_mouse_leave();
             }
-            track_mouse_leave();
+            pbase->m_bRet = false;
          }
-         pbase->m_bRet = false;
-      }
    }
 
-   int button::hit_test(point pt)
+   int button::hit_test(point pt, e_element & eelement)
    {
       rect rectWindow;
       GetWindowRect(rectWindow);
       if(rectWindow.contains(pt))
+      {
+         eelement = element_area;
          return 0;
+      }
       else
+      {
+         eelement = element_none;
          return -1;
+      }
    }
 
    ::ca::font * button::_001GetFont(void)
@@ -255,7 +272,7 @@ namespace user
    void button::_001OnSize(gen::signal_object * pobj)
    {
       SCAST_PTR(::user::win::message::base, pbase, pobj)
-      _001Layout();
+         _001Layout();
       pbase->m_bRet = false;
    }
 
@@ -323,7 +340,8 @@ namespace user
       // netshare
       // System.get_cursor_position(&pt);
       System.get_cursor_pos(&pt);
-      return hit_test(pt);
+      e_element eelement;
+      return hit_test(pt, eelement);
    }
 
 } // namespace user

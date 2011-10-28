@@ -138,9 +138,11 @@ namespace md5
 
    int document::thread::run()
    {
-      ex1::filesp spfile(get_app());
+      ex1::filesp spfile;
+      
+      spfile(Application.get_file(m_strFile, ::ex1::file::type_binary | ::ex1::file::mode_read));
 
-      if(!spfile->open(m_strFile, ::ex1::file::type_binary | ::ex1::file::mode_read))
+      if(spfile.is_null())
       {
          m_strStatus = "could not open file";
          return 0;
