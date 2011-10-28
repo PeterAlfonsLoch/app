@@ -234,6 +234,7 @@ namespace plugin
       while(puser == NULL)
       {
          ::fontopus::validate authuser(m_psystem, "system\\user\\authenticate.xhtml", true);
+         authuser.oprop("defer_registration") = "defer_registration";
          puser = authuser.get_user(strLocation, strSessId);
       }
       
