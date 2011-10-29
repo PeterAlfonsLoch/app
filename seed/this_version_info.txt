@@ -1,12 +1,12 @@
-﻿-c1-production -c2-producer -t12n-producing -mmmi- 2011-10-29 15-38-24 app:SVN2725M, app-veriwell:SVN38, app-frontpage:SVN33, app-sysutils:SVN27 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
+﻿-c1-production -c2-producer -t12n-producing -mmmi- 2011-10-29 16-03-10 app:SVN2727, app-veriwell:SVN38, app-frontpage:SVN33, app-sysutils:SVN27 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
 // <==! Thanks and dedicated to &lt; <
 // Thanks to and in honor of God > &gt; ==>
 // for ca2 and 5!!
 // you(*) and me(*) and God(***) make 5...
-#define THIS_PRODUCT_VERSION "2011-10-29 15-38-24 app:SVN2725M, app-veriwell:SVN38, app-frontpage:SVN33, app-sysutils:SVN27\0"
-#define THIS_FILE_VERSION "2011-10-29 15-38-24 app:SVN2725M, app-veriwell:SVN38, app-frontpage:SVN33, app-sysutils:SVN27\0"
-#define __THIS_PRODUCT_VERSION 2011,1029,1538,24
-#define __THIS_FILE_VERSION 2011,1029,1538,24
+#define THIS_PRODUCT_VERSION "2011-10-29 16-03-10 app:SVN2727, app-veriwell:SVN38, app-frontpage:SVN33, app-sysutils:SVN27\0"
+#define THIS_FILE_VERSION "2011-10-29 16-03-10 app:SVN2727, app-veriwell:SVN38, app-frontpage:SVN33, app-sysutils:SVN27\0"
+#define __THIS_PRODUCT_VERSION 2011,1029,1603,10
+#define __THIS_FILE_VERSION 2011,1029,1603,10
 
 
 
