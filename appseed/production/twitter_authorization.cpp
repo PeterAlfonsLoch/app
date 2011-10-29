@@ -113,6 +113,7 @@ namespace twitter
       simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pviewAuth->GetTopLevelParent());
       if(pframe != NULL)
       {
+         pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
          pframe->m_bblur_Background = true;
       }
       if(Bergedge.get_document() != NULL && Bergedge.get_document()->get_bergedge_view() != NULL)
