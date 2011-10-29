@@ -109,7 +109,11 @@ int production_class::run()
       if(!sync_source("app-veriwell", NULL))
 	      return 1;
 
+      if(!sync_source("app-frontpage", NULL))
+	      return 1;
 
+      if(!sync_source("app-sysutils", NULL))
+	      return 1;
 
       string strRevision;
 
@@ -133,13 +137,24 @@ int production_class::run()
       }
 
       string strSVNKey;
+      string strAddRevision;
 
       strSVNKey = "app:" + strSVN;
       
       strSvnVersionCmd.Format("svnversion %s", System.dir().path(m_strBase, "app-veriwell"));
-      strRevision = System.process().get_output(strSvnVersionCmd);
-      strRevision.trim();
-      strSVNKey = "app:" + strSVN + ", app-veriwell:" + strRevision;
+      strAddRevision = System.process().get_output(strSvnVersionCmd);
+      strAddRevision.trim();
+      strSVNKey += ", app-veriwell:SVN" + strAddRevision;
+
+      strSvnVersionCmd.Format("svnversion %s", System.dir().path(m_strBase, "app-frontpage"));
+      strAddRevision = System.process().get_output(strSvnVersionCmd);
+      strAddRevision.trim();
+      strSVNKey += ", app-frontpage:SVN" + strAddRevision;
+
+      strSvnVersionCmd.Format("svnversion %s", System.dir().path(m_strBase, "app-sysutils"));
+      strAddRevision = System.process().get_output(strSvnVersionCmd);
+      strAddRevision.trim();
+      strSVNKey += ", app-sysutils:SVN" + strAddRevision;
 
       m_bReleased = false;
       m_iLoop = -1;
@@ -449,7 +464,7 @@ int production_class::run()
 
       }
 
-      Application.http().get("http://fontopus.com/update_plugins?authnone");
+      //Application.http().get("http://fontopus.com/update_plugins?authnone");
 
       add_status("ca2.se - freigeben auf Deutschland, Hessen, Frankfurt, ServerLoft...");
       prelease = new class release(this);
@@ -855,7 +870,13 @@ bool production_class::commit_for_new_build_and_new_release()
    if(!commit_source("app"))
       return false;
 
-   if(!commit_source("os"))
+   if(!commit_source("app-veriwell"))
+      return false;
+
+   if(!commit_source("app-frontpage"))
+      return false;
+
+   if(!commit_source("app-sysutils"))
       return false;
 
 	return true;
@@ -1727,7 +1748,14 @@ void production_class::OnUpdateRelease()
       gen::property_set params;
       string strEndTime;
       m_timeEnd.FormatGmt(strEndTime, "%Y-%m-%d %H-%M-%S");
-      post["new_status"] = "<h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild + "</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://bergedge.com/\">bergedge.com</a> or <a href=\"http://veriaxs.com/\">veriaxs.com</a> for simple gateway implementations.</span>";
+      if(m_eversion == version_basis)
+      {
+         post["new_status"] = "<h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild + "</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://bergedge.com/\"></a> or <a href=\"http://fluidbasis.com/\">fluidbasis.com</a> for simple gateway implementations.</span>";
+      }
+      else
+      {
+         post["new_status"] = "<h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild + "</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://bergedge.com/\">bergedge.com</a> or <a href=\"http://veriaxs.com/\">veriaxs.com</a> for simple gateway implementations.</span>";
+      }
       string str;
       Application.http().get("http://ca2.cc/status/", str, post, headers, params);
       string strTwit;

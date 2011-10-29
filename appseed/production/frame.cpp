@@ -49,7 +49,7 @@ namespace production
 //      application * papp = dynamic_cast < application * > (get_app());
 
       window_frame::FrameSchemaHardCoded005 * pschema = dynamic_cast < window_frame::FrameSchemaHardCoded005 * > (m_workset.m_pframeschema);
-      if(pschema != NULL)
+      if(pschema != NULL && Application.command().m_varTopicQuery["version"] == "basis")
       {
          pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleBlueRedPurple);
       }
