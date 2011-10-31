@@ -1770,11 +1770,11 @@ void production_class::OnUpdateRelease()
       m_timeEnd.FormatGmt(strEndTime, "%Y-%m-%d %H-%M-%S");
       if(m_eversion == version_basis)
       {
-         post["new_status"] = "<div style=\"display: block; background-color: #FFE0FF; \"><h2 style=\"margin-bottom:0px; color: #FF55CC;\">" + m_strBuild + "</h2><span style=\"color: #882255; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://symberg.com/\" class=\"fluidbasis\" >symberg.com</a> or <a href=\"http://hardaxs.com/\" class=\"fluidbasis\" >hardaxs.com</a> for simple gateway implementations.</span></div>";
+         post["new_status"] = "<div style=\"display: block; background-color: #FFE0FF; \"><h2 style=\"margin-bottom:0px; color: #FF55CC;\">" + m_strBuild + "</h2><span style=\"color: #882255; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://fluidbasis.com/\" class=\"fluidbasis\" >fluidbasis</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://symberg.com/\" class=\"fluidbasis\" >symberg.com</a> or <a href=\"http://hardaxs.com/\" class=\"fluidbasis\" >hardaxs.com</a> for simple gateway implementations.</span></div>";
       }
       else
       {
-         post["new_status"] = "<h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild + "</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://bergedge.com/\">bergedge.com</a> or <a href=\"http://veriaxs.com/\">veriaxs.com</a> for simple gateway implementations.</span>";
+         post["new_status"] = "<div style=\"display: block; background-color: #E0FFCC; \"><h2 style=\"margin-bottom:0px; color: #55CCAA;\">" + m_strBuild + "</h2><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://bergedge.com/\">bergedge.com</a> or <a href=\"http://veriaxs.com/\">veriaxs.com</a> for simple gateway implementations.</span></div";
       }
       string str;
       Application.http().get("http://ca2.cc/status/", str, post, headers, params);
