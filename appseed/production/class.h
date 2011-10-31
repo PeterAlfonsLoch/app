@@ -25,6 +25,7 @@ public:
    bool        m_bReleased;
    string      m_strStartTime;
    string      m_strStdPostColor;
+   string      m_strBackPostColor;
 
    production_class(::ca::application * papp);
    virtual ~production_class();
