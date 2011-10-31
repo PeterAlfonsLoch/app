@@ -93,13 +93,15 @@ int production_class::run()
 
       if(m_eversion == version_basis)
       {
-         m_strStdPostColor = "color: #885522;";
-         m_strBackPostColor = "background-color: #FFF0CC;";
+         m_strStdPostColor = "color: #882277;";
+         m_strBackPostColor = "background-color: #CFC2CF;";
+         m_strEmpPostColor = "color: #660060;";
       }
       else
       {
-         m_strStdPostColor = "color: #228855;";
-         m_strBackPostColor = "background-color: #CCFFF0;";
+         m_strStdPostColor = "color: #448855;";
+         m_strBackPostColor = "background-color: #A0CCAA;";
+         m_strEmpPostColor = "color: #007700;";
       }
       
       m_strSignTool = System.dir().ca2("app/thirdparty/binary/signtool.exe");
@@ -184,11 +186,11 @@ int production_class::run()
 
          if(m_eversion == version_basis)
          {
-            post["new_status"] = "<h3 style=\"margin-bottom:0px; color: #FF5522;\">" + m_strStartTime + "</h3><span style=\"color: #CC5522; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> basis release.</span>";
+            post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h3 style=\"margin-bottom:0px; color: #552250;\">" + m_strStartTime + "</h3><span style=\"color: #882266; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> basis release.</span>";
          }
          else
          {
-            post["new_status"] = "<h3 style=\"margin-bottom:0px; color: #22FF55;\">" + m_strStartTime + "</h3><span style=\"color: #22CC55; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> stage release.</span>";
+            post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h3 style=\"margin-bottom:0px; color: #22552F;\">" + m_strStartTime + "</h3><span style=\"color: #228855; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> stage release.</span>";
          }
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
@@ -251,7 +253,7 @@ int production_class::run()
             gen::property_set headers;
             gen::property_set params;
          
-            post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Cleaning...</span>";
+            post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Cleaning...</span></div>";
          
             Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -303,7 +305,7 @@ int production_class::run()
          gen::property_set headers;
          gen::property_set params;
          
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Cleaning...</span>";
+         post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Cleaning...</span></div>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -368,7 +370,7 @@ int production_class::run()
          gen::property_set headers;
          gen::property_set params;
          
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Copying...</span>";
+         post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Copying...</span></div>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -384,7 +386,7 @@ int production_class::run()
          gen::property_set headers;
          gen::property_set params;
          
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Compressing...</span>";
+         post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Compressing...</span></div>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -396,7 +398,7 @@ int production_class::run()
          gen::property_set headers;
          gen::property_set params;
          
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Resources...</span>";
+         post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Resources...</span></div>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -439,7 +441,7 @@ int production_class::run()
          gen::property_set headers;
          gen::property_set params;
          
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Packaging...</span>";
+         post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Packaging...</span></div>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -476,7 +478,7 @@ int production_class::run()
          gen::property_set headers;
          gen::property_set params;
          
-         post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Releasing...</span>";
+         post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Releasing...</span></div>";
          
          Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 
@@ -1768,7 +1770,7 @@ void production_class::OnUpdateRelease()
       m_timeEnd.FormatGmt(strEndTime, "%Y-%m-%d %H-%M-%S");
       if(m_eversion == version_basis)
       {
-         post["new_status"] = "<div style=\"display: block; background-color: #CFCCE0;\"><h2 style=\"margin-bottom:0px; color: #AACC55;\">" + m_strBuild + "</h2><span style=\"color: #558822; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://symberg.com/\" class=\"fluidbasis\" >symberg.com</a> or <a href=\"http://hardaxs.com/\" class=\"fluidbasis\" >hardaxs.com</a> for simple gateway implementations.</span></div>";
+         post["new_status"] = "<div style=\"display: block; background-color: #FFE0FF; \"><h2 style=\"margin-bottom:0px; color: #FF55CC;\">" + m_strBuild + "</h2><span style=\"color: #882255; display: block; margin-bottom: 1.5em;\">"+m_strBuildTook+" and finished at "+ strEndTime + "<br>New release of <a href=\"http://ca2.cc/\">ca2</a> applications labeled " + m_strBuild + " is ready for download through compatible gateways.<br>Check <a href=\"http://symberg.com/\" class=\"fluidbasis\" >symberg.com</a> or <a href=\"http://hardaxs.com/\" class=\"fluidbasis\" >hardaxs.com</a> for simple gateway implementations.</span></div>";
       }
       else
       {
@@ -2019,7 +2021,7 @@ void production_class::build(const char * psz)
       gen::property_set headers;
       gen::property_set params;
          
-      post["new_status"] = "<h5 style=\"margin-bottom:0px; color: #FFAA55;\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Building " + strApp + "...</span>";
+      post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h5 style=\"margin-bottom:0px; " + m_strEmpPostColor + "\">" + m_strStartTime + "</h5><span style=\"" + m_strStdPostColor + m_strBackPostColor +" display: block; margin-bottom: 0.95em;\">" + ::time::get_current_time().FormatGmt( "%Y-%m-%d %H-%M-%S") +  " Building " + strApp + "...</span></div>";
          
       Application.http().get("http://ca2.cc/status/", str, post, headers, params);
 

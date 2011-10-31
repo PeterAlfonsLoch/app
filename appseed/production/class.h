@@ -26,6 +26,7 @@ public:
    string      m_strStartTime;
    string      m_strStdPostColor;
    string      m_strBackPostColor;
+   string      m_strEmpPostColor;
 
    production_class(::ca::application * papp);
    virtual ~production_class();
