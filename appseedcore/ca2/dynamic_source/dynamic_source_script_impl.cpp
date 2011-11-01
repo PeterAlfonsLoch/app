@@ -752,6 +752,15 @@ namespace dynamic_source
          else
          {
             strInclude = sys_get_include_path("ds", "doc", strScript);
+            if(strInclude.is_empty())
+            {
+               strInclude = sys_get_include_path("ds", "doc", System.url().path(strScript, "index"));
+               if(strInclude.has_char())
+               {
+                  outheader("Location") = this_url() + "/";
+                  exit(0);
+               }
+            }
          }
          dprint("strInclude=");
          dprint(strInclude);
@@ -5249,9 +5258,7 @@ namespace dynamic_source
 	
 	   strSql = "DELETE FROM gustavocc.rr";
 	   straCmd.add(strSql);
-   //	musicdb().query(strSql);
 	   strSql = "DELETE FROM gustavocc.soa";
-	   //musicdb().query(strSql);
 	   straCmd.add(strSql);	
 	
 	
@@ -5339,9 +5346,9 @@ namespace dynamic_source
 					   iphost = default_iphost;
 				   }
 			   }
-
 		   }
-		   log += "<h3 style=\"margin-bottom: 0px; 	font-family: Geneva, Verdana, sans-serif;\">";
+
+         log += "<h3 style=\"margin-bottom: 0px; 	font-family: Geneva, Verdana, sans-serif;\">";
 		   log += strHost;
 		   log += "</h3>";
 		   log += iphost;
@@ -5356,42 +5363,36 @@ namespace dynamic_source
 		   string id = gen::str::itoa(iSoa);
 		   iSoa++;
 		   strSql = "INSERT INTO gustavocc.soa(`id`, `origin`, `ns`, `mbox`, `serial`, `refresh`, `retry`, `expire`, `minimum`, `ttl`) VALUES ('" + id + "', '" + strHost + ".', '" + ns1 + ".', '" + email + "', '" + rev + "', '18000', '9000', '1209600', '" + cgcl_ttl + "', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'NS', '" + ns1 + ".', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);		
+         straCmd.add(strSql);		
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'NS', '" + ns2 + ".', '0', '" + cgcl_ttl + "')";
-	   //	musicdb().query(strSql);
-	   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'NS', '" + ns5 + ".', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'NS', '" + ns7 + ".', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   if(strlen(ns8) > 0)
 		   {
 			   rr = gen::str::itoa(iRr);
 			   iRr++;
 			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'NS', '" + ns8 + ".', '0', '" + cgcl_ttl + "')";
-   //			musicdb().query(strSql);
-   straCmd.add(strSql);
+            straCmd.add(strSql);
 		   }
 		
 		
@@ -5399,83 +5400,73 @@ namespace dynamic_source
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'A', '" + iphost + "', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   if(strlen(mx0) > 0)
 		   {
-			   log +=("mx0=" + mx0 + "<br>");
+			   
+            log +=("mx0=" + mx0 + "<br>");
 			
 			   rr = gen::str::itoa(iRr);
 			   iRr++;
-			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'MX', '{$mx0}.', '0', '" + cgcl_ttl + "')";
-   //			musicdb().query(strSql);
-   straCmd.add(strSql);
+			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'MX', '" + mx0 + ".', '0', '" + cgcl_ttl + "')";
+            straCmd.add(strSql);
 			
 		   }
-		   if(strlen(mx10) > 0)
-		   {
-			   log +=("mx10="+mx10 + "<br>");
+
+         if(strlen(mx10) > 0 && mx0.CompareNoCase(mx10) != 0 && (mx10.CompareNoCase("mail.ca2.cc") != 0 || mx0.CompareNoCase("mail.ca2.cc") != 0))
+         {
+
+            log +=("mx10="+mx10 + "<br>");
 			
 			   rr = gen::str::itoa(iRr);
 			   iRr++;
-			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'MX', '{$mx10}.', '10', '" + cgcl_ttl + "')";
-   //			musicdb().query(strSql);
-   straCmd.add(strSql);
-			
-		   }
-		   else
+			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'MX', '" + mx10 + ".', '10', '" + cgcl_ttl + "')";
+            straCmd.add(strSql);
+
+         }
+		   else if(!mx0.has_char() && !mx10.has_char())
 		   {
+
 			   log +=("mx10=mail.ca2.cc.<br>");
 		
 			   rr = gen::str::itoa(iRr);
 			   iRr++;
 			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'MX', 'mail.ca2.cc.', '0', '" + cgcl_ttl + "')";
-   ///			musicdb().query(strSql);
-   straCmd.add(strSql);
+            musicdb().query(strSql);
+            straCmd.add(strSql);
 			
 		   }
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', 'localhost', 'A', '127.0.0.1', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', 'www." + strHost + ".', 'A', '" + iphost + "', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', 'mail." + strHost + ".', 'A', '" + iphost + "', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
-		
-		
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '*." + strHost + ".', 'A', '" + iphost + "', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '1server." + strHost + ".', 'A', '" + debugserver1 + "', '0', '" + cgcl_ttl + "')";
-   //		musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '*.1server." + strHost + ".', 'A', '" + debugserver1 + "', '0', '" + cgcl_ttl + "')";
-		   //musicdb().query(strSql);
 		   straCmd.add(strSql);
-		
-	
-
 		
 	   }
 
@@ -5484,7 +5475,6 @@ namespace dynamic_source
       Application.file().put_contents("C:\\ca2\\mydns1.sql", strSql);
       System.process().synch("C:\\ca2\\mydns1.bat", 0);
       
-
 	   var cnamea = musicdb().query_rows("SELECT gustavocc.cname.subdomain, gustavocc.cname.cname, gustavocc.cname.domain, gustavocc.soa.id FROM gustavocc.cname INNER JOIN gustavocc.soa ON gustavocc.soa.origin = CONCAT(gustavocc.cname.domain, '.')");
 	
 	   for(int j = 0; j < cnamea.array_get_count(); j++)
@@ -5501,8 +5491,7 @@ namespace dynamic_source
 		   rr = gen::str::itoa(iRr);
 		   iRr++;
 		   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '"+subdomain +"." + strHost + ".', 'CNAME', '"+cname +"', '0', '" + cgcl_ttl + "')";
-   //			musicdb().query(strSql);
-   straCmd.add(strSql);
+         straCmd.add(strSql);
 		
 	   }
 		
@@ -5517,20 +5506,17 @@ namespace dynamic_source
 			subdomain = tree[0];
 			subdomain = subdomain.Mid(0, subdomain.find(strHost) - 1);
          TRACE("mydns: updating subdomain address " + subdomain);
-			//$peer += "{$subdomain} 60 IN A {$tree[1]}\n";
 
 
 			rr = gen::str::itoa(iRr);
 			iRr++;
 			strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '"+subdomain+"."+strHost+".', 'A', '"+tree[1].get_string()+"', '0', '60')";
-//			musicdb().query(strSql);
-straCmd.add(strSql);
+         straCmd.add(strSql);
 
 			rr = gen::str::itoa(iRr);
 			iRr++;
 			strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '*."+subdomain+"."+strHost+".', 'A', '"+tree[1].get_string()+"', '0', '60')";
-//			musicdb().query(strSql);
-straCmd.add(strSql);
+         straCmd.add(strSql);
 			
 			log += subdomain + "." + strHost +  " IN A " + tree[1];
 			log += "<br />";

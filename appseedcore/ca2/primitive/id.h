@@ -46,48 +46,30 @@ public:
 
    inline bool operator == (const id & id) const
    {
-      if(is_null() || (is_text() && m_psz == NULL))
+      if(is_null())
       {
-         if(id.is_null() || (id.is_text() && id.m_psz == NULL))
+         if(id.is_null())
          {
             return true;
-         }
-         else
-         {
-            return false;
          }
       }
       else if(is_text())
       {
-         if(id.is_null() || (id.is_text() && id.m_psz == NULL))
-         {
-            return false;
-         }
-         else if(id.is_text())
+         if(id.is_text())
          {
             return m_psz == id.m_psz;
          }
-         else
-         {
-            return false;
-         }
       }
-      else
+      else if(is_number())
       {
-         if(id.is_null() || (id.is_text() && id.m_psz == NULL))
-         {
-            return false;
-         }
-         else if(id.is_text())
-         {
-            return false;
-         }
-         else
+         if(id.is_number())
          {
             return m_ui == id.m_ui;
          }
       }
+      return false;
    }
+
    inline bool operator != (const id & id) const
    {
       return ! operator == (id);
@@ -245,7 +227,7 @@ public:
 
    inline bool is_null() const
    {
-      return m_chType == IDTYPE_TYPE_NULL;
+      return m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_psz == NULL);
    }
 
    inline bool is_empty() const

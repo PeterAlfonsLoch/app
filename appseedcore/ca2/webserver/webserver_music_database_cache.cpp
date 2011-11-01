@@ -1374,6 +1374,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
 
 		var rows = musicdb().query_rows(strSql);
 
+      ::ca::set_thread_priority(::ca::thread_priority_time_critical);
 
 	   stringa classa;
 
