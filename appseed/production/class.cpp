@@ -186,7 +186,7 @@ int production_class::run()
 
          if(m_eversion == version_basis)
          {
-            post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h3 style=\"margin-bottom:0px; color: #552250;\">" + m_strStartTime + "</h3><span style=\"color: #882266; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://ca2.cc/\">ca2</a> basis release.</span>";
+            post["new_status"] = "<div style=\"display: block; " + m_strBackPostColor + "\"><h3 style=\"margin-bottom:0px; color: #552250;\">" + m_strStartTime + "</h3><span style=\"color: #882266; display: block; margin-bottom: 1.5em;\">Starting production of new <a href=\"http://fluidbasis.com/\" class=\"fluidbasis\" >fluidbasis</a> release.</span>";
          }
          else
          {
