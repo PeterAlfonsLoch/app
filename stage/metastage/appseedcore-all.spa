@@ -9,7 +9,3 @@ stage\basis\libssl32.dll
 stage\basis\msvcp100d.dll
 stage\basis\msvcr100d.dll
 stage\basis\os.dll
-stage\basis\salt.dll
-stage\basis\sqlite.dll
-stage\basis\zlib.dll
-stage\basis\libcharguess.dll
