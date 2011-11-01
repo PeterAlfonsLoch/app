@@ -5,6 +5,7 @@
 #include "window_frame/FrameSchemaHardCoded001.h"
 #include "window_frame/FrameSchemaHardCoded002.h"
 #include "window_frame/FrameSchemaHardCoded005.h"
+#include "window_frame/FrameSchemaHardCoded008.h"
 
 
 
@@ -169,6 +170,42 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 // trans      HICON hicon = GetIcon(false);
 
       window_frame::FrameSchema * pschema = create_frame_schema();
+      bool bBasis;
+
+#if CA2_PLATFORM_VERSION == VERSION_BASIS
+      bBasis = true;
+#else
+      bBasis = false;
+#endif
+
+      {
+         window_frame::FrameSchemaHardCoded001 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded001 * > (pschema);
+         if(pschemaSpec != NULL && (bBasis || Application.command().m_varTopicQuery["version"] == "basis"))
+         {
+            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded001::StyleBlueRedPurple);
+         }
+      }
+      {
+         window_frame::FrameSchemaHardCoded002 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded002 * > (pschema);
+         if(pschemaSpec != NULL && (bBasis || Application.command().m_varTopicQuery["version"] == "basis"))
+         {
+            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded002::StyleBlueRedPurple);
+         }
+      }
+      {
+         window_frame::FrameSchemaHardCoded005 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded005 * > (pschema);
+         if(pschemaSpec != NULL && (bBasis || Application.command().m_varTopicQuery["version"] == "basis"))
+         {
+            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded005::StyleBlueRedPurple);
+         }
+      }
+      {
+         window_frame::FrameSchemaHardCoded008 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded008 * > (pschema);
+         if(pschemaSpec != NULL && (bBasis || Application.command().m_varTopicQuery["version"] == "basis"))
+         {
+            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded008::StyleBlueRedPurple);
+         }
+      }
       m_pframeschema = pschema;
       m_workset.AttachFrameSchema(m_pframeschema);
       if(!m_workset.update(
