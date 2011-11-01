@@ -3,15 +3,6 @@
 #pragma once
 
 
-#ifdef __cplusplus
-//#define EXTERN_C			extern "C"
-#define BEGIN_EXTERN_C		extern "C" {
-#define END_EXTERN_C		}
-#else
-//#define EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-#endif
 
 
 #ifdef WIN32

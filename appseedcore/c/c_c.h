@@ -4,6 +4,19 @@
 #pragma once
 
 
+#ifdef _WIN32
+#ifdef __CA__LIB
+   #define CLASS_DECL_____
+#elif defined(__CA__DLL)
+   #define CLASS_DECL_____  _declspec(dllexport)
+#else
+   #define CLASS_DECL_____  _declspec(dllimport)
+#endif
+#else
+   #define CLASS_DECL_____
+#endif
+
+
 #include "version.h"
 
 
@@ -23,17 +36,6 @@
 #endif
 
 
-#ifdef _WINDOWS
-#ifdef __CA__LIB
-   #define CLASS_DECL_____
-#elif defined(__CA__DLL)
-   #define CLASS_DECL_____  _declspec(dllexport)
-#else
-   #define CLASS_DECL_____  _declspec(dllimport)
-#endif
-#else
-   #define CLASS_DECL_____
-#endif
 
 
 
