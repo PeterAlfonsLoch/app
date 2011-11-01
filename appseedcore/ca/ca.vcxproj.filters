@@ -12,6 +12,24 @@
     <Filter Include="Source Files\C Source Files">
       <UniqueIdentifier>{c16d98b4-da20-4734-888b-e00d251b991d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sqlite">
+      <UniqueIdentifier>{5c24f7cb-6f41-4b5c-ad00-a2ec3b4ff316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libcharguess">
+      <UniqueIdentifier>{78719ab4-bf73-405b-97e7-3580f50b20c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\zlib">
+      <UniqueIdentifier>{84bfed40-3dba-4c52-9236-c6f2e7256157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sqlite">
+      <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libcharguess">
+      <UniqueIdentifier>{cffd6f11-bff6-44c5-8421-a7e9540ef339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\zlib">
+      <UniqueIdentifier>{9d83f1da-de76-48fd-91e8-ab6ab15f78e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rotate.h">
@@ -83,6 +101,114 @@
     <ClInclude Include="str.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="libcharguess\big5Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\charDistribution.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\charguess.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\charsetProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\codingStateMachine.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\config.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EscCharsetProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EUCJPProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EUCKRProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EUCTWProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\GB2312Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\jpCntx.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\Latin1Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\libcharguess.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\MBCSGroupProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\pkgInt.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\SBCharsetProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\SBCSGroupProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\SJISProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\types.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\universal.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\UTF8Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\crc32.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\deflate.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inffast.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inffixed.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inflate.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inftrees.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\trees.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zconf.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zconf.in.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zlib.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zutil.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite3.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite3ext.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allocate.cpp">
@@ -129,6 +255,117 @@
     </ClCompile>
     <ClCompile Include="str.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\sqlite3.c">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\big5Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\charDistribution.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\charguess.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EscCharsetProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EscSM.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EUCJPProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EUCKRProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EUCTWProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\GB2312Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\jpCntx.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangBulgarianModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangCyrillicModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangGreekModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangHungarianModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangThaiModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\Latin1Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\MBCSGroupProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\MBCSSM.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\SBCharsetProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\SBCSGroupProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\SJISProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\universal.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\UTF8Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\adler32.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\compress.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\crc32.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\deflate.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\gzio.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\infback.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inffast.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inflate.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inftrees.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\trees.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\uncompr.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zutil.c">
+      <Filter>Source Files\zlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

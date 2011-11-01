@@ -9,7 +9,7 @@
 
 #include <stdlib.h>
 #include <Windows.h>
-#include "zlib/zlib.h"
+#include "ca/zlib/zlib.h"
 #include "ioapi.h"
 #include "iowin32.h"
 

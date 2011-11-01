@@ -140,7 +140,7 @@ namespace md5
    {
       ex1::filesp spfile;
       
-      spfile(Application.get_file(m_strFile, ::ex1::file::type_binary | ::ex1::file::mode_read));
+      spfile = Application.get_file(m_strFile, ::ex1::file::type_binary | ::ex1::file::mode_read);
 
       if(spfile.is_null())
       {

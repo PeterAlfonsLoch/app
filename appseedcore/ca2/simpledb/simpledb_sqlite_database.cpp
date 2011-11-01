@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "include/sqlite.h"
 
 namespace sqlite
 {

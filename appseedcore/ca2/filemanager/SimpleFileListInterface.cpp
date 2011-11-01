@@ -1,7 +1,5 @@
 #include "StdAfx.h"
 #include "SimpleFileListInterface.h"
-#include "include/zlib.h"
-#include "zlib/zutil.h"
 
 
 namespace filemanager

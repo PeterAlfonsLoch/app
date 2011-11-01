@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "libcharguess/libcharguess.h"
 
 
 namespace cube8

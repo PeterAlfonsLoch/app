@@ -29,7 +29,6 @@
 
 
 #include "io_decorators.h" //has "readers.h" "io_helpers.h" "utils.h"
-#include "zlib/zlib.h"
 
 using namespace dami;
 

@@ -3,16 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca2", "..\..\appseedcore\ca2\ca2.vcxproj", "{AFC48570-75E4-46BD-B8AB-4590B257E1C8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{ACB3FF4B-0B61-45A7-881D-E102E0F85808} = {ACB3FF4B-0B61-45A7-881D-E102E0F85808}
-		{38A5C152-C1EF-4322-BADF-A41B35335831} = {38A5C152-C1EF-4322-BADF-A41B35335831}
-		{6352AD78-A4BA-4F99-89EB-521C22C05322} = {6352AD78-A4BA-4F99-89EB-521C22C05322}
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7} = {EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcharguess", "..\..\thirdparty\appseed\libcharguess\libcharguess.vcxproj", "{38A5C152-C1EF-4322-BADF-A41B35335831}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "..\..\thirdparty\appseed\sqlite\sqlite.vcxproj", "{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "..\..\thirdparty\appseed\zlib\zlib.vcxproj", "{6352AD78-A4BA-4F99-89EB-521C22C05322}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_md5", "..\..\appseed\md5\md5.vcxproj", "{AFF9FDD2-1F13-4951-815B-61BC0C9A774F}"
 EndProject
@@ -24,10 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os", "..\..\os\windows\os.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca2app", "..\..\appseedcore\ca2app\ca2app.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
 	ProjectSection(ProjectDependencies) = postProject
-		{38A5C152-C1EF-4322-BADF-A41B35335831} = {38A5C152-C1EF-4322-BADF-A41B35335831}
-		{6352AD78-A4BA-4F99-89EB-521C22C05322} = {6352AD78-A4BA-4F99-89EB-521C22C05322}
 		{AFF9FDD2-1F13-4951-815B-61BC0C9A774F} = {AFF9FDD2-1F13-4951-815B-61BC0C9A774F}
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7} = {EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}
 	EndProjectSection
 EndProject
 Global
@@ -52,42 +40,6 @@ Global
 		{AFC48570-75E4-46BD-B8AB-4590B257E1C8}.profiler|Win32.Build.0 = profiler|Win32
 		{AFC48570-75E4-46BD-B8AB-4590B257E1C8}.profiler|x64.ActiveCfg = profiler|x64
 		{AFC48570-75E4-46BD-B8AB-4590B257E1C8}.profiler|x64.Build.0 = profiler|x64
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.basis|Win32.ActiveCfg = basis|Win32
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.basis|Win32.Build.0 = basis|Win32
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.basis|x64.ActiveCfg = basis|x64
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.basis|x64.Build.0 = basis|x64
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.codeanalysis|x64.Build.0 = codeanalysis|x64
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.profiler|Win32.ActiveCfg = profiler|Win32
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.profiler|Win32.Build.0 = profiler|Win32
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.profiler|x64.ActiveCfg = profiler|x64
-		{38A5C152-C1EF-4322-BADF-A41B35335831}.profiler|x64.Build.0 = profiler|x64
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.basis|Win32.ActiveCfg = basis|Win32
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.basis|Win32.Build.0 = basis|Win32
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.basis|x64.ActiveCfg = basis|x64
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.basis|x64.Build.0 = basis|x64
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.codeanalysis|x64.Build.0 = codeanalysis|x64
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.profiler|Win32.ActiveCfg = profiler|Win32
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.profiler|Win32.Build.0 = profiler|Win32
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.profiler|x64.ActiveCfg = profiler|x64
-		{EDC06BE7-D6AF-4309-B8FE-1E8D974D23D7}.profiler|x64.Build.0 = profiler|x64
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|Win32.ActiveCfg = basis|Win32
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|Win32.Build.0 = basis|Win32
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|x64.ActiveCfg = basis|x64
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.basis|x64.Build.0 = basis|x64
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.codeanalysis|x64.Build.0 = codeanalysis|x64
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.profiler|Win32.ActiveCfg = profiler|Win32
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.profiler|Win32.Build.0 = profiler|Win32
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.profiler|x64.ActiveCfg = profiler|x64
-		{6352AD78-A4BA-4F99-89EB-521C22C05322}.profiler|x64.Build.0 = profiler|x64
 		{AFF9FDD2-1F13-4951-815B-61BC0C9A774F}.basis|Win32.ActiveCfg = basis|Win32
 		{AFF9FDD2-1F13-4951-815B-61BC0C9A774F}.basis|Win32.Build.0 = basis|Win32
 		{AFF9FDD2-1F13-4951-815B-61BC0C9A774F}.basis|x64.ActiveCfg = basis|Win32

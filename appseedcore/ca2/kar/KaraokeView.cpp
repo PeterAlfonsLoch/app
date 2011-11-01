@@ -1,6 +1,5 @@
 ﻿#include "StdAfx.h"
 #include "KaraokeBouncingBall.h"
-#include "libcharguess/libcharguess.h"
 
 namespace kar
 {

@@ -42,8 +42,6 @@ namespace compress
 #include "coder_mixer2mt.h"
 
 // zlib
-#include "include/zlib.h"
-#include "zlib/zutil.h"
 #include "gzip_helper.h"
 
 // 7z

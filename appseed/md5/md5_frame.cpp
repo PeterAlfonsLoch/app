@@ -14,6 +14,8 @@ namespace md5
 
       m_dataid = "ca2.md5.frame";
 
+      m_etranslucency = TranslucencyPresent;
+
 
       WfiEnableFullScreen();
 

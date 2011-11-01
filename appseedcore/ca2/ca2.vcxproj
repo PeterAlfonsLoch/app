@@ -4027,15 +4027,6 @@
     <ClCompile Include="mediaplaylist\mediaplaylist_view_update_hint.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\libcharguess\libcharguess.vcxproj">
-      <Project>{38a5c152-c1ef-4322-badf-a41b35335831}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\sqlite\sqlite.vcxproj">
-      <Project>{edc06be7-d6af-4309-b8fe-1e8d974d23d7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\zlib\zlib.vcxproj">
-      <Project>{6352ad78-a4ba-4f99-89eb-521c22c05322}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\ca\ca.vcxproj">
       <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
     </ProjectReference>

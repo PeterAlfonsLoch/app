@@ -1,6 +1,5 @@
 #include "StdAfx.h"
 #include <openssl/ssl.h>
-#include "include/zlib.h"
 
 
 #define BLOCK_SIZE 1024

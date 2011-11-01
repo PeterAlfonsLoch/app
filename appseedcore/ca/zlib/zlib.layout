@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="crc32.c" open="0" top="0" tabpos="2">
+		<Cursor position="8371" topLine="199" />
+	</File>
+	<File name="inflate.c" open="0" top="0" tabpos="7">
+		<Cursor position="44646" topLine="1174" />
+	</File>
+	<File name="zconf.h" open="0" top="0" tabpos="1">
+		<Cursor position="1601" topLine="12" />
+	</File>
+	<File name="zlib.h" open="0" top="0" tabpos="3">
+		<Cursor position="64665" topLine="1262" />
+	</File>
+	<File name="zutil.h" open="0" top="0" tabpos="4">
+		<Cursor position="577" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

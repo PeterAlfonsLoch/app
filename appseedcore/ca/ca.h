@@ -43,5 +43,11 @@ extern "C"
 #include "str.h"
 
 
+#include "zlib/zconf.h"
+#include "zlib/zlib.h"
+#include "zlib/zutil.h"
+#include "sqlite/sqlite.h"
 
 
+
+#include "libcharguess/libcharguess.h"

@@ -1,6 +1,5 @@
 #include "StdAfx.h"
 #include "ca8_Shell.h"
-#include "include/zlib.h"
 
 namespace filemanager
 {
