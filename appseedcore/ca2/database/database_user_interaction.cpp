@@ -157,7 +157,7 @@ namespace database
          {
             rect rect;
             memstream >> rect;
-            pWnd->SetWindowPos(NULL, rect.left,
+            pWnd->SetWindowPos(0, rect.left,
                rect.top, rect.width(), rect.height(), SWP_NOZORDER);
          }
          return true;

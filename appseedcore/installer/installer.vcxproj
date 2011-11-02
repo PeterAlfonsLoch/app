@@ -283,6 +283,7 @@
       <PreprocessorDefinitions>WIN32</PreprocessorDefinitions>
       <Culture>
       </Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/appseedcore</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">

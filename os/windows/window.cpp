@@ -2874,7 +2874,8 @@ namespace win
    void window::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
    {
       rect rectUpdate;
-      GetWindowRect(rectUpdate);
+      GetDesktopWindow()->GetWindowRect(rectUpdate);
+      pdc->SetViewportOrg(point(0, 0));
       rect rectPaint;
       rectPaint = rectUpdate;
       ScreenToClient(rectPaint);
@@ -2958,8 +2959,8 @@ namespace win
             if(!::IsWindowVisible(hWnd) || ::IsIconic(hWnd))
                continue;
             ::GetWindowRect(hWnd, rect5);
-            rect9.intersect(rect5, rectUpdate);
-            if(rect9.width() >0 && rect9.height() > 0)
+            //rect9.intersect(rect5, rectUpdate);
+            //if(rect9.width() >0 && rect9.height() > 0)
             {
                ::ca::window * pwnd = dynamic_cast < ::ca::window * > (window::FromHandlePermanent(hWnd));
                if(pwnd == NULL)
@@ -3010,12 +3011,12 @@ namespace win
                   {
                      ::BitBlt(
                         (HDC) pdc->get_os_data(),
-                        rect9.left,
-                        rect9.top,
-                        rect9.width(), rect9.height(),
+                        rect5.left,
+                        rect5.top,
+                        rect5.width(), rect5.height(),
                         hdcWindow,
-                        rect9.left - rect5.left,
-                        rect9.top - rect5.top,
+                        rect5.left - rect5.left,
+                        rect5.top - rect5.top,
                         SRCCOPY);
                      ::ReleaseDC(wndaApp[j], hdcWindow);
                   }
@@ -3910,6 +3911,7 @@ ExitModal:
          nFlags |= SWP_NOREDRAW;
          nFlags |= SWP_NOMOVE;
          nFlags |= SWP_NOSIZE;
+         nFlags |= SWP_NOZORDER;
          if(nFlags & SWP_SHOWWINDOW)
          {
             ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
@@ -3919,10 +3921,15 @@ ExitModal:
          {
             ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
          }
-         if(&System != NULL && System.get_twf() != NULL)
+         if(m_pguie != NULL)
+         {
+            m_pguie->oprop("pending_layout") = true;
+            m_pguie->oprop("pending_zorder") = z;
+         }
+         /*if(&System != NULL && System.get_twf() != NULL)
          {
             System.get_twf()->synch_redraw();
-         }
+         }*/
       }
       else
       {

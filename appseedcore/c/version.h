@@ -26,3 +26,6 @@ CLASS_DECL_____ int _ca_is_stage();
 
 
 END_EXTERN_C
+
+
+

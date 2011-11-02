@@ -7,3 +7,4 @@ IDI_CCVOTAGUS_CA2_SPA   ICON                    "res\\fluidbasis_2011_10_26.ico"
 #else
 IDI_CCVOTAGUS_CA2_SPA   ICON                    "res\\ca2v_2011_04_02.ico"
 #endif
+

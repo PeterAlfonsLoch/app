@@ -119,6 +119,7 @@ namespace win
       UpdateBuffer();
       if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
       {
+         //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
          ScreenOutput();
       }
       DWORD dwTakeTime = ::GetTickCount() - m_dwLastUpdate;
@@ -1237,14 +1238,34 @@ namespace win
             (HDC)(dynamic_cast<::win::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
             &pt, 0, &blendPixelFunction, ULW_OPAQUE);
 
-         /*
          class rect rectWin;
          ::GetWindowRect(hwndParam, rectWin);
-         if(rectWindow != rectWin)
+         if(rect(rectWindow) != rectWin || (pwnd->m_pguie != NULL && (bool) pwnd->m_pguie->oprop("pending_layout")))
          {
-            ::SetWindowPos(hwndParam, NULL, rectWin.left, rectWin.top, rectWin.width(), rectWin.height(),  SWP_NOZORDER | SWP_NOACTIVATE);
+
+            
+            if(pwnd->m_pguie != NULL && (bool) pwnd->m_pguie->oprop("pending_layout"))
+            {
+               HWND hwndZOrder = (HWND) pwnd->m_pguie->oprop("pending_zorder").get_integer();
+               ::SetWindowPos(hwndParam, HWND_TOPMOST, 
+                  rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+               ::SetWindowPos(hwndParam, HWND_NOTOPMOST, 
+                  rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+               ::SetWindowPos(hwndParam, hwndZOrder, 
+                  rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+               /*simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd->m_pguie);
+               if(pframe != NULL)
+               {
+                  pframe->ActivateFrame();
+               }*/
+               pwnd->m_pguie->oprop("pending_layout") = false;
+            }
+            else
+            {
+               ::SetWindowPos(hwndParam, NULL, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+            }
          }
-         */
+
       }
       else
       {

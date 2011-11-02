@@ -787,12 +787,12 @@ void frame_window::InitialFramePosition(bool bForceRestore)
       ||  rectWindow.width() < 100
       ||  rectWindow.height() < 100)
       {
-         SetWindowPos(ZORDER_TOP, 100, 100, 650, 450, 0);
+         SetWindowPos(-3, 100, 100, 650, 450, 0);
       }
       else
       {
          SetWindowPos(
-            ZORDER_TOP,
+            -3,
             rectWindow.left,
             rectWindow.top,
             rectWindow.width(),
