@@ -199,6 +199,9 @@ DWORD GetLastError();
 #include "win_file.h"
 
 
+#include "win_mmsystem.h"
+
+
 
 
 
