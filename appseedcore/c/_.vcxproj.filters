@@ -30,12 +30,6 @@
     <Filter Include="Source Files\spa">
       <UniqueIdentifier>{7e495911-8e5e-4079-b719-4674f5d7f6c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\bspatch">
-      <UniqueIdentifier>{66e24f5d-5dd2-44b6-8d76-9738b1df5f77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\bspatch">
-      <UniqueIdentifier>{762f43f6-0263-483f-ae22-f6c816821718}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{205eb37e-ff6d-4d07-9280-c5956243f1a9}</UniqueIdentifier>
     </Filter>
@@ -44,6 +38,12 @@
     </Filter>
     <Filter Include="Source Files\spa\windows">
       <UniqueIdentifier>{1c4ab9ce-fe0b-4010-8850-6dc613cd862f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bsdiff">
+      <UniqueIdentifier>{762f43f6-0263-483f-ae22-f6c816821718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bsdiff">
+      <UniqueIdentifier>{66e24f5d-5dd2-44b6-8d76-9738b1df5f77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -197,15 +197,6 @@
     <ClInclude Include="spa\spa_trace.h">
       <Filter>Header Files\spa</Filter>
     </ClInclude>
-    <ClInclude Include="..\ca2\compress\bsdiff\bsdiff.h">
-      <Filter>Header Files\bspatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ca2\compress\bsdiff\bzlib.h">
-      <Filter>Header Files\bspatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ca2\compress\bsdiff\bzlib_private.h">
-      <Filter>Header Files\bspatch</Filter>
-    </ClInclude>
     <ClInclude Include="_heap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -292,6 +283,18 @@
     </ClInclude>
     <ClInclude Include="windows\c_os_registry.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="bsdiff\bsdiff.h">
+      <Filter>Header Files\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="bsdiff\bzlib.h">
+      <Filter>Header Files\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="bsdiff\bzlib_private.h">
+      <Filter>Header Files\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="bsdiff\bsdiff_private.h">
+      <Filter>Header Files\bsdiff</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -409,12 +412,6 @@
     <ClCompile Include="simple_obj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\bsdiff.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\bspatch.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
     <ClCompile Include="_std_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -441,27 +438,6 @@
     </ClCompile>
     <ClCompile Include="_argcargv.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\blocksort.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\bzlib.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\compress.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\crctable.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\decompress.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\huffman.cpp">
-      <Filter>Source Files\bspatch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ca2\compress\bsdiff\randtable.cpp">
-      <Filter>Source Files\bspatch</Filter>
     </ClCompile>
     <ClCompile Include="cpu_architecture.c">
       <Filter>Source Files\C Source Files</Filter>
@@ -525,6 +501,33 @@
     </ClCompile>
     <ClCompile Include="windows\c_os_small_ipc_channel.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\blocksort.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bspatch.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bzlib.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\compress.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\crctable.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\decompress.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\huffman.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\randtable.cpp">
+      <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

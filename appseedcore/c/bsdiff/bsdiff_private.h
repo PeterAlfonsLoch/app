@@ -1,12 +1,9 @@
 #pragma once
 
-#include "bzlib.h"
 
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-
-#define libbsdif_API CLASS_DECL_____
 
 /*#ifdef libbsdif_DLL
    #define libbsdif_API  __declspec(dllexport)
@@ -64,7 +61,3 @@ int errx(int i, const char* str, T arg)
 }
 
 int errx(int i, const char* str);
-
-
-libbsdif_API int bsdiff(const char * oldfile, const char * newfile, const char * patchfile);
-libbsdif_API int bspatch(const char * oldfile, const char * newfile, const char * patchfile);

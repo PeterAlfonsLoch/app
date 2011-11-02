@@ -69,6 +69,9 @@ extern "C"
 #include "hotplugin/hotplugin.h"
 #include "spa/spa.h"
 
+#include "bsdiff/bsdiff.h"
+
+
 #if defined(MACOS)
 
 #include "macos/c_os.h"

@@ -1,17 +1,9 @@
 #include "StdAfx.h"
-#include <stdlib.h>
 #include "bzlib.h"
-#include <stdio.h>
-#include <string.h>
-//#include <err.h>
-//#include <unistd.h>
-#include <io.h>
-#include <fcntl.h>
-//#include <sys/wait.h>
 #include "bsdiff.h"
+#include "bsdiff_private.h"
 
-#include <process.h>
-#include <sys/types.h>
+
 typedef unsigned char u_char;
 typedef long pid_t;
 

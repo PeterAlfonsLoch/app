@@ -18,15 +18,11 @@
    in the file LICENSE.
    ------------------------------------------------------------------ */
 
+#pragma once
+
 
 #ifndef _BZLIB_H
 #define _BZLIB_H
-
-#ifdef __cplusplus
-#include "c/c.h"
-#else
-#include "c/c_c.h"
-#endif
 
 
 #ifndef _CRT_SECURE_NO_WARNINGS
@@ -87,7 +83,7 @@ typedef
 #endif
 
 #ifdef _WIN32
-#   include <windows.h>
+//#   include <windows.h>
 #   ifdef small
       /* windows.h define small to char */
 #      undef small
@@ -111,8 +107,8 @@ typedef
 #   define BZ_EXTERN extern*/
 #endif
 
-#define BZ_API(func)  WINAPI func
-#define BZ_EXTERN CLASS_DECL_____ extern
+#define BZ_API(func)  func
+#define BZ_EXTERN CLASS_DECL_____ 
 
 
 /*-- Core (low-level) library functions --*/
@@ -154,11 +150,11 @@ BZ_EXTERN int BZ_API(BZ2_bzDecompressEnd) (
 #ifndef BZ_NO_STDIO
 #define BZ_MAX_UNUSED 5000
 
-typedef void BZFILE;
+#define BZFILE void
 
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) ( 
       int*  bzerror,   
-      _FILE* f, 
+      struct _struct_FILE * f, 
       int   verbosity, 
       int   small,
       void * unused,    
@@ -186,7 +182,7 @@ BZ_EXTERN int BZ_API(BZ2_bzRead) (
 
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) ( 
       int*  bzerror,      
-      _FILE* f, 
+      struct _struct_FILE * f, 
       int   blockSize100k, 
       int   verbosity, 
       int   workFactor 

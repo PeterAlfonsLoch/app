@@ -24,21 +24,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
 */
 #include "StdAfx.h"
-#ifndef _CRT_SECURE_NO_WARNINGS
-#define _CRT_SECURE_NO_WARNINGS
-#endif
-
-#include <stdlib.h>
-#include <stdio.h>
-//#include <err.h>
+#include "bsdiff_private.h"
 #include "bzlib.h"
-#include <io.h>
-#include <fcntl.h>
-
-#include <sys/types.h>
 #include "bsdiff.h"
+
 typedef unsigned char u_char;
 typedef signed int ssize_t;
+
 
 int err(int i, const char* str) {
    char lastErrorTxt[1024];

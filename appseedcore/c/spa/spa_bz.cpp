@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "../../appseedcore/ca2/compress/bsdiff/bzlib.h"
 
 const int g_iGzUncompressLen = 1024 * 1024;
 char * g_pchGzUncompressBuffer = NULL;

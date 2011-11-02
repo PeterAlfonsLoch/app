@@ -48,7 +48,6 @@ namespace compress
 #include "7z/7z.h"
 
 // bzip
-#include "bsdiff/bsdiff.h"
 #include "bzip_helper.h"
 
 // rar

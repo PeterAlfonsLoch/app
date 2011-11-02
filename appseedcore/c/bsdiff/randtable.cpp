@@ -18,7 +18,6 @@
    in the file LICENSE.
    ------------------------------------------------------------------ */
 #include "StdAfx.h"
-
 #include "bzlib_private.h"
 
 

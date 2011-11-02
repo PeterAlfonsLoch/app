@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "compress/bsdiff/bsdiff.h"
 #include <math.h>
 
 

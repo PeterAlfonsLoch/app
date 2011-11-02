@@ -657,10 +657,11 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\ca2\compress\bsdiff\bsdiff.h" />
-    <ClInclude Include="..\ca2\compress\bsdiff\bzlib.h" />
-    <ClInclude Include="..\ca2\compress\bsdiff\bzlib_private.h" />
     <ClInclude Include="atol.h" />
+    <ClInclude Include="bsdiff\bsdiff.h" />
+    <ClInclude Include="bsdiff\bsdiff_private.h" />
+    <ClInclude Include="bsdiff\bzlib.h" />
+    <ClInclude Include="bsdiff\bzlib_private.h" />
     <ClInclude Include="c.h" />
     <ClInclude Include="ca2_types.h" />
     <ClInclude Include="ca_seed.h" />
@@ -739,15 +740,33 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ca2\compress\bsdiff\blocksort.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\bsdiff.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\bspatch.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\bzlib.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\compress.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\crctable.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\decompress.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\huffman.cpp" />
-    <ClCompile Include="..\ca2\compress\bsdiff\randtable.cpp" />
+    <ClCompile Include="bsdiff\blocksort.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bspatch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bzlib.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\compress.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\crctable.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\decompress.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\huffman.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="bsdiff\randtable.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="conv.cpp" />
     <ClCompile Include="cpu_architecture.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
