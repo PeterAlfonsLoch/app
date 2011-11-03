@@ -432,6 +432,7 @@ void virtual_user_interface::install_message_handling(::user::win::message::disp
    }
    IGUI_WIN_MSG_LINK(WM_SIZE        , pinterface, this, &virtual_user_interface::_001OnSize);
    IGUI_WIN_MSG_LINK(WM_MOVE        , pinterface, this, &virtual_user_interface::_001OnMove);
+   IGUI_WIN_MSG_LINK(WM_CLOSE       , pinterface, this, &virtual_user_interface::_001OnClose);
 }
 
 void virtual_user_interface::_002InstallMessageHandling(::user::win::message::dispatch * pinterface)
