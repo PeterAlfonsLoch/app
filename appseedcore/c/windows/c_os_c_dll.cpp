@@ -1,20 +1,21 @@
 #include "StdAfx.h"
 
-#ifdef WINDOWS
+
 int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 {
 	UNREFERENCED_PARAMETER(lpReserved);
 	if(dwReason == DLL_PROCESS_ATTACH)
 	{
       //initialize_primitive_heap();
+      ::OutputDebugString("::ca2:: c.dll :: initializing!\n");
 	}
 	else if (dwReason == DLL_PROCESS_DETACH)
 	{
+      ::OutputDebugString("::ca2:: c.dll :: terminating!\n");
       //finalize_primitive_heap();
 	}
 	return 1;   // ok
 }
-#endif
 
 
 
@@ -25,13 +26,11 @@ int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 
 */
 
-#ifdef WINDOWS
 extern "C"
 BOOL WINAPI DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 {
    return c_dll_main(hinstance, dwReason, lpReserved);
 }
-#endif
 
 
 extern "C" void __chkstk()

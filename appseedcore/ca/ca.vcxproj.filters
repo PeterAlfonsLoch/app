@@ -30,6 +30,9 @@
     <Filter Include="Source Files\zlib">
       <UniqueIdentifier>{9d83f1da-de76-48fd-91e8-ab6ab15f78e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\windows">
+      <UniqueIdentifier>{095a0014-c024-4ada-aab3-0966e963c364}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rotate.h">
@@ -366,6 +369,9 @@
     </ClCompile>
     <ClCompile Include="zlib\zutil.c">
       <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_ca_dll.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

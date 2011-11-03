@@ -282,6 +282,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmp3lame.dll" "$(OutDir)"</
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>

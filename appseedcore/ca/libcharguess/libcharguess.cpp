@@ -6,6 +6,7 @@
 
 #include <windows.h>
 
+/*
 extern "C" int APIENTRY
 DllMain( HINSTANCE hModule,
                        DWORD  ul_reason_for_call,
@@ -22,6 +23,7 @@ DllMain( HINSTANCE hModule,
     }
     return TRUE;
 }
+*/
 #endif
 
 // This is an example of an exported var

@@ -1079,40 +1079,14 @@ namespace win
 
       HWND hwndParam = (HWND) pwnd->_get_handle();
 
-      //////////////////////////////////
-      //
-      // Routine:
-      // hwndParam handle ::ca::window
-      // device context retrieve
-      //
-      //////////////////////////////////.
+      HDC hdcScreen = ::GetDCEx(hwndParam, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
 
-      // Try to get ::ca::window owned
-      // device context.
-
-      HDC hdcScreen = ::GetDCEx(
-         hwndParam,
-         NULL,
-         DCX_CLIPSIBLINGS | DCX_WINDOW);
-      /*HDC hdcScreen = ::GetDCEx(
-         NULL,
-         NULL,
-         0);*/
-
-   /*   HDC hdcScreen = ::GetDCEx(
-         hwndParam,
-         NULL,
-         DCX_WINDOW);*/
       if(hdcScreen == NULL)
       {
          // If it has failed to get ::ca::window
          // owned device context, try to get
          // a device context from the cache.
-         hdcScreen = ::GetDCEx(
-            hwndParam,
-            NULL,
-            DCX_CACHE 
-            | DCX_CLIPSIBLINGS | DCX_WINDOW);
+         hdcScreen = ::GetDCEx(hwndParam, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
 
          // If no device context could be retrieved,
          // nothing can be drawn at the screen.
@@ -1124,10 +1098,6 @@ namespace win
       ::SelectClipRgn(hdcScreen, NULL);
 
 
-      // Debug
-   #ifdef _DEBUG
-//      DWORD dw = GetLastError();
-   #endif
 
       ////////////////////////////////////////
       //

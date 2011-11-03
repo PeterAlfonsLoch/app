@@ -367,9 +367,6 @@
     <ClCompile Include="file_spa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dll_main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="spa\spa_machine_event.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>
@@ -531,6 +528,9 @@
     </ClCompile>
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_c_dll.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

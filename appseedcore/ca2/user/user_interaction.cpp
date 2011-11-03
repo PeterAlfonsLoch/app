@@ -192,6 +192,7 @@ namespace user
                   {
                      pimplOld->filter_target(pimplOld);
                      //pimplOld->filter_target(this);
+                     m_pthread->remove(pimplOld);
                      pimplOld->m_pguie = NULL;
                      pimplOld->DestroyWindow();
                      delete pimplOld;
@@ -243,7 +244,7 @@ namespace user
                   try
                   {
                      pimplOld->filter_target(pimplOld);
-                     //pimplOld->filter_target(this);
+                     pimplOld->filter_target(this);
                      pimplOld->m_pguie = NULL;
                      pimplOld->DestroyWindow();
                      delete pimplOld;

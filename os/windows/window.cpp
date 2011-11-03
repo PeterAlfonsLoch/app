@@ -3933,7 +3933,14 @@ ExitModal:
       }
       else
       {
-         ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
+         if(z == -3)
+         {
+            ::SetWindowPos(get_handle(), (HWND) 0, x, y, cx, cy, nFlags);
+         }
+         else
+         {
+            ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
+         }
       }
       return true;
 
