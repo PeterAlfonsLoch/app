@@ -91,17 +91,25 @@ namespace filemanager
 
    void document::OnFileManagerBrowse()
    {
+
+      get_filemanager_data()->OnFileManagerOpenFolder(m_item);
+
       {
          FileManagerViewUpdateHint uh;
          uh.set_type(FileManagerViewUpdateHint::TypePreSynchronize);
          update_all_views(NULL, 0, &uh);
       }
+
       {
          FileManagerViewUpdateHint uh;
          uh.set_type(FileManagerViewUpdateHint::TypeSynchronize);
          update_all_views(NULL, 0, &uh);
       }
+
+      data_set("InitialBrowsePath", ::radix::system::idEmpty, m_item.m_strPath);
+
       FileManagerInterface::OnFileManagerBrowse();
+
    }
 
    void document::OpenSelectionProperties()
@@ -260,7 +268,7 @@ namespace filemanager
    void document::Initialize(bool bMakeVisible)
    {
       string str;
-      str.Format("document(%s)", get_filemanager_data()->m_ptemplate->m_strDISection);
+      str.Format("document(%s)", get_filemanager_data()->m_strDISection);
       m_dataid = str;
 
 
@@ -295,9 +303,7 @@ namespace filemanager
 
    void document::OpenFolder(::fs::item &item)
    {
-      data_set("InitialBrowsePath", ::radix::system::idEmpty, item.m_strPath);
-      get_filemanager_data()->OnFileManagerOpenFolder(item);
-      FileManagerBrowse(item.m_strPath);
+      FileManagerBrowse(item);
    }
 
    void document::CreateViews()

@@ -154,6 +154,9 @@ namespace bergedge
 
       virtual bool on_install();
 
+
+      virtual void set_app_title(const char * pszAppId, const char * pszTitle);
+
    };
 
 

@@ -22,6 +22,11 @@ namespace ca2
          WfiEnableFullScreen();
 
          m_dataidWindow = "WindowData";
+        
+
+         m_etranslucency = TranslucencyPresent;
+
+
       }
 
       frame::~frame()

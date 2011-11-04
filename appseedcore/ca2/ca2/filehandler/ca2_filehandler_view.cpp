@@ -93,7 +93,7 @@ namespace ca2
          && !Sys(papp).savings().is_trying_to_save(gen::resource_memory))
          {
             class imaging & imaging = Sys(papp).imaging();
-            imaging.color_blend(pdc, m_rectStatusImage, cr, 127);
+            imaging.color_blend(pdc, m_rectItem, cr, 127);
          }
          else
          {

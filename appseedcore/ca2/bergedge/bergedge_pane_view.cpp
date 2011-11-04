@@ -59,7 +59,7 @@ namespace bergedge
       add_tab("menu", ::bergedge::PaneViewContextMenu);
       add_tab("win desk", ::bergedge::PaneViewWinActionArea);
       add_tab("options", ::bergedge::PaneViewConfiguration);
-      add_tab("file manager", ::bergedge::PaneViewFileManager);
+      add_tab("Open", "file_manager");
 
       set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
 
@@ -125,11 +125,11 @@ namespace bergedge
             ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pviewdata->m_pdoc);
             pdoc->FileManagerBrowse(strDir);
          }
-      }
-      else if(get_view_id() == ::bergedge::PaneViewFileManager)
-      {
-//         pframe->m_bAutoHideOnOutClick = false;
-         pframe->ShowWindow(SW_MAXIMIZE);
+         else if(strId == "file_manager")
+         {
+   //         pframe->m_bAutoHideOnOutClick = false;
+            // pframe->ShowWindow(SW_MAXIMIZE);
+         }
       }
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
@@ -201,13 +201,17 @@ namespace bergedge
             }
 
      		   string strIcon = Application.dir().matter(System.dir().path(strId, "mainframe/icon48.png"));
+            pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 	   	   if(System.file().exists(strIcon))
             {
-               pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
                ppane->m_dib.create(papp);
                ppane->m_dib.load_from_file(strIcon);
-               layout();
             }
+            else
+            {
+               ppane->m_strTitleEx = pcreatordata->m_id;
+            }
+            layout();
          }
          else if(strId == "::bergedge::pane_view_application")
          {
@@ -303,29 +307,6 @@ namespace bergedge
             }
          }
          break;
-      case PaneViewFileManager:
-         {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChild(papp, false, true, this);
-            if(pdoc != NULL)
-            {
-               pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
-               pdoc->get_filemanager_data()->m_bSetBergedgeTopicFile = true;
-               pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 123458);
-               ::view * pview = pdoc->get_view();
-               if(pview != NULL)
-               {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
-                  {
-                     pcreatordata->m_pdoc = pdoc;
-                     pcreatordata->m_pwnd = pframe;
-                  }
-               }
-            }
-         }
-         break;
       case PaneViewThreeActionLaunch:
          {
             ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
@@ -397,6 +378,7 @@ namespace bergedge
       default:
          break;
       }
+      ::userex::pane_tab_view::on_create_view(pcreatordata);
    }
 
 
@@ -418,23 +400,6 @@ namespace bergedge
 
    void pane_view::rotate()
    {
-      ::bergedge::EPaneView eviewNew;
-      switch(get_view_id())
-      {
-      case ::bergedge::PaneViewContextMenu:
-         eviewNew = ::bergedge::PaneViewWinActionArea;
-         break;
-      case ::bergedge::PaneViewWinActionArea:
-         eviewNew = ::bergedge::PaneViewFileManager;
-         break;
-      case ::bergedge::PaneViewFileManager:
-         eviewNew = ::bergedge::PaneViewContextMenu;
-         break;
-      default:
-         eviewNew = ::bergedge::PaneViewWinActionArea;
-      }
-
-      set_cur_tab_by_id(eviewNew);
    }
 
    /*void pane_view::OnFileManagerOpenFile(

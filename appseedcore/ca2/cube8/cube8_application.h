@@ -66,6 +66,7 @@ namespace cube8
       virtual bool initial_check_directrix();
 
 
+      virtual void set_title(const char * pszTitle);
 
 
    };

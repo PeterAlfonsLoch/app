@@ -178,7 +178,6 @@ namespace userex
                {
                   pcreatordata->m_pdoc = pdoc;
                   pcreatordata->m_pwnd = pframe;
-                  pdoc->Initialize(true);
                }
             }
          }

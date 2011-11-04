@@ -938,6 +938,14 @@ InitFailure:
    }
 
 
+   void application::set_title(const char * pszTitle)
+   {
+
+      Bergedge.set_app_title(m_strAppName, pszTitle);
+
+   }
+
+
 } //namespace cube8
 
 

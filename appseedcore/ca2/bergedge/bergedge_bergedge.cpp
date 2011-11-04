@@ -437,7 +437,10 @@ namespace bergedge
       if(strProtocol == "ca2app")
       {
          strId = System.url().get_server(strPathName);
-         pcreatecontext->m_spCommandLine->m_varFile = System.url().get_object(strPathName);
+
+         string str = System.url().get_object(strPathName);
+         gen::str::begins_eat(str, "/");
+         pcreatecontext->m_spCommandLine->m_varFile = str;
       }
       else
       {
@@ -676,7 +679,7 @@ namespace bergedge
 
    void bergedge::check_topic_file_change()
    {
-      if(m_varCurrentViewFile != m_varTopicFile)
+      if(m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
       {
          m_varCurrentViewFile = m_varTopicFile;
          request_topic_file();
@@ -842,6 +845,40 @@ namespace bergedge
       keyKar.SetValue("ca2 sentinel", "\"" + strSentinelPath + "\"");
 
       return platform::application::on_install();
+   }
+
+
+   void bergedge::set_app_title(const char * pszAppId, const char * pszTitle)
+   {
+
+      ::ca::application * papp = NULL;
+
+      if(m_mapApplication.Lookup(pszAppId, papp) && papp != NULL)
+      {
+
+         ::bergedge::pane_view * ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+
+         if(ppaneview != NULL)
+         {
+         
+            string strAppName(pszAppId);
+
+            ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
+
+            if(ppane != NULL)
+            {
+
+               ppane->m_strTitleEx = pszTitle;
+
+               ppaneview->layout();
+
+            }
+
+         }
+
+      }
+
+
    }
 
 } // namespace bergedge

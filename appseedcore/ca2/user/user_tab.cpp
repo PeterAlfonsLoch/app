@@ -1553,6 +1553,7 @@ namespace user
 
    void tab::open_tabs(const var_array & vara)
    {
+      stringa stra;
       for(int i = 0; i < vara.get_count(); i++)
       {
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
@@ -1560,7 +1561,10 @@ namespace user
             continue;
          if(vara[i].get_type() == var::type_string && vara[i].get_string() == "app:")
             continue;
-         ensure_tab_by_id(vara[i]);
+         if(stra.add_unique(vara[i]))
+         {
+            ensure_tab_by_id(stra.last_element());
+         }
       }
    }
 
