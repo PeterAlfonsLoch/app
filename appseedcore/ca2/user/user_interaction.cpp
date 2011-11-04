@@ -2444,6 +2444,17 @@ ExitModal:
          }
          catch(...)
          {
+            try
+            {
+               if(i < m_timera.get_count())
+               {
+                  m_timera.remove_at(i);
+               }
+               continue;
+            }
+            catch(...)
+            {
+            }
          }
          i++;
       }

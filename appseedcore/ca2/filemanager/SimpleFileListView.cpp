@@ -224,7 +224,7 @@ namespace filemanager
       index iSubItem;
       if(_001HitTest_(point, iItem, iSubItem))
       {
-         if(iSubItem == m_iNameSubItem)
+         if(iSubItem == m_iNameSubItem || (m_eview == ViewList && iSubItem == 0))
          {
            _017OpenSelected(true);
          }

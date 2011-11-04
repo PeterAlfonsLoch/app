@@ -92,8 +92,8 @@ namespace user
 
       m_scrollinfo.m_rectMargin.left = -84;
       m_scrollinfo.m_rectMargin.top = -84;
-      m_scrollinfo.m_rectMargin.bottom = 84;
-      m_scrollinfo.m_rectMargin.right = 84;
+      m_scrollinfo.m_rectMargin.bottom = -84;
+      m_scrollinfo.m_rectMargin.right = -84;
       m_scrollinfo.m_ptScroll.x = -84;
       m_scrollinfo.m_ptScroll.y = -84;
 
@@ -924,6 +924,9 @@ namespace user
 
             _001GetViewClientRect(&rectClient);
 
+
+            rectClient.inflate(m_scrollinfo.m_rectMargin);
+
             draw_list_item itemFirst(this);
 
             itemFirst.m_iItem          = 0;
@@ -1357,7 +1360,9 @@ namespace user
    index list::_001CalcDisplayTopIndex()
    {
       index iItem;
-      if(_001DisplayHitTest(point(0, m_bHeaderCtrl ? m_iItemHeight : 0), iItem))
+      if(_001DisplayHitTest(
+         point(m_scrollinfo.m_ptScroll.x < 0 ? -m_scrollinfo.m_ptScroll.x : 0,
+         (m_bHeaderCtrl ? m_iItemHeight : 0) + ( m_scrollinfo.m_ptScroll.y < -0 ? -m_scrollinfo.m_ptScroll.y : 0 )), iItem))
          return iItem;
       else
       {
@@ -1505,7 +1510,7 @@ namespace user
       {
          return false;
       }
-      if(m_eview == ViewIcon)
+      if(m_eview == ViewIcon || m_eview == ViewList)
       {
          iItemParam = iItem;
          if(iItem == -1)
@@ -1522,10 +1527,6 @@ namespace user
       INT_PTR iLeft =(index) m_scrollinfo.m_ptScroll.x - (m_scrollinfo.m_rectMargin.left * 2);
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
-      if(m_eview == ViewList)
-      {
-         iLeft += point.x / m_iItemWidth * m_iItemWidth;
-      }
       INT_PTR iRight;
       draw_list_item item(this);
       if(point.x < iLeft)
@@ -1597,9 +1598,10 @@ namespace user
          {
             rectClient.top += m_iItemHeight;
          }
+         rectClient.inflate(m_scrollinfo.m_rectMargin);
          index iRoundHeight = (index)((rectClient.height() / m_iItemHeight) * m_iItemHeight);
 
-         index iy = (index)((pt.y + m_scrollinfo.m_ptScroll.y) + ((pt.x / m_iItemWidth)) * iRoundHeight);
+         index iy = (index)((pt.y + m_scrollinfo.m_ptScroll.y) + (((pt.x + m_scrollinfo.m_ptScroll.x) / m_iItemWidth)) * iRoundHeight);
 
          index iItem = -1;
 
@@ -1851,6 +1853,7 @@ namespace user
          {
             rectClient.top += m_iItemHeight;
          }
+         rectClient.inflate(m_scrollinfo.m_rectMargin);
          if(m_iItemHeight <= 0)
             return_(pdrawitem->m_bOk, false);
          index iRoundHeight = (rectClient.height() / m_iItemHeight) * m_iItemHeight;
@@ -4966,6 +4969,15 @@ namespace user
 //      SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
 
       pobj->previous();
+
+      m_iTopIndex = _001CalcDisplayTopIndex();
+      index iLow = 0;
+      for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
+      {
+         if(m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+            break;
+      }
+      m_nDisplayCount = _001CalcDisplayItemCount();
 
       HeaderCtrlLayout();
 
