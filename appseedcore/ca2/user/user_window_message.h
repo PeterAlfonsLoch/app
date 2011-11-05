@@ -725,14 +725,14 @@ namespace user
 
 #ifdef WINDOWS
 #define IGUI_WIN_MSG_LINK \
-   ::user::win::message::win_connect
+   ::user::win::message::os_connect
 #else
 #define IGUI_WIN_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 #ifdef LINUX
 #define IGUI_LNX_MSG_LINK \
-   ::user::win::message::lnx_connect
+   ::user::win::message::os_connect
 #else
 #define IGUI_LNX_MSG_LINK(p1, p2, p3, p4) \
    ;

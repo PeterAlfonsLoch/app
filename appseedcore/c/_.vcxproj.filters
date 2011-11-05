@@ -15,9 +15,6 @@
     <Filter Include="Header Files\hotplugin">
       <UniqueIdentifier>{2c2e6da8-9ea3-4fe5-9edc-6f1255f2efb7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\C Source Files">
-      <UniqueIdentifier>{c16d98b4-da20-4734-888b-e00d251b991d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\C Header Files">
       <UniqueIdentifier>{8ede97ef-076e-466c-b7e2-5ae91573513a}</UniqueIdentifier>
     </Filter>
@@ -296,11 +293,11 @@
     <ClInclude Include="bsdiff\bsdiff_private.h">
       <Filter>Header Files\bsdiff</Filter>
     </ClInclude>
+    <ClInclude Include="windows\c_os_internal.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ca_c.c">
-      <Filter>Source Files\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
       <Filter>Source Files\hotplugin</Filter>
     </ClCompile>
@@ -439,9 +436,6 @@
     <ClCompile Include="_argcargv.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cpu_architecture.c">
-      <Filter>Source Files\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="str.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -528,6 +522,12 @@
     </ClCompile>
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="ca_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu_architecture.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

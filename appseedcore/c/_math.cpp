@@ -6,7 +6,11 @@
 
 static int lastrand;
 
+#ifdef WINDOWS
+extern "C" int _fltused = 0;
+#else
 int _fltused = 0;
+#endif
 
 
 CLASS_DECL_____ int abs_dup(int i)

@@ -1,13 +1,12 @@
 /* CpuArch.c -- CPU specific code
 2010-10-26: Igor Pavlov : Public domain */
 // from 7-zip on 2010-12-26 Sunday, just after Christmas evening at Music Room
-#include "c_c.h"
+#include "StdAfx.h"
 
-#if defined(_WINDOWS)
-
-#include <windows.h>
-
+#ifdef WINDOWS
+#include <intrin.h>
 #endif
+
 
 #ifdef MY_CPU_X86_OR_AMD64
 
@@ -56,7 +55,7 @@ static uint32 CheckFlag(uint32 flag)
 
 static void MyCPUID(uint32 function, uint32 *a, uint32 *b, uint32 *c, uint32 *d)
 {
-  #ifdef USE_ASM
+  #if defined(USE_ASM) && !defined(WINDOWS)
 
   /*#ifdef _MSC_VER
 

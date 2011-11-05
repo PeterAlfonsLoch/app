@@ -160,7 +160,7 @@ BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) (
 =======
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) (
       int*  bzerror,
-      FILE * f,
+      _FILE * f,
       int   verbosity,
 >>>>>>> .r2780
       int   small,
@@ -197,7 +197,7 @@ BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) (
 =======
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) (
       int*  bzerror,
-      FILE * f,
+      _FILE * f,
       int   blockSize100k,
       int   verbosity,
       int   workFactor

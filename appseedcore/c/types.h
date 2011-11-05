@@ -23,19 +23,18 @@ typedef __int32_t      int32_t;
 typedef __int16_t      int16_t;*/
 
 
-extern "C"
-{
+BEGIN_EXTERN_C
 
    #include "c_types.h"
 
-} // extern "C"
+END_EXTERN_C
 
 
 
-
+#ifdef __cplusplus
 template < typename TARGET, typename SOURCE >
 TARGET throw_cast(SOURCE src)
 {
    return (TARGET) src;
 }
-
+#endif

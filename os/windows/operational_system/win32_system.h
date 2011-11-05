@@ -6,10 +6,13 @@
 #define _STL_NOFORCE_MANIFEST
 
 
-extern "C"
-{
-   __declspec(selectany)  int _forceCRTManifest;
-}
+BEGIN_EXTERN_C
+
+
+__declspec(selectany)  int _forceCRTManifest;
+
+
+END_EXTERN_C
 
 
 #define NOTHROW throw()

@@ -227,11 +227,12 @@ typedef struct HKEY__ *HKEY;
 #define WM_CTLCOLOR     0x0019
 
 // Win32 uses macros with parameters for this, which breaks C++ code.
+#ifdef __cplusplus
 #ifdef GetWindowTask
 #undef GetWindowTask
 #ifdef _WIN32
 AFX_INLINE HTASK GetWindowTask(HWND hWnd)
-	{ return (HTASK)(DWORD_PTR)::GetWindowThreadProcessId(hWnd, NULL); }
+	{ return (HTASK)(DWORD_PTR)GetWindowThreadProcessId(hWnd, NULL); }
 #endif
 #endif
 
@@ -239,48 +240,9 @@ AFX_INLINE HTASK GetWindowTask(HWND hWnd)
 #ifdef GetNextWindow
 #undef GetNextWindow
 AFX_INLINE HWND GetNextWindow(HWND hWnd, UINT nDirection)
-	{ return ::GetWindow(hWnd, nDirection); }
-#endif
-
-// Avoid Win95 mapping CToolBar::DrawState to DrawState[A/W]
-#ifdef DrawState
-#undef DrawState
-AFX_INLINE BOOL WINAPI DrawState(HDC hdc, HBRUSH hbr, DRAWSTATEPROC lpOutputFunc,
-	LPARAM lData, WPARAM wData, int x, int y, int cx, int cy, UINT fuFlags)
-#ifdef UNICODE
-	{ return ::DrawStateW(hdc, hbr, lpOutputFunc, lData, wData, x, y, cx, cy,
-		fuFlags); }
-#else
-	{ return ::DrawStateA(hdc, hbr, lpOutputFunc, lData, wData, x, y, cx, cy,
-		fuFlags); }
+	{ return GetWindow(hWnd, nDirection); }
 #endif
 #endif
-
-// Avoid Win95 mapping CStatusBar::DrawStatusText to DrawStatusText[A/W]
-#ifdef DrawStatusText
-#undef DrawStatusText
-AFX_INLINE void WINAPI AfxDrawStatusTextA(HDC hDC, LPRECT lprc, LPCTSTR szText,
-	UINT uFlags);
-AFX_INLINE void WINAPI AfxDrawStatusTextW(HDC hDC, LPRECT lprc, LPCTSTR szText,
-	UINT uFlags);
-AFX_INLINE void WINAPI DrawStatusText(HDC hDC, LPRECT lprc, LPCTSTR szText,
-	UINT uFlags) 
-#ifdef UNICODE
-	{ ::AfxDrawStatusTextW(hDC, lprc, szText, uFlags); }
-#else
-	{ ::AfxDrawStatusTextA(hDC, lprc, szText, uFlags); }
-#endif
-#endif
-
-// FreeResource is not required on Win32 platforms
-#undef FreeResource
-AFX_INLINE BOOL WINAPI FreeResource(HGLOBAL) { return TRUE; }
-// UnlockResource is not required on Win32 platforms
-#undef UnlockResource
-AFX_INLINE int WINAPI UnlockResource(HGLOBAL) { return 0; }
-
-/////////////////////////////////////////////////////////////////////////////
-
 
 #include <winsock2.h>
 #include <ws2tcpip.h>

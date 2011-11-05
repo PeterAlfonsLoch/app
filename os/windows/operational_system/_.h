@@ -4,47 +4,6 @@
 #include "get_platform.h"
 
 
-#define IMPLEMENT_VISTA_TOOLS
-#define DRAWDIB_INCLUDE_STRETCHDIB
-#pragma pointers_to_members( full_generality, virtual_inheritance )
-#include "win32_system.h"
-#define _ApplicationFrameworkDLL
-
-
-#if defined(_WIN64) && defined(_M_X64)
-
-
-#define _AMD64_
-
-#else
-
-
-#define _X86_
-
-
-#endif
-
-
-
-#ifndef _DEBUG
-#define _DEBUG // ca2 is in debug - bugs come and go, always
-#endif
-
-
-#include "c/types.h"
-
-
-#include "c/natural.h"
-
-
-#define if_then(p, q)  ((!(p))||(!(q)))
-
-
-#pragma pointers_to_members( full_generality, virtual_inheritance )
-
-
-#include "bare_operational_system.h"        // Target version control
-
 
 // incorporation of sector8J src/lib/pal/windows/thread_windows.hpp on 07/09/2011
 /**

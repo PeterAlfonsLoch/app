@@ -7,9 +7,8 @@
    Copyright (C) 1998-2003 Gilles Vollant
 */
 
-#include <stdlib.h>
-#include <Windows.h>
 #include "ca/zlib/zlib.h"
+#include <stdlib.h>
 #include "ioapi.h"
 #include "iowin32.h"
 

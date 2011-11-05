@@ -7,6 +7,20 @@
 #include "version.h"
 
 
+
+
+#include "types.h"
+
+
+#include "natural.h"
+
+
+#define if_then(p, q)  ((!(p))||(!(q)))
+
+
+
+
+
 extern "C"
 {
 

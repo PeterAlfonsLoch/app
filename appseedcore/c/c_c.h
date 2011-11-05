@@ -30,17 +30,6 @@
 
 
 
-#ifndef _DEBUG
-#define _DEBUG // ca2 is in debug - bugs come and go, always
-#endif
-
-
-
-
-
-
-
-
 #include "c_types.h"
 
 
@@ -55,6 +44,8 @@
 #include "_libct.h"
 
 #include "_heap.h"
+
+#include "std_file.h"
 
 #include "bsdiff/bsdiff.h"
 

@@ -23,3 +23,46 @@
 
 
 #include "inttypes.h"
+
+
+#define IMPLEMENT_VISTA_TOOLS
+#define DRAWDIB_INCLUDE_STRETCHDIB
+
+
+#ifdef __cplusplus
+#pragma pointers_to_members( full_generality, virtual_inheritance )
+#endif
+
+
+#include "win32_system.h"
+
+
+
+#define _ApplicationFrameworkDLL
+
+
+
+
+#if defined(_WIN64) && defined(_M_X64)
+
+
+#define _AMD64_
+
+#else
+
+
+#define _X86_
+
+
+#endif
+
+
+
+#ifndef _DEBUG
+#define _DEBUG // ca2 is in debug - bugs come and go, always
+#endif
+
+
+
+#include "bare_operational_system.h"        // Target version control
+

@@ -833,6 +833,8 @@ namespace user
             };
 #endif
 
+         }
+
 
       } // namespace message
 

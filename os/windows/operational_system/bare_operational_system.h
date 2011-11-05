@@ -78,7 +78,11 @@
 // special include files
 
 #ifndef AFX_INLINE
+#ifdef __cplusplus
 	#define AFX_INLINE inline /*__forceinline*/
+#else
+	#define AFX_INLINE 
+#endif
 #endif
 
 #include "version_windows.h"
