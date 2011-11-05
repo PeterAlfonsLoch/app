@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "c_os_cross_win_gdi_internal.h"
 
 
 HDC GetDC(HWND hwnd)

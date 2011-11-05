@@ -1,6 +1,39 @@
 #pragma once
 
 
+typedef Window HWND;
+
+class CLASS_DECL_____ device_context;
+
+class CLASS_DECL_____ gdi_object
+{
+public:
+    
+    
+    enum e_type
+    {
+        type_undefined,
+        type_pen,
+        type_brush,
+        type_bitmap,
+        type_font,
+    };
+    
+    e_type      m_etype;
+    
+    gdi_object(e_type etype = type_undefined) :
+    m_etype(etype)
+    {
+    }
+    
+};
+
+
+
+typedef device_context * HDC;
+typedef gdi_object * HGDIOBJ;
+
+
 /* Ternary raster operations */
 #define SRCCOPY             (DWORD)0x00CC0020 /* dest = source                   */
 #define SRCPAINT            (DWORD)0x00EE0086 /* dest = source OR dest           */
@@ -543,11 +576,7 @@ typedef tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
 typedef LPLOGRGN HRGN;
 
 
-<<<<<<< .mine
 HBITMAP CreateCompatibleBitmap(HDC hdc, int cx, int cy);
-=======
-HBITMAPCreateCompatibleBitmap(HDC hdc, int cx, int cy);
->>>>>>> .r2781
 
 
 BOOL BitBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, HDC hdcSrc, int nXSrc, int nYSrc, DWORD dwRop);

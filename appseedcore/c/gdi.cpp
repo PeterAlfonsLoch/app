@@ -1,13 +1,15 @@
 #include "StdAfx.h"
-<<<<<<< .mine
-=======
+
+
 
 #ifdef LINUX
 #include "linux/c_os_cross_win_gdi_internal.h"
+#elif defined(MACOS)
+#include "macos/c_os_cross_win_gdi_internal.h"
 #endif
 
-#ifdef LINUX
->>>>>>> .r2780
+
+
 
 #if defined(LINUX) || defined(MACOS)
 

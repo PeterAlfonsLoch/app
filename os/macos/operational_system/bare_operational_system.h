@@ -5,59 +5,33 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 
+
+
+
+#ifndef _XSERVER64
+#ifndef _XTYPEDEF_XID
+#define _XTYPEDEF_XID
+typedef unsigned long XID;
+#endif
+#endif
+
+
+struct device_context;
+struct gdi_object;
+
+typedef XID Window;
 typedef Window HWND;
 
-class CLASS_DECL_____ device_context
-{
-public:
 
-   Display *   m_display;
-   Drawable    m_d;
-   GC          m_gc;
-   HWND        m_hwnd;
+typedef struct device_context * HDC;
+typedef struct gdi_object * HGDIOBJ;
 
+union _XEvent;
 
-   device_context()
-   {
-         m_display   = NULL;
-         m_d         = 0;
-         m_gc        = NULL;
-         m_hwnd      = NULL;
-   }
-
-};
-
-class CLASS_DECL_____ gdi_object
-{
-public:
+typedef union _XEvent XEvent;
 
 
-   enum e_type
-   {
-      type_undefined,
-      type_pen,
-      type_brush,
-      type_bitmap,
-      type_font,
-   };
-
-   e_type      m_etype;
-
-   gdi_object(e_type etype = type_undefined) :
-      m_etype(etype)
-   {
-   }
-
-};
-
-
-
-typedef device_context * HDC;
-typedef gdi_object * HGDIOBJ;
 
 //typedef Font HFONT;
 
