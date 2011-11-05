@@ -334,6 +334,9 @@
 	<File name="mediaplaylist/mediaplaylist_list_view.h" open="0" top="0" tabpos="18">
 		<Cursor position="323" topLine="0" />
 	</File>
+	<File name="mixeruserbase/mixeruserbase_main_view.h" open="1" top="1" tabpos="9">
+		<Cursor position="1861" topLine="53" />
+	</File>
 	<File name="multithreading/multithreading_critical_section.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="2084" topLine="103" />
 	</File>
@@ -367,7 +370,7 @@
 	<File name="multithreading/multithreading_thread_pool.h" open="0" top="0" tabpos="7">
 		<Cursor position="1816" topLine="0" />
 	</File>
-	<File name="mus/midi_sequence.h" open="1" top="1" tabpos="10">
+	<File name="mus/midi_sequence.h" open="1" top="0" tabpos="1">
 		<Cursor position="1404" topLine="40" />
 	</File>
 	<File name="ortp/port.h" open="0" top="0" tabpos="0">
@@ -418,8 +421,11 @@
 	<File name="simpledb/db_server.h" open="0" top="0" tabpos="0">
 		<Cursor position="2372" topLine="51" />
 	</File>
-	<File name="simpledb/db_str_set.h" open="0" top="0" tabpos="0">
-		<Cursor position="41" topLine="0" />
+	<File name="simpledb/db_str_set.h" open="1" top="0" tabpos="8">
+		<Cursor position="72" topLine="0" />
+	</File>
+	<File name="simpledb/veiev_post.h" open="1" top="0" tabpos="7">
+		<Cursor position="60" topLine="0" />
 	</File>
 	<File name="sockets/listen_socket.h" open="0" top="0" tabpos="0">
 		<Cursor position="7970" topLine="241" />
@@ -492,6 +498,9 @@
 	</File>
 	<File name="userbase/userbase_split_bar.h" open="0" top="0" tabpos="6">
 		<Cursor position="1030" topLine="0" />
+	</File>
+	<File name="userbase/userbase_static.h" open="1" top="0" tabpos="6">
+		<Cursor position="783" topLine="0" />
 	</File>
 	<File name="userbase/userbase_status_bar.h" open="0" top="0" tabpos="5">
 		<Cursor position="4145" topLine="69" />

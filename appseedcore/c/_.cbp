@@ -79,8 +79,6 @@
 		<Unit filename="dir.cpp" />
 		<Unit filename="dir.h" />
 		<Unit filename="dir2.cpp" />
-		<Unit filename="event_wait.cpp" />
-		<Unit filename="event_wait.h" />
 		<Unit filename="file.cpp" />
 		<Unit filename="file.h" />
 		<Unit filename="file_spa.cpp" />

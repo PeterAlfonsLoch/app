@@ -1,9 +1,11 @@
 #pragma once
 
-namespace vmssqlite 
+
+namespace vmssqlite
 {
    class ::database::set;
 }
+
 
 class CLASS_DECL_ca db_str_set :
    public db_set

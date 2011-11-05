@@ -1,13 +1,6 @@
 #pragma once
 
 
-#ifdef LINUX
-
-typedef void * HENHMETAFILE;
-
-#endif
-
-
 namespace userbase
 {
 
@@ -43,3 +36,5 @@ namespace userbase
 
 
 } // namespace userbase
+
+

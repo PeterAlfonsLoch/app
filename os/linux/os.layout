@@ -7,10 +7,10 @@
 	<File name="operational_system/_.h" open="0" top="0" tabpos="5">
 		<Cursor position="524" topLine="31" />
 	</File>
-	<File name="operational_system/bare_operational_system.h" open="1" top="0" tabpos="2">
+	<File name="operational_system/bare_operational_system.h" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="operational_system/ca2.h" open="1" top="0" tabpos="3">
+	<File name="operational_system/ca2.h" open="1" top="0" tabpos="2">
 		<Cursor position="302" topLine="0" />
 	</File>
 	<File name="operational_system/cross/win/base_tsd.h" open="0" top="0" tabpos="0">
@@ -34,7 +34,7 @@
 	<File name="operational_system/cross/win/win_file.h" open="0" top="0" tabpos="3">
 		<Cursor position="164" topLine="0" />
 	</File>
-	<File name="operational_system/cross/win/win_gdi.h" open="1" top="0" tabpos="5">
+	<File name="operational_system/cross/win/win_gdi.h" open="1" top="0" tabpos="3">
 		<Cursor position="14880" topLine="556" />
 	</File>
 	<File name="operational_system/cross/win/win_nls.h" open="0" top="0" tabpos="5">
@@ -46,7 +46,7 @@
 	<File name="operational_system/cross/win/win_user.h" open="0" top="0" tabpos="7">
 		<Cursor position="12254" topLine="485" />
 	</File>
-	<File name="operational_system/get_platform.h" open="1" top="0" tabpos="7">
+	<File name="operational_system/get_platform.h" open="1" top="1" tabpos="4">
 		<Cursor position="56" topLine="0" />
 	</File>
 	<File name="operational_system/linux32_system.h" open="0" top="0" tabpos="4">
