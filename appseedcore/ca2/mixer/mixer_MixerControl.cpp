@@ -455,7 +455,7 @@ MixerCtrlData * MixerControl::GetWindowData(int iType)
    return NULL;
 }
 
-bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
+/*bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
 {
    UNREFERENCED_PARAMETER(nID);
     if(lpnmhdr->code == TB_BOTTOM ||
@@ -583,12 +583,12 @@ bool MixerControl::OnNotify(UINT nID, LPNMHDR lpnmhdr)
                 }*/
 
 //            }
-        }
+        /*}
 
     }
     return false;
 
-}
+}*/
 
 mixer::control * MixerControl::GetControlByDlgCtrlID(UINT nID)
 {

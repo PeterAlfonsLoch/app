@@ -1222,7 +1222,7 @@ namespace win
                ::SetWindowPos(hwndParam, HWND_NOTOPMOST, 
                   rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
                ::SetWindowPos(hwndParam, hwndZOrder, 
-                  rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+                  rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW | SWP_FRAMECHANGED);
                /*simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd->m_pguie);
                if(pframe != NULL)
                {

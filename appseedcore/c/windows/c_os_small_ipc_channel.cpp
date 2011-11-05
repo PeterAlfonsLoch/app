@@ -88,6 +88,12 @@ small_ipc_rx_channel::small_ipc_rx_channel()
 }
 
 
+small_ipc_rx_channel::~small_ipc_rx_channel()
+{
+
+}
+
+
 bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowProcModule)
 {
    
