@@ -44,16 +44,19 @@
 
 #define BZ_VERSION  "1.0.4, 20-Dec-2006"
 
-typedef char            Char;
+#ifndef MACOS
 typedef unsigned char   Bool;
+#define True  ((Bool)1)
+#define False ((Bool)0)
+#endif
+
+typedef char            Char;
 typedef unsigned char   UChar;
 typedef int             int32;
 typedef unsigned int    uint32;
 typedef short           Int16;
 typedef unsigned short  UInt16;
 
-#define True  ((Bool)1)
-#define False ((Bool)0)
 
 #ifndef __GNUC__
 #define __inline__  /* */

@@ -48,7 +48,7 @@ public:
 
 };
 
-static * g_psysthreadpool;
+static sys_thread_pool * g_psysthreadpool;
 
 BOOL GetMessage(MSG * pmsg)
 {

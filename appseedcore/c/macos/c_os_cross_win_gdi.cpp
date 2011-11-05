@@ -102,7 +102,7 @@ BOOL GetCursorPos(LPPOINT lpptCursor)
    Window child_return;
    int win_x_return;
    int win_y_return;
-   int mask_return;
+   unsigned int mask_return;
 
    Display * display = XOpenDisplay(NULL);
 
@@ -177,4 +177,64 @@ BOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy,
 int _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
+}
+
+
+
+
+HFONT CreateFontIndirect(const LOGFONT * lf)
+{
+    return NULL;
+}
+HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor)
+{
+    return NULL;
+}
+HGDIOBJ GetStockObject(int iStockObject)
+{
+    return NULL;
+}
+BOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+{
+    return FALSE;
+}
+BOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+{
+    return FALSE;
+}
+BOOL DeleteObject(HGDIOBJ hgdiobj)
+{
+    return FALSE;
+}
+HDC CreateCompatibleDC(HDC hdc)
+{
+    return NULL;
+}
+HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
+{
+    return NULL;
+}
+BOOL SetTextColor(HDC hdc, COLORREF cr)
+{
+    return FALSE;
+}
+BOOL SetBkMode(HDC hdc, int iMode)
+{
+    return FALSE;
+}
+BOOL DeleteDC(HDC hdc)
+{
+    return FALSE;
+}
+BOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+{
+    return FALSE;
+}
+BOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
+{
+    return FALSE;
+}
+BOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+{
+    return FALSE;
 }

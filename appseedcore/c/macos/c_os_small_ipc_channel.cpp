@@ -76,7 +76,13 @@ bool small_ipc_tx_channel::send(const char * pszMessage)
 }
 
 
+small_ipc_rx_channel::small_ipc_rx_channel()
+{
+}
 
+small_ipc_rx_channel::~small_ipc_rx_channel()
+{
+}
 
 
 bool small_ipc_rx_channel::create(const char * pszKey)

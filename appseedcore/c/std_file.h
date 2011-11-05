@@ -1,5 +1,9 @@
 #pragma once
 
+
+BEGIN_EXTERN_C
+
+
 #ifdef WINDOWS
 
 struct CLASS_DECL_____ _struct_FILE
@@ -69,3 +73,6 @@ unsigned int fsize_dup(HANDLE h);
 #else
 unsigned int fsize_dup(FILE * fp);
 #endif
+
+END_EXTERN_C
+

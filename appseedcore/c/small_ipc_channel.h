@@ -82,6 +82,7 @@ public:
 
 
    small_ipc_rx_channel();
+    virtual ~small_ipc_rx_channel();
 
 
 #ifdef _WINDOWS
