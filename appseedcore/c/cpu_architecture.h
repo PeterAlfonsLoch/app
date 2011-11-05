@@ -120,8 +120,8 @@ Stop_Compiling_Bad_Endian
 struct Cx86cpuid
 {
    __uint32_t maxFunc;
-   __int32_t vendor[3];
-   __int32_t ver;
+   __uint32_t vendor[3];
+   __uint32_t ver;
    __uint32_t b;
    __uint32_t c;
    __uint32_t d;

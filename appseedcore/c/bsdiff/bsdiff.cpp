@@ -5,8 +5,10 @@
 
 
 typedef unsigned char u_char;
-typedef long pid_t;
 
+#ifdef WINDOWS
+typedef long pid_t;
+#endif
 
 static void split(off_t *I,off_t *V,off_t start,off_t len,off_t h)
 {
@@ -357,7 +359,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
             (old[scsc+lastoffset] == _new[scsc]))
             oldscore++;
 
-         if(((len==oldscore) && (len!=0)) || 
+         if(((len==oldscore) && (len!=0)) ||
             (len>oldscore+8)) break;
 
          if((scan+lastoffset<oldsize) &&

@@ -137,7 +137,7 @@ vsstring url_encode_dup(const char * psz)
       }
       else
       {
-         ltoa_dup(sz, uch, 16);
+         itoa_dup(sz, uch, 16);
          if(strlen_dup(sz) == 0)
          {
             str += "%00";

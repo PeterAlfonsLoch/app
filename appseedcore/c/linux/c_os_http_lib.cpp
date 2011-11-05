@@ -33,7 +33,7 @@
 
  #include "StdAfx.h"
 
-static char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
+static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 
 #define VERBOSE
 
@@ -321,7 +321,7 @@ tiny_http::http_retcode tiny_http::t_get(char ** pdata, int * plength, void (*ca
       for (pc=header; (*pc!=':' && *pc) ; pc++) *pc=tolower(*pc);
       sscanf(header,"content-length: %d",&length);
       m_strContentType.alloc(1024);
-      sscanf(header,"content-type: %s",(const char*) m_strContentType);
+      sscanf(header,"content-type: %s", (char *) m_strContentType);
     }
     if (length<=0) {
       close(fd);
@@ -388,7 +388,7 @@ tiny_http::http_retcode tiny_http::t_head(int * plength)
       for (pc=header; (*pc!=':' && *pc) ; pc++) *pc=tolower(*pc);
       sscanf(header,"content-length: %d",&length);
       m_strContentType.alloc(1024);
-      sscanf(header,"content-type: %s",(const char *) m_strContentType);
+      sscanf(header,"content-type: %s", (char *) m_strContentType);
     }
     if (plength) *plength=length;
     close(fd);

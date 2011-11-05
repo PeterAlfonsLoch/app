@@ -56,7 +56,7 @@ void * memmov_dup(void * dst, const void * src, size_t iSize)
    return dst;
 }
 
-int memcmp_dup(void * sz1, void * sz2, size_t iLen)
+int memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
 {
    if(iLen <= 0)
       return 0; // equal

@@ -55,6 +55,52 @@
 		<Unit filename="debug.h" />
 		<Unit filename="geometric_types.cpp" />
 		<Unit filename="geometric_types.h" />
+		<Unit filename="libcharguess/EUCJPProber.cpp" />
+		<Unit filename="libcharguess/EUCJPProber.h" />
+		<Unit filename="libcharguess/EUCKRProber.cpp" />
+		<Unit filename="libcharguess/EUCKRProber.h" />
+		<Unit filename="libcharguess/EUCTWProber.cpp" />
+		<Unit filename="libcharguess/EUCTWProber.h" />
+		<Unit filename="libcharguess/EscCharsetProber.cpp" />
+		<Unit filename="libcharguess/EscCharsetProber.h" />
+		<Unit filename="libcharguess/EscSM.cpp" />
+		<Unit filename="libcharguess/GB2312Prober.cpp" />
+		<Unit filename="libcharguess/GB2312Prober.h" />
+		<Unit filename="libcharguess/LangBulgarianModel.cpp" />
+		<Unit filename="libcharguess/LangCyrillicModel.cpp" />
+		<Unit filename="libcharguess/LangGreekModel.cpp" />
+		<Unit filename="libcharguess/LangHungarianModel.cpp" />
+		<Unit filename="libcharguess/LangThaiModel.cpp" />
+		<Unit filename="libcharguess/Latin1Prober.cpp" />
+		<Unit filename="libcharguess/Latin1Prober.h" />
+		<Unit filename="libcharguess/MBCSGroupProber.cpp" />
+		<Unit filename="libcharguess/MBCSGroupProber.h" />
+		<Unit filename="libcharguess/MBCSSM.cpp" />
+		<Unit filename="libcharguess/SBCSGroupProber.cpp" />
+		<Unit filename="libcharguess/SBCSGroupProber.h" />
+		<Unit filename="libcharguess/SBCharsetProber.cpp" />
+		<Unit filename="libcharguess/SBCharsetProber.h" />
+		<Unit filename="libcharguess/SJISProber.cpp" />
+		<Unit filename="libcharguess/SJISProber.h" />
+		<Unit filename="libcharguess/UTF8Prober.cpp" />
+		<Unit filename="libcharguess/UTF8Prober.h" />
+		<Unit filename="libcharguess/big5Prober.cpp" />
+		<Unit filename="libcharguess/big5Prober.h" />
+		<Unit filename="libcharguess/charDistribution.cpp" />
+		<Unit filename="libcharguess/charDistribution.h" />
+		<Unit filename="libcharguess/charguess.cpp" />
+		<Unit filename="libcharguess/charguess.h" />
+		<Unit filename="libcharguess/charsetProber.h" />
+		<Unit filename="libcharguess/codingStateMachine.h" />
+		<Unit filename="libcharguess/config.h" />
+		<Unit filename="libcharguess/jpCntx.cpp" />
+		<Unit filename="libcharguess/jpCntx.h" />
+		<Unit filename="libcharguess/libcharguess.cpp" />
+		<Unit filename="libcharguess/libcharguess.h" />
+		<Unit filename="libcharguess/pkgInt.h" />
+		<Unit filename="libcharguess/types.h" />
+		<Unit filename="libcharguess/universal.cpp" />
+		<Unit filename="libcharguess/universal.h" />
 		<Unit filename="linux/linux.cpp" />
 		<Unit filename="linux/linux.h" />
 		<Unit filename="muldiv64.cpp" />
@@ -69,6 +115,59 @@
 		<Unit filename="rotate.h" />
 		<Unit filename="size.cpp" />
 		<Unit filename="size.h" />
+		<Unit filename="sqlite/sqlite.h" />
+		<Unit filename="sqlite/sqlite3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sqlite/sqlite3.h" />
+		<Unit filename="sqlite/sqlite3ext.h" />
+		<Unit filename="zlib/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/crc32.h" />
+		<Unit filename="zlib/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/deflate.h" />
+		<Unit filename="zlib/gzio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/inffast.h" />
+		<Unit filename="zlib/inffixed.h" />
+		<Unit filename="zlib/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/inflate.h" />
+		<Unit filename="zlib/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/inftrees.h" />
+		<Unit filename="zlib/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/trees.h" />
+		<Unit filename="zlib/uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/zconf.h" />
+		<Unit filename="zlib/zconf.in.h" />
+		<Unit filename="zlib/zlib.h" />
+		<Unit filename="zlib/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zlib/zutil.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

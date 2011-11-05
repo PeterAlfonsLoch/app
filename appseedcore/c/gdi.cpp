@@ -1,6 +1,10 @@
 #include "StdAfx.h"
 
 #ifdef LINUX
+#include "linux/c_os_cross_win_gdi_internal.h"
+#endif
+
+#ifdef LINUX
 
 BOOL TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
 {

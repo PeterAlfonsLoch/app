@@ -367,8 +367,8 @@
 	<File name="multithreading/multithreading_thread_pool.h" open="0" top="0" tabpos="7">
 		<Cursor position="1816" topLine="0" />
 	</File>
-	<File name="mus/midi_sequence.h" open="0" top="0" tabpos="5">
-		<Cursor position="1300" topLine="37" />
+	<File name="mus/midi_sequence.h" open="1" top="1" tabpos="10">
+		<Cursor position="1404" topLine="40" />
 	</File>
 	<File name="ortp/port.h" open="0" top="0" tabpos="0">
 		<Cursor position="1291" topLine="0" />

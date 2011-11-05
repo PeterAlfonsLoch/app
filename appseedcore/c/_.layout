@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="StdAfx.h" open="0" top="0" tabpos="0">
-		<Cursor position="28" topLine="0" />
+	<File name="StdAfx.h" open="1" top="0" tabpos="5">
+		<Cursor position="133" topLine="0" />
 	</File>
 	<File name="_crt0dll.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="510" topLine="0" />
 	</File>
 	<File name="_math.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="91" topLine="0" />
+		<Cursor position="19" topLine="3" />
+	</File>
+	<File name="_mem.cpp" open="1" top="0" tabpos="31">
+		<Cursor position="1246" topLine="36" />
 	</File>
 	<File name="atol.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="bsdiff/blocksort.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1294" topLine="0" />
+	</File>
+	<File name="bsdiff/bsdiff.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="8363" topLine="315" />
+	</File>
+	<File name="bsdiff/bsdiff.h" open="1" top="0" tabpos="21">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="bsdiff/bsdiff_private.h" open="1" top="0" tabpos="7">
+		<Cursor position="354" topLine="0" />
+	</File>
+	<File name="bsdiff/bspatch.cpp" open="1" top="0" tabpos="22">
+		<Cursor position="3516" topLine="94" />
+	</File>
+	<File name="bsdiff/bzlib.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="1206" topLine="6" />
+	</File>
+	<File name="bsdiff/bzlib.h" open="1" top="0" tabpos="15">
+		<Cursor position="3547" topLine="142" />
+	</File>
+	<File name="bsdiff/bzlib_private.h" open="1" top="0" tabpos="14">
+		<Cursor position="1373" topLine="25" />
+	</File>
 	<File name="c.h" open="0" top="0" tabpos="6">
 		<Cursor position="1123" topLine="50" />
+	</File>
+	<File name="c_c.h" open="1" top="0" tabpos="46">
+		<Cursor position="560" topLine="0" />
 	</File>
 	<File name="ca_seed.h" open="0" top="0" tabpos="0">
 		<Cursor position="738" topLine="0" />
@@ -22,50 +52,68 @@
 	<File name="conv.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="cpu_architecture.h" open="1" top="0" tabpos="33">
+		<Cursor position="3463" topLine="82" />
+	</File>
 	<File name="event_wait.h" open="0" top="0" tabpos="0">
 		<Cursor position="198" topLine="0" />
 	</File>
 	<File name="file.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="6924" topLine="275" />
 	</File>
+	<File name="gdi.cpp" open="1" top="0" tabpos="23">
+		<Cursor position="79" topLine="0" />
+	</File>
 	<File name="heap.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1840" topLine="36" />
 	</File>
-	<File name="hotplugin/hotplugin_plugin.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="9357" topLine="403" />
+	<File name="hotplugin/hotplugin_plugin.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="8066" topLine="368" />
 	</File>
 	<File name="index.h" open="0" top="0" tabpos="0">
 		<Cursor position="16" topLine="0" />
 	</File>
-	<File name="linux/linux.h" open="0" top="0" tabpos="5">
-		<Cursor position="258" topLine="0" />
+	<File name="linux/c_os.h" open="1" top="0" tabpos="11">
+		<Cursor position="247" topLine="0" />
 	</File>
-	<File name="linux/linux_binreloc.c" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="27" />
+	<File name="linux/c_os_binreloc.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="18872" topLine="708" />
 	</File>
-	<File name="linux/linux_cross_win_file.h" open="0" top="0" tabpos="0">
-		<Cursor position="912" topLine="3" />
+	<File name="linux/c_os_binreloc.h" open="1" top="0" tabpos="24">
+		<Cursor position="2179" topLine="14" />
 	</File>
-	<File name="linux/linux_cross_win_gdi.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="152" topLine="0" />
+	<File name="linux/c_os_cross_win_file.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/linux_http.cpp" open="0" top="0" tabpos="7">
+	<File name="linux/c_os_cross_win_gdi.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="2142" topLine="102" />
+	</File>
+	<File name="linux/c_os_cross_win_gdi.h" open="1" top="0" tabpos="34">
+		<Cursor position="192" topLine="0" />
+	</File>
+	<File name="linux/c_os_cross_win_gdi_internal.h" open="1" top="0" tabpos="18">
+		<Cursor position="132" topLine="0" />
+	</File>
+	<File name="linux/c_os_http.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="2999" topLine="117" />
 	</File>
-	<File name="linux/linux_http_lib.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4469" topLine="146" />
+	<File name="linux/c_os_http_lib.cpp" open="1" top="0" tabpos="25">
+		<Cursor position="11100" topLine="368" />
 	</File>
-	<File name="linux/linux_lock.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="193" topLine="0" />
+	<File name="linux/c_os_http_lib.h" open="1" top="0" tabpos="27">
+		<Cursor position="1905" topLine="20" />
 	</File>
-	<File name="linux/linux_message_loop.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2104" topLine="110" />
+	<File name="linux/c_os_internal.h" open="1" top="0" tabpos="9">
+		<Cursor position="15" topLine="0" />
 	</File>
-	<File name="linux/linux_process.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="46" />
+	<File name="linux/c_os_lock.cpp" open="1" top="0" tabpos="26">
+		<Cursor position="229" topLine="0" />
 	</File>
-	<File name="linux/linux_small_ipc_channel.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="41" topLine="0" />
+	<File name="linux/c_os_message_loop.cpp" open="1" top="0" tabpos="35">
+		<Cursor position="670" topLine="21" />
+	</File>
+	<File name="mem.h" open="1" top="0" tabpos="30">
+		<Cursor position="270" topLine="0" />
 	</File>
 	<File name="mutex_lock.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
@@ -94,14 +142,14 @@
 	<File name="small_ipc_channel.h" open="0" top="0" tabpos="8">
 		<Cursor position="92" topLine="0" />
 	</File>
-	<File name="spa/spa_http.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="1419" topLine="41" />
+	<File name="spa/spa_http.cpp" open="1" top="0" tabpos="36">
+		<Cursor position="1417" topLine="33" />
 	</File>
 	<File name="spa/spa_installer.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="81262" topLine="2577" />
 	</File>
-	<File name="spa/spa_plugin.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="2525" topLine="104" />
+	<File name="spa/spa_plugin.cpp" open="1" top="0" tabpos="37">
+		<Cursor position="2571" topLine="104" />
 	</File>
 	<File name="spa/spa_small_bell.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1833" topLine="5" />
@@ -126,5 +174,11 @@
 	</File>
 	<File name="types.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="verisimple_string.cpp" open="1" top="0" tabpos="29">
+		<Cursor position="106" topLine="0" />
+	</File>
+	<File name="verisimple_string.h" open="1" top="0" tabpos="28">
+		<Cursor position="1568" topLine="21" />
 	</File>
 </CodeBlocks_layout_file>

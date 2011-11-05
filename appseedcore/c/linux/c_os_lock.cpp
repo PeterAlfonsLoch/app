@@ -9,9 +9,9 @@ int _c_lock_is_active(const char * pszName)
 
    int * pfd;
 
-   if(_c_lock(pszName, &pfd))
+   if(_c_lock(pszName, (void **) &pfd))
    {
-      _c_unlock(&pfd);
+      _c_unlock((void **) &pfd);
       return false;
    }
 

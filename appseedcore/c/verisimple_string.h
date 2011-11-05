@@ -22,8 +22,8 @@ public:
    void trim_left();
    void trim_right();
    void trim();
-    
-    
+
+
     char & operator [] (int iIndex);
     char operator [] (int iIndex) const;
 
@@ -55,6 +55,9 @@ public:
 
    inline operator void * () const { return m_psz; }
    inline operator void * () { return m_psz; }
+
+   inline operator char * () const { return m_psz; }
+   inline operator char * () { return m_psz; }
 
    verisimple_string & operator += (const char * psz);
    verisimple_string & operator += (const verisimple_string & str);

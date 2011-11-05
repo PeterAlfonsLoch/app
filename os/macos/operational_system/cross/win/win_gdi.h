@@ -545,7 +545,7 @@ typedef tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
 typedef LPLOGRGN HRGN;
 
 
-BOOL CreateCompatibleBitmap(HDC hdc, int cx, int cy);
+HBITMAPCreateCompatibleBitmap(HDC hdc, int cx, int cy);
 
 
 BOOL BitBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, HDC hdcSrc, int nXSrc, int nYSrc, DWORD dwRop);

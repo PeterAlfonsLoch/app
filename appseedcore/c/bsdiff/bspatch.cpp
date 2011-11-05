@@ -3,7 +3,7 @@
  * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted providing that the following conditions 
+ * modification, are permitted providing that the following conditions
  * are met:
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
@@ -29,8 +29,10 @@
 #include "bsdiff.h"
 
 typedef unsigned char u_char;
-typedef signed int ssize_t;
 
+#ifdef WINDOWS
+typedef signed int ssize_t;
+#endif
 
 int err(int i, const char* str) {
    char lastErrorTxt[1024];
@@ -212,7 +214,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    }
    int r=oldsize;
    while (r>0 && (i=fread_dup(old+oldsize-r,r, 1, fd))>0) r-=i;
-   if (r>0 || fclose_dup(fd)==-1) 
+   if (r>0 || fclose_dup(fd)==-1)
    {
       fclose_dup(cpf);
       fclose_dup(dpf);
@@ -221,7 +223,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       return err(1,"%s",oldfile);
    }
 
-   if((_new=(u_char*)ca2_alloc(newsize+1))==NULL) 
+   if((_new=(u_char*)ca2_alloc(newsize+1))==NULL)
    {
       fclose_dup(cpf);
       fclose_dup(dpf);

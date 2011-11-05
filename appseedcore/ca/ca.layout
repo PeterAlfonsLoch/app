@@ -25,8 +25,8 @@
 	<File name="ca_c.c" open="0" top="0" tabpos="5">
 		<Cursor position="14" topLine="0" />
 	</File>
-	<File name="ca_c.h" open="0" top="0" tabpos="6">
-		<Cursor position="33" topLine="0" />
+	<File name="ca_c.h" open="1" top="0" tabpos="12">
+		<Cursor position="31" topLine="0" />
 	</File>
 	<File name="ca_ca.h" open="0" top="0" tabpos="1">
 		<Cursor position="1703" topLine="108" />
@@ -48,6 +48,12 @@
 	</File>
 	<File name="geometric_types.h" open="0" top="0" tabpos="5">
 		<Cursor position="1969" topLine="77" />
+	</File>
+	<File name="libcharguess/libcharguess.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="1433" topLine="45" />
+	</File>
+	<File name="libcharguess/libcharguess.h" open="1" top="0" tabpos="15">
+		<Cursor position="31" topLine="0" />
 	</File>
 	<File name="linux/linux.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="135" topLine="0" />
@@ -81,5 +87,14 @@
 	</File>
 	<File name="size.h" open="0" top="0" tabpos="7">
 		<Cursor position="2343" topLine="75" />
+	</File>
+	<File name="sqlite/sqlite3.c" open="1" top="0" tabpos="8">
+		<Cursor position="513953" topLine="12960" />
+	</File>
+	<File name="sqlite/sqlite3.h" open="1" top="0" tabpos="10">
+		<Cursor position="16635" topLine="384" />
+	</File>
+	<File name="sqlite/sqlite3ext.h" open="1" top="0" tabpos="9">
+		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -1,4 +1,20 @@
 #include "StdAfx.h"
+#include "c_os_cross_win_gdi_internal.h"
+
+
+device_context::device_context()
+{
+
+
+   m_display   = NULL;
+   m_d         = 0;
+   m_gc        = NULL;
+   m_hwnd      = NULL;
+
+
+
+}
+
 
 
 HDC GetDC(HWND hwnd)
@@ -102,7 +118,7 @@ BOOL GetCursorPos(LPPOINT lpptCursor)
    Window child_return;
    int win_x_return;
    int win_y_return;
-   int mask_return;
+   unsigned int mask_return;
 
    Display * display = XOpenDisplay(NULL);
 

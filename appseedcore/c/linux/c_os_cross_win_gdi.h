@@ -4,7 +4,7 @@ HDC GetDC(HWND hwnd);
 HFONT CreateFontIndirect(const LOGFONT * lf);
 HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor);
 HGDIOBJ GetStockObject(int iStockObject);
-BOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj);
+HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 BOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
 BOOL DeleteObject(HGDIOBJ hgdiobj);
 HDC CreateCompatibleDC(HDC hdc);

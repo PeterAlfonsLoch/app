@@ -61,7 +61,7 @@ void installer::ms_get_callback( int i, DWORD_PTR dwLen)
    if(i == -3)
    {
       DWORD dwBufferLen = 1024 + 256;
-      simple_http_status * pstatus = (simple_http_status *) (void *) dwLen;
+      simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
       trace("ms_get_dup failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
    }
    else if(i == -2)

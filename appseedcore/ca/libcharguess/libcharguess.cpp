@@ -65,15 +65,15 @@ unsigned long LibCharGuess::GuessCodePage(const char * lpsz)
    {
       return 0;
    }
-   else if(!_strcmpi(lpszCharset, "Shift_JIS"))
+   else if(!stricmp_dup(lpszCharset, "Shift_JIS"))
    {
       return 932;
    }
-   else if(!_strcmpi(lpszCharset, "Big5"))
+   else if(!stricmp_dup(lpszCharset, "Big5"))
    {
       return 950;
    }
-   else if(!_strcmpi(lpszCharset, "windows-1252"))
+   else if(!stricmp_dup(lpszCharset, "windows-1252"))
    {
       return 1252;
    }

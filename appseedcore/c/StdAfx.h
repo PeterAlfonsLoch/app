@@ -4,9 +4,9 @@
 
 
 #if defined(MACOS)
-#include "macos/macos_internal.h"
+#include "macos/c_os_internal.h"
 #elif defined(LINUX)
-#include "linux/linux_internal.h"
+#include "linux/c_os_internal.h"
 #elif defined(WINDOWS)
-#include "windows/windows_internal.h"
+#include "windows/c_os_internal.h"
 #endif
