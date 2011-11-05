@@ -10,7 +10,7 @@ typedef struct tag_WAVEHDR
    LPBYTE   lpbyte;
    UINT     uiCount;
 } WAVEHDR, * LPWAVEHDR;
-#endif;
+#endif
 
 
 class CLASS_DECL_ca audWaveInListener

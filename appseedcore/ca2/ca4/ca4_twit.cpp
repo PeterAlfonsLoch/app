@@ -1253,27 +1253,7 @@ namespace ca4
       /* Set OAuth header */
       m_oauth.getOAuthHeader( eOAuthHttpPost, postUrl, post, headers );
 
-      if(!Application.http().get(postUrl, m_strResponse, post, headers, m_setHttp))
-         return false;
-
-      ::xml::document doc(get_app());
-      if(doc.load(m_strResponse))
-      {
-         if(doc.m_strName == "hash")
-         {
-            if(doc.get_children_count() > 0)
-            {
-               string strName = doc.child_at(0)->m_strName;
-               if(strName == "error")
-               {
-                  return false;
-               }
-            }
-         }
-
-         return true;
-      }
-      return false;
+      return Application.http().get(postUrl, m_strResponse, post, headers, m_setHttp);
    }
 
    /*++

@@ -20,21 +20,23 @@ namespace hotplugin
          m_sizeBitmap.cx = 800;
          m_sizeBitmap.cy = 600;
 
-         memset_dup(&m_info, 0, sizeof (BITMAPINFO));
+         m_pinfo = new BITMAPINFO;
 
-         m_info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-         m_info.bmiHeader.biWidth         = m_sizeBitmap.cx;
-         m_info.bmiHeader.biHeight        = -m_sizeBitmap.cy;
-         m_info.bmiHeader.biPlanes        = 1;
-         m_info.bmiHeader.biBitCount      = 32;
-         m_info.bmiHeader.biCompression   = BI_RGB;
-         m_info.bmiHeader.biSizeImage     = m_sizeBitmap.cx * m_sizeBitmap.cy * 4;
+         memset_dup(m_pinfo, 0, sizeof (BITMAPINFO));
+
+         m_pinfo->bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
+         m_pinfo->bmiHeader.biWidth         = m_sizeBitmap.cx;
+         m_pinfo->bmiHeader.biHeight        = -m_sizeBitmap.cy;
+         m_pinfo->bmiHeader.biPlanes        = 1;
+         m_pinfo->bmiHeader.biBitCount      = 32;
+         m_pinfo->bmiHeader.biCompression   = BI_RGB;
+         m_pinfo->bmiHeader.biSizeImage     = m_sizeBitmap.cx * m_sizeBitmap.cy * 4;
 
 
          m_pcolorref = NULL;
 
 #if !defined(MACOS)
-         m_hbitmap = CreateDIBSection(NULL, &m_info, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, NULL);
+         m_hbitmap = CreateDIBSection(NULL, m_pinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, NULL);
 #endif
    }
 
@@ -45,7 +47,8 @@ namespace hotplugin
 #if !defined(MACOS)
          if(m_hbitmap != NULL)
             ::DeleteObject(m_hbitmap);
-#endif       
+#endif
+      delete m_pinfo;
    }
 
    bool plugin::open_url(const char * psz)
@@ -352,10 +355,10 @@ namespace hotplugin
          uchR      = (BYTE) ftol(dR * 255.0);
          uchG      = (BYTE) ftol(dG * 255.0);
          uchB      = (BYTE) ftol(dB * 255.0);
-   
 
 
-      } 
+
+      }
 
 
 
@@ -365,7 +368,7 @@ namespace hotplugin
 
       if(iPhase == 0 && (GetTickCount() - s_dwSync) > 1977)
       {
-         
+
          s_iDelta = 1984 + (GetTickCount() % ((1984 + 1977) * 2));
          s_dwSync = GetTickCount();
       }

@@ -17,6 +17,7 @@
 					<Add option="-g" />
 					<Add option="-fPIC" />
 					<Add option="-fpermissive" />
+					<Add option="-Wno-conversion-null" />
 					<Add directory="." />
 					<Add directory="../ca" />
 					<Add directory="../../appseedcore" />

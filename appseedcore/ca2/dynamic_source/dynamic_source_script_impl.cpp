@@ -2695,7 +2695,7 @@ namespace dynamic_source
    }
 
 
-   string script_impl::ca2_get_build(const char * pszVersion)
+   string script_impl::ca2_get_build()
    {
       string strPath;
       strPath = "C:\\home\\ccvotagus\\ca2_spa\\stage\\app\\build.txt";
@@ -2704,10 +2704,10 @@ namespace dynamic_source
       return str;
    }
 
-   string script_impl::ca2_get_subversion_revision(const char * pszVersion)
+   string script_impl::ca2_get_subversion_revision()
    {
       string strUrl;
-      strUrl = "http://ca2.se/votagus_ca2_get_subversion_revision?build=" + urlencode(ca2_get_build(pszVersion)) + "&secure=0";
+      strUrl = "http://ca2.us/votagus_ca2_get_subversion_revision?build=" + urlencode(ca2_get_build()) + "&secure=0";
       return Application.http().get(strUrl);
    }
 
@@ -2739,9 +2739,9 @@ namespace dynamic_source
       return "";
    }
 
-   string script_impl::ca2_format_build(const char * pszVersion)
+   string script_impl::ca2_format_build()
    {
-      string src = ca2_get_build(pszVersion);
+      string src = ca2_get_build();
       src.trim();
       return src;
       /*gen::property_set set;
@@ -2922,7 +2922,7 @@ namespace dynamic_source
    {
       string strFormatBuild;
       if(pszBuild == NULL)
-         strFormatBuild = ca2_get_build(pszBuild);
+         strFormatBuild = ca2_get_build();
       else
          strFormatBuild = pszBuild;
       if(strFormatBuild.has_char())

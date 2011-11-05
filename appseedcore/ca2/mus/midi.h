@@ -66,7 +66,7 @@ enum EMidiPlayerCommand
 //#define SMF_INVALID_TKPOSITION  (13L)
 
 /* Handle structure for HSMF
-*/ 
+*/
 
 #define SMF_TF_EOT          0x00000001L
 #define SMF_TF_INVALID      0x00000002L
@@ -101,13 +101,13 @@ public:
       dwTempo  = 0;
    }
 
-   imedia::position           tkTempo;           
-   DWORD           msBase;            
-   DWORD           dwTempo;           
+   imedia::position           tkTempo;
+   DWORD           msBase;
+   DWORD           dwTempo;
 };
 
 class MidiTempoMapEntryArray :
-   public base_array<MidiTempoMapEntry, MidiTempoMapEntry &> 
+   public base_array<MidiTempoMapEntry, MidiTempoMapEntry &>
 {
 public:
 };
@@ -123,7 +123,7 @@ public:
 
 //DWORD FNLOCAL smfGetVDword(
 //    byte *              hpbImage,
-  //  DWORD               dwLeft,                                
+  //  DWORD               dwLeft,
     //DWORD *            pdw);
 
 /*

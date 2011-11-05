@@ -16,6 +16,8 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-fPIC" />
+					<Add option="-fpermissive" />
+					<Add option="-Wno-conversion-null" />
 					<Add directory="." />
 					<Add directory="../linux" />
 					<Add directory="../../../appseedcore" />
@@ -102,6 +104,7 @@
 		<Unit filename="operational_system/cross/win/win_error.h" />
 		<Unit filename="operational_system/cross/win/win_file.h" />
 		<Unit filename="operational_system/cross/win/win_gdi.h" />
+		<Unit filename="operational_system/cross/win/win_mmsystem.h" />
 		<Unit filename="operational_system/cross/win/win_nls.h" />
 		<Unit filename="operational_system/cross/win/win_nt.h" />
 		<Unit filename="operational_system/cross/win/win_user.h" />

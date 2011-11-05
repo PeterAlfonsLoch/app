@@ -8,13 +8,11 @@
 		<Project filename="../../appseedcore/ca2/ca2.cbp">
 			<Depends filename="../../appseedcore/c/_.cbp" />
 			<Depends filename="../../appseedcore/ca/ca.cbp" />
-			<Depends filename="../../thirdparty/appseed/zlib/zlib.cbp" />
 		</Project>
 		<Project filename="../../os/linux/os.cbp" active="1">
 			<Depends filename="../../appseedcore/c/_.cbp" />
 			<Depends filename="../../appseedcore/ca/ca.cbp" />
 			<Depends filename="../../appseedcore/ca2/ca2.cbp" />
 		</Project>
-		<Project filename="../../thirdparty/appseed/zlib/zlib.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

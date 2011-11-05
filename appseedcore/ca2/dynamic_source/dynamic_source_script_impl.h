@@ -361,9 +361,9 @@ namespace dynamic_source
 
       void cla_sel1(const char * pszSection, const char * pszItem);
 
-      string ca2_get_build(const char * pszVersion);
-      string ca2_get_subversion_revision(const char * pszVersion);
-      string ca2_format_build(const char * pszVersion);
+      string ca2_get_build();
+      string ca2_get_subversion_revision();
+      string ca2_format_build();
 
 
       void ensure_ssl();

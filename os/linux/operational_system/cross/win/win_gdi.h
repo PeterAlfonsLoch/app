@@ -1,6 +1,73 @@
 #pragma once
 
 
+
+class CLASS_DECL_____ gdi_object
+{
+public:
+
+
+   enum e_type
+   {
+      type_undefined,
+      type_pen,
+      type_brush,
+      type_bitmap,
+      type_font,
+   };
+
+   e_type      m_etype;
+
+   gdi_object(e_type etype = type_undefined) :
+      m_etype(etype)
+   {
+   }
+
+};
+
+
+
+
+
+class tagEXTLOGPEN :
+   public gdi_object
+{
+public:
+    DWORD       elpPenStyle;
+    DWORD       elpWidth;
+    UINT        elpBrushStyle;
+    COLORREF    elpColor;
+    ULONG_PTR   elpHatch;
+    DWORD       elpNumEntries;
+    DWORD       elpStyleEntry[1];
+};
+
+
+
+class tagLOGBRUSH :
+   public gdi_object
+{
+public:
+	UINT        lbStyle;
+	COLORREF    lbColor;
+	ULONG_PTR   lbHatch;
+};
+
+
+
+
+
+
+class tagLOGRGN :
+   public gdi_object
+{
+public:
+	UINT        m_uiSize;
+	byte *      m_puchData;
+};
+
+
+
 /* Ternary raster operations */
 #define SRCCOPY             (DWORD)0x00CC0020 /* dest = source                   */
 #define SRCPAINT            (DWORD)0x00EE0086 /* dest = source OR dest           */
@@ -144,6 +211,7 @@ typedef RGBQUAD FAR* LPRGBQUAD;
 /* Logical Font */
 #define LF_FACESIZE         32
 
+
 class  tagLOGFONTA :
    public gdi_object
 {
@@ -164,7 +232,6 @@ class  tagLOGFONTA :
     char      lfFaceName[LF_FACESIZE];
 };
 
-typedef tagLOGFONTA LOGFONTA, *PLOGFONTA, NEAR *NPLOGFONTA, FAR *LPLOGFONTA;
 
 class tagLOGFONTW :
    public gdi_object
@@ -184,7 +251,14 @@ class tagLOGFONTW :
     BYTE      lfQuality;
     BYTE      lfPitchAndFamily;
     wchar_t   lfFaceName[LF_FACESIZE];
-} ;
+};
+
+
+class tagLOGFONTA;
+
+typedef tagLOGFONTA LOGFONTA, *PLOGFONTA, NEAR *NPLOGFONTA, FAR *LPLOGFONTA;
+
+class tagLOGFONTW;
 
 typedef tagLOGFONTW LOGFONTW, *PLOGFONTW, NEAR *NPLOGFONTW, FAR *LPLOGFONTW;
 
@@ -254,18 +328,7 @@ typedef struct tagLOGPEN
 
 
 
-class tagEXTLOGPEN :
-   public gdi_object
-{
-public:
-    DWORD       elpPenStyle;
-    DWORD       elpWidth;
-    UINT        elpBrushStyle;
-    COLORREF    elpColor;
-    ULONG_PTR   elpHatch;
-    DWORD       elpNumEntries;
-    DWORD       elpStyleEntry[1];
-};
+class tagEXTLOGPEN;
 
 typedef tagEXTLOGPEN  EXTLOGPEN, *PEXTLOGPEN, NEAR *NPEXTLOGPEN, FAR *LPEXTLOGPEN;
 
@@ -313,14 +376,7 @@ typedef LPEXTLOGPEN HPEN;
 
 
 
-class tagLOGBRUSH :
-   public gdi_object
-{
-public:
-	UINT        lbStyle;
-	COLORREF    lbColor;
-	ULONG_PTR   lbHatch;
-};
+class tagLOGBRUSH;
 
 typedef tagLOGBRUSH  LOGBRUSH, *PLOGBRUSH, NEAR *NPLOGBRUSH, FAR *LPLOGBRUSH;
 
@@ -457,7 +513,7 @@ typedef struct {
 #endif
 
 
-typedef class tagBITMAPINFO :
+class tagBITMAPINFO :
    public gdi_object
 {
 public:
@@ -466,7 +522,13 @@ public:
     RGBQUAD             bmiColors[1];
 
 
-} BITMAPINFO, FAR *LPBITMAPINFO, *PBITMAPINFO;
+};
+
+
+class tagBITMAPINFO;
+
+
+typedef class tagBITMAPINFO  BITMAPINFO, FAR *LPBITMAPINFO, *PBITMAPINFO;
 
 
 typedef LPBITMAPINFO HBITMAP;
@@ -532,13 +594,7 @@ typedef struct _BLENDFUNCTION
 
 
 
-class tagLOGRGN :
-   public gdi_object
-{
-public:
-	UINT        m_uiSize;
-	byte *      m_puchData;
-};
+class tagLOGRGN;
 
 typedef tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
 

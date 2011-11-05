@@ -6,14 +6,14 @@
 
 static int lastrand;
 
-extern "C" int _fltused = 0;
+int _fltused = 0;
 
 
 CLASS_DECL_____ int abs_dup(int i)
 {
    if(i < 0)
       return -i;
-   else 
+   else
       return i;
 }
 

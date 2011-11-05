@@ -220,7 +220,7 @@ inline int AfxInvariantStrICmp(const char *pszLeft, const char *pszRight)
                             pszRight,
                             -1)-CSTR_EQUAL;
 #else
-   return stricmp(pszLeft, pszRight);
+   return stricmp_dup(pszLeft, pszRight);
 #endif
 }
 
@@ -234,7 +234,7 @@ inline int AfxInvariantStrICmp(const wchar_t *pwszLeft, const wchar_t *pwszRight
                             pwszRight,
                             -1)-CSTR_EQUAL;
 #else
-   return wcsicmp(pwszLeft, pwszRight);
+   return wcsicmp_dup(pwszLeft, pwszRight);
 #endif
 }
 

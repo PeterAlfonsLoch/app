@@ -40,6 +40,9 @@ namespace user
       namespace message
       {
 
+
+         CLASS_DECL_ca UINT translate_to_os_message(UINT uiMessage);
+
          class base;
 
 
@@ -231,8 +234,6 @@ namespace user
          };
 
 #undef new
-
-#ifdef WINDOWS
 
          class CLASS_DECL_ca base :
                public gen::signal_object
@@ -464,6 +465,8 @@ namespace user
                virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             };
 
+#ifdef WINDOWS
+
             class CLASS_DECL_ca notify : public base
             {
             public:
@@ -473,6 +476,8 @@ namespace user
                LPNMHDR get_lpnmhdr();
                int get_ctrl_id();
             };
+
+#endif
 
             class CLASS_DECL_ca update_cmd_ui : public base
             {
@@ -526,6 +531,8 @@ namespace user
                virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             };
 
+#ifdef WINDOWS
+
             class CLASS_DECL_ca measure_item : public base
             {
             public:
@@ -535,6 +542,8 @@ namespace user
               int m_i;
               LPMEASUREITEMSTRUCT m_lpmis;
             };
+
+#endif
 
             class CLASS_DECL_ca nc_calc_size : public base
             {
@@ -556,331 +565,6 @@ namespace user
                enable(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
                bool get_enable();
             };
-#else
-         class CLASS_DECL_ca base :
-               public gen::signal_object
-            {
-            public:
-
-               base(::ca::application * papp, gen::signal * psignal = NULL);
-               base(::ca::application * papp, XEvent * pevent);
-
-               XEvent      m_xevent;
-
-
-
-//               virtual void set_lresult(LRESULT lresult);
-  //             virtual LRESULT & get_lresult();
-    //           virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      //         virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
-            protected:
-        //       LRESULT * m_plresult;
-          //     LRESULT  m_lresult;
-            };
-
-
-
-            class CLASS_DECL_ca create : public base
-            {
-            public:
-
-               create(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               XCreateWindowEvent m_xcreatewindowevent;
-               virtual void set_lresult(LRESULT lresult);
-               virtual void set(XEvent * pevent);
-               virtual void error(const char * lpcszErrorMessage);
-            };
-
-            class CLASS_DECL_ca timer : public base
-            {
-            public:
-
-
-               timer(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-               UINT m_nIDEvent;
-            };
-
-            class CLASS_DECL_ca activate : public base
-            {
-            public:
-
-
-               UINT  m_nState;
-               ::user::interaction * m_pWndOther;
-               BOOL  m_bMinimized;
-
-
-               activate(::ca::application * papp);
-
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-            class CLASS_DECL_ca move : public base
-            {
-            public:
-
-
-               move(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               point m_pt;
-            };
-
-            class CLASS_DECL_ca size : public base
-            {
-            public:
-
-
-               size(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               UINT     m_nType;
-               ::size   m_size;
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-
-            class CLASS_DECL_ca scroll : public base
-            {
-            public:
-
-
-               scroll(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               UINT              m_nSBCode;
-               int           m_nPos;
-               ::user::interaction *  m_pScrollBar;
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-
-            class CLASS_DECL_ca mouse_wheel : public base
-            {
-            public:
-
-
-               mouse_wheel(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               UINT     GetFlags();
-               short    GetDelta();
-               point    GetPoint();
-            };
-
-            class CLASS_DECL_ca mouse : public base
-            {
-            public:
-
-
-               UINT                    m_nFlags;
-               point                   m_pt;
-               ::visual::e_cursor      m_ecursor;
-               bool                    m_bTranslated;
-
-               mouse(::ca::application * papp);
-               virtual ~mouse();
-
-   #ifdef WIN32
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-   #endif
-               static mouse * cast(gen::signal_object * pobj) { return (mouse *) pobj; }
-            };
-
-            class CLASS_DECL_ca mouse_activate : public base
-            {
-            public:
-
-
-               mouse_activate(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               ::user::interaction * GetDesktopWindow();
-               UINT GetHitTest();
-               UINT GetMessage();
-            };
-
-            class CLASS_DECL_ca context_menu : public base
-            {
-            public:
-
-
-               context_menu(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               ::ca::window * GetWindow();
-               point GetPoint();
-            };
-
-
-            class CLASS_DECL_ca set_cursor : public base
-            {
-            public:
-
-
-               set_cursor(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               ::ca::window* m_pWnd;
-               UINT m_nHitTest;
-               UINT m_message;
-            };
-
-            class CLASS_DECL_ca show_window : public base
-            {
-            public:
-
-
-               show_window(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               BOOL m_bShow;
-               UINT  m_nStatus;
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-            class CLASS_DECL_ca on_draw : public base
-            {
-            public:
-
-
-               on_draw(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               ::ca::graphics * m_pdc;
-            };
-
-            class CLASS_DECL_ca erase_bkgnd : public base
-            {
-            public:
-
-
-               ::ca::graphics * m_pdc;
-
-
-               erase_bkgnd(::ca::application * papp);
-
-               void set_result(BOOL bResult);
-
-            };
-
-            // WM_PAINT -> base
-            // WM_MOUSELEAVE -> base
-
-            class CLASS_DECL_ca nchittest : public base
-            {
-            public:
-
-
-               nchittest(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               point m_pt;
-            };
-
-            class CLASS_DECL_ca key : public base
-            {
-            public:
-
-
-               UINT m_nChar;
-               UINT m_nRepCnt;
-               UINT m_nFlags;
-
-
-               key(::ca::application * papp);
-
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-            class CLASS_DECL_ca nc_activate : public base
-            {
-            public:
-
-
-               BOOL m_bActive;
-
-
-               nc_activate(::ca::application * papp);
-
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-/*            class CLASS_DECL_ca notify : public base
-            {
-            public:
-
-
-               notify(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               LPNMHDR get_lpnmhdr();
-               int get_ctrl_id();
-            };*/
-
-            class CLASS_DECL_ca update_cmd_ui : public base
-            {
-            public:
-
-
-               update_cmd_ui(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               cmd_ui *    m_pcmdui;
-            };
-
-            class CLASS_DECL_ca command : public base
-            {
-            public:
-
-
-               command(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               UINT GetNotifyCode();
-               UINT GetId();
-               HWND GetHwnd();
-            };
-
-            class CLASS_DECL_ca ctl_color : public base
-            {
-            public:
-
-
-               ctl_color(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               HBRUSH      m_hbrush;
-               ::ca::graphics *       m_pdc;
-               ::ca::window *      m_pwnd;
-               UINT        m_nCtlType;
-            };
-
-            class CLASS_DECL_ca set_focus : public base
-            {
-            public:
-
-
-               set_focus(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               ::ca::window * m_pwnd;
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };
-
-
-/*            class CLASS_DECL_ca window_pos : public base
-            {
-            public:
-
-               window_pos(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               WINDOWPOS * m_pwindowpos;
-               virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            };*/
-
-/*            class CLASS_DECL_ca measure_item : public base
-            {
-            public:
-
-
-               measure_item(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-              int m_i;
-              LPMEASUREITEMSTRUCT m_lpmis;
-            };*/
-
-/*            class CLASS_DECL_ca nc_calc_size : public base
-            {
-            public:
-
-
-               nc_calc_size(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-              NCCALCSIZE_PARAMS * m_pparams;
-              BOOL GetCalcValidRects();
-              virtual void set(HWND hwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-
-            };*/
-
-            class CLASS_DECL_ca enable : public base
-            {
-            public:
-
-
-               enable(::ca::application * papp) : ca(papp), ::user::win::message::base(papp) {}
-               bool get_enable();
-            };
-#endif
-
 
 
 #define new DEBUG_NEW
@@ -953,23 +637,7 @@ namespace user
                static_cast<const ::sigc::slot_base&>(::sigc::mem_fun(phandler, pfunction)))
 
          template < class T1, class T2>
-         void win_connect(
-            UINT                              message,
-            dispatch *   pdispatch,
-            T1 *                              psignalizable,
-            void (T2::*                      pfn)(gen::signal_object *))
-         {
-            pdispatch->AddMessageHandler(
-               message,
-               0,
-               0,
-               0,
-               dynamic_cast < T2 * > (psignalizable),
-               pfn);
-         }
-
-         template < class T1, class T2>
-         void lnx_connect(
+         void os_connect(
             UINT                              message,
             dispatch *   pdispatch,
             T1 *                              psignalizable,
@@ -991,29 +659,11 @@ namespace user
             T1 *                              psignalizable,
             void (T2::*                      pfn)(gen::signal_object *))
          {
-#ifdef WINDOWS
-            UINT uiWinMessage;
-            if(message == message_create)
-            {
-               uiWinMessage = WM_CREATE;
-            }
-            else
-            {
-               uiWinMessage = message;
-            }
-            win_connect(uiWinMessage, pdispatch, psignalizable, pfn);
-#else
-            UINT uiLnxMessage;
-            if(message == message_create)
-            {
-               uiLnxMessage = CreateNotify;
-            }
-            else
-            {
-               uiLnxMessage = message;
-            }
-            lnx_connect(uiLnxMessage, pdispatch, psignalizable, pfn);
-#endif
+
+            UINT uiOsMessage = translate_to_os_message(message);
+
+            os_connect(uiOsMessage, pdispatch, psignalizable, pfn);
+
          }
 
          template < class T1, class T2>

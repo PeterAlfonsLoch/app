@@ -7,8 +7,8 @@
 	<File name="audio/WaveIn.h" open="0" top="0" tabpos="0">
 		<Cursor position="503" topLine="0" />
 	</File>
-	<File name="audio/WaveInListener.h" open="0" top="0" tabpos="22">
-		<Cursor position="152" topLine="0" />
+	<File name="audio/WaveInListener.h" open="0" top="0" tabpos="2">
+		<Cursor position="158" topLine="0" />
 	</File>
 	<File name="audio/WaveInListenerSet.h" open="0" top="0" tabpos="23">
 		<Cursor position="398" topLine="0" />
@@ -292,6 +292,9 @@
 	<File name="filemanager/ContextMenu.h" open="0" top="0" tabpos="15">
 		<Cursor position="272" topLine="0" />
 	</File>
+	<File name="filemanager/FileManagerChildFrame.h" open="0" top="0" tabpos="4">
+		<Cursor position="47" topLine="0" />
+	</File>
 	<File name="filemanager/FileManagerFileListCallback.h" open="0" top="0" tabpos="24">
 		<Cursor position="62" topLine="0" />
 	</File>
@@ -364,6 +367,9 @@
 	<File name="multithreading/multithreading_thread_pool.h" open="0" top="0" tabpos="7">
 		<Cursor position="1816" topLine="0" />
 	</File>
+	<File name="mus/midi_sequence.h" open="0" top="0" tabpos="5">
+		<Cursor position="1300" topLine="37" />
+	</File>
 	<File name="ortp/port.h" open="0" top="0" tabpos="0">
 		<Cursor position="1291" topLine="0" />
 	</File>
@@ -421,8 +427,8 @@
 	<File name="template/_template.h" open="0" top="0" tabpos="3">
 		<Cursor position="5039" topLine="164" />
 	</File>
-	<File name="template/checked.h" open="1" top="1" tabpos="2">
-		<Cursor position="12271" topLine="468" />
+	<File name="template/checked.h" open="0" top="0" tabpos="1">
+		<Cursor position="12311" topLine="469" />
 	</File>
 	<File name="template/trace_module_manager.h" open="0" top="0" tabpos="8">
 		<Cursor position="2556" topLine="84" />

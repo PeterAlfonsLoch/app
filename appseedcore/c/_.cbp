@@ -19,6 +19,7 @@
 					<Add option="-fno-pie" />
 					<Add option="-fno-stack-protector" />
 					<Add option="-fpermissive" />
+					<Add option="-Wno-conversion-null" />
 					<Add directory="." />
 					<Add directory=".." />
 					<Add directory="../.." />

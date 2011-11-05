@@ -7,8 +7,8 @@
 
 //#define SEQ_F_EOF           0x00000001L
 //#define SEQ_F_COLONIZED     0x00000002L
-//#define SEQ_F_WAITING       0x00000004L   
-//#define SEQ_F_SETTING_POS   0x00000008L   
+//#define SEQ_F_WAITING       0x00000004L
+//#define SEQ_F_SETTING_POS   0x00000008L
 
 //#define SEQ_S_NOFILE        0
 //#define SEQ_S_OPENED        1
@@ -180,7 +180,7 @@ namespace mus
          int_array   m_iaLevel;
          DWORD       m_dwTimeDivision;     /* File time division                           */
 
-         LPBYTE      m_lpbAlloc;           /* Streaming buffers -- initial allocation      */ 
+         LPBYTE      m_lpbAlloc;           /* Streaming buffers -- initial allocation      */
          DWORD       m_cbPreroll;          /* Streaming buffers -- size of lpmhPreroll     */
          DWORD       m_cbPrerollNominalMax;
          UINT        m_uBuffersInMMSYSTEM; /* Streaming buffers -- in use                  */
@@ -326,11 +326,11 @@ namespace mus
 
       typedef struct tag_midiDoneData
       {
-         
+
          sequence::flags         m_flags;
          UINT                    m_uiSeqState;
          UINT                    m_uiSeqPreviousState;
-          
+
          inline bool SequenceIsInSpecialModeV001()
          {
             return m_flags.is_signalized(sequence::FlagIsInSpecialModeV001);

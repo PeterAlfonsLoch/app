@@ -15,7 +15,7 @@
 
 
 #define ENABLE_BINRELOC
-#include "linux_binreloc.h"
+#include "c_os_binreloc.h"
 
 
 

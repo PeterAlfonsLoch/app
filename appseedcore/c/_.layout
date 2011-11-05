@@ -7,7 +7,10 @@
 	<File name="_crt0dll.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="510" topLine="0" />
 	</File>
-	<File name="atol.h" open="1" top="0" tabpos="6">
+	<File name="_math.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="91" topLine="0" />
+	</File>
+	<File name="atol.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="c.h" open="0" top="0" tabpos="6">
@@ -16,20 +19,20 @@
 	<File name="ca_seed.h" open="0" top="0" tabpos="0">
 		<Cursor position="738" topLine="0" />
 	</File>
-	<File name="conv.h" open="1" top="0" tabpos="4">
+	<File name="conv.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="event_wait.h" open="0" top="0" tabpos="0">
 		<Cursor position="198" topLine="0" />
 	</File>
-	<File name="file.cpp" open="1" top="0" tabpos="8">
+	<File name="file.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="6924" topLine="275" />
 	</File>
 	<File name="heap.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1840" topLine="36" />
 	</File>
-	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="7978" topLine="362" />
+	<File name="hotplugin/hotplugin_plugin.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="9357" topLine="403" />
 	</File>
 	<File name="index.h" open="0" top="0" tabpos="0">
 		<Cursor position="16" topLine="0" />
@@ -43,11 +46,11 @@
 	<File name="linux/linux_cross_win_file.h" open="0" top="0" tabpos="0">
 		<Cursor position="912" topLine="3" />
 	</File>
-	<File name="linux/linux_cross_win_gdi.cpp" open="0" top="0" tabpos="18">
-		<Cursor position="3338" topLine="135" />
+	<File name="linux/linux_cross_win_gdi.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="152" topLine="0" />
 	</File>
-	<File name="linux/linux_http.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="484" topLine="0" />
+	<File name="linux/linux_http.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="2999" topLine="117" />
 	</File>
 	<File name="linux/linux_http_lib.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4469" topLine="146" />
@@ -112,16 +115,16 @@
 	<File name="spa/spa_window.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="6820" topLine="253" />
 	</File>
-	<File name="str.cpp" open="1" top="0" tabpos="7">
+	<File name="str.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="4071" topLine="208" />
 	</File>
-	<File name="str.h" open="1" top="0" tabpos="3">
+	<File name="str.h" open="0" top="0" tabpos="1">
 		<Cursor position="1305" topLine="10" />
 	</File>
 	<File name="template.h" open="0" top="0" tabpos="0">
 		<Cursor position="281" topLine="0" />
 	</File>
-	<File name="types.h" open="1" top="0" tabpos="5">
+	<File name="types.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

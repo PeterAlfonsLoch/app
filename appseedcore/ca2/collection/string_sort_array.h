@@ -181,5 +181,5 @@ inline int str_sort_array::Compare(const char * lpcszA, const char * lpcszB)
 // strA - strB
 inline int str_sort_array::CompareNoCase(const char * lpcszA, const char * lpcszB)
 {
-   return stricmp(lpcszA, lpcszB);
+   return stricmp_dup(lpcszA, lpcszB);
 }

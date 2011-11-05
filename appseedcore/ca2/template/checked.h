@@ -488,7 +488,7 @@ namespace _template
    {
       (_SizeInChars);
 #if defined(LINUX)
-l        ::ltoa_dup(_Val, _Buf, _Radix);
+        ::ltoa_dup(_Val, _Buf, _Radix);
 #else
         ::_i64toa(_Val, _Buf, _Radix);
 #endif

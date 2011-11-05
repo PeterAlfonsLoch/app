@@ -809,6 +809,31 @@ namespace user
             //m_signalInstallMessageHandling.remove_all();
          }
 
+
+         UINT translate_to_os_message(UINT uiMessage)
+         {
+
+#ifdef WINDOWS
+
+            switch(uiMessage)
+            {
+               case message_create:
+                  return WM_CREATE;
+               default:
+                  return uiMessage;
+            };
+
+#else
+            switch(uiMessage)
+            {
+               case message_create:
+                  return CreateNotify;
+               default:
+                  return uiMessage;
+            };
+#endif
+
+
       } // namespace message
 
    } // namespace user

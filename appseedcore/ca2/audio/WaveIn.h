@@ -52,8 +52,8 @@ public:
 #ifdef WINDOWS
    HWAVEIN                          m_hWaveIn;
 #else
-   snd_pcm_t                        m_pcm;
-   snd_pcm_hw_params_t              m_hwparams;
+   snd_pcm_t *                      m_ppcm;
+   snd_pcm_hw_params_t *            m_phwparams;
 #endif
 
    WAVEFORMATEX                     m_waveFormatEx;

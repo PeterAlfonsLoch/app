@@ -32,7 +32,7 @@ namespace hotplugin
       bool                          m_bOk;
       HBITMAP                       m_hbitmap;
       DWORD *                       m_pcolorref;
-      BITMAPINFO                    m_info;
+      BITMAPINFO *                  m_pinfo;
       SIZE                          m_sizeBitmap;
 
 

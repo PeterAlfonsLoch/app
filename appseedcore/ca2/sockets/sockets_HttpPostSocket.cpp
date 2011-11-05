@@ -115,7 +115,7 @@ namespace sockets
 
          string body;
 
-         if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
+         if(m_fields["xml"].get_value().get_type() == var::type_ca2)
          {
             ::xml::node * pnode = m_fields["xml"].ca2 < ::xml::node >();
             body = pnode->get_xml();

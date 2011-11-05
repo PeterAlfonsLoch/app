@@ -469,7 +469,6 @@ typedef WINDOWPLACEMENT *PWINDOWPLACEMENT, *LPWINDOWPLACEMENT;
 
 typedef struct tag_MSG
 {
-   XEvent   event;
    UINT     message;
    WPARAM   wparam;
    LPARAM   lparam;
