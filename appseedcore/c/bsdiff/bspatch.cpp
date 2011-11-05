@@ -31,7 +31,6 @@
 typedef unsigned char u_char;
 
 #ifdef WINDOWS
-#ifndef MACOS
 typedef signed int ssize_t;
 #endif
 

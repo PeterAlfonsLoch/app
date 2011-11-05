@@ -3,7 +3,7 @@
 
 class midi_player_callback;
 
-class CLASS_DECL_ca midi_player_window : 
+class CLASS_DECL_ca midi_player_window :
    public ::user::interaction
 {
 public:
@@ -18,7 +18,6 @@ public:
    midi_player_callback * GetCallback();
 
    using ::user::interaction::create;
-   using ::ex1::request_interface::create;
    virtual bool create();
 
    void SetCallback(midi_player_callback * pcallback);

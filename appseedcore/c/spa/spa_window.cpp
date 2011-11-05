@@ -1,5 +1,11 @@
 #include "StdAfx.h"
 
+
+#ifdef LINUX
+#include "c/linux/c_os_cross_win_gdi_internal.h"
+#endif
+
+
 TCHAR szTitle[1024];					// The title bar text
 TCHAR szWindowClassSpaAdmin[1024];			// the main window class name
 

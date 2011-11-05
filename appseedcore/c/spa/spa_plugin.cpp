@@ -1,6 +1,10 @@
 #include "StdAfx.h"
 
 
+#ifdef LINUX
+#include "c/linux/c_os_cross_win_gdi_internal.h"
+#endif
+
 
 #ifdef _WINDOWS
 #include <process.h>

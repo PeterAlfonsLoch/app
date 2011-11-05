@@ -37219,7 +37219,7 @@ SQLITE_PRIVATE void sqlite3VdbeSwap(Vdbe *pA, Vdbe *pB){
 
 #ifdef SQLITE_DEBUG
 /*
-** Turn tracing on or off
+** Turn tracing on or offl
 */
 SQLITE_PRIVATE void sqlite3VdbeTrace(Vdbe *p, FILE *trace){
   p->trace = trace;

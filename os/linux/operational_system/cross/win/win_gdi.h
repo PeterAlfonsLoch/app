@@ -2,9 +2,8 @@
 
 
 
-class CLASS_DECL_____ gdi_object
+struct CLASS_DECL_____ gdi_object
 {
-public:
 
 
    enum e_type
@@ -16,55 +15,29 @@ public:
       type_font,
    };
 
-   e_type      m_etype;
+   enum e_type      m_etype;
 
-   gdi_object(e_type etype = type_undefined) :
+/*   gdi_object(e_type etype = type_undefined) :
       m_etype(etype)
    {
-   }
+   }*/
 
 };
 
 
+struct gdi_enhanced_meta_file;
 
 
-
-class tagEXTLOGPEN :
-   public gdi_object
-{
-public:
-    DWORD       elpPenStyle;
-    DWORD       elpWidth;
-    UINT        elpBrushStyle;
-    COLORREF    elpColor;
-    ULONG_PTR   elpHatch;
-    DWORD       elpNumEntries;
-    DWORD       elpStyleEntry[1];
-};
+typedef struct gdi_enhanced_meta_file * HENHMETAFILE;
 
 
-
-class tagLOGBRUSH :
-   public gdi_object
-{
-public:
-	UINT        lbStyle;
-	COLORREF    lbColor;
-	ULONG_PTR   lbHatch;
-};
+struct tagEXTLOGPEN;
 
 
+struct tagLOGBRUSH;
 
 
-
-
-class tagLOGRGN :
-   public gdi_object
-{
-public:
-	UINT        m_uiSize;
-	byte *      m_puchData;
-};
+struct tagLOGRGN;
 
 
 
@@ -212,10 +185,8 @@ typedef RGBQUAD FAR* LPRGBQUAD;
 #define LF_FACESIZE         32
 
 
-class  tagLOGFONTA :
-   public gdi_object
+struct  tagLOGFONTA
 {
-   public:
     LONG      lfHeight;
     LONG      lfWidth;
     LONG      lfEscapement;
@@ -233,10 +204,8 @@ class  tagLOGFONTA :
 };
 
 
-class tagLOGFONTW :
-   public gdi_object
+struct tagLOGFONTW
 {
-   public:
     LONG      lfHeight;
     LONG      lfWidth;
     LONG      lfEscapement;
@@ -254,14 +223,22 @@ class tagLOGFONTW :
 };
 
 
-class tagLOGFONTA;
+typedef struct tagLOGFONTA LOGFONTA, *PLOGFONTA, NEAR *NPLOGFONTA, FAR *LPLOGFONTA;
 
-typedef tagLOGFONTA LOGFONTA, *PLOGFONTA, NEAR *NPLOGFONTA, FAR *LPLOGFONTA;
 
-class tagLOGFONTW;
+typedef struct tagLOGFONTW LOGFONTW, *PLOGFONTW, NEAR *NPLOGFONTW, FAR *LPLOGFONTW;
 
-typedef tagLOGFONTW LOGFONTW, *PLOGFONTW, NEAR *NPLOGFONTW, FAR *LPLOGFONTW;
 
+struct tagFONTA;
+
+
+struct tagFONTW;
+
+
+typedef struct tagFONTA FONTA, * PFONTA, NEAR * NPFONTA, FAR * LPFONTA;
+
+
+typedef struct tagFONTW FONTW, * PFONTW, NEAR * NPFONTW, FAR * LPFONTW;
 
 
 #ifdef UNICODE
@@ -269,14 +246,27 @@ typedef LOGFONTW LOGFONT;
 typedef PLOGFONTW PLOGFONT;
 typedef NPLOGFONTW NPLOGFONT;
 typedef LPLOGFONTW LPLOGFONT;
+typedef FONTW FONT;
+typedef PFONTW PFONT;
+typedef NPFONTW NPFONT;
+typedef LPFONTW LPFONT;
 #else
 typedef LOGFONTA LOGFONT;
 typedef PLOGFONTA PLOGFONT;
 typedef NPLOGFONTA NPLOGFONT;
 typedef LPLOGFONTA LPLOGFONT;
+typedef FONTA FONT;
+typedef PFONTA PFONT;
+typedef NPFONTA NPFONT;
+typedef LPFONTA LPFONT;
 #endif // UNICODE
 
-typedef LPLOGFONT HFONT;
+
+
+typedef LPFONT HFONT;
+
+
+
 
 #define ANSI_CHARSET            0
 #define DEFAULT_CHARSET         1
@@ -328,9 +318,9 @@ typedef struct tagLOGPEN
 
 
 
-class tagEXTLOGPEN;
+struct tagEXTLOGPEN;
 
-typedef tagEXTLOGPEN  EXTLOGPEN, *PEXTLOGPEN, NEAR *NPEXTLOGPEN, FAR *LPEXTLOGPEN;
+typedef struct tagEXTLOGPEN  EXTLOGPEN, *PEXTLOGPEN, NEAR *NPEXTLOGPEN, FAR *LPEXTLOGPEN;
 
 typedef LPEXTLOGPEN HPEN;
 
@@ -376,11 +366,14 @@ typedef LPEXTLOGPEN HPEN;
 
 
 
-class tagLOGBRUSH;
+struct tagLOGBRUSH;
 
-typedef tagLOGBRUSH  LOGBRUSH, *PLOGBRUSH, NEAR *NPLOGBRUSH, FAR *LPLOGBRUSH;
+
+typedef struct tagLOGBRUSH  LOGBRUSH, *PLOGBRUSH, NEAR *NPLOGBRUSH, FAR *LPLOGBRUSH;
+
 
 typedef LPLOGBRUSH HBRUSH;
+
 
 
 /* Stock Logical Objects */
@@ -513,22 +506,10 @@ typedef struct {
 #endif
 
 
-class tagBITMAPINFO :
-   public gdi_object
-{
-public:
-
-    BITMAPINFOHEADER    bmiHeader;
-    RGBQUAD             bmiColors[1];
+struct tagBITMAPINFO;
 
 
-};
-
-
-class tagBITMAPINFO;
-
-
-typedef class tagBITMAPINFO  BITMAPINFO, FAR *LPBITMAPINFO, *PBITMAPINFO;
+typedef struct tagBITMAPINFO  BITMAPINFO, FAR *LPBITMAPINFO, *PBITMAPINFO;
 
 
 typedef LPBITMAPINFO HBITMAP;
@@ -594,9 +575,11 @@ typedef struct _BLENDFUNCTION
 
 
 
-class tagLOGRGN;
+struct tagLOGRGN;
 
-typedef tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
+
+typedef struct tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
+
 
 typedef LPLOGRGN HRGN;
 
@@ -620,3 +603,51 @@ int FillRect(HDC hDC, const RECT *lprc, HBRUSH hbr);
 BOOL ReleaseDC(HWND hwnd, HDC hdc);
 
 HDC GetWindowDC(HWND hwnd);
+
+
+/* Enhanced Metafile structures */
+typedef struct tagENHMETARECORD
+{
+    DWORD   iType;              // Record type EMR_XXX
+    DWORD   nSize;              // Record size in bytes
+    DWORD   dParm[1];           // Parameters
+} ENHMETARECORD, *PENHMETARECORD, *LPENHMETARECORD;
+
+typedef struct tagENHMETAHEADER
+{
+    DWORD   iType;              // Record typeEMR_HEADER
+    DWORD   nSize;              // Record size in bytes.  This may be greater
+                                // than the sizeof(ENHMETAHEADER).
+    RECTL   rclBounds;          // Inclusive-inclusive bounds in device units
+    RECTL   rclFrame;           // Inclusive-inclusive Picture Frame of metafile in .01 mm units
+    DWORD   dSignature;         // Signature.  Must be ENHMETA_SIGNATURE.
+    DWORD   nVersion;           // Version number
+    DWORD   nBytes;             // Size of the metafile in bytes
+    DWORD   nRecords;           // Number of records in the metafile
+    WORD    nHandles;           // Number of handles in the handle table
+                                // Handle index zero is reserved.
+    WORD    sReserved;          // Reserved.  Must be zero.
+    DWORD   nDescription;       // Number of chars in the unicode description string
+                                // This is 0 if there is no description string
+    DWORD   offDescription;     // Offset to the metafile description record.
+                                // This is 0 if there is no description string
+    DWORD   nPalEntries;        // Number of entries in the metafile palette.
+    SIZEL   szlDevice;          // Size of the reference device in pels
+    SIZEL   szlMillimeters;     // Size of the reference device in millimeters
+#if(WINVER >= 0x0400)
+    DWORD   cbPixelFormat;      // Size of PIXELFORMATDESCRIPTOR information
+                                // This is 0 if no pixel format is set
+    DWORD   offPixelFormat;     // Offset to PIXELFORMATDESCRIPTOR
+                                // This is 0 if no pixel format is set
+    DWORD   bOpenGL;            // TRUE if OpenGL commands are present in
+                                // the metafile, otherwise FALSE
+#endif /* WINVER >= 0x0400 */
+#if(WINVER >= 0x0500)
+    SIZEL   szlMicrometers;     // Size of the reference device in micrometers
+#endif /* WINVER >= 0x0500 */
+
+} ENHMETAHEADER, *PENHMETAHEADER, *LPENHMETAHEADER;
+
+
+
+

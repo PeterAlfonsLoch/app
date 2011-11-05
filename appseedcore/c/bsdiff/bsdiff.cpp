@@ -7,7 +7,6 @@
 typedef unsigned char u_char;
 
 #ifdef WINDOWS
-#ifndef MACOS
 typedef long pid_t;
 #endif
 

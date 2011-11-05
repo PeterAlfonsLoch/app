@@ -1,9 +1,17 @@
 #include "StdAfx.h"
 
+
+#ifdef LINUX
+#include "c/linux/c_os_cross_win_gdi_internal.h"
+#endif
+
+
 void fastblur(DWORD * pdata, int w, int h, int radius);
+
 
 namespace hotplugin
 {
+
 
    plugin::plugin()
    {
@@ -252,7 +260,7 @@ namespace hotplugin
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    dH += 5.0;
-#else 
+#else
    dH += 2.0;
 #endif
    if(dH >= 6.0)

@@ -4,44 +4,6 @@
 #include "get_platform.h"
 
 
-#ifndef _DEBUG
-#define _DEBUG
-#endif
-
-#define PURE = 0
-
-
-#define _X86_
-
-
-#include "linux32_system.h"
-#define _ApplicationFrameworkDLL
-#define _AFX_NO_OLE_SUPPORT
-
-
-
-#ifndef _DEBUG
-#define _DEBUG // ca2 is in debug - bugs come and go, always
-#endif
-
-
-#define __stdcall
-
-
-#include "c/types.h"
-
-
-#include "c/natural.h"
-
-
-#define if_then(p, q)  ((!(p))||(!(q)))
-
-
-#include "bare_operational_system.h"        // Target version control
-
-
-#include "cross/win/win.h"
-
 
 
 /**

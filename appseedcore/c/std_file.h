@@ -40,7 +40,7 @@ struct CLASS_DECL_____ _struct_FILE
 
 
 
-   CLASS_DECL_____ _FILE *__iob_func_dup();
+CLASS_DECL_____ _FILE *__iob_func_dup();
 
 CLASS_DECL_____ void _init_file_dup();
 

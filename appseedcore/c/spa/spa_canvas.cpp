@@ -1,5 +1,13 @@
 #include "StdAfx.h"
+
+
+#ifdef LINUX
+#include "c/linux/c_os_cross_win_gdi_internal.h"
+#endif
+
+
 #include <math.h>
+
 
 namespace spa
 {

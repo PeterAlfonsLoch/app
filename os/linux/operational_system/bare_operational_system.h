@@ -18,15 +18,15 @@ typedef unsigned long XID;
 #endif
 
 
-class device_context;
-class gdi_object;
+struct device_context;
+struct gdi_object;
 
 typedef XID Window;
 typedef Window HWND;
 
 
-typedef device_context * HDC;
-typedef gdi_object * HGDIOBJ;
+typedef struct device_context * HDC;
+typedef struct gdi_object * HGDIOBJ;
 
 union _XEvent;
 
@@ -76,8 +76,10 @@ typedef union _XEvent XEvent;
 	#include "version_dll.h"
 #endif
 
-inline void AfxDebugBreak() { asm("int 3"); }
 
+#ifdef __cplusplus
+inline void AfxDebugBreak() { asm("int 3"); }
+#endif
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -339,5 +341,7 @@ void memmove(void * dst, const void * src, int iSize);
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
 
-#include "cross/win/win.h"
+

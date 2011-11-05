@@ -11,7 +11,7 @@ class Star350Tracks;
 class Star350TrackV008;
 
 
-struct AFX_EXT_CLASS CUDWordBytes
+struct CLASS_DECL_ca CUDWordBytes
 {
    union
    {
@@ -60,20 +60,20 @@ protected:
 //   CMidiFile *      m_pFile;
 public:
     DWORD           m_idxTrack;
-    
-   imedia::position           m_tkPosition;        
-   DWORD           m_cbLeft;            
-   byte *          m_hpbImage;          
-   BYTE            m_bRunningStatus;   
-   
+
+   imedia::position           m_tkPosition;
+   DWORD           m_cbLeft;
+   byte *          m_hpbImage;
+   BYTE            m_bRunningStatus;
+
    DWORD         m_dwUsed;
-    
+
     DWORD           m_fdwTrack;
     struct tag_smti
     {
         imedia::position       m_tkLength;
         DWORD       m_cbLength;
-    } m_smti;     
+    } m_smti;
 
    imedia::position         m_tkDelta;
    byte *         m_hpbEventImage;
@@ -97,14 +97,14 @@ public:
     void Initialize(Star350Tracks * pTracks);
    __forceinline int GetState();
    __forceinline Star350EventV001 * GetEvent();
-   
-   
+
+
    SMFRESULT ReadDelta();
 
    SMFRESULT ReadEvent(imedia::position tkMax, BOOL bTkMaxInclusive);
 
    SMFRESULT ReadXFTokens(stringa * lpstraTokens, imedia::position_array * lptkaTicks);
-   
+
 //   SMFRESULT ReadKarTokens(
 //      StringArray *  lpstraTokens,
 //      imedia::position_array *   lptkaTicks);
@@ -123,7 +123,7 @@ public:
 
 
 protected:
-   DWORD GetVDWord(                              
+   DWORD GetVDWord(
       DWORD * pDw);
 
    DWORD GetVDWord(
@@ -133,7 +133,7 @@ protected:
    DWORD SetVDWord(
       DWORD dwLeft,
       DWORD dw);
-   
+
    DWORD SetVDWord(
       DWORD dw);
 
@@ -153,7 +153,7 @@ public:
    SMFRESULT ReadTune1000Tokens(stringa * lpstraTokens, imedia::position_array * lptkaTicks);
    bool IsXFFile();
    SMFRESULT seek(DWORD dwSeekWhat);
-    
+
     virtual VMSRESULT seek_begin();
    byte * GetImage();
 //   BOOL ContainsEvent(midi_event_base * pEvent);
@@ -169,7 +169,7 @@ public:
 //      CMidiEventsV1 * pEvents,
 //      int iTrack,
 //      bool bAnyTrack);
-   
+
    SMFRESULT copy(Star350EventTrack *pTrk, int iMode);
    DWORD GetImageLength();
    byte * GetAllocationImage();
