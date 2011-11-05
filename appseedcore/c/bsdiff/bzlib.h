@@ -79,7 +79,7 @@ typedef
 
 #ifndef BZ_NO_STDIO
 /* Need a definitition for _FILE */
-#include <stdio.h>
+//#include <stdio.h>
 #endif
 
 #ifdef _WIN32
@@ -152,10 +152,17 @@ BZ_EXTERN int BZ_API(BZ2_bzDecompressEnd) (
 
 #define BZFILE void
 
+<<<<<<< .mine
+BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) ( 
+      int*  bzerror,   
+      _FILE * f, 
+      int   verbosity, 
+=======
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) (
       int*  bzerror,
       FILE * f,
       int   verbosity,
+>>>>>>> .r2780
       int   small,
       void * unused,
       int   nUnused
@@ -180,12 +187,21 @@ BZ_EXTERN int BZ_API(BZ2_bzRead) (
       int     len
    );
 
+<<<<<<< .mine
+BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) ( 
+      int*  bzerror,      
+      _FILE * f, 
+      int   blockSize100k, 
+      int   verbosity, 
+      int   workFactor 
+=======
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) (
       int*  bzerror,
       FILE * f,
       int   blockSize100k,
       int   verbosity,
       int   workFactor
+>>>>>>> .r2780
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzWrite) (

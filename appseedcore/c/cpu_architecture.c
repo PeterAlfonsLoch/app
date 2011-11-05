@@ -89,6 +89,9 @@ static void MyCPUID(uint32 function, uint32 *a, uint32 *b, uint32 *c, uint32 *d)
   #endif
 
   #else */
+    
+    
+#ifdef WINDOWS
 
   int CPUInfo[4];
   __cpuid(CPUInfo, function);
@@ -96,6 +99,21 @@ static void MyCPUID(uint32 function, uint32 *a, uint32 *b, uint32 *c, uint32 *d)
   *b = CPUInfo[1];
   *c = CPUInfo[2];
   *d = CPUInfo[3];
+    
+#else
+    
+    
+    
+    __asm__ __volatile__ (
+                          "cpuid"
+                          : "=a" (*a) ,
+                          "=b" (*b) ,
+                          "=c" (*c) ,
+                          "=d" (*d)
+                          : "0" (function)) ;
+    
+    
+#endif
 
   //#endif
 }

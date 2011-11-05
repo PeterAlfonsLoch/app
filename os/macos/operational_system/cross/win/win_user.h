@@ -473,7 +473,7 @@ typedef struct tag_MSG
    UINT     message;
    WPARAM   wparam;
    LPARAM   lparam;
-} MSG, * LPMSG ;
+} MSG, * LPMSG;
 
 
 

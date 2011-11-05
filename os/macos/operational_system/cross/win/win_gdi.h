@@ -23,8 +23,6 @@
 #define CAPTUREBLT                   (DWORD)0x40000000 /* Include layered windows */
 #endif /* WINVER >= 0x0500 */
 
-
-
 /* Logcolorspace lcsType values */
 
 #define LCS_sRGB                'sRGB'
@@ -545,15 +543,17 @@ typedef tagLOGRGN  LOGRGN, *PLOGRGN, NEAR *NPLOGRGN, FAR *LPLOGRGN;
 typedef LPLOGRGN HRGN;
 
 
+<<<<<<< .mine
+HBITMAP CreateCompatibleBitmap(HDC hdc, int cx, int cy);
+=======
 HBITMAPCreateCompatibleBitmap(HDC hdc, int cx, int cy);
+>>>>>>> .r2781
 
 
 BOOL BitBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, HDC hdcSrc, int nXSrc, int nYSrc, DWORD dwRop);
 
 
 BOOL SetViewportOrgEx(HDC hdc, int X, int Y, LPPOINT lpPoint);
-
-
 
 BOOL GetClientRect(HWND hwnd, LPRECT lprect);
 
@@ -564,3 +564,4 @@ int FillRect(HDC hDC, const RECT *lprc, HBRUSH hbr);
 BOOL ReleaseDC(HWND hwnd, HDC hdc);
 
 HDC GetWindowDC(HWND hwnd);
+
