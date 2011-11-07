@@ -73,7 +73,6 @@ extern "C"
 #include "simple_event.h"
 
 #include "mutex_lock.h"
-#include "event_wait.h"
 
 #include "simple_critical_section.h"
 

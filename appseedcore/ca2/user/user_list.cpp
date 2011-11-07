@@ -980,6 +980,9 @@ namespace user
             }
             _001GetItemRect(&itemLast);
 
+            itemLast.m_rectItem.right     -= (m_scrollinfo.m_rectMargin.left + m_scrollinfo.m_rectMargin.right);
+            itemLast.m_rectItem.bottom    -= (m_scrollinfo.m_rectMargin.top  + m_scrollinfo.m_rectMargin.bottom);
+
             rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
          }
       }
