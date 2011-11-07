@@ -127,6 +127,28 @@ namespace alatel
       return get_cur_sel();
    }
 
+   void alarm_list_view::_001OnInitialUpdate(gen::signal_object * pobj)
+   {
+      layout();
+   }
+
+   void alarm_list_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   {
+      ::simple_list_view::on_update(pSender, lHint, phint);
+
+      if(pSender == NULL && lHint == 0 && phint == NULL)
+      {
+         _001OnUpdateItemCount();
+         layout();
+      }
+      UNREFERENCED_PARAMETER(pSender);
+      UNREFERENCED_PARAMETER(phint);
+      if(lHint == 2)
+      {
+      }
+   
+   }
+
 
 } // namespace alatel
 

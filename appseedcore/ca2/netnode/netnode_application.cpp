@@ -47,77 +47,37 @@ namespace netnode
 
    void application::on_request(::ca::create_context * pcreatecontext)
    {
+
+      ::cube4::application::on_service_request(pcreatecontext);
+
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("debugbreak"))
       {
          ::DebugBreak();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("run"))
-      {
-         netnode_run();
-//         return true;
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("service"))
-      {
-         //return true;
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
-      {
-         CreateService();
-         //return false;
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove"))
-      {
-         RemoveService();
-         //return false;
       }
       else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("launch"))
       {
          string str;
          str = pcreatecontext->m_spCommandLine->m_varQuery["launch"];
          get_script_manager()->run(str);
-         //return true;
       }
       else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("edgify"))
       {
          string str;
          str = pcreatecontext->m_spCommandLine->m_varQuery["edgify"];
          get_script_manager()->run(str);
-         //return true;
       }
-      else
-      {
-         netnode_run();
-         //return true;
-      }
-      //return ::acube::application::bergedge_start();
+
    }
 
    void application::netnode_run()
    {
 
-      m_pservice = new netnode::service(this);
-      m_pservice->Start(0);
 
    }
 
-   BOOL application::run()
-   {
-      if(command().m_varTopicQuery.has_property("run"))
-      {
-         return cube2::application::run();
-      }
-      else if (command().m_varTopicQuery.has_property("service"))
-      {
-         service service(this);
-         //Sleep(15000);
-         service_base::run(service);
-      }
-      else
-      {
-         return cube2::application::run();
-      }
-      return TRUE;
-   }
+
+
+
 
    int application::exit_instance()
    {
@@ -148,54 +108,6 @@ namespace netnode
       return iRet;
    }
 
-   int application::CreateService()
-   {
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
-
-      string strCalling = m_strModulePath + " : app=netnode service usehostlogin";
-
-      if (hdlSCM == 0) return ::GetLastError();
-    
-      SC_HANDLE hdlServ = ::CreateService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMainNetNode",               // name of service 
-         "ccvotagus ca2 fontopus netnode",        // service name to display 
-         STANDARD_RIGHTS_REQUIRED,  // desired access 
-         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
-         SERVICE_AUTO_START,      // start type 
-         SERVICE_ERROR_NORMAL,      // error control type 
-         strCalling,                   // service's binary Path name
-         0,                      // no load ordering group 
-         0,                      // no tag identifier 
-         0,                      // no dependencies 
-         0,                      // LocalSystem account 
-         0);                     // no password 
-    
-      DWORD Ret = 0;
-      if (!hdlServ) Ret = ::GetLastError();
-         CloseServiceHandle(hdlServ);
-      return Ret;
-   }
-
-   int application::RemoveService()
-   {
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      string strCalling = m_strModulePath + " service";
-
-      if (hdlSCM == 0) return ::GetLastError();
-    
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMainNetNode",               // name of service 
-         SC_MANAGER_ALL_ACCESS);                     // no password 
-    
-      DWORD Ret = 0;
-      if (!hdlServ) Ret = ::GetLastError();
-     ::DeleteService(hdlServ);
-      CloseServiceHandle(hdlServ);
-      return Ret;
-   }
 
 
    void application::get_Votagus_folder(string &strVotagusFolder)
@@ -281,6 +193,36 @@ namespace netnode
    dynamic_source::script_manager * application::get_script_manager()
    {
       return m_pscriptmanager;
+   }
+
+
+   bool application::is_serviceable()
+   {
+      return true;
+   }
+
+   service_base * application::allocate_new_service()
+   {
+      return new ::netnode::service(this);
+   }
+
+   ::netnode::service * application::get_service()
+   {
+      return dynamic_cast < ::netnode::service * > (::cube4::application::get_service());
+   }
+
+   bool application::on_install()
+   {
+      if(!::cube4::application::on_install())
+         return false;
+      return true;
+   }
+      
+   bool application::on_uninstall()
+   {
+      if(!::cube4::application::on_uninstall())
+         return false;
+      return true;
    }
 
 

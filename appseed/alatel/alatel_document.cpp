@@ -16,6 +16,49 @@ namespace alatel
 	   if (!::userbase::document::on_new_document())
 		   return FALSE;
 
+
+      // ensure 10-alarm-tel
+
+      string strProfile("by_weekday");
+
+      int i = 1;
+      while(true)
+      {
+         stringa stra;
+         string strAlarm;
+         data_get(strProfile, "name", stra);
+         if(stra.get_size() >= 10)
+            break;
+         while(true)
+         {
+            strAlarm.Format("Alarm %d", i);
+            if(!stra.contains_ci(strAlarm))
+               break;
+            i++;
+         }
+         stra.add(strAlarm);
+         data_set(strProfile, "name", stra);
+
+         int_array iaHour;
+         data_get(strProfile, "hour", iaHour);
+         iaHour.add(0);
+         data_set(strProfile, "hour", iaHour);
+
+         int_array iaMinute;
+         data_get(strProfile, "minute", iaMinute);
+         iaMinute.add(0);
+         data_set(strProfile, "minute", iaMinute);
+
+         int_array iaSecond;
+         data_get(strProfile, "second", iaSecond);
+         iaSecond.add(0);
+         data_set(strProfile, "second", iaSecond);
+      }
+
+      update_all_views(NULL, 22);
+
+
+
       stringa wstra;
       data_get("SongDirectorySet", 0, wstra);
 

@@ -102,7 +102,7 @@ namespace alatel
       SetPane(0, m_palarmlistview, false);
 
 
-      set_position(1, 550);
+      set_position(1, 332);
 
       m_pdocWeekday = Application.create_form(this, this);
       if(m_pdocWeekday == NULL)
@@ -122,12 +122,12 @@ namespace alatel
 
       m_phourlistview = create_view < ::userex::hour_list_view > ();
       m_phourlistview->m_id = "hour_list";
-      set_position(2, 590);
+      set_position(2, 516);
       SetPane(2, m_phourlistview, false);
 
       m_pminutelistview = create_view < ::userex::minute_list_view > ();
       m_pminutelistview->m_id = "minute_list";
-      set_position(3, 670);
+      set_position(3, 700);
       SetPane(3, m_pminutelistview, false);
 
       m_psecondlistview = create_view < ::userex::second_list_view > ();

@@ -278,6 +278,32 @@ namespace cube
       return acube::application::on_install();
    }
 
+   bool application::on_uninstall()
+   {
+      string strId = m_strId;
+      char chFirst = '\0';
+      if(strId.get_length() > 0)
+      {
+         chFirst = strId[0];
+      }
+      if(chFirst == 'd')
+      {
+         if(strId == "default_file_handler")
+         {
+            return ::ca2::filehandler::application::on_uninstall();
+         }
+      }
+      else if(chFirst == 'n')
+      {
+         if(strId == "netnode")
+         {
+            return netnode::application::on_uninstall();
+         }
+      }
+      return acube::application::on_uninstall();
+   }
+
+
    void application::on_request(::ca::create_context * pcreatecontext)
    {
       string strId = m_strId;
@@ -307,6 +333,69 @@ namespace cube
       }
       return cube4::application::on_request(pcreatecontext);
    }
+
+   bool application::is_serviceable()
+   {
+      string strId = m_strId;
+      char chFirst = '\0';
+      if(strId.get_length() > 0)
+      {
+         chFirst = strId[0];
+      }
+      if(chFirst == 'd')
+      {
+         if(strId == "default_file_handler")
+         {
+            return ::ca2::filehandler::application::is_serviceable();
+         }
+      }
+      else if(m_strId == "netnode")
+      {
+         return netnode::application::is_serviceable();
+      }
+      else if(m_strId == "rtprx")
+      {
+         return rtprx::application::is_serviceable();
+      }
+      else if(m_strId == "rtptx")
+      {
+         return rtptx::application::is_serviceable();
+      }
+      
+      return cube4::application::is_serviceable();
+   }
+
+   service_base * application::allocate_new_service()
+   {
+      string strId = m_strId;
+      char chFirst = '\0';
+      if(strId.get_length() > 0)
+      {
+         chFirst = strId[0];
+      }
+      if(chFirst == 'd')
+      {
+         if(strId == "default_file_handler")
+         {
+            return ::ca2::filehandler::application::allocate_new_service();
+         }
+      }
+      else if(m_strId == "netnode")
+      {
+         return netnode::application::allocate_new_service();
+      }
+      else if(m_strId == "rtprx")
+      {
+         return rtprx::application::allocate_new_service();
+      }
+      else if(m_strId == "rtptx")
+      {
+         return rtptx::application::allocate_new_service();
+      }
+      
+      return cube4::application::allocate_new_service();
+   }
+
 
    ::document * application::_001OpenDocumentFile(var varFile)
    {
@@ -343,6 +432,8 @@ namespace cube
    {
       return *dynamic_cast < application * > (papp);
    }
+
+
 
 } //namespace cube
 

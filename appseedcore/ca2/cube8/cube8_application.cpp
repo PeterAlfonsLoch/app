@@ -946,6 +946,26 @@ InitFailure:
    }
 
 
+   bool application::on_install()
+   {
+      return ::cube4::application::on_install();
+   }
+
+   bool application::on_uninstall()
+   {
+      return ::cube4::application::on_uninstall();
+   }
+
+   bool application::is_serviceable()
+   {
+      return ::cube4::application::is_serviceable();
+   }
+
+   service_base * application::allocate_new_service()
+   {
+      return ::cube4::application::allocate_new_service();
+   }
+
 } //namespace cube8
 
 

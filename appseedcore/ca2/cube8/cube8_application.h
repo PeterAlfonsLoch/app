@@ -38,6 +38,12 @@ namespace cube8
       class ::fs::data                    * fs();
 
 
+      
+      virtual bool on_install();
+      virtual bool on_uninstall();
+      virtual bool is_serviceable();
+      virtual service_base * allocate_new_service();
+
 
       virtual bool initialize();
       virtual bool initialize1();

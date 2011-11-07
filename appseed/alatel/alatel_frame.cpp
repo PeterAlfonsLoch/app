@@ -16,6 +16,8 @@ namespace alatel
 
       WfiEnableFullScreen();
 
+      m_etranslucency = TranslucencyPresent;
+
    }
 
    frame::~frame()

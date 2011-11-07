@@ -34,6 +34,9 @@ namespace alatel
       virtual count _001GetItemCount();
       virtual void _001InsertColumns();
 
+      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* phint);
+
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnDeleteAlarm)

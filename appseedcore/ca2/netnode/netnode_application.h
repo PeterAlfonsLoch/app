@@ -27,17 +27,18 @@ namespace netnode
       virtual void construct();
 
 
-      service * m_pservice;
+      virtual bool on_install();
+      virtual bool on_uninstall();
 
       virtual void netnode_run();
 
       bool initialize_instance();
       int exit_instance();
 
-      virtual int run();
+      virtual bool is_serviceable();
+      virtual service_base * allocate_new_service();
+      ::netnode::service * get_service();
 
-      int CreateService();
-      int RemoveService();
 
       dynamic_source::script_manager * get_script_manager();
 

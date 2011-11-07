@@ -26,7 +26,13 @@ namespace cube
       virtual void _001OnFileNew();
       virtual bool bergedge_start();
 
+
+      virtual bool is_serviceable();
+      virtual service_base * allocate_new_service();
+
+
       virtual bool on_install();
+      virtual bool on_uninstall();
 
       virtual BOOL run();
 
