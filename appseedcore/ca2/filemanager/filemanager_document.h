@@ -25,6 +25,8 @@ namespace filemanager
 
       virtual ::filemanager::data * get_filemanager_data();
 
+      virtual ::fs::data * get_fs_data();
+
       virtual BOOL on_new_document();
    
       virtual bool HandleDefaultFileManagerItemCmdMsg(BaseCmdMsg * pcmdmsg, ::fs::item_array & itema);

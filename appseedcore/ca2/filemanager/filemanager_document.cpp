@@ -412,6 +412,11 @@ namespace filemanager
       return dynamic_cast < ::filemanager::data * > (::ca::data_container::get_data());
    }
 
+   ::fs::data * document::get_fs_data()
+   {
+      return this;
+   }
+
 } // namespace filemanager
 
 
