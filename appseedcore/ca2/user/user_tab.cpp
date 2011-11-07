@@ -572,6 +572,7 @@ namespace user
             pholder->GetWindowRect(rectWindow);
             ScreenToClient(rectWindow);
             pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), SWP_SHOWWINDOW);
+            pholder->layout();
          }
       }
 

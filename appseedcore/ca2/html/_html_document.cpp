@@ -105,17 +105,35 @@ void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD n
 
 bool html_document::on_open_document(var varFile)
 {
+   
+   
    ::ca::data::writing writing(get_html_data());
+   
+   
+   get_html_data()->m_pform = get_typed_view < html_form > ();
+
+   
+   if(get_html_data()->m_pform == NULL)
+      return false;
+
    if(!get_html_data()->open_document(varFile))
       return FALSE;
+   
    set_path_name(get_html_data()->m_strPathName);
    /*   m_document.m_papp = get_app();*/
+   
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;
    uh.m_strUrl = varFile;
    update_all_views(NULL, 0, &uh);
+
+
    data_set("LastOpenedFile", get_path_name());
+
+
    return TRUE;
+
+
 }
 
 void html_document::soft_reload()

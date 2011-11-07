@@ -84,31 +84,6 @@ namespace veriview
 
 
 
-   void pane_view::rotate()
-   {
-      int eview = get_view_id();
-      int eviewNew = PaneViewHtml;
-      switch(eview)
-      {
-      case PaneViewHtml:
-         eviewNew = PaneViewHtmlEdit;
-         break;
-      case PaneViewHtmlEdit:
-         eviewNew = PaneViewSourceEdit;
-         break;
-      case PaneViewSourceEdit:
-         eviewNew = PaneViewFileManager;
-         break;
-      case PaneViewFileManager:
-         eviewNew = PaneViewHtml;
-         break;
-      default:
-         ASSERT(FALSE);
-         break;
-      }
-
-      set_cur_tab_by_id(eviewNew);
-   }
 
    void pane_view::_001OnMenuMessage(gen::signal_object * pobj)
    {
@@ -192,5 +167,26 @@ namespace veriview
          return NULL;
       return dynamic_cast < html_document * > (m_pviewdata->m_pdoc);
    }
+
+   void pane_view::on_show_view()
+   {
+      
+
+      ::userex::pane_tab_view::on_show_view();
+
+
+      if(m_pviewdata != NULL)
+      {
+         veriview::view * pveriview = m_pviewdata->m_pdoc->get_typed_view < veriview::view > ();
+
+         if(pveriview != NULL)
+         {
+            pveriview->layout();
+         }
+      }
+
+   }
+
+
 
 } // namespace veriview

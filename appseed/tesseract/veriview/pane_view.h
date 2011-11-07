@@ -18,8 +18,6 @@ namespace veriview
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object * pHint);
 
-      virtual void rotate();
-
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
       virtual void OnViewUpdateHint(::view * pSender, LPARAM lHint, view_update_hint * pHint);
@@ -27,6 +25,9 @@ namespace veriview
 
       html_document * get_view_html_document();
       html::data * get_html_data();
+
+
+      virtual void on_show_view();
 
       void add_url(const char * pszUrl);
 
