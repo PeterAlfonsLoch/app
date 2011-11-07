@@ -78,6 +78,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage)
 
 small_ipc_rx_channel::small_ipc_rx_channel()
 {
+    m_preceiver = NULL;
 }
 
 small_ipc_rx_channel::~small_ipc_rx_channel()
@@ -186,4 +187,14 @@ void * small_ipc_rx_channel::receive()
 
    return NULL;
 
+}
+
+
+void * small_ipc_rx_channel::on_receive(const char * psz)
+{
+   if(m_preceiver != NULL)
+   {
+       m_preceiver->on_receive(psz);
+   }
+    return NULL;
 }

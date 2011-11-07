@@ -12,16 +12,26 @@
 #define CONST const
 
 
-
-class win_handle
+union win_handle_union
 {
-public:
+    void * m_p;
+    FILE * m_pfile;
+};
 
-   void * m_p;
+struct win_handle
+{
+   enum e_type
+    {
+        type_none,
+        type_file,
+    };
+    
+    enum e_type m_etype;
+    win_handle_union m_data;
 
 };
 
-typedef win_handle * HANDLE;
+typedef struct win_handle * HANDLE;
 
 
 typedef unsigned int       DWORD;

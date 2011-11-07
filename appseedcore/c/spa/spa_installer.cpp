@@ -2294,10 +2294,12 @@ namespace spa
          //m_pwindow = new spa::window;
       }
 
+#if defined(WINDOWS)
       if(m_pwindow != NULL)
       {
          m_pwindow->register_class(m_hinstance);
       }
+#endif
 
 	   if(!init_instance(m_hinstance, nCmdShow))
 	   {
@@ -2313,7 +2315,6 @@ namespace spa
    {
 
       m_hinstance = hinstance; // Store instance handle in our global variable
-
 
       m_strInstallGz = dir::module_folder("ca2\\bz\\stage\\");
       m_strInstall = dir::module_folder("ca2\\stage\\");

@@ -4,6 +4,26 @@
 #include <errno.h>
 #include <unistd.h>
 
+
+#ifdef MACOS
+
+
+/* lock operations for flock(2) */
+#define	LOCK_SH		0x01		/* shared file lock */
+#define	LOCK_EX		0x02		/* exclusive file lock */
+#define	LOCK_NB		0x04		/* don't block when locking */
+#define	LOCK_UN		0x08		/* unlock file */
+
+BEGIN_EXTERN_C
+
+int flock(int, int);
+
+END_EXTERN_C
+
+#endif
+
+
+
 int _c_lock_is_active(const char * pszName)
 {
 

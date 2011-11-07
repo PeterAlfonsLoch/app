@@ -14,8 +14,115 @@
 #if defined(LINUX) || defined(MACOS)
 
 BOOL TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
-{
-   return !XDrawImageString(hdc->m_display, hdc->m_d, hdc->m_gc, x, y, pszUtf8, iSize);
+{    
+    CGContextRef m_cgContext = hdc->m_gcontext;
+    int angle = 0;
+    
+    if (pszUtf8 == NULL || strlen(pszUtf8) <= 0)
+        return TRUE;
+    
+    //wxMacFastPortSetter helper(this) ;
+   // MacInstallFont() ;
+    
+    OSStatus status = noErr ;
+    ATSUTextLayout atsuLayout ;
+    
+    //wxMacUniCharBuffer unibuf( str ) ;
+    UniChar * unibuf = (UniChar *) utf8_to_16(pszUtf8);
+    UniCharCount chars = wcslen_dup((wchar_t *)unibuf);
+    
+    status = ::ATSUCreateTextLayoutWithTextPtr( unibuf , 0 , chars , chars , 1 ,
+                                               &chars , (ATSUStyle*) &hdc->m_macATSUIStyle , &atsuLayout ) ;
+    
+//    wxASSERT_MSG( status == noErr , wxT("couldn't create the layout of the rotated text") );
+    
+    status = ::ATSUSetTransientFontMatching( atsuLayout , true ) ;
+ //   wxASSERT_MSG( status == noErr , wxT("couldn't setup transient font matching") );
+    
+    int iAngle = int( angle );
+    int drawX = hdc->XLOG2DEVMAC(x) ;
+    int drawY = hdc->YLOG2DEVMAC(y) ;
+    
+    ATSUTextMeasurement textBefore, textAfter ;
+    ATSUTextMeasurement ascent, descent ;
+    
+    ATSLineLayoutOptions layoutOptions = kATSLineNoLayoutOptions ;
+    
+    if (m_font.GetNoAntiAliasing())
+    {
+        layoutOptions |= kATSLineNoAntiAliasing ;
+    }
+    
+    Fixed atsuAngle = IntToFixed( iAngle ) ;
+    
+    ATSUAttributeTag atsuTags[] =
+    {
+        kATSULineLayoutOptionsTag ,
+        kATSULineRotationTag ,
+    } ;
+    
+    ByteCount atsuSizes[sizeof(atsuTags)/sizeof(ATSUAttributeTag)] =
+    {
+        sizeof( ATSLineLayoutOptions ) ,
+        sizeof( Fixed ) ,
+    } ;
+    
+    ATSUAttributeValuePtr    atsuValues[sizeof(atsuTags)/sizeof(ATSUAttributeTag)] =
+    {
+        &layoutOptions ,
+        &atsuAngle ,
+    } ;
+    
+    status = ::ATSUSetLayoutControls(atsuLayout , sizeof(atsuTags)/sizeof(ATSUAttributeTag) - ( abs(iAngle) > 0.001 ? 0 : 1),
+                                     atsuTags, atsuSizes, atsuValues ) ;
+    
+    status = ::ATSUMeasureText( atsuLayout, kATSUFromTextBeginning, kATSUToTextEnd,
+                               &textBefore , &textAfter, &ascent , &descent );
+    wxASSERT_MSG( status == noErr , wxT("couldn't measure the rotated text") );
+    
+    if ( m_backgroundMode == wxSOLID )
+    {
+        // background painting must be done by hand, cannot be done by ATSUI
+        wxCoord x2 , y2 ;
+        PolyHandle polygon = OpenPoly();
+        
+        ::MoveTo(drawX, drawY);
+        
+        x2 = (int) (drawX + sin(angle / RAD2DEG) * FixedToInt(ascent + descent)) ;
+        y2 = (int) (drawY + cos(angle / RAD2DEG) * FixedToInt(ascent + descent)) ;
+        ::LineTo(x2, y2);
+        
+        x2 = (int) (drawX + sin(angle / RAD2DEG) * FixedToInt(ascent + descent ) + cos(angle / RAD2DEG) * FixedToInt(textAfter)) ;
+        y2 = (int) (drawY + cos(angle / RAD2DEG) * FixedToInt(ascent + descent) - sin(angle / RAD2DEG) * FixedToInt(textAfter)) ;
+        ::LineTo(x2, y2);
+        
+        x2 = (int) (drawX + cos(angle / RAD2DEG) * FixedToInt(textAfter)) ;
+        y2 = (int) (drawY - sin(angle / RAD2DEG) * FixedToInt(textAfter)) ;
+        ::LineTo(x2, y2);
+        
+        ::LineTo( drawX, drawY) ;
+        ClosePoly();
+        
+        ::ErasePoly( polygon );
+        KillPoly( polygon );
+    }
+    
+    drawX += (int)(sin(angle / RAD2DEG) * FixedToInt(ascent));
+    drawY += (int)(cos(angle / RAD2DEG) * FixedToInt(ascent));
+    status = ::ATSUDrawText( atsuLayout, kATSUFromTextBeginning, kATSUToTextEnd,
+                            IntToFixed(drawX) , IntToFixed(drawY) );
+    
+    wxASSERT_MSG( status == noErr , wxT("couldn't draw the rotated text") );
+    
+    Rect rect ;
+    status = ::ATSUMeasureTextImage( atsuLayout, kATSUFromTextBeginning, kATSUToTextEnd,
+                                    IntToFixed(drawX) , IntToFixed(drawY) , &rect );
+    wxASSERT_MSG( status == noErr , wxT("couldn't measure the rotated text") );
+    
+    OffsetRect( &rect , -m_macLocalOrigin.x , -m_macLocalOrigin.y ) ;
+    CalcBoundingBox(XDEV2LOG(rect.left), YDEV2LOG(rect.top) );
+    CalcBoundingBox(XDEV2LOG(rect.right), YDEV2LOG(rect.bottom) );
+    ::ATSUDisposeTextLayout(atsuLayout);
 }
 
 void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)

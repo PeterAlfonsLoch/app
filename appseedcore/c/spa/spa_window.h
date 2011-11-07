@@ -53,8 +53,9 @@ namespace spa
     #ifdef WINDOWS
       static LRESULT CALLBACK s_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
       LRESULT window_proc(UINT message, WPARAM wParam, LPARAM lParam);
+       ATOM register_class(HINSTANCE hInstance);
     #endif
-      ATOM register_class(HINSTANCE hInstance);
+      
 
 
    };

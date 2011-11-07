@@ -3,6 +3,9 @@
 
 typedef Window HWND;
 
+
+
+
 class CLASS_DECL_____ device_context;
 
 class CLASS_DECL_____ gdi_object
@@ -25,7 +28,7 @@ public:
     m_etype(etype)
     {
     }
-    
+     
 };
 
 

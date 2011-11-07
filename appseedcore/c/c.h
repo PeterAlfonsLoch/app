@@ -45,7 +45,7 @@ extern "C"
 #include "heap.h"
 #include "gdi.h"
 #include "mem.h"
-#include "math.h"
+#include "_c_math.h"
 
 #include "verisimple_string.h"
 #include "verisimple_wstring.h"
@@ -112,5 +112,4 @@ extern "C"
 
 
 vsstring _c_get_file_name(const char * psz, bool bCreate = false, int * pfd = NULL);
-
 

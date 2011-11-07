@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
 
 #include <sys/ipc.h>
@@ -11,13 +11,29 @@
 
 union semun
 {
-  int val;
-  struct semid_ds *buf;
-  USHORT *array;
+    int val;
+    struct semid_ds *buf;
+    USHORT *array;
 };
 
 
+#ifdef MACOS
+
+
+BEGIN_EXTERN_C
+
+int flock(int, int);
+
+END_EXTERN_C
+
+
 #endif
+
+
+#endif
+
+
+
 
 
 simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)

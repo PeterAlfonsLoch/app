@@ -3,6 +3,7 @@
 
 
 
+
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -67,7 +68,7 @@ typedef union _XEvent XEvent;
 #endif
 
 
-#include "version_linux.h"
+#include "version_macos.h"
 
 // Include any non-Intel platform specific items
 #ifndef _X86_
@@ -279,13 +280,8 @@ inline void AfxDebugBreak() { asm("int 3"); }
 
 
 // str
-void strcat(char * dest, const char * cat);
-void strcpy(char * dest, const char * cat);
 void strncpy(char * dest, const char * cat, int iLen);
-int  strlen(const char * cat);
-const char * strdup(const char * src);
-const char * strdup(const char * src, int iLen);
-const char * strstr(const char * src, const char * find);
+
 const char * stristr(const char * src, const char * find);
 char to_lower(int ch);
 char to_upper(int ch);
@@ -328,14 +324,6 @@ void zero_pad(wchar_t * sz, int iPad);
 void wcslwr(wchar_t * psz);
 void wcsupr(wchar_t * psz);
 
-
-
-// heap
-void memset(void * p, unsigned char uch, int iSize);
-void memcpy(void * dst, const void * src, int iSize);
-void memmove(void * dst, const void * src, int iSize);
-//void * __cdecl malloc(size_t size);
-//void __cdecl free(void * p);
 
 
 

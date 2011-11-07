@@ -567,7 +567,11 @@ MD5_Update(pctx, (const char *) str, str.get_length());
 }
 }
 */
+#ifdef WINDOWS
 void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int & iNumber)
+#else
+void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int & iNumber)
+#endif
 {
    DWORD dwRead;
    vsstring str;
@@ -606,8 +610,12 @@ if(pctx != NULL)
 MD5_Update(pctx, (const char *) str, str.get_length());
 }
 }*/
-
+#ifdef WINDOWS
 void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
+#else
+void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
+
+#endif
 {
    int iLen;
    file_read_n_number_dup(hfile, pctx, iLen);

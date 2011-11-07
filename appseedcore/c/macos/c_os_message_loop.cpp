@@ -87,14 +87,13 @@ void _c_simple_message_loop()
 BOOL sys_message_queue::GetMessage(MSG * pmsg)
 {
    mutex_lock lockMutex(&m_mutex, false);
-   event_wait waitEvent(&m_event, false);
    while(true)
    {
       lockMutex.lock();
       if(m_msgptra.get_count() <= 0)
       {
          lockMutex.unlock();
-         waitEvent.wait();
+          m_event.wait();
       }
       else
       {

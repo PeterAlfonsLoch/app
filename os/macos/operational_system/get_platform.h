@@ -1,8 +1,11 @@
 #pragma once
 
+
 #define MACOS
 
+
 #define _POSIX_SOURCE
+
 
 #define DECL_C
 //#define PASCAL
@@ -28,8 +31,6 @@
 #define _strcmpi strcasecmp
 
 #include <stdlib.h>
-
-
 
 
 typedef uint8_t byte;

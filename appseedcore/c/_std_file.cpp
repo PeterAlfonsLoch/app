@@ -46,7 +46,6 @@ void _init_file()
 }
 
 _FILE *__iob_func_dup() {return (_FILE*)__iob;}
-
 #endif
 
    // used directly by the stdin, stdout, and stderr macros

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <errno.h>
+#include <string.h>
 
 
 int create_process(const char * _cmd_line, int * pprocessId)

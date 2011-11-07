@@ -54,8 +54,12 @@ typedef unsigned short  UInt16;
 
 
 
-#define True ((Bool) 1)
-#define False ((Bool) 0)
+
+
+#define True   ((Bool) 1)
+#define False  ((Bool) 0)
+
+
 
 
 #ifndef __GNUC__

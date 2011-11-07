@@ -21,10 +21,6 @@ struct CLASS_DECL_____ _struct_FILE
 
 #define _FILE struct _struct_FILE
 
-#else
-#define _FILE FILE
-#endif
-
 #define EOF (-1)
 #define _FILE_TEXT		0x0001
 #define _FILE_EOF		0x0002
@@ -37,10 +33,31 @@ struct CLASS_DECL_____ _struct_FILE
 #define stderr_dup (&__iob_func_dup()[2])
 #define _STDSTREAM_DUP_DEFINED
 #endif
-
-
-
 CLASS_DECL_____ _FILE *__iob_func_dup();
+
+#else
+#define _FILE FILE
+
+
+#define EOF (-1)
+#define _FILE_TEXT		FILE_TEXT
+#define _FILE_EOF		FILE_EOF
+#define _FILE_ERROR		FILE_ERROR
+
+
+#ifndef _STDSTREAM_DUP_DEFINED
+#define stdin_dup  stdin
+#define stdout_dup stdout
+#define stderr_dup stderr
+#define _STDSTREAM_DUP_DEFINED
+#endif
+
+#endif
+
+
+
+
+
 
 CLASS_DECL_____ void _init_file_dup();
 

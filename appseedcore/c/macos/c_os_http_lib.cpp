@@ -49,7 +49,7 @@ static char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <ctype.h>
-//#include <string.h>
+#include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -166,7 +166,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
    if(hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer != NULL ? m_strHttpServer : SERVER_DEFAULT )))
    {
       memset((char *) &server,0, sizeof(server));
-      memmove((char *) &server.sin_addr, hp->h_addr, hp->h_length);
+      memmove((char *) &server.sin_addr, hp->h_addr_list, hp->h_length);
       server.sin_family = hp->h_addrtype;
       server.sin_port = (unsigned short) htons( port );
    }
