@@ -8,7 +8,7 @@
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
 
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/c.h
+1320618178 /cecyn1.at.hotmail.com/app/appseedcore/c/c.h
 	"radix.h"
 	"version.h"
 	"types.h"
@@ -45,7 +45,6 @@
 	"simple_mutex.h"
 	"simple_event.h"
 	"mutex_lock.h"
-	"event_wait.h"
 	"simple_critical_section.h"
 	"library.h"
 	"hotplugin/hotplugin.h"
