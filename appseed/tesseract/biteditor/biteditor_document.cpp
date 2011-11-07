@@ -192,19 +192,21 @@ void biteditor_document::data_on_after_change(gen::signal_object * pobj)
 
 bool biteditor_document::on_open_document(var varFile)
 {
-   ex1::filesp spfile(get_app());
+
+   ex1::filesp spfile;
    m_pfile = spfile;
    m_bReadOnly = false;
-   if(!m_pfile->open(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read_write |
-      ::ex1::file::shareDenyNone))
+   spfile(Application.get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareDenyNone));
+   if(spfile.is_null())
    {
       m_bReadOnly = true;
-      if(!m_pfile->open(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read |
-         ::ex1::file::shareDenyNone))
+      spfile(Application.get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone));
+      if(spfile.is_null())
          return FALSE;
    }
    m_peditfile->SetFile(m_pfile);
    return TRUE;
+
 }
 
 void biteditor_document::reload()
