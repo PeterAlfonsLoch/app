@@ -1,5 +1,5 @@
 #pragma once
 
-#include "include/tesseract.h"
+#include "include/ca2.h"
 
 #include "iconoverlayer.h"

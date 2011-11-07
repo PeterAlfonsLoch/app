@@ -72,6 +72,8 @@ namespace syllomatter
       m_ptemplate_html = pDocTemplate;
 
 
+      connect_command("add_working_copy", &::syllomatter::application::_001OnAddWorkingCopy);
+
       return TRUE;
    }
 
@@ -140,6 +142,22 @@ namespace syllomatter
    {
       UNREFERENCED_PARAMETER(pszWorkingCopy);
    }
+
+
+   void application::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle)
+   {
+      straCommand.add("add_working_copy");
+      straCommandTitle.add("Add Working Copy");
+   }
+
+
+   void application::_001OnAddWorkingCopy(gen::signal_object * pobj)
+   {
+      simple_message_box(NULL, "GoingToAddWorkingCopy", 0);
+   }
+
+
+   
 
 } // namespace syllomatter
 

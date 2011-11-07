@@ -29,12 +29,12 @@ namespace filemanager
 
    }
 
-   void data::OnFileManagerOpenContextMenuFolder(const ::fs::item & item)
+   void data::OnFileManagerOpenContextMenuFolder(const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle)
    {
       ASSERT(m_pcallback != NULL);
       if(m_pcallback != NULL)
       {
-         m_pcallback->OnFileManagerOpenContextMenuFolder(this, item);
+         m_pcallback->OnFileManagerOpenContextMenuFolder(this, item, straCommand, straCommandTitle);
       }
    }
 

@@ -28,7 +28,7 @@ public:
    virtual void on_request(::ca::create_context * pcreatecontext);
 
 
-   virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item);
+   virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle);
    virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
    virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
    virtual void OnFileManagerOpenFolder(::filemanager::data * pdata, const ::fs::item & item);
@@ -36,8 +36,6 @@ public:
    virtual void OnFileManagerItemUpdate(::filemanager::data * pdata, cmd_ui * pcmdui, const ::fs::item_array & itema);
    virtual void OnFileManagerItemCommand(::filemanager::data * pdata, id pszId, const ::fs::item_array & itema);
    virtual void OnFileManagerInitializeFormPreData(::filemanager::data * pdata, id uiId, ::user::form * pform);
-
-
 
 
 };

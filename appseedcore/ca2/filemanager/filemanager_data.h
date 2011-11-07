@@ -52,7 +52,7 @@ namespace filemanager
 
       void FileManagerBrowse(const char * lpcsz);
       void FileManagerBrowse(const ::fs::item & item);
-      void OnFileManagerOpenContextMenuFolder(const ::fs::item & item);
+      void OnFileManagerOpenContextMenuFolder(const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle);
       void OnFileManagerOpenContextMenuFile(const ::fs::item_array & itema);
       void OnFileManagerOpenContextMenu();
       void OnFileManagerOpenFile(const ::fs::item_array & itema);

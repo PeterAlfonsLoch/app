@@ -27,6 +27,7 @@ namespace userbase
 
 
       void add_item(menu_item * pitem);
+      bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
       bool load_menu(xml::node * lpnode);
       bool load_menu(xml::node * lpnode, int iLevel);
 

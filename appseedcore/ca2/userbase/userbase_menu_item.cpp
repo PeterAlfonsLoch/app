@@ -24,6 +24,40 @@ namespace userbase
       m_spitema->add(pitem);
    }
 
+   bool menu_item::create_menu(const stringa & straCommand, const stringa & straCommandTitle)
+   {
+
+      int iItemCount = straCommand.get_count();
+      
+      if(straCommandTitle.get_size() < straCommand.get_size())
+         return false;
+
+      for(int i = 0; i < iItemCount; i++)
+      {
+         string strCommand = straCommand[i];
+         string strCommandTitle = straCommandTitle[i];
+         menu_item * pitemNewChild = new menu_item(get_app());
+         pitemNewChild->m_bPopup = false;
+         if(strCommand.is_empty())
+         {
+            pitemNewChild->m_id = "separator";
+            m_iSeparatorCount++;
+         }
+         else
+         {
+            m_iFullHeightItemCount++;
+            pitemNewChild->m_id = strCommand;
+            pitemNewChild->m_iLevel = 0;
+            pitemNewChild->m_button._001SetButtonText(strCommandTitle);
+         }
+         add_item(pitemNewChild);
+         gen::release(pitemNewChild);
+      }
+
+      return iItemCount > 0;
+
+   }
+
    bool menu_item::load_menu(xml::node * lpnode)
    {
       m_iSeparatorCount = 0;

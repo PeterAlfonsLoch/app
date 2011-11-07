@@ -18,6 +18,11 @@ namespace userbase
       m_pitem(new menu_item(get_app()));
    }
 
+   bool menu_base::create_menu(const stringa & straCommand, const stringa & straCommandTitle)
+   {
+      return m_pitem->create_menu(straCommand, straCommandTitle);
+   }
+
    bool menu_base::LoadMenu(xml::node * lpnode)
    {
       return m_pitem->load_menu(lpnode);

@@ -26,11 +26,18 @@ namespace syllomatter
       virtual void on_request(::ca::create_context * pcreatecontext);
 
 
+      virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle);
+
+
+
       using ::ex1::request_interface::create;
       virtual void create(const char * psz);
       virtual void commit(const char * pszDescriptor, const char * pszWorkingCopy);
       virtual void checkout(const char * pszRepos, const char * pszWorkingCopy);
       virtual void update(const char * pszWorkingCopy);
+
+
+      DECL_GEN_SIGNAL(_001OnAddWorkingCopy)
 
    };
 

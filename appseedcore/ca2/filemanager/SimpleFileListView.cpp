@@ -54,7 +54,7 @@ namespace filemanager
    {
       ::userbase::view::install_message_handling(pinterface);
       SimpleFileListInterface::install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &SimpleFileListView::_001OnContextMenu);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &SimpleFileListView::_001OnContextMenu);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &SimpleFileListView::_001OnTimer);
       connect_command_range(SHELL_COMMAND_FIRST, SHELL_COMMAND_LAST, &SimpleFileListView::_001OnShellCommand);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &SimpleFileListView::_001OnShowWindow);
@@ -297,10 +297,11 @@ namespace filemanager
 
    void SimpleFileListView::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      //SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::user::win::message::mouse, pcontextmenu, pobj)
       index iItem;
 //      HRESULT hr;
-      point point = pcontextmenu->GetPoint();
+      point point = pcontextmenu->m_pt;
       class point ptClient = point;
       ::user::list::ScreenToClient(&ptClient);
         if(_001HitTest_(ptClient, iItem))
@@ -308,7 +309,8 @@ namespace filemanager
          ::userbase::menu menu(get_app());
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
-            if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFolderPopup))
+            _017OpenContextMenuFolder(get_fs_list_data()->m_itema.get_item(iItem));
+            /*if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFolderPopup))
             {
                ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
@@ -319,7 +321,7 @@ namespace filemanager
                menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
                   point.x, point.y,
                   pframe);
-            }
+            }*/
          }
          else if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFilePopup))
          {
@@ -618,7 +620,20 @@ namespace filemanager
 
    void SimpleFileListView::_017OpenContextMenuFolder(const ::fs::item & item)
    {
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item);
+      stringa straCommand;
+      stringa straCommandTitle;
+      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle);
+      if(straCommand.get_size() > 0)
+      {
+         ::userbase::menu menu(get_app());
+         point ptCursor;
+         Bergedge.get_cursor_pos(&ptCursor);
+         if(menu.create_menu(straCommand, straCommandTitle))
+         {
+            frame_window * pframe = GetParentFrame();
+            menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, ptCursor.x, ptCursor.y, pframe);
+         }
+      }
    }
 
    void SimpleFileListView::_017OpenContextMenuFile(const ::fs::item_array & itema)

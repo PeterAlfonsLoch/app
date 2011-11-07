@@ -10,7 +10,7 @@ FileManagerCallbackInterface::~FileManagerCallbackInterface()
 
 }
 
-void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item)
+void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle)
 {
    UNREFERENCED_PARAMETER(item);
    if(pdata->m_pmanager != NULL)
