@@ -124,9 +124,7 @@ namespace veriedit
 
       if(strId.has_char())
       {
-         m_ppaneview->add_tab(strId, strId);
-         m_ppaneview->set_cur_tab_by_id(strId);
-         m_ppaneview->get_veriedit_document(strId);
+         m_ppaneview->ensure(strId);
       }
    }
 
