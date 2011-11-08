@@ -192,7 +192,7 @@ namespace cube4
          create_new_service();
          service_base::run(*m_pservice);
       }
-      if(command().m_varTopicQuery.has_property("run") || is_serviceable())
+      else if(command().m_varTopicQuery.has_property("run") || is_serviceable())
       {
          create_new_service();
          m_pservice->Start(0);
