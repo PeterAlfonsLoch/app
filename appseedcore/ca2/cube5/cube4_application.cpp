@@ -187,16 +187,16 @@ namespace cube4
   
    BOOL application::run()
    {
-      if(command().m_varTopicQuery.has_property("run"))
+      if (command().m_varTopicQuery.has_property("service"))
+      {
+         create_new_service();
+         service_base::run(*m_pservice);
+      }
+      if(command().m_varTopicQuery.has_property("run") || is_serviceable())
       {
          create_new_service();
          m_pservice->Start(0);
          return cube2::application::run();
-      }
-      else if (command().m_varTopicQuery.has_property("service"))
-      {
-         create_new_service();
-         service_base::run(*m_pservice);
       }
       else
       {
