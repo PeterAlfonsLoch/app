@@ -802,9 +802,9 @@ namespace dynamic_source
       return m_pinterface->is_site_user(varSite);
    }
 
-   string script_composite::low_fs_file_path(const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension)
+   string script_composite::low_fs_file_path(const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension, gen::property_set set)
    {
-      return m_pinterface->low_fs_file_path(hash, key, size, mimetype, extension);
+      return m_pinterface->low_fs_file_path(hash, key, size, mimetype, extension, set);
    }
 
    bool script_composite::low_fs_read(const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension)

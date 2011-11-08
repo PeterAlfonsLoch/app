@@ -4662,13 +4662,96 @@ namespace dynamic_source
       return low_fs_add_user_file(user, iFolder, strHash, iKey, iSize, strMimeType, strExtension, strName, true);
    }
 
-   string script_impl::low_fs_file_path(const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension)
+   string script_impl::low_fs_file_path(const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension, gen::property_set set)
    {
       string strSql;
       strSql.Format("SELECT `path` FROM `fs`.`item` WHERE `hash` = '%s' AND `key` = %I64d AND `size`=%I64d AND `mimetype` = '%s' AND `extension` = '%s'", hash, key, size, mimetype, extension);
       string strPath = musicdb().query_item(strSql);
       if(strPath.has_char())
          return strPath;
+
+      if(!set["kar"].is_set())
+      {
+         strSql.Format("SELECT karfile.id FROM karfile WHERE nessie = '%s' AND `key` = '%d' AND `size` = '%I64d' AND mimetype = '%s' AND extension = '%s' LIMIT 1", hash, key, size, mimetype, extension);
+         var row = musicdb().query_row(strSql);
+         if(!row.is_empty())
+         {
+   
+            ::webserver::music::song * psong = NULL;
+
+   		   string fn = music().file_get_file_by_kar_file_id(row[0], &psong);
+         
+            var karfileid = psong->m_propertyset["topic"];
+	
+	         if(!musicdb().is_karfile_licensed(karfileid))
+	         {
+		
+		         outattr("http_status_code") = "307";
+		         outattr("http_status") ="Temporary Redirect";
+		         outheader("ca2realm-x") = "not licensed: " + psong->m_propertyset["filename"];
+		
+		         string strLocation("https://fontopus.com/license_karfile");
+		         System.url().set(strLocation, "id", karfileid);
+		         System.url().set(strLocation, "karfile_url", urlencode(this_url()));
+		         outheader("Location") = strLocation;
+		
+		         exit(0);
+		
+	         }
+
+            if(strlen(fn) > 0)
+      	   {
+               return fn;
+            }
+         }
+	   /*	header("Content-disposition: attachment; filename=\"" + $song->filename + "\"");
+		   header("Content-type: application/download");
+		   header("Pragma: no-cache");
+		   header("Expires: 0");
+		   if(!System.compress().ungz(m_pnetnodesocket->response().file(), $fn))
+		   {
+			   read_file($fn);
+		   }
+		   dprint("xxx");
+		   $address 		= $_SERVER['REMOTE_ADDR'];
+		   $http_referer 	= $_SERVER['HTTP_REFERER'];
+		   if(isset($param_refr))
+		   {
+			   if($param_refr == "vmplight")
+			   {
+				   $refr = "vmplight-0.1.1.0";
+			   }
+			   else
+			   {
+				   $refr	= urldecode($param_refr);		
+			   }
+		   }
+		   else
+		   {
+			   $refr = "unk";
+		   }
+		   music().register_song_click($song->topic, $address, $http_referer, $param_locale, $param_style, $refr, "100");
+		   exit(0);
+	   }
+	   else
+	   {
+	   }
+	   $filepath    	= $song->get_file_path();
+	   music().report_error("FileSave: song file not found: \""+$filepath+"\"", true);
+   //	require_once "sharedapi/util/getinclude.ds";	
+	   $path = sys_get_include_path("ds", "handerr", "song-notFound");
+	   dprint("downloadpath2=" + $path);
+
+	   if(strlen($path) > 0)
+	   {
+		   include $path;
+	   }
+	   else
+	   {
+		   print "Sorry! File Not Found.";
+	   }
+	   exit(0);*/
+      }
 
       string strHash(hash);
       string strMime(mimetype);

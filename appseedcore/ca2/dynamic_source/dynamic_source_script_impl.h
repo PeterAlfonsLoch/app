@@ -485,7 +485,7 @@ namespace dynamic_source
       virtual bool is_site_user(var varSite, var varUser);
       virtual bool is_site_user(var varSite);
 
-      virtual string    low_fs_file_path        (const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension);
+      virtual string    low_fs_file_path        (const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension, gen::property_set set = gen::property_set());
       virtual bool      low_fs_read             (const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension);
       virtual __int64   low_fs_map              (const char * pszDir);
       virtual bool      low_fs_map_file         (const char * pszPath);

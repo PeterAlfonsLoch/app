@@ -252,17 +252,37 @@ namespace netnode
       {
          outheader("Content-Type") = "application/vnd.ms-cab-compressed";
       }
-      ex1::filesp spfile(get_app());
-      if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
-      {
-         return false;
-      }
       if(prangea == NULL || prangea->get_count() == 0)
       {
-         response().file() << spfile;
+         if(gen::str::begins_ci(strContentType, "audio/"))
+         {
+            if(!System.compress().ungz(response().file(), lpcsz))
+            {
+               ex1::filesp spfile(get_app());
+               if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
+               {
+                  return false;
+               }
+               response().file() << spfile;
+            }
+         }
+         else
+         {
+            ex1::filesp spfile(get_app());
+            if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
+            {
+               return false;
+            }
+            response().file() << spfile;
+         }
       }
       else
       {
+         ex1::filesp spfile(get_app());
+         if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
+         {
+            return false;
+         }
          int iLen = System.file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
