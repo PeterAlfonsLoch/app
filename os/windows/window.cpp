@@ -2871,6 +2871,48 @@ namespace win
       _001DeferPaintLayeredWindowBackground(pdc);
    }
 
+
+   class print_window :
+      virtual ::radix::object
+   {
+   public:
+
+
+
+      manual_reset_event m_event;
+      HWND m_hwnd;
+      HDC m_hdc;
+
+      print_window(::ca::application * papp, HWND hwnd, HDC hdc, DWORD dwTimeout) :
+         ca(papp)
+      {
+         m_event.ResetEvent();
+         m_hwnd = hwnd;
+         m_hdc = hdc;
+         AfxBeginThread(papp, &print_window::s_print_window, (LPVOID) this, THREAD_PRIORITY_ABOVE_NORMAL);
+         if(m_event.wait(millis(dwTimeout)).timeout())
+         {
+            TRACE("print_window::time_out");
+         }
+      }
+
+
+      static UINT AFX_CDECL s_print_window(LPVOID pvoid)
+      {
+         print_window * pprintwindow = (print_window *) pvoid;
+         try
+         {
+            HANDLE hevent = (HANDLE) pprintwindow->m_event.get_os_data();
+            ::PrintWindow(pprintwindow->m_hwnd, pprintwindow->m_hdc, 0);
+            ::SetEvent(hevent);
+         }
+         catch(...)
+         {
+         }
+         return 0;
+      }
+   };
+
    void window::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
    {
       rect rectUpdate;
@@ -2988,7 +3030,7 @@ namespace win
                      ::ReleaseDC(hWnd, hDC);
                   }
                   HGDIOBJ hOld = SelectObject(hDCMem, hBmp);
-                  ::PrintWindow(hWnd, hDCMem, 0);
+                  print_window printwindow(get_app(), hWnd, hDCMem, 284);
                   ::BitBlt(
                      (HDC) pdc->get_os_data(), 
                      rect5.left,
