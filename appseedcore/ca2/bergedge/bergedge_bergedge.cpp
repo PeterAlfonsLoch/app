@@ -372,6 +372,17 @@ namespace bergedge
          }
       }
 
+      try
+      {
+         get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::cube8::application * > (m_pappCurrent)->m_puser->m_strLogin);
+      }
+      catch(...)
+      {
+      }
+
+
+
+
    }
 
 

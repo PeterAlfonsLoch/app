@@ -47,6 +47,8 @@ namespace bergedge
          return;
       }
 
+      SetWindowTextA("bergedge");
+
    }
 
    void frame::install_message_handling(::user::win::message::dispatch * pinterface)

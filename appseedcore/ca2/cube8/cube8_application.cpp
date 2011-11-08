@@ -927,6 +927,7 @@ InitFailure:
       if(!fontopus::application::initialize1())
          return false;
 
+
       return true;
 
    }
