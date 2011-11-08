@@ -136,7 +136,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm284 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include/x64;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseedcore;$(SolutionDir)../../../app/appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(SolutionDir)../../appseed;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_AFXEXT;_VEIEVSERVER_DLL;_AFXDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -214,7 +214,7 @@
     <ClInclude Include="veievserver_internal.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="veievserver.def" />
+    <None Include="app_veievserver.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseedcore\ca2\ca2.vcxproj">

@@ -19,7 +19,7 @@ namespace veievserver
 
       bool initialize_instance();
       virtual void netnode_run();
-      virtual void on_request(var & varFile, var & varQuery);
+      virtual void on_request(::ca::create_context * pcreatecontext);
 
       int CreateService();
       int RemoveService();

@@ -25,7 +25,7 @@ namespace veievserver
       }
       inline netnodeMemoryFile & operator << (memory_file & memfile)
       {
-         write(memfile.GetAllocation(), memfile.get_length());
+         write(memfile.get_data(), (primitive::memory_size::TYPE) memfile.get_length());
          return *this;
       }
       inline netnodeMemoryFile & operator << (ex1::file & file)

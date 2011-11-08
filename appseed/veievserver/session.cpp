@@ -47,7 +47,7 @@ namespace veievserver
 
    void session::take_screenshot()
    {
-      CSingleLock slSnaphost(&m_mutexSnapshot, TRUE);
+      single_lock slSnaphost(&m_mutexSnapshot, TRUE);
 
       if(m_pbergedge->get_document()->get_bergedge_view() == NULL)
          return;
@@ -125,18 +125,18 @@ namespace veievserver
       if(!papp->process_initialize())
          return 0;
       
-      papp->command_line().m_varQuery["show_platform"] = 1;
+      papp->directrix().m_varTopicQuery["show_platform"] = 1;
       
-     papp->command_line().m_varQuery["show_platform"] = 1;
+     papp->directrix().m_varTopicQuery["show_platform"] = 1;
 
       if(!papp->initialize_instance())
          return 0;
 
       Sys(papp->m_psystem).get_twf()->m_bRun = false;
-      win::thread * pthread = dynamic_cast < win::thread *> (App(papp).smart_pointer < ::ca::thread > ::m_p);
+/*      win::thread * pthread = dynamic_cast < win::thread *> (App(papp).smart_pointer < ::ca::thread > ::m_p);
       win::thread * pthreadCur = dynamic_cast < win::thread *> (App(papp).GetThread()->m_p);
       pthread->m_hThread = pthreadCur->m_hThread;
-      pthread->m_nThreadID = pthreadCur->m_nThreadID;
+      pthread->m_nThreadID = pthreadCur->m_nThreadID;*/
 
       
 

@@ -88,33 +88,33 @@ namespace veievserver
    }
 
 
-   void application::on_request(var & varFile, var & varQuery)
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
-      if (varQuery.has_property("debugbreak"))
+      if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("debugbreak"))
       {
          ::DebugBreak();
       }
-      if (varQuery.has_property("run"))
+      if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("run"))
       {
         netnode_run();
       }
-      else if(varQuery.has_property("service"))
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("service"))
       {
        //  return true;
       }
-      else if (varQuery.has_property("install"))
+      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("install"))
       {
          //return false;
       }
-      else if (varQuery.has_property("remove"))
+      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove"))
       {
       }
-      else if(varQuery.has_property("create_service"))
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
       {
          CreateService();
          //return false;
       }
-      else if(varQuery.has_property("remove"))
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove"))
       {
          RemoveService();
          //return false;
@@ -128,15 +128,11 @@ namespace veievserver
 
    int application::run()
    {
-      gen::command_line commandline;
-
-      _001ParseCommandLine(commandline);
-
-      if (command_line().m_varQuery.has_property("run"))
+      if (directrix().m_varTopicQuery.has_property("run"))
       {
          return cube2::application::run();
       }
-      else if (command_line().m_varQuery.has_property("service"))
+      else if (directrix().m_varTopicQuery.has_property("service"))
       {
          class service service(this);
          service_base::run(service);
@@ -153,7 +149,9 @@ namespace veievserver
 } // namespace veievserver
 
 
-CLASS_DECL_VEIEVSERVER ::ca::application * get_new_app()
+::ca2::library * get_new_library()
 {
-   return new ::veievserver::application;
+   return new ::ca2::single_application_library < ::veievserver::application > ();
 }
+
+

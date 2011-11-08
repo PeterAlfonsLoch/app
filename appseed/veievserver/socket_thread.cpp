@@ -17,7 +17,7 @@ namespace veievserver
    {
    }
 
-   void socket_thread::_001InstallMessageHandling(::user::win::message::dispatch * pinterface)
+   void socket_thread::install_message_handling(::user::win::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_APP, pinterface, this, &socket_thread::OnApp);
    }

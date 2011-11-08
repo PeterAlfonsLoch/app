@@ -90,7 +90,6 @@ public:
    ::user::interaction* WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int nCmdShow = -1);
-   protected:
    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual void pre_translate_message(gen::signal_object * pobj);

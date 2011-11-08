@@ -41,7 +41,7 @@ namespace veievserver
       m_threadptra.add(AfxBeginThread < socket_thread > (&Application));
       socket_thread * pthread = m_threadptra.last_element();
       {
-         CSingleLock sl(&pthread->m_evInitialized, TRUE);
+         single_lock sl(&pthread->m_evInitialized, TRUE);
          pthread->m_strIp = "0.0.0.0";
          pthread->m_iPort = 25;
          pthread->m_pservice = this;
