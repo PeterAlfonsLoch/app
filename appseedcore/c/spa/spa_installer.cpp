@@ -570,15 +570,9 @@ namespace spa
                   bAsk = false;
                   bRestart = false;
                }
-               else if(str_ends_ci_dup(strPath, "\\plugin-container.exe"))
+               else if(file_is_equal_path(strPath, file_get_mozilla_firefox_plugin_container_path()))
                {
-                  if(stristr_dup(strPath, "Mozilla") != NULL)
-                  {
-                     if(stristr_dup(strPath, "Firefox") != NULL)
-                     {
-                        bAsk = false;
-                     }
-                  }
+                  bAsk = false;
                }
                vsstring str;
                str = "Should ca2 Terminate and try to restart process \"";
@@ -1954,26 +1948,43 @@ namespace spa
 
          if(g_straRestartProcess.get_count() > 0)
          {
+
             vsstring str;
-            str = "You may restart the applications listed below if they are not restarted automatically:\n\n";
+
+            str = "Now :\n\n";
+
             for(int i = 0; i < g_straRestartProcess.get_count(); i++)
             {
-               str += "\t";
-               str += g_straRestartProcess[i];
-               if(i == g_straRestartProcess.get_count() - 1)
+               if(file_is_equal_path(file_get_mozilla_firefox_plugin_container_path(), g_straRestartProcess[i]))
                {
-                  str += ".";
+                  g_straRestartProcess.remove_at(i);
+                  str += "You may reload the Firefox plugin or plugins that has/have been shutdown.\n\n";
                }
-               else if(i == g_straRestartProcess.get_count() - 2)
-               {
-                  str += ", and;\n";
-               }
-               else
-               {
-                  str += ";\n";
-               }
-
             }
+
+            if(g_straRestartProcess.get_count() > 0)
+            {
+               str += "You may restart the applications listed below if they are not restarted automatically:\n\n";
+               for(int i = 0; i < g_straRestartProcess.get_count(); i++)
+               {
+                  str += "\t";
+                  str += g_straRestartProcess[i];
+                  if(i == g_straRestartProcess.get_count() - 1)
+                  {
+                     str += ".";
+                  }
+                  else if(i == g_straRestartProcess.get_count() - 2)
+                  {
+                     str += ", and;\n";
+                  }
+                  else
+                  {
+                     str += ";\n";
+                  }
+
+               }
+            }
+
             ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
          }
          return true;

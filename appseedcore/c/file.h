@@ -18,6 +18,9 @@ CLASS_DECL_____ vsstring file_name_dup(const char * path);
 CLASS_DECL_____ vsstring file_module_path_dup();
 
 
+CLASS_DECL_____ bool file_is_equal_path(const char * pszPath1, const char * pszPath2);
+
+
 CLASS_DECL_____ bool file_ftd_dup(const char * pszDir, const char * pszFile);
 #ifdef WINDOWS
 CLASS_DECL_____ void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int & iNumber);
@@ -33,3 +36,11 @@ CLASS_DECL_____ void dll_processes(simple_uint_array & dwa, stra_dup & straProce
 
 
 CLASS_DECL_____ bool file_copy_dup(const char * pszDup, const char * pszSrc, bool bOverwrite = true);
+
+
+
+
+
+
+
+CLASS_DECL_____ vsstring file_get_mozilla_firefox_plugin_container_path();

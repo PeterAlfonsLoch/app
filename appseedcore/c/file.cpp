@@ -1000,3 +1000,93 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 
 
+
+
+CLASS_DECL_____ bool file_is_equal_path(const char * psz1, const char * psz2)
+{
+#ifdef WINDOWS
+   const int iBufSize = MAX_PATH * 8;
+   const wchar_t * pwsz1 = utf8_to_16(psz1);
+   const wchar_t * pwsz2 = utf8_to_16(psz2);
+   wchar_t * pwszFile1;
+   wchar_t * pwszFile2;
+   wchar_t * pwszPath1 = new wchar_t[iBufSize];
+   wchar_t * pwszPath2 = new wchar_t[iBufSize];
+   int iCmp = -1;
+   if(GetFullPathNameW(pwsz1, iBufSize, pwszPath1, &pwszFile1))
+   {
+      if(GetFullPathNameW(pwsz2, iBufSize, pwszPath2, &pwszFile2))
+      {
+         const char * p1 = utf16_to_8(pwszPath1);
+         const char * p2 = utf16_to_8(pwszPath2);
+         iCmp = stricmp_dup(p1, p2);
+         ca2_free((void *) p1);
+         ca2_free((void *) p2);
+      }
+   }
+   ca2_free((void *) pwsz1);
+   ca2_free((void *) pwsz2);
+   delete pwszPath1;
+   delete pwszPath2;
+   return iCmp == 0;
+
+#else
+   // TODO: it should follow links
+#endif
+}
+
+
+CLASS_DECL_____ vsstring file_get_mozilla_firefox_plugin_container_path()
+{
+#ifdef WINDOWS
+
+   vsstring strPath;
+   HKEY hkeyMozillaFirefox;
+
+   if(::RegOpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox", &hkeyMozillaFirefox) != ERROR_SUCCESS)
+      return "";
+   {
+
+      DWORD dwType;
+      DWORD dwData;
+      dwData = 0;
+      if(::RegGetValueW(hkeyMozillaFirefox, NULL, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, NULL, &dwData) != ERROR_SUCCESS)
+      {
+         goto ret1;
+      }
+
+      wstring wstrVersion;
+      wstrVersion.alloc(dwData);
+      if(::RegGetValueW(hkeyMozillaFirefox, NULL, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, wstrVersion.m_pwsz, &dwData) != ERROR_SUCCESS)
+      {
+         goto ret1;
+      }
+
+      wstring wstrMainSubKey = wstrVersion + L"\\Main";
+      dwData = 0;
+
+      if(::RegGetValueW(hkeyMozillaFirefox, wstrMainSubKey, L"Install Directory", RRF_RT_REG_SZ, &dwType, NULL, &dwData) != ERROR_SUCCESS)
+      {
+         goto ret1;
+      }
+
+      wstring wstrDir;
+      wstrDir.alloc(dwData);
+      if(::RegGetValueW(hkeyMozillaFirefox, wstrMainSubKey, L"Install Directory", RRF_RT_REG_SZ, &dwType, wstrDir.m_pwsz, &dwData) != ERROR_SUCCESS)
+      {
+         goto ret1;
+      }
+
+      vsstring strDir;
+
+      strDir.attach(utf16_to_8(wstrDir));
+
+      strPath = dir::path(strDir, "plugin-container.exe");
+   }
+
+ret1:
+   ::RegCloseKey(hkeyMozillaFirefox);
+   return strPath;
+
+#endif
+}
