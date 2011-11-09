@@ -2665,6 +2665,10 @@ namespace dynamic_source
       str = System.str().get(str_context(), strTopic + "." + gprop("g_domain_toplevel"), strLocale, strStyle);
       if(str.has_char())
          return str;
+      if(strTopic == "ca2plugin.install_ca2_rem")
+      {
+         TRACE("teste");
+      }
       return System.str().get(str_context(), strTopic, strLocale, strStyle);
    }
 
@@ -2695,7 +2699,7 @@ namespace dynamic_source
    }
 
 
-   string script_impl::ca2_get_build()
+   string script_impl::ca2_get_build(const char * pszVersion)
    {
       string strPath;
       strPath = "C:\\home\\ccvotagus\\ca2_spa\\stage\\app\\build.txt";
@@ -2704,10 +2708,10 @@ namespace dynamic_source
       return str;
    }
 
-   string script_impl::ca2_get_subversion_revision()
+   string script_impl::ca2_get_subversion_revision(const char * pszVersion)
    {
       string strUrl;
-      strUrl = "http://ca2.us/votagus_ca2_get_subversion_revision?build=" + urlencode(ca2_get_build()) + "&secure=0";
+      strUrl = "http://ca2.se/votagus_ca2_get_subversion_revision?build=" + urlencode(ca2_get_build(pszVersion)) + "&secure=0";
       return Application.http().get(strUrl);
    }
 
@@ -2739,9 +2743,9 @@ namespace dynamic_source
       return "";
    }
 
-   string script_impl::ca2_format_build()
+   string script_impl::ca2_format_build(const char * pszVersion)
    {
-      string src = ca2_get_build();
+      string src = ca2_get_build(pszVersion);
       src.trim();
       return src;
       /*gen::property_set set;
@@ -2922,7 +2926,7 @@ namespace dynamic_source
    {
       string strFormatBuild;
       if(pszBuild == NULL)
-         strFormatBuild = ca2_get_build();
+         strFormatBuild = ca2_get_build(pszBuild);
       else
          strFormatBuild = pszBuild;
       if(strFormatBuild.has_char())
@@ -3670,6 +3674,10 @@ namespace dynamic_source
          defer_add_locale("br", straLocale, straStyle);
          defer_add_locale("pt-br", straLocale, straStyle);
          defer_add_locale("pt", straLocale, straStyle);
+      }
+      else if(strLocale == "en")
+      {
+         defer_add_locale("_std", straLocale, straStyle);
       }
       else if(strLocale == "mx")
       {
