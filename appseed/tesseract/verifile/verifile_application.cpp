@@ -12,8 +12,8 @@ namespace verifile
    void application::construct()
    {
       m_strAppName         = "verifile";
-      m_strBaseSupportId   = "votagus_ca2_filemanager";
-      m_strInstallToken    = "_set_filemanager";
+      m_strBaseSupportId   = "verifile";
+      m_strInstallToken    = "verifile";
    }
 
 
