@@ -11,8 +11,6 @@ namespace cube8
       m_dir.set_app(this);
       m_file.set_app(this);
       m_http.set_app(this);
-      m_plicense                 = NULL;
-      m_pfsdata                  = NULL;
    }
 
    application::~application()
@@ -855,7 +853,7 @@ InitFailure:
 
    class ::fontopus::license & application::license()
    {
-      return *m_plicense;
+      return m_splicense;
    }
 
    /*
@@ -875,9 +873,11 @@ InitFailure:
    bool application::initialize()
    {
 
-      if(!is_system() && !is_bergedge())
+      if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
       {
-         ::fs::set * pset = dynamic_cast < ::fs::set * > (m_pfsdata);
+         if(m_spfsdata.is_null())
+            m_spfsdata(new ::fs::set(this));
+         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
          pset->m_spafsdata.add(new ::ifs(this, ""));
          stringa stra;
          pset->root_ones(stra);
@@ -885,7 +885,7 @@ InitFailure:
 
       m_dwAlive = ::GetTickCount();
 
-      m_plicense = new class ::fontopus::license(this);
+      m_splicense(new class ::fontopus::license(this));
 
 
       if(!is_system())
@@ -907,11 +907,12 @@ InitFailure:
 
       if(!is_system() && !is_bergedge())
       {
-         ::fs::set * pset = new ::fs::set(this);
+         if(m_spfsdata.is_null())
+            m_spfsdata(new ::fs::set(this));
+         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
          pset->m_spafsdata.add(new ::fs::native(this));
          stringa stra;
          pset->root_ones(stra);
-         m_pfsdata = pset;
       }
 
 
@@ -935,7 +936,7 @@ InitFailure:
 
    class ::fs::data * application::fs()
    {
-      return m_pfsdata;
+      return m_spfsdata;
    }
 
 

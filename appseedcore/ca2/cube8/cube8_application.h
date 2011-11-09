@@ -17,8 +17,8 @@ namespace cube8
       class ::ca2::file::application      m_file;
       class ::ca4::http::application      m_http;
 
-      class ::fontopus::license *         m_plicense;
-      class ::fs::data *                  m_pfsdata;
+      sp(class ::fontopus::license)       m_splicense;
+      sp(class ::fs::data)                m_spfsdata;
 
 
 

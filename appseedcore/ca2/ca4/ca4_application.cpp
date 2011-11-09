@@ -185,7 +185,7 @@ namespace ca4
                delete System.m_pcopydesk;
                System.m_pcopydesk = NULL;
             }
-            gen::del(System.m_plicense);
+            System.m_splicense.detach()->release();
          }
       }
       catch(...)

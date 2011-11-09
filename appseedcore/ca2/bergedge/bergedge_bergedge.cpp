@@ -16,9 +16,9 @@ namespace bergedge
       m_pappCurrent              = NULL;
       m_pbergedge                = this;
 
-
-      m_pfsdata                  = new ::fs::native(this);
-
+      ::fs::set * pset = new class ::fs::set(this);
+      pset->m_spafsdata.add(new ::fs::native(this));
+      m_spfsdata(pset);
 
    }
 

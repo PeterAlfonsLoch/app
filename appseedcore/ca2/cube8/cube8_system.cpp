@@ -73,7 +73,7 @@ namespace cube8
 
       
 
-      m_pfsdata                  = new ::fs::native(this);
+      m_spfsdata(new ::fs::native(this));
 
 
 
