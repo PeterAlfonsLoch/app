@@ -32,6 +32,8 @@ namespace user
 
       DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage)
 
+
+      virtual bool initialize1();
       virtual bool initialize();
 
       virtual int exit_instance();

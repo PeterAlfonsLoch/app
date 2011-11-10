@@ -15,7 +15,7 @@ namespace userex
    }
 
 
-   bool application::initialize()
+   bool application::initialize1()
    {
       if(is_system())
       {
@@ -58,7 +58,7 @@ namespace userex
          ::ca::get_type_info < user::place_holder > ());
 
 
-      if(!html::application::initialize())     
+      if(!html::application::initialize1())     
          return false;
 
       return true;

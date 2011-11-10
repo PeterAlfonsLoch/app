@@ -18,6 +18,7 @@ namespace visual
       virtual ~application();
       virtual class imaging & imaging();
       virtual bool initialize();
+      virtual bool initialize1();
       class font_central & font_central();
       class font_central * m_pfontcentral;
       cursor * set_cursor_file(e_cursor ecursor, const char * psz);

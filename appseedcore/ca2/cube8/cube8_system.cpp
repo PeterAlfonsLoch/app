@@ -216,7 +216,6 @@ namespace cube8
       if(!system::application::initialize1())
          return false;
 
-
       try
       {
          find_applications();

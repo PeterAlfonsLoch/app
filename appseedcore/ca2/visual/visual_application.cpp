@@ -24,7 +24,7 @@ namespace visual
       return *m_pimaging;
    }
 
-   bool application::initialize()
+   bool application::initialize1()
    {
       m_pfontcentral = new class font_central(this);
       if(m_pfontcentral == NULL)
@@ -38,6 +38,13 @@ namespace visual
          AfxThrowMemoryException();
 
       set_cursor_set_from_matter("cursor/antialiased-classic");
+      
+      return true;
+
+   }
+
+   bool application::initialize()
+   {
 
       return true;
    }

@@ -13,7 +13,6 @@ namespace tesseract
          stra.add("eluce");
          stra.add("i2com");
          stra.add("mail");
-         stra.add("mplite");
          stra.add("netnodecfg");
          stra.add("paint");
          stra.add("simpledb");
@@ -46,7 +45,7 @@ namespace tesseract
       {
          straApp.add_unique("default_file_handler");
       }
-      else if(strExtension == "mid" || strExtension == "kar" || strExtension == "st3")
+/*      else if(strExtension == "mid" || strExtension == "kar" || strExtension == "st3")
       {
          straApp.add_unique("mplite");
          straApp.add_unique("vmsp");
@@ -55,7 +54,7 @@ namespace tesseract
       {
          straApp.add_unique("mplite");
          straApp.add_unique("vmsp");
-      }
+      }*/
       else if(strExtension == "jpg" || strExtension == "jpeg" || strExtension == "gif" || strExtension == "png")
       {
          straApp.add_unique("eluce");

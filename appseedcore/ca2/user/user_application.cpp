@@ -92,6 +92,23 @@ namespace user
       SendMessageToWindows(gen::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
    }
 
+   bool application::initialize1()
+   {
+
+      if(!::ca4::application::initialize1())
+         return false;
+
+      if(!database::application::initialize1())
+         return false;
+
+      if(!visual::application::initialize1())
+         return false;
+
+      return true;
+
+   }
+
+
    bool application::initialize()
    {
       if(is_system())

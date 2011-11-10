@@ -25,7 +25,7 @@ namespace userex
       form_document *   create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent);
       simple_document * hold(::user::interaction * pui);
 
-      virtual bool initialize();
+      virtual bool initialize1();
 
    };
 

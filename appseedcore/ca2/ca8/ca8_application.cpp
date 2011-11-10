@@ -21,7 +21,7 @@ namespace ca8
 
       m_dwAlive = ::GetTickCount();
 
-      if(!html::application::initialize1())     
+      if(!userex::application::initialize1())     
          return false;
       return true;
    }
