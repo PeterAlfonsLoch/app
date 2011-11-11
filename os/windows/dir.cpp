@@ -548,7 +548,39 @@ namespace win
 
    string dir::locale_style_matter(::ca::application * papp, const char * pszLocale, const char * pszStyle)
    {
-      return path(votagus(), "app\\appmatter\\main", App(papp).get_locale_style_dir(pszLocale, pszStyle));
+      string strRoot;
+      string strDomain;
+      if(papp->is_system())
+      {
+         strRoot     = "app";
+         strDomain   = "main";
+      }
+      else if(papp->is_bergedge())
+      {
+         strRoot     = "app";
+         strDomain   = "bergedge";
+      }
+      else
+      {
+         stringa stra;
+         stra.add_tokens(App(papp).m_strAppName, "_", FALSE);
+         for(int i = 1; i < stra.get_upper_bound(); i++)
+         {
+            stra[i] == "_" + stra[i];
+         }
+         if(stra.get_size() > 1)
+         {
+            strRoot = "app-" + stra[0];
+            stra.remove_at(0);
+            strDomain = stra.implode("/");
+         }
+         else
+         {
+            strRoot = "app";
+            strDomain = App(papp).m_strAppName;
+         }
+      }
+      return ca2(path(strRoot, "appmatter", strDomain), App(papp).get_locale_style_dir(pszLocale, pszStyle));
    }
 
    string dir::matter(::ca::application * papp, const char * psz, const char * psz2)
@@ -581,6 +613,14 @@ namespace win
       strPath = path(locale_style_matter(papp, "se", "se"), psz, psz2);
       if(System.file().exists(strPath))
          return strPath;
+      if(!papp->is_bergedge() && papp->m_pbergedge != NULL)
+      {
+         matter(papp->m_pbergedge, psz, psz2);
+      }
+      if(!papp->is_system() && papp->m_psystem != NULL)
+      {
+         matter(papp->m_psystem, psz, psz2);
+      }
       return path(locale_style_matter(papp), psz, psz2);
    }
 
