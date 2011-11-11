@@ -1,8 +1,0 @@
-; app_winshelllink.def
-
-LIBRARY  "app_winshelllink"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

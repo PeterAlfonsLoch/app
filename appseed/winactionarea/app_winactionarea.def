@@ -1,7 +1,0 @@
-; app_winactionarea.def
-
-LIBRARY  "app_winactionarea"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library

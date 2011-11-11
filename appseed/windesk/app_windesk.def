@@ -1,7 +1,0 @@
-; app_windesk.def
-
-LIBRARY  "app_windesk"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-

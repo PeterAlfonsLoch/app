@@ -1,1 +1,0 @@
-#include "mydns.h"

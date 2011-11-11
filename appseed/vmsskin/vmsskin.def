@@ -1,7 +1,0 @@
-; vmsskin.def : Declares the module parameters for the DLL.
-
-LIBRARY      "vmsskin"
-DESCRIPTION  'vmsskin Windows Dynamic Link Library'
-
-EXPORTS
-    ; Explicit exports can go here

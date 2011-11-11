@@ -1,8 +1,0 @@
-; app_projection.def
-
-LIBRARY  "app_projection"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

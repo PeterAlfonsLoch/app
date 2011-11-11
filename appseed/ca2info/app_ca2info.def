@@ -1,7 +1,0 @@
-; app_ca2info.def
-
-LIBRARY  "app_ca2info"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-

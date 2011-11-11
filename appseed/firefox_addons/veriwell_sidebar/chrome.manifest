@@ -1,6 +1,0 @@
-content veriwell_sidebar chrome/content/
-locale  veriwell_sidebar en-US   chrome/locale/en-US/
-skin    veriwell_sidebar classic/1.0 chrome/skin/
-
-overlay chrome://browser/content/browser.xul chrome://veriwell_sidebar/content/overlay.xul
-style chrome://global/content/customizeToolbar.xul chrome://veriwell_sidebar/skin/veriwell_sidebar.css

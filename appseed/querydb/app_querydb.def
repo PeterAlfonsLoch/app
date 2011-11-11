@@ -1,8 +1,0 @@
-; app_querydb.def
-
-LIBRARY  "app_querydb"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

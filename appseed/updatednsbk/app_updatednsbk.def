@@ -1,7 +1,0 @@
-; app_updatednsbk.def
-
-LIBRARY  "app_updatednsbk"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-

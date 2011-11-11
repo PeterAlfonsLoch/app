@@ -1,8 +1,0 @@
-; app_winservice_1.def
-
-LIBRARY  "app_winservice_1"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

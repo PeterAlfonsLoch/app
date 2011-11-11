@@ -1,8 +1,0 @@
-; app_flag.def
-
-LIBRARY  "app_flag"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

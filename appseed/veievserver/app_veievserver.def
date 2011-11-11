@@ -1,8 +1,0 @@
-; app_veievserver.def
-
-LIBRARY  "app_veievserver"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-get_new_library
-

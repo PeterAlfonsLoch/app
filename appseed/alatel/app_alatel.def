@@ -1,8 +1,0 @@
-; app_alatel.def : Declares the module parameters for the DLL.
-
-LIBRARY      "app_alatel"
-	;DESCRIPTION  'alatel Windows Dynamic Link Library'
-
-EXPORTS
-DllMain
-get_new_library
