@@ -56,6 +56,19 @@ namespace iexca2
    STDMETHODIMP ole_inplace_active_object::TranslateAccelerator(LPMSG lpmsg)
    {
        HRESULT hr = S_FALSE;
+
+
+       if(lpmsg->message == WM_KEYDOWN || lpmsg->message == WM_KEYUP || lpmsg->message == WM_CHAR ||
+          lpmsg->message == WM_SYSKEYDOWN || lpmsg->message == WM_SYSKEYUP || lpmsg->message == WM_SYSCHAR)
+       {
+          hr = S_OK;
+          _p_instance->message_handler(lpmsg->message, lpmsg->wParam, lpmsg->lParam);
+       }
+
+
+       if(SUCCEEDED(hr))
+          return S_OK;
+
        LPOLEOBJECT oleObj;
        if( SUCCEEDED(QueryInterface(IID_IOleObject, (LPVOID *)&oleObj)) )
        {
@@ -80,6 +93,10 @@ namespace iexca2
 
    STDMETHODIMP ole_inplace_active_object::OnFrameWindowActivate(BOOL fActivate)
    {
+      if(fActivate)
+      {
+         _p_instance->m_psite->SetFocus(TRUE);
+      }
        return S_OK;
    }
 

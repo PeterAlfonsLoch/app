@@ -44,27 +44,27 @@ namespace iexca2
    {
       if( m_pinstance->isInPlaceActive() )
       {
-         /*        UIDeactivate();
+         UIDeactivate();
 
          m_pinstance->onInPlaceDeactivate();
 
          LPOLEOBJECT p_oleObject;
          if( SUCCEEDED(QueryInterface(IID_IOleObject, (void**)&p_oleObject)) )
          {
-         LPOLECLIENTSITE p_clientSite;
-         if( SUCCEEDED(p_oleObject->GetClientSite(&p_clientSite)) )
-         {
-         LPOLEINPLACESITE p_inPlaceSite;
+            LPOLECLIENTSITE p_clientSite;
+            if( SUCCEEDED(p_oleObject->GetClientSite(&p_clientSite)) )
+            {
+               LPOLEINPLACESITE p_inPlaceSite;
 
-         if( SUCCEEDED(p_clientSite->QueryInterface(IID_IOleInPlaceSite, (void**)&p_inPlaceSite)) )
-         {
-         p_inPlaceSite->OnInPlaceDeactivate();
-         p_inPlaceSite->Release();
+               if( SUCCEEDED(p_clientSite->QueryInterface(IID_IOleInPlaceSite, (void**)&p_inPlaceSite)) )
+               {
+                  p_inPlaceSite->OnInPlaceDeactivate();
+                  p_inPlaceSite->Release();
+               }
+               p_clientSite->Release();
+            }
+            p_oleObject->Release();
          }
-         p_clientSite->Release();
-         }
-         p_oleObject->Release();
-         }*/
          return S_OK;
       }
       return E_UNEXPECTED;
@@ -74,45 +74,45 @@ namespace iexca2
    {
       if( m_pinstance->isInPlaceActive() )
       {
-         /*( m_pinstance->hasFocus() )
-         m_pinstance->setFocus(FALSE);
+         if( m_pinstance->hasFocus() )
+            m_pinstance->setFocus(FALSE);
 
          LPOLEOBJECT p_oleObject;
          if( SUCCEEDED(QueryInterface(IID_IOleObject, (void**)&p_oleObject)) )
          {
-         LPOLECLIENTSITE p_clientSite;
-         if( SUCCEEDED(p_oleObject->GetClientSite(&p_clientSite)) )
-         {
-         LPOLEINPLACESITE p_inPlaceSite;
+            LPOLECLIENTSITE p_clientSite;
+            if( SUCCEEDED(p_oleObject->GetClientSite(&p_clientSite)) )
+            {
+               LPOLEINPLACESITE p_inPlaceSite;
 
-         if( SUCCEEDED(p_clientSite->QueryInterface(IID_IOleInPlaceSite, (void**)&p_inPlaceSite)) )
-         {
-         LPOLEINPLACEFRAME p_inPlaceFrame;
-         LPOLEINPLACEUIWINDOW p_inPlaceUIWindow;
-         OLEINPLACEFRAMEINFO oleFrameInfo;
-         RECT posRect, clipRect;
+               if( SUCCEEDED(p_clientSite->QueryInterface(IID_IOleInPlaceSite, (void**)&p_inPlaceSite)) )
+               {
+                  LPOLEINPLACEFRAME p_inPlaceFrame;
+                  LPOLEINPLACEUIWINDOW p_inPlaceUIWindow;
+                  OLEINPLACEFRAMEINFO oleFrameInfo;
+                  RECT posRect, clipRect;
 
-         oleFrameInfo.cb = sizeof(OLEINPLACEFRAMEINFO);
-         if( SUCCEEDED(p_inPlaceSite->GetWindowContext(&p_inPlaceFrame, &p_inPlaceUIWindow, &posRect, &clipRect, &oleFrameInfo)) )
-         {
-         if( p_inPlaceFrame )
-         {
-         p_inPlaceFrame->SetActiveObject(NULL, NULL);
-         p_inPlaceFrame->Release();
+                  oleFrameInfo.cb = sizeof(OLEINPLACEFRAMEINFO);
+                  if( SUCCEEDED(p_inPlaceSite->GetWindowContext(&p_inPlaceFrame, &p_inPlaceUIWindow, &posRect, &clipRect, &oleFrameInfo)) )
+                  {
+                     if( p_inPlaceFrame )
+                     {
+                        p_inPlaceFrame->SetActiveObject(NULL, NULL);
+                        p_inPlaceFrame->Release();
+                     }
+                     if( p_inPlaceUIWindow )
+                     {
+                        p_inPlaceUIWindow->SetActiveObject(NULL, NULL);
+                        p_inPlaceUIWindow->Release();
+                     }
+                  }
+                  p_inPlaceSite->OnUIDeactivate(FALSE);
+                  p_inPlaceSite->Release();
+               }
+               p_clientSite->Release();
+            }
+            p_oleObject->Release();
          }
-         if( p_inPlaceUIWindow )
-         {
-         p_inPlaceUIWindow->SetActiveObject(NULL, NULL);
-         p_inPlaceUIWindow->Release();
-         }
-         }
-         p_inPlaceSite->OnUIDeactivate(FALSE);
-         p_inPlaceSite->Release();
-         }
-         p_clientSite->Release();
-         }
-         p_oleObject->Release();
-         }*/
          return S_OK;
       }
       return E_UNEXPECTED;
