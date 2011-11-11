@@ -132,12 +132,12 @@ namespace cube2
    {
       string strRoot;
       string strDomain;
-      if(papp->is_system())
+      if(is_system())
       {
          strRoot     = "app";
          strDomain   = "main";
       }
-      else if(papp->is_bergedge())
+      else if(is_bergedge())
       {
          strRoot     = "app";
          strDomain   = "bergedge";
@@ -145,7 +145,7 @@ namespace cube2
       else
       {
          stringa stra;
-         stra.add_tokens(App(papp).m_strAppName, "_", FALSE);
+         stra.add_tokens(App(this).m_strAppName, "_", FALSE);
          for(int i = 1; i < stra.get_upper_bound(); i++)
          {
             stra[i] == "_" + stra[i];
@@ -154,16 +154,16 @@ namespace cube2
          {
             strRoot = "app-" + stra[0];
             stra.remove_at(0);
-            if(App(papp).m_strLibraryName.has_char())
-               stra.insert_at(stra.get_upper_bound(), App(papp).m_strLibraryName);
+            if(App(this).m_strLibraryName.has_char())
+               stra.insert_at(stra.get_upper_bound(), App(this).m_strLibraryName);
             strDomain += stra.implode("/");
          }
          else
          {
             strRoot = "app";
-            if(App(papp).m_strLibraryName.has_char())
-               strDomain = App(papp).m_strLibraryName + "/";
-            strDomain += App(papp).m_strAppName;
+            if(App(this).m_strLibraryName.has_char())
+               strDomain = App(this).m_strLibraryName + "/";
+            strDomain += App(this).m_strAppName;
          }
       }
       string strLocale;

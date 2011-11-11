@@ -153,7 +153,7 @@ namespace ca4
    {
       string strDir = pszFile;
       gen::str::ends_eat_ci(strDir, ".zip");
-      App(papp).copy(strDir, pszFile, false);
+      App(papp).file().copy(strDir, pszFile, false);
       /*stringa straPath;
       System.dir().rls(pszFile, &straPath);
       for(int i = 0; i < straPath.get_size(); i++)

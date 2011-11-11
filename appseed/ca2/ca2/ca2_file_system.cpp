@@ -652,7 +652,7 @@ namespace ca2
          else
          {
             string strNew = System.dir().path(strDest, name_(path));
-            copy(strNew, path, papp);
+            copy(strNew, path, false, papp);
             return strNew;
          }
       }
