@@ -1,9 +1,0 @@
-<menubar>
-	<menubar id="view">
-		<item id="view_whiteboard">Open Whiteboard</item>
-	</menubar>
-	<menubar id="execute">
-		<item id="execute_play">Executar</item>
-	</menubar>
-
-</menubar>

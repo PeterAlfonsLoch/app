@@ -1,4 +1,0 @@
-<toolbar>
-	<button id="go_to_previous" image="matter://eluce/frame/previous.png" />
-	<button id="go_to_next" image="matter://eluce/frame/next.png" />
-</toolbar>

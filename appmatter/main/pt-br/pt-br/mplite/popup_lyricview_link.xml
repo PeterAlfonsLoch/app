@@ -1,6 +1,0 @@
-<menubar>
-	<menubar id="link">
-		<item id="open_link_in_new_window">Open Link in New Window</item>
-		<item id="copy_link_location" img="full_screen_16.png">Copy Link Location</item>
-	</menubar>
-</menubar>
