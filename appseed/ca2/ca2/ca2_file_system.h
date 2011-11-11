@@ -31,7 +31,7 @@ namespace ca2
          void move(const char * pszNew, const char * psz);
          void del(const char * psz);
          string copy(const char * psz, ::ca::application * papp);
-         string paste(const char * pszLocation, const char * path);
+         string paste(const char * pszLocation, const char * path, ::ca::application * papp);
 
          void trash_that_is_not_trash(const char * psz);
          void trash_that_is_not_trash(stringa & stra);

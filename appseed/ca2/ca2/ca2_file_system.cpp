@@ -640,19 +640,19 @@ namespace ca2
          return ::GetFileAttributesW(gen::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
       }
 
-      string system::paste(const char * pszLocation, const char * path)
+      string system::paste(const char * pszLocation, const char * path, ::ca::application * papp)
       {
          string strDir = System.dir().name(path);
          string strDest = System.dir().path(pszLocation, "");
          string strSrc = System.dir().path(strDir, "");
          if(strDest == strSrc)
          {
-            return copy(path);
+            return copy(path, papp);
          }
          else
          {
             string strNew = System.dir().path(strDest, name_(path));
-            copy(strNew, path);
+            copy(strNew, path, papp);
             return strNew;
          }
       }
