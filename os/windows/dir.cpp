@@ -573,14 +573,14 @@ namespace win
             strRoot = "app-" + stra[0];
             stra.remove_at(0);
             if(App(papp).m_strLibraryName.has_char())
-               stra.insert_at(stra.get_upper_bound(), App.(papp).m_strLibraryName);
+               stra.insert_at(stra.get_upper_bound(), App(papp).m_strLibraryName);
             strDomain += stra.implode("/");
          }
          else
          {
             strRoot = "app";
             if(App(papp).m_strLibraryName.has_char())
-               strDomain = m_strLibraryName + "/";
+               strDomain = App(papp).m_strLibraryName + "/";
             strDomain += App(papp).m_strAppName;
          }
       }
