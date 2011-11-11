@@ -27,10 +27,10 @@ namespace ca2
 
          path & path();
 
-         void copy(const char * pszNew, const char * psz, bool bFailIfExists = false);
+         void copy(const char * pszNew, const char * psz, bool bFailIfExists, ::ca::application * app);
          void move(const char * pszNew, const char * psz);
          void del(const char * psz);
-         string copy(const char * psz);
+         string copy(const char * psz, ::ca::application * papp);
          string paste(const char * pszLocation, const char * path);
 
          void trash_that_is_not_trash(const char * psz);

@@ -27,6 +27,12 @@ namespace ca4
       bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, unsigned long ulSizeUncompressed);
 
 
+      static bool null(ex1::writer & ostream, ex1::reader & istream);
+
+
+      count extract_all(const char * pszFile, ::ca::application * papp);
+
+
       friend class application;
 
 

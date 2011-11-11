@@ -18,6 +18,8 @@ namespace ca2
          application();
 
 
+         void copy(const char * pszNew, const char * psz, bool bFailIfExists = false);
+
          string as_string(var varFile);
          string as_string(var varFile, var varQuery);
          void as_memory(var varFile, primitive::memory & mem);

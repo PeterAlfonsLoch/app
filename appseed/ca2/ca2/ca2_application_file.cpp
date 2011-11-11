@@ -12,6 +12,10 @@ namespace ca2
       {
       }
 
+      void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists)
+      {
+         return System.file().copy(pszNew, pszOld, bFailIfExists, m_papp);
+      }
 
       string application::as_string(var varFile)
       {

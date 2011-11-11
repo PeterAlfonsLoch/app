@@ -501,7 +501,7 @@ namespace ca2
          }
       }
 
-      void system::copy(const char * pszNew, const char * psz, bool bFailIfExists)
+      void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, ::ca::application * papp)
       {
          if(bFailIfExists)
          {
@@ -529,25 +529,30 @@ namespace ca2
                   {
                      System.dir().mk(System.dir().name(strNew));
                   }
-                  if(!::CopyFileW(
-                     gen::international::utf8_to_unicode(strOld),
-                     gen::international::utf8_to_unicode(strNew), bFailIfExists))
-                     throw "Failed to copy file";
+                  copy(strNew, strOld, bFailIfExists, papp);
                }
             }
          }
          else
          {
             System.dir().mk(System.dir().name(pszNew));
-            if(!::CopyFileW(
-               gen::international::utf8_to_unicode(psz),
-               gen::international::utf8_to_unicode(pszNew), bFailIfExists))
+            ::ex1::filesp ofile;
+            ofile(App(papp).get_file(pszNew, ex1::file::mode_write | ex1::file::mode_create));
+            if(ofile.is_null())
             {
-               DWORD dwError = ::GetLastError();
                string strError;
-               strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=%d", psz, pszNew, bFailIfExists, dwError);
+               strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
                throw strError;
             }
+            ::ex1::filesp ifile;
+            ifile(App(papp).get_file(pszNew, ex1::file::mode_read));
+            if(ifile.is_null())
+            {
+               string strError;
+               strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
+               throw strError;
+            }
+            ::ca4::compress::null(ofile, ifile);
          }
       }
 
@@ -579,7 +584,7 @@ namespace ca2
       }
 
 
-      string system::copy(const char * psz)
+      string system::copy(const char * psz, ::ca::application * papp)
       {
          string strCopy("copy");
          string strNew;
@@ -591,7 +596,7 @@ namespace ca2
                strNew.Format("%s-%s-%d", psz, strCopy, i);
                if(!exists(strNew))
                {
-                  copy(strNew, psz);
+                  copy(strNew, psz, false, papp);
                   return strNew;
                }
                i++;
@@ -610,7 +615,7 @@ namespace ca2
                strNew.Format("%s-%s-%d%s", psz, strCopy, i, strExt);
                if(!exists(strNew))
                {
-                  copy(strNew, psz);
+                  copy(strNew, psz, false, papp);
                   return strNew;
                }
                i++;

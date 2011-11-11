@@ -130,8 +130,63 @@ namespace cube2
 
    bool application::on_install()
    {
-      return true;
+      string strRoot;
+      string strDomain;
+      if(papp->is_system())
+      {
+         strRoot     = "app";
+         strDomain   = "main";
+      }
+      else if(papp->is_bergedge())
+      {
+         strRoot     = "app";
+         strDomain   = "bergedge";
+      }
+      else
+      {
+         stringa stra;
+         stra.add_tokens(App(papp).m_strAppName, "_", FALSE);
+         for(int i = 1; i < stra.get_upper_bound(); i++)
+         {
+            stra[i] == "_" + stra[i];
+         }
+         if(stra.get_size() > 1)
+         {
+            strRoot = "app-" + stra[0];
+            stra.remove_at(0);
+            if(App(papp).m_strLibraryName.has_char())
+               stra.insert_at(stra.get_upper_bound(), App(papp).m_strLibraryName);
+            strDomain += stra.implode("/");
+         }
+         else
+         {
+            strRoot = "app";
+            if(App(papp).m_strLibraryName.has_char())
+               strDomain = App(papp).m_strLibraryName + "/";
+            strDomain += App(papp).m_strAppName;
+         }
+      }
+      string strLocale;
+      string strStyle;
+      string strFile = System.dir().ca2(System.dir().path(strRoot, "appmatter", strDomain), App(papp).get_locale_style_dir(strLocale, strStyle)) + ".zip";
+      string strUrl;
+      if(_ca_is_basis())
+      {
+         strUrl = "http://basis.spaignition.api.veriterse.net/download?authnone&version=basis&stage=";
+      }
+      else
+      {
+         strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
+      }
+
+      strUrl += System.url().url_encode(strFile);
+
+      Application.http().download(strUrl, strFile);
+
+      System.compress().extract_all(strFile);
+
    }
+
 
    bool application::on_uninstall()
    {

@@ -58,6 +58,18 @@ namespace ca4
       return true;
    }
 
+   bool compress::null(ex1::writer & ostream, ex1::reader & istream)
+   {
+      class primitive::memory memory;
+      memory.allocate(1024 * 256);
+      int uiRead;
+      while((uiRead = istream.read(memory, memory.get_size())) > 0)
+      {
+         ostream.write(memory, uiRead);
+      }
+      return true;
+   }
+
    bool compress::ungz(const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
       return System.file().output(lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
@@ -135,6 +147,21 @@ namespace ca4
       memoryUncompressed.allocate(ulSizeUncompressed);
       int i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong) memoryCompressed.get_size());
       return i == Z_OK;
+   }
+
+   count compress::extract_all(const char * pszFile, ::ca::application * papp)
+   {
+      string strDir = pszFile;
+      gen::str::ends_eat_ci(strDir, ".zip");
+      App(papp).copy(strDir, pszFile, false);
+      /*stringa straPath;
+      System.dir().rls(pszFile, &straPath);
+      for(int i = 0; i < straPath.get_size(); i++)
+      {
+         string strPath = straPath[i];
+         strPath = gen::str::replace_ci(".zip:", "/");
+         System.file().copy(strPath, straPath[i]);
+      }*/
    }
 
 
