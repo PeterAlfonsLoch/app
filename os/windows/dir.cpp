@@ -572,12 +572,16 @@ namespace win
          {
             strRoot = "app-" + stra[0];
             stra.remove_at(0);
-            strDomain = stra.implode("/");
+            if(App(papp).m_strLibraryName.has_char())
+               stra.insert_at(stra.get_upper_bound(), App.(papp).m_strLibraryName);
+            strDomain += stra.implode("/");
          }
          else
          {
             strRoot = "app";
-            strDomain = App(papp).m_strAppName;
+            if(App(papp).m_strLibraryName.has_char())
+               strDomain = m_strLibraryName + "/";
+            strDomain += App(papp).m_strAppName;
          }
       }
       return ca2(path(strRoot, "appmatter", strDomain), App(papp).get_locale_style_dir(pszLocale, pszStyle));

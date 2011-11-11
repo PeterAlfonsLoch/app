@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1316209779 source:/cecyn1.at.hotmail.com/testes/teste/main.cpp
-	<stdio.h>
-	<signal.h>
-
-1316212088 source:/cecyn1.at.hotmail.com/app/testes_linux/teste/main.cpp
-	<stdio.h>
-	<signal.h>
-

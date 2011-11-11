@@ -178,6 +178,13 @@ namespace ca2
             if(papp == NULL)
                return NULL;
 
+            ::radix::application  * pradixapp = dynamic_cast < ::radix::application * > (papp);
+
+            if(pradixapp != NULL)
+            {
+               pradixapp->m_strLibraryName = m_strCa2Name;
+            }
+
             return papp;
 
          }
