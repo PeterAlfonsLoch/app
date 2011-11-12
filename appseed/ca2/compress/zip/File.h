@@ -15,7 +15,8 @@ namespace zip
       ::ex1::filesp              m_pfile;
       ::ex1::filesp              m_pbuffile1;
       ::ex1::filesp              m_pbuffile2;
-      unzFile                    m_pf;
+      unzFile                    m_pfUnzip;
+      zipFile                    m_pfZip;
       zlib_filefunc_def_s        m_filefuncdef;
       bool                       m_bOwnFile;
 
@@ -31,8 +32,11 @@ namespace zip
 
       void write_to_file(ex1::file * pfile, const wchar_t * lpcsz);
 
-      bool open(const char * lpcwsz);
-      bool open(ex1::filesp pfile);
+      bool unzip_open(const char * lpcwsz);
+      bool unzip_open(ex1::filesp pfile);
+
+      bool zip_open(const char * lpcwsz);
+      bool zip_open(ex1::filesp pfile);
 
    };
 

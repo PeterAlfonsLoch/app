@@ -41,7 +41,7 @@ namespace zip
          return;
       }
 
-      unzFile pf = infile.get_zip_file()->m_pf;
+      unzFile pf = infile.get_zip_file()->m_pfUnzip;
       string str;
       string wstrFolder;
       stringa wstraFolder;
@@ -277,7 +277,7 @@ namespace zip
 
       File file(get_app());
 
-      return file.open(lpszFileName);
+      return file.unzip_open(lpszFileName);
    }
 
 } // namespace zip

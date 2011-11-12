@@ -30,7 +30,11 @@ namespace ca4
       static bool null(ex1::writer & ostream, ex1::reader & istream);
 
 
-      count extract_all(const char * pszFile, ::ca::application * papp);
+      void extract_all(const char * pszFile, ::ca::application * papp);
+
+
+      void zip(const char * pszZip, const char * psz);
+      void zip(const char * psz);
 
 
       friend class application;

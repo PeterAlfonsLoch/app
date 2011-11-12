@@ -21,6 +21,8 @@ namespace zip
       static unzFile unzipOpen(memory_file * pfile);
       static unzFile unzipOpen(File * pfile);
 
+      static zipFile zipOpen(File * pfile);
+
       
 
 

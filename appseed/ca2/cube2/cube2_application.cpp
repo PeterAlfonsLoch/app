@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace cube2
 {
+
 
    application::application()
    {
@@ -168,7 +170,7 @@ namespace cube2
       }
       string strLocale;
       string strStyle;
-      string strFile = System.dir().ca2(System.dir().path(strRoot, "appmatter", strDomain), App(papp).get_locale_style_dir(strLocale, strStyle)) + ".zip";
+      string strFile = System.dir().ca2(System.dir().path(strRoot, "appmatter", strDomain), App(this).get_locale_style_dir(strLocale, strStyle)) + ".zip";
       string strUrl;
       if(_ca_is_basis())
       {
@@ -183,7 +185,10 @@ namespace cube2
 
       Application.http().download(strUrl, strFile);
 
-      System.compress().extract_all(strFile);
+      System.compress().extract_all(strFile, this);
+
+
+      return true;
 
    }
 

@@ -145,7 +145,7 @@ namespace fs
       {
          try
          {
-            System.file().copy(pszDst, pszSrc);
+            Application.file().copy(pszDst, pszSrc);
          }
          catch(...)
          {

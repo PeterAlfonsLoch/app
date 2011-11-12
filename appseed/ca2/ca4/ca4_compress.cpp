@@ -149,20 +149,48 @@ namespace ca4
       return i == Z_OK;
    }
 
-   count compress::extract_all(const char * pszFile, ::ca::application * papp)
+
+   void compress::extract_all(const char * pszFile, ::ca::application * papp)
    {
       string strDir = pszFile;
       gen::str::ends_eat_ci(strDir, ".zip");
       App(papp).file().copy(strDir, pszFile, false);
-      /*stringa straPath;
-      System.dir().rls(pszFile, &straPath);
-      for(int i = 0; i < straPath.get_size(); i++)
-      {
-         string strPath = straPath[i];
-         strPath = gen::str::replace_ci(".zip:", "/");
-         System.file().copy(strPath, straPath[i]);
-      }*/
    }
 
+   void compress::zip(const char * pszZip, const char * psz)
+   {
+      zip::InFile infile(get_app());
+
+      ::ex1::file_exception_sp fe(get_app());
+
+      if(!infile.zip_open(pszZip, 0, &fe))
+      {
+         throw "Could not open zip file";
+         return;
+      }
+
+      if(System.dir().is(psz))
+      {
+         stringa straPath;
+         stringa straRelative;
+         string strPath;
+         ::ex1::filesp file;
+         System.dir().rls(psz, &straPath, NULL, &straRelative);
+         for(int i = 0; i < straPath.get_size(); i++)
+         {
+            strPath = straPath[i];
+            if(!System.dir().is(strPath))
+            {
+               infile.add_file(psz, straRelative[i]);
+
+            }
+         }
+      }
+
+   }
+
+   void compress::zip(const char * psz)
+   {
+   }
 
 } // namespace ca4

@@ -42,4 +42,16 @@ namespace zip
 
    }
 
+   zipFile api::zipOpen(File * pfile)
+   {
+      zipFile pf = zipOpen2("pad", APPEND_STATUS_CREATE, NULL, &pfile->m_filefuncdef);
+      if(pf == NULL)
+         return NULL;
+
+     // m_mapUnzip.set_at(pf, pfile);
+
+      return pf;
+
+   }
+
 } // namespace zip

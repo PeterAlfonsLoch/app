@@ -16,14 +16,23 @@ namespace zip
       m_filefuncdef.zseek_file   = seek_file_func;
       m_filefuncdef.zclose_file  = close_file_func;
       m_filefuncdef.zerror_file  = testerror_file_func;
-      m_pf = NULL;
+      m_pfUnzip = NULL;
+      m_pfZip = NULL;
    }
 
    File::~File()
    {
+      if(m_pfUnzip != NULL)
+      {
+         unzClose(m_pfUnzip);
+      }
+      if(m_pfZip != NULL)
+      {
+         zipClose(m_pfZip, NULL);
+      }
    }
 
-   bool File::open(const char * lpcwsz)
+   bool File::unzip_open(const char * lpcwsz)
    {
       m_bOwnFile = true;
       ex1::filesp spfile(get_app());
@@ -43,17 +52,51 @@ namespace zip
       {
          return false;
       }
-      return open(spfile);
+      return unzip_open(spfile);
    }
 
-   bool File::open(ex1::filesp pfile)
+   bool File::unzip_open(ex1::filesp pfile)
    {
       m_pbuffile1(new ::ex1::buffered_file(get_app(), pfile, 1024 * 256));
       m_pbuffile2(new ::ex1::buffered_file(get_app(), m_pbuffile1, 1024 * 256));
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;
-      m_pf = api::unzipOpen(this);
+      m_pfUnzip = api::unzipOpen(this);
+      return true;
+   }
+
+   bool File::zip_open(const char * lpcwsz)
+   {
+      m_bOwnFile = true;
+      ex1::filesp spfile(get_app());
+      try
+      {
+         if(!spfile->open(lpcwsz, ::ex1::file::mode_write | ::ex1::file::type_binary | ::ex1::file::mode_create))
+         {
+            return false;
+         }
+      }
+      catch(ex1::exception * pe)
+      {
+         pe->Delete();
+         return false;
+      }
+      catch(...)
+      {
+         return false;
+      }
+      return zip_open(spfile);
+   }
+
+   bool File::zip_open(ex1::filesp pfile)
+   {
+      m_pbuffile1(new ::ex1::buffered_file(get_app(), pfile, 1024 * 256));
+      m_pbuffile2(new ::ex1::buffered_file(get_app(), m_pbuffile1, 1024 * 256));
+      m_pbuffile2->seek_to_begin();
+      m_pfile = m_pbuffile2;
+      m_filefuncdef.opaque = (voidpf) this;
+      m_pfZip = api::zipOpen(this);
       return true;
    }
 
@@ -62,18 +105,18 @@ namespace zip
       string str;
       gen::international::UnicodeToACP(str, lpcsz);
       str.replace("\\", "/");
-      if(unzLocateFile(m_pf, str, 1) != UNZ_OK)
+      if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
          return;
       BYTE buf[1024];
       int iRead;
-      if(unzOpenCurrentFile(m_pf) != UNZ_OK)
+      if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
 
-      while((iRead = unzReadCurrentFile(m_pf, buf, sizeof(buf))) > 0)
+      while((iRead = unzReadCurrentFile(m_pfUnzip, buf, sizeof(buf))) > 0)
       {
          pfileOut->write(buf, iRead);
       }  
-      if(unzCloseCurrentFile(m_pf) != UNZ_OK)
+      if(unzCloseCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
    }
 

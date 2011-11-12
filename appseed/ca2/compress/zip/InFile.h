@@ -31,14 +31,24 @@ namespace zip
    {
    public:
 
-      unz_file_info                    m_fi;
-      BOOL                             m_bCloseOnDelete;
-      string                           m_strFileName;
-      uint64_t                        m_iPosition;
-      stringa                          m_straPath;
-      array_del_ptr < File, File & >       m_filea;
-      array_del_ptr < InFile, InFile & >   m_izfilea;
-      stringa                          m_straPrefix;
+      enum e_mode
+      {
+         mode_undefined,
+         mode_zip,
+         mode_unzip,
+      };
+
+      unz_file_info                       m_fi;
+      BOOL                                m_bCloseOnDelete;
+      string                              m_strFileName;
+      uint64_t                            m_iPosition;
+      stringa                             m_straPath;
+      array_del_ptr < File, File & >      m_filea;
+      array_del_ptr < InFile, InFile & >  m_izfilea;
+      stringa                             m_straPrefix;
+      e_mode                              m_emode;
+      string                              m_strZipFile;
+
 
       InFile(::ca::application * papp);
       virtual ~InFile();
@@ -49,9 +59,15 @@ namespace zip
 
       virtual file_position get_position() const;
 
-      virtual BOOL open(const char *,UINT,ex1::file_exception_sp *);
-      virtual BOOL open(File * pzfile, const char * lpcszFileName);
+      virtual BOOL zip_open(const char *,UINT,ex1::file_exception_sp *);
+      virtual BOOL zip_open(File * pzfile, const char * lpcszFileName);
+
+      virtual BOOL unzip_open(const char *,UINT,ex1::file_exception_sp *);
+      virtual BOOL unzip_open(File * pzfile, const char * lpcszFileName);
+
       virtual bool locate(const char * pszFileName);
+
+      virtual void add_file(const char * pszDir, const char * pszRelative);
 
       bool dump(ex1::file * pfile);
 

@@ -38,7 +38,7 @@ namespace zip
       //return new ex1::filesp(this);
    }
 
-   BOOL InFile::open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
+   BOOL InFile::zip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
    {
       m_filea.remove_all();
       m_izfilea.remove_all();
@@ -64,7 +64,7 @@ namespace zip
          return FALSE;
 
       m_filea.add(new File(get_app()));
-      if(!m_filea.last_element().open(m_straPath[0]))
+      if(!m_filea.last_element().zip_open(m_straPath[0]))
          return false;
 
       string str;
@@ -73,14 +73,78 @@ namespace zip
       {
          m_izfilea.add(new InFile(get_app()));
          str = m_straPath[i];
-         if(!m_izfilea.last_element().open(&m_filea.last_element(), str))
+         if(!m_izfilea.last_element().zip_open(&m_filea.last_element(), str))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
             return FALSE;
          }
          m_filea.add(new File(get_app()));
-         if(!m_filea.last_element().open(&m_izfilea.last_element()))
+         if(!m_filea.last_element().zip_open(&m_izfilea.last_element()))
+         {
+            m_filea.remove_all();
+            m_izfilea.remove_all();
+            return FALSE;
+         }
+         m_straPrefix.add(m_straPath[i]);
+      }
+      if(gen::str::ends(strFile, ":"))
+         return TRUE;
+      iFind = strFile.reverse_find(L':');
+      strFile = strFile.Mid(iFind + 1);
+      gen::str::begins_eat(strFile, "/");
+      gen::str::begins_eat(strFile, "\\");
+      if(!locate(strFile))
+      {
+         if(!locate(strFile + "/"))
+            return FALSE;
+      }
+      return TRUE;
+   }
+
+   BOOL InFile::unzip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
+   {
+      m_filea.remove_all();
+      m_izfilea.remove_all();
+      m_straPath.remove_all();
+      m_straPrefix.remove_all();
+
+      string strFile;
+      strFile = lpszFileName;
+
+      int iFind = -1;
+      int iStart = 0;
+      while((iFind = gen::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
+      {
+         m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
+         iStart = iFind + strlen(".zip:");
+      }
+      if(gen::str::ends_ci(lpszFileName, ".zip"))
+      {
+         m_straPath.add(string(&lpszFileName[iStart]));
+      }
+
+      if(m_straPath.get_size() == 0)
+         return FALSE;
+
+      m_filea.add(new File(get_app()));
+      if(!m_filea.last_element().unzip_open(m_straPath[0]))
+         return false;
+
+      string str;
+      int i;
+      for(i = 1; i < m_straPath.get_size(); i++)
+      {
+         m_izfilea.add(new InFile(get_app()));
+         str = m_straPath[i];
+         if(!m_izfilea.last_element().unzip_open(&m_filea.last_element(), str))
+         {
+            m_filea.remove_all();
+            m_izfilea.remove_all();
+            return FALSE;
+         }
+         m_filea.add(new File(get_app()));
+         if(!m_filea.last_element().unzip_open(&m_izfilea.last_element()))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();
@@ -110,11 +174,11 @@ namespace zip
       if(iFind >= 0)
          strFile = strFile.Left(iFind);
       strFile.replace("\\", "/");
-      if(unzLocateFile(get_zip_file()->m_pf, strFile, 0) != UNZ_OK)
+      if(unzLocateFile(get_zip_file()->m_pfUnzip, strFile, 0) != UNZ_OK)
          return false;
-      if(unzOpenCurrentFile(get_zip_file()->m_pf) != UNZ_OK)
+      if(unzOpenCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
          return false;
-      if(unzGetCurrentFileInfo(get_zip_file()->m_pf,
+      if(unzGetCurrentFileInfo(get_zip_file()->m_pfUnzip,
                             &m_fi,
                             NULL,
                             0,
@@ -129,7 +193,7 @@ namespace zip
       return true;
    }
 
-   BOOL InFile::open(File * pzfile, const char * lpcszFileName)
+   BOOL InFile::unzip_open(File * pzfile, const char * lpcszFileName)
    {
       ASSERT(AfxIsValidString(lpcszFileName));
       m_filea.add(pzfile);
@@ -138,6 +202,13 @@ namespace zip
       return TRUE;
    }
 
+   BOOL InFile::zip_open(File * pzfile, const char * lpcszFileName)
+   {
+      ASSERT(AfxIsValidString(lpcszFileName));
+      m_filea.add(pzfile);
+      m_strZipFile = lpcszFileName;
+      return TRUE;
+   }
 
    bool InFile::dump(ex1::file * pfile)
    {
@@ -164,7 +235,7 @@ namespace zip
       ASSERT(fx_is_valid_address(lpBuf, (UINT_PTR) nCount));
 
       uint64_t iRead;
-      iRead = unzReadCurrentFile(get_zip_file()->m_pf, lpBuf, (unsigned int) nCount);
+      iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpBuf, (unsigned int) nCount);
       m_iPosition += iRead;
 
       return (UINT)iRead;
@@ -213,9 +284,9 @@ namespace zip
 
       if(iNewPos < m_iPosition)
       {
-         if(unzCloseCurrentFile(get_zip_file()->m_pf) != UNZ_OK)
+         if(unzCloseCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
             return file_size::allset_value();
-         if(unzOpenCurrentFile(get_zip_file()->m_pf) != UNZ_OK)
+         if(unzOpenCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
             return file_size::allset_value();
          m_iPosition = 0;
       }
@@ -229,7 +300,7 @@ namespace zip
          while(iRemain > 0)
          {
             iGet = min(iRemain, 1024);
-            iRead = unzReadCurrentFile(get_zip_file()->m_pf, lpbBuf, (unsigned int) iGet);
+            iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpbBuf, (unsigned int) iGet);
             iRemain -= iRead;
             if(iRead < iGet)
                break;
@@ -507,5 +578,50 @@ namespace zip
       else
          return &m_filea.last_element();
    }
+
+   void InFile::add_file(const char * pszDir, const char * pszRelative)
+   {
+      
+      string strPath(System.dir().path(pszDir, pszRelative));
+      
+      ::ex1::filesp file(get_app());
+
+      file(Application.get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary));
+
+      if(file.is_null())
+         throw "failed to open file for compressing";
+
+      ex1::file_status status;
+
+      file->GetStatus(status);
+
+      zip_fileinfo zipfi;
+
+      memset(&zipfi, 0, sizeof(zipfi));
+
+      zipfi.tmz_date.tm_hour = status.m_ctime.GetGmtHour();
+      zipfi.tmz_date.tm_sec  = status.m_ctime.GetGmtSecond();
+      zipfi.tmz_date.tm_min  = status.m_ctime.GetGmtMinute();
+      zipfi.tmz_date.tm_year = status.m_ctime.GetGmtYear();
+      zipfi.tmz_date.tm_mon  = status.m_ctime.GetGmtMonth();
+      zipfi.tmz_date.tm_mday = status.m_ctime.GetGmtDay();
+
+      zipOpenNewFileInZip(get_zip_file()->m_pfZip, pszRelative, &zipfi, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
+
+      ::primitive::memory mem(get_app());
+
+      mem.allocate(256 * 1024);
+
+      UINT uiRead;
+      while((uiRead = file->read(mem, mem.get_size())) > 0)
+      {
+         zipWriteInFileInZip(get_zip_file()->m_pfZip, mem.get_data(), uiRead);
+      }
+
+      zipCloseFileInZip(get_zip_file()->m_pfZip);
+
+
+   }
+
 
 } // namespace zip
