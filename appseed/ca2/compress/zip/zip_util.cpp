@@ -36,7 +36,7 @@ namespace zip
 
       InFile infile(get_app());
 
-      if(!infile.open(strZip, 0, NULL))
+      if(!infile.unzip_open(strZip, 0, NULL))
       {
          return;
       }
@@ -138,7 +138,7 @@ namespace zip
          strZip += "/";
       }
 
-      return infile.open(strZip, 0, NULL) != FALSE;
+      return infile.unzip_open(strZip, 0, NULL) != FALSE;
 
 
       //string wstrFileName(lpszFileName);
@@ -248,7 +248,7 @@ namespace zip
 
       InFile infile(get_app());
 
-      if(!infile.open(lpszFileName, 0, NULL))
+      if(!infile.unzip_open(lpszFileName, 0, NULL))
       {
          return false;
       }

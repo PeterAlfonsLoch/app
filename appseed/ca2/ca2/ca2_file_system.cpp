@@ -240,7 +240,7 @@ namespace ca2
             {
                gen::memory_file memfile(get_app(), &storage);
                zip::InFile infile(get_app());
-               if(!infile.open(strFilePath, 0, NULL))
+               if(!infile.unzip_open(strFilePath, 0, NULL))
                   return "";
                if(!infile.dump(&memfile))
                   return "";

@@ -25,7 +25,7 @@ bool FileManagerFileListCallback::initialize()
 
    m_pimagelistSubItemHover->create(16, 16, 0,  10, 10);
 
-   m_pimagelistSubItemHover->add_matter("filemanager\\execute_16.png");
+   m_pimagelistSubItemHover->add_matter("filemanager/execute_16.png");
 
    System.imaging().CreateHueImageList(
       spgraphics,

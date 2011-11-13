@@ -709,7 +709,7 @@ InitFailure:
          zip::InFile * pinfile = new zip::InFile(get_app());
          if(pinfile == NULL)
             return NULL;
-         if(!pinfile->open(strPath, 0, NULL))
+         if(!pinfile->unzip_open(strPath, 0, NULL))
          {
             delete pinfile;
             return NULL;

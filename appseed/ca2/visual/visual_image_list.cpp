@@ -218,9 +218,16 @@ int image_list::add_file(const char * lpcsz)
    return iItem;
 }
 
-int image_list::add_matter(const char * lpcsz)
+int image_list::add_matter(const char * lpcsz, ::ca::application * papp)
 {
-   return add_file(Application.dir().matter(lpcsz));
+   if(papp == NULL)
+   {
+      return add_file(System.dir().matter(&System, lpcsz));
+   }
+   else
+   {
+      return add_file(App(papp).dir().matter(lpcsz));
+   }
 }
 
 int image_list::add_std_matter(const char * lpcsz)

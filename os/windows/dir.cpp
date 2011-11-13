@@ -617,13 +617,19 @@ namespace win
       strPath = path(locale_style_matter(papp, "se", "se"), psz, psz2);
       if(System.file().exists(strPath))
          return strPath;
-      if(!papp->is_bergedge() && papp->m_pbergedge != NULL)
+      if(papp->m_pbergedge != NULL && papp->m_pbergedge != papp &&
+         (::ca::application *) papp->m_psystem != (::ca::application *) papp)
       {
-         matter(papp->m_pbergedge, psz, psz2);
+         strPath = matter(papp->m_pbergedge, psz, psz2);
+         if(System.file().exists(strPath))
+            return strPath;
       }
-      if(!papp->is_system() && papp->m_psystem != NULL)
+      if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+         (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_pbergedge)
       {
-         matter(papp->m_psystem, psz, psz2);
+         strPath = matter(papp->m_psystem, psz, psz2);
+         if(System.file().exists(strPath))
+            return strPath;
       }
       return path(locale_style_matter(papp), psz, psz2);
    }
