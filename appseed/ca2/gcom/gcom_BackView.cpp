@@ -54,15 +54,22 @@ namespace gcom
 
       Main::~Main()
       {
+         if(m_ptransitioneffect != NULL)
+         {
+            if(m_ptransitioneffect->m_bRun)
+            {
+               m_ptransitioneffect->m_bRun = false;
+            }
+            else
+            {
+               delete m_ptransitioneffect;
+            }
+            m_ptransitioneffect = NULL;
+         }
          if(m_pvisualeffect != NULL)
          {
             delete m_pvisualeffect;
             m_pvisualeffect = NULL;
-         }
-         if(m_ptransitioneffect != NULL)
-         {
-            delete m_ptransitioneffect;
-            m_ptransitioneffect = NULL;
          }
       }
 

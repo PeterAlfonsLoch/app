@@ -572,14 +572,14 @@ namespace win
          {
             strRoot = "app-" + stra[0];
             stra.remove_at(0);
-            if(App(papp).m_strLibraryName.has_char())
+            if(App(papp).m_strLibraryName.has_char() && App(papp).m_strLibraryName != "app_" + App(papp).m_strAppName)
                stra.insert_at(stra.get_upper_bound(), App(papp).m_strLibraryName);
             strDomain += stra.implode("/");
          }
          else
          {
             strRoot = "app";
-            if(App(papp).m_strLibraryName.has_char())
+            if(App(papp).m_strLibraryName.has_char() && App(papp).m_strLibraryName != "app_" + App(papp).m_strAppName)
                strDomain = App(papp).m_strLibraryName + "/";
             strDomain += App(papp).m_strAppName;
          }

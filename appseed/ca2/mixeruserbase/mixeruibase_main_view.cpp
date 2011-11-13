@@ -184,7 +184,7 @@ namespace mixeruserbase
       if(pobj->previous())
          return ;
 
-      m_enhmetafile = GetEnhMetaFile(Application.dir().matter("vmp/image/vector/vmp.emf"));
+      m_enhmetafile = GetEnhMetaFile(Application.dir().matter("veriwell_vmsp/image/vector/vmp.emf"));
       GetEnhMetaFileHeader(m_enhmetafile, sizeof(m_emh), &m_emh);
 
       rect clientRect(0, 0, 0, 0);

@@ -92,8 +92,6 @@ namespace filemanager
    void document::OnFileManagerBrowse()
    {
 
-      get_filemanager_data()->OnFileManagerOpenFolder(m_item);
-
       {
          FileManagerViewUpdateHint uh;
          uh.set_type(FileManagerViewUpdateHint::TypePreSynchronize);

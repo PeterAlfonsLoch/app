@@ -206,19 +206,20 @@ namespace gcom
 
          friend class Tool001;
    
-         bool              m_bInitialized;
-         bool              m_bActive;
-         DWORD               m_dwTransitionStepLastRunTime;
-         DWORD               m_dwDelay;
-         bool               m_bTransitionStepRunActive;
-         bool               m_bTransitionStepPostActive;
-         DWORD               m_dwTransitionStepPostActive;
+         bool                 m_bRun;
+         bool                 m_bInitialized;
+         bool                 m_bActive;
+         DWORD                m_dwTransitionStepLastRunTime;
+         DWORD                m_dwDelay;
+         bool                 m_bTransitionStepRunActive;
+         bool                 m_bTransitionStepPostActive;
+         DWORD                m_dwTransitionStepPostActive;
    
-         DWORD               m_dwLastTransitionTime;
+         DWORD                m_dwLastTransitionTime;
 
-         int               m_iVisual;
+         int                  m_iVisual;
 
-         ::radix::thread *      m_pthreadRunStep;
+         ::radix::thread *    m_pthreadRunStep;
    //      ETransitionEffect               m_etype;
    //      ETransitionEffect               m_etypeNew;
 

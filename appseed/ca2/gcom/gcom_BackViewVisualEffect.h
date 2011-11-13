@@ -175,7 +175,6 @@ namespace gcom
          virtual ~VisualEffect();
 
 
-
          bool     m_bGrowColor0;
          //int      m_iGrow
 

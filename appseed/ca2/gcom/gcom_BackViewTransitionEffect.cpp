@@ -16,6 +16,7 @@ namespace gcom
          Helper(view),
          m_tool001(view)
       {
+         m_bRun = true;
          m_eventThreadExit.ResetEvent();
          m_bDestroy = false;
          m_pthreadRunStep = NULL;
@@ -1743,9 +1744,9 @@ namespace gcom
          int iResolution = 25;
          try
          {
-            while(true)
+            while(peffect->m_bRun)
             {
-               while(!peffect->m_bActive)
+               while(!peffect->m_bActive && peffect->m_bRun)
                {
                   if(peffect->m_bDestroy)
                      break;
@@ -1754,15 +1755,21 @@ namespace gcom
                }
                if(peffect->m_bDestroy)
                   break;
+               if(!peffect->m_bRun)
+                  break;
 
                peffect->_Init();
                if(peffect->m_bDestroy)
+                  break;
+               if(!peffect->m_bRun)
                   break;
 
                while(!peffect->TestEnd())
                {
                   if(peffect->m_bDestroy)
                      break;
+               if(!peffect->m_bRun)
+                  break;
 
                   mmr = timeSetEvent(
                      max(natural(iResolution), peffect->m_dwDelay),
@@ -1775,11 +1782,15 @@ namespace gcom
 
                   if(peffect->TestEnd())
                      break;
+               if(!peffect->m_bRun)
+                  break;
 
                   event.wait(seconds(3));
                   event.ResetEvent();
                }
                if(peffect->m_bDestroy)
+                  break;
+               if(!peffect->m_bRun)
                   break;
                peffect->_Final();
                peffect->StepNext();
