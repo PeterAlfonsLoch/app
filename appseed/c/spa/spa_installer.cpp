@@ -779,7 +779,7 @@ namespace spa
             vsstring strExpand = stra_dup[i];
             vsstring strCurrent = stra_dup[i];
             strExpand += ".spa";
-            strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
+            //strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
             strExpand = "app\\stage\\metastage\\" + strExpand;
                for(int j = 0;  j < stra_dup.get_count(); j++)
                {
@@ -811,7 +811,7 @@ namespace spa
                vsstring strStageUnbz2 = ca2unbz_get_dir(strRelative) + ca2unbz_get_file(strRelative);
                file_ftd_dup(strStageUnbz2, strStageUnbz);
                strExpand += ".spa";
-               strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
+               //strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
                strExpand = "app\\stage\\metastage\\" + strExpand;
                for(int j = 0;  j < stra_dup.get_count(); j++)
                {
