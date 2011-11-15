@@ -1537,6 +1537,7 @@ namespace spa
       strUrl += ".bz";
       vsstring str;
       vsstring strMd5 = mapMd5[strPath];
+      strUrl.replace_ci("\\", "/");
       if(!ca2_fy_url(str, strUrl, false, -1, strMd5, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
