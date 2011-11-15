@@ -110,10 +110,15 @@ namespace ca
 
       void system::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         throw interface_only_exception("this is an interface");
+         if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
+         {
+            m_pziputil->ls_dir(lpcsz, pstraPath, pstraTitle);
+            return;
+         }
+         else
+         {
+            return;
+         }
       }
 
       bool system::has_subdir(const char * lpcsz)

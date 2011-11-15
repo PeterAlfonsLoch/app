@@ -113,6 +113,37 @@ namespace zip
       }
    }
 
+   void Util::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   {
+      stringa straPath;
+      stringa straTitle;
+      base_array < bool, bool > baIsDir;
+      ls(lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
+
+      string strPath;
+
+      for(int i = 0; i < straPath.get_size(); i++)
+      {
+         if(baIsDir[i])
+         {
+            if(strPath.has_char() && pstraPath->add_unique(strPath))
+            {
+               pstraTitle->add(straTitle);
+            }
+         }
+         else
+         {
+            strPath = System.dir().name(straPath[i]);
+            if(strPath.has_char() && pstraPath->add_unique(strPath))
+            {
+               pstraTitle->add(System.dir().name(straTitle[i]));
+            }
+         }
+         
+      }
+
+   }
+
 
 
    bool Util::HasSubFolder(const char * lpszFileName)

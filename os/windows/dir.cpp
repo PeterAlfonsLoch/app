@@ -311,9 +311,15 @@ namespace win
 
    void dir::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+      
       FileFind filefind;
       BOOL bWorking;
       bWorking = filefind.FindFile(System.dir().path(lpcsz, "*.*"));
+      if(!bWorking)
+      {
+         ::ca::dir::system::ls_dir(lpcsz, pstraPath, pstraTitle);
+         return;
+      }
       while(bWorking)
       {
          bWorking = filefind.FindNextFileA();

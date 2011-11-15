@@ -508,7 +508,7 @@ namespace ca2
             if(exists(pszNew))
                throw "Failed to copy file";
          }
-         if(System.dir().is(psz) && !gen::str::ends_ci(psz, ".zip"))
+         if(System.dir().is(psz))
          {
             stringa straPath;
             System.dir().rls(psz, &straPath);

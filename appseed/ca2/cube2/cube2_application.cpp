@@ -170,7 +170,8 @@ namespace cube2
       }
       string strLocale;
       string strStyle;
-      string strFile = System.dir().ca2(System.dir().path(strRoot, "appmatter", strDomain), App(this).get_locale_style_dir(strLocale, strStyle)) + ".zip";
+      string strRelative = System.dir().path(System.dir().path(strRoot, "appmatter", strDomain), App(this).get_locale_style_dir(strLocale, strStyle)) + ".zip";
+      string strFile = System.dir().ca2(strRelative);
       string strUrl;
       if(_ca_is_basis())
       {
@@ -181,7 +182,7 @@ namespace cube2
          strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
       }
 
-      strUrl += System.url().url_encode(strFile);
+      strUrl += System.url().url_encode(strRelative);
 
       Application.http().download(strUrl, strFile);
 
