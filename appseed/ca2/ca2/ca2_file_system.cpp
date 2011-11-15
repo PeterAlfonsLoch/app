@@ -514,11 +514,16 @@ namespace ca2
             System.dir().rls(psz, &straPath);
             string strNew;
             string strOld;
+            string strDirSrc(psz);
+            if(gen::str::ends(strDirSrc, ".zip"))
+            {
+               strDirSrc += ":";
+            }
             for(int i = 0; i < straPath.get_size(); i++)
             {
                strOld = straPath[i];
                strNew = strOld;
-               strNew.replace(psz, pszNew);
+               strNew.replace(strDirSrc, pszNew);
                if(System.dir().is(strOld))
                {
                   System.dir().mk(strNew);

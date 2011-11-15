@@ -126,15 +126,16 @@ namespace zip
       {
          if(baIsDir[i])
          {
-            if(strPath.has_char() && pstraPath->add_unique(strPath))
+            strPath = straPath[i];
+            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
             {
-               pstraTitle->add(straTitle);
+               pstraTitle->add(straTitle[i]);
             }
          }
          else
          {
             strPath = System.dir().name(straPath[i]);
-            if(strPath.has_char() && pstraPath->add_unique(strPath))
+            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
             {
                pstraTitle->add(System.dir().name(straTitle[i]));
             }

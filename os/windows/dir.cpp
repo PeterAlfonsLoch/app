@@ -198,6 +198,8 @@ namespace win
       for(int i = 0; i < straDir.get_count(); i++)
       {
          string strDir = straDir[i];
+         if(strDir == lpcsz)
+            continue;
          int iStart = 0;
          if(pstraRelative != NULL)
          {

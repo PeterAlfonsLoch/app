@@ -170,7 +170,13 @@ namespace zip
          strFile = strFile.Left(iFind);
       strFile.replace("\\", "/");
       if(unzLocateFile(get_zip_file()->m_pfUnzip, strFile, 0) != UNZ_OK)
-         return false;
+      {
+         strFile.replace("/", "\\");
+         if(unzLocateFile(get_zip_file()->m_pfUnzip, strFile, 0) != UNZ_OK)
+         {
+            return false;
+         }
+      }
       if(unzOpenCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
          return false;
       if(unzGetCurrentFileInfo(get_zip_file()->m_pfUnzip,
