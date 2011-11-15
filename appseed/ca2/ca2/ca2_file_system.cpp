@@ -512,29 +512,31 @@ namespace ca2
          {
             stringa straPath;
             System.dir().rls(psz, &straPath);
-            string strNew;
-            string strOld;
+            string strDst;
+            string strSrc;
             string strDirSrc(psz);
+            string strDirDst(pszNew);
             if(gen::str::ends(strDirSrc, ".zip"))
             {
                strDirSrc += ":";
             }
             for(int i = 0; i < straPath.get_size(); i++)
             {
-               strOld = straPath[i];
-               strNew = strOld;
-               strNew.replace(strDirSrc, pszNew);
-               if(System.dir().is(strOld))
+               strSrc = straPath[i];
+               strDst = strSrc;
+               gen::str::begins_eat_ci(strDst, strDirSrc);
+               strDst = System.dir().path(strDirDst, strDst);
+               if(System.dir().is(strSrc))
                {
-                  System.dir().mk(strNew);
+                  System.dir().mk(strDst);
                }
                else
                {
-                  if(!System.dir().is(System.dir().name(strNew)))
+                  if(!System.dir().is(System.dir().name(strDst)))
                   {
-                     System.dir().mk(System.dir().name(strNew));
+                     System.dir().mk(System.dir().name(strDst));
                   }
-                  copy(strNew, strOld, bFailIfExists, papp);
+                  copy(strDst, strSrc, bFailIfExists, papp);
                }
             }
          }
