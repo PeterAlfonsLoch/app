@@ -153,7 +153,7 @@ namespace cube2
          
          strLibrary = App(this).m_strLibraryName;
 
-         if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName))
+         if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName) == 0)
             strLibrary.Empty();
 
          if(strLibrary.has_char())
