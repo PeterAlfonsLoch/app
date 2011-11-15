@@ -94,11 +94,6 @@ namespace zip
       strFile = strFile.Mid(iFind + 1);
       gen::str::begins_eat(strFile, "/");
       gen::str::begins_eat(strFile, "\\");
-      if(!locate(strFile))
-      {
-         if(!locate(strFile + "/"))
-            return FALSE;
-      }
       return TRUE;
    }
 
@@ -584,9 +579,9 @@ namespace zip
       
       string strPath(System.dir().path(pszDir, pszRelative));
       
-      ::ex1::filesp file(get_app());
+      ::ex1::filesp file;
 
-      file(Application.get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary));
+      file = Application.get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary); 
 
       if(file.is_null())
          throw "failed to open file for compressing";

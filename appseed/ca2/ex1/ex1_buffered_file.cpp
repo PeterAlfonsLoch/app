@@ -19,7 +19,7 @@ namespace ex1
 
    buffered_file::~buffered_file()
    {
-
+      Flush();
    }
 
    uint64_t buffered_file::GetBufferSize()
@@ -181,10 +181,10 @@ namespace ex1
       ::primitive::memory_size uiWriteNow = 0;
       while(uiWrite < nCount)
       {
-         if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos)
+         if(m_uiPosition >= m_uiBufLPos && m_uiPosition < (m_uiBufLPos + m_uiBufferSize))
          {
             m_bDirty = true;
-            uiWriteNow = min(nCount - uiWrite, (::primitive::memory_size) (m_uiBufUPos - m_uiPosition + 1));
+            uiWriteNow = min(nCount - uiWrite, (::primitive::memory_size) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
             if(m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
                m_uiWriteLPos = m_uiPosition;
             if(m_uiWriteUPos == 0xffffffff || m_uiWriteUPos < (m_uiPosition + uiWriteNow - 1))
@@ -195,8 +195,7 @@ namespace ex1
          }
          if(uiWrite < nCount)
          {
-            if(!buffer(nCount - uiWrite))
-               break;
+            buffer(nCount - uiWrite);
          }
       }
    }
@@ -206,7 +205,7 @@ namespace ex1
       if(m_bDirty)
       {
          m_pfile->seek((file_offset) m_uiWriteLPos, seek_begin);
-         m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (::primitive::memory_size) (m_uiWriteUPos - m_uiWriteLPos));
+         m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (::primitive::memory_size) (m_uiWriteUPos - m_uiWriteLPos + 1));
          m_bDirty = false;
          m_uiWriteLPos = 0xffffffff;
          m_uiWriteUPos = 0xffffffff;

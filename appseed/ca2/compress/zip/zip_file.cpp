@@ -72,7 +72,7 @@ namespace zip
       ex1::filesp spfile(get_app());
       try
       {
-         if(!spfile->open(lpcwsz, ::ex1::file::mode_write | ::ex1::file::type_binary | ::ex1::file::mode_create))
+         if(!spfile->open(lpcwsz, ::ex1::file::mode_read_write | ::ex1::file::type_binary | ::ex1::file::mode_create | ::ex1::file::defer_create_directory))
          {
             return false;
          }

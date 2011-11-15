@@ -535,24 +535,27 @@ namespace ca2
          }
          else
          {
-            System.dir().mk(System.dir().name(pszNew));
+
             ::ex1::filesp ofile;
-            ofile(App(papp).get_file(pszNew, ex1::file::mode_write | ex1::file::mode_create));
+            ofile = App(papp).get_file(pszNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory);
             if(ofile.is_null())
             {
                string strError;
                strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
                throw strError;
             }
+
             ::ex1::filesp ifile;
-            ifile(App(papp).get_file(pszNew, ex1::file::mode_read));
+            ifile = App(papp).get_file(psz, ex1::file::mode_read | ex1::file::type_binary);
             if(ifile.is_null())
             {
                string strError;
                strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
                throw strError;
             }
+
             ::ca4::compress::null(ofile, ifile);
+
          }
       }
 
