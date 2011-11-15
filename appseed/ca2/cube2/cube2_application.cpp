@@ -148,6 +148,33 @@ namespace cube2
       {
          stringa stra;
          stra.add_tokens(App(this).m_strAppName, "_", FALSE);
+         
+         string strLibrary;
+         
+         strLibrary = App(this).m_strLibraryName;
+
+         if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName))
+            strLibrary.Empty();
+
+         if(strLibrary.has_char())
+         {
+          
+            ::ca2::library library;
+
+            if(library.open(this, strLibrary))
+            {
+               stringa straAppList;
+               library.get_app_list(straAppList);
+               if(straAppList.get_count() <= 1)
+                  strLibrary.Empty();
+            }
+            else
+            {
+               strLibrary.Empty();
+            }
+
+         }
+
          for(int i = 1; i < stra.get_upper_bound(); i++)
          {
             stra[i] == "_" + stra[i];
@@ -156,15 +183,15 @@ namespace cube2
          {
             strRoot = "app-" + stra[0];
             stra.remove_at(0);
-            if(App(this).m_strLibraryName.has_char())
-               stra.insert_at(stra.get_upper_bound(), App(this).m_strLibraryName);
+            if(strLibrary.has_char())
+               stra.insert_at(stra.get_upper_bound(), strLibrary);
             strDomain += stra.implode("/");
          }
          else
          {
             strRoot = "app";
-            if(App(this).m_strLibraryName.has_char())
-               strDomain = App(this).m_strLibraryName + "/";
+            if(strLibrary.has_char())
+               strDomain = strLibrary + "/";
             strDomain += App(this).m_strAppName;
          }
       }
