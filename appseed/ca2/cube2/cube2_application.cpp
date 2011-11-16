@@ -132,88 +132,95 @@ namespace cube2
 
    bool application::on_install()
    {
-      string strRoot;
-      string strDomain;
-      if(is_system())
+      try
       {
-         strRoot     = "app";
-         strDomain   = "main";
-      }
-      else if(is_bergedge())
-      {
-         strRoot     = "app";
-         strDomain   = "bergedge";
-      }
-      else
-      {
-         stringa stra;
-         stra.add_tokens(App(this).m_strAppName, "_", FALSE);
-         
-         string strLibrary;
-         
-         strLibrary = App(this).m_strLibraryName;
-
-         if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName) == 0)
-            strLibrary.Empty();
-
-         if(strLibrary.has_char())
+         string strRoot;
+         string strDomain;
+         if(is_system())
          {
-          
-            ::ca2::library library;
-
-            if(library.open(this, strLibrary))
-            {
-               stringa straAppList;
-               library.get_app_list(straAppList);
-               if(straAppList.get_count() <= 1)
-                  strLibrary.Empty();
-            }
-            else
-            {
-               strLibrary.Empty();
-            }
-
+            strRoot     = "app";
+            strDomain   = "main";
          }
-
-         for(int i = 1; i < stra.get_upper_bound(); i++)
+         else if(is_bergedge())
          {
-            stra[i] == "_" + stra[i];
-         }
-         if(stra.get_size() > 1)
-         {
-            strRoot = "app-" + stra[0];
-            stra.remove_at(0);
-            if(strLibrary.has_char())
-               stra.insert_at(stra.get_upper_bound(), strLibrary);
-            strDomain += stra.implode("/");
+            strRoot     = "app";
+            strDomain   = "bergedge";
          }
          else
          {
-            strRoot = "app";
+            stringa stra;
+            stra.add_tokens(App(this).m_strAppName, "_", FALSE);
+         
+            string strLibrary;
+         
+            strLibrary = App(this).m_strLibraryName;
+
+            if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName) == 0)
+               strLibrary.Empty();
+
             if(strLibrary.has_char())
-               strDomain = strLibrary + "/";
-            strDomain += App(this).m_strAppName;
+            {
+          
+               ::ca2::library library;
+
+               if(library.open(this, strLibrary))
+               {
+                  stringa straAppList;
+                  library.get_app_list(straAppList);
+                  if(straAppList.get_count() <= 1)
+                     strLibrary.Empty();
+               }
+               else
+               {
+                  strLibrary.Empty();
+               }
+
+            }
+
+            for(int i = 1; i < stra.get_upper_bound(); i++)
+            {
+               stra[i] == "_" + stra[i];
+            }
+            if(stra.get_size() > 1)
+            {
+               strRoot = "app-" + stra[0];
+               stra.remove_at(0);
+               if(strLibrary.has_char())
+                  stra.insert_at(stra.get_upper_bound(), strLibrary);
+               strDomain += stra.implode("/");
+            }
+            else
+            {
+               strRoot = "app";
+               if(strLibrary.has_char())
+                  strDomain = strLibrary + "/";
+               strDomain += App(this).m_strAppName;
+            }
          }
+         string strLocale;
+         string strStyle;
+         string strRelative = System.dir().path(System.dir().path(strRoot, "appmatter", strDomain), App(this).get_locale_style_dir(strLocale, strStyle)) + ".zip";
+         string strFile = System.dir().ca2(strRelative);
+         string strUrl;
+         if(_ca_is_basis())
+         {
+            strUrl = "http://basis.spaignition.api.veriterse.net/download?authnone&version=basis&stage=";
+         }
+         else
+         {
+            strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
+         }
+
+         strUrl += System.url().url_encode(strRelative);
+
+         Application.http().download(strUrl, strFile);
+
+         System.compress().extract_all(strFile, this);
       }
-      string strLocale;
-      string strStyle;
-      string strRelative = System.dir().path(System.dir().path(strRoot, "appmatter", strDomain), App(this).get_locale_style_dir(strLocale, strStyle)) + ".zip";
-      string strFile = System.dir().ca2(strRelative);
-      string strUrl;
-      if(_ca_is_basis())
+      catch(...)
       {
-         strUrl = "http://basis.spaignition.api.veriterse.net/download?authnone&version=basis&stage=";
+         return false;
       }
-      else
-      {
-         strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
-      }
-
-      strUrl += System.url().url_encode(strRelative);
-
-      Application.http().download(strUrl, strFile);
-
-      System.compress().extract_all(strFile, this);
 
 
       return true;

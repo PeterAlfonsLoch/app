@@ -350,7 +350,7 @@ bool installer::finalize()
 
 simple_app::simple_app()
 {
-   //Sleep(15 * 1000);
+   Sleep(15 * 1000);
 
    
    __argc = _init_args();

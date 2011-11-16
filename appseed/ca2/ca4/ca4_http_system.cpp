@@ -234,8 +234,11 @@ namespace ca4
 
             key.QueryValue("AutoConfigURL", strUrl);
 
+            string strProxyServer;
+
             if(strUrl.has_char())
             {
+
 
                if(gen::str::begins(pszUrl, strUrl))
                {
@@ -297,6 +300,18 @@ namespace ca4
             }
             else
             {
+
+               key.QueryValue("ProxyServer", strProxyServer);
+
+               if(strProxyServer.has_char())
+               {
+                  stringa stra;
+                  stra.explode(":", strProxyServer);
+                  psocket->m_bDirect = false;
+                  psocket->m_strProxy = stra[0];
+                  psocket->m_iProxyPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
+               }
+
                skip1:;
             }
          }
