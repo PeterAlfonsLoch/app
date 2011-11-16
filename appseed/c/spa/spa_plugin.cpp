@@ -50,7 +50,7 @@ namespace spa
       update_ca2_installed(false);
 
 
-      if(is_ca2_installed())
+      if(is_ca2_installed() && !file_exists_dup(dir::path(dir::afterca2(), "install.lock")))
       {
 #ifdef _WINDOWS
 #ifdef _X86_

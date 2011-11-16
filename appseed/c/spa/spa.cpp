@@ -180,3 +180,38 @@ int call_spaadmin(const char * pszCommandLine)
    return pinstaller->spaadmin_main(pszCommandLine);
 
 }
+
+
+void installation_file_lock(bool bLock)
+{
+   
+   vsstring strPath;
+
+   strPath = dir::path(dir::afterca2(), "install.lock");
+
+   int iRetry = 84;
+
+   if(bLock)
+   {
+      while(!file_exists_dup(strPath) && iRetry > 0)
+      {
+         file_put_contents_dup(strPath, "installing...");
+         Sleep(584);
+         iRetry--;
+      }
+   }
+   else
+   {
+      while(file_exists_dup(strPath) && iRetry > 0)
+      {
+#ifdef WINDOWS
+         ::DeleteFile(strPath);
+#else
+         unlink(strPath);
+#endif
+         Sleep(584);
+         iRetry--;
+      }
+   }
+
+}

@@ -52,3 +52,6 @@ CLASS_DECL_____ int bzuncompress(LPCTSTR lpcszUncompressed, LPCTSTR lpcszGzFileC
 
 CLASS_DECL_____ int call_spaadmin(const char * pszCommandLine);
 
+
+CLASS_DECL_____ void installation_file_lock(bool bLock);
+

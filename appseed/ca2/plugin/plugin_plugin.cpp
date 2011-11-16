@@ -183,6 +183,11 @@ namespace plugin
          m_strOpenUrl.Empty();
          open_url(strOpenUrl);
       }
+      else if(System.file().exists(System.dir().ca2("install.lock")))
+      {
+         m_strOpenUrl = get_host_location_url();
+         m_bOpenUrl = true;
+      }
 
    }
 

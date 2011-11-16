@@ -271,7 +271,9 @@ void installer::on_receive(const char * pszMessage)
          return;
       }
       m_bInstallerInstalling = true;
+      installation_file_lock(true);
       call_spaadmin(pszSuffix);
+      installation_file_lock(true);
       m_bInstallerInstalling = false;
    }
    else if(stricmp_dup(strMessage, "ok") == 0)
