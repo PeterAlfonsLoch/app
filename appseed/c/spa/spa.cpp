@@ -181,13 +181,24 @@ int call_spaadmin(const char * pszCommandLine)
 
 }
 
+vsstring get_installation_lock_file_path()
+{
+   
+   vsstring strPath;
+
+   strPath = dir::path(dir::afterca2(), "install.lock");
+
+   return strPath;
+
+}
+
 
 void installation_file_lock(bool bLock)
 {
    
    vsstring strPath;
 
-   strPath = dir::path(dir::afterca2(), "install.lock");
+   strPath = get_installation_lock_file_path();
 
    int iRetry = 84;
 
@@ -213,5 +224,19 @@ void installation_file_lock(bool bLock)
          iRetry--;
       }
    }
+
+}
+
+bool is_installation_lock_file_locked()
+{
+ 
+   vsstring strPath;
+
+   strPath = get_installation_lock_file_path();
+   
+   if(file_exists_dup(strPath))
+      return true;
+
+   return false;
 
 }

@@ -49,9 +49,13 @@ namespace spa
 
       update_ca2_installed(false);
 
-
-      if(is_ca2_installed() && !file_exists_dup(dir::path(dir::afterca2(), "install.lock")))
+      if(is_installation_lock_file_locked())
       {
+         // should not do spa operations, it is already in course
+      }
+      else if(is_ca2_installed())
+      {
+         
 #ifdef _WINDOWS
 #ifdef _X86_
          ::SetDllDirectory(dir::ca2("stage\\x86"));

@@ -55,3 +55,8 @@ CLASS_DECL_____ int call_spaadmin(const char * pszCommandLine);
 
 CLASS_DECL_____ void installation_file_lock(bool bLock);
 
+
+CLASS_DECL_____ vsstring get_installation_lock_file_path();
+
+
+CLASS_DECL_____ bool is_installation_lock_file_locked();
