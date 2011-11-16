@@ -28,8 +28,17 @@ const char * get_ca2_version()
    return file_get_contents_dup(dir::ca2("appdata", spa_get_platform(), "ca2_build.txt"));
 }
 
-void update_ca2_installed(bool bUnloadIfNotInstalled)
+void update_ca2_installed(bool bUnloadIfNotInstalled, bool bTakeLockInAccount)
 {
+
+   if(bTakeLockInAccount && is_installation_lock_file_locked())
+   {
+      
+      g_bCa2Installed = false;
+      return;
+
+   }
+
 
    vsstring strStage(dir::ca2("stage", spa_get_platform()));
 
@@ -156,7 +165,7 @@ UINT spa_starter_start::start()
    spa_set_admin(false);
    while(true)
    {
-      update_ca2_installed();
+      update_ca2_installed(true, true);
       if(is_ca2_installed() && is_installed(m_strId))
       {
          break;

@@ -47,13 +47,15 @@ namespace spa
    {
 
 
-      update_ca2_installed(false);
-
       if(is_installation_lock_file_locked())
       {
          // should not do spa operations, it is already in course
+         return;
       }
-      else if(is_ca2_installed())
+
+      update_ca2_installed(false, true);
+
+      if(is_ca2_installed())
       {
          
 #ifdef _WINDOWS
