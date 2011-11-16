@@ -23,6 +23,7 @@ namespace plugin
       m_psystem               = NULL;
       m_bMainReady            = false;
       m_bOpenUrl              = false;
+      m_bKillOnOpenUrl        = false;
 
    }
 
@@ -186,6 +187,7 @@ namespace plugin
       else if(is_installation_lock_file_locked())
       {
          m_strOpenUrl = get_host_location_url();
+         m_bKillOnOpenUrl = true;
          m_bOpenUrl = true;
       }
 

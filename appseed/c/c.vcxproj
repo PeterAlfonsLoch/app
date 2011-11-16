@@ -831,6 +831,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="strw.cpp" />
     <ClCompile Include="strx.cpp" />
     <ClCompile Include="version.cpp" />
+    <ClCompile Include="windows\c_os_crt0dll.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />
@@ -841,7 +842,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="windows\c_os_registry.cpp" />
     <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="_crt0dll.cpp" />
     <ClCompile Include="_initterm.cpp" />
     <ClCompile Include="_math.cpp" />
     <ClCompile Include="_mem.cpp" />

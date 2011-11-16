@@ -46,6 +46,7 @@ namespace plugin
       string                        m_strCa2LoginRuri;
       string                        m_strCa2LogoutRuri;
       string                        m_strOpenUrl;
+      bool                          m_bKillOnOpenUrl;
       bool                          m_bOpenUrl;
 
 
