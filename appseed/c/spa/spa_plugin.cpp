@@ -53,7 +53,7 @@ namespace spa
          return;
       }
 
-      update_ca2_installed(false, true);
+      update_ca2_installed(false);
 
       if(is_ca2_installed())
       {

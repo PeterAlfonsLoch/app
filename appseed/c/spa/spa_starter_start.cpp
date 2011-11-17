@@ -28,10 +28,10 @@ const char * get_ca2_version()
    return file_get_contents_dup(dir::ca2("appdata", spa_get_platform(), "ca2_build.txt"));
 }
 
-void update_ca2_installed(bool bUnloadIfNotInstalled, bool bTakeLockInAccount)
+void update_ca2_installed(bool bUnloadIfNotInstalled)
 {
 
-   if(bTakeLockInAccount && is_installation_lock_file_locked())
+   if(is_installation_lock_file_locked())
    {
       
       g_bCa2Installed = false;
@@ -165,7 +165,7 @@ UINT spa_starter_start::start()
    spa_set_admin(false);
    while(true)
    {
-      update_ca2_installed(true, false);
+      update_ca2_installed(true);
       if(is_ca2_installed() && is_installed(m_strId))
       {
          break;

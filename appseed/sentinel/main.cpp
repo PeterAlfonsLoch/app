@@ -158,7 +158,7 @@ int spaboot_start()
 
    while(iRetry < iRetryLimit || iRetryLimit < 0)
    {
-      update_ca2_installed(true, false);
+      update_ca2_installed(true);
       if(is_ca2_installed() && is_installed(id))
       {  
          break;

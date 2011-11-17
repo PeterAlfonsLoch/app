@@ -2,7 +2,7 @@
 
 CLASS_DECL_____ void update_ca2_build();
 CLASS_DECL_____ const char * ca2_get_build();
-CLASS_DECL_____ void update_ca2_installed(bool bUnloadIfNotInstalled /* = true */, bool bTakeLockInAccount /* = true */);
+CLASS_DECL_____ void update_ca2_installed(bool bUnloadIfNotInstalled = true);
 CLASS_DECL_____ bool is_ca2_installed();
 CLASS_DECL_____ void update_ca2_updated();
 CLASS_DECL_____ bool is_ca2_updated();

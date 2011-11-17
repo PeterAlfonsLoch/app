@@ -1947,6 +1947,7 @@ namespace spa
       if(i == 0)
       {
          set_updated(m_strBuild);
+         installation_file_lock(false);
          // keeps g_bInstalling for a while
          Sleep((1984 + 1977) * 5);
          //::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
