@@ -49,7 +49,9 @@ namespace spa
 
       if(is_installation_lock_file_locked())
       {
-         // should not do spa operations, it is already in course
+         // shouldn't do advanced operations using ca2
+         // starter_start will only kick a default installer if one isn't already running, cleaning file lock if any
+         m_phost->starter_start("bergedge");
          return;
       }
 
@@ -148,7 +150,17 @@ install:
       }
       else if(!is_ca2_installed())
       {
-         RECT rect;
+         HPEN hpen = (HPEN) ::CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+         HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
+         HBRUSH hbrush = (HBRUSH) ::CreateSolidBrush(RGB(255, 0, 255));
+         HBRUSH hbrushOld = (HBRUSH) ::SelectObject(hdc, hbrush);
+         
+         ::Ellipse(hdc, 23, 23, 49, 49);
+
+         ::SelectObject(hdc, (HGDIOBJ) hpenOld);
+         ::SelectObject(hdc, (HGDIOBJ) hbrushOld);
+
+/*         RECT rect;
          rect.left      = 0;
          rect.top       = 0;
          rect.bottom    = cx;
@@ -156,7 +168,7 @@ install:
          ::FillSolidRect_dup(hdc, &rect, RGB(255, 255, 255));
          ::SetTextColor(hdc, RGB(255, 0, 255));
          const char * psz = "ca2 is not installed! You may try to install using low level spaboot_install.exe.";
-         ::TextOutU_dup(hdc, 10, 10, psz, strlen_dup(psz));
+         ::TextOutU_dup(hdc, 10, 10, psz, strlen_dup(psz));*/
       }
       else
       {

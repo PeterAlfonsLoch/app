@@ -233,19 +233,19 @@ bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * psz
 
    for(int i = 0; i < (1024 * 1024); i++)
    {
+      {
+         strcat_dup(szRet, bufTime);
+         strcat_dup(szRet, "-");
+      }
+      {
+         sprint_hex(buf, i + 1);
+         strcat_dup(szRet, buf);
+         strcat_dup(szRet, "\\");
+      }
       strcpy_dup(szRet, lpPathBuffer);
       strcat_dup(szRet, pszName);
       //if(i >= 0)
-      {
-         strcat_dup(szRet, "-");
-         strcat_dup(szRet, bufTime);
-      }
       //if(i > 0)
-      {
-         strcat_dup(szRet, "-");
-         sprint_hex(buf, i + 1);
-         strcat_dup(szRet, buf);
-      }
       strcat_dup(szRet, ".");
       strcat_dup(szRet, pszExtension);
       if(pszTemplate != NULL)

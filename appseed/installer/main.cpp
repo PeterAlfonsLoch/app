@@ -136,6 +136,8 @@ bool installer::initialize()
       return false;
    }
 
+   installation_file_lock(false);
+
    //Sleep(15 * 1000);
 
    m_modpath      = (char *) ca2_alloc(MAX_PATH * 8);

@@ -2788,7 +2788,7 @@ install_begin:;
       throw "TODO";
    #endif
 
-      if(!file_exists_dup(m_strPath))
+      if(!file_exists_dup(m_strPath) || !is_file_ok(m_strPath, "installer.exe"))
       {
          int iRetry = 0;
          while(iRetry < 8)
@@ -2799,7 +2799,13 @@ install_begin:;
 
             if(is_file_ok(m_strPath, "installer.exe"))
                break;
-            if(ms_download_dup("http://veriterse.net/spa?download=installer.exe&authnone", m_strPath, false))
+            vsstring strUrl;
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+               strUrl = "http://hardaxs.net/spa?download=installer.exe&authnone";
+#else
+               strUrl = "http://veriaxs.net/spa?download=installer.exe&authnone";
+#endif
+            if(ms_download_dup(strUrl, m_strPath, false))
             {
                if(is_file_ok(m_strPath, "installer.exe"))
                {
