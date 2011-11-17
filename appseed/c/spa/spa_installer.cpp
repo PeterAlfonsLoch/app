@@ -578,6 +578,7 @@ install_begin:;
                else if(file_is_equal_path(strPath, file_get_mozilla_firefox_plugin_container_path()))
                {
                   bAsk = false;
+                  bRestart = false;
                }
                vsstring str;
                str = "Should ca2 Terminate and try to restart process \"";
