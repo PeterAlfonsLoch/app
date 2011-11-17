@@ -246,7 +246,8 @@ namespace spa
 #endif
 
 
-   install_begin:;
+install_begin:;
+         installation_file_lock(true);
       {
          m_strSpa.remove_all();
          m_iTotalGzLen = 0;
@@ -1948,8 +1949,8 @@ namespace spa
       {
          set_updated(m_strBuild);
          installation_file_lock(false);
-         // keeps g_bInstalling for a while
-         Sleep((1984 + 1977) * 5);
+  //       // keeps g_bInstalling for a while
+//         Sleep((1984 + 1977) * 5);
          //::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
 
          if(g_straRestartProcess.get_count() > 0)
