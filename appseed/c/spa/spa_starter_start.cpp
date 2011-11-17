@@ -165,7 +165,7 @@ UINT spa_starter_start::start()
    spa_set_admin(false);
    while(true)
    {
-      update_ca2_installed(true, true);
+      update_ca2_installed(true, false);
       if(is_ca2_installed() && is_installed(m_strId))
       {
          break;
