@@ -39,6 +39,7 @@ namespace hotplugin
 
       // host should implement
       virtual bool         open_url(const char * psz);
+      virtual bool         reload_plugin();
 
       // Host location is not the updated url - if there is a way to update the url and 
       // maintain the same plugin instance, what would lead to an out-of-date location url.

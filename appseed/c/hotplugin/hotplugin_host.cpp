@@ -27,6 +27,11 @@ namespace hotplugin
       return false;
    }
 
+   bool host::reload_plugin()
+   {
+      return false;
+   }
+
    vsstring host::get_host_location_url()
    {
       return m_strHostPluginLocation;

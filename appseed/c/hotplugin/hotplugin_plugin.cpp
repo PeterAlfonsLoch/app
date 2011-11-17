@@ -68,6 +68,15 @@ namespace hotplugin
       return false;
    }
 
+   bool plugin::reload_plugin()
+   {
+      if(m_phost != NULL)
+      {
+         return m_phost->reload_plugin();
+      }
+      return false;
+   }
+
    vsstring plugin::get_host_location_url()
    {
       if(m_phost != NULL)
