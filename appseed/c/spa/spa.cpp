@@ -240,3 +240,15 @@ bool is_installation_lock_file_locked()
    return false;
 
 }
+
+
+installation_lock_file_lock::installation_lock_file_lock()
+{
+   installation_file_lock(true);
+}
+
+installation_lock_file_lock::~installation_lock_file_lock()
+{
+   installation_file_lock(false);
+}
+

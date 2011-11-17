@@ -60,3 +60,15 @@ CLASS_DECL_____ vsstring get_installation_lock_file_path();
 
 
 CLASS_DECL_____ bool is_installation_lock_file_locked();
+
+
+
+
+class CLASS_DECL_____ installation_lock_file_lock
+{
+public:
+
+   installation_lock_file_lock();
+   ~installation_lock_file_lock();
+
+};

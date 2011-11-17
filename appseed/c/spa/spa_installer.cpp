@@ -180,6 +180,10 @@ namespace spa
 
    DWORD installer::run()
    {
+      
+      installation_lock_file_lock installationlockfilelock;
+
+
       new_progress_end(0.1);
          g_hmutexInstall = NULL;
          //SECURITY_ATTRIBUTES MutexAttributes;
