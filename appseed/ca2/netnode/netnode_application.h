@@ -9,7 +9,7 @@ namespace netnode
 
 
    class CLASS_DECL_ca application :
-      virtual public ::rtptx::application
+      virtual public ::ca2::filehandler::application
    {
    public:
 
