@@ -31,6 +31,13 @@ namespace ca
       point                      m_ptAlphaBlend;
       ::ca::job *                m_pjob;
 
+      ::ca::pen_sp               m_pen;
+      ::ca::brush_sp             m_brush;
+
+      int                        m_nPenStyle;
+      int                        m_iPenWidth;
+      COLORREF                   m_crColor;
+
       graphics();
 
       virtual bool is_set();
@@ -116,6 +123,10 @@ namespace ca
       virtual int SetROP2(int nDrawMode);
       virtual int SetStretchBltMode(int nStretchMode);
       virtual COLORREF SetTextColor(COLORREF crColor);
+
+      virtual COLORREF SetColor(COLORREF crColor);
+      virtual COLORREF setColor(COLORREF crColor);
+      virtual COLORREF set_color(COLORREF crColor);
 
 #ifdef WINDOWS
       virtual BOOL GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
@@ -214,6 +225,8 @@ namespace ca
       virtual BOOL LineTo(POINT point);
       virtual BOOL Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       virtual BOOL Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual BOOL Arc(int x1, int y1, int x2, int y2, double start, double extends);
+      virtual BOOL Arc(LPCRECT lpRect, double start, double extends);
       virtual BOOL Polyline(const POINT* lpPoints, int nCount);
 
       virtual BOOL AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle);
@@ -265,6 +278,7 @@ namespace ca
       virtual BOOL Ellipse(LPCRECT lpRect);
       virtual BOOL Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       virtual BOOL Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual BOOL Polygon(point_array & pta);
       virtual BOOL Polygon(const POINT* lpPoints, int nCount);
       virtual BOOL PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
       virtual BOOL Rectangle(int x1, int y1, int x2, int y2);
@@ -491,6 +505,13 @@ namespace ca
       // advanced use and implementation
       BOOL m_bPrinting;
       virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
+
+      virtual ::ca::font * SelectFont(::ca::font * pfont);
+      virtual ::ca::font * selectFont(::ca::font * pfont);
+      virtual ::ca::font * select_font(::ca::font * pfont);
+      virtual ::ca::font * SetFont(::ca::font * pfont);
+      virtual ::ca::font * setFont(::ca::font * pfont);
+      virtual ::ca::font * set_font(::ca::font * pfont);
 
    protected:
       // used for implementation of non-virtual SelectObject calls

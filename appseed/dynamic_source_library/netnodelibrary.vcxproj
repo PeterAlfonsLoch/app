@@ -36,7 +36,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AF07539A-BE49-4BE9-818A-0D2CE6462812}</ProjectGuid>
-    <RootNamespace>netnodelibrary</RootNamespace>
+    <RootNamespace>dynamic_source_library</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>dynamic_source_library</ProjectName>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>

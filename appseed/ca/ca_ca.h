@@ -41,6 +41,8 @@ namespace bergedge
 #define CaSys(pca) (*pca->m_papp->m_psystem)
 #define Sys(papp) (*papp->m_psystem)
 #define System (Sys(this->get_app()))
+#define Mathematics(papp) (Sys(papp).math())
+#define Math (Mathematics(this->get_app()))
 
 
 #define Berg(papp) (*papp->m_pbergedge)

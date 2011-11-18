@@ -17,7 +17,6 @@ namespace ca
 
 #include "ca_graphics_object.h"
 #include "ca_pen.h"
-#include "ca_graphics.h"
 #include "ca_bitmap.h"
 #include "ca_brush.h"
 #include "ca_font.h"
@@ -26,6 +25,7 @@ namespace ca
 #include "ca_igui.h"
 #include "ca_dib.h"
 #include "ca_draw_dib.h"
+#include "ca_graphics.h"
 
 
 

@@ -67,6 +67,7 @@ namespace spa
          ::SetDllDirectory(dir::ca2("stage\\x64"));
 #endif
 #endif
+         Sleep(15 * 1000);
          ::ca::library ca2library;
          ca2library.open("ca2");
          FN_NEW_HOTPLUGIN fn_new_hotplugin = ca2library.get < FN_NEW_HOTPLUGIN >("new_hotplugin");

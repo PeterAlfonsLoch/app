@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include <math.h>
 
 namespace ca
 {
@@ -9,6 +10,9 @@ namespace ca
       m_pdrawcontext          = NULL;
       m_pdibAlphaBlend        = NULL;
       m_pjob                  = NULL;
+      m_nPenStyle             = PS_SOLID;
+      m_iPenWidth             = 1;
+      m_crColor               = RGB(0, 0, 0);
    }
 
    ::user::str_context * graphics::str_context()
@@ -114,6 +118,37 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(hObject);
       throw interface_only_exception();   
+   }
+
+
+   ::ca::font * graphics::SelectFont(::ca::font * pfont)
+   {
+      return dynamic_cast < ::ca::font * > (SelectObject(pfont));
+   }
+
+   ::ca::font * graphics::selectFont(::ca::font * pfont)
+   {
+      return SelectFont(pfont);
+   }
+
+   ::ca::font * graphics::select_font(::ca::font * pfont)
+   {
+      return SelectFont(pfont);
+   }
+
+   ::ca::font * graphics::SetFont(::ca::font * pfont)
+   {
+      return SelectFont(pfont);
+   }
+
+   ::ca::font * graphics::setFont(::ca::font * pfont)
+   {
+      return SelectFont(pfont);
+   }
+
+   ::ca::font * graphics::set_font(::ca::font * pfont)
+   {
+      return SelectFont(pfont);
    }
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
@@ -332,6 +367,33 @@ namespace ca
       UNREFERENCED_PARAMETER(ptStart);
       UNREFERENCED_PARAMETER(ptEnd);
       throw interface_only_exception();   
+   }
+
+
+   BOOL graphics::Arc(int x1, int y1, int x2, int y2, double start, double extends)
+   {
+      
+      point ptCenter;
+      
+      ptCenter.x = (x2 + x1) / 2;
+      ptCenter.y = (y2 + y1) / 2;
+      
+      double dx = max(2.0, (x2 - x1) / 2.0);
+      double dy = max(2.0, (y2 - y1) / 2.0);
+      
+      int startx = (int) (cos(start) * dx) + ptCenter.x;
+      int starty = (int) (cos(start) * dy) + ptCenter.x;
+
+      int endx = (int) (cos(start + extends) * dx) + ptCenter.x;
+      int endy = (int) (cos(start + extends) * dy) + ptCenter.x;
+
+      return Arc(x1, y1, x2, y2, startx, starty, endx, endy);
+
+   }
+
+   BOOL graphics::Arc(LPCRECT lpRect, double start, double extends)
+   {
+      return Arc(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, start, extends);
    }
 
    BOOL graphics::Polyline(const POINT* lpPoints, int nCount)
@@ -567,6 +629,11 @@ namespace ca
       UNREFERENCED_PARAMETER(lpPolyCounts);
       UNREFERENCED_PARAMETER(nCount);
       throw interface_only_exception();   
+   }
+
+   BOOL graphics::Polygon(point_array & pta)
+   {
+      return Polygon(pta.get_data(), pta.get_count());
    }
 
    BOOL graphics::Rectangle(int x1, int y1, int x2, int y2)
@@ -1970,6 +2037,47 @@ namespace ca
       return alpha_blend(size, pgraphicsSrc, null_point(), blend);
    }
 
+
+
+   COLORREF graphics::SetColor(COLORREF crColor)
+   {
+
+      m_crColor = crColor;
+      
+      if(m_pen.is_null())
+         m_pen.create(get_app());
+      if(m_pen->get_os_data() != NULL)
+         m_pen->DeleteObject();
+      m_pen->CreatePen(m_nPenStyle, m_iPenWidth, m_crColor);
+
+      if(m_brush.is_null())
+         m_brush.create(get_app());
+      if(m_brush->get_os_data() != NULL)
+         m_brush->DeleteObject();
+      m_brush->CreateSolidBrush( m_crColor);
+
+      SetTextColor(crColor);
+
+      SelectObject(m_pen);
+      SelectObject(m_brush);
+
+   }
+
+   COLORREF graphics::setColor(COLORREF crColor)
+   {
+   }
+
+   COLORREF graphics::set_color(COLORREF crColor)
+   {
+   }
+
+
+
+
+
+
+
+
    client_graphics::client_graphics(::ca::window * pwindow)
    {
       m_pwindow = pwindow;
@@ -2001,6 +2109,9 @@ namespace ca
    {
       ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
    }
+
+
+
 
 } // namespace ca
 

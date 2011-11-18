@@ -36,7 +36,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{36D2090B-8E11-42A4-B923-08D809A03F4F}</ProjectGuid>
-    <RootNamespace>netnodescript</RootNamespace>
+    <RootNamespace>dynamic_source_script</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>dynamic_source_script</ProjectName>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>

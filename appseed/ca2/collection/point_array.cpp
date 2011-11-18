@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include <math.h>
 
 point_array::~point_array(void)
 {
@@ -12,6 +13,35 @@ void point_array::offset(int x, int y)
       this->element_at(i).y += y;
    }
 }
+
+/*	public void rotatePoint(point p, float angle)
+		{
+		point lp = new point(p.x, p.y);
+		p.x = lp.x * Math.cos(angle) - lp.y * Math.sin(angle);
+		p.y = lp.x * Math.sin(angle) + lp.y * Math.cos(angle);
+		} */
+
+void point_array::rotate(double dAngle)
+{
+
+   for(int i = 0; i < get_count(); i++)
+	{
+	   element_at(i).x = element_at(i).x * cos(dAngle) - element_at(i).y * sin(dAngle);
+	   element_at(i).y = element_at(i).x * sin(dAngle) + element_at(i).y * cos(dAngle);
+	}
+
+}
+
+	/*public void translatePolygonD(PolygonD p, int dx, int dy)
+		{
+		double lx, ly;
+		for(int i = 0; i < p.npoints; i++)
+			{
+			p.xpoints[i] += dx;
+			p.ypoints[i] += dy;
+			}
+		}*/
+
 
 void point_array::get_bounding_rect(LPRECT lprect)
 {
@@ -77,4 +107,6 @@ void double_point_array::offset(double x, double y)
       this->element_at(i).y += y;
    }
 }
+
+
 

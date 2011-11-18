@@ -14,6 +14,8 @@ public:
    void offset(int x, int y);
    void offset(class point point);
 
+   void rotate(double dAngle);
+
    void get_bounding_rect(LPRECT lprect);
 
    bool bounding_rect_contains_pt(point pt);
