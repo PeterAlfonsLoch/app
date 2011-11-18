@@ -122,11 +122,23 @@ public:
     wxPoint operator-() const { return wxPoint(-x, -y); }
 };
 
-typedef Window HWND;
 
 class CLASS_DECL_____ device_context
 {
 public:
+    
+    
+   CGrafPtr          m_windowPort;
+   CGrafPtr          m_savedPort;
+   WindowRef         m_window;
+   Rect              m_portBounds;
+   bool              m_wasSwapped;
+   
+   COLORREF          m_crText;
+   COLORREF          m_crBk;
+   CGColorRef        m_cgcolorrefText;
+   CGColorRef        m_cgcolorrefBk;
+   CTFontRef         m_ctfontref;
     
     // wxBase Begin
     
@@ -159,7 +171,7 @@ public:
     
     
     
-    CGContextRef    m_gcontext;
+    CGContextRef    m_cgcontext;
     
     
     
@@ -192,7 +204,7 @@ public:
     , m_hasCustomPalette(false)
 #endif // wxUSE_PALETTE */   
     {
-        m_gcontext = NULL;
+        m_cgcontext = NULL;
     }
     
     wxCoord XDEV2LOG(wxCoord x) const
@@ -242,3 +254,8 @@ public:
     
 };
 
+
+
+
+CGColorRef mac_create_color(COLORREF crText);
+BOOL mac_release_color(CGColorRef colorref);

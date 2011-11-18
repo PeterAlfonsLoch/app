@@ -151,7 +151,7 @@ install:
       }
       else if(!is_ca2_installed())
       {
-         HPEN hpen = (HPEN) ::CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+        /* HPEN hpen = (HPEN) ::CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
          HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
          HBRUSH hbrush = (HBRUSH) ::CreateSolidBrush(RGB(255, 0, 255));
          HBRUSH hbrushOld = (HBRUSH) ::SelectObject(hdc, hbrush);
@@ -159,7 +159,7 @@ install:
          ::Ellipse(hdc, 23, 23, 49, 49);
 
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
-         ::SelectObject(hdc, (HGDIOBJ) hbrushOld);
+         ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
 /*         RECT rect;
          rect.left      = 0;

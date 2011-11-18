@@ -13,7 +13,6 @@
 		CE30D6DA146540EE001991EA /* c_os_cross_win_gdi_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CE30D6D8146540EE001991EA /* c_os_cross_win_gdi_internal.h */; };
 		CEA7AABF14412789007E04DE /* _argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0E14412789007E04DE /* _argcargv.cpp */; };
 		CEA7AAC014412789007E04DE /* _atol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0F14412789007E04DE /* _atol.cpp */; };
-		CEA7AAC114412789007E04DE /* _crt0dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA1014412789007E04DE /* _crt0dll.cpp */; };
 		CEA7AAC214412789007E04DE /* _heap.h in Headers */ = {isa = PBXBuildFile; fileRef = CEA7AA1114412789007E04DE /* _heap.h */; };
 		CEA7AAC314412789007E04DE /* _initterm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA1214412789007E04DE /* _initterm.cpp */; };
 		CEA7AAC414412789007E04DE /* _libct.h in Headers */ = {isa = PBXBuildFile; fileRef = CEA7AA1314412789007E04DE /* _libct.h */; };
@@ -170,6 +169,9 @@
 		CEBB9C6F1466609600912AFA /* c_os_cross_win_user_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CEBB9C6E1466609600912AFA /* c_os_cross_win_user_internal.h */; };
 		CEBCDBE9145FF5140099DA36 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBCDBE8145FF5140099DA36 /* file.cpp */; };
 		CEBCDBEC1460B2BC0099DA36 /* c_os_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEBCDBEA1460B2B90099DA36 /* c_os_cross_win.cpp */; };
+		CEC2DFBE147711D30028313B /* c_os_cross_win_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEC2DFBD147711D30028313B /* c_os_cross_win_user.mm */; };
+		CEC2DFC2147711FC0028313B /* c_os_gdi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC2DFC0147711FC0028313B /* c_os_gdi.cpp */; };
+		CEC2DFC3147711FC0028313B /* c_os_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC2DFC1147711FC0028313B /* c_os_gdi.h */; };
 		CEF82C74145789DB0011783B /* libX11.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CEF82C73145789DB0011783B /* libX11.6.dylib */; };
 		CEFF24691449CE8D0089FCAA /* ca2_types.h in Headers */ = {isa = PBXBuildFile; fileRef = CEFF24681449CE8D0089FCAA /* ca2_types.h */; };
 /* End PBXBuildFile section */
@@ -182,7 +184,6 @@
 		CEA754C414411F2B007E04DE /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA7AA0E14412789007E04DE /* _argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _argcargv.cpp; sourceTree = "<group>"; };
 		CEA7AA0F14412789007E04DE /* _atol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _atol.cpp; sourceTree = "<group>"; };
-		CEA7AA1014412789007E04DE /* _crt0dll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _crt0dll.cpp; sourceTree = "<group>"; };
 		CEA7AA1114412789007E04DE /* _heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _heap.h; sourceTree = "<group>"; };
 		CEA7AA1214412789007E04DE /* _initterm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _initterm.cpp; sourceTree = "<group>"; };
 		CEA7AA1314412789007E04DE /* _libct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _libct.h; sourceTree = "<group>"; };
@@ -339,6 +340,9 @@
 		CEBB9C6E1466609600912AFA /* c_os_cross_win_user_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_cross_win_user_internal.h; sourceTree = "<group>"; };
 		CEBCDBE8145FF5140099DA36 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		CEBCDBEA1460B2B90099DA36 /* c_os_cross_win.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_cross_win.cpp; sourceTree = "<group>"; };
+		CEC2DFBD147711D30028313B /* c_os_cross_win_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_cross_win_user.mm; sourceTree = "<group>"; };
+		CEC2DFC0147711FC0028313B /* c_os_gdi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_gdi.cpp; sourceTree = "<group>"; };
+		CEC2DFC1147711FC0028313B /* c_os_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_gdi.h; sourceTree = "<group>"; };
 		CEF82C73145789DB0011783B /* libX11.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libX11.6.dylib; path = usr/X11/lib/libX11.6.dylib; sourceTree = SDKROOT; };
 		CEFF24681449CE8D0089FCAA /* ca2_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2_types.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -371,7 +375,6 @@
 				CEFF24681449CE8D0089FCAA /* ca2_types.h */,
 				CEA7AA0E14412789007E04DE /* _argcargv.cpp */,
 				CEA7AA0F14412789007E04DE /* _atol.cpp */,
-				CEA7AA1014412789007E04DE /* _crt0dll.cpp */,
 				CEA7AA1114412789007E04DE /* _heap.h */,
 				CEAAA41F1461A72700DDE33F /* bsdiff */,
 				CEA7AA1214412789007E04DE /* _initterm.cpp */,
@@ -541,6 +544,7 @@
 		CEC9A23D144B818900FEA8E6 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				CEC2DFBD147711D30028313B /* c_os_cross_win_user.mm */,
 				CEBCDBEA1460B2B90099DA36 /* c_os_cross_win.cpp */,
 				CEACF733145FD3C2004A3E5B /* c_os_cross_win_file.cpp */,
 				CEACF734145FD3C2004A3E5B /* c_os_cross_win_file.h */,
@@ -563,6 +567,8 @@
 				CEACF742145FD3C2004A3E5B /* c_os.cpp */,
 				CEACF743145FD3C2004A3E5B /* c_os.h */,
 				CE30D6CF14653C65001991EA /* c_os_internal.h */,
+				CEC2DFC0147711FC0028313B /* c_os_gdi.cpp */,
+				CEC2DFC1147711FC0028313B /* c_os_gdi.h */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				CEBB9C3A14664A9400912AFA /* version.config.h in Headers */,
 				CEBB9C3C14664A9400912AFA /* version.h in Headers */,
 				CEBB9C6F1466609600912AFA /* c_os_cross_win_user_internal.h in Headers */,
+				CEC2DFC3147711FC0028313B /* c_os_gdi.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,7 +718,6 @@
 			files = (
 				CEA7AABF14412789007E04DE /* _argcargv.cpp in Sources */,
 				CEA7AAC014412789007E04DE /* _atol.cpp in Sources */,
-				CEA7AAC114412789007E04DE /* _crt0dll.cpp in Sources */,
 				CEA7AAC314412789007E04DE /* _initterm.cpp in Sources */,
 				CEA7AAC514412789007E04DE /* _math.cpp in Sources */,
 				CEA7AAC614412789007E04DE /* _mem.cpp in Sources */,
@@ -789,6 +795,8 @@
 				CEBB9C3B14664A9400912AFA /* version.cpp in Sources */,
 				CEBB9C691466502000912AFA /* c_os_launcher.cpp in Sources */,
 				CEBB9C6C146656B900912AFA /* c_os_cross_win_user.cpp in Sources */,
+				CEC2DFBE147711D30028313B /* c_os_cross_win_user.mm in Sources */,
+				CEC2DFC2147711FC0028313B /* c_os_gdi.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +883,7 @@
 				);
 				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 			};
 			name = Debug;
 		};
@@ -900,6 +909,7 @@
 				);
 				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 			};
 			name = Release;
 		};

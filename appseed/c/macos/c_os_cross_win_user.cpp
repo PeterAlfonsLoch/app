@@ -9,18 +9,3 @@
 #include "StdAfx.h"
 #include "c_os_cross_win_user_internal.h"
 
-BOOL IsWindowVisible(HWND hwnd)
-{
-}
-
-
-BOOL IsIconic(HWND hwnd)
-{
-    if(!IsWindowCollapsable(hwnd))
-    return FALSE;
-    
-    CollapseWindow(hwnd);
-    return TRUE;
-   
-    
-}

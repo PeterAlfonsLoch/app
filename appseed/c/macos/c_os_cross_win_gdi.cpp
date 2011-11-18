@@ -2,15 +2,58 @@
 #include "c_os_cross_win_gdi_internal.h"
 
 
+
+CGColorRef mac_create_color(COLORREF cr)
+{
+   
+   // Create a color and add it as an attribute to the string.
+   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+   CGFloat components[] = { GetRValue(cr) / 255.0, 
+      GetGValue(cr) / 255.0,
+      GetBValue(cr) / 255.0,
+      GetAValue(cr) / 255.0};
+   
+   CGColorRef color = CGColorCreate(rgbColorSpace, components);
+   
+   CGColorSpaceRelease(rgbColorSpace);
+   
+   return color;
+}
+
+
+BOOL mac_release_color(CGColorRef colorref)
+{
+   CGColorRelease(colorref);
+}
+
 HDC GetDC(HWND hwnd)
 {
 
    HDC hdc = new device_context;
+    
 
-   hdc->m_display    = XOpenDisplay(NULL);
-   hdc->m_hwnd       = hwnd;
-   hdc->m_d          = (Drawable) (hwnd == NULL ? DefaultRootWindow(hdc->m_display) : hwnd);
-   hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
+   hdc->m_window = hwnd;
+   hdc->m_windowPort = GetWindowPort(hwnd);
+   GetPortBounds(hdc->m_windowPort, &hdc->m_portBounds);
+    
+   hdc->m_wasSwapped = QDSwapPort(hwnd->m_windowPort, &hwnd->m_savedPort);
+    
+    
+    /* ... QuickDraw Drawing Commands ... */
+    // at windowPort
+    
+    
+   QDBeginCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
+   SyncCGContextOriginWithPort(hdc->m_cgcontext, hdc->m_windowPort);
+   //ClipCGContextToRegion(cgContext, &portBounds, clippingRegion);
+   //DisposeRgn(clippingRegion);
+   //clippingRegion = NULL;
+   
+   /* ... Quartz Drawing Commands ... */
+   
+   
+   hdc->m_cgcolorrefText = mac_create_color(0);
+   hdc->m_cgcolorrefBk = mac_create_color(RGB(255, 255, 255));
 
    return hdc;
 
@@ -28,9 +71,13 @@ BOOL ReleaseDC(HWND hwnd, HDC hdc)
 
    if(hdc == NULL)
       return FALSE;
-
-   XFreeGC(hdc->m_display, hdc->m_gc);
-   XCloseDisplay(hdc->m_display);
+   
+   QDEndCGContext(hdc->m_windowPort, &hdc->m_cgContext);
+   
+   if(hdc->m_wasSwapped)
+   {
+      QDSwapPort(hdc->savedPort, &hdc->m_savedPort);
+   }
 
    delete hdc;
    return TRUE;
@@ -238,4 +285,14 @@ BOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
 BOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
 {
     return FALSE;
+}
+
+
+
+BOOL SetTextColor(HDC hdc, COLORREF crText)
+{
+   
+   mac_release_color(hdc->m_cgcolorrefText);
+   hdc->m_cgcolorrefText = mac_create_color(crText);
+
 }
