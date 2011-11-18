@@ -11,7 +11,8 @@ namespace command
    public:
 
 
-      ::userbase::single_document_template *    m_ptemplate_html;
+      ::userbase::single_document_template *    m_ptemplateCommandMain;
+      ::userbase::single_document_template *    m_ptemplateCommandView;
 
 
       application(void);
