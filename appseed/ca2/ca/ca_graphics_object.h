@@ -15,6 +15,7 @@ namespace ca
       virtual BOOL is_set();
 
    // Constructors
+      virtual BOOL DeleteObject();
       virtual BOOL delete_object();
 
       virtual void * get_os_data() const;

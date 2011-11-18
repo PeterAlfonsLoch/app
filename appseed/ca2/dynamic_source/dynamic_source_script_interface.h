@@ -152,6 +152,7 @@ namespace dynamic_source
       virtual string htmlentities(const char * psz) = 0;
 
       virtual script_manager * get_manager() = 0;
+      virtual gen::international::locale_style & localestyle();
 
       virtual void run();
 

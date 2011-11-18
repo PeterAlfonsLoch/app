@@ -23,11 +23,18 @@ void point_array::offset(int x, int y)
 
 void point_array::rotate(double dAngle)
 {
+   
+   int x;
+   int y;
+   double dCos = cos(dAngle);
+   double dSin = sin(dAngle);
 
    for(int i = 0; i < get_count(); i++)
 	{
-	   element_at(i).x = element_at(i).x * cos(dAngle) - element_at(i).y * sin(dAngle);
-	   element_at(i).y = element_at(i).x * sin(dAngle) + element_at(i).y * cos(dAngle);
+      x = element_at(i).x;
+      y = element_at(i).y;
+	   element_at(i).x = x * dCos - y * dSin;
+	   element_at(i).y = x * dSin + y * dCos;
 	}
 
 }

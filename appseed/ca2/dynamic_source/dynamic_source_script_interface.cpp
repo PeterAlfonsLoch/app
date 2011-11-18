@@ -273,6 +273,17 @@ namespace dynamic_source
          return low_folder(strUser, iFolder, strPath.Left(iFind));
    }
 
+   gen::international::locale_style & script_interface::localestyle()
+   {
+      gen::international::locale_style * plocalestyle = sessiona()["locale_style"].ca2 < gen::international::locale_style >();
+      if(plocalestyle == NULL)
+      {
+         plocalestyle = new gen::international::locale_style(get_app());
+         sessiona()["locale_style"] = plocalestyle;
+      }
+      return *plocalestyle;
+   }
+
 
 } // namespace dynamic_source
 

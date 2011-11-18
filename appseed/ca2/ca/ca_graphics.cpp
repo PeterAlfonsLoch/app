@@ -123,6 +123,9 @@ namespace ca
 
    ::ca::font * graphics::SelectFont(::ca::font * pfont)
    {
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
       return dynamic_cast < ::ca::font * > (SelectObject(pfont));
    }
 
@@ -133,22 +136,22 @@ namespace ca
 
    ::ca::font * graphics::select_font(::ca::font * pfont)
    {
-      return SelectFont(pfont);
+      return selectFont(pfont);
    }
 
    ::ca::font * graphics::SetFont(::ca::font * pfont)
    {
-      return SelectFont(pfont);
+      return SetFont(pfont);
    }
 
    ::ca::font * graphics::setFont(::ca::font * pfont)
    {
-      return SelectFont(pfont);
+      return setFont(pfont);
    }
 
    ::ca::font * graphics::set_font(::ca::font * pfont)
    {
-      return SelectFont(pfont);
+      return set_font(pfont);
    }
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
@@ -2047,13 +2050,13 @@ namespace ca
       if(m_pen.is_null())
          m_pen.create(get_app());
       if(m_pen->get_os_data() != NULL)
-         m_pen->Delete();
+         m_pen->delete_object();
       m_pen->CreatePen(m_nPenStyle, m_iPenWidth, m_crColor);
 
       if(m_brush.is_null())
          m_brush.create(get_app());
       if(m_brush->get_os_data() != NULL)
-         m_brush->Delete();
+         m_brush->delete_object();
       m_brush->CreateSolidBrush( m_crColor);
 
       SetTextColor(crColor);
@@ -2061,17 +2064,89 @@ namespace ca
       SelectObject(m_pen);
       SelectObject(m_brush);
 
+      return TRUE;
+
    }
 
    COLORREF graphics::setColor(COLORREF crColor)
    {
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return SetColor(crColor);
    }
 
    COLORREF graphics::set_color(COLORREF crColor)
    {
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return set_color(crColor);
    }
 
 
+   point graphics::DrawLine(int x1, int y1, int x2, int y2)
+   {
+      
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      MoveTo(x1, y1);
+      return LineTo(x2, y2);
+
+   }
+
+   point graphics::drawLine(int x1, int y1, int x2, int y2)
+   {
+      
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return DrawLine(x1, y1, x2, y2);
+
+   }
+
+   point graphics::draw_line(int x1, int y1, int x2, int y2)
+   {
+      
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return drawLine(x1, y1, x2, y2);
+
+   }
+
+   BOOL graphics::DrawRect(int x1, int y1, int x2, int y2)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      Draw3dRect(x1, y1, x2, y2, m_crColor, m_crColor);
+
+      return TRUE;
+
+   }
+
+   BOOL graphics::drawRect(int x1, int y1, int x2, int y2)
+   {
+      
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return DrawRect(x1, y1, x2, y2);
+
+   }
+
+   BOOL graphics::draw_rect(int x1, int y1, int x2, int y2)
+   {
+      
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return drawRect(x1, y1, x2, y2);
+
+   }
 
 
 

@@ -5330,6 +5330,9 @@
     <ClInclude Include="ca2\filehandler\ca2_filehandler_default.h">
       <Filter>Header Files\ca2\filehandler</Filter>
     </ClInclude>
+    <ClInclude Include="gen\gen_international_locale_style.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="collection\collection.inl">
@@ -9029,6 +9032,9 @@
     </ClCompile>
     <ClCompile Include="ca2\ca2_application.cpp">
       <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_international_locale_style.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

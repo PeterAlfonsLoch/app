@@ -197,25 +197,8 @@ namespace cube2
                strDomain += App(this).m_strAppName;
             }
          }
-         string strLocale;
-         string strStyle;
-         string strRelative = System.dir().path(System.dir().path(strRoot, "appmatter", strDomain), App(this).get_locale_style_dir(strLocale, strStyle)) + ".zip";
-         string strFile = System.dir().ca2(strRelative);
-         string strUrl;
-         if(_ca_is_basis())
-         {
-            strUrl = "http://basis.spaignition.api.veriterse.net/download?authnone&version=basis&stage=";
-         }
-         else
-         {
-            strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
-         }
 
-         strUrl += System.url().url_encode(strRelative);
-
-         Application.http().download(strUrl, strFile);
-
-         System.compress().extract_all(strFile, this);
+         update_appmatter(strRoot, strDomain);
       }
       catch(...)
       {
@@ -278,6 +261,62 @@ namespace cube2
    {
       ::cube1::application::request(pcreatecontext);
    }
+
+   bool application::update_appmatter(const char * pszRoot, const char * pszRelative)
+   {
+      
+      gen::international::locale_style localestyle(this);
+
+
+      
+      
+      string strLocale;
+      string strStyle;
+
+
+      localestyle.initialize(Application.directrix().m_varTopicQuery["locale"], Application.directrix().m_varTopicQuery["style"]);
+      localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["lang"], Application.directrix().m_varTopicQuery["style"]);
+      localestyle.add_locale_variant(get_locale(), get_style());
+      localestyle.finalize();
+
+      for(int i = 0; i < localestyle.m_straLocale.get_count(); i++)
+      {
+         update_appmatter(pszRoot, pszRelative, localestyle.m_straLocale[i], localestyle.m_straStyle[i]);
+      }
+
+
+      return true;
+
+   }
+   
+   bool application::update_appmatter(const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle)
+   {
+
+      string strLocale;
+      string strStyle;
+      string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_style_dir(pszLocale, pszStyle)) + ".zip";
+      string strFile = System.dir().ca2(strRelative);
+      string strUrl;
+      if(_ca_is_basis())
+      {
+         strUrl = "http://basis.spaignition.api.veriterse.net/download?authnone&version=basis&stage=";
+      }
+      else
+      {
+         strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
+      }
+
+      strUrl += System.url().url_encode(strRelative);
+
+      Application.http().download(strUrl, strFile);
+
+      System.compress().extract_all(strFile, this);
+
+      return true;
+
+   }
+
+
 
 
 } //namespace cube2

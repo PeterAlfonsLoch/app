@@ -91,17 +91,6 @@ namespace cube
             return fontopus::application::construct();
          }
       }
-      else if(chFirst == 'r')
-      {
-         if(m_strId == "rtprx")
-         {
-            return rtprx::application::construct();
-         }
-         else if(m_strId == "rtptx")
-         {
-            return rtptx::application::construct();
-         }
-      }
       else if(chFirst == 'n')
       {
          if(m_strId == "netnode")
@@ -141,17 +130,6 @@ namespace cube
             return netnode::application::initialize_instance();
          }
       }
-      else if(chFirst == 'r')
-      {
-         if(m_strId == "rtprx")
-         {
-            return rtprx::application::initialize_instance();
-         }
-         else if(m_strId == "rtptx")
-         {
-            return rtptx::application::initialize_instance();
-         }
-      }
       return acube::application::initialize_instance();
    }
 
@@ -186,14 +164,6 @@ namespace cube
       }
       else if(chFirst == 'r')
       {
-         if(m_strId == "rtprx")
-         {
-            return rtprx::application::exit_instance();
-         }
-         else if(m_strId == "rtptx")
-         {
-            return rtptx::application::exit_instance();
-         }
       }
       return acube::application::exit_instance();
    }
@@ -241,14 +211,6 @@ namespace cube
       }
       else if(chFirst == 'r')
       {
-         if(strId == "rtprx")
-         {
-            return rtprx::application::bergedge_start();
-         }
-         else if(strId == "rtptx")
-         {
-            return rtptx::application::bergedge_start();
-         }
       }
       return cube2::application::bergedge_start();
    }
@@ -323,13 +285,8 @@ namespace cube
       {
          return netnode::application::on_request(pcreatecontext);
       }
-      else if(m_strId == "rtprx")
+      else if(chFirst == 'r')
       {
-         return rtprx::application::on_request(pcreatecontext);
-      }
-      else if(m_strId == "rtptx")
-      {
-         return rtptx::application::on_request(pcreatecontext);
       }
       return cube4::application::on_request(pcreatecontext);
    }
@@ -353,13 +310,8 @@ namespace cube
       {
          return netnode::application::is_serviceable();
       }
-      else if(m_strId == "rtprx")
+      else if(chFirst == 'r')
       {
-         return rtprx::application::is_serviceable();
-      }
-      else if(m_strId == "rtptx")
-      {
-         return rtptx::application::is_serviceable();
       }
       
       return cube4::application::is_serviceable();
@@ -384,13 +336,8 @@ namespace cube
       {
          return netnode::application::allocate_new_service();
       }
-      else if(m_strId == "rtprx")
+      else if(chFirst == 'r')
       {
-         return rtprx::application::allocate_new_service();
-      }
-      else if(m_strId == "rtptx")
-      {
-         return rtptx::application::allocate_new_service();
       }
       
       return cube4::application::allocate_new_service();
@@ -414,10 +361,6 @@ namespace cube
       }
       else if(chFirst == 'r')
       {
-         if(strId == "rtprx")
-         {
-            return rtprx::application::_001OpenDocumentFile(varFile);
-         }
       }
       return ::cube4::application::_001OpenDocumentFile(varFile);
    }

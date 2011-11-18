@@ -116,9 +116,6 @@ namespace dynamic_source
 
 
 
-      void add_locale_variant(stringa & straLocale, stringa & straStyle);
-      void process_final_locale_style(stringa & straLocale, stringa & straStyle);
-      bool defer_add_locale(const char * pszLocale, stringa & straLocale, stringa & straStyle);
       virtual void keep(ptr * pptr);
       virtual void unkeep(ptr * pptr);
 

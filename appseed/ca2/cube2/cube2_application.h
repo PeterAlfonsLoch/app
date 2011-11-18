@@ -48,6 +48,12 @@ namespace cube2
 
       virtual int send_simple_command(const char * psz, void * osdataSender);
       virtual int send_simple_command(void * osdata, const char * psz, void * osdataSender);
+
+
+      virtual bool update_appmatter(const char * pszRoot, const char * pszRelative);
+      virtual bool update_appmatter(const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
+
+
    };
 
    inline application & app_cast(::ca::application * papp)

@@ -24,10 +24,21 @@ namespace ca
       throw interface_only_exception();   
    }
 
+   BOOL graphics_object::DeleteObject()
+   {
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return delete_object(); // the first call the last or implementation // comment of comment
+
+   }
 
    BOOL graphics_object::delete_object()
    {
-      throw interface_only_exception();   
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return DeleteObject(); // the others call the previous or implementation // comment of comment
    }
 
    // graphics_object

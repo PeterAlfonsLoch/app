@@ -128,6 +128,8 @@ namespace ca
       virtual COLORREF setColor(COLORREF crColor);
       virtual COLORREF set_color(COLORREF crColor);
 
+
+
 #ifdef WINDOWS
       virtual BOOL GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
       virtual BOOL SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
@@ -218,6 +220,16 @@ namespace ca
       virtual int SelectClipRgn(::ca::rgn* pRgn, int nMode);
 
    // Line-Output Functions
+
+      virtual point DrawLine(int x1, int y1, int x2, int y2);
+      virtual point drawLine(int x1, int y1, int x2, int y2);
+      virtual point draw_line(int x1, int y1, int x2, int y2);
+
+      virtual BOOL DrawRect(int x1, int y1, int x2, int y2);
+      virtual BOOL drawRect(int x1, int y1, int x2, int y2);
+      virtual BOOL draw_rect(int x1, int y1, int x2, int y2);
+
+
       virtual point GetCurrentPosition() const;
       virtual point MoveTo(int x, int y);
       virtual point MoveTo(POINT point);

@@ -1233,6 +1233,7 @@
     <ClInclude Include="gen\gen_byte_stream_memory_file.h" />
     <ClInclude Include="gen\gen_command.h" />
     <ClInclude Include="gen\gen_command_thread.h" />
+    <ClInclude Include="gen\gen_international_locale_style.h" />
     <ClInclude Include="gen\gen_request_signal.h" />
     <ClInclude Include="gen\gen_stringl.h" />
     <ClInclude Include="gen\gen_string_tokenizer.h" />
@@ -2763,6 +2764,7 @@
     <ClCompile Include="gen\gen_byte_stream_memory_file.cpp" />
     <ClCompile Include="gen\gen_command.cpp" />
     <ClCompile Include="gen\gen_command_thread.cpp" />
+    <ClCompile Include="gen\gen_international_locale_style.cpp" />
     <ClCompile Include="gen\gen_math_rng.cpp" />
     <ClCompile Include="gen\gen_parse.cpp" />
     <ClCompile Include="gen\gen_signal_thread.cpp" />
