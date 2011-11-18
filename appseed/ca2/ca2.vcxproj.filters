@@ -564,18 +564,6 @@
     <Filter Include="Source Files\webserver">
       <UniqueIdentifier>{2982a131-c512-4cbd-bf65-d4776d87b9be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\rtprx">
-      <UniqueIdentifier>{dc01a5b6-b91c-4e5b-b176-3d6572d2d21b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\rtptx">
-      <UniqueIdentifier>{6f3e970e-964d-40a9-a075-ad3b580d7e9b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\rtptx">
-      <UniqueIdentifier>{2904ec26-1eca-40a8-a9df-f886553b0716}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\rtprx">
-      <UniqueIdentifier>{447c6faa-c8fa-45e4-b561-f930779defa9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\i2com">
       <UniqueIdentifier>{9319e3e7-bff9-4347-ac97-14546a5cb0c7}</UniqueIdentifier>
     </Filter>
@@ -5210,51 +5198,6 @@
     <ClInclude Include="ca\ca_object.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="rtptx\application.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtptx\document.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtptx\frame.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtptx\pane_view.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtptx\pane_view_update_hint.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtptx\rtptx.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtptx\view.h">
-      <Filter>Header Files\rtptx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\application.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\audio_decoder.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\document.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\frame.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\pane_view.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\pane_view_update_hint.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\rtprx.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
-    <ClInclude Include="rtprx\view.h">
-      <Filter>Header Files\rtprx</Filter>
-    </ClInclude>
     <ClInclude Include="i2com\rtp\i2com_rtp.h">
       <Filter>Header Files\i2com\rtp</Filter>
     </ClInclude>
@@ -9002,42 +8945,6 @@
     </ClCompile>
     <ClCompile Include="gcom\gcom_backview_user_interaction.cpp">
       <Filter>Source Files\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="rtptx\rtptx_application.cpp">
-      <Filter>Source Files\rtptx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtptx\rtptx_document.cpp">
-      <Filter>Source Files\rtptx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtptx\rtptx_frame.cpp">
-      <Filter>Source Files\rtptx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtptx\rtptx_pane_view.cpp">
-      <Filter>Source Files\rtptx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtptx\rtptx_pane_view_update_hint.cpp">
-      <Filter>Source Files\rtptx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtptx\rtptx_view.cpp">
-      <Filter>Source Files\rtptx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtprx\rtprx_application.cpp">
-      <Filter>Source Files\rtprx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtprx\rtprx_document.cpp">
-      <Filter>Source Files\rtprx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtprx\rtprx_frame.cpp">
-      <Filter>Source Files\rtprx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtprx\rtprx_pane_view.cpp">
-      <Filter>Source Files\rtprx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtprx\rtprx_pane_view_update_hint.cpp">
-      <Filter>Source Files\rtprx</Filter>
-    </ClCompile>
-    <ClCompile Include="rtprx\rtprx_view.cpp">
-      <Filter>Source Files\rtprx</Filter>
     </ClCompile>
     <ClCompile Include="i2com\rtp\i2com_rtp.cpp">
       <Filter>Source Files\i2com\rtp</Filter>
