@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef Window HWND;
+
 
 
 
@@ -91,6 +91,7 @@ typedef LONG    LCSGAMUTMATCH;
 #define GetYValue(cmyk)      ((BYTE)((cmyk)>> 8))
 #define GetMValue(cmyk)      ((BYTE)((cmyk)>>16))
 #define GetCValue(cmyk)      ((BYTE)((cmyk)>>24))
+
 
 #define CMYK(c,m,y,k)       ((COLORREF)((((BYTE)(k)|((WORD)((BYTE)(y))<<8))|(((DWORD)(BYTE)(m))<<16))|(((DWORD)(BYTE)(c))<<24)))
 
@@ -236,7 +237,18 @@ typedef NPLOGFONTA NPLOGFONT;
 typedef LPLOGFONTA LPLOGFONT;
 #endif // UNICODE
 
-typedef LPLOGFONT HFONT;
+
+
+struct tagFONT :
+   public gdi_object
+{
+   CTFontRef m_fontref; 
+};
+
+
+typedef tagFONT FONT, FAR * LPFONT;
+
+typedef LPFONT HFONT;
 
 #define ANSI_CHARSET            0
 #define DEFAULT_CHARSET         1
@@ -339,6 +351,7 @@ typedef LPEXTLOGPEN HPEN;
 #define GetRValue(rgb)      (LOBYTE(rgb))
 #define GetGValue(rgb)      (LOBYTE(((WORD)(rgb)) >> 8))
 #define GetBValue(rgb)      (LOBYTE((rgb)>>16))
+#define GetAValue(argb)     (LOBYTE((argb)>>24))
 
 /* Background Modes */
 #define TRANSPARENT         1

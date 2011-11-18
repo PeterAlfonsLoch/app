@@ -22,7 +22,6 @@ struct device_context;
 struct gdi_object;
 
 typedef XID Window;
-typedef Window HWND;
 
 
 typedef struct device_context * HDC;
@@ -326,6 +325,19 @@ void wcsupr(wchar_t * psz);
 
 
 
+
+typedef class tag_WINDOW
+{
+public:
+   
+   WindowRef      m_windowref;
+   void *         m_pnswindow;
+   
+   
+   
+} WINDOW, * LPWINDOW;
+
+typedef LPWINDOW HWND;
 
 
 
