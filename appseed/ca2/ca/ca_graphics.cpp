@@ -2047,13 +2047,13 @@ namespace ca
       if(m_pen.is_null())
          m_pen.create(get_app());
       if(m_pen->get_os_data() != NULL)
-         m_pen->DeleteObject();
+         m_pen->Delete();
       m_pen->CreatePen(m_nPenStyle, m_iPenWidth, m_crColor);
 
       if(m_brush.is_null())
          m_brush.create(get_app());
       if(m_brush->get_os_data() != NULL)
-         m_brush->DeleteObject();
+         m_brush->Delete();
       m_brush->CreateSolidBrush( m_crColor);
 
       SetTextColor(crColor);
