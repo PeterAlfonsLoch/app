@@ -43,10 +43,10 @@ namespace command
 		      ::ca::get_type_info < command::frame > (),
 		      ::ca::get_type_info < command::pane_view > ());
          userbase::application::add_document_template(pDocTemplate);
-         m_ptemplate_html = pDocTemplate;
+         m_ptemplateCommandMain = pDocTemplate;
 
 
-         m_ptemplate_html->open_document_file(::ca::create_context_sp());
+         m_ptemplateCommandMain->open_document_file(::ca::create_context_sp());
       }
 
       return true;
