@@ -1171,8 +1171,10 @@
     <ClInclude Include="exception\exception.h" />
     <ClInclude Include="exception\exception2.h" />
     <ClInclude Include="exception\exception_0.h" />
+    <ClInclude Include="exception\exception_installing.h" />
     <ClInclude Include="exception\exception_range_error.h" />
     <ClInclude Include="exception\exception_runtime_error.h" />
+    <ClInclude Include="exception\exception_temporary.h" />
     <ClInclude Include="exception\exception_trap.h" />
     <ClInclude Include="exception\exception_void_implementation.h" />
     <ClInclude Include="exception\hresult_exception.h" />
@@ -2714,6 +2716,7 @@
     <ClCompile Include="exception\exception_error_exception.cpp" />
     <ClCompile Include="exception\exception_base_exception.cpp" />
     <ClCompile Include="exception\exception.cpp" />
+    <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />
     <ClCompile Include="exception\exception_invalid_arg_exception.cpp" />
     <ClCompile Include="exception\exception_memory_exception.cpp" />
@@ -2726,6 +2729,7 @@
     <ClCompile Include="exception\exception_not_licensed_exception.cpp" />
     <ClCompile Include="exception\exception_se_translator.cpp" />
     <ClCompile Include="exception\exception_SymEngine.cpp" />
+    <ClCompile Include="exception\exception_temporary.cpp" />
     <ClCompile Include="exception\exception_VMSException.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="filemanager\FileManagerSaveAsNameView.cpp" />

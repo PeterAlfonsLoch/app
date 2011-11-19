@@ -5333,6 +5333,12 @@
     <ClInclude Include="gen\gen_international_locale_style.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_installing.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_temporary.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="collection\collection.inl">
@@ -9035,6 +9041,12 @@
     </ClCompile>
     <ClCompile Include="gen\gen_international_locale_style.cpp">
       <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_installing.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_temporary.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -172,14 +172,33 @@ vsstring url_query_param(int & iParam, const char * pszParam)
 
 
 
-int call_spaadmin(const char * pszCommandLine)
+int synch_spaadmin(const char * pszCommandLine)
 {
 
-   ::spa::installer * pinstaller = new ::spa::installer();
+   ::spa::installer * pinstaller    = new ::spa::installer();
+
+   pinstaller->m_bStarterStart      = true;
+
+   pinstaller->m_bSynch             = true;
 
    return pinstaller->spaadmin_main(pszCommandLine);
 
 }
+
+
+int start_spaadmin(const char * pszCommandLine)
+{
+
+   ::spa::installer * pinstaller    = new ::spa::installer();
+
+   pinstaller->m_bStarterStart      = true;
+
+   pinstaller->m_bSynch             = false;
+
+   return pinstaller->spaadmin_main(pszCommandLine);
+
+}
+
 
 vsstring get_installation_lock_file_path()
 {

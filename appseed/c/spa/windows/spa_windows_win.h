@@ -50,5 +50,8 @@
 CLASS_DECL_____ int bzuncompress(LPCTSTR lpcszUncompressed, LPCTSTR lpcszGzFileCompressed);
 
 
-CLASS_DECL_____ int call_spaadmin(const char * pszCommandLine);
+CLASS_DECL_____ int synch_spaadmin(const char * pszCommandLine);
+
+
+CLASS_DECL_____ int start_spaadmin(const char * pszCommandLine);
 

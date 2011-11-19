@@ -168,7 +168,7 @@ void installer::install_defer_file_transfer()
       update_updated();
       if(!is_updated() && !are_there_user_files_in_use())
       {
-         call_spaadmin("starter_start=bergedge in background in spa");
+         synch_spaadmin("starter_start=bergedge in background in spa");
       }
    }
 }
@@ -273,8 +273,23 @@ void installer::on_receive(const char * pszMessage)
          return;
       }
       m_bInstallerInstalling = true;
-      call_spaadmin(pszSuffix);
+      synch_spaadmin(pszSuffix);
       m_bInstallerInstalling = false;
+   }
+   else if((pszSuffix = str_begins_inc_dup(strMessage, "spaadmin:")) != NULL)
+   {
+      if(g_bInstalling)
+      {
+         iRet = 1;
+         return;
+      }
+      if(m_bInstallerInstalling)
+      {
+         iRet = 1;
+         return;
+      }
+      m_bInstallerInstalling = true;
+      start_spaadmin(pszSuffix);
    }
    else if(stricmp_dup(strMessage, "ok") == 0)
    {

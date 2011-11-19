@@ -113,7 +113,8 @@ namespace cube8
          && !Application.command().m_varTopicQuery.has_property("uninstall")))
       {
          TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strId);
-         System.install().ca2_cube_install(strId);
+         System.install().start(strId);
+         throw installing_exception();
          return NULL;
       }
 

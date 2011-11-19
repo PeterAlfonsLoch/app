@@ -19,23 +19,23 @@ namespace gen
          {
          }
 
-         bool locale_style::initialize(const char * pszLocale, const char * pszStyle)
-         {
-            m_strLocale = pszLocale;
-            m_strStyle = pszStyle;
-
-            if(m_strLocale.is_empty())
-               m_strLocale = "_std";
-
-            if(m_strStyle.is_empty())
-               m_strStyle = "_std";
-
-            return add_locale_variant(pszLocale, pszStyle);
-
-         }
 
          bool locale_style::add_locale_variant(const char * pszLocale, const char * pszStyle)
          {
+
+            if(m_strLocale.is_empty())
+            {
+               m_strLocale = pszLocale;
+               if(m_strLocale.is_empty())
+                  m_strLocale = "_std";
+            }
+            if(m_strStyle.is_empty())
+            {
+               m_strStyle = pszStyle;
+               if(m_strStyle.is_empty())
+                  m_strStyle = "_std";
+            }
+
             string strLocale = pszLocale;
             string strStyle = pszStyle;
 

@@ -147,22 +147,22 @@ namespace spa
 
    installer::installer()
    {
-      m_bMsDownload = false;
-      m_dAnime = 0.0;
-      g_bInstalling = false;
-      m_pwindow = NULL;
-      m_bStarterStart      = false;
-      m_dProgressStart     = 0.0;
-      m_dProgressEnd       = 0.0;
-      m_bInstallSet = false;
-      m_bOfflineInstall = false;
-      m_bInternetInstall = true;
-      m_dProgress = -1.0;
-      m_dProgress1 = -1.0;
-      m_dProgress2 = -1.0;
-      m_bShow = true;
-      m_hwnd = NULL;
-      m_bForceUpdatedBuild = false;
+      m_bMsDownload              = false;
+      m_dAnime                   = 0.0;
+      g_bInstalling              = false;
+      m_pwindow                  = NULL;
+      m_dProgressStart           = 0.0;
+      m_dProgressEnd             = 0.0;
+      m_bInstallSet              = false;
+      m_bOfflineInstall          = false;
+      m_bInternetInstall         = true;
+      m_dProgress                = -1.0;
+      m_dProgress1               = -1.0;
+      m_dProgress2               = -1.0;
+      m_bShow                    = true;
+      m_hwnd                     = NULL;
+      m_bForceUpdatedBuild       = false;
+      m_bSynch                   = true;
    }
 
 
@@ -2385,7 +2385,15 @@ install_begin:;
 
       m_iStyle = 0;
 
-      starter_start();
+
+      if(m_bSynch)
+      {
+         synch_starter_start();
+      }
+      else
+      {
+         start_starter_start();
+      }
 
       return TRUE;
    }
@@ -2643,6 +2651,7 @@ install_begin:;
       return data.m_fixed.m_bRequestCloseApplication;
    }
 
+
    void installer::spa()
    {
 
@@ -2655,7 +2664,17 @@ install_begin:;
    }
 
 
-   void installer::starter_start()
+   void installer::synch_starter_start()
+   {
+
+      m_bStarterStart = true;
+
+      run();
+
+   }
+
+
+   void installer::start_starter_start()
    {
 
       m_bStarterStart = true;

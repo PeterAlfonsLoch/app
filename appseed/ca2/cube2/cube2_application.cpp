@@ -273,12 +273,41 @@ namespace cube2
       string strLocale;
       string strStyle;
 
+      
+      if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
+      {
+         if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
+         {
+            localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["locale"], Application.directrix().m_varTopicQuery["style"]);
+         }
+         localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["locale"], Application.directrix().m_varTopicQuery["locale"]);
+      }
+      
+      
+      if(Application.directrix().m_varTopicQuery["lang"].has_char() && Application.directrix().m_varTopicQuery["lang"].get_string().CompareNoCase("_std") != 0)
+      {
+         if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
+         {
+            localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["lang"], Application.directrix().m_varTopicQuery["style"]);
+         }
+         localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["lang"], Application.directrix().m_varTopicQuery["lang"]);
+      }
+      
+      
+      if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
+      {
+         localestyle.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
+      }
+      if(get_style().has_char() && get_style().CompareNoCase("_std") != 0 && get_style().CompareNoCase(get_locale()) != 0)
+      {
+         localestyle.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
+      }
+      localestyle.add_locale_variant(get_locale(), get_locale());
 
-      localestyle.initialize(Application.directrix().m_varTopicQuery["locale"], Application.directrix().m_varTopicQuery["style"]);
-      localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["lang"], Application.directrix().m_varTopicQuery["style"]);
-      localestyle.add_locale_variant(get_locale(), get_style());
+      
       localestyle.finalize();
 
+      
       for(int i = 0; i < localestyle.m_straLocale.get_count(); i++)
       {
          update_appmatter(pszRoot, pszRelative, localestyle.m_straLocale[i], localestyle.m_straStyle[i]);

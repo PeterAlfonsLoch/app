@@ -307,132 +307,143 @@ namespace plugin
 
    void plugin::open_ca2_string(const char * psz)
    {
+
+      try
+      {
       
-      LPSTR lpszAlloc = (LPSTR) (void *) psz;
+         LPSTR lpszAlloc = (LPSTR) (void *) psz;
       
-      int iCount = strlen(psz);
+         int iCount = strlen(psz);
 
-      //sleep(seconds(15));
+         //sleep(seconds(15));
 
-      string strPluginUrl;
+         string strPluginUrl;
 
-      strPluginUrl = m_phost->m_strPluginUrl;
+         strPluginUrl = m_phost->m_strPluginUrl;
 
-      Sys(m_psystem).url().override_if_empty(strPluginUrl, get_host_location_url());
+         Sys(m_psystem).url().override_if_empty(strPluginUrl, get_host_location_url());
 
-      string strPluginScript = m_psystem->url().get_script(m_phost->m_strPluginUrl);
+         string strPluginScript = m_psystem->url().get_script(m_phost->m_strPluginUrl);
 
 
-      gen::property_set headers(m_psystem);
+         gen::property_set headers(m_psystem);
 
-      headers.parse_http_headers(m_phost->m_strPluginHeaders);
+         headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
-      string strContentType = headers["Content-Type"];
+         string strContentType = headers["Content-Type"];
    
-      string str;
+         string str;
 
-      // TODO |) : Should parse Content-type:
-      // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
-      if(gen::str::ends_ci(strPluginScript, ".mp3")
-      || gen::str::ends_ci(strPluginScript, ".mid")
-      || gen::str::ends_ci(strPluginScript, ".kar")
-      || gen::str::ends_ci(strPluginScript, ".st3"))
-      {
-         //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
-         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
-         pbiasCreate->m_puiParent = m_puiHost;
-         pbiasCreate->m_set["NativeWindowFocus"] = false;
-         m_psystem->get_bergedge(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
-      }
-      else
-      {
-         LPSTR lpszStart = lpszAlloc;
-         LPSTR lpszEnd = NULL;
-         int i = 0;
-         for(; i < iCount; i++)
+         // TODO |) : Should parse Content-type:
+         // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
+         if(gen::str::ends_ci(strPluginScript, ".mp3")
+         || gen::str::ends_ci(strPluginScript, ".mid")
+         || gen::str::ends_ci(strPluginScript, ".kar")
+         || gen::str::ends_ci(strPluginScript, ".st3"))
          {
-            lpszEnd = &lpszStart[i];
-            if(*lpszEnd == '\n')
+            //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
+            ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+            pbiasCreate->m_puiParent = m_puiHost;
+            pbiasCreate->m_set["NativeWindowFocus"] = false;
+            m_psystem->get_bergedge(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+         }
+         else
+         {
+            LPSTR lpszStart = lpszAlloc;
+            LPSTR lpszEnd = NULL;
+            int i = 0;
+            for(; i < iCount; i++)
             {
-               str = string(lpszStart, lpszEnd - lpszStart);
-               break;
+               lpszEnd = &lpszStart[i];
+               if(*lpszEnd == '\n')
+               {
+                  str = string(lpszStart, lpszEnd - lpszStart);
+                  break;
+               }
             }
-         }
-         str.trim();
+            str.trim();
 
-         if(str == "ca2login")
-         {
-            m_strCa2LoginRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
-            start_ca2_login();
-         }
-         else if(str == "ca2logout")
-         {
-            m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
-            start_ca2_logout();
-         }
-         else if(str == "ca2prompt")
-         {
-            if(System.url().get_script(get_host_location_url()) == "/non_auth")
+            if(str == "ca2login")
             {
-               m_strCa2LoginRuri = System.url().set_script(get_host_location_url(), "/");
+               m_strCa2LoginRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_login();
             }
-            else
+            else if(str == "ca2logout")
             {
-               m_puiHost->layout();
-               lpszStart = lpszEnd;
-               for(; (lpszEnd - lpszAlloc) <= iCount; i++)
+               m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
+               start_ca2_logout();
+            }
+            else if(str == "ca2prompt")
+            {
+               if(System.url().get_script(get_host_location_url()) == "/non_auth")
                {
-                  if(*lpszEnd == '\0' || !gen::ch::is_whitespace(lpszEnd))
-                     break;
-                  lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
+                  m_strCa2LoginRuri = System.url().set_script(get_host_location_url(), "/");
+                  start_ca2_login();
                }
-               lpszStart = lpszEnd;
-               for(; (lpszEnd - lpszAlloc) <= iCount; i++)
+               else
                {
-                  if(*lpszEnd == '\0' || gen::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
+                  m_puiHost->layout();
+                  lpszStart = lpszEnd;
+                  for(; (lpszEnd - lpszAlloc) <= iCount; i++)
                   {
-                     str = string(lpszStart, lpszEnd - lpszStart);
-                     break;
+                     if(*lpszEnd == '\0' || !gen::ch::is_whitespace(lpszEnd))
+                        break;
+                     lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
                   }
-                  lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
-               }
-               if(!m_bApp)
-               {
-                  ::WaitForSingleObject(m_hEventReady, (1984 + 1977) * 20);
+                  lpszStart = lpszEnd;
+                  for(; (lpszEnd - lpszAlloc) <= iCount; i++)
+                  {
+                     if(*lpszEnd == '\0' || gen::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
+                     {
+                        str = string(lpszStart, lpszEnd - lpszStart);
+                        break;
+                     }
+                     lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
+                  }
                   if(!m_bApp)
                   {
-                     printf("Bergedge application is not initialized. Cannot start mplite.");
-                     return;
+                     ::WaitForSingleObject(m_hEventReady, (1984 + 1977) * 20);
+                     if(!m_bApp)
+                     {
+                        printf("Bergedge application is not initialized. Cannot start mplite.");
+                        return;
+                     }
                   }
-               }
-               if(str.has_char())
-               {
-                  string strId = str;
-                  int iFind = strId.find("?");
-                  if(iFind >= 0)
+                  if(str.has_char())
                   {
-                     strId = strId.Left(iFind);
-                  }
-                  if(strId.has_char() && !m_psystem->install().is(strId))
-                  {
-                     Sys(m_psystem).install().ca2_cube_install(strId);
-                     m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
-                     m_bMainReady = false;
-                  }
-                  else
-                  {
-                     m_puiHost->KillTimer(19841115);
-                     sleep(seconds(15));
-//                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
-                     ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
-                     pbiasCreate->m_set["NativeWindowFocus"] = false;
-                     pbiasCreate->m_puiParent = m_puiHost;
-                     m_psystem->command().add_fork_uri(str, pbiasCreate);
+                     string strId = str;
+                     int iFind = strId.find("?");
+                     if(iFind >= 0)
+                     {
+                        strId = strId.Left(iFind);
+                     }
+                     if(strId.has_char() && !m_psystem->install().is(strId))
+                     {
+                        Sys(m_psystem).install().start(strId);
+                        ::TerminateProcess(::GetCurrentProcess(), 0);
+                        m_bMainReady = false;
+                        return;
+                        //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
+                        
+                     }
+                     else
+                     {
+                        m_puiHost->KillTimer(19841115);
+                        sleep(seconds(15));
+   //                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
+                        ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+                        pbiasCreate->m_set["NativeWindowFocus"] = false;
+                        pbiasCreate->m_puiParent = m_puiHost;
+                        m_psystem->command().add_fork_uri(str, pbiasCreate);
+                     }
                   }
                }
             }
          }
+      }
+      catch(installing_exception & e)
+      {
+         ::TerminateProcess(::GetCurrentProcess(), 0);
       }
    }
 

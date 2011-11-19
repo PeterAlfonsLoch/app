@@ -22,6 +22,8 @@ namespace win
 #include "interface_only.h"
 #include "not_supported.h"
 #include "not_licensed.h"
+#include "exception_temporary.h"
+#include "exception_installing.h"
 
 #include "simple_exception.h"
 #include "assert.h"

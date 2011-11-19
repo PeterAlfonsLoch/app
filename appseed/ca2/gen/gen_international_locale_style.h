@@ -16,7 +16,6 @@ namespace gen
 
          // most simple use:
          // 1. allocate locale_style.
-         // 2. initialize locale_style
          // 2. add locale variants in order of importance, most acceptable first
          // 3. finalize locale_style
          // m_straLocale and m_straStyle will have the locale/styles
@@ -33,7 +32,6 @@ namespace gen
          virtual ~locale_style();
 
 
-         virtual bool initialize(const char * pszLocale, const char * pszStyle);
          virtual bool add_locale_variant(const char * pszLocale, const char * pszStyle);
          virtual bool finalize(bool bRtlLayout);
          virtual bool finalize();
