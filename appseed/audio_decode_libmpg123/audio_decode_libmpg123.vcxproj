@@ -618,6 +618,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\libmp3lame.dll" "$(OutDir
       <BrowseInformation>false</BrowseInformation>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>false</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
