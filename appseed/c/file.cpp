@@ -233,6 +233,7 @@ bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * psz
 
    for(int i = 0; i < (1024 * 1024); i++)
    {
+      strcpy_dup(szRet, lpPathBuffer);
       {
          strcat_dup(szRet, bufTime);
          strcat_dup(szRet, "-");
@@ -242,7 +243,6 @@ bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * psz
          strcat_dup(szRet, buf);
          strcat_dup(szRet, "\\");
       }
-      strcpy_dup(szRet, lpPathBuffer);
       strcat_dup(szRet, pszName);
       //if(i >= 0)
       //if(i > 0)
