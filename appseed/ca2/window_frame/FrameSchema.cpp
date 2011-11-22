@@ -1,6 +1,5 @@
 #include "StdAfx.h"
 #include "FrameSchema.h"
-
 namespace window_frame
 {
 
@@ -291,11 +290,6 @@ namespace window_frame
       b = ::ReleaseDC(NULL, hdcScreen);
    }
 
-   void FrameSchema::ColorGlass(::ca::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha)
-   {
-      System.imaging().color_blend(pdc, lprect, cr, bAlpha, m_dibmap[rect(lprect).size()]);
-   }
-
    void FrameSchema::OnMove(::user::interaction * pwnd)
    {
       UNREFERENCED_PARAMETER(pwnd);
@@ -452,4 +446,19 @@ namespace window_frame
 
 
 
+#undef new
+#include <gdiplus.h>
 
+namespace window_frame
+{
+
+   void FrameSchema::ColorGlass(::ca::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha)
+   {
+      /*Gdiplus::Graphics g((HDC) pdc->get_os_data());
+      g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+      g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
+      System.imaging().color_blend(pdc, lprect, cr, bAlpha, m_dibmap[rect(lprect).size()]);
+   }
+
+}

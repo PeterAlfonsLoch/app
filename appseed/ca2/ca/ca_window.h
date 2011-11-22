@@ -692,6 +692,9 @@ namespace ca
 
       virtual void _001BaseWndInterfaceMap();
 
+
+      virtual void _001UpdateWindow();
+
    };
 
    typedef smart_pointer < window > window_sp;

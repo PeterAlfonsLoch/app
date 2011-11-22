@@ -414,6 +414,7 @@ namespace user
       {
          rect64 rectWindow;
          GetWindowRect(rectWindow);
+         get_wnd()->ScreenToClient(rectWindow);
          pgraphics->SetViewportOrg(point(rectWindow.top_left()));
          pgraphics->SelectClipRgn(NULL);
          m_pguie->_001OnDraw(pgraphics);
@@ -495,12 +496,15 @@ namespace user
 
 
       pgraphics->SelectClipRgn(NULL);
+      
       pgraphics->SetViewportOrg(ptViewport);
+
 
       if(Bergedge.m_bDrawCursor)
       {
          point ptCursor;
          Bergedge.get_cursor_pos(&ptCursor);
+         ScreenToClient(&ptCursor);
          ::visual::cursor * pcursor = Bergedge.get_cursor();
          if(pcursor != NULL)
          {

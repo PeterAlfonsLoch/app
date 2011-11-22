@@ -18,6 +18,8 @@ namespace win
       pha(::user::interaction)      m_guieptraMouseHover;
       ::ca::window_callback *       m_pcallback;
       string                        m_strWindowText;
+      visual::dib_sp                m_spdib;
+      visual::dib_sp                m_spdibMultAlphaWork;
 
 
       window();
@@ -698,6 +700,10 @@ namespace win
       virtual LONG SetWindowLong(int nIndex, LONG lValue);
 
       virtual void _001BaseWndInterfaceMap();
+
+
+      void _001UpdateWindow();
+
 
    };
 

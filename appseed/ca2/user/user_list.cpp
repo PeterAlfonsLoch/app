@@ -5397,6 +5397,7 @@ namespace user
          }
          else
          {
+            m_pgraphics->SetTextColor(m_cr);
             m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
          }
       }

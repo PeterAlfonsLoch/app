@@ -2306,6 +2306,12 @@ namespace ca
    {
    }
 
+
+   void window::_001UpdateWindow()
+   {
+   }
+
+
 } // namespace ca
 
 
@@ -2388,5 +2394,7 @@ void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
       lpRect->right - lpRect->left, lpRect->bottom - lpRect->top,
       SWP_NOACTIVATE|SWP_NOZORDER | SWP_NOREDRAW);
 }
+
+
 
 

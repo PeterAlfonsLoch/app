@@ -271,7 +271,7 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <PerUserRedirection>false</PerUserRedirection>
-      <AdditionalDependencies>WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>

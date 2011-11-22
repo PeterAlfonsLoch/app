@@ -1,5 +1,9 @@
 #include "StdAfx.h"
 
+#undef new
+#include <GdiPlus.h>
+#define new DEBUG_NEW
+
 
 namespace cube8
 {
@@ -17,6 +21,7 @@ namespace cube8
       g_pheapitema = pitema;
    }*/
 
+      ULONG_PTR gdiplusToken;
 
    system::system()
    {
@@ -25,6 +30,11 @@ namespace cube8
       {
          ::set_heap_mutex(new mutex());
       }
+
+
+      Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+      GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
 
 /*      if(::cube8::get_heap_itema() == NULL)
       {
@@ -89,7 +99,7 @@ namespace cube8
 
    system::~system()
    {
-
+      Gdiplus::GdiplusShutdown(gdiplusToken);
       m_puiMain      = NULL;
       m_puiActive    = NULL;
 

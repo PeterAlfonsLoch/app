@@ -1,5 +1,11 @@
 #pragma once
 
+
+#undef new
+
+#include <GdiPlus.h>
+
+
 namespace win
 {
 
@@ -10,9 +16,25 @@ namespace win
       // // DECLARE_DYNCREATE(::ca::graphics_sp)
    public:
 
+
+      ::Gdiplus::Graphics * m_pgraphics;
+
+
+
+
       graphics();
       graphics(::ca::application * papp);
       virtual ~graphics();
+
+
+      Gdiplus::Graphics & g()
+      {
+         if(m_pgraphics == NULL)
+         {
+            m_pgraphics = ::Gdiplus::Graphics::FromHDC(get_handle1());
+         }
+         return *m_pgraphics;
+      }
 
    // Attributes
    //   HDC get_os_data();          // The output DC (must be first data member <= no more true (What are the consequences?))
@@ -452,3 +474,6 @@ namespace win
    };
 
 } // namespace win
+
+
+#define new DEBUG_NEW

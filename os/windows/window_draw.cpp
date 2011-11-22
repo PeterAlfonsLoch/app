@@ -120,7 +120,7 @@ namespace win
       if(m_pbuffer->GetBuffer()->get_os_data() != NULL)
       {
          //m_pbuffer->m_spdib->fill_channel(255, visual::rgba::channel_alpha);
-         ScreenOutput();
+         //ScreenOutput();
       }
       DWORD dwTakeTime = ::GetTickCount() - m_dwLastUpdate;
       m_dwLastDelay = dwTakeTime;
@@ -449,7 +449,7 @@ namespace win
       rgnWindow->CreateRectRgn(0, 0, 0, 0);
       rgnIntersect->CreateRectRgn(0, 0, 0, 0);
 
-      rect rectIntersect;
+      /*rect rectIntersect;
       ::ca::rgn_sp rgnUpdate(get_app());
       rgnUpdate->CreateRectRgnIndirect(rectUpdate);
       HWND hwndOrder = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
@@ -497,8 +497,19 @@ namespace win
          }
          hwndOrder = ::GetWindow(hwndOrder, GW_HWNDNEXT);
       }
-         
+         */
       
+      for(int l = 0; l < wndpa.get_count(); l++)
+      {
+         try
+         {
+            dynamic_cast < ::ca::window * > (wndpa[l]->m_pimpl)->_001UpdateWindow();
+         }
+         catch(...)
+         {
+         }
+      }
+      return true;
       
       for(int j = wndaApp.get_upper_bound(); j >= 0; j--)
       {
@@ -519,7 +530,10 @@ namespace win
          if(!::IsWindowVisible(wndaApp[j]) ||
          ::IsIconic(wndaApp[j]) || pwnd == NULL)
             continue;
-         pwnd->GetWindowRect(rectWindow);
+
+
+
+         /*pwnd->GetWindowRect(rectWindow);
          rectIntersect.intersect(rectWindow, rectUpdate);
          if(rectIntersect.area() <= 0)
          {
@@ -562,7 +576,7 @@ namespace win
                rect.deflate(rect.width() / 4, rect.height() / 4);
                pwnd->SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
             }*/
-         }
+         /*}
          pwnd->GetWindowRect(rectWindow);
          rectIntersect.intersect(rectWindow, rectUpdate);
          if(rectIntersect.area() > 0)
@@ -570,11 +584,11 @@ namespace win
             m_pbuffer->GetBuffer()->SetViewportOrg(0, 0);
             pwnd->_001Print(m_pbuffer->GetBuffer());
             m_wndpaOut.add(pwnd);
-         }
+         }*/
       }
 
-      HDC hdc = (HDC) m_pbuffer->GetBuffer()->get_os_data();
-      ::SetViewportOrgEx(hdc, 0, 0, NULL);
+      //HDC hdc = (HDC) m_pbuffer->GetBuffer()->get_os_data();
+      //::SetViewportOrgEx(hdc, 0, 0, NULL);
 
 
 
@@ -1178,7 +1192,7 @@ namespace win
 
       if(::GetWindowLong(hwndParam, GWL_EXSTYLE) & WS_EX_LAYERED)
       {
-         BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, 0 };
+         BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
          rect64 rectWindow;
          rectWindow = pwnd->m_rectParentClient;
@@ -1204,9 +1218,11 @@ namespace win
          sz.cx = (LONG) min(rectWindow.right - pt.x, System.m_monitorinfoa[0].rcMonitor.right - pt.x);
          sz.cy = (LONG) min(rectWindow.bottom - pt.y, System.m_monitorinfoa[0].rcMonitor.bottom - pt.y);
 
+//         m_pbuffer->m_spdib->fill_channel(0xc0, visual::rgba::channel_alpha);
+
          ::UpdateLayeredWindow(hwndParam, hdcScreen, &pt, &sz,
             (HDC)(dynamic_cast<::win::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
-            &pt, 0, &blendPixelFunction, ULW_OPAQUE);
+            &pt, 0, &blendPixelFunction, ULW_ALPHA);
 
          class rect rectWin;
          ::GetWindowRect(hwndParam, rectWin);

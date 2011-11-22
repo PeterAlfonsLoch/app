@@ -2526,6 +2526,10 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr
 {
 
 
+   pdc->FillSolidRect(pt.x, pt.y, pt.x + size.cx, pt.y + size.cy, (cr & 0x00ffffff) | (bA << 24));
+
+   return true;
+
    if(pdibWork == NULL)
    {
       return false;

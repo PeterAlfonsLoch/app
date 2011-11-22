@@ -53,8 +53,154 @@ namespace visual
       }
    }
 
+
+   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, base_array < size > & sizea)
+   {
+      string str(lpcsz);
+      int iLen = str.get_length();
+      sizea.set_size(iLen);
+      if(iLen > 0)
+      {
+         sizea[0] = (DWORD) 0;
+      }
+      for(int i = 1; i < iLen; i++)
+      {
+         ::GetTextExtentPoint32U(
+            (HDC)pdc->get_os_data(),
+            str,
+            i,
+            &sizea[i]);
+      }
+
+   }
+
+   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpwsz, size & size)
+   {
+      string str(lpwsz);
+      if(pdc == NULL)
+         return;
+      ::GetTextExtentPoint32U(
+         (HDC)pdc->get_os_data(),
+         (const char *) str,
+         str.get_length(),
+         &size);
+
+   }
+
+   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, int iCount, size & size)
+   {
+      ::GetTextExtentPoint32U(
+         (HDC)pdc->get_os_data(),
+         lpcsz,
+         iCount,
+         &size);
+
+   }
+
+   int graphics_extension::_EncodeV033(string & str)
+   {
+      int iStart = 0;
+      int iIndex;
+      int iLen = str.get_length();
+      while(true)
+      {
+         iIndex = str.find(L'&', iStart);
+         if(iIndex < 0)
+            break;
+         if(iIndex + 1 >= iLen)
+            break;
+         if(str[iIndex + 1] == L'&')
+         {
+            iIndex++;
+            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
+         }
+         else
+         {
+            // Found !
+            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
+            return iIndex;
+         }
+
+         if(iIndex >= str.get_length())
+            break;
+      }
+      // Not Found
+      return -1;
+   }
+
+
+
+   /*int graphics_extension::_FindPrefixV1(const wchar_t * lpcsz)
+   {
+      int iStart = 0;
+      int iIndex;
+      int iLen = wcslen(lpcsz);
+      wchar_t * lpszFind;
+      while(true)
+      {
+         lpszFind = wcschr(lpcsz + iStart, L'&');
+         if(lpszFind == NULL)
+            break;
+         iIndex = (int)(lpsz - m_pchData);
+         if(iIndex + 1 >= iLen)
+            break;
+         if(lpcsz[iIndex + 1] == L'&')
+         {
+            iIndex++;
+            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
+         }
+         else
+         {
+            // Found !
+            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
+            return iIndex;
+         }
+
+         if(iIndex >= str.get_length())
+            break;
+      }
+      // Not Found
+      return -1;
+   }*/
+
+   void graphics_extension::FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr)
+   {
+      ::SetBkColor(hdc, clr);
+      rect rect;
+      if(::copy(rect, lpRect))
+      {
+         ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
+      }
+   }
+
+   void graphics_extension::FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr)
+   {
+      ::SetBkColor(hdc, clr);
+      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+   }
+
+   void graphics_extension::FillSolidRect(HDC hdc, int x, int y, int cx, int cy, COLORREF clr)
+   {
+      ::SetBkColor(hdc, clr);
+      rect rect(x, y, x + cx, y + cy);
+      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
+   }
+
+} // namespace visual
+
+
+namespace visual
+{
+
    int graphics_extension::_DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline)
    {
+
+
+//      ::
+
+  //    if(pdc->GetBkMode() == TRANSPARENT
+
+      wstring wstr = gen::international::utf8_to_unicode(lpcsz);
 
       string str(lpcsz);
       string str2;
@@ -290,12 +436,13 @@ namespace visual
       }
       else
       {
-         ::TextOutU(
+         pdc->TextOut(rect.left, rect.top, str);
+         /*::TextOutU(
             (HDC)pdc->get_os_data(),
             rect.left,
             rect.top,
             str,
-            iLen);
+            iLen);*/
       }
       if(str2.get_length() > 0)
       {
@@ -303,138 +450,6 @@ namespace visual
          _DrawText(pdc, str2, rectClip, uiFormat);
       }
       return 1;
-   }
-
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, base_array < size > & sizea)
-   {
-      string str(lpcsz);
-      int iLen = str.get_length();
-      sizea.set_size(iLen);
-      if(iLen > 0)
-      {
-         sizea[0] = (DWORD) 0;
-      }
-      for(int i = 1; i < iLen; i++)
-      {
-         ::GetTextExtentPoint32U(
-            (HDC)pdc->get_os_data(),
-            str,
-            i,
-            &sizea[i]);
-      }
-
-   }
-
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpwsz, size & size)
-   {
-      string str(lpwsz);
-      if(pdc == NULL)
-         return;
-      ::GetTextExtentPoint32U(
-         (HDC)pdc->get_os_data(),
-         (const char *) str,
-         str.get_length(),
-         &size);
-
-   }
-
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, int iCount, size & size)
-   {
-      ::GetTextExtentPoint32U(
-         (HDC)pdc->get_os_data(),
-         lpcsz,
-         iCount,
-         &size);
-
-   }
-
-   int graphics_extension::_EncodeV033(string & str)
-   {
-      int iStart = 0;
-      int iIndex;
-      int iLen = str.get_length();
-      while(true)
-      {
-         iIndex = str.find(L'&', iStart);
-         if(iIndex < 0)
-            break;
-         if(iIndex + 1 >= iLen)
-            break;
-         if(str[iIndex + 1] == L'&')
-         {
-            iIndex++;
-            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
-         }
-         else
-         {
-            // Found !
-            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
-            return iIndex;
-         }
-
-         if(iIndex >= str.get_length())
-            break;
-      }
-      // Not Found
-      return -1;
-   }
-
-
-
-   /*int graphics_extension::_FindPrefixV1(const wchar_t * lpcsz)
-   {
-      int iStart = 0;
-      int iIndex;
-      int iLen = wcslen(lpcsz);
-      wchar_t * lpszFind;
-      while(true)
-      {
-         lpszFind = wcschr(lpcsz + iStart, L'&');
-         if(lpszFind == NULL)
-            break;
-         iIndex = (int)(lpsz - m_pchData);
-         if(iIndex + 1 >= iLen)
-            break;
-         if(lpcsz[iIndex + 1] == L'&')
-         {
-            iIndex++;
-            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
-         }
-         else
-         {
-            // Found !
-            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
-            return iIndex;
-         }
-
-         if(iIndex >= str.get_length())
-            break;
-      }
-      // Not Found
-      return -1;
-   }*/
-
-   void graphics_extension::FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr)
-   {
-      ::SetBkColor(hdc, clr);
-      rect rect;
-      if(::copy(rect, lpRect))
-      {
-         ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
-      }
-   }
-
-   void graphics_extension::FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr)
-   {
-      ::SetBkColor(hdc, clr);
-      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
-   }
-
-   void graphics_extension::FillSolidRect(HDC hdc, int x, int y, int cx, int cy, COLORREF clr)
-   {
-      ::SetBkColor(hdc, clr);
-      rect rect(x, y, x + cx, y + cy);
-      ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
    }
 
 } // namespace visual

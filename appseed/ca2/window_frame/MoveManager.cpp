@@ -85,7 +85,7 @@ namespace window_frame
       ::user::interaction * puieCapture = System.get_capture_uie();
       if(puieCapture == NULL)
       {
-         m_bMoving = false;
+          m_bMoving = false;
          return false;
       }
       ::user::interaction * puieEventWindow = GetEventWindow();

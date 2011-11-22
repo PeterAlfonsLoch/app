@@ -244,12 +244,9 @@ namespace user
 
       class imaging & imaging = System.imaging();
 
-      imaging.color_blend(
-         pdc,
-         get_data()->m_rectTab,
-         RGB(250, 255, 255),
-         127);
+      imaging.color_blend(pdc, get_data()->m_rectTab, RGB(250, 255, 255), 0xc0);
 
+            pdc->SetBkMode(OPAQUE);
 
       int iVisiblePane = 0;
 
@@ -352,7 +349,7 @@ namespace user
                else
                {
                   pdc->SelectObject(get_data()->m_font);
-                  pdc->SetTextColor(RGB(0, 0, 0));
+                  pdc->SetTextColor(RGB(10, 10, 10));
                }
             }
 
@@ -361,7 +358,6 @@ namespace user
          {
             string str;
             pane.get_title(get_app(), str);
-            pdc->SetBkMode(TRANSPARENT);
             get_data()->m_dcextension._DrawText(
                pdc,
                str,

@@ -309,20 +309,20 @@ namespace window_frame
       }
 
       //class imaging & imaging = System.imaging();
-      if(!bZoomed && !pappearance->IsFullScreen())
+      /*if(!bZoomed && !pappearance->IsFullScreen())
       {
          class rect rect1;
          rect1.left = rect.left;
          rect1.right = rect.right;
          rect1.top = rect.top;
          rect1.bottom = rect1.top + 35;
-         ColorGlass(pdc, rect1, m_crMoveableBorder, 127);
+         //ColorGlass(pdc, rect1, m_crMoveableBorder, 127);
          /*imaging.color_blend(pdc,
             rect1,
             m_crMoveableBorder,
             127);*/
 
-         rect1.left = rect.left;
+         /*rect1.left = rect.left;
          rect1.right = rect1.left + 7;
          rect1.top = rect.top + 35;
          rect1.bottom = rect.bottom - 7;
@@ -331,7 +331,7 @@ namespace window_frame
             rect1,
             m_crMoveableBorder,
             127);*/
-         rect1.right = rect.right;
+         /*rect1.right = rect.right;
          rect1.left = rect1.right - 7;
          rect1.top = rect.top + 35;
          rect1.bottom = rect.bottom - 7;
@@ -340,7 +340,7 @@ namespace window_frame
             rect1,
             m_crMoveableBorder,
             127);*/
-         rect1.left = rect.left;
+         /*rect1.left = rect.left;
          rect1.right = rect.right;
          rect1.bottom = rect.bottom;
          rect1.top = rect1.bottom - 7;
@@ -350,7 +350,7 @@ namespace window_frame
             m_crMoveableBorder,
             127);*/
 
-      }
+      //}
       class rect rectClient = rect;
       rectClient.deflate(7, 32, 7, 7);
       if(pappearance->m_nTransparency != window_frame::Transparent)
@@ -509,7 +509,7 @@ namespace window_frame
          
          class imaging & imaging = System.imaging();
          
-         imaging.color_blend(pdc, rect, crMoveableBorder, 127,m_dibmap[rect.size()]);
+         imaging.color_blend(pdc, rect, crMoveableBorder, 230, m_dibmap[rect.size()]);
 
          class rect rectClientB = rectA;
 
@@ -1045,12 +1045,12 @@ namespace window_frame
             rectA.right = 4;
             rectA.bottom = size;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
 
             rectA.right = size;
             rectA.bottom = 4;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
 
          }
          break;
@@ -1061,12 +1061,12 @@ namespace window_frame
             rectA.left = rectA.right - 4;
             rectA.bottom = size;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
 
             rectA.left = rectA.right - size;
             rectA.bottom = 4;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
          }
          break;
       case GripBottomLeft:
@@ -1076,12 +1076,12 @@ namespace window_frame
             rectA.right = 4;
             rectA.top = rectA.bottom - size;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
 
             rectA.right = size;
             rectA.top = rectA.bottom - 4;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
          }
          break;
       case GripBottomRight:
@@ -1091,12 +1091,12 @@ namespace window_frame
             rectA.left = rectA.right - 4;
             rectA.top = rectA.bottom - size;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
 
             rectA.left = rectA.right - size;
             rectA.top = rectA.bottom - 4;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
          }
          break;
       case GripCenterTop:
@@ -1107,7 +1107,7 @@ namespace window_frame
             rectA.right = rectA.left + size;
             rectA.bottom = 4;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
 
          }
          break;
@@ -1119,7 +1119,7 @@ namespace window_frame
             rectA.right = rectA.left + size;
             rectA.top = rectA.bottom - 4;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
          }
          break;
       case GripCenterLeft:
@@ -1130,7 +1130,7 @@ namespace window_frame
             rectA.top = rectA.top + rectA.height() / 2 - size / 2;
             rectA.bottom = rectA.top + size;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
          }
          break;
       case GripCenterRight:
@@ -1141,7 +1141,7 @@ namespace window_frame
             rectA.top = rectA.top + rectA.height() / 2 - size / 2;
             rectA.bottom = rectA.top + size;
 
-            pdc->FillSolidRect(rectA, RGB(0x60, 0x65, 0x55));
+            pdc->FillSolidRect(rectA, ARGB(0xff, 0x60, 0x65, 0x55));
          }
          break;
       }

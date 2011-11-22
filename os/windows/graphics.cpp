@@ -404,15 +404,6 @@ namespace win
    BOOL graphics::ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType)
    { ASSERT(get_handle1() != NULL); return ::ExtFloodFill(get_handle1(), x, y, crColor, nFillType); }
    
-   BOOL graphics::TextOut(int x, int y, const char * lpszString, int nCount)
-   {
-      if(get_handle1() == NULL)
-         return FALSE;
-      
-      string str(lpszString, nCount);
-      wstring wstr = gen::international::utf8_to_unicode(str);
-      return ::TextOutW(get_handle1(), x, y, wstr, wcslen(wstr)); 
-   }
 
    // true blend
    // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
@@ -470,9 +461,9 @@ namespace win
          }
       }
       
-      ASSERT(get_handle1() != NULL); 
-      wstring wstr = gen::international::utf8_to_unicode(str);
-      return TextOutW(get_handle1(), x, y, (const wchar_t *)wstr, (int)wcslen(wstr)); 
+      //ASSERT(get_handle1() != NULL); 
+      //wstring wstr = gen::international::utf8_to_unicode(str);
+      return TextOut(x, y, str, str.get_length()); 
    
    } // call virtual
 
@@ -1048,11 +1039,11 @@ namespace win
       SelectClipRgn(NULL);
    }
 
-   void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
+   /*void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
    {
       ::SetBkColor(get_handle1(), clr);
       ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
-   }
+   }*/
 
    void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
    {
@@ -1062,12 +1053,16 @@ namespace win
    }
 
 
+   /*
+    
    void graphics::FillSolidRect(int x, int y, int cx, int cy, COLORREF clr)
    {
       ::SetBkColor(get_handle1(), clr);
       rect rect(x, y, x + cx, y + cy);
       ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
    }
+
+   */
 
    void graphics::Draw3dRect(LPCRECT lpRect,
       COLORREF clrTopLeft, COLORREF clrBottomRight)
@@ -1096,6 +1091,7 @@ namespace win
       set_handle2(NULL);
       m_bPrinting = FALSE;
       m_pdibAlphaBlend = NULL;
+      m_pgraphics = NULL;
    }
 
    graphics::graphics()
@@ -1103,6 +1099,8 @@ namespace win
       set_handle1(NULL);
       set_handle2(NULL);
       m_bPrinting = FALSE;
+      m_pgraphics = NULL;
+      m_pgraphics = NULL;
    }
 
 #ifdef _DEBUG
@@ -1177,6 +1175,10 @@ namespace win
 
    graphics::~graphics()
    {
+      if(m_pgraphics != NULL)
+      {
+         delete m_pgraphics;
+      }
       if (get_handle1() != NULL)
          ::DeleteDC(Detach());
    }
@@ -1370,11 +1372,13 @@ namespace win
 
    COLORREF graphics::SetTextColor(COLORREF crColor)
    {
-      COLORREF crRetVal = CLR_INVALID;
+      COLORREF crRetVal = m_crColor;
+      m_crColor = crColor;
+/*      COLORREF crRetVal = CLR_INVALID;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          crRetVal = ::SetTextColor(get_handle1(), crColor);
       if(get_handle2() != NULL)
-         crRetVal = ::SetTextColor(get_handle2(), crColor);
+         crRetVal = ::SetTextColor(get_handle2(), crColor);*/
       return crRetVal;
    }
 
@@ -2210,3 +2214,59 @@ hdc_map* PASCAL afxMapHDC(BOOL bCreate)
    }
 
 }
+
+
+
+#undef new
+#include <gdiplus.h>
+
+// now, with gdi plus, should support alpha
+namespace win
+{
+
+   void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
+   {
+
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+      g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(((clr >> 24) & 0xff), GetRValue(clr), GetGValue(clr), GetBValue(clr)));
+      g().FillRectangle(&solidBrush, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+      //::SetBkColor(get_handle1(), clr);
+      //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+   }
+
+   void graphics::FillSolidRect(int x, int y, int cx, int cy, COLORREF clr)
+   {
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(((clr >> 24) & 0xff), GetRValue(clr), GetGValue(clr), GetBValue(clr)));
+      g().FillRectangle(&solidBrush, x, y, cx, cy);
+   }
+
+
+   BOOL graphics::TextOut(int x, int y, const char * lpszString, int nCount)
+   {
+      if(get_handle1() == NULL)
+         return FALSE;
+
+
+
+      ::Gdiplus::Font font(get_handle1());
+
+      g().SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+
+      ::Gdiplus::SolidBrush brush(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)));
+
+      ::Gdiplus::PointF origin(x, y);
+
+      //g.SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
+      
+      string str(lpszString, nCount);
+      wstring wstr = gen::international::utf8_to_unicode(str);
+      return g().DrawString(wstr, wstr.get_length(), &font, origin, &brush) == Gdiplus::Status::Ok;
+   }
+
+} // namespace win

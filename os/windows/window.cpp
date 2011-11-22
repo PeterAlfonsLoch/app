@@ -437,6 +437,8 @@ namespace win
    void window::_001OnSize(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
+
+
       if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
       {
          class rect rectWindow;
@@ -444,7 +446,26 @@ namespace win
          m_pguie->m_rectParentClient = rectWindow;
          m_rectParentClient = rectWindow;
       }
+
+      if(m_spdibMultAlphaWork.is_null())
+      {
+         m_spdibMultAlphaWork.create(get_app());
+      }
+
+      if(m_spdib.is_null())
+      {
+         m_spdib.create(get_app());
+      }
+
+      if(m_spdib.is_set())
+      {
+         m_spdib->create(m_rectParentClient.size());
+      }
+
       m_pguie->layout();
+
+
+
    }
 
    void window::_001OnShowWindow(gen::signal_object * pobj)
@@ -2913,8 +2934,17 @@ namespace win
       }
    };
 
-   void window::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
+/*   void window::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
    {
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+
+      pdc->FillSolidRect(rectClient, 0x00000000);
+
+      return;
       rect rectUpdate;
       GetDesktopWindow()->GetWindowRect(rectUpdate);
       pdc->SetViewportOrg(point(0, 0));
@@ -2967,7 +2997,7 @@ namespace win
             {
                j++;
             }*/
-            else
+            /*else
             {
                rect rectWindow;
                ::GetWindowRect(hwndOrder, rectWindow);
@@ -3000,10 +3030,10 @@ namespace win
                break;
             if(!::IsWindowVisible(hWnd) || ::IsIconic(hWnd))
                continue;
-            ::GetWindowRect(hWnd, rect5);
+            ::GetWindowRect(hWnd, rect5);*/
             //rect9.intersect(rect5, rectUpdate);
             //if(rect9.width() >0 && rect9.height() > 0)
-            {
+      /*      {
                ::ca::window * pwnd = dynamic_cast < ::ca::window * > (window::FromHandlePermanent(hWnd));
                if(pwnd == NULL)
                {
@@ -3070,7 +3100,7 @@ namespace win
             }
          }
       }
-   }
+   }*/
 
    void window::_001OnProdevianSynch(gen::signal_object * pobj)
    {
@@ -3954,6 +3984,7 @@ ExitModal:
          nFlags |= SWP_NOMOVE;
          nFlags |= SWP_NOSIZE;
          nFlags |= SWP_NOZORDER;
+         nFlags |= SWP_FRAMECHANGED;
          if(nFlags & SWP_SHOWWINDOW)
          {
             ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
@@ -4485,6 +4516,10 @@ ExitModal:
 
    int window::ReleaseDC(::ca::graphics * pgraphics)
    { 
+      if((dynamic_cast<::win::graphics * >(pgraphics))->m_pgraphics != NULL)
+      {
+         delete (dynamic_cast<::win::graphics * >(pgraphics));
+      }
       if(get_handle() == NULL)
       {
          return ::ReleaseDC(NULL, (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1()); 
@@ -5433,6 +5468,7 @@ int window::GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton)
    }
 
 
+
 } // namespace win
 
 
@@ -5978,4 +6014,101 @@ BOOL CLASS_DECL_VMSWIN AfxRegisterClass(WNDCLASS* lpWndClass)
 }
 
 
+#undef new
+#include <gdiplus.h>
 
+
+namespace win
+{
+
+   void window::_001DeferPaintLayeredWindowBackground(::ca::graphics * pdc)
+   {
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      Gdiplus::Graphics g((HDC) pdc->get_os_data());
+      g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+
+      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(0, 0, 0, 0));
+      g.FillRectangle(&solidBrush, rectClient.left, rectClient.top, rectClient.width(), rectClient.height());
+
+      //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+   }
+
+   void window::_001UpdateWindow()
+   {
+      
+      if(m_spdib.is_null())
+         return;
+
+      if(m_spdib->area() <= 0)
+         return;
+
+      BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+      
+      _001OnDeferPaintLayeredWindowBackground(m_spdib->get_graphics());
+      _001Print(m_spdib->get_graphics());
+
+      HDC hdc = ::GetDC(get_handle());
+
+      rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      point pt;
+      size sz;
+
+      pt = point(rectWindow.top_left());
+      sz = size(rectWindow.size());
+
+      point ptSrc(0, 0);
+
+      m_spdib->mult_alpha(m_spdibMultAlphaWork);
+
+      ::UpdateLayeredWindow(get_handle(), hdc, &pt, &sz,
+            (HDC)m_spdib->get_graphics()->get_os_data(),
+            &ptSrc, 0, &blendPixelFunction, ULW_ALPHA);
+
+
+      ::ReleaseDC(get_handle(), hdc);
+
+
+
+      /*class rect rectWin;
+      GetWindowRect(rectWin);
+      if(rect(rectWindow) != rectWin || (m_pguie != NULL && (bool) m_pguie->oprop("pending_layout")))
+      {
+
+            
+         if(m_pguie != NULL && (bool) m_pguie->oprop("pending_layout"))
+         {
+            HWND hwndZOrder = (HWND) m_pguie->oprop("pending_zorder").get_integer();
+            SetWindowPos((int) HWND_TOPMOST, 
+               rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+            SetWindowPos((int) HWND_NOTOPMOST, 
+               rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+            SetWindowPos((int) hwndZOrder, 
+               rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW | SWP_FRAMECHANGED);
+            /*simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd->m_pguie);
+            if(pframe != NULL)
+            {
+               pframe->ActivateFrame();
+            }*/
+        /*    m_pguie->oprop("pending_layout") = false;
+         }
+         else
+         {
+            SetWindowPos(NULL, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
+         }
+      }*/
+
+
+
+   }
+
+
+
+}
