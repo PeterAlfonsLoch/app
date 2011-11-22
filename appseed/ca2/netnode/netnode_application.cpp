@@ -13,7 +13,6 @@ namespace netnode
 
    application::application(void)
    {
-      m_bService        = true;
       m_pservice        = NULL;
    }
 
@@ -27,6 +26,8 @@ namespace netnode
       m_strAppName               = "netnode";
       m_strLicense               = "netnode";
       m_bShouldInitializeGTwf    = false;
+      m_bService                 = true;
+
    }
 
    bool application::initialize_instance()
