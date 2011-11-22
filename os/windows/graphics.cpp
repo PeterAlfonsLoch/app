@@ -268,10 +268,6 @@ namespace win
       return point;
    }
 
-   point graphics::MoveTo(POINT point)
-   { ASSERT(get_handle1() != NULL); return MoveTo(point.x, point.y); }
-   BOOL graphics::LineTo(POINT point)
-   { ASSERT(get_handle1() != NULL); return LineTo(point.x, point.y); }
    BOOL graphics::Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    { ASSERT(get_handle1() != NULL); return ::Arc(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4); }
    BOOL graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
@@ -1436,12 +1432,16 @@ namespace win
 
    point graphics::SetViewportOrg(int x, int y)
    {
-      point point(0, 0);
+      /*point point(0, 0);
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          ::SetViewportOrgEx(get_handle1(), x, y, &point);
       if(get_handle2() != NULL)
-         ::SetViewportOrgEx(get_handle2(), x, y, &point);
-      return point;
+         ::SetViewportOrgEx(get_handle2(), x, y, &point);*/
+      Gdiplus::Matrix m;
+      m.Translate(x, y);
+      g().SetTransform(&m);
+      //return point;
+      return point(x, y);
    }
 
    point graphics::OffsetViewportOrg(int nWidth, int nHeight)
@@ -1591,7 +1591,7 @@ namespace win
       return nRetVal;
    }
 
-   point graphics::MoveTo(int x, int y)
+   /*point graphics::MoveTo(int x, int y)
    {
       point point(0, 0);
       if(get_handle1() != NULL && get_handle1() != get_handle2())
@@ -1599,14 +1599,7 @@ namespace win
       if(get_handle2() != NULL)
          ::MoveToEx(get_handle2(), x, y, &point);
       return point;
-   }
-
-   BOOL graphics::LineTo(int x, int y)
-   {
-      if(get_handle2() != NULL && get_handle1() != get_handle2())
-         ::MoveToEx(get_handle2(), x, y, NULL);
-      return ::LineTo(get_handle1(), x, y);
-   }
+   }*/
 
    UINT graphics::SetTextAlign(UINT nFlags)
    {
@@ -2258,15 +2251,50 @@ namespace win
 
       g().SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-      ::Gdiplus::SolidBrush brush(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)));
-
       ::Gdiplus::PointF origin(x, y);
 
       //g.SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
       
       string str(lpszString, nCount);
       wstring wstr = gen::international::utf8_to_unicode(str);
-      return g().DrawString(wstr, wstr.get_length(), &font, origin, &brush) == Gdiplus::Status::Ok;
+      return g().DrawString(
+         wstr, 
+         wstr.get_length(), 
+         &(dynamic_cast < ::win::font * > (m_font.m_p))->f(), 
+         origin, 
+         &(dynamic_cast < ::win::brush * > (m_brush.m_p))->b()) == Gdiplus::Status::Ok;
    }
+
+
+
+
+   BOOL graphics::LineTo(double x, double y)
+   {
+
+      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
+
+      g().DrawLine(&pen, Gdiplus::Point(m_x, m_y), Gdiplus::Point(x, y));
+
+
+      m_x = x;
+      m_y = y;
+
+      return TRUE;
+   }
+
+
+   void graphics::set_alpha_mode(e_alpha ealpha)
+   {
+      ::ca::graphics::set_alpha_mode(ealpha);
+      if(m_ealpha == alpha_blend)
+      {
+         g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      }
+      else if(m_ealpha == alpha_set)
+      {
+         g().SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+      }
+   }
+
 
 } // namespace win

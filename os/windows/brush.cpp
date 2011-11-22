@@ -22,7 +22,11 @@ namespace win
       return dynamic_cast < brush * > (::win::graphics_object::from_handle(papp, hBrush));
    }
     BOOL brush::CreateSolidBrush(COLORREF crColor)
-      { return Attach(::CreateSolidBrush(crColor)); }
+      {
+         m_pbrush = new Gdiplus::SolidBrush(GetAValue(crColor), GetRValue(crColor), GetGValue(crColor), GetBValue(crColor));
+         return m_pbrush != NULL;
+         
+      }
     BOOL brush::CreateHatchBrush(int nIndex, COLORREF crColor)
       { return Attach(::CreateHatchBrush(nIndex, crColor)); }
     BOOL brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)

@@ -208,10 +208,10 @@ namespace win
 
    // Line-Output Functions
       point GetCurrentPosition() const;
-      point MoveTo(int x, int y);
-      point MoveTo(POINT point);
-      BOOL LineTo(int x, int y);
-      BOOL LineTo(POINT point);
+//      point MoveTo(int x, int y);
+  //    point MoveTo(POINT point);
+      BOOL LineTo(double x, double y);
+    //  BOOL LineTo(POINT point);
       BOOL Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       BOOL Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       BOOL Polyline(const POINT* lpPoints, int nCount);
@@ -467,6 +467,9 @@ namespace win
       // advanced use and implementation
       BOOL m_bPrinting;
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
+
+      virtual void set_alpha_mode(e_alpha ealpha);
+
 
    protected:
       // used for implementation of non-virtual SelectObject calls

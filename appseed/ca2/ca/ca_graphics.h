@@ -23,6 +23,13 @@ namespace ca
    {
    public:
 
+
+      enum e_alpha_mode
+      {
+         alpha_mode_set,
+         alpha_mode_blend,
+      };
+
       ::user::str_context *      m_puistrcontext;
 
       ::user::draw_context *     m_pdrawcontext;
@@ -33,10 +40,15 @@ namespace ca
 
       ::ca::pen_sp               m_pen;
       ::ca::brush_sp             m_brush;
+      ::ca::font_sp              m_font;
 
       int                        m_nPenStyle;
-      int                        m_iPenWidth;
+      double                     m_dPenWidth;
       COLORREF                   m_crColor;
+      double                     m_x;
+      double                     m_y;
+
+      e_alpha_mode               m_ealphamode;
 
       graphics();
 
@@ -48,6 +60,9 @@ namespace ca
       virtual ::user::draw_context * draw_context();
 
 
+      virtual void set_alpha_mode(e_alpha_mode ealphamode);
+
+      void set_solid_pen(double dWidth);
 
       //virtual void SetAttribDC(HDC hDC);  // Set the Attribute DC
       //virtual void SetOutputDC(HDC hDC);  // Set the Output DC
@@ -232,8 +247,10 @@ namespace ca
 
       virtual point GetCurrentPosition() const;
       virtual point MoveTo(int x, int y);
+      virtual point MoveTo(double x, double y);
       virtual point MoveTo(POINT point);
       virtual BOOL LineTo(int x, int y);
+      virtual BOOL LineTo(double x, double y);
       virtual BOOL LineTo(POINT point);
       virtual BOOL Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       virtual BOOL Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);

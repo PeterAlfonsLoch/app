@@ -1,5 +1,12 @@
 #pragma once
 
+
+#undef new
+
+#include <GdiPlus.h>
+
+
+
 namespace win
 {
 
@@ -8,6 +15,10 @@ namespace win
       virtual public ::ca::brush
    {
    public:
+
+
+      Gdiplus::Brush * m_pbrush;
+
       static brush* PASCAL from_handle(::ca::application * papp, HBRUSH hBrush);
 
       // Constructors
@@ -17,6 +28,8 @@ namespace win
       virtual void construct(::ca::bitmap * pbitmap);                // CreatePatternBrush
 
       virtual ~brush();
+
+
 
       BOOL CreateSolidBrush(COLORREF crColor);
       BOOL CreateHatchBrush(int nIndex, COLORREF crColor);

@@ -231,7 +231,7 @@ namespace user
       if(get_data()->is_in_use())
          return;
 
-      pdc->SetBkColor(RGB(255, 255, 255));
+      //pdc->SetBkColor(RGB(255, 255, 255));
 
       class rect rect;
       class rect rectBorder;
@@ -240,13 +240,13 @@ namespace user
       class rect rectIcon;
       class rect rectClose;
 
-      HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
+      //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
 
       class imaging & imaging = System.imaging();
 
-      imaging.color_blend(pdc, get_data()->m_rectTab, RGB(250, 255, 255), 0xc0);
+      //imaging.color_blend(pdc, get_data()->m_rectTab, RGB(250, 255, 255), 0xc0);
 
-            pdc->SetBkMode(OPAQUE);
+            //pdc->SetBkMode(OPAQUE);
 
       int iVisiblePane = 0;
 
@@ -279,8 +279,10 @@ namespace user
 
             if(get_data()->m_iaSel.contains(iPane))
             {
-               pdc->SelectObject(get_data()->m_fontBold);
-               pdc->SetTextColor(RGB(0, 0, 0));
+               pdc->set_font(get_data()->m_fontBold);
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
+
 
                pdc->MoveTo(rectBorder.right, rectBorder.bottom);
                pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
@@ -290,6 +292,8 @@ namespace user
             }
             else
             {
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
                pdc->MoveTo(rectBorder.right, rectBorder.bottom);
                pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
                pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
@@ -298,12 +302,12 @@ namespace user
                pdc->LineTo(rectBorder.right, rectBorder.bottom);
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
-                  pdc->SelectObject(get_data()->m_fontUnderline);
+                  pdc->set_font(get_data()->m_fontUnderline);
                   pdc->SetTextColor(RGB(0, 127, 255));
                }
                else
                {
-                  pdc->SelectObject(get_data()->m_font);
+                  pdc->set_font(get_data()->m_font);
                   pdc->SetTextColor(RGB(0, 0, 0));
                }
             }
@@ -320,6 +324,9 @@ namespace user
 
             if(get_data()->m_iaSel.contains(iPane))
             {
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
+
                pdc->MoveTo(rectBorder.left, rectClient.bottom);
                //pdc->LineTo(rectBorder.left, rectText.bottom);
                pdc->LineTo(rectBorder.left, rectBorder.top);
@@ -327,11 +334,14 @@ namespace user
                pdc->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
                pdc->LineTo(rectBorder.right - 1, rectClient.bottom);
                //pdc->LineTo(rect.right, rectText.bottom);
-               pdc->SelectObject(get_data()->m_fontBold);
-               pdc->SetTextColor(RGB(0, 0, 0));
+               pdc->set_font(get_data()->m_fontBold);
+               pdc->set_color(ARGB(0xff, 0, 0, 0));
             }
             else
             {
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
+
                //pdc->MoveTo(rect.left, rectBorder.bottom);
                //pdc->LineTo(rect.right, rectBorder.bottom);
                pdc->MoveTo(rectBorder.left, rectClient.bottom);
@@ -343,13 +353,13 @@ namespace user
 
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
-                  pdc->SelectObject(get_data()->m_fontUnderline);
-                  pdc->SetTextColor(RGB(0, 127, 255));
+                  pdc->set_font(get_data()->m_fontUnderline);
+                  pdc->set_color(ARGB(0xff, 0, 127, 255));
                }
                else
                {
-                  pdc->SelectObject(get_data()->m_font);
-                  pdc->SetTextColor(RGB(10, 10, 10));
+                  pdc->set_font(get_data()->m_font);
+                  pdc->set_color(ARGB(0xff, 10, 10, 10));
                }
             }
 
@@ -367,14 +377,14 @@ namespace user
          }
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
-            pdc->SelectObject(get_data()->m_fontBold);
+            pdc->set_font(get_data()->m_fontBold);
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
-               pdc->SetTextColor(RGB(255, 127, 0));
+               pdc->set_color(ARGB(0xff, 255, 127, 0));
             }
             else
             {
-               pdc->SetTextColor(RGB(0, 0, 0));
+               pdc->set_color(ARGB(0xff, 0, 0, 0));
             }
             pdc->DrawText("x", rectClose, DT_CENTER | DT_VCENTER);
          }
@@ -383,7 +393,7 @@ namespace user
          iVisiblePane++;
 
       }
-      pdc->SelectObject(hOldPen);
+      //pdc->SelectObject(hOldPen);
 
    }
 

@@ -1,5 +1,10 @@
 #pragma once
 
+#undef new
+
+#include <GdiPlus.h>
+
+
 namespace win
 {
 
@@ -8,10 +13,25 @@ namespace win
       virtual public ::ca::font
    {
    public:
+
+      Gdiplus::Font * m_pfont;
+
       static font * PASCAL from_handle(::ca::application * papp, HFONT hFont);
 
       font(::ca::application * papp);
       virtual ~font();
+
+
+      Gdiplus::Font & f()
+      {
+         if(m_pfont == NULL)
+         {
+            HDC hdc = ::CreateCompatibleDC(NULL);
+            m_pfont = new Gdiplus::Font(hdc, (HFONT) get_handle());
+            ::DeleteDC(hdc);
+         }
+         return *m_pfont;
+      }
 
       virtual void font::construct(const ::ca::font & fontParam);
 
@@ -36,3 +56,5 @@ namespace win
    };
 
 } // namespace win
+
+#define new DEBUG_NEW

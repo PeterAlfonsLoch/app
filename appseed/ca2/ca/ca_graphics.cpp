@@ -11,7 +11,7 @@ namespace ca
       m_pdibAlphaBlend        = NULL;
       m_pjob                  = NULL;
       m_nPenStyle             = PS_SOLID;
-      m_iPenWidth             = 1;
+      m_dPenWidth             = 1.0;
       m_crColor               = RGB(0, 0, 0);
    }
 
@@ -126,7 +126,9 @@ namespace ca
       // SIOOT - Should implemennt one of them
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
-      return dynamic_cast < ::ca::font * > (SelectObject(pfont));
+      ::ca::font * pold = m_font;
+      m_font = pfont;
+      return pold;
    }
 
    ::ca::font * graphics::selectFont(::ca::font * pfont)
@@ -341,14 +343,12 @@ namespace ca
 
    point graphics::MoveTo(POINT point)
    {
-      UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception();   
+      return MoveTo((double)point.x, (double)point.y);
    }
 
    BOOL graphics::LineTo(POINT point)
    {
-      UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception();   
+      return LineTo(double(point.x), double(point.y));
    }
 
    BOOL graphics::Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
@@ -1754,12 +1754,15 @@ namespace ca
 
    point graphics::MoveTo(int x, int y)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception();   
+      return MoveTo((double)x, (double)y);
    }
 
    BOOL graphics::LineTo(int x, int y)
+   {
+      return LineTo((double) x, (double) y);
+   }
+
+   BOOL graphics::LineTo(double x, double y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -2040,6 +2043,10 @@ namespace ca
       return alpha_blend(size, pgraphicsSrc, null_point(), blend);
    }
 
+   void graphics::set_alpha_mode(e_alpha ealpha)
+   {
+      m_ealpha = ealpha;
+   }
 
 
    COLORREF graphics::SetColor(COLORREF crColor)
@@ -2047,7 +2054,7 @@ namespace ca
 
       m_crColor = crColor;
       
-      if(m_pen.is_null())
+/*      if(m_pen.is_null())
          m_pen.create(get_app());
       if(m_pen->get_os_data() != NULL)
          m_pen->delete_object();
@@ -2062,7 +2069,7 @@ namespace ca
       SetTextColor(crColor);
 
       SelectObject(m_pen);
-      SelectObject(m_brush);
+      SelectObject(m_brush);*/
 
       return TRUE;
 
@@ -2081,7 +2088,7 @@ namespace ca
       // SIOOT - Should implemennt one of them
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
-      return set_color(crColor);
+      return setColor(crColor);
    }
 
 
@@ -2148,8 +2155,20 @@ namespace ca
 
    }
 
+   void graphics::set_solid_pen(double dWidth)
+   {
+      m_nPenStyle = PS_SOLID;
+      m_dPenWidth = dWidth;
+   }
 
-
+   point graphics::MoveTo(double x, double y)
+   {
+      int px = (int) m_x;
+      int py = (int) m_y;
+      m_x = x;
+      m_y = y;
+      return point(px, py);
+   }
 
 
 
@@ -2186,7 +2205,7 @@ namespace ca
    }
 
 
-
+   
 
 } // namespace ca
 

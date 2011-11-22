@@ -4,9 +4,16 @@ namespace win
 {
    font::font(::ca::application * papp) :
    ca(papp)
-   { }
+   { m_pfont = NULL;}
    font::~font()
-   { }
+   { 
+
+      if(m_pfont != NULL)
+      {
+         delete m_pfont;
+      }
+   
+   }
 
    font::operator HFONT() const
    {
