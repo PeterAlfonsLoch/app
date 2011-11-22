@@ -2223,8 +2223,7 @@ namespace win
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(((clr >> 24) & 0xff), GetRValue(clr), GetGValue(clr), GetBValue(clr)));
-      g().FillRectangle(&solidBrush, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      g().FillRectangle(dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
 
       //::SetBkColor(get_handle1(), clr);
       //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
@@ -2235,8 +2234,7 @@ namespace win
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(((clr >> 24) & 0xff), GetRValue(clr), GetGValue(clr), GetBValue(clr)));
-      g().FillRectangle(&solidBrush, x, y, cx, cy);
+      g().FillRectangle(dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush, x, y, cx, cy);
    }
 
 

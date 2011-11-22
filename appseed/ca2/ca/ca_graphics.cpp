@@ -2059,6 +2059,7 @@ namespace ca
       if(m_pen->get_os_data() != NULL)
          m_pen->delete_object();
       m_pen->CreatePen(m_nPenStyle, m_iPenWidth, m_crColor);
+      */
 
       if(m_brush.is_null())
          m_brush.create(get_app());
@@ -2066,10 +2067,10 @@ namespace ca
          m_brush->delete_object();
       m_brush->CreateSolidBrush( m_crColor);
 
-      SetTextColor(crColor);
+      //SetTextColor(crColor);
 
-      SelectObject(m_pen);
-      SelectObject(m_brush);*/
+      //SelectObject(m_pen);
+      //SelectObject(m_brush);
 
       return TRUE;
 
