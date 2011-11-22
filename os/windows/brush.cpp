@@ -23,7 +23,7 @@ namespace win
    }
     BOOL brush::CreateSolidBrush(COLORREF crColor)
       {
-         m_pbrush = new Gdiplus::SolidBrush(GetAValue(crColor), GetRValue(crColor), GetGValue(crColor), GetBValue(crColor));
+         m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(crColor), GetRValue(crColor), GetGValue(crColor), GetBValue(crColor)));
          return m_pbrush != NULL;
          
       }

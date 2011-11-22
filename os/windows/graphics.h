@@ -468,7 +468,7 @@ namespace win
       BOOL m_bPrinting;
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual void set_alpha_mode(e_alpha ealpha);
+      virtual void set_alpha_mode(e_alpha_mode ealphamode);
 
 
    protected:

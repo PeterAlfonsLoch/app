@@ -2262,7 +2262,7 @@ namespace win
          wstr.get_length(), 
          &(dynamic_cast < ::win::font * > (m_font.m_p))->f(), 
          origin, 
-         &(dynamic_cast < ::win::brush * > (m_brush.m_p))->b()) == Gdiplus::Status::Ok;
+         dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush) == Gdiplus::Status::Ok;
    }
 
 
@@ -2283,14 +2283,14 @@ namespace win
    }
 
 
-   void graphics::set_alpha_mode(e_alpha ealpha)
+   void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {
-      ::ca::graphics::set_alpha_mode(ealpha);
-      if(m_ealpha == alpha_blend)
+      ::ca::graphics::set_alpha_mode(ealphamode);
+      if(m_ealphamode == alpha_mode_blend)
       {
          g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       }
-      else if(m_ealpha == alpha_set)
+      else if(m_ealphamode == alpha_mode_set)
       {
          g().SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       }

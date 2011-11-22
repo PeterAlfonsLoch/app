@@ -143,17 +143,17 @@ namespace ca
 
    ::ca::font * graphics::SetFont(::ca::font * pfont)
    {
-      return SetFont(pfont);
+      return select_font(pfont);
    }
 
    ::ca::font * graphics::setFont(::ca::font * pfont)
    {
-      return setFont(pfont);
+      return SetFont(pfont);
    }
 
    ::ca::font * graphics::set_font(::ca::font * pfont)
    {
-      return set_font(pfont);
+      return setFont(pfont);
    }
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
@@ -2043,9 +2043,9 @@ namespace ca
       return alpha_blend(size, pgraphicsSrc, null_point(), blend);
    }
 
-   void graphics::set_alpha_mode(e_alpha ealpha)
+   void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {
-      m_ealpha = ealpha;
+      m_ealphamode = ealphamode;
    }
 
 
