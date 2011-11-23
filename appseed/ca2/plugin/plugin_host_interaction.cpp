@@ -192,7 +192,7 @@ namespace plugin
    }
    
 
-   BOOL host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::rgn* prgnUpdate, UINT flags)
+   BOOL host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
    { 
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);

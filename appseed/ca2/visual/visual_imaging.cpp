@@ -708,17 +708,20 @@ bool imaging::Createcolor_blend_ImageList(
    if(!pil->create(pilParam))
       return false;
 
+   if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
+      return false;
+
    ::ca::graphics_sp spgraphics(get_app());
 
    spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SetMapMode(MM_TEXT);
-   ::ca::bitmap * pbitmapOld = spgraphics->GetCurrentBitmap();
+   //::ca::bitmap * pbitmapOld = spgraphics->GetCurrentBitmap();
 
    color_blend(pil->m_spdib->get_graphics(), null_point(), pil->m_spdib->size(), cr, bAlpha);
 
 //   pil->m_spdib->channel_from(visual::rgba::channel_alpha, pilParam->m_spdib);
 
-   spgraphics->SelectObject(pbitmapOld);
+   //spgraphics->SelectObject(pbitmapOld);
 
    return true;
 
@@ -2398,7 +2401,7 @@ bool imaging::clip_color_blend(
                              LPCRECT lpcrect,
                              COLORREF cr,
                              BYTE alpha,
-                             ::ca::rgn * prgnClip)
+                             ::ca::region * prgnClip)
 {
    class rect rect(lpcrect);
    return clip_color_blend(
@@ -2417,7 +2420,7 @@ bool imaging::clip_color_blend(
                              size size,
                              COLORREF cr,
                              BYTE bA,
-                             ::ca::rgn * prgnClip)
+                             ::ca::region * prgnClip)
 {
    ::ca::bitmap_sp bitmapA(get_app());
 
@@ -2657,7 +2660,7 @@ bool imaging::ClipSave(
                        ::ca::bitmap * pbitmapOld,
                        BITMAP * pbmp,
                        LPCRECT lpcrect,
-                       ::ca::rgn * prgnClip)
+                       ::ca::region * prgnClip)
 {
 
    if(pdc == NULL)
@@ -2694,7 +2697,7 @@ bool imaging::ClipSave(
    {
       return false;
    }
-   ::ca::rgn rgnUpdate;
+   ::ca::region rgnUpdate;
    rgnUpdate.CreateRectRgnIndirect(lpcrect);
    rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
    rgnUpdate.GetRgnBox(rectUpdate);
@@ -2727,7 +2730,7 @@ bool imaging::ClipSave(
 
    prgnClip->GetRgnBox(rectClipBox);
 
-   //   ::ca::rgn rgnUpdate;
+   //   ::ca::region rgnUpdate;
    //   rgnUpdate.CreateRectRgnIndirect(lpcrect);
    //   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
    ::ca::graphics_sp spgraphics(get_app());
@@ -2770,7 +2773,7 @@ bool imaging::ClipRestore(
                           ::ca::bitmap * pbitmapOld,
                           BITMAP * pbmp,
                           LPCRECT lpcrect,
-                          ::ca::rgn * prgnClip)
+                          ::ca::region * prgnClip)
 {
    UNREFERENCED_PARAMETER(pbitmapOld);
    UNREFERENCED_PARAMETER(pbmp);
@@ -2794,10 +2797,10 @@ bool imaging::ClipRestore(
       spgraphics->CreateCompatibleDC(pdc);
       spgraphics->SetViewportOrg(pdc->GetViewportOrg());
       spgraphics->SelectObject(pbitmap);
-      ::ca::rgn_sp rgnClip(get_app());
+      ::ca::region_sp rgnClip(get_app());
       rgnClip->CreateRectRgn(0, 0, 0, 0);
       int iClip = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data());
-      ::ca::rgn_sp rgnUpdate(get_app());
+      ::ca::region_sp rgnUpdate(get_app());
       rgnUpdate->CreateRectRgnIndirect(lpcrect);
       rgnUpdate->CombineRgn(rgnUpdate, prgnClip, RGN_DIFF);
       pdc->SelectClipRgn(rgnUpdate);
@@ -2843,12 +2846,12 @@ bool imaging::ClipRestore(
    spgraphics->CreateCompatibleDC(pdc);
    spgraphics->SetViewportOrg(pdc->GetViewportOrg());
    spgraphics->SelectObject(pbitmap);
-   ::ca::rgn rgnClip;
+   ::ca::region rgnClip;
    rgnClip.CreateRectRgn(0, 0, 0, 0);
    int iClip = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip);
    rect rC;
    prgnClip->GetRgnBox(rC);
-   ::ca::rgn rgnUpdate;
+   ::ca::region rgnUpdate;
    rgnUpdate.CreateRectRgnIndirect(rectUpdate);
    rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
    pdc->SelectClipRgn(&rgnUpdate);
@@ -2891,7 +2894,7 @@ bool imaging::ClipSave(
    if(pbitmap == NULL)
       return false;
 
-   ::ca::rgn_sp rgnClip(get_app());
+   ::ca::region_sp rgnClip(get_app());
 
    rgnClip->CreateRectRgn(0, 0, 0, 0);
 
@@ -2921,7 +2924,7 @@ bool imaging::ClipRestore(
    if(pbitmap == NULL)
       return false;
 
-   ::ca::rgn_sp rgnClip(get_app());
+   ::ca::region_sp rgnClip(get_app());
 
    rgnClip->CreateRectRgn(0, 0, 0, 0);
 
@@ -4449,6 +4452,7 @@ bool imaging::true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics *
 
 bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2, ::ca::dib * pdibWork3)
 {
+   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
    if(pdc == NULL)
       return false;
    if(pdcColorAlpha == NULL)

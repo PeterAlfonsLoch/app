@@ -47,7 +47,7 @@ namespace plugin
       DECL_GEN_SIGNAL(_001OnCheck)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate, ::ca::rgn* prgnUpdate, UINT flags);
+      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags);
 
       ::user::interaction * get_os_focus_uie();
 

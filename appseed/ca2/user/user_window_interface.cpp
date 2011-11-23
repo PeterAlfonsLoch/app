@@ -326,7 +326,7 @@ namespace user
       user::HwndTree::Array & hwndtreea,
       LPCRECT lpcrect)
    {
-      ::ca::rgn rgn;
+      ::ca::region rgn;
 
       rgn.CreateRectRgnIndirect(lpcrect);
 
@@ -391,7 +391,7 @@ namespace user
          ::ClientToScreen(hwnd, &rectClient.top_left());
          ::ClientToScreen(hwnd, &rectClient.bottom_right());
 
-         ::ca::rgn rgn;
+         ::ca::region rgn;
          rgn.CreateRectRgnIndirect(rectClient);
          int iCombine = ::CombineRgn(hrgn, hrgn, rgn, RGN_DIFF);
          if(iCombine == NULLREGION)
@@ -554,7 +554,7 @@ namespace user
       return true;
    }
 
-   bool window_interface::Redraw(LPCRECT lprect, ::ca::rgn * prgn)
+   bool window_interface::Redraw(LPCRECT lprect, ::ca::region * prgn)
    {
       get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
       return true;

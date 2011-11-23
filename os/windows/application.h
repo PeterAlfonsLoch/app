@@ -191,7 +191,7 @@ namespace win
 
       BOOL DispatchThreadMessageEx(MSG* msg);  // helper*/
 
-      ::ca::graphics * graphics_from_os_data(void * pdata);
+      //::ca::graphics * graphics_from_os_data(void * pdata);
 
       ::ca::window * window_from_os_data(void * pdata);
       ::ca::window * window_from_os_data_permanent(void * pdata);

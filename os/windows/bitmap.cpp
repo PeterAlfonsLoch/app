@@ -8,28 +8,75 @@ namespace win
    bitmap::bitmap(::ca::application * papp) :
       ca(papp)
    { 
+
+      m_pbitmap   = NULL;
+      m_pdata     = NULL;
+
    }
 
    bitmap::~bitmap()
    { 
+
+      if(m_pbitmap != NULL)
+      {
+         delete m_pbitmap;
+         m_pbitmap = NULL;
+      }
+
+      if(m_pdata != NULL)
+      {
+         ca2_free(m_pdata);
+         m_pdata = NULL;
+      }
+
    }
 
    BOOL bitmap::CreateBitmap(int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits)
    { 
-      //return Attach(::CreateBitmap(nWidth, nHeight, nPlanes, nBitcount, lpBits)); 
+      
+      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
 
-
-      return FALSE;
+      return TRUE;
    
    }
    BOOL bitmap::CreateBitmapIndirect(LPBITMAP lpBitmap)
    { 
       return FALSE;
    }
+
+
    BOOL bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
    { 
-      return FALSE;
+
+      if(m_pbitmap != NULL)
+      {
+         delete m_pbitmap;
+      }
+
+      m_pdata = ca2_alloc(abs(4 * lpbmi->bmiHeader.biWidth * lpbmi->bmiHeader.biHeight));
+
+      if(m_pdata == NULL)
+         return FALSE;
+
+      m_pbitmap = new Gdiplus::Bitmap(abs(lpbmi->bmiHeader.biWidth), abs(lpbmi->bmiHeader.biHeight), abs(lpbmi->bmiHeader.biWidth) * 4, PixelFormat32bppARGB, (BYTE *) m_pdata);
+
+      if(m_pbitmap == NULL)
+      {
+         ca2_free(m_pdata);
+         m_pdata = NULL;
+         return FALSE;
+      }
+
+      if(ppvBits != NULL)
+      {
+         *ppvBits = m_pdata; 
+      }
+
+      return TRUE;
+
    }
+
+
    BOOL bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    { 
       return FALSE;
@@ -81,14 +128,18 @@ namespace win
    }
    BOOL bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
    {
-      return FALSE;
-   //   return Attach(::CreateCompatibleBitmap((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(), nWidth, nHeight)); 
+
+      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
+
+      return TRUE;
    
    }
    BOOL bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
    { 
-      return FALSE;
-      //return Attach(::CreateDiscardableBitmap((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(), nWidth, nHeight)); 
+
+      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
+
+      return TRUE;
    }
    int bitmap::GetBitmap(BITMAP* pBitMap)
    { 
@@ -128,5 +179,13 @@ namespace win
       }
 #endif
 
+
+
+   void * bitmap::get_os_data() const
+   {
+      
+      return (Gdiplus::Bitmap *) m_pbitmap;
+
+   }
 
 } // namespace win

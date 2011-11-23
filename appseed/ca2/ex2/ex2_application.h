@@ -109,7 +109,7 @@ namespace ex2
       virtual void set_thread(::radix::thread * pthread);
       virtual ::user::interaction * GetMainWnd();
 
-      virtual ::ca::graphics * graphics_from_os_data(void * pdata);
+      //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
       virtual ::ca::window * window_from_os_data(void * pdata);
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);

@@ -21,7 +21,7 @@ namespace ca
 #include "ca_brush.h"
 #include "ca_font.h"
 #include "ca_palette.h"
-#include "ca_rgn.h"
+#include "ca_region.h"
 #include "ca_igui.h"
 #include "ca_dib.h"
 #include "ca_draw_dib.h"

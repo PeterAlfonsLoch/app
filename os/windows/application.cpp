@@ -405,14 +405,14 @@ namespace win
          {
             AfxGetModuleState()->m_pmapHWND = new hwnd_map;
          }
-         if(AfxGetModuleState()->m_pmapHDC == NULL)
+/*         if(AfxGetModuleState()->m_pmapHDC == NULL)
          {
             AfxGetModuleState()->m_pmapHDC = new hdc_map;
          }
          if(AfxGetModuleState()->m_pmapHGDIOBJ == NULL)
          {
             AfxGetModuleState()->m_pmapHGDIOBJ = new hgdiobj_map;
-         }
+         }*/
 /*         if(AfxGetModuleState()->m_pmapHMENU == NULL)
          {
             AfxGetModuleState()->m_pmapHMENU = new hmenu_map;
@@ -513,10 +513,10 @@ namespace win
       return ::win::thread::DispatchThreadMessageEx(msg);
    }*/
 
-   ::ca::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
       return ::win::graphics::from_handle((HDC) pdata);
-   }
+   }*/
 
    ::ca::window * application::window_from_os_data(void * pdata)
    {

@@ -126,8 +126,8 @@ public:
    bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
    bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
    
-   bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::ca::rgn * prgnClip);
-   bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::rgn * prgnClip);
+   bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::ca::region * prgnClip);
+   bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::region * prgnClip);
 
    static bool CreateBitmap(
       ::ca::graphics * pdc, 
@@ -168,7 +168,7 @@ public:
       ::ca::bitmap * pbitmapOld,
       BITMAP * pbmp,
       LPCRECT lpcrect,
-      ::ca::rgn * prgnClip);
+      ::ca::region * prgnClip);
 
    bool ClipRestore(
       ::ca::graphics * pdc,
@@ -176,7 +176,7 @@ public:
       ::ca::bitmap * pbitmapOld,
       BITMAP * pbmp,
       LPCRECT lpcrect,
-      ::ca::rgn * prgnClip);
+      ::ca::region * prgnClip);
 
    bool GetDeviceContext24BitsCC(
       ::ca::graphics *pdc,

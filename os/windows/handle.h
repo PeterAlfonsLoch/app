@@ -193,17 +193,17 @@ class CLASS_DECL_VMSWIN hwnd_map :
 public:
 };
 
-class CLASS_DECL_VMSWIN hdc_map :
+/*class CLASS_DECL_VMSWIN hdc_map :
    public handle_map < ::win::hdc_handle, ::win::graphics >
 {
 public:
-};
+};*/
 
-class hgdiobj_map : 
+/*class hgdiobj_map : 
    public handle_map < ::win::hgdiobj_handle, ::win::graphics_object >
 {
 public:
-};
+};*/
 
 /*
 class CLASS_DECL_VMSWIN hdc_map :
@@ -445,6 +445,6 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 
 CLASS_DECL_VMSWIN hwnd_map * PASCAL afxMapHWND(BOOL bCreate = FALSE);
 CLASS_DECL_VMSWIN himagelist_map * PASCAL afxMapHIMAGELIST(BOOL bCreate = FALSE);
-CLASS_DECL_VMSWIN hdc_map * PASCAL afxMapHDC(BOOL bCreate = FALSE);
+//CLASS_DECL_VMSWIN hdc_map * PASCAL afxMapHDC(BOOL bCreate = FALSE);
 CLASS_DECL_VMSWIN hgdiobj_map * PASCAL afxMapHGDIOBJ(BOOL bCreate = FALSE);
-CLASS_DECL_VMSWIN hmenu_map * PASCAL afx_map_HMENU(BOOL bCreate = FALSE);
+//CLASS_DECL_VMSWIN hmenu_map * PASCAL afx_map_HMENU(BOOL bCreate = FALSE);

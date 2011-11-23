@@ -41,6 +41,8 @@ namespace ca
       ::ca::pen_sp               m_pen;
       ::ca::brush_sp             m_brush;
       ::ca::font_sp              m_font;
+      ::ca::region_sp               m_region;
+      ::ca::bitmap_sp            m_bitmap;
 
       COLORREF                   m_crColor;
       double                     m_x;
@@ -52,7 +54,8 @@ namespace ca
 
       virtual bool is_set();
 
-      virtual void * get_os_data();
+      virtual void * get_os_data() const;
+      virtual void attach(void * pdata);
 
       virtual ::user::str_context * str_context();
       virtual ::user::draw_context * draw_context();
@@ -107,7 +110,7 @@ namespace ca
       virtual ::ca::brush* SelectObject(::ca::brush* pBrush);
       virtual ::ca::font* SelectObject(::ca::font* pFont);
       virtual ::ca::bitmap* SelectObject(::ca::bitmap* pBitmap);
-      virtual int SelectObject(::ca::rgn* pRgn);       // special return for regions
+      virtual int SelectObject(::ca::region* pRgn);       // special return for regions
       virtual ::ca::graphics_object* SelectObject(::ca::graphics_object* pObject);
          // ::ca::graphics_object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
@@ -206,10 +209,10 @@ namespace ca
       virtual void HIMETRICtoLP(LPSIZE lpSize) const;
 
    // Region Functions
-      virtual BOOL FillRgn(::ca::rgn* pRgn, ::ca::brush* pBrush);
-      virtual BOOL FrameRgn(::ca::rgn* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
-      virtual BOOL InvertRgn(::ca::rgn* pRgn);
-      virtual BOOL PaintRgn(::ca::rgn* pRgn);
+      virtual BOOL FillRgn(::ca::region* pRgn, ::ca::brush* pBrush);
+      virtual BOOL FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
+      virtual BOOL InvertRgn(::ca::region* pRgn);
+      virtual BOOL PaintRgn(::ca::region* pRgn);
 
    // Clipping Functions
       virtual int GetClipBox(LPRECT lpRect) const;
@@ -217,7 +220,7 @@ namespace ca
       virtual BOOL PtVisible(int x, int y) const;
       virtual BOOL PtVisible(POINT point) const;
       virtual BOOL RectVisible(LPCRECT lpRect) const;
-      virtual int SelectClipRgn(::ca::rgn* pRgn);
+      virtual int SelectClipRgn(::ca::region* pRgn);
       virtual int ExcludeClipRect(int x1, int y1, int x2, int y2);
       virtual int ExcludeClipRect(LPCRECT lpRect);
       virtual int ExcludeUpdateRgn(::ca::window* pWnd);
@@ -225,7 +228,7 @@ namespace ca
       virtual int IntersectClipRect(LPCRECT lpRect);
       virtual int OffsetClipRgn(int x, int y);
       virtual int OffsetClipRgn(SIZE size);
-      virtual int SelectClipRgn(::ca::rgn* pRgn, int nMode);
+      virtual int SelectClipRgn(::ca::region* pRgn, int nMode);
 
    // Line-Output Functions
 
@@ -431,7 +434,7 @@ namespace ca
 
    // Scrolling Functions
       virtual BOOL ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
-         ::ca::rgn* pRgnUpdate, LPRECT lpRectUpdate);
+         ::ca::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
       virtual BOOL GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;

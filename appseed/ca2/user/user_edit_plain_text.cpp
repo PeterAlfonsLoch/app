@@ -295,7 +295,7 @@ namespace user
          pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x, -(m_scrollinfo.m_ptScroll.y % m_iLineHeight));
       }
 
-      ::ca::rgn_sp rgn(get_app());
+      ::ca::region_sp rgn(get_app());
 
       rectClient.deflate(2, 2);
 

@@ -447,7 +447,7 @@ namespace win
          m_rectParentClient = rectWindow;
       }
 
-      if(m_spdibMultAlphaWork.is_null())
+/*      if(m_spdibMultAlphaWork.is_null())
       {
          m_spdibMultAlphaWork.create(get_app());
       }
@@ -457,10 +457,10 @@ namespace win
          m_spdib.create(get_app());
       }
 
-      if(m_spdib.is_set())
+      if(m_spdib.is_set() && m_rectParentClient.area() > 0)
       {
          m_spdib->create(m_rectParentClient.size());
-      }
+      }*/
 
       m_pguie->layout();
 
@@ -2957,8 +2957,8 @@ namespace win
 
       
 
-      ::ca::rgn_sp rgnWindow(get_app());
-      ::ca::rgn_sp rgnIntersect(get_app());
+      ::ca::region_sp rgnWindow(get_app());
+      ::ca::region_sp rgnIntersect(get_app());
 
 
       rgnWindow->CreateRectRgn(0, 0, 0, 0);
@@ -2972,7 +2972,7 @@ namespace win
          wndpa = System.frames();
          rect rect5;
          rect rect9;
-         ::ca::rgn_sp rgnUpdate(get_app());
+         ::ca::region_sp rgnUpdate(get_app());
          rgnUpdate->CreateRectRgnIndirect(rectUpdate);
          HWND hwndOrder = ::GetWindow(get_handle(), GW_HWNDNEXT);
          for(;;)
@@ -4498,36 +4498,39 @@ ExitModal:
    
    ::ca::graphics * window::GetDC()
    { 
+      ::ca::graphics_sp g(get_app());
       if(get_handle() == NULL)
       {
-         return ::win::graphics::from_handle(::GetDC(NULL));
+         (dynamic_cast < ::win::graphics * >(g.m_p))->Attach(::GetDC(NULL));
       }
       else
       {
-         return ::win::graphics::from_handle(::GetDC(get_handle()));
+         (dynamic_cast < ::win::graphics * >(g.m_p))->Attach(::GetDC(get_handle()));
       }
+      return g.detach();
    }
    
    ::ca::graphics * window::GetWindowDC()
    {
       ASSERT(::IsWindow(get_handle())); 
-      return ::win::graphics::from_handle(::GetWindowDC(get_handle())); 
+      ::ca::graphics_sp g(get_app());
+      g->attach(::GetWindowDC(get_handle()));
+      return g.detach();
    }
 
    int window::ReleaseDC(::ca::graphics * pgraphics)
    { 
-      if((dynamic_cast<::win::graphics * >(pgraphics))->m_pgraphics != NULL)
-      {
-         delete (dynamic_cast<::win::graphics * >(pgraphics));
-      }
       if(get_handle() == NULL)
       {
-         return ::ReleaseDC(NULL, (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1()); 
+         ::ReleaseDC(NULL, ((Gdiplus::Graphics *)(dynamic_cast<::win::graphics * >(pgraphics))->get_os_data())->GetHDC()); 
+         pgraphics->release();
       }
       else
       {
-         return ::ReleaseDC(get_handle(), (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1()); 
+         ::ReleaseDC(get_handle(), ((Gdiplus::Graphics *)(dynamic_cast<::win::graphics * >(pgraphics))->get_os_data())->GetHDC()); 
+         pgraphics->release();
       }
+      return 1;
    }
    
    void window::UpdateWindow()
@@ -4547,7 +4550,7 @@ ExitModal:
       return ::GetUpdateRect(get_handle(), lpRect, bErase); 
    }
 
-   int window::GetUpdateRgn(::ca::rgn* pRgn, BOOL bErase)
+   int window::GetUpdateRgn(::ca::region* pRgn, BOOL bErase)
    { 
       ASSERT(::IsWindow(get_handle())); 
       return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase); 
@@ -4565,7 +4568,7 @@ ExitModal:
       ::InvalidateRect(get_handle(), lpRect, bErase); 
    }
    
-   void window::InvalidateRgn(::ca::rgn* pRgn, BOOL bErase)
+   void window::InvalidateRgn(::ca::region* pRgn, BOOL bErase)
    {
       ASSERT(::IsWindow(get_handle())); 
       ::InvalidateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase); 
@@ -4573,7 +4576,7 @@ ExitModal:
 
     void window::ValidateRect(LPCRECT lpRect)
       { ASSERT(::IsWindow(get_handle())); ::ValidateRect(get_handle(), lpRect); }
-    void window::ValidateRgn(::ca::rgn* pRgn)
+    void window::ValidateRgn(::ca::region* pRgn)
       { ASSERT(::IsWindow(get_handle())); ::ValidateRgn(get_handle(), (HRGN)pRgn->get_os_data()); }
     
    BOOL window::IsWindowVisible()
@@ -4650,17 +4653,28 @@ ExitModal:
    }
 
 
-    ::ca::graphics * window::GetDCEx(::ca::rgn* prgnClip, DWORD flags)
-      { ASSERT(::IsWindow(get_handle())); return ::win::graphics::from_handle(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags)); }
+    ::ca::graphics * window::GetDCEx(::ca::region* prgnClip, DWORD flags)
+    {
+    
+       ASSERT(::IsWindow(get_handle())); 
+       ::ca::graphics_sp g(get_app());
+       g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags));
+       return g.detach(); 
+    
+    }
+
     BOOL window::LockWindowUpdate()
-      { ASSERT(::IsWindow(get_handle())); return ::LockWindowUpdate(get_handle()); }
+    {
+       ASSERT(::IsWindow(get_handle())); 
+       return ::LockWindowUpdate(get_handle());
+    }
     
     void window::UnlockWindowUpdate()
     {
        ASSERT(::IsWindow(get_handle())); ::LockWindowUpdate(NULL);
     }
     
-    BOOL window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::rgn* prgnUpdate, UINT flags)
+    BOOL window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
     { 
        if(System.get_twf() == NULL)
           return FALSE;
@@ -4767,7 +4781,7 @@ int window::GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton)
       { ASSERT(::IsWindow(get_handle())); ::SetDlgItemText(get_handle(), nID, lpszString); }
     int window::ScrollWindowEx(int dx, int dy,
       LPCRECT lpRectScroll, LPCRECT lpRectClip,
-      ::ca::rgn* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+      ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
       { ASSERT(::IsWindow(get_handle())); return ::ScrollWindowEx(get_handle(), dx, dy, lpRectScroll, lpRectClip,
             (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags); }
 
@@ -6028,35 +6042,46 @@ namespace win
 
       GetClientRect(rectClient);
 
-      Gdiplus::Graphics g((HDC) pdc->get_os_data());
-      g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+      pdc->set_alpha_mode(::ca::graphics::alpha_mode_set);
 
-      Gdiplus::SolidBrush solidBrush(Gdiplus::Color(0, 0, 0, 0));
-      g.FillRectangle(&solidBrush, rectClient.left, rectClient.top, rectClient.width(), rectClient.height());
-
-      //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      pdc->FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
    }
 
    void window::_001UpdateWindow()
    {
       
-      if(m_spdib.is_null())
-         return;
-
-      if(m_spdib->area() <= 0)
-         return;
-
-      BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-      
-      _001OnDeferPaintLayeredWindowBackground(m_spdib->get_graphics());
-      _001Print(m_spdib->get_graphics());
-
-      HDC hdc = ::GetDC(get_handle());
-
       rect rectWindow;
 
       GetWindowRect(rectWindow);
+
+      if(rectWindow.area() <= 0)
+         return;
+
+      ::visual::dib_sp dib(get_app());
+
+      if(!dib->create(rectWindow.size()))
+         return;
+
+      Gdiplus::Graphics * pg = (Gdiplus::Graphics *) dib->get_graphics()->get_os_data();
+
+      BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+      
+      _001OnDeferPaintLayeredWindowBackground(dib->get_graphics());
+      _001Print(dib->get_graphics());
+
+      pg->Flush();
+
+      HDC hdcScreen = ::GetDC(get_handle());
+
+//      HDC hdcMemory = ::CreateCompatibleDC(NULL);
+
+  //    HBITMAP hbitmap = CreateCompatibleBitmap(hdc, iWidth, iHeight);
+
+    //  ::B
+
+//      ::SelectObject(hdcMemory, hbitmap);
+
 
       point pt;
       size sz;
@@ -6066,16 +6091,67 @@ namespace win
 
       point ptSrc(0, 0);
 
-      m_spdib->mult_alpha(m_spdibMultAlphaWork);
+      ::visual::dib_sp dibMultAlphaWork(get_app());
 
-      ::UpdateLayeredWindow(get_handle(), hdc, &pt, &sz,
-            (HDC)m_spdib->get_graphics()->get_os_data(),
-            &ptSrc, 0, &blendPixelFunction, ULW_ALPHA);
+      dib->mult_alpha(dibMultAlphaWork);
 
 
-      ::ReleaseDC(get_handle(), hdc);
+/*      ::Gdiplus::Graphics g(hdc);
+
+      g.DrawImage((Gdiplus::Bitmap *) (dynamic_cast < ::win::dib * > (dib.m_p))->m_spbitmap->get_os_data(), 0, 0);*/
+      //HDC hdcDib = pg->GetHDC();
+ // Default to upper left of screen
+     //POINT ptOrigin = { 0, 0 };
+     //SIZE sizeSplash = { 128, 128 };
+
+     // Get the actual screen location
+     //GetPointOfOrigin(ptOrigin, sizeSplash);
+
+     // Our in memory database of GDI+ Bitmaps
+     //data::image::BoxOfBits *box = 
+       //dynamic_cast<data::image::BoxOfBits *>(&Images.get_package("skin_layout_008"));
+
+     // Create a display context as a canvas to draw the images
+     //HDC hdcScreen = GetDC(NULL);
+
+      BITMAPINFO bi;
+
+      ZeroMemory(&bi, sizeof (BITMAPINFO));
+	   bi.bmiHeader.biSize=sizeof (BITMAPINFOHEADER);
+	   bi.bmiHeader.biWidth= rectWindow.width();
+	   bi.bmiHeader.biHeight=-rectWindow.height();
+	   bi.bmiHeader.biPlanes=1;
+	   bi.bmiHeader.biBitCount=32;
+	   bi.bmiHeader.biCompression=BI_RGB;
+	   bi.bmiHeader.biSizeImage=abs(rectWindow.width()*rectWindow.height()*4);
+
+     HDC hdcMem = CreateCompatibleDC(hdcScreen);
+     COLORREF * pcolorref = (dynamic_cast < ::win::dib * > (dib.m_p))->m_pcolorref;
+     
+     HBITMAP bmMem = CreateDIBSection(hdcMem, &bi, DIB_RGB_COLORS, (void**) &pcolorref, NULL, 0);
+     //memcpy(pcolorref, (dynamic_cast < ::win::dib * > (dib.m_p))->m_pcolorref, bi.bmiHeader.biSizeImage);
+     // Prep canvas for rendering graphic
+     HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, bmMem);
+     Gdiplus::Graphics graphics(hdcMem);
 
 
+     graphics.DrawImage((Gdiplus::Bitmap *) (dynamic_cast < ::win::dib * > (dib.m_p))->m_spbitmap->get_os_data(), 0, 0, 0, 0, rectWindow.width(), rectWindow.height(), Gdiplus::UnitPixel);
+
+     // Prepare to alpha blend the canvas with the screen
+     /*BLENDFUNCTION blend = { 0 };
+     blend.BlendOp = AC_SRC_OVER;
+     blend.SourceConstantAlpha = 255;
+     blend.AlphaFormat = AC_SRC_ALPHA;*/
+
+     // Composite the canvas with the screen into the layered window
+     POINT ptZero = { 0 };
+     ::UpdateLayeredWindow(get_handle(), hdcScreen, &pt, &sz, hdcMem, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA);
+
+     // Delete temporary objects used for canvas
+     ::SelectObject(hdcMem, hbmpOld);
+     ::DeleteObject(bmMem);
+     ::DeleteDC(hdcMem);
+     ::ReleaseDC(NULL, hdcScreen);
 
       /*class rect rectWin;
       GetWindowRect(rectWin);

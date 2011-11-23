@@ -474,7 +474,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::UpdateDrawingObjects()
    {
-      /*::ca::rgn rgn;
+      /*::ca::region rgn;
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;

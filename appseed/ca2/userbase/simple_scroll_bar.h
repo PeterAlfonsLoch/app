@@ -7,13 +7,13 @@ class CLASS_DECL_ca simple_scroll_bar :
 public:
 
 
-   ::ca::brush_sp       m_brushNull;
+   //::ca::brush_sp       m_brushNull;
    ::ca::pen_sp         m_penDraw;
    point                m_ptTrackOffset;
    point                m_ptaA[4]; // pontos da primeira seta
    point                m_ptaB[4]; // pontos da segunda seta
-   ::ca::rgn_sp         m_rgnA; // região da primeira seta
-   ::ca::rgn_sp         m_rgnB; // região da segunda seta
+   ::ca::region_sp         m_rgnA; // região da primeira seta
+   ::ca::region_sp         m_rgnB; // região da segunda seta
    UINT                 m_uiTimer;
 
 

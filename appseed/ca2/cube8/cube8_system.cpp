@@ -212,7 +212,7 @@ namespace cube8
       System.factory().cloneable_large < ::ca::pen_sp >();
       System.factory().cloneable_large < ::ca::bitmap_sp >();
       System.factory().cloneable_large < ::ca::palette_sp >();
-      System.factory().cloneable_large < ::ca::rgn_sp >();
+      System.factory().cloneable_large < ::ca::region_sp >();
       System.factory().cloneable_large < var >();
       System.factory().creatable < ::ca2::log >(::ca::get_type_info < ::ca::log > (), 1);
 

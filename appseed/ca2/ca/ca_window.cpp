@@ -1168,7 +1168,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   int window::GetUpdateRgn(::ca::rgn* pRgn, BOOL bErase)
+   int window::GetUpdateRgn(::ca::region* pRgn, BOOL bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1188,7 +1188,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   void window::InvalidateRgn(::ca::rgn* pRgn, BOOL bErase)
+   void window::InvalidateRgn(::ca::region* pRgn, BOOL bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1201,7 +1201,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   void window::ValidateRgn(::ca::rgn* pRgn)
+   void window::ValidateRgn(::ca::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();   
@@ -1234,7 +1234,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   ::ca::graphics * window::GetDCEx(::ca::rgn * prgnClip, DWORD flags)
+   ::ca::graphics * window::GetDCEx(::ca::region * prgnClip, DWORD flags)
    {
       UNREFERENCED_PARAMETER(prgnClip);
       UNREFERENCED_PARAMETER(flags);
@@ -1251,7 +1251,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   BOOL window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::rgn * prgnUpdate, UINT flags)
+   BOOL window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region * prgnUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
@@ -1446,7 +1446,7 @@ namespace ca
 
    int window::ScrollWindowEx(int dx, int dy,
       LPCRECT lpRectScroll, LPCRECT lpRectClip,
-      ::ca::rgn* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+      ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(dx);
       UNREFERENCED_PARAMETER(dy);

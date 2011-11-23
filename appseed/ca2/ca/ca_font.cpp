@@ -26,15 +26,18 @@ namespace ca
    // pLogFont->nHeight is interpreted as PointSize * 10
    BOOL font::CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics)
    {
-      UNREFERENCED_PARAMETER(lpLogFont);
-      UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception();   
+      return ::ca::font::CreateFontIndirect(lpLogFont);
    }
 
    BOOL font::CreateFontIndirect(const LOGFONT* lpLogFont)
    {
-      UNREFERENCED_PARAMETER(lpLogFont);
-      throw interface_only_exception();   
+      
+      m_strFontFamilyName  = lpLogFont->lfFaceName;
+      m_dFontSize          = lpLogFont->lfHeight;
+      m_bUpdated           = false;
+
+      return TRUE;
+
    }
 
    BOOL font::CreateFont(int nHeight, int nWidth, int nEscapement,

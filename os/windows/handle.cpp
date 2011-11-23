@@ -45,16 +45,16 @@ namespace win
    }
 
 
-   void PASCAL graphics::DeleteTempMap()
-   {
+//   void PASCAL graphics::DeleteTempMap()
+  // {
       /*hdc_map* pMap = AfxGetModuleState()->m_pmapHDC;
       pMap->delete_temp();*/
-   }
+   //}
 
-   void PASCAL graphics_object::DeleteTempMap()
-   {
+//   void PASCAL graphics_object::DeleteTempMap()
+  // {
       /*hgdiobj_map* pMap = AfxGetModuleState()->m_pmapHGDIOBJ;
       pMap->delete_temp();*/
-   }
+   //}
 
 } // namespace win

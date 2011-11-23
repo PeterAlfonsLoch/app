@@ -2926,11 +2926,11 @@ namespace radix
       UNREFERENCED_PARAMETER(hInstTerm);
    }
 
-   ::ca::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
       return NULL;
-   }
+   }*/
 
    ::ca::window * application::window_from_os_data(void * pdata)
    {

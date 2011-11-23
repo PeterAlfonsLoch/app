@@ -21,7 +21,7 @@ namespace win
       System.factory().cloneable_large < pen                  >  (::ca::get_type_info < ::ca::pen                > ());
       System.factory().cloneable_large < brush                >  (::ca::get_type_info < ::ca::brush              > ());
       System.factory().cloneable_large < palette              >  (::ca::get_type_info < ::ca::palette            > ());
-      System.factory().cloneable_large < rgn                  >  (::ca::get_type_info < ::ca::rgn                > ());
+      System.factory().cloneable_large < region                  >  (::ca::get_type_info < ::ca::region                > ());
       System.factory().cloneable_large < font                 >  (::ca::get_type_info < ::ca::font               > ());
       System.factory().creatable < window_draw          >  (::ca::get_type_info < ::ca::window_draw        > (), 1);
       System.factory().creatable_large < thread               >  (::ca::get_type_info < ::ca::thread             > ());

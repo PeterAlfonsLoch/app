@@ -434,7 +434,7 @@ namespace gcom
                   }
                   POINT pointa[4];
                   m_tool001.GetRotateRect(point.x, point.y, pointa);
-                  ::ca::rgn_sp rgnClip(get_app());
+                  ::ca::region_sp rgnClip(get_app());
                   rgnClip->CreatePolygonRgn(
                            pointa,
                            4,
@@ -492,7 +492,7 @@ namespace gcom
                   }
                   POINT pointa[6];
                   m_tool001.GetRotateHexagon(point.x, point.y, pointa);
-                  ::ca::rgn_sp rgnClip(get_app());
+                  ::ca::region_sp rgnClip(get_app());
                   rgnClip->CreatePolygonRgn(
                      pointa,
                      6,
@@ -579,7 +579,7 @@ namespace gcom
                   *lprect = rectUpdate;
                      }*/
 
-                  ::ca::rgn_sp rgnClip(get_app());
+                  ::ca::region_sp rgnClip(get_app());
                   if(m_etypea[m_iType] == TransitionEffectCirclypixelate_
                      || m_etypea[m_iType] == TransitionEffectEllipsoidalpixelate_)
                   {
@@ -1577,7 +1577,7 @@ namespace gcom
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
-         ::ca::rgn_sp rgnTransferClip(get_app());
+         ::ca::region_sp rgnTransferClip(get_app());
          rgnTransferClip->CreateRectRgnIndirect(graphics.m_rectFinalPlacement);
          dcTransfer.SelectClipRgn(rgnTransferClip);
 

@@ -294,10 +294,10 @@ namespace ex2
       return NULL;
    }
 
-   ::ca::graphics * application::graphics_from_os_data(void * pdata)
+/*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
       return ::ca::smart_pointer<::ex2::application>::m_p->graphics_from_os_data(pdata);
-   }
+   }*/
 
    ::ca::window * application::window_from_os_data(void * pdata)
    {

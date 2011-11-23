@@ -170,13 +170,15 @@ bool copydesk::desk_to_dib(::ca::dib * pdib)
       return false;
    HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
    HDC hdc = ::CreateCompatibleDC(NULL);
-   ::ca::graphics * pgraphics = Application.graphics_from_os_data(hdc);
-   pgraphics->SelectObject(hbitmap);
+   ::ca::graphics_sp g(get_app());
+   g->attach(hdc);
+   //::ca::graphics * pgraphics = Application.graphics_from_os_data(hdc);
+   g->SelectObject(hbitmap);
    BITMAP bm;
    ::GetObjectA(hbitmap, sizeof(bm), &bm);
    if(!pdib->create(bm.bmWidth, bm.bmHeight))
       return false;
-   pdib->get_graphics()->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, pgraphics, 0, 0, SRCCOPY);
+   pdib->get_graphics()->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, g, 0, 0, SRCCOPY);
    ::DeleteDC(hdc);
    ::CloseClipboard();
    return true;

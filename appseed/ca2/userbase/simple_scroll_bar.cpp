@@ -3,12 +3,12 @@
 simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
 ca(papp),
 ::user::interaction(papp),
-m_brushNull(papp),
+//m_brushNull(papp),
 m_penDraw(papp),
 m_rgnA(papp), // região da primeira seta
 m_rgnB(papp) // região da segunda seta
 {
-   m_brushNull->CreateStockObject(NULL_BRUSH);
+   //m_brushNull->CreateStockObject(NULL_BRUSH);
    m_penDraw->CreatePen(PS_SOLID , 2, RGB(0, 0, 0));
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
@@ -794,8 +794,7 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 
    //_001GetScrollInfo(&si);
 
-   ::ca::brush * pbrushOld = pdc->SelectObject(m_brushNull);
-   ::ca::pen * ppenOld = pdc->SelectObject(m_penDraw);
+   pdc->SelectObject(m_penDraw);
 
    rect rectTrack;
 
@@ -809,8 +808,6 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
    pdc->Polygon(m_ptaA, 4);
    pdc->Polygon(m_ptaB, 4);
 
-   pdc->SelectObject(pbrushOld);
-   pdc->SelectObject(ppenOld);
 
 
 

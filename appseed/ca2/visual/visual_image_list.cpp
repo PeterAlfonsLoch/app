@@ -250,14 +250,21 @@ bool image_list::_grow()
 
    int iAllocSize = _get_alloc_count() + m_iGrow;
 
-   ::ca::dib_sp spdib(get_app());
-   ::ca::dib_sp dibAlpha(get_app());
+   if(_get_alloc_count() == 0)
+   {
+      m_spdib->create(cx * iAllocSize, cy);
+   }
+   else
+   {
+      ::ca::dib_sp spdib(get_app());
+      ::ca::dib_sp dibAlpha(get_app());
 
-   spdib->Paste(m_spdib);
+      spdib->Paste(m_spdib);
 
-   m_spdib->create(cx * iAllocSize, cy);
+      m_spdib->create(cx * iAllocSize, cy);
 
-   m_spdib->get_graphics()->BitBlt(0, 0, spdib->width(), spdib->height(), spdib->get_graphics(), 0, 0, SRCCOPY);
+      m_spdib->get_graphics()->BitBlt(0, 0, spdib->width(), spdib->height(), spdib->get_graphics(), 0, 0, SRCCOPY);
+   }
 
    return true;
 }

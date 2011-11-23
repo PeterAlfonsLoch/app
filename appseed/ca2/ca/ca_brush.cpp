@@ -39,8 +39,12 @@ namespace ca
 
    BOOL brush::CreateSolidBrush(COLORREF crColor)
    {
-      UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception();
+      
+      m_crColor = crColor;
+      m_bUpdated = false;
+      
+      return TRUE;
+
    }
    BOOL brush::CreateHatchBrush(int nIndex, COLORREF crColor)
    {

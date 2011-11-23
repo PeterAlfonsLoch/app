@@ -1,15 +1,25 @@
 #pragma once
 
+
 namespace win
 {
+
 
    class CLASS_DECL_VMSWIN bitmap : 
       virtual public ::ca::bitmap
    {
    public:
 
+
+      ::Gdiplus::Bitmap *  m_pbitmap;
+      void *               m_pdata;
+
+
       bitmap(::ca::application * papp);
       virtual ~bitmap();
+
+      void * get_os_data() const;
+
 
       BOOL LoadBitmap(const char * lpszResourceName);
       BOOL LoadBitmap(UINT nIDResource);
@@ -38,4 +48,6 @@ namespace win
    #endif
    };
 
+
 } // namespace win
+

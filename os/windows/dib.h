@@ -27,7 +27,7 @@ namespace win
       ::ca::bitmap_sp      m_spbitmap;
       ::ca::graphics_sp    m_spgraphics;
       class size           m_size;
-      HBITMAP              m_hbitmapOriginal;
+      //HBITMAP              m_hbitmapOriginal;
 
       virtual ::ca::graphics * get_graphics();
       virtual ::ca::bitmap_sp get_bitmap();

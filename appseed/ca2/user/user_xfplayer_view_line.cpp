@@ -336,7 +336,7 @@ bool XfplayerViewLine::to(
                break;
             }
          }
-         ::ca::rgn rgn;
+         ::ca::region rgn;
          string strFinal(m_str);
          string wstrLeft = strFinal.Right(strFinal.get_length() - i);
          int iLeftOffset;

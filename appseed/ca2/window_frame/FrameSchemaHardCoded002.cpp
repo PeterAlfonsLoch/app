@@ -2173,7 +2173,7 @@ namespace window_frame
          rect rectB = rectRgn;
          rectB.right = rectB.left + GRIP_CORNER_LARGE_CX;
          rectB.bottom = rectB.top + GRIP_CORNER_LARGE_CY;
-         ::ca::rgn_sp rgnAdd(get_app());
+         ::ca::region_sp rgnAdd(get_app());
          rgnAdd->CreateRectRgnIndirect(rectB);
          CombineRgn(hrgnMain, hrgnMain, (HRGN) rgnAdd->get_os_data(), RGN_OR);
          

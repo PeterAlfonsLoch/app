@@ -3,11 +3,6 @@
 namespace win
 {
 
-   HGDIOBJ graphics_object::get_os_data() const
-   {
-      return NULL; 
-   }
-   
    graphics_object::graphics_object()
    {
       //set_handle(NULL); 
@@ -66,7 +61,7 @@ namespace win
       case OBJ_BITMAP:
          return dynamic_cast < graphics_object * > (new bitmap(papp));
       case OBJ_REGION:
-         return dynamic_cast < graphics_object * > (new rgn(papp));
+         return dynamic_cast < graphics_object * > (new region(papp));
       case OBJ_PEN:
          return dynamic_cast < graphics_object * > (new pen(papp));
       case OBJ_BRUSH:
@@ -77,6 +72,7 @@ namespace win
          return dynamic_cast < graphics_object * > (new font(papp));
       }
       return new graphics_object();*/
+      return NULL;
    }
 
    /*graphics_object* PASCAL graphics_object::from_handle(::ca::application * papp, HGDIOBJ h)
@@ -125,6 +121,7 @@ namespace win
       //if (get_os_data() == NULL)
         // return FALSE;
       //return ::DeleteObject(Detach());
+      return FALSE;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -135,27 +132,32 @@ namespace win
    {
       ::radix::object::dump(dumpcontext);
 
-      dumpcontext << "get_handle() = " << get_handle();
-      dumpcontext << "\n";
+//      dumpcontext << "get_handle() = " << get_handle();
+  //    dumpcontext << "\n";
    }
 
    void graphics_object::assert_valid() const
    {
       ::radix::object::assert_valid();
-      ASSERT(get_handle() == NULL ||
-         (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
+      //ASSERT(get_handle() == NULL ||
+        // (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
    }
 #endif
 
-   void * graphics_object::detach_os_data()
+   /*void * graphics_object::detach_os_data()
    {
       return Detach();
-   }
+   }*/
 
    /*void * graphics_object::get_os_data() const
    {
    return get_os_data();
    }*/
+
+   void * graphics_object::get_os_data() const
+   {
+      return NULL;
+   }
 
 } // namespace win
 

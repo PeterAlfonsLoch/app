@@ -154,9 +154,11 @@ namespace plugin
       ::BitBlt(hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdcWindow, lprect->left, lprect->top, SRCCOPY);
       try
       {
-         ::ca::graphics * pgraphics = m_psystem->graphics_from_os_data(hdc);
-         pgraphics->set_app(m_puiHost->m_papp);
-         m_puiHost->_000OnDraw(pgraphics);
+         ::ca::graphics_sp g(get_app());
+         g->attach(hdc);
+         //::ca::graphics * pgraphics = m_psystem->graphics_from_os_data(hdc);
+         g->set_app(m_puiHost->m_papp);
+         m_puiHost->_000OnDraw(g);
       }
       catch(...)
       {

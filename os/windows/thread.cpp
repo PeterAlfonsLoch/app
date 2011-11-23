@@ -569,8 +569,8 @@ namespace win
          pState->m_pCurrentWinThread = NULL;
 
       window::DeleteTempMap();
-      graphics::DeleteTempMap();
-      graphics_object::DeleteTempMap();
+//      graphics::DeleteTempMap();
+  //    graphics_object::DeleteTempMap();
 
       try
       {
@@ -1046,8 +1046,8 @@ stop_run:
    void thread::delete_temp()
    {
     
-      graphics_object::DeleteTempMap();
-      graphics::DeleteTempMap();
+//      graphics_object::DeleteTempMap();
+  //    graphics::DeleteTempMap();
       window::DeleteTempMap();
 
    }
@@ -1664,8 +1664,8 @@ stop_run:
       if (bDeleteTemp)
       {
          // clean up temp objects
-         graphics_object::DeleteTempMap();
-         graphics::DeleteTempMap();
+//         graphics_object::DeleteTempMap();
+  //       graphics::DeleteTempMap();
          window::DeleteTempMap();
       }
 

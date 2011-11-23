@@ -306,7 +306,7 @@ void MetaButton::UpdateWndRgn()
    if(rectClient.width() > 0 &&
       rectClient.height() > 0)
    {
-      ::ca::rgn_sp rgn(get_app());
+      ::ca::region_sp rgn(get_app());
       rgn->CreateEllipticRgnIndirect(rectClient);
       //ModifyStyleEx(0, WS_EX_TRANSPARENT, SWP_SHOWWINDOW);
       if(SetWindowRgn((HRGN) rgn->get_os_data(), TRUE))

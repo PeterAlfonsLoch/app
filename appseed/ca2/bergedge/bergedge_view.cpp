@@ -146,7 +146,7 @@ namespace bergedge
          if(main.IsInitialized())
          {
 
-            ::ca::rgn_sp rgn(get_app());
+            ::ca::region_sp rgn(get_app());
             rect rect(graphics.m_rectFinalPlacement);
             ClientToScreen(rect);
             rgn->CreateRectRgnIndirect(rect);

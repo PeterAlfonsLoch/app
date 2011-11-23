@@ -10,14 +10,14 @@ namespace win
 {
 
    class CLASS_DECL_VMSWIN graphics : 
-      virtual public ::ca::graphics,
-      virtual public hdc_handle
+      virtual public ::ca::graphics
    {
       // // DECLARE_DYNCREATE(::ca::graphics_sp)
    public:
 
 
-      ::Gdiplus::Graphics * m_pgraphics;
+      ::Gdiplus::Graphics *   m_pgraphics;
+      bool                    m_bHdc;
 
 
 
@@ -36,17 +36,11 @@ namespace win
          return *m_pgraphics;
       }
 
-   // Attributes
-   //   HDC get_os_data();          // The output DC (must be first data member <= no more true (What are the consequences?))
-   //   HDC get_handle2();    // The Attribute DC
-      operator HDC() const;
-      HDC get_handle1() const; // Always returns the Output DC
-      virtual void * get_os_data();
       ::ca::window * GetWindow() const;
 
-      static ::ca::graphics * PASCAL from_handle(HDC hDC);
-      static void PASCAL DeleteTempMap();
-      BOOL Attach(HDC hDC);   // Attach/Detach affects only the Output DC
+      //static ::ca::graphics * PASCAL from_handle(HDC hDC);
+      //static void PASCAL DeleteTempMap();
+      BOOL Attach(HDC hdc);   // Attach/Detach affects only the Output DC
       HDC Detach();
 
       virtual void SetAttribDC(HDC hDC);  // Set the Attribute DC
@@ -97,7 +91,7 @@ namespace win
       ::ca::brush* SelectObject(::ca::brush* pBrush);
       virtual ::ca::font* SelectObject(::ca::font* pFont);
       ::ca::bitmap* SelectObject(::ca::bitmap* pBitmap);
-      int SelectObject(::ca::rgn* pRgn);       // special return for regions
+      int SelectObject(::ca::region* pRgn);       // special return for regions
       ::ca::graphics_object* SelectObject(::ca::graphics_object* pObject);
          // ::ca::graphics_object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
@@ -186,17 +180,17 @@ namespace win
       void HIMETRICtoLP(LPSIZE lpSize) const;
 
    // Region Functions
-      BOOL FillRgn(::ca::rgn* pRgn, ::ca::brush* pBrush);
-      BOOL FrameRgn(::ca::rgn* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
-      BOOL InvertRgn(::ca::rgn* pRgn);
-      BOOL PaintRgn(::ca::rgn* pRgn);
+      BOOL FillRgn(::ca::region* pRgn, ::ca::brush* pBrush);
+      BOOL FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
+      BOOL InvertRgn(::ca::region* pRgn);
+      BOOL PaintRgn(::ca::region* pRgn);
 
    // Clipping Functions
       virtual int GetClipBox(LPRECT lpRect) const;
       virtual BOOL PtVisible(int x, int y) const;
             BOOL PtVisible(POINT point) const;
       virtual BOOL RectVisible(LPCRECT lpRect) const;
-            int SelectClipRgn(::ca::rgn* pRgn);
+            int SelectClipRgn(::ca::region* pRgn);
             int ExcludeClipRect(int x1, int y1, int x2, int y2);
             int ExcludeClipRect(LPCRECT lpRect);
             int ExcludeUpdateRgn(::ca::window * pWnd);
@@ -204,7 +198,7 @@ namespace win
             int IntersectClipRect(LPCRECT lpRect);
             int OffsetClipRgn(int x, int y);
             int OffsetClipRgn(SIZE size);
-      int SelectClipRgn(::ca::rgn* pRgn, int nMode);
+      int SelectClipRgn(::ca::region* pRgn, int nMode);
 
    // Line-Output Functions
       point GetCurrentPosition() const;
@@ -379,7 +373,7 @@ namespace win
 
    // Scrolling Functions
       BOOL ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
-         ::ca::rgn* pRgnUpdate, LPRECT lpRectUpdate);
+         ::ca::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
       BOOL GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
@@ -457,6 +451,9 @@ namespace win
       void Draw3dRect(int x, int y, int cx, int cy,
          COLORREF clrTopLeft, COLORREF clrBottomRight);
 
+
+
+
    // Implementation
    public:
    #ifdef _DEBUG
@@ -470,10 +467,18 @@ namespace win
 
       virtual void set_alpha_mode(e_alpha_mode ealphamode);
 
+      virtual void * get_os_data() const;
+      virtual HDC get_handle() const;
+      virtual HDC get_handle1() const;
+      virtual HDC get_handle2() const;
 
-   protected:
+      virtual void attach(void * pdata);
+
+
+
+   //protected:
       // used for implementation of non-virtual SelectObject calls
-      static ::ca::graphics_object* PASCAL SelectGdiObject(::ca::application * papp, HDC hDC, HGDIOBJ h);
+      //static ::ca::graphics_object* PASCAL SelectGdiObject(::ca::application * papp, HDC hDC, HGDIOBJ h);
    };
 
 } // namespace win

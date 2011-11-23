@@ -3,17 +3,6 @@
 namespace win
 {
 
-   // graphics
-   graphics::operator HDC() const
-   { return this == NULL ? NULL : hdc_handle::get_os_data(); }
-   HDC graphics::get_handle1() const
-   { return this == NULL ? NULL : hdc_handle::get_os_data(); }
-
-   void * graphics::get_os_data()
-   {
-      return hdc_handle::get_os_data();
-   }
-
    ::ca::window * graphics::GetWindow() const
    { 
       ASSERT(get_handle1() != NULL); return ::win::window::from_handle(::WindowFromDC(get_handle1())); 
@@ -37,6 +26,8 @@ namespace win
 
    BOOL graphics::CreateCompatibleDC(::ca::graphics * pgraphics)
    { 
+//      throw "not needed exception";
+  //    return FALSE;
       if(pgraphics == NULL)
       {
          return Attach(::CreateCompatibleDC(NULL));
@@ -90,25 +81,43 @@ namespace win
 
    ::ca::bitmap* graphics::SelectObject(::ca::bitmap* pBitmap)
    { 
-      if(get_handle1() == NULL)
+
+      
+      if(pBitmap == NULL)
+         return NULL;
+
+/*      if(get_handle1() == NULL)
          return NULL;
       if(pBitmap == NULL)
          return NULL;
-      return dynamic_cast < ::ca::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pBitmap->get_os_data()));
+      return dynamic_cast < ::ca::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pBitmap->get_os_data()));*/
+      if(m_pgraphics != NULL)
+      {
+         delete m_pgraphics;
+      }
+
+      
+
+      m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) pBitmap->get_os_data());
+      m_bitmap = pBitmap;
+      return m_bitmap;
    }
+
 
    ::ca::graphics_object* graphics::SelectObject(::ca::graphics_object* pObject)
    {
-      ASSERT(get_handle1() != NULL); 
+   /*      ASSERT(get_handle1() != NULL); 
       if(pObject == NULL)
          return NULL;
-      return SelectGdiObject(get_app(), get_handle1(), pObject->get_os_data()); 
+      return SelectGdiObject(get_app(), get_handle1(), pObject->get_os_data()); */
+      return NULL;
    }
 
    HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
    {
-      ASSERT(get_handle1() == get_handle2()); // ASSERT a simple graphics object
-      return (hObject != NULL) ? ::SelectObject(get_handle1(), hObject) : NULL; 
+      //*ASSERT(get_handle1() == get_handle2()); // ASSERT a simple graphics object
+      //return (hObject != NULL) ? ::SelectObject(get_handle1(), hObject) : NULL; */
+      return NULL;
    }
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
@@ -240,19 +249,19 @@ namespace win
       ::LPtoDP(get_handle2(), (LPPOINT)lpRect, 2);
    }
 
-   BOOL graphics::FillRgn(::ca::rgn* pRgn, ::ca::brush* pBrush)
+   BOOL graphics::FillRgn(::ca::region* pRgn, ::ca::brush* pBrush)
    { 
       return ::FillRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data());
    }
 
-   BOOL graphics::FrameRgn(::ca::rgn* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight)
+   BOOL graphics::FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight)
    { 
       return ::FrameRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight); 
    }
 
-   BOOL graphics::InvertRgn(::ca::rgn* pRgn)
+   BOOL graphics::InvertRgn(::ca::region* pRgn)
    { ASSERT(get_handle1() != NULL); return ::InvertRgn(get_handle1(), (HRGN)pRgn->get_os_data()); }
-   BOOL graphics::PaintRgn(::ca::rgn* pRgn)
+   BOOL graphics::PaintRgn(::ca::region* pRgn)
    { ASSERT(get_handle1() != NULL); return ::PaintRgn(get_handle1(), (HRGN)pRgn->get_os_data()); }
    BOOL graphics::PtVisible(int x, int y) const
    { ASSERT(get_handle1() != NULL); return ::PtVisible(get_handle1(), x, y); }
@@ -301,7 +310,6 @@ namespace win
 
    BOOL graphics::DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
    { 
-      ASSERT(get_handle1() != NULL);
       if(picon == NULL)
          return FALSE;
       return ::DrawIconEx(get_handle1(), x, y, picon->m_hicon, cx, cy, istepIfAniCur, hbrFlickerFreeDraw, diFlags); 
@@ -376,9 +384,10 @@ namespace win
    
    BOOL graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, DWORD dwRop)
    { 
-      if(get_handle1() == NULL)
-         return FALSE;
-      return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, dwRop); 
+      return m_pgraphics->DrawImage(
+         (Gdiplus::Bitmap *) (dynamic_cast < ::win::graphics * > (pgraphicsSrc))->m_bitmap->get_os_data(),
+         x, y , xSrc, ySrc, nWidth, nHeight, Gdiplus::UnitWorld) == Gdiplus::Status::Ok;
+      //return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, dwRop); 
    }
 
 
@@ -527,7 +536,23 @@ namespace win
    256, rString.GetBuffer(256)); rString.ReleaseBuffer();
    return nResult; }
    BOOL graphics::_AFX_FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
-   { ASSERT(get_handle2() != NULL); return ::GetTextMetrics(get_handle2(), lpMetrics); }
+   { 
+      //ASSERT(get_handle2() != NULL); return ::GetTextMetrics(get_handle2(), lpMetrics); 
+      wstring wstr(L"123AWZwmc");
+      Gdiplus::RectF rect;
+      Gdiplus::RectF rect2;
+      Gdiplus::PointF origin(0, 0);
+      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect);
+
+      wstr = L"123AWZwmcpQçg";
+      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);
+
+      lpMetrics->tmAveCharWidth = rect.Width / (double) wstr.get_length();
+      lpMetrics->tmAscent = rect.Height;
+      lpMetrics->tmDescent = rect2.Height - rect.Height;
+
+      return TRUE;
+   }
 #pragma push_macro("GetTextMetrics")
 #undef GetTextMetrics
    BOOL graphics::GetTextMetrics(LPTEXTMETRIC lpMetrics) const
@@ -559,7 +584,7 @@ namespace win
    }
    BOOL graphics::ScrollDC(int dx, int dy,
       LPCRECT lpRectScroll, LPCRECT lpRectClip,
-      ::ca::rgn* pRgnUpdate, LPRECT lpRectUpdate)
+      ::ca::region* pRgnUpdate, LPRECT lpRectUpdate)
    { ASSERT(get_handle1() != NULL); return ::ScrollDC(get_handle1(), dx, dy, lpRectScroll,
    lpRectClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate); }
 
@@ -608,80 +633,167 @@ namespace win
    xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop); }
    BOOL graphics::PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc,
       int nWidth, int nHeight, ::ca::bitmap& maskBitmap, int xMask, int yMask)
-   { ASSERT(get_handle1() != NULL); return ::PlgBlt(get_handle1(), lpPoint, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nWidth,
+   { ASSERT(get_handle1() != NULL); 
+   return ::PlgBlt(get_handle1(), lpPoint, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nWidth,
    nHeight, (HBITMAP)maskBitmap.get_os_data(), xMask, yMask); }
    BOOL graphics::SetPixelV(int x, int y, COLORREF crColor)
-   { ASSERT(get_handle1() != NULL); return ::SetPixelV(get_handle1(), x, y, crColor); }
+   { ASSERT(get_handle1() != NULL); 
+   return ::SetPixelV(get_handle1(), x, y, crColor); }
    BOOL graphics::SetPixelV(POINT point, COLORREF crColor)
-   { ASSERT(get_handle1() != NULL); return ::SetPixelV(get_handle1(), point.x, point.y, crColor); }
+   { ASSERT(get_handle1() != NULL); 
+   return ::SetPixelV(get_handle1(), point.x, point.y, crColor); }
    BOOL graphics::AngleArc(int x, int y, int nRadius,
       float fStartAngle, float fSweepAngle)
-   { ASSERT(get_handle1() != NULL); return ::AngleArc(get_handle1(), x, y, nRadius, fStartAngle, fSweepAngle); }
+   { ASSERT(get_handle1() != NULL); 
+   return ::AngleArc(get_handle1(), x, y, nRadius, fStartAngle, fSweepAngle); }
    BOOL graphics::ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
-   { ASSERT(get_handle1() != NULL); return ArcTo(lpRect->left, lpRect->top, lpRect->right,
+   { ASSERT(get_handle1() != NULL); 
+   return ArcTo(lpRect->left, lpRect->top, lpRect->right,
    lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y); }
    int graphics::GetArcDirection() const
-   { ASSERT(get_handle2() != NULL); return ::GetArcDirection(get_handle2()); }
+   { ASSERT(get_handle2() != NULL);
+   return ::GetArcDirection(get_handle2()); }
    BOOL graphics::PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints,
       int nCount)
-   { ASSERT(get_handle1() != NULL); return ::PolyPolyline(get_handle1(), lpPoints, lpPolyPoints, nCount); }
+   { ASSERT(get_handle1() != NULL); 
+   return ::PolyPolyline(get_handle1(), lpPoints, lpPolyPoints, nCount); }
    BOOL graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
-   { ASSERT(get_handle2() != NULL); return ::GetColorAdjustment(get_handle2(), lpColorAdjust); }
+   { ASSERT(get_handle2() != NULL); 
+   return ::GetColorAdjustment(get_handle2(), lpColorAdjust); }
+
    ::ca::pen* graphics::GetCurrentPen() const
-   { ASSERT(get_handle2() != NULL); return ::win::pen::from_handle(get_app(), (HPEN)::GetCurrentObject(get_handle2(), OBJ_PEN)); }
+   {
+
+      return m_pen;
+
+   }
+
    ::ca::brush* graphics::GetCurrentBrush() const
-   { ASSERT(get_handle2() != NULL); return ::win::brush::from_handle(get_app(), (HBRUSH)::GetCurrentObject(get_handle2(), OBJ_BRUSH)); }
+   {
+      
+      return m_brush;
+
+   }
+   
    ::ca::palette* graphics::GetCurrentPalette() const
-   { ASSERT(get_handle2() != NULL); return ::win::palette::from_handle(get_app(), (HPALETTE)::GetCurrentObject(get_handle2(), OBJ_PAL)); }
+   {
+
+      return NULL;
+
+   }
+
    ::ca::font* graphics::GetCurrentFont() const
-   { ASSERT(get_handle2() != NULL); return ::win::font::from_handle(get_app(), (HFONT)::GetCurrentObject(get_handle2(), OBJ_FONT)); }
+   {
+
+      return m_font;
+
+   }
+
    ::ca::bitmap* graphics::GetCurrentBitmap() const
-   { ASSERT(get_handle2() != NULL); return ::win::bitmap::from_handle(get_app(), (HBITMAP)::GetCurrentObject(get_handle2(), OBJ_BITMAP)); }
+   {
+
+      return m_bitmap;
+
+   }
+
    BOOL graphics::PolyBezier(const POINT* lpPoints, int nCount)
-   { ASSERT(get_handle1() != NULL); return ::PolyBezier(get_handle1(), lpPoints, nCount); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::PolyBezier(get_handle1(), lpPoints, nCount); 
+   }
 
    int graphics::DrawEscape(int nEscape, int nInputSize, const char * lpszInputData)
-   { ASSERT(get_handle1() != NULL); return ::DrawEscape(get_handle1(), nEscape, nInputSize, lpszInputData); }
-   int graphics::Escape(__in int nEscape, __in int nInputSize, __in_bcount(nInputSize) const char * lpszInputData,
-      __in int nOutputSize, __out_bcount(nOutputSize) char * lpszOutputData)
-   { ASSERT(get_handle1() != NULL); return ::ExtEscape(get_handle1(), nEscape, nInputSize, lpszInputData,
-   nOutputSize, lpszOutputData); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::DrawEscape(get_handle1(), nEscape, nInputSize, lpszInputData); 
+   }
+   
+   int graphics::Escape(__in int nEscape, __in int nInputSize, __in_bcount(nInputSize) const char * lpszInputData,  __in int nOutputSize, __out_bcount(nOutputSize) char * lpszOutputData)
+   {
+       ASSERT(get_handle1() != NULL); 
+       return ::ExtEscape(get_handle1(), nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData); 
+   }
 
    BOOL graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
       LPABCFLOAT lpABCF) const
-   { ASSERT(get_handle2() != NULL); return ::GetCharABCWidthsFloat(get_handle2(), nFirstChar, nLastChar, lpABCF); }
-   BOOL graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar,
-      float* lpFloatBuffer) const
-   { ASSERT(get_handle2() != NULL); return ::GetCharWidthFloat(get_handle2(), nFirstChar, nLastChar, lpFloatBuffer); }
+   { 
+      ASSERT(get_handle2() != NULL); 
+      return ::GetCharABCWidthsFloat(get_handle2(), nFirstChar, nLastChar, lpABCF); 
+   }
+   BOOL graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer) const
+   {
+      ASSERT(get_handle2() != NULL); 
+      return ::GetCharWidthFloat(get_handle2(), nFirstChar, nLastChar, lpFloatBuffer); 
+   }
 
    BOOL graphics::AbortPath()
-   { ASSERT(get_handle1() != NULL); return ::AbortPath(get_handle1()); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::AbortPath(get_handle1()); 
+   }
    BOOL graphics::BeginPath()
-   { ASSERT(get_handle1() != NULL); return ::BeginPath(get_handle1()); }
+   { 
+      ASSERT(get_handle1() != NULL); 
+      return ::BeginPath(get_handle1()); 
+   }
    BOOL graphics::CloseFigure()
-   { ASSERT(get_handle1() != NULL); return ::CloseFigure(get_handle1()); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::CloseFigure(get_handle1()); 
+   }
    BOOL graphics::EndPath()
-   { ASSERT(get_handle1() != NULL); return ::EndPath(get_handle1()); }
+   { 
+      ASSERT(get_handle1() != NULL); 
+      return ::EndPath(get_handle1()); 
+   }
    BOOL graphics::FillPath()
-   { ASSERT(get_handle1() != NULL); return ::FillPath(get_handle1()); }
+   { 
+      ASSERT(get_handle1() != NULL); 
+      return ::FillPath(get_handle1()); 
+   }
    BOOL graphics::FlattenPath()
-   { ASSERT(get_handle1() != NULL); return ::FlattenPath(get_handle1()); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::FlattenPath(get_handle1()); 
+   }
    float graphics::GetMiterLimit() const
-   { ASSERT(get_handle1() != NULL); float fMiterLimit;
-   VERIFY(::GetMiterLimit(get_handle1(), &fMiterLimit)); return fMiterLimit; }
+   {
+      ASSERT(get_handle1() != NULL); 
+      float fMiterLimit;
+      VERIFY(::GetMiterLimit(get_handle1(), &fMiterLimit)); 
+      return fMiterLimit; 
+   }
    int graphics::GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int nCount) const
-   { ASSERT(get_handle1() != NULL); return ::GetPath(get_handle1(), lpPoints, lpTypes, nCount); }
+   { 
+      ASSERT(get_handle1() != NULL); 
+      return ::GetPath(get_handle1(), lpPoints, lpTypes, nCount); 
+   }
    BOOL graphics::SetMiterLimit(float fMiterLimit)
-   { ASSERT(get_handle1() != NULL); return ::SetMiterLimit(get_handle1(), fMiterLimit, NULL); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::SetMiterLimit(get_handle1(), fMiterLimit, NULL); 
+   }
    BOOL graphics::StrokeAndFillPath()
-   { ASSERT(get_handle1() != NULL); return ::StrokeAndFillPath(get_handle1()); }
+   { 
+      ASSERT(get_handle1() != NULL); 
+      return ::StrokeAndFillPath(get_handle1()); 
+   }
    BOOL graphics::StrokePath()
-   { ASSERT(get_handle1() != NULL); return ::StrokePath(get_handle1()); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::StrokePath(get_handle1()); 
+   }
    BOOL graphics::WidenPath()
-   { ASSERT(get_handle1() != NULL); return ::WidenPath(get_handle1()); }
+   {
+      ASSERT(get_handle1() != NULL); 
+      return ::WidenPath(get_handle1()); 
+   }
 
    BOOL graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
-   { ASSERT(get_handle1() != NULL); return ::GdiComment(get_handle1(), nDataSize, pCommentData); }
+   { 
+      ASSERT(get_handle1() != NULL); 
+      return ::GdiComment(get_handle1(), nDataSize, pCommentData); 
+   }
    
    BOOL graphics::PlayMetaFile(HENHMETAFILE hEnhMF, LPCRECT lpBounds)
    { 
@@ -959,7 +1071,8 @@ namespace win
          _afxWingdixTerm = (char)!atexit(&AfxWingdixTerm);
       AfxUnlockGlobals(CRIT_HALFTONEBRUSH);
 
-      return ::win::brush::from_handle(papp, _afxHalftoneBrush);
+//      return ::win::brush::from_handle(papp, _afxHalftoneBrush);
+      return NULL;
    }
 
    void graphics::DrawDragRect(LPCRECT lpRect, SIZE size,
@@ -970,8 +1083,8 @@ namespace win
          fx_is_valid_address(lpRectLast, sizeof(RECT), FALSE));
 
       // first, determine the update region and select it
-      ::ca::rgn rgnNew;
-      ::ca::rgn rgnOutside, rgnInside;
+      ::ca::region rgnNew;
+      ::ca::region rgnOutside, rgnInside;
       rgnOutside.CreateRectRgnIndirect(lpRect);
       rect rect = *lpRect;
       rect.inflate(-size.cx, -size.cy);
@@ -993,7 +1106,7 @@ namespace win
          pBrushLast = pBrush;
       }
 
-      ::ca::rgn rgnLast, rgnUpdate;
+      ::ca::region rgnLast, rgnUpdate;
       if (lpRectLast != NULL)
       {
          // find difference between new region and old region
@@ -1083,20 +1196,22 @@ namespace win
    graphics::graphics(::ca::application * papp) :
       ca(papp)
    {
-      set_handle1(NULL);
-      set_handle2(NULL);
+//      set_handle1(NULL);
+  //    set_handle2(NULL);
       m_bPrinting = FALSE;
       m_pdibAlphaBlend = NULL;
       m_pgraphics = NULL;
+      m_bHdc            = false;
    }
 
    graphics::graphics()
    {
-      set_handle1(NULL);
-      set_handle2(NULL);
+    //  set_handle1(NULL);
+      //set_handle2(NULL);
       m_bPrinting = FALSE;
       m_pgraphics = NULL;
       m_pgraphics = NULL;
+      m_bHdc            = false;
    }
 
 #ifdef _DEBUG
@@ -1118,18 +1233,39 @@ namespace win
 #endif //_DEBUG
 
 
-   ::ca::graphics * PASCAL ::win::graphics::from_handle(HDC hDC)
-   {
-      hdc_map* pMap = afxMapHDC(TRUE); //create ::collection::map if not exist
-      ASSERT(pMap != NULL);
-      ::ca::graphics * pgraphics = (::ca::graphics *)pMap->from_handle(hDC);
-      ASSERT(pgraphics == NULL || (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() == hDC);
-      return pgraphics;
-   }
+   //::ca::graphics * PASCAL ::win::graphics::from_handle(HDC hDC)
+   //{
+      //hdc_map* pMap = afxMapHDC(TRUE); //create ::collection::map if not exist
+      //ASSERT(pMap != NULL);
+//      ::ca::graphics * pgraphics = (::ca::graphics *)pMap->from_handle(hDC);
+  //    ASSERT(pgraphics == NULL || (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() == hDC);
+    //  return pgraphics;
+     // return NULL;
+   //}
 
-   BOOL graphics::Attach(HDC hDC)
+   BOOL graphics::Attach(HDC hdc)
    {
-      ASSERT(get_handle1() == NULL);      // only attach once, detach on destroy
+
+      
+      if(m_pgraphics != NULL)
+      {
+
+         if(hdc == m_pgraphics->GetHDC())
+            return TRUE;
+
+         delete m_pgraphics;
+
+      }
+      
+      if(hdc != NULL)
+      {
+         m_pgraphics = new ::Gdiplus::Graphics(hdc);
+         m_bHdc = true;
+      }
+
+      return m_pgraphics != NULL;
+
+      /*ASSERT(get_handle1() == NULL);      // only attach once, detach on destroy
       ASSERT(get_handle2() == NULL);    // only attach to an is_empty DC
 
       if (hDC == NULL)
@@ -1143,27 +1279,31 @@ namespace win
       pMap->set_permanent(get_handle1(), this);
 
       SetAttribDC(get_handle1());     // Default to same as output
-      return TRUE;
+      return TRUE;*/
    }
 
    HDC graphics::Detach()
    {
-      HDC hDC = get_handle1();
-      if (hDC != NULL)
-      {
-         hdc_map* pMap = afxMapHDC(); // don't create if not exist
-         if (pMap != NULL)
-            pMap->remove_handle(get_handle1());
-      }
 
-      ReleaseAttribDC();
-      set_handle1(NULL);
-      return hDC;
+      if(!m_bHdc)
+         return NULL;
+
+      if(m_pgraphics == NULL)
+         return NULL;
+
+      HDC hdc = m_pgraphics->GetHDC();
+
+      delete m_pgraphics;
+      m_pgraphics = NULL;
+
+      return hdc;
+      
    }
 
    BOOL graphics::DeleteDC()
    {
-      if (get_handle1() == NULL)
+
+      if(get_handle() == NULL)
          return FALSE;
 
       return ::DeleteDC(Detach());
@@ -1171,49 +1311,51 @@ namespace win
 
    graphics::~graphics()
    {
-      if(m_pgraphics != NULL)
+      
+      HDC hdc = Detach();
+      
+      if(hdc != NULL)
       {
-         delete m_pgraphics;
+         ::DeleteDC(hdc);
       }
-      if (get_handle1() != NULL)
-         ::DeleteDC(Detach());
+
    }
 
 
    void graphics::SetAttribDC(HDC hDC)  // Set the Attribute DC
    {
-      set_handle2(hDC);
+//      set_handle2(hDC);
    }
 
    void graphics::SetOutputDC(HDC hDC)  // Set the Output DC
    {
 #ifdef _DEBUG
-      hdc_map* pMap = afxMapHDC();
+/*      hdc_map* pMap = afxMapHDC();
       if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
       {
          TRACE(::radix::trace::category_AppMsg, 0, "Cannot Set Output hDC on Attached graphics.\n");
          ASSERT(FALSE);
-      }
+      }*/
 #endif
-      set_handle1(hDC);
+  //    set_handle1(hDC);
    }
 
    void graphics::ReleaseAttribDC()     // Release the Attribute DC
    {
-      set_handle2(NULL);
+//      set_handle2(NULL);
    }
 
    void graphics::ReleaseOutputDC()     // Release the Output DC
    {
 #ifdef _DEBUG
-      hdc_map* pMap = afxMapHDC();
+/*      hdc_map* pMap = afxMapHDC();
       if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
       {
          TRACE(::radix::trace::category_AppMsg, 0, "Cannot Release Output hDC on Attached graphics.\n");
          ASSERT(FALSE);
-      }
+      }*/
 #endif
-      set_handle1(NULL);
+      //set_handle1(NULL);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1248,60 +1390,70 @@ namespace win
       return bRetVal;
    }
 
-   ::ca::graphics_object* PASCAL graphics::SelectGdiObject(::ca::application * papp, HDC hDC, HGDIOBJ h)
-   {
-      return ::win::graphics_object::from_handle(papp, ::SelectObject(hDC, h));
-   }
+//   ::ca::graphics_object* PASCAL graphics::SelectGdiObject(::ca::application * papp, HDC hDC, HGDIOBJ h)
+  // {
+//      return ::win::graphics_object::from_handle(papp, ::SelectObject(hDC, h));
+   //}
 
    ::ca::graphics_object* graphics::SelectStockObject(int nIndex)
    {
-      HGDIOBJ hObject = ::GetStockObject(nIndex);
+/*      HGDIOBJ hObject = ::GetStockObject(nIndex);
       HGDIOBJ hOldObj = NULL;
       ASSERT(hObject != NULL);
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          hOldObj = ::SelectObject(get_handle1(), hObject);
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), hObject);
-      return ::win::graphics_object::from_handle(get_app(), hOldObj);
+      return ::win::graphics_object::from_handle(get_app(), hOldObj);*/
+
+      return NULL;
    }
 
    ::ca::pen* graphics::SelectObject(::ca::pen* pPen)
    {
-      HGDIOBJ hOldObj = NULL;
+      /*HGDIOBJ hOldObj = NULL;
       if(pPen == NULL)
          return NULL;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          hOldObj = ::SelectObject(get_handle1(), pPen->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
-      return dynamic_cast < pen * > (::win::graphics_object::from_handle(get_app(), hOldObj));
+      return dynamic_cast < pen * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+      m_pen = pPen;
+      return m_pen;
    }
 
    ::ca::brush* graphics::SelectObject(::ca::brush* pBrush)
    {
-      HGDIOBJ hOldObj = NULL;
+/*      HGDIOBJ hOldObj = NULL;
       if(pBrush == NULL)
          return NULL;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-      return dynamic_cast < ::ca::brush * > (::win::graphics_object::from_handle(get_app(), hOldObj));
+      return dynamic_cast < ::ca::brush * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+      m_brush = pBrush;
+      return m_brush;
+
    }
 
    ::ca::font* graphics::SelectObject(::ca::font* pFont)
    {
-      HGDIOBJ hOldObj = NULL;
+/*      HGDIOBJ hOldObj = NULL;
       if(pFont == NULL)
          return NULL;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
          hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-      return dynamic_cast < ::ca::font * > (::win::graphics_object::from_handle(get_app(), hOldObj));
+      return dynamic_cast < ::ca::font * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+      m_font = pFont;
+      return m_font;
+
    }
 
-   int graphics::SelectObject(::ca::rgn* pRgn)
+   int graphics::SelectObject(::ca::region* pRgn)
    {
       int nRetVal = GDI_ERROR;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
@@ -1313,7 +1465,8 @@ namespace win
 
    ::ca::palette* graphics::SelectPalette(::ca::palette* pPalette, BOOL bForceBackground)
    {
-      return dynamic_cast < ::ca::palette * > (::win::graphics_object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+      return NULL;
+//      return dynamic_cast < ::ca::palette * > (::win::graphics_object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
    COLORREF graphics::SetBkColor(COLORREF crColor)
@@ -1519,7 +1672,7 @@ namespace win
       return ::GetClipBox(get_handle1(), lpRect);
    }
 
-   int graphics::SelectClipRgn(::ca::rgn* pRgn)
+   int graphics::SelectClipRgn(::ca::region* pRgn)
    {
       int nRetVal = ERROR;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
@@ -1803,7 +1956,7 @@ namespace win
       return bResult;
    }
 
-   int graphics::SelectClipRgn(::ca::rgn* pRgn, int nMode)
+   int graphics::SelectClipRgn(::ca::region* pRgn, int nMode)
    {
       ASSERT(get_handle1() != NULL);
       int nRetVal = ERROR;
@@ -1886,7 +2039,8 @@ namespace win
                if (hObjOld == hStockFont)
                {
                   // got the stock object back, so must be selecting a font
-                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+                  throw not_implemented_exception();
+//                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
                   break;  // don't play the default record
                }
                else
@@ -1900,7 +2054,8 @@ namespace win
             else if (nObjType == OBJ_FONT)
             {
                // play back as graphics::SelectObject(::ca::font*)
-               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+//               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+               throw not_implemented_exception();
                break;  // don't play the default record
             }
          }
@@ -2031,6 +2186,7 @@ namespace win
       VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int)wstr.get_length(), &size));
       return size;
    }
+
    size graphics::GetOutputTextExtent(const string & str) const
    {
       ASSERT(get_handle1() != NULL);
@@ -2168,7 +2324,7 @@ namespace win
    // IMPLEMENT_DYNAMIC(::ca::font, ::ca::graphics_object)
    // IMPLEMENT_DYNAMIC(::ca::bitmap, ::ca::graphics_object)
    // IMPLEMENT_DYNAMIC(::ca::palette, ::ca::graphics_object)
-   // IMPLEMENT_DYNAMIC(::ca::rgn, ::ca::graphics_object)
+   // IMPLEMENT_DYNAMIC(::ca::region, ::ca::graphics_object)
 
    /////////////////////////////////////////////////////////////////////////////
    // Standard exception processing
@@ -2191,7 +2347,7 @@ namespace win
 
 
 
-hdc_map* PASCAL afxMapHDC(BOOL bCreate)
+/*hdc_map* PASCAL afxMapHDC(BOOL bCreate)
 {
    UNREFERENCED_PARAMETER(bCreate);
    try
@@ -2206,7 +2362,7 @@ hdc_map* PASCAL afxMapHDC(BOOL bCreate)
       return NULL;
    }
 
-}
+}*/
 
 
 
@@ -2221,12 +2377,12 @@ namespace win
    {
 
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-      g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
       set_color(clr);
       if(m_brush.is_null())
          return;
-      g().FillRectangle(dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      m_pgraphics->FillRectangle((Gdiplus::Brush *) m_brush->get_os_data(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
 
       //::SetBkColor(get_handle1(), clr);
       //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
@@ -2235,59 +2391,36 @@ namespace win
    void graphics::FillSolidRect(int x, int y, int cx, int cy, COLORREF clr)
    {
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-      g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
       set_color(clr);
       if(m_brush.is_null())
          return;
-      g().FillRectangle(dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush, x, y, cx, cy);
+      m_pgraphics->FillRectangle((Gdiplus::Brush *) m_brush->get_os_data(), x, y, cx, cy);
    }
 
 
    BOOL graphics::TextOut(int x, int y, const char * lpszString, int nCount)
    {
 
-      if(get_handle1() == NULL)
-         return FALSE;
-
-      ::Gdiplus::Font font(get_handle1());
-
-      g().SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-
       ::Gdiplus::PointF origin(x, y);
 
-      g().SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
-      
       string str(lpszString, nCount);
       
       wstring wstr = gen::international::utf8_to_unicode(str);
       
       if(m_brush.is_null())
-      {
-        set_color(m_crColor);
-      }
-
-      if(m_brush.is_null())
          return FALSE;
 
       if(m_font.is_null())
-      {
-         m_font.create(get_app());
-         if(m_font.is_null())
-            return FALSE;
-      }
-
-      if( dynamic_cast < ::win::font * > (m_font.m_p)->m_pfont == NULL)
-      {
-         dynamic_cast < ::win::font * > (m_font.m_p)->m_pfont = new ::Gdiplus::Font(get_handle1());
-      }
+         return FALSE;
    
-      return g().DrawString(
+      return m_pgraphics->DrawString(
          wstr, 
          wstr.get_length(), 
-         &(dynamic_cast < ::win::font * > (m_font.m_p))->f(), 
+         (Gdiplus::Font *) m_font->get_os_data(), 
          origin, 
-         dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush) == Gdiplus::Status::Ok;
+         (Gdiplus::Brush *) m_brush->get_os_data()) == Gdiplus::Status::Ok;
 
    }
 
@@ -2297,29 +2430,63 @@ namespace win
    BOOL graphics::LineTo(double x, double y)
    {
 
-      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
+//      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
 
-      g().DrawLine(&pen, Gdiplus::Point(m_x, m_y), Gdiplus::Point(x, y));
+      m_pgraphics->DrawLine((Gdiplus::Pen *) m_pen->get_os_data(), Gdiplus::Point(m_x, m_y), Gdiplus::Point(x, y));
 
 
       m_x = x;
       m_y = y;
 
       return TRUE;
+
    }
 
 
    void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {
+      
       ::ca::graphics::set_alpha_mode(ealphamode);
       if(m_ealphamode == alpha_mode_blend)
       {
-         g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+         m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       }
       else if(m_ealphamode == alpha_mode_set)
       {
-         g().SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+         m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       }
+
+   }
+
+   void * graphics::get_os_data() const
+   {
+      return m_pgraphics;
+   }
+
+   HDC graphics::get_handle() const
+   {
+      if(m_pgraphics == NULL || !m_bHdc)
+         return NULL;
+      return m_pgraphics->GetHDC();
+   }
+
+   HDC graphics::get_handle1() const
+   {
+      return get_handle();
+   }
+
+   HDC graphics::get_handle2() const
+   {
+      return get_handle();
+   }
+
+   void graphics::attach(void * pdata)
+   {
+      if(m_pgraphics != NULL)
+      {
+         delete m_pgraphics;
+      }
+      m_pgraphics = (Gdiplus::Graphics *) pdata;
    }
 
 

@@ -78,7 +78,7 @@ CLASS_DECL_VMSWIN void AfxResetMsgCache();
 #include "pen.h"
 #include "font.h"
 #include "brush.h"
-#include "rgn.h"
+#include "region.h"
 #include "draw_dib.h"
 #include "thread.h"
 #include "window.h"
@@ -93,8 +93,8 @@ CLASS_DECL_VMSWIN WNDPROC AfxGetAfxWndProc();
 #define WIN_WINDOW(pwnd) (dynamic_cast < ::win::window * > (dynamic_cast < ::ca::window * >(pwnd)))
 #define WIN_DC(pgraphics) (dynamic_cast < ::win::graphics * > (dynamic_cast < ::ca::graphics * > (pgraphics)))
 #define SP_DC(pgraphics) (dynamic_cast < ::win::graphics * > (( ::ca::graphics * )(pgraphics)))
-#define WIN_HDC(pgraphics) ((HDC)*(dynamic_cast < ::win::graphics * > (dynamic_cast < ::ca::graphics * > (pgraphics))))
-#define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::win::graphics * > ((::ca::graphics *)(pgraphics))))
+#define WIN_HDC(pgraphics) ((dynamic_cast < ::win::graphics * > (dynamic_cast < ::ca::graphics * > (pgraphics)))->get_handle())
+#define SP_HDC(pgraphics) ((dynamic_cast < ::win::graphics * > ((::ca::graphics *)(pgraphics)))->get_handle())
 #define WIN_DIB(pdib) (dynamic_cast < ::win::dib * > (dynamic_cast < ::ca::dib * >(pdib)))
 
 

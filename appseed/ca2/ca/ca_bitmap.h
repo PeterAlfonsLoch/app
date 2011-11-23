@@ -8,8 +8,8 @@ namespace ca
    {
    public:
 
-      virtual BOOL CreateBitmap(int nWidth, int nHeight, UINT nPlanes, UINT nBitcount,
-            const void * lpBits);
+
+      virtual BOOL CreateBitmap(int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits);
       virtual BOOL CreateBitmapIndirect(LPBITMAP lpBitmap);
       virtual BOOL CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
       virtual BOOL CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);

@@ -1971,7 +1971,7 @@
     <ClInclude Include="ca\ca_palette.h" />
     <ClInclude Include="ca\ca_pen.h" />
     <ClInclude Include="ca\ca_profiler.h" />
-    <ClInclude Include="ca\ca_rgn.h" />
+    <ClInclude Include="ca\ca_region.h" />
     <ClInclude Include="ca\ca_se_translator.h" />
     <ClInclude Include="ca\ca_smart_pointer.h" />
     <ClInclude Include="ca\ca_thread.h" />
@@ -3751,7 +3751,7 @@
     <ClCompile Include="ca\ca_palette.cpp" />
     <ClCompile Include="ca\ca_pen.cpp" />
     <ClCompile Include="ca\ca_profiler.cpp" />
-    <ClCompile Include="ca\ca_rgn.cpp" />
+    <ClCompile Include="ca\ca_region.cpp" />
     <ClCompile Include="ca\ca_thread.cpp" />
     <ClCompile Include="ca\ca_window.cpp" />
     <ClCompile Include="ca\ca_window_draw.cpp" />

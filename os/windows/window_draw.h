@@ -53,7 +53,7 @@ namespace win
       // Bit blitting spread functions
       virtual bool ScreenOutput(
          user::buffer *,
-         ::ca::rgn & rgnUpdate);
+         ::ca::region & rgnUpdate);
 
       virtual bool ScreenOutput();
 

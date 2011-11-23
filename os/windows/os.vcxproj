@@ -1238,7 +1238,7 @@
     <ClInclude Include="palette.h" />
     <ClInclude Include="pen.h" />
     <ClInclude Include="port_forward.h" />
-    <ClInclude Include="rgn.h" />
+    <ClInclude Include="region.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="template\core.h" />

@@ -8,6 +8,10 @@ namespace ca
    {
    public:
 
+
+      COLORREF    m_crColor;
+
+
       virtual void construct(COLORREF crColor);                // CreateSolidBrush
       virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
       virtual void construct(bitmap * pbitmap);                // CreatePatternBrush

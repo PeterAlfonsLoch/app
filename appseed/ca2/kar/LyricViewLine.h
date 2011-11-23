@@ -328,7 +328,7 @@ public:
 
    void SetTextEffect(int iTextEffect);
    void SetAnimateType(int iAnimateType);
-   void OnTimerAnimate(::ca::rgn * pModifiedRgn);
+   void OnTimerAnimate(::ca::region * pModifiedRgn);
    bool IsVisible();
    void Show(bool bShow = true);
    void SetNewTime();

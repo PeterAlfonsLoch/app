@@ -443,14 +443,14 @@ namespace win
 
       m_wndpaOut.remove_all();
 
-      ::ca::rgn_sp rgnWindow(get_app());
-      ::ca::rgn_sp rgnIntersect(get_app());
+      ::ca::region_sp rgnWindow(get_app());
+      ::ca::region_sp rgnIntersect(get_app());
 
       rgnWindow->CreateRectRgn(0, 0, 0, 0);
       rgnIntersect->CreateRectRgn(0, 0, 0, 0);
 
       /*rect rectIntersect;
-      ::ca::rgn_sp rgnUpdate(get_app());
+      ::ca::region_sp rgnUpdate(get_app());
       rgnUpdate->CreateRectRgnIndirect(rectUpdate);
       HWND hwndOrder = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
       for(;;)
@@ -1023,7 +1023,7 @@ namespace win
 
    bool window_draw::ScreenOutput(
       user::buffer * pbuffer,
-      ::ca::rgn & rgnUpdate)
+      ::ca::region & rgnUpdate)
    {
       UNREFERENCED_PARAMETER(pbuffer);
       UNREFERENCED_PARAMETER(rgnUpdate);
@@ -1148,7 +1148,7 @@ namespace win
       // The ::ca::window owned device context is clipped
       // with the update region in screen coordinates
       // translated to ::ca::window client coordinates.
-      //::ca::rgn_sp rgnClip(get_app());
+      //::ca::region_sp rgnClip(get_app());
       //rgnClip->CreateRectRgn(0, 0, 0, 0);
       //rgnClip->CopyRgn(&rgnUpdate);
       //rgnClip->OffsetRgn( - rectWnd.top_left());

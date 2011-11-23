@@ -4124,9 +4124,6 @@
     <ClInclude Include="ca\ca_window_draw.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_rgn.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_profiler.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -5338,6 +5335,9 @@
     </ClInclude>
     <ClInclude Include="exception\exception_temporary.h">
       <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_region.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6739,9 +6739,6 @@
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_profiler.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_rgn.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_thread.cpp">
@@ -9047,6 +9044,9 @@
     </ClCompile>
     <ClCompile Include="exception\exception_temporary.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_region.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

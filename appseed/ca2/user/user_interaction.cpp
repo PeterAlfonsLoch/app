@@ -1311,7 +1311,7 @@ namespace user
 
 
    BOOL interaction::RedrawWindow(LPCRECT lpRectUpdate,
-         ::ca::rgn* prgnUpdate,
+         ::ca::region* prgnUpdate,
          UINT flags)
    {
       if(m_pimpl == NULL)
@@ -1890,7 +1890,7 @@ namespace user
          return m_pimpl->GetUpdateRect(lpRect, bErase);
    }
 
-   int interaction::GetUpdateRgn(::ca::rgn* pRgn, BOOL bErase)
+   int interaction::GetUpdateRgn(::ca::region* pRgn, BOOL bErase)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1915,7 +1915,7 @@ namespace user
          m_pimpl->InvalidateRect(lpRect, bErase);
    }
 
-   void interaction::InvalidateRgn(::ca::rgn* pRgn, BOOL bErase)
+   void interaction::InvalidateRgn(::ca::region* pRgn, BOOL bErase)
    {
       if(m_pimpl == NULL)
          return;
@@ -1930,7 +1930,7 @@ namespace user
       else
          m_pimpl->ValidateRect(lpRect);
    }
-   void interaction::ValidateRgn(::ca::rgn* pRgn)
+   void interaction::ValidateRgn(::ca::region* pRgn)
    {
       if(m_pimpl == NULL)
          return;

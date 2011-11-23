@@ -100,7 +100,9 @@ namespace win
       if(m_hdc != NULL)
          return NULL;
       m_hdc = ::CreateDC("WINSPOOL", (LPCSTR) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
-      return Application.graphics_from_os_data(m_hdc);
+      ::ca::graphics_sp g(get_app());
+      g->attach(m_hdc);
+      return g.detach();
    }
 
 } // namespace win

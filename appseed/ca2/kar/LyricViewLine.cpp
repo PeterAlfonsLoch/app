@@ -229,7 +229,7 @@ LyricViewLine::ERenderResult LyricViewLine::Prepare(
             else if(strChar == ">")
             {
                if(iStr == 0)
-                  m_iIndent = pdcForeground->GetDeviceCaps(LOGPIXELSX) / 2;
+                  m_iIndent = 36;
             }
             else if(strChar.is_empty())
             {
@@ -501,7 +501,7 @@ LyricViewLine::ERenderResult LyricViewLine::to(
    }
    int iT = iTop + m_ptTextOffset.y + m_ptemplate->m_iJp1Provision;
    int iRadius = max(1, (int) (m_floatRateX * 5.0));
-   ::ca::rgn_sp rgnClip(get_app());
+   ::ca::region_sp rgnClip(get_app());
    {
       class rect rectClip;
       //rectClip = rectPlacement;
@@ -1512,7 +1512,7 @@ void LyricViewLine::Show(bool bVisible)
 }
 
 
-                            void LyricViewLine::OnTimerAnimate(::ca::rgn * pModifiedRgn)
+                            void LyricViewLine::OnTimerAnimate(::ca::region * pModifiedRgn)
                             {
                                UNREFERENCED_PARAMETER(pModifiedRgn);
                                ASSERT(FALSE);

@@ -231,9 +231,6 @@
     <ClInclude Include="pen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rgn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -386,6 +383,9 @@
     </ClInclude>
     <ClInclude Include="operational_system\cross\general\general_windows.h">
       <Filter>Header Files\operational_system\cross\general</Filter>
+    </ClInclude>
+    <ClInclude Include="region.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -19,7 +19,8 @@ namespace user
       memset(&lf, 0, sizeof(LOGFONT));
 
 
-      lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+      //lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+      lf.lfHeight         = 11;
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -31,7 +32,8 @@ namespace user
 
       memset(&lf, 0, sizeof(LOGFONT));
 
-      lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+      //lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+      lf.lfHeight         = 11;
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -56,7 +58,7 @@ namespace user
       m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE);
       m_buttonBaseWndMenuSysMenu.m_crBkHover             = ::GetSysColor(COLOR_3DFACE);
 
-      lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+      lf.lfHeight         = 10;
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -82,7 +84,8 @@ namespace user
       memset(&lf, 0, sizeof(LOGFONT));
 
 
-      lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+            lf.lfHeight         = 10;
+
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -96,7 +99,8 @@ namespace user
 
 
 
-      lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+            lf.lfHeight         = 10;
+
       lf.lfWeight         = 800;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -142,7 +146,8 @@ namespace user
       memset(&lf, 0, sizeof(LOGFONT));
 
 
-      lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+            lf.lfHeight         = 11;
+
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;

@@ -1,16 +1,27 @@
 #include "StdAfx.h"
 
+
 namespace win
 {
+
+
    font::font(::ca::application * papp) :
    ca(papp)
-   { m_pfont = NULL;}
+   {
+
+      m_pfont     = NULL;
+      m_bUpdated  = false;
+
+   }
+
+
    font::~font()
    { 
 
       if(m_pfont != NULL)
       {
          delete m_pfont;
+         m_pfont = NULL;
       }
    
    }
@@ -25,7 +36,11 @@ namespace win
    //}
    BOOL font::CreateFontIndirect(const LOGFONT* lpLogFont)
    { 
-      return FALSE;
+
+      m_strFontFamilyName = lpLogFont->lfFaceName;
+      m_dFontSize = lpLogFont->lfHeight;
+
+      return TRUE;
       //return Attach(::CreateFontIndirect(lpLogFont)); 
    }
    BOOL font::CreateFont(int nHeight, int nWidth, int nEscapement,
@@ -134,7 +149,8 @@ namespace win
    // pLogFont->nHeight is interpreted as PointSize * 10
    BOOL font::CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics)
    {
-      ASSERT(fx_is_valid_address(lpLogFont, sizeof(LOGFONT), FALSE));
+      return ::ca::font::CreatePointFontIndirect(lpLogFont, pgraphics);
+     /* ASSERT(fx_is_valid_address(lpLogFont, sizeof(LOGFONT), FALSE));
       HDC hDC;
       if (pgraphics != NULL)
       {
@@ -159,7 +175,7 @@ namespace win
       if (pgraphics == NULL)
          ReleaseDC(NULL, hDC);
 
-      return CreateFontIndirect(&logFont);
+      return CreateFontIndirect(&logFont);*/
    }
 
 
@@ -172,9 +188,15 @@ namespace win
          {
             delete m_pfont;
          }
-         m_pfont = new Gdiplus::Font(
+         ((font *) this)->m_pfont = new Gdiplus::Font(
             gen::international::utf8_to_unicode(m_strFontFamilyName),
-            m_dSize);
+            m_dFontSize);
+      }
+
+
+      if(m_pfont != NULL)
+      {
+         ((font *) this)->m_bUpdated = true;
       }
 
       return (Gdiplus::Font *) m_pfont;

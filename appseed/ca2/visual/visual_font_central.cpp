@@ -43,7 +43,8 @@ bool font_central::Initialize()
    memset(&lf, 0, sizeof(lf));
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
-   lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 9;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -83,7 +84,8 @@ bool font_central::Initialize()
    m_fontCaption->CreateFontIndirect(&ncm.lfCaptionFont);
 
    memset(&lf, 0, sizeof(lf));
-   lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 9;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -209,7 +211,8 @@ void font_central::CreateLyricViewFonts()
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
-   lf.lfHeight         = (int)-MulDiv(54, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   //lf.lfHeight         = (int)-MulDiv(54, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 54;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -219,11 +222,11 @@ void font_central::CreateLyricViewFonts()
 
    ::ca::font_sp font(get_app());
    font->CreateFontIndirect(&lf);
-   ::ca::font *pFontOld = spgraphics->SelectObject(font);
-   TEXTMETRIC tm;
-   spgraphics->GetTextMetrics(&tm);
+   //::ca::font *pFontOld = spgraphics->SelectObject(font);
+   //TEXTMETRIC tm;
+   //spgraphics->GetTextMetrics(&tm);
 
-   lf.lfWidth = tm.tmAveCharWidth;
+   //lf.lfWidth = tm.tmAveCharWidth;
    //lf.lfWidth = 0;
    visual::font * pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
@@ -262,7 +265,8 @@ void font_central::CreateLyricViewFonts()
 
    memset(&lf, 0, sizeof(lf));
 
-   lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   //lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight          = 12;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = ANSI_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -272,9 +276,9 @@ void font_central::CreateLyricViewFonts()
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
-   spgraphics->GetTextMetrics(&tm);
+//   spgraphics->GetTextMetrics(&tm);
 
-   lf.lfWidth = tm.tmAveCharWidth;
+   //lf.lfWidth = tm.tmAveCharWidth;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
@@ -311,7 +315,8 @@ void font_central::CreateLyricViewFonts()
 
    memset(&lf, 0, sizeof(lf));
 
-   lf.lfHeight         = (int)-MulDiv(48, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+//   lf.lfHeight         = (int)-MulDiv(48, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 48;
    lf.lfWidth         = 0;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
@@ -322,33 +327,33 @@ void font_central::CreateLyricViewFonts()
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
-   spgraphics->GetTextMetrics(&tm);
+//   spgraphics->GetTextMetrics(&tm);
 
-   lf.lfWidth = tm.tmAveCharWidth;
+  // lf.lfWidth = tm.tmAveCharWidth;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.90);
+   lf.lfWidth = lf.lfWidth * 0.90;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.80);
+   lf.lfWidth = lf.lfWidth * 0.90;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.70);
+   lf.lfWidth = lf.lfWidth * 0.90;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.60);
+   lf.lfWidth = lf.lfWidth * 0.90;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
@@ -359,7 +364,8 @@ void font_central::CreateLyricViewFonts()
 //   pgraphics->SetMapMode(MM_TEXT);
 //   RECT rect;
 //   GetClientRect(&rect);
-    lf.lfHeight         = (int)-MulDiv(24, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+    //lf.lfHeight         = (int)-MulDiv(24, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 24;
    lf.lfWidth         = 0;
    lf.lfWeight         = FW_NORMAL;
     lf.lfCharSet        = DEFAULT_CHARSET;
@@ -370,39 +376,38 @@ void font_central::CreateLyricViewFonts()
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
-   spgraphics->GetTextMetrics(&tm);
 
-   lf.lfWidth = tm.tmAveCharWidth;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.90);
+   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.80);
+   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.70);
+   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (tm.tmAveCharWidth * 0.60);
+   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   //lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 12;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -412,22 +417,20 @@ void font_central::CreateLyricViewFonts()
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
-   spgraphics->GetTextMetrics(&tm);
 
-   lf.lfWidth = long (tm.tmAveCharWidth);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_lpSongLabelFont = pPlayerFont;
 
-   lf.lfWidth = long (tm.tmAveCharWidth);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_lpSongListFont = pPlayerFont;
 
 
-   lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   //lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+   lf.lfHeight = 10;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -436,16 +439,13 @@ void font_central::CreateLyricViewFonts()
    lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    font->CreateFontIndirect(&lf);
-   spgraphics->GetTextMetrics(&tm);
 
-   lf.lfWidth = tm.tmAveCharWidth * 7 / 10;
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pxffontMidiTrackName = pPlayerFont;
 
 
-   spgraphics->SelectObject(pFontOld);
    spgraphics->DeleteDC();
 
 }

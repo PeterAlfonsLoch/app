@@ -45,7 +45,7 @@ namespace visual
    // Camilo S. Tsumanuma
    //
    //////////////////////////////////////////////////
-   clip::clip(::ca::graphics * pdc, ::ca::rgn * prgn)
+   clip::clip(::ca::graphics * pdc, ::ca::region * prgn)
    {
       ASSERT(pdc != NULL);
       m_rgn.CreateRectRgn(0, 0, 0, 0);
@@ -109,7 +109,7 @@ namespace visual
    //////////////////////////////////////////////////
    void clip::Do(
       ::ca::graphics * pdc, // the clipped device context
-      ::ca::rgn * prgn)
+      ::ca::region * prgn)
    {
       ASSERT(pdc != NULL);
       
@@ -119,9 +119,9 @@ namespace visual
 
       point ptViewportOrg = pdc->GetViewportOrg();
 
-      ::ca::rgn & rgn = m_rgn;
+      ::ca::region & rgn = m_rgn;
       int & iOldType = m_iOldType;
-      ::ca::rgn & rgnOld = m_rgnOld;
+      ::ca::region & rgnOld = m_rgnOld;
       
       rgn.CopyRgn(prgn);
       rgn.OffsetRgn(ptViewportOrg);
@@ -161,9 +161,9 @@ namespace visual
 
       point ptViewportOrg = pdc->GetViewportOrg();
 
-      ::ca::rgn & rgn = m_rgn;
+      ::ca::region & rgn = m_rgn;
       int & iOldType = m_iOldType;
-      ::ca::rgn & rgnOld = m_rgnOld;
+      ::ca::region & rgnOld = m_rgnOld;
       
       rect rectUpdate(lpcrect);
       rectUpdate.offset(ptViewportOrg);
@@ -223,9 +223,9 @@ namespace visual
 
       rectUpdate.offset(ptViewportOrg);
 
-      ::ca::rgn & rgn = m_rgn;
+      ::ca::region & rgn = m_rgn;
       int & iOldType = m_iOldType;
-      ::ca::rgn & rgnOld = m_rgnOld;
+      ::ca::region & rgnOld = m_rgnOld;
       
       rgn.SetRectRgn(rectUpdate);
 
@@ -262,7 +262,7 @@ namespace visual
       {
          
          int  & iOldType = m_iOldType;
-         ::ca::rgn & rgnOld   = m_rgnOld;
+         ::ca::region & rgnOld   = m_rgnOld;
          ::ca::graphics * pdc = m_pdc;
          if(iOldType == 1)
             pdc->SelectClipRgn(&rgnOld);

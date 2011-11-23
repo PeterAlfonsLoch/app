@@ -192,26 +192,26 @@ namespace ca
       virtual void UpdateWindow();
       virtual void SetRedraw(BOOL bRedraw = TRUE);
       virtual BOOL GetUpdateRect(LPRECT lpRect, BOOL bErase = FALSE);
-      virtual int GetUpdateRgn(::ca::rgn* pRgn, BOOL bErase = FALSE);
+      virtual int GetUpdateRgn(::ca::region* pRgn, BOOL bErase = FALSE);
       virtual void Invalidate(BOOL bErase = TRUE);
       virtual void InvalidateRect(LPCRECT lpRect, BOOL bErase = TRUE);
-      virtual void InvalidateRgn(::ca::rgn* pRgn, BOOL bErase = TRUE);
+      virtual void InvalidateRgn(::ca::region* pRgn, BOOL bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
-      virtual void ValidateRgn(::ca::rgn* pRgn);
+      virtual void ValidateRgn(::ca::region* pRgn);
       virtual BOOL ShowWindow(int nCmdShow);
       virtual void _001WindowMaximize();
       virtual void _001WindowRestore();
       virtual BOOL IsWindowVisible();
       virtual void ShowOwnedPopups(BOOL bShow = TRUE);
 
-      virtual ::ca::graphics * GetDCEx(::ca::rgn* prgnClip, DWORD flags);
+      virtual ::ca::graphics * GetDCEx(::ca::region* prgnClip, DWORD flags);
       virtual BOOL LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
 #ifdef WINDOWS
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::rgn* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::rgn* prgnUpdate = NULL, UINT flags = 0);
+      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::region* prgnUpdate = NULL, UINT flags = 0);
 #endif
 
 
@@ -322,7 +322,7 @@ namespace ca
       virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
             // return sibling scrollbar control (or NULL if none)
 
-      virtual int ScrollWindowEx(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::rgn* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
+      virtual int ScrollWindowEx(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
 
 
 #ifdef WINDOWS

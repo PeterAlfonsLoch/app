@@ -1,24 +1,28 @@
 #include "StdAfx.h"
 
+
 namespace win
 {
+
 
    pen::pen(::ca::application * papp) :
       ca(papp)
    { 
+
+      m_ppen = NULL;
+
    }
+
    pen::~pen()
    { 
+      if(m_ppen != NULL)
+      {
+         delete m_ppen;
+         m_ppen = NULL;
+      }
    }
-   pen::operator HPEN() const
-   { 
-      return (HPEN)(this == NULL ? NULL : get_handle()); 
-   }
-   pen* PASCAL pen::from_handle(::ca::application * papp, HPEN hPen)
-   { 
-      return dynamic_cast < pen* > (::win::graphics_object::from_handle(papp, hPen));
-   }
-   BOOL pen::CreatePen(int nPenStyle, int nWidth, COLORREF crColor)
+
+   /*BOOL pen::CreatePen(int nPenStyle, int nWidth, COLORREF crColor)
    { return Attach(::CreatePen(nPenStyle, nWidth, crColor)); }
    BOOL pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return Attach(::CreatePenIndirect(lpLogPen)); }
@@ -57,7 +61,7 @@ namespace win
       if (!Attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))
          AfxThrowResourceException();
-   }
+   }*/
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -66,7 +70,7 @@ namespace win
    {
       ::ca::graphics_object::dump(dumpcontext);
 
-      if (get_handle() == NULL)
+/*      if (get_handle() == NULL)
          return;
 
       if (!afxData.bWin95 && ::GetObjectType(get_handle()) != OBJ_PEN)
@@ -82,7 +86,7 @@ namespace win
       dumpcontext << "\nlgpn.lopnWidth.x (width) = " << lp.lopnWidth.x;
       dumpcontext << "\nlgpn.lopnColor = " << (void *)(DWORD_PTR)lp.lopnColor;
 
-      dumpcontext << "\n";
+      dumpcontext << "\n";*/
    }
 #endif
 
@@ -106,7 +110,7 @@ namespace win
       // IMPLEMENT_DYNAMIC(::ca::font, ::ca::graphics_object)
       // IMPLEMENT_DYNAMIC(::ca::bitmap, ::ca::graphics_object)
       // IMPLEMENT_DYNAMIC(::ca::palette, ::ca::graphics_object)
-      // IMPLEMENT_DYNAMIC(::ca::rgn, ::ca::graphics_object)
+      // IMPLEMENT_DYNAMIC(::ca::region, ::ca::graphics_object)
 
       /////////////////////////////////////////////////////////////////////////////
       // Standard exception processing
@@ -130,7 +134,7 @@ namespace win
          graphicsMask->CreateCompatibleDC(NULL))
       {
          const_cast<::ca::bitmap &>(rSrc).GetBitmap(&bm);
-         pDest->delete_object();
+//         pDest->delete_object();
          if(pDest->CreateBitmap(bm.bmWidth, bm.bmHeight, bm.bmPlanes, bm.bmBitsPixel, NULL) &&
             bmpMask->CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, NULL))
          {
@@ -237,13 +241,13 @@ namespace win
       {
          if(const_cast<::ca::bitmap &>(rSrc).GetBitmap(&bm))
          {
-            pDest->delete_object();
+            //pDest->delete_object();
             if(pDest->CreateBitmap(bm.bmWidth, bm.bmHeight, bm.bmPlanes, bm.bmBitsPixel, NULL))
             {
                // create checker brush
                bmpMask->CreateBitmap(8, 8, 1, 1, wPat);
                brChecker.CreatePatternBrush(bmpMask);
-               bmpMask->delete_object();
+               //bmpMask->delete_object();
 
                // Mask
                bmpMask->CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, NULL);
@@ -307,7 +311,7 @@ namespace win
          // create checker brush
          bmpMask->CreateBitmap(8, 8, 1, 1, wPat);
          brChecker.CreatePatternBrush(bmpMask);
-         bmpMask->delete_object();
+         //bmpMask->delete_object();
 
          // Mask
          bmpMask->CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, NULL);
@@ -354,7 +358,12 @@ namespace win
          {
             delete m_ppen;
          }
-         m_ppen = new Gdiplus::Pen(Gdiplus::Color(m_crPenColor), m_dPenWidth);
+         ((pen *) this)->m_ppen = new Gdiplus::Pen(Gdiplus::Color(m_crPenColor), m_dPenWidth);
+      }
+
+      if(m_ppen != NULL)
+      {
+         ((pen *) this)->m_bUpdated = true;
       }
 
       return (Gdiplus::Pen *) m_ppen;

@@ -39,7 +39,7 @@ namespace user
       m_spdib->get_graphics()->SetViewportOrg(
          0,
          0);
-      m_spdib->get_graphics()->SelectClipRgn(NULL);
+      //m_spdib->get_graphics()->SelectClipRgn(NULL);
       return true;
    }
 

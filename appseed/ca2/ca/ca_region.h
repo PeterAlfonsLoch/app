@@ -3,10 +3,23 @@
 namespace ca
 {
 
-   class CLASS_DECL_ca rgn :
+   class CLASS_DECL_ca region :
       virtual public graphics_object
    {
    public:
+
+      enum e_type
+      {
+         type_rect,
+         type_elliptic,
+         type_polygon,
+         type_poly_polygon,
+         type_round,
+      };
+
+      double_point_array      m_pta;
+      int_array               m_iaCount;
+      e_type                  m_etype;
 
       virtual BOOL CreateRectRgn(int x1, int y1, int x2, int y2);
       virtual BOOL CreateRectRgnIndirect(LPCRECT lpRect);
@@ -25,9 +38,9 @@ namespace ca
    // Operations
       virtual void SetRectRgn(int x1, int y1, int x2, int y2);
       virtual void SetRectRgn(LPCRECT lpRect);
-      virtual int CombineRgn(const ::ca::rgn* pRgn1, const ::ca::rgn* pRgn2, int nCombineMode);
-      virtual int CopyRgn(const ::ca::rgn* pRgnSrc);
-      virtual BOOL EqualRgn(const ::ca::rgn* pRgn) const;
+      virtual int CombineRgn(const ::ca::region* pRgn1, const ::ca::region* pRgn2, int nCombineMode);
+      virtual int CopyRgn(const ::ca::region* pRgnSrc);
+      virtual BOOL EqualRgn(const ::ca::region* pRgn) const;
       virtual int OffsetRgn(int x, int y);
       virtual int OffsetRgn(POINT point);
       virtual int GetRgnBox(LPRECT lpRect) const;
@@ -40,6 +53,6 @@ namespace ca
 #endif
    };
 
-   typedef smart_pointer < rgn > rgn_sp;
+   typedef smart_pointer < region > region_sp;
 
 } // namespace ca

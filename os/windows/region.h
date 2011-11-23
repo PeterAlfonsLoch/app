@@ -1,20 +1,25 @@
 #pragma once
 
+
 namespace win
 {
 
-   class rgn :
-      virtual public ::win::graphics_object,
-      virtual public ::ca::rgn
+
+   class region :
+      virtual public ::ca::region
    {
    public:
-      static rgn * PASCAL from_handle(::ca::application * papp, HRGN hRgn);
-      operator HRGN() const;
 
-      rgn(::ca::application * papp);
-      virtual ~rgn();
 
-      BOOL CreateRectRgn(int x1, int y1, int x2, int y2);
+      Gdiplus::Region *       m_pregion;
+
+      //static region * PASCAL from_handle(::ca::application * papp, HRGN hRgn);
+      //operator HRGN() const;
+
+      region(::ca::application * papp);
+      virtual ~region();
+
+      /*BOOL CreateRectRgn(int x1, int y1, int x2, int y2);
       BOOL CreateRectRgnIndirect(LPCRECT lpRect);
       BOOL CreateEllipticRgn(int x1, int y1, int x2, int y2);
       BOOL CreateEllipticRgnIndirect(LPCRECT lpRect);
@@ -24,14 +29,14 @@ namespace win
       BOOL CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3);
       BOOL CreateFromPath(::ca::graphics * pgraphics);
       BOOL CreateFromData(const XFORM* lpXForm, int nCount,
-         const RGNDATA* pRgnData);
+         const RGNDATA* pRgnData);*/
 
    // Operations
       void SetRectRgn(int x1, int y1, int x2, int y2);
       void SetRectRgn(LPCRECT lpRect);
-      int CombineRgn(const ::ca::rgn* pRgn1, const ::ca::rgn* pRgn2, int nCombineMode);
-      int CopyRgn(const ::ca::rgn* pRgnSrc);
-      BOOL EqualRgn(const ::ca::rgn* pRgn) const;
+      int CombineRgn(const ::ca::region* pRgn1, const ::ca::region* pRgn2, int nCombineMode);
+      int CopyRgn(const ::ca::region* pRgnSrc);
+      BOOL EqualRgn(const ::ca::region* pRgn) const;
       int OffsetRgn(int x, int y);
       int OffsetRgn(POINT point);
       int GetRgnBox(LPRECT lpRect) const;
@@ -42,4 +47,7 @@ namespace win
 
    };
 
+
 } // namespace win
+
+

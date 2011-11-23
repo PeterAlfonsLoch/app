@@ -515,7 +515,7 @@ namespace radix
       virtual BOOL UnlockTempMaps(BOOL bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
 
-      virtual ::ca::graphics * graphics_from_os_data(void * pdata);
+      //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
       virtual ::ca::window * window_from_os_data(void * pdata);
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);

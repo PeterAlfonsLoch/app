@@ -28,7 +28,13 @@ namespace ca
       return get_os_data() != NULL;
    }
 
-   void * graphics::get_os_data()
+   void * graphics::get_os_data() const
+   {
+      throw interface_only_exception();
+      return NULL;
+   }
+
+   void graphics::attach(void * pdata)
    {
       throw interface_only_exception();
    }
@@ -287,14 +293,14 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   BOOL graphics::FillRgn(::ca::rgn* pRgn, ::ca::brush* pBrush)
+   BOOL graphics::FillRgn(::ca::region* pRgn, ::ca::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception();   
    }
 
-   BOOL graphics::FrameRgn(::ca::rgn* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight)
+   BOOL graphics::FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
@@ -303,13 +309,13 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   BOOL graphics::InvertRgn(::ca::rgn* pRgn)
+   BOOL graphics::InvertRgn(::ca::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();   
    }
 
-   BOOL graphics::PaintRgn(::ca::rgn* pRgn)
+   BOOL graphics::PaintRgn(::ca::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();   
@@ -945,7 +951,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   BOOL graphics::ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::rgn * pRgnUpdate, LPRECT lpRectUpdate)
+   BOOL graphics::ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region * pRgnUpdate, LPRECT lpRectUpdate)
    {
       UNREFERENCED_PARAMETER(dx);
       UNREFERENCED_PARAMETER(dy);
@@ -1552,7 +1558,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   int graphics::SelectObject(::ca::rgn * pRgn)
+   int graphics::SelectObject(::ca::region * pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();   
@@ -1701,7 +1707,7 @@ namespace ca
       return iClip;
    }
 
-   int graphics::SelectClipRgn(::ca::rgn* pRgn)
+   int graphics::SelectClipRgn(::ca::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();   
@@ -1859,7 +1865,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   int graphics::SelectClipRgn(::ca::rgn* pRgn, int nMode)
+   int graphics::SelectClipRgn(::ca::region* pRgn, int nMode)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(nMode);
@@ -2052,21 +2058,18 @@ namespace ca
 
       m_crColor = crColor;
       
-/*      if(m_pen.is_null())
+      if(m_pen.is_null())
          m_pen.create(get_app());
-      if(m_pen->get_os_data() != NULL)
-         m_pen->delete_object();
-      m_pen->CreatePen(m_nPenStyle, m_iPenWidth, m_crColor);
-      */
+
+      if(m_pen.is_set())
+         m_pen->CreatePen(m_pen->m_nPenStyle, m_pen->m_dPenWidth, m_crColor);
 
       if(m_brush.is_null())
          m_brush.create(get_app());
-      m_brush->CreateSolidBrush( m_crColor);
 
-      //SetTextColor(crColor);
+      if(m_brush.is_set())
+         m_brush->CreateSolidBrush( m_crColor);
 
-      //SelectObject(m_pen);
-      //SelectObject(m_brush);
 
       return TRUE;
 
@@ -2180,7 +2183,8 @@ namespace ca
    client_graphics::client_graphics(::ca::window * pwindow)
    {
       m_pwindow = pwindow;
-      m_p = App(pwindow->get_app()).graphics_from_os_data(pwindow->GetDC());
+      create(pwindow->get_app());
+      m_p->attach(pwindow->GetDC());
    }
    
    client_graphics::~client_graphics()
@@ -2191,7 +2195,8 @@ namespace ca
    window_graphics::window_graphics(::ca::window * pwindow)
    {
       m_pwindow = pwindow;
-      m_p = App(pwindow->get_app()).graphics_from_os_data(pwindow->GetWindowDC());
+      create(pwindow->get_app());
+      m_p->attach(pwindow->GetWindowDC());
    }
    
    window_graphics::~window_graphics()
@@ -2202,8 +2207,10 @@ namespace ca
    paint_graphics::paint_graphics(::ca::window * pwindow)
    {
       m_pwindow = pwindow;
-      m_p = App(pwindow->get_app()).graphics_from_os_data(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
+      create(pwindow->get_app());
+      m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
    }
+
    paint_graphics::~paint_graphics()
    {
       ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);

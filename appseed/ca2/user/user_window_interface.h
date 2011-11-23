@@ -128,13 +128,13 @@ namespace user
       virtual void UpdateWindow();
       virtual void Invalidate(BOOL bErase = TRUE);
       /*void InvalidateRect(LPCRECT lprect, BOOL bErase = TRUE);
-      void InvalidateRgn(::ca::rgn* prgn, BOOL bErase = TRUE);
+      void InvalidateRgn(::ca::region* prgn, BOOL bErase = TRUE);
       void ValidateRect(LPCRECT lprect);
-      void ValidateRgn(::ca::rgn* prgn);
+      void ValidateRgn(::ca::region* prgn);
       bool ShowWindow(int iCmdShow);
       bool IsWindowVisible() const;
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::ca::rgn* prgnUpdate = NULL,
+         ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, UINT, DWORD));
       bool KillTimer(int nIDEvent);
@@ -214,7 +214,7 @@ namespace user
       void TwfGetWndArray(user::HWNDArray & hwnda);
 
       virtual bool Redraw(rect_array & recta);
-      virtual bool Redraw(LPCRECT lprect = NULL, ::ca::rgn * prgn = NULL);
+      virtual bool Redraw(LPCRECT lprect = NULL, ::ca::region * prgn = NULL);
       virtual bool Redraw(::ca::graphics * pdc);
 
       void _001BaseWndInterfaceMap();

@@ -2077,7 +2077,7 @@ namespace window_frame
       if(GetAppearance()->IsIconic())
       {
          rectWindow -= rectWindow.top_left();
-         ::ca::rgn_sp rgnMain(get_app());
+         ::ca::region_sp rgnMain(get_app());
          rgnMain->CreateRectRgnIndirect(rectWindow);
       }
       else if(GetAppearance()->IsFullScreen())
@@ -2092,7 +2092,7 @@ namespace window_frame
             rect rectRgn = rectClient;
             rectRgn += (rectClient.top_left() - rectAdjust.top_left());
             rect rectA = rectRgn;
-            ::ca::rgn_sp rgnMain(get_app());
+            ::ca::region_sp rgnMain(get_app());
             rgnMain->CreateRectRgnIndirect(rectA);
 //            SetWindowRgn((HWND)pwnd->_get_handle(), (HRGN)rgnMain->detach_os_data(), TRUE);
 
@@ -2119,7 +2119,7 @@ namespace window_frame
          rect rectB = rectRgn;
          rectB.right = rectB.left + GRIP_CORNER_LARGE_CX;
          rectB.bottom = rectB.top + GRIP_CORNER_LARGE_CY;
-         ::ca::rgn_sp rgnAdd(get_app());
+         ::ca::region_sp rgnAdd(get_app());
          rgnAdd->CreateRectRgnIndirect(rectB);
          CombineRgn(hrgnMain, hrgnMain, (HRGN) rgnAdd->get_os_data(), RGN_OR);
 

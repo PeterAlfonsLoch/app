@@ -524,7 +524,7 @@ namespace window_frame
             || lpmsg->message == WM_CONTEXTMENU) )
          {
             point ptCursor = lpmsg->pt;
-            ::ca::rgn rgn;
+            ::ca::region rgn;
             rect rectWindow;
             rect rect;
             rgn.CreateRectRgn(0, 0, 0, 0);

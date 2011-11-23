@@ -28,7 +28,6 @@ namespace win
    {
       m_pcolorref          = NULL;
       m_size               = class size(0, 0);
-      m_hbitmapOriginal    = NULL;
    }
 
    COLORREF * dib::get_data()
@@ -82,7 +81,7 @@ namespace win
 
    dib::~dib ()
    {
-      Destroy ();
+      //Destroy ();
    }
 
    BOOL dib::create(class size size)
@@ -113,6 +112,9 @@ namespace win
       m_info.bmiHeader.biCompression   = BI_RGB;
       m_info.bmiHeader.biSizeImage     = width * height * 4;
 
+      m_spbitmap.create(get_app());
+      m_spgraphics.create(get_app());
+
       if(m_spbitmap.m_p == NULL)
       {
          m_size = class size(0, 0);
@@ -127,15 +129,15 @@ namespace win
 
       if(m_spbitmap->get_os_data() != NULL)
       {
-         m_spgraphics->CreateCompatibleDC(NULL);
+         //m_spgraphics->CreateCompatibleDC(NULL);
          ::ca::bitmap * pbitmap = m_spgraphics->SelectObject(m_spbitmap);
-         if(pbitmap == NULL || 
-            pbitmap->get_os_data() == NULL)
+         //m_hbitmapOriginal
+         /*if(pbitmap == NULL || pbitmap->get_os_data() == NULL)
          {
             Destroy();
             return FALSE;
          }
-         m_hbitmapOriginal = (HBITMAP) pbitmap->get_os_data();
+         ((Gdiplus::Bitmap *)pbitmap->get_os_data())->GetHBITMAP(Gdiplus::Color(0, 0, 0, 0), &m_hbitmapOriginal);*/
          m_size = class size(width, height);
          return TRUE;
       }
@@ -148,14 +150,15 @@ namespace win
 
    bool dib::dc_select(bool bSelect)
    {
-      if(bSelect)
+/*      if(bSelect)
       {
          return m_spgraphics->SelectObject(m_spbitmap) != NULL;
       }
       else
       {
          return m_spgraphics->SelectObject(m_hbitmapOriginal) != NULL;
-      }
+      }*/
+      return true;
    }
 
    BOOL dib::create(::ca::graphics * pdc)
@@ -175,16 +178,13 @@ namespace win
 
    BOOL dib::Destroy ()
    {
-      if(m_spbitmap.m_p != NULL && m_spbitmap->get_os_data() != NULL)
-         m_spbitmap->delete_object();
+      if(m_spbitmap.is_set())
+         gen::release(m_spbitmap.m_p);
 
       
-      if(m_spgraphics.is_set() && m_spgraphics->is_set())
-      {
-         m_spgraphics->SelectObject(m_hbitmapOriginal);
-         m_spgraphics->DeleteDC();
-      }
-
+      if(m_spgraphics.is_set())
+         gen::release(m_spgraphics.m_p);
+ 
       m_size         = class size(0, 0);
       m_pcolorref    = NULL;
       
