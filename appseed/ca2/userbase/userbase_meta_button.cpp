@@ -311,7 +311,7 @@ void MetaButton::UpdateWndRgn()
       //ModifyStyleEx(0, WS_EX_TRANSPARENT, SWP_SHOWWINDOW);
       if(SetWindowRgn((HRGN) rgn->get_os_data(), TRUE))
       {
-         rgn->detach_os_data();
+//         rgn->detach_os_data();
       }
    }
 

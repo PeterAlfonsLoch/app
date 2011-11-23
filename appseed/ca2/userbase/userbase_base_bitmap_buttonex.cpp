@@ -33,13 +33,6 @@ namespace userbase
       UNREFERENCED_PARAMETER(lpszBitmapResourceFocus);
       UNREFERENCED_PARAMETER(lpszBitmapResourceDisabled);
       UNREFERENCED_PARAMETER(lpszBitmapResourceHover);
-       // delete old bitmaps (if present)
-       m_bitmap.delete_object();
-       m_bitmapSel.delete_object();
-       m_bitmapFocus.delete_object();
-       m_bitmapDisabled.delete_object();
-       m_bitmapHover.delete_object();
-
        throw not_implemented_exception();
        /*
        if (!m_bitmap.LoadBitmap(lpszBitmapResource))

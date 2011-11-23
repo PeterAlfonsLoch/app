@@ -3,51 +3,65 @@
 namespace win
 {
 
-   graphics_object::operator HGDIOBJ() const
-   { 
-      return this == NULL ? NULL : get_handle(); 
-   }
-   
    HGDIOBJ graphics_object::get_os_data() const
    {
-      return this == NULL ? NULL : get_handle(); 
+      return NULL; 
    }
    
    graphics_object::graphics_object()
    {
-      set_handle(NULL); 
+      //set_handle(NULL); 
    }
    
    graphics_object::~graphics_object()
    { 
-      delete_object(); 
+      //delete_object(); 
    }
    
    int graphics_object::_AFX_FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const
    { 
-      return ::GetObject(get_handle(), nCount, lpObject); 
+      //return ::GetObject(get_handle(), nCount, lpObject); 
+      return 0;
    }
 
 #pragma push_macro("GetObject")
 #undef GetObject
    int graphics_object::GetObject(int nCount, LPVOID lpObject) const
-   { return _AFX_FUNCNAME(GetObject)(nCount, lpObject); }
+   { 
+      //return _AFX_FUNCNAME(GetObject)(nCount, lpObject); 
+      return 0;
+   }
 #pragma pop_macro("GetObject")
    BOOL graphics_object::CreateStockObject(int nIndex)
-   { return (set_handle(::GetStockObject(nIndex))) != NULL; }
+   {
+      //return (set_handle(::GetStockObject(nIndex))) != NULL; 
+      return 0;
+   }
    BOOL graphics_object::UnrealizeObject()
-   { ASSERT(get_handle() != NULL); return ::UnrealizeObject(get_handle()); }
+   { 
+      //ASSERT(get_handle() != NULL); return ::UnrealizeObject(get_handle()); 
+      return 0;
+   }
    UINT graphics_object::GetObjectType() const
-   { return (UINT)::GetObjectType(get_handle()); }
+   {
+      //return (UINT)::GetObjectType(get_handle()); 
+      return 0;
+   }
    BOOL graphics_object::operator==(const ::ca::graphics_object& obj) const
-   { return ((HGDIOBJ) obj.get_os_data()) == get_handle(); }
+   { 
+      //return ((HGDIOBJ) obj.get_os_data()) == get_handle(); 
+      return FALSE;
+   }
    BOOL graphics_object::operator!=(const ::ca::graphics_object& obj) const
-   { return ((HGDIOBJ) obj.get_os_data()) != get_handle(); }
+   { 
+      //return ((HGDIOBJ) obj.get_os_data()) != get_handle(); 
+      return TRUE;
+   }
 
 
    graphics_object * graphics_object_allocator(::ca::application * papp, HANDLE h)
    {
-      switch(::GetObjectType(h))
+      /*switch(::GetObjectType(h))
       {
       case OBJ_BITMAP:
          return dynamic_cast < graphics_object * > (new bitmap(papp));
@@ -62,10 +76,10 @@ namespace win
       case OBJ_FONT:
          return dynamic_cast < graphics_object * > (new font(papp));
       }
-      return new graphics_object();
+      return new graphics_object();*/
    }
 
-   graphics_object* PASCAL graphics_object::from_handle(::ca::application * papp, HGDIOBJ h)
+   /*graphics_object* PASCAL graphics_object::from_handle(::ca::application * papp, HGDIOBJ h)
    {
       hgdiobj_map* pMap = afxMapHGDIOBJ(TRUE); //create ::collection::map if not exist
       ASSERT(pMap != NULL);
@@ -104,13 +118,13 @@ namespace win
 
       set_handle(NULL);
       return hObject;
-   }
+   }*/
 
    BOOL graphics_object::delete_object()
    {
-      if (get_os_data() == NULL)
-         return FALSE;
-      return ::DeleteObject(Detach());
+      //if (get_os_data() == NULL)
+        // return FALSE;
+      //return ::DeleteObject(Detach());
    }
 
    /////////////////////////////////////////////////////////////////////////////

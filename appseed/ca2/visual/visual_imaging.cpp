@@ -1977,7 +1977,6 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int x, int y, int cx, int cy)
             if(bm.bmWidth < cx ||
                bm.bmHeight  < cy)
             {
-               bitmapA->delete_object();
                bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
             }
          }
@@ -2362,7 +2361,6 @@ bool imaging::clip_color_blend(
    ::ca::bitmap_sp bitmapA(get_app());
    ::ca::graphics_sp graphicsMem(get_app());
    graphicsMem->CreateCompatibleDC(pdc);
-   bitmapA->delete_object();
    bitmapA->CreateCompatibleBitmap(pdc, size.cx, size.cy);
    ::ca::bitmap * pbmpMemOld = graphicsMem->SelectObject(bitmapA);
    graphicsMem->SetMapMode(MM_TEXT);
@@ -2969,7 +2967,6 @@ bool imaging::CreateBitmap(
    }
    if(bCreate)
    {
-      pbitmap->delete_object();
       if(!pbitmap->CreateCompatibleBitmap(pdcScreen, cxout, cyout))
       {
          return false;
@@ -2977,7 +2974,6 @@ bool imaging::CreateBitmap(
    }
    if(!pdc->SelectObject(pbitmap))
    {
-      pbitmap->delete_object();
       if(!pbitmap->CreateCompatibleBitmap(pdcScreen, cxout, cyout))
       {
          return false;
@@ -3017,7 +3013,6 @@ bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap * pbitmapOld, ::ca:
    }
    if(bCreate)
    {
-      pbitmap->delete_object();
       if(!pbitmap->CreateCompatibleBitmap(pdc, cxout, cyout))
       {
          return false;
@@ -3025,7 +3020,6 @@ bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap * pbitmapOld, ::ca:
    }
    if(!pdc->SelectObject(pbitmap))
    {
-      pbitmap->delete_object();
       if(!pbitmap->CreateCompatibleBitmap(pdc, cxout, cyout))
       {
          return false;

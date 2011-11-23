@@ -42,8 +42,6 @@ namespace ca
       ::ca::brush_sp             m_brush;
       ::ca::font_sp              m_font;
 
-      int                        m_nPenStyle;
-      double                     m_dPenWidth;
       COLORREF                   m_crColor;
       double                     m_x;
       double                     m_y;
@@ -63,11 +61,6 @@ namespace ca
       virtual void set_alpha_mode(e_alpha_mode ealphamode);
 
       void set_solid_pen(double dWidth);
-
-      //virtual void SetAttribDC(HDC hDC);  // Set the Attribute DC
-      //virtual void SetOutputDC(HDC hDC);  // Set the Output DC
-      //virtual void ReleaseAttribDC();     // Release the Attribute DC
-      //virtual void ReleaseOutputDC();     // Release the Output DC
 
       virtual BOOL IsPrinting() const;            // TRUE if being used for printing
 

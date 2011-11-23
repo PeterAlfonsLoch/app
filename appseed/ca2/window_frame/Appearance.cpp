@@ -219,12 +219,6 @@ namespace window_frame
             COLORREF crDkShadow)
    {
       UNREFERENCED_PARAMETER(crLight);
-      m_penHighlight->delete_object();
-      m_penLight->delete_object();
-      m_penShadow->delete_object();
-      m_penDkShadow->delete_object();
-      m_brushNull->delete_object();
-      m_brushBody->delete_object();
       m_penHighlight->CreatePen(PS_SOLID, 1, crHighlight);
       m_penLight->CreatePen(PS_SOLID, 1, crHighlight);
       m_penShadow->CreatePen(PS_SOLID, 1, crShadow);

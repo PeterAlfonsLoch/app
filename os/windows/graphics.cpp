@@ -2223,6 +2223,9 @@ namespace win
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      set_color(clr);
+      if(m_brush.is_null())
+         return;
       g().FillRectangle(dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
 
       //::SetBkColor(get_handle1(), clr);
@@ -2234,16 +2237,18 @@ namespace win
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      set_color(clr);
+      if(m_brush.is_null())
+         return;
       g().FillRectangle(dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush, x, y, cx, cy);
    }
 
 
    BOOL graphics::TextOut(int x, int y, const char * lpszString, int nCount)
    {
+
       if(get_handle1() == NULL)
          return FALSE;
-
-
 
       ::Gdiplus::Font font(get_handle1());
 
@@ -2251,16 +2256,39 @@ namespace win
 
       ::Gdiplus::PointF origin(x, y);
 
-      //g.SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
+      g().SetTextRenderingHint(Gdiplus::TextRenderingHintAntiAlias);
       
       string str(lpszString, nCount);
+      
       wstring wstr = gen::international::utf8_to_unicode(str);
+      
+      if(m_brush.is_null())
+      {
+        set_color(m_crColor);
+      }
+
+      if(m_brush.is_null())
+         return FALSE;
+
+      if(m_font.is_null())
+      {
+         m_font.create(get_app());
+         if(m_font.is_null())
+            return FALSE;
+      }
+
+      if( dynamic_cast < ::win::font * > (m_font.m_p)->m_pfont == NULL)
+      {
+         dynamic_cast < ::win::font * > (m_font.m_p)->m_pfont = new ::Gdiplus::Font(get_handle1());
+      }
+   
       return g().DrawString(
          wstr, 
          wstr.get_length(), 
          &(dynamic_cast < ::win::font * > (m_font.m_p))->f(), 
          origin, 
          dynamic_cast < ::win::brush * > (m_brush.m_p)->m_pbrush) == Gdiplus::Status::Ok;
+
    }
 
 

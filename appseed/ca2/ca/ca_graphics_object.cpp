@@ -19,29 +19,6 @@ namespace ca
    }
 #endif
 
-   BOOL graphics_object::is_set()
-   {
-      throw interface_only_exception();   
-   }
-
-   BOOL graphics_object::DeleteObject()
-   {
-      // SIOOT - Should implemennt one of them
-      // OASOWO - otherwise a stack overflow will occur
-      // BTAIOM - because these are interface only methods
-      return delete_object(); // the first call the last or implementation // comment of comment
-
-   }
-
-   BOOL graphics_object::delete_object()
-   {
-      // SIOOT - Should implemennt one of them
-      // OASOWO - otherwise a stack overflow will occur
-      // BTAIOM - because these are interface only methods
-      return DeleteObject(); // the others call the previous or implementation // comment of comment
-   }
-
-   // graphics_object
    graphics_object::~graphics_object()
    {
    }
@@ -93,14 +70,18 @@ namespace ca
 
    void * graphics_object::get_os_data() const
    {
-      // interface only
       return NULL;
    }
 
-   void * graphics_object::detach_os_data()
+   bool graphics_object::is_set()
    {
-      // interface only
-      return NULL;
+      return get_os_data() != NULL;
    }
+
+   bool graphics_object::is_updated()
+   {
+      return is_set() && m_bUpdated;
+   }
+
 
 } // namespace ca

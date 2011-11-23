@@ -436,7 +436,6 @@ namespace user
    void tool_tip_window::OnDestroy()
    {
    //    ::ca::window::OnDestroy();
-       m_font->delete_object();
    }
 
    ///////////////////////////////////////////////////////////

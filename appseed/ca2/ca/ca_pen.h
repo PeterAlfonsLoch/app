@@ -11,20 +11,18 @@ namespace ca
    {
    public:
 
-      virtual void construct(int nPenStyle, int nWidth, COLORREF crColor);
-      virtual void construct(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-         int nStyleCount = 0, const DWORD* lpStyle = NULL);
-      virtual BOOL CreatePen(int nPenStyle, int nWidth, COLORREF crColor);
-      virtual BOOL CreatePen(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-         int nStyleCount = 0, const DWORD* lpStyle = NULL);
-      virtual BOOL CreatePenIndirect(LPLOGPEN lpLogPen);
 
-   // Attributes
-      virtual int GetLogPen(LOGPEN* pLogPen);
-      virtual int GetExtLogPen(EXTLOGPEN* pLogPen);
+      int         m_nPenStyle;
+      double      m_dPenWidth;
+      COLORREF    m_crPenColor;
 
-   // Implementation
-   public:
+
+      virtual void construct(int nPenStyle, double dWidth, COLORREF crColor);
+      virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
+      virtual BOOL CreatePen(int nPenStyle, double dWidth, COLORREF crColor);
+      virtual BOOL CreatePen(int nPenStyle, double nWidth, const LOGBRUSH * pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
+
+
    #ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;
    #endif

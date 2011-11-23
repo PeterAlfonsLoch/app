@@ -734,22 +734,6 @@ namespace window_frame
    {
       m_estyle = estyle;
 
-      m_brushControlBoxBack->delete_object();
-      m_brushControlBoxBackSel->delete_object();
-      m_brushControlBoxBackFocus->delete_object();
-      m_brushControlBoxBackDisabled->delete_object();
-      m_penControlBoxBack->delete_object();
-      m_penControlBoxBackSel->delete_object();
-      m_penControlBoxBackFocus->delete_object();
-      m_penControlBoxBackDisabled->delete_object();
-      m_penText1->delete_object();
-      m_penFace1->delete_object();
-      m_penHilight1->delete_object();
-      m_penShadow1->delete_object();
-      m_penDkShadow1->delete_object();
-
-
-
       switch(m_estyle)
       {
       case StyleLightBlue:
@@ -2110,7 +2094,7 @@ namespace window_frame
             rect rectA = rectRgn;
             ::ca::rgn_sp rgnMain(get_app());
             rgnMain->CreateRectRgnIndirect(rectA);
-            SetWindowRgn((HWND)pwnd->_get_handle(), (HRGN)rgnMain->detach_os_data(), TRUE);
+//            SetWindowRgn((HWND)pwnd->_get_handle(), (HRGN)rgnMain->detach_os_data(), TRUE);
 
          }
       }
@@ -2201,7 +2185,7 @@ namespace window_frame
    void FrameSchemaHardCoded001::OnInitializeAppearance()
    {
       ::ca::graphics * pdc = GetWnd()->GetDC();
-      m_fontMarlett->delete_object();
+//      m_fontMarlett->delete_object();
       m_fontMarlett->CreatePointFont(90, "Marlett", pdc);
       GetWnd()->ReleaseDC(pdc);
 

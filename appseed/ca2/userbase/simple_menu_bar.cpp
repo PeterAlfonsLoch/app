@@ -332,7 +332,6 @@ bool simple_menu_bar::Initialize(
    m_prel                  = prel;
    LOGFONT lf;
    pfont->GetLogFont(&lf);
-   m_font->delete_object();
    m_font->CreateFontIndirect(&lf);
 
    return true;

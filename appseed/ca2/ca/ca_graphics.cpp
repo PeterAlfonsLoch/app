@@ -10,9 +10,7 @@ namespace ca
       m_pdrawcontext          = NULL;
       m_pdibAlphaBlend        = NULL;
       m_pjob                  = NULL;
-      m_nPenStyle             = PS_SOLID;
-      m_dPenWidth             = 1.0;
-      set_color(RGB(0, 0, 0));
+      m_crColor               = RGB(0, 0, 0);
    }
 
    ::user::str_context * graphics::str_context()
@@ -2063,8 +2061,6 @@ namespace ca
 
       if(m_brush.is_null())
          m_brush.create(get_app());
-      if(m_brush->get_os_data() != NULL)
-         m_brush->delete_object();
       m_brush->CreateSolidBrush( m_crColor);
 
       //SetTextColor(crColor);
@@ -2156,12 +2152,6 @@ namespace ca
 
    }
 
-   void graphics::set_solid_pen(double dWidth)
-   {
-      m_nPenStyle = PS_SOLID;
-      m_dPenWidth = dWidth;
-   }
-
    point graphics::MoveTo(double x, double y)
    {
       int px = (int) m_x;
@@ -2169,6 +2159,20 @@ namespace ca
       m_x = x;
       m_y = y;
       return point(px, py);
+   }
+
+
+   void graphics::set_solid_pen(double dWidth)
+   {
+
+      if(m_pen.is_null())
+         m_pen.create(get_app());
+
+      if(m_pen.is_null())
+         return;
+
+      m_pen->CreatePen(PS_SOLID, dWidth, m_crColor);
+
    }
 
 

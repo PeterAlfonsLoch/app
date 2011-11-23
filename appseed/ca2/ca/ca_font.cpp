@@ -73,8 +73,6 @@ namespace ca
       LOGFONT lf;
       memset(&lf, 0, sizeof(lf));
       (const_cast < font & > (fontSrc)).GetLogFont(&lf);
-      if(get_os_data() != NULL)
-         delete_object();
       CreateFontIndirect(&lf);
       return *this;
    }

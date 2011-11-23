@@ -105,11 +105,6 @@ void font_central::Finalize()
 
     int i, iSize;
 
-   m_fontMenu->delete_object();
-   m_font->delete_object();
-   m_fontStandard->delete_object();
-   m_fontCaption->delete_object();
-   m_fontListCtrl->delete_object();
 
 
    delete m_pfontLyric;
@@ -275,7 +270,6 @@ void font_central::CreateLyricViewFonts()
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
    lstrcpy(lf.lfFaceName, "Tahoma");
 
-   font->delete_object();
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
    spgraphics->GetTextMetrics(&tm);
@@ -326,7 +320,6 @@ void font_central::CreateLyricViewFonts()
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
    lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
-   font->delete_object();
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
    spgraphics->GetTextMetrics(&tm);
@@ -375,7 +368,6 @@ void font_central::CreateLyricViewFonts()
     lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
     lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
-   font->delete_object();
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
    spgraphics->GetTextMetrics(&tm);
@@ -418,7 +410,6 @@ void font_central::CreateLyricViewFonts()
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
    lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
-   font->delete_object();
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
    spgraphics->GetTextMetrics(&tm);
@@ -444,7 +435,6 @@ void font_central::CreateLyricViewFonts()
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
    lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
-   font->delete_object();
    font->CreateFontIndirect(&lf);
    spgraphics->GetTextMetrics(&tm);
 
@@ -456,7 +446,6 @@ void font_central::CreateLyricViewFonts()
 
 
    spgraphics->SelectObject(pFontOld);
-   font->delete_object();
    spgraphics->DeleteDC();
 
 }

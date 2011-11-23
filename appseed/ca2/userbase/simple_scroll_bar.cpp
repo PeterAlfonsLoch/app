@@ -439,14 +439,6 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
    {
       ASSERT(FALSE);
    }
-   if(m_rgnA->get_os_data() != NULL)
-   {
-      m_rgnA->delete_object();
-   }
-   if(m_rgnB->get_os_data() != NULL)
-   {
-      m_rgnB->delete_object();
-   }
 
    m_rgnA->CreatePolygonRgn(m_ptaA, 4, WINDING);
    m_rgnB->CreatePolygonRgn(m_ptaB, 4, WINDING);

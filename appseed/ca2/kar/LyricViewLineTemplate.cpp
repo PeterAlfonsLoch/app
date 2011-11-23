@@ -63,19 +63,13 @@ int LyricViewLineTemplate::SetPens(
    m_ppenLinkHoverLeft     = ppenHoverLeft;
    m_ppenLinkHoverRight    = ppenHoverRight;
 
-   LOGPEN leftLogPen;
-   LOGPEN rightLogPen;
-
-   m_ppenLeft->GetLogPen(&leftLogPen);
-   m_ppenRight->GetLogPen(&rightLogPen);
-   
    int cx = max(
-      leftLogPen.lopnWidth.x,
-      rightLogPen.lopnWidth.x);
+      m_ppenLeft->m_dPenWidth,
+      m_ppenRight->m_dPenWidth);
    
    int cy = max(
-      leftLogPen.lopnWidth.y,
-      rightLogPen.lopnWidth.y );
+      m_ppenLeft->m_dPenWidth,
+      m_ppenRight->m_dPenWidth);
    
    cx = cx / 2 + cx % 2;
    cy = cy / 2 + cy % 2;

@@ -15,30 +15,37 @@ namespace win
    
    }
 
-   font::operator HFONT() const
-   {
-      return (HFONT)(this == NULL ? NULL : get_handle()); 
-   }
-   font* PASCAL font::from_handle(::ca::application * papp, HFONT hFont)
-   {
-      return dynamic_cast < font * > (::win::graphics_object::from_handle(papp, hFont)); 
-   }
+//   font::operator HFONT() const
+  // {
+    //  return (HFONT)(this == NULL ? NULL : get_handle()); 
+   //}
+   //font* PASCAL font::from_handle(::ca::application * papp, HFONT hFont)
+   //{
+     // return dynamic_cast < font * > (::win::graphics_object::from_handle(papp, hFont)); 
+   //}
    BOOL font::CreateFontIndirect(const LOGFONT* lpLogFont)
-   { return Attach(::CreateFontIndirect(lpLogFont)); }
+   { 
+      return FALSE;
+      //return Attach(::CreateFontIndirect(lpLogFont)); 
+   }
    BOOL font::CreateFont(int nHeight, int nWidth, int nEscapement,
       int nOrientation, int nWeight, BYTE bItalic, BYTE bUnderline,
       BYTE cStrikeOut, BYTE nCharSet, BYTE nOutPrecision,
       BYTE nClipPrecision, BYTE nQuality, BYTE nPitchAndFamily,
       const char * lpszFacename)
-   { return Attach(::CreateFont(nHeight, nWidth, nEscapement,
-   nOrientation, nWeight, bItalic, bUnderline, cStrikeOut,
-   nCharSet, nOutPrecision, nClipPrecision, nQuality,
-   nPitchAndFamily, lpszFacename)); }
+   { 
+      return FALSE;
+      //return Attach(::CreateFont(nHeight, nWidth, nEscapement,
+   //nOrientation, nWeight, bItalic, bUnderline, cStrikeOut,
+   //nCharSet, nOutPrecision, nClipPrecision, nQuality,
+   //nPitchAndFamily, lpszFacename)); 
+   }
    
    int font::GetLogFont(LOGFONT* pLogFont)
    { 
 
-      return ::GetObject(get_handle(), sizeof(LOGFONT), pLogFont);
+      return 0;
+   //   return ::GetObject(get_handle(), sizeof(LOGFONT), pLogFont);
 
    }
 
@@ -48,15 +55,27 @@ namespace win
    void font::construct(const ::ca::font & fontParam)
       {
          class font & font = const_cast < ::win::font & > (dynamic_cast < const ::win::font & > (fontParam));
-         if(get_handle() != NULL)
-            delete_object();
-         if(font.get_handle() != NULL)
+         if(font.m_pfont == NULL)
          {
+            if(m_pfont != NULL)
+            {
+               delete m_pfont;
+               m_pfont = NULL;
+            }
+         }
+         else
+         {
+            m_pfont = font.m_pfont->Clone();
+         }
+//         if(get_handle() != NULL)
+  //          delete_object();
+    //     if(font.get_handle() != NULL)
+      /*   {
             LOGFONT lf;
             memset(&lf, 0, sizeof(lf));
             font.GetLogFont(&lf);
             CreateFontIndirect(&lf);
-         }
+         }*/
       }
 
 #ifdef _DEBUG
@@ -64,7 +83,7 @@ namespace win
       {
          ::ca::graphics_object::dump(dumpcontext);
 
-         if (get_handle() == NULL)
+/*         if (get_handle() == NULL)
             return;
 
          if (!afxData.bWin95 && ::GetObjectType(get_handle()) != OBJ_FONT)
@@ -91,7 +110,7 @@ namespace win
          dumpcontext << "\nlf.lfPitchAndFamily = " << (int)lf.lfPitchAndFamily;
          dumpcontext << "\nlf.lfFaceName = " << (const char *)lf.lfFaceName;
 
-         dumpcontext << "\n";
+         dumpcontext << "\n";*/
       }
 #endif
 
@@ -141,6 +160,25 @@ namespace win
          ReleaseDC(NULL, hDC);
 
       return CreateFontIndirect(&logFont);
+   }
+
+
+   void * font::get_os_data() const
+   {
+      
+      if(m_pfont == NULL || !m_bUpdated)
+      {
+         if(m_pfont != NULL)
+         {
+            delete m_pfont;
+         }
+         m_pfont = new Gdiplus::Font(
+            gen::international::utf8_to_unicode(m_strFontFamilyName),
+            m_dSize);
+      }
+
+      return (Gdiplus::Font *) m_pfont;
+
    }
 
 } // namespace win

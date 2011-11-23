@@ -667,7 +667,6 @@ LyricViewLine::ERenderResult LyricViewLine::to(
 
       {
          pdc->SelectClipRgn(NULL);
-         rgnClip->delete_object();
          class rect rectClip;
          rectClip = rectPlacement;
          //if(!IsFirstLine())
@@ -898,7 +897,6 @@ printLeft:
 
       {
          pdc->SelectClipRgn(NULL);
-         rgnClip->delete_object();
          class rect rectClip;
          rectClip = rectPlacement;
          //if(!IsFirstLine())
@@ -1110,7 +1108,6 @@ printRight:
 
    {
       pdc->SelectClipRgn(NULL);
-      rgnClip->delete_object();
    }
 
    // to Selection
@@ -1336,7 +1333,6 @@ void LyricViewLine::CalcJp1Layout(
          ::ca::font *pfontOld = pdc->SelectObject(pfont->GetFont());
 //         pdc->SelectObject(pfont->GetFont());
 //         token.m_font.delete_object();
-         m_ponvisible->m_fontJp1->delete_object();
          LOGFONT lf;
          pfont->GetFont()->GetLogFont(&lf);
          TEXTMETRIC tm;
@@ -1362,7 +1358,6 @@ void LyricViewLine::CalcJp1Layout(
          pdc->SelectObject(pfontOld);
          lf.lfWidth = (long) (tm.tmAveCharWidth * token.m_floatRateX) - 1;
          //lf.lfHeight = lf.lfHeight * 0.5;
-         m_ponvisible->m_fontJp1->delete_object();
          VERIFY(m_ponvisible->m_fontJp1->CreateFontIndirect(&lf));
          VERIFY(pdc->SelectObject(m_ponvisible->m_fontJp1));
          token.SetPosition(0, tokenMain.Left());

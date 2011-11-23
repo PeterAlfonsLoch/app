@@ -1,5 +1,13 @@
 #pragma once
 
+
+
+#undef new
+
+#include <GdiPlus.h>
+
+
+
 namespace win
 {
 
@@ -11,28 +19,25 @@ namespace win
       virtual public ::ca::pen
    {
    public:
-      static pen* PASCAL from_handle(::ca::application * papp, HPEN hPen);
+
+
+      ::Gdiplus::Pen *  m_ppen;
 
       pen(::ca::application * papp);
-      virtual void construct(int nPenStyle, int nWidth, COLORREF crColor);
-      virtual void construct(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-         int nStyleCount = 0, const DWORD* lpStyle = NULL);
-      BOOL CreatePen(int nPenStyle, int nWidth, COLORREF crColor);
-      BOOL CreatePen(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-         int nStyleCount = 0, const DWORD* lpStyle = NULL);
-      BOOL CreatePenIndirect(LPLOGPEN lpLogPen);
+      virtual void construct(int nPenStyle, double nWidth, COLORREF crColor);
+      virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
+      BOOL CreatePen(int nPenStyle, double nWidth, COLORREF crColor);
+      BOOL CreatePen(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
 
-   // Attributes
-      operator HPEN() const;
-      int GetLogPen(LOGPEN* pLogPen);
-      int GetExtLogPen(EXTLOGPEN* pLogPen);
 
-   // Implementation
-   public:
+      virtual void * get_os_data() const;
+
+
       virtual ~pen();
    #ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;
    #endif
+
    };
 
 } // namespace win

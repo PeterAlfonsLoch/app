@@ -908,35 +908,27 @@ void KaraokeView::PrepareLyricLines()
       lb.lbHatch = 0;
 
 
-      m_penLeft->delete_object();
       lb.lbColor = m_crLeftOutline;
       m_penLeft->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius, &lb);
 
-      m_penRight->delete_object();
       lb.lbColor = m_crRightOutline;
       m_penRight->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius, &lb);
 
-      m_penLeftSmall->delete_object();
       lb.lbColor = m_crLeftOutline;
       m_penLeftSmall->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadiusSmall, &lb);
 
-      m_penRightSmall->delete_object();
       lb.lbColor = m_crRightOutline;
       m_penRightSmall->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadiusSmall, &lb);
 
-      m_penLinkLeft->delete_object();
       lb.lbColor = RGB(0, 0, 200);
       m_penLinkLeft->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius, &lb);
 
-      m_penLinkRight->delete_object();
       lb.lbColor = RGB(150, 150, 200);
       m_penLinkRight->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius, &lb);
 
-      m_penHoverLeft->delete_object();
       lb.lbColor = RGB(0, 0, 255);
       m_penHoverLeft->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius, &lb);
 
-      m_penHoverRight->delete_object();
       lb.lbColor = RGB(200, 200, 255);
       m_penHoverRight->CreatePen(PS_SOLID | PS_GEOMETRIC | PS_ENDCAP_ROUND | PS_JOIN_ROUND, iRadius, &lb);
 
@@ -1200,10 +1192,6 @@ void KaraokeView::PrepareLyricLines()
       System.font_central().GetLyricViewFont()->GetFont()->GetLogFont(&lf);
       lf.lfHeight = (int) (((double)lf.lfHeight) * dScale);
       lf.lfWidth = 0;
-      if(GetLyricFont()->GetFont()->get_os_data() != NULL)
-      {
-         GetLyricFont()->GetFont()->delete_object();
-      }
       GetLyricFont()->GetFont()->CreateFontIndirect(&lf);
       GetLyricFont()->OnUpdateFont();
       m_dLyricFontEmbossWidth = (int) (4.5 * dScale);

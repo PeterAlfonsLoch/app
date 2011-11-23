@@ -8,6 +8,11 @@ namespace ca
    {
    public:
 
+
+      string      m_strFontFamilyName;
+      double      m_dFontSize;
+
+
       virtual BOOL CreateFontIndirect(const LOGFONT* lpLogFont);
       virtual BOOL CreateFont(int nHeight, int nWidth, int nEscapement,
             int nOrientation, int nWeight, BYTE bItalic, BYTE bUnderline,

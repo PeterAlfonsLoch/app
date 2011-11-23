@@ -393,7 +393,6 @@ bool XfplayerViewLine::to(
               rectaModified.add(baserect);
 
            }
-           rgn.delete_object();
       }
       break;
    default:
@@ -432,10 +431,8 @@ bool XfplayerViewLine::to(
 
    point iMargin;
    {
-      LOGPEN logPen;
-      pen.GetLogPen(&logPen);
-      iMargin.x = logPen.lopnWidth.x / 2 + logPen.lopnWidth.x % 2;
-      iMargin.y = logPen.lopnWidth.y / 2 + logPen.lopnWidth.y % 2;
+      iMargin.x = pen.m_dPenWidth / 2.0;
+      iMargin.y = pen.m_dPenWidth / 2.0;
    }
 
    if(!IsVisible())
@@ -750,8 +747,8 @@ void XfplayerViewLine::CalcCharsPositions(
    pdc->GetTextMetrics(&tm);
    lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
 
-   if(m_font->get_os_data() != NULL)
-      m_font->delete_object();
+  // if(m_font->get_os_data() != NULL)
+//      m_font->delete_object();
 
    m_font->CreateFontIndirect(&lf);
 
