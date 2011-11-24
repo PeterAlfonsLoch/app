@@ -18,17 +18,18 @@ namespace ca
    class dib;
    class job;
 
+   enum e_alpha_mode
+   {
+      alpha_mode_set,
+      alpha_mode_blend,
+   };
+
    class CLASS_DECL_ca graphics :
       virtual public _template::simple_chain < ::user::draw_context >
    {
    public:
 
 
-      enum e_alpha_mode
-      {
-         alpha_mode_set,
-         alpha_mode_blend,
-      };
 
       ::user::str_context *      m_puistrcontext;
 
@@ -38,11 +39,17 @@ namespace ca
       point                      m_ptAlphaBlend;
       ::ca::job *                m_pjob;
 
-      ::ca::pen_sp               m_pen;
-      ::ca::brush_sp             m_brush;
-      ::ca::font_sp              m_font;
-      ::ca::region_sp               m_region;
       ::ca::bitmap_sp            m_bitmap;
+
+      ::ca::pen_sp               m_sppen;
+      ::ca::brush_sp             m_spbrush;
+      ::ca::font_sp              m_spfont;
+      ::ca::region_sp            m_spregion;
+
+      ::ca::pen                  m_penxyz;
+      ::ca::brush                m_brushxyz;
+      ::ca::font                 m_fontxyz;
+      ::ca::region               m_regionxyz;
 
       COLORREF                   m_crColor;
       double                     m_x;
@@ -67,11 +74,11 @@ namespace ca
 
       virtual BOOL IsPrinting() const;            // TRUE if being used for printing
 
-      virtual ::ca::pen* GetCurrentPen() const;
-      virtual ::ca::brush* GetCurrentBrush() const;
-      virtual ::ca::palette* GetCurrentPalette() const;
-      virtual ::ca::font* GetCurrentFont() const;
-      virtual ::ca::bitmap* GetCurrentBitmap() const;
+      virtual ::ca::pen & GetCurrentPen() const;
+      virtual ::ca::brush & GetCurrentBrush() const;
+      virtual ::ca::palette & GetCurrentPalette() const;
+      virtual ::ca::font & GetCurrentFont() const;
+      virtual ::ca::bitmap & GetCurrentBitmap() const;
 
       // for bidi and mirrored localization
       virtual DWORD GetLayout() const;
@@ -301,6 +308,10 @@ namespace ca
       virtual void DrawFocusRect(LPCRECT lpRect);
       virtual BOOL Ellipse(int x1, int y1, int x2, int y2);
       virtual BOOL Ellipse(LPCRECT lpRect);
+      virtual BOOL DrawEllipse(int x1, int y1, int x2, int y2);
+      virtual BOOL DrawEllipse(LPCRECT lpRect);
+      virtual BOOL FillEllipse(int x1, int y1, int x2, int y2);
+      virtual BOOL FillEllipse(LPCRECT lpRect);
       virtual BOOL Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       virtual BOOL Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual BOOL Polygon(point_array & pta);
@@ -531,12 +542,12 @@ namespace ca
       BOOL m_bPrinting;
       virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual ::ca::font * SelectFont(::ca::font * pfont);
-      virtual ::ca::font * selectFont(::ca::font * pfont);
-      virtual ::ca::font * select_font(::ca::font * pfont);
-      virtual ::ca::font * SetFont(::ca::font * pfont);
-      virtual ::ca::font * setFont(::ca::font * pfont);
-      virtual ::ca::font * set_font(::ca::font * pfont);
+      virtual bool SelectFont(::ca::font * pfont);
+      virtual bool selectFont(::ca::font * pfont);
+      virtual bool select_font(::ca::font * pfont);
+      virtual bool SetFont(::ca::font * pfont);
+      virtual bool setFont(::ca::font * pfont);
+      virtual bool set_font(::ca::font * pfont);
 
    protected:
       // used for implementation of non-virtual SelectObject calls

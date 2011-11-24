@@ -50,11 +50,16 @@ namespace win
 
       BOOL IsPrinting() const;            // TRUE if being used for printing
 
-      ::ca::pen* GetCurrentPen() const;
-      ::ca::brush* GetCurrentBrush() const;
-      ::ca::palette* GetCurrentPalette() const;
-      ::ca::font* GetCurrentFont() const;
-      ::ca::bitmap* GetCurrentBitmap() const;
+      ::ca::pen & GetCurrentPen() const;
+      ::ca::brush & GetCurrentBrush() const;
+      ::ca::palette & GetCurrentPalette() const;
+      ::ca::font & GetCurrentFont() const;
+      ::ca::bitmap & GetCurrentBitmap() const;
+
+
+      Gdiplus::Pen *       gdiplus_pen();
+      Gdiplus::Brush *     gdiplus_brush();
+      Gdiplus::Font *      gdiplus_font();
 
       // for bidi and mirrored localization
       DWORD GetLayout() const;
@@ -253,8 +258,10 @@ namespace win
          int x4, int y4);
       BOOL Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       void DrawFocusRect(LPCRECT lpRect);
-      BOOL Ellipse(int x1, int y1, int x2, int y2);
-      BOOL Ellipse(LPCRECT lpRect);
+      BOOL DrawEllipse(int x1, int y1, int x2, int y2);
+      BOOL DrawEllipse(LPCRECT lpRect);
+      BOOL FillEllipse(int x1, int y1, int x2, int y2);
+      BOOL FillEllipse(LPCRECT lpRect);
       BOOL Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       BOOL Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       BOOL Polygon(const POINT* lpPoints, int nCount);   
@@ -465,7 +472,7 @@ namespace win
       BOOL m_bPrinting;
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
-      virtual void set_alpha_mode(e_alpha_mode ealphamode);
+      virtual void set_alpha_mode(::ca::e_alpha_mode ealphamode);
 
       virtual void * get_os_data() const;
       virtual HDC get_handle() const;

@@ -52,11 +52,7 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 {
-   ::ca::brush * pbrushOld  = pdc->GetCurrentBrush();
-   ::ca::pen *   ppenOld    = pdc->GetCurrentPen();
-   ::ca::font *  pfontOld   = pdc->GetCurrentFont();
-    
-    
+
    int iOriginalBkMode = pdc->GetBkMode();
    pdc->SetBkMode(TRANSPARENT);
    rect rectClient;
@@ -177,9 +173,6 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 
 
    pdc->SetBkMode(iOriginalBkMode);
-   pdc->SelectObject(pbrushOld);
-   pdc->SelectObject(ppenOld);
-   pdc->SelectObject(pfontOld);
 
 }
 

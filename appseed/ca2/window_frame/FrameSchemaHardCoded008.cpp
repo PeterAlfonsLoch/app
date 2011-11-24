@@ -360,9 +360,6 @@ namespace window_frame
       }
 
 
-       ::ca::pen * ppenOriginal = pdc->GetCurrentPen();
-       ::ca::brush * pbrushOriginal = pdc->GetCurrentBrush();
-       ::ca::font * pfontOriginal = pdc->GetCurrentFont();
        int iOriginalBkMode = pdc->GetBkMode();
        COLORREF crOriginalTextColor = pdc->GetTextColor();
 
@@ -411,9 +408,6 @@ namespace window_frame
 
 
 
-      pdc->SelectObject(ppenOriginal);
-      pdc->SelectObject(pbrushOriginal);
-      pdc->SelectObject(pfontOriginal);
       pdc->SetBkMode(iOriginalBkMode);
       pdc->SetTextColor(crOriginalTextColor);
 
@@ -590,8 +584,6 @@ namespace window_frame
         // TRACE("DrawFrame: Inactive\n");
        
       rect rectD = rectClient;
-      ::ca::pen * ppenOriginal = pdc->GetCurrentPen();
-      ::ca::brush * pbrushOriginal = pdc->GetCurrentBrush();
       int iOriginalBkMode = pdc->GetBkMode();
       COLORREF crOriginalTextColor = pdc->GetTextColor();
 
@@ -629,8 +621,6 @@ namespace window_frame
          DrawGripSet(pdc, rectNClient);
       }
 
-      pdc->SelectObject(ppenOriginal);
-      pdc->SelectObject(pbrushOriginal);
       pdc->SetBkMode(iOriginalBkMode);
       pdc->SetTextColor(crOriginalTextColor);
 
@@ -1412,7 +1402,7 @@ namespace window_frame
       if(pdc == NULL)
          return 0;
 
-      ::ca::font * pfontOriginal = pdc->GetCurrentFont();
+//      ::ca::font * pfontOriginal = pdc->GetCurrentFont();
 
       TEXTMETRIC tm;
       pdc->SelectObject(m_fontMarlett);
@@ -1421,7 +1411,7 @@ namespace window_frame
       int iMargin = GetMargin();
       int iCaptionHeight = tm.tmHeight + m_iButtonMargin * 2 + iMargin * 2 ;
 
-      pdc->SelectObject(pfontOriginal);
+      //pdc->SelectObject(pfontOriginal);
       GetWnd()->ReleaseDC(pdc);
 
       return iCaptionHeight;
@@ -1434,8 +1424,6 @@ namespace window_frame
       if(pdc == NULL)
          return 0;
 
-      ::ca::font * pfontOriginal = pdc->GetCurrentFont();
-
       TEXTMETRIC tm;
       pdc->SelectObject(m_fontMarlett);
       pdc->GetTextMetrics(&tm);
@@ -1443,7 +1431,6 @@ namespace window_frame
 //      int iMargin = GetMargin();
       int iButtonSize = tm.tmHeight + m_iButtonMargin * 2;
 
-      pdc->SelectObject(pfontOriginal);
       GetWnd()->ReleaseDC(pdc);
 
       return iButtonSize;

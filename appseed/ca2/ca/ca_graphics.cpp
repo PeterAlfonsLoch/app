@@ -125,37 +125,38 @@ namespace ca
    }
 
 
-   ::ca::font * graphics::SelectFont(::ca::font * pfont)
+   bool graphics::SelectFont(::ca::font * pfont)
    {
       // SIOOT - Should implemennt one of them
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
-      ::ca::font * pold = m_font;
-      m_font = pfont;
-      return pold;
+      
+      m_fontxyz = *pfont;
+
+      return true;
    }
 
-   ::ca::font * graphics::selectFont(::ca::font * pfont)
+   bool graphics::selectFont(::ca::font * pfont)
    {
       return SelectFont(pfont);
    }
 
-   ::ca::font * graphics::select_font(::ca::font * pfont)
+   bool graphics::select_font(::ca::font * pfont)
    {
       return selectFont(pfont);
    }
 
-   ::ca::font * graphics::SetFont(::ca::font * pfont)
+   bool graphics::SetFont(::ca::font * pfont)
    {
       return select_font(pfont);
    }
 
-   ::ca::font * graphics::setFont(::ca::font * pfont)
+   bool graphics::setFont(::ca::font * pfont)
    {
       return SetFont(pfont);
    }
 
-   ::ca::font * graphics::set_font(::ca::font * pfont)
+   bool graphics::set_font(::ca::font * pfont)
    {
       return setFont(pfont);
    }
@@ -589,6 +590,29 @@ namespace ca
 
    BOOL graphics::Ellipse(int x1, int y1, int x2, int y2)
    {
+
+      BOOL bFill = FillEllipse(x1, y1, x2, y2);
+
+      BOOL bDraw = DrawEllipse(x1, y1, x2, y2);
+
+      return bFill && bDraw;
+
+   }
+
+   BOOL graphics::Ellipse(LPCRECT lpRect)
+   {
+
+      BOOL bFill = FillEllipse(lpRect);
+
+      BOOL bDraw = DrawEllipse(lpRect);
+
+      return bFill && bDraw;
+
+   }
+
+
+   BOOL graphics::DrawEllipse(int x1, int y1, int x2, int y2)
+   {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
@@ -596,7 +620,22 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   BOOL graphics::Ellipse(LPCRECT lpRect)
+   BOOL graphics::DrawEllipse(LPCRECT lpRect)
+   {
+      UNREFERENCED_PARAMETER(lpRect);
+      throw interface_only_exception();   
+   }
+
+   BOOL graphics::FillEllipse(int x1, int y1, int x2, int y2)
+   {
+      UNREFERENCED_PARAMETER(x1);
+      UNREFERENCED_PARAMETER(y1);
+      UNREFERENCED_PARAMETER(x2);
+      UNREFERENCED_PARAMETER(y2);
+      throw interface_only_exception();   
+   }
+
+   BOOL graphics::FillEllipse(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();   
@@ -1153,27 +1192,27 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   ::ca::pen* graphics::GetCurrentPen() const
+   ::ca::pen & graphics::GetCurrentPen() const
    {
       throw interface_only_exception();   
    }
 
-   ::ca::brush* graphics::GetCurrentBrush() const
+   ::ca::brush & graphics::GetCurrentBrush() const
    {
       throw interface_only_exception();   
    }
 
-   ::ca::palette* graphics::GetCurrentPalette() const
+   ::ca::palette & graphics::GetCurrentPalette() const
    {
       throw interface_only_exception();   
    }
 
-   ::ca::font* graphics::GetCurrentFont() const
+   ::ca::font & graphics::GetCurrentFont() const
    {
       throw interface_only_exception();   
    }
 
-   ::ca::bitmap* graphics::GetCurrentBitmap() const
+   ::ca::bitmap & graphics::GetCurrentBitmap() const
    {
       throw interface_only_exception();   
    }
@@ -2058,17 +2097,11 @@ namespace ca
 
       m_crColor = crColor;
       
-      if(m_pen.is_null())
-         m_pen.create(get_app());
+      m_penxyz.m_crPenColor = crColor;
+      m_penxyz.m_bUpdated = false;
 
-      if(m_pen.is_set())
-         m_pen->CreatePen(m_pen->m_nPenStyle, m_pen->m_dPenWidth, m_crColor);
-
-      if(m_brush.is_null())
-         m_brush.create(get_app());
-
-      if(m_brush.is_set())
-         m_brush->CreateSolidBrush( m_crColor);
+      m_brushxyz.m_crColor = crColor;
+      m_brushxyz.m_bUpdated = false;
 
 
       return TRUE;
@@ -2168,13 +2201,7 @@ namespace ca
    void graphics::set_solid_pen(double dWidth)
    {
 
-      if(m_pen.is_null())
-         m_pen.create(get_app());
-
-      if(m_pen.is_null())
-         return;
-
-      m_pen->CreatePen(PS_SOLID, dWidth, m_crColor);
+      m_penxyz.CreatePen(PS_SOLID, dWidth, m_crColor);
 
    }
 

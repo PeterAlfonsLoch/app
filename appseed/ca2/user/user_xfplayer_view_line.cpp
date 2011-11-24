@@ -420,12 +420,10 @@ bool XfplayerViewLine::to(
    UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(count);
 
-   ::ca::font * pfontOld = pdc->GetCurrentFont();
-
    rect rectPlacement;
    GetPlacement(rectPlacement);
 
-   pdc->SelectObject(m_font);
+   pdc->set_font(m_font);
 
    pdc->SetBkMode(TRANSPARENT);
 
@@ -569,7 +567,6 @@ bool XfplayerViewLine::to(
         ASSERT(FALSE);
     }
 
-   pdc->SelectObject(pfontOld);
    return true;
 
 }
@@ -1569,8 +1566,7 @@ void XfplayerViewLine::SetFont(::ca::font * pfont)
    {
       m_font.create(get_app());
    }
-   *(m_font.m_p) = *pfont;
-   m_font->GetLogFont(&m_logfont);
+   m_font->operator=(*pfont);
 }
 
 void XfplayerViewLine::SetFont(visual::font * pfont)

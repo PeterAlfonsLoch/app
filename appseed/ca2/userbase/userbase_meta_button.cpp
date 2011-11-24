@@ -172,12 +172,15 @@ void MetaButton::_001OnDraw(::ca::graphics * pdcTwi)
 
    pgraphics1->SelectObject(pbrushEllipse);
    pgraphics1->SelectObject(ppenEllipse);
-   pgraphics1->Ellipse(rectClient);
+   pgraphics1->DrawEllipse(rectClient);
+   pgraphics1->FillEllipse(rectClient);
 
    pgraphics1->SetTextColor(crText);
    pgraphics1->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-   System.imaging().bitmap_blend(pdcTwi, rectClient.top_left(), rectClient.size(), m_dib1, null_point(), m_dib2, null_point());
+   m_dib1->channel_from(visual::rgba::channel_alpha, m_dib2);
+
+   System.imaging().color_blend(pdcTwi, rectClient.top_left(), rectClient.size(), m_dib1->get_graphics(), null_point());
 
 }
 
@@ -252,7 +255,8 @@ void MetaButton::_001OnSize(gen::signal_object * pobj)
 
    m_dib2->get_graphics()->SelectObject(m_penEllipse);
    m_dib2->get_graphics()->SelectObject(m_brushEllipse);
-   m_dib2->get_graphics()->Ellipse(rectClient);
+   m_dib2->get_graphics()->FillEllipse(rectClient);
+   m_dib2->get_graphics()->DrawEllipse(rectClient);
    m_dib2->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_green);
 
 }

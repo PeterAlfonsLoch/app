@@ -1939,23 +1939,18 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int x, int y, int cx, int cy)
    if(cx <= 0 || cy <= 0)
       return true;
 
+   return false;
+
    //    single_lock sl(&m_csMem, TRUE);
 
-   int iOriginalMapMode ;
+   /*int iOriginalMapMode ;
 
-   ::ca::bitmap * pbmpOld = NULL;
    ::ca::bitmap_sp spbmpTemp(get_app());
 
    ::ca::bitmap_sp bitmapA(get_app());
 
    iOriginalMapMode = pdc->GetMapMode();
    pdc->SetMapMode(MM_TEXT);
-   pbmpOld = pdc->GetCurrentBitmap();
-   if(pbmpOld == NULL)
-   {
-      pdc->SetMapMode(iOriginalMapMode);
-      return false;
-   }
    if(!spbmpTemp->CreateCompatibleBitmap(pdc, 1, 1))
    {
       pdc->SetMapMode(iOriginalMapMode);
@@ -2075,7 +2070,6 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int x, int y, int cx, int cy)
          pdc->BitBlt(x, y, cx, cy, graphicsMem, 0, 0, SRCCOPY);
          graphicsMem->SelectObject(pbmpMemOld);
          graphicsMem->DeleteDC();
-         pdc->SelectObject(pbmpOld);
          pdc->SetMapMode(iOriginalMapMode);
          return true;
       }
@@ -2089,7 +2083,6 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int x, int y, int cx, int cy)
    {
       try
       {
-         ::ca::bitmap * pbmp = pbmpOld;
 
          // This is a primitive::memory device context
          BITMAP bm;
@@ -2171,14 +2164,12 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int x, int y, int cx, int cy)
       }
       catch(int)
       {
-         pdc->SelectObject(pbmpOld);
          pdc->SetMapMode(iOriginalMapMode);
          return false;
       }
    }
-   pdc->SelectObject(pbmpOld);
    pdc->SetMapMode(iOriginalMapMode);
-   return true;
+   return true;*/
 }
 
 /*bool imaging::allocate(int iSize)
@@ -2425,7 +2416,6 @@ bool imaging::clip_color_blend(
    ::ca::bitmap_sp bitmapA(get_app());
 
    BITMAP   bm;
-   ::ca::bitmap * pbitmapOld = pdc->GetCurrentBitmap();
 
    rect rect(pt, size);
 
@@ -2436,7 +2426,7 @@ bool imaging::clip_color_blend(
    ClipSave(
       pdc,
       bitmapA,
-      pbitmapOld,
+      NULL,
       &bm,
       rect,
       prgnClip);
@@ -2446,12 +2436,11 @@ bool imaging::clip_color_blend(
    ClipRestore(
       pdc,
       bitmapA,
-      pbitmapOld,
+      NULL,
       &bm,
       rect,
       prgnClip);
 
-   pdc->SelectObject(pbitmapOld);
    pdc->SetViewportOrg(ptViewport);
 
    return bOk;
@@ -4459,7 +4448,7 @@ bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphi
       return false;
    if(pdcColorAlpha->get_os_data() == NULL)
       return false;
-   if(pdcColorAlpha->GetCurrentBitmap() == NULL)
+   if(&pdcColorAlpha->GetCurrentBitmap() == NULL)
       return false;
 
 
@@ -4542,6 +4531,13 @@ bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphi
 
 bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2)
 {
+   
+   
+   
+   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
+
+
+
    UNREFERENCED_PARAMETER(pdibWork2);
    if(pdc == NULL)
       return false;
@@ -4549,7 +4545,7 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
       return false;
    if(pdcColorAlpha->get_os_data() == NULL)
       return false;
-   if(pdcColorAlpha->GetCurrentBitmap() == NULL)
+   if(&pdcColorAlpha->GetCurrentBitmap() == NULL)
       return false;
    BLENDFUNCTION bf;
    bf.BlendOp     = AC_SRC_OVER;
@@ -4617,7 +4613,7 @@ bool imaging::pre_color_blend(
       return false;
    if(pdcColorAlpha->get_os_data() == NULL)
       return false;
-   ::ca::bitmap * pbmp = pdcAlpha->GetCurrentBitmap();
+   ::ca::bitmap * pbmp = &pdcAlpha->GetCurrentBitmap();
    BITMAP bm;
    pbmp->GetBitmap(&bm);
    class size size;
@@ -4912,7 +4908,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
       bMin);
 
 
-   ::ca::bitmap * pbmpOld = pdcDst->GetCurrentBitmap();
+   ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
@@ -5063,7 +5059,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
       bMin, iRadius);
 
 
-   ::ca::bitmap * pbmpOld = pdcDst->GetCurrentBitmap();
+   ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
@@ -6028,7 +6024,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
       iSize);
 
 
-   ::ca::bitmap * pbmpOld = pdcDst->GetCurrentBitmap();
+   ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
@@ -6484,7 +6480,7 @@ bool imaging::alpha_pixelate(
       iAlpha);
 
 
-   ::ca::bitmap * pbmpOld = pdcDst->GetCurrentBitmap();
+   ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
@@ -6968,15 +6964,9 @@ void imaging::AlphaTextOut(::ca::graphics *pdc, int left, int top, const char * 
    }
    size size;
    size = pdc->GetTextExtent(str);
-   LOGFONT lf;
-   memset(&lf, 0, sizeof(lf));
-   if(pdc->GetCurrentFont() != NULL)
-   {
-      pdc->GetCurrentFont()->GetLogFont(&lf);
-   }
    ::ca::dib_sp spdib(get_app());
    ::ca::font_sp font(get_app());
-   font->CreateFontIndirect(&lf);
+   font->operator=(pdc->GetCurrentFont());
    spdib->create(size.cx, size.cy);
    spdib->get_graphics()->SelectObject(font);
    spdib->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, RGB(0, 0, 0));

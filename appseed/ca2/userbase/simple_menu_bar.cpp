@@ -330,9 +330,8 @@ bool simple_menu_bar::Initialize(
    m_pimagelist            = pimagelist;
    m_pimagelistDisabled    = pimagelistDisabled;
    m_prel                  = prel;
-   LOGFONT lf;
-   pfont->GetLogFont(&lf);
-   m_font->CreateFontIndirect(&lf);
+
+   m_font->operator=(*pfont);
 
    return true;
 }

@@ -107,14 +107,9 @@ namespace user
       if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
       {
          ::ca::font_sp font(get_app());
-           LOGFONT lf;
-           System.font_central().GetListCtrlFont()->GetLogFont(&lf);
-         if(bHover)
-         {
-            lf.lfUnderline = TRUE;
-         }
-         font->CreateFontIndirect(&lf);
-         data.m_pdc->SelectObject(font);
+         font->operator=(*System.font_central().GetListCtrlFont());
+         font->set_bold();
+         data.m_pdc->set_font(font);
          m_dcextension._DrawText(data.m_pdc, strItem, &rect, DT_LEFT | DT_BOTTOM);
       }
    }

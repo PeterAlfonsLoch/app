@@ -722,15 +722,12 @@ namespace gcom
             int y1 = m_ptColorTrack.y;
             int x2 = cx1 - x1;
             int y2 = cy1 - y1;
-            ::ca::pen_sp pen(get_app());
-            pen->construct(PS_SOLID, 0, m_color.get_rgb());
             ::ca::brush_sp brush(get_app(), m_color.get_rgb());
             pdib1->get_graphics()->SelectObject(brush);
-            pdib1->get_graphics()->SelectObject(pen);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
             //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
-            pdib1->get_graphics()->Ellipse(x1, y1, x1 + c3, y1 + c3);
-            pdib1->get_graphics()->Ellipse(x2 - c3, y2 - c3, x2, y2);
+            pdib1->get_graphics()->FillEllipse(x1, y1, x1 + c3, y1 + c3);
+            pdib1->get_graphics()->FillEllipse(x2 - c3, y2 - c3, x2, y2);
          }
 
          /*imaging.bitmap_blend(
@@ -1285,18 +1282,15 @@ namespace gcom
             int y1 = m_ptColorTrack.y - r;
             int x2 = cx1 - x1 - r;
             int y2 = cy1 - y1 - r;
-            ::ca::pen_sp pen(get_app());
-            pen->construct(PS_SOLID, 0, colorStrong.get_rgb());
             ::ca::brush_sp brush(get_app());
             brush->construct(colorStrong.get_rgb());
             pdib2->get_graphics()->SelectObject(brush);
-            pdib2->get_graphics()->SelectObject(pen);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
             //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
-            pdib2->get_graphics()->Ellipse(x1, y1, x1 + d, y1 + d);
-            pdib2->get_graphics()->Ellipse(x2 - d, y1, x2, y1 + d);
-            pdib2->get_graphics()->Ellipse(x1, y2 - d, x1 + d, y2);
-            pdib2->get_graphics()->Ellipse(x2 - d, y2 - d, x2, y2);
+            pdib2->get_graphics()->FillEllipse(x1, y1, x1 + d, y1 + d);
+            pdib2->get_graphics()->FillEllipse(x2 - d, y1, x2, y1 + d);
+            pdib2->get_graphics()->FillEllipse(x1, y2 - d, x1 + d, y2);
+            pdib2->get_graphics()->FillEllipse(x2 - d, y2 - d, x2, y2);
          }
 
          /*imaging.bitmap_blend(

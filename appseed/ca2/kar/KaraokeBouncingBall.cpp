@@ -387,17 +387,14 @@ namespace kar
          else if(m_eballtype == Ball)
          {
 
-            ::ca::pen * ppenOld = pdc->GetCurrentPen();
             pdc->SelectObject(m_penBall);
 
-            ::ca::brush * pbrushOld = pdc->GetCurrentBrush();
             pdc->SelectObject(m_brushBall);
 
-            pdc->Ellipse(rectBall);
+            pdc->FillEllipse(rectBall);
 
-            pdc->SelectObject(ppenOld);
+            pdc->DrawEllipse(rectBall);
 
-            pdc->SelectObject(pbrushOld);
          }
          else
          {

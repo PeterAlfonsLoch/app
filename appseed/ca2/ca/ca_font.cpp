@@ -1,7 +1,22 @@
 #include "StdAfx.h"
 
+
 namespace ca
 {
+
+
+   font::font()
+   {
+
+      m_strFontFamilyName  = "Arial";
+      m_dFontSize          = 12.0;
+      m_eunitFontSize      = ::ca::unit_point;
+      m_bBold              = false;
+      m_bItalic            = false;
+      m_bUnderline         = false;
+      m_bStrikeout         = false;
+
+   }
 
 #ifdef _DEBUG
    void font::dump(dump_context & dumpcontext) const
@@ -63,21 +78,72 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   int font::GetLogFont(LOGFONT* pLogFont)
+   font & font::operator = (const font & fontSrc)
    {
-      UNREFERENCED_PARAMETER(pLogFont);
-      throw interface_only_exception();   
+
+      m_strFontFamilyName     = fontSrc.m_strFontFamilyName;
+      m_dFontSize             = fontSrc.m_dFontSize;
+      m_bBold                 = fontSrc.m_bBold;
+      m_bItalic               = fontSrc.m_bItalic;
+      m_bUpdated              = false;
+
+      return *this;
+
    }
 
-   font & font::operator =(const font & fontSrc)
+
+   void font::set_family_name(const char * pszFamilyName)
    {
-      if(&fontSrc == this)
-         return *this;
-      LOGFONT lf;
-      memset(&lf, 0, sizeof(lf));
-      (const_cast < font & > (fontSrc)).GetLogFont(&lf);
-      CreateFontIndirect(&lf);
-      return *this;
+
+      m_strFontFamilyName  = pszFamilyName;
+      m_bUpdated           = false;
+
+
    }
+
+   void font::set_size(double dSize, e_unit eunit)
+   {
+
+      m_dFontSize       = dSize;
+      m_eunitFontSize   = eunit;
+      m_bUpdated        = false;
+
+
+   }
+
+   void font::set_bold(bool bBold)
+   {
+
+      m_bBold        = bBold;
+      m_bUpdated     = false;
+
+   }
+
+   void font::set_italic(bool bItalic)
+   {
+
+      m_bItalic      = bItalic;
+      m_bUpdated     = false;
+
+   }
+
+   void font::set_underline(bool bUnderline)
+   {
+
+      m_bUnderline   = bUnderline;
+      m_bUpdated     = false;
+
+   }
+
+   void font::set_strikeout(bool bStrikeout)
+   {
+
+      m_bStrikeout   = bStrikeout;
+      m_bUpdated     = false;
+
+   }
+
 
 } // namespace ca
+
+

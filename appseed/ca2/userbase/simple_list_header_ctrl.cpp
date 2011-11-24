@@ -92,9 +92,7 @@ void simple_list_header_control::_001OnCreate(gen::signal_object * pobj)
    SCAST_PTR(::user::win::message::create, pcreate, pobj)
    LOGFONT lf;
 
-   System.font_central().GetListCtrlFont()->GetLogFont(&lf);
-
-   ::user::list_header::m_font->CreateFontIndirect(&lf);
+   ::user::list_header::m_font->operator = (*System.font_central().GetListCtrlFont());
    
    pcreate->m_bRet = false;
 }

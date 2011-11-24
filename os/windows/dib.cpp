@@ -163,7 +163,7 @@ namespace win
 
    BOOL dib::create(::ca::graphics * pdc)
    {
-      ::ca::bitmap * pbitmap = (dynamic_cast<::win::graphics * >(pdc))->GetCurrentBitmap();
+      ::ca::bitmap * pbitmap = &(dynamic_cast<::win::graphics * >(pdc))->GetCurrentBitmap();
       if(pbitmap == NULL)
          return FALSE;
       BITMAP bm;

@@ -1,7 +1,14 @@
 #pragma once
 
+
 namespace ca
 {
+
+   enum e_unit
+   {
+      unit_pixel,
+      unit_point,
+   };
 
    class CLASS_DECL_ca font : 
       virtual public graphics_object
@@ -11,6 +18,14 @@ namespace ca
 
       string      m_strFontFamilyName;
       double      m_dFontSize;
+      e_unit      m_eunitFontSize;
+      bool        m_bBold;
+      bool        m_bItalic;
+      bool        m_bUnderline;
+      bool        m_bStrikeout;
+
+
+      font();
 
 
       virtual BOOL CreateFontIndirect(const LOGFONT* lpLogFont);
@@ -22,17 +37,20 @@ namespace ca
       virtual BOOL CreatePointFont(int nPointSize, const char * lpszFaceName, ::ca::graphics * pgraphics = NULL);
       virtual BOOL CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics = NULL);
 
-   // Attributes
-      virtual int GetLogFont(LOGFONT* pLogFont);
+      font & operator = (const font & font);
 
-
-      font & operator =(const font & fontSrc);
-
-      // Implementation
-      public:
       #ifdef _DEBUG
          virtual void dump(dump_context & dumpcontext) const;
       #endif
+
+      virtual void set_family_name(const char * pszFamilyName);
+      virtual void set_size(double dSize, e_unit = unit_point);
+      virtual void set_bold(bool bBold = true);
+      virtual void set_italic(bool bItalic = true);
+      virtual void set_underline(bool bUnderline = true);
+      virtual void set_strikeout(bool bStrikeout = true);
+
+
    };
 
    typedef smart_pointer < font > font_sp;

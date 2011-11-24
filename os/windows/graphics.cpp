@@ -356,8 +356,14 @@ namespace win
    BOOL graphics::Ellipse(int x1, int y1, int x2, int y2)
    { ASSERT(get_handle1() != NULL); return ::Ellipse(get_handle1(), x1, y1, x2, y2); }
    BOOL graphics::Ellipse(LPCRECT lpRect)
-   { ASSERT(get_handle1() != NULL); return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
-   lpRect->right, lpRect->bottom); }
+   { 
+   
+      /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
+   lpRect->right, lpRect->bottom); */
+
+      m_pgraphics->DrawEllipse(
+   
+   }
    BOOL graphics::Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    { ASSERT(get_handle1() != NULL); return ::Pie(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4); }
    BOOL graphics::Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
@@ -386,7 +392,7 @@ namespace win
    { 
       return m_pgraphics->DrawImage(
          (Gdiplus::Bitmap *) (dynamic_cast < ::win::graphics * > (pgraphicsSrc))->m_bitmap->get_os_data(),
-         x, y , xSrc, ySrc, nWidth, nHeight, Gdiplus::UnitWorld) == Gdiplus::Status::Ok;
+         x, y , xSrc, ySrc, nWidth, nHeight, Gdiplus::UnitPixel) == Gdiplus::Status::Ok;
       //return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, dwRop); 
    }
 
@@ -430,14 +436,14 @@ namespace win
                ::ca::dib_sp dib0(get_app());
                dib0->create(rectText.size());
                dib0->get_graphics()->SetTextColor(RGB(255, 255, 255));
-               dib0->get_graphics()->SelectObject(GetCurrentFont());
+               dib0->get_graphics()->SelectObject(&GetCurrentFont());
                dib0->get_graphics()->SetBkMode(TRANSPARENT);
                dib0->get_graphics()->TextOut(0, 0, str);
                dib0->ToAlpha(0);
                ::ca::dib_sp dib1(get_app());
                dib1->create(rectText.size());
                dib1->get_graphics()->SetTextColor(GetTextColor());
-               dib1->get_graphics()->SelectObject(GetCurrentFont());
+               dib1->get_graphics()->SelectObject(&GetCurrentFont());
                dib1->get_graphics()->SetBkMode(TRANSPARENT);
                dib1->get_graphics()->TextOut(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
@@ -538,7 +544,7 @@ namespace win
    BOOL graphics::_AFX_FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
    { 
       //ASSERT(get_handle2() != NULL); return ::GetTextMetrics(get_handle2(), lpMetrics); 
-      wstring wstr(L"123AWZwmc");
+      /*wstring wstr(L"123AWZwmc");
       Gdiplus::RectF rect;
       Gdiplus::RectF rect2;
       Gdiplus::PointF origin(0, 0);
@@ -549,7 +555,33 @@ namespace win
 
       lpMetrics->tmAveCharWidth = rect.Width / (double) wstr.get_length();
       lpMetrics->tmAscent = rect.Height;
-      lpMetrics->tmDescent = rect2.Height - rect.Height;
+      lpMetrics->tmDescent = rect2.Height - rect.Height;*/
+
+      Gdiplus::FontFamily family;
+
+      ((Gdiplus::Font *) m_font->get_os_data())->GetFamily(&family);
+
+      double dHeight = family.GetEmHeight(((Gdiplus::Font *) m_font->get_os_data())->GetStyle());
+
+      lpMetrics->tmAscent = ((Gdiplus::Font *) m_font->get_os_data())->GetSize() * family.GetCellAscent(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()) / dHeight;
+      lpMetrics->tmDescent = ((Gdiplus::Font *) m_font->get_os_data())->GetSize() * family.GetCellDescent(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()) / dHeight;
+      lpMetrics->tmHeight = ((Gdiplus::Font *) m_font->get_os_data())->GetSize() * family.GetLineSpacing(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()) / dHeight;
+      
+      const Gdiplus::FontFamily * pfamilyMono = family.GenericMonospace();
+
+      ::Gdiplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()));
+      
+      wstring wstr(L"123AWZwmc123AWZwmcpQçg");
+      Gdiplus::RectF rect;
+      Gdiplus::RectF rect2;
+      Gdiplus::PointF origin(0, 0);
+      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect);
+
+      /*wstr = L"";
+      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
+
+      lpMetrics->tmAveCharWidth = rect.Width / (double) wstr.get_length();
+
 
       return TRUE;
    }
@@ -661,38 +693,38 @@ namespace win
    { ASSERT(get_handle2() != NULL); 
    return ::GetColorAdjustment(get_handle2(), lpColorAdjust); }
 
-   ::ca::pen* graphics::GetCurrentPen() const
+   ::ca::pen & graphics::GetCurrentPen() const
    {
 
-      return m_pen;
+      return *m_pen.m_p;
 
    }
 
-   ::ca::brush* graphics::GetCurrentBrush() const
+   ::ca::brush & graphics::GetCurrentBrush() const
    {
       
-      return m_brush;
+      return *m_brush.m_p;
 
    }
    
-   ::ca::palette* graphics::GetCurrentPalette() const
+   ::ca::palette & graphics::GetCurrentPalette() const
    {
 
-      return NULL;
+      return *(::ca::palette *)NULL;
 
    }
 
-   ::ca::font* graphics::GetCurrentFont() const
+   ::ca::font & graphics::GetCurrentFont() const
    {
 
-      return m_font;
+      return *m_font.m_p;
 
    }
 
-   ::ca::bitmap* graphics::GetCurrentBitmap() const
+   ::ca::bitmap & graphics::GetCurrentBitmap() const
    {
 
-      return m_bitmap;
+      return *m_bitmap.m_p;
 
    }
 
@@ -2414,6 +2446,10 @@ namespace win
 
       if(m_font.is_null())
          return FALSE;
+
+      //
+      //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixelGridFit);
    
       return m_pgraphics->DrawString(
          wstr, 
@@ -2443,15 +2479,15 @@ namespace win
    }
 
 
-   void graphics::set_alpha_mode(e_alpha_mode ealphamode)
+   void graphics::set_alpha_mode(::ca::e_alpha_mode ealphamode)
    {
       
       ::ca::graphics::set_alpha_mode(ealphamode);
-      if(m_ealphamode == alpha_mode_blend)
+      if(m_ealphamode == ::ca::alpha_mode_blend)
       {
          m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       }
-      else if(m_ealphamode == alpha_mode_set)
+      else if(m_ealphamode == ::ca::alpha_mode_set)
       {
          m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       }

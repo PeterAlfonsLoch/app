@@ -188,9 +188,50 @@ namespace win
          {
             delete m_pfont;
          }
+
+
+         int iStyle = 0;
+
+         if(m_bBold)
+         {
+            iStyle |= (int) Gdiplus::FontStyleBold;
+         }
+
+         if(m_bItalic)
+         {
+            iStyle |= (int) Gdiplus::FontStyleItalic;
+         }
+
+         if(m_bUnderline)
+         {
+            iStyle |= (int) Gdiplus::FontStyleUnderline;
+         }
+
+         if(m_bStrikeout)
+         {
+            iStyle |= (int) Gdiplus::FontStyleStrikeout;
+         }
+
+         Gdiplus::Unit unit;
+
+         switch(m_eunitFontSize)
+         {
+         case ::ca::unit_pixel:
+            unit = Gdiplus::UnitPixel;
+            break;
+         case ::ca::unit_point:
+            unit = Gdiplus::UnitPoint;
+            break;
+         default:
+            unit = Gdiplus::UnitPoint;
+            break;
+         };
+
          ((font *) this)->m_pfont = new Gdiplus::Font(
-            gen::international::utf8_to_unicode(m_strFontFamilyName),
-            m_dFontSize);
+               gen::international::utf8_to_unicode(m_strFontFamilyName),
+               m_dFontSize,
+               iStyle,
+               unit);
       }
 
 

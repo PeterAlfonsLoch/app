@@ -3194,7 +3194,7 @@ namespace win
       ::ca::graphics_sp graphics(get_app());
       WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
       rect rectx;
-      ::ca::bitmap * pbitmap = graphics->GetCurrentBitmap();
+      ::ca::bitmap * pbitmap = &graphics->GetCurrentBitmap();
       ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
 //      DWORD dw = ::GetLastError();
       BITMAP bm;
@@ -6042,7 +6042,7 @@ namespace win
 
       GetClientRect(rectClient);
 
-      pdc->set_alpha_mode(::ca::graphics::alpha_mode_set);
+      pdc->set_alpha_mode(::ca::alpha_mode_set);
 
       pdc->FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
@@ -6153,7 +6153,7 @@ namespace win
      ::DeleteDC(hdcMem);
      ::ReleaseDC(NULL, hdcScreen);
 
-      /*class rect rectWin;
+      class rect rectWin;
       GetWindowRect(rectWin);
       if(rect(rectWindow) != rectWin || (m_pguie != NULL && (bool) m_pguie->oprop("pending_layout")))
       {
@@ -6173,13 +6173,13 @@ namespace win
             {
                pframe->ActivateFrame();
             }*/
-        /*    m_pguie->oprop("pending_layout") = false;
+            m_pguie->oprop("pending_layout") = false;
          }
          else
          {
             SetWindowPos(NULL, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
          }
-      }*/
+      }
 
 
 

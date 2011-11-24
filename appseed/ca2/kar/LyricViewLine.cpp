@@ -1226,14 +1226,14 @@ void LyricViewLine::CalcMainLayout(
    }
    m_ponvisible = new OnVisible(get_app());
    LOGFONT lf, lfInt, lfExt;
-   pfont->GetFont()->GetLogFont(&lf);
-   pdc->SelectObject(pfont->GetFont());
+  // pfont->GetFont()->GetLogFont(&lf);
+   //pdc->SelectObject(pfont->GetFont());
    TEXTMETRIC tm;
-   pdc->GetTextMetrics(&tm);
-   lf.lfHeight = (long) (lf.lfHeight * 0.9);
-   lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1.0);
-   lfInt = lf;
-   lfExt = lf;
+   //pdc->GetTextMetrics(&tm);
+   //lf.lfHeight = (long) (lf.lfHeight * 0.9);
+   //lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1.0);
+   //lfInt = lf;
+   //lfExt = lf;
    lfInt.lfHeight    = (long) (lfInt.lfHeight   * 0.8);
    lfInt.lfWidth     = (long) (lfInt.lfWidth    * 0.8);
    lfExt.lfHeight    = (long) (lfExt.lfHeight   * 1.2);
@@ -1334,7 +1334,7 @@ void LyricViewLine::CalcJp1Layout(
 //         pdc->SelectObject(pfont->GetFont());
 //         token.m_font.delete_object();
          LOGFONT lf;
-         pfont->GetFont()->GetLogFont(&lf);
+//         pfont->GetFont()->GetLogFont(&lf);
          TEXTMETRIC tm;
          pdc->GetTextMetrics(&tm);
          lf.lfWidth = tm.tmAveCharWidth * iJp1Provision / lf.lfHeight;

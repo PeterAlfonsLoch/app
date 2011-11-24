@@ -818,16 +818,11 @@ namespace mixeruserbase
       }
 
       rect rectD = rectClient;
-      ::ca::pen * ppenOriginal = pgraphics->GetCurrentPen();
-      ::ca::brush *pbrushOriginal = pgraphics->GetCurrentBrush();
 
-      ::ca::brush_sp brushNull(get_app());
-      brushNull->CreateStockObject(NULL_BRUSH);
 
       rect rectThumb;
       GetThumbRect(rectThumb);
 
-      pgraphics->SelectObject(brushNull);
 
       if(m_bThumbHover || m_bTracking)
       {
@@ -855,9 +850,6 @@ namespace mixeruserbase
       rectThumb.inflate(1, 1, 1, 1);
       pgraphics->Rectangle(rectThumb);
 
-
-      pgraphics->SelectObject(ppenOriginal);
-      pgraphics->SelectObject(pbrushOriginal);
 
    }
 

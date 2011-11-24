@@ -945,10 +945,7 @@ void virtual_user_interface::SetFont(::ca::font* pFont, BOOL bRedraw)
    if(pFont->get_os_data() == NULL)
       return;
    m_spfont.create(get_app());
-   LOGFONT lf;
-   memset(&lf, 0, sizeof(lf));
-   pFont->GetLogFont(&lf);
-   m_spfont->CreateFontIndirect(&lf);
+   m_spfont->operator=(*pFont);
    if(bRedraw)
       _001RedrawWindow();
 }

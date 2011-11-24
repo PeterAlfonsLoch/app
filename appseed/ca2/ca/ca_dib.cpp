@@ -55,11 +55,11 @@ namespace ca
 
    BOOL dib::create(::ca::graphics * pdc)
    {
-      ::ca::bitmap * pbitmap = pdc->GetCurrentBitmap();
-      if(pbitmap == NULL)
+      ::ca::bitmap & bitmap = pdc->GetCurrentBitmap();
+      if(&bitmap == NULL)
          return FALSE;
       BITMAP bm;
-      pbitmap->GetObject(sizeof(bm), &bm);
+      bitmap.GetObject(sizeof(bm), &bm);
       if(!create(bm.bmWidth, bm.bmHeight))
       {
          return FALSE;

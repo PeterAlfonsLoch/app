@@ -3515,8 +3515,8 @@ namespace user
 
          pobj->previous();
 
-      System.font_central().GetListCtrlFont()->GetLogFont(&m_logfont);
-      m_font->CreateFontIndirect(&m_logfont);
+      
+      m_font->operator=(*System.font_central().GetListCtrlFont());
       LOGFONT lf;
       lf = m_logfont;
       lf.lfUnderline = TRUE;

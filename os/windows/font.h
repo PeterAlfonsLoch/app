@@ -40,6 +40,10 @@ namespace win
       #ifdef _DEBUG
          virtual void dump(dump_context & dumpcontext) const;
       #endif
+
+      
+
+
    };
 
 } // namespace win

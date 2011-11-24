@@ -345,15 +345,8 @@ namespace visual
          {
             fontUnderline.create(get_app());
             pfontUnderline = fontUnderline;
-            pfont = pdc->GetCurrentFont();
-
-            if(pfont == NULL)
-               return 0;
-         
-            LOGFONT lf;
-            pfont->GetLogFont(&lf);
-            lf.lfUnderline = TRUE;
-            fontUnderline->CreateFontIndirect(&lf);
+            fontUnderline ->operator=(pdc->GetCurrentFont());
+            fontUnderline->set_bold();
          }
       }
       

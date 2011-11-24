@@ -508,6 +508,7 @@ namespace user
          ::visual::cursor * pcursor = Bergedge.get_cursor();
          if(pcursor != NULL)
          {
+            pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
             pcursor->to(pgraphics, ptCursor);
          }
       }

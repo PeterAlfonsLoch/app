@@ -1188,11 +1188,7 @@ void KaraokeView::PrepareLyricLines()
    void KaraokeView::SetScale(double dScale)
    {
       m_dScale = dScale;
-      LOGFONT lf;
-      System.font_central().GetLyricViewFont()->GetFont()->GetLogFont(&lf);
-      lf.lfHeight = (int) (((double)lf.lfHeight) * dScale);
-      lf.lfWidth = 0;
-      GetLyricFont()->GetFont()->CreateFontIndirect(&lf);
+      GetLyricFont()->GetFont()->m_dFontSize = dScale * 10;
       GetLyricFont()->OnUpdateFont();
       m_dLyricFontEmbossWidth = (int) (4.5 * dScale);
 
