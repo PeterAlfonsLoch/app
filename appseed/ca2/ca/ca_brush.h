@@ -28,8 +28,8 @@ namespace ca
 
       virtual int GetLogBrush(LOGBRUSH* pLogBrush);
 
-      // Implementation
-   public:
+      brush & operator = (const ::ca::brush & brushSrc);
+
 #ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;
 #endif

@@ -1,10 +1,9 @@
 #pragma once
 
+
 namespace ca
 {
 
-   /////////////////////////////////////////////////////////////////////////////
-   // ::ca::graphics_object subclasses (drawing tools)
 
    class CLASS_DECL_ca pen : 
       virtual public ::ca::graphics_object
@@ -21,6 +20,9 @@ namespace ca
       virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
       virtual BOOL CreatePen(int nPenStyle, double dWidth, COLORREF crColor);
       virtual BOOL CreatePen(int nPenStyle, double nWidth, const LOGBRUSH * pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
+
+
+      pen & operator = (const pen & penSrc);
 
 
    #ifdef _DEBUG

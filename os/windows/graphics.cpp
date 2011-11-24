@@ -2208,7 +2208,18 @@ namespace win
 
    size graphics::GetTextExtent(const char * lpszString, int nCount) const
    {
-      if(get_handle2() == NULL)
+
+      wstring wstr = gen::international::utf8_to_unicode(lpszString, nCount);
+
+      Gdiplus::RectF box;
+
+      Gdiplus::PointF origin(0, 0);
+
+      m_pgraphics->MeasureString(wstr, wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &box);
+
+      return size(box.Width, box.Height);
+
+      /*if(get_handle2() == NULL)
          return size(0, 0);
       SIZE size;
       string str(lpszString, nCount);
@@ -2217,12 +2228,12 @@ namespace win
       {
          return class size(0, 0);
       }
-      return size;
+      return size;*/
    }
 
    size graphics::GetTextExtent(const string & str) const
    {
-      if(get_handle2() == NULL)
+/*      if(get_handle2() == NULL)
          return size(0, 0);
       SIZE size;
       wstring wstr = gen::international::utf8_to_unicode(str);
@@ -2230,7 +2241,18 @@ namespace win
       {
          return class size(0, 0);
       }
-      return size;
+      return size;*/
+
+      wstring wstr = gen::international::utf8_to_unicode(str);
+
+      Gdiplus::RectF box;
+
+      Gdiplus::PointF origin(0, 0);
+
+      m_pgraphics->MeasureString(wstr, wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &box);
+
+      return size(box.Width, box.Height);
+
    }
 
    size graphics::GetOutputTextExtent(const char * lpszString, int nCount) const
@@ -2567,9 +2589,9 @@ namespace win
          m_spbrush.create(get_app());
          m_spbrush->operator=(m_brushxyz);
       }
-      else if(!m_fontxyz.m_bUpdated)
+      else if(!m_brushxyz.m_bUpdated)
       {
-         m_fontxyz.m_bUpdated = true;
+         m_brushxyz.m_bUpdated = true;
          m_spbrush->operator=(m_brushxyz);
       }
       return (Gdiplus::Brush *) m_spbrush->get_os_data();      
@@ -2582,9 +2604,9 @@ namespace win
          m_sppen.create(get_app());
          m_sppen->operator=(m_penxyz);
       }
-      else if(!m_fontxyz.m_bUpdated)
+      else if(!m_penxyz.m_bUpdated)
       {
-         m_fontxyz.m_bUpdated = true;
+         m_penxyz.m_bUpdated = true;
          m_sppen->operator=(m_penxyz);
       }
       return (Gdiplus::Pen *) m_sppen->get_os_data();      

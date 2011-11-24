@@ -45,6 +45,8 @@ namespace win
       BOOL RectInRegion(LPCRECT lpRect) const;
       int GetRegionData(LPRGNDATA lpRgnData, int nCount) const;
 
+      virtual void * get_os_data() const;
+
    };
 
 

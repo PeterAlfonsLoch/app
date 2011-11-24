@@ -903,7 +903,7 @@
     <ClCompile Include="palette.cpp" />
     <ClCompile Include="pen.cpp" />
     <ClCompile Include="preview_dc.cpp" />
-    <ClCompile Include="rgn.cpp" />
+    <ClCompile Include="region.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">Disabled</Optimization>

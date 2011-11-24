@@ -5,18 +5,10 @@ MetaButton::MetaButton(::ca::application * papp) :
    ca(papp),
    ::user::button(papp),
    ::userbase::button(papp),
-   m_dib1(papp),
-   m_dib2(papp),
-   m_brushEllipse(papp),
-   m_penEllipse(papp)
+   m_spregion(papp)
 {
 
-   m_pbrushEllipse = NULL;
-   m_ppenEllipse = NULL;
    m_bFocus = false;
-
-   m_brushEllipse->CreateSolidBrush(RGB(128, 128, 128));
-   m_penEllipse->CreateStockObject(NULL_PEN);
 
 }
 
@@ -37,11 +29,17 @@ void MetaButton::SetEllipseBrushs(
    ::ca::brush * pbrushFocus,
    ::ca::brush * pbrushDisabled)
 {
+
    ASSERT(pbrush != NULL);
-   m_pbrushEllipse = pbrush;
-   m_pbrushEllipseSel = pbrushSel;
-   m_pbrushEllipseFocus = pbrushFocus;
-   m_pbrushEllipseDisabled = pbrushDisabled;
+
+   if(pbrush == NULL)
+      return;
+
+   m_brushEllipse             = *pbrush;
+   m_brushEllipseSel          = pbrushSel != NULL ? *pbrushSel : (pbrushFocus != NULL ? *pbrushFocus : *pbrush);
+   m_brushEllipseFocus        = pbrushFocus != NULL ? *pbrushFocus : (pbrushSel != NULL ? *pbrushSel : *pbrush);
+   m_brushEllipseDisabled     = pbrushDisabled != NULL ? *pbrushDisabled : *pbrush;
+
 }
 
 void MetaButton::SetEllipsePens(        
@@ -50,11 +48,16 @@ void MetaButton::SetEllipsePens(
    ::ca::pen * ppenFocus,
    ::ca::pen * ppenDisabled)
 {
+
    ASSERT(ppen != NULL);
-   m_ppenEllipse = ppen;
-   m_ppenEllipseSel = ppenSel;
-   m_ppenEllipseFocus = ppenFocus;
-   m_ppenEllipseDisabled = ppenDisabled;
+
+   if(ppen == NULL)
+      return;
+
+   m_penEllipse               = *ppen;
+   m_penEllipseSel            = ppenSel != NULL ? *ppenSel : (ppenFocus != NULL ? *ppenFocus : *ppen);
+   m_penEllipseFocus          = ppenFocus != NULL ? *ppenFocus : (ppenSel != NULL ? *ppenSel : *ppen);
+   m_penEllipseDisabled       = ppenDisabled != NULL ? *ppenDisabled : *ppen;
 
 }
 
@@ -64,10 +67,12 @@ void MetaButton::SetTextColors(
    COLORREF crFocus,
    COLORREF crDisabled)
 {
+
    m_crText = cr;
    m_crTextSel = crSel;
    m_crTextFocus = crFocus;
    m_crTextDisabled = crDisabled;
+
 
 }
 
@@ -99,88 +104,63 @@ void MetaButton::_001OnMouseLeave(gen::signal_object * pobj)
    _001RedrawWindow();
 }
 
-void MetaButton::_001OnDraw(::ca::graphics * pdcTwi)
+void MetaButton::_001OnDraw(::ca::graphics * pdc)
 {
 
-   ::ca::brush * pbrushEllipse   = m_pbrushEllipse;
-   ::ca::pen * ppenEllipse       = m_ppenEllipse;
-
-
    rect rectClient;
+
    ::user::interaction::GetClientRect(rectClient);
 
    if(rectClient.area() <= 0)
       return;
 
-
-   ::ca::graphics * pgraphics1 = m_dib1->get_graphics();
-//   ::ca::graphics * pgraphics2 = m_dib2->get_graphics();
-
-   pgraphics1->SelectObject(GetFont());
-   pgraphics1->SetBkMode(TRANSPARENT);
-
-   pbrushEllipse = m_pbrushEllipse;
+   COLORREF crText;
 
    if(!IsWindowEnabled())
    {
-      if(m_pbrushEllipseDisabled!= NULL)
-      {
-         pbrushEllipse = m_pbrushEllipseDisabled;
-      }
-      if(m_ppenEllipseDisabled != NULL)
-      {
-         ppenEllipse = m_ppenEllipseDisabled;
-      }
+
+      pdc->SelectObject(&m_brushEllipseDisabled);
+      pdc->SelectObject(&m_penEllipseDisabled);
+      crText = m_crTextDisabled;
+
    }
    else if(m_iHover >= 0)
    {
-      if(m_pbrushEllipseSel != NULL)
-      {
-         pbrushEllipse = m_pbrushEllipseSel;
-      }
-      if(m_ppenEllipseSel != NULL)
-      {
-         ppenEllipse = m_ppenEllipseSel;
-      }
+
+      pdc->SelectObject(&m_brushEllipseSel);
+      pdc->SelectObject(&m_penEllipseSel);
+      crText = m_crTextSel;
+
    }
    else if(m_bFocus)
    {
-      if(m_pbrushEllipseFocus != NULL)
-      {
-         pbrushEllipse = m_pbrushEllipseFocus;   // third image for focused
-      }
-      if(m_ppenEllipseFocus != NULL)
-      {
-         ppenEllipse = m_ppenEllipseFocus;   // third image for focused
-      }
+
+      pdc->SelectObject(&m_brushEllipseFocus);
+      pdc->SelectObject(&m_penEllipseFocus);
+      crText = m_crTextFocus;
+
+   }
+   else
+   {
+
+      pdc->SelectObject(&m_brushEllipse);
+      pdc->SelectObject(&m_penEllipse);
+      crText = m_crText;
+
    }
 
-   COLORREF crText;
-   crText = m_crText;
-   if(!IsWindowEnabled())
-      crText = m_crTextDisabled;
-   else if(m_iHover >= 0)
-      crText = m_crTextSel;
-   else if (m_bFocus)
-      crText = m_crTextFocus;   // third image for focused
-
-
-
+   pdc->set_alpha_mode(::ca::alpha_mode_blend);
+   pdc->DrawEllipse(rectClient);
+   pdc->FillEllipse(rectClient);
 
    string str;
    GetWindowText(str);
 
-   pgraphics1->SelectObject(pbrushEllipse);
-   pgraphics1->SelectObject(ppenEllipse);
-   pgraphics1->DrawEllipse(rectClient);
-   pgraphics1->FillEllipse(rectClient);
+   pdc->set_font(GetFont());
+   pdc->set_color(crText);
+   pdc->set_alpha_mode(::ca::alpha_mode_set);
+   pdc->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
-   pgraphics1->SetTextColor(crText);
-   pgraphics1->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-
-   m_dib1->channel_from(visual::rgba::channel_alpha, m_dib2);
-
-   System.imaging().color_blend(pdcTwi, rectClient.top_left(), rectClient.size(), m_dib1->get_graphics(), null_point());
 
 }
 
@@ -234,30 +214,10 @@ LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-void MetaButton::_001OnSize(gen::signal_object * pobj) 
+void MetaButton::layout() 
 {
-   UNREFERENCED_PARAMETER(pobj);
+
    UpdateWndRgn();
-
-   rect rectClient;
-
-   GetClientRect(rectClient);
-
-   if(rectClient.area() <= 0)
-      return;
-
-   m_dib1->create(rectClient.size());
-   m_dib2->create(rectClient.size());
-
-
-   m_dib2->get_graphics()->FillSolidRect(rectClient, RGB(0, 0, 0));
-
-
-   m_dib2->get_graphics()->SelectObject(m_penEllipse);
-   m_dib2->get_graphics()->SelectObject(m_brushEllipse);
-   m_dib2->get_graphics()->FillEllipse(rectClient);
-   m_dib2->get_graphics()->DrawEllipse(rectClient);
-   m_dib2->channel_copy(visual::rgba::channel_alpha, visual::rgba::channel_green);
 
 }
 
@@ -303,21 +263,13 @@ void MetaButton::_001OnTimer(gen::signal_object * pobj)
 
 void MetaButton::UpdateWndRgn()
 {
+
    rect rectClient;
 
    ::user::interaction::GetClientRect(rectClient);
 
-   if(rectClient.width() > 0 &&
-      rectClient.height() > 0)
-   {
-      ::ca::region_sp rgn(get_app());
-      rgn->CreateEllipticRgnIndirect(rectClient);
-      //ModifyStyleEx(0, WS_EX_TRANSPARENT, SWP_SHOWWINDOW);
-      if(SetWindowRgn((HRGN) rgn->get_os_data(), TRUE))
-      {
-//         rgn->detach_os_data();
-      }
-   }
+   m_spregion->CreateEllipticRgnIndirect(rectClient);
+
 
 }
 
@@ -335,3 +287,36 @@ void MetaButton::install_message_handling(::user::win::message::dispatch *pinter
 
 
 
+int MetaButton::hit_test(point point, e_element & eelement)
+{
+
+   if(m_spregion.is_null())
+   {
+
+      eelement = element_none;
+      return -1;
+
+   }
+
+   if(m_spregion->get_os_data() == NULL)
+   {
+
+      eelement = element_none;
+      return -1;
+
+   }
+
+   ScreenToClient(&point);
+
+   if(!m_spregion->PtInRegion(point))
+   {
+
+      eelement = element_none;
+      return -1;
+      
+   }
+
+   eelement = element_client;
+   return 0;
+
+}

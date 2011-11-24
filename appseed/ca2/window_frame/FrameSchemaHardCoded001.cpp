@@ -761,10 +761,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT);
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT);
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT);
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT);
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
             //    m_rgnChildren.CreateRectRgn(0, 0, 0, 0);
 
          }
@@ -804,10 +804,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | 0x80000000;
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
          }
          break;
       case StyleBlackBorder:
@@ -845,10 +845,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | 0x80000000;
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
          }
          break;
       case StyleLightGreen:
@@ -886,10 +886,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | 0x80000000;
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
             //    m_rgnChildren.CreateRectRgn(0, 0, 0, 0);
 
          }
@@ -928,10 +928,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | 0x80000000;
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT)  | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
             //    m_rgnChildren.CreateRectRgn(0, 0, 0, 0);
 
          }
@@ -970,10 +970,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | 0x80000000;
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
             //    m_rgnChildren.CreateRectRgn(0, 0, 0, 0);
          }
          break;
@@ -1011,10 +1011,10 @@ namespace window_frame
                m_schema.m_button.m_crTextHover = c.get_rgb();
             m_iMargin = 7;
             m_iButtonMargin = 2;
-            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | 0x80000000;
-            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | 0x80000000;
+            m_crControlBoxFore = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeSel = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeFocus = GetSysColor(COLOR_BTNTEXT) | (0xff << 24);
+            m_crControlBoxForeDisabled = GetSysColor(COLOR_GRAYTEXT) | (0xff << 24);
             //    m_rgnChildren.CreateRectRgn(0, 0, 0, 0);
          }
          break;

@@ -1,5 +1,6 @@
 #pragma once
 
+
 class CLASS_DECL_ca MetaButton :
    public ::userbase::button,
    public window_frame::ControlBoxButton
@@ -13,30 +14,30 @@ public:
    };
 
 
-   ::ca::brush *     m_pbrushEllipse;
-   ::ca::pen   *     m_ppenEllipse;
+   ::ca::brush       m_brushEllipse;
+   ::ca::pen         m_penEllipse;
    COLORREF          m_crText;
-   ::ca::brush *     m_pbrushEllipseSel;
-   ::ca::pen   *     m_ppenEllipseSel;
+   ::ca::brush       m_brushEllipseSel;
+   ::ca::pen         m_penEllipseSel;
    COLORREF          m_crTextSel;
-   ::ca::brush *     m_pbrushEllipseFocus;
-   ::ca::pen   *     m_ppenEllipseFocus;
+   ::ca::brush       m_brushEllipseFocus;
+   ::ca::pen         m_penEllipseFocus;
    COLORREF          m_crTextFocus;
-   ::ca::brush *     m_pbrushEllipseDisabled;
-   ::ca::pen   *     m_ppenEllipseDisabled;
+   ::ca::brush       m_brushEllipseDisabled;
+   ::ca::pen         m_penEllipseDisabled;
    COLORREF          m_crTextDisabled;
    HWND              m_hwndPreviousFocus;
 
-   ::ca::brush_sp    m_brushEllipse;
-   ::ca::pen_sp      m_penEllipse;
-
-   ::ca::dib_sp      m_dib1;
-   ::ca::dib_sp      m_dib2;
+   ::ca::region_sp   m_spregion;
 
    bool              m_bFocus;
 
 
    MetaButton(::ca::application * papp);
+   virtual ~MetaButton();
+
+
+   virtual int hit_test(point point, e_element & eelement);
 
 
    virtual void _001OnDraw(::ca::graphics * pdc);
@@ -54,21 +55,26 @@ public:
         ::ca::brush * pbrushSel = NULL,
         ::ca::brush * pbrushFocus = NULL,
         ::ca::brush * pbrushDisabled = NULL);
-    void SetTextColors(
+   void SetTextColors(
         COLORREF cr,
         COLORREF crSel,
         COLORREF crFocus,
         COLORREF crDisabled);
 
-   virtual ~MetaButton();
+
+   virtual void layout();
+
 
    DECL_GEN_SIGNAL(_001OnMouseMove)
    DECL_GEN_SIGNAL(_001OnMouseLeave)
    DECL_GEN_SIGNAL(_001OnShowWindow)
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnLButtonUp)
-   DECL_GEN_SIGNAL(_001OnSize)
    DECL_GEN_SIGNAL(_001OnTimer)
    LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
+
+
 };
+
+
 

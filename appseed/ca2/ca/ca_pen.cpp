@@ -48,7 +48,7 @@ namespace ca
 
       m_nPenStyle             = nPenStyle;
       m_dPenWidth             = dWidth;
-      m_crPenColor            = 0;
+      m_crPenColor            = crColor;
       m_bUpdated              = false;
 
       return TRUE;
@@ -64,6 +64,19 @@ namespace ca
       m_bUpdated              = false;
 
       return TRUE;
+
+   }
+
+
+   pen & pen::operator = (const pen & penSrc)
+   {
+
+      m_nPenStyle       = penSrc.m_nPenStyle;
+      m_dPenWidth       = penSrc.m_dPenWidth;
+      m_crPenColor      = penSrc.m_crPenColor;
+      m_bUpdated        = false;
+
+      return *this;
 
    }
 

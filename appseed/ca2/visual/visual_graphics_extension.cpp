@@ -74,16 +74,18 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpwsz, size & size)
+   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpsz, size & size)
    {
-      string str(lpwsz);
+      /*string str(lpwsz);
       if(pdc == NULL)
          return;
       ::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
          (const char *) str,
          str.get_length(),
-         &size);
+         &size);*/
+
+      size = pdc->GetTextExtent(lpsz);
 
    }
 
@@ -299,11 +301,12 @@ namespace visual
       }
       else
       {
-         ::GetTextExtentPoint32U(
+         sz = pdc->GetTextExtent(str, iLen);
+         /*::GetTextExtentPoint32U(
             (HDC) pdc->get_os_data(),
             str,
             iLen,
-            &sz);
+            &sz);*/
 //         DWORD dw = ::GetLastError();
          if(sz.cx > rectClip.width())
          {

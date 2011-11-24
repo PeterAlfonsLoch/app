@@ -79,4 +79,15 @@ namespace ca
       throw interface_only_exception();
    }
 
+
+   brush & brush::operator = (const brush & brushSrc)
+   {
+
+      m_crColor         = brushSrc.m_crColor;
+      m_bUpdated        = false;
+
+      return *this;
+
+   }
+
 } // namespace ca

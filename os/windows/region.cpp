@@ -42,12 +42,71 @@ namespace win
    { ASSERT(get_os_data() != NULL); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
    int region::GetRgnBox(LPRECT lpRect) const
    { ASSERT(get_os_data() != NULL); return ::GetRgnBox((HRGN)get_os_data(), lpRect); }
+   
    BOOL region::PtInRegion(int x, int y) const
-   { ASSERT(get_os_data() != NULL); return ::PtInRegion((HRGN)get_os_data(), x, y); }
+   { 
+
+      Gdiplus::PointF pointf(x, y);
+      
+      ASSERT(get_os_data() != NULL); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
+
+      return m_pregion->IsVisible(pointf);
+   
+   }
+
    BOOL region::PtInRegion(POINT point) const
-   { ASSERT(get_os_data() != NULL); return ::PtInRegion((HRGN)get_os_data(), point.x, point.y); }
+   { 
+
+      //return ::PtInRegion((HRGN)get_os_data(), point.x, point.y); 
+      Gdiplus::PointF pointf(point.x, point.y);
+      
+      ASSERT(get_os_data() != NULL); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
+
+      return m_pregion->IsVisible(pointf);
+
+   }
    BOOL region::RectInRegion(LPCRECT lpRect) const
-   { ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); }
+   { 
+      //ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); 
+
+      Gdiplus::RectF rectf(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      
+      ASSERT(get_os_data() != NULL); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
+
+      return m_pregion->IsVisible(rectf);
+
+   }
+
+   void * region::get_os_data() const
+   {
+
+      if(m_pregion == NULL || !m_bUpdated)
+      {
+         if(m_pregion != NULL)
+         {
+            delete m_pregion;
+         }
+
+         Gdiplus::GraphicsPath path;
+
+         if(m_etype == type_elliptic)
+         {
+            path.AddEllipse((INT) m_pta[0].x, (INT) m_pta[0].y, (INT) (m_pta[1].x - m_pta[0].x), (INT) (m_pta[1].y - m_pta[0].y));
+         }
+
+         ((region *) this)->m_pregion = new Gdiplus::Region(&path);
+         
+      }
+
+      if(m_pregion != NULL)
+      {
+         ((region *) this)->m_bUpdated = true;
+      }
+
+
+
+      return (Gdiplus::Region *) m_pregion;
+   }
 
 
 } // namespace win

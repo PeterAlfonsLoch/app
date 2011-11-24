@@ -104,9 +104,6 @@
     <ClCompile Include="preview_dc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rgn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -171,6 +168,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="win_printer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

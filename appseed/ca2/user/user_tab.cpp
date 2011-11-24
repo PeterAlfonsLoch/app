@@ -64,7 +64,7 @@ namespace user
       ::ca::graphics_sp spgraphics(get_app());
       spgraphics->CreateCompatibleDC(NULL);
 
-      lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
+      lf.lfHeight         = -10;
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -244,9 +244,13 @@ namespace user
 
       class imaging & imaging = System.imaging();
 
-      //imaging.color_blend(pdc, get_data()->m_rectTab, RGB(250, 255, 255), 0xc0);
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
+      pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
             //pdc->SetBkMode(OPAQUE);
+
+      pdc->set_alpha_mode(::ca::alpha_mode_set);
 
       int iVisiblePane = 0;
 
@@ -279,7 +283,6 @@ namespace user
 
             if(get_data()->m_iaSel.contains(iPane))
             {
-               pdc->set_font(get_data()->m_fontBold);
                pdc->set_color(ARGB(255, 0, 0, 0));
                pdc->set_solid_pen(1.0);
 
@@ -289,6 +292,9 @@ namespace user
                pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
                pdc->LineTo(rectClient.left, rectBorder.top);
                pdc->LineTo(rectBorder.right, rectBorder.top);
+
+               pdc->set_font(get_data()->m_fontBold);
+
             }
             else
             {
