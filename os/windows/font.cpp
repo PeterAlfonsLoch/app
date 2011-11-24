@@ -38,7 +38,7 @@ namespace win
    { 
 
       m_strFontFamilyName = lpLogFont->lfFaceName;
-      m_dFontSize = lpLogFont->lfHeight;
+      m_dFontSize = lpLogFont->lfHeight / 10.0;
 
       return TRUE;
       //return Attach(::CreateFontIndirect(lpLogFont)); 

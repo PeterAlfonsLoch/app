@@ -48,7 +48,7 @@ namespace ca
    {
       
       m_strFontFamilyName  = lpLogFont->lfFaceName;
-      m_dFontSize          = lpLogFont->lfHeight;
+      m_dFontSize          = lpLogFont->lfHeight / 10.0;
       m_bUpdated           = false;
 
       return TRUE;

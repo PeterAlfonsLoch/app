@@ -353,17 +353,41 @@ namespace win
    ptEnd.x, ptEnd.y); }
    void graphics::DrawFocusRect(LPCRECT lpRect)
    { ASSERT(get_handle1() != NULL); ::DrawFocusRect(get_handle1(), lpRect); }
-   BOOL graphics::Ellipse(int x1, int y1, int x2, int y2)
-   { ASSERT(get_handle1() != NULL); return ::Ellipse(get_handle1(), x1, y1, x2, y2); }
-   BOOL graphics::Ellipse(LPCRECT lpRect)
+   
+   BOOL graphics::DrawEllipse(int x1, int y1, int x2, int y2)
+   {
+      
+      return (m_pgraphics->DrawEllipse(gdiplus_pen(), x1, y1, x2 - x1, y2 - y1)) == Gdiplus::Status::Ok;
+
+   }
+
+   BOOL graphics::DrawEllipse(LPCRECT lpRect)
    { 
    
       /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
    lpRect->right, lpRect->bottom); */
 
-      m_pgraphics->DrawEllipse(
+      return (m_pgraphics->DrawEllipse(gdiplus_pen(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top)) == Gdiplus::Status::Ok;
    
    }
+
+   BOOL graphics::FillEllipse(int x1, int y1, int x2, int y2)
+   {
+      
+      return (m_pgraphics->FillEllipse(gdiplus_brush(), x1, y1, x2 - x1, y2 - y1)) == Gdiplus::Status::Ok;
+
+   }
+
+   BOOL graphics::FillEllipse(LPCRECT lpRect)
+   { 
+   
+      /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
+   lpRect->right, lpRect->bottom); */
+
+      return (m_pgraphics->FillEllipse(gdiplus_brush(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top)) == Gdiplus::Status::Ok;
+   
+   }
+
    BOOL graphics::Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    { ASSERT(get_handle1() != NULL); return ::Pie(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4); }
    BOOL graphics::Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
@@ -559,23 +583,23 @@ namespace win
 
       Gdiplus::FontFamily family;
 
-      ((Gdiplus::Font *) m_font->get_os_data())->GetFamily(&family);
+      ((graphics * )this)->gdiplus_font()->GetFamily(&family);
 
-      double dHeight = family.GetEmHeight(((Gdiplus::Font *) m_font->get_os_data())->GetStyle());
+      double dHeight = family.GetEmHeight(((graphics * )this)->gdiplus_font()->GetStyle());
 
-      lpMetrics->tmAscent = ((Gdiplus::Font *) m_font->get_os_data())->GetSize() * family.GetCellAscent(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()) / dHeight;
-      lpMetrics->tmDescent = ((Gdiplus::Font *) m_font->get_os_data())->GetSize() * family.GetCellDescent(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()) / dHeight;
-      lpMetrics->tmHeight = ((Gdiplus::Font *) m_font->get_os_data())->GetSize() * family.GetLineSpacing(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()) / dHeight;
+      lpMetrics->tmAscent = ((graphics * )this)->gdiplus_font()->GetSize() * family.GetCellAscent(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight;
+      lpMetrics->tmDescent = ((graphics * )this)->gdiplus_font()->GetSize() * family.GetCellDescent(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight;
+      lpMetrics->tmHeight = ((graphics * )this)->gdiplus_font()->GetSize() * family.GetLineSpacing(((graphics * )this)->gdiplus_font()->GetStyle()) / dHeight;
       
       const Gdiplus::FontFamily * pfamilyMono = family.GenericMonospace();
 
-      ::Gdiplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((Gdiplus::Font *) m_font->get_os_data())->GetStyle()));
+      ::Gdiplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gdiplus_font()->GetStyle()));
       
       wstring wstr(L"123AWZwmc123AWZwmcpQçg");
       Gdiplus::RectF rect;
       Gdiplus::RectF rect2;
       Gdiplus::PointF origin(0, 0);
-      m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect);
+      m_pgraphics->MeasureString(wstr.m_pwsz, -1, ((graphics * )this)->gdiplus_font(), origin, &rect);
 
       /*wstr = L"";
       m_pgraphics->MeasureString(wstr.m_pwsz, -1, (Gdiplus::Font *) m_font->get_os_data(), origin, &rect2);*/
@@ -696,14 +720,14 @@ namespace win
    ::ca::pen & graphics::GetCurrentPen() const
    {
 
-      return *m_pen.m_p;
+      return *m_sppen.m_p;
 
    }
 
    ::ca::brush & graphics::GetCurrentBrush() const
    {
       
-      return *m_brush.m_p;
+      return *m_spbrush.m_p;
 
    }
    
@@ -717,7 +741,7 @@ namespace win
    ::ca::font & graphics::GetCurrentFont() const
    {
 
-      return *m_font.m_p;
+      return *m_spfont.m_p;
 
    }
 
@@ -1451,8 +1475,8 @@ namespace win
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
       return dynamic_cast < pen * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
-      m_pen = pPen;
-      return m_pen;
+      m_penxyz = *pPen;
+      return &m_penxyz;
    }
 
    ::ca::brush* graphics::SelectObject(::ca::brush* pBrush)
@@ -1465,8 +1489,8 @@ namespace win
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
       return dynamic_cast < ::ca::brush * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
-      m_brush = pBrush;
-      return m_brush;
+      m_brushxyz = *pBrush;
+      return &m_brushxyz;
 
    }
 
@@ -1480,8 +1504,8 @@ namespace win
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
       return dynamic_cast < ::ca::font * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
-      m_font = pFont;
-      return m_font;
+      m_fontxyz = *pFont;
+      return &m_fontxyz;
 
    }
 
@@ -2411,10 +2435,10 @@ namespace win
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+      
       set_color(clr);
-      if(m_brush.is_null())
-         return;
-      m_pgraphics->FillRectangle((Gdiplus::Brush *) m_brush->get_os_data(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+      m_pgraphics->FillRectangle(gdiplus_brush(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
 
       //::SetBkColor(get_handle1(), clr);
       //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
@@ -2425,10 +2449,11 @@ namespace win
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
+
       set_color(clr);
-      if(m_brush.is_null())
-         return;
-      m_pgraphics->FillRectangle((Gdiplus::Brush *) m_brush->get_os_data(), x, y, cx, cy);
+
+      m_pgraphics->FillRectangle(gdiplus_brush(), x, y, cx, cy);
+
    }
 
 
@@ -2441,12 +2466,6 @@ namespace win
       
       wstring wstr = gen::international::utf8_to_unicode(str);
       
-      if(m_brush.is_null())
-         return FALSE;
-
-      if(m_font.is_null())
-         return FALSE;
-
       //
       //m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       m_pgraphics->SetTextRenderingHint(Gdiplus::TextRenderingHintSingleBitPerPixelGridFit);
@@ -2454,9 +2473,9 @@ namespace win
       return m_pgraphics->DrawString(
          wstr, 
          wstr.get_length(), 
-         (Gdiplus::Font *) m_font->get_os_data(), 
+         gdiplus_font(), 
          origin, 
-         (Gdiplus::Brush *) m_brush->get_os_data()) == Gdiplus::Status::Ok;
+         gdiplus_brush()) == Gdiplus::Status::Ok;
 
    }
 
@@ -2468,7 +2487,7 @@ namespace win
 
 //      ::Gdiplus::Pen pen(::Gdiplus::Color(GetAValue(m_crColor), GetRValue(m_crColor), GetGValue(m_crColor), GetBValue(m_crColor)), m_dPenWidth);
 
-      m_pgraphics->DrawLine((Gdiplus::Pen *) m_pen->get_os_data(), Gdiplus::Point(m_x, m_y), Gdiplus::Point(x, y));
+      m_pgraphics->DrawLine(gdiplus_pen(), Gdiplus::Point(m_x, m_y), Gdiplus::Point(x, y));
 
 
       m_x = x;
@@ -2525,5 +2544,50 @@ namespace win
       m_pgraphics = (Gdiplus::Graphics *) pdata;
    }
 
+
+   Gdiplus::Font * graphics::gdiplus_font()
+   {
+      if(m_spfont.is_null())
+      {
+         m_spfont.create(get_app());
+         m_spfont->operator=(m_fontxyz);
+      }
+      else if(!m_fontxyz.m_bUpdated)
+      {
+         m_fontxyz.m_bUpdated = true;
+         m_spfont->operator=(m_fontxyz);
+      }
+      return (Gdiplus::Font *) m_spfont->get_os_data();      
+   }
+
+   Gdiplus::Brush * graphics::gdiplus_brush()
+   {
+      if(m_spbrush.is_null())
+      {
+         m_spbrush.create(get_app());
+         m_spbrush->operator=(m_brushxyz);
+      }
+      else if(!m_fontxyz.m_bUpdated)
+      {
+         m_fontxyz.m_bUpdated = true;
+         m_spbrush->operator=(m_brushxyz);
+      }
+      return (Gdiplus::Brush *) m_spbrush->get_os_data();      
+   }
+
+   Gdiplus::Pen * graphics::gdiplus_pen()
+   {
+      if(m_sppen.is_null())
+      {
+         m_sppen.create(get_app());
+         m_sppen->operator=(m_penxyz);
+      }
+      else if(!m_fontxyz.m_bUpdated)
+      {
+         m_fontxyz.m_bUpdated = true;
+         m_sppen->operator=(m_penxyz);
+      }
+      return (Gdiplus::Pen *) m_sppen->get_os_data();      
+   }
 
 } // namespace win
