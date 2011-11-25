@@ -1,5 +1,13 @@
 #pragma once
 
+
+#undef new
+#include <GdiPlus.h>
+#include <Gdipluseffects.h>
+
+#define new DEBUG_NEW
+
+
 #include "radix/implementation.h"
 #include "dir.h"
 #include "WFileFind.h"

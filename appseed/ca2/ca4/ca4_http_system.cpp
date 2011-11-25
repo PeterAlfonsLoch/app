@@ -132,6 +132,76 @@ namespace ca4
 
       }
 
+      bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket)
+      {
+
+         string strProxyServer;
+
+         string strUrl(pszScriptUrl);
+
+
+         if(gen::str::begins(pszUrl, strUrl))
+         {
+            psocket->m_bDirect = true;
+            return true;
+         }
+
+         var varQuery;
+
+         varQuery["disable_ca2_sessid"] = true;
+
+         string strAutoConfigScript = Application.file().as_string(strUrl, varQuery);
+
+         string strHost;
+
+         strHost = System.url().get_server(pszUrl);
+         int port = System.url().get_port(pszUrl);
+
+         ipaddr_t l;
+         if (!System.net().u2ip(strHost,l))
+         {
+            return false;
+         }
+         sockets::ipv4_address ad(get_app(), l, (port_t) port);
+         strHost = ad.Convert(true);
+
+         tinyjs js(get_app());
+
+
+         string var;
+         try
+         {
+            registerFunctions(&js);
+            js.execute(strAutoConfigScript);
+            var = js.evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
+         }
+         catch(...)
+         {
+            return false;
+         }
+
+         if(var.CompareNoCase("DIRECT") == 0)
+         {
+            psocket->m_bDirect = true;
+         }
+         else if(gen::str::begins_eat_ci(var, "PROXY"))
+         {
+            var.trim();
+            stringa stra;
+            stra.explode(":", var);
+            psocket->m_bDirect = false;
+            psocket->m_strProxy = stra[0];
+            psocket->m_iProxyPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
+         }
+         else
+         {
+            psocket->m_bDirect = true;
+         }
+
+         return true;
+
+      }
+
       void system::config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket)
       {
 
@@ -224,7 +294,21 @@ namespace ca4
          if(!bOk)
          {
 
-            tinyjs js(get_app());
+            win::registry::Key key1;
+
+            key1.OpenKey(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", false);
+
+            primitive::memory mem;
+
+            key1.QueryValue("DefaultConnectionSettings", mem);
+
+            bool bAutoDetect = (((LPBYTE) mem.get_data())[8] & 0x80) != 0;
+
+            if(bAutoDetect)
+            {
+               if(try_pac_script("wpad", pszUrl, psocket))
+                  return;
+            }
 
             win::registry::Key key;
 
@@ -234,87 +318,15 @@ namespace ca4
 
             key.QueryValue("AutoConfigURL", strUrl);
 
-            string strProxyServer;
-
             if(strUrl.has_char())
             {
-
-
-               if(gen::str::begins(pszUrl, strUrl))
-               {
-                  psocket->m_bDirect = true;
+               if(try_pac_script(strUrl, pszUrl, psocket))
                   return;
-               }
-
-               var varQuery;
-
-               varQuery["disable_ca2_sessid"] = true;
-
-               string strAutoConfigScript = Application.file().as_string(strUrl, varQuery);
-
-               string strHost;
-
-               strHost = System.url().get_server(pszUrl);
-               int port = System.url().get_port(pszUrl);
-
-               ipaddr_t l;
-               if (!System.net().u2ip(strHost,l))
-               {
-                  goto skip1;
-               }
-               sockets::ipv4_address ad(get_app(), l, (port_t) port);
-               strHost = ad.Convert(true);
-
-
-               string var;
-               try
-               {
-                  registerFunctions(&js);
-                  js.execute(strAutoConfigScript);
-                  var = js.evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
-               }
-               catch(...)
-               {
-                  goto skip1;
-               }
-
-               if(var.CompareNoCase("DIRECT") == 0)
-               {
-                  psocket->m_bDirect = true;
-               }
-               else if(gen::str::begins_eat_ci(var, "PROXY"))
-               {
-                  var.trim();
-                  stringa stra;
-                  stra.explode(":", var);
-                  psocket->m_bDirect = false;
-                  psocket->m_strProxy = stra[0];
-                  psocket->m_iProxyPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
-               }
-               else
-               {
-                  psocket->m_bDirect = true;
-               }
-
-
             }
-            else
-            {
 
-               key.QueryValue("ProxyServer", strProxyServer);
-
-               if(strProxyServer.has_char())
-               {
-                  stringa stra;
-                  stra.explode(":", strProxyServer);
-                  psocket->m_bDirect = false;
-                  psocket->m_strProxy = stra[0];
-                  psocket->m_iProxyPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
-               }
-
-               skip1:;
-            }
+            psocket->m_bDirect = true;
          }
+
       }
 
       ::sockets::http_client_socket * system::get(

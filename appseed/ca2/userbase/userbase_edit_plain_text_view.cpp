@@ -16,7 +16,6 @@ namespace userbase
       ex1::tree(papp),
       ::ca::data_listener(papp)
    {
-      m_pfont = m_font;
    }
 
    void edit_plain_text_view::install_message_handling(::user::win::message::dispatch * pinterface)

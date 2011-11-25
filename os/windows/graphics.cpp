@@ -1,5 +1,9 @@
 #include "StdAfx.h"
 
+
+#undef new
+
+
 namespace win
 {
 
@@ -182,9 +186,18 @@ namespace win
 
    point graphics::GetViewportOrg() const
    {
-      POINT point;
-      ::GetViewportOrgEx(get_handle2(), &point);
-      return point;
+      //POINT point;
+      //::GetViewportOrgEx(get_handle2(), &point);
+
+      Gdiplus::Matrix m;
+
+      m_pgraphics->GetTransform(&m);
+
+      Gdiplus::PointF origin(0, 0);
+
+      m.TransformPoints(&origin);
+
+      return point(origin.X, origin.Y);
    }
 
    size graphics::GetViewportExt() const
@@ -312,7 +325,9 @@ namespace win
    { 
       if(picon == NULL)
          return FALSE;
-      return ::DrawIconEx(get_handle1(), x, y, picon->m_hicon, cx, cy, istepIfAniCur, hbrFlickerFreeDraw, diFlags); 
+      Gdiplus::Bitmap b(picon->m_hicon);
+      m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, Gdiplus::UnitPixel);
+      //return ::DrawIconEx(get_handle1(), x, y, picon->m_hicon, cx, cy, istepIfAniCur, hbrFlickerFreeDraw, diFlags); 
    }
 
    BOOL graphics::DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
@@ -395,14 +410,64 @@ namespace win
    lpRect->right, lpRect->bottom, ptStart.x, ptStart.y,
    ptEnd.x, ptEnd.y); }
    BOOL graphics::Polygon(const POINT* lpPoints, int nCount)
-   { ASSERT(get_handle1() != NULL); return ::Polygon(get_handle1(), lpPoints, nCount); }
+   {
+
+      if(nCount <= 0)
+         return TRUE;
+
+      BOOL bOk1 = FALSE;
+      BOOL bOk2 = FALSE;
+
+
+      Gdiplus::Point * ppoints = new Gdiplus::Point[nCount];
+      try
+      {
+
+         for(int i = 0; i < nCount; i++)
+         {
+            ppoints[i].X = lpPoints[i].x;
+            ppoints[i].Y = lpPoints[i].y;
+         }
+   
+         bOk1 = m_pgraphics->FillPolygon(gdiplus_brush(), ppoints, nCount, gdiplus_get_fill_mode()) == Gdiplus::Status::Ok;
+         bOk2 = m_pgraphics->DrawPolygon(gdiplus_pen(), ppoints, nCount) == Gdiplus::Status::Ok;
+      }
+      catch(...)
+      {
+      }
+      
+      try
+      {
+         delete ppoints;         
+      }
+      catch(...)
+      {
+      }
+
+      //return ::Polygon(get_handle1(), lpPoints, nCount); 
+
+      return bOk1 && bOk2;
+   
+   }
    BOOL graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount)
    { ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount); }
    BOOL graphics::Rectangle(int x1, int y1, int x2, int y2)
    { ASSERT(get_handle1() != NULL); return ::Rectangle(get_handle1(), x1, y1, x2, y2); }
+   
    BOOL graphics::Rectangle(LPCRECT lpRect)
-   { ASSERT(get_handle1() != NULL); return ::Rectangle(get_handle1(), lpRect->left, lpRect->top,
-   lpRect->right, lpRect->bottom); }
+   { 
+      //ASSERT(get_handle1() != NULL); return ::Rectangle(get_handle1(), lpRect->left, lpRect->top,
+   //lpRect->right, lpRect->bottom); 
+
+      Gdiplus::RectF rectf(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+      BOOL bOk1 = m_pgraphics->FillRectangle(gdiplus_brush(), rectf) == Gdiplus::Status::Ok;
+      BOOL bOk2 = m_pgraphics->DrawRectangle(gdiplus_pen(), rectf) == Gdiplus::Status::Ok;
+
+      return bOk1 && bOk2;
+
+   }
+
    BOOL graphics::RoundRect(int x1, int y1, int x2, int y2, int x3, int y3)
    { ASSERT(get_handle1() != NULL); return ::RoundRect(get_handle1(), x1, y1, x2, y2, x3, y3); }
    BOOL graphics::RoundRect(LPCRECT lpRect, POINT point)
@@ -414,9 +479,20 @@ namespace win
    
    BOOL graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, DWORD dwRop)
    { 
-      return m_pgraphics->DrawImage(
-         (Gdiplus::Bitmap *) (dynamic_cast < ::win::graphics * > (pgraphicsSrc))->m_bitmap->get_os_data(),
-         x, y , xSrc, ySrc, nWidth, nHeight, Gdiplus::UnitPixel) == Gdiplus::Status::Ok;
+      
+      if(pgraphicsSrc == NULL)
+         return FALSE;
+
+      try
+      {
+         return m_pgraphics->DrawImage(
+            (Gdiplus::Bitmap *) (dynamic_cast < ::win::graphics * > (pgraphicsSrc))->m_bitmap->get_os_data(),
+            x, y , xSrc, ySrc, nWidth, nHeight, Gdiplus::UnitPixel) == Gdiplus::Status::Ok;
+      }
+      catch(...)
+      {
+         return FALSE;
+      }
       //return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, dwRop); 
    }
 
@@ -1504,6 +1580,12 @@ namespace win
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
       return dynamic_cast < ::ca::font * > (::win::graphics_object::from_handle(get_app(), hOldObj));*/
+
+      ASSERT(pFont != NULL);
+
+      if(pFont == NULL)
+         return NULL;
+
       m_fontxyz = *pFont;
       return &m_fontxyz;
 
@@ -1655,12 +1737,13 @@ namespace win
 
    point graphics::OffsetViewportOrg(int nWidth, int nHeight)
    {
-      point point(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::OffsetViewportOrgEx(get_handle1(), nWidth, nHeight, &point);
-      if(get_handle2() != NULL)
-         ::OffsetViewportOrgEx(get_handle2(), nWidth, nHeight, &point);
-      return point;
+      
+      point point = GetViewportOrg();
+
+      point.Offset(nWidth, nHeight);
+
+      return SetViewportOrg(point.x, point.y);
+
    }
 
    size graphics::SetViewportExt(int x, int y)
@@ -2457,10 +2540,6 @@ namespace win
 
 
 
-#undef new
-#include <gdiplus.h>
-
-// now, with gdi plus, should support alpha
 namespace win
 {
 
@@ -2623,6 +2702,53 @@ namespace win
          m_sppen->operator=(m_penxyz);
       }
       return (Gdiplus::Pen *) m_sppen->get_os_data();      
+   }
+
+   Gdiplus::FillMode graphics::gdiplus_get_fill_mode()
+   {
+      return Gdiplus::FillModeWinding;
+   }
+
+   bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
+   {
+
+      if(m_bitmap.is_null() || m_bitmap->get_os_data() == NULL)
+         return false;
+
+      Gdiplus::BlurParams myBlurParams;
+      myBlurParams.expandEdge = bExpand ? 1 : 0;
+      myBlurParams.radius = dRadius;
+
+      Gdiplus::Blur myBlur;
+      myBlur.SetParameters(&myBlurParams);
+
+      
+
+      Gdiplus::Matrix m;
+      m_pgraphics->GetTransform(&m);
+
+      Gdiplus::PointF points[2];
+
+      points[0].X    = lpcrect->left;
+      points[0].Y    = lpcrect->top;
+      points[1].X    = lpcrect->right;
+      points[1].Y    = lpcrect->bottom;
+
+      m.TransformPoints(points, 2);
+
+      //Gdiplus::RectF rectf(points[0].X, points[0].Y, points[1].X - points[0].X, points[1].Y - points[0].Y);
+
+      RECT rect;
+
+      rect.left      = points[0].X;
+      rect.top       = points[0].Y;
+      rect.right     = points[1].X;
+      rect.bottom    = points[1].Y;
+
+      Gdiplus::Bitmap * pbitmap = ((Gdiplus::Bitmap *) m_bitmap->get_os_data());
+
+      pbitmap->ApplyEffect(&myBlur, &rect);
+
    }
 
 } // namespace win

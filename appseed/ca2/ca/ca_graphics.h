@@ -70,6 +70,8 @@ namespace ca
 
       virtual void set_alpha_mode(e_alpha_mode ealphamode);
 
+      virtual bool blur(bool bExpand, double dRadius, LPCRECT lprect);
+
       void set_solid_pen(double dWidth);
 
       virtual BOOL IsPrinting() const;            // TRUE if being used for printing

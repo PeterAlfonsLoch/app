@@ -8,8 +8,8 @@ namespace ca
    font::font()
    {
 
-      m_strFontFamilyName  = "Arial";
-      m_dFontSize          = 12.0;
+      m_strFontFamilyName  = "Times New Roman";
+      m_dFontSize          = 17.0;
       m_eunitFontSize      = ::ca::unit_point;
       m_bBold              = false;
       m_bItalic            = false;

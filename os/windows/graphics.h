@@ -482,6 +482,9 @@ namespace win
       virtual void attach(void * pdata);
 
 
+      virtual Gdiplus::FillMode gdiplus_get_fill_mode();
+
+      bool blur(bool bExpand, double dRadius, LPCRECT lpcrect);
 
    //protected:
       // used for implementation of non-virtual SelectObject calls

@@ -40,7 +40,7 @@ namespace visual
       virtual ~dib_sp();
 
 
-      virtual bool from(::ca::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
+      
 
 
       virtual bool load_from_file(var varFile);

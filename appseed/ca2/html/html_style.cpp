@@ -28,11 +28,21 @@ namespace html
    {
       string str(psz);
       str.trim();
-      if(str.Left(1) == "#")
+      if(str.Left(1) == "#" && str.get_length() >= 7 && isdigit(str[1]) && isdigit(str[2]) && isdigit(str[3]) && isdigit(str[4])
+          && isdigit(str[5]) && isdigit(str[6]))
       {
-         int r, g, b;
-         sscanf(str, "#%02x%02x%02x", &r, &g, &b);
-         return RGB(r, g, b);
+         if(str.get_length() >= 9 && isdigit(str[7]) && isdigit(str[8]) && !isdigit(str[9]))
+         {
+            int a, r, g, b;
+            sscanf(str, "#%02x%02x%02x%02x", &a, &r, &g, &b);
+            return ARGB(a, r, g, b);
+         }
+         else if(!isdigit(str[7]))
+         {
+            int r, g, b;
+            sscanf(str, "#%02x%02x%02x", &r, &g, &b);
+            return ARGB(255, r, g, b);
+         }
       }
       return 0;
    }
@@ -89,23 +99,18 @@ namespace html
    bool style::get_text(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, string & str)
    {
       string strTag;
+      string strClass;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
       {
          strTag = pelemental->m_pparent->m_propertyset["PropertyTag"];
-      }
-      else
-      {
-         strTag = pelemental->m_propertyset["PropertyTag"];
-      }
-      string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class"))
-      {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
       else
       {
+         strTag = pelemental->m_propertyset["PropertyTag"];
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
+      
       if(m_propertyset.is_new_or_null(pszName))
       {
          style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);

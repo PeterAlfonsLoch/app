@@ -60,8 +60,6 @@ namespace user
       int_array                  m_iaLineEndIndex;
       int_array                  m_iaCLineIndex; 
       
-      ::ca::font *               m_pfont;
-
       plain_text_data *          m_pdata;
       bool                       m_bOwnData;
 

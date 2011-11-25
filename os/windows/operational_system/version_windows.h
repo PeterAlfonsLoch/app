@@ -265,3 +265,8 @@ AFX_INLINE HWND GetNextWindow(HWND hWnd, UINT nDirection)
 #endif
 #endif
 #endif // _MSC_VER < 1200
+
+
+// GDI+ version GDIplus version Gdiplus version
+#define GDIPVER 0x0110
+

@@ -2092,6 +2092,12 @@ namespace ca
    }
 
 
+   bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
+   {
+      throw interface_only_exception();
+   }
+
+
    COLORREF graphics::SetColor(COLORREF crColor)
    {
 

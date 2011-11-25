@@ -32,6 +32,7 @@ namespace html
             m_pedit->m_strName = pelemental->m_pbase->tag()->get_attr_value("name");
             m_pedit->m_id = pelemental->m_pbase->tag()->get_attr_value("id");
             m_pedit->_001SetText(pelemental->m_pbase->tag()->get_attr_value("value"));
+            m_pedit->SetFont(pdata->get_font(pelemental)->m_font);
          }
          pdata->m_focusptra.add_unique(m_pedit);
          m_cxMax = 200;
@@ -53,6 +54,7 @@ namespace html
       {
          rect rectWindow;
          m_pedit->GetWindowRect(rectWindow);
+         m_pedit->get_wnd()->ScreenToClient(rectWindow);
          point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
          pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
          m_pedit->_001OnDraw(pdata->m_pdc);

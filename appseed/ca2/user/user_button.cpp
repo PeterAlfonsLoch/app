@@ -218,7 +218,7 @@ namespace user
 
    ::ca::font * button::_001GetFont(void)
    {
-      return NULL;
+      return GetFont();
    }
 
    void button::ResizeToFit()

@@ -107,6 +107,24 @@ namespace win
 
    }
 
+   bool registry::Key::QueryValue(const char * lpcszValueName, primitive::memory & mem)
+   {
+      DWORD cbValue;
+      DWORD dwType;
+      if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, NULL, &dwType , NULL, &cbValue))
+         return false;
+      if(dwType != REG_BINARY)
+         return false;
+      mem.allocate(cbValue);
+      if(ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, NULL, &dwType, (LPBYTE) mem.get_data(), &cbValue))
+      {
+         mem.allocate(0);
+         return false;
+      }
+      return true;
+
+   }
+
    bool registry::Key::SetValue(
       const char * lpcszValueName,
       const char * lpcszValue)

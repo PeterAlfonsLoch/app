@@ -146,6 +146,9 @@ namespace win
       int width();
       int height();
       double pi();
+
+      virtual bool from(::ca::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI);
+
    };
 
 } // namespace win

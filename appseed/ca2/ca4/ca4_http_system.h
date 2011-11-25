@@ -71,6 +71,7 @@ namespace ca4
          void auto_config_proxy(int i);
          int auto_config_proxy_count();
          void config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket);
+         bool try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket);
 
          string gmdate(time_t t);
 

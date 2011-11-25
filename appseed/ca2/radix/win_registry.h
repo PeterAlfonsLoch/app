@@ -21,9 +21,10 @@ namespace win
       public:
          bool OpenKey(HKEY hkey, const char * lpcszSubKey, bool bCreate);
          void CloseKey();
-         bool QueryValue(
-            const char * lpcszValueName,
-            string &strVAlue);
+         
+         bool QueryValue(const char * lpcszValueName, string &strVAlue);
+
+         bool QueryValue(const char * lpcszValueName, primitive::memory & mem);
 
          bool SetValue(
             const char * lpcszValueName,

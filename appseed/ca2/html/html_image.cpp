@@ -10,22 +10,8 @@ namespace html
       {
          if(m_pelemental->m_pbase->get_type() == html::base::type_tag)
          {
-            ::ca::graphics_sp spgraphics(pdata->get_app());
-            spgraphics->CreateCompatibleDC(NULL);
-            BLENDFUNCTION bf;
-            memset(&bf, 0, sizeof(bf));
-            bf.SourceConstantAlpha = 255;
-            bf.BlendOp = AC_SRC_OVER;
-            bf.AlphaFormat = AC_SRC_ALPHA;
-            single_lock lockImage(&pdata->m_imagea[m_iImage]);
-            if(lockImage.lock(duration::zero()))
-            {
-               pdata->m_pdc->alpha_blend(
-                  get_x(), get_y(), get_cx(), get_cy(),
-                  pdata->m_imagea[m_iImage].m_spdib->get_graphics(),
-                  0, 0, get_cx(), get_cy(),
-                  bf);
-            }
+            pdata->m_pdc->set_alpha_mode(::ca::alpha_mode_blend);
+            pdata->m_pdc->BitBlt(get_x(), get_y(), get_cx(), get_cy(), pdata->m_imagea[m_iImage].m_spdib->get_graphics(), 0, 0, SRCCOPY);
          }
       }
 

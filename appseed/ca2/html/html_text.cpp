@@ -410,7 +410,7 @@ namespace html
          }
          else
          {
-            pdc->SetTextColor(0);
+            pdc->SetTextColor(ARGB(255, 0, 0, 0));
          }
 
          int iSelStart;
@@ -539,9 +539,9 @@ namespace html
       bool text::get_color(COLORREF & cr)
       {
          if(has_link())
-            cr =  RGB(127, 127, 255);
+            cr =  ARGB(255, 127, 127, 255);
          else
-            cr = 0;
+            cr = ARGB(255, 0, 0, 0);
          return true;
       }
 

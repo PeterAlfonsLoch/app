@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include <math.h>
+#include "include/FreeImage.h"
 
 namespace win
 {
@@ -2375,6 +2376,84 @@ namespace win
       return m_size.cy;
    }
 
+#undef new
+
+   bool dib::from(::ca::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI)
+   {
+
+      if(pfibitmap == NULL)
+           return false;
+
+      BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
+      void * pdata = FreeImage_GetBits(pfibitmap);
+
+
+      if(!create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
+         return false;
+
+      bool bOk = false;
+
+      if(pbi->bmiHeader.biBitCount == 32)
+      {
+         
+         if(!create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
+            return false;
+
+         Gdiplus::Bitmap b(pbi, pdata);
+
+         (dynamic_cast < ::win::graphics * > (m_spgraphics.m_p))
+
+      }
+      else
+      {
+
+
+         dc_select(false);
+
+         HDC hdc = ::CreateCompatibleDC(NULL);
+
+         HBITMAP h = ::CreateDIBitmap(hdc, &pbi->bmiHeader, CBM_INIT, pdata, pbi, DIB_RGB_COLORS);
+
+         Gdiplus::Bitmap b(h, NULL);
+
+
+         bOk   = ((Gdiplus::Graphics *) m_spgraphics.m_p)->DrawImage(&b, 0, 0 , 0, 0, 
+            pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight, Gdiplus::UnitPixel) == Gdiplus::Status::Ok;
+
+
+         ::DeleteDC(hdc);
+
+      }
+
+
+
+      RGBQUAD bkcolor;
+
+      if(pbi->bmiHeader.biBitCount == 32)
+      {
+      }
+      else if(pbi->bmiHeader.biBitCount <= 24 && FreeImage_GetTransparencyCount(pfibitmap) <= 0)
+      {
+         fill_channel(0xff, ::visual::rgba::channel_alpha);
+      }
+      else if(FreeImage_GetBackgroundColor(pfibitmap, &bkcolor))
+      {
+         transparent_color(bkcolor);
+      }
+
+      dc_select(true);
+       
+      if(bUnloadFI)
+      {
+         FreeImage_Unload(pfibitmap);
+      }
+
+      return bOk;
+   }
+
+
+#define new DEBUG_NEW
 
 
 }
+

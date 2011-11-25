@@ -2,6 +2,8 @@
 
 #include "primitive/img.h"
 
+struct FIBITMAP;
+
 namespace ca
 {
 
@@ -32,6 +34,8 @@ namespace ca
 
 
       virtual bool dc_select(bool bSelect = true);
+
+      virtual bool from(::ca::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 
       virtual COLORREF GetAverageColor();
       virtual bool blend(dib * pdib, dib * pdibRate);

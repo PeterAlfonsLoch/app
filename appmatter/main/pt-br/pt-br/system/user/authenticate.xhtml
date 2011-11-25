@@ -3,6 +3,8 @@
 <style>
 .a-ca2open:link
 {
+	font-family: Geneva, Arial, sans serif; 
+	font-size: 10pt;
 	color: #5588FF;
 	text-decoration:none;
 }
@@ -16,9 +18,19 @@
 	color: #88CCFF;
 	text-decoration:underline;
 }
+.itext
+{
+	font-family: Geneva, Arial, sans serif; 
+	font-size: 10pt;
+}
+.ibutton
+{
+	font-family: Geneva, Arial, sans serif; 
+	font-size: 10pt;
+}
 </style>
 </head>
-<body style="alpha: 0.50; background-color: #fffff0;">
+<body style="alpha: 0.50; background-color: #fffff0; color: #000000;">
 <h1><span id="header1"></span></h1>
 <a href="ext://https://fontopus.com/"><img src="matter://image/fontopus/opustree1-transbk60.png" /></a>
 <a href="ext://https://fontopus.com/"><img src="matter://image/fontopus/fontopus-transbk-h33.png" /></a>
@@ -26,14 +38,14 @@
 <a href="ext://https://fontopus.com/" class="a-ca2open">Se você não é registrado, ou para muitas outras opções, acesse fontopus.com!!</a>
 <br />
 <br />
-<span>Usuário:</span><br/>
-<input type="text" name="user" value=""/>
+<span class="itext">Usuário:</span><br/>
+<input type="text" name="user" value="" class="itext"/>
 <br />
-<span>Senha:</span><br/>
-<input type="password" name="password" value=""/>
+<span class="itext">Senha:</span><br/>
+<input type="password" name="password" value="" class="itext"/>
 <br />
 <br />
-<input type="button" id="submit" value="Abrir"/>
+<input type="button" id="submit" value="Abrir" class="ibutton"/>
 <br />
 </body>
 </html>

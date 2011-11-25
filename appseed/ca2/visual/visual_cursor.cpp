@@ -37,6 +37,9 @@ namespace visual
    {
       if(&System.imaging() == NULL)
          return false;
+
+      pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
+
       return System.imaging().color_blend(
          pgraphics,
          point(x - m_ptHotspot.x, y - m_ptHotspot.y),

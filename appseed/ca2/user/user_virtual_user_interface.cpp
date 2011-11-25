@@ -951,6 +951,8 @@ void virtual_user_interface::SetFont(::ca::font* pFont, BOOL bRedraw)
 }
 ::ca::font* virtual_user_interface::GetFont()
 {
+   if(m_spfont.is_null())
+      m_spfont.create(get_app());
    return m_spfont;
 }
 

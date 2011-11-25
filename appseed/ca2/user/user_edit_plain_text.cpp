@@ -37,7 +37,6 @@ namespace user
       m_iViewOffset        = 0;
       m_iViewSize          = 1000;
       m_bMouseDown         = false;
-      m_pfont              = NULL;
       m_dwCaretTime        = 500;
       m_dwLastCaret        = GetTickCount();
       set_cursor(::visual::cursor_text_select);
@@ -187,10 +186,10 @@ namespace user
       COLORREF crSel;
       COLORREF cr;
 
-      cr          = RGB(100, 100, 84);
-      crBk        = RGB(250, 248, 240);
-      crBkSel     = RGB(0, 0, 127);
-      crSel       = RGB(255, 255, 255);
+      cr          = ARGB(255, 100, 100, 84);
+      crBk        = ARGB(255, 250, 248, 240);
+      crBkSel     = ARGB(255, 0, 0, 127);
+      crSel       = ARGB(255, 255, 255, 255);
 
       ::ca::job * pjob = pdc->m_pjob;
 
@@ -231,17 +230,19 @@ namespace user
       else if(!System.savings().is_trying_to_save(gen::resource_processing)
       && !System.savings().is_trying_to_save(gen::resource_blur_background))
       {
-         class imaging & imaging = System.imaging();
+
+         pdc->blur(true, 4, rectClient);
+         //class imaging & imaging = System.imaging();
          //rect rectClient;
 //         GetWindowRect(rectClient);
   //       rectClient.offset(rectClient.top_left());
-         if(rectClient.size() != m_dibBk->size())
+/*         if(rectClient.size() != m_dibBk->size())
          {
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
 /*            HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             ::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");*/
-            m_fastblur.create(get_app());
+/*            m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
          }
          if(m_fastblur.is_set() && m_fastblur->get_graphics() != NULL)
@@ -259,7 +260,7 @@ namespace user
                m_fastblur->get_graphics(),
                null_point(),
                SRCCOPY);
-         }
+         }*/
       }
       else
       {
@@ -331,10 +332,7 @@ namespace user
       _001GetViewSel(iSelStart, iSelEnd);
       int iCursor = iSelEnd;
       sort::sort(iSelStart, iSelEnd);
-      if(m_pfont != NULL)
-      {
-         pdc->SelectObject(m_pfont);
-      }
+      pdc->SelectObject(GetFont());
       size size3;
       visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
       int maxcy = size3.cy;
@@ -385,11 +383,11 @@ namespace user
                   continue;
                if(pregion->styled()->bfore)
                {
-                  pdc->SetTextColor(pregion->styled()->fore);
+                  pdc->set_color(pregion->styled()->fore);
                }
                else
                {
-                  pdc->SetTextColor(cr);
+                  pdc->set_color(cr);
                }
                if(pregion->styled()->bback)
                {
@@ -434,15 +432,15 @@ namespace user
                str_fill(strExtent3, '*');
             }
             pdc->SetBkMode(TRANSPARENT);
-            pdc->SetTextColor(cr);
+            pdc->set_color(cr);
             pdc->SetBkColor(crBkSel);
             pdc->TextOut(left, y, strExtent1);
             size size1 = pdc->GetTextExtent(strExtent1);
             pdc->SetBkMode(OPAQUE);
-            pdc->SetTextColor(crSel);
+            pdc->set_color(crSel);
             pdc->TextOut(left + size1.cx, y, strExtent2);
             size size2 = pdc->GetTextExtent(strExtent2);
-            pdc->SetTextColor(cr);
+            pdc->set_color(cr);
             pdc->SetBkColor(RGB(120, 240, 180));
             pdc->SetBkMode(TRANSPARENT);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
@@ -948,10 +946,7 @@ namespace user
       ::ca::data::writing writing(m_pdata);
 
       UNREFERENCED_PARAMETER(pview);
-      if(m_pfont != NULL)
-      {
-         pdc->SelectObject(m_pfont);
-      }
+      pdc->SelectObject(GetFont());
       int y = 0;
 ///      int i = 1;
       size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
@@ -975,10 +970,7 @@ namespace user
    void edit_plain_text::_001OnCalcLayout(::ca::graphics * pdc)
    {
 
-      if(m_pfont != NULL)
-      {
-         pdc->SelectObject(m_pfont);
-      }
+      pdc->SelectObject(GetFont());
       stringa & straLines = m_lines.lines;
       int iSelStart;
       int iSelEnd;
@@ -1096,10 +1088,7 @@ namespace user
 
    int edit_plain_text::char_hit_test(::ca::graphics * pdc, int px, int py)
    {
-      if(m_pfont != NULL)
-      {
-         pdc->SelectObject(m_pfont);
-      }
+      pdc->SelectObject(GetFont());
       rect rectClient;
       GetClientRect(rectClient);
       px -= rectClient.left;

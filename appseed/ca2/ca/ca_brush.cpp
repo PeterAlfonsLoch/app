@@ -5,8 +5,10 @@ namespace ca
 
    void brush::construct(COLORREF crColor)
    {
-      UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception();
+
+      m_crColor = crColor;
+      m_bUpdated = false;
+
    }
 
    void brush::construct(int nIndex, COLORREF crColor)

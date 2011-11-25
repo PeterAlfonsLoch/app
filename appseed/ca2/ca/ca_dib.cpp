@@ -2447,4 +2447,10 @@ fill_last:
       return true;
    }
 
+   bool dib::from(::ca::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
+   {
+      throw interface_only_exception();
+      return false;
+   }
+
 } // namespace ca

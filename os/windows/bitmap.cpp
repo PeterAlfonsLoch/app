@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 
 
+#undef new
+
 namespace win
 {
 

@@ -1,9 +1,6 @@
 #pragma once
 
 
-#undef new
-
-#include <GdiPlus.h>
 
 
 

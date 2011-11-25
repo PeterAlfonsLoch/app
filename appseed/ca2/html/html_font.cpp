@@ -31,9 +31,9 @@ namespace html
       {
          lf.lfWeight = 400;
       }
-      lf.lfHeight = atoi(m_strSize);
+      lf.lfHeight = -atoi(m_strSize);
       if(lf.lfHeight == 0)
-         lf.lfHeight = 16;
+         lf.lfHeight = -16;
       stringa stra;
       stra.add_tokens(m_strFamily,",", false);
       for(int i = 0; i < stra.get_size(); i++)
