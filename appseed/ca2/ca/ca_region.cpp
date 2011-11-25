@@ -1,7 +1,18 @@
 #include "StdAfx.h"
 
+
 namespace ca
 {
+
+
+   region::region()
+   {
+
+      m_etype        = type_none;
+      m_bUpdated     = false;
+
+   }
+
 
    BOOL region::CreateRectRgn(int x1, int y1, int x2, int y2)
    {
@@ -229,6 +240,18 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();   
+   }
+
+   region & region::operator = (const ::ca::region & regionSrc)
+   {
+
+      m_pta          = regionSrc.m_pta;
+      m_iaCount      = regionSrc.m_iaCount;
+      m_etype        = regionSrc.m_etype;
+      m_bUpdated     = false;
+
+      return *this;
+
    }
 
 } // namespace ca

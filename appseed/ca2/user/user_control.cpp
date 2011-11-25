@@ -165,8 +165,12 @@ namespace user
 
    void control::install_message_handling(::user::win::message::dispatch * pdispatch)
    {
+
       ::view::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
+      IGUI_MSG_LINK(WM_MOUSELEAVE, pdispatch, this, &::user::control::_001OnMouseLeave);
+
+
    }
 
 
@@ -722,11 +726,31 @@ namespace user
    {
       SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
 
-      m_iHover = hit_test(pmouse->m_pt, m_eelementHover);
+      int iHover = hit_test(pmouse->m_pt, m_eelementHover);
+
+      if(m_iHover != iHover)
+      {
+         
+         m_iHover = iHover;
+         
+         if(m_iHover >= 0)
+         {
+            track_mouse_leave();
+         }
+
+      }
 
    }
 
 
+   void control::_001OnMouseLeave(gen::signal_object * pobj) 
+   {
+   
+      UNREFERENCED_PARAMETER(pobj);
+
+      m_iHover = -1;
+
+   }
 
 
    // the value -1 indicates outside the control,

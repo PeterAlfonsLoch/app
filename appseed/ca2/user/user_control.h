@@ -203,9 +203,7 @@ namespace user
       virtual void GetWindowRect(LPRECT lprect);
 
 
-      // Operations
-
-     bool operator == (const class user::control::descriptor & descriptor) const;
+      bool operator == (const class user::control::descriptor & descriptor) const;
       bool operator == (const class control & control) const;
 
 
@@ -221,6 +219,7 @@ namespace user
       virtual int hit_test(point point, e_element & eelement);
 
       DECL_GEN_SIGNAL(_001OnMouseMove)
+      DECL_GEN_SIGNAL(_001OnMouseLeave)
 
    };
 

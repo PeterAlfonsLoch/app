@@ -10,6 +10,7 @@ namespace win
    { 
       
       m_pregion = NULL;
+      m_bUpdated = false;
 
    }
 

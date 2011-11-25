@@ -2176,13 +2176,26 @@ namespace win
 
    int graphics::DrawText(const string & str, LPRECT lpRect, UINT nFormat)
    { 
-      if(get_handle1() == NULL)
+      /*if(get_handle1() == NULL)
          return -1;
       // these flags would modify the string
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
       wstring wstr = gen::international::utf8_to_unicode(str);
-      return ::DrawTextW(get_handle1(), (const wchar_t *)wstr, (int)wcslen(wstr), lpRect, nFormat); 
+      return ::DrawTextW(get_handle1(), (const wchar_t *)wstr, (int)wcslen(wstr), lpRect, nFormat); */
+
+      Gdiplus::RectF rectf(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+
+      Gdiplus::StringFormat format;
+
+
+      m_pgraphics->DrawString(gen::international::utf8_to_unicode(str),
+         -1, gdiplus_font(), rectf, &format, gdiplus_brush());
+
+
+      return 1;
+
    }
 
    int graphics::DrawTextEx(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)

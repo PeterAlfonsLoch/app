@@ -274,7 +274,8 @@ BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs)
       cs.hMenu = NULL;
    }
 
-   cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
+   //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
+   cs.style = 0;
 
    return TRUE;
 }

@@ -8,7 +8,7 @@ MetaButton::MetaButton(::ca::application * papp) :
    m_spregion(papp)
 {
 
-   m_bFocus = false;
+//   m_bFocus = false;
 
 }
 
@@ -76,33 +76,6 @@ void MetaButton::SetTextColors(
 
 }
 
-void MetaButton::_001OnMouseMove(gen::signal_object * pobj) 
-{
-   UNREFERENCED_PARAMETER(pobj);
-   //   SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
-   rect rectClient;
-   ::user::interaction::GetClientRect(rectClient);
-   //if(rectClient.contains(pmouse->m_pt))
-   if(!m_bFocus)
-   {
-      //SetTimer(TimerCheckFocus, 100, NULL);
-      m_bFocus = true;
-      track_mouse_leave();
-      _001RedrawWindow();
-   }
-   //else
-   //{
-   // m_bFocus = false;
-   //_001RedrawWindow();
-   //}
-}
-
-void MetaButton::_001OnMouseLeave(gen::signal_object * pobj) 
-{
-   UNREFERENCED_PARAMETER(pobj);
-   m_bFocus = false; 
-   _001RedrawWindow();
-}
 
 void MetaButton::_001OnDraw(::ca::graphics * pdc)
 {
@@ -132,14 +105,14 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
       crText = m_crTextSel;
 
    }
-   else if(m_bFocus)
+   /*else if(m_bFocus)
    {
 
       pdc->SelectObject(&m_brushEllipseFocus);
       pdc->SelectObject(&m_penEllipseFocus);
       crText = m_crTextFocus;
 
-   }
+   }*/
    else
    {
 
@@ -166,28 +139,25 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
 void MetaButton::_001OnShowWindow(gen::signal_object * pobj) 
 {
-   UNREFERENCED_PARAMETER(pobj);
-   //ControlBoxButton::OnShowWindow(bShow, nStatus);
 
-   /*if(TwiIsValid())
-   {
-   //xxx      TwiOnShowWindow(bShow, nStatus);
-   }*/
+   UNREFERENCED_PARAMETER(pobj);
 
 }
 
 void MetaButton::_001OnLButtonDown(gen::signal_object * pobj) 
 {
+   
    UNREFERENCED_PARAMETER(pobj);
-   //ControlBoxButton::OnLButtonDown(nFlags, point);
+   
 }
 
 void MetaButton::_001OnLButtonUp(gen::signal_object * pobj) 
 {
+   
    UNREFERENCED_PARAMETER(pobj);
-   m_bFocus = false;
+   
    _001RedrawWindow();
-   //ControlBoxButton::OnLButtonUp(nFlags, point);
+   
 }
 
 LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
@@ -202,12 +172,10 @@ LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
 
       if(rectClient.contains(ptCursor))
       {
-         m_bFocus = true;
          _001RedrawWindow();
       }
       else
       {
-         m_bFocus = false;
          _001RedrawWindow();
       }
    }
@@ -228,7 +196,7 @@ void MetaButton::_001OnTimer(gen::signal_object * pobj)
       // TODO: add your message handler code here and/or call default
       if(ptimer->m_nIDEvent == TimerCheckFocus)
       {
-         if(m_bFocus)
+         /*if(m_bFocus)
          {
             point ptCursor;
             System.get_cursor_pos(&ptCursor);
@@ -246,7 +214,7 @@ void MetaButton::_001OnTimer(gen::signal_object * pobj)
          else
          {
             KillTimer(ptimer->m_nIDEvent);
-         }
+         }*/
       }
       else
       {
@@ -276,8 +244,6 @@ void MetaButton::UpdateWndRgn()
 void MetaButton::install_message_handling(::user::win::message::dispatch *pinterface)
 {
    ::userbase::button::install_message_handling(pinterface);
-   IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &MetaButton::_001OnMouseMove);
-   IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &MetaButton::_001OnMouseLeave);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &MetaButton::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &MetaButton::_001OnLButtonUp);

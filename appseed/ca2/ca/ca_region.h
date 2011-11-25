@@ -10,6 +10,7 @@ namespace ca
 
       enum e_type
       {
+         type_none,
          type_rect,
          type_elliptic,
          type_polygon,
@@ -20,6 +21,10 @@ namespace ca
       double_point_array      m_pta;
       int_array               m_iaCount;
       e_type                  m_etype;
+
+      
+      region();
+
 
       virtual BOOL CreateRectRgn(int x1, int y1, int x2, int y2);
       virtual BOOL CreateRectRgnIndirect(LPCRECT lpRect);
@@ -35,7 +40,6 @@ namespace ca
          const RGNDATA* pRgnData);
    #endif
 
-   // Operations
       virtual void SetRectRgn(int x1, int y1, int x2, int y2);
       virtual void SetRectRgn(LPCRECT lpRect);
       virtual int CombineRgn(const ::ca::region* pRgn1, const ::ca::region* pRgn2, int nCombineMode);
@@ -51,6 +55,9 @@ namespace ca
 #ifdef WINDOWS
       virtual int GetRegionData(LPRGNDATA lpRgnData, int nCount) const;
 #endif
+
+      region & operator = (const ::ca::region & regionSrc);
+
    };
 
    typedef smart_pointer < region > region_sp;

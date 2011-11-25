@@ -30,7 +30,7 @@ public:
 
    ::ca::region_sp   m_spregion;
 
-   bool              m_bFocus;
+   //bool              m_bFocus;
 
 
    MetaButton(::ca::application * papp);
@@ -65,8 +65,6 @@ public:
    virtual void layout();
 
 
-   DECL_GEN_SIGNAL(_001OnMouseMove)
-   DECL_GEN_SIGNAL(_001OnMouseLeave)
    DECL_GEN_SIGNAL(_001OnShowWindow)
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnLButtonUp)

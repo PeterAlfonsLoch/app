@@ -924,7 +924,8 @@ namespace window_frame
          case StyleBlueRedPurple:   
             {
                m_brushControlBoxBack->CreateSolidBrush(GetSysColor(COLOR_BTNFACE) | 0x80000000);
-               m_brushControlBoxBackSel->CreateSolidBrush(GetSysColor(COLOR_WINDOW) | 0x80000000);
+               //m_brushControlBoxBackSel->CreateSolidBrush(GetSysColor(COLOR_WINDOW) | 0x80000000);
+               m_brushControlBoxBackSel->CreateSolidBrush(ARGB(127, 255, 0, 0));
                m_brushControlBoxBackFocus->CreateSolidBrush(RGB(0, 255, 255) | 0x80000000);
                m_brushControlBoxBackDisabled->CreateSolidBrush(GetSysColor(COLOR_BTNFACE)| 0x80000000);
                m_penControlBoxBack->CreatePen(PS_SOLID, 1, GetSysColor(COLOR_BTNFACE) | 0x80000000);
@@ -1633,7 +1634,7 @@ namespace window_frame
    void FrameSchemaHardCoded005::OnInitializeAppearance()
    {
       ::ca::graphics * pdc = GetWnd()->GetDC();
-      m_fontMarlett->CreatePointFont(90, "Marlett", pdc);
+      m_fontMarlett->CreatePointFont(110, "Marlett", pdc);
       GetWnd()->ReleaseDC(pdc);
 
       CreateButtons();
