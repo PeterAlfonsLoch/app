@@ -15,6 +15,8 @@ namespace html
 
 
       style * rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName);
+      const style * rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const;
+
 
 
    };

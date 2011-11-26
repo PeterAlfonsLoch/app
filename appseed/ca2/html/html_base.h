@@ -3,6 +3,8 @@
 
 namespace html
 {
+
+
    enum emessage
    {
       message_on_image_loaded = WM_USER + 200,
@@ -11,9 +13,15 @@ namespace html
 
    class tag;
 
+
    class base
    {
    public:
+
+
+      class tag *             m_ptagParent;
+
+
       base(tag * pparent);
       virtual ~base();
 
@@ -23,7 +31,7 @@ namespace html
          type_tag,
       };
 
-      virtual type get_type() = 0;
+      virtual type get_type() const = 0;
 
 
       class tag * parent();
@@ -33,13 +41,18 @@ namespace html
       class value * value();
 
 
-   protected:
-      class tag *             m_ptagParent;
+
+
    };
+
 
    class base_ptr_array : public base_array < base * , base * >
    {
    public:
+
+
    };
 
+
 } // namespace html
+

@@ -218,11 +218,7 @@ namespace visual
 
       if((uiFormat & DT_END_ELLIPSIS) != 0 || (uiFormat & DT_WORDBREAK) != 0)
       {
-         ::GetTextExtentPoint32U(
-            (HDC)pdc->get_os_data(),
-            str,
-            iLen,
-            &sz);
+         sz = pdc->GetTextExtent(str, iLen);
          if(sz.cx > rectClip.width())
          {
             if((uiFormat & DT_WORDBREAK) != 0 && sz.cy * 2 <= rectClip.height())
@@ -231,11 +227,7 @@ namespace visual
                string str2;
                word_break(pdc, lpcsz, rectClip, str1, str2);
                iLen = str.get_length();
-               ::GetTextExtentPoint32U(
-                  (HDC)pdc->get_os_data(),
-                  str,
-                  iLen,
-                  &sz);
+               sz = pdc->GetTextExtent(str, iLen);
                if(sz.cx <= rectClip.width())
                {
                   goto skip1;
@@ -255,11 +247,7 @@ namespace visual
                lpsz[i - 3] = '.';
                lpsz[i - 2] = '.';
                lpsz[i - 1] = '\0';
-               ::GetTextExtentPoint32U(
-                  (HDC)pdc->get_os_data(),
-                  lpsz,
-                  i,
-                  &sz);
+               sz = pdc->GetTextExtent(lpsz, i);
                if(sz.cx < rectClip.width())
                {
                   if(i >= iLen)
@@ -280,11 +268,7 @@ namespace visual
                lpsz[i - 3] = L'.';
                lpsz[i - 2] = L'.';
                lpsz[i - 1] = L'\0';
-               ::GetTextExtentPoint32U(
-                  (HDC)pdc->get_os_data(),
-                  lpsz,
-                  i,
-                  &sz);
+               sz = pdc->GetTextExtent(lpsz, i);
                if(sz.cx > rectClip.width())
                {
                   i--;

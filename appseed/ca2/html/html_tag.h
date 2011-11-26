@@ -10,19 +10,24 @@ namespace html
       tag(tag * pparent);
       virtual ~tag();
 
-      type get_type();
+      type get_type() const;
 
       attribute_array & attra();
+      const attribute_array & attra() const;
 
       void set_name(const char * pszName);
-      string get_name();
+      string get_name() const;
 
       attribute * get_attr(const char * pszAttrName);
-      string get_attr_value(const char * pszAttrName);
+      const attribute * get_attr(const char * pszAttrName) const;
+      string get_attr_value(const char * pszAttrName) const;
 
       tag * get_parent();
+      const tag * get_parent() const;
 
       base_ptr_array & baseptra();
+      const base_ptr_array & baseptra() const;
+
 
    protected:
       string            m_strName;

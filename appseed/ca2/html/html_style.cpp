@@ -1,7 +1,21 @@
 #include "StdAfx.h"
 
+
+bool ishexdigit(char ch)
+{
+   if(ch >= '0' && ch <= '9')
+      return true;
+   if(ch >= 'a' && ch <= 'f')
+      return true;
+   if(ch >= 'A' && ch <= 'F')
+      return true;
+   return false;
+}
+
+
 namespace html
 {
+
 
    style::style()
    {
@@ -28,16 +42,16 @@ namespace html
    {
       string str(psz);
       str.trim();
-      if(str.Left(1) == "#" && str.get_length() >= 7 && isdigit(str[1]) && isdigit(str[2]) && isdigit(str[3]) && isdigit(str[4])
-          && isdigit(str[5]) && isdigit(str[6]))
+      if(str.Left(1) == "#" && str.get_length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
+          && ishexdigit(str[5]) && ishexdigit(str[6]))
       {
-         if(str.get_length() >= 9 && isdigit(str[7]) && isdigit(str[8]) && !isdigit(str[9]))
+         if(str.get_length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
          {
             int a, r, g, b;
             sscanf(str, "#%02x%02x%02x%02x", &a, &r, &g, &b);
             return ARGB(a, r, g, b);
          }
-         else if(!isdigit(str[7]))
+         else if(!ishexdigit(str[7]))
          {
             int r, g, b;
             sscanf(str, "#%02x%02x%02x", &r, &g, &b);
@@ -47,7 +61,7 @@ namespace html
       return 0;
    }
 
-   bool style::get_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, COLORREF & cr)
+   bool style::get_color(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, COLORREF & cr) const
    {
       string strTag;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -77,11 +91,10 @@ namespace html
       }
       if(m_propertyset.is_new_or_null(pszName))
       {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
-            if(pelemental->m_pparent != NULL && 
-               _stricmp(pszName, "background-color"))
+            if(pelemental->m_pparent != NULL && _stricmp(pszName, "background-color"))
             {
                if(pelemental->m_pparent->m_style.get_color(pszName, pszSubClass, pdata, pelemental->m_pparent, cr))
                {
@@ -96,7 +109,7 @@ namespace html
       return true;
    }
 
-   bool style::get_text(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, string & str)
+   bool style::get_text(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, string & str) const
    {
       string strTag;
       string strClass;
@@ -113,7 +126,7 @@ namespace html
       
       if(m_propertyset.is_new_or_null(pszName))
       {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
             if(pelemental->m_pparent != NULL)
@@ -201,7 +214,7 @@ namespace html
       return true;
    }
 
-   bool style::get_alpha(const char * pszSubClass, data * pdata, elemental * pelemental, double & d)
+   bool style::get_alpha(const char * pszSubClass, const data * pdata, const elemental * pelemental, double & d) const
    {
       const char* pszName = "alpha";
       string strTag;
@@ -224,7 +237,7 @@ namespace html
       }
       if(m_propertyset.is_new_or_null(pszName))
       {
-         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
             return false;
          return pstyle->get_alpha(pszSubClass, pdata, pelemental, d);
@@ -275,7 +288,7 @@ namespace html
 
    }
 
-   bool style::matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName)
+   bool style::matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const
    {
       if(pszTag != NULL && m_strTag.has_char())
          if(m_strTag != pszTag)

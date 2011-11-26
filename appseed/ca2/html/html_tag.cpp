@@ -21,12 +21,17 @@ namespace html
       return m_attra;
    }
 
+   const attribute_array & tag::attra() const
+   {
+      return m_attra;
+   }
+
    void tag::set_name(const char * pszName)
    {
       m_strName = pszName;
    }
 
-   string tag::get_name()
+   string tag::get_name() const
    {
       return m_strName;
    }
@@ -36,12 +41,12 @@ namespace html
       return attra().get(pszAttrName);
    }
 
-   string tag::get_attr_value(const char * pszAttrName)
+   string tag::get_attr_value(const char * pszAttrName) const
    {
       return attra().get_value(pszAttrName);
    }
 
-   base::type tag::get_type()
+   base::type tag::get_type() const
    {
       return type_tag;
    }
@@ -51,4 +56,7 @@ namespace html
       return m_baseptra;
    }
 
+
 } // namespace html
+
+

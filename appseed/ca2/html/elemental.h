@@ -155,6 +155,7 @@ namespace html
 
       string get_tag_name() const;
       tag * get_tag();
+      const tag * get_tag() const;
 
 
       virtual void implement_phase1(data * pdoc);

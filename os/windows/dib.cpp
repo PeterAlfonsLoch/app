@@ -2387,44 +2387,40 @@ namespace win
       BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
       void * pdata = FreeImage_GetBits(pfibitmap);
 
-
       if(!create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
          return false;
 
-      bool bOk = false;
 
-      if(pbi->bmiHeader.biBitCount == 32)
+      COLORREF * pcolorref = NULL;
+
+      HBITMAP hbitmap = ::CreateDIBSection(NULL, &m_info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, NULL);
+
+      if(hbitmap == NULL)
       {
-         
-         if(!create(pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight))
-            return false;
-
-         Gdiplus::Bitmap b(pbi, pdata);
-
-         (dynamic_cast < ::win::graphics * > (m_spgraphics.m_p))
-
-      }
-      else
-      {
-
-
-         dc_select(false);
-
-         HDC hdc = ::CreateCompatibleDC(NULL);
-
-         HBITMAP h = ::CreateDIBitmap(hdc, &pbi->bmiHeader, CBM_INIT, pdata, pbi, DIB_RGB_COLORS);
-
-         Gdiplus::Bitmap b(h, NULL);
-
-
-         bOk   = ((Gdiplus::Graphics *) m_spgraphics.m_p)->DrawImage(&b, 0, 0 , 0, 0, 
-            pbi->bmiHeader.biWidth, pbi->bmiHeader.biHeight, Gdiplus::UnitPixel) == Gdiplus::Status::Ok;
-
-
-         ::DeleteDC(hdc);
-
+         Destroy();
+         return false;
       }
 
+      HDC hdc = ::CreateCompatibleDC(NULL);
+
+      if(pbi->bmiHeader.biHeight != SetDIBits(
+         hdc,
+         hbitmap,
+         0,
+         pbi->bmiHeader.biHeight,
+         pdata,
+         pbi,
+         DIB_RGB_COLORS))
+      {
+         Destroy();
+         if(bUnloadFI)
+         {
+            FreeImage_Unload(pfibitmap);
+         }
+         return false;
+      }
+
+      memcpy(m_pcolorref, pcolorref, area() * sizeof(COLORREF));
 
 
       RGBQUAD bkcolor;
@@ -2441,14 +2437,13 @@ namespace win
          transparent_color(bkcolor);
       }
 
-      dc_select(true);
-       
       if(bUnloadFI)
       {
          FreeImage_Unload(pfibitmap);
       }
 
-      return bOk;
+
+      return true;
    }
 
 

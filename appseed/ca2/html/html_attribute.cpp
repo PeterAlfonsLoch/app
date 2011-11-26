@@ -3,12 +3,14 @@
 
 namespace html
 {
+
+
    void attribute::set_name(const char * pszName)
    {
       m_strName = pszName;
    }
 
-   string attribute::get_name()
+   string attribute::get_name() const
    {
       return m_strName;
    }
@@ -18,7 +20,7 @@ namespace html
       m_strValue = pszValue;
    }
 
-   string attribute::get_value()
+   string attribute::get_value() const
    {
       return m_strValue;
    }
@@ -37,9 +39,14 @@ namespace html
       return NULL;
    }
 
-   string attribute_array::get_value(const char * pszName)
+   const attribute * attribute_array::get(const char * pszName) const 
    {
-      attribute * pattr = get(pszName);
+      return const_cast < attribute_array * > (this)->get(pszName);
+   }
+
+   string attribute_array::get_value(const char * pszName) const
+   {
+      const attribute * pattr = get(pszName);
       if(pattr == NULL)
          return "";
       else
@@ -48,3 +55,5 @@ namespace html
 
 
 } // namespace html
+
+

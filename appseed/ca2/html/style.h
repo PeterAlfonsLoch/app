@@ -34,12 +34,13 @@ namespace html
       
       const char * parse(data * pdata, const char * psz);
 
-      COLORREF parse_color(const char * psz);
-      bool get_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, COLORREF & cr);
-      bool get_text(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, string & str);
-      bool get_alpha(const char * pszSubClass, data * pdata, elemental * pelemental, double & d);
+      static COLORREF parse_color(const char * psz);
 
-      bool matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName);
+      bool get_color(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, COLORREF & cr) const;
+      bool get_text(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, string & str) const;
+      bool get_alpha(const char * pszSubClass, const data * pdata, const elemental * pelemental, double & d) const;
+
+      bool matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const;
 
       
    };

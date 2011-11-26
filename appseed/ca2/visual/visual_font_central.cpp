@@ -44,7 +44,7 @@ bool font_central::Initialize()
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
    //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 9;
+   lf.lfHeight = -9;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -55,7 +55,7 @@ bool font_central::Initialize()
    VERIFY(m_fontMenu->CreateFontIndirect(&lf));
 
    memset(&lf, 0, sizeof(lf));
-   lf.lfHeight         = -(int)70;
+   lf.lfHeight         = -(int)11;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -85,7 +85,7 @@ bool font_central::Initialize()
 
    memset(&lf, 0, sizeof(lf));
    //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 9;
+   lf.lfHeight = -9;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -212,7 +212,7 @@ void font_central::CreateLyricViewFonts()
    spgraphics->CreateCompatibleDC(NULL);
 
    //lf.lfHeight         = (int)-MulDiv(54, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 54;
+   lf.lfHeight = -54;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -266,7 +266,7 @@ void font_central::CreateLyricViewFonts()
    memset(&lf, 0, sizeof(lf));
 
    //lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight          = 12;
+   lf.lfHeight          = -12;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = ANSI_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -316,7 +316,7 @@ void font_central::CreateLyricViewFonts()
    memset(&lf, 0, sizeof(lf));
 
 //   lf.lfHeight         = (int)-MulDiv(48, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 48;
+   lf.lfHeight = -48;
    lf.lfWidth         = 0;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
@@ -365,7 +365,7 @@ void font_central::CreateLyricViewFonts()
 //   RECT rect;
 //   GetClientRect(&rect);
     //lf.lfHeight         = (int)-MulDiv(24, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 24;
+   lf.lfHeight = -24;
    lf.lfWidth         = 0;
    lf.lfWeight         = FW_NORMAL;
     lf.lfCharSet        = DEFAULT_CHARSET;
@@ -407,7 +407,7 @@ void font_central::CreateLyricViewFonts()
    m_pSubTitleFonts->add(pPlayerFont);
 
    //lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 12;
+   lf.lfHeight = -12;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -430,7 +430,7 @@ void font_central::CreateLyricViewFonts()
 
 
    //lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 10;
+   lf.lfHeight = -10;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;

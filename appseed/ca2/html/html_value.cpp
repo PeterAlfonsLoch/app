@@ -4,6 +4,7 @@
 namespace html
 {
 
+
    value::value(class tag * ptagParent) :
       base(ptagParent)
    {
@@ -13,7 +14,7 @@ namespace html
    {
    }
 
-   base::type value::get_type()
+   base::type value::get_type() const
    {
       return type_value;
    }
@@ -23,10 +24,11 @@ namespace html
       m_strValue = pszValue;
    }
 
-   string value::get_value()
+   string value::get_value() const
    {
       return m_strValue;
    }
 
 
 } // namespace html
+

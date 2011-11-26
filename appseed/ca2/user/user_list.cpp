@@ -63,13 +63,13 @@ namespace user
 
       m_iClick = 0;
 
-      m_penFocused->CreatePen(PS_SOLID, 2, RGB(0, 255, 255));
-      m_penHighlight->CreatePen(PS_SOLID, 2, RGB(0, 255, 255));
+      m_penFocused->CreatePen(PS_SOLID, 2, ARGB(255, 0, 255, 255));
+      m_penHighlight->CreatePen(PS_SOLID, 2, ARGB(255, 0, 255, 255));
 
-      m_crText = RGB(0, 0, 0);
-      m_crTextSelected = RGB(255, 255, 255);
-      m_crTextHighlight = RGB(55, 105, 255);
-      m_crTextSelectedHighlight = RGB(102, 153, 255);
+      m_crText = ARGB(255, 0, 0, 0);
+      m_crTextSelected = ARGB(255, 255, 255, 255);
+      m_crTextHighlight = ARGB(255, 55, 105, 255);
+      m_crTextSelectedHighlight = ARGB(255, 102, 153, 255);
 
       m_bLockViewUpdate = false;
 
@@ -155,7 +155,7 @@ namespace user
 
    COLORREF list::get_background_color()
    {
-      return RGB(200, 255, 255) | (127 << 24);
+      return ARGB(127, 200, 255, 255);
    }
 
    void list::_001OnDraw(::ca::graphics *pdc)
@@ -193,7 +193,7 @@ namespace user
       if(m_bTopText)
       {
          point ptViewportOrg = pdc->GetViewportOrg();
-         pdc->SetTextColor(m_crText);
+         pdc->set_color(m_crText);
          base_array < size > sizea;
          m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
          rect rectClient;
@@ -539,7 +539,7 @@ namespace user
       {
          pfont = _001GetFont();
       }
-
+      pdrawitem->m_pgraphics->set_font(pfont);
 
       pdrawitem->m_bListItemSelected = (m_eview != ViewIcon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.HasItem(pdrawitem->m_iDisplayItem);
 
@@ -555,7 +555,7 @@ namespace user
       {
          if(System.savings().is_trying_to_save(gen::resource_processing))
          {
-            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, RGB(96,96,96));
+            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
          else
          {
@@ -3517,11 +3517,10 @@ namespace user
 
       
       m_font->operator=(*System.font_central().GetListCtrlFont());
-      LOGFONT lf;
-      lf = m_logfont;
-      lf.lfUnderline = TRUE;
-      //lf.lfWeight = FW_BOLD;
-      m_fontHover->CreateFontIndirect(&m_logfont);
+      m_fontHover->operator=(*System.font_central().GetListCtrlFont());
+
+      m_fontHover->set_underline();
+      m_fontHover->set_bold();
 
          if(pcreate->get_lresult() == -1)
          {
@@ -3978,7 +3977,7 @@ namespace user
       column.m_iWidth = -1;
       column.m_iSubItem = 0;
       column.m_iSmallImageWidth = 16;
-      column.m_crSmallMask = RGB(255, 0, 255);
+      column.m_crSmallMask = ARGB(255, 255, 0, 255);
 
 
       _001InsertColumn(column);
@@ -5300,11 +5299,13 @@ namespace user
          visual::icon * picon;
          if(m_pcolumn->m_mapIcon.Lookup(m_iImage, picon))
          {
+            m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
             return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;
          }
       }
       else
       {
+         m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
          return get_image_list()->draw(m_pgraphics, m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
       }
       return false;
@@ -5349,7 +5350,7 @@ namespace user
 
    void draw_list_item::set_text_color()
    {
-      m_pgraphics->SetTextColor(m_cr);
+      m_pgraphics->set_color(m_cr);
    }
 
 
@@ -5371,8 +5372,8 @@ namespace user
             ::ca::bitmap_sp bmpCache(m_plist->get_app());
             bmpCache->CreateCompatibleBitmap(m_pgraphics, size.cx, size.cy);
             dcCache->SelectObject(bmpCache);
-            dcCache->FillSolidRect(0, 0, size.cx,size.cy, RGB(0, 0, 0));
-            dcCache->SetTextColor(RGB(255, 255, 255));
+            dcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(255, 0, 0, 0));
+            dcCache->SetTextColor(ARGB(255, 255, 255, 255));
 
             class rect rectCache;
             rectCache.left = 2;
@@ -5383,7 +5384,7 @@ namespace user
 
             Sys(m_plist->get_app()).imaging().channel_spread(dcCache, null_point(), size, dcCache, null_point(), 0, 1);
             Sys(m_plist->get_app()).imaging().channel_gray_blur(dcCache, null_point(), size, dcCache, null_point(), 0, 1);
-            Sys(m_plist->get_app()).imaging().pre_color_blend(dcCache, dcCache, RGB(0, 0, 0));
+            Sys(m_plist->get_app()).imaging().pre_color_blend(dcCache, dcCache, ARGB(255, 0, 0, 0));
 
 
             dcCache->SelectObject(pfontOld);
@@ -5391,13 +5392,13 @@ namespace user
             Sys(m_plist->get_app()).imaging().color_blend(m_pgraphics, m_rectText, dcCache, point(1, 1), 0.50);
 
 
-            m_pgraphics->SetTextColor(RGB(255, 255, 255));
+            m_pgraphics->SetTextColor(ARGB(255, 255, 255, 255));
             m_pgraphics->SelectObject(m_pfont);
             m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
          }
          else
          {
-            m_pgraphics->SetTextColor(m_cr);
+            m_pgraphics->set_color(m_cr);
             m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
          }
       }

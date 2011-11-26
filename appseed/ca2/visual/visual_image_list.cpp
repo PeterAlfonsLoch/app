@@ -126,17 +126,17 @@ int image_list::add(::visual::icon * picon)
    }
 
    ::ca::brush_sp brush(get_app(), RGB(192, 192, 192));
-   m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, RGB(192, 192, 192));
+   m_spdib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+   m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, 0);
    //COLORREF crMask = m_spdib->get_graphics()->GetPixel(iItem * m_size.cx, 0);
 
-   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy,
-      0, NULL, DI_IMAGE);
+   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, NULL, DI_IMAGE);
 
-   ::ca::dib_sp dibAlpha(get_app());
-   dibAlpha->create(m_size.cx, m_size.cy);
+   //::ca::dib_sp dibAlpha(get_app());
+   //dibAlpha->create(m_size.cx, m_size.cy);
 
    //dibAlpha->Fill(255, 255, 255);
-   dibAlpha->SetIconMask(picon, m_size.cx, m_size.cy);
+   //dibAlpha->SetIconMask(picon, m_size.cx, m_size.cy);
 
  //  ::ca::graphics_sp dcAlpha;
 //   dcAlpha.CreateCompatibleDC(NULL);

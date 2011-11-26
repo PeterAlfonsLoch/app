@@ -447,6 +447,18 @@ namespace html
       }
    }
 
+   const tag * elemental::get_tag() const
+   {
+      if(m_pbase->get_type() == base::type_tag)
+      {
+         return dynamic_cast < const html::tag * > (m_pbase);
+      }
+      else
+      {
+         return NULL;
+      }
+   }
+
    string elemental::get_tag_name() const
    {
       if(m_propertyset.is_new_or_null("PropertyTag"))
@@ -1160,11 +1172,15 @@ namespace html
 
    bool elemental::get_background_color(COLORREF & cr) const
    {
-/* trans      if(m_style.get_background_color(cr))
-         return true; */
+
+      if(m_style.get_color("background-color", NULL, m_pdata, this, cr))
+         return true;
+
       if(m_pparent != NULL && m_pparent->get_background_color(cr))
          return true;
-      cr = RGB(255, 255, 247);
+
+      cr = ARGB(127, 255, 255, 247);
+
       return true;
    }
 
