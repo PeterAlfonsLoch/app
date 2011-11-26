@@ -418,7 +418,6 @@ namespace win
       BOOL bOk1 = FALSE;
       BOOL bOk2 = FALSE;
 
-
       Gdiplus::Point * ppoints = new Gdiplus::Point[nCount];
       try
       {
@@ -444,7 +443,6 @@ namespace win
       {
       }
 
-      //return ::Polygon(get_handle1(), lpPoints, nCount); 
 
       return bOk1 && bOk2;
    

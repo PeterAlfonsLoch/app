@@ -97,6 +97,17 @@ namespace win
          {
             path.AddEllipse((INT) m_pta[0].x, (INT) m_pta[0].y, (INT) (m_pta[1].x - m_pta[0].x), (INT) (m_pta[1].y - m_pta[0].y));
          }
+         else if(m_etype == type_polygon)
+         {
+            raw_array < Gdiplus::PointF > pa;
+
+            for(int i = 0; i < m_pta.get_size(); i++)
+            {
+               pa.add(Gdiplus::PointF(m_pta[i].x, m_pta[i].y));
+            }
+
+            path.AddPolygon(pa.get_data(), pa.get_count());
+         }
 
          ((region *) this)->m_pregion = new Gdiplus::Region(&path);
          

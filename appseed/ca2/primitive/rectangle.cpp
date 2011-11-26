@@ -637,6 +637,19 @@ __int64 rect::area()
    { return width() * height(); }
 
 
+void rect::get_bounding_rect(const POINT * lppoint, count count)
+{
+
+   point_array::get_bounding_rect(this, lppoint, count);
+
+}
+
+void rect::get_bounding_rect(const point_array & pointa)
+{
+
+   pointa.get_bounding_rect(this);
+
+}
 
 
 

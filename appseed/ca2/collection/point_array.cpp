@@ -50,35 +50,48 @@ void point_array::rotate(double dAngle)
 		}*/
 
 
-void point_array::get_bounding_rect(LPRECT lprect)
+void point_array::get_bounding_rect(LPRECT lprect) const
 {
-   if(this->get_count() <= 0)
+   
+   get_bounding_rect(lprect, get_data(), get_count());
+
+}
+
+void point_array::get_bounding_rect(LPRECT lprect, const POINT * lppoint, count count)
+{
+
+   if(count <= 0)
    {
+
       lprect->left      = 0;
       lprect->top       = 0;
       lprect->right     = 0;
       lprect->bottom    = 0;
+
    }
    else
    {
-      lprect->left      = this->element_at(0).x;
-      lprect->top       = this->element_at(0).y;
-      lprect->right     = this->element_at(0).x;
-      lprect->bottom    = this->element_at(0).y;
+      lprect->left      = lppoint[0].x;
+      lprect->top       = lppoint[0].y;
+      lprect->right     = lppoint[0].x;
+      lprect->bottom    = lppoint[0].y;
 
-      for(int i = 1; i < this->get_count(); i++)
+      for(int i = 1; i < count; i++)
       {
-         if(this->element_at(i).x < lprect->left)
-            lprect->left = this->element_at(i).x;
-         else if(this->element_at(i).x > lprect->right)
-            lprect->right = this->element_at(i).x;
-         if(this->element_at(i).y < lprect->top)
-            lprect->top = this->element_at(i).y;
-         else if(this->element_at(i).y > lprect->bottom)
-            lprect->bottom = this->element_at(i).y;
+         if(lppoint[i].x < lprect->left)
+            lprect->left = lppoint[i].x;
+         else if(lppoint[i].x > lprect->right)
+            lprect->right = lppoint[i].x;
+         if(lppoint[i].y < lprect->top)
+            lprect->top = lppoint[i].y;
+         else if(lppoint[i].y > lprect->bottom)
+            lprect->bottom = lppoint[i].y;
       }
+
    }
+
 }
+
 
 bool point_array::bounding_rect_contains_pt(point pt)
 {

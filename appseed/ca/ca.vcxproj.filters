@@ -47,19 +47,7 @@
     <ClInclude Include="count.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="geometric_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="muldiv64.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rectangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="size.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -215,18 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allocate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="size.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="geometric_types.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="muldiv64.cpp">

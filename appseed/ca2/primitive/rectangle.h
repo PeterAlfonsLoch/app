@@ -1,9 +1,13 @@
 #pragma once
 
+
+class point_array;
+
+
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL__ rect : public tagRECT
+class CLASS_DECL_ca rect : public tagRECT
 {
 // Constructors
 public:
@@ -149,12 +153,16 @@ public:
    void SubtractRectMajor(LPCRECT lpcrectMajor, LPCRECT lpcrectMinor);
    void SubtractRectMinor(LPCRECT lpcrectMajor, LPCRECT lpcrectMinor);
 
+
+   void get_bounding_rect(const POINT * lppoint, count count);
+   void get_bounding_rect(const point_array & pointa);
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
 // rect64 - A 2-D rect64angle, similar to Windows RECT structure.
 
-class CLASS_DECL__ rect64 : public __rect64
+class CLASS_DECL_ca rect64 : public __rect64
 {
 // Constructors
 public:

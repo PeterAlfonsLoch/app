@@ -38,8 +38,6 @@ extern "C"
 
 #include "muldiv64.h"
 
-#include "geometric_types.h"
-
 #include "str.h"
 
 

@@ -30,7 +30,7 @@ class __rect64;
 class rect;
 class rect64;
 
-class CLASS_DECL__ __point64
+class CLASS_DECL_ca __point64
 {
 public:
     __int64    x;
@@ -53,14 +53,14 @@ class __rect64;
 class rect;
 class rect64;
 
-class CLASS_DECL__ __size64
+class CLASS_DECL_ca __size64
 {
 public:
    __int64     cx;
    __int64     cy;
 };
 
-class CLASS_DECL__ __rect64
+class CLASS_DECL_ca __rect64
 {
 public:
    __int64     left;
@@ -77,28 +77,28 @@ public:
 #include "rectangle.h"
 
 
-CLASS_DECL__ __int64 MulDiv(__int64 nNumber, __int64 nNumerator, __int64 nDenominator);
-CLASS_DECL__ inline bool is64(__int64 i)
+CLASS_DECL_ca __int64 MulDiv(__int64 nNumber, __int64 nNumerator, __int64 nDenominator);
+CLASS_DECL_ca inline bool is64(__int64 i)
 {
    return (i & 0xffffffff00000000 ) != 0;
 }
-CLASS_DECL__ bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
-CLASS_DECL__ bool copy(__rect64 * prectDest, const RECT * prectSrc);
-CLASS_DECL__ bool copy(RECT * prectDest, const __rect64 * prectSrc);
-CLASS_DECL__ bool is_empty(const __rect64 * prect);
-CLASS_DECL__ bool contains(const __rect64 * prect, point64 pt);
-CLASS_DECL__ bool set(__rect64 * prectDest, __int64 x1, __int64 y1, __int64 x2, __int64 y2);
-CLASS_DECL__ bool null(__rect64 * prectDest);
-CLASS_DECL__ bool is_equal(const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL__ bool inflate(__rect64 * prect, __int64 x, __int64 y);
-CLASS_DECL__ bool deflate(__rect64 * prect, __int64 x, __int64 y);
-CLASS_DECL__ bool offset(__rect64 * prect, __int64 x, __int64 y);
-CLASS_DECL__ bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL__ bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL__ bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL__ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL__ long width(LPRECT lpcrect);
-CLASS_DECL__ long height(LPCRECT lpcrect);
+CLASS_DECL_ca bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
+CLASS_DECL_ca bool copy(__rect64 * prectDest, const RECT * prectSrc);
+CLASS_DECL_ca bool copy(RECT * prectDest, const __rect64 * prectSrc);
+CLASS_DECL_ca bool is_empty(const __rect64 * prect);
+CLASS_DECL_ca bool contains(const __rect64 * prect, point64 pt);
+CLASS_DECL_ca bool set(__rect64 * prectDest, __int64 x1, __int64 y1, __int64 x2, __int64 y2);
+CLASS_DECL_ca bool null(__rect64 * prectDest);
+CLASS_DECL_ca bool is_equal(const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca bool inflate(__rect64 * prect, __int64 x, __int64 y);
+CLASS_DECL_ca bool deflate(__rect64 * prect, __int64 x, __int64 y);
+CLASS_DECL_ca bool offset(__rect64 * prect, __int64 x, __int64 y);
+CLASS_DECL_ca bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_ca long width(LPRECT lpcrect);
+CLASS_DECL_ca long height(LPCRECT lpcrect);
 
 
-CLASS_DECL__ bool deflate(LPRECT prect, LPCRECT lpcrect);
+CLASS_DECL_ca bool deflate(LPRECT prect, LPCRECT lpcrect);

@@ -16,7 +16,9 @@ public:
 
    void rotate(double dAngle);
 
-   void get_bounding_rect(LPRECT lprect);
+   void get_bounding_rect(LPRECT lprect) const;
+
+   static void get_bounding_rect(LPRECT lprect, const POINT * lppoint, count count);
 
    bool bounding_rect_contains_pt(point pt);
 

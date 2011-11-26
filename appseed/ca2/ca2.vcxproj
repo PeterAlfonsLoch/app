@@ -1342,6 +1342,7 @@
     <ClInclude Include="plugin\plugin_instance.h" />
     <ClInclude Include="primitive\check.h" />
     <ClInclude Include="primitive\fixed_string.h" />
+    <ClInclude Include="primitive\geometric_types.h" />
     <ClInclude Include="primitive\id.h" />
     <ClInclude Include="primitive\id_space.h" />
     <ClInclude Include="primitive\memory_base.h" />
@@ -1349,6 +1350,8 @@
     <ClInclude Include="primitive\string.h" />
     <ClInclude Include="primitive\var.h" />
     <ClInclude Include="primitive\virtual_memory.h" />
+    <ClInclude Include="primitive\_id_space.h" />
+    <ClInclude Include="primitive\_int_biunique.h" />
     <ClInclude Include="radix\ca2_res.h" />
     <ClInclude Include="radix\heap.h" />
     <ClInclude Include="radix\inline.h" />
@@ -2879,7 +2882,11 @@
     <ClCompile Include="plugin\plugin_run_start_installer.cpp" />
     <ClCompile Include="plugin\plugin_system.cpp" />
     <ClCompile Include="plugin\plugin_instance.cpp" />
+    <ClCompile Include="primitive\geometric_types.cpp" />
     <ClCompile Include="primitive\memory_base.cpp" />
+    <ClCompile Include="primitive\point.cpp" />
+    <ClCompile Include="primitive\rectangle.cpp" />
+    <ClCompile Include="primitive\size.cpp" />
     <ClCompile Include="primitive\strcore.cpp" />
     <ClCompile Include="primitive\string_manager.cpp" />
     <ClCompile Include="primitive\var.cpp" />

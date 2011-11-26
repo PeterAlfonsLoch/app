@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // point - A 2-D point, similar to Windows POINT structure.
 
-class CLASS_DECL__ point : public tagPOINT
+class CLASS_DECL_ca point : public tagPOINT
 {
 public:
 // Constructors
@@ -64,7 +64,7 @@ __inline point null_point() { return point(0, 0); }
 /////////////////////////////////////////////////////////////////////////////
 // point64 - A 2-D point64, similar to Windows __point64 structure.
 
-class CLASS_DECL__ point64 : public __point64
+class CLASS_DECL_ca point64 : public __point64
 {
 public:
 // Constructors
@@ -117,7 +117,7 @@ public:
 };
 
 
-class CLASS_DECL__ double_point
+class CLASS_DECL_ca double_point
 {
 public:
    
