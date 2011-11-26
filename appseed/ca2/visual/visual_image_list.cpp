@@ -263,7 +263,10 @@ bool image_list::_grow()
 
       m_spdib->create(cx * iAllocSize, cy);
 
+      m_spdib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+
       m_spdib->get_graphics()->BitBlt(0, 0, spdib->width(), spdib->height(), spdib->get_graphics(), 0, 0, SRCCOPY);
+
    }
 
    return true;
