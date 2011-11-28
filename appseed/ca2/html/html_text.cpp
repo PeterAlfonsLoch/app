@@ -394,47 +394,47 @@ namespace html
          }
          if(m_bHover && m_pelemental->m_style.get_color("color", "hover", pdata, m_pelemental, cr))
          {
-            pdc->SetTextColor(cr);
+            pdc->set_color(cr);
          }
          else if(has_link() && m_pelemental->m_style.get_color("color", "link", pdata, m_pelemental, cr))
          {
-            pdc->SetTextColor(cr);
+            pdc->set_color(cr);
          }
          else if(has_link())
          {
-            pdc->SetTextColor(RGB(127, 127, 255));
+            pdc->set_color(ARGB(255, 127, 127, 255));
          }
          else if(m_pelemental->m_style.get_color("color", "", pdata, m_pelemental, cr))
          {
-            pdc->SetTextColor(cr);
+            pdc->set_color(cr);
          }
          else
          {
-            pdc->SetTextColor(ARGB(255, 0, 0, 0));
+            pdc->set_color(ARGB(255, 0, 0, 0));
          }
 
          int iSelStart;
          int iSelEnd;
-      size size3;
-      visual::graphics_extension(pdata->m_papp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
-      int maxcy = size3.cy;
+         size size3;
+         visual::graphics_extension(pdata->m_papp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
+         int maxcy = size3.cy;
 
-      _001GetViewSel(iSelStart, iSelEnd);
-      int iCursor = iSelEnd;
-      sort::sort(iSelStart, iSelEnd);
+         _001GetViewSel(iSelStart, iSelEnd);
+         int iCursor = iSelEnd;
+         sort::sort(iSelStart, iSelEnd);
 
 
          pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
          int x = get_x();
          int y = get_y();
-        int cy = 0;
-      string str1;
-      string str2;
-      string str3;
-      string strExtent1;
-      string strExtent2;
-      string strExtent3;
-      int lim = 0;
+         int cy = 0;
+         string str1;
+         string str2;
+         string str3;
+         string strExtent1;
+         string strExtent2;
+         string strExtent3;
+         int lim = 0;
         for(int i = 0; i < m_straLines.get_size(); i++)
         {
          string strLine = m_straLines[i];

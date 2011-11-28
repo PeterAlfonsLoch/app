@@ -302,11 +302,11 @@ namespace ca4
 
             key1.QueryValue("DefaultConnectionSettings", mem);
 
-            bool bAutoDetect = (((LPBYTE) mem.get_data())[8] & 0x80) != 0;
+            bool bAutoDetect = (((LPBYTE) mem.get_data())[8] & 0x08) != 0;
 
             if(bAutoDetect)
             {
-               if(try_pac_script("wpad", pszUrl, psocket))
+               if(try_pac_script("http://wpad/wpad.dat", pszUrl, psocket))
                   return;
             }
 

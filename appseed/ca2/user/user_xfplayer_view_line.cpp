@@ -8,7 +8,8 @@ const int XfplayerViewLine::AlignRight = 2;
 XfplayerViewLine::XfplayerViewLine(::ca::application * papp) :
    ca(papp),
    m_dibMain(papp),
-   m_dcextension(papp)
+   m_dcextension(papp),
+   m_font(papp)
 {
    m_pContainer                  = NULL;
    m_bEnhancedEmboss             = true;
