@@ -129,6 +129,15 @@ namespace plugin
       if(m_puiHost == NULL)
          return;
 
+
+      if(m_dib.is_null())
+         m_dib.create(get_app());
+
+      if(m_dib.is_null())
+         return;
+
+
+
       RECT rect;
       rect.left = m_rect.left;
       rect.top = m_rect.top;
@@ -146,24 +155,44 @@ namespace plugin
       ::GetWindowRect(::GetDesktopWindow(), &rectDesktop);
       int w = rectDesktop.right;
       int h = rectDesktop.bottom;
-      HBITMAP hbmp = ::CreateCompatibleBitmap(hdcWindow, w, h);
-      HDC hdc = ::CreateCompatibleDC(hdcWindow);
-      HBITMAP hbmpOld =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
-      HFONT hfontOld = NULL;
-      HFONT hfont = NULL;
-      ::BitBlt(hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdcWindow, lprect->left, lprect->top, SRCCOPY);
+      //HBITMAP hbmp = ::CreateCompatibleBitmap(hdcWindow, w, h);
+      //HDC hdc = ::CreateCompatibleDC(hdcWindow);
+      //HBITMAP hbmpOld =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
+      //HFONT hfontOld = NULL;
+      //HFONT hfont = NULL;
+
+
+
+      if(!m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top))
+         return;
+
+      m_dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+
+      m_dib->get_graphics()->FillSolidRect(0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, 0);
+      //::BitBlt(hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdcWindow, lprect->left, lprect->top, SRCCOPY);
       try
       {
-         ::ca::graphics_sp g(get_app());
-         g->attach(hdc);
+        // ::ca::graphics_sp g(get_app());
+         //g->Attach(hdc);
          //::ca::graphics * pgraphics = m_psystem->graphics_from_os_data(hdc);
-         g->set_app(m_puiHost->m_papp);
-         m_puiHost->_000OnDraw(g);
+         //g->set_app(m_puiHost->m_papp);
+         m_puiHost->_000OnDraw(m_dib->get_graphics());
       }
       catch(...)
       {
       }
-      POINT pointViewport;
+      
+      ::ca::graphics_sp g(get_app());
+
+      g->Attach(hdcWindow);
+
+      g->set_alpha_mode(::ca::alpha_mode_blend);
+
+      g->BitBlt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, m_dib->get_graphics(), 0, 0, SRCCOPY);
+
+      g->Detach();
+
+      /*POINT pointViewport;
       ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
       ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, SRCCOPY);
       ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
@@ -176,7 +205,7 @@ namespace plugin
          ::DeleteObject(hfont);
       }
       ::DeleteObject(hbmp);
-      ::DeleteDC(hdc);
+      ::DeleteDC(hdc);*/
 
       if(m_bOpenUrl)
       {

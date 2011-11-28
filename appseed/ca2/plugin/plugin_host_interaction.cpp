@@ -123,7 +123,7 @@ namespace plugin
 
       _001DrawChildren(pdc);
 
-      pdc->SetViewportOrg(rectWindow.top_left());
+      pdc->SetViewportOrg(ptPreviousViewportOrg);
       pdc->SelectClipRgn(NULL);
       point ptCursor;
       Application.get_cursor_pos(&ptCursor);

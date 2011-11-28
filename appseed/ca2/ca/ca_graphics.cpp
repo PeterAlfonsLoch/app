@@ -34,6 +34,17 @@ namespace ca
       return NULL;
    }
 
+   BOOL graphics::Attach(HDC hdc)
+   {
+      throw interface_only_exception();
+   }
+
+   HDC graphics::Detach()
+   {
+      throw interface_only_exception();
+   }
+
+
    void graphics::attach(void * pdata)
    {
       throw interface_only_exception();

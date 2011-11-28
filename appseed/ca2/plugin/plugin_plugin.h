@@ -47,6 +47,7 @@ namespace plugin
       string                        m_strCa2LogoutRuri;
       string                        m_strOpenUrl;
       bool                          m_bOpenUrl;
+      ::visual::dib_sp              m_dib;
 
 
       plugin();
