@@ -2,7 +2,6 @@
 
 
 #include "cube1/cube1.h"
-#include "mediaplay/mediaplay.h"
 
 
 namespace cube2

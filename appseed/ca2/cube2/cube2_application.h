@@ -6,15 +6,7 @@ namespace cube2
 
 
    class CLASS_DECL_ca application :
-      virtual public cube1::application,
-      virtual public audWaveCentralContainer,
-      virtual public mus::midi_central_container,
-      virtual public mediaplaylist::central_container,
-      virtual public musctrl::PlayerDocContainer,
-      virtual public musctrl::MusicalPlayerCentralContainer,
-      virtual public mediamanager::mediamanager_container,
-      virtual public ::ca::interface_application < kar::application_interface >,
-      virtual public ::ca::interface_application < mixeruserbase::application_interface >      
+      virtual public cube1::application
    {
    public:
 
