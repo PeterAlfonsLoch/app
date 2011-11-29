@@ -50,6 +50,9 @@ namespace fontopus
       void   set_sessid(const char * pszSessid, const char * pszRequestingParty);
 
 
+      virtual bool initialize();
+
+
    };
 
 } // namespace fontopus

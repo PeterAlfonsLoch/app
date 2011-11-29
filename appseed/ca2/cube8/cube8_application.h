@@ -20,6 +20,8 @@ namespace cube8
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
 
+      bool                                m_bIfs;
+
 
 
       application();

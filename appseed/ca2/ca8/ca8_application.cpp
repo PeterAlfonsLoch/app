@@ -64,13 +64,15 @@ namespace ca8
       if(strStyleUser.has_char())
          set_style(strStyleUser, false);
 
-      if(&ApplicationUser == NULL)
-      {
-         return false;
-      }
 
-      if(!m_strLicense.is_empty())    
+      if(m_strLicense.has_char())    
       {
+
+         if(&ApplicationUser == NULL)
+         {
+            return false;
+         }
+
          // call application's is_licensed function
          // because if delay is needed for authentication -
          // or either asking for authentication -

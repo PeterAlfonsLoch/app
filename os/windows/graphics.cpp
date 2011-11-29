@@ -1,5 +1,7 @@
 #include "StdAfx.h"
 
+#include <math.h>
+
 
 #undef new
 
@@ -291,7 +293,20 @@ namespace win
    }
 
    BOOL graphics::Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
-   { ASSERT(get_handle1() != NULL); return ::Arc(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4); }
+   { 
+
+      ::Gdiplus::RectF rectf(x1, y1, x2, y2);
+
+      double centerx    = (x2 + x1) / 2.0;
+      double centery    = (y2 + y1) / 2.0;
+      
+      double start      = atan2(y3 - centery, x3 - centerx);
+      double end        = atan2(y4 - centery, x4 - centerx);
+
+   
+      return m_pgraphics->DrawArc(gdiplus_pen(), rectf, start, end) == Gdiplus::Status::Ok;
+      
+   }
    BOOL graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
    { ASSERT(get_handle1() != NULL); return ::Arc(get_handle1(), lpRect->left, lpRect->top,
    lpRect->right, lpRect->bottom, ptStart.x, ptStart.y,

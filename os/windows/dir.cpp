@@ -738,7 +738,14 @@ namespace win
 
    string dir::userfolder(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
    {
-      if(&AppUser(papp) == NULL)
+      string str;
+      SHGetSpecialFolderPath(
+         NULL,
+         str,
+         CSIDL_PROFILE,
+         FALSE);
+      return path(path(str, "ca2"), lpcsz);
+/*      if(&AppUser(papp) == NULL)
       {
          string str;
          SHGetSpecialFolderPath(
@@ -751,7 +758,7 @@ namespace win
       else
       {
          return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
-      }
+      }*/
    }
 
    string dir::default_os_user_path_prefix(::ca::application * papp)

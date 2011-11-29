@@ -22,6 +22,16 @@ namespace fontopus
       gen::emit(get_app(), this, &user::on_end_veiev_synch, this, &user::veiev_synch, psignal);
    }
 
+
+   bool user::initialize()
+   {
+
+      Application.defer_initialize_user_presence();
+
+      return true;
+
+   }
+
    void user::veiev_synch(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);

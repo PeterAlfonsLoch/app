@@ -4,13 +4,21 @@
 namespace cube8
 {
 
+
    CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
+
 
    application::application()
    {
+
+
       m_dir.set_app(this);
       m_file.set_app(this);
       m_http.set_app(this);
+
+      m_bIfs            = true;
+
+
    }
 
    application::~application()
@@ -874,14 +882,17 @@ InitFailure:
    bool application::initialize()
    {
 
-      if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
+      if(m_bIfs)
       {
-         if(m_spfsdata.is_null())
-            m_spfsdata(new ::fs::set(this));
-         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(new ::ifs(this, ""));
-         stringa stra;
-         pset->root_ones(stra);
+         if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
+         {
+            if(m_spfsdata.is_null())
+               m_spfsdata(new ::fs::set(this));
+            ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+            pset->m_spafsdata.add(new ::ifs(this, ""));
+            stringa stra;
+            pset->root_ones(stra);
+         }
       }
 
       m_dwAlive = ::GetTickCount();

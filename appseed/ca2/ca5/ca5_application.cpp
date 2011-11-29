@@ -22,11 +22,6 @@ namespace ca5
          return false;
 
 
-      if(!is_system())
-      {
-         defer_initialize_user_presence();
-      }
-
       return true;
 
    }
