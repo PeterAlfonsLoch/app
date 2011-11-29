@@ -102,7 +102,11 @@ namespace rtp
       
       rtp_session_set_scheduling_mode(m_psession->m_psession,1);
       rtp_session_set_blocking_mode(m_psession->m_psession,1);
-      rtp_session_set_connected_mode(m_psession->m_psession,TRUE);
+      //rtp_session_set_connected_mode(m_psession->m_psession,TRUE);
+      rtp_session_set_connected_mode(m_psession->m_psession,FALSE);
+      rtp_session_enable_adaptive_jitter_compensation(m_psession->m_psession,TRUE);
+      rtp_session_set_jitter_compensation(m_psession->m_psession,1000);
+
       if(rtp_session_set_remote_addr(m_psession->m_psession,m_strRemoteAddress,m_iRemotePort) != 0)
          goto cleanup;
       rtp_session_set_payload_type(m_psession->m_psession,0);

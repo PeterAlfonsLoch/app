@@ -18,8 +18,6 @@ namespace cube
       
       stra.add("fontopus");
       stra.add("netnode");
-      stra.add("rtprx");
-      stra.add("rtptx");
       stra.add("default_file_handler");
 
    }
