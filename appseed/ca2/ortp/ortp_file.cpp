@@ -10,8 +10,8 @@ namespace rtp
       m_memfile(papp)
    {
       m_uiTimeStamp        = 0;
-      jittcomp             = 100;
-      adapt                = TRUE;
+      jittcomp             = 1000;
+      adapt                = FALSE;
       clockslide           = 0;
       m_dwSynchSource      = 1;
       m_dwTimeOut          = 120 * 1000;
@@ -57,6 +57,9 @@ namespace rtp
          jittcomp=m_set["--with-jitter"];
          TRACE("Using a jitter buffer of %i milliseconds.\n",jittcomp);
       }
+
+      //jittcomp=100;
+      //adapt = true;
                
       ortp_init();
       ortp_scheduler_init();
@@ -65,7 +68,8 @@ namespace rtp
       m_psession->set_scheduling_mode(1);
       m_psession->set_blocking_mode(1);
       rtp_session_set_local_addr(m_psession->m_psession, m_strListenAddress, m_iListenPort);
-      rtp_session_set_connected_mode(m_psession->m_psession,TRUE);
+      //rtp_session_set_connected_mode(m_psession->m_psession,TRUE);
+      rtp_session_set_connected_mode(m_psession->m_psession,FALSE);
       rtp_session_set_symmetric_rtp(m_psession->m_psession,TRUE);
       rtp_session_enable_adaptive_jitter_compensation(m_psession->m_psession,adapt);
       rtp_session_set_jitter_compensation(m_psession->m_psession,jittcomp);
@@ -76,15 +80,26 @@ namespace rtp
       return true;   
    }
 
+/*
+ The algorithm computes two values:
+	slide: an average of difference between the expected and the socket-received timestamp
+	jitter: an average of the absolute value of the difference between socket-received timestamp and slide.
+	slide is used to make clock-slide detection and correction.
+	jitter is added to the initial jitt_comp_time value. It compensates bursty packets arrival (packets
+	not arriving at regular interval ).
+*/
+//void jitter_control_new_packet(JitterControl *ctl, uint32_t packet_ts, uint32_t cur_str_ts, int32_t * slide, int32_t *safe_delay)
    bool file::tx_open(const char * pszAddress, int iPort)
    {
       m_strRemoteAddress = pszAddress;
       m_iRemotePort = iPort;
+      clockslide = 0;
       if(m_set.has_property("--with-clockslide"))
       {
          clockslide=atoi(m_set["--with-clockslide"]);
          ortp_message("Using clockslide of %i milisecond every 50 packets.",clockslide);
       }
+      jitter = 0;
       if(m_set.has_property("--with-jitter"))
       {
          ortp_message("Jitter will be added to outgoing stream.");
@@ -110,6 +125,11 @@ namespace rtp
       if(rtp_session_set_remote_addr(m_psession->m_psession,m_strRemoteAddress,m_iRemotePort) != 0)
          goto cleanup;
       rtp_session_set_payload_type(m_psession->m_psession,0);
+
+  //    if(jitter > 0)
+    //  {
+      //   rtp_session_set_jitter_compensation(m_psession->m_psession, jitter);
+      //}
       
       if(m_dwSynchSource != 0)
       {
