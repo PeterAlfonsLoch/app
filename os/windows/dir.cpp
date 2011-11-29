@@ -738,13 +738,40 @@ namespace win
 
    string dir::userfolder(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
    {
+
       string str;
       SHGetSpecialFolderPath(
          NULL,
          str,
          CSIDL_PROFILE,
          FALSE);
-      return path(path(str, "ca2"), lpcsz);
+
+
+      string strRelative;
+      strRelative = ca2();
+      index iFind = strRelative.find(':');
+      if(iFind >= 0)
+      {
+         int iFind1 = strRelative.reverse_find("\\", iFind);
+         int iFind2 = strRelative.reverse_find("/", iFind);
+         int iStart = max(iFind1 + 1, iFind2 + 1);
+         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+      }
+
+      string strUserFolderShift;
+
+      if(App(papp).directrix().m_varTopicQuery.has_property("user_folder_relative_path"))
+      {
+         strUserFolderShift = path(strRelative, App(papp).directrix().m_varTopicQuery["user_folder_relative_path"]);
+      }
+      else
+      {
+         strUserFolderShift = strRelative;
+      }
+
+      return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
+
+//      return path(path(str, "ca2"), lpcsz);
 /*      if(&AppUser(papp) == NULL)
       {
          string str;
@@ -788,14 +815,17 @@ namespace win
 
    string dir::default_userfolder(::ca::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
-      UNREFERENCED_PARAMETER(papp);
+
+      return userfolder(papp, pszRelativePath);
+
+/*      UNREFERENCED_PARAMETER(papp);
       string str;
       SHGetSpecialFolderPath(
          NULL,
          str,
          CSIDL_APPDATA,
          FALSE);
-      return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);
+      return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);*/
    }
 
    string dir::userquicklaunch(::ca::application * papp, const char * lpcszRelativePath, const char * lpcsz2)
