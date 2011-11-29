@@ -3984,7 +3984,7 @@ ExitModal:
          nFlags |= SWP_NOMOVE;
          nFlags |= SWP_NOSIZE;
          nFlags |= SWP_NOZORDER;
-         nFlags |= SWP_FRAMECHANGED;
+         //nFlags |= SWP_FRAMECHANGED;
          if(nFlags & SWP_SHOWWINDOW)
          {
             ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
@@ -3994,11 +3994,11 @@ ExitModal:
          {
             ::SetWindowPos(get_handle(), (HWND) z, x, y, cx, cy, nFlags);
          }
-         if(m_pguie != NULL)
+         /*if(m_pguie != NULL)
          {
             m_pguie->oprop("pending_layout") = true;
             m_pguie->oprop("pending_zorder") = z;
-         }
+         }*/
          /*if(&System != NULL && System.get_twf() != NULL)
          {
             System.get_twf()->synch_redraw();
@@ -6153,7 +6153,7 @@ namespace win
      ::DeleteDC(hdcMem);
      ::ReleaseDC(NULL, hdcScreen);
 
-      class rect rectWin;
+      /*class rect rectWin;
       GetWindowRect(rectWin);
       if(rect(rectWindow) != rectWin || (m_pguie != NULL && (bool) m_pguie->oprop("pending_layout")))
       {
@@ -6173,14 +6173,14 @@ namespace win
             {
                pframe->ActivateFrame();
             }*/
-            m_pguie->oprop("pending_layout") = false;
+/*            m_pguie->oprop("pending_layout") = false;
          }
          else
          {
             SetWindowPos(NULL, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_SHOWWINDOW);
          }
       }
-
+      */
 
 
    }
