@@ -4,9 +4,11 @@
 namespace userbase
 {
 
+
    document::document(::ca::application * papp) :
       ca(papp),
       data_container(papp),
+      document_interface(papp),
       ::document(papp)
    {
       m_pdocumentemplate = NULL;

@@ -366,18 +366,6 @@
     <Filter Include="Source Files\fs">
       <UniqueIdentifier>{9b499a53-318b-4200-a2bd-ca232086ffff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\kissfft">
-      <UniqueIdentifier>{aaa2d16d-5026-4098-9e28-0718450ef810}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\kissfft\C Header Files">
-      <UniqueIdentifier>{ba12af7c-5233-4b5f-93b1-2e8a7e4705ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\kissfft">
-      <UniqueIdentifier>{b3a83a3c-cd76-4568-a069-bc1d4d3fcc69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\kissfft\C Source Files">
-      <UniqueIdentifier>{b4ec7bfe-17de-48fb-af78-c3c64c04437e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\gen">
       <UniqueIdentifier>{4f00468e-dc74-4b39-aa67-13094cb2cf11}</UniqueIdentifier>
     </Filter>
@@ -467,18 +455,6 @@
     </Filter>
     <Filter Include="Source Files\webserver">
       <UniqueIdentifier>{2982a131-c512-4cbd-bf65-d4776d87b9be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\i2com">
-      <UniqueIdentifier>{9319e3e7-bff9-4347-ac97-14546a5cb0c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\i2com\rtp">
-      <UniqueIdentifier>{5d506778-cc72-4979-8cbe-907ab88e835f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\i2com">
-      <UniqueIdentifier>{50353352-fd43-4675-ba15-8114b3fb6b20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\i2com\rtp">
-      <UniqueIdentifier>{87430f11-505e-4890-8794-e5166950bb00}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\cube">
       <UniqueIdentifier>{1dc943eb-290c-401d-911c-fa18555112ef}</UniqueIdentifier>
@@ -4031,24 +4007,6 @@
     <ClInclude Include="fs\ifs_file.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\_kiss_fft_guts.h">
-      <Filter>Header Files\kissfft\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft.h">
-      <Filter>Header Files\kissfft\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_ifft.h">
-      <Filter>Header Files\kissfft\C Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft_fftd.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft_ifftd.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
     <ClInclude Include="collection\array_del_ptr.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -4711,27 +4669,6 @@
     </ClInclude>
     <ClInclude Include="ca\ca_object.h">
       <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp.h">
-      <Filter>Header Files\i2com\rtp</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp_compressor.h">
-      <Filter>Header Files\i2com\rtp</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp_mixer.h">
-      <Filter>Header Files\i2com\rtp</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp_receiver.h">
-      <Filter>Header Files\i2com\rtp</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp_room.h">
-      <Filter>Header Files\i2com\rtp</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp_server.h">
-      <Filter>Header Files\i2com\rtp</Filter>
-    </ClInclude>
-    <ClInclude Include="i2com\rtp\i2com_rtp_transmitter.h">
-      <Filter>Header Files\i2com\rtp</Filter>
     </ClInclude>
     <ClInclude Include="collection\typed_ptr_array.h">
       <Filter>Header Files\collection</Filter>
@@ -7470,21 +7407,6 @@
     <ClCompile Include="fs\ifs_file.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft.c">
-      <Filter>Source Files\kissfft\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.c">
-      <Filter>Source Files\kissfft\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kissfft_fftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.c">
-      <Filter>Source Files\kissfft\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ex1\ex1_circular_buffer.cpp">
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
@@ -7505,9 +7427,6 @@
     </ClCompile>
     <ClCompile Include="sockets\sockets_http_request_socket.cpp">
       <Filter>Source Files\sockets\HTTP Sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="mediaplay\mediaplay_record_notify_view.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="ex1\ex1_match.cpp">
       <Filter>Source Files\ex1</Filter>
@@ -7979,27 +7898,6 @@
     </ClCompile>
     <ClCompile Include="gcom\gcom_backview_user_interaction.cpp">
       <Filter>Source Files\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp_compressor.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp_mixer.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp_receiver.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp_room.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp_server.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
-    </ClCompile>
-    <ClCompile Include="i2com\rtp\i2com_rtp_transmitter.cpp">
-      <Filter>Source Files\i2com\rtp</Filter>
     </ClCompile>
     <ClCompile Include="userbase\userbase_main_frame.cpp">
       <Filter>Source Files\userbase</Filter>

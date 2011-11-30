@@ -1,15 +1,19 @@
 ﻿#include "StdAfx.h"
 
+
 namespace calculator
 {
+
 
    document::document(::ca::application * papp) :
       ca(papp),
       data_container(papp),
+      document_interface(papp),
       ::document(papp),
       ::userbase::document(papp)
    {
    }
+
 
    BOOL document::on_new_document()
    {
@@ -86,4 +90,7 @@ namespace calculator
       return TRUE;
    }
 
+
 } // namespace calculator
+
+

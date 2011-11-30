@@ -4,6 +4,7 @@
 file_manager_operation_document::file_manager_operation_document(::ca::application * papp) :
    ca(papp),
    data_container(papp),
+   document_interface(papp),
    m_thread(papp),
    ::document(papp),
    ::userbase::document(papp)

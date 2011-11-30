@@ -4,6 +4,7 @@
 namespace kissfft
 {
 
+
    fftd::fftd(int iSize)
    {
       m_iSize = iSize;

@@ -2,6 +2,7 @@
 
 
 #include "platform/platform.h"
+#include "gcom/gcom.h"
 
 
 #include "bergedge_view.h"

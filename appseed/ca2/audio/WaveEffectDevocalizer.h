@@ -1,6 +1,8 @@
 #pragma once
 
-#include "iaudio/WaveStreamEffect.h"
+
+#include "app-core/appseed/multimedia/iaudio/WaveStreamEffect.h"
+
 
 class audWaveEffectDevocalizer  :
    virtual public iaudio::WaveStreamEffect 

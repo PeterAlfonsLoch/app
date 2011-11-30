@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "iaudio/iaudio.h"
-#include "audio_decode/audio_decode.h"
-#include "kissfft/kissfft.h"
+#include "app-core/appseed/multimedia/iaudio/iaudio.h"
+#include "app-core/appseed/multimedia/audio_decode/audio_decode.h"
+#include "math/math/math.h"
 
 
 #include "audio_global.h"

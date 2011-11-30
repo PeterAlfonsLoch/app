@@ -366,6 +366,7 @@ namespace windows
 #include "user/user_document_template.h"
 #include "user/user_single_document_template.h"
 #include "user/user_multiple_document_template.h"
+#include "user/user_document_interface.h"
 #include "user/user_document.h"
 #include "user/user_create_context.h"
 

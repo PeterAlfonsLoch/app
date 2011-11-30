@@ -5,7 +5,7 @@ namespace kissfft
 {
 
 
-   class CLASS_DECL_ca fftd :
+   class CLASS_DECL_CA2_MATH fftd :
       virtual public ::radix::object
    {
    public:

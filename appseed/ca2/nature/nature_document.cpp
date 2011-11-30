@@ -1,12 +1,15 @@
 ﻿#include "StdAfx.h"
 #include "document.h"
 
+
 namespace nature
 {
+
 
    document::document(::ca::application * papp) :
       ca(papp),
       data_container(papp),
+      document_interface(papp),
       ::document(papp),
       ::userbase::document(papp)
    {

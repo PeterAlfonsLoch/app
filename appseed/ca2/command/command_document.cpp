@@ -8,6 +8,7 @@ namespace command
    document::document(::ca::application * papp) :
       ca(papp),
       ::ca::data_container(papp),
+      document_interface(papp),
       ::document(papp),
       ::userbase::document(papp)
    {

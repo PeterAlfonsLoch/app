@@ -3,13 +3,14 @@
 #include "SimpleFileListInterface.h"
 
 
-
 namespace filemanager
 {
+
 
    document::document(::ca::application * papp) :
       ca(papp),
       ::ca::data_container(papp),
+      document_interface(papp),
       ::document(papp),
       ::userbase::document(papp),
       ::fs::document(papp),

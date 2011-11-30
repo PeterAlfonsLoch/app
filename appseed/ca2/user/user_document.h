@@ -2,9 +2,7 @@
 
 
 class CLASS_DECL_ca document :
-   virtual public command_target,
-   virtual public ex1::byte_serializable,
-   virtual public ::ca::data_container
+   virtual public user::document_interface
 {
 public:
 

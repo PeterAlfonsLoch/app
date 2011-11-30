@@ -55,8 +55,8 @@ namespace filemanager
             IGUI_WIN_MSG_LINK(WM_ERASEBKGND, pinterface, this, &list_view::_001OnEraseBkgnd);
             IGUI_WIN_MSG_LINK(WM_USER + 1217    , pinterface, this, &list_view::_001OnFillTaskResponse);
 
-            connect_command(        "ID_ALBUM_EXECUTE_PLAY"   , &list_view::_001OnAlbumExecutePlay);
-            connect_update_cmd_ui(  "ID_ALBUM_EXECUTE_PLAY"   , &list_view::_001OnUpdateAlbumExecutePlay);
+//            connect_command(        "ID_ALBUM_EXECUTE_PLAY"   , &list_view::_001OnAlbumExecutePlay);
+  //          connect_update_cmd_ui(  "ID_ALBUM_EXECUTE_PLAY"   , &list_view::_001OnUpdateAlbumExecutePlay);
             connect_command(        "ID_EXECUTE_PREVIOUS"     , &list_view::_001OnExecutePrevious);
             connect_update_cmd_ui(  "ID_EXECUTE_PREVIOUS"     , &list_view::_001OnUpdateExecutePrevious);
             connect_command(        "ID_EXECUTE_NEXT"         , &list_view::_001OnExecuteNext);
@@ -742,7 +742,7 @@ namespace filemanager
             }*/
          }
 
-         void list_view::_001OnAlbumExecutePlay(gen::signal_object * pobj)
+         /*void list_view::_001OnAlbumExecutePlay(gen::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             Range range;
@@ -776,7 +776,7 @@ namespace filemanager
             _001GetSelection(range);
             pupdatecmdui->m_pcmdui->Enable(range.get_item_count() > 0);
             pupdatecmdui->m_bRet = true;
-         }
+         }*/
 
          void list_view::_001OnExecutePrevious(gen::signal_object * pobj)
          {

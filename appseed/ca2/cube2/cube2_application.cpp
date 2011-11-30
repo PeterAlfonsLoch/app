@@ -25,11 +25,6 @@ namespace cube2
       if(!cube1::application::initialize())
          return false;
 
-      if(!GetAudioWaveCentral().Initialize(this))
-      {
-         TRACE("Could not initialize Audio Wave Central");
-      }
-
       ensure_app_interest();
 
       return true;

@@ -24,8 +24,7 @@ namespace dynamic_source
 
    class CLASS_DECL_ca script_manager :
       virtual public ::radix::thread,
-      virtual public ::ca::message_window_simple_callback,
-      virtual public ::i2com::rtp::server
+      virtual public ::ca::message_window_simple_callback
    {
    public:
 

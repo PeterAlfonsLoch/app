@@ -235,7 +235,7 @@
     <ClCompile>
       <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -1250,24 +1250,11 @@
     <ClInclude Include="gen\gen_signal_thread.h" />
     <ClInclude Include="html\data_callback.h" />
     <ClInclude Include="html\html_lite_html.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp_compressor.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp_mixer.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp_receiver.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp_room.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp_server.h" />
-    <ClInclude Include="i2com\rtp\i2com_rtp_transmitter.h" />
     <ClInclude Include="install\install.h" />
     <ClInclude Include="install\install_install.h" />
     <ClInclude Include="javascript\javascript.h" />
     <ClInclude Include="javascript\javascript_tinyjs.h" />
     <ClInclude Include="javascript\javascript_functions.h" />
-    <ClInclude Include="kissfft\kissfft.h" />
-    <ClInclude Include="kissfft\kissfft_fftd.h" />
-    <ClInclude Include="kissfft\kissfft_ifftd.h" />
-    <ClInclude Include="kissfft\kiss_fft.h" />
-    <ClInclude Include="kissfft\kiss_ifft.h" />
-    <ClInclude Include="kissfft\_kiss_fft_guts.h" />
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_item.h" />
@@ -2655,48 +2642,9 @@
     <ClCompile Include="gen\simple_thread.cpp" />
     <ClCompile Include="html\html_data_callback.cpp" />
     <ClCompile Include="html\html_LiteHTMLTag.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp_compressor.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp_mixer.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp_receiver.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp_room.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp_server.cpp" />
-    <ClCompile Include="i2com\rtp\i2com_rtp_transmitter.cpp" />
     <ClCompile Include="install\install_install.cpp" />
     <ClCompile Include="javascript\javascript.cpp" />
     <ClCompile Include="javascript\javascript_functions.cpp" />
-    <ClCompile Include="kissfft\kissfft_fftd.cpp" />
-    <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
-    <ClCompile Include="kissfft\kiss_fft.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="mail\mail_tree_data.cpp" />
     <ClCompile Include="mail\mail_tree_item.cpp" />
     <ClCompile Include="multithreading\multithreading_base_sync_object.cpp" />
@@ -3625,7 +3573,6 @@
     <ClCompile Include="gcom\gcom_Space.cpp" />
     <ClCompile Include="gcom\gcom_SpaceUtil.cpp" />
     <ClCompile Include="gcom\gcom_Util.cpp" />
-    <ClCompile Include="mediaplay\mediaplay_record_notify_view.cpp" />
     <ClCompile Include="ca2\ca2_application.cpp" />
     <ClCompile Include="ca2\ca2_datetime.cpp" />
     <ClCompile Include="ca2\ca2_html.cpp" />

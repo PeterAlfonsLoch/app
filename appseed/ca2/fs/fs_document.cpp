@@ -8,6 +8,7 @@ namespace fs
    document::document(::ca::application * papp) :
       ::ca::data_container(papp),
       ::document(papp),
+      document_interface(papp),
       userbase::document(papp),
       ::ca::data(papp),
       ::fs::data(papp),

@@ -1,18 +1,11 @@
 #include "StdAfx.h"
 
 
-// // BEGIN_MESSAGE_MAP(document, command_target)
-   //{{AFX_MSG_MAP(document)
-/* xxx   ON_COMMAND(ID_FILE_CLOSE, &document::on_file_close)
-   ON_COMMAND(ID_FILE_SAVE, &document::on_file_save)
-   ON_COMMAND(ID_FILE_SAVE_AS, &document::on_file_save_as)
-   //}}AFX_MSG_MAP */
-// // END_MESSAGE_MAP()
-
 
 document::document(::ca::application * papp) :
    ca(papp),
-   data_container(papp)
+   data_container(papp),
+   document_interface(papp)
 {
    m_pdocumentemplate      = NULL;
    m_bModified             = FALSE;

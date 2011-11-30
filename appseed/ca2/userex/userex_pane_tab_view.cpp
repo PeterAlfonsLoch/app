@@ -142,7 +142,8 @@ namespace userex
 
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      if(pcreatordata->m_id == "pane_view_audio_control")
+      // if id == registered_pane_from_library[i] => { alloc from library }
+/*      if(pcreatordata->m_id == "pane_view_audio_control")
       {
          ::ca::create_context_sp cc(get_app());
          cc->m_puiParent = this;
@@ -164,8 +165,8 @@ namespace userex
                }
             }
          }
-      }
-      else if(pcreatordata->m_id == "file_manager")
+      }*/
+      if(pcreatordata->m_id == "file_manager")
       {
          ::filemanager::document * pdoc = Application.GetStdFileManagerTemplate()->OpenChild(&Application, true, true, pcreatordata->m_pholder);
          if(pdoc != NULL)

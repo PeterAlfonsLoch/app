@@ -9,8 +9,7 @@ namespace dynamic_source
    script_manager::script_manager(::ca::application * papp) :
       ca(papp),
       thread(papp),
-      ::ca::message_window_simple_callback(papp),
-      ::i2com::rtp::server(papp)
+      ::ca::message_window_simple_callback(papp)
    {
       m_pcache                   = new script_cache(papp);
       m_pcache->m_pmanager       = this;
