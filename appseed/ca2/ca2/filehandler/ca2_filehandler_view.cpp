@@ -22,6 +22,13 @@ namespace ca2
          form_view(papp),
          m_document(papp)
       {
+
+         ::ca::font_sp font(get_app());
+
+         font->CreatePointFont(140, "Geneva");
+
+         SetFont(font);
+
       }
    
       void view::install_message_handling(::user::win::message::dispatch * pinterface)
@@ -116,8 +123,8 @@ namespace ca2
             cr2 = RGB(10, 10, 10);
          }
          pdc->Draw3dRect(m_rectItem, cr1, cr2);
-         pdc->SetBkMode(TRANSPARENT);
-         pdc->SetTextColor(cr);
+         cr |= 0xff000000;
+         pdc->set_color(cr);
          pdc->DrawText(pitem->m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
       }
 
@@ -170,6 +177,7 @@ namespace ca2
       void view::_001OnDraw(::ca::graphics * pdc)
       {
 
+         pdc->set_font(GetFont());
          m_drawlist.draw(this, pdc, &m_list);
 
       }

@@ -42,7 +42,6 @@ namespace ca
 
    BOOL graphics_object::CreateStockObject(int nIndex)
    {
-      UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception();   
    }
 

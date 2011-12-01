@@ -268,6 +268,10 @@ namespace win
       BOOL PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
       BOOL Rectangle(int x1, int y1, int x2, int y2);
       BOOL Rectangle(LPCRECT lpRect);
+      virtual BOOL DrawRectangle(int x1, int y1, int x2, int y2);
+      virtual BOOL DrawRectangle(LPCRECT lpRect);
+      virtual BOOL FillRectangle(int x1, int y1, int x2, int y2);
+      virtual BOOL FillRectangle(LPCRECT lpRect);
       BOOL RoundRect(int x1, int y1, int x2, int y2, int x3, int y3);
       BOOL RoundRect(LPCRECT lpRect, POINT point);
 

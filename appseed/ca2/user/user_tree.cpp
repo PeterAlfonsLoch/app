@@ -66,22 +66,22 @@ namespace user
          }
          if(bHover)
          {
-            data.m_pdc->SetTextColor(m_crTextSelectedHighlight);
+            data.m_pdc->set_color(m_crTextSelectedHighlight);
          }
          else
          {
-            data.m_pdc->SetTextColor(m_crTextSelected);
+            data.m_pdc->set_color(m_crTextSelected);
          }
       }
       else
       {
          if(bHover)
          {
-            data.m_pdc->SetTextColor(m_crTextHighlight);
+            data.m_pdc->set_color(m_crTextHighlight);
          }
          else
          {
-            data.m_pdc->SetTextColor(m_crText);
+            data.m_pdc->set_color(m_crText);
          }
       }
 
@@ -127,10 +127,10 @@ namespace user
       m_pitemHover               = NULL;
       m_iClick                   = 0;
       m_iItemCount               = 0;
-      m_crText                   = RGB(0, 0, 0);
-      m_crTextSelected           = RGB(255, 255, 255);
-      m_crTextHighlight          = RGB(102, 153, 255);
-      m_crTextSelectedHighlight  = RGB(172, 213, 255);
+      m_crText                   = ARGB(255, 0, 0, 0);
+      m_crTextSelected           = ARGB(255, 255, 255, 255);
+      m_crTextHighlight          = ARGB(255, 102, 153, 255);
+      m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
    }
 
    tree::~tree()

@@ -708,6 +708,36 @@ namespace ca
       throw interface_only_exception();   
    }
 
+   BOOL graphics::DrawRectangle(int x1, int y1, int x2, int y2)
+   {
+      UNREFERENCED_PARAMETER(x1);
+      UNREFERENCED_PARAMETER(y1);
+      UNREFERENCED_PARAMETER(x2);
+      UNREFERENCED_PARAMETER(y2);
+      throw interface_only_exception();   
+   }
+
+   BOOL graphics::DrawRectangle(LPCRECT lpRect)
+   {
+      UNREFERENCED_PARAMETER(lpRect);
+      throw interface_only_exception();   
+   }
+
+   BOOL graphics::FillRectangle(int x1, int y1, int x2, int y2)
+   {
+      UNREFERENCED_PARAMETER(x1);
+      UNREFERENCED_PARAMETER(y1);
+      UNREFERENCED_PARAMETER(x2);
+      UNREFERENCED_PARAMETER(y2);
+      throw interface_only_exception();   
+   }
+
+   BOOL graphics::FillRectangle(LPCRECT lpRect)
+   {
+      UNREFERENCED_PARAMETER(lpRect);
+      throw interface_only_exception();   
+   }
+
    BOOL graphics::RoundRect(int x1, int y1, int x2, int y2, int x3, int y3)
    {
       UNREFERENCED_PARAMETER(x1);

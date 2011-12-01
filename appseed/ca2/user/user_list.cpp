@@ -614,14 +614,11 @@ namespace user
       if(rangeHighlight.HasItem(pdrawitem->m_iDisplayItem))
       {
          ::ca::pen_sp penHighlight(get_app());
-         ::ca::brush_sp brushNull(get_app());
-         brushNull->CreateStockObject(NULL_BRUSH);
          ::ca::pen * ppenHighlight = _001GetPenHighlight();
          class rect rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.deflate(2, 2);
          pdrawitem->m_pgraphics->SelectObject(ppenHighlight);
-         pdrawitem->m_pgraphics->SelectObject(brushNull);
-         pdrawitem->m_pgraphics->Rectangle(rectHighlight);
+         pdrawitem->m_pgraphics->DrawRectangle(rectHighlight);
       }
 
 

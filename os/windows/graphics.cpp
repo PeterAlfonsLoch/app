@@ -464,20 +464,59 @@ namespace win
    }
    BOOL graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount)
    { ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount); }
-   BOOL graphics::Rectangle(int x1, int y1, int x2, int y2)
-   { ASSERT(get_handle1() != NULL); return ::Rectangle(get_handle1(), x1, y1, x2, y2); }
    
-   BOOL graphics::Rectangle(LPCRECT lpRect)
+   BOOL graphics::Rectangle(int x1, int y1, int x2, int y2)
    { 
-      //ASSERT(get_handle1() != NULL); return ::Rectangle(get_handle1(), lpRect->left, lpRect->top,
-   //lpRect->right, lpRect->bottom); 
-
-      Gdiplus::RectF rectf(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      
+      Gdiplus::RectF rectf(x1, y1, x2 - x1, y2 - y1);
 
       BOOL bOk1 = m_pgraphics->FillRectangle(gdiplus_brush(), rectf) == Gdiplus::Status::Ok;
       BOOL bOk2 = m_pgraphics->DrawRectangle(gdiplus_pen(), rectf) == Gdiplus::Status::Ok;
 
       return bOk1 && bOk2;
+
+   }
+   
+   BOOL graphics::Rectangle(LPCRECT lpRect)
+   { 
+
+      return Rectangle(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+   }
+
+   BOOL graphics::DrawRectangle(int x1, int y1, int x2, int y2)
+   { 
+      
+      Gdiplus::RectF rectf(x1, y1, x2 - x1, y2 - y1);
+
+      BOOL bOk = m_pgraphics->DrawRectangle(gdiplus_pen(), rectf) == Gdiplus::Status::Ok;
+
+      return bOk;
+
+   }
+   
+   BOOL graphics::DrawRectangle(LPCRECT lpRect)
+   { 
+
+      return DrawRectangle(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+
+   }
+
+   BOOL graphics::FillRectangle(int x1, int y1, int x2, int y2)
+   { 
+      
+      Gdiplus::RectF rectf(x1, y1, x2 - x1, y2 - y1);
+
+      BOOL bOk = m_pgraphics->FillRectangle(gdiplus_brush(), rectf) == Gdiplus::Status::Ok;
+
+      return bOk;
+
+   }
+   
+   BOOL graphics::FillRectangle(LPCRECT lpRect)
+   { 
+
+      return FillRectangle(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
 
    }
 

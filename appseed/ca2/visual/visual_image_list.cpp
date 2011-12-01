@@ -102,6 +102,8 @@ bool image_list::draw(
                   int iFlag)
 {
    UNREFERENCED_PARAMETER(iFlag);
+   if(m_spdib->get_graphics() == NULL)
+      return false;
    if(m_spdib->get_graphics()->get_os_data() == NULL)
       return false;
    sz.cx = min(m_size.cx, sz.cx);
