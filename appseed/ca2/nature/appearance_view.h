@@ -24,7 +24,7 @@ namespace nature
       using ::userbase::tab_view::on_show_view;
 #endif
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual void on_show_view();
 
       void on_create_view(::user::view_creator_data * pcreatordata);

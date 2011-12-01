@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_____ library
+   class CLASS_DECL_c library
    {
    public:
 
@@ -31,7 +31,7 @@ namespace ca
 
    };
 
-   class CLASS_DECL_____ ca2_library :
+   class CLASS_DECL_c ca2_library :
       virtual public library
    {
    public:
@@ -53,7 +53,7 @@ namespace ca2
 {
 
 
-   CLASS_DECL_____ void * open_ca2_library(const char * psz);
+   CLASS_DECL_c void * open_ca2_library(const char * psz);
 
 
 } // namespace ca2

@@ -130,7 +130,7 @@ namespace user
    void scroll_view::_001OnCreate(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(::user::win::message::create, pcreate, pobj);
+      SCAST_PTR(::gen::message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
@@ -145,7 +145,7 @@ namespace user
 
    void scroll_view::_001OnUser9654(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam == 0)
@@ -157,7 +157,7 @@ namespace user
 
    void scroll_view::_001OnVScroll(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
       keeper < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
       m_scrollinfo.m_ptScroll.y = pscroll->m_nPos;
       PostMessage(WM_USER + 9654, 0, 0);
@@ -165,7 +165,7 @@ namespace user
 
    void scroll_view::_001OnHScroll(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
       keeper < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
       m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;
       PostMessage(WM_USER + 9654, 0, 0);
@@ -225,7 +225,7 @@ namespace user
 
 
 
-   void scroll_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void scroll_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &scroll_view::_001OnCreate);

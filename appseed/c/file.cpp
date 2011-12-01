@@ -1002,7 +1002,7 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 
 
-CLASS_DECL_____ bool file_is_equal_path(const char * psz1, const char * psz2)
+CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 {
 #ifdef WINDOWS
    const int iBufSize = MAX_PATH * 8;
@@ -1036,7 +1036,7 @@ CLASS_DECL_____ bool file_is_equal_path(const char * psz1, const char * psz2)
 }
 
 
-CLASS_DECL_____ vsstring file_get_mozilla_firefox_plugin_container_path()
+CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 {
 #ifdef WINDOWS
 

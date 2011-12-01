@@ -26,7 +26,7 @@ namespace gcom
       }
 
 
-      void Interface::install_message_handling(::user::win::message::dispatch * pinterface)
+      void Interface::install_message_handling(::gen::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(MessageBackView, pinterface, this, &Interface::OnBackViewMessage);
          IGUI_WIN_MSG_LINK(MessageBackViewDequeue, pinterface, this, &Interface::OnDequeueMessage);
@@ -71,7 +71,7 @@ namespace gcom
 
       void Interface::OnBackViewMessage(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj)
+         SCAST_PTR(::gen::message::base, pbase, pobj)
          switch(pbase->m_wparam)
          {
          case BackViewWparamImageChangeEvent:
@@ -96,21 +96,21 @@ namespace gcom
 
       void Interface::OnDequeueMessage(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj)
+         SCAST_PTR(::gen::message::base, pbase, pobj)
          GetMain().OnDequeueMessage(pbase->m_wparam, pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
       void Interface::OnWndSize(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj)
+         SCAST_PTR(::gen::message::base, pbase, pobj)
          GetMain().m_bPendingLayout = true;
          pbase->m_bRet = false;
       }
 
       void Interface::OnWndTimer(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+         SCAST_PTR(::gen::message::timer, ptimer, pobj)
          if(m_dwTimerStep > 0 && m_dwTimerStep == ptimer->m_nIDEvent)
          {
             ImageChangePostEvent(gcom::backview::event_timer);
@@ -128,7 +128,7 @@ namespace gcom
 
       void Interface::OnWndCreate(gen::signal_object * pobj)
       {
-//         SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//         SCAST_PTR(::gen::message::create, pcreate, pobj)
          if(pobj->previous())
             return;
          initialize_user_interaction();

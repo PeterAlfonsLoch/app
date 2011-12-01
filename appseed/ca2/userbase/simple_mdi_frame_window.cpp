@@ -199,7 +199,7 @@ void SimpleMDIFrameWindow::pre_translate_message(gen::signal_object * pobj)
          return;
    }
 
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
 
    if(pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
    {

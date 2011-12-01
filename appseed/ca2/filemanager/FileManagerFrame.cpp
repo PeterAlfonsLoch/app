@@ -102,7 +102,7 @@ bool FileManagerFrame::CreateBars()
 }
 
 
-void FileManagerFrame::install_message_handling(::user::win::message::dispatch * pinterface)
+void FileManagerFrame::install_message_handling(::gen::message::dispatch * pinterface)
 {
    simple_frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SETTEXT, pinterface, this, &FileManagerFrame::_001OnSetText);
@@ -112,7 +112,7 @@ void FileManagerFrame::install_message_handling(::user::win::message::dispatch *
 
 void FileManagerFrame::_001OnSetText(gen::signal_object * pobj)
 {
-//   SCAST_PTR(::user::win::message::base, pbase, pobj)
+//   SCAST_PTR(::gen::message::base, pbase, pobj)
 
    pobj->previous();
 

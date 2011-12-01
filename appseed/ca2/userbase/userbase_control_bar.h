@@ -175,7 +175,7 @@ namespace userbase
    //   DECL_GEN_SIGNAL(_001OnPaint)
    //   virtual void _001OnDraw(::ca::graphics * pdc);
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       friend class userbase::frame_window;
       friend class BaseDockBar;

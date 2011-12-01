@@ -20,7 +20,7 @@ namespace nature
    {
    }
 
-   void appearance_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void appearance_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &appearance_view::_001OnCreate);

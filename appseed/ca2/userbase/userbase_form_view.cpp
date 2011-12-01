@@ -17,7 +17,7 @@ namespace userbase
    {
    }
 
-   void form_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void form_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::scroll_view::install_message_handling(pinterface);
       ::user::form::install_message_handling(pinterface);
@@ -93,7 +93,7 @@ namespace userbase
    /*
      void form_view::_001OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       point pt;
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -109,7 +109,7 @@ namespace userbase
 
    void form_view::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       point pt;
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -125,7 +125,7 @@ namespace userbase
 
    void form_view::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       point pt;
       pt = pmouse->m_pt;
       ScreenToClient(&pt);

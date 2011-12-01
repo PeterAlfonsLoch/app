@@ -11,7 +11,7 @@ namespace userbase
       form_view(::ca::application * papp);
       virtual ~form_view();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnCreate);
    };

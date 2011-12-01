@@ -73,7 +73,7 @@ namespace window_frame
 
 
       void AttachFrameSchema(FrameSchema * pframeschema);
-      void _001InstallEventHandling(::user::win::message::dispatch * pdispatch);
+      void _001InstallEventHandling(::gen::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMouseMove)

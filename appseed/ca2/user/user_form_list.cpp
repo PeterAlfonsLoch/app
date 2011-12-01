@@ -32,7 +32,7 @@ namespace user
       list::_001GetSelection(key, selection);
    }
 
-   void form_list::install_message_handling( ::user::win::message::dispatch *pinterface)
+   void form_list::install_message_handling( ::gen::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &form_list::_001OnKeyDown);
 
@@ -164,7 +164,7 @@ namespace user
 
    void form_list::_001OnVScroll(gen::signal_object * pobj)
    {
-      //SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+      //SCAST_PTR(::gen::message::scroll, pscroll, pobj);
       pobj->previous();
 
 
@@ -310,7 +310,7 @@ namespace user
 
    void form_list::_001OnKeyDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
 
       if(pkey->m_nChar == VK_RETURN)
       {
@@ -406,7 +406,7 @@ namespace user
       }
    }
 
-   void form_list::_000OnMouse(::user::win::message::mouse * pmouse)
+   void form_list::_000OnMouse(::gen::message::mouse * pmouse)
    {
 
       point pt = pmouse->m_pt;

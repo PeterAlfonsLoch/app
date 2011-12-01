@@ -108,7 +108,7 @@ namespace platform
    {
    }
 
-   void view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
 
@@ -298,7 +298,7 @@ namespace platform
    }
    void view::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
    }
@@ -579,7 +579,7 @@ namespace platform
    void view::_001OnAppLanguage(::gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::base, pbase, pobj);
+//      SCAST_PTR(::gen::message::base, pbase, pobj);
       load_links();
    }
 
@@ -618,7 +618,7 @@ namespace platform
    void view::_001OnTimer(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+      SCAST_PTR(::gen::message::timer, ptimer, pobj)
 
       if(ptimer->m_nIDEvent == 21977)
       {
@@ -656,7 +656,7 @@ namespace platform
 
    void view::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -899,7 +899,7 @@ namespace platform
 
    void view::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);

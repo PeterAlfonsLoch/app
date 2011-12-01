@@ -34,7 +34,7 @@ namespace gcom
          return ::radix::thread::exit_instance();
       }
 
-      void thread::install_message_handling(::user::win::message::dispatch * pinterface)
+      void thread::install_message_handling(::gen::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);
@@ -190,7 +190,7 @@ namespace gcom
 
       void thread::OnBackViewMessage(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj);
+         SCAST_PTR(::gen::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case WPARAM_BACKVIEW_IMAGELOADED:
@@ -210,7 +210,7 @@ namespace gcom
       }
       void thread::OnUserMessage(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj);
+         SCAST_PTR(::gen::message::base, pbase, pobj);
           ASSERT(GetMainWnd() == NULL);
          if(pbase->m_wparam == 1) //&& m_pImageLoader != NULL)
          {
@@ -312,7 +312,7 @@ namespace gcom
 
       void thread::OnCommandMessage(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj);
+         SCAST_PTR(::gen::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case CommandLoadImage:

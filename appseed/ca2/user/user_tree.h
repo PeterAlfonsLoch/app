@@ -85,7 +85,7 @@ namespace user
       virtual void _001OnItemExpand(::ex1::tree_item * pitem);
       virtual void _001OnItemCollapse(::ex1::tree_item * pitem);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
-      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
       int _001GetItemHeight();
       virtual index _001GetIndentation();
       

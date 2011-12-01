@@ -50,7 +50,7 @@ namespace filemanager
    {
    }
 
-   void SimpleFileListView::install_message_handling(::user::win::message::dispatch * pinterface)
+   void SimpleFileListView::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
       SimpleFileListInterface::install_message_handling(pinterface);
@@ -297,8 +297,8 @@ namespace filemanager
 
    void SimpleFileListView::_001OnContextMenu(gen::signal_object * pobj)
    {
-      //SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
-      SCAST_PTR(::user::win::message::mouse, pcontextmenu, pobj)
+      //SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::gen::message::mouse, pcontextmenu, pobj)
       index iItem;
 //      HRESULT hr;
       point point = pcontextmenu->m_pt;
@@ -483,7 +483,7 @@ namespace filemanager
 
    void SimpleFileListView::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+      SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 198477)
       {
          if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
@@ -569,7 +569,7 @@ namespace filemanager
 
    void SimpleFileListView::_001OnShellCommand(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::command, pcommand, pobj)
+      SCAST_PTR(::gen::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
@@ -597,7 +597,7 @@ namespace filemanager
 
    void SimpleFileListView::_001OnFileManagerItemUpdate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::update_cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::gen::message::update_cmd_ui, pupdatecmdui, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
       Range range;
@@ -1035,7 +1035,7 @@ namespace filemanager
 
    void SimpleFileListView::_001OnShowWindow(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj);
+      SCAST_PTR(::gen::message::show_window, pshowwindow, pobj);
 
       if(!pshowwindow->m_bShow)
       {

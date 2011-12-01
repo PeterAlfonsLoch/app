@@ -144,7 +144,7 @@ namespace filemanager
       //virtual void schedule_file_size(const char * psz) = 0;
    // Attributes
       virtual void _017Synchronize();
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       image_list * GetActionButtonImageList(index i);
 

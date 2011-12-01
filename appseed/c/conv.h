@@ -1,4 +1,4 @@
 #pragma once
 
 
-CLASS_DECL_____ int to_hex_char(int i);
+CLASS_DECL_c int to_hex_char(int i);

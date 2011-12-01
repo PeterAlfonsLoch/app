@@ -93,7 +93,7 @@ namespace html
       void elemental::OnLButtonDown(gen::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
-         SCAST_PTR(user::win::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(gen::message::mouse, pmouse, phtml->m_psignal);
          if(has_link())
          {
             pmouse->m_bRet = true;
@@ -104,7 +104,7 @@ namespace html
       void elemental::OnMouseMove(gen::signal_object * pobj)
       {
          SCAST_PTR(::html::signal, phtml, pobj);
-         SCAST_PTR(user::win::message::mouse, pmouse, phtml->m_psignal);
+         SCAST_PTR(gen::message::mouse, pmouse, phtml->m_psignal);
          if(has_link())
          {
             pmouse->m_ecursor = ::visual::cursor_hand;

@@ -51,7 +51,7 @@ void simple_tab_view::GetClientRect(LPRECT lprect)
 
 void simple_tab_view::_001OnCreate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+   SCAST_PTR(::gen::message::create, pcreate, pobj)
    if(pcreate->previous())
       return;
    
@@ -67,7 +67,7 @@ void simple_tab_view::_001OnDraw(::ca::graphics * pdc)
    ::user::tab::_001OnDraw(pdc);
 }
 
-void simple_tab_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void simple_tab_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    ::user::tab::install_message_handling(pinterface);
@@ -76,7 +76,7 @@ void simple_tab_view::install_message_handling(::user::win::message::dispatch * 
 
 void simple_tab_view::_001OnLButtonUp(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
    ::user::tab::_001OnLButtonUp(pobj);
    if(pmouse->m_bRet)
       return;
@@ -87,7 +87,7 @@ void simple_tab_view::_001OnLButtonUp(gen::signal_object * pobj)
 
 void simple_tab_view::_001OnMouseMove(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
    ::user::tab::_001OnMouseMove(pobj);
    if(pmouse->m_bRet)
       return;
@@ -98,7 +98,7 @@ void simple_tab_view::_001OnMouseMove(gen::signal_object * pobj)
 
 void simple_tab_view::_001OnMouseLeave(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
    ::user::tab::_001OnMouseLeave(pobj);
    if(pmouse->m_bRet)
       return;

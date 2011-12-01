@@ -62,7 +62,7 @@ namespace platform
 
    #endif //_DEBUG
 
-   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
@@ -75,7 +75,7 @@ namespace platform
    
    void frame::_001OnTimer(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
       
       static float theta;
@@ -219,7 +219,7 @@ namespace platform
 
    void frame::_001OnCreate(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj);
+//      SCAST_PTR(::gen::message::create, pcreate, pobj);
       pobj->previous();
 
       m_bTimerOn = false;

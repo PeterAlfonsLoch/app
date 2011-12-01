@@ -11,7 +11,7 @@ namespace userbase
       split_view(::ca::application * papp);
       virtual ~split_view();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual void _001OnDraw(::ca::graphics * pdc);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    #ifdef _DEBUG

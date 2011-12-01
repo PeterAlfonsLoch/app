@@ -36,7 +36,7 @@ namespace bergedge
    {
    }
 
-   void view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);
@@ -218,7 +218,7 @@ namespace bergedge
 
    void view::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
    }
@@ -250,7 +250,7 @@ namespace bergedge
 
    void view::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+      SCAST_PTR(::gen::message::timer, ptimer, pobj)
       switch(ptimer->m_nIDEvent)
       {
       case TimerBackView:
@@ -386,7 +386,7 @@ namespace bergedge
 
    void view::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -474,7 +474,7 @@ namespace bergedge
       gcom::backview::user::interaction::layout();
    }*/
 
-   void view::_000OnMouse(::user::win::message::mouse * pmouse)
+   void view::_000OnMouse(::gen::message::mouse * pmouse)
    {
       try
       {

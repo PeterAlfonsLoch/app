@@ -21,7 +21,7 @@ simple_printer_list_view::~simple_printer_list_view()
 }
 
 
-void simple_printer_list_view::install_message_handling(::user::win::message::dispatch * pdispatch)
+void simple_printer_list_view::install_message_handling(::gen::message::dispatch * pdispatch)
 {
    simple_list_view::install_message_handling(pdispatch);
    IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &simple_printer_list_view::_001OnCreate);
@@ -30,7 +30,7 @@ void simple_printer_list_view::install_message_handling(::user::win::message::di
 
 void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
 {
-//   SCAST_PTR(user::win::message::create, pcreate, pobj);
+//   SCAST_PTR(gen::message::create, pcreate, pobj);
 
    pobj->previous();
 

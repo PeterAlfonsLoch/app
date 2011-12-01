@@ -7,7 +7,7 @@ typedef void *HANDLE;
 #include <pthread.h>
 #endif
 
-class CLASS_DECL_____ simple_event
+class CLASS_DECL_c simple_event
 {
 public:
 

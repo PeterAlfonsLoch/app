@@ -20,7 +20,7 @@ SimplePushButton::~SimplePushButton()
 {
 }
 
-void SimplePushButton::install_message_handling(::user::win::message::dispatch * pinterface)
+void SimplePushButton::install_message_handling(::gen::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimplePushButton::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &SimplePushButton::_001OnDestroy);
@@ -195,7 +195,7 @@ void SimplePushButton::_001OnDestroy(gen::signal_object * pobj)
 
 void SimplePushButton::_001OnTimer(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+   SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 16384)
    {
       UpdateHover();

@@ -175,7 +175,7 @@ void CMDIFrameWnd::pre_translate_message(gen::signal_object * pobj)
          return;
    }
    
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
 
    if(pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
    {
@@ -442,7 +442,7 @@ void CMDIChildWnd::pre_translate_message(gen::signal_object * pobj)
    if(pobj->m_bRet)
       return;
 
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
 
    // we can't call 'frame_window::PreTranslate' since it will translate
    //  accelerators in the context of the MDI Child - but since MDI Child

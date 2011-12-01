@@ -36,7 +36,7 @@ namespace command
       virtual void _001OnDraw(::ca::graphics * pdc);
 
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)

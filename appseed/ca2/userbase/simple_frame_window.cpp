@@ -52,7 +52,7 @@ simple_frame_window::~simple_frame_window()
 /////////////////////////////////////////////////////////////////////////////
 // simple_frame_window message handlers
 
-void simple_frame_window::install_message_handling(::user::win::message::dispatch * pinterface)
+void simple_frame_window::install_message_handling(::gen::message::dispatch * pinterface)
 {
    userbase::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
@@ -134,7 +134,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 {
    
    
-   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+   SCAST_PTR(::gen::message::create, pcreate, pobj)
 
 
    if(pobj->previous())
@@ -303,7 +303,7 @@ void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT use
 
 void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj) 
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
    MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam;
    if (IsFullScreen())
    {
@@ -415,7 +415,7 @@ void simple_frame_window::_001OnViewFullScreen(gen::signal_object * pobj)
 void simple_frame_window::_001OnMouseMove(gen::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+//   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
 }
 
 void simple_frame_window::_001OnUpdateViewFullScreen(gen::signal_object * pobj) 
@@ -438,7 +438,7 @@ bool simple_frame_window::_001CanEnterScreenSaver()
 
 void simple_frame_window::_001OnSysCommand(gen::signal_object * pobj) 
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
 
    if(pbase->m_wparam == SC_SCREENSAVE)
    {
@@ -624,7 +624,7 @@ void simple_frame_window::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS F
 
 void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::nc_activate, pncactivate, pobj)
+   SCAST_PTR(::gen::message::nc_activate, pncactivate, pobj)
    // stay active if WF_STAYACTIVE bit is on
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
@@ -736,14 +736,14 @@ AFX_STATIC_DATA const char _afxOldWndProc[] = "AfxOldWndProc423";
 
 void simple_frame_window::_001OnDdeInitiate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj)
+   SCAST_PTR(::gen::message::base, pbase, pobj)
    pbase->set_lresult(DefWindowProc(pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
 
 void simple_frame_window::pre_translate_message(gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_KEYUP)
    {
       if(pbase->m_wparam == VK_RETURN)
@@ -969,7 +969,7 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, DWO
 
 void simple_frame_window::_001OnUser184(gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
    if(pbase->m_wparam == 0 &&
       pbase->m_lparam == 0)
    {

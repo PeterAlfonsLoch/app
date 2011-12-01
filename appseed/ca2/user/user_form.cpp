@@ -513,7 +513,7 @@ namespace user
    void form::_000OnPosCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::base, pbase, pobj)
+//      SCAST_PTR(::gen::message::base, pbase, pobj)
    }
 
    void form::_001InitializeFormPreData()
@@ -582,7 +582,7 @@ namespace user
       }
    }
 
-   void form::install_message_handling( ::user::win::message::dispatch *pinterface)
+   void form::install_message_handling( ::gen::message::dispatch *pinterface)
    {
    /*   InstallOnDrawInterface(pinterface);
       VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
@@ -620,13 +620,13 @@ namespace user
 
    void form::_001OnNotify(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::notify, pnotify, pobj)
+      SCAST_PTR(::gen::message::notify, pnotify, pobj)
       pnotify->m_bRet = false;
    }
 
    void form::_001OnMessageNotify(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       // revamp pbase->set_lresult(user::NotifyRetContinue);
       pbase->m_bRet = false;
    }
@@ -724,7 +724,7 @@ namespace user
 
    void form::_001OnAppLanguage(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
 
       _017OnAppLanguage();
@@ -734,11 +734,11 @@ namespace user
 
    void form::_001OnCreate(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
-      //PostMessage(::user::win::message::message_pos_create);
+      //PostMessage(::gen::message::message_pos_create);
 
    }
 

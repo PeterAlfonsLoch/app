@@ -104,7 +104,7 @@ namespace user
    }
 
 
-   void list::install_message_handling(::user::win::message::dispatch * pinterface)
+   void list::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::scroll_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &list::_001OnSize);
@@ -716,7 +716,7 @@ namespace user
 
    void list::_001OnSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::size, psize, pobj);
+      SCAST_PTR(::gen::message::size, psize, pobj);
       layout();
       psize->m_bRet = false;
    }
@@ -2302,7 +2302,7 @@ namespace user
 
    void list::_001OnKeyDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
             return;
       if(pkey->m_nChar == VK_DOWN || pkey->m_nChar == VK_UP ||
@@ -2383,7 +2383,7 @@ namespace user
 
    void list::_001OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
       INT_PTR iItem;
       point pt = pmouse->m_pt;
@@ -2445,7 +2445,7 @@ namespace user
 
    void list::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
@@ -2488,7 +2488,7 @@ namespace user
 
    void list::_001OnRButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
 
       pmouse->previous();
       point pt = pmouse->m_pt;
@@ -2734,7 +2734,7 @@ namespace user
 
    void list::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
          m_iClick = 2;
 
       //   _001OnClick(nFlags, point);
@@ -3507,7 +3507,7 @@ namespace user
 
    void list::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+      SCAST_PTR(::gen::message::create, pcreate, pobj)
 
 
          pobj->previous();
@@ -3583,7 +3583,7 @@ namespace user
 
    void list::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(::gen::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
@@ -4718,7 +4718,7 @@ namespace user
 
    void list::_001OnMouseWheel(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse_wheel, pmousewheel, pobj);
+      SCAST_PTR(::gen::message::mouse_wheel, pmousewheel, pobj);
       m_iWheelDelta += pmousewheel->GetDelta();
 
       index iDelta = m_iWheelDelta / WHEEL_DELTA;
@@ -4776,7 +4776,7 @@ namespace user
 
    void list::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -4945,7 +4945,7 @@ namespace user
 
    void list::_001OnVScroll(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+//      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
 
       pobj->previous();
 
@@ -4965,7 +4965,7 @@ namespace user
 
    void list::_001OnHScroll(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+//      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
 
       pobj->previous();
 

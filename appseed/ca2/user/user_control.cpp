@@ -163,7 +163,7 @@ namespace user
 
    }
 
-   void control::install_message_handling(::user::win::message::dispatch * pdispatch)
+   void control::install_message_handling(::gen::message::dispatch * pdispatch)
    {
 
       ::view::install_message_handling(pdispatch);
@@ -196,7 +196,7 @@ namespace user
    {
       m_pwndiCustomWindowProc = pwndi;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      user::win::message::base base(get_app(), (HWND) pwndi->get_os_data(), message, wparam, lparam, lresult);
+      gen::message::base base(get_app(), (HWND) pwndi->get_os_data(), message, wparam, lparam, lresult);
       _003CustomWindowProc(&base);
       return base.m_bRet;
    }
@@ -461,7 +461,7 @@ namespace user
 
    void control::BaseControlExWndProcBefore(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == g_uiMessage)
       {
          // Parameter for getting pointer to this control object
@@ -486,7 +486,7 @@ namespace user
 
    void control::BaseControlExWndProcAfter(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_KILLFOCUS:
@@ -724,7 +724,7 @@ namespace user
 
    void control::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 
       int iHover = hit_test(pmouse->m_pt, m_eelementHover);
 

@@ -179,7 +179,7 @@ namespace command
 
    void frame::_001OnTimer(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
       static float theta;
       if(nIDEvent == 3)
@@ -344,7 +344,7 @@ namespace command
    }
 
 
-   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
@@ -357,7 +357,7 @@ namespace command
 
    void frame::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj);
+      SCAST_PTR(::gen::message::create, pcreate, pobj);
       pobj->previous();
       if(pobj->m_bRet)
          return;
@@ -425,7 +425,7 @@ namespace command
 
    void frame::_001OnShowWindow(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj)
+      SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
    
       if(!pshowwindow->m_bShow)
       {
@@ -462,7 +462,7 @@ namespace command
 
    void frame::message_window_message_handler(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -472,7 +472,7 @@ namespace command
 
    void frame::_001OnApp2000(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
 
 
       if(pbase->m_wparam == 0)

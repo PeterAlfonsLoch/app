@@ -83,7 +83,7 @@ namespace gcom
 
          void SetMain(backview::Main * pmain);
 
-         void install_message_handling(::user::win::message::dispatch * pinterface);
+         void install_message_handling(::gen::message::dispatch * pinterface);
 
           static DWORD WINAPI ThreadProcStretchImage(LPVOID lpParameter);
           static UINT AFX_CDECL ThreadProcLoadImage(LPVOID lpParameter);

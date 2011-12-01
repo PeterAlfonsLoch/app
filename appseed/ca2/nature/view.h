@@ -30,7 +30,7 @@ namespace nature
 
       virtual void _001OnDraw(::ca::graphics * pdc);
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 

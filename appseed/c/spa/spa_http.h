@@ -10,7 +10,7 @@ void dlr(DWORD dwDownload);
 */
 
 
-CLASS_DECL_____ void ms_download_callback(void * param, int i, DWORD_PTR dwLen);
-CLASS_DECL_____ void ms_get_callback(void * param, int i, DWORD_PTR dwLen);
+CLASS_DECL_c void ms_download_callback(void * param, int i, DWORD_PTR dwLen);
+CLASS_DECL_c void ms_get_callback(void * param, int i, DWORD_PTR dwLen);
 
-CLASS_DECL_____ void dlr(DWORD dwDownload);
+CLASS_DECL_c void dlr(DWORD dwDownload);

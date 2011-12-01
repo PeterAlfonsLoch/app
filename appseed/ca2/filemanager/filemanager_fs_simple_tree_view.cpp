@@ -207,7 +207,7 @@ namespace filemanager
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
-         void tree_view::install_message_handling(::user::win::message::dispatch * pdispatch)
+         void tree_view::install_message_handling(::gen::message::dispatch * pdispatch)
          {
             ::userbase::view::install_message_handling(pdispatch);
             ::user::tree::install_message_handling(pdispatch);

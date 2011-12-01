@@ -27,7 +27,7 @@ namespace userbase
 
    void frame_window_interface::_guserbaseOnInitialUpdate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
       if(pfiu != NULL)
       {
@@ -88,7 +88,7 @@ namespace userbase
       pbase->set_lresult(0);
    }
 
-   void frame_window_interface::install_message_handling(::user::win::message::dispatch *pinterface)
+   void frame_window_interface::install_message_handling(::gen::message::dispatch *pinterface)
    {
       ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);

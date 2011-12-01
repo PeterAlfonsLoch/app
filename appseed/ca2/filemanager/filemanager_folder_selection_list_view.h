@@ -33,7 +33,7 @@ public:
    DECL_GEN_SIGNAL(_001OnAdd)
    DECL_GEN_SIGNAL(_001OnRemove)
 
-   void install_message_handling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::gen::message::dispatch * pinterface);
 
    void CreateViews();
 

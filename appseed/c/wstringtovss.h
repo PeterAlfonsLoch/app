@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_____ wstringtovss :
+class CLASS_DECL_c wstringtovss :
    public wstring
 {
 public:

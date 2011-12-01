@@ -147,7 +147,7 @@ namespace userbase
       m_pguie->ReleaseDC(pdc);
    }
 
-   void button::install_message_handling(::user::win::message::dispatch * pinterface)
+   void button::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       ::user::button::install_message_handling(pinterface);

@@ -29,11 +29,11 @@ namespace bergedge
 
 
       frame(::ca::application * papp);
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
-      virtual void _000OnMouse(::user::win::message::mouse * pmouse);
+      virtual void _000OnMouse(::gen::message::mouse * pmouse);
 
       void OnHoverAction();
 

@@ -16,7 +16,7 @@ simple_list_header_control::~simple_list_header_control()
 
 
 
-void simple_list_header_control::install_message_handling(::user::win::message::dispatch * pinterface)
+void simple_list_header_control::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);
@@ -49,7 +49,7 @@ void simple_list_header_control::install_message_handling(::user::win::message::
 
 void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::notify, pnotify, pobj)
+   SCAST_PTR(::gen::message::notify, pnotify, pobj)
    /*CTransparentWndInterface * ptwi = NULL;
    GetParent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
@@ -68,7 +68,7 @@ void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
 
 void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::notify, pnotify, pobj)
+   SCAST_PTR(::gen::message::notify, pnotify, pobj)
 
 /*   CTransparentWndInterface * ptwi = NULL;
    GetParent()->SendMessage(
@@ -89,7 +89,7 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
 
 void simple_list_header_control::_001OnCreate(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+   SCAST_PTR(::gen::message::create, pcreate, pobj)
    LOGFONT lf;
 
    ::user::list_header::m_font->operator = (*System.font_central().GetListCtrlFont());
@@ -100,7 +100,7 @@ void simple_list_header_control::_001OnCreate(gen::signal_object * pobj)
 
 void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::notify, pnotify, pobj)
+   SCAST_PTR(::gen::message::notify, pnotify, pobj)
 //   LPNMHEADER lpnmhd = (LPNMHEADER) pnotify->get_lpnmhdr();
    GetParent()->SendMessage(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 /*   CTransparentWndInterface * ptwi = NULL;
@@ -190,7 +190,7 @@ bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, ::user::in
 
 void simple_list_header_control::_001OnMove(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::move, pmove, pobj)
+   SCAST_PTR(::gen::message::move, pmove, pobj)
    point point(pmove->m_pt.x, pmove->m_pt.y);
    pmove->m_bRet = false;
 }

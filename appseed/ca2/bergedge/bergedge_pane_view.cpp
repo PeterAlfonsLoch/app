@@ -389,7 +389,7 @@ namespace bergedge
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
@@ -572,7 +572,7 @@ namespace bergedge
    void pane_view::_001OnRButtonUp(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       /*if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          ::userbase::menu menu(get_app());

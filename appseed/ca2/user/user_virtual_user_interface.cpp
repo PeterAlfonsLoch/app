@@ -179,7 +179,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    {
       pwndThis->set_handle(m_hwnd);
    }*/
-   if(dynamic_cast < ::user::win::message::dispatch * > (pparent->get_guie()) == NULL)
+   if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
@@ -224,7 +224,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = lpParam;
    m_pguie->PreCreateWindow(cs);
-   //m_pguie->install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
    SendMessage(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, 0);
    SendMessage(WM_SIZE, 0, 0);
@@ -259,7 +259,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
    {
       pwndThis->set_handle(m_hwnd);
    }*/
-   if(dynamic_cast < ::user::win::message::dispatch * > (pparent->get_guie()) == NULL)
+   if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
@@ -287,7 +287,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
    }
    m_id      = id;
    m_pguie->m_id      = id;
-   //m_pguie->install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.lpszClass = lpszClassName;
@@ -335,7 +335,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    {
       pwndThis->set_handle(m_hwnd);
    }*/
-   if(dynamic_cast < ::user::win::message::dispatch * > (pparent->get_guie()) == NULL)
+   if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
@@ -363,8 +363,8 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    }
    m_id      = id;
    m_pguie->m_id = id;
-   //install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (pparent));
-   //m_pguie->install_message_handling(dynamic_cast < ::user::win::message::dispatch * > (this));
+   //install_message_handling(dynamic_cast < ::gen::message::dispatch * > (pparent));
+   //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.lpszClass = NULL;
@@ -422,7 +422,7 @@ void virtual_user_interface::VirtualOnSize()
 }
 
 
-void virtual_user_interface::install_message_handling(::user::win::message::dispatch * pinterface)
+void virtual_user_interface::install_message_handling(::gen::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &virtual_user_interface::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_NCDESTROY   , pinterface, this, &virtual_user_interface::_001OnNcDestroy);
@@ -435,7 +435,7 @@ void virtual_user_interface::install_message_handling(::user::win::message::disp
    IGUI_WIN_MSG_LINK(WM_CLOSE       , pinterface, this, &virtual_user_interface::_001OnClose);
 }
 
-void virtual_user_interface::_002InstallMessageHandling(::user::win::message::dispatch * pinterface)
+void virtual_user_interface::_002InstallMessageHandling(::gen::message::dispatch * pinterface)
 {
    UNREFERENCED_PARAMETER(pinterface);
 }
@@ -476,7 +476,7 @@ LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARA
    ::ca::window * pwnd = get_wnd();
    if(pwnd == NULL)
       return 0;
-   ::ca::smart_pointer < ::user::win::message::base > spbase;
+   ::ca::smart_pointer < ::gen::message::base > spbase;
    spbase(get_base(pwnd->get_safe_handle(), uiMessage, wparam, lparam));
    ::user::interaction * pui = this;
    while(pui != NULL && pui->GetParent() != NULL)
@@ -849,7 +849,7 @@ BOOL virtual_user_interface::DestroyWindow()
 
 void virtual_user_interface::message_handler(gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
    //LRESULT lresult = 0;
    if(m_pguie != NULL)
    {

@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_ca application :
-      virtual public ::ca5::application
+      virtual public ::userbase::application
    {
    public:
 

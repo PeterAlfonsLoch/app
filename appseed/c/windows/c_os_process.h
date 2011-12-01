@@ -6,7 +6,7 @@
 #endif
 
 
-CLASS_DECL_____ void call_sync(const char * path, const char * param);
+CLASS_DECL_c void call_sync(const char * path, const char * param);
 #ifdef WINDOWS
-CLASS_DECL_____ void execute_sync(SHELLEXECUTEINFOA * pinfoa);
+CLASS_DECL_c void execute_sync(SHELLEXECUTEINFOA * pinfoa);
 #endif

@@ -18,7 +18,7 @@ namespace userbase
       Destroy();
    }
 
-   void notify_icon::install_message_handling(::user::win::message::dispatch * pinterface)
+   void notify_icon::install_message_handling(::gen::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(MessageNotifyIcon, pinterface, this, &notify_icon::_001OnNotifyIconMessage);
    }
@@ -99,7 +99,7 @@ namespace userbase
    void notify_icon::_001OnNotifyIconMessage(gen::signal_object * pobj)
    {
       
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       m_plistener->OnNotifyIconMessage(m_uiId, pbase->m_lparam);
 

@@ -22,7 +22,7 @@ SimpleFolderListView::~SimpleFolderListView()
 {
 }
 
-void SimpleFolderListView::install_message_handling(::user::win::message::dispatch * pinterface)
+void SimpleFolderListView::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    SimpleFolderListInterface::install_message_handling(pinterface);
@@ -98,7 +98,7 @@ void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::radix::ob
 
 void SimpleFolderListView::_001OnLButtonDblClk(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
    index iItem;
    if(_001HitTest_(pmouse->m_pt, iItem))
    {

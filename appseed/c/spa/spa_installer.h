@@ -9,11 +9,11 @@ namespace spa
 
    class window;
 
-   class CLASS_DECL_____ installer
+   class CLASS_DECL_c installer
    {
    public:
 
-      class CLASS_DECL_____ launcher :
+      class CLASS_DECL_c launcher :
          virtual public ::launcher
       {
       public:
@@ -224,7 +224,7 @@ namespace spa
    };
 
 
-   CLASS_DECL_____ int ca2_app_install_run(const char * psz, const char * pszParam1, const char * pszParam2, DWORD & dwStartError, bool bSynch);
+   CLASS_DECL_c int ca2_app_install_run(const char * psz, const char * pszParam1, const char * pszParam2, DWORD & dwStartError, bool bSynch);
 
 
 } // namespace spa

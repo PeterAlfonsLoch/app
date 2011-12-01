@@ -531,7 +531,7 @@ namespace user
 
 
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       list_data * GetDataInterface();
       void UpdateHover();
@@ -597,7 +597,7 @@ namespace user
       void SetDataInterface(list_data * pinterface);
       void CacheHint();
       void SetCacheInterface(list_cache_interface * pinterface);
-      //void AddMessageHandling(::user::win::message::dispatch * pinterface);
+      //void AddMessageHandling(::gen::message::dispatch * pinterface);
       void _001ShowTopText(bool bShow = true);
       void _001LayoutTopText();
       void _001SetTopText(const wchar_t * lpcwsz);

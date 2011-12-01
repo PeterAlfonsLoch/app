@@ -40,7 +40,7 @@ namespace command
       UNREFERENCED_PARAMETER(phint);
    }
 
-   void primary_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void primary_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::edit_plain_text_view::install_message_handling(pinterface);
 	   IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &primary_view::_001OnContextMenu);
@@ -189,7 +189,7 @@ namespace command
 
    void primary_view::_001OnContextMenu(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
       ::userbase::menu menu(get_app());

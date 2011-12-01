@@ -21,7 +21,7 @@ public:
             SimpleMDIFrameWindow* pParentWnd = NULL,
             ::ca::create_context* pContext = NULL);
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 // Attributes
    SimpleMDIFrameWindow* GetMDIFrame();

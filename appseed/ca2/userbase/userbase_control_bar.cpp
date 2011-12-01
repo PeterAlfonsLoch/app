@@ -30,7 +30,7 @@ namespace userbase
       m_nMRUWidth = 32767;
    }
 
-   void control_bar::install_message_handling(::user::win::message::dispatch * pinterface)
+   void control_bar::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
@@ -270,7 +270,7 @@ namespace userbase
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       UINT message = pbase->m_uiMessage;
       ::user::interaction* pOwner = GetOwner();
 
@@ -319,7 +319,7 @@ namespace userbase
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -369,7 +369,7 @@ namespace userbase
    void control_bar::_001OnHelpHitTest(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::base, pbase, pobj)
+//      SCAST_PTR(::gen::message::base, pbase, pobj)
       ASSERT_VALID(this);
 
    }
@@ -451,7 +451,7 @@ namespace userbase
 
    void control_bar::_001OnMouseActivate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse_activate, pmouseactivate, pobj)
+      SCAST_PTR(::gen::message::mouse_activate, pmouseactivate, pobj)
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -540,7 +540,7 @@ namespace userbase
 
    void control_bar::_001OnCtlColor(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::ctl_color, pctlcolor, pobj)
+      SCAST_PTR(::gen::message::ctl_color, pctlcolor, pobj)
       LRESULT lResult;
       if (pctlcolor->m_pwnd->SendChildNotifyLastMsg(&lResult))
       {
@@ -563,7 +563,7 @@ namespace userbase
 
    void control_bar::_001OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
       if (m_pDockBar != NULL )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, NULL) == -1)
@@ -581,7 +581,7 @@ namespace userbase
 
    void control_bar::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_pt);
@@ -591,7 +591,7 @@ namespace userbase
 
    void control_bar::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_pt);
@@ -601,13 +601,13 @@ namespace userbase
 
    void control_bar::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       pmouse->previous();
    }
 
    void control_bar::_001OnIdleUpdateCmdUI(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       // handle delay hide/show
       BOOL bVis = GetStyle() & WS_VISIBLE;
       UINT swpFlags = 0;
@@ -639,7 +639,7 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      ::user::win::message::base base(get_app());
+      ::gen::message::base base(get_app());
       LRESULT lresult;
       base.set(_get_handle(), WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);
@@ -691,7 +691,7 @@ namespace userbase
 
    void control_bar::_001OnSizeParent(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)pbase->m_lparam;
       DWORD dwStyle = RecalcDelayShow(lpLayout);
 

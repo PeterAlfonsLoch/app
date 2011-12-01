@@ -547,7 +547,7 @@ namespace user
 
 
 
-   void interaction::_000OnMouse(::user::win::message::mouse * pmouse)
+   void interaction::_000OnMouse(::gen::message::mouse * pmouse)
    {
       try
       {
@@ -605,7 +605,7 @@ namespace user
       }
    }
 
-   void interaction::_000OnKey(::user::win::message::key * pkey)
+   void interaction::_000OnKey(::gen::message::key * pkey)
    {
       point ptCursor;
       System.get_cursor_pos(&ptCursor);
@@ -753,7 +753,7 @@ namespace user
    {
       try
       {
-         SCAST_PTR(user::win::message::timer, ptimer, pobj)
+         SCAST_PTR(gen::message::timer, ptimer, pobj)
          if(ptimer->m_nIDEvent == 19510422)
          {
             try
@@ -2362,7 +2362,7 @@ ExitModal:
 
    void interaction::_001OnMouseMove(::gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       pmouse->m_ecursor = get_cursor();
    }
 
@@ -2716,7 +2716,7 @@ restart:
 
    void interaction::_001OnUser184(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       if(pbase->m_wparam == 0 &&
          pbase->m_lparam == 0)
       {
@@ -2810,7 +2810,7 @@ restart:
 
 } // namespace user
 
-CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(
+CLASS_DECL_ca2 ::user::interaction * WINAPI CreateGuieEx(
    ::ca::application * papp,
     __in DWORD dwExStyle,
     __in_opt const char * lpClassName,

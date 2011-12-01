@@ -29,7 +29,7 @@ namespace userbase
    //   AllocElements(0, 0);    // destroys existing elements
    }
 
-   void status_bar::install_message_handling(::user::win::message::dispatch * pinterface)
+   void status_bar::install_message_handling(::gen::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &status_bar::_001OnNcHitTest);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &status_bar::_001OnNcCalcSize);
@@ -479,7 +479,7 @@ namespace userbase
 
    void status_bar::_001OnNcHitTest(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::nchittest, pnchittest, pobj)
+      SCAST_PTR(::gen::message::nchittest, pnchittest, pobj)
       UINT nResult = (UINT)Default();
       if (nResult == HTBOTTOMRIGHT)
       {
@@ -493,7 +493,7 @@ namespace userbase
 
    void status_bar::_001OnNcCalcSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -573,7 +573,7 @@ namespace userbase
 
    void status_bar::_001OnWindowPosChanging(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       DWORD dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -584,7 +584,7 @@ namespace userbase
 
    void status_bar::_001OnSetText(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -601,7 +601,7 @@ namespace userbase
 
    void status_bar::_001OnGetText(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -632,7 +632,7 @@ namespace userbase
 
    void status_bar::_001OnGetTextLength(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
 
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -650,7 +650,7 @@ namespace userbase
 
    void status_bar::_001OnSetMinHeight(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       LRESULT lResult = Default();
       m_nMinHeight = (int)pbase->m_wparam;
       pbase->set_lresult(lResult);

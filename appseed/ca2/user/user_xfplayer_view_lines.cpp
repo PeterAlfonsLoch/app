@@ -121,7 +121,7 @@ int XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 
 }
 
-void XfplayerViewLines::InstallMessageHandling(::user::win::message::dispatch *pinterface)
+void XfplayerViewLines::InstallMessageHandling(::gen::message::dispatch *pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,    pinterface, this, &XfplayerViewLines::OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_SETCURSOR,    pinterface, this, &XfplayerViewLines::OnSetCursor);

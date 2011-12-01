@@ -47,7 +47,7 @@ namespace gcom
 
          void Shutdown();
 
-         void install_message_handling(::user::win::message::dispatch * pinterface);
+         void install_message_handling(::gen::message::dispatch * pinterface);
 
          virtual COLORREF GetBackgroundColor();
          void BackViewRender(::ca::graphics * pdc, int x, int y, int w, int h);

@@ -14,7 +14,7 @@ simple_tree_view::~simple_tree_view()
 {
 }
 
-void simple_tree_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void simple_tree_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    ::user::tree::install_message_handling(pinterface);
@@ -39,7 +39,7 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 
 void simple_tree_view::_001OnCreate(gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::create, pcreate, pobj);
+   SCAST_PTR(gen::message::create, pcreate, pobj);
    pcreate->previous();
 
 /*   if(!ex1::tree_data::initialize())

@@ -10,7 +10,7 @@ public:
 
    file_manager_operation_list_view(::ca::application * papp);
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    void _001InsertColumns();
 

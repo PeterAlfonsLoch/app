@@ -114,7 +114,7 @@ namespace user
       virtual ::user::interaction * get_tab_window(int iTab, bool bVisible = true);
       virtual ::user::place_holder * get_tab_holder(int iTab, bool bVisible = true);
 
-      void _000OnMouse(::user::win::message::mouse * pmouse);
+      void _000OnMouse(::gen::message::mouse * pmouse);
 
       virtual ::user::interaction * get_view_uie();
 
@@ -177,8 +177,8 @@ namespace user
       virtual void get_ends_ci_eat_id(stringa & stra, const char * pszSuffix);
       virtual void get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
-      virtual void _001ConnectParent(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void _001ConnectParent(::gen::message::dispatch * pinterface);
 
 
       virtual bool has_restore_tab();

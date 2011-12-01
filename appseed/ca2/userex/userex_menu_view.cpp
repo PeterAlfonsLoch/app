@@ -48,7 +48,7 @@ bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
    }
 }
 
-void menu_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void menu_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    form_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_view::_001OnCreate);
@@ -66,7 +66,7 @@ void menu_view::_001OnCreate(gen::signal_object * pobj)
 
 void menu_view::_001OnTimer(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+   SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(m_pcallback != NULL)
    {
       ::user::control_event ev;
@@ -83,7 +83,7 @@ void menu_view::_001OnTimer(gen::signal_object * pobj)
 
 void menu_view::_001OnUser123(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj);
+   SCAST_PTR(::gen::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
       GetTopLevelParent()->EndModalLoop(IDOK);

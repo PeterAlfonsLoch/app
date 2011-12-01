@@ -114,7 +114,7 @@ file_manager_operation_document * file_manager_operation_info_view::get_document
 
 void file_manager_operation_info_view::_001OnTimer(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+   SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
    }
@@ -126,7 +126,7 @@ void file_manager_operation_info_view::_001OnCreate(gen::signal_object * pobj)
    //SetTimer(123, 184, NULL);
 }
 
-void file_manager_operation_info_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void file_manager_operation_info_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_info_view::_001OnCreate);

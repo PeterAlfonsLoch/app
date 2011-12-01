@@ -16,7 +16,7 @@ public:
    document * get_document() const;
    ::ca::data * get_data() const;
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    virtual BOOL IsSelected(const ::radix::object* pDocItem) const; // support for OLE
 

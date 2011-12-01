@@ -49,7 +49,7 @@ public:
 
 
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    virtual void on_set_parent(::user::interaction* pguieParent);
 

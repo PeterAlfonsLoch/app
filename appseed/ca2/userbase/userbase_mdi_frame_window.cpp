@@ -193,7 +193,7 @@ namespace userbase
          return TRUE;
    #endif*/
 
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
 
       mdi_child_window* pActiveChild = MDIGetActive();
 

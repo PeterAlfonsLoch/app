@@ -17,7 +17,7 @@ BaseButtonControl::~BaseButtonControl()
 {
 }
 
-void BaseButtonControl::install_message_handling(::user::win::message::dispatch * pdispatch)
+void BaseButtonControl::install_message_handling(::gen::message::dispatch * pdispatch)
 {
    button::install_message_handling(pdispatch);
 }

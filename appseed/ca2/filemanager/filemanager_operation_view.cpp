@@ -45,7 +45,7 @@ void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
 
 }
 
-void file_manager_operation_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void file_manager_operation_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::split_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_view::_001OnCreate);
@@ -60,7 +60,7 @@ file_manager_operation_document * file_manager_operation_view::get_document()
 
 void file_manager_operation_view::_001OnMainPostMessage(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj)
+   SCAST_PTR(::gen::message::base, pbase, pobj)
    if(pbase->m_wparam == MessageMainPostFileOperation)
    {
       m_pinfoview->OnFileOperationStep(pbase->m_lparam, false);

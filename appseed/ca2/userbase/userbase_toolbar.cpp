@@ -444,7 +444,7 @@ namespace userbase
       //m_nCount = 0;
    }
 
-   void tool_bar::install_message_handling(::user::win::message::dispatch * pinterface)
+   void tool_bar::install_message_handling(::gen::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &tool_bar::_001OnNcHitTest);
       //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &tool_bar::_001On);
@@ -1442,14 +1442,14 @@ namespace userbase
 
    void tool_bar::_001OnNcHitTest(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       pbase->set_lresult(HTCLIENT);
       pbase->m_bRet = true;
    }
 
    void tool_bar::_001OnNcCalcSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect; 
       rect.null();
@@ -1501,7 +1501,7 @@ namespace userbase
 
    void tool_bar::_001OnWindowPosChanging(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       DWORD dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -1544,13 +1544,13 @@ namespace userbase
 
    void tool_bar::_001OnSetButtonSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeButton, pbase->m_lparam));
    }
 
    void tool_bar::_001OnSetBitmapSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeImage, pbase->m_lparam));
    }
 
@@ -1586,7 +1586,7 @@ namespace userbase
 
    void tool_bar::_001OnPreserveZeroBorderHelper(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       BOOL bModify = FALSE;
       ASSERT(_afxComCtlVersion != -1);
       DWORD dwStyle = 0;

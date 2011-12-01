@@ -140,7 +140,7 @@ namespace user
 
    void tree::_001OnCreate(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -434,7 +434,7 @@ namespace user
 
    void tree::_001OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       /*if(System.get_focus_guie() != this)
       {
          System.set_active_guie(this);
@@ -446,7 +446,7 @@ namespace user
 
    void tree::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       m_iClick = 2;
 
       _001OnClick(pmouse->m_nFlags, pmouse->m_pt);
@@ -488,7 +488,7 @@ namespace user
 
    void tree::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       m_iClick++;
       m_uiLButtonUpFlags = pmouse->m_nFlags;
       m_ptLButtonUp = pmouse->m_pt;
@@ -499,7 +499,7 @@ namespace user
 
    void tree::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+      SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == TimerHover)
       {
          UpdateHover();
@@ -641,7 +641,7 @@ namespace user
       return 18;
    }
 
-   void tree::install_message_handling(::user::win::message::dispatch * pdispatch)
+   void tree::install_message_handling(::gen::message::dispatch * pdispatch)
    {
       ::user::window_interface::install_message_handling(pdispatch);
       ::user::scroll_view::install_message_handling(pdispatch);
@@ -780,7 +780,7 @@ namespace user
 
    void tree::_001OnVScroll(gen::signal_object * pobj)
    {
-      //SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+      //SCAST_PTR(::gen::message::scroll, pscroll, pobj);
       pobj->previous();
       m_pitemFirstVisible = CalcFirstVisibleItem(
          m_iFirstVisibleItemLevel,
@@ -791,7 +791,7 @@ namespace user
 
    void tree::_001OnHScroll(gen::signal_object * pobj)
    {
-      //SCAST_PTR(::user::win::message::scroll, pscroll, pobj);
+      //SCAST_PTR(::gen::message::scroll, pscroll, pobj);
       pobj->previous();
 
    }

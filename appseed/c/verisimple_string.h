@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_____ verisimple_string
+class CLASS_DECL_c verisimple_string
 {
 public:
 
@@ -105,30 +105,30 @@ public:
 
 };
 
-CLASS_DECL_____ verisimple_string operator + (const verisimple_string & str1, const verisimple_string & str2);
-CLASS_DECL_____ verisimple_string operator + (const verisimple_string & str, const char * psz);
-CLASS_DECL_____ verisimple_string operator + (const char * psz, const verisimple_string & str);
-CLASS_DECL_____ verisimple_string operator + (const verisimple_string & str, char ch);
-CLASS_DECL_____ verisimple_string operator + (char ch, const verisimple_string & str);
+CLASS_DECL_c verisimple_string operator + (const verisimple_string & str1, const verisimple_string & str2);
+CLASS_DECL_c verisimple_string operator + (const verisimple_string & str, const char * psz);
+CLASS_DECL_c verisimple_string operator + (const char * psz, const verisimple_string & str);
+CLASS_DECL_c verisimple_string operator + (const verisimple_string & str, char ch);
+CLASS_DECL_c verisimple_string operator + (char ch, const verisimple_string & str);
 
 typedef verisimple_string vsstring;
 
 
 
 
-CLASS_DECL_____ vsstring std_gen_international_unicode_to_utf8(const wchar_t * psz);
+CLASS_DECL_c vsstring std_gen_international_unicode_to_utf8(const wchar_t * psz);
 
-CLASS_DECL_____ vsstring url_encode_dup(const char * psz);
+CLASS_DECL_c vsstring url_encode_dup(const char * psz);
 
-CLASS_DECL_____ vsstring str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace);
+CLASS_DECL_c vsstring str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace);
 
-CLASS_DECL_____ vsstring itoa_dup(int i);
+CLASS_DECL_c vsstring itoa_dup(int i);
 
-CLASS_DECL_____ vsstring i64toa_dup(int64_t i);
+CLASS_DECL_c vsstring i64toa_dup(int64_t i);
 
 #ifdef WINDOWS
 
-CLASS_DECL_____ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
+CLASS_DECL_c vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
 #endif
 
 

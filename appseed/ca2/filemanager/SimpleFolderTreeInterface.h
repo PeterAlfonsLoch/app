@@ -65,7 +65,7 @@ namespace filemanager
       int   m_iDefaultImage;
       int   m_iDefaultImageSelected;
       virtual void _017Synchronize();
-      void install_message_handling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::gen::message::dispatch * pinterface);
 
 
       void _StartCreateImageList();

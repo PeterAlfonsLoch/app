@@ -18,7 +18,7 @@ namespace spa
    };
 
 
-   class CLASS_DECL_____ plugin :
+   class CLASS_DECL_c plugin :
       virtual public ::hotplugin::plugin
    {
    public:

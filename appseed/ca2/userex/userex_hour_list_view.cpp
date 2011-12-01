@@ -47,7 +47,7 @@ namespace userex
 
 
 
-   void hour_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void hour_list_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_list_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &hour_list_view::_001OnCreate);

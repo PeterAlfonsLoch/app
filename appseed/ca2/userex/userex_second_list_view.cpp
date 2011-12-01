@@ -43,7 +43,7 @@ namespace userex
 #endif //_DEBUG
 
 
-   void second_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void second_list_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_list_view::install_message_handling(pinterface);
       USER_MESSAGE_LINK(message_create, pinterface, this, &second_list_view::_001OnCreate);

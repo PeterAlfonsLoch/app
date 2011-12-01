@@ -13,7 +13,7 @@ XfplayerViewLineSelection::~XfplayerViewLineSelection()
 
 void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
 
    UINT message = pbase->m_uiMessage;
 

@@ -1,8 +1,8 @@
 #include "StdAfx.h"
-#include "x/x_defines.h"
-#include "x/x_tables.h"
-#include "x/x_charcategory_names.h"
-#include "x/x_charcategory.h"
+#include "ca/x/x_defines.h"
+#include "ca/x/x_tables.h"
+#include "ca/x/x_charcategory_names.h"
+#include "ca/x/x_charcategory.h"
 
 
 
@@ -15,19 +15,19 @@ int wcslen_dup(const wchar_t * str)
    return pszEnd - str;
 }
 
-CLASS_DECL_____ int iswalpha_dup(int ch)
+CLASS_DECL_c int iswalpha_dup(int ch)
 {
    return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
 }
 
 
-CLASS_DECL_____ int iswdigit_dup(int ch)
+CLASS_DECL_c int iswdigit_dup(int ch)
 {
    return ch >= L'0' && ch <= L'9';
 }
 
 
-CLASS_DECL_____ int iswspace_dup(int ch)
+CLASS_DECL_c int iswspace_dup(int ch)
 {
    return ch == L' ' || ch == L'\t' || ch == L'\r' || ch == L'\n' || ch == L'\t';
 }
@@ -59,7 +59,7 @@ int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 }
 
 
-CLASS_DECL_____ wchar_t w_to_lower(int c)
+CLASS_DECL_c wchar_t w_to_lower(int c)
 {
    unsigned long c1 = CHAR_PROP(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
@@ -68,7 +68,7 @@ CLASS_DECL_____ wchar_t w_to_lower(int c)
 }
 
 
-CLASS_DECL_____ int iswalnum_dup(int wch)
+CLASS_DECL_c int iswalnum_dup(int wch)
 {
    if(wch >= 256 || wch <= -128)
       return 0;
@@ -76,7 +76,7 @@ CLASS_DECL_____ int iswalnum_dup(int wch)
 }
 
 
-CLASS_DECL_____ wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
+CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
 {
    if(sz == NULL)
       return NULL;

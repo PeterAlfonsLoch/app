@@ -15,7 +15,7 @@ namespace userbase
    {
    }
 
-   void scroll_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void scroll_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       ::user::scroll_view::install_message_handling(pinterface);

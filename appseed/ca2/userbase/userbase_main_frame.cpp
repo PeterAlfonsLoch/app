@@ -32,7 +32,7 @@ namespace userbase
    }
 #endif //_DEBUG
 
-   void main_frame::install_message_handling(::user::win::message::dispatch * pinterface)
+   void main_frame::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,         pinterface, this, &main_frame::_001OnCreate);
@@ -41,7 +41,7 @@ namespace userbase
    void main_frame::_001OnCreate(gen::signal_object * pobj)
    {
 
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::gen::message::create, pcreate, pobj)
       
       m_bCustomFrame = !Application.directrix().m_varTopicQuery["client_only"].is_set();
 

@@ -12,5 +12,5 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)
    DECL_GEN_SIGNAL(_001OnUser123)
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 };

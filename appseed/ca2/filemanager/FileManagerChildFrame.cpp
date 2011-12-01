@@ -16,7 +16,7 @@ FileManagerChildFrame::~FileManagerChildFrame()
 {
 }
 
-void FileManagerChildFrame::install_message_handling(::user::win::message::dispatch * pinterface)
+void FileManagerChildFrame::install_message_handling(::gen::message::dispatch * pinterface)
 {
    simple_child_frame::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);
@@ -122,5 +122,5 @@ void FileManagerChildFrame::GetSelected(::fs::item_array &itema)
 void FileManagerChildFrame::_001OnShowWindow(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::user::win::message::show_window, pshow, pobj)
+//   SCAST_PTR(::gen::message::show_window, pshow, pobj)
 }

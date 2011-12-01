@@ -16,7 +16,7 @@ public:
    simple_list_header_control    m_headerctrl;
    FileManagerInterface *        m_pfilemanager;
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
    virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

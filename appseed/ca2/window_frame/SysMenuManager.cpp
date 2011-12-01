@@ -16,7 +16,7 @@ namespace window_frame
 
    void SysMenuManager::relay_event(gen::signal_object * pobj)
    {
-       SCAST_PTR(user::win::message::base, pbase, pobj);
+       SCAST_PTR(gen::message::base, pbase, pobj);
        if(m_pworkset->GetEventWindow() == NULL ||
            pbase->m_hwnd != m_pworkset->GetEventWindow()->_get_handle())
            return;
@@ -49,7 +49,7 @@ namespace window_frame
    void SysMenuManager::message_handler(::user::interaction * pwnd, gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_LBUTTONDBLCLK:

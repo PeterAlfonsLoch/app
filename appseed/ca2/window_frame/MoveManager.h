@@ -42,10 +42,10 @@ namespace window_frame
       ::user::interaction * GetEventWindow();
       ::user::interaction * GetMoveWindow();
 
-      bool Relay(user::win::message::mouse * pmouse);
-      bool _000OnLButtonDown(::user::win::message::mouse * pmouse);
-      bool _000OnMouseMove(::user::win::message::mouse * pmouse);
-      bool _000OnLButtonUp(::user::win::message::mouse * pmouse);
+      bool Relay(gen::message::mouse * pmouse);
+      bool _000OnLButtonDown(::gen::message::mouse * pmouse);
+      bool _000OnMouseMove(::gen::message::mouse * pmouse);
+      bool _000OnLButtonUp(::gen::message::mouse * pmouse);
       bool _000OnTimer(UINT nIDEvent);
 
 

@@ -6,7 +6,7 @@ BEGIN_EXTERN_C
 
 #ifdef WINDOWS
 
-struct CLASS_DECL_____ _struct_FILE
+struct CLASS_DECL_c _struct_FILE
 {
    char *_ptr;
    int   _cnt;
@@ -33,7 +33,7 @@ struct CLASS_DECL_____ _struct_FILE
 #define stderr_dup (&__iob_func_dup()[2])
 #define _STDSTREAM_DUP_DEFINED
 #endif
-CLASS_DECL_____ _FILE *__iob_func_dup();
+CLASS_DECL_c _FILE *__iob_func_dup();
 
 #else
 #define _FILE FILE
@@ -59,29 +59,29 @@ CLASS_DECL_____ _FILE *__iob_func_dup();
 
 
 
-CLASS_DECL_____ void _init_file_dup();
+CLASS_DECL_c void _init_file_dup();
 
-CLASS_DECL_____ _FILE * fopen_dup(const char *path, const char *attrs);
-CLASS_DECL_____ int fprintf_dup(_FILE *fp, const char *s, ...);
-CLASS_DECL_____ int fclose_dup(_FILE *fp);
-CLASS_DECL_____ int feof_dup(_FILE *fp);
-CLASS_DECL_____ int fseek_dup(_FILE *str, long offset, int origin);
-CLASS_DECL_____ long ftell_dup(_FILE *fp);
-CLASS_DECL_____ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str);
-CLASS_DECL_____ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str);
-CLASS_DECL_____ char *fgets_dup(char *str, int n, _FILE *s);
-CLASS_DECL_____ int fgetc_dup(_FILE *s);
-CLASS_DECL_____ int ungetc_dup(int c,_FILE *s);
-CLASS_DECL_____ int ferror_dup(_FILE *s);
-CLASS_DECL_____ int fflush_dup(_FILE *s);
+CLASS_DECL_c _FILE * fopen_dup(const char *path, const char *attrs);
+CLASS_DECL_c int fprintf_dup(_FILE *fp, const char *s, ...);
+CLASS_DECL_c int fclose_dup(_FILE *fp);
+CLASS_DECL_c int feof_dup(_FILE *fp);
+CLASS_DECL_c int fseek_dup(_FILE *str, long offset, int origin);
+CLASS_DECL_c long ftell_dup(_FILE *fp);
+CLASS_DECL_c size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str);
+CLASS_DECL_c size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str);
+CLASS_DECL_c char *fgets_dup(char *str, int n, _FILE *s);
+CLASS_DECL_c int fgetc_dup(_FILE *s);
+CLASS_DECL_c int ungetc_dup(int c,_FILE *s);
+CLASS_DECL_c int ferror_dup(_FILE *s);
+CLASS_DECL_c int fflush_dup(_FILE *s);
 
 
 #ifdef WINDOWS
-CLASS_DECL_____ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs);
-CLASS_DECL_____ int fwprintf_dup(_FILE *fp, const wchar_t *s, ...);
-CLASS_DECL_____ wchar_t *fgetws_dup(wchar_t *str, int n, _FILE *s);
-CLASS_DECL_____ wint_t fgetwc_dup(_FILE *s);
-CLASS_DECL_____ wint_t ungetwc_dup(wint_t w, _FILE *s);
+CLASS_DECL_c _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs);
+CLASS_DECL_c int fwprintf_dup(_FILE *fp, const wchar_t *s, ...);
+CLASS_DECL_c wchar_t *fgetws_dup(wchar_t *str, int n, _FILE *s);
+CLASS_DECL_c wint_t fgetwc_dup(_FILE *s);
+CLASS_DECL_c wint_t ungetwc_dup(wint_t w, _FILE *s);
 #endif
 
 

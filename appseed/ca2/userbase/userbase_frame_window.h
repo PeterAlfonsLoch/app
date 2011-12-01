@@ -77,7 +77,7 @@ namespace userbase
 
       void OnUpdateControlBarMenu(cmd_ui * pcmdui);
       BOOL OnBarCheck(UINT nID);
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       mini_dock_frame_window* CreateFloatingFrame(DWORD dwStyle);
       DWORD CanDock(rect rect, DWORD dwDockStyle,

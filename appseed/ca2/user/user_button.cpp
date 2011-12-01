@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   void button::install_message_handling(::user::win::message::dispatch * pinterface)
+   void button::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::window_interface::install_message_handling(pinterface);
 
@@ -96,7 +96,7 @@ namespace user
 
    void button::_001OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -115,7 +115,7 @@ namespace user
 
    void button::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -143,7 +143,7 @@ namespace user
 
    void button::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
          if(get_form_list() == NULL)
          {
 
@@ -179,7 +179,7 @@ namespace user
 
    void button::_001OnMouseLeave(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
          if(get_form_list() == NULL)
          {
             int iOldHover = m_iHover;
@@ -271,7 +271,7 @@ namespace user
 
    void button::_001OnSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
          _001Layout();
       pbase->m_bRet = false;
    }
@@ -279,7 +279,7 @@ namespace user
    void button::on_create(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::create, pcreate, pobj)
+      //SCAST_PTR(::gen::message::create, pcreate, pobj)
 
       ::simple_frame_window * pframewindow = GetTypedParent < ::simple_frame_window > ();
       if(pframewindow != NULL)

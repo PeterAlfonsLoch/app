@@ -195,7 +195,7 @@ namespace html
    }
    void data::_001OnKeyDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
 
       if(pkey->m_nChar == VK_TAB)
       {

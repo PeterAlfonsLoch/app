@@ -108,12 +108,12 @@ namespace window_frame
       // point should be in screen coordinates
 
       virtual EHitTest _000HitTest(point pt) = 0;
-      virtual bool _000OnLButtonDown(::user::win::message::mouse * pmouse);
-      virtual bool _000OnLButtonUp(::user::win::message::mouse * pmouse);
-      virtual bool _000OnMouseMove(::user::win::message::mouse * pmouse);
-      virtual bool _000OnNcLButtonDown(::user::win::message::mouse * pmouse);
-      virtual bool _000OnNcLButtonUp(::user::win::message::mouse * pmouse);
-      virtual bool _000OnNcMouseMove(::user::win::message::mouse * pmouse);
+      virtual bool _000OnLButtonDown(::gen::message::mouse * pmouse);
+      virtual bool _000OnLButtonUp(::gen::message::mouse * pmouse);
+      virtual bool _000OnMouseMove(::gen::message::mouse * pmouse);
+      virtual bool _000OnNcLButtonDown(::gen::message::mouse * pmouse);
+      virtual bool _000OnNcLButtonUp(::gen::message::mouse * pmouse);
+      virtual bool _000OnNcMouseMove(::gen::message::mouse * pmouse);
       virtual bool _000OnNcHitTest(point pt, LRESULT & nHitTest);
       virtual bool _000OnTimer(UINT nIDEvent);
       virtual bool _000OnSize(UINT nType, int cx, int cy);

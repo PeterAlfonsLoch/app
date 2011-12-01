@@ -17,7 +17,7 @@ namespace filemanager
    {
    }
 
-   void SimplePreview::install_message_handling(::user::win::message::dispatch * pdispatch)
+   void SimplePreview::install_message_handling(::gen::message::dispatch * pdispatch)
    {
       ::userbase::view::install_message_handling(pdispatch);
       SimplePreviewInterface::install_message_handling(pdispatch);

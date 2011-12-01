@@ -43,7 +43,7 @@ namespace userbase
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage)
 
-      void install_message_handling(::user::win::message::dispatch * pinterface);
+      void install_message_handling(::gen::message::dispatch * pinterface);
 
 
    };

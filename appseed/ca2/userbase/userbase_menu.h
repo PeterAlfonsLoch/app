@@ -74,7 +74,7 @@ namespace userbase
       BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnShowWindow)
    };

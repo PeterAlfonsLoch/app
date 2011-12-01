@@ -20,7 +20,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)
-   virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
+   virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
    void assert_valid() const;
    void dump(dump_context & context) const;

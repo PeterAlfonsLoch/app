@@ -1,0 +1,49 @@
+#include "StdAfx.h"
+
+
+namespace ca2
+{
+
+
+   namespace filehandler
+   {
+
+
+      tree_interface::tree_interface(::ca::application * papp) :
+         ca(papp),
+         data_container(papp),
+         ex1::tree(papp)
+      {
+         
+         
+      }
+
+      bool tree_interface::initialize()
+      {
+         if(!::ex1::tree::initialize())
+            return false;
+         ::ca::data_container::m_spdata(new tree_data(get_app()));
+         return true;
+      }
+
+      void tree_interface::update_list()
+      {
+      }
+
+
+      tree_interface::~tree_interface()
+      {
+      }
+
+      tree_data * tree_interface::get_filehandler_tree_data()
+      {
+         return dynamic_cast < tree_data * > (::ca::data_container::m_spdata.m_p);
+      }
+   
+   
+   } // namespace filehandler
+
+
+} // namespace ca2
+
+

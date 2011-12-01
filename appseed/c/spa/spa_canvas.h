@@ -4,7 +4,7 @@
 namespace spa
 {
 
-   class CLASS_DECL_____ canvas
+   class CLASS_DECL_c canvas
    {
    public:
 

@@ -767,7 +767,7 @@ namespace filemanager
 
    void SimpleFileListInterface::_001OnMainPostMessage(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       switch(pbase->m_wparam)
       {
       case MessageMainPostCreateImageListItemStepSetRedraw:
@@ -802,7 +802,7 @@ namespace filemanager
       _017Browse(GetFileManagerItem().m_strPath);
    }
 
-   void SimpleFileListInterface::install_message_handling(::user::win::message::dispatch *pinterface)
+   void SimpleFileListInterface::install_message_handling(::gen::message::dispatch *pinterface)
    {
       ::user::form_list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this, &SimpleFileListInterface::_001OnMainPostMessage);
@@ -1063,7 +1063,7 @@ namespace filemanager
 
    void SimpleFileListInterface::_001OnVScroll(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::scroll, pscroll, pobj)
+      SCAST_PTR(::gen::message::scroll, pscroll, pobj)
       m_iCreateImageListStep = pscroll->m_nPos;
       m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
@@ -1128,7 +1128,7 @@ namespace filemanager
    void SimpleFileListInterface::_001OnShowWindow(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::show_window, pshow, pobj)
+//      SCAST_PTR(::gen::message::show_window, pshow, pobj)
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.db());
       if(pcentral == NULL)

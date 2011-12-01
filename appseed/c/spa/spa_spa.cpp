@@ -4,22 +4,22 @@ bool g_bAdmin = false;
 vsstring * g_pstrId = NULL;
 
 
-CLASS_DECL_____ bool spa_get_admin()
+CLASS_DECL_c bool spa_get_admin()
 {
    return g_bAdmin;
 }
 
-CLASS_DECL_____ void spa_set_admin(bool bSet)
+CLASS_DECL_c void spa_set_admin(bool bSet)
 {
    g_bAdmin = bSet;
 }
 
-CLASS_DECL_____ vsstring spa_get_id()
+CLASS_DECL_c vsstring spa_get_id()
 {
    return *g_pstrId;
 }
 
-CLASS_DECL_____ void spa_set_id(const char * psz)
+CLASS_DECL_c void spa_set_id(const char * psz)
 {
    if(g_pstrId == NULL)
    {
@@ -29,7 +29,7 @@ CLASS_DECL_____ void spa_set_id(const char * psz)
 }
 
 
-CLASS_DECL_____ vsstring spa_get_platform()
+CLASS_DECL_c vsstring spa_get_platform()
 {
 #ifdef _X86_
    return "x86";

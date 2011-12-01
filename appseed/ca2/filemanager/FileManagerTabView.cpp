@@ -38,7 +38,7 @@ void FileManagerTabView::dump(dump_context & dumpcontext) const
 #endif //_DEBUG
 
 
-void FileManagerTabView::install_message_handling(::user::win::message::dispatch * pinterface)
+void FileManagerTabView::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::tab_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
@@ -234,7 +234,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
 void FileManagerTabView::_001OnCreate(gen::signal_object * pobj)
 {
-//   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//   SCAST_PTR(::gen::message::create, pcreate, pobj)
 
    pobj->previous();
 

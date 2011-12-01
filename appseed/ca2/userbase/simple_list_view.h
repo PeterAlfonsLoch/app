@@ -11,7 +11,7 @@ public:
    simple_list_view(::ca::application * papp);   
    virtual ~simple_list_view();
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    HWND GetHandle();
    ::user::interaction* OnDrawInterfaceGetWnd();

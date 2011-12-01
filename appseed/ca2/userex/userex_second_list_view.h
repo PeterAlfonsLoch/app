@@ -21,7 +21,7 @@ namespace userex
       virtual ~second_list_view();
 
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();

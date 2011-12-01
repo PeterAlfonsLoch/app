@@ -328,7 +328,7 @@ namespace user
       return true;
    }
 
-   void list_header::AddMessageHandling(::user::win::message::dispatch *pinterface)
+   void list_header::AddMessageHandling(::gen::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &list_header::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &list_header::_001OnLButtonUp);
@@ -338,7 +338,7 @@ namespace user
 
    void list_header::_001OnLButtonDown(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       if(hit_test(ptCursor, m_eelementLButtonDown, m_iItemLButtonDown))
@@ -351,7 +351,7 @@ namespace user
 
    void list_header::_001OnLButtonUp(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       list * plist = m_plistctrlinterface;
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
@@ -407,7 +407,7 @@ namespace user
 
    void list_header::_001OnMouseMove(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
@@ -468,7 +468,7 @@ namespace user
 
    void list_header::_001OnLButtonDblClk(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;

@@ -51,7 +51,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::install_message_handling(::user::win::message::dispatch * pinterface)
+   void edit_plain_text::install_message_handling(::gen::message::dispatch * pinterface)
    {
       scroll_view::install_message_handling(pinterface);
    /*   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &edit_plain_text::_001OnDestroy);
@@ -465,7 +465,7 @@ namespace user
 
    void edit_plain_text::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj);
+      SCAST_PTR(::gen::message::create, pcreate, pobj);
 
       if(!ex1::tree::initialize())
          throw simple_exception();
@@ -518,14 +518,14 @@ namespace user
 
    void edit_plain_text::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
    }
 
    void edit_plain_text::_001OnRButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       //int iItem;
       //HRESULT hr;
       class point point = pmouse->m_pt;
@@ -577,7 +577,7 @@ namespace user
 
    void edit_plain_text::_002OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+      SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
@@ -600,7 +600,7 @@ namespace user
 
    void edit_plain_text::_002OnKeyDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
 
       if(pkey->m_nChar == VK_RETURN)
       {
@@ -674,7 +674,7 @@ namespace user
 
    void edit_plain_text::_002OnKeyUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
          if(::GetKeyState(VK_CONTROL) & 0x80000000
@@ -694,7 +694,7 @@ namespace user
    void edit_plain_text::_002OnChar(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::key, pkey, pobj)
+//      SCAST_PTR(::gen::message::key, pkey, pobj)
          if(m_bKeyPressed)
          {
                //key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
@@ -720,7 +720,7 @@ namespace user
 
    void edit_plain_text::pre_translate_message(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_KEYDOWN)
       {
          pbase->m_bRet = true;
@@ -739,7 +739,7 @@ namespace user
    }
    void edit_plain_text::key_to_char(WPARAM wparam, LPARAM lparam)
    {
-      ::user::win::message::key key(get_app());
+      ::gen::message::key key(get_app());
       key.m_nChar = wparam;
       key.m_nFlags = HIWORD(lparam);
       if(wparam == VK_LSHIFT || wparam == VK_RSHIFT
@@ -870,7 +870,7 @@ namespace user
 
    void edit_plain_text::_002OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -889,7 +889,7 @@ namespace user
 
    void edit_plain_text::_002OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::ca::graphics * pdc = GetDC();
@@ -905,7 +905,7 @@ namespace user
 
    void edit_plain_text::_002OnRButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -922,7 +922,7 @@ namespace user
 
    void edit_plain_text::_002OnRButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::ca::graphics * pdc = GetDC();
@@ -1171,7 +1171,7 @@ namespace user
 
    void edit_plain_text::_002OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       //::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -1297,7 +1297,7 @@ namespace user
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
 
       if(pkey->m_nChar == 's')
       {
@@ -1562,7 +1562,7 @@ namespace user
    void edit_plain_text::_001OnSysChar(gen::signal_object * pobj)
    {
       ::ca::data::writing writing(m_pdata);
-      SCAST_PTR(::user::win::message::key, pkey, pobj)
+      SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_DELETE)
       {
          if(!m_bReadOnly)

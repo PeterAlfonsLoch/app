@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_____ launcher
+class CLASS_DECL_c launcher
 {
 public:
 

@@ -16,7 +16,7 @@ namespace userbase
    {
    }
 
-   void bitmap_button::install_message_handling(::user::win::message::dispatch * pinterface)
+   void bitmap_button::install_message_handling(::gen::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove); 
    }

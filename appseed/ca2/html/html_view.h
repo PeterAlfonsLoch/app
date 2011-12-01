@@ -30,7 +30,7 @@ public:
    virtual void on_document_complete(const char * pszUrl);
 
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);

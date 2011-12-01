@@ -24,7 +24,7 @@ view::~view()
       m_spdocument->remove_view(this);
 }
 
-void view::install_message_handling(::user::win::message::dispatch * pinterface)
+void view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
@@ -76,7 +76,7 @@ BOOL view::PreCreateWindow(CREATESTRUCT & cs)
 
 void view::_001OnCreate(::gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::create, pcreate, pobj);
+   SCAST_PTR(::gen::message::create, pcreate, pobj);
 
    if(pcreate->previous())
       return;
@@ -509,7 +509,7 @@ void CCtrlView::assert_valid() const
 
 void view::_001OnView(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj)
+   SCAST_PTR(::gen::message::base, pbase, pobj)
    if(pbase->m_wparam == 0)
    {
       document::update * pupdate = (document::update *) pbase->m_lparam;
@@ -613,20 +613,20 @@ void view::_001OnView(gen::signal_object * pobj)
 void view::_001OnLButtonDown(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+//   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
    GetParentFrame()->SetActiveView(this);
 }
 
 void view::_001OnLButtonUp(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   //SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+   //SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 }
 
 void view::_001OnMouseMove(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+//   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 }
 
 

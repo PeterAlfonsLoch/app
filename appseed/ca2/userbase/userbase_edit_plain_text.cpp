@@ -15,7 +15,7 @@ namespace userbase
    {
    }
 
-   void edit_plain_text::install_message_handling(::user::win::message::dispatch * pinterface)
+   void edit_plain_text::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::edit_plain_text::install_message_handling(pinterface);
    }

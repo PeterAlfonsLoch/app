@@ -17,7 +17,7 @@ namespace userbase
    {
    }
 
-   void tree_window::install_message_handling(::user::win::message::dispatch * pinterface)
+   void tree_window::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       ::user::tree::install_message_handling(pinterface);

@@ -27,7 +27,7 @@ public:
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    
 
-   virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
+   virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();

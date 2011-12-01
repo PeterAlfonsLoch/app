@@ -162,7 +162,7 @@ public:
    friend class ::ca::window;  // for access to m_bModalDisable
    friend class CReBar; // for access to m_bInRecalcLayout
 
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnDestroy);

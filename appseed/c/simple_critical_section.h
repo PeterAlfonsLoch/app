@@ -2,7 +2,7 @@
 
 
 #ifdef _WINDOWS
-class CLASS_DECL_____ simple_critical_section
+class CLASS_DECL_c simple_critical_section
 {
 public:
 
@@ -21,7 +21,7 @@ public:
 };
 #else
 
-class CLASS_DECL_____ simple_critical_section :
+class CLASS_DECL_c simple_critical_section :
     public simple_mutex
 {
 public:

@@ -1189,27 +1189,27 @@ simple_attrib_map< KEY,  VALUE > & simple_attrib_map< KEY,  VALUE >::operator = 
 }
 
 
-class CLASS_DECL_____ simple_int_to_string :
+class CLASS_DECL_c simple_int_to_string :
    virtual public simple_attrib_map < int, vsstring >
 {
 public:
 };
 
 
-class CLASS_DECL_____ simple_string_to_pointer :
+class CLASS_DECL_c simple_string_to_pointer :
    virtual public simple_string_map < void * >
 {
 public:
 };
 
 
-class CLASS_DECL_____ simple_string_to_intptr :
+class CLASS_DECL_c simple_string_to_intptr :
    virtual public simple_string_map < INT_PTR >
 {
 public:
 };
 
-class CLASS_DECL_____ simple_string_to_string :
+class CLASS_DECL_c simple_string_to_string :
    virtual public simple_string_map < vsstring >
 {
 public:

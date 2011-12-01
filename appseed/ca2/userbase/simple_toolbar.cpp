@@ -71,7 +71,7 @@ simple_toolbar::~simple_toolbar()
 
 }
 
-void simple_toolbar::install_message_handling(::user::win::message::dispatch * pdispatch)
+void simple_toolbar::install_message_handling(::gen::message::dispatch * pdispatch)
 {
    ::userbase::control_bar::install_message_handling(pdispatch);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()
@@ -1294,7 +1294,7 @@ void simple_toolbar::layout()
 
 void simple_toolbar::_001OnMouseMove(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1315,7 +1315,7 @@ void simple_toolbar::_001OnMouseMove(gen::signal_object * pobj)
 
 void simple_toolbar::_001OnLButtonDown(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    m_iButtonPressItem = _001HitTest(pt);
@@ -1333,7 +1333,7 @@ void simple_toolbar::_001OnLButtonDown(gen::signal_object * pobj)
 
 void simple_toolbar::_001OnLButtonUp(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1414,7 +1414,7 @@ void simple_toolbar::_001Hover(bool bRedraw)
 
 void simple_toolbar::_001OnTimer(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+   SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == TIMER_HOVER)
       {
          _001Hover();
@@ -1588,7 +1588,7 @@ void simple_toolbar::SetButtonStyle(int nIndex, UINT nStyle)
 
 void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::nc_calc_size, pnccalcsize, pobj)
+   SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
    rect.null();
@@ -1605,7 +1605,7 @@ void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
 
 void simple_toolbar::_001OnNcHitTest(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::nchittest, pnchittest, pobj)
+   SCAST_PTR(::gen::message::nchittest, pnchittest, pobj)
       pnchittest->set_lresult(HTCLIENT);
 }
 
@@ -2051,7 +2051,7 @@ void simple_toolbar::_001OnMove(gen::signal_object * pobj)
 
 void simple_toolbar::_001OnMouseLeave(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj)
+   SCAST_PTR(::gen::message::base, pbase, pobj)
       m_iHover = 0x80000000;
    OnUpdateHover();
    _001RedrawWindow();

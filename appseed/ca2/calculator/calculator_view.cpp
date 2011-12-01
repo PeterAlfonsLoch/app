@@ -16,7 +16,7 @@ namespace calculator
    {
    }
 
-   void view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
 
@@ -152,7 +152,7 @@ namespace calculator
    }
    void view::_001OnContextMenu(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
          point point = pcontextmenu->GetPoint();
 
    }
@@ -169,18 +169,18 @@ namespace calculator
    void view::_001OnWavePlayerEvent(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::base, pbase, pobj)
+      //SCAST_PTR(::gen::message::base, pbase, pobj)
    }
 
    void view::_001OnUpdateViewEncoding(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::update_cmd_ui, pupdatecmdui, pobj)
+      //SCAST_PTR(::gen::message::update_cmd_ui, pupdatecmdui, pobj)
    }
    void view::_001OnViewEncoding(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::command, pcommand, pobj)
+      //SCAST_PTR(::gen::message::command, pcommand, pobj)
    }
 
 

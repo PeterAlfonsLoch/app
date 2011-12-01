@@ -18,7 +18,7 @@ simple_list_view::~simple_list_view()
 {
 }
 
-void simple_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void simple_list_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);

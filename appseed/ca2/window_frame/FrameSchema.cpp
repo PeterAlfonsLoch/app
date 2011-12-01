@@ -37,7 +37,7 @@ namespace window_frame
       return HitTestClient;
    }
 
-   bool FrameSchema::_000OnLButtonDown(::user::win::message::mouse * pmouse)
+   bool FrameSchema::_000OnLButtonDown(::gen::message::mouse * pmouse)
    {
       if(m_pworkset->GetSizingManager()->_000OnLButtonDown(pmouse))
          return true;
@@ -48,7 +48,7 @@ namespace window_frame
       return false;
    }
 
-   bool FrameSchema::_000OnLButtonUp(::user::win::message::mouse * pmouse)
+   bool FrameSchema::_000OnLButtonUp(::gen::message::mouse * pmouse)
    {
       if(m_pworkset->GetSizingManager()->_000OnLButtonUp(pmouse))
          return true;
@@ -59,7 +59,7 @@ namespace window_frame
       return false;
    }
 
-   bool FrameSchema::_000OnMouseMove(::user::win::message::mouse * pmouse)
+   bool FrameSchema::_000OnMouseMove(::gen::message::mouse * pmouse)
    {
       if(m_pworkset->GetSizingManager()->_000OnMouseMove(pmouse))
          return true;
@@ -70,7 +70,7 @@ namespace window_frame
       return false;
    }
 
-   bool FrameSchema::_000OnNcLButtonDown(::user::win::message::mouse * pmouse)
+   bool FrameSchema::_000OnNcLButtonDown(::gen::message::mouse * pmouse)
    {
       if(m_pworkset->GetSizingManager()->_000OnLButtonDown(pmouse))
          return true;
@@ -81,7 +81,7 @@ namespace window_frame
       return false;
    }
 
-   bool FrameSchema::_000OnNcLButtonUp(::user::win::message::mouse * pmouse)
+   bool FrameSchema::_000OnNcLButtonUp(::gen::message::mouse * pmouse)
    {
       if(m_pworkset->GetSizingManager()->Relay(pmouse))
          return true;
@@ -92,7 +92,7 @@ namespace window_frame
       return false;
    }
 
-   bool FrameSchema::_000OnNcMouseMove(::user::win::message::mouse * pmouse)
+   bool FrameSchema::_000OnNcMouseMove(::gen::message::mouse * pmouse)
    {
       if(m_pworkset->GetSizingManager()->Relay(pmouse))
          return true;

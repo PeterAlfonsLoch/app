@@ -28,7 +28,7 @@ public:
    
    user::e_line_hit hit_test(POINT &ptCursor, int &iLine, int &iChar);
 
-   void InstallMessageHandling(::user::win::message::dispatch *pinterface);
+   void InstallMessageHandling(::gen::message::dispatch *pinterface);
 
    virtual ~XfplayerViewLines();
     

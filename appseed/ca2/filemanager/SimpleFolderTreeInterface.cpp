@@ -563,7 +563,7 @@ namespace filemanager
 
       void SimpleFolderTreeInterface::_001OnMainPostMessage(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj)
+         SCAST_PTR(::gen::message::base, pbase, pobj)
             switch(pbase->m_wparam)
          {
             case MessageMainPostCreateImageListItemRedraw:
@@ -599,7 +599,7 @@ namespace filemanager
          _017Browse(GetFileManagerItem().m_strPath);
       }
 
-      void SimpleFolderTreeInterface::install_message_handling(::user::win::message::dispatch *pinterface)
+      void SimpleFolderTreeInterface::install_message_handling(::gen::message::dispatch *pinterface)
       {
          ::fs::tree::install_message_handling(pinterface);
          IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &SimpleFolderTreeInterface::_001OnMainPostMessage);
@@ -743,7 +743,7 @@ namespace filemanager
 
       void SimpleFolderTreeInterface::_001OnTimer(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+         SCAST_PTR(::gen::message::timer, ptimer, pobj)
             switch(ptimer->m_nIDEvent)
          {
             case TimerDelayedListUpdate:

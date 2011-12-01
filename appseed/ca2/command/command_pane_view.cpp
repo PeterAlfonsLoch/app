@@ -40,7 +40,7 @@ namespace command
 
    void pane_view::_001OnCreate(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -272,7 +272,7 @@ namespace command
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
 

@@ -42,7 +42,7 @@ namespace user
       virtual void create_scroll_bar(scroll_bar::e_orientation eorientation);
 
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 
 
@@ -52,7 +52,7 @@ namespace user
 
 
 
-      void send_scroll_message(::user::win::message::scroll * pscroll);
+      void send_scroll_message(::gen::message::scroll * pscroll);
 
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnSize)

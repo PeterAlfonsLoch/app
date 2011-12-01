@@ -48,7 +48,7 @@ namespace userbase
    {
    }
 
-   void view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       database::user::interaction::install_message_handling(pinterface);
       ::view::install_message_handling(pinterface);
@@ -187,7 +187,7 @@ namespace userbase
 
    void view::_001OnMouseActivate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse_activate, pmouseactivate, pobj);
+      SCAST_PTR(::gen::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
       //int nResult = pmouseactivate->get_lresult();
 
@@ -457,7 +457,7 @@ namespace userbase
    void view::_001OnRButtonDown(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      //SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }
@@ -465,7 +465,7 @@ namespace userbase
    void view::_001OnLButtonDown(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      //SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }
@@ -473,7 +473,7 @@ namespace userbase
    void view::_001OnMButtonDown(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }

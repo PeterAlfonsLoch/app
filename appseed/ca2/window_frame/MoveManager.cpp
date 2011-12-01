@@ -27,7 +27,7 @@ namespace window_frame
    }
 
 
-   bool MoveManager::_000OnLButtonDown(::user::win::message::mouse * pmouse)
+   bool MoveManager::_000OnLButtonDown(::gen::message::mouse * pmouse)
    {
       if(!m_pworkset->IsMovingEnabled()
          || m_pworkset->m_bSizingCapture)
@@ -53,7 +53,7 @@ namespace window_frame
       return true;
    }
 
-   bool MoveManager::_000OnMouseMove(::user::win::message::mouse * pmouse)
+   bool MoveManager::_000OnMouseMove(::gen::message::mouse * pmouse)
    {
       if(!m_pworkset->IsMovingEnabled()
          || m_pworkset->m_bSizingCapture)
@@ -62,7 +62,7 @@ namespace window_frame
       return Relay(pmouse);
    }
 
-   bool MoveManager::_000OnLButtonUp(::user::win::message::mouse * pmouse)
+   bool MoveManager::_000OnLButtonUp(::gen::message::mouse * pmouse)
    {
       if(!m_pworkset->IsMovingEnabled()
          || m_pworkset->m_bSizingCapture)
@@ -73,7 +73,7 @@ namespace window_frame
 
    DWORD g_dwLastMove;
    // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
-   bool MoveManager::Relay(::user::win::message::mouse * pmouse)
+   bool MoveManager::Relay(::gen::message::mouse * pmouse)
    {
       ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE 
           || pmouse->m_uiMessage == WM_LBUTTONUP
@@ -436,7 +436,7 @@ namespace window_frame
 
    void MoveManager::message_handler(::user::interaction * pwnd, gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       if(m_bPendingMove 
          && GetTickCount() > m_dwLastMoveTime + s_dwMoveTime)
       {

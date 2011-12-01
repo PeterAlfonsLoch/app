@@ -45,7 +45,7 @@ namespace userex
 
 
 
-   void minute_list_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void minute_list_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_list_view::install_message_handling(pinterface);
       USER_MESSAGE_LINK(message_create, pinterface, this, &minute_list_view::_001OnCreate);

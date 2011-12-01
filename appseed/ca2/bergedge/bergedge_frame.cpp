@@ -33,7 +33,7 @@ namespace bergedge
 
    void frame::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::create, pcreate, pobj);
+      SCAST_PTR(::gen::message::create, pcreate, pobj);
 
       m_bCustomFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 
@@ -51,7 +51,7 @@ namespace bergedge
 
    }
 
-   void frame::install_message_handling(::user::win::message::dispatch * pinterface)
+   void frame::install_message_handling(::gen::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CLOSE,          pinterface, this, &frame::_001OnClose);
@@ -87,7 +87,7 @@ namespace bergedge
 
    void frame::_001OnTimer(gen::signal_object * pobj) 
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
       static float theta;
       if(nIDEvent == 3)
@@ -166,7 +166,7 @@ namespace bergedge
 
    
 
-   void frame::_000OnMouse(::user::win::message::mouse * pmouse)
+   void frame::_000OnMouse(::gen::message::mouse * pmouse)
    {
       Bergedge.m_ptCursor = pmouse->m_pt;
 //      ::cube8::application * pappParent = &App(Application.m_papp);
@@ -207,7 +207,7 @@ namespace bergedge
 
    void frame::pre_translate_message(gen::signal_object * pobj)
    {
-//      SCAST_PTR(user::win::message::base, pbase, pobj);
+//      SCAST_PTR(gen::message::base, pbase, pobj);
       simple_frame_window::pre_translate_message(pobj);
    }
 
@@ -232,7 +232,7 @@ namespace bergedge
 
    void frame::message_window_message_handler(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -256,7 +256,7 @@ namespace bergedge
 
    void frame::_001OnApp2000(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
 
 
       if(pbase->m_wparam == 0)
@@ -405,14 +405,14 @@ namespace bergedge
 
    void frame::_001OnApp1(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       MSG * pmsg = (MSG *) pbase->m_lparam;
       pmsg->hwnd = get_safe_handle();
       try
       {
          if(pmsg->message != WM_KICKIDLE)
          {
-            ::ca::smart_pointer < ::user::win::message::base > spbase;
+            ::ca::smart_pointer < ::gen::message::base > spbase;
             spbase(get_base(pmsg));
             pre_translate_message(spbase);
             if(!spbase->m_bRet)

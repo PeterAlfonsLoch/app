@@ -45,7 +45,7 @@ namespace filemanager
          {
          }
 
-         void list_view::install_message_handling(::user::win::message::dispatch * pinterface)
+         void list_view::install_message_handling(::gen::message::dispatch * pinterface)
          {
             simple_list_view::install_message_handling(pinterface);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_view::_001OnLButtonDblClk);
@@ -304,7 +304,7 @@ namespace filemanager
 
          void list_view::_001OnLButtonDblClk(gen::signal_object * pobj)
          {
-            SCAST_PTR(::user::win::message::mouse, pmouse, pobj)
+            SCAST_PTR(::gen::message::mouse, pmouse, pobj)
                index iItem;
 
             if(_001HitTest_(pmouse->m_pt, iItem))
@@ -460,7 +460,7 @@ namespace filemanager
 
          void list_view::_001OnTimer(gen::signal_object * pobj)
          {
-            SCAST_PTR(::user::win::message::timer, ptimer, pobj)
+            SCAST_PTR(::gen::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)
                {
                   KillTimer(123654);
@@ -631,7 +631,7 @@ namespace filemanager
 
          void list_view::_001OnFillTaskResponse(gen::signal_object * pobj)
          {
-            SCAST_PTR(::user::win::message::base, pbase, pobj)
+            SCAST_PTR(::gen::message::base, pbase, pobj)
                m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
@@ -709,7 +709,7 @@ namespace filemanager
          void list_view::_001OnContextMenu(gen::signal_object * pobj)
          {
 
-            SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+            SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
                //int iItem;
                point point = pcontextmenu->GetPoint();
             class point ptClient = point;
@@ -771,7 +771,7 @@ namespace filemanager
 
          void list_view::_001OnUpdateAlbumExecutePlay(gen::signal_object * pobj)
          {
-            SCAST_PTR(::user::win::message::update_cmd_ui, pupdatecmdui, pobj)
+            SCAST_PTR(::gen::message::update_cmd_ui, pupdatecmdui, pobj)
                Range range;
             _001GetSelection(range);
             pupdatecmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -920,7 +920,7 @@ namespace filemanager
 
          void list_view::_001OnEraseBkgnd(gen::signal_object * pobj)
          {
-            SCAST_PTR(::user::win::message::erase_bkgnd, perasebkgnd, pobj)
+            SCAST_PTR(::gen::message::erase_bkgnd, perasebkgnd, pobj)
                perasebkgnd->m_bRet = true;
             perasebkgnd->set_result(TRUE);
          }

@@ -27,7 +27,7 @@ namespace html
       if(m_phtmlex == NULL)
          return false;
       
-      if(!::ca5::application::initialize())
+      if(!::userpresence::application::initialize())
          return false;
 
 

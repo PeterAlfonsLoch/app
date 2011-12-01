@@ -258,8 +258,8 @@ namespace user
       virtual DWORD GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT SendMessage(::user::win::message::base * pbase);
-      virtual BOOL PostMessage(::user::win::message::base * pbase);
+      virtual LRESULT SendMessage(::gen::message::base * pbase);
+      virtual BOOL PostMessage(::gen::message::base * pbase);
       virtual LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       virtual BOOL PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
 
@@ -311,11 +311,11 @@ namespace user
       virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
       virtual ::ca::font* GetFont();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual BOOL IsWindowVisible();
 
-      virtual void _000OnMouse(::user::win::message::mouse * pmouse);
-      virtual void _000OnKey(::user::win::message::key * pkey);
+      virtual void _000OnMouse(::gen::message::mouse * pmouse);
+      virtual void _000OnKey(::gen::message::key * pkey);
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseEnter)
       DECL_GEN_SIGNAL(_001OnMouseLeave)

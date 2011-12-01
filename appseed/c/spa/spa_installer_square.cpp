@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 
-CLASS_DECL_____ bool send_short_message_to_installer(const char * psz, bool bLaunch);
-CLASS_DECL_____ void installer_call_sync(const char * path, const char * param);
+CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch);
+CLASS_DECL_c void installer_call_sync(const char * path, const char * param);
 
-CLASS_DECL_____ char * szSpabootInstall = NULL;
+CLASS_DECL_c char * szSpabootInstall = NULL;
 
 
 int installer(const char * param)
@@ -41,7 +41,7 @@ void installer_call_sync(const char * path, const char * param)
 
 
 
-CLASS_DECL_____ bool send_short_message_to_installer(const char * psz, bool bLaunch)
+CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch)
 {
    
    small_ipc_tx_channel txchannel;

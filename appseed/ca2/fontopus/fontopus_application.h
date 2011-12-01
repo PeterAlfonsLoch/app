@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ca2
+{
+
 namespace fontopus
 {
 
@@ -10,9 +13,6 @@ namespace fontopus
    {
    public:
 
-
-      bool           m_bIsCreatingUser;
-      user *         m_puser;
 
       
       application(void);
@@ -49,3 +49,6 @@ namespace fontopus
 
 
 } // namespace fontopus
+
+
+} // namespace ca2

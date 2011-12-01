@@ -294,6 +294,10 @@
 #define AFX_IDS_SCFIRST                 0xEF00
 #endif //!RC_INVOKED
 
+/*
+
+commenttest
+
 #define AFX_IDS_SCSIZE                  0xEF00
 #define AFX_IDS_SCMOVE                  0xEF01
 #define AFX_IDS_SCMINIMIZE              0xEF02
@@ -757,6 +761,7 @@
 #define AFX_IDP_PICTUREREADFAILED       0xFE86
 
 // Standard OLE control error strings
+
 #define AFX_IDP_E_ILLEGALFUNCTIONCALL       0xFEA0
 #define AFX_IDP_E_OVERFLOW                  0xFEA1
 #define AFX_IDP_E_OUTOFMEMORY               0xFEA2
@@ -797,6 +802,9 @@
 #define AFX_IDP_E_CANTSAVEFILETOTEMP        0xFEC5
 #define AFX_IDP_E_SEARCHTEXTNOTFOUND        0xFEC6
 #define AFX_IDP_E_REPLACEMENTSTOOLONG       0xFEC7
+
+*/
+
 
 #endif //__AFXRES_H__
 

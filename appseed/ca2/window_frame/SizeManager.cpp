@@ -31,7 +31,7 @@ namespace window_frame
    VMSGEN_WINDOW_ON_MOUSEMOVE_CONDITIONAL(pdispatch, this, _001OnMouseMove);
    }*/
 
-   bool SizeManager::_000OnLButtonDown(::user::win::message::mouse * pmouse) 
+   bool SizeManager::_000OnLButtonDown(::gen::message::mouse * pmouse) 
    {
       ASSERT(pmouse->m_uiMessage == WM_LBUTTONDOWN
          || pmouse->m_uiMessage == WM_NCLBUTTONDOWN);
@@ -115,7 +115,7 @@ namespace window_frame
       }
    }
 
-   bool SizeManager::_000OnMouseMove(::user::win::message::mouse * pmouse) 
+   bool SizeManager::_000OnMouseMove(::gen::message::mouse * pmouse) 
    {
       if(!m_pworkset->IsSizingEnabled())
          return false;
@@ -139,7 +139,7 @@ namespace window_frame
       return false;
    }
 
-   bool SizeManager::_000OnLButtonUp(::user::win::message::mouse * pmouse) 
+   bool SizeManager::_000OnLButtonUp(::gen::message::mouse * pmouse) 
    {
       if(!m_pworkset->IsSizingEnabled())
          return false;
@@ -155,7 +155,7 @@ namespace window_frame
       return false;
    }
 
-   bool SizeManager::Relay(::user::win::message::mouse * pmouse)
+   bool SizeManager::Relay(::gen::message::mouse * pmouse)
    {
       UNREFERENCED_PARAMETER(pmouse);
       return false;
@@ -484,11 +484,11 @@ namespace window_frame
 
    void SizeManager::message_handler(::user::interaction * pwnd, gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       
       if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         SCAST_PTR(user::win::message::mouse, pmouse, pobj);
+         SCAST_PTR(gen::message::mouse, pmouse, pobj);
          point ptCursor((short) LOWORD(pbase->m_lparam), (short) HIWORD(pbase->m_lparam));
          pwnd->ClientToScreen(&ptCursor);
 //         UINT uiFlags = pbase->m_wparam;
@@ -519,7 +519,7 @@ namespace window_frame
       else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
          pbase->m_uiMessage == WM_LBUTTONUP)
       {
-         SCAST_PTR(user::win::message::mouse, pmouse, pobj);
+         SCAST_PTR(gen::message::mouse, pmouse, pobj);
          if(pbase->m_uiMessage == WM_MOUSEMOVE &&
             (m_dwLastSizingTime + m_dwPaintDelay) > GetTickCount()
             && m_ehittestMode != HitTestNone)

@@ -34,7 +34,7 @@ namespace user
       list_header(::ca::application * papp);
       virtual ~list_header();
 
-      void AddMessageHandling(::user::win::message::dispatch * pinterface);
+      void AddMessageHandling(::gen::message::dispatch * pinterface);
       void SetBaseListCtrlInterface(list * pinterface);
 
       virtual void _001OnDraw(::ca::graphics * pdc);

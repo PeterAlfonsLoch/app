@@ -43,7 +43,7 @@ public:
    virtual void _001OnDraw(::ca::graphics * pdc);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-   virtual void install_message_handling(::user::win::message::dispatch *pinterface);
+   virtual void install_message_handling(::gen::message::dispatch *pinterface);
    void UpdateWndRgn();
    void SetEllipsePens(
         ::ca::pen * ppen,

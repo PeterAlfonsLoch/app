@@ -37,7 +37,7 @@ html_view::~html_view()
 {
 }
 
-void html_view::install_message_handling(::user::win::message::dispatch * pinterface)
+void html_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
 
@@ -167,7 +167,7 @@ void html_view::_001OnCreate(gen::signal_object * pobj)
 }
 void html_view::_001OnContextMenu(gen::signal_object * pobj) 
 {
-   SCAST_PTR(::user::win::message::context_menu, pcontextmenu, pobj)
+   SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
    point point = pcontextmenu->GetPoint();
    
 }

@@ -12,7 +12,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca application :
-      virtual public simpledb::application,
+      virtual public ::user::application,
       public BaseMenuCentralContainer
    {
    public:

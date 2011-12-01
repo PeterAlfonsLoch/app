@@ -574,7 +574,7 @@ void frame_window::_001OnCreate(gen::signal_object * pobj)
    if(pobj->previous())
       return;
 
-   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+   SCAST_PTR(::gen::message::create, pcreate, pobj)
    ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
    ::ca::create_context* pContext = (::ca::create_context*) pcreate->m_lpcreatestruct->lpCreateParams;
    pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
@@ -899,7 +899,7 @@ void frame_window::_001OnDestroy(gen::signal_object * pobj)
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window command/message routing
-void frame_window::install_message_handling(::user::win::message::dispatch * pinterface)
+void frame_window::install_message_handling(::gen::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &frame_window::_001OnDestroy);
@@ -992,7 +992,7 @@ LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
 
 void frame_window::_001OnActivate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::activate, pactivate, pobj);
+   SCAST_PTR(::gen::message::activate, pactivate, pobj);
    pobj->previous();
 
    // get top level frame unless this is a child ::ca::window
@@ -1034,7 +1034,7 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
 
 void frame_window::_001OnNcActivate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::nc_activate, pncactivate, pobj)
+   SCAST_PTR(::gen::message::nc_activate, pncactivate, pobj)
    // stay active if WF_STAYACTIVE bit is on
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
@@ -1768,7 +1768,7 @@ BOOL frame_window::ShowWindow(int nCmdShow)
 
 void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(gen::message::base, pbase, pobj);
    if(GetParent() == NULL)
    {
       if(pbase->m_wparam == SC_RESTORE)

@@ -107,7 +107,7 @@ void on_trace(vsstring & str, vsstring & str2)
 
 
 
-CLASS_DECL_____ void trace_progress(double dRate)
+CLASS_DECL_c void trace_progress(double dRate)
 {
    if(dRate < 0.0)
       dRate = 1.0;

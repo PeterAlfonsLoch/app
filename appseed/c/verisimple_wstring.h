@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_____ verisimple_wstring
+class CLASS_DECL_c verisimple_wstring
 {
 public:
 
@@ -40,5 +40,5 @@ public:
 typedef verisimple_wstring wstring;
 
 
-CLASS_DECL_____ verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
-CLASS_DECL_____ verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);
+CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
+CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);

@@ -54,7 +54,7 @@ namespace user
       DECL_GEN_VSIGNAL(_000OnPosCreate)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual void install_message_handling(::user::win::message::dispatch *pinterface);
+      virtual void install_message_handling(::gen::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
       virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::radix::object* phint);
       virtual void _001Update(control * pcontrol);

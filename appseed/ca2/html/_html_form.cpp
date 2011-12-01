@@ -94,7 +94,7 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
 }
 
 
-void html_form::install_message_handling(::user::win::message::dispatch * pinterface)
+void html_form::install_message_handling(::gen::message::dispatch * pinterface)
 {
    ::userbase::form_view::install_message_handling(pinterface);
 
@@ -163,7 +163,7 @@ void html_form::layout()
 
 void html_form::_001OnCreate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::create, pcreate, pobj)
+   SCAST_PTR(::gen::message::create, pcreate, pobj)
    pobj->previous();
    m_spdata = calc_data();
    get_html_data()->m_pform = this;
@@ -187,7 +187,7 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
 
   void html_form::_001OnLButtonDown(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -204,7 +204,7 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
 }
    /*void html_form::_001OnMouseMove(gen::signal_object * pobj)
 {
-SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+SCAST_PTR(::gen::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -219,7 +219,7 @@ SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
 
 void html_form::_001OnMouseMove(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -257,7 +257,7 @@ void html_form::_001OnMouseMove(gen::signal_object * pobj)
 
 void html_form::_001OnLButtonUp(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -347,7 +347,7 @@ const ::html::data * html_form::get_html_data() const
 
 void html_form::_001OnKeyDown(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::key, pkey, pobj);
+   SCAST_PTR(::gen::message::key, pkey, pobj);
    if(pkey->m_nChar == '\t')
    {
       pkey->m_bRet = true;

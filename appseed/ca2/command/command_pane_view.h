@@ -15,7 +15,7 @@ namespace command
       void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 	   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

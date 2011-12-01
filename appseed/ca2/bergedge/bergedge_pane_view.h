@@ -33,7 +33,7 @@ namespace bergedge
       void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       void check_3click_dir(const char * psz);
       void check_menu_dir(const char * psz);

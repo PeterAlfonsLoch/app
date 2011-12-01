@@ -56,7 +56,7 @@ namespace userbase
    }
 
 
-   void frame_window::install_message_handling(::user::win::message::dispatch * pinterface)
+   void frame_window::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       ::frame_window::install_message_handling(pinterface);
@@ -172,7 +172,7 @@ namespace userbase
    // query end session for main frame will attempt to close it all down
    void frame_window::_001OnQueryEndSession(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
       {
@@ -259,7 +259,7 @@ namespace userbase
 
    void frame_window::_001OnSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::size, psize, pobj)
+      SCAST_PTR(::gen::message::size, psize, pobj)
    //   ::user::interaction::OnSize(nType, cx, cy);    // important for MDI Children
       if (psize->m_nType != SIZE_MINIMIZED)
          layout();

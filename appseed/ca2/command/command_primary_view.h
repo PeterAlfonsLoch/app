@@ -13,7 +13,7 @@ namespace command
       int m_iCompromised;
 
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 
       primary_view(::ca::application * papp);

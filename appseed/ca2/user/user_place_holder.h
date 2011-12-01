@@ -22,7 +22,7 @@ namespace user
       using ::user::control::create;
       virtual bool create(place_holder_container * pcontainer, id id);
 
-      virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
+      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
       virtual bool can_merge(::user::interaction * pui);
       virtual bool merge(::user::interaction * pui);

@@ -34,7 +34,7 @@ namespace userbase
 
       void layout();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 
       virtual void clear();

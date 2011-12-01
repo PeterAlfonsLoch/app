@@ -417,7 +417,7 @@ namespace userbase
 
    void menu::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(::gen::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == BaseWndMenuTimer)
       {
          KillTimer(BaseWndMenuTimer);
@@ -468,7 +468,7 @@ namespace userbase
       pobj->m_bRet = false;
    }
 
-   void menu::install_message_handling(::user::win::message::dispatch * pinterface)
+   void menu::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
@@ -485,7 +485,7 @@ namespace userbase
    void menu::_001OnCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj);
+//      SCAST_PTR(::gen::message::create, pcreate, pobj);
       m_pschema            = &userbase::GetUfeSchema(get_app())->m_menu;
       return;
    }
@@ -495,7 +495,7 @@ namespace userbase
    void menu::_001OnIdleUpdateCmdUI(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::base, pbase, pobj)
+//      SCAST_PTR(::gen::message::base, pbase, pobj)
       if(m_pitem->m_spitema != NULL)
       {
          menu_button_cmd_ui cmdui(get_app());
@@ -528,20 +528,20 @@ namespace userbase
    void menu::_001OnEnable(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::enable, penable, pobj);
+//      SCAST_PTR(::gen::message::enable, penable, pobj);
    }
 
 
    void menu::_001OnNcActivate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       pbase->m_bRet = true;
       pbase->set_lresult(DefWindowProc(WM_NCACTIVATE, pbase->m_wparam, -1));
    }
 
    void menu::_001OnNcCalcSize(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       if(pbase->m_wparam == TRUE)
       {
@@ -579,7 +579,7 @@ namespace userbase
 
    void menu::_001OnShowWindow(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::show_window, pshow, pobj)
+      SCAST_PTR(::gen::message::show_window, pshow, pobj)
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
    }
 

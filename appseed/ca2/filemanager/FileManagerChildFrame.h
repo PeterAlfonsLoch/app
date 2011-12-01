@@ -12,7 +12,7 @@ public:
 
      simple_toolbar           m_toolbar;
 
-   void install_message_handling(::user::win::message::dispatch * pinterface);
+   void install_message_handling(::gen::message::dispatch * pinterface);
 
    void OnChangeEditSearch();
 

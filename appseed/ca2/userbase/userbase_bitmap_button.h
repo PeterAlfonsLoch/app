@@ -39,7 +39,7 @@ namespace userbase
       virtual void BaseToolTipGetRect(LPRECT lprect);
       virtual int BaseToolTipGetIndex();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 #ifdef WINDOWS
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDIS);
 #endif

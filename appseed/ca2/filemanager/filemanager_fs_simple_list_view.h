@@ -71,7 +71,7 @@ namespace filemanager
             list_view(::ca::application * papp);
             ::filemanager::fs::simple::view * m_pserver;
 
-            void install_message_handling(::user::win::message::dispatch * pinterface);
+            void install_message_handling(::gen::message::dispatch * pinterface);
        
             ::user::list_cache        m_cache;
             bool                 m_bKickActive;

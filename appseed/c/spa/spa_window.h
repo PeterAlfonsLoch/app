@@ -7,14 +7,14 @@ namespace spa
    class installer;
    class window;
 
-   class CLASS_DECL_____ window_map :
+   class CLASS_DECL_c window_map :
       public simple_map < HWND, window * >
    {
 
 
    };
 
-   class CLASS_DECL_____ window
+   class CLASS_DECL_c window
    {
    public:
 

@@ -43,7 +43,7 @@ SimpleMDIChildWindow::SimpleMDIChildWindow(::ca::application * papp) :
    m_bPseudoInactive = FALSE;
 }
 
-void SimpleMDIChildWindow::install_message_handling(::user::win::message::dispatch * pinterface)
+void SimpleMDIChildWindow::install_message_handling(::gen::message::dispatch * pinterface)
 {
    simple_frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &SimpleMDIChildWindow::_001OnCreate);
@@ -588,7 +588,7 @@ BOOL SimpleMDIChildWindow::OnNcCreate(LPCREATESTRUCT lpCreateStruct)
 
 void SimpleMDIChildWindow::_001OnCreate(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::create, pcreate, pobj);
+   SCAST_PTR(::gen::message::create, pcreate, pobj);
    // call base class with lParam context (not MDI one)
    MDICREATESTRUCT* lpmcs;
    lpmcs = (MDICREATESTRUCT*)pcreate->m_lpcreatestruct->lpCreateParams;

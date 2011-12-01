@@ -592,7 +592,7 @@ namespace user
 
    void tab::_001OnLButtonDown(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
 
@@ -620,7 +620,7 @@ namespace user
 
    void tab::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
 
@@ -650,7 +650,7 @@ namespace user
 
    void tab::_001OnMouseMove(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
       if(get_data()->m_iDragTab >= 0)
@@ -676,7 +676,7 @@ namespace user
 
    void tab::_001OnMouseLeave(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       m_iHover = -1;
       GetParent()->_001RedrawWindow();
       pbase->set_lresult(0);
@@ -874,7 +874,7 @@ namespace user
 
    void tab::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pobj->previous())
          return;
    //  m_pimagelist = new image_list(get_app());
@@ -886,7 +886,7 @@ namespace user
    void tab::_011OnCreate(gen::signal_object * pobj)
    {
   UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::user::win::message::base, pbase, pobj);
+//      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
       if(get_data()->m_matchanyRestore.get_count() > 0)
@@ -900,7 +900,7 @@ namespace user
 
    }
 
-   void tab::install_message_handling(::user::win::message::dispatch *pinterface)
+   void tab::install_message_handling(::gen::message::dispatch *pinterface)
    {
       ::user::window_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
@@ -1187,7 +1187,7 @@ namespace user
       }
    }
 
-   void tab::_001ConnectParent(::user::win::message::dispatch * pinterface)
+   void tab::_001ConnectParent(::gen::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }
@@ -1342,7 +1342,7 @@ namespace user
 
    void tab::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(::gen::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
@@ -1354,7 +1354,7 @@ namespace user
       }
    }
 
-   void tab::_000OnMouse(::user::win::message::mouse * pmouse)
+   void tab::_000OnMouse(::gen::message::mouse * pmouse)
    {
       if(m_bShowTabs)
       {

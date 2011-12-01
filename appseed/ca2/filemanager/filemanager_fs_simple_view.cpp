@@ -27,7 +27,7 @@ namespace filemanager
              //  delete m_pinetsession;
          }
 
-         void view::install_message_handling(::user::win::message::dispatch * pinterface)
+         void view::install_message_handling(::gen::message::dispatch * pinterface)
          {
             ::userbase::split_view::install_message_handling(pinterface);
          }

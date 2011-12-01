@@ -35,7 +35,7 @@ namespace userbase
 
    void tab_view::_001OnCreate(gen::signal_object * pobj) 
    {
-//      SCAST_PTR(::user::win::message::create, pcreate, pobj)
+//      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
    }
@@ -93,14 +93,14 @@ namespace userbase
 
    void tab_view::_001OnMenuMessage(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj)
+      SCAST_PTR(::gen::message::base, pbase, pobj)
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pviewdataOld->m_id);
       }
    }
 
-   void tab_view::install_message_handling(::user::win::message::dispatch * pinterface)
+   void tab_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       ::user::tab::install_message_handling(pinterface);
@@ -447,7 +447,7 @@ namespace userbase
    {
    }
 
-   void tab_drop_target_window::install_message_handling(::user::win::message::dispatch * pinterface)
+   void tab_drop_target_window::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
@@ -544,7 +544,7 @@ namespace userbase
 
    void tab_drop_target_window::_001OnLButtonUp(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::mouse, pmouse, pobj);
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
 
       e_position eposition = m_ptab->DragHitTest(pmouse->m_pt);
 

@@ -55,9 +55,9 @@ public:
    LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
 
    // as hosting ::ca::window
-   virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+   virtual void install_message_handling(::gen::message::dispatch * pinterface);
    // as virtual ::ca::window
-   virtual void _002InstallMessageHandling(::user::win::message::dispatch * pinterface);
+   virtual void _002InstallMessageHandling(::gen::message::dispatch * pinterface);
    size              m_size;
    string            m_strWindowText;
    bool              m_bEnabled;
