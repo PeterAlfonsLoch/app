@@ -35,6 +35,27 @@
     <Filter Include="Header Files\gcom">
       <UniqueIdentifier>{0ad258e3-3c14-4dbf-85de-239192cf9365}</UniqueIdentifier>
     </Filter>
+<<<<<<< .mine
+    <Filter Include="Header Files\mus">
+      <UniqueIdentifier>{3be07607-cdf4-46ab-8146-371d0769ac16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\musctrl">
+      <UniqueIdentifier>{8b1b31e4-c4a1-4777-a225-de037e1a85de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\x">
+      <UniqueIdentifier>{1d3ba52d-047b-42b4-8186-26db7f837f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ex1">
+      <UniqueIdentifier>{105d434f-d24c-4f0d-9f6d-1579c18ce05c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ex2">
+      <UniqueIdentifier>{1aece108-f9ef-4695-8a34-ab067b163e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\id3lib">
+      <UniqueIdentifier>{b4d0e2a7-4578-42d8-bdb1-6c1f11f0a1e3}</UniqueIdentifier>
+    </Filter>
+=======
+>>>>>>> .r3068
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{02315281-3021-4616-afed-9eaad1215baf}</UniqueIdentifier>
     </Filter>
@@ -1160,6 +1181,243 @@
     <ClInclude Include="gcom\gcom_Util.h">
       <Filter>Header Files\gcom</Filter>
     </ClInclude>
+<<<<<<< .mine
+    <ClInclude Include="mus\Midiplyr.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\mus.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\mus_intrisics.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\SoftKaraokeInfo.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350EventBase.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350EventTrack.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350EventV001.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350EventV008.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350EventV016.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350File.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350InfoHeader.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350LyricTrack.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350LyricTracks.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350TrackBase.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350Tracks.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Star350TrackV008.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Tune1000Info.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Uiutils.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\vmsmusresource.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="mus\Xf.h">
+      <Filter>Header Files\mus</Filter>
+    </ClInclude>
+    <ClInclude Include="musctrl\musctrl.h">
+      <Filter>Header Files\musctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musctrl\MusicalPlayerCentral.h">
+      <Filter>Header Files\musctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musctrl\MusicalPlayerCentralContainer.h">
+      <Filter>Header Files\musctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musctrl\PlayerDocContainer.h">
+      <Filter>Header Files\musctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musctrl\single_document_template.h">
+      <Filter>Header Files\musctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_charcategory.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_charcategory2.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_charcategory_names.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_defines.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_encodings.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="x\x_tables.h">
+      <Filter>Header Files\x</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_application.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_buffered_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_edit_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_exception.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_set.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_system.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_resource.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_str_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_stream2.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_text_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\Ex17MemoryFile.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_application.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_file_set.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\acconfig.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\config.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\field.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\field_def.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\field_impl.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\flags.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\frame_def.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\frame_impl.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\globals.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\header.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\header_frame.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\header_tag.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\helpers.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\id3.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\id3lib_frame.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\id3lib_streams.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\id3lib_strings.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\io_decorators.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\io_helpers.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\io_strings.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\mp3_header.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\reader.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\readers.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\sized_types.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\spec.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\tag.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\tag_impl.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\utils.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\writer.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+    <ClInclude Include="id3lib\writers.h">
+      <Filter>Header Files\id3lib</Filter>
+    </ClInclude>
+=======
+>>>>>>> .r3068
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -2046,9 +2304,6 @@
       <Filter>Header Files\cube8</Filter>
     </ClInclude>
     <ClInclude Include="cube8\cube8_system_ca_template.h">
-      <Filter>Header Files\cube8</Filter>
-    </ClInclude>
-    <ClInclude Include="cube8\cube8_system_template_trace.h">
       <Filter>Header Files\cube8</Filter>
     </ClInclude>
     <ClInclude Include="user\user_printer.h">

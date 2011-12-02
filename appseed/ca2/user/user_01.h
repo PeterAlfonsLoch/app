@@ -32,6 +32,8 @@
 
 
 
+<<<<<<< .mine
+=======
 class CLASS_DECL_ca guie_message_wnd :
    virtual public ::ax::window
 {
@@ -40,6 +42,7 @@ public:
    virtual void message_handler(gen::signal_object * pobj);
    ::user::interaction * m_pguieForward;
 };
+>>>>>>> .r3068
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -255,23 +258,7 @@ class COleDataObject;   // forward reference (see afxole.h)
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// thread
-namespace win
-{
-   class CLASS_DECL_ca message
-   {
-   public:
-      ::user::interaction *  m_pguie;
-      UINT              m_uiMessage;
-      WPARAM            m_wparam;
-      LPARAM            m_lparam;
-      LRESULT send();
-      static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int nPriority = 0);
-   };
 
-} // namespace win
 
 
 #include "user_window_util.h"

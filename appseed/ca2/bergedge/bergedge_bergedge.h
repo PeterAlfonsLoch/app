@@ -19,9 +19,15 @@ namespace bergedge
 
 
    class CLASS_DECL_ca bergedge :
+<<<<<<< .mine
+      virtual public ::platform::application,
+      virtual public ::filemanager::item_action,
+      virtual public ::plane::bergedge
+=======
       virtual public platform::application,
       virtual public filemanager::item_action,
       virtual public ::ax::bergedge
+>>>>>>> .r3068
    {
    public:
 

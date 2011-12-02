@@ -6,6 +6,7 @@ namespace cube1
 
 
    class CLASS_DECL_ca application :
+      // fontopus::application
       virtual public calculator::application,
       virtual public filemanager::application
    {
