@@ -13,7 +13,6 @@ namespace ca
       m_bReady                      = false;
       m_bRun                        = true;
       m_pappDelete                  = NULL;
-      m_ptimera                     = NULL;
    }
 
 
@@ -453,10 +452,14 @@ namespace ca
       return 0x80000000;
    }
 
+
 } // namespace ca
+
 
 namespace win
 {
+
+
    LRESULT message::send()
    {
       return m_pguie->SendMessage(m_uiMessage, m_wparam, m_lparam);
@@ -481,5 +484,6 @@ namespace win
    }
 
 
-
 } // namespace win
+
+

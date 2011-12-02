@@ -2488,11 +2488,11 @@ namespace radix
          {
             return m_pkeyboardfocus;
          }
-         else if(m_pbergedge != NULL)
+         else if(m_pplanebergedge != NULL)
          {
             return Berg(this).get_keyboard_focus();
          }
-         else if(m_psystem != NULL)
+         else if(m_pplanesystem != NULL)
          {
             return Sys(this).get_keyboard_focus();
          }
@@ -2510,7 +2510,7 @@ namespace radix
             {
                m_pkeyboardfocus = pkeyboardfocus;
             }
-            if(m_psystem != NULL)
+            if(m_pplanesystem != NULL)
             {
                return Sys(this).set_keyboard_focus(pkeyboardfocus);
             }
@@ -2522,11 +2522,11 @@ namespace radix
                m_pkeyboardfocus = pkeyboardfocus;
             }
          }
-         else if(m_pbergedge != NULL)
+         else if(m_pplanebergedge != NULL)
          {
             return Berg(this).set_keyboard_focus(pkeyboardfocus);
          }
-         else if(m_psystem != NULL)
+         else if(m_pplanesystem != NULL)
          {
             return Sys(this).set_keyboard_focus(pkeyboardfocus);
          }
@@ -3083,23 +3083,23 @@ namespace radix
    {
       if(m_puiInitialPlaceHolderContainer != NULL)
          return m_puiInitialPlaceHolderContainer;
-      if(m_pbergedge != NULL)
+      if(m_pplanebergedge != NULL)
       {
          try
          {
-            if(m_pbergedge->m_puiInitialPlaceHolderContainer != NULL)
-               return m_pbergedge->m_puiInitialPlaceHolderContainer;
+            if(m_pplanebergedge->m_puiInitialPlaceHolderContainer != NULL)
+               return m_pplanebergedge->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
          }
       }
-      if(m_psystem != NULL)
+      if(m_pplanesystem != NULL)
       {
          try
          {
-            if(m_psystem->m_puiInitialPlaceHolderContainer != NULL)
-               return m_psystem->m_puiInitialPlaceHolderContainer;
+            if(m_pplanesystem->m_puiInitialPlaceHolderContainer != NULL)
+               return m_pplanesystem->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
@@ -3130,8 +3130,8 @@ namespace radix
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
-      if(puiParent == NULL && m_pbergedge != NULL && !pcreatecontext->m_bClientOnly
-         && !pcreatecontext->m_bOuterPopupAlertLike && m_pbergedge != this)
+      if(puiParent == NULL && m_pplanebergedge != NULL && !pcreatecontext->m_bClientOnly
+         && !pcreatecontext->m_bOuterPopupAlertLike && m_pplanebergedge != this)
       {
          puiParent = Berg(this).get_request_parent_ui(pinteraction, pcreatecontext);
       }
@@ -3143,7 +3143,7 @@ namespace radix
    ::user::interaction * application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
-      if(m_pbergedge != NULL)
+      if(m_pplanebergedge != NULL)
       {
          return Berg(this).get_request_parent_ui(pmainframe, pcreatecontext);
       }

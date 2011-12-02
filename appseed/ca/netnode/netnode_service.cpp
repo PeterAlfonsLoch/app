@@ -20,7 +20,7 @@ namespace netnode
    {
       ::ca::application * pcaapp = get_app();
 
-      Sys(pcaapp).set_thread(&Sys(pcaapp->m_psystem));
+      Sys(pcaapp).set_thread(&Sys(pcaapp->m_pplanesystem));
 
       m_stopping = false;
 

@@ -6,7 +6,7 @@ namespace simpleuser
 
 
    class CLASS_DECL_ca application :
-      public ::userpresence::application
+      public ::visual::application
    {
    public:
 

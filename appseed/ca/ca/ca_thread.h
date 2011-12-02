@@ -9,6 +9,24 @@
 
 typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
 
+/////////////////////////////////////////////////////////////////////////////
+// thread
+namespace win
+{
+   class CLASS_DECL_ca message
+   {
+   public:
+      ::user::interaction *  m_pguie;
+      UINT              m_uiMessage;
+      WPARAM            m_wparam;
+      LPARAM            m_lparam;
+      LRESULT send();
+      static UINT ThreadProcSendMessage(LPVOID lp);
+      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int nPriority = 0);
+   };
+
+} // namespace win
+
 // incorporation of sector8J src/lib/pal/windows/thread_windows.hpp on 07/09/2011
 /**
 * \file		src/lib/pal/windows/thread_windows.hpp

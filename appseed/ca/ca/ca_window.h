@@ -3,6 +3,15 @@
 
 #include "ca/user/user_interaction.h"
 
+class CLASS_DECL_ca guie_message_wnd :
+   virtual public ::ca::window
+{
+public:
+   guie_message_wnd(::ca::application * papp);
+   virtual void message_handler(gen::signal_object * pobj);
+   ::user::interaction * m_pguieForward;
+};
+
 
 namespace ca
 {

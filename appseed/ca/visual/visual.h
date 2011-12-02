@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca/userpresence/userpresence.h"
+
+
 
 namespace visual
 {

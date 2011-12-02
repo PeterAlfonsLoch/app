@@ -14,7 +14,7 @@ namespace plane
       m_pbergedgedocument        = NULL;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-      m_pbergedge                = this;
+      m_pplanebergedge                = this;
 
       ::fs::set * pset = new class ::fs::set(this);
       pset->m_spafsdata.add(new ::fs::native(this));
@@ -204,7 +204,7 @@ namespace plane
          createcontextBergedge->m_bMakeVisible = false;
 
          m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
-         m_pbergedgedocument->m_pbergedge = this;
+         m_pbergedgedocument->m_pplanebergedge = this;
       
       }
       if(m_bShowPlatform)
@@ -734,7 +734,7 @@ namespace plane
          pui = m_puiInitialPlaceHolderContainer;
       }*/
 
-/*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
+/*      if(pui == NULL && m_bShowPlatform && m_pplanebergedge->get_document() != NULL)
       {
          pui = Bergedge.get_document()->get_bergedge_view();
       }

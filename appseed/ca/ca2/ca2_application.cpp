@@ -650,9 +650,9 @@ BOOL Is_Vista_or_Later ()
 
    bool application::is_key_pressed(int iKey)
    {
-      if(is_bergedge() || is_system() || (m_pbergedge == NULL && m_psystem == NULL))
+      if(is_bergedge() || is_system() || (m_pplanebergedge == NULL && m_pplanesystem == NULL))
       {
-         if(is_system() && m_pbergedge != NULL && !is_bergedge())
+         if(is_system() && m_pplanebergedge != NULL && !is_bergedge())
          {
             return Berg(this).is_key_pressed(iKey);
          }
@@ -664,11 +664,11 @@ BOOL Is_Vista_or_Later ()
          m_pmapKeyPressed->Lookup(iKey, bPressed);
          return bPressed;
       }
-      else if(m_pbergedge != NULL)
+      else if(m_pplanebergedge != NULL)
       {
          return Berg(this).is_key_pressed(iKey);
       }
-      else if(m_psystem != NULL)
+      else if(m_pplanesystem != NULL)
       {
          return Sys(this).is_key_pressed(iKey);
       }
@@ -681,9 +681,9 @@ BOOL Is_Vista_or_Later ()
 
    void application::set_key_pressed(int iKey, bool bPressed)
    {
-      if(is_bergedge() || is_system() || (m_pbergedge == NULL && m_psystem == NULL))
+      if(is_bergedge() || is_system() || (m_pplanebergedge == NULL && m_pplanesystem == NULL))
       {
-         if(is_system() && m_pbergedge != NULL && !is_bergedge())
+         if(is_system() && m_pplanebergedge != NULL && !is_bergedge())
          {
             return Berg(this).set_key_pressed(iKey, bPressed);
          }
@@ -693,11 +693,11 @@ BOOL Is_Vista_or_Later ()
          }
          (*m_pmapKeyPressed)[iKey] = bPressed;
       }
-      else if(m_pbergedge != NULL)
+      else if(m_pplanebergedge != NULL)
       {
          return Berg(this).set_key_pressed(iKey, bPressed);
       }
-      else if(m_psystem != NULL)
+      else if(m_pplanesystem != NULL)
       {
          return Sys(this).set_key_pressed(iKey, bPressed);
       }

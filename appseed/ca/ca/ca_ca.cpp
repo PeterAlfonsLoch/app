@@ -17,8 +17,8 @@ namespace ca
       m_ulFlags            = (unsigned long) flag_auto_clean;
       m_papp               = 0; // NULL
       m_countReference     = 1; // avoid creating a "perambulator" phantom
-      m_pbergedge          = NULL;
-      m_psystem            = NULL;
+      m_pplanebergedge          = NULL;
+      m_pplanesystem            = NULL;
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;
@@ -29,8 +29,8 @@ namespace ca
       m_ulFlags            = o.m_ulFlags;
       m_papp               = o.m_papp;
       m_countReference     = 1; // avoid creating a "perambulator" phantom  
-      m_pbergedge          = o.m_pbergedge;
-      m_psystem            = o.m_psystem;
+      m_pplanebergedge          = o.m_pplanebergedge;
+      m_pplanesystem            = o.m_pplanesystem;
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;
@@ -45,14 +45,14 @@ namespace ca
       {
          try
          {
-            m_pbergedge          = papp->m_pbergedge;
+            m_pplanebergedge          = papp->m_pplanebergedge;
          }
          catch(...)
          {
          }
          try
          {
-            m_psystem            = papp->m_psystem;
+            m_pplanesystem            = papp->m_pplanesystem;
          }
          catch(...)
          {

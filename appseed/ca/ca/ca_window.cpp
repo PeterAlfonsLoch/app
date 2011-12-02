@@ -418,7 +418,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window extensions
 
-   frame_window* window::GetParentFrame()
+   ::user::interaction * window::GetParentFrame()
    {
       throw interface_only_exception();   
    }
@@ -448,7 +448,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   frame_window* window::GetTopLevelFrame()
+   ::user::interaction * window::GetTopLevelFrame()
    {
       throw interface_only_exception();   
    }
@@ -494,10 +494,10 @@ namespace ca
    // if the window doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-   CScrollBar* window::GetScrollBarCtrl(int) const
+/*   CScrollBar* window::GetScrollBarCtrl(int) const
    {
       throw interface_only_exception();   
-   }
+   }*/
 
    int window::SetScrollPos(int nBar, int nPos, BOOL bRedraw)
    {
@@ -699,7 +699,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   void window::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
+/*   void window::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
       UNREFERENCED_PARAMETER(pScrollBar);
       throw interface_only_exception();   
@@ -710,6 +710,7 @@ namespace ca
       UNREFERENCED_PARAMETER(pScrollBar);
       throw interface_only_exception();   
    }
+   */
 
    void window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
    {
@@ -1079,7 +1080,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   frame_window* window::EnsureParentFrame()
+   ::user::interaction * window::EnsureParentFrame()
    {
       throw interface_only_exception();   
    }
@@ -2344,10 +2345,6 @@ void CTestCmdUI::SetText(const char *)
 }
 
 
-view_update_hint::view_update_hint(::ca::application * papp) :
-ca(papp)
-{
-}
 
 
 

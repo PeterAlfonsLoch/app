@@ -22,7 +22,7 @@ HANDLE sync_object_base::get_os_data() const
 
 bool sync_object_base::lock(const duration & duration)
 {
-   if(m_psystem == NULL)
+   if(m_pplanesystem == NULL)
       return false;
    bool bLocked = false;
    try
@@ -41,7 +41,7 @@ bool sync_object_base::lock(const duration & duration)
    
 bool sync_object_base::unlock()
 {
-   if(m_psystem == NULL)
+   if(m_pplanesystem == NULL)
       return false;
    bool bUnlocked = false;
    try

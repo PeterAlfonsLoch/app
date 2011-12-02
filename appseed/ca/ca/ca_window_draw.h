@@ -8,7 +8,7 @@
 namespace user
 {
    class buffer;
-   class ::user::window_interface;
+   class window_interface;
 }
 
 namespace ca

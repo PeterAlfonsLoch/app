@@ -365,7 +365,7 @@ namespace user
 
       try
       {
-         if(m_pbergedge != NULL && &Bergedge != NULL)
+         if(m_pplanebergedge != NULL && &Bergedge != NULL)
          {
             Bergedge.remove_frame(this);
          }
@@ -376,7 +376,7 @@ namespace user
 
       try
       {
-         if(m_psystem != NULL && &System != NULL)
+         if(m_pplanesystem != NULL && &System != NULL)
          {
             System.remove_frame(this);
          }

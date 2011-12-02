@@ -664,3 +664,10 @@ int view::get_total_page_count(::ax::job * pjob)
    UNREFERENCED_PARAMETER(pjob);
    return 1;
 }
+
+
+
+view_update_hint::view_update_hint(::ca::application * papp) :
+ca(papp)
+{
+}

@@ -10,9 +10,9 @@ namespace radix
       void * p = ::operator new(nSize, _AFX_CLIENT_BLOCK, NULL, 0);
       try
       {
-         if(::ax::get_thread_state() != NULL)
+         if(::ca::get_thread_state() != NULL)
          {
-            ::ax::get_thread_state()->m_heapitema.add_item(p, nSize);
+            ::ca::get_thread_state()->m_heapitema.add_item(p, nSize);
          }
       }
       catch(...)
@@ -26,9 +26,9 @@ namespace radix
       void * p = ::operator new(nSize, _AFX_CLIENT_BLOCK, lpszFileName, nLine);
       try
       {
-         if(::ax::get_thread_state() != NULL)
+         if(::ca::get_thread_state() != NULL)
          {
-            ::ax::get_thread_state()->m_heapitema.add_item(p, nSize);
+            ::ca::get_thread_state()->m_heapitema.add_item(p, nSize);
          }
       }
       catch(...)

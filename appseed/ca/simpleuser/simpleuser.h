@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include "ca/userpresence/userpresence.h"
-
+#include "ca/visual/visual.h"
 
 
 

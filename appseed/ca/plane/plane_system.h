@@ -405,7 +405,7 @@ namespace gen
          return -1;
       if(pca->m_papp == NULL)
          return -1;
-      if(pca->m_papp->m_psystem == NULL)
+      if(pca->m_papp->m_pplanesystem == NULL)
          return -1;
       index iFind = find(p);
       if(iFind >= 0)
@@ -424,7 +424,7 @@ namespace gen
          return -1;
       if(pca->m_papp == NULL)
          return -1;
-      if(pca->m_papp->m_psystem == NULL)
+      if(pca->m_papp->m_pplanesystem == NULL)
          return -1;
       index iFind = find(p);
       if(iFind >= 0)
@@ -451,7 +451,7 @@ namespace gen
          return -1;
       if(pca->m_papp == NULL)
          return -1;
-      if(pca->m_papp->m_psystem == NULL)
+      if(pca->m_papp->m_pplanesystem == NULL)
          return -1;
       index iFind = find(p);
       if(iFind >= 0)
@@ -584,6 +584,5 @@ inline index array_app_alloc < TYPE, ARG_TYPE >::add(
 
 
 
-#include "plane_system_template_trace.h"
 
 

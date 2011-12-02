@@ -79,7 +79,7 @@ namespace plane
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
       m_pcopydesk                = NULL;
-      m_psystem                  = this;
+      m_pplanesystem                  = this;
 
       
 

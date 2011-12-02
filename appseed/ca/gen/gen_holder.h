@@ -349,7 +349,7 @@ namespace gen
             return;
          if(pca->m_papp == NULL)
             return;
-         if(pca->m_papp->m_psystem == NULL)
+         if(pca->m_papp->m_pplanesystem == NULL)
             return;
          m_papp = pca->m_papp;
          m_keymap.set_at(key, p);

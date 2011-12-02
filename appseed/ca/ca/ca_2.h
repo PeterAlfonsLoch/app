@@ -20,6 +20,9 @@
 #include "ca_profiler.h"
 
 
+#include "ca_window_draw.h"
+
+
 #include "radix/radix_application.h"
 
 

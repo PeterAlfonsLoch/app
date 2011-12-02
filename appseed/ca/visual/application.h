@@ -1,9 +1,13 @@
 #pragma once
 
+
+
 namespace visual
 {
+
+
    class CLASS_DECL_ca application  :
-      virtual public ::ca8::application
+      virtual public ::userpresence::application
    {
    public:
       application();
@@ -23,3 +27,5 @@ namespace visual
 
 
 } // namespace visual
+
+
