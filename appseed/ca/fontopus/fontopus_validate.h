@@ -69,9 +69,9 @@ namespace fontopus
    };
 
    class CLASS_DECL_ca validate :
-      virtual public ::user::form_callback,
+/*      virtual public ::user::form_callback,
       virtual public ::user::view_creator,
-      virtual public ::user::tab_callback,
+      virtual public ::user::tab_callback,*/
       virtual public login_thread_callback
    {
    public:
@@ -97,12 +97,12 @@ namespace fontopus
       ::fontopus::user *                         m_puser;
       login_thread                              m_loginthread;
       int                                       m_iView;
-      ::userbase::single_document_template *    m_ptemplatePane;
+/*      ::userbase::single_document_template *    m_ptemplatePane;
       form_document *                           m_pdoc;
       ::userex::pane_tab_view *                   m_ptabview;
       form_document *                           m_pdocAuth;
       form_document *                           m_pdocMessage;
-      form_view *                               m_pviewAuth;
+      form_view *                               m_pviewAuth;*/
       bool                                      m_bVotagusAuth;
       auth *                                    m_pauth;
       string                                    m_strForm;
@@ -140,12 +140,12 @@ namespace fontopus
       void authentication_failed(int iAuth, const char * pszResponse);
       void authentication_succeeded();
 
-      void on_create_view(::user::view_creator_data * pcreatordata);
+//      void on_create_view(::user::view_creator_data * pcreatordata);
 
       virtual void on_show_view();
 
       
-      virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
+  //    virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
    };
 
 

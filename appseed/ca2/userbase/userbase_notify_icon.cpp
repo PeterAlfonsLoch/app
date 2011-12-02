@@ -4,8 +4,8 @@
 namespace userbase
 {
 
-   notify_icon::notify_icon(::ca::application * papp) :
-      ca(papp)
+   notify_icon::notify_icon(::ax::application * papp) :
+      ax(papp)
    {
       
       m_nid.cbSize = sizeof(m_nid);

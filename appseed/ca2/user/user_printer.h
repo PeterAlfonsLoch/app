@@ -10,11 +10,11 @@ namespace user
       string      m_strName;
 
 
-      printer(::ca::application * papp);
+      printer(::ax::application * papp);
       virtual ~printer();
 
       virtual bool open(const char * pszDeviceName);
-      virtual ::ca::graphics * create_graphics();
+      virtual ::ax::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();
 

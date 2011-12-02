@@ -25,7 +25,7 @@ public:
    virtual ~FileManagerCallbackInterface();
 
 
-   virtual void on_request(::ca::create_context * pcreatecontext);
+   virtual void on_request(::ax::create_context * pcreatecontext);
 
 
    virtual void OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle);

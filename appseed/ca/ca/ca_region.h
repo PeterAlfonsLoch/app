@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "ca/collection/point_array.h"
+
+
 namespace ca
 {
 

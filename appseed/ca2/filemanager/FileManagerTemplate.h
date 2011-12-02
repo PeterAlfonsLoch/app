@@ -47,18 +47,18 @@ public:
    SimpleDialogBar *    m_pdialogbar;
 
 
-   ::filemanager::document * open(FileManagerCallbackInterface * pinterface, ::ca::create_context * pwndParent = NULL, ::fs::data * pdata = NULL);
+   ::filemanager::document * open(FileManagerCallbackInterface * pinterface, ::ax::create_context * pwndParent = NULL, ::fs::data * pdata = NULL);
    ::filemanager::document * OpenChild(FileManagerCallbackInterface * pinterface, bool bMakeVisible = true, bool bTransparentBackground = false, ::user::interaction * pwndParent = NULL);
    ::filemanager::document * OpenChildList(FileManagerCallbackInterface * pinterface, bool bMakeVisible = true, bool bTransparentBackground = false, ::user::interaction * pwndParent = NULL);
 
    ::filemanager::document * create_new_document(FileManagerCallbackInterface * pinterface);
 
 
-   FileManagerTemplate(::ca::application * papp);
+   FileManagerTemplate(::ax::application * papp);
    virtual ~FileManagerTemplate();
 
 
-   virtual void Initialize(::ca::application * papp, int iTemplate, const char * pszMatter);
+   virtual void Initialize(::ax::application * papp, int iTemplate, const char * pszMatter);
 
 
 };

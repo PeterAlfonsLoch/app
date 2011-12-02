@@ -3,6 +3,11 @@
 
 #include "ca/datetime/datetime.h"
 #include "ca/multithreading/multithreading.h"
+#include "ca/radix/command_target.h"
+#include "ca/exception/se_translator.h"
+#include "ca/gen/gen_property.h"
+
+typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
 
 // incorporation of sector8J src/lib/pal/windows/thread_windows.hpp on 07/09/2011
 /**

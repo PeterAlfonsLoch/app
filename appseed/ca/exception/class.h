@@ -33,7 +33,7 @@
 
 CLASS_DECL_ca BOOL IsWow64();
 
-class call_stack
+class CLASS_DECL_ca call_stack
 {
 public:
 

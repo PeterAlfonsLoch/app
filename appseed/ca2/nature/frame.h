@@ -18,7 +18,7 @@ namespace nature
       DWORD                      m_dwLastHover;
 
 
-      frame(::ca::application * papp);
+      frame(::ax::application * papp);
       virtual ~frame();
 
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

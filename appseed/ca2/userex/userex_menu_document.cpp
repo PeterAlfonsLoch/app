@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-menu_document::menu_document(::ca::application * papp) :
-   ca(papp),
+menu_document::menu_document(::ax::application * papp) :
+   ax(papp),
    data_container(papp),
    document_interface(papp),
    ::document(papp),

@@ -16,7 +16,7 @@ namespace command
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 
-      primary_view(::ca::application * papp);
+      primary_view(::ax::application * papp);
       virtual void _001OnAfterChangeText();
       void on_update(::view* pSender, LPARAM lHint, ::radix::object* phint);
 

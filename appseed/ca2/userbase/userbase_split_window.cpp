@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-BaseSplitWnd::BaseSplitWnd(::ca::application * papp) :
-   ca(papp),
+BaseSplitWnd::BaseSplitWnd(::ax::application * papp) :
+   ax(papp),
    ::userbase::split_layout(papp),
    place_holder_container(papp)
 {
@@ -19,7 +19,7 @@ BOOL BaseSplitWnd::PreCreateWindow(CREATESTRUCT& cs)
    return ::user::interaction::PreCreateWindow(cs);
 }
 
-void BaseSplitWnd::_001OnDraw(::ca::graphics *pdc)
+void BaseSplitWnd::_001OnDraw(::ax::graphics *pdc)
 {
    
    int i;

@@ -48,8 +48,8 @@ namespace cube8
       m_pfactory = new class factory(this);
       m_pfactory->set_app(this);
 
-      m_pfactory->cloneable_large < ::ca::create_context > ();
-      m_pfactory->cloneable_large < ::ca::application_bias > ();
+      m_pfactory->cloneable_large < ::ax::create_context > ();
+      m_pfactory->cloneable_large < ::ax::application_bias > ();
       m_pfactory->cloneable_large < ::gen::command_line > ();
 
 
@@ -145,10 +145,10 @@ namespace cube8
          return false;
 
 
-      ::ca::profiler::initialize();
+      ::ax::profiler::initialize();
 
 
-      System.factory().creatable < ::ca2::log >(::ca::get_type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(::ax::get_type_info < ::ax::log > (), 1);
 
       if(!system::application::process_initialize())
       {
@@ -207,14 +207,14 @@ namespace cube8
       m_puser->m_strLogin     = "system";
       create_user(m_puser);
 
-      System.factory().cloneable_large < ::ca::font_sp >();
-      System.factory().cloneable_large < ::ca::brush_sp >();
-      System.factory().cloneable_large < ::ca::pen_sp >();
-      System.factory().cloneable_large < ::ca::bitmap_sp >();
-      System.factory().cloneable_large < ::ca::palette_sp >();
-      System.factory().cloneable_large < ::ca::region_sp >();
+      System.factory().cloneable_large < ::ax::font_sp >();
+      System.factory().cloneable_large < ::ax::brush_sp >();
+      System.factory().cloneable_large < ::ax::pen_sp >();
+      System.factory().cloneable_large < ::ax::bitmap_sp >();
+      System.factory().cloneable_large < ::ax::palette_sp >();
+      System.factory().cloneable_large < ::ax::region_sp >();
       System.factory().cloneable_large < var >();
-      System.factory().creatable < ::ca2::log >(::ca::get_type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(::ax::get_type_info < ::ax::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -466,25 +466,25 @@ namespace cube8
       return iRet;
    }
 
-   ::ca::ca * system::on_alloc(::ca::application * papp, ::ca::type_info & info)
+   ::ax::ax * system::on_alloc(::ax::application * papp, ::ax::type_info & info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.raw_name());
       simple_message_box(str);*/
-      ::ca::ca * pobj = Sys(papp).factory().create(papp, info);
+      ::ax::ax * pobj = Sys(papp).factory().create(papp, info);
       if(pobj != NULL)
          return pobj;
       on_allocation_error(papp, info);
       return NULL;
    }
 
-   ::ca::ca * system::clone()
+   ::ax::ax * system::clone()
    {
       // by the time, it is not possible to clone a system
       return NULL;
    }
 
-   ::ca::ca * system::clone(::ca::ca * pobj)
+   ::ax::ax * system::clone(::ax::ax * pobj)
    {
       return System.factory().base_clone(pobj);
    }
@@ -503,7 +503,7 @@ namespace cube8
    }
 
 
-   bergedge::bergedge * system::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
+   bergedge::bergedge * system::get_bergedge(index iEdge, ::ax::application_bias * pbiasCreation)
    {
       bergedge::bergedge * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -520,42 +520,42 @@ namespace cube8
    }
 
 
-   platform::document * system::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
+   platform::document * system::get_platform(index iEdge, ::ax::application_bias * pbiasCreation)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
       return pbergedge->get_platform();
    }
 
-   nature::document * system::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
+   nature::document * system::get_nature(index iEdge, ::ax::application_bias * pbiasCreation)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
       return pbergedge->get_nature();
    }
 
-   ::ca::application * system::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ax::application * system::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ax::application_bias * pbiasCreate)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszId, bCreate, bSynch, pbiasCreate);
    }
 
 
-   ::ca::window_draw * system::get_twf()
+   ::ax::window_draw * system::get_twf()
    {
       return m_ptwf;
    }
 
-   ::ca::window_draw * system::_001GetTwf()
+   ::ax::window_draw * system::_001GetTwf()
    {
       return m_ptwf;
    }
 
-   ::ca::history & system::hist()
+   ::ax::history & system::hist()
    {
       return *m_phistory;
    }
 
 
-   bool system::set_history(::ca::history * phistory)
+   bool system::set_history(::ax::history * phistory)
    {
       m_phistory = phistory;
       return true;
@@ -571,7 +571,7 @@ namespace cube8
       return *m_pfactory;
    }
 
-   ::ca::application_ptra & system::appptra()
+   ::ax::application_ptra & system::appptra()
    {
       return m_appptra;
    }
@@ -586,7 +586,7 @@ namespace cube8
       return m_net;
    }
 
-   ::ca::dir::system & system::dir()
+   ::ax::dir::system & system::dir()
    {
       return m_spdir;
    }
@@ -626,7 +626,7 @@ namespace cube8
       return m_install;
    }
 
-   ::ca::osi & system::osi()
+   ::ax::osi & system::osi()
    {
       return m_sposi;
    }
@@ -651,12 +651,12 @@ namespace cube8
       return *m_spfilehandler;
    }
 
-   void system::register_bergedge_application(::ca::application * papp)
+   void system::register_bergedge_application(::ax::application * papp)
    {
       appptra().add_unique(papp);
    }
 
-   void system::unregister_bergedge_application(::ca::application * papp)
+   void system::unregister_bergedge_application(::ax::application * papp)
    {
       appptra().remove(papp);
    }
@@ -783,7 +783,7 @@ namespace cube8
    {
       if(m_plog != NULL)
          return true;
-      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, ::ca::get_type_info < class ::ca::log > ()));
+      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, ::ax::get_type_info < class ::ax::log > ()));
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -804,12 +804,12 @@ namespace cube8
    }
 
 
-   string system::matter_as_string(::ca::application * papp, const char * pszMatter, const char * pszMatter2)
+   string system::matter_as_string(::ax::application * papp, const char * pszMatter, const char * pszMatter2)
    {
       return file().as_string(dir_matter(papp, pszMatter, pszMatter2), papp);
    }
 
-   string system::dir_matter(::ca::application * papp, const char * pszMatter, const char * pszMatter2)
+   string system::dir_matter(::ax::application * papp, const char * pszMatter, const char * pszMatter2)
    {
       return dir().matter(papp, pszMatter, pszMatter2);
    }
@@ -824,7 +824,7 @@ namespace cube8
       return file().is_read_only(pszPath);
    }
 
-   string system::file_as_string(::ca::application * papp, const char * pszPath)
+   string system::file_as_string(::ax::application * papp, const char * pszPath)
    {
       return file().as_string(pszPath, papp);
    }
@@ -854,7 +854,7 @@ namespace cube8
       return file().title_(psz);
    }
 
-   void system::register_delete(::ca::ca * plistened, ::ca::ca * plistener)
+   void system::register_delete(::ax::ax * plistened, ::ax::ax * plistener)
    {
       if(plistened == plistener)
          return;
@@ -866,7 +866,7 @@ namespace cube8
       plistened->listenerptra().add(plistener);
    }
 
-   void system::unregister_delete(::ca::ca * plistened, ::ca::ca * plistener)
+   void system::unregister_delete(::ax::ax * plistened, ::ax::ax * plistener)
    {
       if(plistened == plistener)
          return;
@@ -878,7 +878,7 @@ namespace cube8
       plistened->listenerptra().remove(plistener);
    }
 
-   void system::on_delete(::ca::ca * pca)
+   void system::on_delete(::ax::ax * pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
@@ -892,7 +892,7 @@ namespace cube8
    {
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
-         return ::ca::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
+         return ::ax::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
       }
 
       string str;
@@ -971,7 +971,7 @@ namespace cube8
    #endif
    }
 
-   void system::on_allocation_error(::ca::application * papp, ::ca::type_info & info)
+   void system::on_allocation_error(::ax::application * papp, ::ax::type_info & info)
    {
       UNREFERENCED_PARAMETER(papp);
       simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.raw_name());
@@ -1003,7 +1003,7 @@ namespace cube8
      return ________ca2_votagus_logging_Report(i1, psz1, i2, psz2, psz3, args);
    }
 
-   void system::on_request(::ca::create_context * pcreatecontext)
+   void system::on_request(::ax::create_context * pcreatecontext)
    {
       ::bergedge::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       pbergedge->request(pcreatecontext);
@@ -1014,7 +1014,7 @@ namespace cube8
       get_bergedge(iEdge)->open_by_file_extension(pszFileName);
    }
 
-   ::ca::ca * system::alloc(::ca::application * papp, ::ca::type_info & info)
+   ::ax::ax * system::alloc(::ax::application * papp, ::ax::type_info & info)
    {
       return ::gen::system::alloc(papp, info);
    }
@@ -1161,7 +1161,7 @@ namespace cube8
       return true;
    }
 
-   index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
+   index system::get_new_bergedge(::ax::application_bias * pbiasCreation)
    {
       int iNewEdge = m_iNewEdge;
       bergedge::bergedge * pbergedge;
@@ -1180,7 +1180,7 @@ namespace cube8
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, ::ca::get_type_info < ::ca::window_draw > ()));
+      m_ptwf = dynamic_cast < ::ax::window_draw * > (alloc(this, ::ax::get_type_info < ::ax::window_draw > ()));
       m_ptwf->start();
       return true;
    }
@@ -1200,20 +1200,20 @@ namespace cube8
       return LibCharGuess::GuessCodePage(pszText);
    }
 
-   void system::discard_to_factory(::ca::ca * pca)
+   void system::discard_to_factory(::ax::ax * pca)
    {
       m_pfactory->discard(pca);
    }
 
 
-   ::ca::application * system::get_new_app(::ca::application * pappNewApplicationParent, const char * pszAppId)
+   ::ax::application * system::get_new_app(::ax::application * pappNewApplicationParent, const char * pszAppId)
    {
 
       ca2::library library;
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
-      ::ca::application * papp = NULL;
+      ::ax::application * papp = NULL;
       if(!library.open(pappNewApplicationParent, strLibrary, false))
          return NULL;
 
@@ -1226,7 +1226,7 @@ namespace cube8
    }
 
 
-   bool system::set_main_init_data(::ca::main_init_data * pdata)
+   bool system::set_main_init_data(::ax::main_init_data * pdata)
    {
 
       if(pdata == NULL)

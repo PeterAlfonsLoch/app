@@ -33,7 +33,7 @@ namespace gcom
          //   VARIANT varInfoHeader;
          //   VARIANT varBits;
          //   VARIANT varUserData;
-            ::ca::bitmap     m_pbitmap;
+            ::ax::bitmap     m_pbitmap;
             int         m_iUserData;
             int      cx;
             int      cy;
@@ -50,7 +50,7 @@ namespace gcom
          //   DWORD   m_dwEventsCount;
          //   LPSTREAM m_lpStreamImageLoader;
          //   LPSTREAM m_lpStreamImageLoaderCP;
-            ::ca::bitmap * m_pbitmap;
+            ::ax::bitmap * m_pbitmap;
 
          } ONLOADIMAGESTRUCTURE, *LPONLOADIMAGESTRUCTURE;
 
@@ -60,7 +60,7 @@ namespace gcom
          //   VARIANT varBits;
          //   VARIANT varUserData;
             //HBITMAP      m_hBitmap;
-            ::ca::bitmap *  m_pbitmap;
+            ::ax::bitmap *  m_pbitmap;
             int          m_cx;
             int          m_cy;
             int          m_iUserData;
@@ -75,7 +75,7 @@ namespace gcom
          mutex                     m_mutexBitmap;
          backview::Main   *          m_pbackviewinterface;   
 
-         thread(::ca::application * papp);
+         thread(::ax::application * papp);
          
          static const UINT MESSAGE_BACKVIEW;
          static const WPARAM WPARAM_BACKVIEW_IMAGELOADED;
@@ -89,9 +89,9 @@ namespace gcom
           static UINT AFX_CDECL ThreadProcLoadImage(LPVOID lpParameter);
 
          //void OnImageLoaded(HBITMAP hbitmap);
-         long OnImageStretched(::ca::bitmap * pbitmap, long cx, long cy, long iUserData);
+         long OnImageStretched(::ax::bitmap * pbitmap, long cx, long cy, long iUserData);
 
-      //   ::ca::bitmap & GetBitmap();
+      //   ::ax::bitmap & GetBitmap();
 
          //void OnLyricViewSize(int iType);
          void LoadImageAsync(const load_image & loadimage);
@@ -131,7 +131,7 @@ namespace gcom
       public:
          string               m_strImagePath;
          backview::Main *     m_pbackviewinterface;
-         ::ca::bitmap_sp      m_pbitmap;
+         ::ax::bitmap_sp      m_pbitmap;
          gen::signal          m_signalImageLoaded;
 
 

@@ -106,7 +106,7 @@ namespace user
 
       if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
       {
-         ::ca::font_sp font(get_app());
+         ::ax::font_sp font(get_app());
          font->operator=(*System.font_central().GetListCtrlFont());
          font->set_bold();
          data.m_pdc->set_font(font);
@@ -115,8 +115,8 @@ namespace user
    }
 
 
-   tree::tree(::ca::application * papp) :
-      ca(papp),
+   tree::tree(::ax::application * papp) :
+      ax(papp),
       data_container(papp),
       ::user::scroll_view(papp),
       ex1::tree(papp),
@@ -194,7 +194,7 @@ namespace user
 
    //}
 
-   void tree::_001OnDrawBackground(::ca::graphics *pdc)
+   void tree::_001OnDrawBackground(::ax::graphics *pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -236,7 +236,7 @@ namespace user
       return RGB(200, 255, 255);
    }
 
-   void tree::_001OnDraw(::ca::graphics *pdc)
+   void tree::_001OnDraw(::ax::graphics *pdc)
    {
       rect rectClient;
 
@@ -244,7 +244,7 @@ namespace user
 
 //      gen::savings & savings = System.savings();
 
-///      ::ca::graphics * pDCBuffer = pdc;
+///      ::ax::graphics * pDCBuffer = pdc;
 
       point ptOriginalViewportOrg = pdc->GetViewportOrg();
 
@@ -278,7 +278,7 @@ namespace user
    //      if(m_pgdibuffer != NULL
    //         && !TwiHasTranslucency())
          {
-   /*         ::ca::graphics * pdcBack = m_pgdibuffer->GetBuffer();
+   /*         ::ax::graphics * pdcBack = m_pgdibuffer->GetBuffer();
             if(pdcBack != NULL)
             {
                pdc->BitBlt(
@@ -310,7 +310,7 @@ namespace user
             }*/
    /*         if(m_pgdibuffer != NULL)
             {
-               ::ca::graphics * pdcBack = m_pgdibuffer->GetBuffer();
+               ::ax::graphics * pdcBack = m_pgdibuffer->GetBuffer();
                if(pdcBack != NULL)
                {
                   pdcBack->BitBlt(
@@ -570,7 +570,7 @@ namespace user
 
    /*window_id tree::_001GetNotifyWnd()
    {
-      ::ca::window * pwnd = get_guie();
+      ::ax::window * pwnd = get_guie();
 
       window_id wndidNotify = pwnd->GetOwner()->GetSafeHwnd();
       if(wndidNotify == NULL)
@@ -716,7 +716,7 @@ namespace user
       bool bLayout /*=true*/
       )
    {
-      ::ca::data::writing writing(::ca::data_container::m_spdata);
+      ::ax::data::writing writing(::ax::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
       if(bExpand)
       {

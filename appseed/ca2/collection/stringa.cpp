@@ -4,8 +4,8 @@
 // return string length or -1 if UNICODE string is found in the archive
 AFX_STATIC UINT _AfxReadStringLength(ex1::byte_input_stream & ar);
 
-stringa::stringa(::ca::application * papp) :
-   ca(papp)
+stringa::stringa(::ax::application * papp) :
+   ax(papp)
 {
 }
 

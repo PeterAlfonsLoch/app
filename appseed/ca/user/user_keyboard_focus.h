@@ -1,5 +1,16 @@
 #pragma once
 
+
+namespace ca
+{
+
+
+   class window;
+
+
+} // namespace ca
+
+
 namespace user
 {
 

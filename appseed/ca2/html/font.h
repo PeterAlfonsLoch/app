@@ -14,13 +14,13 @@ namespace html
       string            m_strWeight;
       string            m_strSize;
       string            m_strTextDecoration;
-      ::ca::font_sp     m_font;
+      ::ax::font_sp     m_font;
 
 
       font();
       font(const class font & font);
       
-      bool create(::ca::application * papp);
+      bool create(::ax::application * papp);
 
       bool operator == (const font & font);
    };

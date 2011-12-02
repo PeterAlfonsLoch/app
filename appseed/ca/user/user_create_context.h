@@ -1,8 +1,15 @@
 #pragma once
 
 
+#include "ca/ca_type_info.h"
+
+
 namespace user
 {
+
+   class document;
+   class interaction;
+   class document_template;
 
 
    class CLASS_DECL_ca create_context   // Creation information structure

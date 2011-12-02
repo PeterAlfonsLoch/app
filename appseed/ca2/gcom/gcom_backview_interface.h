@@ -42,7 +42,7 @@ namespace gcom
       public:
          ex2::file_set_sp m_spfilesetBackgroundImage;
 
-         Interface(::ca::application * papp);
+         Interface(::ax::application * papp);
          virtual ~Interface();
 
          void Shutdown();
@@ -50,18 +50,18 @@ namespace gcom
          void install_message_handling(::gen::message::dispatch * pinterface);
 
          virtual COLORREF GetBackgroundColor();
-         void BackViewRender(::ca::graphics * pdc, int x, int y, int w, int h);
-         void BackViewRender(::ca::graphics * pdc, LPCRECT lpcrect);
+         void BackViewRender(::ax::graphics * pdc, int x, int y, int w, int h);
+         void BackViewRender(::ax::graphics * pdc, LPCRECT lpcrect);
          void Enable(bool bEnable);
          bool IsEnabled();
          void GetCurrentImagePath(string & str);
          void SetCurrentImagePlacement(EImagePlacement eplacement);
          EImagePlacement GetCurrentImagePlacement();
          ::mutex & GetTransferMutex();
-         ::ca::graphics & GetTransferDC();
+         ::ax::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(DWORD dwMillis);
          Main & GetMain();
-         void OnImageLoaded(::ca::bitmap * pbitmap);
+         void OnImageLoaded(::ax::bitmap * pbitmap);
          void UpdateDrawingObjects();
          void OnDestroy();
 
@@ -71,7 +71,7 @@ namespace gcom
          thread *     GetIdleThread();
          thread *     GetHighestThread();
 
-         virtual void BackViewFeedback(::ca::graphics * pdc);
+         virtual void BackViewFeedback(::ax::graphics * pdc);
          virtual void BackViewGetClientRect(LPRECT lprect);
          virtual void BackViewClientToScreen(LPRECT lprect);
          virtual void BackViewPostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);

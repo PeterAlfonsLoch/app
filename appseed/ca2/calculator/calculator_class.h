@@ -7,7 +7,7 @@ namespace calculator
       virtual public ::radix::object
    {
    public:
-      calculator(::ca::application * papp);
+      calculator(::ax::application * papp);
       virtual ~calculator();
    };
 

@@ -7,10 +7,10 @@ class CLASS_DECL_ca document :
 public:
 
 
-   document(::ca::application * papp);
+   document(::ax::application * papp);
 
 
-   virtual void on_alloc(::ca::application * papp);
+   virtual void on_alloc(::ax::application * papp);
 
    const string & get_title() const;
    virtual void set_title(const char * lpszTitle);
@@ -64,7 +64,7 @@ public:
       return NULL;
    }
 
-   virtual ::view * get_view(const ::ca::type_info info, index indexFind = 0);
+   virtual ::view * get_view(const ::ax::type_info info, index indexFind = 0);
 
    virtual void show_all_frames(UINT nCmdShow);
 

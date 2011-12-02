@@ -10,7 +10,7 @@ public:
    HMENU m_hMenuShared;        // menu when we are active
 
 
-   SimpleMDIChildWindow(::ca::application * papp);
+   SimpleMDIChildWindow(::ax::application * papp);
 
 
    using ::simple_frame_window::create;
@@ -19,7 +19,7 @@ public:
             DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
             const RECT& rect = rectDefault,
             SimpleMDIFrameWindow* pParentWnd = NULL,
-            ::ca::create_context* pContext = NULL);
+            ::ax::create_context* pContext = NULL);
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
@@ -41,7 +41,7 @@ public:
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-               ::user::interaction* pParentWnd, ::ca::create_context* pContext = NULL);
+               ::user::interaction* pParentWnd, ::ax::create_context* pContext = NULL);
       // 'pParentWnd' parameter is required for MDI Child
    virtual BOOL DestroyWindow();
    virtual void pre_translate_message(gen::signal_object * pobj);
@@ -50,7 +50,7 @@ public:
    virtual void OnUpdateFrameMenu(BOOL bActive, ::user::interaction* pActivateWnd,
       HMENU hMenuAlt);
 
-   BOOL m_bPseudoInactive;     // TRUE if ::ca::window is MDI active according to
+   BOOL m_bPseudoInactive;     // TRUE if ::ax::window is MDI active according to
                         //  windows, but not according to ca2 API...
 
    virtual ::user::interaction* GetMessageBar();

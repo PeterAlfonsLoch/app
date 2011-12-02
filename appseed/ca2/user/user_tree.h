@@ -11,7 +11,7 @@ namespace user
    {
    public:
       ::ex1::tree_item *      m_pitem;
-      ::ca::graphics *        m_pdc;
+      ::ax::graphics *        m_pdc;
       index                   m_iItem;
       index                   m_iIndentation;
       index                   m_iItemHeight;
@@ -59,11 +59,11 @@ namespace user
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
 
-      tree(::ca::application * papp);
+      tree(::ax::application * papp);
       virtual ~tree();
 
-      virtual void _001OnDrawBackground(::ca::graphics * pdc);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDrawBackground(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);
 
       void SetScrollSizes();

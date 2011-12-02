@@ -7,8 +7,8 @@ namespace gcom
    {
       namespace user
       {
-         interaction::interaction(::ca::application * papp) :
-            ca(papp),
+         interaction::interaction(::ax::application * papp) :
+            ax(papp),
             Interface(papp)
          {
             m_dwTimerStep = 0;

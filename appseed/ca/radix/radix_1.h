@@ -112,13 +112,6 @@ class dump_context;
 #define TRUE    1
 #define NULL    0
 
-/////////////////////////////////////////////////////////////////////////////
-// _AFX_FUNCNAME definition
-#ifdef UNICODE
-#define _AFX_FUNCNAME(_Name) _Name##W
-#else
-#define _AFX_FUNCNAME(_Name) _Name##A
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // Turn off warnings for /W4
@@ -206,13 +199,6 @@ class dump_context;
 
 #include "ca/ca_smart_pointer.h"
 
-namespace ex1
-{
-   class file_exception;         // file exception
-   class file;
-   typedef ca::smart_pointer < file_exception > file_exception_sp;
-   typedef ca::smart_pointer < file > filesp;
-}
 
 
 #define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))

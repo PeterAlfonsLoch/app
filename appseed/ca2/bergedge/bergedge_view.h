@@ -38,7 +38,7 @@ namespace bergedge
       HWND                  m_hwndBergedge;
 
 
-      ::ca::font_sp m_font;
+      ::ax::font_sp m_font;
       stringa m_straImagePath;
       string m_strCurrentImagePath;
       bool m_bDestroy;
@@ -48,7 +48,7 @@ namespace bergedge
       mutex m_mutexDraw;
 
 
-      view(::ca::application * papp);
+      view(::ax::application * papp);
       virtual ~view();
 
    #ifdef _DEBUG
@@ -61,14 +61,14 @@ namespace bergedge
          TimerBackView = 1000,
       };
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
 
       virtual void pre_translate_message(gen::signal_object * pobj);
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-      virtual void OnDraw(::ca::graphics * pgraphics);
+      virtual void OnDraw(::ax::graphics * pgraphics);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
       document * get_document();

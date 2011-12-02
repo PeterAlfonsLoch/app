@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   elastic_slider::elastic_slider(::ca::application * papp) :
-      ca(papp),
+   elastic_slider::elastic_slider(::ax::application * papp) :
+      ax(papp),
       ::user::interaction(papp)
    {
       m_daScalar.set_size(100);
@@ -188,7 +188,7 @@ namespace userbase
    }
 
 
-   void elastic_slider::_001OnDraw(::ca::graphics * pdc)
+   void elastic_slider::_001OnDraw(::ax::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

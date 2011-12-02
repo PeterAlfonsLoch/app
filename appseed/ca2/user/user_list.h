@@ -99,7 +99,7 @@ namespace user
       list         *       m_plist;
 
 
-      list_column_array(::ca::application * papp);
+      list_column_array(::ax::application * papp);
 
 
       void Initialize(list * plist);
@@ -219,7 +219,7 @@ namespace user
       index                m_iListItemRectSubItem;
       index                m_iListItemRectListItem;
 
-      ::ca::font *         m_pfont;
+      ::ax::font *         m_pfont;
       int                  m_iDrawTextFlags;
 
       draw_list_item(list * plist);
@@ -490,10 +490,10 @@ namespace user
       string                        m_strTopText;
       rect                          m_rectTopText;
       list_data *                   m_pdata;
-      ::ca::font_sp                 m_font;
-      ::ca::font_sp                 m_fontHover;
-      ::ca::pen_sp                  m_penFocused;
-      ::ca::pen_sp                  m_penHighlight;
+      ::ax::font_sp                 m_font;
+      ::ax::font_sp                 m_fontHover;
+      ::ax::pen_sp                  m_penFocused;
+      ::ax::pen_sp                  m_penHighlight;
       EView                         m_eview;
       flags < e_flag >              m_flags;
       icon_layout                   m_iconlayout;
@@ -519,13 +519,13 @@ namespace user
 
       ::user::list_column_array     m_columna;
 
-      list(::ca::application * papp);
+      list(::ax::application * papp);
       virtual ~list();
 
 
 
-      int _001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem);
-      int _001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem);
+      int _001CalcItemWidth(::ax::graphics * pdc, index iItem, index iSubItem);
+      int _001CalcItemWidth(::ax::graphics * pdc, ::ax::font * pfont, index iItem, index iSubItem);
 
 
 
@@ -535,12 +535,12 @@ namespace user
 
       list_data * GetDataInterface();
       void UpdateHover();
-      ::ca::font * _001GetFont();
-      ::ca::font * _001GetFontHover();
-      ::ca::pen * _001GetPenFocused();
-      ::ca::pen * _001GetPenHighlight();
+      ::ax::font * _001GetFont();
+      ::ax::font * _001GetFontHover();
+      ::ax::pen * _001GetPenFocused();
+      ::ax::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();
-      virtual void _OnDraw(::ca::graphics * pdc);
+      virtual void _OnDraw(::ax::graphics * pdc);
       void _001MaximizeColumnWidth(index iColumn);
       int _001CalcItemWidth(index iItem, index iSubItem);
       int _001CalcColumnWidth(index iColumn);
@@ -619,7 +619,7 @@ namespace user
 
       bool CreateHeaderCtrl();
 
-      virtual void _001OnDraw(::ca::graphics *pdc);
+      virtual void _001OnDraw(::ax::graphics *pdc);
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 

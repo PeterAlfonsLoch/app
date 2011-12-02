@@ -2,6 +2,8 @@
 
 
 #include "ca/gen/gen_message.h"
+#include "ca/user/user_create_context.h"
+#include "command.h"
 
 
 class CLASS_DECL_ca command_target_interface :
@@ -191,10 +193,16 @@ protected:
 
 };
 
-#include "ca/simpleuser/simpleuser_check_interface.h"
+#include "ca/user/user_check_interface.h"
+
+namespace userbase
+{
+   class menu;
+
+}
 
 class CLASS_DECL_ca cmd_ui :
-   public ::simpleuser::check_interface
+   public ::user::check_interface
 {
 public:
 // Attributes
@@ -211,7 +219,7 @@ public:
 
 // Operations to do in ON_UPDATE_COMMAND_UI
    virtual void Enable(BOOL bOn = TRUE);
-   using ::simpleuser::check_interface::_001SetCheck;
+   using ::user::check_interface::_001SetCheck;
    virtual void _001SetCheck(check::e_check echeck);   // 0, 1 or 2 (indeterminate)
    virtual void SetRadio(BOOL bOn = TRUE);
    virtual void SetText(const char * lpszText);

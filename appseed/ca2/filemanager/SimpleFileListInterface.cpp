@@ -5,8 +5,8 @@
 namespace filemanager
 {
 
-   SimpleFileListInterface::SimpleFileListInterface(::ca::application * papp) :
-      ca(papp),
+   SimpleFileListInterface::SimpleFileListInterface(::ax::application * papp) :
+      ax(papp),
       ::user::interaction(papp),
       ::user::form(papp),
       ::user::form_list(papp),
@@ -379,8 +379,8 @@ namespace filemanager
       }
    }
 
-   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(::ca::application * papp) :
-      ca(papp),
+   SimpleFileListInterface::create_image_list_thread::create_image_list_thread(::ax::application * papp) :
+      ax(papp),
       thread(papp)
    {
    }
@@ -480,7 +480,7 @@ namespace filemanager
       {
          control.m_bTransparent = true;
          control.set_type(user::control::type_button);
-         control.m_typeinfo = ::ca::get_type_info < BaseButtonControl > ();
+         control.m_typeinfo = ::ax::get_type_info < BaseButtonControl > ();
          control.m_id = 1000 + i;
          control.add_function(user::control::function_action);
          index iControl = _001AddControl(control);
@@ -528,7 +528,7 @@ namespace filemanager
       //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
-      //control.m_typeinfo = ::ca::get_type_info < simple_edit_plain_text > ();
+      //control.m_typeinfo = ::ax::get_type_info < simple_edit_plain_text > ();
       control.m_typeinfo.raw_name(NULL);
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
@@ -797,7 +797,7 @@ namespace filemanager
 
    void SimpleFileListInterface::_017Synchronize()
    {
-      ::ca::data::writing writing(m_pdata);
+      ::ax::data::writing writing(m_pdata);
       _001HideEditingControls();
       _017Browse(GetFileManagerItem().m_strPath);
    }
@@ -812,7 +812,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListInterface::_001OnDraw(::ca::graphics *pdc)
+   void SimpleFileListInterface::_001OnDraw(::ax::graphics *pdc)
    {
       if(m_iAnimate <= 0)
       {

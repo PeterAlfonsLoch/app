@@ -21,7 +21,7 @@ namespace filemanager
             list_view * m_plist;
             ::ex1::request_interface * m_prequestinterface;
 
-            view(::ca::application * papp);
+            view(::ax::application * papp);
 
             void install_message_handling(::gen::message::dispatch * pinterface);
 

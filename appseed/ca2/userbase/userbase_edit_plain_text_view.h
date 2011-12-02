@@ -9,9 +9,9 @@ namespace userbase
    {
    public:
 
-      ::ca::font_sp m_font;
+      ::ax::font_sp m_font;
 
-      edit_plain_text_view(::ca::application * papp);
+      edit_plain_text_view(::ax::application * papp);
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 

@@ -10,7 +10,7 @@ namespace filemanager
       virtual public filemanager::SimpleFolderTreeInterface
    {
    public:
-      SimpleFolderTreeView(::ca::application * papp);
+      SimpleFolderTreeView(::ax::application * papp);
 
       ContextMenu                   m_contextmenu;
       simple_list_header_control    m_headerctrl;

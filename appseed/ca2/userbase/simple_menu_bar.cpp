@@ -9,8 +9,8 @@
 #define ITEMCHECKEDPADRIGHT 2
 #define ITEMCHECKEDPADBOTTOM 2
 
-simple_menu_bar::simple_menu_bar(::ca::application * papp) :
-   ca(papp),
+simple_menu_bar::simple_menu_bar(::ax::application * papp) :
+   ax(papp),
    simple_toolbar(papp),
    m_menu(papp)
 {
@@ -105,7 +105,7 @@ BOOL simple_menu_bar::PreCreateWindow(CREATESTRUCT& cs)
 {
     LPNMTOOLBAR lpnmtb = (LPNMTOOLBAR) pNotifyStruct;
 
-//    m_pwthreadTracking = (CMenuTrackingThreadV033*) AfxBeginThread(::ca::get_type_info < CMenuTrackingThreadV033 > ());
+//    m_pwthreadTracking = (CMenuTrackingThreadV033*) AfxBeginThread(::ax::get_type_info < CMenuTrackingThreadV033 > ());
   //  m_pwthreadTracking->m_evInitialized.lock();
     //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 3, (LPARAM) this);
     //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 4, lpnmtb->iItem);
@@ -318,7 +318,7 @@ bool simple_menu_bar::Initialize(
    image_list *   pimagelist,
    image_list *   pimagelistDisabled,
    int_int_spreadset * prel,
-   ::ca::font *        pfont)
+   ::ax::font *        pfont)
 {
 
 //   m_menuhook.Initialize(
@@ -404,7 +404,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-/*void simple_menu_bar::_001OnDraw(::ca::graphics *pdc)
+/*void simple_menu_bar::_001OnDraw(::ax::graphics *pdc)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -505,7 +505,7 @@ int simple_menu_bar::_001HitTest(const POINT *lppoint)
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::ca::graphics * pdc = GetDC();
+   ::ax::graphics * pdc = GetDC();
    pdc->SelectObject(System.font_central().GetMenuFont());
 
    size size;
@@ -625,7 +625,7 @@ size simple_menu_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 }
 */
 
-/*void simple_menu_bar::_001DrawItem(::ca::graphics *pdc, int iItem)
+/*void simple_menu_bar::_001DrawItem(::ax::graphics *pdc, int iItem)
 {
    rect rectItem;
    rect rectText;
@@ -660,14 +660,14 @@ size simple_menu_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
       rect rectShadow;
       _001GetItemRect(iItem, rectShadow, ElementItem);
 
-      ::ca::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
-      ::ca::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
-      ::ca::pen * ppenOld = pdc->SelectObject(penShadow);
-      ::ca::brush * pbrushOld = pdc->SelectObject(brushShadow);
+      ::ax::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
+      ::ax::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
+      ::ax::pen * ppenOld = pdc->SelectObject(penShadow);
+      ::ax::brush * pbrushOld = pdc->SelectObject(brushShadow);
       pdc->Rectangle(rectShadow);
 
-      ::ca::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
-      ::ca::brush_sp brush(get_app(), RGB(255, 255, 255));
+      ::ax::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
+      ::ax::brush_sp brush(get_app(), RGB(255, 255, 255));
       pdc->SelectObject(pen);
       pdc->SelectObject(brush);
       pdc->Rectangle(rectItem);
@@ -746,7 +746,7 @@ void simple_menu_bar::_001OnTimer(gen::signal_object * pobj)
 }
 
 /*
-BOOL simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics)
+BOOL simple_menu_bar::OnEraseBkgnd(::ax::graphics * pgraphics)
 {
    return TRUE;
 }

@@ -3,8 +3,8 @@
 namespace ca8
 {
 
-   network_configuration::network_configuration(::ca::application * papp) :
-      ca(papp)
+   network_configuration::network_configuration(::ax::application * papp) :
+      ax(papp)
    {
       m_pdoc   = NULL;
       m_pview  = NULL;

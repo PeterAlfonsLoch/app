@@ -15,7 +15,7 @@ namespace user
       LPWndArray  m_uiptraHold;
 
 
-      place_holder(::ca::application * papp);
+      place_holder(::ax::application * papp);
       virtual ~place_holder();
 
 

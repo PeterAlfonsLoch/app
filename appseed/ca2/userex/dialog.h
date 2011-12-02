@@ -10,7 +10,7 @@ public:
    simple_frame_window *      m_pframe;
 
 
-   dialog(::ca::application * papp);
+   dialog(::ax::application * papp);
    virtual ~dialog();
 
    virtual void on_position_parent_frame();

@@ -9,12 +9,12 @@ namespace netnode
 
 
    class CLASS_DECL_ca application :
-      virtual public ::ca2::filehandler::application
+      virtual public ::fontopus::application
    {
    public:
 
       string                                    m_strFontopusServer;
-      ::userbase::multiple_document_template *  m_ptemplateEdge;
+      //::userbase::multiple_document_template *  m_ptemplateEdge;
       dynamic_source::script_manager *          m_pscriptmanager;
 
 	  string									            m_strDatabaseServerHost;
@@ -44,7 +44,7 @@ namespace netnode
 
       void get_Votagus_folder(string &str);
 
-      using ::cube2::application::process;
+//      using ::cube2::application::process;
       void process(machine_event_data * pdata);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);

@@ -29,9 +29,6 @@
     <Filter Include="Header Files\srtp">
       <UniqueIdentifier>{f868bd88-2d94-49e9-b5a0-91549c0b702f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca2">
-      <UniqueIdentifier>{454d34da-2851-474d-a189-baac353e58f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\radix">
       <UniqueIdentifier>{73da3119-f42b-4298-899f-8ababe96c63f}</UniqueIdentifier>
     </Filter>
@@ -210,14 +207,17 @@
     <Filter Include="Source Files\acube">
       <UniqueIdentifier>{140bfcf3-96f2-4d8d-b62a-0b8fb974f6cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca2\filehandler">
-      <UniqueIdentifier>{af023d87-0ce2-48d2-8658-b6f7103535c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ca2\filehandler">
       <UniqueIdentifier>{4c396f4d-ff88-4ef0-a73f-047d1d479291}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\userpresence">
       <UniqueIdentifier>{52e54879-2f54-4c8e-addd-72e92c35c104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filehandler">
+      <UniqueIdentifier>{c06cb1f7-454f-4c81-84ef-d09716b6382d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filehandler">
+      <UniqueIdentifier>{8db3d771-b1f2-432e-8f03-6f1a0e11093b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1508,12 +1508,6 @@
     <ClInclude Include="window_frame\FrameSchemaHardCoded008.h">
       <Filter>Header Files\window_frame</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_2.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="radix\radix_2.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -1820,39 +1814,6 @@
     <ClInclude Include="radix\radix_os_history.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_datetime.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_html.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_inline.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_log.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_net.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_process.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_sockets_address.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_stra.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_url.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_url_domain.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_xml.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="radix\radix_object.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -1864,15 +1825,6 @@
     </ClInclude>
     <ClInclude Include="collection\string_to_string_map.h">
       <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_application.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2_system_ca_template.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\ca2_res.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="bergedge\bergedge_document.h">
       <Filter>Header Files\bergedge</Filter>
@@ -1912,12 +1864,6 @@
     </ClInclude>
     <ClInclude Include="user\user_document_manager.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2_system_allocate.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_main.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="ca4\ca4.h">
       <Filter>Header Files\ca4</Filter>
@@ -2008,12 +1954,6 @@
     </ClInclude>
     <ClInclude Include="ca4\ca4_http.h">
       <Filter>Header Files\ca4</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_file_application.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_file_system.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="ca4\ca4_http_application.h">
       <Filter>Header Files\ca4</Filter>
@@ -2141,9 +2081,6 @@
     <ClInclude Include="cube5\cube5_application.h">
       <Filter>Header Files\cube5</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca2_keep_alive.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="command\command.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
@@ -2210,9 +2147,6 @@
     <ClInclude Include="acube\acube_application.h">
       <Filter>Header Files\acube</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_library.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="cube\cube_library.h">
       <Filter>Header Files\cube</Filter>
     </ClInclude>
@@ -2243,55 +2177,7 @@
     <ClInclude Include="template\_template.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_file_handler_tree_item.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_library.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_menu_library.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_data.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_handler.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_item.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_item.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_user.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_tree_interface.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_application.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_document.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_frame.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_pane_view.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_pane_view_update_hint.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_view.h">
-      <Filter>Header Files\ca2\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\filehandler\ca2_filehandler_default.h">
       <Filter>Header Files\ca2\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="userpresence\userpresence.h">
@@ -2311,6 +2197,48 @@
     </ClInclude>
     <ClInclude Include="user\user_thread.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_application.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_default.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_document.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_frame.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_handler.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_library.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_menu_library.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_pane_view.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_pane_view_update_hint.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_tree_data.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_tree_interface.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_tree_item.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\ca2_filehandler_view.h">
+      <Filter>Header Files\filehandler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3719,6 +3647,42 @@
     </ClCompile>
     <ClCompile Include="ca\ca_region.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_application.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_document.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_frame.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_handler.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_library.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_menu_library.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_pane_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_pane_view_update_hint.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_tree_data.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_tree_interface.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_tree_item.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\ca2_filehandler_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -22,13 +22,13 @@ namespace userbase
       DWORD                   m_dwMaxPosition;
 
 
-      split_bar(::ca::application * papp);
+      split_bar(::ax::application * papp);
       virtual ~split_bar();
 
 
       void install_message_handling(::gen::message::dispatch * pinterface);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
       using ::user::interaction::create;
       BOOL create(split_layout * pparent);

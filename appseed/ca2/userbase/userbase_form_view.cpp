@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   form_view::form_view(::ca::application * papp) :
-      ca(papp),
+   form_view::form_view(::ax::application * papp) :
+      ax(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
       ::user::scroll_view(papp),
@@ -67,7 +67,7 @@ namespace userbase
       {
          bLayoutOk = true;
       }
-      ::ca::graphics * pdc = GetDC();
+      ::ax::graphics * pdc = GetDC();
       get_html_data()->m_pguie = this;
       get_html_data()->m_pguie = this;
       get_html_data()->implement(pdc);
@@ -145,7 +145,7 @@ namespace userbase
       if(m_pcontainer != NULL)
          return m_pcontainer;
       else
-         return dynamic_cast < html::document_container * > (System.alloc(::ca::get_type_info < html::document_container > ()));
+         return dynamic_cast < html::document_container * > (System.alloc(::ax::get_type_info < html::document_container > ()));
    }
 
    /*

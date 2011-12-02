@@ -11,11 +11,10 @@ namespace cube8
 
 } // namespace cube8
 
-#undef App
 #define cubeApp(pcaapp) (pcaapp->cast_app < cube8::application >())
 #define cubeApplication (cubeApp(get_app()))
+#undef App
 #define App(pcaapp) cubeApp(pcaapp)
-#define Application (App(get_app()))
 
 
 

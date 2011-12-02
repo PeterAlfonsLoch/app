@@ -83,7 +83,7 @@ frame_window::frame_window()
 {
    ASSERT(_get_handle() == NULL);
 
-   m_nWindow = -1;                 // unknown ::ca::window ID
+   m_nWindow = -1;                 // unknown ::ax::window ID
    m_bAutoMenuEnable = TRUE;       // auto enable on by default
    m_lpfnCloseProc = NULL;
    m_hMenuDefault = NULL;
@@ -214,7 +214,7 @@ void frame_window::ExitHelpMode()
       VERIFY(::PostMessage(get_handle(), WM_EXITHELPMODE, 0, 0));
    }
 
-   // release capture if this ::ca::window has it
+   // release capture if this ::ax::window has it
    if (System.get_capture_uie() == get_handle())
       System.release_capture_uie();
 
@@ -292,7 +292,7 @@ BOOL frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
 
 ::user::interaction * AfxGetParentOwner(::user::interaction * hWnd)
 {
-   // check for permanent-owned ::ca::window first
+   // check for permanent-owned ::ax::window first
    ::user::interaction* pWnd = hWnd;
    if(pWnd == NULL)
       return NULL;
@@ -395,7 +395,7 @@ void frame_window::ShowOwnedWindows(BOOL bShow)
 /*   HWND hWnd = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
    while (hWnd != NULL)
    {
-      ::ca::window * pWnd = ::ca::window::FromHandlePermanent(hWnd);
+      ::ax::window * pWnd = ::ax::window::FromHandlePermanent(hWnd);
       if (pWnd != NULL && _get_handle() != hWnd && AfxIsDescendant(this, pWnd))
       {
          DWORD dwStyle = ::GetWindowLong(hWnd, GWL_STYLE);
@@ -420,7 +420,7 @@ void frame_window::OnEnable(BOOL bEnable)
 {
    if (bEnable && (m_nFlags & WF_STAYDISABLED))
    {
-      // Work around for MAPI support. This makes sure the main ::ca::window
+      // Work around for MAPI support. This makes sure the main ::ax::window
       // remains disabled even when the mail system is booting.
       EnableWindow(FALSE);
       ::SetFocus(NULL);
@@ -477,7 +477,7 @@ BOOL frame_window::create(const char * lpszClassName,
    ::user::interaction * pParentWnd,
    const char * lpszMenuName,
    DWORD dwExStyle,
-   ::ca::create_context* pContext)
+   ::ax::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(lpszMenuName);
@@ -485,7 +485,7 @@ BOOL frame_window::create(const char * lpszClassName,
    HMENU hMenu = NULL;
    /* trans if (lpszMenuName != NULL)
    {
-      // load in a menu that will get destroyed when ::ca::window gets destroyed
+      // load in a menu that will get destroyed when ::ax::window gets destroyed
       HINSTANCE hInst = AfxFindResourceHandle(lpszMenuName, ATL_RT_MENU);
       if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
       {
@@ -547,7 +547,7 @@ BOOL frame_window::create(const char * lpszClassName,
 }
 */
 
-BOOL frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext)
+BOOL frame_window::OnCreateClient(LPCREATESTRUCT, ::ax::create_context* pContext)
 {
    // default create client will create a ::view if asked for it
    if (pContext != NULL &&
@@ -562,7 +562,7 @@ BOOL frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext
 
 void frame_window::_001OnCreate(gen::signal_object * pobj)
 {
-   ::ca::thread * pappthread = System.GetThread()->get_app_thread();
+   ::ax::thread * pappthread = System.GetThread()->get_app_thread();
    if(pappthread != NULL)
    {
       if(pappthread->GetMainWnd() == NULL)
@@ -576,12 +576,12 @@ void frame_window::_001OnCreate(gen::signal_object * pobj)
 
    SCAST_PTR(::gen::message::create, pcreate, pobj)
    ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
-   ::ca::create_context* pContext = (::ca::create_context*) pcreate->m_lpcreatestruct->lpCreateParams;
+   ::ax::create_context* pContext = (::ax::create_context*) pcreate->m_lpcreatestruct->lpCreateParams;
    pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
    pcreate->m_bRet = pcreate->get_lresult() == -1;
 }
 
-int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
+int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ax::create_context* pContext)
 {
 // trans   if (user::frame_window_interface::OnCreate(lpcs) == -1)
       //return -1;
@@ -637,7 +637,7 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
 }
 
 BOOL frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-   ::user::interaction * pParentWnd, ::ca::create_context* pContext)
+   ::user::interaction * pParentWnd, ::ax::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
    UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -656,7 +656,7 @@ BOOL frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
 
    VERIFY(AfxDeferRegisterClass(AFX_WNDFRAMEORVIEW_REG));
 
-   // attempt to create the ::ca::window
+   // attempt to create the ::ax::window
    const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
    string strTitle = m_strTitle;
    if (!CreateEx(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
@@ -723,7 +723,7 @@ void frame_window::InitialUpdateFrame(document * pDoc, BOOL bMakeVisible)
          pview->OnActivateFrame(WA_INACTIVE, this);
 
       // finally, activate the frame
-      // (send the default show command unless the main desktop ::ca::window)
+      // (send the default show command unless the main desktop ::ax::window)
       int nCmdShow = -1;      // default
       ::radix::application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
@@ -836,7 +836,7 @@ void frame_window::OnClose()
 
 
       // there are cases where destroying the documents may destroy the
-      //  main ::ca::window of the application.
+      //  main ::ax::window of the application.
       if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
       {
          AfxPostQuitMessage(0);
@@ -866,11 +866,11 @@ void frame_window::OnClose()
          return;
       }
 
-      // allow the document to cleanup before the ::ca::window is destroyed
+      // allow the document to cleanup before the ::ax::window is destroyed
       pdocument->pre_close_frame(this);
    }
 
-   // then destroy the ::ca::window
+   // then destroy the ::ax::window
    DestroyWindow();*/
 }
 
@@ -884,11 +884,11 @@ void frame_window::_001OnDestroy(gen::signal_object * pobj)
       ASSERT(::GetMenu(get_handle()) == m_hMenuDefault);
    } */
 
-   // Automatically quit when the main ::ca::window is destroyed.
+   // Automatically quit when the main ::ax::window is destroyed.
    /* trans application* pApp = &System;
    if (pApp != NULL && pApp->GetMainWnd() == this && pApp->m_eHelpType == afxWinHelp)
    {
-      // closing the main application ::ca::window
+      // closing the main application ::ax::window
       ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);
 
       // will call PostQuitMessage in user::frame_window_interface::OnNcDestroy
@@ -995,8 +995,8 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
    SCAST_PTR(::gen::message::activate, pactivate, pobj);
    pobj->previous();
 
-   // get top level frame unless this is a child ::ca::window
-   // determine if ::ca::window should be active or not
+   // get top level frame unless this is a child ::ax::window
+   // determine if ::ax::window should be active or not
    frame_window* pTopLevel = (GetStyle() & WS_CHILD) ? this : dynamic_cast < frame_window * > (GetTopLevelFrame());
    ENSURE_VALID(pTopLevel);
    ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
@@ -1039,7 +1039,7 @@ void frame_window::_001OnNcActivate(gen::signal_object * pobj)
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
 
-   // but do not stay active if the ::ca::window is disabled
+   // but do not stay active if the ::ax::window is disabled
    if (!IsWindowEnabled())
       pncactivate->m_bActive = FALSE;
 
@@ -1095,7 +1095,7 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
       char szFileName[_MAX_PATH];
       ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
 
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_spCommandLine->m_varFile = szFileName;
 
       pApp->open_document_file(createcontext);
@@ -1186,10 +1186,10 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
       ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
       (UINT)0x8000, (UINT_PTR)hData));
 
-   // don't execute the command when the ::ca::window is disabled
+   // don't execute the command when the ::ax::window is disabled
    if (!IsWindowEnabled())
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::ca::window is disabled.\n",
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::ax::window is disabled.\n",
          strCommand.GetString());
       return 0;
    }
@@ -1238,7 +1238,7 @@ void frame_window::SetActiveView(::view * pViewNew, BOOL bNotify)
    if (pViewOld != NULL)
       pViewOld->OnActivateView(FALSE, pViewNew, pViewOld);
 
-   // if the OnActivateView moves the active ::ca::window,
+   // if the OnActivateView moves the active ::ax::window,
    //    that will veto this change
    if (m_pViewActive != NULL)
       return;     // already set
@@ -1253,7 +1253,7 @@ void frame_window::SetActiveView(::view * pViewNew, BOOL bNotify)
    }
 }
 
-void frame_window::on_delete(::ca::ca * p)
+void frame_window::on_delete(::ax::ax * p)
 {
    ::user::frame_window_interface::on_delete(p);
 }
@@ -1394,7 +1394,7 @@ void frame_window::SetMessageText(UINT nID)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Setting title of frame ::ca::window - UISG standard
+// Setting title of frame ::ax::window - UISG standard
 
 void frame_window::on_update_frame_title(BOOL bAddToTitle)
 {
@@ -1420,7 +1420,7 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
       {
          WindowText += lpszDocName;
 
-         // add current ::ca::window # if needed
+         // add current ::ax::window # if needed
          if (m_nWindow > 0)
          {
             char szText[32];
@@ -1442,7 +1442,7 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          WindowText += " - ";
          WindowText += lpszDocName;
 
-         // add current ::ca::window # if needed
+         // add current ::ax::window # if needed
          if (m_nWindow > 0)
          {
             char szText[32];
@@ -1464,7 +1464,7 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
 void frame_window::OnSetPreviewMode(BOOL bPreview, CPrintPreviewState* pState)
 {
    ENSURE_ARG(pState != NULL);
-   // default implementation changes control bars, menu and main pane ::ca::window
+   // default implementation changes control bars, menu and main pane ::ax::window
 
 
    // Set visibility of standard ControlBars (only the first 32)
@@ -1625,7 +1625,7 @@ void frame_window::OnSize(UINT nType, int cx, int cy)
       layout();
 }
 
-BOOL frame_window::OnEraseBkgnd(::ca::graphics * pgraphics)
+BOOL frame_window::OnEraseBkgnd(::ax::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    if (m_pViewActive != NULL)
@@ -1679,7 +1679,7 @@ void frame_window::ActivateFrame(int nCmdShow)
 
    if (nCmdShow != -1)
    {
-      // show the ::ca::window as specified
+      // show the ::ax::window as specified
       ShowWindow(nCmdShow);
 
       // and finally, bring to top after showing
@@ -1691,7 +1691,7 @@ void frame_window::BringToTop(int nCmdShow)
 {
    if(GetParent() == NULL)
    {
-      // place the ::ca::window on top except for certain nCmdShow
+      // place the ::ax::window on top except for certain nCmdShow
       if (nCmdShow != SW_HIDE &&
          nCmdShow != SW_MINIMIZE && nCmdShow != SW_SHOWMINNOACTIVE &&
          nCmdShow != SW_SHOWNA && nCmdShow != SW_SHOWNOACTIVATE)

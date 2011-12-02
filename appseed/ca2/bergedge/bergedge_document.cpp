@@ -5,8 +5,8 @@ namespace bergedge
 {
 
 
-   document::document(::ca::application * papp) :
-      ca(papp),
+   document::document(::ax::application * papp) :
+      ax(papp),
       data_container(papp),
       document_interface(papp),
       ::document(papp),

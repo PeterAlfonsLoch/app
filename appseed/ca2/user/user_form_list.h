@@ -47,7 +47,7 @@ namespace user
       };
 
 
-      form_list(::ca::application * papp);
+      form_list(::ax::application * papp);
       virtual ~form_list();
 
 
@@ -65,7 +65,7 @@ namespace user
 
       void _001HideEditingControls();
       void _001HideControl(control * pcontrol);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop, LPARAM lparam);
       virtual ::user::interaction* _GetWnd();
       void _001UpdateColumns();
@@ -87,7 +87,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll)
       DECL_GEN_SIGNAL(_001OnKeyDown)
 
-      virtual bool _001OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
+      virtual bool _001OnMouseActivate(::ax::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
       virtual void install_message_handling( ::gen::message::dispatch *pinterface);

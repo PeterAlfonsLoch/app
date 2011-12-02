@@ -11,7 +11,7 @@ namespace user
       virtual public text_interface,
       virtual public colorertake5::base_editor,
       virtual public ex1::tree,
-      virtual public ca::data_listener
+      virtual public ax::data_listener
    {
    public:
 
@@ -67,12 +67,12 @@ namespace user
 
 
 
-      edit_plain_text(::ca::application * papp);
+      edit_plain_text(::ax::application * papp);
 
       virtual ~edit_plain_text();
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
 
 
@@ -120,7 +120,7 @@ namespace user
       void key_to_char(WPARAM wparam, LPARAM lparam);
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
-      virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
+      virtual void OnDraw(::ax::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
 
@@ -143,12 +143,12 @@ namespace user
 
 
 
-      virtual void on_updata_data(::ca::data * pdata, int iHint);
+      virtual void on_updata_data(::ax::data * pdata, int iHint);
 
 
       virtual bool create_control(class user::control::descriptor * pdescriptor);
 
-      virtual int char_hit_test(::ca::graphics * pdc, int x, int y);
+      virtual int char_hit_test(::ax::graphics * pdc, int x, int y);
 
       colorertake5::file_type * colorer_select_type();
 
@@ -163,8 +163,8 @@ namespace user
 
       bool should_load_full_file();
 
-      void _001OnCalcLayout(::ca::graphics * pdc);
-      void _001OnCalcLayoutProc(user::elemental * pview, ::ca::graphics * pdc);
+      void _001OnCalcLayout(::ax::graphics * pdc);
+      void _001OnCalcLayoutProc(user::elemental * pview, ::ax::graphics * pdc);
 
       void FileSave();
       void OnFileUpdate();

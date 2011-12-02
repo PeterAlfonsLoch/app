@@ -13,7 +13,7 @@ namespace datetime
       array_ptr_alloc < element >   m_elementa;
 
 
-      parser(::ca::application * papp, ::user::str_context * pcontext);
+      parser(::ax::application * papp, ::user::str_context * pcontext);
       virtual ~parser();
 
 

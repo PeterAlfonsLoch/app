@@ -1,23 +1,15 @@
-
-
-
 #include "c/c.h"
 
+
+#include "ca_seed.h"
 
 
 #pragma once
 
 
+#include "c/vms/vms.h"
 
-#ifdef _WINDOWS
-#ifdef __CA__DLL
-   #define CLASS_DECL_ca  _declspec(dllexport)
-#else
-   #define CLASS_DECL_ca  _declspec(dllimport)
-#endif
-#else
-   #define CLASS_DECL_ca
-#endif
+
 
 
 #ifdef LINUX
@@ -28,10 +20,21 @@
 
 
 
-namespace ca
+namespace plane
 {
+
    class application;
-} // namespace ca
+
+
+} // namespace plane
+
+
+#undef App
+#define planeApp(pcaapp) (pcaapp->cast_app < plane::application >())
+#define planeApplication (planeApp(get_app()))
+#define App(pcaapp) planeApp(pcaapp)
+#define Application (App(get_app()))
+
 
 
 #if defined(WIN32) && !defined(VC6) && ! defined(VC71)
@@ -74,6 +77,7 @@ extern "C"
 #include "linux/linux.h"
 #endif
 
+#include <stdio.h>
 
 
 

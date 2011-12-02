@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "ex1_stream2.h"
+
+
 namespace primitive
 {
    class memory;

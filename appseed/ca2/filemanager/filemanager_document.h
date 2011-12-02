@@ -13,7 +13,7 @@ namespace filemanager
 
 
 
-      document(::ca::application * papp);
+      document(::ax::application * papp);
       virtual ~document();
 
 

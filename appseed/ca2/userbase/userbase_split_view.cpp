@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   split_view::split_view(::ca::application * papp) :
-      ca(papp),
+   split_view::split_view(::ax::application * papp) :
+      ax(papp),
       ::userbase::view(papp),
       split_layout(papp),
       place_holder_container(papp)
@@ -54,7 +54,7 @@ namespace userbase
       return view::PreCreateWindow(cs);
    }
 
-   void split_view::_001OnDraw(::ca::graphics *pdc)
+   void split_view::_001OnDraw(::ax::graphics *pdc)
    {
       int i;
       rect rect;

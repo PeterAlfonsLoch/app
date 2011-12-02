@@ -5,8 +5,8 @@ namespace filemanager
 {
 
 
-   SimpleFolderListInterface::SimpleFolderListInterface(::ca::application * papp) :
-      ca(papp),
+   SimpleFolderListInterface::SimpleFolderListInterface(::ax::application * papp) :
+      ax(papp),
       ::user::scroll_view(papp),
       ::user::list(papp)
    {

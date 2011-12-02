@@ -102,7 +102,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnGetTextLength)
       DECL_GEN_SIGNAL(_001OnSetMinHeight)
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 

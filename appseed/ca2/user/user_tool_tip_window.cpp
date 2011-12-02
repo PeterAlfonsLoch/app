@@ -3,8 +3,8 @@
 namespace user
 {
 
-   tool_tip_window::tool_tip_window(::ca::application * papp) :
-      ca(papp),
+   tool_tip_window::tool_tip_window(::ax::application * papp) :
+      ax(papp),
       m_font(papp)
    {
       m_ealignDefault = (EAlign) (AlignRight | AlignTop);
@@ -74,7 +74,7 @@ namespace user
       ::user::interaction * pwnd = m_pwnd;
 
       rect rect;
-      ::ca::graphics * pdc = pwnd->GetDC();
+      ::ax::graphics * pdc = pwnd->GetDC();
 
       GetToolRect(iTool, rect);
 
@@ -168,7 +168,7 @@ namespace user
    // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::ca::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
+   bool tool_tip_window::CalcRect(::ax::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
    {
       pdc->SelectObject(m_font);
       size size = pdc->GetTextExtent(lpcsz);
@@ -216,7 +216,7 @@ namespace user
    {
       throw not_implemented_exception();
        /*CPaintDC spgraphics(this);
-      ::ca::graphics * pdc = &spgraphics;
+      ::ax::graphics * pdc = &spgraphics;
       pdc->SelectObject(m_font);
       rect rectClient;
       GetClientRect(rectClient);
@@ -299,7 +299,7 @@ namespace user
          break;
       }
 
-       ::ca::window::OnTimer(nIDEvent);
+       ::ax::window::OnTimer(nIDEvent);
    }
 
 
@@ -348,7 +348,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnSize(UINT nType, int cx, int cy)
    {
-       ::ca::window::OnSize(nType, cx, cy);
+       ::ax::window::OnSize(nType, cx, cy);
 
       UpdateDrawingObjects();
    }
@@ -435,7 +435,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnDestroy()
    {
-   //    ::ca::window::OnDestroy();
+   //    ::ax::window::OnDestroy();
    }
 
    ///////////////////////////////////////////////////////////
@@ -474,7 +474,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::UpdateDrawingObjects()
    {
-      /*::ca::region rgn;
+      /*::ax::region rgn;
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;
@@ -596,7 +596,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(::ca::window * pwnd, e_position eposition)
+   void tool_tip_window::SetPositionHint(::ax::window * pwnd, e_position eposition)
    {
       rect rect;
       pwnd->GetWindowRect(rect);

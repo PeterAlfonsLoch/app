@@ -120,8 +120,8 @@ AFX_STATIC_DATA const char _afxShellNewValue[] = "";
 namespace userbase
 {
 
-   document_manager::document_manager(::ca::application * papp) :
-      ca(papp)
+   document_manager::document_manager(::ax::application * papp) :
+      ax(papp)
    {
    }
 

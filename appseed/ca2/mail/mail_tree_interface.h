@@ -9,7 +9,7 @@ namespace mail
    {
    public:
       
-      tree_interface(::ca::application * papp);
+      tree_interface(::ax::application * papp);
       virtual ~tree_interface();
 
 

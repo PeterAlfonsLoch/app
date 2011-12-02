@@ -10,7 +10,7 @@ namespace nature
       public ::userbase::document
    {
    public:
-      document(::ca::application * papp);
+      document(::ax::application * papp);
 
       ::view *     get_nature_view();
       frame *    get_nature_frame();

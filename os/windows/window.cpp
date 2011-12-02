@@ -401,7 +401,7 @@ namespace win
       }
    }
 
-   void window::install_message_handling(::user::win::message::dispatch * pinterface)
+   void window::install_message_handling(::user::gen::message::dispatch * pinterface)
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &window::_001OnDestroy);

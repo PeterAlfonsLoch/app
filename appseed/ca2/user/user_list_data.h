@@ -9,12 +9,12 @@ namespace user
 
 
    class CLASS_DECL_ca list_data :
-      virtual public ::ca::data
+      virtual public ::ax::data
    {
    public:
 
 
-      list_data(::ca::application * papp);
+      list_data(::ax::application * papp);
       virtual ~list_data();
 
 

@@ -8,11 +8,11 @@ class CLASS_DECL_ca SimplePreviewInterface :
    virtual public FileManagerViewInterface
 {
 public:
-   SimplePreviewInterface(::ca::application * papp);
+   SimplePreviewInterface(::ax::application * papp);
    virtual ~SimplePreviewInterface();
 
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
    string m_strPath;
    stringa m_straPath;

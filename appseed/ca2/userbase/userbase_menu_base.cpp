@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   menu_base::menu_base(::ca::application * papp):
-      ca(papp)
+   menu_base::menu_base(::ax::application * papp):
+      ax(papp)
    {
       m_pitem(new menu_item(papp));
    }

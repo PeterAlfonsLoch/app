@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   tree_window::tree_window(::ca::application * papp) :
-      ca(papp),
+   tree_window::tree_window(::ax::application * papp) :
+      ax(papp),
       data_container(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

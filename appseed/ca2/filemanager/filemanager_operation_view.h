@@ -25,7 +25,7 @@ public:
    ::user::view_creator * m_pviewcreator;
 
 
-   file_manager_operation_view(::ca::application * papp);
+   file_manager_operation_view(::ax::application * papp);
    virtual ~file_manager_operation_view();
 
    file_manager_operation_document * get_document();

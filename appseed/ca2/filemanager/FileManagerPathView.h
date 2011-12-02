@@ -5,7 +5,7 @@ class CLASS_DECL_ca FileManagerPathView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerPathView(::ca::application * papp);
+   FileManagerPathView(::ax::application * papp);
 
    virtual void _001OnAfterChangeText();
 

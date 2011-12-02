@@ -14,7 +14,7 @@ namespace user
       array_ptr_alloc < stringa , stringa & > m_array;
 
       
-      simple_list_data(::ca::application * papp);
+      simple_list_data(::ax::application * papp);
       virtual ~simple_list_data();
 
 

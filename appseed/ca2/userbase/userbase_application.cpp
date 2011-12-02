@@ -111,7 +111,7 @@ namespace userbase
    ::userbase::document* application::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(m_pdocmanager != NULL);
-      ::ca::create_context_sp cc(get_app());
+      ::ax::create_context_sp cc(get_app());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return dynamic_cast < ::userbase::document * > (m_pdocmanager->open_document_file(cc));
    }
@@ -141,12 +141,12 @@ namespace userbase
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(::ca::application * papp)
+   ::user::front_end_schema * GetUfeSchema(::ax::application * papp)
    {
       return App(papp).GetUfeSchema();
    }
 
-   ::user::front_end * GetUfe(::ca::application * papp)
+   ::user::front_end * GetUfe(::ax::application * papp)
    {
       return App(papp).GetUfe();
    }

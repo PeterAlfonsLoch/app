@@ -8,7 +8,7 @@ namespace userbase
 
    {
    public:
-      elastic_slider(::ca::application * papp);
+      elastic_slider(::ax::application * papp);
    public:
       virtual ~elastic_slider(void);
 
@@ -49,7 +49,7 @@ namespace userbase
       void CalcTension();
 
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
    protected:
       EScalar m_escalar;

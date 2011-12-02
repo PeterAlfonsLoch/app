@@ -2,8 +2,8 @@
 #include <WinSpool.h>
 
 
-simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :
-   ca(papp),
+simple_printer_list_view::simple_printer_list_view(::ax::application * papp) :
+   ax(papp),
    userbase::view(papp),
    user::scroll_view(papp),
    user::form(papp),

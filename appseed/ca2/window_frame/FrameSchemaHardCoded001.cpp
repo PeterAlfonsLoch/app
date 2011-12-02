@@ -17,8 +17,8 @@
 namespace window_frame
 {
 
-   FrameSchemaHardCoded001::FrameSchemaHardCoded001(::ca::application * papp) :
-      ca(papp),   
+   FrameSchemaHardCoded001::FrameSchemaHardCoded001(::ax::application * papp) :
+      ax(papp),   
       FrameSchema(papp),
       m_penText1(papp),
       m_penFace1(papp),
@@ -247,7 +247,7 @@ namespace window_frame
       return false;
    }
 
-   void FrameSchemaHardCoded001::_001OnDraw(::ca::graphics * pdc)
+   void FrameSchemaHardCoded001::_001OnDraw(::ax::graphics * pdc)
    {
       if(!m_pworkset->IsAppearanceEnabled())
          return;
@@ -378,7 +378,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded001::DrawBorderSide(::ca::graphics * pdc, LPCRECT lpcrectClient,
+   void FrameSchemaHardCoded001::DrawBorderSide(::ax::graphics * pdc, LPCRECT lpcrectClient,
                                                 MoveManager::EBorder eside)
    {
       appearance * pappearance = GetAppearance();
@@ -479,7 +479,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded001::DrawFrame(::ca::graphics *pdc)
+   void FrameSchemaHardCoded001::DrawFrame(::ax::graphics *pdc)
    {
 
       ::user::interaction * pwndDraw = GetDrawWindow();
@@ -564,7 +564,7 @@ namespace window_frame
    }
 
 
-   void FrameSchemaHardCoded001::DrawBorder(::ca::graphics *pdc, LPCRECT lpcrectClient)
+   void FrameSchemaHardCoded001::DrawBorder(::ax::graphics *pdc, LPCRECT lpcrectClient)
    {
       MoveManager * pwmm = m_pworkset->GetMovingManager();
 
@@ -639,7 +639,7 @@ namespace window_frame
    }
 
    void FrameSchemaHardCoded001::Draw3dRectSide(
-      ::ca::graphics * pdc, LPCRECT lpcrect, 
+      ::ax::graphics * pdc, LPCRECT lpcrect, 
       MoveManager::EBorder eborder, 
       COLORREF crTopLeft, COLORREF crBottomRight)
    {
@@ -1022,7 +1022,7 @@ namespace window_frame
    }
 
    void FrameSchemaHardCoded001::DrawGrip(
-                                          ::ca::graphics * pdc,
+                                          ::ax::graphics * pdc,
                                           LPCRECT lpcrectClient,
                                           EGrip egrip)
    {
@@ -1689,7 +1689,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded001::DrawRectGrip(::ca::graphics *pdc, LPCRECT lpcrect)
+   void FrameSchemaHardCoded001::DrawRectGrip(::ax::graphics *pdc, LPCRECT lpcrect)
    {
       rect rect(lpcrect);
 
@@ -1711,7 +1711,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded001::DrawGripSet(::ca::graphics *pdc, LPCRECT lpcrectClient)
+   void FrameSchemaHardCoded001::DrawGripSet(::ax::graphics *pdc, LPCRECT lpcrectClient)
    {
       SizeManager * pwsm = m_pworkset->GetSizingManager();
 
@@ -1957,7 +1957,7 @@ namespace window_frame
 
    int FrameSchemaHardCoded001::GetButtonSize()
    {
-      ::ca::graphics * pdc = GetWnd()->GetDC();
+      ::ax::graphics * pdc = GetWnd()->GetDC();
 
       TEXTMETRIC tm;
       pdc->SelectObject(m_fontMarlett);
@@ -2063,7 +2063,7 @@ namespace window_frame
       if(GetAppearance()->IsIconic())
       {
          rectWindow -= rectWindow.top_left();
-         ::ca::region_sp rgnMain(get_app());
+         ::ax::region_sp rgnMain(get_app());
          rgnMain->CreateRectRgnIndirect(rectWindow);
       }
       else if(GetAppearance()->IsFullScreen())
@@ -2078,7 +2078,7 @@ namespace window_frame
             rect rectRgn = rectClient;
             rectRgn += (rectClient.top_left() - rectAdjust.top_left());
             rect rectA = rectRgn;
-            ::ca::region_sp rgnMain(get_app());
+            ::ax::region_sp rgnMain(get_app());
             rgnMain->CreateRectRgnIndirect(rectA);
 //            SetWindowRgn((HWND)pwnd->_get_handle(), (HRGN)rgnMain->detach_os_data(), TRUE);
 
@@ -2105,7 +2105,7 @@ namespace window_frame
          rect rectB = rectRgn;
          rectB.right = rectB.left + GRIP_CORNER_LARGE_CX;
          rectB.bottom = rectB.top + GRIP_CORNER_LARGE_CY;
-         ::ca::region_sp rgnAdd(get_app());
+         ::ax::region_sp rgnAdd(get_app());
          rgnAdd->CreateRectRgnIndirect(rectB);
          CombineRgn(hrgnMain, hrgnMain, (HRGN) rgnAdd->get_os_data(), RGN_OR);
 
@@ -2170,7 +2170,7 @@ namespace window_frame
 
    void FrameSchemaHardCoded001::OnInitializeAppearance()
    {
-      ::ca::graphics * pdc = GetWnd()->GetDC();
+      ::ax::graphics * pdc = GetWnd()->GetDC();
 //      m_fontMarlett->delete_object();
       m_fontMarlett->CreatePointFont(90, "Marlett", pdc);
       GetWnd()->ReleaseDC(pdc);

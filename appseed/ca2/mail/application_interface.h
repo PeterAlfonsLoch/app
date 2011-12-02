@@ -7,7 +7,7 @@ class CLASS_DECL_ca application_interface :
    virtual public ::radix::object
 {
 public:
-   application_interface(::ca::application * papp);
+   application_interface(::ax::application * papp);
    virtual ~application_interface();
 
    void InitializeMail();
@@ -23,7 +23,7 @@ public:
 
 };
 
-inline application_interface & app(::ca::application * papp)
+inline application_interface & app(::ax::application * papp)
    {
       return *(dynamic_cast < application_interface * > (papp));
    }

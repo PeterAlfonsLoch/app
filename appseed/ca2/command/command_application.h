@@ -30,7 +30,7 @@ namespace command
 
    		
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ax::application * get_app() const;
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
    };

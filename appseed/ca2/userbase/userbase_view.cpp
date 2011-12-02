@@ -38,8 +38,8 @@
 namespace userbase
 {
 
-   view::view(::ca::application * papp) :
-      ca(papp),
+   view::view(::ax::application * papp) :
+      ax(papp),
       ::user::interaction(papp)
    {
    }
@@ -424,15 +424,15 @@ namespace userbase
       ASSERT(pContext != NULL);
       ASSERT(pContext->m_typeinfoNewView != NULL);
 
-      // Note: can be a ::ca::window with PostNcDestroy self cleanup
-      ::ca::window* pview = dynamic_cast < ::ca::window * > (pwndParent->System.alloc(pContext->m_typeinfoNewView));
+      // Note: can be a ::ax::window with PostNcDestroy self cleanup
+      ::ax::window* pview = dynamic_cast < ::ax::window * > (pwndParent->System.alloc(pContext->m_typeinfoNewView));
       if (pview == NULL)
       {
          TRACE1("Warning: Dynamic create of ::view type %hs failed.\n",
             pContext->m_typeinfoNewView.name());
          return NULL;
       }
-      ASSERT_KINDOF(::ca::window, pview);
+      ASSERT_KINDOF(::ax::window, pview);
 
       // views are always created with a border!
       if (!pview->create(NULL, NULL, AFX_WS_DEFAULT_VIEW,

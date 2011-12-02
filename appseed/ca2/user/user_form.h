@@ -8,7 +8,7 @@ namespace user
       virtual public scroll_view
    {
    public:
-      form(::ca::application * papp);
+      form(::ax::application * papp);
       virtual ~form();
 
       bool                       m_bOnEditUpdate;

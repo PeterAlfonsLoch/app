@@ -9,7 +9,7 @@
 namespace userbase
 {
 
-   document_template::document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
+   document_template::document_template(::ax::application * papp, const char * pszMatter, ::ax::type_info & pDocClass, ::ax::type_info & pFrameClass, ::ax::type_info & pViewClass) :
       ::document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
    }

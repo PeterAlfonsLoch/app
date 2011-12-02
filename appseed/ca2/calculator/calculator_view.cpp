@@ -5,8 +5,8 @@
 namespace calculator
 {
 
-   view::view(::ca::application * papp) : 
-      ca(papp),
+   view::view(::ax::application * papp) : 
+      ax(papp),
       ::user::interaction(papp),
       ::userbase::view(papp)
    {
@@ -120,7 +120,7 @@ namespace calculator
    }
 
 
-   void view:: _001OnDraw(::ca::graphics * pdc)
+   void view:: _001OnDraw(::ax::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       //m_hwnd = GetSafeHwnd();
@@ -128,10 +128,10 @@ namespace calculator
 
       //FIBITMAP * pdib = CImaging::LoadImageFile("C:\\screenshot.jpeg");
 
-      //::ca::bitmap bmp2;
+      //::ax::bitmap bmp2;
 
       //bmp2.Attach(CImaging::FItoHBITMAP(pdib, true));
-      //::ca::graphics_sp dc2;
+      //::ax::graphics_sp dc2;
       //dc2.CreateCompatibleDC(pdc);
       //dc2.SelectObject(bmp2);
 

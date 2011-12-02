@@ -32,7 +32,7 @@ namespace user
          pane();
 
 
-         bool get_title(::ca::application * papp, string & str);
+         bool get_title(::ax::application * papp, string & str);
 
 
       };
@@ -52,15 +52,15 @@ namespace user
 
 
       class CLASS_DECL_ca data :
-         virtual public ::ca::data
+         virtual public ::ax::data
       {
       public:
 
          int                              m_iHeightAddUp;
-         ::ca::pen_sp                     m_pen;
-         ::ca::font_sp                    m_font;
-         ::ca::font_sp                    m_fontUnderline;
-         ::ca::font_sp                    m_fontBold;
+         ::ax::pen_sp                     m_pen;
+         ::ax::font_sp                    m_font;
+         ::ax::font_sp                    m_fontUnderline;
+         ::ax::font_sp                    m_fontBold;
          bool                             m_bCreated;
          int                              m_iTabHeight;
          int                              m_iTabWidth;
@@ -82,7 +82,7 @@ namespace user
          bool                             m_bEnableCloseAll;
 
 
-         data(::ca::application * papp);
+         data(::ax::application * papp);
          virtual ~data();
 
          virtual pane * get_pane_by_id(id id);
@@ -97,7 +97,7 @@ namespace user
       e_element                        m_eelement;
 
 
-      tab(::ca::application * papp);
+      tab(::ax::application * papp);
             virtual ~tab();
 
 
@@ -134,7 +134,7 @@ namespace user
 
       virtual void _001OnTabClick(int iTab);
       virtual void _001OnTabClose(int iTab);
-      virtual ::ca::window * GetNotifyWnd();
+      virtual ::ax::window * GetNotifyWnd();
       virtual int hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
@@ -187,7 +187,7 @@ namespace user
 
 
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ax::graphics * pdc);
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnMouseMove)

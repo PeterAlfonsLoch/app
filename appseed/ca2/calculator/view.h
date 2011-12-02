@@ -11,7 +11,7 @@ namespace calculator
       virtual public ::userbase::view
    {
    public:
-      view(::ca::application * papp);
+      view(::ax::application * papp);
       virtual ~view();
 
 #ifdef _DEBUG
@@ -22,7 +22,7 @@ namespace calculator
       virtual ::user::interaction * BackViewGetWnd();
       virtual ::user::interaction* get_guie();
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

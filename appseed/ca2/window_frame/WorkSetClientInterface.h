@@ -14,14 +14,14 @@ namespace window_frame
       EAppearanceMode      m_eappearancemodeFullScreen;
       
 
-      WorkSetClientInterface(::ca::application * papp);
+      WorkSetClientInterface(::ax::application * papp);
       virtual ~WorkSetClientInterface();
 
 
       ::user::interaction* WfiGetWindow();
 
 
-      virtual void _001OnDraw(::ca::graphics * pca);
+      virtual void _001OnDraw(::ax::graphics * pca);
 
 
       void WfiEnableFullScreen(bool bEnable = true);

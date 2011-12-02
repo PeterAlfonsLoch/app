@@ -83,7 +83,7 @@ namespace fontopus
 
    user * application::login()
    {
-      /*::ca::application * papp;
+      /*::ax::application * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)
       {
          papp = m_puiInitialPlaceHolderContainer->m_papp;
@@ -104,7 +104,7 @@ namespace fontopus
 
    bool application::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
-      /*::ca::application * papp;
+      /*::ax::application * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)
       {
          papp = m_puiInitialPlaceHolderContainer->m_papp;
@@ -200,7 +200,7 @@ namespace fontopus
    }
 
 
-   application & app_cast(::ca::ca * pca)
+   application & app_cast(::ax::ax * pca)
    {
       return *dynamic_cast < application * > (pca);
    }

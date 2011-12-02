@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_ca application :
-      virtual public ::simpleuser::application,
+      virtual public ::simpledb::application,
       virtual public ::userpresence::user::presence_central_container
    {
    public:

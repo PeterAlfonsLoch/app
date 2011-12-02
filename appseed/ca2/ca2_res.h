@@ -80,7 +80,7 @@
 #define ID_MFCLOC_MANIFEST             1000
 
 /////////////////////////////////////////////////////////////////////////////
-// Standard ::ca::window components
+// Standard ::ax::window components
 
 // Mode indicators in status bar - these are routed like commands
 #define ID_INDICATOR_EXT                0xE700  // extended selection indicator
@@ -94,12 +94,12 @@
 #define ID_SEPARATOR                    0   // special separator value
 
 #ifndef RC_INVOKED  // code only
-// Standard control bars (IDW = ::ca::window ID)
+// Standard control bars (IDW = ::ax::window ID)
 #define AFX_IDW_CONTROLBAR_FIRST        0xE800
 #define AFX_IDW_CONTROLBAR_LAST         0xE8FF
 
-#define AFX_IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca::window
-#define AFX_IDW_STATUS_BAR              0xE801  // Status bar ::ca::window
+#define AFX_IDW_TOOLBAR                 0xE800  // main Toolbar for ::ax::window
+#define AFX_IDW_STATUS_BAR              0xE801  // Status bar ::ax::window
 #define AFX_IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
 #define AFX_IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define AFX_IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
@@ -216,7 +216,7 @@
 #ifndef RC_INVOKED      // code only
 #define AFX_IDM_WINDOW_FIRST            0xE130
 #define AFX_IDM_WINDOW_LAST             0xE13F
-#define AFX_IDM_FIRST_MDICHILD          0xFF00  // ::ca::window list starts here
+#define AFX_IDM_FIRST_MDICHILD          0xFF00  // ::ax::window list starts here
 #endif //!RC_INVOKED
 
 // Help and App commands
@@ -639,7 +639,7 @@ commenttest
 #define AFX_IDC_MOUSE_ORG_HV            31011       // anchor for horz/vert
 #define AFX_IDC_MOUSE_MASK              31012
 
-// Mini frame ::ca::window bitmap ID
+// Mini frame ::ax::window bitmap ID
 #define AFX_IDB_MINIFRAME_MENU          30994
 
 // CheckListBox checks bitmap ID

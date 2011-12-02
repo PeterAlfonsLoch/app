@@ -12,7 +12,7 @@ class CLASS_DECL_ca FileManagerLeftView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerLeftView(::ca::application * papp);
+   FileManagerLeftView(::ax::application * papp);
 
    void CreateViews();
    

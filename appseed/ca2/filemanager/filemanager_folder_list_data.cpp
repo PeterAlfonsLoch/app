@@ -3,9 +3,9 @@
 namespace filemanager
 {
 
-   folder_list_data::folder_list_data(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
+   folder_list_data::folder_list_data(::ax::application * papp) :
+      ax(papp),
+      ::ax::data(papp),
       ::user::list_data(papp)
    {
    }

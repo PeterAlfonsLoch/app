@@ -1,5 +1,6 @@
 #pragma once
 
+
 template <class TYPE, class ARG_TYPE = const TYPE &>
 class array_app_alloc :
    public array_del_ptr < TYPE, ARG_TYPE >
@@ -53,23 +54,6 @@ array_app_alloc < TYPE, ARG_TYPE >::~array_app_alloc()
    remove_all();
 }
 
-template <class TYPE, class ARG_TYPE>
-inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
-{
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
-   this->ptra().add(pt);
-   return pt;
-}
-
-
-template <class TYPE, class ARG_TYPE>
-inline index array_app_alloc < TYPE, ARG_TYPE >::add(
-   const TYPE & t)
-{
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
-   *pt = t;
-   return this->ptra().add(pt);
-}
 
 template <class TYPE, class ARG_TYPE>
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(

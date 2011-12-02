@@ -3,8 +3,8 @@
 namespace user
 {
 
-   keyboard::keyboard(::ca::application * papp) :
-      ca(papp)
+   keyboard::keyboard(::ax::application * papp) :
+      ax(papp)
    {
       m_playout = NULL;
    }

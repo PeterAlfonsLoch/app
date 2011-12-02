@@ -252,7 +252,7 @@ namespace cube2
       return SendMessage(hwnd, WM_COPYDATA, (WPARAM) (HWND) osdataSender, (LPARAM) &cds);
    }
 
-   void application::request(::ca::create_context * pcreatecontext)
+   void application::request(::ax::create_context * pcreatecontext)
    {
       ::cube1::application::request(pcreatecontext);
    }

@@ -59,7 +59,7 @@ namespace fontopus
       login_thread_callback *    m_pcallback;
 
 
-      login_thread(::ca::application * papp);
+      login_thread(::ax::application * papp);
       virtual ~login_thread();
 
       virtual BOOL run();
@@ -113,7 +113,7 @@ namespace fontopus
       bool                                      m_bInteractive;
 
 
-      validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
+      validate(::ax::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
       virtual ~validate();
 
 

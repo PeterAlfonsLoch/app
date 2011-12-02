@@ -13,7 +13,7 @@ namespace user
 
       keyboard_layout * m_playout;
 
-      keyboard(::ca::application * papp);
+      keyboard(::ax::application * papp);
 
       virtual class keyboard_layout & layout();
 

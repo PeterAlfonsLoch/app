@@ -7,8 +7,8 @@ namespace userbase
    const int BaseWndMenuCmdUi = 117;
    const int BaseWndMenuTiming = 200;
 
-   menu::menu(::ca::application * papp) :
-      ca(papp),
+   menu::menu(::ax::application * papp) :
+      ax(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -25,8 +25,8 @@ namespace userbase
 
    }
 
-   menu::menu(::ca::application * papp, menu_item * pitem) :
-      ca(papp),
+   menu::menu(::ax::application * papp, menu_item * pitem) :
+      ax(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -131,7 +131,7 @@ namespace userbase
 
    void menu::layout()
    {
-      ::ca::graphics * pdc = GetDC();
+      ::ax::graphics * pdc = GetDC();
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int iMaxHeight = size.cy;
@@ -209,7 +209,7 @@ namespace userbase
    }
 
 
-   void menu::_001OnDraw(::ca::graphics *pdc)
+   void menu::_001OnDraw(::ax::graphics *pdc)
    {
 //      BOOL bEnabled = IsWindowEnabled();
       rect rectClient;

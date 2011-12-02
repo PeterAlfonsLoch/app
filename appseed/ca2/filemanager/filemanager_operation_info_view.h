@@ -8,11 +8,11 @@ public:
 
    double m_dAnime;
 
-   file_manager_operation_info_view(::ca::application * papp);
+   file_manager_operation_info_view(::ax::application * papp);
 
-   virtual void OnDraw(::ca::graphics * pdc);
+   virtual void OnDraw(::ax::graphics * pdc);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
    file_manager_operation_document * get_document();
 

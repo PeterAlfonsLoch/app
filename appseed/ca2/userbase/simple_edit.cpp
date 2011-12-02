@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_edit::simple_edit(::ca::application * papp) :
-   ca(papp),
+simple_edit::simple_edit(::ax::application * papp) :
+   ax(papp),
    data_container(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
@@ -9,7 +9,7 @@ simple_edit::simple_edit(::ca::application * papp) :
    ::user::edit_plain_text(papp),
    ::userbase::edit_plain_text(papp),
    ex1::tree(papp),
-   ::ca::data_listener(papp)
+   ::ax::data_listener(papp)
 {
 
 }
@@ -19,7 +19,7 @@ simple_edit::~simple_edit()
 }
 
 
-void simple_edit::_001OnDraw(::ca::graphics *pdc)
+void simple_edit::_001OnDraw(::ax::graphics *pdc)
 {
    ::userbase::edit_plain_text::_001OnDraw(pdc);
 }

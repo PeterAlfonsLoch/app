@@ -44,7 +44,7 @@ namespace userbase
 
    };
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
@@ -52,8 +52,8 @@ namespace userbase
 
 
 
-   CLASS_DECL_ca ::user::front_end_schema * GetUfeSchema(::ca::application * papp);
-   CLASS_DECL_ca ::user::front_end * GetUfe(::ca::application * papp);
+   CLASS_DECL_ca ::user::front_end_schema * GetUfeSchema(::ax::application * papp);
+   CLASS_DECL_ca ::user::front_end * GetUfe(::ax::application * papp);
 
 
 

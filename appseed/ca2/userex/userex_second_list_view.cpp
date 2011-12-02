@@ -11,8 +11,8 @@ namespace userex
 {
 
 
-   second_list_view::second_list_view(::ca::application * papp) :
-      ca(papp),
+   second_list_view::second_list_view(::ax::application * papp) :
+      ax(papp),
       userbase::view(papp),
       user::scroll_view(papp),
       user::form(papp),

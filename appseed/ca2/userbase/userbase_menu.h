@@ -24,8 +24,8 @@ namespace userbase
       };
 
 
-      menu(::ca::application * papp);
-      menu(::ca::application * papp, menu_item * pitem);
+      menu(::ax::application * papp);
+      menu(::ax::application * papp, menu_item * pitem);
       virtual ~menu();
 
 
@@ -37,7 +37,7 @@ namespace userbase
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
-      void _001OnDraw(::ca::graphics *pdc);
+      void _001OnDraw(::ax::graphics *pdc);
       DECL_GEN_SIGNAL(OnMessageDestroyWindow)
 
 

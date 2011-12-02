@@ -10,7 +10,7 @@ namespace nature
       virtual public ::radix::object
    {
    public:
-      database(::ca::application * papp);
+      database(::ax::application * papp);
       virtual ~database();
 
       bool                    m_bInitialized;

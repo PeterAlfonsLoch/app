@@ -1,27 +1,27 @@
 #include "StdAfx.h"
 #include <math.h>
 
-clock::clock(::ca::application * papp) :
-   ca(papp),
+clock::clock(::ax::application * papp) :
+   ax(papp),
    clock_interface(papp)
 {
    class time time = time::get_current_time();
 }
 
-void clock::_001OnDraw(::ca::graphics * pdc)
+void clock::_001OnDraw(::ax::graphics * pdc)
 {
    class time timeNow = time::get_current_time() + m_timespan;
 
    rect rect;
    GetRect(&rect, ElementClock);
-   ::ca::pen_sp pen(get_app(), PS_SOLID, 1, RGB(0, 0, 0));
+   ::ax::pen_sp pen(get_app(), PS_SOLID, 1, RGB(0, 0, 0));
    pdc->SelectObject(pen);
    pdc->DrawEllipse(&rect);
 
    point ptCenter(rect.center());
 
-   ::ca::pen_sp penHour(get_app(), PS_SOLID, 5, RGB(0, 0, 0));
-   ::ca::pen_sp penMinute(get_app(), PS_SOLID, 1, RGB(0, 0, 0));
+   ::ax::pen_sp penHour(get_app(), PS_SOLID, 5, RGB(0, 0, 0));
+   ::ax::pen_sp penMinute(get_app(), PS_SOLID, 1, RGB(0, 0, 0));
  
    double dRIntH = rect.width() * 57  / 128;
    double dRIntM = rect.width() * 59  / 128;
@@ -54,7 +54,7 @@ void clock::_001OnDraw(::ca::graphics * pdc)
    double dRMinute = rect.width() * 15  / 32;
    double dRSecond = rect.width() * 16 / 32;
 
-   ::ca::pen_sp penHM(get_app(), PS_SOLID, 2, RGB(0, 0, 0));
+   ::ax::pen_sp penHM(get_app(), PS_SOLID, 2, RGB(0, 0, 0));
    pdc->SelectObject(penHM);
 
    pdc->MoveTo(ptCenter);
@@ -71,7 +71,7 @@ void clock::_001OnDraw(::ca::graphics * pdc)
       ptMinute.Offset(ptCenter);
       pdc->LineTo(ptMinute);
    }
-   ::ca::pen_sp penRed(get_app(), PS_SOLID, 1, RGB(200, 0, 0));
+   ::ax::pen_sp penRed(get_app(), PS_SOLID, 1, RGB(200, 0, 0));
    pdc->SelectObject(penRed);
    pdc->MoveTo(ptCenter);
    {

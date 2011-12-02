@@ -94,7 +94,7 @@ namespace userbase
       BOOL HideButton(int nID, BOOL bHide = TRUE);
       BOOL Indeterminate(int nID, BOOL bIndeterminate = TRUE);
       int AddBitmap(int nNumButtons, UINT nBitmapID);
-      int AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap);
+      int AddBitmap(int nNumButtons, ::ax::bitmap* pBitmap);
 #ifdef WINDOWS
       BOOL AddButtons(int nNumButtons, LPTBBUTTON lpButtons);
       BOOL InsertButton(int nIndex, LPTBBUTTON lpButton);

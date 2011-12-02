@@ -21,8 +21,8 @@
 // // END_MESSAGE_MAP()
 
 
-html_view::html_view(::ca::application * papp) :
-   ca(papp),
+html_view::html_view(::ax::application * papp) :
+   ax(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
@@ -96,7 +96,7 @@ void html_view::_001OnInitialUpdate(gen::signal_object * pobj)
    if(get_html_data()->m_rect.width() > 0 &&
       get_html_data()->m_rect.height() > 0)
    {
-      ::ca::graphics * pdc = GetDC();
+      ::ax::graphics * pdc = GetDC();
       get_html_data()->layout(pdc);
       ReleaseDC(pdc);
       _001RedrawWindow();
@@ -124,7 +124,7 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint
             {
                bLayoutOk = true;
             }
-            ::ca::graphics * pdc = GetDC();
+            ::ax::graphics * pdc = GetDC();
             get_html_data()->m_pguie = this;
             get_html_data()->implement(pdc);
             if(bLayoutOk)

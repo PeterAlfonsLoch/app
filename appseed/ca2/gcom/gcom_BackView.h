@@ -37,7 +37,7 @@ namespace gcom
          bool                       m_bPendingLayout;
 
       public:
-         Main(::ca::application * papp, Interface * pbackviewinterface);
+         Main(::ax::application * papp, Interface * pbackviewinterface);
          virtual ~Main();
 
          void AddRef();
@@ -54,9 +54,9 @@ namespace gcom
          EImagePlacement GetCurrentImagePlacement();
          bool GetNextImagePath(string & str);
          ::mutex & GetTransferMutex();
-         ::ca::graphics & GetTransferDC();
+         ::ax::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(DWORD dwMillis);
-         void OnImageLoaded(::ca::bitmap * pbitmap);
+         void OnImageLoaded(::ax::bitmap * pbitmap);
          void UpdateDrawingObjects();
          void OnDestroy();
          void OnResize();

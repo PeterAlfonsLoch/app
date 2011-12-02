@@ -22,7 +22,7 @@ namespace platform
       bergedge::document * m_pbergedgedocument;
 
 
-      document(::ca::application * papp);
+      document(::ax::application * papp);
       virtual ~document();
 
       view *                  get_platform_view();

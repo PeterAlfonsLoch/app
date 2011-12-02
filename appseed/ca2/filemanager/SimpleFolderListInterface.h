@@ -16,7 +16,7 @@ public:
       ModeConfigurationItem,
    };
 
-   SimpleFolderListInterface(::ca::application * papp);
+   SimpleFolderListInterface(::ax::application * papp);
    virtual ~SimpleFolderListInterface();
 
 public:

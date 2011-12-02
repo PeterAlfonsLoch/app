@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ex1_byte_stream.h"
+
 namespace ex1
 {
 

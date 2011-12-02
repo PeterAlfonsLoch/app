@@ -7,16 +7,16 @@ namespace _template
    class CTraceFileAndLineInfo
    {
    public:
-      CTraceFileAndLineInfo(::ca::application * papp, const char *pszFileName, int nLineNo)
+      CTraceFileAndLineInfo(::ax::application * papp, const char *pszFileName, int nLineNo)
          : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {}
 
-      inline ::ca::application * get_app() const
+      inline ::ax::application * get_app() const
       {
          return m_papp;
       }
 
-      inline ::ca::application * get_app()
+      inline ::ax::application * get_app()
       {
          return m_papp;
       }
@@ -38,7 +38,7 @@ namespace _template
    private:
       /* unimplemented */
       CTraceFileAndLineInfo &__cdecl operator=(const CTraceFileAndLineInfo &right);
-      ::ca::application * m_papp;
+      ::ax::application * m_papp;
       const char *const m_pszFileName;
       const int m_nLineNo;
    };

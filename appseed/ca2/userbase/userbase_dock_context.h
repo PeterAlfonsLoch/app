@@ -41,7 +41,7 @@ public:
    BOOL m_bFlip;               // if shift key is down
    BOOL m_bForceFrame;         // if ctrl key is down
 
-   ::ca::graphics * m_pDC;                 // where to draw during drag
+   ::ax::graphics * m_pDC;                 // where to draw during drag
    BOOL m_bDragging;
    int m_nHitTest;
    bool m_bTracking;

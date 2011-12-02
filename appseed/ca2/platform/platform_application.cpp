@@ -30,9 +30,9 @@ namespace platform
       pDocTemplate = new ::userbase::single_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < document > (),
-         ::ca::get_type_info < frame > (),       // main SDI frame ::ca::window
-         ::ca::get_type_info < pane_view > ());
+         ::ax::get_type_info < document > (),
+         ::ax::get_type_info < frame > (),       // main SDI frame ::ax::window
+         ::ax::get_type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
@@ -68,7 +68,7 @@ namespace platform
       return gen::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * application::get_app() const
+   ::ax::application * application::get_app() const
    {
       return m_papp;
    }
@@ -85,7 +85,7 @@ namespace platform
 } // namespace platform
 
 
-CLASS_DECL_ca ::ca::application * platform_get_new_app()
+CLASS_DECL_ca ::ax::application * platform_get_new_app()
 {
    return new ::platform::application;
 }

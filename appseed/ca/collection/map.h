@@ -1,5 +1,10 @@
 #pragma once
 
+
+#include "ca/template/template_equals.h"
+#include "ca/collection/numeric_array.h"
+
+
 #undef new
 
 namespace collection

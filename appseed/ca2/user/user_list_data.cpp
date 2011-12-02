@@ -3,9 +3,9 @@
 namespace user
 {
 
-   simple_list_data::simple_list_data(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
+   simple_list_data::simple_list_data(::ax::application * papp) :
+      ax(papp),
+      ::ax::data(papp),
       ::user::list_data(papp)
    {
       m_bEnable = true;

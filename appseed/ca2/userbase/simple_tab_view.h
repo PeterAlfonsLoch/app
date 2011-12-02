@@ -7,12 +7,12 @@ class CLASS_DECL_ca simple_tab_view :
    virtual public ::user::tab
 {
 public:
-   simple_tab_view(::ca::application * papp);
+   simple_tab_view(::ax::application * papp);
    virtual ~simple_tab_view();
 
 
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
 #ifdef _DEBUG
    virtual void assert_valid() const;

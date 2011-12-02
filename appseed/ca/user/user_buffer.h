@@ -1,6 +1,8 @@
 #pragma once
 
+
 #include "multithreading/multithreading.h"
+#include "ca/ca/ca_dib.h"
 
 
 namespace user
@@ -16,7 +18,7 @@ namespace user
       void BitBlt(::ca::graphics * pdc);
       void BitBlt(LPRECT lprect, ::ca::graphics * pdc);
 
-      void InstallMessageHandling(win::message::dispatch * pinterface);
+      void InstallMessageHandling(gen::message::dispatch * pinterface);
 
 
       bool UpdateBuffer(int cx, int cy);

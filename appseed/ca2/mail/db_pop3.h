@@ -19,7 +19,7 @@ namespace mail
       critical_section     m_csDataset;
       string               m_strTransaction;
 
-      db_pop3(::ca::application * papp);
+      db_pop3(::ax::application * papp);
 
       virtual string get_user();
       virtual string get_pass();

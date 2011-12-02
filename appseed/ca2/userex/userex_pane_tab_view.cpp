@@ -3,8 +3,8 @@
 namespace userex
 {
 
-   pane_tab_view::pane_tab_view(::ca::application * papp) :
-      ca(papp),
+   pane_tab_view::pane_tab_view(::ax::application * papp) :
+      ax(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
       ::user::tab(papp),
@@ -61,7 +61,7 @@ namespace userex
          {
             wnda.add(pguie);
             pguieNext = pguie->GetParent();
-            if(pguieNext == NULL || dynamic_cast < ::ca::window * > (pguie->m_pimpl) != NULL)
+            if(pguieNext == NULL || dynamic_cast < ::ax::window * > (pguie->m_pimpl) != NULL)
                break;
             pguie = pguieNext;
          }
@@ -145,7 +145,7 @@ namespace userex
       // if id == registered_pane_from_library[i] => { alloc from library }
 /*      if(pcreatordata->m_id == "pane_view_audio_control")
       {
-         ::ca::create_context_sp cc(get_app());
+         ::ax::create_context_sp cc(get_app());
          cc->m_puiParent = this;
          mixeruserbase::document * pdoc = dynamic_cast < mixeruserbase::document * > (Bergedge.get_mixeruserbase_central().get_document_template()->open_document_file(cc));
          if(pdoc != NULL)

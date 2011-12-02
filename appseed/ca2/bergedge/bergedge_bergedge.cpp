@@ -43,7 +43,7 @@ namespace bergedge
       }
 
       string strId;
-      ::ca::application * pcaapp;
+      ::ax::application * pcaapp;
 
       while(pos != NULL)
       {
@@ -125,7 +125,7 @@ namespace bergedge
       return gen::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * bergedge::get_app() const
+   ::ax::application * bergedge::get_app() const
    {
       return platform::application::get_app();
    }
@@ -175,30 +175,30 @@ namespace bergedge
       m_ptemplate_bergedge    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < document > (),
-         ::ca::get_type_info < frame > (),
-         ::ca::get_type_info < view > ());
+         ::ax::get_type_info < document > (),
+         ::ax::get_type_info < frame > (),
+         ::ax::get_type_info < view > ());
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < platform::document > (),
-         ::ca::get_type_info < platform::frame > (),
-         ::ca::get_type_info < platform::pane_view > ());
+         ::ax::get_type_info < platform::document > (),
+         ::ax::get_type_info < platform::frame > (),
+         ::ax::get_type_info < platform::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < nature::document > (),
-         ::ca::get_type_info < nature::frame > (),
-         ::ca::get_type_info < nature::view > ());
+         ::ax::get_type_info < nature::document > (),
+         ::ax::get_type_info < nature::frame > (),
+         ::ax::get_type_info < nature::view > ());
       m_pnaturedocument = NULL;
    }
 
-   bool bergedge::create_bergedge(::ca::create_context * pcreatecontext)
+   bool bergedge::create_bergedge(::ax::create_context * pcreatecontext)
    {
       if(m_pbergedgedocument == NULL)
       {
 
-         ::ca::create_context_sp createcontextBergedge(get_app());
+         ::ax::create_context_sp createcontextBergedge(get_app());
          createcontextBergedge.oattrib(pcreatecontext);
          createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
          createcontextBergedge->m_bMakeVisible = false;
@@ -212,7 +212,7 @@ namespace bergedge
          if(m_pplatformdocument == NULL)
          {
 
-            ::ca::create_context_sp createcontextPlatform;
+            ::ax::create_context_sp createcontextPlatform;
             createcontextPlatform.oattrib(pcreatecontext);
             createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
             createcontextPlatform->m_bMakeVisible = true;
@@ -241,7 +241,7 @@ namespace bergedge
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void bergedge::on_request(::ca::create_context * pcreatecontext)
+   void bergedge::on_request(::ax::create_context * pcreatecontext)
    {
 
       m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
@@ -325,7 +325,7 @@ namespace bergedge
 
             DWORD_PTR dw = WM_APP + 2043;
 
-            papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+            papp->PostThreadMessage(dw, 2, (LPARAM) (::ax::create_context *) pcreatecontext);
 
             pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -408,10 +408,10 @@ namespace bergedge
       return m_pnaturedocument;
    }
 
-   bool bergedge::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
+   bool bergedge::open_by_file_extension(const char * pszPathName, ::ax::application_bias * pbiasCreate)
    {
       
-      ::ca::create_context_sp cc(get_app());
+      ::ax::create_context_sp cc(get_app());
 
       cc->m_spCommandLine->m_varFile = pszPathName;
 
@@ -424,7 +424,7 @@ namespace bergedge
 
    }
 
-   bool bergedge::open_by_file_extension(::ca::create_context * pcreatecontext)
+   bool bergedge::open_by_file_extension(::ax::create_context * pcreatecontext)
    {
 
       string strId;
@@ -590,7 +590,7 @@ namespace bergedge
    }
 
 
-   void bergedge::request(::ca::create_context * pcreatecontext)
+   void bergedge::request(::ax::create_context * pcreatecontext)
    {
       if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
@@ -636,7 +636,7 @@ namespace bergedge
       request(m_varTopicFile);
    }
 
-   /*void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
+   /*void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ax::application_bias * pbiasCreate)
    {
 
       ::ca2::application_request request;
@@ -651,9 +651,9 @@ namespace bergedge
 
    }*/
 
-   ::ca::application * bergedge::application_get(const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ax::application * bergedge::application_get(const char * pszId, bool bCreate, bool bSynch, ::ax::application_bias * pbiasCreate)
    {
-      ::ca::application * papp = NULL;
+      ::ax::application * papp = NULL;
 
       if(m_mapApplication.Lookup(pszId, papp))
          return papp;
@@ -682,7 +682,7 @@ namespace bergedge
       return true;
    }
 
-   ::ca::application * bergedge::get_current_application()
+   ::ax::application * bergedge::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -697,14 +697,14 @@ namespace bergedge
       }
    }
 
-   ::user::interaction * bergedge::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   ::user::interaction * bergedge::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ax::create_context * pcreatecontext)
    {
 
       return get_request_parent_ui((::user::interaction * ) pmainframe, pcreatecontext);
 
    }
 
-   ::user::interaction * bergedge::get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcreatecontext)
+   ::user::interaction * bergedge::get_request_parent_ui(::user::interaction * pinteraction, ::ax::create_context * pcreatecontext)
    {
 
 
@@ -791,7 +791,7 @@ namespace bergedge
 
    }
 
-   ::user::place_holder_ptra bergedge::get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   ::user::place_holder_ptra bergedge::get_place_holder(::userbase::main_frame * pmainframe, ::ax::create_context * pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -822,7 +822,7 @@ namespace bergedge
 
    }
 
-   bool bergedge::place(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+   bool bergedge::place(::userbase::main_frame * pmainframe, ::ax::create_context * pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -862,7 +862,7 @@ namespace bergedge
    void bergedge::set_app_title(const char * pszAppId, const char * pszTitle)
    {
 
-      ::ca::application * papp = NULL;
+      ::ax::application * papp = NULL;
 
       if(m_mapApplication.Lookup(pszAppId, papp) && papp != NULL)
       {

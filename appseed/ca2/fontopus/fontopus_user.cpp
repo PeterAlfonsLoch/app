@@ -3,8 +3,8 @@
 namespace fontopus
 {
 
-   user::user(::ca::application * papp) :
-      ca(papp)
+   user::user(::ax::application * papp) :
+      ax(papp)
    {
       m_ppresence = NULL;
       m_phttpcookies = new ::http::cookies();

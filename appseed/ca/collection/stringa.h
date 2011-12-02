@@ -1,6 +1,9 @@
 #pragma once
 
+
 #include "gen/gen_var.h"
+#include "ca/collection/string_array.h"
+
 
 class CLASS_DECL_ca stringa :
    virtual public string_array,

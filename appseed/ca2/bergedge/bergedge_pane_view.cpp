@@ -3,8 +3,8 @@
 namespace bergedge
 {
 
-   pane_view::pane_view(::ca::application * papp) :
-      ca(papp),
+   pane_view::pane_view(::ax::application * papp) :
+      ax(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
@@ -192,10 +192,10 @@ namespace bergedge
 
          if(gen::str::begins_eat(strId, "app:"))
          {
-            ::ca::application * pappTab;
+            ::ax::application * pappTab;
             if(!Bergedge.m_mapApplication.Lookup(strId, pappTab))
             {
-               ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+               ::ax::application_bias * pbiasCreate = new ::ax::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
                Bergedge.command().add_fork(strId, pbiasCreate);
             }
@@ -260,7 +260,7 @@ namespace bergedge
       {
       case PaneViewContextMenu:
          {
-/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(::ca::get_type_info < bergedge::menu_view > (), get_document(), this, 102));
+/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(::ax::get_type_info < bergedge::menu_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -520,7 +520,7 @@ namespace bergedge
    }
 
 
-   void pane_view::_001OnDraw(::ca::graphics * pdc)
+   void pane_view::_001OnDraw(::ax::graphics * pdc)
    {
 
       if(m_iNewArea != m_iArea)
@@ -548,7 +548,7 @@ namespace bergedge
          }
          FIBITMAP * pfi;
 
-         ::ca::graphics * pdc = GetDC();
+         ::ax::graphics * pdc = GetDC();
 
          pfi = System.imaging().LoadImageFile(strWallpaper);
 

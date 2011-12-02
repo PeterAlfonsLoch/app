@@ -22,7 +22,7 @@ public:
    pointer_object < filemanager::data >   m_pdata;
 
 
-   folder_selection_list_view(::ca::application * papp);
+   folder_selection_list_view(::ax::application * papp);
    ~folder_selection_list_view(void);
 
 

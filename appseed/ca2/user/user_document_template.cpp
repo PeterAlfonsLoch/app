@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-document_template::document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
-   ca(papp)
+document_template::document_template(::ax::application * papp, const char * pszMatter, ::ax::type_info & pDocClass, ::ax::type_info & pFrameClass, ::ax::type_info & pViewClass) :
+   ax(papp)
 {
 
    m_strMatter          = pszMatter;
@@ -87,7 +87,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
 
 document * document_template::create_new_document()
 {
-   // default implementation constructs one from ::ca::type_info
+   // default implementation constructs one from ::ax::type_info
    if(!m_typeinfoDocument)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Error: you must override document_template::create_new_document.\n");
@@ -110,7 +110,7 @@ document * document_template::create_new_document()
 /////////////////////////////////////////////////////////////////////////////
 // Default frame creation
 
-frame_window* document_template::create_new_frame(document * pdocument, frame_window* pOther, ::ca::create_context * pcreatecontext)
+frame_window* document_template::create_new_frame(document * pdocument, frame_window* pOther, ::ax::create_context * pcreatecontext)
 {
    if (pdocument != NULL)
       ASSERT_VALID(pdocument);
@@ -163,7 +163,7 @@ frame_window* document_template::create_new_frame(document * pdocument, frame_wi
 }
 
 /*
-frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, document * pdocument,
+frame_window* document_template::CreateOleFrame(::ax::window* pParentWnd, document * pdocument,
    BOOL bCreateView)
 {
    create_context context;

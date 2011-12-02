@@ -38,11 +38,11 @@ namespace userbase
          ColumnWindowRect,
       };
 
-      virtual void _000OnDraw(::ca::graphics * pdc);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _000OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
       DECL_GEN_VSIGNAL(_guserbaseOnInitialUpdate);
-      frame_window_interface(::ca::application * papp);
+      frame_window_interface(::ax::application * papp);
       virtual ~frame_window_interface();
 
       virtual bool WfiOnMove(bool bTracking);
@@ -66,7 +66,7 @@ namespace userbase
       virtual void assert_valid() const;
       virtual void dump(dump_context & dc) const;
 
-      virtual void on_delete(::ca::ca * pca);
+      virtual void on_delete(::ax::ax * pca);
    };
 
 } // namespace userbase

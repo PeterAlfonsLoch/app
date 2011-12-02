@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "ca/user/user_interaction.h"
 
 
 namespace ca
@@ -26,7 +27,6 @@ namespace ca
 
       ::ca::font * m_pfont;
 
-      friend class frame_window;
 
 
 
@@ -114,13 +114,13 @@ namespace ca
          // like GetDlgItem but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
          LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
-      virtual frame_window* GetParentFrame();
-      virtual frame_window* EnsureParentFrame();
+      virtual interaction* GetParentFrame();
+      virtual interaction* EnsureParentFrame();
       virtual ::user::interaction* GetTopLevelParent();
       virtual ::user::interaction* EnsureTopLevelParent();
       virtual ::user::interaction* GetTopLevelOwner();
       virtual ::user::interaction* GetParentOwner();
-      virtual frame_window* GetTopLevelFrame();
+      virtual interaction* GetTopLevelFrame();
       static ::ca::window* PASCAL GetSafeOwner(::ca::window* pParent = NULL, HWND* pWndTop = NULL);
 
       virtual BOOL IsWindow();
@@ -319,7 +319,7 @@ namespace ca
             BOOL bRedraw = TRUE);
       virtual void ShowScrollBar(UINT nBar, BOOL bShow = TRUE);
       virtual void EnableScrollBarCtrl(int nBar, BOOL bEnable = TRUE);
-      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
+      //virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
             // return sibling scrollbar control (or NULL if none)
 
       virtual int ScrollWindowEx(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
@@ -539,8 +539,8 @@ namespace ca
    // Input message handler member functions
       void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+//      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+  //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnLButtonDblClk(UINT nFlags, point point);

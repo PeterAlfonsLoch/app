@@ -2,8 +2,8 @@
 #include "simple_tab_control.h"
 
 
-simple_tab_control::simple_tab_control(::ca::application * papp):
-   ca(papp),
+simple_tab_control::simple_tab_control(::ax::application * papp):
+   ax(papp),
    ::user::interaction(papp),
    ::user::tab(papp),
    place_holder_container(papp)
@@ -17,7 +17,7 @@ simple_tab_control::~simple_tab_control()
 
 
 
-void simple_tab_control::_001OnDraw(::ca::graphics *pdc)
+void simple_tab_control::_001OnDraw(::ax::graphics *pdc)
 {
    ::user::tab::_001OnDraw(pdc);
 }

@@ -1,6 +1,15 @@
 #pragma once
 
 
+namespace ca
+{
+
+   class graphics;
+
+
+} // namespace ca
+
+
 namespace _template
 {
 

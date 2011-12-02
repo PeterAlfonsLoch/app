@@ -7,14 +7,14 @@ class CLASS_DECL_ca view :
 {
 public:
 
-   sp(::ca::data)    m_spdata;
+   sp(::ax::data)    m_spdata;
    sp(::document)    m_spdocument;
 
    view();
    virtual ~view() = 0;
 
    document * get_document() const;
-   ::ca::data * get_data() const;
+   ::ax::data * get_data() const;
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
@@ -36,7 +36,7 @@ public:
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
    virtual DROPEFFECT OnDragScroll(DWORD dwKeyState, point point);
 
-   virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = NULL);
+   virtual void OnPrepareDC(::ax::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
    //virtual void OnInitialUpdate(); // called first time after construct
    DECL_GEN_VSIGNAL(_001OnInitialUpdate) // called first time after construct
@@ -49,18 +49,18 @@ public:
 
    // General drawing/updating
    virtual void on_update(view * pSender, LPARAM lHint, ::radix::object* pHint);
-   virtual void OnDraw(::ca::graphics * pgraphics);
+   virtual void OnDraw(::ax::graphics * pgraphics);
    virtual void OnViewUpdateHint(view * pSender, LPARAM lHint, view_update_hint * pHint);
 
    template < class VIEW >
    VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL)
    {
-      return dynamic_cast < VIEW * > (create_view(::ca::get_type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
+      return dynamic_cast < VIEW * > (create_view(::ax::get_type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
    }
 
-   ::user::interaction * create_view(::ca::type_info info, document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
-   static ::user::interaction * s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
-   static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
+   ::user::interaction * create_view(::ax::type_info info, document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+   static ::user::interaction * s_create_view(::ax::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
+   static ::user::interaction * s_create_view(::ax::create_context * pContext, ::user::interaction * pwndParent, id id);
 
    static document * get_document(::user::interaction * pguie);
 
@@ -71,7 +71,7 @@ public:
 
    // Advanced: for implementing custom print preview
    BOOL DoPrintPreview(UINT nIDResource, view * pPrintView,
-         ::ca::type_info pPreviewViewClass, CPrintPreviewState* pState);
+         ::ax::type_info pPreviewViewClass, CPrintPreviewState* pState);
 
    virtual void CalcWindowRect(LPRECT lpClientRect,
       UINT nAdjustType = adjustBorder);
@@ -99,7 +99,7 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)
    void OnPaint();
-   //int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
+   //int OnMouseActivate(::ax::window* pDesktopWnd, UINT nHitTest, UINT message);
    // commands
    void OnUpdateSplitCmd(cmd_ui* pCmdUI);
    BOOL OnSplitCmd(UINT nID);
@@ -111,8 +111,8 @@ public:
    void OnFilePrintPreview();
 
    // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
-   virtual void collaborate(::ca::job * pjob);
-   virtual int  get_total_page_count(::ca::job * pjob);
+   virtual void collaborate(::ax::job * pjob);
+   virtual int  get_total_page_count(::ax::job * pjob);
 
    DECL_GEN_SIGNAL(_001OnView)
    DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -129,7 +129,7 @@ public:
       TypeOpenDocument,
    };
 public:
-   view_update_hint(::ca::application * papp);
+   view_update_hint(::ax::application * papp);
    etype m_etype;
 };
 
@@ -150,7 +150,7 @@ protected:
    DWORD m_dwDefaultStyle;
 
 // Overrides
-   virtual void OnDraw(::ca::graphics * pgraphics);
+   virtual void OnDraw(::ax::graphics * pgraphics);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 // Implementation

@@ -97,7 +97,7 @@ namespace userbase
       //if (lpIDArray != NULL)
       //{
          HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
-         ::ca::graphics_sp spgraphicsScreen(get_app());
+         ::ax::graphics_sp spgraphicsScreen(get_app());
          HGDIOBJ hOldFont = NULL;
          if (hFont != NULL)
             hOldFont = spgraphicsScreen->SelectObject(hFont);
@@ -550,7 +550,7 @@ namespace userbase
    }
    */
 
-   void status_bar::_001OnDraw(::ca::graphics * pdc)
+   void status_bar::_001OnDraw(::ax::graphics * pdc)
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -663,14 +663,14 @@ namespace userbase
    {
    public: // re-implementations only
 
-      CStatusCmdUI(::ca::application *papp);
+      CStatusCmdUI(::ax::application *papp);
       virtual void Enable(BOOL bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
 
-   CStatusCmdUI::CStatusCmdUI(::ca::application *papp) :
-   ca(papp),
+   CStatusCmdUI::CStatusCmdUI(::ax::application *papp) :
+   ax(papp),
       cmd_ui(papp)
 
 

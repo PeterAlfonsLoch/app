@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "ca/primitive/rectangle.h"
+
+
+
 template < class ARG_KEY >
 inline UINT HashKey(ARG_KEY key)
 {

@@ -9,7 +9,7 @@ namespace calculator
    public:
 
 
-      document(::ca::application * papp);   
+      document(::ax::application * papp);   
 
 
       DECL_GEN_VSIGNAL(data_on_after_change);

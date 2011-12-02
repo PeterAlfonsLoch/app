@@ -6,8 +6,8 @@
 #include "SimpleFolderTreeView.h"
 
 
-FileManagerLeftView::FileManagerLeftView(::ca::application * papp) :
-   ca(papp),
+FileManagerLeftView::FileManagerLeftView(::ax::application * papp) :
+   ax(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
    ::userbase::split_view(papp),
@@ -51,7 +51,7 @@ void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::radix::obj
             {
                string str;
                str.Format("FileManagerFrame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ca::window *) GetParentFrame());
+               FileManagerFrame * pframe =dynamic_cast < FileManagerFrame * > ((::ax::window *) GetParentFrame());
                if(pframe != NULL)
                {
                   pframe->m_dataid = str;

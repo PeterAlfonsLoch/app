@@ -10,7 +10,7 @@ namespace html
       {
          if(m_pelemental->m_pbase->get_type() == html::base::type_tag)
          {
-            pdata->m_pdc->set_alpha_mode(::ca::alpha_mode_blend);
+            pdata->m_pdc->set_alpha_mode(::ax::alpha_mode_blend);
             pdata->m_pdc->BitBlt(get_x(), get_y(), get_cx(), get_cy(), pdata->m_imagea[m_iImage].m_spdib->get_graphics(), 0, 0, SRCCOPY);
          }
       }

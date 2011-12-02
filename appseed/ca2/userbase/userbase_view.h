@@ -27,7 +27,7 @@ namespace userbase
    {
    public:
 
-      view(::ca::application * papp);
+      view(::ax::application * papp);
 
       virtual void on_select();
 

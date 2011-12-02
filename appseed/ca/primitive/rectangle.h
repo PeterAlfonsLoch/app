@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "geometric_types.h"
+
+
 class point_array;
 
 

@@ -28,7 +28,7 @@ namespace userbase
       ::DeleteObject(m_hfontRegular);
    }
 
-   void notification_area::Initialize(::ca::application * papp)
+   void notification_area::Initialize(::ax::application * papp)
    {
       LOGFONT lf = {0};
       strcpy(lf.lfFaceName, "Arial");

@@ -3,15 +3,15 @@
 namespace filemanager
 {
 
-   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ca::application * papp) :
-      ca(papp)
+   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ax::application * papp) :
+      ax(papp)
    {
       m_ptemplatePane = new ::userbase::single_document_template(
          papp,
          "system/auth",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < simple_frame_window > (),
-         ::ca::get_type_info < ::userex::pane_tab_view > ());
+         ::ax::get_type_info < form_document > (),
+         ::ax::get_type_info < simple_frame_window > (),
+         ::ax::get_type_info < ::userex::pane_tab_view > ());
    }
 
    SimpleFilePropertiesForm::~SimpleFilePropertiesForm()
@@ -23,7 +23,7 @@ namespace filemanager
       m_itema = itema;
       if(itema.get_count() <= 0)
          return NULL;
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
       form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));

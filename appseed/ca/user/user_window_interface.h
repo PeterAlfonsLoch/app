@@ -1,8 +1,13 @@
 #pragma once
 
+
+#include "user_elemental.h"
 #include "user_window_util.h"
 #include "user_text_interface.h"
 #include "user_check_interface.h"
+#include "user_draw_interface.h"
+#include "ca/radix/command_target.h"
+#include "ca/collection/rect_array.h"
 
 
 namespace user
@@ -119,7 +124,7 @@ namespace user
 
 
 
-      virtual void install_message_handling(win::message::dispatch * pinterface);
+      virtual void install_message_handling(gen::message::dispatch * pinterface);
 
       virtual void _on_start_user_message_handler();
       static window_interface * g_pwndLastLButtonDown;

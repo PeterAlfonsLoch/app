@@ -2,7 +2,7 @@
 
 
 
-void _123abc_debug_gen_array_randomize(::ca::application * papp)
+void _123abc_debug_gen_array_randomize(::ax::application * papp)
 {
    int_array a;
    a.add_unique(1);
@@ -14,8 +14,8 @@ namespace gen
 {
    namespace lemon
    {
-      array::array(::ca::application * papp) :
-         ca(papp)
+      array::array(::ax::application * papp) :
+         ax(papp)
       {
       }
    } // namespace lemon

@@ -26,7 +26,7 @@ namespace filemanager
 
       bool initialize();
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(::ax::create_context * pcreatecontext);
 
       virtual void InitializeFileManager(const char * pszMatter);
       virtual FileManagerTemplate * GetStdFileManagerTemplate(void);
@@ -45,7 +45,7 @@ namespace filemanager
 
    };
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }

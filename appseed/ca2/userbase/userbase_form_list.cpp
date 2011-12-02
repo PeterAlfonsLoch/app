@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   form_list::form_list(::ca::application * papp) :
-      ca(papp),
+   form_list::form_list(::ax::application * papp) :
+      ax(papp),
       ::user::interaction(papp), 
       ::user::form(papp), 
       ::user::form_list(papp),

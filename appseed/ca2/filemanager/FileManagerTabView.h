@@ -13,7 +13,7 @@ class CLASS_DECL_ca FileManagerTabView :
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerTabView(::ca::application * papp);
+   FileManagerTabView(::ax::application * papp);
 
    virtual void on_create_view(::user::view_creator_data * pcreatordata);
    virtual void install_message_handling(::gen::message::dispatch * pinterface);

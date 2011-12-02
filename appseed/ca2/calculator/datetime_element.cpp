@@ -21,7 +21,7 @@ namespace datetime
    }
 
 
-   value element::get_value(::ca::application * pcaapp, ::user::str_context * pcontext, int & iPath, int & iPathCount) const
+   value element::get_value(::ax::application * pcaapp, ::user::str_context * pcontext, int & iPath, int & iPathCount) const
    {
       if(m_ptoken->value == token::number || m_ptoken->value == token::identifier)
       {
@@ -86,7 +86,7 @@ namespace datetime
       return value();
    }
    
-   string element::get_expression(::ca::application * pcaapp, ::user::str_context * pcontext, int & iPath, int & iPathCount) const
+   string element::get_expression(::ax::application * pcaapp, ::user::str_context * pcontext, int & iPath, int & iPathCount) const
    {
       if(m_ptoken->value == token::number)
       {

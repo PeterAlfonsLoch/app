@@ -17,7 +17,7 @@ namespace cube5
 
    };
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }

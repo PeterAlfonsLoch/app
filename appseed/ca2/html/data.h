@@ -14,7 +14,7 @@ namespace html
 
    class CLASS_DECL_ca data :
       virtual public gen::signalizable,
-      virtual public ca::data
+      virtual public ax::data
    {
    public:
 
@@ -26,7 +26,7 @@ namespace html
          string   m_strPath;
          ::visual::dib_sp      m_spdib;
 
-         image(::ca::application * papp);
+         image(::ax::application * papp);
          virtual bool load_image();
       };
 
@@ -55,7 +55,7 @@ namespace html
 
       data_callback *            m_pcallback;
       ::user::interaction *      m_pguie;
-      ::ca::graphics *           m_pdc;
+      ::ax::graphics *           m_pdc;
       rect                       m_rect;
       string                     m_strTitle;
       layout_state               m_layoutstate;
@@ -101,7 +101,7 @@ namespace html
 
 
 
-      data(::ca::application * papp);
+      data(::ax::application * papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);
@@ -116,9 +116,9 @@ namespace html
       //virtual bool is_in_use();
    
       void load(const char *);
-      void implement(::ca::graphics * pdc);
-      void layout(::ca::graphics * pdc);
-      void _001OnDraw(::ca::graphics * pdc);
+      void implement(::ax::graphics * pdc);
+      void layout(::ax::graphics * pdc);
+      void _001OnDraw(::ax::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnKeyDown)
 

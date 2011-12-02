@@ -59,7 +59,7 @@ namespace user
       gen::property_set                   m_setEscape;
 
 
-      keyboard_layout(::ca::application * papp);
+      keyboard_layout(::ax::application * papp);
 
       bool load(const char * pszPath);
 

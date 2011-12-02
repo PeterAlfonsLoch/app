@@ -7,7 +7,7 @@ namespace mail
 
 
    pop3_socket::pop3_socket(::sockets::socket_handler_base& h) :
-      ::ca::ca(h.get_app()),
+      ::ax::ax(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

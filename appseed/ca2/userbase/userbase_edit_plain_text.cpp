@@ -3,15 +3,15 @@
 namespace userbase
 {
 
-   edit_plain_text::edit_plain_text(::ca::application * papp) :
-      ca(papp),
+   edit_plain_text::edit_plain_text(::ax::application * papp) :
+      ax(papp),
       data_container(papp),
       ::user::interaction(papp),
       ::user::edit_plain_text(papp),
       colorertake5::base_editor(papp),
       ::user::scroll_view(papp),
       ex1::tree(papp),
-      ::ca::data_listener(papp)
+      ::ax::data_listener(papp)
    {
    }
 

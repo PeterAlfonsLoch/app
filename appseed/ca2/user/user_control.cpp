@@ -174,7 +174,7 @@ namespace user
    }
 
 
-   void control::_003OnCustomDraw(::ca::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003OnCustomDraw(::ax::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
       pdc->chain(pdrawcontext);
       _001OnDraw(pdc);
@@ -187,7 +187,7 @@ namespace user
    }
 
 
-   void control::_003CallCustomDraw(::ca::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003CallCustomDraw(::ax::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
       _003OnCustomDraw(pdc, pdrawcontext);
    }
@@ -224,7 +224,7 @@ namespace user
       switch(m_etype)
       {
       case type_edit:
-      //         m_typeinfo = ::ca::get_type_info < CSimpleFormListEdit > ();
+      //         m_typeinfo = ::ax::get_type_info < CSimpleFormListEdit > ();
          break;
       case type_combo_box:
          {
@@ -439,7 +439,7 @@ namespace user
       m_bControlExCommandEnabled    = true;
       m_pform                       = NULL;
       m_pformcallback               = NULL;
-      m_ulFlags                     &= ~::ca::ca::flag_auto_delete;
+      m_ulFlags                     &= ~::ax::ax::flag_auto_delete;
    }
 
 

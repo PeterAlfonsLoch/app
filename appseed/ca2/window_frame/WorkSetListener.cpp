@@ -55,7 +55,7 @@ namespace window_frame
       m_listenerpapa.add(plistenerpa);
    }
 
-   void WorkSetListener::on_delete(::ca::ca * p)
+   void WorkSetListener::on_delete(::ax::ax * p)
    {
       UNREFERENCED_PARAMETER(p);
       //m_listenerpapa.remove(p);

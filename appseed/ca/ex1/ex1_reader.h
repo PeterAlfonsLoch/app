@@ -2,6 +2,7 @@
 
 
 #include "ex1_seekable.h"
+#include "ca/ca_smart_pointer.h"
 
 
 namespace ex1

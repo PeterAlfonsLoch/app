@@ -21,7 +21,7 @@ namespace userbase
       ::user::view_creator *                 m_pviewcreator;
 
 
-      tab_view(::ca::application * papp);
+      tab_view(::ax::application * papp);
       virtual ~tab_view();
 
 
@@ -33,7 +33,7 @@ namespace userbase
       virtual ::document * get_view_document();
 
 
-      void _000OnDraw(::ca::graphics * pdc);
+      void _000OnDraw(::ax::graphics * pdc);
 
       void _001OnDropTab(int iPane, e_position eposition);
       
@@ -93,7 +93,7 @@ namespace userbase
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ax::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnLButtonUp)
 

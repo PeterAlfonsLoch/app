@@ -8,7 +8,7 @@ namespace user
       virtual public check_interface
    {
    public:
-      check_box(::ca::application * papp);
+      check_box(::ax::application * papp);
       virtual ~check_box();
 
    protected:
@@ -16,7 +16,7 @@ namespace user
       bool  m_bMouseDown;
 
    public:
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, bool bUser);
 

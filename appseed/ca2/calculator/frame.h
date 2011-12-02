@@ -14,7 +14,7 @@ namespace calculator
       image_list *               m_pimagelist;
       bool                       m_bTimerOn;
 
-      frame(::ca::application * papp);
+      frame(::ax::application * papp);
       virtual ~frame();
 
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

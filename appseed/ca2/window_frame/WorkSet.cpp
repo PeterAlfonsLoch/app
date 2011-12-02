@@ -7,8 +7,8 @@ namespace window_frame
 {
 
 
-   WorkSet::WorkSet(::ca::application * papp) :
-      ca(papp)
+   WorkSet::WorkSet(::ax::application * papp) :
+      ax(papp)
    {
 
       m_pframeschema       = NULL;
@@ -131,7 +131,7 @@ namespace window_frame
 
    }
 
-   void WorkSet::_001OnDraw(::ca::graphics *pdc)
+   void WorkSet::_001OnDraw(::ax::graphics *pdc)
    {
       if(IsAppearanceEnabled() && m_pframeschema != NULL)
       {
@@ -524,7 +524,7 @@ namespace window_frame
             || lpmsg->message == WM_CONTEXTMENU) )
          {
             point ptCursor = lpmsg->pt;
-            ::ca::region rgn;
+            ::ax::region rgn;
             rect rectWindow;
             rect rect;
             rgn.CreateRectRgn(0, 0, 0, 0);

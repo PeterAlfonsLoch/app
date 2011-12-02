@@ -3,8 +3,8 @@
 namespace window_frame
 {
 
-   FrameSchema::FrameSchema(::ca::application * papp) :
-      ca(papp),
+   FrameSchema::FrameSchema(::ax::application * papp) :
+      ax(papp),
       m_fontMarlett(papp),
       m_brushControlBoxBack(papp),
       m_brushControlBoxBackSel(papp),
@@ -146,7 +146,7 @@ namespace window_frame
       return false;
    }
 
-   void FrameSchema::_001OnDraw(::ca::graphics * pdc)
+   void FrameSchema::_001OnDraw(::ax::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
@@ -222,7 +222,7 @@ namespace window_frame
       return m_mapIdButton[id];
    }
 
-   void FrameSchema::Glass(::ca::graphics * pdc, LPRECT lprect)
+   void FrameSchema::Glass(::ax::graphics * pdc, LPRECT lprect)
    {
       ::user::interaction * pwndiDraw = m_pworkset->GetDrawWindow();
       class imaging & imaging = System.imaging();
@@ -249,8 +249,8 @@ namespace window_frame
          rectDesktop.top = 0;
          rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }
-      ::ca::dib_sp spdib(get_app());
-      ::ca::dib_sp spdib2(get_app());
+      ::ax::dib_sp spdib(get_app());
+      ::ax::dib_sp spdib2(get_app());
 
       spdib->create(rectClient.width()+ iInflate * 2, rectClient.height() + iInflate * 2);
       spdib2->create(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2);
@@ -452,7 +452,7 @@ namespace window_frame
 namespace window_frame
 {
 
-   void FrameSchema::ColorGlass(::ca::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha)
+   void FrameSchema::ColorGlass(::ax::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha)
    {
       /*Gdiplus::Graphics g((HDC) pdc->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);

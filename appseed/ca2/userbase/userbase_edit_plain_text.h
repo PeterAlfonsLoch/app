@@ -7,7 +7,7 @@ namespace userbase
       virtual public ::user::edit_plain_text
    {
    public:
-      edit_plain_text(::ca::application * papp);
+      edit_plain_text(::ax::application * papp);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
    };
 

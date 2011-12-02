@@ -3,9 +3,9 @@
 namespace databaseuser
 {
 
-   list_data::list_data(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
+   list_data::list_data(::ax::application * papp) :
+      ax(papp),
+      ::ax::data(papp),
       ::user::list_data(papp)
    {
       m_iItemCount = 0;

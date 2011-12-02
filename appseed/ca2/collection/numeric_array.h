@@ -46,7 +46,7 @@ class unique_number_sort_array :
    public numeric_array < TYPE >
 {
 public:
-   unique_number_sort_array(::ca::application * papp = NULL);
+   unique_number_sort_array(::ax::application * papp = NULL);
    unique_number_sort_array(const unique_number_sort_array & base_array);
 
    index add(const TYPE & newElement)
@@ -312,15 +312,15 @@ void numeric_array < TYPE >::divide(TYPE div)
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
-   unique_number_sort_array(::ca::application * papp) :
-::ca::ca(papp)
+   unique_number_sort_array(::ax::application * papp) :
+::ax::ax(papp)
 {
 }
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(const unique_number_sort_array < TYPE > & a) :
-::ca::ca(a.get_app())
+::ax::ax(a.get_app())
 {
    numeric_array < TYPE > ::operator = (a);
 }
@@ -330,7 +330,7 @@ class CLASS_DECL_ca index_array :
    virtual public numeric_array < index >
 {
 public:
-   index_array(::ca::application * papp = NULL);
+   index_array(::ax::application * papp = NULL);
    index_array(const index_array & base_array);
    virtual ~index_array();
 
@@ -342,7 +342,7 @@ class CLASS_DECL_ca count_array :
    virtual public numeric_array < count >
 {
 public:
-   count_array(::ca::application * papp = NULL);
+   count_array(::ax::application * papp = NULL);
    count_array(const count_array & base_array);
    virtual ~count_array();
 
@@ -355,7 +355,7 @@ class CLASS_DECL_ca int_array :
    virtual public numeric_array < int >
 {
 public:
-   int_array(::ca::application * papp = NULL);
+   int_array(::ax::application * papp = NULL);
    int_array(const int_array & base_array);
    virtual ~int_array();
 
@@ -368,7 +368,7 @@ class CLASS_DECL_ca int64_array :
    virtual public numeric_array < int64 >
 {
 public:
-   int64_array(::ca::application * papp = NULL);
+   int64_array(::ax::application * papp = NULL);
    int64_array(const int64_array & base_array);
    virtual ~int64_array();
 
@@ -380,7 +380,7 @@ class CLASS_DECL_ca uint64_array :
    virtual public numeric_array < uint64 >
 {
 public:
-   uint64_array(::ca::application * papp = NULL);
+   uint64_array(::ax::application * papp = NULL);
    uint64_array(const uint64_array & base_array);
    virtual ~uint64_array();
 
@@ -392,7 +392,7 @@ class CLASS_DECL_ca unique_int_sort_array :
    virtual public unique_number_sort_array < int >
 {
 public:
-   unique_int_sort_array(::ca::application * papp = NULL);
+   unique_int_sort_array(::ax::application * papp = NULL);
    unique_int_sort_array(const unique_int_sort_array & base_array);
    virtual ~unique_int_sort_array();
 

@@ -35,7 +35,7 @@ namespace win
 
       static const MSG* PASCAL GetCurrentMessage();
 
-      virtual void install_message_handling(::user::win::message::dispatch * pinterface);
+      virtual void install_message_handling(::user::gen::message::dispatch * pinterface);
 
       BOOL operator==(const ::ca::window& wnd) const;
       BOOL operator!=(const ::ca::window& wnd) const;

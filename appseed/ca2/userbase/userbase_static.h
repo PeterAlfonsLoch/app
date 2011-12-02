@@ -11,7 +11,7 @@ namespace userbase
    public:
 
 
-      base_static(::ca::application * papp);
+      base_static(::ax::application * papp);
       virtual ~base_static();
 
 

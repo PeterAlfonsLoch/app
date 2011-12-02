@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-html_form_view::html_form_view(::ca::application * papp) :
-   ca(papp),
+html_form_view::html_form_view(::ax::application * papp) :
+   ax(papp),
    html_form(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
@@ -44,7 +44,7 @@ void html_form_view::install_message_handling(::gen::message::dispatch * pinterf
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view drawing
 
-void html_form_view::OnDraw(::ca::graphics * pdcScreen)
+void html_form_view::OnDraw(::ax::graphics * pdcScreen)
 {
    UNREFERENCED_PARAMETER(pdcScreen);
 }
@@ -90,7 +90,7 @@ void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
       if(get_html_data()->m_rect.width() > 0 &&
          get_html_data()->m_rect.height() > 0)
       {
-         ::ca::graphics * pdc = GetDC();
+         ::ax::graphics * pdc = GetDC();
          get_html_data()->layout(pdc);
          ReleaseDC(pdc);
          _001RedrawWindow();
@@ -113,7 +113,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
          {
             ASSERT(get_html_data() != NULL);
             bool bLayoutOk = false;
-            ::ca::graphics * pdc = NULL;
+            ::ax::graphics * pdc = NULL;
             if(get_html_data() != NULL)
             {
                GetClientRect(&get_html_data()->m_rect);

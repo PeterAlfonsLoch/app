@@ -44,7 +44,7 @@ namespace userbase
       HFONT m_hfontRegular;
 
       public:
-      virtual void Initialize(::ca::application * papp);
+      virtual void Initialize(::ax::application * papp);
 
    public:
       virtual ~notification_area();

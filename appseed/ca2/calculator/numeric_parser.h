@@ -7,7 +7,7 @@ namespace calculator
       virtual public ::radix::object
    {
    public:
-      parser(::ca::application * papp);
+      parser(::ax::application * papp);
       virtual ~parser();
 
 

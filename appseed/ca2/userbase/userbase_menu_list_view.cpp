@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   menu_list_view::menu_list_view(::ca::application * papp) :
-      ca(papp),
+   menu_list_view::menu_list_view(::ax::application * papp) :
+      ax(papp),
       menu_base(papp),
       menu_list_window(papp)
    {

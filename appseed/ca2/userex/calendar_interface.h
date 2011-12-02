@@ -24,7 +24,7 @@ public:
    class time    m_timeEnd;
 
 
-   calendar_interface(::ca::application * papp);
+   calendar_interface(::ax::application * papp);
 
 
    virtual void GetRectDay(class time & time, LPRECT lprect);
@@ -41,7 +41,7 @@ public:
 
    virtual int get_week_of_month(class time & time);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
    void set_pos(point pt, size sz);
 

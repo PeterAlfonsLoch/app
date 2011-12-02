@@ -100,7 +100,7 @@ namespace user
          form *                  m_pform;
          control *               m_pcontrol;
          id                      m_id;
-           ::ca::type_info         m_typeinfo;
+           ::ax::type_info         m_typeinfo;
          int                     m_iSubItem;
          id                      m_idPrivateDataSection;
          bool                     m_bTransparent;
@@ -177,9 +177,9 @@ namespace user
 
       class descriptor & descriptor();
 
-      virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003CallCustomDraw(::ax::graphics * pdc, ::user::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(::user::window_interface * pwndi, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003OnCustomDraw(::ax::graphics * pdc, ::user::draw_context * pitem);
       virtual void _003CustomWindowProc(gen::signal_object * pobj);
 
       virtual form * get_form();

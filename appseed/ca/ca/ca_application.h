@@ -12,6 +12,15 @@ namespace bergedge
    class bergedge;
 }
 
+namespace cube
+{
+   class system;
+}
+
+namespace plane
+{
+   class system;
+}
 
 namespace ca
 {

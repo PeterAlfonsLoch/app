@@ -9,8 +9,8 @@ namespace gcom
       const UINT thread::MESSAGE_BACKVIEW = WM_APP + 123;
       const WPARAM thread::WPARAM_BACKVIEW_IMAGELOADED = 0;
 
-      thread::thread(::ca::application * papp) :
-         ca(papp),
+      thread::thread(::ax::application * papp) :
+         ax(papp),
          ::radix::thread(papp),
          m_evInitialized(FALSE, TRUE)
       {
@@ -69,7 +69,7 @@ namespace gcom
          CSavings & savings = CSavings::AppGetSavings();
       //    if(iEconoMode != CVMSApp::SaveMemory)
         //  {
-         ::ca::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
+         ::ax::bitmap * pbmpOld = graphics.m_dcBackViewSource.SelectObject(graphics.m_bmpBackViewSource);
           if(pbmpOld != NULL)
           {
               if(hBitmapOld != NULL)
@@ -117,7 +117,7 @@ namespace gcom
       }*/
 
       long thread::OnImageStretched(
-         ::ca::bitmap * pbitmap,
+         ::ax::bitmap * pbitmap,
          long cx,
          long cy,
          long iUserData)
@@ -179,7 +179,7 @@ namespace gcom
          return 0;
       }
 
-      /*::ca::bitmap & thread::GetBitmap()
+      /*::ax::bitmap & thread::GetBitmap()
       {
          return m_bitmap;
       }*/
@@ -417,7 +417,7 @@ namespace gcom
          load_image * lploadimage = (load_image *) lpParameter;
 
 
-         ::ca::bitmap_sp pbitmap = App(lploadimage->GetThread()->get_app()).imaging().LoadImageSync(lploadimage->m_strImagePath, lploadimage->GetThread()->get_app());
+         ::ax::bitmap_sp pbitmap = App(lploadimage->GetThread()->get_app()).imaging().LoadImageSync(lploadimage->m_strImagePath, lploadimage->GetThread()->get_app());
 
          lploadimage->m_pbitmap = pbitmap;
 

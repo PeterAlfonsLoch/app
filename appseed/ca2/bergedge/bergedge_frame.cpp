@@ -3,13 +3,13 @@
 namespace bergedge
 {
 
-   frame::frame(::ca::application * papp) :
-      ca(papp),
+   frame::frame(::ax::application * papp) :
+      ax(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp),
       simple_frame_window(papp),
-      ::ca::message_window_simple_callback(papp)
+      ::ax::message_window_simple_callback(papp)
    {
       m_pdocument = NULL;
       m_iFrameData = 10;
@@ -412,7 +412,7 @@ namespace bergedge
       {
          if(pmsg->message != WM_KICKIDLE)
          {
-            ::ca::smart_pointer < ::gen::message::base > spbase;
+            ::ax::smart_pointer < ::gen::message::base > spbase;
             spbase(get_base(pmsg));
             pre_translate_message(spbase);
             if(!spbase->m_bRet)
@@ -421,7 +421,7 @@ namespace bergedge
             }
          }
       }
-      catch(const ::ca::exception & )
+      catch(const ::ax::exception & )
       {
       }
       catch(...)

@@ -15,7 +15,7 @@
 
 view::view()
 {
-   m_ulFlags         |= ::ca::ca::flag_auto_delete;
+   m_ulFlags         |= ::ax::ax::flag_auto_delete;
 }
 
 view::~view()
@@ -83,7 +83,7 @@ void view::_001OnCreate(::gen::signal_object * pobj)
 
    // if ok, wire in the current document
    ASSERT(::view::get_document() == NULL);
-   ::ca::create_context* pContext = (::ca::create_context*)pcreate->m_lpcreatestruct->lpCreateParams;
+   ::ax::create_context* pContext = (::ax::create_context*)pcreate->m_lpcreatestruct->lpCreateParams;
 
    // A ::view should be created in a given context!
    if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
@@ -112,7 +112,7 @@ void view::_001OnDestroy(gen::signal_object * pobj)
 void view::PostNcDestroy()
 {
    ::user::interaction::PostNcDestroy();
-   if(is_set_ca_flag(::ca::ca::flag_auto_delete))
+   if(is_set_ca_flag(::ax::ax::flag_auto_delete))
    {
       // default for views is to allocate them on the heap
       //  the default post-cleanup is to 'delete this'.
@@ -228,7 +228,7 @@ void view::OnViewUpdateHint(::view * pSender, LPARAM lHint, view_update_hint * p
    UNREFERENCED_PARAMETER(pHint);
 }
 
-void view::OnDraw(::ca::graphics * pgraphics)
+void view::OnDraw(::ax::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
 }
@@ -264,7 +264,7 @@ void view::OnActivateFrame(UINT /*nState*/, frame_window* /*pFrameWnd*/)
 }
 
 /* trans
-int view::OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message)
+int view::OnMouseActivate(::ax::window* pDesktopWnd, UINT nHitTest, UINT message)
 {
    int nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -410,7 +410,7 @@ BOOL view::OnNextPaneCmd(UINT nID)
 /////////////////////////////////////////////////////////////////////////////
 // Printing support virtual functions (others in viewpr.cpp)
 
-void view::OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo)
+void view::OnPrepareDC(::ax::graphics * pgraphics, CPrintInfo* pInfo)
 {
    UNREFERENCED_PARAMETER(pInfo);
    ASSERT_VALID(pgraphics);
@@ -476,7 +476,7 @@ BOOL CCtrlView::PreCreateWindow(CREATESTRUCT& cs)
    return view::PreCreateWindow(cs);
 }
 
-void CCtrlView::OnDraw(::ca::graphics *)
+void CCtrlView::OnDraw(::ax::graphics *)
 {
    ASSERT(FALSE);
 }
@@ -525,9 +525,9 @@ void view::_001OnView(gen::signal_object * pobj)
 
 /////////////////////////////////////////////////////////////////////////////
 
-::user::interaction* view::create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+::user::interaction* view::create_view(::ax::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
-   ::ca::create_context_sp cacc(get_app());
+   ::ax::create_context_sp cacc(get_app());
    stacker < ::user::create_context > cc(cacc->m_user);
    cc->m_typeinfoNewView    = &info;
    cc->m_pLastView          = pviewLast;
@@ -551,9 +551,9 @@ void view::_001OnView(gen::signal_object * pobj)
 }
 
 
-::user::interaction* view::s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+::user::interaction* view::s_create_view(::ax::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
-   ::ca::create_context_sp cacc(pdoc->get_app());
+   ::ax::create_context_sp cacc(pdoc->get_app());
    stacker < ::user::create_context > cc(cacc->m_user);
    cc->m_typeinfoNewView    = &info;
    cc->m_pLastView          = pviewLast;
@@ -561,14 +561,14 @@ void view::_001OnView(gen::signal_object * pobj)
    return s_create_view(cacc, pwndParent, id);
 }
 
-::user::interaction* view::s_create_view(::ca::create_context* pContext, ::user::interaction * pwndParent, id id)
+::user::interaction* view::s_create_view(::ax::create_context* pContext, ::user::interaction * pwndParent, id id)
 {
 // trans   ASSERT(pwndParent->get_handle() != NULL);
 // trans   ASSERT(::IsWindow(pwndParent->get_handle()));
    ASSERT(pContext != NULL);
    ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
 
-   ::ca::application * papp = pwndParent->get_app();
+   ::ax::application * papp = pwndParent->get_app();
 
    ::user::interaction * pguie;
    if(pContext->m_user->m_puiNew != NULL)
@@ -636,7 +636,7 @@ document * view::get_document() const
     return m_spdocument; 
  }
 
- ::ca::data * view::get_data() const
+ ::ax::data * view::get_data() const
  { 
     ASSERT(this != NULL); 
     if(m_spdata.is_set())
@@ -646,7 +646,7 @@ document * view::get_document() const
     return NULL;
  }
 
-void view::collaborate(::ca::job * pjob)
+void view::collaborate(::ax::job * pjob)
 {
    {
       ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
@@ -659,7 +659,7 @@ void view::collaborate(::ca::job * pjob)
 
 
 
-int view::get_total_page_count(::ca::job * pjob)
+int view::get_total_page_count(::ax::job * pjob)
 {
    UNREFERENCED_PARAMETER(pjob);
    return 1;

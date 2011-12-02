@@ -22,7 +22,7 @@ namespace bergedge
 
 
 
-      pane_view(::ca::application * papp);
+      pane_view(::ax::application * papp);
       virtual ~pane_view();
 
       using ::userbase::tab_view::on_show_view;
@@ -48,7 +48,7 @@ namespace bergedge
       virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
       virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ax::graphics * pdc);
 
       virtual void set_display(int iDisplay);
 

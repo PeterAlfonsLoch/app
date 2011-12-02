@@ -49,7 +49,7 @@ namespace filemanager
             __int64                             m_iParentFolder;
 
 
-            tree_view(::ca::application * papp);
+            tree_view(::ax::application * papp);
 
             virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 

@@ -52,7 +52,7 @@ namespace window_frame
 
       appearance *            m_pappearance;
 
-      WorkSet(::ca::application * papp);
+      WorkSet(::ax::application * papp);
       virtual ~WorkSet();
 
       void OnNcCalcSize(LPRECT lprect);
@@ -148,7 +148,7 @@ namespace window_frame
       void relay_event(gen::signal_object * pobj);
       void message_handler(gen::signal_object * pobj);
 
-      void _001OnDraw(::ca::graphics * pdc);
+      void _001OnDraw(::ax::graphics * pdc);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

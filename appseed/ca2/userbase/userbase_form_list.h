@@ -7,7 +7,7 @@ namespace userbase
       virtual public ::user::form_list
    {
    public:
-      form_list(::ca::application * papp);
+      form_list(::ax::application * papp);
       virtual ~form_list();
    };
 

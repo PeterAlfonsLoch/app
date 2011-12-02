@@ -4,8 +4,8 @@
 namespace nature
 {
 
-   appearance_view::appearance_view(::ca::application * papp) :
-      ca(papp),
+   appearance_view::appearance_view(::ax::application * papp) :
+      ax(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
@@ -108,7 +108,7 @@ namespace nature
       filemanager::application & filemanagerapp = System;
       folder_selection_list_view * pview;
       pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
-         ::ca::get_type_info < folder_selection_list_view > (), 
+         ::ax::get_type_info < folder_selection_list_view > (), 
          get_document(),
          this,
          pcreatordata->m_id));

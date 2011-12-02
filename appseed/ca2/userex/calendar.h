@@ -4,18 +4,18 @@ class CLASS_DECL_ca calendar :
    public calendar_interface
 {
 public:
-   calendar(::ca::application * papp);
+   calendar(::ax::application * papp);
 
-   ::ca::font_sp    m_font;
-   ::ca::font_sp    m_fontYear;
-   ::ca::font_sp    m_fontMonth;
-   ::ca::font_sp    m_fontSpin;
+   ::ax::font_sp    m_font;
+   ::ax::font_sp    m_fontYear;
+   ::ax::font_sp    m_fontMonth;
+   ::ax::font_sp    m_fontSpin;
 
    virtual void GetRectDay(class time & time, LPRECT lprect);
    virtual void GetRectDay(int iWeekDay, int iLine, LPRECT lprect);
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
-   void _001OnDraw(::ca::graphics * pdc);
+   void _001OnDraw(::ax::graphics * pdc);
    void _001GetHtml(::html::file * pfile);
 
    void set_pos(point pt, size sz);

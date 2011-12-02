@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
-ca(papp),
+simple_scroll_bar::simple_scroll_bar(::ax::application * papp) :
+ax(papp),
 ::user::interaction(papp),
 //m_brushNull(papp),
 m_penDraw(papp),
@@ -37,7 +37,7 @@ void simple_scroll_bar::install_message_handling(::gen::message::dispatch * pint
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-BOOL simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
+BOOL simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ax::create_context* pContext) 
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -443,7 +443,7 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
    m_rgnA->CreatePolygonRgn(m_ptaA, 4, WINDING);
    m_rgnB->CreatePolygonRgn(m_ptaB, 4, WINDING);
 
-   ::ca::graphics * pgraphics = GetDC();
+   ::ax::graphics * pgraphics = GetDC();
 
    ReleaseDC(pgraphics);
 
@@ -607,7 +607,7 @@ int simple_scroll_bar::ScrollPageB()
    return true;
 }
 
-//void simple_scroll_bar::OnDraw(::ca::graphics * pgraphics)
+//void simple_scroll_bar::OnDraw(::ax::graphics * pgraphics)
 //{
 /*    if(GetExStyle() & WS_EX_TRANSPARENT)
 {
@@ -746,7 +746,7 @@ void simple_scroll_bar::UpdateDrawingObjects()
 }
 
 
-void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
+void simple_scroll_bar::_001OnDraw(::ax::graphics * pdc)
 {
 
 //   gen::savings & savings = System.savings();

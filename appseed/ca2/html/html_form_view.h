@@ -9,7 +9,7 @@ public:
    html::elemental * m_pelementalLButtonDown;
 
    
-   html_form_view(::ca::application * papp);
+   html_form_view(::ax::application * papp);
    virtual ~html_form_view();
 
 
@@ -28,7 +28,7 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
+   virtual void OnDraw(::ax::graphics * pgraphics);      // overridden to draw this ::view
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
    

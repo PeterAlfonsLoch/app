@@ -25,7 +25,7 @@ public:
    };
 
 
-   clock_interface(::ca::application * papp);
+   clock_interface(::ax::application * papp);
 
 
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
@@ -34,7 +34,7 @@ public:
    virtual void set_time(const class time & time);
    virtual void get_time(class time & time);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
 
    virtual void previous_minute();

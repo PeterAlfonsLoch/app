@@ -8,7 +8,7 @@ class CLASS_DECL_ca FileManagerChildFrame :
    public simple_child_frame
 {
 public:
-   FileManagerChildFrame(::ca::application * papp);
+   FileManagerChildFrame(::ax::application * papp);
 
      simple_toolbar           m_toolbar;
 

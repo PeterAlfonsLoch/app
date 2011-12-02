@@ -9,8 +9,8 @@ namespace userbase
 {
 
 
-   frame_window::frame_window(::ca::application * papp) :
-      ca(papp),
+   frame_window::frame_window(::ax::application * papp) :
+      ax(papp),
       window_frame::WorkSetClientInterface(papp),
       frame_window_interface(papp)
    {
@@ -21,7 +21,7 @@ namespace userbase
    {
       // trans ASSERT(_get_handle() == NULL);
 
-      m_nWindow = -1;                 // unknown ::ca::window ID
+      m_nWindow = -1;                 // unknown ::ax::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
       m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
@@ -78,12 +78,12 @@ namespace userbase
       ASSERT_VALID(this);
    // trans   ASSERT(get_handle() != NULL);
 
-      // get top level parent frame ::ca::window first unless this is a child ::ca::window
+      // get top level parent frame ::ax::window first unless this is a child ::ax::window
       frame_window* pParent = (GetStyle() & WS_CHILD) ? this : dynamic_cast < frame_window * > (GetTopLevelFrame());
       ASSERT(pParent != NULL);
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
-         // update parent ::ca::window activation state
+         // update parent ::ax::window activation state
          BOOL bActivate = !(dwFlags & FS_DEACTIVATE);
          BOOL bEnabled = pParent->IsWindowEnabled();
 
@@ -218,7 +218,7 @@ namespace userbase
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame ::ca::window - UISG standard
+   // Setting title of frame ::ax::window - UISG standard
 
 
 
@@ -358,12 +358,12 @@ namespace userbase
       return ::frame_window::_001OnCmdMsg(pcmdmsg);
    }
 
-   void frame_window::_000OnDraw(::ca::graphics * pdc)
+   void frame_window::_000OnDraw(::ax::graphics * pdc)
    {
       frame_window_interface::_000OnDraw(pdc);
    }
 
-   void frame_window::on_delete(::ca::ca * pca)
+   void frame_window::on_delete(::ax::ax * pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }

@@ -8,10 +8,10 @@ class CLASS_DECL_ca virtual_user_interface :
 {
 public:
    virtual void message_handler(gen::signal_object * pobj);
-   virtual ::ca::graphics * GetDC();
+   virtual ::ax::graphics * GetDC();
    ::user::interaction * SetParent(::user::interaction * pguieParent);
    BOOL ShowWindow(int nCmdShow);
-   virtual BOOL ReleaseDC(::ca::graphics *);
+   virtual BOOL ReleaseDC(::ax::graphics *);
    virtual ::user::interaction * GetParent();
 
    virtual void _001WindowMaximize();
@@ -20,7 +20,7 @@ public:
    void SetWindowText(const char * psz);
 
    virtual_user_interface();
-   virtual_user_interface(::ca::application * papp);
+   virtual_user_interface(::ax::application * papp);
    virtual ~virtual_user_interface();
 
    virtual ::user::interaction * GetDescendantWindow(id id);
@@ -40,7 +40,7 @@ public:
       UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch);
 
 
-   //virtual int RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+   //virtual int RunModalLoop(DWORD dwFlags = 0, ::ax::live_object * pliveobject = NULL);
 
 
    virtual BOOL DestroyWindow();
@@ -49,19 +49,19 @@ public:
    virtual DWORD GetExStyle();
    virtual LRESULT Default();
 
-   virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
-   virtual ::ca::font* GetFont();
+   virtual void SetFont(::ax::font* pFont, BOOL bRedraw = TRUE);
+   virtual ::ax::font* GetFont();
 
    LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
 
-   // as hosting ::ca::window
+   // as hosting ::ax::window
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
-   // as virtual ::ca::window
+   // as virtual ::ax::window
    virtual void _002InstallMessageHandling(::gen::message::dispatch * pinterface);
    size              m_size;
    string            m_strWindowText;
    bool              m_bEnabled;
-   ::ca::font_sp     m_spfont;
+   ::ax::font_sp     m_spfont;
    bool              m_bCreate;
 
    bool create_message_window();
@@ -82,7 +82,7 @@ public:
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
-      ::ca::create_context* pContext = NULL);
+      ::ax::create_context* pContext = NULL);
    virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
@@ -104,7 +104,7 @@ public:
    void GetWindowText(string & str);
 
 
-   virtual void on_delete(::ca::ca * poc);
+   virtual void on_delete(::ax::ax * poc);
 
 
    DECL_GEN_SIGNAL(_001OnSize)

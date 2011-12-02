@@ -5,7 +5,7 @@ class CLASS_DECL_ca html_child_frame : public simple_child_frame
 {
    // // DECLARE_DYNCREATE(html_child_frame)
 public:
-   html_child_frame(::ca::application * papp);
+   html_child_frame(::ax::application * papp);
    virtual ~html_child_frame();
 
    simple_toolbar        m_toolbar;

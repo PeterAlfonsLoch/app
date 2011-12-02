@@ -5,7 +5,7 @@ class CLASS_DECL_ca multiple_document_template :
    virtual public document_template
 {
 public:
-   multiple_document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info pDocClass, ::ca::type_info pFrameClass, ::ca::type_info pViewClass);
+   multiple_document_template(::ax::application * papp, const char * pszMatter, ::ax::type_info pDocClass, ::ax::type_info pFrameClass, ::ax::type_info pViewClass);
 
    virtual ~multiple_document_template();
    virtual void load_template();
@@ -13,7 +13,7 @@ public:
    virtual void remove_document(document * pDoc);
    virtual count get_document_count() const;
    virtual document * get_document(index index) const;
-   virtual void request(::ca::create_context * pcreatecontext);
+   virtual void request(::ax::create_context * pcreatecontext);
    virtual void set_default_title(document * pdocument);
 
 #ifdef _DEBUG

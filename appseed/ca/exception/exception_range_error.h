@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "error_exception.h"
+
+
 class CLASS_DECL_ca range_error : 
    public error_exception
 {

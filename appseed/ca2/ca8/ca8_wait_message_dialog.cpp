@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-wait_message_dialog::wait_message_dialog(::ca::application * papp) :
-   ca(papp),
+wait_message_dialog::wait_message_dialog(::ax::application * papp) :
+   ax(papp),
    dialog(papp)
 {
    m_dwStartTime = 0;

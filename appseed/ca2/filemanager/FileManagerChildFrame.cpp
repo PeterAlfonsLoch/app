@@ -2,8 +2,8 @@
 #include "FileManagerViewUpdateHint.h"
 #include "SimpleFileListInterface.h"
 
-FileManagerChildFrame::FileManagerChildFrame(::ca::application * papp) :
-   ca(papp),
+FileManagerChildFrame::FileManagerChildFrame(::ax::application * papp) :
+   ax(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),

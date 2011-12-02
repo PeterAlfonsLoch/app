@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 
-clock_interface::clock_interface(::ca::application * papp) :
-   ca(papp)
+clock_interface::clock_interface(::ax::application * papp) :
+   ax(papp)
 {
 }
 
-void clock_interface::_001OnDraw(::ca::graphics * pdc)
+void clock_interface::_001OnDraw(::ax::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

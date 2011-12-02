@@ -3,17 +3,17 @@
 namespace mail
 {
 
-   list_interface::data::data(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
+   list_interface::data::data(::ax::application * papp) :
+      ax(papp),
+      ::ax::data(papp),
       ::user::list_data(papp)
    {
    }
 
 
 
-   list_interface::list_interface(::ca::application * papp) :
-      ca(papp),
+   list_interface::list_interface(::ax::application * papp) :
+      ax(papp),
       ::user::scroll_view(papp),
       ::user::list(papp)
    {

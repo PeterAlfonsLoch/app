@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   split_bar::split_bar(::ca::application * papp) :
-      ca(papp)
+   split_bar::split_bar(::ax::application * papp) :
+      ax(papp)
    {
       m_pparent         = NULL;
       m_dMinimumRate    = 0.1;
@@ -62,7 +62,7 @@ namespace userbase
    }
 
 
-   void split_bar::_001OnDraw(::ca::graphics *pdc)
+   void split_bar::_001OnDraw(::ax::graphics *pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }

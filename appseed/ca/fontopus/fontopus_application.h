@@ -1,60 +1,53 @@
 #pragma once
 
 
-namespace ca2
+namespace fontopus
 {
 
 
-   namespace fontopus
+   class CLASS_DECL_ca application :
+      virtual public ::fs::application
    {
+   public:
 
 
-      class CLASS_DECL_ca application :
-         virtual public ::cube2::application
-      {
-      public:
-
-
-         bool           m_bIsCreatingUser;
-         user *         m_puser;
+      bool           m_bIsCreatingUser;
+      user *         m_puser;
 
       
-         application(void);
-         virtual ~application(void);
+      application(void);
+      virtual ~application(void);
 
-         using ::ca::thread::construct;
-         using ::ca::application::construct;
+      using ::ca::thread::construct;
+      using ::ca::application::construct;
 
-         virtual void construct();
+      virtual void construct();
 
-         virtual user * create_user(::fontopus::user * puser);
-         virtual user * allocate_user();
-         virtual user * create_current_user();
-         virtual user * login();
+      virtual user * create_user(::fontopus::user * puser);
+      virtual user * allocate_user();
+      virtual user * create_current_user();
+      virtual user * login();
 
-         virtual void logout();
+      virtual void logout();
 
-         virtual user * get_user();
-         virtual void set_user(const char * psz);
-         virtual void set_user(::fontopus::user * psz);
-
-
-         virtual bool get_auth(const char * psz, string & strUsername, string & strPassword);
-
-         virtual bool initialize_instance();
-         virtual int exit_instance();
-
-         virtual bool bergedge_start();
+      virtual user * get_user();
+      virtual void set_user(const char * psz);
+      virtual void set_user(::fontopus::user * psz);
 
 
+      virtual bool get_auth(const char * psz, string & strUsername, string & strPassword);
+
+      virtual bool initialize_instance();
+      virtual int exit_instance();
+
+      virtual bool bergedge_start();
 
 
-      };
 
 
-   } // namespace fontopus
+   };
 
 
-} // namespace ca2
+} // namespace fontopus
 
 

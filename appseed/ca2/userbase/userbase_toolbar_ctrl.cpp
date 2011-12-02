@@ -18,7 +18,7 @@ namespace userbase
       return pWnd->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
    }
 
-   int tool_bar_control::AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap)
+   int tool_bar_control::AddBitmap(int nNumButtons, ::ax::bitmap* pBitmap)
    {
       ASSERT(IsWindow());
       TBADDBITMAP tbab;

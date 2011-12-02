@@ -29,7 +29,7 @@ namespace user
 
    ::user::interaction * tool_tip_tool::BaseToolTipGetWnd()
    {
-      return dynamic_cast < ::ca::window * > (this);
+      return dynamic_cast < ::ax::window * > (this);
    }
 
    void tool_tip_tool::BaseToolTipGetRect(LPRECT lprect)

@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-message_box::message_box(::ca::application * papp) :
-   ca(papp),
+message_box::message_box(::ax::application * papp) :
+   ax(papp),
    dialog(papp),
    wait_message_dialog(papp)
 {

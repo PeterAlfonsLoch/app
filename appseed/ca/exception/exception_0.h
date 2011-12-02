@@ -1,6 +1,17 @@
 #pragma once
 
 
+namespace radix
+{
+
+
+   class object;
+
+
+} // namespace radix
+
+
+
 #define DEBUG_NEW new(__FILE__, __LINE__)
 
 

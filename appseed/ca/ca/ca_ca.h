@@ -18,30 +18,29 @@ namespace ca
 } // namespace ca
 
 
-namespace cube8
-{
-
-
-   class system;
-
-
-} // namespace cube8
 
 
 namespace bergedge
 {
-
-
    class bergedge;
+}
+
+namespace cube
+{
+   class system;
+}
+
+namespace plane
+{
+   class system;
+}
 
 
-} // namespace bergedge
-
-
-#define CaSys(pca) (*pca->m_papp->m_psystem)
-#define Sys(papp) (*papp->m_psystem)
+#define CaPlaneSys(pca) (*pca->m_papp->m_pplanesystem)
+#define planeSys(papp) (*papp->m_pplanesystem)
+#define Sys(papp) (planeSys(papp))
 #define System (Sys(this->get_app()))
-#define Mathematics(papp) (Sys(papp).math())
+#define Mathematics(papp) (planeSys(papp).math())
 #define Math (Mathematics(this->get_app()))
 
 
@@ -117,8 +116,9 @@ namespace ca
 
       unsigned long           m_ulFlags;
       ::ca::application *     m_papp;
+      ::plane::system *       m_pplanesystem;
       ::bergedge::bergedge *  m_pbergedge;
-      ::cube8::system *       m_psystem;
+      ::cube::system *        m_psystem;
       __int64                 m_countReference;
       ::ca::ptra *            m_pptraListener;
       ::ca::ptra *            m_pptraListened;

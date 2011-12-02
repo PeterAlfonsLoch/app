@@ -80,7 +80,7 @@ namespace user
       ex1::edit_file          m_editfile;
 
 
-      plain_text_data(::ca::application * papp);
+      plain_text_data(::ax::application * papp);
       virtual ~plain_text_data();
 
 

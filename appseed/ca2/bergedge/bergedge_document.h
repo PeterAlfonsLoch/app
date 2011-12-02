@@ -19,7 +19,7 @@ namespace bergedge
       nature::document *                  m_pnaturedocument;
       
 
-      document(::ca::application * papp); 
+      document(::ax::application * papp); 
       virtual ~document();
 
       void set_platform(platform::document * pdoc);

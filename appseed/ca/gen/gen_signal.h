@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "ca/collection/array_del_ptr.h"
+#include "ca/collection/array_ptr_alloc.h"
+
+
 namespace gen
 {
 

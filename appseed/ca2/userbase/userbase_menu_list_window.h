@@ -28,8 +28,8 @@ namespace userbase
       int                                 m_iItemHeight;
       size                                m_size;
 
-      menu_list_window(::ca::application * papp);
-      menu_list_window(::ca::application * papp, menu_item * pitem);
+      menu_list_window(::ax::application * papp);
+      menu_list_window(::ax::application * papp, menu_item * pitem);
       virtual ~menu_list_window();
 
       void layout();
@@ -47,7 +47,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnDestroy)
       DECL_GEN_SIGNAL(_001OnTimer)
 
-      void _001OnDraw(::ca::graphics *pdc);
+      void _001OnDraw(::ax::graphics *pdc);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -55,7 +55,7 @@ namespace userbase
       bool _TrackPopupMenu(::user::interaction * pwndParent, ::user::interaction * pwndNotify);
       void _CreateButtons(menu_item * pitem);
       void _UpdateCmdUi(menu_item * pitem);
-      void _CalcSize(menu_item * pitem, ::ca::graphics * pdc, int & iMaxWidth, int & iMaxHeight);
+      void _CalcSize(menu_item * pitem, ::ax::graphics * pdc, int & iMaxWidth, int & iMaxHeight);
       void _LayoutButtons(menu_item * pitem, int iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound);
 
    };

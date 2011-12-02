@@ -13,7 +13,7 @@ namespace databaseuser
       count m_iItemCount;
 
 
-      list_data(::ca::application * papp);
+      list_data(::ax::application * papp);
       virtual ~list_data();
 
       virtual void _001GetItemText(::user::list_item * pitem);

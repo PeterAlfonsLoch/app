@@ -4,8 +4,8 @@
 namespace user
 {
 
-   place_holder::place_holder(::ca::application * papp) :
-      ca(papp)
+   place_holder::place_holder(::ax::application * papp) :
+      ax(papp)
    {
    }
 

@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   document_interface::document_interface(::ca::application * papp) :
-      ::ca::data_container(papp)
+   document_interface::document_interface(::ax::application * papp) :
+      ::ax::data_container(papp)
    {
 
    }

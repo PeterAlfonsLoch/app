@@ -39,23 +39,23 @@ namespace userex
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < form_frame > (),
-         ::ca::get_type_info < form_view > ());
+         ::ax::get_type_info < form_document > (),
+         ::ax::get_type_info < form_frame > (),
+         ::ax::get_type_info < form_view > ());
 
       m_ptemplateChildForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < form_child_frame > (),
-         ::ca::get_type_info < form_view > ());
+         ::ax::get_type_info < form_document > (),
+         ::ax::get_type_info < form_child_frame > (),
+         ::ax::get_type_info < form_view > ());
 
       m_ptemplatePlaceHolder = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < simple_document > (),
-         ::ca::get_type_info < simple_frame_window > (),
-         ::ca::get_type_info < user::place_holder > ());
+         ::ax::get_type_info < simple_document > (),
+         ::ax::get_type_info < simple_frame_window > (),
+         ::ax::get_type_info < user::place_holder > ());
 
 
       if(!html::application::initialize1())     
@@ -70,7 +70,7 @@ namespace userex
       form_document * pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -90,7 +90,7 @@ namespace userex
       form_document * pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
@@ -111,7 +111,7 @@ namespace userex
       form_document * pdoc;
       if(m_ptemplateChildForm == NULL)
          return NULL;
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
@@ -131,7 +131,7 @@ namespace userex
       if(m_ptemplateChildForm == NULL)
          return NULL;
       form_document * pdoc;
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = dynamic_cast < form_document * > (m_ptemplateChildForm->open_document_file(createcontext));
@@ -143,7 +143,7 @@ namespace userex
 
    simple_document * application::hold(::user::interaction * pui)
    {
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;
       simple_document * pdoc = dynamic_cast < simple_document * > (m_ptemplatePlaceHolder->open_document_file(createcontext));

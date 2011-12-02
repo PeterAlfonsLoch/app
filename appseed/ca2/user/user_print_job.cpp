@@ -4,10 +4,10 @@
 namespace user
 {
 
-   print_job::print_job(::ca::application * papp) :
-      ca(papp),
-      ::ca::print_job(papp),
-      ::ca::job(papp),
+   print_job::print_job(::ax::application * papp) :
+      ax(papp),
+      ::ax::print_job(papp),
+      ::ax::job(papp),
       ::radix::thread(papp),
       ::user::job(papp)
    {
@@ -32,7 +32,7 @@ namespace user
          throw "a view should collaborate";
       }
 
-      ::ca::graphics * pgraphics = m_phprinter->create_graphics();
+      ::ax::graphics * pgraphics = m_phprinter->create_graphics();
 
       DOCINFO docinfo;
       memset(&docinfo, 0, sizeof(docinfo));

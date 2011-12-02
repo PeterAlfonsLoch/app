@@ -23,14 +23,14 @@ namespace userbase
 
 
    public:
-      step_slider(::ca::application * papp);
+      step_slider(::ax::application * papp);
       virtual ~step_slider(void);
 
       bool create(::user::interaction * pwndParent, id id);
 
       virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       void GetStepHoverRect(int iStep, LPRECT lprect);
       void GetStepRect(int iStep, LPRECT lprect);
 

@@ -18,8 +18,8 @@ namespace fontopus
       application(void);
       virtual ~application(void);
 
-      using ::ca::thread::construct;
-      using ::ca::application::construct;
+      using ::ax::thread::construct;
+      using ::ax::application::construct;
 
       virtual void construct();
 

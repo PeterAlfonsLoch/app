@@ -2,6 +2,9 @@
 
 class ::ca::application;
 
+class command_target;
+
+
 class CLASS_DECL_ca base_cmd_ui :
    public gen::signal_object
 {

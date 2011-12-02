@@ -10,17 +10,17 @@ namespace userbase
 
       visual::dib_sp          m_dib;
 
-      button(::ca::application * papp);
+      button(::ax::application * papp);
    public:
       virtual ~button();
 
       virtual void ResizeToFit();
 
-      virtual ::ca::font * _001GetFont(void);
+      virtual ::ax::font * _001GetFont(void);
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate)
 

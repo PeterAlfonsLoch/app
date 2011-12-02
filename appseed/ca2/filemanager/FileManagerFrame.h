@@ -5,7 +5,7 @@ class CLASS_DECL_ca FileManagerFrame :
    public simple_frame_window
 {
 public:
-   FileManagerFrame(::ca::application * papp);
+   FileManagerFrame(::ax::application * papp);
 
    simple_menu_bar           m_menubar;
      simple_toolbar           m_toolbar;

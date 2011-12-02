@@ -5,8 +5,8 @@ namespace userbase
 
    const int split_layout::m_iMarging = 5;
 
-   split_layout::split_layout(::ca::application * papp) :
-      ca(papp),
+   split_layout::split_layout(::ax::application * papp) :
+      ax(papp),
       m_splitbara(papp),
       place_holder_container(papp)
    {

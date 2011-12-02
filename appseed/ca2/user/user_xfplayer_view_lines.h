@@ -12,11 +12,11 @@ public:
    int                        m_iLastVisible;
 
 
-   XfplayerViewLines(::ca::application * papp);
+   XfplayerViewLines(::ax::application * papp);
 
    void SetBlend(double dBlend);
    int FindLine(XfplayerViewLine * pline);
-   void SetRenderWindow(::ca::window * pWnd);
+   void SetRenderWindow(::ax::window * pWnd);
    void SetEffect(int iEffect);
    void set_user_interaction(::user::interaction * pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);

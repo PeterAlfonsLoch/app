@@ -16,7 +16,7 @@ namespace userbase
    }
 
 
-   bool image_manager::Initialize(::ca::application * papp, UINT uiaMenuV003Map [][2])
+   bool image_manager::Initialize(::ax::application * papp, UINT uiaMenuV003Map [][2])
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(uiaMenuV003Map);

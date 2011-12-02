@@ -1,11 +1,16 @@
 #pragma once
 
+
+#include "database_selection_item.h"
+
+
 namespace database
 {
 
    class CLASS_DECL_ca selection
    {
    public:
+
       void add_item(class id id, class id idIndex);
       selection_item & get_item(index iItem);
       count get_item_count();

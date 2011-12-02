@@ -28,7 +28,7 @@ public:
 
    ColorSchema *    m_pcolorschema;
 
-   SimplePushButton(::ca::application * papp);
+   SimplePushButton(::ax::application * papp);
    virtual ~SimplePushButton();
 
 
@@ -46,7 +46,7 @@ public:
    void push(bool bPush = true);
    void Hover(bool bHover = true);
    void UpdateHover();
-   void _001OnDraw(::ca::graphics * pdc);
+   void _001OnDraw(::ax::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)

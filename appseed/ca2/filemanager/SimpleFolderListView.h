@@ -11,13 +11,13 @@ class CLASS_DECL_ca SimpleFolderListView :
    virtual public filemanager::SimpleFolderListInterface
 {
 public:
-   SimpleFolderListView (::ca::application * papp);
+   SimpleFolderListView (::ax::application * papp);
 
    simple_list_header_control    m_headerctrl;
    FileManagerInterface *        m_pfilemanager;
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
-   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
+   virtual void OnDraw(::ax::graphics * pgraphics);      // overridden to draw this ::view
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 

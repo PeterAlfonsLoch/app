@@ -51,7 +51,7 @@ namespace filemanager
       string               m_strPath;
 
 
-      SimpleFolderTreeInterface(::ca::application * papp);
+      SimpleFolderTreeInterface(::ax::application * papp);
       virtual ~SimpleFolderTreeInterface();
 
 

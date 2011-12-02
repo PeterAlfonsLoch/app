@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 #include "FileManagerViewUpdateHint.h"
 
-FileManagerPathView::FileManagerPathView(::ca::application * papp) : 
-   ca(papp),
-   ::ca::data_container(papp),
+FileManagerPathView::FileManagerPathView(::ax::application * papp) : 
+   ax(papp),
+   ::ax::data_container(papp),
    ::user::edit_plain_text(papp),
    ::userbase::edit_plain_text(papp),
    ::userbase::edit_plain_text_view(papp),
@@ -12,7 +12,7 @@ FileManagerPathView::FileManagerPathView(::ca::application * papp) :
    ::user::scroll_view(papp), 
    ::colorertake5::base_editor(papp),
    ex1::tree(papp),
-   ::ca::data_listener(papp)
+   ::ax::data_listener(papp)
 {
 
    LOGFONT lf;

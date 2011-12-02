@@ -10,7 +10,7 @@ namespace window_frame
       public pha(WorkSetListenerArray)
    {
    public:
-      virtual void on_delete(::ca::ca * poc);
+      virtual void on_delete(::ax::ax * poc);
       void Attach(WorkSetListenerArray * plistenerpa);
       
       WorkSetListener();

@@ -11,8 +11,8 @@ namespace calculator
       ID_INDICATOR_SCRL,
    };
 
-   frame::frame(::ca::application * papp) :
-      ca(papp),
+   frame::frame(::ax::application * papp) :
+      ax(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp),

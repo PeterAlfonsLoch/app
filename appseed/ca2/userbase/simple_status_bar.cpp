@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-simple_status_bar::simple_status_bar(::ca::application * papp) :
-   ca(papp)
+simple_status_bar::simple_status_bar(::ax::application * papp) :
+   ax(papp)
 {
 
 }
@@ -24,13 +24,13 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-BOOL simple_status_bar::OnEraseBkgnd(::ca::graphics * pgraphics) 
+BOOL simple_status_bar::OnEraseBkgnd(::ax::graphics * pgraphics) 
 {
    return TRUE;
 }
 */
 
-void simple_status_bar::_001OnDraw(::ca::graphics *pdc)
+void simple_status_bar::_001OnDraw(::ax::graphics *pdc)
 {
    return;
    rect rectClient;

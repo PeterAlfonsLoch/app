@@ -9,11 +9,11 @@ namespace userbase
    {
    public:
 
-      BOOL m_bPseudoInactive;     // TRUE if ::ca::window is MDI active according to
+      BOOL m_bPseudoInactive;     // TRUE if ::ax::window is MDI active according to
                            //  windows, but not according to ca2 API...
 
 
-      mdi_child_window(::ca::application * papp);
+      mdi_child_window(::ax::application * papp);
 
 
       virtual BOOL create(const char * lpszClassName,
@@ -21,7 +21,7 @@ namespace userbase
                DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
                const RECT& rect = rectDefault,
                mdi_frame_window* pParentWnd = NULL,
-               ::ca::create_context* pContext = NULL);
+               ::ax::create_context* pContext = NULL);
 
       mdi_frame_window* GetMDIFrame();
 
@@ -40,7 +40,7 @@ namespace userbase
 
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-                  ::user::interaction* pParentWnd, ::ca::create_context* pContext = NULL);
+                  ::user::interaction* pParentWnd, ::ax::create_context* pContext = NULL);
          // 'pParentWnd' parameter is required for MDI Child
       virtual BOOL DestroyWindow();
       virtual void pre_translate_message(gen::signal_object * pobj);

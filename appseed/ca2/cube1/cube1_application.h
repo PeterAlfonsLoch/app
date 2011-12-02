@@ -24,7 +24,7 @@ namespace cube1
 
 
 
-      virtual bool final_handle_exception(::ca::exception & e);
+      virtual bool final_handle_exception(::ax::exception & e);
       virtual bool initialize();
       virtual bool initialize1();
 
@@ -45,9 +45,9 @@ namespace cube1
 
    };
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
 
-} // namespace ca
+} // namespace ax

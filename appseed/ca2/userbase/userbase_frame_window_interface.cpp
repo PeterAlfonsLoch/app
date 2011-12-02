@@ -5,8 +5,8 @@ namespace userbase
 
    bool frame_window_interface::g_bFullScreenAlt = false;
 
-   frame_window_interface::frame_window_interface(::ca::application * papp) :
-      ca(papp),
+   frame_window_interface::frame_window_interface(::ax::application * papp) :
+      ax(papp),
       window_frame::WorkSetClientInterface(papp)
    {
 
@@ -54,7 +54,7 @@ namespace userbase
                pview->OnActivateFrame(WA_INACTIVE, pframe);
 
             // finally, activate the frame
-            // (send the default show command unless the main desktop ::ca::window)
+            // (send the default show command unless the main desktop ::ax::window)
             int nCmdShow = -1;      // default
             ::radix::application* pApp = &System;
             if (pApp != NULL && pApp->GetMainWnd() == pframe)
@@ -98,7 +98,7 @@ namespace userbase
          &frame_window_interface::_guserbaseOnInitialUpdate);
    }
 
-   void frame_window_interface::_000OnDraw(::ca::graphics * pdc)
+   void frame_window_interface::_000OnDraw(::ax::graphics * pdc)
    {
       if(!m_bVisible)
          return;
@@ -140,7 +140,7 @@ namespace userbase
       }
    }
 
-   void frame_window_interface::_001OnDraw(::ca::graphics *pdc)
+   void frame_window_interface::_001OnDraw(::ax::graphics *pdc)
    {
       if(m_bCustomFrame 
       || m_etranslucency == TranslucencyTotal
@@ -358,7 +358,7 @@ namespace userbase
       UNREFERENCED_PARAMETER(dc);
    }
 
-   void frame_window_interface::on_delete(::ca::ca * pca)
+   void frame_window_interface::on_delete(::ax::ax * pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }

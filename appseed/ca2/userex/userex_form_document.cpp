@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-form_document::form_document(::ca::application * papp) :
-   ca(papp),
+form_document::form_document(::ax::application * papp) :
+   ax(papp),
    data_container(papp),
    document_interface(papp),
    ::document(papp),

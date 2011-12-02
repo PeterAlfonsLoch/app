@@ -50,9 +50,20 @@ namespace user
 
       virtual int exit_instance();
 
-      virtual ::ca::type_info controltype_to_typeinfo(user::control::e_type type);
+      virtual ::ax::type_info controltype_to_typeinfo(user::control::e_type type);
 
       class keyboard & keyboard();
+
+
+      // Load MRU file list and last preview state.
+      void LoadStdProfileSettings(UINT nMaxMRU = _AFX_MRU_COUNT);
+
+
+   // Running Operations - to be done on a running application
+      // Dealing with document templates
+      void add_document_template(document_template * ptemplate);
+      count get_template_count() const;
+      document_template * get_template(index index) const;
 
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
@@ -95,7 +106,7 @@ namespace user
 
 
    // create a DC for the system default printer.
-   BOOL CreatePrinterDC(::ca::graphics_sp& spgraphics);
+   BOOL CreatePrinterDC(::ax::graphics_sp& spgraphics);
 
 
 BOOL GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
@@ -130,7 +141,7 @@ protected:
    };
 
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }

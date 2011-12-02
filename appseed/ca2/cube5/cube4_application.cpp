@@ -255,7 +255,7 @@ namespace cube4
 
    }
 
-   void application::on_service_request(::ca::create_context * pcreatecontext)
+   void application::on_service_request(::ax::create_context * pcreatecontext)
    {
 
       if(!is_serviceable())

@@ -28,7 +28,7 @@ namespace html
             holder & operator = (const class holder & holder);
          };
 
-         cell(::ca::application * papp);
+         cell(::ax::application * papp);
          virtual ~cell();
          // example 1:
          // -------------------

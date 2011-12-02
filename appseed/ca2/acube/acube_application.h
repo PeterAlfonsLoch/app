@@ -12,12 +12,12 @@ namespace acube
       application();
       virtual ~application();
 
-      ::ca::application * get_system();
+      ::ax::application * get_system();
 
    };
 
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *(dynamic_cast < application * > (papp));
    }

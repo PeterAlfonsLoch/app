@@ -8,8 +8,8 @@ namespace html
    namespace impl
    {
 
-      cell::cell(::ca::application * papp) :
-         ca(papp),
+      cell::cell(::ax::application * papp) :
+         ax(papp),
          data_container(papp),
          user::scroll_view(papp),
          colorertake5::base_editor(papp),

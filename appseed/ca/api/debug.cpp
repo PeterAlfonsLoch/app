@@ -32,7 +32,7 @@ void DECL_C _free_dbg(void * _Memory, int _BlockType)
 
 
 
-CLASS_DECL__ int DECL_C _CrtDbgReportW(
+CLASS_DECL_ca int DECL_C _CrtDbgReportW(
         _In_ int _ReportType,
         _In_opt_z_ const wchar_t * _Filename,
         _In_ int _LineNumber,
@@ -44,37 +44,37 @@ CLASS_DECL__ int DECL_C _CrtDbgReportW(
 }
 
 
-CLASS_DECL__ int __cdecl _CrtReportBlockType(const void * p)
+CLASS_DECL_ca int __cdecl _CrtReportBlockType(const void * p)
 {
    return _AFX_CLIENT_BLOCK;
 }
 
-CLASS_DECL__ int __cdecl _CrtSetReportMode(int,int)
+CLASS_DECL_ca int __cdecl _CrtSetReportMode(int,int)
 {
    return TRUE;
 }
 
-CLASS_DECL__ int __cdecl _CrtSetReportHook2(int,int (__cdecl*)(int,char *,int *))
+CLASS_DECL_ca int __cdecl _CrtSetReportHook2(int,int (__cdecl*)(int,char *,int *))
 {
    return TRUE;
 }
 
-CLASS_DECL__ _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
+CLASS_DECL_ca _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
 {
    return NULL;
 }
 
-CLASS_DECL__ int __cdecl _CrtSetDbgFlag(int)
+CLASS_DECL_ca int __cdecl _CrtSetDbgFlag(int)
 {
    return TRUE;
 }
 
-CLASS_DECL__ int __cdecl _CrtDumpMemoryLeaks(void)
+CLASS_DECL_ca int __cdecl _CrtDumpMemoryLeaks(void)
 {
    return TRUE;
 }
 
-CLASS_DECL__ int DECL_C _CrtCheckMemory(void)
+CLASS_DECL_ca int DECL_C _CrtCheckMemory(void)
 {
    return 1;
 }

@@ -7,14 +7,14 @@ namespace filemanager
 {
 
 
-   document::document(::ca::application * papp) :
-      ca(papp),
-      ::ca::data_container(papp),
+   document::document(::ax::application * papp) :
+      ax(papp),
+      ::ax::data_container(papp),
       document_interface(papp),
       ::document(papp),
       ::userbase::document(papp),
       ::fs::document(papp),
-      ::ca::data(papp),
+      ::ax::data(papp),
       ::fs::data(papp),
       ::fs::set(papp)
    {
@@ -408,7 +408,7 @@ namespace filemanager
 
    ::filemanager::data * document::get_filemanager_data()
    {
-      return dynamic_cast < ::filemanager::data * > (::ca::data_container::get_data());
+      return dynamic_cast < ::filemanager::data * > (::ax::data_container::get_data());
    }
 
    ::fs::data * document::get_fs_data()

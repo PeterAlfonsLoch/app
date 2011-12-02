@@ -9,7 +9,7 @@ namespace command
       virtual public command::form_callback
    {
    public:
-	   pane_view(::ca::application * papp);
+	   pane_view(::ax::application * papp);
 	   void rotate();
       
       void on_create_view(::user::view_creator_data * pcreatordata);

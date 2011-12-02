@@ -7,7 +7,7 @@ class CLASS_DECL_ca simple_tab_control :
 public:
 
 
-   simple_tab_control(::ca::application * papp);
+   simple_tab_control(::ax::application * papp);
    virtual ~simple_tab_control();
 
 
@@ -15,7 +15,7 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
 };
 

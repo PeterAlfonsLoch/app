@@ -5,7 +5,7 @@ namespace window_frame
 {
 
    SizeManager::SizeManager(WorkSet * pworkset) :
-      ::ca::ca(pworkset->get_app()),
+      ::ax::ax(pworkset->get_app()),
       m_minSize(84, 84),
       m_minBorder(33, 33)
    {
@@ -531,7 +531,7 @@ namespace window_frame
          pwnd->ClientToScreen(&ptCursor);
          rect rectEvent;
          GetEventWindow()->GetWindowRect(rectEvent);
-         //::ca::application * pApp = &System;
+         //::ax::application * pApp = &System;
          bool bSize = false;
          rect rectWindow;
          if(m_ehittestMode == HitTestNone)

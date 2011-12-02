@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_list_view::simple_list_view(::ca::application * papp) :
-   ca(papp),
+simple_list_view::simple_list_view(::ax::application * papp) :
+   ax(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
    ::user::list(papp),
@@ -29,7 +29,7 @@ void simple_list_view::install_message_handling(::gen::message::dispatch * pinte
 /////////////////////////////////////////////////////////////////////////////
 // simple_list_view drawing
 
-void simple_list_view::OnDraw(::ca::graphics * pgraphics)
+void simple_list_view::OnDraw(::ax::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    ASSERT(FALSE);

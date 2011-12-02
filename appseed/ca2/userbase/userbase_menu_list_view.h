@@ -13,7 +13,7 @@ namespace userbase
       ::user::interaction   * m_pguieNotify;
 
 
-      menu_list_view(::ca::application * papp);
+      menu_list_view(::ax::application * papp);
       virtual ~menu_list_view();
 
       void install_message_handling(::gen::message::dispatch * pinterface);

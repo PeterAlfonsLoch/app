@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca/collection/comparable_array.h"
+
+
 namespace ca
 {
 

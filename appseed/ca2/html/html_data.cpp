@@ -3,8 +3,8 @@
 namespace html
 {
 
-   data::image::image(::ca::application * papp) :
-      ca(papp),
+   data::image::image(::ax::application * papp) :
+      ax(papp),
       m_spdib(papp)
    {
    }
@@ -15,9 +15,9 @@ namespace html
    }
 
 
-   data::data(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
+   data::data(::ax::application * papp) :
+      ax(papp),
+      ::ax::data(papp),
       m_imagea(papp),
       m_elemental(NULL)
    {
@@ -134,7 +134,7 @@ namespace html
 
    void data::delete_contents()
    {
-      ::ca::data::writing writing(this);
+      ::ax::data::writing writing(this);
       m_elemental.m_propertyset.m_propertya.remove_all();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
@@ -176,7 +176,7 @@ namespace html
       m_elemental.load(this, m_ptag);
    }
 
-   void data::implement(::ca::graphics * pdc)
+   void data::implement(::ax::graphics * pdc)
    {
       int iCount = 24;
       while(m_bImplement && iCount >= 0)
@@ -210,7 +210,7 @@ namespace html
 
    }
 
-   void data::layout(::ca::graphics * pdc)
+   void data::layout(::ax::graphics * pdc)
    {
       int iCount = 24;
       while(m_bLayout && iCount >= 0)
@@ -228,7 +228,7 @@ namespace html
       m_elemental.layout(this);
    }
 
-   void data::_001OnDraw(::ca::graphics * pdc)
+   void data::_001OnDraw(::ax::graphics * pdc)
    {
       if(m_bImplement || m_bLayout)
          return;
@@ -369,7 +369,7 @@ namespace html
 
    bool data::open_document(var varFile)
    {
-      ::ca::data::writing writing(this);
+      ::ax::data::writing writing(this);
    string strPathName;
    if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
    {

@@ -6,12 +6,15 @@
 #include "simpleuser/simpleuser_str.h"
 #include "simpleuser/simpleuser_draw_context.h"
 #include "multithreading/multithreading.h"
+#include "ca/ca/ca_message_window.h"
 
 #define CA2M_BERGEDGE 0xCA20
 #define BERGEDGE_GETAPP 0
 
 #include "factory.h"
 
+
+class document_template;
 
 namespace userbase
 {
@@ -21,6 +24,10 @@ namespace userbase
 
 
 } // namespace userbase
+
+
+class file_manager_interface;
+class document_manager;
 
 
 namespace radix
@@ -56,6 +63,7 @@ namespace radix
 
    class CLASS_DECL_ca application :
       virtual public ::ca::application,
+      virtual public ::ca::message_window_simple_callback,
       virtual public ::radix::thread
    {
 
@@ -78,7 +86,6 @@ namespace radix
       int m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
       HCURSOR m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
-      CRecentFileList* m_pRecentFileList;
       DWORD m_dwPolicies;            // block for storing boolean system policies
 
    public:
@@ -126,7 +133,7 @@ namespace radix
       // Default based on this application's name.
       const char * m_pszProfileName;
       // help mode used by the cast
-      AFX_HELP_TYPE m_eHelpType;
+//      AFX_HELP_TYPE m_eHelpType;
 
 
       //CCommandLineInfo* m_pCmdInfo;
@@ -190,8 +197,8 @@ namespace radix
       void EnableHtmlHelp();
 
       // Sets and initializes usage of HtmlHelp instead of WinHelp.
-      void SetHelpMode( AFX_HELP_TYPE eHelpType );
-      AFX_HELP_TYPE GetHelpMode();
+//      void SetHelpMode( AFX_HELP_TYPE eHelpType );
+  //    AFX_HELP_TYPE GetHelpMode();
 
    // Initialization Operations - should be done in initialize_instance
 
@@ -205,9 +212,6 @@ namespace radix
       virtual int simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle = MB_OK);
       virtual int simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
-
-      // Load MRU file list and last preview state.
-      void LoadStdProfileSettings(UINT nMaxMRU = _AFX_MRU_COUNT);
 
       virtual void EnableShellOpen();
 
@@ -286,11 +290,6 @@ namespace radix
       LONG DelRegTree(HKEY hParentKey, const string & strKeyName);
 #endif
 
-   // Running Operations - to be done on a running application
-      // Dealing with document templates
-      void add_document_template(document_template * ptemplate);
-      count get_template_count() const;
-      document_template * get_template(index index) const;
 
       // open named file, trying to match a regsitered
       // document template to it.
@@ -301,7 +300,7 @@ namespace radix
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, BOOL bFreeOld = TRUE);
 
       // create a DC for the system default printer.
-      BOOL CreatePrinterDC(::ca::graphics_sp& spgraphics);
+      ::ca::graphics * CreatePrinterDC();
 
 
    //   BOOL GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);

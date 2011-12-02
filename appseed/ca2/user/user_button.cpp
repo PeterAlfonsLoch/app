@@ -6,8 +6,8 @@ namespace user
 {
 
 
-   button::button(::ca::application * papp) :
-      ca(papp),
+   button::button(::ax::application * papp) :
+      ax(papp),
       ::user::interaction(papp)
    {
       m_iHover    = -1;
@@ -37,7 +37,7 @@ namespace user
       //   IGUI_WIN_MSG_LINK(CVmsGenApp::APPM_LANGUAGE  , pinterface, this, &button::_001OnAppLanguage);
    }
 
-   void button::_001OnDraw(::ca::graphics * pdc)
+   void button::_001OnDraw(::ax::graphics * pdc)
    {
       string str(m_langstrButtonText.get(get_app()));
 
@@ -216,7 +216,7 @@ namespace user
       }
    }
 
-   ::ca::font * button::_001GetFont(void)
+   ::ax::font * button::_001GetFont(void)
    {
       return GetFont();
    }

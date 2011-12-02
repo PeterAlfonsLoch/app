@@ -1,21 +1,21 @@
 #pragma once
 
 
-namespace ca
+namespace ax
 {
 
 
    class CLASS_DECL_ca ptra :
-      virtual public ::comparable_array < ::ca::ca * >
+      virtual public ::comparable_array < ::ax::ax * >
    {
    public:
    };
 
-   typedef ::collection::map < ::ca::ca *, ::ca::ca *, ::ca::ca *, ::ca::ca * > map;
-   typedef ::collection::map < ::ca::ca *, ::ca::ca *, ptra, ptra > map_many;
+   typedef ::collection::map < ::ax::ax *, ::ax::ax *, ::ax::ax *, ::ax::ax * > map;
+   typedef ::collection::map < ::ax::ax *, ::ax::ax *, ptra, ptra > map_many;
 
 
-} // namespace ca
+} // namespace ax
 
 
 namespace cube8
@@ -32,16 +32,16 @@ namespace cube8
 
 
       mutex                            m_mutexDelete;
-      ::ca::application_ptra           m_appptra;
+      ::ax::application_ptra           m_appptra;
       class ::ca2::file::system        m_file;
-      ::ca::dir::system_sp             m_spdir;
+      ::ax::dir::system_sp             m_spdir;
       class ::ca2::stra                m_stra;
       class ::ca2::url                 m_url;
       class ::ca2::html                m_html;
       class ::ca2::xml                 m_xml;
       class ::ca2::service             m_service;
       class ::ca2::install             m_install;
-      ::ca::osi_sp                     m_sposi;
+      ::ax::osi_sp                     m_sposi;
       class ::ca2::process             m_process;
       class ::ca2::datetime *          m_pdatetime;
       class ::ca2::net                 m_net;
@@ -62,8 +62,8 @@ namespace cube8
 
       class ::ca2::log *               m_plog;
       class factory *                  m_pfactory;
-      class ::ca::history *            m_phistory;
-      class ::ca::window_draw *        m_ptwf;
+      class ::ax::history *            m_phistory;
+      class ::ax::window_draw *        m_ptwf;
       sp(::ca2::filehandler::handler)  m_spfilehandler;
 
 
@@ -116,21 +116,21 @@ namespace cube8
       virtual bool finalize();
       virtual int exit_instance();
 
-      virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = NULL);
+      virtual index get_new_bergedge(::ax::application_bias * pbiasCreation = NULL);
 
-      virtual void register_bergedge_application(::ca::application * papp);
-      virtual void unregister_bergedge_application(::ca::application * papp);
+      virtual void register_bergedge_application(::ax::application * papp);
+      virtual void unregister_bergedge_application(::ax::application * papp);
 
       using ::cube8::application::alloc;
-      virtual ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
+      virtual ::ax::ax * alloc(::ax::application * papp, ::ax::type_info & info);
 
-      virtual ::ca::ca * on_alloc(::ca::application * papp, ::ca::type_info & info);
-      virtual ::ca::ca * clone();
-      virtual ::ca::ca * clone(::ca::ca * pobj);
+      virtual ::ax::ax * on_alloc(::ax::application * papp, ::ax::type_info & info);
+      virtual ::ax::ax * clone();
+      virtual ::ax::ax * clone(::ax::ax * pobj);
       template < typename T >
       inline T * cast_clone(T * pt)
       {
-         return dynamic_cast < T * > (clone(dynamic_cast < ::ca::ca * > (pt)));
+         return dynamic_cast < T * > (clone(dynamic_cast < ::ax::ax * > (pt)));
       }
 
       virtual void appa_load_string_table();
@@ -154,35 +154,35 @@ namespace cube8
 
       virtual bool assert_failed_line(const char * lpszFileName, int iLine);
 
-      virtual void on_allocation_error(::ca::application * papp, ::ca::type_info & info);
+      virtual void on_allocation_error(::ax::application * papp, ::ax::type_info & info);
 
       // file & dir
       using cube8::application::matter_as_string;
-      virtual string matter_as_string(::ca::application * papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string matter_as_string(::ax::application * papp, const char * pszMatter, const char * pszMatter2 = NULL);
       using cube8::application::dir_matter;
-      virtual string dir_matter(::ca::application * papp, const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(::ax::application * papp, const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
       using cube8::application::file_as_string;
-      virtual string file_as_string(::ca::application * papp, const char * pszPath);
+      virtual string file_as_string(::ax::application * papp, const char * pszPath);
       virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
       virtual string dir_name(const char * psz);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
 
-      virtual ::ca::window_draw        * _001GetTwf();
+      virtual ::ax::window_draw        * _001GetTwf();
 
       class factory                    & factory();
       class ::ca2::log                 & log();
 
-      ::ca::window_draw                * get_twf();
+      ::ax::window_draw                * get_twf();
 
-      ::ca::application_ptra           & appptra();
+      ::ax::application_ptra           & appptra();
       ::ca2::datetime                  & datetime();
 
       ::ca2::file::system              & file();
-      ::ca::dir::system                & dir();
+      ::ax::dir::system                & dir();
       ::ca2::stra                      & stra();
       ::ca2::url                       & url();
       ::ca2::html                      & html();
@@ -190,11 +190,11 @@ namespace cube8
       ::ca2::install                   & install();
       ::ca2::service                   & service();
       machine_event_central            & machine_event_central();
-      ::ca::osi                        & osi();
+      ::ax::osi                        & osi();
       ::ca2::process                   & process();
       class ::ca2::net                 & net();
 
-      ::ca::history                    & hist();
+      ::ax::history                    & hist();
 
       class ::ca4::compress            & compress();
       class ::ca4::patch               & patch();
@@ -210,7 +210,7 @@ namespace cube8
 
       ::ca2::filehandler::handler      & filehandler();
 
-      virtual void on_delete(::ca::ca * pca);
+      virtual void on_delete(::ax::ax * pca);
 
 
       virtual bool base_support();
@@ -222,36 +222,36 @@ namespace cube8
       virtual void http_config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket);
 
       using ::cube8::application::process;
-      bool set_history(::ca::history * phistory);
+      bool set_history(::ax::history * phistory);
 
 
       unsigned long guess_code_page(const char * pszText);
 
 
-      bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      platform::document *             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      nature::document *               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      bergedge::bergedge *             get_bergedge(index iEdge, ::ax::application_bias * pbiasCreation = NULL);
+      platform::document *             get_platform(index iEdge, ::ax::application_bias * pbiasCreation = NULL);
+      nature::document *               get_nature(index iEdge, ::ax::application_bias * pbiasCreation = NULL);
 
       bergedge::bergedge *             query_bergedge(index iEdge);
 
 
-      void on_request(::ca::create_context * pcreatecontext);
+      void on_request(::ax::create_context * pcreatecontext);
 
-      ::ca::application * application_get(index iEdge, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ax::application * application_get(index iEdge, const char * pszId, bool bCreate = true, bool bSynch = true, ::ax::application_bias * pbiasCreate = NULL);
 
       void open_by_file_extension(index iEdge, const char * pszPathName);
 
-      static void register_delete(::ca::ca * plistened, ::ca::ca * plistener);
-      static void unregister_delete(::ca::ca * plistened, ::ca::ca * plistenerOld);
+      static void register_delete(::ax::ax * plistened, ::ax::ax * plistener);
+      static void unregister_delete(::ax::ax * plistened, ::ax::ax * plistenerOld);
 
       virtual bool wait_twf(DWORD dwTimeOut = INFINITE);
 
-      void set_enum_name(::ca::type_info etype, int i, const char * psz)
+      void set_enum_name(::ax::type_info etype, int i, const char * psz)
       {
          m_mapEnumToName[etype.raw_name()][i] = psz;
          m_mapNameToEnum[etype.raw_name()][psz] = i;
       }
-      string get_enum_name(::ca::type_info info, int i)
+      string get_enum_name(::ax::type_info info, int i)
       {
          return m_mapEnumToName[info.raw_name()].get(i, "");
       }
@@ -259,17 +259,17 @@ namespace cube8
       template < class E , E edefault>
       void from_name(base_enum < E, edefault > & b, const char * psz, E iDefault = edefault)
       {
-         b = enum_from_name(::ca::get_type_info < E > (), psz, iDefault);
+         b = enum_from_name(::ax::get_type_info < E > (), psz, iDefault);
       }
 
       template < class E , E edefault>
       string get_name(const base_enum < E, edefault > & b)
       {
-         return get_enum_name(::ca::get_type_info < E > (), (int) (E) b);
+         return get_enum_name(::ax::get_type_info < E > (), (int) (E) b);
       }
 
 
-      int enum_from_name(::ca::type_info info, const char * psz, int iDefault = 0)
+      int enum_from_name(::ax::type_info info, const char * psz, int iDefault = 0)
       {
          return m_mapNameToEnum[info.raw_name()].get(psz, iDefault);
       }
@@ -279,12 +279,12 @@ namespace cube8
       }
 
       template < class TYPE >
-      void set_enum_name(::ca::type_info etype, TYPE e, const char * psz)
+      void set_enum_name(::ax::type_info etype, TYPE e, const char * psz)
       {
          set_enum_name(etype, (int) e, psz);
       }
       template < class TYPE >
-      string get_enum_name(::ca::type_info etype, TYPE e)
+      string get_enum_name(::ax::type_info etype, TYPE e)
       {
          return get_enum_name(etype, (int) e);
       }
@@ -292,40 +292,40 @@ namespace cube8
       template < class TYPE >
       void set_enum_name(const std_type_info & info, TYPE e, const char * psz)
       {
-         set_enum_name(::ca::type_info(info), (int) e, psz);
+         set_enum_name(::ax::type_info(info), (int) e, psz);
       }
       template < class TYPE >
       string get_enum_name(const std_type_info & info, TYPE e)
       {
-         return get_enum_name(::ca::type_info(info), (int) e);
+         return get_enum_name(::ax::type_info(info), (int) e);
       }
 
       template < class TYPE >
       void set_enum_name(TYPE e, const char * psz)
       {
-         set_enum_name(::ca::get_type_info < TYPE > (), (int) e, psz);
+         set_enum_name(::ax::get_type_info < TYPE > (), (int) e, psz);
       }
       template < class TYPE >
       string get_enum_name(TYPE e)
       {
-         return get_enum_name(::ca::get_type_info < TYPE > (), (int) e);
+         return get_enum_name(::ax::get_type_info < TYPE > (), (int) e);
       }
 
       virtual bool create_twf();
 
       virtual bool is_system();
 
-      virtual void discard_to_factory(::ca::ca * pca);
+      virtual void discard_to_factory(::ax::ax * pca);
 
       virtual bool verb();
 
-      virtual ::ca::application * get_new_app(::ca::application * pappNewApplicationParent, const char * pszId);
+      virtual ::ax::application * get_new_app(::ax::application * pappNewApplicationParent, const char * pszId);
 
       virtual bool find_applications();
       virtual bool map_application_library(const char * pszLibrary);
 
 
-      virtual bool set_main_init_data(::ca::main_init_data * pdata);
+      virtual bool set_main_init_data(::ax::main_init_data * pdata);
 
    };
 
@@ -360,7 +360,7 @@ namespace gen
       {
          Sys(m_pca->m_papp).unregister_delete(m_p, this);
       }
-      m_pca = dynamic_cast < ::ca::ca * > (p);
+      m_pca = dynamic_cast < ::ax::ax * > (p);
       if(m_pca == NULL)
       {
          m_p = NULL;
@@ -413,7 +413,7 @@ namespace gen
    template < class T >
    index holder_array < T >::add_unique(T * p)
    {
-      ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
+      ::ax::ax * pca = dynamic_cast < ::ax::ax * > (p);
       if(pca == NULL)
          return -1;
       if(pca->m_papp == NULL)
@@ -432,7 +432,7 @@ namespace gen
    template < class T >
    index holder_array < T > ::insert_at(index i, T * p)
    {
-      ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
+      ::ax::ax * pca = dynamic_cast < ::ax::ax * > (p);
       if(pca == NULL)
          return -1;
       if(pca->m_papp == NULL)
@@ -459,7 +459,7 @@ namespace gen
    template < class T >
    index holder_array < T > ::set_at(index i, T * p)
    {
-      ::ca::ca * pca = dynamic_cast < ::ca::ca * > (p);
+      ::ax::ax * pca = dynamic_cast < ::ax::ax * > (p);
       if(pca == NULL)
          return -1;
       if(pca->m_papp == NULL)

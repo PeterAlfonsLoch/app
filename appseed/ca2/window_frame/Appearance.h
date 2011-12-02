@@ -22,7 +22,7 @@ namespace window_frame
       {
       public:
 
-         CTool001(::ca::application * papp);
+         CTool001(::ax::application * papp);
          
          void Update(LPCRECT lpcrect,
             COLORREF crHighlight,
@@ -30,23 +30,23 @@ namespace window_frame
             COLORREF crBody,
             COLORREF crShadow,
             COLORREF crDkShadow);
-         void draw(::ca::graphics * pdc);
+         void draw(::ax::graphics * pdc);
 
          class CColorBezier
          {
          public:
-            void draw(::ca::brush & brush, ::ca::graphics * pdc);
+            void draw(::ax::brush & brush, ::ax::graphics * pdc);
             point_array m_pointset;
-            ::ca::pen  *   m_ppen;
+            ::ax::pen  *   m_ppen;
             void clear();
          };
       public:
-         ::ca::pen_sp      m_penHighlight;
-         ::ca::pen_sp      m_penLight;
-         ::ca::pen_sp      m_penShadow;
-         ::ca::pen_sp      m_penDkShadow;
-         ::ca::brush_sp      m_brushNull;
-         ::ca::brush_sp      m_brushBody;
+         ::ax::pen_sp      m_penHighlight;
+         ::ax::pen_sp      m_penLight;
+         ::ax::pen_sp      m_penShadow;
+         ::ax::pen_sp      m_penDkShadow;
+         ::ax::brush_sp      m_brushNull;
+         ::ax::brush_sp      m_brushBody;
 
          point_array m_pointsetBody;
          base_array < CColorBezier, CColorBezier & > m_colorbezieraOutsideBorder;

@@ -17,7 +17,7 @@ public:
    int               m_iImageSubItemHover;
 
 
-   BaseButtonControl(::ca::application * papp);
+   BaseButtonControl(::ax::application * papp);
    virtual ~BaseButtonControl();
 
 
@@ -31,7 +31,7 @@ public:
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();
-   void _001OnDraw(::ca::graphics * pdc);
+   void _001OnDraw(::ax::graphics * pdc);
 
    
 

@@ -11,7 +11,7 @@ namespace acube
    {
    }
 
-   ::ca::application * application::get_system()
+   ::ax::application * application::get_system()
    {
       return new application();
    }

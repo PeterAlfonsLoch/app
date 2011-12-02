@@ -25,8 +25,8 @@
  // END_MESSAGE_MAP()
 */
 
-SimpleMDIFrameWindow::SimpleMDIFrameWindow(::ca::application * papp) :
-   ca(papp),
+SimpleMDIFrameWindow::SimpleMDIFrameWindow(::ax::application * papp) :
+   ax(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),
@@ -110,7 +110,7 @@ LRESULT SimpleMDIFrameWindow::OnCommandHelp(WPARAM wParam, LPARAM lParam)
    return FALSE;
 }
 
-BOOL SimpleMDIFrameWindow::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context*)
+BOOL SimpleMDIFrameWindow::OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context*)
 {
 
    return CreateClient(lpcs, NULL);
@@ -135,7 +135,7 @@ BOOL SimpleMDIFrameWindow::CreateClient(LPCREATESTRUCT lpCreateStruct,
    CLIENTCREATESTRUCT ccs;
    ccs.hWindowMenu = NULL;
       // set hWindowMenu for ca2 API V1 backward compatibility
-      // for ca2 API V2, ::ca::window menu will be set in OnMDIActivate
+      // for ca2 API V2, ::ax::window menu will be set in OnMDIActivate
    ccs.idFirstChild = AFX_IDM_FIRST_MDICHILD;
 
    if (lpCreateStruct->style & (WS_HSCROLL|WS_VSCROLL))
@@ -216,7 +216,7 @@ void SimpleMDIFrameWindow::pre_translate_message(gen::signal_object * pobj)
       {
          if (pMsg->message == WM_KEYDOWN || pMsg->message == WM_SYSKEYDOWN)
          {
-            // the MDICLIENT ::ca::window may translate it
+            // the MDICLIENT ::ax::window may translate it
             if (::TranslateMDISysAccel(m_pguieMdiClient, pMsg))
                return TRUE;
          }
@@ -258,13 +258,13 @@ BOOL SimpleMDIFrameWindow::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 BOOL SimpleMDIFrameWindow::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-   ::user::interaction* pParentWnd, ::ca::create_context* pContext)
+   ::user::interaction* pParentWnd, ::ax::create_context* pContext)
 {
    if (!frame_window::LoadFrame(pszMatter, dwDefaultStyle,
      pParentWnd, pContext))
       return FALSE;
 
-   // save menu to use when no active MDI child ::ca::window is present
+   // save menu to use when no active MDI child ::ax::window is present
    ASSERT(_get_handle() != NULL);
    m_hMenuDefault = ::GetMenu(_get_handle());
    if (m_hMenuDefault == NULL)
@@ -305,7 +305,7 @@ LRESULT SimpleMDIFrameWindow::OnMenuChar(UINT nChar, UINT, ::userbase::menu*)
 
 SimpleMDIChildWindow * SimpleMDIFrameWindow::MDIGetActive(BOOL* pbMaximized) const
 {
-   // check first for MDI client ::ca::window not created
+   // check first for MDI client ::ax::window not created
    if (m_pguieMdiClient == NULL)
    {
       if (pbMaximized != NULL)
@@ -333,7 +333,7 @@ SimpleMDIChildWindow * SimpleMDIFrameWindow::MDIGetActive(BOOL* pbMaximized) con
 }
 
 
-SimpleMDIChildWindow* SimpleMDIFrameWindow::CreateNewChild(::ca::type_info pClass,
+SimpleMDIChildWindow* SimpleMDIFrameWindow::CreateNewChild(::ax::type_info pClass,
       const char * pszMatter, HMENU hMenu /* = NULL */, HACCEL hAccel /* = NULL */)
 {
    ASSERT(pClass);
@@ -341,7 +341,7 @@ SimpleMDIChildWindow* SimpleMDIFrameWindow::CreateNewChild(::ca::type_info pClas
    ASSERT_KINDOF(SimpleMDIChildWindow, pFrame);
 
    // load the frame
-   ::ca::create_context_sp context(get_app());
+   ::ax::create_context_sp context(get_app());
    stacker < ::user::create_context > cc(context->m_user);
    cc->m_pCurrentFrame = this;
 
@@ -349,7 +349,7 @@ SimpleMDIChildWindow* SimpleMDIFrameWindow::CreateNewChild(::ca::type_info pClas
    if (!pFrame->LoadFrame(pszMatter,
          WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL, context))
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ca::window.\n");
+      TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ax::window.\n");
       delete pFrame;
       return NULL;
    }
@@ -422,7 +422,7 @@ HMENU SimpleMDIFrameWindow::GetWindowMenuPopup(HMENU hMenuBar)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// Smarts for updating the ::ca::window menu based on the current child
+// Smarts for updating the ::ax::window menu based on the current child
 
 void SimpleMDIFrameWindow::OnUpdateFrameMenu(HMENU hMenuAlt)
 {
@@ -435,7 +435,7 @@ void SimpleMDIFrameWindow::OnUpdateFrameMenu(HMENU hMenuAlt)
    else
    {
       // no child active, so have to update it ourselves
-      //  (we can't send it to a child ::ca::window, since pActiveWnd is NULL)
+      //  (we can't send it to a child ::ax::window, since pActiveWnd is NULL)
       if (hMenuAlt == NULL)
          hMenuAlt = m_hMenuDefault;  // use default
       m_pguieMdiClient->SendMessage(WM_MDISETMENU, (WPARAM)hMenuAlt, NULL);

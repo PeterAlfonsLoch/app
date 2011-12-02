@@ -5,6 +5,14 @@
 #include "ex1_writer.h"
 #include "ex1_stream.h"
 
+namespace ex1
+{
+   class file_exception;         // file exception
+   class file;
+   typedef ca::smart_pointer < file_exception > file_exception_sp;
+   typedef ca::smart_pointer < file > filesp;
+}
+
 
 
 namespace ex1

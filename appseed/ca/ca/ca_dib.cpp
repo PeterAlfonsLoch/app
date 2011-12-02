@@ -1167,11 +1167,11 @@ fill_last:
 
    void dib::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
    {
-      int d, x, y, ax, ay, sx, sy, dx, dy;
+      int d, x, y, ca, ay, sx, sy, dx, dy;
       COLORREF color=RGB ( B, G, R );
 
       dx=x2-x1;
-      ax=abs ( dx )<<1;
+      ca=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
       dy=y2-y1;
       ay=abs ( dy )<<1;
@@ -1179,16 +1179,16 @@ fill_last:
       x=x1;
       y=y1;
 
-      if ( ax>ay )
+      if ( ca>ay )
       {
-         d=ay-(ax>>1);
+         d=ay-(ca>>1);
          while ( x!=x2 )
          {
             get_data()[y*width()+x]=color;
             if ( d>=0 )
             {
                y+=sy;
-               d-=ax;
+               d-=ca;
             }
             x+=sx;
             d+=ay;
@@ -1196,7 +1196,7 @@ fill_last:
       }
       else
       {
-         d=ax-(ay>>1);
+         d=ca-(ay>>1);
          while ( y!=y2 )
          {
             get_data()[y*width()+x]=color;
@@ -1206,19 +1206,19 @@ fill_last:
                d-=ay;
             }
             y+=sy;
-            d+=ax;
+            d+=ca;
          }
       }
    }
 
    void dib::LineGlass ( int x1, int y1, int x2, int y2, int R, int G, int B, int A )
    {
-      int d, x, y, ax, ay, sx, sy, dx, dy;
+      int d, x, y, ca, ay, sx, sy, dx, dy;
 //      COLORREF color=RGB ( B, G, R );
       BYTE *dst=(BYTE *)get_data();
 
       dx=x2-x1;
-      ax=abs ( dx )<<1;
+      ca=abs ( dx )<<1;
       sx=(dx<0) ? -1 : 1;
       dy=y2-y1;
       ay=abs ( dy )<<1;
@@ -1226,9 +1226,9 @@ fill_last:
       x=x1;
       y=y1;
 
-      if ( ax>ay )
+      if ( ca>ay )
       {
-         d=ay-(ax>>1);
+         d=ay-(ca>>1);
          while ( x!=x2 )
          {
             dst[(y*width()+x)<<2]=(BYTE)(((B-dst[(y*width()+x)<<2])*A+(dst[(y*width()+x)<<2]<<8))>>8);
@@ -1237,7 +1237,7 @@ fill_last:
             if ( d>=0 )
             {
                y+=sy;
-               d-=ax;
+               d-=ca;
             }
             x+=sx;
             d+=ay;
@@ -1245,7 +1245,7 @@ fill_last:
       }
       else
       {
-         d=ax-(ay>>1);
+         d=ca-(ay>>1);
          while ( y!=y2 )
          {
             dst[(y*width()+x)<<2]=(BYTE)(((B-dst[(y*width()+x)<<2])*A+(dst[(y*width()+x)<<2]<<8))>>8);
@@ -1257,7 +1257,7 @@ fill_last:
                d-=ay;
             }
             y+=sy;
-            d+=ax;
+            d+=ca;
          }
       }
    }

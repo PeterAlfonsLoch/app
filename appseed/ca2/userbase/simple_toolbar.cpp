@@ -6,7 +6,7 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 {
 public: // re-implementations only
 
-   SimpleToolCmdUI(::ca::application * papp);
+   SimpleToolCmdUI(::ax::application * papp);
    virtual void Enable(BOOL bOn);
    virtual void SetCheck(check::e_check echeck = check::checked);
    virtual void SetText(const char * lpszText);
@@ -37,8 +37,8 @@ public: // re-implementations only
 #define ITEMPADBOTTOM   4
 
 
-simple_toolbar::simple_toolbar(::ca::application * papp) :
-ca(papp),
+simple_toolbar::simple_toolbar(::ax::application * papp) :
+ax(papp),
    m_dibDraft(papp)
 {
    m_iHover = 0x80000000;
@@ -205,7 +205,7 @@ size simple_toolbar::CalcSimpleLayout()
    return sizeResult;
 }
 
-void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
+void simple_toolbar::_001OnDraw(::ax::graphics *pdc)
 {
    //   _001Hover(false);
 
@@ -230,7 +230,7 @@ void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 }
 
 /*
-BOOL simple_toolbar::OnEraseBkgnd(::ca::graphics * pgraphics)
+BOOL simple_toolbar::OnEraseBkgnd(::ax::graphics * pgraphics)
 {
 return true;
 }
@@ -242,7 +242,7 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
    m_bTransparentBackground = bSet;
 }
 
-void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
+void simple_toolbar::TransparentEraseNonClient(::ax::graphics * pdc)
 {
 
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);
@@ -539,7 +539,7 @@ bool simple_toolbar::_001SetItem(int iItem, simple_toolbar_item *pitem)
 }
 
 
-void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
+void simple_toolbar::_001DrawItem(::ax::graphics * pdc, int iItem)
 {
    rect rectItem;
    rect rectImage;
@@ -662,14 +662,14 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               ::ca::pen_sp penShadow(get_app(), PS_SOLID, 1, ARGB(255, 127, 127, 127));
-               ::ca::brush_sp brushShadow(get_app(), ARGB(255, 127, 127, 127));
-               ::ca::pen * ppenOld = pdc->SelectObject(penShadow);
-               ::ca::brush * pbrushOld = pdc->SelectObject(brushShadow);
+               ::ax::pen_sp penShadow(get_app(), PS_SOLID, 1, ARGB(255, 127, 127, 127));
+               ::ax::brush_sp brushShadow(get_app(), ARGB(255, 127, 127, 127));
+               ::ax::pen * ppenOld = pdc->SelectObject(penShadow);
+               ::ax::brush * pbrushOld = pdc->SelectObject(brushShadow);
                pdc->Rectangle(rectShadow);
 
-               ::ca::pen_sp pen(get_app(), PS_SOLID, 1, ARGB(255, 92, 92, 92));
-               ::ca::brush_sp brush(get_app(), ARGB(255, 255, 255, 255));
+               ::ax::pen_sp pen(get_app(), PS_SOLID, 1, ARGB(255, 92, 92, 92));
+               ::ax::brush_sp brush(get_app(), ARGB(255, 255, 255, 255));
                pdc->SelectObject(pen);
                pdc->SelectObject(brush);
                pdc->Rectangle(rectItem);
@@ -701,10 +701,10 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
          if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            ::ca::pen_sp pen(get_app(), PS_SOLID, 1, ARGB(255, 92, 92, 92));
-            ::ca::brush_sp brush(get_app(), ARGB(255, 255, 255, 255));
-            ::ca::pen * ppenOld = pdc->SelectObject(pen);
-            ::ca::brush * pbrushOld = pdc->SelectObject(brush);
+            ::ax::pen_sp pen(get_app(), PS_SOLID, 1, ARGB(255, 92, 92, 92));
+            ::ax::brush_sp brush(get_app(), ARGB(255, 255, 255, 255));
+            ::ax::pen * ppenOld = pdc->SelectObject(pen);
+            ::ax::brush * pbrushOld = pdc->SelectObject(brush);
             pdc->Rectangle(rectItem);
             pdc->SelectObject(ppenOld);
             pdc->SelectObject(pbrushOld);
@@ -1101,7 +1101,7 @@ return FALSE;
 // load the bitmap
 HBITMAP hbmImageWell;
 //   hbmImageWell = AfxLoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::ca::graphics * pdc = GetDC();
+::ax::graphics * pdc = GetDC();
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 ReleaseDC(pdc);
 
@@ -1171,7 +1171,7 @@ void simple_toolbar::layout()
    rect  rectClient;
    GetClientRect(rectClient);
    class size sizeText;
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ax::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
    spgraphics->SelectObject(System.font_central().GetMenuFont());
    for(int iItem = 0; iItem < m_itema.get_size(); iItem++)
@@ -1461,7 +1461,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistHue = new image_list();
    }
-   ::ca::graphics_sp spgraphics(get_app());
+   ::ax::graphics_sp spgraphics(get_app());
    spgraphics->CreateDC("DISPLAY", NULL, NULL, NULL);
    System.imaging().CreateHueImageList(
    &spgraphics,
@@ -1497,8 +1497,8 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through SimpleToolCmdUI class
 
-SimpleToolCmdUI::SimpleToolCmdUI(::ca::application * papp) :
-ca(papp),
+SimpleToolCmdUI::SimpleToolCmdUI(::ax::application * papp) :
+ax(papp),
    cmd_ui(papp)
 {
 }
@@ -1615,7 +1615,7 @@ void simple_toolbar::_001OnNcHitTest(gen::signal_object * pobj)
 int simple_toolbar::WrapToolBar(int nCount, int nWidth)
 {
    ASSERT(nCount > 0);
-   ::ca::graphics * pdc = GetDC();
+   ::ax::graphics * pdc = GetDC();
    int nResult = 0;
    int x = 0;
    string str;
@@ -1857,7 +1857,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             }
          }
 
-         //::ca::graphics * pdc = GetDC();
+         //::ax::graphics * pdc = GetDC();
          string str;
          if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
             m_nMRUWidth = sizeResult.cx;

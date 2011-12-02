@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-simple_button::simple_button(::ca::application * papp) :
-   ca(papp),
+simple_button::simple_button(::ax::application * papp) :
+   ax(papp),
    ::user::button(papp),
    ::userbase::button(papp),
    m_brushBkg(papp)
@@ -18,7 +18,7 @@ simple_button::~simple_button()
 
 
 
-void simple_button::_001OnDraw(::ca::graphics *pdc)
+void simple_button::_001OnDraw(::ax::graphics *pdc)
 {
    ::userbase::button::_001OnDraw(pdc);
 //   BOOL bWin4 = afxData.bWin4;
@@ -68,7 +68,7 @@ void simple_button::_001OnCtlColor(gen::signal_object * pobj)
 
 void simple_button::ResizeToFit()
 {
-   ::ca::graphics * pdc = GetDC();
+   ::ax::graphics * pdc = GetDC();
 
    pdc->SelectObject(GetFont());
 

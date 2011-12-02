@@ -23,11 +23,11 @@ namespace ca
 
       virtual void * get_os_data() const;
 
-   #pragma push_macro("GetObject")
+/*   #pragma push_macro("GetObject")
    #undef GetObject
       virtual int _AFX_FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const;
       virtual int GetObject(int nCount, LPVOID lpObject) const;
-   #pragma pop_macro("GetObject")
+   #pragma pop_macro("GetObject")*/
       virtual UINT GetObjectType() const;
       virtual BOOL CreateStockObject(int nIndex);
       virtual BOOL UnrealizeObject();

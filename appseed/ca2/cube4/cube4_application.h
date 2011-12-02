@@ -40,13 +40,13 @@ namespace cube4
       virtual bool stop_service();
 
 
-      virtual void on_service_request(::ca::create_context * pcreatecontext);
+      virtual void on_service_request(::ax::create_context * pcreatecontext);
 
 
    };
 
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }

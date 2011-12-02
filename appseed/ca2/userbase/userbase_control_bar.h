@@ -43,7 +43,7 @@ public:
    BOOL m_bFloating;   // whether floating or not
    BOOL m_bHorz;       // orientation of floating dockbar
    BOOL m_bDockBar;    // TRUE if a dockbar
-   point m_pointPos;  // topleft point of ::ca::window
+   point m_pointPos;  // topleft point of ::ax::window
 
    UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    BOOL m_bDocking;    // TRUE if this bar has a DockContext
@@ -97,7 +97,7 @@ namespace userbase
 
    // Implementation
    public:
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual void message_handler(gen::signal_object * pobj);
       virtual ~control_bar();
    #ifdef _DEBUG
@@ -140,9 +140,9 @@ namespace userbase
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
-      virtual void DoPaint(::ca::graphics * pgraphics);
-      void DrawBorders(::ca::graphics * pgraphics, rect& rect);
-      void DrawGripper(::ca::graphics * pgraphics, const rect& rect);
+      virtual void DoPaint(::ax::graphics * pgraphics);
+      void DrawBorders(::ax::graphics * pgraphics, rect& rect);
+      void DrawGripper(::ax::graphics * pgraphics, const rect& rect);
 
       // implementation helpers
       void CalcInsideRect(rect& rect, BOOL bHorz) const; // adjusts borders etc
@@ -150,7 +150,7 @@ namespace userbase
       virtual BOOL SetStatusText(int nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
-      void EraseNonClient(::ca::graphics * pdc);
+      void EraseNonClient(::ax::graphics * pdc);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, userbase::frame_window* pFrameWnd);
@@ -173,7 +173,7 @@ namespace userbase
       //DECL_GEN_SIGNAL(_001OnCancelMode)
 
    //   DECL_GEN_SIGNAL(_001OnPaint)
-   //   virtual void _001OnDraw(::ca::graphics * pdc);
+   //   virtual void _001OnDraw(::ax::graphics * pdc);
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 

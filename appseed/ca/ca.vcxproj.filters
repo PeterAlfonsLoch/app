@@ -144,11 +144,47 @@
     <Filter Include="Source Files\multithreading">
       <UniqueIdentifier>{dc821e0f-83a3-4c52-a289-9e29f4449647}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{5b5546fc-d46d-40b7-96c8-e72ea6a3e7df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{5326a98e-bced-419b-82df-366e7e75a9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\plane">
+      <UniqueIdentifier>{cbccad39-efc9-4c37-ab9b-c84b3620a496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane">
+      <UniqueIdentifier>{99e9d965-4967-46db-a999-0ddfab7545f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dynamic_source">
+      <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\netnode">
+      <UniqueIdentifier>{e129b786-b48c-46b4-a9c9-ee03c20994c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dynamic_source">
+      <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\netnode">
+      <UniqueIdentifier>{98a56817-bfe7-4883-899c-47ae13d82b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca4">
+      <UniqueIdentifier>{f777b51b-b317-4ccf-bc18-f4500829cffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca4">
+      <UniqueIdentifier>{a84ff390-ce33-458a-8840-0664c8fbe8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\collection">
+      <UniqueIdentifier>{87a9afa3-c917-4fcd-8a4c-8073497b4102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\collection">
+      <UniqueIdentifier>{26ded645-d5d2-47ee-8763-f9e07d83a489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\template">
+      <UniqueIdentifier>{94b1d30d-6f85-47f2-b8ce-82499e5652e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="radix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -545,192 +581,6 @@
     <ClInclude Include="primitive\virtual_memory.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="ca_system.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_application.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_base.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_bergedge.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_c.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_live_object.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_log.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca_main_init_data.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_2.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_3_graphics.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application_bias.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application_interface.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_base.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_bergedge.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_bitmap.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_brush.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_c.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_create_context.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_data.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_data_container.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_data_listener.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_dib.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_dir.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_dir_application.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_dir_system.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_draw_dib.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_exception.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_font.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_graphics.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_graphics_object.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_history.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_igui.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_interlocked_long.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_interlocked_long_pulse.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_job.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_listener.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_live_object.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_live_signal.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_log.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_main_init_data.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_message_window.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_object.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_osi.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_palette.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_pen.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_print_job.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_profiler.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_region.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_se_translator.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_se_translator.want_to_remove.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_smart_pointer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_system.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_template.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_thread.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_type_info.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_window.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_window_draw.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca2_keep_alive.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="str.h">
       <Filter>Header Files\api</Filter>
     </ClInclude>
@@ -1080,12 +930,6 @@
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1_buffered_file.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_byte_serializable.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_byte_stream.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1_circular_buffer.h">
@@ -1754,6 +1598,645 @@
     <ClInclude Include="multithreading\multithreading_waitable.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="user\user_buffer.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_check_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_create_context.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_draw_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_elemental.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_interaction.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard_focus.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_mouse_focus.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_text_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_map.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_util.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_2.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_3_graphics.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application_bias.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_base.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_bergedge.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_bitmap.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_brush.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_c.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_ca.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_create_context.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_data_container.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_data_listener.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dib.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dir.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dir_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dir_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_draw_dib.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_exception.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_font.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_graphics.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_graphics_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_history.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_igui.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_interlocked_long.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_interlocked_long_pulse.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_job.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_listener.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_live_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_live_signal.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_log.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_main_init_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_message_window.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_osi.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_palette.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_pen.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_print_job.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_profiler.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_region.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_se_translator.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_se_translator.want_to_remove.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_seed.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_smart_pointer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_template.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_thread.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_type_info.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_window.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_window_draw.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca2_keep_alive.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_application.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="ca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_object.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_profiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_ptr.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_composite.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_impl.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_application.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_service.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_socket.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_socket_thread.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_application.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_compress.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_copydesk.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_crypt.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_email.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_file.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http_application.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http_get_socket.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http_system.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_ip_enum.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_nessie.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_oauth.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_patch.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_port_forward.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_twit.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_array_app_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_array_parent_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_array_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_array_ptr_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_array_ptr_copy.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_array_smart_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_base_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_class_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_comparable_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_comparable_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_comparable_eq_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_comparable_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_comparable_primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_comparable_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_key_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_numeric_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_point_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_rect_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_sort.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_app_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_del_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_parent_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr_copy.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_release_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_smart_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\base_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\Base2DArray.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\bit_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\class_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_template.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_template.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_eq_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\elements.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\gen_lemon_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\key_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\logic_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\object_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\point_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\rect_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_object_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\sort.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_to_string_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\stringa.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\stringl.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_ptr_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_ptr_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\unique_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_allocate.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_template.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_template_xyz.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_trace_module_manager.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\allocate.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\base.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\checked.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\core.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\debug.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\definition.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\exception.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\resource.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\simple_collection.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\templ_old.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_back_insert_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_c_number.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_compare.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_equals.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_hash.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_insert_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_old2.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_std_pair.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\time.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\trace.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\trace_module_manager.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\numeric_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_byte_serializable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_byte_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -2089,150 +2572,6 @@
     <ClCompile Include="primitive\virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="ca_application.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca_system.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca_bergedge.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca_ca.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca_live_object.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca_log.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application_bias.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application_interface.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_bergedge.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_bitmap.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_brush.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_ca.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_create_context.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_data.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_data_container.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_data_listener.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dib.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir_application.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_dir_system.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_draw_dib.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_exception.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_font.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_graphics.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_graphics_object.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_history.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_interlocked_long.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_interlocked_long_pulse.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_job.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_live_object.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_live_signal.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_log.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_message_window.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_object.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_osi.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_palette.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_pen.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_print_job.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_profiler.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_region.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_smart_pointer.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_system.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_thread.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_type_info.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_window.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_window_draw.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_c.c">
-      <Filter>Source Files\ca\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="radix\afxcrit.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -2352,15 +2691,6 @@
     </ClCompile>
     <ClCompile Include="radix\winstr.cpp">
       <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="allocate.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
-    <ClCompile Include="muldiv64.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
-    <ClCompile Include="str.cpp">
-      <Filter>Source Files\api</Filter>
     </ClCompile>
     <ClCompile Include="xml\xml_application.cpp">
       <Filter>Source Files\xml</Filter>
@@ -2916,6 +3246,372 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_buffer.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_create_context.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_draw_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_elemental.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_form.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_interaction.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_keyboard_focus.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_mouse_focus.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_text_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_map.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_util.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="api\allocate.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\debug.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\muldiv64.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\mutex_lock.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\str.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application_bias.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application_interface.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_bergedge.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_bitmap.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_brush.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_ca.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_create_context.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_data.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_data_container.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_data_listener.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dib.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dir.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dir_application.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dir_system.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_draw_dib.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_exception.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_font.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_graphics.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_graphics_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_history.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_interlocked_long.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_interlocked_long_pulse.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_job.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_live_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_live_signal.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_log.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_message_window.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_osi.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_palette.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pen.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_print_job.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_profiler.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_region.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_smart_pointer.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_system.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_thread.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_type_info.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_window.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_window_draw.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_c.c">
+      <Filter>Source Files\ca\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_application.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_object.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_profiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_ptr.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_composite.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_impl.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_application.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_service.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_socket.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_socket_thread.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_application.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_compress.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_copydesk.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_crypt.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_email.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_enum.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_file.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http_application.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http_get_socket.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http_system.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_nessie.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_oauth.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_patch.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_port_forward.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_twit.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_whirlpool.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\_array_app_copy.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\2DArray.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_app_copy.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_ptr.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_ptr_alloc.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_ptr_copy.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\bit_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\class_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_numeric_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\comparable_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\key_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\map_misc.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\object_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\point_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\pointer_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\rect_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\simple_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\simple_object_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\simple_pointer_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\sort.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\string_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\string_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\string_to_string_map.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\stringa.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\stringl.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_system.cpp">
+      <Filter>Source Files\plane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

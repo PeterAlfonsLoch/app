@@ -13,7 +13,7 @@ namespace nature
       ::ca8::keyboard_layout *             m_pkeyboardlayout;
 
 
-      pane_view(::ca::application * papp);
+      pane_view(::ax::application * papp);
 
 #if !core_level_1
       using ::userbase::tab_view::on_show_view;

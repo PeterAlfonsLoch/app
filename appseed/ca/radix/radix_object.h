@@ -1,7 +1,11 @@
 #pragma once
 
 
+#include "ca/multithreading/multithreading_sync_object_base.h"
+
+
 class var;
+class dump_context;
 
 
 namespace visual

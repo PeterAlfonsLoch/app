@@ -12,14 +12,14 @@ namespace userex
    public:
 
 
-      split_view(::ca::application * papp);
+      split_view(::ax::application * papp);
       virtual ~split_view();
 
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
       bool _001OnCommand(id id);
 
-      virtual void OnDraw(::ca::graphics * pgraphics);
+      virtual void OnDraw(::ax::graphics * pgraphics);
 
 
    };

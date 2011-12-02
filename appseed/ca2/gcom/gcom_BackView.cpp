@@ -10,8 +10,8 @@ namespace gcom
       // Construction/Destruction
       //////////////////////////////////////////////////////////////////////
 
-      Main::Main(::ca::application * papp, Interface * pinterface) :
-         ca(papp),
+      Main::Main(::ax::application * papp, Interface * pinterface) :
+         ax(papp),
          m_pinterface(pinterface)
       {
           m_iRefCount = 0;
@@ -122,10 +122,10 @@ namespace gcom
       }
       void Main::_001OnImageLoaded(gen::signal_object * pobj)
       {
-         OnImageLoaded((::ca::bitmap *) (*pobj)()["bitmap"].ca2 < ::ca::bitmap > ());
+         OnImageLoaded((::ax::bitmap *) (*pobj)()["bitmap"].ca2 < ::ax::bitmap > ());
       }
 
-      void Main::OnImageLoaded(::ca::bitmap * pbitmap)
+      void Main::OnImageLoaded(::ax::bitmap * pbitmap)
       {
          InterfaceData data;
          data.signalize(InterfaceDataCurrentImagePath);
@@ -169,7 +169,7 @@ void Main::OnAfterImageLoaded()
           if(!m_bInitialized)
               return false;
 
-          ::ca::application * papp = &System;
+          ::ax::application * papp = &System;
           if(papp == NULL)
           {
               // if main application is null, there's no reason
@@ -477,7 +477,7 @@ int Main::PulseEvent(e_event eevent)
          GetImageChange().SetBackgroundUpdateMillis(1000);
       }
 
-      ::ca::graphics & Main::GetTransferDC()
+      ::ax::graphics & Main::GetTransferDC()
       {
          return GetGraphics().GetTransferDC();
       }

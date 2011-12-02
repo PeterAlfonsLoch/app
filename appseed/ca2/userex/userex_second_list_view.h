@@ -17,7 +17,7 @@ namespace userex
    public:
 
 
-      second_list_view(::ca::application * papp);   
+      second_list_view(::ax::application * papp);   
       virtual ~second_list_view();
 
 

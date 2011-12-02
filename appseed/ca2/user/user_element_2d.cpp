@@ -3,7 +3,7 @@
 namespace user
 {
 
-   void element_2d::_001OnDraw(::user::elemental * pview, ::ca::graphics * pdc)
+   void element_2d::_001OnDraw(::user::elemental * pview, ::ax::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pview);
       UNREFERENCED_PARAMETER(pdc);
@@ -33,12 +33,12 @@ namespace user
       y >= m_pt.y && y <= m_pt.y + m_size.cy;
    }
 
-   void element_2d::_001OnCalcLayout(::ca::graphics * pdc)
+   void element_2d::_001OnCalcLayout(::ax::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   ::ca::application * element_2d::get_app()
+   ::ax::application * element_2d::get_app()
    {
       return NULL;
    }

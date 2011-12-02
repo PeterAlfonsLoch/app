@@ -17,7 +17,7 @@ namespace mail
       string                        m_strEmail;
 
 
-      configuration(::ca::application * papp);
+      configuration(::ax::application * papp);
       virtual ~configuration();
 
 

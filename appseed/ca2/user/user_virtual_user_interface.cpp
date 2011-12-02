@@ -10,8 +10,8 @@ virtual_user_interface::virtual_user_interface()
    m_bEnabled        = true;
 }
 
-virtual_user_interface::virtual_user_interface(::ca::application * papp) :
-   ca(papp),
+virtual_user_interface::virtual_user_interface(::ax::application * papp) :
+   ax(papp),
    ::user::interaction(papp)
 {
    m_pguieMessage    = NULL;
@@ -26,12 +26,12 @@ virtual_user_interface::~virtual_user_interface()
    System.remove(this);
 }
 
-::ca::graphics * virtual_user_interface::GetDC()
+::ax::graphics * virtual_user_interface::GetDC()
 {
    return get_wnd()->GetDC();
 }
 
-BOOL virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
+BOOL virtual_user_interface::ReleaseDC(::ax::graphics * pdc)
 {
    return get_wnd()->ReleaseDC(pdc);
 }
@@ -140,8 +140,8 @@ bool virtual_user_interface::create_message_window()
       pwnd->m_pguieForward = this;
       string strName = "ca2::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).raw_name();
-      if(!pwnd->::ca::window::create(NULL, strName, 0,
-      rect(0, 0, 0, 0), ::ca::window::from_handle(HWND_MESSAGE), NULL))
+      if(!pwnd->::ax::window::create(NULL, strName, 0,
+      rect(0, 0, 0, 0), ::ax::window::from_handle(HWND_MESSAGE), NULL))
       {
          delete pwnd;
          return false;
@@ -174,14 +174,14 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
    //m_pguie = this;
 //   m_hwnd = pparent->_get_handle();
-   /*::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
+   /*::ax::window * pwndThis = dynamic_cast < ::ax::window * > (this);
    if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_hwnd);
    }*/
    if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
-   //m_pimpl = new ::ca::window(get_app());
+   //m_pimpl = new ::ax::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
    ASSERT_VALID(this);
@@ -238,7 +238,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pparent, id id,
-      ::ca::create_context* pContext)
+      ::ax::create_context* pContext)
 {
    if(m_bCreate)
    {
@@ -254,14 +254,14 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
    //m_pguie = this;
 //   m_hwnd = pparent->_get_handle();
-//   ::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
+//   ::ax::window * pwndThis = dynamic_cast < ::ax::window * > (this);
 /*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_hwnd);
    }*/
    if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
-   //m_pimpl = new ::ca::window(get_app());
+   //m_pimpl = new ::ax::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->create(lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, pContext);
    /*interaction * hWndParent = pparent;
@@ -330,14 +330,14 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    m_bVisible = true;
    //m_pguie = this;
 //   m_hwnd = pparent->_get_handle();
-//   ::ca::window * pwndThis = dynamic_cast < ::ca::window * > (this);
+//   ::ax::window * pwndThis = dynamic_cast < ::ax::window * > (this);
 /*   if(pwndThis != NULL)
    {
       pwndThis->set_handle(m_hwnd);
    }*/
    if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
-   //m_pimpl = new ::ca::window(get_app());
+   //m_pimpl = new ::ax::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->create(NULL, NULL, WS_CHILD | WS_VISIBLE, rect(0, 0, 0, 0), pparent, iId);
    /*interaction * hWndParent = pparent;
@@ -408,7 +408,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
-      ::ca::window* pParentWnd, UINT nID,
+      ::ax::window* pParentWnd, UINT nID,
       LPVOID lpParam)
    {
       return FALSE;
@@ -473,10 +473,10 @@ frame_window* virtual_user_interface::GetParentFrame()
 
 LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
-   ::ca::window * pwnd = get_wnd();
+   ::ax::window * pwnd = get_wnd();
    if(pwnd == NULL)
       return 0;
-   ::ca::smart_pointer < ::gen::message::base > spbase;
+   ::ax::smart_pointer < ::gen::message::base > spbase;
    spbase(get_base(pwnd->get_safe_handle(), uiMessage, wparam, lparam));
    ::user::interaction * pui = this;
    while(pui != NULL && pui->GetParent() != NULL)
@@ -639,7 +639,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nI
          layout.rect.right -= lpRectParam->right;
          layout.rect.bottom -= lpRectParam->bottom;
       }
-      // reposition the ::ca::window
+      // reposition the ::ax::window
       if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
       {
          pLeftOver->CalcWindowRect(&layout.rect);
@@ -724,7 +724,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nI
          layout.rect.right -= lpRectParam->right;
          layout.rect.bottom -= lpRectParam->bottom;
       }
-      // reposition the ::ca::window
+      // reposition the ::ax::window
       if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
       {
          pLeftOver->CalcWindowRect(&layout.rect);
@@ -938,7 +938,7 @@ BOOL virtual_user_interface::ShowWindow(int nCmdShow)
 }
 
 
-void virtual_user_interface::SetFont(::ca::font* pFont, BOOL bRedraw)
+void virtual_user_interface::SetFont(::ax::font* pFont, BOOL bRedraw)
 {
    if(pFont == NULL)
       return;
@@ -949,7 +949,7 @@ void virtual_user_interface::SetFont(::ca::font* pFont, BOOL bRedraw)
    if(bRedraw)
       _001RedrawWindow();
 }
-::ca::font* virtual_user_interface::GetFont()
+::ax::font* virtual_user_interface::GetFont()
 {
    if(m_spfont.is_null())
       m_spfont.create(get_app());
@@ -1054,12 +1054,12 @@ void virtual_user_interface::_001OnNcDestroy(gen::signal_object * pobj)
    pobj->m_bRet = true;
 }
 
-void virtual_user_interface::on_delete(::ca::ca * pui)
+void virtual_user_interface::on_delete(::ax::ax * pui)
 {
    ::user::interaction::on_delete(pui);
 }
 
-/*int virtual_user_interface::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
+/*int virtual_user_interface::RunModalLoop(DWORD dwFlags, ::ax::live_object * pliveobject)
 {
    if(dynamic_cast < virtual_user_interface * > (GetTopLevelFrame()) == this)
       return ::user::interaction::RunModalLoop(dwFlags, pliveobject);

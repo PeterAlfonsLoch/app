@@ -4,10 +4,10 @@ class CLASS_DECL_ca simple_button :
    public ::userbase::button
 {
 public:
-   simple_button(::ca::application * papp);
+   simple_button(::ax::application * papp);
 
    bool     m_bTransparent;
-   ::ca::brush_sp   m_brushBkg;
+   ::ax::brush_sp   m_brushBkg;
    bool     m_bFocus;
 
 
@@ -16,7 +16,7 @@ protected:
 public:
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
    virtual ~simple_button();
 
    virtual void ResizeToFit();

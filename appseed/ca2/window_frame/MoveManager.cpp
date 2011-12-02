@@ -9,7 +9,7 @@ namespace window_frame
    const DWORD MoveManager::s_dwMoveTime = 150;
 
    MoveManager::MoveManager(WorkSet * pworkset) :
-      ::ca::ca(pworkset->get_app())
+      ::ax::ax(pworkset->get_app())
    {
       ASSERT(pworkset != NULL);
       m_pworkset           = pworkset;

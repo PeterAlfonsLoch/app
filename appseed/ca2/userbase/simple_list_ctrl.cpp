@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_list_control::simple_list_control(::ca::application * papp) :
-   ca(papp),
+simple_list_control::simple_list_control(::ax::application * papp) :
+   ax(papp),
    m_headerctrl(papp),
    ::user::scroll_view(papp),
    ::user::list(papp),

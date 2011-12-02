@@ -63,8 +63,8 @@ namespace user
       return true;
    }
 
-   keyboard_layout::keyboard_layout(::ca::application * papp) :
-      ca(papp)
+   keyboard_layout::keyboard_layout(::ax::application * papp) :
+      ax(papp)
    {
       m_setEscape.m_bKeyCaseInsensitive = false;
    }

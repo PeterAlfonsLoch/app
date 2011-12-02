@@ -2,6 +2,7 @@
 
 
 #include "gen/gen_holder.h"
+#include "ca/user/user_window_interface.h"
 
 
 namespace ca
@@ -223,7 +224,7 @@ namespace user
          LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-      virtual frame_window* GetParentFrame();
+      virtual interaction * GetParentFrame();
 
       virtual BOOL IsTopParentActive();
       virtual void ActivateTopParent();
@@ -359,10 +360,10 @@ namespace user
       interaction * GetChildByName(const char * pszName, int iLevel = -1);
       interaction * GetChildById(id id, int iLevel = -1);
 
-      virtual frame_window* EnsureParentFrame();
+      virtual interaction * EnsureParentFrame();
       virtual interaction* GetTopLevelParent();
       virtual interaction* EnsureTopLevelParent();
-      virtual frame_window* GetTopLevelFrame();
+      virtual interaction* GetTopLevelFrame();
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
          LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
       virtual void pre_translate_message(gen::signal_object * pobj);

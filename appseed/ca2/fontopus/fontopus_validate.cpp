@@ -4,13 +4,13 @@
 #include <openssl/err.h>
 
 
-typedef string ( *SALT)(::ca::application *, const char * , stringa &);
+typedef string ( *SALT)(::ax::application *, const char * , stringa &);
 
 namespace fontopus
 {
 
-   validate::validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth, bool bInteractive) :
-      ca(papp),
+   validate::validate(::ax::application * papp, const char * pszForm, bool bVotagusAuth, bool bInteractive) :
+      ax(papp),
       m_loginthread(papp),
       m_netcfg(papp)
    {
@@ -33,9 +33,9 @@ namespace fontopus
       m_ptemplatePane   = new ::userbase::single_document_template(
          papp,
          "system/auth",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < simple_frame_window > (),
-         ::ca::get_type_info < userex::pane_tab_view > ());
+         ::ax::get_type_info < form_document > (),
+         ::ax::get_type_info < simple_frame_window > (),
+         ::ax::get_type_info < userex::pane_tab_view > ());
       m_pauth           = NULL;
       m_pviewAuth       = NULL;
       m_pdocAuth        = NULL;
@@ -166,7 +166,7 @@ namespace fontopus
          ensure_main_document();
          page1();
          m_pviewAuth->SetTimer(1984, 484, NULL);
-         ::ca::live_signal livesignal;
+         ::ax::live_signal livesignal;
          livesignal.keep(get_app());
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptemplatePane->close_all_documents(FALSE);
@@ -182,7 +182,7 @@ namespace fontopus
    {
       if(m_pdoc != NULL)
          return;
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
@@ -328,7 +328,7 @@ namespace fontopus
          ensure_main_document();
          page1();
          m_pviewAuth->SetTimer(1984, 484, NULL);
-         ::ca::live_signal livesignal;
+         ::ax::live_signal livesignal;
          livesignal.keep(get_app());
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
          m_ptemplatePane->close_all_documents(FALSE);
@@ -461,7 +461,7 @@ namespace fontopus
       m_pdocAuth->get_html_data()->m_propertyset = set;
       m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
       display_main_frame();
-      ::ca::live_signal livesignal;
+      ::ax::live_signal livesignal;
       livesignal.keep(get_app());
       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
@@ -530,8 +530,8 @@ namespace fontopus
 
 
 
-   login_thread::login_thread(::ca::application * papp) :
-   ca(papp),
+   login_thread::login_thread(::ax::application * papp) :
+   ax(papp),
       thread(papp),
       simple_thread(papp)
    {
@@ -867,7 +867,7 @@ namespace fontopus
 
       m_strFontopusServer.Empty();
 
-      ::ca::application * papp = get_app();
+      ::ax::application * papp = get_app();
 
       {
          gen::property_set post;
@@ -1235,7 +1235,7 @@ namespace fontopus
 
    validate::auth * validate::get_auth()
    {
-      ::ca::create_context_sp createcontext(get_app());
+      ::ax::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = true;
       form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
       userex::pane_tab_view * pview = pdoc->get_typed_view < userex::pane_tab_view > ();
@@ -1252,7 +1252,7 @@ namespace fontopus
       pview->add_tab("login", 1);
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
-         ::ca::live_signal livesignal;
+         ::ax::live_signal livesignal;
          livesignal.keep(get_app());
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;

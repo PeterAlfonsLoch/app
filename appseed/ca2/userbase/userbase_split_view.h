@@ -8,11 +8,11 @@ namespace userbase
       virtual public split_layout
    {
    public:
-      split_view(::ca::application * papp);
+      split_view(::ax::application * papp);
       virtual ~split_view();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    #ifdef _DEBUG
       virtual void assert_valid() const;

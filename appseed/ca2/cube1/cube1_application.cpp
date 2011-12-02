@@ -69,7 +69,7 @@ namespace cube1
    }
 
 
-   bool application::final_handle_exception(::ca::exception & e)
+   bool application::final_handle_exception(::ax::exception & e)
    {
       base_exception * pbe = dynamic_cast < se_exception * > (&e);
       if(pbe != NULL)

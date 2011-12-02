@@ -12,10 +12,10 @@ namespace userbase
    {
    public:
 
-      document(::ca::application * papp);
+      document(::ax::application * papp);
       virtual ~document();
 
-      virtual void on_alloc(::ca::application * papp);
+      virtual void on_alloc(::ax::application * papp);
 
    #ifdef _DEBUG
       virtual void dump(dump_context&) const;

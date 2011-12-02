@@ -32,8 +32,8 @@
  // END_MESSAGE_MAP()
 */
 
-SimpleMDIChildWindow::SimpleMDIChildWindow(::ca::application * papp) :
-   ca(papp),
+SimpleMDIChildWindow::SimpleMDIChildWindow(::ax::application * papp) :
+   ax(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),
@@ -122,7 +122,7 @@ BOOL SimpleMDIChildWindow::PreCreateWindow(CREATESTRUCT& cs)
 BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
    const char * lpszWindowName, DWORD dwStyle,
    const RECT& rect, SimpleMDIFrameWindow* pParentWnd,
-   ::ca::create_context* pContext)
+   ::ax::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(lpszClassName);
    UNREFERENCED_PARAMETER(lpszWindowName);
@@ -142,7 +142,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
    }
    ASSERT(pParentWnd->m_pguieMdiClient->IsWindow());
 
-   // insure correct ::ca::window positioning
+   // insure correct ::ax::window positioning
    pParentWnd->layout();
 
    // first copy into a CREATESTRUCT for PreCreate
@@ -180,7 +180,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
    mcs.style = cs.style & ~(WS_MAXIMIZE | WS_VISIBLE);
    mcs.lParam = (LPARAM)cs.lpCreateParams;
 
-   // create the ::ca::window through the MDICLIENT ::ca::window
+   // create the ::ax::window through the MDICLIENT ::ax::window
    AfxHookWindowCreate(this);
    HWND hWnd = (HWND)pParentWnd->m_pguieMdiClient->SendMessage(
       WM_MDICREATE, 0, (LPARAM)&mcs);
@@ -193,7 +193,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
    // special handling of visibility (always created invisible)
    if (cs.style & WS_VISIBLE)
    {
-      // place the ::ca::window on top in z-order before showing it
+      // place the ::ax::window on top in z-order before showing it
       ::BringWindowToTop(hWnd);
 
       // show it as specified
@@ -216,7 +216,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
 }
 
 BOOL SimpleMDIChildWindow::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-      ::user::interaction* pParentWnd, ::ca::create_context* pContext)
+      ::user::interaction* pParentWnd, ::ax::create_context* pContext)
 {
    // only do this once
    //ASSERT_VALID_IDR(nIDResource);
@@ -239,7 +239,7 @@ BOOL SimpleMDIChildWindow::LoadFrame(const char * pszMatter, DWORD dwDefaultStyl
    }
    else
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no shared menu/acceltable for MDI Child ::ca::window.\n");
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no shared menu/acceltable for MDI Child ::ax::window.\n");
          // if this happens, programmer must load these manually
    }
 
@@ -269,7 +269,7 @@ void SimpleMDIChildWindow::OnSize(UINT nType, int cx, int cy)
 
 BOOL SimpleMDIChildWindow::UpdateClientEdge(LPRECT lpRect)
 {
-   // only adjust for active MDI child ::ca::window
+   // only adjust for active MDI child ::ax::window
    SimpleMDIFrameWindow* pFrameWnd = GetMDIFrame();
    SimpleMDIChildWindow * pChild = dynamic_cast < SimpleMDIChildWindow * > (pFrameWnd->MDIGetActive());
    if (pChild == NULL || pChild == this)
@@ -311,7 +311,7 @@ void SimpleMDIChildWindow::OnWindowPosChanging(LPWINDOWPOS lpWndPos)
       rect rectClient;
       if (UpdateClientEdge(rectClient) && (GetStyle() & WS_MAXIMIZE))
       {
-         // adjust maximized ::ca::window size and position based on new
+         // adjust maximized ::ax::window size and position based on new
          //  size/position of the MDI client area.
          ::AdjustWindowRectEx(rectClient, GetStyle(), FALSE, GetExStyle());
          lpWndPos->x = rectClient.left;
@@ -349,7 +349,7 @@ int SimpleMDIChildWindow::OnMouseActivate(::user::interaction* pDesktopWnd, UINT
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
       return nResult;   // frame does not want to activate
 
-   // activate this ::ca::window if necessary
+   // activate this ::ax::window if necessary
    SimpleMDIFrameWindow* pFrameWnd = GetMDIFrame();
    ASSERT_VALID(pFrameWnd);
    SimpleMDIChildWindow* pActive = dynamic_cast < SimpleMDIChildWindow* > (pFrameWnd->MDIGetActive());
@@ -369,7 +369,7 @@ void SimpleMDIChildWindow::ActivateFrame(int nCmdShow)
    // determine default show command
    if (nCmdShow == -1)
    {
-      // get maximized state of frame ::ca::window (previously active child)
+      // get maximized state of frame ::ax::window (previously active child)
       BOOL bMaximized;
       pFrameWnd->MDIGetActive(&bMaximized);
 
@@ -381,16 +381,16 @@ void SimpleMDIChildWindow::ActivateFrame(int nCmdShow)
          nCmdShow = SW_SHOWMINIMIZED;
    }
 
-   // finally, show the ::ca::window
+   // finally, show the ::ax::window
    frame_window::ActivateFrame(nCmdShow);
 
-   // update the Window menu to reflect new child ::ca::window
+   // update the Window menu to reflect new child ::ax::window
    SimpleMDIFrameWindow* pFrame = GetMDIFrame();
    pFrame->m_pguieMdiClient->SendMessage( WM_MDIREFRESHMENU, 0, 0);
 
    // Note: Update the m_bPseudoInactive flag.  This is used to handle the
    //  last MDI child getting hidden.  Windows provides no way to deactivate
-   //  an MDI child ::ca::window.
+   //  an MDI child ::ax::window.
 
    BOOL bVisibleNow = (GetStyle() & WS_VISIBLE) != 0;
    if (bVisibleNow == bVisibleThen)
@@ -398,17 +398,17 @@ void SimpleMDIChildWindow::ActivateFrame(int nCmdShow)
 
    if (!bVisibleNow)
    {
-      // get current active ::ca::window according to Windows MDI
+      // get current active ::ax::window according to Windows MDI
       ::user::interaction * hWnd = (::user::interaction *)pFrameWnd->m_pguieMdiClient->SendMessage(
          WM_MDIGETACTIVE, 0, 0);
       if (hWnd != this)
       {
-         // not active any more -- ::ca::window must have been deactivated
+         // not active any more -- ::ax::window must have been deactivated
          ASSERT(!m_bPseudoInactive);
          return;
       }
 
-      // check next ::ca::window
+      // check next ::ax::window
       ASSERT(hWnd != NULL);
       pFrameWnd->MDINext();
 
@@ -466,11 +466,11 @@ void SimpleMDIChildWindow::dump(dump_context & dumpcontext) const
 
 void SimpleMDIChildWindow::on_update_frame_title(BOOL bAddToTitle)
 {
-   // update our parent ::ca::window first
+   // update our parent ::ax::window first
    GetMDIFrame()->on_update_frame_title(bAddToTitle);
 
    if ((GetStyle() & FWS_ADDTOTITLE) == 0)
-      return;     // leave child ::ca::window alone!
+      return;     // leave child ::ax::window alone!
 
    document * pdocument = GetActiveDocument();
    if (bAddToTitle)
@@ -500,7 +500,7 @@ void SimpleMDIChildWindow::OnMDIActivate(BOOL bActivate, ::user::interaction* pA
 {
    m_bPseudoInactive = FALSE;  // must be happening for real
 
-   // make sure MDI client ::ca::window has correct client edge
+   // make sure MDI client ::ax::window has correct client edge
    UpdateClientEdge();
 
    // send deactivate notification to active ::view
@@ -592,7 +592,7 @@ void SimpleMDIChildWindow::_001OnCreate(gen::signal_object * pobj)
    // call base class with lParam context (not MDI one)
    MDICREATESTRUCT* lpmcs;
    lpmcs = (MDICREATESTRUCT*)pcreate->m_lpcreatestruct->lpCreateParams;
-   ::ca::create_context* pContext = (::ca::create_context*)lpmcs->lParam;
+   ::ax::create_context* pContext = (::ax::create_context*)lpmcs->lParam;
    pcreate->previous();
    pcreate->set_lresult(OnCreateHelper(pcreate->m_lpcreatestruct, pContext));
    pcreate->m_bRet = true;
@@ -691,7 +691,7 @@ void SimpleMDIFrameWindow::OnWindowNew()
    // otherwise we have a new frame !
    document_template * ptemplate = pdocument->get_document_template();
    ASSERT_VALID(ptemplate);
-   ::ca::create_context_sp cc(get_app());
+   ::ax::create_context_sp cc(get_app());
    ::frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild, cc);
    if (pFrame == NULL)
    {

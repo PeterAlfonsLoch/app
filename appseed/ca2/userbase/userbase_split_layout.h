@@ -40,7 +40,7 @@ namespace userbase
       int                     m_cxBorder;
       int                     m_cyBorder;
 
-      split_layout(::ca::application * papp);
+      split_layout(::ax::application * papp);
       virtual ~split_layout();
 
       virtual int get_normal_dimension();

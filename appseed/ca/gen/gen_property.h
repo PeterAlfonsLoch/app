@@ -2,6 +2,8 @@
 
 
 #include "gen/gen_signal.h"
+#include "gen_var_array.h"
+
 
 namespace xml
 {

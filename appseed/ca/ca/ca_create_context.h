@@ -2,6 +2,7 @@
 
 
 #include "gen/gen_command.h"
+#include "ca/user/user_create_context.h"
 
 
 template < class TYPE, class BASE_ARRAY = base_array < TYPE > >

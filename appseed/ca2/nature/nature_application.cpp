@@ -37,9 +37,9 @@ namespace nature
       pDocTemplate = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < document > (),
-         ::ca::get_type_info < frame > (),       // main SDI frame ::ca::window
-         ::ca::get_type_info < pane_view > ());
+         ::ax::get_type_info < document > (),
+         ::ax::get_type_info < frame > (),       // main SDI frame ::ax::window
+         ::ax::get_type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 

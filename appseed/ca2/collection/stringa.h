@@ -7,7 +7,7 @@ class CLASS_DECL_ca stringa :
    virtual public ex1::byte_serializable
 {
 public:
-   stringa(::ca::application * papp = NULL);
+   stringa(::ax::application * papp = NULL);
    stringa(const stringa & base_array);
    virtual ~stringa();
    LPTSTR GetFormatV004();

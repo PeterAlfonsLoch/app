@@ -7,7 +7,7 @@ namespace command
 
    class CLASS_DECL_ca frame : 
       public simple_frame_window,
-      public ca::message_window_simple_callback
+      public ax::message_window_simple_callback
    {
    public:
 
@@ -22,7 +22,7 @@ namespace command
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-	   frame(::ca::application * papp);
+	   frame(::ax::application * papp);
       virtual ~frame();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

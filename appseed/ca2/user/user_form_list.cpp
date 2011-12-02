@@ -3,8 +3,8 @@
 namespace user
 {
 
-   form_list::form_list(::ca::application * papp) :
-      ca(papp),
+   form_list::form_list(::ax::application * papp) :
+      ax(papp),
       form(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -191,7 +191,7 @@ namespace user
 
    }
 
-   bool form_list::_001OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
+   bool form_list::_001OnMouseActivate(::ax::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult)
    {
       UNREFERENCED_PARAMETER(pDesktopWnd);
       UNREFERENCED_PARAMETER(nHitTest);
@@ -275,7 +275,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnDraw(::ca::graphics *pdc)
+   void form_list::_001OnDraw(::ax::graphics *pdc)
    {
       list::_001OnDraw(pdc);
       form::_001OnDraw(pdc);

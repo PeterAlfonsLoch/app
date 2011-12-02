@@ -19,7 +19,7 @@ namespace impl
       string                        m_strLink;
 
 
-      text(::ca::application * papp);
+      text(::ax::application * papp);
 
       DECL_GEN_SIGNAL(OnLButtonDown)
       DECL_GEN_SIGNAL(OnMouseMove)
@@ -28,7 +28,7 @@ namespace impl
       virtual void _001OnGetText();
 
       virtual void _001OnDraw(data * pdoc);
-      virtual void _001OnDraw(::ca::graphics * pgraphics);
+      virtual void _001OnDraw(::ax::graphics * pgraphics);
       void implement_phase1(data * pdoc, ::html::elemental * pelemental);
       void layout_phase3(data * pdoc);
 
@@ -41,7 +41,7 @@ namespace impl
       using user::edit_plain_text::hit_test;
       virtual int hit_test(data * pdoc, point pt);
 
-      virtual int char_hit_test(::ca::graphics * pdc, int px, int py);
+      virtual int char_hit_test(::ax::graphics * pdc, int px, int py);
 
       virtual int get_first_line_height();
       virtual int get_last_line_height();

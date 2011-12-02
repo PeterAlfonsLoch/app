@@ -7,8 +7,8 @@ class CLASS_DECL_ca BaseMenuCentral :
    virtual public ::radix::object
 {
 public:
-   static BaseMenuCentral * GetMenuCentral(::ca::application * papp);
-   BaseMenuCentral(::ca::application * papp);
+   static BaseMenuCentral * GetMenuCentral(::ax::application * papp);
+   BaseMenuCentral(::ax::application * papp);
    virtual ~BaseMenuCentral();
    image_list * MenuV033GetImageList();
    image_list * MenuV033GetImageListHue();
@@ -28,10 +28,10 @@ public:
    image_list *    m_pilHue;
    image_list *    m_pilBlend;
    image_list *    m_pilHueLight;
-   ::ca::font_sp          m_fontMenu;
+   ::ax::font_sp          m_fontMenu;
 
-   ::ca::font * MenuV033GetFont();
-   ::ca::font * GetMenuFont();
+   ::ax::font * MenuV033GetFont();
+   ::ax::font * GetMenuFont();
 
    static HHOOK m_hCBTHook;
    static LRESULT CALLBACK CBTHook(int nCode, WPARAM wParam, LPARAM lParam);
@@ -46,7 +46,7 @@ public:
    BaseMenuCentralContainer();
    virtual ~BaseMenuCentralContainer();
    virtual BaseMenuCentral * get_menucentral();
-   virtual bool initialize_central_container(::ca::application * papp);
+   virtual bool initialize_central_container(::ax::application * papp);
    virtual bool finalize_central_container();
 protected:
    BaseMenuCentral * m_pmenucentral;

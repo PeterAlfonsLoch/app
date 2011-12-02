@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_child_frame::simple_child_frame(::ca::application * papp) :
-   ca(papp),
+simple_child_frame::simple_child_frame(::ax::application * papp) :
+   ax(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),

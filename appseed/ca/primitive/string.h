@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "simple_string.h"
+#include "id.h"
+
+
 //#include "template/base.h"
 
 //#include "radix/fixed_alloc.h"

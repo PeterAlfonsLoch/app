@@ -1,6 +1,27 @@
 #pragma once
 
+
 #include "radix/fixed_alloc.h"
+#include "gen_signal.h"
+#include "ca/collection/array_del_ptr.h"
+#include "ca/visual/visual_00.h"
+
+
+
+class cmd_ui;
+
+
+
+namespace ca
+{
+
+
+   class window;
+   class graphics;
+
+
+} // namespace ca
+
 
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048

@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   tab_view::tab_view(::ca::application * papp) :
-      ca(papp),
+   tab_view::tab_view(::ax::application * papp) :
+      ax(papp),
       view(papp),
       ::user::tab(papp),
       place_holder_container(papp)
@@ -121,7 +121,7 @@ namespace userbase
    {
       ::user::interaction * pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
       ::user::interaction * pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
-      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(::ca::get_type_info < ::userbase::split_view > (), get_document(), this, 100));
+      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(::ax::get_type_info < ::userbase::split_view > (), get_document(), this, 100));
       if(eposition == position_top || eposition == position_bottom)
       {
          psplitview->SetSplitOrientation(::userbase::split_layout::orientation_horizontal);
@@ -401,7 +401,7 @@ namespace userbase
       return m_pviewdata->m_pdoc;
    }
 
-   void tab_view::_000OnDraw(::ca::graphics * pdc)
+   void tab_view::_000OnDraw(::ax::graphics * pdc)
    {
       if(!m_bVisible)
          return;
@@ -437,7 +437,7 @@ namespace userbase
    }
 
    tab_drop_target_window::tab_drop_target_window(user::tab * ptab, int iPane) :
-      ca(ptab->get_app())
+      ax(ptab->get_app())
    {
       m_ptab            = ptab;
       m_iPane           = iPane;
@@ -453,7 +453,7 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
    }
 
-   void tab_drop_target_window::_001OnDraw(::ca::graphics * pdc)
+   void tab_drop_target_window::_001OnDraw(::ax::graphics * pdc)
    {
       class imaging & imaging = System.imaging();
 

@@ -6,8 +6,8 @@ namespace userex
 
 // IMPLEMENT_DYNCREATE(split_view, ::userbase::view)
 
-   split_view::split_view(::ca::application * papp) :
-      ca(papp),
+   split_view::split_view(::ax::application * papp) :
+      ax(papp),
       ::userbase::split_layout(papp),
       ::userbase::view(papp),
       ::userbase::split_view(papp),
@@ -19,7 +19,7 @@ namespace userex
    {
    }
 
-   void split_view::OnDraw(::ca::graphics * pgraphics)
+   void split_view::OnDraw(::ax::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
    }

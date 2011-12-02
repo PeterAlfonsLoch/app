@@ -3,8 +3,8 @@
 namespace user
 {
 
-   list_header::list_header(::ca::application * papp) :
-      ca(papp),
+   list_header::list_header(::ax::application * papp) :
+      ax(papp),
       m_font(papp),
       m_dcextension(papp)
    {
@@ -24,10 +24,10 @@ namespace user
       m_plistctrlinterface = pinterface;
    }
 
-   void list_header::DrawItem(::ca::draw_item * pdrawitem)
+   void list_header::DrawItem(::ax::draw_item * pdrawitem)
    {
       
-      ::ca::graphics * pdc = pdrawitem->m_pgraphics;
+      ::ax::graphics * pdc = pdrawitem->m_pgraphics;
       
       rect rectColumn = pdrawitem->rcItem;
 
@@ -489,7 +489,7 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnDraw(::ca::graphics *pdc)
+   void list_header::_001OnDraw(::ax::graphics *pdc)
    {
       
       rect rectClient;
@@ -513,7 +513,7 @@ namespace user
 
       imaging.color_blend(pdc, rectUpdate, RGB(127, 127, 117), 128);
 
-      ::ca::draw_item drawitem;
+      ::ax::draw_item drawitem;
       drawitem.m_pgraphics = pdc;
       list * plist = m_plistctrlinterface;
       rect rectDivider;

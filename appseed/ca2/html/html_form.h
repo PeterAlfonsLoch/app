@@ -18,11 +18,11 @@ public:
 
 
 
-   html_form(::ca::application * papp);
+   html_form(::ax::application * papp);
    virtual ~html_form();
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
-   virtual void _001DrawChildren(::ca::graphics *pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
+   virtual void _001DrawChildren(::ax::graphics *pdc);
 
    virtual void layout();
 

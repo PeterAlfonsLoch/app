@@ -10,8 +10,8 @@ namespace filemanager
       namespace simple
       {
 
-         list_view::list_view(::ca::application * papp) :
-         ca(papp),
+         list_view::list_view(::ax::application * papp) :
+         ax(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),
             ::user::form(papp),
@@ -724,7 +724,7 @@ namespace filemanager
             frame_window * pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
             point.x, point.y,
-            (::ca::window *) pframe);
+            (::ax::window *) pframe);
             }
             }
             else
@@ -737,7 +737,7 @@ namespace filemanager
             frame_window * pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
             point.x, point.y,
-            (::ca::window *) pframe);
+            (::ax::window *) pframe);
             }
             }*/
          }

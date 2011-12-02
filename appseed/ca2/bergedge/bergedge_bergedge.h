@@ -21,7 +21,7 @@ namespace bergedge
    class CLASS_DECL_ca bergedge :
       virtual public platform::application,
       virtual public filemanager::item_action,
-      virtual public ::ca::bergedge
+      virtual public ::ax::bergedge
    {
    public:
 
@@ -34,7 +34,7 @@ namespace bergedge
          string                  m_strApp;
          string                  m_strQuery;
          ::bergedge::bergedge *  m_pbergedgeParent;
-         ::ca::application *     m_papp;
+         ::ax::application *     m_papp;
          bool                    m_bMakeVisible;
          ::user::interaction *   m_puiParent;
          gen::property_set       m_setParameters;
@@ -57,8 +57,8 @@ namespace bergedge
 
       bool                                                  m_bShowPlatform;
 
-      ::ca::application *                                   m_pappCurrent;
-      ::collection::string_map < ::ca::application * >      m_mapApplication;
+      ::ax::application *                                   m_pappCurrent;
+      ::collection::string_map < ::ax::application * >      m_mapApplication;
 
 
       ::userbase::single_document_template *                m_ptemplate_bergedge;
@@ -92,7 +92,7 @@ namespace bergedge
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual ::ca::application * get_app() const;
+      virtual ::ax::application * get_app() const;
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -102,23 +102,23 @@ namespace bergedge
 
       void initialize_bergedge_application_interface();
 
-      virtual bool create_bergedge(::ca::create_context * pcreatecontext);
+      virtual bool create_bergedge(::ax::create_context * pcreatecontext);
 
 
       // semantics defined by application
       using platform::application::request;
-      virtual void request(::ca::create_context * pcreatecontext);
+      virtual void request(::ax::create_context * pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
+      virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ax::create_context * pcontext);
 
-      virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ax::create_context * pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual ::user::place_holder_ptra get_place_holder(::userbase::main_frame * pmainframe, ::ax::create_context * pcontext);
 
-      virtual bool place(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
+      virtual bool place(::userbase::main_frame * pmainframe, ::ax::create_context * pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -138,17 +138,17 @@ namespace bergedge
       
       
 
-      void on_request(::ca::create_context * pcreatecontext);
+      void on_request(::ax::create_context * pcreatecontext);
 
-      ::ca::application * application_get(const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ax::application * application_get(const char * pszId, bool bCreate = true, bool bSynch = true, ::ax::application_bias * pbiasCreate = NULL);
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
+      virtual bool open_by_file_extension(const char * pszPathName, ::ax::application_bias * pbiasCreate = NULL);
 
-      virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
+      virtual bool open_by_file_extension(::ax::create_context * pcreatecontext);
       
       virtual bool is_bergedge();
 
-      ::ca::application * get_current_application();
+      ::ax::application * get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
 

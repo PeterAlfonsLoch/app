@@ -8,16 +8,16 @@ namespace userbase
       public ::user::tool_tip_tool
    {
    public:
-      bitmap_button(::ca::application * papp);
+      bitmap_button(::ax::application * papp);
 
       bool  m_bHover;            // set if cursor is over the button
       bool  m_bCommandEnable;    // set if command is enabled
 
-      ::ca::bitmap m_bitmap;          // not pressed default bitmap
-      ::ca::bitmap m_bitmapSel;       // pressed bitmap
-      ::ca::bitmap m_bitmapFocus;     // focus bitmap
-      ::ca::bitmap m_bitmapDisabled;  // disabled bitmap
-      ::ca::bitmap m_bitmapHover;     // hover bitmap
+      ::ax::bitmap m_bitmap;          // not pressed default bitmap
+      ::ax::bitmap m_bitmapSel;       // pressed bitmap
+      ::ax::bitmap m_bitmapFocus;     // focus bitmap
+      ::ax::bitmap m_bitmapDisabled;  // disabled bitmap
+      ::ax::bitmap m_bitmapHover;     // hover bitmap
 
 #ifdef WINDOWS
       BOOL LoadBitmaps(UINT nIDBitmapResource,

@@ -4,9 +4,9 @@ class CLASS_DECL_ca BaseSplitWnd :
    virtual public ::userbase::split_layout
 {
 public:
-   BaseSplitWnd(::ca::application * papp);
+   BaseSplitWnd(::ax::application * papp);
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 

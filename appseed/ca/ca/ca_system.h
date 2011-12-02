@@ -21,9 +21,8 @@ namespace ca
 
       virtual ::ca::ca * clone(::ca::ca * pobj);
       virtual void discard_to_factory(::ca::ca * pca);
-      
-   protected:
 
+      virtual ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
 
       virtual bool initialize();
 

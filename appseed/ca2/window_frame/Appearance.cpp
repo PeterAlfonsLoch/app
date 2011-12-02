@@ -7,13 +7,13 @@ namespace window_frame
 {
 
 
-   appearance::CTool001::CTool001(::ca::application * papp) :
-      ca(papp)
+   appearance::CTool001::CTool001(::ax::application * papp) :
+      ax(papp)
    {
    }
 
    appearance::appearance(WorkSet * pworkset) :
-      ::ca::ca(pworkset->get_app())
+      ::ax::ax(pworkset->get_app())
    {
       m_ptool001 = new CTool001(get_app());
       m_bAutomaticModeSwitching = true;
@@ -321,10 +321,10 @@ namespace window_frame
 
    }
 
-   void appearance::CTool001::draw(::ca::graphics * pdc)
+   void appearance::CTool001::draw(::ax::graphics * pdc)
    {
       pdc->SelectObject(m_brushBody);
-      ::ca::pen_sp pen(get_app());
+      ::ax::pen_sp pen(get_app());
       pen->construct(PS_SOLID, 0, RGB(255, 255, 255));
       pdc->SelectObject(pen);
       point pt(0, 0);
@@ -342,7 +342,7 @@ namespace window_frame
       }
    }
 
-   void appearance::CTool001::CColorBezier::draw(::ca::brush & brush, ::ca::graphics * pdc)
+   void appearance::CTool001::CColorBezier::draw(::ax::brush & brush, ::ax::graphics * pdc)
    {
       pdc->SelectObject(&brush);
       pdc->SelectObject(m_ppen);

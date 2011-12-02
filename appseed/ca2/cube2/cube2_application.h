@@ -34,7 +34,7 @@ namespace cube2
       virtual bool on_uninstall();
 
       using cube1::application::request;
-      virtual void request(::ca::create_context * pcreatecontext);
+      virtual void request(::ax::create_context * pcreatecontext);
 
       virtual void on_exclusive_instance_local_conflict();
 
@@ -48,11 +48,11 @@ namespace cube2
 
    };
 
-   inline application & app_cast(::ca::application * papp)
+   inline application & app_cast(::ax::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
 
 
-} // namespace ca
+} // namespace ax
 

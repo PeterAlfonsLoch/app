@@ -1,13 +1,13 @@
 #pragma once
 
-namespace ca
+namespace ax
 {
  
 
    template < class T >
-   void smart_pointer <T>::create(::ca::application * papp)
+   void smart_pointer <T>::create(::ax::application * papp)
    {
-      static ::ca::type_info s_typeinfo = ::ca::get_type_info < T > ();
+      static ::ax::type_info s_typeinfo = ::ax::get_type_info < T > ();
       if(get_app() == NULL)
          set_app(papp);
       if(m_p != NULL)
@@ -36,4 +36,4 @@ namespace ca
    }
 
 
-} // namespace ca
+} // namespace ax

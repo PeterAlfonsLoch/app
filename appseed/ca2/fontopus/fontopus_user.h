@@ -34,7 +34,7 @@ namespace fontopus
       ::userpresence::user::presence *                m_ppresence;
 
 
-      user(::ca::application * papp);
+      user(::ax::application * papp);
       virtual ~user();
 
       virtual void start_veiev_synch();

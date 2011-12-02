@@ -12,7 +12,7 @@ namespace window_frame
       friend class WorkSet;
       friend class WorkSetListener;
    public:
-      virtual void on_delete(::ca::ca * poc);
+      virtual void on_delete(::ax::ax * poc);
       void Attach(WorkSetListener *plistener);
       //void add(WorkSetListener * plistener);
       WorkSetListenerArray();

@@ -2,6 +2,21 @@
 
 
 #include "simpleuser/simpleuser_draw_context.h"
+#include "ca_bitmap.h"
+#include "ca_pen.h"
+#include "ca_brush.h"
+#include "ca_font.h"
+#include "ca_region.h"
+#include "ca_palette.h"
+#include "ca/radix/radix_1.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// _AFX_FUNCNAME definition
+#ifdef UNICODE
+#define _AFX_FUNCNAME(_Name) _Name##W
+#else
+#define _AFX_FUNCNAME(_Name) _Name##A
+#endif
 
 
 namespace user

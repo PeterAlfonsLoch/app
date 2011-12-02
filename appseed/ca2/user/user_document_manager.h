@@ -50,7 +50,7 @@ public:
    virtual document_template * get_template(index index) const;
    virtual void RegisterShellFileTypes(BOOL bCompat);
    void UnregisterShellFileTypes();
-   virtual void request(::ca::create_context * pcreatecontext); // open named file
+   virtual void request(::ax::create_context * pcreatecontext); // open named file
    virtual BOOL save_all_modified(); // save before exit
    virtual void close_all_documents(BOOL bEndSession); // close documents before exiting
    virtual int get_open_document_count();

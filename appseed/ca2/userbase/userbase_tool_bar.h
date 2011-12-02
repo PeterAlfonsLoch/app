@@ -109,7 +109,7 @@ namespace userbase
 #endif
       void layout(); // called for for delayed button layout
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
 
       //{{AFX_MSG(tool_bar)
       DECL_GEN_SIGNAL(_001OnNcHitTest)

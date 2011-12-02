@@ -17,7 +17,7 @@ namespace user
          ElementDivider,
       };
 
-      ::ca::font_sp        m_font;
+      ::ax::font_sp        m_font;
       string               m_strBuffer;
       visual::graphics_extension     m_dcextension;
       
@@ -31,14 +31,14 @@ namespace user
 
       list *               m_plistctrlinterface;
 
-      list_header(::ca::application * papp);
+      list_header(::ax::application * papp);
       virtual ~list_header();
 
       void AddMessageHandling(::gen::message::dispatch * pinterface);
       void SetBaseListCtrlInterface(list * pinterface);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void DrawItem(::ca::draw_item * pdrawitem);
+      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void DrawItem(::ax::draw_item * pdrawitem);
 
 
       virtual bool DIDDXColumn(bool bSave, index iColumn);

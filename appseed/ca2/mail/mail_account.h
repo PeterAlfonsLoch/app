@@ -7,7 +7,7 @@ namespace mail
       virtual public ::radix::object
    {
    public:
-      account(::ca::application * papp);
+      account(::ax::application * papp);
       string         m_id;
       string         m_strEmail;
       string         m_strServer;

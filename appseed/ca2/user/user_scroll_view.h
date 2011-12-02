@@ -28,7 +28,7 @@ namespace user
       ph(scroll_bar)    m_pscrollbarVert;
       scroll_info       m_scrollinfo;
 
-      scroll_view(::ca::application * papp);
+      scroll_view(::ax::application * papp);
       virtual ~scroll_view();
 
 

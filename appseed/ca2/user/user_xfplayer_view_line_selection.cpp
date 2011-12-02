@@ -638,7 +638,7 @@ bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
             viewline.GetPlacement(rectPlacement);
             viewline.get_interaction()->_001RedrawWindow();
          }
-         //         ::ca::window * pwnd = viewline.GetWnd();
+         //         ::ax::window * pwnd = viewline.GetWnd();
          //         pwnd->KillTimer(gen::Timer::ID_HOVER);
       }
    }

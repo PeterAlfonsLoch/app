@@ -3,8 +3,8 @@
 namespace userbase
 {
    
-   edit_plain_text_view::edit_plain_text_view(::ca::application * papp) :
-      ca(papp),
+   edit_plain_text_view::edit_plain_text_view(::ax::application * papp) :
+      ax(papp),
       data_container(papp),
       ::user::interaction(papp),
       ::userbase::view(papp),
@@ -14,7 +14,7 @@ namespace userbase
       ::userbase::edit_plain_text(papp),
       m_font(papp),
       ex1::tree(papp),
-      ::ca::data_listener(papp)
+      ::ax::data_listener(papp)
    {
    }
 

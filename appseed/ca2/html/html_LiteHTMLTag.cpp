@@ -19,7 +19,7 @@ lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy) throw(memory_ex
       }
       catch(memory_exception * pe)
       {
-         ::ca::rethrow(pe);
+         ::ax::rethrow(pe);
       }
          
       /** DEEP COPY END */

@@ -2,8 +2,8 @@
 
 
 
-document::document(::ca::application * papp) :
-   ca(papp),
+document::document(::ax::application * papp) :
+   ax(papp),
    data_container(papp),
    document_interface(papp)
 {
@@ -51,7 +51,7 @@ void document::disconnect_views()
    m_viewptra.remove_all();
 }
 
-void document::on_alloc(::ca::application * papp)
+void document::on_alloc(::ax::application * papp)
 {
    set_app(papp);
 }
@@ -831,7 +831,7 @@ void document::read(ex1::byte_input_stream & istream)
 }
 
 
-::view * document::get_view(const ::ca::type_info info, index indexFind)
+::view * document::get_view(const ::ax::type_info info, index indexFind)
 {
    count countView = get_view_count();
    count countFind = 0;

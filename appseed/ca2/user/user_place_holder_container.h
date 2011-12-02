@@ -13,7 +13,7 @@ namespace user
       array_app_alloc < place_holder, place_holder & > m_holdera;
 
 
-      place_holder_container(::ca::application * papp);
+      place_holder_container(::ax::application * papp);
       virtual ~place_holder_container();
 
 

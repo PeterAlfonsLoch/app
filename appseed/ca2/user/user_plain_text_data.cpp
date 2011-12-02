@@ -4,9 +4,9 @@
 namespace user
 {
 
-   plain_text_data::plain_text_data(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
+   plain_text_data::plain_text_data(::ax::application * papp) :
+      ax(papp),
+      ::ax::data(papp),
       ex1::tree_data(papp),
       m_editfile(papp)
    {

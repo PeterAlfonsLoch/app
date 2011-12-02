@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "ca/collection/map.h"
+
+
 template <class TYPE>
 class base_enum_names :
    public ::collection::map < TYPE, TYPE, string, string >

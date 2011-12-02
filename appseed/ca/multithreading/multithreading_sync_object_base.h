@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "ca/gen/gen_object.h"
+#include "ca/datetime/datetime_duration.h"
+
+
 /////////////////////////////////////////////////////////////////////////////
 // Basic synchronization object
 

@@ -16,7 +16,7 @@ namespace userbase
       menu_item *          m_pitemContainer;
 
 
-      menu_button_cmd_ui(::ca::application * papp);
+      menu_button_cmd_ui(::ax::application * papp);
 
 
       virtual void Enable(BOOL bOn);
@@ -31,7 +31,7 @@ namespace userbase
       public button
    {
    public:
-      menu_button(::ca::application * papp);
+      menu_button(::ax::application * papp);
    public:
       virtual ~menu_button();
 
@@ -40,9 +40,9 @@ namespace userbase
 
       virtual void _001Layout();
 
-      virtual void _001DrawCheck(::ca::graphics * pdc);
+      virtual void _001DrawCheck(::ax::graphics * pdc);
 
-      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ax::graphics * pdc);
    };
 
 } // namespace userbase

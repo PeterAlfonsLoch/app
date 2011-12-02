@@ -3,8 +3,8 @@
 namespace mail
 {
 
-   db_pop3::db_pop3(::ca::application * papp) :
-      ca(papp),
+   db_pop3::db_pop3(::ax::application * papp) :
+      ax(papp),
       pop3(papp)
    {
 

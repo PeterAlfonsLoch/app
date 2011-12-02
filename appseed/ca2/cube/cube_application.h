@@ -36,16 +36,16 @@ namespace cube
 
       virtual BOOL run();
 
-      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual void on_request(::ax::create_context * pcreatecontext);
 
       ::document * _001OpenDocumentFile(var varFile);
 
-      ::ca::application * get_system();
+      ::ax::application * get_system();
 
    };
 
    
-   CLASS_DECL_ca application & app_cast(::ca::application * papp);
+   CLASS_DECL_ca application & app_cast(::ax::application * papp);
 
 
 } // namespace cube

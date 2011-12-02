@@ -179,16 +179,16 @@ namespace user
    }
 
 
-   ca::type_info application::controltype_to_typeinfo(user::control::e_type e_type)
+   ax::type_info application::controltype_to_typeinfo(user::control::e_type e_type)
    {
       switch(e_type)
       {
       case user::control::type_button:
-         return ::ca::get_type_info < ::user::button > ();
+         return ::ax::get_type_info < ::user::button > ();
       case user::control::type_edit_plain_text:
-         return ::ca::get_type_info < ::user::edit_plain_text > ();
+         return ::ax::get_type_info < ::user::edit_plain_text > ();
       }
-      return ::ca::type_info();
+      return ::ax::type_info();
    }
 
    ::user::keyboard & application::keyboard()

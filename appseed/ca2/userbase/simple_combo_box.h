@@ -10,9 +10,9 @@ public:
 
    virtual void pre_subclass_window();
 
-   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ax::graphics * pdc);
    virtual ~simple_combo_box();
 
-   BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
+   BOOL OnEraseBkgnd(::ax::graphics * pgraphics);
 };
 

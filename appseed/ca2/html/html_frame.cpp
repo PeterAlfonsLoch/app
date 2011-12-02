@@ -40,8 +40,8 @@ static UINT indicators[] =
    ID_INDICATOR_SCRL,
 };
 
-html_frame::html_frame(::ca::application * papp) :
-   ca(papp),
+html_frame::html_frame(::ax::application * papp) :
+   ax(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),

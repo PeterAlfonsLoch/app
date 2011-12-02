@@ -9,7 +9,7 @@ class array_smart_ptr :
 public:
 
 
-   array_smart_ptr(::ca::application * papp);
+   array_smart_ptr(::ax::application * papp);
    array_smart_ptr(const array_smart_ptr & a);
    virtual ~array_smart_ptr();
 
@@ -26,14 +26,14 @@ public:
 };
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
-array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::array_smart_ptr(::ca::application * papp) :
-   ::ca::ca(papp)
+array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::array_smart_ptr(::ax::application * papp) :
+   ::ax::ax(papp)
 {
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::array_smart_ptr(const array_smart_ptr & a) :
-   ::ca::ca(a.get_app())
+   ::ax::ax(a.get_app())
 {
    operator = (a);
 }
@@ -48,7 +48,7 @@ array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::~array_smart_ptr()
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline TYPE * array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
 {
-   TYPE * p = System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ());
+   TYPE * p = System.alloc(this->get_app(), ::ax::get_type_info < TYPE > ());
    array_release_ptr < TYPE, ARG_TYPE >::add(p);
    return p;
 }
@@ -83,9 +83,9 @@ void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, AR
    {
       for(index i = this->get_size(); i < iIndex; i++)
       {
-         this->ptra().add(System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
+         this->ptra().add(System.alloc(this->get_app(), ::ax::get_type_info < TYPE > ()));
       }
-      this->ptra().add(System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
+      this->ptra().add(System.alloc(this->get_app(), ::ax::get_type_info < TYPE > ()));
    }
 }
 

@@ -3,10 +3,10 @@
 namespace userbase
 {
 
-   button::button(::ca::application * papp) :
+   button::button(::ax::application * papp) :
       ::user::interaction(papp), 
       ::user::button(papp),
-      ca(papp),
+      ax(papp),
       m_dib(papp)
    {
       m_pschema   = NULL;
@@ -16,14 +16,14 @@ namespace userbase
    {
    }
 
-   ::ca::font * button::_001GetFont()
+   ::ax::font * button::_001GetFont()
    {
       if(m_pschema == NULL)
          return NULL;
       return m_pschema->m_font;
    }
 
-   void button::_001OnDraw(::ca::graphics * pdc)
+   void button::_001OnDraw(::ax::graphics * pdc)
    {
       
       if(m_pschema == NULL)
@@ -128,7 +128,7 @@ namespace userbase
 
    void button::ResizeToFit()
    {
-      ::ca::graphics * pdc = m_pguie->GetDC();
+      ::ax::graphics * pdc = m_pguie->GetDC();
 
       if(pdc == NULL)
          return;

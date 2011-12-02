@@ -211,7 +211,7 @@ CLASS_DECL_ca void AfxDrawDitheredBitmap(::ca::application * papp, ::ca::graphic
 
 
 
-typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
+
 
 
 // global helpers for threads

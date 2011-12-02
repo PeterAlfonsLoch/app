@@ -5,14 +5,15 @@ namespace simpleuser
 {
 
    class CLASS_DECL_ca network_configuration :
-      public ::user::form_callback,
-      public ::user::view_creator
+      virtual public ::radix::object
+//      public ::user::form_callback,
+  //    public ::user::view_creator
    {
    public:
 
 
-      form_document *               m_pdoc;
-      form_view *                   m_pview;
+      /*form_document *               m_pdoc;
+      form_view *                   m_pview;*/
 
 
       network_configuration(::ca::application * papp);
@@ -24,7 +25,7 @@ namespace simpleuser
 
       void on_show();
 
-      bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
+      //bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
 
    };
 

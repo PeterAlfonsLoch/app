@@ -18,7 +18,7 @@ namespace html
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html_ex(::ca::application * papp);
+      html_ex(::ax::application * papp);
       virtual ~html_ex();
 
       int resolve_entity(const char * lpszEntity, string & strChar);
