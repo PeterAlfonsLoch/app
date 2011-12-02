@@ -208,8 +208,6 @@ namespace ca
 
 
       bool                                m_bRun;
-      user::LPWndArray *                  m_puiptra;
-      ::user::interaction::timer_array *  m_ptimera;
       comparable_array < ::ca::ca * >     m_captraDeletePool;
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
       DWORD_PTR                           m_dwAlive;

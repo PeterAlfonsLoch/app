@@ -16,9 +16,18 @@ namespace user
    public:
 
       
-      keyboard *           m_pkeyboard;
-      stringa              m_straEscape;
-      class window_map *   m_pwindowmap;
+      keyboard *                    m_pkeyboard;
+      stringa                       m_straEscape;
+      class window_map *            m_pwindowmap;
+      ::user::LPWndArray *          m_pframea;
+      ::user::keyboard_focus *      m_pkeyboardfocus;
+      ::user::mouse_focus *         m_pmousefocusLButtonDown;
+      ::user::mouse_focus *         m_pmousefocusRButtonDown;
+
+
+
+
+
 
 
       application();
@@ -31,6 +40,9 @@ namespace user
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
 
       DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage)
+
+      
+      ::user::LPWndArray & frames();
 
 
       virtual bool initialize1();
@@ -50,6 +62,12 @@ namespace user
       class window_map & window_map();
 
 
+      virtual ::user::keyboard_focus * get_keyboard_focus();
+      virtual void set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus);
+      virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
+      virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
+      virtual ::user::mouse_focus * get_mouse_focus_RButtonDown();
+      virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
 
 
       // Pointer to document_manager used to manage document templates

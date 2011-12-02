@@ -3,8 +3,8 @@
 #pragma once
 
 #include "template/trace_module_manager.h"
-#include "user/user_str.h"
-#include "user/user_draw_context.h"
+#include "simpleuser/simpleuser_str.h"
+#include "simpleuser/simpleuser_draw_context.h"
 #include "multithreading/multithreading.h"
 
 #define CA2M_BERGEDGE 0xCA20
@@ -56,7 +56,6 @@ namespace radix
 
    class CLASS_DECL_ca application :
       virtual public ::ca::application,
-      virtual public ::ca::message_window_simple_callback,
       virtual public ::radix::thread
    {
 
@@ -83,10 +82,6 @@ namespace radix
       DWORD m_dwPolicies;            // block for storing boolean system policies
 
    public:
-
-      ::user::LPWndArray * m_pframea;
-
-
 
       EExclusiveInstance m_eexclusiveinstance;
 
@@ -162,9 +157,6 @@ namespace radix
       bool                             m_bSessionSynchronizedScreen;
       ::user::interaction *            m_pwndMain;
 
-      ::user::keyboard_focus *         m_pkeyboardfocus;
-      ::user::mouse_focus *            m_pmousefocusLButtonDown;
-      ::user::mouse_focus *            m_pmousefocusRButtonDown;
 
       int                              m_iResourceId;
 
@@ -207,7 +199,6 @@ namespace radix
       ::user::interaction * get_focus_guie();
 //      virtual ::user::interaction * get_place_holder_container();
 
-      ::user::LPWndArray & frames();
       virtual void add_frame(::user::interaction * pwnd);
       virtual void remove_frame(::user::interaction * pwnd);
 
@@ -449,12 +440,6 @@ namespace radix
       virtual ::user::interaction * release_capture_uie();
       virtual ::user::interaction * get_capture_uie();
 
-      virtual ::user::keyboard_focus * get_keyboard_focus();
-      virtual void set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus);
-      virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
-      virtual ::user::mouse_focus * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
 
       virtual int get_document_count();
 

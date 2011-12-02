@@ -54,23 +54,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\xml">
-      <UniqueIdentifier>{6d3eb925-8e2a-4857-8df2-d0426b862f23}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\window_frame">
       <UniqueIdentifier>{0fc87c5d-2607-41f0-b62b-67d00e807395}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\srtp">
-      <UniqueIdentifier>{b22f3daf-e852-4b4b-be96-3518e55eccd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\srtp\C Source Files">
-      <UniqueIdentifier>{7593fa66-a46e-4d5e-bf69-e3d024bf88f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\mail">
       <UniqueIdentifier>{9c7e3c65-77db-4c2a-a35b-dec4ef182dc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\visual">
-      <UniqueIdentifier>{474714a1-9b38-4acc-aba1-a8607b074663}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{ad02f461-a3c1-4930-9819-2df1f1959485}</UniqueIdentifier>
@@ -86,9 +74,6 @@
     </Filter>
     <Filter Include="Source Files\filemanager">
       <UniqueIdentifier>{2f7c30f6-b5ab-41b3-b968-48afd3e43999}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\colorertake5">
-      <UniqueIdentifier>{496d6289-6b93-4efd-be83-34114ddd1af4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\calculator">
       <UniqueIdentifier>{08f7307d-f433-41de-b05c-7695518e7f82}</UniqueIdentifier>
@@ -165,15 +150,6 @@
     <Filter Include="Header Files\fontopus">
       <UniqueIdentifier>{0836bdeb-25d4-4e88-843c-7c56a933cb71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{ed8218cf-f28e-443b-9e2d-656e54a3e295}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\zip">
-      <UniqueIdentifier>{62b1711e-19c5-47a6-b0a2-e850b5e769e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\7z">
-      <UniqueIdentifier>{442788aa-b2d2-4d7f-b6da-633d19198dc1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ca4">
       <UniqueIdentifier>{10d28478-d93f-4a74-9b50-6ef97666283e}</UniqueIdentifier>
     </Filter>
@@ -222,18 +198,6 @@
     <Filter Include="Header Files\command">
       <UniqueIdentifier>{e3e5d7ab-3499-4bdc-b9c8-e3c7a8ae1472}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress\C Source">
-      <UniqueIdentifier>{e63013e7-025e-4196-a964-427b03101b3d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\rar">
-      <UniqueIdentifier>{2ca188a2-6755-4dc0-a6e1-a267640c6d3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\netnode">
-      <UniqueIdentifier>{83355911-fce0-4ddb-b5da-39a6b1d1f894}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\webserver">
-      <UniqueIdentifier>{2982a131-c512-4cbd-bf65-d4776d87b9be}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\cube">
       <UniqueIdentifier>{1dc943eb-290c-401d-911c-fa18555112ef}</UniqueIdentifier>
     </Filter>
@@ -245,9 +209,6 @@
     </Filter>
     <Filter Include="Source Files\acube">
       <UniqueIdentifier>{140bfcf3-96f2-4d8d-b62a-0b8fb974f6cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\colorertake5\command">
-      <UniqueIdentifier>{1d64b2d1-e419-4b46-856c-b798f27cc5cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ca2\filehandler">
       <UniqueIdentifier>{af023d87-0ce2-48d2-8658-b6f7103535c7}</UniqueIdentifier>
@@ -2348,6 +2309,9 @@
     <ClInclude Include="userpresence\userpresence_user_presence_central_container.h">
       <Filter>Header Files\userpresence</Filter>
     </ClInclude>
+    <ClInclude Include="user\user_thread.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="collection\collection.inl">
@@ -2366,54 +2330,6 @@
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_disp_option.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_document.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_entity.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_exportable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_importable.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_input_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_node.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_output_tree.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_parse_info.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_property_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_tree_base.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_tree_schema.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_var_exchange.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_XMLite.cpp">
-      <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="window_frame\Appearance.cpp">
       <Filter>Source Files\window_frame</Filter>
@@ -2466,9 +2382,6 @@
     <ClCompile Include="window_frame\WorkSetListenerArray.cpp">
       <Filter>Source Files\window_frame</Filter>
     </ClCompile>
-    <ClCompile Include="srtp\srtp_srtp.c">
-      <Filter>Source Files\srtp\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mail\mail_account.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
@@ -2489,48 +2402,6 @@
     </ClCompile>
     <ClCompile Include="mail\mail_simple_pop3.cpp">
       <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_api.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_application.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_buffered_graphics.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_clip.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_cursor.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_dib.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_font.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_glyph.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_glyph_set.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_graphics_extension.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_icon.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_image_list.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_visual.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_water_routine.cpp">
-      <Filter>Source Files\visual</Filter>
     </ClCompile>
     <ClCompile Include="user\user_application.cpp">
       <Filter>Source Files\user</Filter>
@@ -3114,63 +2985,6 @@
     <ClCompile Include="filemanager\SimplePreviewInterface.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_application.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_base_editor.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_cregexp.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_default_error_handler.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_error_handler_writer.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_exception.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_hrc_parser_helpers.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_hrc_parser_impl.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_line_regions_compact_support.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_line_regions_support.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_logging.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_outliner.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_parser_factory.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_region_mapper_impl.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_styled_hrd_mapper.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_hrd_mapper.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_lines.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_parser_helpers.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_text_parser_impl.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\calculator_application.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
@@ -3525,21 +3339,6 @@
     <ClCompile Include="user\user_frame_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="visual\visual_fastblur.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_font_central.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_FreeImageFileProc.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_imaging.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_rgb_quad_array.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
     <ClCompile Include="collection\collection_string_list.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
@@ -3597,15 +3396,6 @@
     <ClCompile Include="filemanager\filemanager_ContextMenu.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_line_source.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_parsed_line_writer.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_region_handler.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
     <ClCompile Include="ca2\ca2_xml.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
@@ -3626,186 +3416,6 @@
     </ClCompile>
     <ClCompile Include="ca\ca_interlocked_long_pulse.cpp">
       <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_api.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_file.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_in_file.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_memory_file.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_util.cpp">
-      <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_ioapi.c">
-      <Filter>Source Files\compress\C Source</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_iowin32.c">
-      <Filter>Source Files\compress\C Source</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_unzip.c">
-      <Filter>Source Files\compress\C Source</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_zip.c">
-      <Filter>Source Files\compress\C Source</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bzip_helper.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\gzip_helper.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_aes.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_handler.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_header.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_input_file.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_item.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_volume_input_stream.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\prop_id.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_copy_coder.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_filter_coder.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\writer_with_crc.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_create_coder.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_codecs_register.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar1_decoder.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar2_decoder.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar3_decoder.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_lz_out_window.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7_dec.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar3_vm.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7_enc.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd8.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_archive.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_archive_item_name.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_int_to_string.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_local_progress.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zDecode.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zEncode.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zExtract.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zFolderInStream.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zFolderOutStream.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zHandler.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zHandlerOut.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zHeader.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zIn.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zOut.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zProperties.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zRegister.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zSpecStream.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zUpdate.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_method_properties.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer2mt.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer2.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\out_handler.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\method_properties.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_reader_with_crc.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_method_id.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_parse_properties.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\xml_application.cpp">
-      <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_data_container.cpp">
       <Filter>Source Files\ca</Filter>
@@ -4026,30 +3636,6 @@
     <ClCompile Include="ca\ca_live_signal.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="command\command_application.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_document.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_form_callback.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_frame.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_pane_view.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_pane_view_update_hint.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_primary_view.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
-    <ClCompile Include="command\command_view.cpp">
-      <Filter>Source Files\colorertake5\command</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_draw_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4061,132 +3647,6 @@
     </ClCompile>
     <ClCompile Include="userbase\userbase_tool_cmd_ui.cpp">
       <Filter>Source Files\userbase</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_socket.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_socket_thread.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_application.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_service.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_wb.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_user.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_spider.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_simage.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_persistent_ui.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_note_summary.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_note.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_song.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_person_info.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_person.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_performer.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_lyrics_song_in2_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_karaoke_song_in2_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list_song.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list_category.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list_artists.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_info_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_database_cache.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_category.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_page_song.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_page_category.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_page_artists.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_body_page.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun_user.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun_fun.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun_friend_search.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fontopus_database.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_database_string_integer.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_database.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_cynce_database.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_cynce.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_checkimage.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_alpha_select_performer.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_annotate.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_secure.cpp">
-      <Filter>Source Files\webserver</Filter>
     </ClCompile>
     <ClCompile Include="template\template_hash.cpp">
       <Filter>Source Files\template</Filter>

@@ -1087,6 +1087,7 @@
     <ClInclude Include="user\user_plain_text_data.h" />
     <ClInclude Include="user\user_printer.h" />
     <ClInclude Include="user\user_print_job.h" />
+    <ClInclude Include="user\user_thread.h" />
     <ClInclude Include="user\user_xfplayer_view_line_selection.h" />
     <ClInclude Include="window_frame\FrameSchemaHardCoded008.h" />
     <ClInclude Include="calculator\application.h" />
@@ -1621,17 +1622,6 @@
     <ClCompile Include="collection\stringl.cpp" />
     <ClCompile Include="collection\string_array.cpp" />
     <ClCompile Include="collection\string_sort_array.cpp" />
-    <ClCompile Include="command\command_application.cpp" />
-    <ClCompile Include="command\command_document.cpp" />
-    <ClCompile Include="command\command_form_callback.cpp" />
-    <ClCompile Include="command\command_frame.cpp" />
-    <ClCompile Include="command\command_pane_view.cpp" />
-    <ClCompile Include="command\command_pane_view_update_hint.cpp" />
-    <ClCompile Include="command\command_primary_view.cpp" />
-    <ClCompile Include="command\command_view.cpp" />
-    <ClCompile Include="compress\compress_parse_properties.cpp">
-      <FileType>Document</FileType>
-    </ClCompile>
     <None Include="ca2.def" />
     <None Include="radix\radix.inl" />
     <None Include="user\user_interaction.inl" />
@@ -1654,119 +1644,6 @@
     <ClCompile Include="ca\ca_interlocked_long_pulse.cpp" />
     <ClCompile Include="collection\simple_list.cpp" />
     <ClCompile Include="collection\string_to_string_map.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_line_source.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_parsed_line_writer.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_region_handler.cpp" />
-    <ClCompile Include="compress\7z\7zDecode.cpp" />
-    <ClCompile Include="compress\7z\7zEncode.cpp" />
-    <ClCompile Include="compress\7z\7zExtract.cpp" />
-    <ClCompile Include="compress\7z\7zFolderInStream.cpp" />
-    <ClCompile Include="compress\7z\7zFolderOutStream.cpp" />
-    <ClCompile Include="compress\7z\7zHandler.cpp" />
-    <ClCompile Include="compress\7z\7zHandlerOut.cpp" />
-    <ClCompile Include="compress\7z\7zHeader.cpp" />
-    <ClCompile Include="compress\7z\7zIn.cpp" />
-    <ClCompile Include="compress\7z\7zOut.cpp" />
-    <ClCompile Include="compress\7z\7zProperties.cpp" />
-    <ClCompile Include="compress\7z\7zRegister.cpp" />
-    <ClCompile Include="compress\7z\7zSpecStream.cpp" />
-    <ClCompile Include="compress\7z\7zUpdate.cpp" />
-    <ClCompile Include="compress\bzip_helper.cpp" />
-    <ClCompile Include="compress\compress_archive.cpp" />
-    <ClCompile Include="compress\compress_archive_item_name.cpp" />
-    <ClCompile Include="compress\compress_coder_mixer.cpp" />
-    <ClCompile Include="compress\compress_coder_mixer2mt.cpp" />
-    <ClCompile Include="compress\compress_coder_mixer2.cpp" />
-    <ClCompile Include="compress\compress_copy_coder.cpp" />
-    <ClCompile Include="compress\compress_create_coder.cpp" />
-    <ClCompile Include="compress\compress_filter_coder.cpp" />
-    <ClCompile Include="compress\compress_int_to_string.cpp" />
-    <ClCompile Include="compress\compress_local_progress.cpp" />
-    <ClCompile Include="compress\compress_lz_out_window.cpp" />
-    <ClCompile Include="compress\compress_method_id.cpp" />
-    <ClCompile Include="compress\compress_method_properties.cpp" />
-    <ClCompile Include="compress\compress_ppmd7.cpp" />
-    <ClCompile Include="compress\compress_ppmd7_dec.cpp" />
-    <ClCompile Include="compress\compress_ppmd7_enc.cpp" />
-    <ClCompile Include="compress\compress_ppmd8.cpp" />
-    <ClCompile Include="compress\compress_reader_with_crc.cpp" />
-    <ClCompile Include="compress\gzip_helper.cpp" />
-    <ClCompile Include="compress\method_properties.cpp" />
-    <ClCompile Include="compress\out_handler.cpp" />
-    <ClCompile Include="compress\prop_id.cpp" />
-    <ClCompile Include="compress\rar\rar1_decoder.cpp" />
-    <ClCompile Include="compress\rar\rar2_decoder.cpp" />
-    <ClCompile Include="compress\rar\rar3_decoder.cpp" />
-    <ClCompile Include="compress\rar\rar3_vm.cpp" />
-    <ClCompile Include="compress\rar\rar_aes.cpp" />
-    <ClCompile Include="compress\rar\rar_codecs_register.cpp" />
-    <ClCompile Include="compress\rar\rar_handler.cpp" />
-    <ClCompile Include="compress\rar\rar_header.cpp" />
-    <ClCompile Include="compress\rar\rar_input_file.cpp" />
-    <ClCompile Include="compress\rar\rar_item.cpp" />
-    <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
-    <ClCompile Include="compress\writer_with_crc.cpp" />
-    <ClCompile Include="compress\zip\zip_api.cpp" />
-    <ClCompile Include="compress\zip\zip_file.cpp" />
-    <ClCompile Include="compress\zip\zip_in_file.cpp" />
-    <ClCompile Include="compress\zip\zip_ioapi.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_iowin32.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_memory_file.cpp" />
-    <ClCompile Include="compress\zip\zip_unzip.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_util.cpp" />
-    <ClCompile Include="compress\zip\zip_zip.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">_DEBUG;_USRDLL;_AFXDLL;_CA_DLL;_AFX_CORE_IMPL;_AFX_OLE_IMPL;_AFX_DB_IMPL;_AFX_NET_IMPL;_AFX_NOFORCE_LIBS;_AFX_ENABLE_INLINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="cube1\cube1_application.cpp" />
     <ClCompile Include="cube2\cube2_application.cpp" />
     <ClCompile Include="cube5\cube4_application.cpp" />
@@ -1802,10 +1679,6 @@
     <ClCompile Include="nature\nature_pane_view.cpp" />
     <ClCompile Include="nature\nature_pane_view_update_hint.cpp" />
     <ClCompile Include="nature\nature_view.cpp" />
-    <ClCompile Include="netnode\netnode_application.cpp" />
-    <ClCompile Include="netnode\netnode_service.cpp" />
-    <ClCompile Include="netnode\netnode_socket.cpp" />
-    <ClCompile Include="netnode\netnode_socket_thread.cpp" />
     <ClCompile Include="platform\platform_application.cpp" />
     <ClCompile Include="platform\platform_document.cpp" />
     <ClCompile Include="platform\platform_frame.cpp" />
@@ -1857,63 +1730,7 @@
     <ClCompile Include="user\user_printer.cpp" />
     <ClCompile Include="user\user_print_job.cpp" />
     <ClCompile Include="user\user_xfplayer_view_line_selection.cpp" />
-    <ClCompile Include="visual\visual_fastblur.cpp" />
-    <ClCompile Include="webserver\webserver_alpha_select_performer.cpp" />
-    <ClCompile Include="webserver\webserver_checkimage.cpp" />
-    <ClCompile Include="webserver\webserver_cynce.cpp" />
-    <ClCompile Include="webserver\webserver_cynce_database.cpp" />
-    <ClCompile Include="webserver\webserver_database.cpp" />
-    <ClCompile Include="webserver\webserver_database_string_integer.cpp" />
-    <ClCompile Include="webserver\webserver_fontopus_database.cpp" />
-    <ClCompile Include="webserver\webserver_fun.cpp" />
-    <ClCompile Include="webserver\webserver_fun_friend_search.cpp" />
-    <ClCompile Include="webserver\webserver_fun_fun.cpp" />
-    <ClCompile Include="webserver\webserver_fun_user.cpp" />
-    <ClCompile Include="webserver\webserver_kar_body_page.cpp" />
-    <ClCompile Include="webserver\webserver_kar_page_artists.cpp" />
-    <ClCompile Include="webserver\webserver_kar_page_category.cpp" />
-    <ClCompile Include="webserver\webserver_kar_page_song.cpp" />
-    <ClCompile Include="webserver\webserver_music.cpp" />
-    <ClCompile Include="webserver\webserver_music_category.cpp" />
-    <ClCompile Include="webserver\webserver_music_database_cache.cpp" />
-    <ClCompile Include="webserver\webserver_music_in2_info_list.cpp" />
-    <ClCompile Include="webserver\webserver_music_in2_list.cpp" />
-    <ClCompile Include="webserver\webserver_music_in2_list_artists.cpp" />
-    <ClCompile Include="webserver\webserver_music_in2_list_category.cpp" />
-    <ClCompile Include="webserver\webserver_music_in2_list_song.cpp" />
-    <ClCompile Include="webserver\webserver_music_karaoke_song_in2_list.cpp" />
-    <ClCompile Include="webserver\webserver_music_lyrics_song_in2_list.cpp" />
-    <ClCompile Include="webserver\webserver_music_performer.cpp" />
-    <ClCompile Include="webserver\webserver_music_person.cpp" />
-    <ClCompile Include="webserver\webserver_music_person_info.cpp" />
-    <ClCompile Include="webserver\webserver_music_song.cpp" />
-    <ClCompile Include="webserver\webserver_note.cpp" />
-    <ClCompile Include="webserver\webserver_note_summary.cpp" />
-    <ClCompile Include="webserver\webserver_persistent_ui.cpp" />
-    <ClCompile Include="webserver\webserver_secure.cpp" />
-    <ClCompile Include="webserver\webserver_simage.cpp" />
-    <ClCompile Include="webserver\webserver_spider.cpp" />
-    <ClCompile Include="webserver\webserver_user.cpp" />
-    <ClCompile Include="webserver\webserver_wb.cpp" />
-    <ClCompile Include="webserver\webserver_annotate.cpp" />
     <ClCompile Include="window_frame\FrameSchemaHardCoded008.cpp" />
-    <ClCompile Include="xml\xml_application.cpp" />
-    <ClCompile Include="xml\xml_attr.cpp" />
-    <ClCompile Include="xml\xml_base_array.cpp" />
-    <ClCompile Include="xml\xml_disp_option.cpp" />
-    <ClCompile Include="xml\xml_document.cpp" />
-    <ClCompile Include="xml\xml_entity.cpp" />
-    <ClCompile Include="xml\xml_exportable.cpp" />
-    <ClCompile Include="xml\xml_importable.cpp" />
-    <ClCompile Include="xml\xml_input_tree.cpp" />
-    <ClCompile Include="xml\xml_node.cpp" />
-    <ClCompile Include="xml\xml_output_tree.cpp" />
-    <ClCompile Include="xml\xml_parse_info.cpp" />
-    <ClCompile Include="xml\xml_property_exchange.cpp" />
-    <ClCompile Include="xml\xml_tree_base.cpp" />
-    <ClCompile Include="xml\xml_tree_schema.cpp" />
-    <ClCompile Include="xml\xml_var_exchange.cpp" />
-    <ClCompile Include="xml\xml_XMLite.cpp" />
     <ClCompile Include="window_frame\Appearance.cpp" />
     <ClCompile Include="window_frame\Constants.cpp" />
     <ClCompile Include="window_frame\ControlBoxButton.cpp" />
@@ -1931,24 +1748,6 @@
     <ClCompile Include="window_frame\WorkSetDownUpInterface.cpp" />
     <ClCompile Include="window_frame\WorkSetListener.cpp" />
     <ClCompile Include="window_frame\WorkSetListenerArray.cpp" />
-    <ClCompile Include="srtp\srtp_srtp.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
-      </PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="mail\mail_account.cpp" />
     <ClCompile Include="mail\mail_application.cpp" />
     <ClCompile Include="mail\mail_db_pop3.cpp" />
@@ -1957,24 +1756,6 @@
     <ClCompile Include="mail\mail_pop3.cpp" />
     <ClCompile Include="mail\mail_pop3_socket.cpp" />
     <ClCompile Include="mail\mail_simple_pop3.cpp" />
-    <ClCompile Include="visual\visual_font_central.cpp" />
-    <ClCompile Include="visual\visual_FreeImageFileProc.cpp" />
-    <ClCompile Include="visual\visual_imaging.cpp" />
-    <ClCompile Include="visual\visual_rgb_quad_array.cpp" />
-    <ClCompile Include="visual\visual_api.cpp" />
-    <ClCompile Include="visual\visual_application.cpp" />
-    <ClCompile Include="visual\visual_buffered_graphics.cpp" />
-    <ClCompile Include="visual\visual_clip.cpp" />
-    <ClCompile Include="visual\visual_cursor.cpp" />
-    <ClCompile Include="visual\visual_dib.cpp" />
-    <ClCompile Include="visual\visual_font.cpp" />
-    <ClCompile Include="visual\visual_glyph.cpp" />
-    <ClCompile Include="visual\visual_glyph_set.cpp" />
-    <ClCompile Include="visual\visual_graphics_extension.cpp" />
-    <ClCompile Include="visual\visual_icon.cpp" />
-    <ClCompile Include="visual\visual_image_list.cpp" />
-    <ClCompile Include="visual\visual_visual.cpp" />
-    <ClCompile Include="visual\visual_water_routine.cpp" />
     <ClCompile Include="user\user_document.cpp" />
     <ClCompile Include="user\user_document_manager.cpp" />
     <ClCompile Include="user\user_document_template.cpp" />
@@ -2191,25 +1972,6 @@
     <ClCompile Include="filemanager\SimpleFolderTreeView.cpp" />
     <ClCompile Include="filemanager\SimplePreview.cpp" />
     <ClCompile Include="filemanager\SimplePreviewInterface.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_application.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_base_editor.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_cregexp.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_default_error_handler.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_error_handler_writer.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_exception.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_hrc_parser_helpers.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_hrc_parser_impl.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_line_regions_compact_support.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_line_regions_support.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_logging.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_outliner.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_parser_factory.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_region_mapper_impl.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_styled_hrd_mapper.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_text_hrd_mapper.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_text_lines.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_text_parser_helpers.cpp" />
-    <ClCompile Include="colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="calculator\calculator_application.cpp" />
     <ClCompile Include="calculator\calculator_class.cpp" />
     <ClCompile Include="calculator\calculator_document.cpp" />

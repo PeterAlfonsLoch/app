@@ -908,6 +908,28 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="libcharguess\universal.h" />
     <ClInclude Include="libcharguess\UTF8Prober.h" />
     <ClInclude Include="muldiv64.h" />
+    <ClInclude Include="multithreading\multithreading.h" />
+    <ClInclude Include="multithreading\multithreading_base_sync_object.h" />
+    <ClInclude Include="multithreading\multithreading_critical_section.h" />
+    <ClInclude Include="multithreading\multithreading_event.h" />
+    <ClInclude Include="multithreading\multithreading_event_base.h" />
+    <ClInclude Include="multithreading\multithreading_event_collection.h" />
+    <ClInclude Include="multithreading\multithreading_file_change_event.h" />
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h" />
+    <ClInclude Include="multithreading\multithreading_multi_lock.h" />
+    <ClInclude Include="multithreading\multithreading_mutex.h" />
+    <ClInclude Include="multithreading\multithreading_plain_service.h" />
+    <ClInclude Include="multithreading\multithreading_semaphore.h" />
+    <ClInclude Include="multithreading\multithreading_service_base.h" />
+    <ClInclude Include="multithreading\multithreading_service_status.h" />
+    <ClInclude Include="multithreading\multithreading_single_lock.h" />
+    <ClInclude Include="multithreading\multithreading_socket_event.h" />
+    <ClInclude Include="multithreading\multithreading_synch_lock.h" />
+    <ClInclude Include="multithreading\multithreading_sync_object.h" />
+    <ClInclude Include="multithreading\multithreading_sync_object_base.h" />
+    <ClInclude Include="multithreading\multithreading_thread_pool.h" />
+    <ClInclude Include="multithreading\multithreading_waitable.h" />
+    <ClInclude Include="multithreading\multithreading_wait_result.h" />
     <ClInclude Include="primitive\align.h" />
     <ClInclude Include="primitive\check.h" />
     <ClInclude Include="primitive\color.h" />
@@ -1425,6 +1447,26 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="multithreading\multithreading_base_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_core.cpp" />
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
+    <ClCompile Include="multithreading\multithreading_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp" />
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_mutex.cpp" />
+    <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
+    <ClCompile Include="multithreading\multithreading_service_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_object_base.cpp" />
+    <ClCompile Include="multithreading\multithreading_waitable.cpp" />
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="primitive\color.cpp" />
     <ClCompile Include="primitive\comparable.cpp" />
     <ClCompile Include="primitive\count.cpp" />

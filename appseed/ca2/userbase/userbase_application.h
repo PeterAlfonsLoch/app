@@ -56,4 +56,7 @@ namespace userbase
    CLASS_DECL_ca ::user::front_end * GetUfe(::ca::application * papp);
 
 
+
 } // namespace userbase
+
+

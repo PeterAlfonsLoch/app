@@ -94,6 +94,15 @@ namespace user
 #include "user_tool_tip_tool.h"
 #include "user_tool_tip_window.h"
 
+
+#include "user_document_template.h"
+#include "user_single_document_template.h"
+#include "user_multiple_document_template.h"
+#include "user_document_interface.h"
+#include "user_document.h"
+#include "user_create_context.h"
+
+
 #include "user_document_manager.h"
 
 #include "user_job.h"
@@ -101,6 +110,9 @@ namespace user
 #include "user_printer.h"
 
 #include "user_print_job.h"
+
+
+
 
 
 #include "user_application.h"

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca/ca/ca_window.h"
+
+
 class CLASS_DECL_ca copydesk : 
    public ::ca::window_sp
 {
@@ -25,3 +28,5 @@ public:
    //bool dib_to_desk(::ca::dib * pdib);
    
 };
+
+
