@@ -1507,10 +1507,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="fs\fs_data.cpp" />
     <ClCompile Include="fs\fs_item.cpp" />
     <ClCompile Include="fs\fs_item_array.cpp" />
-    <ClCompile Include="fs\fs_list_data.cpp" />
-    <ClCompile Include="fs\fs_main_view.cpp" />
     <ClCompile Include="fs\fs_set.cpp" />
-    <ClCompile Include="fs\fs_tree_data.cpp" />
     <ClCompile Include="fs\ifs.cpp" />
     <ClCompile Include="fs\ifs_file.cpp" />
     <ClCompile Include="fs\native_fs.cpp" />

@@ -3187,16 +3187,7 @@
     <ClCompile Include="fs\fs_item_array.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
-    <ClCompile Include="fs\fs_list_data.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_main_view.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_set.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_tree_data.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="fs\ifs.cpp">

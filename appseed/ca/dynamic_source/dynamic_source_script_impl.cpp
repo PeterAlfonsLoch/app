@@ -4115,7 +4115,9 @@ namespace dynamic_source
       {
       }
 
-      try
+
+// xxx webserver
+/*      try
       {
          int iPath = 0;
          int iPathCount;
@@ -4137,7 +4139,7 @@ namespace dynamic_source
             iPath++;
          } while (iPath < iPathCount);*/
 
-      }
+      //}
 /*      catch(const char * psz)
       {
          TRACE("script_impl::query_ca2 string exception 6 %s", psz);
@@ -4145,16 +4147,18 @@ namespace dynamic_source
 /*      catch(...)
       {
       }*/
-      strResp.Empty();
-      if(straResp.get_count() == 0)
+// xxx webserver      strResp.Empty();
+      // xxx webserver
+         /*if(straResp.get_count() == 0)
       {
          strResp = "ca2 computing could not answer you by this mean. Don't know! Expect and hope to say finally too: yet!!";
       }
       else
       {
          strResp = straResp.implode("<br><br>");
-      }
-      return strResp;
+      }*/
+      // xxx webserverreturn strResp;
+         return "";
    }
 
 

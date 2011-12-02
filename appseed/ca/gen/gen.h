@@ -100,4 +100,8 @@ CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & o
 
 #include "ca/collection/gen_lemon_array.h"
 
+#include "gen_frame_window_interface.h"
+
+#include "gen_timer.h"
+
 #include "gen_application.h"
