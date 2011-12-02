@@ -18,11 +18,23 @@ namespace ca
 } // namespace ca
 
 
+namespace plane
+{
+
+
+   class bergedge;
+
+
+}
 
 
 namespace bergedge
 {
+
+
    class bergedge;
+
+
 }
 
 namespace cube
@@ -43,8 +55,8 @@ namespace plane
 #define Mathematics(papp) (planeSys(papp).math())
 #define Math (Mathematics(this->get_app()))
 
-
-#define Berg(papp) (*papp->m_pbergedge)
+#define planeBerg(papp) (*papp->m_pplanebergedge)
+#define Berg(papp) (planeBerg(papp))
 #define Bergedge (Berg(this->get_app()))
 
 
@@ -117,6 +129,7 @@ namespace ca
       unsigned long           m_ulFlags;
       ::ca::application *     m_papp;
       ::plane::system *       m_pplanesystem;
+      ::plane::bergedge *     m_pplanebergedge;  // console and services can have user sessions thus a bergedge in ca component
       ::bergedge::bergedge *  m_pbergedge;
       ::cube::system *        m_psystem;
       __int64                 m_countReference;

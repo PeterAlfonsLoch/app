@@ -219,7 +219,7 @@ namespace plane
 
 
 
-      bergedge::bergedge *             query_bergedge(index iEdge);
+      plane::bergedge *             query_bergedge(index iEdge);
 
 
       void on_request(::ca::create_context * pcreatecontext);
@@ -581,3 +581,9 @@ inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    *pt = t;
    return this->ptra().add(pt);
 }
+
+
+
+#include "plane_system_template_trace.h"
+
+

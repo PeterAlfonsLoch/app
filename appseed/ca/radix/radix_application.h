@@ -206,8 +206,11 @@ namespace radix
       ::user::interaction * get_focus_guie();
 //      virtual ::user::interaction * get_place_holder_container();
 
+      
+      ::user::LPWndArray & frames();
       virtual void add_frame(::user::interaction * pwnd);
       virtual void remove_frame(::user::interaction * pwnd);
+
 
       virtual int simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle = MB_OK);
       virtual int simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);

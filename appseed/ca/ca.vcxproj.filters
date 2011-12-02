@@ -1685,9 +1685,6 @@
     <ClInclude Include="ca\ca_dib.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_dir.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_dir_application.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -2235,6 +2232,15 @@
       <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="plane\plane_system.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_library.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_template_trace.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_bergedge.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3334,9 +3340,6 @@
     <ClCompile Include="ca\ca_dib.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_dir.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_dir_application.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -3611,6 +3614,12 @@
       <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="plane\plane_system.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_library.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_bergedge.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
   </ItemGroup>

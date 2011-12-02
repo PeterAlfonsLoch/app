@@ -33,12 +33,12 @@ namespace ca2
       string strCa2Name = pszPath;
       
 
-      if(strCa2Name == "ca2")
+      if(strCa2Name == "ca")
       {
          
-         m_pca2library  = new ::cube::library;
+         m_pca2library  = new ::plane::library;
 
-         m_strCa2Name   = "ca2";
+         m_strCa2Name   = "ca";
 
          return true;
 

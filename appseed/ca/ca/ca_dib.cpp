@@ -58,13 +58,16 @@ namespace ca
       ::ca::bitmap & bitmap = pdc->GetCurrentBitmap();
       if(&bitmap == NULL)
          return FALSE;
+
+      throw not_implemented_exception();
+      /*
       BITMAP bm;
       bitmap.GetObject(sizeof(bm), &bm);
       if(!create(bm.bmWidth, bm.bmHeight))
       {
          return FALSE;
       }
-      from(pdc);
+      from(pdc);*/
       return TRUE;
    }
 

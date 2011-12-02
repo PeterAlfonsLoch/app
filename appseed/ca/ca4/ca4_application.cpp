@@ -140,7 +140,7 @@ namespace ca4
 
       if(is_system())
       {
-         ::sockets::SSLInitializer ssl_init(m_psystem);
+         ::sockets::SSLInitializer ssl_init(m_pplanesystem);
          System.m_pcopydesk = new class copydesk();
          System.m_pcopydesk->create(this);
          if(!System.copydesk().initialize())

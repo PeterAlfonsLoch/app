@@ -23,14 +23,14 @@ namespace ca
    {
    }
 
-   int graphics_object::_AFX_FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const
+/*   int graphics_object::_AFX_FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpObject);
       throw interface_only_exception();   
-   }
+   }*/
 
-#pragma push_macro("GetObject")
+/*#pragma push_macro("GetObject")
 #undef GetObject
 
    int graphics_object::GetObject(int nCount, LPVOID lpObject) const
@@ -38,7 +38,7 @@ namespace ca
       return _AFX_FUNCNAME(GetObject)(nCount, lpObject); 
    }
 
-#pragma pop_macro("GetObject")
+#pragma pop_macro("GetObject")*/
 
    BOOL graphics_object::CreateStockObject(int nIndex)
    {

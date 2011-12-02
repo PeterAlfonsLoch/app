@@ -1,7 +1,10 @@
 #include "StdAfx.h"
 
+
 namespace ca
 {
+
+
    dir::dir(::ca::application * papp) :
       ca(papp)
    {
