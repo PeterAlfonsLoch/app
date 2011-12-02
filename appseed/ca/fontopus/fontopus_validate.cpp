@@ -30,17 +30,7 @@ namespace fontopus
          }
       }
       //Sleep(15 * 1000);
-      m_ptemplatePane   = new ::userbase::single_document_template(
-         papp,
-         "system/auth",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < simple_frame_window > (),
-         ::ca::get_type_info < userex::pane_tab_view > ());
       m_pauth           = NULL;
-      m_pviewAuth       = NULL;
-      m_pdocAuth        = NULL;
-      m_pdoc            = NULL;
-      m_ptabview        = NULL;
    }
 
    validate::~validate()
@@ -146,14 +136,6 @@ namespace fontopus
          m_loginthread.m_pcallback = this;
          m_loginthread.run();
 
-         if(m_ptabview != NULL)
-         {
-            m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-         }
-         if(m_ptemplatePane != NULL)
-         {
-            m_ptemplatePane->close_all_documents(FALSE);
-         }
 
          return m_puser;
       }
@@ -165,11 +147,11 @@ namespace fontopus
          m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
          page1();
-         m_pviewAuth->SetTimer(1984, 484, NULL);
+//         m_pviewAuth->SetTimer(1984, 484, NULL);
          ::ca::live_signal livesignal;
          livesignal.keep(get_app());
-         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-         m_ptemplatePane->close_all_documents(FALSE);
+  //       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
+    //     m_ptemplatePane->close_all_documents(FALSE);
          return m_puser;
       }
       else
@@ -180,20 +162,20 @@ namespace fontopus
 
    void validate::ensure_main_document()
    {
-      if(m_pdoc != NULL)
-         return;
+/*      if(m_pdoc != NULL)
+         return;*/
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
-      m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
-      userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
-      pview->set_view_creator(this);
-      m_ptabview = pview;
-      pview->set_tab("ca2open", 1);
+      //m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
+      //userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
+      //pview->set_view_creator(this);
+      //m_ptabview = pview;
+/*      pview->set_tab("ca2open", 1);
       pview->set_tab("network", 2);
       pview->set_image_tab("", Application.dir().matter("image/keyboard-h21.png"), 3);
-      pview->set_cur_tab_by_id(1);
+      pview->set_cur_tab_by_id(1);*/
    }
 
    bool validate::get_license(const char * psz)
@@ -342,7 +324,7 @@ namespace fontopus
 
    void validate::page1()
    {
-      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
+//      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
       //string strUrl;
       //strUrl = "http://spaignition.api.veriterse.net/query?node=install_application&id=";
       //string strAppName;
@@ -365,28 +347,28 @@ namespace fontopus
       //{
         // m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
       //}
-      if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
+/*      if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
       {
          authentication_failed(0, "Cannot open form for authentication!!");
          return;
-      }
+      }*/
       display_main_frame();
-      ::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
-      text_interface * ptext = dynamic_cast < text_interface * > (pguie);
-      ptext->_001SetText(m_loginthread.m_strUsername);
-      if(m_loginthread.m_strUsername.is_empty())
-         Application.set_keyboard_focus(pguie);
-      else
-      {
-         pguie = m_pviewAuth->GetChildByName("password");
-         Application.set_keyboard_focus(pguie);
-      }
+      //::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
+//      text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+//      ptext->_001SetText(m_loginthread.m_strUsername);
+//      if(m_loginthread.m_strUsername.is_empty())
+  //       Application.set_keyboard_focus(pguie);
+    //  else
+      //{
+        // pguie = m_pviewAuth->GetChildByName("password");
+         //Application.set_keyboard_focus(pguie);
+      //}
    }
 
    void validate::display_main_frame()
    {
       rect rectOpen;
-      if(m_ptabview->GetParentFrame()->GetParent() == NULL)
+/*      if(m_ptabview->GetParentFrame()->GetParent() == NULL)
       {
 
          System.get_screen_rect(rectOpen);
@@ -408,7 +390,7 @@ namespace fontopus
          System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
       }
       else*/
-      {
+      /*{
          m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);
       }
       m_ptabview->GetTopLevelFrame()->SetWindowPos(
@@ -428,14 +410,14 @@ namespace fontopus
       }
       else
       {
-      }
+      }*/
       /*UINT ui1 = GetCurrentThreadId();
       UINT ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
       if(::AttachThreadInput(ui1, ui2, TRUE)) 
       {
          TRACE("AttachedThreadInput");
       }*/
-      if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
+/*      if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
       {
          TRACE("fontopus_validate tab_view top_level_frame set_foreground_window OK");
          if(m_ptabview->GetTopLevelFrame()->BringWindowToTop())
@@ -443,7 +425,7 @@ namespace fontopus
             TRACE("fontopus_validate tab_view top_level_frame bring_window_to_top OK");
          }
       }
-
+      */
       
 
       /*
@@ -458,16 +440,16 @@ namespace fontopus
    void validate::pageMessage(const char * pszMatter, gen::property_set & set)
    {
       ensure_main_document();
-      m_pdocAuth->get_html_data()->m_propertyset = set;
+/*      m_pdocAuth->get_html_data()->m_propertyset = set;
       m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
       display_main_frame();
       ::ca::live_signal livesignal;
       livesignal.keep(get_app());
       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-      m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
+      m_ptabview->get_wnd()->EndAllModalLoops(IDOK);*/
    }
 
-   void validate::on_create_view(::user::view_creator_data * pcreatordata)
+/*   void validate::on_create_view(::user::view_creator_data * pcreatordata)
    {
       switch(pcreatordata->m_id)
       {
@@ -508,10 +490,11 @@ namespace fontopus
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
       }
 
-   }
+   }*/
+
    void validate::on_show_view()
    {
-      switch(m_ptabview->get_view_id())
+/*      switch(m_ptabview->get_view_id())
       {
       case 1:
          {
@@ -522,7 +505,7 @@ namespace fontopus
             m_netcfg.on_show();
          }
          break;
-      }
+      }*/
    }
 
 
@@ -1042,7 +1025,7 @@ namespace fontopus
       }
    }
 
-   bool validate::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+/*   bool validate::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_button_clicked
@@ -1114,7 +1097,7 @@ namespace fontopus
          return true;
       }
       return false;
-   }
+   }*/
 
    void validate::authentication_failed(int iAuth, const char * pszResponse)
    {
@@ -1123,7 +1106,7 @@ namespace fontopus
       string strUsername = m_loginthread.m_strUsername;
       m_bLicense = false;
       m_puser = NULL;
-      if(m_pdocAuth != NULL)
+/*      if(m_pdocAuth != NULL)
       {
          m_pdocAuth->get_html_data()->m_puser = NULL;
       }
@@ -1190,7 +1173,7 @@ namespace fontopus
             pageMessage("err\\user\\authentication\\failed.xhtml", propertyset);
          }
       }
-      delete m_pauth;
+      delete m_pauth;*/
    }
 
    void validate::authentication_succeeded()
@@ -1227,15 +1210,15 @@ namespace fontopus
       }
       m_bLicense = true;
       m_puser = m_loginthread.m_puser;
-      if(m_ptabview != NULL)
+/*      if(m_ptabview != NULL)
       {
          m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-      }
+      }*/
    }
 
    validate::auth * validate::get_auth()
    {
-      ::ca::create_context_sp createcontext(get_app());
+/*      ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = true;
       form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
       userex::pane_tab_view * pview = pdoc->get_typed_view < userex::pane_tab_view > ();
@@ -1255,7 +1238,8 @@ namespace fontopus
          ::ca::live_signal livesignal;
          livesignal.keep(get_app());
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-      return m_pauth;
+      return m_pauth;*/
+      return NULL;
    }
 
 } // namespace fontopus

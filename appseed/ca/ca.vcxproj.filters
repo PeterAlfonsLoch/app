@@ -2857,9 +2857,6 @@
     <ClCompile Include="fontopus\fontopus_validate.cpp">
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="fontopus\userset.cpp">
-      <Filter>Source Files\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="ex1\ex1_application.cpp">
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
@@ -3184,28 +3181,13 @@
     <ClCompile Include="fs\fs_data.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
-    <ClCompile Include="fs\fs_document.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_item.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="fs\fs_item_array.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
-    <ClCompile Include="fs\fs_list.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_list_data.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_list_interface.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_list_item.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_list_item_array.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="fs\fs_main_view.cpp">
@@ -3214,16 +3196,7 @@
     <ClCompile Include="fs\fs_set.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
-    <ClCompile Include="fs\fs_tree.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_tree_data.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_tree_interface.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\fs_tree_item.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="fs\ifs.cpp">

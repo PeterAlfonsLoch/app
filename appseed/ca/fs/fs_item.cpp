@@ -16,11 +16,11 @@ namespace fs
    }
 
 
-   item::item(const list_item & listitem)
+   /*item::item(const list_item & listitem)
    {
       m_strPath         = listitem.m_strPath;
       m_flags           = listitem.m_flags;
-   }
+   }*/
 
 
 } // namespace fs

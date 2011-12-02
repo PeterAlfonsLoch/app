@@ -3725,6 +3725,8 @@ namespace dynamic_source
       for(int i = 0; i < psimageptra->get_count(); i++)
       {
          webserver::simage_accepta * paccepta = psimageptra->element_at(i);
+         // xxx webserver
+         /*
          int iFind = paccepta->m_propsetAccept.find_value_ci(param_view);
          gprop("root") = paccepta->m_root;
          if(isset(param_view) && iFind >= 0)
@@ -3754,6 +3756,7 @@ namespace dynamic_source
          }
          if(candidate.has_char())
             break;
+            */
       }
       return candidate;
    }
@@ -3767,8 +3770,9 @@ namespace dynamic_source
       webserver::match_host_array * pptra = get_manager()->m_pmatchhostaSpider;
       for(int i = 0; i < pptra->get_count(); i++)
       {
-         if(pptra->element_at(i).matches(hostname, useragent))
-            return true;
+// xxx webserver
+/*         if(pptra->element_at(i).matches(hostname, useragent))
+            return true;*/
       }
       return false;
    }
@@ -3778,7 +3782,7 @@ namespace dynamic_source
    {
       single_lock sl(&get_manager()->m_mutexSpider, TRUE);
       webserver::match_host_array * pptra = get_manager()->m_pmatchhostaSpider;
-      pptra->add(new webserver::match_host(hostname, useragent));
+// xxx webserver      pptra->add(new webserver::match_host(hostname, useragent));
 
    }
 
@@ -3886,11 +3890,11 @@ namespace dynamic_source
       strResp.Empty();
       try
       {
-         calculator::parser parser(get_app());
-         calculator::element * pelement = parser.parse(strQuery);
-         string strValue = pelement->get_value().to_string();
+// xxx webserver         calculator::parser parser(get_app());
+// xxx webserver         calculator::element * pelement = parser.parse(strQuery);
+         /*string strValue = pelement->get_value().to_string();
          strResp = pelement->get_expression() + " = " + strValue  + "\n";
-         bOk = true;
+         bOk = true;*/
       }
       catch(const char * psz)
       {
@@ -3972,7 +3976,8 @@ namespace dynamic_source
          stringa stra;
          if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds"))
          {
-            calculator::parser parser(get_app());
+// xxx webserver
+/*            calculator::parser parser(get_app());
             calculator::element * pelement = parser.parse(stra[1]);
             string strValue;
             strValue.Format("%f", pelement->get_value());
@@ -3987,7 +3992,7 @@ namespace dynamic_source
             strResp += " = " + strMinFrac + " " + str_context()->get("calendar:minutes");
             strResp += " = " + strMin + " " + str_context()->get("calendar:minutes") + " and " + strMinSec + " " + str_context()->get("calendar:seconds") + "\n";
 
-            bOk = true;
+            bOk = true;*/
          }
       }
       catch(const char * psz)
@@ -4003,7 +4008,8 @@ namespace dynamic_source
          stringa stra;
          if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days"))
          {
-            calculator::parser parser(get_app());
+// xxx webserver
+/*            calculator::parser parser(get_app());
             calculator::element * pelement = parser.parse(stra[1]);
             string strSignal;
             if(pelement->get_value().mod() >= 0)
@@ -4022,7 +4028,7 @@ namespace dynamic_source
             straResp.add(strResp);
             strResp.Empty();
             ca2_query_date(straResp, time, strQuery, strQuery);
-            bOk = true;
+            bOk = true;*/
          }
       }
       catch(const char * psz)
@@ -4117,7 +4123,8 @@ namespace dynamic_source
          do
          {
 
-            datetime::parser parser(get_app(), str_context());
+// xxx webserver
+/*            datetime::parser parser(get_app(), str_context());
             datetime::element * pelement = parser.parse(strQuery);
             string strValue;
             iPathCount = 1;
@@ -4128,16 +4135,16 @@ namespace dynamic_source
             strResp = pelement->get_expression(get_app(),  str_context(), i, iPathCount) + " = " + strValue  + "\n";
             straResp.add(strResp);
             iPath++;
-         } while (iPath < iPathCount);
+         } while (iPath < iPathCount);*/
 
       }
-      catch(const char * psz)
+/*      catch(const char * psz)
       {
          TRACE("script_impl::query_ca2 string exception 6 %s", psz);
-      }
-      catch(...)
+      }*/
+/*      catch(...)
       {
-      }
+      }*/
       strResp.Empty();
       if(straResp.get_count() == 0)
       {

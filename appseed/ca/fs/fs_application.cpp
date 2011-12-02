@@ -16,9 +16,9 @@ namespace fs
 
       if(is_system())
       {
-         System.factory().creatable_small < main_view > ();
+/*         System.factory().creatable_small < main_view > ();
          System.factory().creatable_small < tree > ();
-         System.factory().creatable_small < list > ();
+         System.factory().creatable_small < list > ();*/
       }
 
       return true;
