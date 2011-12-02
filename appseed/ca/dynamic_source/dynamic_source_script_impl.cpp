@@ -446,6 +446,7 @@ namespace dynamic_source
       return cookie("sessid").m_varValue.get_string();
    }
 
+   /*
    void script_impl::edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible)
    {
       UNREFERENCED_PARAMETER(iEdge);
@@ -461,6 +462,7 @@ namespace dynamic_source
       UNREFERENCED_PARAMETER(bMakeVisible);
       //System.edgify_app(iEdge, prtcApp, bMakeVisible);
    }
+   */
 
    void script_impl::hand_root()
    {
@@ -833,16 +835,16 @@ namespace dynamic_source
          gprop("login_request") = true;
          gprop("minUserLevel") = 30;
 
-         secure().login();
+// xxx webserver          secure().login();
          return;
       }
       else if(get("action") == "logout")
       {
-         secure().logout();
+// xxx webserver          secure().logout();
       }
       else
       {
-         secure().ensure();
+// xxx webserver          secure().ensure();
          if(session("auth") && isset(request("ruri")))
          {
             outheader("Location") =  urldecode(request("ruri"));
@@ -884,7 +886,7 @@ namespace dynamic_source
       if(get("ci").is_set())
       {
          single_lock sl(&get_manager()->get_session(session_id())->m_mutex, TRUE);
-         checkimage().generate_new_image();
+// xxx webserver          checkimage().generate_new_image();
       }
    }
 
@@ -1334,13 +1336,15 @@ namespace dynamic_source
          strStyle = gstr("param_style");
       if(strLang.is_empty())
          strLang = gstr("param_locale");
-      return uiredir().solve(strRoot, strLang, strStyle, pszExUri);
+// xxx webserver       return uiredir().solve(strRoot, strLang, strStyle, pszExUri);
+      return "";
    }
 
    void script_impl::ui_redir_add(const char * pszRoot, const char * pszLang, const char * pszStyle, const char * pszTarget)
    {
       single_lock sl(&m_pmanager->m_csUiRedir, TRUE);
-      return uiredir().add(pszRoot, pszLang, pszStyle, pszTarget);
+// xxx webserver       return uiredir().add(pszRoot, pszLang, pszStyle, pszTarget);
+      return;
    }
 
    string script_impl::a_go1(var var)
@@ -1745,28 +1749,28 @@ namespace dynamic_source
       if(gen::is_null(pmenu))
          return;
       webserver::ui_menu & menu = *pmenu;
-      if(menu.get_size() > 0)
+// xxx webserver       if(menu.get_size() > 0)
       {
          printf("<div class=\"menuleft%d-panel\">", iPanelIndex);
       }
       //   int iMenuIndex = gprop("menuindex");
       gprop("panelindex") = iPanelIndex;
-      for(int i = 0; i < menu.get_size(); i++)
-      {
+// xxx webserver       for(int i = 0; i < menu.get_size(); i++)
+/*      {
          if(!menu[i]->m_strTitle.is_empty())
          {
             printf("<div class=\"menuleft%d-group\">", iPanelIndex);
             printf("<div class=\"menuleft%d-groupheader\">", iPanelIndex);
             print(menu[i]->m_strTitle);
             print("</div>\n");
-         }
-         for(int j = 0; j < menu[i]->get_size(); j++)
+         }*/
+/*         for(int j = 0; j < menu[i]->get_size(); j++)
          {
             if(!menu[i]->element_at(j)->m_strTitle.is_empty())
             {
                /*            print "<a href=\"".$item['link']."\" id=\"mli$menuindex-a\" class=\"menuleft$panelindex-item-a\"   onmouseover=\"mliMOv($panelindex, $menuindex);\" onmouseout=\"mliMOu($panelindex, $menuindex);\"
                onmousedown=\"mliMDn($panelindex, $menuindex);\" onmouseup=\"mliMUp($panelindex, $menuindex);\">";*/
-               printf("<a href=\"" + menu[i]->element_at(j)->m_strLink + "\" id=\"mli$menuindex-a\" class=\"menuleft$panelindex-item-a\"   onmouseover=\"mliMOv($panelindex, $menuindex);\" onmouseout=\"mliMOu($panelindex, $menuindex);\" \
+               /*printf("<a href=\"" + menu[i]->element_at(j)->m_strLink + "\" id=\"mli$menuindex-a\" class=\"menuleft$panelindex-item-a\"   onmouseover=\"mliMOv($panelindex, $menuindex);\" onmouseout=\"mliMOu($panelindex, $menuindex);\" \
                                                                          onmousedown=\"mliMDn($panelindex, $menuindex);\" >");
                printf("<div id=\"mli$menuindex-div3\" class=\"menuleft$panelindex-item-div3\">", iPanelIndex);
                printf("<div id=\"mli$menuindex-div2\" class=\"menuleft$panelindex-item-div2\">", iPanelIndex);
@@ -1778,13 +1782,13 @@ namespace dynamic_source
                print("</a>\n");
                gprop("menuindex")++;
             }
-         }
+         }*/
          print("</div>");
-      }
-      if(menu.get_size() > 0)
+      //}
+/*      if(menu.get_size() > 0)
       {
          print("</div>");
-      }
+      }*/
    }
    /*
    string script_impl::menu_printOutNav1($linka, $titlea)
@@ -2129,8 +2133,8 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pfun == NULL)
       {
-         m_pinstanceMain->m_pfun = new ::webserver::fun::fun();
-         m_pinstanceMain->keep(m_pinstanceMain->m_pfun);
+// xxx webserver          m_pinstanceMain->m_pfun = new ::webserver::fun::fun();
+// xxx webserver          m_pinstanceMain->keep(m_pinstanceMain->m_pfun);
       }
       return *m_pinstanceMain->m_pfun;
    }
@@ -2139,9 +2143,9 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pmusicdb == NULL)
       {
-         m_pinstanceMain->m_pmusicdb = get_manager()->new_musicdb(0);
-         m_pinstanceMain->m_pmusicdb->m_pinterface = m_pinstanceMain;
-         m_pinstanceMain->m_pmusicdb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
+// xxx webserver          m_pinstanceMain->m_pmusicdb = get_manager()->new_musicdb(0);
+// xxx webserver          m_pinstanceMain->m_pmusicdb->m_pinterface = m_pinstanceMain;
+// xxx webserver          m_pinstanceMain->m_pmusicdb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pmusicdb;
    }
@@ -2150,9 +2154,9 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pmusicsedb == NULL)
       {
-         m_pinstanceMain->m_pmusicsedb = get_manager()->new_musicdb(1);
-         m_pinstanceMain->m_pmusicsedb->m_pinterface = m_pinstanceMain;
-         m_pinstanceMain->m_pmusicsedb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
+// xxx webserver          m_pinstanceMain->m_pmusicsedb = get_manager()->new_musicdb(1);
+// xxx webserver          m_pinstanceMain->m_pmusicsedb->m_pinterface = m_pinstanceMain;
+// xxx webserver          m_pinstanceMain->m_pmusicsedb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pmusicsedb;
    }
@@ -2161,10 +2165,10 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_padmindb == NULL)
       {
-         m_pinstanceMain->m_padmindb = new ::webserver::fontopus_database(get_app());
-         m_pinstanceMain->m_padmindb->m_pinterface = m_pinstanceMain;
-         m_pinstanceMain->m_padmindb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
-         m_pinstanceMain->m_padmindb->initialize(2);
+// xxx webserver          m_pinstanceMain->m_padmindb = new ::webserver::fontopus_database(get_app());
+// xxx webserver          m_pinstanceMain->m_padmindb->m_pinterface = m_pinstanceMain;
+// xxx webserver          m_pinstanceMain->m_padmindb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
+// xxx webserver          m_pinstanceMain->m_padmindb->initialize(2);
       }
       return *m_pinstanceMain->m_padmindb;
    }
@@ -2173,9 +2177,9 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pnetnodedb == NULL)
       {
-         m_pinstanceMain->m_pnetnodedb = new ::webserver::fontopus_database(get_app());
-         m_pinstanceMain->keep(m_pinstanceMain->m_pnetnodedb);
-         m_pinstanceMain->m_pnetnodedb->initialize(1);
+// xxx webserver          m_pinstanceMain->m_pnetnodedb = new ::webserver::fontopus_database(get_app());
+// xxx webserver          m_pinstanceMain->keep(m_pinstanceMain->m_pnetnodedb);
+// xxx webserver          m_pinstanceMain->m_pnetnodedb->initialize(1);
       }
       return *m_pinstanceMain->m_pnetnodedb;
    }
@@ -2184,7 +2188,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_psecure == NULL)
       {
-         m_pinstanceMain->m_psecure = new class ::webserver::secure();
+         // xxx webserver m_pinstanceMain->m_psecure = new class ::webserver::secure();
       }
       return *m_pinstanceMain->m_psecure;
    }
@@ -2195,7 +2199,7 @@ namespace dynamic_source
       {
          if(m_pinstanceMain->m_pmusic == NULL)
          {
-            m_pinstanceMain->m_pmusic = new ::webserver::music::music();
+//            m_pinstanceMain->m_pmusic = new ::webserver::music::music();
          }
       }
       return *m_pinstanceMain->m_pmusic;
@@ -2205,8 +2209,8 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pcyncedb == NULL)
       {
-         m_pinstanceMain->m_pcyncedb = get_manager()->new_cyncedb();
-         m_pinstanceMain->m_pcyncedb->m_pinterface = m_pinstanceMain;
+         /*m_pinstanceMain->m_pcyncedb = get_manager()->new_cyncedb();
+         m_pinstanceMain->m_pcyncedb->m_pinterface = m_pinstanceMain;*/
       }
       return *m_pinstanceMain->m_pcyncedb;
    }
@@ -2215,7 +2219,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pcynce == NULL)
       {
-         m_pinstanceMain->m_pcynce = new class ::webserver::cynce();
+// xxx webserver                   m_pinstanceMain->m_pcynce = new class ::webserver::cynce();
       }
       return *m_pinstanceMain->m_pcynce;
    }
@@ -2224,7 +2228,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pui == NULL)
       {
-         m_pinstanceMain->m_pui = new class ::webserver::user();
+// xxx webserver                   m_pinstanceMain->m_pui = new class ::webserver::user();
       }
       return *m_pinstanceMain->m_pui;
    }
@@ -2233,7 +2237,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pwb == NULL)
       {
-         m_pinstanceMain->m_pwb = new class ::webserver::wb();
+// xxx webserver                   m_pinstanceMain->m_pwb = new class ::webserver::wb();
       }
       return *m_pinstanceMain->m_pwb;
    }
@@ -2337,18 +2341,18 @@ namespace dynamic_source
 
       if(m_pmusicdb != NULL)
       {
-         m_ptra.remove(dynamic_cast < ptr * > (m_pmusicdb));
-         get_manager()->free_musicdb(m_pmusicdb);
+// xxx webserver                   m_ptra.remove(dynamic_cast < ptr * > (m_pmusicdb));
+// xxx webserver                   get_manager()->free_musicdb(m_pmusicdb);
       }
       if(m_pmusicsedb != NULL)
       {
-         m_ptra.remove(dynamic_cast < ptr * > (m_pmusicsedb));
-         get_manager()->free_musicdb(m_pmusicsedb);
+// xxx webserver                   m_ptra.remove(dynamic_cast < ptr * > (m_pmusicsedb));
+// xxx webserver                   get_manager()->free_musicdb(m_pmusicsedb);
       }
       if(m_pcyncedb != NULL)
       {
-         m_ptra.remove(dynamic_cast < ptr * > (m_pcyncedb));
-         get_manager()->free_cyncedb(m_pcyncedb);
+// xxx webserver                   m_ptra.remove(dynamic_cast < ptr * > (m_pcyncedb));
+// xxx webserver                   get_manager()->free_cyncedb(m_pcyncedb);
       }
 
 
@@ -2432,7 +2436,7 @@ namespace dynamic_source
          }
          else
          {
-            set_cookie("sessid", fun().key1_generate_sessid());
+// xxx webserver                      set_cookie("sessid", fun().key1_generate_sessid());
          }
          if(m_ppropertysetSession == NULL)
          {
@@ -2542,11 +2546,12 @@ namespace dynamic_source
          dprint("there is no secureuserid");
          strUseStyle = use_style_get_default();
       }
-      else if(!musicdb()._fun_get_user_data(gprop("secureuserid"), "use_style", strUseStyle))
+// xxx webserver 
+      /*      else if(!musicdb()._fun_get_user_data(gprop("secureuserid"), "use_style", strUseStyle))
       {
          dprint("could not get data");
          strUseStyle = use_style_get_default();
-      }
+      }*/
       return accepta[strUseStyle];
    }
 
@@ -2564,7 +2569,7 @@ namespace dynamic_source
       if(accepta.has_property(pszId) && gprop("secureuserid").is_set())
       {
          dprint("ACCEPTED->$id");
-         musicdb()._fun_set_user_data(gprop("secureuserid"), "use_style", pszId);
+// xxx webserver                   musicdb()._fun_set_user_data(gprop("secureuserid"), "use_style", pszId);
       }
    }
 
@@ -2590,8 +2595,8 @@ namespace dynamic_source
 
    webserver::checkimage & script_impl::checkimage()
    {
-      if(m_pcheckimage == NULL)
-         m_pcheckimage = new class webserver::checkimage();
+// xxx webserver                if(m_pcheckimage == NULL)
+// xxx webserver                   m_pcheckimage = new class webserver::checkimage();
       return *m_pcheckimage;
    }
 

@@ -4,6 +4,7 @@
 namespace plane
 {
 
+
    class CLASS_DECL_ca application : 
       virtual public ::netnode::application
    {
@@ -93,4 +94,5 @@ namespace plane
 
 
 } // namespace plane
+
 

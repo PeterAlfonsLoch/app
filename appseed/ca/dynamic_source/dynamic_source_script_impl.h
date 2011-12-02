@@ -277,8 +277,8 @@ namespace dynamic_source
 
       var include(const char * lpcsz);
       void launch(const char * lpcsz);
-      void edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible);
-      void edgify_app(int iEdge, ::ca::type_info prtcApp, bool bMakeVisible);
+//      void edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible);
+  //    void edgify_app(int iEdge, ::ca::type_info prtcApp, bool bMakeVisible);
 
       virtual void run();
 

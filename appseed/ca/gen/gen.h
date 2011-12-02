@@ -98,4 +98,6 @@ CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & o
 
 #include "gen_international_locale_style.h"
 
+#include "ca/collection/gen_lemon_array.h"
+
 #include "gen_application.h"

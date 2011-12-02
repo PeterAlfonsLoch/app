@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 
+
 namespace fontopus
 {
 
@@ -24,7 +25,7 @@ namespace fontopus
    bool application::initialize_instance()
    {
 
-      if(!cube2::application::initialize_instance())
+      if(!fs::application::initialize_instance())
          return false;
 
       return TRUE;
@@ -34,7 +35,7 @@ namespace fontopus
    {
       try
       {
-         ::cube2::application::exit_instance();
+         ::fs::application::exit_instance();
       }
       catch(...)
       {

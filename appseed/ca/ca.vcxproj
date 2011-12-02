@@ -1370,8 +1370,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="collection\point_array.cpp" />
     <ClCompile Include="collection\rect_array.cpp" />
     <ClCompile Include="collection\simple_list.cpp" />
-    <ClCompile Include="collection\simple_object_array.cpp" />
-    <ClCompile Include="collection\simple_pointer_array.cpp" />
     <ClCompile Include="collection\sort.cpp" />
     <ClCompile Include="collection\stringa.cpp" />
     <ClCompile Include="collection\stringl.cpp" />

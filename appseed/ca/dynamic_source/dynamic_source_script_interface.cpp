@@ -94,7 +94,7 @@ namespace dynamic_source
    }
 
 
-
+/*
    void script_interface::edgify(int , ::userbase::document_template * , bool )
    {
    }
@@ -102,7 +102,7 @@ namespace dynamic_source
    void script_interface::edgify_app(int , ::ca::type_info , bool )
    {
    }
-
+   */
 
 
    void script_interface::hand_root()

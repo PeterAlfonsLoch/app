@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_ca application  :
-      virtual public ::ca4::application
+      virtual public ::userpresence::application
    {
    protected:
       class imaging * m_pimaging;

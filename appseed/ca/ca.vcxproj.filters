@@ -3676,12 +3676,6 @@
     <ClCompile Include="collection\simple_list.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
-    <ClCompile Include="collection\simple_object_array.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\simple_pointer_array.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
     <ClCompile Include="collection\sort.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>

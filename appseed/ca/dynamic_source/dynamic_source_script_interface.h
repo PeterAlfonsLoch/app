@@ -1,6 +1,19 @@
 #pragma once
 
 
+#include "ca/radix/html_file.h"
+
+
+namespace netnode
+{
+
+
+   class socket;
+
+
+} // namespace netnode
+
+
 namespace webserver
 {
 
@@ -130,8 +143,8 @@ namespace dynamic_source
 
       virtual var include(const char * lpcsz);
       virtual void launch(const char * lpcsz);
-      virtual void edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible);
-      virtual void edgify_app(int iEdge, ::ca::type_info prtcApp, bool bMakeVisible);
+//      virtual void edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible);
+  //    virtual void edgify_app(int iEdge, ::ca::type_info prtcApp, bool bMakeVisible);
 
       virtual string real_path(const char * psz) = 0;
       virtual string system_path(const char * psz) = 0;

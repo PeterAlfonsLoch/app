@@ -102,7 +102,7 @@ namespace dynamic_source
 
 
 
-   void script_composite::edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible)
+/*   void script_composite::edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible)
    {
       m_pinterface->edgify(iEdge, ptemplate, bMakeVisible);
    }
@@ -111,6 +111,7 @@ namespace dynamic_source
    {
       m_pinterface->edgify_app(iEdge, prtcApp, bMakeVisible);
    }
+   */
 
    void script_composite::hand_root()
    {
