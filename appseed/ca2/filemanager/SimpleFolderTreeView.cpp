@@ -10,9 +10,9 @@
 namespace filemanager
 {
 
-   SimpleFolderTreeView::SimpleFolderTreeView(::ax::application * papp) : 
-      ax(papp),
-      ::ax::data_container(papp),
+   SimpleFolderTreeView::SimpleFolderTreeView(::ca::application * papp) : 
+      ca(papp),
+      ::ca::data_container(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp),
       SimpleFolderTreeInterface(papp),
@@ -216,7 +216,7 @@ namespace filemanager
 
             pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
                point.x, point.y,
-               (::ax::window *) pframe);
+               (::ca::window *) pframe);
          }
       }
       else
@@ -229,7 +229,7 @@ namespace filemanager
             frame_window * pframe = GetTopLevelFrame();
             pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
                point.x, point.y,
-               (::ax::window *) pframe);
+               (::ca::window *) pframe);
          }
       }*/
    }

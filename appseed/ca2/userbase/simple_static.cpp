@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-simple_static::simple_static(::ax::application * papp) :
-   ax(papp),
+simple_static::simple_static(::ca::application * papp) :
+   ca(papp),
    ::userbase::base_static(papp),
    m_brushBkg(papp)
 {
@@ -15,7 +15,7 @@ simple_static::~simple_static()
 {
 }
 
-void simple_static::_001OnDraw(::ax::graphics *pdc)
+void simple_static::_001OnDraw(::ca::graphics *pdc)
 {
    if(GetStyle() & SS_ICON)
    {

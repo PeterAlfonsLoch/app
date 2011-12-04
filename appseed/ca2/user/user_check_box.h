@@ -3,12 +3,12 @@
 namespace user
 {
 
-   class CLASS_DECL_ca check_box :
+   class CLASS_DECL_ca2 check_box :
       virtual public control,
       virtual public check_interface
    {
    public:
-      check_box(::ax::application * papp);
+      check_box(::ca::application * papp);
       virtual ~check_box();
 
    protected:
@@ -16,7 +16,7 @@ namespace user
       bool  m_bMouseDown;
 
    public:
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, bool bUser);
 

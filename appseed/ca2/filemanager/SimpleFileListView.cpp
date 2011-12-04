@@ -9,8 +9,8 @@
 namespace filemanager
 {
 
-   SimpleFileListView::SimpleFileListView(::ax::application * papp) :
-      ax(papp),
+   SimpleFileListView::SimpleFileListView(::ca::application * papp) :
+      ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
       ::user::form_list(papp),
@@ -114,7 +114,7 @@ namespace filemanager
                   return;
                //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
                SetTimer(5432185, 230, NULL);
-               //::ax::window::SetTimer(5432184, 23, NULL);
+               //::ca::window::SetTimer(5432184, 23, NULL);
    // dbbreak            m_pserverNext = simpledb::get(get_app())->GetDataServer();
    //            AddClient(this);
      //          SetDataInterface(&m_datainterface);
@@ -315,7 +315,7 @@ namespace filemanager
                ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
                //ASSERT(pPopup != NULL);
-               userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > ( dynamic_cast < ::ax::window * > (GetParentFrame()));
+               userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame()));
                pframe->SetActiveView(this);
                menuPopup.set_app(get_app());
                menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,

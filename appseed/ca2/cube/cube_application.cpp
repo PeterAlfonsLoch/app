@@ -64,7 +64,7 @@ namespace cube
    {
    }
 
-   ::ax::application * application::get_system()
+   ::ca::application * application::get_system()
    {
       return new application();
    }
@@ -266,7 +266,7 @@ namespace cube
    }
 
 
-   void application::on_request(::ax::create_context * pcreatecontext)
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -371,7 +371,7 @@ namespace cube
       return ::cube4::application::run();
    }
 
-   CLASS_DECL_ca application & app_cast(::ax::application * papp)
+   CLASS_DECL_ca2 application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }

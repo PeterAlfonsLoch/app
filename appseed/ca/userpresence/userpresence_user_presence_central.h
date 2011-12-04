@@ -3,28 +3,23 @@
 namespace userpresence
 {
 
-   namespace user
+   class CLASS_DECL_ca presence_central :
+      virtual public ::ca::message_window_simple_callback
    {
-
-      class CLASS_DECL_ca presence_central :
-         virtual public ::ca::message_window_simple_callback
-      {
-      public:
+   public:
 
 
-         presence_central(::ca::application * papp);
-         virtual ~presence_central();
+      presence_central(::ca::application * papp);
+      virtual ~presence_central();
 
 
-         virtual bool initialize();
-         virtual bool finalize();
+      virtual bool initialize();
+      virtual bool finalize();
 
-         virtual bool is_initialized();
+      virtual bool is_initialized();
 
-         virtual void message_window_message_handler(gen::signal_object * pobj);
+      virtual void message_window_message_handler(gen::signal_object * pobj);
 
-      };
-
-   } // namespace user
+   };
 
 } // namespace userpresence

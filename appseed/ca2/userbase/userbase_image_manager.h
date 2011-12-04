@@ -7,7 +7,7 @@ namespace userbase
 
    class tool_bar;
 
-   class CLASS_DECL_ca image_manager :
+   class CLASS_DECL_ca2 image_manager :
       virtual public ::radix::object
    {
    public:
@@ -15,7 +15,7 @@ namespace userbase
       //void LoadToolbar(simple_tool_bar & toolbar, UINT * user);
       image_list & GetImageList();
       image_list & GetImageListDisable();
-      bool Initialize(::ax::application * papp, UINT uiaMenuV003Map [][2]);
+      bool Initialize(::ca::application * papp, UINT uiaMenuV003Map [][2]);
       image_manager();
       virtual ~image_manager();
 

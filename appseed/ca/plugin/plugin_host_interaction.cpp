@@ -32,7 +32,7 @@ namespace plugin
       }
    }
 
-   void host_interaction::install_message_handling(::user::win::message::dispatch * pinterface)
+   void host_interaction::install_message_handling(::gen::message::dispatch * pinterface)
    {
       
       ::user::interaction::install_message_handling(pinterface);
@@ -67,7 +67,7 @@ namespace plugin
 
    void host_interaction::_001OnCheck(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(gen::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam != 0)
@@ -100,7 +100,7 @@ namespace plugin
 
    void host_interaction::_001OnTimer(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::timer, ptimer, pobj);
+      SCAST_PTR(gen::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 19841115)
       {
          KillTimer(19841115);
@@ -218,20 +218,20 @@ namespace plugin
    void host_interaction::_on_start_user_message_handler()
    {
       ::user::interaction::_on_start_user_message_handler();
-      m_pfnDispatchWindowProc = reinterpret_cast < void (::user::win::message::dispatch::*)(gen::signal_object * pobj) > (&host_interaction::_user_message_handler);
+      m_pfnDispatchWindowProc = reinterpret_cast < void (::gen::message::dispatch::*)(gen::signal_object * pobj) > (&host_interaction::_user_message_handler);
    }
 
 
    void host_interaction::on_ignore_message(gen::signal_object * pobj)
    {
       // avoid host interaction call DefWindowProc for certain Windows messages
-//      SCAST_PTR(::user::win::message::base, pbase, pobj);
+//      SCAST_PTR(::gen::message::base, pbase, pobj);
       
       pobj->m_bRet = true;
    }
 
 
-   void host_interaction::_000OnMouse(::user::win::message::mouse * pmouse)
+   void host_interaction::_000OnMouse(::gen::message::mouse * pmouse)
    {
       if(&Bergedge != NULL)
       {

@@ -5,7 +5,7 @@ namespace window_frame
 
    class UpDownTarget;
 
-   class CLASS_DECL_ca CWorkSetDownUpInterface  
+   class CLASS_DECL_ca2 CWorkSetDownUpInterface  
    {
    public:
       

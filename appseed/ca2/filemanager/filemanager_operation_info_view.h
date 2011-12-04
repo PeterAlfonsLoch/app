@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca file_manager_operation_info_view :
+class CLASS_DECL_ca2 file_manager_operation_info_view :
    virtual public ::userbase::view
    
 {
@@ -8,11 +8,11 @@ public:
 
    double m_dAnime;
 
-   file_manager_operation_info_view(::ax::application * papp);
+   file_manager_operation_info_view(::ca::application * papp);
 
-   virtual void OnDraw(::ax::graphics * pdc);
+   virtual void OnDraw(::ca::graphics * pdc);
 
-   virtual void _001OnDraw(::ax::graphics * pdc);
+   virtual void _001OnDraw(::ca::graphics * pdc);
 
    file_manager_operation_document * get_document();
 

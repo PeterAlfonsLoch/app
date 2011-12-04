@@ -4,12 +4,12 @@
 namespace filemanager
 {
 
-class CLASS_DECL_ca SimplePreview :
+class CLASS_DECL_ca2 SimplePreview :
    virtual public ::userbase::view,
    virtual public filemanager::SimplePreviewInterface
 {
 public:
-   SimplePreview(::ax::application * papp);
+   SimplePreview(::ca::application * papp);
    virtual ~SimplePreview();
 
    virtual void install_message_handling(::gen::message::dispatch * pdispatch);

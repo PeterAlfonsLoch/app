@@ -1,8 +1,9 @@
 #include "StdAfx.h"
 
 
-namespace ca5
+namespace userpresence
 {
+
 
    application::application()
    {
@@ -18,7 +19,7 @@ namespace ca5
 
       m_dwAlive = ::GetTickCount();
       
-      if(!::userbase::application::initialize())
+      if(!::simpledb::application::initialize())
          return false;
 
 
@@ -37,7 +38,7 @@ namespace ca5
       
       try
       {
-         ::userbase::application::finalize();
+         ::simpledb::application::finalize();
       }
       catch(...)
       {
@@ -51,7 +52,7 @@ namespace ca5
    void application::defer_initialize_user_presence()
    {
 
-      if(user::presence_central_container::is_initialized())
+      if(presence_central_container::is_initialized())
          return;
 
       if(command().m_varTopicQuery.has_property("install")
@@ -67,7 +68,7 @@ namespace ca5
 
       // it may not be initialized, due
       // licensing for example
-      if(user::presence_central_container::initialize_central_container(this))
+      if(presence_central_container::initialize_central_container(this))
       {
          TRACE("user presence enabled");
       }
@@ -81,7 +82,7 @@ namespace ca5
    void application::defer_finalize_user_presence()
    {
 
-      if(!user::presence_central_container::is_initialized())
+      if(!presence_central_container::is_initialized())
          return;
 
       if(command().m_varTopicQuery.has_property("install")
@@ -94,7 +95,7 @@ namespace ca5
 
       // it may not be initialized, due
       // licensing for example
-      if(user::presence_central_container::finalize_central_container())
+      if(presence_central_container::finalize_central_container())
       {
          TRACE("user presence finalized");
       }
@@ -105,4 +106,7 @@ namespace ca5
 
    }
 
+
 } //namespace ca5
+
+

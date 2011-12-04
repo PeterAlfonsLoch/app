@@ -1,6 +1,8 @@
 #pragma once
 
+
 #undef new
+
 
 template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
 class array_smart_ptr :

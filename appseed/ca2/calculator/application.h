@@ -5,8 +5,8 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_ca application :
-      virtual public ::userex::application
+   class CLASS_DECL_ca2 application :
+      virtual public ::ca8::application
    {
    public:
       application(void);

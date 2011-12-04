@@ -3,7 +3,7 @@
 namespace calculator
 {
 
-   class CLASS_DECL_ca frame : 
+   class CLASS_DECL_ca2 frame : 
       public simple_frame_window
    {
    
@@ -14,7 +14,7 @@ namespace calculator
       image_list *               m_pimagelist;
       bool                       m_bTimerOn;
 
-      frame(::ax::application * papp);
+      frame(::ca::application * papp);
       virtual ~frame();
 
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

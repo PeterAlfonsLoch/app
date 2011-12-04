@@ -6,7 +6,7 @@ namespace fs
 
    class main_view;
 
-   class CLASS_DECL_ca tree :
+   class CLASS_DECL_ca2 tree :
       virtual public tree_interface
    {
    public:

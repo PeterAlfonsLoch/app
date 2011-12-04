@@ -1,11 +1,11 @@
 #pragma once
 
 
-class CLASS_DECL_ca file_manager_operation_document :
+class CLASS_DECL_ca2 file_manager_operation_document :
    public ::userbase::document
 {
 public:
-   file_manager_operation_document(::ax::application * papp);
+   file_manager_operation_document(::ca::application * papp);
 
    virtual BOOL on_new_document();
 

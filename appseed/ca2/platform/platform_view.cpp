@@ -19,14 +19,14 @@ namespace platform
       m_plink = NULL;
    }
 
-   view::link::link(::ax::application * papp) :
+   view::link::link(::ca::application * papp) :
       m_button(papp)
    {
       m_prun = NULL;
    }
 
-   view::view(::ax::application * papp) :
-      ax(papp),
+   view::view(::ca::application * papp) :
+      ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::userbase::view(papp),
@@ -214,17 +214,17 @@ namespace platform
    }
 
 
-   /*void view:: _001OnDraw(::ax::graphics * pdc)
+   /*void view:: _001OnDraw(::ca::graphics * pdc)
    {
       m_hwnd = GetSafeHwnd();
       pdc->SetBkMode(TRANSPARENT);
 
       //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
-      //::ax::bitmap bmp2;
+      //::ca::bitmap bmp2;
 
       //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
-      //::ax::graphics_sp dc2;
+      //::ca::graphics_sp dc2;
       //dc2.CreateCompatibleDC(pdc);
       //dc2.SelectObject(bmp2);
 
@@ -247,7 +247,7 @@ namespace platform
 
       //FIBITMAP * pfi;
 
-      //::ax::graphics * pdc = GetDC();
+      //::ca::graphics * pdc = GetDC();
 
       m_dibBkImage.load_from_matter("casweden1.png");
 
@@ -337,7 +337,7 @@ namespace platform
                string strApp = m_linka[i].m_strSrc;
                gen::str::ends_eat_ci(strApp, ".dll");
 
-               ::ax::create_context_sp cc(&Application.command_central());
+               ::ca::create_context_sp cc(&Application.command_central());
 
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = Bergedge.m_varTopicFile;
@@ -364,7 +364,7 @@ namespace platform
 
 
 
-   void view:: _001OnDraw(::ax::graphics * pdc)
+   void view:: _001OnDraw(::ca::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
 //      document * pdoc = get_document();
@@ -396,8 +396,8 @@ namespace platform
       }
       else
       {
-         ::ax::dib_sp spdib(get_app());
-         ::ax::dib_sp spdib2(get_app());
+         ::ca::dib_sp spdib(get_app());
+         ::ca::dib_sp spdib2(get_app());
          if(!spdib->create(rectClient.width(), rectClient.height()))
             return;
          if(!spdib2->create(rectClient.width(), rectClient.height()))
@@ -421,14 +421,14 @@ namespace platform
          Bergedge.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
          {
-            ::ax::dib_sp dib(get_app());
+            ::ca::dib_sp dib(get_app());
             dib->create(1920, 1080);
             keeper < bool > keepOnDraw(&dynamic_cast <::platform::frame * >(GetParentFrame())->m_bOnDraw, true, false, true);
             Bergedge.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
 
-            ::ax::dib_sp dibThumb(get_app());
+            ::ca::dib_sp dibThumb(get_app());
             double dRate = 184.0 / rectThumb.width();
             dibThumb->create((int) (dRate * rectThumb.width()), (int) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
@@ -507,7 +507,7 @@ namespace platform
 
    }
 
-   void view::open_document_file(::ax::create_context * pcreatecontext)
+   void view::open_document_file(::ca::create_context * pcreatecontext)
    {
       try
       {

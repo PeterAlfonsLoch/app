@@ -7,8 +7,8 @@ namespace userbase
    const int g_base_menu_indent = 11;
 
 
-   menu_list_window::menu_list_window(::ax::application * papp) :
-      ax(papp),
+   menu_list_window::menu_list_window(::ca::application * papp) :
+      ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -21,8 +21,8 @@ namespace userbase
       m_bAutoClose         = true;
    }
 
-   menu_list_window::menu_list_window(::ax::application * papp, menu_item * pitem) :
-      ax(papp),
+   menu_list_window::menu_list_window(::ca::application * papp, menu_item * pitem) :
+      ca(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -199,7 +199,7 @@ namespace userbase
       pobj->m_bRet = false;
    }
 
-   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ax::graphics * pdc, int & iMaxWidth, int & iMaxHeight)
+   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca::graphics * pdc, int & iMaxWidth, int & iMaxHeight)
    {
       if(pitemParent->m_spitema == NULL)
          return;
@@ -226,7 +226,7 @@ namespace userbase
          return;
       rect rectClient;
       GetParent()->GetClientRect(rectClient);
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int iMaxHeight = size.cy;
@@ -295,7 +295,7 @@ namespace userbase
    }
 
 
-   void menu_list_window::_001OnDraw(::ax::graphics *pdc)
+   void menu_list_window::_001OnDraw(::ca::graphics *pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);

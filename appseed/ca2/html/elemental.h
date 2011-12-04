@@ -34,7 +34,7 @@ namespace html
 
    namespace impl
    {
-      class CLASS_DECL_ca elemental
+      class CLASS_DECL_ca2 elemental
       {
       public:
          e_position        m_eposition;
@@ -111,7 +111,7 @@ namespace html
    } // namespace impl
 
 
-   class CLASS_DECL_ca elemental : public text_interface
+   class CLASS_DECL_ca2 elemental : public text_interface
    {
    public:
       elemental(data * pdoc, elemental * pparent = NULL);

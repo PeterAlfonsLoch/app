@@ -16,7 +16,7 @@ namespace dynamic_source
 
 
    template < class TYPE >
-   class CLASS_DECL_ca ptr_array : 
+   class ptr_array : 
       virtual public ptr,
       virtual public base_array < TYPE * >
    {

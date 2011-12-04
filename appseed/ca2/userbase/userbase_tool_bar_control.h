@@ -8,7 +8,7 @@ namespace userbase
 {
 
 
-   class CLASS_DECL_ca tool_bar_control :
+   class CLASS_DECL_ca2 tool_bar_control :
       public ::user::interaction
    {
    public:
@@ -94,7 +94,7 @@ namespace userbase
       BOOL HideButton(int nID, BOOL bHide = TRUE);
       BOOL Indeterminate(int nID, BOOL bIndeterminate = TRUE);
       int AddBitmap(int nNumButtons, UINT nBitmapID);
-      int AddBitmap(int nNumButtons, ::ax::bitmap* pBitmap);
+      int AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap);
 #ifdef WINDOWS
       BOOL AddButtons(int nNumButtons, LPTBBUTTON lpButtons);
       BOOL InsertButton(int nIndex, LPTBBUTTON lpButton);

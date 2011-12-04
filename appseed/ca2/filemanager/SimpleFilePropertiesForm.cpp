@@ -1,17 +1,19 @@
 #include "StdAfx.h"
 
+
 namespace filemanager
 {
 
-   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ax::application * papp) :
-      ax(papp)
+
+   SimpleFilePropertiesForm::SimpleFilePropertiesForm(::ca::application * papp) :
+      ca(papp)
    {
       m_ptemplatePane = new ::userbase::single_document_template(
          papp,
          "system/auth",
-         ::ax::get_type_info < form_document > (),
-         ::ax::get_type_info < simple_frame_window > (),
-         ::ax::get_type_info < ::userex::pane_tab_view > ());
+         ::ca::get_type_info < form_document > (),
+         ::ca::get_type_info < simple_frame_window > (),
+         ::ca::get_type_info < ::userex::pane_tab_view > ());
    }
 
    SimpleFilePropertiesForm::~SimpleFilePropertiesForm()
@@ -23,7 +25,7 @@ namespace filemanager
       m_itema = itema;
       if(itema.get_count() <= 0)
          return NULL;
-      ::ax::create_context_sp createcontext(get_app());
+      ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
       form_document * pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
@@ -59,7 +61,7 @@ namespace filemanager
       {
       case 1:
          {
-            m_pdocGeneral = System.create_form(this, m_ptabview);
+            m_pdocGeneral = Cube.create_form(this, m_ptabview);
             if(m_pdocGeneral != NULL)
             {
                m_pviewGeneral = m_pdocGeneral->get_typed_view < form_view > ();
@@ -114,6 +116,10 @@ namespace filemanager
          }
       }
       return false;
+
    }
 
+
 } // namespace filemanager
+
+

@@ -4,7 +4,7 @@
 namespace window_frame 
 {
 
-   class CLASS_DECL_ca WorkSetClientInterface :
+   class CLASS_DECL_ca2 WorkSetClientInterface :
       virtual public database::user::interaction
    {
    public:
@@ -14,14 +14,14 @@ namespace window_frame
       EAppearanceMode      m_eappearancemodeFullScreen;
       
 
-      WorkSetClientInterface(::ax::application * papp);
+      WorkSetClientInterface(::ca::application * papp);
       virtual ~WorkSetClientInterface();
 
 
       ::user::interaction* WfiGetWindow();
 
 
-      virtual void _001OnDraw(::ax::graphics * pca);
+      virtual void _001OnDraw(::ca::graphics * pca);
 
 
       void WfiEnableFullScreen(bool bEnable = true);

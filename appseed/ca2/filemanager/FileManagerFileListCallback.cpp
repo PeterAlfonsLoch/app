@@ -15,12 +15,12 @@ FileManagerFileListCallback::~FileManagerFileListCallback()
 
 bool FileManagerFileListCallback::initialize()
 {
-   ::ax::application * papp = get_app();
+   ::ca::application * papp = get_app();
    m_pimagelistSubItemHover   = new image_list(papp);
    m_pimagelistItemHover      = new image_list(papp);
    m_pimagelistNormal         = new image_list(papp);
 
-   ::ax::graphics_sp spgraphics(get_app());
+   ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
    m_pimagelistSubItemHover->create(16, 16, 0,  10, 10);

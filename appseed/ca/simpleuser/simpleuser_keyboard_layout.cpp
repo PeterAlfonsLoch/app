@@ -1,19 +1,19 @@
 #include "StdAfx.h"
 
-namespace simpleuser
+namespace user
 {
 
    keyboard_layout::keyboard_layout(::ca::application * papp) :
-      ca(papp),
-      ::ca::data(papp),
-      ::user::list_data(papp),
-      ::userbase::split_layout(papp),
-      ::userbase::view(papp),
-      ::userbase::split_view(papp),
-      place_holder_container(papp)
+      ca(papp)
+//      ::ca::data(papp)
+//      ::user::list_data(papp),
+  //    ::userbase::split_layout(papp),
+    //  ::userbase::view(papp),
+      //::userbase::split_view(papp),
+      //place_holder_container(papp)
    {
-      m_pdoc   = NULL;
-      m_pview  = NULL;
+      //m_pdoc   = NULL;
+      //m_pview  = NULL;
    }
 
    keyboard_layout::~keyboard_layout()
@@ -23,7 +23,7 @@ namespace simpleuser
    bool keyboard_layout::CreateViews()
    {
 
-      m_pdoc = System.create_form(this, this);
+      /*m_pdoc = System.create_form(this, this);
 
       SetPaneCount(2);
 
@@ -94,7 +94,7 @@ namespace simpleuser
 
       SetPane(1, m_pview, false);
 
-      layout();
+      layout();*/
 
 
       return true;
@@ -102,10 +102,10 @@ namespace simpleuser
 
    void keyboard_layout::on_show()
    {
-      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
+/*      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
       {
          return;
-      }
+      }*/
       /*xml::node node(get_app());
       if(node.load(System.file_as_string(System.dir().appdata("proxy.xml"))))
       {
@@ -120,7 +120,7 @@ namespace simpleuser
       }*/
    }
 
-   bool keyboard_layout::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+/*   bool keyboard_layout::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_list_clicked)
@@ -169,20 +169,22 @@ namespace simpleuser
       return false;
    }
 
+   */
 
-   void keyboard_layout::_001GetItemText(::user::list_item * pitem)
+/*   void keyboard_layout::_001GetItemText(::user::list_item * pitem)
    {
       if(pitem->m_iItem <  0 || pitem->m_iItem >= m_layoutida.get_size())
          return_(pitem->m_bOk, false);
       pitem->m_strText = m_layoutida[pitem->m_iItem].m_strName;
       pitem->m_bOk = true;
-   }
+   }*/
 
+   /*
    INT_PTR keyboard_layout::_001GetItemCount()
    {
       return m_layoutida.get_size();
    }
+   */
 
 
-
-} // namespace simpleuser
+} // namespace user

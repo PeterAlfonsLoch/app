@@ -4,11 +4,11 @@
 class FileManagerInterface;
 class ::fs::item_array;
 
-class CLASS_DECL_ca FileManagerChildFrame :
+class CLASS_DECL_ca2 FileManagerChildFrame :
    public simple_child_frame
 {
 public:
-   FileManagerChildFrame(::ax::application * papp);
+   FileManagerChildFrame(::ca::application * papp);
 
      simple_toolbar           m_toolbar;
 

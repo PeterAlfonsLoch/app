@@ -4,7 +4,7 @@
 namespace filemanager
 {
 
-SimplePreviewInterface::SimplePreviewInterface(::ax::application * papp)
+SimplePreviewInterface::SimplePreviewInterface(::ca::application * papp)
 : ::user::interaction(papp)
 {
 }
@@ -13,7 +13,7 @@ SimplePreviewInterface::~SimplePreviewInterface()
 {
 }
 
-void SimplePreviewInterface::_001OnDraw(::ax::graphics * pdc)
+void SimplePreviewInterface::_001OnDraw(::ca::graphics * pdc)
 {
    rect rectClient;
    GetClientRect(rectClient);

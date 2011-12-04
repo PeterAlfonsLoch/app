@@ -5,7 +5,7 @@ namespace user
 
    class scroll_bar;
 
-   class CLASS_DECL_ca scroll_view :
+   class CLASS_DECL_ca2 scroll_view :
       virtual public control
    {
    public:
@@ -28,7 +28,7 @@ namespace user
       ph(scroll_bar)    m_pscrollbarVert;
       scroll_info       m_scrollinfo;
 
-      scroll_view(::ax::application * papp);
+      scroll_view(::ca::application * papp);
       virtual ~scroll_view();
 
 

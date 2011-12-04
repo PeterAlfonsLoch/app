@@ -1,11 +1,11 @@
 #pragma once
 
-class CLASS_DECL_ca FileManagerSaveAsView :
+class CLASS_DECL_ca2 FileManagerSaveAsView :
    virtual public ::userbase::edit_plain_text_view,
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerSaveAsView(::ax::application * papp);
+   FileManagerSaveAsView(::ca::application * papp);
 
    virtual void _001OnAfterChangeText();
 

@@ -4,11 +4,11 @@
 namespace user
 {
 
-   class CLASS_DECL_ca form : 
+   class CLASS_DECL_ca2 form : 
       virtual public scroll_view
    {
    public:
-      form(::ax::application * papp);
+      form(::ca::application * papp);
       virtual ~form();
 
       bool                       m_bOnEditUpdate;

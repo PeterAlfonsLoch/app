@@ -39,7 +39,7 @@ namespace user
    class list_column_array;
 
 
-   class CLASS_DECL_ca list_column
+   class CLASS_DECL_ca2 list_column
    {
    public:
 
@@ -89,7 +89,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca list_column_array :
+   class CLASS_DECL_ca2 list_column_array :
       public array_ptr_alloc < ::user::list_column >
    {
    public:
@@ -99,7 +99,7 @@ namespace user
       list         *       m_plist;
 
 
-      list_column_array(::ax::application * papp);
+      list_column_array(::ca::application * papp);
 
 
       void Initialize(list * plist);
@@ -155,7 +155,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca list_item :
+   class CLASS_DECL_ca2 list_item :
       virtual public ::radix::object
    {
    public:
@@ -185,7 +185,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca draw_list_item :
+   class CLASS_DECL_ca2 draw_list_item :
       virtual public list_item,
       virtual public draw_context
    {
@@ -219,7 +219,7 @@ namespace user
       index                m_iListItemRectSubItem;
       index                m_iListItemRectListItem;
 
-      ::ax::font *         m_pfont;
+      ::ca::font *         m_pfont;
       int                  m_iDrawTextFlags;
 
       draw_list_item(list * plist);
@@ -235,7 +235,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca list :
+   class CLASS_DECL_ca2 list :
       virtual public scroll_view,
       public ::sort::compare_interface
    {
@@ -274,7 +274,7 @@ namespace user
          index      m_iUBound;
       };
 
-      class CLASS_DECL_ca CSubItemRange
+      class CLASS_DECL_ca2 CSubItemRange
       {
 
       public:
@@ -295,7 +295,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca ItemRange
+      class CLASS_DECL_ca2 ItemRange
       {
          friend class Range;
       public:
@@ -325,7 +325,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_ca Range
+      class CLASS_DECL_ca2 Range
       {
       protected:
          base_array < ItemRange > m_itemrangea;
@@ -347,7 +347,7 @@ namespace user
 
 
 
-      class CLASS_DECL_ca list_layout :
+      class CLASS_DECL_ca2 list_layout :
          virtual public ex1::byte_serializable
       {
       public:
@@ -361,7 +361,7 @@ namespace user
          virtual void read(::ex1::byte_input_stream & istream);
       };
 
-      class CLASS_DECL_ca icon_layout :
+      class CLASS_DECL_ca2 icon_layout :
          virtual public ex1::byte_serializable
       {
       public:
@@ -490,10 +490,10 @@ namespace user
       string                        m_strTopText;
       rect                          m_rectTopText;
       list_data *                   m_pdata;
-      ::ax::font_sp                 m_font;
-      ::ax::font_sp                 m_fontHover;
-      ::ax::pen_sp                  m_penFocused;
-      ::ax::pen_sp                  m_penHighlight;
+      ::ca::font_sp                 m_font;
+      ::ca::font_sp                 m_fontHover;
+      ::ca::pen_sp                  m_penFocused;
+      ::ca::pen_sp                  m_penHighlight;
       EView                         m_eview;
       flags < e_flag >              m_flags;
       icon_layout                   m_iconlayout;
@@ -519,13 +519,13 @@ namespace user
 
       ::user::list_column_array     m_columna;
 
-      list(::ax::application * papp);
+      list(::ca::application * papp);
       virtual ~list();
 
 
 
-      int _001CalcItemWidth(::ax::graphics * pdc, index iItem, index iSubItem);
-      int _001CalcItemWidth(::ax::graphics * pdc, ::ax::font * pfont, index iItem, index iSubItem);
+      int _001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem);
+      int _001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem);
 
 
 
@@ -535,12 +535,12 @@ namespace user
 
       list_data * GetDataInterface();
       void UpdateHover();
-      ::ax::font * _001GetFont();
-      ::ax::font * _001GetFontHover();
-      ::ax::pen * _001GetPenFocused();
-      ::ax::pen * _001GetPenHighlight();
+      ::ca::font * _001GetFont();
+      ::ca::font * _001GetFontHover();
+      ::ca::pen * _001GetPenFocused();
+      ::ca::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();
-      virtual void _OnDraw(::ax::graphics * pdc);
+      virtual void _OnDraw(::ca::graphics * pdc);
       void _001MaximizeColumnWidth(index iColumn);
       int _001CalcItemWidth(index iItem, index iSubItem);
       int _001CalcColumnWidth(index iColumn);
@@ -619,7 +619,7 @@ namespace user
 
       bool CreateHeaderCtrl();
 
-      virtual void _001OnDraw(::ax::graphics *pdc);
+      virtual void _001OnDraw(::ca::graphics *pdc);
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 

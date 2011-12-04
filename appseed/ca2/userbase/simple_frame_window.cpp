@@ -11,8 +11,8 @@
 
 
 
-simple_frame_window::simple_frame_window(::ax::application * papp) :
-   ax(papp),
+simple_frame_window::simple_frame_window(::ca::application * papp) :
+   ca(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),
@@ -126,7 +126,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 window_frame::FrameSchema * simple_frame_window::create_frame_schema()
 {
    window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-   pschema->m_typeinfoControlBoxButton = ::ax::get_type_info < MetaButton > ();
+   pschema->m_typeinfoControlBoxButton = ::ca::get_type_info < MetaButton > ();
    return pschema;
 }
 
@@ -251,7 +251,7 @@ void simple_frame_window::_001OnMove(gen::signal_object * pobj)
 
 }
 
-BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context* pContext) 
+BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext) 
 {
 // trans   HICON hicon = GetIcon(false);
    return userbase::frame_window::OnCreateClient(lpcs, pContext);
@@ -585,7 +585,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
 
 
          // there are cases where destroying the documents may destroy the
-         //  main ::ax::window of the application.
+         //  main ::ca::window of the application.
          //bool bAfxContextIsDll = afxContextIsDLL;
          //if (!bAfxContextIsDll && papp->GetVisibleFrameCount() <= 0)
          if(Application.GetVisibleFrameCount() <= 0)
@@ -629,7 +629,7 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
 
-   // but do not stay active if the ::ax::window is disabled
+   // but do not stay active if the ::ca::window is disabled
    if (!IsWindowEnabled())
       pncactivate->m_bActive = FALSE;
 
@@ -652,7 +652,7 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
 
 
 
-BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, ::ax::create_context* pContext)
+BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -671,7 +671,7 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 
    VERIFY(System.DeferRegisterClass(AFX_WNDFRAMEORVIEW_REG, NULL));
 
-   // attempt to create the ::ax::window
+   // attempt to create the ::ca::window
    const char * lpszClass = (const char *) GetIconWndClass(dwDefaultStyle, pszMatter);
    const char * lpszTitle = m_strTitle;
    if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), Application.get_request_parent_ui(this, pContext), /*nIDResource*/ NULL, pContext))
@@ -704,7 +704,7 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
    HMENU hMenu = NULL;
    if (lpszMenuName != NULL)
    {
-      // load in a menu that will get destroyed when ::ax::window gets destroyed
+      // load in a menu that will get destroyed when ::ca::window gets destroyed
       HINSTANCE hInst = AfxFindResourceHandle(lpszMenuName, RT_MENU);
       if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
       {
@@ -801,7 +801,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    userbase::frame_window::InitialFramePosition(bForceRestore);
 }
 
-void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ax::graphics * pdc)
+void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
 {
    if(System.savings().is_trying_to_save(gen::resource_processing)
    || System.savings().is_trying_to_save(gen::resource_translucent_background))
@@ -817,7 +817,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ax::graphics
    }
 }
 
-void simple_frame_window::_000OnDraw(::ax::graphics * pdc)
+void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
 {
    if(!m_bVisible)
       return;
@@ -840,7 +840,7 @@ void simple_frame_window::_000OnDraw(::ax::graphics * pdc)
 }
 
 
-void simple_frame_window::_001OnDraw(::ax::graphics * pdc)
+void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
 {
    if(m_bblur_Background)
    {
@@ -864,7 +864,7 @@ void simple_frame_window::_001OnDraw(::ax::graphics * pdc)
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::visual::fastblur *( *pfnNew )(::ax::application *) = (::visual::fastblur *(*)(::ax::application *)) ::GetProcAddress(hmodule, "new_fastblur");
+            //::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");
             m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -1013,7 +1013,7 @@ BOOL simple_frame_window::create(const char * lpszClassName,
          ::user::interaction* pParentWnd,        // != NULL for popups
          const char * lpszMenuName,
          DWORD dwExStyle,
-         ::ax::create_context* pContext)
+         ::ca::create_context* pContext)
 {
    return ::userbase::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }

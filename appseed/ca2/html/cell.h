@@ -9,11 +9,11 @@ namespace html
       class table;
       class table_row;
 
-      class CLASS_DECL_ca cell : public text
+      class CLASS_DECL_ca2 cell : public text
       {
       public:
 
-         class CLASS_DECL_ca holder
+         class CLASS_DECL_ca2 holder
          {
          public:
             holder();
@@ -28,7 +28,7 @@ namespace html
             holder & operator = (const class holder & holder);
          };
 
-         cell(::ax::application * papp);
+         cell(::ca::application * papp);
          virtual ~cell();
          // example 1:
          // -------------------

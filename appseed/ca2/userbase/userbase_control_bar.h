@@ -11,8 +11,81 @@ class BaseDockContext;
 class BaseDockState;
 
 #define CBRS_DRAGMOVE            0x01000000L
-#undef CBRS_ALL
-#define CBRS_ALL            0x0140ffffL
+/*#undef CBRS_ALL
+#define CBRS_ALL            0x0140ffffL*/
+
+
+/////////////////////////////////////////////////////////////////////////////
+// General style bits etc
+
+// ControlBar styles
+#define CBRS_ALIGN_LEFT     0x1000L
+#define CBRS_ALIGN_TOP      0x2000L
+#define CBRS_ALIGN_RIGHT    0x4000L
+#define CBRS_ALIGN_BOTTOM   0x8000L
+#define CBRS_ALIGN_ANY      0xF000L
+
+#define CBRS_BORDER_LEFT    0x0100L
+#define CBRS_BORDER_TOP     0x0200L
+#define CBRS_BORDER_RIGHT   0x0400L
+#define CBRS_BORDER_BOTTOM  0x0800L
+#define CBRS_BORDER_ANY     0x0F00L
+
+#define CBRS_TOOLTIPS       0x0010L
+#define CBRS_FLYBY          0x0020L
+#define CBRS_FLOAT_MULTI    0x0040L
+#define CBRS_BORDER_3D      0x0080L
+#define CBRS_HIDE_INPLACE   0x0008L
+#define CBRS_SIZE_DYNAMIC   0x0004L
+#define CBRS_SIZE_FIXED     0x0002L
+#define CBRS_FLOATING       0x0001L
+
+#define CBRS_GRIPPER        0x00400000L
+
+#define CBRS_ORIENT_HORZ    (CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM)
+#define CBRS_ORIENT_VERT    (CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT)
+#define CBRS_ORIENT_ANY     (CBRS_ORIENT_HORZ|CBRS_ORIENT_VERT)
+
+//#define CBRS_ALL            0x0040FFFFL
+#define CBRS_ALL            0x0140FFFFL
+
+// the CBRS_ style is made up of an alignment style and a draw border style
+//  the alignment styles are mutually exclusive
+//  the draw border styles may be combined
+#define CBRS_NOALIGN        0x00000000L
+#define CBRS_LEFT           (CBRS_ALIGN_LEFT|CBRS_BORDER_RIGHT)
+#define CBRS_TOP            (CBRS_ALIGN_TOP|CBRS_BORDER_BOTTOM)
+#define CBRS_RIGHT          (CBRS_ALIGN_RIGHT|CBRS_BORDER_LEFT)
+#define CBRS_BOTTOM         (CBRS_ALIGN_BOTTOM|CBRS_BORDER_TOP)
+
+
+
+// Standard control bars (IDW = ::ca::window ID)
+#define AFX_IDW_CONTROLBAR_FIRST        0xE800
+#define AFX_IDW_CONTROLBAR_LAST         0xE8FF
+
+#define AFX_IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca::window
+#define AFX_IDW_STATUS_BAR              0xE801  // Status bar ::ca::window
+#define AFX_IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
+#define AFX_IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
+#define AFX_IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
+#define AFX_IDW_DIALOGBAR               0xE805  // CDialogBar
+
+// Note: If your application supports docking toolbars, you should
+//  not use the following IDs for your own toolbars.  The IDs chosen
+//  are at the top of the first 32 such that the bars will be hidden
+//  while in print preview mode, and are not likely to conflict with
+//  IDs your application may have used succesfully in the past.
+
+#define AFX_IDW_DOCKBAR_TOP             0xE81B
+#define AFX_IDW_DOCKBAR_LEFT            0xE81C
+#define AFX_IDW_DOCKBAR_RIGHT           0xE81D
+#define AFX_IDW_DOCKBAR_BOTTOM          0xE81E
+#define AFX_IDW_DOCKBAR_FLOAT           0xE81F
+
+// Macro for mapping standard control bars to bitmask (limit of 32)
+#define AFX_CONTROLBAR_MASK(nIDC)   (1L << (nIDC - AFX_IDW_CONTROLBAR_FIRST))
+
 
 
 // layout Modes for CalcDynamicLayout
@@ -43,7 +116,7 @@ public:
    BOOL m_bFloating;   // whether floating or not
    BOOL m_bHorz;       // orientation of floating dockbar
    BOOL m_bDockBar;    // TRUE if a dockbar
-   point m_pointPos;  // topleft point of ::ax::window
+   point m_pointPos;  // topleft point of ::ca::window
 
    UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    BOOL m_bDocking;    // TRUE if this bar has a DockContext
@@ -63,7 +136,7 @@ public:
 namespace userbase
 {
 
-   class CLASS_DECL_ca control_bar :
+   class CLASS_DECL_ca2 control_bar :
       virtual public ::user::interaction
    {
    public:
@@ -97,7 +170,7 @@ namespace userbase
 
    // Implementation
    public:
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void message_handler(gen::signal_object * pobj);
       virtual ~control_bar();
    #ifdef _DEBUG
@@ -140,9 +213,9 @@ namespace userbase
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
-      virtual void DoPaint(::ax::graphics * pgraphics);
-      void DrawBorders(::ax::graphics * pgraphics, rect& rect);
-      void DrawGripper(::ax::graphics * pgraphics, const rect& rect);
+      virtual void DoPaint(::ca::graphics * pgraphics);
+      void DrawBorders(::ca::graphics * pgraphics, rect& rect);
+      void DrawGripper(::ca::graphics * pgraphics, const rect& rect);
 
       // implementation helpers
       void CalcInsideRect(rect& rect, BOOL bHorz) const; // adjusts borders etc
@@ -150,7 +223,7 @@ namespace userbase
       virtual BOOL SetStatusText(int nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
-      void EraseNonClient(::ax::graphics * pdc);
+      void EraseNonClient(::ca::graphics * pdc);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, userbase::frame_window* pFrameWnd);
@@ -173,7 +246,7 @@ namespace userbase
       //DECL_GEN_SIGNAL(_001OnCancelMode)
 
    //   DECL_GEN_SIGNAL(_001OnPaint)
-   //   virtual void _001OnDraw(::ax::graphics * pdc);
+   //   virtual void _001OnDraw(::ca::graphics * pdc);
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 

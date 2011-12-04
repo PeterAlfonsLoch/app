@@ -7,12 +7,12 @@ namespace filemanager
 }
 
 
-class CLASS_DECL_ca FileManagerLeftView :
+class CLASS_DECL_ca2 FileManagerLeftView :
    virtual public ::userbase::split_view,
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerLeftView(::ax::application * papp);
+   FileManagerLeftView(::ca::application * papp);
 
    void CreateViews();
    

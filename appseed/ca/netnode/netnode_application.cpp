@@ -34,7 +34,7 @@ namespace netnode
    {
       m_dataid = "netnode";
 
-      if(!cube2::application::initialize_instance())
+      if(!planebase::application::initialize_instance())
          return false;
 
 
@@ -49,7 +49,7 @@ namespace netnode
    void application::on_request(::ca::create_context * pcreatecontext)
    {
 
-      ::cube4::application::on_service_request(pcreatecontext);
+      ::planebase::application::on_service_request(pcreatecontext);
 
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("debugbreak"))
       {
@@ -99,7 +99,7 @@ namespace netnode
       int iRet = 0;
       try
       {
-         iRet = ::cube4::application::exit_instance();
+         iRet = ::planebase::application::exit_instance();
       }
       catch(...)
       {
@@ -175,7 +175,7 @@ namespace netnode
 
    void application::pre_translate_message(gen::signal_object * pobj)
    {
-      cube4::application::pre_translate_message(pobj);
+      planebase::application::pre_translate_message(pobj);
 //xxx      ::whiteboard::application::pre_translate_message(pobj);
    }
 
@@ -188,7 +188,7 @@ namespace netnode
    {
       if(pdata->m_fixed.m_bRequestCloseApplication)
          return;
-      ::cube2::application::process(pdata);
+      ::planebase::application::process(pdata);
    }
 
    dynamic_source::script_manager * application::get_script_manager()
@@ -209,19 +209,19 @@ namespace netnode
 
    ::netnode::service * application::get_service()
    {
-      return dynamic_cast < ::netnode::service * > (::cube4::application::get_service());
+      return dynamic_cast < ::netnode::service * > (::planebase::application::get_service());
    }
 
    bool application::on_install()
    {
-      if(!::cube4::application::on_install())
+      if(!::planebase::application::on_install())
          return false;
       return true;
    }
       
    bool application::on_uninstall()
    {
-      if(!::cube4::application::on_uninstall())
+      if(!::planebase::application::on_uninstall())
          return false;
       return true;
    }

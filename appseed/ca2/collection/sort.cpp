@@ -100,7 +100,7 @@ namespace  sort
 
 
 
-   void CLASS_DECL_ca QuickSort(
+   void CLASS_DECL_ca2 QuickSort(
       index iSize,
       base_array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
       base_array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,

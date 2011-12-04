@@ -5,7 +5,7 @@ namespace window_frame
 
    class WorkSet;
 
-   class CLASS_DECL_ca MoveManager :
+   class CLASS_DECL_ca2 MoveManager :
       virtual public gen::signalizable
    {
       friend class WorkSet;

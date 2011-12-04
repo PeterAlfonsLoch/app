@@ -10,7 +10,7 @@ namespace gcom
       namespace user
       {
 
-         class CLASS_DECL_ca interaction :
+         class CLASS_DECL_ca2 interaction :
             virtual public Interface,
             virtual public ::database::user::interaction
          {
@@ -19,7 +19,7 @@ namespace gcom
             int            m_iBackgroundUpdateMillis;
             color          m_colorBackground;
 
-            interaction(::ax::application * papp);
+            interaction(::ca::application * papp);
             virtual ~interaction();
 
             virtual void BackViewGetClientRect(LPRECT lprect);

@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_ca SimplePushButton :
+class CLASS_DECL_ca2 SimplePushButton :
    public ::userbase::button
 {
 public:
 
 
-   class CLASS_DECL_ca ColorSchema
+   class CLASS_DECL_ca2 ColorSchema
    {
    public:
       color::hls   m_hlsRateHover;
@@ -28,7 +28,7 @@ public:
 
    ColorSchema *    m_pcolorschema;
 
-   SimplePushButton(::ax::application * papp);
+   SimplePushButton(::ca::application * papp);
    virtual ~SimplePushButton();
 
 
@@ -46,7 +46,7 @@ public:
    void push(bool bPush = true);
    void Hover(bool bHover = true);
    void UpdateHover();
-   void _001OnDraw(::ax::graphics * pdc);
+   void _001OnDraw(::ca::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnDestroy)

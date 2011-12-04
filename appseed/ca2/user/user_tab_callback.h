@@ -5,7 +5,7 @@ namespace user
 
    class tab;
 
-   class CLASS_DECL_ca tab_callback
+   class CLASS_DECL_ca2 tab_callback
    {
    public:
 

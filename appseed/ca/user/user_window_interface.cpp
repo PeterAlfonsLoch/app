@@ -48,9 +48,9 @@ namespace user
    {
    }
 
-   void window_interface::install_message_handling(win::message::dispatch * pinterface)
+   void window_interface::install_message_handling(gen::message::dispatch * pinterface)
    {
-      win::message::dispatch::install_message_handling(pinterface);
+      gen::message::dispatch::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(
          MessageBaseWndGetProperty,
@@ -287,7 +287,7 @@ namespace user
 
    void window_interface::_001OnBaseWndGetProperty(gen::signal_object * pobj)
    {
-      SCAST_PTR(win::message::base, pbase, pobj)
+      SCAST_PTR(gen::message::base, pbase, pobj)
       pbase->set_lresult(_001BaseWndGetProperty((EProperty) pbase->m_wparam, pbase->m_lparam));
    }
 
@@ -482,7 +482,7 @@ namespace user
 
    void window_interface::_001OnCreate(gen::signal_object * pobj)
    {
-      SCAST_PTR(win::message::create, pcreate, pobj)
+      SCAST_PTR(gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
       pcreate->set_lresult(0);

@@ -6,11 +6,11 @@ namespace filemanager
 
    class document;
 
-   class CLASS_DECL_ca SimpleFolderTreeView :
+   class CLASS_DECL_ca2 SimpleFolderTreeView :
       virtual public filemanager::SimpleFolderTreeInterface
    {
    public:
-      SimpleFolderTreeView(::ax::application * papp);
+      SimpleFolderTreeView(::ca::application * papp);
 
       ContextMenu                   m_contextmenu;
       simple_list_header_control    m_headerctrl;

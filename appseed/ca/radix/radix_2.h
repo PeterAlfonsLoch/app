@@ -4,7 +4,7 @@
 #include "radix_1.h"
 
 
-#include "simpleuser/simpleuser_str.h"
+#include "user/user_str.h"
 #include "inline.h"
 
 

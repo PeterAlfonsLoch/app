@@ -9,7 +9,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca frame : public simple_frame_window
+      class CLASS_DECL_ca2 frame : public simple_frame_window
       {
    
       public:

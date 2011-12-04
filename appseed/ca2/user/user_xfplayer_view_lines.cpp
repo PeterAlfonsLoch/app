@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-XfplayerViewLines::XfplayerViewLines(::ax::application * papp) :
-   ax(papp)
+XfplayerViewLines::XfplayerViewLines(::ca::application * papp) :
+   ca(papp)
 {
     m_iFirstVisible = -1;
     m_iLastVisible = -1;
@@ -90,7 +90,7 @@ void XfplayerViewLines::SetEffect(int iEffect)
     }
 }
 
-void XfplayerViewLines::SetRenderWindow(::ax::window * pWnd)
+void XfplayerViewLines::SetRenderWindow(::ca::window * pWnd)
 {
    UNREFERENCED_PARAMETER(pWnd);
 }

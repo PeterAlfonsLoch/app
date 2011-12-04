@@ -1,33 +1,33 @@
 #pragma once
 
 
-class CLASS_DECL_ca simple_scroll_bar :
+class CLASS_DECL_ca2 simple_scroll_bar :
    virtual public ::user::scroll_bar
 {
 public:
 
 
-   //::ax::brush_sp       m_brushNull;
-   ::ax::pen_sp         m_penDraw;
+   //::ca::brush_sp       m_brushNull;
+   ::ca::pen_sp         m_penDraw;
    point                m_ptTrackOffset;
    point                m_ptaA[4]; // pontos da primeira seta
    point                m_ptaB[4]; // pontos da segunda seta
-   ::ax::region_sp         m_rgnA; // região da primeira seta
-   ::ax::region_sp         m_rgnB; // região da segunda seta
+   ::ca::region_sp         m_rgnA; // região da primeira seta
+   ::ca::region_sp         m_rgnB; // região da segunda seta
    UINT                 m_uiTimer;
 
 
-   simple_scroll_bar(::ax::application * papp);
+   simple_scroll_bar(::ca::application * papp);
    virtual ~simple_scroll_bar();
 
 
 
    virtual void pre_translate_message(gen::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual BOOL create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ax::create_context* pContext = NULL);
+   virtual BOOL create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ax::graphics * pdc);
+   virtual void _001OnDraw(::ca::graphics * pdc);
 
    void UpdateDrawingObjects();
 
@@ -41,7 +41,7 @@ public:
    BOOL GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    void UpdateBitmaps();
    void OnDisplayChange(int iBitsPerPixel, size sizeScreen);
-   //virtual void OnDraw(::ax::graphics * pgraphics);
+   //virtual void OnDraw(::ca::graphics * pgraphics);
    virtual int _001GetScrollPos();
    virtual int _001SetScrollPos(int iPos);
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);

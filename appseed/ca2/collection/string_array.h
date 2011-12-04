@@ -11,7 +11,7 @@ namespace gen
 } // namespace gen
 
 
-class CLASS_DECL_ca string_array :
+class CLASS_DECL_ca2 string_array :
    virtual public ::radix::object
 {
 public:

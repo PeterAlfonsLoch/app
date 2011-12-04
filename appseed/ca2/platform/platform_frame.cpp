@@ -10,8 +10,8 @@
 namespace platform
 {
  
-   frame::frame(::ax::application * papp) :
-      ax(papp),
+   frame::frame(::ca::application * papp) :
+      ca(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp),
@@ -286,12 +286,12 @@ namespace platform
    window_frame::FrameSchema * frame::create_frame_schema()
    {
       window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-      pschema->m_typeinfoControlBoxButton = ::ax::get_type_info < MetaButton > ();
+      pschema->m_typeinfoControlBoxButton = ::ca::get_type_info < MetaButton > ();
       pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleTranslucidWarmGray);
       return pschema;
    }
 
-   void frame::_000OnDraw(::ax::graphics * pgraphics)
+   void frame::_000OnDraw(::ca::graphics * pgraphics)
    {
       if(m_bOnDraw)
          return;

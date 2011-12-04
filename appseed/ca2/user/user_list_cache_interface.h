@@ -8,7 +8,7 @@ namespace user
    class list;
 
 
-   class CLASS_DECL_ca list_cache_interface  
+   class CLASS_DECL_ca2 list_cache_interface  
    {
    public:
 

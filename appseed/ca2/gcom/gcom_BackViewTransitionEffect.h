@@ -60,7 +60,7 @@ namespace gcom
          TransitionEffectEnd,
       };
 
-      class CLASS_DECL_ca TransitionEffect :
+      class CLASS_DECL_ca2 TransitionEffect :
          public Helper
       {
 

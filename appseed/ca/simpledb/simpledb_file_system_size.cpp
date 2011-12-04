@@ -333,7 +333,7 @@ FileSystemSizeWnd::FileSystemSizeWnd(::ca::application * papp) :
 {
 }
 
-void FileSystemSizeWnd::install_message_handling(::user::win::message::dispatch * pinterface)
+void FileSystemSizeWnd::install_message_handling(::gen::message::dispatch * pinterface)
 {
    m_p->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
@@ -402,7 +402,7 @@ bool FileSystemSizeWnd::get_fs_size(__int64 & i64Size, const char * pszPath, boo
 
 void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::base, pbase, pobj);
+   SCAST_PTR(::gen::message::base, pbase, pobj);
 
    COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam;
    if(pstruct->dwData == 0)
@@ -436,7 +436,7 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
 
 void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+   SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
       //::PostMessage((HWND) pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);

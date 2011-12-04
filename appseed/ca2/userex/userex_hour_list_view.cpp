@@ -11,8 +11,8 @@ namespace userex
 {
 
 
-   hour_list_view::hour_list_view(::ax::application * papp) :
-      ax(papp),
+   hour_list_view::hour_list_view(::ca::application * papp) :
+      ca(papp),
       userbase::view(papp),
       user::scroll_view(papp),
       user::form(papp),

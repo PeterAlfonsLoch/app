@@ -51,16 +51,6 @@ namespace ca
       UNREFERENCED_PARAMETER(lpBits);
       throw not_implemented_exception();   
    }
-   size bitmap::SetBitmapDimension(int nWidth, int nHeight)
-   {
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented_exception();   
-   }
-   size bitmap::GetBitmapDimension() const
-   {
-      throw not_implemented_exception();   
-   }
 
    BOOL bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
    {
@@ -76,11 +66,6 @@ namespace ca
       UNREFERENCED_PARAMETER(nHeight);
       throw not_implemented_exception();   
    }
-   int bitmap::GetBitmap(BITMAP* pBitMap)
-   {
-      UNREFERENCED_PARAMETER(pBitMap);
-      throw not_implemented_exception();   
-   }
 
    #ifdef _DEBUG
    void ::ca::bitmap::dump(dump_context & dumpcontext) const
@@ -89,6 +74,51 @@ namespace ca
       throw interface_only_exception();
    }
    #endif
+
+
+   class size bitmap::SetBitmapDimension(int nWidth, int nHeight)
+   {
+      UNREFERENCED_PARAMETER(nWidth);
+      UNREFERENCED_PARAMETER(nHeight);
+      throw not_implemented_exception();   
+   }
+
+   class size bitmap::set_size(class size size)
+   {
+      
+      
+      return SetBitmapDimension(size.cx, size.cy);
+
+
+   }
+
+   class size bitmap::GetBitmapDimension() const
+   {
+
+
+      throw not_implemented_exception();   
+      return class size(0, 0);
+
+
+   }
+
+   class size bitmap::get_size() const
+   {
+      
+      
+      return GetBitmapDimension();
+      
+
+   }
+
+   class size bitmap::size() const
+   {
+
+
+      return GetBitmapDimension();
+
+
+   }
 
 
 } // namespace ca

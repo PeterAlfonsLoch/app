@@ -3,8 +3,8 @@
 namespace calculator
 {
 
-   calculator::calculator(::ax::application * papp) :
-      ax(papp)
+   calculator::calculator(::ca::application * papp) :
+      ca(papp)
    {
    }
 

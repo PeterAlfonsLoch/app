@@ -5,8 +5,8 @@
 namespace nature
 {
 
-   view::view(::ax::application * papp) :
-      ax(papp),
+   view::view(::ca::application * papp) :
+      ca(papp),
       ::user::interaction(papp), 
       ::userbase::view(papp),
       m_buttonKaraoke(papp),
@@ -142,17 +142,17 @@ namespace nature
    }
 
 
-   void view:: _001OnDraw(::ax::graphics * pdc)
+   void view:: _001OnDraw(::ca::graphics * pdc)
    {
       //m_hwnd = GetSafeHwnd();
       pdc->SetBkMode(TRANSPARENT);
 
       //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
-   /*   ::ax::bitmap bmp2;
+   /*   ::ca::bitmap bmp2;
 
       bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
-      ::ax::graphics_sp dc2;
+      ::ca::graphics_sp dc2;
       dc2.CreateCompatibleDC(pdc);
       dc2.SelectObject(bmp2);*/
 

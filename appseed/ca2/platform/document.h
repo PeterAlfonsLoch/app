@@ -13,7 +13,7 @@ namespace platform
    class pane_view;
    class frame;
 
-   class CLASS_DECL_ca document :
+   class CLASS_DECL_ca2 document :
       public form_document
    {
    public:
@@ -22,7 +22,7 @@ namespace platform
       bergedge::document * m_pbergedgedocument;
 
 
-      document(::ax::application * papp);
+      document(::ca::application * papp);
       virtual ~document();
 
       view *                  get_platform_view();

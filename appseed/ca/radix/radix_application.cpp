@@ -207,7 +207,6 @@ namespace radix
       m_nSafetyPoolSize             = 512;        // default size
 
       m_pwndMain                    = NULL;
-      m_pkeyboardfocus              = NULL;
       m_puserstrcontext             = NULL;
       m_bShouldInitializeGTwf       = true;
       m_bSessionSynchronizedCursor  = true;
@@ -487,14 +486,14 @@ namespace radix
    }
 
 
-   void application::LoadStdProfileSettings(UINT nMaxMRU)
+/*   void application::LoadStdProfileSettings(UINT nMaxMRU)
    {
       UNREFERENCED_PARAMETER(nMaxMRU);
       ASSERT_VALID(this);
 
       // 0 by default means not set
       m_nNumPreviewPages = GetProfileInt(_afxPreviewSection, _afxPreviewEntry, 0);
-   }
+   }*/
 
    /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
    {
@@ -630,8 +629,8 @@ namespace radix
    application::~application()
    {
       // free doc manager
-      if (m_pdocmanager != NULL)
-         delete m_pdocmanager;
+//      if (m_pdocmanager != NULL)
+  //       delete m_pdocmanager;
 
 
 
@@ -778,7 +777,7 @@ namespace radix
 
    BOOL application::on_idle(LONG lCount)
    {
-      if (lCount <= 0)
+/*      if (lCount <= 0)
       {
          thread::on_idle(lCount);
 
@@ -798,7 +797,8 @@ namespace radix
       {
          VERIFY(!thread::on_idle(lCount));
       }
-      return lCount < 1;  // more to do if lCount < 1
+      return lCount < 1;  // more to do if lCount < 1*/
+      return 0;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -827,8 +827,8 @@ namespace radix
       ASSERT(System.GetThread() == this);
       //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
-      if (m_pdocmanager != NULL)
-         ASSERT_VALID(m_pdocmanager);
+/*      if (m_pdocmanager != NULL)
+         ASSERT_VALID(m_pdocmanager);*/
    }
 
    void application::dump(dump_context & dumpcontext) const
@@ -845,11 +845,11 @@ namespace radix
       dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
       dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
       dumpcontext << "\nm_dwPromptContext = " << m_dwPromptContext;
-      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
+//      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 
 
-      if (m_pdocmanager != NULL)
-         m_pdocmanager->dump(dumpcontext);
+/*      if (m_pdocmanager != NULL)
+         m_pdocmanager->dump(dumpcontext);*/
 
       dumpcontext << "\nm_nWaitCursorCount = " << m_nWaitCursorCount;
       dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
@@ -1217,14 +1217,14 @@ namespace radix
 
    void application::_001OnFileNew()
    {
-      if (m_pdocmanager != NULL)
-         m_pdocmanager->_001OnFileNew();
+/*      if (m_pdocmanager != NULL)
+         m_pdocmanager->_001OnFileNew();*/
    }
 
    void application::on_file_open()
    {
       ENSURE(m_pdocmanager != NULL);
-      m_pdocmanager->on_file_open();
+      //m_pdocmanager->on_file_open();
    }
 
    // prompt for file name - used for open and save as
@@ -1238,8 +1238,9 @@ namespace radix
                                     bOpenFileDialog, ptemplate);
       }
       ENSURE(m_pdocmanager != NULL);
-      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
-                                 bOpenFileDialog, ptemplate);
+/*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
+                                 bOpenFileDialog, ptemplate);*/
+      return FALSE;
    }
 
    // This is ca2 API library.
@@ -1374,8 +1375,8 @@ namespace radix
       if (m_dwPromptContext != 0)
       {
          // do not call WinHelp when the error is failing to lauch help
-         if (m_dwPromptContext != HID_BASE_PROMPT+AFX_IDP_FAILED_TO_LAUNCH_HELP)
-            WinHelpInternal(m_dwPromptContext);
+//         if (m_dwPromptContext != HID_BASE_PROMPT+AFX_IDP_FAILED_TO_LAUNCH_HELP)
+  //          WinHelpInternal(m_dwPromptContext);
          return;
       }
 
@@ -1482,9 +1483,9 @@ namespace radix
       }*/
    }
 
-   BOOL application::CreatePrinterDC(::ca::graphics_sp & spgraphics)
+   ::ca::graphics * application::CreatePrinterDC()
    {
-      UNREFERENCED_PARAMETER(spgraphics);
+//      UNREFERENCED_PARAMETER(spgraphics);
       throw not_implemented_exception();
       /*
       HDC hDC = AfxCreateDC(m_hDevNames, m_hDevMode);
@@ -1495,7 +1496,7 @@ namespace radix
          ASSERT(bRet);
          return bRet;
       }*/
-      return FALSE;
+      //return FALSE;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1562,20 +1563,20 @@ namespace radix
 
    BOOL application::save_all_modified()
    {
-      if (m_pdocmanager != NULL)
-         return m_pdocmanager->save_all_modified();
+/*      if (m_pdocmanager != NULL)
+         return m_pdocmanager->save_all_modified();*/
       return TRUE;
    }
 
    void application::on_request(::ca::create_context * pcreatecontext)
    {
-      m_pdocmanager->request(pcreatecontext);
+      //m_pdocmanager->request(pcreatecontext);
    }
 
    void application::close_all_documents(BOOL bEndSession)
    {
-      if (m_pdocmanager != NULL)
-         m_pdocmanager->close_all_documents(bEndSession);
+      /*if (m_pdocmanager != NULL)
+         m_pdocmanager->close_all_documents(bEndSession);*/
    }
 
 
@@ -1584,9 +1585,9 @@ namespace radix
 
    BOOL application::OnDDECommand(__in LPTSTR lpszCommand)
    {
-      if (m_pdocmanager != NULL)
+/*      if (m_pdocmanager != NULL)
          return m_pdocmanager->OnDDECommand(lpszCommand);
-      else
+      else*/
          return FALSE;
    }
 
@@ -2059,41 +2060,21 @@ namespace radix
    void application::RegisterShellFileTypes(BOOL bCompat)
    {
       ENSURE(m_pdocmanager != NULL);
-      m_pdocmanager->RegisterShellFileTypes(bCompat);
+//      m_pdocmanager->RegisterShellFileTypes(bCompat);
    }
 
    void application::UnregisterShellFileTypes()
    {
       ENSURE(m_pdocmanager != NULL);
-      m_pdocmanager->UnregisterShellFileTypes();
+  //    m_pdocmanager->UnregisterShellFileTypes();
    }
 
 
    int application::get_open_document_count()
    {
       ENSURE(m_pdocmanager != NULL);
-      return m_pdocmanager->get_open_document_count();
-   }
-
-   void application::add_document_template(document_template * ptemplate)
-   {
-      if (m_pdocmanager == NULL)
-         m_pdocmanager = new document_manager;
-      m_pdocmanager->add_document_template(ptemplate);
-   }
-
-   count application::get_template_count() const
-   {
-      if (m_pdocmanager == NULL)
-         return 0;
-      return m_pdocmanager->get_template_count();
-   }
-
-   document_template * application::get_template(index index) const
-   {
-      if (m_pdocmanager == NULL)
-         return NULL;
-      return m_pdocmanager->get_template(index);
+    //  return m_pdocmanager->get_open_document_count();
+      return 0;
    }
 
 
@@ -2468,90 +2449,6 @@ namespace radix
 
 
 
-      ::user::keyboard_focus * application::get_keyboard_focus()
-      {
-         if(is_bergedge())
-         {
-            ::user::interaction * puieFocus = get_focus_guie();
-            if(m_pkeyboardfocus != NULL && puieFocus != NULL)
-            {
-               if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
-                  return NULL;
-               return m_pkeyboardfocus;
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-         else if(is_system())
-         {
-            return m_pkeyboardfocus;
-         }
-         else if(m_pplanebergedge != NULL)
-         {
-            return Berg(this).get_keyboard_focus();
-         }
-         else if(m_pplanesystem != NULL)
-         {
-            return Sys(this).get_keyboard_focus();
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-
-      void application::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
-      {
-         if(is_bergedge())
-         {
-            if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-            {
-               m_pkeyboardfocus = pkeyboardfocus;
-            }
-            if(m_pplanesystem != NULL)
-            {
-               return Sys(this).set_keyboard_focus(pkeyboardfocus);
-            }
-         }
-         else if(is_system())
-         {
-            if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-            {
-               m_pkeyboardfocus = pkeyboardfocus;
-            }
-         }
-         else if(m_pplanebergedge != NULL)
-         {
-            return Berg(this).set_keyboard_focus(pkeyboardfocus);
-         }
-         else if(m_pplanesystem != NULL)
-         {
-            return Sys(this).set_keyboard_focus(pkeyboardfocus);
-         }
-      }
-
-      ::user::mouse_focus * application::get_mouse_focus_LButtonDown()
-      {
-         return m_pmousefocusLButtonDown;
-      }
-
-      void application::set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus)
-      {
-         m_pmousefocusLButtonDown = pmousefocus;
-      }
-
-      ::user::mouse_focus * application::get_mouse_focus_RButtonDown()
-      {
-         return m_pmousefocusRButtonDown;
-      }
-
-      void application::set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus)
-      {
-         m_pmousefocusRButtonDown = pmousefocus;
-      }
-
    /*   int application::GetResourceId(const id_space * pspace, int iKey)
    {
       int iId;
@@ -2834,7 +2731,8 @@ namespace radix
 
    int application::get_document_count()
    {
-      return m_pdocmanager->get_document_count();
+//      return m_pdocmanager->get_document_count();
+      return 0;
    }
 
    int application::exit()
@@ -3083,23 +2981,23 @@ namespace radix
    {
       if(m_puiInitialPlaceHolderContainer != NULL)
          return m_puiInitialPlaceHolderContainer;
-      if(m_pplanebergedge != NULL)
+      if(m_pbergedge != NULL)
       {
          try
          {
-            if(m_pplanebergedge->m_puiInitialPlaceHolderContainer != NULL)
-               return m_pplanebergedge->m_puiInitialPlaceHolderContainer;
+            if(m_pbergedge->m_puiInitialPlaceHolderContainer != NULL)
+               return m_pbergedge->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
          }
       }
-      if(m_pplanesystem != NULL)
+      if(m_psystem != NULL)
       {
          try
          {
-            if(m_pplanesystem->m_puiInitialPlaceHolderContainer != NULL)
-               return m_pplanesystem->m_puiInitialPlaceHolderContainer;
+            if(m_psystem->m_puiInitialPlaceHolderContainer != NULL)
+               return m_psystem->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
@@ -3115,10 +3013,10 @@ namespace radix
 
       ::user::interaction * puiParent = NULL;
 
-      if(puiParent == NULL && dynamic_cast < ::userbase::main_frame * > (pinteraction) != NULL)
+/*      if(puiParent == NULL && dynamic_cast < ::userbase::main_frame * > (pinteraction) != NULL)
       {
          puiParent = get_request_parent_ui(dynamic_cast < ::userbase::main_frame * > (pinteraction), pcreatecontext);
-      }
+      }*/
 
       if(puiParent == NULL)
       {
@@ -3130,8 +3028,8 @@ namespace radix
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
-      if(puiParent == NULL && m_pplanebergedge != NULL && !pcreatecontext->m_bClientOnly
-         && !pcreatecontext->m_bOuterPopupAlertLike && m_pplanebergedge != this)
+      if(puiParent == NULL && m_pbergedge != NULL && !pcreatecontext->m_bClientOnly
+         && !pcreatecontext->m_bOuterPopupAlertLike && m_pbergedge != this)
       {
          puiParent = Berg(this).get_request_parent_ui(pinteraction, pcreatecontext);
       }
@@ -3143,7 +3041,7 @@ namespace radix
    ::user::interaction * application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
-      if(m_pplanebergedge != NULL)
+      if(m_pbergedge != NULL)
       {
          return Berg(this).get_request_parent_ui(pmainframe, pcreatecontext);
       }

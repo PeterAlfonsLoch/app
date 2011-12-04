@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca dialog :
+class CLASS_DECL_ca2 dialog :
    virtual public ::user::form_callback
 {
 public:
@@ -10,7 +10,7 @@ public:
    simple_frame_window *      m_pframe;
 
 
-   dialog(::ax::application * papp);
+   dialog(::ca::application * papp);
    virtual ~dialog();
 
    virtual void on_position_parent_frame();

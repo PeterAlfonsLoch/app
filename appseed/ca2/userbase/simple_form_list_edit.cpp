@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-SimpleFormListEdit::SimpleFormListEdit(::ax::application * papp) :
-    ax(papp),
+SimpleFormListEdit::SimpleFormListEdit(::ca::application * papp) :
+    ca(papp),
    data_container(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
@@ -9,7 +9,7 @@ SimpleFormListEdit::SimpleFormListEdit(::ax::application * papp) :
    ::user::edit_plain_text(papp),
    ::userbase::edit_plain_text(papp),
    ex1::tree(papp),
-   ::ax::data_listener(papp)
+   ::ca::data_listener(papp)
 {
 }
 
@@ -17,7 +17,7 @@ SimpleFormListEdit::~SimpleFormListEdit()
 {
 }
 
-BOOL SimpleFormListEdit::OnEraseBkgnd(::ax::graphics * pgraphics) 
+BOOL SimpleFormListEdit::OnEraseBkgnd(::ca::graphics * pgraphics) 
 {
    UNREFERENCED_PARAMETER(pgraphics);
    return TRUE;   

@@ -11,7 +11,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca menu_library :
+      class CLASS_DECL_ca2 menu_library :
          virtual public library
       {
       public:

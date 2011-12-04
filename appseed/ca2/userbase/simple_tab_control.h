@@ -1,13 +1,13 @@
 #pragma once
 
-class CLASS_DECL_ca simple_tab_control :
+class CLASS_DECL_ca2 simple_tab_control :
    virtual public ::user::interaction,
    virtual public ::user::tab
 {
 public:
 
 
-   simple_tab_control(::ax::application * papp);
+   simple_tab_control(::ca::application * papp);
    virtual ~simple_tab_control();
 
 
@@ -15,7 +15,7 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::ax::graphics * pdc);
+   virtual void _001OnDraw(::ca::graphics * pdc);
 
 };
 

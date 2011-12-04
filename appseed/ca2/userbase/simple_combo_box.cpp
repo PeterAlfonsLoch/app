@@ -19,7 +19,7 @@ simple_combo_box::~simple_combo_box()
 /////////////////////////////////////////////////////////////////////////////
 // simple_combo_box message handlers
 
-void simple_combo_box::_001OnDraw(::ax::graphics *pdc)
+void simple_combo_box::_001OnDraw(::ca::graphics *pdc)
 {
    ::userbase::combo_box::_001OnDraw(pdc);
 /*   BOOL bWin4 = afxData.bWin4;
@@ -40,7 +40,7 @@ void simple_combo_box::_001OnDraw(::ax::graphics *pdc)
       PRF_CHILDREN | PRF_CLIENT); */
 }
 
-BOOL simple_combo_box::OnEraseBkgnd(::ax::graphics * pgraphics) 
+BOOL simple_combo_box::OnEraseBkgnd(::ca::graphics * pgraphics) 
 {
    UNREFERENCED_PARAMETER(pgraphics);
    return TRUE;

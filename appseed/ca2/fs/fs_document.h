@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca document :
+   class CLASS_DECL_ca2 document :
       virtual public ::userbase::document,
       virtual public ::fs::set
    {

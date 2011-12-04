@@ -6,16 +6,16 @@ namespace userbase
    class frame_window;
    class view;
 
-   class CLASS_DECL_ca document : 
+   class CLASS_DECL_ca2 document : 
       virtual public ::document,
       virtual public ::database::client
    {
    public:
 
-      document(::ax::application * papp);
+      document(::ca::application * papp);
       virtual ~document();
 
-      virtual void on_alloc(::ax::application * papp);
+      virtual void on_alloc(::ca::application * papp);
 
    #ifdef _DEBUG
       virtual void dump(dump_context&) const;

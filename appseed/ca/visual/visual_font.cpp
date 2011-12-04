@@ -393,7 +393,7 @@ namespace visual
 
 
 
-BOOL CLASS_DECL_ca2 TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
+BOOL CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 {
    if(lpString == NULL)
    {
@@ -404,7 +404,7 @@ BOOL CLASS_DECL_ca2 TextOutU(HDC hdc, int x, int y, const char * lpString, int c
    return bRet;
 }
 
-CLASS_DECL_ca2 BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
+CLASS_DECL_ca BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
 {
    if(lpString == NULL)
    {
@@ -416,7 +416,7 @@ CLASS_DECL_ca2 BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c,
 }
 
 
-CLASS_DECL_ca2 int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT lprc, UINT format)
+CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT lprc, UINT format)
 {
    if(lpchText == NULL)
    {

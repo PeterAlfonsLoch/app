@@ -5,7 +5,7 @@ namespace html
 
    class data;
 
-   class CLASS_DECL_ca data_callback
+   class CLASS_DECL_ca2 data_callback
    {
    public:
 

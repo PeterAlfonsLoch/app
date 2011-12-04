@@ -34,8 +34,8 @@ namespace userbase
       return TRUE;
    }
 
-   base_static::base_static(::ax::application * papp) :
-      ax(papp)
+   base_static::base_static(::ca::application * papp) :
+      ca(papp)
       { }
    HICON base_static::SetIcon(HICON hIcon)
       { ASSERT(IsWindow()); return (HICON)SendMessage( STM_SETICON, (WPARAM)hIcon, 0L); }

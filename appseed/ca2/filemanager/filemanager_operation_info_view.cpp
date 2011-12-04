@@ -5,7 +5,7 @@
 
 
 
-void DoBar(::ax::graphics * pdc, int ileft, int iTop, int cx, int cy, double dAnime)
+void DoBar(::ca::graphics * pdc, int ileft, int iTop, int cx, int cy, double dAnime)
 {
    int iDeltaDark = 23;
       int iDeltaVermelho = 77;
@@ -37,20 +37,20 @@ void DoBar(::ax::graphics * pdc, int ileft, int iTop, int cx, int cy, double dAn
 }
 
 
-file_manager_operation_info_view::file_manager_operation_info_view(::ax::application * papp) :
-   ax(papp),
+file_manager_operation_info_view::file_manager_operation_info_view(::ca::application * papp) :
+   ca(papp),
    ::userbase::view(papp)
 {
    m_dAnime = 0.0;
 }
 
 
-void file_manager_operation_info_view::OnDraw(::ax::graphics * pdc)
+void file_manager_operation_info_view::OnDraw(::ca::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }
 
-void file_manager_operation_info_view::_001OnDraw(::ax::graphics * pdc)
+void file_manager_operation_info_view::_001OnDraw(::ca::graphics * pdc)
 {
       /*::FillRect(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;

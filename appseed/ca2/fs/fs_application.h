@@ -1,22 +1,35 @@
 #pragma once
 
-namespace fs
+
+namespace ca2
 {
 
-   class CLASS_DECL_ca application :
-      virtual public ::simpleuser::application
+
+   namespace fs
    {
-   public:
+
+
+      class CLASS_DECL_ca2 application :
+         virtual public ::userex::application
+      {
+      public:
 
 
 
 
-      application();
-      virtual ~application();
+         application();
+         virtual ~application();
 
-      bool initialize();
+         bool initialize();
 
 
-   };
+      };
 
-} // namespace fs
+
+   } // namespace fs
+
+
+} // namespace ca2
+
+
+

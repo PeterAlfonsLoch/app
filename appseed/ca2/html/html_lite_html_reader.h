@@ -136,8 +136,8 @@ public:
 
 // Construction/Destruction
 public:
-   lite_html_reader(::ax::application * papp)  :
-      ax(papp)
+   lite_html_reader(::ca::application * papp)  :
+      ca(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default
       m_dwAppData = 0L;   // reasonable default!

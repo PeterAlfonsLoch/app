@@ -28,8 +28,8 @@ namespace userbase
       //}}AFX_MSG_MAP
    // // END_MESSAGE_MAP()
 
-   mdi_frame_window::mdi_frame_window(::ax::application * papp) :
-      ax(papp),
+   mdi_frame_window::mdi_frame_window(::ca::application * papp) :
+      ca(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp)
@@ -113,7 +113,7 @@ namespace userbase
       return FALSE;
    }
 
-   BOOL mdi_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context*)
+   BOOL mdi_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context*)
    {
 
       return CreateClient(lpcs, NULL);
@@ -140,7 +140,7 @@ namespace userbase
       CLIENTCREATESTRUCT ccs;
       ccs.hWindowMenu = NULL;
          // set hWindowMenu for ca2 API V1 backward compatibility
-         // for ca2 API V2, ::ax::window menu will be set in OnMDIActivate
+         // for ca2 API V2, ::ca::window menu will be set in OnMDIActivate
       ccs.idFirstChild = AFX_IDM_FIRST_MDICHILD;
 
       if (lpCreateStruct->style & (WS_HSCROLL|WS_VSCROLL))
@@ -220,7 +220,7 @@ namespace userbase
          {
             if (pbase->m_uiMessage == WM_KEYDOWN || pbase->m_uiMessage == WM_SYSKEYDOWN)
             {
-               // the MDICLIENT ::ax::window may translate it
+               // the MDICLIENT ::ca::window may translate it
    /* trans            if (::TranslateMDISysAccel(m_pguieMdiClient, pMsg))
                   return TRUE; */
             }
@@ -264,13 +264,13 @@ namespace userbase
    }
 
    BOOL mdi_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-      ::user::interaction* pParentWnd, ::ax::create_context* pContext)
+      ::user::interaction* pParentWnd, ::ca::create_context* pContext)
    {
       if (!userbase::frame_window::LoadFrame(pszMatter, dwDefaultStyle,
         pParentWnd, pContext))
          return FALSE;
 
-      // save menu to use when no active MDI child ::ax::window is present
+      // save menu to use when no active MDI child ::ca::window is present
    /* trans   ASSERT(get_handle() != NULL);
       m_hMenuDefault = ::GetMenu(get_handle());
       if (m_hMenuDefault == NULL)
@@ -310,7 +310,7 @@ namespace userbase
 
    mdi_child_window* mdi_frame_window::MDIGetActive(BOOL* pbMaximized) const
    {
-      // check first for MDI client ::ax::window not created
+      // check first for MDI client ::ca::window not created
       if (m_pguieMdiClient == NULL)
       {
          if (pbMaximized != NULL)
@@ -338,7 +338,7 @@ namespace userbase
    }
 
 
-   mdi_child_window* mdi_frame_window::CreateNewChild(::ax::type_info pClass,
+   mdi_child_window* mdi_frame_window::CreateNewChild(::ca::type_info pClass,
          const char * pszMatter, HMENU hMenu /* = NULL */, HACCEL hAccel /* = NULL */)
    {
       ASSERT(pClass);
@@ -346,14 +346,14 @@ namespace userbase
       ASSERT_KINDOF(mdi_child_window, pFrame);
 
       // load the frame
-      ::ax::create_context_sp context(get_app());
+      ::ca::create_context_sp context(get_app());
       stacker < ::user::create_context > cc(context->m_user);
       cc->m_pCurrentFrame = this;
 
       pFrame->SetHandles(hMenu, hAccel);
       if (!pFrame->LoadFrame(pszMatter, WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL, context))
       {
-         TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ax::window.\n");
+         TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ca::window.\n");
          delete pFrame;
          return NULL;
       }
@@ -426,7 +426,7 @@ namespace userbase
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // Smarts for updating the ::ax::window menu based on the current child
+   // Smarts for updating the ::ca::window menu based on the current child
 
    void mdi_frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    {
@@ -439,7 +439,7 @@ namespace userbase
       else
       {
          // no child active, so have to update it ourselves
-         //  (we can't send it to a child ::ax::window, since pActiveWnd is NULL)
+         //  (we can't send it to a child ::ca::window, since pActiveWnd is NULL)
          if (hMenuAlt == NULL)
             hMenuAlt = m_hMenuDefault;  // use default
          m_pguieMdiClient->SendMessage(WM_MDISETMENU, (WPARAM)hMenuAlt, NULL);
@@ -473,11 +473,11 @@ namespace userbase
 
    void mdi_child_window::on_update_frame_title(BOOL bAddToTitle)
    {
-      // update our parent ::ax::window first
+      // update our parent ::ca::window first
       GetMDIFrame()->on_update_frame_title(bAddToTitle);
 
       if ((GetStyle() & FWS_ADDTOTITLE) == 0)
-         return;     // leave child ::ax::window alone!
+         return;     // leave child ::ca::window alone!
 
       ::document * pdocument = GetActiveDocument();
       if (bAddToTitle)
@@ -507,7 +507,7 @@ namespace userbase
    {
       m_bPseudoInactive = FALSE;  // must be happening for real
 
-      // make sure MDI client ::ax::window has correct client edge
+      // make sure MDI client ::ca::window has correct client edge
       UpdateClientEdge();
 
       // send deactivate notification to active ::view
@@ -598,7 +598,7 @@ namespace userbase
       MDICREATESTRUCT* lpmcs;
       lpmcs = (MDICREATESTRUCT*)lpCreateStruct->lpCreateParams;
       
-      ::ax::create_context* pContext = (::ax::create_context*)lpmcs->lParam;
+      ::ca::create_context* pContext = (::ca::create_context*)lpmcs->lParam;
 
       return OnCreateHelper(lpCreateStruct, pContext);
    }
@@ -697,7 +697,7 @@ namespace userbase
       // otherwise we have a new frame !
       ::document_template * ptemplate = pdocument->get_document_template();
       ASSERT_VALID(ptemplate);
-      ::ax::create_context_sp cc(get_app());
+      ::ca::create_context_sp cc(get_app());
       ::frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild, cc);
       if (pFrame == NULL)
       {

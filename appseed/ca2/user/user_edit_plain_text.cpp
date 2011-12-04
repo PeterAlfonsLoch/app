@@ -4,8 +4,8 @@
 namespace user
 {
 
-   edit_plain_text::edit_plain_text(::ax::application * papp) :
-      ax(papp),
+   edit_plain_text::edit_plain_text(::ca::application * papp) :
+      ca(papp),
       data_container(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -13,7 +13,7 @@ namespace user
       m_fastblur(papp),
       m_dibBk(papp),
       ex1::tree(papp),
-      ::ax::data_listener(papp)
+      ::ca::data_listener(papp)
    {
 
       m_pdata              = NULL;
@@ -89,7 +89,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // edit_plain_text drawing
 
-   void edit_plain_text::OnDraw(::ax::graphics * pdcScreen)
+   void edit_plain_text::OnDraw(::ca::graphics * pdcScreen)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -101,7 +101,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
 
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       _001OnCalcLayout(pdc);
       ReleaseDC(pdc);
 
@@ -122,7 +122,7 @@ namespace user
    {
       _001OnUpdate();
 
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       _001OnCalcLayout(pdc);
       ReleaseDC(pdc);
 
@@ -178,7 +178,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnDraw(::ax::graphics * pdc)
+   void edit_plain_text::_001OnDraw(::ca::graphics * pdc)
    {
 
       COLORREF crBk;
@@ -191,7 +191,7 @@ namespace user
       crBkSel     = ARGB(255, 0, 0, 127);
       crSel       = ARGB(255, 255, 255, 255);
 
-      ::ax::job * pjob = pdc->m_pjob;
+      ::ca::job * pjob = pdc->m_pjob;
 
       ::user::print_job * pprintjob = NULL;
       if(pjob!= NULL)
@@ -241,7 +241,7 @@ namespace user
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
 /*            HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            ::visual::fastblur *( *pfnNew )(::ax::application *) = (::visual::fastblur *(*)(::ax::application *)) ::GetProcAddress(hmodule, "new_fastblur");*/
+            ::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");*/
 /*            m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -296,7 +296,7 @@ namespace user
          pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x, -(m_scrollinfo.m_ptScroll.y % m_iLineHeight));
       }
 
-      ::ax::region_sp rgn(get_app());
+      ::ca::region_sp rgn(get_app());
 
       rectClient.deflate(2, 2);
 
@@ -483,7 +483,7 @@ namespace user
          set_plain_text_data(new user::plain_text_data(get_app()), true);
       }
 
-      ::ax::data * pdataParentLock = oprop("parent_lock_data").ca2 < ::ax::data > ();
+      ::ca::data * pdataParentLock = oprop("parent_lock_data").ca2 < ::ca::data > ();
       if(pdataParentLock != NULL)
       {
          m_pdata->m_spdataParentLock = pdataParentLock;
@@ -554,13 +554,13 @@ namespace user
       {
          //::userbase::menu* pPopup = (::userbase::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         userbase::frame_window * pframe = (userbase::frame_window *) (::ax::window *) GetParentFrame();
+         userbase::frame_window * pframe = (userbase::frame_window *) (::ca::window *) GetParentFrame();
          //pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
            // point.x, point.y,
-            //(::ax::window *) pframe);
+            //(::ca::window *) pframe);
          menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
             point.x, point.y,
-            (::ax::window *) pframe);
+            (::ca::window *) pframe);
       }*/
    }
 
@@ -779,11 +779,11 @@ namespace user
    UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
    {
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
-      ::ax::data::writing writing(pview->m_pdata);
+      ::ca::data::writing writing(pview->m_pdata);
 
-      ::ax::graphics_sp graphics(pview->get_app());
+      ::ca::graphics_sp graphics(pview->get_app());
       graphics->CreateCompatibleDC(NULL);
-      ::ax::graphics * pdc = graphics;
+      ::ca::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
       //pview->ReleaseDC(pdc);
       pview->_001OnUpdate();
@@ -793,7 +793,7 @@ namespace user
 
    void edit_plain_text::_001GetText(string & str) const
    {
-      ::ax::data::writing writing(m_pdata);
+      ::ca::data::writing writing(m_pdata);
       if(m_pdata == NULL)
          return;
       file_size iSize = m_pdata->m_editfile.get_length();
@@ -874,7 +874,7 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       if(pdc == NULL)
          return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
@@ -892,7 +892,7 @@ namespace user
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
       ReleaseDC(pdc);
@@ -909,7 +909,7 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
       ReleaseDC(pdc);
@@ -925,7 +925,7 @@ namespace user
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
       ReleaseDC(pdc);
@@ -941,9 +941,9 @@ namespace user
       pmouse->m_bRet = true;
    }
 
-   void edit_plain_text::_001OnCalcLayoutProc(user::elemental * pview, ::ax::graphics * pdc)
+   void edit_plain_text::_001OnCalcLayoutProc(user::elemental * pview, ::ca::graphics * pdc)
    {
-      ::ax::data::writing writing(m_pdata);
+      ::ca::data::writing writing(m_pdata);
 
       UNREFERENCED_PARAMETER(pview);
       pdc->SelectObject(GetFont());
@@ -967,7 +967,7 @@ namespace user
      //    m_size);
    }
 
-   void edit_plain_text::_001OnCalcLayout(::ax::graphics * pdc)
+   void edit_plain_text::_001OnCalcLayout(::ca::graphics * pdc)
    {
 
       pdc->SelectObject(GetFont());
@@ -1086,7 +1086,7 @@ namespace user
       return -1;
    }
 
-   int edit_plain_text::char_hit_test(::ax::graphics * pdc, int px, int py)
+   int edit_plain_text::char_hit_test(::ca::graphics * pdc, int px, int py)
    {
       pdc->SelectObject(GetFont());
       rect rectClient;
@@ -1180,7 +1180,7 @@ namespace user
 
       if(m_bMouseDown)
       {
-         ::ax::graphics * pdc = GetDC();
+         ::ca::graphics * pdc = GetDC();
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
          ReleaseDC(pdc);
        //  _001RedrawWindow();
@@ -1194,7 +1194,7 @@ namespace user
       iSelEnd = m_iSelEnd - m_iViewOffset;
    }
 
-   void edit_plain_text::on_updata_data(::ax::data * pdata, int iHint)
+   void edit_plain_text::on_updata_data(::ca::data * pdata, int iHint)
    {
       if(pdata == m_pdata)
       {
@@ -1293,7 +1293,7 @@ namespace user
 
    void edit_plain_text::_001OnChar(gen::signal_object * pobj)
    {
-      ::ax::data::writing writing(m_pdata);
+      ::ca::data::writing writing(m_pdata);
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
@@ -1561,7 +1561,7 @@ namespace user
 
    void edit_plain_text::_001OnSysChar(gen::signal_object * pobj)
    {
-      ::ax::data::writing writing(m_pdata);
+      ::ca::data::writing writing(m_pdata);
       SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_DELETE)
       {
@@ -1722,7 +1722,7 @@ namespace user
       m_bGetTextNeedUpdate = 1;
       CreateLineIndex();
       m_y = -1;
-      ::ax::graphics_sp dc(get_app());
+      ::ca::graphics_sp dc(get_app());
       dc->CreateCompatibleDC(NULL);
       _001OnCalcLayout(dc);
       lineCountEvent(m_lines.lines.get_count());
@@ -1851,7 +1851,7 @@ namespace user
 
    void edit_plain_text::_001SetText(const char * psz)
    {
-      ::ax::data::writing writing(m_pdata);
+      ::ca::data::writing writing(m_pdata);
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
       m_pdata->m_editfile.Delete((::primitive::memory_size)m_pdata->m_editfile.get_length());
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
@@ -2071,7 +2071,7 @@ namespace user
 
    void edit_plain_text::set_plain_text_data(plain_text_data * pdata, bool bOwnData)
    {
-      ::ax::data::writing writing(m_pdata);
+      ::ca::data::writing writing(m_pdata);
       if(m_pdata != NULL && m_bOwnData)
       {
          delete m_pdata;

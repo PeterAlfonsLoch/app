@@ -13,7 +13,7 @@ namespace window_frame
    class SysMenuManager;
    class WorkSetListener;
 
-   class CLASS_DECL_ca WorkSet :
+   class CLASS_DECL_ca2 WorkSet :
       virtual public ::database::client,
       virtual public gen::signalizable
    {
@@ -52,7 +52,7 @@ namespace window_frame
 
       appearance *            m_pappearance;
 
-      WorkSet(::ax::application * papp);
+      WorkSet(::ca::application * papp);
       virtual ~WorkSet();
 
       void OnNcCalcSize(LPRECT lprect);
@@ -148,7 +148,7 @@ namespace window_frame
       void relay_event(gen::signal_object * pobj);
       void message_handler(gen::signal_object * pobj);
 
-      void _001OnDraw(::ax::graphics * pdc);
+      void _001OnDraw(::ca::graphics * pdc);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

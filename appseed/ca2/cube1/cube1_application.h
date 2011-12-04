@@ -5,8 +5,7 @@ namespace cube1
 {
 
 
-   class CLASS_DECL_ca application :
-      // fontopus::application
+   class CLASS_DECL_ca2 application :
       virtual public calculator::application,
       virtual public filemanager::application
    {
@@ -25,7 +24,7 @@ namespace cube1
 
 
 
-      virtual bool final_handle_exception(::ax::exception & e);
+      virtual bool final_handle_exception(::ca::exception & e);
       virtual bool initialize();
       virtual bool initialize1();
 
@@ -46,9 +45,9 @@ namespace cube1
 
    };
 
-   inline application & app_cast(::ax::application * papp)
+   inline application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
 
-} // namespace ax
+} // namespace ca

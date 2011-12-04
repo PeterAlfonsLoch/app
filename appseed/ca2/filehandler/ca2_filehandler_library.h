@@ -9,7 +9,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca library :
+      class CLASS_DECL_ca2 library :
          virtual public ::ca2::library
       {
       public:

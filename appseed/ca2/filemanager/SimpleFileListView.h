@@ -14,7 +14,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_ca SimpleFileListView :
+   class CLASS_DECL_ca2 SimpleFileListView :
       virtual public ::userbase::view,
       virtual public filemanager::SimpleFileListInterface
    {
@@ -36,7 +36,7 @@ namespace filemanager
 
 
 
-      SimpleFileListView(::ax::application * papp);
+      SimpleFileListView(::ca::application * papp);
 
 
 

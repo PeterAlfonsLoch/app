@@ -1,10 +1,12 @@
 #pragma once
 
+
 namespace fs
 {
 
+
    class CLASS_DECL_ca application :
-      virtual public ::simpleuser::application
+      virtual public ::user::application
    {
    public:
 
@@ -19,4 +21,7 @@ namespace fs
 
    };
 
+
 } // namespace fs
+
+

@@ -2,19 +2,19 @@
 
 
 
-class CLASS_DECL_ca file_manager_operation_list_view :
+class CLASS_DECL_ca2 file_manager_operation_list_view :
    virtual public ::userbase::view,
    virtual public ::user::list
 {
 public:
 
-   file_manager_operation_list_view(::ax::application * papp);
+   file_manager_operation_list_view(::ca::application * papp);
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    void _001InsertColumns();
 
-   virtual void OnDraw(::ax::graphics * pdc);
+   virtual void OnDraw(::ca::graphics * pdc);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)

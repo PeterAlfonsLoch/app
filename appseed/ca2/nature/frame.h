@@ -3,7 +3,7 @@
 namespace nature
 {
 
-   class CLASS_DECL_ca frame : 
+   class CLASS_DECL_ca2 frame : 
       virtual public simple_frame_window
    {
       
@@ -18,7 +18,7 @@ namespace nature
       DWORD                      m_dwLastHover;
 
 
-      frame(::ax::application * papp);
+      frame(::ca::application * papp);
       virtual ~frame();
 
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

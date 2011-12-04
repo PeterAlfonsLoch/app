@@ -2,7 +2,7 @@
 
 class ::filemanager::data;
 
-class CLASS_DECL_ca FileManagerInterface :
+class CLASS_DECL_ca2 FileManagerInterface :
    virtual public ::database::client
 {
 public:

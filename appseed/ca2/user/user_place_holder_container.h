@@ -4,7 +4,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca place_holder_container : 
+   class CLASS_DECL_ca2 place_holder_container : 
       virtual public control
    {
    public:
@@ -13,7 +13,7 @@ namespace user
       array_app_alloc < place_holder, place_holder & > m_holdera;
 
 
-      place_holder_container(::ax::application * papp);
+      place_holder_container(::ca::application * papp);
       virtual ~place_holder_container();
 
 
@@ -36,7 +36,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca place_holder_container_ptra :
+   class CLASS_DECL_ca2 place_holder_container_ptra :
       virtual public comparable_array < place_holder_container * >
    {
    public:

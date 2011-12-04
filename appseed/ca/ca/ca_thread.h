@@ -1,17 +1,9 @@
 #pragma once
 
 
-#include "ca/datetime/datetime.h"
-#include "ca/multithreading/multithreading.h"
-#include "ca/radix/command_target.h"
-#include "ca/exception/se_translator.h"
-#include "ca/gen/gen_property.h"
 
-typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
 
-/////////////////////////////////////////////////////////////////////////////
-// thread
-namespace win
+/*namespace win
 {
    class CLASS_DECL_ca message
    {
@@ -25,7 +17,7 @@ namespace win
       static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int nPriority = 0);
    };
 
-} // namespace win
+} // namespace win*/
 
 // incorporation of sector8J src/lib/pal/windows/thread_windows.hpp on 07/09/2011
 /**
@@ -231,6 +223,8 @@ namespace ca
 
 
       bool                                m_bRun;
+      user::LPWndArray *                  m_puiptra;
+      ::user::interaction::timer_array *  m_ptimera;
       comparable_array < ::ca::ca * >     m_captraDeletePool;
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
       DWORD_PTR                           m_dwAlive;

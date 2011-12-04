@@ -68,7 +68,7 @@ namespace filemanager
    }
  
 
-   void application::on_request(::ax::create_context * pcreatecontext)
+   void application::on_request(::ca::create_context * pcreatecontext)
    {
       FileManagerCallbackInterface::on_request(pcreatecontext);
    }
@@ -128,16 +128,16 @@ namespace filemanager
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          pszMatter,
-         ::ax::get_type_info < file_manager_form_document > (),
-         ::ax::get_type_info < file_manager_form_child_frame > (),
-         ::ax::get_type_info < file_manager_form_view > ());
+         ::ca::get_type_info < file_manager_form_document > (),
+         ::ca::get_type_info < file_manager_form_child_frame > (),
+         ::ca::get_type_info < file_manager_form_view > ());
 
       m_ptemplateOperation = new ::userbase::single_document_template(
          this,
          pszMatter,
-         ::ax::get_type_info < file_manager_operation_document > (),
-         ::ax::get_type_info < file_manager_operation_child_frame > (),
-         ::ax::get_type_info < file_manager_operation_view > ());
+         ::ca::get_type_info < file_manager_operation_document > (),
+         ::ca::get_type_info < file_manager_operation_child_frame > (),
+         ::ca::get_type_info < file_manager_operation_view > ());
    }
 
 
@@ -153,7 +153,7 @@ namespace filemanager
       }
 
 
-      ::ax::create_context_sp cc(get_app());
+      ::ca::create_context_sp cc(get_app());
       cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
       request(cc);
 

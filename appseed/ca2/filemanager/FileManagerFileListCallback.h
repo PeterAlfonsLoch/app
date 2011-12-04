@@ -4,7 +4,7 @@ class ::userbase::button;
 class ::fs::item;
 class ::fs::item_array;
 
-class CLASS_DECL_ca FileManagerFileListCallback :
+class CLASS_DECL_ca2 FileManagerFileListCallback :
    virtual public ::radix::object
 {
 public:

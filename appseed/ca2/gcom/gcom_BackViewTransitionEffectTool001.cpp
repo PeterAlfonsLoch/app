@@ -8,7 +8,7 @@ namespace gcom
    {
 
       TransitionEffect::Tool001::Tool001(Main & viewinterface) :
-         ::ax::ax(viewinterface.get_app()),
+         ::ca::ca(viewinterface.get_app()),
          Helper(viewinterface)
       {
       }

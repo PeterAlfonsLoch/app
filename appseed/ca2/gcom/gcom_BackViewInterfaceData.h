@@ -6,7 +6,7 @@ namespace gcom
    namespace backview
    {
 
-      class CLASS_DECL_ca InterfaceData  
+      class CLASS_DECL_ca2 InterfaceData  
       {
       public:
          flags < EInterfaceData >   m_einterfacedataflags;

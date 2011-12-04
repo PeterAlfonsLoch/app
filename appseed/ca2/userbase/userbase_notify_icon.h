@@ -8,7 +8,7 @@ namespace userbase
    class notify_icon_listener;
 
 
-   class CLASS_DECL_ca notify_icon :
+   class CLASS_DECL_ca2 notify_icon :
       virtual public ::user::interaction
    {
    public:
@@ -28,7 +28,7 @@ namespace userbase
       notify_icon_listener * m_plistener;
 
 
-      notify_icon(::ax::application * papp);
+      notify_icon(::ca::application * papp);
       virtual ~notify_icon();
 
 

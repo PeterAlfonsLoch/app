@@ -3,12 +3,12 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca elastic_slider :
+   class CLASS_DECL_ca2 elastic_slider :
       public ::user::interaction
 
    {
    public:
-      elastic_slider(::ax::application * papp);
+      elastic_slider(::ca::application * papp);
    public:
       virtual ~elastic_slider(void);
 
@@ -49,7 +49,7 @@ namespace userbase
       void CalcTension();
 
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
 
    protected:
       EScalar m_escalar;

@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_tab_view::simple_tab_view(::ax::application * papp) :
-   ax(papp),
+simple_tab_view::simple_tab_view(::ca::application * papp) :
+   ca(papp),
    ::userbase::view(papp),
    ::user::interaction(papp), 
    ::user::tab(papp),
@@ -62,7 +62,7 @@ void simple_tab_view::_001OnCreate(gen::signal_object * pobj)
    }
 }
 
-void simple_tab_view::_001OnDraw(::ax::graphics * pdc)
+void simple_tab_view::_001OnDraw(::ca::graphics * pdc)
 {
    ::user::tab::_001OnDraw(pdc);
 }

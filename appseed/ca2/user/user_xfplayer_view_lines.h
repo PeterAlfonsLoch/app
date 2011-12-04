@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca XfplayerViewLines :
+class CLASS_DECL_ca2 XfplayerViewLines :
    virtual public array_app_alloc<XfplayerViewLine, XfplayerViewLine &>,
    virtual public gen::signalizable
 {
@@ -12,11 +12,11 @@ public:
    int                        m_iLastVisible;
 
 
-   XfplayerViewLines(::ax::application * papp);
+   XfplayerViewLines(::ca::application * papp);
 
    void SetBlend(double dBlend);
    int FindLine(XfplayerViewLine * pline);
-   void SetRenderWindow(::ax::window * pWnd);
+   void SetRenderWindow(::ca::window * pWnd);
    void SetEffect(int iEffect);
    void set_user_interaction(::user::interaction * pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);

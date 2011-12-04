@@ -5,7 +5,7 @@ namespace cube8
 {
 
 
-   CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
+   CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
 
 
    application::application()
@@ -25,12 +25,12 @@ namespace cube8
    {
    }
 
-   CLASS_DECL_ca application & app_cast(::ax::ax * papp)
+   CLASS_DECL_ca2 application & app_cast(::ca::ca * papp)
    {
       return *(dynamic_cast < application * > (papp));
    }
 
-   class ::ax::dir::application & application::dir()
+   class ::ca::dir::application & application::dir()
    {
       return m_dir;
    }
@@ -54,10 +54,10 @@ namespace cube8
    }
 
 
-   ::ax::application * application::instantiate_application(const char * pszId, ::ax::application_bias * pbias)
+   ::ca::application * application::instantiate_application(const char * pszId, ::ca::application_bias * pbias)
    {
 
-      ::ax::application * pcaapp = NULL;
+      ::ca::application * pcaapp = NULL;
       ::ca2::application * papp = NULL;
 
       string strId(pszId);
@@ -131,10 +131,10 @@ namespace cube8
    }
 
 
-   ::ax::application * application::create_application(const char * pszId, bool bSynch, ::ax::application_bias * pbias)
+   ::ca::application * application::create_application(const char * pszId, bool bSynch, ::ca::application_bias * pbias)
    {
 
-      ::ax::application * pcaapp = instantiate_application(pszId, pbias);
+      ::ca::application * pcaapp = instantiate_application(pszId, pbias);
 
       if(pcaapp == NULL)
          return NULL;
@@ -174,9 +174,9 @@ namespace cube8
          peventReady->ResetEvent();
       }
 
-      papp->::ax::thread_sp::create(this);
-      //dynamic_cast < ::radix::thread * > (papp->::ax::thread_sp::m_p)->m_p = papp->::ax::thread_sp::m_p;
-      dynamic_cast < ::radix::thread * > (papp->::ax::thread_sp::m_p)->m_p = papp;
+      papp->::ca::thread_sp::create(this);
+      //dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
+      dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp;
       if(pbias != NULL)
       {
          papp->m_biasCalling = *pbias;
@@ -237,7 +237,7 @@ namespace cube8
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(), System.::ax::thread_sp::m_p->get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), System.::ca::thread_sp::m_p->get_os_int(), TRUE);
       }
 
       if(is_system())
@@ -269,7 +269,7 @@ namespace cube8
                goto InitFailure;
             }
          }
-         catch(const ::ax::exception &)
+         catch(const ::ca::exception &)
          {
             if (GetMainWnd() != NULL)
             {
@@ -300,9 +300,9 @@ namespace cube8
                goto InitFailure;
             }
          }
-         catch(const ::ax::exception & e)
+         catch(const ::ca::exception & e)
          {
-            if(on_run_exception((::ax::exception &) e))
+            if(on_run_exception((::ca::exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
@@ -311,12 +311,12 @@ namespace cube8
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(::ax::exception &)
+               catch(::ca::exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((::ax::exception &) e))
+            if(final_handle_exception((::ca::exception &) e))
                goto run;
             if(GetMainWnd() != NULL)
             {
@@ -325,7 +325,7 @@ namespace cube8
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(::ax::exception &)
+               catch(::ca::exception &)
                {
                }
                SetMainWnd(NULL);
@@ -417,7 +417,7 @@ InitFailure:
 
       try
       {
-         ::radix::application_signal_object signal(this, &m_signal, ::ax::application_signal_start);
+         ::radix::application_signal_object signal(this, &m_signal, ::ca::application_signal_start);
          m_signal.emit(&signal);
       }
       catch(...)
@@ -425,7 +425,7 @@ InitFailure:
       }
 
 
-      install_message_handling(System.GetThread()->::ax::smart_pointer < ::ax::thread > ::m_p);
+      install_message_handling(System.GetThread()->::ca::smart_pointer < ::ca::thread > ::m_p);
       try
       {
          try
@@ -442,9 +442,9 @@ InitFailure:
          {
             m_iReturnCode = run();
          }
-         catch(const ::ax::exception & e)
+         catch(const ::ca::exception & e)
          {
-            if(on_run_exception((::ax::exception &) e))
+            if(on_run_exception((::ca::exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
@@ -453,12 +453,12 @@ InitFailure:
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(::ax::exception &)
+               catch(::ca::exception &)
                {
                }
                SetMainWnd(NULL);
             }
-            if(final_handle_exception((::ax::exception &) e))
+            if(final_handle_exception((::ca::exception &) e))
                goto run;
             if (GetMainWnd() != NULL)
             {
@@ -467,7 +467,7 @@ InitFailure:
                {
                   GetMainWnd()->DestroyWindow();
                }
-               catch(::ax::exception &)
+               catch(::ca::exception &)
                {
                }
                SetMainWnd(NULL);
@@ -557,7 +557,7 @@ InitFailure:
       }
       try
       {
-         ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (::ax::smart_pointer < ::ax::thread >::m_p);
+         ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
          ::SetEvent((HANDLE) pthread->m_peventReady);
       }
       catch(...)

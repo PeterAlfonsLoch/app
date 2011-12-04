@@ -5,7 +5,7 @@ namespace userbase
 
    class menu_item;
 
-   class CLASS_DECL_ca menu_base :
+   class CLASS_DECL_ca2 menu_base :
       virtual public ::radix::object
    {
    public:
@@ -14,7 +14,7 @@ namespace userbase
       sp(menu_item)  m_pitem;
 
 
-      menu_base(::ax::application * papp);
+      menu_base(::ca::application * papp);
       virtual ~menu_base();
 
 

@@ -5,7 +5,7 @@ namespace gcom
    namespace backview
    {
 
-      class CLASS_DECL_ca ImageChange :
+      class CLASS_DECL_ca2 ImageChange :
          public Helper
       {
       public:

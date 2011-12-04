@@ -5,7 +5,7 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca menu_list_view : 
+   class CLASS_DECL_ca2 menu_list_view : 
       virtual public menu_list_window
    {
    public:
@@ -13,7 +13,7 @@ namespace userbase
       ::user::interaction   * m_pguieNotify;
 
 
-      menu_list_view(::ax::application * papp);
+      menu_list_view(::ca::application * papp);
       virtual ~menu_list_view();
 
       void install_message_handling(::gen::message::dispatch * pinterface);

@@ -3,12 +3,12 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca form_view :
+   class CLASS_DECL_ca2 form_view :
       virtual public scroll_view,
       virtual public ::user::form
    {
    public:
-      form_view(::ax::application * papp);
+      form_view(::ca::application * papp);
       virtual ~form_view();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

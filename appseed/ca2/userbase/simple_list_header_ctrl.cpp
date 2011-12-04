@@ -2,8 +2,8 @@
 
 const int simple_list_header_control::s_iDividerWidth = 4;
 
-simple_list_header_control::simple_list_header_control(::ax::application * papp) :
-   ax(papp),
+simple_list_header_control::simple_list_header_control(::ca::application * papp) :
+   ca(papp),
    ::user::list_header(papp)
 {
    AddMessageHandling(this);

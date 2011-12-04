@@ -5,8 +5,8 @@ namespace command
 {
 
 
-   class CLASS_DECL_ca application :
-      public ::mail::application
+   class CLASS_DECL_ca2 application :
+      virtual public ::mail::application
    {
    public:
 
@@ -30,7 +30,7 @@ namespace command
 
    		
 
-      virtual ::ax::application * get_app() const;
+      virtual ::ca::application * get_app() const;
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
    };

@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_ca html_form :
+class CLASS_DECL_ca2 html_form :
    virtual public ::userbase::form_view
 {
 public:
@@ -18,11 +18,11 @@ public:
 
 
 
-   html_form(::ax::application * papp);
+   html_form(::ca::application * papp);
    virtual ~html_form();
 
-   virtual void _001OnDraw(::ax::graphics * pdc);
-   virtual void _001DrawChildren(::ax::graphics *pdc);
+   virtual void _001OnDraw(::ca::graphics * pdc);
+   virtual void _001DrawChildren(::ca::graphics *pdc);
 
    virtual void layout();
 

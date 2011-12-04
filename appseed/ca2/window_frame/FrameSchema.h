@@ -7,7 +7,7 @@ namespace window_frame
    class appearance;
    class WorkSet;
 
-   class CLASS_DECL_ca FrameSchema : 
+   class CLASS_DECL_ca2 FrameSchema : 
       virtual public gen::signalizable,
       virtual public ::radix::object
    {
@@ -26,28 +26,28 @@ namespace window_frame
       };
 
 
-      ::ax::brush_sp                m_brushControlBoxBack;
-      ::ax::brush_sp                m_brushControlBoxBackSel;
-      ::ax::brush_sp                m_brushControlBoxBackFocus;
-      ::ax::brush_sp                m_brushControlBoxBackDisabled;
+      ::ca::brush_sp                m_brushControlBoxBack;
+      ::ca::brush_sp                m_brushControlBoxBackSel;
+      ::ca::brush_sp                m_brushControlBoxBackFocus;
+      ::ca::brush_sp                m_brushControlBoxBackDisabled;
 
-      ::ax::pen_sp                  m_penControlBoxBack;
-      ::ax::pen_sp                  m_penControlBoxBackSel;
-      ::ax::pen_sp                  m_penControlBoxBackFocus;
-      ::ax::pen_sp                  m_penControlBoxBackDisabled;
+      ::ca::pen_sp                  m_penControlBoxBack;
+      ::ca::pen_sp                  m_penControlBoxBackSel;
+      ::ca::pen_sp                  m_penControlBoxBackFocus;
+      ::ca::pen_sp                  m_penControlBoxBackDisabled;
       
       COLORREF                      m_crControlBoxFore;
       COLORREF                      m_crControlBoxForeSel;
       COLORREF                      m_crControlBoxForeFocus;
       COLORREF                      m_crControlBoxForeDisabled;
 
-      ::ax::dibmap                  m_dibmap;
+      ::ca::dibmap                  m_dibmap;
 
-      ::ax::font_sp                 m_fontMarlett;
+      ::ca::font_sp                 m_fontMarlett;
 
       ::user::front_end_schema      m_schema;
 
-      ::ax::type_info                                                                     m_typeinfoControlBoxButton;
+      ::ca::type_info                                                                     m_typeinfoControlBoxButton;
 
 
       ::collection::map < EButton, EButton, ControlBoxButton *, ControlBoxButton * >      m_buttonmap;
@@ -60,7 +60,7 @@ namespace window_frame
       ::collection::map < EButton, EButton, bool, bool >                                  m_buttonmapPresent;
 
 
-      FrameSchema(::ax::application * papp);
+      FrameSchema(::ca::application * papp);
       virtual ~FrameSchema();
 
 
@@ -98,11 +98,11 @@ namespace window_frame
       virtual void OnAppearanceModeChange();
       
       
-      virtual void _001OnDraw(::ax::graphics * pca);
+      virtual void _001OnDraw(::ca::graphics * pca);
 
 
-      virtual void Glass(::ax::graphics * pdc, LPRECT lprect);
-      virtual void ColorGlass(::ax::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha);
+      virtual void Glass(::ca::graphics * pdc, LPRECT lprect);
+      virtual void ColorGlass(::ca::graphics * pdc, LPRECT lprect, COLORREF cr, BYTE bAlpha);
 
 
       // point should be in screen coordinates

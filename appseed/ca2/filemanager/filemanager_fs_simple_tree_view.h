@@ -34,7 +34,7 @@ namespace filemanager
             int FindAbsolute(__int64 iFolder);
          };
 
-         class CLASS_DECL_ca tree_view :
+         class CLASS_DECL_ca2 tree_view :
             virtual public ::userbase::view,
             virtual public ::user::tree
          {
@@ -49,7 +49,7 @@ namespace filemanager
             __int64                             m_iParentFolder;
 
 
-            tree_view(::ax::application * papp);
+            tree_view(::ca::application * papp);
 
             virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 

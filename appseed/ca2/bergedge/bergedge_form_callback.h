@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   class CLASS_DECL_ca form_callback :
+   class CLASS_DECL_ca2 form_callback :
       virtual public ::user::form_callback
    {
    public:

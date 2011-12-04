@@ -7,11 +7,11 @@ namespace user
 
    class scroll_bar;
 
-   class CLASS_DECL_ca tree_draw_item
+   class CLASS_DECL_ca2 tree_draw_item
    {
    public:
       ::ex1::tree_item *      m_pitem;
-      ::ax::graphics *        m_pdc;
+      ::ca::graphics *        m_pdc;
       index                   m_iItem;
       index                   m_iIndentation;
       index                   m_iItemHeight;
@@ -27,7 +27,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca tree :
+   class CLASS_DECL_ca2 tree :
       virtual public scroll_view,
       virtual public ::ex1::tree
    {
@@ -59,11 +59,11 @@ namespace user
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
 
-      tree(::ax::application * papp);
+      tree(::ca::application * papp);
       virtual ~tree();
 
-      virtual void _001OnDrawBackground(::ax::graphics * pdc);
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDrawBackground(::ca::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);
 
       void SetScrollSizes();

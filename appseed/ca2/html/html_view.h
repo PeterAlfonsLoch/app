@@ -3,7 +3,7 @@
 class html_document;
 
 
-class CLASS_DECL_ca html_view :
+class CLASS_DECL_ca2 html_view :
    virtual public html_form
 {
 public:
@@ -12,7 +12,7 @@ public:
    string m_strLocationURL;
 
 
-   html_view(::ax::application * papp);
+   html_view(::ca::application * papp);
    virtual ~html_view();
 
 

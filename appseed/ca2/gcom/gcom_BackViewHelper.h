@@ -6,7 +6,7 @@ namespace gcom
    {
       class Main;
 
-      class CLASS_DECL_ca Helper : 
+      class CLASS_DECL_ca2 Helper : 
          virtual public ::radix::object
       {
       private:

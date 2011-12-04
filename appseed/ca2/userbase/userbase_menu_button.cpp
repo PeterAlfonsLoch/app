@@ -3,11 +3,11 @@
 namespace userbase
 {
 
-   menu_button::menu_button(::ax::application * papp) :
+   menu_button::menu_button(::ca::application * papp) :
       ::user::interaction(papp),
       ::user::button(papp),
       button(papp),
-      ax(papp)
+      ca(papp)
    {
       m_pitem = NULL;
    }
@@ -17,15 +17,15 @@ namespace userbase
    }
 
 
-   void menu_button::_001OnDraw(::ax::graphics * pdc)
+   void menu_button::_001OnDraw(::ca::graphics * pdc)
    {
       button::_001OnDraw(pdc);
       rect rectClient;
       m_pguie->GetClientRect(rectClient);
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
-         ::ax::brush_sp br(get_app(), RGB(0, 0, 0));
-         ::ax::pen_sp pen(get_app());
+         ::ca::brush_sp br(get_app(), RGB(0, 0, 0));
+         ::ca::pen_sp pen(get_app());
          pen->construct(PS_SOLID, 1, RGB(0, 0, 0));
          pdc->SelectObject(pen);
          pdc->SelectObject(br);
@@ -66,7 +66,7 @@ namespace userbase
    }
 
 
-   void menu_button::_001DrawCheck(::ax::graphics * pdc)
+   void menu_button::_001DrawCheck(::ca::graphics * pdc)
    {
       UINT uiImage = 0xffffffffu;
       if(m_pitem != NULL)
@@ -110,8 +110,8 @@ namespace userbase
       }
    }
 
-   menu_button_cmd_ui::menu_button_cmd_ui(::ax::application * papp) :
-      ax(papp),
+   menu_button_cmd_ui::menu_button_cmd_ui(::ca::application * papp) :
+      ca(papp),
       cmd_ui(papp)
    {
    }

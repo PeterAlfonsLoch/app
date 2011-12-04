@@ -15,7 +15,7 @@ namespace html
       m_strTextDecoration     = font.m_strTextDecoration;
    }
 
-   bool font::create(::ax::application * papp)
+   bool font::create(::ca::application * papp)
    {
       m_font.create(papp);
       LOGFONT lf;

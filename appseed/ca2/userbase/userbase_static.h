@@ -5,13 +5,13 @@ namespace userbase
 {
 
 
-   class CLASS_DECL_ca base_static :
+   class CLASS_DECL_ca2 base_static :
       virtual public ::user::control
    {
    public:
 
 
-      base_static(::ax::application * papp);
+      base_static(::ca::application * papp);
       virtual ~base_static();
 
 

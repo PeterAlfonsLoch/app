@@ -7,7 +7,7 @@ namespace userbase
    class menu_item;
    class menu_item_ptra;
 
-   class CLASS_DECL_ca menu_button_cmd_ui : public cmd_ui
+   class CLASS_DECL_ca2 menu_button_cmd_ui : public cmd_ui
    {
    public:
 
@@ -16,7 +16,7 @@ namespace userbase
       menu_item *          m_pitemContainer;
 
 
-      menu_button_cmd_ui(::ax::application * papp);
+      menu_button_cmd_ui(::ca::application * papp);
 
 
       virtual void Enable(BOOL bOn);
@@ -27,11 +27,11 @@ namespace userbase
 
 
 
-   class CLASS_DECL_ca menu_button :
+   class CLASS_DECL_ca2 menu_button :
       public button
    {
    public:
-      menu_button(::ax::application * papp);
+      menu_button(::ca::application * papp);
    public:
       virtual ~menu_button();
 
@@ -40,9 +40,9 @@ namespace userbase
 
       virtual void _001Layout();
 
-      virtual void _001DrawCheck(::ax::graphics * pdc);
+      virtual void _001DrawCheck(::ca::graphics * pdc);
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
    };
 
 } // namespace userbase

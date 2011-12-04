@@ -3,7 +3,7 @@
 namespace html
 {
    
-   class CLASS_DECL_ca html_ex :
+   class CLASS_DECL_ca2 html_ex :
       virtual public ::radix::object
    {
    public:
@@ -18,7 +18,7 @@ namespace html
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html_ex(::ax::application * papp);
+      html_ex(::ca::application * papp);
       virtual ~html_ex();
 
       int resolve_entity(const char * lpszEntity, string & strChar);

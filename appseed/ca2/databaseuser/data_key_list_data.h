@@ -3,14 +3,14 @@
 namespace databaseuser
 {
 
-   class CLASS_DECL_ca data_key_list_data :
+   class CLASS_DECL_ca2 data_key_list_data :
       public ::user::list_data,
       public ::database::client
    {
    public:
 
 
-      data_key_list_data(::ax::application * papp);
+      data_key_list_data(::ca::application * papp);
       virtual ~data_key_list_data(void);
 
 

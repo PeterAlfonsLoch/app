@@ -5,7 +5,7 @@ namespace ca8
 {
 
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       public userex::application
    {
    public:

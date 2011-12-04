@@ -6,7 +6,7 @@ namespace gcom
    {
 
       Graphics::Graphics(Main & main) :
-         ::ax::ax(main.get_app()),
+         ::ca::ca(main.get_app()),
          Helper(main)
       {
          m_spdrawdib.create(get_app());
@@ -18,64 +18,64 @@ namespace gcom
       {
       }
 
-      ::ax::graphics & Graphics::GetScreenDC()
+      ::ca::graphics & Graphics::GetScreenDC()
       {
          return m_dcScreen;
       }
 
-      ::ax::graphics & Graphics::GetBackDC()
+      ::ca::graphics & Graphics::GetBackDC()
       {
          return *GetDib(_graphics::DibBack)->get_graphics();
       }
 
-      ::ax::graphics & Graphics::GetTransferDC()
+      ::ca::graphics & Graphics::GetTransferDC()
       {
          GetDib(_graphics::DibTransfer)->dc_select();
          return *GetDib(_graphics::DibTransfer)->get_graphics();
       }
 
-      ::ax::graphics & Graphics::GetFrame1DC()
+      ::ca::graphics & Graphics::GetFrame1DC()
       {
          return *GetDib(_graphics::DibFrame1)->get_graphics();
       }
 
-      ::ax::graphics & Graphics::GetBufferDC()
+      ::ca::graphics & Graphics::GetBufferDC()
       {
          return *GetDib(_graphics::DibBuffer)->get_graphics();
       }
 
-      ::ax::graphics & Graphics::GetSourceDC()
+      ::ca::graphics & Graphics::GetSourceDC()
       {
          return *GetDib(_graphics::DibSource)->get_graphics();
       }
 
-      ::ax::bitmap & Graphics::GetBackBitmap()
+      ::ca::bitmap & Graphics::GetBackBitmap()
       {
          return *GetDib(_graphics::DibBack)->get_bitmap();
       }
 
-      ::ax::bitmap & Graphics::GetTransferBitmap()
+      ::ca::bitmap & Graphics::GetTransferBitmap()
       {
          return *GetDib(_graphics::DibTransfer)->get_bitmap();
       }
 
-      ::ax::bitmap & Graphics::GetFrame1Bitmap()
+      ::ca::bitmap & Graphics::GetFrame1Bitmap()
       {
          return *GetDib(_graphics::DibFrame1)->get_bitmap();
       }
 
-      ::ax::bitmap & Graphics::GetBufferBitmap()
+      ::ca::bitmap & Graphics::GetBufferBitmap()
       {
          return *GetDib(_graphics::DibBuffer)->get_bitmap();
 
       }
 
-      ::ax::bitmap & Graphics::GetSourceBitmap()
+      ::ca::bitmap & Graphics::GetSourceBitmap()
       {
          return *GetDib(_graphics::DibSource)->get_bitmap();
       }
 
-      ::ax::draw_dib & Graphics::GetDrawDib()
+      ::ca::draw_dib & Graphics::GetDrawDib()
       {
          return m_spdrawdib;
       }
@@ -92,14 +92,14 @@ namespace gcom
          int cy = rectClient.height();
 
          single_lock sl1Back(&m_mutex1Back, TRUE);
-         ::ax::graphics & dcBack = GetBackDC();
+         ::ca::graphics & dcBack = GetBackDC();
          GetDib(_graphics::DibBack)->create(cx, cy);
          dcBack.FillSolidRect(0, 0, cx, cy, RGB(127, 136, 145));
          sl1Back.unlock();
       }
 
 
-      void Graphics::OnImageLoaded(::ax::bitmap * pbitmap)
+      void Graphics::OnImageLoaded(::ca::bitmap * pbitmap)
       {
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
@@ -113,9 +113,9 @@ namespace gcom
          {
             BITMAP bm;
             pbitmap->GetObject(sizeof(bm), &bm);
-            ::ax::graphics_sp spgraphics(get_app());
+            ::ca::graphics_sp spgraphics(get_app());
             spgraphics->CreateCompatibleDC(NULL);
-            ::ax::bitmap * pbitmapOriginal = spgraphics->SelectObject(pbitmap);
+            ::ca::bitmap * pbitmapOriginal = spgraphics->SelectObject(pbitmap);
             GetDib(_graphics::DibSource)->create(bm.bmWidth, bm.bmHeight);
             GetDib(_graphics::DibSource)->from(spgraphics);
             spgraphics->SelectObject(pbitmapOriginal);
@@ -163,13 +163,13 @@ namespace gcom
 
          //HelperGetMain().DeferCheckLayout();
 
-//         ::ax::graphics & dcScreen = GetScreenDC();
-         ::ax::graphics & dcBuffer = GetBufferDC();
-         ::ax::graphics & dcSource = GetSourceDC();
-//         ::ax::bitmap & bmpBuffer = GetBufferBitmap();
+//         ::ca::graphics & dcScreen = GetScreenDC();
+         ::ca::graphics & dcBuffer = GetBufferDC();
+         ::ca::graphics & dcSource = GetSourceDC();
+//         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
 
 
-//         ::ax::dib * pdibSource = GetDib(_graphics::DibSource);
+//         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
          if(dcSource.get_os_data() == NULL)
             return false;
@@ -233,7 +233,7 @@ namespace gcom
             }
 
             //sl3Source.lock();
-            ::ax::bitmap & bmpSource = GetSourceBitmap();
+            ::ca::bitmap & bmpSource = GetSourceBitmap();
 
             if(bmpSource.get_os_data() != NULL 
                && GetDib(_graphics::DibSource)->width() > 0
@@ -399,7 +399,7 @@ namespace gcom
          single_lock sl3Source(&m_mutex3Source, TRUE);
          
 
-         ::ax::graphics & spgraphicsScreen    = GetScreenDC();
+         ::ca::graphics & spgraphicsScreen    = GetScreenDC();
 
          if(spgraphicsScreen.get_os_data() != NULL)
          {
@@ -426,7 +426,7 @@ namespace gcom
       EImagePlacement
          Graphics::GetDefaultPlacement()
       {
-         ::ax::bitmap & bmpSource = GetSourceBitmap();
+         ::ca::bitmap & bmpSource = GetSourceBitmap();
 
          BITMAP bm;
          EImagePlacement eplacement;
@@ -450,16 +450,16 @@ namespace gcom
          return eplacement;
       }
 
-      ::ax::dib * Graphics::GetDib(int iIndex)
+      ::ca::dib * Graphics::GetDib(int iIndex)
       {
-         ::ax::dib * pdib;
+         ::ca::dib * pdib;
          if(m_mapDib.Lookup(iIndex, pdib))
          {
             return pdib;
          }
          else
          {
-            ::ax::dib_sp spdib(get_app());
+            ::ca::dib_sp spdib(get_app());
             OnCreateDib(spdib, iIndex);
             m_mapDib.set_at(iIndex, spdib);
             gen::add_ref(spdib.m_p);
@@ -489,7 +489,7 @@ namespace gcom
          GetDib(_graphics::DibTransfer)->copy(GetDib(_graphics::DibBack));
 
       }
-      void Graphics::OnCreateDib(::ax::dib *pdib, int iIndex)
+      void Graphics::OnCreateDib(::ca::dib *pdib, int iIndex)
       {
          switch(iIndex)
          {

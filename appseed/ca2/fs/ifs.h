@@ -3,7 +3,7 @@
 
 // ifs - implementation of file system interface - file.veriwell.net
 
-class CLASS_DECL_ca ifs :
+class CLASS_DECL_ca2 ifs :
    virtual public ::fs::data
 {
 public:

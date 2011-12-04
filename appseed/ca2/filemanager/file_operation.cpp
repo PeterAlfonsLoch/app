@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-file_operation::file_operation(::ax::application * papp) :
-   ax(papp),
+file_operation::file_operation(::ca::application * papp) :
+   ca(papp),
    m_fileSrc(papp),
    m_fileDst(papp)
 {

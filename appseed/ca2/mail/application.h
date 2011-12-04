@@ -5,8 +5,8 @@ namespace mail
 {
 
 
-   class CLASS_DECL_ca application : 
-      virtual public ::netnode::application
+   class CLASS_DECL_ca2 application : 
+      virtual public ::ca2::filehandler::application
    {
    public:
       

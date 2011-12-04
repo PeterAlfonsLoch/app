@@ -7,13 +7,13 @@ namespace userbase
    class document_template;
    class document;
 
-   class CLASS_DECL_ca document_manager : 
+   class CLASS_DECL_ca2 document_manager : 
       virtual public ::document_manager
    {
    public:
       
       
-      document_manager(::ax::application * papp);
+      document_manager(::ca::application * papp);
       virtual ~document_manager();
 
 

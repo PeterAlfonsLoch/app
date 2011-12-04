@@ -9,7 +9,7 @@ namespace bergedge
    class view;
 
 
-   class CLASS_DECL_ca document :
+   class CLASS_DECL_ca2 document :
       public ::userbase::document
    {
    public:
@@ -19,7 +19,7 @@ namespace bergedge
       nature::document *                  m_pnaturedocument;
       
 
-      document(::ax::application * papp); 
+      document(::ca::application * papp); 
       virtual ~document();
 
       void set_platform(platform::document * pdoc);

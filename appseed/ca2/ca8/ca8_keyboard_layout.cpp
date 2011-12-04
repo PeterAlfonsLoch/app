@@ -3,9 +3,9 @@
 namespace ca8
 {
 
-   keyboard_layout::keyboard_layout(::ax::application * papp) :
-      ax(papp),
-      ::ax::data(papp),
+   keyboard_layout::keyboard_layout(::ca::application * papp) :
+      ca(papp),
+      ::ca::data(papp),
       ::user::list_data(papp),
       ::userbase::split_layout(papp),
       ::userbase::view(papp),
@@ -23,7 +23,7 @@ namespace ca8
    bool keyboard_layout::CreateViews()
    {
 
-      m_pdoc = System.create_form(this, this);
+      m_pdoc = Cube.create_form(this, this);
 
       SetPaneCount(2);
 

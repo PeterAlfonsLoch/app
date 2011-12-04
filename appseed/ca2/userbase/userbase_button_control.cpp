@@ -2,8 +2,8 @@
 #include "StdAfx.h"
 
 
-BaseButtonControl::BaseButtonControl(::ax::application * papp) :
-   ax(papp),
+BaseButtonControl::BaseButtonControl(::ca::application * papp) :
+   ca(papp),
    ::user::button(papp),
    ::userbase::button(papp)
 {
@@ -31,7 +31,7 @@ BOOL BaseButtonControl::PreCreateWindow(CREATESTRUCT& cs)
 
 
 
-void BaseButtonControl::_001OnDraw(::ax::graphics * pdc)
+void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
 {
    rect rectClient;
    bool bItemHover;

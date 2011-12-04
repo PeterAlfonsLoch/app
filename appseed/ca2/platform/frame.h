@@ -3,7 +3,7 @@
 namespace platform
 {
 
-   class CLASS_DECL_ca frame : 
+   class CLASS_DECL_ca2 frame : 
       virtual public form_frame
    {
       
@@ -19,7 +19,7 @@ namespace platform
       bool                       m_bOnDraw;
       DWORD                      m_dwLastSuperDock;
 
-      frame(::ax::application * papp);
+      frame(::ca::application * papp);
       virtual ~frame();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
@@ -27,7 +27,7 @@ namespace platform
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 
-      virtual void _000OnDraw(::ax::graphics * pgraphics);
+      virtual void _000OnDraw(::ca::graphics * pgraphics);
 
 
 

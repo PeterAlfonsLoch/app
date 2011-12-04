@@ -3,7 +3,7 @@
 namespace platform
 {
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       virtual public ::nature::application
    {
    public:
@@ -25,7 +25,7 @@ namespace platform
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
          
 
-      virtual ::ax::application * get_app() const;
+      virtual ::ca::application * get_app() const;
       void OnFileManagerOpenFile(
          ::filemanager::data * pdata, 
          ::fs::item_array & itema);

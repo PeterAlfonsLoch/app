@@ -9,9 +9,9 @@ namespace filemanager
       namespace simple
       {
 
-         tree_view::tree_view(::ax::application * papp) :
-            ax(papp),
-            ::ax::data_container(papp),
+         tree_view::tree_view(::ca::application * papp) :
+            ca(papp),
+            ::ca::data_container(papp),
             ::userbase::view(papp),
             ::user::scroll_view(papp),
             ::user::tree(papp),
@@ -21,8 +21,8 @@ namespace filemanager
             m_etranslucency = TranslucencyPresent;
 
 
-            ::ax::data_container::m_spdata = new ex1::simple_tree_data(get_app());
-            if(!::ax::data_container::m_spdata->initialize_data())
+            ::ca::data_container::m_spdata = new ex1::simple_tree_data(get_app());
+            if(!::ca::data_container::m_spdata->initialize_data())
                throw simple_exception();
          }
 

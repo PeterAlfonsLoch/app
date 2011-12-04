@@ -3,7 +3,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca plain_text_data :
+   class CLASS_DECL_ca2 plain_text_data :
       virtual public ex1::tree_data
    {
    public:
@@ -80,7 +80,7 @@ namespace user
       ex1::edit_file          m_editfile;
 
 
-      plain_text_data(::ax::application * papp);
+      plain_text_data(::ca::application * papp);
       virtual ~plain_text_data();
 
 

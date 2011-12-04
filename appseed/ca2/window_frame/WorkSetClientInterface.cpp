@@ -4,8 +4,8 @@
 namespace window_frame
 {
 
-   WorkSetClientInterface::WorkSetClientInterface(::ax::application * papp) :
-      ax(papp),
+   WorkSetClientInterface::WorkSetClientInterface(::ca::application * papp) :
+      ca(papp),
       m_workset(papp)
    {
 
@@ -339,7 +339,7 @@ namespace window_frame
       m_workset.EnableFullScreen(bEnable);
    }
 
-   void WorkSetClientInterface::_001OnDraw(::ax::graphics * pgraphics)
+   void WorkSetClientInterface::_001OnDraw(::ca::graphics * pgraphics)
    {
       m_workset._001OnDraw(pgraphics);
    }

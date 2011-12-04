@@ -4,7 +4,7 @@ namespace user
 {
    class list;
 
-   class CLASS_DECL_ca list_header :
+   class CLASS_DECL_ca2 list_header :
       virtual public database::user::interaction
    {
    public:
@@ -17,7 +17,7 @@ namespace user
          ElementDivider,
       };
 
-      ::ax::font_sp        m_font;
+      ::ca::font_sp        m_font;
       string               m_strBuffer;
       visual::graphics_extension     m_dcextension;
       
@@ -31,14 +31,14 @@ namespace user
 
       list *               m_plistctrlinterface;
 
-      list_header(::ax::application * papp);
+      list_header(::ca::application * papp);
       virtual ~list_header();
 
       void AddMessageHandling(::gen::message::dispatch * pinterface);
       void SetBaseListCtrlInterface(list * pinterface);
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
-      virtual void DrawItem(::ax::draw_item * pdrawitem);
+      virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void DrawItem(::ca::draw_item * pdrawitem);
 
 
       virtual bool DIDDXColumn(bool bSave, index iColumn);

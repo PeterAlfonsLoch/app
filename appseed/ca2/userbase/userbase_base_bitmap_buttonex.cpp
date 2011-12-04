@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   bitmap_button::bitmap_button(::ax::application * papp) :
-      ax(papp),
+   bitmap_button::bitmap_button(::ca::application * papp) :
+      ca(papp),
       ::user::button(papp),
       ::userbase::button(papp)
    {
@@ -91,7 +91,7 @@ namespace userbase
       UpdateHover();
 
        // use the main bitmap for up, the selected bitmap for down
-       ::ax::bitmap* pBitmap = &m_bitmap;
+       ::ca::bitmap* pBitmap = &m_bitmap;
        UINT state = lpDIS->itemState;
       if(!IsControlCommandEnabled())
          state = ODS_DISABLED;
@@ -107,10 +107,10 @@ namespace userbase
 
        throw not_implemented_exception();
        // draw the whole button
-       /*::ax::graphics * pgraphics = ::ax::graphics_sp::from_handle(lpDIS->hDC);
-       ::ax::graphics_sp memDC;
+       /*::ca::graphics * pgraphics = ::ca::graphics_sp::from_handle(lpDIS->hDC);
+       ::ca::graphics_sp memDC;
        memDC.CreateCompatibleDC(pgraphics);
-       ::ax::bitmap* pOld = memDC.SelectObject(pBitmap);
+       ::ca::bitmap* pOld = memDC.SelectObject(pBitmap);
        if (pOld == NULL)
            return;     // destructors will clean up
 
@@ -176,13 +176,13 @@ namespace userbase
 
    void bitmap_button::BaseToolTipGetRect(LPRECT lprect)
    {
-      // use ::ax::window client rect as the tool rect
+      // use ::ca::window client rect as the tool rect
       GetClientRect(lprect);
    }
 
    int bitmap_button::BaseToolTipGetIndex()
    {
-      // use ::ax::window dialog control id as the index
+      // use ::ca::window dialog control id as the index
       return GetDlgCtrlId();
    }
 

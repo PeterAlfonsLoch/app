@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/simpledb/simpledb.h"
+#include "ca2/user/user.h"
 #include "window_frame/window_frame.h"
 #include "user/user_document_template_interface.h"
 

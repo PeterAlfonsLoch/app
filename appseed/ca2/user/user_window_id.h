@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca window_id
+class CLASS_DECL_ca2 window_id
 {
 public:
 

@@ -3,13 +3,13 @@
 namespace calculator
 {
 
-   class CLASS_DECL_ca document :
+   class CLASS_DECL_ca2 document :
       public ::userbase::document
    {
    public:
 
 
-      document(::ax::application * papp);   
+      document(::ca::application * papp);   
 
 
       DECL_GEN_VSIGNAL(data_on_after_change);

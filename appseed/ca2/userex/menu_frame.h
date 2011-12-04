@@ -1,9 +1,9 @@
 #pragma once
 
 
-class CLASS_DECL_ca menu_frame : 
+class CLASS_DECL_ca2 menu_frame : 
    virtual public form_frame
 {
 public:
-   menu_frame(::ax::application * papp);
+   menu_frame(::ca::application * papp);
 };

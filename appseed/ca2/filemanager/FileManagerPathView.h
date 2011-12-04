@@ -1,11 +1,11 @@
 #pragma once
 
-class CLASS_DECL_ca FileManagerPathView :
+class CLASS_DECL_ca2 FileManagerPathView :
    virtual public ::userbase::edit_plain_text_view,
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerPathView(::ax::application * papp);
+   FileManagerPathView(::ca::application * papp);
 
    virtual void _001OnAfterChangeText();
 

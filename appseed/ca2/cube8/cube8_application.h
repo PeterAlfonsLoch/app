@@ -5,14 +5,14 @@ namespace cube8
 {
 
 
-   class CLASS_DECL_ca application : 
+   class CLASS_DECL_ca2 application : 
       virtual public ::cube5::application
    {
    public:
 
 
 
-      class ::ax::dir::application        m_dir;
+      class ::ca::dir::application        m_dir;
 
       class ::ca2::file::application      m_file;
       class ::ca4::http::application      m_http;
@@ -30,7 +30,7 @@ namespace cube8
       virtual int exit_instance();
 
 
-      class ::ax::dir::application        & dir();
+      class ::ca::dir::application        & dir();
 
       class ::ca2::file::application      & file();
       class ::ca4::http::application      & http(); 
@@ -60,8 +60,8 @@ namespace cube8
       virtual bool os_native_bergedge_start();
 
 
-      virtual ::ax::application * instantiate_application(const char * pszId, ::ax::application_bias * pbias);
-      virtual ::ax::application * create_application(const char * pszId, bool bSynch, ::ax::application_bias * pbias);
+      virtual ::ca::application * instantiate_application(const char * pszId, ::ca::application_bias * pbias);
+      virtual ::ca::application * create_application(const char * pszId, bool bSynch, ::ca::application_bias * pbias);
 
       virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pe = NULL);
       virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pe = NULL);
@@ -79,13 +79,13 @@ namespace cube8
 
    };
 
-   CLASS_DECL_ca application & app_cast(::ax::ax * papp);
+   CLASS_DECL_ca2 application & app_cast(::ca::ca * papp);
 
-   CLASS_DECL_ca UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);
+   CLASS_DECL_ca2 UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);
 
-   typedef ::ax::application * (* LPFN_instantiate_application)(::ax::application * pappParent, const char * pszId);
+   typedef ::ca::application * (* LPFN_instantiate_application)(::ca::application * pappParent, const char * pszId);
 
-   extern CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application;
+   extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
 

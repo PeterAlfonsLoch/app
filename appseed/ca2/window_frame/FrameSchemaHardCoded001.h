@@ -8,7 +8,7 @@ namespace window_frame
 {
 
 
-   class CLASS_DECL_ca FrameSchemaHardCoded001 :
+   class CLASS_DECL_ca2 FrameSchemaHardCoded001 :
       public FrameSchema
    {
    public:
@@ -43,11 +43,11 @@ namespace window_frame
       COLORREF                      m_crMoveableBorderDkShadow;
 
 
-      ::ax::pen_sp                  m_penText1;
-      ::ax::pen_sp                  m_penFace1;
-      ::ax::pen_sp                  m_penHilight1;
-      ::ax::pen_sp                  m_penShadow1;
-      ::ax::pen_sp                  m_penDkShadow1;
+      ::ca::pen_sp                  m_penText1;
+      ::ca::pen_sp                  m_penFace1;
+      ::ca::pen_sp                  m_penHilight1;
+      ::ca::pen_sp                  m_penShadow1;
+      ::ca::pen_sp                  m_penDkShadow1;
 
       COLORREF                      m_crDkShadow;
 
@@ -63,7 +63,7 @@ namespace window_frame
       point                         m_pointWindowIcon;
 
 
-      FrameSchemaHardCoded001(::ax::application * papp);
+      FrameSchemaHardCoded001(::ca::application * papp);
       virtual ~FrameSchemaHardCoded001();
 
 
@@ -84,7 +84,7 @@ namespace window_frame
       virtual void OnNcCalcSize(LPRECT lprect);
       virtual void OnAppearanceModeChange();
 
-      void _001OnDraw(::ax::graphics * pca);
+      void _001OnDraw(::ca::graphics * pca);
 
       void SetStyle(EStyle nStyle);
       void SetMoveableBorderColor(COLORREF cr);
@@ -95,14 +95,14 @@ namespace window_frame
 
       int UpdateControlBox();
 
-      void DrawFrame(::ax::graphics * pdc);
-      void Draw3dRectSide(::ax::graphics * pdc, LPCRECT lpcrect, MoveManager::EBorder eborder, COLORREF crTopLeft, COLORREF crBottomRight);
-      void DrawBorder(::ax::graphics * pdc, LPCRECT lpcrectClient);
-      void DrawBorderSide(::ax::graphics * pdc, LPCRECT lpcrectClient, MoveManager::EBorder eside);
+      void DrawFrame(::ca::graphics * pdc);
+      void Draw3dRectSide(::ca::graphics * pdc, LPCRECT lpcrect, MoveManager::EBorder eborder, COLORREF crTopLeft, COLORREF crBottomRight);
+      void DrawBorder(::ca::graphics * pdc, LPCRECT lpcrectClient);
+      void DrawBorderSide(::ca::graphics * pdc, LPCRECT lpcrectClient, MoveManager::EBorder eside);
       void GetBorderRect(LPCRECT lpcrectClient, LPRECT lprect, MoveManager::EBorder eside);
-      void DrawGripSet(::ax::graphics * pdc, LPCRECT lpcrectClient);
-      void DrawGrip(::ax::graphics * pdc, LPCRECT lpcrectClient,   EGrip egrip);
-      void DrawRectGrip(::ax::graphics * pdc, LPCRECT lpcrect);
+      void DrawGripSet(::ca::graphics * pdc, LPCRECT lpcrectClient);
+      void DrawGrip(::ca::graphics * pdc, LPCRECT lpcrectClient,   EGrip egrip);
+      void DrawRectGrip(::ca::graphics * pdc, LPCRECT lpcrect);
 
       void GetWndClientRect(LPRECT lprect);
       void GetDrawClientRect(LPRECT lprect);

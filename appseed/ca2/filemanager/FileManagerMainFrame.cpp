@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 #include "FileManagerMainFrame.h"
 
-FileManagerMainFrame::FileManagerMainFrame(::ax::application * papp) :
-   ax(papp),
+FileManagerMainFrame::FileManagerMainFrame(::ca::application * papp) :
+   ca(papp),
    window_frame::WorkSetClientInterface(papp),
    userbase::frame_window_interface(papp),
    userbase::frame_window(papp),

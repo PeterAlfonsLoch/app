@@ -3,11 +3,11 @@
 namespace mail
 {
 
-class CLASS_DECL_ca application_interface : 
+class CLASS_DECL_ca2 application_interface : 
    virtual public ::radix::object
 {
 public:
-   application_interface(::ax::application * papp);
+   application_interface(::ca::application * papp);
    virtual ~application_interface();
 
    void InitializeMail();
@@ -23,7 +23,7 @@ public:
 
 };
 
-inline application_interface & app(::ax::application * papp)
+inline application_interface & app(::ca::application * papp)
    {
       return *(dynamic_cast < application_interface * > (papp));
    }

@@ -221,7 +221,7 @@ namespace ca2
          set_cur_tab_by_id(m_pviewdataOld->m_id);
       }
 
-      void pane_view::install_message_handling(::user::win::message::dispatch * pinterface)
+      void pane_view::install_message_handling(::gen::message::dispatch * pinterface)
       {
          ::userex::pane_tab_view::install_message_handling(pinterface);
 

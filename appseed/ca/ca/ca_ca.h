@@ -28,34 +28,34 @@ namespace plane
 }
 
 
-namespace bergedge
+namespace plane
 {
 
-
-   class bergedge;
+   
+   class system;
 
 
 }
+
 
 namespace cube
 {
-   class system;
+
+   
+   class cube;
+
+
 }
 
-namespace plane
-{
-   class system;
-}
 
-
-#define CaPlaneSys(pca) (*pca->m_papp->m_pplanesystem)
-#define planeSys(papp) (*papp->m_pplanesystem)
+#define CaPlaneSys(pca) (*pca->m_papp->m_psystem)
+#define planeSys(papp) (*papp->m_psystem)
 #define Sys(papp) (planeSys(papp))
 #define System (Sys(this->get_app()))
 #define Mathematics(papp) (planeSys(papp).math())
 #define Math (Mathematics(this->get_app()))
 
-#define planeBerg(papp) (*papp->m_pplanebergedge)
+#define planeBerg(papp) (*papp->m_pbergedge)
 #define Berg(papp) (planeBerg(papp))
 #define Bergedge (Berg(this->get_app()))
 
@@ -128,10 +128,9 @@ namespace ca
 
       unsigned long           m_ulFlags;
       ::ca::application *     m_papp;
-      ::plane::system *       m_pplanesystem;
-      ::plane::bergedge *     m_pplanebergedge;  // console and services can have user sessions thus a bergedge in ca component
-      ::bergedge::bergedge *  m_pbergedge;
-      ::cube::system *        m_psystem;
+      ::plane::system *       m_psystem;
+      ::plane::bergedge *     m_pbergedge;
+      ::cube::cube *          m_pcube;
       __int64                 m_countReference;
       ::ca::ptra *            m_pptraListener;
       ::ca::ptra *            m_pptraListened;

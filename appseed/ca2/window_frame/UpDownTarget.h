@@ -5,7 +5,7 @@ namespace window_frame
 {
 
 
-   class CLASS_DECL_ca UpDownTarget
+   class CLASS_DECL_ca2 UpDownTarget
    {
    public:
 

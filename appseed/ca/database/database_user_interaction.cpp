@@ -15,7 +15,7 @@ namespace database
       {
       }
 
-      void interaction::install_message_handling(::user::win::message::dispatch * pinterface)
+      void interaction::install_message_handling(::gen::message::dispatch * pinterface)
       {
          ::user::interaction::install_message_handling(pinterface);
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction::_001OnCreate);
@@ -61,7 +61,7 @@ namespace database
       void interaction::_001OnShowWindow(gen::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
-//         SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj)
+//         SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
          if(GetParent() == NULL)
          {
 #if !core_level_1 && !core_level_2

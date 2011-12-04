@@ -1,5 +1,6 @@
 #pragma once
 
+
 template <class TYPE, class ARG_TYPE = const TYPE &>
 class array_parent_alloc :
    public array_del_ptr < TYPE, ARG_TYPE >

@@ -3,7 +3,7 @@
 namespace datetime
 {
 
-   class CLASS_DECL_ca parser :
+   class CLASS_DECL_ca2 parser :
       virtual public ::radix::object
    {
    public:
@@ -13,7 +13,7 @@ namespace datetime
       array_ptr_alloc < element >   m_elementa;
 
 
-      parser(::ax::application * papp, ::user::str_context * pcontext);
+      parser(::ca::application * papp, ::user::str_context * pcontext);
       virtual ~parser();
 
 

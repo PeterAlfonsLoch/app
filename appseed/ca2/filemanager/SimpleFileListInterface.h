@@ -19,7 +19,7 @@ namespace filemanager
          public ::radix::thread
       {
       public:
-         create_image_list_thread(::ax::application * papp);
+         create_image_list_thread(::ca::application * papp);
          virtual BOOL run();
          SimpleFileListInterface * m_plist;
       };
@@ -66,7 +66,7 @@ namespace filemanager
       public:
 
 
-         ItemArray(::ax::application * papp);
+         ItemArray(::ca::application * papp);
 
 
          void add_item(Item & item);
@@ -134,7 +134,7 @@ namespace filemanager
          index         m_iImage;
       };*/
 
-      SimpleFileListInterface(::ax::application * papp);
+      SimpleFileListInterface(::ca::application * papp);
       virtual ~SimpleFileListInterface();
       virtual void file_size_add_request(bool bClear);
       
@@ -165,7 +165,7 @@ namespace filemanager
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
       ::fs::item & GetFileManagerItem();
       DECL_GEN_SIGNAL(_001OnMainPostMessage)
       void _017UpdateList();

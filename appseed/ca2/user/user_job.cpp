@@ -4,9 +4,9 @@
 namespace user
 {
 
-   job::job(::ax::application * papp) :
-      ax(papp),
-      ::ax::job(papp)
+   job::job(::ca::application * papp) :
+      ca(papp),
+      ::ca::job(papp)
    {
       m_pview = NULL;
    }

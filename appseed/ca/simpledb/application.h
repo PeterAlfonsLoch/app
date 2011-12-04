@@ -38,12 +38,13 @@ namespace simpledb
 
       virtual void on_set_locale(const char * lpcsz, bool bUser);
       virtual void on_set_style(const char * lpcsz, bool bUser);
-      virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
 
 
       virtual bool InitializeDataCentral();
       virtual bool FinalizeDataCentral();
 
+      virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
+      virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
 
    };
 

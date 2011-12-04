@@ -25,7 +25,7 @@ class file_operation :
    virtual public ::radix::object
 {
 public:
-   file_operation(::ax::application * papp);
+   file_operation(::ca::application * papp);
    virtual filemanager::eoperation operation();
    
    virtual bool set_copy(stringa & stra, const char * pszDestBase, const char * pszSrcBase, bool bExpand);

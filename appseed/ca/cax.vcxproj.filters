@@ -1,0 +1,4179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\sockets">
+      <UniqueIdentifier>{6202e949-3833-4b20-859a-ff3028c208d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\Webserver framework">
+      <UniqueIdentifier>{1f52eabe-50b3-48c9-9c07-c6b4a37231f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\Timer Events">
+      <UniqueIdentifier>{ed1e3c02-f10d-4724-bf73-acb7a401e2c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\SMTP">
+      <UniqueIdentifier>{07dac18f-e850-4c01-aa5b-632a02c89bcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\SIP framework">
+      <UniqueIdentifier>{b4a2e989-77fa-46c0-b6bc-d4134ec0b869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\Log help classes">
+      <UniqueIdentifier>{35aaf712-01ae-421a-9bfa-78be359c2c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\Internal">
+      <UniqueIdentifier>{d67dc722-02f8-4326-9425-19a83c13e9b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\HTTP Sockets">
+      <UniqueIdentifier>{f31283b0-cfb1-4975-89a4-fed0002b39f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\Asyncronous DNS">
+      <UniqueIdentifier>{a264c5be-ee80-4208-b9ea-3345cdaf057b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\Basic Sockets">
+      <UniqueIdentifier>{48e98c6f-94ba-4109-a44e-f6d87b3c32f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\sockets">
+      <UniqueIdentifier>{e8608cc9-9594-4203-aa0f-28c220ceb46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\Asyncronous DNS">
+      <UniqueIdentifier>{29f2dfe2-ecca-46f5-92af-eec8f421d837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\Basic Sockets">
+      <UniqueIdentifier>{bdd062ce-a5be-4c60-9d64-1bc467934b64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\HTTP Sockets">
+      <UniqueIdentifier>{267a70f2-3b9e-43ec-8814-738a39deac26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\Internal">
+      <UniqueIdentifier>{03fbe24f-ca7b-4e65-b073-ccac52e9aa2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\Log help classes">
+      <UniqueIdentifier>{c702df49-37f8-467e-86de-0fcd8a1d129f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\Webserver framework">
+      <UniqueIdentifier>{b157f029-c05f-4859-841a-77d0cbe7258a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\Timer Events">
+      <UniqueIdentifier>{c0dccd40-38df-41d3-808b-1fc9d7e4885a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\SMTP">
+      <UniqueIdentifier>{0be4226c-800f-4bcb-b0bc-05edb13b83e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\SIP framework">
+      <UniqueIdentifier>{2561b8c5-ee59-4557-91a1-2573fa14e340}</UniqueIdentifier>
+    </Filter>
+	
+    <Filter Include="Header Files\sqlite">
+      <UniqueIdentifier>{5c24f7cb-6f41-4b5c-ad00-a2ec3b4ff316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libcharguess">
+      <UniqueIdentifier>{78719ab4-bf73-405b-97e7-3580f50b20c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\zlib">
+      <UniqueIdentifier>{84bfed40-3dba-4c52-9236-c6f2e7256157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sqlite">
+      <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libcharguess">
+      <UniqueIdentifier>{cffd6f11-bff6-44c5-8421-a7e9540ef339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\zlib">
+      <UniqueIdentifier>{9d83f1da-de76-48fd-91e8-ab6ab15f78e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windows">
+      <UniqueIdentifier>{095a0014-c024-4ada-aab3-0966e963c364}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{334331c0-04cd-439d-a30a-a63f1684de72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gen">
+      <UniqueIdentifier>{4992a76c-218e-42ab-86d0-960e704d4980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gen">
+      <UniqueIdentifier>{5b63e2cc-1450-42e4-9ff7-5299cf496143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive">
+      <UniqueIdentifier>{e90ae53c-46db-4d99-b5f7-280640cb0a22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca">
+      <UniqueIdentifier>{d70538fa-4a73-4298-a1b3-3c6a6e125eb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca">
+      <UniqueIdentifier>{41b76268-c4ed-48ce-97fd-845e1543009c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca\C Source Files">
+      <UniqueIdentifier>{c16d98b4-da20-4734-888b-e00d251b991d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\api">
+      <UniqueIdentifier>{f4d62481-a2f3-4b08-8f5c-d756a42385e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\radix">
+      <UniqueIdentifier>{0d875852-0627-40e0-ad74-12c582b88e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\radix">
+      <UniqueIdentifier>{e21c5bc7-7c9f-40ba-843b-1244a8448f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\api">
+      <UniqueIdentifier>{a8cff7bb-d987-4eca-92d1-4fd397166faf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xml">
+      <UniqueIdentifier>{623d17b6-f1a5-4d67-b426-95826061ff2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\xml">
+      <UniqueIdentifier>{79932dac-496b-45f6-9971-92a13403f07f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\fontopus">
+      <UniqueIdentifier>{7c5a59b6-e21c-4c69-bce4-9817255fea88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fontopus">
+      <UniqueIdentifier>{1944684f-b88f-4ff7-949a-f686c2878008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ex2">
+      <UniqueIdentifier>{21770c5a-572a-44bb-a427-98bbc2f48380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ex1">
+      <UniqueIdentifier>{d3605bb3-f6e5-44be-b971-503ee05914f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ex1">
+      <UniqueIdentifier>{0ea52e94-4c5b-4226-8717-5c37e76f7e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ex2">
+      <UniqueIdentifier>{842cadba-ccd7-47e8-b06b-631c80fd335d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress">
+      <UniqueIdentifier>{d8559929-e173-4228-989d-58f584272e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress">
+      <UniqueIdentifier>{502ec854-5739-4e84-aa4d-09b2c87c4402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress\7z">
+      <UniqueIdentifier>{94d0d7de-6338-47c7-800a-f1273eca331f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress\rar">
+      <UniqueIdentifier>{bafa941d-6dc4-409c-9cd0-ee71c82b4a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress\zip">
+      <UniqueIdentifier>{e24c1fbd-3b04-40a3-b791-38e0727d5146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress\7z">
+      <UniqueIdentifier>{8c588445-15a0-436e-9a0b-7e2910735739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress\zip">
+      <UniqueIdentifier>{4251fd0f-c2e7-4478-afa0-55fb1fdc3ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress\rar">
+      <UniqueIdentifier>{149e730a-35c0-4a6e-a358-13f57d0d19c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\fs">
+      <UniqueIdentifier>{978dd301-1f2c-4a11-af75-ffb6e7cbb417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fs">
+      <UniqueIdentifier>{826e67e1-b446-4e6c-9205-ae22e27cf23d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\userpresence">
+      <UniqueIdentifier>{36bee167-ded2-4a6f-9263-e784557c4aba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simpledb">
+      <UniqueIdentifier>{700dad5b-3669-45be-ae72-19ee8d83251d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{c2502810-b053-4d32-a0c1-4543afc8d8d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca2">
+      <UniqueIdentifier>{320f6ee5-5897-44bb-b4de-b5a7496d7cb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{92866596-ce96-4170-b6ed-020eafb3f876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multithreading">
+      <UniqueIdentifier>{9c411a7b-cf2c-4d36-84c3-e57efc53baa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multithreading">
+      <UniqueIdentifier>{dc821e0f-83a3-4c52-a289-9e29f4449647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{5b5546fc-d46d-40b7-96c8-e72ea6a3e7df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{5326a98e-bced-419b-82df-366e7e75a9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\plane">
+      <UniqueIdentifier>{cbccad39-efc9-4c37-ab9b-c84b3620a496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plane">
+      <UniqueIdentifier>{99e9d965-4967-46db-a999-0ddfab7545f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dynamic_source">
+      <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\netnode">
+      <UniqueIdentifier>{e129b786-b48c-46b4-a9c9-ee03c20994c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dynamic_source">
+      <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\netnode">
+      <UniqueIdentifier>{98a56817-bfe7-4883-899c-47ae13d82b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca4">
+      <UniqueIdentifier>{f777b51b-b317-4ccf-bc18-f4500829cffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca4">
+      <UniqueIdentifier>{a84ff390-ce33-458a-8840-0664c8fbe8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\collection">
+      <UniqueIdentifier>{87a9afa3-c917-4fcd-8a4c-8073497b4102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\collection">
+      <UniqueIdentifier>{26ded645-d5d2-47ee-8763-f9e07d83a489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\template">
+      <UniqueIdentifier>{94b1d30d-6f85-47f2-b8ce-82499e5652e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\visual">
+      <UniqueIdentifier>{8b85352a-3ad2-49e0-a183-c82962c08bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\visual">
+      <UniqueIdentifier>{f160075c-aa09-4d4b-accf-4c7b991a8069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\planebase">
+      <UniqueIdentifier>{db6da89c-f242-4a4d-8372-34f894959be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\planebase">
+      <UniqueIdentifier>{07e1e9b7-67e0-4317-8878-5733270cee65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\compress\zip\C Source Files">
+      <UniqueIdentifier>{7deebc1c-b57a-4ccb-9d0c-1201cf5d9ca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simpledb">
+      <UniqueIdentifier>{6748dbeb-c727-4385-ac6a-84cf939743e3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\big5Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\charDistribution.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\charguess.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\charsetProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\codingStateMachine.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\config.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EscCharsetProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EUCJPProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EUCKRProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\EUCTWProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\GB2312Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\jpCntx.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\Latin1Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\libcharguess.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\MBCSGroupProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\pkgInt.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\SBCharsetProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\SBCSGroupProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\SJISProber.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\types.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\universal.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="libcharguess\UTF8Prober.h">
+      <Filter>Header Files\libcharguess</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\crc32.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\deflate.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inffast.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inffixed.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inflate.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inftrees.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\trees.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zconf.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zconf.in.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zlib.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zutil.h">
+      <Filter>Header Files\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite3.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite3ext.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_base_enum.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_full_pointer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_pointer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_PointerManager.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_raw_pointer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_var_array.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\base_rect.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\base_rect_array.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_0.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_1.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_2.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_application.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_base_enum.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_base64.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_bit.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_byte_stream_memory_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_ch.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_ch_class.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_command.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_command_line.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_command_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_debug.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_association.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_frame_window_interface.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_full_pointer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_geometry.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_holder.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_international.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_international_locale_style.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_international2.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_keeper.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_logic.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_math.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_math_rng.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_memory_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_object.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_parse.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_pointer_manager.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_process.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_property.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_ptri.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_raw_pointer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_request_signal.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_savings.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_signal.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_signal_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_str.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_string_tokenizer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_system.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_template.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_timer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_timer_callback.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_timer_listener.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_timer_window.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_util1.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_var.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_var_array.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_variable_strict_compare.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\go_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\muldiv32.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\muldiv64.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\reference.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\simple_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\_id_space.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\_int_biunique.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\align.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\check.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\color.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\fixed_string.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometric_types.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\id.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\id_space.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\img.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\index.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\int_biunique.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\logic.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\memory_base.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\memory_container.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\memory_file.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\memory_operator.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\natural.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\numeric_info.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\point.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\rectangle.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\scalar.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\shared_file.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\shared_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\simple_string.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\size.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\var.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\virtual_memory.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="str.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="rotate.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="muldiv64.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="allocate.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="count.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\_allocate.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\_DispatchPtrArray.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\_Flags.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\_spreadset.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\allocate.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\base.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\BSTR.H">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\cafxdllx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\command.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\command_target.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\Common.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\comparable.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\composite.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\constraint.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\conv.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\conversion.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\creutil.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\datetime_value.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\DispatchPtrArray.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\dispimpl.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\dll_.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\elements.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\factory.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\fixed_alloc.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\flags.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\heap.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\hh.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\html_file.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\implementation.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\inline.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\kbase.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\keep_ptr.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\language_string.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\machine_event_central.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\optr.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\packset.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\pipe.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\plex.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\plex_heap.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\pointer_object.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\preview_dc.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\priv.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\priv2.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\process_data.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\PushingRoutingFrame.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_1.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_2.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_5.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_application.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_object.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_os_history.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_system.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_template.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_thread.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\Resource.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\sensitive_ptr.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\service.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\simple_list.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\sockets.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\specialty.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\spreadset.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\this_build_number.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\util.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\wait_cursor.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\win_registry.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\application.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\attr.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\base_array.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\disp_option.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\document.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\entity.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\enum.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\exportable.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\importable.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\input_tree.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\node.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\output_tree.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\parse_info.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\property_exchange.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\tree_base.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\tree_schema.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\var_exchange.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\XMLite.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_application.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_authentication_map.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_contact_list.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_license.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_sockets_address.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_user.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_user_authentication.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_user_set.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_usera.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_validate.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_application.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_file_set.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_folder_watch.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex2_transfer_file.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex2\ex17_memory_file.h">
+      <Filter>Header Files\ex2</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_0.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_1.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_application.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_bitl_decoder.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_bitl_encoder.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_bitm_decoder.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_bitm_encoder.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_buffered_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_circular_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_clustered_input_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_definition.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_dynamic_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_dynamic_buffered_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_edit_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_exception.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_exception.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_set.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_status.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_file_system.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_fs_interface.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_in_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_io_temp_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_limited_input_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_limited_reader.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_limited_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_locked_in_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_match.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_out_buffer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_output_stream_flush_interface.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_serializable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_string_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_writable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_plain_text_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_progress_interface.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_reader.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_request_interface.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_resource.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_seekable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_simple_tree_data.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_simple_tree_item_data.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_size_count_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_str_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_stream_binder.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_stream2.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_system_exception.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_text_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_timeout_file.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_tree.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_tree_data.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_tree_item.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_tree_item_data.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_types.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_writer.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\archive.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\register_codec.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\bzip_helper.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\coder_mixer.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\coder_mixer2.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\coder_mixer2mt.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\copy_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\create_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\filter_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\gzip_helper.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\huffman_decoder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\input_stream_with_crc.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\int_to_string.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\item_name.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\local_progress.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\lz_out_window.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\method_properties.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\out_handler.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\ppmd.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\ppmd7.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\ppmd8.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\prop_id.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\reader_with_crc.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\writer_with_crc.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7z.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zCompressionMode.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zDecode.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zEncode.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zFolderInStream.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zFolderOutStream.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zHandler.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zHeader.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zIn.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zItem.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zOut.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zProperties.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zSpecStream.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\7z\7zUpdate.h">
+      <Filter>Header Files\compress\7z</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\aes.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\folder_reader.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\handler.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\header.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\input_file.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\item.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\rar.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\rar1_decoder.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\rar2_decoder.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\rar3_decoder.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\rar\rar3_vm.h">
+      <Filter>Header Files\compress\rar</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\api.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\crypt.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\File.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\InFile.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\ioapi.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\iowin32.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\memory_file.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\unzip.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\Util.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\zip.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\zip_internal.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\zip\zipImpl.h">
+      <Filter>Header Files\compress\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_application.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_data.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_document.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_item.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_item_array.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_list.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_list_data.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_list_interface.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_list_item.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_list_item_array.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_main_view.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_set.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_tree.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_tree_data.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_tree_interface.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_tree_item.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\ifs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\ifs_file.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\native_fs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="userpresence\userpresence.h">
+      <Filter>Header Files\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="userpresence\userpresence_application.h">
+      <Filter>Header Files\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="userpresence\userpresence_user_presence.h">
+      <Filter>Header Files\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="userpresence\userpresence_user_presence_central.h">
+      <Filter>Header Files\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="userpresence\userpresence_user_presence_central_container.h">
+      <Filter>Header Files\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\application.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\db_long_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\db_server.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\db_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\db_str_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\db_stra_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\DBFileSystemSize.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\file_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\im_post.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\mysql_database.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\mysql_result.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_base.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_manager.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_server.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_service.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_session.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_socket.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_socket_thread.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_table.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\sqlite_base.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\sqlite_set.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\veiev_post.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_01.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_application.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_base.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_change_event.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_client.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_field_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_id.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_key.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_selection.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_selection_item.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_server.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_set.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_stringhelper.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_template.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_update_hint.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_user_interaction.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_2.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_application.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_datetime.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_html.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_inline.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_library.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_log.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_main.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_net.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_process.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_stra.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_user.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_xml.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\contact_list.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_base_sync_object.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_critical_section.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_file_change_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_mutex.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_plain_service.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_semaphore.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_status.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_socket_event.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_sync_object.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_sync_object_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_synch_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_thread_pool.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_wait_result.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_waitable.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_buffer.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_check_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_create_context.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_draw_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_elemental.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_interaction.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard_focus.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_mouse_focus.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_text_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_interface.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_map.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_window_util.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_2.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_3_graphics.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application_bias.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_application_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_base.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_bergedge.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_bitmap.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_brush.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_c.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_ca.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_create_context.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_data_container.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_data_listener.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dib.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dir_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_dir_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_draw_dib.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_exception.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_font.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_graphics.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_graphics_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_history.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_igui.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_interlocked_long.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_interlocked_long_pulse.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_job.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_listener.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_live_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_live_signal.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_log.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_main_init_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_message_window.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_osi.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_palette.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_pen.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_print_job.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_profiler.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_region.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_se_translator.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_se_translator.want_to_remove.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_seed.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_smart_pointer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_template.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_thread.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_type_info.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_window.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_window_draw.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca2_keep_alive.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_application.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="ca.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_object.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_profiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_ptr.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_composite.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_impl.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_application.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_service.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_socket.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="netnode\netnode_socket_thread.h">
+      <Filter>Header Files\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_application.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_compress.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_copydesk.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_crypt.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_email.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_file.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http_application.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http_get_socket.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_http_system.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_ip_enum.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_nessie.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_oauth.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_patch.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_port_forward.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="ca4\ca4_twit.h">
+      <Filter>Header Files\ca4</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_app_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_del_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_parent_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr_alloc.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_ptr_copy.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_release_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_smart_ptr.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\base_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\Base2DArray.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\bit_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\class_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_simple_template.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_template.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_eq_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\comparable_raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\elements.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\gen_lemon_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\key_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\logic_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\object_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\point_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\primitive_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\raw_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\rect_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_eq_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_object_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\simple_typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\sort.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_sort_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\string_to_string_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\stringa.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\stringl.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_pointer_map.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_ptr_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\typed_ptr_list.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\unique_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_allocate.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_template.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_template_xyz.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\_trace_module_manager.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\allocate.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\base.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\checked.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\core.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\debug.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\definition.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\exception.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\resource.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\simple_collection.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\templ_old.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_back_insert_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_c_number.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_compare.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_equals.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_hash.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_insert_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_iterator.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_old2.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_std_pair.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\time.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\trace.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\trace_module_manager.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\numeric_array.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_byte_serializable.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="ex1\ex1_byte_stream.h">
+      <Filter>Header Files\ex1</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_library.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_template_trace.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_bergedge.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_allocate.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_ca_template.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\api.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\application.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\buffered_graphics.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\clip.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\dib.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\dib_pal.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\fastblur.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\font_central.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\FreeImageFileProc.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\glyph.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\glyph_set.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\graphics_extension.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\icon.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\image_list.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\imaging.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\rgb_quad_array.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_00.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_01.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_application.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_cursor.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_dib.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_font.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_visual.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\water_routine.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_01.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event_collection.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="planebase\planebase.h">
+      <Filter>Header Files\planebase</Filter>
+    </ClInclude>
+    <ClInclude Include="planebase\cube4_application.h">
+      <Filter>Header Files\planebase</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_application.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_draw_context.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_keyboard_layout.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_message_box.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_network_configuration.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_shell.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_str.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_wait_message_dialog.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\sqlite3.c">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\big5Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\charDistribution.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\charguess.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EscCharsetProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EscSM.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EUCJPProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EUCKRProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\EUCTWProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\GB2312Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\jpCntx.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangBulgarianModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangCyrillicModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangGreekModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangHungarianModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\LangThaiModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\Latin1Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\MBCSGroupProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\MBCSSM.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\SBCharsetProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\SBCSGroupProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\SJISProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\universal.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\UTF8Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\adler32.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\compress.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\crc32.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\deflate.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\gzio.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\infback.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inffast.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inflate.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inftrees.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\trees.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\uncompr.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zutil.c">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\ca_os_ca_dll.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\base_enum.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_application.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_base64.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_bit.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_byte_stream_memory_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_ch.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_ch_class.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_command.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_command_line.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_command_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_Debug.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_sssociation.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_frame_wnd_interface.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_geometry.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_international.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_international_locale_style.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_keeper.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_logic.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_math.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_math_rng.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_object.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_parse.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_pointer_holder.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_pointer_interface.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_pointer_keeper.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_pointer_listener.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_pointer_manager.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_process.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_property.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_ptri.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_request_signal.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_savings.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_signal.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_signal_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_str.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_string_tokenizer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_system.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_Timer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_TimerCallback.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_TimerListener.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_TimerWnd.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_var.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_var_array.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_variable_strict_compare.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\go_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\simple_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\color.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\comparable.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\count.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\fixed_string.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometric_types.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\id.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\index.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\int_biunique.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\logic.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\memory_base.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\memory_container.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\memory_file.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\natural.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\point.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_scalar.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\rectangle.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\shared_file.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\shared_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\simple_string.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\size.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\strcore.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string_manager.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\var.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\virtual_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\afxcrit.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\afxdbcs.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\allocate.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\allocation.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\allocator.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\assert.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\auxdata.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\BSTR.CPP">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\cmdtarg.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\command_target.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\composite.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\Constraint.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\datetime_value.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\dllinit.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\Externs.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\factory.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\fixed_alloc.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\Flags.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\heap.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\language_string.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\LoadNSave.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\machine_event_central.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\PcreUtil.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\pipe.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\plex.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\plex_heap.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\PushingRoutingFrame.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_application.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_html_file.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_object.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_os_history.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_system.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\service.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\thread.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\timecore.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\util.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\validadd.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\wait_cursor.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\win_registry.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\winstr.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_application.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_attr.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_base_array.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_disp_option.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_document.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_entity.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_exportable.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_importable.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_input_tree.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_node.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_output_tree.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_parse_info.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_property_exchange.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_tree_base.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_tree_schema.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_var_exchange.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_XMLite.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_application.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_contact_list.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_license.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_user.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_user_set.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_usera.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_validate.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_application.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_buffered_file.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_byte_serializable.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_byte_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_circular_buffer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_clustered_input_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_dynamic_buffered_writer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_edit_file.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_exception.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_file.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_file_set.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_file_system.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_fs_interface.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_in_buffer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_io_temp_buffer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_limited_input_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_limited_reader.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_limited_writer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_locked_in_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_match.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_out_buffer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_output_string_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_plain_text_serializable.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_plain_text_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_reader.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_request_interface.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_resource.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_seekable.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_simple_tree_data.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_simple_tree_item_data.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_size_count_writer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_str_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_stream.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_stream_binder.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_stream2.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_text_file.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_timeout_file.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_tree.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_tree_data.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_tree_item.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_tree_item_data.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1_writer.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="ex2\ex2_application.cpp">
+      <Filter>Source Files\ex2</Filter>
+    </ClCompile>
+    <ClCompile Include="ex2\ex2_file_set.cpp">
+      <Filter>Source Files\ex2</Filter>
+    </ClCompile>
+    <ClCompile Include="ex2\ex2_folder_watch.cpp">
+      <Filter>Source Files\ex2</Filter>
+    </ClCompile>
+    <ClCompile Include="ex2\ex2_transfer_file.cpp">
+      <Filter>Source Files\ex2</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z_crc_opt.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\bzip_helper.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_archive.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_archive_item_name.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_coder_mixer.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_coder_mixer2.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_coder_mixer2mt.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_copy_coder.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_create_coder.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_filter_coder.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_int_to_string.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_local_progress.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_lz_out_window.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_method_id.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_method_properties.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_parse_properties.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_ppmd7.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_ppmd7_dec.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_ppmd7_enc.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_ppmd8.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_reader_with_crc.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\gzip_helper.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\method_properties.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\out_handler.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\prop_id.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\writer_with_crc.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zDecode.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zEncode.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zExtract.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zFolderInStream.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zFolderOutStream.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zHandler.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zHandlerOut.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zHeader.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zIn.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zOut.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zProperties.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zRegister.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zSpecStream.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\7z\7zUpdate.cpp">
+      <Filter>Source Files\compress\7z</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_util.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_memory_file.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_in_file.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_file.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_api.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_aes.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_codecs_register.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_handler.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_header.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_input_file.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_item.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar_volume_input_stream.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar1_decoder.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar2_decoder.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar3_decoder.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\rar\rar3_vm.cpp">
+      <Filter>Source Files\compress\rar</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_application.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_data.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_item.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_item_array.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_set.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\ifs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\ifs_file.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\native_fs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_application.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_datetime.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_html.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_library.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_log.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_net.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_process.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_xml.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\socket_address.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_base_sync_object.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_core.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_mutex.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_plain_service.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_service_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_sync_object_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_waitable.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_buffer.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_create_context.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_draw_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_elemental.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_interaction.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_keyboard_focus.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_mouse_focus.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_text_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_map.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_window_util.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="api\allocate.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\debug.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\muldiv64.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\mutex_lock.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\str.cpp">
+      <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application_bias.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_application_interface.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_bergedge.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_bitmap.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_brush.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_ca.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_create_context.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_data.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_data_container.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_data_listener.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dib.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dir_application.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_dir_system.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_draw_dib.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_exception.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_font.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_graphics.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_graphics_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_history.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_interlocked_long.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_interlocked_long_pulse.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_job.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_live_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_live_signal.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_log.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_message_window.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_object.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_osi.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_palette.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pen.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_print_job.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_profiler.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_region.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_smart_pointer.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_system.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_thread.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_type_info.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_window.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_window_draw.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_c.c">
+      <Filter>Source Files\ca\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_application.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_object.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_profiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_ptr.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_composite.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_impl.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_application.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_service.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_socket.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="netnode\netnode_socket_thread.cpp">
+      <Filter>Source Files\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_application.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_compress.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_copydesk.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_crypt.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_email.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_enum.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_file.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http_application.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http_get_socket.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_http_system.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_nessie.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_oauth.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_patch.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_port_forward.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_twit.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_whirlpool.cpp">
+      <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\_array_app_copy.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\2DArray.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_app_copy.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_ptr.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_ptr_alloc.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_ptr_copy.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\bit_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\class_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_numeric_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\comparable_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\key_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\map_misc.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\object_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\point_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\pointer_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\rect_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\simple_list.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\sort.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\string_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\string_sort_array.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\string_to_string_map.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\stringa.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\stringl.cpp">
+      <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_system.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_library.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_bergedge.cpp">
+      <Filter>Source Files\plane</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_api.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_application.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_buffered_graphics.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_clip.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_cursor.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_dib.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_fastblur.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_font.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_font_central.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_FreeImageFileProc.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_glyph.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_glyph_set.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_graphics_extension.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_icon.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_image_list.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_imaging.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_rgb_quad_array.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_visual.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="visual\visual_water_routine.cpp">
+      <Filter>Source Files\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube4_application.cpp">
+      <Filter>Source Files\planebase</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_application.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_draw_context.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_keyboard.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_keyboard_layout.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_message_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_network_configuration.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_shell.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_str.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_wait_message_dialog.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_ioapi.c">
+      <Filter>Source Files\compress\zip\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_iowin32.c">
+      <Filter>Source Files\compress\zip\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_unzip.c">
+      <Filter>Source Files\compress\zip\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_zip.c">
+      <Filter>Source Files\compress\zip\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_control_event.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_keyboard_layout_cfg.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_virtual_user_interface.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_application.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_database.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_dataset.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_db_server.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_file_set.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_im_post.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_long_set.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_manager.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_mysql_database.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_record_row.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_server.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_service.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_session.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_set.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_socket.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_socket_thread.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_sqlite_database.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_sqlite_dataset.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_str_set.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_stra_set.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_table.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_veiev_post.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClInclude Include="sockets\application_interface.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\Exception.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_memory_file.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_file.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\config.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_tunnel.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\SSLInitializer.h">
+      <Filter>Header Files\sockets\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\StdLog.h">
+      <Filter>Header Files\sockets\Log help classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\trace_log.h">
+      <Filter>Header Files\sockets\Log help classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\listen_socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ajp13.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\httpd_socket.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\Ajp13Socket.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\AjpBaseSocket.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_base_socket.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_cookie.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_form.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_request.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_response.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_transaction.h">
+      <Filter>Header Files\sockets\Webserver framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\Event.h">
+      <Filter>Header Files\sockets\Timer Events</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\IEventOwner.h">
+      <Filter>Header Files\sockets\Timer Events</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\EventHandler.h">
+      <Filter>Header Files\sockets\Timer Events</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\EventTime.h">
+      <Filter>Header Files\sockets\Timer Events</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\IEventHandler.h">
+      <Filter>Header Files\sockets\Timer Events</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\smtp_socket.h">
+      <Filter>Header Files\sockets\SMTP</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_client.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_server.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_put_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_post_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_get_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_debug_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_client_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\tcp_socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\udp_socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\stream_socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sctp_socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\socket_handler_base.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ipv6_address.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ipv4_address.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\socket_handler.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\resolv_socket.h">
+      <Filter>Header Files\sockets\Asyncronous DNS</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\resolv_server.h">
+      <Filter>Header Files\sockets\Asyncronous DNS</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\smtpd_socket.h">
+      <Filter>Header Files\sockets\SMTP</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_base_client_socket.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_tcp_client_socket.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_udp_client_socket.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_base.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_transaction.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_request.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sip_response.h">
+      <Filter>Header Files\sockets\SIP framework</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\Socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_http_file.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\tls_socket.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sync_socket_handler.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_http_batch_file.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_ssl_client_context_map.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_ssl_client_context.h">
+      <Filter>Header Files\sockets\Basic Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_request_socket.h">
+      <Filter>Header Files\sockets\HTTP Sockets</Filter>
+    </ClInclude>
+    <ClCompile Include="sockets\http_memory_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\socket_include.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_application_interface.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_exception.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_base_socket.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_cookie.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_form.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_request.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_response.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_transaction.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_httpd_socket.cpp">
+      <Filter>Source Files\sockets\Webserver framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_Event.cpp">
+      <Filter>Source Files\sockets\Timer Events</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_EventHandler.cpp">
+      <Filter>Source Files\sockets\Timer Events</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_EventTime.cpp">
+      <Filter>Source Files\sockets\Timer Events</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_IEventOwner.cpp">
+      <Filter>Source Files\sockets\Timer Events</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_smtp_socket.cpp">
+      <Filter>Source Files\sockets\SMTP</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_client.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_server.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_SSLInitializer.cpp">
+      <Filter>Source Files\sockets\Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_socket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_tunnel.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_HttpClientSocket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_HttpDebugSocket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_HttpGetSocket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_HttpPostSocket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_HttpPutSocket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_Ipv4Address.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_Ipv6Address.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_SctpSocket.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_Socket.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_SocketHandler.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_StreamSocket.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_trace_log.cpp">
+      <Filter>Source Files\sockets\Log help classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\socket_address.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_resolv_socket.cpp">
+      <Filter>Source Files\sockets\Asyncronous DNS</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_resolv_server.cpp">
+      <Filter>Source Files\sockets\Asyncronous DNS</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\sockets\SMTP</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_request.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_response.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_transaction.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\sockets\SIP framework</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_tls_socket.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_tcp_socket.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_udp_socket.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_batch_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\sockets\Basic Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_request_socket.cpp">
+      <Filter>Source Files\sockets\HTTP Sockets</Filter>
+    </ClCompile>
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ca.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

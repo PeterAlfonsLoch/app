@@ -3,11 +3,11 @@
 namespace calculator
 {
 
-   class CLASS_DECL_ca calculator :
+   class CLASS_DECL_ca2 calculator :
       virtual public ::radix::object
    {
    public:
-      calculator(::ax::application * papp);
+      calculator(::ca::application * papp);
       virtual ~calculator();
    };
 

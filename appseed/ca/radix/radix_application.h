@@ -3,8 +3,8 @@
 #pragma once
 
 #include "template/trace_module_manager.h"
-#include "simpleuser/simpleuser_str.h"
-#include "simpleuser/simpleuser_draw_context.h"
+#include "user/user_str.h"
+#include "user/user_draw_context.h"
 #include "multithreading/multithreading.h"
 #include "ca/ca/ca_message_window.h"
 
@@ -66,7 +66,6 @@ namespace radix
       virtual public ::ca::message_window_simple_callback,
       virtual public ::radix::thread
    {
-
    public:
 
 
@@ -76,64 +75,65 @@ namespace radix
       //::user::interaction *         m_puiInitialPlaceHolderContainer;
       ::ca::application_bias        m_biasCalling;
 
-   protected:
-      HGLOBAL m_hDevMode;             // printer Dev Mode
-      HGLOBAL m_hDevNames;            // printer Device Names
-      DWORD m_dwPromptContext;        // help context override for message box
+
+
+      HGLOBAL                       m_hDevMode;             // printer Dev Mode
+      HGLOBAL                       m_hDevNames;            // printer Device Names
+      DWORD                         m_dwPromptContext;        // help context override for message box
    // LKG
    //   DWORD m_dwPolicies;            // block for storing boolean system policies
 
-      int m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
-      HCURSOR m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
+      int                           m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
+      HCURSOR                       m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
-      DWORD m_dwPolicies;            // block for storing boolean system policies
+      DWORD                         m_dwPolicies;            // block for storing boolean system policies
 
-   public:
+      EExclusiveInstance            m_eexclusiveinstance;
 
-      EExclusiveInstance m_eexclusiveinstance;
-
-      ::mutex *     m_pmutexLocal;
-      ::mutex *     m_pmutexLocalId;
-      ::mutex *     m_pmutexGlobal;
-      ::mutex *     m_pmutexGlobalId;
+      ::mutex *                     m_pmutexLocal;
+      ::mutex *                     m_pmutexLocalId;
+      ::mutex *                     m_pmutexGlobal;
+      ::mutex *                     m_pmutexGlobalId;
       // This module's hInstance.
-      HINSTANCE m_hInstance;
+      HINSTANCE                     m_hInstance;
       // Pointer to the command-line.
-      string m_strCmdLine;
+      string                        m_strCmdLine;
       // Initial state of the application's ::ca::window; normally,
       // this is an argument to ShowWindow().
-      int m_nCmdShow;
+      int                           m_nCmdShow;
 
-      file_manager_interface * m_pfilemanager;
+      file_manager_interface *      m_pfilemanager;
       // Running args (can be changed in initialize_instance)
       // Human-redable name of the application. Normally set in
       // constructor or retreived from AFX_IDS_APP_TITLE.
-      string m_strAppName;
-      string m_strLibraryName;
+      string                        m_strAppName;
+      string                        m_strLibraryName;
 
       // Name of registry key for this application. See
       // SetRegistryKey() member function.
-      const char * m_pszRegistryKey;
+      const char *                  m_pszRegistryKey;
 
       // Pointer to document_manager used to manage document templates
       // for this application instance.
-      document_manager* m_pdocmanager;
+      document_manager *            m_pdocmanager;
 
       // Support for Shift+F1 help mode.
 
       // TRUE if we're in SHIFT+F1 mode.
-      BOOL m_bHelpMode;
+      BOOL                          m_bHelpMode;
 
       // set in constructor to override default
 
 
       // Default based on this module's path.
-      const char * m_pszHelpFilePath;
+      const char *                  m_pszHelpFilePath;
 
       // Default based on this application's name.
-      const char * m_pszProfileName;
+      const char *                  m_pszProfileName;
       // help mode used by the cast
 //      AFX_HELP_TYPE m_eHelpType;
+
+      ::user::LPWndArray * m_pframea;
 
 
       //CCommandLineInfo* m_pCmdInfo;

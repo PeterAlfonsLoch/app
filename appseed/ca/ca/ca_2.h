@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "ca.h"
-
-
 #include "ca_live_signal.h"
 
 #include "ca_thread.h"

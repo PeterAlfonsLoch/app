@@ -13,7 +13,7 @@ namespace html
       display_inline,
    };*/
 
-   class CLASS_DECL_ca style
+   class CLASS_DECL_ca2 style
    {
    public:
 

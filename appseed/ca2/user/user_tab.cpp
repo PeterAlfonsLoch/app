@@ -3,9 +3,9 @@
 namespace user
 {
 
-   tab::data::data(::ax::application * papp) :
-      ax(papp),
-      ::ax::data(papp),
+   tab::data::data(::ca::application * papp) :
+      ca(papp),
+      ::ca::data(papp),
       m_imagelist(papp),
       m_pen(papp),
       m_font(papp),
@@ -32,8 +32,8 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(::ax::application * papp) :
-      ax(papp),
+   tab::tab(::ca::application * papp) :
+      ca(papp),
       place_holder_container(papp),
       m_dcextension(papp)
    {
@@ -61,7 +61,7 @@ namespace user
 
       memset(&lf, 0, sizeof(lf));
 
-      ::ax::graphics_sp spgraphics(get_app());
+      ::ca::graphics_sp spgraphics(get_app());
       spgraphics->CreateCompatibleDC(NULL);
 
       lf.lfHeight         = -10;
@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   void tab::_001OnDraw(::ax::graphics * pdc)
+   void tab::_001OnDraw(::ca::graphics * pdc)
    {
 
       if(!m_bShowTabs)
@@ -244,13 +244,13 @@ namespace user
 
       class imaging & imaging = System.imaging();
 
-      pdc->set_alpha_mode(::ax::alpha_mode_blend);
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
       pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
             //pdc->SetBkMode(OPAQUE);
 
-      pdc->set_alpha_mode(::ax::alpha_mode_set);
+      pdc->set_alpha_mode(::ca::alpha_mode_set);
 
       int iVisiblePane = 0;
 
@@ -428,7 +428,7 @@ namespace user
          int iTabHeight = 8;
          int cx;
          int cy;
-         ::ax::graphics * pdc = m_pguie->GetDC();
+         ::ca::graphics * pdc = m_pguie->GetDC();
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -510,9 +510,9 @@ namespace user
       {
          int iTabHeight = 16;
          int cy;
-         ::ax::graphics_sp graphics(get_app());
+         ::ca::graphics_sp graphics(get_app());
          graphics->CreateCompatibleDC(NULL);
-         ::ax::graphics * pdc = graphics;
+         ::ca::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -747,7 +747,7 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ax::graphics * pdc = m_pguie->GetDC();
+         ::ca::graphics * pdc = m_pguie->GetDC();
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 
@@ -774,9 +774,9 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ax::graphics_sp graphics(get_app());
+         ::ca::graphics_sp graphics(get_app());
          graphics->CreateCompatibleDC(NULL);
-         ::ax::graphics * pdc = graphics;
+         ::ca::graphics * pdc = graphics;
          rect rect = get_data()->m_rectTab;
          rect.right = rect.left;
          int ixAdd;
@@ -849,9 +849,9 @@ namespace user
       return -1;
    }
 
-   ::ax::window * tab::GetNotifyWnd()
+   ::ca::window * tab::GetNotifyWnd()
    {
-      ::ax::window * pwnd;
+      ::ca::window * pwnd;
    //   if((pwnd = m_pguie->GetOwner()) != NULL)
      //    return pwnd;
       if((pwnd = m_pguie->GetParent()->get_wnd()) != NULL)
@@ -915,7 +915,7 @@ namespace user
 
    void tab::_001SetSel(int iSel)
    {
-      ::ax::data::writing writing(get_data());
+      ::ca::data::writing writing(get_data());
       get_data()->m_iaSel.remove_all();
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
@@ -924,7 +924,7 @@ namespace user
 
    void tab::_001AddSel(int iSel)
    {
-      ::ax::data::writing writing(get_data());
+      ::ca::data::writing writing(get_data());
       get_data()->m_iaSel.add(iSel);
       on_change_pane_count();
    }
@@ -936,7 +936,7 @@ namespace user
       m_pholder      = NULL;
    }
 
-   bool tab::pane::get_title(::ax::application * papp, string &str)
+   bool tab::pane::get_title(::ca::application * papp, string &str)
    {
     //  if(!m_strTitleEx.is_empty())
       //{

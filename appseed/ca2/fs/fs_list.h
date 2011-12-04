@@ -6,7 +6,7 @@ namespace fs
 
    class main_view;
 
-   class CLASS_DECL_ca list :
+   class CLASS_DECL_ca2 list :
       virtual public list_interface
    {
    public:

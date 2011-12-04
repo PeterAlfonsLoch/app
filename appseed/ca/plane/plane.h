@@ -22,5 +22,9 @@
 
 
 
+#include "ca/plugin/plugin.h"
+
+
+
 
 

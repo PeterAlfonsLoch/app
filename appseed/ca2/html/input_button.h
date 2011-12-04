@@ -7,7 +7,7 @@ namespace html
    namespace impl
    {
 
-      class CLASS_DECL_ca input_button : public elemental
+      class CLASS_DECL_ca2 input_button : public elemental
       {
       public:
 

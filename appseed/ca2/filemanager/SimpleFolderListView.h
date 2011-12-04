@@ -6,18 +6,18 @@
 namespace filemanager
 {
 
-class CLASS_DECL_ca SimpleFolderListView :
+class CLASS_DECL_ca2 SimpleFolderListView :
    virtual public ::userbase::view,
    virtual public filemanager::SimpleFolderListInterface
 {
 public:
-   SimpleFolderListView (::ax::application * papp);
+   SimpleFolderListView (::ca::application * papp);
 
    simple_list_header_control    m_headerctrl;
    FileManagerInterface *        m_pfilemanager;
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
-   virtual void OnDraw(::ax::graphics * pgraphics);      // overridden to draw this ::view
+   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 

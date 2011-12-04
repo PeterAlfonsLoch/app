@@ -3,7 +3,7 @@
 namespace userex
 {
 
-   class CLASS_DECL_ca pane_view :
+   class CLASS_DECL_ca2 pane_view :
       virtual public ::userbase::view,
       virtual public ::user::view_creator
    {
@@ -20,7 +20,7 @@ namespace userex
       array_ptr_alloc < menu, menu & > m_menua;
 
 
-      pane_view(::ax::application * papp);
+      pane_view(::ca::application * papp);
       virtual ~pane_view();
 
 

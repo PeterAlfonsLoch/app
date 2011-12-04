@@ -3,7 +3,7 @@
 namespace nature
 {
    
-   class CLASS_DECL_ca pane_view : 
+   class CLASS_DECL_ca2 pane_view : 
       virtual public ::userex::pane_tab_view
    {
    public:
@@ -13,7 +13,7 @@ namespace nature
       ::ca8::keyboard_layout *             m_pkeyboardlayout;
 
 
-      pane_view(::ax::application * papp);
+      pane_view(::ca::application * papp);
 
 #if !core_level_1
       using ::userbase::tab_view::on_show_view;

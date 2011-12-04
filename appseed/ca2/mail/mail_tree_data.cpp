@@ -5,9 +5,9 @@ namespace mail
 {
 
 
-   tree_data::tree_data(::ax::application * papp) :
-      ax(papp),
-      ::ax::data(papp),
+   tree_data::tree_data(::ca::application * papp) :
+      ca(papp),
+      ::ca::data(papp),
       ex1::tree_data(papp)
    {
    }

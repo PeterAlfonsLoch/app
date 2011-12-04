@@ -3,8 +3,8 @@
 namespace html
 {
 
-   html_ex::html_ex(::ax::application * papp) :
-      ax(papp),
+   html_ex::html_ex(::ca::application * papp) :
+      ca(papp),
       m_clrInvalid(0xffffffff),
       m_percentMax(USHRT_MAX)
    {
@@ -35,7 +35,7 @@ namespace html
       m_namedColors["threedhighlight"]      = (COLORREF)0x80000014;
       m_namedColors["threedlightshadow"]   = (COLORREF)0x80000016;
       m_namedColors["threedshadow"]      = (COLORREF)0x80000010;
-      m_namedColors["::ax::window"]            = (COLORREF)0x80000005;
+      m_namedColors["::ca::window"]            = (COLORREF)0x80000005;
       m_namedColors["windowframe"]         = (COLORREF)0x80000006;
       m_namedColors["windowtext"]         = (COLORREF)0x80000008;
 

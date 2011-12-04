@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_form_list_view::simple_form_list_view(::ax::application * papp) :
-   ax(papp),
+simple_form_list_view::simple_form_list_view(::ca::application * papp) :
+   ca(papp),
    ::user::interaction(papp), 
    ::user::form(papp), 
    ::user::form_list(papp),

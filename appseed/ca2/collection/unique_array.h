@@ -5,7 +5,7 @@ class unique_sort_array :
    protected raw_array < typename TYPE >
 {
 public:
-   unique_sort_array(::ax::application * papp = NULL);
+   unique_sort_array(::ca::application * papp = NULL);
    unique_sort_array(const unique_sort_array & base_array);
 
    virtual index add(TYPE newElement)
@@ -67,7 +67,7 @@ class unique_array :
    protected raw_array < typename TYPE >
 {
 public:
-   unique_array(::ax::application * papp = NULL);
+   unique_array(::ca::application * papp = NULL);
    unique_array(const unique_array & base_array);
 
    virtual index add(TYPE newElement)

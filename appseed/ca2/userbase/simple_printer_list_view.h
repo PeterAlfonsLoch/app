@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca simple_printer_list_view :
+class CLASS_DECL_ca2 simple_printer_list_view :
    virtual public simple_list_view
 {
 public:
@@ -11,7 +11,7 @@ public:
    ::view *                   m_pview;
 
 
-   simple_printer_list_view(::ax::application * papp);
+   simple_printer_list_view(::ca::application * papp);
    virtual ~simple_printer_list_view();
 
 

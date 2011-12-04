@@ -9,7 +9,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca tree_item :
+      class CLASS_DECL_ca2 tree_item :
          public ex1::tree_item_data
       {
       public:

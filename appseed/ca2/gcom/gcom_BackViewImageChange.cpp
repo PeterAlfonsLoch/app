@@ -89,11 +89,11 @@ namespace gcom
          m_wstrCurrentImagePath = lpcwszImagePath;
          Main & main = HelperGetMain();
          string str;
-         ::ax::bitmap * pbitmap = System.imaging().LoadImageSync(lpcwszImagePath, get_app());
+         ::ca::bitmap * pbitmap = System.imaging().LoadImageSync(lpcwszImagePath, get_app());
          TRACE("ImageChange::OnLoadImageSyn lpcwszImagePath.lock\n");
          Graphics & graphics = main.GetGraphics();
          single_lock sl3Source(&graphics.m_mutex3Source, TRUE);
-         ::ax::graphics_sp spgraphics(get_app());
+         ::ca::graphics_sp spgraphics(get_app());
          spgraphics->CreateCompatibleDC(NULL);
          spgraphics->SelectObject(pbitmap);
          graphics.GetDib(_graphics::DibSource)->create(spgraphics);

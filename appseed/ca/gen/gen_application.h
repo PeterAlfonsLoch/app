@@ -16,7 +16,7 @@ namespace gen
 
 
    class CLASS_DECL_ca application :
-      public ex1::application,
+      virtual public ex1::application,
       virtual public command_target_interface
    {
    public:

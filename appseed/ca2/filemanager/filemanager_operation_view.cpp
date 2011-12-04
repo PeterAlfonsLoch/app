@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-file_manager_operation_view::file_manager_operation_view(::ax::application * papp) :
-   ax(papp),
+file_manager_operation_view::file_manager_operation_view(::ca::application * papp) :
+   ca(papp),
    ::userbase::split_layout(papp),
    ::userbase::view(papp),
    ::userbase::split_view(papp),

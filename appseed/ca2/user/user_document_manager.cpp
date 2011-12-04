@@ -527,7 +527,7 @@ BOOL document_manager::OnDDECommand(__in LPTSTR lpszCommand)
 
    if (cmdInfo.m_nShellCommand == gen::command_line::FileOpen)
    {
-      // show the application ::ax::window
+      // show the application ::ca::window
       ::user::interaction* pMainWnd = System.GetMainWnd();
       int nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
@@ -545,7 +545,7 @@ BOOL document_manager::OnDDECommand(__in LPTSTR lpszCommand)
       /*System.open_document_file(cmdInfo.m_varFile);
 
 
-      // next time, show the ::ax::window as default
+      // next time, show the ::ca::window as default
       System.m_nCmdShow = -1;
       goto RestoreAndReturn;
    }
@@ -669,7 +669,7 @@ void document_manager::on_file_open()
       0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL))
       return; // open cancelled
 
-   ::ax::create_context_sp createcontext(get_app());
+   ::ca::create_context_sp createcontext(get_app());
    createcontext->m_spCommandLine->m_varFile = newName;
    System.open_document_file(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
@@ -709,7 +709,7 @@ void document_manager::dump(dump_context & dumpcontext) const
 #endif
 
 
-void document_manager::request(::ax::create_context * pcreatecontext)
+void document_manager::request(::ca::create_context * pcreatecontext)
 {
 
    if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())

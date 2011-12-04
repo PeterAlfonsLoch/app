@@ -1,12 +1,15 @@
 #pragma once
 
+
 namespace plugin
 {
 
+
    class plugin;
 
+
    class CLASS_DECL_ca system :
-      virtual public ::cube8::system
+      virtual public ::plane::system
    {
    public:
 
@@ -27,3 +30,6 @@ namespace plugin
 
 
 } // namespace plugin
+
+
+

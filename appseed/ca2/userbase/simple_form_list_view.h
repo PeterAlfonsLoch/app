@@ -1,11 +1,11 @@
 #pragma once
 
-class CLASS_DECL_ca simple_form_list_view :
+class CLASS_DECL_ca2 simple_form_list_view :
    public ::userbase::view,
    public ::userbase::form_list
 {
 public:
-   simple_form_list_view(::ax::application * papp);
+   simple_form_list_view(::ca::application * papp);
 
    simple_list_header_control   m_headerctrl;
 

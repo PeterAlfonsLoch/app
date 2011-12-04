@@ -1,13 +1,13 @@
 #include "StdAfx.h"
 
 
-namespace simpleuser
+namespace user
 {
 
 
    application::application()
    {
-      m_pkeyboardfocus  = NULL;
+/*      m_pkeyboardfocus  = NULL;*/
       m_pshellimageset  = NULL;
    }
 
@@ -21,7 +21,7 @@ namespace simpleuser
 
       m_dwAlive = ::GetTickCount();
 
-      if(!userex::application::initialize1())     
+      if(!visual::application::initialize1())     
          return false;
       return true;
    }
@@ -40,7 +40,7 @@ namespace simpleuser
 
 
 
-      if(!userex::application::initialize())     
+      if(!visual::application::initialize())     
          return false;
 
       xml::node nodeUser(this);
@@ -102,9 +102,11 @@ retry_license:
 
    string application::message_box(const char * pszMatter, gen::property_set & propertyset)
    {
-      class message_box box(this);
+      throw not_implemented_exception();
+/*      class message_box box(this);
       box.show(pszMatter, propertyset);
-      return box.m_strResponse;
+      return box.m_strResponse;*/
+      return "";
    }
 
    int application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
@@ -125,12 +127,12 @@ retry_license:
       }
       try
       {
-         if(!box.show(strMatter, propertyset))
+/*         if(!box.show(strMatter, propertyset))
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>", "\r\n");
             return MessageBox(pwndOwner == NULL ? NULL : (HWND) pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
-         }
+         }*/
       }
       catch(...)
       {
@@ -183,7 +185,8 @@ retry_license:
       {
          strMatter = "system\\user\\simple_message_box\\ok.xhtml";
       }
-      box.show(strMatter, propertyset);
+      throw not_implemented_exception();
+//      box.show(strMatter, propertyset);
       if(box.m_strResponse == "ok")
       {
          return IDOK;
@@ -285,4 +288,4 @@ retry_license:
    }
 
 
-} //namespace simpleuser
+} //namespace user

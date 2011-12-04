@@ -1,15 +1,15 @@
 #pragma once
 
 
-class CLASS_DECL_ca frame_window :
+class CLASS_DECL_ca2 frame_window :
    virtual public user::frame_window_interface
 {
 public:
 
 
    static const rect rectDefault;
-   int m_nWindow;  // general purpose ::ax::window number - display as ":n"
-               // -1 => unknown, 0 => only ::ax::window viewing document
+   int m_nWindow;  // general purpose ::ca::window number - display as ":n"
+               // -1 => unknown, 0 => only ::ca::window viewing document
                // 1 => first of many windows viewing document, 2=> second
 
    HMENU m_hMenuDefault;       // default menu resource for this frame
@@ -20,7 +20,7 @@ public:
    rect m_rectBorder;         // for OLE border space negotiation
 
    pointer_list m_listControlBars; // base_array of all control bars that have this
-                        // ::ax::window as their dock site
+                        // ::ca::window as their dock site
    int m_nShowDelay;           // SW_ command for delay show/hide
 
    bool m_bFrameMoveEnable;
@@ -36,7 +36,7 @@ public:
    HMENU m_hMenuAlt;           // menu to update to (NULL means default)
    string m_strTitle;         // default title (original)
    BOOL m_bInRecalcLayout;     // avoid recursion in layout
-   ::ax::type_info m_pFloatingFrameClass;
+   ::ca::type_info m_pFloatingFrameClass;
    static const DWORD dwDockBarMap[4][2];
 
 
@@ -53,13 +53,13 @@ public:
             ::user::interaction* pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
             DWORD dwExStyle = 0,
-            ::ax::create_context* pContext = NULL);
+            ::ca::create_context* pContext = NULL);
 
    // dynamic creation - load frame and associated resources
    virtual BOOL LoadFrame(const char * pszMatter,
             DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
             ::user::interaction* pParentWnd = NULL,
-            ::ax::create_context* pContext = NULL);
+            ::ca::create_context* pContext = NULL);
 
    virtual BOOL ShowWindow(int nCmdShow);
 
@@ -97,7 +97,7 @@ public:
 
    ::userbase::control_bar* GetControlBar(UINT nID);
 
-   // frame ::ax::window based modality
+   // frame ::ca::window based modality
    virtual void BeginModalState();
    virtual void EndModalState();
    BOOL InModalState() const;
@@ -111,11 +111,11 @@ public:
    // border space negotiation
    enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
    virtual BOOL NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context* pContext);
+   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    void OnContextHelp();   // for Shift+F1 help
    void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
    BOOL OnBarCheck(UINT nID);
-   virtual void on_delete(::ax::ax * poc);
+   virtual void on_delete(::ca::ca * poc);
 
 
 #ifdef _DEBUG
@@ -147,9 +147,9 @@ public:
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
    virtual void PostNcDestroy();   // default to delete this.
-   int OnCreateHelper(LPCREATESTRUCT lpcs, ::ax::create_context* pContext);
+   int OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    void BringToTop(int nCmdShow);
-      // bring ::ax::window to top for SW_ commands which affect z-order
+      // bring ::ca::window to top for SW_ commands which affect z-order
 
    // implementation helpers for Shift+F1 help mode
    BOOL ProcessHelpMsg(MSG& msg, DWORD* pContext);
@@ -159,7 +159,7 @@ public:
    void AddFrameWnd();
    void RemoveFrameWnd();
 
-   friend class ::ax::window;  // for access to m_bModalDisable
+   friend class ::ca::window;  // for access to m_bModalDisable
    friend class CReBar; // for access to m_bInRecalcLayout
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
@@ -177,7 +177,7 @@ public:
    void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
    void OnSize(UINT nType, int cx, int cy);
-   BOOL OnEraseBkgnd(::ax::graphics * pgraphics);
+   BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
    //void OnActivate(UINT nState, ::user::interaction* pWndOther, BOOL bMinimized);
    DECL_GEN_SIGNAL(_001OnActivate)
    DECL_GEN_SIGNAL(_001OnNcActivate)

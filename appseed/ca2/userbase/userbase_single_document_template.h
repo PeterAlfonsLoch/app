@@ -3,12 +3,12 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca single_document_template :
+   class CLASS_DECL_ca2 single_document_template :
       virtual public document_template,
       virtual public ::single_document_template
    {
    public:
-      single_document_template(::ax::application * papp, const char * pszMatter, ::ax::type_info & pDocClass, ::ax::type_info & pFrameClass, ::ax::type_info & pViewClass);
+      single_document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
       virtual ~single_document_template();
       
       

@@ -100,7 +100,7 @@ extern const char GeoIP_country_continent[253][3];
 #ifdef LINUX
 #define GEOIP_API
 #else
-#ifdef _CA_DLL
+#ifdef __CA__DLL
 #define GEOIP_API __declspec(dllexport)
 #else
 #define GEOIP_API __declspec(dllimport)

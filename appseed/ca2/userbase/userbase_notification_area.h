@@ -6,7 +6,7 @@ namespace userbase
 {
 
 
-   struct CLASS_DECL_ca TRAYDATA
+   struct CLASS_DECL_ca2 TRAYDATA
    {
       HWND hwnd;            
       UINT uID;            
@@ -15,7 +15,7 @@ namespace userbase
       HICON hIcon;            
    };
 
-   struct CLASS_DECL_ca TrayItemInfo
+   struct CLASS_DECL_ca2 TrayItemInfo
    {
       HWND hwnd;            
       UINT uID;            
@@ -25,11 +25,11 @@ namespace userbase
       bool bVisible;
    };
 
-   CLASS_DECL_ca char GetDriveLetter(const char * lpDevicePath);
-   CLASS_DECL_ca HWND FindTrayToolbarWindow();
-   CLASS_DECL_ca string GetFilenameFromPid(DWORD pid);
+   CLASS_DECL_ca2 char GetDriveLetter(const char * lpDevicePath);
+   CLASS_DECL_ca2 HWND FindTrayToolbarWindow();
+   CLASS_DECL_ca2 string GetFilenameFromPid(DWORD pid);
 
-   class CLASS_DECL_ca notification_area :
+   class CLASS_DECL_ca2 notification_area :
       virtual public ::radix::object
    {
    public:
@@ -44,7 +44,7 @@ namespace userbase
       HFONT m_hfontRegular;
 
       public:
-      virtual void Initialize(::ax::application * papp);
+      virtual void Initialize(::ca::application * papp);
 
    public:
       virtual ~notification_area();

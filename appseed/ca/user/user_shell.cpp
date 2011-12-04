@@ -1,0 +1,1326 @@
+#include "StdAfx.h"
+#include "user_Shell.h"
+
+namespace filemanager
+{
+   namespace _shell
+   {
+      int _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
+      {
+         if(lpiidl == NULL)
+            return 0;
+         LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
+         LPSHITEMID  lpshiidLast = NULL;
+         USHORT cb;
+         int iLen = 0;
+         while(true)
+         {
+            cb = lpshiid->cb;
+            iLen += cb;
+            if(cb == 0)
+               break;
+            lpshiidLast = lpshiid;
+            lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
+         }
+         return iLen;
+      }
+
+   IShellFolder * _017GetShellFolder(LPITEMIDLIST lpiidlChild)
+   {
+      IShellFolder * lpsfDesktop;
+      HRESULT hr;
+
+      hr = SHGetDesktopFolder(&lpsfDesktop);
+
+      if(hr != S_OK)
+      {
+         return NULL;
+//         System.simple_message_box(NULL, "Failed to open desktop folder!");
+      }
+
+      if(SUCCEEDED(hr))
+      {
+         IShellFolder * lpsfParent = NULL;
+
+         LPITEMIDLIST lpiidlParent = _017ItemIDListGetFolderParent(lpiidlChild);
+
+         if(lpiidlParent == NULL)
+         {
+            return lpsfDesktop;
+         }
+
+         hr = lpsfDesktop->BindToObject(
+            lpiidlParent,
+            NULL,
+            IID_IShellFolder,
+            (void **) &lpsfParent);
+
+         lpsfDesktop->Release();
+
+         if(SUCCEEDED(hr))
+         {
+           return lpsfParent;
+         }
+
+         _017ItemIDListFree(lpiidlParent);
+
+      }
+      else
+      {
+         ASSERT(FALSE);
+      }
+
+      return NULL;
+   }
+
+      LPITEMIDLIST _017ItemIDListDup(LPITEMIDLIST lpiidl)
+      {
+         if(lpiidl == NULL)
+            return NULL;
+
+         LPMALLOC lpmalloc = NULL;
+         HRESULT hr;
+
+         hr = SHGetMalloc(&lpmalloc);
+
+         int iLen = _017ItemIDListGetLen(lpiidl);
+
+         LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
+            lpmalloc->Alloc(iLen + 2);
+
+         memcpy(lpiidlRet, lpiidl, iLen);
+         ((LPBYTE)lpiidlRet)[iLen] = 0;
+         ((LPBYTE)lpiidlRet)[iLen + 1] = 0;
+
+         lpmalloc->Release();
+
+         return lpiidlRet;
+      }
+
+      int _017ItemIDListIHash(LPITEMIDLIST lpiidl)
+      {
+         if(lpiidl == NULL)
+            return NULL;
+
+         int iLen = _017ItemIDListGetLen(lpiidl);
+
+
+         int iHash = 0;
+         int iRemain = iLen;
+         DWORD * lpdw = (DWORD *) lpiidl;
+         while(iRemain >= 4)
+         {
+            iHash += *lpdw;
+            lpdw++;
+            iRemain -= 4;
+         }
+         LPBYTE lpb = (LPBYTE) lpdw;
+         while(iRemain > 0)
+         {
+            iHash += *lpb;
+            lpb++;
+            iRemain--;
+         }
+         return iHash;
+      }
+
+      LPITEMIDLIST _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl)
+      {
+
+         LPMALLOC lpmalloc = NULL;
+         HRESULT hr;
+
+         hr = SHGetMalloc(&lpmalloc);
+
+         int iLenParent = _017ItemIDListGetLen(lpiidlParent);
+         int iLen = _017ItemIDListGetLen(lpiidl);
+
+         LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
+            lpmalloc->Alloc(iLenParent + iLen + 2);
+
+         memcpy(lpiidlRet, lpiidlParent, iLenParent);
+         memcpy(&(((LPBYTE)lpiidlRet)[iLenParent]), lpiidl, iLen);
+         ((LPBYTE)lpiidlRet)[iLenParent + iLen] = 0;
+         ((LPBYTE)lpiidlRet)[iLenParent + iLen + 1] = 0;
+
+         lpmalloc->Release();
+
+         return lpiidlRet;
+      }
+
+      LPITEMIDLIST _017ItemIDListGetLast(LPITEMIDLIST lpiidl)
+      {
+
+   if(lpiidl == NULL)
+            return NULL;
+
+         LPMALLOC lpmalloc = NULL;
+         HRESULT hr;
+         hr = SHGetMalloc(&lpmalloc);
+
+         LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
+         LPSHITEMID  lpshiidLast = lpshiid;
+         USHORT cb;
+
+         while(true)
+         {
+            cb = *((USHORT *) lpshiid);
+            if(cb == 0)
+               break;
+            lpshiidLast = lpshiid;
+            lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
+         }
+         int iCount = *((USHORT *) lpshiidLast);
+
+         if(iCount == 0)
+            return NULL;
+
+         LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
+            lpmalloc->Alloc(iCount + 2);
+
+         memcpy(lpiidlRet, lpshiidLast, iCount);
+
+         *((USHORT *)&(((LPBYTE)lpiidlRet)[iCount])) = 0;
+
+         lpmalloc->Release();
+
+         return lpiidlRet;
+      }
+
+      string _017FilePathGetParent(const char * lpcsz)
+      {
+         stringa stra;
+         stra.add("/");
+         stra.add("\\");
+         stringa stra2;
+         stra2.add_smallest_tokens(lpcsz, stra, FALSE);
+         string str;
+         for(int i = 0; i < stra2.get_size() - 1; i++)
+         {
+            str += stra2[i];
+            str += "\\";
+         }
+         return str;
+      }
+
+      LPITEMIDLIST _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl)
+      {
+         if(lpiidl == NULL)
+            return NULL;
+
+         LPMALLOC lpmalloc = NULL;
+         HRESULT hr;
+         hr = SHGetMalloc(&lpmalloc);
+
+         LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
+         LPSHITEMID  lpshiidLast = lpshiid;
+         USHORT cb;
+
+         while(true)
+         {
+            cb = *((USHORT *) lpshiid);
+            if(cb == 0)
+               break;
+            lpshiidLast = lpshiid;
+            lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
+         }
+         int iCount = ((LPBYTE)lpshiidLast) - ((LPBYTE) lpiidl);
+
+         if(iCount == 0)
+            return NULL;
+
+         LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
+            lpmalloc->Alloc(iCount + 2);
+
+         memcpy(lpiidlRet, lpiidl, iCount);
+
+         *((USHORT *)&(((LPBYTE)lpiidlRet)[iCount])) = 0;
+
+         lpmalloc->Release();
+
+         return lpiidlRet;
+      }
+
+        bool _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2)
+      {
+         if(lpiidl1 == NULL && lpiidl2 == NULL)
+         {
+            return true;
+         }
+         if(lpiidl1 == NULL || lpiidl2 == NULL)
+         {
+            return false;
+         }
+
+
+         LPSHITEMID  lpshiid1 = (LPSHITEMID) lpiidl1;
+         LPSHITEMID  lpshiid2 = (LPSHITEMID) lpiidl2;
+         USHORT cb1;
+         USHORT cb2;
+
+         while(true)
+         {
+            cb1 = *((USHORT *) lpshiid1);
+            cb2 = *((USHORT *) lpshiid2);
+            if(cb1 == 0 && cb2 == 0)
+            {
+               return true;
+            }
+            if(cb1 == 0 || cb2 == 0)
+            {
+               return false;
+            }
+            if(cb1 != cb2)
+               return false;
+            if(memcmp(lpshiid1, lpshiid2, cb1) != 0)
+               return false;
+            lpshiid1 = (LPSHITEMID) (((LPBYTE) lpshiid1) + cb1);
+            lpshiid2 = (LPSHITEMID) (((LPBYTE) lpshiid2) + cb2);
+         }
+      }
+
+      void _017ItemIDListParsePath(LPITEMIDLIST * lpiidl, const char * lpcsz)
+      {
+         HRESULT hr;
+         LPMALLOC lpmalloc = NULL;
+         IShellFolder * lpsfDesktop;
+         hr = SHGetMalloc(&lpmalloc);
+
+
+         hr = SHGetDesktopFolder(&lpsfDesktop);
+
+         ULONG ulEaten;
+         ULONG dwAttrib = SFGAO_FOLDER;
+
+         wstring wstr = gen::international::utf8_to_unicode(lpcsz);
+
+         hr = lpsfDesktop->ParseDisplayName(
+            NULL,
+            NULL,
+            (wchar_t *) (const wchar_t *) wstr,
+            &ulEaten,
+            lpiidl,
+            &dwAttrib);
+
+         lpsfDesktop->Release();
+         lpmalloc->Release();
+
+      }
+
+      void _017ItemIDListFree( LPITEMIDLIST lpiidl)
+      {
+         LPMALLOC lpmalloc = NULL;
+
+      SHGetMalloc(&lpmalloc);
+
+         lpmalloc->Free(lpiidl);
+
+      lpmalloc->Release();
+   }
+
+   bool _017HasSubFolder(::ca::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
+   {
+      WCHAR szPath[_MAX_PATH * 10];
+      SHGetPathFromIDListW(
+         lpiidl,
+         szPath);
+      EFolder efolder = GetFolderType(papp, szPath);
+      if(efolder == FolderNone)
+      {
+         return false;
+      }
+      else if(efolder == FolderZip)
+      {
+         string wstrPath;
+         gen::international::unicode_to_utf8(wstrPath, szPath);
+         string wstrExtra(lpcszExtra);
+         if(wstrExtra.get_length() > 0)
+         {
+            wstrPath += ":" + wstrExtra;
+         }
+         return zip::Util(papp).HasSubFolder(wstrPath);
+      }
+      else
+      {
+         stringa stra;
+         GetChildren(stra, gen::international::unicode_to_utf8(szPath));
+
+         for(int i = 0; i < stra.get_size(); i++)
+         {
+            efolder = GetFolderType(papp, stra[i]);
+            if(efolder != FolderNone)
+               return true;
+         }
+         return false;
+      }
+   }
+
+   EFolder GetFolderType(::ca::application * papp, const char * lpcsz)
+   {
+      return GetFolderType(papp, gen::international::utf8_to_unicode(lpcsz));
+   }
+
+   EFolder GetFolderType(::ca::application * papp, const wchar_t * lpcszPath)
+   {
+      string strPath;
+      gen::international::unicode_to_utf8(strPath, lpcszPath);
+      DWORD dwAttr = ::GetFileAttributesW(lpcszPath);
+      if(dwAttr & FILE_ATTRIBUTE_DIRECTORY)
+      {
+         return FolderFileSystem;
+      }
+      else if(zip::Util(papp).IsUnzipable(strPath))
+      {
+         return FolderZip;
+      }
+      else
+      {
+         return FolderNone;
+      }
+   }
+
+   void GetChildren(stringa & stra, const char * lpcszPath)
+   {
+      string wstrBase(lpcszPath);
+      WIN32_FIND_DATAW fd;
+      if(wstrBase.get_length() == 0)
+      {
+         wstrBase = "\\";
+      }
+      else
+      {
+         if(wstrBase.find('\\') >= 0)
+         {
+            if(wstrBase.Right(1) != "\\")
+               wstrBase += "\\";
+         }
+         else if(wstrBase.find('/') >= 0)
+         {
+            if(wstrBase.Right(1) != "/")
+               wstrBase += "/";
+         }
+         else
+         {
+            wstrBase += "\\";
+         }
+      }
+      string wstrMask(wstrBase);
+      wstrMask += "*.*";
+      wstring wstr = gen::international::utf8_to_unicode(lpcszPath);
+      HANDLE h = ::FindFirstFileExW(wstr, FindExInfoStandard, &fd, FindExSearchNameMatch, NULL, 0);
+
+      if(h == NULL)
+         return;
+
+      while(true)
+      {
+         stra.add(gen::international::unicode_to_utf8(fd.cFileName));
+         if(!FindNextFileW(h, &fd))
+            break;
+      }
+
+      stra.remove(".");
+      stra.remove("..");
+      for(int i = 0; i < stra.get_size(); i++)
+      {
+         stra[i] = wstrBase + stra[i];
+      }
+
+      FindClose(h);
+
+   }
+
+   ImageKey::ImageKey()
+   {
+      m_iIcon = -1;
+   }
+
+   ImageKey::ImageKey(const ImageKey & key)
+   {
+      m_strPath         = key.m_strPath;
+      m_iIcon           = key.m_iIcon;
+      m_strExtension    = key.m_strExtension;
+   }
+
+
+   bool ImageKey::operator == (const ImageKey & key) const
+   {
+      return m_iIcon == key.m_iIcon
+         && m_strExtension == key.m_strExtension
+         && m_strPath == key.m_strPath;
+   }
+
+
+
+
+
+   ImageSet::ImageSet(::ca::application * papp) :
+      ca(papp)
+   {
+      m_pil16 = new image_list(papp);
+      m_pil16->create(16, 16, 0, 10, 10);
+      m_pil48 = new image_list(papp);
+      m_pil48->create(48, 48, 0, 10, 10);
+      m_pil48Hover = new image_list(papp);
+      m_pil48Hover->create(48, 48, 0, 10, 10);
+   }
+
+   ImageSet::~ImageSet()
+   {
+      delete m_pil16;
+      delete m_pil48;
+      delete m_pil48Hover;
+   }
+
+   void ImageSet::initialize()
+   {
+      m_pil16->add_matter("filemanager\\check_off_16.png");
+      m_pil16->add_matter("filemanager\\check_on_16.png");
+      m_pil48->add_matter("filemanager\\check_off_16.png");
+      m_pil48->add_matter("filemanager\\check_on_16.png");
+      m_pil48Hover->add_matter("filemanager\\check_off_16.png");
+      m_pil48Hover->add_matter("filemanager\\check_on_16.png");
+   }
+
+   int ImageSet::GetImage(
+      const char * lpcsz,
+      EFileAttribute eattribute,
+      EIcon eicon)
+   {
+      ImageKey imagekey;
+      string str(lpcsz);
+
+
+      SHFILEINFO shfi16;
+
+      int iImage = -1;
+
+      imagekey.m_strPath.Format(":%s:%d:%d", lpcsz, eattribute, eicon);
+      imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
+      imagekey.m_iIcon = 0;
+      if(!m_imagemap.Lookup(imagekey, iImage))
+      {
+         int iFileAttr = FILE_ATTRIBUTE_NORMAL;
+         if(eattribute == FileAttributeDirectory)
+         {
+            iFileAttr = FILE_ATTRIBUTE_DIRECTORY;
+         }
+
+         int iFlags = SHGFI_USEFILEATTRIBUTES | SHGFI_ICON | SHGFI_SMALLICON;
+
+         if(eicon == IconOpen)
+         {
+            iFlags |= SHGFI_OPENICON;
+         }
+
+         SHGetFileInfo(
+            lpcsz,
+            iFileAttr,
+            &shfi16,
+            sizeof(shfi16),
+            iFlags);
+         iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
+         m_pil48Hover->add_icon_os_data(shfi16.hIcon);
+         System.imaging().Createcolor_blend_ImageList(
+            m_pil48,
+            m_pil48Hover,
+            RGB(255, 255, 240),
+            64);
+
+         m_imagemap.set_at(imagekey, iImage);
+
+      }
+      return iImage;
+   }
+
+
+   int ImageSet::GetImage(
+      HWND hwnd,
+      IShellFolder * lpsf,
+      LPITEMIDLIST lpiidlAbsolute,
+      LPITEMIDLIST lpiidlChild,
+      const wchar_t * lpcszExtra,
+      EIcon eicon)
+   {
+      if(lpsf == NULL)
+         return -1;
+      int iType;
+      switch(eicon)
+      {
+      case IconNormal:
+         iType = 0;
+         break;
+      case IconOpen:
+         iType = GIL_OPENICON;
+         break;
+      default:
+         // unexpected icon type
+         ASSERT(FALSE);
+         return -1;
+      }
+
+
+      WCHAR szFilePath[_MAX_PATH * 10];
+      SHGetPathFromIDListW(
+         lpiidlAbsolute,
+         szFilePath);
+      string strFilePath(szFilePath);
+
+   //   WCHAR wszFilePath[_MAX_PATH * 10];
+      SHGetPathFromIDListW(
+         lpiidlAbsolute,
+         szFilePath);
+
+      CHAR szPath[_MAX_PATH * 10];
+      string strPath;
+      int iImage = -1;
+
+      HICON hicon16 = NULL;
+      HICON hicon48 = NULL;
+      HRESULT hrIconLocation;
+      HRESULT hrExtract;
+      ImageKey imagekey;
+
+
+      string strPathEx(strFilePath);
+      string strExtra;
+
+      gen::international::UnicodeToACP(strExtra, lpcszExtra);
+
+      if(strExtra.get_length() > 0)
+      {
+         strPathEx += ":" + strExtra;
+      }
+
+
+
+      int iIcon = -1;
+      UINT uiFlags = 0;
+
+      SHFILEINFO shfi16;
+      SHFILEINFO shfi48;
+
+      IExtractIcon * lpiextracticon = NULL;
+
+      /*EFolder efolder = GetFolderType(wszFilePath);
+      if(efolder !)
+      {
+         iconkey.m_iIcon         = -1;
+         iconkey.m_strExtension  = "folder";
+         iconkey.m_strPath.Empty();
+      }
+      else
+      {
+         int iFind = item.m_strExtra.reverse_find(L'.');
+         if(iFind >= 0)
+         {
+            gen::international::UnicodeToOEM(strName, item.m_strExtra);
+            iFind = strName.reverse_find('.');
+
+            iconkey.m_iIcon         = -1;
+            iconkey.m_strExtension  = strName.Mid(iFind);
+            iconkey.m_strPath.Empty();
+
+         }
+      }*/
+      if(SUCCEEDED(lpsf->GetUIObjectOf(
+         hwnd,
+         1,
+         (LPCITEMIDLIST *) &lpiidlChild,
+         IID_IExtractIcon,
+         NULL,
+         (void **) &lpiextracticon)))
+      {
+         if(SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
+               iType,
+               szPath,
+               sizeof(szPath),
+               &iIcon,
+               &uiFlags)))
+         {
+            strPath = szPath;
+            if(strPath == "*")
+            {
+               int iFind = strFilePath.reverse_find('.');
+
+               imagekey.m_iIcon         = -1;
+               imagekey.m_strExtension  = strFilePath.Mid(iFind);
+               imagekey.m_strPath.Empty();
+            }
+            else
+            {
+               imagekey.m_strPath    = szPath;
+               imagekey.m_iIcon      = iIcon;
+               imagekey.m_strExtension.Empty();
+            }
+         }
+      }
+      if(!m_imagemap.Lookup(imagekey, iImage))
+      {
+
+         if(imagekey.m_iIcon == -1)
+         {
+            if(imagekey.m_strExtension == "folder")
+            {
+               SHGetFileInfo(
+                  "foo",
+                  FILE_ATTRIBUTE_DIRECTORY,
+                  &shfi16,
+                  sizeof(shfi16),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_SMALLICON);
+               SHGetFileInfo(
+                  "foo",
+                  FILE_ATTRIBUTE_DIRECTORY,
+                  &shfi48,
+                  sizeof(shfi48),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_LARGEICON);
+            }
+            else
+            {
+               strPath = "foo" + imagekey.m_strExtension;
+               SHGetFileInfo(
+                  strPath,
+                  FILE_ATTRIBUTE_NORMAL,
+                  &shfi16,
+                  sizeof(shfi16),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_SMALLICON);
+               SHGetFileInfo(
+                  strPath,
+                  FILE_ATTRIBUTE_NORMAL,
+                  &shfi48,
+                  sizeof(shfi48),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_LARGEICON);
+            }
+            iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
+            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+            System.imaging().Createcolor_blend_ImageList(
+               m_pil48,
+               m_pil48Hover,
+               RGB(255, 255, 240),
+               64);
+
+            m_imagemap.set_at(imagekey, iImage);
+         }
+         else
+         {
+            try
+            {
+               hicon16 = NULL;
+               strPath.Truncate(0);
+               strPath.free_extra();
+               strPath = imagekey.m_strPath;
+               iIcon = imagekey.m_iIcon;
+               bool bExtract = false;
+               //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
+               //LPTSTR lpsz = (LPTSTR) ::GlobalLock(hglobal);
+               //strcpy(lpsz, strPath);
+               try
+               {
+                  if((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
+                     && lpiextracticon != NULL
+                     && (NOERROR == (hrExtract = lpiextracticon->Extract(
+                     strPath,
+                     iIcon,
+                     &hicon48,
+                     &hicon16,
+                     0x00100030)))
+                     )
+                  {
+                     bExtract = true;
+                     iImage = m_pil16->add_icon_os_data(hicon16);
+                     m_pil48Hover->add_icon_os_data(hicon48);
+                     System.imaging().Createcolor_blend_ImageList(
+                        m_pil48,
+                        m_pil48Hover,
+                        RGB(255, 255, 240),
+                        64);
+                     m_imagemap.set_at(imagekey, iImage);
+                  }
+               }
+               catch(...)
+               {
+               }
+               //::GlobalUnlock(hglobal);
+               //::GlobalFree(hglobal);
+               if(!bExtract)
+               {
+                  if(imagekey.m_strPath.is_empty())
+                  {
+                     SHGetFileInfo(
+                        (const char *) lpiidlAbsolute,
+                        FILE_ATTRIBUTE_NORMAL,
+                        &shfi16,
+                        sizeof(shfi16),
+                        SHGFI_PIDL
+                        | SHGFI_USEFILEATTRIBUTES
+                        | SHGFI_ICON
+                        | SHGFI_SMALLICON);
+                     hicon16 = shfi16.hIcon;
+                     SHGetFileInfo(
+                        (const char *) lpiidlAbsolute,
+                        FILE_ATTRIBUTE_NORMAL,
+                        &shfi48,
+                        sizeof(shfi48),
+                        SHGFI_PIDL
+                        | SHGFI_USEFILEATTRIBUTES
+                        | SHGFI_ICON
+                        | SHGFI_LARGEICON);
+                     hicon48 = shfi48.hIcon;
+                     iImage = m_pil16->add_icon_os_data(hicon16);
+                     m_pil48Hover->add_icon_os_data(hicon48);
+                     System.imaging().Createcolor_blend_ImageList(
+                        m_pil48,
+                        m_pil48Hover,
+                        RGB(255, 255, 240),
+                        64);
+                  }
+                  else
+                  {
+                      ExtractIconEx(
+                        imagekey.m_strPath,
+                        imagekey.m_iIcon,
+                        &hicon48,
+                        &hicon16,
+                        1);
+                  }
+                  if(hicon16 == NULL)
+                  {
+                        SHGetFileInfo(
+                           "foo",
+                           FILE_ATTRIBUTE_NORMAL,
+                           &shfi16,
+                           sizeof(shfi16),
+                           SHGFI_USEFILEATTRIBUTES
+                           | SHGFI_ICON
+                           | SHGFI_SMALLICON);
+                     hicon16 = shfi16.hIcon;
+                  }
+                  if(hicon48 == NULL)
+                  {
+                        SHGetFileInfo(
+                           "foo",
+                           FILE_ATTRIBUTE_NORMAL,
+                           &shfi48,
+                           sizeof(shfi48),
+                           SHGFI_USEFILEATTRIBUTES
+                           | SHGFI_ICON
+                           | SHGFI_LARGEICON);
+                     hicon48 = shfi48.hIcon;
+                  }
+                  iImage = m_pil16->add_icon_os_data(hicon16);
+                  m_pil48Hover->add_icon_os_data(hicon48);
+                  System.imaging().Createcolor_blend_ImageList(
+                     m_pil48,
+                     m_pil48Hover,
+                     RGB(255, 255, 240),
+                     64);
+                  m_imagemap.set_at(imagekey, iImage);
+               }
+            }
+            catch(...)
+            {
+            }
+         }
+      }
+
+      if(lpiextracticon != NULL)
+      {
+         lpiextracticon->Release();
+      }
+
+
+
+
+      return iImage;
+   }
+
+
+   bool ImageSet::GetIcon(
+      HWND hwnd,
+      IShellFolder * lpsf,
+      LPITEMIDLIST lpiidlAbsolute,
+      LPITEMIDLIST lpiidlChild,
+      const wchar_t * lpcszExtra,
+      EIcon eicon,
+      HICON * phicon16,
+      HICON * phicon48)
+   {
+      if(lpsf == NULL)
+         return false;
+      int iType;
+      switch(eicon)
+      {
+      case IconNormal:
+         iType = 0;
+         break;
+      case IconOpen:
+         iType = GIL_OPENICON;
+         break;
+      default:
+         // unexpected icon type
+         ASSERT(FALSE);
+         return false;
+      }
+
+
+      WCHAR szFilePath[_MAX_PATH * 10];
+      SHGetPathFromIDListW(
+         lpiidlAbsolute,
+         szFilePath);
+      string strFilePath(szFilePath);
+
+   //   WCHAR wszFilePath[_MAX_PATH * 10];
+      SHGetPathFromIDListW(
+         lpiidlAbsolute,
+         szFilePath);
+
+      CHAR szPath[_MAX_PATH * 10];
+      string strPath;
+   //   int iImage = -1;
+
+      HICON hicon16 = NULL;
+      HICON hicon48 = NULL;
+      HRESULT hrIconLocation;
+      HRESULT hrExtract;
+      ImageKey imagekey;
+
+
+      string strPathEx(strFilePath);
+      string strExtra;
+
+      gen::international::UnicodeToACP(strExtra, lpcszExtra);
+
+      if(strExtra.get_length() > 0)
+      {
+         strPathEx += ":" + strExtra;
+      }
+
+
+
+      int iIcon = -1;
+      UINT uiFlags = 0;
+
+      SHFILEINFO shfi16;
+      SHFILEINFO shfi48;
+
+      IExtractIcon * lpiextracticon = NULL;
+
+      /*EFolder efolder = GetFolderType(wszFilePath);
+      if(efolder !)
+      {
+         iconkey.m_iIcon         = -1;
+         iconkey.m_strExtension  = "folder";
+         iconkey.m_strPath.Empty();
+      }
+      else
+      {
+         int iFind = item.m_strExtra.reverse_find(L'.');
+         if(iFind >= 0)
+         {
+            gen::international::UnicodeToOEM(strName, item.m_strExtra);
+            iFind = strName.reverse_find('.');
+
+            iconkey.m_iIcon         = -1;
+            iconkey.m_strExtension  = strName.Mid(iFind);
+            iconkey.m_strPath.Empty();
+
+         }
+      }*/
+      if(SUCCEEDED(lpsf->GetUIObjectOf(
+         hwnd,
+         1,
+         (LPCITEMIDLIST *) &lpiidlChild,
+         IID_IExtractIcon,
+         NULL,
+         (void **) &lpiextracticon)))
+      {
+         if(SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
+               iType,
+               szPath,
+               sizeof(szPath),
+               &iIcon,
+               &uiFlags)))
+         {
+            strPath = szPath;
+            if(strPath == "*")
+            {
+               int iFind = strFilePath.reverse_find('.');
+
+               imagekey.m_iIcon         = -1;
+               imagekey.m_strExtension  = strFilePath.Mid(iFind);
+               imagekey.m_strPath.Empty();
+            }
+            else
+            {
+               imagekey.m_strPath    = szPath;
+               imagekey.m_iIcon      = iIcon;
+               imagekey.m_strExtension.Empty();
+            }
+         }
+      }
+         if(System.dir().is(gen::international::unicode_to_utf8(szFilePath)))
+         {
+            if(imagekey.m_iIcon == -1)
+            {
+               SHGetFileInfo(
+                  "foo",
+                  FILE_ATTRIBUTE_DIRECTORY,
+                  &shfi16,
+                  sizeof(shfi16),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_SMALLICON);
+               SHGetFileInfo(
+                  "foo",
+                  FILE_ATTRIBUTE_DIRECTORY,
+                  &shfi48,
+                  sizeof(shfi48),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_LARGEICON);
+            }
+            else
+            {
+               strPath = "foo" + imagekey.m_strExtension;
+               SHGetFileInfo(
+                  strPath,
+                  FILE_ATTRIBUTE_NORMAL,
+                  &shfi16,
+                  sizeof(shfi16),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_SMALLICON);
+               SHGetFileInfo(
+                  strPath,
+                  FILE_ATTRIBUTE_NORMAL,
+                  &shfi48,
+                  sizeof(shfi48),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_LARGEICON);
+            }
+            *phicon16 = shfi16.hIcon;
+            *phicon48 = shfi48.hIcon;
+         }
+         else
+         {
+            try
+            {
+               hicon16 = NULL;
+               strPath.Truncate(0);
+               strPath.free_extra();
+               strPath = imagekey.m_strPath;
+               iIcon = imagekey.m_iIcon;
+               bool bExtract = false;
+               //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
+               //LPTSTR lpsz = (LPTSTR) ::GlobalLock(hglobal);
+               //strcpy(lpsz, strPath);
+               try
+               {
+                  if((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
+                     && lpiextracticon != NULL
+                     && (NOERROR == (hrExtract = lpiextracticon->Extract(
+                     strPath,
+                     iIcon,
+                     &hicon48,
+                     &hicon16,
+                     0x00100030)))
+                     )
+                  {
+                     bExtract = true;
+                     *phicon16 = hicon16;
+                     *phicon48 = hicon48;
+                  }
+               }
+               catch(...)
+               {
+               }
+               //::GlobalUnlock(hglobal);
+               //::GlobalFree(hglobal);
+               if(!bExtract)
+               {
+                  if(imagekey.m_strPath.is_empty())
+                  {
+                     SHGetFileInfo(
+                        (const char *) lpiidlAbsolute,
+                        FILE_ATTRIBUTE_NORMAL,
+                        &shfi16,
+                        sizeof(shfi16),
+                        SHGFI_PIDL
+                        | SHGFI_USEFILEATTRIBUTES
+                        | SHGFI_ICON
+                        | SHGFI_SMALLICON);
+                     hicon16 = shfi16.hIcon;
+                     SHGetFileInfo(
+                        (const char *) lpiidlAbsolute,
+                        FILE_ATTRIBUTE_NORMAL,
+                        &shfi48,
+                        sizeof(shfi48),
+                        SHGFI_PIDL
+                        | SHGFI_USEFILEATTRIBUTES
+                        | SHGFI_ICON
+                        | SHGFI_LARGEICON);
+            hicon16 = shfi16.hIcon;
+            hicon48 = shfi48.hIcon;
+                  }
+                  else
+                  {
+                      ExtractIconEx(
+                        imagekey.m_strPath,
+                        imagekey.m_iIcon,
+                        &hicon48,
+                        &hicon16,
+                        1);
+                  }
+                  if(hicon16 == NULL)
+                  {
+                        SHGetFileInfo(
+                           "foo",
+                           FILE_ATTRIBUTE_NORMAL,
+                           &shfi16,
+                           sizeof(shfi16),
+                           SHGFI_USEFILEATTRIBUTES
+                           | SHGFI_ICON
+                           | SHGFI_SMALLICON);
+                     hicon16 = shfi16.hIcon;
+                  }
+                  if(hicon48 == NULL)
+                  {
+                        SHGetFileInfo(
+                           "foo",
+                           FILE_ATTRIBUTE_NORMAL,
+                           &shfi48,
+                           sizeof(shfi48),
+                           SHGFI_USEFILEATTRIBUTES
+                           | SHGFI_ICON
+                           | SHGFI_LARGEICON);
+                     hicon48 = shfi48.hIcon;
+                  }
+            *phicon16 = hicon16;
+            *phicon48 = hicon48;
+               }
+            }
+            catch(...)
+            {
+            }
+         }
+
+      if(lpiextracticon != NULL)
+      {
+         lpiextracticon->Release();
+      }
+
+
+      return true;
+
+   }
+
+   int ImageSet::GetImage(
+      HWND hwnd,
+      LPITEMIDLIST lpiidlAbsolute,
+      const wchar_t * lpcszExtra,
+      EIcon eicon)
+   {
+
+      IShellFolder  * lpsf = _017GetShellFolder(lpiidlAbsolute);
+
+
+      LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
+      int iImage = GetImage(
+         hwnd,
+         lpsf,
+         lpiidlAbsolute,
+         lpiidlChild,
+         lpcszExtra,
+         eicon);
+
+      lpsf->Release();
+
+      _017ItemIDListFree(lpiidlChild);
+
+      return iImage;
+   }
+
+   int ImageSet::GetImage(
+      HWND hwnd,
+      const char * psz,
+      const wchar_t * lpcszExtra,
+      EIcon eicon)
+   {
+      string strPath(psz);
+
+      if(gen::str::ends_ci(strPath, ".ca2"))
+      {
+         int iImage = -1;
+         string str = Application.file().as_string(strPath);
+         if(gen::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         {
+            str.trim();
+            HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            iImage = m_pil16->add_icon_os_data(hicon16);
+            m_pil48Hover->add_icon_os_data(hicon48);
+            System.imaging().Createcolor_blend_ImageList(
+               m_pil48,
+               m_pil48Hover,
+               RGB(255, 255, 240),
+               64);
+         }
+         return iImage;
+      }
+
+      LPITEMIDLIST lpiidlAbsolute;
+      _017ItemIDListParsePath(&lpiidlAbsolute, psz);
+      int iImage = GetImage(hwnd, lpiidlAbsolute, lpcszExtra, eicon);
+      _017ItemIDListFree(lpiidlAbsolute);
+      return iImage;
+   }
+
+   bool ImageSet::GetIcon(
+      HWND hwnd,
+      const char * psz,
+      const wchar_t * lpcszExtra,
+      EIcon eicon,
+      HICON * phicon16,
+      HICON * phicon48)
+   {
+      LPITEMIDLIST lpiidlAbsolute;
+      _017ItemIDListParsePath(&lpiidlAbsolute, psz);
+      bool bGet = GetIcon(hwnd, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
+      _017ItemIDListFree(lpiidlAbsolute);
+      return bGet;
+   }
+
+   bool ImageSet::GetIcon(
+      HWND hwnd,
+      LPITEMIDLIST lpiidlAbsolute,
+      const wchar_t * lpcszExtra,
+      EIcon eicon,
+      HICON * phicon16,
+      HICON * phicon48)
+   {
+
+      IShellFolder  * lpsf = _017GetShellFolder(lpiidlAbsolute);
+
+
+      LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
+      bool bGet = GetIcon(
+         hwnd,
+         lpsf,
+         lpiidlAbsolute,
+         lpiidlChild,
+         lpcszExtra,
+         eicon,
+         phicon16,
+         phicon48);
+
+      lpsf->Release();
+
+      _017ItemIDListFree(lpiidlChild);
+
+      return bGet;
+   }
+
+} // namespace _shell
+
+
+index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
+{
+   LPMALLOC lpmalloc;
+   SHGetMalloc(&lpmalloc);
+   LPITEMIDLIST ppidl;
+
+   int csidla[] =
+   {
+      CSIDL_DESKTOP,
+      CSIDL_DRIVES,
+      CSIDL_PERSONAL,
+      CSIDL_NETHOOD,
+      CSIDL_NETWORK,
+      CSIDL_BITBUCKET,
+      -1,
+   };
+
+   int * pcsidl = csidla;
+
+   while(*pcsidl != -1)
+   {
+      if(SUCCEEDED(SHGetSpecialFolderLocation(
+         NULL,
+         *pcsidl,
+         &ppidl)))
+      {
+         if(_shell::_017ItemIDListIsEqual(ppidl, lpiidl))
+         {
+            lpmalloc->Free(ppidl);
+            break;
+         }
+         lpmalloc->Free(ppidl);
+      }
+      pcsidl++;
+   }
+
+   return *pcsidl;
+
+
+}
+
+
+index Shell::GetCSIDLSort(index iCsidl)
+{
+   switch(iCsidl)
+   {
+   case CSIDL_DESKTOP:
+      return 100;
+   case CSIDL_PERSONAL:
+      return 200;
+   case CSIDL_DRIVES:
+      return 300;
+   case CSIDL_NETHOOD:
+      return 1000;
+   default:
+      return 2000 + iCsidl;
+   }
+
+}
+
+void Shell::GetAscendants(
+   LPITEMIDLIST lpiidl,
+   base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
+{
+   if(lpiidl == NULL)
+      return;
+   for(;;)
+   {
+      lpiidl = _shell::_017ItemIDListGetFolderParent(lpiidl);
+      if(lpiidl == NULL)
+         break;
+      lpiidla.add(lpiidl);
+   }
+}
+
+void Shell::Free(base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
+{
+   LPMALLOC lpmalloc = NULL;
+
+   SHGetMalloc(&lpmalloc);
+
+   for(int i = 0; i < lpiidla.get_size(); i++)
+   {
+      lpmalloc->Free(lpiidla[i]);
+   }
+   lpiidla.remove_all();
+
+   lpmalloc->Release();
+}
+
+
+} // namespace filemanager

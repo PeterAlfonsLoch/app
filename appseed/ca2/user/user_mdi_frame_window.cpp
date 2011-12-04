@@ -101,7 +101,7 @@ LRESULT CMDIFrameWnd::OnCommandHelp(WPARAM wParam, LPARAM lParam)
    return FALSE;
 }
 
-BOOL CMDIFrameWnd::OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context*)
+BOOL CMDIFrameWnd::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context*)
 {
    return CreateClient(lpcs);
 }
@@ -122,7 +122,7 @@ BOOL CMDIFrameWnd::CreateClient(LPCREATESTRUCT lpCreateStruct)
 
    CLIENTCREATESTRUCT ccs;
       // set hWindowMenu for ca2 API V1 backward compatibility
-      // for ca2 API V2, ::ax::window menu will be set in OnMDIActivate
+      // for ca2 API V2, ::ca::window menu will be set in OnMDIActivate
    ccs.idFirstChild = AFX_IDM_FIRST_MDICHILD;
 
    if (lpCreateStruct->style & (WS_HSCROLL|WS_VSCROLL))
@@ -192,7 +192,7 @@ void CMDIFrameWnd::pre_translate_message(gen::signal_object * pobj)
       {
          if (pbase->m_uiMessage == WM_KEYDOWN || pbase->m_uiMessage == WM_SYSKEYDOWN)
          {
-            // the MDICLIENT ::ax::window may translate it
+            // the MDICLIENT ::ca::window may translate it
 /*trans            if (::TranslateMDISysAccel(m_pguieMdiClient, pMsg))
                return TRUE;*/
          }
@@ -233,13 +233,13 @@ BOOL CMDIFrameWnd::PreCreateWindow(CREATESTRUCT& cs)
    return TRUE;
 }
 
-BOOL CMDIFrameWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,  ::user::interaction* pParentWnd, ::ax::create_context* pContext)
+BOOL CMDIFrameWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,  ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
    if (!frame_window::LoadFrame(pszMatter, dwDefaultStyle,
      pParentWnd, pContext))
       return FALSE;
 
-   // save menu to use when no active MDI child ::ax::window is present
+   // save menu to use when no active MDI child ::ca::window is present
    ASSERT(_get_handle() != NULL);
    m_hMenuDefault = ::GetMenu(_get_handle());
    if (m_hMenuDefault == NULL)
@@ -280,7 +280,7 @@ LRESULT CMDIFrameWnd::OnMenuChar(UINT nChar, UINT, ::userbase::menu*)
 
 CMDIChildWnd* CMDIFrameWnd::MDIGetActive(BOOL* pbMaximized) const
 {
-   // check first for MDI client ::ax::window not created
+   // check first for MDI client ::ca::window not created
    if (m_pguieMdiClient == NULL)
    {
       if (pbMaximized != NULL)
@@ -308,7 +308,7 @@ CMDIChildWnd* CMDIFrameWnd::MDIGetActive(BOOL* pbMaximized) const
 }
 
 
-CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ax::type_info pClass,
+CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ca::type_info pClass,
       const char * pszMatter, HMENU hMenu /* = NULL */, HACCEL hAccel /* = NULL */)
 {
    UNREFERENCED_PARAMETER(pClass);
@@ -321,7 +321,7 @@ CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ax::type_info pClass,
 
 
 /*
-CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ax::type_info pClass,
+CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ca::type_info pClass,
       //const char * pszMatter, HMENU hMenu /* = NULL *///, HACCEL hAccel /* = NULL */)
 /*{
    ASSERT(pClass != NULL);
@@ -336,7 +336,7 @@ CMDIChildWnd* CMDIFrameWnd::CreateNewChild(::ax::type_info pClass,
    if (!pFrame->LoadFrame(pszMatter,
          WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, NULL, &context))
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ax::window.\n");
+      TRACE(::radix::trace::category_AppMsg, 0, "Couldn't load frame ::ca::window.\n");
       delete pFrame;
       return NULL;
    }
@@ -471,7 +471,7 @@ BOOL CMDIChildWnd::PreCreateWindow(CREATESTRUCT& cs)
 BOOL CMDIChildWnd::create(const char * lpszClassName,
    const char * lpszWindowName, DWORD dwStyle,
    const RECT& rect, CMDIFrameWnd* pParentWnd,
-   ::ax::create_context * pContext)
+   ::ca::create_context * pContext)
 {
    if (pParentWnd == NULL)
    {
@@ -484,7 +484,7 @@ BOOL CMDIChildWnd::create(const char * lpszClassName,
    }
    ASSERT(pParentWnd->m_pguieMdiClient->IsWindow());
 
-   // insure correct ::ax::window positioning
+   // insure correct ::ca::window positioning
    pParentWnd->layout();
 
    // first copy into a CREATESTRUCT for PreCreate
@@ -522,7 +522,7 @@ BOOL CMDIChildWnd::create(const char * lpszClassName,
    mcs.style = cs.style & ~(WS_MAXIMIZE | WS_VISIBLE);
    mcs.lParam = (LPARAM)cs.lpCreateParams;
 
-   // create the ::ax::window through the MDICLIENT ::ax::window
+   // create the ::ca::window through the MDICLIENT ::ca::window
 //   AfxHookWindowCreate(this);
    HWND hWnd = (HWND)pParentWnd->m_pguieMdiClient->SendMessage(
       WM_MDICREATE, 0, (LPARAM)&mcs);
@@ -535,7 +535,7 @@ BOOL CMDIChildWnd::create(const char * lpszClassName,
    // special handling of visibility (always created invisible)
    if (cs.style & WS_VISIBLE)
    {
-      // place the ::ax::window on top in z-order before showing it
+      // place the ::ca::window on top in z-order before showing it
       ::BringWindowToTop(hWnd);
 
       // show it as specified
@@ -558,7 +558,7 @@ BOOL CMDIChildWnd::create(const char * lpszClassName,
 }
 
 BOOL CMDIChildWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-      ::user::interaction* pParentWnd, ::ax::create_context* pContext)
+      ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
    UNREFERENCED_PARAMETER(dwDefaultStyle);
@@ -589,7 +589,7 @@ BOOL CMDIChildWnd::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
    }
    else
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no shared menu/acceltable for MDI Child ::ax::window.\n");
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no shared menu/acceltable for MDI Child ::ca::window.\n");
          // if this happens, programmer must load these manually
    }
 
@@ -620,7 +620,7 @@ void CMDIChildWnd::OnSize(UINT nType, int cx, int cy)
 
 BOOL CMDIChildWnd::UpdateClientEdge(LPRECT lpRect)
 {
-   // only adjust for active MDI child ::ax::window
+   // only adjust for active MDI child ::ca::window
    CMDIFrameWnd* pFrameWnd = GetMDIFrame();
    CMDIChildWnd* pChild = pFrameWnd->MDIGetActive();
    if (pChild == NULL || pChild == this)
@@ -662,7 +662,7 @@ void CMDIChildWnd::OnWindowPosChanging(LPWINDOWPOS lpWndPos)
       rect rectClient;
       if (UpdateClientEdge(rectClient) && (GetStyle() & WS_MAXIMIZE))
       {
-         // adjust maximized ::ax::window size and position based on new
+         // adjust maximized ::ca::window size and position based on new
          //  size/position of the MDI client area.
          ::AdjustWindowRectEx(rectClient, GetStyle(), FALSE, GetExStyle());
          lpWndPos->x = rectClient.left;
@@ -690,7 +690,7 @@ BOOL CMDIChildWnd::OnNcActivate(BOOL bActive)
    return FALSE;
 }
 
-int CMDIChildWnd::OnMouseActivate(::ax::window * pDesktopWnd, UINT nHitTest, UINT message)
+int CMDIChildWnd::OnMouseActivate(::ca::window * pDesktopWnd, UINT nHitTest, UINT message)
 {
    UNREFERENCED_PARAMETER(pDesktopWnd);
    UNREFERENCED_PARAMETER(nHitTest);
@@ -699,7 +699,7 @@ int CMDIChildWnd::OnMouseActivate(::ax::window * pDesktopWnd, UINT nHitTest, UIN
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
       return nResult;   // frame does not want to activate */
 
-   // activate this ::ax::window if necessary
+   // activate this ::ca::window if necessary
    CMDIFrameWnd* pFrameWnd = GetMDIFrame();
    ASSERT_VALID(pFrameWnd);
    CMDIChildWnd* pActive = pFrameWnd->MDIGetActive();
@@ -720,7 +720,7 @@ void CMDIChildWnd::ActivateFrame(int nCmdShow)
    // determine default show command
    if (nCmdShow == -1)
    {
-      // get maximized state of frame ::ax::window (previously active child)
+      // get maximized state of frame ::ca::window (previously active child)
       BOOL bMaximized;
       pFrameWnd->MDIGetActive(&bMaximized);
 
@@ -732,16 +732,16 @@ void CMDIChildWnd::ActivateFrame(int nCmdShow)
          nCmdShow = SW_SHOWMINIMIZED;
    }
 
-   // finally, show the ::ax::window
+   // finally, show the ::ca::window
    frame_window::ActivateFrame(nCmdShow);
 
-   // update the Window menu to reflect new child ::ax::window
+   // update the Window menu to reflect new child ::ca::window
    CMDIFrameWnd* pFrame = GetMDIFrame();
    pFrame->m_pguieMdiClient->SendMessage( WM_MDIREFRESHMENU, 0, 0);
 
    // Note: Update the m_bPseudoInactive flag.  This is used to handle the
    //  last MDI child getting hidden.  Windows provides no way to deactivate
-   //  an MDI child ::ax::window.
+   //  an MDI child ::ca::window.
 
    BOOL bVisibleNow = (GetStyle() & WS_VISIBLE) != 0;
    if (bVisibleNow == bVisibleThen)
@@ -749,17 +749,17 @@ void CMDIChildWnd::ActivateFrame(int nCmdShow)
 
    if (!bVisibleNow)
    {
-      // get current active ::ax::window according to Windows MDI
+      // get current active ::ca::window according to Windows MDI
       HWND hWnd = (HWND)pFrameWnd->m_pguieMdiClient->SendMessage(
          WM_MDIGETACTIVE, 0, 0);
       if (hWnd != _get_handle())
       {
-         // not active any more -- ::ax::window must have been deactivated
+         // not active any more -- ::ca::window must have been deactivated
          ASSERT(!m_bPseudoInactive);
          return;
       }
 
-      // check next ::ax::window
+      // check next ::ca::window
       ASSERT(hWnd != NULL);
       pFrameWnd->MDINext();
 
@@ -841,7 +841,7 @@ HMENU CMDIFrameWnd::GetWindowMenuPopup(HMENU hMenuBar)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// Smarts for updating the ::ax::window menu based on the current child
+// Smarts for updating the ::ca::window menu based on the current child
 
 void CMDIFrameWnd::OnUpdateFrameMenu(HMENU hMenuAlt)
 {
@@ -854,7 +854,7 @@ void CMDIFrameWnd::OnUpdateFrameMenu(HMENU hMenuAlt)
    else
    {
       // no child active, so have to update it ourselves
-      //  (we can't send it to a child ::ax::window, since pActiveWnd is NULL)
+      //  (we can't send it to a child ::ca::window, since pActiveWnd is NULL)
       if (hMenuAlt == NULL)
          hMenuAlt = m_hMenuDefault;  // use default
       m_pguieMdiClient->SendMessage(WM_MDISETMENU, (WPARAM)hMenuAlt, NULL);
@@ -889,11 +889,11 @@ CMDIFrameWnd* CMDIChildWnd::GetMDIFrame()
 
 void CMDIChildWnd::on_update_frame_title(BOOL bAddToTitle)
 {
-   // update our parent ::ax::window first
+   // update our parent ::ca::window first
    GetMDIFrame()->on_update_frame_title(bAddToTitle);
 
    if ((GetStyle() & FWS_ADDTOTITLE) == 0)
-      return;     // leave child ::ax::window alone!
+      return;     // leave child ::ca::window alone!
 
    document * pdocument = GetActiveDocument();
    if (bAddToTitle)
@@ -924,7 +924,7 @@ void CMDIChildWnd::OnMDIActivate(BOOL bActivate, ::user::interaction* pActivateW
 {
    m_bPseudoInactive = FALSE;  // must be happening for real
 
-   // make sure MDI client ::ax::window has correct client edge
+   // make sure MDI client ::ca::window has correct client edge
    UpdateClientEdge();
 
    // send deactivate notification to active ::view
@@ -1010,7 +1010,7 @@ int CMDIChildWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
    // call base class with lParam context (not MDI one)
    MDICREATESTRUCT* lpmcs;
    lpmcs = (MDICREATESTRUCT*)lpCreateStruct->lpCreateParams;
-   ::ax::create_context* pContext = (::ax::create_context*)lpmcs->lParam;
+   ::ca::create_context* pContext = (::ca::create_context*)lpmcs->lParam;
 
    return OnCreateHelper(lpCreateStruct, pContext);
 }
@@ -1102,7 +1102,7 @@ void CMDIFrameWnd::OnWindowNew()
    // otherwise we have a new frame !
    document_template * ptemplate = pdocument->get_document_template();
    ASSERT_VALID(ptemplate);
-   ::ax::create_context_sp cc(get_app());
+   ::ca::create_context_sp cc(get_app());
    frame_window* pFrame = ptemplate->create_new_frame(pdocument, pActiveChild, cc);
    if (pFrame == NULL)
    {

@@ -253,7 +253,7 @@
 #endif*/
 #define ZEXPORT
 #ifdef _WINDOWS
-#ifdef __CA2__DLL
+#ifdef __CA__DLL
    #define ZEXTERN  _declspec(dllexport)
 #else
    #define ZEXTERN  _declspec(dllimport)

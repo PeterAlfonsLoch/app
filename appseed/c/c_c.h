@@ -5,9 +5,9 @@
 
 
 #ifdef _WIN32
-#ifdef __CA__LIB
+#ifdef __C__LIB
    #define CLASS_DECL_c
-#elif defined(__CA__DLL)
+#elif defined(__C__DLL)
    #define CLASS_DECL_c  _declspec(dllexport)
 #else
    #define CLASS_DECL_c  _declspec(dllimport)

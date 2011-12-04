@@ -6,7 +6,7 @@ class view;
 namespace nature
 {
 
-   class CLASS_DECL_ca appearance_view : 
+   class CLASS_DECL_ca2 appearance_view : 
       public ::userex::pane_tab_view
    {
    public:
@@ -18,7 +18,7 @@ namespace nature
       };
 
 
-      appearance_view(::ax::application * papp);
+      appearance_view(::ca::application * papp);
 
 #if !core_level_1
       using ::userbase::tab_view::on_show_view;

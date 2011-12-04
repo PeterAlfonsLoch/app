@@ -4,7 +4,7 @@ namespace filemanager
 {
 
 
-class CLASS_DECL_ca SimpleFolderListInterface :
+class CLASS_DECL_ca2 SimpleFolderListInterface :
    virtual public ::user::list,
    virtual public FileManagerViewInterface
 {
@@ -16,7 +16,7 @@ public:
       ModeConfigurationItem,
    };
 
-   SimpleFolderListInterface(::ax::application * papp);
+   SimpleFolderListInterface(::ca::application * papp);
    virtual ~SimpleFolderListInterface();
 
 public:

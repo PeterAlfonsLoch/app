@@ -7,14 +7,14 @@ namespace html
 namespace impl
 {
 
-   class CLASS_DECL_ca table : public elemental
+   class CLASS_DECL_ca2 table : public elemental
    {
    public:
       table();
       virtual ~table();
 
 
-      class CLASS_DECL_ca column
+      class CLASS_DECL_ca2 column
       {
       public:
          column();

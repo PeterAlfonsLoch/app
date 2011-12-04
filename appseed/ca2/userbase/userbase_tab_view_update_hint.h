@@ -3,7 +3,7 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca tab_view_update_hint :
+   class CLASS_DECL_ca2 tab_view_update_hint :
       public ::radix::object  
    {
    public:

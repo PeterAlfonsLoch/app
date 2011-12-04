@@ -6,7 +6,7 @@ namespace platform
    class document;
 
 
-   class CLASS_DECL_ca view :
+   class CLASS_DECL_ca2 view :
       virtual public form_view
    {
    public:
@@ -23,14 +23,14 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          view *                  m_pview;
-         ::ax::application *     m_papp;
+         ::ca::application *     m_papp;
          bool                    m_bMakeVisible;
       };
 
       class link
       {
       public:
-         link(::ax::application * papp);
+         link(::ca::application * papp);
          int                     m_iId;
          run *                   m_prun;
          string                  m_strName;
@@ -76,13 +76,13 @@ namespace platform
                            m_linka;
 
       int m_iScreen;
-      ::ax::font_sp m_font1;
-      ::ax::font_sp m_font2;
-      ::ax::font_sp m_font3;
-      ::ax::brush_sp m_brushBk;
-      ::ax::brush_sp m_brushProgress3;
-      ::ax::brush_sp m_brushProgress2;
-      ::ax::brush_sp m_brushProgress1;
+      ::ca::font_sp m_font1;
+      ::ca::font_sp m_font2;
+      ::ca::font_sp m_font3;
+      ::ca::brush_sp m_brushBk;
+      ::ca::brush_sp m_brushProgress3;
+      ::ca::brush_sp m_brushProgress2;
+      ::ca::brush_sp m_brushProgress1;
       visual::dib_sp m_dibBk;
       visual::dib_sp m_dibBkImage;
       double m_dProgress;
@@ -93,7 +93,7 @@ namespace platform
 
 
       
-      view(::ax::application * papp);
+      view(::ca::application * papp);
       virtual ~view();
 
    #ifdef _DEBUG
@@ -103,14 +103,14 @@ namespace platform
 
       void SetScreen(int iScreen);
 
-      virtual void open_document_file(::ax::create_context * pcreatecontext);
+      virtual void open_document_file(::ca::create_context * pcreatecontext);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
       virtual database::user::interaction* BackViewGetWnd();
       virtual ::user::interaction* get_guie();
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
 
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

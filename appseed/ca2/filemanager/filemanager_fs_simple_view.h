@@ -13,7 +13,7 @@ namespace filemanager
          class tree_view;
          class list_view;
 
-         class CLASS_DECL_ca view :
+         class CLASS_DECL_ca2 view :
             virtual public ::userbase::split_view
          {
          public:
@@ -21,7 +21,7 @@ namespace filemanager
             list_view * m_plist;
             ::ex1::request_interface * m_prequestinterface;
 
-            view(::ax::application * papp);
+            view(::ca::application * papp);
 
             void install_message_handling(::gen::message::dispatch * pinterface);
 

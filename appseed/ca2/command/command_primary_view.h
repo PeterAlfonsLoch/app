@@ -4,7 +4,7 @@
 namespace command
 {
 
-   class CLASS_DECL_ca primary_view :
+   class CLASS_DECL_ca2 primary_view :
       public ::userbase::edit_plain_text_view
    {
    public:
@@ -16,7 +16,7 @@ namespace command
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 
-      primary_view(::ax::application * papp);
+      primary_view(::ca::application * papp);
       virtual void _001OnAfterChangeText();
       void on_update(::view* pSender, LPARAM lHint, ::radix::object* phint);
 

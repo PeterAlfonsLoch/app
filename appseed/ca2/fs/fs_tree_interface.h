@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca tree_interface :
+   class CLASS_DECL_ca2 tree_interface :
       virtual public ::user::tree
    {
    public:

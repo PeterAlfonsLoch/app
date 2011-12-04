@@ -47,7 +47,7 @@ namespace simpledb
       {
          data_set("locale", lpcsz);
       }
-      ::user::application::on_set_locale(lpcsz, bUser);
+      ::database::application::on_set_locale(lpcsz, bUser);
    }
 
    void application::on_set_style(const char * lpcsz, bool bUser)
@@ -56,16 +56,7 @@ namespace simpledb
       {
          data_set("style", lpcsz);
       }
-      ::user::application::on_set_style(lpcsz, bUser);
-   }
-
-   void application::on_set_keyboard_layout(const char * pszPath, bool bUser)
-   {
-      if(bUser)
-      {
-         data_set("keyboard_layout", pszPath);
-      }
-      ::user::application::on_set_keyboard_layout(pszPath, bUser);
+      ::database::application::on_set_style(lpcsz, bUser);
    }
 
    bool application::FinalizeDataCentral()
@@ -109,7 +100,7 @@ namespace simpledb
    bool application::initialize()
    {
 
-      if(!user::application::initialize())
+      if(!database::application::initialize())
          return false;
 
       if(command().m_varTopicQuery["locale"].get_string().has_char())
@@ -215,26 +206,13 @@ namespace simpledb
       }
       
       // keyboard layout
-      if(data_get("keyboard_layout", str))
+      if(data_get("keyboard_layout", str) && str.has_char())
       {
-         if(str.has_char())
-         {
-            set_keyboard_layout(str, false);
-         }
-         else
-         {
-            set_keyboard_layout(m_pkeyboard->get_current_system_layout(), false);
-            data_set("keyboard_layout", keyboard().layout().m_strPath);
-         }
-      }
-      else if(&keyboard().layout() != NULL)
-      {
-         data_set("keyboard_layout", keyboard().layout().m_strPath);
+         set_keyboard_layout(str, false);
       }
       else
       {
-         set_keyboard_layout(m_pkeyboard->get_current_system_layout(), false);
-         data_set("keyboard_layout", keyboard().layout().m_strPath);
+         set_keyboard_layout(NULL, false);
       }
 
       data_pulse_change("ca2_fontopus_votagus", "savings", NULL);
@@ -247,7 +225,7 @@ namespace simpledb
 
       try
       {
-         user::application::finalize();
+         database::application::finalize();
       }
       catch(...)
       {
@@ -277,6 +255,20 @@ namespace simpledb
       return *m_pserver;
    }
 
+   bool application::set_keyboard_layout(const char * pszPath, bool bUser)
+   {
+      UNREFERENCED_PARAMETER(pszPath);
+      UNREFERENCED_PARAMETER(bUser);
+      return false;
+   }
+
+   void application::on_set_keyboard_layout(const char * pszPath, bool bUser)
+   {
+      if(bUser)
+      {
+         data_set("keyboard_layout", pszPath);
+      }
+   }
 
 
 } // namespace application

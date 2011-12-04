@@ -21,8 +21,8 @@
 #include "database/database_01.h"
 
 
-#include "ax/ca_window.h"
-#include "ax/ca_window_draw.h"
+#include "ca/ca_window.h"
+#include "ca/ca_window_draw.h"
 
 #include "gen/gen_timer.h"
 #include "gen/gen_timer_callback.h"
@@ -34,11 +34,11 @@
 
 <<<<<<< .mine
 =======
-class CLASS_DECL_ca guie_message_wnd :
-   virtual public ::ax::window
+class CLASS_DECL_ca2 guie_message_wnd :
+   virtual public ::ca::window
 {
 public:
-   guie_message_wnd(::ax::application * papp);
+   guie_message_wnd(::ca::application * papp);
    virtual void message_handler(gen::signal_object * pobj);
    ::user::interaction * m_pguieForward;
 };
@@ -48,7 +48,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // frame_window - base class for SDI and other frame windows
 
-// Frame ::ax::window styles
+// Frame ::ca::window styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
@@ -72,7 +72,7 @@ class CDockState;           // forward reference (see afxpriv.h)
 /////////////////////////////////////////////////////////////////////////////
 // MDI Support
 
-class CLASS_DECL_ca CMDIFrameWnd : public frame_window
+class CLASS_DECL_ca2 CMDIFrameWnd : public frame_window
 {
    // // DECLARE_DYNCREATE(CMDIFrameWnd)
 
@@ -92,7 +92,7 @@ public:
    void MDICascade();
    void MDITile(int nType);
    void MDICascade(int nType);
-   CMDIChildWnd* CreateNewChild(::ax::type_info pClass, const char * pszMatter,
+   CMDIChildWnd* CreateNewChild(::ca::type_info pClass, const char * pszMatter,
       HMENU hMenu = NULL, HACCEL hAccel = NULL);
 
 // Overridables
@@ -103,7 +103,7 @@ public:
 
 // Implementation
 public:
-   ::user::interaction * m_pguieMdiClient;       // MDI Client ::ax::window handle
+   ::user::interaction * m_pguieMdiClient;       // MDI Client ::ca::window handle
 
 #ifdef _DEBUG
    virtual void assert_valid() const;
@@ -113,8 +113,8 @@ public:
    virtual BOOL LoadFrame(const char * pszMatter,
             DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
             ::user::interaction* pParentWnd = NULL,
-            ::ax::create_context* pContext = NULL);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context* pContext);
+            ::ca::create_context* pContext = NULL);
+   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual void pre_translate_message(gen::signal_object * pobj);
    virtual void on_update_frame_title(BOOL bAddToTitle);
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
@@ -136,7 +136,7 @@ protected:
    LRESULT OnMenuChar(UINT nChar, UINT, ::userbase::menu*);
 };
 
-class CLASS_DECL_ca CMDIChildWnd : public frame_window
+class CLASS_DECL_ca2 CMDIChildWnd : public frame_window
 {
 public:
    CMDIChildWnd();
@@ -146,7 +146,7 @@ public:
             DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_OVERLAPPEDWINDOW,
             const RECT& rect = rectDefault,
             CMDIFrameWnd* pParentWnd = NULL,
-            ::ax::create_context* pContext = NULL);
+            ::ca::create_context* pContext = NULL);
 
 // Attributes
    CMDIFrameWnd* GetMDIFrame();
@@ -170,7 +170,7 @@ public:
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-               ::user::interaction* pParentWnd, ::ax::create_context* pContext = NULL);
+               ::user::interaction* pParentWnd, ::ca::create_context* pContext = NULL);
       // 'pParentWnd' parameter is required for MDI Child
    virtual BOOL DestroyWindow();
    virtual void pre_translate_message(gen::signal_object * pobj);
@@ -178,7 +178,7 @@ public:
    virtual void OnUpdateFrameMenu(BOOL bActive, ::user::interaction* pActivateWnd,
       HMENU hMenuAlt);
 
-   BOOL m_bPseudoInactive;     // TRUE if ::ax::window is MDI active according to
+   BOOL m_bPseudoInactive;     // TRUE if ::ca::window is MDI active according to
                         //  windows, but not according to ca2 API...
 
 protected:
@@ -188,7 +188,7 @@ protected:
    BOOL UpdateClientEdge(LPRECT lpRect = NULL);
 
    void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
-   int OnMouseActivate(::ax::window* pDesktopWnd, UINT nHitTest, UINT message);
+   int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
    int OnCreate(LPCREATESTRUCT lpCreateStruct);
    BOOL OnNcCreate(LPCREATESTRUCT lpCreateStruct);
    void OnSize(UINT nType, int cx, int cy);
@@ -200,7 +200,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // CMiniFrameWnd
 
-// MiniFrame ::ax::window styles
+// MiniFrame ::ca::window styles
 #define MFS_SYNCACTIVE      0x00000100L // syncronize activation w/ parent
 #define MFS_4THICKFRAME     0x00000200L // thick frame all around (no tiles)
 #define MFS_THICKFRAME      0x00000400L // use instead of WS_THICKFRAME
@@ -209,7 +209,7 @@ protected:
 
 #pragma warning( disable: 4263 )
 #pragma warning( disable: 4264 )
-class CLASS_DECL_ca CMiniFrameWnd : public frame_window
+class CLASS_DECL_ca2 CMiniFrameWnd : public frame_window
 {
 public:
 

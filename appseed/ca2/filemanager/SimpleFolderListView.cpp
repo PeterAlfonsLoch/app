@@ -6,8 +6,8 @@ namespace filemanager
 {
 
 
-   SimpleFolderListView::SimpleFolderListView(::ax::application * papp) :
-      ax(papp),
+   SimpleFolderListView::SimpleFolderListView(::ca::application * papp) :
+      ca(papp),
       m_headerctrl(papp),
       ::userbase::view(papp),
       ::user::scroll_view(papp),
@@ -43,7 +43,7 @@ void SimpleFolderListView::install_message_handling(::gen::message::dispatch * p
 /////////////////////////////////////////////////////////////////////////////
 // SimpleFolderListView drawing
 
-void SimpleFolderListView::OnDraw(::ax::graphics * pgraphics)
+void SimpleFolderListView::OnDraw(::ca::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    //::userbase::document* pDoc = get_document();

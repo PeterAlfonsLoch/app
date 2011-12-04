@@ -6,7 +6,7 @@ namespace user
 
    class place_holder_container;
 
-   class CLASS_DECL_ca place_holder :
+   class CLASS_DECL_ca2 place_holder :
       virtual public control
    {
    public:
@@ -15,7 +15,7 @@ namespace user
       LPWndArray  m_uiptraHold;
 
 
-      place_holder(::ax::application * papp);
+      place_holder(::ca::application * papp);
       virtual ~place_holder();
 
 
@@ -38,7 +38,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_ca place_holder_ptra :
+   class CLASS_DECL_ca2 place_holder_ptra :
       virtual public comparable_array < place_holder * >
    {
    public:

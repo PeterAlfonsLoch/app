@@ -23,9 +23,9 @@ namespace ca
          }
          try
          {
-            if(m_papp->m_pplanesystem != NULL)
+            if(m_papp->m_psystem != NULL)
             {
-                  m_papp->m_pplanesystem->on_delete(this);
+                  m_papp->m_psystem->on_delete(this);
             }
          }
          catch(...)
@@ -123,7 +123,7 @@ namespace ca
       }
       else if(m_ulFlags & flag_discard_to_factory)
       {
-         m_papp->m_pplanesystem->discard_to_factory(this);
+         m_papp->m_psystem->discard_to_factory(this);
       }
       else if(m_ulFlags & flag_heap_alloc)
       {
@@ -137,7 +137,7 @@ namespace ca
       if(m_pfactoryitembase != NULL)
          return m_pfactoryitembase->clone(this);
       else
-         return m_papp->m_pplanesystem->clone(this);
+         return m_papp->m_psystem->clone(this);
    }
 
 

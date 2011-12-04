@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca document_manager : 
+class CLASS_DECL_ca2 document_manager : 
    virtual public ::user::document_request_interface
 {
 public:
@@ -50,7 +50,7 @@ public:
    virtual document_template * get_template(index index) const;
    virtual void RegisterShellFileTypes(BOOL bCompat);
    void UnregisterShellFileTypes();
-   virtual void request(::ax::create_context * pcreatecontext); // open named file
+   virtual void request(::ca::create_context * pcreatecontext); // open named file
    virtual BOOL save_all_modified(); // save before exit
    virtual void close_all_documents(BOOL bEndSession); // close documents before exiting
    virtual int get_open_document_count();

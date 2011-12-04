@@ -4,8 +4,8 @@
 namespace mail
 {
 
-   account::account(::ax::application * papp) :
-      ax(papp),
+   account::account(::ca::application * papp) :
+      ca(papp),
       m_pop3(papp)
    {
       m_dwCheckTime = 1000 * 60 * 2;

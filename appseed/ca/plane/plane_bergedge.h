@@ -37,7 +37,7 @@ namespace plane
       };
 
       class CLASS_DECL_ca map :
-         virtual public ::collection::map < int, int, ::bergedge::bergedge *, ::bergedge::bergedge * >
+         virtual public ::collection::map < int, int, ::plane::bergedge *, ::plane::bergedge * >
       {
       };
 
@@ -81,6 +81,7 @@ namespace plane
 
 
       // semantics defined by application
+      using ::plane::application::request;
       virtual void request(::ca::create_context * pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened

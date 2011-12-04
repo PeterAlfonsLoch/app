@@ -108,8 +108,8 @@ namespace fontopus
       string                                    m_strForm;
       string                                    m_strLicense;
       bool                                      m_bLicense;
-      ::simpleuser::network_configuration              m_netcfg;
-      ::simpleuser::keyboard_layout *                  m_pkeyboardlayout;
+      ::user::network_configuration              m_netcfg;
+      ::user::keyboard_layout *                  m_pkeyboardlayout;
       bool                                      m_bInteractive;
 
 
@@ -149,4 +149,4 @@ namespace fontopus
    };
 
 
-} // namespace simpleuser
+} // namespace user

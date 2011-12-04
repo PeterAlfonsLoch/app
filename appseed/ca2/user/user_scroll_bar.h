@@ -16,7 +16,7 @@ namespace user
       int      nTrackPos;
    };
 
-   class CLASS_DECL_ca scroll_bar :
+   class CLASS_DECL_ca2 scroll_bar :
       virtual public ::user::interaction
    {
    public:

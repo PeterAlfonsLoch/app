@@ -20,7 +20,7 @@ namespace simpledb
       {
       }
 
-      void socket_thread::install_message_handling(::user::win::message::dispatch * pinterface)
+      void socket_thread::install_message_handling(::gen::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_APP, pinterface, this, &socket_thread::OnApp);
       }
@@ -80,7 +80,7 @@ namespace simpledb
 
       void socket_thread::OnApp(gen::signal_object * pobj)
       {
-         SCAST_PTR(::user::win::message::base, pbase, pobj);
+         SCAST_PTR(::gen::message::base, pbase, pobj);
          if(pbase->m_wparam == 0)
          {
             // o Telmo me perguntou hoje no almoço se meu fim-de-semana foi while-true - recursivo - pensamento, apesar de while-true ser iterativo

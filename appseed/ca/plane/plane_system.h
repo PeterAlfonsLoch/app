@@ -29,8 +29,9 @@ namespace plane
    {
    public:
 
-
-
+#ifdef WINDOWS
+      ULONG_PTR m_gdiplusToken;
+#endif
       mutex                            m_mutexDelete;
       ::ca::application_ptra           m_appptra;
       class ::ca2::file::system        m_file;
@@ -60,11 +61,15 @@ namespace plane
       class ::fontopus::user_set       m_userset;
 
 
+      plane::bergedge::run_start_installer *  m_prunstartinstaller;
+      plane::bergedge::map *          m_pbergedgemap;
+
+
       class ::ca2::log *               m_plog;
       class factory *                  m_pfactory;
       class ::ca::history *            m_phistory;
       class ::ca::window_draw *        m_ptwf;
-      sp(::ca2::filehandler::handler)  m_spfilehandler;
+//      sp(::ca2::filehandler::handler)  m_spfilehandler;
 
 
       fontopus::authentication_map     m_authmap;
@@ -116,6 +121,7 @@ namespace plane
       virtual void register_bergedge_application(::ca::application * papp);
       virtual void unregister_bergedge_application(::ca::application * papp);
 
+      using ::plane::application::alloc;
       virtual ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
 
       virtual ::ca::ca * on_alloc(::ca::application * papp, ::ca::type_info & info);
@@ -182,6 +188,7 @@ namespace plane
       ::ca2::service                   & service();
       machine_event_central            & machine_event_central();
       ::ca::osi                        & osi();
+      using ::plane::application::process;
       ::ca2::process                   & process();
       class ::ca2::net                 & net();
 
@@ -199,7 +206,7 @@ namespace plane
 
       ::user::str                      & str();
 
-      ::ca2::filehandler::handler      & filehandler();
+//      ::ca2::filehandler::handler      & filehandler();
 
       virtual void on_delete(::ca::ca * pca);
 
@@ -217,6 +224,9 @@ namespace plane
 
       unsigned long guess_code_page(const char * pszText);
 
+
+      
+      plane::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
 
 
       plane::bergedge *             query_bergedge(index iEdge);
@@ -405,7 +415,7 @@ namespace gen
          return -1;
       if(pca->m_papp == NULL)
          return -1;
-      if(pca->m_papp->m_pplanesystem == NULL)
+      if(pca->m_papp->m_psystem == NULL)
          return -1;
       index iFind = find(p);
       if(iFind >= 0)
@@ -424,7 +434,7 @@ namespace gen
          return -1;
       if(pca->m_papp == NULL)
          return -1;
-      if(pca->m_papp->m_pplanesystem == NULL)
+      if(pca->m_papp->m_psystem == NULL)
          return -1;
       index iFind = find(p);
       if(iFind >= 0)
@@ -451,7 +461,7 @@ namespace gen
          return -1;
       if(pca->m_papp == NULL)
          return -1;
-      if(pca->m_papp->m_pplanesystem == NULL)
+      if(pca->m_papp->m_psystem == NULL)
          return -1;
       index iFind = find(p);
       if(iFind >= 0)

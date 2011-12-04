@@ -9,8 +9,8 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca application :
-         virtual public ::cube4::application
+      class CLASS_DECL_ca2 application :
+         virtual public ::cube2::application
       {
       public:
 

@@ -11,7 +11,7 @@
 #define SOCKETS_DYNAMIC_TEMP
 
 //#include <openssl/ssl.h>
-#include "SSLInitializer.h"
+#include "internal/SSLInitializer.h"
 
 /*
 // platform specific stuff
@@ -223,75 +223,88 @@ namespace sockets
 
 #include "ca/ca_log.h"
 #include "exception.h"
-#include "ipv4_address.h"
-#include "ipv6_address.h"
-#include "sockets_ssl_client_context.h"
-#include "sockets_ssl_client_context_map.h"
-#include "socket.h"
-#include "stream_socket.h"
-#include "sctp_socket.h"
-#include "tcp_socket.h"
-#include "udp_socket.h"
+#include "basic/ipv4_address.h"
+#include "basic/ipv6_address.h"
+#include "basic/sockets_ssl_client_context.h"
+#include "basic/sockets_ssl_client_context_map.h"
+#include "basic/socket.h"
+#include "basic/stream_socket.h"
+#include "basic/sctp_socket.h"
+#include "basic/tcp_socket.h"
+#include "basic/udp_socket.h"
 
-#include "tls_socket.h"
+#include "basic/tls_socket.h"
 
 #include "http_file.h"
 #include "http_memory_file.h"
-#include "http_form.h"
-#include "http_cookie.h"
-#include "http_transaction.h"
-#include "http_request.h"
-#include "http_response.h"
-#include "AjpBaseSocket.h"
-#include "Ajp13Socket.h"
-#include "ajp13.h"
-#include "http_socket.h"
-#include "StdLog.h"
-#include "socket_handler_base.h"
-#include "http_base_socket.h"
-#include "httpd_socket.h"
-#include "listen_socket.h"
-#include "http_tunnel.h"
-#include "http_client_socket.h"
-#include "http_request_socket.h"
-#include "http_get_socket.h"
-#include "http_post_socket.h"
-#include "http_put_socket.h"
-#include "http_debug_socket.h"
-#include "socket_handler.h"
 
-#include "sip_base.h"
+#include "log/StdLog.h"
 
-#include "sip_transaction.h"
-#include "sip_request.h"
-#include "sip_response.h"
+#include "basic/socket_handler_base.h"
+#include "basic/socket_handler.h"
+#include "basic/listen_socket.h"
 
-#include "sip_base_client_socket.h"
-#include "sip_tcp_client_socket.h"
-#include "sip_udp_client_socket.h"
-#include "sip_client.h"
-#include "sip_server.h"
 
-#include "smtp_socket.h"
-#include "smtpd_socket.h"
 
-#include "EventTime.h"
-#include "Event.h"
 
-#include "IEventHandler.h"
-#include "IEventOwner.h"
-#include "EventHandler.h"
 
-#include "resolv_socket.h"
-#include "resolv_server.h"
+
+#include "webserver/http_form.h"
+#include "webserver/http_cookie.h"
+#include "webserver/http_transaction.h"
+#include "webserver/http_request.h"
+#include "webserver/http_response.h"
+
+#include "http/http_socket.h"
+
+
+#include "http/http_tunnel.h"
+#include "http/http_client_socket.h"
+#include "http/http_request_socket.h"
+#include "http/http_get_socket.h"
+#include "http/http_post_socket.h"
+#include "http/http_put_socket.h"
+#include "http/http_debug_socket.h"
+
+
+#include "webserver/AjpBaseSocket.h"
+#include "webserver/Ajp13Socket.h"
+#include "webserver/ajp13.h"
+#include "webserver/http_base_socket.h"
+#include "webserver/httpd_socket.h"
+
+#include "sip/sip_base.h"
+
+#include "sip/sip_transaction.h"
+#include "sip/sip_request.h"
+#include "sip/sip_response.h"
+
+#include "sip/sip_base_client_socket.h"
+#include "sip/sip_tcp_client_socket.h"
+#include "sip/sip_udp_client_socket.h"
+#include "sip/sip_client.h"
+#include "sip/sip_server.h"
+
+#include "smtp/smtp_socket.h"
+#include "smtp/smtpd_socket.h"
+
+#include "timer/EventTime.h"
+#include "timer/Event.h"
+
+#include "timer/IEventHandler.h"
+#include "timer/IEventOwner.h"
+#include "timer/EventHandler.h"
+
+#include "asynch_dns/resolv_socket.h"
+#include "asynch_dns/resolv_server.h"
 
 #include "sockets_http_file.h"
 #include "sockets_http_batch_file.h"
 
-#include "StdLog.h"
-#include "trace_log.h"
+#include "log/StdLog.h"
+#include "log/trace_log.h"
 
-#include "sync_socket_handler.h"
+#include "basic/sync_socket_handler.h"
 
 
 

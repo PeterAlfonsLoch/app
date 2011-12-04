@@ -25,7 +25,7 @@ public:
 };
 
 
-class CLASS_DECL_ca simple_toolbar :
+class CLASS_DECL_ca2 simple_toolbar :
    public ::userbase::control_bar
 {
 
@@ -65,13 +65,13 @@ public:
    //bool           m_bInternalImageList;
    int              m_iButtonPressItem;
    bool             m_bDelayedButtonLayout;
-   ::ax::dib_sp     m_dibDraft;
+   ::ca::dib_sp     m_dibDraft;
 
-   ::ax::font_sp    m_font;
+   ::ca::font_sp    m_font;
 
 
 
-   simple_toolbar(::ax::application * papp);
+   simple_toolbar(::ca::application * papp);
    virtual ~simple_toolbar();
 
 
@@ -124,7 +124,7 @@ public:
    void layout();
 
 
-   void _001DrawItem(::ax::graphics * pdc, int iItem);
+   void _001DrawItem(::ca::graphics * pdc, int iItem);
    bool _001GetItemRect(int iItem, LPRECT lprect);
    bool _001GetItemRect(int iItem, LPRECT lprect, EElement eelement);
    bool _001SetItem(int iItem, simple_toolbar_item * pitem);
@@ -150,9 +150,9 @@ public:
    void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
 
 
-   void TransparentEraseNonClient(::ax::graphics * pdc);
+   void TransparentEraseNonClient(::ca::graphics * pdc);
    void SetTransparentBackground(bool bSet);
-   virtual void _001OnDraw(::ax::graphics * pdc);
+   virtual void _001OnDraw(::ca::graphics * pdc);
    size CalcSimpleLayout();
 
    void _001OnImageListAttrib();

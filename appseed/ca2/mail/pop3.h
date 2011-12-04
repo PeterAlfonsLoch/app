@@ -9,7 +9,7 @@ namespace mail
 
    class pop3_socket;
 
-   class CLASS_DECL_ca pop3 :
+   class CLASS_DECL_ca2 pop3 :
       virtual public ::radix::object
    {
    public:
@@ -44,7 +44,7 @@ namespace mail
 
 
 
-      pop3(::ax::application * papp);
+      pop3(::ca::application * papp);
 
       virtual void update_lists();
 

@@ -16,8 +16,8 @@ namespace window_frame
 {
 
 
-   FrameSchemaHardCoded005::FrameSchemaHardCoded005(::ax::application * papp) :
-      ax(papp),
+   FrameSchemaHardCoded005::FrameSchemaHardCoded005(::ca::application * papp) :
+      ca(papp),
       FrameSchema(papp),
       m_penText1(papp),
       m_penFace1(papp),
@@ -249,7 +249,7 @@ namespace window_frame
       return false;
    }
 
-   void FrameSchemaHardCoded005::_001OnDraw(::ax::graphics * pdc)
+   void FrameSchemaHardCoded005::_001OnDraw(::ca::graphics * pdc)
    {
       if(!m_pworkset->IsAppearanceEnabled())
          return;
@@ -437,7 +437,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded005::DrawBorderSide(::ax::graphics * pdc, LPCRECT lpcrectClient,
+   void FrameSchemaHardCoded005::DrawBorderSide(::ca::graphics * pdc, LPCRECT lpcrectClient,
       MoveManager::EBorder eside)
    {
       appearance * pappearance = GetAppearance();
@@ -537,7 +537,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded005::DrawFrame(::ax::graphics *pdc)
+   void FrameSchemaHardCoded005::DrawFrame(::ca::graphics *pdc)
    {
 
       ::user::interaction * pwndDraw = GetDrawWindow();
@@ -625,7 +625,7 @@ namespace window_frame
    }
 
 
-   void FrameSchemaHardCoded005::DrawBorder(::ax::graphics *pdc, LPCRECT lpcrectClient)
+   void FrameSchemaHardCoded005::DrawBorder(::ca::graphics *pdc, LPCRECT lpcrectClient)
    {
       MoveManager * pwmm = m_pworkset->GetMovingManager();
 
@@ -700,7 +700,7 @@ namespace window_frame
    }
 
    void FrameSchemaHardCoded005::Draw3dRectSide(
-      ::ax::graphics * pdc, LPCRECT lpcrect, 
+      ::ca::graphics * pdc, LPCRECT lpcrect, 
       MoveManager::EBorder eborder, 
       COLORREF crTopLeft, COLORREF crBottomRight)
    {
@@ -1000,7 +1000,7 @@ namespace window_frame
    #define GRIP_LARGE 30
 
    void FrameSchemaHardCoded005::DrawGrip(
-      ::ax::graphics * pdc,
+      ::ca::graphics * pdc,
       LPCRECT lpcrectClient,
       EGrip egrip)
    {
@@ -1127,7 +1127,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded005::DrawRectGrip(::ax::graphics *pdc, LPCRECT lpcrect)
+   void FrameSchemaHardCoded005::DrawRectGrip(::ca::graphics *pdc, LPCRECT lpcrect)
    {
       rect rect(lpcrect);
 
@@ -1149,7 +1149,7 @@ namespace window_frame
 
    }
 
-   void FrameSchemaHardCoded005::DrawGripSet(::ax::graphics *pdc, LPCRECT lpcrectClient)
+   void FrameSchemaHardCoded005::DrawGripSet(::ca::graphics *pdc, LPCRECT lpcrectClient)
    {
       SizeManager * pwsm = m_pworkset->GetSizingManager();
 
@@ -1389,7 +1389,7 @@ namespace window_frame
 
    int FrameSchemaHardCoded005::GetCaptionHeight()
    {
-      ::ax::graphics * pdc = GetWnd()->GetDC();
+      ::ca::graphics * pdc = GetWnd()->GetDC();
 
       if(pdc == NULL)
          return 0;
@@ -1409,7 +1409,7 @@ namespace window_frame
 
    int FrameSchemaHardCoded005::GetButtonSize()
    {
-      ::ax::graphics * pdc = GetWnd()->GetDC();
+      ::ca::graphics * pdc = GetWnd()->GetDC();
 
       if(pdc == NULL)
          return 0;
@@ -1532,7 +1532,7 @@ namespace window_frame
             rect rectRgn = rectClient;
             rectRgn += (rectClient.top_left() - rectAdjust.top_left());
             rect rectA = rectRgn;
-            ::ax::region_sp rgnMain(get_app());
+            ::ca::region_sp rgnMain(get_app());
             rgnMain->CreateRectRgnIndirect(rectA);
    //         SetWindowRgn(pwnd->_get_handle(), (HRGN)rgnMain.Detach(), TRUE);
             
@@ -1559,7 +1559,7 @@ namespace window_frame
          rect rectB = rectRgn;
          rectB.right = rectB.left + GRIP_CORNER_LARGE_CX;
          rectB.bottom = rectB.top + GRIP_CORNER_LARGE_CY;
-         ::ax::region_sp rgnAdd(get_app());
+         ::ca::region_sp rgnAdd(get_app());
          rgnAdd->CreateRectRgnIndirect(rectB);
          CombineRgn(hrgnMain, hrgnMain, (HRGN) rgnAdd->get_os_data(), RGN_OR);
          
@@ -1633,7 +1633,7 @@ namespace window_frame
 
    void FrameSchemaHardCoded005::OnInitializeAppearance()
    {
-      ::ax::graphics * pdc = GetWnd()->GetDC();
+      ::ca::graphics * pdc = GetWnd()->GetDC();
       m_fontMarlett->CreatePointFont(110, "Marlett", pdc);
       GetWnd()->ReleaseDC(pdc);
 

@@ -2,7 +2,7 @@
 
 namespace user
 {
-   class CLASS_DECL_ca printer :
+   class CLASS_DECL_ca2 printer :
       virtual public ::radix::object
    {
    public:
@@ -10,11 +10,11 @@ namespace user
       string      m_strName;
 
 
-      printer(::ax::application * papp);
+      printer(::ca::application * papp);
       virtual ~printer();
 
       virtual bool open(const char * pszDeviceName);
-      virtual ::ax::graphics * create_graphics();
+      virtual ::ca::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();
 

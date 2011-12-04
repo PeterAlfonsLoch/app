@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca simple_list_header_control :
+class CLASS_DECL_ca2 simple_list_header_control :
    virtual public ::user::list_header
 {
 public:
@@ -11,7 +11,7 @@ public:
 
 
 
-   simple_list_header_control(::ax::application * papp);
+   simple_list_header_control(::ca::application * papp);
    virtual ~simple_list_header_control();
 
 

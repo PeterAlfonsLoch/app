@@ -33,9 +33,9 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenu(::filemanager::d
    UNREFERENCED_PARAMETER(pdata);
 }
 
-void FileManagerCallbackInterface::on_request(::ax::create_context * pcreatecontext)
+void FileManagerCallbackInterface::on_request(::ca::create_context * pcreatecontext)
 {
-   ::ax::ax * pca = dynamic_cast < ::ax::ax * > (this);
+   ::ca::ca * pca = dynamic_cast < ::ca::ca * > (this);
    if(pca != NULL)
    {
       Bergedge.request(pcreatecontext);

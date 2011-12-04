@@ -18,14 +18,14 @@ _template::CTraceCategory traceSocket("socket");
 */
 
 
-//extern CLASS_DECL_ca2 fixed_alloc_array * g_pfixedallocaWstring;
+//extern CLASS_DECL_ca fixed_alloc_array * g_pfixedallocaWstring;
 
 
 namespace _template
 {
    typedef void ( * PFN_trace_v)(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
-   CLASS_DECL_ca2 void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
-   CLASS_DECL_ca2 PFN_trace_v trace_v = &raw_trace_v;
+   CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_ca PFN_trace_v trace_v = &raw_trace_v;
 
 /*   CTraceCategory::CTraceCategory( const char * pszCategoryName, UINT nStartingLevel ) throw() :
       m_dwCategory( 0 )
@@ -129,7 +129,7 @@ namespace _template
       return m_uiLevel;
    }
 
-   CLASS_DECL_ca2 void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
+   CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
    {
       UNREFERENCED_PARAMETER(pszFileName);
       UNREFERENCED_PARAMETER(nLine);
@@ -141,7 +141,7 @@ namespace _template
       ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
    }
 
-   /*CLASS_DECL_ca2 void system_log_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
+   /*CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
    {
       System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
    }*/

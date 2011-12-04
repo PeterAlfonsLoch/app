@@ -3,8 +3,8 @@
 namespace user
 {
 
-   check_box::check_box(::ax::application * papp) :
-      ax(papp),
+   check_box::check_box(::ca::application * papp) :
+      ca(papp),
       ::user::interaction(papp)
    {
       m_echeck = check::unchecked;
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   void check_box::_001OnDraw(::ax::graphics * pdc)
+   void check_box::_001OnDraw(::ca::graphics * pdc)
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -68,7 +68,7 @@ namespace user
          if(m_echeck == check::tristate 
          || m_echeck == check::checked)
          {
-            ::ax::pen_sp pen(get_app());
+            ::ca::pen_sp pen(get_app());
             pen->construct(PS_SOLID, 1, m_echeck == check::checked ? RGB(0, 0, 0) : RGB(96, 96, 96));
             pdc->SelectObject(pen);
             pdc->MoveTo(2, 8);

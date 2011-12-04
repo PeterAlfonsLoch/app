@@ -7,7 +7,7 @@ namespace html
    namespace impl
    {
 
-      class CLASS_DECL_ca input_text : public elemental
+      class CLASS_DECL_ca2 input_text : public elemental
       {
       public:
          int m_iFont;

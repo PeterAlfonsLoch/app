@@ -9,7 +9,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca handler :
+      class CLASS_DECL_ca2 handler :
          virtual public ::radix::object
       {
       public:

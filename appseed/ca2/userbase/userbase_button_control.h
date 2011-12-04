@@ -3,7 +3,7 @@
 class image_list;
 
 
-class CLASS_DECL_ca BaseButtonControl :
+class CLASS_DECL_ca2 BaseButtonControl :
    virtual public ::userbase::button
 {
 public:
@@ -17,7 +17,7 @@ public:
    int               m_iImageSubItemHover;
 
 
-   BaseButtonControl(::ax::application * papp);
+   BaseButtonControl(::ca::application * papp);
    virtual ~BaseButtonControl();
 
 
@@ -31,7 +31,7 @@ public:
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();
-   void _001OnDraw(::ax::graphics * pdc);
+   void _001OnDraw(::ca::graphics * pdc);
 
    
 

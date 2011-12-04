@@ -3,8 +3,8 @@
 namespace nature
 {
 
-   pane_view::pane_view(::ax::application * papp) :
-      ax(papp),
+   pane_view::pane_view(::ca::application * papp) :
+      ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
@@ -17,9 +17,9 @@ namespace nature
       m_pdoctemplateAppearance = new ::userbase::single_document_template(
          get_app(),
          "nature/appearance",
-         ::ax::get_type_info < ::userbase::document > (),
-         ::ax::get_type_info < simple_child_frame > (),
-         ::ax::get_type_info < appearance_view > ());
+         ::ca::get_type_info < ::userbase::document > (),
+         ::ca::get_type_info < simple_child_frame > (),
+         ::ca::get_type_info < appearance_view > ());
 
    }
 
@@ -78,9 +78,9 @@ namespace nature
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  ::ax::get_type_info < ::userbase::menu_list_view > ();
+    //        cc.m_typeinfoNewView =  ::ca::get_type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(::ax::get_type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
+            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(::ca::get_type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
             if(pview != NULL)
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
@@ -94,7 +94,7 @@ namespace nature
          
    /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  ::ax::get_type_info < ::userbase::menu_list_view > ();
+            cc.m_typeinfoNewView =  ::ca::get_type_info < ::userbase::menu_list_view > ();
 
             ::userex::pane_tab_view * pview = dynamic_cast < ::userex::pane_tab_view * > (CreateView(&cc, 101, this));
             if(pview != NULL)
@@ -111,9 +111,9 @@ namespace nature
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  ::ax::get_type_info < nature::view > ();
+    //        cc.m_typeinfoNewView =  ::ca::get_type_info < nature::view > ();
 
-            ::user::interaction * pview = dynamic_cast < ::user::interaction * > (view::create_view(::ax::get_type_info < nature::view > (), get_document(), this, 101));
+            ::user::interaction * pview = dynamic_cast < ::user::interaction * > (view::create_view(::ca::get_type_info < nature::view > (), get_document(), this, 101));
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -143,7 +143,7 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (m_pdoctemplateAppearance->open_document_file(::ax::create_context_sp()));   
+            ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (m_pdoctemplateAppearance->open_document_file(::ca::create_context_sp()));   
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();

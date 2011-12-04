@@ -12,13 +12,13 @@ namespace html
 
    class data_callback;
 
-   class CLASS_DECL_ca data :
+   class CLASS_DECL_ca2 data :
       virtual public gen::signalizable,
-      virtual public ax::data
+      virtual public ca::data
    {
    public:
 
-      class CLASS_DECL_ca image :
+      class CLASS_DECL_ca2 image :
          virtual public ::radix::object
       {
       public:
@@ -26,18 +26,18 @@ namespace html
          string   m_strPath;
          ::visual::dib_sp      m_spdib;
 
-         image(::ax::application * papp);
+         image(::ca::application * papp);
          virtual bool load_image();
       };
 
-      class CLASS_DECL_ca load_image
+      class CLASS_DECL_ca2 load_image
       {
       public: 
          image * m_pimage;
          data * m_pdocument;
       };
 
-      class CLASS_DECL_ca layout_state
+      class CLASS_DECL_ca2 layout_state
       {
       public:
          int   m_iBody;
@@ -55,7 +55,7 @@ namespace html
 
       data_callback *            m_pcallback;
       ::user::interaction *      m_pguie;
-      ::ax::graphics *           m_pdc;
+      ::ca::graphics *           m_pdc;
       rect                       m_rect;
       string                     m_strTitle;
       layout_state               m_layoutstate;
@@ -101,7 +101,7 @@ namespace html
 
 
 
-      data(::ax::application * papp);
+      data(::ca::application * papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);
@@ -116,9 +116,9 @@ namespace html
       //virtual bool is_in_use();
    
       void load(const char *);
-      void implement(::ax::graphics * pdc);
-      void layout(::ax::graphics * pdc);
-      void _001OnDraw(::ax::graphics * pdc);
+      void implement(::ca::graphics * pdc);
+      void layout(::ca::graphics * pdc);
+      void _001OnDraw(::ca::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnKeyDown)
 

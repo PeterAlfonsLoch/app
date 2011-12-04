@@ -22,12 +22,12 @@ class COleDataObject;   // forward reference (see afxole.h)
 namespace userbase
 {
 
-   class CLASS_DECL_ca view :
+   class CLASS_DECL_ca2 view :
       virtual public ::view
    {
    public:
 
-      view(::ax::application * papp);
+      view(::ca::application * papp);
 
       virtual void on_select();
 

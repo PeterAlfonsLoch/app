@@ -3,8 +3,8 @@
 namespace bergedge
 {
 
-   view::view(::ax::application * papp) :
-      ax(papp),
+   view::view(::ca::application * papp) :
+      ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
@@ -55,7 +55,7 @@ namespace bergedge
    /////////////////////////////////////////////////////////////////////////////
    // ::view drawing
 
-   void view::OnDraw(::ax::graphics * pdcScreen)
+   void view::OnDraw(::ca::graphics * pdcScreen)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -130,7 +130,7 @@ namespace bergedge
    }
 
 
-   void view:: _001OnDraw(::ax::graphics * pdc)
+   void view:: _001OnDraw(::ca::graphics * pdc)
    {
 
       if(gcom::backview::Interface::IsEnabled())
@@ -146,7 +146,7 @@ namespace bergedge
          if(main.IsInitialized())
          {
 
-            ::ax::region_sp rgn(get_app());
+            ::ca::region_sp rgn(get_app());
             rect rect(graphics.m_rectFinalPlacement);
             ClientToScreen(rect);
             rgn->CreateRectRgnIndirect(rect);
@@ -210,7 +210,7 @@ namespace bergedge
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(::ax::get_type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(::ca::get_type_info < ::bergedge::pane_view > (), get_document(), this, 102));
 
       hold(m_ppaneview);
 
@@ -502,7 +502,7 @@ namespace bergedge
                papp = NULL;
             }
             if(papp != NULL && m_pbergedge != NULL
-               && dynamic_cast < ::ax::application * > (papp) != dynamic_cast < ::ax::application * > (m_pbergedge))
+               && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_pbergedge))
             {
                try
                {

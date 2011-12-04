@@ -1,6 +1,6 @@
 #pragma once
 
-#include "userpresence/userpresence.h"
+
 #include "userbase/userbase.h"
 
 
@@ -10,10 +10,6 @@ namespace html
    class application;
 
 } // namespace html
-
-
-
-#include "file.h"
 
 
 

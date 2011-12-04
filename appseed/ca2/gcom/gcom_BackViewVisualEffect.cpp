@@ -11,7 +11,7 @@ namespace gcom
    {
 
       VisualEffect::VisualEffect(Main & main) :
-         ::ax::ax(main.get_app()),
+         ::ca::ca(main.get_app()),
          Helper(main)
       {
       }
@@ -41,16 +41,16 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
          single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
          single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
-         ::ax::graphics & dcBack = graphics.GetBackDC();
-         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
-//         ::ax::graphics & dcTransfer = graphics.GetFrame1DC();
+         ::ca::graphics & dcBack = graphics.GetBackDC();
+         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcTransfer = graphics.GetFrame1DC();
 
          HelperGetMain().DeferCheckLayout();
 
@@ -140,8 +140,8 @@ namespace gcom
          }
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
          pdibTransfer->stretch_dib(pdibBack);
       }
@@ -160,21 +160,21 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-//         ::ax::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+//         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
@@ -292,20 +292,20 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
 
 
@@ -350,7 +350,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -423,20 +423,20 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
 
 
@@ -490,7 +490,7 @@ namespace gcom
          //double dmax = max(cx, cy);abs
 
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -566,20 +566,20 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
@@ -676,7 +676,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -722,7 +722,7 @@ namespace gcom
             int y1 = m_ptColorTrack.y;
             int x2 = cx1 - x1;
             int y2 = cy1 - y1;
-            ::ax::brush_sp brush(get_app(), m_color.get_rgb());
+            ::ca::brush_sp brush(get_app(), m_color.get_rgb());
             pdib1->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
             //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
@@ -776,7 +776,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
 
 
@@ -784,9 +784,9 @@ namespace gcom
 
          single_lock sl1Back(&graphics.m_mutex1Back, FALSE);
          single_lock sl2Buffer(&graphics.m_mutex2Buffer, FALSE);
-         ::ax::graphics & dcBack = graphics.GetBackDC();
-         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+         ::ca::graphics & dcBack = graphics.GetBackDC();
+         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
          sl1Back.lock();
          sl2Buffer.lock();
@@ -794,10 +794,10 @@ namespace gcom
          dcBuffer.SelectClipRgn(NULL);
 
          dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-//         ::ax::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+//         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
 
          int cx1 = cx / 4 + 1;
@@ -849,7 +849,7 @@ namespace gcom
          m_rndgrowAngleOffsetLatency.maxlbound = 100;
          m_rndgrowAngleOffsetLatency.maxubound = 200;
 
-/*         ::ax::graphics & dcTransfer = graphics.GetBackDC();
+/*         ::ca::graphics & dcTransfer = graphics.GetBackDC();
          pdibTransfer->stretch_dib(pdibBuffer);
          if(main.GetWndInterface() == NULL)
             return;
@@ -1115,19 +1115,19 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -1232,7 +1232,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -1282,7 +1282,7 @@ namespace gcom
             int y1 = m_ptColorTrack.y - r;
             int x2 = cx1 - x1 - r;
             int y2 = cy1 - y1 - r;
-            ::ax::brush_sp brush(get_app());
+            ::ca::brush_sp brush(get_app());
             brush->construct(colorStrong.get_rgb());
             pdib2->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
@@ -1328,7 +1328,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -1342,19 +1342,19 @@ namespace gcom
 //         class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -1490,7 +1490,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -1541,21 +1541,21 @@ namespace gcom
 
 
          {
-            ::ax::pen_sp pen1(get_app());
+            ::ca::pen_sp pen1(get_app());
             pen1->construct(PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app());
             pen2->construct(PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app());
             pen3->construct(PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app());
             pen4->construct(PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app());
             pen5->construct(PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -1684,7 +1684,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -1698,19 +1698,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -1883,7 +1883,7 @@ namespace gcom
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -1936,16 +1936,16 @@ namespace gcom
 
 
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -2103,7 +2103,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -2117,19 +2117,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -2307,7 +2307,7 @@ namespace gcom
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -2362,7 +2362,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
          pdib1->get_graphics()->SelectObject(pen1);
          int margin = 10;
@@ -2491,16 +2491,16 @@ namespace gcom
          }
 
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -2582,21 +2582,21 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
+         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
+            ::ca::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
             int cx1 = tool1.cx / 4;
@@ -2678,7 +2678,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -2690,20 +2690,20 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
@@ -2757,9 +2757,9 @@ namespace gcom
             colorStrong1.set_hls(dH, dL, dS);
          }
 
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
-         ::ax::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(get_app());
          penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
          int margin1 = cx1 / 8;
          int margin2 = cy1 / 2;
@@ -2907,7 +2907,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -2921,19 +2921,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -3128,7 +3128,7 @@ namespace gcom
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -3221,9 +3221,9 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
-         ::ax::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(get_app());
          penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
          int margin1 = 10;
 //         int margin2 = cy1 / 2;
@@ -3370,16 +3370,16 @@ namespace gcom
 
       //   pdib1->get_graphics()->FillSolidRect(0, 0, cx1 / 2, cy1 / 2, 0);*/
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -3807,21 +3807,21 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
+         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
+            ::ca::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
 
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
@@ -3932,21 +3932,21 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
+         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-//            ::ax::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
+//            ::ca::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
 
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
@@ -4032,21 +4032,21 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
+         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
+            ::ca::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
 
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
@@ -4140,7 +4140,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -4154,19 +4154,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-///         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+///         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
@@ -4386,7 +4386,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
          pdib1->get_graphics()->SelectObject(pen1);
          int marginx = cx1 / 12;
@@ -4511,16 +4511,16 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1, cy1, RGB(0, 0, 0), 10);
 
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -4602,7 +4602,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -4616,19 +4616,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -4806,7 +4806,7 @@ namespace gcom
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -4861,7 +4861,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
          pdib1->get_graphics()->SelectObject(pen1);
          int margin = 10;
@@ -4990,16 +4990,16 @@ namespace gcom
          }
 
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -5084,7 +5084,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -5096,20 +5096,20 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-         ::ax::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+         ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
@@ -5163,9 +5163,9 @@ namespace gcom
             colorStrong1.set_hls(dH, dL, dS);
          }
 
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
-         ::ax::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(get_app());
          penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
          int margin1 = cx1 / 8;
          int margin2 = cy1 / 2;
@@ -5317,7 +5317,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -5331,19 +5331,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          //drawdib.draw(pdibBuffer, spgraphics, 0, 0, cx, cy, 0);
 
@@ -5538,7 +5538,7 @@ namespace gcom
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
          }
 
-        // ::ax::graphics_sp pdib3->get_graphics();
+        // ::ca::graphics_sp pdib3->get_graphics();
          //pdib3->get_graphics()->CreateCompatibleDC(NULL);
          //pdib3->get_graphics()->SelectObject(pdib3->m_hbitmap);
 
@@ -5631,9 +5631,9 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
-         ::ax::pen_sp penWhite(get_app());
+         ::ca::pen_sp penWhite(get_app());
          penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
          int margin1 = 10;
 //         int margin2 = cy1 / 2;
@@ -5780,16 +5780,16 @@ namespace gcom
 
       //   pdib1->get_graphics()->FillSolidRect(0, 0, cx1 / 2, cy1 / 2, 0);*/
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -5894,7 +5894,7 @@ namespace gcom
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
-            ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+            ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
                pdib1->width() / 2,
                pdib1->height() / 2));
@@ -5908,19 +5908,19 @@ namespace gcom
          class imaging & imaging = System.imaging();
 
 
-//         ::ax::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ax::graphics & dcBack = graphics.GetBackDC();
-//         ::ax::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ax::graphics & dcFrame1 = graphics.GetFrame1DC();
+//         ::ca::graphics & dcBack = graphics.GetBackDC();
+//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
+//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
 
-         ::ax::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         ::ax::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-         ::ax::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
-         ::ax::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
-//         ::ax::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+         ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
+         ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+         ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
@@ -6139,7 +6139,7 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong8.get_rgb(), bA);*/
 
          // top1
-         ::ax::pen_sp pen1(get_app());
+         ::ca::pen_sp pen1(get_app());
          pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
          pdib1->get_graphics()->SelectObject(pen1);
          int marginx = cx1 / 12;
@@ -6264,16 +6264,16 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1, cy1, RGB(0, 0, 0), 10);
 
       /*   {
-            ::ax::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ax::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ax::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ax::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ax::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ax::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ax::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ax::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ax::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ax::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];

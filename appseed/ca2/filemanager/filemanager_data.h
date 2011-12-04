@@ -11,7 +11,7 @@ class CWStr;
 namespace filemanager
 {
 
-   class CLASS_DECL_ca data :
+   class CLASS_DECL_ca2 data :
       virtual public ::fs::tree_data,
       virtual public ::fs::list_data
    {
@@ -45,7 +45,7 @@ namespace filemanager
       bool  m_bIconView;
 
 
-      data(::ax::application * papp);
+      data(::ca::application * papp);
       virtual ~data();
 
       bool is_saving();

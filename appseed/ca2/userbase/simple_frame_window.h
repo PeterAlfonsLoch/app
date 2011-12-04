@@ -10,7 +10,7 @@ class BaseDockBar;
 class BaseReBar;
 class BaseMiniDockFrameWnd;
 
-class CLASS_DECL_ca simple_frame_window :
+class CLASS_DECL_ca2 simple_frame_window :
    virtual public userbase::frame_window,
    virtual public window_frame::CWorkSetDownUpInterface
 {
@@ -33,7 +33,7 @@ public:
    phm(id, id, ::user::interaction)    m_toolbarmap;
 
 
-   simple_frame_window(::ax::application * papp);
+   simple_frame_window(::ca::application * papp);
    virtual ~simple_frame_window();
 
 
@@ -45,7 +45,7 @@ public:
             ::user::interaction* pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
             DWORD dwExStyle = 0,
-            ::ax::create_context* pContext = NULL);
+            ::ca::create_context* pContext = NULL);
 
 
 
@@ -73,11 +73,11 @@ public:
 
    virtual window_frame::FrameSchema * create_frame_schema();
 
-   virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ax::create_context* pContext = NULL);
+   virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
 
-   void _001OnDeferPaintLayeredWindowBackground(::ax::graphics * pdc);
+   void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 
 #ifdef WINDOWS
    void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
@@ -90,12 +90,12 @@ public:
    ::user::interaction* WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int nCmdShow = -1);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ax::create_context* pContext);
+   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual void pre_translate_message(gen::signal_object * pobj);
 
-   virtual void _000OnDraw(::ax::graphics * pdc);
-   virtual void _001OnDraw(::ax::graphics * pdc);
+   virtual void _000OnDraw(::ca::graphics * pdc);
+   virtual void _001OnDraw(::ca::graphics * pdc);
 
 
 

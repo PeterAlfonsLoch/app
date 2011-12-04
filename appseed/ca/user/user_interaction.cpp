@@ -332,7 +332,7 @@ namespace user
          return m_pimpl->GetDlgCtrlId();
    }
 
-   void interaction::install_message_handling(win::message::dispatch * pinterface)
+   void interaction::install_message_handling(gen::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &interaction::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER       , pinterface, this, &interaction::_001OnTimer);
@@ -365,7 +365,7 @@ namespace user
 
       try
       {
-         if(m_pplanebergedge != NULL && &Bergedge != NULL)
+         if(m_pbergedge != NULL && &Bergedge != NULL)
          {
             Bergedge.remove_frame(this);
          }
@@ -376,7 +376,7 @@ namespace user
 
       try
       {
-         if(m_pplanesystem != NULL && &System != NULL)
+         if(m_psystem != NULL && &System != NULL)
          {
             System.remove_frame(this);
          }
@@ -906,7 +906,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   LRESULT interaction::SendMessage(win::message::base * pbase)
+   LRESULT interaction::SendMessage(gen::message::base * pbase)
    {
       message_handler(pbase);
       return pbase->get_lresult();
@@ -915,7 +915,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   BOOL interaction::PostMessage(win::message::base * pbase)
+   BOOL interaction::PostMessage(gen::message::base * pbase)
    {
       return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
    }
@@ -989,7 +989,7 @@ namespace user
          return m_pimpl->IsWindowEnabled();
    }
 
-   frame_window* interaction::GetTopLevelFrame()
+   ::user::interaction * interaction::GetTopLevelFrame()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1530,7 +1530,7 @@ namespace user
       return hWndParent;
    }
 
-   frame_window * interaction::EnsureParentFrame()
+   ::user::interaction * interaction::EnsureParentFrame()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -1581,7 +1581,7 @@ namespace user
 
 
 
-   frame_window * interaction::GetParentFrame()
+   ::user::interaction * interaction::GetParentFrame()
    {
       ASSERT_VALID(this);
 
@@ -1590,7 +1590,7 @@ namespace user
       {
          if (pParentWnd->IsFrameWnd())
          {
-            return dynamic_cast < frame_window * > (pParentWnd);
+            return dynamic_cast < ::user::interaction * > (pParentWnd);
          }
          pParentWnd = pParentWnd->GetParent();
       }
@@ -2721,10 +2721,11 @@ restart:
          pbase->m_lparam == 0)
       {
          class rect rect;
-         System.get_monitor_rect(0, &rect);
+         throw not_implemented_exception();
+/*         System.get_monitor_rect(0, &rect);
          rect.deflate(rect.width() / 4, rect.height() / 4);
          SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
-         pbase->m_bRet = true;
+         pbase->m_bRet = true;*/
       }
    }
 
@@ -2810,7 +2811,7 @@ restart:
 
 } // namespace user
 
-CLASS_DECL_ca2 ::user::interaction * WINAPI CreateGuieEx(
+CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(
    ::ca::application * papp,
     __in DWORD dwExStyle,
     __in_opt const char * lpClassName,
@@ -2846,3 +2847,11 @@ CLASS_DECL_ca2 ::user::interaction * WINAPI CreateGuieEx(
 
 
 
+::user::interaction * AfxGetParentOwner(::user::interaction * hWnd)
+{
+   // check for permanent-owned ::ca::window first
+   ::user::interaction* pWnd = hWnd;
+   if(pWnd == NULL)
+      return NULL;
+   return pWnd->GetOwner();
+}

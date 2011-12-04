@@ -5,8 +5,8 @@ namespace userbase
 {
 
 
-   document::document(::ax::application * papp) :
-      ax(papp),
+   document::document(::ca::application * papp) :
+      ca(papp),
       data_container(papp),
       document_interface(papp),
       ::document(papp)
@@ -74,7 +74,7 @@ namespace userbase
    #endif //_DEBUG
 
 
-   void document::on_alloc(::ax::application * papp)
+   void document::on_alloc(::ca::application * papp)
    {
       ::document::on_alloc(papp);
       ::database::client::initialize(papp);

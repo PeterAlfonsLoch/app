@@ -2,8 +2,8 @@
 #include "html_document.h"
 
 
-html_document::html_document(::ax::application * papp) :
-   ax(papp),
+html_document::html_document(::ca::application * papp) :
+   ca(papp),
    data_container(papp),
    document_interface(papp),
    ::document(papp),
@@ -109,7 +109,7 @@ bool html_document::on_open_document(var varFile)
 {
    
    
-   ::ax::data::writing writing(get_html_data());
+   ::ca::data::writing writing(get_html_data());
    
    
    get_html_data()->m_pform = get_typed_view < html_form > ();
@@ -140,7 +140,7 @@ bool html_document::on_open_document(var varFile)
 
 void html_document::soft_reload()
 {
-   ::ax::data::writing writing(get_html_data());
+   ::ca::data::writing writing(get_html_data());
    string str = get_html_data()->m_strSource;
    //if(m_propset["bReplaceEx1"])
    {
@@ -187,7 +187,7 @@ bool html_document::open_document(var varFile)
    return on_open_document(varFile) != FALSE;
 }
 
-::ax::application * html_document::get_app() const
+::ca::application * html_document::get_app() const
 {
    return ::userbase::document::get_app();
 }

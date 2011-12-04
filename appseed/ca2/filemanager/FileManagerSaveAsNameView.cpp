@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 #include "FileManagerViewUpdateHint.h"
 
-FileManagerSaveAsView::FileManagerSaveAsView(::ax::application * papp) : 
-   ax(papp),
-   ::ax::data_container(papp),
+FileManagerSaveAsView::FileManagerSaveAsView(::ca::application * papp) : 
+   ca(papp),
+   ::ca::data_container(papp),
    ::user::edit_plain_text(papp),
    ::userbase::edit_plain_text(papp),
    ::userbase::edit_plain_text_view(papp),
@@ -12,7 +12,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(::ax::application * papp) :
    ::user::scroll_view(papp), 
    ::colorertake5::base_editor(papp),
    ex1::tree(papp),
-   ::ax::data_listener(papp)
+   ::ca::data_listener(papp)
 {
 
    LOGFONT lf;

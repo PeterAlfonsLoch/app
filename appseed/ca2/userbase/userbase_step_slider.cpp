@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   step_slider::step_slider(::ax::application * papp) :
-      ax(papp),
+   step_slider::step_slider(::ca::application * papp) :
+      ca(papp),
       ::user::interaction(papp)
    {
       m_etranslucency = TranslucencyPresent;
@@ -83,7 +83,7 @@ namespace userbase
    }
 
 
-   void step_slider::_001OnDraw(::ax::graphics * pdc)
+   void step_slider::_001OnDraw(::ca::graphics * pdc)
    {
       
       if(m_pscalar == NULL)

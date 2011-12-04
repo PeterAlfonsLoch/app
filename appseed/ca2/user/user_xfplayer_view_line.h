@@ -4,7 +4,7 @@
 
 class XfplayerViewLines;
 
-class CLASS_DECL_ca XfplayerViewLine  :
+class CLASS_DECL_ca2 XfplayerViewLine  :
    virtual public ::radix::object
 {
 public:
@@ -22,7 +22,7 @@ public:
 
    XfplayerViewLineSelection   m_selection;
 
-   XfplayerViewLine(::ax::application * papp);
+   XfplayerViewLine(::ca::application * papp);
    XfplayerViewLine(const XfplayerViewLine & line);
    XfplayerViewLine(XfplayerViewLines * pContainer);
    virtual ~XfplayerViewLine();
@@ -36,10 +36,10 @@ private:
 protected:
 
    // 08, May 2004 attributes
-   ::ax::graphics_sp       m_dc1;
-   ::ax::bitmap_sp         m_bmp1;
-   ::ax::font_sp           m_font;
-   ::ax::font_sp           m_fontLink;
+   ::ca::graphics_sp       m_dc1;
+   ::ca::bitmap_sp         m_bmp1;
+   ::ca::font_sp           m_font;
+   ::ca::font_sp           m_fontLink;
    COLORREF                m_cr;
    COLORREF                m_crOutline;
    rect                    m_rectClient;
@@ -48,7 +48,7 @@ protected:
 
 
    // 09, Sept 2004 attributes with change inApril 2010 from dcMain/bmpMain to dibMain
-   ::ax::dib_sp            m_dibMain;
+   ::ca::dib_sp            m_dibMain;
    bool                    m_bEnhancedEmboss;
    bool                    m_bCacheEmboss;
    string                  m_wstrCache;
@@ -67,10 +67,10 @@ protected:
    double                  m_dAnimateProgress;
    double                  m_dAnimateProgressIncrement;
    int                     m_iTextEffect;
-   ::ax::pen *             m_lpPenEmboss;
+   ::ca::pen *             m_lpPenEmboss;
    COLORREF                m_crForeground;
-   ::ax::pen *             m_ppenLyricLeft;
-   ::ax::pen *             m_ppenLyricRight;
+   ::ca::pen *             m_ppenLyricLeft;
+   ::ca::pen *             m_ppenLyricRight;
    size                    m_sizeLyricMargin;
    COLORREF                m_crLyricLeft;
    COLORREF                m_crLyricRight;
@@ -80,7 +80,7 @@ public:
    int                     m_iIndex;
 
    void SetBlend(double d);
-   ::ax::font * GetFont();
+   ::ca::font * GetFont();
    bool CalcChar(point pt, int &iChar);
    int GetCharLink(int iChar);
    bool GetCharLink(string & str, int iChar);
@@ -92,26 +92,26 @@ public:
    void UpdateHover(point & ptCursor);
    void PrepareURLLinks();
    void SetFont(visual::font * pfont);
-   void SetFont(::ax::font * pfont);
+   void SetFont(::ca::font * pfont);
    void GetLogFont(LOGFONT & lf);
 
    user::e_line_hit hit_test(const POINT &ptCursorParam, int &iChar);
 
 
 /*   void CalcCharsPositions(
-      ::ax::graphics * pdcForeground,
+      ::ca::graphics * pdcForeground,
       visual::font * pFont,
       LPCRECT lpcrect);*/
 
    void CalcCharsPositions(
-      ::ax::graphics * pdcForeground,
+      ::ca::graphics * pdcForeground,
       LPCRECT lpcrect);
 
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
-      ::ax::application * papp,
-      ::ax::graphics * pdc,
+      ::ca::application * papp,
+      ::ca::graphics * pdc,
       const char * lpcsz,
       int left,
       int top,
@@ -122,9 +122,9 @@ public:
       double dBlend);
 
    void EmbossedTextOut(
-      ::ax::application * papp,
-      ::ax::graphics * pdc,
-      ::ax::graphics * pdcCache,
+      ::ca::application * papp,
+      ::ca::graphics * pdc,
+      ::ca::graphics * pdcCache,
       const char * lpcsz,
       int iLeft,
       int iTop,
@@ -136,11 +136,11 @@ public:
 
    
    void CacheEmboss(
-      ::ax::application * papp,
-      ::ax::graphics * pdc, 
+      ::ca::application * papp,
+      ::ca::graphics * pdc, 
       const char * lpcsz, 
       int iLen, 
-      ::ax::dib * pdibCache);
+      ::ca::dib * pdibCache);
 
 
    bool IsVisible();
@@ -150,19 +150,19 @@ public:
    //int GetVmsFontCount();
    void SetPlacement(LPCRECT lpcrect);
    int SetLyricColors(COLORREF crLeft, COLORREF crRight);
-   int SetLyricPens(::ax::pen * ppenLeft, ::ax::pen * ppenRight);
+   int SetLyricPens(::ca::pen * ppenLeft, ::ca::pen * ppenRight);
    void SetRenderCriticalSection(::critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
    int MapToFontEffect(int iLineEffect);
     
    
    void SetForegroundColor(COLORREF cr);
-   void SetEmbossPen(::ax::pen * lpPen);
+   void SetEmbossPen(::ca::pen * lpPen);
    void SetTextEffect(int iTextEffect);
 
    void SetAnimateType(int iAnimateType);
 
-   void OnTimerAnimate(::ax::graphics * pdc, rect_array &   rectaModified);
+   void OnTimerAnimate(::ca::graphics * pdc, rect_array &   rectaModified);
 
    void Show(bool bShow = true);
    virtual XfplayerViewLine & operator = (const XfplayerViewLine & src);
@@ -192,13 +192,13 @@ public:
 // Operations
    
    bool PrepareLine(
-      ::ax::graphics * pdc,
+      ::ca::graphics * pdc,
       const char * lpcsz,
       int flags,
       LPRECT pRect);
 
    /*bool PrepareLine(
-      ::ax::graphics * pdcForeground,
+      ::ca::graphics * pdcForeground,
       const wchar_t * lpcsz,
       int flags,
       visual::font *pFont,
@@ -216,23 +216,23 @@ public:
       visual::font * pFont);
    
    bool to(
-      ::ax::application * papp,
-      ::ax::graphics *                  pdc,
+      ::ca::application * papp,
+      ::ca::graphics *                  pdc,
       bool                  bDraw,
       LPRECT               lpRect,
       rect_array &      rectaModified,
       bool                  bRecalcLayout);
 
    bool to(
-      ::ax::application * papp,
-      ::ax::graphics *                  pdcForeground,
+      ::ca::application * papp,
+      ::ca::graphics *                  pdcForeground,
       bool                  bDraw,
       LPRECT               lpRect,
       rect_array &      rectaModified,
       int   *               count,
       bool                  bRecalcLayout,
       COLORREF               crColor,
-      ::ax::pen      &            pen);
+      ::ca::pen      &            pen);
 
 
    DECL_GEN_SIGNAL(OnMouseMove)

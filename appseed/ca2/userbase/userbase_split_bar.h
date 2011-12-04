@@ -6,7 +6,7 @@ namespace userbase
 
    class split_layout;
 
-   class CLASS_DECL_ca split_bar :
+   class CLASS_DECL_ca2 split_bar :
       public ::user::interaction
    {
    public:
@@ -22,13 +22,13 @@ namespace userbase
       DWORD                   m_dwMaxPosition;
 
 
-      split_bar(::ax::application * papp);
+      split_bar(::ca::application * papp);
       virtual ~split_bar();
 
 
       void install_message_handling(::gen::message::dispatch * pinterface);
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
 
       using ::user::interaction::create;
       BOOL create(split_layout * pparent);

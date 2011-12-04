@@ -11,9 +11,9 @@ namespace userbase
    class document;
 
 
-   class CLASS_DECL_ca application :
-      virtual public ::user::application,
-      public BaseMenuCentralContainer
+   class CLASS_DECL_ca2 application :
+      virtual public ::ca2::user::application,
+      virtual public BaseMenuCentralContainer
    {
    public:
 
@@ -44,7 +44,7 @@ namespace userbase
 
    };
 
-   inline application & app_cast(::ax::application * papp)
+   inline application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
@@ -52,8 +52,8 @@ namespace userbase
 
 
 
-   CLASS_DECL_ca ::user::front_end_schema * GetUfeSchema(::ax::application * papp);
-   CLASS_DECL_ca ::user::front_end * GetUfe(::ax::application * papp);
+   CLASS_DECL_ca2 ::user::front_end_schema * GetUfeSchema(::ca::application * papp);
+   CLASS_DECL_ca2 ::user::front_end * GetUfe(::ca::application * papp);
 
 
 

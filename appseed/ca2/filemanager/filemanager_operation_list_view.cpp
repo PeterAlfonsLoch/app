@@ -3,8 +3,8 @@
 
 // IMPLEMENT_DYNCREATE(file_manager_operation_list_view, ::userbase::view)
 
-file_manager_operation_list_view::file_manager_operation_list_view(::ax::application * papp) :
-   ax(papp),
+file_manager_operation_list_view::file_manager_operation_list_view(::ca::application * papp) :
+   ca(papp),
    m_headerctrl(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
@@ -24,7 +24,7 @@ void file_manager_operation_list_view::install_message_handling(::gen::message::
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_list_view::_001OnCreate);
 }
 
-void file_manager_operation_list_view::OnDraw(::ax::graphics * pdc)
+void file_manager_operation_list_view::OnDraw(::ca::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

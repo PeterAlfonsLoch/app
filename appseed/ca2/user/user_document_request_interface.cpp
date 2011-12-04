@@ -4,10 +4,10 @@
 namespace user
 {
 
-   ::document * document_request_interface::open_document_file(::ax::create_context * pcreatecontext)
+   ::document * document_request_interface::open_document_file(::ca::create_context * pcreatecontext)
    {
 
-      ::ax::create_context_sp cc(&Application.creation(), NULL, true, NULL);
+      ::ca::create_context_sp cc(&Application.creation(), NULL, true, NULL);
 
       if(pcreatecontext == NULL)
       {
@@ -23,7 +23,7 @@ namespace user
    ::document * document_request_interface::open_document_file(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
    {
       
-      ::ax::create_context_sp cc(&Application.creation(), varFile, bMakeVisible, puiParent);
+      ::ca::create_context_sp cc(&Application.creation(), varFile, bMakeVisible, puiParent);
 
 
       return open_document_file(cc);

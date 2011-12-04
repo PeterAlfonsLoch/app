@@ -3,7 +3,7 @@
 namespace user
 {
 
-   class CLASS_DECL_ca simple_list_data  :
+   class CLASS_DECL_ca2 simple_list_data  :
       virtual public list_data
    {
    public:
@@ -14,7 +14,7 @@ namespace user
       array_ptr_alloc < stringa , stringa & > m_array;
 
       
-      simple_list_data(::ax::application * papp);
+      simple_list_data(::ca::application * papp);
       virtual ~simple_list_data();
 
 

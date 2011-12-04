@@ -3,8 +3,8 @@
 namespace mail
 {
 
-   pop3::pop3(::ax::application * papp) :
-      ax(papp),
+   pop3::pop3(::ca::application * papp) :
+      ca(papp),
       m_handler(papp)
    {
       m_bRun = false;

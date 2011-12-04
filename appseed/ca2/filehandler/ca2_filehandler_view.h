@@ -9,13 +9,13 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca view :
+      class CLASS_DECL_ca2 view :
          public form_view
       {
       public:
 
 
-         class CLASS_DECL_ca item
+         class CLASS_DECL_ca2 item
          {
          public:
          
@@ -29,7 +29,7 @@ namespace ca2
 
          };
 
-         class CLASS_DECL_ca list :
+         class CLASS_DECL_ca2 list :
             public array_ptr_alloc < item >
          {
          public:
@@ -40,7 +40,7 @@ namespace ca2
 
          };
 
-         class CLASS_DECL_ca draw_item
+         class CLASS_DECL_ca2 draw_item
          {
          public:
 
@@ -52,7 +52,7 @@ namespace ca2
 
          };
 
-         class CLASS_DECL_ca draw_list :
+         class CLASS_DECL_ca2 draw_list :
             public array_ptr_alloc < draw_item >
          {
          public:
@@ -77,7 +77,7 @@ namespace ca2
 
          virtual void _001OnDraw(::ca::graphics * pdc);
       
-         virtual void install_message_handling(::user::win::message::dispatch * pdispatch);
+         virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
          virtual void refresh();
 

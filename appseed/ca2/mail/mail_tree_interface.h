@@ -3,13 +3,13 @@
 namespace mail
 {
 
-   class CLASS_DECL_ca tree_interface :
+   class CLASS_DECL_ca2 tree_interface :
       virtual public ::user::tree,
       virtual public ::mail::tree_data
    {
    public:
       
-      tree_interface(::ax::application * papp);
+      tree_interface(::ca::application * papp);
       virtual ~tree_interface();
 
 

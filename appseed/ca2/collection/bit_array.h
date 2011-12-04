@@ -7,7 +7,7 @@
     Creates and manages bit array objects.
     @ingroup unicode
 */
-class CLASS_DECL_ca bit_array
+class CLASS_DECL_ca2 bit_array
 {
 public:
   /** Creates bit array with specified number of stored bitfields.

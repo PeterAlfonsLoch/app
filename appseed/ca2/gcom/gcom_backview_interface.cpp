@@ -7,8 +7,8 @@ namespace gcom
    namespace backview
    {
 
-      Interface::Interface(::ax::application * papp) :
-         ax(papp)
+      Interface::Interface(::ca::application * papp) :
+         ca(papp)
       {
          m_bTransferVoid   = false;
          m_dwTimerStep      = 0;
@@ -175,7 +175,7 @@ namespace gcom
          return GetMain().LoadNextImage(bSynch);
       }
 
-      void Interface::OnImageLoaded(::ax::bitmap * pbitmap)
+      void Interface::OnImageLoaded(::ca::bitmap * pbitmap)
       {
          GetMain().OnImageLoaded(pbitmap);
       }
@@ -208,7 +208,7 @@ namespace gcom
          GetMain().ImageChangePostEvent(eevent);
       }
 
-      ::ax::graphics & Interface::GetTransferDC()
+      ::ca::graphics & Interface::GetTransferDC()
       {
          return GetMain().GetTransferDC();
       }
@@ -243,14 +243,14 @@ namespace gcom
          return GetMain().IsEnabled();
       }
 
-      void Interface::BackViewRender(::ax::graphics * pdc, LPCRECT lpcrect)
+      void Interface::BackViewRender(::ca::graphics * pdc, LPCRECT lpcrect)
       {
          class rect rect(lpcrect);
          BackViewRender(pdc, rect.left, rect.top, rect.width(), rect.height());
       }
 
       void Interface::BackViewRender(
-         ::ax::graphics * pdc,
+         ::ca::graphics * pdc,
          int x, int y, 
          int w, int h)
       {
@@ -265,7 +265,7 @@ namespace gcom
 
          
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
-         ::ax::graphics & dcTransfer = graphics.GetTransferDC();
+         ::ca::graphics & dcTransfer = graphics.GetTransferDC();
          if(dcTransfer.get_os_data() == NULL)
             return;
          dcTransfer.SelectClipRgn(NULL);
@@ -287,8 +287,8 @@ namespace gcom
       // background, this function call is a feedback requested by from some
       // transition effect or visual effect in order to display to the
       // the ::fontopus::user an intereactive effect. At first design, the only needed
-      // feedback is the final output ::ax::window screenshot.
-      void Interface::BackViewFeedback(::ax::graphics * pdc)
+      // feedback is the final output ::ca::window screenshot.
+      void Interface::BackViewFeedback(::ca::graphics * pdc)
       {
          UNREFERENCED_PARAMETER(pdc);
       }

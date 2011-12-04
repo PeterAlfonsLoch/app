@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca set :
+   class CLASS_DECL_ca2 set :
       virtual public ::fs::data
    {
    public:

@@ -10,12 +10,12 @@ namespace filemanager
 
 
 
-class CLASS_DECL_ca FileManagerAView :
+class CLASS_DECL_ca2 FileManagerAView :
    virtual public ::userbase::split_view,
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerAView(::ax::application * papp);
+   FileManagerAView(::ca::application * papp);
 
    void CreateViews();
    
@@ -31,12 +31,12 @@ public:
 
 
 
-class CLASS_DECL_ca FileManagerView :
+class CLASS_DECL_ca2 FileManagerView :
    virtual public ::userbase::split_view,
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerView(::ax::application * papp);
+   FileManagerView(::ca::application * papp);
    
    filemanager::SimpleFileListView *         m_pfilelist;
    filemanager::SimplePreview *              m_ppreview;

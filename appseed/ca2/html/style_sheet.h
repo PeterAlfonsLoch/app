@@ -5,7 +5,7 @@
 namespace html
 {
 
-   class CLASS_DECL_ca style_sheet
+   class CLASS_DECL_ca2 style_sheet
    {
    public:
 

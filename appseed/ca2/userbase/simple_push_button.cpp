@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-SimplePushButton::SimplePushButton(::ax::application * papp) :
-   ax(papp),
+SimplePushButton::SimplePushButton(::ca::application * papp) :
+   ca(papp),
    ::user::button(papp),
    ::userbase::button(papp)
 {
@@ -50,7 +50,7 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
     }*/
 }
 
-void SimplePushButton::_001OnDraw(::ax::graphics *pdc)
+void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 {
 
    int iOriginalBkMode = pdc->GetBkMode();
@@ -165,7 +165,7 @@ void SimplePushButton::_001OnDraw(::ax::graphics *pdc)
    rect.left = x1;
    rect.right = x2;
    rect.bottom = rect.top + 5;
-   ::ax::pen_sp pen(get_app(), PS_SOLID, 1, colorExt1TL);
+   ::ca::pen_sp pen(get_app(), PS_SOLID, 1, colorExt1TL);
    pdc->SelectObject(pen);
    imaging.color_blend_3dRect(pdc, rect, colorExt1TL, 220, colorExt1BR, 220);
 

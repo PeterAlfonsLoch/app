@@ -1,208 +1,151 @@
 #include "StdAfx.h"
 
-namespace fontopus
+
+namespace ca2
 {
 
 
-   application::application()
-   {
-      m_puser              = NULL;
-      m_bIsCreatingUser    = false;
-   }
-
-   void application::construct()
-   {
-      m_strAppName         = "fontopus";
-      m_strBaseSupportId   = "votagus_ca2_fontopus";
-      m_strInstallToken    = "fontopus";    
-   }
-
-   application::~application(void)
-   {
-   }
-
-   bool application::initialize_instance()
+   namespace fontopus
    {
 
-      if(!cube2::application::initialize_instance())
-         return false;
 
-      return TRUE;
-   }
-
-   int application::exit_instance()
-   {
-      try
+      application::application()
       {
-         ::cube2::application::exit_instance();
+         m_puser              = NULL;
+         m_bIsCreatingUser    = false;
       }
-      catch(...)
+
+      void application::construct()
+      {
+         m_strAppName         = "fontopus";
+         m_strBaseSupportId   = "votagus_ca2_fontopus";
+         m_strInstallToken    = "fontopus";    
+      }
+
+      application::~application(void)
       {
       }
-      return 0;
-   }
 
-   bool application::bergedge_start()
-   {
-      return false;
-   }
+      bool application::initialize_instance()
+      {
 
+         if(!cube2::application::initialize_instance())
+            return false;
 
-   user * application::create_current_user()
-   {
-      if(m_puser == NULL)
-      {
-         int iRetry = 3;
-         ::fontopus::user * puser = NULL;
-         while(iRetry > 0)
-         {
-            puser = login();
-            if(puser != NULL)
-               break;
-            //bool bOk = false;
-            //string strSection;
-            //strSection.Format("license_auth");
-            //string strDir;
-            //strDir = Application.dir().usersystemappdata(puser->m_strPathPrefix, strSection);
-            //::DeleteFile(System.dir().path(strDir, "00001"));
-            //::DeleteFile(System.dir().path(strDir, "00002"));
-            iRetry--;
-         }
-         if(puser == NULL)
-         {
-            System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
-            TRACE("<error>You have not logged in! Exiting!</error>");
-            throw "You have not logged in! Exiting!";
-            return NULL;
-         }
-         m_puser = create_user(puser);
-         System.userset().add(m_puser);
+         return TRUE;
       }
-      return m_puser;
-   }
 
-   user * application::login()
-   {
-      /*::ax::application * papp;
-      if(m_puiInitialPlaceHolderContainer != NULL)
-      {
-         papp = m_puiInitialPlaceHolderContainer->m_papp;
-      }
-      else if(System.m_puiInitialPlaceHolderContainer != NULL)
-      {
-         papp = System.m_puiInitialPlaceHolderContainer->m_papp;
-      }
-      else
-      {
-         papp = this;
-      }*/
-      //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
-      class validate authuser(this, "system\\user\\authenticate.xhtml", true);
-      authuser.oprop("defer_registration") = "defer_registration";
-      return authuser.get_user();
-   }
-
-   bool application::get_auth(const char * psz, string & strUsername, string & strPassword)
-   {
-      /*::ax::application * papp;
-      if(m_puiInitialPlaceHolderContainer != NULL)
-      {
-         papp = m_puiInitialPlaceHolderContainer->m_papp;
-      }
-      else if(System.m_puiInitialPlaceHolderContainer != NULL)
-      {
-         papp = System.m_puiInitialPlaceHolderContainer->m_papp;
-      }
-      else
-      {
-         papp = this;
-      }*/
-      //class validate authuser(papp, psz);
-      class validate authuser(this, psz);
-      validate::auth * pauth = authuser.get_auth();
-      if(pauth == NULL)
-         return false;
-      else
-      {
-         strUsername = pauth->m_strUsername;
-         strPassword = pauth->m_strPassword;
-         delete pauth;
-         return true;
-      }
-   }
-
-   void application::logout()
-   {
-      if(m_puser != NULL)
+      int application::exit_instance()
       {
          try
          {
-            System.file().del(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"));
+            ::cube2::application::exit_instance();
          }
          catch(...)
          {
          }
-         try
-         {
-            System.file().del(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), AppUser(this).m_strLogin, "license_auth/00002.data"));
-         }
-         catch(...)
-         {
-         }
-         delete m_puser;
+         return 0;
       }
-      m_puser = NULL;
-   }
 
-
-
-   user * application::allocate_user()
-   {
-      return new class user(this);
-   }
-
-   user * application::create_user(::fontopus::user * puser)
-   {
-      if(puser->m_strPathPrefix.is_empty())
+      bool application::bergedge_start()
       {
-         puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
+         return false;
       }
-      puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      System.dir().mk(puser->m_strPath);
-      puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      System.dir().mk(puser->m_strDataPath);
-      puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      System.dir().mk(puser->m_strAppDataPath);
-      return puser;
-   }
 
 
-   user * application::get_user()
-   {
-      if(m_puser == NULL)
+      user * application::create_current_user()
       {
-         if(m_bIsCreatingUser)
-            return NULL;
-         keeper < bool > keepCreatingUser(&m_bIsCreatingUser, true, false, true);
-         m_puser = create_current_user();
+         if(m_puser == NULL)
+         {
+            int iRetry = 3;
+            ::fontopus::user * puser = NULL;
+            while(iRetry > 0)
+            {
+               puser = login();
+               if(puser != NULL)
+                  break;
+               //bool bOk = false;
+               //string strSection;
+               //strSection.Format("license_auth");
+               //string strDir;
+               //strDir = Application.dir().usersystemappdata(puser->m_strPathPrefix, strSection);
+               //::DeleteFile(System.dir().path(strDir, "00001"));
+               //::DeleteFile(System.dir().path(strDir, "00002"));
+               iRetry--;
+            }
+            if(puser == NULL)
+            {
+               System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
+               TRACE("<error>You have not logged in! Exiting!</error>");
+               throw "You have not logged in! Exiting!";
+               return NULL;
+            }
+            m_puser = create_user(puser);
+            System.userset().add(m_puser);
+         }
+         return m_puser;
       }
-      return m_puser;
-   }
 
-   void application::set_user(const char * psz)
-   {
-      UNREFERENCED_PARAMETER(psz);
-   }
+      user * application::login()
+      {
+         /*::ca::application * papp;
+         if(m_puiInitialPlaceHolderContainer != NULL)
+         {
+            papp = m_puiInitialPlaceHolderContainer->m_papp;
+         }
+         else if(System.m_puiInitialPlaceHolderContainer != NULL)
+         {
+            papp = System.m_puiInitialPlaceHolderContainer->m_papp;
+         }
+         else
+         {
+            papp = this;
+         }*/
+         //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
+         class validate authuser(this, "system\\user\\authenticate.xhtml", true);
+         authuser.oprop("defer_registration") = "defer_registration";
+         return authuser.get_user();
+      }
 
-   void application::set_user(user * puser)
-   {
-      m_puser = puser;
-   }
+      bool application::get_auth(const char * psz, string & strUsername, string & strPassword)
+      {
+         /*::ca::application * papp;
+         if(m_puiInitialPlaceHolderContainer != NULL)
+         {
+            papp = m_puiInitialPlaceHolderContainer->m_papp;
+         }
+         else if(System.m_puiInitialPlaceHolderContainer != NULL)
+         {
+            papp = System.m_puiInitialPlaceHolderContainer->m_papp;
+         }
+         else
+         {
+            papp = this;
+         }*/
+         //class validate authuser(papp, psz);
+         class validate authuser(this, psz);
+         validate::auth * pauth = authuser.get_auth();
+         if(pauth == NULL)
+            return false;
+         else
+         {
+            strUsername = pauth->m_strUsername;
+            strPassword = pauth->m_strPassword;
+            delete pauth;
+            return true;
+         }
+      }
 
 
-   application & app_cast(::ax::ax * pca)
-   {
-      return *dynamic_cast < application * > (pca);
-   }
+      application & app_cast(::ca::ca * pca)
+      {
+         return *dynamic_cast < application * > (pca);
+      }
 
-} // namespace fontopus
+
+   } // namespace fontopus
+
+
+} // namespace ca2
+
+

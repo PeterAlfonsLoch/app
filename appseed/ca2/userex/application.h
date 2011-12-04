@@ -5,8 +5,8 @@ namespace userex
 {
 
 
-   class CLASS_DECL_ca application :
-      public ::html::application
+   class CLASS_DECL_ca2 application :
+      virtual public ::html::application
    {
    public:
 
@@ -29,11 +29,11 @@ namespace userex
 
    };
 
-   inline application & app_cast(::ax::application * papp)
+   inline application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
 
-} // namespace ax
+} // namespace ca
 
 

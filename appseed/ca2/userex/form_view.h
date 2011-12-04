@@ -1,11 +1,11 @@
 #pragma once
 
 
-class CLASS_DECL_ca form_view :
+class CLASS_DECL_ca2 form_view :
    virtual public html_form_view
 {
 public:
-   form_view(::ax::application * papp);
+   form_view(::ca::application * papp);
 
    void on_update(::view * pSender, LPARAM lHint, ::radix::object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);

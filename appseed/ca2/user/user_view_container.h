@@ -8,7 +8,7 @@ namespace user
    class view_creator_data;
 
 
-   class CLASS_DECL_ca view_container :
+   class CLASS_DECL_ca2 view_container :
       virtual public ::radix::object
    {
    public:
@@ -20,7 +20,7 @@ namespace user
 
       virtual id get_view_id();
       virtual ::user::interaction * get_view();
-      virtual document * get_view_document();
+      virtual ::document * get_view_document();
 
 
       virtual void on_new_view_creator_data(view_creator_data * pcreatordata);

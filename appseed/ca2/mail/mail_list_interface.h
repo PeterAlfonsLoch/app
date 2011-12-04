@@ -3,16 +3,16 @@
 namespace mail
 {
 
-   class CLASS_DECL_ca list_interface :
+   class CLASS_DECL_ca2 list_interface :
       virtual public ::user::list
    {
    public:
-      list_interface(::ax::application * appp);
+      list_interface(::ca::application * appp);
       virtual ~list_interface();
 
       account * m_paccount;
 
-      class CLASS_DECL_ca data :
+      class CLASS_DECL_ca2 data :
          virtual public ::user::list_data
       {
       public:
@@ -21,7 +21,7 @@ namespace mail
          stringa   m_straId;
 
 
-         data(::ax::application * papp);
+         data(::ca::application * papp);
 
          void update();
 

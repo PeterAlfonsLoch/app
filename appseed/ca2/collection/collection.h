@@ -80,14 +80,14 @@
 #include "string_list.h"
 
 
-class CLASS_DECL_ca map_word_to_ptr : 
+class CLASS_DECL_ca2 map_word_to_ptr : 
    virtual public ::collection::map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_ptr_to_word : 
+class CLASS_DECL_ca2 map_ptr_to_word : 
    virtual public ::collection::map < void *, void *, WORD, WORD >
 {
 public:
@@ -95,14 +95,14 @@ public:
 };
 
 
-class CLASS_DECL_ca map_ptr_to_ptr : 
+class CLASS_DECL_ca2 map_ptr_to_ptr : 
    virtual public ::collection::map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_word_to_ob : 
+class CLASS_DECL_ca2 map_word_to_ob : 
    virtual public ::collection::map < WORD, WORD, ::radix::object *, ::radix::object * >
 {
 public:
@@ -110,14 +110,14 @@ public:
 };
 
 
-class CLASS_DECL_ca map_string_to_ptr : 
+class CLASS_DECL_ca2 map_string_to_ptr : 
    virtual public ::collection::map < string, string, void *, void * >
 {
 public:
    map_string_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_string_to_ob : 
+class CLASS_DECL_ca2 map_string_to_ob : 
    virtual public ::collection::map < string, string, ::radix::object *, ::radix::object * >
 {
 public:
@@ -146,13 +146,13 @@ public:
 #include "collection.inl"
 
 
-class CLASS_DECL_ca dword_2darray :
+class CLASS_DECL_ca2 dword_2darray :
    public array_ptr_alloc < dword_array, dword_array & >
 {
 public:
 };
 
-class CLASS_DECL_ca index_2darray :
+class CLASS_DECL_ca2 index_2darray :
    public array_ptr_alloc < index_array, index_array & >
 {
 public:

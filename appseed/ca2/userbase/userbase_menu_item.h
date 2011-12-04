@@ -6,7 +6,7 @@ namespace userbase
 
    class menu_item_ptra;
 
-   class CLASS_DECL_ca menu_item :
+   class CLASS_DECL_ca2 menu_item :
       virtual public ::radix::object
    {
    public:
@@ -22,7 +22,7 @@ namespace userbase
       menu_base *          m_pbase;
 
 
-      menu_item(::ax::application * papp);
+      menu_item(::ca::application * papp);
       virtual ~menu_item();
 
 
@@ -40,7 +40,7 @@ namespace userbase
 
    };
 
-   class CLASS_DECL_ca menu_item_ptra :
+   class CLASS_DECL_ca2 menu_item_ptra :
       public array_app_alloc < menu_item >
    {
    public:

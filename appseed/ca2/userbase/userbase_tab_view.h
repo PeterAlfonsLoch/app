@@ -6,7 +6,7 @@ namespace userbase
    class tab_drop_target_window;
    class single_document_template;
 
-   class CLASS_DECL_ca tab_view : 
+   class CLASS_DECL_ca2 tab_view : 
       virtual public ::userbase::view,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,
@@ -21,7 +21,7 @@ namespace userbase
       ::user::view_creator *                 m_pviewcreator;
 
 
-      tab_view(::ax::application * papp);
+      tab_view(::ca::application * papp);
       virtual ~tab_view();
 
 
@@ -33,7 +33,7 @@ namespace userbase
       virtual ::document * get_view_document();
 
 
-      void _000OnDraw(::ax::graphics * pdc);
+      void _000OnDraw(::ca::graphics * pdc);
 
       void _001OnDropTab(int iPane, e_position eposition);
       
@@ -93,7 +93,7 @@ namespace userbase
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      void _001OnDraw(::ax::graphics * pdc);
+      void _001OnDraw(::ca::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnLButtonUp)
 

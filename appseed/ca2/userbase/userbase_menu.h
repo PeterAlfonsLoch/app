@@ -6,7 +6,7 @@ namespace userbase
    class front_end;
    class menu_item;
 
-   class CLASS_DECL_ca menu : 
+   class CLASS_DECL_ca2 menu : 
       public ::user::interaction,
       public menu_base
    {
@@ -24,8 +24,8 @@ namespace userbase
       };
 
 
-      menu(::ax::application * papp);
-      menu(::ax::application * papp, menu_item * pitem);
+      menu(::ca::application * papp);
+      menu(::ca::application * papp, menu_item * pitem);
       virtual ~menu();
 
 
@@ -37,7 +37,7 @@ namespace userbase
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
-      void _001OnDraw(::ax::graphics *pdc);
+      void _001OnDraw(::ca::graphics *pdc);
       DECL_GEN_SIGNAL(OnMessageDestroyWindow)
 
 

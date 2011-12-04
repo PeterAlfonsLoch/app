@@ -5,7 +5,7 @@ namespace userbase
 {
 
 
-   class CLASS_DECL_ca main_frame : 
+   class CLASS_DECL_ca2 main_frame : 
       public simple_frame_window
    {
    public:
@@ -14,7 +14,7 @@ namespace userbase
       bool           m_bPlacing;
       
       
-      main_frame(::ax::application * papp);
+      main_frame(::ca::application * papp);
       virtual ~main_frame();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

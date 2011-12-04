@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca Ex1FormInterfaceComboBox :
+class CLASS_DECL_ca2 Ex1FormInterfaceComboBox :
    virtual public ::radix::object
 {
 public:
@@ -22,7 +22,7 @@ namespace user
    class form_list;
    class form_callback;
 
-   class CLASS_DECL_ca control :
+   class CLASS_DECL_ca2 control :
       virtual public view
    {
    public:
@@ -91,7 +91,7 @@ namespace user
          INT_PTR                                m_value;
       };
 
-      class CLASS_DECL_ca descriptor
+      class CLASS_DECL_ca2 descriptor
       {
       public:
          descriptor();
@@ -100,7 +100,7 @@ namespace user
          form *                  m_pform;
          control *               m_pcontrol;
          id                      m_id;
-           ::ax::type_info         m_typeinfo;
+           ::ca::type_info         m_typeinfo;
          int                     m_iSubItem;
          id                      m_idPrivateDataSection;
          bool                     m_bTransparent;
@@ -134,7 +134,7 @@ namespace user
          void set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, INT_PTR value);
       };
 
-      class CLASS_DECL_ca descriptor_set :
+      class CLASS_DECL_ca2 descriptor_set :
          public array_ptr_alloc < descriptor >
       {
       public:
@@ -177,9 +177,9 @@ namespace user
 
       class descriptor & descriptor();
 
-      virtual void _003CallCustomDraw(::ax::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(::user::window_interface * pwndi, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual void _003OnCustomDraw(::ax::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
       virtual void _003CustomWindowProc(gen::signal_object * pobj);
 
       virtual form * get_form();

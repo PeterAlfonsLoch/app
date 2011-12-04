@@ -44,7 +44,7 @@ namespace filemanager
 
          class view;
 
-         class CLASS_DECL_ca list_view :
+         class CLASS_DECL_ca2 list_view :
             public simple_list_view
          {
          public:
@@ -68,7 +68,7 @@ namespace filemanager
                SubItemFilePath,
             };
 
-            list_view(::ax::application * papp);
+            list_view(::ca::application * papp);
             ::filemanager::fs::simple::view * m_pserver;
 
             void install_message_handling(::gen::message::dispatch * pinterface);

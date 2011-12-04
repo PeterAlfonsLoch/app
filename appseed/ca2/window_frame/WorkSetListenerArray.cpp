@@ -87,7 +87,7 @@ namespace window_frame
       plistener->Attach(this);
    }
 
-   void WorkSetListenerArray::on_delete(::ax::ax * p)
+   void WorkSetListenerArray::on_delete(::ca::ca * p)
    {
       UNREFERENCED_PARAMETER(p);
    }

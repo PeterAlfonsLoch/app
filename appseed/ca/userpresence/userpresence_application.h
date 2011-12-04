@@ -7,13 +7,15 @@ namespace userpresence
 
    class CLASS_DECL_ca application :
       virtual public ::simpledb::application,
-      virtual public ::userpresence::user::presence_central_container
+      virtual public ::userpresence::presence_central_container
    {
    public:
 
+   
       application();
       virtual ~application();
 
+      
       virtual bool initialize();
       virtual bool finalize();
 
@@ -24,9 +26,13 @@ namespace userpresence
 
    };
 
+
    inline application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
 
+
 } // namespace userpresence
+
+

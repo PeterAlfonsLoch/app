@@ -2,7 +2,7 @@
 
 class XfplayerViewLine;
 
-class CLASS_DECL_ca XfplayerViewLineSelectionItem  
+class CLASS_DECL_ca2 XfplayerViewLineSelectionItem  
 {
 
 public:
@@ -40,7 +40,7 @@ public:
 };
 
 
-class CLASS_DECL_ca XfplayerViewLineSelection :
+class CLASS_DECL_ca2 XfplayerViewLineSelection :
    virtual ::radix::object
 {
 public:

@@ -8,12 +8,15 @@ namespace visual
    class CLASS_DECL_ca application  :
       virtual public ::userpresence::application
    {
-   protected:
+   public:
+
+
       class imaging * m_pimaging;
       ::collection::map < e_cursor, e_cursor, cursor *, cursor * > m_cursormap;
       e_cursor m_ecursor;
       e_cursor m_ecursorDefault;
-   public:
+
+
       application();
       virtual ~application();
       virtual class imaging & imaging();
@@ -34,11 +37,16 @@ namespace visual
 
       virtual int exit_instance();
 
+
    };
+
 
    inline application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }
 
+
 } // namespace visual
+
+

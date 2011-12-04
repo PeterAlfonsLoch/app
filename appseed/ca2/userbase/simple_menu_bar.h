@@ -5,7 +5,7 @@ class SimpleMenu;
 class CMenuTrackingThreadV033;
 class CMenuBarHookV033;
 
-class CLASS_DECL_ca simple_menu_bar :
+class CLASS_DECL_ca2 simple_menu_bar :
    public simple_toolbar
 {
 public:
@@ -26,7 +26,7 @@ public:
    ::userbase::menu     m_menu;
 
 
-   simple_menu_bar(::ax::application * papp);
+   simple_menu_bar(::ca::application * papp);
    virtual ~simple_menu_bar();
 
 
@@ -66,11 +66,11 @@ public:
    //int _001GetHoverItem();
    //void _001Hover(point pt);
    //void _001Hover();
-   //void _001DrawItem(::ax::graphics * pdc, int iItem);
+   //void _001DrawItem(::ca::graphics * pdc, int iItem);
    //int _001HitTest(const POINT * point);
    //bool _001CheckItem(int iItem, bool bCheck);
    //bool _001GetItemRect(int iItem, LPRECT lprect, EElement eelement);
-   //virtual void _001OnDraw(::ax::graphics * pdc);
+   //virtual void _001OnDraw(::ca::graphics * pdc);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
    void RemoveAllButtons();
@@ -79,7 +79,7 @@ public:
       image_list * pimagelist,
       image_list * pimagelistDisabled,
       int_int_spreadset * prel,
-      ::ax::font * pfont);
+      ::ca::font * pfont);
 
    //size CalcLayout(DWORD dwMode, int nLength);
 

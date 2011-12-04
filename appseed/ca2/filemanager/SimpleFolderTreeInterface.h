@@ -13,7 +13,7 @@ namespace filemanager
       FolderMyComputer,
    };
 
-   class CLASS_DECL_ca SimpleFolderTreeInterface :
+   class CLASS_DECL_ca2 SimpleFolderTreeInterface :
       virtual public ::fs::tree,
       virtual public FileManagerViewInterface
    {
@@ -51,7 +51,7 @@ namespace filemanager
       string               m_strPath;
 
 
-      SimpleFolderTreeInterface(::ax::application * papp);
+      SimpleFolderTreeInterface(::ca::application * papp);
       virtual ~SimpleFolderTreeInterface();
 
 

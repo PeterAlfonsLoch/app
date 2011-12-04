@@ -8,7 +8,7 @@ namespace userbase
    class tool_bar_control; // forward reference (see afxcmn.h for definition)
 
 
-   class CLASS_DECL_ca tool_bar :
+   class CLASS_DECL_ca2 tool_bar :
       public ::userbase::control_bar
    {
    public:
@@ -109,7 +109,7 @@ namespace userbase
 #endif
       void layout(); // called for for delayed button layout
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
 
       //{{AFX_MSG(tool_bar)
       DECL_GEN_SIGNAL(_001OnNcHitTest)

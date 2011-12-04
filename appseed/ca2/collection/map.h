@@ -806,28 +806,28 @@ namespace collection
    {
    }
 
-   class CLASS_DECL_ca int_to_int :
+   class CLASS_DECL_ca2 int_to_int :
       virtual public attrib_map < int, int, int, int >
    {
    public:
    };
 
 
-   class CLASS_DECL_ca int_to_string :
+   class CLASS_DECL_ca2 int_to_string :
       virtual public attrib_map < int, int, string, string >
    {
    public:
    };
 
 
-   class CLASS_DECL_ca string_to_ptr :
+   class CLASS_DECL_ca2 string_to_ptr :
       virtual public ::collection::string_map < void *, void * >
    {
    public:
    };
 
    template < class T >
-   class CLASS_DECL_ca string_to_pointer :
+   class CLASS_DECL_ca2 string_to_pointer :
       virtual public string_to_ptr
    {
    public:
@@ -887,7 +887,7 @@ namespace collection
    };
 
 
-   class CLASS_DECL_ca string_to_intptr :
+   class CLASS_DECL_ca2 string_to_intptr :
       virtual public ::collection::string_map < INT_PTR, INT_PTR >
    {
    public:

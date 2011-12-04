@@ -7,8 +7,8 @@ namespace html
    namespace impl
    {
 
-      text::text(::ax::application * papp) :
-         ax(papp),
+      text::text(::ca::application * papp) :
+         ca(papp),
          data_container(papp),
          user::scroll_view(papp),
          colorertake5::base_editor(papp),
@@ -28,7 +28,7 @@ namespace html
       void text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
-         ::ax::data::writing writing(pdata);
+         ::ca::data::writing writing(pdata);
 
          elemental::implement_phase1(pdata, pelemental);
          string strTag;
@@ -62,7 +62,7 @@ namespace html
          if(pelemental->m_elementalptra.get_size() > 0
          || pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
-         ::ax::graphics * pdc = pdata->m_pdc;
+         ::ca::graphics * pdc = pdata->m_pdc;
          if(pdc == NULL)
             return;
          font * pfont = pdata->get_font(m_pelemental);
@@ -155,7 +155,7 @@ namespace html
          {
 //            int iIndex = -1;
 
-            ::ax::graphics * pdc = pdata->m_pdc;
+            ::ca::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
                return;
             if(pdata->m_layoutstate.m_cy <= 0)
@@ -180,7 +180,7 @@ namespace html
          {
 //            int iIndex = -1;
 
-            ::ax::graphics * pdc = pdata->m_pdc;
+            ::ca::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
                return;
             pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
@@ -370,7 +370,7 @@ namespace html
          if(m_pelemental->m_elementalptra.get_size() > 0
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
-         ::ax::graphics * pdc = pdata->m_pdc;
+         ::ca::graphics * pdc = pdata->m_pdc;
 
          COLORREF cr;
          if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
@@ -678,7 +678,7 @@ namespace html
          }
       }
 
-      int text::char_hit_test(::ax::graphics * pdc, int px, int py)
+      int text::char_hit_test(::ca::graphics * pdc, int px, int py)
       {
          string strTag;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -739,7 +739,7 @@ namespace html
       {
       }
 
-      void text::_001OnDraw(::ax::graphics * pgraphics)
+      void text::_001OnDraw(::ca::graphics * pgraphics)
       {
          UNREFERENCED_PARAMETER(pgraphics);
       }

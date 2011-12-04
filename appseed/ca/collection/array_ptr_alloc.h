@@ -1,10 +1,8 @@
 #pragma once
 
 
-#include "array_ptr_copy.h"
-
-
 #undef new
+
 
 template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
 class array_ptr_alloc :

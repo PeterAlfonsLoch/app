@@ -9,8 +9,8 @@ namespace user
    const UINT list::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
    const UINT list::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
-   list::list(::ax::application * papp) :
-   ax(papp),
+   list::list(::ca::application * papp) :
+   ca(papp),
    ::user::scroll_view(papp),
    m_columna(papp),
    m_font(papp),
@@ -158,7 +158,7 @@ namespace user
       return ARGB(127, 200, 255, 255);
    }
 
-   void list::_001OnDraw(::ax::graphics *pdc)
+   void list::_001OnDraw(::ca::graphics *pdc)
    {
 
       if(m_bLockViewUpdate)
@@ -327,7 +327,7 @@ namespace user
       GetClientRect(rectClient);
 
       bool bHoverFont = false;
-      ::ax::font  * pfont = _001GetFont();
+      ::ca::font  * pfont = _001GetFont();
       pdrawitem->m_pgraphics->SelectObject(pfont);
 
       m_pdrawlistitem->m_pfont = pfont;
@@ -454,7 +454,7 @@ namespace user
       }
 
       bool bHoverFont = false;
-      ::ax::font  * pfont = _001GetFont();
+      ::ca::font  * pfont = _001GetFont();
       pdrawitem->m_pgraphics->SelectObject(pfont);
 
       pdrawitem->m_pfont = pfont;
@@ -529,7 +529,7 @@ namespace user
          (m_eview != ViewIcon ||
          ((m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) < m_nItemCount)));
 
-      ::ax::font * pfont;
+      ::ca::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
          System.imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
@@ -613,8 +613,8 @@ namespace user
       }
       if(rangeHighlight.HasItem(pdrawitem->m_iDisplayItem))
       {
-         ::ax::pen_sp penHighlight(get_app());
-         ::ax::pen * ppenHighlight = _001GetPenHighlight();
+         ::ca::pen_sp penHighlight(get_app());
+         ::ca::pen * ppenHighlight = _001GetPenHighlight();
          class rect rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.deflate(2, 2);
          pdrawitem->m_pgraphics->SelectObject(ppenHighlight);
@@ -704,12 +704,12 @@ namespace user
 
    //cs.style |= LVS_NOSCROLL;
 
-   return ::ax::window::PreCreateWindow(cs);
+   return ::ca::window::PreCreateWindow(cs);
    }*/
 
    /*void list::OnSize(UINT nType, index cx, index cy)
    {
-   ::ax::window::OnSize(nType, cx, cy);
+   ::ca::window::OnSize(nType, cx, cy);
 
    layout();
    }*/
@@ -1194,8 +1194,8 @@ namespace user
          }
       }
 
-      ::ax::font * pfont = _001GetFont();
-      ::ax::graphics * pdc = GetDC();
+      ::ca::font * pfont = _001GetFont();
+      ::ca::graphics * pdc = GetDC();
       pdc->SelectObject(pfont);
       size size;
       size = pdc->GetTextExtent("Ap");
@@ -2997,8 +2997,8 @@ namespace user
       return this->get_size();
    }
 
-   list_column_array::list_column_array(::ax::application * papp) :
-   ax(papp)
+   list_column_array::list_column_array(::ca::application * papp) :
+   ca(papp)
    {
       m_plist = NULL;
    }
@@ -3833,8 +3833,8 @@ namespace user
 
    void list::_001LayoutTopText()
    {
-      ::ax::font * pfont = _001GetFont();
-      ::ax::graphics * pdc = GetDC();
+      ::ca::font * pfont = _001GetFont();
+      ::ca::graphics * pdc = GetDC();
       pdc->SelectObject(pfont);
       base_array < size > sizea;
       m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
@@ -3987,21 +3987,21 @@ namespace user
 
    int list::_001CalcItemWidth(index iItem, index iSubItem)
    {
-      ::ax::graphics * pdc = GetDC();
-      ::ax::font * pfont = _001GetFont();
+      ::ca::graphics * pdc = GetDC();
+      ::ca::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
       ReleaseDC(pdc);
       return cx;
 
    }
 
-   int list::_001CalcItemWidth(::ax::graphics * pdc, ::ax::font * pfont, index iItem, index iSubItem)
+   int list::_001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem)
    {
       pdc->SelectObject(pfont);
       return _001CalcItemWidth(pdc, iItem, iSubItem);
    }
 
-   int list::_001CalcItemWidth(::ax::graphics * pdc, index iItem, index iSubItem)
+   int list::_001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem)
    {
       IMAGEINFO ii;
       rect rect;
@@ -4686,8 +4686,8 @@ namespace user
    int list::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
-      ::ax::graphics * pdc = GetDC();
-      ::ax::font * pfont = _001GetFont();
+      ::ca::graphics * pdc = GetDC();
+      ::ca::font * pfont = _001GetFont();
       pdc->SelectObject(pfont);
       index iMaxWidth = 0;
       index iCount = m_nItemCount;
@@ -4711,7 +4711,7 @@ namespace user
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(iColumn));
    }
 
-   void list::_OnDraw(::ax::graphics *pdc)
+   void list::_OnDraw(::ca::graphics *pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
@@ -4744,23 +4744,23 @@ namespace user
    }
 
 
-   ::ax::pen * list::_001GetPenHighlight()
+   ::ca::pen * list::_001GetPenHighlight()
    {
       return m_penHighlight;
    }
 
-   ::ax::pen * list::_001GetPenFocused()
+   ::ca::pen * list::_001GetPenFocused()
    {
       return m_penFocused;
 
    }
 
-   ::ax::font * list::_001GetFont()
+   ::ca::font * list::_001GetFont()
    {
       return m_font;
    }
 
-   ::ax::font * list::_001GetFontHover()
+   ::ca::font * list::_001GetFontHover()
    {
       return m_fontHover;
    }
@@ -5296,13 +5296,13 @@ namespace user
          visual::icon * picon;
          if(m_pcolumn->m_mapIcon.Lookup(m_iImage, picon))
          {
-            m_pgraphics->set_alpha_mode(::ax::alpha_mode_blend);
+            m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
             return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;
          }
       }
       else
       {
-         m_pgraphics->set_alpha_mode(::ax::alpha_mode_blend);
+         m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
          return get_image_list()->draw(m_pgraphics, m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
       }
       return false;
@@ -5362,11 +5362,11 @@ namespace user
             size.cx += 4;
             size.cy += 4;
 
-            ::ax::graphics_sp dcCache(m_plist->get_app());
+            ::ca::graphics_sp dcCache(m_plist->get_app());
             dcCache->CreateCompatibleDC(NULL);
-            ::ax::font * pfontOld = dcCache->SelectObject(m_pfont);
+            ::ca::font * pfontOld = dcCache->SelectObject(m_pfont);
 
-            ::ax::bitmap_sp bmpCache(m_plist->get_app());
+            ::ca::bitmap_sp bmpCache(m_plist->get_app());
             bmpCache->CreateCompatibleBitmap(m_pgraphics, size.cx, size.cy);
             dcCache->SelectObject(bmpCache);
             dcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(255, 0, 0, 0));

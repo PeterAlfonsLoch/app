@@ -5,7 +5,7 @@ namespace mail
 
    class pop3_socket;
 
-   class CLASS_DECL_ca simple_pop3 :
+   class CLASS_DECL_ca2 simple_pop3 :
       virtual public pop3
    {
    public:
@@ -30,7 +30,7 @@ namespace mail
 
       virtual void set_list_size(int iSize);
 
-      simple_pop3(::ax::application * papp);
+      simple_pop3(::ca::application * papp);
 
       void store();
 

@@ -5,7 +5,7 @@ namespace cube5
 {
 
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       virtual public command::application
    {
    public:
@@ -17,7 +17,7 @@ namespace cube5
 
    };
 
-   inline application & app_cast(::ax::application * papp)
+   inline application & app_cast(::ca::application * papp)
    {
       return *dynamic_cast < application * > (papp);
    }

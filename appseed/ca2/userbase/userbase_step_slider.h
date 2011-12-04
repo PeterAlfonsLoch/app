@@ -4,7 +4,7 @@ namespace userbase
 {
 
 
-   class CLASS_DECL_ca step_slider :
+   class CLASS_DECL_ca2 step_slider :
       public ::user::interaction
    {
    public:
@@ -23,14 +23,14 @@ namespace userbase
 
 
    public:
-      step_slider(::ax::application * papp);
+      step_slider(::ca::application * papp);
       virtual ~step_slider(void);
 
       bool create(::user::interaction * pwndParent, id id);
 
       virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
       void GetStepHoverRect(int iStep, LPRECT lprect);
       void GetStepRect(int iStep, LPRECT lprect);
 

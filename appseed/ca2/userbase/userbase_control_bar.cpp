@@ -295,7 +295,7 @@ namespace userbase
       if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
-      // since 'IsDialogMessage' will eat frame ::ax::window accelerators,
+      // since 'IsDialogMessage' will eat frame ::ca::window accelerators,
       //   we call all frame windows' pre_translate_message first
       while (pOwner != NULL)
       {
@@ -468,7 +468,7 @@ namespace userbase
       return;
    }
 
-   void control_bar::_001OnDraw(::ax::graphics * pdc)
+   void control_bar::_001OnDraw(::ca::graphics * pdc)
    {
       // background is already filled in gray
       //CPaintDC spgraphics(this);
@@ -482,7 +482,7 @@ namespace userbase
 
    void control_bar::EraseNonClient()
    {
-      // get ::ax::window DC that is clipped to the non-client area
+      // get ::ca::window DC that is clipped to the non-client area
    /* trans   CWindowDC spgraphics(this);
       rect rectClient;
       GetClientRect(rectClient);
@@ -504,9 +504,9 @@ namespace userbase
       DrawGripper(&spgraphics, rectWindow);*/
    }
 
-   void control_bar::EraseNonClient(::ax::graphics * pdc)
+   void control_bar::EraseNonClient(::ca::graphics * pdc)
    {
-      // get ::ax::window DC that is clipped to the non-client area
+      // get ::ca::window DC that is clipped to the non-client area
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;
@@ -550,7 +550,7 @@ namespace userbase
       }
 
       // force black text on gray background all the time
-      if (!::ax::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), (HWND) pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
+      if (!::ca::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), (HWND) pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
          afxData.hbrBtnFace, afxData.clrBtnText))
       {
          pctlcolor->set_lresult(Default());
@@ -671,18 +671,18 @@ namespace userbase
          }
          if (swpFlags != 0)
          {
-            // make the ::ax::window seem visible/hidden
+            // make the ::ca::window seem visible/hidden
             dwStyle ^= WS_VISIBLE;
             // clear delay flags
             m_nStateFlags &= ~(delayShow|delayHide);
-            // hide/show the ::ax::window if actually doing layout
+            // hide/show the ::ca::window if actually doing layout
             SetWindowPos(NULL,
                0, 0, 0, 0, swpFlags|
                SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
          }
          else
          {
-            // clear delay flags -- ::ax::window is already in correct state
+            // clear delay flags -- ::ca::window is already in correct state
             m_nStateFlags &= ~(delayShow|delayHide);
          }
       }
@@ -749,7 +749,7 @@ namespace userbase
          rect.right = rect.left + size.cx;
          rect.bottom = rect.top + size.cy;
 
-         // only resize the ::ax::window if doing layout and not just rect query
+         // only resize the ::ca::window if doing layout and not just rect query
          if (lpLayout->hDWP != NULL)
             AfxRepositionWindow(lpLayout, this, &rect);
       }
@@ -776,7 +776,7 @@ namespace userbase
       return FALSE;
    }
 
-   void control_bar::DoPaint(::ax::graphics * pgraphics)
+   void control_bar::DoPaint(::ca::graphics * pgraphics)
    {
       ASSERT_VALID(this);
       ASSERT_VALID(pgraphics);
@@ -788,7 +788,7 @@ namespace userbase
       DrawGripper(pgraphics, rect);
    }
 
-   void control_bar::DrawBorders(::ax::graphics * pdc, rect& rect)
+   void control_bar::DrawBorders(::ca::graphics * pdc, rect& rect)
    {
       ASSERT_VALID(this);
       ASSERT_VALID(pdc);
@@ -856,8 +856,8 @@ namespace userbase
          
          if(dwStyle & CBRS_GRIPPER)
          {
-            ::ax::pen_sp pen(get_app(), PS_SOLID, 1, clr);
-            ::ax::pen * ppenOld = pdc->SelectObject(pen);
+            ::ca::pen_sp pen(get_app(), PS_SOLID, 1, clr);
+            ::ca::pen * ppenOld = pdc->SelectObject(pen);
             pdc->MoveTo(0, 7);
             pdc->LineTo(7, 0);
             pdc->SelectObject(ppenOld);
@@ -910,7 +910,7 @@ namespace userbase
    #define CX_BORDER_GRIPPER 2
    #define CY_BORDER_GRIPPER 2
 
-   void DrawGripperElement001(::ax::graphics * pdc, int ix, int iy)
+   void DrawGripperElement001(::ca::graphics * pdc, int ix, int iy)
    {
       pdc->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
       pdc->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
@@ -921,7 +921,7 @@ namespace userbase
       pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);
    }
 
-   void control_bar::DrawGripper(::ax::graphics * pdc, const rect& rect)
+   void control_bar::DrawGripper(::ca::graphics * pdc, const rect& rect)
    {
       // only draw the gripper if not floating and gripper is specified
       if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)

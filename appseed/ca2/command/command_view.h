@@ -5,7 +5,7 @@ namespace command
 
    class document;
 
-   class CLASS_DECL_ca view :
+   class CLASS_DECL_ca2 view :
       virtual public ::userbase::view,
       virtual public ::user::interaction
    {
@@ -21,7 +21,7 @@ namespace command
          OpUpdateCurrentArea,
       };
 
-	   view(::ax::application * papp);
+	   view(::ca::application * papp);
 	   virtual ~view();
 
 
@@ -33,12 +33,12 @@ namespace command
 
       void GetDateTime(string & strDateTime);
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
 
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	   virtual void OnDraw(::ax::graphics * pgraphics);      // overridden to draw this ::view
+	   virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)

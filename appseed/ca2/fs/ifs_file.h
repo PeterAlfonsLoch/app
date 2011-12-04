@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_ca ifs_file : 
+class CLASS_DECL_ca2 ifs_file : 
    virtual public ::sockets::http::batch_file
 {
 public:

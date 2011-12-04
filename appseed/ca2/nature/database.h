@@ -6,11 +6,11 @@ namespace nature
 {
 
 
-   class CLASS_DECL_ca database :
+   class CLASS_DECL_ca2 database :
       virtual public ::radix::object
    {
    public:
-      database(::ax::application * papp);
+      database(::ca::application * papp);
       virtual ~database();
 
       bool                    m_bInitialized;

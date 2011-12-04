@@ -16,7 +16,7 @@ namespace state
 namespace user
 {
 
-   class CLASS_DECL_ca button :
+   class CLASS_DECL_ca2 button :
       virtual public control,
       virtual public check_interface
    {
@@ -37,7 +37,7 @@ namespace user
       ::user::front_end_schema::button *  m_pschema;
 
 
-      button(::ax::application * papp);
+      button(::ca::application * papp);
       virtual ~button();
 
       void VirtualOnSize();
@@ -56,7 +56,7 @@ namespace user
       virtual bool _001IsPressed();
 
 
-      void _001OnDraw(::ax::graphics * pdc);
+      void _001OnDraw(::ca::graphics * pdc);
 
       virtual int get_hover();
 
@@ -68,7 +68,7 @@ namespace user
 
       virtual int hit_test(point pt, e_element & eelement);
 
-      virtual ::ax::font * _001GetFont(void);
+      virtual ::ca::font * _001GetFont(void);
       void _001SetButtonText(const char * lpcszText);
       void _001SetButtonTextId(const char * lpcszText);
       string _001GetButtonText();

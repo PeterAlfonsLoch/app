@@ -5,7 +5,7 @@ namespace userbase
 
    class split_bar;
 
-   class CLASS_DECL_ca split_layout :
+   class CLASS_DECL_ca2 split_layout :
       virtual public user::place_holder_container
    {
    public:
@@ -19,7 +19,7 @@ namespace userbase
          stateInitial = 1,
          stateDragging = 2
       };
-      class CLASS_DECL_ca Pane
+      class CLASS_DECL_ca2 Pane
       {
       public:
          Pane();
@@ -40,7 +40,7 @@ namespace userbase
       int                     m_cxBorder;
       int                     m_cyBorder;
 
-      split_layout(::ax::application * papp);
+      split_layout(::ca::application * papp);
       virtual ~split_layout();
 
       virtual int get_normal_dimension();

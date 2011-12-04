@@ -5,7 +5,7 @@
 namespace html
 {
 
-   class CLASS_DECL_ca style_sheet_array :
+   class CLASS_DECL_ca2 style_sheet_array :
       public array_ptr_alloc < style_sheet >
    {
    public:

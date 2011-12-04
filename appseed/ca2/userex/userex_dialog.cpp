@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 
-dialog::dialog(::ax::application * papp) :
-   ax(papp)
+dialog::dialog(::ca::application * papp) :
+   ca(papp)
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;
-   m_ulFlags      &= ~::ax::ax::flag_auto_delete;
+   m_ulFlags      &= ~::ca::ca::flag_auto_delete;
 }
 
 dialog::~dialog()

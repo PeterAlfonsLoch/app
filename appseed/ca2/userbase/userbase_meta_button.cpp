@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-MetaButton::MetaButton(::ax::application * papp) :
-   ax(papp),
+MetaButton::MetaButton(::ca::application * papp) :
+   ca(papp),
    ::user::button(papp),
    ::userbase::button(papp),
    m_spregion(papp)
@@ -24,10 +24,10 @@ BOOL MetaButton::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 void MetaButton::SetEllipseBrushs(
-   ::ax::brush * pbrush,
-   ::ax::brush * pbrushSel,
-   ::ax::brush * pbrushFocus,
-   ::ax::brush * pbrushDisabled)
+   ::ca::brush * pbrush,
+   ::ca::brush * pbrushSel,
+   ::ca::brush * pbrushFocus,
+   ::ca::brush * pbrushDisabled)
 {
 
    ASSERT(pbrush != NULL);
@@ -43,10 +43,10 @@ void MetaButton::SetEllipseBrushs(
 }
 
 void MetaButton::SetEllipsePens(        
-   ::ax::pen * ppen,
-   ::ax::pen * ppenSel,
-   ::ax::pen * ppenFocus,
-   ::ax::pen * ppenDisabled)
+   ::ca::pen * ppen,
+   ::ca::pen * ppenSel,
+   ::ca::pen * ppenFocus,
+   ::ca::pen * ppenDisabled)
 {
 
    ASSERT(ppen != NULL);
@@ -77,7 +77,7 @@ void MetaButton::SetTextColors(
 }
 
 
-void MetaButton::_001OnDraw(::ax::graphics * pdc)
+void MetaButton::_001OnDraw(::ca::graphics * pdc)
 {
 
    rect rectClient;
@@ -122,7 +122,7 @@ void MetaButton::_001OnDraw(::ax::graphics * pdc)
 
    }
 
-   pdc->set_alpha_mode(::ax::alpha_mode_blend);
+   pdc->set_alpha_mode(::ca::alpha_mode_blend);
    pdc->DrawEllipse(rectClient);
    pdc->FillEllipse(rectClient);
 
@@ -131,7 +131,7 @@ void MetaButton::_001OnDraw(::ax::graphics * pdc)
 
    pdc->set_font(GetFont());
    pdc->set_color(crText);
-   pdc->set_alpha_mode(::ax::alpha_mode_set);
+   pdc->set_alpha_mode(::ca::alpha_mode_set);
    pdc->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 

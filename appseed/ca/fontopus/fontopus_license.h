@@ -4,6 +4,7 @@
 namespace fontopus
 {
 
+
    class CLASS_DECL_ca license :
       virtual public ::radix::object
    {
@@ -26,6 +27,7 @@ namespace fontopus
 
       count clear_all_cache();
       bool clear_cache(const char * pszId);
+
 
    };
 

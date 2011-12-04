@@ -6,7 +6,7 @@ namespace fs
 
    class document;
 
-   class CLASS_DECL_ca main_view :
+   class CLASS_DECL_ca2 main_view :
       public ::userbase::split_view
    {
    public:

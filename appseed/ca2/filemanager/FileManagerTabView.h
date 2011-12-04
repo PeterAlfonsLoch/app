@@ -8,12 +8,12 @@ namespace filemanager
 
 }
 
-class CLASS_DECL_ca FileManagerTabView :
+class CLASS_DECL_ca2 FileManagerTabView :
    virtual public ::userex::pane_tab_view,
    virtual public FileManagerViewInterface
 {
 public:
-   FileManagerTabView(::ax::application * papp);
+   FileManagerTabView(::ca::application * papp);
 
    virtual void on_create_view(::user::view_creator_data * pcreatordata);
    virtual void install_message_handling(::gen::message::dispatch * pinterface);

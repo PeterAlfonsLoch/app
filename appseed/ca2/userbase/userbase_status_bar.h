@@ -24,7 +24,7 @@ namespace userbase
    };
 
 
-   class CLASS_DECL_ca status_bar :
+   class CLASS_DECL_ca2 status_bar :
       public ::userbase::control_bar
    {
    public:
@@ -102,7 +102,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnGetTextLength)
       DECL_GEN_SIGNAL(_001OnSetMinHeight)
 
-      virtual void _001OnDraw(::ax::graphics * pdc);
+      virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
 

@@ -70,14 +70,6 @@ namespace simpledb
             TRACE("simpledb::socket::send_response songs");
             //DWORD dw = ::GetTickCount();
          }
-         if(strScript == "ca2netnodebergedge")
-         {
-            bergedge::bergedge * pbergedge = System.get_bergedge(0);
-            ::bergedge::document * pdoc = pbergedge->get_document();
-            ::view * pview = pdoc->get_view(0);
-            pview->GetParentFrame()->ShowWindow(SW_RESTORE);
-            return;
-         }
          manager().handle(this);
       }
       if(!outheaders().has_property("content-type") && response().file().get_size() > 0)

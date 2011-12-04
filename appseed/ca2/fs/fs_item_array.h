@@ -4,7 +4,7 @@
 namespace fs
 {
 
-   class CLASS_DECL_ca item_array :
+   class CLASS_DECL_ca2 item_array :
       public array_ptr_alloc < item, item & >
    {
    public:

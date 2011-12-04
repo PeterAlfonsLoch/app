@@ -1,8 +1,8 @@
 #include "StdAfx.h"
 
 
-menu_view::menu_view(::ax::application * papp) :
-   ax(papp),
+menu_view::menu_view(::ca::application * papp) :
+   ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),

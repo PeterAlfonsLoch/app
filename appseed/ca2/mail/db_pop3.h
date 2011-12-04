@@ -8,7 +8,7 @@ namespace mail
    class tree;
    class list;
 
-   class CLASS_DECL_ca db_pop3 :
+   class CLASS_DECL_ca2 db_pop3 :
       virtual public pop3
    {
    public:
@@ -19,7 +19,7 @@ namespace mail
       critical_section     m_csDataset;
       string               m_strTransaction;
 
-      db_pop3(::ax::application * papp);
+      db_pop3(::ca::application * papp);
 
       virtual string get_user();
       virtual string get_pass();

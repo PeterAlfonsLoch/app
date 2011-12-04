@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-simple_tree_view::simple_tree_view(::ax::application * papp) :
-   ax(papp),
+simple_tree_view::simple_tree_view(::ca::application * papp) :
+   ca(papp),
    data_container(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),

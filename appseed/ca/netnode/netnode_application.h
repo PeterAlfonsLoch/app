@@ -9,7 +9,7 @@ namespace netnode
 
 
    class CLASS_DECL_ca application :
-      virtual public ::fontopus::application
+      virtual public ::planebase::application
    {
    public:
 

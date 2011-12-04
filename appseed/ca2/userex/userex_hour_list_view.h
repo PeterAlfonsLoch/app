@@ -11,13 +11,13 @@ namespace userex
 {
 
 
-   class CLASS_DECL_ca hour_list_view :
+   class CLASS_DECL_ca2 hour_list_view :
       virtual public ::simple_list_view
    {
    public:
 
 
-      hour_list_view(::ax::application * papp);   
+      hour_list_view(::ca::application * papp);   
       virtual ~hour_list_view();
 
 

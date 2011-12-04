@@ -4,8 +4,8 @@
 namespace userbase
 {
 
-   main_frame::main_frame(::ax::application * papp) :
-      ax(papp),
+   main_frame::main_frame(::ca::application * papp) :
+      ca(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp),

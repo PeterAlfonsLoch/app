@@ -1,7 +1,7 @@
 ﻿#include "StdAfx.h"
 
-html_form::html_form(::ax::application * papp) :
-   ax(papp),
+html_form::html_form(::ca::application * papp) :
+   ca(papp),
    ::user::interaction(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
@@ -17,7 +17,7 @@ html_form::~html_form()
 
 
 
-void html_form::_001OnDraw(::ax::graphics * pdc)
+void html_form::_001OnDraw(::ca::graphics * pdc)
 {
    if(get_html_data() != NULL)
    {
@@ -30,10 +30,10 @@ void html_form::_001OnDraw(::ax::graphics * pdc)
 
    //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
-   //::ax::bitmap bmp2;
+   //::ca::bitmap bmp2;
 
    //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
-   //::ax::graphics_sp dc2;
+   //::ca::graphics_sp dc2;
    //dc2.CreateCompatibleDC(pdc);
    //dc2.SelectObject(bmp2);
 
@@ -47,7 +47,7 @@ void html_form::_001OnDraw(::ax::graphics * pdc)
 }
 
 
-void html_form::_001DrawChildren(::ax::graphics *pdc)
+void html_form::_001DrawChildren(::ca::graphics *pdc)
 {
 
    if(m_pguie != NULL && m_pguie != this)
@@ -84,7 +84,7 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
       if(get_html_data()->m_rect.width() > 0 &&
          get_html_data()->m_rect.height() > 0)
       {
-         ::ax::graphics * pdc = GetDC();
+         ::ca::graphics * pdc = GetDC();
          get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
          ReleaseDC(pdc);
@@ -143,7 +143,7 @@ void html_form::layout()
    //{
      // bLayoutOk = true;
    //}
-   ::ax::graphics * pdc = GetDC();
+   ::ca::graphics * pdc = GetDC();
    get_html_data()->m_pguie = this;
    get_html_data()->m_pguie = this;
    get_html_data()->implement(pdc);
@@ -276,7 +276,7 @@ html::data * html_form::calc_data()
    if(get_html_data() != NULL)
       return get_html_data();
    else
-      return dynamic_cast < html::data * > (Application.alloc(::ax::get_type_info < html::data > ()));
+      return dynamic_cast < html::data * > (Application.alloc(::ca::get_type_info < html::data > ()));
 }
 
 /*

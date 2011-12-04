@@ -210,11 +210,10 @@ CLASS_DECL_ca void AfxDrawDitheredBitmap(::ca::application * papp, ::ca::graphic
 #include "command_target.h"
 
 
+typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
 
 
 
-
-// global helpers for threads
 
 CLASS_DECL_ca ::radix::thread* AfxBeginThread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam,
    int nPriority = ::ca::thread_priority_normal, UINT nStackSize = 0,
@@ -337,6 +336,7 @@ public:
 
 
 #include "visual/visual_01.h"
+#include "user/user_01.h"
 #include "ca/ca_2.h"
 
 #include "radix_os_history.h"

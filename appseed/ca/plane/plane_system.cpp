@@ -1,9 +1,10 @@
 #include "StdAfx.h"
 
+#ifdef WINDOWS
 #undef new
 #include <GdiPlus.h>
 #define new DEBUG_NEW
-
+#endif
 
 namespace plane
 {
@@ -21,7 +22,7 @@ namespace plane
       g_pheapitema = pitema;
    }*/
 
-      ULONG_PTR gdiplusToken;
+      
 
    system::system()
    {
@@ -31,14 +32,14 @@ namespace plane
          ::set_heap_mutex(new mutex());
       }
 
-
+#ifdef WINDOWS
       Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-      GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+      GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
+#endif
 
-
-/*      if(::cube8::get_heap_itema() == NULL)
+/*      if(::plane::get_heap_itema() == NULL)
       {
-         ::cube8::set_heap_itema(new class ::cube8::heap_item_array());
+         ::plane::set_heap_itema(new class ::plane::heap_item_array());
       }*/
 
       use_base_ca2_allocator();
@@ -79,7 +80,7 @@ namespace plane
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
       m_pcopydesk                = NULL;
-      m_pplanesystem                  = this;
+      m_psystem                  = this;
 
       
 
@@ -99,7 +100,11 @@ namespace plane
 
    system::~system()
    {
-      Gdiplus::GdiplusShutdown(gdiplusToken);
+
+#ifdef WINDOWS
+      Gdiplus::GdiplusShutdown(m_gdiplusToken);
+#endif
+
       m_puiMain      = NULL;
       m_puiActive    = NULL;
 
@@ -125,7 +130,7 @@ namespace plane
       m_bInitApplicationResult      = FALSE;
       m_bInitApplication            = true;
 
-      m_bInitApplicationResult = cube8::application::InitApplication();
+      m_bInitApplicationResult = plane::application::InitApplication();
 
       return m_bInitApplicationResult;
    }
@@ -242,7 +247,7 @@ namespace plane
    bool system::find_applications()
    {
 
-      m_spfilehandler(new ::ca2::filehandler::handler(this));
+/*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
 
       string strLibraryId;
       stringa straTitle;
@@ -272,7 +277,7 @@ namespace plane
          return false;
 
 
-      m_spfilehandler->defer_add_library(library.m_pca2library);
+//      m_spfilehandler->defer_add_library(library.m_pca2library);
 
       stringa stra;
       string strApp;
@@ -325,7 +330,7 @@ namespace plane
       if(!system::application::initialize_instance())
         return false;
 
-      m_pbergedgemap = new ::bergedge::bergedge::map;
+      m_pbergedgemap = new ::plane::bergedge::map;
 
       return true;
    }
@@ -339,7 +344,7 @@ namespace plane
    bool system::verb()
    {
 
-      ::cube8::application::verb();
+      ::plane::application::verb();
 
       if(directrix().m_varTopicQuery.has_property("install"))
          return false;
@@ -490,9 +495,9 @@ namespace plane
    }
 
 
-   bergedge::bergedge * system::query_bergedge(index iEdge)
+   plane::bergedge * system::query_bergedge(index iEdge)
    {
-      bergedge::bergedge * pbergedge = NULL;
+      plane::bergedge * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
@@ -503,14 +508,14 @@ namespace plane
    }
 
 
-   bergedge::bergedge * system::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
+   plane::bergedge * system::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      bergedge::bergedge * pbergedge = NULL;
+      plane::bergedge * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
       {
-         pbergedge = dynamic_cast < ::bergedge::bergedge * > (create_application("bergedge", true, pbiasCreation));
+         pbergedge = dynamic_cast < ::plane::bergedge * > (create_application("bergedge", true, pbiasCreation));
          if(pbergedge == NULL)
             return NULL;
          pbergedge->m_iEdge = iEdge;
@@ -520,21 +525,9 @@ namespace plane
    }
 
 
-   platform::document * system::get_platform(index iEdge, ::ca::application_bias * pbiasCreation)
-   {
-      bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
-      return pbergedge->get_platform();
-   }
-
-   nature::document * system::get_nature(index iEdge, ::ca::application_bias * pbiasCreation)
-   {
-      bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreation);
-      return pbergedge->get_nature();
-   }
-
    ::ca::application * system::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
+      plane::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszId, bCreate, bSynch, pbiasCreate);
    }
 
@@ -646,10 +639,10 @@ namespace plane
       return *m_puserstr;
    }
 
-   ::ca2::filehandler::handler & system::filehandler()
+/*   ::ca2::filehandler::handler & system::filehandler()
    {
       return *m_spfilehandler;
-   }
+   }*/
 
    void system::register_bergedge_application(::ca::application * papp)
    {
@@ -1005,7 +998,7 @@ namespace plane
 
    void system::on_request(::ca::create_context * pcreatecontext)
    {
-      ::bergedge::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      ::plane::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       pbergedge->request(pcreatecontext);
    }
 
@@ -1164,7 +1157,7 @@ namespace plane
    index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
    {
       int iNewEdge = m_iNewEdge;
-      bergedge::bergedge * pbergedge;
+      plane::bergedge * pbergedge;
       while(m_pbergedgemap->Lookup(iNewEdge, pbergedge))
       {
          iNewEdge++;
@@ -1231,7 +1224,7 @@ namespace plane
 
       if(pdata == NULL)
       {
-         if(!::cube8::application::set_main_init_data(pdata))
+         if(!::plane::application::set_main_init_data(pdata))
             return false;
          return true;
       }
@@ -1269,7 +1262,7 @@ namespace plane
          command().add_line(strCommandLine);
       }
 
-      if(!::cube8::application::set_main_init_data(pdata))
+      if(!::plane::application::set_main_init_data(pdata))
          return false;
       
       return true;

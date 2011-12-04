@@ -3,11 +3,11 @@
 namespace mail
 {
 
-   class CLASS_DECL_ca account :
+   class CLASS_DECL_ca2 account :
       virtual public ::radix::object
    {
    public:
-      account(::ax::application * papp);
+      account(::ca::application * papp);
       string         m_id;
       string         m_strEmail;
       string         m_strServer;

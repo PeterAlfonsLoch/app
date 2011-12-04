@@ -9,7 +9,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca tree_data :
+      class CLASS_DECL_ca2 tree_data :
          virtual public ex1::tree_data
       {
       public:

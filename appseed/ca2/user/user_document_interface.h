@@ -5,15 +5,15 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca document_interface :
+   class CLASS_DECL_ca2 document_interface :
       virtual public command_target,
       virtual public ex1::byte_serializable,
-      virtual public ::ax::data_container
+      virtual public ::ca::data_container
    {
    public:
 
 
-      document_interface(::ax::application * papp);
+      document_interface(::ca::application * papp);
       virtual ~document_interface();
 
 

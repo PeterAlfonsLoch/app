@@ -5,7 +5,7 @@ namespace nature
 
    class database;
 
-   class CLASS_DECL_ca application :
+   class CLASS_DECL_ca2 application :
       virtual public ::cube8::application
    {
    public:
@@ -18,8 +18,8 @@ namespace nature
       application();
       virtual ~application(void);
 
-      using ::ax::thread::construct;
-      using ::ax::application::construct;
+      using ::ca::thread::construct;
+      using ::ca::application::construct;
 
       virtual void construct();
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca string_to_string_map :
+class CLASS_DECL_ca2 string_to_string_map :
    public ::radix::object
 {
 public:

@@ -5,7 +5,7 @@ namespace mail
 {
 
 
-   class CLASS_DECL_ca configuration :
+   class CLASS_DECL_ca2 configuration :
       public ::user::form_callback,
       public ::user::view_creator
    {
@@ -17,7 +17,7 @@ namespace mail
       string                        m_strEmail;
 
 
-      configuration(::ax::application * papp);
+      configuration(::ca::application * papp);
       virtual ~configuration();
 
 

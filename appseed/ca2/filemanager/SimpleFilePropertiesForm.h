@@ -3,7 +3,7 @@
 namespace filemanager
 {
 
-   class CLASS_DECL_ca SimpleFilePropertiesForm :
+   class CLASS_DECL_ca2 SimpleFilePropertiesForm :
          virtual public ::user::form_callback,
          virtual public ::user::view_creator,
          virtual public ::user::tab_callback
@@ -18,7 +18,7 @@ namespace filemanager
       ::fs::item_array                          m_itema;
 
 
-      SimpleFilePropertiesForm(::ax::application * papp);
+      SimpleFilePropertiesForm(::ca::application * papp);
       virtual ~SimpleFilePropertiesForm();
 
 

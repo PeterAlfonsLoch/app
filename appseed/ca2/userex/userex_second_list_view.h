@@ -11,13 +11,13 @@ namespace userex
 {
 
 
-   class CLASS_DECL_ca second_list_view :
+   class CLASS_DECL_ca2 second_list_view :
       virtual public ::simple_list_view
    {
    public:
 
 
-      second_list_view(::ax::application * papp);   
+      second_list_view(::ca::application * papp);   
       virtual ~second_list_view();
 
 

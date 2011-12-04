@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca list_interface :
+   class CLASS_DECL_ca2 list_interface :
       virtual public ::userbase::form_list
    {
    public:

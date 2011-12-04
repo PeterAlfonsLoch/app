@@ -9,12 +9,12 @@ namespace plane
    {
 
       m_bDrawCursor              = true;
-      m_pnaturedocument          = NULL;
+/*      m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
-      m_pbergedgedocument        = NULL;
+      m_pbergedgedocument        = NULL;*/
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-      m_pplanebergedge                = this;
+      m_pbergedge                = this;
 
       ::fs::set * pset = new class ::fs::set(this);
       pset->m_spafsdata.add(new ::fs::native(this));
@@ -27,7 +27,7 @@ namespace plane
 
       POSITION pos = m_mapApplication.get_start_position();
 
-      if(m_pnaturedocument != NULL)
+/*      if(m_pnaturedocument != NULL)
       {
          m_pnaturedocument->on_close_document();
       }
@@ -41,7 +41,7 @@ namespace plane
       {
          m_pbergedgedocument->on_close_document();
       }
-
+      */
       string strId;
       ::ca::application * pcaapp;
 
@@ -72,13 +72,13 @@ namespace plane
    bool bergedge::initialize_instance()
    {
 
-      if(!cube2::application::initialize_instance())
+      if(!plane::application::initialize_instance())
          return false;
 
       initialize_bergedge_application_interface();
 
 
-      GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      //GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");
@@ -98,7 +98,7 @@ namespace plane
    {
       try
       {
-         ::platform::application::exit_instance();
+         ::plane::application::exit_instance();
       }
       catch(...)
       {
@@ -115,7 +115,7 @@ namespace plane
 
    void bergedge::_001OnFileNew()
    {
-      userbase::application::m_pdocmanager->_001OnFileNew();
+      //userbase::application::m_pdocmanager->_001OnFileNew();
    }
 
 
@@ -127,24 +127,16 @@ namespace plane
 
    ::ca::application * bergedge::get_app() const
    {
-      return platform::application::get_app();
-   }
-
-   void bergedge::OnFileManagerOpenFile(
-         ::filemanager::data * pdata,
-         ::fs::item_array & itema)
-   {
-      UNREFERENCED_PARAMETER(pdata);
-      m_ptemplate_html->open_document_file(itema[0].m_strPath);
+      return plane::application::get_app();
    }
 
    void bergedge::load_string_table()
    {
-      cube1::application::load_string_table();
-      cube1::application::load_string_table("platform");
+      fontopus::application::load_string_table();
+      fontopus::application::load_string_table("plane");
    }
 
-   bool bergedge::file_manager_open_file(
+/*   bool bergedge::file_manager_open_file(
             ::filemanager::data * pdata,
             ::fs::item_array & itema)
    {
@@ -154,20 +146,20 @@ namespace plane
          return true;
       }
       return false;
-   }
+   }*/
 
 
    void bergedge::initialize_bergedge_application_interface()
    {
       int iCount = 32; // todo: get from bergedge profile
-      System.factory().creatable < ::bergedge::document > (iCount);
+/*      System.factory().creatable < ::bergedge::document > (iCount);
       System.factory().creatable < ::bergedge::view > (iCount);
       System.factory().creatable < ::bergedge::pane_view > (iCount);
       System.factory().creatable < ::bergedge::frame > (iCount);
-      System.factory().creatable < platform::document > (iCount);
-      System.factory().creatable < platform::view > (iCount);
-      System.factory().creatable < platform::pane_view > (iCount);
-      System.factory().creatable < platform::frame > (iCount);
+      System.factory().creatable < plane::document > (iCount);
+      System.factory().creatable < plane::view > (iCount);
+      System.factory().creatable < plane::pane_view > (iCount);
+      System.factory().creatable < plane::frame > (iCount);
       System.factory().creatable < nature::document > (iCount);
       System.factory().creatable < nature::view > (iCount);
       System.factory().creatable < nature::pane_view > (iCount);
@@ -181,21 +173,21 @@ namespace plane
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < platform::document > (),
-         ::ca::get_type_info < platform::frame > (),
-         ::ca::get_type_info < platform::pane_view > ());
+         ::ca::get_type_info < plane::document > (),
+         ::ca::get_type_info < plane::frame > (),
+         ::ca::get_type_info < plane::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
          ::ca::get_type_info < nature::document > (),
          ::ca::get_type_info < nature::frame > (),
          ::ca::get_type_info < nature::view > ());
-      m_pnaturedocument = NULL;
+      m_pnaturedocument = NULL;*/
    }
 
    bool bergedge::create_bergedge(::ca::create_context * pcreatecontext)
    {
-      if(m_pbergedgedocument == NULL)
+/*      if(m_pbergedgedocument == NULL)
       {
 
          ::ca::create_context_sp createcontextBergedge(get_app());
@@ -204,7 +196,7 @@ namespace plane
          createcontextBergedge->m_bMakeVisible = false;
 
          m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
-         m_pbergedgedocument->m_pplanebergedge = this;
+         m_pbergedgedocument->m_pbergedge = this;
       
       }
       if(m_bShowPlatform)
@@ -218,7 +210,7 @@ namespace plane
             createcontextPlatform->m_bMakeVisible = true;
             createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
 
-            m_pplatformdocument  = dynamic_cast < platform::document * > (m_ptemplate_platform->open_document_file(createcontextPlatform));
+            m_pplatformdocument  = dynamic_cast < plane::document * > (m_ptemplate_platform->open_document_file(createcontextPlatform));
             m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
             //m_pnaturedocument    =
             // dynamic_cast < nature::document * > (
@@ -228,7 +220,8 @@ namespace plane
             //m_pbergedgedocument->set_nature(m_pnaturedocument);
          }
       }
-      return m_pbergedgedocument != NULL;
+      return m_pbergedgedocument != NULL;*/
+      return false;
    }
 
    void bergedge::launch_app(const char * psz)
@@ -272,7 +265,8 @@ namespace plane
          else if(m_bShowPlatform)
          {
             create_bergedge(pcreatecontext);
-            if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
+            throw not_implemented_exception();
+            /*if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
             {
                ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
                if(pframe != NULL)
@@ -280,7 +274,7 @@ namespace plane
                   pframe->ShowWindow(SW_SHOW);
                   pframe->InitialFramePosition();
                }
-            }
+            }*/
          }
          bCreate = false;
       }
@@ -339,7 +333,7 @@ namespace plane
 
 
       
-      if(m_bShowPlatform)
+/*      if(m_bShowPlatform)
       {
          ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie());
          if(pframeApp != NULL)
@@ -380,13 +374,13 @@ namespace plane
       {
       }
 
-
+      */
 
 
    }
 
 
-   ::bergedge::document * bergedge::get_document()
+   /*::bergedge::document * bergedge::get_document()
    {
       return m_pbergedgedocument;
    }
@@ -398,7 +392,7 @@ namespace plane
       return get_document()->get_bergedge_view();
    }
 
-   ::platform::document * bergedge::get_platform()
+   ::plane::document * bergedge::get_platform()
    {
       return m_pplatformdocument;
    }
@@ -407,7 +401,7 @@ namespace plane
    {
       return m_pnaturedocument;
    }
-
+   */
    bool bergedge::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
    {
       
@@ -460,7 +454,7 @@ namespace plane
 
          stringa straApp;
 
-         System.filehandler().get_extension_app(straApp, strExtension);
+         //Cube.filehandler().get_extension_app(straApp, strExtension);
      
 
          if(straApp.get_count() == 1)
@@ -539,17 +533,17 @@ namespace plane
 #endif
          return true;
       }*/
-      ::user::application * papp = dynamic_cast < ::user::application * > (application_get(strId, true, true, pcreatecontext->m_spApplicationBias));
+/*      ::user::application * papp = dynamic_cast < ::user::application * > (application_get(strId, true, true, pcreatecontext->m_spApplicationBias));
       if(papp == NULL)
          return false;
-      papp->::ex1::request_interface::create(pcreatecontext);
+      papp->::ex1::request_interface::create(pcreatecontext);*/
       return true;
    }
 
    bool bergedge::InitializeLocalDataCentral()
    {
 
-      m_pdatabase = new nature::database(this);
+/*      m_pdatabase = new nature::database(this);
 
       if(m_pdatabase == NULL)
       {
@@ -561,7 +555,7 @@ namespace plane
       {
          TRACE("VmpLightApp::initialize_instance failed to initialize LightDB\n");
          return false;
-      }
+      }*/
 
       return true;
 
@@ -614,10 +608,12 @@ namespace plane
          && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
-         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+               // xxx webserver
+
+/*         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
          {
             get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
-         }
+         }*/
          App(m_pappCurrent).request(pcreatecontext);
       }
       else
@@ -734,7 +730,7 @@ namespace plane
          pui = m_puiInitialPlaceHolderContainer;
       }*/
 
-/*      if(pui == NULL && m_bShowPlatform && m_pplanebergedge->get_document() != NULL)
+/*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
          pui = Bergedge.get_document()->get_bergedge_view();
       }
@@ -758,7 +754,7 @@ namespace plane
 
 
 
-      cube8::application & app = App(pinteraction->get_app());
+/*      cube8::application & app = App(pinteraction->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -785,13 +781,13 @@ namespace plane
 
          }
 
-      }
+      }*/
 
       return puiParent;
 
    }
 
-   ::user::place_holder_ptra bergedge::get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
+/*   ::user::place_holder_ptra bergedge::get_place_holder(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -820,8 +816,9 @@ namespace plane
 
       return holderptra;
 
-   }
+   }*/
 
+   /*
    bool bergedge::place(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
@@ -830,17 +827,20 @@ namespace plane
       return true;
 
    }
+   */
 
    void bergedge::get_screen_rect(LPRECT lprect)
    {
-      if(get_document() != NULL && get_view() != NULL)
+            // xxx webserver
+
+/*      if(get_document() != NULL && get_view() != NULL)
       {
          get_view()->GetWindowRect(lprect);
       }
       else 
       {
          System.get_screen_rect(lprect);
-      }
+      }*/
    }
 
    bool bergedge::on_install()
@@ -855,7 +855,7 @@ namespace plane
       win::registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
       keyKar.SetValue("ca2 sentinel", "\"" + strSentinelPath + "\"");
 
-      return platform::application::on_install();
+      return plane::application::on_install();
    }
 
 
@@ -867,7 +867,7 @@ namespace plane
       if(m_mapApplication.Lookup(pszAppId, papp) && papp != NULL)
       {
 
-         ::bergedge::pane_view * ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+/*         ::bergedge::pane_view * ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
 
          if(ppaneview != NULL)
          {
@@ -885,7 +885,7 @@ namespace plane
 
             }
 
-         }
+         }*/
 
       }
 

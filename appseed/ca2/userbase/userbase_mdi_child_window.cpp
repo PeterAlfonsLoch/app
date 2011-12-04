@@ -23,8 +23,8 @@ namespace userbase
       //}}AFX_MSG_MAP
    // // END_MESSAGE_MAP()
 
-   mdi_child_window::mdi_child_window(::ax::application * papp) :
-      ax(papp),
+   mdi_child_window::mdi_child_window(::ca::application * papp) :
+      ca(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp)
@@ -106,7 +106,7 @@ namespace userbase
    BOOL mdi_child_window::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect, mdi_frame_window* pParentWnd,
-      ::ax::create_context* pContext)
+      ::ca::create_context* pContext)
    {
       if (pParentWnd == NULL)
       {
@@ -119,7 +119,7 @@ namespace userbase
       }
       ASSERT(pParentWnd->m_pguieMdiClient->IsWindow());
 
-      // insure correct ::ax::window positioning
+      // insure correct ::ca::window positioning
       pParentWnd->layout();
 
       // first copy into a CREATESTRUCT for PreCreate
@@ -157,7 +157,7 @@ namespace userbase
       mcs.style = cs.style & ~(WS_MAXIMIZE | WS_VISIBLE);
       mcs.lParam = (LPARAM)cs.lpCreateParams;
 
-      // create the ::ax::window through the MDICLIENT ::ax::window
+      // create the ::ca::window through the MDICLIENT ::ca::window
       //AfxHookWindowCreate(this);
       ::user::interaction * hWnd = (::user::interaction *)pParentWnd->m_pguieMdiClient->SendMessage(
          WM_MDICREATE, 0, (LPARAM)&mcs);
@@ -170,7 +170,7 @@ namespace userbase
       // special handling of visibility (always created invisible)
       if (cs.style & WS_VISIBLE)
       {
-         // place the ::ax::window on top in z-order before showing it
+         // place the ::ca::window on top in z-order before showing it
          hWnd->BringWindowToTop();
 
          // show it as specified
@@ -193,7 +193,7 @@ namespace userbase
    }
 
    BOOL mdi_child_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
-         ::user::interaction* pParentWnd, ::ax::create_context* pContext)
+         ::user::interaction* pParentWnd, ::ca::create_context* pContext)
    {
       // only do this once
    //   ASSERT_VALID_IDR(nIDResource);
@@ -216,7 +216,7 @@ namespace userbase
       }
       else
       {
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: no shared menu/acceltable for MDI Child ::ax::window.\n");
+         TRACE(::radix::trace::category_AppMsg, 0, "Warning: no shared menu/acceltable for MDI Child ::ca::window.\n");
             // if this happens, programmer must load these manually
       }
 
@@ -250,7 +250,7 @@ namespace userbase
 
    BOOL mdi_child_window::UpdateClientEdge(LPRECT lpRect)
    {
-      // only adjust for active MDI child ::ax::window
+      // only adjust for active MDI child ::ca::window
       mdi_frame_window* pFrameWnd = GetMDIFrame();
       mdi_child_window* pChild = pFrameWnd->MDIGetActive();
       if (pChild == NULL || pChild == this)
@@ -292,7 +292,7 @@ namespace userbase
          rect rectClient;
          if (UpdateClientEdge(rectClient) && (GetStyle() & WS_MAXIMIZE))
          {
-            // adjust maximized ::ax::window size and position based on new
+            // adjust maximized ::ca::window size and position based on new
             //  size/position of the MDI client area.
             ::AdjustWindowRectEx(rectClient, GetStyle(), FALSE, GetExStyle());
             lpWndPos->x = rectClient.left;
@@ -330,7 +330,7 @@ namespace userbase
       if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
          return nResult;   // frame does not want to activate
 
-      // activate this ::ax::window if necessary
+      // activate this ::ca::window if necessary
       mdi_frame_window* pFrameWnd = GetMDIFrame();
       ASSERT_VALID(pFrameWnd);
       mdi_child_window* pActive = pFrameWnd->MDIGetActive();
@@ -347,8 +347,8 @@ namespace userbase
       ASSERT(pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW);
       UNUSED(pNMHDR);
 
-      // check to see if the message is going directly to this ::ax::window or not
-      const MSG* pMsg = ::ax::window::GetCurrentMessage();
+      // check to see if the message is going directly to this ::ca::window or not
+      const MSG* pMsg = ::ca::window::GetCurrentMessage();
       if (pMsg->hwnd != _get_handle())
       {
          // let top level frame handle this for us
@@ -369,7 +369,7 @@ namespace userbase
       // determine default show command
       if (nCmdShow == -1)
       {
-         // get maximized state of frame ::ax::window (previously active child)
+         // get maximized state of frame ::ca::window (previously active child)
          BOOL bMaximized;
          pFrameWnd->MDIGetActive(&bMaximized);
 
@@ -381,16 +381,16 @@ namespace userbase
             nCmdShow = SW_SHOWMINIMIZED;
       }
 
-      // finally, show the ::ax::window
+      // finally, show the ::ca::window
       userbase::frame_window::ActivateFrame(nCmdShow);
 
-      // update the Window menu to reflect new child ::ax::window
+      // update the Window menu to reflect new child ::ca::window
       mdi_frame_window* pFrame = GetMDIFrame();
       pFrame->m_pguieMdiClient->SendMessage( WM_MDIREFRESHMENU, 0, 0);
 
       // Note: Update the m_bPseudoInactive flag.  This is used to handle the
       //  last MDI child getting hidden.  Windows provides no way to deactivate
-      //  an MDI child ::ax::window.
+      //  an MDI child ::ca::window.
 
       BOOL bVisibleNow = (GetStyle() & WS_VISIBLE) != 0;
       if (bVisibleNow == bVisibleThen)
@@ -398,17 +398,17 @@ namespace userbase
 
       if (!bVisibleNow)
       {
-         // get current active ::ax::window according to Windows MDI
+         // get current active ::ca::window according to Windows MDI
          ::user::interaction * hWnd = (::user::interaction *)pFrameWnd->m_pguieMdiClient->SendMessage(
             WM_MDIGETACTIVE, 0, 0);
          if (hWnd != this)
          {
-            // not active any more -- ::ax::window must have been deactivated
+            // not active any more -- ::ca::window must have been deactivated
             ASSERT(!m_bPseudoInactive);
             return;
          }
 
-         // check next ::ax::window
+         // check next ::ca::window
          ASSERT(hWnd != NULL);
          pFrameWnd->MDINext();
 

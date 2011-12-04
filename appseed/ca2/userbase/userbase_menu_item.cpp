@@ -5,8 +5,8 @@ namespace userbase
 {
 
 
-   menu_item::menu_item(::ax::application * papp) :
-      ax(papp),
+   menu_item::menu_item(::ca::application * papp) :
+      ca(papp),
       m_button(papp)
    {
       m_spitema(new menu_item_ptra(this));
@@ -116,7 +116,7 @@ namespace userbase
    }
 
    menu_item_ptra::menu_item_ptra(menu_item * pitemContainer) :
-      ax(pitemContainer->get_app())
+      ca(pitemContainer->get_app())
    {
       m_pitemContainer = pitemContainer;
    }

@@ -2,10 +2,10 @@
 
 class ::user::list;
 
-class CLASS_DECL_ca SimpleFormListEdit : public ::userbase::edit_plain_text
+class CLASS_DECL_ca2 SimpleFormListEdit : public ::userbase::edit_plain_text
 {
 public:
-   SimpleFormListEdit(::ax::application * papp);
+   SimpleFormListEdit(::ca::application * papp);
 
    ::user::list * m_plistinterface;
 
@@ -13,7 +13,7 @@ public:
    ::user::list * GetBaseListInterface();
    virtual ~SimpleFormListEdit();
 
-   BOOL OnEraseBkgnd(::ax::graphics * pgraphics);
+   BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
    int OnCreate(LPCREATESTRUCT lpCreateStruct);
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);

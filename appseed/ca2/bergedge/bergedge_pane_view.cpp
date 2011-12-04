@@ -3,8 +3,8 @@
 namespace bergedge
 {
 
-   pane_view::pane_view(::ax::application * papp) :
-      ax(papp),
+   pane_view::pane_view(::ca::application * papp) :
+      ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
       ::userbase::tab_view(papp),
@@ -192,10 +192,10 @@ namespace bergedge
 
          if(gen::str::begins_eat(strId, "app:"))
          {
-            ::ax::application * pappTab;
+            ::ca::application * pappTab;
             if(!Bergedge.m_mapApplication.Lookup(strId, pappTab))
             {
-               ::ax::application_bias * pbiasCreate = new ::ax::application_bias;
+               ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
                Bergedge.command().add_fork(strId, pbiasCreate);
             }
@@ -260,7 +260,7 @@ namespace bergedge
       {
       case PaneViewContextMenu:
          {
-/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(::ax::get_type_info < bergedge::menu_view > (), get_document(), this, 102));
+/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(::ca::get_type_info < bergedge::menu_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -340,7 +340,7 @@ namespace bergedge
          break;
       case PaneViewConfiguration:
       {
-         form_document * pdoc = System.create_form(this, this);
+         form_document * pdoc = Cube.create_form(this, this);
          if(pdoc == NULL)
             return;
          m_pformOptions = pdoc->get_typed_view < form_view > ();
@@ -520,7 +520,7 @@ namespace bergedge
    }
 
 
-   void pane_view::_001OnDraw(::ax::graphics * pdc)
+   void pane_view::_001OnDraw(::ca::graphics * pdc)
    {
 
       if(m_iNewArea != m_iArea)
@@ -548,7 +548,7 @@ namespace bergedge
          }
          FIBITMAP * pfi;
 
-         ::ax::graphics * pdc = GetDC();
+         ::ca::graphics * pdc = GetDC();
 
          pfi = System.imaging().LoadImageFile(strWallpaper);
 

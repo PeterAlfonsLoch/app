@@ -5,12 +5,12 @@ namespace fs
 {
 
 
-   class CLASS_DECL_ca list_item_array :
+   class CLASS_DECL_ca2 list_item_array :
       virtual ::radix::object
    {
    protected:
 
-      class CLASS_DECL_ca base_list_item_array :
+      class CLASS_DECL_ca2 base_list_item_array :
          public class_sort_array < base_list_item_array, list_item, const list_item &, array_ptr_alloc < list_item, const list_item & > >
       {
       public:

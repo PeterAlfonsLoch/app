@@ -1,12 +1,12 @@
 #pragma once
 
 /////////////////////////////////////////////////////////////////////////////
-// CButtonV007 ::ax::window
+// CButtonV007 ::ca::window
 
 namespace window_frame
 {
 
-   class  CLASS_DECL_ca ControlBoxButton :
+   class  CLASS_DECL_ca2 ControlBoxButton :
       virtual public ::user::interaction
    {
    public:
@@ -15,15 +15,15 @@ namespace window_frame
 
       virtual void UpdateWndRgn() = 0;
       virtual void SetEllipsePens(
-           ::ax::pen * ppen,
-           ::ax::pen * ppenSel = NULL,
-           ::ax::pen * ppenFocus = NULL,
-           ::ax::pen * ppenDisabled = NULL) = 0;
+           ::ca::pen * ppen,
+           ::ca::pen * ppenSel = NULL,
+           ::ca::pen * ppenFocus = NULL,
+           ::ca::pen * ppenDisabled = NULL) = 0;
       virtual void SetEllipseBrushs(
-           ::ax::brush * pbrush,
-           ::ax::brush * pbrushSel = NULL,
-           ::ax::brush * pbrushFocus = NULL,
-           ::ax::brush * pbrushDisabled = NULL) = 0;
+           ::ca::brush * pbrush,
+           ::ca::brush * pbrushSel = NULL,
+           ::ca::brush * pbrushFocus = NULL,
+           ::ca::brush * pbrushDisabled = NULL) = 0;
        virtual void SetTextColors(
            COLORREF cr,
            COLORREF crSel,

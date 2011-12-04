@@ -14,7 +14,7 @@ namespace userbase
 
 
 
-// Frame ::ax::window styles
+// Frame ::ca::window styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
@@ -32,7 +32,7 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
    // All fields are optional and may be NULL
 {
    // for creating new views
-   ::ax::type_info m_typeinfoNewView; // runtime class of ::view to create or NULL
+   ::ca::type_info m_typeinfoNewView; // runtime class of ::view to create or NULL
    ::userbase::document* m_pCurrentDoc;
 
    // for creating MDI children (mdi_child_window::LoadFrame)
@@ -50,24 +50,24 @@ class OleFrameHook;        // forward reference (see ..\src\oleimpl2.h)
 namespace userbase
 {
 
-   class CLASS_DECL_ca frame_window :
+   class CLASS_DECL_ca2 frame_window :
       virtual public ::frame_window,
       virtual public frame_window_interface
    {
    public:
 
 
-      frame_window(::ax::application * papp);
+      frame_window(::ca::application * papp);
       virtual ~frame_window();
 
 
       void CommonConstruct();
 
 
-      virtual void on_delete(::ax::ax * pca);
+      virtual void on_delete(::ca::ca * pca);
 
 
-      virtual void _000OnDraw(::ax::graphics * pdc);
+      virtual void _000OnDraw(::ca::graphics * pdc);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);

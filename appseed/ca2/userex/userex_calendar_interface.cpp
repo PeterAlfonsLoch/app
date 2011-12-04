@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-calendar_interface::calendar_interface(::ax::application * papp) :
-   ax(papp)
+calendar_interface::calendar_interface(::ca::application * papp) :
+   ca(papp)
 {
    class time time = time::get_current_time();
    m_iYear = time.GetYear();
@@ -9,7 +9,7 @@ calendar_interface::calendar_interface(::ax::application * papp) :
    m_bRange = false;
 }
 
-void calendar_interface::_001OnDraw(::ax::graphics * pdc)
+void calendar_interface::_001OnDraw(::ca::graphics * pdc)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

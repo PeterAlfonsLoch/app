@@ -782,17 +782,13 @@ bool imaging::GrayVRCP(
    BYTE uch3dhighlightG = rgba_get_g(cr3dhighlight);
    BYTE uch3dhighlightB = rgba_get_b(cr3dhighlight);
 
-   BITMAP bitmap;
-   if(!pbitmap->GetBitmap(&bitmap))
-   {
-      return false;
-   }
+   class size size = pbitmap->get_size();
 
-   UINT uiScanLines = bitmap.bmHeight;
-   UINT cbLine = ((bitmap.bmWidth * 3 + 3) & ~3);
-   UINT cbImage = bitmap.bmHeight * cbLine;
+   UINT uiScanLines = size.cy;
+   UINT cbLine = ((size.cx  * 3 + 3) & ~3);
+   UINT cbImage = size.cy * cbLine;
 
-   UINT cbMask = bitmap.bmHeight * ((bitmap.bmWidth + 3) & ~3);
+   UINT cbMask = size.cy * ((size.cx + 3) & ~3);
 
 
    BITMAPINFO bmi;
@@ -826,19 +822,13 @@ bool imaging::GrayVRCP(
       return false;
    }
 
-   BITMAP bitmapMask;
-   if(!pbitmapMask->GetBitmap(&bitmapMask))
-   {
-      return false;
-   }
-
-//   int iBitsPixel = bitmapMask.bmBitsPixel;
+   class size sizeMask = pbitmapMask->get_size();
 
    BITMAPINFO * pbmiMask = (BITMAPINFO *) malloc(sizeof(BITMAPINFOHEADER) + 256 * sizeof(RGBQUAD));
 
    pbmiMask->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-   pbmiMask->bmiHeader.biWidth = bitmap.bmWidth;
-   pbmiMask->bmiHeader.biHeight = -bitmap.bmHeight;
+   pbmiMask->bmiHeader.biWidth = sizeMask.cx;
+   pbmiMask->bmiHeader.biHeight = - sizeMask.cy;
    pbmiMask->bmiHeader.biPlanes = 1;
    pbmiMask->bmiHeader.biBitCount = 8;
    pbmiMask->bmiHeader.biCompression = BI_RGB;
@@ -1078,11 +1068,12 @@ bool imaging::GetDeviceContext24BitsCC(
       {
          ::ca::bitmap * pbmp = pbmpOld;
 
-         if(!pbmp->GetObject(sizeof(bm), &bm))
+         throw not_implemented_exception();
+/*         if(!pbmp->GetObject(sizeof(bm), &bm))
          {
             pdc->SelectObject(pbmpOld);
             return false;
-         }
+         }*/
 
          bmi.bmiHeader.biSize = sizeof(bmi.bmiHeader);
          bmi.bmiHeader.biWidth = bm.bmWidth ;
@@ -2230,7 +2221,8 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    // ...
    // the following code assumes that you have a valid HBITMAP loaded into the primitive::memory
    BITMAP bm;
-   pbitmap->GetObject(sizeof(BITMAP), (char *) &bm);
+   throw not_implemented_exception();
+//   pbitmap->GetObject(sizeof(BITMAP), (char *) &bm);
    if(bm.bmWidth <= 0 || bm.bmHeight <= 0)
       return NULL;
    FIBITMAP * fi = FreeImage_Allocate(bm.bmWidth, bm.bmHeight, bm.bmBitsPixel);
@@ -2540,7 +2532,8 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr
 
    ::ca::bitmap * pbitmapSrc = pdibWork->get_bitmap();
    BITMAP bmSrc;
-   pbitmapSrc->GetObject(sizeof(bmSrc), &bmSrc);
+   throw not_implemented_exception();
+   //pbitmapSrc->GetObject(sizeof(bmSrc), &bmSrc);
    POINT ptViewportSrc;
    ptViewportSrc = pdibWork->get_graphics()->GetViewportOrg();
 

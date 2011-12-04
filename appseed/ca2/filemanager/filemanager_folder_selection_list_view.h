@@ -10,7 +10,7 @@ namespace filemanager
 
 } // namespace filemanager
 
-class CLASS_DECL_ca folder_selection_list_view :
+class CLASS_DECL_ca2 folder_selection_list_view :
    virtual public ::userbase::split_view,
    virtual public FileManagerInterface
 {
@@ -22,7 +22,7 @@ public:
    pointer_object < filemanager::data >   m_pdata;
 
 
-   folder_selection_list_view(::ax::application * papp);
+   folder_selection_list_view(::ca::application * papp);
    ~folder_selection_list_view(void);
 
 

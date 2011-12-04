@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca FileManagerViewUpdateHint :
+class CLASS_DECL_ca2 FileManagerViewUpdateHint :
    public ::radix::object  
 {
 public:

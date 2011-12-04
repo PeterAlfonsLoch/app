@@ -25,7 +25,7 @@ namespace plugin
 
    bool system::verb()
    {
-      return ::cube8::application::verb();
+      return ::plane::application::verb();
    }
 
 } // namespace plugin

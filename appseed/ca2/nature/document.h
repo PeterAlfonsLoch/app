@@ -6,11 +6,11 @@ namespace nature
    class view;
    class frame;
 
-   class CLASS_DECL_ca document :
+   class CLASS_DECL_ca2 document :
       public ::userbase::document
    {
    public:
-      document(::ax::application * papp);
+      document(::ca::application * papp);
 
       ::view *     get_nature_view();
       frame *    get_nature_frame();

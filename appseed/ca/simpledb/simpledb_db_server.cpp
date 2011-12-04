@@ -161,7 +161,7 @@ bool db_server::destroy_message_window()
 
 void db_server::_001OnTimer(gen::signal_object * pobj)
 {
-   SCAST_PTR(::user::win::message::timer, ptimer, pobj);
+   SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 1258477)
    {
       /*var varChange;

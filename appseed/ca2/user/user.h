@@ -1,9 +1,7 @@
 #pragma once
 
 
-#include "ca4/ca4.h"
-#include "database/database.h"
-#include "visual/visual.h"
+#include "ca2/cubebase/cubebase.h"
 
 
 namespace user
@@ -49,9 +47,12 @@ namespace user
 #include "user_view_container.h"
 #include "user_view_creator.h"
 
+#include "user_view.h"
 
-#include "user_keyboard_layout.h"
-#include "user_keyboard.h"
+
+#include "user_frame_window_interface.h"
+#include "user_frame_window.h"
+
 
 #include "user_control.h"
 
@@ -100,7 +101,6 @@ namespace user
 #include "user_multiple_document_template.h"
 #include "user_document_interface.h"
 #include "user_document.h"
-#include "user_create_context.h"
 
 
 #include "user_document_manager.h"
@@ -118,4 +118,3 @@ namespace user
 #include "user_application.h"
 
 
-#include "ca2/ca2_user.h"

@@ -7,12 +7,12 @@ namespace userbase
    class document;
    class frame_window;
 
-   class CLASS_DECL_ca document_template :
+   class CLASS_DECL_ca2 document_template :
       virtual public ::document_template,
       virtual public ::user::document_template_interface
    {
    public:
-      document_template(::ax::application * papp, const char * pszMatter, ::ax::type_info & DocClass, ::ax::type_info & pFrameClass, ::ax::type_info & pViewClass);
+      document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & DocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
 
       virtual ~document_template();
 

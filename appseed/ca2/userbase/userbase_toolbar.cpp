@@ -134,7 +134,7 @@ UINT HashKey(string & okey)
    }
    if (fToRegister & AFX_WNDMDIFRAME_REG)
    {
-      // MDI Frame ::ax::window (also used for splitter ::ax::window)
+      // MDI Frame ::ca::window (also used for splitter ::ca::window)
       wndcls.style = CS_DBLCLKS;
       wndcls.hbrBackground = NULL;
       if (_AfxRegisterWithIcon(&wndcls, _afxWWndMDIFrame, AFX_IDI_STD_MDIFRAME))
@@ -642,7 +642,7 @@ namespace userbase
       // load the bitmap
       HBITMAP hbmImageWell;
    //   hbmImageWell = AfxLoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
       ReleaseDC(pdc);
 
@@ -963,7 +963,7 @@ namespace userbase
    int tool_bar::WrapToolBar(TBBUTTON* pData, int nCount, int nWidth)
    {
       ASSERT(pData != NULL && nCount > 0);
-      ::ax::graphics * pdc = GetDC();
+      ::ca::graphics * pdc = GetDC();
       int nResult = 0;
       int x = 0;
       string str;
@@ -1213,7 +1213,7 @@ namespace userbase
                }
             }
 
-               //::ax::graphics * pdc = GetDC();
+               //::ca::graphics * pdc = GetDC();
             string str;
             if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
                m_nMRUWidth = sizeResult.cx;
@@ -1434,7 +1434,7 @@ namespace userbase
 
 
    /*
-   BOOL tool_bar::OnEraseBkgnd(::ax::graphics *)
+   BOOL tool_bar::OnEraseBkgnd(::ca::graphics *)
    {
       return (BOOL)Default();
    }
@@ -1532,7 +1532,7 @@ namespace userbase
    */
 
 
-   void tool_bar::_001OnDraw(::ax::graphics * pdc)
+   void tool_bar::_001OnDraw(::ca::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       if (m_bDelayedButtonLayout)

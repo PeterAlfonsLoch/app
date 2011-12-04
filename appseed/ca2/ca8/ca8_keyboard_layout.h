@@ -3,7 +3,7 @@
 namespace ca8
 {
 
-   class CLASS_DECL_ca keyboard_layout :
+   class CLASS_DECL_ca2 keyboard_layout :
       virtual public ::userbase::split_view,
       virtual public ::user::form_callback,
       virtual public ::user::list_data

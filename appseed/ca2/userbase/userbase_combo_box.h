@@ -4,7 +4,7 @@
 namespace userbase
 {
 
-   class CLASS_DECL_ca combo_box :
+   class CLASS_DECL_ca2 combo_box :
       virtual public ::user::combo_box
    {
    public:

@@ -31,8 +31,8 @@ namespace nature
    /////////////////////////////////////////////////////////////////////////////
    // frame construction/destruction
 
-   frame::frame(::ax::application * papp) :
-      ax(papp),
+   frame::frame(::ca::application * papp) :
+      ca(papp),
       window_frame::WorkSetClientInterface(papp),
       userbase::frame_window_interface(papp),
       userbase::frame_window(papp),

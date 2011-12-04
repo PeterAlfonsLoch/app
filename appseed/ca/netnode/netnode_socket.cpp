@@ -75,10 +75,11 @@ namespace netnode
          if(strScript == "ca2netnodebergedge")
          {
             TRACE("socket::send_response ca2netnodebergedge");
-            bergedge::bergedge * pbergedge = System.get_bergedge(0);
+            // xxx webserver
+            /*bergedge::bergedge * pbergedge = System.get_bergedge(0);
             ::bergedge::document * pdoc = pbergedge->get_document();
             ::view * pview = pdoc->get_view(0);
-            pview->GetParentFrame()->ShowWindow(SW_RESTORE);
+            pview->GetParentFrame()->ShowWindow(SW_RESTORE);*/
             return;
          }
          script_manager().handle(this);

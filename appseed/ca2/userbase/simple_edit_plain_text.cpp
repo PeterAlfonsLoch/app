@@ -1,15 +1,15 @@
 #include "StdAfx.h"
 
 
-simple_edit_plain_text::simple_edit_plain_text(::ax::application * papp) :
-   ax(papp),
+simple_edit_plain_text::simple_edit_plain_text(::ca::application * papp) :
+   ca(papp),
    data_container(papp),
    ::user::interaction(papp),
    colorertake5::base_editor(papp),
    ::user::scroll_view(papp),
    ::user::edit_plain_text(papp),
    ex1::tree(papp),
-   ::ax::data_listener(papp)
+   ::ca::data_listener(papp)
 {
 }
 

@@ -3,8 +3,8 @@
 namespace user
 {
 
-   scroll_view::scroll_view(::ax::application * papp) :
-      ax(papp)
+   scroll_view::scroll_view(::ca::application * papp) :
+      ca(papp)
    {
       m_pscrollbarHorz = NULL;
       m_pscrollbarVert = NULL;

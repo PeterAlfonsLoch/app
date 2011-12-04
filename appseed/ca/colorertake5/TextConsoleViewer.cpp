@@ -3,16 +3,16 @@
 namespace colorertake5
 {
 
-TextConsoleViewer::TextConsoleViewer(BaseEditor *be, TextLinesStore *ts, int background, int encoding){
+text_console_viewer::text_console_viewer(base_editor *be, text_lines *ts, int background, int encoding){
   textLinesStore = ts;
   baseEditor = be;
   if(encoding == -1) encoding = Encodings::getDefaultEncodingIndex();
   this->encoding = encoding;
   this->background = background;
 };
-TextConsoleViewer::~TextConsoleViewer(){};
+text_console_viewer::~text_console_viewer(){};
 
-void TextConsoleViewer::view()
+void text_console_viewer::view()
 {
 #ifdef _WIN32
 int topline, leftpos;

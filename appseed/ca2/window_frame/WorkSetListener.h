@@ -6,11 +6,11 @@ namespace window_frame
    class WorkSet;
    class WorkSetListenerArray;
 
-   class CLASS_DECL_ca WorkSetListener :
+   class CLASS_DECL_ca2 WorkSetListener :
       public pha(WorkSetListenerArray)
    {
    public:
-      virtual void on_delete(::ax::ax * poc);
+      virtual void on_delete(::ca::ca * poc);
       void Attach(WorkSetListenerArray * plistenerpa);
       
       WorkSetListener();

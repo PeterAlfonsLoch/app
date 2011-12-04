@@ -31,7 +31,7 @@ namespace fontopus
 
       contact_list *                         m_pcontactlist;
 
-      ::userpresence::user::presence *                m_ppresence;
+      ::userpresence::presence *                m_ppresence;
 
 
       user(::ca::application * papp);

@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
-calendar::calendar(::ax::application * papp) :
-   ax(papp),
+calendar::calendar(::ca::application * papp) :
+   ca(papp),
    m_font(papp),
    m_fontYear(papp),
    m_fontMonth(papp),
@@ -13,7 +13,7 @@ calendar::calendar(::ax::application * papp) :
    m_iMonth = time.GetMonth();
 }
 
-void calendar::_001OnDraw(::ax::graphics * pdc)
+void calendar::_001OnDraw(::ca::graphics * pdc)
 {
    pdc->SelectObject(m_font);
    class time timeNow = time::get_current_time();

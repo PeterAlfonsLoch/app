@@ -21,7 +21,7 @@ namespace datetime
 
 
 
-   class CLASS_DECL_ca scanner
+   class CLASS_DECL_ca2 scanner
    {
    public:
       

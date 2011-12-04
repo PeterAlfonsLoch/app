@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 
 single_document_template::single_document_template(
-   ::ax::application * papp, 
+   ::ca::application * papp, 
    const char * pszMatter,
-   ::ax::type_info pDocClass, ::ax::type_info pFrameClass,
-   ::ax::type_info pViewClass) :
-   ax(papp),
+   ::ca::type_info pDocClass, ::ca::type_info pFrameClass,
+   ::ca::type_info pViewClass) :
+   ca(papp),
    document_template(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
 {
    m_pdocument = NULL;
@@ -53,10 +53,10 @@ void single_document_template::remove_document(document * pdocument)
 /////////////////////////////////////////////////////////////////////////////
 // single_document_template commands
 
-void single_document_template::request(::ax::create_context * pcreatecontext)
+void single_document_template::request(::ca::create_context * pcreatecontext)
    // if lpszPathName == NULL => create new file of this type
 {
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ax::ax *) NULL;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
    bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
 //   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
@@ -175,7 +175,7 @@ void single_document_template::request(::ax::create_context * pcreatecontext)
    {
       if(pThread->GetMainWnd() == NULL)
       {
-         // set as main frame (InitialUpdateFrame will show the ::ax::window)
+         // set as main frame (InitialUpdateFrame will show the ::ca::window)
          pThread->SetMainWnd(pFrame);
       }
       if(Application.m_puiMain == NULL)

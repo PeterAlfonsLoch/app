@@ -2,12 +2,12 @@
 
 #include "gen/gen_var.h"
 
-class CLASS_DECL_ca stringa :
+class CLASS_DECL_ca2 stringa :
    virtual public string_array,
    virtual public ex1::byte_serializable
 {
 public:
-   stringa(::ax::application * papp = NULL);
+   stringa(::ca::application * papp = NULL);
    stringa(const stringa & base_array);
    virtual ~stringa();
    LPTSTR GetFormatV004();

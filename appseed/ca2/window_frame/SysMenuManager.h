@@ -8,7 +8,7 @@ namespace window_frame
    class WorkSet;
 
 
-   class CLASS_DECL_ca SysMenuManager
+   class CLASS_DECL_ca2 SysMenuManager
    {
    public:
 

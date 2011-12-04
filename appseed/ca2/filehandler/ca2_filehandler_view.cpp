@@ -31,7 +31,7 @@ namespace ca2
 
       }
    
-      void view::install_message_handling(::user::win::message::dispatch * pinterface)
+      void view::install_message_handling(::gen::message::dispatch * pinterface)
       {
          form_view::install_message_handling(pinterface);
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
@@ -41,13 +41,13 @@ namespace ca2
 
       void view::refresh()
       {
-         m_list.parse(&System.filehandler(), System.file().extension(m_strName));
+         m_list.parse(&Cube.filehandler(), System.file().extension(m_strName));
          layout();
       }
 
       void view::_001OnTimer(gen::signal_object * pobj)
       {
-         SCAST_PTR(user::win::message::timer, ptimer, pobj);
+         SCAST_PTR(gen::message::timer, ptimer, pobj);
          if(ptimer->m_nIDEvent == 1984)
          {
             refresh();
@@ -185,7 +185,7 @@ namespace ca2
       void view::_001OnLButtonUp(gen::signal_object * pobj)
       {
 
-         SCAST_PTR(user::win::message::mouse, pmouse, pobj);
+         SCAST_PTR(gen::message::mouse, pmouse, pobj);
 
          e_element eelement;
          int iItem = hit_test(pmouse->m_pt, eelement);

@@ -7,7 +7,7 @@ namespace window_frame
 
    class WorkSet;
 
-   class CLASS_DECL_ca DockManager  
+   class CLASS_DECL_ca2 DockManager  
    {
    public:
       bool IsDocked();

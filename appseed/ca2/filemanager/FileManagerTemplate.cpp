@@ -4,8 +4,8 @@
 #include "SimpleFileListView.h"
 
 
-FileManagerTemplate::FileManagerTemplate(::ax::application * papp) :
-   ax(papp)
+FileManagerTemplate::FileManagerTemplate(::ca::application * papp) :
+   ca(papp)
 {
    m_iTemplate = -1;
 
@@ -29,7 +29,7 @@ FileManagerTemplate::~FileManagerTemplate()
    }
 }
 
-::filemanager::document * FileManagerTemplate::open(FileManagerCallbackInterface * pcallback, ::ax::create_context * pcreatecontext, ::fs::data * pdata)
+::filemanager::document * FileManagerTemplate::open(FileManagerCallbackInterface * pcallback, ::ca::create_context * pcreatecontext, ::fs::data * pdata)
 {
    UNREFERENCED_PARAMETER(pcallback);
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateMain->open_document_file(pcreatecontext));
@@ -80,7 +80,7 @@ FileManagerTemplate::~FileManagerTemplate()
    bool bTransparentBackground,
    ::user::interaction * pwndParent)
 {
-   ::ax::create_context_sp createcontext(get_app());
+   ::ca::create_context_sp createcontext(get_app());
    createcontext->m_bMakeVisible = false;
    createcontext->m_puiParent = pwndParent;
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateChild->open_document_file(createcontext));
@@ -112,7 +112,7 @@ FileManagerTemplate::~FileManagerTemplate()
    ::user::interaction * pwndParent)
 {
    UNREFERENCED_PARAMETER(bMakeVisible);
-   ::ax::create_context_sp createcontext(get_app());
+   ::ca::create_context_sp createcontext(get_app());
    createcontext->m_bMakeVisible = false;
    createcontext->m_puiParent = pwndParent;
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateChildList->open_document_file(createcontext));
@@ -138,34 +138,34 @@ FileManagerTemplate::~FileManagerTemplate()
    return NULL;
 }
 
-void FileManagerTemplate::Initialize(::ax::application * papp, int iTemplate, const char * pszMatter)
+void FileManagerTemplate::Initialize(::ca::application * papp, int iTemplate, const char * pszMatter)
 {
    m_iTemplate       = iTemplate;
    m_pdoctemplateMain = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      ::ax::get_type_info < ::filemanager::document > (),
-      ::ax::get_type_info < FileManagerMainFrame > (),       // main SDI frame ::ax::window
-      ::ax::get_type_info < FileManagerTabView > ());
+      ::ca::get_type_info < ::filemanager::document > (),
+      ::ca::get_type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
+      ::ca::get_type_info < FileManagerTabView > ());
 
    m_pdoctemplate = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      ::ax::get_type_info < ::filemanager::document > (),
-      ::ax::get_type_info < FileManagerFrame > (),
-      ::ax::get_type_info < FileManagerAView > ());
+      ::ca::get_type_info < ::filemanager::document > (),
+      ::ca::get_type_info < FileManagerFrame > (),
+      ::ca::get_type_info < FileManagerAView > ());
 
    m_pdoctemplateChild = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      ::ax::get_type_info < ::filemanager::document > (),
-      ::ax::get_type_info < FileManagerChildFrame > (),
-      ::ax::get_type_info < FileManagerAView > ());
+      ::ca::get_type_info < ::filemanager::document > (),
+      ::ca::get_type_info < FileManagerChildFrame > (),
+      ::ca::get_type_info < FileManagerAView > ());
 
    m_pdoctemplateChildList = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      ::ax::get_type_info < ::filemanager::document > (),
-      ::ax::get_type_info < FileManagerChildFrame > (),
-      ::ax::get_type_info < filemanager::SimpleFileListView > ());
+      ::ca::get_type_info < ::filemanager::document > (),
+      ::ca::get_type_info < FileManagerChildFrame > (),
+      ::ca::get_type_info < filemanager::SimpleFileListView > ());
 }

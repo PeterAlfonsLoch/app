@@ -4,9 +4,9 @@ namespace filemanager
 {
 
 
-   data::data(::ax::application * papp) :
-      ax(papp),
-      ::ax::data(papp),
+   data::data(::ca::application * papp) :
+      ca(papp),
+      ::ca::data(papp),
       ex1::tree_data(papp),
       ::fs::tree_data(papp),
       ::fs::list_data(papp)
