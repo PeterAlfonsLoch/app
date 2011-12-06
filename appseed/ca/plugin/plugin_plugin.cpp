@@ -17,7 +17,7 @@ namespace plugin
       m_puiHost               = NULL;
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
-      m_pbergedge             = NULL;
+      m_psession              = NULL;
       m_bAppStarted           = false;
       m_hEventReady           = NULL;
       m_psystem               = NULL;

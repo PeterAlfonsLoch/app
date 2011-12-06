@@ -1,8 +1,10 @@
 #pragma once
 
+
 #include "comparable_primitive_array.h"
 #include "primitive/numeric_info.h"
 #include "ex1/ex1_byte_serializable.h"
+
 
 template < class TYPE >
 class numeric_array :

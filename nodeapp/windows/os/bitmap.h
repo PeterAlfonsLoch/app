@@ -40,8 +40,8 @@ namespace win
 
       DWORD SetBitmapBits(DWORD dwCount, const void * lpBits);
       DWORD GetBitmapBits(DWORD dwCount, LPVOID lpBits) const;
-      size SetBitmapDimension(int nWidth, int nHeight);
-      size GetBitmapDimension() const;
+      class size SetBitmapDimension(int nWidth, int nHeight);
+      class size GetBitmapDimension() const;
 
    #ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;

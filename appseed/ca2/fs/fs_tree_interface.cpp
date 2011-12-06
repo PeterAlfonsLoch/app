@@ -70,7 +70,7 @@ namespace fs
       ::fs::tree_item * pitemFolder = NULL;
 
       string strRawName1 = typeid(*pitemParent).raw_name();
-      string strRawName2 = ::ca::get_type_info < ::fs::tree_item > ().raw_name();
+      string strRawName2 = typeid(::fs::tree_item).raw_name();
       if(strRawName1 == strRawName2)
       {
          pitemFolder = (::fs::tree_item *) pitemParent;
@@ -610,7 +610,7 @@ namespace fs
 
    void tree_interface::_001OnItemExpand(::ex1::tree_item * pitem)
    {
-      if(typeid(*pitem->m_pitemdata) == ::ca::get_type_info < ::fs::tree_item > ())
+      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
       {
          _017UpdateList(((::fs::tree_item *)pitem->m_pitemdata)->m_strPath, pitem, 1);
       }
@@ -749,7 +749,7 @@ namespace fs
       while(pitem != NULL)
       {
          if(pitem->m_pitemdata != NULL
-         && typeid(*pitem->m_pitemdata) == ::ca::get_type_info < tree_item > ())
+         && typeid(*pitem->m_pitemdata) == System.type_info < tree_item > ())
          {
             if(((tree_item *)pitem->m_pitemdata)->m_strPath == lpcszPath)
                return pitem;
@@ -761,10 +761,12 @@ namespace fs
 
    void tree_interface::arrange(e_arrange earrange)
    {
+      
       if(earrange == arrange_by_name)
       {
-         sort(tree_item::CompareArrangeByName, NULL);
+         sort(tree_item::CompareArrangeByName);
       }
+
    }
 
    document * tree_interface::get_document()

@@ -118,9 +118,9 @@ namespace cube2
    {
       if(!::cube1::application::initialize_instance())
          return false;
-      if(m_pbergedge != NULL)
+      if(m_psession != NULL && m_psession->m_pbergedge != NULL)
       {
-         Bergedge.m_pappCurrent = this;
+         Session.m_pappCurrent = this;
       }
       return true;
    }

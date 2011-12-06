@@ -53,3 +53,7 @@ namespace cube
 
 
 
+::ca2::library * get_new_library()
+{
+   return new ::cube::library();
+}

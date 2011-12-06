@@ -12,8 +12,8 @@ namespace cube
 
 
       sp(::ca2::filehandler::handler)              m_spfilehandler;
-      bergedge::bergedge::run_start_installer *    m_prunstartinstaller;
-      bergedge::bergedge::map *                    m_pbergedgemap;
+      plane::session::run_start_installer *        m_prunstartinstaller;
+      plane::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
       class machine_event_central *                m_pmachineeventcentral;
 
@@ -57,30 +57,15 @@ namespace cube
       bool set_history(::ca::history * phistory);
 
 
-      unsigned long guess_code_page(const char * pszText);
+      virtual bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual platform::document *             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual nature::document *               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
 
-
-      bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      platform::document *             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      nature::document *               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-
-      bergedge::bergedge *             query_bergedge(index iEdge);
-
-
-      void on_request(::ca::create_context * pcreatecontext);
-
-      ::ca::application * application_get(index iEdge, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
-
-      void open_by_file_extension(index iEdge, const char * pszPathName);
-
-  
+      virtual bergedge::bergedge *             query_bergedge(index iEdge);
+      virtual void on_request(::ca::create_context * pcreatecontext);
+      virtual ::ca::application * application_get(index iEdge, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
-
- 
-      virtual ::ca::application * get_new_app(::ca::application * pappNewApplicationParent, const char * pszId);
-
-  
-
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
    };

@@ -65,8 +65,9 @@ namespace ex1
       return m_ptree;
    }
 
-   void tree_item::sort_children(int ( * lpfnCompare )(tree_item *, tree_item *, void *), void * pvoidParam)
+   void tree_item::sort_children(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *), ex1::tree_data * ptreedata)
    {
+
       tree_item * pitemParent = this;
       tree_item * pitem;
       tree_item * pitem1 = pitemParent->m_pchild;
@@ -76,7 +77,7 @@ namespace ex1
          pitem2 = pitem1->m_pnext;
          for(;pitem2 != NULL; pitem2 = pitem2->m_pnext)
          {
-            if(lpfnCompare(pitem1, pitem2, pvoidParam) > 0)
+            if(lpfnCompare(pitem1, pitem2, ptreedata) > 0)
             {
                swap_sibling(pitem1, pitem2);
                pitem = pitem1;
@@ -85,6 +86,7 @@ namespace ex1
             }
          }
       }
+
    }
 
    void tree_item::swap_sibling(tree_item * pitem1, tree_item * pitem2)

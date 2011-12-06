@@ -12,6 +12,7 @@ namespace fs
       list_interface(papp),
       user::list(papp),
       user::form(papp),
+      ::ca2::user::form(papp),
       user::form_list(papp),
       userbase::form_list(papp)
    {

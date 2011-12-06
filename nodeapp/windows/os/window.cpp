@@ -401,7 +401,7 @@ namespace win
       }
    }
 
-   void window::install_message_handling(::user::gen::message::dispatch * pinterface)
+   void window::install_message_handling(::gen::message::dispatch * pinterface)
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &window::_001OnDestroy);
@@ -470,7 +470,7 @@ namespace win
 
    void window::_001OnShowWindow(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::show_window, pshowwindow, pobj);
+      SCAST_PTR(::gen::message::show_window, pshowwindow, pobj);
       m_bVisible = pshowwindow->m_bShow != FALSE;
       if(m_pguie != NULL && m_pguie != this)
          m_pguie->m_bVisible = m_bVisible;
@@ -1138,7 +1138,7 @@ namespace win
 
    void window::message_handler(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(m_pcallback != NULL)
       {
          m_pcallback->message_window_message_handler(pobj);
@@ -1209,19 +1209,19 @@ namespace win
                }
             }
          }
-         ::user::win::message::mouse * pmouse = (::user::win::message::mouse *) pbase;
+         ::gen::message::mouse * pmouse = (::gen::message::mouse *) pbase;
 
          Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbergedge != NULL)
+         if(m_psession != NULL)
          {
-            Bergedge.m_ptCursor = pmouse->m_pt;
+            Session.m_ptCursor = pmouse->m_pt;
          }
-         if(m_pguie != NULL && m_pguie != this && m_pguie->m_pbergedge != NULL && m_pguie->m_pbergedge != m_pbergedge)
+         if(m_pguie != NULL && m_pguie != this && m_pguie->m_psession != NULL && m_pguie->m_psession != m_psession)
          {
-            Berg(m_pguie->m_pbergedge).m_ptCursor = pmouse->m_pt;
+            Sess(m_pguie->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
-         ::bergedge::bergedge * pbergedge = NULL;
+         ::plane::session * pbergedge = NULL;
          if(m_papp->is_system())
          {
             pbergedge = System.query_bergedge(0);
@@ -1245,11 +1245,13 @@ namespace win
             {
                m_pguie->GetWindowRect(rectWindow);   
             }
-            if(System.m_monitorinfoa.get_count() > 0)
+            if(System.get_monitor_count() > 0)
             {
-               if(rectWindow.left >= System.m_monitorinfoa[0].rcMonitor.left)
+               rect rcMonitor;
+               System.get_monitor_rect(0, &rcMonitor);
+               if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_pt.x += (LONG) rectWindow.left;
-               if(rectWindow.top >= System.m_monitorinfoa[0].rcMonitor.top)
+               if(rectWindow.top >= rcMonitor.top)
                   pmouse->m_pt.y += (LONG) rectWindow.top;
             }
             else
@@ -1376,7 +1378,7 @@ namespace win
             }
          }
 
-         ::user::win::message::key * pkey = (::user::win::message::key *) pbase;
+         ::gen::message::key * pkey = (::gen::message::key *) pbase;
          ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Application.get_keyboard_focus());
          if(puiFocus != NULL 
          && puiFocus->IsWindow()
@@ -1405,7 +1407,7 @@ namespace win
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));*/
          return;
       }
-      if(pbase->m_uiMessage == ::user::message_event)
+      if(pbase->m_uiMessage == ::gen::message_event)
       {
          if(m_pguie != this && m_pguie != NULL)
          {
@@ -2411,7 +2413,7 @@ namespace win
 
    */
 
-   void window::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIdLeftOver,
+   void window::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver,
          UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
    {
       UNREFERENCED_PARAMETER(nIDFirst);
@@ -2462,7 +2464,7 @@ namespace win
          {
             id id = hWndChild->GetDlgCtrlId();
             ::user::interaction * pWnd = hWndChild;
-            if (id == (int) nIdLeftOver)
+            if (id == nIdLeftOver)
                hWndLeftOver = hWndChild;
             else if (pWnd != NULL)
                hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
@@ -2475,7 +2477,7 @@ namespace win
          {
             id id = hWndChild->GetDlgCtrlId();
             ::user::interaction * pWnd = hWndChild;
-            if (id == (int) nIdLeftOver)
+            if (id == nIdLeftOver)
                hWndLeftOver = hWndChild;
             else if (pWnd != NULL)
                hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
@@ -2485,7 +2487,7 @@ namespace win
          {
             id id = hWndChild->GetDlgCtrlId();
             ::user::interaction * pWnd = hWndChild;
-            if (id == (int) nIdLeftOver)
+            if (id == nIdLeftOver)
                hWndLeftOver = hWndChild;
             else if (pWnd != NULL)
                hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
@@ -2596,7 +2598,7 @@ namespace win
       ASSERT(hWndStop == NULL || ::IsWindow(hWndStop));
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       // walk from the target window up to the hWndStop window checking
       //  if any window wants to translate this message
 
@@ -2815,7 +2817,7 @@ namespace win
             GetKeyState(VK_CONTROL) >= 0 &&
             GetKeyState(VK_MENU) >= 0)
          {
-            pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+//            pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
             return TRUE;
          }
       }
@@ -3114,7 +3116,7 @@ namespace win
 
       //lock lock(m_pguie, 1984);
       
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       PAINTSTRUCT paint;
       memset(&paint, 0, sizeof(paint));
@@ -3186,7 +3188,7 @@ namespace win
 
    void window::_001OnPrint(gen::signal_object * pobj)
    {
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       if(pbase->m_wparam == NULL)
          return;
@@ -3197,12 +3199,11 @@ namespace win
       ::ca::bitmap * pbitmap = &graphics->GetCurrentBitmap();
       ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
 //      DWORD dw = ::GetLastError();
-      BITMAP bm;
-      pbitmap->GetBitmap(&bm);
+      class size size = pbitmap->get_size();
       rectx.left = 0;
       rectx.top = 0;
-      rectx.right = bm.bmWidth;
-      rectx.bottom = bm.bmHeight;
+      rectx.right = size.cx;
+      rectx.bottom = size.cy;
       try
       {
          rect rectWindow;
@@ -3475,9 +3476,9 @@ namespace win
       HGLOBAL hResource = NULL;
       if (lpszResourceName != NULL)
       {
-         HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName, RT_DLGINIT);
-         HRSRC hDlgInit = ::FindResource(hInst, lpszResourceName, RT_DLGINIT);
-         if (hDlgInit != NULL)
+//         HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName, RT_DLGINIT);
+  //       HRSRC hDlgInit = ::FindResource(hInst, lpszResourceName, RT_DLGINIT);
+    /*     if (hDlgInit != NULL)
          {
             // load it
             hResource = LoadResource(hInst, hDlgInit);
@@ -3486,7 +3487,7 @@ namespace win
             // lock it
             lpResource = LockResource(hResource);
             ASSERT(lpResource != NULL);
-         }
+         }*/
       }
 
       // execute it
@@ -3858,7 +3859,7 @@ ExitModal:
         ::SetWindowLongPtr(hWnd, GWLP_WNDPROC, (INT_PTR)oldWndProc);
       }
    #endif
-      ::user::win::message::size size(get_app());
+      ::gen::message::size size(get_app());
       _001OnSize(&size);
       return TRUE;
    }
@@ -4926,7 +4927,7 @@ int window::GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton)
       { return (BOOL)Default(); }
     void window::_001OnSetCursor(gen::signal_object * pobj)
     {
-       SCAST_PTR(::user::win::message::base, pbase, pobj);
+       SCAST_PTR(::gen::message::base, pbase, pobj);
        if(System.get_cursor() != NULL
           && System.get_cursor()->m_ecursor != ::visual::cursor_system)
        {
@@ -5263,7 +5264,7 @@ int window::GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton)
 
       // Catch exceptions thrown outside the scope of a callback
       // in debug builds and warn the ::fontopus::user.
-      ::ca::smart_pointer < ::user::win::message::base > spbase;
+      ::ca::smart_pointer < ::gen::message::base > spbase;
 
       spbase(pinteraction->get_base(hWnd, nMsg, wParam, lParam));
 
@@ -5471,7 +5472,7 @@ int window::GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton)
 
    void window::_001OnEraseBkgnd(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::erase_bkgnd, perasebkgnd, pobj);
+      SCAST_PTR(::gen::message::erase_bkgnd, perasebkgnd, pobj);
       perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }
@@ -5868,21 +5869,21 @@ BOOL CLASS_DECL_VMSWIN AfxEndDeferRegisterClass(LONG fToRegisterParam, const cha
       // MDI Frame window (also used for splitter window)
       wndcls.style = CS_DBLCLKS;
       wndcls.hbrBackground = NULL;
-      if (_AfxRegisterWithIcon(&wndcls, _afxWndMDIFrame, AFX_IDI_STD_MDIFRAME))
+/*      if (_AfxRegisterWithIcon(&wndcls, _afxWndMDIFrame, AFX_IDI_STD_MDIFRAME))
       {
          if(ppszClass != NULL)
          {
             *ppszClass = _afxWndMDIFrame;
          }
          fRegisteredClasses |= AFX_WNDMDIFRAME_REG;
-      }
+      }*/
    }
    if (fToRegister & AFX_WNDFRAMEORVIEW_REG)
    {
       // SDI Frame or MDI Child windows or views - normal colors
       wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
       wndcls.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
-      if (_AfxRegisterWithIcon(&wndcls, _afxWndFrameOrView, AFX_IDI_STD_FRAME))
+      if (_AfxRegisterWithIcon(&wndcls, _afxWndFrameOrView, 123))
       {
          if(ppszClass != NULL)
          {

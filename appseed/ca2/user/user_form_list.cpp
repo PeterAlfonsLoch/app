@@ -7,6 +7,7 @@ namespace user
       ca(papp),
       form(papp),
       ::user::interaction(papp),
+      ::user::form(papp),
       scroll_view(papp),
       list(papp)
    {
@@ -73,7 +74,7 @@ namespace user
 
                m_iControlItem             = iItem;
 
-               SendMessage(::user::message_event, 0, (LPARAM) &ev);
+               SendMessage(::gen::message_event, 0, (LPARAM) &ev);
 
             }
          }

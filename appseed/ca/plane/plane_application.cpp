@@ -62,16 +62,14 @@ namespace plane
 
       string strId(pszId);
 
-      // xxx webserver
-      /*
-      if(strId.CompareNoCase("bergedge") == 0)
+      if(strId.CompareNoCase("session") == 0)
       {
-         ::bergedge::bergedge * pbergedge = new ::bergedge::bergedge();
-         pcaapp = pbergedge;
-         pbergedge->construct();
-         if(m_psystem != NULL && m_psystem->m_pbergedge == NULL)
+         ::plane::session * psession = new ::plane::session();
+         pcaapp = psession;
+         psession->construct();
+         if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
-            m_psystem->m_pbergedge = pbergedge;
+            m_psystem->m_psession = psession;
          }
       }
       else
@@ -83,15 +81,15 @@ namespace plane
          if(pcaapp == NULL)
             return NULL;
 
-         pcaapp->m_pbergedge                          = m_pbergedge;
+         pcaapp->m_psession                          = m_psession;
 
          /*if(pcaapp->m_bService)
          {
             App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
          }*/
-        /* if(m_psystem != NULL && m_psystem->m_pbergedge == NULL)
+         if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
-            m_psystem->m_pbergedge = m_pbergedge;
+            m_psystem->m_psession = m_psession;
          }
       }
 
@@ -129,8 +127,7 @@ namespace plane
       }
 
 
-      return pcaapp;*/
-      return NULL;
+      return pcaapp;
    }
 
 
@@ -144,90 +141,20 @@ namespace plane
 
       ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
 
-/*      try
-      {
-         if(pbias != NULL)
-         {
-            papp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
-         }
-      }
-      catch(...)
-      {
-      }*/
-      try
-      {
-         if(pbias != NULL)
-         {
-            if(pbias->m_pcallback != NULL)
-            {
-               pbias->m_pcallback->connect_to(papp);
-            }
-         }
-      }
-      catch(...)
-      {
-      }
-
-      manual_reset_event * peventReady = NULL;
-
-      if(bSynch)
-      {
-         peventReady = new manual_reset_event();
-         papp->m_peventReady = peventReady;
-         peventReady->ResetEvent();
-      }
-
-      papp->::ca::thread_sp::create(this);
-      //dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
-      dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp;
-      if(pbias != NULL)
-      {
-         papp->m_biasCalling = *pbias;
-      }
-      papp->Begin();
-
-      if(bSynch)
+      if(!papp->start_application(bSynch, pbias))
       {
          try
          {
-            papp->keep_alive();
+            delete pcaapp;
          }
          catch(...)
          {
          }
-         try
-         {
-            while(true)
-            {
-               if(!papp->is_alive())
-               {
-                  delete papp;
-                  return NULL;
-               }
-               if(papp->m_bReady)
-               {
-                  if(papp->m_iReturnCode == 0)
-                     break;
-                  delete papp;
-                  return NULL;
-               }
-               Sleep(84);
-            }
-         }
-         catch(...)
-         {
-            try
-            {
-               delete papp;
-            }
-            catch(...)
-            {
-            }
-            return NULL;
-         }
+         return NULL;
       }
+      
+      return pcaapp;
 
-      return papp;
    }
 
 
@@ -959,7 +886,7 @@ InitFailure:
    void application::set_title(const char * pszTitle)
    {
 
-      Bergedge.set_app_title(m_strAppName, pszTitle);
+      Session.set_app_title(m_strAppName, pszTitle);
 
    }
 
@@ -984,6 +911,33 @@ InitFailure:
       return ::planebase::application::allocate_new_service();
    }
 
+
+   FileManagerTemplate * application::GetStdFileManagerTemplate(void)
+   {
+      return NULL;
+   }
+
+
+   ::document * application::hold(::user::interaction * pui)
+   {
+
+      return NULL;
+
+   }
+
+   count application::get_monitor_count()
+   {
+
+      return 0;
+
+   }
+
+   bool application::get_monitor_rect(index i, LPRECT lprect)
+   {
+
+      return false;
+
+   }
 
 } //namespace plane
 

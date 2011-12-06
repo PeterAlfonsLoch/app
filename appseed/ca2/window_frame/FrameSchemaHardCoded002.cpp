@@ -2293,12 +2293,12 @@ namespace window_frame
          if (pwnd->GetStyle() & FWS_SNAPTOBARS)
          {
               class rect rect(0, 0, 32767, 32767);
-              pwnd->RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, pwnd->reposQuery,
+              pwnd->RepositionBars(0, 0xffff, "pane_first", pwnd->reposQuery,
                  &rect, &rect, FALSE);
               rect.offset(rectClient.top_left());
               class rect rectBorder;
               pfrmwnd->GetBorderRect(rectBorder);
-              pwnd->RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, pwnd->reposExtra,
+              pwnd->RepositionBars(0, 0xffff, "pane_first", pwnd->reposExtra,
                  &rectBorder, &rect, TRUE);
               pfrmwnd->SetBorderRect(rectBorder);
               pwnd->CalcWindowRect(&rect);
@@ -2315,9 +2315,9 @@ namespace window_frame
             rect rectBorder;
             pfrmwnd->GetBorderRect(rectBorder);
             if(pwnd->m_pguie != pwnd && pwnd->m_pguie != NULL)
-               pwnd->m_pguie->RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, pwnd->reposExtra, &rectBorder, &rectClient);
+               pwnd->m_pguie->RepositionBars(0, 0xffff, "pane_first", pwnd->reposExtra, &rectBorder, &rectClient);
             else
-               pwnd->RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, pwnd->reposExtra, &rectBorder, &rectClient);
+               pwnd->RepositionBars(0, 0xffff, "pane_first", pwnd->reposExtra, &rectBorder, &rectClient);
             pfrmwnd->SetBorderRect(rectBorder);
          }
       }

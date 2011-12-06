@@ -56,13 +56,13 @@
 #ifndef RC_INVOKED  // code only
 
 // parts of Main Frame
-#define AFX_IDW_PANE_FIRST              0xE900  // first pane (256 max)
+#define "pane_first"              0xE900  // first pane (256 max)
 #define AFX_IDW_PANE_LAST               0xE9ff
 #define AFX_IDW_HSCROLL_FIRST           0xEA00  // first Horz scrollbar (16 max)
 #define AFX_IDW_VSCROLL_FIRST           0xEA10  // first Vert scrollbar (16 max)
 
 #define AFX_IDW_SIZE_BOX                0xEA20  // size box for splitters
-#define AFX_IDW_PANE_SAVE               0xEA21  // to shift AFX_IDW_PANE_FIRST
+#define "pane_save"               0xEA21  // to shift "pane_first"
 #endif //!RC_INVOKED
 
 #ifndef APSTUDIO_INVOKED

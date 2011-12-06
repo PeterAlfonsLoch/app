@@ -41,11 +41,11 @@ namespace userbase
       using ::userbase::control_bar::create;
       virtual BOOL create(::user::interaction* pParentWnd,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
-         UINT nID = AFX_IDW_STATUS_BAR);
+         id nID = "status_bar");
       using ::userbase::control_bar::CreateEx;
       virtual BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
-         UINT nID = AFX_IDW_STATUS_BAR);
+         id nID = "status_bar");
       BOOL SetIndicators(stringa & stra);
 
       void SetBorders(LPCRECT lpRect);

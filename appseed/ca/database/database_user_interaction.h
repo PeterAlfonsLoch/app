@@ -1,10 +1,13 @@
 #pragma once
 
+
 namespace database
 {
 
+
    namespace user
    {
+
 
       class CLASS_DECL_ca interaction :
          virtual public ::user::interaction,
@@ -36,8 +39,13 @@ namespace database
          virtual bool LoadWindowRect_(class id key, class id idIndex, ::user::interaction * pWnd, bool bForceRestore = false);
          virtual bool SaveWindowRect_(class id key, class id idIndex, ::user::interaction * pWnd);
 
+
       };
+
 
    } // namespace user
 
+
 } // namespace database
+
+

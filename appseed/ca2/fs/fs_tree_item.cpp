@@ -10,10 +10,10 @@ namespace fs
    }
 
 
-   int tree_item::CompareArrangeByName(ex1::tree_item * pitem1, ex1::tree_item * pitem2, void * pparam)
+   int tree_item::CompareArrangeByName( ex1::tree_item * pitem1, ex1::tree_item * pitem2, ::ex1::tree_data * ptreedata)
    {
-      UNREFERENCED_PARAMETER(pparam);
-      if(typeid(*pitem1) == typeid(*pitem2) && typeid(*pitem1) == ::ca::get_type_info < tree_item > ())
+      
+      if(typeid(*pitem1) == typeid(*pitem2) && typeid(*pitem1) == Sys(ptreedata->get_app()->m_psystem).type_info < tree_item > ())
       {
          return ((tree_item *) pitem1)->m_strName.CompareNoCase(((tree_item *) pitem2)->m_strName);
       }
@@ -21,6 +21,7 @@ namespace fs
       {
          return strcmp(typeid(*pitem1).raw_name(), typeid(*pitem2).raw_name());
       }
+
    }
 
    int tree_item::get_index() const

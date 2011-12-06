@@ -1,29 +1,45 @@
 #include "StdAfx.h"
 
-namespace fs
+
+namespace ca2
 {
 
-   application::application()
-   {
-   }
 
-   application::~application(void)
-   {
-   }
-
-   bool application::initialize()
+   namespace fs
    {
 
-      if(is_system())
+
+      application::application()
       {
-         System.factory().creatable_small < main_view > ();
-         System.factory().creatable_small < tree > ();
-         System.factory().creatable_small < list > ();
       }
 
-      return true;
-   }
+      application::~application(void)
+      {
+      }
+
+      bool application::initialize()
+      {
+
+         if(is_system())
+         {
+            System.factory().creatable_small < ::fs::main_view > ();
+            System.factory().creatable_small < ::fs::tree > ();
+            System.factory().creatable_small < ::fs::list > ();
+         }
+
+
+         if(!::userex::application::initialize())
+            return false;
+
+
+         return true;
+      }
  
 
 
-} // namespace fs
+   } // namespace fs
+
+
+} // namespace ca2
+
+

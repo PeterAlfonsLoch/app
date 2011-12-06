@@ -15,7 +15,7 @@ namespace mail
    bool application::initialize_instance()
    {
 
-      if(!cube4::application::initialize_instance())
+      if(!cube2::application::initialize_instance())
          return FALSE;
 
 
@@ -26,7 +26,7 @@ namespace mail
    {
       try
       {
-         ::cube4::application::exit_instance();
+         ::cube2::application::exit_instance();
       }
       catch(...)
       {

@@ -113,9 +113,12 @@ namespace win
    }
    size bitmap::GetBitmapDimension() const
    {
-      SIZE size;
-      //VERIFY(::GetBitmapDimensionEx((HBITMAP)get_handle(), &size));
-      return size;
+      
+      if(m_pbitmap == NULL)
+         return class size(0, 0);
+
+      return class size(m_pbitmap->GetWidth(), m_pbitmap->GetHeight());
+
    }
 
    BOOL bitmap::LoadBitmap(UINT nIDResource)
@@ -168,7 +171,7 @@ namespace win
             return;
          }*/
 
-         BITMAP bm;
+         /*BITMAP bm;
          VERIFY(GetObject(sizeof(bm), &bm));
          dumpcontext << "bm.bmType = " << bm.bmType;
          dumpcontext << "\nbm.bmHeight = " << bm.bmHeight;
@@ -176,7 +179,7 @@ namespace win
          dumpcontext << "\nbm.bmWidthBytes = " << bm.bmWidthBytes;
          dumpcontext << "\nbm.bmPlanes = " << bm.bmPlanes;
          dumpcontext << "\nbm.bmBitsPixel = " << bm.bmBitsPixel;
-
+         */
          dumpcontext << "\n";
       }
 #endif

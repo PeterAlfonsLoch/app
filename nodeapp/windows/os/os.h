@@ -2,7 +2,7 @@
 
 #define SECURITY_WIN32
 
-#include "include/ca2.h"
+#include "ca/ca.h"
 #include <shlobj.h>
 #include <Security.h>
 #include <shlobj.h>
@@ -123,6 +123,6 @@ CLASS_DECL_VMSWIN BOOL __cdecl AfxIsIdleMessage(MSG* pMsg);
 CLASS_DECL_VMSWIN void AfxProcessWndProcException(base_exception*, gen::signal_object * pobj);
 CLASS_DECL_VMSWIN void __cdecl AfxPreTranslateMessage(gen::signal_object * pobj);
 
-#include "win_printer.h"
+//#include "win_printer.h"
 
 #include "application.h"

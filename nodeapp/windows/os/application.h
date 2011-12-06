@@ -158,7 +158,7 @@ namespace win
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::user::win::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode); 
+      virtual ::gen::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode); 
 
       // running and idle processing
       virtual int run();

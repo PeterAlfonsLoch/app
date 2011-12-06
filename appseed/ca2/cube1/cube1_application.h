@@ -11,14 +11,17 @@ namespace cube1
    {
    public:
 
+      
       application();
       virtual ~application();
+
 
 #ifdef WINDOWS
       base_array < MONITORINFO > m_monitorinfoa;
       base_array < MONITORINFO > m_monitorinfoaDesk;
 #endif
 
+      
       virtual count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
 

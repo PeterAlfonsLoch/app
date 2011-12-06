@@ -4,7 +4,8 @@
 namespace ca8
 {
 
-   class CLASS_DECL_ca network_configuration :
+
+   class CLASS_DECL_ca2 network_configuration :
       public ::user::form_callback,
       public ::user::view_creator
    {

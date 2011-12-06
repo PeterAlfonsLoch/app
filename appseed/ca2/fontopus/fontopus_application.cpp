@@ -53,40 +53,8 @@ namespace ca2
       }
 
 
-      user * application::create_current_user()
-      {
-         if(m_puser == NULL)
-         {
-            int iRetry = 3;
-            ::fontopus::user * puser = NULL;
-            while(iRetry > 0)
-            {
-               puser = login();
-               if(puser != NULL)
-                  break;
-               //bool bOk = false;
-               //string strSection;
-               //strSection.Format("license_auth");
-               //string strDir;
-               //strDir = Application.dir().usersystemappdata(puser->m_strPathPrefix, strSection);
-               //::DeleteFile(System.dir().path(strDir, "00001"));
-               //::DeleteFile(System.dir().path(strDir, "00002"));
-               iRetry--;
-            }
-            if(puser == NULL)
-            {
-               System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
-               TRACE("<error>You have not logged in! Exiting!</error>");
-               throw "You have not logged in! Exiting!";
-               return NULL;
-            }
-            m_puser = create_user(puser);
-            System.userset().add(m_puser);
-         }
-         return m_puser;
-      }
 
-      user * application::login()
+      ::fontopus::user * application::login()
       {
          /*::ca::application * papp;
          if(m_puiInitialPlaceHolderContainer != NULL)

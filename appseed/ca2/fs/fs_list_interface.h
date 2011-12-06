@@ -10,6 +10,7 @@ namespace fs
    {
    public:
 
+
       stringa      m_straFileSize;
       stringa      m_straStrictOrder;
 
@@ -41,7 +42,8 @@ namespace fs
       void _001OnButtonAction(user::control * pcontrol);
 
       virtual void _017OpenFile(const item_array & itema);
-      virtual void _017OpenFolder(const item & item);
+      virtual void _017OpenFolder(const ::fs::item & item);
+      virtual void _017OpenFolder(const ::fs::list_item & item);
       virtual void _017OpenSelected(bool bOpenFile);
       virtual void _017OpenContextMenuSelected();
       virtual void _017OpenContextMenuFolder(const item &item);

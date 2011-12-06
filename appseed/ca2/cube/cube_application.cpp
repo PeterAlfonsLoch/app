@@ -130,7 +130,7 @@ namespace cube
             return netnode::application::initialize_instance();
          }
       }
-      return acube::application::initialize_instance();
+      return cubebase::application::initialize_instance();
    }
 
    int application::exit_instance()
@@ -165,7 +165,7 @@ namespace cube
       else if(chFirst == 'r')
       {
       }
-      return acube::application::exit_instance();
+      return cubebase::application::exit_instance();
    }
 
    void application::_001OnFileNew()
@@ -176,7 +176,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      cube4::application::_001OnFileNew();
+      cube2::application::_001OnFileNew();
    }
 
 
@@ -237,7 +237,7 @@ namespace cube
             return netnode::application::on_install();
          }
       }
-      return acube::application::on_install();
+      return cubebase::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -262,7 +262,7 @@ namespace cube
             return netnode::application::on_uninstall();
          }
       }
-      return acube::application::on_uninstall();
+      return cubebase::application::on_uninstall();
    }
 
 
@@ -288,11 +288,17 @@ namespace cube
       else if(chFirst == 'r')
       {
       }
-      return cube4::application::on_request(pcreatecontext);
+
+
+      return cube2::application::on_request(pcreatecontext);
+
+
    }
 
    bool application::is_serviceable()
    {
+
+
       string strId = m_strId;
       char chFirst = '\0';
       if(strId.get_length() > 0)
@@ -314,7 +320,7 @@ namespace cube
       {
       }
       
-      return cube4::application::is_serviceable();
+      return cube2::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
@@ -340,7 +346,7 @@ namespace cube
       {
       }
       
-      return cube4::application::allocate_new_service();
+      return cube2::application::allocate_new_service();
    }
 
 
@@ -362,13 +368,17 @@ namespace cube
       else if(chFirst == 'r')
       {
       }
-      return ::cube4::application::_001OpenDocumentFile(varFile);
+
+      return ::cube2::application::_001OpenDocumentFile(varFile);
+
    }
 
 
    BOOL application::run()
    {
-      return ::cube4::application::run();
+
+      return ::cube2::application::run();
+
    }
 
    CLASS_DECL_ca2 application & app_cast(::ca::application * papp)

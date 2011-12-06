@@ -21,8 +21,9 @@ namespace ca8
 
       m_dwAlive = ::GetTickCount();
 
-      if(!userex::application::initialize1())     
+      if(!ca2::fs::application::initialize1())     
          return false;
+
       return true;
    }
 
@@ -40,7 +41,7 @@ namespace ca8
 
 
 
-      if(!userex::application::initialize())     
+      if(!::ca2::fs::application::initialize())     
          return false;
 
       xml::node nodeUser(this);

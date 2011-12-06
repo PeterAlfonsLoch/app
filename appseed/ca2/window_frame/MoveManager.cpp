@@ -126,10 +126,10 @@ namespace window_frame
       size sizeMatch(0, 0);
       int iMaxMonitor = -1;
       size sizeMax(0, 0);
-      for(int iMonitor = 0; iMonitor < System.get_monitor_count(); iMonitor++)
+      for(int iMonitor = 0; iMonitor < Cube.get_monitor_count(); iMonitor++)
       {
          rect rectParentClient;
-         System.get_monitor_rect(iMonitor, rectParentClient);
+         Cube.get_monitor_rect(iMonitor, rectParentClient);
          class rect rectIntersect;
          rectIntersect.intersect(rectParentClient, rectEvent);
          class size sizeIntersect;
@@ -169,7 +169,7 @@ namespace window_frame
          else
          {
             class rect rect;
-            System.get_monitor_rect(0, rect);
+            Cube.get_monitor_rect(0, rect);
             rect.deflate(rect.width() / 4, rect.height() / 4);
             m_pworkset->GetWndDraw()->SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
          }

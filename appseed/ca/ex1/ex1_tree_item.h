@@ -40,6 +40,7 @@ namespace ex1
    {
    public:
 
+
       DWORD                      m_dwUser;
       DWORD                      m_dwMetaData;
       tree_item *                m_pparent;
@@ -49,6 +50,7 @@ namespace ex1
       DWORD                      m_dwState;
       tree *                     m_ptree;
       tree_item_data *           m_pitemdata;
+
 
       tree_item();
       virtual ~tree_item();
@@ -66,7 +68,7 @@ namespace ex1
       tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
 
 
-      void sort_children(int ( * lpfnCompare )(tree_item *, tree_item *, void *), void * pvoidParam);
+      void sort_children(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *), ex1::tree_data * ptreedata);
 
       static void swap_sibling(tree_item * pitem1, tree_item * pitem2);
 

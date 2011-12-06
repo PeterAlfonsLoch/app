@@ -1228,14 +1228,12 @@ namespace radix
    }
 
    // prompt for file name - used for open and save as
-   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags,
-      BOOL bOpenFileDialog, document_template * ptemplate)
+   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
          // if ptemplate==NULL => all document templates
    {
       if(m_pfilemanager != NULL)
       {
-         return m_pfilemanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
-                                    bOpenFileDialog, ptemplate);
+         return m_pfilemanager->do_prompt_file_name(fileName, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
 /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -2712,7 +2710,7 @@ namespace radix
       }
       else
       {
-         Bergedge.get_cursor_pos(lppoint);
+         Session.get_cursor_pos(lppoint);
       }
    }
 
@@ -2981,12 +2979,12 @@ namespace radix
    {
       if(m_puiInitialPlaceHolderContainer != NULL)
          return m_puiInitialPlaceHolderContainer;
-      if(m_pbergedge != NULL)
+      if(m_psession != NULL)
       {
          try
          {
-            if(m_pbergedge->m_puiInitialPlaceHolderContainer != NULL)
-               return m_pbergedge->m_puiInitialPlaceHolderContainer;
+            if(m_psession->m_puiInitialPlaceHolderContainer != NULL)
+               return m_psession->m_puiInitialPlaceHolderContainer;
          }
          catch(...)
          {
@@ -3028,10 +3026,10 @@ namespace radix
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
-      if(puiParent == NULL && m_pbergedge != NULL && !pcreatecontext->m_bClientOnly
-         && !pcreatecontext->m_bOuterPopupAlertLike && m_pbergedge != this)
+      if(puiParent == NULL && m_psession != NULL && !pcreatecontext->m_bClientOnly
+         && !pcreatecontext->m_bOuterPopupAlertLike && m_psession != this)
       {
-         puiParent = Berg(this).get_request_parent_ui(pinteraction, pcreatecontext);
+         puiParent = Sess(this).get_request_parent_ui(pinteraction, pcreatecontext);
       }
 
       return puiParent;
@@ -3041,9 +3039,9 @@ namespace radix
    ::user::interaction * application::get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcreatecontext)
    {
 
-      if(m_pbergedge != NULL)
+      if(m_psession != NULL)
       {
-         return Berg(this).get_request_parent_ui(pmainframe, pcreatecontext);
+         return Sess(this).get_request_parent_ui(pmainframe, pcreatecontext);
       }
 
       return NULL;
@@ -3062,8 +3060,7 @@ file_manager_interface::~file_manager_interface()
 {
 }
 
-BOOL file_manager_interface::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags,
-   BOOL bOpenFileDialog, document_template * ptemplate)
+BOOL file_manager_interface::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
 {
    UNREFERENCED_PARAMETER(fileName);
    UNREFERENCED_PARAMETER(nIDSTitle);

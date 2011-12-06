@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "base_exception.h"
-
-
 class CLASS_DECL_ca not_implemented_exception : public base_exception
 {
 public:

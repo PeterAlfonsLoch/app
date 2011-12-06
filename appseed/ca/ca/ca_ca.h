@@ -22,7 +22,7 @@ namespace plane
 {
 
 
-   class bergedge;
+   class session;
 
 
 }
@@ -38,7 +38,7 @@ namespace plane
 }
 
 
-namespace cube
+namespace plane
 {
 
    
@@ -48,17 +48,20 @@ namespace cube
 }
 
 
-#define CaPlaneSys(pca) (*pca->m_papp->m_psystem)
-#define planeSys(papp) (*papp->m_psystem)
-#define Sys(papp) (planeSys(papp))
+#define CaSys(pca) (*pca->m_papp->m_psystem)
+#define Sys(papp) (*papp->m_psystem)
 #define System (Sys(this->get_app()))
-#define Mathematics(papp) (planeSys(papp).math())
+#define Mathematics(papp) (Sys(papp).math())
 #define Math (Mathematics(this->get_app()))
 
-#define planeBerg(papp) (*papp->m_pbergedge)
-#define Berg(papp) (planeBerg(papp))
-#define Bergedge (Berg(this->get_app()))
+#define Cub(papp) (*Sys(papp).m_pcube)
+#define Cube (Cub(this->get_app()))
 
+#define Sess(papp) (*papp->m_psession)
+#define Session (Sess(this->get_app()))
+
+#define Berg(papp) (*Sess(papp).m_pbergedge)
+#define Bergedge (Berg(this->get_app()))
 
 namespace gen
 {
@@ -129,8 +132,7 @@ namespace ca
       unsigned long           m_ulFlags;
       ::ca::application *     m_papp;
       ::plane::system *       m_psystem;
-      ::plane::bergedge *     m_pbergedge;
-      ::cube::cube *          m_pcube;
+      ::plane::session *      m_psession;
       __int64                 m_countReference;
       ::ca::ptra *            m_pptraListener;
       ::ca::ptra *            m_pptraListened;

@@ -17,45 +17,43 @@ namespace userex
 
    bool application::initialize1()
    {
-      if(is_system())
-      {
-         // menu
-         System.factory().creatable_small < menu_document > ();
-         System.factory().creatable_small < menu_frame > ();
-         System.factory().creatable_small < menu_view > ();
+      
+      // menu
+      System.factory().creatable_small < menu_document > ();
+      System.factory().creatable_small < menu_frame > ();
+      System.factory().creatable_small < menu_view > ();
 
-         // form
-         System.factory().creatable_small < form_document > ();
-         System.factory().creatable_small < ::userex::pane_tab_view > ();
-         System.factory().creatable_small < form_frame > ();
-         System.factory().creatable_small < form_child_frame > ();
-         System.factory().creatable_small < form_view > ();
+      // form
+      System.factory().creatable_small < form_document > ();
+      System.factory().creatable_small < ::userex::pane_tab_view > ();
+      System.factory().creatable_small < form_frame > ();
+      System.factory().creatable_small < form_child_frame > ();
+      System.factory().creatable_small < form_view > ();
 
-         System.factory().creatable_small < ::userex::hour_list_view > ();
-         System.factory().creatable_small < ::userex::minute_list_view > ();
-         System.factory().creatable_small < ::userex::second_list_view > ();
-      }
+      System.factory().creatable_small < ::userex::hour_list_view > ();
+      System.factory().creatable_small < ::userex::minute_list_view > ();
+      System.factory().creatable_small < ::userex::second_list_view > ();
 
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < form_frame > (),
-         ::ca::get_type_info < form_view > ());
+         System.type_info < form_document > (),
+         System.type_info < form_frame > (),
+         System.type_info < form_view > ());
 
       m_ptemplateChildForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < form_child_frame > (),
-         ::ca::get_type_info < form_view > ());
+         System.type_info < form_document > (),
+         System.type_info < form_child_frame > (),
+         System.type_info < form_view > ());
 
       m_ptemplatePlaceHolder = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         ::ca::get_type_info < simple_document > (),
-         ::ca::get_type_info < simple_frame_window > (),
-         ::ca::get_type_info < user::place_holder > ());
+         System.type_info < simple_document > (),
+         System.type_info < simple_frame_window > (),
+         System.type_info < user::place_holder > ());
 
 
       if(!html::application::initialize1())     
@@ -141,15 +139,25 @@ namespace userex
       return pdoc;
    }
 
-   simple_document * application::hold(::user::interaction * pui)
+
+   ::document * application::hold(::user::interaction * pui)
    {
+
       ::ca::create_context_sp createcontext(get_app());
+
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;
+
       simple_document * pdoc = dynamic_cast < simple_document * > (m_ptemplatePlaceHolder->open_document_file(createcontext));
+
       user::place_holder * pholder = pdoc->get_typed_view < user::place_holder  >();
+      
       pholder->hold(pui);
+
       return pdoc;
    }
 
+
 } //namespace userex
+
+

@@ -14,7 +14,7 @@ namespace bergedge
 
 namespace cube
 {
-   class system;
+   class cube;
 }
 
 namespace plane
@@ -43,10 +43,6 @@ namespace ca
       application_signal_init_application,
       application_signal_none,
    };
-
-
-   template < class T >
-   type_info & get_type_info();
 
 
    // Carlos Gustavo Cecyn Lundgren
@@ -105,10 +101,10 @@ namespace ca
          if(this == NULL)
             return (*(APP *) NULL);
          void * papp;
-         if(!app_map_lookup(::ca::get_type_info < APP > ().raw_name(), papp))
+         if(!app_map_lookup(typeid(APP).raw_name(), papp))
          {
             papp = dynamic_cast < APP * > (this);
-            app_map_set(::ca::get_type_info < APP > ().raw_name(), papp);
+            app_map_set(typeid(APP).raw_name(), papp);
          }
          return (*(APP *) papp);
       }

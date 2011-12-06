@@ -5,7 +5,8 @@ simple_list_view::simple_list_view(::ca::application * papp) :
    ::userbase::view(papp),
    ::user::scroll_view(papp),
    ::user::list(papp),
-   form(papp),
+   ::user::form(papp),
+   ::ca2::user::form(papp),
    ::user::form_list(papp),
    ::userbase::form_list(papp),
    m_headerctrl(papp)

@@ -101,7 +101,7 @@ namespace dynamic_source
       singleton & lib ()
       {
          string strPropName = "netnode::script::singleton::";
-         strPropName += ::ca::get_type_info < singleton > ().raw_name();
+         strPropName += typedi(singleton).raw_name();
          singleton * p = gprop(strPropName).ca2 < singleton >();
          if(p != NULL)
             return *p;

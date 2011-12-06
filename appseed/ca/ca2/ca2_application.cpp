@@ -1,9 +1,9 @@
 #include "StdAfx.h"
 
 
-
 namespace ca2
 {
+
 
    application::application()
    {
@@ -650,11 +650,12 @@ BOOL Is_Vista_or_Later ()
 
    bool application::is_key_pressed(int iKey)
    {
-      if(is_bergedge() || is_system() || (m_pbergedge == NULL && m_psystem == NULL))
+
+      if(is_bergedge() || is_system() || (m_psession == NULL && m_psystem == NULL))
       {
-         if(is_system() && m_pbergedge != NULL && !is_bergedge())
+         if(is_system() && m_psession != NULL && !is_bergedge())
          {
-            return Berg(this).is_key_pressed(iKey);
+            return Sess(this).is_key_pressed(iKey);
          }
          if(m_pmapKeyPressed  == NULL)
          {
@@ -664,9 +665,9 @@ BOOL Is_Vista_or_Later ()
          m_pmapKeyPressed->Lookup(iKey, bPressed);
          return bPressed;
       }
-      else if(m_pbergedge != NULL)
+      else if(m_psession != NULL)
       {
-         return Berg(this).is_key_pressed(iKey);
+         return Sess(this).is_key_pressed(iKey);
       }
       else if(m_psystem != NULL)
       {
@@ -681,11 +682,11 @@ BOOL Is_Vista_or_Later ()
 
    void application::set_key_pressed(int iKey, bool bPressed)
    {
-      if(is_bergedge() || is_system() || (m_pbergedge == NULL && m_psystem == NULL))
+      if(is_bergedge() || is_system() || (m_psession == NULL && m_psystem == NULL))
       {
-         if(is_system() && m_pbergedge != NULL && !is_bergedge())
+         if(is_system() && m_psession != NULL && !is_bergedge())
          {
-            return Berg(this).set_key_pressed(iKey, bPressed);
+            return Sess(this).set_key_pressed(iKey, bPressed);
          }
          if(m_pmapKeyPressed  == NULL)
          {
@@ -693,9 +694,9 @@ BOOL Is_Vista_or_Later ()
          }
          (*m_pmapKeyPressed)[iKey] = bPressed;
       }
-      else if(m_pbergedge != NULL)
+      else if(m_psession != NULL)
       {
-         return Berg(this).set_key_pressed(iKey, bPressed);
+         return Sess(this).set_key_pressed(iKey, bPressed);
       }
       else if(m_psystem != NULL)
       {
@@ -705,6 +706,86 @@ BOOL Is_Vista_or_Later ()
       {
          throw "not expected";
       }
+   }
+
+   bool application::start_application(bool bSynch, ::ca::application_bias * pbias)
+   {
+/*      try
+      {
+         if(pbias != NULL)
+         {
+            papp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
+         }
+      }
+      catch(...)
+      {
+      }*/
+      try
+      {
+         if(pbias != NULL)
+         {
+            if(pbias->m_pcallback != NULL)
+            {
+               pbias->m_pcallback->connect_to(this);
+            }
+         }
+      }
+      catch(...)
+      {
+      }
+
+      manual_reset_event * peventReady = NULL;
+
+      if(bSynch)
+      {
+         peventReady = new manual_reset_event();
+         m_peventReady = peventReady;
+         peventReady->ResetEvent();
+      }
+
+      ::ca::thread_sp::create(this);
+      //dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
+      dynamic_cast < ::radix::thread * > (::ca::thread_sp::m_p)->m_p = this;
+      if(pbias != NULL)
+      {
+         m_biasCalling = *pbias;
+      }
+      Begin();
+
+      if(bSynch)
+      {
+         try
+         {
+            keep_alive();
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            while(true)
+            {
+               if(!is_alive())
+               {
+                  return false;
+               }
+               if(m_bReady)
+               {
+                  if(m_iReturnCode == 0)
+                     break;
+                  return false;
+               }
+               Sleep(84);
+            }
+         }
+         catch(...)
+         {
+            return false;
+         }
+      }
+
+      return true;
+
    }
 
 

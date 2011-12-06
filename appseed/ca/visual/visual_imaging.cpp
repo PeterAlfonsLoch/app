@@ -794,8 +794,8 @@ bool imaging::GrayVRCP(
    BITMAPINFO bmi;
 
    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-   bmi.bmiHeader.biWidth = bitmap.bmWidth;
-   bmi.bmiHeader.biHeight = -bitmap.bmHeight;
+   bmi.bmiHeader.biWidth = size.cx;
+   bmi.bmiHeader.biHeight = - size.cy;
    bmi.bmiHeader.biPlanes = 1;
    bmi.bmiHeader.biBitCount = 24;
    bmi.bmiHeader.biCompression = BI_RGB;
@@ -852,9 +852,9 @@ bool imaging::GrayVRCP(
 
    LPBYTE lpbBase = lpbData + cbLine * y + x * 3;
    LPBYTE lpbBaseShift = lpbData + cbLine * (y + 1) + (x + 1) * 3;
-   LPBYTE lpbBaseShadow = lpbShadow + bitmap.bmWidth * y + x * 3;
-   LPBYTE lpbBaseMask = lpbMask + bitmap.bmWidth * y + x;
-   LPBYTE lpbBaseMaskShift = lpbMask + bitmap.bmWidth * (y + 1) + (x + 1);
+   LPBYTE lpbBaseShadow = lpbShadow + size.cx * y + x * 3;
+   LPBYTE lpbBaseMask = lpbMask + size.cx * y + x;
+   LPBYTE lpbBaseMaskShift = lpbMask + size.cx * (y + 1) + (x + 1);
 
 
    BYTE br, bg, bb;
@@ -879,8 +879,8 @@ bool imaging::GrayVRCP(
    for(i = 0; i < cy; i ++)
    {
       LPBYTE lpbLine = lpbBase + cbLine * i;
-      LPBYTE lpbLineShadow = lpbBaseShadow + bitmap.bmWidth * i;
-      LPBYTE lpbLineMask = lpbBaseMask + bitmap.bmWidth * i;
+      LPBYTE lpbLineShadow = lpbBaseShadow + size.cx * i;
+      LPBYTE lpbLineMask = lpbBaseMask + size.cy * i;
       for(int j = 0; j < cx; j++)
       {
          bb = *lpbLine++;
@@ -931,7 +931,7 @@ bool imaging::GrayVRCP(
 
    for(i = 0; i < cy; i ++)
    {
-      LPBYTE lpbLineMask = lpbBaseMask + bitmap.bmWidth * i;
+      LPBYTE lpbLineMask = lpbBaseMask + size.cx * i;
       for(int j = 0; j < cx; j++)
       {
          *lpbLineMask++ = 1;
@@ -948,8 +948,8 @@ bool imaging::GrayVRCP(
    for(i = 0; i < cyminus1; i ++)
    {
       LPBYTE lpbLine = lpbBaseShift + cbLine * i;
-      LPBYTE lpbLineShadow = lpbBaseShadow + bitmap.bmWidth * i;
-      LPBYTE lpbLineMask = lpbBaseMaskShift + bitmap.bmWidth * i;
+      LPBYTE lpbLineShadow = lpbBaseShadow + size.cx * i;
+      LPBYTE lpbLineMask = lpbBaseMaskShift + size.cx * i;
       for(int j = 0; j < cxminus1; j++)
       {
          b = *lpbLineShadow;
@@ -979,8 +979,8 @@ bool imaging::GrayVRCP(
    for(i = 0; i < cy; i ++)
    {
       LPBYTE lpbLine = lpbBase + cbLine * i;
-      LPBYTE lpbLineShadow = lpbBaseShadow + bitmap.bmWidth * i;
-      LPBYTE lpbLineMask = lpbBaseMask + bitmap.bmWidth * i;
+      LPBYTE lpbLineShadow = lpbBaseShadow + size.cx * i;
+      LPBYTE lpbLineMask = lpbBaseMask + size.cx * i;
       for(int j = 0; j < cx; j++)
       {
          b = *lpbLineShadow;
@@ -2531,9 +2531,7 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr
    ::GetMapMode((HDC)pdc->get_os_data());
 
    ::ca::bitmap * pbitmapSrc = pdibWork->get_bitmap();
-   BITMAP bmSrc;
-   throw not_implemented_exception();
-   //pbitmapSrc->GetObject(sizeof(bmSrc), &bmSrc);
+   class size sizeSrc = pbitmapSrc->size();
    POINT ptViewportSrc;
    ptViewportSrc = pdibWork->get_graphics()->GetViewportOrg();
 
@@ -2939,12 +2937,8 @@ bool imaging::CreateBitmap(
    bool bCreate = true;
    if(pbitmap->get_os_data() != NULL)
    {
-      if(!pbitmap->GetBitmap(pbmp))
-      {
-         return false;
-      }
-      if(pbmp->bmWidth >= cx &&
-         pbmp->bmHeight >= cy)
+      class size size = pbitmap->get_size();
+      if(size.cx >= cx && size.cy >= cy)
       {
          bCreate = false;
       }
@@ -2985,12 +2979,8 @@ bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap * pbitmapOld, ::ca:
    bool bCreate = true;
    if(pbitmap->get_os_data() != NULL)
    {
-      if(!pbitmap->GetBitmap(pbmp))
-      {
-         return false;
-      }
-      if(pbmp->bmWidth >= cx &&
-         pbmp->bmHeight >= cy)
+      class size size = pbitmap->get_size();
+      if(size.cx >= cx && size.cy >= cy)
       {
          bCreate = false;
       }
@@ -4608,11 +4598,8 @@ bool imaging::pre_color_blend(
       return false;
    ::ca::bitmap * pbmp = &pdcAlpha->GetCurrentBitmap();
    BITMAP bm;
-   pbmp->GetBitmap(&bm);
-   class size size;
-   size.cx = bm.bmWidth;
-   size.cy = bm.bmHeight;
-
+   class size size = pbmp->get_size();
+ 
    ::ca::dib_sp dibA(get_app());
 
    if(!dibA->create(size))
@@ -6840,23 +6827,19 @@ bool imaging::HueVRCP(
 
 
 
-   BITMAP bitmap;
-   if(!pbitmap->GetBitmap(&bitmap))
-   {
-      return false;
-   }
+   class size size = pbitmap->get_size();
 
-   UINT uiScanLines = bitmap.bmHeight;
-   UINT cbLine = bitmap.bmWidth * 4;
-   UINT cbImage = bitmap.bmHeight * cbLine;
+   UINT uiScanLines = size.cy;
+   UINT cbLine = size.cx * 4;
+   UINT cbImage = size.cy * cbLine;
 //   UINT cbMask = bitmap.bmHeight * bitmap.bmWidth;
 
 
    BITMAPINFO bmi;
 
    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-   bmi.bmiHeader.biWidth = bitmap.bmWidth;
-   bmi.bmiHeader.biHeight = -bitmap.bmHeight;
+   bmi.bmiHeader.biWidth = size.cx;
+   bmi.bmiHeader.biHeight = - size.cy;
    bmi.bmiHeader.biPlanes = 1;
    bmi.bmiHeader.biBitCount = 32;
    bmi.bmiHeader.biCompression = BI_RGB;

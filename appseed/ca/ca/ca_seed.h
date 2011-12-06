@@ -15,7 +15,7 @@
 #ifdef LINUX
 #include "os/linux/operational_system/ca2.h"
 #elif defined(_WINDOWS)
-#include "os/windows/operational_system/ca2.h"
+#include "nodeapp/windows/operational_system/ca2.h"
 #endif
 
 

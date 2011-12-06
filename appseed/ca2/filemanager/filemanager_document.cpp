@@ -232,7 +232,7 @@ namespace filemanager
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
-         pcmdui->m_pcmdui->Enable(System.m_strCopy.is_empty());
+//         pcmdui->m_pcmdui->Enable(System.m_strCopy.is_empty());
       pobj->m_bRet = true;
    }
 

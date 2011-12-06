@@ -7,6 +7,21 @@ class CLASS_DECL_ca virtual_user_interface :
    virtual public ::user::interaction
 {
 public:
+
+
+   size                       m_size;
+   string                     m_strWindowText;
+   bool                       m_bEnabled;
+   ::ca::font_sp              m_spfont;
+   bool                       m_bCreate;
+   ph(::user::interaction)    m_pparent;
+   ph(::user::interaction)    m_pguieMessage;
+
+
+   virtual_user_interface();
+   virtual_user_interface(::ca::application * papp);
+   virtual ~virtual_user_interface();
+
    virtual void message_handler(gen::signal_object * pobj);
    virtual ::ca::graphics * GetDC();
    ::user::interaction * SetParent(::user::interaction * pguieParent);
@@ -19,9 +34,6 @@ public:
    virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
    void SetWindowText(const char * psz);
 
-   virtual_user_interface();
-   virtual_user_interface(::ca::application * papp);
-   virtual ~virtual_user_interface();
 
    virtual ::user::interaction * GetDescendantWindow(id id);
 
@@ -32,12 +44,11 @@ public:
    // Advanced: virtual AdjustWindowRect
    enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
    virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-   virtual ::user::interaction * GetParentFrame();
+   virtual ::frame_window * GetParentFrame();
 
    virtual user::interaction * SetFocus();
 
-   void RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
-      UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch);
+   void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch);
 
 
    //virtual int RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
@@ -58,11 +69,7 @@ public:
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
    // as virtual ::ca::window
    virtual void _002InstallMessageHandling(::gen::message::dispatch * pinterface);
-   size              m_size;
-   string            m_strWindowText;
-   bool              m_bEnabled;
-   ::ca::font_sp     m_spfont;
-   bool              m_bCreate;
+
 
    bool create_message_window();
 
@@ -89,15 +96,11 @@ public:
       ::user::interaction* pParentWnd, id id,
       LPVOID lpParam = NULL);
 
-   ph(::user::interaction)    m_pparent;
 
-   //virtual bool _001IsPointInside(POINT & point);
-   ph(::user::interaction)    m_pguieMessage;
-
-   virtual ::user::interaction* EnsureParentFrame();
-   virtual ::user::interaction* GetTopLevelParent();
-   virtual ::user::interaction* EnsureTopLevelParent();
-   ::user::interaction * GetTopLevelFrame();
+   virtual ::frame_window * EnsureParentFrame();
+   virtual ::user::interaction * GetTopLevelParent();
+   virtual ::user::interaction * EnsureTopLevelParent();
+   virtual ::frame_window * GetTopLevelFrame();
 
    using ::user::interaction::GetWindowText;
    int GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
@@ -116,4 +119,6 @@ public:
    void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, LPARAM lParam = 0, BOOL bDeep = true, BOOL bOnlyPerm = 0);
 
    virtual BOOL PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+
+
 };

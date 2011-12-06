@@ -153,7 +153,7 @@ namespace user
          if(pguieParent == NULL)
          {
             m_pimpl->SetParent(NULL);
-            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(::ca::get_type_info < ::ca::window > ()));
+            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
             pimplNew->m_pguie = this;
             m_pimpl = pimplNew;
             string strName;
@@ -365,9 +365,9 @@ namespace user
 
       try
       {
-         if(m_pbergedge != NULL && &Bergedge != NULL)
+         if(m_psession != NULL && &Session != NULL)
          {
-            Bergedge.remove_frame(this);
+            Session.remove_frame(this);
          }
       }
       catch(...)
@@ -500,12 +500,12 @@ namespace user
       pgraphics->SetViewportOrg(ptViewport);
 
 
-      if(Bergedge.m_bDrawCursor)
+      if(Session.m_bDrawCursor)
       {
          point ptCursor;
-         Bergedge.get_cursor_pos(&ptCursor);
+         Session.get_cursor_pos(&ptCursor);
          ScreenToClient(&ptCursor);
-         ::visual::cursor * pcursor = Bergedge.get_cursor();
+         ::visual::cursor * pcursor = Session.get_cursor();
          if(pcursor != NULL)
          {
             pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
@@ -989,7 +989,7 @@ namespace user
          return m_pimpl->IsWindowEnabled();
    }
 
-   ::user::interaction * interaction::GetTopLevelFrame()
+   ::frame_window * interaction::GetTopLevelFrame()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1038,7 +1038,7 @@ namespace user
       m_signalptra.remove_all();
       interaction * pimplOld = m_pimpl;
       ::ca::window * pimplNew = NULL;
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(::ca::get_type_info < ::ca::window > ()));
+      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
       pimplNew->m_pguie = this;
       if(!pimplNew->SubclassWindow((HWND) posdata))
       {
@@ -1114,7 +1114,7 @@ namespace user
       m_signalptra.remove_all();
       interaction * pimplOld = m_pimpl;
       interaction * pimplNew = NULL;
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(::ca::get_type_info < ::ca::window > ()));
+      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
       pimplNew->m_pguie = this;
       if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
       {
@@ -1159,7 +1159,7 @@ namespace user
       interaction * pimplNew = NULL;
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == HWND_MESSAGE)
       {
-         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(::ca::get_type_info < ::ca::window > ()));
+         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
          pimplNew->m_pguie = this;
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
@@ -1220,7 +1220,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(::ca::get_type_info < ::ca::window > ()));
+      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
@@ -1246,7 +1246,7 @@ namespace user
       m_signalptra.remove_all();
       if(pParentWnd == NULL)
       {
-         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(::ca::get_type_info < ::ca::window > ()));
+         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
          m_pimpl->m_pguie = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
@@ -1530,15 +1530,13 @@ namespace user
       return hWndParent;
    }
 
-   ::user::interaction * interaction::EnsureParentFrame()
+   ::frame_window * interaction::EnsureParentFrame()
    {
       if(m_pimpl == NULL)
          return NULL;
       else
          return m_pimpl->EnsureParentFrame();
    }
-
-
 
    LRESULT interaction::Default()
    {
@@ -1581,7 +1579,7 @@ namespace user
 
 
 
-   ::user::interaction * interaction::GetParentFrame()
+   ::frame_window * interaction::GetParentFrame()
    {
       ASSERT_VALID(this);
 
@@ -1590,7 +1588,7 @@ namespace user
       {
          if (pParentWnd->IsFrameWnd())
          {
-            return dynamic_cast < ::user::interaction * > (pParentWnd);
+            return dynamic_cast < ::frame_window * > (pParentWnd);
          }
          pParentWnd = pParentWnd->GetParent();
       }
@@ -1607,7 +1605,7 @@ namespace user
    }
 
 
-   void interaction::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
+   void interaction::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
          UINT nFlag, LPRECT lpRectParam,
          LPCRECT lpRectClient, BOOL bStretch)
    {
@@ -1646,7 +1644,7 @@ namespace user
          return m_pimpl->GetDlgItem(iId);
    }
 
-   interaction * interaction::GetDescendantWindow(int iId)
+   interaction * interaction::GetDescendantWindow(id iId)
    {
       if(m_pimpl == NULL)
          return NULL;

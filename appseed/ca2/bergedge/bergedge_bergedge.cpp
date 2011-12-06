@@ -8,17 +8,19 @@ namespace bergedge
    bergedge::bergedge()
    {
 
+
       m_bDrawCursor              = true;
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
       m_pbergedgedocument        = NULL;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-      m_pbergedge                = this;
+
 
       ::fs::set * pset = new class ::fs::set(this);
       pset->m_spafsdata.add(new ::fs::native(this));
       m_spfsdata(pset);
+
 
    }
 
@@ -175,21 +177,21 @@ namespace bergedge
       m_ptemplate_bergedge    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < document > (),
-         ::ca::get_type_info < frame > (),
-         ::ca::get_type_info < view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),
+         System.type_info < view > ());
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < platform::document > (),
-         ::ca::get_type_info < platform::frame > (),
-         ::ca::get_type_info < platform::pane_view > ());
+         System.type_info < platform::document > (),
+         System.type_info < platform::frame > (),
+         System.type_info < platform::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         ::ca::get_type_info < nature::document > (),
-         ::ca::get_type_info < nature::frame > (),
-         ::ca::get_type_info < nature::view > ());
+         System.type_info < nature::document > (),
+         System.type_info < nature::frame > (),
+         System.type_info < nature::view > ());
       m_pnaturedocument = NULL;
    }
 
@@ -204,7 +206,7 @@ namespace bergedge
          createcontextBergedge->m_bMakeVisible = false;
 
          m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
-         m_pbergedgedocument->m_pbergedge = this;
+         m_pbergedgedocument->m_psession = m_psession;
       
       }
       if(m_bShowPlatform)
@@ -890,10 +892,6 @@ namespace bergedge
    {
 
       
-      if(!::plane::bergedge::initialize1())
-         return false;
-
-
       if(!::platform::application::initialize1())
          return false;
 
@@ -907,10 +905,6 @@ namespace bergedge
    {
 
       
-      if(!::plane::bergedge::initialize())
-         return false;
-
-
       if(!::platform::application::initialize())
          return false;
 
@@ -923,7 +917,7 @@ namespace bergedge
    bool bergedge::os_native_bergedge_start()
    {
 
-      return ::plane::bergedge::os_native_bergedge_start();
+      return ::platform::application::os_native_bergedge_start();
 
    }
 
@@ -931,7 +925,7 @@ namespace bergedge
    {
       
       
-      return ::plane::bergedge::main();
+      return ::platform::application::main();
 
 
    }
@@ -955,7 +949,7 @@ namespace bergedge
 
       try
       {
-         bOk2 = ::plane::bergedge::on_uninstall();
+         bOk2 = ::platform::application::on_uninstall();
       }
       catch(...)
       {
@@ -972,7 +966,7 @@ namespace bergedge
    {
 
 
-      return ::plane::bergedge::is_serviceable();
+      return ::platform::application::is_serviceable();
 
 
    }
@@ -981,7 +975,7 @@ namespace bergedge
    {
 
 
-      return ::plane::bergedge::allocate_new_service();
+      return ::platform::application::allocate_new_service();
 
 
    }

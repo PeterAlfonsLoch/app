@@ -13,11 +13,19 @@ namespace database
 
    bool application::initialize()
    {
+      
+      
       if(is_system())
       {
          System.factory().creatable_large < ::database::result_set > ();
       }
+
+      if(!::ca4::application::initialize())
+         return false;
+
       return true;
+
+
    }
 
    ::database::server * application::get_data_server()

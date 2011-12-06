@@ -11,9 +11,9 @@ namespace filemanager
       m_ptemplatePane = new ::userbase::single_document_template(
          papp,
          "system/auth",
-         ::ca::get_type_info < form_document > (),
-         ::ca::get_type_info < simple_frame_window > (),
-         ::ca::get_type_info < ::userex::pane_tab_view > ());
+         System.type_info < form_document > (),
+         System.type_info < simple_frame_window > (),
+         System.type_info < ::userex::pane_tab_view > ());
    }
 
    SimpleFilePropertiesForm::~SimpleFilePropertiesForm()

@@ -32,3 +32,14 @@ namespace fs
 
 
 } // namespace fs
+
+
+template < class T >
+T cast (::fs::list_item & item)
+{
+   return T(item);
+}
+
+
+template <>
+CLASS_DECL_ca2 ::fs::item cast < ::fs::item > (::fs::list_item & item);

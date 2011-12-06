@@ -13,7 +13,7 @@ namespace ca2
 
 
       class CLASS_DECL_ca2 application :
-         virtual public acube::application
+         virtual public cubebase::application
       {
       public:
 
@@ -38,7 +38,7 @@ namespace ca2
          DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage)
 
       
-         ::user::LPWndArray & frames();
+         //::user::LPWndArray & frames();
 
 
          virtual bool initialize1();
@@ -46,12 +46,11 @@ namespace ca2
 
          virtual int exit_instance();
 
-         virtual ::ca::type_info controltype_to_typeinfo(::user::control::e_type type);
-
-
-
          // Load MRU file list and last preview state.
          void LoadStdProfileSettings(UINT nMaxMRU = _AFX_MRU_COUNT);
+
+
+         string message_box(const char * pszMatter, gen::property_set & propertyset);
 
 
       // Running Operations - to be done on a running application
@@ -61,8 +60,8 @@ namespace ca2
          document_template * get_template(index index) const;
 
 
-         virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
-         virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
+  //       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
+//         virtual void on_set_keyboard_layout(const char * pszPath, bool bUser);
 
 
 

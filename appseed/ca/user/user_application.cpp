@@ -9,6 +9,7 @@ namespace user
    {
       m_pkeyboardfocus  = NULL;
       m_pshellimageset  = NULL;
+      m_pkeyboard       = NULL;
    }
 
    application::~application()
@@ -28,6 +29,18 @@ namespace user
 
    bool application::initialize()
    {
+
+      if(is_system())
+      {
+         m_pwindowmap = new class ::user::window_map();
+      }
+      else
+      {
+         m_pwindowmap = System.m_pwindowmap;
+      }
+
+      m_pkeyboard = new ::user::keyboard(this);
+
 
       m_dwAlive = ::GetTickCount();
 
@@ -302,9 +315,9 @@ retry_license:
          {
             return m_pkeyboardfocus;
          }
-         else if(m_pbergedge != NULL)
+         else if(m_psession != NULL)
          {
-            return Berg(this).get_keyboard_focus();
+            return Sess(this).get_keyboard_focus();
          }
          else if(m_psystem != NULL)
          {
@@ -336,9 +349,9 @@ retry_license:
                m_pkeyboardfocus = pkeyboardfocus;
             }
          }
-         else if(m_pbergedge != NULL)
+         else if(m_psession != NULL)
          {
-            return Berg(this).set_keyboard_focus(pkeyboardfocus);
+            return Sess(this).set_keyboard_focus(pkeyboardfocus);
          }
          else if(m_psystem != NULL)
          {
@@ -413,6 +426,12 @@ retry_license:
    class window_map & application::window_map()
    {
       return *m_pwindowmap;
+   }
+
+
+   ca::type_info application::controltype_to_typeinfo(user::control::e_type e_type)
+   {
+      return ::ca::type_info();
    }
 
 

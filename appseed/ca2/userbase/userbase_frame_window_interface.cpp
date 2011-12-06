@@ -36,7 +36,7 @@ namespace userbase
          ::view * pview = NULL;
          if (pframe->GetActiveView() == NULL)
          {
-            ::user::interaction* pWnd = pframe->GetDescendantWindow(AFX_IDW_PANE_FIRST);
+            ::user::interaction* pWnd = pframe->GetDescendantWindow("pane_first");
             if (pWnd != NULL && base < ::view >::bases(pWnd))
             {
                pview = dynamic_cast < ::view * > (pWnd);
@@ -92,10 +92,7 @@ namespace userbase
    {
       ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);
-      IGUI_MSG_LINK(::user::message_frame_initial_update,
-         pinterface,
-         this,
-         &frame_window_interface::_guserbaseOnInitialUpdate);
+      IGUI_MSG_LINK(::gen::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
    }
 
    void frame_window_interface::_000OnDraw(::ca::graphics * pdc)

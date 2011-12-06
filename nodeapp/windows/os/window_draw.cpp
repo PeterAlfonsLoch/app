@@ -58,7 +58,7 @@ namespace win
 
    void window_draw::message_window_message_handler(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_USER + 1984 + 1977))
       {
          _synch_redraw();
@@ -1214,9 +1214,13 @@ namespace win
             pt.y = 0;
             sz.cy += pt.y;
          }
+
+         class rect rcMonitor;
+
+         System.get_monitor_rect(0, &rcMonitor);
          
-         sz.cx = (LONG) min(rectWindow.right - pt.x, System.m_monitorinfoa[0].rcMonitor.right - pt.x);
-         sz.cy = (LONG) min(rectWindow.bottom - pt.y, System.m_monitorinfoa[0].rcMonitor.bottom - pt.y);
+         sz.cx = (LONG) min(rectWindow.right - pt.x, rcMonitor.right - pt.x);
+         sz.cy = (LONG) min(rectWindow.bottom - pt.y, rcMonitor.bottom - pt.y);
 
 //         m_pbuffer->m_spdib->fill_channel(0xc0, visual::rgba::channel_alpha);
 

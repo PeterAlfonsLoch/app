@@ -447,12 +447,12 @@ namespace ex1
       delete pitem;
    }
 
-   void tree::sort(int ( * lpfnCompare )(tree_item *, tree_item *, void *), void * pvoidParam)
+   void tree::sort(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *))
    {
       tree_item * pitem = get_base_item();
       while(pitem != NULL)
       {
-         pitem->sort_children(lpfnCompare, pvoidParam);
+         pitem->sort_children(lpfnCompare, get_data());
          pitem = (tree_item *) pitem->get_next();
       }
    }

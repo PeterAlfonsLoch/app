@@ -7,6 +7,7 @@ simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :
    userbase::view(papp),
    user::scroll_view(papp),
    user::form(papp),
+   ::ca2::user::form(papp),
    user::list(papp),
    user::form_list(papp),
    userbase::form_list(papp),

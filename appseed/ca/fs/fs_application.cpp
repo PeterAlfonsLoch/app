@@ -21,6 +21,9 @@ namespace fs
          System.factory().creatable_small < list > ();*/
       }
 
+      if(!::user::application::initialize())
+         return false;
+
       return true;
    }
  

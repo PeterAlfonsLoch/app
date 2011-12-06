@@ -2,7 +2,7 @@
 
 
 #include "ca/gen/gen_object.h"
-#include "ca/datetime/datetime_duration.h"
+#include "ca/primitive/datetime/datetime_duration.h"
 
 
 /////////////////////////////////////////////////////////////////////////////

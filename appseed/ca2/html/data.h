@@ -1,16 +1,9 @@
 #pragma once
 
-namespace fontopus
-{
-
-   class user;
-
-}
 
 namespace html
 {
 
-   class data_callback;
 
    class CLASS_DECL_ca2 data :
       virtual public gen::signalizable,
@@ -53,7 +46,7 @@ namespace html
          void reset();
       };
 
-      data_callback *            m_pcallback;
+      ::user::form_callback *    m_pcallback;
       ::user::interaction *      m_pguie;
       ::ca::graphics *           m_pdc;
       rect                       m_rect;

@@ -77,6 +77,14 @@ namespace plane
       virtual void set_title(const char * pszTitle);
 
 
+      virtual FileManagerTemplate * GetStdFileManagerTemplate(void);
+
+
+      ::document * hold(::user::interaction * pui);
+
+      virtual count get_monitor_count();
+      virtual bool  get_monitor_rect(index i, LPRECT lprect);
+
    };
 
    CLASS_DECL_ca UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);

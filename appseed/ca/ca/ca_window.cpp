@@ -415,10 +415,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // window extensions
-
-   ::user::interaction * window::GetParentFrame()
+   ::frame_window * window::GetParentFrame()
    {
       throw interface_only_exception();   
    }
@@ -448,7 +445,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   ::user::interaction * window::GetTopLevelFrame()
+   ::frame_window * window::GetTopLevelFrame()
    {
       throw interface_only_exception();   
    }
@@ -1080,7 +1077,7 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   ::user::interaction * window::EnsureParentFrame()
+   ::frame_window * window::EnsureParentFrame()
    {
       throw interface_only_exception();   
    }

@@ -209,7 +209,7 @@ namespace window_frame
       bool bSize = true;
       rect rectWindow;
       class rect rectMonitor;
-      rectMonitor = System.m_monitorinfoa[0].rcMonitor;
+      Cube.get_screen_rect(rectMonitor);
       if(m_ehittestMode == HitTestSizingTopLeft)
       {
          rectWindow.top = pt.y;

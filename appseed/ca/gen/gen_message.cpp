@@ -603,9 +603,9 @@ namespace gen
       {
          try
          {
-            if(m_ecursor != ::visual::cursor_unmodified && m_pbergedge != NULL)
+            if(m_ecursor != ::visual::cursor_unmodified && m_psession != NULL)
             {
-               Bergedge.set_cursor(m_ecursor);
+               Session.set_cursor(m_ecursor);
             }
          }
          catch(...)

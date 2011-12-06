@@ -35,7 +35,7 @@ namespace win
 
       static const MSG* PASCAL GetCurrentMessage();
 
-      virtual void install_message_handling(::user::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       BOOL operator==(const ::ca::window& wnd) const;
       BOOL operator!=(const ::ca::window& wnd) const;
@@ -438,7 +438,7 @@ namespace win
          UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
          LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);*/
 
-      void RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
+      void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
          UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
          LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);
 
@@ -648,7 +648,7 @@ namespace win
       static ::user::interaction * PASCAL GetDescendantWindow(::user::interaction * hWnd, id id);
       static void PASCAL SendMessageToDescendants(HWND hWnd, UINT message,
          WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm);
-      virtual BOOL IsFrameWnd(); // is_kind_of(::ca::get_type_info < frame_window > ()))
+      virtual BOOL IsFrameWnd(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
       static BOOL PASCAL ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd,
          UINT nFlags);

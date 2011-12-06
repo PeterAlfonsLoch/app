@@ -108,21 +108,20 @@ namespace ca
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
 
 
-         // get immediate child with given ID
+      // get immediate child with given ID
       void GetDlgItem(id id, HWND* phWnd) const;
-         // as above, but returns HWND
+      // as above, but returns HWND
       virtual ::user::interaction * GetDescendantWindow(id id);
-         // like GetDlgItem but recursive
-      void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
-         LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
-      virtual interaction* GetParentFrame();
-      virtual interaction* EnsureParentFrame();
-      virtual ::user::interaction* GetTopLevelParent();
-      virtual ::user::interaction* EnsureTopLevelParent();
-      virtual ::user::interaction* GetTopLevelOwner();
-      virtual ::user::interaction* GetParentOwner();
-      virtual interaction* GetTopLevelFrame();
-      static ::ca::window* PASCAL GetSafeOwner(::ca::window* pParent = NULL, HWND* pWndTop = NULL);
+      // like GetDlgItem but recursive
+      void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
+      virtual frame_window * GetParentFrame();
+      virtual frame_window * EnsureParentFrame();
+      virtual ::user::interaction * GetTopLevelParent();
+      virtual ::user::interaction * EnsureTopLevelParent();
+      virtual ::user::interaction * GetTopLevelOwner();
+      virtual ::user::interaction * GetParentOwner();
+      virtual frame_window * GetTopLevelFrame();
+      static ::ca::window * PASCAL GetSafeOwner(::ca::window* pParent = NULL, HWND* pWndTop = NULL);
 
       virtual BOOL IsWindow();
 
@@ -656,7 +655,7 @@ namespace ca
       virtual void WalkPreTranslateTree(HWND hWndStop, gen::signal_object * pobj);
       static ::user::interaction * PASCAL GetDescendantWindow(::user::interaction * hWnd, id id);
       static void PASCAL SendMessageToDescendants(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm);
-      virtual BOOL IsFrameWnd(); // is_kind_of(::ca::get_type_info < frame_window > ()))
+      virtual BOOL IsFrameWnd(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
       static BOOL PASCAL ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
       static BOOL PASCAL ModifyStyleEx(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
@@ -698,8 +697,8 @@ namespace ca
 
    };
 
-   typedef smart_pointer < window > window_sp;
 
+   typedef smart_pointer < window > window_sp;
 
 
 } // namespace ca

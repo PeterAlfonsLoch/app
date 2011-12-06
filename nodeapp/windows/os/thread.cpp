@@ -152,7 +152,7 @@ CLASS_DECL_VMSWIN MSG * AfxGetCurrentMessage()
 
 CLASS_DECL_VMSWIN void AfxInternalProcessWndProcException(base_exception*, gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(::gen::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_CREATE)
    {
       pbase->set_lresult(-1);
@@ -181,7 +181,7 @@ void AfxInternalPreTranslateMessage(gen::signal_object * pobj)
 {
    try
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       //   ASSERT_VALID(this);
 
@@ -270,7 +270,7 @@ void __cdecl AfxPreTranslateMessage(gen::signal_object * pobj)
 
 BOOL AfxInternalIsIdleMessage(gen::signal_object * pobj)
 {
-   SCAST_PTR(user::win::message::base, pbase, pobj);
+   SCAST_PTR(::gen::message::base, pbase, pobj);
    // Return FALSE if the message just dispatched should _not_
    // cause on_idle to be run.  Messages which do not usually
    // affect the state of the ::fontopus::user interface and happen very
@@ -1212,17 +1212,17 @@ stop_run:
       return lCount < 0;  // nothing more to do if lCount >= 0
    }
 
-   ::user::win::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
-      return ::user::win::message::PrototypeNone;
+      return ::gen::message::PrototypeNone;
    }
 
 
    void thread::DispatchThreadMessageEx(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
       {
          gen::scoped_ptr < message > spmessage(pbase->m_lparam);
@@ -1279,10 +1279,10 @@ stop_run:
       {
          Signal & signal = *signalptra[i];
          gen::signal * psignal = signal.m_psignal;
-         ::user::win::message::e_prototype eprototype = signal.m_eprototype;
-         if(eprototype == ::user::win::message::PrototypeNone)
+         ::gen::message::e_prototype eprototype = signal.m_eprototype;
+         if(eprototype == ::gen::message::PrototypeNone)
          {
-            //::user::win::message::base base(get_app());
+            //::gen::message::base base(get_app());
             pbase->m_psignal = psignal;
             lresult = 0;
             //base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -1308,13 +1308,13 @@ stop_run:
 
    AFX_STATIC inline BOOL IsEnterKey(gen::signal_object * pobj)
    { 
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN; 
    }
 
    AFX_STATIC inline BOOL IsButtonUp(gen::signal_object * pobj)
    { 
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       return pbase->m_uiMessage == WM_LBUTTONUP; 
    }
 
@@ -1324,7 +1324,7 @@ stop_run:
       if(pobj == NULL)
          return;   // not handled
 
-      SCAST_PTR(::user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
 
       frame_window* pTopFrameWnd;
       ::user::interaction* pMainWnd;
@@ -1349,7 +1349,7 @@ stop_run:
                pMainWnd = AfxGetMainWnd();
                if ((GetMainWnd() != NULL) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
                {
-                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+//                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
                   pbase->m_bRet = true;
                   return;
                }
@@ -1428,7 +1428,7 @@ stop_run:
          if(msg.message != WM_KICKIDLE)
          {
             {
-               ::ca::smart_pointer < ::user::win::message::base > spbase;
+               ::ca::smart_pointer < ::gen::message::base > spbase;
             
                spbase(get_base(&msg));
 
@@ -1537,7 +1537,7 @@ stop_run:
 
    void thread::message_handler(gen::signal_object * pobj)
    {
-      SCAST_PTR(user::win::message::base, pbase, pobj);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
       // special message which identifies the window as using AfxWndProc
       if(pbase->m_uiMessage == WM_QUERYAFXWNDPROC)
       {
@@ -2078,7 +2078,7 @@ lpSecurityAttrs;
 return NULL;
 #else
 ASSERT(pThreadClass != NULL);
-ASSERT(pThreadClass->IsDerivedFrom(::ca::get_type_info < thread > ()));
+ASSERT(pThreadClass->IsDerivedFrom(System.type_info < thread > ()));
 
 thread* pThread = dynamic_cast < thread * > (App(get_app()).alloc(pThreadClass));
 if (pThread == NULL)
@@ -2384,9 +2384,9 @@ ASSERT(AfxCheckMemory());
 return lCount < 0;  // nothing more to do if lCount >= 0
 }
 
-::user::win::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
 {
-return ::user::win::message::PrototypeNone;
+return ::gen::message::PrototypeNone;
 }
 
 
@@ -2447,10 +2447,10 @@ for(int i = 0; i < signalptra.get_size(); i++)
 {
 Signal & signal = *signalptra[i];
 gen::signal * psignal = signal.m_psignal;
-::user::win::message::e_prototype eprototype = signal.m_eprototype;
-if(eprototype == ::user::win::message::PrototypeNone)
+::gen::message::e_prototype eprototype = signal.m_eprototype;
+if(eprototype == ::gen::message::PrototypeNone)
 {
-::user::win::message::base base;
+::gen::message::base base;
 base.m_psignal = psignal;
 lresult = 0;
 base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -2486,7 +2486,7 @@ LRESULT CALLBACK _AfxMsgFilterHook(int code, WPARAM wParam, LPARAM lParam)
       return ::CallNextHookEx(_afxThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
    }
    ASSERT(pthread != NULL);
-   ::ca::smart_pointer < ::user::win::message::base > spbase;
+   ::ca::smart_pointer < ::gen::message::base > spbase;
    spbase(pthread->get_base((LPMSG)lParam));
    pthread->ProcessMessageFilter(code, spbase);
    LRESULT lresult = spbase->m_bRet ? 1 : 0;

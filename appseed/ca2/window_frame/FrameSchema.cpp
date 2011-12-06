@@ -326,7 +326,7 @@ namespace window_frame
       ControlBoxButton * pbutton;
       if(!m_buttonmap.Lookup(ebutton, pbutton))
       {
-         m_buttonmap.set_at(ebutton, dynamic_cast < ControlBoxButton * > (System.alloc(m_typeinfoControlBoxButton)));
+         m_buttonmap.set_at(ebutton, dynamic_cast < ControlBoxButton * > (Application.alloc(m_typeinfoControlBoxButton)));
       }
       string strCaption;
       GetControlBoxButtonCaption(ebutton, strCaption);

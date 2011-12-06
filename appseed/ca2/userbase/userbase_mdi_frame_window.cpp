@@ -154,7 +154,7 @@ namespace userbase
 
       // create MDICLIENT control with special IDC
       if ((m_pguieMdiClient = ::CreateGuieEx(get_app(), dwExStyle, "mdiclient", NULL,
-         dwStyle, 0, 0, 0, 0, this, AFX_IDW_PANE_FIRST,
+         dwStyle, 0, 0, 0, 0, this, "pane_first",
          System.m_hInstance, (LPVOID)&ccs)) == NULL)
       {
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: mdi_frame_window::OnCreateClient: failed to create MDICLIENT."

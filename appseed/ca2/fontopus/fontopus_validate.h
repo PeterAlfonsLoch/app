@@ -10,33 +10,12 @@ namespace ca2
 
 
       class CLASS_DECL_ca2 validate :
-         virtual public ::user::form_callback,
-         virtual public ::user::view_creator,
-         virtual public ::user::tab_callback,
-         virtual public ::fontopus::login_thread_callback
+         virtual public ::fontopus::validate,
+         virtual public ::user::tab_callback
       {
       public:
 
 
-         class CLASS_DECL_ca2 auth
-         {
-         public:
-            string m_strUsername;
-            string m_strPassword;
-         };
-
-
-         class CLASS_DECL_ca2 license
-         {
-         public:
-            string m_strUsername;
-            id m_id;
-         };
-
-
-
-         ::fontopus::user *                        m_puser;
-         ::fontopus::login_thread                  m_loginthread;
          int                                       m_iView;
          ::userbase::single_document_template *    m_ptemplatePane;
          form_document *                           m_pdoc;
@@ -44,14 +23,9 @@ namespace ca2
          form_document *                           m_pdocAuth;
          form_document *                           m_pdocMessage;
          form_view *                               m_pviewAuth;
-         bool                                      m_bVotagusAuth;
-         auth *                                    m_pauth;
          string                                    m_strForm;
-         string                                    m_strLicense;
-         bool                                      m_bLicense;
          ::ca8::network_configuration              m_netcfg;
          ::ca8::keyboard_layout *                  m_pkeyboardlayout;
-         bool                                      m_bInteractive;
 
 
          validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);

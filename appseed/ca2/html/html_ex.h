@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace html
 {
-   
+
+
    class CLASS_DECL_ca2 html_ex :
       virtual public ::radix::object
    {
@@ -24,4 +26,7 @@ namespace html
       int resolve_entity(const char * lpszEntity, string & strChar);
    };
 
+
 } // namespace html
+
+

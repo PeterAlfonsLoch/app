@@ -22,7 +22,7 @@ namespace win
       m_pszHelpFilePath = NULL;
       m_pszProfileName = NULL;
       m_pszRegistryKey = NULL;
-      m_pRecentFileList = NULL;
+//      m_pRecentFileList = NULL;
       m_pdocmanager = NULL;
       m_atomApp = m_atomSystemTopic = NULL;
       //m_lpCmdLine = NULL;
@@ -39,7 +39,7 @@ namespace win
 
       // other initialization
       m_bHelpMode = FALSE;
-      m_eHelpType = afxWinHelp;
+//      m_eHelpType = afxWinHelp;
       m_nSafetyPoolSize = 512;        // default size
 
       WindowsShell::theWindowsShell.Initialize();
@@ -370,7 +370,7 @@ namespace win
       return ::win::thread::initialize_instance();
    }
 
-   ::user::win::message::e_prototype application::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::gen::message::e_prototype application::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       return ::win::thread::GetMessagePrototype(uiMessage, uiCode);
    }
@@ -737,13 +737,14 @@ namespace win
 
    ::user::printer * application::get_printer(const char * pszDeviceName)
    {
-      ::win::printer * pprinter = new ::win::printer(get_app());
+      return NULL;
+      /*::win::printer * pprinter = new ::win::printer(get_app());
       if(!pprinter->open(pszDeviceName))
       {
          delete pprinter;
          return NULL;
       }
-      return pprinter;
+      return pprinter;*/
    }
 
 

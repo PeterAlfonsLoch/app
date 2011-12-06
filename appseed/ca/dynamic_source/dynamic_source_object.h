@@ -68,18 +68,20 @@ namespace dynamic_source
       public DSOBASE
    {
    public:
+      
       virtual object_base * create_object()
       {
          return new DSO();
       }
+      
       virtual string get_base_classes_name()
       {
-         return string(::ca::get_type_info < DSO > ().raw_name()) + ";" + DSOBASE::get_base_classes_name();
+         return string(typeid(DSO).raw_name()) + ";" + DSOBASE::get_base_classes_name();
       }
 
       bool dso_matches(const char * psz)
       {
-         return string(psz) == string(::ca::get_type_info < DSO > ().raw_name());
+         return string(psz) == string(System.type_info < DSO > ().raw_name());
       }
 
       DSO * _dso()

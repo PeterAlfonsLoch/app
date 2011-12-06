@@ -25,7 +25,7 @@
 #elif defined(__linux__)
 #include "os/linux/operational_system/get_platform.h"
 #elif defined(_WIN32)
-#include "os/windows/operational_system/get_platform.h"
+#include "nodeapp/windows/operational_system/get_platform.h"
 #endif
 
 

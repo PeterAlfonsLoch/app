@@ -9,8 +9,12 @@ namespace ca
       virtual public ::gen::object
    {
    public:
+
+
       virtual ~exception();
       virtual void Delete();
+
+
    };
 
 

@@ -79,16 +79,6 @@ namespace userbase
       BOOL OnBarCheck(UINT nID);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      mini_dock_frame_window* CreateFloatingFrame(DWORD dwStyle);
-      DWORD CanDock(rect rect, DWORD dwDockStyle,
-         BaseDockBar** ppDockBar = NULL); // called by CDockContext
-      void AddControlBar(::userbase::control_bar *pBar);
-      void RemoveControlBar(::userbase::control_bar *pBar);
-      void DockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar,
-         LPCRECT lpRect = NULL);
-      void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar,
-         LPCRECT lpRect = NULL);
-      virtual void NotifyFloatingWindows(DWORD dwFlags);
       using window_frame::WorkSetListener::Attach;
 
    #ifdef _DEBUG
@@ -121,6 +111,13 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnQueryEndSession)
       friend class application;
 
+      mini_dock_frame_window* CreateFloatingFrame(DWORD dwStyle);
+      DWORD CanDock(rect rect, DWORD dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext
+      void AddControlBar(::userbase::control_bar *pBar);
+      void RemoveControlBar(::userbase::control_bar *pBar);
+      void DockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
+      void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
+      virtual void NotifyFloatingWindows(DWORD dwFlags);
 
    };
 

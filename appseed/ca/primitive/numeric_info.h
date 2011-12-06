@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "exception/not_implemented.h"
-
-
 namespace numeric_info
 {
 

@@ -3,7 +3,7 @@
 class CLASS_DECL_ca2 html_document :
    virtual public ::userbase::document,
    virtual public ::database::client,
-   virtual public ::html::data_callback
+   virtual public ::user::form_callback
 {
 public:
 

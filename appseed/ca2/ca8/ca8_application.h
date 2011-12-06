@@ -6,7 +6,7 @@ namespace ca8
 
 
    class CLASS_DECL_ca2 application :
-      public userex::application
+      virtual public ::ca2::fs::application
    {
    public:
 
@@ -25,9 +25,7 @@ namespace ca8
       virtual bool initialize();
       
       string message_box(const char * pszMatter, gen::property_set & propertyset);
-#if !core_level_1
       using ::radix::application::simple_message_box;
-#endif
       virtual int simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle = MB_OK);
       virtual int simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);

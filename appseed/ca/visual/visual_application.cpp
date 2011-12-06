@@ -26,6 +26,10 @@ namespace visual
 
    bool application::initialize1()
    {
+
+      if(!::userpresence::application::initialize1())
+         return false;
+
       m_pfontcentral = new class font_central(this);
       if(m_pfontcentral == NULL)
          return false;
@@ -46,7 +50,11 @@ namespace visual
    bool application::initialize()
    {
 
+      if(!::userpresence::application::initialize())
+         return false;
+
       return true;
+
    }
 
    class font_central & application::font_central()

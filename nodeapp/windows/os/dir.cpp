@@ -625,15 +625,15 @@ namespace win
       strPath = path(locale_style_matter(papp, "se", "se"), psz, psz2);
       if(System.file().exists(strPath))
          return strPath;
-      if(papp->m_pbergedge != NULL && papp->m_pbergedge != papp &&
+      if(papp->m_psession != NULL && papp->m_psession != papp &&
          (::ca::application *) papp->m_psystem != (::ca::application *) papp)
       {
-         strPath = matter(papp->m_pbergedge, psz, psz2);
+         strPath = matter(papp->m_psession, psz, psz2);
          if(System.file().exists(strPath))
             return strPath;
       }
       if(papp->m_psystem != NULL && papp->m_psystem != papp &&
-         (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_pbergedge)
+         (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
       {
          strPath = matter(papp->m_psystem, psz, psz2);
          if(System.file().exists(strPath))

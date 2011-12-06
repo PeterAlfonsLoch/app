@@ -82,9 +82,31 @@ factory::~factory()
 void factory::set_at(const char * pszId, factory_item_base * pitem)
 {
    single_lock sl(m_pmutex, TRUE);
-   m_ida.add((void *) (const char *) (id) pszId);
+   class id id = pszId;
+   const char * pszRawName = id;
+   void * pvoid = (void *) pszRawName;
+   index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
+   if(iFind >= 0)
+   {
+      delete m_itemptra[iFind];
+   }
+   m_ida.add(pvoid);
    m_itemptra.add(pitem);
    sort::QuickSort(m_ida, &idcmp, &itemswap, (void *) &m_itemptra);
+}
+
+
+bool factory::is_set(const char * pszType)
+{
+   
+   class id id = pszType;
+   const char * pszRawName = id;
+   void * pvoid = (void *) pszRawName;
+   index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
+   if(iFind < 0)
+      return false;
+   return true;
+
 }
 
 factory_allocator * factory::get_allocator(const char * pszType)

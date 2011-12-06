@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace acube
+namespace cubebase
 {
 
 
@@ -9,8 +9,15 @@ namespace acube
       virtual public ::plane::application
    {
    public:
+
+
       application();
       virtual ~application();
+
+
+      virtual bool initialize1();
+      virtual bool initialize();
+
 
       ::ca::application * get_system();
 

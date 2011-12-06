@@ -333,7 +333,7 @@ namespace filemanager
          ::fs::tree_item * pitemFolder = NULL;
 
          string strRawName1 = typeid(*pitemParent).raw_name();
-         string strRawName2 = ::ca::get_type_info < ::fs::tree_item > ().raw_name();
+         string strRawName2 = typeid(::fs::tree_item).raw_name();
          if(strRawName1 == strRawName2)
          {
             pitemFolder = (::fs::tree_item *) pitemParent;
@@ -681,7 +681,7 @@ namespace filemanager
 
       void SimpleFolderTreeInterface::_001OnItemExpand(::ex1::tree_item * pitem)
       {
-         if(typeid(*pitem->m_pitemdata) == ::ca::get_type_info < ::fs::tree_item > ())
+         if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
          {
             _017UpdateList(((::fs::tree_item *)pitem->m_pitemdata)->m_strPath, pitem, 1);
          }

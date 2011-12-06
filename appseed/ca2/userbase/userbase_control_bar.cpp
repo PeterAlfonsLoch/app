@@ -237,7 +237,7 @@ namespace userbase
          // handle reset case
          if (m_nStateFlags & statusSet)
          {
-            pOwner->SendMessage(WM_POPMESSAGESTRING, AFX_IDS_IDLEMESSAGE);
+/*            pOwner->SendMessage(WM_POPMESSAGESTRING, AFX_IDS_IDLEMESSAGE);*/
             m_nStateFlags &= ~statusSet;
             return TRUE;
          }

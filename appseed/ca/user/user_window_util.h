@@ -1,9 +1,12 @@
 #pragma once
 
+
 class ::ca::window;
+
 
 namespace user
 {
+
    class CLASS_DECL_ca HWNDArray : 
       public comparable_array < HWND, HWND >
    {

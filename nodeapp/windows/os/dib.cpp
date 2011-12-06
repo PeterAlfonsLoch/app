@@ -167,9 +167,8 @@ namespace win
       ::ca::bitmap * pbitmap = &(dynamic_cast<::win::graphics * >(pdc))->GetCurrentBitmap();
       if(pbitmap == NULL)
          return FALSE;
-      BITMAP bm;
-      pbitmap->GetObject(sizeof(bm), &bm);
-      if(!create(bm.bmWidth, bm.bmHeight))
+      class size size = pbitmap->get_size();
+      if(!create(size.cx, size.cy))
       {
          return FALSE;
       }
@@ -210,14 +209,8 @@ namespace win
       ::ca::bitmap * pbitmap = WIN_DC(pdc)->SelectObject(bitmap);
       if(pbitmap == NULL)
          return false;
-      BITMAP bm;
-      memset(&bm, 0, sizeof(bm));
-      if(!pbitmap->GetBitmap(&bm))
-      {
-         WIN_DC(pdc)->SelectObject(pbitmap);
-         return false;
-      }
-      if(!create(bm.bmWidth, bm.bmHeight))
+      class size size = pbitmap->get_size();
+      if(!create(size))
       {
          WIN_DC(pdc)->SelectObject(pbitmap);
          return false;

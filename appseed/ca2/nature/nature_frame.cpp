@@ -20,14 +20,14 @@ namespace nature
       ON_WM_COPYDATA() */
     // END_MESSAGE_MAP()
 
-   static UINT indicators[] =
+/*   static UINT indicators[] =
    {
       ID_SEPARATOR,           // status line indicator
       ID_INDICATOR_CAPS,
       ID_INDICATOR_NUM,
       ID_INDICATOR_SCRL,
    };
-
+   */
    /////////////////////////////////////////////////////////////////////////////
    // frame construction/destruction
 

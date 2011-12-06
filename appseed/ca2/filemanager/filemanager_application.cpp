@@ -128,16 +128,16 @@ namespace filemanager
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          pszMatter,
-         ::ca::get_type_info < file_manager_form_document > (),
-         ::ca::get_type_info < file_manager_form_child_frame > (),
-         ::ca::get_type_info < file_manager_form_view > ());
+         System.type_info < file_manager_form_document > (),
+         System.type_info < file_manager_form_child_frame > (),
+         System.type_info < file_manager_form_view > ());
 
       m_ptemplateOperation = new ::userbase::single_document_template(
          this,
          pszMatter,
-         ::ca::get_type_info < file_manager_operation_document > (),
-         ::ca::get_type_info < file_manager_operation_child_frame > (),
-         ::ca::get_type_info < file_manager_operation_view > ());
+         System.type_info < file_manager_operation_document > (),
+         System.type_info < file_manager_operation_child_frame > (),
+         System.type_info < file_manager_operation_view > ());
    }
 
 
@@ -161,9 +161,23 @@ namespace filemanager
 
 
 
-   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags,
-         BOOL bOpenFileDialog, document_template * ptemplate)
+   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
    {
+
+      ::userex::pane_tab_view * ppanetabview = NULL;
+      if(pdocument->get_view() != NULL && pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > () != NULL)
+      {
+         ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > ();
+         ppanetabview->set_cur_tab_by_id("file_manager");
+         ppanetabview->get_pane_by_id("file_manager")->m_bPermanent = false;
+         ppanetabview->layout();
+         ppanetabview->get_filemanager_document()->FileManagerSaveAs(pdocument);
+         if(ppanetabview->GetParentFrame()->RunModalLoop() != "yes")
+            return FALSE;
+         fileName = ppanetabview->get_filemanager_document()->get_filemanager_data()->m_pmanager->m_strTopic;
+         return TRUE;
+      }
+
       UNREFERENCED_PARAMETER(nIDSTitle);
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);

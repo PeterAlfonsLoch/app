@@ -81,7 +81,7 @@ namespace ca2
 
 
 
-
+      virtual bool start_application(bool bSynch, ::ca::application_bias * pbias);
 
 
       //virtual string get_current_user_login();

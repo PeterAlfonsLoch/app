@@ -39,9 +39,9 @@ namespace command
 	      pDocTemplate = new ::userbase::single_document_template(
             this,
 		      "system/form",
-		      ::ca::get_type_info < command::document > (),
-		      ::ca::get_type_info < command::frame > (),
-		      ::ca::get_type_info < command::pane_view > ());
+		      System.type_info < command::document > (),
+		      System.type_info < command::frame > (),
+		      System.type_info < command::pane_view > ());
          userbase::application::add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 
@@ -86,10 +86,5 @@ namespace command
 
 } // namespace command
 
-
-CLASS_DECL_ca ::ca::application * get_new_app()
-{
-   return new ::command::application;
-}
 
 

@@ -104,7 +104,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                {
                   //::ca::create_context cc;
                   //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
-                  //cc.m_usercreatecontext.m_typeinfoNewView =  ::ca::get_type_info < FileManagerSaveAsView > ();
+                  //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < FileManagerSaveAsView > ();
                   //cc.m_usercreatecontext.m_pCurrentFrame = this;
 
                   FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView > ();

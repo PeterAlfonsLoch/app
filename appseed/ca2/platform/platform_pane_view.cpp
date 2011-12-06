@@ -23,25 +23,25 @@ namespace platform
    /*   ::userbase::single_document_template* pdoctemplate;
       pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         ::ca::get_type_info < MediaLibraryDoc > (),
-         ::ca::get_type_info < MediaLibraryChildFrame > (),
-         ::ca::get_type_info < ::mplite::library::view > ());
+         System.type_info < MediaLibraryDoc > (),
+         System.type_info < MediaLibraryChildFrame > (),
+         System.type_info < ::mplite::library::view > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
       pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         ::ca::get_type_info < OptionsDoc > (),
-         ::ca::get_type_info < OptionsChildFrame > (),
-         ::ca::get_type_info < OptionsView > ());
+         System.type_info < OptionsDoc > (),
+         System.type_info < OptionsChildFrame > (),
+         System.type_info < OptionsView > ());
 
       
       m_pdoctemplateOptions = pdoctemplate;
 
       pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         ::ca::get_type_info < GoodMixerDoc > (),
-         ::ca::get_type_info < simple_child_frame > (),
-         ::ca::get_type_info < MixerMainView > ());
+         System.type_info < GoodMixerDoc > (),
+         System.type_info < simple_child_frame > (),
+         System.type_info < MixerMainView > ());
 
       m_pdoctemplateAudioControl = pdoctemplate;*/
       
@@ -104,9 +104,9 @@ namespace platform
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  ::ca::get_type_info < ::userbase::menu_list_view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(::ca::get_type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
+            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
             if(pview != NULL)
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
@@ -120,7 +120,7 @@ namespace platform
          
    /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  ::ca::get_type_info < ::userbase::menu_list_view > ();
+            cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
             ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
             if(pview != NULL)

@@ -38,11 +38,6 @@ namespace bergedge
 
 
 
-#define cubeCube(papp) (*papp->m_pcube)
-#undef Cub
-#define Cub(papp) (cubeCube(papp))
-#define Cube (Cub(this->get_app()))
-
 
 #include "cubebase_application.h"
 

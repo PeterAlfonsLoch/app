@@ -65,7 +65,7 @@ class BaseDockState;
 #define AFX_IDW_CONTROLBAR_LAST         0xE8FF
 
 #define AFX_IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca::window
-#define AFX_IDW_STATUS_BAR              0xE801  // Status bar ::ca::window
+//#define "status_bar"              0xE801  // Status bar ::ca::window
 #define AFX_IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
 #define AFX_IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define AFX_IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar

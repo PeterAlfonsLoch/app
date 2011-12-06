@@ -1,9 +1,11 @@
 #include "StdAfx.h"
 
+
 simple_form_list_view::simple_form_list_view(::ca::application * papp) :
    ca(papp),
    ::user::interaction(papp), 
    ::user::form(papp), 
+   ::ca2::user::form(papp),
    ::user::form_list(papp),
    ::userbase::form_list(papp),
    m_headerctrl(papp),

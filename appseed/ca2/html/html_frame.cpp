@@ -32,13 +32,13 @@ html_frame  * g_pframe;
    */
  // END_MESSAGE_MAP()
 
-static UINT indicators[] =
+/*static UINT indicators[] =
 {
    ID_SEPARATOR,           // status line indicator
    ID_INDICATOR_CAPS,
    ID_INDICATOR_NUM,
    ID_INDICATOR_SCRL,
-};
+};*/
 
 html_frame::html_frame(::ca::application * papp) :
    ca(papp),

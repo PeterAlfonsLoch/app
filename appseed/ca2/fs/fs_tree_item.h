@@ -25,7 +25,7 @@ namespace fs
       string get_text(ex1::tree * ptree);
       index get_image(ex1::tree * ptree);
 
-      static int CompareArrangeByName(ex1::tree_item * pitema, ::ex1::tree_item * pitemb, void * pparam);
+      static int CompareArrangeByName(ex1::tree_item * pitema, ::ex1::tree_item * pitemb, ex1::tree_data * pdata);
       int get_index() const;
       bool is_folder() const;
 

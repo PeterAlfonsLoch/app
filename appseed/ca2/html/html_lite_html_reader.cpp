@@ -146,7 +146,7 @@ UINT lite_html_reader::parseDocument(void)
             lTemp = 0;
             string strChar;
             if (m_bResolveEntities)
-               lTemp = System.html_ex().resolve_entity(&m_lpszBuffer[m_dwBufPos], strChar);
+               lTemp = Cube.html_ex().resolve_entity(&m_lpszBuffer[m_dwBufPos], strChar);
 
             if (lTemp)
             {

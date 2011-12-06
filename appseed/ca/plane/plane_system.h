@@ -29,9 +29,19 @@ namespace plane
    {
    public:
 
+
+
+      ::cube::cube *                  m_pcube;
+      ::plane::application *          m_pcubeInterface;
+
+
 #ifdef WINDOWS
       ULONG_PTR m_gdiplusToken;
 #endif
+
+
+      ::collection::string_map < ::ca::type_info > m_typemap;
+
       mutex                            m_mutexDelete;
       ::ca::application_ptra           m_appptra;
       class ::ca2::file::system        m_file;
@@ -61,8 +71,8 @@ namespace plane
       class ::fontopus::user_set       m_userset;
 
 
-      plane::bergedge::run_start_installer *  m_prunstartinstaller;
-      plane::bergedge::map *          m_pbergedgemap;
+      plane::session::run_start_installer *  m_prunstartinstaller;
+      plane::session::map *          m_pbergedgemap;
 
 
       class ::ca2::log *               m_plog;
@@ -226,10 +236,10 @@ namespace plane
 
 
       
-      plane::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      plane::session *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
 
 
-      plane::bergedge *             query_bergedge(index iEdge);
+      plane::session *             query_bergedge(index iEdge);
 
 
       void on_request(::ca::create_context * pcreatecontext);
@@ -242,6 +252,14 @@ namespace plane
       static void unregister_delete(::ca::ca * plistened, ::ca::ca * plistenerOld);
 
       virtual bool wait_twf(DWORD dwTimeOut = INFINITE);
+
+      template < typename T >
+      ::ca::type_info & type_info()
+      {
+         return get_type_info(typeid(T));
+      }
+
+      virtual ::ca::type_info & get_type_info(const ::std_type_info & info);
 
       void set_enum_name(::ca::type_info etype, int i, const char * psz)
       {
@@ -256,13 +274,13 @@ namespace plane
       template < class E , E edefault>
       void from_name(base_enum < E, edefault > & b, const char * psz, E iDefault = edefault)
       {
-         b = enum_from_name(::ca::get_type_info < E > (), psz, iDefault);
+         b = enum_from_name(System.type_info < E > (), psz, iDefault);
       }
 
       template < class E , E edefault>
       string get_name(const base_enum < E, edefault > & b)
       {
-         return get_enum_name(::ca::get_type_info < E > (), (int) (E) b);
+         return get_enum_name(System.type_info < E > (), (int) (E) b);
       }
 
 
@@ -300,12 +318,12 @@ namespace plane
       template < class TYPE >
       void set_enum_name(TYPE e, const char * psz)
       {
-         set_enum_name(::ca::get_type_info < TYPE > (), (int) e, psz);
+         set_enum_name(System.type_info < TYPE > (), (int) e, psz);
       }
       template < class TYPE >
       string get_enum_name(TYPE e)
       {
-         return get_enum_name(::ca::get_type_info < TYPE > (), (int) e);
+         return get_enum_name(System.type_info < TYPE > (), (int) e);
       }
 
       virtual bool create_twf();
@@ -323,6 +341,11 @@ namespace plane
 
 
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
+
+      ::document * hold(::user::interaction * pui);
+
+      virtual count get_monitor_count();
+      virtual bool  get_monitor_rect(index i, LPRECT lprect);
 
    };
 
@@ -577,7 +600,7 @@ return (p->*lpfnOuput)(fileOut, lpszSource);
  template <class TYPE, class ARG_TYPE>
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
    this->ptra().add(pt);
    return pt;
 }
@@ -587,12 +610,9 @@ template <class TYPE, class ARG_TYPE>
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    const TYPE & t)
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ::ca::get_type_info < TYPE > ()));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
    *pt = t;
    return this->ptra().add(pt);
 }
-
-
-
 
 

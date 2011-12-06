@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 form_list :
-      virtual public ::user::form,
+      virtual public ::ca2::user::form,
       virtual public ::user::list
    {
    protected:

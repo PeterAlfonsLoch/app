@@ -40,7 +40,7 @@ namespace dynamic_source
       for(int iClass = 0; iClass < straClasses.get_upper_bound(); iClass++)
       {
          string strClassName = straClasses[iClass];
-         string strVarName = ::ca::get_type_info < var > ().raw_name();
+         string strVarName = typeid(var).raw_name();
 
          int iVCount = 0;
          int iLen = strClassName.get_length() - 2;
@@ -173,7 +173,7 @@ namespace dynamic_source
 
    object_base * object_base::offset_cast(const char * psz)
    {
-      if(string(psz) == string(::ca::get_type_info < object_base > ().raw_name()))
+      if(string(psz) == string(typeid(object_base).raw_name()))
       {
          return (object_base *) ((void *) this);
       }

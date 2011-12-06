@@ -167,9 +167,6 @@
     <ClCompile Include="os.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="win_printer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

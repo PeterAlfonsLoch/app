@@ -104,6 +104,7 @@ namespace ca2
 
    }
 
+
    bool library::close()
    {
       try
@@ -226,6 +227,8 @@ namespace ca2
       return stra.contains(pszAppId);
 
    }
+
+
 
 
 } // namespace ca2

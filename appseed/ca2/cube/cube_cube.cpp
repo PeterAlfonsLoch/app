@@ -29,21 +29,33 @@ namespace cube
    BOOL cube::InitApplication()
    {
 
+      if(!::cube8::application::InitApplication())
+         return FALSE;
+
       return TRUE;
+
    }
 
 
    bool cube::process_initialize()
    {
 
+      if(!::cube8::application::process_initialize())
+         return false;
+
       return true;
+
    }
 
 
    bool cube::initialize()
    {
 
+      if(!::cube8::application::initialize())
+         return false;
+
       return true;
+
    }
 
 
@@ -51,8 +63,8 @@ namespace cube
    bool cube::initialize1()
    {
 
-
-
+      if(!::cube8::application::initialize1())
+         return false;
 
       return true;
 
@@ -63,24 +75,30 @@ namespace cube
    bool cube::initialize3()
    {
 
+      if(!::cube8::application::initialize3())
+         return false;
       
       return true;
-
 
    }
 
    bool cube::initialize_instance()
    {
 
+      if(!::cube8::application::initialize_instance())
+         return false;
 
       return true;
-
 
    }
 
 
    bool cube::bergedge_start()
    {
+
+      if(!::cube8::application::bergedge_start())
+         return false;
+
       return true;
    }
 
@@ -88,8 +106,19 @@ namespace cube
    int cube::exit_instance()
    {
 
+      int iRet = -1;
 
-      return 0;
+      try
+      {
+         iRet = ::cube8::application::exit_instance();
+      }
+      catch(...)
+      {
+      }
+         
+
+
+      return iRet;
 
 
    }
@@ -98,31 +127,31 @@ namespace cube
 
    bergedge::bergedge * cube::query_bergedge(index iEdge)
    {
-      bergedge::bergedge * pbergedge = NULL;
+      plane::session * psession = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
-      if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
+      if(!m_pbergedgemap->Lookup(iEdge, psession))
       {
          return NULL;
       }
-      return pbergedge;
+      return dynamic_cast < ::bergedge::bergedge * > (psession->m_pbergedge);
    }
 
 
    bergedge::bergedge * cube::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      bergedge::bergedge * pbergedge = NULL;
+      plane::session * psession = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
-      if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
+      if(!m_pbergedgemap->Lookup(iEdge, psession))
       {
-         pbergedge = dynamic_cast < ::bergedge::bergedge * > (create_application("bergedge", true, pbiasCreation));
-         if(pbergedge == NULL)
+         psession = dynamic_cast < ::plane::session * > (create_application("session", true, pbiasCreation));
+         if(psession == NULL)
             return NULL;
-         pbergedge->m_iEdge = iEdge;
-         m_pbergedgemap->set_at(iEdge, pbergedge);
+         psession->m_iEdge = iEdge;
+         m_pbergedgemap->set_at(iEdge, psession);
       }
-      return pbergedge;
+      return dynamic_cast < ::bergedge::bergedge * > (psession->m_pbergedge);
    }
 
 
@@ -180,10 +209,19 @@ namespace cube
 
    bool cube::finalize()
    {
-      cube::application::finalize();
+
+      bool bOk = false;
+
+      try
+      {
+         bOk = cube::application::finalize();
+      }
+      catch(...)
+      {
+      }
 
 
-      return true;
+      return bOk;
    }
 
 
@@ -207,8 +245,8 @@ namespace cube
    index cube::get_new_bergedge(::ca::application_bias * pbiasCreation)
    {
       int iNewEdge = m_iNewEdge;
-      bergedge::bergedge * pbergedge;
-      while(m_pbergedgemap->Lookup(iNewEdge, pbergedge))
+      plane::session * psession;
+      while(m_pbergedgemap->Lookup(iNewEdge, psession))
       {
          iNewEdge++;
       }
@@ -223,37 +261,6 @@ namespace cube
    {
       return true;
    }
-
-   unsigned long cube::guess_code_page(const char * pszText)
-   {
-      if(!m_bLibCharGuess)
-      {
-         LibCharGuess::Init();
-         m_bLibCharGuess = true;
-      }
-      return LibCharGuess::GuessCodePage(pszText);
-   }
-
-
-   ::ca::application * cube::get_new_app(::ca::application * pappNewApplicationParent, const char * pszAppId)
-   {
-
-      ca2::library library;
-
-      string strLibrary = m_mapAppLibrary[pszAppId];
-
-      ::ca::application * papp = NULL;
-      if(!library.open(pappNewApplicationParent, strLibrary, false))
-         return NULL;
-
-      papp = library.get_new_app(pszAppId);
-      if(papp == NULL)
-         return NULL;
-
-      return papp;
-
-   }
-
 
    bool cube::set_main_init_data(::ca::main_init_data * pdata)
    {

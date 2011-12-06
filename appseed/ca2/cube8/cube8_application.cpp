@@ -67,9 +67,9 @@ namespace cube8
          ::bergedge::bergedge * pbergedge = new ::bergedge::bergedge();
          pcaapp = pbergedge;
          pbergedge->construct();
-         if(m_psystem != NULL && m_psystem->m_pbergedge == NULL)
+         if(m_psystem != NULL && m_psystem->m_psession != NULL && m_psystem->m_psession->m_pbergedge == NULL)
          {
-            m_psystem->m_pbergedge = pbergedge;
+            m_psystem->m_psession->m_pbergedge = pbergedge;
          }
       }
       else
@@ -81,15 +81,15 @@ namespace cube8
          if(pcaapp == NULL)
             return NULL;
 
-         pcaapp->m_pbergedge                          = m_pbergedge;
+         pcaapp->m_psession->m_pbergedge = m_psession->m_pbergedge;
 
          /*if(pcaapp->m_bService)
          {
             App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
          }*/
-         if(m_psystem != NULL && m_psystem->m_pbergedge == NULL)
+         if(m_psystem != NULL && m_psystem->m_psession != NULL && m_psystem->m_psession->m_pbergedge == NULL)
          {
-            m_psystem->m_pbergedge = m_pbergedge;
+            m_psystem->m_psession->m_pbergedge = m_psession->m_pbergedge;
          }
       }
 
@@ -585,7 +585,7 @@ InitFailure:
    {
       if(directrix().m_varTopicQuery.has_property("install"))
       {
-         if(::cube2::application::on_install())
+         if(::ca2::fontopus::application::on_install())
          {
             if(on_install())
             {
@@ -617,7 +617,7 @@ InitFailure:
       }
       else if(directrix().m_varTopicQuery.has_property("uninstall"))
       {
-         if(::cube2::application::on_uninstall())
+         if(::ca2::fontopus::application::on_uninstall())
          {
             if(on_uninstall())
             {
@@ -728,6 +728,9 @@ InitFailure:
       else if(gen::str::begins_ci(strPath, "rtp://")
          || gen::str::begins_ci(strPath, "rtprx://"))
       {
+         throw not_implemented_exception();
+
+         /*
          rtp::file * pfile =  new rtp::file(this);
          if(!pfile->rx_open(
             System.url().get_server(strPath),
@@ -751,6 +754,8 @@ InitFailure:
          {
             return NULL;
          }
+         */
+
       }
       else if(gen::str::begins(strPath, "http://")
          ||   gen::str::begins(strPath, "https://"))
@@ -825,7 +830,7 @@ InitFailure:
 
       try
       {
-         m_iReturnCode = ::fontopus::application::exit_instance();
+         m_iReturnCode = ::ca2::fontopus::application::exit_instance();
       }
       catch(...)
       {
@@ -882,6 +887,11 @@ InitFailure:
    bool application::initialize()
    {
 
+
+      if(!::ca2::fontopus::application::initialize())
+         return false;
+
+
       if(m_bIfs)
       {
          if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
@@ -907,8 +917,6 @@ InitFailure:
 
 
 
-      if(!fontopus::application::initialize())
-         return false;
 
       return true;
 
@@ -929,15 +937,15 @@ InitFailure:
 
 
       if(m_puser == NULL &&
-        (Application.directrix().m_varTopicQuery.has_property("install")
-      || Application.directrix().m_varTopicQuery.has_property("uninstall")))
+        (App(this).directrix().m_varTopicQuery.has_property("install")
+      || App(this).directrix().m_varTopicQuery.has_property("uninstall")))
       {
          m_puser                 = new ::fontopus::user(this);
          m_puser->m_strLogin     = "system";
          create_user(m_puser);
       }
 
-      if(!fontopus::application::initialize1())
+      if(!::ca2::fontopus::application::initialize1())
          return false;
 
 
@@ -962,22 +970,22 @@ InitFailure:
 
    bool application::on_install()
    {
-      return ::cube4::application::on_install();
+      return ::ca2::fontopus::application::on_install();
    }
 
    bool application::on_uninstall()
    {
-      return ::cube4::application::on_uninstall();
+      return ::ca2::fontopus::application::on_uninstall();
    }
 
    bool application::is_serviceable()
    {
-      return ::cube4::application::is_serviceable();
+      return ::ca2::fontopus::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
    {
-      return ::cube4::application::allocate_new_service();
+      return ::ca2::fontopus::application::allocate_new_service();
    }
 
 } //namespace cube8

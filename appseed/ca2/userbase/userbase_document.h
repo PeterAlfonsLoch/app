@@ -1,10 +1,14 @@
 #pragma once
 
+
 namespace userbase
 {
+
+
    class document_template;
    class frame_window;
    class view;
+
 
    class CLASS_DECL_ca2 document : 
       virtual public ::document,
@@ -28,4 +32,7 @@ namespace userbase
 
    };
 
+
 } // namepsace userbase
+
+

@@ -8,12 +8,11 @@ namespace ca
    template < class T >
    void smart_pointer <T>::create(::ca::application * papp)
    {
-      static ::ca::type_info s_typeinfo = ::ca::get_type_info < T > ();
       if(get_app() == NULL)
          set_app(papp);
       if(m_p != NULL)
          gen::release(m_p);
-      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, get_type_info < T > ()));
+      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, Sys(papp->m_psystem).type_info < T > ()));
    }
 
    template < class T >

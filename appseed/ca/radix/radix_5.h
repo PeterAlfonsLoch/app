@@ -291,8 +291,6 @@ _AfxSetRegKey(const char * lpszKey, const char * lpszValue, const char * lpszVal
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// application - the root of all Windows applications
 
 #define _AFX_MRU_COUNT   4      // default support for 4 entries in file MRU
 #define _AFX_MRU_MAX_COUNT 16   // currently allocated id range supports 16
@@ -327,8 +325,7 @@ class CLASS_DECL_ca file_manager_interface :
 public:
    file_manager_interface();
    virtual ~file_manager_interface();
-   virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags,
-      BOOL bOpenFileDialog, document_template * ptemplate);
+   virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
 
    bool initialize(::ca::application * papp);
 
@@ -336,7 +333,6 @@ public:
 
 
 #include "visual/visual_01.h"
-#include "user/user_01.h"
 #include "ca/ca_2.h"
 
 #include "radix_os_history.h"
@@ -429,9 +425,5 @@ CLASS_DECL_ca BOOL AfxExtractSubString(string & rString, const char * lpszFullSt
 
 
 #include "ca/ca_system.h"
-
-#ifndef _AFX_NO_SYNC_SUPPORT
-   #include "multithreading/multithreading.h"
-#endif
 
 #include "implementation.h"

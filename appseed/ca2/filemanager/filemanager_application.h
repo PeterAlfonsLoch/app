@@ -39,8 +39,7 @@ namespace filemanager
          ::fs::item_array & itema);
 
 
-      virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags,
-         BOOL bOpenFileDialog, document_template * ptemplate);
+      virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
 
       string get_file_manager_initial_browse_path(const char * pszDefault = NULL);
 

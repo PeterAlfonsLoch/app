@@ -765,7 +765,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\os\windows\os.vcxproj">
+    <ProjectReference Include="..\..\nodeapp\windows\os\os.vcxproj">
       <Project>{9163e31a-2d5a-4f18-ad6f-b561c76e5054}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ca2\ca2.vcxproj">

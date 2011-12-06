@@ -34,15 +34,15 @@ namespace fs
       ::ca::create_context_sp cc(get_app());
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
-  //    cc->m_usercreatecontext.m_typeinfoNewView = ::ca::get_type_info < tree > ();
-      ::user::interaction* pwnd = create_view(::ca::get_type_info < tree > (), get_document(), this, 100);
+  //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();
+      ::user::interaction* pwnd = create_view(System.type_info < tree > (), get_document(), this, 100);
       SetPane(0, pwnd, false);
 //      tree * ptree = dynamic_cast < tree * > (pwnd);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
-  //    cc->m_usercreatecontext.m_typeinfoNewView = ::ca::get_type_info < list > ();
-      pwnd = create_view(::ca::get_type_info < list > (), get_document(), this, 101);
+  //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < list > ();
+      pwnd = create_view(System.type_info < list > (), get_document(), this, 101);
 //      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
       layout();

@@ -193,11 +193,11 @@ namespace bergedge
          if(gen::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
-            if(!Bergedge.m_mapApplication.Lookup(strId, pappTab))
+            if(!Session.m_mapApplication.Lookup(strId, pappTab))
             {
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
-               Bergedge.command().add_fork(strId, pbiasCreate);
+               Session.command().add_fork(strId, pbiasCreate);
             }
 
      		   string strIcon = Application.dir().matter(System.dir().path(strId, "mainframe/icon48.png"));
@@ -260,7 +260,7 @@ namespace bergedge
       {
       case PaneViewContextMenu:
          {
-/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(::ca::get_type_info < bergedge::menu_view > (), get_document(), this, 102));
+/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.type_info < bergedge::menu_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -585,7 +585,9 @@ namespace bergedge
 
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
+      
       UNREFERENCED_PARAMETER(pdata);
+
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          ::userbase::menu menu(get_app());
@@ -596,6 +598,7 @@ namespace bergedge
          System.get_cursor_pos(&pt);
          menuPopup.TrackPopupMenu(0, pt.x, pt.y, GetParentFrame());
       }
+
    }
 
    /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::fs::item & item)

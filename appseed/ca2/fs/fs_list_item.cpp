@@ -104,3 +104,12 @@ namespace fs
 } // namespace fs
 
 
+
+template <> 
+::fs::item cast < ::fs::item > (::fs::list_item & item)
+{
+   ::fs::item itemT;
+   itemT.m_strPath = item.m_strPath;
+   itemT.m_flags = item.m_flags;
+   return itemT;
+}

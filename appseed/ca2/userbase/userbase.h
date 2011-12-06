@@ -3,7 +3,6 @@
 
 #include "ca2/user/user.h"
 #include "window_frame/window_frame.h"
-#include "user/user_document_template_interface.h"
 
 
 struct AFX_SIZEPARENTPARAMS;
@@ -29,8 +28,8 @@ namespace userbase
 
 #include "userbase_frame_window_interface.h"
 #include "userbase_frame_window.h"
-#include "userbase_mdi_frame_window.h"
-#include "userbase_mdi_child_window.h"
+//#include "userbase_mdi_frame_window.h"
+//#include "userbase_mdi_child_window.h"
 
 #include "userbase_tool_bar_control.h"
 

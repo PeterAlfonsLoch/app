@@ -10,6 +10,7 @@ namespace fs
       ::user::scroll_view(papp),
       ::user::list(papp),
       user::form(papp),
+      ::ca2::user::form(papp),
       user::form_list(papp),
       userbase::form_list(papp)
    {
@@ -392,12 +393,12 @@ namespace fs
             }
             if(pdata->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenFolder(::fs::item(pdata->m_itema.get_item(iStrict)));
+               _017OpenFolder(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
                break;
             }
             else
             {
-               itema.add(::fs::item(pdata->m_itema.get_item(iStrict)));
+               itema.add(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
             }
          }
       }
@@ -439,12 +440,12 @@ namespace fs
             }
             if(pdata->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(::fs::item(pdata->m_itema.get_item(iStrict)));
+               _017OpenContextMenuFolder(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
                break;
             }
             else
             {
-               itema.add(::fs::item(pdata->m_itema.get_item(iStrict)));
+               itema.add(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
             }
          }
       }
@@ -474,6 +475,12 @@ namespace fs
    }
 
    void list_interface::_017OpenFolder(const ::fs::item &item)
+   {
+      UNREFERENCED_PARAMETER(item);
+      ASSERT(FALSE);
+   }
+
+   void list_interface::_017OpenFolder(const ::fs::list_item &item )
    {
       UNREFERENCED_PARAMETER(item);
       ASSERT(FALSE);
@@ -558,7 +565,7 @@ namespace fs
                      continue;
                   iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
                }
-               itema.add(::fs::item(pdata->m_itema.get_item(iStrict)));
+               itema.add(cast < ::fs::item > (pdata->m_itema.get_item(iStrict)));
             }
          }
       }

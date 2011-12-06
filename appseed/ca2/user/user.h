@@ -44,30 +44,14 @@ namespace user
 #include "user_front_end_schema.h"
 #include "user_front_end.h"
 
-#include "user_view_container.h"
-#include "user_view_creator.h"
 
-#include "user_view.h"
-
-
-#include "user_frame_window_interface.h"
-#include "user_frame_window.h"
-
-
-#include "user_control.h"
-
-#include "user_place_holder.h"
-#include "user_place_holder_container.h"
-
-#include "html/data_callback.h"
-
-#include "user_form_callback.h"
 #include "user_list_header.h"
 #include "user_scroll_bar.h"
 #include "user_scroll_view.h"
-#include "user_form.h"
+
 
 #include "user_combo_box.h"
+
 
 #include "user_list.h"
 #include "user_list_cache_interface.h"
@@ -78,6 +62,7 @@ namespace user
 
 #include "user_tree.h"
 
+#include "user_form.h"
 #include "user_form_list.h"
 
 #include "user_tab_callback.h"
@@ -96,16 +81,6 @@ namespace user
 #include "user_tool_tip_window.h"
 
 
-#include "user_document_template.h"
-#include "user_single_document_template.h"
-#include "user_multiple_document_template.h"
-#include "user_document_interface.h"
-#include "user_document.h"
-
-
-#include "user_document_manager.h"
-
-#include "user_job.h"
 
 #include "user_printer.h"
 

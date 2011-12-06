@@ -119,7 +119,7 @@ namespace win
       // Standard exception processing
 
 
-   void AfxGetGrayBitmap(::ca::application * papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground)
+   /*void AfxGetGrayBitmap(::ca::application * papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground)
    {
       ASSERT(pDest);
       ASSERT_KINDOF(::ca::bitmap, pDest);
@@ -351,6 +351,7 @@ namespace win
       }
    }
 
+*/
 
    void * pen::get_os_data() const
    {

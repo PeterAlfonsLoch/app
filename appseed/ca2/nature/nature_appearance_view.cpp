@@ -105,10 +105,10 @@ namespace nature
 
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      filemanager::application & filemanagerapp = System;
+      filemanager::application & filemanagerapp = dynamic_cast < filemanager::application & > (System);
       folder_selection_list_view * pview;
       pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
-         ::ca::get_type_info < folder_selection_list_view > (), 
+         System.type_info < folder_selection_list_view > (), 
          get_document(),
          this,
          pcreatordata->m_id));

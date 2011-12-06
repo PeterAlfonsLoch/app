@@ -79,6 +79,9 @@ public:
 
    void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 
+
+   
+
 #ifdef WINDOWS
    void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #else
@@ -96,6 +99,7 @@ public:
 
    virtual void _000OnDraw(::ca::graphics * pdc);
    virtual void _001OnDraw(::ca::graphics * pdc);
+
 
 
 

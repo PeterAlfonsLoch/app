@@ -453,7 +453,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-::user::interaction * virtual_user_interface::GetParentFrame()
+::frame_window * virtual_user_interface::GetParentFrame()
 {
 
    ASSERT_VALID(this);
@@ -463,7 +463,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
    {
       if (base < ::user::interaction>::bases(pParentWnd))
       {
-         return dynamic_cast < ::user::interaction * > (pParentWnd);
+         return dynamic_cast < ::frame_window * > (pParentWnd);
       }
       pParentWnd = pParentWnd->GetParent();
    }
@@ -500,9 +500,9 @@ BOOL virtual_user_interface::IsWindowEnabled()
    return m_bEnabled && ((m_pguie == NULL || m_pguie->GetParent() == NULL) ? true : m_pguie->GetParent()->IsWindowEnabled());
 }
 
-::user::interaction * virtual_user_interface::EnsureParentFrame()
+::frame_window * virtual_user_interface::EnsureParentFrame()
 {
-    ::user::interaction *pFrameWnd = GetParentFrame();
+    ::frame_window *pFrameWnd = GetParentFrame();
     ENSURE_VALID(pFrameWnd);
     return pFrameWnd;
 }
@@ -531,8 +531,7 @@ void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
 ::user::interaction * pwnd, LPCRECT lpRect);
 
 
-void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
-   UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
+void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
 {
 //   synch_lock lock(m_pguie);
 
@@ -569,21 +568,21 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nI
       for (::user::interaction * hWndChild = m_pguie->GetTopWindow(); hWndChild != NULL;
          hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
       {
-         UINT_PTR nIDC = hWndChild->GetDlgCtrlId();
+         id nIDC = hWndChild->GetDlgCtrlId();
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
+         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (::user::interaction * hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
          hWndChild = hWndChild->under_sibling())
       {
-         UINT_PTR nIDC = hWndChild->GetDlgCtrlId();
+         id nIDC = hWndChild->GetDlgCtrlId();
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
+         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
@@ -592,21 +591,21 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nI
       for (::user::interaction * hWndChild = GetTopWindow(); hWndChild != NULL;
          hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
       {
-         UINT_PTR nIDC = hWndChild->GetDlgCtrlId();
+         id nIDC = hWndChild->GetDlgCtrlId();
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
+         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (::user::interaction * hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
          hWndChild = hWndChild->under_sibling())
       {
-         UINT_PTR nIDC = hWndChild->GetDlgCtrlId();
+         id nIDC = hWndChild->GetDlgCtrlId();
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if (nIDC >= nIDFirst && nIDC <= nIDLast && pWnd != NULL)
+         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
@@ -1002,21 +1001,21 @@ id virtual_user_interface::GetDlgCtrlId()
 }
 
 
-::user::interaction * virtual_user_interface::GetTopLevelFrame()
+::frame_window * virtual_user_interface::GetTopLevelFrame()
 {
    ASSERT_VALID(this);
 
-   ::user::interaction* pFrameWnd = NULL;
+   ::frame_window * pFrameWnd = NULL;
    if(m_pguie != this)
-      pFrameWnd = dynamic_cast < ::user::interaction * > (m_pguie);
+      pFrameWnd = dynamic_cast < ::frame_window * > (m_pguie);
    else
-      pFrameWnd = dynamic_cast < ::user::interaction * > (this);
+      pFrameWnd = dynamic_cast < ::frame_window * > (this);
    if (pFrameWnd == NULL || !pFrameWnd->IsFrameWnd())
       pFrameWnd = GetParentFrame();
 
    if (pFrameWnd != NULL)
    {
-      ::user::interaction* pTemp;
+      ::frame_window * pTemp;
       while ((pTemp = pFrameWnd->GetParentFrame()) != NULL)
          pFrameWnd = pTemp;
    }

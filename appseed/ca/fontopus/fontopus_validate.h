@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace fontopus
 {
+
 
    class CLASS_DECL_ca login_thread_callback :
       virtual public ::radix::object
@@ -13,6 +15,7 @@ namespace fontopus
       virtual string calc_ca2_hash();
    };
 
+
    class CLASS_DECL_ca http_execute
    {
    public:
@@ -21,6 +24,7 @@ namespace fontopus
       gen::property_set       m_propertysetHeaders;
       string                  m_strResponse;
    };
+
 
    class CLASS_DECL_ca http_execute_array : 
       public array_ptr_alloc < http_execute, http_execute & >
@@ -68,10 +72,10 @@ namespace fontopus
       void execute();
    };
 
+
    class CLASS_DECL_ca validate :
-/*      virtual public ::user::form_callback,
+      virtual public ::user::form_callback,
       virtual public ::user::view_creator,
-      virtual public ::user::tab_callback,*/
       virtual public login_thread_callback
    {
    public:
@@ -94,22 +98,16 @@ namespace fontopus
 
 
 
-      ::fontopus::user *                         m_puser;
+      ::fontopus::user *                        m_puser;
       login_thread                              m_loginthread;
       int                                       m_iView;
-/*      ::userbase::single_document_template *    m_ptemplatePane;
-      form_document *                           m_pdoc;
-      ::userex::pane_tab_view *                   m_ptabview;
-      form_document *                           m_pdocAuth;
-      form_document *                           m_pdocMessage;
-      form_view *                               m_pviewAuth;*/
       bool                                      m_bVotagusAuth;
       auth *                                    m_pauth;
       string                                    m_strForm;
       string                                    m_strLicense;
       bool                                      m_bLicense;
-      ::user::network_configuration              m_netcfg;
-      ::user::keyboard_layout *                  m_pkeyboardlayout;
+      ::user::network_configuration             m_netcfg;
+      ::user::keyboard_layout *                 m_pkeyboardlayout;
       bool                                      m_bInteractive;
 
 

@@ -8,13 +8,18 @@
 namespace ca
 {
 
+
    class window_callback;
    class live_object;
 
+
 } // namespace ca
+
 
 namespace user
 {
+
+
    class control_event;
 
 
@@ -224,7 +229,7 @@ namespace user
          LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-      virtual interaction * GetParentFrame();
+      virtual frame_window * GetParentFrame();
 
       virtual BOOL IsTopParentActive();
       virtual void ActivateTopParent();
@@ -303,7 +308,7 @@ namespace user
 
       virtual void WalkPreTranslateTree(gen::signal_object * pobj);
 
-      virtual interaction * GetDescendantWindow(int nID);
+      virtual interaction * GetDescendantWindow(id id);
 
       virtual void SetWindowText(const char * lpszString);
       virtual int GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
@@ -360,12 +365,11 @@ namespace user
       interaction * GetChildByName(const char * pszName, int iLevel = -1);
       interaction * GetChildById(id id, int iLevel = -1);
 
-      virtual interaction * EnsureParentFrame();
+      virtual ::frame_window * EnsureParentFrame();
       virtual interaction* GetTopLevelParent();
       virtual interaction* EnsureTopLevelParent();
-      virtual interaction* GetTopLevelFrame();
-      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
-         LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
+      virtual ::frame_window * GetTopLevelFrame();
+      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
       virtual void pre_translate_message(gen::signal_object * pobj);
 
 
@@ -376,10 +380,14 @@ namespace user
       virtual ::ca::window * get_wnd();
 
       enum RepositionFlags
-         { reposDefault = 0, reposQuery = 1, reposExtra = 2, reposNoPosLeftOver=0x8000 };
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIDLeftOver,
-         UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);
+      {
+         reposDefault = 0, 
+         reposQuery = 1,
+         reposExtra = 2, 
+         reposNoPosLeftOver=0x8000 
+      };
+
+      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);
 
       virtual interaction * GetOwner();
       virtual void SetOwner(interaction * pguie);

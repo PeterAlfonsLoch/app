@@ -27,6 +27,9 @@ namespace plane
    system::system()
    {
 
+      m_psystem                  = this;
+
+
       if(::get_heap_mutex() == NULL)
       {
          ::set_heap_mutex(new mutex());
@@ -80,7 +83,6 @@ namespace plane
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
       m_pcopydesk                = NULL;
-      m_psystem                  = this;
 
       
 
@@ -95,6 +97,9 @@ namespace plane
 
       m_bLibCharGuess            = false;
       m_puserstr                 = NULL;
+
+      m_pcube                    = NULL;
+      m_pwindowmap               = NULL;
 
    }
 
@@ -153,7 +158,7 @@ namespace plane
       ::ca::profiler::initialize();
 
 
-      System.factory().creatable < ::ca2::log >(::ca::get_type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       if(!system::application::process_initialize())
       {
@@ -176,7 +181,7 @@ namespace plane
       if(m_pmachineeventcentral->is_close_application())
          return false;
 
-      if(!system::application::initialize())
+      if(!::plane::application::initialize())
          return false;
 
       return true;
@@ -219,7 +224,7 @@ namespace plane
       System.factory().cloneable_large < ::ca::palette_sp >();
       System.factory().cloneable_large < ::ca::region_sp >();
       System.factory().cloneable_large < var >();
-      System.factory().creatable < ::ca2::log >(::ca::get_type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -277,6 +282,8 @@ namespace plane
          return false;
 
 
+
+
 //      m_spfilehandler->defer_add_library(library.m_pca2library);
 
       stringa stra;
@@ -330,7 +337,7 @@ namespace plane
       if(!system::application::initialize_instance())
         return false;
 
-      m_pbergedgemap = new ::plane::bergedge::map;
+      m_pbergedgemap = new ::plane::session::map;
 
       return true;
    }
@@ -495,9 +502,9 @@ namespace plane
    }
 
 
-   plane::bergedge * system::query_bergedge(index iEdge)
+   plane::session * system::query_bergedge(index iEdge)
    {
-      plane::bergedge * pbergedge = NULL;
+      plane::session * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
@@ -508,14 +515,14 @@ namespace plane
    }
 
 
-   plane::bergedge * system::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
+   plane::session * system::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
    {
-      plane::bergedge * pbergedge = NULL;
+      plane::session * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
       {
-         pbergedge = dynamic_cast < ::plane::bergedge * > (create_application("bergedge", true, pbiasCreation));
+         pbergedge = dynamic_cast < ::plane::session * > (create_application("session", true, pbiasCreation));
          if(pbergedge == NULL)
             return NULL;
          pbergedge->m_iEdge = iEdge;
@@ -527,7 +534,7 @@ namespace plane
 
    ::ca::application * system::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      plane::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
+      plane::session * pbergedge = get_bergedge(iEdge, pbiasCreate);
       return pbergedge->application_get(pszId, bCreate, bSynch, pbiasCreate);
    }
 
@@ -776,7 +783,7 @@ namespace plane
    {
       if(m_plog != NULL)
          return true;
-      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, ::ca::get_type_info < class ::ca::log > ()));
+      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, System.type_info < class ::ca::log > ()));
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -998,7 +1005,7 @@ namespace plane
 
    void system::on_request(::ca::create_context * pcreatecontext)
    {
-      ::plane::bergedge * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      ::plane::session * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       pbergedge->request(pcreatecontext);
    }
 
@@ -1157,7 +1164,7 @@ namespace plane
    index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
    {
       int iNewEdge = m_iNewEdge;
-      plane::bergedge * pbergedge;
+      plane::session * pbergedge;
       while(m_pbergedgemap->Lookup(iNewEdge, pbergedge))
       {
          iNewEdge++;
@@ -1173,7 +1180,7 @@ namespace plane
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, ::ca::get_type_info < ::ca::window_draw > ()));
+      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.type_info < ::ca::window_draw > ()));
       m_ptwf->start();
       return true;
    }
@@ -1237,7 +1244,7 @@ namespace plane
       set._008ParseCommandFork(pdata->m_vssCommandLine, varFile, strApp);
 
       if((varFile.is_empty() && ((!set.has_property("app") && !set.has_property("show_platform"))
-         || set["app"] == "bergedge")) &&
+         || set["app"] == "session")) &&
          !(set.has_property("install") || set.has_property("uninstall")))
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)
@@ -1269,8 +1276,58 @@ namespace plane
 
    }
 
+   ::ca::type_info & system::get_type_info(const ::std_type_info & info)
+   {
+      
+      ::ca::type_info & typeinfo = m_typemap[info.raw_name()];
+      
+      if(typeinfo.m_id.is_null())
+         typeinfo = info;
+
+      return typeinfo;
+
+   }
+
+
+   ::document * system::hold(::user::interaction * pui)
+   {
+
+
+      if(m_pcubeInterface != NULL)
+      {
+         return m_pcubeInterface->hold(pui);
+      }
+
+      return NULL;
+
+   }
+
+
+   count system::get_monitor_count()
+   {
+
+      if(m_pcubeInterface != NULL)
+      {
+         return m_pcubeInterface->get_monitor_count();
+      }
+
+      return 0;
+
+   }
+
+   bool system::get_monitor_rect(index i, LPRECT lprect)
+   {
+
+      if(m_pcubeInterface != NULL)
+      {
+         return m_pcubeInterface->get_monitor_rect(i, lprect);
+      }
+
+
+      return false;
+
+   }
+
 } // namespace plane
-
-
 
 

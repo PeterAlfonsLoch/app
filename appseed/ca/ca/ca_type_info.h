@@ -53,13 +53,6 @@ namespace ca
    };
 
 
-   template < typename T >
-   inline ::ca::type_info & get_type_info()
-   {
-      static ::ca::type_info s_typeinfo = typeid(T);
-      return s_typeinfo;
-   }
-
 } // namespace ca
 
 

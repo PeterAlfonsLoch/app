@@ -41,12 +41,12 @@ namespace userbase
       IGUI_WIN_MSG_LINK(SB_SETMINHEIGHT      , pinterface, this, &status_bar::_001OnSetMinHeight);
    }
 
-   BOOL status_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT strId)
+   BOOL status_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, id strId)
    {
       return CreateEx(pParentWnd, 0, dwStyle, strId);
    }
 
-   BOOL status_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, UINT strId)
+   BOOL status_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, id strId)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 

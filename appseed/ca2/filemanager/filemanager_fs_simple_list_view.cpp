@@ -17,6 +17,7 @@ namespace filemanager
             ::user::form(papp),
             ::user::form_list(papp),
             ::userbase::view(papp),
+            ::ca2::user::form(papp),
             ::userbase::form_list(papp),
             simple_list_view(papp)
          {

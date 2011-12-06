@@ -18,26 +18,26 @@ namespace userbase
 
    bool application::initialize()
    {
+      
       m_pufeschema      = new ::user::front_end_schema(this);
       m_pufe            = new ::user::front_end();
 
-      if(is_system())
-      {
-         System.factory().cloneable_small < userbase::split_layout > ();
-         System.factory().cloneable_small < userbase::split_bar >();
-         System.factory().cloneable_small < simple_frame_window >();
-         System.factory().creatable_small < MetaButton >();
-         System.factory().creatable_small < BaseButtonControl >();
-         System.factory().creatable_small < userbase::menu_list_view >();
-         System.factory().cloneable_small < simple_child_frame >();
-         System.factory().creatable_small < simple_button >();
-         System.factory().cloneable_small < userbase::document >();
-         System.factory().cloneable_small < userbase::split_view >();
-         System.factory().cloneable_small < userbase::edit_plain_text_view >();
-         System.factory().creatable_small < simple_list_view >();
-         System.factory().creatable_small < simple_document > ();
-         System.factory().creatable_small < simple_printer_list_view > ();
-      }
+      
+      System.factory().cloneable_small < userbase::split_layout > ();
+      System.factory().cloneable_small < userbase::split_bar >();
+      System.factory().cloneable_small < simple_frame_window >();
+      System.factory().creatable_small < MetaButton >();
+      System.factory().creatable_small < BaseButtonControl >();
+      System.factory().creatable_small < userbase::menu_list_view >();
+      System.factory().cloneable_small < simple_child_frame >();
+      System.factory().creatable_small < simple_button >();
+      System.factory().cloneable_small < userbase::document >();
+      System.factory().cloneable_small < userbase::split_view >();
+      System.factory().cloneable_small < userbase::edit_plain_text_view >();
+      System.factory().creatable_small < simple_list_view >();
+      System.factory().creatable_small < simple_document > ();
+      System.factory().creatable_small < simple_printer_list_view > ();
+
 
       if (m_pdocmanager != NULL)
          m_pdocmanager->add_document_template(NULL);
@@ -46,7 +46,7 @@ namespace userbase
          return false;
 
 
-      if(!simpledb::application::initialize())
+      if(!::ca2::user::application::initialize())
          return false;
 
       return TRUE;

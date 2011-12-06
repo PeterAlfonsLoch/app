@@ -416,7 +416,7 @@ namespace platform
 
 
       class rect rectThumb;
-      if(m_pbergedge != NULL && &Bergedge != NULL)
+      if(&Bergedge != NULL)
       {
          Bergedge.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)

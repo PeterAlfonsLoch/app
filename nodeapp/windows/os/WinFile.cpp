@@ -1027,8 +1027,8 @@ void PASCAL WinFileException::ThrowErrno(::ca::application * papp, int nErrno, c
 BOOL WinFileException::GetErrorMessage(string & str, PUINT pnHelpContext)
 {
    
-   if (pnHelpContext != NULL)
-      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
+  // if (pnHelpContext != NULL)
+//      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
 
    string strMessage;
    string strFileName = m_strFileName;

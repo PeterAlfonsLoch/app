@@ -57,14 +57,14 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_DESTROY        , pinterface, this, &view::_001OnDestroy);
 
       // Standard commands for split pane
-      connect_command(ID_WINDOW_SPLIT , &view::_001OnSplitCmd);
-      connect_update_cmd_ui(ID_WINDOW_SPLIT ,  &view::_001OnUpdateSplitCmd);
+//      connect_command(ID_WINDOW_SPLIT , &view::_001OnSplitCmd);
+  //    connect_update_cmd_ui(ID_WINDOW_SPLIT ,  &view::_001OnUpdateSplitCmd);
 
       // Standard commands for next pane
-      connect_update_cmd_ui(ID_NEXT_PANE    , &view::_001OnUpdateNextPaneMenu);
-      connect_command(ID_NEXT_PANE   , &view::_001OnNextPaneCmd);
-      connect_update_cmd_ui(ID_PREV_PANE    , &view::_001OnUpdateNextPaneMenu);
-      connect_command(ID_PREV_PANE    , &view::_001OnNextPaneCmd);
+    //  connect_update_cmd_ui(ID_NEXT_PANE    , &view::_001OnUpdateNextPaneMenu);
+      //connect_command(ID_NEXT_PANE   , &view::_001OnNextPaneCmd);
+//      connect_update_cmd_ui(ID_PREV_PANE    , &view::_001OnUpdateNextPaneMenu);
+  //    connect_command(ID_PREV_PANE    , &view::_001OnNextPaneCmd);
       
       //}}AFX_MSG_MAP
       // special command for Initial Update

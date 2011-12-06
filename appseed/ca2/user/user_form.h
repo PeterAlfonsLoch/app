@@ -1,94 +1,113 @@
 #pragma once
 
 
-namespace user
+namespace ca2
 {
 
-   class CLASS_DECL_ca2 form : 
-      virtual public scroll_view
+
+   namespace user
    {
-   public:
-      form(::ca::application * papp);
-      virtual ~form();
-
-      bool                       m_bOnEditUpdate;
-      bool                       m_bOnLanguageChange;
-      UINT                       m_uiId;
-      control::descriptor_set    m_controldescriptorset;
-      bool                       m_bInitialized;
-      form_callback *            m_pcallback;
-
-      //base_array < CTransparentStatic *, CTransparentStatic * > m_staticpa;
-
-      virtual string get_path();
-      virtual bool open_document(var varFile);
 
 
-      using scroll_view::create;
-      using ::user::control::_001IsPointInside;
-      virtual bool _001IsPointInside(control * pcontrol, point64 pt);
+      class CLASS_DECL_ca2 form : 
+         virtual public ::user::form
+      {
+      public:
 
 
-      virtual bool _001Initialize();
+         bool                          m_bOnEditUpdate;
+         bool                          m_bOnLanguageChange;
+         UINT                          m_uiId;
+         control::descriptor_set       m_controldescriptorset;
+         bool                          m_bInitialized;
+         ::user::form_callback *       m_pcallback;
 
-      virtual void _017OnAppLanguage();
-      virtual void _001OnButtonAction(control * pcontrol);
-      virtual void _001OnInitializeForm(control * pcontrol);
-      void _001UpdateFunctionStatic();
-      virtual bool _001OnBeforeSave(control * pcontrol);
-      virtual void _001RemoveControls();
-      bool _001Validate(control * pcontrol, var & var);
-      bool _001SaveEdit(control * pcontrol);
-      virtual bool _001OnCommand(id id);
-      DECL_GEN_VSIGNAL(_001OnNotify)
-      DECL_GEN_VSIGNAL(_001OnMessageNotify)
-      virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
-      void Update(bool bSave);
-      bool _001SetData(id uiId, bool bData);
-      bool _001GetData(id uiId, bool & bData);
-      INT_PTR _001AddControl(class control::descriptor & descriptor);
-      void _001FillCombo(control * pcontrol);
 
-      virtual void WfiOnClose();
+         form(::ca::application * papp);
+         virtual ~form();
+
+
+         //base_array < CTransparentStatic *, CTransparentStatic * > m_staticpa;
+
+         virtual string get_path();
+         virtual bool open_document(var varFile);
+
+
+         using control::create;
+         using ::user::control::_001IsPointInside;
+         virtual bool _001IsPointInside(control * pcontrol, point64 pt);
+         virtual void control_get_window_rect(control * pcontrol, LPRECT lprect);
+         virtual void control_get_client_rect(control * pcontrol, LPRECT lprect);
+
+
+         virtual bool _001Initialize();
+
+         virtual void _017OnAppLanguage();
+         virtual void _001OnButtonAction(control * pcontrol);
+         virtual void _001OnInitializeForm(control * pcontrol);
+         void _001UpdateFunctionStatic();
+         virtual bool _001OnBeforeSave(control * pcontrol);
+         virtual void _001RemoveControls();
+         bool _001Validate(control * pcontrol, var & var);
+         bool _001SaveEdit(control * pcontrol);
+         virtual bool _001OnCommand(id id);
+         DECL_GEN_VSIGNAL(_001OnNotify)
+         DECL_GEN_VSIGNAL(_001OnMessageNotify)
+         virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
+         void Update(bool bSave);
+         bool _001SetData(id uiId, bool bData);
+         bool _001GetData(id uiId, bool & bData);
+         INT_PTR _001AddControl(class control::descriptor & descriptor);
+         void _001FillCombo(control * pcontrol);
+
+         virtual void WfiOnClose();
       
-      DECL_GEN_VSIGNAL(_000OnPosCreate)
-      DECL_GEN_SIGNAL(_001OnCreate)
+         DECL_GEN_VSIGNAL(_000OnPosCreate)
+         DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual void install_message_handling(::gen::message::dispatch *pinterface);
-      virtual void _001InitializeFormPreData();
-      virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::radix::object* phint);
-      virtual void _001Update(control * pcontrol);
-      virtual void _001UpdateCheckBox(control * pcontrol);
-      virtual void _001UpdateComboBox(control * pcontrol);
-      virtual void _001UpdateEdit(control * pcontrol);
-      virtual void _001UpdateSimpleList(control * pcontrol);
+         virtual void install_message_handling(::gen::message::dispatch *pinterface);
+         virtual void _001InitializeFormPreData();
+         virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::radix::object* phint);
+         virtual void _001Update(control * pcontrol);
+         virtual void _001UpdateCheckBox(control * pcontrol);
+         virtual void _001UpdateComboBox(control * pcontrol);
+         virtual void _001UpdateEdit(control * pcontrol);
+         virtual void _001UpdateSimpleList(control * pcontrol);
 
-      virtual void _001UpdateDbFlags(control * pcontrol);
-      virtual void _001UpdateDbFlagsCheckBox(control * pcontrol);
+         virtual void _001UpdateDbFlags(control * pcontrol);
+         virtual void _001UpdateDbFlagsCheckBox(control * pcontrol);
       
-      DECL_GEN_SIGNAL(_001OnAppLanguage)
+         DECL_GEN_SIGNAL(_001OnAppLanguage)
 
-      bool OnCommand(WPARAM wparam, LPARAM lparam);
-      bool OnCommandButton(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
-      bool OnCommandCheckBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
-      bool OnCommandComboBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
-      bool OnCommandEdit(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
-
-
-      DECL_GEN_VSIGNAL(data_on_after_change)
+         bool OnCommand(WPARAM wparam, LPARAM lparam);
+         bool OnCommandButton(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
+         bool OnCommandCheckBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
+         bool OnCommandComboBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
+         bool OnCommandEdit(control * pcontrol, UINT uiNotificationCode, LPARAM lparam);
 
 
-      virtual bool create_control(class control::descriptor * pdescriptor);
-      virtual bool normalize_control_descriptor_typeinfo(class user::control::descriptor * pdescriptor);
-
-      bool operator == (const control & control) const;
-
-      bool BaseOnControlEvent(::user::control_event * pevent);
-      void _001SetControlFactory(void);
+         DECL_GEN_VSIGNAL(data_on_after_change)
 
 
-      virtual void OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
+         virtual bool create_control(class control::descriptor * pdescriptor);
+         virtual bool normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor);
 
-   };
+         bool operator == (const control & control) const;
 
-} // namespace user
+         bool BaseOnControlEvent(::user::control_event * pevent);
+         void _001SetControlFactory(void);
+
+
+         virtual void OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
+
+
+      };
+
+
+   } // namespace user
+
+
+} // namespace ca2
+
+
+

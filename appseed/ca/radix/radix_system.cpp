@@ -25,7 +25,7 @@ namespace radix
 
    ::ca::ca * system::on_alloc(::ca::application * papp, ::ca::type_info & info)
    {
-      if(info == ::ca::get_type_info < class log > ())
+      if(info == System.type_info < class log > ())
       {
          return new class ::ca2::log(this); // NULL log implementation
       }

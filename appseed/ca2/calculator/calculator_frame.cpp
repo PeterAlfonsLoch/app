@@ -3,13 +3,13 @@
 namespace calculator
 {
 
-   static UINT indicators[] =
+   /*static UINT indicators[] =
    {
       ID_SEPARATOR,           // status line indicator
       ID_INDICATOR_CAPS,
       ID_INDICATOR_NUM,
       ID_INDICATOR_SCRL,
-   };
+   };*/
 
    frame::frame(::ca::application * papp) :
       ca(papp),

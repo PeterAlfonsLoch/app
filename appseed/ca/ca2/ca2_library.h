@@ -23,7 +23,6 @@ namespace ca2
       library();
       virtual ~library();
 
-      
       virtual bool open(::ca::application * papp, const char * pszPath, bool bAutoClose = true);
       virtual bool close();
 

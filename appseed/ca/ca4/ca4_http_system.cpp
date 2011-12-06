@@ -152,6 +152,9 @@ namespace ca4
 
          string strAutoConfigScript = Application.file().as_string(strUrl, varQuery);
 
+         if(strAutoConfigScript.is_empty())
+            return false;
+
          string strHost;
 
          strHost = System.url().get_server(pszUrl);
@@ -466,7 +469,7 @@ namespace ca4
          if(papp != NULL)
          {
             keeplive.add(papp);
-            keeplive.add(&Berg(papp));
+            keeplive.add(&Sess(papp));
             keeplive.add(&Sys(papp));
          }
          while(handler.get_count() > 0)

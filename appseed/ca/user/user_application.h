@@ -6,7 +6,8 @@ namespace user
 
 
    class CLASS_DECL_ca application :
-      public ::visual::application
+      virtual public ::visual::application,
+      virtual public ::user::document_request_interface
    {
    public:
 
@@ -56,6 +57,8 @@ namespace user
 
       class keyboard & keyboard();
 
+
+      virtual ::ca::type_info controltype_to_typeinfo(::user::control::e_type type);
 
    };
 

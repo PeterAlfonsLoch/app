@@ -111,12 +111,11 @@ namespace gcom
          // 2004-08-24
          if(pbitmap != NULL)
          {
-            BITMAP bm;
-            pbitmap->GetObject(sizeof(bm), &bm);
+            class size size = pbitmap->get_size();
             ::ca::graphics_sp spgraphics(get_app());
             spgraphics->CreateCompatibleDC(NULL);
             ::ca::bitmap * pbitmapOriginal = spgraphics->SelectObject(pbitmap);
-            GetDib(_graphics::DibSource)->create(bm.bmWidth, bm.bmHeight);
+            GetDib(_graphics::DibSource)->create(size);
             GetDib(_graphics::DibSource)->from(spgraphics);
             spgraphics->SelectObject(pbitmapOriginal);
             bOk = true;
@@ -252,12 +251,7 @@ namespace gcom
                      GetDib(_graphics::DibSource)->GetAverageColor());
                }
 
-               BITMAP bmSource;
-               if(!bmpSource.GetBitmap(&bmSource))
-               {
-                  TRACE0("Mem Bitmap info not available.\n");
-                  throw ciScaledBitmapInfoNotAvailable;
-               }
+               class size sizeSource = bmpSource.get_size();
 
 
                int finalX;
@@ -270,17 +264,17 @@ namespace gcom
                double dRate;
                if(imagechange.m_eplacement == ImagePlacementZoomAll)
                {
-                  dRate = min((double) cx / bmSource.bmWidth, (double) cy / bmSource.bmHeight);
-                  finalW = (int) (bmSource.bmWidth * dRate);
-                  finalH = (int)(bmSource.bmHeight * dRate);
+                  dRate = min((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+                  finalW = (int) (sizeSource.cx * dRate);
+                  finalH = (int)(sizeSource.cy * dRate);
                   finalX = (cx - finalW) / 2;
                   finalY = (cy - finalH) / 2;
                }
                else if (imagechange.m_eplacement == ImagePlacementZoomExtend)
                {
-                  dRate = max((double) cx / bmSource.bmWidth, (double) cy / bmSource.bmHeight);
-                  finalW = (int) (bmSource.bmWidth * dRate);
-                  finalH = (int) (bmSource.bmHeight * dRate);
+                  dRate = max((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+                  finalW = (int) (sizeSource.cx * dRate);
+                  finalH = (int) (sizeSource.cy * dRate);
                   finalX = (cx - finalW) / 2;
                   finalY = (cy - finalH) / 2;
                }
@@ -296,8 +290,8 @@ namespace gcom
                if(imagechange.m_eplacement == ImagePlacementTile)
                {
 
-                  int iW = bmSource.bmWidth;
-                  int iH = bmSource.bmHeight;
+                  int iW = sizeSource.cx;
+                  int iH = sizeSource.cy;
                   int iXMod = (cx - iW) / 2;
                   int iYMod = (cy - iH) / 2;
                   int iXOffset =  iXMod;
@@ -340,8 +334,8 @@ namespace gcom
 
                   int srcX = 0;
                   int srcY = 0;
-                  int srcW = bmSource.bmWidth;
-                  int srcH = bmSource.bmHeight;
+                  int srcW = sizeSource.cx;
+                  int srcH = sizeSource.cy;
 
                   dcBuffer.SetStretchBltMode(HALFTONE);
                   dcBuffer.StretchBlt(
@@ -428,24 +422,16 @@ namespace gcom
       {
          ::ca::bitmap & bmpSource = GetSourceBitmap();
 
-         BITMAP bm;
          EImagePlacement eplacement;
-         if(!bmpSource.GetObject(sizeof(bm), &bm))
+         class size size = bmpSource.get_size();
+         if(size.cx < (GetSystemMetrics(SM_CXSCREEN) / 2) &&
+            size.cy < (GetSystemMetrics(SM_CYSCREEN) / 2))
          {
-            eplacement = ImagePlacementZoomAll;
+            eplacement = ImagePlacementTile;
          }
          else
          {
-            if(bm.bmWidth < (GetSystemMetrics(SM_CXSCREEN) / 2) &&
-               bm.bmHeight < (GetSystemMetrics(SM_CYSCREEN) / 2))
-            {
-               eplacement = ImagePlacementTile;
-            }
-            else
-            {
-               eplacement = ImagePlacementZoomAll;
-            }
-
+            eplacement = ImagePlacementZoomAll;
          }
          return eplacement;
       }

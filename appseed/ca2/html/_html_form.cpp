@@ -276,7 +276,7 @@ html::data * html_form::calc_data()
    if(get_html_data() != NULL)
       return get_html_data();
    else
-      return dynamic_cast < html::data * > (Application.alloc(::ca::get_type_info < html::data > ()));
+      return dynamic_cast < html::data * > (Application.alloc(System.type_info < html::data > ()));
 }
 
 /*

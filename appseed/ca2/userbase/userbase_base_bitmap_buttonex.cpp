@@ -70,12 +70,13 @@ namespace userbase
 
    void bitmap_button::ResizeToFit()
    {
-      BITMAP bm;
 
-      m_bitmap.GetBitmap(&bm);
+      class size size = m_bitmap.get_size();
 
-      SetWindowPos(NULL, 0, 0, bm.bmWidth, bm.bmHeight, SWP_NOMOVE | SWP_NOZORDER);
+      SetWindowPos(NULL, 0, 0, size.cx, size.cy, SWP_NOMOVE | SWP_NOZORDER);
+
    }
+
    void bitmap_button::_001OnMouseMove(gen::signal_object * pobj)
    {
       UpdateHover();

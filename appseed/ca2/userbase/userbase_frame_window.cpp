@@ -173,7 +173,7 @@ namespace userbase
    void frame_window::_001OnQueryEndSession(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj);
-      application* pApp = &System;
+      application* pApp = dynamic_cast < ::userbase::application * > (&System);
       if (pApp != NULL && pApp->GetMainWnd() == this)
       {
          pbase->set_lresult(pApp->save_all_modified());
@@ -199,9 +199,9 @@ namespace userbase
 
    void frame_window::OnUpdateControlBarMenu(cmd_ui * pcmdui)
    {
-      ASSERT(ID_VIEW_STATUS_BAR == AFX_IDW_STATUS_BAR);
+/*      ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
       ASSERT(ID_VIEW_TOOLBAR == AFX_IDW_TOOLBAR);
-      ASSERT(ID_VIEW_REBAR == AFX_IDW_REBAR);
+      ASSERT(ID_VIEW_REBAR == AFX_IDW_REBAR);*/
 
       pcmdui->ContinueRouting();
    }
@@ -209,9 +209,9 @@ namespace userbase
    BOOL frame_window::OnBarCheck(UINT nID)
    {
       UNREFERENCED_PARAMETER(nID);
-      ASSERT(ID_VIEW_STATUS_BAR == AFX_IDW_STATUS_BAR);
+      /*ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
       ASSERT(ID_VIEW_TOOLBAR == AFX_IDW_TOOLBAR);
-      ASSERT(ID_VIEW_REBAR == AFX_IDW_REBAR);
+      ASSERT(ID_VIEW_REBAR == AFX_IDW_REBAR);*/
 
       return FALSE;
    }
@@ -366,6 +366,11 @@ namespace userbase
    void frame_window::on_delete(::ca::ca * pca)
    {
       UNREFERENCED_PARAMETER(pca);
+   }
+
+   void frame_window::AddControlBar(::userbase::control_bar *pBar)
+   {
+      m_listControlBars.add_tail(pBar); 
    }
 
 } // namespace userbase

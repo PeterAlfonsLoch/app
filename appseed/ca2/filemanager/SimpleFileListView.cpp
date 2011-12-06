@@ -13,6 +13,7 @@ namespace filemanager
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
+      ::ca2::user::form(papp),
       ::user::form_list(papp),
       SimpleFileListInterface(papp),
       ::userbase::view(papp),
@@ -309,7 +310,7 @@ namespace filemanager
          ::userbase::menu menu(get_app());
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
-            _017OpenContextMenuFolder(get_fs_list_data()->m_itema.get_item(iItem));
+            _017OpenContextMenuFolder(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
             /*if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_ptemplate->m_strFolderPopup))
             {
                ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
@@ -587,7 +588,7 @@ namespace filemanager
          ItemRange itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
          {
-            itema.add(::fs::item(get_fs_list_data()->m_itema.get_item(iItem)));
+            itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
          }
       }
       GetFileManager()->get_filemanager_data()->OnFileManagerItemCommand(
@@ -609,7 +610,7 @@ namespace filemanager
          ItemRange itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
          {
-            itema.add(::fs::item(get_fs_list_data()->m_itema.get_item(iItem)));
+            itema.add(cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iItem)));
          }
       }
       GetFileManager()->get_filemanager_data()->OnFileManagerItemUpdate(

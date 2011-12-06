@@ -233,13 +233,13 @@ namespace plugin
 
    void host_interaction::_000OnMouse(::gen::message::mouse * pmouse)
    {
-      if(&Bergedge != NULL)
+      if(&Session != NULL)
       {
-         Bergedge.m_ptCursor = pmouse->m_pt;
+         Session.m_ptCursor = pmouse->m_pt;
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_papp != NULL && m_uiptraChild[0]->m_papp->m_pbergedge != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_papp != NULL && m_uiptraChild[0]->m_papp->m_psession != NULL)
          {
             set_app(m_uiptraChild[0]->m_papp);
          }

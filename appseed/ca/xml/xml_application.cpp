@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace xml
 {
+
 
    application::application()
    {
@@ -44,3 +46,5 @@ namespace xml
 
 
 } //namespace xml
+
+

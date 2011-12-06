@@ -210,7 +210,7 @@ namespace bergedge
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(::ca::get_type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.type_info < ::bergedge::pane_view > (), get_document(), this, 102));
 
       hold(m_ppaneview);
 
@@ -501,12 +501,11 @@ namespace bergedge
             {
                papp = NULL;
             }
-            if(papp != NULL && m_pbergedge != NULL
-               && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_pbergedge))
+            if(papp != NULL && m_psession != NULL && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_psession))
             {
                try
                {
-                  papp->m_ptCursor = Bergedge.m_ptCursor;
+                  papp->m_ptCursor = Session.m_ptCursor;
                }
                catch(...)
                {

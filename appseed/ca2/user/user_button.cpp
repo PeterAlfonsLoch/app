@@ -128,12 +128,12 @@ namespace user
          if(get_form() != NULL)
          {
             get_form()->SendMessage(
-               ::user::message_event, 0, (LPARAM) &ev);
+               ::gen::message_event, 0, (LPARAM) &ev);
          }
          else
          {
             GetParent()->SendMessage(
-               ::user::message_event, 0, (LPARAM) &ev);
+               ::gen::message_event, 0, (LPARAM) &ev);
          }
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
@@ -144,7 +144,7 @@ namespace user
    void button::_001OnMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-         if(get_form_list() == NULL)
+         if(get_form() == NULL)
          {
 
             e_element eelement;
@@ -161,7 +161,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_enter;
                   GetParent()->SendMessage(
-                     ::user::message_event, 0, (LPARAM) &ev);
+                     ::gen::message_event, 0, (LPARAM) &ev);
                }
                else if(iHover == -1)
                {
@@ -169,7 +169,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_leave;
                   GetParent()->SendMessage(
-                     ::user::message_event, 0, (LPARAM) &ev);
+                     ::gen::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_hover();
             }
@@ -180,7 +180,7 @@ namespace user
    void button::_001OnMouseLeave(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
-         if(get_form_list() == NULL)
+         if(get_form() == NULL)
          {
             int iOldHover = m_iHover;
             m_iHover = -1;
@@ -192,7 +192,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_leave;
                if(GetParent() != NULL)
                {
-                  GetParent()->SendMessage(message_event, 0, (LPARAM) &ev);
+                  GetParent()->SendMessage(::gen::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_leave();
             }

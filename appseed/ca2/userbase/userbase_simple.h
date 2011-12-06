@@ -47,8 +47,8 @@
 #include "simple_form_list_edit.h"
 
 #include "simple_frame_window.h"
-#include "simple_mdi_frame_window.h"
-#include "simple_mdi_child_window.h"
+//#include "simple_mdi_frame_window.h"
+//#include "simple_mdi_child_window.h"
 #include "simple_child_frame.h"
 
 

@@ -33,7 +33,7 @@ int CLASS_DECL_VMSWIN AfxWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, L
 
    _set_purecall_handler(_ca2_purecall);
 
-   ::cube8::system * psystem = ::cube8::create_system();
+   ::plane::system * psystem = new ::plane::system();
 
    ASSERT(hPrevInstance == NULL);
 
@@ -66,11 +66,13 @@ int CLASS_DECL_VMSWIN AfxWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, L
 
    try
    {
-      ::cube8::destroy_system(psystem);
+      delete psystem;
    }
    catch(...)
    {
    }
+
+   psystem = NULL;
 
 
    try
@@ -133,7 +135,7 @@ int CLASS_DECL_VMSWIN ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, con
 
       _set_purecall_handler(_ca2_purecall);
 
-      ::cube8::system * psystem = ::cube8::create_system();
+      ::plane::system * psystem = new ::plane::system();
 
 
       ASSERT(hPrevInstance == NULL);
@@ -159,12 +161,13 @@ int CLASS_DECL_VMSWIN ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, con
 
       try
       {
-         ::cube8::destroy_system(psystem);
+         delete psystem;
       }
       catch(...)
       {
       }
 
+      psystem = NULL;
 
       try
       {

@@ -4,12 +4,14 @@
 #include "ca/ca_type_info.h"
 
 
+class document;
+class document_template;
+
+
 namespace user
 {
 
-   class document;
    class interaction;
-   class document_template;
 
 
    class CLASS_DECL_ca create_context   // Creation information structure

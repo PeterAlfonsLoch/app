@@ -168,7 +168,7 @@ namespace bergedge
 
    void frame::_000OnMouse(::gen::message::mouse * pmouse)
    {
-      Bergedge.m_ptCursor = pmouse->m_pt;
+      Session.m_ptCursor = pmouse->m_pt;
 //      ::cube8::application * pappParent = &App(Application.m_papp);
 //      ::cube8::application * papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE
