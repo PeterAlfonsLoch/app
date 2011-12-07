@@ -893,6 +893,32 @@ namespace plane
 
    }
 
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // Session/Bergedge
+   //
+   ::bergedge::view * session::get_view()
+   {
+
+      if(m_pbergedgeInterface != NULL)
+      {
+         return m_pbergedgeInterface->get_view();
+      }
+
+      return NULL;
+
+   }
+
+   ::bergedge::document * session::get_document()
+   {
+
+      if(m_pbergedgeInterface != NULL)
+      {
+         return m_pbergedgeInterface->get_document();
+      }
+
+      return NULL;
+
+   }
 
 } // namespace plane
 

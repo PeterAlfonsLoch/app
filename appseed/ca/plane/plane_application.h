@@ -74,16 +74,33 @@ namespace plane
       virtual bool initial_check_directrix();
 
 
+
+
+
       virtual void set_title(const char * pszTitle);
 
 
       virtual FileManagerTemplate * GetStdFileManagerTemplate(void);
 
 
+
+      //////////////////////////////////////////////////////////////////////////////////////////////////
+      // System/Cube
+      //
       ::document * hold(::user::interaction * pui);
 
       virtual count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
+      virtual count get_desk_monitor_count();
+      virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
+
+
+
+      //////////////////////////////////////////////////////////////////////////////////////////////////
+      // Session/Bergedge
+      //
+      virtual ::bergedge::view * get_view();
+      virtual ::bergedge::document * get_document();
 
    };
 

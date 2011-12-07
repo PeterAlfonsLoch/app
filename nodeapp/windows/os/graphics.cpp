@@ -2801,6 +2801,8 @@ namespace win
 
       pbitmap->ApplyEffect(&myBlur, &rect);
 
+      return true;
+
    }
 
 } // namespace win

@@ -827,6 +827,59 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="compress\zip\zipImpl.h" />
     <ClInclude Include="compress\zip\zip_internal.h" />
     <ClInclude Include="count.h" />
+    <ClInclude Include="crypto\7z_crc.h" />
+    <ClInclude Include="crypto\aes.h" />
+    <ClInclude Include="crypto\aes_cbc.h" />
+    <ClInclude Include="crypto\aes_cbc_coder.h" />
+    <ClInclude Include="crypto\aes_icm.h" />
+    <ClInclude Include="crypto\alloc.h" />
+    <ClInclude Include="crypto\auth.h" />
+    <ClInclude Include="crypto\cipher.h" />
+    <ClInclude Include="crypto\compress_codecs_info_interface.h" />
+    <ClInclude Include="crypto\compress_coder2_interface.h" />
+    <ClInclude Include="crypto\compress_coder_interface.h" />
+    <ClInclude Include="crypto\compress_filter_interface.h" />
+    <ClInclude Include="crypto\compress_get_input_stream_processed_size_interface.h" />
+    <ClInclude Include="crypto\compress_get_sub_stream_size_interface.h" />
+    <ClInclude Include="crypto\compress_progress_info_interface.h" />
+    <ClInclude Include="crypto\compress_set_codecs_info_interface.h" />
+    <ClInclude Include="crypto\compress_set_coder_mt_interface.h" />
+    <ClInclude Include="crypto\compress_set_coder_properties_interface.h" />
+    <ClInclude Include="crypto\compress_set_decoder_properties2_interface.h" />
+    <ClInclude Include="crypto\compress_set_input_stream_interface.h" />
+    <ClInclude Include="crypto\compress_set_output_stream_interface.h" />
+    <ClInclude Include="crypto\compress_write_coder_properties_interface.h" />
+    <ClInclude Include="crypto\config.h" />
+    <ClInclude Include="crypto\crypto.h" />
+    <ClInclude Include="crypto\cryptoalg.h" />
+    <ClInclude Include="crypto\crypto_get_text_password2_interface.h" />
+    <ClInclude Include="crypto\crypto_get_text_password_interface.h" />
+    <ClInclude Include="crypto\crypto_kernel.h" />
+    <ClInclude Include="crypto\crypto_math.h" />
+    <ClInclude Include="crypto\crypto_properties_interface.h" />
+    <ClInclude Include="crypto\crypto_reset_init_vector_interface.h" />
+    <ClInclude Include="crypto\crypto_set_password_interface.h" />
+    <ClInclude Include="crypto\crypto_sha1.h" />
+    <ClInclude Include="crypto\crypto_types.h" />
+    <ClInclude Include="crypto\c_crypto.h" />
+    <ClInclude Include="crypto\datatypes.h" />
+    <ClInclude Include="crypto\err.h" />
+    <ClInclude Include="crypto\gf2_8.h" />
+    <ClInclude Include="crypto\hmac.h" />
+    <ClInclude Include="crypto\integers.h" />
+    <ClInclude Include="crypto\kernel_compat.h" />
+    <ClInclude Include="crypto\key.h" />
+    <ClInclude Include="crypto\null_auth.h" />
+    <ClInclude Include="crypto\null_cipher.h" />
+    <ClInclude Include="crypto\prng.h" />
+    <ClInclude Include="crypto\rand_source.h" />
+    <ClInclude Include="crypto\rar20.h" />
+    <ClInclude Include="crypto\rdb.h" />
+    <ClInclude Include="crypto\rdbx.h" />
+    <ClInclude Include="crypto\sha1.h" />
+    <ClInclude Include="crypto\stat.h" />
+    <ClInclude Include="crypto\ut_sim.h" />
+    <ClInclude Include="crypto\xfm.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database1.h" />
     <ClInclude Include="database\database_application.h" />
@@ -1663,6 +1716,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="crypto\cipher_null_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="crypto\crypto_math.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="crypto\crypto_rar20.cpp" />
     <ClCompile Include="crypto\crypto_sha1.cpp" />
     <ClCompile Include="crypto\gf2_8.c">
@@ -1690,9 +1746,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_key.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\math_datatypes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\math_stat.c">

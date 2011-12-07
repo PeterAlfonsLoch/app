@@ -26,6 +26,8 @@ namespace bergedge
 
 
    class bergedge;
+   class document;
+   class view;
 
 
 } // namespace bergedge

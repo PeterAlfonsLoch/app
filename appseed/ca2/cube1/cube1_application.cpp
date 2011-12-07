@@ -147,4 +147,25 @@ namespace cube1
    }
 
 
+   count application::get_desk_monitor_count()
+   {
+#if !core_level_1
+      return m_monitorinfoaDesk.get_size();
+#else
+      return 1;
+#endif
+   }
+
+   bool application::get_desk_monitor_rect(index i, LPRECT lprect)
+   {
+      if(i < 0 || i >= get_desk_monitor_count())
+         return false;
+#if !core_level_1
+      *lprect = m_monitorinfoaDesk[i].rcMonitor;
+#else
+      ::GetWindowRect(::GetDesktopWindow(), lprect);
+#endif
+      return true;
+   }
+
 } //namespace cube1

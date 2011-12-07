@@ -918,6 +918,14 @@ InitFailure:
    }
 
 
+
+
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // System/Cube
+   //
    ::document * application::hold(::user::interaction * pui)
    {
 
@@ -938,6 +946,43 @@ InitFailure:
       return false;
 
    }
+
+   count application::get_desk_monitor_count()
+   {
+
+      return 0;
+
+   }
+
+   bool application::get_desk_monitor_rect(index i, LPRECT lprect)
+   {
+
+      return false;
+
+   }
+
+
+
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // Session/Bergedge
+   //
+   ::bergedge::view * application::get_view()
+   {
+
+      return NULL;
+
+   }
+
+   ::bergedge::document * application::get_document()
+   {
+
+      return NULL;
+
+   }
+
 
 } //namespace plane
 

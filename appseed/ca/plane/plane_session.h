@@ -43,6 +43,7 @@ namespace plane
 
 
       ::bergedge::bergedge *                                m_pbergedge;
+      ::plane::application *                                m_pbergedgeInterface;
 
       
       index                                                 m_iEdge;
@@ -123,6 +124,13 @@ namespace plane
 
 
       virtual void set_app_title(const char * pszAppId, const char * pszTitle);
+
+      //////////////////////////////////////////////////////////////////////////////////////////////////
+      // Session/Bergedge
+      //
+      virtual ::bergedge::view * get_view();
+      virtual ::bergedge::document * get_document();
+
 
    };
 

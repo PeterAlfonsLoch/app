@@ -236,10 +236,8 @@ namespace plane
 
 
       
-      plane::session *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-
-
-      plane::session *             query_bergedge(index iEdge);
+      plane::session * get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      plane::session * query_session(index iEdge);
 
 
       void on_request(::ca::create_context * pcreatecontext);
@@ -346,6 +344,8 @@ namespace plane
 
       virtual count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
+      virtual count get_desk_monitor_count();
+      virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
    };
 

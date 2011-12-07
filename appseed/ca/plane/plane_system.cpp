@@ -502,7 +502,7 @@ namespace plane
    }
 
 
-   plane::session * system::query_bergedge(index iEdge)
+   plane::session * system::query_session(index iEdge)
    {
       plane::session * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -515,7 +515,7 @@ namespace plane
    }
 
 
-   plane::session * system::get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation)
+   plane::session * system::get_session(index iEdge, ::ca::application_bias * pbiasCreation)
    {
       plane::session * pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -534,8 +534,8 @@ namespace plane
 
    ::ca::application * system::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
-      plane::session * pbergedge = get_bergedge(iEdge, pbiasCreate);
-      return pbergedge->application_get(pszId, bCreate, bSynch, pbiasCreate);
+      ::plane::session * psession = get_session(iEdge, pbiasCreate);
+      return psession->application_get(pszId, bCreate, bSynch, pbiasCreate);
    }
 
 
@@ -1005,13 +1005,14 @@ namespace plane
 
    void system::on_request(::ca::create_context * pcreatecontext)
    {
-      ::plane::session * pbergedge = get_bergedge(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-      pbergedge->request(pcreatecontext);
+      ::plane::session * psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      psession->request(pcreatecontext);
    }
 
    void system::open_by_file_extension(index iEdge, const char * pszFileName)
    {
-      get_bergedge(iEdge)->open_by_file_extension(pszFileName);
+      ::plane::session * psession = get_session(iEdge);
+      psession->open_by_file_extension(pszFileName);
    }
 
    ::ca::ca * system::alloc(::ca::application * papp, ::ca::type_info & info)
@@ -1169,7 +1170,7 @@ namespace plane
       {
          iNewEdge++;
       }
-      if(get_bergedge(iNewEdge, pbiasCreation) == NULL)
+      if(get_session(iNewEdge, pbiasCreation) == NULL)
          return -1;
       m_iNewEdge = iNewEdge + 1;
       return iNewEdge;
@@ -1289,6 +1290,9 @@ namespace plane
    }
 
 
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // System/Cube
+   //
    ::document * system::hold(::user::interaction * pui)
    {
 
@@ -1321,6 +1325,32 @@ namespace plane
       if(m_pcubeInterface != NULL)
       {
          return m_pcubeInterface->get_monitor_rect(i, lprect);
+      }
+
+
+      return false;
+
+   }
+
+
+   count system::get_desk_monitor_count()
+   {
+
+      if(m_pcubeInterface != NULL)
+      {
+         return m_pcubeInterface->get_desk_monitor_count();
+      }
+
+      return 0;
+
+   }
+
+   bool system::get_desk_monitor_rect(index i, LPRECT lprect)
+   {
+
+      if(m_pcubeInterface != NULL)
+      {
+         return m_pcubeInterface->get_desk_monitor_rect(i, lprect);
       }
 
 

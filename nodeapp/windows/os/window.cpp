@@ -1221,13 +1221,13 @@ namespace win
             Sess(m_pguie->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
-         ::plane::session * pbergedge = NULL;
+         ::plane::session * psession = NULL;
          if(m_papp->is_system())
          {
-            pbergedge = System.query_bergedge(0);
-            if(pbergedge != NULL && pbergedge->m_bSessionSynchronizedCursor)
+            psession = System.query_session(0);
+            if(psession != NULL && psession->m_bSessionSynchronizedCursor)
             {
-               pbergedge->m_ptCursor = pmouse->m_pt;
+               psession->m_ptCursor = pmouse->m_pt;
             }
          }
 

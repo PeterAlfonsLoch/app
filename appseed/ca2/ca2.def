@@ -4,4 +4,5 @@ LIBRARY  "ca2"
 ; For Win32 DLLs, only EXPORTs really required.
 
 EXPORTS
-	get_new_library
+get_new_library
+

@@ -376,7 +376,7 @@ namespace plugin
             ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
             pbiasCreate->m_puiParent = m_puiHost;
             pbiasCreate->m_set["NativeWindowFocus"] = false;
-            m_psystem->get_bergedge(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+            m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
          }
          else
          {
