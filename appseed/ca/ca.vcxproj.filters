@@ -5146,12 +5146,6 @@
     <ClCompile Include="geoip\geoip_update.cpp">
       <Filter>Source Files\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="geoip\region_name.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\time_zone.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="javascript\javascript.cpp">
       <Filter>Source Files\javascript</Filter>
     </ClCompile>
@@ -5511,6 +5505,12 @@
     </ClCompile>
     <ClCompile Include="calculator\calculator_application.cpp">
       <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\geoip_region_name.cpp">
+      <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="geoip\geoip_time_zone.cpp">
+      <Filter>Source Files\geoip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

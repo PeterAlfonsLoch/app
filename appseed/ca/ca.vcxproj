@@ -2031,8 +2031,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="geoip\geoip.cpp" />
     <ClCompile Include="geoip\geoip_city.cpp" />
     <ClCompile Include="geoip\geoip_update.cpp" />
-    <ClCompile Include="geoip\region_name.cpp" />
-    <ClCompile Include="geoip\time_zone.cpp" />
+    <ClCompile Include="geoip\geoip_region_name.cpp" />
+    <ClCompile Include="geoip\geoip_time_zone.cpp" />
     <ClCompile Include="install\install_install.cpp" />
     <ClCompile Include="javascript\javascript.cpp" />
     <ClCompile Include="javascript\javascript_functions.cpp" />
