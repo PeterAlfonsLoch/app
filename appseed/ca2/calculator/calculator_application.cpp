@@ -1,35 +1,39 @@
 #include "StdAfx.h"
-#include "application.h"
-#include "html/html_frame.h"
-#include "html/html_document.h"
-#include "html/html_view.h"
 
 
-namespace calculator
+namespace ca2
 {
 
-   application::application(void)
-   {
-   }
 
-   application::~application(void)
-   {
-   }
-
-   bool application::initialize()
+   namespace calculator
    {
 
-      m_pcalculator = new class calculator(this);
+      application::application(void)
+      {
+      }
 
-      if(m_pcalculator == NULL)
-         return false;
+      application::~application(void)
+      {
+      }
 
-      return true;
-   }
+      bool application::initialize()
+      {
 
-   calculator & application::calculator()
-   {
-      return * m_pcalculator;
-   }
 
-} // namespace calculator
+         if(!::cube2::application::initialize())
+            return false;
+
+
+         return true;
+
+
+      }
+
+
+
+   } // namespace calculator
+
+
+} // namespace ca2
+
+

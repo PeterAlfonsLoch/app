@@ -293,7 +293,7 @@ public:
 	CScriptVar *getArrayIndex(int idx); ///< The the value at an array index
 	void setArrayIndex(int idx, CScriptVar *value); ///< Set the value at an array index
 	int getArrayLength(); ///< If this is an array, return the number of items in it (else 0)
-	int getChildren() { return Childs.get_size(); } ///< Get the number of children
+	int getChildren() { return (int) Childs.get_size(); } ///< Get the number of children
 
 	int getInt();
 	bool getBool();

@@ -835,16 +835,16 @@ namespace dynamic_source
          gprop("login_request") = true;
          gprop("minUserLevel") = 30;
 
-// xxx webserver          secure().login();
+         secure().login();
          return;
       }
       else if(get("action") == "logout")
       {
-// xxx webserver          secure().logout();
+          secure().logout();
       }
       else
       {
-// xxx webserver          secure().ensure();
+          secure().ensure();
          if(session("auth") && isset(request("ruri")))
          {
             outheader("Location") =  urldecode(request("ruri"));
@@ -886,7 +886,7 @@ namespace dynamic_source
       if(get("ci").is_set())
       {
          single_lock sl(&get_manager()->get_session(session_id())->m_mutex, TRUE);
-// xxx webserver          checkimage().generate_new_image();
+          checkimage().generate_new_image();
       }
    }
 
@@ -1336,14 +1336,14 @@ namespace dynamic_source
          strStyle = gstr("param_style");
       if(strLang.is_empty())
          strLang = gstr("param_locale");
-// xxx webserver       return uiredir().solve(strRoot, strLang, strStyle, pszExUri);
+       return uiredir().solve(strRoot, strLang, strStyle, pszExUri);
       return "";
    }
 
    void script_impl::ui_redir_add(const char * pszRoot, const char * pszLang, const char * pszStyle, const char * pszTarget)
    {
       single_lock sl(&m_pmanager->m_csUiRedir, TRUE);
-// xxx webserver       return uiredir().add(pszRoot, pszLang, pszStyle, pszTarget);
+       return uiredir().add(pszRoot, pszLang, pszStyle, pszTarget);
       return;
    }
 
@@ -1746,17 +1746,17 @@ namespace dynamic_source
    // two level base_array
    void script_impl::menuleft_printVert001(webserver::ui_menu * pmenu, int iPanelIndex)
    {
-      // xxx webserver
+      
 /*      if(gen::is_null(pmenu))
          return;*/
-// xxx webserver      webserver::ui_menu & menu = *pmenu;
-// xxx webserver       if(menu.get_size() > 0)
+      webserver::ui_menu & menu = *pmenu;
+       if(menu.get_size() > 0)
       {
          printf("<div class=\"menuleft%d-panel\">", iPanelIndex);
       }
       //   int iMenuIndex = gprop("menuindex");
       gprop("panelindex") = iPanelIndex;
-// xxx webserver       for(int i = 0; i < menu.get_size(); i++)
+       for(int i = 0; i < menu.get_size(); i++)
 /*      {
          if(!menu[i]->m_strTitle.is_empty())
          {
@@ -2134,8 +2134,8 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pfun == NULL)
       {
-// xxx webserver          m_pinstanceMain->m_pfun = new ::webserver::fun::fun();
-// xxx webserver          m_pinstanceMain->keep(m_pinstanceMain->m_pfun);
+          m_pinstanceMain->m_pfun = new ::webserver::fun::fun();
+          m_pinstanceMain->keep(m_pinstanceMain->m_pfun);
       }
       return *m_pinstanceMain->m_pfun;
    }
@@ -2144,9 +2144,9 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pmusicdb == NULL)
       {
-// xxx webserver          m_pinstanceMain->m_pmusicdb = get_manager()->new_musicdb(0);
-// xxx webserver          m_pinstanceMain->m_pmusicdb->m_pinterface = m_pinstanceMain;
-// xxx webserver          m_pinstanceMain->m_pmusicdb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
+          m_pinstanceMain->m_pmusicdb = get_manager()->new_musicdb(0);
+          m_pinstanceMain->m_pmusicdb->m_pinterface = m_pinstanceMain;
+          m_pinstanceMain->m_pmusicdb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pmusicdb;
    }
@@ -2155,9 +2155,9 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pmusicsedb == NULL)
       {
-// xxx webserver          m_pinstanceMain->m_pmusicsedb = get_manager()->new_musicdb(1);
-// xxx webserver          m_pinstanceMain->m_pmusicsedb->m_pinterface = m_pinstanceMain;
-// xxx webserver          m_pinstanceMain->m_pmusicsedb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
+          m_pinstanceMain->m_pmusicsedb = get_manager()->new_musicdb(1);
+          m_pinstanceMain->m_pmusicsedb->m_pinterface = m_pinstanceMain;
+          m_pinstanceMain->m_pmusicsedb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pmusicsedb;
    }
@@ -2166,10 +2166,10 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_padmindb == NULL)
       {
-// xxx webserver          m_pinstanceMain->m_padmindb = new ::webserver::fontopus_database(get_app());
-// xxx webserver          m_pinstanceMain->m_padmindb->m_pinterface = m_pinstanceMain;
-// xxx webserver          m_pinstanceMain->m_padmindb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
-// xxx webserver          m_pinstanceMain->m_padmindb->initialize(2);
+          m_pinstanceMain->m_padmindb = new ::webserver::fontopus_database(get_app());
+          m_pinstanceMain->m_padmindb->m_pinterface = m_pinstanceMain;
+          m_pinstanceMain->m_padmindb->m_pmusicdatabasecache->m_pinterface = m_pinstanceMain;
+          m_pinstanceMain->m_padmindb->initialize(2);
       }
       return *m_pinstanceMain->m_padmindb;
    }
@@ -2178,9 +2178,9 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pnetnodedb == NULL)
       {
-// xxx webserver          m_pinstanceMain->m_pnetnodedb = new ::webserver::fontopus_database(get_app());
-// xxx webserver          m_pinstanceMain->keep(m_pinstanceMain->m_pnetnodedb);
-// xxx webserver          m_pinstanceMain->m_pnetnodedb->initialize(1);
+          m_pinstanceMain->m_pnetnodedb = new ::webserver::fontopus_database(get_app());
+          m_pinstanceMain->keep(m_pinstanceMain->m_pnetnodedb);
+          m_pinstanceMain->m_pnetnodedb->initialize(1);
       }
       return *m_pinstanceMain->m_pnetnodedb;
    }
@@ -2189,7 +2189,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_psecure == NULL)
       {
-         // xxx webserver m_pinstanceMain->m_psecure = new class ::webserver::secure();
+          m_pinstanceMain->m_psecure = new class ::webserver::secure();
       }
       return *m_pinstanceMain->m_psecure;
    }
@@ -2220,7 +2220,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pcynce == NULL)
       {
-// xxx webserver                   m_pinstanceMain->m_pcynce = new class ::webserver::cynce();
+                   m_pinstanceMain->m_pcynce = new class ::webserver::cynce();
       }
       return *m_pinstanceMain->m_pcynce;
    }
@@ -2229,7 +2229,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pui == NULL)
       {
-// xxx webserver                   m_pinstanceMain->m_pui = new class ::webserver::user();
+                   m_pinstanceMain->m_pui = new class ::webserver::user();
       }
       return *m_pinstanceMain->m_pui;
    }
@@ -2238,7 +2238,7 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pwb == NULL)
       {
-// xxx webserver                   m_pinstanceMain->m_pwb = new class ::webserver::wb();
+                   m_pinstanceMain->m_pwb = new class ::webserver::wb();
       }
       return *m_pinstanceMain->m_pwb;
    }
@@ -2342,18 +2342,18 @@ namespace dynamic_source
 
       if(m_pmusicdb != NULL)
       {
-// xxx webserver                   m_ptra.remove(dynamic_cast < ptr * > (m_pmusicdb));
-// xxx webserver                   get_manager()->free_musicdb(m_pmusicdb);
+                   m_ptra.remove(dynamic_cast < ptr * > (m_pmusicdb));
+                   get_manager()->free_musicdb(m_pmusicdb);
       }
       if(m_pmusicsedb != NULL)
       {
-// xxx webserver                   m_ptra.remove(dynamic_cast < ptr * > (m_pmusicsedb));
-// xxx webserver                   get_manager()->free_musicdb(m_pmusicsedb);
+                   m_ptra.remove(dynamic_cast < ptr * > (m_pmusicsedb));
+                   get_manager()->free_musicdb(m_pmusicsedb);
       }
       if(m_pcyncedb != NULL)
       {
-// xxx webserver                   m_ptra.remove(dynamic_cast < ptr * > (m_pcyncedb));
-// xxx webserver                   get_manager()->free_cyncedb(m_pcyncedb);
+                   m_ptra.remove(dynamic_cast < ptr * > (m_pcyncedb));
+                   get_manager()->free_cyncedb(m_pcyncedb);
       }
 
 
@@ -2437,7 +2437,7 @@ namespace dynamic_source
          }
          else
          {
-// xxx webserver                      set_cookie("sessid", fun().key1_generate_sessid());
+                      set_cookie("sessid", fun().key1_generate_sessid());
          }
          if(m_ppropertysetSession == NULL)
          {
@@ -2547,7 +2547,7 @@ namespace dynamic_source
          dprint("there is no secureuserid");
          strUseStyle = use_style_get_default();
       }
-// xxx webserver 
+ 
       /*      else if(!musicdb()._fun_get_user_data(gprop("secureuserid"), "use_style", strUseStyle))
       {
          dprint("could not get data");
@@ -2570,7 +2570,7 @@ namespace dynamic_source
       if(accepta.has_property(pszId) && gprop("secureuserid").is_set())
       {
          dprint("ACCEPTED->$id");
-// xxx webserver                   musicdb()._fun_set_user_data(gprop("secureuserid"), "use_style", pszId);
+                   musicdb()._fun_set_user_data(gprop("secureuserid"), "use_style", pszId);
       }
    }
 
@@ -2596,8 +2596,8 @@ namespace dynamic_source
 
    webserver::checkimage & script_impl::checkimage()
    {
-// xxx webserver                if(m_pcheckimage == NULL)
-// xxx webserver                   m_pcheckimage = new class webserver::checkimage();
+                if(m_pcheckimage == NULL)
+                   m_pcheckimage = new class webserver::checkimage();
       return *m_pcheckimage;
    }
 
@@ -3726,7 +3726,7 @@ namespace dynamic_source
       for(int i = 0; i < psimageptra->get_count(); i++)
       {
          webserver::simage_accepta * paccepta = psimageptra->element_at(i);
-         // xxx webserver
+         
          /*
          int iFind = paccepta->m_propsetAccept.find_value_ci(param_view);
          gprop("root") = paccepta->m_root;
@@ -3771,7 +3771,7 @@ namespace dynamic_source
       webserver::match_host_array * pptra = get_manager()->m_pmatchhostaSpider;
       for(int i = 0; i < pptra->get_count(); i++)
       {
-// xxx webserver
+
 /*         if(pptra->element_at(i).matches(hostname, useragent))
             return true;*/
       }
@@ -3783,7 +3783,7 @@ namespace dynamic_source
    {
       single_lock sl(&get_manager()->m_mutexSpider, TRUE);
       webserver::match_host_array * pptra = get_manager()->m_pmatchhostaSpider;
-// xxx webserver      pptra->add(new webserver::match_host(hostname, useragent));
+      pptra->add(new webserver::match_host(hostname, useragent));
 
    }
 
@@ -3891,8 +3891,8 @@ namespace dynamic_source
       strResp.Empty();
       try
       {
-// xxx webserver         calculator::parser parser(get_app());
-// xxx webserver         calculator::element * pelement = parser.parse(strQuery);
+         calculator::parser parser(get_app());
+         calculator::element * pelement = parser.parse(strQuery);
          /*string strValue = pelement->get_value().to_string();
          strResp = pelement->get_expression() + " = " + strValue  + "\n";
          bOk = true;*/
@@ -3977,7 +3977,7 @@ namespace dynamic_source
          stringa stra;
          if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds"))
          {
-// xxx webserver
+
 /*            calculator::parser parser(get_app());
             calculator::element * pelement = parser.parse(stra[1]);
             string strValue;
@@ -4009,7 +4009,7 @@ namespace dynamic_source
          stringa stra;
          if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days"))
          {
-// xxx webserver
+
 /*            calculator::parser parser(get_app());
             calculator::element * pelement = parser.parse(stra[1]);
             string strSignal;
@@ -4117,7 +4117,7 @@ namespace dynamic_source
       }
 
 
-// xxx webserver
+
 /*      try
       {
          int iPath = 0;
@@ -4126,7 +4126,7 @@ namespace dynamic_source
          do
          {
 
-// xxx webserver
+
 /*            datetime::parser parser(get_app(), str_context());
             datetime::element * pelement = parser.parse(strQuery);
             string strValue;
@@ -4148,8 +4148,8 @@ namespace dynamic_source
 /*      catch(...)
       {
       }*/
-// xxx webserver      strResp.Empty();
-      // xxx webserver
+      strResp.Empty();
+      
          /*if(straResp.get_count() == 0)
       {
          strResp = "ca2 computing could not answer you by this mean. Don't know! Expect and hope to say finally too: yet!!";
@@ -4220,7 +4220,7 @@ namespace dynamic_source
 
    void script_impl::print_email_body(::mail::pop3 * ppop3)
    {
-// xxx webserver
+
 /*      gen::property_set & set = ppop3->m_setHeaders;
       if(set["content-type"].get_string().find("text/plain") >= 0 || set["content-type"].get_string().is_empty())
       {
@@ -4235,7 +4235,7 @@ namespace dynamic_source
 
    void script_impl::print_plain_text_email_body(::mail::pop3 * ppop3)
    {
-// xxx webserver
+
       /*
       string str(ppop3->m_strBody);
       int iFind = 0;
@@ -4320,7 +4320,7 @@ namespace dynamic_source
          pszUserId
          );
 
-      // xxx webserver
+      
       /*var varDateTime = musicdb().query_item(strSql);
 
       if(varDateTime.is_empty())
@@ -4383,7 +4383,7 @@ namespace dynamic_source
    bool script_impl::is_licensed(const char * pszLicense, const char * pszUserId)
    {
 
-      // xxx webserver
+      
 /*
       string strDateTimeNow = System.datetime().international().get_gmt_date_time();
 
@@ -4421,7 +4421,7 @@ namespace dynamic_source
 
    bool script_impl::is_site_user(var varSite, var varUser)
    {
-            // xxx webserver
+            
 
 //      return musicdb().query_item("SELECT COUNT(*) FROM hi5.site_user WHERE site = " + varSite + " AND user = " + varUser) == 1;
       return false;
@@ -4429,7 +4429,7 @@ namespace dynamic_source
 
    bool script_impl::is_site_user(var varSite)
    {
-            // xxx webserver
+            
 
 //      return is_site_user(varSite, gprop("secureuserid"));
       return false;
@@ -4502,7 +4502,7 @@ namespace dynamic_source
 
    string script_impl::low_fs_file_path(const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension, gen::property_set set)
    {
-// xxx webserver
+
 
 /*      string strSql;
       strSql.Format("SELECT `path` FROM `fs`.`item` WHERE `hash` = '%s' AND `key` = %I64d AND `size`=%I64d AND `mimetype` = '%s' AND `extension` = '%s'", hash, key, size, mimetype, extension);
@@ -4628,7 +4628,7 @@ namespace dynamic_source
 
    bool script_impl::low_fs_map_file(const char * pszFile)
    {
-      // xxx webserver
+      
       /*
       string strSql;
 
@@ -4668,7 +4668,7 @@ namespace dynamic_source
 
    bool script_impl::low_fs_is_licensed(const char * user, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension)
    {
-      // xxx webserver
+      
       /*string strSql;
       strSql.Format("SELECT COUNT(*) FROM `fs`.`user_folder_item` WHERE `user` = '%s' AND `hash` = '%s' AND `key` = '%I64d' AND `size`= '%I64d' AND `mimetype` = '%s' AND extension = '%s'",
          user, hash, key, size, mimetype, extension);
@@ -4678,7 +4678,7 @@ namespace dynamic_source
 
    bool script_impl::low_fs_add_user_file(const char * user, __int64 iFolder, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension, const char * pszName, bool bOverwrite)
    {
-      // xxx webserver
+      
       /*
       string strSql;
       string strSqlPrefix;
@@ -4701,7 +4701,7 @@ namespace dynamic_source
 
    __int64 script_impl::low_fs_add_user_dir(const char * user, __int64 iFolder, const char * pszName)
    {
-      // xxx webserver
+      
       /*
       string strSql;
 
@@ -4747,7 +4747,7 @@ namespace dynamic_source
 
    void script_impl::low_fs_ls_dir(const char * user, __int64 iFolder, int64_array & ia, stringa & stra)
    {
-      // xxx webserver
+      
       /*
       string strSql;
 
@@ -4766,7 +4766,7 @@ namespace dynamic_source
 
    void script_impl::low_fs_ls_file(const char * user,  __int64 iFolder, stringa & straHash, int64_array & iaKey, int64_array & iaSize, stringa & straMime, stringa & straExt, stringa & straName)
    {
-// xxx webserver
+
       /*
       string strSql;
 
@@ -4789,7 +4789,7 @@ namespace dynamic_source
 
    bool script_impl::low_folder(string & strUser, __int64 & iFolder, const char * pszFolder)
    {
-      // xxx webserver
+      
       /*
       string strPath(pszFolder);
       if(gen::str::begins_eat(strPath, "ifs://"))
@@ -4854,7 +4854,7 @@ namespace dynamic_source
 
    bool      script_impl::fs_dir_mk               (const char * pszFolder)
    {
-      // xxx webserver
+      
       /*
       string strPath(pszFolder);
       string strUser;
@@ -5025,7 +5025,7 @@ namespace dynamic_source
 
    void script_impl::hand_img()
    {
-      // xxx webserver
+      
       /*
       stringa stra;
       stra.explode(".", inattr("query_string"));
@@ -5108,7 +5108,7 @@ namespace dynamic_source
    void script_impl::fontopus_ds_url_update_named()
    {
 
-      // xxx webserver
+      
       /*
 	   string email = "www.ca2.cc.";
 

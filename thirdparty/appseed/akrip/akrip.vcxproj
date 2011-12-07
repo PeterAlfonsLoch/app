@@ -825,6 +825,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="akrip32.h" />
+    <ClInclude Include="akrip32_internal.h" />
     <ClInclude Include="aspilib.h" />
     <ClInclude Include="cdcache.h" />
     <ClInclude Include="myaspi32.h" />

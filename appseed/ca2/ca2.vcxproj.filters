@@ -206,52 +206,7 @@
     <ClInclude Include="calculator\calculator.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_class.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_element.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_parser.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_scanner.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\datetime_token.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="calculator\document.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\element.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_element.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_parser.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_scanner.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_token.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\numeric_value.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\parser.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\scanner.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\StdAfx.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\this_version_info.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="calculator\view.h">
@@ -2712,9 +2667,6 @@
     <ClCompile Include="calculator\calculator_application.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_class.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\calculator_document.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
@@ -2722,30 +2674,6 @@
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
     <ClCompile Include="calculator\calculator_view.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_element.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_parser.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_scanner.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\datetime_token.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_element.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_parser.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_scanner.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_value.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
     <ClCompile Include="gcom\gcom_BackView.cpp">

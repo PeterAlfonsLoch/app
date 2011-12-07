@@ -135,7 +135,7 @@ namespace ca2
       va_end(ptr);
    }
 
-   void log::trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
+   void log::trace_v(const char *pszFileName, int nLine, DWORD_PTR dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
    {
       UNREFERENCED_PARAMETER(nLevel);
       UNREFERENCED_PARAMETER(nLine);
@@ -234,7 +234,7 @@ namespace ca2
       }
    }
 
-   void log::set_trace_category(unsigned int dwCategory, const char * pszName, unsigned int uiLevel)
+   void log::set_trace_category(DWORD_PTR dwCategory, const char * pszName, unsigned int uiLevel)
    {
       _template::CTraceCategory & category = m_trace[dwCategory];
       category.m_strCategory = pszName;

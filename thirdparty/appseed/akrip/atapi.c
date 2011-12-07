@@ -25,12 +25,7 @@
 
 #define _AKRIP32_
 
-#include <windows.h>
-#include <stdio.h>
-#include "myaspi32.h"
-#include "scsidefs.h"
-#include "aspilib.h"
-#include "akrip32.h"
+#include "akrip32_internal.h"
 
 extern CDHANDLEREC *cdHandles;
 extern HANDLE *cdMutexes;

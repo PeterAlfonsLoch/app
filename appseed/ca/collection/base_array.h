@@ -843,7 +843,7 @@ typename  base_array<TYPE, ARG_TYPE>::iterator base_array<TYPE, ARG_TYPE>::erase
    {
       if(begin.m_i >= 0 && begin.m_i < get_size())
       {
-         int nCount = last.m_i - begin.m_i;
+         index nCount = last.m_i - begin.m_i;
          if(nCount > 0)
          {
             remove_at(begin.m_i, nCount);

@@ -609,7 +609,7 @@ namespace plane
          && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
-               // xxx webserver
+               
 
 /*         if(get_document() != NULL && get_document()->get_typed_view < ::session::pane_view >() != NULL)
          {
@@ -832,7 +832,7 @@ namespace plane
 
    void session::get_screen_rect(LPRECT lprect)
    {
-            // xxx webserver
+            
 
 /*      if(get_document() != NULL && get_view() != NULL)
       {

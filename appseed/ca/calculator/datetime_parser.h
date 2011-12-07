@@ -3,7 +3,7 @@
 namespace datetime
 {
 
-   class CLASS_DECL_ca2 parser :
+   class CLASS_DECL_ca parser :
       virtual public ::radix::object
    {
    public:

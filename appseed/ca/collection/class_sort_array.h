@@ -32,8 +32,8 @@ SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, int & iIndex)
 		return false;
 	}
    int iIntProperty = (((TYPE &)t).*lpfnIntSortProperty)();
-	int iLBound = iIndex;
-	int iUBound = this->get_size() - 1;
+	index iLBound = iIndex;
+	index iUBound = this->get_size() - 1;
 	int iCompare;
 	while(true)
 	{
@@ -77,8 +77,8 @@ QuickSort(
 	index (* lpfnCompare)(TYPE &, TYPE &),
    void (BASE_CLASS::* lpfnSwap)(index, index))
 {
-		dword_array stackLowerBound;
-		dword_array stackUpperBound;
+		index_array stackLowerBound;
+		index_array stackUpperBound;
 		int iLowerBound;
 		int iUpperBound;
 		int iLPos, iUPos, iMPos;
@@ -153,8 +153,8 @@ QuickSort(
    void (BASE_CLASS::* lpfnSwap)(index, index),
    void * pvoid)
 {
-		dword_array stackLowerBound;
-		dword_array stackUpperBound;
+		index_array stackLowerBound;
+		index_array stackUpperBound;
 		int iLowerBound;
 		int iUpperBound;
 		int iLPos, iUPos, iMPos;

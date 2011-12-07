@@ -25,10 +25,7 @@
 
 #define _AKRIP32_
 
-#include <windows.h>
-#include <stdio.h>
-#include "aspilib.h"
-#include "scsidefs.h"
+#include "akrip32_internal.h"
 
 #define SHAREDMEMVER 2
 typedef struct {

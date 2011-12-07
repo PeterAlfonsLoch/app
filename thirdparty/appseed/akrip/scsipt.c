@@ -33,14 +33,10 @@
  *
  */
 
-#include <windows.h>
+#include "akrip32_internal.h"
+#include "scsipt.h"
 #include <stdio.h>
 #include <stddef.h>
-#include "myaspi32.h"
-#include "scsidefs.h"
-#include "aspilib.h"
-#include "akrip32.h"
-#include "scsipt.h"
 
 
 typedef struct {

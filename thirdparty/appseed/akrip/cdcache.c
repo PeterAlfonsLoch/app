@@ -27,15 +27,14 @@
  *
  */
 
-#include <windows.h>
-#include <stdio.h>
+#include "akrip32_internal.h"
+
+
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <winsock.h>
-#include "aspilib.h"
-#include "cdcache.h"
 
 
 DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders, char *retBuf, int retLen );

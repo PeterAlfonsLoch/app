@@ -394,7 +394,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>__CA__DLL</PreprocessorDefinitions>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
@@ -407,10 +407,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;libeay32.lib;ssleay32.lib;FreeImage.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -606,6 +608,18 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca4\ca4_patch.h" />
     <ClInclude Include="ca4\ca4_port_forward.h" />
     <ClInclude Include="ca4\ca4_twit.h" />
+    <ClInclude Include="calculator\calculator.h" />
+    <ClInclude Include="calculator\calculator_class.h" />
+    <ClInclude Include="calculator\calculator_application.h" />
+    <ClInclude Include="calculator\datetime_element.h" />
+    <ClInclude Include="calculator\datetime_parser.h" />
+    <ClInclude Include="calculator\datetime_scanner.h" />
+    <ClInclude Include="calculator\datetime_token.h" />
+    <ClInclude Include="calculator\numeric_element.h" />
+    <ClInclude Include="calculator\numeric_parser.h" />
+    <ClInclude Include="calculator\numeric_scanner.h" />
+    <ClInclude Include="calculator\numeric_token.h" />
+    <ClInclude Include="calculator\numeric_value.h" />
     <ClInclude Include="ca\ca.h" />
     <ClInclude Include="ca\ca2_keep_alive.h" />
     <ClInclude Include="ca\ca_2.h" />
@@ -1474,6 +1488,48 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="visual\visual_font.h" />
     <ClInclude Include="visual\visual_visual.h" />
     <ClInclude Include="visual\water_routine.h" />
+    <ClInclude Include="webserver\webserver.h" />
+    <ClInclude Include="webserver\webserver_alpha_select_performer.h" />
+    <ClInclude Include="webserver\webserver_annotate.h" />
+    <ClInclude Include="webserver\webserver_checkimage.h" />
+    <ClInclude Include="webserver\webserver_cynce.h" />
+    <ClInclude Include="webserver\webserver_cynce_database.h" />
+    <ClInclude Include="webserver\webserver_database.h" />
+    <ClInclude Include="webserver\webserver_database_string_integer.h" />
+    <ClInclude Include="webserver\webserver_fontopus_database.h" />
+    <ClInclude Include="webserver\webserver_fun.h" />
+    <ClInclude Include="webserver\webserver_fun_friend_search.h" />
+    <ClInclude Include="webserver\webserver_fun_fun.h" />
+    <ClInclude Include="webserver\webserver_fun_user.h" />
+    <ClInclude Include="webserver\webserver_karaoke_const.h" />
+    <ClInclude Include="webserver\webserver_kar_body_page.h" />
+    <ClInclude Include="webserver\webserver_kar_page_artists.h" />
+    <ClInclude Include="webserver\webserver_kar_page_category.h" />
+    <ClInclude Include="webserver\webserver_kar_page_song.h" />
+    <ClInclude Include="webserver\webserver_music.h" />
+    <ClInclude Include="webserver\webserver_music_category.h" />
+    <ClInclude Include="webserver\webserver_music_database_cache.h" />
+    <ClInclude Include="webserver\webserver_music_in2_info_list.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list_artists.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list_category.h" />
+    <ClInclude Include="webserver\webserver_music_in2_list_song.h" />
+    <ClInclude Include="webserver\webserver_music_karaoke_song_in2_list.h" />
+    <ClInclude Include="webserver\webserver_music_lyrics_song_in2_list.h" />
+    <ClInclude Include="webserver\webserver_music_music.h" />
+    <ClInclude Include="webserver\webserver_music_performer.h" />
+    <ClInclude Include="webserver\webserver_music_person.h" />
+    <ClInclude Include="webserver\webserver_music_person_info.h" />
+    <ClInclude Include="webserver\webserver_music_song.h" />
+    <ClInclude Include="webserver\webserver_music_song_source.h" />
+    <ClInclude Include="webserver\webserver_note.h" />
+    <ClInclude Include="webserver\webserver_note_summary.h" />
+    <ClInclude Include="webserver\webserver_persistent_ui.h" />
+    <ClInclude Include="webserver\webserver_secure.h" />
+    <ClInclude Include="webserver\webserver_simage.h" />
+    <ClInclude Include="webserver\webserver_spider.h" />
+    <ClInclude Include="webserver\webserver_ui.h" />
+    <ClInclude Include="webserver\webserver_wb.h" />
     <ClInclude Include="xml\application.h" />
     <ClInclude Include="xml\attr.h" />
     <ClInclude Include="xml\base_array.h" />
@@ -1539,6 +1595,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca4\ca4_port_forward.cpp" />
     <ClCompile Include="ca4\ca4_twit.cpp" />
     <ClCompile Include="ca4\ca4_whirlpool.cpp" />
+    <ClCompile Include="calculator\calculator_application.cpp" />
+    <ClCompile Include="calculator\calculator_class.cpp" />
+    <ClCompile Include="calculator\datetime_element.cpp" />
+    <ClCompile Include="calculator\datetime_parser.cpp" />
+    <ClCompile Include="calculator\datetime_scanner.cpp" />
+    <ClCompile Include="calculator\datetime_token.cpp" />
+    <ClCompile Include="calculator\numeric_element.cpp" />
+    <ClCompile Include="calculator\numeric_parser.cpp" />
+    <ClCompile Include="calculator\numeric_scanner.cpp" />
+    <ClCompile Include="calculator\numeric_value.cpp" />
     <ClCompile Include="ca\ca_application.cpp" />
     <ClCompile Include="ca\ca_application_bias.cpp" />
     <ClCompile Include="ca\ca_application_interface.cpp" />
@@ -1547,6 +1613,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca\ca_brush.cpp" />
     <ClCompile Include="ca\ca_c.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ca\ca_ca.cpp" />
     <ClCompile Include="ca\ca_create_context.cpp" />
@@ -1685,92 +1752,120 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="compress\zip\zip_in_file.cpp" />
     <ClCompile Include="compress\zip\zip_ioapi.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_iowin32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_memory_file.cpp" />
     <ClCompile Include="compress\zip\zip_unzip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_util.cpp" />
     <ClCompile Include="compress\zip\zip_zip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\7z_crc.cpp" />
     <ClCompile Include="crypto\ae_xfm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes_cbc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes_icm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_null_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\crypto_math.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\crypto_rar20.cpp" />
     <ClCompile Include="crypto\crypto_sha1.cpp" />
     <ClCompile Include="crypto\gf2_8.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_hmac.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_null_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_sha1.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_alloc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_crypto_kernel.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_key.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\math_stat.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\my_aes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_rdb.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_rdbx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_ut_sim.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_ctr_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_rand_source.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="cube5\cube4_application.cpp" />
     <ClCompile Include="database\database_application.cpp" />
@@ -1944,98 +2039,122 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="libcharguess\big5Prober.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\charDistribution.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\charguess.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\EscCharsetProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\EscSM.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\EUCJPProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\EUCKRProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\EUCTWProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\GB2312Prober.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\jpCntx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\LangBulgarianModel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\LangCyrillicModel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\LangGreekModel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\LangHungarianModel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\LangThaiModel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\Latin1Prober.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\libcharguess.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\MBCSGroupProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\MBCSSM.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\SBCharsetProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\SBCSGroupProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\SJISProber.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\universal.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="libcharguess\UTF8Prober.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_base_sync_object.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
@@ -2220,12 +2339,14 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="sqlite\sqlite3.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="template\base.cpp" />
     <ClCompile Include="template\template_base.cpp" />
@@ -2304,6 +2425,44 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="visual\visual_rgb_quad_array.cpp" />
     <ClCompile Include="visual\visual_visual.cpp" />
     <ClCompile Include="visual\visual_water_routine.cpp" />
+    <ClCompile Include="webserver\webserver_alpha_select_performer.cpp" />
+    <ClCompile Include="webserver\webserver_annotate.cpp" />
+    <ClCompile Include="webserver\webserver_checkimage.cpp" />
+    <ClCompile Include="webserver\webserver_cynce.cpp" />
+    <ClCompile Include="webserver\webserver_cynce_database.cpp" />
+    <ClCompile Include="webserver\webserver_database.cpp" />
+    <ClCompile Include="webserver\webserver_database_string_integer.cpp" />
+    <ClCompile Include="webserver\webserver_fontopus_database.cpp" />
+    <ClCompile Include="webserver\webserver_fun.cpp" />
+    <ClCompile Include="webserver\webserver_fun_friend_search.cpp" />
+    <ClCompile Include="webserver\webserver_fun_fun.cpp" />
+    <ClCompile Include="webserver\webserver_fun_user.cpp" />
+    <ClCompile Include="webserver\webserver_kar_body_page.cpp" />
+    <ClCompile Include="webserver\webserver_kar_page_artists.cpp" />
+    <ClCompile Include="webserver\webserver_kar_page_category.cpp" />
+    <ClCompile Include="webserver\webserver_kar_page_song.cpp" />
+    <ClCompile Include="webserver\webserver_music.cpp" />
+    <ClCompile Include="webserver\webserver_music_category.cpp" />
+    <ClCompile Include="webserver\webserver_music_database_cache.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_info_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list_artists.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list_category.cpp" />
+    <ClCompile Include="webserver\webserver_music_in2_list_song.cpp" />
+    <ClCompile Include="webserver\webserver_music_karaoke_song_in2_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_lyrics_song_in2_list.cpp" />
+    <ClCompile Include="webserver\webserver_music_performer.cpp" />
+    <ClCompile Include="webserver\webserver_music_person.cpp" />
+    <ClCompile Include="webserver\webserver_music_person_info.cpp" />
+    <ClCompile Include="webserver\webserver_music_song.cpp" />
+    <ClCompile Include="webserver\webserver_note.cpp" />
+    <ClCompile Include="webserver\webserver_note_summary.cpp" />
+    <ClCompile Include="webserver\webserver_persistent_ui.cpp" />
+    <ClCompile Include="webserver\webserver_secure.cpp" />
+    <ClCompile Include="webserver\webserver_simage.cpp" />
+    <ClCompile Include="webserver\webserver_spider.cpp" />
+    <ClCompile Include="webserver\webserver_user.cpp" />
+    <ClCompile Include="webserver\webserver_wb.cpp" />
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />
@@ -2324,50 +2483,62 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="zlib\adler32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\compress.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\crc32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\deflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\gzio.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\infback.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\inffast.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\inflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\inftrees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\trees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\uncompr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="zlib\zutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

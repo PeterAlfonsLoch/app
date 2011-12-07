@@ -711,7 +711,7 @@ typename  raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(i
    {
       if(begin.m_i >= 0 && begin.m_i < this->get_size())
       {
-         int nCount = last.m_i - begin.m_i;
+         count nCount = last.m_i - begin.m_i;
          remove_at(begin.m_i, nCount);
          return iterator(begin.m_i, this);
       }

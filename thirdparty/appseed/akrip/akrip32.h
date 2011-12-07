@@ -26,8 +26,9 @@
 #ifndef _AKRIP32_H_
 #define _AKRIP32_H_
 
-#include <windows.h>
+
 #include "myaspi32.h"
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -357,4 +358,8 @@ DWORD CDDBSubmit( DWORD dwDiscID, BOOL bTest, char *szEmail, char *szCategory,
 }
 #endif
 
+#include "cdcache.h"
+
+
 #endif   /* _AKRIP32_H_ */
+

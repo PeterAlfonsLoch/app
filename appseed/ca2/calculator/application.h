@@ -1,27 +1,37 @@
 #pragma once
 
 
-namespace calculator
+namespace ca2
 {
 
 
-   class CLASS_DECL_ca2 application :
-      virtual public ::ca8::application
+   namespace calculator
    {
-   public:
-      application(void);
-      virtual ~application(void);
-
-      bool initialize();
 
 
+      class CLASS_DECL_ca2 application :
+         virtual public ::ca2::fontopus::application
+      {
+      public:
 
-      calculator & calculator();
 
-      class calculator * m_pcalculator;
-         
+         application(void);
 
 
-   };
+         virtual ~application(void);
 
-} // namespace calculator
+
+         bool initialize();
+
+
+
+      };
+
+
+   } // namespace calculator
+
+
+} // namespace ca2
+
+
+

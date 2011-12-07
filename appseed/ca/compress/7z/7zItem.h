@@ -43,8 +43,8 @@ namespace n7z
       {
          if (UnpackSizes.is_empty())
             return 0;
-         for (int i = UnpackSizes.get_count() - 1; i >= 0; i--)
-            if (FindBindPairForOutStream(i) < 0)
+         for (index i = UnpackSizes.get_count() - 1; i >= 0; i--)
+            if (FindBindPairForOutStream((::n7z::CNum) i) < 0)
                return UnpackSizes[i];
          throw 1;
       }
@@ -52,7 +52,7 @@ namespace n7z
       CNum GetNumOutStreams() const
       {
          CNum result = 0;
-         for (int i = 0; i < Coders.get_count(); i++)
+         for (index i = 0; i < Coders.get_count(); i++)
             result += Coders[i].NumOutStreams;
          return result;
       }
@@ -81,7 +81,7 @@ namespace n7z
 
       bool IsEncrypted() const
       {
-         for (int i = Coders.get_count() - 1; i >= 0; i--)
+         for (index i = Coders.get_count() - 1; i >= 0; i--)
             if (Coders[i].MethodID == k_AES)
                return true;
          return false;
@@ -227,12 +227,12 @@ namespace n7z
 
       bool CheckNumFiles() const
       {
-         int size = Files.get_count();
+         count size = Files.get_count();
          return (
-            CTime.CheckSize(size) &&
-            ATime.CheckSize(size) &&
-            MTime.CheckSize(size) &&
-            StartPos.CheckSize(size) &&
+            CTime.CheckSize((int) size) &&
+            ATime.CheckSize((int) size) &&
+            MTime.CheckSize((int) size) &&
+            StartPos.CheckSize((int) size) &&
             (size == IsAnti.get_count() || IsAnti.get_count() == 0));
       }
 

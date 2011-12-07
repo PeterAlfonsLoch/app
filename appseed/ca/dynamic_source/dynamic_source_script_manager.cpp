@@ -15,7 +15,7 @@ namespace dynamic_source
       m_pcache->m_pmanager       = this;
       m_pcompiler                = new script_compiler(papp);
       m_pcompiler->m_pmanager    = this;
-// xxx webserver       m_puiredir                 = new webserver::ui_redir(papp);
+       m_puiredir                 = new webserver::ui_redir(papp);
       m_pmatchhostaSpider        = new webserver::match_host_array();
       m_psimageptra              = new webserver::simage_accepta_ptr_array();
       m_dwBuildTimeWindow        = 84;
@@ -245,7 +245,7 @@ namespace dynamic_source
       TRACE(lpsz);
       delete lpsz;
 
-// xxx webserver       m_puiredir->load_xml( System.dir().votagus("netseed\\ca2\\fontopus\\net\\ds\\ca2\\include\\11ca2_fontopus_redir.xml"));
+       m_puiredir->load_xml( System.dir().votagus("netseed\\ca2\\fontopus\\net\\ds\\ca2\\include\\11ca2_fontopus_redir.xml"));
    }
 
    void script_manager::run(const char * lpcszName)
@@ -292,7 +292,7 @@ namespace dynamic_source
       }
       else
       {
-// xxx webserver 
+ 
 /*         ::webserver::fontopus_database * pmusicdb = new ::webserver::fontopus_database(get_app());
          pmusicdb->m_iLastUsedTime = iTime;
          pmusicdb->initialize(iServer);*/
@@ -309,8 +309,8 @@ namespace dynamic_source
    void script_manager::on_free_musicdb(::webserver::fontopus_database * pmusicdb)
    {
       single_lock sl(&m_csMusicDbPool, TRUE);
-// xxx webserver       update_musicdb_list(pmusicdb->m_iLastServer);
-// xxx webserver       return m_musicdba[pmusicdb->m_iLastServer].push(pmusicdb);
+       update_musicdb_list(pmusicdb->m_iLastServer);
+       return m_musicdba[pmusicdb->m_iLastServer].push(pmusicdb);
    }
 
    __int64 script_manager::update_musicdb_list(int iServer)
@@ -319,7 +319,7 @@ namespace dynamic_source
       __int64 iTime = ::ca::profiler::micros();
       for(int i = 0; i < m_musicdba[iServer].get_count();)
       {
-         // xxx webserver 
+          
          /*if(iTime - m_musicdba[iServer][i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
          {
             try
@@ -363,10 +363,10 @@ namespace dynamic_source
       }
       else
       {
-// xxx webserver          ::webserver::cynce_database * pcyncedb = new ::webserver::cynce_database(get_app());
-// xxx webserver          pcyncedb->m_iLastUsedTime = iTime;
-// xxx webserver          pcyncedb->initialize();
-// xxx webserver          return pcyncedb;
+          ::webserver::cynce_database * pcyncedb = new ::webserver::cynce_database(get_app());
+          pcyncedb->m_iLastUsedTime = iTime;
+          pcyncedb->initialize();
+          return pcyncedb;
       }
    }
 
@@ -388,7 +388,7 @@ namespace dynamic_source
       __int64 iTime = ::ca::profiler::micros();
       for(int i = 0; i < m_cyncedbptra.get_count();)
       {
-         // xxx webserver 
+          
 /*         if(iTime - m_cyncedbptra[i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
          {
             try

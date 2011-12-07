@@ -75,7 +75,7 @@ namespace netnode
          if(strScript == "ca2netnodebergedge")
          {
             TRACE("socket::send_response ca2netnodebergedge");
-            // xxx webserver
+            
             /*bergedge::bergedge * pbergedge = System.get_bergedge(0);
             ::bergedge::document * pdoc = pbergedge->get_document();
             ::view * pview = pdoc->get_view(0);

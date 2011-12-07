@@ -341,7 +341,7 @@ public:
          AtlThrow(E_INVALIDARG);
 
       if(nLength < 0)
-         nLength = strlen(pchSrc);
+         nLength = (strsize) strlen(pchSrc);
 
       string_data * pData = pstringmanager->allocate( nLength, sizeof( XCHAR ) );
       if( pData == NULL )

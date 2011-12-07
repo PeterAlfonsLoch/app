@@ -106,7 +106,7 @@ namespace ca
       }
 
 
-      inline heap_item(void * p, int iSize, DWORD dwTick)
+      inline heap_item(void * p, ::primitive::memory_size iSize, DWORD dwTick)
       {
          m_pbStart = (byte *) p;
          m_pbEnd = ((byte *) p) + max(iSize - 1, 0);
@@ -144,7 +144,7 @@ namespace ca
       DWORD m_dwLastCleanup;
 
 
-      inline void add_item(void * p, int iSize)
+      inline void add_item(void * p, ::primitive::memory_size iSize)
       {
          add(heap_item(p, iSize, GetTickCount()));
          if(GetTickCount() > m_dwLastCleanup + 10000)

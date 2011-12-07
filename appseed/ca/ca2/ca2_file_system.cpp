@@ -723,7 +723,7 @@ namespace ca2
          }
          string str;
          char buf[30];
-         int iLen= strlen(lpPathBuffer);
+         int iLen= (int) strlen(lpPathBuffer);
          if(!(lpPathBuffer[iLen - 1] == '/'
             || lpPathBuffer[iLen - 1] == '\\'))
          {
@@ -757,7 +757,7 @@ namespace ca2
             return "";
          }
          string str;
-         int iLen= strlen(lpPathBuffer);
+         int iLen= (int) strlen(lpPathBuffer);
          if(!(lpPathBuffer[iLen - 1] == '/'
             || lpPathBuffer[iLen - 1] == '\\'))
          {
