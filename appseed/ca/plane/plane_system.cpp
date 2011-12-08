@@ -160,7 +160,7 @@ namespace plane
 
       System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
-      if(!system::application::process_initialize())
+      if(!::planebase::application::process_initialize())
       {
          return false;
       }
@@ -233,7 +233,7 @@ namespace plane
       if(!str().initialize())
          return false;
 
-      if(!system::application::initialize1())
+      if(!::planebase::application::initialize1())
          return false;
 
       try
@@ -267,6 +267,7 @@ namespace plane
          map_application_library(strLibraryId);
       }
 
+      map_application_library("ca");
       map_application_library("ca2");
 
       return true;
@@ -309,7 +310,7 @@ namespace plane
    bool system::initialize3()
    {
 
-      if(!system::application::initialize3())
+      if(!::planebase::application::initialize3())
          return false;
 
       if(m_phistory == NULL)
@@ -334,7 +335,7 @@ namespace plane
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");
 
-      if(!system::application::initialize_instance())
+      if(!planebase::application::initialize_instance())
         return false;
 
       m_pbergedgemap = new ::plane::session::map;
@@ -797,7 +798,7 @@ namespace plane
 
    bool system::finalize()
    {
-      system::application::finalize();
+      ::planebase::application::finalize();
 
 
       return true;

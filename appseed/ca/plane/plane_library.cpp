@@ -53,3 +53,9 @@ namespace plane
 
 
 
+
+
+::ca2::library * get_new_library()
+{
+   return new ::plane::library();
+}

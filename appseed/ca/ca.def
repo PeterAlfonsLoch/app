@@ -4,6 +4,10 @@ LIBRARY  "ca"
 ; For Win32 DLLs, only EXPORTs really required.
 
 EXPORTS
+get_new_library
+
+
+;sqlite3
 sqlite3_aggregate_context
 sqlite3_aggregate_count
 sqlite3_bind_blob

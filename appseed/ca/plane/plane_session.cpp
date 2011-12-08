@@ -73,7 +73,7 @@ namespace plane
    bool session::initialize_instance()
    {
 
-      if(!plane::application::initialize_instance())
+      if(!::planebase::application::initialize_instance())
          return false;
 
       initialize_bergedge_application_interface();
@@ -99,7 +99,7 @@ namespace plane
    {
       try
       {
-         ::plane::application::exit_instance();
+         ::planebase::application::exit_instance();
       }
       catch(...)
       {
@@ -128,7 +128,7 @@ namespace plane
 
    ::ca::application * session::get_app() const
    {
-      return plane::application::get_app();
+      return ::planebase::application::get_app();
    }
 
    void session::load_string_table()
@@ -856,7 +856,7 @@ namespace plane
       win::registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
       keyKar.SetValue("ca2 sentinel", "\"" + strSentinelPath + "\"");
 
-      return plane::application::on_install();
+      return ::planebase::application::on_install();
    }
 
 
