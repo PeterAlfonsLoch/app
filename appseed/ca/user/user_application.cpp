@@ -386,19 +386,19 @@ retry_license:
       if(pszPath == NULL)
       {
 
-         if(&m_pkeyboard->layout() != NULL)
+         if(&keyboard().layout() != NULL)
          {
             data_set("keyboard_layout", keyboard().layout().m_strPath);
             return true;
          }
 
-         if(m_pkeyboard->get_current_system_layout().is_empty())
+         if(keyboard().get_current_system_layout().is_empty())
             return false;
 
-         if(!set_keyboard_layout(m_pkeyboard->get_current_system_layout(), false))
+         if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
             return false;
 
-         data_set("keyboard_layout", m_pkeyboard->layout().m_strPath);
+         data_set("keyboard_layout", keyboard().layout().m_strPath);
 
          return true;
       }
