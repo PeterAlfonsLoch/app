@@ -17,7 +17,6 @@ namespace cube
 
       
       stra.add("fontopus");
-      stra.add("netnode");
       stra.add("default_file_handler");
 
    }

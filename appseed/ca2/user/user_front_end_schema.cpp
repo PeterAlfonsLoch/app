@@ -50,13 +50,13 @@ namespace user
       class color colorPress(color);
       colorHover.hls_rate(0.0, 0.7, 0.0);
 
-      m_buttonBaseWndMenuSysMenu.m_crTextNormal = RGB(0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crTextHover  = color;
-      m_buttonBaseWndMenuSysMenu.m_crTextNormal = RGB(0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crBkNormal            = ::GetSysColor(COLOR_3DFACE);
-      m_buttonBaseWndMenuSysMenu.m_crBkPress             = ::GetSysColor(COLOR_3DFACE);
-      m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE);
-      m_buttonBaseWndMenuSysMenu.m_crBkHover             = ::GetSysColor(COLOR_3DFACE);
+      m_buttonBaseWndMenuSysMenu.m_crTextNormal = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuSysMenu.m_crTextHover  = color | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crTextNormal = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuSysMenu.m_crBkNormal            = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkPress             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
 
       lf.lfHeight         = 10;
       lf.lfWeight         = FW_NORMAL;
@@ -68,16 +68,16 @@ namespace user
 
       m_buttonBaseWndMenuItem.m_font->CreateFontIndirect(&lf);
 
-      m_buttonBaseWndMenuItem.m_crTextNormal = RGB(0, 0, 0);
-      m_buttonBaseWndMenuItem.m_crTextHover  = color;
-      m_buttonBaseWndMenuItem.m_crTextNormal = RGB(0, 0, 0);
-   m_buttonBaseWndMenuSysMenu.m_crBkNormal    = ::GetSysColor(COLOR_3DHIGHLIGHT);        
-   m_buttonBaseWndMenuSysMenu.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT);           
-   m_buttonBaseWndMenuSysMenu.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT);      
-   m_buttonBaseWndMenuSysMenu.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT);        
+      m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuItem.m_crTextHover  = color | (0xff << 24);
+      m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
+   m_buttonBaseWndMenuSysMenu.m_crBkNormal    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+   m_buttonBaseWndMenuSysMenu.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);           
+   m_buttonBaseWndMenuSysMenu.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);      
+   m_buttonBaseWndMenuSysMenu.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
 
       //m_buttonBaseWndMenuItem.m_crBk         = ::GetSysColor(COLOR_3DHIGHLIGHT);
-      m_buttonBaseWndMenuItem.m_crTextDisabled = RGB(127, 127, 127);
+      m_buttonBaseWndMenuItem.m_crTextDisabled = RGB(127, 127, 127) | (0xff << 24);
       m_buttonBaseWndMenuItem.m_bBorder      = false;
 
 
@@ -110,14 +110,14 @@ namespace user
 
       m_buttonBaseWndMenuItemPopup.m_font->CreateFontIndirect(&lf);
 
-      m_buttonBaseWndMenuItemPopup.m_crTextNormal = RGB(0, 0, 0);
-      m_buttonBaseWndMenuItemPopup.m_crTextHover  = color;
-      m_buttonBaseWndMenuItemPopup.m_crTextNormal = RGB(0, 0, 0);
-    m_buttonBaseWndMenuItemPopup.m_crBkNormal    = ::GetSysColor(COLOR_3DHIGHLIGHT);        
-   m_buttonBaseWndMenuItemPopup.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT);           
-   m_buttonBaseWndMenuItemPopup.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT);      
-   m_buttonBaseWndMenuItemPopup.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT);        
-     m_buttonBaseWndMenuItemPopup.m_crTextDisabled = RGB(127, 127, 127);
+      m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuItemPopup.m_crTextHover  = color | (0xff << 24);
+      m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
+    m_buttonBaseWndMenuItemPopup.m_crBkNormal    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+   m_buttonBaseWndMenuItemPopup.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);           
+   m_buttonBaseWndMenuItemPopup.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);      
+   m_buttonBaseWndMenuItemPopup.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+     m_buttonBaseWndMenuItemPopup.m_crTextDisabled = RGB(255, 127, 127, 127);
       m_buttonBaseWndMenuItemPopup.m_bBorder      = false;
 
 

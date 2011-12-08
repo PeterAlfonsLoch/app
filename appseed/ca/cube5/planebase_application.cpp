@@ -1,11 +1,11 @@
 #include "StdAfx.h"
 
 
-namespace cube8
+namespace planebase
 {
 
 
-   CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
+   CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
 
 
    application::application()
@@ -18,6 +18,7 @@ namespace cube8
 
       m_bIfs            = true;
 
+      m_pservice = NULL;
 
    }
 
@@ -25,13 +26,36 @@ namespace cube8
    {
    }
 
-   CLASS_DECL_ca2 application & app_cast(::ca::ca * papp)
+   CLASS_DECL_ca application & app_cast(::ca::ca * papp)
    {
       return *(dynamic_cast < application * > (papp));
    }
 
+   class ::ca::dir::application & application::dir()
+   {
+      return m_dir;
+   }
 
-/*   ::ca::application * application::instantiate_application(const char * pszId, ::ca::application_bias * pbias)
+   class ::ca2::file::application & application::file()
+   {
+      return m_file;
+   }
+
+   class ::ca4::http::application & application::http()
+   {
+      return m_http;
+   }
+
+   void application::defer_initialize_twf()
+   {
+      if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
+      {
+         System.create_twf();
+      }
+   }
+
+
+   ::ca::application * application::instantiate_application(const char * pszId, ::ca::application_bias * pbias)
    {
 
       ::ca::application * pcaapp = NULL;
@@ -39,14 +63,14 @@ namespace cube8
 
       string strId(pszId);
 
-      if(strId.CompareNoCase("bergedge") == 0)
+      if(strId.CompareNoCase("session") == 0)
       {
-         ::bergedge::bergedge * pbergedge = new ::bergedge::bergedge();
-         pcaapp = pbergedge;
-         pbergedge->construct();
-         if(m_psystem != NULL && m_psystem->m_psession != NULL && m_psystem->m_psession->m_pbergedge == NULL)
+         ::plane::session * psession = new ::plane::session();
+         pcaapp = psession;
+         psession->construct();
+         if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
-            m_psystem->m_psession->m_pbergedge = pbergedge;
+            m_psystem->m_psession = psession;
          }
       }
       else
@@ -58,15 +82,15 @@ namespace cube8
          if(pcaapp == NULL)
             return NULL;
 
-         pcaapp->m_psession->m_pbergedge = m_psession->m_pbergedge;
+         pcaapp->m_psession                          = m_psession;
 
          /*if(pcaapp->m_bService)
          {
             App(pcaapp).m_puiInitialPlaceHolderContainer  = NULL;
          }*/
-         /*if(m_psystem != NULL && m_psystem->m_psession != NULL && m_psystem->m_psession->m_pbergedge == NULL)
+         if(m_psystem != NULL && m_psystem->m_psession == NULL)
          {
-            m_psystem->m_psession->m_pbergedge = m_psession->m_pbergedge;
+            m_psystem->m_psession = m_psession;
          }
       }
 
@@ -105,10 +129,10 @@ namespace cube8
 
 
       return pcaapp;
-   }*/
+   }
 
 
-   /*::ca::application * application::create_application(const char * pszId, bool bSynch, ::ca::application_bias * pbias)
+   ::ca::application * application::create_application(const char * pszId, bool bSynch, ::ca::application_bias * pbias)
    {
 
       ::ca::application * pcaapp = instantiate_application(pszId, pbias);
@@ -118,94 +142,24 @@ namespace cube8
 
       ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
 
-/*      try
-      {
-         if(pbias != NULL)
-         {
-            papp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
-         }
-      }
-      catch(...)
-      {
-      }*/
-      /*try
-      {
-         if(pbias != NULL)
-         {
-            if(pbias->m_pcallback != NULL)
-            {
-               pbias->m_pcallback->connect_to(papp);
-            }
-         }
-      }
-      catch(...)
-      {
-      }
-
-      manual_reset_event * peventReady = NULL;
-
-      if(bSynch)
-      {
-         peventReady = new manual_reset_event();
-         papp->m_peventReady = peventReady;
-         peventReady->ResetEvent();
-      }
-
-      papp->::ca::thread_sp::create(this);
-      //dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
-      dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp;
-      if(pbias != NULL)
-      {
-         papp->m_biasCalling = *pbias;
-      }
-      papp->Begin();
-
-      if(bSynch)
+      if(!papp->start_application(bSynch, pbias))
       {
          try
          {
-            papp->keep_alive();
+            delete pcaapp;
          }
          catch(...)
          {
          }
-         try
-         {
-            while(true)
-            {
-               if(!papp->is_alive())
-               {
-                  delete papp;
-                  return NULL;
-               }
-               if(papp->m_bReady)
-               {
-                  if(papp->m_iReturnCode == 0)
-                     break;
-                  delete papp;
-                  return NULL;
-               }
-               Sleep(84);
-            }
-         }
-         catch(...)
-         {
-            try
-            {
-               delete papp;
-            }
-            catch(...)
-            {
-            }
-            return NULL;
-         }
+         return NULL;
       }
+      
+      return pcaapp;
 
-      return papp;
    }
-   */
 
-/*   int application::pre_run()
+
+   int application::pre_run()
    {
 
       MSG msg;
@@ -555,15 +509,14 @@ InitFailure:
          se_translator::detach();
       }*/
 
-      /*return m_iReturnCode;
+      return m_iReturnCode;
    }
-   */
 
-   /*bool application::initial_check_directrix()
+   bool application::initial_check_directrix()
    {
       if(directrix().m_varTopicQuery.has_property("install"))
       {
-         if(::ca2::fontopus::application::on_install())
+         if(::fontopus::application::on_install())
          {
             if(on_install())
             {
@@ -595,7 +548,7 @@ InitFailure:
       }
       else if(directrix().m_varTopicQuery.has_property("uninstall"))
       {
-         if(::ca2::fontopus::application::on_uninstall())
+         if(::fontopus::application::on_uninstall())
          {
             if(on_uninstall())
             {
@@ -707,9 +660,7 @@ InitFailure:
          || gen::str::begins_ci(strPath, "rtprx://"))
       {
          throw not_implemented_exception();
-
-         /*
-         rtp::file * pfile =  new rtp::file(this);
+/*         rtp::file * pfile =  new rtp::file(this);
          if(!pfile->rx_open(
             System.url().get_server(strPath),
             System.url().get_port(varFile)))
@@ -731,9 +682,7 @@ InitFailure:
          catch(...)
          {
             return NULL;
-         }
-         */
-/*
+         }*/
       }
       else if(gen::str::begins(strPath, "http://")
          ||   gen::str::begins(strPath, "https://"))
@@ -794,12 +743,12 @@ InitFailure:
          }
       }
       return spfile;
-   }*/
+   }
 
-   /*::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags, ex1::file_exception_sp * pe)
+   ::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags, ex1::file_exception_sp * pe)
    {
       return ::ex1::byte_stream(get_file(varFile, nOpenFlags, pe));
-   }*/
+   }
 
    int application::exit_instance()
    {
@@ -808,7 +757,7 @@ InitFailure:
 
       try
       {
-         m_iReturnCode = ::ca2::fontopus::application::exit_instance();
+         m_iReturnCode = ::fontopus::application::exit_instance();
       }
       catch(...)
       {
@@ -838,7 +787,7 @@ InitFailure:
       return m_iReturnCode;
    }
 
-   /*bool application::is_licensed(const char * pszId, bool bInteractive)
+   bool application::is_licensed(const char * pszId, bool bInteractive)
    {
       return license().has(pszId, bInteractive);
    }
@@ -846,7 +795,7 @@ InitFailure:
    class ::fontopus::license & application::license()
    {
       return m_splicense;
-   }*/
+   }
 
    /*
       ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
@@ -864,11 +813,6 @@ InitFailure:
 
    bool application::initialize()
    {
-
-
-      if(!::ca2::fontopus::application::initialize())
-         return false;
-
 
       if(m_bIfs)
       {
@@ -895,6 +839,8 @@ InitFailure:
 
 
 
+      if(!fontopus::application::initialize())
+         return false;
 
       return true;
 
@@ -915,15 +861,15 @@ InitFailure:
 
 
       if(m_puser == NULL &&
-        (App(this).directrix().m_varTopicQuery.has_property("install")
-      || App(this).directrix().m_varTopicQuery.has_property("uninstall")))
+        (Application.directrix().m_varTopicQuery.has_property("install")
+      || Application.directrix().m_varTopicQuery.has_property("uninstall")))
       {
          m_puser                 = new ::fontopus::user(this);
          m_puser->m_strLogin     = "system";
          create_user(m_puser);
       }
 
-      if(!::ca2::fontopus::application::initialize1())
+      if(!fontopus::application::initialize1())
          return false;
 
 
@@ -932,40 +878,360 @@ InitFailure:
    }
 
 
-   /*class ::fs::data * application::fs()
+   class ::fs::data * application::fs()
    {
       return m_spfsdata;
-   }*/
+   }
 
 
    void application::set_title(const char * pszTitle)
    {
 
-      Bergedge.set_app_title(m_strAppName, pszTitle);
+      Session.set_app_title(m_strAppName, pszTitle);
 
    }
 
 
-   /*bool application::on_install()
+
+   FileManagerTemplate * application::GetStdFileManagerTemplate(void)
    {
-      return ::ca2::fontopus::application::on_install();
+      return NULL;
    }
 
-   bool application::on_uninstall()
+
+
+
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // System/Cube
+   //
+   ::document * application::hold(::user::interaction * pui)
    {
-      return ::ca2::fontopus::application::on_uninstall();
+
+      return NULL;
+
    }
+
+   count application::get_monitor_count()
+   {
+
+      return 0;
+
+   }
+
+   bool application::get_monitor_rect(index i, LPRECT lprect)
+   {
+
+      return false;
+
+   }
+
+   count application::get_desk_monitor_count()
+   {
+
+      return 0;
+
+   }
+
+   bool application::get_desk_monitor_rect(index i, LPRECT lprect)
+   {
+
+      return false;
+
+   }
+
+
+
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+   // Session/Bergedge
+   //
+   ::bergedge::view * application::get_view()
+   {
+
+      return NULL;
+
+   }
+
+   ::bergedge::document * application::get_document()
+   {
+
+      return NULL;
+
+   }
+
+
 
    bool application::is_serviceable()
    {
-      return ::ca2::fontopus::application::is_serviceable();
+      return false;
    }
+
+   bool application::create_service()
+   {
+
+      if(m_strAppName.is_empty()
+      || m_strAppName.CompareNoCase("bergedge") == 0
+      || !is_serviceable())
+         return false;
+
+      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
+
+      string strCalling = m_strModulePath + " : app=" + m_strAppName + " service usehostlogin";
+
+      if(hdlSCM == 0)
+      {
+         //::GetLastError()
+         return false;
+      }
+    
+      SC_HANDLE hdlServ = ::CreateService(
+         hdlSCM,                    // SCManager database 
+         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
+         "ccvotagus ca2 fontopus " + m_strAppName,        // service name to display 
+         STANDARD_RIGHTS_REQUIRED,  // desired access 
+         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
+         SERVICE_AUTO_START,      // start type 
+         SERVICE_ERROR_NORMAL,      // error control type 
+         strCalling,                   // service's binary Path name
+         0,                      // no load ordering group 
+         0,                      // no tag identifier 
+         0,                      // no dependencies 
+         0,                      // LocalSystem account 
+         0);                     // no password 
+    
+      if (!hdlServ)
+      {
+         CloseServiceHandle(hdlSCM);
+         //Ret = ::GetLastError();
+         return FALSE;
+      }
+       
+      CloseServiceHandle(hdlServ);
+      CloseServiceHandle(hdlSCM);
+
+      return true;
+   }
+
+   bool application::remove_service()
+   {
+
+      if(m_strAppName.is_empty()
+      || m_strAppName.CompareNoCase("bergedge") == 0
+      || !is_serviceable())
+         return false;
+
+      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+
+      if(hdlSCM == 0)
+      {
+         //::GetLastError();
+         return false;
+      }
+    
+      SC_HANDLE hdlServ = ::OpenService(
+         hdlSCM,                    // SCManager database 
+         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
+         DELETE);                     // no password 
+    
+      if (!hdlServ)
+      {
+         // Ret = ::GetLastError();
+         CloseServiceHandle(hdlSCM);
+         return false;
+      }
+
+      ::DeleteService(hdlServ);
+
+      CloseServiceHandle(hdlServ);
+
+      CloseServiceHandle(hdlSCM);
+
+      return false;
+   }
+
+
+   bool application::start_service()
+   {
+
+      if(m_strAppName.is_empty()
+      || m_strAppName.CompareNoCase("bergedge") == 0
+      || !is_serviceable())
+         return false;
+
+      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+
+      if(hdlSCM == 0)
+      {
+         //::GetLastError();
+         return false;
+      }
+    
+      SC_HANDLE hdlServ = ::OpenService(
+         hdlSCM,                    // SCManager database 
+         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
+         SERVICE_START);                     // no password 
+    
+    
+      if (!hdlServ)
+      {
+         CloseServiceHandle(hdlSCM);
+         //Ret = ::GetLastError();
+         return FALSE;
+      }
+       
+      BOOL bOk = StartService(hdlServ, 0, NULL);
+
+      CloseServiceHandle(hdlServ);
+      CloseServiceHandle(hdlSCM);
+
+      return bOk != FALSE;
+   }
+
+   bool application::stop_service()
+   {
+
+      if(m_strAppName.is_empty()
+      || m_strAppName.CompareNoCase("bergedge") == 0
+      || !is_serviceable())
+         return false;
+
+      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+
+      if(hdlSCM == 0)
+      {
+         //::GetLastError();
+         return false;
+      }
+    
+      SC_HANDLE hdlServ = ::OpenService(
+         hdlSCM,                    // SCManager database 
+         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
+         SERVICE_STOP);                     // no password 
+    
+      if (!hdlServ)
+      {
+         // Ret = ::GetLastError();
+         CloseServiceHandle(hdlSCM);
+         return false;
+      }
+
+      SERVICE_STATUS ss;
+
+      memset(&ss, 0, sizeof(ss));
+
+      BOOL bOk = ::ControlService(hdlServ, SERVICE_CONTROL_STOP, &ss);
+
+      ::DeleteService(hdlServ);
+
+      CloseServiceHandle(hdlServ);
+
+      CloseServiceHandle(hdlSCM);
+
+      return bOk != FALSE;
+   }
+
+  
+   BOOL application::run()
+   {
+      if (command().m_varTopicQuery.has_property("service"))
+      {
+         create_new_service();
+         service_base::run(*m_pservice);
+      }
+      else if(command().m_varTopicQuery.has_property("run") || is_serviceable())
+      {
+         create_new_service();
+         m_pservice->Start(0);
+         return fontopus::application::run();
+      }
+      else
+      {
+         return fontopus::application::run();
+      }
+      return TRUE;
+   }
+
+   bool application::on_install()
+   {
+      if(is_serviceable())
+      {
+         create_service();
+         start_service();
+      }
+      return ::fontopus::application::on_install();
+   }
+      
+   bool application::on_uninstall()
+   {
+      if(is_serviceable())
+      {
+         stop_service();
+         remove_service();
+      }
+      return ::fontopus::application::on_uninstall();
+   }
+
+
+   service_base * application::get_service()
+   {
+      return m_pservice;
+   }
+
 
    service_base * application::allocate_new_service()
    {
-      return ::ca2::fontopus::application::allocate_new_service();
-   }*/
+      if(!is_serviceable())
+         throw "only a serviceable application should/can allocate a new service";
+      throw "a serviceable application should implement this function returning a newly allocated application service";
+   }
 
-} //namespace cube8
+
+   bool application::create_new_service()
+   {
+
+      if(m_pservice != NULL)
+         return false;
+
+      m_pservice = allocate_new_service();
+
+      if(m_pservice == NULL)
+         return false;
+
+      return true;
+
+   }
+
+   void application::on_service_request(::ca::create_context * pcreatecontext)
+   {
+
+      if(!is_serviceable())
+         return;
+
+      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
+      {
+         create_service();
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("start_service"))
+      {
+         start_service();
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("stop_service"))
+      {
+         stop_service();
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove_service"))
+      {
+         remove_service();
+      }
+
+   }
+
+
+} //namespace planebase
 
 

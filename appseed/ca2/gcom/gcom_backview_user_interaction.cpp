@@ -113,7 +113,7 @@ namespace gcom
                hls.m_dL = 0.5;
                hls.m_dS = 0.5;
                c.hls_mult(hls);
-               m_colorBackground.set_rgb(c.get_rgb());
+               m_colorBackground.set_rgb(c.get_rgb() | (0xff << 24));
             }
          }
 

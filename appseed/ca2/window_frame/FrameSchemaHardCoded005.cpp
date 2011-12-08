@@ -982,16 +982,16 @@ namespace window_frame
       color c;
       c.set_rgb(m_crMoveableBorder);
       c.hls_rate(0.0, -0.16, -0.23);
-      m_schema.m_button.m_crBkNormal = c.get_rgb();
+      m_schema.m_button.m_crBkNormal = c.get_rgb() | (0xff << 24);
       c.set_rgb(m_crMoveableBorder);
       c.hls_rate(0.0, -0.49, -0.33);
-      m_schema.m_button.m_crTextNormal = c.get_rgb();
+      m_schema.m_button.m_crTextNormal = c.get_rgb() | (0xff << 24);
       c.set_rgb(m_crMoveableBorder);
       c.hls_rate(0.0, 0.23, 0.11);
-      m_schema.m_button.m_crBkHover = c.get_rgb();
+      m_schema.m_button.m_crBkHover = c.get_rgb() | (0xff << 24);
       c.set_rgb(m_crMoveableBorder);
       c.hls_rate(0.0, -0.33, -0.11);
-      m_schema.m_button.m_crTextHover = c.get_rgb();
+      m_schema.m_button.m_crTextHover = c.get_rgb() | (0xff << 24);
    }
 
    #define BEVEL_SMALL 2

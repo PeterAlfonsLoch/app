@@ -26,8 +26,6 @@ namespace bergedge
 
 
    class bergedge;
-   class document;
-   class view;
 
 
 } // namespace bergedge
@@ -46,7 +44,7 @@ namespace html
 class form_document;
 class form_view;
 
-class FileManagerTemplate;
+
 
 
 

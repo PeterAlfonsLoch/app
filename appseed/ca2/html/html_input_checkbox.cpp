@@ -66,10 +66,10 @@ namespace html
 
       void input_check_box::_001OnDraw(data * pdata)
       {
-         rect rectWindow;
-         m_pcheckbox->GetWindowRect(rectWindow);
+         //rect rectWindow;
+         //m_pcheckbox->GetWindowRect(rectWindow);
          point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
+         pdata->m_pdc->OffsetViewportOrg(m_pt.x, m_pt.y);
          m_pcheckbox->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }

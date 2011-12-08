@@ -49,7 +49,7 @@ namespace cubebase
    bool application::initialize()
    {
 
-      if(!::plane::application::initialize1())
+      if(!::plane::application::initialize())
          return false;
 
       

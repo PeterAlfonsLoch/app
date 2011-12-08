@@ -11,8 +11,23 @@ namespace planebase
    class application;
 
 
-} // namespace cube4
+} // namespace planebase
 
 
-#include "cube4_application.h"
+namespace bergedge
+{
+
+
+   class document;
+   class view;
+
+
+} // namespace bergedge
+
+
+
+class FileManagerTemplate;
+
+
+#include "planebase_application.h"
 

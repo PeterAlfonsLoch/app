@@ -67,11 +67,11 @@ namespace html
 
       void input_button::_001OnDraw(data * pdata)
       {
-         rect rectWindow;
-         m_pbutton->GetWindowRect(rectWindow);
-         m_pbutton->get_wnd()->ScreenToClient(rectWindow);
+         //rect rectWindow;
+         //m_pbutton->GetWindowRect(rectWindow);
+         //m_pbutton->get_wnd()->ScreenToClient(rectWindow);
          point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
+         pdata->m_pdc->OffsetViewportOrg(m_pt.x, m_pt.y);
          m_pbutton->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }

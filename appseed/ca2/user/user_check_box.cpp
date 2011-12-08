@@ -62,14 +62,14 @@ namespace user
          rectCheckBox.bottom = 15;
          if(m_echeck == check::tristate)
          {
-            pdc->FillSolidRect(rectCheckBox, RGB(220, 220, 220));
+            pdc->FillSolidRect(rectCheckBox, ARGB(255, 220, 220, 220));
          }
-         pdc->Draw3dRect(rectCheckBox, RGB(128, 128, 128), RGB(128, 128, 128));
+         pdc->Draw3dRect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
          if(m_echeck == check::tristate 
          || m_echeck == check::checked)
          {
             ::ca::pen_sp pen(get_app());
-            pen->construct(PS_SOLID, 1, m_echeck == check::checked ? RGB(0, 0, 0) : RGB(96, 96, 96));
+            pen->construct(PS_SOLID, 1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
             pdc->SelectObject(pen);
             pdc->MoveTo(2, 8);
             pdc->LineTo(6, 12);

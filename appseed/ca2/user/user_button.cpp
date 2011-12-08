@@ -49,12 +49,12 @@ namespace user
       {
          if(m_iHover == 0)
          {
-            pdc->FillSolidRect(rectClient, RGB(127, 127, 127));
+            pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
             pdc->SetTextColor(RGB(0, 100, 255));
          }
          else
          {
-            pdc->FillSolidRect(rectClient, RGB(127, 127, 127));
+            pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
             pdc->SetTextColor(RGB(0, 0, 0));
          }
       }
@@ -65,7 +65,7 @@ namespace user
             color c;
             c.set_rgb(m_pschema->m_crBkHover);
             c.hls_rate(0.0, -0.33, -0.23);
-            COLORREF crBorder = c.get_rgb();
+            COLORREF crBorder = c.get_rgb() | (0xff << 24);
             pdc->Draw3dRect(rectClient, crBorder, crBorder);
             rectClient.deflate(1, 1);
             //pdc->Draw3dRect(rectClient, crBorder, crBorder);
@@ -80,7 +80,7 @@ namespace user
             color c;
             c.set_rgb(m_pschema->m_crBkNormal);
             c.hls_rate(0.0, -0.33, -0.23);
-            COLORREF crBorder = c.get_rgb();
+            COLORREF crBorder = c.get_rgb() | (0xff << 24);
             pdc->Draw3dRect(rectClient, crBorder, crBorder);
             rectClient.deflate(1, 1);
             //pdc->Draw3dRect(rectClient, crBorder, crBorder);

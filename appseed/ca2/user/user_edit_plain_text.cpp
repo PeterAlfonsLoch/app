@@ -276,7 +276,7 @@ namespace user
       color c;
       c.set_rgb(RGB(227, 227, 210));
       c.hls_rate(0.0, -0.33, -0.23);
-      COLORREF crBorder = c.get_rgb();
+      COLORREF crBorder = c.get_rgb() | (0xff << 24);
       pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
       if(m_pdata == NULL)
