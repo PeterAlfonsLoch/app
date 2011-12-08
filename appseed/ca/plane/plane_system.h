@@ -340,12 +340,16 @@ namespace plane
 
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
+      //////////////////////////////////////////////////////////////////////////////////////////////////
+      // System/Cube
+      //
       ::document * hold(::user::interaction * pui);
 
       virtual count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
       virtual count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
+      virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
    };
 

@@ -80,7 +80,7 @@ namespace plane
       virtual void set_title(const char * pszTitle);
 
 
-      virtual FileManagerTemplate * GetStdFileManagerTemplate(void);
+      virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
 
 

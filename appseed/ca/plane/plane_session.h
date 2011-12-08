@@ -130,6 +130,7 @@ namespace plane
       //
       virtual ::bergedge::view * get_view();
       virtual ::bergedge::document * get_document();
+      virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
 
    };

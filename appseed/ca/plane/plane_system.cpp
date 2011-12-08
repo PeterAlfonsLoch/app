@@ -1358,6 +1358,18 @@ namespace plane
 
    }
 
+   FileManagerTemplate * system::GetStdFileManagerTemplate()
+   {
+      
+      if(m_pcubeInterface != NULL)
+      {
+         return m_pcubeInterface->GetStdFileManagerTemplate();
+      }
+
+      return NULL;
+
+   }
+
 } // namespace plane
 
 

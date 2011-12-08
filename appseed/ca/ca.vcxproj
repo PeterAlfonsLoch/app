@@ -1324,6 +1324,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="simpledb\sqlite_set.h" />
     <ClInclude Include="simpledb\veiev_post.h" />
     <ClInclude Include="sockets\application_interface.h" />
+    <ClInclude Include="sockets\asynch_dns\resolv_server.h" />
+    <ClInclude Include="sockets\asynch_dns\resolv_socket.h" />
     <ClInclude Include="sockets\basic\ipv4_address.h" />
     <ClInclude Include="sockets\basic\ipv6_address.h" />
     <ClInclude Include="sockets\basic\listen_socket.h" />

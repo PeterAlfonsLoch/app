@@ -920,6 +920,19 @@ namespace plane
 
    }
 
+   FileManagerTemplate * session::GetStdFileManagerTemplate()
+   {
+      
+      if(m_pbergedgeInterface != NULL)
+      {
+         return m_pbergedgeInterface->GetStdFileManagerTemplate();
+      }
+
+      return NULL;
+
+   }
+
+
 } // namespace plane
 
 

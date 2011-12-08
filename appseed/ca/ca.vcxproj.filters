@@ -3296,6 +3296,12 @@
     <ClInclude Include="calculator\calculator_application.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="sockets\asynch_dns\resolv_server.h">
+      <Filter>Header Files\sockets\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\asynch_dns\resolv_socket.h">
+      <Filter>Header Files\sockets\asynch_dns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
