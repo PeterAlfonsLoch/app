@@ -3,7 +3,6 @@
 
 #pragma comment(lib, "c.lib")
 #pragma comment(lib, "ca.lib")
-#pragma comment(lib, "ca2.lib")
 
 
 extern "C" int APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
