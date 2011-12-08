@@ -1,6 +1,17 @@
 #pragma once
 
-class CLASS_DECL_ca2 calendar :
+
+namespace html
+{
+
+
+   class file;
+
+
+} // namespace html
+
+
+class CLASS_DECL_ca calendar :
    public calendar_interface
 {
 public:

@@ -1203,6 +1203,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="primitive\check.h" />
     <ClInclude Include="primitive\color.h" />
     <ClInclude Include="primitive\datetime\datetime.h" />
+    <ClInclude Include="primitive\datetime\datetime_calendar.h" />
+    <ClInclude Include="primitive\datetime\datetime_calendar_interface.h" />
+    <ClInclude Include="primitive\datetime\datetime_clock.h" />
+    <ClInclude Include="primitive\datetime\datetime_clock_interface.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\fixed_string.h" />
     <ClInclude Include="primitive\geometric_types.h" />
@@ -2202,6 +2206,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\color.cpp" />
     <ClCompile Include="primitive\comparable.cpp" />
     <ClCompile Include="primitive\count.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_calendar.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_calendar_interface.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\fixed_string.cpp" />
     <ClCompile Include="primitive\geometric_types.cpp" />

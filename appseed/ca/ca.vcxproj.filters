@@ -3302,6 +3302,18 @@
     <ClInclude Include="sockets\asynch_dns\resolv_socket.h">
       <Filter>Header Files\sockets\asynch_dns</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_calendar.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_clock.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_calendar_interface.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5517,6 +5529,18 @@
     </ClCompile>
     <ClCompile Include="geoip\geoip_time_zone.cpp">
       <Filter>Source Files\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_clock.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_calendar_interface.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

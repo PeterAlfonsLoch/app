@@ -37,12 +37,6 @@ namespace userex
 #include "userex_minute_list_view.h"
 #include "userex_second_list_view.h"
 
-#include "calendar_interface.h"
-#include "clock_interface.h"
-
-#include "calendar.h"
-#include "clock.h"
-
 #include "mini_dock_frame_window.h"
 
 #include "application.h"

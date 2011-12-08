@@ -1174,10 +1174,6 @@
     <ClInclude Include="userbase\userbase_tree_window.h" />
     <ClInclude Include="userbase\userbase_view.h" />
     <ClInclude Include="userbase\userbase_window_map.h" />
-    <ClInclude Include="userex\calendar.h" />
-    <ClInclude Include="userex\calendar_interface.h" />
-    <ClInclude Include="userex\clock.h" />
-    <ClInclude Include="userex\clock_interface.h" />
     <ClInclude Include="userex\dialog.h" />
     <ClInclude Include="userex\form_child_frame.h" />
     <ClInclude Include="userex\form_document.h" />
@@ -1694,10 +1690,6 @@
     <ClCompile Include="html\html_text.cpp" />
     <ClCompile Include="html\html_value.cpp" />
     <ClCompile Include="html\html_view_update_hint.cpp" />
-    <ClCompile Include="userex\userex_calendar.cpp" />
-    <ClCompile Include="userex\userex_calendar_interface.cpp" />
-    <ClCompile Include="userex\userex_clock.cpp" />
-    <ClCompile Include="userex\userex_clock_interface.cpp" />
     <ClCompile Include="userex\userex_form_child_frame.cpp" />
     <ClCompile Include="userex\userex_form_document.cpp" />
     <ClCompile Include="userex\userex_form_frame.cpp" />

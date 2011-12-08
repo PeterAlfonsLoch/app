@@ -554,18 +554,6 @@
     <ClInclude Include="userbase\userbase_window_map.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
-    <ClInclude Include="userex\calendar.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\calendar_interface.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\clock.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\clock_interface.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
     <ClInclude Include="userex\dialog.h">
       <Filter>Header Files\userex</Filter>
     </ClInclude>
@@ -2312,18 +2300,6 @@
     </ClCompile>
     <ClCompile Include="html\html_view_update_hint.cpp">
       <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="userex\userex_calendar.cpp">
-      <Filter>Source Files\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="userex\userex_calendar_interface.cpp">
-      <Filter>Source Files\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="userex\userex_clock.cpp">
-      <Filter>Source Files\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="userex\userex_clock_interface.cpp">
-      <Filter>Source Files\userex</Filter>
     </ClCompile>
     <ClCompile Include="userex\userex_form_child_frame.cpp">
       <Filter>Source Files\userex</Filter>
