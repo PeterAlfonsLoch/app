@@ -12,11 +12,7 @@
 #endif
 
 
-#ifdef LINUX
-#include "os/linux/operational_system/ca2.h"
-#elif defined(_WINDOWS)
-#include "nodeapp/windows/operational_system/ca2.h"
-#endif
+#include "nodeapp/operational_system/ca2.h"
 
 
 
