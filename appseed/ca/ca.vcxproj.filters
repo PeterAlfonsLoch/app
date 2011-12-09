@@ -318,6 +318,12 @@
     <Filter Include="Header Files\calculator">
       <UniqueIdentifier>{6341b23d-6013-4016-983f-e6a4a2341377}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\mail">
+      <UniqueIdentifier>{74451a67-d04b-45fc-b705-0be5a6b7c041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mail">
+      <UniqueIdentifier>{0890c350-9880-4f8c-9966-dd58d47196bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -3314,6 +3320,18 @@
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
+    <ClInclude Include="mail\mail_pop3.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\pop3_socket.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\simple_pop3.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5541,6 +5559,15 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_pop3.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_pop3_socket.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\mail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

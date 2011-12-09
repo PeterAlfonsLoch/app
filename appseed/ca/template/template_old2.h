@@ -135,13 +135,13 @@ inline UINT HashKey(ARG_KEY key)
 
 // special versions for string
 #if _MSC_VER >= 1100
-/*template<> CLASS_DECL_ca2api00000001 void SerializeElements<astring> (CArchive& ar, astring* pElements, count nCount);
-template<> CLASS_DECL_ca2api00000001 void SerializeElements<wstring> (CArchive& ar, wstring* pElements, count nCount);
+/*template<> CLASS_DECL_caapi00000001 void SerializeElements<astring> (CArchive& ar, astring* pElements, count nCount);
+template<> CLASS_DECL_caapi00000001 void SerializeElements<wstring> (CArchive& ar, wstring* pElements, count nCount);
 */
-template<> CLASS_DECL_ca2api00000001 UINT HashKey<LPCWSTR> (LPCWSTR key);
-template<> CLASS_DECL_ca2api00000001 UINT HashKey<LPCSTR> (LPCSTR key);
-template<> CLASS_DECL_ca2api00000001 UINT HashKey<wstring> (wstring key);
-template<> CLASS_DECL_ca2api00000001 UINT HashKey<string> (string key);
+template<> CLASS_DECL_caapi00000001 UINT HashKey<LPCWSTR> (LPCWSTR key);
+template<> CLASS_DECL_caapi00000001 UINT HashKey<LPCSTR> (LPCSTR key);
+template<> CLASS_DECL_caapi00000001 UINT HashKey<wstring> (wstring key);
+template<> CLASS_DECL_caapi00000001 UINT HashKey<string> (string key);
 #else // _MSC_VER >= 1100
 //void SerializeElements(CArchive& ar, string* pElements, count nCount);
 UINT HashKey(LPCWSTR key);

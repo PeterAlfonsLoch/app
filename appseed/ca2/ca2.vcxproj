@@ -1630,9 +1630,6 @@
     <ClCompile Include="mail\mail_db_pop3.cpp" />
     <ClCompile Include="mail\mail_tree_interface.cpp" />
     <ClCompile Include="mail\mail_list_interface.cpp" />
-    <ClCompile Include="mail\mail_pop3.cpp" />
-    <ClCompile Include="mail\mail_pop3_socket.cpp" />
-    <ClCompile Include="mail\mail_simple_pop3.cpp" />
     <ClCompile Include="user\user_application.cpp" />
     <ClCompile Include="user\user_button.cpp" />
     <ClCompile Include="user\user_check_box.cpp" />

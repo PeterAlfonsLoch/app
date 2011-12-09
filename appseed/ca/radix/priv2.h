@@ -156,7 +156,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CArchiveStream
 /*
-class CLASS_DECL_ca2api00000001 CArchiveStream : public IStream
+class CLASS_DECL_caapi00000001 CArchiveStream : public IStream
 {
 public:
    CArchiveStream(CArchive* pArchive);
@@ -185,12 +185,12 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_ca2api00000001 void AfxBSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_caapi00000001 void AfxBSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_ca2api00000001 BSTR AfxBSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_ca2api00000001 LPWSTR AfxTaskStringA2W(LPCSTR lpa);
-CLASS_DECL_ca2api00000001 LPSTR AfxTaskStringW2A(LPCWSTR lpw);
+CLASS_DECL_caapi00000001 BSTR AfxBSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_caapi00000001 LPWSTR AfxTaskStringA2W(LPCSTR lpa);
+CLASS_DECL_caapi00000001 LPSTR AfxTaskStringW2A(LPCWSTR lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__

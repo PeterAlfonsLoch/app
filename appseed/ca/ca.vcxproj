@@ -1154,6 +1154,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="libcharguess\types.h" />
     <ClInclude Include="libcharguess\universal.h" />
     <ClInclude Include="libcharguess\UTF8Prober.h" />
+    <ClInclude Include="mail\mail.h" />
+    <ClInclude Include="mail\mail_pop3.h" />
+    <ClInclude Include="mail\pop3_socket.h" />
+    <ClInclude Include="mail\simple_pop3.h" />
     <ClInclude Include="multithreading\multithreading.h" />
     <ClInclude Include="multithreading\multithreading_base_sync_object.h" />
     <ClInclude Include="multithreading\multithreading_critical_section.h" />
@@ -2170,6 +2174,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="mail\mail_pop3.cpp" />
+    <ClCompile Include="mail\mail_pop3_socket.cpp" />
+    <ClCompile Include="mail\mail_simple_pop3.cpp" />
     <ClCompile Include="multithreading\multithreading_base_sync_object.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />

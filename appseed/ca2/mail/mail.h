@@ -12,10 +12,9 @@ namespace mail
 
 } // namespace mail
 
-#include "pop3.h"
-#include "simple_pop3.h"
+
 #include "db_pop3.h"
-#include "pop3_socket.h"
+
 
 #include "mail_account.h"
 

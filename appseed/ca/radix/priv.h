@@ -199,7 +199,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca2api00000001 void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
+CLASS_DECL_caapi00000001 void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
    Ex1VirtualGuie * hWnd, LPCRECT lpRect);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -232,7 +232,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // Implementation of PrintPreview
 
-class CLASS_DECL_ca2api00000001 CPreviewDC : public ::ca::graphics_sp
+class CLASS_DECL_caapi00000001 CPreviewDC : public ::ca::graphics_sp
 {
    
 
@@ -403,26 +403,26 @@ public:
 // Global implementation helpers
 
 // ::ca::window creation hooking
-CLASS_DECL_ca2api00000001 void AfxHookWindowCreate(Ex1VirtualGuie * pWnd);
-CLASS_DECL_ca2api00000001 BOOL AfxUnhookWindowCreate();
-CLASS_DECL_ca2api00000001 void AfxResetMsgCache();
+CLASS_DECL_caapi00000001 void AfxHookWindowCreate(Ex1VirtualGuie * pWnd);
+CLASS_DECL_caapi00000001 BOOL AfxUnhookWindowCreate();
+CLASS_DECL_caapi00000001 void AfxResetMsgCache();
 
 // for backward compatibility to previous versions
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
 // string helpers
-//CLASS_DECL_ca2api00000001 void AfxSetWindowText(Ex1VirtualGuie * hWndCtrl, LPCTSTR lpszNew);
-//CLASS_DECL_ca2api00000001 int AfxLoadString(__in UINT nIDS, __out_ecount_part_z(nMaxBuf, return + 1) LPSTR lpszBuf, __in UINT nMaxBuf = 256);
-//CLASS_DECL_ca2api00000001 int AfxLoadString(__in UINT nIDS, __out_ecount_part_z(nMaxBuf, return + 1) LPWSTR lpszBuf, __in UINT nMaxBuf = 256);
+//CLASS_DECL_caapi00000001 void AfxSetWindowText(Ex1VirtualGuie * hWndCtrl, LPCTSTR lpszNew);
+//CLASS_DECL_caapi00000001 int AfxLoadString(__in UINT nIDS, __out_ecount_part_z(nMaxBuf, return + 1) LPSTR lpszBuf, __in UINT nMaxBuf = 256);
+//CLASS_DECL_caapi00000001 int AfxLoadString(__in UINT nIDS, __out_ecount_part_z(nMaxBuf, return + 1) LPWSTR lpszBuf, __in UINT nMaxBuf = 256);
 
 HDC AfxCreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode);
 
-//CLASS_DECL_ca2api00000001 void AfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
+//CLASS_DECL_caapi00000001 void AfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 
 // Failure dialog helpers
-CLASS_DECL_ca2api00000001 void AfxFailMaxChars(CDataExchange* pDX, int nChars);
-CLASS_DECL_ca2api00000001 void AfxFailRadio(CDataExchange* pDX);
+CLASS_DECL_caapi00000001 void AfxFailMaxChars(CDataExchange* pDX, int nChars);
+CLASS_DECL_caapi00000001 void AfxFailRadio(CDataExchange* pDX);
 
 #ifndef __AFXCONV_H__
 #include "conv.h"

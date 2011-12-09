@@ -1747,31 +1747,31 @@ namespace dynamic_source
    void script_impl::menuleft_printVert001(webserver::ui_menu * pmenu, int iPanelIndex)
    {
       
-/*      if(gen::is_null(pmenu))
-         return;*/
+      if(gen::is_null(pmenu))
+         return;
       webserver::ui_menu & menu = *pmenu;
        if(menu.get_size() > 0)
       {
          printf("<div class=\"menuleft%d-panel\">", iPanelIndex);
       }
-      //   int iMenuIndex = gprop("menuindex");
+         int iMenuIndex = gprop("menuindex");
       gprop("panelindex") = iPanelIndex;
        for(int i = 0; i < menu.get_size(); i++)
-/*      {
+      {
          if(!menu[i]->m_strTitle.is_empty())
          {
             printf("<div class=\"menuleft%d-group\">", iPanelIndex);
             printf("<div class=\"menuleft%d-groupheader\">", iPanelIndex);
             print(menu[i]->m_strTitle);
             print("</div>\n");
-         }*/
-/*         for(int j = 0; j < menu[i]->get_size(); j++)
+         }
+         for(int j = 0; j < menu[i]->get_size(); j++)
          {
             if(!menu[i]->element_at(j)->m_strTitle.is_empty())
             {
                /*            print "<a href=\"".$item['link']."\" id=\"mli$menuindex-a\" class=\"menuleft$panelindex-item-a\"   onmouseover=\"mliMOv($panelindex, $menuindex);\" onmouseout=\"mliMOu($panelindex, $menuindex);\"
                onmousedown=\"mliMDn($panelindex, $menuindex);\" onmouseup=\"mliMUp($panelindex, $menuindex);\">";*/
-               /*printf("<a href=\"" + menu[i]->element_at(j)->m_strLink + "\" id=\"mli$menuindex-a\" class=\"menuleft$panelindex-item-a\"   onmouseover=\"mliMOv($panelindex, $menuindex);\" onmouseout=\"mliMOu($panelindex, $menuindex);\" \
+               printf("<a href=\"" + menu[i]->element_at(j)->m_strLink + "\" id=\"mli$menuindex-a\" class=\"menuleft$panelindex-item-a\"   onmouseover=\"mliMOv($panelindex, $menuindex);\" onmouseout=\"mliMOu($panelindex, $menuindex);\" \
                                                                          onmousedown=\"mliMDn($panelindex, $menuindex);\" >");
                printf("<div id=\"mli$menuindex-div3\" class=\"menuleft$panelindex-item-div3\">", iPanelIndex);
                printf("<div id=\"mli$menuindex-div2\" class=\"menuleft$panelindex-item-div2\">", iPanelIndex);
@@ -1783,13 +1783,13 @@ namespace dynamic_source
                print("</a>\n");
                gprop("menuindex")++;
             }
-         }*/
+         }
          print("</div>");
-      //}
-/*      if(menu.get_size() > 0)
+      }
+      if(menu.get_size() > 0)
       {
          print("</div>");
-      }*/
+      }
    }
    /*
    string script_impl::menu_printOutNav1($linka, $titlea)
@@ -2008,7 +2008,7 @@ namespace dynamic_source
       }
 
 
-      /*if(gprop("g_langdir_modifier") != (strParamLocale + "/" + strParamLocale + "/"))
+      if(gprop("g_langdir_modifier") != (strParamLocale + "/" + strParamLocale + "/"))
       {
       for(int i = 0; i < straSubdomainModifier.get_count(); i++)
       {
@@ -2051,7 +2051,7 @@ namespace dynamic_source
       include(strPath);
       }
       }
-      }*/
+      }
 
       for(int i = 0; i < straSubdomainModifier.get_count(); i++)
       {
@@ -2210,8 +2210,8 @@ namespace dynamic_source
    {
       if(m_pinstanceMain->m_pcyncedb == NULL)
       {
-         /*m_pinstanceMain->m_pcyncedb = get_manager()->new_cyncedb();
-         m_pinstanceMain->m_pcyncedb->m_pinterface = m_pinstanceMain;*/
+         m_pinstanceMain->m_pcyncedb = get_manager()->new_cyncedb();
+         m_pinstanceMain->m_pcyncedb->m_pinterface = m_pinstanceMain;
       }
       return *m_pinstanceMain->m_pcyncedb;
    }
@@ -2527,7 +2527,7 @@ namespace dynamic_source
       if(gen::str::begins(strRequestUri, "/js/"))
          return "";
 
-      /*
+      
       if(!isset(get("secureuserid")) || get("secure"))
       {
       var varOptional = gprop("secure_optional");
@@ -2535,7 +2535,7 @@ namespace dynamic_source
       include("site/cc/.Votagus/secure/secure");
       gprop("secure_optional") = varOptional;
       }
-      */
+      
 
       gen::property_set accepta;
       use_style_get_accepta(accepta);
@@ -2548,11 +2548,11 @@ namespace dynamic_source
          strUseStyle = use_style_get_default();
       }
  
-      /*      else if(!musicdb()._fun_get_user_data(gprop("secureuserid"), "use_style", strUseStyle))
+       else if(!musicdb()._fun_get_user_data(gprop("secureuserid"), "use_style", strUseStyle))
       {
          dprint("could not get data");
          strUseStyle = use_style_get_default();
-      }*/
+      }
       return accepta[strUseStyle];
    }
 
@@ -2755,7 +2755,7 @@ namespace dynamic_source
       string src = ca2_get_build(pszVersion);
       src.trim();
       return src;
-      /*gen::property_set set;
+      gen::property_set set;
       System.datetime().international().parse_str(src, set);
       string dec = decimal_a(atoi(src.Mid(14, 1)));
       if(set["year"].get_integer() < 1900)
@@ -2801,7 +2801,7 @@ namespace dynamic_source
 
       str.trim();
 
-      return str;*/
+      return str;
    }
 
 
@@ -3727,7 +3727,7 @@ namespace dynamic_source
       {
          webserver::simage_accepta * paccepta = psimageptra->element_at(i);
          
-         /*
+         
          int iFind = paccepta->m_propsetAccept.find_value_ci(param_view);
          gprop("root") = paccepta->m_root;
          if(isset(param_view) && iFind >= 0)
@@ -3757,7 +3757,7 @@ namespace dynamic_source
          }
          if(candidate.has_char())
             break;
-            */
+            
       }
       return candidate;
    }
@@ -3893,9 +3893,9 @@ namespace dynamic_source
       {
          calculator::parser parser(get_app());
          calculator::element * pelement = parser.parse(strQuery);
-         /*string strValue = pelement->get_value().to_string();
+         string strValue = pelement->get_value().to_string();
          strResp = pelement->get_expression() + " = " + strValue  + "\n";
-         bOk = true;*/
+         bOk = true;
       }
       catch(const char * psz)
       {
@@ -3978,7 +3978,7 @@ namespace dynamic_source
          if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds"))
          {
 
-/*            calculator::parser parser(get_app());
+            calculator::parser parser(get_app());
             calculator::element * pelement = parser.parse(stra[1]);
             string strValue;
             strValue.Format("%f", pelement->get_value());
@@ -3993,7 +3993,7 @@ namespace dynamic_source
             strResp += " = " + strMinFrac + " " + str_context()->get("calendar:minutes");
             strResp += " = " + strMin + " " + str_context()->get("calendar:minutes") + " and " + strMinSec + " " + str_context()->get("calendar:seconds") + "\n";
 
-            bOk = true;*/
+            bOk = true;
          }
       }
       catch(const char * psz)
@@ -4010,7 +4010,7 @@ namespace dynamic_source
          if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days"))
          {
 
-/*            calculator::parser parser(get_app());
+            calculator::parser parser(get_app());
             calculator::element * pelement = parser.parse(stra[1]);
             string strSignal;
             if(pelement->get_value().mod() >= 0)
@@ -4029,7 +4029,7 @@ namespace dynamic_source
             straResp.add(strResp);
             strResp.Empty();
             ca2_query_date(straResp, time, strQuery, strQuery);
-            bOk = true;*/
+            bOk = true;
          }
       }
       catch(const char * psz)
@@ -4037,9 +4037,9 @@ namespace dynamic_source
          TRACE("script_impl::query_ca2 string exception 3 %s", psz);
          bOk = false;
       }
-      /*if(strResp.get_length() > 0)
+      if(strResp.get_length() > 0)
       straResp.add(strResp);
-      strResp.Empty();*/
+      strResp.Empty();
       try
       {
          stringa stra;
@@ -4118,7 +4118,7 @@ namespace dynamic_source
 
 
 
-/*      try
+      try
       {
          int iPath = 0;
          int iPathCount;
@@ -4127,7 +4127,7 @@ namespace dynamic_source
          {
 
 
-/*            datetime::parser parser(get_app(), str_context());
+            datetime::parser parser(get_app(), str_context());
             datetime::element * pelement = parser.parse(strQuery);
             string strValue;
             iPathCount = 1;
@@ -4138,28 +4138,27 @@ namespace dynamic_source
             strResp = pelement->get_expression(get_app(),  str_context(), i, iPathCount) + " = " + strValue  + "\n";
             straResp.add(strResp);
             iPath++;
-         } while (iPath < iPathCount);*/
+         } while (iPath < iPathCount);
 
-      //}
-/*      catch(const char * psz)
+      }
+      catch(const char * psz)
       {
          TRACE("script_impl::query_ca2 string exception 6 %s", psz);
-      }*/
-/*      catch(...)
+      }
+      catch(...)
       {
-      }*/
+      }
       strResp.Empty();
       
-         /*if(straResp.get_count() == 0)
+      if(straResp.get_count() == 0)
       {
          strResp = "ca2 computing could not answer you by this mean. Don't know! Expect and hope to say finally too: yet!!";
       }
       else
       {
          strResp = straResp.implode("<br><br>");
-      }*/
-      // xxx webserverreturn strResp;
-         return "";
+      }
+      return strResp;
    }
 
 
@@ -4221,7 +4220,7 @@ namespace dynamic_source
    void script_impl::print_email_body(::mail::pop3 * ppop3)
    {
 
-/*      gen::property_set & set = ppop3->m_setHeaders;
+      gen::property_set & set = ppop3->m_setHeaders;
       if(set["content-type"].get_string().find("text/plain") >= 0 || set["content-type"].get_string().is_empty())
       {
          print_plain_text_email_body(ppop3);
@@ -4230,13 +4229,11 @@ namespace dynamic_source
       {
          print(ppop3->m_strBody);
       }
-      */
    }
 
    void script_impl::print_plain_text_email_body(::mail::pop3 * ppop3)
    {
 
-      /*
       string str(ppop3->m_strBody);
       int iFind = 0;
       int iStart;
@@ -4278,7 +4275,6 @@ namespace dynamic_source
       str.replace("\r", "<br>");
       str.replace("\n", "<br>");
       print(str);
-      */
    }
 
 
@@ -4321,7 +4317,7 @@ namespace dynamic_source
          );
 
       
-      /*var varDateTime = musicdb().query_item(strSql);
+      var varDateTime = musicdb().query_item(strSql);
 
       if(varDateTime.is_empty())
       {
@@ -4377,14 +4373,13 @@ namespace dynamic_source
          strSql.Format("DELETE FROM tag_tag3 WHERE tag = '%s' AND tag2 = '1000000024' AND tag3 = '1000000004'", strUserTag);
          cyncedb().query(strSql);
          cynce().tag_tag3_set(strUserTag, "1000000024", "1000000006");
-      }*/
+      }
+
    }
 
    bool script_impl::is_licensed(const char * pszLicense, const char * pszUserId)
    {
 
-      
-/*
       string strDateTimeNow = System.datetime().international().get_gmt_date_time();
 
       string strSql;
@@ -4396,8 +4391,7 @@ namespace dynamic_source
 
       var varCount = musicdb().query_item(strSql);
 
-      return varCount.get_integer() >= 1;*/
-      return false;
+      return varCount.get_integer() >= 1;
    }
 
    string script_impl::web_map(const char * psz)
@@ -4421,24 +4415,22 @@ namespace dynamic_source
 
    bool script_impl::is_site_user(var varSite, var varUser)
    {
-            
 
-//      return musicdb().query_item("SELECT COUNT(*) FROM hi5.site_user WHERE site = " + varSite + " AND user = " + varUser) == 1;
-      return false;
+      return musicdb().query_item("SELECT COUNT(*) FROM hi5.site_user WHERE site = " + varSite + " AND user = " + varUser) == 1;
+
    }
 
    bool script_impl::is_site_user(var varSite)
    {
-            
 
-//      return is_site_user(varSite, gprop("secureuserid"));
-      return false;
+      return is_site_user(varSite, gprop("secureuserid"));
+
    }
 
 
    bool script_impl::low_fs_read(const char * user, __int64 iFolder, const char * pszName)
    {
-/*      string strSql;
+      string strSql;
       strSql.Format("SELECT `hash`, `key`, `size`, `mimetype`, `extension` FROM `fs`.`user_folder_item` WHERE `user` = '%s' AND `folder` = '%I64d' AND `name` = '%s'", user, iFolder, pszName);
       var row = musicdb().query_row(strSql);
 
@@ -4449,7 +4441,6 @@ namespace dynamic_source
          return false;
 
       return low_fs_read((const char *) row.at(0),  (__int64) row.at(1), (__int64) row.at(2), (const char *) row.at(3), (const char *) row.at(4));
-      */
       return false;
    }
 
@@ -4504,7 +4495,7 @@ namespace dynamic_source
    {
 
 
-/*      string strSql;
+      string strSql;
       strSql.Format("SELECT `path` FROM `fs`.`item` WHERE `hash` = '%s' AND `key` = %I64d AND `size`=%I64d AND `mimetype` = '%s' AND `extension` = '%s'", hash, key, size, mimetype, extension);
       string strPath = musicdb().query_item(strSql);
       if(strPath.has_char())
@@ -4543,7 +4534,7 @@ namespace dynamic_source
       	   {
                return fn;
             }
-         }*/
+         }
 	   /*	header("Content-disposition: attachment; filename=\"" + $song->filename + "\"");
 		   header("Content-type: application/download");
 		   header("Pragma: no-cache");
@@ -4591,14 +4582,14 @@ namespace dynamic_source
 		   print "Sorry! File Not Found.";
 	   }
 	   exit(0);*/
-      //}
-   /*
+      }
+   
       string strHash(hash);
       string strMime(mimetype);
       strMime.replace("/", "\\");
       if(strHash.get_length() < 5)
          return "";
-      return string("C:\\fs\\") + strMime + "\\" + strHash[0] + "\\" + strHash[1] + "\\" + strHash[2] + "\\" + strHash[3] + "\\" + strHash[4] + "\\" + strHash + "." + string(extension);*/
+      return string("C:\\fs\\") + strMime + "\\" + strHash[0] + "\\" + strHash[1] + "\\" + strHash[2] + "\\" + strHash[3] + "\\" + strHash[4] + "\\" + strHash + "." + string(extension);
       return "";
 
    }
@@ -4629,7 +4620,6 @@ namespace dynamic_source
    bool script_impl::low_fs_map_file(const char * pszFile)
    {
       
-      /*
       string strSql;
 
 
@@ -4653,7 +4643,7 @@ namespace dynamic_source
       {
          // nessie collision or file already exists in the repository, should solve
          return false;
-      }*/
+      }
 
       return false;
 
@@ -4669,17 +4659,16 @@ namespace dynamic_source
    bool script_impl::low_fs_is_licensed(const char * user, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension)
    {
       
-      /*string strSql;
+      string strSql;
       strSql.Format("SELECT COUNT(*) FROM `fs`.`user_folder_item` WHERE `user` = '%s' AND `hash` = '%s' AND `key` = '%I64d' AND `size`= '%I64d' AND `mimetype` = '%s' AND extension = '%s'",
          user, hash, key, size, mimetype, extension);
-      return musicdb().query_item(strSql).get_integer() >= 1;*/
-      return false;
+      return musicdb().query_item(strSql).get_integer() >= 1;
+
    }
 
    bool script_impl::low_fs_add_user_file(const char * user, __int64 iFolder, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension, const char * pszName, bool bOverwrite)
    {
       
-      /*
       string strSql;
       string strSqlPrefix;
 
@@ -4694,15 +4683,12 @@ namespace dynamic_source
       mysql::result * presult = musicdb().query(strSql);
 
       return presult != NULL;
-      */
-      return false;
 
    }
 
    __int64 script_impl::low_fs_add_user_dir(const char * user, __int64 iFolder, const char * pszName)
    {
       
-      /*
       string strSql;
 
       strSql.Format("SELECT `id` FROM `fs`.`user_folder` WHERE `parent` = %I64d AND `user` = %s AND `name` = '%s'", iFolder, user, pszName);
@@ -4740,15 +4726,12 @@ namespace dynamic_source
       }
 
       return gen::g_emptyconst;
-      */
-      return false;
 
    }
 
    void script_impl::low_fs_ls_dir(const char * user, __int64 iFolder, int64_array & ia, stringa & stra)
    {
       
-      /*
       string strSql;
 
       strSql.Format("SELECT `id`, `name` FROM `fs`.`user_folder` WHERE `parent` = %I64d AND `user` = %s", iFolder, user);
@@ -4761,13 +4744,12 @@ namespace dynamic_source
          ia.add((__int64) row.at(0));
          stra.add((const char *)row.at(1));
       }
-      */
+
    }
 
    void script_impl::low_fs_ls_file(const char * user,  __int64 iFolder, stringa & straHash, int64_array & iaKey, int64_array & iaSize, stringa & straMime, stringa & straExt, stringa & straName)
    {
 
-      /*
       string strSql;
 
       strSql.Format("SELECT `hash`, `key`, `size`, `mimetype`, `extension`, `name` FROM `fs`.`user_folder_item` WHERE  `folder` = %I64d AND `user` = %s", iFolder, user);
@@ -4784,13 +4766,12 @@ namespace dynamic_source
          straExt.add((const char *) row.at(4));
          straName.add((const char *) row.at(5));
       }
-      */
+
    }
 
    bool script_impl::low_folder(string & strUser, __int64 & iFolder, const char * pszFolder)
    {
       
-      /*
       string strPath(pszFolder);
       if(gen::str::begins_eat(strPath, "ifs://"))
       {
@@ -4848,14 +4829,13 @@ namespace dynamic_source
          if(iFind < 0)
             break;
          iStart = iFind + 1;
-      }*/
+      }
       return true;
    }
 
    bool      script_impl::fs_dir_mk               (const char * pszFolder)
    {
       
-      /*
       string strPath(pszFolder);
       string strUser;
       __int64 iFolder;
@@ -4927,7 +4907,7 @@ namespace dynamic_source
             break;
          iStart = iFind + 1;
          iParentFolder = iFolder;
-      }*/
+      }
       return true;
    }
 
@@ -5026,7 +5006,6 @@ namespace dynamic_source
    void script_impl::hand_img()
    {
       
-      /*
       stringa stra;
       stra.explode(".", inattr("query_string"));
       if(stra.get_size() >= 5)
@@ -5099,7 +5078,6 @@ namespace dynamic_source
          }
 
       }
-      */
 
 
    }
@@ -5109,7 +5087,6 @@ namespace dynamic_source
    {
 
       
-      /*
 	   string email = "www.ca2.cc.";
 
 	   string strSql;
@@ -5488,7 +5465,7 @@ namespace dynamic_source
       Application.file().put_contents("C:\\ca2\\mydns.log", log);
 
 	
-      print(log);*/
+      print(log);
    }
 
 } // namespace dynamic_source

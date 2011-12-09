@@ -2133,15 +2133,6 @@
     <ClCompile Include="mail\mail_list_interface.cpp">
       <Filter>Source Files\mail</Filter>
     </ClCompile>
-    <ClCompile Include="mail\mail_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_pop3_socket.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_simple_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_application.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>

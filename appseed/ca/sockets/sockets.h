@@ -307,6 +307,8 @@ namespace sockets
 #include "basic/sync_socket_handler.h"
 
 
+#include "ca/mail/mail.h"
+
 
 
 #include "application_interface.h"
