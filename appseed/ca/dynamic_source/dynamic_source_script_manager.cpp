@@ -292,12 +292,10 @@ namespace dynamic_source
       }
       else
       {
- 
-/*         ::webserver::fontopus_database * pmusicdb = new ::webserver::fontopus_database(get_app());
+         ::webserver::fontopus_database * pmusicdb = new ::webserver::fontopus_database(get_app());
          pmusicdb->m_iLastUsedTime = iTime;
-         pmusicdb->initialize(iServer);*/
-         //return pmusicdb;
-         return NULL;
+         pmusicdb->initialize(iServer);
+         return pmusicdb;
       }
    }
 
@@ -320,7 +318,7 @@ namespace dynamic_source
       for(int i = 0; i < m_musicdba[iServer].get_count();)
       {
           
-         /*if(iTime - m_musicdba[iServer][i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
+         if(iTime - m_musicdba[iServer][i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
          {
             try
             {
@@ -343,7 +341,7 @@ namespace dynamic_source
          else
          {
             i++;
-         }*/
+         }
       }
       return iTime;
    }
@@ -389,7 +387,7 @@ namespace dynamic_source
       for(int i = 0; i < m_cyncedbptra.get_count();)
       {
           
-/*         if(iTime - m_cyncedbptra[i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
+         if(iTime - m_cyncedbptra[i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
          {
             try
             {
@@ -412,7 +410,7 @@ namespace dynamic_source
          else
          {
             i++;
-         }*/
+         }
       }
       return iTime;
    }
