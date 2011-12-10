@@ -8,7 +8,7 @@ namespace dynamic_source
    class script;
    class script_instance;
 
-   class script_compiler : 
+   class script_compiler :
       virtual public ::radix::object,
       virtual public ::ex2::folder_watch::callback
    {
@@ -21,6 +21,22 @@ namespace dynamic_source
          cpptype_source,
          cpptype_include,
       };
+
+
+
+      http::memory_file m_memfileLibError;
+      stringa m_straLibSourcePath;
+      stringa m_straLibSourceRelPath;
+      stringa m_straLibCppPath;
+      stringa m_straLibIncludePath;
+      stringa m_straLibIncludeRelPath;
+      stringa m_straLibHppPath;
+      string m_strLibraryPath;
+      ::ca::library m_libraryLib;
+      base_array < FILETIME, FILETIME & > m_ftaLibCreation;
+      base_array < FILETIME, FILETIME & > m_ftaLibAccess;
+      base_array < FILETIME, FILETIME & > m_ftaLibModified;
+
 
       stringa                 m_straSync;
       map_string_to_ptr       m_mapLib;
@@ -77,18 +93,6 @@ namespace dynamic_source
 
       void prepare1(const char * pszSource, const char * pszDest);
 
-      http::memory_file m_memfileLibError;
-      stringa m_straLibSourcePath;
-      stringa m_straLibSourceRelPath;
-      stringa m_straLibCppPath;
-      stringa m_straLibIncludePath;
-      stringa m_straLibIncludeRelPath;
-      stringa m_straLibHppPath;
-      string m_strLibraryPath;
-      HMODULE m_hmoduleLib;
-      base_array < FILETIME, FILETIME & > m_ftaLibCreation;
-      base_array < FILETIME, FILETIME & > m_ftaLibAccess;
-      base_array < FILETIME, FILETIME & > m_ftaLibModified;
 
    };
 

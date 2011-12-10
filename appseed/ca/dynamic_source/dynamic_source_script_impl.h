@@ -101,11 +101,15 @@ namespace dynamic_source
       singleton & lib ()
       {
          string strPropName = "netnode::script::singleton::";
-         strPropName += typedi(singleton).raw_name();
+#ifdef WINDOWS
+         strPropName += typeid(singleton).raw_name();
+#else
+         strPropName += typeid(singleton).name();
+#endif
          singleton * p = gprop(strPropName).ca2 < singleton >();
          if(p != NULL)
             return *p;
-         string strName = typeid(singleton.name());
+         string strName = typeid(singleton).name();
          string strPath = strName;
          strPath.replace("::", "/");
          strPath.replace("_", "/");
@@ -189,7 +193,7 @@ namespace dynamic_source
          const char * pszKey,
          var var,
          int iExpire = 0,
-         const char * pszPath = NULL, 
+         const char * pszPath = NULL,
          const char * pszDomain = NULL,
          bool bSecure = false);
 
@@ -229,8 +233,8 @@ namespace dynamic_source
       virtual void hand_extension();
 
       void mbimage_outputImage(
-         var text, 
-         var size = "b", 
+         var text,
+         var size = "b",
          var bk = "mb");
       void mbimage_rectImage(var w, var h);
       COLORREF color(var c);
@@ -240,7 +244,7 @@ namespace dynamic_source
       void echo(const char * lpcsz);
 
       // for printing "static text" (from html)
-      void ds_print(const char * lpcsz); 
+      void ds_print(const char * lpcsz);
 
       void raw_print(const char * lpcsz);
 

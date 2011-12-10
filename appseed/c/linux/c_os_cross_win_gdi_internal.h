@@ -8,7 +8,7 @@
 typedef Window HWND;
 
 
-class CLASS_DECL_____ device_context
+class CLASS_DECL_c device_context
 {
 public:
 

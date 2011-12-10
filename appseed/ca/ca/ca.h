@@ -63,7 +63,7 @@ extern "C"
 #ifdef _WINDOWS
 #include <crtdbg.h>
 #else
-#include "debug.h"
+#include "api/debug.h"
 #endif
 
 #pragma pointers_to_members( full_generality, virtual_inheritance )

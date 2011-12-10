@@ -1,6 +1,11 @@
 #pragma once
 
 
+#ifndef WINDOWS
+#define INFINITE 0xffffffff
+#endif
+
+
 namespace ca
 {
 
@@ -235,7 +240,7 @@ namespace plane
       unsigned long guess_code_page(const char * pszText);
 
 
-      
+
       plane::session * get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
       plane::session * query_session(index iEdge);
 
@@ -251,7 +256,7 @@ namespace plane
 
       virtual bool wait_twf(DWORD dwTimeOut = INFINITE);
 
-      template < typename T >
+      template < class T >
       ::ca::type_info & type_info()
       {
          return get_type_info(typeid(T));
@@ -288,7 +293,11 @@ namespace plane
       }
       int enum_from_name(const std_type_info & info, const char * psz, int iDefault = 0)
       {
+          #ifdef WINDOWS
          return m_mapNameToEnum[info.raw_name()].get(psz, iDefault);
+         #else
+         return m_mapNameToEnum[info.name()].get(psz, iDefault);
+         #endif
       }
 
       template < class TYPE >
@@ -601,22 +610,177 @@ return (p->*lpfnOuput)(fileOut, lpszSource);
 
 
 
- template <class TYPE, class ARG_TYPE>
+template < class TYPE, class ARG_TYPE >
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
+    ::ca::type_info & ti = System.type_info();
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    this->ptra().add(pt);
    return pt;
 }
 
 
-template <class TYPE, class ARG_TYPE>
+template < class TYPE, class ARG_TYPE >
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    const TYPE & t)
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
+    ::ca::type_info & ti = System.type_info ();
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    *pt = t;
    return this->ptra().add(pt);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+template <class TYPE, class ARG_TYPE, class BASE_PTRA>
+inline TYPE * array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
+{
+   TYPE * p = System.alloc(this->get_app(), System.type_info());
+   array_release_ptr < TYPE, ARG_TYPE >::add(p);
+   return p;
+}
+
+
+template < class TYPE, class ARG_TYPE, class BASE_PTRA >
+void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, ARG_TYPE t)
+{
+   ASSERT(iIndex >= 0);
+
+   if(iIndex < this->ptra().get_size())
+   {
+      this->element_at(iIndex) = t;
+   }
+   else
+   {
+      for(index i = this->get_size(); i < iIndex; i++)
+      {
+         this->ptra().add(System.alloc(this->get_app(), System.type_info()));
+      }
+      this->ptra().add(System.alloc(this->get_app(), System.type_info()));
+   }
+}
+
+template <class TYPE, class ARG_TYPE>
+inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(
+   int iIndex,
+   ARG_TYPE t)
+{
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info()));
+   *pt = t;
+   this->ptra().insert_at(iIndex, pt);
+}
+
+
+template <class TYPE, class ARG_TYPE>
+inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::operator = (const array_app_alloc <TYPE, ARG_TYPE> & a)
+{
+   remove_all();
+   for(int i = 0; i < a.ptra().get_size(); i++)
+   {
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info()));
+      *pt = *a.ptra()[i];
+      this->ptra().add(pt);
+   }
+   this->ptra().set_size(a.ptra().get_size());
+   return *this;
+}
+
+
+
+template<class TYPE, class ARG_TYPE>
+void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
+{
+   ASSERT(iIndex >= 0);
+
+   if(iIndex < this->ptra().get_size())
+   {
+      this->element_at(iIndex) = t;
+   }
+   else
+   {
+      INT_PTR iOldSize = this->ptra().get_size();
+      this->ptra().set_size(iIndex + 1);
+      INT_PTR iEmptySize = this->ptra().get_size() - 1;
+      index i;
+      if(this->get_app() == NULL)
+         set_app(t.get_app());
+      for(i = iOldSize; i < iEmptySize; i++)
+      {
+         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
+      }
+      this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
+   }
+}
+
+template <class TYPE, class ARG_TYPE>
+inline void array_app_alloc < TYPE, ARG_TYPE >::
+set_size(int iSize)
+{
+   while(this->get_size() < iSize)
+   {
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
+      add(pt);
+   }
+   while(this->get_size() > iSize)
+   {
+      remove_at(this->get_size() - 1);
+   }
+}
+
+
+#include "ca/collection/gen_lemon_array.h"
+
+
+namespace user
+{
+
+   template < class VIEW >
+   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL)
+   {
+      return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
+   }
+
+}
+
 
 

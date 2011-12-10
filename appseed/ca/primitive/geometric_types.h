@@ -1,6 +1,6 @@
 #pragma once
 
-#include "muldiv64.h"
+#include "api/muldiv64.h"
 #include "align.h"
 
 #define MAKELONG64(a, b)      (((uint64_t)(((unsigned int)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((unsigned int)(((uint64_t)(b)) & 0xffffffff))) << 32)))

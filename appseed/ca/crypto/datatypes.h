@@ -59,7 +59,7 @@
 # include <stdio.h>
 //# include <string.h>
 # include <time.h>
-# ifdef HAVE_NETINET_IN_H
+# ifdef LINUX
 #  include <netinet/in.h>
 # elif defined HAVE_WINSOCK2_H
 #  include <winsock2.h>
@@ -404,7 +404,7 @@ static inline uint32_t be32_to_cpu(uint32_t v) {
    return v;
 }
 # else /* HAVE_X86 */
-#  ifdef HAVE_NETINET_IN_H
+#  ifdef LINUX
 #   include <netinet/in.h>
 #  elif defined HAVE_WINSOCK2_H
 #   include <winsock2.h>

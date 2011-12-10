@@ -9,8 +9,12 @@ namespace netnode
    class socket_thread;
 
 
-   class CLASS_DECL_ca service : 
-      public plain_service
+   class CLASS_DECL_ca service :
+#ifdef WINDOWS
+        public plain_service
+#else
+        public ::radix::object
+#endif
    {
    public:
 

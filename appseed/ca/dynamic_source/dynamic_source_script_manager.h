@@ -12,6 +12,8 @@ namespace webserver
    class match_host;
    typedef array_del_ptr < match_host > match_host_array;
    class ui_redir;
+   class fontopus_database;
+   class cynce_database;
 
 
 } // namespace webserver
@@ -88,8 +90,8 @@ namespace dynamic_source
       mutex                                     m_mutexTagName;
       string_to_string_map                      m_tagname;
 
-      base_array < comparable_array < webserver::fontopus_database * >> m_musicdba;
-      comparable_array < webserver::cynce_database * > m_cyncedbptra;
+      base_array < comparable_array < ::webserver::fontopus_database * > > m_musicdba;
+      comparable_array < ::webserver::cynce_database * > m_cyncedbptra;
 
 
       script_manager(::ca::application * papp);

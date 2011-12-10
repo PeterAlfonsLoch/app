@@ -4,6 +4,9 @@
 #include "fontopus/fontopus.h"
 
 
+class service_base;
+
+
 namespace planebase
 {
 

@@ -54,12 +54,6 @@ public:
    virtual void OnDraw(::ca::graphics * pgraphics);
    virtual void OnViewUpdateHint(view * pSender, LPARAM lHint, view_update_hint * pHint);
 
-   template < class VIEW >
-   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL)
-   {
-      return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
-   }
-
    ::user::interaction * create_view(::ca::type_info info, document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
    static ::user::interaction * s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
    static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
@@ -81,7 +75,7 @@ public:
 
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-      
+
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual void PostNcDestroy();
 

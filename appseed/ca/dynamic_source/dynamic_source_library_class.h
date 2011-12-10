@@ -7,18 +7,24 @@ namespace dynamic_source
       virtual public ::radix::object
    {
    public:
-      library_class(::ca::application * papp);
-      ~library_class(void);
+
 
       http::memory_file m_memfileError;
       string m_strName;
       stringa m_straSourcePath;
       stringa m_straCppPath;
       string m_strLibraryPath;
-      HMODULE m_hmodule;
+      ::ca::library m_library;
       base_array < FILETIME, FILETIME & > m_ftaCreation;
       base_array < FILETIME, FILETIME & > m_ftaAccess;
       base_array < FILETIME, FILETIME & > m_ftaModified;
+      script_manager * m_pmanager;
+
+
+
+      library_class(::ca::application * papp);
+      ~library_class(void);
+
 
 
 
@@ -28,7 +34,6 @@ namespace dynamic_source
       void Unload();
 
 
-      script_manager * m_pmanager;
 
 
       ::ca::application * get_app() const;

@@ -19,7 +19,7 @@ class CLASS_DECL_ca factory_allocator
 {
 public:
 
-   
+
    DWORD                   m_uiAllocSize;
    int                     m_iCount;
    __int64                 m_iAllocCount;
@@ -53,10 +53,17 @@ class factory_allocator_impl :
 {
 public:
 
+#ifdef WINDOWS
    factory_allocator_impl(::ca::application * papp, int iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).raw_name())
    {
    }
+#else
+   factory_allocator_impl(::ca::application * papp, int iCount) :
+      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
+   {
+   }
+#endif
 
    virtual void discard(::ca::ca * pca)
    {
@@ -214,28 +221,48 @@ public:
    template < class T >
    void creatable(int iCount, bool bOverwrite = false)
    {
+#ifdef WINDOWS
       if(bOverwrite || !is_set(typeid(T).raw_name()))
-         set_at(typeid(T).raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+        set_at(typeid(T).raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+#else
+      if(bOverwrite || !is_set(typeid(T).name()))
+        set_at(typeid(T).name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+#endif
+
    }
 
    template < class T >
    void cloneable(int iCount, bool bOverwrite = false)
    {
+#ifdef WINDOWS
       if(bOverwrite || !is_set(typeid(T).raw_name()))
-         set_at(typeid(T).raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+        set_at(typeid(T).raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+#else
+      if(bOverwrite || !is_set(typeid(T).name()))
+        set_at(typeid(T).name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+#endif
+
    }
 
    template < class T >
    void creatable(::ca::type_info info, int iCount, bool bOverwrite = false)
    {
-      if(bOverwrite || !is_set(info.raw_name()))
+#ifdef WINDOWS
+      if(bOverwrite || !is_set(typeid(T).raw_name()))
+#else
+      if(bOverwrite || !is_set(typeid(T).name()))
+#endif
          set_at(info.raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
    void cloneable(::ca::type_info  info, int iCount, bool bOverwrite = false)
    {
-      if(bOverwrite || !is_set(info.raw_name()))
+#ifdef WINDOWS
+      if(bOverwrite || !is_set(typeid(T).raw_name()))
+#else
+      if(bOverwrite || !is_set(typeid(T).name()))
+#endif
          set_at(info.raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
@@ -250,11 +277,19 @@ public:
    template < class T >
    factory_allocator * get_allocator(int iCount)
    {
+#ifdef WINDOWS
       factory_allocator * pallocator = get_allocator(typeid(T).raw_name());
+#else
+      factory_allocator * pallocator = get_allocator(typeid(T).name());
+#endif
       if(pallocator != NULL)
          return pallocator;
       pallocator = new factory_allocator_impl < T > (get_app(), iCount);
+#ifdef WINDOWS
       set_at(typeid(T).raw_name(), pallocator);
+#else
+      set_at(typeid(T).name(), pallocator);
+#endif
       return pallocator;
    }
 

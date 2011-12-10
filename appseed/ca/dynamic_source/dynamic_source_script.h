@@ -16,8 +16,12 @@ namespace dynamic_source
       virtual public ::radix::object
    {
    public:
-      script(::ca::application * papp);
-      ~script(void);
+
+
+      ::ca::library m_library;
+      FILETIME m_ftCreation;
+      FILETIME m_ftAccess;
+      FILETIME m_ftModified;
 
       http::memory_file m_memfileError;
       string m_strName;
@@ -25,14 +29,16 @@ namespace dynamic_source
       string m_strCppPath;
       string m_strScriptPath;
       string m_strBuildBat;
-      HMODULE m_hmodule;
-      FILETIME m_ftCreation;
-      FILETIME m_ftAccess;
-      FILETIME m_ftModified;
       mutex m_mutex;
       manual_reset_event m_evCreationEnabled;
 
       comparable_array < script_instance * > m_scriptinstanceptra;
+
+
+
+      script(::ca::application * papp);
+      ~script(void);
+
 
 
       NET_NODE_CREATE_INSTANCE_PROC m_lpfnCreateInstance;

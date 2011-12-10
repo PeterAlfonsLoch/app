@@ -38,7 +38,6 @@
 		<Unit filename="_.cpp" />
 		<Unit filename="_argcargv.cpp" />
 		<Unit filename="_atol.cpp" />
-		<Unit filename="_crt0dll.cpp" />
 		<Unit filename="_heap.h" />
 		<Unit filename="_initterm.cpp" />
 		<Unit filename="_libct.h" />

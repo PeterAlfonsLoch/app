@@ -47,15 +47,6 @@ array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::~array_smart_ptr()
 }
 
 
-template <class TYPE, class ARG_TYPE, class BASE_PTRA>
-inline TYPE * array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
-{
-   TYPE * p = System.alloc(this->get_app(), System.type_info < TYPE > ());
-   array_release_ptr < TYPE, ARG_TYPE >::add(p);
-   return p;
-}
-
-
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::
@@ -71,25 +62,6 @@ set_size(count iSize)
    }
 }
 
-
-template < class TYPE, class ARG_TYPE, class BASE_PTRA >
-void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, ARG_TYPE t)
-{
-   ASSERT(iIndex >= 0);
-
-   if(iIndex < this->ptra().get_size())
-   {
-      this->element_at(iIndex) = t;
-   }
-   else
-   {
-      for(index i = this->get_size(); i < iIndex; i++)
-      {
-         this->ptra().add(System.alloc(this->get_app(), System.type_info < TYPE > ()));
-      }
-      this->ptra().add(System.alloc(this->get_app(), System.type_info < TYPE > ()));
-   }
-}
 
 
 
