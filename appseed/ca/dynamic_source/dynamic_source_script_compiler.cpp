@@ -11,7 +11,6 @@ namespace dynamic_source
       m_folderwatch(papp),
       m_folderwatchFribox(papp)
    {
-      m_hmoduleLib = NULL;
    }
 
    script_compiler::~script_compiler(void)
@@ -1446,9 +1445,12 @@ namespace dynamic_source
    }
    void script_compiler::load_library()
    {
+      
       single_lock slLibrary(&m_mutexLibrary, TRUE);
-      m_hmoduleLib = ::LoadLibraryW(
-         gen::international::utf8_to_unicode("\\\\?\\" + m_strLibraryPath));
+      
+      if(!m_libraryLib.open(m_strLibraryPath))
+         return;
+     
       m_ftaLibCreation.set_size(m_straLibSourcePath.get_size());
       m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
       m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
@@ -1467,7 +1469,7 @@ namespace dynamic_source
    void script_compiler::unload_library()
    {
       single_lock slLibrary(&m_mutexLibrary, TRUE);
-      ::FreeLibrary(m_hmoduleLib);
+      m_libraryLib.close();
    }
 
    string script_compiler::get_ds_print(const char *psz)

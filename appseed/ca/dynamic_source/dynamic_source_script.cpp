@@ -16,7 +16,6 @@ namespace dynamic_source
       ca(papp),
       m_memfileError(papp)
    {
-      m_hmodule               = NULL;
       m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;
       m_bCalcHasTempError     = false;
@@ -56,7 +55,6 @@ namespace dynamic_source
       Unload(false);
       m_bCalcHasTempError = false;
       m_bShouldBuild = false;
-      m_hmodule = NULL;
       m_memfileError.Truncate(0);
    }
 
@@ -165,15 +163,14 @@ namespace dynamic_source
          m_lpfnCreateInstance = NULL;
          return;
       }
-      if(m_hmodule == NULL)
+      if(m_library.is_closed())
       {
          //if(m_strScriptPath.find("transactions") >= 0)
          //{
            // AfxDebugBreak();
          //}
-         m_hmodule = ::LoadLibraryW(
-            gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath));
-         if(m_hmodule == NULL)
+         m_library.open(m_strScriptPath);
+         if(m_library.is_closed())
          {
             DWORD dwMessageId = GetLastError();
             if(dwMessageId == 0x139)
@@ -202,7 +199,7 @@ namespace dynamic_source
             }
          }
       }
-      m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) ::GetProcAddress(m_hmodule, "create_dynamic_source_script_instance");
+      m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_script_instance");
       if(m_lpfnCreateInstance != NULL)
       {
          m_evCreationEnabled.SetEvent();
@@ -240,9 +237,9 @@ namespace dynamic_source
          sl.unlock();
          sl.lock();
       }
-      if(m_hmodule != NULL)
+      if(m_library.is_opened())
       {
-         ::FreeLibrary(m_hmodule);
+         m_library.close();
          HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath));
          BOOL b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule);
          if(hmodule != NULL && !::FreeLibrary(hmodule))
@@ -261,7 +258,6 @@ namespace dynamic_source
             TRACE("script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
          }
 
-         m_hmodule = NULL;
          m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) NULL;
       }
    }

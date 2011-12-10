@@ -14,3 +14,7 @@ public:
    inline operator char * () { return m_psz; }
 
 };
+
+
+
+

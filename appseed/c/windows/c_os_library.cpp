@@ -26,13 +26,31 @@ namespace ca
       }
    }
 
+   bool library::is_opened()
+   {
+      return m_plibrary != NULL;
+   }
+
+   bool library::is_closed()
+   {
+      return !is_opened();
+   }
+
+
    bool library::open(const char * pszPath)
    {
+      
       vsstring strPath(pszPath);
+
       if(strstr_dup(file_title_dup(strPath), ".") == NULL)
          strPath += ".dll";
-      m_plibrary = ::LoadLibrary(strPath);
+
+      strPath = "\\\\?\\" + strPath;
+
+      m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+
       return m_plibrary != NULL;
+
    }
 
    bool library::close()

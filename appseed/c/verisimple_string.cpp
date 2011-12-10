@@ -497,3 +497,9 @@ char verisimple_string::operator [] (int iIndex) const
     return m_psz[iIndex];
 }
 
+
+CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz)
+{
+   return vsstring(utf16_to_8(psz));
+}
+

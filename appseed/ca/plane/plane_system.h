@@ -613,7 +613,7 @@ return (p->*lpfnOuput)(fileOut, lpszSource);
 template < class TYPE, class ARG_TYPE >
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-    ::ca::type_info & ti = System.type_info();
+    ::ca::type_info & ti = System.type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    this->ptra().add(pt);
    return pt;
@@ -624,7 +624,7 @@ template < class TYPE, class ARG_TYPE >
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    const TYPE & t)
 {
-    ::ca::type_info & ti = System.type_info ();
+    ::ca::type_info & ti = System.type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    *pt = t;
    return this->ptra().add(pt);
@@ -705,7 +705,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(
    int iIndex,
    ARG_TYPE t)
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info()));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
    *pt = t;
    this->ptra().insert_at(iIndex, pt);
 }
@@ -717,7 +717,7 @@ inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::op
    remove_all();
    for(int i = 0; i < a.ptra().get_size(); i++)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.type_info < TYPE > ()));
       *pt = *a.ptra()[i];
       this->ptra().add(pt);
    }
@@ -769,18 +769,5 @@ set_size(int iSize)
 
 
 #include "ca/collection/gen_lemon_array.h"
-
-
-namespace user
-{
-
-   template < class VIEW >
-   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL)
-   {
-      return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
-   }
-
-}
-
 
 

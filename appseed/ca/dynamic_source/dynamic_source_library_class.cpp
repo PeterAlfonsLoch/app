@@ -40,8 +40,8 @@ namespace dynamic_source
    }
    void library_class::Load()
    {
-      m_hmodule = ::LoadLibraryW(
-         gen::international::utf8_to_unicode("\\\\?\\" + m_strLibraryPath));
+      if(!m_library.open(m_strLibraryPath))
+         return;
       m_ftaCreation.set_size(m_straSourcePath.get_size());
       m_ftaAccess.set_size(m_straSourcePath.get_size());
       m_ftaModified.set_size(m_straSourcePath.get_size());
@@ -57,7 +57,6 @@ namespace dynamic_source
    }
    void library_class::Unload()
    {
-      ::FreeLibrary(m_hmodule);
    }
 
 

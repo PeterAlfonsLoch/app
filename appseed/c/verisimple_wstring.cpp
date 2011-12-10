@@ -159,3 +159,14 @@ verisimple_wstring operator + (const verisimple_wstring & wstr, const wchar_t * 
 {
    return wstr + verisimple_wstring(wpsz);
 }
+
+
+CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
+{
+   return wstring(utf8_to_16(psz));
+}
+
+
+
+
+

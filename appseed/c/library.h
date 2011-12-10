@@ -21,6 +21,10 @@ namespace ca
       virtual bool open(const char * pszPath);
       virtual bool close();
 
+
+      virtual bool is_opened();
+      virtual bool is_closed();
+
       template < typename TARGET >
       TARGET get(const char * pszElement)
       {
