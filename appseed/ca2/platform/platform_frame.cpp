@@ -286,7 +286,7 @@ namespace platform
    window_frame::FrameSchema * frame::create_frame_schema()
    {
       window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-      pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
+      pschema->m_typeinfoControlBoxButton = System.get_type_info < MetaButton > ();
       pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleTranslucidWarmGray);
       return pschema;
    }

@@ -12,7 +12,7 @@ namespace ca
          set_app(papp);
       if(m_p != NULL)
          gen::release(m_p);
-      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, Sys(papp->m_psystem).type_info < T > ()));
+      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, Sys(papp->m_psystem).get_type_info < T > ()));
    }
 
    template < class T >

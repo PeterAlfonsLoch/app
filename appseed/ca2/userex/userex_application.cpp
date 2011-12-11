@@ -37,23 +37,23 @@ namespace userex
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         System.type_info < form_document > (),
-         System.type_info < form_frame > (),
-         System.type_info < form_view > ());
+         System.get_type_info < form_document > (),
+         System.get_type_info < form_frame > (),
+         System.get_type_info < form_view > ());
 
       m_ptemplateChildForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         System.type_info < form_document > (),
-         System.type_info < form_child_frame > (),
-         System.type_info < form_view > ());
+         System.get_type_info < form_document > (),
+         System.get_type_info < form_child_frame > (),
+         System.get_type_info < form_view > ());
 
       m_ptemplatePlaceHolder = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         System.type_info < simple_document > (),
-         System.type_info < simple_frame_window > (),
-         System.type_info < user::place_holder > ());
+         System.get_type_info < simple_document > (),
+         System.get_type_info < simple_frame_window > (),
+         System.get_type_info < user::place_holder > ());
 
 
       if(!html::application::initialize1())     

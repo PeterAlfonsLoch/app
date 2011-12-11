@@ -108,7 +108,7 @@ namespace nature
       filemanager::application & filemanagerapp = dynamic_cast < filemanager::application & > (System);
       folder_selection_list_view * pview;
       pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
-         System.type_info < folder_selection_list_view > (), 
+         System.get_type_info < folder_selection_list_view > (), 
          get_document(),
          this,
          pcreatordata->m_id));

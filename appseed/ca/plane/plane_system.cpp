@@ -158,7 +158,7 @@ namespace plane
       ::ca::profiler::initialize();
 
 
-      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(System.get_type_info < ::ca::log > (), 1);
 
       if(!::planebase::application::process_initialize())
       {
@@ -224,7 +224,7 @@ namespace plane
       System.factory().cloneable_large < ::ca::palette_sp >();
       System.factory().cloneable_large < ::ca::region_sp >();
       System.factory().cloneable_large < var >();
-      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(System.get_type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -784,7 +784,7 @@ namespace plane
    {
       if(m_plog != NULL)
          return true;
-      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, System.type_info < class ::ca::log > ()));
+      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, System.get_type_info < class ::ca::log > ()));
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -1182,7 +1182,7 @@ namespace plane
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.type_info < ::ca::window_draw > ()));
+      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.get_type_info < ::ca::window_draw > ()));
       m_ptwf->start();
       return true;
    }

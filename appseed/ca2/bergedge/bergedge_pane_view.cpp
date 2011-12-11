@@ -260,7 +260,7 @@ namespace bergedge
       {
       case PaneViewContextMenu:
          {
-/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.type_info < bergedge::menu_view > (), get_document(), this, 102));
+/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.get_type_info < bergedge::menu_view > (), get_document(), this, 102));
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();

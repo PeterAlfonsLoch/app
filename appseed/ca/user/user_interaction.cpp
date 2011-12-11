@@ -153,7 +153,7 @@ namespace user
          if(pguieParent == NULL)
          {
             m_pimpl->SetParent(NULL);
-            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.get_type_info < ::ca::window > ()));
             pimplNew->m_pguie = this;
             m_pimpl = pimplNew;
             string strName;
@@ -1038,7 +1038,7 @@ namespace user
       m_signalptra.remove_all();
       interaction * pimplOld = m_pimpl;
       ::ca::window * pimplNew = NULL;
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.get_type_info < ::ca::window > ()));
       pimplNew->m_pguie = this;
       if(!pimplNew->SubclassWindow((HWND) posdata))
       {
@@ -1114,7 +1114,7 @@ namespace user
       m_signalptra.remove_all();
       interaction * pimplOld = m_pimpl;
       interaction * pimplNew = NULL;
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.get_type_info < ::ca::window > ()));
       pimplNew->m_pguie = this;
       if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
       {
@@ -1159,7 +1159,7 @@ namespace user
       interaction * pimplNew = NULL;
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == HWND_MESSAGE)
       {
-         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.get_type_info < ::ca::window > ()));
          pimplNew->m_pguie = this;
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
@@ -1220,7 +1220,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.get_type_info < ::ca::window > ()));
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
@@ -1246,7 +1246,7 @@ namespace user
       m_signalptra.remove_all();
       if(pParentWnd == NULL)
       {
-         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.get_type_info < ::ca::window > ()));
          m_pimpl->m_pguie = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))

@@ -128,16 +128,16 @@ namespace filemanager
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          pszMatter,
-         System.type_info < file_manager_form_document > (),
-         System.type_info < file_manager_form_child_frame > (),
-         System.type_info < file_manager_form_view > ());
+         System.get_type_info < file_manager_form_document > (),
+         System.get_type_info < file_manager_form_child_frame > (),
+         System.get_type_info < file_manager_form_view > ());
 
       m_ptemplateOperation = new ::userbase::single_document_template(
          this,
          pszMatter,
-         System.type_info < file_manager_operation_document > (),
-         System.type_info < file_manager_operation_child_frame > (),
-         System.type_info < file_manager_operation_view > ());
+         System.get_type_info < file_manager_operation_document > (),
+         System.get_type_info < file_manager_operation_child_frame > (),
+         System.get_type_info < file_manager_operation_view > ());
    }
 
 

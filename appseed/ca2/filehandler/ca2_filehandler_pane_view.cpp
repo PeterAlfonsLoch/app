@@ -29,25 +29,25 @@ namespace ca2
          /*   ::userbase::single_document_template* pdoctemplate;
          pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         System.type_info < MediaLibraryDoc > (),
-         System.type_info < MediaLibraryChildFrame > (),
-         System.type_info < ::mplite::library::view > ());
+         System.get_type_info < MediaLibraryDoc > (),
+         System.get_type_info < MediaLibraryChildFrame > (),
+         System.get_type_info < ::mplite::library::view > ());
          m_pdoctemplateAlbum = pdoctemplate;
 
          pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         System.type_info < OptionsDoc > (),
-         System.type_info < OptionsChildFrame > (),
-         System.type_info < OptionsView > ());
+         System.get_type_info < OptionsDoc > (),
+         System.get_type_info < OptionsChildFrame > (),
+         System.get_type_info < OptionsView > ());
 
 
          m_pdoctemplateOptions = pdoctemplate;
 
          pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         System.type_info < GoodMixerDoc > (),
-         System.type_info < simple_child_frame > (),
-         System.type_info < MixerMainView > ());
+         System.get_type_info < GoodMixerDoc > (),
+         System.get_type_info < simple_child_frame > (),
+         System.get_type_info < MixerMainView > ());
 
          m_pdoctemplateAudioControl = pdoctemplate;*/
 
@@ -193,7 +193,7 @@ namespace ca2
                }*/
                /*         create_context cc;
                cc.m_pCurrentDoc = get_document();
-               cc.m_typeinfoNewView =  System.type_info < rtprx::view > ();
+               cc.m_typeinfoNewView =  System.get_type_info < rtprx::view > ();
 
                ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
                if(pview != NULL)

@@ -224,7 +224,7 @@ namespace user
       switch(m_etype)
       {
       case type_edit:
-      //         m_typeinfo = System.type_info < CSimpleFormListEdit > ();
+      //         m_typeinfo = System.get_type_info < CSimpleFormListEdit > ();
          break;
       case type_combo_box:
          {

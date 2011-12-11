@@ -126,7 +126,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 window_frame::FrameSchema * simple_frame_window::create_frame_schema()
 {
    window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-   pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
+   pschema->m_typeinfoControlBoxButton = System.get_type_info < MetaButton > ();
    return pschema;
 }
 

@@ -610,7 +610,7 @@ namespace fs
 
    void tree_interface::_001OnItemExpand(::ex1::tree_item * pitem)
    {
-      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
+      if(typeid(*pitem->m_pitemdata) == System.get_type_info < ::fs::tree_item > ())
       {
          _017UpdateList(((::fs::tree_item *)pitem->m_pitemdata)->m_strPath, pitem, 1);
       }
@@ -749,7 +749,7 @@ namespace fs
       while(pitem != NULL)
       {
          if(pitem->m_pitemdata != NULL
-         && typeid(*pitem->m_pitemdata) == System.type_info < tree_item > ())
+         && typeid(*pitem->m_pitemdata) == System.get_type_info < tree_item > ())
          {
             if(((tree_item *)pitem->m_pitemdata)->m_strPath == lpcszPath)
                return pitem;

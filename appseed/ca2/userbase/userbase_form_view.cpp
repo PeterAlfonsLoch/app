@@ -145,7 +145,7 @@ namespace userbase
       if(m_pcontainer != NULL)
          return m_pcontainer;
       else
-         return dynamic_cast < html::document_container * > (System.alloc(System.type_info < html::document_container > ()));
+         return dynamic_cast < html::document_container * > (System.alloc(System.get_type_info < html::document_container > ()));
    }
 
    /*
