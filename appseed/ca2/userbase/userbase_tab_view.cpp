@@ -121,7 +121,7 @@ namespace userbase
    {
       ::user::interaction * pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
       ::user::interaction * pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
-      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.get_type_info < ::userbase::split_view > (), get_document(), this, 100));
+      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.template type_info < ::userbase::split_view > (), get_document(), this, 100));
       if(eposition == position_top || eposition == position_bottom)
       {
          psplitview->SetSplitOrientation(::userbase::split_layout::orientation_horizontal);

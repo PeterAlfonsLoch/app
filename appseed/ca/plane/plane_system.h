@@ -257,7 +257,7 @@ namespace plane
       virtual bool wait_twf(DWORD dwTimeOut = INFINITE);
 
       template < class T >
-      ::ca::type_info & get_type_info()
+      ::ca::type_info & type_info()
       {
          return get_type_info(typeid(T));
       }
@@ -277,13 +277,13 @@ namespace plane
       template < class E , E edefault>
       void from_name(base_enum < E, edefault > & b, const char * psz, E iDefault = edefault)
       {
-         b = enum_from_name(System.get_type_info < E > (), psz, iDefault);
+         b = enum_from_name(System.template type_info < E > (), psz, iDefault);
       }
 
       template < class E , E edefault>
       string get_name(const base_enum < E, edefault > & b)
       {
-         return get_enum_name(System.get_type_info < E > (), (int) (E) b);
+         return get_enum_name(System.template type_info < E > (), (int) (E) b);
       }
 
 
@@ -325,12 +325,12 @@ namespace plane
       template < class TYPE >
       void set_enum_name(TYPE e, const char * psz)
       {
-         set_enum_name(System.get_type_info < TYPE > (), (int) e, psz);
+         set_enum_name(System.template type_info < TYPE > (), (int) e, psz);
       }
       template < class TYPE >
       string get_enum_name(TYPE e)
       {
-         return get_enum_name(System.get_type_info < TYPE > (), (int) e);
+         return get_enum_name(System.template type_info < TYPE > (), (int) e);
       }
 
       virtual bool create_twf();
@@ -613,7 +613,7 @@ return (p->*lpfnOuput)(fileOut, lpszSource);
 template < class TYPE, class ARG_TYPE >
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-    ::ca::type_info & ti = System.get_type_info < TYPE > ();
+    ::ca::type_info & ti = System.template type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    this->ptra().add(pt);
    return pt;
@@ -624,7 +624,7 @@ template < class TYPE, class ARG_TYPE >
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    const TYPE & t)
 {
-    ::ca::type_info & ti = System.get_type_info < TYPE > ();
+    ::ca::type_info & ti = System.template type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    *pt = t;
    return this->ptra().add(pt);
@@ -705,7 +705,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(
    int iIndex,
    ARG_TYPE t)
 {
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.get_type_info < TYPE > ()));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
    *pt = t;
    this->ptra().insert_at(iIndex, pt);
 }
@@ -717,7 +717,7 @@ inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::op
    remove_all();
    for(int i = 0; i < a.ptra().get_size(); i++)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.get_type_info < TYPE > ()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
       *pt = *a.ptra()[i];
       this->ptra().add(pt);
    }
@@ -746,7 +746,7 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
          set_app(t.get_app());
       for(i = iOldSize; i < iEmptySize; i++)
       {
-         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.get_type_info < TYPE > ()));
+         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
       }
       this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
    }
@@ -758,7 +758,7 @@ set_size(int iSize)
 {
    while(this->get_size() < iSize)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.get_type_info < TYPE > ()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
       add(pt);
    }
    while(this->get_size() > iSize)

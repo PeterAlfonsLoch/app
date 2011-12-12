@@ -210,7 +210,7 @@ namespace bergedge
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.get_type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.template type_info < ::bergedge::pane_view > (), get_document(), this, 102));
 
       hold(m_ppaneview);
 

@@ -168,21 +168,21 @@ namespace plane
       m_ptemplate_bergedge    = new ::userbase::single_document_template(
          this,
          "session/frame",
-         System.get_type_info < document > (),
-         System.get_type_info < frame > (),
-         System.get_type_info < view > ());
+         System.template type_info < document > (),
+         System.template type_info < frame > (),
+         System.template type_info < view > ());
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "session/frame",
-         System.get_type_info < plane::document > (),
-         System.get_type_info < plane::frame > (),
-         System.get_type_info < plane::pane_view > ());
+         System.template type_info < plane::document > (),
+         System.template type_info < plane::frame > (),
+         System.template type_info < plane::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "session/frame",
-         System.get_type_info < nature::document > (),
-         System.get_type_info < nature::frame > (),
-         System.get_type_info < nature::view > ());
+         System.template type_info < nature::document > (),
+         System.template type_info < nature::frame > (),
+         System.template type_info < nature::view > ());
       m_pnaturedocument = NULL;*/
    }
 

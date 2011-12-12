@@ -11,23 +11,23 @@
 
 #undef CATCH
 #define CATCH(class, e) } catch (class* e) \
-   { ASSERT(e->is_kind_of(System.get_type_info < class > ())); UNUSED(e);
+   { ASSERT(e->is_kind_of(System.template type_info < class > ())); UNUSED(e);
 
 #undef AND_CATCH
 #define AND_CATCH(class, e) } catch (class* e) \
-   { ASSERT(e->is_kind_of(System.get_type_info < class > ())); UNUSED(e);
+   { ASSERT(e->is_kind_of(System.template type_info < class > ())); UNUSED(e);
 
 #undef CATCH_ALL
 #define CATCH_ALL(e) } catch (base_exception* e) \
-   { { ASSERT(e->is_kind_of(System.get_type_info < base_exception > ())); UNUSED(e);
+   { { ASSERT(e->is_kind_of(System.template type_info < base_exception > ())); UNUSED(e);
 
 #undef AND_CATCH_ALL
 #define AND_CATCH_ALL(e) } catch (base_exception* e) \
-   { { ASSERT(e->is_kind_of(System.get_type_info < base_exception > ())); UNUSED(e);
+   { { ASSERT(e->is_kind_of(System.template type_info < base_exception > ())); UNUSED(e);
 
 #undef END_TRY
 #define END_TRY } catch (base_exception* e) \
-   { ASSERT(e->is_kind_of(System.get_type_info < base_exception > ())); e->Delete(); } }
+   { ASSERT(e->is_kind_of(System.template type_info < base_exception > ())); e->Delete(); } }
 
 #undef THROW_LAST
 #define THROW_LAST() throw

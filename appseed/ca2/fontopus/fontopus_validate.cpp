@@ -32,9 +32,9 @@ namespace ca2
          m_ptemplatePane   = new ::userbase::single_document_template(
             papp,
             "system/auth",
-            System.get_type_info < form_document > (),
-            System.get_type_info < simple_frame_window > (),
-            System.get_type_info < userex::pane_tab_view > ());
+            System.template type_info < form_document > (),
+            System.template type_info < simple_frame_window > (),
+            System.template type_info < userex::pane_tab_view > ());
          m_pauth           = NULL;
          m_pviewAuth       = NULL;
          m_pdocAuth        = NULL;

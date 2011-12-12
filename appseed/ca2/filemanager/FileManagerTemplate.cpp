@@ -144,28 +144,28 @@ void FileManagerTemplate::Initialize(::ca::application * papp, int iTemplate, co
    m_pdoctemplateMain = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.get_type_info < ::filemanager::document > (),
-      System.get_type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
-      System.get_type_info < FileManagerTabView > ());
+      System.template type_info < ::filemanager::document > (),
+      System.template type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
+      System.template type_info < FileManagerTabView > ());
 
    m_pdoctemplate = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.get_type_info < ::filemanager::document > (),
-      System.get_type_info < FileManagerFrame > (),
-      System.get_type_info < FileManagerAView > ());
+      System.template type_info < ::filemanager::document > (),
+      System.template type_info < FileManagerFrame > (),
+      System.template type_info < FileManagerAView > ());
 
    m_pdoctemplateChild = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.get_type_info < ::filemanager::document > (),
-      System.get_type_info < FileManagerChildFrame > (),
-      System.get_type_info < FileManagerAView > ());
+      System.template type_info < ::filemanager::document > (),
+      System.template type_info < FileManagerChildFrame > (),
+      System.template type_info < FileManagerAView > ());
 
    m_pdoctemplateChildList = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.get_type_info < ::filemanager::document > (),
-      System.get_type_info < FileManagerChildFrame > (),
-      System.get_type_info < filemanager::SimpleFileListView > ());
+      System.template type_info < ::filemanager::document > (),
+      System.template type_info < FileManagerChildFrame > (),
+      System.template type_info < filemanager::SimpleFileListView > ());
 }
