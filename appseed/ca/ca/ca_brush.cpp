@@ -24,12 +24,14 @@ namespace ca
       throw interface_only_exception();
    }
 
+#ifdef WINDOWS
    BOOL brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(hPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
       throw interface_only_exception();
    }
+#endif
 
 #ifdef _DEBUG
    void brush::dump(dump_context & dumpcontext) const
@@ -41,10 +43,10 @@ namespace ca
 
    BOOL brush::CreateSolidBrush(COLORREF crColor)
    {
-      
+
       m_crColor = crColor;
       m_bUpdated = false;
-      
+
       return TRUE;
 
    }

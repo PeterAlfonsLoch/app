@@ -235,7 +235,7 @@ namespace ca
    {
       if(p == NULL)
       {
-         operator = (NULL);
+         operator = ((T *) NULL);
          return;
       }
       if(is_null())

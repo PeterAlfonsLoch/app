@@ -432,7 +432,7 @@ namespace _template
    {
       (_SizeInChars);
 #if defined(LINUX)
-      ::ltoa_dup(_Val, _Buf, _Radix);
+      ::ltoa_dup(_Buf, _Val, _Radix);
 #elif defined(VC6) || defined(VC71)
       ::itoa(_Val, _Buf, _Radix);
 #else
@@ -450,7 +450,7 @@ namespace _template
    {
       (_SizeInChars);
 #if defined(LINUX)
-      ::ltoa_dup(_Val, _Buf, _Radix);
+      ::ltoa_dup(_Buf, _Val, _Radix);
 #else
       ::_ltoa(_Val, _Buf, _Radix);
 #endif

@@ -48,7 +48,7 @@ namespace ca
 
    BOOL region::CreateEllipticRgn(int x1, int y1, int x2, int y2)
    {
-      
+
       m_pta.remove_all();
 
       m_pta.add(double_point(x1, y1));
@@ -64,7 +64,7 @@ namespace ca
 
    BOOL region::CreateEllipticRgnIndirect(LPCRECT lpRect)
    {
-      
+
       m_pta.remove_all();
 
       m_pta.add(double_point(lpRect->left, lpRect->top));
@@ -98,7 +98,7 @@ namespace ca
 
    BOOL region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int nCount, int nPolyFillMode)
    {
-      
+
       m_pta.remove_all();
       m_iaCount.remove_all();
 
@@ -124,7 +124,7 @@ namespace ca
 
    BOOL region::CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3)
    {
-      
+
       m_pta.remove_all();
       m_iaCount.remove_all();
 
@@ -143,23 +143,27 @@ namespace ca
    BOOL region::CreateFromPath(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
+
+#ifdef WINDOWS
 
    BOOL region::CreateFromData(const XFORM* lpXForm, int nCount, const RGNDATA* pRgnData)
    {
       UNREFERENCED_PARAMETER(lpXForm);
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(pRgnData);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int region::GetRegionData(LPRGNDATA lpRgnData, int nDataSize) const
    {
       UNREFERENCED_PARAMETER(lpRgnData);
       UNREFERENCED_PARAMETER(nDataSize);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
+
+#endif
 
    void region::SetRectRgn(int x1, int y1, int x2, int y2)
    {
@@ -167,13 +171,13 @@ namespace ca
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void region::SetRectRgn(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int region::CombineRgn(const region* pRgn1, const region* pRgn2, int nCombineMode)
@@ -181,40 +185,40 @@ namespace ca
       UNREFERENCED_PARAMETER(pRgn1);
       UNREFERENCED_PARAMETER(pRgn2);
       UNREFERENCED_PARAMETER(nCombineMode);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int region::CopyRgn(const region* pRgnSrc)
    {
       UNREFERENCED_PARAMETER(pRgnSrc);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL region::EqualRgn(const region* pRgn) const
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int region::OffsetRgn(int x, int y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int region::OffsetRgn(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
-   
+
    int region::GetRgnBox(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
-   
+
    int region::GetRgnBox(rect64 * lpRect) const
    {
       rect rect;
@@ -227,19 +231,19 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL region::PtInRegion(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL region::RectInRegion(LPCRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    region & region::operator = (const ::ca::region & regionSrc)

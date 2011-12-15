@@ -771,3 +771,17 @@ set_size(int iSize)
 #include "ca/collection/gen_lemon_array.h"
 
 
+namespace user
+{
+
+
+    template < class VIEW >
+    VIEW * view::create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+    {
+      return dynamic_cast < VIEW * > (create_view(System.get_type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
+    }
+
+
+} // namespace user
+
+

@@ -77,6 +77,13 @@ class dump_context;
 #endif
 #ifndef _INC_STDLIB
    #include <stdlib.h>
+
+    #ifndef WINDOWS
+    /* Minimum and maximum macros */
+    #define __max(a,b)  (((a) > (b)) ? (a) : (b))
+    #define __min(a,b)  (((a) < (b)) ? (a) : (b))
+    #endif
+
 #endif
 #ifndef _INC_TIME
    #include <time.h>

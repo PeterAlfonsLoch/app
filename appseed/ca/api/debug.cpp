@@ -33,11 +33,11 @@ void DECL_C _free_dbg(void * _Memory, int _BlockType)
 
 
 CLASS_DECL_ca int DECL_C _CrtDbgReportW(
-        _In_ int _ReportType,
-        _In_opt_z_ const wchar_t * _Filename,
-        _In_ int _LineNumber,
-        _In_opt_z_ const wchar_t * _ModuleName,
-        _In_opt_z_ const wchar_t * _Format,
+        int _ReportType,
+        const wchar_t * _Filename,
+        int _LineNumber,
+        const wchar_t * _ModuleName,
+        const wchar_t * _Format,
         ...)
 {
    return 0;

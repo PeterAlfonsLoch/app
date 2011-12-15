@@ -61,10 +61,7 @@ public:
    static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
 
    template < class VIEW >
-   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL)
-   {
-      return dynamic_cast < VIEW * > (create_view(System.template type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
-   }
+   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
 
 
    static document * get_document(::user::interaction * pguie);

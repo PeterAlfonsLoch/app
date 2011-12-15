@@ -46,7 +46,7 @@
 	<File name="c_c.h" open="1" top="0" tabpos="33">
 		<Cursor position="355" topLine="12" />
 	</File>
-	<File name="ca_seed.h" open="1" top="0" tabpos="41">
+	<File name="ca_seed.h" open="1" top="0" tabpos="40">
 		<Cursor position="408" topLine="0" />
 	</File>
 	<File name="conv.h" open="0" top="0" tabpos="2">
@@ -124,7 +124,7 @@
 	<File name="mutex_lock.h" open="0" top="0" tabpos="10">
 		<Cursor position="18" topLine="0" />
 	</File>
-	<File name="radix.h" open="1" top="0" tabpos="42">
+	<File name="radix.h" open="1" top="0" tabpos="41">
 		<Cursor position="16" topLine="0" />
 	</File>
 	<File name="simple_array.h" open="0" top="0" tabpos="0">

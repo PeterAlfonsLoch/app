@@ -1,20 +1,22 @@
 #include "StdAfx.h"
 #include <sys/times.h>
 
-long GetTickCount()
+uint32_t GetTickCount()
 {
     tms tm;
     return times(&tm);
 }
 
 
-CLASS_DECL_ca bool CopyRect(LPCRECT prectDest, LPCRECT prectSrc)
+CLASS_DECL_ca bool CopyRect(LPRECT prectDest, LPCRECT prectSrc)
 {
-      prectDest->left = prectSrc->left;
-      prectDest->top = prectSrc->top;
-      prectDest->right = prectSrc->right;
-      prectDest->bottom = prectSrc->bottom;
-   return true;
+
+    prectDest->left = prectSrc->left;
+    prectDest->top = prectSrc->top;
+    prectDest->right = prectSrc->right;
+    prectDest->bottom = prectSrc->bottom;
+    return true;
+
 }
 
 CLASS_DECL_ca bool PtInRect(LPCRECT prect, POINT point)

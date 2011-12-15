@@ -36,13 +36,21 @@ namespace ca
 
    type_info::type_info(const std_type_info & info)
    {
+#ifdef WINDOWS
       m_id = info.raw_name();
+#else
+      m_id = info.name();
+#endif
       m_pfactoryitem = NULL;
    }
-   
+
    type_info::type_info(const std_type_info * pinfo)
    {
+#ifdef WINDOWS
       m_id = pinfo->raw_name();
+#else
+      m_id = pinfo->name();
+#endif
       m_pfactoryitem = NULL;
    }
 
@@ -62,7 +70,11 @@ namespace ca
 
    type_info & type_info::operator = (const std_type_info & info)
    {
+#ifdef WINDOWS
       m_id = info.raw_name();
+#else
+      m_id = info.name();
+#endif
       return *this;
    }
 
@@ -114,7 +126,7 @@ namespace ca
       return m_id != pszRawName;
    }
 
-   const char * type_info::raw_name() const 
+   const char * type_info::raw_name() const
    {
       return m_id;
    }

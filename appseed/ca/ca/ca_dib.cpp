@@ -10,24 +10,24 @@ namespace ca
 {
    ::ca::graphics * dib::get_graphics()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::ca::bitmap_sp dib::get_bitmap()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::ca::bitmap_sp dib::detach_bitmap()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void dib::construct (int cx,  int cy)
    {
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    COLORREF * dib::get_data()
@@ -44,13 +44,13 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(width);
       UNREFERENCED_PARAMETER(height);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    bool dib::dc_select(bool bSelect)
    {
       UNREFERENCED_PARAMETER(bSelect);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL dib::create(::ca::graphics * pdc)
@@ -73,7 +73,7 @@ namespace ca
 
    BOOL dib::Destroy ()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    bool dib::to(::ca::graphics * pgraphics)
@@ -346,6 +346,7 @@ namespace ca
 
          //x64
 #else
+    #ifdef WINDOWS
          _asm
          {
             emms
@@ -371,8 +372,9 @@ fill_loop:
                jmp      fill_loop
 
 fill_last:
-            emms 
+            emms
          }
+         #endif
 #endif
       }
 
@@ -416,7 +418,7 @@ fill_last:
       register int iRes;
       for(register __int64 i = 0; i < size; i++)
       {
-         iRes = *lpb * iMul / iDiv; 
+         iRes = *lpb * iMul / iDiv;
          *lpb = (byte) (iRes > 255 ? 255 : iRes);
          lpb += 4;
       }
@@ -431,7 +433,7 @@ fill_last:
       lpb2 += ((int)echannel) % 4;
       for(register __int64 i = 0; i < size; i++)
       {
-         *lpb1 = (BYTE)(((unsigned int)*lpb1 * (unsigned int)*lpb2) / 255); 
+         *lpb1 = (BYTE)(((unsigned int)*lpb1 * (unsigned int)*lpb2) / 255);
          lpb1 += 4;
          lpb2 += 4;
       }
@@ -446,7 +448,7 @@ fill_last:
       lpb2 += ((int)echannel) % 4;
       for(register __int64 i = 0; i < size; i++)
       {
-         *lpb1 = *lpb1 < *lpb2 ? *lpb1 : *lpb2; 
+         *lpb1 = *lpb1 < *lpb2 ? *lpb1 : *lpb2;
          lpb1 += 4;
          lpb2 += 4;
       }
@@ -461,7 +463,7 @@ fill_last:
       lpb2 += ((int)echannel) % 4;
       for(register __int64 i = 0; i < size; i++)
       {
-         *lpb1 = *lpb1 > *lpb2 ? *lpb1 : *lpb2; 
+         *lpb1 = *lpb1 > *lpb2 ? *lpb1 : *lpb2;
          lpb1 += 4;
          lpb2 += 4;
       }
@@ -476,7 +478,7 @@ fill_last:
       lpb2 += ((int)echannel) % 4;
       for(register __int64 i = 0; i < size; i++)
       {
-         *lpb1 = *lpb2; 
+         *lpb1 = *lpb2;
          lpb1 += 4;
          lpb2 += 4;
       }
@@ -492,13 +494,13 @@ fill_last:
       {
          dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
          dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);   
+         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
          dst+=4;
       }
    }
 
    void dib::FillStippledGlass ( int R, int G, int B )
-   {   
+   {
       COLORREF color=RGB ( B, G, R );
       int w=width();
       int h=height();
@@ -561,7 +563,7 @@ fill_last:
       {
          dst[0]=(BYTE)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
          dst[1]=(BYTE)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
-         dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);   
+         dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
          dst+=4;
       }
       return true;
@@ -581,7 +583,7 @@ fill_last:
       {
          dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
          dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);   
+         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
          dst+=4;
          src+=4;
       }
@@ -604,7 +606,7 @@ fill_last:
       {
          dst[0]=(BYTE)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
          dst[1]=(BYTE)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
-         dst[2]=(BYTE)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);   
+         dst[2]=(BYTE)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
          dst+=4;
          src+=4;
          alf+=4;
@@ -667,7 +669,7 @@ fill_last:
       {
          dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
          dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
-         dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);   
+         dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);
          dst+=4;
          src+=4;
       }
@@ -690,7 +692,7 @@ fill_last:
          Difference=src[1]-dst[1];
          dst[1]=(BYTE)((Difference<0) ? -Difference : Difference);
          Difference=src[2]-dst[2];
-         dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);   
+         dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);
          dst+=4;
          src+=4;
       }
@@ -709,7 +711,7 @@ fill_last:
       {
          dst[0]=(BYTE)((src[0]>dst[0]) ? src[0] : dst[0]);
          dst[1]=(BYTE)((src[1]>dst[1]) ? src[1] : dst[1]);
-         dst[2]=(BYTE)((src[2]>dst[2]) ? src[2] : dst[2]);   
+         dst[2]=(BYTE)((src[2]>dst[2]) ? src[2] : dst[2]);
          dst+=4;
          src+=4;
       }
@@ -728,7 +730,7 @@ fill_last:
       {
          dst[0]=(BYTE)(((src[0])*(dst[0]))>>8);
          dst[1]=(BYTE)(((src[1])*(dst[1]))>>8);
-         dst[2]=(BYTE)(((src[2])*(dst[2]))>>8);   
+         dst[2]=(BYTE)(((src[2])*(dst[2]))>>8);
          dst+=4;
          src+=4;
       }
@@ -747,7 +749,7 @@ fill_last:
       {
          dst[0]=(BYTE)(255-(((255-src[0])*(255-dst[0]))>>8));
          dst[1]=(BYTE)(255-(((255-src[1])*(255-dst[1]))>>8));
-         dst[2]=(BYTE)(255-(((255-src[2])*(255-dst[2]))>>8));   
+         dst[2]=(BYTE)(255-(((255-src[2])*(255-dst[2]))>>8));
          dst+=4;
          src+=4;
       }
@@ -839,7 +841,7 @@ fill_last:
       {
          for ( int i=0; i<dx; i++ )
          {
-            dst[i]=color;   
+            dst[i]=color;
          }
          dst+=width();
       }
@@ -869,7 +871,7 @@ fill_last:
          {
             dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
             dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-            dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);   
+            dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
             dst+=4;
          }
          dst+=(width()-dx)<<2;
@@ -899,7 +901,7 @@ fill_last:
       {
          for ( int i=0; i<dx; i++ )
          {
-            dst[i]=((i+j)&0x1) ? dst[i] : color;   
+            dst[i]=((i+j)&0x1) ? dst[i] : color;
          }
          dst+=width();
       }
@@ -930,7 +932,7 @@ fill_last:
          {
             dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
             dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-            dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);   
+            dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
             dst+=4;
             src+=4;
          }
@@ -964,7 +966,7 @@ fill_last:
          {
             dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
             dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
-            dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);   
+            dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);
             dst+=4;
             src+=4;
          }
@@ -1002,7 +1004,7 @@ fill_last:
             Difference=src[1]-dst[1];
             dst[1]=(BYTE)((Difference<0) ? -Difference : Difference);
             Difference=src[2]-dst[2];
-            dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);   
+            dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);
             dst+=4;
             src+=4;
          }
@@ -1131,14 +1133,14 @@ fill_last:
    y=y1;
 
    get_data()[y*width()+x]=color;
-   while (x<dx) 
+   while (x<dx)
    {
-   if (d<=0) 
+   if (d<=0)
    {
    d+=k1;
    x++;
-   } 
-   else 
+   }
+   else
    {
    d+=k2;
    x++;
@@ -1397,7 +1399,7 @@ fill_last:
       iLevel = 1.0 - dr * 1.0 / iRadius;
       dst[0] = blue  * iLevel;
       dst[1] = green * iLevel;
-      dst[2] = red   * iLevel;   
+      dst[2] = red   * iLevel;
       }
       dst += 4;
       }
@@ -1465,7 +1467,7 @@ fill_last:
                b = lpb[dx + dy * iRadius];
                dst[0] = byte(blue     * b / 255);
                dst[1] = byte(green    * b / 255);
-               dst[2] = byte(red      * b / 255);   
+               dst[2] = byte(red      * b / 255);
                dst[3] = byte(alpha    * b / 255);
                dst += 4;
             }
@@ -1557,7 +1559,7 @@ fill_last:
       iLevel = 1.0 - dr * 1.0 / iRadius;
       dst[0] = blue  * iLevel;
       dst[1] = green * iLevel;
-      dst[2] = red   * iLevel;   
+      dst[2] = red   * iLevel;
       }
       dst += 4;
       }
@@ -1628,8 +1630,8 @@ fill_last:
                bComp = (byte) ~b;
                dst[0] = byte(((blue1  * b) + (blue2  * bComp)) / 255);
                dst[1] = byte(((green1 * b) + (green2 * bComp)) / 255);
-               dst[2] = byte(((red1   * b) + (red2   * bComp)) / 255);   
-               dst[3] = byte(((alpha1 * b) + (alpha2 * bComp)) / 255);   
+               dst[2] = byte(((red1   * b) + (red2   * bComp)) / 255);
+               dst[3] = byte(((alpha1 * b) + (alpha2 * bComp)) / 255);
                dst += 4;
             }
             dst += dwAdd;
@@ -1708,7 +1710,7 @@ fill_last:
             bMax = max(b, bMax);
             b =(BYTE)(r1[1]  - r2[1]);
             bMax = max(b, bMax);
-            b =(BYTE)(r1[2]  - r2[2]); 
+            b =(BYTE)(r1[2]  - r2[2]);
             bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
@@ -1885,7 +1887,7 @@ fill_last:
    void dib::rotate(
       dib * pdib,
       LPCRECT lpcrect,
-      double dAngle, 
+      double dAngle,
       double dScale)
    {
       // ::ca::dib_sp spdib(get_app());
@@ -2314,45 +2316,45 @@ fill_last:
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int dib::sin(int i, int iAngle)
-   {  
+   {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int dib::cos10(int i, int iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int dib::sin10(int i, int iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int dib::width()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int dib::height()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    __int64 dib::area()
    {
       return ((__int64) width()) * ((__int64)height());
    }
-   
+
    size dib::size()
    {
       return size64(width(), height());
@@ -2368,7 +2370,7 @@ fill_last:
    {
       UNREFERENCED_PARAMETER(C);
       UNREFERENCED_PARAMETER(echannel);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
 
