@@ -136,6 +136,8 @@ namespace fontopus
          m_loginthread.m_pcallback = this;
          m_loginthread.run();
 
+         close_all();
+
 
          return m_puser;
       }
@@ -147,11 +149,7 @@ namespace fontopus
          m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
          page1();
-//         m_pviewAuth->SetTimer(1984, 484, NULL);
-         ::ca::live_signal livesignal;
-         livesignal.keep(get_app());
-  //       m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-    //     m_ptemplatePane->close_all_documents(FALSE);
+         show_and_request_auth();
          return m_puser;
       }
       else
@@ -278,7 +276,7 @@ namespace fontopus
          authentication_failed(-1, "");
       }
       return false;
-/*      string strDir;
+      string strDir;
       string strUsername;
       string strPasshash;
       System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
@@ -292,14 +290,8 @@ namespace fontopus
          m_loginthread.m_pcallback = this;
          m_loginthread.run();
 
-         if(m_ptabview != NULL)
-         {
-            m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-         }
-         if(m_ptemplatePane != NULL)
-         {
-            m_ptemplatePane->close_all_documents(FALSE);
-         }
+         close_all();
+
          return m_bLicense;
       }
       else if(m_bInteractive)
@@ -309,17 +301,13 @@ namespace fontopus
          m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
          page1();
-         m_pviewAuth->SetTimer(1984, 484, NULL);
-         ::ca::live_signal livesignal;
-         livesignal.keep(get_app());
-         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-         m_ptemplatePane->close_all_documents(FALSE);
+         show_and_request_auth();
          return m_bLicense;
       }
       else
       {
          return false;
-      }*/
+      }
    }
 
    void validate::page1()
@@ -690,7 +678,7 @@ namespace fontopus
       node.load(strResponse);
       if(node.m_strName == "response")
       {
-         if(node.attr("id") == "auth")
+         if(node.attr("id") == "auth" && node.attr("passhash").has_char() && node.attr("secureuserid").has_char())
          {
             System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
             System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
@@ -1210,10 +1198,6 @@ namespace fontopus
       }
       m_bLicense = true;
       m_puser = m_loginthread.m_puser;
-/*      if(m_ptabview != NULL)
-      {
-         m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-      }*/
    }
 
    validate::auth * validate::get_auth()
@@ -1240,6 +1224,14 @@ namespace fontopus
       pview->GetTopLevelFrame()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
       return m_pauth;*/
       return NULL;
+   }
+
+   void validate::close_all()
+   {
+   }
+
+   void validate::show_and_request_auth()
+   {
    }
 
 } // namespace fontopus

@@ -16,7 +16,6 @@ namespace ca2
          m_bInteractive    = bInteractive;
          m_bVotagusAuth    = bVotagusAuth;
          m_strForm         = pszForm;
-         m_puser           = NULL;
          ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
          if(pradixapp != NULL)
          {
@@ -47,135 +46,32 @@ namespace ca2
          ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
       }
 
-      ::fontopus::user * validate::get_user(const char * pszRequestingParty, const char * pszSessId)
+      void validate::close_all()
       {
-         m_loginthread.m_strSalt.Empty();
-         if(command_thread().property("app") == "simpledbcfg"
-         || command_thread().property("app") == "netnode"
-         || command_thread().property("app") == "veievserver"
-         || command_thread().property("app") == "simpledbcfg"
-         || command_thread().property("app") == "netnodecfg")
+
+         if(m_ptabview != NULL)
          {
-            m_puser = Application.allocate_user();
-            m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
-            m_puser->m_strLogin = carlosgustavocecynlundgren;
-            return m_puser;
+            m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
          }
-         else if(command_thread().property("app") == "mydns"
-              || command_thread().has_property("install")
-              || command_thread().has_property("uninstall"))
+         if(m_ptemplatePane != NULL)
          {
-            m_puser = Application.allocate_user();
-            m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
-            m_puser->m_strLogin = carlosgustavocecynlundgren;
-            return m_puser;
-         }
-         //else if(!strcmp(System.get_module_name(), "productionapp")
-         //   || !strcmp(System.get_module_name(), "productionbasisapp")
-         //   || !strcmp(System.get_module_name(), "backupapp")
-         //   || System.command().m_varTopicQuery["app"] == "production"
-         //   || System.get_license_id() == "winservice_filesystemsize")
-         else if(command_thread().property("app") == "backup"
-              || command_thread().property("app") == "winservice_filesystemsize")
-         {
-            m_puser = Application.allocate_user();
-            m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
-            m_puser->m_strLogin = camilosasuketsumanuma;
-            return m_puser;
-         }
-         string strDir;
-         string strUsername;
-         string strPasshash;
-         System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
-         m_loginthread.m_strUsername = strUsername;
-         string strHost(pszRequestingParty);
-
-         stringa straRequestingServer;
-         straRequestingServer.add("fontopus.com");
-         straRequestingServer.add("fontopus.eu");
-         straRequestingServer.add("fontopus.asia");
-         if(strHost.is_empty())
-         {
-
-            strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
-            if(!straRequestingServer.contains_ci(strHost))
-            {
-               strHost = "https://fontopus.com/";
-            }
-         }
-         if(System.url().get_server(strHost).has_char())
-         {
-            strHost = System.url().get_server(strHost);
-         }
-
-         if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
-            && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
-         {
-            m_loginthread.m_puser = Application.allocate_user();
-            m_loginthread.m_puser->m_sessionidmap[Application.command_thread().m_varTopicQuery["fontopus"].get_string()] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
-            m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
-            m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread().m_varTopicQuery["sessid"].get_string();
-            m_loginthread.m_puser->m_strRequestingServer = strHost;
-            ::xml::node nodeBasicInfo(get_app());
-            if(nodeBasicInfo.load(Application.http().get("https://"+Application.command_thread().m_varTopicQuery["fontopus"].get_string()+"/ca2api/account/get_basic_info", m_loginthread.m_puser)))
-            {
-               string strLogin;
-               if(nodeBasicInfo.get_attr("login", strLogin) && strLogin.find("@") > 0)
-               {
-                  m_loginthread.m_puser->m_strLogin = strLogin;
-                  return  m_loginthread.m_puser;
-               }
-            }
-         }
-
-         m_loginthread.m_puser = Application.allocate_user();
-
-         if(pszSessId != NULL && string(pszSessId).get_length() > 16)
-         {
-            m_loginthread.m_puser->m_sessionidmap[strHost] = pszSessId;
-         }
-
-         m_loginthread.m_strRequestingServer = strHost;
-         System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
-         if(strUsername.has_char() && strPasshash.has_char())
-         {
-
-            m_loginthread.m_strPassword.Empty();
-            m_loginthread.m_strPasshash = strPasshash;
-            m_loginthread.m_pcallback = this;
-            m_loginthread.run();
-
-            if(m_ptabview != NULL)
-            {
-               m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-            }
-            if(m_ptemplatePane != NULL)
-            {
-               m_ptemplatePane->close_all_documents(FALSE);
-            }
-
-            return m_puser;
-         }
-         else if(m_bInteractive)
-         {
-
-            m_loginthread.m_strModHash.Empty();
-            m_loginthread.m_strKeyHash.Empty();
-            m_loginthread.m_strCa2Hash.Empty();
-            ensure_main_document();
-            page1();
-            m_pviewAuth->SetTimer(1984, 484, NULL);
-            ::ca::live_signal livesignal;
-            livesignal.keep(get_app());
-            m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
             m_ptemplatePane->close_all_documents(FALSE);
-            return m_puser;
          }
-         else
-         {
-            return NULL;
-         }
+
       }
+
+      void validate::show_and_request_auth()
+      {
+         
+         m_pviewAuth->SetTimer(1984, 484, NULL);
+         ::ca::live_signal livesignal;
+         livesignal.keep(get_app());
+         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
+         m_ptemplatePane->close_all_documents(FALSE);
+
+      }
+
+
 
       void validate::ensure_main_document()
       {
@@ -193,150 +89,6 @@ namespace ca2
          pview->set_tab("network", 2);
          pview->set_image_tab("", Application.dir().matter("image/keyboard-h21.png"), 3);
          pview->set_cur_tab_by_id(1);
-      }
-
-      bool validate::get_license(const char * psz)
-      {
-         string strLicense(psz);
-         if(strLicense == "netnodeapp"
-            || strLicense == "netnodecfgapp"
-            || strLicense == "simpledbcfg"
-            || strLicense == "netnode"
-            || strLicense == "veievserver"
-            || strLicense == "mydns"
-            || Application.command().m_varTopicQuery.has_property("install")
-            || Application.command().m_varTopicQuery.has_property("uninstall")
-            || strLicense == "netnodecfg")
-         {
-            return true;
-         }
-         else if(strLicense == "flag"
-            || strLicense == "alarm"
-            || strLicense == "biteditor"
-            || strLicense == "md5"
-            || strLicense == "vmp"
-            || strLicense == "veiev"
-            || strLicense == "netshareservercfg"
-            || strLicense == "netshareserver"
-            || strLicense == "veriedit"
-            || strLicense == "netshareclient"
-            || strLicense == "verisimplevideo"
-            || strLicense == "eluce"
-            || strLicense == "whiteboard"
-            || strLicense == "bergedge"
-            || strLicense == "app.sysutils.igd"
-            || strLicense == "projection"
-            || strLicense == "querydb"
-            )
-         {
-            return true;
-         }
-         //else if(!strcmp(System.get_module_name(), "productionapp")
-         //   || !strcmp(System.get_module_name(), "productionbasisapp")
-         //   || !strcmp(System.get_module_name(), "backupapp")
-         //   || System.get_license_id() == "winservice_filesystemsize")
-         else if(strLicense == "backupapp"
-            || strLicense == "winservice_filesystemsize"
-            || strLicense == "production")
-         {
-            return true;
-         }
-         else if(strLicense == "i2com")
-         {
-            return true;
-         }
-         m_strLicense = psz;
-         m_loginthread.m_strLicense = m_strLicense;
-         string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
-         stringa straRequestingServer;
-         straRequestingServer.add("fontopus.com");
-         straRequestingServer.add("fontopus.eu");
-         straRequestingServer.add("fontopus.asia");
-         if(!straRequestingServer.contains_ci(strHost))
-         {
-            strHost = "fontopus.com";
-         }
-
-         if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
-            && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
-         {
-            strHost = Application.command_thread().m_varTopicQuery["fontopus"].get_string();
-         }
-
-         string strAuthUrl("https://"+ strHost +"/ca2api/account/auth");
-
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
-
-         string strAuth;
-         post["entered_license"] = m_strLicense;
-         //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
-   //      DWORD dwTimeTelmo1 = GetTickCount();
-
-         post["entered_license"] = m_strLicense;
-
-         Application.http().get(strAuthUrl, strAuth, post, headers, set);
-
-         m_loginthread.m_strFontopusServer = strHost;
-
-         ::xml::node node(get_app());
-         node.load(strAuth);
-         if(node.m_strName == "response")
-         {
-            if(node.attr("id") == "auth")
-            {
-               return true;
-            }
-         }
-         if(m_bInteractive)
-         {
-            ensure_main_document();
-            authentication_failed(-1, "");
-         }
-         return false;
-   /*      string strDir;
-         string strUsername;
-         string strPasshash;
-         System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
-         m_loginthread.m_strUsername = strUsername;
-         System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
-         if(strUsername.has_char() && strPasshash.has_char())
-         {
-
-            m_loginthread.m_strPassword.Empty();
-            m_loginthread.m_strPasshash = strPasshash;
-            m_loginthread.m_pcallback = this;
-            m_loginthread.run();
-
-            if(m_ptabview != NULL)
-            {
-               m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
-            }
-            if(m_ptemplatePane != NULL)
-            {
-               m_ptemplatePane->close_all_documents(FALSE);
-            }
-            return m_bLicense;
-         }
-         else if(m_bInteractive)
-         {
-            m_loginthread.m_strModHash.Empty();
-            m_loginthread.m_strKeyHash.Empty();
-            m_loginthread.m_strCa2Hash.Empty();
-            ensure_main_document();
-            page1();
-            m_pviewAuth->SetTimer(1984, 484, NULL);
-            ::ca::live_signal livesignal;
-            livesignal.keep(get_app());
-            m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-            m_ptemplatePane->close_all_documents(FALSE);
-            return m_bLicense;
-         }
-         else
-         {
-            return false;
-         }*/
       }
 
       void validate::page1()
@@ -816,42 +568,14 @@ namespace ca2
 
       void validate::authentication_succeeded()
       {
-         TRACE0("The authentication has succeeded.");
-         string strUsername = m_loginthread.m_strUsername;
-         string strPasshash = m_loginthread.m_strPasshash;
-         string strPassword = m_loginthread.m_strPassword;
+         
+         ::fontopus::validate::authentication_succeeded();
 
-         string strUsernamePrevious;
-         string strPasshashPrevious;
-         System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsernamePrevious, "", get_app());
-         System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsernamePrevious, "license_auth/00002.data"), strPasshashPrevious, calc_key_hash(), get_app());
-
-         if((strUsername.has_char() && strPasshash.has_char())
-         && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
-         {
-            System.crypt().file_set(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
-            if(strPassword.has_char())
-            {
-               string strSalt = System.crypt().v5_get_password_salt();
-               System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
-               string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
-               System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
-            }
-         }
-         if(m_loginthread.m_strLicense.has_char())
-         {
-            stringa straLicense;
-            straLicense.add(m_loginthread.m_strValidUntil);
-            straLicense.add(System.datetime().international().get_gmt_date_time());
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
-         }
-         m_bLicense = true;
-         m_puser = m_loginthread.m_puser;
          if(m_ptabview != NULL)
          {
             m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
          }
+
       }
 
       validate::auth * validate::get_auth()

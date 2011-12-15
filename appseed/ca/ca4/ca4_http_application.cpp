@@ -87,11 +87,11 @@ namespace ca4
          const char * pszVersion,
          e_status * pestatus)
       {
-         if(puser == NULL)
+         if(puser == NULL && !(bool)set["disable_ca2_sessid"])
          {
             puser = &ApplicationUser;
-            set["app"] = this;
          }
+         set["app"] = this;
          return System.http().get(pszUrl, memory, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
 

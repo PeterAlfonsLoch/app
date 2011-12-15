@@ -123,20 +123,21 @@ namespace fontopus
       virtual bool check_ca2_hash();
 
 
-      void on_login_thread_response(int iAuth, const char * pszResponse);
+      virtual void on_login_thread_response(int iAuth, const char * pszResponse);
 
+      virtual void close_all();
+      virtual void show_and_request_auth();
+      virtual void ensure_main_document();
+      virtual void display_main_frame();
+      virtual void page1();
+      virtual void pageMessage(const char * pszMatter, gen::property_set & set);
 
-      void ensure_main_document();
-      void display_main_frame();
-      void page1();
-      void pageMessage(const char * pszMatter, gen::property_set & set);
+      virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
+      virtual auth * get_auth();
+      virtual bool get_license(const char * pszId);
 
-      ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
-      auth * get_auth();
-      bool get_license(const char * pszId);
-
-      void authentication_failed(int iAuth, const char * pszResponse);
-      void authentication_succeeded();
+      virtual void authentication_failed(int iAuth, const char * pszResponse);
+      virtual void authentication_succeeded();
 
 //      void on_create_view(::user::view_creator_data * pcreatordata);
 

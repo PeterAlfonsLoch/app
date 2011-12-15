@@ -81,7 +81,7 @@ namespace user
       if(m_strLicense.has_char())    
       {
 
-         if(&ApplicationUser == NULL)
+         if(&AppUser(this) == NULL)
          {
             return false;
          }

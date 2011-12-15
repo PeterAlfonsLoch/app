@@ -258,7 +258,14 @@ namespace ca2
             {
                gen::property_set post;
                gen::property_set headers;
-               Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
+               if(varQuery.propset()["disable_ca2_sessid"])
+               {
+                  Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
+               }
+               else
+               {
+                  Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
+               }
             }
             else
             {
