@@ -254,7 +254,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__CA__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -275,11 +275,12 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1632,6 +1633,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca\ca_c.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ca\ca_ca.cpp" />
     <ClCompile Include="ca\ca_create_context.cpp" />
@@ -1771,119 +1773,147 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="compress\zip\zip_ioapi.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_iowin32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_memory_file.cpp" />
     <ClCompile Include="compress\zip\zip_unzip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_util.cpp" />
     <ClCompile Include="compress\zip\zip_zip.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\7z_crc.cpp" />
     <ClCompile Include="crypto\ae_xfm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes_cbc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_aes_icm.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\cipher_null_cipher.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\crypto_math.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\crypto_rar20.cpp" />
     <ClCompile Include="crypto\crypto_sha1.cpp" />
     <ClCompile Include="crypto\gf2_8.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_hmac.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_null_auth.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\hash_sha1.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_alloc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_crypto_kernel.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_err.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\kernel_key.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\math_stat.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\my_aes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_rdb.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_rdbx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\replay_ut_sim.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_ctr_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_prng.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="crypto\rng_rand_source.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="cube5\planebase_application.cpp" />
     <ClCompile Include="database\database_application.cpp" />

@@ -591,15 +591,19 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
     <ClCompile Include="kissfft\kiss_fft.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="kissfft\kiss_fft_shared.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="kissfft\kiss_ifft.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
