@@ -583,7 +583,7 @@ namespace dynamic_source
 
    RSA * script_manager::get_rsa_key()
    {
-      if(::GetTickCount() - m_dwLastRsa > (1000 * 60 * 15))
+      if(::GetTickCount() - m_dwLastRsa > (1984 + 1977))
       {
          AfxBeginThread(get_app(), ThreadProcRsa, this);
          m_dwLastRsa = ::GetTickCount();

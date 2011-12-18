@@ -2200,7 +2200,7 @@ namespace dynamic_source
       {
          if(m_pinstanceMain->m_pmusic == NULL)
          {
-//            m_pinstanceMain->m_pmusic = new ::webserver::music::music();
+            m_pinstanceMain->m_pmusic = new ::webserver::music::music();
          }
       }
       return *m_pinstanceMain->m_pmusic;
