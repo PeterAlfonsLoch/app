@@ -835,7 +835,7 @@ namespace ca2
             TRACE("form::create_control: failed to create control, could not find proper type_info for allocation");
             return false;
          }
-         ::ca::ca * pca = System.alloc(pdescriptor->m_typeinfo);
+         ::ca::ca * pca = Application.alloc(pdescriptor->m_typeinfo);
          if(pca == NULL)
          {
             TRACE("form::create_control: failed to create control, allocation error");
@@ -999,12 +999,12 @@ namespace ca2
 
       void form::control_get_window_rect(control * pcontrol, LPRECT lprect)
       {
-         pcontrol->GetWindowRect(lprect);
+         pcontrol->::user::interaction::GetWindowRect(lprect);
       }
 
       void form::control_get_client_rect(control * pcontrol, LPRECT lprect)
       {
-         pcontrol->GetClientRect(lprect);
+         pcontrol->::user::interaction::GetClientRect(lprect);
       }
 
 

@@ -68,6 +68,8 @@ namespace cube
       virtual bool is_system();
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
+      virtual bool is_cube();
+
    };
 
 

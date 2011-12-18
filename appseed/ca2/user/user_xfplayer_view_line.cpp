@@ -714,11 +714,6 @@ void XfplayerViewLine::CalcCharsPositions(
 
 //   ::ca::font * pfontOld = pdc->GetCurrentFont();
 
-   ::ca::font_sp fontOriginal(get_app());
-   LOGFONT lf;
-   GetLogFont(lf);
-   fontOriginal->CreateFontIndirect(&lf);
-
    int i;
    size size;
    rect rectClient(lpcrect);
@@ -726,7 +721,7 @@ void XfplayerViewLine::CalcCharsPositions(
    rect rectPlacement;
    GetPlacement(rectPlacement);
    string wstrMain = m_str;
-   pdc->SelectObject(fontOriginal);
+//   pdc->SelectObject(fontOriginal);
    size = pdc->GetTextExtent(wstrMain);
    if(size.cx > rectClient.width())
    {
@@ -740,21 +735,24 @@ void XfplayerViewLine::CalcCharsPositions(
       m_floatRateX = 1.0;
    }
 
-   pdc->SelectObject(fontOriginal);
+//   pdc->SelectObject(fontOriginal);
    TEXTMETRIC tm;
    pdc->GetTextMetrics(&tm);
-   lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
+  // lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
 
   // if(m_font->get_os_data() != NULL)
 //      m_font->delete_object();
 
-   m_font->CreateFontIndirect(&lf);
+   ///m_font->CreateFontIndirect(&lf);
+
+   m_font.m_p->m_dFontWidth = m_floatRateX;
+   m_font.m_p->m_bUpdated = false;
 
 
    if(m_straLink.get_size() > 0)
    {
-      lf.lfUnderline = TRUE;
-      m_fontLink->CreateFontIndirect(&lf);
+      *m_fontLink.m_p = *m_font.m_p;
+      m_fontLink.m_p->set_underline();
    }
 
 
@@ -1196,7 +1194,7 @@ void XfplayerViewLine::EmbossedTextOut(
    EmbossedTextOut(
       papp,
       pdc,
-      m_dibMain->get_graphics(),
+      m_dibMain,
       lpcsz,
       iLeft,
       iTop,
@@ -1407,7 +1405,7 @@ void XfplayerViewLine::EmbossedTextOut(
 void XfplayerViewLine::EmbossedTextOut(
       ::ca::application * papp,
       ::ca::graphics * pdc,
-      ::ca::graphics * pdcCache,
+      ::ca::dib * pdibCache,
       const char * lpcsz,
       int iLeft,
       int iTop,
@@ -1447,36 +1445,23 @@ void XfplayerViewLine::EmbossedTextOut(
    }
    else
    {
+
       if(m_bEnhancedEmboss)
       {
+
          if(!m_bCacheEmboss || m_wstrCache != lpcsz)
          {
-            CacheEmboss(
-               papp,
-               pdc,
-               m_str,
-               m_str.get_length(),
-               m_dibMain);
-         }
 
+            CacheEmboss(papp, pdc, m_str, m_str.get_length(), m_dibMain);
+
+         }
 
       }
 
-      size size = pdc->GetTextExtent(string(lpcsz, iLen));
+      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), class size(pdibCache->width() - iLeft, pdibCache->height()), pdibCache->get_graphics(), point(iLeft, 0), dBlend);
 
-      size.cx += (long) (max(1.0, m_floatRateX * 5.0) * 2.0);
-      size.cy += (long) (max(1.0, m_floatRateX * 5.0) * 2.0);
+      System.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, iLen, cr, dBlend);
 
-      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), size,
-         pdcCache, point(iLeft, 0), dBlend);
-
-
-      System.imaging().AlphaTextOut(
-         pdc,
-         iLeft, iTop,
-         lpcsz, iLen,
-         cr,
-         dBlend);
    }
 
 
@@ -1499,12 +1484,7 @@ void XfplayerViewLine::GetLogFont(LOGFONT &lf)
 }
 
 
-void XfplayerViewLine::CacheEmboss(
-   ::ca::application * papp,
-   ::ca::graphics * pdc,
-   const char * lpcsz,
-   int iLen,
-   ::ca::dib * pdibCache)
+void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pdc, const char * lpcsz, int iLen, ::ca::dib * pdibCache)
 {
    UNREFERENCED_PARAMETER(papp);
    if(!m_bEnhancedEmboss)
@@ -1518,45 +1498,39 @@ void XfplayerViewLine::CacheEmboss(
 
    TRACE("CLyricViewLine::CacheEmboss: %s\n", lpcsz);
    size size;
-   m_dcextension.GetTextExtent(
-      pdc,
-      lpcsz,
-      iLen,
-      size);
+   pdc->select_font(m_font);
+   m_dcextension.GetTextExtent(pdc, lpcsz, iLen, size);
 
-   size.cx += (long) (max(1.0, m_floatRateX * 5.0) * 2.0);
-   size.cy += (long) (max(1.0, m_floatRateX * 5.0) * 2.0);
+   size.cx += (long) 2 * (max(2.0, m_floatRateX * 8.0));
+   size.cy += (long) 2 * (max(2.0, m_floatRateX * 8.0));
 
 
-   pdibCache->create(size);
+   if(!pdibCache->create(size))
+      return;
    ::ca::graphics * pdcCache = pdibCache->get_graphics();
    ::ca::font * pfontOld = pdcCache->SelectObject(m_font);
 
-   pdcCache->FillSolidRect(0, 0, size.cx,size.cy, RGB(0, 0, 0));
-   pdcCache->SetTextColor(RGB(255, 255, 255));
-   m_dcextension.TextOut(
-      pdcCache,
-      (int) (max(1.0, m_floatRateX * 5.0)),
-      (int) (max(1.0, m_floatRateX * 5.0)),
-      lpcsz, iLen);
+   pdcCache->set_alpha_mode(::ca::alpha_mode_set);
+   pdcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(0, 0, 0, 0));
+   pdcCache->set_alpha_mode(::ca::alpha_mode_blend);
+   pdcCache->SetTextColor(ARGB(92, 92, 92, 92));
 
-/*   BYTE b[5 * 5] =
-      {
-         8, 8, 8, 8, 8,
-         8, 4, 4, 4, 8,
-         8, 4, 0, 4, 8,
-         8, 4, 4, 4, 8,
-         8, 8, 8, 8, 8,
-      };*/
-   System.imaging().channel_spread(pdcCache, null_point(), size, pdcCache, null_point(), 0,
-      long (max(1.0, m_floatRateX * 2.3)));
-   System.imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, 5);
-   System.imaging().pre_color_blend(pdcCache, pdcCache, RGB(92, 92, 92));
-   pdibCache->channel_multiply(::visual::rgba::channel_alpha, 1.1);
+   m_dcextension.TextOut(pdcCache, (int) (long) (max(2.0, m_floatRateX * 8.0)) / 2, (int) 1 * long (max(2.0, m_floatRateX * 8.0)) / 2, lpcsz, iLen);
 
+   //System.imaging().channel_spread(pdcCache, null_point(), size, pdcCache, null_point(), 0, long (max(2.0, m_floatRateX * 8.0)));
 
+   pdcCache->set_alpha_mode(::ca::alpha_mode_blend);
+   for(int i = 0; i < long (max(2.0, m_floatRateX * 2.0)); i++)
+   {
+      System.imaging().blur(pdcCache, null_point(), size, pdcCache, null_point(), long (max(2.0, m_floatRateX * 4.0)));
+   }
 
-   pdc->SelectObject(pfontOld);
+   /*pdibCache->fill_channel(92, ::visual::rgba::channel_blue);
+   pdibCache->fill_channel(92, ::visual::rgba::channel_green);
+   pdibCache->fill_channel(92, ::visual::rgba::channel_red);*/
+
+   //System.imaging().pre_color_blend(pdcCache, pdcCache, ARGB(92, 92, 92, 92));
+
 }
 
 

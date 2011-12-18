@@ -3267,31 +3267,28 @@ bool imaging::blur(::ca::graphics *pdcDst, point ptDst, size size, ::ca::graphic
    if(!dibDst->create(size))
       return false;
 
-   ::ca::dib_sp dibSrc(get_app());
+   dibDst->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+   dibDst->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, ARGB(0, 0, 0, 0));
+   dibDst->get_graphics()->set_alpha_mode(::ca::alpha_mode_blend);
+/*   ::ca::dib_sp dibSrc(get_app());
 
    if(!dibSrc->create(size))
-      return false;
+      return false;*/
 
    if(iRadius < 0)
    {
       if(!dibDst->from(null_point(), pdcSrc, ptSrc, size))
          return false;
-      fastblur(dibDst, -iRadius);
-   }
-   else if(iRadius == 2)
-   {
-      //blur_32CC_r2(dibDst, dibSrc);
-      if(!dibDst->from(null_point(), pdcSrc, ptSrc, size))
-         return false;
-      fastblur(dibDst, 4);
+      fastblur(dibDst, max(3, -iRadius));
    }
    else
    {
-      if(!dibSrc->from(null_point(), pdcSrc, ptSrc, size))
+      if(!dibDst->from(null_point(), pdcSrc, ptSrc, size))
          return false;
-      blur_32CC(dibDst, dibSrc, iRadius);
+      fastblur(dibDst, max(3, iRadius));
    }
 
+   
    dibDst->to(pdcDst, ptDst, size);
 
    return true;
@@ -4559,25 +4556,41 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
    return pdc->alpha_blend(pt, size, pdibWork->get_graphics(), ptAlpha, bf) != 0;
 }
 
-bool imaging::color_blend(
-                         ::ca::graphics * pdc,
-                         point pt,
-                         size size,
-                         ::ca::graphics * pdcColorAlpha,
-                         point ptAlpha,
-                         double dBlend)
+bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, double dBlend)
 {
-   ASSERT(dBlend >= 0.0 && dBlend <= 1.0);
-   if(dBlend < 0.0)
-      dBlend = 0.0;
-   else if(dBlend > 1.0)
-      dBlend = 1.0;
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = (BYTE) (0xFF * dBlend);
-   bf.AlphaFormat = AC_SRC_ALPHA;
-   return pdc->alpha_blend(pt, size, pdcColorAlpha, ptAlpha, bf) != 0;
+
+   if(pt.x < 0)
+   {
+      ptAlpha.x += -pt.x;
+      pt.x = 0;
+   }
+
+   if(pt.y < 0)
+   {
+      ptAlpha.y += -pt.y;
+      pt.y = 0;
+   }
+
+
+   if(dBlend >= 1.0)
+   {
+
+      pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, 0, 0, SRCCOPY);
+
+   }
+   else
+   {
+
+      ::visual::dib_sp dib(get_app());
+      if(!dib->create(size))
+         return false;
+      dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+      dib->from(point(0, 0), pdcColorAlpha, ptAlpha, size);
+      dib->channel_multiply(visual::rgba::channel_alpha, dBlend);
+      pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, dib->get_graphics(), 0, 0, SRCCOPY);
+
+   }
+
 }
 
 
@@ -5544,6 +5557,7 @@ bool imaging::channel_spread(
       iRadius))
       return false;
 
+   
    if(!dibDst->to(pdcDst, ptDst, size))
       return false;
 
@@ -5735,7 +5749,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
                   {
                      if(lpbSource_2[0] > 0)
                      {
-                        *((DWORD *) lpwDestination) |= 0x00ffffff;
+                        *((DWORD *) lpwDestination) |= 0xffffffff;
                         goto breakFilter;
                      }
                   }
@@ -5795,7 +5809,7 @@ breakFilter:
                {
                   if(lpbSource_2[0] > 0)
                   {
-                     *((DWORD *) lpwDestination) |= 0x00ffffff;
+                     *((DWORD *) lpwDestination) |= 0xffffffff;
                      goto breakFilter2;
                   }
                }
@@ -6938,20 +6952,8 @@ void imaging::AlphaTextOut(::ca::graphics *pdc, int left, int top, const char * 
       pdc->TextOut(left, top, str);
       return;
    }
-   size size;
-   size = pdc->GetTextExtent(str);
-   ::ca::dib_sp spdib(get_app());
-   ::ca::font_sp font(get_app());
-   font->operator=(pdc->GetCurrentFont());
-   spdib->create(size.cx, size.cy);
-   spdib->get_graphics()->SelectObject(font);
-   spdib->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, RGB(0, 0, 0));
-   spdib->get_graphics()->SetBkColor(RGB(0, 0, 0));
-   spdib->get_graphics()->SetTextColor(RGB(255, 255, 255));
-   spdib->get_graphics()->TextOut(left, 0, str);
-   ::GdiFlush();
-   spdib->GrayToARGB(cr);
-   color_blend(pdc, point(left, top), size, spdib->get_graphics(), null_point(), dBlend);
+   pdc->SetTextColor(ARGB((BYTE) (255 * dBlend), GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+   pdc->TextOut(left, top, str);
 }
 
 

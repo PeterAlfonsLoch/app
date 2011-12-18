@@ -122,9 +122,14 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
    }
 
+
+   class rect rectEllipse(rectClient);
+
+   rectEllipse.deflate(0, 0, 2, 2);
+
    pdc->set_alpha_mode(::ca::alpha_mode_blend);
-   pdc->DrawEllipse(rectClient);
-   pdc->FillEllipse(rectClient);
+   pdc->DrawEllipse(rectEllipse);
+   pdc->FillEllipse(rectEllipse);
 
    string str;
    GetWindowText(str);

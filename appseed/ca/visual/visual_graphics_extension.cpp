@@ -17,7 +17,8 @@ namespace visual
 
    BOOL graphics_extension::TextOut(::ca::graphics * pdc, int x, int y, const char * lpcsz, int iCount)
    {
-      return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
+      return pdc->TextOut(x, y, string(lpcsz, iCount));
+      //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
    }
 
    void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
@@ -91,11 +92,14 @@ namespace visual
 
    void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, int iCount, size & size)
    {
-      ::GetTextExtentPoint32U(
+      /*::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
          lpcsz,
          iCount,
-         &size);
+         &size);*/
+
+      size = pdc->GetTextExtent(string(lpcsz, iCount));
+      size.cx *= pdc->GetCurrentFont().m_dFontWidth;
 
    }
 

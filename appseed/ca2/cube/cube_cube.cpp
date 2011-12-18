@@ -259,6 +259,11 @@ namespace cube
 
    bool cube::is_system()
    {
+      return false;
+   }
+
+   bool cube::is_cube()
+   {
       return true;
    }
 

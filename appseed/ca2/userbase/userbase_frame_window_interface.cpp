@@ -190,7 +190,48 @@ namespace userbase
 
    void frame_window_interface::WfiOnRestore()
    {
+      
       _001WindowRestore();
+
+      class rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      bool bOk;
+
+      if(rectWindow.area() <= 0)
+      {
+
+         bOk = false;
+
+      }
+      else
+      {
+         
+         bOk = false;
+
+         class rect rectSession;
+
+         for(int i = 0; i < Session.get_monitor_count(); i++)
+         {
+            
+            Session.get_monitor_rect(i, rectSession);
+            
+            if(rectSession.contains(rectWindow))
+            {
+               bOk = true;
+               break;
+            }
+
+         }
+
+      }
+
+      if(!bOk)
+      {
+         SetWindowPos(ZORDER_TOP, 0, 0, 500, 400, SWP_SHOWWINDOW);
+      }
+
    }
 
 

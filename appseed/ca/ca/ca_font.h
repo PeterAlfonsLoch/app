@@ -18,6 +18,7 @@ namespace ca
 
       string      m_strFontFamilyName;
       double      m_dFontSize;
+      double      m_dFontWidth;
       e_unit      m_eunitFontSize;
       bool        m_bBold;
       bool        m_bItalic;

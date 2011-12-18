@@ -41,7 +41,7 @@ namespace ca2
       {
 
 
-         if(is_system())
+         if(is_cube())
          {
             System.factory().cloneable_small < int_biunique > ();
             System.factory().cloneable_small < ::user::edit_plain_text > ();
@@ -58,7 +58,7 @@ namespace ca2
 
       int application::exit_instance()
       {
-         if(is_system())
+         if(is_cube())
          {
             if(m_pwindowmap != NULL)
             {

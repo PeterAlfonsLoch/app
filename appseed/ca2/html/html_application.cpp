@@ -13,7 +13,8 @@ namespace html
 
    bool application::initialize()
    {
-      if(is_system())
+
+      if(is_cube())
       {
          System.factory().creatable_small < html_document > ();
          System.factory().creatable_small < html_child_frame > ();

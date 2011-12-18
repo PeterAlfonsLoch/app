@@ -10,6 +10,7 @@ namespace ca
 
       m_strFontFamilyName  = "Times New Roman";
       m_dFontSize          = 17.0;
+      m_dFontWidth         = 1.0;
       m_eunitFontSize      = ::ca::unit_point;
       m_bBold              = false;
       m_bItalic            = false;
@@ -83,6 +84,7 @@ namespace ca
 
       m_strFontFamilyName     = fontSrc.m_strFontFamilyName;
       m_dFontSize             = fontSrc.m_dFontSize;
+      m_dFontWidth            = fontSrc.m_dFontWidth;
       m_eunitFontSize         = fontSrc.m_eunitFontSize;
       m_bBold                 = fontSrc.m_bBold;
       m_bItalic               = fontSrc.m_bItalic;

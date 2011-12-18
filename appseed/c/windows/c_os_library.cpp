@@ -45,10 +45,17 @@ namespace ca
       if(strstr_dup(file_title_dup(strPath), ".") == NULL)
          strPath += ".dll";
 
-      strPath = "\\\\?\\" + strPath;
-
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
 
+      if(m_plibrary == NULL)
+      {
+
+         strPath = "\\\\?\\" + strPath;
+
+         m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+
+      }
+   
       return m_plibrary != NULL;
 
    }

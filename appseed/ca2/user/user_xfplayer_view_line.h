@@ -124,7 +124,7 @@ public:
    void EmbossedTextOut(
       ::ca::application * papp,
       ::ca::graphics * pdc,
-      ::ca::graphics * pdcCache,
+      ::ca::dib * pdibCache,
       const char * lpcsz,
       int iLeft,
       int iTop,

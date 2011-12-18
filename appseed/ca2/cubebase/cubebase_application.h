@@ -21,6 +21,9 @@ namespace cubebase
 
       ::ca::application * get_system();
 
+
+      virtual bool is_cube();
+
    };
 
 

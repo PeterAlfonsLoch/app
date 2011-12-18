@@ -1400,7 +1400,7 @@ namespace window_frame
       pdc->GetTextMetrics(&tm);
 
       int iMargin = GetMargin();
-      int iCaptionHeight = tm.tmHeight + m_iButtonMargin * 2 + iMargin * 2 ;
+      int iCaptionHeight = tm.tmHeight + m_iButtonMargin * 3 + iMargin * 2 ;
 
       GetWnd()->ReleaseDC(pdc);
 
@@ -1419,7 +1419,7 @@ namespace window_frame
       pdc->GetTextMetrics(&tm);
 
 //      int iMargin = GetMargin();
-      int iButtonSize = tm.tmHeight + m_iButtonMargin * 2;
+      int iButtonSize = tm.tmHeight + m_iButtonMargin * 3;
 
       GetWnd()->ReleaseDC(pdc);
 

@@ -799,6 +799,10 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       WindowDataEnableSaveWindowRect(true);
    }
    userbase::frame_window::InitialFramePosition(bForceRestore);
+   if(m_workset.GetAppearanceMode() == ::window_frame::AppearanceModeIconic)
+   {
+      WfiRestore();
+   }
 }
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)

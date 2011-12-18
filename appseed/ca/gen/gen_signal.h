@@ -14,19 +14,11 @@ namespace gen
    class CLASS_DECL_ca signal_object :
       public ::radix::object
    {
-      friend class signal;
-
-
-   protected:
+   public:
 
 
       int                  m_iIndex;
       gen::property_set *  m_pset;
-
-
-   public:
-
-
       int                  m_iParam;
       bool                 m_bRet;
       signal *             m_psignal;

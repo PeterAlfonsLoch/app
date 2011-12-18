@@ -57,6 +57,11 @@ namespace cubebase
 
    }
 
+   bool application::is_cube()
+   {
+      return false;
+   }
+
 
 } //namespace cube
 

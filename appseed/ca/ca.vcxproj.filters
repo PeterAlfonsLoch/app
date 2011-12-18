@@ -282,9 +282,6 @@
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{b0e6ed78-c9e4-4306-9850-f8309f411293}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\javascript">
-      <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\geoip">
       <UniqueIdentifier>{b5ef77ee-3748-40de-96ff-eab3c798fbb9}</UniqueIdentifier>
     </Filter>
@@ -323,6 +320,9 @@
     </Filter>
     <Filter Include="Source Files\mail">
       <UniqueIdentifier>{0890c350-9880-4f8c-9966-dd58d47196bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multithreading\javascript">
+      <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -5180,10 +5180,10 @@
       <Filter>Source Files\geoip</Filter>
     </ClCompile>
     <ClCompile Include="javascript\javascript.cpp">
-      <Filter>Source Files\javascript</Filter>
+      <Filter>Source Files\multithreading\javascript</Filter>
     </ClCompile>
     <ClCompile Include="javascript\javascript_functions.cpp">
-      <Filter>Source Files\javascript</Filter>
+      <Filter>Source Files\multithreading\javascript</Filter>
     </ClCompile>
     <ClCompile Include="api\api_allocate.cpp">
       <Filter>Source Files\api</Filter>

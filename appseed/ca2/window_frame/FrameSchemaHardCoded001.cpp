@@ -1946,7 +1946,7 @@ namespace window_frame
       GetTextMetrics(hdc, &tm);
 
       int iMargin = GetMargin();
-      int iCaptionHeight = tm.tmHeight + m_iButtonMargin * 2 + iMargin * 2 ;
+      int iCaptionHeight = tm.tmHeight + m_iButtonMargin * 3 + iMargin * 2;
 
       SelectObject(hdc, hfontOriginal);
       ReleaseDC(GetWnd()->_get_handle(), hdc);
@@ -1963,7 +1963,7 @@ namespace window_frame
       pdc->SelectObject(m_fontMarlett);
       pdc->GetTextMetrics(&tm);
 
-      int iButtonSize = tm.tmHeight + m_iButtonMargin * 2;
+      int iButtonSize = tm.tmHeight + m_iButtonMargin * 3;
 
       GetWnd()->ReleaseDC(pdc);
 
