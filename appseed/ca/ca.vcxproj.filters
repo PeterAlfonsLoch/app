@@ -3655,9 +3655,6 @@
     <ClCompile Include="primitive\string_manager.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\var.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -5568,6 +5565,15 @@
     </ClCompile>
     <ClCompile Include="mail\mail_simple_pop3.cpp">
       <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_var_allocation.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_var.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_var_property_allocation.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

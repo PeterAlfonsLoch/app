@@ -962,8 +962,16 @@ namespace user
 
             draw_list_item itemLast(this);
 
-            itemLast.m_iDisplayItem       = m_nItemCount - 1;
-            itemLast.m_iItem              = m_nItemCount - 1;
+            if(m_bFilter1)
+            {
+               itemLast.m_iDisplayItem       = m_piaFilterList->get_count() - 1;
+               itemLast.m_iItem              = m_piaFilterList->get_count() - 1; 
+            }
+            else
+            {
+               itemLast.m_iDisplayItem       = m_nItemCount - 1;
+               itemLast.m_iItem              = m_nItemCount - 1;
+            }
             if(m_bGroup)
             {
                itemLast.m_iGroupTopIndex = 0;
@@ -1831,7 +1839,7 @@ namespace user
             {
                pdrawitem->m_rectItem.top += m_iItemHeight;
             }
-            pdrawitem->m_rectItem.top += m_iItemHeight * pdrawitem->m_iItem;
+            pdrawitem->m_rectItem.top += m_iItemHeight * pdrawitem->m_iDisplayItem;
             if(m_bTopText)
             {
                pdrawitem->m_rectItem.top += m_rectTopText.height();
@@ -4478,9 +4486,9 @@ namespace user
             _001SearchGetItemText(&item);
             if(item.m_bOk)
             {
-               //wstrItem.make_lower();
-               //wstrItem.replace(L"_", L" ");
-               if(PcreUtil::match(wstrItem, &m_reFilter1))
+               item.m_strText.make_lower();
+               item.m_strText.replace("_", " ");
+               if(PcreUtil::match(item.m_strText, &m_reFilter1))
                {
                   if(m_eview == ViewIcon)
                   {

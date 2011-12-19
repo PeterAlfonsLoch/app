@@ -1,7 +1,7 @@
 #pragma once
 
 
-template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
+template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = typed_ptr_array < TYPE * > >
 class array_ptr :
    virtual public ::radix::object
 {
@@ -187,27 +187,27 @@ inline bool array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::is_empty() const
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline TYPE & array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::element_at(index iIndex)
 {
-   return *m_ptra.element_at(iIndex);
+   return *((TYPE*)m_ptra.element_at(iIndex));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline const TYPE & array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::element_at(index iIndex) const
 {
-   return *m_ptra.element_at(iIndex);
+   return *((TYPE*)m_ptra.element_at(iIndex));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
    inline  TYPE& array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::
    last_element()
 {
-   return *m_ptra.element_at(get_upper_bound());
+   return *((TYPE*)m_ptra.element_at(get_upper_bound()));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline const TYPE & array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::
    last_element() const
 {
-   return *m_ptra.get_at(get_upper_bound());
+   return *((TYPE*)m_ptra.get_at(get_upper_bound()));
 }
 
    // overloaded operator helpers
@@ -233,7 +233,7 @@ find_first(TYPE & t, int (*lpfnCompare)(TYPE &t1, TYPE &t2), index find, index l
       last += this->get_count();
    for(; find <= last; find++)
    {
-      if(lpfnCompare(*m_ptra[find], t) == 0)
+      if(lpfnCompare((TYPE &) element_at(find), t) == 0)
          return find;
    }
    return -1;

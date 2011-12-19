@@ -2365,7 +2365,10 @@ namespace ca
    }
 
 
-
+   double graphics::get_dpix() const
+   {
+      return 96.0;
+   }
 
 } // namespace ca
 

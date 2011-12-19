@@ -46,7 +46,7 @@ void __cdecl operator delete[](void * p);
 
 inline void * __cdecl operator new(size_t nSize)
 {
-   return ca2_alloc_dbg(nSize, __NORMAL_BLOCK, NULL, 0);
+   return ca2_alloc(nSize);
 }
 
 inline void * __cdecl operator new(size_t nSize, void * p)
@@ -66,7 +66,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 
 inline void __cdecl operator delete(void * p)
 {
-   ca2_free_dbg(p, __NORMAL_BLOCK);
+   ca2_free(p);
 }
 
 inline void * __cdecl operator new[](size_t nSize)

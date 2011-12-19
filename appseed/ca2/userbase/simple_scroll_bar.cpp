@@ -1,15 +1,15 @@
 #include "StdAfx.h"
 
+
 simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
-ca(papp),
-::user::interaction(papp),
-//m_brushNull(papp),
-m_penDraw(papp),
-m_rgnA(papp), // região da primeira seta
-m_rgnB(papp) // região da segunda seta
+   ca(papp),
+   ::user::interaction(papp),
+   m_penDraw(papp),
+   m_rgnA(papp), // região da primeira seta
+   m_rgnB(papp) // região da segunda seta
 {
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-   m_penDraw->CreatePen(PS_SOLID , 2, RGB(0, 0, 0));
+   m_penDraw->CreatePen(PS_SOLID , 1, ARGB(255, 0, 0, 0));
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -749,27 +749,8 @@ void simple_scroll_bar::UpdateDrawingObjects()
 void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 {
 
-//   gen::savings & savings = System.savings();
-
    pdc->SelectClipRgn(NULL);
 
-/*   ::user::scroll_info si;
-
-   rect rectClipBox;
-
-   pdc->GetClipBox(rectClipBox);
-
-   if(rectClipBox.is_null())
-   {
-      GetClientRect(rectClipBox);
-   }
-   else
-   {
-      rect rectClient;
-      GetClientRect(rectClient);
-      rectClipBox.intersect(rectClipBox, rectClient);
-   }*/
-   
    rect rectClient;
    GetClientRect(rectClient);
 
@@ -779,7 +760,6 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
    }
    else
    {
-      //_001DrawBackground(pdc, rectClipBox);
       class imaging & imaging = System.imaging();
       imaging.color_blend(
          pdc,
@@ -788,11 +768,6 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
          RGB(255,255,255),
          127);
    }
-   //rectClipBox.left -= 400;
-   //rectClipBox.right -=17;
-     //pdc->FillSolidRect(rectClipBox, RGB(255,255,0));
-
-   //_001GetScrollInfo(&si);
 
    pdc->SelectObject(m_penDraw);
 
@@ -804,7 +779,7 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 
    GetWindowRect(rectWindow);
 
-   pdc->Rectangle(rectTrack);
+   pdc->DrawRectangle(rectTrack);
    pdc->Polygon(m_ptaA, 4);
    pdc->Polygon(m_ptaB, 4);
 

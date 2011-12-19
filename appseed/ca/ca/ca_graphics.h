@@ -154,6 +154,9 @@ namespace ca
       virtual int GetStretchBltMode() const;
       virtual COLORREF GetTextColor() const;
 
+
+      virtual double get_dpix() const;
+
       virtual COLORREF SetBkColor(COLORREF crColor);
       virtual int SetBkMode(int nBkMode);
       virtual int SetPolyFillMode(int nPolyFillMode);

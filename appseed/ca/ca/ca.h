@@ -10,8 +10,6 @@
 #include "c/vms/vms.h"
 
 
-
-
 #include "nodeapp/operational_system/ca2.h"
 
 

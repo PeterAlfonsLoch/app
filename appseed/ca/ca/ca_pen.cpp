@@ -60,7 +60,7 @@ namespace ca
 
       m_nPenStyle             = nPenStyle;
       m_dPenWidth             = dWidth;
-      m_crPenColor            = 0;
+      m_crPenColor            = pLogBrush->lbColor;
       m_bUpdated              = false;
 
       return TRUE;

@@ -61,7 +61,9 @@ namespace visual
 
       bool fastblur::blur()
    {
-      int radius  = m_iRadius;
+      return optca_fastblur((DWORD *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, 
+         m_iaA.get_data(), m_iaR.get_data(), m_iaG.get_data(), m_iaB.get_data());
+      /*int radius  = m_iRadius;
       int w       = m_size.cx;
       int h       = m_size.cy;
 
@@ -249,8 +251,7 @@ namespace visual
             p1+=w;
             i2+=w;
          }
-      }
-      return true;
+      }*/
    }
 
 

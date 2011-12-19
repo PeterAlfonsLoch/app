@@ -816,7 +816,8 @@ InitFailure:
 
       if(m_bIfs)
       {
-         if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
+         // churrasco 2011
+         /*if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
          {
             if(m_spfsdata.is_null())
                m_spfsdata(new ::fs::set(this));
@@ -824,7 +825,7 @@ InitFailure:
             pset->m_spafsdata.add(new ::ifs(this, ""));
             stringa stra;
             pset->root_ones(stra);
-         }
+         }*/
       }
 
       m_dwAlive = ::GetTickCount();

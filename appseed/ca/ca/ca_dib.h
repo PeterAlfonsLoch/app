@@ -105,6 +105,7 @@ namespace ca
 
 
       virtual void fill_channel(int C, visual::rgba::echannel echannel);
+      virtual void FillByte(unsigned char uch);
       virtual void Fill (int A, int R, int G, int B );
       virtual void Fill ( int R, int G, int B );
       virtual void FillGlass ( int R, int G, int B, int A );

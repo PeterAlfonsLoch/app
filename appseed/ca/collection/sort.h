@@ -989,7 +989,7 @@ namespace sort
                   {
                      if(iMPos == iUPos)
                         break;
-                     if(lpfnCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
+                     if(lpfnCompare((ARG_TYPE) a.element_at(iMPos), (ARG_TYPE) a.element_at(iUPos)) <= 0)
                         iUPos--;
                      else
                      {
@@ -1004,7 +1004,7 @@ namespace sort
                   {
                      if(iMPos == iLPos)
                         break;
-                     if(lpfnCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
+                     if(lpfnCompare((ARG_TYPE) a.element_at(iLPos), (ARG_TYPE) a.element_at(iMPos)) <= 0)
                         iLPos++;
                      else
                      {

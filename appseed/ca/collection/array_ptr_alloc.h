@@ -4,7 +4,7 @@
 #undef new
 
 
-template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
+template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = typed_ptr_array < TYPE * > >
 class array_ptr_alloc :
    public array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >
 {

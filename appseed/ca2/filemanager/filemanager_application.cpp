@@ -85,7 +85,7 @@ namespace filemanager
 
    void application::InitializeFileManager(const char * pszMatter)
    {
-      if(is_system())
+      if(is_cube())
       {
          System.factory().creatable_small < ::filemanager::document > ();
          System.factory().creatable_small < FileManagerChildFrame > ();

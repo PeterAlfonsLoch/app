@@ -42,8 +42,21 @@ namespace ca
       
       vsstring strPath(pszPath);
 
+      if(str_ends_ci_dup(strPath, ".ilk"))
+         return false;
+
+      if(str_ends_ci_dup(strPath, ".pdb"))
+         return false;
+
+      if(str_ends_ci_dup(strPath, ".lib"))
+         return false;
+
+      if(str_ends_ci_dup(strPath, ".exp"))
+         return false;
+
       if(strstr_dup(file_title_dup(strPath), ".") == NULL)
          strPath += ".dll";
+
 
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
 

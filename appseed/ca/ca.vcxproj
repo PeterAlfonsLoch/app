@@ -2074,6 +2074,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="gen\gen_var.cpp" />
     <ClCompile Include="gen\gen_variable_strict_compare.cpp" />
     <ClCompile Include="gen\gen_var_array.cpp" />
+    <ClCompile Include="gen\gen_var_property_allocation.cpp" />
     <ClCompile Include="gen\go_thread.cpp" />
     <ClCompile Include="gen\simple_thread.cpp" />
     <ClCompile Include="geoip\geoip.cpp" />
@@ -2261,6 +2262,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\natural.cpp" />
     <ClCompile Include="primitive\point.cpp" />
     <ClCompile Include="primitive\primitive_scalar.cpp" />
+    <ClCompile Include="primitive\primitive_var_allocation.cpp" />
     <ClCompile Include="primitive\rectangle.cpp" />
     <ClCompile Include="primitive\shared_file.cpp" />
     <ClCompile Include="primitive\shared_memory.cpp" />
@@ -2269,7 +2271,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\strcore.cpp" />
     <ClCompile Include="primitive\string.cpp" />
     <ClCompile Include="primitive\string_manager.cpp" />
-    <ClCompile Include="primitive\var.cpp" />
+    <ClCompile Include="primitive\primitive_var.cpp" />
     <ClCompile Include="primitive\virtual_memory.cpp" />
     <ClCompile Include="radix\radix_afxcrit.cpp" />
     <ClCompile Include="radix\radix_afxdbcs.cpp" />
@@ -2602,6 +2604,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
   <ItemGroup>
     <ProjectReference Include="..\c\c.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\optca\optca.vcxproj">
+      <Project>{899cc94b-9028-4e57-a7fe-358a564f05f0}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

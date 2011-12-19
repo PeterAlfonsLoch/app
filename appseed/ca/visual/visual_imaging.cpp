@@ -4485,7 +4485,7 @@ bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphi
       return false;
 
    // multiply by inverted alpha
-   pdibWork2->Fill(0, 0, 0, 0);
+   pdibWork2->FillByte(0);
 
 
    pdibWork2->channel_from(visual::rgba::channel_alpha, pdibWork);

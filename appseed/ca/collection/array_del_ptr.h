@@ -33,7 +33,7 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_at(
    index iIndex)
 {
-   gen::_sdel<TYPE>(this->ptra().element_at(iIndex));
+   gen::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
    this->ptra().remove_at(iIndex);
 }
 
@@ -44,7 +44,7 @@ inline count array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_all(bool bDelet
    {
       for(int iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
-         gen::_sdel<TYPE>(this->ptra().element_at(iIndex));
+         gen::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
       }
    }
    return this->ptra().remove_all();
@@ -56,7 +56,7 @@ inline void array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_last(bool bDelet
 {
    if(bDelete)
    {
-      gen::_sdel<TYPE>(this->ptra().last_element());
+      gen::_sdel<TYPE>((TYPE *) this->ptra().last_element());
    }
    this->ptra().remove_last();
 }

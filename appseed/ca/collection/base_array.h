@@ -120,7 +120,7 @@ public:
       m_nSize = m_nMaxSize = m_nGrowBy = 0;
       while(n > 0)
       {
-         add(*pothera);
+         add((const TYPE &) *pothera);
          pothera++;
          n--;
       }

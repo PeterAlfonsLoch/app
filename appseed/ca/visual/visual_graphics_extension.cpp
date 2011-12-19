@@ -99,7 +99,6 @@ namespace visual
          &size);*/
 
       size = pdc->GetTextExtent(string(lpcsz, iCount));
-      size.cx *= pdc->GetCurrentFont().m_dFontWidth;
 
    }
 
@@ -378,42 +377,48 @@ namespace visual
          && iUnderline < str.get_length())
       {
          ::ca::font * pfontOld;
-         ::TextOutU(
+         pdc->TextOutA(rect.left, rect.top, str, min(iUnderline, str.get_length()));
+         /*::TextOutU(
             (HDC)pdc->get_os_data(),
             rect.left,
             rect.top,
             str,
-            min(iUnderline, str.get_length()));
+            min(iUnderline, str.get_length()));*/
          if(iUnderline <= str.get_length())
          {
+            ::ca::font fPrevious = pdc->GetCurrentFont();
             pfontOld = pdc->SelectObject(pfontUnderline);
-            ::GetTextExtentPoint32U(
+            /*::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),
                str,
                iUnderline,
-               &sz);
+               &sz);*/
+            sz = pdc->GetTextExtent(str, iUnderline);
             char wch = str[iUnderline];
-            ::TextOutU(
+            /*::TextOutU(
                (HDC)pdc->get_os_data(),
                rect.left + sz.cx,
                rect.top,
                &wch,
-               1);
-            pdc->SelectObject(pfont);
+               1);*/
+            pdc->TextOut(rect.left + sz.cx, rect.top, &wch, 1);
+            pdc->SelectObject(&fPrevious);
             if(iUnderline + 1 <= str.get_length())
             {
-               ::GetTextExtentPoint32U(
+               sz = pdc->GetTextExtent(str, iUnderline + 1);
+               /*::GetTextExtentPoint32U(
                   (HDC)pdc->get_os_data(),
                   str,
                   iUnderline + 1,
-                  &sz);
+                  &sz);*/
                int iCount = str.get_length() - iUnderline - 1;
-               ::TextOutU(
+               pdc->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), iCount);
+               /*::TextOutU(
                   (HDC)pdc->get_os_data(),
                   rect.left + sz.cx,
                   rect.top,
                   str.Right(iCount),
-                  iCount);
+                  iCount);*/
             }
             pdc->SelectObject(pfontOld);
          }

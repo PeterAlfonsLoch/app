@@ -2736,8 +2736,8 @@ namespace gcom
 
          if(transitioneffect.m_iVisual == VisualEffectRotateEx6)
          {
-            pdib2->Fill(0, 0, 0, 0);
-            pdib3->Fill(0, 0, 0, 0);
+            pdib2->FillByte(0);
+            pdib3->FillByte(0);
          }
 
          StepGrow034(
@@ -5142,8 +5142,8 @@ namespace gcom
 
          if(transitioneffect.m_iVisual == VisualEffectExpand6)
          {
-            pdib2->Fill(0, 0, 0, 0);
-            pdib3->Fill(0, 0, 0, 0);
+            pdib2->FillByte(0);
+            pdib3->FillByte(0);
          }
 
          StepGrow034(

@@ -471,12 +471,86 @@ fill_last:
 
    void dib::channel_from(visual::rgba::echannel echannel, ::ca::dib * pdib)
    {
-      register __int64 size = area();
+      __int64 size = area();
+      register __int64 size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int)echannel) % 4;
       lpb2 += ((int)echannel) % 4;
-      for(register __int64 i = 0; i < size; i++)
+      register __int64 i = 0;
+      for(; i < size64; i++)
+      {
+         lpb1[4 *  0]  =  lpb2[4 *  0];
+         lpb1[4 *  1]  =  lpb2[4 *  1];
+         lpb1[4 *  2]  =  lpb2[4 *  2];
+         lpb1[4 *  3]  =  lpb2[4 *  3];
+         lpb1[4 *  4]  =  lpb2[4 *  4];
+         lpb1[4 *  5]  =  lpb2[4 *  5];
+         lpb1[4 *  6]  =  lpb2[4 *  6];
+         lpb1[4 *  7]  =  lpb2[4 *  7];
+         lpb1[4 *  8]  =  lpb2[4 *  8];
+         lpb1[4 *  9]  =  lpb2[4 *  9];
+         lpb1[4 * 10]  =  lpb2[4 * 10];
+         lpb1[4 * 11]  =  lpb2[4 * 11];
+         lpb1[4 * 12]  =  lpb2[4 * 12];
+         lpb1[4 * 13]  =  lpb2[4 * 13];
+         lpb1[4 * 14]  =  lpb2[4 * 14];
+         lpb1[4 * 15]  =  lpb2[4 * 15];
+         lpb1[4 * 16]  =  lpb2[4 * 16];
+         lpb1[4 * 17]  =  lpb2[4 * 17];
+         lpb1[4 * 18]  =  lpb2[4 * 18];
+         lpb1[4 * 19]  =  lpb2[4 * 19];
+         lpb1[4 * 20]  =  lpb2[4 * 20];
+         lpb1[4 * 21]  =  lpb2[4 * 21];
+         lpb1[4 * 22]  =  lpb2[4 * 22];
+         lpb1[4 * 23]  =  lpb2[4 * 23];
+         lpb1[4 * 24]  =  lpb2[4 * 24];
+         lpb1[4 * 25]  =  lpb2[4 * 25];
+         lpb1[4 * 26]  =  lpb2[4 * 26];
+         lpb1[4 * 27]  =  lpb2[4 * 27];
+         lpb1[4 * 28]  =  lpb2[4 * 28];
+         lpb1[4 * 29]  =  lpb2[4 * 29];
+         lpb1[4 * 30]  =  lpb2[4 * 30];
+         lpb1[4 * 31]  =  lpb2[4 * 31];
+
+         lpb1[4 * 32]  =  lpb2[4 * 32];
+         lpb1[4 * 33]  =  lpb2[4 * 33];
+         lpb1[4 * 34]  =  lpb2[4 * 34];
+         lpb1[4 * 35]  =  lpb2[4 * 35];
+         lpb1[4 * 36]  =  lpb2[4 * 36];
+         lpb1[4 * 37]  =  lpb2[4 * 37];
+         lpb1[4 * 38]  =  lpb2[4 * 38];
+         lpb1[4 * 39]  =  lpb2[4 * 39];
+         lpb1[4 * 40]  =  lpb2[4 * 40];
+         lpb1[4 * 41]  =  lpb2[4 * 41];
+         lpb1[4 * 42]  =  lpb2[4 * 42];
+         lpb1[4 * 43]  =  lpb2[4 * 43];
+         lpb1[4 * 44]  =  lpb2[4 * 44];
+         lpb1[4 * 45]  =  lpb2[4 * 45];
+         lpb1[4 * 46]  =  lpb2[4 * 46];
+         lpb1[4 * 47]  =  lpb2[4 * 47];
+         lpb1[4 * 48]  =  lpb2[4 * 48];
+         lpb1[4 * 49]  =  lpb2[4 * 49];
+         lpb1[4 * 50]  =  lpb2[4 * 50];
+         lpb1[4 * 51]  =  lpb2[4 * 51];
+         lpb1[4 * 52]  =  lpb2[4 * 52];
+         lpb1[4 * 53]  =  lpb2[4 * 53];
+         lpb1[4 * 54]  =  lpb2[4 * 54];
+         lpb1[4 * 55]  =  lpb2[4 * 55];
+         lpb1[4 * 56]  =  lpb2[4 * 56];
+         lpb1[4 * 57]  =  lpb2[4 * 57];
+         lpb1[4 * 58]  =  lpb2[4 * 58];
+         lpb1[4 * 59]  =  lpb2[4 * 59];
+         lpb1[4 * 60]  =  lpb2[4 * 60];
+         lpb1[4 * 61]  =  lpb2[4 * 61];
+         lpb1[4 * 62]  =  lpb2[4 * 62];
+         lpb1[4 * 63]  =  lpb2[4 * 63];
+
+         lpb1 += 4 * 64;
+         lpb2 += 4 * 64;
+      }
+      i *= 64;
+      for(; i < size; i++)
       {
          *lpb1 = *lpb2;
          lpb1 += 4;
@@ -1988,6 +2062,12 @@ fill_last:
    }*/
 
 
+   void dib::FillByte(unsigned char uch)
+   {
+      if(area() <= 0 || get_data() == NULL)
+         return;
+      memset(get_data(), uch, area() * sizeof(COLORREF));
+   }
 
 
    void dib::Fill (int A, int R, int G, int B )

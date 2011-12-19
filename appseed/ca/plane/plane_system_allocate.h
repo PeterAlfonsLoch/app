@@ -7,7 +7,7 @@ namespace radix
 
    inline void * PASCAL object::operator new(size_t nSize)
    {
-      void * p = ::operator new(nSize, _AFX_CLIENT_BLOCK, NULL, 0);
+      void * p = ::operator new(nSize);
       try
       {
          if(::ca::get_thread_state() != NULL)

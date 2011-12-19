@@ -477,6 +477,25 @@ namespace gen
 
       var_property & operator = (const var_property & prop);
 
+      #undef new
+      #undef delete
+            void * PASCAL operator new(size_t nSize);
+            void * PASCAL operator new(size_t, void * p);
+            void PASCAL operator delete(void * p);
+      #if _MSC_VER >= 1200 || defined(LINUX)
+            void PASCAL operator delete(void * p, void * pPlace);
+      #endif
+
+      #if defined(_DEBUG) && !defined(_AFX_NO_DEBUG_CRT)  || defined(LINUX)
+            // for file name/line number tracking using DEBUG_NEW
+            void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
+      #if _MSC_VER >= 1200  || defined(LINUX)
+            void PASCAL operator delete(void *p, const char * lpszFileName, int nLine);
+      #endif
+      #endif
+      #define new DEBUG_NEW
+
+
    };
 
 
