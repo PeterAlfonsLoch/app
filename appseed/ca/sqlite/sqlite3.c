@@ -392,8 +392,8 @@
 ** Exactly one of the following macros must be defined in order to
 ** specify which primitive::memory allocation subsystem to use.
 **
-**     SQLITE_SYSTEM_MALLOC          // Use normal system malloc()
-**     SQLITE_MEMDEBUG               // Debugging version of system malloc()
+**     SQLITE_SYSTEM_MALLOC          // Use normal system ca2_alloc()
+**     SQLITE_MEMDEBUG               // Debugging version of system ca2_alloc()
 **     SQLITE_MEMORY_SIZE            // internal allocator #1
 **     SQLITE_MMAP_HEAP_SIZE         // internal mmap() allocator
 **     SQLITE_POW2_MEMORY_SIZE       // internal power-of-two allocator
@@ -803,7 +803,7 @@ typedef int (*sqlite3_callback)(void*,int,char**, char**);
 ** {U12142} The database connection must not be closed while
 **          [sqlite3_exec()] is running.
 **
-** {U12143} The calling function is should use [sqlite3_free()] to free
+** {U12143} The calling function is should use [sqlite3_free()] to ca2_free
 **          the primitive::memory that *errmsg is left pointing at once the error
 **          message is no longer needed.
 **
@@ -835,7 +835,7 @@ SQLITE_API int sqlite3_exec(
 #define SQLITE_ABORT        4   /* Callback routine requested an abort */
 #define SQLITE_BUSY         5   /* The database file is locked */
 #define SQLITE_LOCKED       6   /* A table in the database is locked */
-#define SQLITE_NOMEM        7   /* A malloc() failed */
+#define SQLITE_NOMEM        7   /* A ca2_alloc() failed */
 #define SQLITE_READONLY     8   /* Attempt to write a readonly database */
 #define SQLITE_INTERRUPT    9   /* Operation terminated by sqlite3_interrupt()*/
 #define SQLITE_IOERR       10   /* Some kind of disk I/O error occurred */
@@ -1728,7 +1728,7 @@ SQLITE_API int sqlite3_busy_timeout(sqlite3*, int ms);
 **
 ** After the calling function has finished using the result, it should
 ** pass the pointer to the result table to sqlite3_free_table() in order to
-** release the primitive::memory that was malloc-ed.  Because of the way the
+** release the primitive::memory that was ca2_alloc-ed.  Because of the way the
 ** [sqlite3_malloc()] happens within sqlite3_get_table(), the calling
 ** function must not try to call [sqlite3_free()] directly.  Only
 ** [sqlite3_free_table()] is able to release the primitive::memory properly and safely.
@@ -1894,11 +1894,11 @@ SQLITE_API char *sqlite3_snprintf(int,char*,const char*, ...);
 ** The SQLite core  uses these three routines for all of its own
 ** internal primitive::memory allocation needs. "Core" in the previous sentence
 ** does not include operating-system specific VFS implementation.  The
-** windows VFS uses native malloc and free for some operations.
+** windows VFS uses native ca2_alloc and ca2_free for some operations.
 **
 ** The sqlite3_malloc() routine returns a pointer to a block
 ** of primitive::memory at least N bytes in length, where N is the parameter.
-** If sqlite3_malloc() is unable to obtain sufficient free
+** If sqlite3_malloc() is unable to obtain sufficient ca2_free
 ** primitive::memory, it returns a NULL pointer.  If the parameter N to
 ** sqlite3_malloc() is zero or negative then sqlite3_malloc() returns
 ** a NULL pointer.
@@ -1935,8 +1935,8 @@ SQLITE_API char *sqlite3_snprintf(int,char*,const char*, ...);
 ** is always aligned to at least an 8 byte boundary. {END}
 **
 ** The default implementation
-** of the primitive::memory allocation subsystem uses the malloc(), realloc()
-** and free() provided by the standard C library. {F17382} However, if
+** of the primitive::memory allocation subsystem uses the ca2_alloc(), ca2_realloc()
+** and ca2_free() provided by the standard C library. {F17382} However, if
 ** SQLite is compiled with the following C preprocessor macro
 **
 ** <blockquote> SQLITE_MEMORY_SIZE=<i>NNN</i> </blockquote>
@@ -1953,7 +1953,7 @@ SQLITE_API char *sqlite3_snprintf(int,char*,const char*, ...);
 ** used.
 **
 ** The windows OS interface layer calls
-** the system malloc() and free() directly when converting
+** the system ca2_alloc() and ca2_free() directly when converting
 ** filenames between the UTF-8 encoding used by SQLite
 ** and whatever filename encoding is used by the particular windows
 ** installation.  Memory allocation errors are detected, but
@@ -2839,7 +2839,7 @@ typedef struct sqlite3_context sqlite3_context;
 **
 ** These routines return [SQLITE_OK] on success or an error code if
 ** anything goes wrong.  [SQLITE_RANGE] is returned if the parameter
-** index is out of range.  [SQLITE_NOMEM] is returned if malloc fails.
+** index is out of range.  [SQLITE_NOMEM] is returned if ca2_alloc fails.
 ** [SQLITE_MISUSE] might be returned if these routines are called on a
 ** virtual machine that is the wrong state or which has already been finalized.
 ** Detection of misuse is unreliable.  Applications should not depend
@@ -4081,7 +4081,7 @@ SQLITE_API void *sqlite3_user_data(sqlite3_context*);
 ** the meta-data when the corresponding function parameter changes
 ** or when the SQL statement completes, whichever comes first.
 **
-** SQLite is free to call the destructor and drop meta-data on
+** SQLite is ca2_free to call the destructor and drop meta-data on
 ** any parameter of any function at any time.  The only guarantee
 ** is that the destructor will be called before the metadata is
 ** dropped.
@@ -4847,7 +4847,7 @@ SQLITE_API int sqlite3_enable_shared_cache(int);
 ** CAPI3REF:  Attempt To Free Heap Memory {F17340}
 **
 ** The sqlite3_release_memory() interface attempts to
-** free N bytes of heap primitive::memory by deallocating non-essential primitive::memory
+** ca2_free N bytes of heap primitive::memory by deallocating non-essential primitive::memory
 ** allocations held by the database labrary. {END}  Memory used
 ** to cache database pages to improve performance is an example of
 ** non-essential primitive::memory.  Sqlite3_release_memory() returns
@@ -4857,7 +4857,7 @@ SQLITE_API int sqlite3_enable_shared_cache(int);
 ** INVARIANTS:
 **
 ** {F17341} The [sqlite3_release_memory(N)] interface attempts to
-**          free N bytes of heap primitive::memory by deallocating non-essential
+**          ca2_free N bytes of heap primitive::memory by deallocating non-essential
 **          primitive::memory allocations held by the database labrary.
 **
 ** {F16342} The [sqlite3_release_memory(N)] returns the number
@@ -4873,12 +4873,12 @@ SQLITE_API int sqlite3_release_memory(int);
 ** places a "soft" limit on the amount of heap primitive::memory that may be allocated
 ** by SQLite. If an internal allocation is requested
 ** that would exceed the soft heap limit, [sqlite3_release_memory()] is
-** invoked one or more times to free up some space before the allocation
+** invoked one or more times to ca2_free up some space before the allocation
 ** is made.
 **
 ** The limit is called "soft", because if
 ** [sqlite3_release_memory()] cannot
-** free sufficient primitive::memory to prevent the limit from being exceeded,
+** ca2_free sufficient primitive::memory to prevent the limit from being exceeded,
 ** the primitive::memory is allocated anyway and the current operation proceeds.
 **
 ** A negative or zero value for N means that there is no soft heap limit and
@@ -5020,7 +5020,7 @@ SQLITE_API int sqlite3_table_column_metadata(
 ** If an error occurs and pzErrMsg is not 0, then the
 ** sqlite3_load_extension() interface shall attempt to fill *pzErrMsg with
 ** error message text stored in primitive::memory obtained from [sqlite3_malloc()].
-** {END}  The calling function should free this primitive::memory
+** {END}  The calling function should ca2_free this primitive::memory
 ** by calling [sqlite3_free()].
 **
 ** {F12606}
@@ -5068,7 +5068,7 @@ SQLITE_API int sqlite3_enable_load_extension(sqlite3 *db, int onoff);
 ** that is obtained from sqlite_malloc(). {END} If you run a primitive::memory leak
 ** checker on your program and it reports a leak because of this
 ** base_array, then invoke [sqlite3_reset_auto_extension()] prior
-** to shutdown to free the primitive::memory.
+** to shutdown to ca2_free the primitive::memory.
 **
 ** {F12644} Automatic extensions apply across all threads. {END}
 **
@@ -5191,7 +5191,7 @@ struct sqlite3_module {
 ** virtual table and is not checked again by SQLite.
 **
 ** The idxNum and idxPtr values are recorded and passed into xFilter.
-** sqlite3_free() is used to free idxPtr if needToFreeIdxPtr is true.
+** sqlite3_free() is used to ca2_free idxPtr if needToFreeIdxPtr is true.
 **
 ** The orderByConsumed means that output from xFilter will occur in
 ** the correct order to satisfy the ORDER BY clause so that no separate
@@ -6699,7 +6699,7 @@ typedef struct VdbeOpList VdbeOpList;
 ** argument is P4_KEYINFO_HANDOFF, the passed in pointer is used.  It still
 ** gets freed when the Vdbe is finalized so it still should be obtained
 ** from a single sqliteMalloc().  But no copy is made and the calling
-** function should *not* try to free the KeyInfo.
+** function should *not* try to ca2_free the KeyInfo.
 */
 #define P4_KEYINFO_HANDOFF (-9)
 
@@ -7471,7 +7471,7 @@ struct Db {
   u8 inTrans;          /* 0: not writable.  1: Transaction.  2: Checkpoint */
   u8 safety_level;     /* How aggressive at synching data to disk */
   void *pAux;               /* Auxiliary data.  Usually NULL */
-  void (*xFreeAux)(void*);  /* Routine to free pAux */
+  void (*xFreeAux)(void*);  /* Routine to ca2_free pAux */
   Schema *pSchema;     /* Pointer to database schema (possibly shared) */
 };
 
@@ -7562,7 +7562,7 @@ struct sqlite3 {
   int errMask;                  /* & result codes with this before returning */
   u8 autoCommit;                /* The auto-commit flag. */
   u8 temp_store;                /* 1: file 2: primitive::memory 0: default */
-  u8 mallocFailed;              /* True if we have seen a malloc failure */
+  u8 mallocFailed;              /* True if we have seen a ca2_alloc failure */
   signed char nextAutovac;      /* Autovac setting after VACUUM if >=0 */
   int nTable;                   /* Number of tables in the database */
   CollSeq *pDfltColl;           /* The default collating sequence (BINARY) */
@@ -8295,7 +8295,7 @@ struct SrcList {
 ** for WhereInfo.pTabList.a[i].  WhereInfo.a[i].pBestInfo is the
 ** index information for the i-th loop of the join.  pBestInfo is always
 ** either NULL or a copy of some pIdxInfo.  So for cleanup it is
-** sufficient to free all of the pIdxInfo pointers.
+** sufficient to ca2_free all of the pIdxInfo pointers.
 **
 */
 struct WhereLevel {
@@ -8704,12 +8704,12 @@ struct DbFixer {
 ** do not necessarily know how big the string will be in the end.
 */
 struct StrAccum {
-  char *zBase;     /* A base allocation.  Not from malloc. */
+  char *zBase;     /* A base allocation.  Not from ca2_alloc. */
   char *zText;     /* The string collected so far */
   int  nChar;      /* Length of the string so far */
   int  nAlloc;     /* Amount of space allocated in zText */
   u8   mallocFailed;   /* Becomes true if any primitive::memory allocation fails */
-  u8   useMalloc;      /* True if zText is enlargable using realloc */
+  u8   useMalloc;      /* True if zText is enlargable using ca2_realloc */
   u8   tooBig;         /* Becomes true if string size exceeds limits */
 };
 
@@ -10250,10 +10250,10 @@ SQLITE_PRIVATE void sqlite3RegisterDateTimeFunctions(sqlite3 *db){
 ** The default SQLite sqlite3_vfs implementations do not allocate
 ** primitive::memory (actually, os_unix.c allocates a small amount of primitive::memory
 ** from within OsOpen()), but some third-party implementations may.
-** So we test the effects of a malloc() failing and the sqlite3OsXXX()
+** So we test the effects of a ca2_alloc() failing and the sqlite3OsXXX()
 ** function returning SQLITE_IOERR_NOMEM using the DO_OS_MALLOC_TEST macro.
 **
-** The following functions are instrumented for malloc() failure
+** The following functions are instrumented for ca2_alloc() failure
 ** testing:
 **
 **     sqlite3OsOpen()
@@ -10597,9 +10597,9 @@ SQLITE_PRIVATE int sqlite3FaultPending(int id){
 ** Most faults are hard.  In other words, most faults cause
 ** an error to be propagated back up to the application interface.
 ** However, sometimes a fault is easily recoverable.  For example,
-** if a malloc fails while resizing a hash table, this is completely
+** if a ca2_alloc fails while resizing a hash table, this is completely
 ** recoverable simply by not carrying out the resize.  The hash table
-** will continue to function normally.  So a malloc failure during
+** will continue to function normally.  So a ca2_alloc failure during
 ** a hash table resize is a benign fault.
 */
 SQLITE_PRIVATE void sqlite3FaultBenign(int id, int enable){
@@ -10784,10 +10784,10 @@ SQLITE_API void *sqlite3_malloc(int nBytes){
     if( mem.alarmCallback!=0 && mem.nowUsed+nBytes>=mem.alarmThreshold ){
       sqlite3MemsysAlarm(nBytes);
     }
-    p = malloc(nBytes+8);
+    p = ca2_alloc(nBytes+8);
     if( p==0 ){
       sqlite3MemsysAlarm(nBytes);
-      p = malloc(nBytes+8);
+      p = ca2_alloc(nBytes+8);
     }
     if( p ){
       p[0] = nBytes;
@@ -10817,7 +10817,7 @@ SQLITE_API void sqlite3_free(void *pPrior){
   nByte = (int)*p;
   sqlite3_mutex_enter(mem.mutex);
   mem.nowUsed -= nByte;
-  free(p);
+  ca2_free(p);
   sqlite3_mutex_leave(mem.mutex);
 }
 
@@ -10852,12 +10852,12 @@ SQLITE_API void *sqlite3_realloc(void *pPrior, int nBytes){
   if( mem.nowUsed+nBytes-nOld>=mem.alarmThreshold ){
     sqlite3MemsysAlarm(nBytes-nOld);
   }
-  p = realloc(p, nBytes+8);
+  p = ca2_realloc(p, nBytes+8);
   if( p==0 ){
     sqlite3MemsysAlarm(nBytes);
     p = pPrior;
     p--;
-    p = realloc(p, nBytes+8);
+    p = ca2_realloc(p, nBytes+8);
   }
   if( p ){
     p[0] = nBytes;
@@ -10938,7 +10938,7 @@ struct MemBlockHdr {
 #define REARGUARD 0xE4676B53
 
 /*
-** Number of malloc size increments to track.
+** Number of ca2_alloc size increments to track.
 */
 #define NCSIZE  1000
 
@@ -11136,10 +11136,10 @@ SQLITE_API void *sqlite3_malloc(int nByte){
     if( sqlite3FaultStep(SQLITE_FAULTINJECTOR_MALLOC) ){
       p = 0;
     }else{
-      p = malloc(totalSize);
+      p = ca2_alloc(totalSize);
       if( p==0 ){
         sqlite3MemsysAlarm(nByte);
-        p = malloc(totalSize);
+        p = ca2_alloc(totalSize);
       }
     }
     if( p ){
@@ -11216,7 +11216,7 @@ SQLITE_API void sqlite3_free(void *pPrior){
   z -= pHdr->nTitle;
   memset(z, 0x2b, sizeof(void*)*pHdr->nBacktraceSlots + sizeof(*pHdr) +
                   pHdr->iSize + sizeof(int) + pHdr->nTitle);
-  free(z);
+  ca2_free(z);
   sqlite3_mutex_leave(mem.mutex);
 }
 
@@ -11349,7 +11349,7 @@ SQLITE_PRIVATE int sqlite3MemdebugMallocCount(){
 ** allocation subsystem for use by SQLite.
 **
 ** This version of the primitive::memory allocation subsystem omits all
-** use of malloc().  All dynamically allocatable primitive::memory is
+** use of ca2_alloc().  All dynamically allocatable primitive::memory is
 ** contained in a static base_array, mem.aPool[].  The size of this
 ** fixed primitive::memory pool is SQLITE_MEMORY_SIZE bytes.
 **
@@ -11382,12 +11382,12 @@ SQLITE_PRIVATE int sqlite3MemdebugMallocCount(){
 ** a header that is not returned to the user.
 **
 ** A chunk is two or more blocks that is either checked out or
-** free.  The first block has format u.hdr.  u.hdr.size4x is 4 times the
-** size of the allocation in blocks if the allocation is free.
+** ca2_free.  The first block has format u.hdr.  u.hdr.size4x is 4 times the
+** size of the allocation in blocks if the allocation is ca2_free.
 ** The u.hdr.size4x&1 bit is true if the chunk is checked out and
 ** false if the chunk is on the freelist.  The u.hdr.size4x&2 bit
 ** is true if the previous chunk is checked out and false if the
-** previous chunk is free.  The u.hdr.prevSize field is the size of
+** previous chunk is ca2_free.  The u.hdr.prevSize field is the size of
 ** the previous chunk in blocks if the previous chunk is on the
 ** freelist. If the previous chunk is checked out, then
 ** u.hdr.prevSize can be part of the data for that chunk and should
@@ -11399,7 +11399,7 @@ SQLITE_PRIVATE int sqlite3MemdebugMallocCount(){
 ** A chunk index of 0 means "no such chunk" and is the equivalent
 ** of a NULL pointer.
 **
-** The second block of free chunks is of the form u.list.  The
+** The second block of ca2_free chunks is of the form u.list.  The
 ** two fields form a double-linked list of chunks of related sizes.
 ** Pointers to the head of the list are stored in mem.aiSmall[]
 ** for smaller chunks and mem.aiHash[] for larger chunks.
@@ -11416,8 +11416,8 @@ struct Mem3Block {
       u32 size4x;     /* 4x the size of current chunk in Mem3Block elements */
     } hdr;
     struct {
-      u32 next;       /* Index in mem.aPool[] of next free chunk */
-      u32 prev;       /* Index in mem.aPool[] of previous free chunk */
+      u32 next;       /* Index in mem.aPool[] of next ca2_free chunk */
+      u32 prev;       /* Index in mem.aPool[] of previous ca2_free chunk */
     } list;
   } u;
 };
@@ -11440,7 +11440,7 @@ static struct {
   sqlite3_mutex *mutex;
 
   /*
-  ** The minimum amount of free space that we have seen.
+  ** The minimum amount of ca2_free space that we have seen.
   */
   u32 mnMaster;
 
@@ -11454,7 +11454,7 @@ static struct {
   u32 szMaster;
 
   /*
-  ** Array of lists of free blocks according to the block size
+  ** Array of lists of ca2_free blocks according to the block size
   ** for smaller chunks, or a hash on the block size for larger
   ** chunks.
   */
@@ -11633,7 +11633,7 @@ SQLITE_PRIVATE int sqlite3MallocSize(void *p){
 }
 
 /*
-** Chunk i is a free chunk that has been unlinked.  Adjust its
+** Chunk i is a ca2_free chunk that has been unlinked.  Adjust its
 ** size parameters for check-out and return a pointer to the
 ** user portion of the chunk.
 */
@@ -11651,7 +11651,7 @@ static void *memsys3Checkout(u32 i, int nBlock){
 }
 
 /*
-** Carve a piece off of the end of the mem.iMaster free chunk.
+** Carve a piece off of the end of the mem.iMaster ca2_free chunk.
 ** Return a pointer to the new allocation.  Or, if the master chunk
 ** is not large enough, return 0.
 */
@@ -11685,12 +11685,12 @@ static void *memsys3FromMaster(int nBlock){
 }
 
 /*
-** *pRoot is the head of a list of free chunks of the same size
+** *pRoot is the head of a list of ca2_free chunks of the same size
 ** or same size hash.  In other words, *pRoot is an entry in either
 ** mem.aiSmall[] or mem.aiHash[].
 **
 ** This routine examines all entries on the given list and tries
-** to coalesce each entries with adjacent free chunks.
+** to coalesce each entries with adjacent ca2_free chunks.
 **
 ** If it sees a chunk that is larger than mem.iMaster, it replaces
 ** the current mem.iMaster with the new larger chunk.  In order for
@@ -11781,8 +11781,8 @@ static void *memsys3Malloc(int nByte){
 
 
   /* STEP 3:
-  ** Loop through the entire primitive::memory pool.  Coalesce adjacent free
-  ** chunks.  Recompute the master chunk as the largest free chunk.
+  ** Loop through the entire primitive::memory pool.  Coalesce adjacent ca2_free
+  ** chunks.  Recompute the master chunk as the largest ca2_free chunk.
   ** Then try again to satisfy the allocation by carving a piece off
   ** of the end of the master chunk.  This step happens very
   ** rarely (we hope!)
@@ -11950,7 +11950,7 @@ SQLITE_PRIVATE void sqlite3Memdebugdump(const char *zFilename){
     if( size&1 ){
       fprintf(out, "%p %6d bytes checked out\n", &mem.aPool[i], (size/4)*8-8);
     }else{
-      fprintf(out, "%p %6d bytes free%s\n", &mem.aPool[i], (size/4)*8-8,
+      fprintf(out, "%p %6d bytes ca2_free%s\n", &mem.aPool[i], (size/4)*8-8,
                   i==mem.iMaster ? " **master**" : "");
     }
   }
@@ -12004,7 +12004,7 @@ SQLITE_PRIVATE void sqlite3Memdebugdump(const char *zFilename){
 ** allocation subsystem for use by SQLite.
 **
 ** This version of the primitive::memory allocation subsystem omits all
-** use of malloc().  All dynamically allocatable primitive::memory is
+** use of ca2_alloc().  All dynamically allocatable primitive::memory is
 ** contained in a static base_array, mem.aPool[].  The size of this
 ** fixed primitive::memory pool is SQLITE_POW2_MEMORY_SIZE bytes.
 **
@@ -12053,8 +12053,8 @@ struct Mem5Block {
   union {
     char aData[POW2_MIN];
     struct {
-      int next;       /* Index in mem.aPool[] of next free chunk */
-      int prev;       /* Index in mem.aPool[] of previous free chunk */
+      int next;       /* Index in mem.aPool[] of next ca2_free chunk */
+      int prev;       /* Index in mem.aPool[] of previous ca2_free chunk */
     } list;
   } u;
 };
@@ -12102,8 +12102,8 @@ static struct {
   /*
   ** Performance statistics
   */
-  u64 nAlloc;         /* Total number of calls to malloc */
-  u64 totalAlloc;     /* Total of all malloc calls - includes internal frag */
+  u64 nAlloc;         /* Total number of calls to ca2_alloc */
+  u64 totalAlloc;     /* Total of all ca2_alloc calls - includes internal frag */
   u64 totalExcess;    /* Total internal fragmentation */
   u32 currentOut;     /* Current checkout, including internal fragmentation */
   u32 currentCount;   /* Current number of distinct checkouts */
@@ -12112,7 +12112,7 @@ static struct {
   u32 maxRequest;     /* Largest allocation (exclusive of internal frag) */
 
   /*
-  ** Lists of free blocks of various sizes.
+  ** Lists of ca2_free blocks of various sizes.
   */
   int aiFreelist[NSIZE];
 
@@ -12153,7 +12153,7 @@ static void memsys5Unlink(int i, int iLogsize){
 
 /*
 ** Link the chunk at mem.aPool[i] so that is on the iLogsize
-** free list.
+** ca2_free list.
 */
 static void memsys5Link(int i, int iLogsize){
   int x;
@@ -12323,9 +12323,9 @@ static void *memsys5Malloc(int nByte){
     memsys5Alarm(iFullSz);
   }
 
-  /* Make sure mem.aiFreelist[iLogsize] contains at least one free
+  /* Make sure mem.aiFreelist[iLogsize] contains at least one ca2_free
   ** block.  If not, then split a block of the next larger power of
-  ** two in order to create a new free block of size iLogsize.
+  ** two in order to create a new ca2_free block of size iLogsize.
   */
   for(iBin=iLogsize; mem.aiFreelist[iBin]<0 && iBin<NSIZE; iBin++){}
   if( iBin>=NSIZE ) return 0;
@@ -13397,7 +13397,7 @@ SQLITE_API int sqlite3_mutex_notheld(sqlite3_mutex *p){
 #endif /* SQLITE_MUTEX_W32 */
 
 /************** End of mutex_w32.c *******************************************/
-/************** Begin file malloc.c ******************************************/
+/************** Begin file ca2_alloc.c ******************************************/
 /*
 ** 2001 September 15
 **
@@ -13412,7 +13412,7 @@ SQLITE_API int sqlite3_mutex_notheld(sqlite3_mutex *p){
 ** Memory allocation functions used throughout sqlite.
 **
 **
-** $Id: malloc.c,v 1.14 2007/10/20 16:36:31 drh Exp $
+** $Id: ca2_alloc.c,v 1.14 2007/10/20 16:36:31 drh Exp $
 */
 
 /*
@@ -13517,7 +13517,7 @@ SQLITE_PRIVATE void *sqlite3DbRealloc(sqlite3 *db, void *p, int n){
 }
 
 /*
-** Attempt to reallocate p.  If the reallocation fails, then free p
+** Attempt to reallocate p.  If the reallocation fails, then ca2_free p
 ** and set the mallocFailed flag in the database connection.
 */
 SQLITE_PRIVATE void *sqlite3DbReallocOrFree(sqlite3 *db, void *p, int n){
@@ -13614,10 +13614,10 @@ SQLITE_PRIVATE void sqlite3SetString(char **pz, ...){
 ** sqlite3_realloc.
 **
 ** The returned value is normally a copy of the second argument to this
-** function. However, if a malloc() failure has occured since the previous
+** function. However, if a ca2_alloc() failure has occured since the previous
 ** invocation SQLITE_NOMEM is returned instead.
 **
-** If the first argument, db, is not NULL and a malloc() error has occured,
+** If the first argument, db, is not NULL and a ca2_alloc() error has occured,
 ** then the connection error-code (the value returned by sqlite3_errcode())
 ** is set to SQLITE_NOMEM.
 */
@@ -13635,7 +13635,7 @@ SQLITE_PRIVATE int sqlite3ApiExit(sqlite3* db, int rc){
   return rc & (db ? db->errMask : 0xff);
 }
 
-/************** End of malloc.c **********************************************/
+/************** End of ca2_alloc.c **********************************************/
 /************** Begin file printf.c ******************************************/
 /*
 ** The "printf" code that follows dates from the 1980's.  It is in
@@ -13658,7 +13658,7 @@ SQLITE_PRIVATE int sqlite3ApiExit(sqlite3* db, int rc){
 **                          which is the size of the buffer written to.
 **
 **           *  mprintf --  Similar to sprintf.  Writes output to primitive::memory
-**                          obtained from malloc.
+**                          obtained from ca2_alloc.
 **
 **           *  xprintf --  Calls a function to dispose of output.
 **
@@ -14980,7 +14980,7 @@ struct Context {
 ** set to 2 for xDestroy method calls and 1 for all other methods. This
 ** var is used for two purposes: to allow xDestroy methods to execute
 ** "DROP TABLE" statements and to prevent some nasty side effects of
-** malloc failure when SQLite is invoked recursively by a virtual table
+** ca2_alloc failure when SQLite is invoked recursively by a virtual table
 ** method function.
 */
 struct Vdbe {
@@ -16225,7 +16225,7 @@ static int hexToInt(int h){
 /*
 ** Convert a BLOB literal of the form "x'hhhhhh'" into its binary
 ** value.  Return a pointer to its binary value.  Space to hold the
-** binary value has been obtained from malloc and must be freed by
+** binary value has been obtained from ca2_alloc and must be freed by
 ** the calling routine.
 */
 SQLITE_PRIVATE void *sqlite3HexToBlob(sqlite3 *db, const char *z, int n){
@@ -16564,7 +16564,7 @@ static void rehash(Hash *pH, int new_size){
 #endif
 
   /* There is a call to sqlite3_malloc() inside rehash(). If there is
-  ** already an allocation at pH->ht, then if this malloc() fails it
+  ** already an allocation at pH->ht, then if this ca2_alloc() fails it
   ** is benign (since failing to resize a hash table is a performance
   ** hit only, not a fatal error).
   */
@@ -16687,7 +16687,7 @@ SQLITE_PRIVATE void *sqlite3HashFind(const Hash *pH, const void *pKey, int nKey)
 **
 ** If another element already exists with the same key, then the
 ** new data replaces the old data and the old data is returned.
-** The key is not copied in this instance.  If a malloc fails, then
+** The key is not copied in this instance.  If a ca2_alloc fails, then
 ** the new data is returned and the hash table is unchanged.
 **
 ** If the "data" parameter to this function is NULL, then the
@@ -16934,26 +16934,26 @@ SQLITE_PRIVATE const char *sqlite3OpcodeName(int i){
 /*
 ** A Note About Memory Allocation:
 **
-** This driver uses malloc()/free() directly rather than going through
+** This driver uses ca2_alloc()/ca2_free() directly rather than going through
 ** the SQLite-wrappers sqlite3_malloc()/sqlite3_free().  Those wrappers
 ** are designed for use on embedded systems where primitive::memory is scarce and
-** malloc failures happen frequently.  OS/2 does not typically run on
+** ca2_alloc failures happen frequently.  OS/2 does not typically run on
 ** embedded systems, and when it does the developers normally have bigger
 ** problems to worry about than running out of primitive::memory.  So there is not
 ** a compelling need to use the wrappers.
 **
 ** But there is a good reason to not use the wrappers.  If we use the
-** wrappers then we will get simulated malloc() failures within this
+** wrappers then we will get simulated ca2_alloc() failures within this
 ** driver.  And that causes all kinds of problems for our tests.  We
-** could enhance SQLite to deal with simulated malloc failures within
+** could enhance SQLite to deal with simulated ca2_alloc failures within
 ** the OS driver, but the code to deal with those failure would not
-** be exercised on Linux (which does not need to malloc() in the driver)
+** be exercised on Linux (which does not need to ca2_alloc() in the driver)
 ** and so we would have difficulty writing coverage tests for that
 ** code.  Better to leave the code out, we think.
 **
 ** The point of this discussion is as follows:  When creating a new
 ** OS layer for an embedded system, if you use this file as an example,
-** avoid the use of malloc()/free().  Those routines work ok on OS/2
+** avoid the use of ca2_alloc()/ca2_free().  Those routines work ok on OS/2
 ** desktops but not so well in embedded systems.
 */
 
@@ -17136,7 +17136,7 @@ int os2Close( sqlite3_file *id ){
       rc = DosForceDelete( (PSZ)pFile->pathToDel );
     }
     if( pFile->pathToDel ){
-      free( pFile->pathToDel );
+      ca2_free( pFile->pathToDel );
     }
     id = 0;
     OpenCounter( -1 );
@@ -17682,7 +17682,7 @@ static int os2Open(
     //ulFileAttribute = FILE_HIDDEN;  //for debugging, we want to make sure it is deleted
     ulFileAttribute = FILE_NORMAL;
     pFile->delOnClose = 1;
-    pFile->pathToDel = (char*)malloc(sizeof(char) * pVfs->mxPathname);
+    pFile->pathToDel = (char*)ca2_alloc(sizeof(char) * pVfs->mxPathname);
     sqlite3OsFullPathname(pVfs, zName, pVfs->mxPathname, pFile->pathToDel);
     OSTRACE1( "OPEN hidden/delete on close file attributes\n" );
   }else{
@@ -18700,7 +18700,7 @@ static void releaseOpenCnt(struct openCnt *pOpen){
   pOpen->nRef--;
   if( pOpen->nRef==0 ){
     sqlite3HashInsert(&openHash, &pOpen->key, sizeof(pOpen->key), 0);
-    free(pOpen->aPending);
+    ca2_free(pOpen->aPending);
     sqlite3_free(pOpen);
   }
 }
@@ -19571,7 +19571,7 @@ static int unixUnlock(sqlite3_file *id, int locktype){
         for(i=0; i<pOpen->nPending; i++){
           close(pOpen->aPending[i]);
         }
-        free(pOpen->aPending);
+        ca2_free(pOpen->aPending);
         pOpen->nPending = 0;
         pOpen->aPending = 0;
       }
@@ -19601,9 +19601,9 @@ static int unixClose(sqlite3_file *id){
     */
     int *aNew;
     struct openCnt *pOpen = pFile->pOpen;
-    aNew = realloc( pOpen->aPending, (pOpen->nPending+1)*sizeof(int) );
+    aNew = ca2_realloc( pOpen->aPending, (pOpen->nPending+1)*sizeof(int) );
     if( aNew==0 ){
-      /* If a malloc fails, just leak the file descriptor */
+      /* If a ca2_alloc fails, just leak the file descriptor */
     }else{
       pOpen->aPending = aNew;
       pOpen->aPending[pOpen->nPending] = pFile->h;
@@ -20955,26 +20955,26 @@ SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void){
 /*
 ** A Note About Memory Allocation:
 **
-** This driver uses malloc()/free() directly rather than going through
+** This driver uses ca2_alloc()/ca2_free() directly rather than going through
 ** the SQLite-wrappers sqlite3_malloc()/sqlite3_free().  Those wrappers
 ** are designed for use on embedded systems where primitive::memory is scarce and
-** malloc failures happen frequently.  Win32 does not typically run on
+** ca2_alloc failures happen frequently.  Win32 does not typically run on
 ** embedded systems, and when it does the developers normally have bigger
 ** problems to worry about than running out of primitive::memory.  So there is not
 ** a compelling need to use the wrappers.
 **
 ** But there is a good reason to not use the wrappers.  If we use the
-** wrappers then we will get simulated malloc() failures within this
+** wrappers then we will get simulated ca2_alloc() failures within this
 ** driver.  And that causes all kinds of problems for our tests.  We
-** could enhance SQLite to deal with simulated malloc failures within
+** could enhance SQLite to deal with simulated ca2_alloc failures within
 ** the OS driver, but the code to deal with those failure would not
-** be exercised on Linux (which does not need to malloc() in the driver)
+** be exercised on Linux (which does not need to ca2_alloc() in the driver)
 ** and so we would have difficulty writing coverage tests for that
 ** code.  Better to leave the code out, we think.
 **
 ** The point of this discussion is as follows:  When creating a new
 ** OS layer for an embedded system, if you use this file as an example,
-** avoid the use of malloc()/free().  Those routines work ok on windows
+** avoid the use of ca2_alloc()/ca2_free().  Those routines work ok on windows
 ** desktops but not so well in embedded systems.
 */
 
@@ -21221,20 +21221,20 @@ static int sqlite3_os_type = 0;
 /*
 ** Convert a UTF-8 string to microsoft unicode (UTF-16?).
 **
-** Space to hold the returned string is obtained from malloc.
+** Space to hold the returned string is obtained from ca2_alloc.
 */
 static WCHAR *utf8ToUnicode(const char *zFilename){
   int nChar;
   WCHAR *zWideFilename;
 
   nChar = MultiByteToWideChar(CP_UTF8, 0, zFilename, -1, NULL, 0);
-  zWideFilename = malloc( nChar*sizeof(zWideFilename[0]) );
+  zWideFilename = ca2_alloc( nChar*sizeof(zWideFilename[0]) );
   if( zWideFilename==0 ){
     return 0;
   }
   nChar = MultiByteToWideChar(CP_UTF8, 0, zFilename, -1, zWideFilename, nChar);
   if( nChar==0 ){
-    free(zWideFilename);
+    ca2_free(zWideFilename);
     zWideFilename = 0;
   }
   return zWideFilename;
@@ -21242,21 +21242,21 @@ static WCHAR *utf8ToUnicode(const char *zFilename){
 
 /*
 ** Convert microsoft unicode to UTF-8.  Space to hold the returned string is
-** obtained from malloc().
+** obtained from ca2_alloc().
 */
 static char *unicodeToUtf8(const WCHAR *zWideFilename){
   int nByte;
   char *zFilename;
 
   nByte = WideCharToMultiByte(CP_UTF8, 0, zWideFilename, -1, 0, 0, 0, 0);
-  zFilename = malloc( nByte );
+  zFilename = ca2_alloc( nByte );
   if( zFilename==0 ){
     return 0;
   }
   nByte = WideCharToMultiByte(CP_UTF8, 0, zWideFilename, -1, zFilename, nByte,
                               0, 0);
   if( nByte == 0 ){
-    free(zFilename);
+    ca2_free(zFilename);
     zFilename = 0;
   }
   return zFilename;
@@ -21267,7 +21267,7 @@ static char *unicodeToUtf8(const WCHAR *zWideFilename){
 ** current codepage settings for file apis.
 **
 ** Space to hold the returned string is obtained
-** from malloc.
+** from ca2_alloc.
 */
 static WCHAR *mbcsToUnicode(const char *zFilename){
   int nByte;
@@ -21275,13 +21275,13 @@ static WCHAR *mbcsToUnicode(const char *zFilename){
   int codepage = AreFileApisANSI() ? CP_ACP : CP_OEMCP;
 
   nByte = MultiByteToWideChar(codepage, 0, zFilename, -1, NULL,0)*sizeof(WCHAR);
-  zMbcsFilename = malloc( nByte*sizeof(zMbcsFilename[0]) );
+  zMbcsFilename = ca2_alloc( nByte*sizeof(zMbcsFilename[0]) );
   if( zMbcsFilename==0 ){
     return 0;
   }
   nByte = MultiByteToWideChar(codepage, 0, zFilename, -1, zMbcsFilename, nByte);
   if( nByte==0 ){
-    free(zMbcsFilename);
+    ca2_free(zMbcsFilename);
     zMbcsFilename = 0;
   }
   return zMbcsFilename;
@@ -21292,7 +21292,7 @@ static WCHAR *mbcsToUnicode(const char *zFilename){
 ** user's Ansi codepage.
 **
 ** Space to hold the returned string is obtained from
-** malloc().
+** ca2_alloc().
 */
 static char *unicodeToMbcs(const WCHAR *zWideFilename){
   int nByte;
@@ -21300,14 +21300,14 @@ static char *unicodeToMbcs(const WCHAR *zWideFilename){
   int codepage = AreFileApisANSI() ? CP_ACP : CP_OEMCP;
 
   nByte = WideCharToMultiByte(codepage, 0, zWideFilename, -1, 0, 0, 0, 0);
-  zFilename = malloc( nByte );
+  zFilename = ca2_alloc( nByte );
   if( zFilename==0 ){
     return 0;
   }
   nByte = WideCharToMultiByte(codepage, 0, zWideFilename, -1, zFilename, nByte,
                               0, 0);
   if( nByte == 0 ){
-    free(zFilename);
+    ca2_free(zFilename);
     zFilename = 0;
   }
   return zFilename;
@@ -21315,7 +21315,7 @@ static char *unicodeToMbcs(const WCHAR *zWideFilename){
 
 /*
 ** Convert multibyte character string to UTF-8.  Space to hold the
-** returned string is obtained from malloc().
+** returned string is obtained from ca2_alloc().
 */
 static char *mbcsToUtf8(const char *zFilename){
   char *zFilenameUtf8;
@@ -21326,13 +21326,13 @@ static char *mbcsToUtf8(const char *zFilename){
     return 0;
   }
   zFilenameUtf8 = unicodeToUtf8(zTmpWide);
-  free(zTmpWide);
+  ca2_free(zTmpWide);
   return zFilenameUtf8;
 }
 
 /*
 ** Convert UTF-8 to multibyte character string.  Space to hold the
-** returned string is obtained from malloc().
+** returned string is obtained from ca2_alloc().
 */
 static char *utf8ToMbcs(const char *zFilename){
   char *zFilenameMbcs;
@@ -21343,7 +21343,7 @@ static char *utf8ToMbcs(const char *zFilename){
     return 0;
   }
   zFilenameMbcs = unicodeToMbcs(zTmpWide);
-  free(zTmpWide);
+  ca2_free(zTmpWide);
   return zFilenameMbcs;
 }
 
@@ -21422,7 +21422,7 @@ static BOOL winceCreateLock(const char *zFilename, winFile *pFile){
   /* create/open the named mutex */
   pFile->hMutex = CreateMutexW(NULL, FALSE, zName);
   if (!pFile->hMutex){
-    free(zName);
+    ca2_free(zName);
     return FALSE;
   }
 
@@ -21444,7 +21444,7 @@ static BOOL winceCreateLock(const char *zFilename, winFile *pFile){
     bInit = FALSE;
   }
 
-  free(zName);
+  ca2_free(zName);
 
   /* If we succeeded in making the shared primitive::memory handle, ::collection::map it. */
   if (pFile->hShared){
@@ -21687,7 +21687,7 @@ static int winClose(sqlite3_file *id){
     ){
        Sleep(100);  /* Wait a little before trying again */
     }
-    free(pFile->zDeleteOnClose);
+    ca2_free(pFile->zDeleteOnClose);
   }
 #endif
   OpenCounter(-1);
@@ -22130,7 +22130,7 @@ static const sqlite3_io_methods winIoMethod = {
 /*
 ** Convert a UTF-8 filename into whatever form the underlying
 ** operating system wants filenames in.  Space to hold the result
-** is obtained from malloc and must be freed by the calling
+** is obtained from ca2_alloc and must be freed by the calling
 ** function.
 */
 static void *convertUtf8Filename(const char *zFilename){
@@ -22221,7 +22221,7 @@ static int winOpen(
 #endif
   }
   if( h==INVALID_HANDLE_VALUE ){
-    free(zConverted);
+    ca2_free(zConverted);
     if( flags & SQLITE_OPEN_READWRITE ){
       return winOpen(0, zName, id,
              ((flags|SQLITE_OPEN_READONLY)&~SQLITE_OPEN_READWRITE), pOutFlags);
@@ -22245,7 +22245,7 @@ static int winOpen(
        && !winceCreateLock(zName, pFile)
   ){
     CloseHandle(h);
-    free(zConverted);
+    ca2_free(zConverted);
     return SQLITE_CANTOPEN;
   }
   if( isTemp ){
@@ -22253,7 +22253,7 @@ static int winOpen(
   }else
 #endif
   {
-    free(zConverted);
+    ca2_free(zConverted);
   }
   OpenCounter(+1);
   return SQLITE_OK;
@@ -22299,7 +22299,7 @@ static int winDelete(
             && cnt++ < MX_DELETION_ATTEMPTS && (Sleep(100), 1) );
 #endif
   }
-  free(zConverted);
+  ca2_free(zConverted);
   OSTRACE2("DELETE \"%s\"\n", zFilename);
   return rc==0xffffffff ? SQLITE_OK : SQLITE_IOERR_DELETE;
 }
@@ -22327,7 +22327,7 @@ static int winAccess(
     attr = GetFileAttributesA((char*)zConverted);
 #endif
   }
-  free(zConverted);
+  ca2_free(zConverted);
   switch( flags ){
     case SQLITE_ACCESS_READ:
     case SQLITE_ACCESS_EXISTS:
@@ -22363,7 +22363,7 @@ static int winGetTempname(sqlite3_vfs *pVfs, int nBuf, char *zBuf){
     zMulti = unicodeToUtf8(zWidePath);
     if( zMulti ){
       sqlite3_snprintf(MAX_PATH-30, zTempPath, "%s", zMulti);
-      free(zMulti);
+      ca2_free(zMulti);
     }else{
       return SQLITE_NOMEM;
     }
@@ -22374,7 +22374,7 @@ static int winGetTempname(sqlite3_vfs *pVfs, int nBuf, char *zBuf){
     zUtf8 = mbcsToUtf8(zMbcsPath);
     if( zUtf8 ){
       sqlite3_snprintf(MAX_PATH-30, zTempPath, "%s", zUtf8);
-      free(zUtf8);
+      ca2_free(zUtf8);
     }else{
       return SQLITE_NOMEM;
     }
@@ -22424,31 +22424,31 @@ static int winFullPathname(
   if( isNT() ){
     WCHAR *zTemp;
     nByte = GetFullPathNameW((WCHAR*)zConverted, 0, 0, 0) + 3;
-    zTemp = malloc( nByte*sizeof(zTemp[0]) );
+    zTemp = ca2_alloc( nByte*sizeof(zTemp[0]) );
     if( zTemp==0 ){
-      free(zConverted);
+      ca2_free(zConverted);
       return SQLITE_NOMEM;
     }
     GetFullPathNameW((WCHAR*)zConverted, nByte, zTemp, 0);
-    free(zConverted);
+    ca2_free(zConverted);
     zOut = unicodeToUtf8(zTemp);
-    free(zTemp);
+    ca2_free(zTemp);
   }else{
     char *zTemp;
     nByte = GetFullPathNameA((char*)zConverted, 0, 0, 0) + 3;
-    zTemp = malloc( nByte*sizeof(zTemp[0]) );
+    zTemp = ca2_alloc( nByte*sizeof(zTemp[0]) );
     if( zTemp==0 ){
-      free(zConverted);
+      ca2_free(zConverted);
       return SQLITE_NOMEM;
     }
     GetFullPathNameA((char*)zConverted, nByte, zTemp, 0);
-    free(zConverted);
+    ca2_free(zConverted);
     zOut = mbcsToUtf8(zTemp);
-    free(zTemp);
+    ca2_free(zTemp);
   }
   if( zOut ){
     sqlite3_snprintf(pVfs->mxPathname, zFull, "%s", zOut);
-    free(zOut);
+    ca2_free(zOut);
     return SQLITE_OK;
   }else{
     return SQLITE_NOMEM;
@@ -22480,7 +22480,7 @@ static void *winDlOpen(sqlite3_vfs *pVfs, const char *zFilename){
     h = LoadLibraryA((char*)zConverted);
 #endif
   }
-  free(zConverted);
+  ca2_free(zConverted);
   return (void*)h;
 }
 static void winDlError(sqlite3_vfs *pVfs, int nBuf, char *zBufOut){
@@ -22720,7 +22720,7 @@ struct Bitvec {
 /*
 ** create a new bitmap object able to handle bits between 0 and iSize,
 ** inclusive.  Return a pointer to the new object.  Return NULL if
-** malloc fails.
+** ca2_alloc fails.
 */
 SQLITE_PRIVATE Bitvec *sqlite3BitvecCreate(u32 iSize){
   Bitvec *p;
@@ -23107,7 +23107,7 @@ struct PgHdr {
   Pager *pPager;                 /* The pager to which this page belongs */
   Pgno pgno;                     /* The page number for this page */
   PgHdr *pNextHash, *pPrevHash;  /* Hash collision chain for PgHdr.pgno */
-  PagerLruLink free;             /* Next and previous free pages */
+  PagerLruLink ca2_free;             /* Next and previous ca2_free pages */
   PgHdr *pNextAll;               /* A list of all pages */
   u8 inJournal;                  /* TRUE if has been written to journal */
   u8 dirty;                      /* TRUE if we need to write back changes */
@@ -23222,7 +23222,7 @@ struct Pager {
   sqlite3_file *fd, *jfd;     /* File descriptors for database and journal */
   sqlite3_file *stfd;         /* File descriptor for the statement subjournal*/
   BusyHandler *pBusyHandler;  /* Pointer to sqlite.busyHandler */
-  PagerLruList lru;           /* LRU list of free pages */
+  PagerLruList lru;           /* LRU list of ca2_free pages */
   PgHdr *pAll;                /* List of all pages */
   PgHdr *pStmt;               /* List of pages in the statement subjournal */
   PgHdr *pDirty;              /* List of all dirty pages */
@@ -23383,7 +23383,7 @@ static const unsigned char aJournalMagic[] = {
 /*
 ** add page pPg to the end of the linked list managed by structure
 ** pList (pPg becomes the last entry in the list - the most recently
-** used). Argument pLink should point to either pPg->free or pPg->gfree,
+** used). Argument pLink should point to either pPg->ca2_free or pPg->gfree,
 ** depending on whether pPg is being added to the pager-specific or
 ** global LRU list.
 */
@@ -23392,7 +23392,7 @@ static void listAdd(PagerLruList *pList, PagerLruLink *pLink, PgHdr *pPg){
   pLink->pPrev = pList->pLast;
 
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
-  assert(pLink==&pPg->free || pLink==&pPg->gfree);
+  assert(pLink==&pPg->ca2_free || pLink==&pPg->gfree);
   assert(pLink==&pPg->gfree || pList!=&sqlite3LruPageList);
 #endif
 
@@ -23414,14 +23414,14 @@ static void listAdd(PagerLruList *pList, PagerLruLink *pLink, PgHdr *pPg){
 /*
 ** remove pPg from the list managed by the structure pointed to by pList.
 **
-** Argument pLink should point to either pPg->free or pPg->gfree, depending
+** Argument pLink should point to either pPg->ca2_free or pPg->gfree, depending
 ** on whether pPg is being added to the pager-specific or global LRU list.
 */
 static void listRemove(PagerLruList *pList, PagerLruLink *pLink, PgHdr *pPg){
   int iOff = (char *)pLink - (char *)pPg;
 
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
-  assert(pLink==&pPg->free || pLink==&pPg->gfree);
+  assert(pLink==&pPg->ca2_free || pLink==&pPg->gfree);
   assert(pLink==&pPg->gfree || pList!=&sqlite3LruPageList);
 #endif
 
@@ -23452,12 +23452,12 @@ static void listRemove(PagerLruList *pList, PagerLruLink *pLink, PgHdr *pPg){
 }
 
 /*
-** add page pPg to the list of free pages for the pager. If
+** add page pPg to the list of ca2_free pages for the pager. If
 ** primitive::memory-management is enabled, also add the page to the global
-** list of free pages.
+** list of ca2_free pages.
 */
 static void lruListAdd(PgHdr *pPg){
-  listAdd(&pPg->pPager->lru, &pPg->free, pPg);
+  listAdd(&pPg->pPager->lru, &pPg->ca2_free, pPg);
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
   if( !pPg->pPager->memDb ){
     sqlite3_mutex_enter(sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_LRU));
@@ -23468,12 +23468,12 @@ static void lruListAdd(PgHdr *pPg){
 }
 
 /*
-** remove page pPg from the list of free pages for the associated pager.
+** remove page pPg from the list of ca2_free pages for the associated pager.
 ** If primitive::memory-management is enabled, also remove pPg from the global list
-** of free pages.
+** of ca2_free pages.
 */
 static void lruListRemove(PgHdr *pPg){
-  listRemove(&pPg->pPager->lru, &pPg->free, pPg);
+  listRemove(&pPg->pPager->lru, &pPg->ca2_free, pPg);
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
   if( !pPg->pPager->memDb ){
     sqlite3_mutex_enter(sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_LRU));
@@ -24312,7 +24312,7 @@ static int pager_playback_one_page(
   **
   ** An exception to the above rule: If the database is in no-sync mode
   ** and a page is moved during an incremental vacuum then the page may
-  ** not be in the pager cache. Later: if a malloc() or IO error occurs
+  ** not be in the pager cache. Later: if a ca2_alloc() or IO error occurs
   ** during a Movepage() call, then the page may not be in the cache
   ** either. So the condition described in the above paragraph is not
   ** assert()able.
@@ -24576,7 +24576,7 @@ static void setSectorSize(Pager *pPager){
 ** is then deleted and SQLITE_OK returned, just as if no corruption had
 ** been encountered.
 **
-** If an I/O or malloc() error occurs, the journal-file is not deleted
+** If an I/O or ca2_alloc() error occurs, the journal-file is not deleted
 ** and an error code is returned.
 */
 static int pager_playback(Pager *pPager, int isHot){
@@ -25199,7 +25199,7 @@ SQLITE_PRIVATE int sqlite3PagerSetPagesize(Pager *pPager, u16 *pPageSize){
 ** by the pager.  This is a buffer that is big enough to hold the
 ** entire content of a database page.  This buffer is used internally
 ** during rollback and will be overwritten whenever a rollback
-** occurs.  But other modules are free to use it too, as long as
+** occurs.  But other modules are ca2_free to use it too, as long as
 ** no rollbacks are happening.
 */
 SQLITE_PRIVATE void *sqlite3PagerTempSpace(Pager *pPager){
@@ -25363,13 +25363,13 @@ static void unlinkHashChain(Pager *pPager, PgHdr *pPg){
 }
 
 /*
-** Unlink a page from the free list (the list of all pages where nRef==0)
+** Unlink a page from the ca2_free list (the list of all pages where nRef==0)
 ** and from its hash collision chain.
 */
 static void unlinkPage(PgHdr *pPg){
   Pager *pPager = pPg->pPager;
 
-  /* Unlink from free page list */
+  /* Unlink from ca2_free page list */
   lruListRemove(pPg);
 
   /* Unlink from the pgno hash table */
@@ -25920,7 +25920,7 @@ static int pager_recycle(Pager *pPager, PgHdr **ppPg){
   *ppPg = 0;
 
   /* It is illegal to call this function unless the pager object
-  ** pointed to by pPager has at least one free page (page with nRef==0).
+  ** pointed to by pPager has at least one ca2_free page (page with nRef==0).
   */
   assert(!MEMDB);
   assert(pPager->lru.pFirst);
@@ -25990,7 +25990,7 @@ static int pager_recycle(Pager *pPager, PgHdr **ppPg){
     pPager->alwaysRollback = 1;
   }
 
-  /* Unlink the old page from the free list and the hash table
+  /* Unlink the old page from the ca2_free list and the hash table
   */
   unlinkPage(pPg);
   assert( pPg->pgno==0 );
@@ -26001,7 +26001,7 @@ static int pager_recycle(Pager *pPager, PgHdr **ppPg){
 
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
 /*
-** This function is called to free superfluous dynamically allocated primitive::memory
+** This function is called to ca2_free superfluous dynamically allocated primitive::memory
 ** held by the pager system. Memory in use by any SQLite pager allocated
 ** by the current thread may be sqlite3_free()ed.
 **
@@ -26064,8 +26064,8 @@ SQLITE_PRIVATE int sqlite3PagerReleaseMemory(int nReq){
     pPager->pBusyHandler = savedBusy;
     assert(pRecycled==pPg || rc!=SQLITE_OK);
     if( rc==SQLITE_OK ){
-      /* We've found a page to free. At this point the page has been
-      ** removed from the page hash-table, free-list and synced-list
+      /* We've found a page to ca2_free. At this point the page has been
+      ** removed from the page hash-table, ca2_free-list and synced-list
       ** (pFirstSynced). It is still in the all pages (pAll) list.
       ** remove it from this list before freeing.
       **
@@ -27246,7 +27246,7 @@ SQLITE_PRIVATE void sqlite3PagerDontWrite(DbPage *pDbPage){
 ** so the needRead flag can be cleared at this point.
 **
 ** This routine is only called from a single place in the sqlite btree
-** code (when a leaf is removed from the free-list). This allows the
+** code (when a leaf is removed from the ca2_free-list). This allows the
 ** following assumptions to be made about pPg:
 **
 **   1. PagerDontWrite() has been called on the page, OR
@@ -27255,8 +27255,8 @@ SQLITE_PRIVATE void sqlite3PagerDontWrite(DbPage *pDbPage){
 **   2. The page existed when the transaction was started.
 **
 ** Details: DontRollback() (this routine) is only called when a leaf is
-** removed from the free list. DontWrite() is called whenever a page
-** becomes a free-list leaf.
+** removed from the ca2_free list. DontWrite() is called whenever a page
+** becomes a ca2_free-list leaf.
 */
 SQLITE_PRIVATE void sqlite3PagerDontRollback(DbPage *pPg){
   Pager *pPager = pPg->pPager;
@@ -27546,7 +27546,7 @@ SQLITE_PRIVATE int sqlite3PagerCommitPhaseTwo(Pager *pPager){
 ** This routine cannot fail unless some other process is not following
 ** the correct locking protocol or unless some other
 ** process is writing trash into the journal file (SQLITE_CORRUPT) or
-** unless a prior malloc() failed (SQLITE_NOMEM).  Appropriate error
+** unless a prior ca2_alloc() failed (SQLITE_NOMEM).  Appropriate error
 ** codes are returned for all these occasions.  Otherwise,
 ** SQLITE_OK is returned.
 */
@@ -27934,7 +27934,7 @@ SQLITE_PRIVATE int sqlite3PagerMovepage(Pager *pPager, DbPage *pPg, Pgno pgno){
     ** the page into the pager-cache and setting the PgHdr.needSync flag.
     **
     ** If the attempt to load the page into the page-cache fails, (due
-    ** to a malloc() or IO failure), clear the bit in the pInJournal[]
+    ** to a ca2_alloc() or IO failure), clear the bit in the pInJournal[]
     ** base_array. Otherwise, if the page is loaded and written again in
     ** this transaction, it may be written to the database file before
     ** it is synced into the journal spfile-> This way, it may end up in
@@ -28155,7 +28155,7 @@ SQLITE_PRIVATE void sqlite3PagerRefdump(Pager *pPager){
 **      | space          |
 **      |----------------|   ^  Grows upwards
 **      | cell content   |   |  Arbitrary order interspersed with freeblocks.
-**      | area           |   |  and free space fragments.
+**      | area           |   |  and ca2_free space fragments.
 **      |----------------|
 **
 ** The page headers looks like this:
@@ -28165,7 +28165,7 @@ SQLITE_PRIVATE void sqlite3PagerRefdump(Pager *pPager){
 **      1       2      byte offset to the first freeblock
 **      3       2      number of cells on this page
 **      5       2      first byte of the cell content area
-**      7       1      number of fragmented free bytes
+**      7       1      number of fragmented ca2_free bytes
 **      8       4      Right child (the Ptr(N) value).  Omitted on leaves.
 **
 ** The flags define the format of this btree page.  The leaf flag means that
@@ -28178,7 +28178,7 @@ SQLITE_PRIVATE void sqlite3PagerRefdump(Pager *pPager){
 ** The cell pointer base_array contains zero or more 2-byte numbers which are
 ** offsets from the beginning of the page to the cell content in the cell
 ** content area.  The cell pointers occur in sorted order.  The system strives
-** to keep free space after the last cell pointer so that new cells can
+** to keep ca2_free space after the last cell pointer so that new cells can
 ** be easily added without having to defragment the page.
 **
 ** Cell content is stored at the very end of the page and grows toward the
@@ -28189,7 +28189,7 @@ SQLITE_PRIVATE void sqlite3PagerRefdump(Pager *pPager){
 ** to the first freeblock is given in the header.  Freeblocks occur in
 ** increasing order.  Because a freeblock must be at least 4 bytes in size,
 ** any group of 3 or fewer unused bytes in the cell content area cannot
-** exist on the freeblock chain.  A group of 3 or fewer free bytes is called
+** exist on the freeblock chain.  A group of 3 or fewer ca2_free bytes is called
 ** a fragment.  The total number of bytes in all fragments is recorded.
 ** in the page header at offset 7.
 **
@@ -28324,7 +28324,7 @@ struct MemPage {
   u16 minLocal;        /* copy of BtShared.minLocal or BtShared.minLeaf */
   u16 cellOffset;      /* Index in aData of first cell pointer */
   u16 idxParent;       /* Index in parent of this node */
-  u16 nFree;           /* Number of free bytes on the page */
+  u16 nFree;           /* Number of ca2_free bytes on the page */
   u16 nCell;           /* Number of cells on this page, local and ovfl */
   struct _OvflCell {   /* Cells that will not fit on aData[] */
     u8 *pCell;          /* Pointers to the body of the overflow cell */
@@ -28511,7 +28511,7 @@ struct BtCursor {
 **   seek the cursor to the saved position.
 **
 ** CURSOR_FAULT:
-**   A unrecoverable error (an I/O error or a malloc failure) has occurred
+**   A unrecoverable error (an I/O error or a ca2_alloc failure) has occurred
 **   on a different connection that shares the BtShared cache with this
 **   cursor.  The error has left the cache in an inconsistent state.
 **   Do nothing else with this cursor.  Any attempt to use the cursor
@@ -28609,7 +28609,7 @@ struct BtLock {
 ** PTRMAP_ROOTPAGE: The database page is a root-page. The page-number is not
 **                  used in this case.
 **
-** PTRMAP_FREEPAGE: The database page is an unused (free) page. The page-number
+** PTRMAP_FREEPAGE: The database page is an unused (ca2_free) page. The page-number
 **                  is not used in this case.
 **
 ** PTRMAP_OVERFLOW1: The database page is the first page in a list of
@@ -29289,7 +29289,7 @@ static int saveCursorPosition(BtCursor *pCur){
   /* If this is an intKey table, then the above call to BtreeKeySize()
   ** stores the integer key in pCur->nKey. In this case this value is
   ** all that is required. Otherwise, if pCur is not open on an intKey
-  ** table, then malloc space for and store the pCur->nKey bytes of key
+  ** table, then ca2_alloc space for and store the pCur->nKey bytes of key
   ** data.
   */
   if( rc==SQLITE_OK && 0==pCur->pPage->intKey){
@@ -29661,7 +29661,7 @@ static int ptrmapPutOvfl(MemPage *pPage, int iCell){
 
 /*
 ** Defragment the page given.  All Cells are moved to the
-** end of the page and all free space is collected into one
+** end of the page and all ca2_free space is collected into one
 ** big FreeBlk that occurs in between the header and cell
 ** pointer base_array and the cell content area.
 */
@@ -29717,12 +29717,12 @@ static int defragmentPage(MemPage *pPage){
 ** Allocate nByte bytes of space on a page.
 **
 ** Return the index into pPage->aData[] of the first byte of
-** the new allocation. Or return 0 if there is not enough free
+** the new allocation. Or return 0 if there is not enough ca2_free
 ** space on the page to satisfy the allocation request.
 **
-** If the page contains nBytes of free space but does not contain
-** nBytes of contiguous free space, then this routine automatically
-** calls defragementPage() to consolidate all free space before
+** If the page contains nBytes of ca2_free space but does not contain
+** nBytes of contiguous ca2_free space, then this routine automatically
+** calls defragementPage() to consolidate all ca2_free space before
 ** allocating the new chunk.
 */
 static int allocateSpace(MemPage *pPage, int nByte){
@@ -29782,11 +29782,11 @@ static int allocateSpace(MemPage *pPage, int nByte){
 
 /*
 ** Return a section of the pPage->aData to the freelist.
-** The first byte of the new free block is pPage->aDisk[start]
+** The first byte of the new ca2_free block is pPage->aDisk[start]
 ** and the size of the block is "size" bytes.
 **
 ** Most of the effort here is involved in coalesing adjacent
-** free blocks into a single big free block.
+** ca2_free blocks into a single big ca2_free block.
 */
 static void freeSpace(MemPage *pPage, int start, int size){
   int addr, pbegin, hdr;
@@ -29820,7 +29820,7 @@ static void freeSpace(MemPage *pPage, int start, int size){
   put2byte(&data[start+2], size);
   pPage->nFree += size;
 
-  /* Coalesce adjacent free blocks */
+  /* Coalesce adjacent ca2_free blocks */
   addr = pPage->hdrOffset + 1;
   while( (pbegin = get2byte(&data[addr]))>0 ){
     int pnext, psize;
@@ -29935,7 +29935,7 @@ SQLITE_PRIVATE int sqlite3BtreeInitPage(
     return SQLITE_CORRUPT_BKPT;
   }
 
-  /* Compute the total free space on the page */
+  /* Compute the total ca2_free space on the page */
   pc = get2byte(&data[hdr+1]);
   nFree = data[hdr+7] + top - (cellOffset + 2*pPage->nCell);
   while( pc>0 ){
@@ -30409,7 +30409,7 @@ SQLITE_PRIVATE int sqlite3BtreeClose(Btree *p){
     }
   }
 
-  /* Rollback any active transaction and free the handle structure.
+  /* Rollback any active transaction and ca2_free the handle structure.
   ** The call to sqlite3BtreeRollback() drops any table-locks held by
   ** this handle.
   */
@@ -31051,7 +31051,7 @@ static int relocatePage(
   assert( pDbPage->pBt==pBt );
 
   /* Move page iDbPage from its current location to page number iFreePage */
-  TRACE(("AUTOVACUUM: Moving %d to free page %d (ptr page %d type %d)\n",
+  TRACE(("AUTOVACUUM: Moving %d to ca2_free page %d (ptr page %d type %d)\n",
       iDbPage, iFreePage, iPtrPage, eType));
   rc = sqlite3PagerMovepage(pPager, pDbPage->pDbPage, iFreePage);
   if( rc!=SQLITE_OK ){
@@ -31125,7 +31125,7 @@ static int allocateBtreePage(BtShared *, MemPage **, Pgno *, Pgno, u8);
 */
 static int incrVacuumStep(BtShared *pBt, Pgno nFin){
   Pgno iLastPg;             /* Last page in the database */
-  Pgno nFreeList;           /* Number of pages still on the free-list */
+  Pgno nFreeList;           /* Number of pages still on the ca2_free-list */
 
   assert( sqlite3_mutex_held(pBt->mutex) );
   iLastPg = pBt->nTrunc;
@@ -31153,8 +31153,8 @@ static int incrVacuumStep(BtShared *pBt, Pgno nFin){
 
     if( eType==PTRMAP_FREEPAGE ){
       if( nFin==0 ){
-        /* remove the page from the files free-list. This is not required
-        ** if nFin is non-zero. In that case, the free-list will be
+        /* remove the page from the files ca2_free-list. This is not required
+        ** if nFin is non-zero. In that case, the ca2_free-list will be
         ** truncated to zero after this function returns, so it doesn't
         ** matter if it still contains some garbage entries.
         */
@@ -31168,7 +31168,7 @@ static int incrVacuumStep(BtShared *pBt, Pgno nFin){
         releasePage(pFreePg);
       }
     } else {
-      Pgno iFreePg;             /* Index of free page to move pLastPg to */
+      Pgno iFreePg;             /* Index of ca2_free page to move pLastPg to */
       MemPage *pLastPg;
 
       rc = sqlite3BtreeGetPage(pBt, iLastPg, &pLastPg, 0);
@@ -31177,10 +31177,10 @@ static int incrVacuumStep(BtShared *pBt, Pgno nFin){
       }
 
       /* If nFin is zero, this loop runs exactly once and page pLastPg
-      ** is swapped with the first free page pulled off the free list.
+      ** is swapped with the first ca2_free page pulled off the ca2_free list.
       **
       ** On the other hand, if nFin is greater than zero, then keep
-      ** looping until a free-page located within the first nFin pages
+      ** looping until a ca2_free-page located within the first nFin pages
       ** of the file is found.
       */
       do {
@@ -31501,9 +31501,9 @@ SQLITE_PRIVATE int sqlite3BtreeRollback(Btree *p){
   rc = saveAllCursors(pBt, 0, 0);
 #ifndef SQLITE_OMIT_SHARED_CACHE
   if( rc!=SQLITE_OK ){
-    /* This is a horrible situation. An IO or malloc() error occured whilst
+    /* This is a horrible situation. An IO or ca2_alloc() error occured whilst
     ** trying to save cursor positions. If this is an automatic rollback (as
-    ** the result of a constraint, malloc() failure or IO error) then
+    ** the result of a constraint, ca2_alloc() failure or IO error) then
     ** the cache may be internally inconsistent (not contain valid trees) so
     ** we cannot simply return the error to the caller. Instead, abort
     ** all queries that may be using any of the cursors that failed to save.
@@ -32876,7 +32876,7 @@ SQLITE_PRIVATE int sqlite3BtreePrevious(BtCursor *pCur, int *pRes){
 ** which in turn can make database access faster.
 **
 ** If the "exact" parameter is not 0, and the page-number nearby exists
-** anywhere on the free-list, then it is guarenteed to be returned. This
+** anywhere on the ca2_free-list, then it is guarenteed to be returned. This
 ** is only used by auto-vacuum databases when allocating a new table.
 */
 static int allocateBtreePage(
@@ -32899,10 +32899,10 @@ static int allocateBtreePage(
   if( n>0 ){
     /* There are pages on the freelist.  Reuse one of those pages. */
     Pgno iTrunk;
-    u8 searchList = 0; /* If the free-list must be searched for 'nearby' */
+    u8 searchList = 0; /* If the ca2_free-list must be searched for 'nearby' */
 
     /* If the 'exact' parameter was true and a query of the pointer-::collection::map
-    ** shows that the page 'nearby' is somewhere on the free-list, then
+    ** shows that the page 'nearby' is somewhere on the ca2_free-list, then
     ** the entire-list will be searched for that page.
     */
 #ifndef SQLITE_OMIT_AUTOVACUUM
@@ -32919,8 +32919,8 @@ static int allocateBtreePage(
     }
 #endif
 
-    /* Decrement the free-list count by 1. Set iTrunk to the index of the
-    ** first free-list trunk page. iPrevTrunk is initially 1.
+    /* Decrement the ca2_free-list count by 1. Set iTrunk to the index of the
+    ** first ca2_free-list trunk page. iPrevTrunk is initially 1.
     */
     rc = sqlite3PagerWrite(pPage1->pDbPage);
     if( rc ) return rc;
@@ -32928,7 +32928,7 @@ static int allocateBtreePage(
 
     /* The code within this loop is run only once if the 'searchList' var
     ** is not true. Otherwise, it runs once for each trunk-page on the
-    ** free-list until the page 'nearby' is located.
+    ** ca2_free-list until the page 'nearby' is located.
     */
     do {
       pPrevTrunk = pTrunk;
@@ -32957,7 +32957,7 @@ static int allocateBtreePage(
         memcpy(&pPage1->aData[32], &pTrunk->aData[0], 4);
         *ppPage = pTrunk;
         pTrunk = 0;
-        TRACE(("ALLOCATE: %d trunk - %d free pages left\n", *pPgno, n-1));
+        TRACE(("ALLOCATE: %d trunk - %d ca2_free pages left\n", *pPgno, n-1));
       }else if( k>pBt->usableSize/4 - 8 ){
         /* Value of k is out of range.  Database corruption */
         rc = SQLITE_CORRUPT_BKPT;
@@ -32982,7 +32982,7 @@ static int allocateBtreePage(
           }
         }else{
           /* The trunk page is required by the caller but it contains
-          ** pointers to free-list leaves. The first leaf becomes a trunk
+          ** pointers to ca2_free-list leaves. The first leaf becomes a trunk
           ** page in this case.
           */
           MemPage *pNewTrunk;
@@ -33011,7 +33011,7 @@ static int allocateBtreePage(
           }
         }
         pTrunk = 0;
-        TRACE(("ALLOCATE: %d trunk - %d free pages left\n", *pPgno, n-1));
+        TRACE(("ALLOCATE: %d trunk - %d ca2_free pages left\n", *pPgno, n-1));
 #endif
       }else{
         /* Extract a leaf from the trunk */
@@ -33047,7 +33047,7 @@ static int allocateBtreePage(
             return SQLITE_CORRUPT_BKPT;
           }
           TRACE(("ALLOCATE: %d was leaf %d of %d on trunk %d"
-                 ": %d more free pages\n",
+                 ": %d more ca2_free pages\n",
                  *pPgno, closest+1, k, pTrunk->pgno, n-1));
           if( closest<k-1 ){
             memcpy(&aData[8+closest*4], &aData[4+k*4], 4);
@@ -33133,7 +33133,7 @@ static int freePage(MemPage *pPage){
   releasePage(pPage->pParent);
   pPage->pParent = 0;
 
-  /* Increment the free page count on pPage1 */
+  /* Increment the ca2_free page count on pPage1 */
   rc = sqlite3PagerWrite(pPage1->pDbPage);
   if( rc ) return rc;
   n = get4byte(&pPage1->aData[36]);
@@ -33150,7 +33150,7 @@ static int freePage(MemPage *pPage){
 
 #ifndef SQLITE_OMIT_AUTOVACUUM
   /* If the database supports auto-vacuum, write an entry in the pointer-::collection::map
-  ** to indicate that the page is free.
+  ** to indicate that the page is ca2_free.
   */
   if( pBt->autoVacuum ){
     rc = ptrmapPut(pBt, pPage->pgno, PTRMAP_FREEPAGE, 0);
@@ -33159,14 +33159,14 @@ static int freePage(MemPage *pPage){
 #endif
 
   if( n==0 ){
-    /* This is the first free page */
+    /* This is the first ca2_free page */
     rc = sqlite3PagerWrite(pPage->pDbPage);
     if( rc ) return rc;
     memset(pPage->aData, 0, 8);
     put4byte(&pPage1->aData[32], pPage->pgno);
     TRACE(("FREE-PAGE: %d first\n", pPage->pgno));
   }else{
-    /* Other free pages already exist.  Retrive the first trunk page
+    /* Other ca2_free pages already exist.  Retrive the first trunk page
     ** of the freelist and find out how many leaves it has. */
     MemPage *pTrunk;
     rc = sqlite3BtreeGetPage(pBt, get4byte(&pPage1->aData[32]), &pTrunk, 0);
@@ -33736,7 +33736,7 @@ static int balance_quick(MemPage *pPage, MemPage *pParent){
 
 /*
 ** This routine redistributes Cells on pPage and up to NN*2 siblings
-** of pPage so that all pages have about the same amount of free space.
+** of pPage so that all pages have about the same amount of ca2_free space.
 ** Usually NN siblings on either side of pPage is used in the balancing,
 ** though more siblings might come from one side if pPage is the first
 ** or last child of its parent.  If pPage has fewer than 2*NN siblings
@@ -35062,7 +35062,7 @@ static int btreeDropTable(Btree *p, int iTable, int *piMoved){
 
       if( iTable==maxRootPgno ){
         /* If the table being dropped is the table with the largest root-page
-        ** number in the database, put the root page on the free list.
+        ** number in the database, put the root page on the ca2_free list.
         */
         rc = freePage(pPage);
         releasePage(pPage);
@@ -35136,13 +35136,13 @@ SQLITE_PRIVATE int sqlite3BtreeDropTable(Btree *p, int iTable, int *piMoved){
 
 /*
 ** Read the meta-information out of a database spfile->  Meta[0]
-** is the number of free pages currently in the database.  Meta[1]
+** is the number of ca2_free pages currently in the database.  Meta[1]
 ** through meta[15] are available for use by higher layers.  Meta[0]
 ** is read-only, the others are read/write.
 **
 ** The schema layer numbers meta values differently.  At the schema
 ** layer (and the SetCookie and ReadCookie opcodes) the number of
-** free pages is not visible.  So Cookie[0] is the same as Meta[1].
+** ca2_free pages is not visible.  So Cookie[0] is the same as Meta[1].
 */
 SQLITE_PRIVATE int sqlite3BtreeGetMeta(Btree *p, int idx, u32 *pMeta){
   DbPage *pDbPage;
@@ -35571,7 +35571,7 @@ static int checkTreePage(
 ** a table.  nRoot is the number of entries in aRoot.
 **
 ** If everything checks out, this routine returns NULL.  If something is
-** amiss, an error message is written into primitive::memory obtained from malloc()
+** amiss, an error message is written into primitive::memory obtained from ca2_alloc()
 ** and a pointer to that error message is returned.  The calling function
 ** is responsible for freeing the error message when it is done.
 */
@@ -35615,7 +35615,7 @@ SQLITE_PRIVATE char *sqlite3BtreeIntegrityCheck(
     unlockBtreeIfUnused(pBt);
     *pnErr = 1;
     sqlite3BtreeLeave(p);
-    return sqlite3MPrintf(p->db, "Unable to malloc %d bytes",
+    return sqlite3MPrintf(p->db, "Unable to ca2_alloc %d bytes",
         (sCheck.nPage+1)*sizeof(sCheck.anRef[0]));
   }
   for(i=0; i<=sCheck.nPage; i++){ sCheck.anRef[i] = 0; }
@@ -36099,7 +36099,7 @@ SQLITE_PRIVATE void sqlite3VdbeFifoClear(Fifo *pFifo){
 ** routine is a no-op.
 **
 ** SQLITE_OK is returned if the conversion is successful (or not required).
-** SQLITE_NOMEM may be returned if a malloc() fails during conversion
+** SQLITE_NOMEM may be returned if a ca2_alloc() fails during conversion
 ** between formats.
 */
 SQLITE_PRIVATE int sqlite3VdbeChangeEncoding(Mem *pMem, int desiredEnc){
@@ -36184,7 +36184,7 @@ SQLITE_PRIVATE int sqlite3VdbeMemGrow(Mem *pMem, int n, int preserve){
 /*
 ** Make the given Mem object MEM_Dyn.
 **
-** Return SQLITE_OK on success or SQLITE_NOMEM if malloc fails.
+** Return SQLITE_OK on success or SQLITE_NOMEM if ca2_alloc fails.
 */
 SQLITE_PRIVATE int sqlite3VdbeMemDynamicify(Mem *pMem){
   int f;
@@ -36236,7 +36236,7 @@ SQLITE_PRIVATE int sqlite3VdbeMemExpandBlob(Mem *pMem){
 ** Make the given Mem object either MEM_Short or MEM_Dyn so that bytes
 ** of the Mem.z[] base_array can be modified.
 **
-** Return SQLITE_OK on success or SQLITE_NOMEM if malloc fails.
+** Return SQLITE_OK on success or SQLITE_NOMEM if ca2_alloc fails.
 */
 SQLITE_PRIVATE int sqlite3VdbeMemMakeWriteable(Mem *pMem){
   return sqlite3VdbeMemDynamicify(pMem);
@@ -36617,7 +36617,7 @@ SQLITE_PRIVATE int sqlite3VdbeMemCopy(Mem *pTo, const Mem *pFrom){
 
   if( pTo->flags&(MEM_Str|MEM_Blob) && pTo->flags&MEM_Static ){
     /* pFrom contained a pointer to a static string. In this case,
-    ** free any dynamically allocated buffer associated with pTo.
+    ** ca2_free any dynamically allocated buffer associated with pTo.
     */
     sqlite3_free(zBuf);
   }else{
@@ -36865,7 +36865,7 @@ SQLITE_PRIVATE int sqlite3MemCompare(const Mem *pMem1, const Mem *pMem2, const C
 ** The pMem structure is assumed to be uninitialized.  Any prior content
 ** is overwritten without being freed.
 **
-** If this routine fails for any reason (malloc returns NULL or unable
+** If this routine fails for any reason (ca2_alloc returns NULL or unable
 ** to read from the disk) then the pMem is left in an inconsistent state.
 */
 SQLITE_PRIVATE int sqlite3VdbeMemFromBtree(
@@ -37330,7 +37330,7 @@ SQLITE_PRIVATE int sqlite3VdbeAddOp4(
 ** always negative and P2 values are suppose to be non-negative.
 ** Hence, a negative P2 value is a label that has yet to be resolved.
 **
-** Zero is returned if a malloc() fails.
+** Zero is returned if a ca2_alloc() fails.
 */
 SQLITE_PRIVATE int sqlite3VdbeMakeLabel(Vdbe *p){
   int i;
@@ -37555,7 +37555,7 @@ SQLITE_PRIVATE void sqlite3VdbeJumpHere(Vdbe *p, int addr){
 
 
 /*
-** If the input FuncDef structure is ephemeral, then free it.  If
+** If the input FuncDef structure is ephemeral, then ca2_free it.  If
 ** the FuncDef is not ephermal, then do nothing.
 */
 static void freeEphemeralFunction(FuncDef *pDef){
@@ -37630,7 +37630,7 @@ SQLITE_PRIVATE void sqlite3VdbeChangeToNoop(Vdbe *p, int addr, int N){
 ** sqlite3_malloc, to be freed when the Vdbe is finalized.
 ** n==P4_KEYINFO_HANDOFF indicates that zP4 points to a KeyInfo structure
 ** stored in primitive::memory that the caller has obtained from sqlite3_malloc. The
-** caller should not free the allocation, it will be freed when the Vdbe is
+** caller should not ca2_free the allocation, it will be freed when the Vdbe is
 ** finalized.
 **
 ** Other values of n (P4_STATIC, P4_COLLSEQ etc.) indicate that zP4 points
@@ -38609,7 +38609,7 @@ SQLITE_PRIVATE int sqlite3VdbeHalt(Vdbe *p){
       **
       ** We could do something more elegant than this static analysis (i.e.
       ** store the type of query as part of the compliation phase), but
-      ** handling malloc() or IO failure is a fairly obscure edge case so
+      ** handling ca2_alloc() or IO failure is a fairly obscure edge case so
       ** this is probably easier. Todo: Might be an opportunity to reduce
       ** code size a very small amount though...
       */
@@ -39743,7 +39743,7 @@ static int sqlite3Step(Vdbe *p){
     return SQLITE_MISUSE;
   }
 
-  /* Assert that malloc() has not failed */
+  /* Assert that ca2_alloc() has not failed */
   db = p->db;
   assert( !db->mallocFailed );
 
@@ -40056,8 +40056,8 @@ static Mem *columnMem(sqlite3_stmt *pStmt, int i){
 /*
 ** This function is called after invoking an sqlite3_value_XXX function on a
 ** column value (i.e. a value returned by evaluating an SQL expression in the
-** select list of a SELECT statement) that may cause a malloc() failure. If
-** malloc() has failed, the threads mallocFailed flag is cleared and the result
+** select list of a SELECT statement) that may cause a ca2_alloc() failure. If
+** ca2_alloc() has failed, the threads mallocFailed flag is cleared and the result
 ** code of statement pStmt set to SQLITE_NOMEM.
 **
 ** Specifically, this is called from within:
@@ -40070,11 +40070,11 @@ static Mem *columnMem(sqlite3_stmt *pStmt, int i){
 **     sqlite3_column_bytes()
 **     sqlite3_column_bytes16()
 **
-** But not for sqlite3_column_blob(), which never calls malloc().
+** But not for sqlite3_column_blob(), which never calls ca2_alloc().
 */
 static void columnMallocFailure(sqlite3_stmt *pStmt)
 {
-  /* If malloc() failed during an encoding conversion within an
+  /* If ca2_alloc() failed during an encoding conversion within an
   ** sqlite3_column_XXX API, then set the return code of the statement to
   ** SQLITE_NOMEM. The next call to _step() (if any) will return SQLITE_ERROR
   ** and _finalize() will return NOMEM.
@@ -40094,7 +40094,7 @@ SQLITE_API const void *sqlite3_column_blob(sqlite3_stmt *pStmt, int i){
   const void *val;
   val = sqlite3_value_blob( columnMem(pStmt,i) );
   /* Even though there is no encoding conversion, value_blob() might
-  ** need to call malloc() to expand the result of a zeroblob()
+  ** need to call ca2_alloc() to expand the result of a zeroblob()
   ** expression.
   */
   columnMallocFailure(pStmt);
@@ -40189,7 +40189,7 @@ static const void *columnName(
       sqlite3_mutex_enter(p->db->mutex);
       ret = xFunc(&p->aColName[N]);
 
-      /* A malloc may have failed inside of the xFunc() call. If this
+      /* A ca2_alloc may have failed inside of the xFunc() call. If this
       ** is the case, clear the mallocFailed flag and return NULL.
       */
       if( p->db && p->db->mallocFailed ){
@@ -40660,7 +40660,7 @@ static void updateMaxBlobsize(Mem *p){
 
 /*
 ** Convert the given register into a string if it isn't one
-** already. Return non-zero if a malloc() fails.
+** already. Return non-zero if a ca2_alloc() fails.
 */
 #define Stringify(P, enc) \
    if(((P)->flags&(MEM_Str|MEM_Blob))==0 && sqlite3VdbeMemStringify(P,enc)) \
@@ -41058,7 +41058,7 @@ SQLITE_PRIVATE int sqlite3VdbeExec(
   assert( db->magic==SQLITE_MAGIC_BUSY );
   sqlite3BtreeMutexArrayEnter(&p->aMutex);
   if( p->rc==SQLITE_NOMEM ){
-    /* This happens if a malloc() inside a call to sqlite3_column_text() or
+    /* This happens if a ca2_alloc() inside a call to sqlite3_column_text() or
     ** sqlite3_column_text16() failed.  */
     goto no_mem;
   }
@@ -41775,7 +41775,7 @@ case OP_Function: {
   (*ctx.pFunc->xFunc)(&ctx, n, apVal);
   if( sqlite3SafetyOn(db) ) goto abort_due_to_misuse;
   if( db->mallocFailed ){
-    /* Even though a malloc() has failed, the implementation of the
+    /* Even though a ca2_alloc() has failed, the implementation of the
     ** user function may have called an sqlite3_result_XXX() function
     ** to return a value. The following call releases any resources
     ** associated with such a value.
@@ -42858,7 +42858,7 @@ case OP_Transaction: {
 ** temporary tables.
 **
 ** If P1 is negative, then this is a request to read the size of a
-** databases free-list. P3 must be set to 1 in this case. The actual
+** databases ca2_free-list. P3 must be set to 1 in this case. The actual
 ** database accessed is ((P1+1)*-1). For example, a P1 parameter of -1
 ** corresponds to database 0 ("main"), a P1 of -2 is database 1 ("temp").
 **
@@ -42881,7 +42881,7 @@ case OP_ReadCookie: {               /* out2-prerelease */
   assert( (p->btreeMask & (1<<iDb))!=0 );
   /* The indexing of meta values at the schema layer is off by one from
   ** the indexing in the btree layer.  The btree considers meta[0] to
-  ** be the number of free pages in the database (a read-only value)
+  ** be the number of ca2_free pages in the database (a read-only value)
   ** and meta[1] to be the schema cookie.  The schema layer considers
   ** meta[1] to be the schema cookie.  So we have to shift the index
   ** by one in the following statement.
@@ -45322,7 +45322,7 @@ too_big:
   rc = SQLITE_TOOBIG;
   goto vdbe_error_halt;
 
-  /* Jump to here if a malloc() fails.
+  /* Jump to here if a ca2_alloc() fails.
   */
 no_mem:
   db->mallocFailed = 1;
@@ -46176,7 +46176,7 @@ SQLITE_PRIVATE Expr *sqlite3Expr(
   Expr *pNew;
   pNew = sqlite3DbMallocZero(db, sizeof(Expr));
   if( pNew==0 ){
-    /* When malloc fails, delete pLeft and pRight. Expressions passed to
+    /* When ca2_alloc fails, delete pLeft and pRight. Expressions passed to
     ** this function must always be allocated with sqlite3Expr() for this
     ** reason.
     */
@@ -46211,7 +46211,7 @@ SQLITE_PRIVATE Expr *sqlite3Expr(
 
 /*
 ** Works like sqlite3Expr() except that it takes an extra Parse*
-** argument and notifies the associated connection object if malloc fails.
+** argument and notifies the associated connection object if ca2_alloc fails.
 */
 SQLITE_PRIVATE Expr *sqlite3PExpr(
   Parse *pParse,          /* Parsing context */
@@ -46290,7 +46290,7 @@ SQLITE_PRIVATE Expr *sqlite3ExprFunction(Parse *pParse, ExprList *pList, Token *
   assert( pToken );
   pNew = sqlite3DbMallocZero(pParse->db, sizeof(Expr) );
   if( pNew==0 ){
-    sqlite3ExprListDelete(pList); /* Avoid leaking primitive::memory when malloc fails */
+    sqlite3ExprListDelete(pList); /* Avoid leaking primitive::memory when ca2_alloc fails */
     return 0;
   }
   pNew->op = TK_FUNCTION;
@@ -46619,7 +46619,7 @@ SQLITE_PRIVATE ExprList *sqlite3ExprListAppend(
   return pList;
 
 no_mem:
-  /* Avoid leaking primitive::memory if malloc has failed. */
+  /* Avoid leaking primitive::memory if ca2_alloc has failed. */
   sqlite3ExprDelete(pExpr);
   sqlite3ExprListDelete(pList);
   return 0;
@@ -47872,8 +47872,8 @@ static int sqlite3ExprCodeTarget(Parse *pParse, Expr *pExpr, int target){
   Vdbe *v = pParse->pVdbe;  /* The VM under construction */
   int op;                   /* The opcode being coded */
   int inReg = target;       /* Results stored in register inReg */
-  int regFree1 = 0;         /* If non-zero free this temporary register */
-  int regFree2 = 0;         /* If non-zero free this temporary register */
+  int regFree1 = 0;         /* If non-zero ca2_free this temporary register */
+  int regFree2 = 0;         /* If non-zero ca2_free this temporary register */
   int r1, r2, r3;           /* Various register numbers */
 
   assert( v!=0 || pParse->db->mallocFailed );
@@ -48684,7 +48684,7 @@ SQLITE_PRIVATE int sqlite3ExprCompare(Expr *pA, Expr *pB){
 
 /*
 ** add a new element to the pAggInfo->aCol[] base_array.  Return the index of
-** the new element.  Return a negative number if malloc fails.
+** the new element.  Return a negative number if ca2_alloc fails.
 */
 static int addAggInfoColumn(sqlite3 *db, AggInfo *pInfo){
   int i;
@@ -48702,7 +48702,7 @@ static int addAggInfoColumn(sqlite3 *db, AggInfo *pInfo){
 
 /*
 ** add a new element to the pAggInfo->aFunc[] base_array.  Return the index of
-** the new element.  Return a negative number if malloc fails.
+** the new element.  Return a negative number if ca2_alloc fails.
 */
 static int addAggInfoFunc(sqlite3 *db, AggInfo *pInfo){
   int i;
@@ -50988,7 +50988,7 @@ SQLITE_PRIVATE void sqlite3NestedParse(Parse *pParse, const char *zFormat, ...){
   va_end(ap);
   if( zSql==0 ){
     pParse->db->mallocFailed = 1;
-    return;   /* A malloc must have failed */
+    return;   /* A ca2_alloc must have failed */
   }
   pParse->nested++;
   memcpy(saveBuf, &pParse->nVar, SAVE_SZ);
@@ -51098,7 +51098,7 @@ static void freeIndex(Index *p){
 }
 
 /*
-** remove the given index from the index hash table, and free
+** remove the given index from the index hash table, and ca2_free
 ** its primitive::memory structures.
 **
 ** The index is removed from the database hash tables but
@@ -51117,7 +51117,7 @@ static void sqliteDeleteIndex(Index *p){
 /*
 ** For the index called zIdxName which is found in the database iDb,
 ** unlike that index from its Table then remove the index from
-** the index hash table and free all primitive::memory structures associated
+** the index hash table and ca2_free all primitive::memory structures associated
 ** with the index.
 */
 SQLITE_PRIVATE void sqlite3UnlinkAndDeleteIndex(sqlite3 *db, int iDb, const char *zIdxName){
@@ -52453,7 +52453,7 @@ SQLITE_PRIVATE int sqlite3ViewGetColumnNames(Parse *pParse, Table *pTable){
   Select *pSel;     /* copy of the SELECT that implements the view */
   int nErr = 0;     /* Number of errors encountered */
   int n;            /* Temporarily holds the number of cursors assigned */
-  sqlite3 *db = pParse->db;  /* Database connection for malloc errors */
+  sqlite3 *db = pParse->db;  /* Database connection for ca2_alloc errors */
   int (*xAuth)(void*,int,const char*,const char*,const char*,const char*);
 
   assert( pTable );
@@ -52643,7 +52643,7 @@ static void destroyTable(Parse *pParse, Table *pTab){
   ** and root page 5 happened to be the largest root-page number in the
   ** database, then root page 5 would be moved to page 4 by the
   ** "OP_Destroy 4 0" opcode. The subsequent "OP_Destroy 5 0" would hit
-  ** a free-list page.
+  ** a ca2_free-list page.
   */
   int iTab = pTab->tnum;
   int iDestroyed = 0;
@@ -53623,7 +53623,7 @@ exit_drop_index:
 ** pointer if the base_array was resized.
 */
 SQLITE_PRIVATE void *sqlite3ArrayAllocate(
-  sqlite3 *db,      /* Connection to notify of malloc failures */
+  sqlite3 *db,      /* Connection to notify of ca2_alloc failures */
   void *pArray,     /* Array of objects.  Might be reallocated */
   int szEntry,      /* Size of each object in the base_array */
   int initSize,     /* Suggested initial allocation, in elements */
@@ -53655,7 +53655,7 @@ SQLITE_PRIVATE void *sqlite3ArrayAllocate(
 ** Append a new element to the given IdList.  create a new IdList if
 ** need be.
 **
-** A new IdList is returned, or NULL if malloc() fails.
+** A new IdList is returned, or NULL if ca2_alloc() fails.
 */
 SQLITE_PRIVATE IdList *sqlite3IdListAppend(sqlite3 *db, IdList *pList, Token *pToken){
   int i;
@@ -53711,7 +53711,7 @@ SQLITE_PRIVATE int sqlite3IdListIndex(IdList *pList, const char *zName){
 ** Append a new table name to the given SrcList.  create a new SrcList if
 ** need be.  A new entry is created in the SrcList even if pToken is NULL.
 **
-** A new SrcList is returned, or NULL if malloc() fails.
+** A new SrcList is returned, or NULL if ca2_alloc() fails.
 **
 ** If pDatabase is not null, it means that the table has an optional
 ** database name prefix.  Like this:  "database.table".  The pDatabase
@@ -53733,7 +53733,7 @@ SQLITE_PRIVATE int sqlite3IdListIndex(IdList *pList, const char *zName){
 ** Then C is the table name and B is the database name.
 */
 SQLITE_PRIVATE SrcList *sqlite3SrcListAppend(
-  sqlite3 *db,        /* Connection to notify of malloc failures */
+  sqlite3 *db,        /* Connection to notify of ca2_alloc failures */
   SrcList *pList,     /* Append to this SrcList. NULL creates a new SrcList */
   Token *pTable,      /* Table to append */
   Token *pDatabase    /* Database of the table */
@@ -54387,7 +54387,7 @@ static CollSeq *findCollSeqEntry(
       pColl[0].zName[nName] = 0;
       pDel = sqlite3HashInsert(&db->aCollSeq, pColl[0].zName, nName, pColl);
 
-      /* If a malloc() failure occured in sqlite3HashInsert(), it will
+      /* If a ca2_alloc() failure occured in sqlite3HashInsert(), it will
       ** return the pColl pointer to be deleted (because it wasn't added
       ** to the hash table).
       */
@@ -55370,7 +55370,7 @@ static void roundFunc(sqlite3_context *context, int argc, sqlite3_value **argv){
 /*
 ** Allocate nByte bytes of space using sqlite3_malloc(). If the
 ** allocation fails, call sqlite3_result_error_nomem() to notify
-** the database handle that malloc() has failed.
+** the database handle that ca2_alloc() has failed.
 */
 static void *contextMalloc(sqlite3_context *context, int nByte){
   char *z = sqlite3_malloc(nByte);
@@ -58393,7 +58393,7 @@ static int xferOptimization(
 /*
 ** Execute SQL code.  Return one of the SQLITE_ success/failure
 ** codes.  Also write an error message into primitive::memory obtained from
-** malloc() and make *pzErrMsg point to that message.
+** ca2_alloc() and make *pzErrMsg point to that message.
 **
 ** If the SQL is a query, then for each row in the query result
 ** the xCallback() function is called.  pArg becomes the first
@@ -58627,7 +58627,7 @@ struct sqlite3_api_routines {
   int  (*exec)(sqlite3*,const char*,sqlite3_callback,void*,char**);
   int  (*expired)(sqlite3_stmt*);
   int  (*finalize)(sqlite3_stmt*pStmt);
-  void  (*free)(void*);
+  void  (*ca2_free)(void*);
   void  (*free_table)(char**result);
   int  (*get_autocommit)(sqlite3*);
   void * (*get_auxdata)(sqlite3_context*,int);
@@ -58637,7 +58637,7 @@ struct sqlite3_api_routines {
   sqlite_int64  (*last_insert_rowid)(sqlite3*);
   const char * (*libversion)(void);
   int  (*libversion_number)(void);
-  void *(*malloc)(int);
+  void *(*ca2_alloc)(int);
   char * (*mprintf)(const char*,...);
   int  (*open)(const char*,sqlite3**);
   int  (*open16)(const void*,sqlite3**);
@@ -58645,7 +58645,7 @@ struct sqlite3_api_routines {
   int  (*prepare16)(sqlite3*,const void*,int,sqlite3_stmt**,const void**);
   void * (*profile)(sqlite3*,void(*)(void*,const char*,sqlite_uint64),void*);
   void  (*progress_handler)(sqlite3*,int,int(*)(void*),void*);
-  void *(*realloc)(void*,int);
+  void *(*ca2_realloc)(void*,int);
   int  (*reset)(sqlite3_stmt*pStmt);
   void  (*result_blob)(sqlite3_context*,const void*,int,void(*)(void*));
   void  (*result_double)(sqlite3_context*,double);
@@ -58790,7 +58790,7 @@ struct sqlite3_api_routines {
 #define sqlite3_exec                   sqlite3_api->exec
 #define sqlite3_expired                sqlite3_api->expired
 #define sqlite3_finalize               sqlite3_api->finalize
-#define sqlite3_free                   sqlite3_api->free
+#define sqlite3_free                   sqlite3_api->ca2_free
 #define sqlite3_free_table             sqlite3_api->free_table
 #define sqlite3_get_autocommit         sqlite3_api->get_autocommit
 #define sqlite3_get_auxdata            sqlite3_api->get_auxdata
@@ -58800,7 +58800,7 @@ struct sqlite3_api_routines {
 #define sqlite3_last_insert_rowid      sqlite3_api->last_insert_rowid
 #define sqlite3_libversion             sqlite3_api->libversion
 #define sqlite3_libversion_number      sqlite3_api->libversion_number
-#define sqlite3_malloc                 sqlite3_api->malloc
+#define sqlite3_malloc                 sqlite3_api->ca2_alloc
 #define sqlite3_mprintf                sqlite3_api->mprintf
 #define sqlite3_open                   sqlite3_api->open
 #define sqlite3_open16                 sqlite3_api->open16
@@ -58810,7 +58810,7 @@ struct sqlite3_api_routines {
 #define sqlite3_prepare16_v2           sqlite3_api->prepare16_v2
 #define sqlite3_profile                sqlite3_api->profile
 #define sqlite3_progress_handler       sqlite3_api->progress_handler
-#define sqlite3_realloc                sqlite3_api->realloc
+#define sqlite3_realloc                sqlite3_api->ca2_realloc
 #define sqlite3_reset                  sqlite3_api->reset
 #define sqlite3_result_blob            sqlite3_api->result_blob
 #define sqlite3_result_double          sqlite3_api->result_double
@@ -59168,7 +59168,7 @@ SQLITE_PRIVATE const sqlite3_api_routines sqlite3Apis = {
 ** Return SQLITE_OK on success and SQLITE_ERROR if something goes wrong.
 **
 ** If an error occurs and pzErrMsg is not 0, then fill *pzErrMsg with
-** error message text.  The calling function should free this primitive::memory
+** error message text.  The calling function should ca2_free this primitive::memory
 ** by calling sqlite3_free().
 */
 static int sqlite3LoadExtension(
@@ -62123,7 +62123,7 @@ static void selectInnerLoop(
 ** then the KeyInfo structure is appropriate for initializing a virtual
 ** index to implement a DISTINCT test.
 **
-** Space to hold the KeyInfo structure is obtain from malloc.  The calling
+** Space to hold the KeyInfo structure is obtain from ca2_alloc.  The calling
 ** function is responsible for seeing that this structure is eventually
 ** freed.  add the KeyInfo structure to the P4 field of an opcode using
 ** P4_KEYINFO_HANDOFF is the usual way of dealing with this.
@@ -63678,7 +63678,7 @@ static void substSelect(sqlite3*, Select *, int, ExprList *);
 ** of the subquery rather the result set of the subquery.
 */
 static void substExpr(
-  sqlite3 *db,        /* Report malloc errors to this connection */
+  sqlite3 *db,        /* Report ca2_alloc errors to this connection */
   Expr *pExpr,        /* Expr in which substitution occurs */
   int iTable,         /* Table to be substituted */
   ExprList *pEList    /* Substitute expressions */
@@ -63717,7 +63717,7 @@ static void substExpr(
   }
 }
 static void substExprList(
-  sqlite3 *db,         /* Report malloc errors here */
+  sqlite3 *db,         /* Report ca2_alloc errors here */
   ExprList *pList,     /* List to scan and in which to make substitutes */
   int iTable,          /* Table to be substituted */
   ExprList *pEList     /* Substitute values */
@@ -63729,7 +63729,7 @@ static void substExprList(
   }
 }
 static void substSelect(
-  sqlite3 *db,         /* Report malloc errors here */
+  sqlite3 *db,         /* Report ca2_alloc errors here */
   Select *p,           /* SELECT statement in which to make substitutions */
   int iTable,          /* Table to be replaced */
   ExprList *pEList     /* Substitute values */
@@ -64362,7 +64362,7 @@ SQLITE_PRIVATE void sqlite3SelectMask(Parse *pParse, Select *p, u32 mask){
 ** encountered, then an appropriate error message is left in
 ** pParse->zErrMsg.
 **
-** This routine does NOT free the Select structure passed in.  The
+** This routine does NOT ca2_free the Select structure passed in.  The
 ** calling function needs to do that.
 **
 ** The pParent, parentTab, and *pParentAgg fields are filled in if this
@@ -65197,11 +65197,11 @@ malloc_failed:
 
 /*
 ** Query the database.  But instead of invoking a callback for each row,
-** malloc() for space to hold the result and return the entire results
+** ca2_alloc() for space to hold the result and return the entire results
 ** at the conclusion of the call.
 **
 ** The result that is written to ***pazResult is held in primitive::memory obtained
-** from malloc().  But the caller cannot free this primitive::memory directly.
+** from ca2_alloc().  But the caller cannot ca2_free this primitive::memory directly.
 ** Instead, the entire table should be passed to sqlite3_free_table() when
 ** the calling procedure is finished using it.
 */
@@ -66866,7 +66866,7 @@ static int execExecSql(sqlite3 *db, const char *zSql){
 
 /*
 ** The non-standard VACUUM command is used to clean up the database,
-** collapse free space, etc.  It is modelled after the VACUUM command
+** collapse ca2_free space, etc.  It is modelled after the VACUUM command
 ** in PostgreSQL.
 **
 ** In version 1.0.x of SQLite, the VACUUM command would call
@@ -67810,7 +67810,7 @@ SQLITE_PRIVATE int sqlite3VtabBegin(sqlite3 *db, sqlite3_vtab *pVtab){
 ** SQLITE_FUNC_EPHEM flag.
 */
 SQLITE_PRIVATE FuncDef *sqlite3VtabOverloadFunction(
-  sqlite3 *db,    /* Database connection for reporting malloc problems */
+  sqlite3 *db,    /* Database connection for reporting ca2_alloc problems */
   FuncDef *pDef,  /* Function to possibly overload */
   int nArg,       /* Number of arguments to the function */
   Expr *pExpr     /* First argument to the function */
@@ -69741,7 +69741,7 @@ static int codeAllEqualityTerms(
 ** analysis only.
 */
 SQLITE_API char sqlite3_query_plan[BMS*2*40];  /* Text of the join */
-static int nQPlan = 0;              /* Next free slow in _query_plan[] */
+static int nQPlan = 0;              /* Next ca2_free slow in _query_plan[] */
 
 #endif /* SQLITE_TEST */
 
@@ -70623,7 +70623,7 @@ SQLITE_PRIVATE WhereInfo *sqlite3WhereBegin(
   whereClauseClear(&wc);
   return pWInfo;
 
-  /* Jump here if malloc fails */
+  /* Jump here if ca2_alloc fails */
 whereBeginNoMem:
   whereClauseClear(&wc);
   whereInfoFree(pWInfo);
@@ -70822,7 +70822,7 @@ struct AttachKey { int type;  Token key; };
 **                       which is sqlite3ParserTOKENTYPE.  The entry in the union
 **                       for base tokens is called "yy0".
 **    YYSTACKDEPTH       is the maximum depth of the parser's stack.  If
-**                       zero the stack is dynamically sized using realloc()
+**                       zero the stack is dynamically sized using ca2_realloc()
 **    sqlite3ParserARG_SDECL     A static var declaration for the %extra_argument
 **    sqlite3ParserARG_PDECL     A parameter declaration for the %extra_argument
 **    sqlite3ParserARG_STORE     Code to store %extra_argument into yypParser
@@ -71945,7 +71945,7 @@ static void yyGrowStack(yyParser *p){
   yyStackEntry *pNew;
 
   newSize = p->yystksz*2 + 100;
-  pNew = realloc(p->yystack, newSize*sizeof(pNew[0]));
+  pNew = ca2_realloc(p->yystack, newSize*sizeof(pNew[0]));
   if( pNew ){
     p->yystack = pNew;
     p->yystksz = newSize;
@@ -71962,7 +71962,7 @@ static void yyGrowStack(yyParser *p){
 /*
 ** This function allocates a new parser.
 ** The only argument is a pointer to a function which works like
-** malloc.
+** ca2_alloc.
 **
 ** Inputs:
 ** A pointer to the function used to allocate primitive::memory.
@@ -72089,7 +72089,7 @@ static int yy_pop_parser_stack(yyParser *pParser){
 ** <li>  A pointer to the parser.  This should be a pointer
 **       obtained from sqlite3ParserAlloc.
 ** <li>  A pointer to a function used to reclaim primitive::memory obtained
-**       from malloc.
+**       from ca2_alloc.
 ** </ul>
 */
 SQLITE_PRIVATE void sqlite3ParserFree(
@@ -72100,7 +72100,7 @@ SQLITE_PRIVATE void sqlite3ParserFree(
   if( pParser==0 ) return;
   while( pParser->yyidx>=0 ) yy_pop_parser_stack(pParser);
 #if YYSTACKDEPTH<=0
-  free(pParser->yystack);
+  ca2_free(pParser->yystack);
 #endif
   (*freeProc)((void*)pParser);
 }
@@ -75194,7 +75194,7 @@ SQLITE_API void sqlite3_interrupt(sqlite3 *db){
 /*
 ** This function is exactly the same as sqlite3_create_function(), except
 ** that it is designed to be called by internal code. The difference is
-** that if a malloc() fails in sqlite3_create_function(), an error code
+** that if a ca2_alloc() fails in sqlite3_create_function(), an error code
 ** is returned and the mallocFailed flag cleared.
 */
 SQLITE_PRIVATE int sqlite3CreateFunc(
@@ -75593,7 +75593,7 @@ SQLITE_API const void *sqlite3_errmsg16(sqlite3 *db){
 
 /*
 ** Return the most recent error code generated by an SQLite routine. If NULL is
-** passed to this function, we assume a malloc() failed during sqlite3_open().
+** passed to this function, we assume a ca2_alloc() failed during sqlite3_open().
 */
 SQLITE_API int sqlite3_errcode(sqlite3 *db){
   if( db && !sqlite3SafetyCheckSickOrOk(db) ){
@@ -75749,7 +75749,7 @@ static int openDatabase(
 
   /* add the default collation sequence BINARY. BINARY works for both UTF-8
   ** and UTF-16, so add a version for each to avoid any unnecessary
-  ** conversions. The only error that can occur here is a malloc() failure.
+  ** conversions. The only error that can occur here is a ca2_alloc() failure.
   */
   createCollation(db, "BINARY", SQLITE_UTF8, 0, binCollFunc, 0);
   createCollation(db, "BINARY", SQLITE_UTF16BE, 0, binCollFunc, 0);
@@ -76027,7 +76027,7 @@ SQLITE_API int sqlite3_collation_needed16(
 #ifndef SQLITE_OMIT_GLOBALRECOVER
 /*
 ** This function is now an anachronism. It used to be used to recover from a
-** malloc() failure, but SQLite now does this automatically.
+** ca2_alloc() failure, but SQLite now does this automatically.
 */
 SQLITE_API int sqlite3_global_recover(void){
   return SQLITE_OK;
@@ -76972,7 +76972,7 @@ static int fts3GetVarint32(const char *p, int *pi){
 **
 ** dataBufferInit - create a buffer with given initial capacity.
 ** dataBufferReset - forget buffer's data, retaining capacity.
-** dataBufferDestroy - free buffer's data.
+** dataBufferDestroy - ca2_free buffer's data.
 ** dataBufferSwap - swap contents of two buffers.
 ** dataBufferExpand - expand capacity without adding data.
 ** dataBufferAppend - append data.
@@ -76980,7 +76980,7 @@ static int fts3GetVarint32(const char *p, int *pi){
 ** dataBufferReplace - replace buffer's data.
 */
 typedef struct DataBuffer {
-  char *pData;          /* Pointer to malloc'ed buffer. */
+  char *pData;          /* Pointer to ca2_alloc'ed buffer. */
   int nCapacity;        /* Size of pData buffer. */
   int nData;            /* End of data loaded into pData. */
 } DataBuffer;
@@ -77006,7 +77006,7 @@ static void dataBufferSwap(DataBuffer *pBuffer1, DataBuffer *pBuffer2){
 static void dataBufferExpand(DataBuffer *pBuffer, int nAddCapacity){
   assert( nAddCapacity>0 );
   /* TODO(shess) Consider expanding more aggressively.  Note that the
-  ** underlying malloc implementation may take care of such things for
+  ** underlying ca2_alloc implementation may take care of such things for
   ** us already.
   */
   if( pBuffer->nData+nAddCapacity>pBuffer->nCapacity ){
@@ -77261,7 +77261,7 @@ static void docListValidate(DocListType iType, const char *pData, int nData,
 ** always appends to the buffer and does not own it.
 **
 ** dlwInit - initialize to write a given type doclistto a buffer.
-** dlwDestroy - clear the writer's primitive::memory.  Does not free buffer.
+** dlwDestroy - clear the writer's primitive::memory.  Does not ca2_free buffer.
 ** dlwAppend - append raw doclist data to buffer.
 ** dlwCopy - copy next doclist from reader to writer.
 ** dlwAdd - construct doclist element and append to buffer.
@@ -77566,7 +77566,7 @@ static void plwDestroy(PLWriter *pWriter){
 /* DLCollector wraps PLWriter and DLWriter to provide a
 ** dynamically-allocated doclist area to use during tokenization.
 **
-** dlcNew - malloc up and initialize a collector.
+** dlcNew - ca2_alloc up and initialize a collector.
 ** dlcDelete - destroy a collector and all contained items.
 ** dlcAddPos - append position and offset information.
 ** dlcAddDoclist - add the collected doclist to the given buffer.
@@ -77581,8 +77581,8 @@ typedef struct DLCollector {
 /* TODO(shess) This could also be done by calling plwTerminate() and
 ** dataBufferAppend().  I tried that, expecting nominal performance
 ** differences, but it seemed to pretty reliably be worth 1% to code
-** it this way.  I suspect it is the incremental malloc overhead (some
-** percentage of the plwTerminate() calls will cause a realloc), so
+** it this way.  I suspect it is the incremental ca2_alloc overhead (some
+** percentage of the plwTerminate() calls will cause a ca2_realloc), so
 ** this might be worth revisiting if the DataBuffer implementation
 ** changes.
 */
@@ -78255,7 +78255,7 @@ static char *string_dup_n(const char *s, int n){
   return str;
 }
 
-/* Duplicate a string; the caller must free() the returned string.
+/* Duplicate a string; the caller must ca2_free() the returned string.
  * (We don't use strdup() since it is not part of the standard C library and
  * may not be available everywhere.) */
 static char *string_dup(const char *s){
@@ -78265,7 +78265,7 @@ static char *string_dup(const char *s){
 /* Format a string, replacing each occurrence of the % character with
  * zDb.zName.  This may be more convenient than sqlite_mprintf()
  * when one string is used repeatedly in a format string.
- * The caller must free() the returned string. */
+ * The caller must ca2_free() the returned string. */
 static char *string_format(const char *zFormat,
                            const char *zDb, const char *zName){
   const char *p;
@@ -78400,7 +78400,7 @@ typedef struct QueryTerm {
 typedef struct Query {
   fulltext_vtab *pFts;  /* The full text index */
   int nTerms;           /* Number of terms in the query */
-  QueryTerm *pTerms;    /* Array of terms.  Space obtained from malloc() */
+  QueryTerm *pTerms;    /* Array of terms.  Space obtained from ca2_alloc() */
   int nextIsOr;         /* Set the isOr flag on the next inserted term */
   int nextIsNear;       /* Set the isOr flag on the next inserted term */
   int nextColumn;       /* Next word parsed must be in this column */
@@ -78422,7 +78422,7 @@ typedef struct Snippet {
     int iToken;          /* The index of the matching document token */
     short int nByte;     /* Number of bytes in the term */
     int iStart;          /* The offset to the first character of the term */
-  } *aMatch;      /* Points to space obtained from malloc */
+  } *aMatch;      /* Points to space obtained from ca2_alloc */
   char *zOffset;  /* Text rendering of aMatch[] */
   int nOffset;    /* strlen(zOffset) */
   char *zSnippet; /* Snippet text */
@@ -78488,7 +78488,7 @@ static const char *const fulltext_zStatement[MAX_STMT] = {
 /*
 ** A connection to a fulltext index is an instance of the following
 ** structure.  The xCreate and xConnect methods create an instance
-** of this structure and xDestroy and xDisconnect free that instance.
+** of this structure and xDestroy and xDisconnect ca2_free that instance.
 ** All other methods receive a pointer to the structure as one of their
 ** arguments.
 */
@@ -78517,7 +78517,7 @@ struct fulltext_vtab {
 
   /* These buffer pending index updates during transactions.
   ** nPendingData estimates the primitive::memory size of the pending data.  It
-  ** doesn't include the hash-bucket overhead, nor any malloc
+  ** doesn't include the hash-bucket overhead, nor any ca2_alloc
   ** overhead.  When nPendingData exceeds kPendingThreshold, the
   ** buffer is flushed even before the transaction closes.
   ** pendingTerms stores the data, and is only valid when nPendingData
@@ -79096,7 +79096,7 @@ typedef struct FtsToken {
 ** The returned base_array is terminated by a single NULL pointer.
 **
 ** Space to hold the returned base_array is obtained from a single
-** malloc and should be freed by passing the return value to free().
+** ca2_alloc and should be freed by passing the return value to ca2_free().
 ** The individual strings within the token list are all a part of
 ** the single primitive::memory allocation and will all be freed at once.
 */
@@ -82159,7 +82159,7 @@ static int loadSegmentLeavesInt(fulltext_vtab *v, LeavesReader *pReader,
           DataBuffer *p;
           nMaxBuffers += 20;
 
-          /* Manual realloc so we can handle NULL appropriately. */
+          /* Manual ca2_realloc so we can handle NULL appropriately. */
           p = sqlite3_malloc(nMaxBuffers*sizeof(*pBuffers));
           if( p==NULL ){
             rc = SQLITE_NOMEM;
@@ -82580,7 +82580,7 @@ static int writeZeroSegment(fulltext_vtab *v, fts3Hash *pTerms){
   return rc;
 }
 
-/* If pendingTerms has data, free it. */
+/* If pendingTerms has data, ca2_free it. */
 static int clearPendingTerms(fulltext_vtab *v){
   if( v->nPendingData>=0 ){
     fts3HashElem *e;
@@ -82594,7 +82594,7 @@ static int clearPendingTerms(fulltext_vtab *v){
 }
 
 /* If pendingTerms has data, flush it to a level-zero segment, and
-** free it.
+** ca2_free it.
 */
 static int flushPendingTerms(fulltext_vtab *v){
   if( v->nPendingData>=0 ){
@@ -83240,7 +83240,7 @@ SQLITE_PRIVATE void *sqlite3Fts3HashFind(const fts3Hash *pH, const void *pKey, i
 **
 ** If another element already exists with the same key, then the
 ** new data replaces the old data and the old data is returned.
-** The key is not copied in this instance.  If a malloc fails, then
+** The key is not copied in this instance.  If a ca2_alloc fails, then
 ** the new data is returned and the hash table is unchanged.
 **
 ** If the "data" parameter to this function is NULL, then the

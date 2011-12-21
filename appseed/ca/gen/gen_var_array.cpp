@@ -1,26 +1,34 @@
 #include "StdAfx.h"
 
+#define ROUND(x,y) (((x)+(y-1))&~(y-1))
+#define ROUND16(x) ROUND(x, 16)
+
 var_array::var_array()
 {
+   m_ptra.set_size(0, 16);
 }
 
 var_array::var_array(const stringa & stra)
 {
+   m_ptra.set_size(0, ROUND16(stra.get_size() + 16));
    operator = (stra);
 }
 
-var_array::var_array(const int_array & inta)
+var_array::var_array(const int_array & ia)
 {
-   operator = (inta);
+   m_ptra.set_size(0, ROUND16(ia.get_size() + 16));
+   operator = (ia);
 }
 
 var_array::var_array(const gen::property_set & propset)
 {
+   m_ptra.set_size(0, ROUND16(propset.m_propertya.get_size() + 16));
    operator = (propset);
 }
 
 var_array::var_array(const var_array & vara)
 {
+   m_ptra.set_size(0, ROUND16(vara.get_size() + 16));
    operator = (vara);
 }
 

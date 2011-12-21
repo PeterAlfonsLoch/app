@@ -6,10 +6,10 @@
 void use_base_ca2_allocator()
 {
 
-   g_pfnca2_alloc       = &_ca2_alloc;
-   g_pfnca2_alloc_dbg   = &_ca2_alloc_dbg;
-   g_pfnca2_realloc     = &_ca2_realloc;
-   g_pfnca2_free        = &_ca2_free;
+   g_pfnca2_alloc       = &base_ca2_alloc;
+   g_pfnca2_alloc_dbg   = &base_ca2_alloc_dbg;
+   g_pfnca2_realloc     = &base_ca2_realloc;
+   g_pfnca2_free        = &base_ca2_free;
    g_pfnca2_msize       = &_ca2_msize;
 
 }

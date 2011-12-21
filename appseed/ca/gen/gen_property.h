@@ -533,6 +533,11 @@ namespace gen
       public ex1::byte_serializable_array < array_ptr_alloc < var_property, var_property & > >
    {
    public:
+      
+      
+      var_property_array();
+
+
    };
 
    class CLASS_DECL_ca property_set :

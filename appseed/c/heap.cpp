@@ -15,7 +15,7 @@ CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int iBlockType) = NULL;
 
 DECL_SPEC_ANY simple_mutex * g_pmutexCa2Alloc = NULL;
 
-
+BEGIN_EXTERN_C
 
 void * ca2_alloc(size_t size)
 {
@@ -64,6 +64,9 @@ size_t ca2_msize_dbg(void * pvoid, int iBlockType)
    mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_msize(pvoid, iBlockType);
 }
+
+
+END_EXTERN_C
 
 void * _ca_alloc(size_t size)
 {

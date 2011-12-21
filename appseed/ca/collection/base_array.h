@@ -519,7 +519,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+//   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
    AfxThrowInvalidArgException();

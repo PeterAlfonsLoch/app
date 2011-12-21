@@ -1,5 +1,8 @@
 #include "StdAfx.h"
 
+#define ROUND(x,y) (((x)+(y-1))&~(y-1))
+#define ROUND16(x) ROUND(x, 16)
+
 namespace gen
 {
    CLASS_DECL_ca new_property g_newproperty;
@@ -1623,7 +1626,10 @@ namespace gen
 
 
 
-
+   var_property_array::var_property_array()
+   {
+      m_ptra.set_size(0, 16);
+   }
 
 
 
