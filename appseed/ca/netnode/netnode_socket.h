@@ -44,7 +44,7 @@ namespace netnode
       dynamic_source::script_manager & script_manager();
 
 
-      virtual void simple_file_server(const char * psz, const char * pszRelative = NULL);
+      virtual void simple_file_server(const char * pszPath);
       virtual bool read_file(const char * lpcsz, array_ptr_alloc < int_array > * prangea = NULL, const char * pszContentType = NULL);
 
       virtual bool http_filter_response_header(string & strKey, string & strValue);

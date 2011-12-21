@@ -2622,7 +2622,49 @@ namespace dynamic_source
 
    void script_impl::simple_file_server(const char * psz, const char * pszRelative)
    {
-      m_pnetnodesocket->simple_file_server(psz, pszRelative);
+
+      string strRelative;
+      if(pszRelative != NULL)
+      {
+         strRelative = string(pszRelative);
+      }
+      else
+      {
+         strRelative = System.url().url_decode(System.url().get_script(inattr("request_uri")));
+      }
+      
+      string strPath;
+      
+      strPath = System.dir().path(psz, strRelative);
+
+      if(System.dir().is(strPath))
+      {
+         string strCandidate;
+         strCandidate = System.dir().path(strPath, "index.ds");
+         if(System.file().exists(strCandidate))
+         {
+            include(strCandidate);
+            return;
+         }
+         strCandidate = System.dir().path(strPath, "index.html");
+         if(System.file().exists(strCandidate))
+         {
+            strPath = strCandidate;
+            goto ok1;
+         }
+         strCandidate = System.dir().path(strPath, "index.htm");
+         if(System.file().exists(strCandidate))
+         {
+            strPath = strCandidate;
+            goto ok1;
+         }
+         return;
+      }
+
+ok1:
+
+      m_pnetnodesocket->simple_file_server(strPath);
+
    }
 
    bool script_impl::isset(var & var)

@@ -155,9 +155,11 @@ namespace netnode
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
-   void socket::simple_file_server(const char * psz, const char * pszRelative)
+   void socket::simple_file_server(const char * pszPath)
    {
+
       array_ptr_alloc < int_array > rangea;
+
       if(strlen(inheader("range")) > 0)
       {
          stringa straItem;
@@ -184,18 +186,9 @@ namespace netnode
             }
          }
       }
-      string strRelative;
-      if(pszRelative != NULL)
-      {
-         strRelative = string(pszRelative);
-      }
-      else
-      {
-         strRelative = System.url().url_decode(System.url().get_script(inattr("request_uri")));
-      }
-      string strPath;
-      strPath = System.dir().path(psz, strRelative);
-      read_file(strPath, &rangea);
+
+      read_file(pszPath, &rangea);
+
    }
 
 

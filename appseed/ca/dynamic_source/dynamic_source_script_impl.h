@@ -524,6 +524,9 @@ namespace dynamic_source
       virtual class time datetime_strtotime(const char * psz, class time t);
 
       virtual void fontopus_ds_url_update_named();
+
+
+
    };
 
 
