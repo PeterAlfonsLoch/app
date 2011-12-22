@@ -190,7 +190,7 @@
 		CEA7AA1414412789007E04DE /* _math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _math.cpp; sourceTree = "<group>"; };
 		CEA7AA1514412789007E04DE /* _mem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _mem.cpp; sourceTree = "<group>"; };
 		CEA7AA1614412789007E04DE /* _printf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _printf.cpp; sourceTree = "<group>"; };
-		CEA7AA1714412789007E04DE /* _std_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = _std_file.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		CEA7AA1714412789007E04DE /* _std_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = _std_file.cpp; sourceTree = "<group>"; };
 		CEA7AA1914412789007E04DE /* atol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atol.h; sourceTree = "<group>"; };
 		CEA7AA2114412789007E04DE /* c_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_c.h; sourceTree = "<group>"; };
 		CEA7AA2214412789007E04DE /* c_natural.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_natural.h; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 		CEA7AA9214412789007E04DE /* spa_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_window.h; sourceTree = "<group>"; };
 		CEA7AA9A14412789007E04DE /* sprintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sprintf.cpp; sourceTree = "<group>"; };
 		CEA7AA9B14412789007E04DE /* sprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sprintf.h; sourceTree = "<group>"; };
-		CEA7AA9C14412789007E04DE /* std_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = std_file.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		CEA7AA9C14412789007E04DE /* std_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = std_file.h; sourceTree = "<group>"; };
 		CEA7AA9D14412789007E04DE /* StdAfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
 		CEA7AA9E14412789007E04DE /* str.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = str.cpp; sourceTree = "<group>"; };
 		CEA7AA9F14412789007E04DE /* str.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = str.h; sourceTree = "<group>"; };
@@ -693,6 +693,9 @@
 /* Begin PBXProject section */
 		CEA754BB14411F2B007E04DE /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "c" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -883,7 +886,8 @@
 				);
 				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Debug;
 		};
@@ -909,7 +913,8 @@
 				);
 				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Release;
 		};

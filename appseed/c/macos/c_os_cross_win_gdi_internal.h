@@ -24,7 +24,7 @@ typedef int wxCoord;
 enum { wxDefaultCoord = -1 };
 
 
-class CLASS_DECL_____ wxSize
+class CLASS_DECL_c wxSize
 {
 public:
     // members are public for compatibility, don't use them directly.
