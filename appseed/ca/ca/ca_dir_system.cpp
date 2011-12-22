@@ -143,7 +143,7 @@ namespace ca
       {
          if(gen::str::ends_ci(lpcszPath, ".zip"))
             return true;
-         if(gen::str::find_ci(".zip:", lpcszPath))
+         if(gen::str::find_ci(".zip:", lpcszPath) >= 0)
          {
             bool bHasSubFolder;
             if(m_isdirmap.lookup(lpcszPath, bHasSubFolder))
@@ -152,7 +152,6 @@ namespace ca
             m_isdirmap.set(lpcszPath, bHasSubFolder);
             return bHasSubFolder;
          }
-         m_isdirmap.set(lpcszPath, false);
          return false;
       }
 
@@ -163,7 +162,7 @@ namespace ca
          is_dir isdir;
          if(Lookup(pszPath, isdir))
          {
-            if(isdir.m_dwLastCheck + m_dwTimeOut > ::GetTickCount())
+            if(::GetTickCount() > isdir.m_dwLastCheck + m_dwTimeOut)
             {
                return false;
             }
