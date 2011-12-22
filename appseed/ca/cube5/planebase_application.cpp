@@ -162,6 +162,9 @@ namespace planebase
    int application::pre_run()
    {
 
+      m_dir.m_psystem = m_psystem;
+      m_file.m_psystem = m_psystem;
+
       MSG msg;
 
       ::PeekMessageA(&msg, NULL, 0, 0xffff, 0);

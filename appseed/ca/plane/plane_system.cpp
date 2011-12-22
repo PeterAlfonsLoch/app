@@ -27,7 +27,11 @@ namespace plane
    system::system()
    {
 
-      m_psystem                  = this;
+      m_psystem                                 = this;
+      m_file.m_psystem                          = this;
+      ::plane::application::m_file.m_psystem    = this;
+      m_dir.m_psystem                           = this;
+      ::plane::application::m_dir.m_psystem     = this;
 
 
       if(::get_heap_mutex() == NULL)
