@@ -110,11 +110,19 @@ namespace ca
 
    bool type_info::operator == (const std_type_info & info) const
    {
+      #ifdef WINDOWS
       return m_id == info.raw_name();
+      #else
+      return m_id == info.name();
+      #endif
    }
    bool type_info::operator != (const std_type_info & info) const
    {
+       #ifdef WINDOWS
       return m_id != info.raw_name();
+      #else
+      return m_id != info.name();
+      #endif
    }
 
    bool type_info::operator == (const char * pszRawName) const
@@ -147,11 +155,19 @@ namespace ca
 
 CLASS_DECL_ca bool operator == (const std_type_info & info1, ::ca::type_info info2)
 {
+   #ifdef WINDOWS
    return !strcmp(info1.raw_name(), info2.raw_name());
+   #else
+   return !strcmp(info1.name(), info2.raw_name());
+   #endif
 }
 
 CLASS_DECL_ca bool operator != (const std_type_info & info1, ::ca::type_info info2)
 {
+   #ifdef WINDOWS
    return !strcmp(info1.raw_name(), info2.raw_name());
+   #else
+   return !strcmp(info1.name(), info2.raw_name());
+   #endif
 }
 

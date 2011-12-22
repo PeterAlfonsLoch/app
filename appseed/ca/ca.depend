@@ -1,2032 +1,13 @@
 # depslib dependency file v1.0
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/allocate.cpp
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/StdAfx.cpp
 	"StdAfx.h"
-	<windows.h>
-	<windows.h>
 
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/StdAfx.h
+1324450407 /home/carlos/Desktop/cecyn1/app/appseed/ca/StdAfx.h
 	"ca.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca.h
-	"radix.h"
-	"rotate.h"
-	<crtdbg.h>
-	"debug.h"
-	"linux/linux.h"
-	"allocate.h"
-	"count.h"
-	"muldiv64.h"
-	"geometric_types.h"
-	"str.h"
-	"zlib/zconf.h"
-	"zlib/zlib.h"
-	"zlib/zutil.h"
-	"sqlite/sqlite.h"
-	"libcharguess/libcharguess.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/radix.h
-	"c/c.h"
-	"ca_seed.h"
-	"vms/vms.h"
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/c.h
-	"radix.h"
-	"version.h"
-	"types.h"
-	"natural.h"
-	"cpu_architecture.h"
-	"_libct.h"
-	"printf.h"
-	"sprintf.h"
-	"str.h"
-	"std_file.h"
-	"atol.h"
-	"count.h"
-	"index.h"
-	"keep_true.h"
-	"heap.h"
-	"gdi.h"
-	"mem.h"
-	"math.h"
-	"verisimple_string.h"
-	"verisimple_wstring.h"
-	"vsstringtow.h"
-	"wstringtovss.h"
-	"dir.h"
-	"md5.h"
-	"simple_obj.h"
-	"template.h"
-	"simple_array.h"
-	"simple_map.h"
-	"stra.h"
-	"xmlite.h"
-	"file.h"
-	"launcher.h"
-	"small_ipc_channel.h"
-	"simple_mutex.h"
-	"simple_event.h"
-	"mutex_lock.h"
-	"event_wait.h"
-	"simple_critical_section.h"
-	"library.h"
-	"hotplugin/hotplugin.h"
-	"spa/spa.h"
-	"bsdiff/bsdiff.h"
-	"macos/c_os.h"
-	"linux/c_os.h"
-	"windows/c_os.h"
-	"message_loop.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/radix.h
-	"ca_seed.h"
-	"vms/vms.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/ca_seed.h
-	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
-	"os/macos/operational_system/_.h"
-	"os/linux/operational_system/_.h"
-	"os/windows/operational_system/_.h"
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
-
-1320497602 /cecyn1.at.hotmail.com/app/os/linux/operational_system/_.h
-	"get_platform.h"
-	<pthread.h>
-	<sys/resource.h>
-
-1320500771 /cecyn1.at.hotmail.com/app/os/linux/operational_system/get_platform.h
-	<inttypes.h>
-	<stdlib.h>
-	"linux32_system.h"
-	"bare_operational_system.h"
-	"cross/win/win.h"
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/linux32_system.h
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/types.h
-	"c_types.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/c_types.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/natural.h
-
-1320499369 /cecyn1.at.hotmail.com/app/os/linux/operational_system/bare_operational_system.h
-	<stdlib.h>
-	<unistd.h>
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	<stdlib.h>
-	<string.h>
-	<stdio.h>
-	<stdarg.h>
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/version_linux.h
-	<stdlib.h>
-	<stdio.h>
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/version_cpu.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/version_dll.h
-
-1320503131 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win.h
-	"base_tsd.h"
-	"win_def.h"
-	"win_error.h"
-	"win_base.h"
-	"win_gdi.h"
-	"win_user.h"
-	"win_errno.h"
-	"win_crtdefs.h"
-	"win_nls.h"
-	"win_file.h"
-	"win_mmsystem.h"
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/base_tsd.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_def.h
-	"win_nt.h"
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_nt.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_error.h
-
-1320497832 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_base.h
-
-1320507429 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_gdi.h
-
-1320498964 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_user.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_errno.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_crtdefs.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_nls.h
-	<macwin32.h>
-
-1320497017 /cecyn1.at.hotmail.com/app/os/windows/operational_system/_.h
-	"get_platform.h"
-
-1320497017 /cecyn1.at.hotmail.com/app/os/windows/operational_system/get_platform.h
-	"inttypes.h"
-	"win32_system.h"
-	"bare_operational_system.h"
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/inttypes.h
-	"stdint.h"
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/stdint.h
-	<limits.h>
-	<wchar.h>
-
-1320497017 /cecyn1.at.hotmail.com/app/os/windows/operational_system/win32_system.h
-
-1320497017 /cecyn1.at.hotmail.com/app/os/windows/operational_system/bare_operational_system.h
-	"version_windows.h"
-	"version_cpu.h"
-	<afxv_cfg.h>
-	"version_dll.h"
-	"version_cpu.h"
-	"cross/cross.h"
-
-1320497017 /cecyn1.at.hotmail.com/app/os/windows/operational_system/version_windows.h
-	<windows.h>
-	<shlwapi.h>
-	<zmouse.h>
-	<commctrl.h>
-	<tchar.h>
-	<mbctype.h>
-	<mbstring.h>
-	<winsock2.h>
-	<ws2tcpip.h>
-	<Psapi.h>
-	<MMSystem.h>
-	<ole2.h>
-	<winsock2.h>
-	<ws2tcpip.h>
-	<tpipv6.h>
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/version_cpu.h
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/version_dll.h
-
-1320453944 /cecyn1.at.hotmail.com/app/appseedcore/ca2/vms/vms.h
-	"veriwell_musical_studio.h"
-
-1320453944 /cecyn1.at.hotmail.com/app/appseedcore/ca2/vms/veriwell_musical_studio.h
-
-1320475084 /cecyn1.at.hotmail.com/app/appseedcore/c/cpu_architecture.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/_libct.h
-	<tchar.h>
-	"_heap.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/_heap.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/printf.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/sprintf.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/str.h
-
-1320497474 /cecyn1.at.hotmail.com/app/appseedcore/c/std_file.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/atol.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/count.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/index.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/keep_true.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/heap.h
-	"_heap.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/gdi.h
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/mem.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/math.h
-
-1320474723 /cecyn1.at.hotmail.com/app/appseedcore/c/verisimple_string.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/verisimple_wstring.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/vsstringtow.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/wstringtovss.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/dir.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/md5.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_obj.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/template.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_array.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_map.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/stra.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/xmlite.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/file.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/launcher.h
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/small_ipc_channel.h
-	<pthread.h>
-	<pthread.h>
-	"simple_mutex.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_mutex.h
-	<sys/sem.h>
-	<pthread.h>
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/mutex_lock.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_critical_section.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/library.h
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin.h
-	"hotplugin_plugin.h"
-	"hotplugin_host.h"
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin_plugin.h
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/hotplugin/hotplugin_host.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa.h
-	"spa_spa.h"
-	"spa_starter_start.h"
-	"spa_boot.h"
-	"spa_cube_run.h"
-	"spa_small_bell.h"
-	"spa_install_ca2.h"
-	"spa_canvas.h"
-	"spa_window.h"
-	"spa_trace.h"
-	"spa_machine_event_data.h"
-	"spa_machine_event.h"
-	"spa_installer.h"
-	"resource.h"
-	"spa_machine_event_data.h"
-	"spa_focus.h"
-	"spa_machine_event_data.h"
-	"spa_machine_event.h"
-	"spa_http.h"
-	"spa_plugin.h"
-	"spa_installer.h"
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_spa.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_starter_start.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_boot.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_cube_run.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_small_bell.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_install_ca2.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_canvas.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_window.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_trace.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_machine_event_data.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_machine_event.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_installer.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/resource.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_focus.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_http.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/spa/spa_plugin.h
-
-1319264203 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux.h
-	<stdarg.h>
-	<wchar.h>
-	"linux_http_lib.h"
-	"linux_http.h"
-	"linux_process.h"
-	"linux_cross_win_gdi.h"
-	"linux_cross_win_file.h"
-	"linux_binreloc.h"
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_http_lib.h
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_http.h
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_process.h
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_cross_win_gdi.h
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_cross_win_file.h
-
-1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows.h
-	"windows_http.h"
-	"windows_registry.h"
-	"windows_process.h"
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/http.h
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/registry.h
-
-1318390302 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/process.h
-	<ShellAPI.h>
-	<ShellAPI.h>
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_seed.h
-	"os/linux/operational_system/ca2.h"
-	"os/windows/operational_system/ca2.h"
-	<vadefs.h>
-	<stdarg.h>
-	"ca_base.h"
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/ca2.h
-	"include/linux_system.h"
-	<typeinfo.h>
-	"include/inttypes.h"
-	<typeinfo>
-	<inttypes.h>
-	"operational_system.h"
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/operational_system.h
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	<stddef.h>
-	<limits.h>
-	<malloc.h>
-	<netinet/in.h>
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/ca2.h
-	"win32_system.h"
-	<typeinfo.h>
-	"inttypes.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_base.h
-	"ca_ca.h"
-	"ca_live_object.h"
-	"ca_log.h"
-	"ca_main_init_data.h"
-	"ca_application.h"
-	"ca_bergedge.h"
-	"ca_system.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_ca.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_live_object.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_log.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_application.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_bergedge.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_system.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/rotate.h
-	<stdlib.h>
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/debug.h
-
-1320453828 /cecyn1.at.hotmail.com/app/appseedcore/ca/linux/linux.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/allocate.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/count.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/muldiv64.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/geometric_types.h
-	"muldiv64.h"
-	"align.h"
-	"size.h"
-	"point.h"
-	"rectangle.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/align.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/size.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/point.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/rectangle.h
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/ca_application.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/ca_bergedge.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/ca_c.c
-	"ca_c.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_c.h
-	"c/c_c.h"
-	"rotate.h"
-	"zlib/zlib.h"
-	"zlib/zutil.h"
-	"sqlite/sqlite.h"
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/c_c.h
-	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
-	"version.h"
-	"os/macos/operational_system/get_platform.h"
-	"os/linux/operational_system/get_platform.h"
-	"os/windows/operational_system/get_platform.h"
-	"c_types.h"
-	"c_natural.h"
-	"cpu_architecture.h"
-	"_libct.h"
-	"_heap.h"
-	"std_file.h"
-	"bsdiff/bsdiff.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/c_natural.h
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/ca_ca.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/ca_log.cpp
-	"StdAfx.h"
-	<stdio.h>
-	<windows.h>
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/ca_system.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/geometric_types.cpp
-	"StdAfx.h"
-
-1320453828 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/linux/linux.cpp
-	"StdAfx.h"
-	<sys/times.h>
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/muldiv64.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/mutex_lock.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/point.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/rectangle.cpp
-	"StdAfx.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/size.cpp
-	"StdAfx.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/ca_main_init_data.h
-
-1320453733 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_file.h
-
-1320497017 /cecyn1.at.hotmail.com/app/os/macos/operational_system/_.h
-	"get_platform.h"
-	<pthread.h>
-	<sys/resource.h>
-
-1320497017 /cecyn1.at.hotmail.com/app/os/macos/operational_system/get_platform.h
-	<inttypes.h>
-	<stdlib.h>
-	"macos_system.h"
-	"bare_operational_system.h"
-	"cross/win/win.h"
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/macos_system.h
-
-1320497017 /cecyn1.at.hotmail.com/app/os/macos/operational_system/bare_operational_system.h
-	<stdlib.h>
-	<unistd.h>
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	"cross/win/win.h"
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/version_linux.h
-	<stdlib.h>
-	<stdio.h>
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/version_cpu.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/version_dll.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win.h
-	"base_tsd.h"
-	"win_def.h"
-	"win_error.h"
-	"win_base.h"
-	"win_gdi.h"
-	"win_user.h"
-	"win_errno.h"
-	"win_crtdefs.h"
-	"win_nls.h"
-	"win_file.h"
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/base_tsd.h
-
-1320497016 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_def.h
-	"win_nt.h"
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_nt.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_error.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_base.h
-
-1320497016 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_gdi.h
-
-1320497016 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_user.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_errno.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_crtdefs.h
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_nls.h
-	<macwin32.h>
-
-1320453741 /cecyn1.at.hotmail.com/app/os/macos/operational_system/cross/win/win_file.h
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/cross/cross.h
-	"general/general.h"
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/cross/general/general.h
-	"general_windows.h"
-
-1320453745 /cecyn1.at.hotmail.com/app/os/windows/operational_system/cross/general/general_windows.h
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/simple_event.h
-	<pthread.h>
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/event_wait.h
-
-1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos.h
-	<stdarg.h>
-	<wchar.h>
-	"macos_http_lib.h"
-	"macos_http.h"
-	"macos_process.h"
-	"macos_cross_win_gdi.h"
-	"macos_cross_win_file.h"
-
-1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_http_lib.h
-
-1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_http.h
-
-1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_process.h
-
-1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_cross_win_gdi.h
-
-1318890745 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/macos_cross_win_file.h
-
-1319093259 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/linux_binreloc.h
-
-1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows_http.h
-
-1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows_registry.h
-
-1319255470 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/windows_process.h
-	<ShellAPI.h>
-	<ShellAPI.h>
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/message_loop.h
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/str.h
-
-1320453820 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/c_os.h
-	<stdarg.h>
-	<wchar.h>
-	"c_os_http_lib.h"
-	"c_os_http.h"
-	"c_os_process.h"
-	"c_os_cross_win_gdi.h"
-	"c_os_cross_win_file.h"
-
-1320453820 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/c_os_http_lib.h
-
-1320453820 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/c_os_http.h
-
-1320453820 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/c_os_process.h
-
-1320453820 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/c_os_cross_win_gdi.h
-
-1320453820 /cecyn1.at.hotmail.com/app/appseedcore/c/macos/c_os_cross_win_file.h
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os.h
-	<stdarg.h>
-	<wchar.h>
-	"c_os_http_lib.h"
-	"c_os_http.h"
-	"c_os_process.h"
-	"c_os_cross_win_gdi.h"
-	"c_os_cross_win_file.h"
-	"c_os_binreloc.h"
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os_http_lib.h
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os_http.h
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os_process.h
-
-1320475137 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os_cross_win_gdi.h
-
-1320453822 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os_cross_win_file.h
-
-1320475619 /cecyn1.at.hotmail.com/app/appseedcore/c/linux/c_os_binreloc.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/c_os.h
-	"c_os_http.h"
-	"c_os_registry.h"
-	"c_os_process.h"
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/c_os_http.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/c_os_registry.h
-
-1320453819 /cecyn1.at.hotmail.com/app/appseedcore/c/windows/c_os_process.h
-	<ShellAPI.h>
-	<ShellAPI.h>
-
-1320503239 /cecyn1.at.hotmail.com/app/os/linux/operational_system/cross/win/win_mmsystem.h
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/version.h
-	"version.config.h"
-
-1320453823 /cecyn1.at.hotmail.com/app/appseedcore/c/version.config.h
-
-1320453821 /cecyn1.at.hotmail.com/app/appseedcore/c/bsdiff/bsdiff.h
-	"bzlib.h"
-
-1320497017 /cecyn1.at.hotmail.com/app/appseedcore/c/bsdiff/bzlib.h
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/zconf.h
-	"c/c_c.h"
-	<windows.h>
-	<sys/types.h>
-	<unistd.h>
-	<unixio.h>
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/zlib.h
-	"zconf.h"
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/zutil.h
-	"zlib.h"
-	<stddef.h>
-	<stdlib.h>
-	<errno.h>
-	<alloc.h>
-	<malloc.h>
-	<malloc.h>
-	<unix.h>
-	<stdio.h>
-
-1320453842 /cecyn1.at.hotmail.com/app/appseedcore/ca/sqlite/sqlite.h
-	"ca/ca_c.h"
-	"sqlite3.h"
-
-1320453842 /cecyn1.at.hotmail.com/app/appseedcore/ca/sqlite/sqlite3.h
-	<stdarg.h>
-
-1320477449 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/libcharguess.h
-	"ca/ca.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCJPProber.cpp
-	"EUCJPProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCJPProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"jpCntx.h"
-	"charDistribution.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/charsetProber.h
-	"types.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/types.h
-	<stdlib.h>
-	<stdio.h>
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/codingStateMachine.h
-	"pkgInt.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/pkgInt.h
-	"types.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/jpCntx.h
-	"types.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/charDistribution.h
-	"types.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCKRProber.cpp
-	"EUCKRProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCKRProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCTWProber.cpp
-	"EUCTWProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCTWProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EscCharsetProber.cpp
-	"EscCharsetProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EscCharsetProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EscSM.cpp
-	"codingStateMachine.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/GB2312Prober.cpp
-	"GB2312Prober.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/GB2312Prober.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/LangBulgarianModel.cpp
-	"SBCharsetProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/SBCharsetProber.h
-	"charsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/LangCyrillicModel.cpp
-	"SBCharsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/LangGreekModel.cpp
-	"SBCharsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/LangHungarianModel.cpp
-	"SBCharsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/LangThaiModel.cpp
-	"SBCharsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/Latin1Prober.cpp
-	"Latin1Prober.h"
-	"types.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/Latin1Prober.h
-	"charsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/MBCSGroupProber.cpp
-	"types.h"
-	"MBCSGroupProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/MBCSGroupProber.h
-	"SJISProber.h"
-	"UTF8Prober.h"
-	"EUCJPProber.h"
-	"GB2312Prober.h"
-	"EUCKRProber.h"
-	"big5Prober.h"
-	"EUCTWProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/SJISProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"jpCntx.h"
-	"charDistribution.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/UTF8Prober.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/big5Prober.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/MBCSSM.cpp
-	"codingStateMachine.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/SBCSGroupProber.cpp
-	"SBCharsetProber.h"
-	"SBCSGroupProber.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/SBCSGroupProber.h
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/SBCharsetProber.cpp
-	<stdio.h>
-	"SBCharsetProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/SJISProber.cpp
-	"SJISProber.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/UTF8Prober.cpp
-	"UTF8Prober.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/big5Prober.cpp
-	"big5Prober.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/charDistribution.cpp
-	"charDistribution.h"
-	"JISFreq.tab"
-	"Big5Freq.tab"
-	"EUCKRFreq.tab"
-	"EUCTWFreq.tab"
-	"GB2312Freq.tab"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/JISFreq.tab
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/Big5Freq.tab
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCKRFreq.tab
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/EUCTWFreq.tab
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/GB2312Freq.tab
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/charguess.cpp
-	"universal.h"
-	"string.h"
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/universal.h
-	"types.h"
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/jpCntx.cpp
-	"types.h"
-	"jpCntx.h"
-
-1320476367 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/libcharguess.cpp
-	"libcharguess.h"
-	"charguess.h"
-	<string.h>
-	<windows.h>
-
-1320453845 /cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/charguess.h
-
-1320453845 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/libcharguess/universal.cpp
-	"universal.h"
-	"MBCSGroupProber.h"
-	"SBCSGroupProber.h"
-	"EscCharsetProber.h"
-	"Latin1Prober.h"
-
-1320500301 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/sqlite/sqlite3.c
-	"ca/ca_c.h"
-	<stdint.h>
-	<inttypes.h>
-	<tcl.h>
-	<stdarg.h>
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<assert.h>
-	<stddef.h>
-	<windows.h>
-	<os2safe.h>
-	<os2.h>
-	"sseInt.h"
-	<ctype.h>
-	<time.h>
-	<pthread.h>
-	<sys/types.h>
-	<sys/stat.h>
-	<fcntl.h>
-	<unistd.h>
-	<sys/time.h>
-	<errno.h>
-	<sys/ioctl.h>
-	<sys/param.h>
-	<sys/mount.h>
-	<dlfcn.h>
-	<winbase.h>
-	<sys/cygwin.h>
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/adler32.c
-	"zlib.h"
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/compress.c
-	"zlib.h"
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/crc32.c
-	<stdio.h>
-	"zutil.h"
-	<limits.h>
-	"crc32.h"
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/crc32.h
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/deflate.c
-	"deflate.h"
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/deflate.h
-	"zutil.h"
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/gzio.c
-	"zutil.h"
-	<stdio.h>
-	<stdarg.h>
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/infback.c
-	"zutil.h"
-	"inftrees.h"
-	"inflate.h"
-	"inffast.h"
-	"inffixed.h"
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inftrees.h
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inflate.h
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inffast.h
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inffixed.h
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inffast.c
-	"zutil.h"
-	"inftrees.h"
-	"inflate.h"
-	"inffast.h"
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inflate.c
-	"zutil.h"
-	"inftrees.h"
-	"inflate.h"
-	"inffast.h"
-	"inffixed.h"
-	<stdio.h>
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/inftrees.c
-	"zutil.h"
-	"inftrees.h"
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/trees.c
-	"deflate.h"
-	<ctype.h>
-	"trees.h"
-	<stdio.h>
-
-1320453827 /cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/trees.h
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/uncompr.c
-	"zlib.h"
-
-1320453827 source:/cecyn1.at.hotmail.com/app/appseedcore/ca/zlib/zutil.c
-	"zutil.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/allocate.cpp
-	"StdAfx.h"
-	<windows.h>
-	<windows.h>
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/StdAfx.h
-	"ca.h"
+	"optca/optca.h"
 
 1322961030 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca.h
 	"plane/plane.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/radix.h
-	"c/c.h"
-	"ca_seed.h"
-	"vms/vms.h"
-
-1323413797 /home/carlos/Desktop/cecyn1/app/appseed/c/c.h
-	"radix.h"
-	"version.h"
-	"types.h"
-	"natural.h"
-	"cpu_architecture.h"
-	"_libct.h"
-	"printf.h"
-	"sprintf.h"
-	"str.h"
-	"std_file.h"
-	"atol.h"
-	"count.h"
-	"index.h"
-	"keep_true.h"
-	"heap.h"
-	"gdi.h"
-	"mem.h"
-	"_c_math.h"
-	"verisimple_string.h"
-	"verisimple_wstring.h"
-	"vsstringtow.h"
-	"wstringtovss.h"
-	"dir.h"
-	"md5.h"
-	"simple_obj.h"
-	"template.h"
-	"simple_array.h"
-	"simple_map.h"
-	"stra.h"
-	"xmlite.h"
-	"file.h"
-	"launcher.h"
-	"small_ipc_channel.h"
-	"simple_mutex.h"
-	"simple_event.h"
-	"mutex_lock.h"
-	"simple_critical_section.h"
-	"library.h"
-	"hotplugin/hotplugin.h"
-	"spa/spa.h"
-	"bsdiff/bsdiff.h"
-	"macos/c_os.h"
-	"linux/c_os.h"
-	"windows/c_os.h"
-	"message_loop.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/radix.h
-	"ca_seed.h"
-	"vms/vms.h"
-
-1323413796 /home/carlos/Desktop/cecyn1/app/appseed/c/ca_seed.h
-	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
-	"nodeapp/operational_system/_.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/_.h
-	"get_platform.h"
-	<pthread.h>
-	<sys/resource.h>
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/get_platform.h
-	<inttypes.h>
-	<stdlib.h>
-	"macos_system.h"
-	"bare_operational_system.h"
-	"cross/win/win.h"
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/macos_system.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/bare_operational_system.h
-	<stdlib.h>
-	<unistd.h>
-	"version_macos.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	"cross/win/win.h"
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/version_macos.h
-	<Carbon/Carbon.h>
-	<stdlib.h>
-	<stdio.h>
-	<math.h>
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/version_cpu.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/version_dll.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win.h
-	"base_tsd.h"
-	"win_def.h"
-	"win_error.h"
-	"win_base.h"
-	"win_gdi.h"
-	"win_user.h"
-	"win_errno.h"
-	"win_crtdefs.h"
-	"win_nls.h"
-	"win_file.h"
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/base_tsd.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_def.h
-	"win_nt.h"
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_nt.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_error.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_base.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_gdi.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_user.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_errno.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_crtdefs.h
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_nls.h
-	<macwin32.h>
-
-1322694964 /home/carlos/Desktop/cecyn1/app/os/macos/operational_system/cross/win/win_file.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/_.h
-	"get_platform.h"
-	<pthread.h>
-	<sys/resource.h>
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/get_platform.h
-	<inttypes.h>
-	<stdlib.h>
-	"linux32_system.h"
-	"bare_operational_system.h"
-	"cross/win/win.h"
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/linux32_system.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/bare_operational_system.h
-	<stdlib.h>
-	<unistd.h>
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	<stdlib.h>
-	<string.h>
-	<stdio.h>
-	<stdarg.h>
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/version_linux.h
-	<stdlib.h>
-	<stdio.h>
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/version_cpu.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/version_dll.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win.h
-	"base_tsd.h"
-	"win_def.h"
-	"win_error.h"
-	"win_base.h"
-	"win_gdi.h"
-	"win_user.h"
-	"win_errno.h"
-	"win_crtdefs.h"
-	"win_nls.h"
-	"win_file.h"
-	"win_mmsystem.h"
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/base_tsd.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_def.h
-	"win_nt.h"
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_nt.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_error.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_base.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_gdi.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_user.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_errno.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_crtdefs.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_nls.h
-	<macwin32.h>
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_file.h
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/cross/win/win_mmsystem.h
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/_.h
-	"get_platform.h"
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/get_platform.h
-	"inttypes.h"
-	"win32_system.h"
-	"bare_operational_system.h"
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/inttypes.h
-	"stdint.h"
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/stdint.h
-	<limits.h>
-	<wchar.h>
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/win32_system.h
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/bare_operational_system.h
-	"version_windows.h"
-	"version_cpu.h"
-	<afxv_cfg.h>
-	"version_dll.h"
-	"version_cpu.h"
-	"cross/cross.h"
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/version_windows.h
-	<windows.h>
-	<shlwapi.h>
-	<zmouse.h>
-	<commctrl.h>
-	<tchar.h>
-	<mbctype.h>
-	<mbstring.h>
-	<winsock2.h>
-	<ws2tcpip.h>
-	<Psapi.h>
-	<MMSystem.h>
-	<ole2.h>
-	<winsock2.h>
-	<ws2tcpip.h>
-	<tpipv6.h>
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/version_cpu.h
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/version_dll.h
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/cross/cross.h
-	"general/general.h"
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/cross/general/general.h
-	"general_windows.h"
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/cross/general/general_windows.h
-
-1322694955 /home/carlos/Desktop/cecyn1/app/appseed/ca2/vms/vms.h
-	"veriwell_musical_studio.h"
-
-1322694955 /home/carlos/Desktop/cecyn1/app/appseed/ca2/vms/veriwell_musical_studio.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/version.h
-	"version.config.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/version.config.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/types.h
-	"c_types.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/c_types.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/natural.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/cpu_architecture.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/_libct.h
-	<tchar.h>
-	"_heap.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/_heap.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/printf.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/sprintf.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/str.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/std_file.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/atol.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/count.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/index.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/keep_true.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/heap.h
-	"_heap.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/gdi.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/mem.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/_c_math.h
-
-1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/verisimple_string.h
-
-1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/verisimple_wstring.h
-
-1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/vsstringtow.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/wstringtovss.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/dir.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/md5.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_obj.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/template.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_array.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_map.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/stra.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/xmlite.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/file.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/launcher.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/small_ipc_channel.h
-	<pthread.h>
-	<pthread.h>
-	"simple_mutex.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_mutex.h
-	<sys/sem.h>
-	<pthread.h>
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_event.h
-	<pthread.h>
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/mutex_lock.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_critical_section.h
-
-1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/library.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/hotplugin/hotplugin.h
-	"hotplugin_plugin.h"
-	"hotplugin_host.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/hotplugin/hotplugin_plugin.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/hotplugin/hotplugin_host.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa.h
-	"spa_spa.h"
-	"spa_starter_start.h"
-	"spa_boot.h"
-	"spa_cube_run.h"
-	"spa_small_bell.h"
-	"spa_install_ca2.h"
-	"spa_canvas.h"
-	"spa_window.h"
-	"spa_trace.h"
-	"spa_machine_event_data.h"
-	"spa_machine_event.h"
-	"spa_installer.h"
-	"resource.h"
-	"spa_machine_event_data.h"
-	"spa_focus.h"
-	"spa_machine_event_data.h"
-	"spa_machine_event.h"
-	"spa_http.h"
-	"spa_plugin.h"
-	"spa_installer.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_spa.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_starter_start.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_boot.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_cube_run.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_small_bell.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_install_ca2.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_canvas.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_window.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_trace.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_machine_event_data.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_machine_event.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_installer.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/resource.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_focus.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_http.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_plugin.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/bsdiff/bsdiff.h
-	"bzlib.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/bsdiff/bzlib.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os.h
-	<stdarg.h>
-	<wchar.h>
-	"c_os_http_lib.h"
-	"c_os_http.h"
-	"c_os_process.h"
-	"c_os_cross_win_gdi.h"
-	"c_os_cross_win_file.h"
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_http_lib.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_http.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_process.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_cross_win_gdi.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_cross_win_file.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os.h
-	<stdarg.h>
-	<wchar.h>
-	"c_os_http_lib.h"
-	"c_os_http.h"
-	"c_os_process.h"
-	"c_os_cross_win_gdi.h"
-	"c_os_cross_win_file.h"
-	"c_os_binreloc.h"
-
-1323412619 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_http_lib.h
-
-1323412709 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_http.h
-
-1323412717 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_process.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_cross_win_gdi.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_cross_win_file.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_binreloc.h
-
-1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os.h
-	"c_os_http.h"
-	"c_os_registry.h"
-	"c_os_process.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os_http.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os_registry.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os_process.h
-	<ShellAPI.h>
-	<ShellAPI.h>
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/message_loop.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_seed.h
-	"os/linux/operational_system/ca2.h"
-	"os/windows/operational_system/ca2.h"
-	<vadefs.h>
-	<stdarg.h>
-	"ca_base.h"
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/ca2.h
-	"include/linux_system.h"
-	<typeinfo.h>
-	"include/inttypes.h"
-	<typeinfo>
-	<inttypes.h>
-	"operational_system.h"
-
-1322694963 /home/carlos/Desktop/cecyn1/app/os/linux/operational_system/operational_system.h
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	<stddef.h>
-	<limits.h>
-	<malloc.h>
-	<netinet/in.h>
-
-1322694966 /home/carlos/Desktop/cecyn1/app/os/windows/operational_system/ca2.h
-	"win32_system.h"
-	<typeinfo.h>
-	"inttypes.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_base.h
-	"ca_ca.h"
-	"ca_live_object.h"
-	"ca_log.h"
-	"ca_main_init_data.h"
-	"ca_application.h"
-	"ca_bergedge.h"
-	"ca_system.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_ca.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_live_object.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_log.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_main_init_data.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_application.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_bergedge.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_system.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/rotate.h
-	<stdlib.h>
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/debug.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/linux/linux.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/allocate.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/count.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/muldiv64.h
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/str.h
-
-1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zconf.h
-	"c/c_c.h"
-	<windows.h>
-	<sys/types.h>
-	<unistd.h>
-	<unixio.h>
-
-1323412761 /home/carlos/Desktop/cecyn1/app/appseed/c/c_c.h
-	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
-	"version.h"
-	"nodeapp/operational_system/get_platform.h"
-	"c_types.h"
-	"c_natural.h"
-	"cpu_architecture.h"
-	"_libct.h"
-	"_heap.h"
-	"std_file.h"
-	"bsdiff/bsdiff.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/c_natural.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zlib.h
-	"zconf.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zutil.h
-	"zlib.h"
-	<stddef.h>
-	<stdlib.h>
-	<errno.h>
-	<alloc.h>
-	<malloc.h>
-	<malloc.h>
-	<unix.h>
-	<stdio.h>
-
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/sqlite/sqlite.h
-	"sqlite3.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca_c.h
-	"c/c_c.h"
-	"rotate.h"
-	"zlib/zlib.h"
-	"zlib/zutil.h"
-	"sqlite/sqlite.h"
-
-1322694928 /home/carlos/Desktop/cecyn1/app/appseed/ca/sqlite/sqlite3.h
-	<stdarg.h>
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/libcharguess.h
-	"ca/ca.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca_application.cpp
-	"StdAfx.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca_bergedge.cpp
-	"StdAfx.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca_c.c
-	"ca_c.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca_ca.cpp
-	"StdAfx.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca_log.cpp
-	"StdAfx.h"
-	<stdio.h>
-	<windows.h>
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca_system.cpp
-	"StdAfx.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCJPProber.cpp
-	"EUCJPProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCJPProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"jpCntx.h"
-	"charDistribution.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charsetProber.h
-	"types.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/types.h
-	<stdlib.h>
-	<stdio.h>
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/codingStateMachine.h
-	"pkgInt.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/pkgInt.h
-	"types.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/jpCntx.h
-	"types.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charDistribution.h
-	"types.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCKRProber.cpp
-	"EUCKRProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCKRProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCTWProber.cpp
-	"EUCTWProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCTWProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EscCharsetProber.cpp
-	"EscCharsetProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EscCharsetProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EscSM.cpp
-	"codingStateMachine.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/GB2312Prober.cpp
-	"GB2312Prober.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/GB2312Prober.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangBulgarianModel.cpp
-	"SBCharsetProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCharsetProber.h
-	"charsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangCyrillicModel.cpp
-	"SBCharsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangGreekModel.cpp
-	"SBCharsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangHungarianModel.cpp
-	"SBCharsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangThaiModel.cpp
-	"SBCharsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/Latin1Prober.cpp
-	"Latin1Prober.h"
-	"types.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/Latin1Prober.h
-	"charsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/MBCSGroupProber.cpp
-	"types.h"
-	"MBCSGroupProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/MBCSGroupProber.h
-	"SJISProber.h"
-	"UTF8Prober.h"
-	"EUCJPProber.h"
-	"GB2312Prober.h"
-	"EUCKRProber.h"
-	"big5Prober.h"
-	"EUCTWProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SJISProber.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"jpCntx.h"
-	"charDistribution.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/UTF8Prober.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/big5Prober.h
-	"charsetProber.h"
-	"codingStateMachine.h"
-	"charDistribution.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/MBCSSM.cpp
-	"codingStateMachine.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCSGroupProber.cpp
-	"SBCharsetProber.h"
-	"SBCSGroupProber.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCSGroupProber.h
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCharsetProber.cpp
-	<stdio.h>
-	"SBCharsetProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SJISProber.cpp
-	"SJISProber.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/UTF8Prober.cpp
-	"UTF8Prober.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/big5Prober.cpp
-	"big5Prober.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charDistribution.cpp
-	"charDistribution.h"
-	"JISFreq.tab"
-	"Big5Freq.tab"
-	"EUCKRFreq.tab"
-	"EUCTWFreq.tab"
-	"GB2312Freq.tab"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/JISFreq.tab
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/Big5Freq.tab
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCKRFreq.tab
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCTWFreq.tab
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/GB2312Freq.tab
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charguess.cpp
-	"universal.h"
-	"string.h"
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/universal.h
-	"types.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/jpCntx.cpp
-	"types.h"
-	"jpCntx.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/libcharguess.cpp
-	"libcharguess.h"
-	"charguess.h"
-	<string.h>
-	<windows.h>
-
-1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charguess.h
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/universal.cpp
-	"universal.h"
-	"MBCSGroupProber.h"
-	"SBCSGroupProber.h"
-	"EscCharsetProber.h"
-	"Latin1Prober.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/linux/linux.cpp
-	"StdAfx.h"
-	<sys/times.h>
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/muldiv64.cpp
-	"StdAfx.h"
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/mutex_lock.cpp
-	"StdAfx.h"
-
-1322694928 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/sqlite/sqlite3.c
-	"ca/ca_c.h"
-	<stdint.h>
-	<inttypes.h>
-	<tcl.h>
-	<stdarg.h>
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<assert.h>
-	<stddef.h>
-	<windows.h>
-	<os2safe.h>
-	<os2.h>
-	"sseInt.h"
-	<ctype.h>
-	<time.h>
-	<pthread.h>
-	<sys/types.h>
-	<sys/stat.h>
-	<fcntl.h>
-	<unistd.h>
-	<sys/time.h>
-	<errno.h>
-	<sys/ioctl.h>
-	<sys/param.h>
-	<sys/mount.h>
-	<dlfcn.h>
-	<winbase.h>
-	<sys/cygwin.h>
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/adler32.c
-	"zlib.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/compress.c
-	"zlib.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/crc32.c
-	<stdio.h>
-	"zutil.h"
-	<limits.h>
-	"crc32.h"
-
-1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/crc32.h
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/deflate.c
-	"deflate.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/deflate.h
-	"zutil.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/gzio.c
-	"zutil.h"
-	<stdio.h>
-	<stdarg.h>
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/infback.c
-	"zutil.h"
-	"inftrees.h"
-	"inflate.h"
-	"inffast.h"
-	"inffixed.h"
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inftrees.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inflate.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inffast.h
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inffixed.h
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inffast.c
-	"zutil.h"
-	"inftrees.h"
-	"inflate.h"
-	"inffast.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inflate.c
-	"zutil.h"
-	"inftrees.h"
-	"inflate.h"
-	"inffast.h"
-	"inffixed.h"
-	<stdio.h>
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inftrees.c
-	"zutil.h"
-	"inftrees.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/trees.c
-	"deflate.h"
-	<ctype.h>
-	"trees.h"
-	<stdio.h>
-
-1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/trees.h
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/uncompr.c
-	"zlib.h"
-
-1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zutil.c
-	"zutil.h"
-
-1323414030 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca.h
-	"c/c.h"
-	"ca_seed.h"
-	"c/vms/vms.h"
-	"nodeapp/operational_system/ca2.h"
-	<vadefs.h>
-	<stdarg.h>
-	"ca_base.h"
-	"ca/api/rotate.h"
-	<crtdbg.h>
-	"api/debug.h"
-	"linux/linux.h"
-	<stdio.h>
-	"ca/api/allocate.h"
-	"ca/primitive/count.h"
-	"ca/api/muldiv64.h"
-	"ca/api/str.h"
-	"zlib/zconf.h"
-	"zlib/zlib.h"
-	"zlib/zutil.h"
-	"sqlite/sqlite.h"
-	"libcharguess/libcharguess.h"
-
-1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_seed.h
-	"nodeapp/operational_system/ca2.h"
-	<vadefs.h>
-	<stdarg.h>
-	"ca_base.h"
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/ca2.h
-	"include/linux_system.h"
-	<typeinfo.h>
-	"include/inttypes.h"
-	<typeinfo>
-	<inttypes.h>
-	"operational_system.h"
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/operational_system.h
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	<stddef.h>
-	<limits.h>
-	<malloc.h>
-	<netinet/in.h>
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/version_linux.h
-	<stdlib.h>
-	<stdio.h>
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/version_cpu.h
-
-1323413962 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/version_dll.h
-
-1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_base.h
-	"ca_ca.h"
-	"ca_live_object.h"
-	"ca_log.h"
-	"ca_main_init_data.h"
-	"ca_application.h"
-	"ca_session.h"
-	"ca_system.h"
-
-1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_ca.h
-
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_live_object.h
-
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_log.h
-
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_main_init_data.h
-
-1323414205 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_application.h
-
-1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_session.h
-
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_system.h
 
 1323412763 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane.h
 	"ca/netnode/netnode.h"
@@ -2038,109 +19,6 @@
 	"plane_system_ca_template.h"
 	"plane_system_allocate.h"
 	"ca/plugin/plugin.h"
-
-1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_library.h
-
-1323412763 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_application.h
-
-1323412763 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_session.h
-
-1323695545 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system.h
-	"ca/collection/gen_lemon_array.h"
-
-1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system_template_trace.h
-
-1323649944 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system_ca_template.h
-
-1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system_allocate.h
-
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_c.h
-	"c/c_c.h"
-	"ca/api/rotate.h"
-	"zlib/zlib.h"
-	"zlib/zutil.h"
-	"sqlite/sqlite.h"
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/_.h
-	"get_platform.h"
-	<pthread.h>
-	<sys/resource.h>
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/get_platform.h
-	<inttypes.h>
-	<stdlib.h>
-	"linux32_system.h"
-	"bare_operational_system.h"
-	"cross/win/win.h"
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/linux32_system.h
-
-1323699670 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/bare_operational_system.h
-	<stdlib.h>
-	<unistd.h>
-	"version_linux.h"
-	"version_cpu.h"
-	"version_dll.h"
-	"version_cpu.h"
-	<stdlib.h>
-	<string.h>
-	<stdio.h>
-	<stdarg.h>
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win.h
-	"base_tsd.h"
-	"win_def.h"
-	"win_error.h"
-	"win_base.h"
-	"win_gdi.h"
-	"win_user.h"
-	"win_errno.h"
-	"win_crtdefs.h"
-	"win_nls.h"
-	"win_file.h"
-	"win_mmsystem.h"
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/base_tsd.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_def.h
-	"win_nt.h"
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_nt.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_error.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_base.h
-
-1323412928 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_gdi.h
-
-1323700956 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_user.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_errno.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_crtdefs.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_nls.h
-	<macwin32.h>
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_file.h
-
-1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_mmsystem.h
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/vms/vms.h
-	"veriwell_musical_studio.h"
-
-1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/vms/veriwell_musical_studio.h
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/rotate.h
-	<stdlib.h>
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/allocate.h
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/primitive/count.h
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/muldiv64.h
-
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/str.h
 
 1323412763 /home/carlos/Desktop/cecyn1/app/appseed/ca/netnode/netnode.h
 	"ca/planebase/planebase.h"
@@ -2598,6 +476,484 @@
 1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/radix/radix.h
 	"ca/ca/ca.h"
 
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca.h
+	"c/c.h"
+	"ca_seed.h"
+	"c/vms/vms.h"
+	"nodeapp/operational_system/ca2.h"
+	<vadefs.h>
+	<stdarg.h>
+	"ca_base.h"
+	"ca/api/rotate.h"
+	<crtdbg.h>
+	"api/debug.h"
+	"linux/linux.h"
+	<stdio.h>
+	"ca/api/allocate.h"
+	"ca/primitive/count.h"
+	"ca/api/muldiv64.h"
+	"ca/api/str.h"
+	"zlib/zconf.h"
+	"zlib/zlib.h"
+	"zlib/zutil.h"
+	"sqlite/sqlite.h"
+	"libcharguess/libcharguess.h"
+
+1323413797 /home/carlos/Desktop/cecyn1/app/appseed/c/c.h
+	"radix.h"
+	"version.h"
+	"types.h"
+	"natural.h"
+	"cpu_architecture.h"
+	"_libct.h"
+	"printf.h"
+	"sprintf.h"
+	"str.h"
+	"std_file.h"
+	"atol.h"
+	"count.h"
+	"index.h"
+	"keep_true.h"
+	"heap.h"
+	"gdi.h"
+	"mem.h"
+	"_c_math.h"
+	"verisimple_string.h"
+	"verisimple_wstring.h"
+	"vsstringtow.h"
+	"wstringtovss.h"
+	"dir.h"
+	"md5.h"
+	"simple_obj.h"
+	"template.h"
+	"simple_array.h"
+	"simple_map.h"
+	"stra.h"
+	"xmlite.h"
+	"file.h"
+	"launcher.h"
+	"small_ipc_channel.h"
+	"simple_mutex.h"
+	"simple_event.h"
+	"mutex_lock.h"
+	"simple_critical_section.h"
+	"library.h"
+	"hotplugin/hotplugin.h"
+	"spa/spa.h"
+	"bsdiff/bsdiff.h"
+	"macos/c_os.h"
+	"linux/c_os.h"
+	"windows/c_os.h"
+	"message_loop.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/radix.h
+	"ca_seed.h"
+	"vms/vms.h"
+
+1323413796 /home/carlos/Desktop/cecyn1/app/appseed/c/ca_seed.h
+	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
+	"nodeapp/operational_system/_.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/_.h
+	"get_platform.h"
+	<pthread.h>
+	<sys/resource.h>
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/get_platform.h
+	<inttypes.h>
+	<stdlib.h>
+	"linux32_system.h"
+	"bare_operational_system.h"
+	"cross/win/win.h"
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/linux32_system.h
+
+1323699670 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/bare_operational_system.h
+	<stdlib.h>
+	<unistd.h>
+	"version_linux.h"
+	"version_cpu.h"
+	"version_dll.h"
+	"version_cpu.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<stdarg.h>
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/version_linux.h
+	<stdlib.h>
+	<stdio.h>
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/version_cpu.h
+
+1323413962 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/version_dll.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win.h
+	"base_tsd.h"
+	"win_def.h"
+	"win_error.h"
+	"win_base.h"
+	"win_gdi.h"
+	"win_user.h"
+	"win_errno.h"
+	"win_crtdefs.h"
+	"win_nls.h"
+	"win_file.h"
+	"win_mmsystem.h"
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/base_tsd.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_def.h
+	"win_nt.h"
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_nt.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_error.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_base.h
+
+1324456224 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_gdi.h
+
+1324546630 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_user.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_errno.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_crtdefs.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_nls.h
+	<macwin32.h>
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_file.h
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/cross/win/win_mmsystem.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/vms/vms.h
+	"veriwell_musical_studio.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/vms/veriwell_musical_studio.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/version.h
+	"version.config.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/version.config.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/types.h
+	"c_types.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/c_types.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/natural.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/cpu_architecture.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/_libct.h
+	<tchar.h>
+	"_heap.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/_heap.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/printf.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/sprintf.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/str.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/std_file.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/atol.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/count.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/index.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/keep_true.h
+
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/c/heap.h
+	"_heap.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/gdi.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/mem.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/_c_math.h
+
+1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/verisimple_string.h
+
+1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/verisimple_wstring.h
+
+1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/vsstringtow.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/wstringtovss.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/dir.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/md5.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_obj.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/template.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_array.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_map.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/stra.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/xmlite.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/file.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/launcher.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/small_ipc_channel.h
+	<pthread.h>
+	<pthread.h>
+	"simple_mutex.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_mutex.h
+	<sys/sem.h>
+	<pthread.h>
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_event.h
+	<pthread.h>
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/mutex_lock.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/simple_critical_section.h
+
+1323538604 /home/carlos/Desktop/cecyn1/app/appseed/c/library.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/hotplugin/hotplugin.h
+	"hotplugin_plugin.h"
+	"hotplugin_host.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/hotplugin/hotplugin_plugin.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/hotplugin/hotplugin_host.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa.h
+	"spa_spa.h"
+	"spa_starter_start.h"
+	"spa_boot.h"
+	"spa_cube_run.h"
+	"spa_small_bell.h"
+	"spa_install_ca2.h"
+	"spa_canvas.h"
+	"spa_window.h"
+	"spa_trace.h"
+	"spa_machine_event_data.h"
+	"spa_machine_event.h"
+	"spa_installer.h"
+	"resource.h"
+	"spa_machine_event_data.h"
+	"spa_focus.h"
+	"spa_machine_event_data.h"
+	"spa_machine_event.h"
+	"spa_http.h"
+	"spa_plugin.h"
+	"spa_installer.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_spa.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_starter_start.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_boot.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_cube_run.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_small_bell.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_install_ca2.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_canvas.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_window.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_trace.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_machine_event_data.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_machine_event.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_installer.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/resource.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_focus.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_http.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/spa/spa_plugin.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/bsdiff/bsdiff.h
+	"bzlib.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/bsdiff/bzlib.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os.h
+	<stdarg.h>
+	<wchar.h>
+	"c_os_http_lib.h"
+	"c_os_http.h"
+	"c_os_process.h"
+	"c_os_cross_win_gdi.h"
+	"c_os_cross_win_file.h"
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_http_lib.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_http.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_process.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_cross_win_gdi.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/macos/c_os_cross_win_file.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os.h
+	<stdarg.h>
+	<wchar.h>
+	"c_os_http_lib.h"
+	"c_os_http.h"
+	"c_os_process.h"
+	"c_os_cross_win_gdi.h"
+	"c_os_cross_win_file.h"
+	"c_os_binreloc.h"
+
+1323412619 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_http_lib.h
+
+1323412709 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_http.h
+
+1323412717 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_process.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_cross_win_gdi.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_cross_win_file.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/linux/c_os_binreloc.h
+
+1322694926 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os.h
+	"c_os_http.h"
+	"c_os_registry.h"
+	"c_os_process.h"
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os_http.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os_registry.h
+
+1322961020 /home/carlos/Desktop/cecyn1/app/appseed/c/windows/c_os_process.h
+	<ShellAPI.h>
+	<ShellAPI.h>
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/message_loop.h
+
+1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_seed.h
+	"nodeapp/operational_system/ca2.h"
+	<vadefs.h>
+	<stdarg.h>
+	"ca_base.h"
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/ca2.h
+	"include/linux_system.h"
+	<typeinfo.h>
+	"include/inttypes.h"
+	<typeinfo>
+	<inttypes.h>
+	"operational_system.h"
+
+1323411932 /home/carlos/Desktop/cecyn1/nodeapp/operational_system/operational_system.h
+	"version_linux.h"
+	"version_cpu.h"
+	"version_dll.h"
+	"version_cpu.h"
+	<stddef.h>
+	<limits.h>
+	<malloc.h>
+	<netinet/in.h>
+
+1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_base.h
+	"ca_ca.h"
+	"ca_live_object.h"
+	"ca_log.h"
+	"ca_main_init_data.h"
+	"ca_application.h"
+	"ca_session.h"
+	"ca_system.h"
+
+1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_ca.h
+
+1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_live_object.h
+
+1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_log.h
+
+1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_main_init_data.h
+
+1323414205 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_application.h
+
+1323412767 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_session.h
+
+1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_system.h
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/rotate.h
+	<stdlib.h>
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/debug.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/linux/linux.h
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/allocate.h
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/primitive/count.h
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/muldiv64.h
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/str.h
+
+1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zconf.h
+	"c/c_c.h"
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1323412761 /home/carlos/Desktop/cecyn1/app/appseed/c/c_c.h
+	"_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
+	"version.h"
+	"nodeapp/operational_system/get_platform.h"
+	"c_types.h"
+	"c_natural.h"
+	"cpu_architecture.h"
+	"_libct.h"
+	"_heap.h"
+	"std_file.h"
+	"bsdiff/bsdiff.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/c/c_natural.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zlib.h
+	"zconf.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zutil.h
+	"zlib.h"
+	<stddef.h>
+	<stdlib.h>
+	<errno.h>
+	<alloc.h>
+	<malloc.h>
+	<malloc.h>
+	<unix.h>
+	<stdio.h>
+
+1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/sqlite/sqlite.h
+	"sqlite3.h"
+
+1322694928 /home/carlos/Desktop/cecyn1/app/appseed/ca/sqlite/sqlite3.h
+	<stdarg.h>
+
+1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/libcharguess.h
+	"ca/ca.h"
+
 1323412769 /home/carlos/Desktop/cecyn1/app/appseed/ca/primitive/primitive.h
 	"logic.h"
 	"natural.h"
@@ -2853,7 +1209,7 @@
 1323698870 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_smart_pointer.h
 	"collection/base_array.h"
 
-1323412762 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/base_array.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/base_array.h
 	"radix/radix_object.h"
 	"exception/exception_0.h"
 	"template/_template.h"
@@ -2996,17 +1352,17 @@
 	"ca/template/template_equals.h"
 	"ca/collection/numeric_array.h"
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/typed_ptr_array.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/typed_ptr_array.h
 
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/typed_pointer_array.h
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_ptr.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_ptr.h
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_del_ptr.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_del_ptr.h
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_ptr_copy.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_ptr_copy.h
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_ptr_alloc.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_ptr_alloc.h
 
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/array_release_ptr.h
 
@@ -3044,7 +1400,7 @@
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_var.h
 	"primitive/var.h"
 
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/primitive/var.h
+1324450407 /home/carlos/Desktop/cecyn1/app/appseed/ca/primitive/var.h
 	"gen/gen_base_enum.h"
 	"gen/gen_variable_strict_compare.h"
 	"gen/gen_holder.h"
@@ -3066,11 +1422,11 @@
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_full_pointer.h
 
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_property.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_property.h
 	"gen/gen_signal.h"
 	"gen_var_array.h"
 
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_signal.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_signal.h
 	"ca/collection/array_del_ptr.h"
 	"ca/collection/array_ptr_alloc.h"
 	"gen_request_signal.h"
@@ -3088,7 +1444,7 @@
 
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/collection.inl
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/sort.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/sort.h
 	"numeric_array.h"
 	"sort_array.h"
 	"key_sort_array.h"
@@ -3228,7 +1584,7 @@
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_brush.h
 
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_font.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_font.h
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_palette.h
 
@@ -3237,13 +1593,13 @@
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_igui.h
 
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_dib.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_dib.h
 	"primitive/img.h"
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_draw_dib.h
 	<vfw.h>
 
-1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_graphics.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_graphics.h
 	"user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -3681,8 +2037,6 @@
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_signal_thread.h
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_international_locale_style.h
-
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/gen_lemon_array.h
 
 1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/gen/gen_application.h
 
@@ -4351,6 +2705,13 @@
 	"ca/ca_c.h"
 	"ioapi.h"
 
+1322961027 /home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_c.h
+	"c/c_c.h"
+	"ca/api/rotate.h"
+	"zlib/zlib.h"
+	"zlib/zutil.h"
+	"sqlite/sqlite.h"
+
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/compress/zip/ioapi.h
 
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/compress/zip/memory_file.h
@@ -4741,7 +3102,7 @@
 
 1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/visual/visual_application.h
 
-1323693082 /home/carlos/Desktop/cecyn1/app/appseed/ca/user/user_view.h
+1323972463 /home/carlos/Desktop/cecyn1/app/appseed/ca/user/user_view.h
 
 1323412770 /home/carlos/Desktop/cecyn1/app/appseed/ca/user/user_control.h
 
@@ -4827,7 +3188,7 @@
 
 1322961029 /home/carlos/Desktop/cecyn1/app/appseed/ca/fontopus/fontopus_license.h
 
-1323412769 /home/carlos/Desktop/cecyn1/app/appseed/ca/fontopus/fontopus_validate.h
+1323971938 /home/carlos/Desktop/cecyn1/app/appseed/ca/fontopus/fontopus_validate.h
 
 1322961029 /home/carlos/Desktop/cecyn1/app/appseed/ca/fontopus/fontopus_application.h
 
@@ -4869,7 +3230,7 @@
 
 1323438426 /home/carlos/Desktop/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_object.h
 
-1323438700 /home/carlos/Desktop/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_impl.h
+1324450407 /home/carlos/Desktop/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_impl.h
 
 1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_instance.h
 
@@ -5004,13 +3365,30 @@
 
 1323412768 /home/carlos/Desktop/cecyn1/app/appseed/ca/webserver/webserver_fontopus_database.h
 
-1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/netnode/netnode_socket.h
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/netnode/netnode_socket.h
 
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/netnode/netnode_socket_thread.h
 
 1323439942 /home/carlos/Desktop/cecyn1/app/appseed/ca/netnode/netnode_service.h
 
 1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/netnode/netnode_application.h
+
+1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_library.h
+
+1323412763 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_application.h
+
+1323412763 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_session.h
+
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system.h
+	"ca/collection/gen_lemon_array.h"
+
+1322961025 /home/carlos/Desktop/cecyn1/app/appseed/ca/collection/gen_lemon_array.h
+
+1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system_template_trace.h
+
+1323649944 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system_ca_template.h
+
+1324450406 /home/carlos/Desktop/cecyn1/app/appseed/ca/plane/plane_system_allocate.h
 
 1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plugin/plugin.h
 	"plugin_gen.h"
@@ -5035,10 +3413,8 @@
 
 1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/plugin/plugin_instance.h
 
-1322961028 /home/carlos/Desktop/cecyn1/app/appseed/ca/api/debug.h
-
-1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/StdAfx.cpp
-	"StdAfx.h"
+1324450408 /home/carlos/Desktop/cecyn1/app/appseed/optca/optca.h
+	"c/c.h"
 
 1322961028 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/api/api_allocate.cpp
 	"StdAfx.h"
@@ -5091,7 +3467,7 @@
 1322961027 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_data_listener.cpp
 	"StdAfx.h"
 
-1323700361 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_dib.cpp
+1324450406 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_dib.cpp
 	"StdAfx.h"
 	<math.h>
 
@@ -5107,10 +3483,10 @@
 1322961027 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_exception.cpp
 	"StdAfx.h"
 
-1322961027 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_font.cpp
+1324450406 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_font.cpp
 	"StdAfx.h"
 
-1323711995 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_graphics.cpp
+1324450406 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_graphics.cpp
 	"StdAfx.h"
 	<math.h>
 
@@ -5152,7 +3528,7 @@
 1323713254 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_palette.cpp
 	"StdAfx.h"
 
-1322961027 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_pen.cpp
+1324450406 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_pen.cpp
 	"StdAfx.h"
 
 1322961027 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_print_job.cpp
@@ -5175,4 +3551,295 @@
 
 1322961027 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_thread.cpp
 	"StdAfx.h"
+
+1324461343 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/ca/ca_type_info.cpp
+	"StdAfx.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCJPProber.cpp
+	"EUCJPProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCJPProber.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+	"jpCntx.h"
+	"charDistribution.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charsetProber.h
+	"types.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/types.h
+	<stdlib.h>
+	<stdio.h>
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/codingStateMachine.h
+	"pkgInt.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/pkgInt.h
+	"types.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/jpCntx.h
+	"types.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charDistribution.h
+	"types.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCKRProber.cpp
+	"EUCKRProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCKRProber.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+	"charDistribution.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCTWProber.cpp
+	"EUCTWProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCTWProber.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+	"charDistribution.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EscCharsetProber.cpp
+	"EscCharsetProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EscCharsetProber.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EscSM.cpp
+	"codingStateMachine.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/GB2312Prober.cpp
+	"GB2312Prober.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/GB2312Prober.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+	"charDistribution.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangBulgarianModel.cpp
+	"SBCharsetProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCharsetProber.h
+	"charsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangCyrillicModel.cpp
+	"SBCharsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangGreekModel.cpp
+	"SBCharsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangHungarianModel.cpp
+	"SBCharsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/LangThaiModel.cpp
+	"SBCharsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/Latin1Prober.cpp
+	"Latin1Prober.h"
+	"types.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/Latin1Prober.h
+	"charsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/MBCSGroupProber.cpp
+	"types.h"
+	"MBCSGroupProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/MBCSGroupProber.h
+	"SJISProber.h"
+	"UTF8Prober.h"
+	"EUCJPProber.h"
+	"GB2312Prober.h"
+	"EUCKRProber.h"
+	"big5Prober.h"
+	"EUCTWProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SJISProber.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+	"jpCntx.h"
+	"charDistribution.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/UTF8Prober.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/big5Prober.h
+	"charsetProber.h"
+	"codingStateMachine.h"
+	"charDistribution.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/MBCSSM.cpp
+	"codingStateMachine.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCSGroupProber.cpp
+	"SBCharsetProber.h"
+	"SBCSGroupProber.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCSGroupProber.h
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SBCharsetProber.cpp
+	<stdio.h>
+	"SBCharsetProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/SJISProber.cpp
+	"SJISProber.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/UTF8Prober.cpp
+	"UTF8Prober.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/big5Prober.cpp
+	"big5Prober.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charDistribution.cpp
+	"charDistribution.h"
+	"JISFreq.tab"
+	"Big5Freq.tab"
+	"EUCKRFreq.tab"
+	"EUCTWFreq.tab"
+	"GB2312Freq.tab"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/JISFreq.tab
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/Big5Freq.tab
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCKRFreq.tab
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/EUCTWFreq.tab
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/GB2312Freq.tab
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charguess.cpp
+	"universal.h"
+	"string.h"
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/universal.h
+	"types.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/jpCntx.cpp
+	"types.h"
+	"jpCntx.h"
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/libcharguess.cpp
+	"libcharguess.h"
+	"charguess.h"
+	<string.h>
+	<windows.h>
+
+1322694931 /home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/charguess.h
+
+1322694931 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/libcharguess/universal.cpp
+	"universal.h"
+	"MBCSGroupProber.h"
+	"SBCSGroupProber.h"
+	"EscCharsetProber.h"
+	"Latin1Prober.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/linux/linux.cpp
+	"StdAfx.h"
+	<sys/times.h>
+
+1322694928 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/sqlite/sqlite3.c
+	"ca/ca_c.h"
+	<stdint.h>
+	<inttypes.h>
+	<tcl.h>
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<windows.h>
+	<os2safe.h>
+	<os2.h>
+	"sseInt.h"
+	<ctype.h>
+	<time.h>
+	<pthread.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/ioctl.h>
+	<sys/param.h>
+	<sys/mount.h>
+	<dlfcn.h>
+	<winbase.h>
+	<sys/cygwin.h>
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/adler32.c
+	"zlib.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/compress.c
+	"zlib.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/crc32.c
+	<stdio.h>
+	"zutil.h"
+	<limits.h>
+	"crc32.h"
+
+1322961026 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/crc32.h
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/deflate.c
+	"deflate.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/deflate.h
+	"zutil.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/gzio.c
+	"zutil.h"
+	<stdio.h>
+	<stdarg.h>
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/infback.c
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inftrees.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inflate.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inffast.h
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inffixed.h
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inffast.c
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inflate.c
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+	<stdio.h>
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/inftrees.c
+	"zutil.h"
+	"inftrees.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/trees.c
+	"deflate.h"
+	<ctype.h>
+	"trees.h"
+	<stdio.h>
+
+1322694927 /home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/trees.h
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/uncompr.c
+	"zlib.h"
+
+1322694927 source:/home/carlos/Desktop/cecyn1/app/appseed/ca/zlib/zutil.c
+	"zutil.h"
 

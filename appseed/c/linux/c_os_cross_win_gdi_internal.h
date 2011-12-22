@@ -39,7 +39,7 @@ struct tagEXTLOGPEN :
 };
 
 
-struct tagLOGBRUSH :
+struct tagEXTLOGBRUSH :
    public gdi_object
 {
 	UINT        lbStyle;
