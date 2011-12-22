@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A90D07D14A348E200226F1A /* c_os_cross_win_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_win_gdi.mm */; };
 		CE30D6D114653C65001991EA /* c_os_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = CE30D6CF14653C65001991EA /* c_os_internal.h */; };
 		CE30D6D514653CB2001991EA /* ca_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE30D6D314653CB2001991EA /* ca_c.cpp */; };
 		CE30D6D614653CB2001991EA /* cpu_architecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE30D6D414653CB2001991EA /* cpu_architecture.cpp */; };
@@ -177,6 +178,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A90D07C14A348E200226F1A /* c_os_cross_win_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_cross_win_gdi.mm; sourceTree = "<group>"; };
 		CE30D6CF14653C65001991EA /* c_os_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_internal.h; sourceTree = "<group>"; };
 		CE30D6D314653CB2001991EA /* ca_c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_c.cpp; sourceTree = "<group>"; };
 		CE30D6D414653CB2001991EA /* cpu_architecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_architecture.cpp; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC2DFBD147711D30028313B /* c_os_cross_win_user.mm */,
+				9A90D07C14A348E200226F1A /* c_os_cross_win_gdi.mm */,
 				CEBCDBEA1460B2B90099DA36 /* c_os_cross_win.cpp */,
 				CEACF733145FD3C2004A3E5B /* c_os_cross_win_file.cpp */,
 				CEACF734145FD3C2004A3E5B /* c_os_cross_win_file.h */,
@@ -800,6 +803,7 @@
 				CEBB9C6C146656B900912AFA /* c_os_cross_win_user.cpp in Sources */,
 				CEC2DFBE147711D30028313B /* c_os_cross_win_user.mm in Sources */,
 				CEC2DFC2147711FC0028313B /* c_os_gdi.cpp in Sources */,
+				9A90D07D14A348E200226F1A /* c_os_cross_win_gdi.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

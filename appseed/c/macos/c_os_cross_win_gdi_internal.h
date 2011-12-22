@@ -92,7 +92,7 @@ public:
 };
 
 
-class CLASS_DECL_____ wxPoint
+class CLASS_DECL_c wxPoint
 {
 public:
     int x, y;
@@ -123,14 +123,14 @@ public:
 };
 
 
-class CLASS_DECL_____ device_context
+class CLASS_DECL_c device_context
 {
 public:
     
     
    CGrafPtr          m_windowPort;
    CGrafPtr          m_savedPort;
-   WindowRef         m_window;
+   HWND             m_window;
    Rect              m_portBounds;
    bool              m_wasSwapped;
    
