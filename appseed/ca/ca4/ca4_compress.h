@@ -9,14 +9,14 @@ namespace ca4
    public:
 
 
-      bool ungz(const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
-      bool gz(const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
+      bool ungz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed);
+      bool gz(::ca::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed);
 
       bool ungz(ex1::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
       bool gz(ex1::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
-      bool unbz(const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
-      bool bz(const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
+      bool unbz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
+      bool bz(::ca::application * papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
 
       bool unbz(ex1::writer & ostreamUncompressed, const char * lpcszBzFileCompressed);
       bool bz(ex1::writer & ostreamBzFileCompressed, const char * lpcszUncompressed);

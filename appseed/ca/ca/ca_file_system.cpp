@@ -114,7 +114,7 @@ namespace ca
       restart:
          str.Empty();
          str = psz;
-         System.dir().mk(str);
+         System.dir().mk(str, papp);
          stringa straTitle;
          string strFormat;
          for(int i = 1; i <= iMaxLevel;)
@@ -129,7 +129,7 @@ namespace ca
                if(iMax == -1)
                {
                   str = System.dir().path(str, "00");
-                  System.dir().mk(str);
+                  System.dir().mk(str, papp);
                }
                else if(iMax == 99)
                {
@@ -146,7 +146,7 @@ namespace ca
                   str = System.dir().path(str, strFormat);
                   if(i == iIncLevel)
                   {
-                     System.dir().mk(str);
+                     System.dir().mk(str, papp);
                   }
                }
                i++;
@@ -535,13 +535,13 @@ namespace ca
                strDst = System.dir().path(strDirDst, strDst);
                if(System.dir().is(strSrc, papp))
                {
-                  System.dir().mk(strDst);
+                  System.dir().mk(strDst, papp);
                }
                else
                {
                   if(!System.dir().is(System.dir().name(strDst), papp))
                   {
-                     System.dir().mk(System.dir().name(strDst));
+                     System.dir().mk(System.dir().name(strDst), papp);
                   }
                   copy(strDst, strSrc, bFailIfExists, papp);
                }
@@ -676,19 +676,32 @@ namespace ca
          }
       }
 
-      void system::trash_that_is_not_trash(stringa & stra)
+      void system::trash_that_is_not_trash(stringa & stra, ::ca::application * papp)
       {
+         
+         if(stra.get_size() <= 0)
+            return;
+
+         string strDir = System.dir().trash_that_is_not_trash(stra[0]);
+
+         System.dir().mk(strDir, papp);
+
          for(int i = 0; i < stra.get_size(); i++)
          {
-            trash_that_is_not_trash(stra[i]);
+            ::MoveFile(stra[i], System.dir().path(strDir, name_(stra[i])));
          }
+
       }
 
-      void system::trash_that_is_not_trash(const char * psz)
+      void system::trash_that_is_not_trash(const char * psz, ::ca::application * papp)
       {
+         
          string strDir = System.dir().trash_that_is_not_trash(psz);
-         System.dir().mk(strDir);
+
+         System.dir().mk(strDir, papp);
+
          ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
+
       }
 
       void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::ca::application * papp)
@@ -778,19 +791,27 @@ namespace ca
          return str;
       }
 
-      ex1::filesp system::time_square_file(const char * pszPrefix, const char * pszSuffix)
+      ex1::filesp system::time_square_file(::ca::application * papp, const char * pszPrefix, const char * pszSuffix)
       {
-         return get(time_square(get_app(), pszPrefix, pszSuffix));
+
+         return get(time_square(papp, pszPrefix, pszSuffix), papp);
+
       }
 
-      ex1::filesp system::get(const char * name)
+      ex1::filesp system::get(const char * name, ::ca::application * papp)
       {
-         System.dir().mk(System.dir().name(name));
-         ex1::filesp fileOut(get_app());
+         
+         System.dir().mk(System.dir().name(name), papp);
+
          ::ex1::file_exception_sp e(get_app());
-         if(!fileOut->open(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write, &e))
+
+         ex1::filesp fileOut = App(papp).get_file(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write, &e);
+
+         if(fileOut.is_null())
             throw e;
+
          return fileOut;
+
       }
 
       string system::replace_extension(const char * pszFile, const char * pszExtension)

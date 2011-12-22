@@ -90,7 +90,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
 {
    if(Application.dir().is(pszSrc) && !gen::str::ends_ci(pszSrc, ".zip"))
    {
-      System.dir().mk(System.dir().name(pszDst));
+      Application.dir().mk(System.dir().name(pszDst));
       return false;
    }
    if(!m_fileSrc->open(pszSrc, ::ex1::file::mode_read | ::ex1::file::type_binary | ::ex1::file::shareDenyWrite))
@@ -109,7 +109,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
          return false;
       }*/
    }
-   System.dir().mk(System.dir().name(pszDst));
+   Application.dir().mk(System.dir().name(pszDst));
    if(!m_fileDst->open(pszDst, ::ex1::file::mode_write | ::ex1::file::type_binary | ::ex1::file::mode_create))
    {
       TRACE("\n Could not open dest file(%d)=%s", m_iFile, pszDst);

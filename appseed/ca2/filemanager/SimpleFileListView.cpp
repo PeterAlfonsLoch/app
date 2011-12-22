@@ -757,7 +757,7 @@ namespace filemanager
       {
          stra.add(itema[i].m_strPath);
       }
-      System.file().trash_that_is_not_trash(stra);
+      Application.file().trash_that_is_not_trash(stra);
       _017UpdateList();
    }
 

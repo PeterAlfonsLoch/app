@@ -211,8 +211,8 @@ namespace dynamic_source
          TRACE0(strError + "\n");
       }
 
-      System.dir().mk(System.dir().name(strDVI));
-      System.dir().mk(System.dir().name(pscript->m_strBuildBat));
+      Application.dir().mk(System.dir().name(strDVI));
+      Application.dir().mk(System.dir().name(pscript->m_strBuildBat));
       ::CopyFile(strSVI, strDVI, FALSE);
       ::CopyFile(strSVP, strDVP, FALSE);
       ::CopyFile(strSPCH, strDPCH, FALSE);
@@ -231,9 +231,9 @@ namespace dynamic_source
       Application.file().copy(vars1batDst, vars1batSrc);
       Application.file().copy(vars2batDst, vars2batSrc);
 
-      System.dir().mk(System.dir().name(pscript->m_strScriptPath));
-      System.dir().mk(System.dir().name(strL));
-      System.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_script"), System.dir().name(strTransformName)));
+      Application.dir().mk(System.dir().name(pscript->m_strScriptPath));
+      Application.dir().mk(System.dir().name(strL));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_script"), System.dir().name(strTransformName)));
 
       cppize(pscript);
 
@@ -522,9 +522,9 @@ namespace dynamic_source
    #else
       strCmd = System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat");
    #endif
-      System.dir().mk(System.dir().name(strCmd));
+      Application.dir().mk(System.dir().name(strCmd));
       Application.file().put_contents(strCmd, str);
-      System.dir().mk(System.dir().path(m_strTime, "dynamic_source\\"));
+      Application.dir().mk(System.dir().path(m_strTime, "dynamic_source\\"));
    }
 
 
@@ -653,8 +653,8 @@ namespace dynamic_source
       plib->m_strLibraryPath.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll"), strName);
    #endif
 
-      System.dir().mk(System.dir().name(m_strLibraryPath));
-      System.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_library\\library"), System.dir().name(strName)));
+      Application.dir().mk(System.dir().name(m_strLibraryPath));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_library\\library"), System.dir().name(strName)));
 
       for(int i = 0; i < m_straLibIncludePath.get_size(); i++)
       {
@@ -681,8 +681,8 @@ namespace dynamic_source
          str.replace("%PLATFORM%", m_strPlatform);
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
          str.replace("%SDK1%", m_strSdk1);
-         System.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_library\\" + System.dir().name(str1)));
-         System.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1)));
+         Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_library\\" + System.dir().name(str1)));
+         Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1)));
          strCmd = System.dir().ca2("stage\\front\\dynamic_source_libc1.bat");
 
          string vars1batSrc;
@@ -750,7 +750,7 @@ namespace dynamic_source
       string strTargetName = m_strLibraryPath;
       gen::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      System.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
+      Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
       strCmd = System.dir().ca2("stage\\front\\dynamic_source_libl1.bat");
       Application.file().put_contents(strCmd, str);
       STARTUPINFO si;

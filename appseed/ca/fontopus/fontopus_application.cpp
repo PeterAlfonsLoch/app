@@ -169,11 +169,11 @@ namespace fontopus
          puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
       }
       puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      System.dir().mk(puser->m_strPath);
+      App(this).dir().mk(puser->m_strPath);
       puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      System.dir().mk(puser->m_strDataPath);
+      App(this).dir().mk(puser->m_strDataPath);
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      System.dir().mk(puser->m_strAppDataPath);
+      App(this).dir().mk(puser->m_strAppDataPath);
       return puser;
    }
 

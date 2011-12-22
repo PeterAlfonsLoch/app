@@ -47,7 +47,7 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      void system::root_ones(stringa & stra)
+      void system::root_ones(stringa & stra, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(stra);
          throw interface_only_exception("this is an interface");
@@ -250,13 +250,13 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      bool system::mk(const char * lpcsz)
+      bool system::mk(const char * lpcsz, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          throw interface_only_exception("this is an interface");
       }
 
-      bool system::rm(const char * psz, bool bRecursive)
+      bool system::rm(::ca::application * papp, const char * psz, bool bRecursive)
       {
          UNREFERENCED_PARAMETER(psz);
          UNREFERENCED_PARAMETER(bRecursive);
@@ -405,13 +405,13 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      bool system::is_inside_time(const char * pszPath)
+      bool system::is_inside_time(const char * pszPath, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(pszPath);
          throw interface_only_exception("this is an interface");
       }
 
-      bool system::is_inside(const char * pszDir, const char * pszPath)
+      bool system::is_inside(const char * pszDir, const char * pszPath, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(pszDir);
          UNREFERENCED_PARAMETER(pszPath);

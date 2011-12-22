@@ -434,7 +434,7 @@ namespace bergedge
       for(int i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         System.dir().mk(System.dir().name(str));
+         Application.dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str , TRUE);
       }
       straRelative.remove_all();
@@ -443,7 +443,7 @@ namespace bergedge
       for(int i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         System.dir().mk(System.dir().name(str));
+         Application.dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str, TRUE);
       }
    }
@@ -456,7 +456,7 @@ namespace bergedge
          return;
       }
 
-      System.dir().mk(psz);
+      Application.dir().mk(psz);
       string strDir(psz);
 
       Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
@@ -467,7 +467,7 @@ namespace bergedge
       for(int i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         System.dir().mk(System.dir().name(str));
+         Application.dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str, TRUE);
       }*/
    }
@@ -493,7 +493,7 @@ namespace bergedge
             for(int i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               System.dir().mk(System.dir().name(str));
+               Application.dir().mk(System.dir().name(str));
                ::CopyFile(straPath[i], str, TRUE);
             }
          }
@@ -514,7 +514,7 @@ namespace bergedge
             for(int i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               System.dir().mk(System.dir().name(str));
+               Application.dir().mk(System.dir().name(str));
                ::CopyFile(straPath[i], str, TRUE);
             }
          }

@@ -127,7 +127,32 @@ namespace ca
 
       bool application::is(const char * lpcsz)
       {
-         return System.dir().is(lpcsz, get_app());
+         return m_psystem->m_spdir.m_p->is(lpcsz, m_papp);
+      }
+
+      bool application::is_inside(const char * lpcszDir, const char * lpcszPath)
+      {
+         return m_psystem->m_spdir.m_p->is_inside(lpcszDir, lpcszPath, m_papp);
+      }
+
+      bool application::is_inside_time(const char * lpcsz)
+      {
+         return m_psystem->m_spdir.m_p->is_inside_time(lpcsz, m_papp);
+      }
+
+      void application::root_ones(stringa & stra)
+      {
+         return m_psystem->m_spdir.m_p->root_ones(stra, m_papp);
+      }
+
+      bool application::mk(const char * lpcsz)
+      {
+         return m_psystem->m_spdir.m_p->mk(lpcsz, m_papp);
+      }
+
+      bool application::rm(const char * psz, bool bRecursive)
+      {
+         return m_psystem->m_spdir.m_p->rm(m_papp, psz, bRecursive);
       }
 
 

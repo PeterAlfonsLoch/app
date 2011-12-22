@@ -45,8 +45,8 @@ namespace ex1
          return true;
       if (!_tempFileCreated)
       {
-         _tempFileName = System.file().time_square(get_app(), kTempFilePrefixString);
-         _tempFile = System.file().get(_tempFileName);
+         _tempFileName = Application.file().time_square(kTempFilePrefixString);
+         _tempFile = Application.file().get(_tempFileName);
          _tempFileCreated = _tempFile.is_set();
       }
       uint32 processed = size;

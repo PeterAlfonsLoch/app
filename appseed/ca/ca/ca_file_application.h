@@ -20,9 +20,24 @@ namespace ca
 
          virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists = false);
 
+
+         virtual void trash_that_is_not_trash(const char * psz);
+         virtual void trash_that_is_not_trash(stringa & stra);
+
+
          virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace);
 
          virtual bool exists(const char * pszPath);
+
+
+         string time(const char * pszBasePath, int iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         string time_square(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         string time_log(const char * pszId);
+
+
+         virtual ex1::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         virtual ex1::filesp get(const char * name);
+
 
          virtual string as_string(var varFile);
          virtual string as_string(var varFile, var varQuery);

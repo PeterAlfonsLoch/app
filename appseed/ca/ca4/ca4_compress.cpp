@@ -70,14 +70,14 @@ namespace ca4
       return true;
    }
 
-   bool compress::ungz(const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
-      return System.file().output(lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
+      return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
    }
 
-   bool compress::gz(const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::gz(::ca::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
-      return System.file().output(lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
+      return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
    }
 
    bool compress::unbz(::ex1::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
@@ -123,14 +123,14 @@ namespace ca4
       return true;
    }
 
-   bool compress::unbz(const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::unbz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
-      return System.file().output(lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
+      return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
    }
 
-   bool compress::bz(const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(::ca::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
-      return System.file().output(lpcszGzFileCompressed, this, &compress::bz_stream, lpcszUncompressed);
+      return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
 
    bool compress::_compress(class primitive::memory & memory, void * pdata, unsigned long ulSize)

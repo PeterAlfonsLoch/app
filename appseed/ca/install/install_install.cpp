@@ -55,7 +55,7 @@ namespace ca2
    {
       string strPath;
       strPath = System.dir().appdata("spa_install.xml");
-      System.dir().mk(System.dir().name(strPath));
+      System.dir().mk(System.dir().name(strPath), get_app());
       ::xml::node node(get_app());
       node.load(Application.file().as_string(strPath));
       if(node.m_strName.is_empty())

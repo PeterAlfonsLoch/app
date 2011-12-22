@@ -98,7 +98,7 @@ namespace filemanager
 
          stringa stra;
 
-         System.dir().root_ones(stra);
+         Application.dir().root_ones(stra);
 
          Folder folder;
 

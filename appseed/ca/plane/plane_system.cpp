@@ -817,7 +817,7 @@ namespace plane
 
    bool system::is_inside_time_dir(const char * pszPath)
    {
-      return dir().is_inside_time(pszPath);
+      return dir().is_inside_time(pszPath, this);
    }
 
    bool system::file_is_read_only(const char * pszPath)
@@ -842,7 +842,7 @@ namespace plane
 
    bool system::dir_mk(const char * psz)
    {
-      return dir().mk(psz);
+      return dir().mk(psz, this);
    }
 
    string system::file_title(const char * psz)

@@ -97,7 +97,7 @@ void file_size_table::item::ls(::ca::application * papp, int & iIteration)
       base_array < bool, bool > baIsDir;
       if(path().is_empty())
       {
-         Sys(papp).dir().root_ones(straName);
+         App(papp).dir().root_ones(straName);
          for(int i = 0; i < straName.get_size(); i++)
          {
             item item;

@@ -162,7 +162,7 @@ namespace ca4
             MD5_Init(&ctx);
             read_ex1_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
-            System.dir().mk(System.dir().name(strPath));
+            App(papp).dir().mk(System.dir().name(strPath));
             if(!file2->open(strPath, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);

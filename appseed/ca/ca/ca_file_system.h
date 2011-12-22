@@ -33,8 +33,8 @@ namespace ca
          virtual string copy(const char * psz, ::ca::application * papp);
          virtual string paste(const char * pszLocation, const char * path, ::ca::application * papp);
 
-         virtual void trash_that_is_not_trash(const char * psz);
-         virtual void trash_that_is_not_trash(stringa & stra);
+         virtual void trash_that_is_not_trash(const char * psz, ::ca::application * papp);
+         virtual void trash_that_is_not_trash(stringa & stra, ::ca::application * papp);
 
          virtual string title_(const char * path);
          virtual string name_(const char * path);
@@ -50,14 +50,14 @@ namespace ca
          void  get_ascendants_name(const char * lpcsz, stringa & stra);
 
          template < class T >
-         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
+         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
          #ifdef LINUX
          ;
          #else
          {
-            System.dir().mk(System.dir().name(pszOutput));
-            ex1::filesp fileOut(get_app());
-            if(!fileOut->open(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write))
+            System.dir().mk(System.dir().name(pszOutput), papp);
+            ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+            if(fileOut.is_null())
                return false;
             return (p->*lpfnOuput)(fileOut, lpszSource);
          }
@@ -90,8 +90,8 @@ namespace ca
          string time_square(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          string time_log(::ca::application * papp, const char * pszId);
 
-         ex1::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-         ex1::filesp get(const char * name);
+         virtual ex1::filesp time_square_file(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         virtual ex1::filesp get(const char * name, ::ca::application * papp);
 
          template < class T >
          string time_square(T * p, bool (T::*lpfnOutput)(::ex1::writer &, const char *), const char * lpszSource)

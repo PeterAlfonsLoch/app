@@ -43,14 +43,14 @@ bool db_server::initialize()
 
    string str;
    str = Application.dir().userappdata("prop.db");
-   System.dir().mk(System.dir().name(str));
+   Application.dir().mk(System.dir().name(str));
    m_pdb->setDatabase(str);
    m_pdb->connect();
 
    m_pdatabaseImpl = new ::sqlite::base(get_app());
 
    str = Application.dir().userappdata("_prop002.db");
-   System.dir().mk(System.dir().name(str));
+   Application.dir().mk(System.dir().name(str));
    m_pdatabaseImpl->setDatabase(str);
    m_pdatabaseImpl->connect();
 

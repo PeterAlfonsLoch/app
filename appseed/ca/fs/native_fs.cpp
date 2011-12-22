@@ -32,7 +32,7 @@ namespace fs
    
    void native::root_ones(stringa & stra)
    {
-      return System.dir().root_ones(stra);
+      return System.dir().root_ones(stra, get_app());
    }
 
    void native::get_ascendants_path(const char * pszPath, stringa & stra)
