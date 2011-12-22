@@ -202,7 +202,7 @@ namespace bergedge
 
      		   string strIcon = Application.dir().matter(System.dir().path(strId, "mainframe/icon48.png"));
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-	   	   if(System.file().exists(strIcon))
+	   	   if(Application.file().exists(strIcon))
             {
                ppane->m_dib.create(papp);
                ppane->m_dib.load_from_file(strIcon);
@@ -430,7 +430,7 @@ namespace bergedge
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
       for(int i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -439,7 +439,7 @@ namespace bergedge
       }
       straRelative.remove_all();
       straPath.remove_all();
-      System.dir().rls(Application.dir().userprograms(), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
       for(int i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
@@ -450,10 +450,12 @@ namespace bergedge
 
    void pane_view::check_3click_dir(const char * psz)
    {
-      if(System.dir().is(psz))
+
+      if(Application.dir().is(psz))
       {
          return;
       }
+
       System.dir().mk(psz);
       string strDir(psz);
 
@@ -487,7 +489,7 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            System.dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, NULL, &straRelative);
             for(int i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
@@ -508,7 +510,7 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            System.dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, NULL, &straRelative);
             for(int i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);

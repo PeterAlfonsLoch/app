@@ -20,7 +20,7 @@ namespace ca4
       return m_path;
    }
 
-   bool file::path::rename(const char *pszNew, const char *psz)
+   bool file::path::rename(const char *pszNew, const char *psz, ::ca::application * papp)
    {
       string strDir = System.dir().name(psz);
       string strDirNew = System.dir().name(pszNew);
@@ -73,18 +73,18 @@ namespace ca4
    }
 
 
-   void file::dtf(const char * pszFile, const char * pszDir)
+   void file::dtf(const char * pszFile, const char * pszDir, ::ca::application * papp)
    {
       stringa stra;
       stringa straRelative;
-      System.dir().rls(pszDir, &stra, NULL, &straRelative);
-      dtf(pszFile, stra, straRelative);
+      System.dir().rls(papp, pszDir, &stra, NULL, &straRelative);
+      dtf(pszFile, stra, straRelative, papp);
    }
 
-   void file::dtf(const char * pszFile, stringa & stra, stringa & straRelative)
+   void file::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp)
    {
-      ex1::filesp spfile(get_app());
-      if(!spfile->open(pszFile, ::ex1::file::mode_create | ::ex1::file::mode_write  | ::ex1::file::type_binary))
+      ex1::filesp spfile = App(papp).get_file(pszFile, ::ex1::file::mode_create | ::ex1::file::mode_write  | ::ex1::file::type_binary);
+      if(spfile.is_null())
          throw "failed";
       string strVersion;
       strVersion = "fileset v1";
@@ -102,7 +102,7 @@ namespace ca4
          if(gen::str::ends_ci(stra[i], ".zip"))
          {
          }
-         else if(System.dir().is(stra[i]))
+         else if(System.dir().is(stra[i], get_app()))
             continue;
          write_n_number(spfile, NULL, 1);
          iPos = spfile->get_position();
@@ -133,11 +133,11 @@ namespace ca4
       write_n_number(spfile, NULL, 2);
    }
 
-   void file::ftd(const char * pszDir, const char * pszFile)
+   void file::ftd(const char * pszDir, const char * pszFile, ::ca::application * papp)
    {
       string strVersion;
-      ex1::filesp spfile(get_app());
-      if(!spfile->open(pszFile,  ::ex1::file::mode_read  | ::ex1::file::type_binary))
+      ex1::filesp spfile = App(papp).get_file(pszFile, ::ex1::file::mode_read  | ::ex1::file::type_binary);
+      if(spfile.is_null())
          throw "failed";
       read_ex1_string(spfile, NULL, strVersion);
       int n;

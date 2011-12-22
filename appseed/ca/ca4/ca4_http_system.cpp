@@ -37,7 +37,7 @@ namespace ca4
             {
                Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().ca2("proxy.xml"), false);
             }
-            if(System.file().exists(System.dir().appdata("proxy.xml")))
+            if(Application.file().exists(System.dir().appdata("proxy.xml")))
             {
                try
                {
@@ -51,7 +51,7 @@ namespace ca4
          else if(i == 2)
          {
             // telmico: original proxy configuration
-            if(System.file().exists(System.dir().appdata("proxy_original.xml")))
+            if(Application.file().exists(System.dir().appdata("proxy_original.xml")))
             {
                Application.file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
             }

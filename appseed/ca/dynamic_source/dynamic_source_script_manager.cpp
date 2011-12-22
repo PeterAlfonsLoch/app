@@ -61,7 +61,7 @@ namespace dynamic_source
       stringa straPath;
       stringa straTitle;
 
-      System.dir().ls_dir(System.dir().ca2(), &straPath, &straTitle);
+      Application.dir().ls_dir(System.dir().ca2(), &straPath, &straTitle);
 
       for(int i = 0; i < straPath.get_count(); i++)
       {
@@ -469,7 +469,7 @@ namespace dynamic_source
          return bFileExists;
       else
       {
-         bFileExists = System.file().exists(pszPath);
+         bFileExists = Application.file().exists(pszPath);
          m_mapIncludeMatchesFileExists.set_at(pszPath, bFileExists);
          return bFileExists;
       }
@@ -483,7 +483,7 @@ namespace dynamic_source
          return bIsDir;
       else
       {
-         bIsDir = System.dir().is(pszPath);
+         bIsDir = Application.dir().is(pszPath);
          m_mapIncludeMatchesIsDir.set_at(pszPath, bIsDir);
          return bIsDir;
       }
@@ -561,7 +561,7 @@ namespace dynamic_source
 
    string script_manager::real_path(const char * psz)
    {
-      if(System.file().exists(psz))
+      if(Application.file().exists(psz))
          return psz;
       return real_path(System.dir().netseed("ds/ca2"), psz);
    }

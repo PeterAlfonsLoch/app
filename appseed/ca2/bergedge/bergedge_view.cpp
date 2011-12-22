@@ -174,11 +174,11 @@ namespace bergedge
 
 
       string strImageDir = Application.dir().userdata("image");
-      System.dir().rls(strImageDir, &m_straImagePath);
+      Application.dir().rls(strImageDir, &m_straImagePath);
 
       for(int i = 0; i < m_straImagePath.get_size();)
       {
-         if(System.dir().is(m_straImagePath[i]))
+         if(Application.dir().is(m_straImagePath[i]))
          {
             m_straImagePath.remove_at(i);
          }

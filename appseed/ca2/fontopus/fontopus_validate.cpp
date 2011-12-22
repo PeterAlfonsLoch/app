@@ -467,7 +467,7 @@ namespace ca2
             string strPathUsername = Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data");
             string strPathPasshash = Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data");
 
-            if(!System.file().exists(strPathUsername) || !System.file().exists(strPathPasshash))
+            if(!Application.file().exists(strPathUsername) || !Application.file().exists(strPathPasshash))
                return true;
 
             System.crypt().file_get(strPathUsername, strUsername, "", get_app());

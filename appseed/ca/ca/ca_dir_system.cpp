@@ -1,15 +1,19 @@
 #include "StdAfx.h"
 
+
 namespace ca
 {
+
 
    namespace dir
    {
 
+
       system::system(::ca::application * papp) :
          ca(papp)
       {
-         m_pziputil = new zip::Util(papp);
+         m_pziputil = new zip::Util;
+         m_isdirmap.m_dwTimeOut = 15000;
       }
 
       system::~system()
@@ -49,14 +53,14 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      void system::rls_pattern(const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      void system::rls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
          if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
          {
             throw "should implement recursive zip";
-            m_pziputil->ls(lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
          }
          throw not_implemented_exception("is really a directory or compressed directory/file??");
@@ -64,19 +68,19 @@ namespace ca
       }
 
 
-      void system::ls_pattern(const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
          if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
          {
-            m_pziputil->ls(lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
          }
          throw not_implemented_exception("is really a directory or compressed directory/file??");
       
       }
 
-      void system::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      void system::ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -86,11 +90,11 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      void system::rls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      void system::rls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
          if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
          {
-            m_pziputil->ls(lpcsz, false, pstraPath, pstraTitle, pstraRelative);
+            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative);
             return;
          }
          else
@@ -99,7 +103,7 @@ namespace ca
          }
       }
 
-      void system::rls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      void system::rls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -108,11 +112,11 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      void system::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      void system::ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
          if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
          {
-            m_pziputil->ls_dir(lpcsz, pstraPath, pstraTitle);
+            m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
          }
          else
@@ -121,13 +125,13 @@ namespace ca
          }
       }
 
-      bool system::has_subdir(const char * lpcsz)
+      bool system::has_subdir(::ca::application * papp, const char * lpcsz)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          throw interface_only_exception("this is an interface");
       }
 
-      void system::ls_file(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      void system::ls_file(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -135,16 +139,48 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      bool system::is(const char * lpcszPath)
+      bool system::is(const char * lpcszPath, ::ca::application * papp)
       {
          if(gen::str::ends_ci(lpcszPath, ".zip"))
             return true;
          if(gen::str::find_ci(".zip:", lpcszPath))
          {
-            return m_pziputil->HasSubFolder(lpcszPath);
+            bool bHasSubFolder;
+            if(m_isdirmap.lookup(lpcszPath, bHasSubFolder))
+               return bHasSubFolder;
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
+            m_isdirmap.set(lpcszPath, bHasSubFolder);
+            return bHasSubFolder;
+         }
+         m_isdirmap.set(lpcszPath, false);
+         return false;
+      }
+
+
+      bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir)
+      {
+         single_lock sl(&m_mutex);
+         is_dir isdir;
+         if(Lookup(pszPath, isdir))
+         {
+            if(isdir.m_dwLastCheck + m_dwTimeOut > ::GetTickCount())
+            {
+               return false;
+            }
+            bIsDir = isdir.m_bIsDir;
+            return true;
          }
          return false;
       }
+      
+      void system::is_dir_map::set(const char * pszPath, bool bIsDir)
+      {
+         is_dir isdir;
+         isdir.m_bIsDir = bIsDir;
+         isdir.m_dwLastCheck = ::GetTickCount();
+         set_at(pszPath, isdir);
+      }
+
 
       string system::votagus(const char * lpcsz, const char * lpcsz2)
       {

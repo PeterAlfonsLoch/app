@@ -338,7 +338,7 @@ namespace filemanager
          {
             wstrPath += ":" + wstrExtra;
          }
-         return zip::Util(papp).HasSubFolder(wstrPath);
+         return zip::Util().HasSubFolder(papp, wstrPath);
       }
       else
       {
@@ -369,7 +369,7 @@ namespace filemanager
       {
          return FolderFileSystem;
       }
-      else if(zip::Util(papp).IsUnzipable(strPath))
+      else if(zip::Util().IsUnzipable(papp, strPath))
       {
          return FolderZip;
       }
@@ -966,7 +966,7 @@ namespace filemanager
             }
          }
       }
-         if(System.dir().is(gen::international::unicode_to_utf8(szFilePath)))
+         if(Application.dir().is(gen::international::unicode_to_utf8(szFilePath)))
          {
             if(imagekey.m_iIcon == -1)
             {

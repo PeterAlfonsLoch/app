@@ -120,7 +120,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
 {
    string str;
    _001GetText(str);
-   if(System.dir().is(str))
+   if(Application.dir().is(str))
    {
       GetFileManager()->FileManagerBrowse(str);
    }
@@ -130,7 +130,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
       while(true)
       {
          strName = System.dir().name(strName);
-         if(System.dir().is(strName))
+         if(Application.dir().is(strName))
          {
             if(System.file_system().cmp(GetFileManager()->get_item().m_strPath, strName) != 0)
             {

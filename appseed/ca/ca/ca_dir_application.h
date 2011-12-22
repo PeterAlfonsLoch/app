@@ -38,6 +38,16 @@ namespace ca
          virtual string userprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
 
+         virtual void  ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
+         virtual void  ls(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
+         virtual void  rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
+         virtual void  rls(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
+         virtual void  rls_dir(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
+         virtual void  ls_dir(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual bool  has_subdir(const char * lpcsz);
+         virtual void  ls_file(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual bool  is(const char * lpcsz);
+
       };
 
    } // namespace dir

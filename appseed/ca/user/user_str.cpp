@@ -61,7 +61,7 @@ namespace user
       string strMain = pszBaseDir;
       stringa straLangPath;
       stringa straLang;
-      System.dir().ls_dir(strMain, &straLangPath, &straLang);
+      Application.dir().ls_dir(strMain, &straLangPath, &straLang);
       for(int iLang = 0; iLang < straLang.get_count(); iLang++)
       {
          string strLang = straLang[iLang];
@@ -69,14 +69,14 @@ namespace user
             continue;
          stringa straStylePath;
          stringa straStyle;
-         System.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
+         Application.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
          for(int iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
          {
             string strStyle = straStyle[iStyle];
             if(strStyle.CompareNoCase(".svn") == 0)
                continue;
             stringa straPath;
-            System.dir().rls(
+            Application.dir().rls(
                System.dir().path(straStylePath[iStyle], "uistr"),
                &straPath);
             for(int iPath = 0; iPath < straPath.get_count(); iPath++)
@@ -86,7 +86,7 @@ namespace user
                   continue;
                if(gen::str::find_ci("\\.svn\\", strPath) >= 0)
                   continue;
-               if(System.dir().is(strPath))
+               if(Application.dir().is(strPath))
                   continue;
                load_uistr_file(strLang, strStyle, strPath);
             }

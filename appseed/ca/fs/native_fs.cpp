@@ -16,18 +16,18 @@ namespace fs
    // optional if ls_dir is implemented
    bool native::has_subdir(const char * pszPath)
    {
-      return System.dir().has_subdir(pszPath);
+      return System.dir().has_subdir(get_app(), pszPath);
    }
 
    bool native::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
    {
-      System.dir().ls(pszDir, pstraPath, pstraTitle);
+      System.dir().ls(get_app(), pszDir, pstraPath, pstraTitle);
       return true;
    }
 
    bool native::is_dir(const char * pszPath)
    {
-      return System.dir().is(pszPath);
+      return System.dir().is(pszPath, get_app());
    }
    
    void native::root_ones(stringa & stra)
@@ -103,7 +103,7 @@ namespace fs
 
    bool native::file_exists(const char * pszPath)
    {
-      return System.file().exists(pszPath);
+      return System.file().exists(pszPath, get_app());
    }
 
 

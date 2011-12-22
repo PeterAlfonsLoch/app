@@ -16,7 +16,7 @@ namespace ca4
          public ::radix::object
       {
       public:
-         bool rename(const char * pszNew, const char * psz);
+         bool rename(const char * pszNew, const char * psz, ::ca::application * papp);
          file * m_pfile;
       };
 
@@ -33,11 +33,11 @@ namespace ca4
 
       path & path36();
    
-      void dtf(const char * pszFile, const char * pszDir);
-      void dtf(const char * pszFile, stringa & stra, stringa & straRelative);
-      void ftd(const char * pszDir, const char * pszFile);
+      void dtf(const char * pszFile, const char * pszDir, ::ca::application * papp);
+      void dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp);
+      void ftd(const char * pszDir, const char * pszFile, ::ca::application * papp);
 
-      void is_valid_fileset(const char * pszFile);
+      void is_valid_fileset(const char * pszFile, ::ca::application * papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
       static void write_n_number(ex1::file * pfile, MD5_CTX * pctx, int iNumber);

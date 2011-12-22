@@ -35,7 +35,7 @@ namespace visual
          strFile.replace("/", "\\");
          strFile = System.dir().time("cache", strFile);
          strFile += ".dib";
-         if(System.file().exists(strFile))
+         if(Application.file().exists(strFile))
          {
             try
             {

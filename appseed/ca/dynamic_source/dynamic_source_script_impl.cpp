@@ -232,7 +232,7 @@ namespace dynamic_source
    string script_impl::real_path(const char * psz)
    {
 
-      if(System.file().exists(psz))
+      if(Application.file().exists(psz))
          return psz;
 
       string strRealPath;
@@ -1381,7 +1381,7 @@ namespace dynamic_source
          string str = named_sys_get_include_path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pstraAccept);
          if(str.has_char())
          {
-            if(System.file().exists(str))
+            if(Application.file().exists(str))
                return str;
          }
       }
@@ -1391,7 +1391,7 @@ namespace dynamic_source
          string str = named_sys_get_include_path(m_pinstanceMain->m_straUserDir[i], pszExt, pszType, pszDoc, pstraAccept);
          if(str.has_char())
          {
-            if(System.file().exists(str))
+            if(Application.file().exists(str))
                return str;
             else
                return System.dir().path(m_pinstanceMain->m_straUserDir[i], str);
@@ -1448,7 +1448,7 @@ namespace dynamic_source
          string str = named_sys_get_base_path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pstraAccept);
          if(str.has_char())
          {
-            if(System.file().exists(str))
+            if(Application.file().exists(str))
                return str;
          }
       }
@@ -1458,7 +1458,7 @@ namespace dynamic_source
          string str = named_sys_get_base_path(m_pinstanceMain->m_straUserDir[i], pszExt, pszType, pszDoc, pszBase, pstraAccept);
          if(str.has_char())
          {
-            if(System.file().exists(str))
+            if(Application.file().exists(str))
                return str;
             else
                return System.dir().path(m_pinstanceMain->m_straUserDir[i], str);
@@ -1502,7 +1502,7 @@ namespace dynamic_source
          string str = named_sys_get_subdomain_path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
          if(str.has_char())
          {
-            if(System.file().exists(str))
+            if(Application.file().exists(str))
                return str;
          }
       }
@@ -1512,7 +1512,7 @@ namespace dynamic_source
          string str = named_sys_get_subdomain_path(m_pinstanceMain->m_straUserDir[i], pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
          if(str.has_char())
          {
-            if(System.file().exists(str))
+            if(Application.file().exists(str))
                return str;
             else
                return System.dir().path(m_pinstanceMain->m_straUserDir[i], str);
@@ -2637,23 +2637,23 @@ namespace dynamic_source
       
       strPath = System.dir().path(psz, strRelative);
 
-      if(System.dir().is(strPath))
+      if(Application.dir().is(strPath))
       {
          string strCandidate;
          strCandidate = System.dir().path(strPath, "index.ds");
-         if(System.file().exists(strCandidate))
+         if(Application.file().exists(strCandidate))
          {
             include(strCandidate);
             return;
          }
          strCandidate = System.dir().path(strPath, "index.html");
-         if(System.file().exists(strCandidate))
+         if(Application.file().exists(strCandidate))
          {
             strPath = strCandidate;
             goto ok1;
          }
          strCandidate = System.dir().path(strPath, "index.htm");
-         if(System.file().exists(strCandidate))
+         if(Application.file().exists(strCandidate))
          {
             strPath = strCandidate;
             goto ok1;
@@ -4516,7 +4516,7 @@ ok1:
       if(strPath.is_empty())
          return false;
 
-      if(!System.file().exists(strPath))
+      if(!Application.file().exists(strPath))
       {
          pfile->seek_to_begin();
          primitive::memory mem;
@@ -4524,7 +4524,7 @@ ok1:
          Application.file().put_contents(strPath, mem);
       }
 
-      if(!System.file().exists(strPath))
+      if(!Application.file().exists(strPath))
          return false;
 
 
@@ -4646,11 +4646,11 @@ ok1:
    __int64 script_impl::low_fs_map(const char * pszDir)
    {
       stringa stra;
-      System.dir().rls(pszDir, &stra);
+      Application.dir().rls(pszDir, &stra);
       int iCount = 0;
       for(int i = 0; i < stra.get_size(); i++)
       {
-         if(!System.dir().is(stra[i]))
+         if(!Application.dir().is(stra[i]))
          {
             if(low_fs_map_file(stra[i]))
                iCount++;

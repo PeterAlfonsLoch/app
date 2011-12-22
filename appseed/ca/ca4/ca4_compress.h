@@ -33,8 +33,8 @@ namespace ca4
       void extract_all(const char * pszFile, ::ca::application * papp);
 
 
-      void zip(const char * pszZip, const char * psz);
-      void zip(const char * psz);
+      void zip(const char * pszZip, const char * psz, ::ca::application * papp);
+      void zip(const char * psz, ::ca::application * papp);
 
 
       friend class application;

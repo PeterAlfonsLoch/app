@@ -150,7 +150,7 @@ namespace dynamic_source
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
       m_strScriptPath.replace("/", "\\");
-      if(!System.file().exists(m_strScriptPath))
+      if(!Application.file().exists(m_strScriptPath))
       {
          if(HasTempError(false))
          {

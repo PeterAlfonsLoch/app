@@ -113,7 +113,7 @@ void file_size_table::item::ls(::ca::application * papp, int & iIteration)
       }
       else
       {
-         Sys(papp).dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
+         App(papp).dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
          for(int i = 0; i < straName.get_size(); i++)
          {
             item item;

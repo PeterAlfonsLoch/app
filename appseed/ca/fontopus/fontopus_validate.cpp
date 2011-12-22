@@ -1000,7 +1000,7 @@ namespace fontopus
       gen::property_set set;
       for(int i = 0; i < m_httpexecutea.get_size(); i++)
       {
-         strFilename = System.file().time_square();
+         strFilename = System.file().time_square(get_app());
          System.http().download(
             m_httpexecutea[i].m_strUrl,
             strFilename,

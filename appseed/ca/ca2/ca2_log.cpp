@@ -87,7 +87,7 @@ namespace ca2
          return false;
       m_id = id;
       m_bInitialized = true;
-      if(System.file().exists(System.dir().appdata("debug.txt")))
+      if(Application.file().exists(System.dir().appdata("debug.txt")))
       {
          string str = Application.file().as_string(System.dir().appdata("debug.txt"));
          if(str.get_length() == 0 || str.Left(2).trim() != "0")

@@ -417,7 +417,7 @@ namespace html
          puser->m_strLogin = m_strUser;
 
          string filename;
-         filename = System.file().time_square();
+         filename = System.file().time_square(get_app());
          System.http().download(
             "https://fontopus.com/ca2api/auth",
             filename,

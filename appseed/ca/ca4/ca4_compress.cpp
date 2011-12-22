@@ -157,11 +157,11 @@ namespace ca4
       App(papp).file().copy(strDir, pszFile, false);
    }
 
-   void compress::zip(const char * pszZip, const char * psz)
+   void compress::zip(const char * pszZip, const char * psz, ::ca::application * papp)
    {
-      zip::InFile infile(get_app());
+      zip::InFile infile(papp);
 
-      ::ex1::file_exception_sp fe(get_app());
+      ::ex1::file_exception_sp fe(papp);
 
       if(!infile.zip_open(pszZip, 0, &fe))
       {
@@ -169,17 +169,17 @@ namespace ca4
          return;
       }
 
-      if(System.dir().is(psz))
+      if(System.dir().is(psz, papp))
       {
          stringa straPath;
          stringa straRelative;
          string strPath;
          ::ex1::filesp file;
-         System.dir().rls(psz, &straPath, NULL, &straRelative);
+         System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
          for(int i = 0; i < straPath.get_size(); i++)
          {
             strPath = straPath[i];
-            if(!System.dir().is(strPath))
+            if(!System.dir().is(strPath, papp))
             {
                infile.add_file(psz, straRelative[i]);
 
@@ -189,7 +189,7 @@ namespace ca4
 
    }
 
-   void compress::zip(const char * psz)
+   void compress::zip(const char * psz, ::ca::application * papp)
    {
    }
 

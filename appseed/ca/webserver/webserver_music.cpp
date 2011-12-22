@@ -295,7 +295,7 @@ namespace webserver
          prefix2.make_lower();
          path = basepath + prefix1 + "/" + prefix2 + "/" + filename;
          dprint(path);
-         if(System.file().exists(path))
+         if(Application.file().exists(path))
             return path;
       }
 
@@ -312,11 +312,11 @@ namespace webserver
       prefix = gen::str::pad(prefix, 3, "_", gen::str::pad_right);
       path = basepath + prefix[0] + "/" + prefix[1] + "/" + prefix[2] + "/" + filename;
       dprint(path);
-      if(System.file().exists(path))
+      if(Application.file().exists(path))
          return path;
 
       path = basepath + filename;
-      if(System.file().exists(path))
+      if(Application.file().exists(path))
          return path;
 
       return false;
@@ -343,7 +343,7 @@ namespace webserver
          prefix2.make_lower();
          path = basepath + prefix1 + "/" + prefix2 + "/" + filename;
          dprint("candidate="+path);
-         if(System.file().exists(path))
+         if(Application.file().exists(path))
             return path;
       }
 
@@ -362,11 +362,11 @@ namespace webserver
       path = basepath+prefix[0]+"/"+prefix[1]+"/"+prefix[2]+"/"+filename;
       dprint("candidate=" + path);
 
-      if(System.file().exists(path))
+      if(Application.file().exists(path))
          return path;
 
       path = basepath + filename;
-      if(System.file().exists(path))
+      if(Application.file().exists(path))
          return path;
 
 
@@ -1141,7 +1141,7 @@ string music::karaoke_getFwdParamStyle()
 
       var filepath      = psong->get_gz_file_path();
 
-      if(System.file().exists(filepath))
+      if(Application.file().exists(filepath))
       {
          dprint("filepath=" + filepath);
          dprint("contenttype=" + contenttype);

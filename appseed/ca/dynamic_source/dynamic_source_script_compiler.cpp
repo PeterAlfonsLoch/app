@@ -122,7 +122,7 @@ namespace dynamic_source
       string strScript;
       strScript = System.file().title_(strName);
       string strTransformName = strName;
-      if(System.file().exists(strName))
+      if(Application.file().exists(strName))
       {
          pscript->m_strSourcePath = strName;
          strTransformName.replace(":", "");
@@ -132,7 +132,7 @@ namespace dynamic_source
          pscript->m_strSourcePath.Format(System.dir().ca2("net\\netseed\\ds\\ca2\\%s"), strName);
       }
 
-      if(!System.file().exists(pscript->m_strSourcePath))
+      if(!Application.file().exists(pscript->m_strSourcePath))
       {
          pscript->m_memfileError<< "<pre>";
          str.Format("Source File : \"%s\" does not exist", pscript->m_strSourcePath);
@@ -179,7 +179,7 @@ namespace dynamic_source
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
-         if(System.file().exists(pscript->m_strScriptPath + ".old"))
+         if(Application.file().exists(pscript->m_strScriptPath + ".old"))
          {
             System.file().del(pscript->m_strScriptPath + ".old");
          }
@@ -190,7 +190,7 @@ namespace dynamic_source
       }
       try
       {
-         if(System.file().exists(pscript->m_strScriptPath))
+         if(Application.file().exists(pscript->m_strScriptPath))
          {
             System.file().move(pscript->m_strScriptPath + ".old", pscript->m_strScriptPath);
          }
@@ -201,7 +201,7 @@ namespace dynamic_source
       }
       try
       {
-         if(System.file().exists(pscript->m_strScriptPath + ".old"))
+         if(Application.file().exists(pscript->m_strScriptPath + ".old"))
          {
             System.file().del(pscript->m_strScriptPath + ".old");
          }
@@ -590,7 +590,7 @@ namespace dynamic_source
       strVotagusFolder = System.dir().votagus();
       m_straLibSourcePath.remove_all();
       m_straLibSourceRelPath.remove_all();
-      System.dir().rls(System.dir().netseed("ds\\ca2\\library\\source"),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
+      Application.dir().rls(System.dir().netseed("ds\\ca2\\library\\source"),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
       for(int i = 0; i < m_straLibSourcePath.get_size(); )
       {
          if(System.file().extension(m_straLibSourcePath[i]) != "ds")
@@ -615,12 +615,12 @@ namespace dynamic_source
       }
       m_straLibIncludePath.remove_all();
       m_straLibIncludeRelPath.remove_all();
-      System.dir().rls(System.dir().netseed("ds\\ca2\\library\\include"),  &m_straLibIncludePath, NULL, &m_straLibIncludeRelPath);
+      Application.dir().rls(System.dir().netseed("ds\\ca2\\library\\include"),  &m_straLibIncludePath, NULL, &m_straLibIncludeRelPath);
       for(int i = 0; i < m_straLibIncludePath.get_size(); )
       {
          if(System.file().extension(m_straLibIncludePath[i]) != "ds"
             || gen::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
-            || System.dir().is(m_straLibIncludePath[i]))
+            || Application.dir().is(m_straLibIncludePath[i]))
          {
             m_straLibIncludePath.remove_at(i);
             m_straLibIncludeRelPath.remove_at(i);
@@ -1346,7 +1346,7 @@ namespace dynamic_source
    {
       string strPath = System.dir().netseed("ds\\ca2\\ca2\\persistent");
       stringa stra;
-      System.dir().rls(strPath, &stra);
+      Application.dir().rls(strPath, &stra);
 
       string strCat;
       strCat = System.dir().netseed("ds\\ca2\\ca2\\netnode_persistent_ui_str.ds");

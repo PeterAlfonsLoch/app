@@ -61,7 +61,7 @@ namespace sockets
 
    void http_put_socket::SetFile(const string & file)
    {
-      if(System.file().exists(file))
+      if(Application.file().exists(file))
       {
          m_filename = file;
          m_content_length = System.file().length(file);

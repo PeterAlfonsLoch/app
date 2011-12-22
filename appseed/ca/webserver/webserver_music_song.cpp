@@ -127,7 +127,7 @@ namespace webserver
             gen::property_set set(get_app());
             set["kar"] = false;
             path = low_fs_file_path(row.at(1), row.at(2), row.at(3), row.at(4), row.at(5), set);
-            if(System.file().exists(path))
+            if(Application.file().exists(path))
                return path;
          }
 

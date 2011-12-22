@@ -1,11 +1,12 @@
 #include "StdAfx.h"
 #include "InFile.h"
 
+
 namespace zip
 {
 
-   Util::Util(::ca::application * papp) :
-      ca(papp)
+
+   Util::Util()
    {
    }
 
@@ -14,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+   void Util::ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
    {
       string strZip;
       string strRemain;
@@ -34,7 +35,7 @@ namespace zip
       else
          return;
 
-      InFile infile(get_app());
+      InFile infile(papp);
 
       if(!infile.unzip_open(strZip, 0, NULL))
       {
@@ -113,12 +114,12 @@ namespace zip
       }
    }
 
-   void Util::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void Util::ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       stringa straPath;
       stringa straTitle;
       base_array < bool, bool > baIsDir;
-      ls(lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
+      ls(papp, lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
 
       string strPath;
 
@@ -134,10 +135,10 @@ namespace zip
          }
          else
          {
-            strPath = System.dir().name(straPath[i]);
+            strPath = Sys(papp).dir().name(straPath[i]);
             if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
             {
-               pstraTitle->add(System.dir().name(straTitle[i]));
+               pstraTitle->add(Sys(papp).dir().name(straTitle[i]));
             }
          }
          
@@ -147,7 +148,7 @@ namespace zip
 
 
 
-   bool Util::HasSubFolder(const char * lpszFileName)
+   bool Util::HasSubFolder(::ca::application * papp, const char * lpszFileName)
    {
       string strZip;
       if(gen::str::ends_ci(lpszFileName, ".zip"))
@@ -162,7 +163,7 @@ namespace zip
       else
          return false;
 
-      InFile infile(get_app());
+      InFile infile(papp);
 
       strZip.replace("\\", "/");
       if(!gen::str::ends_ci(strZip, "/"))
@@ -270,15 +271,15 @@ namespace zip
       return false;
    }
 
-   bool Util::exists(const char * pszPath)
+   bool Util::exists(::ca::application * papp, const char * pszPath)
    {
-      return extract(pszPath, NULL);
+      return extract(papp, pszPath, NULL);
    }
 
-   bool Util::extract(const char * lpszFileName, const char * lpszExtractFileName)
+   bool Util::extract(::ca::application * papp, const char * lpszFileName, const char * lpszExtractFileName)
    {
 
-      InFile infile(get_app());
+      InFile infile(papp);
 
       if(!infile.unzip_open(lpszFileName, 0, NULL))
       {
@@ -288,8 +289,9 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ex1::filesp spfile(get_app());
-      if(spfile->open(lpszExtractFileName, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::defer_create_directory))
+      ex1::filesp spfile = App(papp).get_file(lpszExtractFileName, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::defer_create_directory);
+
+      if(spfile.is_set())
       {
          return infile.dump(spfile);
       }
@@ -297,9 +299,10 @@ namespace zip
       {
          return false;
       }
+
    }
 
-   bool Util::IsUnzipable(const char * lpszFileName)
+   bool Util::IsUnzipable(::ca::application * papp, const char * lpszFileName)
    {
       string str(lpszFileName);
       if(str.get_length() < 4)
@@ -307,7 +310,7 @@ namespace zip
       if(str.Right(4) != ".zip")
          return false;
 
-      File file(get_app());
+      File file(papp);
 
       return file.unzip_open(lpszFileName);
    }

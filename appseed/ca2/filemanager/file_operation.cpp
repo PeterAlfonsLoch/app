@@ -88,7 +88,7 @@ bool file_operation::set_delete(stringa & stra)
 
 bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
 {
-   if(System.dir().is(pszSrc) && !gen::str::ends_ci(pszSrc, ".zip"))
+   if(Application.dir().is(pszSrc) && !gen::str::ends_ci(pszSrc, ".zip"))
    {
       System.dir().mk(System.dir().name(pszDst));
       return false;
@@ -179,7 +179,7 @@ bool file_operation::step()
             m_fileSrc->close();
             m_fileDst->close();
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && System.dir().is(m_stra[m_iFile]) && !gen::str::ends_ci(m_stra[m_iFile], ".zip"))
+            while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !gen::str::ends_ci(m_stra[m_iFile], ".zip"))
             {
                m_iFile++;
             }
@@ -267,7 +267,7 @@ bool file_operation::initialize()
    var varLen;
    for(int i = 0; i < m_stra.get_size(); i++)
    {
-      if(System.dir().is(m_stra[i]) && !gen::str::ends_ci(m_stra[i], ".zip"))
+      if(Application.dir().is(m_stra[i]) && !gen::str::ends_ci(m_stra[i], ".zip"))
       {
          m_daSize.add(0.0);
          m_daRead.add(0.0);
@@ -347,7 +347,7 @@ void file_operation::make_duplicate_name(string & str, const char * psz)
    {
       strFormat.Format("-Cópia-%03d", i);
       str = System.dir().path(strDir, strName + strFormat + strExtension);
-      if(!System.file().exists(str))
+      if(!Application.file().exists(str))
          return;
    }
 }
@@ -356,9 +356,9 @@ void file_operation::expand(stringa & straExpanded, stringa & straExpand)
 {
    for(int i = 0; i < straExpand.get_size(); i++)
    {
-      if(System.dir().is(straExpand[i]) && !gen::str::ends_ci(m_stra[i], ".zip"))
+      if(Application.dir().is(straExpand[i]) && !gen::str::ends_ci(m_stra[i], ".zip"))
       {
-         System.dir().rls(straExpand[i], &straExpanded);
+         Application.dir().rls(straExpand[i], &straExpanded);
       }
       else
       {

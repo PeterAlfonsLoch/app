@@ -88,7 +88,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-      System.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      Application.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
       for(int i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -117,7 +117,7 @@ namespace user
          }
       }
       string strPath;
-      if(System.file().exists(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml")))
+      if(Application.file().exists(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml")))
       {
          return System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml");
       }

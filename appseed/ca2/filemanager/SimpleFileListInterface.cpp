@@ -94,7 +94,7 @@ namespace filemanager
 
             item.m_flags.unsignalize_all();
 
-            if(System.dir().is(stra[i]))
+            if(Application.dir().is(stra[i]))
             {
                item.m_flags.signalize(::fs::FlagFolder);
             }
@@ -152,7 +152,7 @@ namespace filemanager
       for(int i = 0; i < straPath.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
-         if(System.dir().is(straPath[i]))
+         if(Application.dir().is(straPath[i]))
          {
             item.m_flags.signalize(filemanager::FlagFolder);
          }
@@ -1085,7 +1085,7 @@ namespace filemanager
       ::fs::list_item item;
       item.m_strPath = pszPath;
       item.m_strName = pszTitle;
-      if(System.dir().is(pszPath))
+      if(Application.dir().is(pszPath))
       {
          item.m_flags.signalize(::fs::FlagFolder);
       }

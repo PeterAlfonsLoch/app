@@ -47,7 +47,7 @@ namespace ca8
 
 
       stringa straPath;
-      System.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      Application.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
       for(int i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;

@@ -133,7 +133,7 @@ namespace fs
          pitemChild->m_strName = straTitle[i];
          if(!get_document()->is_dir(straPath[i]))
          {
-            if(zip::Util(get_app()).IsUnzipable(pitemChild->m_strPath))
+            if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
             {
                pitemChild->m_flags.signalize(FlagFolder);
 
@@ -152,7 +152,7 @@ namespace fs
                   pitem = insert_item(pitemChild, ex1::RelativeLastChild, pitemParent);
                }
 
-               if(zip::Util(get_app()).HasSubFolder(pitemChild->m_strPath))
+               if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
                {
                   pitem->m_dwState |= ::ex1::tree_item_state_expandable;
                }
@@ -362,7 +362,7 @@ namespace fs
       str = szPath;
       str = str.Mid(0, str.reverse_find(".zip:") + 4);
 
-      zip::Util(get_app()).ls(str, false, &wstraItem);
+      zip::Util().ls(get_app(), str, false, &wstraItem);
 
       string wstrFolder;
       stringa wstraFolder;
@@ -411,7 +411,7 @@ namespace fs
 //             pitemNew->m_strExtra  = wstrExtraPath;
             string str;
             str = szPath + wstrExtraPath;
-            if(zip::Util(get_app()).IsUnzipable(str))
+            if(zip::Util().IsUnzipable(get_app(), str))
             {
                pitemNew->m_flags.signalize(FlagFolder);
             }
@@ -432,7 +432,7 @@ namespace fs
             }
             str = szPath;
             wstraChildItem.remove_all();
-            if(zip::Util(get_app()).HasSubFolder(str))
+            if(zip::Util().HasSubFolder(get_app(), str))
             {
                pitem->m_dwState |= ::ex1::tree_item_state_expandable;
             }

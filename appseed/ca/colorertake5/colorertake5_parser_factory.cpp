@@ -164,18 +164,18 @@ HRCParser* ParserFactory::getHRCParser()
          {
             path = relPath;
          }
-         if(System.dir().is(path))
+         if(Application.dir().is(path))
          {
             //if(path == "v:\\votagus\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
               // AfxDebugBreak();
             }
             stringa straPath;
-            System.dir().rls(path, &straPath);
+            System.dir().rls(get_app(), path, &straPath);
             ex1::filesp spfile(get_app());
             for(int i = 0; i < straPath.get_count(); i++)
             {
-               if(!System.dir().is(straPath[i]))
+               if(!Application.dir().is(straPath[i]))
                {
                   string str = Application.file().as_string(straPath[i]);
                   try

@@ -17,9 +17,6 @@ namespace ca
       public:
 
 
-         zip::Util *       m_pziputil;
-
-
          class CLASS_DECL_ca path :
             virtual public ::radix::object
 
@@ -27,6 +24,39 @@ namespace ca
          public:
             virtual bool  is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
          };
+
+         class CLASS_DECL_ca is_dir
+         {
+         public:
+
+            
+            bool        m_bIsDir;
+            DWORD       m_dwLastCheck;
+
+
+         };
+
+
+         class CLASS_DECL_ca is_dir_map :
+            virtual public ::collection::string_map < is_dir >
+         {
+         public:
+
+            
+            mutex             m_mutex;
+            DWORD             m_dwTimeOut;
+
+
+            bool lookup(const char * pszPath, bool &bIsDir);
+            void set(const char * pszPath, bool bIsDir);
+
+
+         };
+
+
+         zip::Util *       m_pziputil;
+         is_dir_map        m_isdirmap;
+         
 
          system(::ca::application * papp);
          virtual ~system();
@@ -36,15 +66,15 @@ namespace ca
       
          virtual string path(const char * lpcszFolder, const char * lpcszRelative, const char * lpcsz2 = NULL);
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
-         virtual void  ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
-         virtual void  ls(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
-         virtual void  rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
-         virtual void  rls(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
-         virtual void  rls_dir(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
-         virtual void  ls_dir(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
-         virtual bool  has_subdir(const char * lpcsz);
-         virtual void  ls_file(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
-         virtual bool  is(const char * lpcsz);
+         virtual void  ls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
+         virtual void  ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
+         virtual void  rls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
+         virtual void  rls(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
+         virtual void  rls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
+         virtual void  ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual bool  has_subdir(::ca::application * papp, const char * lpcsz);
+         virtual void  ls_file(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual bool  is(const char * lpcsz, ::ca::application * papp);
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath);
          virtual bool  is_inside_time(const char * lpcsz);
          virtual void  root_ones(stringa & stra);

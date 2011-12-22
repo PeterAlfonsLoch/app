@@ -150,7 +150,7 @@ namespace http
 //                     FILE *fil;
                      int out = 0;
                      char c;
-                     string strTempFile = System.file().time_square();
+                     string strTempFile = System.file().time_square(get_app());
                      ex1::filesp spfile(Application.get_file(strTempFile, ::ex1::file::type_binary | ::ex1::file::mode_create | ::ex1::file::mode_write));
                      if(spfile.is_set())
                      {

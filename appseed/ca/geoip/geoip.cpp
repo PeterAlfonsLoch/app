@@ -291,7 +291,7 @@ int GeoIP_db_avail(::ca::application * m_papp, int type) {
    if (NULL == filePath) {
       return 0;
    }
-   return Sys(m_papp).file().exists(filePath);
+   return App(m_papp).file().exists(filePath);
 }
 
 static

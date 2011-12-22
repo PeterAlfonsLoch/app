@@ -556,7 +556,7 @@ l1:
    {
       string strTimeFile;
 
-      strTimeFile = System.file().time_square();
+      strTimeFile = System.file().time_square(get_app());
 
       ex1::filesp spfile(get_app());
       if(!spfile->open(strTimeFile, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::mode_create))

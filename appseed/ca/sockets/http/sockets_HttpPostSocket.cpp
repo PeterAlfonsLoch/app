@@ -89,7 +89,7 @@ namespace sockets
 
    void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
    {
-      if (System.file().exists(filename))
+      if (Application.file().exists(filename))
       {
          m_files[name] = filename;
          m_content_length[filename] = System.file().length(filename);

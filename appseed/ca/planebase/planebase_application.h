@@ -13,8 +13,7 @@ namespace planebase
 
       service_base *                      m_pservice;
       class ::ca::dir::application        m_dir;
-
-      class ::ca2::file::application      m_file;
+      class ::ca::file::application       m_file;
       class ::ca4::http::application      m_http;
 
       sp(class ::fontopus::license)       m_splicense;
@@ -60,8 +59,7 @@ namespace planebase
 
 
       class ::ca::dir::application        & dir();
-
-      class ::ca2::file::application      & file();
+      class ::ca::file::application       & file();
       class ::ca4::http::application      & http(); 
 
       class ::fontopus::license           & license();

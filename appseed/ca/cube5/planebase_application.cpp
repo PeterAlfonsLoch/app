@@ -36,7 +36,7 @@ namespace planebase
       return m_dir;
    }
 
-   class ::ca2::file::application & application::file()
+   class ::ca::file::application & application::file()
    {
       return m_file;
    }

@@ -49,7 +49,7 @@ namespace plane
 
       mutex                            m_mutexDelete;
       ::ca::application_ptra           m_appptra;
-      class ::ca2::file::system        m_file;
+      class ::ca::file::system         m_file;
       ::ca::dir::system_sp             m_spdir;
       class ::ca2::stra                m_stra;
       class ::ca2::url                 m_url;
@@ -193,7 +193,7 @@ namespace plane
       ::ca::application_ptra           & appptra();
       ::ca2::datetime                  & datetime();
 
-      ::ca2::file::system              & file();
+      ::ca::file::system               & file();
       ::ca::dir::system                & dir();
       ::ca2::stra                      & stra();
       ::ca2::url                       & url();

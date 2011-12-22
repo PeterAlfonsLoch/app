@@ -85,6 +85,55 @@ namespace ca
       }
 
 
+      void application::ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      {
+         return m_psystem->m_spdir.m_p->ls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+      }
+
+      void application::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      {
+         return m_psystem->m_spdir.m_p->ls(m_papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
+      }
+
+      void application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      {
+         return m_psystem->m_spdir.m_p->rls_pattern(m_papp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize);
+      }
+
+      void application::rls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      {
+         return m_psystem->m_spdir.m_p->rls(m_papp, lpcsz, pstraPath, pstraTitle, pstraRelative);
+      }
+
+      void application::rls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      {
+         return m_psystem->m_spdir.m_p->rls_dir(m_papp, lpcsz, pstraPath, pstraTitle, pstraRelative);
+      }
+
+      void application::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      {
+         return m_psystem->m_spdir.m_p->rls_dir(m_papp, lpcsz, pstraPath, pstraTitle);
+      }
+      
+      bool application::has_subdir(const char * lpcsz)
+      {
+         return m_psystem->m_spdir.m_p->has_subdir(m_papp, lpcsz);
+      }
+
+      void application::ls_file(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      {
+         return m_psystem->m_spdir.m_p->ls_file(m_papp, lpcsz, pstraPath, pstraTitle);
+      }
+
+      bool application::is(const char * lpcsz)
+      {
+         return System.dir().is(lpcsz, get_app());
+      }
+
+
    } // namespace dir
 
+
 } // namespace ca
+
+

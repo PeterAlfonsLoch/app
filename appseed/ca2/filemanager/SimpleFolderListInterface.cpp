@@ -65,7 +65,7 @@ namespace filemanager
       stringa straPath;
       stringa straTitle;
 
-      System.dir().ls(strParent, &straPath, &straTitle);
+      Application.dir().ls(strParent, &straPath, &straTitle);
 
       for(int i = 0; i < straPath.get_count(); i++)
       {

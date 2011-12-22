@@ -504,7 +504,7 @@ BOOL Is_Vista_or_Later ()
       }
       ::xml::node node(get_app());
       string strFilePath = Application.dir().matter(strMatter);
-      if(!System.file().exists(strFilePath))
+      if(!System.file().exists(strFilePath, this))
       {
          if(m_stringtablemap[pszId] != NULL)
             delete m_stringtablemap[pszId];

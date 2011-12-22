@@ -257,7 +257,7 @@ namespace plane
       string strLibraryId;
       stringa straTitle;
 
-      System.dir().ls_pattern(System.dir().ca2module(), "app_*", NULL,& straTitle);
+      Application.dir().ls_pattern(System.dir().ca2module(), "app_*", NULL,& straTitle);
 
       for(int i = 0; i < straTitle.get_count(); i++)
       {
@@ -577,7 +577,7 @@ namespace plane
       return m_appptra;
    }
 
-   ::ca2::file::system & system::file()
+   ::ca::file::system & system::file()
    {
       return m_file;
    }
@@ -1024,7 +1024,7 @@ namespace plane
 
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
-      string filename = System.file().time_square();
+      string filename = System.file().time_square(get_app());
       gen::property_set headers;
       gen::property_set post;
       gen::property_set set;

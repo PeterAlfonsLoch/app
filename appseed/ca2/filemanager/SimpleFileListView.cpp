@@ -209,7 +209,7 @@ namespace filemanager
             {
                if(!pmanageruh->m_strFind.is_empty())
                {
-                  System.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
+                  Application.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
                   _017UpdateList();
                }
             }
@@ -290,7 +290,7 @@ namespace filemanager
 
       string wstrNew = str.Left(iFind + 1) + wstrNameNew;
 
-      System.file36().path36().rename(wstrNew, str);
+      System.file36().path36().rename(wstrNew, str, get_app());
 
       _017UpdateList();
 
@@ -902,13 +902,13 @@ namespace filemanager
       string strFileCheck;
       for(int i = 0; i < itema.get_size(); i++)
       {
-         if(System.dir().is(itema[i].m_strPath)
+         if(Application.dir().is(itema[i].m_strPath)
             && System.file().name_(itema[i].m_strPath) != ".svn")
          {
-            System.dir().rls(itema[i].m_strPath, &straSub);
+            Application.dir().rls(itema[i].m_strPath, &straSub);
             for(int j = 0; j < straSub.get_size(); j++)
             {
-               if(!System.dir().is(straSub[j])
+               if(!Application.dir().is(straSub[j])
                 && straSub[j].find(".svn") < 0)
                {
                   strFileList += straSub[j] + "\n";
@@ -967,12 +967,12 @@ namespace filemanager
          if(::fs::list_interface::get_document()->is_dir(pdata->m_itema.get_item(i).m_strPath)
             && ::fs::list_interface::get_document()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
-            System.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
+            Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int j = 0; j < straSub.get_size(); j++)
             {
              string strExtension = System.file().extension(straSub[j]);
 
-               if(!System.dir().is(straSub[j])
+               if(!Application.dir().is(straSub[j])
          && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
              || strExtension == "exe.manifest"))
                {

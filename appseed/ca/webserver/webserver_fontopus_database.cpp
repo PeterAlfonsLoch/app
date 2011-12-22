@@ -3088,7 +3088,7 @@ namespace webserver
       {
          ::webserver::music::song * psong = NULL;
          var varFile = music().file_get_file_by_kar_file_id(iKarFileId, &psong);
-         if(!System.file().exists(varFile)) // currently does not license catalogued but not existent file
+         if(!Application.file().exists(varFile)) // currently does not license catalogued but not existent file
          {
             return false;
          }

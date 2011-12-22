@@ -3332,6 +3332,12 @@
     <ClInclude Include="mail\mail.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
+    <ClInclude Include="ca\ca_file_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5074,12 +5080,6 @@
     <ClCompile Include="template\template_trace_module_manager.cpp">
       <Filter>Source Files\template</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_application_file.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_file_system.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="ca2\ca2_url.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
@@ -5574,6 +5574,12 @@
     </ClCompile>
     <ClCompile Include="gen\gen_var_property_allocation.cpp">
       <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_file_application.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_file_system.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
