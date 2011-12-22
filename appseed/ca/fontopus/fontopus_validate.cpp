@@ -45,7 +45,7 @@ namespace fontopus
       || command_thread().property("app") == "netnode"
       || command_thread().property("app") == "veievserver"
       || command_thread().property("app") == "simpledbcfg"
-      || command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
+      //|| command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
       || command_thread().property("app") == "netnodecfg")
       {
          m_puser = Application.allocate_user();
@@ -185,7 +185,7 @@ namespace fontopus
          || strLicense == "simpledbcfg"
          || strLicense == "netnode"
          || strLicense == "veievserver"
-         || strLicense == "veriwell_mplite"      // churrasco 2011 m_strLicense
+         //|| strLicense == "veriwell_mplite"      // churrasco 2011 m_strLicense
          || strLicense == "mydns"
          || Application.command().m_varTopicQuery.has_property("install")
          || Application.command().m_varTopicQuery.has_property("uninstall")
