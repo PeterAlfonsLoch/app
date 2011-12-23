@@ -403,14 +403,14 @@ namespace ca4
 
    DWORD crypt::crc32(DWORD dwPrevious, const void * psz, ::primitive::memory_size iCount)
    {
-      if(iCount == (::primitive::memory_size::TYPE) -1)
+      if(iCount == (::primitive::memory_size) -1)
          iCount = strlen((const char*) psz);
       return ::crc32(dwPrevious, (const Bytef *) psz, iCount);
    }
 
    DWORD crypt::crc32(DWORD dwPrevious, const char * psz)
    {
-      return crc32(dwPrevious, psz, (::primitive::memory_size::TYPE) -1);
+      return crc32(dwPrevious, psz, (::primitive::memory_size) -1);
    }
 
    void crypt::hmac(primitive::memory & memKey, const char * message, byte result[20])

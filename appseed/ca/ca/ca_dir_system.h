@@ -47,6 +47,10 @@ namespace ca
             DWORD             m_dwTimeOut;
 
 
+            is_dir_map();
+
+
+            bool lookup(const string & strPath, bool &bIsDir);
             bool lookup(const char * pszPath, bool &bIsDir);
             void set(const char * pszPath, bool bIsDir);
 

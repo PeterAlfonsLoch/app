@@ -61,7 +61,7 @@ namespace ex1
          }
          break;
       default:
-         return file_size::allset_value();
+         return ::numeric_info::get_allset_value < file_size >();
       }
       m_dwLastCall = ::GetTickCount();
       while(true)

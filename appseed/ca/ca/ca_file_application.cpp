@@ -35,13 +35,41 @@ namespace ca
 
       bool application::exists(const char * pszPath)
       {
-         string strPath(pszPath);
-         strPath.trim();
-         if(gen::str::begins_ci(strPath, "uifs://"))
+
+         if(gen::str::begins_ci(pszPath, "uifs://"))
+         {
+            return ifs(m_papp, "").file_exists(pszPath);
+         }
+
+         return m_psystem->m_file.exists(pszPath, m_papp);
+
+      }
+
+
+      bool application::exists(const string & strPath)
+      {
+
+         if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {
             return ifs(m_papp, "").file_exists(strPath);
          }
-         return m_psystem->m_file.exists(pszPath, m_papp);
+
+         return m_psystem->m_file.exists(strPath, m_papp);
+
+      }
+
+      bool application::exists(const var & var)
+      {
+
+         const string & strPath = var;
+
+         if(gen::str::begins_ci_iws(strPath, "uifs://"))
+         {
+            return ifs(m_papp, "").file_exists(strPath);
+         }
+
+         return m_psystem->m_file.exists(strPath, m_papp);
+
       }
 
       string application::time(const char * pszBasePath, int iDepth, const char * pszPrefix, const char * pszSuffix)

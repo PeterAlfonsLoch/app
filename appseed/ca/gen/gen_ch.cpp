@@ -1,17 +1,17 @@
 #include "StdAfx.h"
-#include "x/x_defines.h"
-#include "x/x_tables.h"
-#include "x/x_charcategory_names.h"
 
-inline bool is_legal_uni_index(__int64 c)
-{
-   return c >= ((uint64_t) 0xffff) ? false : true;
-}
+
+#include "ca/x/x_charcategory_names.h"
+
 
 namespace gen
 {
+
+
    namespace ch
    {
+
+
       string ch::to_lower_case(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))

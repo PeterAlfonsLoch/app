@@ -5,29 +5,29 @@ namespace numeric_info
 {
 
 
-   template < class T >
+   template < typename T >
    inline T get_maximum_value()
    {
       throw not_implemented_exception();
    }
 
-   template < class T >
+   template < typename T >
    inline T get_minimum_value()
    {
       throw not_implemented_exception();
    }
-   template < class T >
+   template < typename T >
    inline T get_null_value()
    {
       return 0;
    }
-   template < class T >
+   template < typename T >
    inline T get_unitary_value()
    {
       return 1;
    }
 
-   template < class T >
+   template < typename T >
    inline T get_allset_value()
    {
       T t;
@@ -173,11 +173,31 @@ namespace numeric_info
 
 
 
+   
    template <>
    inline uint64_t get_maximum_value < uint64_t > ()
    {
       return static_cast < uint64_t > (0xffffffffffffffff);
    }
+   template <>
+   inline uint64_t get_allset_value < uint64_t > ()
+   {
+      return static_cast < uint64_t > (0xffffffffffffffff);
+   }
+   template <>
+   inline uint64_t get_minimum_value < uint64_t > ()
+   {
+      return static_cast < uint64_t > (0);
+   }
+   template <>
+   inline uint64_t get_unitary_value < uint64_t >()
+   {
+      return 1;
+   }
+
+
+
+
    template <>
    inline int64_t get_maximum_value < int64_t > ()
    {
@@ -187,11 +207,6 @@ namespace numeric_info
    inline UINT get_minimum_value < UINT > ()
    {
       return (UINT) 0;
-   }
-   template <>
-   inline uint64_t get_minimum_value < uint64_t > ()
-   {
-      return static_cast < uint64_t > (0);
    }
    template <>
    inline int64_t get_minimum_value < int64_t > ()
@@ -210,11 +225,6 @@ namespace numeric_info
    }
 
 
-   template <>
-   inline uint64_t get_allset_value < uint64_t > ()
-   {
-      return (uint64_t) -1;
-   }
 
 
 } // numeric_info

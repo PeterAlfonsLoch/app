@@ -119,6 +119,26 @@ namespace gen
          return L"";
       }
 
+      wstring MultiByteToUnicode(UINT uiCodePage, const string & str)
+      {
+         int iBuffer = MultiByteToUnicodeCount(uiCodePage, str, str.get_length());
+         if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
+         {
+            return NULL;
+         }
+         else if(iBuffer == 0)
+         {
+            return L"";
+         }
+         wstring wstr;
+         wstr.alloc(iBuffer);
+         if(MultiByteToUnicode(uiCodePage, wstr.m_pwsz, iBuffer, str, str.get_length()))
+         {
+            return wstr;
+         }
+         return L"";
+      }
+
       bool MultiByteToMultiByte(UINT uiCodePageDst, string & str, UINT uiCodePageSrc, const char * lpcsz)
       {
          if(uiCodePageDst == uiCodePageSrc)
@@ -270,6 +290,16 @@ namespace gen
       wstring utf8_to_unicode(const char * lpcsz)
       {
          return MultiByteToUnicode(CodePageUtf8, lpcsz);
+      }
+
+      wstring utf8_to_unicode(const string & str)
+      {
+         return MultiByteToUnicode(CodePageUtf8, str);
+      }
+
+      wstring utf8_to_unicode(const var & var)
+      {
+         return MultiByteToUnicode(CodePageUtf8, (const string &) var);
       }
 
       int utf8_to_unicode_count(const char * lpcsz)

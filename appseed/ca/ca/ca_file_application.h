@@ -28,6 +28,8 @@ namespace ca
          virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace);
 
          virtual bool exists(const char * pszPath);
+         virtual bool exists(const string & strPath);
+         virtual bool exists(const var & var);
 
 
          string time(const char * pszBasePath, int iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);

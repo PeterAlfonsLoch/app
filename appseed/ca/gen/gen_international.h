@@ -1,10 +1,17 @@
 #pragma once
 
 
+class var;
+
+
 namespace gen
 {
+
+
    namespace international
    {
+
+
       extern UINT g_uiACP;
       enum ECodePage
       {
@@ -33,6 +40,7 @@ namespace gen
        bool CLASS_DECL_ca MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, int iBuffer, const char  * lpcsz, int iCount);
        bool CLASS_DECL_ca MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, int nCount, const char * lpcsz);
        CLASS_DECL_ca wstring MultiByteToUnicode(UINT uiCodePage, const char * lpcsz, int nCount);
+       CLASS_DECL_ca wstring MultiByteToUnicode(UINT uiCodePage, const string & str);
        int  CLASS_DECL_ca MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz);
        int  CLASS_DECL_ca MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz, int iCount);
        CLASS_DECL_ca wstring MultiByteToUnicode(UINT uiCodePage, const char * lpcsz);
@@ -60,6 +68,8 @@ namespace gen
 
        bool CLASS_DECL_ca unicode_to_utf8(string & str, const wchar_t * lpcsz);
        CLASS_DECL_ca wstring utf8_to_unicode(const char * lpcsz);
+       CLASS_DECL_ca wstring utf8_to_unicode(const string & str);
+       CLASS_DECL_ca wstring utf8_to_unicode(const var & var);
        CLASS_DECL_ca wstring utf8_to_unicode(const char * lpcsz, int iCount);
        bool CLASS_DECL_ca unicode_to_utf8(string & str, const wchar_t * lpcsz, int iCount);
        string CLASS_DECL_ca unicode_to_utf8(const wchar_t * lpcsz);

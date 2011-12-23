@@ -298,9 +298,14 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, DWORD)
 //#endif
 
-DEFINE_C_NUMBER(CLASS_DECL_ca, file_size        , uint64_t)
-DEFINE_C_NUMBER(CLASS_DECL_ca, file_position    , uint64_t)
-DEFINE_C_NUMBER(CLASS_DECL_ca, file_offset      ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, file_size        , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, file_position    , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, file_offset      ,  int64_t)
+
+typedef uint64_t  file_size;
+typedef uint64_t  file_position;
+typedef int64_t   file_offset;
+
 
 namespace primitive
 {
@@ -309,20 +314,70 @@ namespace primitive
 #if defined(_M_X64)  // X64
 
 
-DEFINE_C_NUMBER(CLASS_DECL_ca, memory_size         , uint64_t)
-DEFINE_C_NUMBER(CLASS_DECL_ca, memory_position     , uint64_t)
-DEFINE_C_NUMBER(CLASS_DECL_ca, memory_offset       ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_size         , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_position     , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_offset       ,  int64_t)
+
+typedef uint64_t  memory_size;
+typedef uint64_t  memory_position;
+typedef int64_t   memory_offset;
 
 
 #else
 
-DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_size         , uint32_t)
-DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_position     , uint32_t)
-DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_offset       ,  int32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_size         , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_position     , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_offset       ,  int32_t)
+
+typedef uint32_t  memory_size;
+typedef uint32_t  memory_position;
+typedef int32_t   memory_offset;
 
 
 #endif
 
 
-
 } // namespace primitive
+
+
+
+/*namespace numeric_info
+{
+
+
+   template <>
+   inline file_size get_maximum_value < file_size > ()
+   {
+      return static_cast < file_size > (0xffffffffffffffff);
+   }
+
+   template <>
+   inline file_size get_minimum_value < file_size > ()
+   {
+      return static_cast < uint64_t > (0);
+   }
+
+   template <>
+   inline file_size get_allset_value < file_size > ()
+   {
+      return static_cast < file_size > (0xffffffffffffffff);
+   }
+
+   template <>
+   inline file_size get_null_value < file_size > ()
+   {
+      return 0;
+   }
+
+   template <>
+   inline file_size get_unitary_value < file_size >()
+   {
+      return 1;
+   }
+
+
+} // namespace numeric_info
+
+
+
+*/

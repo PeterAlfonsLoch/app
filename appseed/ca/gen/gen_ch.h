@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ca/x/x_charcategory.h"
+#include "ca/x/x_defines.h"
+#include "ca/x/x_tables.h"
+
 
 /** Character information class.
     \par Basic features:
@@ -22,10 +25,56 @@
 
     @ingroup unicode
 */
+
+
 namespace gen
 {
+
+
+   class CLASS_DECL_ca utf8_char
+   {
+   public:
+      char     m_sz[11];
+      char     m_chLen;
+   };
+
+
    namespace ch
    {
+
+      inline bool is_legal_uni_index(__int64 c)
+      {
+         return c >= ((uint64_t) 0xffff) ? false : true;
+      }
+
+      inline bool is_space_char(wchar_t wch)
+      {
+         return ((((1 << CHAR_CATEGORY_Zs) |
+                   (1 << CHAR_CATEGORY_Zl)  |
+                   (1 << CHAR_CATEGORY_Zp)
+                  ) >> CHAR_CATEGORY(CHAR_PROP(wch))) & 1) != 0;
+      }
+
+      inline bool is_space_char(__int64 c)
+      {
+         if(!is_legal_uni_index(c)) return false;
+         return is_space_char((wchar_t) c);
+      }
+
+      inline wchar_t to_lower_case(wchar_t wch)
+      {
+        unsigned long c1 = CHAR_PROP(wch);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(wch);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(wch+1);
+        return wchar_t(wch - (c1>>16));
+      }
+
+      inline __int64 to_lower_case(__int64 c)
+      {
+         if(!is_legal_uni_index(c)) return false;
+         return (__int64) to_lower_case((wchar_t) c);
+      }
+
       CLASS_DECL_ca string to_lower_case(const char * pszUtf8Char);
       CLASS_DECL_ca string to_upper_case(const char * pszUtf8Char);
       CLASS_DECL_ca string to_title_case(const char * pszUtf8Char);

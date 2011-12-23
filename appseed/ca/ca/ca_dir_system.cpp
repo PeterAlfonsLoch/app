@@ -155,21 +155,35 @@ namespace ca
          return false;
       }
 
+      system::is_dir_map::is_dir_map() :
+         ::collection::string_map < is_dir >(200) // block size
+      {
+      }
 
       bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir)
       {
+         return lookup(string(pszPath), bIsDir);
+      }
+
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir)
+      {
+
          single_lock sl(&m_mutex);
-         is_dir isdir;
-         if(Lookup(pszPath, isdir))
+
+         ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strPath);
+
+         if(ppair == NULL)
+            return false;
+
+         if(::GetTickCount() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
          {
-            if(::GetTickCount() > isdir.m_dwLastCheck + m_dwTimeOut)
-            {
-               return false;
-            }
-            bIsDir = isdir.m_bIsDir;
-            return true;
+            return false;
          }
-         return false;
+
+         bIsDir = ppair->m_value.m_bIsDir;
+
+         return true;
+
       }
       
       void system::is_dir_map::set(const char * pszPath, bool bIsDir)

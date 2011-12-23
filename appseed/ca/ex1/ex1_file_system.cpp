@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 
+
 namespace ex1
 {
 
@@ -25,6 +26,18 @@ namespace ex1
          str = lpszFileIn;
          return true;
       }
+      return false;
+   }
+
+   bool file_system::FullPath(wstring & wstrFullPath, const wstring & wstrPath)
+   {
+      
+      if(gen::str::begins_ci_iws(wstrPath, L"uifs://"))
+      {
+         wstrFullPath = wstrPath;
+         return true;
+      }
+
       return false;
    }
 

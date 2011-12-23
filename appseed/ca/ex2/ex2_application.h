@@ -50,9 +50,11 @@ namespace ex2
       public gen::application,
       virtual public ca::smart_pointer < ex2::application >
    {
-   protected:
-      ex1::file_system_sp m_spfilesystem;
    public:
+
+
+      ex1::file_system_sp m_spfilesystem;
+
 
       application();
       virtual ~application();

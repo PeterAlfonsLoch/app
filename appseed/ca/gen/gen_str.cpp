@@ -53,16 +53,34 @@ namespace gen
 
    bool str::begins(const char * lpcsz, const char * lpcszPrefix)
    {
-      while(*lpcszPrefix != '\0')
+      if(lpcsz == NULL || *lpcsz == '\0')
       {
-         if(*lpcsz == '\0')
+         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         {
+            return true;
+         }
+         else
+         {
             return false;
-         else if(*lpcszPrefix != *lpcsz)
-            return false;
+         }
+      }
+      while(*lpcsz == *lpcszPrefix)
+      {
          lpcsz++;
          lpcszPrefix++;
+         if(*lpcsz == '\0')
+         {
+            if(*lpcszPrefix == '\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == '\0')
+         {
+            return true;
+         }
       }
-      return true;
+      return false;
    }
 
    bool str::begins_with(const char * lpcsz, const char * lpcszPrefix)
@@ -72,15 +90,78 @@ namespace gen
 
    bool str::begins_ci(const char * lpcsz, const char * lpcszPrefix)
    {
-      string str(lpcsz);
-      string strPrefix(lpcszPrefix);
-      int iLen = strPrefix.get_length();
-      if(str.Left(iLen).CompareNoCase(lpcszPrefix) == 0)
+      if(lpcsz == NULL || *lpcsz == '\0')
       {
-         return true;
+         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      while(tolower(*lpcsz) == tolower(*lpcszPrefix))
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == '\0')
+         {
+            if(*lpcszPrefix == '\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == '\0')
+         {
+            return true;
+         }
       }
       return false;
    }
+
+   // case insensitive, ignore white space - only in searched string
+   bool str::begins_ci_iws(const char * lpcsz, const char * lpcszPrefix)
+   {
+      if(lpcsz == NULL || *lpcsz == '\0')
+      {
+         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      while(*lpcsz && isspace(*lpcsz))
+         lpcsz++;
+      if(!*lpcsz)
+         return false;
+      while(tolower(*lpcsz) == tolower(*lpcszPrefix))
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == '\0')
+         {
+            if(*lpcszPrefix == '\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == '\0')
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   bool str::begins_ci_iws(const string & str, const char * lpcszPrefix)
+   {
+      return str::begins_ci_iws(str.c_str(), lpcszPrefix);
+   }
+
 
    bool str::begins_eat(string & str, const char * lpcszPrefix)
    {
@@ -135,14 +216,33 @@ namespace gen
 
    bool str::ends_ci(const char * lpcsz, const char * lpcszSuffix)
    {
-      string str(lpcsz);
-      string strSuffix(lpcszSuffix);
-      int iLen = strSuffix.get_length();
-      if(str.Right(iLen).CompareNoCase(lpcszSuffix) == 0)
+      if(lpcsz == NULL || *lpcsz == '\0')
+      {
+         if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+            return true;
+      }
+      else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
       {
          return true;
       }
+      const char * lpcszEnd = lpcsz;
+      const char * lpcszSuffixEnd = lpcszSuffix;
+      while(*lpcszEnd)
+         lpcszEnd++;
+      while(*lpcszSuffixEnd)
+         lpcszSuffixEnd++;
+      if((lpcszSuffixEnd - lpcszSuffix) > (lpcszEnd - lpcsz))
+         return false;
+      while(tolower(lpcszSuffixEnd[-1]) == tolower(lpcszEnd[-1]))
+      {
+         lpcszSuffixEnd--;
+         lpcszEnd--;
+         if(lpcszSuffixEnd == lpcszSuffix)
+            return true;
+      }
+
       return false;
+
    }
 
    bool str::ends_eat(string & str, const char * lpcszSuffix)
@@ -203,13 +303,238 @@ namespace gen
       return str;
    }
 
+   int str::find_ci(const string & strFind, const string & str, int iStart)
+   {
+
+      if(strFind.get_length() > (str.get_length() - iStart))
+         return -1;
+      
+      string strFindLow(&((LPCTSTR)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
+      strFindLow.make_lower();
+
+      string strLow(&((LPCSTR)str)[iStart], str.get_length() - iStart); // avoid optimized read only string copy
+      strLow.make_lower();
+
+      int iFind = strLow.find(strFindLow);
+      
+      if(iFind < 0)
+         return -1;
+
+      return iStart + iFind;
+
+   }
+
+
+   int str::find_ci(const string & strFind, const char * psz, int iStart)
+   {
+      
+      int iFindLen = strFind.get_length();
+
+      int iLen = strlen(&psz[iStart]);
+
+      if(iFindLen > iLen)
+         return -1;
+
+      if(iFindLen < 256)
+      {
+         
+         char szFind[256];
+         memcpy(szFind, strFind, iFindLen + 1);
+         strlwr(szFind);
+
+         if(iLen < 256)
+         {
+
+            char sz[256];
+            memcpy(sz, &psz[iStart], iLen + 1);
+            strlwr(sz);
+
+            const char * pszFind = strstr(sz, szFind);
+
+            if(pszFind == NULL)
+               return -1;
+
+            return iStart + (pszFind - sz);
+
+         }
+         else
+         {
+
+            string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+            strLow.make_lower();
+
+            psz = strLow;
+
+            const char * pszFind = strstr(psz, szFind);
+
+            if(pszFind == NULL)
+               return -1;
+
+            return iStart + (pszFind - psz);
+
+         }
+
+      }
+      else
+      {
+
+         string strFindLow(&((LPCTSTR)strFind)[0], iFindLen); // avoid optimized read only string copy
+         strFindLow.make_lower();
+
+         string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+         strLow.make_lower();
+
+         int iFind = strLow.find(strFindLow);
+      
+         if(iFind < 0)
+            return -1;
+
+         return iStart + iFind;
+
+      }
+
+   }
+
+
+   int str::find_ci(const char * pszFind, const string & str, int iStart)
+   {
+      
+      int iFindLen = strlen(pszFind);
+      
+      int iLen = str.get_length() - iStart;
+
+      if(iFindLen > iLen)
+         return -1;
+
+      if(iFindLen < 256)
+      {
+         
+         char szFind[256];
+         memcpy(szFind, pszFind, iFindLen + 1);
+         strlwr(szFind);
+
+         if(iLen < 256)
+         {
+
+            char sz[256];
+            memcpy(sz, &((LPCSTR)str)[iStart], iLen + 1);
+            strlwr(sz);
+
+            pszFind = strstr(sz, szFind);
+
+            if(pszFind == NULL)
+               return -1;
+
+            return iStart + (pszFind - sz);
+
+         }
+         else
+         {
+
+            string strLow(&((LPCSTR)str)[iStart], iLen); // avoid optimized read only string copy
+            strLow.make_lower();
+
+            const char * psz = strLow;
+
+            pszFind = strstr(psz, szFind);
+
+            if(pszFind == NULL)
+               return -1;
+
+            return iStart + (pszFind - psz);
+
+         }
+
+      }
+      else
+      {
+
+         string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
+         strFindLow.make_lower();
+
+         string strLow(&((LPCSTR)str)[iStart], iLen); // avoid optimized read only string copy
+         strLow.make_lower();
+
+         int iFind = strLow.find(strFindLow);
+      
+         if(iFind < 0)
+            return -1;
+
+         return iStart + iFind;
+
+      }
+
+   }
+
+
    int str::find_ci(const char * pszFind, const char * psz, int iStart)
    {
-      string strFind(pszFind);
-      strFind.make_lower();
-      string str(psz);
-      str.make_lower();
-      return str.find(strFind, iStart);
+      
+      int iFindLen = strlen(pszFind);
+      
+      int iLen = strlen(&psz[iStart]);
+
+      if(iFindLen > iLen)
+         return -1;
+
+      if(iFindLen < 256)
+      {
+         
+         char szFind[256];
+         memcpy(szFind, pszFind, iFindLen + 1);
+         strlwr(szFind);
+
+         if(iLen < 256)
+         {
+
+            char sz[256];
+            memcpy(sz, &psz[iStart], iLen + 1);
+            strlwr(sz);
+
+            pszFind = strstr(sz, szFind);
+
+            if(pszFind == NULL)
+               return -1;
+
+            return iStart + (pszFind - sz);
+
+         }
+         else
+         {
+
+            string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+            strLow.make_lower();
+
+            psz = strLow;
+
+            pszFind = strstr(psz, szFind);
+
+            if(pszFind == NULL)
+               return -1;
+
+            return iStart + (pszFind - psz);
+
+         }
+
+      }
+      else
+      {
+
+         string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
+         strFindLow.make_lower();
+
+         string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+         strLow.make_lower();
+
+         int iFind = strLow.find(strFindLow);
+      
+         if(iFind < 0)
+            return -1;
+
+         return iStart + iFind;
+
+      }
+
    }
 
    int str::find_wwci(const char * pszFind, const char * psz, int iStart)
@@ -621,12 +946,137 @@ namespace gen
       return psz - 1;
    }
 
+   const char * str::utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz)
+   {
+      if(psz <= pszBeg)
+      {
+         pchar->m_chLen = -1;
+         return NULL;
+      }
+      if((*(psz - 1) & 0x80) == 0x00)
+      {
+         if((psz - 1) < pszBeg)
+         {
+            pchar->m_chLen = -1;
+            return NULL;
+         }
+         pchar->m_sz[0] = psz[-1];
+         pchar->m_sz[1] = '\0';
+         pchar->m_chLen = 1;
+         return psz - 1;
+      }
+      else if((*(psz - 2) & 0xE0) == 0xC0)
+      {
+         if((psz - 2) < pszBeg)
+         {
+            pchar->m_chLen = -1;
+            return NULL;
+         }
+         pchar->m_sz[0] = psz[-2];
+         pchar->m_sz[1] = psz[-1];
+         pchar->m_sz[2] = '\0';
+         pchar->m_chLen = 2;
+         return psz - 2;
+      }
+      else if((*(psz - 3) & 0xF0) == 0xE0)
+      {
+         if((psz - 3) < pszBeg)
+         {
+            pchar->m_chLen = -1;
+            return NULL;
+         }
+         pchar->m_sz[0] = psz[-3];
+         pchar->m_sz[1] = psz[-2];
+         pchar->m_sz[2] = psz[-1];
+         pchar->m_sz[3] = '\0';
+         pchar->m_chLen = 3;
+         return psz - 3;
+      }
+      else if((*(psz - 4) & 0xF8) == 0xF0)
+      {
+         if((psz - 4) < pszBeg)
+         {
+            pchar->m_chLen = -1;
+            return NULL;
+         }
+         pchar->m_sz[0] = psz[-4];
+         pchar->m_sz[1] = psz[-3];
+         pchar->m_sz[2] = psz[-2];
+         pchar->m_sz[3] = psz[-1];
+         pchar->m_sz[4] = '\0';
+         pchar->m_chLen = 4;
+         return psz - 4;
+      } 
+      else if((*(psz - 5) & 0xFC) == 0xF8)
+      {
+         if((psz - 5) < pszBeg)
+         {
+            pchar->m_chLen = -1;
+            return NULL;
+         }
+         pchar->m_sz[0] = psz[-5];
+         pchar->m_sz[1] = psz[-4];
+         pchar->m_sz[2] = psz[-3];
+         pchar->m_sz[3] = psz[-2];
+         pchar->m_sz[4] = psz[-1];
+         pchar->m_sz[5] = '\0';
+         pchar->m_chLen = 5;
+         return psz - 5;
+      }
+      else if((*(psz - 6) & 0xFE) == 0xFC)
+      {
+         if((psz - 6) < pszBeg)
+         {
+            pchar->m_chLen = -1;
+            return NULL;
+         }
+         pchar->m_sz[0] = psz[-6];
+         pchar->m_sz[1] = psz[-5];
+         pchar->m_sz[2] = psz[-4];
+         pchar->m_sz[3] = psz[-3];
+         pchar->m_sz[4] = psz[-2];
+         pchar->m_sz[5] = psz[-1];
+         pchar->m_sz[6] = '\0';
+         pchar->m_chLen = 6;
+         return psz - 6;
+      }
+      if((psz - 1) < pszBeg)
+      {
+         pchar->m_chLen = -1;
+         return NULL;
+      }
+      pchar->m_sz[0] = psz[-1];
+      pchar->m_sz[1] = '\0';
+      pchar->m_chLen = 1;
+      return psz - 1;
+   }
+
+
+   int str::utf8_char(::gen::utf8_char * pchar, const char * psz)
+   {
+      char chLen =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
+      char ch = 0;
+      for(; ch < chLen; ch++)
+      {
+         if(*psz == 0)
+         {
+            pchar->m_chLen = -1;
+            return -1;
+         }
+         pchar->m_sz[ch] = *psz++;
+      }
+      pchar->m_sz[ch]   = '\0';
+      pchar->m_chLen    = chLen;
+      return chLen;
+   }
+
    string str::utf8_char(const char * psz)
    {
-      const char * pszNext = utf8_inc(psz);
-      if(pszNext == NULL)
+      ::gen::utf8_char ch;
+      int len = utf8_char(&ch, psz);
+      if(len < 0)
          return "";
-      return string(psz, pszNext - psz);
+      return string(ch.m_sz);
    }
 
    string str::utf8_char(const char * psz, const char * pszEnd)
@@ -1245,6 +1695,88 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       str = str.Mid(i);
       return i > 0;
    }
+
+
+   // case insensitive, ignore white space - only in searched string
+   bool str::begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   {
+      if(lpcsz == NULL || *lpcsz == L'\0')
+      {
+         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      while(gen::ch::to_lower_case(*lpcsz) == gen::ch::to_lower_case(*lpcszPrefix))
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == L'\0')
+         {
+            if(*lpcszPrefix == 'L\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   bool str::begins_ci(const wstring & wstr, const wchar_t * lpcszPrefix)
+   {
+      return str::begins_ci_iws(wstr.m_pwsz, lpcszPrefix);
+   }
+
+   // case insensitive, ignore white space - only in searched string
+   bool str::begins_ci_iws(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   {
+      if(lpcsz == NULL || *lpcsz == L'\0')
+      {
+         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      while(*lpcsz && gen::ch::is_space_char(*lpcsz))
+         lpcsz++;
+      if(!*lpcsz)
+         return false;
+      while(gen::ch::to_lower_case(*lpcsz) == gen::ch::to_lower_case(*lpcszPrefix))
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == L'\0')
+         {
+            if(*lpcszPrefix == L'\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   bool str::begins_ci_iws(const wstring & str, const wchar_t * lpcszPrefix)
+   {
+      return str::begins_ci_iws(str.m_pwsz, lpcszPrefix);
+   }
+
 
 
 /** End \file Utility.cpp

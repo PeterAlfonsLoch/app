@@ -644,19 +644,47 @@ namespace ca
 
       bool system::exists(const char * pszPath, ::ca::application * papp)
       {
-         string strPath(pszPath);
-         strPath.trim();
-         if(gen::str::begins_ci(strPath, "uifs://"))
+
+         if(gen::str::begins_ci_iws(pszPath, "uifs://"))
+         {
+            return ifs(papp, "").file_exists(pszPath);
+         }
+
+         int iFind = gen::str::find_ci(".zip:", pszPath);
+
+         zip::Util ziputil;
+
+         if(iFind >= 0)
+            return ziputil.exists(papp, pszPath);
+
+         if(!App(papp).dir().is(System.dir().name(pszPath)))
+            return false;
+
+         return ::GetFileAttributesW(gen::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+
+      }
+
+
+      bool system::exists(const string & strPath, ::ca::application * papp)
+      {
+
+         if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {
             return ifs(papp, "").file_exists(strPath);
          }
-         int iFind = gen::str::find_ci(".zip:", pszPath);
+
+         int iFind = gen::str::find_ci(".zip:", strPath);
+
          zip::Util ziputil;
+
          if(iFind >= 0)
-            return ziputil.exists(papp, pszPath);
+            return ziputil.exists(papp, strPath);
+
          if(!App(papp).dir().is(System.dir().name(strPath)))
             return false;
-         return ::GetFileAttributesW(gen::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+
+         return ::GetFileAttributesW(gen::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+
       }
 
       string system::paste(const char * pszLocation, const char * path, ::ca::application * papp)

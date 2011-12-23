@@ -1,7 +1,10 @@
 #pragma once
 
+
 namespace gen
 {
+
+
    namespace str
    {
 
@@ -22,7 +25,21 @@ namespace gen
       string CLASS_DECL_ca equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
       bool CLASS_DECL_ca begins(const char * psz, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_with(const char * psz, const char * lpcszPrefix);
+
+
+      bool CLASS_DECL_ca begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix);
+      bool CLASS_DECL_ca begins_ci(const wstring & wstr, const wchar_t * lpcszPrefix);
+      // case insensitive, ignore white space - only in searched string
+      bool CLASS_DECL_ca begins_ci_iws(const wchar_t * psz, const wchar_t * lpcszPrefix);
+      bool CLASS_DECL_ca begins_ci_iws(const wstring & str, const wchar_t * lpcszPrefix);
+
+
       bool CLASS_DECL_ca begins_ci(const char * lpcsz, const char * lpcszPrefix);
+      // case insensitive, ignore white space - only in searched string
+      bool CLASS_DECL_ca begins_ci_iws(const char * psz, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_ci_iws(const string & str, const char * lpcszPrefix);
+
+
       bool CLASS_DECL_ca begins_eat(string & str, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_eat_ci(string & str, const char * lpcszPrefix); // case insensitive
       bool CLASS_DECL_ca begins_eat_ci(string & str, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
@@ -35,7 +52,12 @@ namespace gen
       void CLASS_DECL_ca copy(string & str, const char * lpcsz, int iCount);
       string CLASS_DECL_ca replace(const char * pszFind, const char * pszReplace, const char * psz);
       string CLASS_DECL_ca replace_ci(const char * pszFind, const char * pszReplace, const char * psz);
-      int CLASS_DECL_ca find_ci(const char * pszFind, const char * psz, int iStart = 0);
+      
+      int CLASS_DECL_ca find_ci(const string & strFind   , const string & str, int iStart = 0);
+      int CLASS_DECL_ca find_ci(const string & strFind   , const char   * psz, int iStart = 0);
+      int CLASS_DECL_ca find_ci(const char   * pszFind   , const string & str, int iStart = 0);
+      int CLASS_DECL_ca find_ci(const char   * pszFind   , const char   * psz, int iStart = 0);
+
       int CLASS_DECL_ca find_ww(const char * pszFind, const char * psz, int iStart = 0);
       int CLASS_DECL_ca find_wwci(const char * pszFind, const char * psz, int iStart = 0);
       int CLASS_DECL_ca find_aww(const char * pszFind, const char * psz, int iStart = 0);
@@ -66,6 +88,9 @@ namespace gen
       CLASS_DECL_ca  string         utf8_next_char(const char * pszBeg, const char *psz, int i = 0);
       CLASS_DECL_ca  string         utf8_previous_char(const char * pszBeg, const char *psz, int i = 0);
       CLASS_DECL_ca  string         uni_to_utf8(__int64 ch);
+
+      CLASS_DECL_ca  const char *   utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz);
+      CLASS_DECL_ca  int            utf8_char(::gen::utf8_char * pchar, const char *psz);
 
       CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase = 0);
       CLASS_DECL_ca  string         itoa(int i);

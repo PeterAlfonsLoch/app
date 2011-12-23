@@ -473,7 +473,7 @@ l1:
       ::primitive::memory_size uiDelete;
       while(uiCount > 0)
       {
-         uiDelete = (::primitive::memory_size) min(uiCount, numeric_info::get_maximum_value < ::primitive::memory_size::TYPE >());
+         uiDelete = (::primitive::memory_size) min(uiCount, numeric_info::get_maximum_value < ::primitive::memory_size >());
          Delete(uiDelete);
          uiCount -= uiDelete;
       }

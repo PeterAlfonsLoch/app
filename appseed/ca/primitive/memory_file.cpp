@@ -168,7 +168,7 @@ namespace primitive
 
          break;
       default:
-         return ::primitive::memory_position::allset_value();
+         return ::numeric_info::get_allset_value < ::primitive::memory_position > ();
       }
 
       m_dwPosition = dwNew;

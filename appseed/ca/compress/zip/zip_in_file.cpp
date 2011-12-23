@@ -286,9 +286,9 @@ namespace zip
       if(iNewPos < m_iPosition)
       {
          if(unzCloseCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
-            return file_size::allset_value();
+            return ::numeric_info::get_allset_value < file_size >();
          if(unzOpenCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
-            return file_size::allset_value();
+            return ::numeric_info::get_allset_value < file_size >();
          m_iPosition = 0;
       }
 
