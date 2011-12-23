@@ -641,7 +641,7 @@ namespace userbase
       // update the indicators before becoming visible
       ::gen::message::base base(get_app());
       LRESULT lresult;
-      base.set(_get_handle(), WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
+      base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);
    }
 

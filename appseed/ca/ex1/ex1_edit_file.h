@@ -188,7 +188,6 @@ namespace ex1
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual void Insert(const void * lpBuf, ::primitive::memory_size nCount);
       virtual void Delete(::primitive::memory_size uiCount);
-      virtual void Delete(file_size uiCount);
       
 
 

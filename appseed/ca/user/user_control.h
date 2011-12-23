@@ -151,7 +151,7 @@ namespace user
       int                        m_iHover;
       e_element                  m_eelementHover;
       descriptor *               m_pdescriptor;
-      ::user::window_interface * m_pwndiCustomWindowProc;
+      ::user::interaction *      m_pwndCustomWindowProc;
       bool                       m_bCustomWindowProc;
       int                        m_iEditItem;
       form *                     m_pform;
@@ -178,7 +178,7 @@ namespace user
       class descriptor & descriptor();
 
       virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
-      virtual bool _003CallCustomWindowProc(::user::window_interface * pwndi, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+      virtual bool _003CallCustomWindowProc(::user::interaction * pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
       virtual void _003CustomWindowProc(gen::signal_object * pobj);
 

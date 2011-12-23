@@ -27,7 +27,7 @@ namespace user
       {
       case WM_MOUSEMOVE:
          {
-            if(ptool->BaseToolTipGetWnd()->GetTopLevelParent()->_get_handle() == pbase->m_hwnd)
+            if(ptool->BaseToolTipGetWnd()->GetTopLevelParent() == pbase->m_pwnd)
             {
                point pt;
                System.get_cursor_pos(&pt);

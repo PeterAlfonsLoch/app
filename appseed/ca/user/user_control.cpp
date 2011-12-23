@@ -192,11 +192,11 @@ namespace user
       _003OnCustomDraw(pdc, pdrawcontext);
    }
 
-   bool control::_003CallCustomWindowProc(::user::window_interface * pwndi, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool control::_003CallCustomWindowProc(::user::interaction * pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
-      m_pwndiCustomWindowProc = pwndi;
+      m_pwndCustomWindowProc = pwnd;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      gen::message::base base(get_app(), (HWND) pwndi->get_os_data(), message, wparam, lparam, lresult);
+      gen::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
       _003CustomWindowProc(&base);
       return base.m_bRet;
    }

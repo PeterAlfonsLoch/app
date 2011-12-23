@@ -3338,6 +3338,9 @@
     <ClInclude Include="ca\ca_file_system.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
+    <ClInclude Include="gen\gen_message.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">

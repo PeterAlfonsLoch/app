@@ -654,8 +654,10 @@ void simple_scroll_bar::OnDisplayChange(int iBitsPerPixel, size sizeScreen)
 
 void simple_scroll_bar::pre_translate_message(gen::signal_object * pobj) 
 {
+
    SCAST_PTR(gen::message::base, pbase, pobj);
-   if(pbase->m_hwnd = _get_handle())
+
+   if(pbase->m_pwnd = this)
    {
       switch(pbase->m_uiMessage)
       {
@@ -667,7 +669,9 @@ void simple_scroll_bar::pre_translate_message(gen::signal_object * pobj)
          break;
       }
    }
+
    return ::user::interaction::pre_translate_message(pobj);
+
 }
 
 void simple_scroll_bar::UpdateBitmaps()

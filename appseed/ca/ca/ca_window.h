@@ -652,7 +652,7 @@ namespace ca
       virtual BOOL HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       virtual BOOL IsTopParentActive();
       virtual void ActivateTopParent();
-      virtual void WalkPreTranslateTree(HWND hWndStop, gen::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::user::interaction * puiStop, gen::signal_object * pobj);
       static ::user::interaction * PASCAL GetDescendantWindow(::user::interaction * hWnd, id id);
       static void PASCAL SendMessageToDescendants(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm);
       virtual BOOL IsFrameWnd(); // is_kind_of(System.template type_info < frame_window > ()))

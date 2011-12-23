@@ -477,7 +477,7 @@ LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARA
    if(pwnd == NULL)
       return 0;
    ::ca::smart_pointer < ::gen::message::base > spbase;
-   spbase(get_base(pwnd->get_safe_handle(), uiMessage, wparam, lparam));
+   spbase(get_base(pwnd, uiMessage, wparam, lparam));
    ::user::interaction * pui = this;
    while(pui != NULL && pui->GetParent() != NULL)
    {

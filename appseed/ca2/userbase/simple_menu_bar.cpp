@@ -174,7 +174,7 @@ void simple_menu_bar::_001OnNcMouseMove(gen::signal_object * pobj)
 void simple_menu_bar::pre_translate_message(gen::signal_object * pobj)
 {
    SCAST_PTR(gen::message::base, pbase, pobj);
-   if(pbase->m_uiMessage == WM_USER && pbase->m_hwnd == _get_handle())
+   if(pbase->m_uiMessage == WM_USER && pbase->m_pwnd == this)
    {
       if(pbase->m_wparam == 33)
       {

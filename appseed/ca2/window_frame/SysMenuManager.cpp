@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace window_frame 
 {
+
 
    SysMenuManager::SysMenuManager(WorkSet * pwf)
    {
@@ -16,10 +18,11 @@ namespace window_frame
 
    void SysMenuManager::relay_event(gen::signal_object * pobj)
    {
-       SCAST_PTR(gen::message::base, pbase, pobj);
-       if(m_pworkset->GetEventWindow() == NULL ||
-           pbase->m_hwnd != m_pworkset->GetEventWindow()->_get_handle())
-           return;
+       
+      SCAST_PTR(gen::message::base, pbase, pobj);
+
+      if(m_pworkset->GetEventWindow() == NULL || pbase->m_pwnd != m_pworkset->GetEventWindow())
+         return;
        if(pbase->m_uiMessage == WM_RBUTTONDOWN)
        {
            m_enumState = StateMBDown;
@@ -123,4 +126,8 @@ namespace window_frame
       return true;
    }
 
+
 } // namespace window_frame
+
+
+

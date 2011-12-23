@@ -620,9 +620,9 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::WalkPreTranslateTree(HWND hWndStop, gen::signal_object * pobj)
+   void window::WalkPreTranslateTree(::user::interaction * puiStop, gen::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(hWndStop);
+      UNREFERENCED_PARAMETER(puiStop);
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception();
    }
@@ -2274,7 +2274,7 @@ namespace ca
 
    void window::WalkPreTranslateTree(gen::signal_object * pobj)
    {
-      return WalkPreTranslateTree(_get_handle(), pobj);
+      return WalkPreTranslateTree(m_pguie, pobj);
    }
 
 

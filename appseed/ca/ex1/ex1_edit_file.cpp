@@ -467,20 +467,9 @@ l1:
       m_dwFileLength += nCount;
    }
 
-   void edit_file::Delete(file_size uiFileCount)
-   {
-      ::primitive::memory_size uiCount = uiFileCount;
-      ::primitive::memory_size uiDelete;
-      while(uiCount > 0)
-      {
-         uiDelete = (::primitive::memory_size) min(uiCount, numeric_info::get_maximum_value < ::primitive::memory_size >());
-         Delete(uiDelete);
-         uiCount -= uiDelete;
-      }
-   }
-
    void edit_file::Delete(::primitive::memory_size uiCount)
    {
+
       DeleteItem * pdelete;
 
       uiCount = min(uiCount, (::primitive::memory_size) (get_length() - m_dwPosition));

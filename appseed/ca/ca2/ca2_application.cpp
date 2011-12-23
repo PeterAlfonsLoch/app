@@ -326,7 +326,7 @@ BOOL Is_Vista_or_Later ()
    void application::pre_translate_message(gen::signal_object * pobj)
    {
       SCAST_PTR(gen::message::base, pbase, pobj);
-      if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_hwnd == NULL)
+      if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
       {
    /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
          delete (flags < machine_event::e_flag> *) pmsg->lParam;*/
