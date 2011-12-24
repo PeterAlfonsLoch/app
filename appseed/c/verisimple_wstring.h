@@ -10,7 +10,7 @@ protected:
    friend class wstringtou;
 
 
-   static wstring_data g_nil;
+   static wchar_t * get_nil();
 
 
 public:
@@ -53,6 +53,7 @@ public:
    inline operator wchar_t * () const { return (wchar_t *) &m_sz; }
    inline operator wchar_t * () { return (wchar_t *) &m_sz; }
 
+
 };
 
 
@@ -66,8 +67,6 @@ protected:
    // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap
    // better always use wstring_data::alloc and wstring_data::free
    wchar_t * m_pwsz;  
-
-   static verisimple_wstring g_nil;
 
    inline wstring_data * get_data()
    {
@@ -106,7 +105,7 @@ public:
    inline wstring_data * detach()
    {
       wstring_data * pdata = get_data();
-      m_pwsz = *verisimple_wstring::g_nil.get_data();
+      m_pwsz = wstring_data::get_nil();
       return pdata;
    }
 

@@ -1,16 +1,20 @@
 #include "StdAfx.h"
 
 
-wstring_data wstring_data::g_nil;
+CLASS_DECL_c wchar_t * wstring_data::get_nil()
+{
 
+   static wstring_data s_nil;
 
-verisimple_wstring verisimple_wstring::g_nil(&wstring_data::g_nil);
+   return s_nil;
+
+}
 
 
 verisimple_wstring::verisimple_wstring()
 {
 
-   m_pwsz         = *wstring::g_nil.get_data();
+   m_pwsz         = wstring_data::get_nil();
 
 }
 
@@ -19,7 +23,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, int iCount)
    if(pwsz == NULL)
    {
 
-      m_pwsz         = *wstring::g_nil.get_data();
+      m_pwsz         = wstring_data::get_nil();
 
    }
    else
@@ -40,7 +44,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
    if(pwsz == NULL)
    {
 
-      m_pwsz         = *wstring::g_nil.get_data();
+      m_pwsz         = wstring_data::get_nil();
 
    }
    else
