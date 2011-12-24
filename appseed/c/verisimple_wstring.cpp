@@ -62,7 +62,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
 verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr)
 {
 
-   m_pwsz         = *wstring::g_nil.get_data();
+   m_pwsz         = wstring_data::get_nil();
 
    operator = (wstr);
 
