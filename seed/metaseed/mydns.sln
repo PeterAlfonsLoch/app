@@ -1,15 +1,15 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_mydns", "..\..\..\app-core\appseed\mydns\mydns.vcxproj", "{AEF1C751-5174-4AFE-A4BC-8F5C3CEE51B4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B2A3AD3B-1026-4D24-A527-2E1B38324184} = {B2A3AD3B-1026-4D24-A527-2E1B38324184}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c", "..\..\appseed\c\c.vcxproj", "{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca", "..\..\appseed\ca\ca.vcxproj", "{ACB3FF4B-0B61-45A7-881D-E102E0F85808}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca2app", "..\..\appseed\ca2app\ca2app.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AEF1C751-5174-4AFE-A4BC-8F5C3CEE51B4} = {AEF1C751-5174-4AFE-A4BC-8F5C3CEE51B4}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os", "..\..\..\nodeapp\os\os.vcxproj", "{9163E31A-2D5A-4F18-AD6F-B561C76E5054}"
 EndProject
