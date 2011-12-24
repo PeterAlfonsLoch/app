@@ -96,7 +96,7 @@ namespace gen
 
       wstring MultiByteToUnicode(UINT uiCodePage, const char * lpcsz)
       {
-         return MultiByteToUnicode(uiCodePage, lpcsz, -1);
+         return MultiByteToUnicode(uiCodePage, lpcsz, -1).detach();
       }
 
       wstring MultiByteToUnicode(UINT uiCodePage, const char * lpcsz, int nCount)
@@ -104,17 +104,18 @@ namespace gen
          int iBuffer = MultiByteToUnicodeCount(uiCodePage, lpcsz, nCount);
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
-            return NULL;
+            return L"";
          }
          else if(iBuffer == 0)
          {
             return L"";
          }
          wstring wstr;
-         wstr.alloc(iBuffer);
-         if(MultiByteToUnicode(uiCodePage, wstr.m_pwsz, iBuffer, lpcsz, nCount))
+         wstr.alloc(iBuffer + 1);
+         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer, lpcsz, nCount))
          {
-            return wstr;
+            wstr.set_length(iBuffer);
+            return wstr.detach();
          }
          return L"";
       }
@@ -124,17 +125,18 @@ namespace gen
          int iBuffer = MultiByteToUnicodeCount(uiCodePage, str, str.get_length());
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
-            return NULL;
+            return L"";
          }
          else if(iBuffer == 0)
          {
             return L"";
          }
          wstring wstr;
-         wstr.alloc(iBuffer);
-         if(MultiByteToUnicode(uiCodePage, wstr.m_pwsz, iBuffer, str, str.get_length()))
+         wstr.alloc(iBuffer + 1);
+         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer, str, str.get_length()))
          {
-            return wstr;
+            wstr.set_length(iBuffer);
+            return wstr.detach();
          }
          return L"";
       }
@@ -248,12 +250,12 @@ namespace gen
 
       wstring  ACPToUnicode(const char * lpcsz)
       {
-         return MultiByteToUnicode(g_uiACP, lpcsz);
+         return MultiByteToUnicode(g_uiACP, lpcsz).detach();
       }
 
       wstring  ACPToUnicode(const char * lpcsz, int iSize)
       {
-         return MultiByteToUnicode(g_uiACP, lpcsz, iSize);
+         return MultiByteToUnicode(g_uiACP, lpcsz, iSize).detach();
       }
 
       ///////////////////////////////////////////////////////////////
@@ -279,7 +281,7 @@ namespace gen
 
       wstring OEMToUnicode(const char * lpcsz)
       {
-         return MultiByteToUnicode(CodePageOem, lpcsz);
+         return MultiByteToUnicode(CodePageOem, lpcsz).detach();
       }
 
       bool unicode_to_utf8(string & str, const wchar_t * lpcsz)
@@ -289,22 +291,27 @@ namespace gen
 
       wstring utf8_to_unicode(const char * lpcsz)
       {
-         return MultiByteToUnicode(CodePageUtf8, lpcsz);
+         return MultiByteToUnicode(CodePageUtf8, lpcsz).detach();
       }
 
       wstring utf8_to_unicode(const string & str)
       {
-         return MultiByteToUnicode(CodePageUtf8, str);
+         return MultiByteToUnicode(CodePageUtf8, str).detach();
       }
 
       wstring utf8_to_unicode(const var & var)
       {
-         return MultiByteToUnicode(CodePageUtf8, (const string &) var);
+         return MultiByteToUnicode(CodePageUtf8, (const string &) var).detach();
       }
 
       int utf8_to_unicode_count(const char * lpcsz)
       {
          return MultiByteToUnicodeCount(CodePageUtf8, lpcsz);
+      }
+
+      int utf8_to_unicode_count(const string & str)
+      {
+         return MultiByteToUnicodeCount(CodePageUtf8, str, str.get_length());
       }
 
       /*string UnicodeToACP(const wchar_t * lpcsz)
@@ -357,7 +364,7 @@ namespace gen
 
       wstring utf8_to_unicode(const char * lpcsz, int iCount)
       {
-         return MultiByteToUnicode(CP_UTF8, lpcsz, iCount);
+         return MultiByteToUnicode(CP_UTF8, lpcsz, iCount).detach();
       }
 
       bool utf8_to_unicode(wchar_t * lpwsz, int iBuffer, const char * lpcsz, int iCount)

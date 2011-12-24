@@ -130,6 +130,16 @@ namespace ca
          return m_psystem->m_spdir.m_p->is(lpcsz, m_papp);
       }
 
+      bool application::is(const string & str)
+      {
+         return m_psystem->m_spdir.m_p->is(str, m_papp);
+      }
+
+      bool application::is(const var & var)
+      {
+         return m_psystem->m_spdir.m_p->is(var, m_papp);
+      }
+
       bool application::is_inside(const char * lpcszDir, const char * lpcszPath)
       {
          return m_psystem->m_spdir.m_p->is_inside(lpcszDir, lpcszPath, m_papp);

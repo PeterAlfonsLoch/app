@@ -1,144 +1,148 @@
 #include "StdAfx.h"
 
 
+wstring_data wstring_data::g_nil;
+
+
+verisimple_wstring verisimple_wstring::g_nil(&wstring_data::g_nil);
+
+
 verisimple_wstring::verisimple_wstring()
 {
-   m_pwsz = NULL;
+
+   m_pwsz         = *wstring::g_nil.get_data();
+
 }
 
 verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, int iCount)
 {
    if(pwsz == NULL)
-      m_pwsz = NULL;
+   {
+
+      m_pwsz         = *wstring::g_nil.get_data();
+
+   }
    else
    {
-//      m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
-      m_pwsz = (wchar_t *) ca2_alloc((iCount + 1) * sizeof(wchar_t));
-      memcpy_dup(m_pwsz, pwsz, (iCount + 1) * sizeof(wchar_t));
-      m_pwsz[iCount] = L'\0';
+
+      m_pwsz = (wchar_t *) wstring_data::alloc(iCount + 1);
+      get_data()->m_iLength = iCount;
+      memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(wchar_t));
+      m_pwsz[get_data()->m_iLength] = L'\0';
+
    }
 }
 
 
 verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
 {
+
    if(pwsz == NULL)
-      m_pwsz = NULL;
+   {
+
+      m_pwsz         = *wstring::g_nil.get_data();
+
+   }
    else
    {
-//      m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
-      m_pwsz = (wchar_t *) ca2_alloc((wcslen_dup(pwsz) + 1) * 2);
-      wcscpy_dup(m_pwsz, pwsz);
+
+      int iLen         = wcslen_dup(pwsz);
+      m_pwsz = (wchar_t *) wstring_data::alloc(iLen + 1);
+      get_data()->m_iLength = iLen;
+      memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(wchar_t));
+      m_pwsz[get_data()->m_iLength] = L'\0';
+
    }
 }
 
 verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr)
 {
-   m_pwsz = NULL;
+
+   m_pwsz         = *wstring::g_nil.get_data();
+
    operator = (wstr);
+
 }
 
 verisimple_wstring::~verisimple_wstring()
 {
-   if(m_pwsz != NULL)
-   {
-//      g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
-      ca2_free(m_pwsz);
-   }
-}
 
-void verisimple_wstring::attach(const wchar_t * pwsz)
-{
-   if(m_pwsz != pwsz)
-   {
-      if(m_pwsz != NULL)
-      {
-         //g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
-         ca2_free(m_pwsz);
-         m_pwsz = NULL;
-      }
-      m_pwsz = (wchar_t *) pwsz;
-   }
-}
+   wstring_data::free(m_pwsz);
 
+}
 
 wchar_t * verisimple_wstring::alloc(int iCount)
 {
-   if(m_pwsz != NULL)
-   {
-      ca2_free(m_pwsz);
-      m_pwsz = NULL;
-   }
-   int iAlloc = (iCount + 1) * sizeof(wchar_t);
-   //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc(iAlloc);
-   m_pwsz = (wchar_t *) ca2_alloc(iAlloc);
-   m_pwsz[iCount] = L'\0';
+
+   if(iCount < get_data()->m_iAllocation)
+      return m_pwsz;
+
+   wstring_data::free(m_pwsz);
+
+   m_pwsz            = (wchar_t *) wstring_data::alloc(iCount);
+
    return m_pwsz;
+
 }
 
-count verisimple_wstring::get_length()
-{
-   if(m_pwsz == NULL)
-      return -1;
-   return wcslen_dup(m_pwsz);
-}
 
 verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & wstr)
 {
+   
    if(this != &wstr)
    {
-      operator = (wstr.m_pwsz);
+
+      if(get_data()->m_iAllocation >= (wstr.length() + 1))
+      {
+
+         memcpy_dup(m_pwsz, wstr.m_pwsz, (wstr.length() + 1) * sizeof(wchar_t));
+
+      }
+      else
+      {
+
+         alloc(wstr.storage_size());
+         memcpy_dup(m_pwsz, wstr.m_pwsz, storage_size() * sizeof(wchar_t));
+
+      }
+
+      set_length(wstr.get_length());
+      
+
    }
+
    return *this;
+
 }
    
 verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 {
+   
    if(m_pwsz != pwsz)
    {
-      if(m_pwsz != NULL)
+
+      int iLen = wcslen_dup(pwsz);
+
+      if(storage_size() >= (iLen + 1))
       {
-         //g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
-         ca2_free(m_pwsz);
-         m_pwsz = NULL;
+
+         memcpy_dup(m_pwsz, pwsz, (iLen + 1) * sizeof(wchar_t));
+
+
       }
-      if(pwsz == NULL)
-         m_pwsz = NULL;
       else
       {
-         //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc((wcslen(pwsz) + 1) * 2);
-         m_pwsz = (wchar_t *) ca2_alloc((wcslen_dup(pwsz) + 1) * 2);
-         wcscpy_dup(m_pwsz, pwsz);
+
+         alloc(iLen + 1);
+         memcpy_dup(m_pwsz, pwsz, storage_size() * sizeof(wchar_t));
       }
+
+      set_length(iLen);
+
    }
+
    return *this;
-}
 
-int verisimple_wstring::CompareNoCase(const wchar_t * psz) const
-{
-   return wcsicmp_dup(m_pwsz, psz);
-}
-int verisimple_wstring::CompareNoCase(const verisimple_wstring &str) const
-{
-   return wcsicmp_dup(m_pwsz, str);
-}
-
-count verisimple_wstring::get_length() const
-{
-   if(m_pwsz == NULL)
-      return 0;
-   return wcslen_dup(m_pwsz);
-}
-
-
-count verisimple_wstring::size() const
-{
-   return get_length();
-}
-
-count verisimple_wstring::length() const
-{
-   return get_length();
 }
 
 
@@ -147,10 +151,10 @@ verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimpl
    int iLen1 = wstr1.length();
    int iLen2 = wstr2.length();
    verisimple_wstring wstrRet;
-   wchar_t * pwszRet = (wchar_t *) ca2_alloc((iLen1 + iLen2 + 1) * sizeof(wchar_t));
-   wcscpy_dup(pwszRet, wstr1);
-   wcscat_dup(pwszRet, wstr2);
-   wstrRet.attach(pwszRet);
+   wstrRet.alloc(iLen1 + iLen2 + 1);
+   wcscpy_dup(wstrRet, wstr1);
+   wcscat_dup(wstrRet, wstr2);
+   wstrRet.set_length(iLen1 + iLen2);
    return wstrRet;
 }
 
@@ -160,13 +164,34 @@ verisimple_wstring operator + (const verisimple_wstring & wstr, const wchar_t * 
    return wstr + verisimple_wstring(wpsz);
 }
 
+verisimple_wstring operator + (const wchar_t * wpsz, const verisimple_wstring & wstr)
+{
+   return verisimple_wstring(wpsz) + wstr;
+}
+
 
 CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 {
-   return wstring(utf8_to_16(psz));
+   
+   wstring wstr;
+   int iLen = utf16_len(psz);
+   if(iLen < 0)
+      return wstr;
+   wstr.alloc(iLen + 1);
+   utf8_to_16(wstr, psz);
+   wstr.set_length(iLen);
+   return wstr;
+
 }
 
 
 
+
+
+
+template<> CLASS_DECL_c BOOL simple_CompareElements(const wstring * pElement1, const wstring * pElement2)
+{
+   return pElement1->Compare(*pElement2);
+}
 
 

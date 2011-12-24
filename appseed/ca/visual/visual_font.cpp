@@ -400,7 +400,7 @@ BOOL CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
       return ::TextOutW(hdc, x, y, NULL, c);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   BOOL bRet = ::TextOutW(hdc, x, y, wstr, wcslen(wstr));
+   BOOL bRet = ::TextOutW(hdc, x, y, wstr, wstr.get_length());
    return bRet;
 }
 
@@ -411,7 +411,7 @@ CLASS_DECL_ca BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
       return ::GetTextExtentPoint32W(hdc, NULL, c, psizl);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   BOOL bRet = ::GetTextExtentPoint32W(hdc, wstr, wcslen(wstr), psizl);
+   BOOL bRet = ::GetTextExtentPoint32W(hdc, wstr, wstr.get_length(), psizl);
    return bRet;
 }
 

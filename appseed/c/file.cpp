@@ -1057,10 +1057,11 @@ CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 
       wstring wstrVersion;
       wstrVersion.alloc(dwData);
-      if(::RegGetValueW(hkeyMozillaFirefox, NULL, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, wstrVersion.m_pwsz, &dwData) != ERROR_SUCCESS)
+      if(::RegGetValueW(hkeyMozillaFirefox, NULL, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, wstrVersion, &dwData) != ERROR_SUCCESS)
       {
          goto ret1;
       }
+      wstrVersion.release_buffer();
 
       wstring wstrMainSubKey = wstrVersion + L"\\Main";
       dwData = 0;
@@ -1072,10 +1073,11 @@ CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 
       wstring wstrDir;
       wstrDir.alloc(dwData);
-      if(::RegGetValueW(hkeyMozillaFirefox, wstrMainSubKey, L"Install Directory", RRF_RT_REG_SZ, &dwType, wstrDir.m_pwsz, &dwData) != ERROR_SUCCESS)
+      if(::RegGetValueW(hkeyMozillaFirefox, wstrMainSubKey, L"Install Directory", RRF_RT_REG_SZ, &dwType, wstrDir, &dwData) != ERROR_SUCCESS)
       {
          goto ret1;
       }
+      wstrDir.release_buffer();
 
       vsstring strDir;
 

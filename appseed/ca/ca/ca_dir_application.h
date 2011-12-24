@@ -47,6 +47,8 @@ namespace ca
          virtual bool  has_subdir(const char * lpcsz);
          virtual void  ls_file(const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
          virtual bool  is(const char * lpcsz);
+         virtual bool  is(const string & str);
+         virtual bool  is(const var & var);
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath);
          virtual bool  is_inside_time(const char * lpcsz);
          virtual void  root_ones(stringa & stra);

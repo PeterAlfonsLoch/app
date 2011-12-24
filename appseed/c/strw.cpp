@@ -58,6 +58,31 @@ int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
    return iCmp;
 }
 
+int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
+{
+   if(sz1 == NULL)
+   {
+      if(sz2 == NULL)
+         return 0;
+      else
+         return -1;
+   }
+   else if(sz2 == NULL)
+   {
+      return 1;
+   }
+   int iCmp = 0;
+   while(*sz1 != L'\0' && *sz2 != L'\0')
+   {
+      iCmp = *sz1 - *sz2;
+      if(iCmp != 0)
+         return iCmp;
+      sz1++;
+      sz2++;
+   }
+   return iCmp;
+}
+
 
 CLASS_DECL_c wchar_t w_to_lower(int c)
 {

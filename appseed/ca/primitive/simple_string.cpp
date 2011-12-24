@@ -157,7 +157,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 wstringtou::wstringtou(string & str, int iAllocCount)
 {
    m_pstringUtf8 = &str;
-   m_pwsz = NULL;
+   m_pwsz = *g_nil.get_data();
    alloc(iAllocCount);
 }
 
@@ -170,7 +170,7 @@ wstringtou::~wstringtou()
    if(m_pwsz != NULL)
    {
       //g_pfixedallocaWstring->free(m_pwsz, (wcslen(m_pwsz) + 1) * 2);
-      ca2_free(m_pwsz);
-      m_pwsz = NULL;
+      wstring_data::free(m_pwsz);
+      m_pwsz = *g_nil.get_data();
    }
 }

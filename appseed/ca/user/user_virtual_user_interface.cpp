@@ -473,12 +473,9 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 
 LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
-   ::ca::window * pwnd = get_wnd();
-   if(pwnd == NULL)
-      return 0;
    ::ca::smart_pointer < ::gen::message::base > spbase;
-   spbase(get_base(pwnd, uiMessage, wparam, lparam));
-   ::user::interaction * pui = this;
+   spbase(get_base(m_pguie, uiMessage, wparam, lparam));
+   ::user::interaction * pui = m_pguie;
    while(pui != NULL && pui->GetParent() != NULL)
    {
       pui->pre_translate_message(spbase);
@@ -1153,7 +1150,7 @@ BOOL virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM l
 {
    if(m_pthread != NULL)
    {
-      return m_pthread->post_message(this, uiMessage, wparam, lparam);
+      return m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
    }
    else
    {

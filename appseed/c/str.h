@@ -41,6 +41,7 @@ CLASS_DECL_c void wcscpy_dup(wchar_t * dest, const wchar_t * src);
 CLASS_DECL_c int iswalnum_dup(int wch);
 CLASS_DECL_c int wcslen_dup(const wchar_t * pwsz);
 CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch);
+CLASS_DECL_c int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 CLASS_DECL_c int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 CLASS_DECL_c wchar_t w_to_lower(int wch);
 
@@ -54,6 +55,7 @@ CLASS_DECL_c void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args,
 
 CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts);
 
-
+CLASS_DECL_c int utf16_len(const char * psz);
+CLASS_DECL_c void utf8_to_16(wchar_t * pwsz, const char * psz);
 CLASS_DECL_c wchar_t * utf8_to_16(const char * psz);
 CLASS_DECL_c char * utf16_to_8(const wchar_t * psz);

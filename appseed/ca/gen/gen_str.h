@@ -1,6 +1,9 @@
 #pragma once
 
 
+class var;
+
+
 namespace gen
 {
 
@@ -23,8 +26,27 @@ namespace gen
       bool CLASS_DECL_ca equals_ci(const char * psz1, const char * psz2);
       string CLASS_DECL_ca equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
       string CLASS_DECL_ca equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
+
+      
+      
       bool CLASS_DECL_ca begins(const char * psz, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins(const string & str, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_with(const char * psz, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_with(const string & str, const char * lpcszPrefix);
+
+
+      void CLASS_DECL_ca begin(wstring & wstr, const wchar_t * lpcszPrefix);
+
+      bool CLASS_DECL_ca begins(const wchar_t * psz, const wchar_t * lpcszPrefix);
+      bool CLASS_DECL_ca begins(const wstring & str, const wchar_t * lpcszPrefix);
+      bool CLASS_DECL_ca begins_with(const wchar_t * psz, const wchar_t * lpcszPrefix);
+      bool CLASS_DECL_ca begins_with(const wstring & str, const wchar_t * lpcszPrefix);
+
+
+      bool CLASS_DECL_ca begins_ci(const char * lpcsz, const char * lpcszPrefix);
+      // case insensitive, ignore white space - only in searched string
+      bool CLASS_DECL_ca begins_ci_iws(const char * psz, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_ci_iws(const string & str, const char * lpcszPrefix);
 
 
       bool CLASS_DECL_ca begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix);
@@ -34,10 +56,6 @@ namespace gen
       bool CLASS_DECL_ca begins_ci_iws(const wstring & str, const wchar_t * lpcszPrefix);
 
 
-      bool CLASS_DECL_ca begins_ci(const char * lpcsz, const char * lpcszPrefix);
-      // case insensitive, ignore white space - only in searched string
-      bool CLASS_DECL_ca begins_ci_iws(const char * psz, const char * lpcszPrefix);
-      bool CLASS_DECL_ca begins_ci_iws(const string & str, const char * lpcszPrefix);
 
 
       bool CLASS_DECL_ca begins_eat(string & str, const char * lpcszPrefix);
@@ -47,6 +65,8 @@ namespace gen
       bool CLASS_DECL_ca while_begins_with_chars_eat_ci(string & str, const char * lpcszChars); // case insensitive
       bool CLASS_DECL_ca ends(const char * lpcsz, const char * lpcszSuffix);
       bool CLASS_DECL_ca ends_ci(const char * lpcsz, const char * lpcszSuffix);
+      bool CLASS_DECL_ca ends_ci(const string & str, const char * lpcszSuffix);
+      bool CLASS_DECL_ca ends_ci(const var & var, const char * lpcszSuffix);
       bool CLASS_DECL_ca ends_eat(string & str, const char * lpcszSuffix);
       bool CLASS_DECL_ca ends_eat_ci(string & str, const char * lpcszSuffix);
       void CLASS_DECL_ca copy(string & str, const char * lpcsz, int iCount);

@@ -116,6 +116,7 @@ namespace gen
       CLASS_DECL_ca bool unicode_to_utf8(string & str, const wchar_t * lpcsz);
       CLASS_DECL_ca wstring utf8_to_unicode(const char * lpcsz);
       CLASS_DECL_ca int utf8_to_unicode_count(const char * lpcsz);
+      CLASS_DECL_ca int utf8_to_unicode_count(const string & str);
 
       /*
       CLASS_DECL_ca string UnicodeToACP(const wchar_t * lpcsz);

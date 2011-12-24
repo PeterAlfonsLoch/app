@@ -155,6 +155,27 @@ namespace ca
          return false;
       }
 
+      bool system::is(const string & strPath, ::ca::application * papp)
+      {
+         if(gen::str::ends_ci(strPath, ".zip"))
+            return true;
+         if(gen::str::find_ci(".zip:", strPath) >= 0)
+         {
+            bool bHasSubFolder;
+            if(m_isdirmap.lookup(strPath, bHasSubFolder))
+               return bHasSubFolder;
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
+            m_isdirmap.set(strPath, bHasSubFolder);
+            return bHasSubFolder;
+         }
+         return false;
+      }
+
+      bool system::is(const var & var, ::ca::application * papp)
+      {
+         return is((const string &) var, papp);
+      }
+
       system::is_dir_map::is_dir_map() :
          ::collection::string_map < is_dir >(200) // block size
       {

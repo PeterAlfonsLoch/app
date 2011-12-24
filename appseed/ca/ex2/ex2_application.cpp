@@ -289,8 +289,6 @@ namespace ex2
    { 
       if(m_puiMain != NULL)
          return m_puiMain;
-      if(::ca::thread_sp::m_p != NULL && ::ca::thread_sp::m_p->m_puiMain != NULL)
-         return ::ca::thread_sp::m_p->m_puiMain;
       return NULL;
    }
 

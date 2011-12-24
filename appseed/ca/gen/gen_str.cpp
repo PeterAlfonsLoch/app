@@ -88,6 +88,44 @@ namespace gen
       return str::begins(lpcsz, lpcszPrefix);
    }
 
+   bool str::begins(const string & str, const char * lpcszPrefix)
+   {
+      if(str.is_empty())
+      {
+         if(lpcszPrefix == NULL || *lpcszPrefix == '\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      const char * lpcsz = str;
+      while(*lpcsz == *lpcszPrefix)
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == '\0')
+         {
+            if(*lpcszPrefix == '\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == '\0')
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   bool str::begins_with(const string & str, const char * lpcszPrefix)
+   {
+      return str::begins(str, lpcszPrefix);
+   }
+
    bool str::begins_ci(const char * lpcsz, const char * lpcszPrefix)
    {
       if(lpcsz == NULL || *lpcsz == '\0')
@@ -220,6 +258,8 @@ namespace gen
       {
          if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
             return true;
+         else
+            return false;
       }
       else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
       {
@@ -237,12 +277,50 @@ namespace gen
       {
          lpcszSuffixEnd--;
          lpcszEnd--;
-         if(lpcszSuffixEnd == lpcszSuffix)
+         if(lpcszSuffix <= lpcszSuffixEnd)
             return true;
       }
 
       return false;
 
+   }
+
+
+   bool str::ends_ci(const string & str, const char * lpcszSuffix)
+   {
+      if(str.is_empty())
+      {
+         if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+            return true;
+         else
+            return false;
+      }
+      else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+      {
+         return true;
+      }
+      const char * lpcsz = str;
+      const char * lpcszEnd = lpcsz + str.get_length();
+      const char * lpcszSuffixEnd = lpcszSuffix;
+      while(*lpcszSuffixEnd)
+         lpcszSuffixEnd++;
+      if((lpcszSuffixEnd - lpcszSuffix) > (lpcszEnd - lpcsz))
+         return false;
+      while(tolower(lpcszSuffixEnd[-1]) == tolower(lpcszEnd[-1]))
+      {
+         lpcszSuffixEnd--;
+         lpcszEnd--;
+         if(lpcszSuffix <= lpcszSuffixEnd)
+            return true;
+      }
+
+      return false;
+
+   }
+
+   bool str::ends_ci(const var & var, const char * lpcszSuffix)
+   {
+      return str::ends_ci(var.get_string(), lpcszSuffix);
    }
 
    bool str::ends_eat(string & str, const char * lpcszSuffix)
@@ -1697,6 +1775,104 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
 
+   void str::begin(wstring & wstr, const wchar_t * lpcszPrefix)
+   {
+      
+      int iPrefixLen = wcslen_dup(lpcszPrefix);
+      if(wstr.storage_size() >= (wstr.get_length() + iPrefixLen + 1))
+      {
+         memmove(&wstr[iPrefixLen], wstr, wstr.get_length() + 1);
+         memcpy_dup(wstr, lpcszPrefix, iPrefixLen);
+      }
+      else
+      {
+         wstring wstrNew;
+         wstrNew.alloc(wstr.get_length() + iPrefixLen + 1);
+         memcpy_dup(&wstrNew[iPrefixLen], wstr, wstr.get_length() + 1);
+         memcpy_dup(wstrNew, lpcszPrefix, iPrefixLen);
+         wstr.attach(wstrNew.detach());
+      }
+
+   }
+
+
+   bool str::begins(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   {
+      if(lpcsz == NULL || *lpcsz == L'\0')
+      {
+         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      while(*lpcsz == *lpcszPrefix)
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == L'\0')
+         {
+            if(*lpcszPrefix == L'\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   bool str::begins_with(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   {
+      return str::begins(lpcsz, lpcszPrefix);
+   }
+
+   bool str::begins(const wstring & str, const wchar_t * lpcszPrefix)
+   {
+      if(str.is_empty())
+      {
+         if(lpcszPrefix == NULL || *lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+      const wchar_t * lpcsz = str;
+      while(*lpcsz == *lpcszPrefix)
+      {
+         lpcsz++;
+         lpcszPrefix++;
+         if(*lpcsz == L'\0')
+         {
+            if(*lpcszPrefix == L'\0')
+               return true;
+            else
+               return false;
+         }
+         else if(*lpcszPrefix == L'\0')
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   bool str::begins_with(const wstring & str, const wchar_t * lpcszPrefix)
+   {
+      return str::begins(str, lpcszPrefix);
+   }
+
+
+
    // case insensitive, ignore white space - only in searched string
    bool str::begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
    {
@@ -1732,7 +1908,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    bool str::begins_ci(const wstring & wstr, const wchar_t * lpcszPrefix)
    {
-      return str::begins_ci_iws(wstr.m_pwsz, lpcszPrefix);
+      return str::begins_ci_iws((const wchar_t *) wstr, lpcszPrefix);
    }
 
    // case insensitive, ignore white space - only in searched string
@@ -1772,9 +1948,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       return false;
    }
 
-   bool str::begins_ci_iws(const wstring & str, const wchar_t * lpcszPrefix)
+   bool str::begins_ci_iws(const wstring & wstr, const wchar_t * lpcszPrefix)
    {
-      return str::begins_ci_iws(str.m_pwsz, lpcszPrefix);
+      return str::begins_ci_iws((const wchar_t *) wstr, lpcszPrefix);
    }
 
 
