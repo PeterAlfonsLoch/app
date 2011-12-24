@@ -22,9 +22,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\socket_address.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="optca.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
