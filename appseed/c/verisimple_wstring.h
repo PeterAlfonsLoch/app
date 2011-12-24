@@ -18,7 +18,7 @@ public:
    
    int            m_iAllocation; // in chars "with null characters"
    int            m_iLength; // in chars without null character
-   wchar_t        m_sz[1];
+   wchar_t        m_wchFirst;
 
 
    // nil constructor
@@ -26,32 +26,33 @@ public:
    {
       m_iAllocation  = 0;
       m_iLength      = 0;
-      m_sz[0]        = L'\0';
+      m_wchFirst     = L'\0';
    }
 
 
    inline static wchar_t * alloc(int iCount)
    {
-      wstring_data * pdata = (wstring_data *) ca2_alloc((iCount * sizeof(wchar_t)) + sizeof(int) + sizeof(int));
+
+      wstring_data * pdata = (wstring_data *) ca2_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(int) + sizeof(int) + sizeof(wchar_t));
       pdata->m_iAllocation = iCount;
       pdata->m_iLength = 0;
-      pdata->m_sz[0] = L'\0';
-      return *pdata;
+      pdata->m_wchFirst = L'\0';
+      return &pdata->m_wchFirst;
+
    }
 
    inline static void free(wchar_t * pwsz)
    {
+
       wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(int) - sizeof(int));
       if(pdata->m_iAllocation <= 0)
          return;
       ca2_free(pdata);
+
    }
 
-   inline operator const wchar_t * () const { return (wchar_t *) &m_sz; }
-   inline operator const wchar_t * () { return (wchar_t *) &m_sz; }
-
-   inline operator wchar_t * () const { return (wchar_t *) &m_sz; }
-   inline operator wchar_t * () { return (wchar_t *) &m_sz; }
+   inline operator const wchar_t * () const { return &m_wchFirst; }
+   inline operator wchar_t * () { return &m_wchFirst; }
 
 
 };
@@ -88,7 +89,7 @@ public:
    verisimple_wstring(const verisimple_wstring & wstr);
    inline verisimple_wstring(wstring_data * pdata)
    {
-      m_pwsz = *pdata;
+      m_pwsz = &pdata->m_wchFirst;
    }
    ~verisimple_wstring();
 
@@ -99,7 +100,7 @@ public:
       {
          wstring_data::free(m_pwsz);
       }
-      m_pwsz = *pdata;
+      m_pwsz = &pdata->m_wchFirst;
    }
 
    inline wstring_data * detach()
@@ -200,6 +201,10 @@ public:
       if(iLength < get_data()->m_iAllocation)
       {
          get_data()->m_iLength = iLength;
+      }
+      else
+      {
+         get_data()->m_iLength = 0;
       }
 
    }
