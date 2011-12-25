@@ -1,9 +1,5 @@
 #include "StdAfx.h"
 
-index idcmp(void * id1, void * id2)
-{
-   return (byte *) id1 - (byte *) id2;
-}
 
 void itemswap(void * pswaparg, index i1, index i2)
 {
@@ -46,12 +42,12 @@ factory::~factory()
       }
       info.m_pfactoryitem = NULL;
    }
+
    single_lock sl(m_pmutex, TRUE);
-   const char * pszRawName = info.raw_name();
-   void * pvoid = (void *) pszRawName;
-   index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
+   index iFind = m_ida.find_first((void *) info.raw_name());
    if(iFind < 0)
       return NULL;
+
    factory_item_base * pitem = m_itemptra.element_at(iFind);
    if(m_bSimpleFactoryRequest)
    {
@@ -59,60 +55,72 @@ factory::~factory()
       info.m_pfactoryitem = pitem;
    }
    return pitem->create(papp);
+
 }
 
 ::ca::ca * factory::base_clone(::ca::ca * pobject)
 {
+   
    single_lock sl(m_pmutex, TRUE);
+   
    if(pobject == NULL)
       return NULL;
-   class id id = typeid(*pobject).raw_name();
-   const char * pszRawName = id;
-   void * pvoid = (void *) pszRawName;
-   index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
+   
+   index iFind = m_ida.find_first((void *) (const char *) (id) typeid(*pobject).raw_name());
+
    if(iFind < 0)
       return NULL;
+
    factory_item_base * pitem = m_itemptra.element_at(iFind);
-   //sl.unlock();
+   
    return pitem->clone(pobject);
+
 }
 
 
 
 void factory::set_at(const char * pszId, factory_item_base * pitem)
 {
+   
    single_lock sl(m_pmutex, TRUE);
-   class id id = pszId;
-   const char * pszRawName = id;
-   void * pvoid = (void *) pszRawName;
-   index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
+
+   void * pvoid = (void *) (const char *) (id) pszId;
+
+   index iFind = m_ida.find_first(pvoid);
+
    if(iFind >= 0)
    {
       delete m_itemptra[iFind];
    }
+
    m_ida.add(pvoid);
+
    m_itemptra.add(pitem);
-   sort::QuickSort(m_ida, &idcmp, &itemswap, (void *) &m_itemptra);
+
+   m_ida.quick_sort(&itemswap, (void *) &m_itemptra);
+
 }
 
 
 bool factory::is_set(const char * pszType)
 {
    
-   class id id = pszType;
-   const char * pszRawName = id;
-   void * pvoid = (void *) pszRawName;
-   index iFind = m_ida.find_first(pvoid, &idcmp, 0, -1);
+   index iFind = m_ida.find_first((void *) (const char *) (id) pszType);
+
    if(iFind < 0)
       return false;
+
    return true;
 
 }
 
 factory_allocator * factory::get_allocator(const char * pszType)
 {
+   
    single_lock sl(m_pmutex, TRUE);
+
    void * pvoid = NULL;
+
    try
    {
       pvoid = (void *) (const char *) (id) pszType;
@@ -121,23 +129,35 @@ factory_allocator * factory::get_allocator(const char * pszType)
    {
       return NULL;
    }
-   index iFind = m_idaAllocator.find_first(pvoid, &idcmp, 0, -1);
+
+   index iFind = m_idaAllocator.find_first(pvoid);
+
    if(iFind < 0)
       return NULL;
+
    return m_itemptraAllocator[iFind];
+
 }
 
 
 void factory::set_at(const char * pszType, factory_allocator * pallocator)
 {
+   
    single_lock sl(m_pmutex, TRUE);
+   
    void * pvoid = (void *) (const char *) (id) pszType;
-   index iFind = m_idaAllocator.find_first(pvoid, &idcmp, 0, -1);
+
+   index iFind = m_idaAllocator.find_first(pvoid);
+
    if(iFind >= 0)
       return;
+
    m_idaAllocator.add((void *) (const char *) (id) pszType);
+
    m_itemptraAllocator.add(pallocator);
-   sort::QuickSort(m_idaAllocator, &idcmp, &itemswap, (void *) &m_itemptraAllocator);
+
+   m_idaAllocator.quick_sort(&itemswap, (void *) &m_itemptraAllocator);
+
 }
 
 void factory::discard(::ca::ca * pobject)

@@ -50,10 +50,10 @@ namespace dynamic_source
       };
 
       mutex m_mutexIncludeMatches;
-      ::collection::map < string, string, bool, bool > m_mapIncludeMatchesFileExists;
-      ::collection::map < string, string, bool, bool > m_mapIncludeMatchesIsDir;
-      bool include_matches_file_exists(const char * pszPath);
-      bool include_matches_is_dir(const char * pszPath);
+      ::collection::string_map < bool > m_mapIncludeMatchesFileExists;
+      ::collection::string_map < bool > m_mapIncludeMatchesIsDir;
+      bool include_matches_file_exists(const string & strPath);
+      bool include_matches_is_dir(const string & strPath);
 
 
 

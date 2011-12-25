@@ -225,6 +225,13 @@ namespace numeric_info
    }
 
 
+   template < typename T > class offset { public: typedef T TYPE; };
+
+   template < > class CLASS_DECL_ca offset < unsigned char > { public: typedef char TYPE; };
+   template < > class CLASS_DECL_ca offset < unsigned short > { public: typedef short TYPE; };
+   template < > class CLASS_DECL_ca offset < unsigned int > { public: typedef int TYPE; };
+   template < > class CLASS_DECL_ca offset < unsigned long > { public: typedef long TYPE; };
+   template < > class CLASS_DECL_ca offset < uint64_t > { public: typedef int64_t TYPE; };
 
 
 } // numeric_info

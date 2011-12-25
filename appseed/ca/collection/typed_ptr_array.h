@@ -6,6 +6,158 @@ class CLASS_DECL_ca ptr_array :
 {
 public:
 
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+
+
+   inline void quick_sort(void swap(void * lpVoidSwapArg, index iA, index iB), void * lpVoidSwapArg)
+   {
+
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+      void * p;
+
+
+      stackLowerBound.set_size(0, 256);
+      stackUpperBound.set_size(0, 256);
+
+
+      if(this->get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(this->get_size() - 1);
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(this->m_pData[iMPos] <= this->m_pData[iUPos])
+                     iUPos--;
+                  else
+                  {
+                     p = this->m_pData[iMPos];
+                     this->m_pData[iMPos] = this->m_pData[iUPos];
+                     this->m_pData[iUPos] = p;
+                     swap(lpVoidSwapArg, iUPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(this->m_pData[iLPos] <= this->m_pData[iMPos])
+                     iLPos++;
+                  else
+                  {
+                     p = this->m_pData[iMPos];
+                     this->m_pData[iMPos] = this->m_pData[iUPos];
+                     this->m_pData[iUPos] = p;
+                     swap(lpVoidSwapArg, iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+
+   }
+
+   inline bool sort_find(void * p, index & iIndex, index iStart, index iEnd) const
+   {
+      if(this->get_size() == 0)
+      {
+         return false;
+      }
+      index iLBound = iStart;
+      index iMaxBound = iEnd;
+      index iUBound = iMaxBound;
+      ::primitive::memory_offset iCompare;
+      // do binary search
+      iIndex = (iUBound + iLBound) / 2;
+      while(iUBound - iLBound >= 8)
+      {
+         iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
+         if(iCompare == 0)
+         {
+            return true;
+         }
+         else if(iCompare > 0)
+         {
+            iUBound = iIndex - 1;
+            if(iUBound < 0)
+            {
+               iIndex = 0;
+               break;
+            }
+         }
+         else
+         {
+            iLBound = iIndex + 1;
+            if(iLBound > iMaxBound)
+            {
+               iIndex = iMaxBound + 1;
+               break;
+            }
+         }
+         iIndex = (iUBound + iLBound) / 2;
+      }
+      // do sequential search
+      while(iIndex < this->get_count())
+      {
+         iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
+         if(iCompare == 0)
+            return true;
+         else if(iCompare < 0)
+            iIndex++;
+         else
+            break;
+      }
+      if(iIndex >= this->get_count())
+         return false;
+      while(iIndex >= 0)
+      {
+         iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
+         if(iCompare == 0)
+            return true;
+         else if(iCompare > 0)
+            iIndex--;
+         else
+            break;
+      }
+      iIndex++;
+      return false;
+
+   }
+
+
 };
 
 

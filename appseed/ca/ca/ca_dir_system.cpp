@@ -191,7 +191,13 @@ namespace ca
 
          single_lock sl(&m_mutex);
 
-         ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strPath);
+         string strLookup(strPath);
+
+
+         if(!gen::str::ends(strLookup, "\\"))
+            strLookup += "\\";
+
+         ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
 
          if(ppair == NULL)
             return false;
@@ -212,7 +218,10 @@ namespace ca
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
          isdir.m_dwLastCheck = ::GetTickCount();
-         set_at(pszPath, isdir);
+         string strPath(pszPath);
+         if(!gen::str::ends(strPath, "\\"))
+            strPath += "\\";
+         set_at(strPath, isdir);
       }
 
 

@@ -308,8 +308,8 @@ public:
 
 private:
    mutex *                                                     m_pmutex;
-   base_array < void *, void * >                               m_ida;
+   ptr_array                                                   m_ida;
    base_array < factory_item_base *, factory_item_base * >     m_itemptra;
-   base_array < void *, void * >                               m_idaAllocator;
+   ptr_array                                                   m_idaAllocator;
    base_array < factory_allocator *, factory_allocator * >     m_itemptraAllocator;
 };

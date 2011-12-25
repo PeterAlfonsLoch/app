@@ -46,30 +46,8 @@ public:
 
    inline bool operator == (const id & id) const
    {
-      if(is_null())
-      {
-         if(id.is_null())
-         {
-            return true;
-         }
-      }
-      else if(is_text())
-      {
-         if(id.is_text())
-         {
-            return m_psz == id.m_psz;
-         }
-      }
-      else if(is_number())
-      {
-         if(id.is_number())
-         {
-            return m_ui == id.m_ui;
-         }
-      }
-      return false;
+      return m_psz == id.m_psz && m_chType == id.m_chType;
    }
-
    inline bool operator != (const id & id) const
    {
       return ! operator == (id);
@@ -263,7 +241,7 @@ public:
    friend CLASS_DECL_ca index id_cmp(const id * pid, index user);
    friend CLASS_DECL_ca index id_cmp(const id * pid, const char * psz);
    friend CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2);
-   friend index BaseSortCompare(id f1, id f2);
+   friend index BaseSortCompare(const id & f1, const id & f2);
    friend class id_space;
    friend class ::ca::type_info;
 protected:
@@ -369,47 +347,9 @@ inline CLASS_DECL_ca index id_cmp(const id * pid, const char * psz)
 
 inline CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2)
 {
-   if(pid1->is_null() || (pid1->is_text() && pid1->m_psz == NULL))
-   {
-      if(pid2->is_null() || (pid2->is_text() && pid2->m_psz == NULL))
-      {
-         return 0;
-      }
-      else
-      {
-         return -1;
-      }
-   }
-   else if(pid1->is_text())
-   {
-      if(pid2->is_null() || (pid2->is_text() && pid2->m_psz == NULL))
-      {
-         return 1;
-      }
-      else if(pid2->is_text())
-      {
-         return strcmp(pid1->m_psz, pid2->m_psz);
-      }
-      else
-      {
-         return 1;
-      }
-   }
-   else
-   {
-      if(pid2->is_null() || (pid2->is_text() && pid2->m_psz == NULL))
-      {
-         return 1;
-      }
-      else if(pid2->is_text())
-      {
-         return -1;
-      }
-      else
-      {
-         return pid1->m_ui - pid2->m_ui;
-      }
-   }
+   char register chCompare = pid1->m_chType - pid2->m_chType;
+   if(chCompare != 0) return chCompare;
+   return pid1->m_psz - pid2->m_psz;
 }
 
 

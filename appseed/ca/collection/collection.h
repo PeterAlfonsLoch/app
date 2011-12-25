@@ -158,7 +158,13 @@ class CLASS_DECL_ca index_2darray :
 public:
 };
 
+
+
 #include "sort.h"
 
+#include "id_array.h"
+
 #include "array.h"
+
+
 

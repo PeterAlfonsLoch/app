@@ -52,30 +52,6 @@ id & id::operator = (const string_interface & str)
    return *this;
 }
 
-void id::raw_set(const char * psz)
-{
-   if(psz == NULL)
-   {
-      m_chType = IDTYPE_TYPE_NULL;
-      m_psz = NULL;
-   }
-   else if(id_is_number(psz))
-   {
-      m_chType = IDTYPE_TYPE_NUMBER;
-      m_ui = atoi(psz);
-   }
-   else
-   {
-      m_chType = IDTYPE_TYPE_TEXT;
-      m_psz = psz;
-   }
-}
-
-void id::raw_set(index user)
-{
-   m_chType = IDTYPE_TYPE_NUMBER;
-   m_ui = user;
-}
 
 id_space::id_space()
 {

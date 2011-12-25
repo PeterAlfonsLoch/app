@@ -461,30 +461,30 @@ namespace dynamic_source
       m_mapIncludeMatchesIsDir.remove_all();
    }
 
-   bool script_manager::include_matches_file_exists(const char * pszPath)
+   bool script_manager::include_matches_file_exists(const string & strPath)
    {
       single_lock sl(&m_mutexIncludeMatches, TRUE);
-      bool bFileExists;
-      if(m_mapIncludeMatchesFileExists.Lookup(pszPath, bFileExists))
-         return bFileExists;
+      ::collection::string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.PLookup(strPath);
+      if(ppair != NULL)
+         return ppair->m_value;
       else
       {
-         bFileExists = Application.file().exists(pszPath);
-         m_mapIncludeMatchesFileExists.set_at(pszPath, bFileExists);
+         bool bFileExists = Application.file().exists(strPath);
+         m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
          return bFileExists;
       }
    }
 
-   bool script_manager::include_matches_is_dir(const char * pszPath)
+   bool script_manager::include_matches_is_dir(const string & strPath)
    {
       single_lock sl(&m_mutexIncludeMatches, TRUE);
-      bool bIsDir;
-      if(m_mapIncludeMatchesIsDir.Lookup(pszPath, bIsDir))
-         return bIsDir;
+      ::collection::string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.PLookup(strPath);
+      if(ppair != NULL)
+         return ppair->m_value;
       else
       {
-         bIsDir = Application.dir().is(pszPath);
-         m_mapIncludeMatchesIsDir.set_at(pszPath, bIsDir);
+         bool bIsDir = Application.dir().is(strPath);
+         m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
       }
    }

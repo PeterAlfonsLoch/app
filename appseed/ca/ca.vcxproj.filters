@@ -626,9 +626,6 @@
     <ClInclude Include="gen\simple_thread.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\_id_space.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\_int_biunique.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -3340,6 +3337,9 @@
     </ClInclude>
     <ClInclude Include="gen\gen_message.h">
       <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\id_array.h">
+      <Filter>Header Files\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

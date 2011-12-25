@@ -15,6 +15,8 @@ public:
    void QuickSort(bool bAsc = true);
 
 
+
+
 };
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::

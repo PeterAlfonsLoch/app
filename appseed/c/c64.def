@@ -1,4 +1,3 @@
 LIBRARY  "c"
 
 EXPORTS
-memset

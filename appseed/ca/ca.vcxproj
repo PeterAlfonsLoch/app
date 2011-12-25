@@ -712,6 +712,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="collection\comparable_raw_array.h" />
     <ClInclude Include="collection\elements.h" />
     <ClInclude Include="collection\gen_lemon_array.h" />
+    <ClInclude Include="collection\id_array.h" />
     <ClInclude Include="collection\key_sort_array.h" />
     <ClInclude Include="collection\list.h" />
     <ClInclude Include="collection\logic_array.h" />
@@ -1246,7 +1247,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="primitive\string.h" />
     <ClInclude Include="primitive\var.h" />
     <ClInclude Include="primitive\virtual_memory.h" />
-    <ClInclude Include="primitive\_id_space.h" />
     <ClInclude Include="primitive\_int_biunique.h" />
     <ClInclude Include="ca.h" />
     <ClInclude Include="radix\allocate.h" />

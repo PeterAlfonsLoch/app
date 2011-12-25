@@ -6,7 +6,7 @@
 #include "ex1/ex1_byte_serializable.h"
 
 
-template < class TYPE >
+template < typename TYPE >
 class numeric_array :
    virtual public ex1::byte_serializable_array < comparable_primitive_array < TYPE > >
 {
@@ -39,6 +39,75 @@ public:
 
 
    void QuickSort(bool bAsc = true);
+
+   bool sort_type(TYPE t, index & iIndex, index iStart, index iEnd) const
+   {
+      if(this->get_size() == 0)
+      {
+         return false;
+      }
+      index iLBound = iStart;
+      index iMaxBound = iEnd;
+      index iUBound = iMaxBound;
+      ::numeric_info::offset < TYPE >::TYPE iCompare;
+      // do binary search
+      iIndex = (iUBound + iLBound) / 2;
+      while(iUBound - iLBound >= 8)
+      {
+         iCompare = this->element_at(iIndex) - t;
+         if(iCompare == ::numeric_info::get_null_value < TYPE > ())
+         {
+            return true;
+         }
+         else if(iCompare > ::numeric_info::get_null_value < TYPE > ())
+         {
+            iUBound = iIndex - 1;
+            if(iUBound < 0)
+            {
+               iIndex = 0;
+               break;
+            }
+         }
+         else
+         {
+            iLBound = iIndex + 1;
+            if(iLBound > iMaxBound)
+            {
+               iIndex = iMaxBound + 1;
+               break;
+            }
+         }
+         iIndex = (iUBound + iLBound) / 2;
+      }
+      // do sequential search
+      while(iIndex < this->get_count())
+      {
+         iCompare = this->element_at(iIndex) - t;
+         if(iCompare == ::numeric_info::get_null_value < TYPE > ())
+            return true;
+         else if(iCompare < ::numeric_info::get_null_value < TYPE > ())
+            iIndex++;
+         else
+            break;
+      }
+      if(iIndex >= this->get_count())
+         return false;
+      while(iIndex >= 0)
+      {
+         iCompare = this->element_at(iIndex) - t;
+         if(iCompare == ::numeric_info::get_null_value < TYPE > ())
+            return true;
+         else if(iCompare > ::numeric_info::get_null_value < TYPE > ())
+            iIndex--;
+         else
+            break;
+      }
+      iIndex++;
+      return false;
+
+   }
+
+
 
 
 };

@@ -686,10 +686,10 @@ void config_session_proxy(HINTERNET hSession, WCHAR * pwzUrl)
 WINHTTP_AUTOPROXY_OPTIONS apop;
 
 char szPac[4096];
-memset(szPac, 0, sizeof(szPac));
+memset_dup(szPac, 0, sizeof(szPac));
 DWORD lcbPac;
 HKEY hkey;
-memset(&apop, 0, sizeof(apop));
+memset_dup(&apop, 0, sizeof(apop));
 bool bGot = false;
 lcbPac = sizeof(szPac);
 if(RegOpenKey(HKEY_CURRENT_USER,
