@@ -3338,6 +3338,9 @@
     <ClInclude Include="gen\gen_message.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
+    <ClInclude Include="gen\gen_istring.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
     <ClInclude Include="collection\id_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -5583,6 +5586,9 @@
     </ClCompile>
     <ClCompile Include="ca\ca_file_system.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_istring.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2333,16 +2333,34 @@ ExitModal:
 
    void interaction::WalkPreTranslateTree(gen::signal_object * pobj)
    {
-      ::ca::window * pwnd = dynamic_cast < ::ca::window * > (m_pimpl);
-      if(pwnd == NULL)
-      {
-         pwnd = dynamic_cast < ::ca::window * > (this);
-      }
-      if(pwnd != NULL && pwnd->IsWindow())
-      {
-         return pwnd->WalkPreTranslateTree(pobj);
-      }
+      WalkPreTranslateTree(this, pobj);
    }
+
+   void interaction::WalkPreTranslateTree(::user::interaction * puiStop, gen::signal_object * pobj)
+   {
+      ASSERT(puiStop == NULL || puiStop->IsWindow());
+      ASSERT(pobj != NULL);
+
+      SCAST_PTR(::gen::message::base, pbase, pobj);
+      // walk from the target window up to the hWndStop window checking
+      //  if any window wants to translate this message
+
+      for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
+      {
+
+         pui->pre_translate_message(pobj);
+
+         if(pobj->m_bRet)
+            return; // trapped by target window (eg: accelerators)
+
+         // got to hWndStop window without interest
+         if(pui == puiStop)
+            break;
+
+      }
+      // no special processing
+   }
+
 
    void interaction::on_select()
    {

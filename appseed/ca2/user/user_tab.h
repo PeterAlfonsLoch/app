@@ -16,32 +16,42 @@ namespace user
 
 
 
-      class CLASS_DECL_ca2 pane
+      class CLASS_DECL_ca2 pane :
+         virtual public ::radix::object
       {
       public:
 
 
-         id                m_id;
-         string            m_strTitleEx;
-         ::visual::dib_sp  m_dib;
-         place_holder *    m_pholder;
-         bool              m_bVisible;
-         bool              m_bPermanent;
+         id                   m_id;
+         istring              m_istrTitleEx;
+         ::visual::dib_sp     m_dib;
+         place_holder *       m_pholder;
+         bool                 m_bVisible;
+         bool                 m_bPermanent;
 
 
          pane();
+         pane(::ca::application * papp);
+         pane(const pane & pane);
+         virtual ~pane();
 
 
-         bool get_title(::ca::application * papp, string & str);
+         pane & operator = (const pane & pane);
 
+
+         string get_title();
 
       };
 
 
       class CLASS_DECL_ca2 pane_array :
-         public array_ptr_alloc < pane, pane & >
+         public array_del_ptr < pane, pane & >
       {
       public:
+
+
+         pane_array(::ca::application * papp);
+         virtual ~pane_array();
 
 
          virtual pane * get_by_id(id id);

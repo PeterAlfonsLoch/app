@@ -11,7 +11,8 @@ namespace user
       m_font(papp),
       m_fontUnderline(papp),
       m_fontBold(papp),
-      m_dcextension(papp)
+      m_dcextension(papp),
+      m_panea(papp)
    {
       
       m_bEnableCloseAll = false;
@@ -93,7 +94,7 @@ namespace user
    {
       pane pane;
       pane.m_uiId = uiIdTitle;
-      pane.m_strTitleEx = L"";
+      pane.m_istrTitleEx = L"";
       pane.m_iId = iId == -1 ? get_data()->m_panea.get_size() : iId;
    /*   if(!pane.m_wstrTitle.load_string(uiIdTitle))
       {
@@ -109,13 +110,13 @@ namespace user
 
    bool tab::set_title(int iPane, const char * lpcsz)
    {
-      get_data()->m_panea[iPane].m_strTitleEx = lpcsz;
+      get_data()->m_panea[iPane].m_istrTitleEx = lpcsz;
       return true;
    }
 
    bool tab::SetTitleById(id id, const char * lpcsz)
    {
-      get_data()->m_panea[get_tab_by_id(id)].m_strTitleEx = lpcsz;
+      get_data()->m_panea[get_tab_by_id(id)].m_istrTitleEx = lpcsz;
       return true;
    }
 
@@ -127,18 +128,25 @@ namespace user
    bool tab::add_tab(const char * lpcsz, id id, bool bVisible, bool bPermanent)
    {
 
-      pane pane;
-      pane.m_strTitleEx       = lpcsz;
-      pane.m_bVisible         = bVisible;
-      pane.m_bPermanent       = bPermanent;
+      pane * ppane = new pane(get_app());
+
+      ppane->m_istrTitleEx       = lpcsz;
+      ppane->m_bVisible         = bVisible;
+      ppane->m_bPermanent       = bPermanent;
+
       if(id.is_empty())
          id = get_data()->m_panea.get_size();
-      pane.m_id               = id;
-      pane.m_dib.destroy();
-      pane.m_pholder          = NULL;
-      get_data()->m_panea.add(pane);
+
+      ppane->m_id               = id;
+      ppane->m_dib.destroy();
+      ppane->m_pholder          = NULL;
+
+      get_data()->m_panea.add(ppane);
+      
       on_change_pane_count();
+
       return true;
+
    }
 
    bool tab::remove_tab_by_id(id id)
@@ -162,20 +170,27 @@ namespace user
    bool tab::add_image_tab(const char * lpcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
    {
 
-      pane * ppane = get_data()->m_panea.add_new();
+      pane * ppane = new pane();
 
       if(ppane == NULL)
          return false;
+
       ppane->m_bVisible    = bVisible;
       ppane->m_bPermanent  = bPermanent;
-      ppane->m_strTitleEx  = lpcszTitle;
+      ppane->m_istrTitleEx  = lpcszTitle;
+
       if(id.is_empty())
          id = get_data()->m_panea.get_size();
+
       ppane->m_id          = id;
       ppane->m_pholder     = NULL;
       ppane->m_dib.create(get_app());
       ppane->m_dib.load_from_file(pszImage);
+
+      get_data()->m_panea.add(ppane);
+
       on_change_pane_count();
+
       return true;
    }
 
@@ -372,14 +387,7 @@ namespace user
          }
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
-            string str;
-            pane.get_title(get_app(), str);
-            get_data()->m_dcextension._DrawText(
-               pdc,
-               str,
-               rectText,
-               DT_LEFT
-               | DT_BOTTOM);
+            get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
          }
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
@@ -432,16 +440,18 @@ namespace user
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
+            
             pane & pane = get_data()->m_panea[iPane];
+
             if(!pane.m_bVisible)
                continue;
-            string str;
-            pane.get_title(get_app(), str);
+
+            string str = pane.get_title();
+
             size size;
-            m_dcextension.GetTextExtent(
-               pdc,
-               str,
-               size);
+
+            m_dcextension.GetTextExtent(pdc, str, size);
+
             if(pane.m_dib.is_set())
             {
                size.cx += pane.m_dib->width()+ 2;
@@ -516,16 +526,18 @@ namespace user
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
+            
             pane & pane = get_data()->m_panea[iPane];
+            
             if(!pane.m_bVisible)
                return;
-            string str;
-            pane.get_title(get_app(), str);
+
+            string str = pane.get_title();
+
             size size;
-            m_dcextension.GetTextExtent(
-               pdc,
-               str,
-               size);
+
+            m_dcextension.GetTextExtent(pdc, str, size);
+
             if(pane.m_dib.m_p != NULL)
             {
                size.cy = max(size.cy, pane.m_dib->size().cy);
@@ -782,12 +794,16 @@ namespace user
          int ixAdd;
          for(int iPane = 0; iPane < iTabParam + 1; iPane++)
          {
+
             rect.left = rect.right;
+
             pane & pane = get_data()->m_panea[iPane];
+
             if(!pane.m_bVisible)
                continue;
-            string str;
-            pane.get_title(get_app(), str);
+
+            string str = pane.get_title();
+
             size size;
 
             ixAdd = 0;
@@ -929,39 +945,65 @@ namespace user
       on_change_pane_count();
    }
 
-   tab::pane::pane()
+   tab::pane::pane() :
+      m_istrTitleEx(NULL)
+   {
+   }
+
+   tab::pane::pane(::ca::application * papp) :
+      ca(papp),
+      m_istrTitleEx(papp)
    {
       m_bVisible     = true;
       m_bPermanent   = false;
       m_pholder      = NULL;
    }
 
-   bool tab::pane::get_title(::ca::application * papp, string &str)
+   tab::pane::pane(const pane & pane) :
+      ca(pane.get_app()),
+      m_istrTitleEx(pane.get_app())
    {
-    //  if(!m_strTitleEx.is_empty())
-      //{
-      try
-      {
-         str = App(papp).load_string(m_strTitleEx);
-      }
-      catch(...)
-      {
-         try
-         {
-            str.Empty();
-         }
-         catch(...)
-         {
-
-         }
-      }
-      //}
-      //else
-      //{
-        // return str.load_string(m_uiId) != 0;
-      //}
-      return true;
+      operator = (pane);
    }
+
+   tab::pane::~pane()
+   {
+   }
+
+   tab::pane & tab::pane::operator = (const pane & pane)
+   {
+
+      if(this != &pane)
+      {
+         m_id              = pane.m_id;
+         m_istrTitleEx     = pane.m_istrTitleEx;
+         m_dib             = pane.m_dib;
+         m_pholder         = pane.m_pholder;
+         m_bVisible        = pane.m_bVisible;
+         m_bPermanent      = pane.m_bPermanent;
+      }
+
+      return *this;
+
+   }
+
+   string tab::pane::get_title()
+   {
+
+      return m_istrTitleEx;
+
+   }
+
+
+   tab::pane_array::pane_array(::ca::application * papp) :
+      ca(papp)
+   {
+   }
+
+   tab::pane_array::~pane_array()
+   {
+   }
+
 
 
    tab::pane * tab::pane_array::get_by_id(id id)

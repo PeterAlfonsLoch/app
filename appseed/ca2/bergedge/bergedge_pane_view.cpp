@@ -209,7 +209,7 @@ namespace bergedge
             }
             else
             {
-               ppane->m_strTitleEx = pcreatordata->m_id;
+               ppane->m_istrTitleEx = pcreatordata->m_id;
             }
             layout();
          }

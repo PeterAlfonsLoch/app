@@ -353,3 +353,28 @@ inline CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2)
 }
 
 
+
+inline void id::raw_set(const char * psz)
+{
+   if(psz == NULL)
+   {
+      m_chType = IDTYPE_TYPE_NULL;
+      m_psz = NULL;
+   }
+   else if(id_is_number(psz))
+   {
+      m_chType = IDTYPE_TYPE_NUMBER;
+      m_ui = atoi(psz);
+   }
+   else
+   {
+      m_chType = IDTYPE_TYPE_TEXT;
+      m_psz = psz;
+   }
+}
+
+inline void id::raw_set(index user)
+{
+   m_chType = IDTYPE_TYPE_NUMBER;
+   m_ui = user;
+}

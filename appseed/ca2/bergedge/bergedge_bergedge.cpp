@@ -875,7 +875,7 @@ namespace bergedge
             if(ppane != NULL)
             {
 
-               ppane->m_strTitleEx = pszTitle;
+               ppane->m_istrTitleEx = pszTitle;
 
                ppaneview->layout();
 

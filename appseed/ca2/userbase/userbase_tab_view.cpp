@@ -152,8 +152,8 @@ namespace userbase
       pane * ppane1 = get_pane_by_id(id1);
       pane * ppane2 = get_pane_by_id(id2);
       
-      string strName1 = ppane1->m_strTitleEx;
-      string strName2 = ppane2->m_strTitleEx;
+      string strName1 = ppane1->m_istrTitleEx;
+      string strName2 = ppane2->m_istrTitleEx;
 
       remove_tab_by_id(id1);
       remove_tab_by_id(id2);
@@ -262,7 +262,7 @@ namespace userbase
          }
          if(pcreatordata->m_strTitle.has_char())
          {
-            get_data()->m_panea[_001GetSel()].m_strTitleEx = pcreatordata->m_strTitle;
+            get_data()->m_panea[_001GetSel()].m_istrTitleEx = pcreatordata->m_strTitle;
          }
          idSplit = pcreatordata->m_idSplit;
       }
@@ -363,7 +363,7 @@ namespace userbase
          pane * ppane = get_pane_by_id(id);
          if(pcreatordata->m_strTitle.has_char())
          {
-            ppane->m_strTitleEx = pcreatordata->m_strTitle;
+            ppane->m_istrTitleEx = pcreatordata->m_strTitle;
          }
          if(ppane != NULL)
          {

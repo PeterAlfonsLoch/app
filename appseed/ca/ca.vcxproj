@@ -1114,6 +1114,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="gen\gen_signal.h" />
     <ClInclude Include="gen\gen_signal_thread.h" />
     <ClInclude Include="gen\gen_str.h" />
+    <ClInclude Include="gen\gen_istring.h" />
     <ClInclude Include="gen\gen_string_tokenizer.h" />
     <ClInclude Include="gen\gen_system.h" />
     <ClInclude Include="gen\gen_template.h" />
@@ -2101,6 +2102,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="gen\gen_signal.cpp" />
     <ClCompile Include="gen\gen_signal_thread.cpp" />
     <ClCompile Include="gen\gen_str.cpp" />
+    <ClCompile Include="gen\gen_istring.cpp" />
     <ClCompile Include="gen\gen_string_tokenizer.cpp" />
     <ClCompile Include="gen\gen_system.cpp" />
     <ClCompile Include="gen\gen_Timer.cpp" />
