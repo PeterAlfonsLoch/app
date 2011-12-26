@@ -226,6 +226,7 @@ namespace ca2
          pcontext, 
          "datetimestr_weekday_long[" + gen::str::itoa(iWeekDay - 1) + "]",
          NULL,
+         NULL,
          NULL);
    }
 
@@ -235,6 +236,7 @@ namespace ca2
          pcontext, 
          "datetimestr_weekday_tiny[" + gen::str::itoa(iWeekDay - 1) + "]",
          NULL,
+         NULL,
          NULL);
    }
 
@@ -243,6 +245,7 @@ namespace ca2
       return System.str().get(
          pcontext, 
          "datetimestr_month[" + gen::str::itoa(iMonth - 1) + "]",
+         NULL,
          NULL,
          NULL);
    }

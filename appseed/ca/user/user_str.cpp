@@ -8,39 +8,39 @@ namespace user
       m_pstr = NULL;
    }
 
-   bool str_context::matches(const char * pszRoot, const char * psz)
+   bool str_context::matches(id pszRoot, id pszExtra, const char * psz)
    {
       if(m_pstr == NULL)
          return false;
-      return m_pstr->matches(this, pszRoot, psz);
+      return m_pstr->matches(this, pszRoot, pszExtra, psz);
    }
 
-   bool str_context::begins(const char * pszRoot, const char * psz)
+   bool str_context::begins(id pszRoot, id pszExtra, const char * psz)
    {
       if(m_pstr == NULL)
          return false;
-      return m_pstr->begins(this, pszRoot, psz);
+      return m_pstr->begins(this, pszRoot, pszExtra, psz);
    }
 
-   bool str_context::begins_eat(string & strTopic, const char * pszRoot)
+   bool str_context::begins_eat(string & strTopic, id pszRoot, id pszExtra)
    {
       if(m_pstr == NULL)
          return false;
-      return m_pstr->begins_eat(this, strTopic, pszRoot);
+      return m_pstr->begins_eat(this, strTopic, pszRoot, pszExtra);
    }
 
-   void str_context::get(stringa & stra, const char * pszRoot)
+   void str_context::get(stringa & stra, id pszRoot, id pszExtra)
    {
       if(m_pstr == NULL)
          return;
-      return m_pstr->get(stra, this, pszRoot);
+      return m_pstr->get(stra, this, pszRoot, pszExtra);
    }
 
-   string str_context::get(const char * pszRoot)
+   string str_context::get(id pszRoot, id pszExtra)
    {
       if(m_pstr == NULL)
          return "";
-      return m_pstr->get(this, pszRoot);
+      return m_pstr->get(this, pszRoot, pszExtra);
    }
 
    str::str(::ca::application * papp) :
@@ -107,23 +107,25 @@ namespace user
       }*/
    }
 
-   void str::set(const char * pszRoot, const char * pszLang, const char * pszStyle, const char * psz)
+   void str::set(id pszRoot, id pszLang, id pszStyle, id pszExtra, const char * psz)
    {
-      (*this)[pszLang][pszStyle][pszRoot].m_str = psz;
+      (*this)[pszExtra][pszLang][pszStyle][pszRoot].m_str = psz;
    }
 
-   string str::get(str_context * pcontext, const char * pszRoot, const char * pszLang, const char * pszStyle)
+   string str::get(str_context * pcontext, id pszRoot, id pszLang, id pszStyle, id idExtra)
    {
+      static id idEn("en");
+      static id idStd("_std");
       string str;
       if(pszLang != NULL)
       {
          if(pszStyle != NULL)
          {
-            str = (*this)[pszLang][pszStyle][pszRoot].m_str;
+            str = (*this)[idExtra][pszLang][pszStyle][pszRoot].m_str;
             if(str.has_char())
                return str;
          }
-         str = (*this)[pszLang][pszLang][pszRoot].m_str;
+         str = (*this)[idExtra][pszLang][pszLang][pszRoot].m_str;
          if(str.has_char())
             return str;
       }
@@ -131,47 +133,49 @@ namespace user
       {
          for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
          {
-            string strStyle = pcontext->param_style_ex()[i];
-            string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            id strStyle = pcontext->param_style_ex()[i];
+            id strLocale = pcontext->param_locale_ex()[i];
+            str = (*this)[idExtra][strLocale][strStyle][pszRoot].m_str;
             if(str.has_char())
                return str;
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[idExtra][strLocale][strLocale][pszRoot].m_str;
             if(str.has_char())
                return str;
          }
       }
       if(pszStyle != NULL)
       {
-         str = (*this)[pszStyle]["en"][pszRoot].m_str;
+         str = (*this)[idExtra][pszStyle][idEn][pszRoot].m_str;
          if(str.has_char())
             return str;
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[idExtra][idEn][idEn][pszRoot].m_str;
       if(str.has_char())
          return str;
       if(pszStyle != NULL)
       {
-         str = (*this)[pszStyle]["_std"][pszRoot].m_str;
+         str = (*this)[idExtra][pszStyle][idStd][pszRoot].m_str;
          if(str.has_char())
             return str;
       }
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[idExtra][idStd][idStd][pszRoot].m_str;
       return str;
    }
 
-   void str::get(stringa & stra, str_context * pcontext, const char * pszRoot, const char * pszLang, const char * pszStyle)
+   void str::get(stringa & stra, str_context * pcontext, id pszRoot, id pszLang, id pszStyle, id idExtra)
    {
+      static id idEn("en");
+      static id idStd("_std");
       string str;
       if(pszLang != NULL)
       {
          if(pszStyle != NULL)
          {
-            str = (*this)[pszLang][pszStyle][pszRoot].m_str;
+            str = (*this)[idExtra][pszLang][pszStyle][pszRoot].m_str;
             if(str.has_char())
                stra.add_unique(str);
          }
-         str = (*this)[pszLang][pszLang][pszRoot].m_str;
+         str = (*this)[idExtra][pszLang][pszLang][pszRoot].m_str;
          if(str.has_char())
             stra.add_unique(str);
       }
@@ -179,32 +183,32 @@ namespace user
       {
          for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
          {
-            string strStyle = pcontext->param_style_ex()[i];
-            string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            id strStyle = pcontext->param_style_ex()[i];
+            id strLocale = pcontext->param_locale_ex()[i];
+            str = (*this)[idExtra][strLocale][strStyle][pszRoot].m_str;
             if(str.has_char())
                stra.add_unique(str);
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[idExtra][strLocale][strLocale][pszRoot].m_str;
             if(str.has_char())
                stra.add_unique(str);
          }
       }
       if(pszStyle != NULL)
       {
-         str = (*this)[pszStyle]["en"][pszRoot].m_str;
+         str = (*this)[idExtra][pszStyle][idEn][pszRoot].m_str;
          if(str.has_char())
             stra.add_unique(str);
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[idExtra][idEn][idEn][pszRoot].m_str;
       if(str.has_char())
          stra.add_unique(str);
       if(pszStyle != NULL)
       {
-         str = (*this)[pszStyle]["_std"][pszRoot].m_str;
+         str = (*this)[idExtra][pszStyle][idStd][pszRoot].m_str;
          if(str.has_char())
             stra.add_unique(str);
       }
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[idExtra][idStd][idStd][pszRoot].m_str;
       if(str.has_char())
          stra.add_unique(str);
    }
@@ -225,7 +229,7 @@ namespace user
       return str;
    }
 */
-   bool str::load_uistr_file(const char * pszLang, const char * pszStyle, const char * pszFile)
+   bool str::load_uistr_file(id pszLang, id pszStyle, const char * pszFile)
    {
       stringa straLines;
       stringa straSep;
@@ -275,6 +279,7 @@ namespace user
                strRoot,
                pszLang,
                pszStyle,
+               NULL,
                body(strBody));
             str.Empty();
          }
@@ -294,7 +299,7 @@ namespace user
       return str;
    }
 
-   bool str::matches(str_context * pcontext, const char * pszRoot, const char * psz)
+   bool str::matches(str_context * pcontext, id pszRoot, id pszExtra, const char * psz)
    {
       string str;
       if(pcontext != NULL)
@@ -303,24 +308,24 @@ namespace user
          {
             string strStyle = pcontext->param_style_ex()[i];
             string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strStyle][pszRoot].m_str;
             if(!str.CompareNoCase(psz))
                return true;
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strLocale][pszRoot].m_str;
             if(!str.CompareNoCase(psz))
                return true;
          }
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[pszExtra]["en"]["en"][pszRoot].m_str;
       if(!str.CompareNoCase(psz))
          return true;
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[pszExtra]["_std"]["_std"][pszRoot].m_str;
       if(!str.CompareNoCase(psz))
          return true;
       return false;
    }
 
-   bool str::begins(str_context * pcontext, const char * pszTopic, const char * pszRoot)
+   bool str::begins(str_context * pcontext, const char * pszTopic, id pszRoot, id pszExtra)
    {
       string str;
       if(pcontext != NULL)
@@ -329,24 +334,24 @@ namespace user
          {
             string strStyle = pcontext->param_style_ex()[i];
             string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strStyle][pszRoot].m_str;
             if(str.has_char() && gen::str::begins_ci(pszTopic, str))
                return true;
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strLocale][pszRoot].m_str;
             if(str.has_char() && gen::str::begins_ci(pszTopic, str))
                return true;
          }
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[pszExtra]["en"]["en"][pszRoot].m_str;
       if(str.has_char() && gen::str::begins_ci(pszTopic, str))
          return true;
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[pszExtra]["_std"]["_std"][pszRoot].m_str;
       if(str.has_char() && gen::str::begins_ci(pszTopic, str))
          return true;
       return false;
    }
 
-   bool str::begins_eat(str_context * pcontext, string & strTopic, const char * pszRoot)
+   bool str::begins_eat(str_context * pcontext, string & strTopic, id pszRoot, id pszExtra)
    {
       string str;
       if(pcontext != NULL)
@@ -355,24 +360,24 @@ namespace user
          {
             string strStyle = pcontext->param_style_ex()[i];
             string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strStyle][pszRoot].m_str;
             if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
                return true;
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strLocale][pszRoot].m_str;
             if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
                return true;
          }
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[pszExtra]["en"]["en"][pszRoot].m_str;
       if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
          return true;
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[pszExtra]["_std"]["_std"][pszRoot].m_str;
       if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
          return true;
       return false;
    }
 
-   void str::get(stringa & stra, str_context * pcontext, const char * pszRoot)
+   void str::get(stringa & stra, str_context * pcontext, id pszRoot, id pszExtra)
    {
       string str;
       string strRoot;
@@ -382,10 +387,10 @@ namespace user
          {
             string strStyle = pcontext->param_style_ex()[i];
             string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strStyle][pszRoot].m_str;
             if(str.has_char())
                stra.add_unique(str);
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strLocale][pszRoot].m_str;
             if(str.has_char())
                stra.add_unique(str);
          }
@@ -399,13 +404,13 @@ namespace user
                string strStyle = pcontext->param_style_ex()[i];
                string strLocale = pcontext->param_locale_ex()[i];
                strRoot.Format("%s[%d]", pszRoot, i);
-               str = (*this)[strLocale][strStyle][strRoot].m_str;
+               str = (*this)[pszExtra][strLocale][strStyle][strRoot].m_str;
                if(str.has_char())
                {
                   bOk = true;
                   stra.add_unique(str);
                }
-               str = (*this)[strLocale][strLocale][strRoot].m_str;
+               str = (*this)[pszExtra][strLocale][strLocale][strRoot].m_str;
                if(str.has_char())
                {
                   bOk = true;
@@ -415,35 +420,35 @@ namespace user
             i++;
          }
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[pszExtra]["en"]["en"][pszRoot].m_str;
       if(str.has_char())
          stra.add_unique(str);
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[pszExtra]["_std"]["_std"][pszRoot].m_str;
       if(str.has_char())
          stra.add_unique(str);
    }
 
-   string str::get(str_context * pcontext, const char * pszRoot)
+   string str::get(str_context * pcontext, id pszRoot, id pszExtra)
    {
       string str;
       if(pcontext != NULL)
       {
          for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
          {
-            string strStyle = pcontext->param_style_ex()[i];
-            string strLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[strLocale][strStyle][pszRoot].m_str;
+            id strStyle = pcontext->param_style_ex()[i];
+            id strLocale = pcontext->param_locale_ex()[i];
+            str = (*this)[pszExtra][strLocale][strStyle][pszRoot].m_str;
             if(str.has_char())
                return str;
-            str = (*this)[strLocale][strLocale][pszRoot].m_str;
+            str = (*this)[pszExtra][strLocale][strLocale][pszRoot].m_str;
             if(str.has_char())
                return str;
          }
       }
-      str = (*this)["en"]["en"][pszRoot].m_str;
+      str = (*this)[pszExtra]["en"]["en"][pszRoot].m_str;
       if(str.has_char())
          return str;
-      str = (*this)["_std"]["_std"][pszRoot].m_str;
+      str = (*this)[pszExtra]["_std"]["_std"][pszRoot].m_str;
       if(str.has_char())
          return str;
       return "";

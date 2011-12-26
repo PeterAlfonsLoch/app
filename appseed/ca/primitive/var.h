@@ -74,6 +74,8 @@ public:
       type_time,
       type_filetime,
       type_uint,
+      type_id,
+      type_pid,
    };
 
    typedef base_enum < _etype, type_null > e_type;
@@ -136,13 +138,17 @@ public:
       __time64_t           m_time;
       FILETIME             m_filetime;
       unsigned int         m_ui;
+      id *                 m_pid;
    };
    ::ca::ca *                       m_pca2;
    string                           m_str;
+   id                               m_id;
 
    string                           to_r_string() const;
    const string &                   get_ref_string(const char * pszOnNull = NULL)   const;
    string                           get_string(const char * pszOnNull = NULL)   const;
+   const id &                       get_ref_id(const char * pszOnNull = NULL)   const;
+   id                               get_id(const char * pszOnNull = NULL)   const;
    int                              get_integer(int iDefault = 0)  const;
    unsigned long                    get_ulong()    const;
    double                           get_double()   const;
@@ -179,6 +185,7 @@ public:
 
 
    void           set_string(const char * psz);
+   void           set_id(const id & id);
    virtual void unset();
 
    virtual bool is_true() const;
@@ -200,6 +207,7 @@ public:
    operator int();
    operator __int64();
    operator string &();
+   operator id &();
    operator const char * () const;
    operator ::CFileTime & ();
    operator ::CFileTime () const;
@@ -245,6 +253,7 @@ public:
    var & operator = (const gen::str_str_interface & propset);
    var & operator = (const string_composite & composite);
    var & operator = (const id & id);
+   var & operator = (id * pid);
 
    template < class T >
    T * ca2()

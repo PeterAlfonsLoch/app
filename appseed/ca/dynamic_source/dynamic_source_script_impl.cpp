@@ -1226,8 +1226,8 @@ namespace dynamic_source
 
       dprint("<br>INIT PATH");
 
-      stringa & propLocaleEx = str_context()->param_locale_ex();
-      stringa & propStyleEx = str_context()->param_style_ex();
+      raw_array < id > & propLocaleEx = str_context()->param_locale_ex();
+      raw_array < id > & propStyleEx = str_context()->param_style_ex();
       gen::property & propLangDirModifierEx = gprop("g_langdir_modifier_ex");
 
       if(gprop("enable_userdir"))
@@ -1942,8 +1942,8 @@ namespace dynamic_source
       string strSubdomainModifier;
       string strParamLocale = gprop("param_locale");
       string strParamStyle = gprop("param_style");
-      stringa & propLocaleEx = str_context()->param_locale_ex();
-      stringa & propStyleEx = str_context()->param_style_ex();
+      raw_array < id > & propLocaleEx = str_context()->param_locale_ex();
+      raw_array < id > & propStyleEx = str_context()->param_style_ex();
 
       strLoad += ".ds";
 
@@ -2687,44 +2687,45 @@ ok1:
       return prop.is_null();
    }
 
-   string script_impl::pstr(const char * pszTopic, gen::property_set & set, const char * pszLocale, const char * pszStyle)
+   string script_impl::pstr(id pszTopic, gen::property_set & set, id pszLocale, id pszStyle, id pszExtra)
    {
-      string str = pstr(pszTopic, pszLocale, pszStyle);
+      string str = pstr(pszTopic, pszLocale, pszStyle, pszExtra);
       set.replace_ex1(str);
       return str;
    }
 
-   string script_impl::pstr(const char * pszTopic, const char * pszLocale, const char * pszStyle)
+   string script_impl::pstr(id pszTopic, id pszLocale, id pszStyle, id pszExtra)
    {
       single_lock sl(&m_pmanager->m_csPersistentStr, TRUE);
-      string strLocale(pszLocale);
-      string strStyle(pszStyle);
-      if(strLocale.is_empty())
+      if(pszLocale.is_empty())
       {
-         strLocale = gprop("param_locale");
+         pszLocale = gprop("param_locale");
       }
-      if(strStyle.is_empty())
+      if(pszStyle.is_empty())
       {
-         strStyle = gprop("param_style");
+         pszStyle = gprop("param_style");
       }
-      string strTopic(pszTopic);
-      string str = System.str().get(str_context(), strTopic + "." + gprop("g_domain_suffix"), strLocale, strStyle);
-      if(str.has_char())
-         return str;
-      str = System.str().get(str_context(), strTopic + "." + gprop("g_domain_toplevel"), strLocale, strStyle);
-      if(str.has_char())
-         return str;
-      if(strTopic == "ca2plugin.install_ca2_rem")
+      if(pszExtra.is_null())
       {
-         TRACE("teste");
+         string strTopic(pszTopic);
+         string str = System.str().get(str_context(), pszTopic, pszLocale, pszStyle, gprop("g_domain_suffix"));
+         if(str.has_char())
+            return str;
+         str = System.str().get(str_context(), pszTopic, pszLocale, pszStyle, gprop("g_domain_toplevel"));
+         if(str.has_char())
+            return str;
+         if(strTopic == "ca2plugin.install_ca2_rem")
+         {
+            TRACE("teste");
+         }
       }
-      return System.str().get(str_context(), strTopic, strLocale, strStyle);
+      return System.str().get(str_context(), pszTopic, pszLocale, pszStyle, pszExtra);
    }
 
-   void script_impl::pstr_set(const char * pszTopic, const char * pszLocale, const char * pszStyle, const char * psz)
+   void script_impl::pstr_set(id pszTopic, id pszLocale, id pszStyle, id pszExtra, const char * psz)
    {
       single_lock sl(&m_pmanager->m_csPersistentStr, TRUE);
-      System.str().set(pszTopic, pszLocale, pszStyle, psz);
+      System.str().set(pszTopic, pszLocale, pszStyle, pszExtra, psz);
    }
 
 
@@ -4017,7 +4018,7 @@ ok1:
       try
       {
          stringa stra;
-         if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds"))
+         if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds", NULL))
          {
 
             calculator::parser parser(get_app());
@@ -4030,10 +4031,10 @@ ok1:
             strMin.Format("%d", ((int)pelement->get_value().mod() / 60));
             string strMinSec;
             strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
-            strResp = pelement->get_expression() + " " + str_context()->get("calendar:seconds");
-            strResp += " = " + strValue + " " + str_context()->get("calendar:seconds");
-            strResp += " = " + strMinFrac + " " + str_context()->get("calendar:minutes");
-            strResp += " = " + strMin + " " + str_context()->get("calendar:minutes") + " and " + strMinSec + " " + str_context()->get("calendar:seconds") + "\n";
+            strResp = pelement->get_expression() + " " + str_context()->get("calendar:seconds", NULL);
+            strResp += " = " + strValue + " " + str_context()->get("calendar:seconds", NULL);
+            strResp += " = " + strMinFrac + " " + str_context()->get("calendar:minutes", NULL);
+            strResp += " = " + strMin + " " + str_context()->get("calendar:minutes", NULL) + " and " + strMinSec + " " + str_context()->get("calendar:seconds", NULL) + "\n";
 
             bOk = true;
          }
@@ -4049,7 +4050,7 @@ ok1:
       try
       {
          stringa stra;
-         if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days"))
+         if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days", NULL))
          {
 
             calculator::parser parser(get_app());
@@ -4218,7 +4219,7 @@ ok1:
 
 
       stringa straCandidate;
-      str_context()->get(straCandidate, "calendar_event:birthday");
+      str_context()->get(straCandidate, "calendar_event:birthday", NULL);
       for(int i = 0; i < straCandidate.get_count(); i++)
       {
          strTopic = pszQuery;

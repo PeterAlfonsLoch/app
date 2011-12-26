@@ -182,6 +182,12 @@ namespace gen
          return *this;
       }
 
+      property & operator =(const id & id)
+      {
+         get_value() = id;
+         return *this;
+      }
+
       property & operator =(double d)
       {
          get_value() = d;

@@ -11,10 +11,10 @@ PcreUtil::~PcreUtil()
 
 }
 
-bool PcreUtil::match(::user::str_context * pcontext, string_array & stra, const char * psz,  const char * pszExp, const char * pszRoot)
+bool PcreUtil::match(::user::str_context * pcontext, string_array & stra, const char * psz,  id pszExp, id pszRoot, id pszExtra)
 {
    stringa straCandidate;
-   pcontext->get(straCandidate, pszRoot);
+   pcontext->get(straCandidate, pszRoot, pszExtra);
    for(int i = 0; i < straCandidate.get_count(); i++)
    {
       string strCandidate = straCandidate[i];

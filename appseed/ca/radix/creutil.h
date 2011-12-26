@@ -20,6 +20,6 @@ public:
    static bool find(const char * lpsz, CRegExp * re, int iSubString, int & iStart, int & iEnd);
    static bool ReplaceAll(string & str, CRegExp * re, int iSubString, const char * lpsz);
    static CRegExp * CompileExpression(const char * lpszExp, bool bCaseInsensitive);
-   static bool match(::user::str_context * pcontext, string_array & stra, const char * psz,  const char * pszExp, const char * pszRoot);
+   static bool match(::user::str_context * pcontext, string_array & stra, const char * psz, id pszExp, id pszRoot, id pszExtra);
 };
 

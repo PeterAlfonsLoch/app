@@ -221,14 +221,14 @@ namespace dynamic_source
       return m_pinterface->system_path(psz);
    }
 
-   string script_composite::pstr(const char * pszTopic, const char * pszLocale, const char * pszStyle)
+   string script_composite::pstr(id pszTopic, id pszLocale, id pszStyle, id pszExtra)
    {
-      return m_pinterface->pstr(pszTopic, pszLocale, pszStyle);
+      return m_pinterface->pstr(pszTopic, pszLocale, pszStyle, pszExtra);
    }
 
-   string script_composite::pstr(const char * pszTopic, gen::property_set & set, const char * pszLocale, const char * pszStyle)
+   string script_composite::pstr(id pszTopic, gen::property_set & set, id pszLocale, id pszStyle, id pszExtra)
    {
-      return m_pinterface->pstr(pszTopic, set, pszLocale, pszStyle);
+      return m_pinterface->pstr(pszTopic, set, pszLocale, pszStyle, pszExtra);
    }
 
    string script_composite::langstr(const char * pszKey)

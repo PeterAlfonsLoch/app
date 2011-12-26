@@ -141,9 +141,9 @@ namespace dynamic_source
       virtual primitive::memory ob_get_clean();
 
 
-      string pstr(const char * pszTopic, const char * pszLocale = NULL, const char * pszStyle = NULL);
-      string pstr(const char * pszTopic, gen::property_set & set, const char * pszLocale = NULL, const char * pszStyle = NULL);
-      void pstr_set(const char * pszTopic, const char * pszLocale, const char * pszStyle, const char * psz);
+      string pstr(id pszTopic, id pszLocale = id(), id pszStyle = id(), id pszExtra = id());
+      string pstr(id pszTopic, gen::property_set & set, id pszLocale = id(), id pszStyle = id(), id pszExtra = id());
+      void pstr_set(id pszTopic, id pszLocale, id pszStyle, id pszExtra, const char * psz);
 
 
       var http_accept_language(const char * psz = NULL);

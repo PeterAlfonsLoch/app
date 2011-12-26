@@ -101,8 +101,8 @@ namespace dynamic_source
       virtual string real_path(const char * psz);
       virtual string system_path(const char * psz);
 
-      string pstr(const char * pszTopic, const char * pszLocale = NULL, const char * pszStyle = NULL);
-      string pstr(const char * pszTopic, gen::property_set & set, const char * pszLocale = NULL, const char * pszStyle = NULL);
+      string pstr(id pszTopic, id pszLocale = id(), id pszStyle = id(), id pszExtra = id());
+      string pstr(id pszTopic, gen::property_set & set, id pszLocale = id(), id pszStyle = id(), id pszExtra = id());
 
       virtual string langstr(const char * pszKey);
       virtual string langstr2(const char * pszKey);

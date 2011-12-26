@@ -39,6 +39,7 @@ namespace datetime
 
    string check_unit(::user::str_context * pcontext, const char * input, const char * & scanner)
    {
+      static id idCalendarDays("calendar:days");
       scanner = input;
       while(gen::ch::is_space_char(scanner) && *scanner != '\0')
          scanner = gen::str::utf8_inc(scanner);
@@ -52,7 +53,7 @@ namespace datetime
             scanner = gen::str::utf8_inc(scanner);
          strCandidate = string(start, scanner - start + 1);
          strCandidate.make_lower();
-         if(pcontext->matches("calendar:days", strCandidate))
+         if(pcontext->matches(idCalendarDays, NULL, strCandidate))
          {
             return "days";
          }
@@ -60,7 +61,7 @@ namespace datetime
       else
       {
          strCandidate = string(input);
-         if(pcontext->begins("calendar:days", strCandidate))
+         if(pcontext->begins(idCalendarDays, NULL, strCandidate))
          {
             return "days";
          }

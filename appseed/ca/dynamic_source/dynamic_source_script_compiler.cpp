@@ -417,7 +417,8 @@ namespace dynamic_source
       memstorage.get_data()[memstorage.get_size() - 1] = '\0';
       memstorage.read(file);*/
       string strSource = Application.file().as_string(pscript->m_strSourcePath);
-
+      int iPosId = -1;
+      stringa straId;
       string strDest;
       strDest = "";
       strDest += "#include \"StdAfx.h\"\r\n";
@@ -438,7 +439,7 @@ namespace dynamic_source
          if(iLastEnd > 0)
          {
             iLastEnd += 2;
-            strDest += cppize2(strSource.Mid(iPos + 4, iLastEnd - iPos - 6), false);
+            strDest += cppize2(strSource.Mid(iPos + 4, iLastEnd - iPos - 6), false, straId);
             iStart = iLastEnd;
          }
       }
@@ -448,7 +449,7 @@ namespace dynamic_source
          if(iLastEnd > 0)
          {
             iLastEnd += 2;
-            strDest += cppize2(strSource.Mid(iPos + 7, iLastEnd - iPos - 7 - 2), false);
+            strDest += cppize2(strSource.Mid(iPos + 7, iLastEnd - iPos - 7 - 2), false, straId);
             iStart = iLastEnd;
          }
       }
@@ -468,6 +469,8 @@ namespace dynamic_source
       strDest += "void dynamic_source_script::run()\r\n";
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
+      iPosId = strDest.get_length();
+      straId.remove_all();
       while((iPos = strSource.find("<?", iStart)) >= 0)
       {
          if(iPos > iLastEnd)
@@ -481,12 +484,20 @@ namespace dynamic_source
          int iShift = 0;
          if(strSource.Mid(iPos, 5).CompareNoCase("<?php") == 0)
             iShift = 3;
-         strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true);
+         strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
          iStart = iLastEnd;
       }
       strDest += get_ds_print(strSource.Mid(iStart));
       strDest += "//End parsed user script\r\n";
       strDest += "}\r\n";
+
+      string strId;
+      for(int i = 0; i < straId.get_size(); i++)
+      {
+         strId += "static class id lscript_id" + gen::str::itoa(i) + "(\"" + straId[i] + "\");\r\n";
+      }
+
+      strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
       Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
 
@@ -814,6 +825,7 @@ namespace dynamic_source
       int iStart = 0;
       int iPos = 0;
       int iLastEnd = 0;
+      stringa straId;
       while((iPos = strSource.find("<?", iStart)) >= 0)
       {
          if(iPos > iLastEnd && bCode)
@@ -828,7 +840,7 @@ namespace dynamic_source
          if(strSource.Mid(iPos, 5).CompareNoCase("<?php") == 0)
             iShift = 3;
          bCode = true;
-         strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), false);
+         strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), false, straId);
          iStart = iLastEnd;
       }
       /*   strDest += "   print(\"" ;
@@ -844,12 +856,13 @@ namespace dynamic_source
 
 
 
-   string script_compiler::cppize2(const char * psz, bool bScript)
+   string script_compiler::cppize2(const char * psz, bool bScript, stringa & straId)
    {
       string str(psz);
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
+      int iArroba = -1;
       bool bInVar = false;
       bool bInSlash = false;
       bool bInRet = false;
@@ -962,6 +975,43 @@ namespace dynamic_source
                {
                   bInSimpleQuote = false;
                   strResult += "\")";
+               }
+               else
+               {
+                  bInSlash = false;
+                  strResult += ch;
+               }
+            }
+         }
+         else if(iArroba >= 0)
+         {
+            if(bInSlash)
+            {
+               bInSlash = false;
+               strResult += ch;
+            }
+            else
+            {
+               if(ch == '\\')
+               {
+                  bInSlash = true;
+                  if(chNext != '{'
+                     && chNext != '}'
+                     && chNext != '$')
+                  {
+                     strResult += ch;
+                  }
+               }
+               else if(ch == '@')
+               {
+                  int iFind = straId.find_first(strResult.Mid(iArroba));
+                  if(iFind <= 0)
+                  {
+                     straId.add(strResult.Mid(iArroba));
+                     iFind = straId.get_upper_bound();
+                  }
+                  strResult = strResult.Left(iArroba) + " lscript_id" + gen::str::itoa(iFind);
+                  iArroba = -1;
                }
                else
                {
@@ -1138,6 +1188,10 @@ namespace dynamic_source
          {
             bInSimpleQuote = true;
             strResult += "unitext(\""; // overloads should cope with the possibility of conversion between string to character
+         }
+         else if(ch == '@')
+         {
+            iArroba = strResult.get_length();
          }
          else if(ch == '$' && (isalpha(chNext) || chNext == '_'))
          {
