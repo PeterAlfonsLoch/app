@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c", "..\..\appseed\c\c.vcxproj", "{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca", "..\..\appseed\ca\ca.vcxproj", "{ACB3FF4B-0B61-45A7-881D-E102E0F85808}"
@@ -24,6 +24,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_tesseract", "..\..\..\app-core\appseed\tesseract\tesseract.vcxproj", "{437699AD-7464-4E5F-ACF3-7167487A9E3D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optca", "..\..\appseed\optca\optca.vcxproj", "{899CC94B-9028-4E57-A7FE-358A564F05F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ACD58CE6-22BC-4AC1-9291-22ADC1DC8CFE}"
+	ProjectSection(SolutionItems) = preProject
+		ca2app.psess = ca2app.psess
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,20 +102,12 @@ Global
 		{437699AD-7464-4E5F-ACF3-7167487A9E3D}.codeanalysis|x64.Build.0 = codeanalysis|x64
 		{437699AD-7464-4E5F-ACF3-7167487A9E3D}.profiler|x64.ActiveCfg = profiler|x64
 		{437699AD-7464-4E5F-ACF3-7167487A9E3D}.profiler|x64.Build.0 = profiler|x64
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis_v110|Win32.ActiveCfg = basis_v110|Win32
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis_v110|Win32.Build.0 = basis_v110|Win32
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis_v110|x64.ActiveCfg = basis_v110|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis_v110|x64.Build.0 = basis_v110|x64
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis|Win32.ActiveCfg = basis|Win32
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis|Win32.Build.0 = basis|Win32
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis|x64.ActiveCfg = basis|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis|x64.Build.0 = basis|x64
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.codeanalysis|x64.Build.0 = codeanalysis|x64
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.profiler|Win32.ActiveCfg = profiler|Win32
-		{899CC94B-9028-4E57-A7FE-358A564F05F0}.profiler|Win32.Build.0 = profiler|Win32
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.profiler|x64.ActiveCfg = profiler|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.profiler|x64.Build.0 = profiler|x64
 	EndGlobalSection

@@ -5590,6 +5590,9 @@
     <ClCompile Include="gen\gen_istring.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\primitive_id_space.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">

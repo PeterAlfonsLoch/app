@@ -89,7 +89,7 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
    iIndex = (iUBound + iLBound) / 2;
    while(iUBound - iLBound >= 8)
    {
-      iCompare = BaseSortCompare((ARG_TYPE) this->element_at(iIndex), (ARG_TYPE) t);
+      iCompare = BaseSortCompare((ARG_TYPE) m_pData[iIndex], (ARG_TYPE) t);
       if(iCompare == 0)
       {
          return true;
@@ -117,7 +117,7 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
    // do sequential search
    while(iIndex < this->get_count())
    {
-      iCompare = BaseSortCompare((ARG_TYPE) this->element_at(iIndex), (ARG_TYPE) t);
+      iCompare = BaseSortCompare((ARG_TYPE) m_pData[iIndex], (ARG_TYPE) t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -129,7 +129,7 @@ BaseSortFind(ARG_TYPE t, index & iIndex, index iStart, index iEnd) const
       return false;
    while(iIndex >= 0)
    {
-      iCompare = BaseSortCompare((ARG_TYPE) this->element_at(iIndex), (ARG_TYPE) t);
+      iCompare = BaseSortCompare((ARG_TYPE) m_pData[iIndex], (ARG_TYPE) t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)

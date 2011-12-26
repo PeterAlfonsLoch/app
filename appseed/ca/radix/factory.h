@@ -4,6 +4,7 @@
 #include "radix/fixed_alloc.h"
 
 
+class strid_array;
 class mutex;
 
 
@@ -247,22 +248,14 @@ public:
    template < class T >
    void creatable(::ca::type_info info, int iCount, bool bOverwrite = false)
    {
-#ifdef WINDOWS
-      if(bOverwrite || !is_set(typeid(T).raw_name()))
-#else
-      if(bOverwrite || !is_set(typeid(T).name()))
-#endif
+      if(bOverwrite || !is_set(info.raw_name()))
          set_at(info.raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
    void cloneable(::ca::type_info  info, int iCount, bool bOverwrite = false)
    {
-#ifdef WINDOWS
-      if(bOverwrite || !is_set(typeid(T).raw_name()))
-#else
-      if(bOverwrite || !is_set(typeid(T).name()))
-#endif
+      if(bOverwrite || !is_set(info.raw_name()))
          set_at(info.raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
@@ -308,8 +301,12 @@ public:
 
 private:
    mutex *                                                     m_pmutex;
-   ptr_array                                                   m_ida;
+   strid_array *                                               m_pstrida;
    base_array < factory_item_base *, factory_item_base * >     m_itemptra;
-   ptr_array                                                   m_idaAllocator;
+   strid_array *                                               m_pstridaAllocator;
    base_array < factory_allocator *, factory_allocator * >     m_itemptraAllocator;
 };
+
+
+
+

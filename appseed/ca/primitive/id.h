@@ -241,7 +241,7 @@ public:
    friend CLASS_DECL_ca index id_cmp(const id * pid, index user);
    friend CLASS_DECL_ca index id_cmp(const id * pid, const char * psz);
    friend CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2);
-   friend index BaseSortCompare(const id & f1, const id & f2);
+   friend CLASS_DECL_ca index id_strcmp(const id * pid1, const id * pid2);
    friend class id_space;
    friend class ::ca::type_info;
 protected:
@@ -352,6 +352,15 @@ inline CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2)
    return pid1->m_psz - pid2->m_psz;
 }
 
+inline CLASS_DECL_ca index id_strcmp(const id * pid1, const id * pid2)
+{
+   char register chCompare = pid1->m_chType - pid2->m_chType;
+   if(chCompare != 0) return chCompare;
+   if(pid1->m_chType == IDTYPE_TYPE_TEXT)
+      return strcmp(pid1->m_psz, pid2->m_psz);
+   else
+      return pid1->m_psz - pid2->m_psz;
+}
 
 
 inline void id::raw_set(const char * psz)
