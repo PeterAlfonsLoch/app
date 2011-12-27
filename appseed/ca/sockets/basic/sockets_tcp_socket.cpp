@@ -321,7 +321,7 @@ namespace sockets
       if (!Handler().ResolverEnabled() || System.net().isipv4(host) )
       {
          ipaddr_t l;
-         if (!System.net().u2ip(host,l))
+         if (!System.net().u2ip(host, l))
          {
             SetCloseAndDelete();
             return false;

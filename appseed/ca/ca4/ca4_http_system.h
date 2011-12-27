@@ -7,7 +7,9 @@ typedef LPVOID HINTERNET;
 namespace fontopus
 {
 
+
    class user;
+
 
 } // namespace fontopus
 
@@ -25,6 +27,25 @@ namespace ca4
       public:
 
 
+         class CLASS_DECL_ca pac :
+            virtual public ::radix::object
+         {
+         public:
+
+            
+            pac(::ca::application * papp);
+
+            
+
+            string      m_strUrl;
+            string      m_strAutoConfigScript;
+            tinyjs      m_js;
+            DWORD       m_dwLastChecked;
+
+         };
+
+
+         ::collection::string_map < pac *  > m_mapPac;
 
 
          system();
@@ -74,6 +95,8 @@ namespace ca4
          bool try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket);
 
          string gmdate(time_t t);
+
+         pac * get_pac(const char * pszUrl);
 
       };
 

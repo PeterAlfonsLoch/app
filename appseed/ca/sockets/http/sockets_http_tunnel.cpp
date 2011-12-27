@@ -146,6 +146,10 @@ namespace sockets
          psocketsapp->http_config_proxy(get_url(), this);*/
          System.http_config_proxy(get_url(), this);
       }
+      else
+      {
+         m_bDirect = true;
+      }
       if(m_bDirect)
       {
          if (!tcp_socket::open(GetUrlHost(),GetUrlPort()))

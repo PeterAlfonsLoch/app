@@ -132,6 +132,59 @@ namespace ca4
 
       }
 
+      system::pac::pac(::ca::application * papp) :
+         ca(papp),
+         m_js(papp)
+      {
+      }
+
+      system::pac * system::get_pac(const char * pszUrl)
+      {
+         
+         ::collection::string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
+
+         if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) < 30000)
+         {
+
+            class pac * ppac = new class pac(get_app());
+
+            ppac->m_dwLastChecked = GetTickCount();
+
+            ppac->m_strUrl = pszUrl;
+            
+            var varQuery;
+
+            varQuery["disable_ca2_sessid"] = true;
+            varQuery["no_proxy_config"] = true;
+
+            ppac->m_strAutoConfigScript = Application.file().as_string(ppac->m_strUrl, varQuery);
+
+            if(ppair != NULL)
+               delete ppair->m_value;
+
+            m_mapPac.set_at(pszUrl, ppac);
+
+            if(ppac->m_strAutoConfigScript.is_empty())
+            {
+               return NULL;
+            }
+
+            registerFunctions(&ppac->m_js);
+            ppac->m_js.execute(ppac->m_strAutoConfigScript);
+         
+            ppair = m_mapPac.PLookup(pszUrl);
+
+            if(ppair == NULL)
+               return NULL;
+         }
+
+         if(ppair->m_value->m_strAutoConfigScript.is_empty())
+            return NULL;
+         
+         return ppair->m_value;
+
+      }
+
       bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket)
       {
 
@@ -139,20 +192,15 @@ namespace ca4
 
          string strUrl(pszScriptUrl);
 
-
          if(gen::str::begins(pszUrl, strUrl))
          {
             psocket->m_bDirect = true;
             return true;
          }
 
-         var varQuery;
+         class pac * ppac = get_pac(pszScriptUrl);
 
-         varQuery["disable_ca2_sessid"] = true;
-
-         string strAutoConfigScript = Application.file().as_string(strUrl, varQuery);
-
-         if(strAutoConfigScript.is_empty())
+         if(ppac == NULL)
             return false;
 
          string strHost;
@@ -168,15 +216,10 @@ namespace ca4
          sockets::ipv4_address ad(get_app(), l, (port_t) port);
          strHost = ad.Convert(true);
 
-         tinyjs js(get_app());
-
-
          string var;
          try
          {
-            registerFunctions(&js);
-            js.execute(strAutoConfigScript);
-            var = js.evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
+            var = ppac->m_js.evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
          }
          catch(...)
          {
@@ -450,7 +493,8 @@ namespace ca4
             psocket->EnableSSL();
          }
          DWORD dw1 = ::GetTickCount();
-         if(!psocket->open())
+         bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
+         if(!psocket->open(bConfigProxy))
          {
             if(pestatus != NULL)
             {

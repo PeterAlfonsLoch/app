@@ -170,7 +170,7 @@ namespace user
    bool tab::add_image_tab(const char * lpcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
    {
 
-      pane * ppane = new pane();
+      pane * ppane = new pane(get_app());
 
       if(ppane == NULL)
          return false;

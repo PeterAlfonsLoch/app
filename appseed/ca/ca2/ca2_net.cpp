@@ -123,19 +123,31 @@ namespace ca2
    }
 
 
-   bool net::u2ip(const string & str, ipaddr_t& l)
+   bool net::u2ip(const string & str, ipaddr_t& l, int ai_flags)
    {
+      single_lock sl(&m_mutexCache, true);
+      dns_cache_item * pitem = NULL;
+      if(m_mapCache.Lookup(str, pitem) && ((::GetTickCount() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
+      {
+         l = pitem->m_ipaddr;
+         return true;         
+      }
+      if(pitem == NULL)
+         pitem = new dns_cache_item;
       struct sockaddr_in sa;
-      bool r = u2ip(str, sa);
+      bool r = u2ip(str, sa, ai_flags);
       memcpy(&l, &sa.sin_addr, sizeof(l));
+      pitem->m_ipaddr = l;
+      pitem->m_dwLastChecked = ::GetTickCount();
+      m_mapCache.set_at(str, pitem);
       return r;
    }
 
 
-   bool net::u2ip(const string & str, struct in6_addr& l)
+   bool net::u2ip(const string & str, struct in6_addr& l, int ai_flags)
    {
       struct sockaddr_in6 sa;
-      bool r = net::u2ip(str, sa);
+      bool r = net::u2ip(str, sa, ai_flags);
       l = sa.sin6_addr;
       return r;
    }

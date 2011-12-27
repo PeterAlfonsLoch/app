@@ -102,6 +102,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    public:
 
 
+      class CLASS_DECL_ca dns_cache_item
+      {
+      public:
+         
+         ipaddr_t       m_ipaddr;
+         DWORD          m_dwLastChecked;
+
+      };
+
+      mutex                                           m_mutexCache;
+      ::collection::string_map < dns_cache_item * >   m_mapCache;
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley
@@ -118,11 +130,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       bool isipv6(const string & str);
 
-      bool u2ip(const string & str, ipaddr_t& l);
+      bool u2ip(const string & str, ipaddr_t& l, int ai_flags = 0);
       bool u2ip(const string &, struct sockaddr_in& sa, int ai_flags = 0);
 
       /** Hostname to ip resolution ipv6, not asynchronous. */
-      bool u2ip(const string & str, struct in6_addr& l);
+      bool u2ip(const string & str, struct in6_addr& l, int ai_flags = 0);
       bool u2ip(const string &, struct sockaddr_in6& sa, int ai_flags = 0);
 
       void l2ip(const ipaddr_t ip, string & str);
