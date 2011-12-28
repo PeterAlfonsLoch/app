@@ -10,14 +10,14 @@ namespace gen
 
    application::application()
    {
-      m_plemonarray              = new lemon::array(this);
-      m_base64.set_app(this);
-      m_pmath                    = new math::math(this);
-      m_pgeometry                = new geometry::geometry(this);
-      //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
-      m_iResourceId              = 8001;
-      m_psavings                 = new class savings(this);
-      m_pcommandthread           = new ::gen::command_thread(this);
+         m_plemonarray              = new lemon::array(this);
+         m_base64.set_app(this);
+         m_pmath                    = new math::math(this);
+         m_pgeometry                = new geometry::geometry(this);
+         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
+         m_iResourceId              = 8001;
+         m_psavings                 = new class savings(this);
+         m_pcommandthread           = new ::gen::command_thread(this);
    }
 
    application::~application()
@@ -53,6 +53,8 @@ namespace gen
 
       if(is_system())
       {
+
+
          {
             char lpszModuleFilePath[MAX_PATH + 1];
             GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);

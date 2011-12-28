@@ -608,7 +608,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       return composite;
    }
 
-   string::operator PCXSTR() const throw()
+   inline string::operator PCXSTR() const throw()
    {
       return simple_string::operator PCXSTR();
    }

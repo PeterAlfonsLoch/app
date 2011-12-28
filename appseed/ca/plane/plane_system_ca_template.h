@@ -10,9 +10,12 @@ namespace ca
    {
       if(get_app() == NULL)
          set_app(papp);
+      if(get_app() == NULL)
+         return;
+      static class id idType = Sys(papp).type_info < T > ().m_id;
       if(m_p != NULL)
          gen::release(m_p);
-      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, Sys(papp->m_psystem).template type_info < T > ()));
+      m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, idType));
    }
 
    template < class T >

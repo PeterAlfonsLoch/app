@@ -18,7 +18,7 @@ string language_string::get(::ca::application * papp)
       return m_str;
    else if(m_str.is_empty())
    {
-      m_papp = papp;
+      m_papp = papp->m_pappThis;
       System.m_langstrptra.add(this);
       m_str = System.load_string(m_id);
    }

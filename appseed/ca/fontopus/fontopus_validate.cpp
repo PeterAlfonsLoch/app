@@ -885,11 +885,7 @@ namespace fontopus
          }
          set["app"] = papp;
 
-         DWORD dwTimeTelmo1 = GetTickCount();
          Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-         DWORD dwTimeTelmo2 = GetTickCount();
-
-         TRACE("Total time Application.http().get(\"" + strLoginUrl + "\") : %d", (dwTimeTelmo2 - dwTimeTelmo1));
 
       }
 

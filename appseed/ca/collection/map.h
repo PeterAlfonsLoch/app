@@ -11,7 +11,7 @@ namespace collection
 {
 
 
-   template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash, class EQUALS = _template::equals >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash < ARG_KEY > , class EQUALS = _template::equals_type_arg_type < KEY, ARG_KEY > >
    class map :
       virtual public ::radix::object
    {
@@ -437,7 +437,7 @@ namespace collection
       assoc* pAssoc;
       for (pAssoc = m_pHashTable[nHashBucket]; pAssoc != NULL; pAssoc = pAssoc->pNext)
       {
-         if (pAssoc->nHashValue == nHashValue && EQUALS::CompareElements(&pAssoc->m_key, &key))
+         if (pAssoc->nHashValue == nHashValue && EQUALS::CompareElements(&pAssoc->m_key, key))
             return pAssoc;
       }
       return NULL;
@@ -529,7 +529,7 @@ namespace collection
       assoc* pAssoc;
       for (pAssoc = *ppAssocPrev; pAssoc != NULL; pAssoc = pAssoc->pNext)
       {
-         if ((pAssoc->nHashValue == nHashValue) && EQUALS::CompareElements(&pAssoc->m_key, &key))
+         if ((pAssoc->nHashValue == nHashValue) && EQUALS::CompareElements(&pAssoc->m_key, key))
          {
             // remove it
             *ppAssocPrev = pAssoc->pNext;  // remove from list
@@ -744,7 +744,7 @@ namespace collection
    #endif //_DEBUG
 
 
-   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash, class EQUALS = _template::equals >
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash < ARG_KEY > , class EQUALS = _template::equals_type_arg_type < KEY, ARG_KEY > >
    class attrib_map :
       virtual public map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS >
    {
@@ -785,7 +785,7 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE = const VALUE & >
    class string_map :
-      virtual public attrib_map < string, string, VALUE, ARG_VALUE >
+      virtual public attrib_map < string, const string &, VALUE, ARG_VALUE >
    {
    public:
       string_map(::count nBlockSize = 10);
@@ -793,9 +793,26 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE >
    string_map < VALUE, ARG_VALUE >::string_map(::count nBlockSize) :
-      map < string, string, VALUE, ARG_VALUE > (nBlockSize)
+      map < string, const string &, VALUE, ARG_VALUE > (nBlockSize)
    {
    }
+
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::strid_hash, class EQUALS = _template::strid_equals  >
+   class strid_map :
+      virtual public attrib_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS >
+   {
+   public:
+      strid_map(::count nBlockSize = 256);
+   };
+
+
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(::count nBlockSize) :
+      map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+   {
+   }
+
+
 
    template < class VALUE, class ARG_VALUE = const VALUE & >
    class int_map :

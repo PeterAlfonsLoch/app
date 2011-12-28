@@ -188,13 +188,21 @@ namespace ca
 
       bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir)
       {
+         
+         if(strPath.get_length() <= 0)
+         {
+            bIsDir = false;
+            return true;
+         }
+
 
          single_lock sl(&m_mutex);
 
+         
          string strLookup(strPath);
 
 
-         if(!gen::str::ends(strLookup, "\\"))
+         if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
             strLookup += "\\";
 
          ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strLookup);

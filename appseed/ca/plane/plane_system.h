@@ -6,6 +6,9 @@
 #endif
 
 
+class id;
+
+
 namespace ca
 {
 
@@ -45,7 +48,7 @@ namespace plane
 #endif
 
 
-      ::collection::string_map < ::ca::type_info > m_typemap;
+      ::collection::strid_map < ::ca::type_info > m_typemap;
 
       mutex                            m_mutexDelete;
       ::ca::application_ptra           m_appptra;
@@ -138,6 +141,7 @@ namespace plane
 
       using ::plane::application::alloc;
       virtual ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);
+      virtual ::ca::ca * alloc(::ca::application * papp, const class id & idType);
 
       virtual ::ca::ca * on_alloc(::ca::application * papp, ::ca::type_info & info);
       virtual ::ca::ca * clone();
@@ -263,6 +267,10 @@ namespace plane
       }
 
       virtual ::ca::type_info & get_type_info(const ::std_type_info & info);
+      inline ::ca::type_info & get_type_info(const class id & idType)
+      {
+         return m_typemap[idType];
+      }
 
       void set_enum_name(::ca::type_info etype, int i, const char * psz)
       {

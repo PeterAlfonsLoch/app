@@ -292,7 +292,7 @@ namespace dynamic_source
          }
       }
 
-      netnode::application * papp = &Application;
+      netnode::application * papp = m_papp->m_pappThis;
       script_manager * pmanager = papp->get_script_manager();
       string strHead;
       http::memory_file memfile(get_app());
@@ -318,7 +318,7 @@ namespace dynamic_source
 
    void script_impl::launch(const char * lpcsz)
    {
-      netnode::application * papp = &Application;
+      netnode::application * papp = m_papp->m_pappThis;
       string strVotagusFolder;
       papp->get_Votagus_folder(strVotagusFolder);
       string strCmd;

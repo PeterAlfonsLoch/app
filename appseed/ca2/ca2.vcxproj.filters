@@ -41,9 +41,6 @@
     <Filter Include="Header Files\databaseuser">
       <UniqueIdentifier>{9b48eb8c-781b-4135-bf98-820baa3e8432}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\collection">
-      <UniqueIdentifier>{c92c34de-a233-4188-a70d-733992ceec48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -1091,63 +1088,6 @@
     <ClInclude Include="databaseuser\list_data.h">
       <Filter>Header Files\databaseuser</Filter>
     </ClInclude>
-    <ClInclude Include="collection\array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_app_alloc.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_parent_alloc.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_ptr_alloc.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_ptr_copy.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\base_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\bit_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\collection.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\comparable_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\comparable_primitive_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\comparable_raw_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\elements.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\key_sort_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\numeric_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\point_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\rect_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\sort.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\sort_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="gcom\gcom_backview_user_interaction.h">
       <Filter>Header Files\gcom</Filter>
     </ClInclude>
@@ -1283,18 +1223,6 @@
     <ClInclude Include="sockets\smtpd_socket.h">
       <Filter>Header Files\sockets\SMTP</Filter>
     </ClInclude>
-    <ClInclude Include="collection\comparable_eq_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\comparable_eq_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\comparable_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="radix\inline.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -1393,9 +1321,6 @@
     </ClInclude>
     <ClInclude Include="calculator\frame.h">
       <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\map.h">
-      <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="user\user_application.h">
       <Filter>Header Files\user</Filter>
@@ -1574,20 +1499,11 @@
     <ClInclude Include="user\user_00.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="collection\raw_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="mail\mail_list_interface.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
-    <ClInclude Include="collection\string_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="userex\application.h">
       <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\unique_array.h">
-      <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_const.h">
       <Filter>Header Files\filemanager</Filter>
@@ -1643,9 +1559,6 @@
     <ClInclude Include="filemanager\filemanager_document.h">
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="collection\logic_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="radix\heap.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -1673,12 +1586,6 @@
     <ClInclude Include="radix\radix_application.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="collection\pointer_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\string_to_string_map.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="bergedge\bergedge_document.h">
       <Filter>Header Files\bergedge</Filter>
     </ClInclude>
@@ -1699,21 +1606,6 @@
     </ClInclude>
     <ClInclude Include="user\user_document_request_interface.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\_Base2DArray.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\stringa.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\string_sort_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\string_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\stringl.h">
-      <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="user\user_document_manager.h">
       <Filter>Header Files\user</Filter>
@@ -1768,18 +1660,6 @@
     </ClInclude>
     <ClInclude Include="sockets\sockets_http_batch_file.h">
       <Filter>Header Files\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_del_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_release_ptr.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\array_smart_ptr.h">
-      <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="sockets\sockets_ssl_client_context_map.h">
       <Filter>Header Files\sockets\Basic Sockets</Filter>
@@ -1871,12 +1751,6 @@
     <ClInclude Include="user\user_draw_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="collection\typed_ptr_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\typed_ptr_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="userbase\userbase_main_frame.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
@@ -1888,18 +1762,6 @@
     </ClInclude>
     <ClInclude Include="cube\cube_library.h">
       <Filter>Header Files\cube</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\typed_pointer_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\typed_pointer_map.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\object_list.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\typed_pointer_array.h">
-      <Filter>Header Files\collection</Filter>
     </ClInclude>
     <ClInclude Include="userpresence\userpresence.h">
       <Filter>Header Files\userpresence</Filter>
@@ -2053,9 +1915,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="collection\collection.inl">
-      <Filter>Header Files\collection</Filter>
-    </None>
     <None Include="ca2.def">
       <Filter>Source Files</Filter>
     </None>

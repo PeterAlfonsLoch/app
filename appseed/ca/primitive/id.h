@@ -244,7 +244,7 @@ public:
    friend CLASS_DECL_ca index id_strcmp(const id * pid1, const id * pid2);
    friend class id_space;
    friend class ::ca::type_info;
-protected:
+
    void raw_set(const char * psz);
    void raw_set(index user);
    union

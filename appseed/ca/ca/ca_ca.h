@@ -23,29 +23,13 @@ namespace plane
 
 
    class session;
-
-
-}
-
-
-namespace plane
-{
-
-   
    class system;
-
-
-}
-
-
-namespace plane
-{
-
-   
    class cube;
 
 
 }
+
+
 
 
 #define CaSys(pca) (*pca->m_papp->m_psystem)

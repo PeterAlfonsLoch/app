@@ -222,6 +222,7 @@ namespace radix
 
       virtual bool on_run_exception(::ca::exception & e);
 
+      virtual void pre_translate_message(::gen::signal_object * pobj);
 
       // Set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
@@ -535,6 +536,7 @@ namespace radix
       bool ca_finalize();
 
       virtual ::ca::ca * alloc(::ca::type_info & info);
+      virtual ::ca::ca * alloc(const id & idType);
 
       virtual bool app_map_lookup(const char * psz, void * &);
       virtual void app_map_set(const char * psz, void *);

@@ -24,10 +24,10 @@ namespace plane
 
 
 #undef App
-#define planeApp(pcaapp) (pcaapp->cast_app < plane::application >())
-#define planeApplication (planeApp(get_app()))
+#define planeApp(pcaapp) (*pcaapp->m_pappThis)
+#define planeApplication (planeApp(m_papp))
 #define App(pcaapp) planeApp(pcaapp)
-#define Application (App(get_app()))
+#define Application (App(m_papp))
 
 
 

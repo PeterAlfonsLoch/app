@@ -678,7 +678,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
 
       for (; pNode != NULL; pNode = pNode->pNext)
-         if (_template::equals::CompareElements<TYPE>(&pNode->data, &searchValue))
+         if (_template::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
             return (POSITION)pNode;
       return NULL;
    }

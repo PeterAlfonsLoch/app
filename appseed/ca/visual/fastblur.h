@@ -15,13 +15,11 @@ namespace visual
    {
    public:
 
-      size        m_size;
-      int         m_iRadius;
-      int_array   m_iaR;
-      int_array   m_iaG;
-      int_array   m_iaB;
-      int_array   m_iaA;
-      int_array   m_iaDv;
+
+      size           m_size;
+      int            m_iRadius;
+      byte_array     m_ucha;
+      byte_array     m_uchaDiv;
 
 
       fastblur(::ca::application * papp);

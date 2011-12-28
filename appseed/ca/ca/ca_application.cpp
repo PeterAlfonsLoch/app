@@ -7,6 +7,7 @@ namespace ca
 
    application::application()
    {
+
       set_app(this);
 
       m_bInitializeProDevianMode = true;

@@ -242,14 +242,42 @@ namespace gen
 
    bool str::ends(const char * lpcsz, const char * lpcszSuffix)
    {
-      string str(lpcsz);
+      if(lpcsz == NULL || *lpcsz == '\0')
+      {
+         if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+            return true;
+         else
+            return false;
+      }
+      else if(lpcszSuffix == NULL || *lpcszSuffix == '\0')
+      {
+         return true;
+      }
+      const char * lpcszEnd = lpcsz;
+      const char * lpcszSuffixEnd = lpcszSuffix;
+      while(*lpcszEnd)
+         lpcszEnd++;
+      while(*lpcszSuffixEnd)
+         lpcszSuffixEnd++;
+      if((lpcszSuffixEnd - lpcszSuffix) > (lpcszEnd - lpcsz))
+         return false;
+      while(lpcszSuffixEnd[-1] == lpcszEnd[-1])
+      {
+         lpcszSuffixEnd--;
+         lpcszEnd--;
+         if(lpcszSuffix <= lpcszSuffixEnd)
+            return true;
+      }
+
+      return false;
+/*      string str(lpcsz);
       string strSuffix(lpcszSuffix);
       int iLen = strSuffix.get_length();
       if(str.Right(iLen) == lpcszSuffix)
       {
          return true;
       }
-      return false;
+      return false;*/
    }
 
    bool str::ends_ci(const char * lpcsz, const char * lpcszSuffix)

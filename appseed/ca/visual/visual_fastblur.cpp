@@ -33,18 +33,15 @@ namespace visual
       int wh      = w * h;
       int div     = radius + radius + 1;
       m_iRadius   = radius;
-      m_iaR.set_size(wh);
-      m_iaG.set_size(wh);
-      m_iaB.set_size(wh);
-      m_iaA.set_size(wh);
-      m_iaDv.set_size(256 * div);
-      int * dv    = m_iaDv.get_data();
+      m_ucha.set_size(wh * 4);
+      m_uchaDiv.set_size(256 * div);
+      byte * dv   = m_uchaDiv.get_data();
 
       m_size.cx   = cx;
       m_size.cy   = cy;
 
 
-      for(int i = 0; i < m_iaDv.get_count(); i++)
+      for(int i = 0; i < m_uchaDiv.get_count(); i++)
       {
          dv[i]= min(255, i/div);
       }
@@ -59,10 +56,10 @@ namespace visual
 
 
 
-      bool fastblur::blur()
+   bool fastblur::blur()
    {
-      return optca_fastblur((DWORD *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, 
-         m_iaA.get_data(), m_iaR.get_data(), m_iaG.get_data(), m_iaB.get_data());
+
+      return optca_fastblur((DWORD *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (DWORD *) m_ucha.get_data(), m_uchaDiv.get_data());
       /*int radius  = m_iRadius;
       int w       = m_size.cx;
       int h       = m_size.cy;

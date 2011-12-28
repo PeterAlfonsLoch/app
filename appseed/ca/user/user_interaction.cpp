@@ -354,7 +354,7 @@ namespace user
 
       try
       {
-         if(m_papp != NULL && &Application != NULL)
+         if(m_papp != NULL && m_papp->m_pappThis != NULL)
          {
             Application.remove_frame(this);
          }

@@ -191,6 +191,8 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
 }
 
+
+
 ::ca::ca * factory::base_clone(::ca::ca * pobject)
 {
    

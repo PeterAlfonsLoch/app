@@ -447,7 +447,7 @@ public:
       return( m_pszData[iChar] );
    }
 
-   operator PCXSTR() const NOTHROW
+   inline operator PCXSTR() const NOTHROW
    {
       return( m_pszData );
    }

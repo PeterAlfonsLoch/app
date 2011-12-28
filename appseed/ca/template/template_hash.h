@@ -16,14 +16,41 @@ inline UINT HashKey(ARG_KEY key)
 namespace _template
 {
 
-   class CLASS_DECL_ca hash
+   template < class ARG_KEY >
+   class hash
    {
    public:
 
-      template < class ARG_KEY >
       inline static UINT HashKey(ARG_KEY key)
       {
          return ::HashKey < ARG_KEY > (key);
+      }
+
+   };
+
+   template < >
+   class CLASS_DECL_ca hash < const string & >
+   {
+   public: 
+      
+      inline static UINT HashKey (const string & key)
+      {
+         register const char * pszKey = key;
+         register int counter = min(32, key.get_length());
+         register UINT nHash = 0;
+         while(counter-- >= 0)nHash = (nHash<<5) + nHash + *pszKey++;
+         return nHash;
+      }
+
+   };
+
+   class CLASS_DECL_ca strid_hash
+   {
+   public: 
+      
+      inline static UINT HashKey (const id & key)
+      {
+         return (UINT) key.m_psz;
       }
 
    };

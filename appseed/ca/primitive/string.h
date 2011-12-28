@@ -439,6 +439,9 @@ public:
    // find the last occurrence of character 'ch'
    strsize reverse_find( PCXSTR ch, strsize iStart = -1 ) const throw();
 
+
+   char last_char() const;
+
    // manipulation
 
    // Convert the string to uppercase
@@ -861,3 +864,7 @@ inline bool id::operator >= (const string_interface & str) const
 }
 
 
+inline char string::last_char() const
+{
+   return operator[] (get_length() - 1);
+}

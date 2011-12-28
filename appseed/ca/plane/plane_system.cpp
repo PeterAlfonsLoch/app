@@ -1025,6 +1025,10 @@ namespace plane
       return ::gen::system::alloc(papp, info);
    }
 
+   ::ca::ca * system::alloc(::ca::application * papp, const class id & idType)
+   {
+      return ::gen::system::alloc(papp, get_type_info(idType));
+   }
 
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
@@ -1294,6 +1298,8 @@ namespace plane
 
    }
 
+   
+
 
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/Cube
@@ -1375,6 +1381,7 @@ namespace plane
 
    }
 
-} // namespace plane
 
+
+} // namespace plane
 

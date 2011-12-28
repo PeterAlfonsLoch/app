@@ -7,11 +7,21 @@ namespace plane
 
    application::application()
    {
+      
+      m_papp      = this;
+      m_pappThis  = this;
+
    }
 
    application::application(const char * pszId)
    {
+      
+
+      m_papp      = this;
+      m_pappThis  = this;
+
       construct(pszId);
+
    }
 
    void application::construct(const char *pszId)

@@ -125,22 +125,38 @@ namespace ca2
 
    bool net::u2ip(const string & str, ipaddr_t& l, int ai_flags)
    {
+      DWORD dwTimeTelmo1 = GetTickCount();
+
       single_lock sl(&m_mutexCache, true);
       dns_cache_item * pitem = NULL;
       if(m_mapCache.Lookup(str, pitem) && ((::GetTickCount() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
       {
          l = pitem->m_ipaddr;
-         return true;         
+         DWORD dwTimeTelmo2 = GetTickCount();
+         TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)", 
+            (DWORD)((byte*)&pitem->m_ipaddr)[0],
+            (DWORD)((byte*)&pitem->m_ipaddr)[1],
+            (DWORD)((byte*)&pitem->m_ipaddr)[2],
+            (DWORD)((byte*)&pitem->m_ipaddr)[3],
+            (dwTimeTelmo2 - dwTimeTelmo1));
+         return pitem->r;         
       }
       if(pitem == NULL)
          pitem = new dns_cache_item;
       struct sockaddr_in sa;
-      bool r = u2ip(str, sa, ai_flags);
+      pitem->r = u2ip(str, sa, ai_flags);
       memcpy(&l, &sa.sin_addr, sizeof(l));
       pitem->m_ipaddr = l;
       pitem->m_dwLastChecked = ::GetTickCount();
       m_mapCache.set_at(str, pitem);
-      return r;
+      DWORD dwTimeTelmo2 = GetTickCount();
+      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)", 
+         (DWORD)((byte*)&pitem->m_ipaddr)[0],
+         (DWORD)((byte*)&pitem->m_ipaddr)[1],
+         (DWORD)((byte*)&pitem->m_ipaddr)[2],
+         (DWORD)((byte*)&pitem->m_ipaddr)[3],
+         (dwTimeTelmo2 - dwTimeTelmo1));
+      return pitem->r;
    }
 
 

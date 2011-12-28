@@ -2,7 +2,7 @@
 
 
 
-bool optca_fastblur(DWORD * pdata, int w, int h, int radius, int * a, int * r, int * g, int * b)
+bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte * dv)
 {
 
    if(radius < 1)
@@ -11,173 +11,191 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, int * a, int * r, i
    }
 
    register int rsum,gsum,bsum,asum;
-   int x,y,i,yp,yi,yw,p;
-   register int * p1;
-   register int * p2;
-   register int c1;
-   register int c2;
+   int x;
+   int y;
+   int i;
+   int yp;
+   int yw;
+   register byte * p1;
+   register byte * p2;
    int wm      = w - 1;
    int hm      = h - 1;
    int wr      = wm - radius;
    int hr      = hm - radius;
    int div     = radius + radius + 1;
    int * pix   = (int *) pdata;
+   byte * p;
+   byte * pwork = (byte *) prgba;
 
-   yw = yi = 0;
-
-   int * pr = r;
-   int * pg = g;
-   int * pb = b;
-   int * pa = a;
+   yw = 0;
 
    for (y=0;y<h;y++)
    {
-      asum=rsum=gsum=bsum=0;
+      
+      asum = 0;
+      rsum = 0;
+      gsum = 0;
+      bsum = 0;
+
       for(i=-radius;i<=radius;i++)
       {
-         p=pix[yi+min(wm,max(i,0))];
-         asum+=((p & 0xff000000)>>24);
-         rsum+=((p & 0xff0000)>>16);
-         gsum+=((p & 0x00ff00)>>8);
-         bsum+=(p & 0x0000ff);
-      }
-      p1 = &pix[yw + radius + 1];
-      p2 = &pix[yw];
 
-      c2 = *p2;
+         p     =     (byte*)&pix[yw+min(wm,max(i,0))];
+         rsum  +=    p[0];
+         gsum  +=    p[1];
+         bsum  +=    p[2];
+         asum  +=    p[3];
+
+      }
+
+      p1 = (byte *) &pix[yw + radius + 1];
+      p2 = (byte *) &pix[yw];
+
       for(x = 0; x < radius; x++)
       {
-         //*pa++ = dv[asum];
-         //*pr++ = dv[rsum];
-         //*pg++ = dv[gsum];
-         //*pb++ = dv[bsum];
-         *pa++ = asum / div;
-         *pr++ = rsum / div;
-         *pg++ = gsum / div;
-         *pb++ = bsum / div;
 
-         c1 = *p1++;
+         pwork[0] = dv[rsum];
+         pwork[1] = dv[gsum];
+         pwork[2] = dv[bsum];
+         pwork[3] = dv[asum];
 
-         asum+= ((c1 >> 24) & 0xff )-((c2 >> 24) & 0xff);
-         rsum+= ((c1 & 0x00ff0000)-(c2 & 0x00ff0000))>>16;
-         gsum+= ((c1 & 0x0000ff00)-(c2 & 0x0000ff00))>>8;
-         bsum+= ((c1 & 0x000000ff)-(c2 & 0x000000ff));
 
-         yi++;
+         rsum += p1[0] - p2[0];
+         gsum += p1[1] - p2[1];
+         bsum += p1[2] - p2[2];
+         asum += p1[3] - p2[3];
+
+         pwork += 4;
+         p1    += 4;
+
       }
 
       for(; x < wr; x ++)
       {
 
-         //*pa++ = dv[asum];
-         //*pr++ = dv[rsum];
-         //*pg++ = dv[gsum];
-         //*pb++ = dv[bsum];
-         *pa++ = asum / div;
-         *pr++ = rsum / div;
-         *pg++ = gsum / div;
-         *pb++ = bsum / div;
+         pwork[0] = dv[rsum];
+         pwork[1] = dv[gsum];
+         pwork[2] = dv[bsum];
+         pwork[3] = dv[asum];
 
-         c1 = *p1++;
-         c2 = *p2++;
 
-         asum += ((c1 >> 24) & 0xff )-((c2 >> 24) & 0xff);
-         rsum += ((c1 & 0x00ff0000)-(c2 & 0x00ff0000))>>16;
-         gsum += ((c1 & 0x0000ff00)-(c2 & 0x0000ff00))>>8;
-         bsum += ((c1 & 0x000000ff)-(c2 & 0x000000ff));
+         rsum += p1[0] - p2[0];
+         gsum += p1[1] - p2[1];
+         bsum += p1[2] - p2[2];
+         asum += p1[3] - p2[3];
 
-         yi++;
+         p1    += 4;
+         p2    += 4;
+         pwork += 4;
 
       }
+
       p1--;
-      c1 = *p1;
+
       for(; x < w; x ++)
       {
 
-         //*pa++ = dv[asum];
-         //*pr++ = dv[rsum];
-         //*pg++ = dv[gsum];
-         //*pb++ = dv[bsum];
-         *pa++ = asum / div;
-         *pr++ = rsum / div;
-         *pg++ = gsum / div;
-         *pb++ = bsum / div;
+         pwork[0] = dv[rsum];
+         pwork[1] = dv[gsum];
+         pwork[2] = dv[bsum];
+         pwork[3] = dv[asum];
 
-         c2 = *p2++;
 
-         asum += ((c1 >> 24) & 0xff )-((c2 >> 24) & 0xff);
-         rsum += ((c1 & 0x00ff0000)-(c2 & 0x00ff0000))>>16;
-         gsum += ((c1 & 0x0000ff00)-(c2 & 0x0000ff00))>>8;
-         bsum += ((c1 & 0x000000ff)-(c2 & 0x000000ff));
+         rsum += p1[0] - p2[0];
+         gsum += p1[1] - p2[1];
+         bsum += p1[2] - p2[2];
+         asum += p1[3] - p2[3];
 
-         yi++;
+         p2    += 4;
+         pwork += 4;
 
       }
 
+      yw += w;
 
-      yw+=w;
    }
 
-
+   int w4 = w * 4;
 
 
    for (x=0;x<w;x++)
    {
-      asum=rsum=gsum=bsum=0;
-      yp=-radius*w;
+      
+      asum = 0;
+      rsum = 0;
+      gsum = 0;
+      bsum = 0;
+      
+      yp = -radius*w;
+
       for(i=-radius;i<=radius;i++)
       {
-         yi=max(0,yp)+x;
-         rsum+=r[yi];
-         gsum+=g[yi];
-         bsum+=b[yi];
-         asum+=a[yi];
-         yp+=w;
+         p = (byte*) &((int *)prgba)[max(0, yp) + x];
+         rsum  += p[0];
+         gsum  += p[1];
+         bsum  += p[2];
+         asum  += p[3];
+         yp += w;
       }
-      int i1 = x + (radius + 1) * w;
-      int i2 = x + 0;
-      p1 = &pix[x];
+      byte * r1 = (byte *) &prgba[x + (radius + 1) * w];
+      byte * r2 = (byte *) &prgba[x + 0];
+
+      p1 = (byte *) &pix[x];
+
       for (y=0;y<radius;y++)
       {
-         //            *p1 = (dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-         *p1 = ((asum / div) <<24) | ((rsum / div)<<16) | ((gsum / div)<<8) | (bsum / div);
+         
+         p1[0] = dv[rsum];
+         p1[1] = dv[gsum];
+         p1[2] = dv[bsum];
+         p1[3] = dv[asum];
 
-         rsum+=r[i1]-r[i2];
-         gsum+=g[i1]-g[i2];
-         bsum+=b[i1]-b[i2];
-         asum+=a[i1]-a[i2];
+         rsum += r1[0] - r2[0];
+         gsum += r1[1] - r2[1];
+         bsum += r1[2] - r2[2];
+         asum += r1[3] - r2[3];
 
-         p1+=w;
-         i1+=w;
+         p1 += w4;
+         r1 += w4;
       }
+
       for (;y<hr;y++)
       {
-         //            *p1 = (dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-         *p1 = ((asum / div) <<24) | ((rsum / div)<<16) | ((gsum / div)<<8) | (bsum / div);
 
-         rsum+=r[i1]-r[i2];
-         gsum+=g[i1]-g[i2];
-         bsum+=b[i1]-b[i2];
-         asum+=a[i1]-a[i2];
+         p1[0] = dv[rsum];
+         p1[1] = dv[gsum];
+         p1[2] = dv[bsum];
+         p1[3] = dv[asum];
 
-         p1+=w;
-         i1+=w;
-         i2+=w;
+         rsum += r1[0] - r2[0];
+         gsum += r1[1] - r2[1];
+         bsum += r1[2] - r2[2];
+         asum += r1[3] - r2[3];
+
+         p1 += w4;
+         r1 += w4;
+         r2 += w4;
       }
-      i1-=w;
+      
+      p1 -= w4;
+
       for(;y<h;y++)
       {
-         //            *p1 = (dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-         *p1 = ((asum / div) <<24) | ((rsum / div)<<16) | ((gsum / div)<<8) | (bsum / div);
+      
+         p1[0] = dv[rsum];
+         p1[1] = dv[gsum];
+         p1[2] = dv[bsum];
+         p1[3] = dv[asum];
 
-         rsum+=r[i1]-r[i2];
-         gsum+=g[i1]-g[i2];
-         bsum+=b[i1]-b[i2];
-         asum+=a[i1]-a[i2];
+         rsum += r1[0] - r2[0];
+         gsum += r1[1] - r2[1];
+         bsum += r1[2] - r2[2];
+         asum += r1[3] - r2[3];
 
-         p1+=w;
-         i2+=w;
+         p1 += w4;
+         r2 += w4;
       }
+
    }
 
    return true;

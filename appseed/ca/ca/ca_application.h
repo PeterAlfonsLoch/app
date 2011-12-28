@@ -1,25 +1,54 @@
 #pragma once
 
 
+namespace gen
+{
+
+
+   class signal_object;
+
+
+}
+
+
 namespace user
 {
+
+
    class interaction;
+
+
 }
 
 
 namespace bergedge
 {
+
+
    class bergedge;
+
+
+
 }
+
 
 namespace cube
 {
+
+
    class cube;
+
+
 }
 
 namespace plane
 {
+
+
+   class application;
    class system;
+
+
 }
 
 namespace ca
@@ -55,6 +84,7 @@ namespace ca
       bool                          m_bInitializeProDevianMode;
       main_init_data *              m_pinitmaindata;
       bool                          m_bService;
+      ::plane::application *        m_pappThis;
 
 
       application();
@@ -93,6 +123,9 @@ namespace ca
 
       virtual bool app_map_lookup(const char * psz, void * &) = 0;
       virtual void app_map_set(const char * psz, void *) = 0;
+
+
+      virtual void pre_translate_message(::gen::signal_object * pobj) = 0;
 
 
       template < class APP >

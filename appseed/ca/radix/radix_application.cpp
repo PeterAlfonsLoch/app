@@ -890,6 +890,13 @@ namespace radix
       return false; // re-run? by default: doesn't
    }
 
+   void application::pre_translate_message(::gen::signal_object * pobj)
+   {
+
+      ::radix::thread::pre_translate_message(pobj);
+
+   }
+
 
    HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
    {
@@ -2932,6 +2939,10 @@ namespace radix
       return System.alloc(this, info);
    }
 
+   ::ca::ca * application::alloc(const  id & idType)
+   {
+      return System.alloc(this, idType);
+   }
 
 
 

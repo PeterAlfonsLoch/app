@@ -4,6 +4,6 @@
 #include "c/c.h"
 
 
-bool optca_fastblur(DWORD * pdata, int w, int h, int radius, int * a, int * r, int * g, int * b);
+bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * p, byte * dv);
 
 

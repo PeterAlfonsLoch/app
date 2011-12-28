@@ -321,7 +321,10 @@
     <Filter Include="Source Files\mail">
       <UniqueIdentifier>{0890c350-9880-4f8c-9966-dd58d47196bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multithreading\javascript">
+    <Filter Include="Header Files\javascript">
+      <UniqueIdentifier>{0607b27e-f608-4221-bdb6-e7f7182781d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\javascript">
       <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -2192,9 +2195,6 @@
     <ClInclude Include="template\simple_collection.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
-    <ClInclude Include="template\templ_old.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="template\template.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
@@ -2217,9 +2217,6 @@
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_iterator.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_old2.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_std_pair.h">
@@ -3343,6 +3340,15 @@
     </ClInclude>
     <ClInclude Include="collection\id_array.h">
       <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\javascript.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\javascript_functions.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript\javascript_tinyjs.h">
+      <Filter>Header Files\javascript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5183,10 +5189,10 @@
       <Filter>Source Files\geoip</Filter>
     </ClCompile>
     <ClCompile Include="javascript\javascript.cpp">
-      <Filter>Source Files\multithreading\javascript</Filter>
+      <Filter>Source Files\javascript</Filter>
     </ClCompile>
     <ClCompile Include="javascript\javascript_functions.cpp">
-      <Filter>Source Files\multithreading\javascript</Filter>
+      <Filter>Source Files\javascript</Filter>
     </ClCompile>
     <ClCompile Include="api\api_allocate.cpp">
       <Filter>Source Files\api</Filter>
