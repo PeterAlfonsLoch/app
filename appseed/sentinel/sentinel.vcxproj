@@ -552,6 +552,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="_mem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sentinel.rc" />
