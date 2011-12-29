@@ -265,7 +265,7 @@ namespace gen
       {
          lpcszSuffixEnd--;
          lpcszEnd--;
-         if(lpcszSuffix <= lpcszSuffixEnd)
+         if(lpcszSuffixEnd <= lpcszSuffix)
             return true;
       }
 
@@ -305,7 +305,7 @@ namespace gen
       {
          lpcszSuffixEnd--;
          lpcszEnd--;
-         if(lpcszSuffix <= lpcszSuffixEnd)
+         if(lpcszSuffixEnd <= lpcszSuffix)
             return true;
       }
 
@@ -338,7 +338,7 @@ namespace gen
       {
          lpcszSuffixEnd--;
          lpcszEnd--;
-         if(lpcszSuffix <= lpcszSuffixEnd)
+         if(lpcszSuffixEnd <= lpcszSuffix)
             return true;
       }
 
