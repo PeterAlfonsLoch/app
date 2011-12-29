@@ -178,6 +178,7 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
       }
       
       p1 -= w4;
+      r1 -= w4;
 
       for(;y<h;y++)
       {
