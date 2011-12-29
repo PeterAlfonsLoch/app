@@ -159,7 +159,7 @@ bool secure::login_check()
 
    if(bOptional && ca2_fetch_mode() != 1 && !gen::str::ends(inattr("http_host"), ".fontopus.com") && inattr("http_host") != "fontopus.com")
    {
-      votagus_optional_login();
+      //votagus_optional_login();
    }
 
    string strSessid;
