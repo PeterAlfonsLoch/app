@@ -505,7 +505,7 @@ retry:
             }
             delete psocket;
             DWORD dwTimeTelmo2 = GetTickCount();
-            TRACE("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") : %d", (dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          DWORD dw2 = ::GetTickCount();
@@ -578,7 +578,7 @@ retry:
                if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   DWORD dwTimeTelmo2 = GetTickCount();
-                  TRACE("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") : %d", (dwTimeTelmo2 - dwTimeTelmo1));
+                  TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(strCa2Realm, strLocation);
@@ -592,7 +592,7 @@ retry:
          }
 
          DWORD dwTimeTelmo2 = GetTickCount();
-         TRACE("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") : %d", (dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
 
          return psocket;
 
