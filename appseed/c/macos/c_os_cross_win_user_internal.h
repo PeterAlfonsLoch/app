@@ -8,5 +8,17 @@
 
 #pragma once
 
+#include "ca_seed.h"
 
+/*typedef class tag_WINDOW
+{
+public:
+    
+    WindowRef      m_windowref;
+    void *         m_pnswindow;
+    
+    
+    
+} WINDOW, * LPWINDOW;*/
 
+typedef LPWINDOW HWND;

@@ -1,6 +1,16 @@
 #pragma once
 
 
+#include "ca_seed.h"
+
+
+
+CGContextRef get_nswindow_cgcontext(void * pnswindow);
+
+
+bool get_nswindow_rect(LPRECT lprect, void * pwindow);
+
+
 inline int wxRound(double x)
 {
 #if defined(HAVE_ROUND)
@@ -176,36 +186,8 @@ public:
     
     
     
-    device_context() :
-    /*  m_colour(wxColourDisplay())
-    , m_ok(true)
-    , m_clipping(false)
-    , m_isInteractive(0)
-    , m_isBBoxValid(false)
-    , */ m_logicalOriginX(0), m_logicalOriginY(0)
-    , m_deviceOriginX(0), m_deviceOriginY(0)
-    , m_logicalScaleX(1.0), m_logicalScaleY(1.0)
-    , m_userScaleX(1.0), m_userScaleY(1.0)
-    , m_scaleX(1.0), m_scaleY(1.0)
-    , m_signX(1), m_signY(1)
-    , m_minX(0), m_minY(0), m_maxX(0), m_maxY(0)
-    , m_clipX1(0), m_clipY1(0), m_clipX2(0), m_clipY2(0)
-  /*  , m_logicalFunction(wxCOPY)
-    , m_backgroundMode(wxTRANSPARENT)
-    , m_mappingMode(wxMM_TEXT)
-    , m_pen() */
-   /* , m_brush()
-    , m_backgroundBrush(*wxTRANSPARENT_BRUSH)
-    , m_textForegroundColour(*wxBLACK)
-    , m_textBackgroundColour(*wxWHITE)
-    , m_font()
-#if wxUSE_PALETTE
-    , m_palette()
-    , m_hasCustomPalette(false)
-#endif // wxUSE_PALETTE */   
-    {
-        m_cgcontext = NULL;
-    }
+    device_context();
+    
     
     wxCoord XDEV2LOG(wxCoord x) const
     {

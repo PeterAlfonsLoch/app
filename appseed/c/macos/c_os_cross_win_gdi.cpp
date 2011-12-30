@@ -2,6 +2,43 @@
 #include "c_os_cross_win_gdi_internal.h"
 
 
+#include <Carbon/Carbon.h>
+#include <CoreFoundation/CoreFoundation.h>
+
+
+device_context::device_context()
+:
+/*  m_colour(wxColourDisplay())
+ , m_ok(true)
+ , m_clipping(false)
+ , m_isInteractive(0)
+ , m_isBBoxValid(false)
+ , */ m_logicalOriginX(0), m_logicalOriginY(0)
+, m_deviceOriginX(0), m_deviceOriginY(0)
+, m_logicalScaleX(1.0), m_logicalScaleY(1.0)
+, m_userScaleX(1.0), m_userScaleY(1.0)
+, m_scaleX(1.0), m_scaleY(1.0)
+, m_signX(1), m_signY(1)
+, m_minX(0), m_minY(0), m_maxX(0), m_maxY(0)
+, m_clipX1(0), m_clipY1(0), m_clipX2(0), m_clipY2(0)
+/*  , m_logicalFunction(wxCOPY)
+ , m_backgroundMode(wxTRANSPARENT)
+ , m_mappingMode(wxMM_TEXT)
+ , m_pen() */
+/* , m_brush()
+ , m_backgroundBrush(*wxTRANSPARENT_BRUSH)
+ , m_textForegroundColour(*wxBLACK)
+ , m_textBackgroundColour(*wxWHITE)
+ , m_font()
+ #if wxUSE_PALETTE
+ , m_palette()
+ , m_hasCustomPalette(false)
+ #endif // wxUSE_PALETTE */   
+{
+    m_cgcontext = NULL;
+}
+
+
 
 CGColorRef mac_create_color(COLORREF cr)
 {
@@ -24,6 +61,7 @@ CGColorRef mac_create_color(COLORREF cr)
 BOOL mac_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
+    return TRUE;
 }
 
 
@@ -33,6 +71,40 @@ HDC GetWindowDC(HWND hwnd)
    return GetDC(hwnd);
 }
 
+HDC GetDC(HWND hwnd)
+{
+    
+    HDC hdc = new device_context;
+    
+    
+    hdc->m_window = hwnd;
+    hdc->m_cgcontext = get_nswindow_cgcontext(hwnd->m_pnswindow);
+/*    hdc->m_windowPort = GetWindowPort(hwnd);
+    GetPortBounds(hdc->m_windowPort, &hdc->m_portBounds);
+    
+    hdc->m_wasSwapped = QDSwapPort(hdc->m_windowPort, &hwnd->m_savedPort);
+    
+    
+    /* ... QuickDraw Drawing Commands ... */
+    // at windowPort
+    
+    
+  /*  QDBeginCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
+    SyncCGContextOriginWithPort(hdc->m_cgcontext, hdc->m_windowPort);
+    //ClipCGContextToRegion(cgContext, &portBounds, clippingRegion);
+    //DisposeRgn(clippingRegion);
+    //clippingRegion = NULL;
+    
+    /* ... Quartz Drawing Commands ... */
+    
+    
+    hdc->m_cgcolorrefText = mac_create_color(0);
+    hdc->m_cgcolorrefBk = mac_create_color(RGB(255, 255, 255));
+    
+    return hdc;
+    
+}
+
 
 BOOL ReleaseDC(HWND hwnd, HDC hdc)
 {
@@ -40,12 +112,12 @@ BOOL ReleaseDC(HWND hwnd, HDC hdc)
    if(hdc == NULL)
       return FALSE;
    
-   QDEndCGContext(hdc->m_windowPort, &hdc->m_cgContext);
+   /*QDEndCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
    
    if(hdc->m_wasSwapped)
    {
-      QDSwapPort(hdc->savedPort, &hdc->m_savedPort);
-   }
+      QDSwapPort(hdc->m_savedPort, &hdc->m_savedPort);
+   }*/
 
    delete hdc;
    return TRUE;
@@ -55,31 +127,46 @@ BOOL ReleaseDC(HWND hwnd, HDC hdc)
 
 BOOL GetClientRect(HWND hwnd, LPRECT lprect)
 {
-   XWindowAttributes attrs;
+/*   XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+  /* if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
    {
       return false;
    }
    lprect->left      = 0;
    lprect->top       = 0;
    lprect->right     = lprect->left    + attrs.width;
-   lprect->bottom    = lprect->top     + attrs.height;
+   lprect->bottom    = lprect->top     + attrs.height;*/
+    
+    if(!GetWindowRect(hwnd, lprect))
+        return FALSE;
+    
+    lprect->right   -=  lprect->left;
+    lprect->bottom  -=  lprect->top;
+    lprect->left    =   0;
+    lprect->top     =   0;
+    
+    return TRUE;
+    
 }
 
 
 BOOL GetWindowRect(HWND hwnd, LPRECT lprect)
 {
-   XWindowAttributes attrs;
+  /* XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+/*   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
    {
       return false;
    }
    lprect->left      = attrs.x;
    lprect->top       = attrs.y;
    lprect->right     = lprect->left    + attrs.width;
-   lprect->bottom    = lprect->top     + attrs.height;
+   lprect->bottom    = lprect->top     + attrs.height;*/
+    
+   return get_nswindow_rect(lprect, hwnd->m_pnswindow) ? 1 : 0;
+    
+    
 }
 
 

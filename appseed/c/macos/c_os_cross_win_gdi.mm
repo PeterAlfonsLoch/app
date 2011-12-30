@@ -6,41 +6,33 @@
 //  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include "StdAfx.h"
-#include "c_os_cross_win_gdi_internal.h"
 #include <Cocoa/Cocoa.h>
+#include "c_os_cross_win_gdi_internal.h"
 
 
+CGContextRef get_nswindow_cgcontext(void * pwindow)
+{
 
-HDC GetDC(HWND hwnd)
+    NSWindow * pnswindow = (NSWindow * ) pwindow;
+    
+    return (CGContextRef) [[pnswindow graphicsContext] graphicsPort];
+
+}
+
+bool get_nswindow_rect(LPRECT lprect, void * pwindow)
 {
     
-    HDC hdc = new device_context;
+    NSWindow * pnswindow = (NSWindow * ) pwindow;
+    
+    NSRect rect = [pnswindow frame];
+    
+    lprect->left        = rect.origin.x;
+    lprect->top         = rect.origin.y;
+    lprect->right       = rect.origin.x + rect.size.width;
+    lprect->bottom      = rect.origin.y + rect.size.height;
     
     
-    hdc->m_window = hwnd;
-    hdc->m_windowPort = GetWindowPort(hwnd);
-    GetPortBounds(hdc->m_windowPort, &hdc->m_portBounds);
-    
-    hdc->m_wasSwapped = QDSwapPort(hwnd->m_windowPort, &hwnd->m_savedPort);
-    
-    
-    /* ... QuickDraw Drawing Commands ... */
-    // at windowPort
-    
-    
-    QDBeginCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
-    SyncCGContextOriginWithPort(hdc->m_cgcontext, hdc->m_windowPort);
-    //ClipCGContextToRegion(cgContext, &portBounds, clippingRegion);
-    //DisposeRgn(clippingRegion);
-    //clippingRegion = NULL;
-    
-    /* ... Quartz Drawing Commands ... */
-    
-    
-    hdc->m_cgcolorrefText = mac_create_color(0);
-    hdc->m_cgcolorrefBk = mac_create_color(RGB(255, 255, 255));
-    
-    return hdc;
+    return true;
     
 }
+
