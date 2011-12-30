@@ -107,7 +107,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
       throw not_implemented_exception();
-/*      file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (System.m_ptemplateOperation->open_document_file(createcontext));
+      file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (Cube.m_ptemplateOperation->open_document_file(createcontext));
       if(pdoc == NULL)
          return;
       ::view * pview = pdoc->get_view(0);
@@ -115,7 +115,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
 //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;
-      pcreatordata->m_pdoc = pdoc;*/
+      pcreatordata->m_pdoc = pdoc;
    }
    else if(pcreatordata->m_id >= 100000)
    {

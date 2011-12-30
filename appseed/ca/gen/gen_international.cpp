@@ -122,6 +122,8 @@ namespace gen
 
       wstring MultiByteToUnicode(UINT uiCodePage, const string & str)
       {
+         if(str.length() <= 0)
+            return L"";
          int iBuffer = MultiByteToUnicodeCount(uiCodePage, str, str.get_length());
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {

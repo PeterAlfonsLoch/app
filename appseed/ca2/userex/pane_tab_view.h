@@ -48,6 +48,8 @@ namespace userex
 
       virtual filemanager::document * get_filemanager_document();
 
+      virtual filemanager::document * get_tabbed_filemanager_document();
+
       virtual void _001OnTabClose(int iTab);
 
    };

@@ -183,6 +183,30 @@ namespace userex
             }
          }
       }
+      else if(pcreatordata->m_id == "tabbed_file_manager")
+      {
+
+         ::ca::create_context_sp cc(get_app());
+         cc->m_bTransparentBackground     = true;
+         cc->m_bMakeVisible               = true;
+         cc->m_puiParent                  = pcreatordata->m_pholder;
+
+         ::filemanager::document * pdoc = Application.GetStdFileManagerTemplate()->open(&Application, cc);
+
+         if(pdoc != NULL)
+         {
+            ::view * pview = pdoc->get_view();
+            if(pview != NULL)
+            {
+               frame_window * pframe = (frame_window *) pview->GetParentFrame();
+               if(pframe != NULL)
+               {
+                  pcreatordata->m_pdoc = pdoc;
+                  pcreatordata->m_pwnd = pframe;
+               }
+            }
+         }
+      }
 
    }
 
@@ -191,6 +215,10 @@ namespace userex
       return get_typed_document < filemanager::document > ();
    }
 
+   filemanager::document * pane_tab_view::get_tabbed_filemanager_document()
+   {
+      return dynamic_cast < filemanager::document * > (get_view_creator()->get("tabbed_file_manager")->m_pdoc);
+   }
 
    void pane_tab_view::_001OnTabClose(int iTab)
    {
