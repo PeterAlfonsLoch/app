@@ -65,26 +65,33 @@ namespace ca
          #endif
 
          template < class T >
-         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
+         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
          #ifdef LINUX
          ;
          #else
          {
-            System.dir().mk(System.dir().name(pszOutput));
-            ex1::filesp fileOut(get_app());
-            if(!fileOut->open(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write))
+
+            App(papp).dir().mk(System.dir().name(pszOutput));
+
+            ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+
+            if(fileOut.is_null())
+                return false;
+
+            ex1::filesp fileIn = App(papp).get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
+
+            if(fileIn.is_null())
                return false;
-            ex1::filesp fileIn(get_app());
-            if(!fileIn->open(lpszInput, ex1::file::type_binary | ex1::file::mode_read))
-               return false;
+
             return (p->*lpfnOuput)(fileOut, fileIn);
+
          }
          #endif
 
          template < class T >
-         bool output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), ::ex1::reader & istream)
+         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), ::ex1::reader & istream)
          {
-            return (p->*lpfnOuput)(get(pszOutput), istream);
+            return (p->*lpfnOuput)(get(pszOutput, papp), istream);
          }
 
          string time(::ca::application * papp, const char * pszBasePath, int iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
@@ -95,9 +102,9 @@ namespace ca
          virtual ex1::filesp get(const char * name, ::ca::application * papp);
 
          template < class T >
-         string time_square(T * p, bool (T::*lpfnOutput)(::ex1::writer &, const char *), const char * lpszSource)
+         string time_square(::ca::application * papp, T * p, bool (T::*lpfnOutput)(::ex1::writer &, const char *), const char * lpszSource)
          {
-            string strTime = time_square();
+            string strTime = time_square(papp);
             if(strTime.has_char())
                if(!output(strTime, p, lpfnOutput, lpszSource))
                   return "";

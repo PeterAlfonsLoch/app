@@ -466,7 +466,7 @@ namespace _template
    {
       (_SizeInChars);
 #if defined(LINUX)
-      ::ultoa_dup(_Val, _Buf, _Radix);
+      ::ultoa_dup(_Buf, _Val, _Radix);
 #else
       ::_ultoa(_Val, _Buf, _Radix);
 #endif
@@ -488,9 +488,9 @@ namespace _template
    {
       (_SizeInChars);
 #if defined(LINUX)
-        ::ltoa_dup(_Val, _Buf, _Radix);
+      ::ltoa_dup(_Buf, _Val, _Radix);
 #else
-        ::_i64toa(_Val, _Buf, _Radix);
+      ::_i64toa(_Val, _Buf, _Radix);
 #endif
    }
 
@@ -504,9 +504,9 @@ namespace _template
    {
       (_SizeInChars);
 #if defined(LINUX)
-      ::ultoa_dup(_Val, _Buf, _Radix);
+      ::ultoa_dup(_Buf, _Val, _Radix);
 #else
-        ::_ui64toa(_Val, _Buf, _Radix);
+      ::_ui64toa(_Val, _Buf, _Radix);
 #endif
    }
 

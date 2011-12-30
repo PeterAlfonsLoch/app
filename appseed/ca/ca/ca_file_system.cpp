@@ -1,6 +1,14 @@
 #include "StdAfx.h"
 
 
+#ifndef WINDOWS
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <ctype.h>
+#endif
+
+
 namespace ca
 {
 
@@ -76,16 +84,39 @@ namespace ca
 
       var system::length(const char * pszPath)
       {
+
          var varRet;
+
+#ifdef WINDOWS
+
          WIN32_FILE_ATTRIBUTE_DATA data;
-         if(!GetFileAttributesExW(gen::international::utf8_to_unicode(pszPath),
-            GetFileExInfoStandard, &data))
+
+         if(!GetFileAttributesExW(gen::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
          {
             varRet.set_type(var::type_null);
-            return varRet;
          }
-         varRet = data.nFileSizeLow;
+         else
+         {
+            varRet = data.nFileSizeLow;
+         }
+
+#else
+
+         struct stat stat;
+
+         if(::stat(pszPath, &stat)  == -1)
+         {
+            varRet.set_type(var::type_null);
+         }
+         else
+         {
+            varRet = stat.st_size;
+         }
+
+#endif
+
          return varRet;
+
       }
 
 
@@ -212,8 +243,7 @@ namespace ca
       bool system::mk_time(const char * lpcszCandidate)
       {
          ex1::filesp spfile(get_app());
-         if(::GetFileAttributesW(gen::international::utf8_to_unicode(lpcszCandidate))
-            != INVALID_FILE_ATTRIBUTES)
+         if(!System.file().exists(lpcszCandidate, get_app()Ŝ))
             return false;
          if(!spfile->open(lpcszCandidate, ::ex1::file::mode_create | ::ex1::file::type_binary))
             return false;
@@ -706,7 +736,7 @@ namespace ca
 
       void system::trash_that_is_not_trash(stringa & stra, ::ca::application * papp)
       {
-         
+
          if(stra.get_size() <= 0)
             return;
 
@@ -723,7 +753,7 @@ namespace ca
 
       void system::trash_that_is_not_trash(const char * psz, ::ca::application * papp)
       {
-         
+
          string strDir = System.dir().trash_that_is_not_trash(psz);
 
          System.dir().mk(strDir, papp);
@@ -828,7 +858,7 @@ namespace ca
 
       ex1::filesp system::get(const char * name, ::ca::application * papp)
       {
-         
+
          System.dir().mk(System.dir().name(name), papp);
 
          ::ex1::file_exception_sp e(get_app());

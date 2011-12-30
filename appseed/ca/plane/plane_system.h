@@ -591,27 +591,39 @@ namespace gen
 
 
 template < class T >
-bool ::ca2::file::system::output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
+bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
 {
-System.dir().mk(System.dir().name(pszOutput));
-ex1::filesp fileOut(get_app());
-if(!fileOut->open(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write))
-   return false;
-return (p->*lpfnOuput)(fileOut, lpszSource);
+
+    App(papp).dir().mk(System.dir().name(pszOutput));
+
+    ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+
+    if(fileOut.is_null())
+        return false;
+
+    return (p->*lpfnOuput)(fileOut, lpszSource);
+
 }
 
 
  template < class T >
- bool ::ca2::file::system::output(const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
+ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
  {
-    System.dir().mk(System.dir().name(pszOutput));
-    ex1::filesp fileOut(get_app());
-    if(!fileOut->open(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write))
+
+    App(papp).dir().mk(System.dir().name(pszOutput));
+
+    ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+
+    if(fileOut.is_null())
+        return false;
+
+    ex1::filesp fileIn = App(papp).get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
+
+    if(fileIn.is_null())
        return false;
-    ex1::filesp fileIn(get_app());
-    if(!fileIn->open(lpszInput, ex1::file::type_binary | ex1::file::mode_read))
-       return false;
+
     return (p->*lpfnOuput)(fileOut, fileIn);
+
  }
 
  #endif // defined LINUX

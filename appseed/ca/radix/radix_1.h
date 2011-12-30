@@ -186,8 +186,6 @@ class dump_context;
 
 
 
-#include "primitive/primitive.h"
-
 
 #include "composite.h"
 #include "comparable.h"
@@ -199,9 +197,15 @@ class dump_context;
 #include "multithreading/multithreading_sync_object_base.h"
 #include "ca/primitive/primitive.h"
 
+
 #include "radix_object.h"
 
+
 #include "exception/exception.h"
+
+
+#include "primitive/primitive.h"
+
 
 #include "ca/ca_smart_pointer.h"
 
