@@ -207,7 +207,7 @@ public:
    operator int();
    operator __int64();
    operator string & ();
-   operator const string & () const;
+   operator string () const;
    operator id &();
    operator const char * () const;
    operator ::CFileTime & ();

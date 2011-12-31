@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>libogg</ProjectName>
+    <ProjectName>xiph_ogg</ProjectName>
     <ProjectGuid>{15CBFEFF-7965-41F5-B4E2-21E8795C9159}</ProjectGuid>
     <RootNamespace>libogg</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -106,7 +106,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <ModuleDefinitionFile>..\ogg.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
     </Link>
@@ -181,15 +181,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\bitwise.c" />
-    <ClCompile Include="..\..\src\framing.c" />
+    <ClCompile Include="bitwise.c" />
+    <ClCompile Include="framing.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\ogg.def" />
+    <ClInclude Include="..\..\..\include\ogg\ogg.h" />
+    <ClInclude Include="..\..\..\include\ogg\os_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\ogg\ogg.h" />
-    <ClInclude Include="..\..\include\ogg\os_types.h" />
+    <None Include="..\libogg.props" />
+    <None Include="xiph_ogg.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

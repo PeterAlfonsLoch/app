@@ -684,7 +684,7 @@ var::operator id &()
 }
 
 
-var::operator string &()
+var::operator string & ()
 {
    if(get_type() == type_pvar)
       return m_pvar->operator string &();
@@ -695,6 +695,21 @@ var::operator string &()
    set_type(type_string);
    return m_str;
 }
+
+var::operator string () const
+{
+   
+   if(get_type() == type_pvar)
+      return m_pvar->operator string &();
+   else if(get_type() == type_pstring)
+      return *m_pstr;
+   else if(get_type() != type_string)
+      return get_string();
+   else
+      return m_str;
+
+}
+
 
 var::operator const char *() const
 {

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>libtheora</ProjectName>
+    <ProjectName>xiph_theora</ProjectName>
     <ProjectGuid>{653F3841-3F26-49B9-AFCF-091DB4B67031}</ProjectGuid>
     <RootNamespace>libtheora</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -29,6 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -47,26 +48,6 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\libogg.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\libogg.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\libogg.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-    <Import Project="..\libogg.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -125,8 +106,7 @@
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>xiph_theora.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -150,8 +130,7 @@
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>xiph_theora.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -178,8 +157,7 @@
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>xiph_theora.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -204,8 +182,7 @@
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/;$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>xiph_theora.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -216,52 +193,52 @@
     <ClInclude Include="..\..\..\include\theora\theora.h" />
     <ClInclude Include="..\..\..\include\theora\theoradec.h" />
     <ClInclude Include="..\..\..\include\theora\theoraenc.h" />
-    <ClInclude Include="..\..\..\lib\cpu.h" />
-    <ClInclude Include="..\..\..\lib\internal.h" />
-    <ClInclude Include="..\..\..\lib\encint.h" />
-    <ClInclude Include="..\..\..\lib\enquant.h" />
-    <ClInclude Include="..\..\..\lib\huffenc.h" />
-    <ClInclude Include="..\..\..\lib\mathops.h" />
-    <ClInclude Include="..\..\..\lib\modedec.h" />
-    <ClInclude Include="..\..\..\lib\apiwrapper.h" />
-    <ClInclude Include="..\..\..\lib\bitpack.h" />
-    <ClInclude Include="..\..\..\lib\dct.h" />
-    <ClInclude Include="..\..\..\lib\decint.h" />
-    <ClInclude Include="..\..\..\lib\dequant.h" />
-    <ClInclude Include="..\..\..\lib\huffdec.h" />
-    <ClInclude Include="..\..\..\lib\huffman.h" />
-    <ClInclude Include="..\..\..\lib\idct.h" />
-    <ClInclude Include="..\..\..\lib\ocintrin.h" />
-    <ClInclude Include="..\..\..\lib\quant.h" />
+    <ClInclude Include="cpu.h" />
+    <ClInclude Include="internal.h" />
+    <ClInclude Include="encint.h" />
+    <ClInclude Include="enquant.h" />
+    <ClInclude Include="huffenc.h" />
+    <ClInclude Include="mathops.h" />
+    <ClInclude Include="modedec.h" />
+    <ClInclude Include="apiwrapper.h" />
+    <ClInclude Include="bitpack.h" />
+    <ClInclude Include="dct.h" />
+    <ClInclude Include="decint.h" />
+    <ClInclude Include="dequant.h" />
+    <ClInclude Include="huffdec.h" />
+    <ClInclude Include="huffman.h" />
+    <ClInclude Include="idct.h" />
+    <ClInclude Include="ocintrin.h" />
+    <ClInclude Include="quant.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\lib\cpu.c" />
-    <ClCompile Include="..\..\..\lib\analyze.c" />
-    <ClCompile Include="..\..\..\lib\encapiwrapper.c" />
-    <ClCompile Include="..\..\..\lib\encfrag.c" />
-    <ClCompile Include="..\..\..\lib\encinfo.c" />
-    <ClCompile Include="..\..\..\lib\encode.c" />
-    <ClCompile Include="..\..\..\lib\encoder_disabled.c">
+    <ClCompile Include="cpu.c" />
+    <ClCompile Include="analyze.c" />
+    <ClCompile Include="encapiwrapper.c" />
+    <ClCompile Include="encfrag.c" />
+    <ClCompile Include="encinfo.c" />
+    <ClCompile Include="encode.c" />
+    <ClCompile Include="encoder_disabled.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\lib\enquant.c" />
-    <ClCompile Include="..\..\..\lib\fdct.c" />
-    <ClCompile Include="..\..\..\lib\huffenc.c" />
-    <ClCompile Include="..\..\..\lib\mathops.c" />
-    <ClCompile Include="..\..\..\lib\mcenc.c" />
-    <ClCompile Include="..\..\..\lib\rate.c" />
-    <ClCompile Include="..\..\..\lib\tokenize.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\mmxencfrag.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\mmxfdct.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\x86enc.c" />
-    <ClCompile Include="..\..\..\lib\apiwrapper.c" />
-    <ClCompile Include="..\..\..\lib\bitpack.c" />
-    <ClCompile Include="..\..\..\lib\decapiwrapper.c" />
-    <ClCompile Include="..\..\..\lib\decinfo.c" />
-    <ClCompile Include="..\..\..\lib\decode.c">
+    <ClCompile Include="enquant.c" />
+    <ClCompile Include="fdct.c" />
+    <ClCompile Include="huffenc.c" />
+    <ClCompile Include="mathops.c" />
+    <ClCompile Include="mcenc.c" />
+    <ClCompile Include="rate.c" />
+    <ClCompile Include="tokenize.c" />
+    <ClCompile Include="x86_vc\mmxencfrag.c" />
+    <ClCompile Include="x86_vc\mmxfdct.c" />
+    <ClCompile Include="x86_vc\x86enc.c" />
+    <ClCompile Include="apiwrapper.c" />
+    <ClCompile Include="bitpack.c" />
+    <ClCompile Include="decapiwrapper.c" />
+    <ClCompile Include="decinfo.c" />
+    <ClCompile Include="decode.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
@@ -271,10 +248,10 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="..\..\..\lib\dequant.c" />
-    <ClCompile Include="..\..\..\lib\fragment.c" />
-    <ClCompile Include="..\..\..\lib\huffdec.c" />
-    <ClCompile Include="..\..\..\lib\idct.c">
+    <ClCompile Include="dequant.c" />
+    <ClCompile Include="fragment.c" />
+    <ClCompile Include="huffdec.c" />
+    <ClCompile Include="idct.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
@@ -284,9 +261,9 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="..\..\..\lib\info.c" />
-    <ClCompile Include="..\..\..\lib\internal.c" />
-    <ClCompile Include="..\..\..\lib\quant.c">
+    <ClCompile Include="info.c" />
+    <ClCompile Include="internal.c" />
+    <ClCompile Include="quant.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
@@ -296,14 +273,18 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='basis_v110|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="..\..\..\lib\state.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\mmxfrag.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\mmxidct.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\mmxstate.c" />
-    <ClCompile Include="..\..\..\lib\x86_vc\x86state.c" />
+    <ClCompile Include="state.c" />
+    <ClCompile Include="x86_vc\mmxfrag.c" />
+    <ClCompile Include="x86_vc\mmxidct.c" />
+    <ClCompile Include="x86_vc\mmxstate.c" />
+    <ClCompile Include="x86_vc\x86state.c" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libogg\win32\VS2010\libogg_dynamic.vcxproj">
+    <None Include="..\libogg.props" />
+    <None Include="xiph_theora.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ogg\xiph_ogg.vcxproj">
       <Project>{15cbfeff-7965-41f5-b4e2-21e8795c9159}</Project>
     </ProjectReference>
   </ItemGroup>

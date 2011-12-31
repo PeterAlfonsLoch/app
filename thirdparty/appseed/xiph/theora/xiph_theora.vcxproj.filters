@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="analyze.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="apiwrapper.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bitpack.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decapiwrapper.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decinfo.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decode.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dequant.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encapiwrapper.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encfrag.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encinfo.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encoder_disabled.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encode.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enquant.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fdct.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fragment.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="huffdec.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="huffenc.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="idct.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="info.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="internal.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mathops.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mcenc.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="quant.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\mmxencfrag.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\mmxfdct.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\mmxstate.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\mmxidct.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\mmxfrag.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="rate.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="state.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tokenize.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\x86state.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_vc\x86enc.c">
+      <Filter>Source Files\C Source Files\x86_vc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\theora\codec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\theora\theora.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\theora\theoraenc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\theora\theoradec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="apiwrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bitpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dequant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="encint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enquant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="huffdec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="huffenc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="huffman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="idct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mathops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="quant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modedec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ocintrin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{166b67d8-912e-40d6-9a70-c0eb372c163c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\C Source Files">
+      <UniqueIdentifier>{b9d5303b-ea52-4617-8670-77e5f22cd0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d79a1cbd-5e23-44d9-9f16-0bc7139c42f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\C Source Files\x86_vc">
+      <UniqueIdentifier>{79f1b9a2-54be-4aec-95fd-d502b7a6a266}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\libogg.props" />
+    <None Include="xiph_theora.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
