@@ -111,7 +111,7 @@ namespace ca
       {
          return m_psystem->m_file.as_memory(varFile, mem, m_papp);
       }
-   
+
       void application::lines(stringa & stra, var varFile)
       {
          return m_psystem->m_file.lines(stra, varFile, m_papp);

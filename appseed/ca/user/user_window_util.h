@@ -1,13 +1,20 @@
 #pragma once
 
 
-class ::ca::window;
+namespace ca
+{
+
+
+   class window;
+
+
+} // namespace ca
 
 
 namespace user
 {
 
-   class CLASS_DECL_ca HWNDArray : 
+   class CLASS_DECL_ca HWNDArray :
       public comparable_array < HWND, HWND >
    {
    public:
@@ -16,7 +23,7 @@ namespace user
       void top_windows_by_z_order();
    };
 
-   class CLASS_DECL_ca LPWndArray : 
+   class CLASS_DECL_ca LPWndArray :
       virtual public pha(::user::interaction)
    {
    public:
@@ -62,7 +69,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca WndUtil  
+   class CLASS_DECL_ca WndUtil
    {
    public:
       static void ContraintPosToParent(HWND hwnd);
@@ -90,9 +97,9 @@ namespace user
       //static void SortByZOrder(comparable_array < ::ca::window *, ::ca::window * > & wndpa);
       //static void SortByZOrder(comparable_array < HWND, HWND > & hwnda);
       //static void EnumChildren(HWND hwnd, comparable_array < HWND, HWND > & hwnda);
-      
+
    };
-   
+
 
 
 

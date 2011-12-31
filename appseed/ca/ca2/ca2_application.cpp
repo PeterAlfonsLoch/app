@@ -164,6 +164,7 @@ namespace ca2
       string strLang;
       string strStyle;
       LANGID langid = ::GetUserDefaultLangID();
+#ifdef WINDOWS
 #define SPR_DEUTSCH LANG_GERMAN
       if(langid == LANG_SWEDISH)
       {
@@ -195,6 +196,7 @@ namespace ca2
          strLang = "pl";
          strStyle = "pl";
       }
+#endif
       if(strLang.is_empty())
          strLang = "se";
       if(strStyle.is_empty())
@@ -229,37 +231,38 @@ namespace ca2
       return true;
    }
 
-BOOL Is_Vista_or_Later ()
-{
-   OSVERSIONINFOEX osvi;
-   DWORDLONG dwlConditionMask = 0;
-   byte op=VER_GREATER_EQUAL;
+#ifdef WINDOWS
+   BOOL Is_Vista_or_Later ()
+   {
+      OSVERSIONINFOEX osvi;
+      DWORDLONG dwlConditionMask = 0;
+      byte op=VER_GREATER_EQUAL;
 
-   // Initialize the OSVERSIONINFOEX structure.
+      // Initialize the OSVERSIONINFOEX structure.
 
-   ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-   osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-   osvi.dwMajorVersion = 6;
-//   osvi.dwMinorVersion = 1;
-//   osvi.wServicePackMajor = 0;
-//   osvi.wServicePackMinor = 0;
+      ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+      osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+      osvi.dwMajorVersion = 6;
+   //   osvi.dwMinorVersion = 1;
+   //   osvi.wServicePackMajor = 0;
+   //   osvi.wServicePackMinor = 0;
 
-   // Initialize the condition mask.
+      // Initialize the condition mask.
 
-   VER_SET_CONDITION( dwlConditionMask, VER_MAJORVERSION, op );
-   //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
-   //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
-   //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
+      VER_SET_CONDITION( dwlConditionMask, VER_MAJORVERSION, op );
+      //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
+      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
+      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
 
-   // Perform the test.
+      // Perform the test.
 
-   return VerifyVersionInfo(
-      &osvi,
-      VER_MAJORVERSION | VER_MINORVERSION |
-      VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-      dwlConditionMask);
-}
-
+      return VerifyVersionInfo(
+         &osvi,
+         VER_MAJORVERSION | VER_MINORVERSION |
+         VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
+         dwlConditionMask);
+   }
+#endif
 
    bool application::initialize()
    {
@@ -296,6 +299,7 @@ BOOL Is_Vista_or_Later ()
       }
       else
       {
+#ifdef WINDOWS
          // when this process is started in the context of a system account,
          // for example, this code ensure that the process will
          // impersonate a loggen on ::fontopus::user
@@ -315,6 +319,7 @@ BOOL Is_Vista_or_Later ()
             TRACELASTERROR();
             return false;
          }
+#endif
       }
 
       if(!::xml::application::initialize())
@@ -391,8 +396,8 @@ BOOL Is_Vista_or_Later ()
 
    void application::EnableShellOpen()
    {
-      ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
-      if (m_atomApp != NULL || m_atomSystemTopic != NULL)
+      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+      if (m_atomApp != 0 || m_atomSystemTopic != 0)
       {
          return;
       }
@@ -453,7 +458,7 @@ BOOL Is_Vista_or_Later ()
 
    bool application::load_cached_string_by_id(string & str, id id, const char * pszFallbackValue, bool bLoadStringTable)
    {
-      string strId(id);
+      string strId(id.m_psz);
       string strTable;
       string strString;
       string_to_string_map * pmap = NULL;
@@ -546,8 +551,12 @@ BOOL Is_Vista_or_Later ()
    {
       if(is_system())
       {
+#ifdef WINDOWS
          ::ShellExecuteA(NULL, "open", pszLink, NULL, NULL, SW_SHOW);
          return true;
+#else
+         throw not_implemented_exception();
+#endif
       }
       else
       {

@@ -44,7 +44,7 @@ namespace radix
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual ::gen::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
       virtual int run();

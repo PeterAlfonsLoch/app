@@ -35,7 +35,9 @@ namespace ca
       DWORD dwStart = ::GetTickCount();
       while(s_bRunning && ((::GetTickCount() - dwStart) < dwTimeOut))
       {
+#ifdef WINDOWS
          if(!::SwitchToThread())
+#endif
             Sleep(184);
       }
       bool bStopped = !s_bRunning;

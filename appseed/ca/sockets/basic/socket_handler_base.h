@@ -29,20 +29,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
+
 namespace sockets
 {
 
-   typedef enum {
+
+   typedef enum
+   {
       LIST_CALLONCONNECT = 0,
-   #ifdef ENABLE_DETACH
+#ifdef ENABLE_DETACH
       LIST_DETACH,
-   #endif
+#endif
       LIST_TIMEOUT,
       LIST_RETRY,
       LIST_CLOSE
    } list_t;
 
-   class sockets::address;
+
+   class address;
+
 
    /** socket container class, event generator.
       \ingroup basic */
@@ -200,3 +205,5 @@ namespace sockets
 
 
 } // namespace sockets
+
+

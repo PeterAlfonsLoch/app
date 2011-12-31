@@ -31,8 +31,8 @@ namespace _template
    template < >
    class CLASS_DECL_ca hash < const string & >
    {
-   public: 
-      
+   public:
+
       inline static UINT HashKey (const string & key)
       {
          register const char * pszKey = key;
@@ -46,11 +46,11 @@ namespace _template
 
    class CLASS_DECL_ca strid_hash
    {
-   public: 
-      
+   public:
+
       inline static UINT HashKey (const id & key)
       {
-         return (UINT) key.m_psz;
+         return *((UINT*)(&key.m_psz));
       }
 
    };

@@ -5,8 +5,12 @@
 #include <X11/Xutil.h>
 
 
-typedef Window HWND;
+struct tag_WINDOW
+{
 
+   Window   m_window;
+
+};
 
 class CLASS_DECL_c device_context
 {

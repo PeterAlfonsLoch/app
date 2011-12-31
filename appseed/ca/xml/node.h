@@ -62,7 +62,7 @@ namespace xml
       node *               m_pnodeParent;      // parent node
       node::base_array          m_nodea;            // children pointer node base_array
       attr_array          m_attra;            // attr pointer base_array
-      e_node               m_etype;            // node type 
+      e_node               m_etype;            // node type
       document *            m_pdoc;            // document
 
       // Load/Save XML
@@ -82,32 +82,32 @@ namespace xml
       char *   LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pi = NULL);
       char *   LoadProcessingInstruction( const char * pszXml, parse_info * pi = NULL);
       char *   LoadDocType( const char * pszXml, parse_info * pi = NULL);
-      char *   LoadComment( const char * pszXml, parse_info * pi = NULL); 
-      char *   LoadCDATA( const char * pszXml, parse_info * pi = NULL); 
+      char *   LoadComment( const char * pszXml, parse_info * pi = NULL);
+      char *   LoadCDATA( const char * pszXml, parse_info * pi = NULL);
 
 
 
       // in own attr list
-      attr *                  find_attr(const char * attrname ); 
-      var                     attr(const char * attrname); 
-      virtual bool            get_attr(const char * attrname, string & strValue); 
+      ::xml::attr *           find_attr(const char * attrname );
+      var                     attr(const char * attrname);
+      virtual bool            get_attr(const char * attrname, string & strValue);
       virtual bool            get_attr(const char * lpcszName, int & iValue);
       virtual bool            get_attr(const char * lpcszName, bool & bValue);
-      attr_array              attrs(const char * name); 
-      attr_array  &           attrs(); 
+      attr_array              attrs(const char * name);
+      attr_array  &           attrs();
 
       // in one level child nodes
-      node *                  get_child( const char * name); 
+      node *                  get_child( const char * name);
       node *                  get_child_with_attr(const char * lpcszName, const char * pszAttr, var value, int iStart = 0);
-      node *                  get_node_from_path(const char * path); 
-      node *                  get_node_from_attr_path(const char * path, const char * pszName, const char * pszAttr); 
+      node *                  get_node_from_path(const char * path);
+      node *                  get_node_from_attr_path(const char * path, const char * pszName, const char * pszAttr);
       string                  get_child_simple_path(node * pnode);
       string                  get_child_simple_attr_path(node * pnode, const char * pszAttr);
-      node *                  get_child( const char * name, index & iStartPosition); 
-      string                  get_child_value( const char * name ); 
+      node *                  get_child( const char * name, index & iStartPosition);
+      string                  get_child_value( const char * name );
       string                  get_child_text( const char * name, disp_option * opt = NULL);
-      node::base_array        children( const char * name ); 
-      node::base_array &      children(); 
+      node::base_array        children( const char * name );
+      node::base_array &      children();
 
       ::xml::attr *           GetChildAttr( const char * name, const char * attrname );
       string                  GetChildAttrValue( const char * name, const char * attrname );
@@ -116,11 +116,11 @@ namespace xml
       node *                  get_child_at(const char * pszName, int iIndex, int iDepth);
       count                   get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, int iDepth = 1);
       count                   remove_child_with_attr(const char * pszName, const char * pszAttrName, int iIndex, int iCount = 1, int iDepth = 1);
-      
+
       // search node
       node *                  rfind( const char * name, int iDepth = -1);
 
-      // modify DOM 
+      // modify DOM
       count                   get_children_count();
       count                   get_children_count(const char * pszName);
       count                   get_children_count(const char * pszName, int iDepth);

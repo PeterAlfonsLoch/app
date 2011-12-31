@@ -18,8 +18,6 @@
 					<Add option="-fPIC" />
 					<Add option="-fno-pie" />
 					<Add option="-fno-stack-protector" />
-					<Add option="-fpermissive" />
-					<Add option="-Wno-conversion-null" />
 					<Add option="-Wno-pointer-arith" />
 					<Add directory="." />
 					<Add directory=".." />

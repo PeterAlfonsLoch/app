@@ -215,7 +215,7 @@ namespace ex1
    {
       ::count count;
       istream >> count;
-      set_size(count);
+      type_array::set_size(count);
       for(index index = 0; index < count; index++)
       {
          istream >> this->element_at(index);

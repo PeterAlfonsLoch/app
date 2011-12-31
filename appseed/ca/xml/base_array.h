@@ -52,7 +52,7 @@ xml_import(input_tree & xmlif)
 {
    int iSize;
    xmlif.get_attr("count", iSize);
-   set_size(iSize);
+   ARRAY::set_size(iSize);
    for(int i = 0; i < this->get_size(); i++)
    {
       attr_array attra(xmlif.m_pnode);

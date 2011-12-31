@@ -205,7 +205,7 @@ namespace plane
       ::ca2::xml                       & xml();
       ::ca2::install                   & install();
       ::ca2::service                   & service();
-      machine_event_central            & machine_event_central();
+      class ::machine_event_central    & machine_event_central();
       ::ca::osi                        & osi();
       using ::plane::application::process;
       ::ca2::process                   & process();
@@ -441,7 +441,7 @@ namespace gen
    }
 
    template < class T >
-   index holder_array < T > ::remove_at(index iRemove, count count = 1)
+   index holder_array < T > ::remove_at(index iRemove, count count)
    {
       for(index i = iRemove; i < m_captra.get_count() && i < (iRemove + count); i++)
       {
@@ -526,7 +526,7 @@ namespace gen
 
 
    template < class T >
-   count holder_array < T > ::remove(T * p, bool bCallNativeArrayBaseTypeOnDelete = false)
+   count holder_array < T > ::remove(T * p, bool bCallNativeArrayBaseTypeOnDelete)
    {
       count count = 0;
       for(index i = 0; i < m_captra.get_size(); )

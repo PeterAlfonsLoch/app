@@ -24,7 +24,7 @@ HDC GetDC(HWND hwnd)
 
    hdc->m_display    = XOpenDisplay(NULL);
    hdc->m_hwnd       = hwnd;
-   hdc->m_d          = (Drawable) (hwnd == NULL ? DefaultRootWindow(hdc->m_display) : hwnd);
+   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd->m_window == NULL ? DefaultRootWindow(hdc->m_display) : hwnd->m_window);
    hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
 
    return hdc;
@@ -57,7 +57,7 @@ BOOL GetClientRect(HWND hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd->m_window, &attrs) == 0)
    {
       return false;
    }
@@ -72,7 +72,7 @@ BOOL GetWindowRect(HWND hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd->m_window, &attrs) == 0)
    {
       return false;
    }
@@ -158,26 +158,26 @@ BOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy,
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
    {
       value_mask |= CWSibling;
-      values.sibling = hwndInsertAfter;
+      values.sibling = hwndInsertAfter->m_window;
       values.stack_mode = Above;
    }
 
-   XConfigureWindow(display, hwnd, value_mask, &values);
+   XConfigureWindow(display, hwnd->m_window, value_mask, &values);
 
    if(uFlags & SWP_SHOWWINDOW)
    {
-      XMapWindow(display, hwnd);
+      XMapWindow(display, hwnd->m_window);
    }
 
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
    {
-      if(hwndInsertAfter == ZORDER_TOP || hwndInsertAfter == ZORDER_TOPMOST)
+      if(hwndInsertAfter->m_window == ZORDER_TOP || hwndInsertAfter->m_window == ZORDER_TOPMOST)
       {
-         XRaiseWindow(display, hwnd);
+         XRaiseWindow(display, hwnd->m_window);
       }
-      else if(hwndInsertAfter == ZORDER_BOTTOM)
+      else if(hwndInsertAfter->m_window == ZORDER_BOTTOM)
       {
-         XLowerWindow(display, hwnd);
+         XLowerWindow(display, hwnd->m_window);
       }
 
    }

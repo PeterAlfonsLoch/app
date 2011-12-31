@@ -38,7 +38,7 @@ namespace ex1
 
       virtual bool   hover(tree_item * pitem);
       virtual bool   hover(tree_item_data * pitem, index i = 0);
-      
+
       virtual count  add_selection(tree_item_ptr_array & itemptra);
       virtual bool   add_selection(tree_item * pitem);
       virtual bool   add_selection(tree_item_data * pitem, index i = 0);
@@ -57,7 +57,7 @@ namespace ex1
       virtual bool   is_selected(tree_item_data * pitem);
       virtual bool   is_hover(tree_item * pitem);
       virtual bool   is_hover(tree_item_data * pitem);
-   
+
       void sort(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *));
 
       virtual tree_item * get_proper_item(index iIndex, index * piLevel);
@@ -74,8 +74,8 @@ namespace ex1
       virtual tree_item * create_item(tree_item * pitemRelative, ERelative erelativeNewItem);
       virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
 
-      tree_item * tree::allocate_item();
-      void tree::delete_item(tree_item * pitem);
+      tree_item * allocate_item();
+      void delete_item(tree_item * pitem);
 
    };
 

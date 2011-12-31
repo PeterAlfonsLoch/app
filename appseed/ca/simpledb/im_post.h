@@ -1,17 +1,14 @@
 #pragma once
 
+
 class db_server;
 
-namespace vmssqlite 
-{
-   class ::database::set;
-}
 
 class CLASS_DECL_ca im_post :
    public db_set
 {
 public:
-    
+
    im_post(db_server * pdatacentral);
    virtual ~im_post();
 
@@ -35,4 +32,5 @@ public:
 
 
 };
+
 

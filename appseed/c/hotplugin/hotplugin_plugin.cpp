@@ -44,7 +44,7 @@ namespace hotplugin
          m_pcolorref = NULL;
 
 #if !defined(MACOS)
-         m_hbitmap = CreateDIBSection(NULL, m_pinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, NULL);
+         m_hbitmap = CreateDIBSection(NULL, m_pinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
 #endif
    }
 

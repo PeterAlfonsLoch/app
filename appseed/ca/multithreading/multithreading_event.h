@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca event : 
+class CLASS_DECL_ca event :
    virtual public sync_object_base,
    virtual public event_base
 {
@@ -17,7 +17,7 @@ public:
    using sync_object_base::unlock;
    virtual bool unlock();
 
-   HANDLE get_os_data() const;
+   void * get_os_data() const;
 
    BOOL SetEvent();
    BOOL PulseEvent();
@@ -37,6 +37,6 @@ public:
    virtual wait_result wait (const duration & duration);
 
    bool is_signaled() const;
-   
+
 };
 

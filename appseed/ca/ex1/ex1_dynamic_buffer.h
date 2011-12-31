@@ -19,7 +19,7 @@ namespace ex1
        size_t newCap = this->_capacity + delta;
        if (newCap < delta)
          newCap = this->_capacity + size;
-       SetCapacity(newCap);
+         buffer < T > ::SetCapacity(newCap);
      }
    public:
      dynamic_buffer(): buffer<T>() {};

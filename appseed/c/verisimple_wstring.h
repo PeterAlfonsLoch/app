@@ -15,7 +15,7 @@ protected:
 
 public:
 
-   
+
    int            m_iAllocation; // in chars "with null characters"
    int            m_iLength; // in chars without null character
    wchar_t        m_wchFirst;
@@ -67,7 +67,7 @@ protected:
 
    // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap
    // better always use wstring_data::alloc and wstring_data::free
-   wchar_t * m_pwsz;  
+   wchar_t * m_pwsz;
 
    inline wstring_data * get_data()
    {
@@ -80,7 +80,7 @@ protected:
    }
 
 public:
-   
+
 
 
    verisimple_wstring();
@@ -168,22 +168,22 @@ public:
       return get_data()->m_iAllocation;
    }
 
-   inline int verisimple_wstring::Compare(const wchar_t * psz) const
+   inline int Compare(const wchar_t * psz) const
    {
       return wcscmp_dup(m_pwsz, psz);
    }
-   
-   inline int verisimple_wstring::Compare(const verisimple_wstring &str) const
+
+   inline int Compare(const verisimple_wstring &str) const
    {
       return wcscmp_dup(m_pwsz, str);
    }
 
-   inline int verisimple_wstring::CompareNoCase(const wchar_t * psz) const
+   inline int CompareNoCase(const wchar_t * psz) const
    {
       return wcsicmp_dup(m_pwsz, psz);
    }
-   
-   inline int verisimple_wstring::CompareNoCase(const verisimple_wstring &str) const
+
+   inline int CompareNoCase(const verisimple_wstring &str) const
    {
       return wcsicmp_dup(m_pwsz, str);
    }

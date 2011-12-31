@@ -7,6 +7,7 @@
 
 #undef delete
 
+class string;
 
 class CLASS_DECL_ca base_exception :
    virtual public ::ca::exception

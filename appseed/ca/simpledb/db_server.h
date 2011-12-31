@@ -28,8 +28,8 @@ class CLASS_DECL_ca db_server :
    virtual public gen::signalizable
 {
 public:
-   
-   
+
+
    ::sqlite::base *        m_pdb;
    ::sqlite::base *        m_pdatabaseImpl;
    ::critical_section      m_csImplDatabase;
@@ -44,14 +44,14 @@ public:
    bool                    m_bFullBuild;
    string                  m_strDatabase;
    DBFileSystemSizeSet *   m_pfilesystemsizeset;
-   im_post *               m_pimpost;
-   veiev_post *            m_pveievpost;
+   class ::im_post *       m_pimpost;
+   class ::veiev_post *    m_pveievpost;
 
-   
+
    db_server(::ca::application * papp);
    virtual ~db_server();
-    
-   
+
+
    ::critical_section * GetImplCriticalSection();
    ::sqlite::base * GetImplDatabase();
    MidiInstrumentSet * GetMidiInstrumentSet();
@@ -59,7 +59,7 @@ public:
 
    using database::server::data_server_load;
    virtual bool data_server_load(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint = NULL);
-   
+
    using database::server::data_server_save;
    virtual bool data_server_save(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint = NULL);
 
@@ -70,10 +70,10 @@ public:
 
    bool load(const char * lpKey, string & str);
    bool load(const char * lpKey, ::ex1::writable & writer);
-   
+
    bool save(const char * lpKey, const char * psz);
    bool save(const char * lpKey, ::ex1::readable & reader);
-   
+
 
    static string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
 
@@ -83,8 +83,8 @@ public:
    bool create_message_window();
    bool destroy_message_window();
 
-   virtual im_post & im_post();
-   virtual veiev_post & veiev_post();
+   virtual class ::im_post & im_post();
+   virtual class ::veiev_post & veiev_post();
 
    inline db_str_set * get_db_str_set();
    DECL_GEN_SIGNAL(_001OnTimer);

@@ -14,12 +14,12 @@ public:
 
    TYPE * operator ->()
    {
-      return &last_element();
+      return &BASE_ARRAY::last_element();
    }
 
    const TYPE * operator ->() const
    {
-      return &last_element();
+      return &BASE_ARRAY::last_element();
    }
 
 };
@@ -88,7 +88,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca create_context : 
+   class CLASS_DECL_ca create_context :
       virtual public ::gen::command
    {
    public:

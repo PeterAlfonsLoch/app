@@ -382,10 +382,10 @@ namespace user
 
       enum RepositionFlags
       {
-         reposDefault = 0, 
+         reposDefault = 0,
          reposQuery = 1,
-         reposExtra = 2, 
-         reposNoPosLeftOver=0x8000 
+         reposExtra = 2,
+         reposNoPosLeftOver=0x8000
       };
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);
@@ -479,9 +479,9 @@ namespace user
 #else
    inline int interaction::get_safe_handle()
    {
-      if(((INT_PTR)this) < 16 * 1024) // consider invalid
+      if(((byte *)this) < (byte *) (((byte *) NULL) + (16 * 1024))) // consider invalid
       {
-         return NULL;
+         return 0;
       }
       return _get_handle();
    }

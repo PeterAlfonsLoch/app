@@ -243,7 +243,7 @@ namespace ca
       bool system::mk_time(const char * lpcszCandidate)
       {
          ex1::filesp spfile(get_app());
-         if(!System.file().exists(lpcszCandidate, get_app()Ŝ))
+         if(!System.file().exists(lpcszCandidate, get_app()))
             return false;
          if(!spfile->open(lpcszCandidate, ::ex1::file::mode_create | ::ex1::file::type_binary))
             return false;
@@ -605,6 +605,7 @@ namespace ca
 
       void system::move(const char * pszNew, const char * psz)
       {
+#ifdef WINDOWS
          if(!::MoveFileW(
             gen::international::utf8_to_unicode(psz),
             gen::international::utf8_to_unicode(pszNew)))
@@ -614,10 +615,20 @@ namespace ca
             strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
             throw strError;
          }
+#else
+         if(rename(psz, pszNew) != 0)
+         {
+            int err = errno;
+            string strError;
+            strError.Format("Failed to delete file error=%d", err);
+            throw strError;
+         }
+#endif
       }
 
       void system::del(const char * psz)
       {
+#ifdef WINDOWS
          if(!::DeleteFileW(
             gen::international::utf8_to_unicode(psz)))
          {
@@ -628,6 +639,16 @@ namespace ca
             strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
             throw strError;
          }
+#else
+         if(remove(psz) != 0)
+         {
+            int err = errno;
+            string strError;
+            strError.Format("Failed to delete file error=%d", err);
+            throw strError;
+         }
+#endif
+
       }
 
 
@@ -640,7 +661,7 @@ namespace ca
             int i = 1;
             while( i <= 100)
             {
-               strNew.Format("%s-%s-%d", psz, strCopy, i);
+               strNew.Format("%s-%s-%d", psz, strCopy.c_str(), i);
                if(!exists(strNew, papp))
                {
                   copy(strNew, psz, false, papp);
@@ -659,7 +680,7 @@ namespace ca
             int i = 1;
             while( i <= 100)
             {
-               strNew.Format("%s-%s-%d%s", psz, strCopy, i, strExt);
+               strNew.Format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
                if(!exists(strNew, papp))
                {
                   copy(strNew, psz, false, papp);
@@ -690,7 +711,20 @@ namespace ca
          if(!App(papp).dir().is(System.dir().name(pszPath)))
             return false;
 
+#ifdef WINDOWS
+
          return ::GetFileAttributesW(gen::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+
+#else
+
+         struct stat st;
+
+         if(stat(pszPath, &st) != 0)
+            return false;
+
+         return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
+
+#endif
 
       }
 
@@ -713,7 +747,20 @@ namespace ca
          if(!App(papp).dir().is(System.dir().name(strPath)))
             return false;
 
+#ifdef WINDOWS
+
          return ::GetFileAttributesW(gen::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+
+#else
+
+         struct stat st;
+
+         if(stat(strPath, &st) != 0)
+            return false;
+
+         return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
+
+#endif
 
       }
 
@@ -746,7 +793,11 @@ namespace ca
 
          for(int i = 0; i < stra.get_size(); i++)
          {
+#ifdef WINDOWS
             ::MoveFile(stra[i], System.dir().path(strDir, name_(stra[i])));
+#else
+            ::rename(stra[i], System.dir().path(strDir, name_(stra[i])));
+#endif
          }
 
       }
@@ -758,7 +809,11 @@ namespace ca
 
          System.dir().mk(strDir, papp);
 
+#ifdef WINDOWS
          ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
+#else
+         ::rename(psz, System.dir().path(strDir, name_(psz)));
+#endif
 
       }
 
@@ -775,19 +830,40 @@ namespace ca
             strNew.replace(pszFind, pszReplace);
             if(strNew != strOld)
             {
+#ifdef WINDOWS
                ::MoveFileW(
                   gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
                   gen::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+#else
+               ::rename(
+                  System.dir().path(pszContext, strOld),
+                  System.dir().path(pszContext, strNew));
+#endif
             }
          }
       }
 
       bool system::is_read_only(const char * psz)
       {
+
+#ifdef WINDOWS
+
          DWORD dwAttrib = GetFileAttributesW(gen::international::utf8_to_unicode(psz));
          if(dwAttrib & FILE_ATTRIBUTE_READONLY)
             return true;
          return false;
+
+#else
+
+         struct stat st;
+
+         if(stat(psz, &st) != 0)
+            return true;
+
+         return !(st.st_mode & S_IWUSR);
+
+#endif
+
       }
 
       string system::sys_temp(const char * pszName, const char * pszExtension, ::ca::application * papp)

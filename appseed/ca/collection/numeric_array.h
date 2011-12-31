@@ -49,7 +49,7 @@ public:
       index iLBound = iStart;
       index iMaxBound = iEnd;
       index iUBound = iMaxBound;
-      ::numeric_info::offset < TYPE >::TYPE iCompare;
+      typename ::numeric_info::offset < TYPE >::TYPE iCompare;
       // do binary search
       iIndex = (iUBound + iLBound) / 2;
       while(iUBound - iLBound >= 8)

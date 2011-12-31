@@ -116,13 +116,13 @@ namespace collection
          return iterator(NULL, this);
       }
 
-      void construct(count nBlockSize = 10);
-      map(count nBlockSize = 10);
+      void construct(::count nBlockSize = 10);
+      map(::count nBlockSize = 10);
       map(pair pairs[], int iCount);
 
-      count get_count() const;
-      count get_size() const;
-      count size() const;
+      ::count get_count() const;
+      ::count get_size() const;
+      ::count size() const;
       ::count count() const;
       BOOL is_empty() const;
 
@@ -192,11 +192,11 @@ namespace collection
 
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   inline count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_count() const
+   inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_count() const
       { return m_nCount; }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   inline count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_size() const
+   inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_size() const
       { return m_nCount; }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >

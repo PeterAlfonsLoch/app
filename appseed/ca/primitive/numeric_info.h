@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca/exception/not_implemented.h"
+
+
 namespace numeric_info
 {
 
@@ -173,7 +176,7 @@ namespace numeric_info
 
 
 
-   
+
    template <>
    inline uint64_t get_maximum_value < uint64_t > ()
    {
@@ -231,7 +234,8 @@ namespace numeric_info
    template < > class CLASS_DECL_ca offset < unsigned short > { public: typedef short TYPE; };
    template < > class CLASS_DECL_ca offset < unsigned int > { public: typedef int TYPE; };
    template < > class CLASS_DECL_ca offset < unsigned long > { public: typedef long TYPE; };
+#if defined(WINDOWS)
    template < > class CLASS_DECL_ca offset < uint64_t > { public: typedef int64_t TYPE; };
-
+#endif
 
 } // numeric_info

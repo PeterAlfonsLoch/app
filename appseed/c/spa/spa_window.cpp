@@ -123,7 +123,7 @@ void window::OnPaint(HDC hdcWindow, LPRECT lprect)
 
    LPDWORD lpdata;
 
-	HBITMAP hbmp = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)&lpdata, NULL, NULL );
+	HBITMAP hbmp = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)&lpdata, NULL, 0);
 
    //HBITMAP hbmp      = ::CreateCompatibleBitmap(hdcWindow, cx, cy);
    HDC hdc           = ::CreateCompatibleDC(NULL);

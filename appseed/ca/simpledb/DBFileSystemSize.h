@@ -1,14 +1,12 @@
 #pragma once
 
+
 //#include "gen/buffered_file.h"
 
-class db_server;
 
-namespace vmssqlite 
-{
-   class ::database::set;
-}
+class db_server;
 class FileSystemSizeWnd;
+
 
 class CLASS_DECL_ca file_size_table :
    virtual public ::radix::object
@@ -22,13 +20,13 @@ public:
    FileSystemSizeWnd * m_pwndServer;
    HWND m_hwndServer;
 
-   
+
    class get_fs_size :
       public ex1::byte_serializable
    {
    public:
-   
-      
+
+
       string   m_strPath;
       bool     m_bPending;
       __int64  m_iSize;
@@ -67,7 +65,7 @@ public:
       item();
       void update_size(::ca::application * papp, int & iIteration);
       void update_size_recursive(::ca::application * papp, int & iIteration);
-      
+
       item * FindItem(::ca::application * papp, const char * pszPath, int & iIteration);
       int FindName(::ca::application * papp, const char * pszName, int & iIteration);
       array_ptr_alloc < class item, class item & > m_itema;
@@ -81,7 +79,7 @@ public:
    item m_item;
    HANDLE m_hmap;
    class get_fs_size * m_pgetfssize;
-   
+
 };
 
 
@@ -90,7 +88,7 @@ class CLASS_DECL_ca DBFileSystemSizeSet :
    virtual public ::radix::object
 {
 public:
-    
+
    DBFileSystemSizeSet(::ca::application * papp);
    ~DBFileSystemSizeSet();
 
@@ -139,7 +137,7 @@ public:
    public:
    };
 
-   
+
 
    bool m_bServer;
    file_size_table::get_fs_size m_size;
@@ -155,4 +153,8 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCopyData)
    DECL_GEN_SIGNAL(_001OnTimer)
+
+
 };
+
+

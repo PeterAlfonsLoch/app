@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -37,12 +37,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   class sockets::address;
+
+   class address;
 
 
-   /** socket implementation for TCP. 
+   /** socket implementation for TCP.
       \ingroup basic */
-   class CLASS_DECL_ca tcp_socket : 
+   class CLASS_DECL_ca tcp_socket :
       virtual public stream_socket
    {
       /** \defgroup internal Internal utility */
@@ -122,7 +123,7 @@ namespace sockets
 
       /** Constructor with standard values on input/output buffers. */
       tcp_socket(socket_handler_base& );
-      /** Constructor with custom values for i/o buffer. 
+      /** Constructor with custom values for i/o buffer.
          \param h socket_handler_base reference
          \param isize Input buffer size
          \param osize Output buffer size */
@@ -130,22 +131,22 @@ namespace sockets
       ~tcp_socket();
 
       /** open a connection to a remote server.
-          If you want your socket to connect to a server, 
+          If you want your socket to connect to a server,
           always call open before add'ing a socket to the sockethandler.
           If not, the connection attempt will not be monitored by the
-          socket handler... 
+          socket handler...
          \param ip IP address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
       bool open(ipaddr_t ip,port_t port,bool skip_socks = false);
-      /** open connection. 
+      /** open connection.
          \param ip Ipv6 address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
       bool open(in6_addr ip,port_t port,bool skip_socks = false);
       bool open(sockets::address&,bool skip_socks = false);
       bool open(sockets::address&,sockets::address& bind_address,bool skip_socks = false);
-      /** open connection. 
+      /** open connection.
          \param host Hostname
          \param port Port number */
       bool open(const string &host,port_t port);
@@ -157,12 +158,12 @@ namespace sockets
       void OnException();
    #endif
 
-      /** close file descriptor - internal use only. 
+      /** close file descriptor - internal use only.
          \sa SetCloseAndDelete */
       int close();
 
-      /** Send a string. 
-         \param s string to send 
+      /** Send a string.
+         \param s string to send
          \param f Dummy flags -- not used */
       void Send(const string &s,int f = 0);
       /** Send string using printf formatting. */
@@ -187,7 +188,7 @@ namespace sockets
       /** Number of bytes in output buffer. */
       size_t GetOutputLength();
 
-      /** Callback fires when a socket in line protocol has read one full line. 
+      /** Callback fires when a socket in line protocol has read one full line.
          \param line Line read */
       void OnLine(const string & line);
       /** get counter of number of bytes received. */
@@ -210,10 +211,10 @@ namespace sockets
       void OnSSLConnect();
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLAccept();
-      /** This method must be implemented to initialize 
+      /** This method must be implemented to initialize
          the ssl context for an outgoing connection. */
       virtual void InitSSLClient();
-      /** This method must be implemented to initialize 
+      /** This method must be implemented to initialize
          the ssl context for an incoming connection. */
       virtual void InitSSLServer();
 
@@ -252,18 +253,18 @@ namespace sockets
       virtual long cert_common_name_check(const char * common_name);
       virtual void enable_cert_common_name_check(bool bEnable = true);
 
-      /** SSL; Initialize ssl context for a client socket. 
+      /** SSL; Initialize ssl context for a client socket.
          \param meth_in SSL method */
       void InitializeContext(const string & context, SSL_METHOD *meth_in = NULL);
-      /** SSL; Initialize ssl context for a server socket. 
-         \param keyfile Combined private key/certificate file 
-         \param password Password for private key 
+      /** SSL; Initialize ssl context for a server socket.
+         \param keyfile Combined private key/certificate file
+         \param password Password for private key
          \param meth_in SSL method */
       void InitializeContext(const string & context, const string & keyfile, const string & password, SSL_METHOD *meth_in = NULL);
-      /** SSL; Initialize ssl context for a server socket. 
+      /** SSL; Initialize ssl context for a server socket.
          \param certfile Separate certificate file
-         \param keyfile Combined private key/certificate file 
-         \param password Password for private key 
+         \param keyfile Combined private key/certificate file
+         \param password Password for private key
          \param meth_in SSL method */
       void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, SSL_METHOD *meth_in = NULL);
       /** SSL; Password callback method. */

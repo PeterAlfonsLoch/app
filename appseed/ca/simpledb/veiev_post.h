@@ -1,11 +1,8 @@
 #pragma once
 
+
 class db_server;
 
-namespace vmssqlite
-{
-   class ::database::set;
-}
 
 class CLASS_DECL_ca veiev_post :
    public db_set
@@ -38,4 +35,5 @@ public:
 
 
 };
+
 

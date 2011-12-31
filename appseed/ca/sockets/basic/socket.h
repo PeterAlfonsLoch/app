@@ -1,10 +1,12 @@
 #pragma once
 
+
 namespace sockets
 {
 
+
    class socket_handler_base;
-   class sockets::address;
+   class address;
 
 
    /** \defgroup basic Basic sockets */
@@ -20,11 +22,11 @@ namespace sockets
       public:
          virtual void OnRawData(socket * psocket, void * pdata, size_t len) = 0;
       };
-   
+
       friend class socket_handler_base;
-      /** Detached socket run thread. 
+      /** Detached socket run thread.
          \ingroup internal */
-      class CLASS_DECL_ca SocketThread : 
+      class CLASS_DECL_ca SocketThread :
          virtual public ::radix::thread
       {
       public:
@@ -59,7 +61,7 @@ namespace sockets
          status_ok,
          status_connection_timed_out,
       };
-      
+
 
       callback * m_pcallback;
 
@@ -123,7 +125,7 @@ namespace sockets
       e_status    m_estatus;
       DWORD       m_dwStart;
 
-      
+
 
       /** socket mode flags. */
    /*
@@ -176,12 +178,12 @@ namespace sockets
       using ::ex1::request_interface::create;
       virtual socket *create() { return NULL; }
 
-      /** Returns reference to sockethandler that owns the socket. 
+      /** Returns reference to sockethandler that owns the socket.
       If the socket is detached, this is a reference to the slave sockethandler.
       */
       socket_handler_base& Handler() const;
 
-      /** Returns reference to sockethandler that owns the socket. 
+      /** Returns reference to sockethandler that owns the socket.
       This one always returns the reference to the original sockethandler,
       even if the socket is detached.
       */
@@ -687,8 +689,10 @@ namespace sockets
 
    };
 
+
    typedef ::collection::map < SOCKET, SOCKET, socket *, socket * > socket_map;
    typedef ::comparable_eq_list < socket * > socket_list;
+
 
 } // namespace sockets
 
