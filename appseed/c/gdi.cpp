@@ -5,7 +5,7 @@
 #ifdef LINUX
 #include "linux/c_os_cross_win_gdi_internal.h"
 #elif defined(MACOS)
-#include "macos/c_os_cross_win_gdi_internal.h"
+#include "macos/c_os_internal.h"
 #endif
 
 

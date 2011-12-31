@@ -1,357 +1,304 @@
 #include "StdAfx.h"
-#include "macos/c_os_cross_win_gdi_internal.h"
+#include "c_os_internal.h"
 
-CTFontDescriptorRef CreateFontDescriptorFromName(CFStringRef iPostScriptName, CGFloat iSize)
+
+#include <Carbon/Carbon.h>
+#include <CoreFoundation/CoreFoundation.h>
+
+
+device_context::device_context()
+:
+/*  m_colour(wxColourDisplay())
+ , m_ok(true)
+ , m_clipping(false)
+ , m_isInteractive(0)
+ , m_isBBoxValid(false)
+ , */ m_logicalOriginX(0), m_logicalOriginY(0)
+, m_deviceOriginX(0), m_deviceOriginY(0)
+, m_logicalScaleX(1.0), m_logicalScaleY(1.0)
+, m_userScaleX(1.0), m_userScaleY(1.0)
+, m_scaleX(1.0), m_scaleY(1.0)
+, m_signX(1), m_signY(1)
+, m_minX(0), m_minY(0), m_maxX(0), m_maxY(0)
+, m_clipX1(0), m_clipY1(0), m_clipX2(0), m_clipY2(0)
+/*  , m_logicalFunction(wxCOPY)
+ , m_backgroundMode(wxTRANSPARENT)
+ , m_mappingMode(wxMM_TEXT)
+ , m_pen() */
+/* , m_brush()
+ , m_backgroundBrush(*wxTRANSPARENT_BRUSH)
+ , m_textForegroundColour(*wxBLACK)
+ , m_textBackgroundColour(*wxWHITE)
+ , m_font()
+ #if wxUSE_PALETTE
+ , m_palette()
+ , m_hasCustomPalette(false)
+ #endif // wxUSE_PALETTE */   
 {
-   assert(iPostScriptName != NULL);
-   return CTFontDescriptorCreateWithNameAndSize(iPostScriptName, iSize);
+    m_cgcontext = NULL;
 }
 
 
-CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyName, CTFontSymbolicTraits iTraits, CGFloat iSize)
+
+CGColorRef mac_create_color(COLORREF cr)
 {
    
-   CTFontDescriptorRef descriptor = NULL;
-   CFMutableDictionaryRef attributes;
-   assert(iFamilyName != NULL);
+   // Create a color and add it as an attribute to the string.
+   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+   CGFloat components[] = { GetRValue(cr) / 255.0, 
+      GetGValue(cr) / 255.0,
+      GetBValue(cr) / 255.0,
+      GetAValue(cr) / 255.0};
    
-   // Create a mutable dictionary to hold our attributes.
-   attributes = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+   CGColorRef color = CGColorCreate(rgbColorSpace, components);
    
-   check(attributes != NULL);
+   CGColorSpaceRelease(rgbColorSpace);
    
-   if (attributes != NULL)
+   return color;
+}
+
+
+BOOL mac_release_color(CGColorRef colorref)
+{
+   CGColorRelease(colorref);
+    return TRUE;
+}
+
+
+
+HDC GetWindowDC(HWND hwnd)
+{
+   return GetDC(hwnd);
+}
+
+HDC GetDC(HWND hwnd)
+{
+    
+    HDC hdc = new device_context;
+    
+    
+    hdc->m_window = hwnd;
+    hdc->m_cgcontext = get_nswindow_cgcontext(hwnd);
+/*    hdc->m_windowPort = GetWindowPort(hwnd);
+    GetPortBounds(hdc->m_windowPort, &hdc->m_portBounds);
+    
+    hdc->m_wasSwapped = QDSwapPort(hdc->m_windowPort, &hwnd->m_savedPort);
+    
+    
+    /* ... QuickDraw Drawing Commands ... */
+    // at windowPort
+    
+    
+  /*  QDBeginCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
+    SyncCGContextOriginWithPort(hdc->m_cgcontext, hdc->m_windowPort);
+    //ClipCGContextToRegion(cgContext, &portBounds, clippingRegion);
+    //DisposeRgn(clippingRegion);
+    //clippingRegion = NULL;
+    
+    /* ... Quartz Drawing Commands ... */
+    
+    
+    hdc->m_cgcolorrefText = mac_create_color(0);
+    hdc->m_cgcolorrefBk = mac_create_color(RGB(255, 255, 255));
+    
+    return hdc;
+    
+}
+
+
+BOOL ReleaseDC(HWND hwnd, HDC hdc)
+{
+
+   if(hdc == NULL)
+      return FALSE;
+   
+   /*QDEndCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
+   
+   if(hdc->m_wasSwapped)
    {
-      
-      CFMutableDictionaryRef traits;
-      
-      CFNumberRef symTraits;
-      
-      // Add a family name to our attributes.
-      CFDictionaryAddValue(attributes, kCTFontFamilyNameAttribute, iFamilyName);
-      
-      // Create the traits dictionary.
-      symTraits = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &iTraits);
-      
-      check(symTraits != NULL);
-      
-      if (symTraits != NULL)
-      {
-         // Create a dictionary to hold our traits values.
-         traits = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-         
-         check(traits != NULL);
-         
-         if (traits != NULL)
-         {
-            
-            // Add the symbolic traits value to the traits dictionary.
-            CFDictionaryAddValue(traits, kCTFontSymbolicTrait, symTraits);
-            
-            // Add the traits attribute to our attributes.
-            CFDictionaryAddValue(attributes, kCTFontTraitsAttribute, traits);
-            
-            CFRelease(traits);
-            
-         }
-         
-         CFRelease(symTraits);
-         
-      }
-      
-      // Create the font descriptor with our attributes and input size.
-      descriptor = CTFontDescriptorCreateWithAttributes(attributes);
-      
-      check(descriptor != NULL);
-      
-      CFRelease(attributes);
-      
-   }
-   
-   // Return our font descriptor.
-   return descriptor;
-   
-}
+      QDSwapPort(hdc->m_savedPort, &hdc->m_savedPort);
+   }*/
 
-
-CTFontRef CreateFont(CTFontDescriptorRef iFontDescriptor, CGFloat iSize)
-{
-   
-   check(iFontDescriptor != NULL);
-   
-   // Create the font from the font descriptor and input size. Pass
-   // NULL for the matrix parameter to use the default matrix (identity).
-   return CTFontCreateWithFontDescriptor(iFontDescriptor, iSize, NULL);
-   
-}
-
-
-CTFontRef CreateBoldFont(CTFontRef iFont, Boolean iMakeBold)
-{
-   
-   CTFontSymbolicTraits desiredTrait = 0;
-   
-   CTFontSymbolicTraits traitMask;
-   
-   // If we are trying to make the font bold, set the desired trait
-   // to be bold.
-   if (iMakeBold)
-      desiredTrait = kCTFontBoldTrait;
-   
-   // Mask off the bold trait to indicate that it is the only trait
-   // desired to be modified. As CTFontSymbolicTraits is a bit field,
-   // we could choose to change multiple traits if we desired.
-   traitMask = kCTFontBoldTrait;
-   
-   // Create a copy of the original font with the masked trait set to the
-   // desired value. If the font family does not have the appropriate style,
-   // this will return NULL.
-   
-   return CTFontCreateCopyWithSymbolicTraits(iFont, 0.0, NULL, desiredTrait, traitMask);
-   
-}
-
-
-CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
-{
-   
-   // Create a copy of the original font with the new family. This call
-   // attempts to preserve traits, and may return NULL if that is not possible.
-   // Pass in 0.0 and NULL for size and matrix to preserve the values from
-   // the original font.
-   return CTFontCreateCopyWithFamily(iFont, 0.0, NULL, iFamily);
-   
-}
-
-BOOL TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
-{    
-   
-   CGContextRef context = hdc->m_cgcontext;
-   
-   
-   CGContextSetTextMatrix(context, CGAffineTransformIdentity);
-   
-   
-   // Initialize an attributed string.
-   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszUtf8, kCFStringEncodingUTF8);
-   CTFontRef      ctfontrefText     = hdc->m_ctfontref; 
-   CGColorRef     cgcolorrefText    = hdc->m_cgcolorrefText;
-   
-   
-   
-   // Initialize string, font, and context
-   CFStringRef keys[] = { kCTFontAttributeName, kCTForegroundColorAttributeName };
-   CFTypeRef values[] = { ctfontrefText, cgcolorrefText };
-   CFDictionaryRef attributes = CFDictionaryCreate(
-                                                   kCFAllocatorDefault, (const void**)&keys,
-                                                   (const void**)&values, sizeof(keys) / sizeof(keys[0]),
-                                                   &kCFTypeDictionaryKeyCallBacks,
-                                                   &kCFTypeDictionaryValueCallBacks);
-   
-   
-   //   CFIndex iLen = CFStringGetLength(string);
-   
-   
-   CFAttributedStringRef attrString = CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
-   
-   CFRelease(attributes);
-   
-   
-   
-   //   CFAttributedStringSetAttribute(attrString, CFRangeMake(0, iLen), (CFStringRef) , (CFTypeRef) textcolor);
-   
-   
-   // CFStringGetLength
-   
-   CTLineRef line = CTLineCreateWithAttributedString(attrString);
-   
-   
-   
-   // Set text position and draw the line into the graphics context
-   
-   CGContextSetTextPosition(context, x, y);
-   
-   CTLineDraw(line, context);
-   
-   CFRelease(line);
-   
-   
-   CFRelease(attrString);
-   CFRelease(string);
-   
-   
+   delete hdc;
    return TRUE;
-   
-   
+
+}
+
+
+BOOL GetClientRect(HWND hwnd, LPRECT lprect)
+{
+/*   XWindowAttributes attrs;
+   /* Fill attribute structure with information about root window */
+  /* if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+   {
+      return false;
+   }
+   lprect->left      = 0;
+   lprect->top       = 0;
+   lprect->right     = lprect->left    + attrs.width;
+   lprect->bottom    = lprect->top     + attrs.height;*/
+    
+    if(!GetWindowRect(hwnd, lprect))
+        return FALSE;
+    
+    lprect->right   -=  lprect->left;
+    lprect->bottom  -=  lprect->top;
+    lprect->left    =   0;
+    lprect->top     =   0;
+    
+    return TRUE;
+    
+}
+
+
+BOOL GetWindowRect(HWND hwnd, LPRECT lprect)
+{
+  /* XWindowAttributes attrs;
+   /* Fill attribute structure with information about root window */
+/*   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+   {
+      return false;
+   }
+   lprect->left      = attrs.x;
+   lprect->top       = attrs.y;
+   lprect->right     = lprect->left    + attrs.width;
+   lprect->bottom    = lprect->top     + attrs.height;*/
+    
+   return get_nswindow_rect(hwnd, lprect) ? 1 : 0;
+    
+    
 }
 
 
 
-void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
+int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 {
-   CGColorRef color = mac_create_color(clr);
+    
    CGRect rect;
-   rect.origin.x = lpRect->left;
-   rect.origin.y = lpRect->top;
-   rect.size.width = lpRect->right - lpRect->left;
-   rect.size.height = lpRect->bottom - lpRect->top;
+   
+   rect.origin.x     = lprc->left;
+   rect.origin.y     = lprc->top;
+   rect.size.width   = lprc->right - lprc->left;
+   rect.size.height  = lprc->bottom - lprc->top;
+   
+   CGContextSetRGBFillColor(hdc->m_cgcontext, GetRValue(hbr->lbColor), GetGValue(hbr->lbColor), GetBValue(hbr->lbColor), GetAValue(hbr->lbColor));
+    
    CGContextFillRect(hdc->m_cgcontext, rect);
-   mac_release_color(color);
-}
-
-HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc);
-
-HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, HDC hdc)
-{
-   return CreatePointBoldFont_dup(nPointSize, lpszFaceName, FALSE, hdc);
-}
-
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc)
-{
-   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, lpszFaceName, kCFStringEncodingUTF8);
-   CreateFontDescriptorFromFamilyAndTraits(string, BOLD, nPointSize);
-   CFRelease(string);
-}
-
-// pLogFont->nHeight is interpreted as PointSize * 10
-HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
-{
    
-   
-   /*HDC hDC;
-    if (hdcParam != NULL)
-    {
-    hDC = hdcParam;
-    }
-    else
-    hDC = ::GetDC(NULL);*/
-   
-   return ::CreateFontIndirect(lpLogFont);
-   
-   /*if(hdcParam == NULL)
-    ReleaseDC(NULL, hDC);*/
-   
-   
+   return 1;
 }
 
 
-
-
-
-
-void fastblur(DWORD * pdata, int w, int h, int radius)
+HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
 {
-   if(radius < 1)
-   {
-      return;
-   }
-   int wm=w-1;
-   int hm=h-1;
-   int wh=w*h;
-   int div=radius+radius+1;
-   simple_int_array iaA;
-   iaA.set_size(wh);
-   int * a = iaA.get_data();
-   simple_int_array iaR;
-   iaR.set_size(wh);
-   int * r = iaR.get_data();
-   simple_int_array iaG;
-   iaG.set_size(wh);
-   int * g = iaG.get_data();
-   simple_int_array iaB;
-   iaB.set_size(wh);
-   int * b = iaB.get_data();
-   int asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
-   int p;
-   int p1;
-   int p2;
-   simple_int_array iaVmin;
-   iaVmin.set_size(max(w,h));
-   int * vmin = iaVmin.get_data();
-   simple_int_array iaVmax;
-   iaVmax.set_size(max(w,h));
-   int * vmax = iaVmax.get_data();
-   int * pix=(int *) pdata;
-   simple_int_array iaDv;
-   iaDv.set_size(256*div);
-   int * dv = iaDv.get_data();
-   for (i=0;i<iaDv.get_count();i++)
-   {
-      dv[i]= min(255, i/div);
-   }
+
+   HDC hdc = GetDC(hwnd);
+
+   GetClientRect(hwnd, &ps->rcPaint);
+
+   return hdc;
+
+}
+
+
+BOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
+{
+
+   return ReleaseDC(hwnd, ps->hdc);
+
+}
+
+
+BOOL GetCursorPos(LPPOINT lpptCursor)
+{
    
-   yw=yi=0;
+   HIPoint point;
    
-   for(x=0;x<w;x++)
-   {
-      vmin[x]=min(x+radius+1,wm);
-      vmax[x]=max(x-radius,0);
-   }
+   HICoordinateSpace space = kHICoordSpaceScreenPixel;
    
-   for (y=0;y<h;y++)
-   {
-      asum=rsum=gsum=bsum=0;
-      for(i=-radius;i<=radius;i++)
-      {
-         p=pix[yi+min(wm,max(i,0))];
-         asum+=((p & 0xff000000)>>24);
-         rsum+=((p & 0xff0000)>>16);
-         gsum+=((p & 0x00ff00)>>8);
-         bsum+=(p & 0x0000ff);
-      }
-      for(x=0;x<w;x++)
-      {
-         a[yi]=dv[asum];
-         r[yi]=dv[rsum];
-         g[yi]=dv[gsum];
-         b[yi]=dv[bsum];
-         
-         p1=pix[yw+vmin[x]];
-         p2=pix[yw+vmax[x]];
-         
-         asum+= ((p1 >> 24) & 0xff )-((p2 >> 24) & 0xff);
-         rsum+= ((p1 & 0x00ff0000)-(p2 & 0x00ff0000))>>16;
-         gsum+= ((p1 & 0x0000ff00)-(p2 & 0x0000ff00))>>8;
-         bsum+= ((p1 & 0x000000ff)-(p2 & 0x000000ff));
-         yi++;
-      }
-      yw+=w;
-   }
-   for (y=0;y<h;y++)
-   {
-      vmin[y] = min(y+radius+1,hm) * w;
-      vmax[y] = max(y-radius,0) * w;
-   }
+   HIGetMousePosition(space, NULL, &point);
    
-   for (x=0;x<w;x++)
-   {
-      asum=rsum=gsum=bsum=0;
-      yp=-radius*w;
-      for(i=-radius;i<=radius;i++)
-      {
-         yi=max(0,yp)+x;
-         rsum+=r[yi];
-         gsum+=g[yi];
-         bsum+=b[yi];
-         asum+=a[yi];
-         yp+=w;
-      }
-      yi=x;
-      for (y=0;y<h;y++)
-      {
-         pix[yi]=(dv[asum]<<24) | (dv[rsum]<<16) | (dv[gsum]<<8) | dv[bsum];
-         
-         p1=x+vmin[y];
-         p2=x+vmax[y];
-         
-         rsum+=r[p1]-r[p2];
-         gsum+=g[p1]-g[p2];
-         bsum+=b[p1]-b[p2];
-         asum+=a[p1]-a[p2];
-         
-         yi+=w;
-      }
-   }
    
+   lpptCursor->x = point.x;
+   lpptCursor->y = point.y;
+
+
+   return TRUE;
+
+}
+
+
+
+
+
+
+/*int _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+{
+   return 0;
+}*/
+
+
+
+
+HFONT CreateFontIndirect(const LOGFONT * lf)
+{
+    return NULL;
+}
+HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor)
+{
+    return NULL;
+}
+HGDIOBJ GetStockObject(int iStockObject)
+{
+    return NULL;
+}
+BOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+{
+    return FALSE;
+}
+BOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+{
+    return FALSE;
+}
+BOOL DeleteObject(HGDIOBJ hgdiobj)
+{
+    return FALSE;
+}
+HDC CreateCompatibleDC(HDC hdc)
+{
+    return NULL;
+}
+HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
+{
+    return NULL;
+}
+BOOL SetBkMode(HDC hdc, int iMode)
+{
+    return FALSE;
+}
+BOOL DeleteDC(HDC hdc)
+{
+    return FALSE;
+}
+BOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+{
+    return FALSE;
+}
+BOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
+{
+    return FALSE;
+}
+BOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+{
+    return FALSE;
+}
+
+
+
+BOOL SetTextColor(HDC hdc, COLORREF crText)
+{
+   
+   mac_release_color(hdc->m_cgcolorrefText);
+   hdc->m_cgcolorrefText = mac_create_color(crText);
+   return TRUE;
 }
