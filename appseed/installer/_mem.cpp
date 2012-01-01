@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "c/c.h"
 
 
 #ifdef _X86_
