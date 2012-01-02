@@ -38,6 +38,8 @@ namespace cubebase
          m_psystem->m_pcube            = pcube;
          m_psystem->m_pcubeInterface   = pcube;
 
+         pcube->directrix().consolidate(&m_psystem->directrix());
+
          if(!pcube->start_application(true, NULL))
             return false;
 
