@@ -365,7 +365,7 @@ int getDayOfWeek(int month, int day, int year, int CalendarSystem);
    int DOW(int y, int m, int d)
    {
       //return SDOW(y, m, d);
-      return getDayOfWeek(m, d, y, 1);
+      return getDayOfWeek(m, d, y, 0);
    }
 
 
@@ -426,33 +426,32 @@ int getDayOfWeek(int month, int day, int year, int CalendarSystem)
    }*/
 
 
-   int ISO_WN(int y, int m, int d)
-   {
-      int dow     = DOW( y, m, d );
-      int dow0101 = DOW( y, 1, 1 );
+int ISO_WN(int  y, int m, int d )
+{
+    int dow     = DOW( y, m, d );
+    int dow0101 = DOW( y, 1, 1 );
 
-       if      ( m == 1  &&  3 < dow0101 && dow0101 < 7 - (d-1) )
-       {
-           // days before week 1 of the current year have the same week number as
-           // the last day of the last week of the previous year
+    if      ( m == 1  &&  3 < dow0101 && dow0101 < (7 - (d-1)) )
+    {
+        // days before week 1 of the current year have the same week number as
+        // the last day of the last week of the previous year
 
-           dow     = dow0101 - 1;
-           dow0101 = DOW( y-1, 1, 1 );
-           m       = 12;
-           d       = 31;
-       }
-       else if ( m == 12  &&  30 - (d-1) < DOW( y+1, 1, 1 ) && DOW( y+1, 1, 1 ) < 4 )
-       {
-           // days after the last week of the current year have the same week number as
-           // the first day of the next year, (i.e. 1)
+        dow     = dow0101 - 1;
+        dow0101 = DOW( y-1, 1, 1 );
+        m       = 12;
+        d       = 31;
+    }
+    else if ( m == 12  &&  (30 - (d-1)) < DOW( y+1, 1, 1 ) &&  DOW( y+1, 1, 1 ) < 4 )
+    {
+        // days after the last week of the current year have the same week number as
+        // the first day of the next year, (i.e. 1)
 
-           return 1;
-       }
+        return 1;
+    }
 
-       return ( DOW( y, 1, 1 ) < 4 ) + 4 * (m-1) + ( 2 * (m-1) + (d-1) + dow0101 - dow + 6 ) * 36 / 256;
-   }
+    return ( dow0101 < 4 ) + 4 * (m-1) + ( 2 * (m-1) + (d-1) + dow0101 - dow + 6 ) * 36 / 256;
 
-
+}
 
 
    string datetime::strftime(const char * psz, time_t timeParam)

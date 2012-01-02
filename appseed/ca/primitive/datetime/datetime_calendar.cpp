@@ -133,6 +133,12 @@ void calendar::_001GetHtml(::html::file * pfile)
       class time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
       timeLastDayOfMonth -= time_span(1, 0, 0, 0);
       int iFirstDayOfWeek = time.GetDayOfWeek();
+
+      if(pfile->m_strSchema.find("<monday-first>")>=0 && iFirstDayOfWeek == 1)
+      {
+         iFirstDayOfWeek = 8;
+      }
+
 //      int iFirstWeek;
       int iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
       int iLastDayPreviousMonth = (time - time_span(1, 0, 0, 0)).GetDay();
@@ -209,6 +215,11 @@ void calendar::_001GetHtml(::html::file * pfile)
             {
                pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-sel\">");
             }
+            else if(iWeek == 1 && iDayOfWeek < iFirstDayOfWeek ||
+               iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek)
+            {
+               pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-out-of-month-day\">");
+            }
             else if((timeNow.GetDay() == iDay &&
                timeNow.GetMonth() == iMonth &&
                timeNow.GetYear() == iYear)
@@ -218,11 +229,6 @@ void calendar::_001GetHtml(::html::file * pfile)
                iYear == m_time.GetYear()))
             {
                pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-today\">");
-            }
-            else if(iWeek == 1 && iDayOfWeek < iFirstDayOfWeek ||
-               iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek)
-            {
-               pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-out-of-month-day\">");
             }
             else
             {
