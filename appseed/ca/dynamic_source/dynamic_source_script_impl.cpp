@@ -302,6 +302,10 @@ namespace dynamic_source
       {
          pinstance = pmanager->get_output_internal(this, strInclude);
       }
+      catch(const exit_exception & e)
+      {
+         throw e;
+      }
       catch(...)
       {
          pinstance = NULL;
@@ -656,37 +660,20 @@ namespace dynamic_source
          }
          outheader("Cache-control") = "public";
          outheader("Pragma") = "public";
-         outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
-         bool bRead = false;
+         //outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
+         string strPath;
          if(strlen(gprop("param_site")) > 0)
          {
-            string strCandidate = System.dir().path(
-               System.dir().ca2("net-" + gprop("param_site").get_string(),
-               "netseed/ds/ca2"),
-               strScript);
-            if(get_manager()->include_matches_file_exists(strCandidate))
-            {
-               read_file(strCandidate);
-               bRead = true;
-            }
+            strPath = System.dir().path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
          }
-         if(!bRead)
+         if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
          {
-            if(gprop("enable_userdir"))
-            {
-               string strCandidate = System.dir().netseed(
-                  "ds/ca2/userdir/" + gstr("param_root") + "/" + gstr("g_override_userdir"),
-                  strScript);
-               if(get_manager()->include_matches_file_exists(strCandidate))
-               {
-                  read_file(strCandidate);
-                  bRead = true;
-               }
-            }
+            strPath = System.dir().netseed("ds\\ca2", strScript);
          }
-         if(!bRead)
+
+         if(get_manager()->include_matches_file_exists(strPath))
          {
-            read_file(System.dir().netseed("ds\\ca2", strScript));
+            read_file(strPath);
          }
       }
       else if(gen::str::begins(strUri, "/css/"))
@@ -697,8 +684,17 @@ namespace dynamic_source
             outheader("Cache-control") = "public";
             outheader("Pragma") = "public";
          }
-         outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
-         include(System.dir().netseed("ds\\ca2", strScript));
+         //outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
+         string strPath;
+         if(strlen(gprop("param_site")) > 0)
+         {
+            strPath = System.dir().path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+         }
+         if(strPath.is_empty() || !Application.file().exists(strPath))
+         {
+            strPath = System.dir().netseed("ds\\ca2", strScript);
+         }
+         include(strPath);
       }
       else if(gen::str::begins(strUri, "/js/"))
       {
@@ -5209,11 +5205,13 @@ ok1:
 	   string default_iphost = "50.30.32.100";
    //	$default_eu_iphost = "188.138.0.172";
    //	$default_eu_iphost = $default_iphost;
-	   string default_weu_iphost = "46.105.148.219";
+	   //string default_weu_iphost = "46.105.148.219";
 	   string default_eu_iphost = "188.138.107.136";
+      string default_weu_iphost = default_eu_iphost;
    //	$default_asia_iphost = "27.112.107.224";
    //	$default_br_iphost = "187.84.226.245";
-	   string default_br_iphost = default_iphost;
+	   //string default_br_iphost = default_iphost;
+      string default_br_iphost = "177.67.80.221";
 	   string  default_iphost_africa = default_weu_iphost;	
 	
    //	$default_eu_iphost = "173.224.125.231";

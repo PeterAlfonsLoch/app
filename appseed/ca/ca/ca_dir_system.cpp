@@ -177,8 +177,9 @@ namespace ca
       }
 
       system::is_dir_map::is_dir_map() :
-         ::collection::string_map < is_dir >(200) // block size
+         ::collection::string_map < is_dir >(256) // block size
       {
+         InitHashTable(16384, TRUE);
       }
 
       bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir)

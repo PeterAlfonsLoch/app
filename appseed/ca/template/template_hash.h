@@ -36,7 +36,7 @@ namespace _template
       inline static UINT HashKey (const string & key)
       {
          register const char * pszKey = key;
-         register int counter = min(32, key.get_length());
+         register int counter = key.get_length();
          register UINT nHash = 0;
          while(counter-- >= 0)nHash = (nHash<<5) + nHash + *pszKey++;
          return nHash;
