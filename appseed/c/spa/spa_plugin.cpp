@@ -69,7 +69,7 @@ namespace spa
 #endif
          Sleep(15 * 1000);
          ::ca::library ca2library;
-         ca2library.open("ca2");
+         ca2library.open("ca");
          FN_NEW_HOTPLUGIN fn_new_hotplugin = ca2library.get < FN_NEW_HOTPLUGIN >("new_hotplugin");
          m_phost->m_pplugin = fn_new_hotplugin();
          m_phost->m_pplugin->m_phost = m_phost;
