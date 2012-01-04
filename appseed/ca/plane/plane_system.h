@@ -796,3 +796,7 @@ inline VIEW * view::create_view(document * pdoc, ::user::interaction * pwndParen
 {
    return dynamic_cast < VIEW * > (create_view(System.template type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
 }
+
+
+
+

@@ -197,7 +197,6 @@ namespace ca
          }
 
 
-         single_lock sl(&m_mutex);
 
          
          string strLookup(strPath);
@@ -205,6 +204,8 @@ namespace ca
 
          if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
             strLookup += "\\";
+
+         single_lock sl(&m_mutex, TRUE);
 
          ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
 
@@ -230,6 +231,7 @@ namespace ca
          string strPath(pszPath);
          if(!gen::str::ends(strPath, "\\"))
             strPath += "\\";
+         single_lock sl(&m_mutex, TRUE);
          set_at(strPath, isdir);
       }
 

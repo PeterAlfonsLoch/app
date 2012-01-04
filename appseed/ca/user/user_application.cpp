@@ -114,8 +114,7 @@ retry_license:
    }
 
    string application::message_box(const char * pszMatter, gen::property_set & propertyset)
-   {
-      throw not_implemented_exception();
+   {      throw not_implemented_exception();
 /*      class message_box box(this);
       box.show(pszMatter, propertyset);
       return box.m_strResponse;*/

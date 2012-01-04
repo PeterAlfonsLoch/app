@@ -113,18 +113,6 @@ public:
    base_array();
    base_array(const base_array <TYPE, ARG_TYPE> & a);
    base_array(::count n, const TYPE & t = TYPE());
-   template < typename OTHER >
-   base_array(OTHER * pothera, ::count n)
-   {
-      m_pData = NULL;
-      m_nSize = m_nMaxSize = m_nGrowBy = 0;
-      while(n > 0)
-      {
-         add((const TYPE &) *pothera);
-         pothera++;
-         n--;
-      }
-   }
    base_array(TYPE * ptypea, ::count n)
    {
       m_pData = NULL;

@@ -2,7 +2,6 @@
 
 
 class CLASS_DECL_ca event :
-   virtual public sync_object_base,
    virtual public event_base
 {
 public:
