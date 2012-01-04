@@ -32,7 +32,6 @@ namespace cubebase
       {
          
          ::cube::cube * pcube                = new ::cube::cube();
-         pcube->m_papp                       = m_psystem;
          pcube->m_psystem                    = m_psystem;
          pcube->m_psession                   = m_psession;
          m_psystem->m_pcube                  = pcube;
@@ -52,7 +51,6 @@ namespace cubebase
       {
          
          ::bergedge::bergedge * pbergedge    = new ::bergedge::bergedge();
-         pbergedge->m_papp                   = m_psystem;
          pbergedge->m_psystem                = m_psystem;
          pbergedge->m_psession               = m_psession;
          m_psession->m_pbergedge             = pbergedge;

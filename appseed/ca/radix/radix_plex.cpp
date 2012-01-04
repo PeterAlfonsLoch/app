@@ -19,14 +19,20 @@ plex* PASCAL plex::create(plex*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
 
 void plex::FreeDataChain()     // free this one and links
 {
-   plex* pPrevious = NULL;
-   plex* p = this;
-   while (p != NULL)
+   try
    {
-      BYTE* bytes = (BYTE*) p;
-      plex* pNext = p->pNext;
-      g_heap.free(bytes, p->size);
-      pPrevious = p;
-      p = pNext;
+      plex* pPrevious = NULL;
+      plex* p = this;
+      while (p != NULL)
+      {
+         BYTE* bytes = (BYTE*) p;
+         plex* pNext = p->pNext;
+         g_heap.free(bytes, p->size);
+         pPrevious = p;
+         p = pNext;
+      }
+   }
+   catch(...)
+   {
    }
 }
