@@ -54,7 +54,7 @@ namespace plugin
 
          m_psystem->m_pplugin = this;
 
-         m_psystem->m_hInstance = ::GetModuleHandle("ca2.dll");
+         m_psystem->m_hInstance = ::GetModuleHandle("ca.dll");
       
          
          if(!m_psystem->InitApplication())

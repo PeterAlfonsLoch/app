@@ -68,7 +68,7 @@ namespace gen
 
          {
             char lpszModuleFilePath[MAX_PATH + 1];
-            GetModuleFileName(::GetModuleHandleA("ca2.dll"), lpszModuleFilePath, MAX_PATH + 1);
+            GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
             m_strCa2ModulePath = lpszModuleFilePath;
             char lpszModuleFolder[MAX_PATH + 1];
             LPTSTR lpszModuleFileName;
@@ -273,7 +273,7 @@ namespace gen
    string application::get_ca2_module_file_path()
    {
       char lpszModuleFilePath[MAX_PATH + 1];
-      GetModuleFileName(::GetModuleHandleA("ca2.dll"), lpszModuleFilePath, MAX_PATH + 1);
+      GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
 
       string strModuleFileName(lpszModuleFilePath);
 

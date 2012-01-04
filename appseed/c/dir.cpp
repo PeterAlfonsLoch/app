@@ -12,7 +12,7 @@ void get_ca2_module_folder_dup(char * lpszModuleFolder)
 #ifdef WINDOWS
 
    char lpszModuleFilePath[MAX_PATH * 8];
-   HMODULE hmodule = ::GetModuleHandleA("ca2.dll");
+   HMODULE hmodule = ::GetModuleHandleA("ca.dll");
    if(hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");
    GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
