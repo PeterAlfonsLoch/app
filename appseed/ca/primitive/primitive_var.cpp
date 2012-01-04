@@ -601,6 +601,10 @@ class var & var::operator = (const class var & var)
             gen::add_ref(m_pca2);
          }
          break;
+      case type_id:
+         m_id    = var.m_id;
+         break;
+
       }
    }
    return *this;
