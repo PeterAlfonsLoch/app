@@ -38,7 +38,6 @@ namespace plane
    public:
 
 
-
       ::cube::cube *                  m_pcube;
       ::plane::application *          m_pcubeInterface;
 
