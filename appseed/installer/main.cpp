@@ -424,6 +424,7 @@ void simple_app::main()
    {
      if(!strncmp_dup(__argv[1], "-install=", strlen_dup("-install=")))
      {
+        Sleep(15 * 1000);
          vsstring id = &__argv[1][strlen_dup("-install=")];
          DWORD dwStartError;
          spa::ca2_app_install_run(id, "", "install", dwStartError, true);
