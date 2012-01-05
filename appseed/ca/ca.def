@@ -5,6 +5,7 @@ LIBRARY  "ca"
 
 EXPORTS
 get_new_library
+new_hotplugin
 
 
 ;sqlite3
