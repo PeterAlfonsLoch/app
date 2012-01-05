@@ -61,7 +61,7 @@ namespace ca
       bool application::exists(const var & var)
       {
 
-         const string & strPath = var;
+         const string & strPath = var.get_string();
 
          if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {

@@ -370,7 +370,7 @@
 	<File name="multithreading/multithreading_thread_pool.h" open="0" top="0" tabpos="7">
 		<Cursor position="1816" topLine="0" />
 	</File>
-	<File name="mus/midi_sequence.h" open="1" top="1" tabpos="1">
+	<File name="mus/midi_sequence.h" open="1" top="0" tabpos="1">
 		<Cursor position="1404" topLine="40" />
 	</File>
 	<File name="ortp/port.h" open="0" top="0" tabpos="0">
@@ -499,7 +499,7 @@
 	<File name="userbase/userbase_split_bar.h" open="0" top="0" tabpos="6">
 		<Cursor position="1030" topLine="0" />
 	</File>
-	<File name="userbase/userbase_static.h" open="1" top="0" tabpos="2">
+	<File name="userbase/userbase_static.h" open="1" top="0" tabpos="1">
 		<Cursor position="783" topLine="0" />
 	</File>
 	<File name="userbase/userbase_status_bar.h" open="0" top="0" tabpos="5">

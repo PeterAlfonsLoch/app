@@ -5,6 +5,31 @@
 #include <X11/Xutil.h>
 
 
+
+struct CLASS_DECL_c gdi_object
+{
+
+
+   enum e_type
+   {
+      type_undefined,
+      type_pen,
+      type_brush,
+      type_bitmap,
+      type_font,
+   };
+
+   enum e_type      m_etype;
+
+/*   gdi_object(e_type etype = type_undefined) :
+      m_etype(etype)
+   {
+   }*/
+
+};
+
+
+
 struct tag_WINDOW
 {
 

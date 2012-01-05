@@ -77,14 +77,29 @@ static void MyCPUID(uint32 function, uint32 *a, uint32 *b, uint32 *c, uint32 *d)
 
   #else*/
 
+  //PIC - Position Independent Code
+ __asm__ __volatile__ (
+    "mov %%ebx, %%edi;"
+    "cpuid;"
+    "xchgl %%ebx, %%edi;"
+    : "=a" (*a) ,
+      "=D" (*b) , /* edi */
+      "=c" (*c) ,
+      "=d" (*d)
+    : "0" (function)) ;
 
-  __asm__ __volatile__ (
+/*asm volatile
+    ("cpuid" : "=a" (*reg0), "=b" (*reg1), "=c" (*reg2), "=d" (*reg3)
+     : "a" (function), "c" (0));*/
+  // ECX is set to zero for CPUID function 4
+
+/*  __asm__ __volatile__ (
     "cpuid"
     : "=a" (*a) ,
       "=b" (*b) ,
       "=c" (*c) ,
       "=d" (*d)
-    : "0" (function)) ;
+    : "0" (function)) ;*/
 
   //#endif
 

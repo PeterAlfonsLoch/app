@@ -235,6 +235,9 @@ public:
 #ifdef _WINDOWS
    var & operator = (unsigned long ul);
 #endif
+#ifdef LINUX
+   var & operator = (long int l);
+#endif
    var & operator = (unsigned int ui);
    var & operator = (double d);
    var & operator = (string str);

@@ -16,6 +16,8 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-fPIC" />
+					<Add option="-Winvalid-pch" />
+					<Add option='-include &quot;StdAfx.h&quot;' />
 					<Add directory="." />
 					<Add directory="../ca" />
 					<Add directory="../../appseedcore" />

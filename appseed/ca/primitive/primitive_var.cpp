@@ -408,6 +408,27 @@ class var & var::operator = (__int64 i)
    return *this;
 }
 
+#ifdef LINUX
+
+class var & var::operator = (long int i)
+{
+   if(get_type() == type_pint64)
+   {
+      *m_pi64 = i;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = i;
+   }
+   else
+   {
+      set_type(type_int64, false);
+      m_i64 = i;
+   }
+   return *this;
+}
+
+#endif
 
 class var & var::operator = (uint64_t ui)
 {
@@ -702,7 +723,7 @@ var::operator string & ()
 
 var::operator string () const
 {
-   
+
    if(get_type() == type_pvar)
       return m_pvar->operator string &();
    else if(get_type() == type_pstring)
