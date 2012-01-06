@@ -1689,7 +1689,11 @@ tinyjs::tinyjs(::ca::application * papp, bool TwoPass) :
 }
 
 tinyjs::~tinyjs() {
-   ASSERT(!l);
+   //ASSERT(!l);
+   if(l != NULL)
+   {
+      delete l;
+   }
    scopes.remove_all();
    stringClass->unref(0);
    arrayClass->unref(0);
