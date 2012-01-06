@@ -3253,7 +3253,7 @@ bool var::has_property(const char * pszName) const
 {
    if(get_type() == type_propset)
    {
-      return propset().has_property(pszName);
+      return dynamic_cast < const gen::property_set * > (m_pca2)->has_property(pszName);
    }
    else if(get_type() == type_pvar)
    {

@@ -243,6 +243,12 @@ void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t 
          return NULL;
 
       memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
+#if ZEROED_ALLOC
+      if(nNewAllocSize > nOldAllocSize)
+      {
+         memset(&((byte *)pNew)[nOldAllocSize], 0, nNewAllocSize - nOldAllocSize);
+      }
+#endif
 
       free(pOld, nOldAllocSize);
 

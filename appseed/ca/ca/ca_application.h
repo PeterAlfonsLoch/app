@@ -85,6 +85,7 @@ namespace ca
       main_init_data *              m_pinitmaindata;
       bool                          m_bService;
       ::plane::application *        m_pappThis;
+      bool                          m_bZipIsDir;
 
 
       application();

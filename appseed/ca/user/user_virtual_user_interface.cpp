@@ -475,7 +475,7 @@ LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARA
 {
    ::ca::smart_pointer < ::gen::message::base > spbase;
    spbase(get_base(m_pguie, uiMessage, wparam, lparam));
-   ::user::interaction * pui = m_pguie;
+   ph(::user::interaction) pui = m_pguie;
    while(pui != NULL && pui->GetParent() != NULL)
    {
       pui->pre_translate_message(spbase);

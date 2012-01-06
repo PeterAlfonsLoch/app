@@ -75,7 +75,7 @@ extern "C"
 
 
 
-#include "ca/api/allocate.h"
+//#include "ca/api/allocate.h"
 
 #include "ca/primitive/count.h"
 

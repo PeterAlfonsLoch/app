@@ -194,7 +194,7 @@ void fixed_alloc_array::free(void * p, size_t nAllocSize)
    else
    {
       single_lock sl(get_heap_mutex(), TRUE);
-      return ca2_free_dbg(p, _AFX_CLIENT_BLOCK);
+      return ca2_free(p);
    }
 }
 
@@ -206,7 +206,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    if(pallocOld == NULL && pallocNew == NULL)
    {
       single_lock sl(get_heap_mutex(), TRUE);
-      return ca2_realloc_dbg(pOld, nNewAllocSize, _AFX_CLIENT_BLOCK, NULL, -1);
+      return ca2_realloc(pOld, nNewAllocSize);
    }
    else if(pallocOld == pallocNew)
    {
@@ -214,14 +214,22 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    }
    else
    {
-      void * pNew = alloc(nNewAllocSize);
+      single_lock sl(get_heap_mutex(), TRUE);
+      void * pNew = pallocNew == NULL ? ca2_alloc(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == NULL)
          return NULL;
 
       memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
 
-      free(pOld, nOldAllocSize);
+      if(pallocOld != NULL)
+      {
+         pallocOld->Free(pOld);
+      }
+      else
+      {
+         ca2_free(pOld);
+      }
 
       return pNew;
    }

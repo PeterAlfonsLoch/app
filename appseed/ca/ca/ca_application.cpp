@@ -21,6 +21,9 @@ namespace ca
 
       m_pinitmaindata   = NULL;
       m_bService        = false;
+
+      m_bZipIsDir       = true;
+
    }
 
 

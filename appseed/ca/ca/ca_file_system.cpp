@@ -266,7 +266,7 @@ namespace ca
          else
          {
             string strFilePath(varFile);
-            if(gen::str::find_ci(".zip:", strFilePath) >= 0)
+            if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strFilePath) >= 0))
             {
                gen::memory_file memfile(get_app(), &storage);
                zip::InFile infile(get_app());
@@ -553,7 +553,7 @@ namespace ca
             string strSrc;
             string strDirSrc(psz);
             string strDirDst(pszNew);
-            if(gen::str::ends(strDirSrc, ".zip"))
+            if(papp->m_bZipIsDir && (gen::str::ends(strDirSrc, ".zip")))
             {
                strDirSrc += ":";
             }
@@ -701,15 +701,20 @@ namespace ca
             return ifs(papp, "").file_exists(pszPath);
          }
 
-         int iFind = gen::str::find_ci(".zip:", pszPath);
+         if(papp->m_bZipIsDir)
+         {
 
-         zip::Util ziputil;
+            int iFind = gen::str::find_ci(".zip:", pszPath);
 
-         if(iFind >= 0)
-            return ziputil.exists(papp, pszPath);
+            zip::Util ziputil;
 
-         if(!App(papp).dir().is(System.dir().name(pszPath)))
-            return false;
+            if(iFind >= 0)
+               return ziputil.exists(papp, pszPath);
+
+            if(!App(papp).dir().is(System.dir().name(pszPath)))
+               return false;
+
+         }
 
 #ifdef WINDOWS
 
@@ -737,15 +742,20 @@ namespace ca
             return ifs(papp, "").file_exists(strPath);
          }
 
-         int iFind = gen::str::find_ci(".zip:", strPath);
+         if(papp->m_bZipIsDir)
+         {
+            
+            int iFind = gen::str::find_ci(".zip:", strPath);
 
-         zip::Util ziputil;
+            zip::Util ziputil;
 
-         if(iFind >= 0)
-            return ziputil.exists(papp, strPath);
+            if(iFind >= 0)
+               return ziputil.exists(papp, strPath);
 
-         if(!App(papp).dir().is(System.dir().name(strPath)))
-            return false;
+            if(!App(papp).dir().is(System.dir().name(strPath)))
+               return false;
+
+         }
 
 #ifdef WINDOWS
 

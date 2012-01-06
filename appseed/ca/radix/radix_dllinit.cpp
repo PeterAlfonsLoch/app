@@ -425,7 +425,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      use_ca2_allocator();
+      use_base_ca2_allocator();
 
       // initialize this DLL's extension module
       VERIFY(AfxInitExtensionModule(coreDLL, hInstance));

@@ -57,7 +57,7 @@ namespace ca
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-         if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
@@ -71,7 +71,7 @@ namespace ca
       void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
-         if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
@@ -92,7 +92,7 @@ namespace ca
 
       void system::rls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
-         if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative);
             return;
@@ -114,7 +114,7 @@ namespace ca
 
       void system::ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         if(gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0)
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
@@ -141,9 +141,9 @@ namespace ca
 
       bool system::is(const char * lpcszPath, ::ca::application * papp)
       {
-         if(gen::str::ends_ci(lpcszPath, ".zip"))
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcszPath, ".zip")))
             return true;
-         if(gen::str::find_ci(".zip:", lpcszPath) >= 0)
+         if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", lpcszPath) >= 0))
          {
             bool bHasSubFolder;
             if(m_isdirmap.lookup(lpcszPath, bHasSubFolder))
@@ -157,9 +157,9 @@ namespace ca
 
       bool system::is(const string & strPath, ::ca::application * papp)
       {
-         if(gen::str::ends_ci(strPath, ".zip"))
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
             return true;
-         if(gen::str::find_ci(".zip:", strPath) >= 0)
+         if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             if(m_isdirmap.lookup(strPath, bHasSubFolder))

@@ -71,6 +71,12 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
          return NULL;
       }
       memcpy(pNew, pvoidOld, min(size, sizeOld));
+#if ZEROED_ALLOC
+      if(size > sizeOld)
+      {
+         memset(&pNew[sizeOld], 0, size - sizeOld);
+      }
+#endif
       system_heap_free(pvoidOld);
       return pNew;
    }

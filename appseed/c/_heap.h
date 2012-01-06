@@ -1,6 +1,9 @@
 #pragma once
 
 
+#define ZEROED_ALLOC 1
+
+
 BEGIN_EXTERN_C
 
    CLASS_DECL_c void * c_alloc(size_t size);

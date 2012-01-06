@@ -110,6 +110,7 @@ ParserFactory::ParserFactory(::ca::application * papp) :
    ca(papp)
 {
   fileErrorHandler = NULL;
+  keeper < bool > keepZipAsDir(&papp->m_bZipIsDir, true, papp->m_bZipIsDir, true);
   catalogPath = searchPath();
   init();
 };

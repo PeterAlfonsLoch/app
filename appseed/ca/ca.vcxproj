@@ -585,7 +585,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="api\allocate.h" />
     <ClInclude Include="api\debug.h" />
     <ClInclude Include="api\linux.h" />
     <ClInclude Include="api\muldiv64.h" />
@@ -1594,7 +1593,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="zlib\zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="api\api_allocate.cpp" />
     <ClCompile Include="api\api_muldiv64.cpp" />
     <ClCompile Include="api\api_str.cpp" />
     <ClCompile Include="ca2\ca2_application.cpp" />
@@ -2343,8 +2341,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\virtual_memory.cpp" />
     <ClCompile Include="radix\radix_afxcrit.cpp" />
     <ClCompile Include="radix\radix_afxdbcs.cpp" />
-    <ClCompile Include="radix\radix_allocate.cpp" />
-    <ClCompile Include="radix\radix_allocation.cpp" />
+    <ClCompile Include="radix\radix_allocation_mid_big.cpp" />
+    <ClCompile Include="radix\radix_allocation_base_ca2.cpp" />
     <ClCompile Include="radix\radix_allocator.cpp" />
     <ClCompile Include="radix\radix_assert.cpp" />
     <ClCompile Include="radix\radix_auxdata.cpp" />
