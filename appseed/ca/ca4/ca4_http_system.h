@@ -44,8 +44,8 @@ namespace ca4
 
          };
 
-
-         ::collection::string_map < pac *  > m_mapPac;
+         mutex                                  m_mutexPac;
+         ::collection::string_map < pac *  >    m_mapPac;
 
 
          system();

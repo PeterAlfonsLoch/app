@@ -141,10 +141,17 @@ namespace ca4
       system::pac * system::get_pac(const char * pszUrl)
       {
          
+         single_lock sl(&m_mutexPac, true);
+
          ::collection::string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 
          if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) < 30000)
          {
+            if(ppair != NULL)
+            {
+               delete ppair->m_value;
+               m_mapPac.remove_key(pszUrl);
+            }
 
             class pac * ppac = new class pac(get_app());
 
@@ -159,8 +166,6 @@ namespace ca4
 
             ppac->m_strAutoConfigScript = Application.file().as_string(ppac->m_strUrl, varQuery);
 
-            if(ppair != NULL)
-               delete ppair->m_value;
 
             m_mapPac.set_at(pszUrl, ppac);
 
@@ -187,6 +192,8 @@ namespace ca4
 
       bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket)
       {
+
+         single_lock sl(&m_mutexPac, true);
 
          string strProxyServer;
 
