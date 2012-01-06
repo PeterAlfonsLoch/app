@@ -5406,7 +5406,7 @@ ok1:
 			   rr = gen::str::itoa(iRr);
 			   iRr++;
 			   strSql = "INSERT INTO gustavocc.rr(`id`, `zone`, `name`, `type`, `data`, `aux`, `ttl`) VALUES('" + rr + "', '" + id + "', '" + strHost + ".', 'MX', 'mail.ca2.cc.', '0', '" + cgcl_ttl + "')";
-            musicdb().query(strSql);
+            //musicdb().query(strSql);
             straCmd.add(strSql);
 			
 		   }

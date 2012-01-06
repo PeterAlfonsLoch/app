@@ -150,6 +150,7 @@ namespace ca
          string strFormat;
          for(int i = 1; i <= iMaxLevel;)
          {
+            System.dir().mk(str, papp);
            if(!System.dir().is(str, papp))
               throw "time square dir does not exist";
            straTitle.remove_all();
@@ -205,6 +206,7 @@ namespace ca
                   if(system::mk_time(str))
                      break;
                }
+               return "";
             }
          }
          return str;
@@ -243,7 +245,7 @@ namespace ca
       bool system::mk_time(const char * lpcszCandidate)
       {
          ex1::filesp spfile(get_app());
-         if(!System.file().exists(lpcszCandidate, get_app()))
+         if(System.file().exists(lpcszCandidate, get_app()))
             return false;
          if(!spfile->open(lpcszCandidate, ::ex1::file::mode_create | ::ex1::file::type_binary))
             return false;
