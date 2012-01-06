@@ -54,7 +54,7 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
       if(g_bCa2Installed)
       {
          ::ca::library libraryCa2;
-         g_bCa2Installed = libraryCa2.open(dir::path(strStage, "ca2"));
+         g_bCa2Installed = libraryCa2.open(dir::path(strStage, "ca"));
          if(!bUnloadIfNotInstalled && g_bCa2Installed)
          {
             libraryCa2.m_bAutoClose    = false;
