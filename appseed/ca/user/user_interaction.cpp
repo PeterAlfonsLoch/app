@@ -2387,8 +2387,9 @@ ExitModal:
    {
       if(::GetTickCount() >= (m_uiLastSent + m_uiElapse))
       {
-         bool bOk = true;
+         
          bool bWindow;
+
          try
          {
             // simple integrity check by calling "inoffensive" function
@@ -2397,18 +2398,23 @@ ExitModal:
          }
          catch(...)
          {
-            bOk = false;
+            return false;
          }
+         
+         if(!bWindow)
+            return false;
+
          try
          {
             m_pguie->SendMessage(WM_TIMER, m_uiId);
          }
          catch(...)
          {
-            if(!bOk)
-               return false;
+            return false;
          }
+
          m_uiLastSent = ::GetTickCount();
+
       }
       return true;
    }
