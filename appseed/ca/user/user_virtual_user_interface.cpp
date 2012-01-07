@@ -475,13 +475,33 @@ LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARA
 {
    ::ca::smart_pointer < ::gen::message::base > spbase;
    spbase(get_base(m_pguie, uiMessage, wparam, lparam));
-   ph(::user::interaction) pui = m_pguie;
-   while(pui != NULL && pui->GetParent() != NULL)
+   try
    {
-      pui->pre_translate_message(spbase);
-      if(spbase->m_bRet)
-         return spbase->get_lresult();
-      pui = pui->GetParent();
+      ::user::interaction * pui = m_pguie;
+      while(pui != NULL && pui->GetParent() != NULL)
+      {
+         try
+         {
+            pui->pre_translate_message(spbase);
+         }
+         catch(...)
+         {
+            break;
+         }
+         if(spbase->m_bRet)
+            return spbase->get_lresult();
+         try
+         {
+            pui = pui->GetParent();
+         }
+         catch(...)
+         {
+            break;
+         }
+      }
+   }
+   catch(...)
+   {
    }
    message_handler(spbase);
    return spbase->get_lresult();
