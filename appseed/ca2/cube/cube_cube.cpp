@@ -318,6 +318,11 @@ namespace cube
    }
 
 
+   ::gen::command_thread & cube::command_thread()
+   {
+	   return *m_pcommandthread;
+   }
+
 } // namespace cube
 
 

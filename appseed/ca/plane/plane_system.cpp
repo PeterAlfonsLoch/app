@@ -1381,7 +1381,10 @@ namespace plane
 
    }
 
-
+   ::gen::command_thread & system::command_thread()
+   {
+	   return *m_pcommandthread;
+   }
 
 } // namespace plane
 

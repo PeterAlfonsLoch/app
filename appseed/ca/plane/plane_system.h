@@ -367,6 +367,8 @@ namespace plane
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
       virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
+	  virtual ::gen::command_thread & command_thread();
+
    };
 
 

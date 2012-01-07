@@ -70,6 +70,8 @@ namespace cube
 
       virtual bool is_cube();
 
+	  virtual ::gen::command_thread & command_thread();
+
    };
 
 
