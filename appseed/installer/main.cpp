@@ -283,12 +283,12 @@ void installer::on_receive(const char * pszMessage)
          iRet = 1;
          return;
       }
-      if(m_bInstallerInstalling)
-      {
-         iRet = 1;
-         return;
-      }
-      m_bInstallerInstalling = true;
+      //if(m_bInstallerInstalling)
+      //{
+        // iRet = 1;
+         //return;
+      //}
+      //m_bInstallerInstalling = true;
       start_spaadmin(pszSuffix);
    }
    else if(stricmp_dup(strMessage, "ok") == 0)
