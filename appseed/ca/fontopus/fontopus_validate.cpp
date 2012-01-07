@@ -861,7 +861,12 @@ namespace fontopus
          return System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
       }
 
-      if(!gen::str::begins(m_strFontopusServer, "fontopus."))
+
+      url_domain domainFontopus;
+
+      domainFontopus.create(m_strFontopusServer);
+
+      if(domainFontopus.m_strRadix != "fontopus")
          return "";
 
 
