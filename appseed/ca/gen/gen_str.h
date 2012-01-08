@@ -168,6 +168,11 @@ namespace gen
  **   \date  2004-02-13
  **   \author grymse@alhem.net
 **/
+
+      template < class TYPE >
+      inline TYPE from_string(const char * psz);
+
+
    } // namespace str
 
 } // namespace gen

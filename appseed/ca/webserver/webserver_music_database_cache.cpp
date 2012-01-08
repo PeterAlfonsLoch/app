@@ -893,7 +893,7 @@ SQL;
 	}
 
 
-	void database_cache::karaoke_update_tmp_song_clickdistinct1_item(var song_click_id, var topicid, var langid, var styleid, bool bVerbose)
+	void database_cache::karaoke_update_tmp_song_clickdistinct1_item(int64_t song_click_id, int64_t topicid, int64_t langid, int64_t styleid, bool bVerbose)
 	{
 
 		DWORD time0 = ::GetTickCount();
@@ -1192,19 +1192,19 @@ void database_cache::tmp_performer_update(bool bVerbose)
 }
 
 
-	void database_cache::tmp_performer_item_update_classida(var performerid, var classida)
+	void database_cache::tmp_performer_item_update_classida(int64_t performerid, const int64_array & classida)
 	{
-		var classida_text = get_classida_text(classida);
+		string classida_text = get_classida_text(classida);
 		print (performerid + "  --- " + classida_text + "<br>");
-		string update_sql = "UPDATE tmp_person SET classida = '" + classida_text + "' WHERE performerid = '" +performerid + "'";
+		string update_sql = "UPDATE tmp_person SET classida = '" + classida_text + "' WHERE performerid = '" +gen::str::itoa(performerid) + "'";
 		musicdb().query(update_sql);
 	}
 
-	void database_cache::tmp_performer_item_update_chord_classida(var performerid, var classida)
+	void database_cache::tmp_performer_item_update_chord_classida(int64_t performerid, const int64_array & classida)
 	{
-		var classida_text = get_classida_text(classida);
+		string classida_text = get_classida_text(classida);
 		print (performerid + " --- " + classida_text + "<br>");
-		string update_sql = "UPDATE tmp_person SET chord_classida = '" + classida_text + "' WHERE performerid = '" +performerid + "'";
+		string update_sql = "UPDATE tmp_person SET chord_classida = '" + classida_text + "' WHERE performerid = '" +gen::str::itoa(performerid) + "'";
 		musicdb().query(update_sql);
 	}
 
@@ -1229,19 +1229,18 @@ void database_cache::tmp_performer_update(bool bVerbose)
 		tmp_class_2_update_classida(bVerbose);
 	}
 
-	var database_cache::karaoke_getCodeArray(var classid, var topic, bool bVerbose)
+	stringa database_cache::karaoke_getCodeArray(const int64_array & stra, int64_t topic, bool bVerbose)
 	{
       UNREFERENCED_PARAMETER(bVerbose);
 		stringa codea;
 
 		AlphaSelectPerformer * pas = new AlphaSelectPerformer(topic);
-		pas->m_strClassId = classid;
+		pas->m_iaClassId = stra;
 
 		stringa fulla  = pas->code_getFullArray();
 		for(int i = 0 ; i < fulla.get_count(); i++)
 		{
          string code = fulla[i];
-			//if(pas->code_getCount(code, bVerbose))
          if(pas->code_getCount(code))
 			{
 				codea.add(code);
@@ -1251,65 +1250,55 @@ void database_cache::tmp_performer_update(bool bVerbose)
 		return codea;
 	}
 
-	var database_cache::karaoke_getCodeArrayField(var classid, var topic, bool bVerbose)
+	string database_cache::karaoke_getCodeArrayField(const int64_array & iaClassId, int64_t topic, bool bVerbose)
 	{
-		return karaoke_getCodeArray(classid, topic, bVerbose).implode(";");
+		return karaoke_getCodeArray(iaClassId, topic, bVerbose).implode(";");
 	}
 
 
-	void database_cache::tmp_class_update_classida_item(var topictype, var classid, var classidaParam, bool bVerbose)
+	void database_cache::tmp_class_update_classida_item(int64_t topictype, int64_t classid, const int64_array & classidaParam, bool bVerbose)
 	{
-      var classida = classidaParam;
-		classida.inta().QuickSort();
-      stringa stra;
-      stra = classida.stra();
-      stra.surround("<", ">");
-		var parentclass = stra.implode();
-/*		for(int i = 0;each($classida as $id)
-		{
-			$parentclass .= "<$id>";
-		}*/
+
+      string strTopicType(gen::str::itoa(topictype));
+      string strClassId(gen::str::itoa(classid));
+		
+      stringa straClassid;
+      straClassid = classidaParam;
+      straClassid.surround("<", ">");
+      string parentclass = straClassid.implode();
 
 		bool bGo = false;
-		if(strlen(classid) == 0)
+
+		if(classid == -1)
 		{
 			bGo = true;
 		}
 		else
 		{
-			string sql_select = "SELECT COUNT(*) FROM tmp_class WHERE classid = '" + classid + "' AND parentclassida = '" + parentclass + "' AND topictype = " + topictype;
+			string sql_select = "SELECT COUNT(*) FROM tmp_class WHERE classid = '" + strClassId + "' AND parentclassida = '" + parentclass + "' AND topictype = " + strTopicType;
 			var count = musicdb().query_item(sql_select);
 			bGo = count == 0;
 		}
 
       var tt_cond;
-		 if(topictype == 1)
-		 {
-				tt_cond = "(topic_song.topictype = 1 OR topic_song.topictype = 1001)";
-		 }
-		 else
-		 {
-				tt_cond = "topic_song.topictype = " + topictype;
-		 }
+      if(topictype == 1)
+      {
+         tt_cond = "(topic_song.topictype = 1 OR topic_song.topictype = 1001)";
+      }
+      else
+      {
+         tt_cond = "topic_song.topictype = " + topictype;
+      }
 
 
 		if(bGo)
 		{
-			var classida2 = classida;
-			if(strlen(classid) > 0)
-			{
-				classida2.inta().add(classid);
-			}
-			classida2.inta().QuickSort();
-			string classcondition = "";
-         stringa stra2;
-         stra2 = classida2.stra();
-         stra2.surround("<", ">");
          var rows;
-			if(stra2.get_count() > 0)
+         string sql_select;
+			if(parentclass.has_char())
 			{
-				classcondition = musicdb().and_instra("`tmp_song`.`classida`", stra2);
-				string sql_select = "SELECT COUNT(DISTINCT topic_person.person), COUNT(DISTINCT tmp_song.song) FROM topic_song INNER JOIN song ON topic_song.song = song.id INNER JOIN tmp_song ON song.id = tmp_song.song INNER JOIN topic_person ON topic_person.topic = topic_song.topic AND topic_person.topictype = topic_song.topictype WHERE "+ tt_cond + "  AND " + classcondition;
+				string classcondition = musicdb().and_instra("`tmp_song`.`classida`", straClassid);
+				sql_select = "SELECT COUNT(DISTINCT topic_person.person), COUNT(DISTINCT tmp_song.song) FROM topic_song INNER JOIN song ON topic_song.song = song.id INNER JOIN tmp_song ON song.id = tmp_song.song INNER JOIN topic_person ON topic_person.topic = topic_song.topic AND topic_person.topictype = topic_song.topictype WHERE "+ tt_cond + "  AND " + classcondition;
 				if(bVerbose)
 				{
 					print(sql_select);
@@ -1319,7 +1308,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
 			}
 			else
 			{
-				string sql_select = "SELECT COUNT(DISTINCT topic_person.person), COUNT(DISTINCT tmp_song.song) FROM topic_song INNER JOIN song ON topic_song.song = song.id INNER JOIN topic_song as ts2 ON ts2.song = song.id INNER JOIN tmp_song ON song.id = tmp_song.song INNER JOIN topic_person ON topic_person.topic = ts2.topic AND topic_person.topictype = ts2.topictype WHERE "+ tt_cond + " GROUP BY topic_person.topictype";
+				sql_select = "SELECT COUNT(DISTINCT topic_person.person), COUNT(DISTINCT tmp_song.song) FROM topic_song INNER JOIN song ON topic_song.song = song.id INNER JOIN topic_song as ts2 ON ts2.song = song.id INNER JOIN tmp_song ON song.id = tmp_song.song INNER JOIN topic_person ON topic_person.topic = ts2.topic AND topic_person.topictype = ts2.topictype WHERE "+ tt_cond + " GROUP BY topic_person.topictype";
 				if(bVerbose)
 				{
 					print(sql_select);
@@ -1333,13 +1322,13 @@ void database_cache::tmp_performer_update(bool bVerbose)
             var row = rows.at(i);
 				if(row.at(0) > 0 && row.at(1) > 0)
 				{
-					var codeafld = karaoke_getCodeArrayField(implode(",", classida2), topictype, bVerbose);
+					string codeafld = karaoke_getCodeArrayField(classidaParam, topictype, bVerbose);
 					if(bVerbose)
 					{
-						print("Insert class=" + classid + ", parentclass=" + parentclass + ": ");
-						print("perfomer(" + row.at(0) + ") song(" + row.at(1) + ") type(" + topictype + ")<br>");
+						print("Insert class=" + strClassId + ", parentclass=" + parentclass + ": ");
+						print("perfomer(" + row.at(0) + ") song(" + row.at(1) + ") type(" + strTopicType + ")<br>");
 					}
-					string sql_insert = "INSERT tmp_class (classid, topictype, parentclassida, performercount, songcount, codea) VALUES ('" + classid + "', '" + topictype + "', '" + parentclass + "', '" + row.at(0) + "', '" + row.at(1) + "',  '" + codeafld + "')";
+					string sql_insert = "INSERT tmp_class (classid, topictype, parentclassida, performercount, songcount, codea) VALUES ('" + strClassId + "', '" + strTopicType + "', '" + parentclass + "', '" + row.at(0) + "', '" + row.at(1) + "',  '" + codeafld + "')";
 					musicdb().query(sql_insert);
 
 				}
@@ -1347,7 +1336,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
 				{
 					if(bVerbose)
 					{
-						print("<b>Not Inserted</b> class=" + classid + ", parentclass=" + parentclass + "!<br>");
+						print("<b>Not Inserted</b> class=" + strClassId + ", parentclass=" + parentclass + "!<br>");
 					}
 				}
 			}
@@ -1357,67 +1346,81 @@ void database_cache::tmp_performer_update(bool bVerbose)
 
 	void database_cache::tmp_class_update_classida(bool bVerbose)
 	{
+
 		if(bVerbose)
 		{
 			print("<pre>");
 		}
 
+      ::ca::set_thread_priority(::ca::thread_priority_highest);
+
 		string strSql = "INSERT IGNORE INTO tmp_song (song) SELECT song.id FROM song";
 
 		musicdb().query(strSql);
 
-		tmp_class_update_classida_item(0, "", array(), bVerbose);
-		tmp_class_update_classida_item(1, "", array(), bVerbose);
-		tmp_class_update_classida_item(2, "", array(), bVerbose);
+      int64_array iaEmpty;
+
+		tmp_class_update_classida_item(0, -1, iaEmpty, bVerbose);
+		tmp_class_update_classida_item(1, -1, iaEmpty, bVerbose);
+		tmp_class_update_classida_item(2, -1, iaEmpty, bVerbose);
 
 		strSql = "SELECT topic_class.topic, topic_class.topictype, topic_class.class FROM topic_class ORDER BY topic_class.topictype, topic_class.topic, topic_class.class;";
 
-		var rows = musicdb().query_rows(strSql);
+      int64_array    topicida;
+      int64_array    topictypea;
+      int64_array    classida;
 
-      ::ca::set_thread_priority(::ca::thread_priority_time_critical);
+		var rows = musicdb().query_rows < int64_array, int64_array, int64_array, int64_t, int64_t, int64_t > (strSql, topicida, topictypea, classida, -1, -1, -1);
 
-	   stringa classa;
+	   int64_array    classa;
 
-      string topicid;
-      string topictype;
-      string classid;
-      string cl;
-      stringa parent_class;
+      int64_t        topicid;
+      int64_t        topictype;
+      int64_t        classid;
+      int64_t        cl;
+      int64_array    parent_class;
+      int64_t        oldtopicid;
+      int64_t        oldtopictype;
+      stringa        classa_added;
 
 		if(rows.array_get_count() > 0)
 		{
-         var row = rows.at(0);
-			topicid		= row.at(0);
-			topictype	= row.at(1);
-			classid		= row.at(2);
+			topicid		= topicida[0];
+			topictype	= topictypea[0];
+			classid		= classida[0];
 			classa.add(classid);
 		}
 
-      string oldtopicid;
-      string oldtopictype;
+		
 
-		stringa classa_added;
-		for(int i = 1; i < rows.array_get_count(); i++)
+		for(index i = 1; i < rows.array_get_count(); i++)
 		{
-         var row = rows.at(i);
-			topicid		= row.at(0);
-			topictype	= row.at(1);
-			classid		= row.at(2);
+
+			topicid		= topicida[i];
+			topictype	= topictypea[i];
+			classid		= classida[i];
+
 			if(oldtopicid != topicid || topictype != oldtopictype)
 			{
+
 				classa.QuickSort();
 				string classa_test = classa.implode(",");
+
 				if(!classa_added.contains(classa_test))
 				{
-					array_ptr_alloc < stringa > a;
+
+					array_ptr_alloc < int64_array > a;
                a.remove_all();
                gen::lemon::array_makecombination(a, classa);
+
 					for(int i = 0; i < a.get_count(); i++)
 					{
-                  stringa & comb = a[i];
+                  int64_array & comb = a[i];
 						if(comb.get_count() > 0)
 						{
+
 							cl = comb[0];
+
 							parent_class = comb;
                      parent_class.remove(cl);
 							if(bVerbose)
@@ -1426,28 +1429,42 @@ void database_cache::tmp_performer_update(bool bVerbose)
 								print(" parent_class =" + parent_class.implode(";"));
 								print("\n");
 							}
+
+                     parent_class.QuickSort();
+
 //							tmp_class_update_classida_item($oldtopictype, $class, $parent_class, bVerbose);
 							tmp_class_update_classida_item(0, cl, parent_class, bVerbose);
 							tmp_class_update_classida_item(1, cl, parent_class, bVerbose);
 							tmp_class_update_classida_item(2, cl, parent_class, bVerbose);
+
 						}
+
 					}
+
 					classa_added.add(classa_test);
+
 				}
+
 				classa.remove_all();
+
  				oldtopicid		= topicid;
 				oldtopictype 	= topictype;
+
 			}
+
 			classa.add(classid);
+
 		}
 
       tmp_class_update_classida_item(0, cl, parent_class, bVerbose);
 		tmp_class_update_classida_item(1, cl, parent_class, bVerbose);
 		tmp_class_update_classida_item(2, cl, parent_class, bVerbose);
+
 		if(bVerbose)
 		{
 			print("</pre>");
 		}
+
 	}
 
 	void database_cache::tmp_class_2_update_classida(bool bVerbose)
@@ -1560,7 +1577,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
 		karaoke_update_tmp_song_topictype_count("karaokecount", 0, bVerbose);
 	}
 
-	void database_cache::karaoke_update_tmp_song_topictype_count(var tmp_song_field, var topictype, bool bVerbose)
+	void database_cache::karaoke_update_tmp_song_topictype_count(const char * tmp_song_field, int64_t topictype, bool bVerbose)
 	{
       string strSql;
 		DWORD time1 = ::GetTickCount();
@@ -1575,11 +1592,11 @@ void database_cache::tmp_performer_update(bool bVerbose)
 		}
 		if(topictype == 1)
 		{
-			strSql = "UPDATE tmp_song SET tmp_song." + tmp_song_field + " = (SELECT COUNT(topic_song.topic) FROM topic_song WHERE topic_song.song = tmp_song.song AND (topic_song.topictype = 1 OR topic_song.topictype = 1001))";
+			strSql = "UPDATE tmp_song SET tmp_song." + string(tmp_song_field) + " = (SELECT COUNT(topic_song.topic) FROM topic_song WHERE topic_song.song = tmp_song.song AND (topic_song.topictype = 1 OR topic_song.topictype = 1001))";
 		}
 		else
 		{
-			strSql = "UPDATE tmp_song SET tmp_song." + tmp_song_field + " = (SELECT COUNT(topic_song.topic) FROM topic_song WHERE topic_song.song = tmp_song.song AND topic_song.topictype = " + topictype + ")";
+			strSql = "UPDATE tmp_song SET tmp_song." + string(tmp_song_field) + " = (SELECT COUNT(topic_song.topic) FROM topic_song WHERE topic_song.song = tmp_song.song AND topic_song.topictype = " + gen::str::from_number(topictype) + ")";
 		}
 		if(bVerbose)
 		{
@@ -2090,11 +2107,10 @@ void database_cache::update_tmp_topic_click(bool bVerbose)
 		}*/
 }
 
-var database_cache::get_classida_text(var ida)
+string database_cache::get_classida_text(const int64_array & ida)
 {
    stringa stra;
-   stra =  ida.stra();
-	stra.QuickSort();
+   stra = ida;
    stra.surround("<", ">");
    return stra.implode();
 }

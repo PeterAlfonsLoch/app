@@ -146,13 +146,29 @@ count string_array::add(const string_array& src)
 
 void string_array::copy(const string_array& src)
 {
+
    if(this == &src)
       return;
+
    ASSERT_VALID(this);
 
    set_size(src.m_nSize);
 
    CopyElements(m_pData, src.m_pData, src.m_nSize);
+
+}
+
+void string_array::copy(const int64_array & src)
+{
+
+   ASSERT_VALID(this);
+
+   set_size(src.m_nSize);
+
+   for(int i = 0; i < m_nSize; i++)
+   {
+      m_pData[i] = gen::str::itoa(src[i]);
+   }
 
 }
 
@@ -653,6 +669,13 @@ void string_array::add(const var & var)
       for(int i = 0; i < var.vara().get_count(); i++)
       {
          add(var.vara()[i].get_string());
+      }
+   }
+   else if(var.get_type() == var::type_inta)
+   {
+      for(int i = 0; i < var.inta().get_count(); i++)
+      {
+         add(gen::str::itoa(var.inta()[i]));
       }
    }
    else if(var.get_type() == var::type_propset)

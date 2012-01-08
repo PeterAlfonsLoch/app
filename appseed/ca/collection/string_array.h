@@ -69,6 +69,7 @@ public:
    count add(const string_array & src);
 
    void copy(const string_array & src);
+   void copy(const int64_array & src);
 
 
 

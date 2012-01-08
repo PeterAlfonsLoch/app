@@ -8,7 +8,7 @@ namespace webserver
    class CLASS_DECL_ca AlphaSelectLinkMaker
    {
    public:
-      virtual string code_getLink(const char * classid, const char * code) = 0;
+      virtual string code_getLink(const int64_array & iaClassId, const char * code) = 0;
    };
 
 
@@ -19,7 +19,7 @@ namespace webserver
    public:
       string m_strLang;
       string m_strStyle;
-      string code_getLink(const char * classid, const char * code);
+      string code_getLink(const int64_array & iaClassId, const char * code);
    };
 
    class CLASS_DECL_ca AlphaSelectPerformerLinkMaker3 :
@@ -29,22 +29,26 @@ namespace webserver
    public:
       string m_strLang;
       string m_strStyle;
-      string code_getLink(const char * classid, const char * code);
+      string code_getLink(const int64_array & iaClassId, const char * code);
    };
 
    class CLASS_DECL_ca AlphaSelectPerformer :
       public dynamic_source::ptr
    {
    public:
-      AlphaSelectPerformer(const char * topic = NULL);
 
 
       AlphaSelectLinkMaker *  m_plinkmaker;
-      string                  m_strClassId;
+      int64_array             m_iaClassId;
       gen::var_property       m_kptitlea;
       string                  m_strLangStyle;
       int                     m_iTopicType;
 
+
+      AlphaSelectPerformer();
+      AlphaSelectPerformer(int64_t topic);
+
+      void construct();
 
       void out(int style);
 
@@ -56,7 +60,7 @@ namespace webserver
 
       void print_td(const char * prefix, const char * pszTitle = NULL);
 
-      int code_getCount(const char * code);
+      int code_getCount(const char * pszCode);
 
       void code_printCells(const stringa & codea, int style);
 

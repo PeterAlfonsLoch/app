@@ -595,6 +595,11 @@ namespace dynamic_source
       return m_pinterface->implode(pszDelimiter, var);
    }
 
+   string script_composite::implode(const char * pszDelimiter, const stringa & stra)
+   {
+      return m_pinterface->implode(pszDelimiter, stra);
+   }
+
    bool script_composite::in_array(const var & varElement, const var & varArray)
    {
       return m_pinterface->in_array(varElement, varArray);

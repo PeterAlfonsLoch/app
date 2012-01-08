@@ -3441,6 +3441,11 @@ ok1:
       return var.implode(pszGlue);
    }
 
+   string script_impl::implode(const char * pszGlue, const stringa & stra)
+   {
+      return stra.implode(pszGlue);
+   }
+
    bool script_impl::in_array(const var & varElement, const var & varArray)
    {
       return varArray.array_contains(varElement.get_string());

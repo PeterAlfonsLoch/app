@@ -100,6 +100,16 @@ namespace webserver
       virtual var query_row(const char * pszSql);
       virtual var query_rows(const char * pszSql);
 
+      template < class ARRAY1, class ARRAY2, class ARRAY3, class TYPE1, class TYPE2, class TYPE3 >
+      ::count query_rows(const char * pszSql, ARRAY1 & a1, ARRAY2 & a2, ARRAY3 & a3, TYPE1 t1null, TYPE2 t2null, TYPE3 t3null)
+      {
+         dprint("fontopus_database::query_rows");
+         prof_enter("fontopus_database::query_rows");
+         ::count c = webserver::database::query_rows < ARRAY1, ARRAY2, ARRAY3, TYPE1, TYPE2, TYPE3 > (pszSql, a1, a2, a3, t1null, t2null, t3null);
+         prof_leave("fontopus_database::query_rows");
+         return c;
+      }
+
 
 
       ::webserver::music::song_ptr_array * get_songs(

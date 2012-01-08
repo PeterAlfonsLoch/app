@@ -127,7 +127,7 @@ namespace ca2
       va_end(ptr);
    }
 
-   void log::trace2(DWORD_PTR dwCategory, UINT nLevel, const char * pszFormat, ...)
+   void log::trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...)
    {
       va_list ptr;
       va_start(ptr, pszFormat);
@@ -135,7 +135,7 @@ namespace ca2
       va_end(ptr);
    }
 
-   void log::trace_v(const char *pszFileName, int nLine, DWORD_PTR dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
+   void log::trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
    {
       UNREFERENCED_PARAMETER(nLevel);
       UNREFERENCED_PARAMETER(nLine);
@@ -234,7 +234,7 @@ namespace ca2
       }
    }
 
-   void log::set_trace_category(DWORD_PTR dwCategory, const char * pszName, unsigned int uiLevel)
+   void log::set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel)
    {
       _template::CTraceCategory & category = m_trace[dwCategory];
       category.m_strCategory = pszName;
@@ -242,5 +242,6 @@ namespace ca2
       category.m_uiLevel = uiLevel;
       category.m_estatus = uiLevel >= 1 ? _template::trace::status_enabled : _template::trace::status_disabled;
    }
+
 
 } // namespace ca2

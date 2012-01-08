@@ -235,6 +235,7 @@ namespace dynamic_source
 
       virtual var explode(const char * pszDelimiter, const char * psz) = 0;
       virtual string implode(const char * pszDelimiter, const var & var) = 0;
+      virtual string implode(const char * pszDelimiter, const stringa & stra) = 0;
 
       virtual bool in_array(const var & varElement, const var & varArray) = 0;
       virtual void array_unshift(gen::property & varArray, const var varElement);

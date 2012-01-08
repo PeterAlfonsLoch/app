@@ -132,7 +132,7 @@ namespace kar
 
          m_pasp                = new AlphaSelectPerformer(get("target"));
          m_pasp->m_plinkmaker = m_plm;
-         m_pasp->m_strClassId   = get("cid");
+         m_pasp->m_iaClassId.add(gen::str::atoi64(get("cid").get_string()));
 
 
 /*         if(m_hasParam("aid"))

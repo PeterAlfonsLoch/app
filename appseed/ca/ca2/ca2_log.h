@@ -56,12 +56,12 @@ namespace ca2
       virtual bool initialize(id id);
       virtual bool finalize();
 
-      void trace_v(const char *pszFileName, int nLine, DWORD_PTR dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
+      void trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
 
       void __cdecl trace(const char * pszFormat, ...);
-      void __cdecl trace2(DWORD_PTR dwCategory, UINT nLevel, const char * pszFormat, ...);
+      void __cdecl trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...);
 
-      void set_trace_category(DWORD_PTR dwCategory, const char * pszName, unsigned int uiLevel);
+      void set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel);
 
    };
 

@@ -78,7 +78,7 @@ namespace _template
       trace::e_status GetStatus() const throw();
       void SetStatus(trace::e_status eStatus) throw();
 
-      operator DWORD_PTR() const throw();
+      operator DWORD() const throw();
 
       unsigned int      m_dwCategory;
       string            m_strCategory;

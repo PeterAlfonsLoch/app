@@ -48,8 +48,8 @@ namespace ca4
       gzip gz(ostreamCompressed);
       class primitive::memory memory;
       memory.allocate(1024 * 256);
-      int uncomprLen;
-      while((uncomprLen = fread(memory, 1, (size_t) memory.get_size(), fileUn)) > 0)
+      ::primitive::memory_size uncomprLen;
+      while((uncomprLen = (::primitive::memory_size) fread(memory, 1, (size_t) memory.get_size(), fileUn)) > 0)
       {
          gz.write(memory, uncomprLen);
       }
@@ -62,7 +62,7 @@ namespace ca4
    {
       class primitive::memory memory;
       memory.allocate(1024 * 256);
-      int uiRead;
+      ::primitive::memory_size  uiRead;
       while((uiRead = istream.read(memory, memory.get_size())) > 0)
       {
          ostream.write(memory, uiRead);

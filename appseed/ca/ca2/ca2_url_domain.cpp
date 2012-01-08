@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 
+
    void url_domain::create(const char * pszServerName)
    {
       m_strOriginalName = pszServerName;

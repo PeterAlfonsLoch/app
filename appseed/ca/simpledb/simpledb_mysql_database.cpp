@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "mysql/mysql.h"
 
 
 namespace mysql

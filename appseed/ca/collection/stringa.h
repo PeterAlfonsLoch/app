@@ -10,6 +10,8 @@ class CLASS_DECL_ca stringa :
    virtual public ex1::byte_serializable
 {
 public:
+
+
    stringa(::ca::application * papp = NULL);
    stringa(const stringa & base_array);
    virtual ~stringa();
@@ -84,11 +86,13 @@ public:
    string reverse_implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
 
    void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
+   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
 
 //   void XFV001Expand();
 
    stringa & operator =(const var var);
    stringa & operator =(const stringa & stra);
+   stringa & operator =(const int64_array & ia);
    stringa & operator =(const string_array & stra);
    stringa & operator -=(const string_array & stra);
    stringa & operator +=(const string_array & stra);

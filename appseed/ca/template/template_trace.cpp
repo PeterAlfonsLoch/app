@@ -119,7 +119,7 @@ namespace _template
    }
 
 
-   CTraceCategory::operator DWORD_PTR() const throw()
+   CTraceCategory::operator DWORD() const throw()
    {
       return( m_dwCategory );
    }

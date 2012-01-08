@@ -6,6 +6,34 @@
 #include "ex1/ex1_byte_serializable.h"
 
 
+namespace gen
+{
+
+
+   namespace str
+   {
+
+
+      inline CLASS_DECL_ca string from_number(int i) { return itoa(i); }
+      inline CLASS_DECL_ca string from_number(long i) { return l2string(i); }
+      inline CLASS_DECL_ca string from_number(int64_t i) { return i64toa(i); }
+      inline CLASS_DECL_ca string from_number(double d) { return to_string(d); }
+      inline CLASS_DECL_ca string from_number(unsigned long ul) { return i64toa(ul); }
+      inline CLASS_DECL_ca string from_number(unsigned int ui) { return i64toa(ui); }
+      inline CLASS_DECL_ca string from_number(uint64_t d) { return bigint2string(d); }
+
+      template < >
+      inline int64_t from_string(const char * psz)
+      {
+         return atoi64(string(psz));
+      }
+
+   } // namespace gen::str
+
+
+} // namespace gen
+
+
 template < typename TYPE >
 class numeric_array :
    virtual public ex1::byte_serializable_array < comparable_primitive_array < TYPE > >
@@ -59,7 +87,7 @@ public:
          {
             return true;
          }
-         else if(iCompare > ::numeric_info::get_null_value < TYPE > ())
+         else if(iCompare > (typename ::numeric_info::offset < TYPE >::TYPE) ::numeric_info::get_null_value < TYPE > ())
          {
             iUBound = iIndex - 1;
             if(iUBound < 0)
@@ -85,7 +113,7 @@ public:
          iCompare = this->element_at(iIndex) - t;
          if(iCompare == ::numeric_info::get_null_value < TYPE > ())
             return true;
-         else if(iCompare < ::numeric_info::get_null_value < TYPE > ())
+         else if(iCompare < (typename ::numeric_info::offset < TYPE >::TYPE) ::numeric_info::get_null_value < TYPE > ())
             iIndex++;
          else
             break;
@@ -97,7 +125,7 @@ public:
          iCompare = this->element_at(iIndex) - t;
          if(iCompare == ::numeric_info::get_null_value < TYPE > ())
             return true;
-         else if(iCompare > ::numeric_info::get_null_value < TYPE > ())
+         else if(iCompare > (typename ::numeric_info::offset < TYPE >::TYPE) ::numeric_info::get_null_value < TYPE > ())
             iIndex--;
          else
             break;
@@ -107,7 +135,11 @@ public:
 
    }
 
+   void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
+   string implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
 
+
+   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, count iCount = -1);
 
 
 };
@@ -221,6 +253,77 @@ numeric_array < TYPE >::
 {
    operator = (a);
 }
+
+
+template < class TYPE >
+void numeric_array < TYPE >::implode(string & str, const char * lpcszSeparator, index start, count count) const
+{
+   if(start < 0)
+   {
+      start += this->get_size();
+   }
+   index last;
+   if(count < 0)
+   {
+      last = this->get_size() + count;
+   }
+   else
+   {
+      last = start + count - 1;
+   }
+   if(start <= last)
+   {
+      string strSeparator(lpcszSeparator);
+      index i = start;
+      str = gen::str::from_number(this->element_at(i));
+      i++;
+      for(; i <= last; i++)
+      {
+         str += strSeparator + gen::str::from_number(this->element_at(i));
+      }
+   }
+   else
+   {
+      str.Empty();
+   }
+}
+
+template < class TYPE >
+string numeric_array < TYPE >::implode(const char * lpcszSeparator, index iStart, index iEnd) const
+{
+   string str;
+   implode(str, lpcszSeparator, iStart, iEnd);
+   return str;
+}
+
+
+template < class TYPE >
+string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
+{
+   string str;
+   string strSeparator(pszSeparator);
+   string strPrefix(pszPrefix);
+   string strSuffix(pszSuffix);
+   index iEnd;
+   if(iStart < 0)
+      iStart = this->get_size() + iStart;
+   if(iCount < 0)
+      iEnd = this->get_size() + iCount;
+   else
+      iEnd = iStart + iCount - 1;
+   if(iStart <= iEnd)
+   {
+      index i = iStart;
+      str = strPrefix + gen::str::from_number(this->element_at(i)) + strSuffix;
+      i++;
+      for(; i <= iEnd; i++)
+      {
+         str += strSeparator + strPrefix + gen::str::from_number(this->element_at(i)) + strSuffix;
+      }
+   }
+   return str;
+}
+
 
 template < class TYPE >
 void numeric_array < TYPE >::

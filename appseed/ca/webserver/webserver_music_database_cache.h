@@ -47,22 +47,23 @@ namespace webserver
 
          void karaoke_update_tmp_song_clickdistinct1(bool bVerbose = false);
 
-         void karaoke_update_tmp_song_clickdistinct1_item(var song_click_id, var topicid, var langid, var styleid, bool bVerbose = false);
+         void karaoke_update_tmp_song_clickdistinct1_item(int64_t song_click_id, int64_t topicid, int64_t langid, int64_t styleid, bool bVerbose = false);
 
          void tmp_performer_update(bool bVerbose);
 
-         void tmp_performer_item_update_classida(var performerid, var classida);
+         void tmp_performer_item_update_classida(int64_t performerid, const int64_array & classida);
 
-         void tmp_performer_item_update_chord_classida(var performerid, var classida);
+         void tmp_performer_item_update_chord_classida(int64_t performerid, const int64_array & classida);
 
          void karaoke_update_tmp_class( bool bVerbose);
-         var karaoke_getCodeArray(var classid, var topic, bool bVerbose);
 
-         var karaoke_getCodeArrayField(var classid, var topic, bool bVerbose);
+         stringa karaoke_getCodeArray(const int64_array & straClassId, int64_t topic, bool bVerbose);
 
-         void tmp_class_update_classida_item(var topictype, var classid, var classida, bool bVerbose);
+         string karaoke_getCodeArrayField(const int64_array & straClassId, int64_t topic, bool bVerbose);
 
-         void tmp_class_update_classida( bool bVerbose);
+         void tmp_class_update_classida_item(int64_t topictype, int64_t classid, const int64_array & classida, bool bVerbose);
+
+         void tmp_class_update_classida(bool bVerbose);
 
          void tmp_class_2_update_classida(bool bVerbose);
 
@@ -71,7 +72,7 @@ namespace webserver
          void karaoke_update_tmp_song_lyricscount(bool bVerbose);
          void karaoke_update_tmp_song_chordcount(bool bVerbose);
          void karaoke_update_tmp_song_karaokecount(bool bVerbose);
-         void karaoke_update_tmp_song_topictype_count(var tmp_song_field, var topictype, bool bVerbose);
+         void karaoke_update_tmp_song_topictype_count(const char * tmp_song_field, int64_t topictype, bool bVerbose);
 
          void update_lyrics(bool bVerbose = false);
 
@@ -103,7 +104,7 @@ namespace webserver
 
          void update_tmp_topic_click(bool bVerbose);
 
-         var get_classida_text(var ida);
+         string get_classida_text(const int64_array & ida);
 
          var debug_delta(var time1, var time2);
 

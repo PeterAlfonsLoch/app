@@ -422,6 +422,13 @@ stringa & stringa::operator =(const string_array & tokena)
    return *this;
 }
 
+stringa & stringa::operator =(const int64_array & ia)
+{
+   copy(ia);
+   return *this;
+}
+
+
 /*int stringa::CountPrefixNoCase(const char * lpcszPrefix)
 {
    string str;
@@ -735,6 +742,31 @@ void stringa::surround(const char * pszPrefix, const char * pszSuffix, int iStar
    {
       this->element_at(i) = strPrefix + this->element_at(i) + strSuffix;
    }
+}
+
+string stringa::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, int iStart, int iCount)
+{
+   string str;
+   string strSeparator(pszSeparator);
+   string strPrefix(pszPrefix);
+   string strSuffix(pszSuffix);
+   int iEnd;
+   if(iStart < 0)
+      iStart = this->get_size() + iStart;
+   if(iCount < 0)
+      iEnd = this->get_size() + iCount;
+   else
+      iEnd = iStart + iCount - 1;
+   if(iStart <= iEnd)
+   {
+      str = strPrefix + this->element_at(iStart) + strSuffix;
+      iStart++;
+      for(int i = iStart; i <= iEnd; i++)
+      {
+         str += strSeparator + strPrefix + this->element_at(i) + strSuffix;
+      }
+   }
+   return str;
 }
 
 stringa & stringa::operator -=(const string_array & stra)
