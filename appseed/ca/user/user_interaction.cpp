@@ -21,24 +21,31 @@ namespace user
       m_iModalCount           = 0;
       m_bRectOk               = false;
       m_bVisible              = true;
+
+      m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
+
    }
 
    interaction::interaction(::ca::application * papp) :
       ca(papp),
       ::user::window_interface(papp)
    {
-      m_eappearance           = appearance_normal;
-      m_pimpl                 = NULL;
-      m_bCursorInside         = false;
-      m_nFlags                = 0;
-      m_pguieOwner            = NULL;
-      m_pguie                 = this; // initially set to this
-      m_pthread               = NULL;
-      m_ecursor               = ::visual::cursor_default;
-      m_iModal                = 0;
-      m_iModalCount           = 0;
-      m_bRectOk               = false;
-      m_bVisible              = true;
+
+      m_eappearance                 = appearance_normal;
+      m_pimpl                       = NULL;
+      m_bCursorInside               = false;
+      m_nFlags                      = 0;
+      m_pguieOwner                  = NULL;
+      m_pguie                       = this; // initially set to this
+      m_pthread                     = NULL;
+      m_ecursor                     = ::visual::cursor_default;
+      m_iModal                      = 0;
+      m_iModalCount                 = 0;
+      m_bRectOk                     = false;
+      m_bVisible                    = true;
+
+      m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
+
    }
 
    interaction::~interaction()
@@ -2828,6 +2835,20 @@ restart:
 
       }
       return puiFocusable;
+   }
+
+   COLORREF interaction::get_background_color()
+   {
+      
+      return m_crDefaultBackgroundColor;
+      
+   }
+
+   void interaction::set_default_background_color(COLORREF crDefaultBackgroundColor)
+   {
+      
+      m_crDefaultBackgroundColor = crDefaultBackgroundColor;
+
    }
 
 

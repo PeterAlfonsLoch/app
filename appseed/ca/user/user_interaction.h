@@ -102,6 +102,7 @@ namespace user
       bool                                m_bRectOk;
       comparable_array < int >            m_iaModalThread;
       id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
+      COLORREF                            m_crDefaultBackgroundColor;
 
 
 
@@ -463,6 +464,11 @@ namespace user
 
       virtual bool can_merge(::user::interaction * pui);
       virtual bool merge(::user::interaction * pui);
+
+
+      virtual COLORREF get_background_color();
+      virtual void set_default_background_color(COLORREF crDefaultBackgroundColor);
+
 
 
    };

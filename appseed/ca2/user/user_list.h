@@ -407,7 +407,7 @@ namespace user
       bool     m_bDrag;
 
 
-
+      
 
       // Sort
       bool                 m_bSort;
@@ -449,6 +449,7 @@ namespace user
       COLORREF                      m_crTextFocused;
       COLORREF                      m_crTextHighlight;
       COLORREF                      m_crTextSelectedHighlight;
+      COLORREF                      m_crDefaultBackgoundColor;
 
       index                         m_iClick;
 
@@ -791,8 +792,6 @@ namespace user
       void _001SetView(EView eview);
 
       EView _001GetView();
-
-      virtual COLORREF get_background_color();
 
       bool keyboard_focus_is_focusable();
 

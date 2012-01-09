@@ -153,10 +153,6 @@ namespace user
       return false;
    }
 
-   COLORREF list::get_background_color()
-   {
-      return ARGB(127, 200, 255, 255);
-   }
 
    void list::_001OnDraw(::ca::graphics *pdc)
    {
@@ -179,7 +175,7 @@ namespace user
       }
       else
       {
-         pdc->FillSolidRect(rectClient, get_background_color() & 0xffffff);
+         pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
       }
 
 
@@ -5438,5 +5434,7 @@ namespace user
       pitem->m_bOk = false;
       pitem->m_iImage = -1;
    }
+
+
 
 } // namespace user

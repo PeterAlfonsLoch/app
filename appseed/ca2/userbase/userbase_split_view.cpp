@@ -58,10 +58,15 @@ namespace userbase
    {
       int i;
       rect rect;
-      COLORREF cr = RGB(92, 92, 80);
+      COLORREF cr = ARGB(184, 92, 92, 80);
+      //COLORREF crBack = ARGB(77, 230, 230, 210);
+      //pdc->set_alpha_mode(::ca::alpha_mode_blend);
       for(i = 0; i < get_pane_count(); i++)
       {
          CalcPaneRect(i, &rect);
+
+        // pdc->FillSolidRect(rect, crBack);
+
 
          // Top
          pdc->FillSolidRect(

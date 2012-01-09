@@ -24,6 +24,9 @@ namespace userex
    {
       m_eview = ViewList;
       m_scrollinfo.m_rectMargin.null();
+
+      m_etranslucency = TranslucencyPresent;
+
    }
    
    hour_list_view::~hour_list_view()
