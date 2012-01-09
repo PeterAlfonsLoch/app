@@ -20,7 +20,7 @@ namespace gen
          // 3. finalize locale_style
          // m_straLocale and m_straStyle will have the locale/styles
 
-
+         bool     m_bFixStyle;
 
          string   m_strLocale;
          string   m_strStyle;

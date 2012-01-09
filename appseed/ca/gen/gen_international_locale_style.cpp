@@ -12,6 +12,7 @@ namespace gen
          locale_style::locale_style(::ca::application * papp) :
             ca(papp)
          {
+            m_bFixStyle = false;
          }
 
 
@@ -201,7 +202,7 @@ namespace gen
             {
                string strLocale = m_straLocale[i];
                if(i >= m_straStyle.get_count())
-                  m_straStyle.add("_std");
+                  m_straStyle.add(m_strStyle);
                string strStyle = m_straStyle[i];
                stringa stra;
                stra.explode("-", strLocale);
@@ -230,7 +231,7 @@ namespace gen
                {
                   string strLocale = m_straLocale[i];
                   if(i >= m_straStyle.get_count())
-                     m_straStyle.add("_std");
+                     m_straStyle.add(m_strStyle);
                   string strStyle = m_straStyle[i];
                   if(strStyle.CompareNoCase("_std") != 0)
                   {
@@ -254,6 +255,7 @@ namespace gen
                   }
                }
             }
+            if(!m_bFixStyle)
             {
                for(index i = 0; i < m_straLocale.get_count(); i++)
                {
