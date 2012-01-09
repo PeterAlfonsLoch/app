@@ -660,9 +660,9 @@ namespace ca2
    bool application::is_key_pressed(int iKey)
    {
 
-      if(is_bergedge() || is_system() || (m_psession == NULL && m_psystem == NULL))
+      if(is_session() || is_bergedge() || is_system() || is_cube() || (m_psession == NULL && m_psystem == NULL))
       {
-         if(is_system() && m_psession != NULL && !is_bergedge())
+         if((is_system() || is_cube()) && m_psession != NULL && !is_bergedge() && !is_session())
          {
             return Sess(this).is_key_pressed(iKey);
          }
@@ -693,7 +693,7 @@ namespace ca2
    {
       if(is_session() || is_bergedge() || is_system() || is_cube() || (m_psession == NULL && m_psystem == NULL))
       {
-         if(is_system() && m_psession != NULL && !is_bergedge())
+         if((is_system() || is_cube()) && m_psession != NULL && !is_bergedge() && !is_session())
          {
             return Sess(this).set_key_pressed(iKey, bPressed);
          }

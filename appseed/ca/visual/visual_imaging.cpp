@@ -1946,7 +1946,7 @@ bool imaging::bitmap_blend(
                           BYTE bAlpha)
 {
 
-   return bitmap_blend(pdcDst, ptDst, size, pdcSrc, ptSrc) != 0;
+   return pdcDst->alpha_blend(ptDst, size, pdcSrc, ptSrc, bAlpha / 255.0);
 
 }
 
