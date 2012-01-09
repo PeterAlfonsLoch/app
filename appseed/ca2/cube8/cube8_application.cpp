@@ -756,7 +756,7 @@ InitFailure:
       {
          try
          {
-            spfile(ifs(this, "").get_file(strPath, nOpenFlags, pe));
+            spfile(AppUser(this).m_pifs->get_file(strPath, nOpenFlags, pe));
          }
          catch(...)
          {
@@ -874,12 +874,15 @@ InitFailure:
       {
          if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
          {
-            if(m_spfsdata.is_null())
-               m_spfsdata(new ::fs::set(this));
-            ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-            pset->m_spafsdata.add(new ::ifs(this, ""));
-            stringa stra;
-            pset->root_ones(stra);
+            if(AppUser(this).m_pifs != NULL)
+            {
+               if(m_spfsdata.is_null())
+                  m_spfsdata(new ::fs::set(this));
+               ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+               pset->m_spafsdata.add(AppUser(this).m_pifs);
+               stringa stra;
+               pset->root_ones(stra);
+            }
          }
       }
 

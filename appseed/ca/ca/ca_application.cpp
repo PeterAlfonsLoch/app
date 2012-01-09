@@ -57,6 +57,16 @@ namespace ca
       return false;
    }
 
+   bool application::is_session()
+   {
+      return false;
+   }
+   
+   bool application::is_cube()
+   {
+      return false;
+   }
+
    bool application::is_bergedge()
    {
       return false;

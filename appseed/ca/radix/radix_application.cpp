@@ -2693,7 +2693,7 @@ namespace radix
 
    void application::get_cursor_pos(LPPOINT lppoint)
    {
-      if(is_system())
+      if(is_system() || is_cube())
       {
          if(m_bSessionSynchronizedCursor)
          {
@@ -2704,7 +2704,7 @@ namespace radix
             *lppoint = m_ptCursor;
          }
       }
-      else if(is_bergedge())
+      else if(is_session() || is_bergedge())
       {
          if(m_bSessionSynchronizedCursor)
          {

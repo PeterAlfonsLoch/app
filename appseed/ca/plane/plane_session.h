@@ -114,7 +114,7 @@ namespace plane
 
       virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
       
-      virtual bool is_bergedge();
+      virtual bool is_session();
 
       ::ca::application * get_current_application();
 

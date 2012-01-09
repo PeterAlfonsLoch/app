@@ -1419,22 +1419,6 @@ namespace ca
 
 #endif
 
-   bool graphics::alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
-      ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, BLENDFUNCTION blend)
-   {
-      UNREFERENCED_PARAMETER(xDest);
-      UNREFERENCED_PARAMETER(yDest);
-      UNREFERENCED_PARAMETER(nDestWidth);
-      UNREFERENCED_PARAMETER(nDestHeight);
-      UNREFERENCED_PARAMETER(pgraphicsSrc);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
-      UNREFERENCED_PARAMETER(nSrcWidth);
-      UNREFERENCED_PARAMETER(nSrcHeight);
-      UNREFERENCED_PARAMETER(blend);
-      throw interface_only_exception();
-   }
-
    BOOL graphics::TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
       ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, UINT crTransparent)
    {
@@ -2172,7 +2156,65 @@ namespace ca
       return from(size, pgraphicsSrc, null_point(), dwRop);
    }
 
-   bool graphics::alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
+   bool graphics::alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity)
+   {
+      UNREFERENCED_PARAMETER(xDest);
+      UNREFERENCED_PARAMETER(yDest);
+      UNREFERENCED_PARAMETER(nDestWidth);
+      UNREFERENCED_PARAMETER(nDestHeight);
+      UNREFERENCED_PARAMETER(pgraphicsSrc);
+      UNREFERENCED_PARAMETER(xSrc);
+      UNREFERENCED_PARAMETER(ySrc);
+      UNREFERENCED_PARAMETER(nSrcWidth);
+      UNREFERENCED_PARAMETER(nSrcHeight);
+      UNREFERENCED_PARAMETER(dOpacity);
+      throw interface_only_exception();
+   }
+
+   bool graphics::alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity)
+   {
+      return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, dOpacity);
+   }
+
+   bool graphics::alpha_blend(point ptDst, size size,::ca::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
+   {
+      return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, dOpacity);
+   }
+
+   bool graphics::alpha_blend(point ptDst, size size,::ca::graphics * pgraphicsSrc, double dOpacity)
+   {
+      return alpha_blend(ptDst, size, pgraphicsSrc, null_point(), dOpacity);
+   }
+
+   bool graphics::alpha_blend(size size,::ca::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
+   {
+      return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, dOpacity);
+   }
+
+   bool graphics::alpha_blend(size size,::ca::graphics * pgraphicsSrc, double dOpacity)
+   {
+      return alpha_blend(size, pgraphicsSrc, null_point(), dOpacity);
+   }
+
+
+/*
+   bool graphics::alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
+      ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, BLENDFUNCTION blend)
+   {
+      UNREFERENCED_PARAMETER(xDest);
+      UNREFERENCED_PARAMETER(yDest);
+      UNREFERENCED_PARAMETER(nDestWidth);
+      UNREFERENCED_PARAMETER(nDestHeight);
+      UNREFERENCED_PARAMETER(pgraphicsSrc);
+      UNREFERENCED_PARAMETER(xSrc);
+      UNREFERENCED_PARAMETER(ySrc);
+      UNREFERENCED_PARAMETER(nSrcWidth);
+      UNREFERENCED_PARAMETER(nSrcHeight);
+      UNREFERENCED_PARAMETER(blend);
+      throw interface_only_exception();
+   }*/
+
+/*   bool graphics::alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, blend);
    }
@@ -2195,7 +2237,7 @@ namespace ca
    bool graphics::alpha_blend(size size,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend)
    {
       return alpha_blend(size, pgraphicsSrc, null_point(), blend);
-   }
+   }*/
 
    void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {

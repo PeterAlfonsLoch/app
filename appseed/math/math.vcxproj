@@ -343,9 +343,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -359,6 +359,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>false</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -366,24 +368,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\stage\app\matter\msvc++100\msvcp100d.dll" "$(OutDir)msvcp100d.dll"
-copy "$(SolutionDir)..\..\stage\app\matter\msvc++100\msvcr100d.dll" "$(OutDir)msvcr100d.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\FreeImage.dll" "$(OutDir)FreeImage.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\libeay32.dll" "$(OutDir)libeay32.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\libmysql.dll" "$(OutDir)libmysql.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\libssl32.dll" "$(OutDir)libssl32.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\pcre.dll" "$(OutDir)pcre.dll"
-
-
-copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbis.dll"
-copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -594,18 +585,22 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="kissfft\kiss_fft.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="kissfft\kiss_fft_shared.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="kissfft\kiss_ifft.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis_v110|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

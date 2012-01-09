@@ -32,6 +32,12 @@ namespace gcom
          int iStart  = (int) TransitionEffectFirst;
          int iEnd    = (int) TransitionEffectLast;
 
+         //iStart  = (int) TransitionEffectLinearFadingTopBottom;
+         //iEnd    = (int) TransitionEffectLinearFadingRightLeft;
+
+         iStart  = (int) TransitionEffectAccumulLinearFadingTopBottom;
+         iEnd    = (int) TransitionEffectAccumulLinearFadingRightLeft;
+
          //iStart   = (int) TransitionEffectFlyInTopBottom;
          //iEnd     = (int) TransitionEffectFlyInRightTop;
 
@@ -284,7 +290,6 @@ namespace gcom
          if(TestEnd())
             return;
 
-
          if(m_tool001.m_iStep == 1
             && m_tool001.m_ia.get_size() <= 0)
          {
@@ -306,6 +311,8 @@ namespace gcom
             }
          }
 
+         //Sleep(min(1984, m_dwDelay));
+
          m_tool001.m_iStep++;
       }
 
@@ -320,6 +327,9 @@ namespace gcom
 
          if(!m_bInitialized)
             Initialize();
+
+
+         recta.remove_all();
 
 
 
@@ -355,6 +365,8 @@ namespace gcom
          HelperGetMain().DeferCheckLayout();
 
          ::ca::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
+         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          if(dcBack.get_os_data() == NULL)
          {
             End();
@@ -613,6 +625,40 @@ namespace gcom
 
             }
             break;
+         case TransitionEffectLinearFadingBottomTop:
+         case TransitionEffectLinearFadingTopBottom:
+         case TransitionEffectLinearFadingLeftRight:
+         case TransitionEffectLinearFadingRightLeft:
+            {
+
+               int finalX = 0;
+               int finalY = 0;
+               int finalW = cx;
+               int finalH = cy;
+
+               ::rect & rectUpdate = m_tool001.m_rect;
+
+               if(m_tool001.m_iStep == 1)
+               {
+
+                  graphics.GetDib(_graphics::DibTemp1)->from(pdibBack);
+
+               }
+
+               pdibBack->from(graphics.GetDib(_graphics::DibTemp1));
+
+               double dRate = ((double) (m_tool001.m_iStep + 1.0)) / ((double) m_tool001.m_iStepCount);
+
+               rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
+
+               dcBack.set_alpha_mode(::ca::alpha_mode_blend);
+
+               dcBack.alpha_blend(rectUpdate.size(), &dcBuffer, dRate);
+
+               recta.add(rectUpdate);
+
+            }
+            break;
          case TransitionEffectAccumulLinearFadingBottomTop:
          case TransitionEffectAccumulLinearFadingTopBottom:
          case TransitionEffectAccumulLinearFadingLeftRight:
@@ -784,76 +830,6 @@ namespace gcom
                   }
                   recta.add(rectUpdate);
                }
-            }
-            break;
-         case TransitionEffectLinearFadingBottomTop:
-         case TransitionEffectLinearFadingTopBottom:
-         case TransitionEffectLinearFadingLeftRight:
-         case TransitionEffectLinearFadingRightLeft:
-            {
-               int finalX = 0;
-               int finalY = 0;
-               int finalW = cx;
-               int finalH = cy;
-
-               ::rect & rectUpdate = m_tool001.m_rect;
-
-               const int iTileCount = max(1, m_tool001.m_data.m_sliceframe.m_iTileCount);
-               const int iFrameCount = max(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iTileMax = iTileCount;
-
-               int iIndex = m_tool001.m_iStep - 1;
-               int iTile = iIndex % iTileCount;
-               int iFrame = iIndex / iTileCount;
-               double dRate = (double) iTile / iTileMax;
-               double dRatePlus = (double) (iTile + 1) / iTileMax;
-
-               //int iFrameComplement = iFrameCount - iFrame;
-               //int iFrameExp = iFrameComplement * iFrameComplement * iFrameComplement;
-//               int iFrameStd = iFrame * 2;
-//               int iFrameStdEx = iFrameStd * iFrameStd * iFrameStd;
-//               int iFrameStdCount = iFrameCount;
-//               int iFrameCountStdEx = iFrameStdCount * iFrameStdCount * iFrameStdCount;
-               double dAlpha;
-               //dAlpha = viewinterface.m_math.LinearMap(
-                 // (double) 10, (double) 255,
-                  //(double) iFrame,
-                  //(double) 0, (double) iFrameCount);
-               //dAlpha /= 8.0;
-               if(iFrame == iFrameCount - 1)
-               {
-                  dAlpha = 255.0;
-               }
-               else
-               {
-                  double dExp = 3.4;
-                  double dMin = 4.0;
-                  dAlpha = 140.0 * ::pow(iFrame / (iFrameCount - 1.0), dExp) + dMin;
-               }
-
-//               int iAlphaAccumul = 0;;
-
-
-               if(m_tool001.m_iStep > 0
-                  && m_tool001.m_iStepCount > 0)
-               {
-                  m_tool001.Start(
-                     cx, cy,
-                     dRate, dRatePlus);
-                  m_tool001.Go();
-               }
-               else
-               {
-                  rectUpdate.set(finalX, finalY, finalX + finalW, finalY + finalH);
-               }
-               imaging.bitmap_blend(
-                  &dcBack,
-                  rectUpdate.top_left(),
-                  rectUpdate.size(),
-                  &dcBuffer,
-                  rectUpdate.top_left(),
-                  (BYTE) dAlpha);
-                  recta.add(rectUpdate);
             }
             break;
          case TransitionEffectFlyInBottomTop:
@@ -1549,9 +1525,7 @@ namespace gcom
                      point(x1, y1),
                      size(wWindow, hWindow),
                      &dcBuffer,
-                     point(x1, y1),
-                     pdib1->get_graphics(),
-                     null_point());
+                     point(x1, y1));
 
 
                   /*drawdib.draw(

@@ -1,24 +1,36 @@
 #pragma once
 
+
 namespace gcom
 {
+
+
    class thread;
    
+
    namespace backview
    {
+
+
       class Main;
+
 
       namespace user
       {
+
+
          class interaction;
+
+
       } // namespace user
+
 
       class CLASS_DECL_ca2 Interface :
          virtual public gen::signalizable
       {
-
       public:
-         bool m_bTransferVoid;
+
+
          enum e_message
          {
             MessageBackView = WM_APP + 1359,
@@ -34,13 +46,14 @@ namespace gcom
 
 
 
+         Main *               m_pmain;
+         bool                 m_bTransferVoid;
          DWORD                m_dwTimerStep;
 
-      protected:
-         Main *               m_pmain;
 
-      public:
-         ex2::file_set_sp m_spfilesetBackgroundImage;
+         ex2::file_set_sp     m_spfilesetBackgroundImage;
+
+
 
          Interface(::ca::application * papp);
          virtual ~Interface();
@@ -61,7 +74,7 @@ namespace gcom
          ::ca::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(DWORD dwMillis);
          Main & GetMain();
-         void OnImageLoaded(::ca::bitmap * pbitmap);
+         void OnImageLoaded(::ca::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
 
@@ -112,8 +125,14 @@ namespace gcom
          DECL_GEN_VSIGNAL(OnWndSize)
          DECL_GEN_VSIGNAL(OnWndTimer)
          DECL_GEN_VSIGNAL(OnWndCreate)
+
+
       };
+
 
    } // namespace backview
 
+
 } // namespace gcom
+
+

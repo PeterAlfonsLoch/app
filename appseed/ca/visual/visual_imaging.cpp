@@ -44,7 +44,18 @@ imaging::~imaging()
 
 ::ca::bitmap_sp imaging::CreateBitmap(::ca::graphics * pdc, FIBITMAP * pFreeImage)
 {
-   ::ca::bitmap_sp bitmap(get_app());
+   ::ca::dib_sp dib(get_app());
+
+   BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
+
+
+
+   dib->from(pdc, pFreeImage, false);
+
+
+   return dib->detach_bitmap();
+
+/*   ::ca::bitmap_sp bitmap(get_app());
    void * pBits = FreeImage_GetBits(pFreeImage);
    if(!bitmap->CreateDIBitmap(pdc,
       FreeImage_GetInfoHeader(pFreeImage),
@@ -83,7 +94,7 @@ imaging::~imaging()
 //      int i = 1 +1;
       TRACELASTERROR();
    }
-   return bitmap;
+   return bitmap;*/
 }
 
 
@@ -96,6 +107,31 @@ FIBITMAP * imaging::LoadImageFile(var varFile, ::ca::application * papp)
    return LoadImageFile(&memfile);
 }
 
+bool imaging::LoadImageFile(::ca::dib * pdib, var varFile, ::ca::application * papp)
+{
+
+   gen::memory_file memfile(get_app());
+
+   System.file().as_memory(varFile, *memfile.get_memory(), papp);
+
+   if(memfile.get_size() <= 0)
+      return false;
+
+   FIBITMAP * pfi = LoadImageFile(&memfile);
+
+   if(pfi == NULL)
+      return false;
+
+   ::ca::graphics_sp spgraphics(get_app());
+
+   spgraphics->CreateCompatibleDC(NULL);
+
+   if(!pdib->from(spgraphics, pfi, true))
+      return false;
+
+   return true;
+
+}
 
 /*FIBITMAP * imaging::LoadImageFile(CArchive & ar)
 {
@@ -1481,7 +1517,7 @@ void imaging::BitmapBlend24CC(
 }
 
 
-bool imaging::bitmap_blend(
+/*bool imaging::bitmap_blend(
                           ::ca::graphics * pdcDst, // destination device
                           point pt,
                           size size,
@@ -1527,7 +1563,7 @@ bool imaging::bitmap_blend(
 
       try
       {
-         dibB->get_graphics()->alpha_blend(size, dibA->get_graphics(), bf);
+         dibB->get_graphics()->BitBlt(0, 0, size.cx, size.cy, dibA->get_graphics(), 0, 0, SRCCOPY);
       }
       catch(...)
       {
@@ -1556,9 +1592,9 @@ bool imaging::bitmap_blend(
 
 
       return true;
-}
+}*/
 
-bool imaging::bitmap_blend(
+/*bool imaging::bitmap_blend(
                           ::ca::graphics * pdcA, // destination device
                           point pt,
                           size size,
@@ -1671,9 +1707,9 @@ bool imaging::bitmap_blend(
 
 
 }
+*/
 
-
-bool imaging::bitmap_blend(
+/*bool imaging::bitmap_blend(
                           ::ca::graphics * pdcA, // destination device
                           point pt,
                           size size,
@@ -1814,7 +1850,7 @@ bool imaging::BitmapBlend2(
    rect rect(0, 0, cx, cy);
    dibA->get_graphics()->InvertRect(rect);*/
 
-   BLENDFUNCTION bf;
+  /* BLENDFUNCTION bf;
    bf.BlendOp     = AC_SRC_OVER;
    bf.BlendFlags  = 0;
    bf.SourceConstantAlpha = 0xFF;
@@ -1868,6 +1904,7 @@ bool imaging::BitmapBlend2(
 
 }
 
+*/
 bool imaging::bitmap_blend(
                           ::ca::graphics * pdcDst, // destination device
                           point pt,
@@ -1886,19 +1923,17 @@ bool imaging::BitmapDivBlend(
                           point ptSrc,
                           BYTE bAlpha)
 {
-   visual::dib_sp spdib(get_app());
-   spdib->create(size);
-   spdib->to(pdcSrc, size);
-   spdib->DivideRGB(bAlpha);
-   BLENDFUNCTION bf;
-   bf.BlendOp = AC_SRC_OVER;
-   bf.BlendFlags = 0;
-   bf.SourceConstantAlpha = bAlpha;  // half of 0xff = 50% transparency
-   bf.AlphaFormat = 0;             // ignore source alpha channel
 
-   //      try
-   //    {
-   return pdcDst->alpha_blend(ptDst, size, spdib->get_graphics(), ptSrc, bf) != 0;
+   visual::dib_sp spdib(get_app());
+
+   spdib->create(size);
+
+   spdib->to(pdcSrc, size);
+
+   spdib->DivideRGB(bAlpha);
+
+   return bitmap_blend(pdcDst, ptDst, size, spdib->get_graphics(), ptSrc);
+
 }
 
 
@@ -1910,15 +1945,9 @@ bool imaging::bitmap_blend(
                           point ptSrc,
                           BYTE bAlpha)
 {
-   BLENDFUNCTION bf;
-   bf.BlendOp = AC_SRC_OVER;
-   bf.BlendFlags = 0;
-   bf.SourceConstantAlpha = bAlpha;  // half of 0xff = 50% transparency
-   bf.AlphaFormat = 0;             // ignore source alpha channel
 
-   //      try
-   //    {
-   return pdcDst->alpha_blend(ptDst, size, pdcSrc, ptSrc, bf) != 0;
+   return bitmap_blend(pdcDst, ptDst, size, pdcSrc, ptSrc) != 0;
+
 }
 
 
@@ -2250,11 +2279,23 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    if(pfibitmap== NULL)
       return NULL;
 
-   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
-   void * pData = FreeImage_GetBits(pfibitmap);
+//   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
+  // void * pData = FreeImage_GetBits(pfibitmap);
 
+
+   ::ca::dib_sp dib(get_app());
+
+   //BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
 
    ::ca::graphics_sp spgraphics(get_app());
+   spgraphics->CreateCompatibleDC(NULL);
+
+   dib->from(spgraphics, pfibitmap, false);
+
+
+   return dib->detach_bitmap();
+
+   /*::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
    ::ca::dib_sp dibSource(get_app());
@@ -2282,9 +2323,9 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    {
       FreeImage_Unload(pfibitmap);
    }
+   */
 
-
-   return dibSource->detach_bitmap();
+   //return dibSource->detach_bitmap();
 }
 
 /*HBITMAP imaging::LoadImageSync(const char * lpcszImageFilePath)
@@ -2303,6 +2344,16 @@ return LoadImageSync(str);
       return NULL;
 
    return FItoHBITMAP(pfi, true);
+
+}
+
+bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp)
+{
+
+   if(!imaging::LoadImageFile(pdib, lpcszImageFilePath, papp))
+      return false;
+
+   return true;
 
 }
 
@@ -2336,74 +2387,26 @@ bool imaging::clip_color_blend(
 }
 
 
-bool imaging::clip_color_blend(
-                             ::ca::graphics * pdc,
-                             point pt,
-                             size size,
-                             COLORREF cr,
-                             BYTE bA)
+bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA)
 {
 
-   ::ca::bitmap_sp bitmapA(get_app());
-   ::ca::graphics_sp graphicsMem(get_app());
-   graphicsMem->CreateCompatibleDC(pdc);
-   bitmapA->CreateCompatibleBitmap(pdc, size.cx, size.cy);
-   ::ca::bitmap * pbmpMemOld = graphicsMem->SelectObject(bitmapA);
-   graphicsMem->SetMapMode(MM_TEXT);
-   graphicsMem->FillSolidRect(
-      0, 0,
-      size.cx, size.cy,
-      cr);
-
-
-   BLENDFUNCTION bf;
-   bf.BlendOp = AC_SRC_OVER;
-   bf.BlendFlags = 0;
-   bf.SourceConstantAlpha = bA;  // half of 0xff = 50% transparency
-   bf.AlphaFormat = 0;             // ignore source alpha channel
-
-   BOOL bOk ;
-   bOk = pdc->alpha_blend(pt, size, graphicsMem, bf);
-
-   /*bOk = pdc->BitBlt(
-   x, y, cx, cy,
-   graphicsMem->
-   0, 0,
-   SRCCOPY);*/
-
-
-   graphicsMem->SelectObject(pbmpMemOld);
-   graphicsMem->DeleteDC();
-
-   return bOk != 0;
-
+   pdc->FillSolidRect(0, 0, size.cx, size.cy, ARGB(bA, GetRValue(cr), GetGValue(cr), GetBValue(cr)));
+   
    return true;
+
 }
-bool imaging::clip_color_blend(
-                             ::ca::graphics * pdc,
-                             LPCRECT lpcrect,
-                             COLORREF cr,
-                             BYTE alpha,
-                             ::ca::region * prgnClip)
+
+bool imaging::clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::region * prgnClip)
 {
+   
    class rect rect(lpcrect);
-   return clip_color_blend(
-      pdc,
-      rect.top_left(),
-      rect.size(),
-      cr,
-      alpha,
-      prgnClip);
+   
+   return clip_color_blend(pdc, rect.top_left(), rect.size(), cr, alpha, prgnClip);
+
 }
 
 
-bool imaging::clip_color_blend(
-                             ::ca::graphics * pdc,
-                             point pt,
-                             size size,
-                             COLORREF cr,
-                             BYTE bA,
-                             ::ca::region * prgnClip)
+bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA, ::ca::region * prgnClip)
 {
    ::ca::bitmap_sp bitmapA(get_app());
 
@@ -2512,47 +2515,6 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr
 
    return true;
 
-   if(pdibWork == NULL)
-   {
-      return false;
-   }
-
-   if(!pdibWork->create(size))
-      return false;
-
-   pdibWork->get_graphics()->SetMapMode(MM_TEXT);
-   pdibWork->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
-
-   HBITMAP hbitmapDest = (HBITMAP) ::GetCurrentObject((HDC)pdc->get_os_data(), OBJ_BITMAP);
-   BITMAP bmDest;
-   ::GetObject(hbitmapDest, sizeof(bmDest), &bmDest);
-   POINT ptViewportDest;
-   ::GetViewportOrgEx((HDC)pdc->get_os_data(), &ptViewportDest);
-   ::GetMapMode((HDC)pdc->get_os_data());
-
-   ::ca::bitmap * pbitmapSrc = pdibWork->get_bitmap();
-   class size sizeSrc = pbitmapSrc->size();
-   POINT ptViewportSrc;
-   ptViewportSrc = pdibWork->get_graphics()->GetViewportOrg();
-
-   BLENDFUNCTION bf;
-   bf.BlendOp              = AC_SRC_OVER;
-   bf.BlendFlags           = 0;
-   bf.SourceConstantAlpha  = bA;
-   bf.AlphaFormat          = 0; // ignore alpha channel
-
-   BOOL bOk ;
-   try
-   {
-      bOk = pdc->alpha_blend(pt, size, pdibWork->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
-
-
-   return bOk != 0;
 
 }
 
@@ -2560,8 +2522,11 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr
 
 bool imaging::prepare_blend(::ca::dib * pdib, LPCRECT lpcrect, COLORREF cr, BYTE bA, ::ca::dib * pdibWork)
 {
+   
    rect rect(lpcrect);
+
    return prepare_blend(pdib, rect.top_left(), rect.size(), cr, bA, pdibWork);
+
 }
 
 bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, BYTE bA, ::ca::dib * pdibWork)
@@ -2578,45 +2543,12 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
    pdibWork->get_graphics()->SetMapMode(MM_TEXT);
    pdibWork->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
 
-   //::GdiFlush();
-
-
-/*   HBITMAP hbitmapDest = (HBITMAP) ::GetCurrentObject((HDC)pdc->get_os_data(), OBJ_BITMAP);
-   BITMAP bmDest;
-   ::GetObject(hbitmapDest, sizeof(bmDest), &bmDest);
-   POINT ptViewportDest;
-   ::GetViewportOrgEx((HDC)pdc->get_os_data(), &ptViewportDest);
-   ::GetMapMode((HDC)pdc->get_os_data());
-
-
-   ::ca::bitmap * pbitmapSrc = pdibWork->get_bitmap();
-   BITMAP bmSrc;
-   pbitmapSrc->GetObject(sizeof(bmSrc), &bmSrc);
-   POINT ptViewportSrc;
-   ptViewportSrc = pdibWork->get_graphics()->GetViewportOrg();*/
-   //int nMapModeSrc = pdibWork->get_graphics()->GetMapMode();
-
-   // MM_TEXT 1
-
-
-   //::ca::dib_sp dib(get_app());
-
-   //dib->get_graphics()->BitBlt(0, 0, size.cx, size.cy, pdc, pt.x, pt.y, SRCCOPY);
-
-
-   BLENDFUNCTION bf;
-   bf.BlendOp              = AC_SRC_OVER;
-   bf.BlendFlags           = 0;
-   bf.SourceConstantAlpha  = bA;
-   bf.AlphaFormat          = AC_SRC_ALPHA; // ignore alpha channel
-
-   //pdibWork->fill_channel(bA, visual::rgba::channel_alpha);
    pdibWork->mult_alpha(NULL);
 
    BOOL bOk ;
    try
    {
-      bOk = pdib->get_graphics()->alpha_blend(pt, size, pdibWork->get_graphics(), bf);
+      bOk = pdib->get_graphics()->BitBlt(pt.x, pt.y, size.cx, size.cy, pdibWork->get_graphics(), null_point().x, null_point().y, SRCCOPY);
    }
    catch(...)
    {
@@ -4407,104 +4339,28 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 
 bool imaging::color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork)
 {
+   
    class rect rect(lpcrect);
+
    return color_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, pdibWork);
+
 }
 
 bool imaging::true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2, ::ca::dib * pdibWork3)
 {
+   
    class rect rect(lpcrect);
+
    return true_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, pdibWork, pdibWork2, pdibWork3);
+
 }
 
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
 bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2, ::ca::dib * pdibWork3)
 {
+   
    return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
-   if(pdc == NULL)
-      return false;
-   if(pdcColorAlpha == NULL)
-      return false;
-   if(pdcColorAlpha->get_os_data() == NULL)
-      return false;
-   if(&pdcColorAlpha->GetCurrentBitmap() == NULL)
-      return false;
-
-
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = 0xFF;
-   bf.AlphaFormat = AC_SRC_ALPHA;
-
-
-   if(pdc->m_pdibAlphaBlend != NULL)
-   {
-      return pdc->alpha_blend(pt, size, pdcColorAlpha, ptAlpha, bf);
-   }
-
-
-   ::ca::dib_sp spdib;
-   if(pdibWork == NULL)
-   {
-      spdib.create(get_app());
-      pdibWork = spdib;
-   }
-   if(pdibWork == NULL)
-      return false;
-   if(!pdibWork->create(size))
-      return false;
-   if(!pdibWork->from(null_point(), pdcColorAlpha, ptAlpha, size))
-      return false;
-
-
-
-
-   ::ca::dib_sp spdib3;
-   if(pdibWork3 == NULL)
-   {
-      spdib3.create(get_app());
-      pdibWork3 = spdib3;
-   }
-   if(pdibWork3 == NULL)
-      return false;
-   if(!pdibWork3->create(size))
-      return false;
-   pdibWork3->from(null_point(), pdc, pt, size);
-
-
-
-   ::ca::dib_sp spdib2;
-   if(pdibWork2 == NULL)
-   {
-      spdib2.create(get_app());
-      pdibWork2 = spdib2;
-   }
-   if(!pdibWork2->create(size))
-      return false;
-
-   // multiply by inverted alpha
-   pdibWork2->FillByte(0);
-
-
-   pdibWork2->channel_from(visual::rgba::channel_alpha, pdibWork);
-
-
-   pdibWork2->channel_invert(visual::rgba::channel_alpha);
-
-   pdibWork->get_graphics()->alpha_blend(null_point(), size, pdibWork2->get_graphics(), null_point(), bf);
-
-   pdibWork2->channel_invert(visual::rgba::channel_alpha);
-
-   pdibWork->channel_from(visual::rgba::channel_alpha, pdibWork2);
-
-   //pdibWork3->get_graphics()->alpha_blend(null_point(), size, pdibWork->get_graphics(), null_point(), bf);
-
-   //return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdibWork3->get_graphics(), 0, 0, SRCCOPY);
-
-   return pdc->alpha_blend(pt, size, pdibWork->get_graphics(), null_point(), bf);
-
 
 }
 
@@ -4517,43 +4373,6 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
    return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
 
 
-
-   UNREFERENCED_PARAMETER(pdibWork2);
-   if(pdc == NULL)
-      return false;
-   if(pdcColorAlpha == NULL)
-      return false;
-   if(pdcColorAlpha->get_os_data() == NULL)
-      return false;
-   if(&pdcColorAlpha->GetCurrentBitmap() == NULL)
-      return false;
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = 0xFF;
-   bf.AlphaFormat = AC_SRC_ALPHA;
-   ::ca::dib_sp spdib;
-   if(pdibWork == NULL)
-   {
-      spdib.create(get_app());
-      pdibWork = spdib;
-   }
-   if(pdibWork == NULL)
-      return false;
-   if(!pdibWork->create(size))
-      return false;
-   if(!pdibWork->from(null_point(), pdcColorAlpha, ptAlpha, size))
-      return false;
-   //spdib->channel_invert(visual::rgba::channel_alpha);
-   /*::ca::dib_sp spdib2;
-   if(pdibWork2 == NULL)
-   {
-      spdib2.create(get_app());
-      pdibWork2 = spdib2;
-   }
-   pdibWork->mult_alpha(pdibWork2);*/
-   //pdibWork->get_graphics()->m_pdibAlphaBlend = spdib;
-   return pdc->alpha_blend(pt, size, pdibWork->get_graphics(), ptAlpha, bf) != 0;
 }
 
 bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, double dBlend)
@@ -4600,141 +4419,7 @@ bool imaging::color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics 
    return color_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, dBlend);
 }
 
-bool imaging::pre_color_blend(
-                            ::ca::graphics * pdcColorAlpha,
-                            ::ca::graphics * pdcAlpha,
-                            COLORREF cr)
-{
-   if(pdcAlpha->get_os_data() == NULL)
-      return false;
-   if(pdcColorAlpha->get_os_data() == NULL)
-      return false;
-   ::ca::bitmap * pbmp = &pdcAlpha->GetCurrentBitmap();
-   BITMAP bm;
-   class size size = pbmp->get_size();
- 
-   ::ca::dib_sp dibA(get_app());
 
-   if(!dibA->create(size))
-      return false;
-
-   ::ca::dib_sp dibB(get_app());
-
-   if(!dibB->create(size))
-      return false;
-
-
-   dibB->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
-
-
-   dibA->get_graphics()->from(size, pdcAlpha, SRCCOPY);
-   GdiFlush();
-
-
-   UINT32 * lpuiA = (UINT32 *) dibA->get_data();
-
-   __int64 a = size.area();
-   int i;
-
-   for (i = 0; i < a; i++)
-   {
-      *lpuiA++ = 0xff000000 - (*lpuiA & 0xff000000);
-   }
-
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = 0xFF;
-   bf.AlphaFormat = AC_SRC_ALPHA;
-
-   if(!dibB->get_graphics()->alpha_blend(size, dibA->get_graphics(), bf))
-      return FALSE;
-
-   GdiFlush();
-
-   lpuiA = (UINT32 *) dibA->get_data();
-   UINT32 * lpuiB = (UINT32 *) dibB->get_data();
-
-   for (i = 0; i < a; i++)
-   {
-      *lpuiA++ = (0xff000000 - (*lpuiA & 0xff000000)) | (*lpuiB++  & 0x00ffffff);
-   }
-
-   return pdcColorAlpha->from(size, dibA->get_graphics(), SRCCOPY) != 0;
-
-}
-
-
-
-
-
-bool imaging::color_blend(
-                         ::ca::graphics * pdcA, // destination device
-                         point pt,
-                         size size,
-                         COLORREF cr,
-                         ::ca::graphics * pdcC, // alpha information device
-                         point ptSrc)
-{
-   ::ca::dib_sp dibA(get_app());
-
-   if(!dibA->create(size))
-      return false;
-
-   ::ca::dib_sp dibB(get_app());
-
-   if(!dibB->create(size))
-      return false;
-
-
-   dibB->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
-
-
-   dibA->get_graphics()->from(size, pdcC, ptSrc, SRCCOPY);
-   GdiFlush();
-
-
-   UINT32 * lpuiA = (UINT32 *) dibA->get_data();
-
-   __int64 a = size.area();
-   __int64 i;
-
-   for (i = 0; i < a; i++)
-   {
-      *lpuiA++ = 0xff000000 - ((*lpuiA << 8) & 0xff000000);
-   }
-
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = 0xFF;
-   bf.AlphaFormat = AC_SRC_ALPHA;
-
-   if(!dibB->get_graphics()->alpha_blend(size, dibA->get_graphics(), bf))
-   {
-      return FALSE;
-   }
-
-
-   GdiFlush();
-
-   lpuiA = (UINT32 *) dibA->get_data();
-   UINT32 * lpuiB = (UINT32 *) dibB->get_data();
-
-   for (i = 0; i < a; i++)
-   {
-      *lpuiA++ = (0xff000000 - (*lpuiA & 0xff000000)) | (*lpuiB++  & 0x00ffffff);
-   }
-
-   if(!pdcA->alpha_blend(pt, size, dibA->get_graphics(), bf))
-   {
-      return false;
-   }
-
-   GdiFlush();
-
-   return true;
-}
 
 void imaging::color_blend_24CC(
                              LPBYTE lpbAParam,
@@ -4778,21 +4463,6 @@ void imaging::color_blend_24CC(
 }
 
 
-bool imaging::clip_color_blend(
-                             ::ca::graphics * pdc,
-                             point pt,
-                             size size,
-                             COLORREF cr,
-                             ::ca::graphics * pdcAlpha,
-                             point ptAlpha)
-{
-   return color_blend(
-      pdc,
-      pt,
-      size,
-      cr, pdcAlpha,
-      ptAlpha);
-}
 
 
 

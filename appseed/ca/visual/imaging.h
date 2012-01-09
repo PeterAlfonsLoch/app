@@ -108,9 +108,6 @@ public:
 
    bool color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
    bool color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
-   bool color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, ::ca::graphics * pdcAlpha, point ptAlpha);
-   bool pre_color_blend(::ca::graphics * pdcColorAlpha, ::ca::graphics * pdcAlpha, COLORREF cr);
-   bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr,   ::ca::graphics * pdcAlpha, point ptAlpha);
 
    bool color_blend(::ca::graphics * pdc, int x, int y, int cx, int cy, COLORREF cr, BYTE bAlpha);
    bool color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
@@ -250,24 +247,24 @@ public:
       ::ca::graphics * pdcAlpha, // alpha information device (in alpha channel) 
       point ptAlpha);
    
-   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::graphics * pdcSrc, point ptSrc,
+   /*bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::graphics * pdcSrc, point ptSrc,
       ::ca::graphics * pdcAlpha, // alpha information device (in red channel)
       point ptAlpha,
       BYTE alphaConstant = 255,
       ::ca::dib * pdibWorkA = NULL,
-      ::ca::dib * pdibWorkB = NULL);
+      ::ca::dib * pdibWorkB = NULL);*/
 
 
-   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::dib * pdibSrc, point ptSrc,
+/*   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::dib * pdibSrc, point ptSrc,
       ::ca::dib * pdibAlpha, // alpha information device (in red channel)
       point ptAlpha,
-      BYTE alphaConstant = 255);
+      BYTE alphaConstant = 255);*/
 
-   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::graphics * pdcSrc, point ptSrc,
+   /*bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::graphics * pdcSrc, point ptSrc,
       ::ca::graphics * pdcAlpha, // alpha information device (in alpha channel)
       point ptAlpha,
       ::ca::graphics * pdcAlphaComplement, // alpha information device (in alpha channel)
-      point ptAlphaComplement);
+      point ptAlphaComplement);*/
 
    bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, 
       ::ca::graphics * pdcSrcWithAlpha, // source device
@@ -317,6 +314,9 @@ public:
       HINSTANCE hInst, 
       HRSRC hRsrc,
       BOOL bMono = false);*/
+
+   virtual bool LoadImageFile(::ca::dib * pdib, var varFile, ::ca::application * papp);
+   virtual bool LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp);
 
    virtual FIBITMAP * LoadImageFile(var varFile, ::ca::application * papp);
    virtual FIBITMAP * LoadImageFile(ex1::file * pfile);

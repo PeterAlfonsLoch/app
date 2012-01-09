@@ -32,11 +32,25 @@ namespace gcom
          public Helper
       {
       public:
+
+         ::ca::graphics_sp               m_dcScreen;
+         rect             m_rectFinalPlacement;
+
+         ::collection::map < int, int, ::ca::dib *, ::ca::dib * > m_mapDib;
+         ::ca::draw_dib_sp         m_spdrawdib;
+
+         mutex   m_mutex1Back;
+         mutex   m_mutex2Buffer;
+         mutex   m_mutex3Source;
+         mutex   m_mutex4Transfer;
+
+
+
          Graphics(Main & main);
          virtual ~Graphics();
          void UpdateObjects();
          void OnDestroy();
-         void OnImageLoaded(::ca::bitmap * hbitmap);
+         void OnImageLoaded(::ca::dib * pdib);
          void LayoutBackBitmap(BITMAP * lpbmBack);
          EImagePlacement GetDefaultPlacement();
          // buffer Level 2 consists of m_dcBackView2,
@@ -63,11 +77,6 @@ namespace gcom
 
          virtual void OnCreateDib(::ca::dib * pdib, int iIndex);
          
-         ::collection::map < int, int, ::ca::dib *, ::ca::dib * > m_mapDib;
-         ::ca::draw_dib_sp         m_spdrawdib;
-
-         mutex   m_mutex1Back;
-         mutex   m_mutex2Buffer;
 
          ::ca::bitmap & GetBackBitmap(); // m_bmpBackView
          ::ca::graphics & GetBackDC(); // m_dcBackView
@@ -97,17 +106,11 @@ namespace gcom
 //         ::ca::bitmap            m_bmpFrame1;
 //       ::ca::bitmap            m_bmpFrame1Old;
 
-         ::ca::graphics_sp               m_dcScreen;
-
-         rect             m_rectFinalPlacement;
          void GetFinalPlacement(LPRECT lprect);
          void BackToTransfer();
          void BufferToBack();
          
          
-         mutex   m_mutex3Source;
-         mutex   m_mutex4Transfer;
-
       };
    } // namespace backview
 

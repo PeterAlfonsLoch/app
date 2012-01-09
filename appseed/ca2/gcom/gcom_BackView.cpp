@@ -122,11 +122,12 @@ namespace gcom
       }
       void Main::_001OnImageLoaded(gen::signal_object * pobj)
       {
-         OnImageLoaded((::ca::bitmap *) (*pobj)()["bitmap"].ca2 < ::ca::bitmap > ());
+         OnImageLoaded((*pobj)()["dib"].ca2 < ::ca::dib > ());
       }
 
-      void Main::OnImageLoaded(::ca::bitmap * pbitmap)
+      void Main::OnImageLoaded(::ca::dib * pdib)
       {
+
          InterfaceData data;
          data.signalize(InterfaceDataCurrentImagePath);
          GetCurrentImagePath(data.m_wstrCurrentImagePath);
@@ -135,15 +136,15 @@ namespace gcom
 
          try
          {
-            graphics.OnImageLoaded(pbitmap);
+            graphics.OnImageLoaded(pdib);
          }
          catch(...)
          {
          }
       }
 
-void Main::OnAfterImageLoaded()
-{
+      void Main::OnAfterImageLoaded()
+      {
 
 //         thread * pbackviewthreadIdle = GetIdleThread();
          ImageChange & imagechange = GetImageChange();

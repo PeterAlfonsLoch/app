@@ -1,13 +1,18 @@
 #include "StdAfx.h"
 
+
 namespace fontopus
 {
+
 
    user::user(::ca::application * papp) :
       ca(papp)
    {
-      m_ppresence = NULL;
-      m_phttpcookies = new ::http::cookies();
+
+      m_ppresence       = NULL;
+      m_phttpcookies    = new ::http::cookies();
+      m_pifs            = NULL;
+
    }
 
    user::~user()
@@ -27,6 +32,32 @@ namespace fontopus
    {
 
       Application.defer_initialize_user_presence();
+
+      return true;
+
+   }
+
+   bool user::create_ifs()
+   {
+
+      if(get_app()->is_system()
+      || get_app()->is_session()
+      || get_app()->is_cube()
+      || get_app()->is_bergedge())
+         return false;
+
+
+      if(m_strLogin == carlosgustavocecynlundgren
+      || m_strLogin == camilosasuketsumanuma)
+         return false;
+
+      
+      if(m_pifs != NULL)
+      {
+         return true;
+      }
+
+      m_pifs = new ifs(get_app(), "");
 
       return true;
 

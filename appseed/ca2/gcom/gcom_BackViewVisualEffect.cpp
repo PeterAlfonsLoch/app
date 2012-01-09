@@ -255,19 +255,13 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 10;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
 
          pdibBack->stretch_dib(pdib1);
@@ -391,19 +385,20 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         /*BLENDFUNCTION bf;
 
          bf.BlendOp     = AC_SRC_OVER;
          bf.BlendFlags  = 0;
          bf.SourceConstantAlpha = 10;
       //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
+         bf.AlphaFormat = 0;*/
 
-         pdib1->get_graphics()->alpha_blend(
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
+
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -534,19 +529,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 10;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -737,19 +725,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 10;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -1300,19 +1281,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 235;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -1605,19 +1579,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 205;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -1997,19 +1964,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -2552,18 +2512,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 10.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -2879,19 +2833,12 @@ namespace gcom
          pdib2->Rotate034(pdib1, dAngle, 0.95);
 
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
-
+            0, 0, SRCCOPY);
          pdibBack->stretch_dib(pdib1);
 
          recta.add(rectClient);
@@ -3452,19 +3399,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -3903,20 +3843,12 @@ namespace gcom
          //dcBack.FillSolidRect(100, 100, cx, cy, RGB(255, 255, 255));
          //pdibBack->stretch_dib(pdib2);
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 50.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 50;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         //pdib3->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBack, 0, 0, SRCCOPY);
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
-            pdib3->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            pdib2->get_graphics(),
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -4572,20 +4504,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
-
+            0, 0, SRCCOPY);
          pdibBack->stretch_dib(pdib1);
 
          recta.add(rectClient);
@@ -5051,18 +4975,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -5289,18 +5207,12 @@ namespace gcom
          //pdib2->Rotate034(pdib1, dAngle, 0.95);
 
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -5862,19 +5774,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -6325,19 +6230,12 @@ namespace gcom
             0, 0,
             50);*/
 
-         BLENDFUNCTION bf;
+         pdib2->channel_multiply(::visual::rgba::channel_alpha, 127.0 / 255.0);
 
-         bf.BlendOp     = AC_SRC_OVER;
-         bf.BlendFlags  = 0;
-         bf.SourceConstantAlpha = 127;
-      //   bf.AlphaFormat = AC_SRC_ALPHA;
-         bf.AlphaFormat = 0;
-
-         pdib1->get_graphics()->alpha_blend(
+         pdib1->get_graphics()->BitBlt(
             0, 0, cx1, cy1,
             pdib2->get_graphics(),
-            0, 0, cx1, cy1,
-            bf);
+            0, 0, SRCCOPY);
 
          pdibBack->stretch_dib(pdib1);
 

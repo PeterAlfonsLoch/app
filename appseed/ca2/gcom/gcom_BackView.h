@@ -56,7 +56,7 @@ namespace gcom
          ::mutex & GetTransferMutex();
          ::ca::graphics & GetTransferDC();
          void SetBackgroundImageChangeInterval(DWORD dwMillis);
-         void OnImageLoaded(::ca::bitmap * pbitmap);
+         void OnImageLoaded(::ca::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();
          void OnResize();

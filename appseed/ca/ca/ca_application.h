@@ -119,8 +119,10 @@ namespace ca
       virtual application * get_app() const;
 
       virtual bool is_system();
-      virtual bool is_bergedge();
+      virtual bool is_session();
 
+      virtual bool is_cube();
+      virtual bool is_bergedge();
 
       virtual bool app_map_lookup(const char * psz, void * &) = 0;
       virtual void app_map_set(const char * psz, void *) = 0;

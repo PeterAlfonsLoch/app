@@ -5389,7 +5389,7 @@ namespace user
 
             Sys(m_plist->get_app()).imaging().channel_spread(dcCache, null_point(), size, dcCache, null_point(), 0, 1);
             Sys(m_plist->get_app()).imaging().channel_gray_blur(dcCache, null_point(), size, dcCache, null_point(), 0, 1);
-            Sys(m_plist->get_app()).imaging().pre_color_blend(dcCache, dcCache, ARGB(255, 0, 0, 0));
+//            Sys(m_plist->get_app()).imaging().pre_color_blend(dcCache, dcCache, ARGB(255, 0, 0, 0));
 
 
             dcCache->SelectObject(pfontOld);

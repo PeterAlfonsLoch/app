@@ -129,13 +129,15 @@ namespace gcom
          public thread_dispatch
       {
       public:
-         string               m_strImagePath;
-         backview::Main *     m_pbackviewinterface;
-         ::ca::bitmap_sp      m_pbitmap;
-         gen::signal          m_signalImageLoaded;
 
 
-         load_image(gcom::backview::thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath);
+         string                  m_strImagePath;
+         backview::Main *        m_pbackviewinterface;
+         gen::signal             m_signalImageLoaded;
+         ::ca::dib *             m_pdib;
+
+
+         load_image(::ca::dib * pdib, gcom::backview::thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath);
          load_image(const load_image & loadimage);
          void OnImageLoaded();
 

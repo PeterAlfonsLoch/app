@@ -175,9 +175,9 @@ namespace gcom
          return GetMain().LoadNextImage(bSynch);
       }
 
-      void Interface::OnImageLoaded(::ca::bitmap * pbitmap)
+      void Interface::OnImageLoaded(::ca::dib * pdib)
       {
-         GetMain().OnImageLoaded(pbitmap);
+         GetMain().OnImageLoaded(pdib);
       }
 
       void Interface::OnAfterImageLoaded()

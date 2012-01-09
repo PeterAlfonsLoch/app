@@ -7,8 +7,10 @@ namespace gcom
 
 
       ImageChange::ImageChange(Main & view) :
-         Helper(view)
+         Helper(view),
+         m_spdib(view.get_app())
       {
+
          m_bLastLoadImageSynch = false;
          DWORD dwTime = GetTickCount();
          m_dwLoadStartTime = dwTime;
@@ -50,7 +52,7 @@ namespace gcom
          m_wstrCurrentImagePath = lpcwszImagePath;
          m_dwLoadCounter = 0;
          Main & main = HelperGetMain();
-         load_image loadimage(main.GetIdleThread(), &main, lpcwszImagePath);
+         load_image loadimage(m_spdib, main.GetIdleThread(), &main, lpcwszImagePath);
          //m_evImageLoad.ResetEvent();
          main.GetIdleThread()->m_evInitialized.wait();
          main.GetIdleThread()->LoadImageAsync(loadimage);
@@ -86,20 +88,24 @@ namespace gcom
 
       bool ImageChange::LoadImageSync(const char * lpcwszImagePath)
       {
+         
          m_wstrCurrentImagePath = lpcwszImagePath;
+         
          Main & main = HelperGetMain();
+         
          string str;
-         ::ca::bitmap * pbitmap = System.imaging().LoadImageSync(lpcwszImagePath, get_app());
-         TRACE("ImageChange::OnLoadImageSyn lpcwszImagePath.lock\n");
-         Graphics & graphics = main.GetGraphics();
-         single_lock sl3Source(&graphics.m_mutex3Source, TRUE);
-         ::ca::graphics_sp spgraphics(get_app());
-         spgraphics->CreateCompatibleDC(NULL);
-         spgraphics->SelectObject(pbitmap);
-         graphics.GetDib(_graphics::DibSource)->create(spgraphics);
-         delete pbitmap;
-         TRACE("ImageChange::OnLoadImageSyn slGdi.UnLock\n");
+         
+         if(!System.imaging().LoadImageSync(m_spdib, lpcwszImagePath, get_app()))
+            return false;
+         
+         TRACE("ImageChange::OnLoadImageSynch lpcwszImagePath.lock\n");
+         
+         main.GetGraphics().GetDib(_graphics::DibSource)->from(m_spdib);
+
+         TRACE("ImageChange::OnLoadImageSynch slGdi.UnLock\n");
+
          main.ImageChangePostEvent(EventLoaded);
+
          return true;
 
       }

@@ -32,6 +32,7 @@ namespace gcom
          m_etransitioneffect = eeffect;
          m_cx = cx;
          m_cy = cy;
+         m_iFrame = -1;
          switch(eeffect)
          {
          case TransitionEffectSingleStep:
@@ -239,10 +240,10 @@ namespace gcom
          case TransitionEffectLinearFadingLeftRight:
          case TransitionEffectLinearFadingRightLeft:
             {
-               effect.m_dwDelay = 50;
-               m_iStepRepeatCount = 16;
-               const int iTileCount = max(4, cy / 4);
-               const int iFrameCount = 48;
+               effect.m_dwDelay = 125;
+               m_iStepRepeatCount = 1;
+               const int iTileCount = 1;
+               const int iFrameCount = 16;
                m_data.m_sliceframe.m_iTileCount = iTileCount;
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iTileCount * iFrameCount + 1;

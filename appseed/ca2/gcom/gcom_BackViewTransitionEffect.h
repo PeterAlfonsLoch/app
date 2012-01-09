@@ -150,6 +150,7 @@ namespace gcom
             int_array   m_ia;
             int            m_iStep; // 0 - Inactive, >= 1 Active
             int            m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 count out
+            int m_iFrame;
          public:
             void Start(int cx, int cy, double dRate, double dRateEx);
    //         void Go(ETransitionEffect eType);

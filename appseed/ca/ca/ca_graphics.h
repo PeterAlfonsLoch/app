@@ -375,14 +375,22 @@ namespace ca
       virtual BOOL TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
         ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
         UINT clrTransparent);
-      virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
+
+      virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity);
+      virtual bool alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity);
+      virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
+      virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, double dOpacity);
+      virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
+      virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, double dOpacity);
+
+/*      virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
         ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
-        BLENDFUNCTION blend);
-      virtual bool alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
+        BLENDFUNCTION blend);*/
+/*      virtual bool alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
       virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
       virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend);
       virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend);
+      virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
 
    // Text Functions
       virtual BOOL TextOut(int x, int y, const char * lpszString, int nCount);

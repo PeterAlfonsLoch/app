@@ -339,7 +339,7 @@ namespace ca
                return;
             }
          }
-         ex1::filesp spfile = Sys(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
+         ex1::filesp spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
          if(spfile.is_set())
          {
 /*
@@ -700,7 +700,7 @@ namespace ca
 
          if(gen::str::begins_ci_iws(pszPath, "uifs://"))
          {
-            return ifs(papp, "").file_exists(pszPath);
+            return AppUser(papp).m_pifs->file_exists(pszPath);
          }
 
          if(papp->m_bZipIsDir)
@@ -741,7 +741,7 @@ namespace ca
 
          if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {
-            return ifs(papp, "").file_exists(strPath);
+            return AppUser(papp).m_pifs->file_exists(strPath);
          }
 
          if(papp->m_bZipIsDir)

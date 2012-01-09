@@ -2066,7 +2066,7 @@ fill_last:
    {
       if(area() <= 0 || get_data() == NULL)
          return;
-      memset(get_data(), uch, area() * sizeof(COLORREF));
+      memset(get_data(), uch, (::primitive::memory_size) (area() * sizeof(COLORREF)));
    }
 
 

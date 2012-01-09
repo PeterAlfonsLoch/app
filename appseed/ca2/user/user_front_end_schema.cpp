@@ -58,7 +58,7 @@ namespace user
       m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
       m_buttonBaseWndMenuSysMenu.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
 
-      lf.lfHeight         = 10;
+      lf.lfHeight         = 90;
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
       lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
@@ -84,7 +84,7 @@ namespace user
       memset(&lf, 0, sizeof(LOGFONT));
 
 
-            lf.lfHeight         = 10;
+            lf.lfHeight         = 90;
 
       lf.lfWeight         = FW_NORMAL;
       lf.lfCharSet        = DEFAULT_CHARSET;
@@ -99,7 +99,7 @@ namespace user
 
 
 
-            lf.lfHeight         = 10;
+            lf.lfHeight         = 90;
 
       lf.lfWeight         = 800;
       lf.lfCharSet        = DEFAULT_CHARSET;

@@ -99,8 +99,9 @@ namespace gcom
       }
 
 
-      void Graphics::OnImageLoaded(::ca::bitmap * pbitmap)
+      void Graphics::OnImageLoaded(::ca::dib * pdib)
       {
+
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
          Main & main = HelperGetMain();
@@ -109,15 +110,9 @@ namespace gcom
 
          bool bOk = false;
          // 2004-08-24
-         if(pbitmap != NULL)
+         if(pdib != NULL)
          {
-            class size size = pbitmap->get_size();
-            ::ca::graphics_sp spgraphics(get_app());
-            spgraphics->CreateCompatibleDC(NULL);
-            ::ca::bitmap * pbitmapOriginal = spgraphics->SelectObject(pbitmap);
-            GetDib(_graphics::DibSource)->create(size);
-            GetDib(_graphics::DibSource)->from(spgraphics);
-            spgraphics->SelectObject(pbitmapOriginal);
+            GetDib(_graphics::DibSource)->from(pdib);
             bOk = true;
          }
 
@@ -125,14 +120,16 @@ namespace gcom
             main.ImageChangePostEvent(EventLoaded);
          else
             main.ImageChangePostEvent(EventLoadFailed);
-         return;
+
       }
 
       void Graphics::OnDestroy()
       {
+
          single_lock sl1Back(&m_mutex1Back, TRUE);
          single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
+
       }
 
       bool Graphics::RenderBufferLevel2()
@@ -168,7 +165,7 @@ namespace gcom
 //         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
 
 
-//         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
+         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
          if(dcSource.get_os_data() == NULL)
             return false;
@@ -402,18 +399,18 @@ namespace gcom
          spgraphicsScreen.CreateDC("DISPLAY", NULL, NULL, NULL);
 
          GetDib(_graphics::DibBack)->create(cx, cy); // Back
-         GetDib(_graphics::DibBack)->Fill(63, 106, 150);
+         GetDib(_graphics::DibBack)->Fill(255, 63, 106, 150);
 
          GetDib(_graphics::DibBuffer)->create(cx, cy); // buffer
-         GetDib(_graphics::DibBuffer)->Fill(63, 106, 150);
+         GetDib(_graphics::DibBuffer)->Fill(255, 63, 106, 150);
 
          GetDib(_graphics::DibTransfer)->create(cx, cy); // Transfer
          color c;
          c.set_rgb(iface.GetBackgroundColor());
-         GetDib(_graphics::DibTransfer)->Fill(c.m_uchR, c.m_uchG, c.m_uchB);
+         GetDib(_graphics::DibTransfer)->Fill(255, c.m_uchR, c.m_uchG, c.m_uchB);
 
          GetDib(_graphics::DibFrame1)->create(cx, cy); // Frame1
-         GetDib(_graphics::DibFrame1)->Fill(127, 136, 145);
+         GetDib(_graphics::DibFrame1)->Fill(255, 127, 136, 145);
 
       }
 

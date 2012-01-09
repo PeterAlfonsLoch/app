@@ -31,7 +31,9 @@ namespace fontopus
 
       contact_list *                         m_pcontactlist;
 
-      ::userpresence::presence *                m_ppresence;
+      ::userpresence::presence *             m_ppresence;
+
+      ifs *                                  m_pifs;
 
 
       user(::ca::application * papp);
@@ -51,6 +53,9 @@ namespace fontopus
 
 
       virtual bool initialize();
+
+
+      virtual bool create_ifs();
 
 
    };

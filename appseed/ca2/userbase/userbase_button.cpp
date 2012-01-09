@@ -29,9 +29,6 @@ namespace userbase
       if(m_pschema == NULL)
          return;
 
-      string str(m_langstrButtonText.get(get_app()));
-
-      pdc->SelectObject(_001GetFont());
       
       rect rectClient;
       m_pguie->GetClientRect(rectClient);
@@ -117,7 +114,16 @@ namespace userbase
             rectText.left += m_dib->width();
          }
       }
-      ::DrawTextU((HDC)pdc->get_os_data(), str, str.get_length(), rectText, DT_LEFT | DT_TOP);
+
+
+
+      string str(m_langstrButtonText.get(get_app()));
+      pdc->SelectObject(m_pschema->m_font);
+      pdc->DrawText(str, rectText, DT_LEFT | DT_TOP);
+
+
+
+      //::DrawTextU((HDC)pdc->get_os_data(), str, str.get_length(), rectText, DT_LEFT | DT_TOP);
    }
 
    void button::_001OnCreate(gen::signal_object * pobj)

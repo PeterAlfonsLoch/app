@@ -296,7 +296,7 @@ retry_license:
 
       ::user::keyboard_focus * application::get_keyboard_focus()
       {
-         if(is_bergedge())
+         if(is_session() || is_bergedge())
          {
             ::user::interaction * puieFocus = get_focus_guie();
             if(m_pkeyboardfocus != NULL && puieFocus != NULL)
@@ -310,7 +310,7 @@ retry_license:
                return NULL;
             }
          }
-         else if(is_system())
+         else if(is_system() || is_cube())
          {
             return m_pkeyboardfocus;
          }
@@ -330,7 +330,7 @@ retry_license:
 
       void application::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
       {
-         if(is_bergedge())
+         if(is_session() || is_bergedge())
          {
             if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
             {
@@ -341,7 +341,7 @@ retry_license:
                return Sys(this).set_keyboard_focus(pkeyboardfocus);
             }
          }
-         else if(is_system())
+         else if(is_system() || is_cube())
          {
             if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
             {

@@ -674,7 +674,7 @@ namespace plane
       }
    }
 
-   bool session::is_bergedge()
+   bool session::is_session()
    {
       return true;
    }

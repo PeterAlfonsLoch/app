@@ -38,7 +38,7 @@ namespace ca
 
          if(gen::str::begins_ci(pszPath, "uifs://"))
          {
-            return ifs(m_papp, "").file_exists(pszPath);
+            return AppUser(m_papp).m_pifs->file_exists(pszPath);
          }
 
          return m_psystem->m_file.exists(pszPath, m_papp);
@@ -51,7 +51,7 @@ namespace ca
 
          if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {
-            return ifs(m_papp, "").file_exists(strPath);
+            return AppUser(m_papp).m_pifs->file_exists(strPath);
          }
 
          return m_psystem->m_file.exists(strPath, m_papp);
@@ -65,7 +65,7 @@ namespace ca
 
          if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {
-            return ifs(m_papp, "").file_exists(strPath);
+            return AppUser(m_papp).m_pifs->file_exists(strPath);
          }
 
          return m_psystem->m_file.exists(strPath, m_papp);

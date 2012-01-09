@@ -417,9 +417,8 @@ namespace gcom
          load_image * lploadimage = (load_image *) lpParameter;
 
 
-         ::ca::bitmap_sp pbitmap = App(lploadimage->GetThread()->get_app()).imaging().LoadImageSync(lploadimage->m_strImagePath, lploadimage->GetThread()->get_app());
-
-         lploadimage->m_pbitmap = pbitmap;
+         if(!App(lploadimage->GetThread()->get_app()).imaging().LoadImageSync(lploadimage->m_pdib, lploadimage->m_strImagePath, lploadimage->GetThread()->get_app()))
+            lploadimage->m_pdib = NULL;
 
          lploadimage->OnImageLoaded();
          
@@ -463,7 +462,8 @@ namespace gcom
       }
 
 
-      load_image::load_image(thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath) :
+      load_image::load_image(::ca::dib * pdib, thread * pbackviewthread, backview::Main * pbackviewinterface, const char * lpcwszImagePath) :
+         m_pdib(pdib),
          thread_dispatch(pbackviewthread),
          m_strImagePath(lpcwszImagePath),
          m_pbackviewinterface(pbackviewinterface)
@@ -478,17 +478,20 @@ namespace gcom
 
       load_image & load_image::operator =(const load_image & loadimage)
       {
-         thread_dispatch::operator =(loadimage);
-         m_strImagePath = loadimage.m_strImagePath;
-         m_pbackviewinterface = loadimage.m_pbackviewinterface;
-         m_pbitmap = loadimage.m_pbitmap;
+         
+         thread_dispatch::operator     = (loadimage);
+         m_strImagePath                = loadimage.m_strImagePath;
+         m_pbackviewinterface          = loadimage.m_pbackviewinterface;
+         m_pdib                        = loadimage.m_pdib;
+
          return *this;
+
       }
 
       void load_image::OnImageLoaded()
       {
          gen::signal_object obj(&m_signalImageLoaded);
-         obj()["bitmap"] = m_pbitmap;
+         obj()["dib"] = m_pdib;
          m_signalImageLoaded.emit(&obj);
       }
 
