@@ -405,7 +405,7 @@ namespace html
          string data;
          gen::property_set post;
          gen::property_set headers;
-         gen::property_set set;
+         gen::property_set set = m_propset["http_propset"].propset();
 
          post["entered_login"] = m_strUser;
          post["entered_password"] = m_strPassword;
