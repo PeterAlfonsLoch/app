@@ -628,13 +628,17 @@ InitFailure:
 
    ex1::filesp application::get_file(var varFile, UINT nOpenFlags, ex1::file_exception_sp * pe)
    {
+
       ex1::filesp spfile;
+
       string strPath;
+
       if(varFile.get_type() == var::type_string)
       {
          strPath = varFile;
          strPath.trim("\"'");
       }
+
       if(varFile.get_type() == var::type_propset
       && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
       {
@@ -658,34 +662,6 @@ InitFailure:
             return NULL;
          }
          spfile(pinfile);
-      }
-      else if(gen::str::begins_ci(strPath, "rtp://")
-         || gen::str::begins_ci(strPath, "rtprx://"))
-      {
-         throw not_implemented_exception();
-/*         rtp::file * pfile =  new rtp::file(this);
-         if(!pfile->rx_open(
-            System.url().get_server(strPath),
-            System.url().get_port(varFile)))
-         {
-            delete pfile;
-            return NULL;
-         }
-         spfile(pfile);
-         try
-         {
-            gen::property_set setQuery(this);
-            setQuery.parse_url_query(System.url().get_query(strPath));
-            if(setQuery["payload_type"] == "mp3"
-            || setQuery["payload_type"].get_string().is_empty())
-            {
-               pfile->set_payload("mp3", &payload_type_mp3_128);
-            }
-         }
-         catch(...)
-         {
-            return NULL;
-         }*/
       }
       else if(gen::str::begins(strPath, "http://")
          ||   gen::str::begins(strPath, "https://"))
