@@ -53,7 +53,7 @@ id & id::operator = (const string_interface & str)
 }
 
 
-string id::str()
+string id::str() const
 {
    if(m_chType == IDTYPE_TYPE_TEXT)
       return m_psz;

@@ -280,6 +280,7 @@ public:
    // Assignment operators
    string& operator=(const string_interface & str );
    string& operator=(string strSrc );
+   string& operator=(const id & id);
    template <bool bMFCDLL>
    string& operator=(const simple_string& strSrc );
    string& operator=(PCXSTR pszSrc );

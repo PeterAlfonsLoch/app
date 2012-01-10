@@ -988,6 +988,11 @@ void var::read(ex1::byte_input_stream & is)
          is >> propset();
       }
       break;
+   case type_id:
+      {
+         is >> m_id;
+      }
+      break;
    case type_ca2:
       {
          ::ca::type_info info;
@@ -1059,6 +1064,9 @@ void var::write(ex1::byte_output_stream & ostream)
       break;
    case type_propset:
       ostream << propset();
+      break;
+   case type_id:
+      ostream << m_id;
       break;
    case type_ca2:
       {

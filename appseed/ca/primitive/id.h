@@ -42,7 +42,7 @@ public:
       m_chType = id.m_chType;
    }
 
-   string str();
+   string str() const;
 
    inline bool operator == (const id & id) const
    {

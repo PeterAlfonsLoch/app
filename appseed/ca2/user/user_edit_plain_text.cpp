@@ -220,14 +220,17 @@ namespace user
       else if(_001IsTranslucent())
       {
          class imaging & imaging = System.imaging();
-         //_001DrawBackground(pdc, rectClipBox);
          imaging.color_blend(
             pdc,
             rectClient,
             RGB(200, 255, 255),
             127);
       }
-      else if(!System.savings().is_trying_to_save(gen::resource_processing)
+      else
+      {
+         pdc->FillSolidRect(rectClient, get_background_color());
+      }
+      /*else if(!System.savings().is_trying_to_save(gen::resource_processing)
       && !System.savings().is_trying_to_save(gen::resource_blur_background))
       {
 
@@ -261,7 +264,7 @@ namespace user
                null_point(),
                SRCCOPY);
          }*/
-      }
+      /*}
       else
       {
          class imaging & imaging = System.imaging();
@@ -271,7 +274,7 @@ namespace user
             rectClient,
             RGB(200, 255, 255),
             127);
-      }
+      }*/
 
       color c;
       c.set_rgb(RGB(227, 227, 210));

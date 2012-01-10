@@ -94,7 +94,7 @@ namespace planebase
          }
       }
 
-      pcaapp->m_papp                               = this;
+      //pcaapp->m_papp                               = this;
       pcaapp->m_psystem                            = m_psystem;
 
       papp = dynamic_cast < ::ca2::application * > (pcaapp);

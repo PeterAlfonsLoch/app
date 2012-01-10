@@ -163,6 +163,26 @@ namespace ex1
       return *this;
    }
 
+   byte_input_stream & byte_input_stream::operator >> (id & id)
+   {
+      
+      operator >> (id.m_chType);
+
+      if(id.m_chType == IDTYPE_TYPE_TEXT)
+      {
+         string str;
+         *this >> str;
+         id = str;
+      }
+      else if(id.m_chType == IDTYPE_TYPE_NUMBER)
+      {
+         operator >> (id.m_ui);
+      }
+
+      return *this;
+
+   }
+
 
    string byte_input_stream::get_location() const
    {
@@ -315,6 +335,25 @@ namespace ex1
    {
       write(psz, strlen(psz));
       return *this;
+   }
+
+   byte_output_stream & byte_output_stream::operator << (const id & id)
+   {
+      
+      operator << (id.m_chType);
+
+      if(id.m_chType == IDTYPE_TYPE_TEXT)
+      {
+         string str = id;
+         *this << str;
+      }
+      else if(id.m_chType == IDTYPE_TYPE_NUMBER)
+      {
+         operator << (id.m_ui);
+      }
+
+      return *this;
+
    }
 
    string byte_output_stream::get_location() const

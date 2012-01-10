@@ -324,12 +324,12 @@ namespace user
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
                   pdc->set_font(get_data()->m_fontUnderline);
-                  pdc->SetTextColor(RGB(0, 127, 255));
+                  pdc->SetTextColor(ARGB(255, 0, 127, 255));
                }
                else
                {
                   pdc->set_font(get_data()->m_font);
-                  pdc->SetTextColor(RGB(0, 0, 0));
+                  pdc->SetTextColor(ARGB(255, 0, 0, 0));
                }
             }
 

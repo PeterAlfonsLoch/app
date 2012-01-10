@@ -1783,3 +1783,12 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
  string frame_window::get_title() const
    { return m_strTitle; }
 
+
+
+void frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle, DWORD dwStyle)
+{
+   
+   throw interface_only_exception();
+
+}
+

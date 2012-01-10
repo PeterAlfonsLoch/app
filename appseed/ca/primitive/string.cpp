@@ -818,6 +818,15 @@ string::string(strsize nLength, char ch) :
       return( *this );
    }
 
+   string & string::operator = (const class id & id)
+   {
+      
+      simple_string::operator = (id.str());
+
+      return( *this );
+
+   }
+
    string& string::operator=(PCYSTR pszSrc )
    {
       // nDestLength is in XCHARs

@@ -236,7 +236,7 @@ namespace userbase
    void tab_view::on_show_view()
    {
 
-      id id = get_id_by_tab(_001GetSel());
+      id id = get_id_by_tab(_001GetSel(), false);
       class id idSplit;
       ::user::view_creator_data * pcreatordata = ensure(id);
       
