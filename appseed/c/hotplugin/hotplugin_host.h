@@ -27,12 +27,18 @@ namespace hotplugin
       bool                          m_bRunningSpaAdmin;
 
 
+      void *                        m_pvoidPluginSystem;
+
+
 
 
 
       host();
       virtual ~host();
 
+
+      virtual void * get_plugin_system();
+      virtual void set_plugin_system(void * pvoidPluginSystem);
 
 
       virtual void   redraw();

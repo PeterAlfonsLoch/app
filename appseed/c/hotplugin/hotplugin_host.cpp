@@ -14,6 +14,8 @@ namespace hotplugin
       m_bShowProgress            = false;
       m_bCa2InstallationReady    = false;
 
+      m_pvoidPluginSystem        = NULL;
+
    }
 
    host::~host()
@@ -304,6 +306,19 @@ namespace hotplugin
 
    }
 
+   void * host::get_plugin_system()
+   {
+
+      return m_pvoidPluginSystem;
+
+   }
+
+   void host::set_plugin_system(void * pvoidPluginSystem)
+   {
+
+      m_pvoidPluginSystem = pvoidPluginSystem;
+
+   }
 
 } // namespace hotplugin
 

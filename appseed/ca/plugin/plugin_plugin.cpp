@@ -44,37 +44,50 @@ namespace plugin
       if(m_psystem == NULL)
       {
 
-         _set_purecall_handler(_ca2_purecall_);
+         if(m_phost->m_pvoidPluginSystem != NULL)
+         {
+            m_psystem = (::plugin::system *) m_phost->m_pvoidPluginSystem;
+         }
+         else
+         {
 
-         m_bAppStarted = false;
+            _set_purecall_handler(_ca2_purecall_);
+
+            m_bAppStarted = false;
          
-         m_psystem = new ::plugin::system();
+            m_psystem = new ::plugin::system();
 
-         set_app(m_psystem);
+            m_phost->m_pvoidPluginSystem = (void *) (::plugin::system *) m_psystem;
 
-         m_psystem->m_pplugin = this;
+            set_app(m_psystem);
 
-         m_psystem->m_hInstance = ::GetModuleHandle("ca.dll");
+            m_psystem->m_pplugin = this;
+
+            m_psystem->m_hInstance = ::GetModuleHandle("ca.dll");
       
          
-         if(!m_psystem->InitApplication())
-            return 0;
+            if(!m_psystem->InitApplication())
+               return 0;
       
          
-         if(!m_psystem->process_initialize())
-            return 0;
+            if(!m_psystem->process_initialize())
+               return 0;
 
 
-         m_psystem->set_history(new history(m_psystem, this));
+            m_psystem->set_history(new history(m_psystem, this));
 
-         m_psystem->m_prunstartinstaller = new run_start_installer(m_psystem, this);
+            m_psystem->m_prunstartinstaller = new run_start_installer(m_psystem, this);
 
-         m_psystem->m_bInitializeProDevianMode = false;
+            m_psystem->m_bInitializeProDevianMode = false;
          
-         string strId;
-         strId.Format("npca2::%08x", (UINT_PTR) m_psystem);
+            string strId;
+            strId.Format("npca2::%08x", (UINT_PTR) m_psystem);
          
-         m_psystem->command().m_varTopicQuery["local_mutex_id"] = strId;
+            m_psystem->command().m_varTopicQuery["local_mutex_id"] = strId;
+
+            
+
+         }
 
 
       }
