@@ -46,7 +46,7 @@ namespace plugin
 
          if(m_phost->m_pvoidPluginSystem != NULL)
          {
-            m_psystem = (::plugin::system *) m_phost->m_pvoidPluginSystem;
+            m_psystem = (::plugin::system *) m_phost->get_plugin_system();
          }
          else
          {
@@ -57,7 +57,7 @@ namespace plugin
          
             m_psystem = new ::plugin::system();
 
-            m_phost->m_pvoidPluginSystem = (void *) (::plugin::system *) m_psystem;
+            m_phost->set_plugin_system((void *) (::plugin::system *) m_psystem);
 
             set_app(m_psystem);
 
