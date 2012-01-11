@@ -27,7 +27,9 @@ namespace hotplugin
       bool                          m_bRunningSpaAdmin;
 
 
-      void *                        m_pvoidPluginSystem;
+      void *                        m_pvoidSystem;
+
+      simple_mutex                  m_mutexSystem;
 
 
 
@@ -37,8 +39,8 @@ namespace hotplugin
       virtual ~host();
 
 
-      virtual void * get_plugin_system();
-      virtual void set_plugin_system(void * pvoidPluginSystem);
+      virtual void * get_system();
+      virtual void set_system(void * pvoidSystem);
 
 
       virtual void   redraw();

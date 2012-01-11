@@ -33,6 +33,8 @@ namespace plane
       m_dir.m_psystem                           = this;
       ::plane::application::m_dir.m_psystem     = this;
 
+      m_bDoNotExitIfNoApplications              = false;
+
 
       if(::get_heap_mutex() == NULL)
       {
@@ -364,11 +366,16 @@ namespace plane
       if(directrix().m_varTopicQuery.has_property("uninstall"))
          return false;
 
-      if(appptra().get_size() <= 0)
-         return false;
+      if(!m_bDoNotExitIfNoApplications)
+      {
 
-      if(appptra().get_size() == 1 && appptra().contains(this))
-         return false;
+         if(appptra().get_size() <= 0)
+            return false;
+
+         if(appptra().get_size() == 1 && appptra().contains(this))
+            return false;
+
+      }
 
       return true;
    }

@@ -113,6 +113,9 @@ namespace plane
      ::collection::map < string, string, ::collection::map < string, string, int, int >, ::collection::map < string, string, int, int > > m_mapNameToEnum;
 
 
+     bool                              m_bDoNotExitIfNoApplications;
+
+
       system();
       virtual ~system();
 
