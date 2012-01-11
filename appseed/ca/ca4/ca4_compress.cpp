@@ -130,7 +130,32 @@ namespace ca4
 
    bool compress::bz(::ca::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
-      return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
+      try
+      {
+         return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
+      }
+      catch(const ex1::file_exception & e)
+      {
+         TRACE("failed to bzip '%s' to '%s'", lpcszUncompressed, lpcszGzFileCompressed);
+         string strErrorMessage;
+         e.GetErrorMessage(strErrorMessage);
+         TRACE0("ex1::file_exception error message : " + strErrorMessage);
+         return false;
+      }
+      catch(ex1::file_exception * pe)
+      {
+         TRACE("failed to bzip '%s' to '%s'", lpcszUncompressed, lpcszGzFileCompressed);
+         string strErrorMessage;
+         pe->GetErrorMessage(strErrorMessage);
+         TRACE0("ex1::file_exception * error message : " + strErrorMessage);
+         return false;
+      }
+      catch(...)
+      {
+         TRACE("failed to bzip '%s' to '%s'", lpcszUncompressed, lpcszGzFileCompressed);
+         TRACE0("caught ...");
+         return false;
+      }
    }
 
    bool compress::_compress(class primitive::memory & memory, void * pdata, unsigned long ulSize)

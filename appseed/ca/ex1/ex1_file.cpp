@@ -291,7 +291,7 @@ namespace ex1
    }
 
 
-   BOOL file_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
+   BOOL file_exception::GetErrorMessage(string & str, PUINT pnHelpContext) const
    {
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(pnHelpContext);
