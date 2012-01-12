@@ -93,14 +93,14 @@ string checkimage::generate_code()
    
 string checkimage::register_code(const char * pszCode)
 {
-   session("ci_verifycode") = pszCode;
+   set_session_value("ci_verifycode", pszCode);
    return pszCode;
 }
 
 bool checkimage::verify_code(const char * pszCode)
 {
-   bool bOk =   session("ci_verifycode") == pszCode && is_valid_code(session("ci_verifycode"));
-   sessiona().unset("ci_verifycode");
+   bool bOk =   get_session_value("ci_verifycode") == pszCode && is_valid_code(get_session_value("ci_verifycode"));
+   set_session_value("ci_verifycode", gen::g_nullconst);
    return bOk;
 }
 

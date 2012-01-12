@@ -395,10 +395,10 @@ namespace dynamic_source
    {
       return m_pinterface->request(pszKey);
    }
-   gen::property & script_composite::session(const char * pszKey)
+/*   gen::property & script_composite::session(const char * pszKey)
    {
       return m_pinterface->session(pszKey);
-   }
+   }*/
    gen::relation_set & script_composite::geta()
    {
       return m_pinterface->geta();
@@ -415,10 +415,24 @@ namespace dynamic_source
    {
       return m_pinterface->requesta();
    }
-   gen::property_set & script_composite::sessiona()
+
+   void script_composite::set_session_value(const char * psz, var value)
+   {
+      return m_pinterface->set_session_value(psz, value);
+   }
+
+   var script_composite::get_session_value(const char * psz)
+   {
+      return m_pinterface->get_session_value(psz);
+   }
+
+   /*gen::property_set & script_composite::sessiona()
    {
       return m_pinterface->sessiona();
-   }
+   }*/
+
+
+
 
    gen::property_set & script_composite::inattra()
    {

@@ -102,12 +102,16 @@ namespace dynamic_source
       virtual http::cookie      & cookie(const char * pszKey) = 0;
       using ::html::file::request;
       virtual gen::property & request(const char * pszKey) = 0;
-      virtual gen::property & session(const char * pszKey) = 0;
+      //virtual gen::property & session(const char * pszKey) = 0;
       virtual gen::relation_set & geta() = 0;
       virtual gen::relation_set & posta() = 0;
       virtual http::cookies     & cookies() = 0;
       virtual gen::relation_set & requesta() = 0;
-      virtual gen::property_set & sessiona() = 0;
+
+      virtual void set_session_value(const char * psz, var value) = 0;
+      virtual var get_session_value(const char * psz) = 0;
+
+      //gen::property_set & sessiona();
       virtual gen::property_set & inattra() = 0;
 
       virtual string session_id(const char * pszId = NULL) = 0;

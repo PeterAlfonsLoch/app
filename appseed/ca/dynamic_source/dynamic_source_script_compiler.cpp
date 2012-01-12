@@ -1239,12 +1239,6 @@ namespace dynamic_source
                      bInVar = false;
                      i += iIdLen;
                   }
-                  else if(is_id(str.Mid(i + 1), "_SESSION", iIdLen))
-                  {
-                     strResult += "sessiona()";
-                     bInVar = false;
-                     i += iIdLen;
-                  }
                   else if(is_id(str.Mid(i + 1), "_COOKIE", iIdLen))
                   {
                      strResult += "cookies()";

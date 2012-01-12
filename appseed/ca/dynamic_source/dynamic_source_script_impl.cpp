@@ -49,6 +49,7 @@ namespace dynamic_source
       m_pwb                   = NULL;
       m_ppropertysetVar       = NULL;
       m_ppropertysetSession   = NULL;
+      m_pmutexSession         = NULL;
       m_pgeoiprecordClient    = NULL;
       m_bOnTopicInclude       = false;
    }
@@ -358,11 +359,11 @@ namespace dynamic_source
    {
       return m_pnetnodesocket->request().form().request()[pszKey];
    }
-   gen::property & script_impl::session(const char * pszKey)
+/*   gen::property & script_impl::session(const char * pszKey)
    {
       m_pinstanceMain->session_ensure();
       return (*m_pinstanceMain->m_ppropertysetSession)[pszKey];
-   }
+   }*/
    gen::relation_set & script_impl::geta()
    {
       return m_pnetnodesocket->request().form().get();
@@ -379,11 +380,27 @@ namespace dynamic_source
    {
       return m_pnetnodesocket->request().form().request();
    }
+
+   void script_impl::set_session_value(const char * psz, var value)
+   {
+      m_pinstanceMain->session_ensure();
+      single_lock sl(m_pinstanceMain->m_pmutexSession, true);
+      m_pinstanceMain->m_ppropertysetSession->operator[](psz) = value;
+   }
+
+   var script_impl::get_session_value(const char * psz)
+   {
+      m_pinstanceMain->session_ensure();
+      single_lock sl(m_pinstanceMain->m_pmutexSession, true);
+      return m_pinstanceMain->m_ppropertysetSession->operator[](psz);
+   }
+
+/*
    gen::property_set & script_impl::sessiona()
    {
       m_pinstanceMain->session_ensure();
       return *m_pinstanceMain->m_ppropertysetSession;
-   }
+   }*/
 
    gen::property_set & script_impl::inattra()
    {
@@ -441,7 +458,9 @@ namespace dynamic_source
       if(pszId != NULL)
       {
          set_cookie("sessid", pszId, 0);
-         session_read(cookie("sessid").m_varValue.get_string(), sessiona());
+         m_pinstanceMain->session_ensure();
+         single_lock sl(m_pinstanceMain->m_pmutexSession, true);
+         session_read(cookie("sessid").m_varValue.get_string(), *m_pinstanceMain->m_ppropertysetSession);
       }
       else
       {
@@ -841,7 +860,7 @@ namespace dynamic_source
       else
       {
           secure().ensure();
-         if(session("auth") && isset(request("ruri")))
+         if((bool) get_session_value("auth") && isset(request("ruri")))
          {
             outheader("Location") =  urldecode(request("ruri"));
          }
@@ -881,7 +900,8 @@ namespace dynamic_source
 
       if(get("ci").is_set())
       {
-         single_lock sl(&get_manager()->get_session(session_id())->m_mutex, TRUE);
+         session_ensure();
+         single_lock sl(m_pinstanceMain->m_pmutexSession, TRUE);
           checkimage().generate_new_image();
       }
    }
@@ -2317,7 +2337,6 @@ namespace dynamic_source
          throw 0;
 
       m_ppropertysetVar = new gen::property_set(get_app());
-      //m_ppropertysetSession = new gen::property_set(get_app());
       m_puistrcontext = new ::user::str_context();
       m_puistrcontext->m_pstr = &System.str();
 
@@ -2330,7 +2349,7 @@ namespace dynamic_source
          throw 0;
       if(cookies().find_cookie("sessid") >= 0 && m_ppropertysetSession != NULL)
       {
-         session_write(cookie("sessid").m_varValue, sessiona());
+         session_write(cookie("sessid").m_varValue, *m_ppropertysetSession);
       }
       dprint(unitext("<h2>つづく</h2>"));
       until_here();
@@ -2420,16 +2439,12 @@ namespace dynamic_source
       if(get("fun_session").is_set() && get("fun_session") == 0)
          return;
 
-      /*      if(m_ppropertysetSession == NULL)
-      {
-      m_ppropertysetSession = new gen::property_set(get_app());
-      }*/
       if(!m_bSession)
       {
          m_bSession = true;
          if(cookie("sessid").m_varValue.get_string().get_length() > 10) // heuristical check
          {
-            session_read(cookie("sessid").m_varValue, sessiona());
+            session_read(cookie("sessid").m_varValue, *m_pinstanceMain->m_ppropertysetSession);
          }
          else
          {
@@ -2437,7 +2452,8 @@ namespace dynamic_source
          }
          if(m_ppropertysetSession == NULL)
          {
-            m_ppropertysetSession = &get_manager()->get_session(session_id())->m_set;
+            m_ppropertysetSession = &get_manager()->get_session(m_pmutexSession, session_id())->m_set;
+            m_pmutexSession = &get_manager()->get_session(m_pmutexSession, session_id())->m_mutex;
          }
       }
    }
@@ -2633,9 +2649,9 @@ namespace dynamic_source
       
       strPath = System.dir().path(psz, strRelative);
 
+      string strCandidate;
       if(Application.dir().is(strPath))
       {
-         string strCandidate;
          strCandidate = System.dir().path(strPath, "index.ds");
          if(Application.file().exists(strCandidate))
          {
@@ -2655,6 +2671,20 @@ namespace dynamic_source
             goto ok1;
          }
          return;
+      }
+      else if(gen::str::ends_ci(strPath, ".ds"))
+      {
+         include(strPath);
+         return;
+      }
+      else
+      {
+         strCandidate = strPath + ".ds";
+         if(Application.file().exists(strCandidate))
+         {
+            include(strCandidate);
+            return;
+         }
       }
 
 ok1:

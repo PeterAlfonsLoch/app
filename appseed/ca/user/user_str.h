@@ -12,6 +12,8 @@ namespace user
    class CLASS_DECL_ca str_context
    {
    public:
+      
+      
       raw_array < id > m_straParamLocale;
       raw_array < id > m_straParamStyle;
 
@@ -29,11 +31,13 @@ namespace user
          return m_straParamStyle;
       }
       
-      bool matches(id pszRoot, id pszExtra, const char * psz);
-      bool begins(id pszRoot, id pszExtra, const char * psz);
-      bool begins_eat(string & str, id pszRoot, id pszExtra);
-      void get(stringa & stra, id pszRoot, id pszExtra);
-      string get(id pszRoot, id pszExtra);
+      bool matches(const id & pszRoot, const id & pszExtra, const char * psz);
+      bool begins(const id & pszRoot, const id & pszExtra, const char * psz);
+      bool begins_eat(string & str, const id & pszRoot, const id & pszExtra);
+      void get(stringa & stra, const id & pszRoot, const id & pszExtra);
+      string get(const id & pszRoot, const id & pszExtra);
+
+
    };
 
    class CLASS_DECL_ca str_root
@@ -44,7 +48,7 @@ namespace user
    };
 
    class CLASS_DECL_ca str_style : 
-      public ::collection::map < id, id, str_root, str_root >
+      public ::collection::map < id, const id &, str_root, const str_root & >
    {
    public:
       id m_idStyle;
@@ -53,7 +57,7 @@ namespace user
 
 
    class CLASS_DECL_ca str_lang : 
-      public ::collection::map < id, id, str_style, str_style >
+      public ::collection::map < id, const id &, str_style, const str_style & >
    {
    public:
       id m_idLang;
@@ -61,14 +65,14 @@ namespace user
    };
 
    class CLASS_DECL_ca str_extra : 
-      public ::collection::map < id, id, str_lang, str_lang >
+      public ::collection::map < id, const id &, str_lang, const str_lang & >
    {
    public:
       id m_idExtra;
    };
 
    class CLASS_DECL_ca str : 
-      public ::collection::map < id, id, str_extra, str_extra >
+      public ::collection::map < id, const id &, str_extra, const str_extra & >
    {
    public:
       str(::ca::application * papp);
@@ -76,20 +80,25 @@ namespace user
       bool initialize();
 
 
-      void set(id pszRoot, id pszLang, id pszStyle, id pszExtra, const char * psz);
-      string get(str_context * pcontext, id pszRoot, id pszLang, id pszStyle, id pszExtra);
-      void get(stringa & stra, str_context * pcontext, id pszRoot, id pszLang, id pszStyle, id pszExtra);
+      void set(const id & pszRoot, const id & pszLang, const id & pszStyle, const id & pszExtra, const char * psz);
+      string get(str_context * pcontext, const id & pszRoot, const id & pszLang, const id & pszStyle, const id & pszExtra);
+      void get(stringa & stra, str_context * pcontext, const id & pszRoot, const id & pszLang, const id & pszStyle, const id & pszExtra);
 
       bool load(const char * pszBaseDir);
-      bool load_uistr_file(id pszLang, id pszStyle, const char * pszFile);
+      bool load_uistr_file(const id & pszLang, const id & pszStyle, const char * pszFile);
 
       string body(const char * psz);
 
-      bool matches(str_context * pcontext, id pszRoot, id pszExtra, const char * psz);
-      bool begins(str_context * pcontext, const char * psz, id pszRoot, id pszExtra);
-      bool begins_eat(str_context * pcontext, string & str, id pszRoot, id pszExtra);
-      void get(stringa & stra, str_context * pcontext, id pszRoot, id pszExtra);
-      string get(str_context * pcontext, id pszRoot, id pszExtra);
+      bool matches(str_context * pcontext, const id & pszRoot, const id & pszExtra, const char * psz);
+      bool begins(str_context * pcontext, const char * psz, const id & pszRoot, const id & pszExtra);
+      bool begins_eat(str_context * pcontext, string & str, const id & pszRoot, const id & pszExtra);
+      void get(stringa & stra, str_context * pcontext, const id & pszRoot, const id & pszExtra);
+      string get(str_context * pcontext, const id & pszRoot, const id & pszExtra);
+   
+   
    };
 
+
 } // namespace user
+
+

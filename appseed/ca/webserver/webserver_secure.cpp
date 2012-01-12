@@ -75,10 +75,10 @@ void secure::logout()
    if(request("ruri").is_set())
       strUrl = request("ruri");
 
-   session("login").unset();
-   session("password").unset();
-   session("password1").unset();
-   session("password2").unset();
+   set_session_value("login", gen::g_newconst);
+   set_session_value("password", gen::g_newconst);
+   set_session_value("password1", gen::g_newconst);
+   set_session_value("password2", gen::g_newconst);
 //   session_destroy();
    string strSessionPath = "/";
    string strSessionDomain = "fontopus.com";
@@ -86,9 +86,9 @@ void secure::logout()
    set_cookie("votagus_userid", "", 1000);
    set_cookie("votagus_pass1", "", 1000);
    set_cookie("votagus_pass2", "", 1000);
-   session("secureuserid") = gen::g_newconst;
-   session("secureuserlevel") = -1;
-   session("auth") = gen::g_newconst;
+   set_session_value("secureuserid", gen::g_newconst);
+   set_session_value("secureuserlevel", -1);
+   set_session_value("auth", gen::g_newconst);
 
    if(!gen::str::ends(inattr("http_host"), ".fontopus.com") && inattr("http_host") != "fontopus.com")
    {
@@ -142,18 +142,18 @@ bool secure::login_check()
    bool bEnforce = !bOptional;
    if(get("redir_cause") == "wrong_credentials")
    {
-      session("auth").unset();
-      session("login").unset();
-      session("password1").unset();
-      session("password2").unset();
+      set_session_value("auth", gen::g_newconst);
+      set_session_value("login", gen::g_newconst);
+      set_session_value("password1", gen::g_newconst);
+      set_session_value("password2", gen::g_newconst);
       gprop("g_fontopus_login_prompt") = "wrong_credentials";
    }
 
-   if(session("auth").is_set() && (bool) session("auth") && session("secureuserlevel").get_integer() > gprop("minUserLevel").get_integer())
+   if(get_session_value("auth").is_set() && (bool) get_session_value("auth") && get_session_value("secureuserlevel").get_integer() > gprop("minUserLevel").get_integer())
    {
       dprint("secure::login_check() <strong>session auth</strong><br/>");
       until_here();
-      gprop("secureuserid") = session("secureuserid");
+      gprop("secureuserid") = get_session_value("secureuserid");
       return true;
    }
 
@@ -247,25 +247,25 @@ bool secure::login_check()
       RSA * rsa = RSA_new();
 
 
-      string rsa_n = session("rsa_n");
+      string rsa_n = get_session_value("rsa_n");
 
       BN_hex2bn(&rsa->n, rsa_n);
 
 
       string rsa_n_test = BN_bn2hex(rsa->n);
-      BN_hex2bn(&rsa->e, session("rsa_e"));
+      BN_hex2bn(&rsa->e, get_session_value("rsa_e"));
       string rsa_e_test = BN_bn2hex(rsa->e);
-      BN_hex2bn(&rsa->d, session("rsa_d"));
+      BN_hex2bn(&rsa->d, get_session_value("rsa_d"));
       string rsa_d_test = BN_bn2hex(rsa->d);
-      BN_hex2bn(&rsa->p, session("rsa_p"));
+      BN_hex2bn(&rsa->p, get_session_value("rsa_p"));
       string rsa_p_test = BN_bn2hex(rsa->p);
-      BN_hex2bn(&rsa->q, session("rsa_q"));
+      BN_hex2bn(&rsa->q, get_session_value("rsa_q"));
       string rsa_q_test = BN_bn2hex(rsa->q);
-      BN_hex2bn(&rsa->dmp1, session("rsa_dmp1"));
+      BN_hex2bn(&rsa->dmp1, get_session_value("rsa_dmp1"));
       string rsa_dmp1_test = BN_bn2hex(rsa->dmp1);
-      BN_hex2bn(&rsa->dmq1, session("rsa_dmq1"));
+      BN_hex2bn(&rsa->dmq1, get_session_value("rsa_dmq1"));
       string rsa_dmq1_test = BN_bn2hex(rsa->dmq1);
-      BN_hex2bn(&rsa->iqmp, session("rsa_iqmp"));
+      BN_hex2bn(&rsa->iqmp, get_session_value("rsa_iqmp"));
       string rsa_iqmp_test = BN_bn2hex(rsa->iqmp);
 
       int iRsaSize = 8192;
@@ -356,12 +356,12 @@ bool secure::login_check()
       // session hack to make sessions on old php4 versions work
       dprint("<h5>session1</h5>");
       until_here();
-      session("login")        = gprop("login");
+      set_session_value("login", gprop("login"));
       dprint("<h5>session2</h5>");
       until_here();
-      session("password")   = gprop("password");
-      session("password1")   = gprop("password1");
-      session("password2")   = gprop("password2");
+      set_session_value("password", gprop("password"));
+      set_session_value("password1", gprop("password1"));
+      set_session_value("password2", gprop("password2"));
       dprint("<h5>session3</h5>");
       until_here();
       gprop("g_strict_secure_login") = true;
@@ -369,10 +369,10 @@ bool secure::login_check()
    else
    {
       dprint("!!!loginthere!!!");
-      gprop("login")       = session("login");
-      gprop("password")    = session("password");
-      gprop("password1")    = session("password1");
-      gprop("password2")    = session("password2");
+      gprop("login")       = get_session_value("login");
+      gprop("password")    = get_session_value("password");
+      gprop("password1")    = get_session_value("password1");
+      gprop("password2")    = get_session_value("password2");
       dprint("login=" + gprop("login").get_string());
    }
 
@@ -422,7 +422,7 @@ bool secure::login_check()
 //                        MYSQL_ROW row = presult->fetch_row();
    //                     gprop("login") = row[0];
       //                  gprop("password") = row[1];
-                        session("secureuserlevel") = strLevel;
+                        set_session_value("secureuserlevel", strLevel);
                      }
                   }
                   if(bPass)
@@ -442,7 +442,7 @@ bool secure::login_check()
                      {
                         gprop("login")             = rows.at(0).at(0);
                         gprop("password")          = rows.at(0).at(1);
-                        session("secureuserlevel") = rows.at(0).at(2);
+                        set_session_value("secureuserlevel", rows.at(0).at(2));
                      }
                   }
                   if(bLevel && bPass)
@@ -450,14 +450,14 @@ bool secure::login_check()
                      dprint("<h1>ok-----:secure</h1>");
                      until_here();
 //                     MYSQL_ROW row = presult->fetch_row();
-                     session("login")      = gprop("login");
-                     session("password")    = gprop("password");
+                     set_session_value("login", gprop("login"));
+                     set_session_value("password", gprop("password"));
                      dprint("login=$login");
                      dprint("passwd=$password");
                      gprop("secureuserid") = gprop("userid");
                      gprop("bCookieLogin") = true;
-                     session("secureuserid") = gprop("secureuserid");
-                     session("auth") = true;
+                     set_session_value("secureuserid", gprop("secureuserid"));
+                     set_session_value("auth",  true);
                   }
                }
             }
@@ -574,7 +574,7 @@ bool secure::login_check()
 //                     gprop("login") = row[0];
 //                  gprop("password") = row[1];
                gprop("secureuserid") = strId;
-               session("secureuserlevel") = strLevel;
+               set_session_value("secureuserlevel", strLevel);
             }
             if(strPass == gprop("password1") && post("entered_password").get_string().has_char())
             {
@@ -634,7 +634,7 @@ bool secure::login_check()
             if(bPass && bLevel)
             {
                gprop("secureuserid")      = rows.at(0).at(0);
-               session("secureuserlevel") = rows.at(0).at(1);
+               set_session_value("secureuserlevel",  rows.at(0).at(1));
                //gprop("login") = row[0];
                //gprop("password") = row[1];
             }
@@ -643,8 +643,8 @@ bool secure::login_check()
          {
             dprint("<h1>ok-----:secure</h1>");
             until_here();
-            session("secureuserid") = gprop("secureuserid");
-            session("auth") = true;
+            set_session_value("secureuserid", gprop("secureuserid"));
+            set_session_value("auth",  true);
             //if(request("store_auth_in_client").is_set() && cookie("votagus_userid").is_new())
 //            if(cookie("votagus_userid").is_new())
             if(ca2_fetch_mode() != 1)
@@ -731,14 +731,14 @@ bool secure::login_check()
 
    bool secure::votagus_is_in()
    {
-      return session("votagus_login_tested").is_set() && session("votagus_login_tested") == true;
+      return get_session_value("votagus_login_tested").is_set() && get_session_value("votagus_login_tested") == true;
    }
 
    bool secure::votagus_automatic_login()
    {
       if(!votagus_is_in())
       {
-         session("votagus_login_tested") = true;
+         set_session_value("votagus_login_tested", true);
          string strUrl = "https://fontopus.com/sec?action=check&ruri=" + System.url().url_encode(get_current_url());
          dprint("url=" + strUrl);
          outheader("Location") = strUrl;
@@ -752,7 +752,7 @@ bool secure::login_check()
          && cookie("sessid").m_varValue.get_string().get_length() > 10) && get("authnone").is_new()
          && !gen::str::ends(inattr("http_host"), ".ca2ns.net"))
       {
-         session("votagus_login_tested") = true;
+         set_session_value("votagus_login_tested", true);
          string strRuri = get_current_url();
          strRuri = System.url().remove(strRuri, "sessid");
          string strUrl = "https://fontopus.com/sec";

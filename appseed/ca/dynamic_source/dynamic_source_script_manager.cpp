@@ -566,13 +566,15 @@ namespace dynamic_source
       return real_path(System.dir().netseed("ds/ca2"), psz);
    }
 
-   script_manager::session * script_manager::get_session(const char * pszId)
+
+   script_manager::session * script_manager::get_session(mutex * & pmutex, const char * pszId)
    {
       single_lock sl(&m_mutexSession, TRUE);
       script_manager::session & session = m_mapSession[pszId];
+      pmutex = & session.m_mutex;
       return &session;
    }
-
+   
 
    UINT ThreadProcRsa(LPVOID lp)
    {

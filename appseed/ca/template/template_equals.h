@@ -36,6 +36,21 @@ namespace _template
 
    };
 
+   template < >
+   class equals_type_arg_type < id, const id & >
+   {
+   public:
+
+      inline static bool CompareElements(const id * pElement1, const id & element2)
+      {
+         return pElement1->m_psz == element2.m_psz && pElement1->m_chType == element2.m_chType;
+      }
+
+   };
+
+
+   
+
 
    class strid_equals
    {

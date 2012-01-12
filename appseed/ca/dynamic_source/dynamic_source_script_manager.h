@@ -100,7 +100,7 @@ namespace dynamic_source
       bool initialize_instance();
 
 
-      session * get_session(const char * pszId);
+      session * get_session(mutex * & pmutex, const char * pszId);
 
 
       script_instance * get(const char * lpcszName);

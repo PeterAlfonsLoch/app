@@ -1287,7 +1287,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
       }
       else
       {
-         tt_cond = "topic_song.topictype = " + topictype;
+         tt_cond = "topic_song.topictype = " + strTopicType;
       }
 
 
@@ -1370,7 +1370,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
       int64_array    topictypea;
       int64_array    classida;
 
-		var rows = musicdb().query_rows < int64_array, int64_array, int64_array, int64_t, int64_t, int64_t > (strSql, topicida, topictypea, classida, -1, -1, -1);
+		::count countTopic = musicdb().query_rows < int64_array, int64_array, int64_array, int64_t, int64_t, int64_t > (strSql, topicida, topictypea, classida, -1, -1, -1);
 
 	   int64_array    classa;
 
@@ -1383,7 +1383,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
       int64_t        oldtopictype;
       stringa        classa_added;
 
-		if(rows.array_get_count() > 0)
+		if(countTopic > 0)
 		{
 			topicid		= topicida[0];
 			topictype	= topictypea[0];
@@ -1393,7 +1393,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
 
 		
 
-		for(index i = 1; i < rows.array_get_count(); i++)
+		for(index i = 1; i < countTopic; i++)
 		{
 
 			topicid		= topicida[i];
@@ -1425,7 +1425,7 @@ void database_cache::tmp_performer_update(bool bVerbose)
                      parent_class.remove(cl);
 							if(bVerbose)
 							{
-								print("class = " + cl);
+								print("class = " + gen::str::i64toa(cl));
 								print(" parent_class =" + parent_class.implode(";"));
 								print("\n");
 							}

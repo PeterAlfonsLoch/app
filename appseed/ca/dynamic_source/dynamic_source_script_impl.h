@@ -52,6 +52,7 @@ namespace dynamic_source
       string_to_string_map                m_strmap;
       gen::property_set *                 m_ppropertysetVar;
       gen::property_set *                 m_ppropertysetSession;
+      mutex *                             m_pmutexSession;
       var                                 m_varRet;
       script_impl *                       m_pinstanceParent;
       script_impl *                       m_pinstanceMain;
@@ -202,12 +203,15 @@ namespace dynamic_source
       gen::property     & post(const char * pszKey);
       http::cookie      & cookie(const char * pszKey);
       gen::property     & request(const char * pszKey);
-      gen::property     & session(const char * pszKey);
       gen::relation_set & geta();
       gen::relation_set & posta();
       http::cookies     & cookies();
       gen::relation_set & requesta();
-      gen::property_set & sessiona();
+
+      void set_session_value(const char * psz, var value);
+      var get_session_value(const char * psz);
+
+      //gen::property_set & sessiona();
       gen::property_set & inattra();
 
       using script_interface::this_url;

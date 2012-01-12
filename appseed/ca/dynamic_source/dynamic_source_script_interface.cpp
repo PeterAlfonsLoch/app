@@ -275,11 +275,11 @@ namespace dynamic_source
 
    gen::international::locale_style & script_interface::localestyle()
    {
-      gen::international::locale_style * plocalestyle = sessiona()["locale_style"].ca2 < gen::international::locale_style >();
+      gen::international::locale_style * plocalestyle = get_session_value("locale_style").ca2 < gen::international::locale_style >();
       if(plocalestyle == NULL)
       {
          plocalestyle = new gen::international::locale_style(get_app());
-         sessiona()["locale_style"] = plocalestyle;
+         set_session_value("locale_style", plocalestyle);
       }
       return *plocalestyle;
    }
