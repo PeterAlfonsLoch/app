@@ -43,11 +43,11 @@
 	<File name="c.h" open="0" top="0" tabpos="36">
 		<Cursor position="15" topLine="0" />
 	</File>
-	<File name="c_c.h" open="0" top="0" tabpos="33">
-		<Cursor position="355" topLine="12" />
+	<File name="c_c.h" open="1" top="0" tabpos="8">
+		<Cursor position="355" topLine="0" />
 	</File>
-	<File name="ca_seed.h" open="0" top="0" tabpos="40">
-		<Cursor position="408" topLine="0" />
+	<File name="ca_seed.h" open="1" top="0" tabpos="4">
+		<Cursor position="101" topLine="0" />
 	</File>
 	<File name="conv.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />

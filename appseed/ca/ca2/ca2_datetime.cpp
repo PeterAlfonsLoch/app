@@ -56,7 +56,7 @@ namespace ca2
       case 12:
          return 31;
       }
-      return -1;   
+      return -1;
    }
 
 // 0 is Sunday
@@ -217,13 +217,17 @@ namespace ca2
       tm.tm_mon   = iMonth;
       tm.tm_mday  = iDay;
       tm.tm_year  = iYear;
+      #ifdef WINDOWS
       return _mktime64(&tm);
+      #else
+      return ::mktime(&tm);
+      #endif
    }
 
    string datetime::get_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
    {
       return System.str().get(
-         pcontext, 
+         pcontext,
          "datetimestr_weekday_long[" + gen::str::itoa(iWeekDay - 1) + "]",
          NULL,
          NULL,
@@ -233,7 +237,7 @@ namespace ca2
    string datetime::get_tiny_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
    {
       return System.str().get(
-         pcontext, 
+         pcontext,
          "datetimestr_weekday_tiny[" + gen::str::itoa(iWeekDay - 1) + "]",
          NULL,
          NULL,
@@ -243,7 +247,7 @@ namespace ca2
    string datetime::get_month_str(user::str_context * pcontext, int iMonth)
    {
       return System.str().get(
-         pcontext, 
+         pcontext,
          "datetimestr_month[" + gen::str::itoa(iMonth - 1) + "]",
          NULL,
          NULL,
@@ -253,10 +257,11 @@ namespace ca2
    class time datetime::from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)
    {
       class time timeLocalNow = time::get_current_time();
-      tm tm;
-      timeLocalNow.GetGmtTm(&tm);
-      class time timeUTCNow = class time(tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-      return class time(iYear, iMonth, iDay, iHour, iMinute, iSecond) + (timeUTCNow - timeLocalNow);
+      struct tm tmLocalNow;
+      timeLocalNow.GetGmtTm(&tmLocalNow);
+      class time timeUTCNow(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
+      class time timeUTC(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
+      return timeUTC + (timeUTCNow - timeLocalNow);
    }
 
 
@@ -279,7 +284,7 @@ namespace ca2
        ML( y, 10 ) = 31
        ML( y, 11 ) = 30
        ML( y, 12 ) = 31
-    
+
    and LEAP( y ) is defined as:
 
        LEAP( y ) = ( y % 4 == 0 ) && ( ( y % 100 != 0 ) || ( y % 400 == 0 ) ) */
@@ -287,9 +292,9 @@ namespace ca2
    // simple week number
    //The simple week number we define such that
    //    week 1 starts on January 1st of a given year,
-   //    week n+1 starts 7 days after week n 
-   int SWN(int y, int m, int d ) 
-   { 
+   //    week n+1 starts 7 days after week n
+   int SWN(int y, int m, int d )
+   {
       return 1 + (DP( y, m ) + d-1 ) / 7;
    }
 
@@ -354,7 +359,7 @@ namespace ca2
 	   return (y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
    }
 
-   int SDOW(int y,int m, int d ) // ( 0 = Monday, ..., 6 = Sunday ) 
+   int SDOW(int y,int m, int d ) // ( 0 = Monday, ..., 6 = Sunday )
    {
       return (DP( y, m ) + d-1 ) % 7;
    }
@@ -392,11 +397,11 @@ int getDayOfWeek(int month, int day, int year, int CalendarSystem)
    /*In [ISO8601], the week number is defined by:
 
        weeks start on a monday
-       week 1 of a given year is the one that includes the first Thursday of that year. (or, equivalently, week 1 is the week that includes 4 January.) 
+       week 1 of a given year is the one that includes the first Thursday of that year. (or, equivalently, week 1 is the week that includes 4 January.)
 
    This means that the days before week 1 in a given year are attributed to the last week of the previous year. Also the days that come after the last week of a given year are attributed to the first week of the next year.
 
-   If we adapt approximation SWN5 for the simple week number to reflect the differences between the definitions of both week numbers, we arrive at the final solution, adopted for the week number wristapp: 
+   If we adapt approximation SWN5 for the simple week number to reflect the differences between the definitions of both week numbers, we arrive at the final solution, adopted for the week number wristapp:
    */
    /*int ISO_WN(int  y, int m, int d, int dow, int dow0101 )
    {

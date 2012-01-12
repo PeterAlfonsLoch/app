@@ -16,8 +16,6 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-fPIC" />
-					<Add option="-Winvalid-pch" />
-					<Add option='-include &quot;StdAfx.h&quot;' />
 					<Add directory="." />
 					<Add directory="../ca" />
 					<Add directory="../../appseedcore" />
@@ -27,13 +25,13 @@
 					<Add directory="../../nodeapp/linux/include" />
 					<Add directory="../../.." />
 					<Add directory=".." />
+					<Add directory="../../../app/thirdparty/include" />
+					<Add directory="../../../app/thirdparty/appseed" />
 				</Compiler>
 			</Target>
 		</Build>
 		<Unit filename="StdAfx.cpp" />
 		<Unit filename="StdAfx.h" />
-		<Unit filename="api/allocate.h" />
-		<Unit filename="api/api_allocate.cpp" />
 		<Unit filename="api/api_muldiv64.cpp" />
 		<Unit filename="api/api_str.cpp" />
 		<Unit filename="api/debug.cpp" />
