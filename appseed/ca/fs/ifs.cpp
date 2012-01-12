@@ -7,11 +7,13 @@ ifs::ifs(::ca::application * papp, const char * pszRoot) :
    ::fs::data(papp)
 {
    m_strRoot = pszRoot;
-   Application.http().get("http://file.veriwell.net/");
 }
 
 bool ifs::has_subdir(const char * pszPath)
 {
+
+   defer_initialize();
+
    xml::node node(get_app());
 
    string strUrl;
@@ -52,6 +54,9 @@ void ifs::root_ones(stringa & stra)
 
 bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 {
+
+   defer_initialize();
+
    xml::node node(get_app());
 
    string strUrl;
@@ -123,6 +128,8 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
 bool ifs::is_dir(const char * pszPath)
 {
+
+
    //xml::node node(get_app());
 
    if(pszPath == NULL || strlen(pszPath) == 0)
@@ -134,6 +141,10 @@ bool ifs::is_dir(const char * pszPath)
    {
       return true;
    }
+
+
+   defer_initialize();
+
 
    DWORD dwTimeout;
 
@@ -247,4 +258,16 @@ ex1::filesp ifs::get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp
 bool ifs::file_exists(const char * pszPath)
 {
    return ::fs::data::file_exists(pszPath);
+}
+
+
+void ifs::defer_initialize()
+{
+   
+   if(!m_bInitialized)
+   {
+      m_bInitialized = true;
+      Application.http().get("http://file.veriwell.net/");
+   }
+
 }

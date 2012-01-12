@@ -21,6 +21,9 @@ namespace plane
       pset->m_spafsdata.add(new ::fs::native(this));
       m_spfsdata(pset);
 
+
+      m_pifs                     = new ifs(this, "");
+
    }
 
    session::~session()

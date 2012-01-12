@@ -8,7 +8,9 @@ class CLASS_DECL_ca ifs :
 {
 public:
 
-   string      m_strRoot;
+
+   string         m_strRoot;
+   bool           m_bInitialized;
 
 
    ::collection::string_map < DWORD >   m_mapdirTimeout;
@@ -31,6 +33,8 @@ public:
    virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception = NULL);
 
    virtual bool file_exists(const char * pszPath);
+
+   virtual void defer_initialize();
 
 };
 

@@ -59,6 +59,8 @@ namespace plane
       
       bool                                                  m_bDrawCursor;
 
+      ifs *                                                 m_pifs;
+
 
       session();
       virtual ~session();

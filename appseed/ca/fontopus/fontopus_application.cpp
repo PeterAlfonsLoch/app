@@ -98,6 +98,12 @@ namespace fontopus
          papp = this;
       }*/
       //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
+
+      if(m_psession != NULL && m_psession->m_pbergedge != NULL)
+      {
+         return m_psession->m_pbergedgeInterface->login();
+      }
+
       class validate authuser(this, "system\\user\\authenticate.xhtml", true);
       authuser.oprop("defer_registration") = "defer_registration";
       return authuser.get_user();

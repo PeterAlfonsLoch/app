@@ -57,7 +57,7 @@ namespace fontopus
          return true;
       }
 
-      m_pifs = new ifs(get_app(), "");
+      m_pifs = Session.m_pifs;
 
       return true;
 

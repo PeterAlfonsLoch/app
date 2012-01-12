@@ -870,21 +870,6 @@ InitFailure:
          return false;
 
 
-      if(m_bIfs)
-      {
-         if((!is_system() && !is_bergedge()) || (is_bergedge() && System.directrix().m_varTopicQuery["show_platform"].get_integer() == 1))
-         {
-            if(App(this).m_puser != NULL && App(this).m_puser->m_pifs != NULL)
-            {
-               if(m_spfsdata.is_null())
-                  m_spfsdata(new ::fs::set(this));
-               ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-               pset->m_spafsdata.add(App(this).m_puser->m_pifs);
-               stringa stra;
-               pset->root_ones(stra);
-            }
-         }
-      }
 
       m_dwAlive = ::GetTickCount();
 
