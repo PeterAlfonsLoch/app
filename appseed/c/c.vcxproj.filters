@@ -42,6 +42,9 @@
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{254aa1d9-6362-42f9-af93-f43b19cc8e40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\C Source Files">
+      <UniqueIdentifier>{bdda0e49-0b43-48ad-8378-7e5c31eff337}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="radix.h">
@@ -352,9 +355,6 @@
     <ClCompile Include="md5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="conv.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="file_spa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -520,14 +520,17 @@
     <ClCompile Include="windows\c_os_c_dll.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="ca_c.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cpu_architecture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="windows\c_os_crt0dll.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c_c.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="conv.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
