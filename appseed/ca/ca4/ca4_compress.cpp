@@ -150,6 +150,16 @@ namespace ca4
          TRACE0("ex1::file_exception * error message : " + strErrorMessage);
          return false;
       }
+/*#ifdef _WIN64
+      catch(ex1::file_exception * __ptr64 pe)
+      {
+         TRACE("failed to bzip '%s' to '%s'", lpcszUncompressed, lpcszGzFileCompressed);
+         string strErrorMessage;
+         pe->GetErrorMessage(strErrorMessage);
+         TRACE0("ex1::file_exception * error message : " + strErrorMessage);
+         return false;
+      }
+#endif*/
       catch(...)
       {
          TRACE("failed to bzip '%s' to '%s'", lpcszUncompressed, lpcszGzFileCompressed);

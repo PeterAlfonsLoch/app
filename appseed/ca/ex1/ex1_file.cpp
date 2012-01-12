@@ -277,25 +277,32 @@ namespace ex1
 
    int file_exception::get_cause()
    {
-      return none;
+      return m_cause;
    }
-   
+
    LONG file_exception::get_os_error()
    {
-      return -1;
+      return m_lOsError;
    }
-   
+
    string file_exception::get_file_path()
    {
-      return "";
+      return m_strFileName;
    }
-
-
    BOOL file_exception::GetErrorMessage(string & str, PUINT pnHelpContext) const
    {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(pnHelpContext);
-      return FALSE;
+   
+     // if (pnHelpContext != NULL)
+   //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
+
+      string strMessage;
+      string strFileName = m_strFileName;
+      if(strFileName.is_empty())
+         strFileName = "IDS_UNNAMED_FILE";
+      strMessage.Format("file error number: %d - %s - file: %s", m_cause, get_system_error_message(m_lOsError), strFileName);
+      str = strMessage;
+
+      return TRUE;
    }
 
    /////////////////////////////////////////////////////////////////////////////

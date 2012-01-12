@@ -28,6 +28,15 @@ namespace ex1
          endOfFile
       };
 
+
+
+
+   int      m_cause;
+   LONG     m_lOsError;
+   string   m_strFileName;
+
+
+
    // Constructor
       file_exception(const file_exception & e) :
          exception(e)
@@ -37,10 +46,8 @@ namespace ex1
       file_exception(::ca::application * papp, int cause = file_exception::none, LONG lOsError = -1,
          const char * lpszArchiveName = NULL);
 
-      virtual void Construct(int cause = file_exception::none, LONG lOsError = -1,
-         const char * lpszArchiveName = NULL);
+      virtual void Construct(int cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
-   public:
       virtual ~file_exception();
 
       virtual int get_cause();

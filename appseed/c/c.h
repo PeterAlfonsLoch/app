@@ -117,3 +117,4 @@ extern "C"
 
 vsstring _c_get_file_name(const char * psz, bool bCreate = false, int * pfd = NULL);
 
+CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
