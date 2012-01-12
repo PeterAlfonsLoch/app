@@ -43,10 +43,13 @@ static simple_mutex g_mutexSystemHeap;
 CLASS_DECL_ca void * system_heap_alloc(size_t size)
 {
    mutex_lock lock(&g_mutexSystemHeap, true);
+#if ZEROED_ALLOC
+   byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
+#else
    byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, 0, ((size + 4 + 3) & ~3));
+#endif
    if(p == NULL)
       return NULL;
-   memset(p, 0, ((size + 4 + 3) & ~3));
    ((DWORD *)p)[0] = 0;
    int iMod = ((DWORD_PTR)p) % 4;
    p[3 - iMod] = (uint8_t) (4 - iMod);

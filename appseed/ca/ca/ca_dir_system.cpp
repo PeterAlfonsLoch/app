@@ -158,7 +158,10 @@ namespace ca
       bool system::is(const string & strPath, ::ca::application * papp)
       {
          if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
+         {
+            m_isdirmap.set(strPath, true);
             return true;
+         }
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;

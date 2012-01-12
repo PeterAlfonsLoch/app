@@ -186,7 +186,6 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 
 plex_heap_alloc_array::~plex_heap_alloc_array()
 {
-   mutex_lock lock(&m_mutex, true);
    for(int i = 0; i < this->get_count(); i++)
    {
       delete this->element_at(i);
@@ -195,7 +194,6 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
 void * plex_heap_alloc_array::alloc(size_t nAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
    plex_heap_alloc * palloc = find(nAllocSize);
    if(palloc != NULL)
    {
@@ -209,8 +207,9 @@ void * plex_heap_alloc_array::alloc(size_t nAllocSize)
 
 void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
+
    plex_heap_alloc * palloc = find(nAllocSize);
+
    if(palloc != NULL)
    {
       return palloc->Free(p);
@@ -219,12 +218,12 @@ void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
    {
       return ::system_heap_free(p);
    }
+
 }
 
 
 void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
    plex_heap_alloc * pallocOld = find(nOldAllocSize);
    plex_heap_alloc * pallocNew = find(nNewAllocSize);
    if(pallocOld == NULL && pallocNew == NULL)
@@ -237,29 +236,37 @@ void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t 
    }
    else
    {
-      void * pNew = alloc(nNewAllocSize);
 
-      if(pNew == NULL)
-         return NULL;
+      void * pNew;
+      
+      if(pallocNew != NULL)
+      {
+         pNew = pallocNew->Alloc();
+      }
+      else
+      {
+         pNew = ::system_heap_alloc(nNewAllocSize);
+      }
 
       memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
-#if ZEROED_ALLOC
-      if(nNewAllocSize > nOldAllocSize)
-      {
-         memset(&((byte *)pNew)[nOldAllocSize], 0, nNewAllocSize - nOldAllocSize);
-      }
-#endif
 
-      free(pOld, nOldAllocSize);
+      if(pallocOld != NULL)
+      {
+         pallocOld->Free(pOld);
+      }
+      else
+      {
+         ::system_heap_free(pOld);
+      }
 
       return pNew;
+
    }
 }
 
 
 plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
    size_t nFoundSize = MAX_DWORD_PTR;
    int iFound = -1;
    for(int i = 0; i < this->get_count(); i++)

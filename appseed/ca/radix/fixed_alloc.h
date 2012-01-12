@@ -55,9 +55,6 @@ class CLASS_DECL_ca fixed_alloc_array :
 public:
 
 
-   simple_mutex      m_mutex;
-
-
    fixed_alloc_array();
    virtual ~fixed_alloc_array();
 
@@ -66,6 +63,8 @@ public:
    void * realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);
 
    fixed_alloc * find(size_t nAllocSize);
+
+
 };
 
 

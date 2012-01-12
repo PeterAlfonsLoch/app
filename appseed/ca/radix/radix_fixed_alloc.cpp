@@ -161,7 +161,6 @@ fixed_alloc_array::fixed_alloc_array()
 
 fixed_alloc_array::~fixed_alloc_array()
 {
-   mutex_lock lock(&m_mutex, true);
    for(int i = 0; i < this->get_count(); i++)
    {
       delete this->element_at(i);
@@ -170,7 +169,6 @@ fixed_alloc_array::~fixed_alloc_array()
 
 void * fixed_alloc_array::alloc(size_t nAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
    fixed_alloc * palloc = find(nAllocSize);
    if(palloc != NULL)
    {
@@ -178,14 +176,12 @@ void * fixed_alloc_array::alloc(size_t nAllocSize)
    }
    else
    {
-      single_lock sl(get_heap_mutex(), TRUE);
       return ca2_alloc(nAllocSize);
    }
 }
 
 void fixed_alloc_array::free(void * p, size_t nAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
    fixed_alloc * palloc = find(nAllocSize);
    if(palloc != NULL)
    {
@@ -193,19 +189,16 @@ void fixed_alloc_array::free(void * p, size_t nAllocSize)
    }
    else
    {
-      single_lock sl(get_heap_mutex(), TRUE);
       return ca2_free(p);
    }
 }
 
 void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
    fixed_alloc * pallocOld = find(nOldAllocSize);
    fixed_alloc * pallocNew = find(nNewAllocSize);
    if(pallocOld == NULL && pallocNew == NULL)
    {
-      single_lock sl(get_heap_mutex(), TRUE);
       return ca2_realloc(pOld, nNewAllocSize);
    }
    else if(pallocOld == pallocNew)
@@ -214,7 +207,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    }
    else
    {
-      single_lock sl(get_heap_mutex(), TRUE);
+
       void * pNew = pallocNew == NULL ? ca2_alloc(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == NULL)
@@ -237,7 +230,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
 
 fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
 {
-   mutex_lock lock(&m_mutex, true);
+   //mutex_lock lock(&m_mutex, true);
    size_t nFoundSize = MAX_DWORD_PTR;
    int iFound = -1;
    for(int i = 0; i < this->get_count(); i++)
