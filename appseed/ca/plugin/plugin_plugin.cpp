@@ -41,7 +41,7 @@ namespace plugin
 
       bool bNew = false;
 
-      Sleep(15 * 1000);
+      //Sleep(15 * 1000);
 
       mutex_lock mlSystem(&m_phost->m_mutexSystem, true);
 
@@ -89,13 +89,9 @@ namespace plugin
       if(m_psystem == NULL)
       {
 
-         ::plane::system * psystemHost = (::plane::system *) m_phost->get_system();
-
          m_bAppStarted = false;
          
          m_psystem = new ::plugin::system();
-
-         m_psystem->m_psystem = psystemHost;
 
          set_app(m_psystem);
 
