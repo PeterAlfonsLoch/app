@@ -16,6 +16,9 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    void application::Ex1OnFactoryExchange()
    {
    #ifdef WIN32
+
+      System.factory().creatable_large < ::ex1::file_exception > ();
+
       HMODULE hmodule = ::LoadLibraryA("os.dll");
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);

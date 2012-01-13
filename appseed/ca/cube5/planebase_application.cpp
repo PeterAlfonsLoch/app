@@ -642,14 +642,7 @@ InitFailure:
       if(varFile.get_type() == var::type_propset
       && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
       {
-         try
-         {
-            spfile(varFile.propset()["file"].ca2 < ::ex1::file >());
-         }
-         catch(...)
-         {
-            return NULL;
-         }
+         spfile(varFile.propset()["file"].ca2 < ::ex1::file >());
       }
       else if(gen::str::find_ci(".zip:", strPath) >= 0)
       {
@@ -667,58 +660,30 @@ InitFailure:
          ||   gen::str::begins(strPath, "https://"))
       {
          spfile(new sockets::http::file(get_app()));
-         try
+         if(!spfile->open(strPath, nOpenFlags, pe))
          {
-            if(!spfile->open(strPath, nOpenFlags, pe))
-            {
-               spfile.destroy();
-            }
-         }
-         catch(...)
-         {
-            return NULL;
+            spfile.destroy();
          }
       }
       else if(gen::str::begins(strPath, "ifs://")
          ||   gen::str::begins(strPath, "uifs://"))
       {
-         try
-         {
-            spfile(AppUser(this).m_pifs->get_file(strPath, nOpenFlags, pe));
-         }
-         catch(...)
-         {
-            return NULL;
-         }
+         spfile(AppUser(this).m_pifs->get_file(strPath, nOpenFlags, pe));
       }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
       {
-         try
+         spfile.create(this);
+         if(!spfile->open(dir().matter(strPath), nOpenFlags, pe))
          {
-            spfile.create(this);
-            if(!spfile->open(dir().matter(strPath), nOpenFlags, pe))
-            {
-               spfile.destroy();
-            }
-         }
-         catch(...)
-         {
-            return NULL;
+            spfile.destroy();
          }
       }
       else
       {
          spfile.create(this);
-         try
+         if(!spfile->open(strPath, nOpenFlags, pe))
          {
-            if(!spfile->open(strPath, nOpenFlags, pe))
-            {
-               spfile.destroy();
-            }
-         }
-         catch(...)
-         {
-            return NULL;
+            spfile.destroy();
          }
       }
       return spfile;

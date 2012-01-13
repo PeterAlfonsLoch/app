@@ -36,9 +36,10 @@ namespace zip
    {
       m_bOwnFile = true;
       ex1::filesp spfile(get_app());
+      ex1::file_exception_sp fe;
       try
       {
-         if(!spfile->open(lpcwsz, ::ex1::file::mode_read | ::ex1::file::type_binary))
+         if(!spfile->open(lpcwsz, ::ex1::file::mode_read | ::ex1::file::type_binary, &fe))
          {
             return false;
          }

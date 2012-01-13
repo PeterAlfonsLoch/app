@@ -339,7 +339,8 @@ namespace ca
                return;
             }
          }
-         ex1::filesp spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
+         ex1::file_exception_sp e;
+         ex1::filesp spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone, &e);
          if(spfile.is_set())
          {
 /*
@@ -412,7 +413,8 @@ namespace ca
       bool system::put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp)
       {
          ex1::filesp spfile;
-         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         ex1::file_exception_sp spfe;
+         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory, &spfe);
          if(spfile.is_null())
             return false;
          spfile->write(pvoidContents, count);
