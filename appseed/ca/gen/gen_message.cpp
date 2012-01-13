@@ -232,25 +232,10 @@ namespace gen
          if(pbase->m_uiMessage == (WM_APP + 2014))
          {
             base * pbase2 = (base *) pbase->m_lparam;
-            m_signala.GetSignalsByMessage(signalptra, pbase2->m_uiMessage, 0, 0);
-            for(int i = 0; i < signalptra.get_size(); i++)
-            {
-               Signal & signal = *signalptra[i];
-               gen::signal * psignal = signal.m_psignal;
-               pbase2->m_psignal = psignal;
-               psignal->emit(pbase2);
-               if(pbase2->m_bRet)
-               {
-                  if(pbase2->m_wparam != 0)
-                  {
-                     delete pbase;
-                  }
-                  return;
-               }
-            }
+            _user_message_handler(pbase2);
             if(pbase2->m_wparam != 0)
             {
-               delete pbase2;
+               delete pbase;
             }
             return;
          }
