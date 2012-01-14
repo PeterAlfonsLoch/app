@@ -9,12 +9,15 @@ namespace primitive
       ca(papp),
       memory_container (papp)
    {
-      m_bSynch = false;
-      m_dwPosition = 0;
-      if(iSize >= 0)
+
+      m_bSynch       = false;
+      m_dwPosition   = 0;
+      
+      if(iSize > 0)
       {
          create(iSize);
       }
+
    }
 
 
@@ -77,13 +80,16 @@ namespace primitive
 
    void memory_file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      single_lock sl(m_spmutex, TRUE);
-      ASSERT(IsValid());
 
+      single_lock sl(m_spmutex, TRUE);
+      
       ::primitive::memory_size iEndPosition = m_dwPosition + nCount;
+
       if(iEndPosition > (int) this->get_size())
       {
+
          allocate(iEndPosition );
+
       }
 
       if(iEndPosition <= 0)
@@ -182,7 +188,9 @@ namespace primitive
 
    void memory_file::create(::primitive::memory_size iSize)
    {
+
       allocate(iSize);
+
    }
 
 

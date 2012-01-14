@@ -196,9 +196,9 @@ namespace sockets
          \param erase Empty trigger id source and destination maps if 'true',
             Leave them in place if 'false' - if a trigger should be called many times */
       virtual void Trigger(int id, socket::TriggerData& data, bool erase = true) = 0;
-      /** Indicates that the handler runs under SocketThread. */
+      /** Indicates that the handler runs under socket_thread. */
       virtual void SetSlave(bool x = true) = 0;
-      /** Indicates that the handler runs under SocketThread. */
+      /** Indicates that the handler runs under socket_thread. */
       virtual bool IsSlave() = 0;
 
    };

@@ -18,6 +18,21 @@ public:
 class CLASS_DECL_ca plex_heap_alloc
 {
 public:
+
+
+   struct node
+   {
+      node* pNext;               // only valid when in free list
+   };
+
+
+   UINT           m_nAllocSize;  // size of each block from Alloc
+   UINT           m_nBlockSize;  // number of blocks to get at a time
+   plex_heap *    m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
+   node*          m_pnodeFree;   // first free node (NULL if no free nodes)
+   mutex          m_mutex;
+
+
    plex_heap_alloc(UINT nAllocSize, UINT nBlockSize = 64);
    virtual ~plex_heap_alloc();
 
@@ -28,18 +43,9 @@ public:
    void FreeAll();               // free everything allocated from this allocator
 
 
-   struct node
-   {
-      node* pNext;               // only valid when in free list
-   };
-
-   UINT           m_nAllocSize;  // size of each block from Alloc
-   UINT           m_nBlockSize;  // number of blocks to get at a time
-   plex_heap *    m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
-   node*          m_pnodeFree;   // first free node (NULL if no free nodes)
 };
 
-plex_heap* PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
+plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
 {
    ASSERT(nMax > 0 && cbElement > 0);
    if (nMax == 0 || cbElement == 0)
@@ -56,6 +62,7 @@ plex_heap* PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR c
 
 void plex_heap::FreeDataChain()     // free this one and links
 {
+
    plex_heap* p = this;
    while (p != NULL)
    {
@@ -64,10 +71,14 @@ void plex_heap::FreeDataChain()     // free this one and links
       system_heap_free(bytes);
       p = pNext;
    }
+
 }
 
 plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 {
+   
+   single_lock sl(&m_mutex, true);
+
    if(nBlockSize <= 1)
       nBlockSize = 4;
 
@@ -83,6 +94,7 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
    m_nBlockSize = nBlockSize;
    m_pnodeFree = NULL;
    m_pBlocks = NULL;
+
 }
 
 plex_heap_alloc::~plex_heap_alloc()
@@ -92,13 +104,20 @@ plex_heap_alloc::~plex_heap_alloc()
 
 void plex_heap_alloc::FreeAll()
 {
+   
+   single_lock sl(&m_mutex, true);
+
    m_pBlocks->FreeDataChain();
    m_pBlocks = NULL;
    m_pnodeFree = NULL;
+
 }
 
 void * plex_heap_alloc::Alloc()
 {
+
+   single_lock sl(&m_mutex, true);
+
    if (m_pnodeFree == NULL)
    {
       size_t nAllocSize = m_nAllocSize + 32;
@@ -135,6 +154,8 @@ void plex_heap_alloc::Free(void * p)
 
    if(p == NULL)
       return;
+
+   single_lock sl(&m_mutex, true);
 
    // simply return the node to the free list
    node* pNode = (node*)p;

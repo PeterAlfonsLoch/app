@@ -26,20 +26,20 @@ namespace sockets
       friend class socket_handler_base;
       /** Detached socket run thread.
          \ingroup internal */
-      class CLASS_DECL_ca SocketThread :
+      class CLASS_DECL_ca socket_thread :
          virtual public ::radix::thread
       {
       public:
-         SocketThread(socket *p);
-         ~SocketThread();
+         socket_thread(socket * psocket);
+         ~socket_thread();
 
          virtual int run();
-         socket *GetSocket() const { return m_socket; }
-         socket *m_socket;
+         socket * GetSocket() const { return m_psocket; }
+         socket * m_psocket;
 
       private:
-         SocketThread(const SocketThread& s);
-         SocketThread& operator=(const SocketThread& ) { return *this; }
+         socket_thread(const socket_thread& s);
+         socket_thread& operator=(const socket_thread& ) { return *this; }
       };
 
       /** Data pass class from source to destination. */
@@ -109,7 +109,7 @@ namespace sockets
 
       bool m_detach; ///< socket ordered to detach flag
       bool m_detached; ///< socket has been detached
-      SocketThread *m_pThread; ///< Detach socket thread class pointer
+      socket_thread *m_pThread; ///< Detach socket thread class pointer
       socket_handler_base *m_slave_handler; ///< Actual sockethandler while detached
 
 

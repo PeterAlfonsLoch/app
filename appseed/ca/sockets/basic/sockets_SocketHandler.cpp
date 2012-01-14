@@ -286,7 +286,7 @@ namespace sockets
          SOCKET s;
          socket *p;
          m_add.get_next_assoc(pos, s, p);
-   //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int)s, (int)m_add.get_size(), (int)ignore);
+         TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int)s, (int)m_add.get_size(), (int)ignore);
          //
          socket *plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
@@ -295,7 +295,7 @@ namespace sockets
             // %! it's a dup, don't add to delete queue, just ignore it
             m_delete.add_tail(p);
             m_add.remove_key(s);
-   //         ignore++;
+            ignore++;
             continue;
          }
          if (!p -> CloseAndDelete())
@@ -362,7 +362,7 @@ namespace sockets
          m_iSelectErrno = Errno;
       }
       dw2 = ::GetTickCount();
-      //TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
+      TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
       if (n == -1)
       {
          /*
@@ -520,34 +520,38 @@ namespace sockets
             }
             if(psocket != NULL)
             {
-   //            if (p -> CallOnConnect() && p -> Ready() )
+               tcp_socket *tcp = dynamic_cast<tcp_socket *>(psocket);
+               if(tcp != NULL)
                {
-                  psocket -> SetConnected(); // moved here from inside if (tcp) check below
-                  if (psocket -> IsSSL()) // SSL Enabled socket
-                     psocket -> OnSSLConnect();
-                  else
-                  if (psocket -> Socks4())
-                     psocket -> OnSocks4Connect();
-                  else
+                  if (tcp -> CallOnConnect() && psocket -> Ready() )
                   {
-                     tcp_socket *tcp = dynamic_cast<tcp_socket *>(psocket);
-                     if (tcp)
-                     {
-                        if (tcp -> GetOutputLength())
-                        {
-                           psocket -> OnWrite();
-                        }
-                     }
-                     if (tcp && tcp -> IsReconnect())
-                        psocket -> OnReconnect();
+                     psocket -> SetConnected(); // moved here from inside if (tcp) check below
+                     if (psocket -> IsSSL()) // SSL Enabled socket
+                        psocket -> OnSSLConnect();
+                     else
+                     if (psocket -> Socks4())
+                        psocket -> OnSocks4Connect();
                      else
                      {
-   //                     LogError(p, "Calling OnConnect", 0, "Because CallOnConnect", ::gen::log::level::info);
-                        psocket -> OnConnect();
+                     
+                        if (tcp)
+                        {
+                           if (tcp -> GetOutputLength())
+                           {
+                              psocket -> OnWrite();
+                           }
+                        }
+                        if (tcp && tcp -> IsReconnect())
+                           psocket -> OnReconnect();
+                        else
+                        {
+                           LogError(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::gen::log::level::info);
+                           psocket -> OnConnect();
+                        }
                      }
+                     tcp -> SetCallOnConnect( false );
+                     AddList(psocket -> GetSocket(), LIST_CALLONCONNECT, false);
                   }
-   //               p -> SetCallOnConnect( false );
-                  AddList(psocket -> GetSocket(), LIST_CALLONCONNECT, false);
                }
             }
          }
@@ -568,7 +572,7 @@ namespace sockets
             }
             if (p)
             {
-   //            if (p -> IsDetach())
+               if (p -> IsDetach())
                {
                   Set(p -> GetSocket(), false, false, false);
                   // After DetachSocket(), all calls to Handler() will return a reference
@@ -576,12 +580,12 @@ namespace sockets
                   p -> DetachSocket();
                   // Adding the file descriptor to m_fds_erase will now also remove the
                   // socket from the detach queue - tnx knightmad
-//                 m_fds_erase.add_tail(p -> GetSocket());
+                  m_fds_erase.add_tail(p -> GetSocket());
 
-                  m_fds_detach.remove(socket);
-                  m_fds.remove(socket);
-                  m_sockets.remove_key(socket);
-                  check_max_fd = true;
+ //                 m_fds_detach.remove(socket);
+   //               m_fds.remove(socket);
+     //             m_sockets.remove_key(socket);
+       //           check_max_fd = true;
                }
             }
          }
@@ -637,24 +641,28 @@ namespace sockets
             }
             if (p)
             {
-   //            if (p -> RetryClientConnect())
+               tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
+               if(tcp != NULL)
                {
-                  tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
-                  SOCKET nn = socket; //(*it3).first;
-                  tcp -> SetRetryClientConnect(false);
-                  TRACE("close() before retry client connect\n");
-                  p -> close(); // removes from m_fds_retry
-                  ::ca::smart_pointer < sockets::address > ad = p -> GetClientRemoteAddress();
-                  if(ad.m_p != NULL)
+                  if(tcp -> RetryClientConnect())
                   {
-                     tcp -> open(*ad);
+                  
+                     SOCKET nn = socket; //(*it3).first;
+                     tcp -> SetRetryClientConnect(false);
+                     TRACE("close() before retry client connect\n");
+                     p -> close(); // removes from m_fds_retry
+                     ::ca::smart_pointer < sockets::address > ad = p -> GetClientRemoteAddress();
+                     if(ad.m_p != NULL)
+                     {
+                        tcp -> open(*ad);
+                     }
+                     else
+                     {
+                        LogError(p, "RetryClientConnect", 0, "no address", ::gen::log::level::error);
+                     }
+                     add(p);
+                     m_fds_erase.add_tail(nn);
                   }
-                  else
-                  {
-                     LogError(p, "RetryClientConnect", 0, "no address", ::gen::log::level::error);
-                  }
-                  add(p);
-                  m_fds_erase.add_tail(nn);
                }
             }
          }
@@ -663,7 +671,7 @@ namespace sockets
       if(m_fds_close.get_size())
       {
          socket_id_list tmp = m_fds_close;
-         //TRACE("m_fds_close.size() == %d\n", (int)m_fds_close.get_size());
+         TRACE("m_fds_close.size() == %d\n", (int)m_fds_close.get_size());
          POSITION pos = tmp.get_head_position();
          while(pos != NULL)
          {
@@ -678,7 +686,7 @@ namespace sockets
             }
             if (p)
             {
-   //            if (p -> CloseAndDelete() )
+               if (p -> CloseAndDelete() )
                {
                   tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
                   // new graceful tcp - flush and close timeout 5s
@@ -727,7 +735,7 @@ namespace sockets
                   }
                   else
                   {
-                     //TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
+                     TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
                      if (tcp && p -> IsConnected() && tcp -> GetOutputLength())
                      {
                         LogError(p, "Closing", (int)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::gen::log::level::warning);
@@ -743,7 +751,7 @@ namespace sockets
                      else
                      {
                         Set(p -> GetSocket(),false,false,false);
-                        //TRACE("close() before OnDelete\n");
+                        TRACE("close() before OnDelete\n");
                         p -> close();
                      }
                      p -> OnDelete();
@@ -1157,12 +1165,12 @@ namespace sockets
          (which_one == LIST_CLOSE) ? m_fds_close : m_fds_close;
       if (add)
       {
-         /*TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
+         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
             (which_one == LIST_DETACH) ? "Detach" :
             (which_one == LIST_TIMEOUT) ? "Timeout" :
             (which_one == LIST_RETRY) ? "Retry" :
             (which_one == LIST_CLOSE) ? "close" : "<undef>",
-            add ? "add" : "remove");*/
+            add ? "add" : "remove");
       }
       if (add)
       {
@@ -1171,7 +1179,7 @@ namespace sockets
       }
       // remove
       ref.remove(s);
-      //TRACE("/AddList\n");
+      TRACE("/AddList\n");
    }
 
 

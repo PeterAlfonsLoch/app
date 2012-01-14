@@ -164,9 +164,9 @@ namespace sockets
             Leave them in place if 'false' - if a trigger should be called many times */
       void Trigger(int id, socket::TriggerData& data, bool erase = true);
 
-      /** Indicates that the handler runs under SocketThread. */
+      /** Indicates that the handler runs under socket_thread. */
       void SetSlave(bool x = true);
-      /** Indicates that the handler runs under SocketThread. */
+      /** Indicates that the handler runs under socket_thread. */
       bool IsSlave();
 
       /** Sanity check of those accursed lists. */
@@ -214,7 +214,7 @@ namespace sockets
       int m_next_trigger_id; ///< Unique trigger id counter
       ::collection::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
       ::collection::map<int, int, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
-      bool m_slave; ///< Indicates that this is a socket_handler_base run in SocketThread
+      bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
    };
 
 

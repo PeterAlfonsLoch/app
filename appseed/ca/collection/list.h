@@ -227,20 +227,32 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT(nBlockSize > 0);
 
-      m_nCount = 0;
-      m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
-      m_pBlocks = NULL;
-      m_nBlockSize = nBlockSize;
+      m_nCount          = 0;
+      m_pnodeHead       = NULL;
+      m_pnodeTail       = NULL;
+      m_pnodeFree       = NULL;
+      m_pBlocks         = NULL;
+      m_nBlockSize      = nBlockSize;
    }
 
    template<class TYPE, class ARG_TYPE>
    list<TYPE, ARG_TYPE>::list(const class list & l)
    {
-      m_nCount = 0;
-      m_pnodeHead = m_pnodeTail = m_pnodeFree = NULL;
-      m_pBlocks = NULL;
-      m_nBlockSize = l.m_nBlockSize;
-      operator = (l);
+      
+      m_nCount          = 0;
+      m_pnodeHead       = NULL;
+      m_pnodeTail       = NULL;
+      m_pnodeFree       = NULL;
+      m_pBlocks         = NULL;
+      m_nBlockSize      = l.m_nBlockSize;
+
+      POSITION pos      = l.get_head_position();
+
+      while(pos != NULL)
+      {
+         add_tail(const_cast < TYPE & > (l.get_next(pos)));
+      }
+
    }
 
    template<class TYPE, class ARG_TYPE>

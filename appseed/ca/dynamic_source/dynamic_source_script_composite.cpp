@@ -7,7 +7,7 @@ namespace dynamic_source
 
    script_composite::script_composite()
    {
-      ::sockets::socket::SocketThread * pthread = dynamic_cast < ::sockets::socket::SocketThread * > (::ca::get_thread());
+      ::sockets::socket::socket_thread * pthread = dynamic_cast < ::sockets::socket::socket_thread * > (::ca::get_thread());
       if(pthread != NULL)
       {
          netnode::socket * psocket = dynamic_cast < netnode::socket * > (pthread->GetSocket());

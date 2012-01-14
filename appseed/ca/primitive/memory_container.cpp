@@ -47,8 +47,12 @@ namespace primitive
    }
 
 
-   void memory_container ::allocate(memory_size dwNewLength)
+   void memory_container::allocate(memory_size dwNewLength)
    {
+
+      if(dwNewLength <= 0)
+         return;
+
       if(m_spmemory == NULL)
       {
          m_spmemory(new primitive::memory(this));
@@ -58,7 +62,9 @@ namespace primitive
          }
          m_spmemory->m_dwAllocationAddUp = m_dwAllocationAddUp;
       }
+
       m_spmemory->allocate(dwNewLength);
+
    }
 
 
@@ -85,7 +91,7 @@ namespace primitive
 
    memory_size memory_container ::get_size() const
    {
-      return m_spmemory->get_size();
+      return m_spmemory.is_set() ? m_spmemory->get_size() : 0;
    }
 
 

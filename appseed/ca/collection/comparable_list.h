@@ -1,9 +1,9 @@
 #pragma once
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = comparable_eq_list < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class LIST_TYPE = comparable_eq_list < TYPE, ARG_TYPE > >
 class comparable_list :
-   virtual public ARRAY_TYPE
+   virtual public LIST_TYPE
 {
 public:
    comparable_list();
@@ -15,25 +15,24 @@ public:
 
 };
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+template < class TYPE, class ARG_TYPE, class LIST_TYPE>
+comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 comparable_list()
 {
 }
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_list(const comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
-ARRAY_TYPE(a)
+template < class TYPE, class ARG_TYPE, class LIST_TYPE>
+comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
+comparable_list(const comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE> & l) :
+LIST_TYPE(l)
 {
-   operator = (a);
 }
 
 
 
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-TYPE comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+template < class TYPE, class ARG_TYPE, class LIST_TYPE>
+TYPE comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 maximum(TYPE maximum)
 {
    POSITION pos = this->get_head_position();

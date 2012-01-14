@@ -58,7 +58,6 @@ comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 comparable_eq_list(const comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE> & l) :
 LIST_TYPE(l)
 {
-   operator = (l);
 }
 
 

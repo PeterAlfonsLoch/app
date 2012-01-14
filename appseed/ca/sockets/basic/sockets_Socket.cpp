@@ -788,7 +788,7 @@ namespace sockets
    void socket::DetachSocket()
    {
       SetDetached();
-      m_pThread = new SocketThread(this);
+      m_pThread = new socket_thread(this);
    }
 
 
@@ -828,34 +828,34 @@ namespace sockets
    }
 
 
-   socket::SocketThread::SocketThread(socket * p) :
+   socket::socket_thread::socket_thread(socket * p) :
       ::ca::ca(p->get_app()),
       thread(p->get_app()),
-      m_socket(p)
+      m_psocket(p)
    {
       Begin();
    }
 
-   socket::SocketThread::SocketThread(const SocketThread& s) :
-      ::ca::ca(((SocketThread & )s).get_app()),
-      thread(((SocketThread & )s).get_app()),
-      m_socket(s.GetSocket())
+   socket::socket_thread::socket_thread(const socket_thread& s) :
+      ::ca::ca(((socket_thread & )s).get_app()),
+      thread(((socket_thread & )s).get_app()),
+      m_psocket(s.GetSocket())
    {
    }
 
 
-   socket::SocketThread::~SocketThread()
+   socket::socket_thread::~socket_thread()
    {
    }
 
 
-   int socket::SocketThread::run()
+   int socket::socket_thread::run()
    {
       socket_handler h(get_app());
       h.SetSlave();
-      h.add(m_socket);
-      m_socket -> SetSlaveHandler(&h);
-      m_socket -> OnDetached();
+      h.add(m_psocket);
+      m_psocket -> SetSlaveHandler(&h);
+      m_psocket -> OnDetached();
       while (h.get_count() && get_run())
       {
          try

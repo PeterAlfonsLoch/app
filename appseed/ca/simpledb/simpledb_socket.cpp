@@ -102,7 +102,7 @@ namespace simpledb
 
    class manager & socket::manager()
    {
-      return *dynamic_cast < socket_thread & > (Handler()).m_pservice->m_pmanager;
+      return *dynamic_cast < ::simpledb::socket_thread & > (Handler()).m_pservice->m_pmanager;
    }
 
 
