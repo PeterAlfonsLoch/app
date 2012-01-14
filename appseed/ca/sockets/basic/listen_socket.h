@@ -277,6 +277,7 @@ namespace sockets
             return;
          }
          socket *tmp = m_bHasCreate ? m_creator -> create() : new X(Handler());
+         tmp->m_strCat = m_strCat;
          tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
          tmp -> SetIpv6( IsIpv6() );
          tmp -> SetParent(this);

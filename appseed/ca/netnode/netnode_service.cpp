@@ -68,6 +68,7 @@ namespace netnode
             pthread->m_strIp = stra[i];
             pthread->m_iPort = 443;
             pthread->m_pservice = this;
+            pthread->m_strCat = System.db().data_load("netnodec", stra[i], ::database::id());
             pthread->PostThreadMessage(WM_APP, 0, 0);
          }
       }

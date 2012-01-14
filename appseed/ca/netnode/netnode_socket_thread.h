@@ -29,6 +29,7 @@ namespace netnode
       SOCKET                  m_hsocket;
 
       socket *                m_psocket;
+      string                  m_strCat;
 
 
       socket_thread(::ca::application * papp);

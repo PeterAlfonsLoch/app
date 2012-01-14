@@ -97,6 +97,8 @@ namespace netnode
                ::sockets::socket_handler h(get_app());
                h.EnablePool();
                ::sockets::listen_socket<socket> ll(h);
+               ll.m_strCat = m_strCat;
+
                ll.m_bDetach = true;
                while(true)
                {

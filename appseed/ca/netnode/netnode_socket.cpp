@@ -151,7 +151,7 @@ namespace netnode
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System.db().data_load("netnodec", GetSockAddress(), ::database::id());
+      
       ::sockets::httpd_socket::OnSSLAccept();
    }
 

@@ -45,8 +45,6 @@ namespace sockets
       ~httpd_socket();
 
 
-      string m_strCat;
-
    protected:
       httpd_socket(const httpd_socket& s);
       /** Decode and send a base64-encoded string. 

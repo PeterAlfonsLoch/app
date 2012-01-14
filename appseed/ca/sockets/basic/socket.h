@@ -85,6 +85,9 @@ namespace sockets
       bool m_bLost; ///< connection lost
    //   unsigned long m_flags; ///< boolean flags, replacing old 'bool' members
 
+      string m_strCat;
+
+
    #ifdef _WIN32
    static   WSAInitializer m_winsock_init; ///< Winsock initialization singleton class
    #endif

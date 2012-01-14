@@ -9,9 +9,6 @@ namespace sockets
    public:
 
 
-      string m_strCat;
-
-
       tls_socket(socket_handler_base& );
       ~tls_socket();
 
