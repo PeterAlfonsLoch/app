@@ -499,7 +499,7 @@
 	<File name="userbase/userbase_split_bar.h" open="0" top="0" tabpos="6">
 		<Cursor position="1030" topLine="0" />
 	</File>
-	<File name="userbase/userbase_static.h" open="1" top="0" tabpos="1">
+	<File name="userbase/userbase_static.h" open="0" top="0" tabpos="1">
 		<Cursor position="783" topLine="0" />
 	</File>
 	<File name="userbase/userbase_status_bar.h" open="0" top="0" tabpos="5">
