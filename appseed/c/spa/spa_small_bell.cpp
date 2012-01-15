@@ -48,4 +48,24 @@ void play_small_bell()
    }
 }
 
+
+#else
+
+CLASS_DECL_c void prepare_small_bell(bool bExistsOk)
+{
+   
+}
+
+CLASS_DECL_c void play_small_bell()
+{
+   
+}
+
+CLASS_DECL_c void defer_play_small_bell()
+{
+   
+}
+
+
+
 #endif

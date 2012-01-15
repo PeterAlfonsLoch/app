@@ -31,6 +31,7 @@ public:
 
    verisimple_string & operator = (const verisimple_string &str);
    verisimple_string & operator = (const char * psz);
+   verisimple_string & operator = (const wchar_t * pwsz);
    verisimple_string & operator = (char ch);
 
    bool operator == (const char * psz) const;

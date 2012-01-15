@@ -113,6 +113,7 @@ public:
 
    verisimple_wstring & operator = (const verisimple_wstring & wstr);
    verisimple_wstring & operator = (const wchar_t * pwsz);
+   verisimple_wstring & operator = (const char * psz);
 
 
    inline operator const wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }

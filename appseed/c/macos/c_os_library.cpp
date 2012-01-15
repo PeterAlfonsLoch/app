@@ -42,6 +42,16 @@ namespace ca
    {
       return dlsym(m_plibrary, pszElement);
    }
+   
+   bool library::is_opened()
+   {
+      return m_plibrary != NULL;
+   }
+   
+   bool library::is_closed()
+   {
+      return m_plibrary == NULL;
+   }
 
    ca2_library::ca2_library()
    {
@@ -62,7 +72,9 @@ namespace ca
    {
       return library::open(pszPath);
    }
-
+   
+   
+  
 
 } // namespace ca
 

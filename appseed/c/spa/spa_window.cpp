@@ -57,6 +57,9 @@ namespace spa
 
 void window::PaintTransparentBk(HDC hdc)
 {
+   
+#ifdef WINDOWS
+   
    RECT rectWindow;
 
    ::GetWindowRect(m_hwnd, &rectWindow);
@@ -74,6 +77,9 @@ void window::PaintTransparentBk(HDC hdc)
    ::AlphaBlend(hdc, 0, 0, 800, 584, g_hdcAlpha, 0, 0, 800, 584, bf);
 
    ::ReleaseDC(NULL, hdcScreen);
+   
+#endif
+   
 }
 
 
@@ -110,6 +116,8 @@ void window::OnPaint(HDC hdcWindow, LPRECT lprect)
    {
       lprect = &rect;
    }
+   
+#ifdef WINDOWS
 
    BITMAPINFO m_Info;
 
@@ -135,10 +143,19 @@ void window::OnPaint(HDC hdcWindow, LPRECT lprect)
 
    HFONT hfontOld = NULL;
    HFONT hfont = NULL;
+   
+#else
+   
+   HDC hdc = hdcWindow;
+   
+#endif
+   
 
    m_canvas.on_paint(hdc, &rect);
 
 
+#ifdef WINDOWS
+   
    POINT pointViewport;
    ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
    ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top,
@@ -154,6 +171,9 @@ void window::OnPaint(HDC hdcWindow, LPRECT lprect)
    }
    ::DeleteObject(hbmp);
    ::DeleteDC(hdc);
+   
+#endif
+   
 }
 
 

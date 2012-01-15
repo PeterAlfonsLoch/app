@@ -11,7 +11,7 @@ wstringtovss::~wstringtovss()
 {
    if(m_pstringUtf8 != NULL)
    {
-      *m_pstringUtf8 = utf16_to_8(m_pwsz);
+      m_pstringUtf8->attach(utf16_to_8(m_pwsz));
    }
    if(m_pwsz != NULL)
    {

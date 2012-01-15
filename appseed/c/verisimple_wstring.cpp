@@ -149,6 +149,19 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 
 }
 
+verisimple_wstring & verisimple_wstring::operator = (const char * psz)
+{
+   
+   int iLen = utf16_len(psz);
+   alloc(iLen + 1);
+   utf8_to_16(*this, psz);
+   set_length(iLen);
+   
+   return *this;
+   
+}
+
+
 
 verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2)
 {

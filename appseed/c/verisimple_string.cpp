@@ -104,6 +104,7 @@ verisimple_string & verisimple_string::operator = (const char * psz)
    return *this;
 }
 
+
 verisimple_string & verisimple_string::operator = (char ch)
 {
    if(m_psz != NULL)
@@ -139,6 +140,15 @@ void verisimple_string::attach(const char * psz)
       }
       m_psz = (char *) psz;
    }
+}
+
+verisimple_string & verisimple_string::operator = (const wchar_t * pwsz)
+{
+   
+   attach(utf16_to_8(pwsz));
+   
+   return *this;
+   
 }
 
 

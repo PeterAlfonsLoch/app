@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
+		9A8897A814C24792006B4023 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A714C24792006B4023 /* Carbon.framework */; };
+		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
-		CE30D6D514653CB2001991EA /* ca_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE30D6D314653CB2001991EA /* ca_c.cpp */; };
 		CE30D6D614653CB2001991EA /* cpu_architecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE30D6D414653CB2001991EA /* cpu_architecture.cpp */; };
 		CEA7AABF14412789007E04DE /* _argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0E14412789007E04DE /* _argcargv.cpp */; };
 		CEA7AAC014412789007E04DE /* _atol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0F14412789007E04DE /* _atol.cpp */; };
@@ -174,10 +176,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
+		9A8897A714C24792006B4023 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
+		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
+		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_cross_gdi.mm; sourceTree = "<group>"; };
-		CE30D6D314653CB2001991EA /* ca_c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_c.cpp; sourceTree = "<group>"; };
 		CE30D6D414653CB2001991EA /* cpu_architecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_architecture.cpp; sourceTree = "<group>"; };
-		CEA754C414411F2B007E04DE /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA7AA0E14412789007E04DE /* _argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _argcargv.cpp; sourceTree = "<group>"; };
 		CEA7AA0F14412789007E04DE /* _atol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _atol.cpp; sourceTree = "<group>"; };
 		CEA7AA1114412789007E04DE /* _heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _heap.h; sourceTree = "<group>"; };
@@ -325,8 +329,8 @@
 		CEACF741145FD3C2004A3E5B /* c_os_small_ipc_channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_small_ipc_channel.cpp; sourceTree = "<group>"; };
 		CEACF742145FD3C2004A3E5B /* c_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os.cpp; sourceTree = "<group>"; };
 		CEACF743145FD3C2004A3E5B /* c_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os.h; sourceTree = "<group>"; };
-		CEBB9C3114664A9400912AFA /* message_loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_loop.h; sourceTree = "<group>"; };
-		CEBB9C3214664A9400912AFA /* simple_event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_event.cpp; sourceTree = "<group>"; };
+		CEBB9C3114664A9400912AFA /* message_loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message_loop.h; path = ../message_loop.h; sourceTree = "<group>"; };
+		CEBB9C3214664A9400912AFA /* simple_event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = simple_event.cpp; path = ../simple_event.cpp; sourceTree = "<group>"; };
 		CEBB9C3314664A9400912AFA /* simple_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_event.h; sourceTree = "<group>"; };
 		CEBB9C3414664A9400912AFA /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.config.h; sourceTree = "<group>"; };
 		CEBB9C3514664A9400912AFA /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF82C74145789DB0011783B /* libX11.6.dylib in Frameworks */,
+				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
+				9A8897A814C24792006B4023 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,21 +362,23 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				CEBB9C3114664A9400912AFA /* message_loop.h */,
-				CEBB9C3214664A9400912AFA /* simple_event.cpp */,
+				9A8897A714C24792006B4023 /* Carbon.framework */,
+				9A8897A514C24736006B4023 /* Foundation.framework */,
+				CEC9A23D144B818900FEA8E6 /* macos */,
+				CEAAA41F1461A72700DDE33F /* bsdiff */,
+				CEA7AA3D14412789007E04DE /* hotplugin */,
+				CEA7AA6C14412789007E04DE /* spa */,
+				9A88B4F514C2CBF8006B4023 /* c.dylib */,
 				CEBB9C3314664A9400912AFA /* simple_event.h */,
 				CEBB9C3414664A9400912AFA /* version.config.h */,
 				CEBB9C3514664A9400912AFA /* version.cpp */,
 				CEBB9C3614664A9400912AFA /* version.h */,
-				CE30D6D314653CB2001991EA /* ca_c.cpp */,
 				CE30D6D414653CB2001991EA /* cpu_architecture.cpp */,
 				CEF82C73145789DB0011783B /* libX11.6.dylib */,
-				CEC9A23D144B818900FEA8E6 /* macos */,
 				CEFF24681449CE8D0089FCAA /* ca2_types.h */,
 				CEA7AA0E14412789007E04DE /* _argcargv.cpp */,
 				CEA7AA0F14412789007E04DE /* _atol.cpp */,
 				CEA7AA1114412789007E04DE /* _heap.h */,
-				CEAAA41F1461A72700DDE33F /* bsdiff */,
 				CEA7AA1214412789007E04DE /* _initterm.cpp */,
 				CEA7AA1314412789007E04DE /* _libct.h */,
 				CEA7AA1414412789007E04DE /* _math.cpp */,
@@ -398,7 +406,6 @@
 				CEA7AA3A14412789007E04DE /* gdi.h */,
 				CEA7AA3B14412789007E04DE /* heap.cpp */,
 				CEA7AA3C14412789007E04DE /* heap.h */,
-				CEA7AA3D14412789007E04DE /* hotplugin */,
 				CEA7AA4414412789007E04DE /* index.h */,
 				CEA7AA4514412789007E04DE /* keep_true.h */,
 				CEA7AA4614412789007E04DE /* launcher.h */,
@@ -422,7 +429,6 @@
 				CEA7AA6914412789007E04DE /* simple_obj.cpp */,
 				CEA7AA6A14412789007E04DE /* simple_obj.h */,
 				CEA7AA6B14412789007E04DE /* small_ipc_channel.h */,
-				CEA7AA6C14412789007E04DE /* spa */,
 				CEA7AA9A14412789007E04DE /* sprintf.cpp */,
 				CEA7AA9B14412789007E04DE /* sprintf.h */,
 				CEA7AA9C14412789007E04DE /* std_file.h */,
@@ -447,16 +453,7 @@
 				CEA7AABB14412789007E04DE /* wstringtovss.h */,
 				CEA7AABC14412789007E04DE /* xmlite.cpp */,
 				CEA7AABD14412789007E04DE /* xmlite.h */,
-				CEA754C514411F2B007E04DE /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		CEA754C514411F2B007E04DE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CEA754C414411F2B007E04DE /* c.dylib */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		CEA7AA3D14412789007E04DE /* hotplugin */ = {
@@ -467,6 +464,7 @@
 				CEA7AA4014412789007E04DE /* hotplugin_host.h */,
 				CEA7AA4114412789007E04DE /* hotplugin_plugin.cpp */,
 				CEA7AA4214412789007E04DE /* hotplugin_plugin.h */,
+				CEBB9C3214664A9400912AFA /* simple_event.cpp */,
 			);
 			path = hotplugin;
 			sourceTree = "<group>";
@@ -560,6 +558,8 @@
 				CEBB9C6E1466609600912AFA /* c_os_internal.h */,
 				CEACF735145FD3C2004A3E5B /* c_os_gdi.cpp */,
 				CEBB9C6A146656B800912AFA /* c_os_user.cpp */,
+				9A8897A914C24901006B4023 /* c_os_file.cpp */,
+				CEBB9C3114664A9400912AFA /* message_loop.h */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -673,7 +673,7 @@
 			);
 			name = c;
 			productName = c;
-			productReference = CEA754C414411F2B007E04DE /* c.dylib */;
+			productReference = 9A88B4F514C2CBF8006B4023 /* c.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -693,7 +693,7 @@
 				English,
 			);
 			mainGroup = CEA754B914411F2B007E04DE;
-			productRefGroup = CEA754C514411F2B007E04DE /* Products */;
+			productRefGroup = CEA754B914411F2B007E04DE;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -780,7 +780,6 @@
 				CEAAA43E1461A75F00DDE33F /* decompress.cpp in Sources */,
 				CEAAA43F1461A75F00DDE33F /* huffman.cpp in Sources */,
 				CEAAA4421461A75F00DDE33F /* randtable.cpp in Sources */,
-				CE30D6D514653CB2001991EA /* ca_c.cpp in Sources */,
 				CE30D6D614653CB2001991EA /* cpu_architecture.cpp in Sources */,
 				CEBB9C3814664A9400912AFA /* simple_event.cpp in Sources */,
 				CEBB9C3B14664A9400912AFA /* version.cpp in Sources */,
@@ -788,6 +787,7 @@
 				CEBB9C6C146656B900912AFA /* c_os_user.cpp in Sources */,
 				CEC2DFBE147711D30028313B /* c_os_cross_user.mm in Sources */,
 				9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */,
+				9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +799,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -813,7 +814,7 @@
 				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseedcore/ca2/ $(WorkspaceDir)../../ . ..";
 				WARNING_CFLAGS = (
@@ -829,6 +830,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_CPU_X86,
@@ -840,7 +842,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseedcore/ca2/ $(WorkspaceDir)../../ . ..";
 				WARNING_CFLAGS = (

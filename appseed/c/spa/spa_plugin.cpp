@@ -136,12 +136,20 @@ install:
       rect.top          = 0;
       rect.right        = cx;
       rect.bottom       = cy;
+      
+#ifdef WINDOWS
 
       HBITMAP hbmp      = ::CreateCompatibleBitmap(hdcWindow, cx, cy);
       HDC hdc           = ::CreateCompatibleDC(hdcWindow);
       HBITMAP hbmpOld   =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
 
       ::BitBlt(hdc, 0, 0, cx, cy, hdcWindow, m_rect.left, m_rect.top, SRCCOPY);
+      
+#else
+      
+      HDC hdc = hdcWindow;
+      
+#endif
 
       HFONT hfontOld = NULL;
       HFONT hfont = NULL;
@@ -174,6 +182,9 @@ install:
       else
       {
       }
+      
+#ifdef WINDOWS
+      
       POINT pointViewport;
       ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
       ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top,
@@ -190,6 +201,8 @@ install:
       ::DeleteObject(hbmp);
       ::DeleteDC(hdc);
 
+#endif
+      
       on_bare_paint(hdcWindow, lprect);
 
 
