@@ -165,6 +165,8 @@ namespace sockets
       {
          OnWriteComplete();
       }
+
+      response().file().Truncate(0);
    }
 
 
