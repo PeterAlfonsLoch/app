@@ -15,6 +15,7 @@
 
 #include "ex1_fs_interface.h"
 
+#include "ex1_stream_base.h"
 
 #include "ex1_seekable.h"
 
@@ -28,9 +29,12 @@
 #include "ex1_plain_text_stream.h"
 #include "ex1_output_stream_flush_interface.h"
 #include "ex1_file.h"
+#include "ex1_file_composite.h"
 #include "ex1_file_exception.h"
 #include "ex1_file_status.h"
 
 
 
 #include "ex1_plain_text_string_stream.h"
+
+#include "ex1_file_stream.h"

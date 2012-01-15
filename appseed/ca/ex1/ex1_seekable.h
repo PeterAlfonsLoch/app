@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "ex1_stream_base.h"
+
+
 namespace ex1
 {
 
 
    class CLASS_DECL_ca stream_get_size :
-      virtual public ::radix::object
+      virtual public stream_base
    {
    public:
       virtual int GetSize(uint64 * psize) const = 0;
@@ -21,7 +24,7 @@ namespace ex1
 
 
    class CLASS_DECL_ca seekable :
-      virtual public ::radix::object
+      virtual public stream_base
    {
    public:
 

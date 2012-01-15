@@ -1,44 +1,23 @@
 #pragma once
 
 
-#include "ex1_stream2.h"
-
-
-namespace primitive
-{
-   class memory;
-} // namespace primitive
-
 namespace ex1
 {
 
-   class file_exception;
-   typedef ca::smart_pointer < file_exception > file_exception_sp;
-   struct file_status;
 
-
-   class file;
-
-#ifdef LINUX
-
-   typedef file * HFILE;
-
-#endif
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ex1::filesp - raw unbuffered disk file I/O
-
-   class CLASS_DECL_ca file :
-      virtual public ::ex1::stream,
-      virtual public ::ex1::output_stream_flush_interface
+   class CLASS_DECL_ca file_composite :
+      virtual public ::ex1::file
    {
    public:
 
 
 
+      ::ex1::filesp     m_spfile;
 
 
-      file();
+      file_composite();
+      file_composite(::ex1::file * pfile);
+      virtual ~file_composite();
 
       operator HFILE() const;
 
@@ -50,7 +29,6 @@ namespace ex1
       virtual void SetFilePath(const char * lpszNewName);
 
 
-   // Operations
       virtual BOOL open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError = NULL);
 
       //virtual void PASCAL Rename(const char * lpszOldName, const char * lpszNewName);
@@ -59,7 +37,6 @@ namespace ex1
       virtual void PASCAL SetStatus(const char * lpszFileName, const file_status& status);
 
 
-   // Overridables
       virtual file* Duplicate() const;
 
       virtual file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
@@ -74,7 +51,6 @@ namespace ex1
       virtual void close();
 
 
-      // io_stream
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual string get_location() const;
@@ -91,17 +67,14 @@ namespace ex1
       virtual bool peek(char & pch);
       virtual bool peek(unsigned char & pch);
 
-   // Implementation
-   public:
       virtual bool IsOpened();
-      virtual ~file();
+
    #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
-      enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
+
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
-   public:
 
 
 
@@ -118,15 +91,7 @@ namespace ex1
 
    };
 
-   typedef ca::smart_pointer < file > filesp;
 
-   // ex1::filesp
-   inline file::operator HFILE() const
-      { return NULL; }
-   inline void file::SetFilePath(const char * lpszNewName)
-   {
-      UNREFERENCED_PARAMETER(lpszNewName);
-   }
+} // namespace ex1
 
 
-} // namespace ex1;

@@ -19,6 +19,124 @@ public:
    };
 
 
+   class iterator
+   {
+   public:
+
+
+      POSITION         m_pos;
+      string_list *    m_plist;
+
+      iterator()
+      {
+         m_pos = 0;
+         m_plist = NULL;
+      }
+
+      iterator(POSITION i, string_list * plist)
+      {
+         m_pos = i;
+         m_plist = plist;
+      }
+
+      iterator(const iterator & it)
+      {
+         operator = (it);
+      }
+
+      string & operator * ()
+      {
+         return m_plist->get_at(m_pos);
+      }
+
+      const string & operator * () const
+      {
+         return m_plist->get_at(m_pos);
+      }
+
+      iterator & operator = (const iterator & it)
+      {
+         if(this != &it)
+         {
+            m_pos      = it.m_pos;
+            m_plist    = it.m_plist;
+         }
+         return *this;
+      }
+
+      bool operator == (const iterator & it)
+      {
+         if(this == &it)
+            return true;
+         if(m_plist != it.m_plist)
+            return false;
+         return m_pos == it.m_pos;
+      }
+
+      bool operator != (const iterator & it)
+      {
+         return !operator==(it);
+      }
+
+      iterator & operator ++()
+      {
+         
+         if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+            return * this;
+
+         m_plist->get_next(m_pos);
+
+         return *this;
+
+      }
+
+      iterator & operator +(int i)
+      {
+
+         while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+         {
+
+            i--;
+            m_plist->get_next(m_pos);
+
+         }
+
+         return *this;
+
+      }
+
+      iterator & operator --()
+      {
+
+         if(m_pos == NULL || m_pos == m_plist->get_head_position())
+            return * this;
+
+         m_plist->get_previous(m_pos);
+
+         return *this;
+
+      }
+
+      iterator & operator -(int i)
+      {
+
+         while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+         {
+            i--;
+            m_plist->get_previous(m_pos);
+         }
+
+         return *this;
+
+      }
+
+   };
+
+
+   typedef const iterator const_iterator;
+
+
+
 
 protected:
 

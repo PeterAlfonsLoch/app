@@ -694,6 +694,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="collection\array_smart_ptr.h" />
     <ClInclude Include="collection\Base2DArray.h" />
     <ClInclude Include="collection\base_array.h" />
+    <ClInclude Include="collection\bitset.h" />
     <ClInclude Include="collection\bit_array.h" />
     <ClInclude Include="collection\class_sort_array.h" />
     <ClInclude Include="collection\collection.h" />
@@ -957,6 +958,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ex1\ex1_edit_file.h" />
     <ClInclude Include="ex1\ex1_exception.h" />
     <ClInclude Include="ex1\ex1_file.h" />
+    <ClInclude Include="ex1\ex1_file_composite.h" />
     <ClInclude Include="ex1\ex1_file_exception.h" />
     <ClInclude Include="ex1\ex1_file_set.h" />
     <ClInclude Include="ex1\ex1_file_status.h" />
@@ -969,6 +971,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ex1\ex1_limited_writer.h" />
     <ClInclude Include="ex1\ex1_locked_in_stream.h" />
     <ClInclude Include="ex1\ex1_match.h" />
+    <ClInclude Include="ex1\ex1_file_stream.h" />
     <ClInclude Include="ex1\ex1_output_stream_flush_interface.h" />
     <ClInclude Include="ex1\ex1_out_buffer.h" />
     <ClInclude Include="ex1\ex1_plain_text_serializable.h" />
@@ -986,6 +989,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ex1\ex1_size_count_writer.h" />
     <ClInclude Include="ex1\ex1_stream.h" />
     <ClInclude Include="ex1\ex1_stream2.h" />
+    <ClInclude Include="ex1\ex1_stream_base.h" />
     <ClInclude Include="ex1\ex1_stream_binder.h" />
     <ClInclude Include="ex1\ex1_str_stream.h" />
     <ClInclude Include="ex1\ex1_system_exception.h" />
@@ -1448,6 +1452,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="user\user_control_event.h" />
     <ClInclude Include="user\user_control_property.h" />
     <ClInclude Include="user\user_create_context.h" />
+    <ClInclude Include="user\user_data_exchange.h" />
     <ClInclude Include="user\user_document.h" />
     <ClInclude Include="user\user_document_interface.h" />
     <ClInclude Include="user\user_document_manager.h" />
@@ -2015,7 +2020,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ex1\ex1_edit_file.cpp" />
     <ClCompile Include="ex1\ex1_exception.cpp" />
     <ClCompile Include="ex1\ex1_file.cpp" />
+    <ClCompile Include="ex1\ex1_file_composite.cpp" />
     <ClCompile Include="ex1\ex1_file_set.cpp" />
+    <ClCompile Include="ex1\ex1_file_stream.cpp" />
     <ClCompile Include="ex1\ex1_file_system.cpp" />
     <ClCompile Include="ex1\ex1_fs_interface.cpp" />
     <ClCompile Include="ex1\ex1_in_buffer.cpp" />
@@ -2540,6 +2547,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="user\user_control_event.cpp" />
     <ClCompile Include="user\user_control_property.cpp" />
     <ClCompile Include="user\user_create_context.cpp" />
+    <ClCompile Include="user\user_data_exchange.cpp" />
     <ClCompile Include="user\user_document.cpp" />
     <ClCompile Include="user\user_document_interface.cpp" />
     <ClCompile Include="user\user_document_manager.cpp" />

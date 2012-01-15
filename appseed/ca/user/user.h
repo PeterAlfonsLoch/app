@@ -276,6 +276,7 @@ namespace win
 #include "user_document_manager.h"
 
 
+#include "user_data_exchange.h"
 #include "user_form.h"
 #include "user_form_callback.h"
 

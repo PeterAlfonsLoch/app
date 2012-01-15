@@ -22,7 +22,7 @@ namespace ex1
    class plain_text_input_stream;
 
    class CLASS_DECL_ca plain_text_stream_base :
-      virtual public radix::object
+      virtual public stream_base
    {
    public:
 
