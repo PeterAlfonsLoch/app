@@ -51,7 +51,13 @@ namespace primitive
    {
 
       if(dwNewLength <= 0)
+      {
+         if(m_spmemory.is_set())
+         {
+            m_spmemory->allocate(dwNewLength);
+         }
          return;
+      }
 
       if(m_spmemory == NULL)
       {
