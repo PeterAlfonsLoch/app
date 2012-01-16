@@ -22,8 +22,14 @@ namespace userex
       userbase::form_list(papp),
       simple_list_view(papp)
    {
+      
       m_eview = ViewList;
+      
       m_scrollinfo.m_rectMargin.null();
+
+      m_etranslucency = TranslucencyPresent;
+
+
    }
    
    minute_list_view::~minute_list_view()
