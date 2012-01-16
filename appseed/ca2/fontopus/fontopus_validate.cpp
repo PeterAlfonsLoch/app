@@ -213,13 +213,17 @@ namespace ca2
       void validate::pageMessage(const char * pszMatter, gen::property_set & set)
       {
          ensure_main_document();
+         page1();
          m_pdocAuth->get_html_data()->m_propertyset = set;
          m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
          display_main_frame();
-         ::ca::live_signal livesignal;
-         livesignal.keep(get_app());
-         //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-         //m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
+         if(m_ptabview->get_wnd()->m_iModalCount <= 0)
+         {
+            ::ca::live_signal livesignal;
+            livesignal.keep(get_app());
+            m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
+            m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
+         }
       }
 
       void validate::on_create_view(::user::view_creator_data * pcreatordata)
