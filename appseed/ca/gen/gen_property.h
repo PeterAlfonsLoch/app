@@ -7,22 +7,29 @@
 
 namespace xml
 {
+
+
    class disp_option;
+
 
 } // namespace xml
 
 
 namespace gen
 {
+
+
    class CLASS_DECL_ca pair_set_interface
    {
    public:
+
 
       pair_set_interface();
 
 
       virtual bool get_auto_add() const;
       virtual bool get_key_case_insensitive() const;
+
 
       virtual void pair_set_interface_set(const char * pszKey, var value) = 0;
       virtual var pair_set_interface_get_value(int i) const = 0;
@@ -456,6 +463,9 @@ namespace gen
       void parse_json(const char * & pszJson, const char * pszEnd);
 
 
+      var explode(const char * pszSeparator, bool bAddEmpty = true, index iIndex = -1) const;
+
+
    };
 
    class CLASS_DECL_ca var_property :
@@ -688,29 +698,44 @@ namespace gen
       public property_set
    {
    public:
+
+
       relation_set(::ca::application * papp = NULL);
       virtual ~relation_set();
+
+
    };
 
 
    class CLASS_DECL_ca PropertySignalObject : public signal_object
    {
    public:
-      PropertySignalObject(signal * psignal);
+      
+
       enum e_type
       {
          TypeBeforeChange,
          TypeAfterChange,
       };
+      
+      
       e_type m_etype;
       var m_variableOldValue;
       property * m_pproperty;
       property_set * m_pset;
+
+
+      PropertySignalObject(signal * psignal);
+
+
    };
+
 
    extern CLASS_DECL_ca new_property g_newproperty;
    extern CLASS_DECL_ca null_property g_nullproperty;
    extern CLASS_DECL_ca empty_property g_emptyproperty;
 
 
-}// namespace gen
+} // namespace gen
+
+

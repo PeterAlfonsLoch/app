@@ -76,6 +76,7 @@ public:
       type_uint,
       type_id,
       type_pid,
+      type_int64a,
    };
 
    typedef base_enum < _etype, type_null > e_type;
@@ -156,12 +157,14 @@ public:
    class primitive::memory &        memory();
    stringa &                        stra();
    int_array &                      inta();
+   int64_array &                    int64a();
    var_array &                      vara();
    gen::property_set &              propset(::ca::application * papp = NULL);
    gen::property &                  prop();
    const class primitive::memory &  memory() const;
    stringa                          stra() const;
    int_array                        inta() const;
+   int64_array                      int64a() const;
    var_array                        vara()  const;
    gen::property_set                propset() const;
    gen::var_property                prop() const;
@@ -349,6 +352,7 @@ public:
    void read(ex1::byte_input_stream & ostream);
 
    string implode(const char * pszGlue) const;
+   var explode(const char * pszGlue, bool bAddEmpty = true) const;
 
    var first() const;
    var last() const;

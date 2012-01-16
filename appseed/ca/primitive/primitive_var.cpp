@@ -1759,6 +1759,25 @@ int_array & var::inta()
    return *dynamic_cast < int_array * > (m_pca2);
 }
 
+int64_array & var::int64a()
+{
+   if(get_type() != type_int64a)
+   {
+      int64_array * pia =  new int64_array();
+      for(int i = 0; i < array_get_count(); i++)
+      {
+         pia->add((int64_t) at(i));
+      }
+      set_type(type_int64a, false);
+      ASSERT(m_pca2 == NULL);
+      m_pca2 = pia;
+   }
+   else if(m_pca2 == NULL)
+   {
+      m_pca2 = new int64_array();
+   }
+   return *dynamic_cast < int64_array * > (m_pca2);
+}
 
 const class primitive::memory & var::memory() const
 {
@@ -1780,6 +1799,12 @@ int_array var::inta() const
 {
    var varTime = *this;
    return varTime.inta();
+}
+
+int64_array var::int64a() const
+{
+   var varTime = *this;
+   return varTime.int64a();
 }
 
 class var & var::operator = (::ca::ca * pca2)
@@ -1919,6 +1944,18 @@ string var::implode(const char * pszGlue) const
       return stra().implode(pszGlue);
    }
    return "";
+}
+
+
+var var::explode(const char * pszGlue, bool bAddEmpty) const
+{
+   
+   class var var;
+
+   var.stra().add_tokens(get_string(), pszGlue, bAddEmpty);
+
+   return var;
+
 }
 
 var var::key(int i) const

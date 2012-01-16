@@ -729,10 +729,10 @@ namespace gen
       return get_value() != b;
    }
 
-
-
-
-
+   var property::explode(const char * pszSeparator, bool bAddEmpty, index iIndex) const
+   {
+      return get_value(iIndex).explode(pszSeparator, bAddEmpty);
+   }
 
 
 

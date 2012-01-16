@@ -194,7 +194,11 @@ namespace primitive
 
    memory_base & memory_base::operator = (const memory_base & s)
    {
-      if(this != &s)
+      if(&s == NULL)
+      {
+         allocate(0);
+      }
+      else if(this != &s)
       {
          copy_from(&s);
       }
