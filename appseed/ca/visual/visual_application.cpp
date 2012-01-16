@@ -117,6 +117,16 @@ namespace visual
    void application::set_cursor(e_cursor ecursor)
    {
       m_ecursor = ecursor;
+      try
+      {
+         if(m_psession != NULL)
+         {
+            m_psession->m_ecursor = ecursor;
+         }
+      }
+      catch(...)
+      {
+      }
    }
 
    cursor * application::get_default_cursor()

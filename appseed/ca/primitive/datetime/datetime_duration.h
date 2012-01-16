@@ -11,7 +11,9 @@ public:
    __int64     m_iNanoseconds;
    __int64     m_iSeconds;
 
+   inline duration();
    inline duration(__int64 iSeconds, __int64 iNanoseconds, bool bNormalize = true);
+   inline duration(const duration & duration);
 
    inline __int64 get_total_milliseconds() const;
    inline __int64 total_milliseconds() const;
@@ -20,6 +22,8 @@ public:
    inline static duration pos_infinity();
    inline static duration zero();
    inline bool operator == (const duration & duration) const;
+
+   inline duration & operator = (const duration & duration);
 
    void normalize();
 
@@ -30,6 +34,11 @@ public:
 
 };
 
+duration::duration()
+{
+   m_iSeconds     = 0;
+   m_iNanoseconds = 0;
+}
 
 
 duration::duration(__int64 iSeconds, __int64 iNanoseconds, bool bNormalize)
@@ -40,6 +49,12 @@ duration::duration(__int64 iSeconds, __int64 iNanoseconds, bool bNormalize)
    {
       normalize();
    }
+}
+
+duration::duration(const duration & duration)
+{
+   m_iSeconds        = duration.m_iSeconds;
+   m_iNanoseconds    = duration.m_iNanoseconds;
 }
 
 __int64 duration::get_total_milliseconds() const
@@ -95,7 +110,12 @@ bool duration::operator == (const duration & duration) const
       && m_iNanoseconds == duration.m_iNanoseconds;
 }
 
-
+duration & duration::operator = (const duration & duration)
+{
+   m_iSeconds        = duration.m_iSeconds;
+   m_iNanoseconds    = duration.m_iNanoseconds;
+   return *this;
+}
 
 class CLASS_DECL_ca millis :
    public duration

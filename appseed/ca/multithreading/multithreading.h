@@ -24,6 +24,7 @@ class multi_lock;
 #include "multithreading_socket_event.h"
 #include "multithreading_critical_section.h"
 #include "multithreading_single_lock.h"
+#include "multithreading_retry_single_lock.h"
 #include "multithreading_synch_lock.h"
 #include "multithreading_multi_lock.h"
 

@@ -123,6 +123,14 @@ retry_license:
 
    int application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
    {
+
+      if(m_psession != NULL && m_psession->m_pbergedgeInterface != NULL)
+      {
+         return m_psession->m_pbergedgeInterface->simple_message_box(pwndOwner, pszMessage, fuStyle);
+      }
+
+
+
       class message_box box(this);
 
       gen::property_set propertyset;

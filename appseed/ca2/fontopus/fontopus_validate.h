@@ -26,6 +26,7 @@ namespace ca2
          string                                    m_strForm;
          ::ca8::network_configuration              m_netcfg;
          ::ca8::keyboard_layout *                  m_pkeyboardlayout;
+         void *                                    m_pvOldWindow;
 
 
          validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);

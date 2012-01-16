@@ -54,8 +54,19 @@ void ifs::root_ones(stringa & stra)
 
 bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 {
-
-   defer_initialize();
+   
+   try
+   {
+      defer_initialize();
+   }
+   catch(string & str)
+   {
+      if(str == "You have not logged in! Exiting!")
+      {
+         throw string("uifs:// You have not logged in!");
+      }
+      return false;
+   }
 
    xml::node node(get_app());
 
@@ -266,8 +277,8 @@ void ifs::defer_initialize()
    
    if(!m_bInitialized)
    {
-      m_bInitialized = true;
       Application.http().get("http://file.veriwell.net/");
+      m_bInitialized = true;
    }
 
 }

@@ -3362,6 +3362,9 @@
     <ClInclude Include="ex1\ex1_file_stream.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5616,6 +5619,9 @@
     </ClCompile>
     <ClCompile Include="ex1\ex1_file_stream.cpp">
       <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

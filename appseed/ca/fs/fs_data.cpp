@@ -50,9 +50,21 @@ namespace fs
       {
          iFind = strPath.reverse_find('/', iFind);
          iFind2 = strPath.find("://");
-         if(iFind >= 0 && iFind2 >= 0 && (iFind - 2) == iFind2)
+         if(iFind == strPath.get_length() - 1)
          {
-            return strPath.Left(iFind + 1);
+            if(iFind2 >= 0 && (iFind - 2) == iFind2)
+            {
+               iFind = strPath.reverse_find('/', iFind);
+               iFind2 = strPath.reverse_find("://", iFind);
+               if(iFind >= 0 && iFind2 >= 0 && (iFind - 2) == iFind2)
+               {
+                  iFind = iFind2;
+               }
+            }
+         }
+         else
+         {
+            iFind = -1;
          }
       }
       while(iCount > 0)
@@ -62,7 +74,6 @@ namespace fs
          if(iFind >= 0 && iFind2 >= 0 && (iFind - 2) == iFind2)
          {
             iFind = iFind2;
-            continue;
          }
          iCount--;
          if(iCount <= 0)

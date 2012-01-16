@@ -146,6 +146,9 @@ namespace ca2
          {
             m_ptabview->GetParentFrame()->GetParent()->GetClientRect(rectOpen);
          }
+
+         m_pvOldWindow = (void *) ::GetFocus();
+
          int iWidth = rectOpen.width();
          int iHeight = rectOpen.height();
          rectOpen.deflate(iWidth / 5, iHeight / 5);
@@ -180,12 +183,12 @@ namespace ca2
          else
          {
          }
-         /*UINT ui1 = GetCurrentThreadId();
+         UINT ui1 = GetCurrentThreadId();
          UINT ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
          if(::AttachThreadInput(ui1, ui2, TRUE)) 
          {
             TRACE("AttachedThreadInput");
-         }*/
+         }
          if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
          {
             TRACE("fontopus_validate tab_view top_level_frame set_foreground_window OK");
@@ -195,11 +198,12 @@ namespace ca2
             }
          }
 
-      
-
-         /*
          m_ptabview->GetTopLevelFrame()->ActivateFrame();
-         m_ptabview->GetTopLevelFrame()->SetFocus();*/
+         m_ptabview->GetTopLevelFrame()->SetFocus();
+
+         m_ptabview->GetTopLevelFrame()->layout();
+
+
       
 
          //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
@@ -214,8 +218,8 @@ namespace ca2
          display_main_frame();
          ::ca::live_signal livesignal;
          livesignal.keep(get_app());
-         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
-         m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
+         //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
+         //m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
       }
 
       void validate::on_create_view(::user::view_creator_data * pcreatordata)
@@ -450,9 +454,27 @@ namespace ca2
                   pguie = m_pviewAuth->GetChildByName("password");
                   ptext = dynamic_cast < text_interface * > (pguie);
                   ptext->_001GetText(m_pauth->m_strPassword);
-                  m_ptabview->get_wnd()->EndModalLoop(IDOK);
-                  m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
                }
+               HWND hwndPrevious = (HWND) m_pvOldWindow;
+               if(hwndPrevious != NULL)
+               {
+                  ::user::interaction * puiPrevious = System.window_from_os_data(hwndPrevious);
+                  if(puiPrevious != NULL)
+                  {
+                     if(puiPrevious->SetForegroundWindow())
+                     {
+                        TRACE("fontopus_validate tab_view top_level_frame set_foreground_window OK");
+                        if(puiPrevious->BringWindowToTop())
+                        {
+                           TRACE("fontopus_validate tab_view top_level_frame bring_window_to_top OK");
+                        }
+                     }
+                     //puiPrevious->ActivateFrame();
+                     puiPrevious->SetFocus();
+                     puiPrevious->layout();
+                  }
+               }
+               m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
                return true;
             }
          }

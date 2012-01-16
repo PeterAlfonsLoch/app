@@ -13,11 +13,26 @@ FileManagerInterface::~FileManagerInterface()
 
 bool FileManagerInterface::FileManagerBrowse(const ::fs::item & item)
 {
-   if(&item != &m_item)
+   string strOldPath = m_item.m_strPath;
+   try
    {
-      m_item.m_strPath        = item.m_strPath;
+      if(&item != &m_item)
+      {
+         m_item.m_strPath        = item.m_strPath;
+      }
+      OnFileManagerBrowse();
    }
-   OnFileManagerBrowse();
+   catch(string & str)
+   {
+      if(str == "uifs:// You have not logged in!")
+      {
+         Application.simple_message_box(NULL, "You have not logged in! Cannot access your User Intelligent File System - uifs://");
+         // assume can resume at least from this exception one time
+         m_item.m_strPath = strOldPath;
+         OnFileManagerBrowse();
+      }
+      return false;
+   }
    return false;
 }
 

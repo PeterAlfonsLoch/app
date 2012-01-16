@@ -2558,26 +2558,27 @@ ExitModal:
    void interaction::timer_array::unset(interaction * pguie)
    {
 
-
-      single_lock sl(&m_mutex, TRUE);
-
+      retry_single_lock sl(&m_mutex, millis(177), millis(184));
 
       index i = 0;
+
       while((i = find_from(pguie, i)) >= 0)
       {
          m_timera.remove_at(i);
       }
+
       if(find_from(pguie, 0) < 0)
       {
          remove(pguie);
       }
+
    }
 
    int interaction::timer_array::find(interaction * pguie, UINT uiId)
    {
 
 
-      single_lock sl(&m_mutex, TRUE);
+      retry_single_lock sl(&m_mutex, millis(177), millis(184));
 
 
       for(index i = 0; i < m_timera.get_count(); i++)
@@ -2587,14 +2588,16 @@ ExitModal:
             return i;
          }
       }
+
       return -1;
+
    }
 
    int interaction::timer_array::find_from(interaction * pguie, int iStart)
    {
 
 
-      single_lock sl(&m_mutex, TRUE);
+      retry_single_lock sl(&m_mutex, millis(177), millis(184));
 
 
       for(int i = iStart; i < m_timera.get_count(); i++)
@@ -2604,7 +2607,9 @@ ExitModal:
             return i;
          }
       }
+
       return -1;
+
    }
 
    void interaction::timer_array::dump(dump_context & dc) const

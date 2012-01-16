@@ -163,7 +163,7 @@ namespace primitive
 
    bool memory_container ::IsValid() const
    {
-      return m_spmemory.is_set();
+      return true;
    }
 
 
