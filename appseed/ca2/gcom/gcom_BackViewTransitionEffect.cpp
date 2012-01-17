@@ -35,11 +35,14 @@ namespace gcom
          //iStart  = (int) TransitionEffectLinearFadingTopBottom;
          //iEnd    = (int) TransitionEffectLinearFadingRightLeft;
 
-         iStart  = (int) TransitionEffectAccumulLinearFadingTopBottom;
-         iEnd    = (int) TransitionEffectAccumulLinearFadingRightLeft;
+         //iStart  = (int) TransitionEffectAccumulLinearFadingTopBottom;
+         //iEnd    = (int) TransitionEffectAccumulLinearFadingRightLeft;
 
          //iStart   = (int) TransitionEffectFlyInTopBottom;
          //iEnd     = (int) TransitionEffectFlyInRightTop;
+
+         iStart   = (int) TransitionEffectWipeBottom;
+         iEnd     = (int) TransitionEffectWipeIn;
 
          //iStart   = (int) TransitionEffectpixelate_TopBottom;
          //iEnd     = (int) TransitionEffectpixelate_RightLeft;
@@ -857,37 +860,28 @@ namespace gcom
                double dComplementRate = 1.0 - dRate;
 
                rect rectBound;
-               //graphics.GetFinalPlacement(rectBound);
-               rectBound = rectClient;
+               graphics.GetFinalPlacement(rectBound);
 
                rect rect(rectBound);
+
                Space space;
                space.Deviate(rect, rectBound, GetDirection(m_etypea[m_iType]), dComplementRate);
 
                class rect rectIntersect;
                rectIntersect.intersect(rect, rectBound);
 
-               /*dcBack.FillSolidRect(               rectClient,
-                  viewinterface.GetInterface().GetBackgroundColor());*/
-               //dcBack.BitBlt(
-   /*               rectIntersect.left,
-                  rectIntersect.top,
-                  rectIntersect.width(),
-                  rectIntersect.height(),
-                  &dcBuffer,
-                  rectIntersect.left - rect.left,
-                  rectIntersect.top - rect.top,
-                  SRCCOPY);*/
                dcBack.BitBlt(
                   rectIntersect.left,
                   rectIntersect.top,
                   rectIntersect.width(),
                   rectIntersect.height(),
                   &dcBuffer,
-                  rectIntersect.left - rect.left,
-                  rectIntersect.top - rect.top,
+                  rectIntersect.left - rect.left + rectBound.left,
+                  rectIntersect.top - rect.top + rectBound.top,
                   SRCCOPY);
+
                recta.add(rectIntersect);
+
             }
             break;
          case TransitionEffectWipeTop:
@@ -911,7 +905,8 @@ namespace gcom
                double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
 
 
-               rect rect = rectClient;
+               rect rect;
+               graphics.GetFinalPlacement(rect);
 
                Space space;
 
@@ -956,9 +951,14 @@ namespace gcom
 //               ::rect & rectUpdate = m_tool001.m_rect;
 
 
-               Space space;
+               
 
-               space.Slice(rectA, rectB, rectC, rectClient, GetDirection(get_type()), dRate, dRatePlus);
+               rect rect;
+               graphics.GetFinalPlacement(rect);
+
+
+               Space space;
+               space.Slice(rectA, rectB, rectC, rect, GetDirection(get_type()), dRate, dRatePlus);
 
 
                dcBack.BitBlt(
@@ -995,27 +995,20 @@ namespace gcom
             break;
          case TransitionEffectWipeCenter:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
 
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
                int iFrame = m_tool001.m_iStep - 1;
-//               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
-//               double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
-//               double dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
                double dRate = 1.0 - dFrameStd * dFrameStd;
-//               double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
 
-               rect rect = rectClient;
+               rect rect;
+               graphics.GetFinalPlacement(rect);
 
                Space space;
-
                space.Scale(rect, dRate);
+
 
                dcBack.BitBlt(
                   rect.left,
@@ -1031,19 +1024,13 @@ namespace gcom
             break;
          case TransitionEffectWipeIn:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
 
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
                int iFrame = m_tool001.m_iStep - 1;
-//               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
-//               double dRateMinus = 1.0 - dFrameStdMinus * dFrameStdMinus;
                double dRate = 1.0 - dFrameStd * dFrameStd;
                double dRatePlus = 1.0 - dFrameStdPlus * dFrameStdPlus;
 
@@ -1051,10 +1038,11 @@ namespace gcom
                ::rect rectB;
                ::rect rectC;
                ::rect rectD;
-               ::rect rect = rectClient;
+
+               class rect rect;
+               graphics.GetFinalPlacement(rect);
 
                Space space;
-
                space.WipeIn(
                   rectA,
                   rectB,
@@ -1104,6 +1092,66 @@ namespace gcom
                recta.add(rectB);
                recta.add(rectC);
                recta.add(rectD);
+            }
+            break;
+         case TransitionEffectWipeMidHorizontal:
+            {
+
+               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int iFrameMax = iFrameCount - 1;
+
+               int iFrame = m_tool001.m_iStep - 1;
+               double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
+               double dRate = dFrameStd * dFrameStd;
+
+               rect rect;
+               graphics.GetFinalPlacement(rect);
+
+               double dy = (rect.height() / 2) * dRate;
+
+               rect.top += dy;
+               rect.bottom -= dy;
+
+               dcBack.BitBlt(
+                  rect.left,
+                  rect.top,
+                  rect.width(),
+                  rect.height(),
+                  &dcBuffer,
+                  rect.left,
+                  rect.top,
+                  SRCCOPY);
+               recta.add(rect);
+            }
+            break;
+         case TransitionEffectWipeMidVertical:
+            {
+
+               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int iFrameMax = iFrameCount - 1;
+
+               int iFrame = m_tool001.m_iStep - 1;
+               double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
+               double dRate = dFrameStd * dFrameStd;
+
+               rect rect;
+               graphics.GetFinalPlacement(rect);
+
+               double dx = (rect.width() / 2) * dRate;
+
+               rect.left += dx;
+               rect.right -= dx;
+
+               dcBack.BitBlt(
+                  rect.left,
+                  rect.top,
+                  rect.width(),
+                  rect.height(),
+                  &dcBuffer,
+                  rect.left,
+                  rect.top,
+                  SRCCOPY);
+               recta.add(rect);
             }
             break;
          case TransitionEffectScaleBottom:

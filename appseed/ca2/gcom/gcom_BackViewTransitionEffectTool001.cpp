@@ -80,6 +80,8 @@ namespace gcom
             break;
          case TransitionEffectWipeCenter:
          case TransitionEffectWipeIn:
+         case TransitionEffectWipeMidHorizontal:
+         case TransitionEffectWipeMidVertical:
             {
                const int iFrameCount = max(4, cy / 32);
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
@@ -539,6 +541,8 @@ namespace gcom
             break;
          case TransitionEffectWipeCenter:
          case TransitionEffectWipeIn:
+         case TransitionEffectWipeMidHorizontal:
+         case TransitionEffectWipeMidVertical:
             {
                GetRect(rectUpdate, AlignCenter);
             }

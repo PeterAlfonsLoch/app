@@ -60,60 +60,47 @@ namespace gcom
 
    void Space::Deviate(LPRECT lprectDeviate, LPRECT lprectSpace, EDirection edirection, double dRate)
    {
+
       int dx = lprectSpace->right - lprectSpace->left;
       int dy = lprectSpace->bottom - lprectSpace->top;
       dx = (int) (dx * dRate);
       dy = (int) (dy * dRate);
 
-      int cx = 0;
-      int cy = 0;
       switch(edirection)
       {
       case ::gcom::DirectionLeft:
-         dx = - dx;
+         dx = -dx;
          dy = 0;
-         cx = lprectSpace->left - lprectDeviate->left;
          break;
       case ::gcom::DirectionTop:
          dx = 0;
          dy = - dy;
-         cy = lprectSpace->top - lprectDeviate->top;
          break;
       case ::gcom::DirectionRight:
          dy = 0;
-         cx = lprectSpace->right - lprectDeviate->right;
          break;
       case ::gcom::DirectionBottom:
          dx = 0;
-         cy = lprectSpace->bottom - lprectDeviate->bottom;
          break;
       case ::gcom::DirectionTopLeft:
          dx = - dx;
          dy = - dy;
-         cx = lprectSpace->left - lprectDeviate->left;
-         cy = lprectSpace->top - lprectDeviate->top;
          break;
       case ::gcom::DirectionTopRight:
          dy = - dy;
-         cx = lprectSpace->right - lprectDeviate->right;
-         cy = lprectSpace->top - lprectDeviate->top;
          break;
       case ::gcom::DirectionBottomRight:
-         cx = lprectSpace->right - lprectDeviate->right;
-         cy = lprectSpace->bottom - lprectDeviate->bottom;
          break;
       case ::gcom::DirectionBottomLeft:
-         dx = - dx;
-         cx = lprectSpace->left - lprectDeviate->left;
-         cy = lprectSpace->bottom - lprectDeviate->bottom;
+         dx = -dx;
          break;
       }
-      cx += dx;
-      cy += dy;
-      lprectDeviate->left     += cx;
-      lprectDeviate->right    += cx;
-      lprectDeviate->top      += cy;
-      lprectDeviate->bottom   += cy;
+
+      lprectDeviate->left     += dx;
+      lprectDeviate->right    += dx;
+      lprectDeviate->top      += dy;
+      lprectDeviate->bottom   += dy;
+
    }
 
    void Space::Slice(LPRECT lprectSliced1, LPRECT lprectSlicing, EDirection edirection, double dRate, double dRateEx)

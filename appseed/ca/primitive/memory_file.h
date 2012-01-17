@@ -36,6 +36,8 @@ namespace primitive
 
       virtual string GetFilePath() const;
 
+      virtual ::primitive::memory_base * create_memory();
+
       void set_length(file_size dwNewLen);
       file_size get_length() const;
       void Truncate(file_size iPosition);

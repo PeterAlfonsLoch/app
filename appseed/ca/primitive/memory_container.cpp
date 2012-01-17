@@ -89,9 +89,23 @@ namespace primitive
    }
 
 
-   memory_base * memory_container ::get_memory() const
+   memory_base * memory_container::get_memory() const
    {
-         return m_spmemory;
+
+      if(m_spmemory.is_null())
+      {
+         (const_cast < memory_container * > (this))->m_spmemory = (const_cast < memory_container * > (this))->create_memory();
+      }
+
+      return m_spmemory;
+
+   }
+
+   ::primitive::memory_base * memory_container::create_memory()
+   {
+
+      return new primitive::memory(this);
+
    }
 
 

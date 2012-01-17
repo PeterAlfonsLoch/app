@@ -301,5 +301,13 @@ namespace primitive
       }
    }
 
+   ::primitive::memory_base * memory_file::create_memory()
+   {
+      
+      return new primitive::memory(this);
+
+   }
+
+
 
 } // namespace primitive
