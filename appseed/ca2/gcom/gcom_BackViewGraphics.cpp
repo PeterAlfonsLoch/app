@@ -94,7 +94,7 @@ namespace gcom
          single_lock sl1Back(&m_mutex1Back, TRUE);
          ::ca::graphics & dcBack = GetBackDC();
          GetDib(_graphics::DibBack)->create(cx, cy);
-         dcBack.FillSolidRect(0, 0, cx, cy, RGB(127, 136, 145));
+         dcBack.FillSolidRect(0, 0, cx, cy, ARGB(0, 0, 0, 0));
          sl1Back.unlock();
       }
 
@@ -176,7 +176,7 @@ namespace gcom
          {   
             //sl2Buffer.lock();
 
-            dcBuffer.FillSolidRect(rectClient, RGB(63, 106, 150));
+            dcBuffer.FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
             HENHMETAFILE hemf = main.GetInterface().BackViewGetFillingMetaFile();
             if(hemf != NULL)
@@ -188,9 +188,7 @@ namespace gcom
                   sizeof(emh),
                   &emh);
 
-               dcBuffer.FillSolidRect(
-                  rectClient,
-                  RGB(30, 26, 21));
+               dcBuffer.FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
                rect rectMeta(0, 0, emh.rclBounds.right - emh.rclBounds.left, emh.rclBounds.bottom - emh.rclBounds.top);
                rectMeta.FitOnCenterOf(rect(0, 0, 64, 64));
@@ -399,18 +397,16 @@ namespace gcom
          spgraphicsScreen.CreateDC("DISPLAY", NULL, NULL, NULL);
 
          GetDib(_graphics::DibBack)->create(cx, cy); // Back
-         GetDib(_graphics::DibBack)->Fill(255, 63, 106, 150);
+         GetDib(_graphics::DibBack)->Fill(0, 0, 0, 0);
 
          GetDib(_graphics::DibBuffer)->create(cx, cy); // buffer
-         GetDib(_graphics::DibBuffer)->Fill(255, 63, 106, 150);
+         GetDib(_graphics::DibBuffer)->Fill(0, 0, 0, 0);
 
          GetDib(_graphics::DibTransfer)->create(cx, cy); // Transfer
-         color c;
-         c.set_rgb(iface.GetBackgroundColor());
-         GetDib(_graphics::DibTransfer)->Fill(255, c.m_uchR, c.m_uchG, c.m_uchB);
+         GetDib(_graphics::DibTransfer)->Fill(0, 0, 0, 0);
 
          GetDib(_graphics::DibFrame1)->create(cx, cy); // Frame1
-         GetDib(_graphics::DibFrame1)->Fill(255, 127, 136, 145);
+         GetDib(_graphics::DibFrame1)->Fill(0, 0, 0, 0);
 
       }
 

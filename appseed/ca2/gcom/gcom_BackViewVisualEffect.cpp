@@ -3747,12 +3747,7 @@ namespace gcom
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
          ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
-
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
          ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
@@ -3787,7 +3782,7 @@ namespace gcom
          int cy1 = pdib1->height();
 
 
-         pdib3->Fill(0, 0, 0);
+         pdib3->Fill(0, 0, 0, 0);
 
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
 
@@ -3895,7 +3890,7 @@ namespace gcom
             m_explosion.create(cx1, cy1);
             m_explosion.Reset();
 
-            pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, RGB(0, 0, 0));
+            pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, ARGB(0, 0, 0, 0));
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
             pdib3->stretch_dib(pdibBuffer);
          }
@@ -4003,7 +3998,7 @@ namespace gcom
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
 
-         pdib3->Fill(0, 0, 0);
+         pdib3->Fill(0, 0, 0, 0);
 
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
 

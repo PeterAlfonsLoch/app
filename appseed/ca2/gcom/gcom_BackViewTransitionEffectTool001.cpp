@@ -258,7 +258,7 @@ namespace gcom
             {
                m_iStepRepeatCount = 1;
 
-               effect.m_dwDelay = 50;
+               effect.m_dwDelay = 200;
 
                int c1 = 0;
                int c2 = 0;
@@ -306,24 +306,25 @@ namespace gcom
 
                for(int i = 0; i < m_ia.get_size(); i++)
                {
+               
                   iSize = m_ia[i];
+
                   ASSERT(iSize >= 1);
-                  //iSize = max(2, iSize);
-                  //iSize = c1 / 16;
-                  //if(iSize < 64)
+
                   if(iSize < 64)
                      iSize = 64;
-                  int j;
-                  for(j = 0; j < c1; j += iSize)
+
+                  int j = 0;
+
+                  for(; j < c1; j += iSize)
                   {
                      m_pointa.add(point(i, j));
                   }
-                  m_pointa.add(point(i, c1));
-                  //m_pointa.add(point(i, j));
-                  //m_pointa.add(point(i, j + iSize));
 
-                  //m_pointa.add(point(i, c1));
+                  m_pointa.add(point(i, c1));
+
                }
+
                m_iStepCount = m_pointa.get_size() + 1;
                m_data.m_alphapixelate.m_iSizeIndex = -1;
             }
@@ -950,8 +951,19 @@ namespace gcom
          )
       {
 
-         const int & cx = m_cx;
-         const int & cy = m_cy;
+         GetSliceRect(m_cx, m_cy, lprect, ealign, dRate, dRatePlus);
+
+      }
+
+      void TransitionEffect::Tool001::GetSliceRect(
+         int cx,
+         int cy,
+         LPRECT   lprect,
+         EAlign   ealign,
+         double   dRate,
+         double   dRatePlus // greater rate
+         )
+      {
 
          switch(ealign)
          {
@@ -1027,6 +1039,7 @@ namespace gcom
                lprect->top = (long) ((0.5 - dHalfRate) * (cy));
                lprect->bottom = (long) (dHalfRate * cy);
             }
+            break;
          default:
             ASSERT(FALSE);
             break;

@@ -170,6 +170,15 @@ namespace gcom
                double   dRate,
                double   dRateMinus);
 
+            void GetSliceRect(
+               int      cx,
+               int      cy,
+               LPRECT   lprect,
+               EAlign   aelign,
+               double   dRate,
+               double   dRateMinus);
+
+
             void GetRectAB(LPRECT lprectA, LPRECT lprectB);
             void GetRectABCD(LPRECT lprectA, LPRECT lprectB, LPRECT lprectC, LPRECT lprectD);
             void GetHorizontalHexagon(LPRECT lprect, LPPOINT lppointa);
