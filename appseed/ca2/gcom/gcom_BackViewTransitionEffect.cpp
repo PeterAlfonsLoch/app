@@ -1444,7 +1444,7 @@ namespace gcom
 
                      pdib->create(finalW, finalH);
 
-                     pdib->get_graphics()->BitBlt(0, 0, finalW, finalH, &dcBuffer, 0, 0, SRCCOPY);
+                     pdib->get_graphics()->BitBlt(0, 0, finalW, finalH, &dcFrame1, 0, 0, SRCCOPY);
 
                      const int dSpan = 16;
 
@@ -1468,9 +1468,9 @@ namespace gcom
                         pdib->get_graphics(),
                         null_point(),
                         size(finalW, finalH),
-                        &dcFrame1,
+                        &dcBuffer,
                         point(finalX, finalY),
-                        (byte)(255.0 - dAlpha));
+                        (byte)(dAlpha));
 
                      pdib->pixelate(iSize);
                   }
@@ -1691,7 +1691,9 @@ namespace gcom
                int iIndex = m_tool001.m_iStep - 1;
                int iSizeIndex = m_tool001.m_pointa[iIndex].x;
                int iSize = m_tool001.m_ia[iSizeIndex];
-//               int c = m_tool001.m_pointa[iIndex].y;
+               
+               if(iSize < 64)
+                  iSize = 64;
 
                ////iStepRepeatCount = 1c1 / (iSize * 8);
                //iStepRepeatCount = 1;

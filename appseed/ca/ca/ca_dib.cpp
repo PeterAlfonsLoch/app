@@ -2552,8 +2552,6 @@ fill_last:
       int xCount = w / iSize;
       int yCount = h / iSize;
 
-      //if(w % iSize != 0) xCount++;
-      //if(h % iSize != 0) yCount++;
 
 
       int iDiv;
@@ -2600,51 +2598,25 @@ fill_last:
                   iDiv++;
                   if(iDiv >= 64)
                   {
-                     if(bFirst)
-                     {
-                        a2 = a / iDiv;
-                        r2 = r / iDiv;
-                        g2 = g / iDiv;
-                        b2 = b / iDiv;
-                        bFirst = false;
-                        a = 0;
-                        r = 0;
-                        g = 0;
-                        b = 0;
-                        iDiv2 = 1;
-                     }
-                     else
-                     {
-                        a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                        r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
-                        g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
-                        b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
-                        iDiv2++;
-                        a = 0;
-                        r = 0;
-                        g = 0;
-                        b = 0;
-                     }
+                     a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+                     r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+                     g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+                     b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+                     a = 0;
+                     r = 0;
+                     g = 0;
+                     b = 0;
+                     iDiv = 0;
+                     iDiv2++;
                   }
                }
             }
             if(iDiv > 0)
             {
-               if(bFirst)
-               {
-                  a2 = a / iDiv;
-                  r2 = r / iDiv;
-                  g2 = g / iDiv;
-                  b2 = b / iDiv;
-               }
-               else
-               {
-                  // considered as following calculation!!
-                  a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
-                  g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
-                  b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
-               }
+               a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+               r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+               g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+               b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
             }
             COLORREF cr = ARGB(a2, r2, g2, b2);
             for(int i = 0; i < iSize; i++)
@@ -2657,9 +2629,196 @@ fill_last:
          }
 
       }
+
+
+      if(w % iSize != 0)
+      {
+         int x = xCount;
+         int x1 = x * iSize;
+         int iMax = w - xCount * iSize;
+         for(int y = 0; y < yCount; y++)
+         {
+            y1 = y * iSize;
+            a = 0;
+            r = 0;
+            g = 0;
+            b = 0;
+            a2 = 0;
+            r2 = 0;
+            g2 = 0;
+            b2 = 0;
+            iDiv = 0;
+            iDiv2 = 0;
+            bFirst = true;
+            for(int i = 0; i < iMax; i++)
+            {
+               for(int j = 0; j < iSize; j++)
+               {
+                  COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+                  a += GetAValue(cr);
+                  r += GetRValue(cr);
+                  g += GetGValue(cr);
+                  b += GetBValue(cr);
+                  iDiv++;
+                  if(iDiv >= 64)
+                  {
+                     a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+                     r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+                     g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+                     b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+                     a = 0;
+                     r = 0;
+                     g = 0;
+                     b = 0;
+                     iDiv = 0;
+                     iDiv2++;
+                  }
+               }
+            }
+            if(iDiv > 0)
+            {
+               a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+               r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+               g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+               b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+            }
+            COLORREF cr = ARGB(a2, r2, g2, b2);
+            for(int i = 0; i < iMax; i++)
+            {
+               for(int j = 0; j < iSize; j++)
+               {
+                  pdata[x1 + i + (y1 + j) * w] = cr;
+               }
+            }
+         }
+
+      }
+         
+      if(h % iSize != 0)
+      {
+         int y = yCount;
+         int y1 = y * iSize;
+         int jMax = h - yCount * iSize;
+         for(int x = 0; x < xCount; x++)
+         {
+            x1 = x * iSize;
+            a = 0;
+            r = 0;
+            g = 0;
+            b = 0;
+            a2 = 0;
+            r2 = 0;
+            g2 = 0;
+            b2 = 0;
+            iDiv = 0;
+            iDiv2 = 0;
+            bFirst = true;
+            for(int i = 0; i < iSize; i++)
+            {
+               for(int j = 0; j < jMax; j++)
+               {
+                  COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+                  a += GetAValue(cr);
+                  r += GetRValue(cr);
+                  g += GetGValue(cr);
+                  b += GetBValue(cr);
+                  iDiv++;
+                  if(iDiv >= 64)
+                  {
+                     a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+                     r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+                     g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+                     b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+                     a = 0;
+                     r = 0;
+                     g = 0;
+                     b = 0;
+                     iDiv = 0;
+                     iDiv2++;
+                  }
+               }
+            }
+            if(iDiv > 0)
+            {
+               a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+               r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+               g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+               b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+            }
+            COLORREF cr = ARGB(a2, r2, g2, b2);
+            for(int i = 0; i < iSize; i++)
+            {
+               for(int j = 0; j < jMax; j++)
+               {
+                  pdata[x1 + i + (y1 + j) * w] = cr;
+               }
+            }
+         }
+
+      }
+
+      if(w % iSize != 0)
+      {
+         int x = xCount;
+         int x1 = x * iSize;
+         int iMax = w - xCount * iSize;
+         int y = yCount;
+         int y1 = y * iSize;
+         int jMax = h - yCount * iSize;
+         x1 = x * iSize;
+         a = 0;
+         r = 0;
+         g = 0;
+         b = 0;
+         a2 = 0;
+         r2 = 0;
+         g2 = 0;
+         b2 = 0;
+         iDiv = 0;
+         iDiv2 = 0;
+         bFirst = true;
+         for(int i = 0; i < iMax; i++)
+         {
+            for(int j = 0; j < jMax; j++)
+            {
+               COLORREF cr = pdata[x1 + i + (y1 + j) * w];
+               a += GetAValue(cr);
+               r += GetRValue(cr);
+               g += GetGValue(cr);
+               b += GetBValue(cr);
+               iDiv++;
+               if(iDiv >= 64)
+               {
+                  a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+                  g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+                  b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+                  a = 0;
+                  r = 0;
+                  g = 0;
+                  b = 0;
+                  iDiv = 0;
+                  iDiv2++;
+               }
+            }
+         }
+         if(iDiv > 0)
+         {
+            a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
+            g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
+            b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
+         }
+         COLORREF cr = ARGB(a2, r2, g2, b2);
+         for(int i = 0; i < iMax; i++)
+         {
+            for(int j = 0; j < jMax; j++)
+            {
+               pdata[x1 + i + (y1 + j) * w] = cr;
+            }
+         }
+      }
       
-      //if(w % iSize != 0) xCount++;
-      //if(h % iSize != 0) yCount++;
 
    }
 
