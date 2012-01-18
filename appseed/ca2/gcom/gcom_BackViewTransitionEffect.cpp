@@ -47,20 +47,56 @@ namespace gcom
          //iStart   = (int) TransitionEffectScaleBottom;
          //iEnd     = (int) TransitionEffectScaleCenter;
 
-         iStart   = (int) TransitionEffectpixelate_TopBottom;
-         iEnd     = (int) TransitionEffectpixelate_RightLeft;
+         //iStart   = (int) TransitionEffectpixelate_TopBottom;
+         //iEnd     = (int) TransitionEffectpixelate_RightLeft;
+
+         //iStart   = (int) TransitionEffectSquarypixelate_
 
          //iStart   = (int) TransitionEffectVisual;
          //iEnd     = (int) TransitionEffectVisual;
 
-         //iStart      = (int) TransitionEffectRadialUnveil;
-         //iEnd      = (int) TransitionEffectRadialUnveil;
+         iStart      = (int) TransitionEffectRadialUnveil;
+         iEnd      = (int) TransitionEffectRadialUnveil;
 
 
          for(int i = iStart; i <= iEnd; i++)
          {
             m_etypea.add((ETransitionEffect) i);
          }
+
+         //iStart = iEnd = (int) VisualEffectPixelExplosion;
+         //iStart = iEnd = (int) VisualEffectAlphaPixelExplosion;
+         //iStart = iEnd = (int) VisualEffectPixelExplosion2;
+         
+         //iStart = iEnd = (int) VisualEffectRotateEx8;
+         //iStart = iEnd = (int) VisualEffectRotateEx4;
+         //iStart = iEnd = (int) VisualEffectRain1;
+         //iStart = iEnd = (int) VisualEffectRotateEx5;
+         //iStart = iEnd = (int) VisualEffectRotateEx6;
+         //iStart = iEnd = (int) VisualEffectRotateEx7;
+
+         //iStart = iEnd = (int) VisualEffectExpand8;
+         //iStart = iEnd = (int) VisualEffectExpand4;
+         //iStart = iEnd = (int) VisualEffectExpand5;
+         //iStart = iEnd = (int) VisualEffectExpand6;
+         //iStart = iEnd = (int) VisualEffectExpand7;
+
+         //iStart = iEnd = (int) VisualEffectRotateBlend;
+         //iStart = iEnd = (int) VisualEffectNoPrecisionRotateBlend;
+         //iStart = iEnd = (int) VisualEffectNoPrecisionRotatecolor_blend_;
+         //iStart = iEnd = (int) VisualEffectNoPrecisionRotateTrackcolor_blend_;
+         //iStart = iEnd = (int) VisualEffectRotateEx1;
+         //iStart = iEnd = (int) VisualEffectRotateEx2;
+         //iStart = iEnd = (int) VisualEffectRotateEx3;
+
+         iStart   = (int) VisualEffectPixelExplosion;
+         iEnd     = (int) VisualEffectRotateEx3;
+
+         for(int i = iStart; i <= iEnd; i++)
+         {
+            m_iaVisual.add(i);
+         }
+         
 
          m_bInitialized    = false;
          m_bActive         = false;
@@ -130,7 +166,7 @@ namespace gcom
          if(m_etypea[iTypeOld] == TransitionEffectVisual)
          {
             m_iVisual++;
-            if(m_iVisual >= main.GetVisualEffect().GetEffectCount())
+            if(m_iVisual >= m_iaVisual.get_size())
             {
                m_iVisual = 0;
                iTypeNew = iTypeOld + 1;
@@ -140,6 +176,7 @@ namespace gcom
          {
              iTypeNew = iTypeOld + 1;
          }
+         
          if(iTypeNew >= m_etypea.get_size())
          {
             iTypeNew = 0;
@@ -160,7 +197,7 @@ namespace gcom
             m_iType = 0;
          else
             m_iType = iTypeNew;
-
+         
       }
 
       void TransitionEffect::Initialize()
@@ -1529,7 +1566,6 @@ namespace gcom
                   int iIndex = m_tool001.m_iStep - 1;
                   m_tool001.m_data.m_radialunveil.m_iRadius += m_tool001.m_data.m_radialunveil.m_iRadiusIncrement;
 
-
                   m_dwDelay = m_tool001.m_pointa[iIndex].y;
 
                   int r = m_tool001.m_pointa[iIndex].x;
@@ -1560,26 +1596,35 @@ namespace gcom
 //                  double yrate = (double) hWindow / d;
 
                   ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
-                  //::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
+                  ::ca::dib * pdib2 = graphics.GetDib(_graphics::DibTemp2);
                   //::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 
                   pdib1->create(wWindow, hWindow);
-                  //pdib2->create(wWindow, hWindow);
+                  pdib2->create(wWindow, hWindow);
                   //pdib3->create(wWindow, hWindow);
 
                   //pdib1->get_graphics()->SetStretchBltMode(HALFTONE);
-                  drawdib.draw(
-                     pdib1->get_graphics(),
+                  pdib1->get_graphics()->StretchBlt(
                      0,
                      0,
                      wWindow,
                      hWindow,
-                     pdibT2,
-                     xOff, yOff,
+                     pdibT2->get_graphics(),
+                     xOff, 
+                     yOff,
                      pdibT2->width() - xOff * 2,
                      pdibT2->height() - yOff * 2,
-                     DDF_HALFTONE);
+                     SRCCOPY);
 
+                  pdib2->get_graphics()->BitBlt(
+                     0, 0, 
+                     wWindow, hWindow,
+                     &dcBuffer,
+                     x1, y1,
+                     SRCCOPY);
+
+
+                  pdib2->channel_from(visual::rgba::channel_alpha,  pdib1);
 
                   /*drawdib.draw(
                      pdib1->get_graphics(),
@@ -1630,12 +1675,14 @@ namespace gcom
                   //dcBack.BitBlt(x1, y1, wWindow, hWindow, pdib1->get_graphics(),
                     // x1, y1, SRCCOPY);
 
+                  dcBack.set_alpha_mode(::ca::alpha_mode_set);
+
                   imaging.bitmap_blend(
                      &dcBack,
                      point(x1, y1),
                      size(wWindow, hWindow),
-                     &dcBuffer,
-                     point(x1, y1));
+                     pdib2->get_graphics(),
+                     null_point());
 
 
                   /*drawdib.draw(

@@ -416,7 +416,7 @@ namespace gcom
                break;
             }
 
-
+               m_iStepCount *= 10;
                effect.m_dwDelay = 100;
 
             }

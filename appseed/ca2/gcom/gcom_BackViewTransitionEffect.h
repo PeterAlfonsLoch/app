@@ -240,6 +240,8 @@ namespace gcom
          comparable_array < ETransitionEffect, ETransitionEffect >
                            m_etypea;
 
+         int_array         m_iaVisual;
+
          Tool001            m_tool001;
          event            m_eventStartTransition;
          event            m_eventThreadExit;

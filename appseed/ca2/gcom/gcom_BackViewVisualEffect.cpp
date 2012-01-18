@@ -60,14 +60,39 @@ namespace gcom
          dcBack.SelectClipRgn(NULL);
          dcBuffer.SelectClipRgn(NULL);
 
-         int iVisual;
-
-         //transitioneffect.m_iVisual = VisualEffectRotateEx5;
-         iVisual = transitioneffect.m_iVisual;
-      //      iVisual = VisualEffectRotateEx5;
-         switch(iVisual)
+         //m_iVisual = VisualEffectRotateEx5;
+         m_iVisual = transitioneffect.m_iaVisual[transitioneffect.m_iVisual];
+      //      m_iVisual = VisualEffectRotateEx5;
+         switch(m_iVisual)
          {
+         case VisualEffectPixelExplosion:
+            RenderPixelExplosion(recta);
+            break;
+         case VisualEffectAlphaPixelExplosion:
+            RenderAlphaPixelExplosion(recta);
+            break;
+         case VisualEffectPixelExplosion2:
+            RenderPixelExplosion2(recta);
+            break;
+         case VisualEffectRotateEx8:
+            RenderRotateEx8(recta);
+            break;
+         case VisualEffectRotateEx4:
+            RenderRotateEx4(recta);
+            break;
+         case VisualEffectRain1:
+            RenderRain1(recta);
+            break;
          case VisualEffectRotateBlend:
+         case VisualEffectRotateEx5:
+            RenderRotateEx5(recta);
+            break;
+         case VisualEffectRotateEx6:
+            RenderRotateEx5(recta);
+            break;
+         case VisualEffectRotateEx7:
+            RenderRotateEx7(recta);
+            break;
             RenderRotateBlend(recta);
             //RenderNPRotatecolor_blend_(recta);
             //RenderNPRotateTrackcolor_blend_(recta);
@@ -92,24 +117,6 @@ namespace gcom
          case VisualEffectRotateEx3:
             RenderRotateEx3(recta);
             break;
-         case VisualEffectRotateEx4:
-            RenderRotateEx4(recta);
-            break;
-         case VisualEffectRain1:
-            RenderRain1(recta);
-            break;
-         case VisualEffectRotateEx5:
-            RenderRotateEx5(recta);
-            break;
-         case VisualEffectRotateEx6:
-            RenderRotateEx5(recta);
-            break;
-         case VisualEffectRotateEx7:
-            RenderRotateEx7(recta);
-            break;
-         case VisualEffectRotateEx8:
-            RenderRotateEx8(recta);
-            break;
          case VisualEffectExpand4:
             RenderExpand4(recta);
             break;
@@ -124,15 +131,6 @@ namespace gcom
             break;
          case VisualEffectExpand8:
             RenderExpand8(recta);
-            break;
-         case VisualEffectPixelExplosion:
-            RenderPixelExplosion(recta);
-            break;
-         case VisualEffectPixelExplosion2:
-            RenderPixelExplosion2(recta);
-            break;
-         case VisualEffectAlphaPixelExplosion:
-            RenderAlphaPixelExplosion(recta);
             break;
          default:
             ASSERT(FALSE);
@@ -199,7 +197,7 @@ namespace gcom
 
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -266,8 +264,8 @@ namespace gcom
 
          pdibBack->stretch_dib(pdib1);
 
-         //dcBack.FillSolidRect(0, 0, cx, cy, RGB(0, 0, 0));
-         //dcBack.FillSolidRect(100, 100, cx, cy, RGB(255, 255, 255));
+         //dcBack.FillSolidRect(0, 0, cx, cy, ARGB(255, 0, 0, 0));
+         //dcBack.FillSolidRect(100, 100, cx, cy, ARGB(255, 255, 255, 255));
 
          recta.add(rectClient);
       }
@@ -331,7 +329,7 @@ namespace gcom
 
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -472,7 +470,7 @@ namespace gcom
 
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -652,7 +650,7 @@ namespace gcom
 
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -710,7 +708,7 @@ namespace gcom
             int y1 = m_ptColorTrack.y;
             int x2 = cx1 - x1;
             int y2 = cy1 - y1;
-            ::ca::brush_sp brush(get_app(), m_color.get_rgb());
+            ::ca::brush_sp brush(get_app(), m_color.get_rgb() | (255 << 24));
             pdib1->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
             //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
@@ -787,7 +785,7 @@ namespace gcom
          m_explosion.create(cx1, cy1);
          m_explosion.Reset();
 
-         if(transitioneffect.m_iVisual == VisualEffectRotateEx5)
+         if(m_iVisual == VisualEffectRotateEx5)
          {
             cx1 = cx / 5;
             cy1 = cy / 5;
@@ -1201,7 +1199,7 @@ namespace gcom
 
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -1264,7 +1262,7 @@ namespace gcom
             int x2 = cx1 - x1 - r;
             int y2 = cy1 - y1 - r;
             ::ca::brush_sp brush(get_app());
-            brush->construct(colorStrong.get_rgb());
+            brush->construct(colorStrong.get_rgb() | (255 << 24));
             pdib2->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
             //imaging.color_blend(pdib1->get_graphics(), cx1 - x, cy1 - y, c3, c4, m_color.get_rgb(), bA);
@@ -1452,7 +1450,7 @@ namespace gcom
 
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -1516,20 +1514,20 @@ namespace gcom
 
          {
             ::ca::pen_sp pen1(get_app());
-            pen1->construct(PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
+            pen1->construct(PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
             ::ca::pen_sp pen2(get_app());
-            pen2->construct(PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
+            pen2->construct(PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
             ::ca::pen_sp pen3(get_app());
-            pen3->construct(PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
+            pen3->construct(PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
             ::ca::pen_sp pen4(get_app());
-            pen4->construct(PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
+            pen4->construct(PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app());
-            pen5->construct(PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            pen5->construct(PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -1838,7 +1836,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -1903,16 +1901,16 @@ namespace gcom
 
 
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -2250,7 +2248,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -2264,7 +2262,7 @@ namespace gcom
 
          if(m_bGrowColor0)
          {
-            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
+            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
@@ -2323,7 +2321,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int margin = 10;
          int w = margin * 2;
@@ -2451,16 +2449,16 @@ namespace gcom
          }
 
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -2561,27 +2559,39 @@ namespace gcom
             pdib4->create(cx1, cy1);
             tool1.dalpha = 0;
             m_water.create(cx1, cy1);
-            pdib1->get_graphics()->SetStretchBltMode(HALFTONE);
-            pdib1->stretch_dib(pdibBuffer);
+            pdib4->get_graphics()->SetStretchBltMode(HALFTONE);
+            pdib4->stretch_dib(pdibFrame1);
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
-            pdib3->stretch_dib(pdibFrame1);
+            pdib3->stretch_dib(pdibBuffer);
          }
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
 
 
-         pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, pdib3->get_graphics(), 0, 0, SRCCOPY);
 
-         System.imaging().bitmap_blend(
-            pdib4->get_graphics(),
-            null_point(), pdib1->size(),
-            pdib1->get_graphics(),
-            null_point(),
-            (BYTE) max(min(255, tool1.dalpha), 0));
+         //pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, pdib3->get_graphics(), 0, 0, SRCCOPY);
+
 
          int iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
+         if(transitioneffect.m_tool001.m_iStep >= iReturnPoint * 2)
+         {
+
+            System.imaging().bitmap_blend(
+               pdib4->get_graphics(),
+               null_point(), pdib1->size(),
+               pdib3->get_graphics(),
+               null_point(),
+               10);
+         }
+
+         pdib4->fill_channel(0, visual::rgba::channel_alpha);
+         pdib2->fill_channel(0, visual::rgba::channel_alpha);
+
          m_water.to(pdib4->get_data(), pdib2->get_data());
+
+         pdib4->fill_channel(255, visual::rgba::channel_alpha);
+         pdib2->fill_channel(255, visual::rgba::channel_alpha);
 
          int mod = max(1, (int) tool1.dmod);
          if((tool1.frame % mod) == 0)
@@ -2688,7 +2698,7 @@ namespace gcom
             pdib4->create(tool1.cx, tool1.cy);
          }
 
-         if(transitioneffect.m_iVisual == VisualEffectRotateEx6)
+         if(m_iVisual == VisualEffectRotateEx6)
          {
             pdib2->FillByte(0);
             pdib3->FillByte(0);
@@ -2712,9 +2722,9 @@ namespace gcom
          }
 
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
+         penWhite->construct(PS_SOLID, 3, ARGB(255, 205, 205, 205));
          int margin1 = cx1 / 8;
          int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -2777,7 +2787,7 @@ namespace gcom
 
          bool bWhite;
          bWhite = false;
-         if(transitioneffect.m_iVisual == VisualEffectRotateEx5)
+         if(m_iVisual == VisualEffectRotateEx5)
          {
             pdib1->get_graphics()->SelectObject(penWhite);
             pdib1->get_graphics()->MoveTo(m_pointa[margin1].x, m_pointa[margin1].y);
@@ -2793,12 +2803,12 @@ namespace gcom
             pdib1->get_graphics()->LineTo(m_pointa[i].x, m_pointa[i].y);
          }
 
-         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, RGB(0, 0, 0), 10);
+         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, ARGB(255, 0, 0, 0), 10);
 
          GdiFlush();
 
 
-         if(transitioneffect.m_iVisual == VisualEffectRotateEx6)
+         if(m_iVisual == VisualEffectRotateEx6)
          {
             keeper < bool > keepTransferVoid (&HelperGetMain().GetInterface().m_bTransferVoid, true, false, true);
             pdib4->get_graphics()->SetStretchBltMode(HALFTONE);
@@ -3058,7 +3068,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -3072,7 +3082,7 @@ namespace gcom
 
          if(m_bGrowColor0)
          {
-            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
+            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
@@ -3169,9 +3179,9 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
+         penWhite->construct(PS_SOLID, 3, ARGB(255, 205, 205, 205));
          int margin1 = 10;
 //         int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -3233,7 +3243,7 @@ namespace gcom
             pdib1->get_graphics()->LineTo(m_pointa[i].x, m_pointa[i].y);
          }
 
-         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, RGB(34, 34, 34), 10);
+         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, ARGB(255, 34, 34, 34), 10);
 
       /*   pdib1->get_graphics()->MoveTo(margin1, cy1 - margin2);
 
@@ -3317,16 +3327,16 @@ namespace gcom
 
       //   pdib1->get_graphics()->FillSolidRect(0, 0, cx1 / 2, cy1 / 2, 0);*/
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -3734,7 +3744,7 @@ namespace gcom
          ig = (G < 0) ? 0 : (G > 255) ? 255 : G;
          ib = (B < 0) ? 0 : (B > 255) ? 255 : B;
 
-         return RGB(ir,ig,ib);
+         return ARGB(255, ir,ig,ib);
       }
 
 
@@ -3774,26 +3784,17 @@ namespace gcom
             m_explosion.Reset();
 
             pdib1->get_graphics()->SetStretchBltMode(HALFTONE);
-            pdib1->stretch_dib(pdibBuffer);
+            pdib1->stretch_dib(pdibFrame1);
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
-            pdib3->stretch_dib(pdibFrame1);
+            pdib3->stretch_dib(pdibBuffer);
+            pdib3->Fill(0, 0, 0, 0);
+            pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
          }
+
          int cx1 = pdib1->width();
          int cy1 = pdib1->height();
 
 
-         pdib3->Fill(0, 0, 0, 0);
-
-         pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
-
-         GdiFlush();
-
-         /*System.imaging().bitmap_blend(
-            pdib4->get_graphics(),
-            0, 0, cx1, cy1,
-            pdib1->get_graphics(),
-            0, 0,
-            (BYTE) max(min(255, tool1.dalpha), 0));*/
 
          int iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
@@ -3825,25 +3826,26 @@ namespace gcom
             tool1.dalpha += 0.5;
          if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
          {
-            tool1.dmod -= 0.01;
+            tool1.dmod -= 0.001;
             tool1.frame++;
          }
          else
          {
-            tool1.dmod += 0.01;
+            tool1.dmod += 0.001;
             tool1.frame--;
          }
          tool1.page ^= 1;
-         //dcBack.FillSolidRect(0, 0, cx, cy, RGB(0, 0, 0));
-         //dcBack.FillSolidRect(100, 100, cx, cy, RGB(255, 255, 255));
+         //dcBack.FillSolidRect(0, 0, cx, cy, ARGB(255, 0, 0, 0));
+         //dcBack.FillSolidRect(100, 100, cx, cy, ARGB(255, 255, 255, 255));
          //pdibBack->stretch_dib(pdib2);
 
-         pdib2->channel_multiply(::visual::rgba::channel_alpha, 50.0 / 255.0);
+         //pdib2->channel_multiply(::visual::rgba::channel_alpha, 50.0 / 255.0);
 
-         pdib1->get_graphics()->BitBlt(
-            0, 0, cx1, cy1,
-            pdib2->get_graphics(),
-            0, 0, SRCCOPY);
+         System.imaging().bitmap_blend(
+            pdib1->get_graphics(),
+            null_point(), size(cx1, cy1),
+            pdib3->get_graphics(),
+            null_point(), 25);
 
          pdibBack->stretch_dib(pdib1);
 
@@ -3858,12 +3860,6 @@ namespace gcom
          Graphics & graphics = main.GetGraphics();
 
          ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
-
-//         ::ca::graphics & dcBack = graphics.GetBackDC();
-//         ::ca::graphics & dcBuffer = graphics.GetBufferDC();
-//         ::ca::graphics & dcFrame1 = graphics.GetFrame1DC();
-
-//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
          ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
@@ -3943,8 +3939,8 @@ namespace gcom
             tool1.frame--;
          }
          tool1.page ^= 1;
-         //dcBack.FillSolidRect(0, 0, cx, cy, RGB(0, 0, 0));
-         //dcBack.FillSolidRect(100, 100, cx, cy, RGB(255, 255, 255));
+         //dcBack.FillSolidRect(0, 0, cx, cy, ARGB(255, 0, 0, 0));
+         //dcBack.FillSolidRect(100, 100, cx, cy, ARGB(255, 255, 255, 255));
          pdibBack->stretch_dib(pdib2);
 
          recta.add(tool1.rectClient);
@@ -4104,6 +4100,8 @@ namespace gcom
          {
             pdib2->create(cx1, cy1);
             pdib3->create(cx1, cy1);
+            pdib2->Fill(0, 0, 0, 0);
+            pdib3->Fill(0, 0, 0, 0);
          }
 
 
@@ -4249,7 +4247,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -4263,7 +4261,7 @@ namespace gcom
 
          if(m_bGrowColor0)
          {
-            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
+            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
 //         int c1 = rand() * 3 / RAND_MAX;
@@ -4314,7 +4312,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int marginx = cx1 / 12;
          int marginy = cy1 * 5 / 11;
@@ -4435,19 +4433,19 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, 0, 1, cy1 / 2, colorStrong2.get_rgb(), bA);
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2.get_rgb(), bA);*/
 
-         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1, cy1, RGB(0, 0, 0), 10);
+         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1, cy1, ARGB(255, 0, 0, 0), 10);
 
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -4708,7 +4706,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -4722,7 +4720,7 @@ namespace gcom
 
          if(m_bGrowColor0)
          {
-            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
+            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
@@ -4781,7 +4779,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int margin = 10;
          int w = margin * 2;
@@ -4909,16 +4907,16 @@ namespace gcom
          }
 
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -5053,7 +5051,7 @@ namespace gcom
             pdib4->create(tool1.cx, tool1.cy);
          }
 
-         if(transitioneffect.m_iVisual == VisualEffectExpand6)
+         if(m_iVisual == VisualEffectExpand6)
          {
             pdib2->FillByte(0);
             pdib3->FillByte(0);
@@ -5077,9 +5075,9 @@ namespace gcom
          }
 
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
+         penWhite->construct(PS_SOLID, 3, ARGB(255, 205, 205, 205));
          int margin1 = cx1 / 8;
          int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -5142,7 +5140,7 @@ namespace gcom
 
          bool bWhite;
          bWhite = false;
-         if(transitioneffect.m_iVisual == VisualEffectRotateEx5)
+         if(m_iVisual == VisualEffectRotateEx5)
          {
             pdib1->get_graphics()->SelectObject(penWhite);
             pdib1->get_graphics()->MoveTo(m_pointa[margin1].x, m_pointa[margin1].y);
@@ -5158,12 +5156,12 @@ namespace gcom
             pdib1->get_graphics()->LineTo(m_pointa[i].x, m_pointa[i].y);
          }
 
-         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, RGB(0, 0, 0), 10);
+         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, ARGB(255, 0, 0, 0), 10);
 
          GdiFlush();
 
 
-         if(transitioneffect.m_iVisual == VisualEffectRotateEx6)
+         if(m_iVisual == VisualEffectRotateEx6)
          {
 
 
@@ -5428,7 +5426,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -5442,7 +5440,7 @@ namespace gcom
 
          if(m_bGrowColor0)
          {
-            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
+            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
         // ::ca::graphics_sp pdib3->get_graphics();
@@ -5539,9 +5537,9 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->construct(PS_SOLID, 3, RGB(205, 205, 205));
+         penWhite->construct(PS_SOLID, 3, ARGB(255, 205, 205, 205));
          int margin1 = 10;
 //         int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -5603,7 +5601,7 @@ namespace gcom
             pdib1->get_graphics()->LineTo(m_pointa[i].x, m_pointa[i].y);
          }
 
-         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, RGB(34, 34, 34), 10);
+         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, ARGB(255, 34, 34, 34), 10);
 
       /*   pdib1->get_graphics()->MoveTo(margin1, cy1 - margin2);
 
@@ -5687,16 +5685,16 @@ namespace gcom
 
       //   pdib1->get_graphics()->FillSolidRect(0, 0, cx1 / 2, cy1 / 2, 0);*/
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
@@ -5975,7 +5973,7 @@ namespace gcom
          }
 
 
-            RGB(rand() * 255 / RAND_MAX,
+            ARGB(255, rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX,
             rand() * 255 / RAND_MAX);
 
@@ -5989,7 +5987,7 @@ namespace gcom
 
          if(m_bGrowColor0)
          {
-            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb());
+            //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
 //         int c1 = rand() * 3 / RAND_MAX;
@@ -6040,7 +6038,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb());
+         pen1->construct(PS_SOLID, 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int marginx = cx1 / 12;
          int marginy = cy1 * 5 / 11;
@@ -6161,19 +6159,19 @@ namespace gcom
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, 0, 1, cy1 / 2, colorStrong2.get_rgb(), bA);
          imaging.color_blend(pdib1->get_graphics(), cx1 - 1, cy1 / 2, 1, cy1 / 2 - 1, colorStrong2.get_rgb(), bA);*/
 
-         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1, cy1, RGB(0, 0, 0), 10);
+         imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1, cy1, ARGB(255, 0, 0, 0), 10);
 
       /*   {
-            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb());
-            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb());
-            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb());
-            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb());
-            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb());
-            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb());
-            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb());
-            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb());
-            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb());
-            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb());
+            ::ca::pen_sp pen1(get_app(), PS_SOLID, 0, colorStrong1.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen2(get_app(), PS_SOLID, 0, colorStrong2.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen3(get_app(), PS_SOLID, 0, colorStrong3.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen4(get_app(), PS_SOLID, 0, colorStrong4.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
+            ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
+            ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];

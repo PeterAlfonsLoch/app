@@ -1,10 +1,14 @@
 #pragma once
 
+
 namespace gcom
 {
 
+
    namespace backview
    {
+
+
       class DoublePoint
       {
       public:
@@ -13,43 +17,64 @@ namespace gcom
          double z;
       };
 
-            class Main;
 
-            enum EVisualEffect
-            {
-               VisualEffectPixelExplosion,
-               VisualEffectAlphaPixelExplosion,
-               VisualEffectPixelExplosion2,
+      class Main;
 
-               VisualEffectRotateEx8,
-               VisualEffectRotateEx4,
-               VisualEffectRain1,
-               VisualEffectRotateEx5,
-               VisualEffectRotateEx6,
-               VisualEffectRotateEx7,
 
-               VisualEffectExpand8,
-               VisualEffectExpand4,
-               VisualEffectExpand5,
-               VisualEffectExpand6,
-               VisualEffectExpand7,
+      enum EVisualEffect
+      {
+         VisualEffectPixelExplosion,
+         VisualEffectAlphaPixelExplosion,
+         VisualEffectPixelExplosion2,
 
-               VisualEffectRotateBlend,
-               VisualEffectNoPrecisionRotateBlend,
-               VisualEffectNoPrecisionRotatecolor_blend_,
-               VisualEffectNoPrecisionRotateTrackcolor_blend_,
-               VisualEffectRotateEx1,
-               VisualEffectRotateEx2,
-               VisualEffectRotateEx3,
-               VisualEffectEnd,
-            };
+         VisualEffectRotateEx8,
+         VisualEffectRotateEx4,
+         VisualEffectRain1,
+         VisualEffectRotateEx5,
+         VisualEffectRotateEx6,
+         VisualEffectRotateEx7,
 
-            class PixelExplosion
+         VisualEffectExpand8,
+         VisualEffectExpand4,
+         VisualEffectExpand5,
+         VisualEffectExpand6,
+         VisualEffectExpand7,
+
+         VisualEffectRotateBlend,
+         VisualEffectNoPrecisionRotateBlend,
+         VisualEffectNoPrecisionRotatecolor_blend_,
+         VisualEffectNoPrecisionRotateTrackcolor_blend_,
+         VisualEffectRotateEx1,
+         VisualEffectRotateEx2,
+         VisualEffectRotateEx3,
+         VisualEffectEnd,
+      };
+
+
+      class PixelExplosion
       {
       public:
+
+         int         m_iWidth;
+         int         m_iHeight;
+         BOOL      m_bDrawWithLight;
+         int         m_iLightModifier;
+         int         m_iHpage;// The current heightfield
+         double      m_density;// The water density - can change the density...
+         double      m_minradius;
+         //  the height fields
+      //   int*      m_iHeightField1;
+      //   int*      m_iHeightField2;
+
+         double m_z;
+
+         base_array < DoublePoint, DoublePoint & > m_pointaM;
+
+         base_array < DoublePoint, DoublePoint & > m_pointa;
+
+
          PixelExplosion();
          virtual ~PixelExplosion();
-
 
          void create(int iWidth,int iHeight);
          void to(DWORD* pSrcImage,DWORD* pTargetImage);
@@ -69,23 +94,6 @@ namespace gcom
          //void DrawWaterWithLight(int page, int LightModifier,DWORD* pSrcImage,DWORD* pTargetImage);
          COLORREF GetShiftedColor(COLORREF color,int shift);
 
-         int         m_iWidth;
-         int         m_iHeight;
-         BOOL      m_bDrawWithLight;
-         int         m_iLightModifier;
-         int         m_iHpage;// The current heightfield
-         double      m_density;// The water density - can change the density...
-         double      m_minradius;
-         //  the height fields
-      //   int*      m_iHeightField1;
-      //   int*      m_iHeightField2;
-
-         double m_z;
-
-         base_array < DoublePoint, DoublePoint & > m_pointaM;
-
-         base_array < DoublePoint, DoublePoint & > m_pointa;
-
       };
 
 
@@ -93,6 +101,8 @@ namespace gcom
          public Helper
       {
       public:
+
+
          static void StepGrow001(
             color & color, 
             int & iGrowColor,
@@ -145,6 +155,54 @@ namespace gcom
          };
 
 
+         int            m_iVisual;
+         bool           m_bGrowColor0;
+         color          m_color;
+         int            m_iGrowColor;
+         int            m_iGrowMax;
+         double         m_dAngle;
+
+         color          m_color2;
+         int            m_iGrowColor2;
+         int            m_iGrowMax2;
+
+         color          m_color3;
+         int            m_iGrowColor3;
+         int            m_iGrowMax3;
+
+         color          m_color4;
+         int            m_iGrowColor4;
+         int            m_iGrowMax4;
+
+         point          m_ptColorTrack;
+         RandomGrow     m_rndgrowVelocity;
+         double         m_dDirection;
+         double         m_dDirectionAddUp;
+         RandomGrow     m_rndgrowDirectionLatency;
+
+         RandomGrow     m_rndgrowAngleOffsetLatency;
+         double         m_dAngleOffset;
+         double         m_dAngleOffsetAddUp;
+
+         base_array < ColorTrack1, ColorTrack1 & >
+                        m_colortrack1a;
+
+         Tool001        tool1;
+
+         base_array < point, point & > m_pointa;
+         base_array < point, point & > m_pointa1;
+         base_array < point, point & > m_pointa2;
+
+         PixelExplosion m_explosion;
+
+
+         visual::water_routine m_water;
+
+
+         VisualEffect(Main & Main);
+         virtual ~VisualEffect();
+
+
          int GetEffectCount();
          void InitialRender();
          void RenderBuffer(rect_array & recta);
@@ -171,53 +229,9 @@ namespace gcom
          void RenderPixelExplosion2(rect_array & recta);
          void RenderAlphaPixelExplosion(rect_array & recta);
 
-         VisualEffect(Main & Main);
-         virtual ~VisualEffect();
 
 
-         bool     m_bGrowColor0;
-         //int      m_iGrow
 
-         color   m_color;
-         int      m_iGrowColor;
-         int      m_iGrowMax;
-         double   m_dAngle;
-
-         color   m_color2;
-         int      m_iGrowColor2;
-         int      m_iGrowMax2;
-
-         color   m_color3;
-         int      m_iGrowColor3;
-         int      m_iGrowMax3;
-
-         color   m_color4;
-         int      m_iGrowColor4;
-         int      m_iGrowMax4;
-
-         point      m_ptColorTrack;
-         RandomGrow  m_rndgrowVelocity;
-         double      m_dDirection;
-         double      m_dDirectionAddUp;
-         RandomGrow  m_rndgrowDirectionLatency;
-
-         RandomGrow  m_rndgrowAngleOffsetLatency;
-         double      m_dAngleOffset;
-         double      m_dAngleOffsetAddUp;
-
-         base_array < ColorTrack1, ColorTrack1 & >
-                     m_colortrack1a;
-
-         Tool001  tool1;
-
-         base_array < point, point & > m_pointa;
-         base_array < point, point & > m_pointa1;
-         base_array < point, point & > m_pointa2;
-
-         PixelExplosion m_explosion;
-
-
-         visual::water_routine m_water;
 
          static void Constraint001(point & pt, LPCRECT lpcrect, double & dDirection);
          static void Constraint001(point & pt, LPCRECT lpcrectIn, LPCRECT lpcrectOut, double & dDirection);
@@ -225,6 +239,10 @@ namespace gcom
 
       };
 
+
    } // namespace backbiew
 
+
 } // namespace gcom
+
+
