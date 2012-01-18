@@ -1272,7 +1272,6 @@ namespace gcom
                rectDest.right = finalW;
                rectDest.bottom = finalH;
 
-               ::rect rectSource;
 
                ::rect rectUpdate;
 
@@ -1292,11 +1291,6 @@ namespace gcom
                   c = m_tool001.m_pointa[iIndex - 1].y;
                }
 
-               int xPixelMod = finalW / iSize;
-               int yPixelMod = finalH / iSize;
-
-               if(finalW % iSize > 0) xPixelMod++;
-               if(finalH % iSize > 0) yPixelMod++;
 
                m_dwDelay = 84;
 
@@ -1357,12 +1351,12 @@ namespace gcom
 
 
 
-                  if(nextc == 0 && xPixelMod > 0 && yPixelMod > 0)
+                  if(nextc == 0)
                   {
 
                      m_tool001.m_data.m_alphapixelate.m_iSizeIndex = iSizeIndex;
 
-                     ::ca::dib * pdib2 = graphics.GetDib(2);
+/*                     ::ca::dib * pdib2 = graphics.GetDib(2);
 
                      ::ca::dib * pdib3 = graphics.GetDib(3);
 
@@ -1446,7 +1440,11 @@ namespace gcom
                         pdib4->get_graphics(),
                         0, 0,
                         finalW, finalH,
-                        SRCCOPY);
+                        SRCCOPY);*/
+
+                     pdib->create(finalW, finalH);
+
+                     pdib->get_graphics()->BitBlt(0, 0, finalW, finalH, &dcBuffer, 0, 0, SRCCOPY);
 
                      const int dSpan = 16;
 
@@ -1469,10 +1467,12 @@ namespace gcom
                      imaging.bitmap_blend(
                         pdib->get_graphics(),
                         null_point(),
-                        size(xPixelMod, yPixelMod),
-                        pdib2->get_graphics(),
-                        null_point(),
+                        size(finalW, finalH),
+                        &dcFrame1,
+                        point(finalX, finalY),
                         (byte)(255.0 - dAlpha));
+
+                     pdib->pixelate(iSize);
                   }
 
                   switch(m_etypea[m_iType])
@@ -1480,45 +1480,39 @@ namespace gcom
                   case TransitionEffectpixelate_TopBottom:
                      {
                         m_tool001.GetSliceRect(finalW, finalH, rectDest, gcom::backview::TransitionEffect::Tool001::AlignTop, dRateMinus, dRate);
-                        m_tool001.GetSliceRect(xPixelMod, yPixelMod, rectSource, gcom::backview::TransitionEffect::Tool001::AlignTop, dRateMinus, dRate);
                      }
                      break;
                   case TransitionEffectpixelate_BottomTop:
                      {
                         m_tool001.GetSliceRect(finalW, finalH, rectDest, gcom::backview::TransitionEffect::Tool001::AlignBottom, dRateMinus, dRate);
-                        m_tool001.GetSliceRect(xPixelMod, yPixelMod, rectSource, gcom::backview::TransitionEffect::Tool001::AlignBottom, dRateMinus, dRate);
                      }
                      break;
                   case TransitionEffectpixelate_LeftRight:
                      {
                         m_tool001.GetSliceRect(finalW, finalH, rectDest, gcom::backview::TransitionEffect::Tool001::AlignLeft, dRateMinus, dRate);
-                        m_tool001.GetSliceRect(xPixelMod, yPixelMod, rectSource, gcom::backview::TransitionEffect::Tool001::AlignLeft, dRateMinus, dRate);
                      }
                      break;
                   case TransitionEffectpixelate_RightLeft:
                      {
                         m_tool001.GetSliceRect(finalW, finalH, rectDest, gcom::backview::TransitionEffect::Tool001::AlignRight, dRateMinus, dRate);
-                        m_tool001.GetSliceRect(xPixelMod, yPixelMod, rectSource, gcom::backview::TransitionEffect::Tool001::AlignRight, dRateMinus, dRate);
                      }
                      break;
                   }
 
                   rectDest.offset(rectBound.top_left());
 
-                  dcBack.SetStretchBltMode(0);
+                  rectDest.right +=1;
+                  rectDest.bottom +=1;
 
-                  dcBack.SelectClipRgn(NULL);
 
-                  dcBack.StretchBlt(
+                  dcBack.BitBlt(
                      rectDest.left,
                      rectDest.top,
-                     min(rectDest.width() + 1, finalW),
-                     min(rectDest.height() + 1, finalH),
+                     min(rectDest.width(), finalW),
+                     min(rectDest.height(), finalH),
                      pdib->get_graphics(),
-                     rectSource.left,
-                     rectSource.top,
-                     min(rectSource.width() + 1, xPixelMod),
-                     min(rectSource.height() + 1, yPixelMod),
+                     rectDest.left - rectBound.left,
+                     rectDest.top - rectBound.top,
                      SRCCOPY);
 
                   
@@ -1705,8 +1699,11 @@ namespace gcom
                int iStepCount = c1 / iSize;
                if(c1 % iSize == 0)
                   iStepCount++;
+               int iStartStep = m_tool001.m_pointa2[iIndex].y;
+               int iStep = iIndex - iStartStep;
                iStepRepeatCount = iStepCount / 8;
-               if(iStepRepeatCount 
+               if(iStep > iStepCount - iStepCount / 4)
+                  iStepRepeatCount = iStepCount - iStep - 1;
             }
             break;
          default:

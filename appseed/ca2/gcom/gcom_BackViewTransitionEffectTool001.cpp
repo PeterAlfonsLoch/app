@@ -304,6 +304,7 @@ namespace gcom
                }
 
 
+               
                for(int i = 0; i < m_ia.get_size(); i++)
                {
                
@@ -316,13 +317,17 @@ namespace gcom
 
                   int j = 0;
 
+                  int iStartIndex = m_pointa.get_size();
+
                   for(; j < c1; j += iSize)
                   {
                      m_pointa.add(point(i, j));
+                     m_pointa2.add(point(iSize, iStartIndex));
                   }
 
                   m_pointa.add(point(i, c1));
-
+                  m_pointa2.add(point(iSize, iStartIndex));
+                  
                }
 
                m_iStepCount = m_pointa.get_size() + 1;
@@ -1138,6 +1143,7 @@ namespace gcom
 
          m_ia.remove_all();
          m_pointa.remove_all();
+         m_pointa2.remove_all();
 
       }
       void TransitionEffect::Tool001::GetRect(LPPOINT lppoint, LPCRECT lpcrect)

@@ -103,6 +103,9 @@ namespace ca
       virtual bool to(::ca::graphics * pgraphics, point pt, size size, point ptSrc);
 
 
+      virtual bool pixelate(int iSize);
+
+
 
       virtual void fill_channel(int C, visual::rgba::echannel echannel);
       virtual void FillByte(unsigned char uch);
