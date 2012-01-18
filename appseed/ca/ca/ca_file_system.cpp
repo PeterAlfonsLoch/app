@@ -339,7 +339,7 @@ namespace ca
                return;
             }
          }
-         ex1::file_exception_sp e;
+         ex1::file_exception_sp e(papp);
          ex1::filesp spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone, &e);
          if(spfile.is_set())
          {

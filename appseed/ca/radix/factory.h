@@ -222,25 +222,19 @@ public:
    template < class T >
    void creatable(int iCount, bool bOverwrite = false)
    {
-#ifdef WINDOWS
       if(bOverwrite || !is_set(typeid(T).raw_name()))
-        set_at(typeid(T).raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
-#else
-      if(bOverwrite || !is_set(typeid(T).name()))
-        set_at(typeid(T).name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
-#endif
-
+        set_at(System.type_info < T > ().raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
    void cloneable(int iCount, bool bOverwrite = false)
    {
-#ifdef WINDOWS
       if(bOverwrite || !is_set(typeid(T).raw_name()))
-        set_at(typeid(T).raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+        set_at(System.type_info < T > ().raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+#ifdef WINDOWS
 #else
-      if(bOverwrite || !is_set(typeid(T).name()))
-        set_at(typeid(T).name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+      //if(bOverwrite || !is_set(typeid(T).name()))
+        //set_at(typeid(T).name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
 #endif
 
    }
@@ -270,11 +264,11 @@ public:
    template < class T >
    factory_allocator * get_allocator(int iCount)
    {
-#ifdef WINDOWS
-      factory_allocator * pallocator = get_allocator(typeid(T).raw_name());
-#else
-      factory_allocator * pallocator = get_allocator(typeid(T).name());
-#endif
+//#ifdef WINDOWS
+      factory_allocator * pallocator = get_allocator(System.type_info < T > ().raw_name());
+//#else
+  //    factory_allocator * pallocator = get_allocator(typeid(T).name());
+//#endif
       if(pallocator != NULL)
          return pallocator;
       pallocator = new factory_allocator_impl < T > (get_app(), iCount);
