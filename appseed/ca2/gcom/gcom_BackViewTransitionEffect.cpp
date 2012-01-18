@@ -55,8 +55,8 @@ namespace gcom
          //iStart   = (int) TransitionEffectVisual;
          //iEnd     = (int) TransitionEffectVisual;
 
-         iStart      = (int) TransitionEffectRadialUnveil;
-         iEnd      = (int) TransitionEffectRadialUnveil;
+         //iStart      = (int) TransitionEffectRadialUnveil;
+         //iEnd      = (int) TransitionEffectRadialUnveil;
 
 
          for(int i = iStart; i <= iEnd; i++)
