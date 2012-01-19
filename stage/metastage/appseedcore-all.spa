@@ -2,10 +2,12 @@ stage\basis\c.dll
 stage\basis\ca.dll
 stage\basis\ca2app.exe
 stage\basis\FreeImage.dll
+stage\basis\installer.exe
 stage\basis\libeay32.dll
 stage\basis\libmysql.dll
 stage\basis\libssl32.dll
 stage\basis\msvcp100d.dll
 stage\basis\msvcr100d.dll
+stage\basis\npca2.dll
 stage\basis\optca.dll
 stage\basis\os.dll

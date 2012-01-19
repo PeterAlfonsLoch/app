@@ -889,6 +889,29 @@ namespace plane
       win::registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
       keyKar.SetValue("ca2 sentinel", "\"" + strSentinelPath + "\"");
 
+
+#ifdef _WIN64
+
+
+#else
+
+      win::registry::Key keyPlugins;
+      if(keyPlugins.OpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\MozillaPlugins", true))
+      {
+         win::registry::Key keyPlugin;
+         if(keyPlugin.OpenKey(keyPlugins, "@ca2.cc/npca2", true))
+         {
+            keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
+            keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
+            keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
+            keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
+            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().ca2("appdata/x86/ca2_build.txt")));
+         }
+      }
+
+#endif
+
+
       return ::planebase::application::on_install();
    }
 
