@@ -123,6 +123,16 @@ namespace ca
       return *m_pptraListened;
    }
 
+   ::bergedge::bergedge * ca::get_bergedge()
+   {
+      return m_psession->m_pbergedge;
+   }
+
+   ::cube::cube * ca::get_cube()
+   {
+      return m_psystem->m_pcube;
+   }
+
 } // namespace ca
 
 

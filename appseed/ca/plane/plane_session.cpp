@@ -241,6 +241,14 @@ namespace plane
    void session::on_request(::ca::create_context * pcreatecontext)
    {
 
+      if(m_pbergedgeInterface != NULL)
+      {
+
+         m_pbergedgeInterface->on_request(pcreatecontext);
+         return;
+
+      }
+
       m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
 
 
@@ -265,11 +273,13 @@ namespace plane
                   App(m_pappCurrent).request(pcreatecontext->m_spCommandLine);
                }
             }
+            bCreate = false;
          }
          else if(m_bShowPlatform)
          {
-            create_bergedge(pcreatecontext);
-            throw not_implemented_exception();
+            strApp = "bergedge";
+//            create_bergedge(pcreatecontext);
+  //          throw not_implemented_exception();
             /*if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
             {
                ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
@@ -279,25 +289,30 @@ namespace plane
                   pframe->InitialFramePosition();
                }
             }*/
+            bCreate = true;
          }
-         bCreate = false;
+         
       }
       if(bCreate)
       {
-         if(pcreatecontext->m_spCommandLine->m_strApp == "session")
+
+         if(strApp.is_empty())
          {
-            if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("bergedge_start"))
+            if(pcreatecontext->m_spCommandLine->m_strApp == "session")
             {
-               strApp = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_start"];
+               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("bergedge_start"))
+               {
+                  strApp = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_start"];
+               }
+               else
+               {
+                  strApp = "session";
+               }
             }
             else
             {
-               strApp = "session";
+               strApp = pcreatecontext->m_spCommandLine->m_strApp;
             }
-         }
-         else
-         {
-            strApp = pcreatecontext->m_spCommandLine->m_strApp;
          }
 
          if(strApp.is_empty() || strApp == "session")
@@ -305,7 +320,7 @@ namespace plane
             return;
          }
 
-         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+         ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
          if(papp == NULL)
             return;
 
@@ -319,6 +334,12 @@ namespace plane
 
          if(strApp != "session")
          {
+
+            if(strApp == "bergedge")
+            {
+               m_pbergedge             = papp->get_bergedge();
+               m_pbergedgeInterface    = papp;
+            }
 
 
             DWORD_PTR dw = WM_APP + 2043;
@@ -590,6 +611,15 @@ namespace plane
 
    void session::request(::ca::create_context * pcreatecontext)
    {
+
+      if(m_pbergedgeInterface != NULL)
+      {
+
+         m_pbergedgeInterface->request(pcreatecontext);
+         return;
+
+      }
+
       if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
          if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))

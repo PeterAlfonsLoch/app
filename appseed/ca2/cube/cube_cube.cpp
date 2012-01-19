@@ -51,6 +51,8 @@ namespace cube
    bool cube::initialize()
    {
 
+      m_spfilehandler(new ::ca2::filehandler::handler(this));
+
       if(!::cube8::application::initialize())
          return false;
 
@@ -322,6 +324,15 @@ namespace cube
    {
 	   return *m_pcommandthread;
    }
+
+
+   ::cube::cube * cube::get_cube()
+   {
+
+      return this;
+
+   }
+
 
 } // namespace cube
 

@@ -111,6 +111,12 @@ namespace bergedge
          string strId = get_view_id();
          if(gen::str::begins_eat(strId, "app:"))
          {
+            ::ca::application * pappTab;
+            if(Bergedge.m_mapApplication.Lookup(strId, pappTab))
+            {
+               Session.m_pappCurrent = pappTab;
+               Bergedge.m_pappCurrent = pappTab;
+            }
             ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (m_pviewdata->m_pwnd);
             if(pframeApp != NULL)
             {
@@ -195,9 +201,16 @@ namespace bergedge
             ::ca::application * pappTab;
             if(!Session.m_mapApplication.Lookup(strId, pappTab))
             {
+               
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
-               Session.command().add_fork(strId, pbiasCreate);
+
+               ::ca::create_context_sp createcontext(get_app());
+               createcontext->m_spApplicationBias = pbiasCreate;
+               createcontext->m_spCommandLine->_001ParseCommandFork(strId);
+
+               Bergedge.request(createcontext);
+
             }
 
      		   string strIcon = Application.dir().matter(System.dir().path(strId, "mainframe/icon48.png"));

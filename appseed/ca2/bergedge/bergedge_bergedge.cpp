@@ -16,6 +16,8 @@ namespace bergedge
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
 
+      m_strAppName               = "bergedge";
+
 
       ::fs::set * pset = new class ::fs::set(this);
       pset->m_spafsdata.add(new ::fs::native(this));
@@ -374,12 +376,15 @@ namespace bergedge
          }
       }
 
-      try
+      if(m_pappCurrent != NULL && dynamic_cast < ::fontopus::application * > (m_pappCurrent)->m_puser != NULL)
       {
-         get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::cube8::application * > (m_pappCurrent)->m_puser->m_strLogin);
-      }
-      catch(...)
-      {
+         try
+         {
+            get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::fontopus::application * > (m_pappCurrent)->m_puser->m_strLogin);
+         }
+         catch(...)
+         {
+         }
       }
 
 
@@ -588,7 +593,18 @@ namespace bergedge
 
    void bergedge::request(::ca::create_context * pcreatecontext)
    {
-      if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+      
+      if(m_pappCurrent != NULL && m_pappCurrent != this 
+         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
+         ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+      {
+         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+         {
+            get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+         }
+         App(m_pappCurrent).request(pcreatecontext);
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
          if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
          {
@@ -606,14 +622,11 @@ namespace bergedge
             on_request(pcreatecontext);
          }
       }
-      else if(m_pappCurrent != NULL && m_pappCurrent != this 
-         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
-         ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+      else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+         get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
+         && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
       {
-         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-         {
-            get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
-         }
+         get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
          App(m_pappCurrent).request(pcreatecontext);
       }
       else
@@ -669,6 +682,7 @@ namespace bergedge
          if(papp == NULL)
             return NULL;
          m_mapApplication.set_at(pszId, papp);
+         Session.m_mapApplication.set_at(pszId, papp);
          return papp;
       }
    }
@@ -980,6 +994,13 @@ namespace bergedge
 
    }
 
+
+   ::bergedge::bergedge * bergedge::get_bergedge()
+   {
+
+      return this;
+
+   }
 
 } // namespace bergedge
 

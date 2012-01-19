@@ -18,6 +18,7 @@ namespace cube
       
       stra.add("fontopus");
       stra.add("default_file_handler");
+      stra.add("bergedge");
 
    }
 
@@ -44,6 +45,18 @@ namespace cube
          straApp.add_unique("mplite");
          straApp.add_unique("vmsp");
       }
+
+   }
+
+   ::ca::application * library::get_new_app(const char * pszAppId)
+   {
+
+      if(gen::str::equals_ci(pszAppId, "bergedge"))
+      {
+         return new bergedge::bergedge();
+      }
+
+      return ::ca2::single_application_library < application >::get_new_app(pszAppId);
 
    }
 

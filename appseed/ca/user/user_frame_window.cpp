@@ -1689,9 +1689,12 @@ void frame_window::BringToTop(int nCmdShow)
          HWND hWndLastPop = ::GetLastActivePopup(hwnd);
 
          //DWORD dwStyle = ::GetWindowLong(hWndLastPop, GWL_STYLE);
-         if(::IsWindow(hWndLastPop))
+         if(hWndLastPop != (HWND) 1)
          {
-            ::BringWindowToTop(hWndLastPop);
+            if(::IsWindow(hWndLastPop))
+            {
+               ::BringWindowToTop(hWndLastPop);
+            }
          }
       }
    }

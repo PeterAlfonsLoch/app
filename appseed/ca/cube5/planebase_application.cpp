@@ -153,7 +153,8 @@ namespace planebase
          }
          return NULL;
       }
-      
+
+
       return pcaapp;
 
    }
@@ -672,6 +673,15 @@ InitFailure:
       }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
       {
+         ::ca::application * papp;
+         if(System.url().get_server("matter://" + strPath) == App(m_papp).m_strAppName)
+         {
+            strPath = System.url().get_object("matter://" + strPath).Mid(1);
+         }
+         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(papp).m_strAppName.has_char())
+         {
+            return App(papp).get_file("matter://" + strPath, nOpenFlags, pe);
+         }
          spfile.create(this);
          if(!spfile->open(dir().matter(strPath), nOpenFlags, pe))
          {

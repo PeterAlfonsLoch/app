@@ -140,6 +140,7 @@ namespace bergedge
 
       virtual void set_app_title(const char * pszAppId, const char * pszTitle);
 
+      virtual ::bergedge::bergedge * get_bergedge();
 
    };
 
