@@ -5628,5 +5628,8 @@
     <None Include="ca.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="gen\gen_str2.h">
+      <Filter>Header Files\gen</Filter>
+    </None>
   </ItemGroup>
 </Project>

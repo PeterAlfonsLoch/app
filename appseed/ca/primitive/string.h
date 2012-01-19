@@ -869,3 +869,8 @@ inline char string::last_char() const
 {
    return operator[] (get_length() - 1);
 }
+
+
+
+#include "gen/gen_str2.h"
+
