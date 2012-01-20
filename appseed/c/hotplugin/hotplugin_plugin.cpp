@@ -395,11 +395,15 @@ namespace hotplugin
       if(iStep > iRadius)
          iStep = iRadius * 2 - iStep;
 
+      const char * pszFontName = "Lucida Sans Unicode";
       char psz[4];
       psz[0] = 0xe2;
       psz[1] = 0x98;
       psz[2] = 0xbc;
       psz[3] = '\0';
+
+      int iFontPointSize = 420;
+
       SIZE size;
       size.cx = 0;
       size.cy = 0;
@@ -407,7 +411,7 @@ namespace hotplugin
       {
 
          HDC hdcMem = ::CreateCompatibleDC(NULL);
-         HFONT hfont = ::CreatePointBoldFont_dup(340, "Lucida Sans Unicode", TRUE, hdcMem);
+         HFONT hfont = ::CreatePointBoldFont_dup(iFontPointSize, pszFontName, TRUE, hdcMem);
          ::SetTextColor(hdcMem, RGB(255, 255, 255));
          HFONT hfontOld = (HFONT) ::SelectObject(hdcMem, (HGDIOBJ) hfont);
          HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, m_hbitmap);
@@ -465,7 +469,7 @@ namespace hotplugin
       ::SelectObject(hdcAlpha, hbitmapOldAlpha);
       ::DeleteDC(hdcAlpha);
 
-      HFONT hfont = ::CreatePointBoldFont_dup(260, "Lucida Sans Unicode", TRUE, hdc);
+      HFONT hfont = ::CreatePointBoldFont_dup(iFontPointSize, pszFontName, TRUE, hdc);
       HFONT hfontOld = (HFONT) ::SelectObject(hdc, (HGDIOBJ) hfont);
 
       ::SetBkMode(hdc, TRANSPARENT);
