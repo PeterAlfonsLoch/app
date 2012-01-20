@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include <GdiPlus.h>
 
 
 #ifdef LINUX
@@ -25,27 +26,23 @@ namespace hotplugin
       m_rect.right      = 0;
 
 
-         m_sizeBitmap.cx = 800;
-         m_sizeBitmap.cy = 600;
-
-         m_pinfo = new BITMAPINFO;
-
-         memset_dup(m_pinfo, 0, sizeof (BITMAPINFO));
-
-         m_pinfo->bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-         m_pinfo->bmiHeader.biWidth         = m_sizeBitmap.cx;
-         m_pinfo->bmiHeader.biHeight        = -m_sizeBitmap.cy;
-         m_pinfo->bmiHeader.biPlanes        = 1;
-         m_pinfo->bmiHeader.biBitCount      = 32;
-         m_pinfo->bmiHeader.biCompression   = BI_RGB;
-         m_pinfo->bmiHeader.biSizeImage     = m_sizeBitmap.cx * m_sizeBitmap.cy * 4;
+      m_sizeBitmap.cx = 284;
+      m_sizeBitmap.cy = 284;
 
 
-         m_pcolorref = NULL;
+      m_pcolorref = (DWORD *) ca2_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
 
 #if !defined(MACOS)
-         m_hbitmap = CreateDIBSection(NULL, m_pinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
+      m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
 #endif
+
+
+      m_pcolorref2 = (DWORD *) ca2_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
+
+#if !defined(MACOS)
+      m_pbitmap2 = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref2);
+#endif
+
    }
 
 
@@ -53,10 +50,12 @@ namespace hotplugin
    {
       free_memory();
 #if !defined(MACOS)
-         if(m_hbitmap != NULL)
-            ::DeleteObject(m_hbitmap);
+      if(m_pbitmap != NULL)
+         delete (Gdiplus::Bitmap *) m_pbitmap;
+      if(m_pbitmap2 != NULL)
+         delete (Gdiplus::Bitmap *) m_pbitmap2;
 #endif
-      delete m_pinfo;
+      //delete m_pinfo;
    }
 
    bool plugin::open_url(const char * psz)
@@ -212,6 +211,56 @@ namespace hotplugin
    {
       return true;
    }
+
+/*double cos_prec_dup(double x,double prec)
+{
+    double t , s ;
+    int p;
+    p = 0;
+    s = 1.0;
+    t = 1.0;
+    while(fabs(t/s) > prec)
+    {
+        p++;
+        t = (-t * x * x) / ((2 * p - 1) * (2 * p));
+        s += t;
+    }
+    return s;
+}*/
+
+float sin_dup(float x);
+
+float cos_dup(float x)
+{
+   float sin = sin_dup(x / 2.0);
+   return 1 - 2.0 * sin * sin;
+}
+
+float sin_dup(float x)
+{
+   if(x < 0.0)
+   {
+      return -sin_dup(-x);
+   }
+   else if(x < 3.1415 / 16.0)
+   {
+     float res=0.0, pow=x, fact=1.0;
+     for(float i=0; i<16.0; ++i)
+     {
+       res+=pow/fact;
+       pow*=x*x;
+       fact*=(2.0*(i+1.0))*(2.0*(i+1.0)+1.0);
+     }
+     return res;
+   }
+   else
+   {
+      return 2.0 * sin_dup(x / 2.0) * cos_dup(x / 2.0);
+   }
+
+}
+
+
 
    void plugin::on_bare_paint(HDC hdc, LPCRECT lprect)
    {
@@ -390,6 +439,12 @@ namespace hotplugin
          s_dwSync = GetTickCount();
       }
 
+
+
+      //float dAngle = (GetTickCount() % 8000) * 2.0 * 3.1415 / (8.0 * 1000.0);
+
+      float dAngle = (GetTickCount() % 8000) * 360 / (8.0 * 1000.0);
+
       int iStep = iPhase;
 
       if(iStep > iRadius)
@@ -402,83 +457,140 @@ namespace hotplugin
       psz[2] = 0xbc;
       psz[3] = '\0';
 
-      int iFontPointSize = 420;
+//      float sin = sin_dup(dAngle);
+  //    float cos = cos_dup(dAngle);
+
+      
+
+    /*  RECT rectText;
+
+      rectText.left = 0;
+      rectText.top = 0;
+
+      float h = m_sizeBitmap.cx;
+      float w = m_sizeBitmap.cy;
+
+      XFORM xform; 
+      xform.eM11=cos; 
+      xform.eM12=-sin; 
+      xform.eM21=sin; 
+      xform.eM22=cos; 
+
+      float Point1x=(-h*sin); 
+      float Point1y=(h*cos); 
+      float Point2x=(w*cos-h*sin); 
+      float Point2y=(h*cos+w*sin); 
+      float Point3x=(w*cos); 
+      float Point3y=(w*sin); 
+
+      float minx=min(0,min(Point1x,min(Point2x,Point3x))); 
+      float miny=min(0,min(Point1y,min(Point2y,Point3y))); 
+      float maxx=max(Point1x,max(Point2x,Point3x)); 
+      float maxy=max(Point1y,max(Point2y,Point3y)); 
+
+      float DestBitmapWidth=(fabs_dup(maxx)-minx); 
+      float DestBitmapHeight=(fabs_dup(maxy)-miny); 
+
+      xform.eDx=(float)-minx; 
+      xform.eDy=(float)-miny; 
+
+      int iFontPointSize = 490;
+
+      rectText.right = ftol(DestBitmapWidth);
+      rectText.bottom = ftol(DestBitmapHeight);*/
+
 
       SIZE size;
       size.cx = 0;
       size.cy = 0;
 
+      wstring wstr;
+      wstr = psz;
+
+      //Sleep(15 * 1000);
+
+      Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
+
+      Gdiplus::Font font(&ff, 49 * 2);
+
+      Gdiplus::StringFormat * psf = Gdiplus::StringFormat::GenericDefault()->Clone();
+
+      psf->SetLineAlignment(Gdiplus::StringAlignmentCenter);
+      psf->SetAlignment(Gdiplus::StringAlignmentCenter);
+
+
+
+
+      Gdiplus::RectF rectF(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy);
       {
 
-         HDC hdcMem = ::CreateCompatibleDC(NULL);
-         HFONT hfont = ::CreatePointBoldFont_dup(iFontPointSize, pszFontName, TRUE, hdcMem);
-         ::SetTextColor(hdcMem, RGB(255, 255, 255));
-         HFONT hfontOld = (HFONT) ::SelectObject(hdcMem, (HGDIOBJ) hfont);
-         HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, m_hbitmap);
-         ::SetBkMode(hdcMem, TRANSPARENT);
+            //Gdiplus::Graphics graphics2((Gdiplus::Bitmap *) m_pbitmap2);
+            Gdiplus::Graphics graphics2(hdc);
 
-         RECT rectBox;
-         rectBox.left      = 0;
-         rectBox.top       = 0;
-         rectBox.right     = m_sizeBitmap.cx;
-         rectBox.bottom    = m_sizeBitmap.cy;
+            Gdiplus::SolidBrush br1(Gdiplus::Color(0, 0, 0, 0));
 
-         ::FillSolidRect_dup(hdcMem, &rectBox, 0);
+            graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-         ::SetTextColor(hdcMem, RGB(255, 255, 255));
+            /*graphics2.FillRectangle(&br1, rectF);*/
 
-         ::TextOutU_dup(hdcMem, 50, 50, psz, strlen_dup(psz));
+            {
 
-         for(int i = 0; i < 3; i++)
-         {
-            fastblur(m_pcolorref, m_sizeBitmap.cx, m_sizeBitmap.cy, iStep + 4);
-         }
+            RECT rectBox;
+            rectBox.left      = 0;
+            rectBox.top       = 0;
+            rectBox.right     = m_sizeBitmap.cx;
+            rectBox.bottom    = m_sizeBitmap.cy;
+
+         
+
+            Gdiplus::Graphics graphics((Gdiplus::Bitmap *) m_pbitmap);
+
+            graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+
+            graphics.FillRectangle(&br1, rectF);
+
+            Gdiplus::SolidBrush br(Gdiplus::Color(255, 255, 255, 255));
+
+            graphics.DrawString(wstr, wstr.get_length(), &font, rectF, psf, &br);
+
+            for(int i = 0; i < 3; i++)
+            {
+               fastblur(m_pcolorref, m_sizeBitmap.cx, m_sizeBitmap.cy, iStep + 4);
+            }
 
 
-         int area = m_sizeBitmap.cx * m_sizeBitmap.cy;
-         for(int i = 0; i < area; i++)
-         {
-            BYTE bA = min((((m_pcolorref[i] & 0xff00) >> 8) & 0xff) * 3, 255);
+            int area = m_sizeBitmap.cx * m_sizeBitmap.cy;
+            for(int i = 0; i < area; i++)
+            {
+               BYTE bA = min((((m_pcolorref[i] & 0xff00) >> 8) & 0xff) * 3, 255);
 
-            m_pcolorref[i] = ((bA << 24) & 0xff000000) | ((((uchR * bA) / 255) & 0xff) << 16) | ((((uchG * bA) / 255) & 0xff) << 8) | ((((uchB * bA) / 255) & 0xff));
-         }
+               m_pcolorref[i] = ((bA << 24) & 0xff000000) | ((((uchR * bA) / 255) & 0xff) << 16) | ((((uchG * bA) / 255) & 0xff) << 8) | ((((uchB * bA) / 255) & 0xff));
+            }
 
-         ::SelectObject(hdcMem, hbitmapOld);
-         ::SelectObject(hdcMem, hfontOld);
-         ::DeleteDC(hdcMem);
+            graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+            graphics.DrawString(wstr, wstr.get_length(), &font, rectF, psf, &br);
+
       }
 
-      size.cx = 0;
-      size.cy = 0;
+         size.cx = 0;
+         size.cy = 0;
 
-      HDC hdcAlpha = ::CreateCompatibleDC(NULL);
-      HBITMAP hbitmapOldAlpha = (HBITMAP) ::SelectObject(hdcAlpha, m_hbitmap);
-      BLENDFUNCTION bf;
-      bf.BlendOp     = AC_SRC_OVER;
-      bf.BlendFlags  = 0;
-      bf.SourceConstantAlpha = 0xFF;
-      bf.AlphaFormat = AC_SRC_ALPHA;
-      //for(int i = 0; i < (iStep / 20 + 1); i++)
-      {
-         ::AlphaBlend(hdc, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcAlpha, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, bf);
-         //::AlphaBlend(hdc, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcAlpha, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, bf);
-         //::AlphaBlend(hdc, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcAlpha, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, bf);
-         //::AlphaBlend(hdc, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcAlpha, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, bf);
-         //::AlphaBlend(hdc, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcAlpha, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, bf);
+         graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+         graphics2.TranslateTransform(-m_sizeBitmap.cx / 2, -m_sizeBitmap.cy / 2, Gdiplus::MatrixOrderPrepend);
+
+         graphics2.RotateTransform(dAngle, Gdiplus::MatrixOrderAppend);
+
+         graphics2.TranslateTransform(m_sizeBitmap.cx / 2, m_sizeBitmap.cy / 2, Gdiplus::MatrixOrderAppend);
+
+         graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap,0,0);
+
+         delete psf;
       }
-      ::SelectObject(hdcAlpha, hbitmapOldAlpha);
-      ::DeleteDC(hdcAlpha);
 
-      HFONT hfont = ::CreatePointBoldFont_dup(iFontPointSize, pszFontName, TRUE, hdc);
-      HFONT hfontOld = (HFONT) ::SelectObject(hdc, (HGDIOBJ) hfont);
 
-      ::SetBkMode(hdc, TRANSPARENT);
-      ::SetTextColor(hdc, RGB(255, 255, 240));
 
-      ::TextOutU_dup(hdc, lprect->left + 50, lprect->top + 50, psz, strlen_dup(psz));
 
-      ::SelectObject(hdc, hfontOld);
-      ::DeleteObject(hfont);
    }
 
    void plugin::start_ca2()

@@ -30,11 +30,14 @@ namespace hotplugin
       bool                          m_bApp;
       host *                        m_phost;
       bool                          m_bOk;
-      HBITMAP                       m_hbitmap;
+
+      void *                        m_pbitmap;
       DWORD *                       m_pcolorref;
-      BITMAPINFO *                  m_pinfo;
       SIZE                          m_sizeBitmap;
 
+      void *                        m_pbitmap2;
+      DWORD *                       m_pcolorref2;
+      BITMAPINFO *                  m_pinfo2;
 
       plugin();
       virtual ~plugin();

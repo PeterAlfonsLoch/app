@@ -7,6 +7,7 @@
 // 08/13/06 (mv)
 
 #include "StdAfx.h"
+#include <GdiPlus.h>
 
 #ifdef WINDOWS
 
@@ -23,6 +24,13 @@ EXTERN_C BOOL WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 		_init_atexit();
 		_init_file();
 		_initterm(__xc_a, __xc_z);
+
+      Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+      ULONG_PTR           gdiplusToken;
+   
+      // Initialize GDI+.
+      GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
 	}
 
 	BOOL ret = DllMain(hInst, reason, imp);

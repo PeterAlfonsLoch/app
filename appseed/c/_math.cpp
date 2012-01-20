@@ -21,6 +21,14 @@ CLASS_DECL_c int abs_dup(int i)
       return i;
 }
 
+CLASS_DECL_c double fabs_dup(double f)
+{
+   if(f < 0.0)
+      return -f;
+   else
+      return f;
+}
+
 #ifdef SUPORTA_MATEMATICA_AVANCADA
 CLASS_DECL_c double atan_dup(double d)
 {
