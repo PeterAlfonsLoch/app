@@ -395,7 +395,11 @@ namespace hotplugin
       if(iStep > iRadius)
          iStep = iRadius * 2 - iStep;
 
-      const char * psz = "Thank you";
+      char psz[4];
+      psz[0] = 0xe2;
+      psz[1] = 0x98;
+      psz[2] = 0xbc;
+      psz[3] = '0';
       SIZE size;
       size.cx = 0;
       size.cy = 0;
