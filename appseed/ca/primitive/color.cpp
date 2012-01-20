@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "math.h"
+#include <math.h>
 
 
 color::color()

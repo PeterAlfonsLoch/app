@@ -101,8 +101,11 @@ class dump_context;
 #include <errno.h>
 #endif
 
+#ifdef MACOS
+#include <malloc/malloc.h>
+#else
 #include <malloc.h>
-
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // Basic types

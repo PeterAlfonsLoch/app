@@ -26,7 +26,7 @@ namespace win
 #include "exception_installing.h"
 
 #include "simple_exception.h"
-#include "assert.h"
+#include "exception_assert.h"
 #include "misc.h"
 
 #include "memory.h"

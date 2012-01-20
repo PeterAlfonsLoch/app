@@ -28,7 +28,7 @@
 #pragma once
 
 
-#include "ca/primitive/string.h"
+#include "ca/primitive/primitive_string.h"
 #ifdef _WINDOWS
 #include <imagehlp.h>
 #endif

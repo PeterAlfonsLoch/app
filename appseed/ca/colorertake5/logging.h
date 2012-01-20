@@ -17,7 +17,7 @@
 #define CLR_INFO  if (COLORER_FEATURE_LOGLEVEL >= COLORER_FEATURE_LOGLEVEL_INFO)    colorer_logger_info
 
 
-#include<assert.h>
+#include <assert.h>
 
 namespace colorertake5
 {

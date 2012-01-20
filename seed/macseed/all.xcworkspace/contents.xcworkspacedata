@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../appseed/ca/ca.xcodeproj">
+      location = "group:../../appseed/c/c.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../../appseed/c/c.xcodeproj">
+      location = "group:../../appseed/ca/ca.xcodeproj">
    </FileRef>
 </Workspace>

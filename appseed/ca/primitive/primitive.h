@@ -10,7 +10,7 @@
 #include "simple_string.h"
 #include "id.h"
 #include "string.h"
-#include "template/time.h"
+#include "template/template_time.h"
 #include "geometric_types.h"
 
 

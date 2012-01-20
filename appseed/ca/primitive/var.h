@@ -5,7 +5,7 @@
 #include "gen/gen_holder.h"
 #include "gen/gen_raw_pointer.h"
 #include "gen/gen_full_pointer.h"
-#include "template/time.h"
+#include "template/template_time.h"
 #include "ex1/ex1_byte_serializable.h"
 
 class stringa;

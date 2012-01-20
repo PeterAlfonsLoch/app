@@ -1,7 +1,7 @@
 #pragma once
 
 #include "definition.h"
-#include "string.h"
+#include "primitive_string.h"
 
 class CLASS_DECL_ca date_span
 {
