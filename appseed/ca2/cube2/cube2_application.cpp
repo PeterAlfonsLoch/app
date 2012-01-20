@@ -323,11 +323,11 @@ namespace cube2
       string strUrl;
       if(_ca_is_basis())
       {
-         strUrl = "http://basis.spaignition.api.veriterse.net/download?authnone&version=basis&stage=";
+         strUrl = "http://basis.spaignition.api.iosrv.net/download?authnone&version=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage.spaignition.api.veriterse.net/download?authnone&version=stage&stage=";
+         strUrl = "http://stage.spaignition.api.iosrv.net/download?authnone&version=stage&stage=";
       }
 
       strUrl += System.url().url_encode(strRelative);

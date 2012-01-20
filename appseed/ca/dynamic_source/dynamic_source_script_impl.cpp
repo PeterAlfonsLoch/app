@@ -504,7 +504,7 @@ namespace dynamic_source
       {
          string str = inattr("http_host");
          gen::str::begins_eat(str, "ca2v.");
-         gen::str::ends_eat(str, ".veriterse.net");
+         gen::str::ends_eat(str, ".iosrv.net");
          straDomainSuffix.add(str);
       }
       else
@@ -592,34 +592,34 @@ namespace dynamic_source
          if(locale_is_south_america(netnode().m_strLocale))
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://amdesur.fontopus.com/";
-            m_pinstanceMain->m_strImageWebSite           = "http://amdesur.veriterse.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://amdesur.veriterse.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://amdesur.veriterse.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://amdesur.veriterse.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://amdesur.iosrv.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://amdesur.iosrv.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://amdesur.iosrv.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://amdesur.iosrv.net/";
          }
          else if(locale_is_eu(netnode().m_strLocale))
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://fontopus.eu/";
-            m_pinstanceMain->m_strImageWebSite           = "http://eu.veriterse.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://eu.veriterse.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://eu.veriterse.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://eu.veriterse.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://eu.iosrv.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://eu.iosrv.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://eu.iosrv.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://eu.iosrv.net/";
          }
          else if(locale_is_asia(netnode().m_strLocale))
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://fontopus.asia/";
-            m_pinstanceMain->m_strImageWebSite           = "http://asia.veriterse.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://asia.veriterse.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://asia.veriterse.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://asia.veriterse.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://asia.iosrv.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://asia.iosrv.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://asia.iosrv.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://asia.iosrv.net/";
          }
          else
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://fontopus.com/";
-            m_pinstanceMain->m_strImageWebSite           = "http://us.veriterse.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://us.veriterse.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://us.veriterse.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://us.veriterse.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://us.iosrv.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://us.iosrv.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://us.iosrv.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://us.iosrv.net/";
          }
       }
       gprop("g_image_site")            = m_pinstanceMain->m_strImageWebSite;
@@ -3806,7 +3806,7 @@ ok1:
 
    string script_impl::simage(var param_view)
    {
-      string base_url = "http://veriterse.net/";
+      string base_url = "http://iosrv.net/";
       return base_url + simage_relative(param_view);
    }
 
@@ -4496,10 +4496,10 @@ ok1:
       if(m_pinstanceMain == NULL || m_pinstanceMain == this)
       {
          string str(psz);
-         str.replace("http://veriterse.net/image/", m_strImageWebSite);
-         str.replace("http://veriterse.net/css/", m_strCssWebSite);
-         str.replace("http://veriterse.net/file/", m_strFileWebSite);
-         str.replace("http://veriterse.net/", m_strCa2VFallbackWebSite);
+         str.replace("http://iosrv.net/image/", m_strImageWebSite);
+         str.replace("http://iosrv.net/css/", m_strCssWebSite);
+         str.replace("http://iosrv.net/file/", m_strFileWebSite);
+         str.replace("http://iosrv.net/", m_strCa2VFallbackWebSite);
          str.replace("https://fontopus.com/", m_strCa2OpenWebSite);
          str.replace("http://fontopus.com/", m_strCa2OpenWebSite);
          return str;
@@ -5204,11 +5204,11 @@ ok1:
 	   ::collection::int_to_string ns7a;
 	   ::collection::int_to_string ns8a;
 	
-	   string us_ns = "1.ns.veriterse.net"; // cgcl
-	   string uk_ns = "2.ns.veriterse.net"; // cst	
-	   string de_ns = "5.ns.veriterse.net"; 
-	   string br_ns = "7.ns.veriterse.net"; 
-	   string jp_ns = "8.ns.veriterse.net"; 
+	   string us_ns = "1.ns.iosrv.net"; // cgcl
+	   string uk_ns = "2.ns.iosrv.net"; // cst	
+	   string de_ns = "5.ns.iosrv.net"; 
+	   string br_ns = "7.ns.iosrv.net"; 
+	   string jp_ns = "8.ns.iosrv.net"; 
 	
 	   ns1a[0] = us_ns;
 	   ns2a[0] = uk_ns;
