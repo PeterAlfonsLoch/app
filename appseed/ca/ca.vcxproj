@@ -2382,6 +2382,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\point.cpp" />
     <ClCompile Include="primitive\primitive_id_space.cpp" />
     <ClCompile Include="primitive\primitive_scalar.cpp" />
+    <ClCompile Include="primitive\primitive_string.cpp" />
     <ClCompile Include="primitive\primitive_var_allocation.cpp" />
     <ClCompile Include="primitive\rectangle.cpp" />
     <ClCompile Include="primitive\shared_file.cpp" />
@@ -2389,7 +2390,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\simple_string.cpp" />
     <ClCompile Include="primitive\size.cpp" />
     <ClCompile Include="primitive\strcore.cpp" />
-    <ClCompile Include="primitive\string.cpp" />
     <ClCompile Include="primitive\string_manager.cpp" />
     <ClCompile Include="primitive\primitive_var.cpp" />
     <ClCompile Include="primitive\virtual_memory.cpp" />

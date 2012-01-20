@@ -3682,9 +3682,6 @@
     <ClCompile Include="primitive\strcore.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\string_manager.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -5622,6 +5619,9 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_string.cpp">
+      <Filter>Source Files\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
