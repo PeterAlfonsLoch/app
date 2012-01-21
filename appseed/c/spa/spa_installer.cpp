@@ -240,9 +240,9 @@ namespace spa
          m_dwInstallStartTime = ::GetTickCount();
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-         m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.iosrv.net";
+         m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.veriverdi.net";
 #else
-         m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.iosrv.net";
+         m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.veriverdi.net";
 #endif
 
 
@@ -1018,7 +1018,7 @@ install_begin:;
          while(true)
          {
             vsstring strUrl;
-            strUrl = "http://spa.api.iosrv.net/bspatch?file=";
+            strUrl = "http://spa.api.veriverdi.net/bspatch?file=";
             strUrl += url_encode_dup(file2);
             strUrl += "&old_hash=";
             strUrl += strOldMd5;
@@ -2123,7 +2123,7 @@ install_begin:;
    int installer::application_name()
    {
       vsstring strUrl;
-      trace(("get application name from server http://spaignition.api.iosrv.net/ using id \"" + m_strStart + "\" "));
+      trace(("get application name from server http://spaignition.api.veriverdi.net/ using id \"" + m_strStart + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strStart;
       strUrl += "&key=name";
