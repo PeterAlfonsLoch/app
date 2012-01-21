@@ -141,7 +141,7 @@ void update_ca2_build()
 {
    if(g_pszCa2Build != NULL)
       ca2_free(g_pszCa2Build);
-   g_pszCa2Build = (char *) strdup_dup(ms_get_dup("http://spaignition.api.veriverdi.net/ca2_get_build?authnone"));
+   g_pszCa2Build = (char *) strdup_dup(ms_get_dup("http://spaignition.api.laborserver.net/ca2_get_build?authnone"));
 }
 
 

@@ -316,7 +316,7 @@ namespace fontopus
    {
 //      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
       //string strUrl;
-      //strUrl = "http://spaignition.api.veriverdi.net/query?node=install_application&id=";
+      //strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
       //string strAppName;
       //if(System.m_strAppName == "winactionarea")
       //{
@@ -1106,7 +1106,7 @@ namespace fontopus
          if(m_bInteractive)
          {
             string strUrl;
-            strUrl = "http://spaignition.api.veriverdi.net/query?node=install_application&id=";
+            strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
             strUrl += m_strLicense;
             strUrl += "&key=launch_name";
             string strName = Application.http().get(strUrl);

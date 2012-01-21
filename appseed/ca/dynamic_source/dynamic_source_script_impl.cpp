@@ -504,7 +504,7 @@ namespace dynamic_source
       {
          string str = inattr("http_host");
          gen::str::begins_eat(str, "ca2v.");
-         gen::str::ends_eat(str, ".veriverdi.net");
+         gen::str::ends_eat(str, ".laborserver.net");
          straDomainSuffix.add(str);
       }
       else
@@ -592,34 +592,34 @@ namespace dynamic_source
          if(locale_is_south_america(netnode().m_strLocale))
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://amdesur.fontopus.com/";
-            m_pinstanceMain->m_strImageWebSite           = "http://amdesur.veriverdi.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://amdesur.veriverdi.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://amdesur.veriverdi.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://amdesur.veriverdi.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://amdesur.laborserver.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://amdesur.laborserver.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://amdesur.laborserver.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://amdesur.laborserver.net/";
          }
          else if(locale_is_eu(netnode().m_strLocale))
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://fontopus.eu/";
-            m_pinstanceMain->m_strImageWebSite           = "http://eu.veriverdi.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://eu.veriverdi.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://eu.veriverdi.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://eu.veriverdi.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://eu.laborserver.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://eu.laborserver.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://eu.laborserver.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://eu.laborserver.net/";
          }
          else if(locale_is_asia(netnode().m_strLocale))
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://fontopus.asia/";
-            m_pinstanceMain->m_strImageWebSite           = "http://asia.veriverdi.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://asia.veriverdi.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://asia.veriverdi.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://asia.veriverdi.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://asia.laborserver.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://asia.laborserver.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://asia.laborserver.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://asia.laborserver.net/";
          }
          else
          {
             m_pinstanceMain->m_strCa2OpenWebSite         = "https://fontopus.com/";
-            m_pinstanceMain->m_strImageWebSite           = "http://us.veriverdi.net/image/";
-            m_pinstanceMain->m_strCssWebSite             = "http://us.veriverdi.net/css/";
-            m_pinstanceMain->m_strFileWebSite            = "http://us.veriverdi.net/file/";
-            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://us.veriverdi.net/";
+            m_pinstanceMain->m_strImageWebSite           = "http://us.laborserver.net/image/";
+            m_pinstanceMain->m_strCssWebSite             = "http://us.laborserver.net/css/";
+            m_pinstanceMain->m_strFileWebSite            = "http://us.laborserver.net/file/";
+            m_pinstanceMain->m_strCa2VFallbackWebSite    = "http://us.laborserver.net/";
          }
       }
       gprop("g_image_site")            = m_pinstanceMain->m_strImageWebSite;
@@ -3806,7 +3806,7 @@ ok1:
 
    string script_impl::simage(var param_view)
    {
-      string base_url = "http://veriverdi.net/";
+      string base_url = "http://laborserver.net/";
       return base_url + simage_relative(param_view);
    }
 
@@ -4496,10 +4496,10 @@ ok1:
       if(m_pinstanceMain == NULL || m_pinstanceMain == this)
       {
          string str(psz);
-         str.replace("http://veriverdi.net/image/", m_strImageWebSite);
-         str.replace("http://veriverdi.net/css/", m_strCssWebSite);
-         str.replace("http://veriverdi.net/file/", m_strFileWebSite);
-         str.replace("http://veriverdi.net/", m_strCa2VFallbackWebSite);
+         str.replace("http://laborserver.net/image/", m_strImageWebSite);
+         str.replace("http://laborserver.net/css/", m_strCssWebSite);
+         str.replace("http://laborserver.net/file/", m_strFileWebSite);
+         str.replace("http://laborserver.net/", m_strCa2VFallbackWebSite);
          str.replace("https://fontopus.com/", m_strCa2OpenWebSite);
          str.replace("http://fontopus.com/", m_strCa2OpenWebSite);
          return str;
@@ -5204,11 +5204,11 @@ ok1:
 	   ::collection::int_to_string ns7a;
 	   ::collection::int_to_string ns8a;
 	
-	   string us_ns = "1.ns.veriverdi.net"; // cgcl
-	   string uk_ns = "2.ns.veriverdi.net"; // cst	
-	   string de_ns = "5.ns.veriverdi.net"; 
-	   string br_ns = "7.ns.veriverdi.net"; 
-	   string jp_ns = "8.ns.veriverdi.net"; 
+	   string us_ns = "1.ns.laborserver.net"; // cgcl
+	   string uk_ns = "2.ns.laborserver.net"; // cst	
+	   string de_ns = "5.ns.laborserver.net"; 
+	   string br_ns = "7.ns.laborserver.net"; 
+	   string jp_ns = "8.ns.laborserver.net"; 
 	
 	   ns1a[0] = us_ns;
 	   ns2a[0] = uk_ns;
