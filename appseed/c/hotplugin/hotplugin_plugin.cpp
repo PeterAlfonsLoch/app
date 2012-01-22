@@ -454,6 +454,8 @@ float sin_dup(float x)
 
       Gdiplus::RectF rectText(rectFull);
 
+      rectText.X = 84.0f;
+
       {
 
          Gdiplus::Graphics graphics2(hdc);
