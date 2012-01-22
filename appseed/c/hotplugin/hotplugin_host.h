@@ -108,6 +108,9 @@ namespace hotplugin
 
       virtual bool is_ca2_installation_ready();
 
+      virtual void set_status(const char * pszStatus);
+
+
    };
 
 

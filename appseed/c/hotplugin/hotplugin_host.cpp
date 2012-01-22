@@ -320,6 +320,19 @@ namespace hotplugin
 
    }
 
+   void host::set_status(const char * pszStatus)
+   {
+
+      ::hotplugin::plugin::set_status(pszStatus);
+
+      if(m_pplugin != NULL)
+      {
+         m_pplugin->set_status(pszStatus);
+      }
+
+   }
+
+
 } // namespace hotplugin
 
 

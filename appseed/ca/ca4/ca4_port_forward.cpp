@@ -284,8 +284,7 @@ namespace ca4
 		   _T("New number of mappings = %d \n")
 		   _T("It is recommended to update your list of mappings"), lNewNumberOfEntries );
 	
-	   ::MessageBox( NULL, tempStr, _T("Change Detected in Number of Port Mappings"),
-		   MB_OK | MB_ICONEXCLAMATION );
+	   ::MessageBox(NULL, tempStr, _T("Change Detected in Number of Port Mappings"), MB_OK | MB_ICONEXCLAMATION);
 	
 	   return S_OK;
    }
@@ -299,8 +298,7 @@ namespace ca4
 		   _T("New IP address = %s \n")
 		   _T("It is recommended to update your list of mappings"), pszNewExternalIPAddress);
 	
-	   ::MessageBox( NULL, tempStr, _T("Change Detected in External IP Address"),
-		   MB_OK | MB_ICONEXCLAMATION );
+	   ::MessageBox(NULL, tempStr, _T("Change Detected in External IP Address"), MB_OK | MB_ICONEXCLAMATION);
 	
 	   return S_OK;
    }

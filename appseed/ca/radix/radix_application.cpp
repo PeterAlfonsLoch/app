@@ -1639,7 +1639,9 @@ namespace radix
 
    int application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
+
       return MessageBox(puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle()), pszMessage, m_strAppName, fuStyle);
+
    }
 
    int application::simple_message_box(::user::interaction * pwndOwner,  UINT fuStyle, const char * pszFormat, ...)

@@ -235,7 +235,7 @@ namespace spa
          if(g_bInstalling)
             return -1;
 
-         //::MessageBox(g_hwnd, "Start", "Start", MB_OK);
+         // ::MessageBox(g_hwnd, "Start", "Start", MB_OK);
          keep_true keeptrueInstalling(g_bInstalling);
          m_dwInstallStartTime = ::GetTickCount();
 
@@ -846,7 +846,7 @@ install_begin:;
                strError = "could not get file ";
                strError += str;
                trace(strError);*/
-               //::MessageBox(g_hwnd, strError, "ca2 votagus spa",  MB_ICONINFORMATION);
+               // ::MessageBox(g_hwnd, strError, "ca2 votagus spa",  MB_ICONINFORMATION);
             }
          }
          m_iGzLen += mapGzLen[stra_dup[i]];
@@ -1994,6 +1994,7 @@ install_begin:;
             }
 
             ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
+
          }
          return true;
       }
@@ -2034,7 +2035,7 @@ install_begin:;
 
       XNode node;
 
-      //MessageBox(NULL, "BegInstall", "Caption", MB_OK);
+      // MessageBox(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
       {
          vsstring strCa2sp = file_get_contents_dup(m_strFile);
@@ -2453,7 +2454,7 @@ install_begin:;
             m_strInstallFilter = str.substr(iStart);
          }
       }
-      //MessageBox(NULL, "xxx", "yyy", MB_OK);
+      // MessageBox(NULL, "xxx", "yyy", MB_OK);
       i = str.find("install=");
       if(i != vsstring::npos)
       {

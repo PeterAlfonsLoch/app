@@ -35,9 +35,8 @@ namespace hotplugin
       DWORD *                       m_pcolorref;
       SIZE                          m_sizeBitmap;
 
-      void *                        m_pbitmap2;
-      DWORD *                       m_pcolorref2;
-      BITMAPINFO *                  m_pinfo2;
+      vsstring                      m_strStatus;
+
 
       plugin();
       virtual ~plugin();
@@ -107,6 +106,8 @@ namespace hotplugin
       virtual void on_paint_progress(HDC hdc, LPCRECT lprect);
 
       virtual void set_ca2_installation_ready(bool bReady = true);
+
+      virtual void set_status(const char * pszStatus);
 
    };
 

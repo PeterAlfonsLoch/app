@@ -469,7 +469,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int window::MessageBox(const char * lpszText, const char * lpszCaption, UINT nType)
+   int window::message_box(const char * lpszText, const char * lpszCaption, UINT nType)
    {
       UNREFERENCED_PARAMETER(lpszText);
       UNREFERENCED_PARAMETER(lpszCaption);
@@ -1526,19 +1526,6 @@ namespace ca
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception();
    }
-
-#pragma push_macro("MessageBox")
-#undef MessageBox
-
-   int window::MessageBox(const char * lpszText, const char * lpszCaption, UINT nType)
-   {
-      UNREFERENCED_PARAMETER(lpszText);
-      UNREFERENCED_PARAMETER(lpszCaption);
-      UNREFERENCED_PARAMETER(nType);
-      throw interface_only_exception();
-   }
-
-#pragma pop_macro("MessageBox")
 
    BOOL window::FlashWindow(BOOL bInvert)
    {

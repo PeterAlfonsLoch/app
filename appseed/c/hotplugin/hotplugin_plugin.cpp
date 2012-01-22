@@ -26,8 +26,8 @@ namespace hotplugin
       m_rect.right      = 0;
 
 
-      m_sizeBitmap.cx = 284;
-      m_sizeBitmap.cy = 284;
+      m_sizeBitmap.cx = 994;
+      m_sizeBitmap.cy = 394;
 
 
       m_pcolorref = (DWORD *) ca2_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
@@ -36,12 +36,7 @@ namespace hotplugin
       m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
 #endif
 
-
-      m_pcolorref2 = (DWORD *) ca2_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
-
-#if !defined(MACOS)
-      m_pbitmap2 = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref2);
-#endif
+      m_strStatus = "Thank you";
 
    }
 
@@ -52,8 +47,8 @@ namespace hotplugin
 #if !defined(MACOS)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
-      if(m_pbitmap2 != NULL)
-         delete (Gdiplus::Bitmap *) m_pbitmap2;
+      if(m_pcolorref != NULL)
+         ca2_free(m_pcolorref);
 #endif
       //delete m_pinfo;
    }
@@ -295,137 +290,134 @@ float sin_dup(float x)
       BYTE uchG;
       BYTE uchB;
       {
-   if(dH >= 1.0)
-      dH = 0.0;
-   else if(dH < 0.0)
-      dH = 0.0;
+         if(dH >= 1.0)
+            dH = 0.0;
+         else if(dH < 0.0)
+            dH = 0.0;
 
-   if(dL > 1.0)
-      dL = 1.0;
-   else if(dL < 0.0)
-      dL = 0.0;
+         if(dL > 1.0)
+            dL = 1.0;
+         else if(dL < 0.0)
+            dL = 0.0;
 
-   if(dS > 1.0)
-      dS = 1.0;
-   else if(dS < 0.0)
-      dS = 0.0;
+         if(dS > 1.0)
+            dS = 1.0;
+         else if(dS < 0.0)
+            dS = 0.0;
 
-   double dR;
-   double dG;
-   double dB;
+         double dR;
+         double dG;
+         double dB;
 
-   dH *= 6.0;
+         dH *= 6.0;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-   dH += 5.0;
-#else
-   dH += 2.0;
-#endif
-   if(dH >= 6.0)
-      dH -= 6.0;
+      #if CA2_PLATFORM_VERSION == CA2_BASIS
+         dH += 5.0;
+      #else
+         dH += 2.0;
+      #endif
+         if(dH >= 6.0)
+            dH -= 6.0;
 
-   double dA;
-   if(dH >= 5.0)
-      dA = dH - 5.0;
-   else if(dH >= 4.0)
-      dA = dH - 4.0;
-   else if(dH >= 3.0)
-      dA = dH - 3.0;
-   else if(dH >= 2.0)
-      dA = dH - 2.0;
-   else if(dH >= 1.0)
-      dA = dH - 1.0;
-   else
-      dA = dH;
-
-   if(dH >= 3.0)
-   {
-      if(dH >= 4.0)
-      {
+         double dA;
          if(dH >= 5.0)
+            dA = dH - 5.0;
+         else if(dH >= 4.0)
+            dA = dH - 4.0;
+         else if(dH >= 3.0)
+            dA = dH - 3.0;
+         else if(dH >= 2.0)
+            dA = dH - 2.0;
+         else if(dH >= 1.0)
+            dA = dH - 1.0;
+         else
+            dA = dH;
+
+         if(dH >= 3.0)
          {
-            // 5.0
-            // magenta to red
-            dR = 1.0;
-            dG = 0.0;
-            dB = 1.0 - dA;
+            if(dH >= 4.0)
+            {
+               if(dH >= 5.0)
+               {
+                  // 5.0
+                  // magenta to red
+                  dR = 1.0;
+                  dG = 0.0;
+                  dB = 1.0 - dA;
+               }
+               else
+               {
+                  // 4.0
+                  // blue to magenta
+                  dR = dA;
+                  dG = 0.0;
+                  dB = 1.0;
+               }
+            }
+            else
+            {
+               // 3.0
+               // cyan to blue
+               dR = 0.0;
+               dG = 1.0 - dA;
+               dB = 1.0;
+            }
+         }
+         else /// if(dH >= 0.0)
+         {
+            if(dH >= 2.0)
+            {
+               // 2
+               // green to cyan
+               dR = 0.0;
+               dG = 1.0;
+               dB = dA;
+            }
+            else // (dH >= 0.0 && dH < 2.0)
+            {
+               if(dH >= 1.0)
+               {
+                  // 1
+                  // yellow to green
+                  dR = 1.0 - dA;
+                  dG = 1.0;
+                  dB = 0.0;
+               }
+               else // if(dh >= 0 && dH < 1.0);
+               {
+                  // 0
+                  // red to yellow
+                  dR = 1.0;
+                  dG = dA;
+                  dB = 0.0;
+               }
+            }
+         }
+
+         double dCMin;
+         double dCAdd;
+         double dSL = dS * dL;
+         if(dL >= 0.5)
+         {
+            dCMin = dL - dS + dSL;
+            dCAdd = 2.0 * dS - 2.0 * dSL;
          }
          else
          {
-            // 4.0
-            // blue to magenta
-            dR = dA;
-            dG = 0.0;
-            dB = 1.0;
+            dCMin = dL - dSL;
+            dCAdd = 2.0 * dSL;
          }
-      }
-      else
-      {
-         // 3.0
-         // cyan to blue
-         dR = 0.0;
-         dG = 1.0 - dA;
-         dB = 1.0;
-      }
-   }
-   else /// if(dH >= 0.0)
-   {
-      if(dH >= 2.0)
-      {
-         // 2
-         // green to cyan
-         dR = 0.0;
-         dG = 1.0;
-         dB = dA;
-      }
-      else // (dH >= 0.0 && dH < 2.0)
-      {
-         if(dH >= 1.0)
-         {
-            // 1
-            // yellow to green
-            dR = 1.0 - dA;
-            dG = 1.0;
-            dB = 0.0;
-         }
-         else // if(dh >= 0 && dH < 1.0);
-         {
-            // 0
-            // red to yellow
-            dR = 1.0;
-            dG = dA;
-            dB = 0.0;
-         }
-      }
-   }
-
-   double dCMin;
-   double dCAdd;
-   double dSL = dS * dL;
-   if(dL >= 0.5)
-   {
-      dCMin = dL - dS + dSL;
-      dCAdd = 2.0 * dS - 2.0 * dSL;
-   }
-   else
-   {
-      dCMin = dL - dSL;
-      dCAdd = 2.0 * dSL;
-   }
 
 
-   dR      = (dCMin + dR * dCAdd);
-   dG      = (dCMin + dG * dCAdd);
-   dB      = (dCMin + dB * dCAdd);
+         dR      = (dCMin + dR * dCAdd);
+         dG      = (dCMin + dG * dCAdd);
+         dB      = (dCMin + dB * dCAdd);
 
          uchR      = (BYTE) ftol(dR * 255.0);
          uchG      = (BYTE) ftol(dG * 255.0);
          uchB      = (BYTE) ftol(dB * 255.0);
 
-
-
       }
-
 
 
       int iDelta = s_iDelta;
@@ -439,109 +431,38 @@ float sin_dup(float x)
          s_dwSync = GetTickCount();
       }
 
-
-
-      //float dAngle = (GetTickCount() % 8000) * 2.0 * 3.1415 / (8.0 * 1000.0);
-
-      float dAngle = (GetTickCount() % 8000) * 360 / (8.0 * 1000.0);
-
       int iStep = iPhase;
 
       if(iStep > iRadius)
          iStep = iRadius * 2 - iStep;
 
       const char * pszFontName = "Lucida Sans Unicode";
-      char psz[4];
-      psz[0] = 0xe2;
-      psz[1] = 0x98;
-      psz[2] = 0xbc;
-      psz[3] = '\0';
-
-//      float sin = sin_dup(dAngle);
-  //    float cos = cos_dup(dAngle);
-
-      
-
-    /*  RECT rectText;
-
-      rectText.left = 0;
-      rectText.top = 0;
-
-      float h = m_sizeBitmap.cx;
-      float w = m_sizeBitmap.cy;
-
-      XFORM xform; 
-      xform.eM11=cos; 
-      xform.eM12=-sin; 
-      xform.eM21=sin; 
-      xform.eM22=cos; 
-
-      float Point1x=(-h*sin); 
-      float Point1y=(h*cos); 
-      float Point2x=(w*cos-h*sin); 
-      float Point2y=(h*cos+w*sin); 
-      float Point3x=(w*cos); 
-      float Point3y=(w*sin); 
-
-      float minx=min(0,min(Point1x,min(Point2x,Point3x))); 
-      float miny=min(0,min(Point1y,min(Point2y,Point3y))); 
-      float maxx=max(Point1x,max(Point2x,Point3x)); 
-      float maxy=max(Point1y,max(Point2y,Point3y)); 
-
-      float DestBitmapWidth=(fabs_dup(maxx)-minx); 
-      float DestBitmapHeight=(fabs_dup(maxy)-miny); 
-
-      xform.eDx=(float)-minx; 
-      xform.eDy=(float)-miny; 
-
-      int iFontPointSize = 490;
-
-      rectText.right = ftol(DestBitmapWidth);
-      rectText.bottom = ftol(DestBitmapHeight);*/
-
-
-      SIZE size;
-      size.cx = 0;
-      size.cy = 0;
 
       wstring wstr;
-      wstr = psz;
-
-      //Sleep(15 * 1000);
+      
+      wstr = m_strStatus;
 
       Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
 
-      Gdiplus::Font font(&ff, 49 * 2);
+      Gdiplus::Font font(&ff, 49);
 
       Gdiplus::StringFormat * psf = Gdiplus::StringFormat::GenericDefault()->Clone();
 
-      psf->SetLineAlignment(Gdiplus::StringAlignmentCenter);
-      psf->SetAlignment(Gdiplus::StringAlignmentCenter);
+      psf->SetLineAlignment(Gdiplus::StringAlignmentNear);
 
+      psf->SetAlignment(Gdiplus::StringAlignmentNear);
 
+      Gdiplus::RectF rectF(50.0f, 50.0f, m_sizeBitmap.cx, m_sizeBitmap.cy);
 
-
-      Gdiplus::RectF rectF(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy);
       {
 
-            //Gdiplus::Graphics graphics2((Gdiplus::Bitmap *) m_pbitmap2);
-            Gdiplus::Graphics graphics2(hdc);
+         Gdiplus::Graphics graphics2(hdc);
 
-            Gdiplus::SolidBrush br1(Gdiplus::Color(0, 0, 0, 0));
+         Gdiplus::SolidBrush br1(Gdiplus::Color(0, 0, 0, 0));
 
-            graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+         graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-            /*graphics2.FillRectangle(&br1, rectF);*/
-
-            {
-
-            RECT rectBox;
-            rectBox.left      = 0;
-            rectBox.top       = 0;
-            rectBox.right     = m_sizeBitmap.cx;
-            rectBox.bottom    = m_sizeBitmap.cy;
-
-         
+         {
 
             Gdiplus::Graphics graphics((Gdiplus::Bitmap *) m_pbitmap);
 
@@ -560,6 +481,7 @@ float sin_dup(float x)
 
 
             int area = m_sizeBitmap.cx * m_sizeBitmap.cy;
+
             for(int i = 0; i < area; i++)
             {
                BYTE bA = min((((m_pcolorref[i] & 0xff00) >> 8) & 0xff) * 3, 255);
@@ -568,27 +490,18 @@ float sin_dup(float x)
             }
 
             graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+
             graphics.DrawString(wstr, wstr.get_length(), &font, rectF, psf, &br);
 
-      }
-
-         size.cx = 0;
-         size.cy = 0;
+         }
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-
-         graphics2.TranslateTransform(-m_sizeBitmap.cx / 2, -m_sizeBitmap.cy / 2, Gdiplus::MatrixOrderPrepend);
-
-         graphics2.RotateTransform(dAngle, Gdiplus::MatrixOrderAppend);
-
-         graphics2.TranslateTransform(m_sizeBitmap.cx / 2, m_sizeBitmap.cy / 2, Gdiplus::MatrixOrderAppend);
 
          graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap,0,0);
 
          delete psf;
+
       }
-
-
 
 
    }
@@ -699,6 +612,15 @@ float sin_dup(float x)
       }
 
    }
+
+
+   void plugin::set_status(const char * pszStatus)
+   {
+
+      m_strStatus = pszStatus;
+
+   }
+
 
 } // namespace hotplugin
 
