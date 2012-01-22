@@ -436,23 +436,23 @@ float sin_dup(float x)
       if(iStep > iRadius)
          iStep = iRadius * 2 - iStep;
 
-      const char * pszFontName = "Lucida Sans Unicode";
-
       wstring wstr;
       
       wstr = m_strStatus;
 
       Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
 
-      Gdiplus::Font font(&ff, 49);
+      Gdiplus::Font font(&ff, 49, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 
       Gdiplus::StringFormat * psf = Gdiplus::StringFormat::GenericDefault()->Clone();
 
-      psf->SetLineAlignment(Gdiplus::StringAlignmentNear);
+      psf->SetLineAlignment(Gdiplus::StringAlignmentCenter);
 
       psf->SetAlignment(Gdiplus::StringAlignmentNear);
 
-      Gdiplus::RectF rectF(50.0f, 50.0f, m_sizeBitmap.cx, m_sizeBitmap.cy);
+      Gdiplus::RectF rectFull(0.0f, 0.0f, m_sizeBitmap.cx, m_sizeBitmap.cy);
+
+      Gdiplus::RectF rectText(rectFull);
 
       {
 
@@ -468,11 +468,11 @@ float sin_dup(float x)
 
             graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-            graphics.FillRectangle(&br1, rectF);
+            graphics.FillRectangle(&br1, rectFull);
 
             Gdiplus::SolidBrush br(Gdiplus::Color(255, 255, 255, 255));
 
-            graphics.DrawString(wstr, wstr.get_length(), &font, rectF, psf, &br);
+            graphics.DrawString(wstr, wstr.get_length(), &font, rectText, psf, &br);
 
             for(int i = 0; i < 3; i++)
             {
@@ -491,13 +491,13 @@ float sin_dup(float x)
 
             graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-            graphics.DrawString(wstr, wstr.get_length(), &font, rectF, psf, &br);
+            graphics.DrawString(wstr, wstr.get_length(), &font, rectText, psf, &br);
 
          }
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-         graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap,0,0);
+         graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, 0, 0);
 
          delete psf;
 
