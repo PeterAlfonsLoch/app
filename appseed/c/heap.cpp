@@ -13,55 +13,45 @@ CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int nBlockUs
 CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int iBlockType) = NULL;
 CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int iBlockType) = NULL;
 
-DECL_SPEC_ANY simple_mutex * g_pmutexCa2Alloc = NULL;
-
 BEGIN_EXTERN_C
 
 void * ca2_alloc(size_t size)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_alloc(size);
 }
 
 void * ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
 }
 
 void * ca2_realloc(void * pvoid, size_t nSize)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_realloc(pvoid, nSize, 0, NULL, -1);
 }
 
 void * ca2_realloc_dbg(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_realloc(pvoid, nSize, nBlockUse, szFileName, nLine);
 }
 
 void ca2_free(void * pvoid)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_free(pvoid, 0);
 }
 
 void ca2_free_dbg(void * pvoid, int iBlockType)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_free(pvoid, iBlockType);
 }
 
 size_t ca2_msize(void * pvoid)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_msize(pvoid, 0);
 }
 
 size_t ca2_msize_dbg(void * pvoid, int iBlockType)
 {
-   mutex_lock lock(g_pmutexCa2Alloc, true);
    return g_pfnca2_msize(pvoid, iBlockType);
 }
 
@@ -183,20 +173,11 @@ void initialize_primitive_heap()
    {
       g_pfnca2_msize       = _ca_msize;
    }
-   if(g_pmutexCa2Alloc == NULL)
-   {
-      g_pmutexCa2Alloc     = new simple_mutex();
-   }
 
 }
 
 void finalize_primitive_heap()
 {
-   if(g_pmutexCa2Alloc != NULL)
-   {
-      delete g_pmutexCa2Alloc;
-      g_pmutexCa2Alloc = NULL;
-   }
 }
 
 
