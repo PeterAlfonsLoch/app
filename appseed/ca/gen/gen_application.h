@@ -33,6 +33,7 @@ namespace gen
       string                              m_strModuleFolder;
       string                              m_strHelpFilePath;
       ::gen::command_thread *             m_pcommandthread;
+      mutex                               m_mutex;
 
 
       application();
