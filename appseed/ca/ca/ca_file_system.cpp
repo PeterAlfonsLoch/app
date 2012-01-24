@@ -42,6 +42,9 @@ namespace ca
          straSeparator.add("\\");
          stra.add_smallest_tokens(str, straSeparator, FALSE);
 
+         if(stra.get_data() == straSeparator.get_data())
+            AfxDebugBreak();
+
          str.Empty();
          for(int i = 0; i < (stra.get_size() - iLevelCount); i++)
          {

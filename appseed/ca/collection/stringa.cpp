@@ -39,6 +39,8 @@ void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL b
    }
 }
 
+int g_add_smallest_tokens = 0;
+
 void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, BOOL bAddEmpty, BOOL bWithSeparator)
 {
    string_tokenizer strTokenizer(lpcsz);
@@ -54,8 +56,14 @@ void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, B
    {
       while(strTokenizer.GetNextSmallestToken(strToken, straSeparator, bWithSeparator))
       {
+         if(straSeparator.get_data() == get_data())
+            AfxDebugBreak();
+         if(strToken == "cecyn1.at.hotmail.com")
+            g_add_smallest_tokens++;
          if(!strToken.is_empty())
             string_array::add(strToken);
+         if(straSeparator.get_data() == get_data())
+            AfxDebugBreak();
       }
    }
 }
