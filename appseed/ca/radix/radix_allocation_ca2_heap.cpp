@@ -1,11 +1,9 @@
 #include "StdAfx.h"
 
 extern CLASS_DECL_ca plex_heap_alloc_array g_heap;
-static simple_mutex g_mutexCa2Heap;
 
 CLASS_DECL_ca void * ca2_heap_alloc(size_t size)
 {
-   mutex_lock lock(&g_mutexCa2Heap, true);
    size_t * psize = (size_t *) g_heap.alloc(size + sizeof(size_t));
    psize[0] = size + sizeof(size_t);
    memset(&psize[1], 0, size);
@@ -14,7 +12,6 @@ CLASS_DECL_ca void * ca2_heap_alloc(size_t size)
 
 CLASS_DECL_ca void * ca2_heap_realloc(void * pvoidOld, size_t size)
 {
-   mutex_lock lock(&g_mutexCa2Heap, true);
    size_t * psize = (size_t *) g_heap.realloc(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t));
    psize[0] = size + sizeof(size_t);
    return &psize[1];
@@ -23,7 +20,6 @@ CLASS_DECL_ca void * ca2_heap_realloc(void * pvoidOld, size_t size)
 
 CLASS_DECL_ca void ca2_heap_free(void * pvoid)
 {
-   mutex_lock lock(&g_mutexCa2Heap, true);
    return g_heap.free(&((size_t *)pvoid)[-1], ((size_t *)pvoid)[-1]);
 }
 

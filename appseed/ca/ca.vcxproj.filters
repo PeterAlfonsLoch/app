@@ -5260,9 +5260,6 @@
     <ClCompile Include="radix\radix_flags.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_heap.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_language_string.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5622,6 +5619,9 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_string.cpp">
       <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_allocation_ca2_heap.cpp">
+      <Filter>Source Files\radix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
