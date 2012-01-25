@@ -181,6 +181,7 @@ namespace fontopus
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
       App(this).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
+      puser->initialize();
       return puser;
    }
 
