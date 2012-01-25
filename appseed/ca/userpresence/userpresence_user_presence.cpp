@@ -22,7 +22,7 @@ namespace userpresence
 
    void presence::defer_pulse_user_presence()
    {
-      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 11))
+      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 1))
       {
          pulse_user_presence();
       }

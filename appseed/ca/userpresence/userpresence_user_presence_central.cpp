@@ -19,7 +19,7 @@ namespace userpresence
       if(!initialize_message_window("ca5::user::presence_central::message_window"))
          return false;
 
-      m_spwindowMessage->SetTimer(1984, 1000 * 23, NULL);
+      m_spwindowMessage->SetTimer(1984, 1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
