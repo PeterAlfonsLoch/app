@@ -422,6 +422,12 @@ private:
 		_Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;
 		}
 
+#ifdef WINDOWS
+      template <>
+      void _Trim_if < false >()
+      {	// no bits to trim, do nothing
+      }
+#endif
 
 	__declspec(noreturn) void _Xinv() const
 		{	// report invalid string element in bitset conversion
@@ -561,10 +567,11 @@ public:
  * Consult your license regarding permissions and restrictions.
 V5.20:0009 */
 
+#ifdef MACOS
 
-template<size_t _Bits>
-class 
-void bitset::_Trim_if<false>()
+template < size_t _Bits, bool >
+void bitset < _Bits >::_Trim_if < false >()
 {	// no bits to trim, do nothing
 }
 
+#endif
