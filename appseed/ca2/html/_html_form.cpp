@@ -19,6 +19,15 @@ html_form::~html_form()
 
 void html_form::_001OnDraw(::ca::graphics * pdc)
 {
+
+   ::user::interaction::_001OnDraw(pdc);
+
+   rect rectClient;
+
+   GetClientRect(rectClient);
+
+   pdc->FillSolidRect(rectClient, get_background_color());
+
    if(get_html_data() != NULL)
    {
       get_html_data()->_001OnDraw(pdc);
