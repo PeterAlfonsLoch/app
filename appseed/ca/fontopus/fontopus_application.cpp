@@ -181,7 +181,6 @@ namespace fontopus
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
       App(this).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
-      puser->initialize();
       return puser;
    }
 
@@ -194,6 +193,12 @@ namespace fontopus
             return NULL;
          keeper < bool > keepCreatingUser(&m_bIsCreatingUser, true, false, true);
          m_puser = create_current_user();
+         if(!m_puser->initialize())
+         {
+            delete m_puser;
+            m_puser = NULL;
+            return NULL;
+         }
       }
       return m_puser;
    }

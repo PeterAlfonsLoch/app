@@ -18,7 +18,7 @@ namespace userpresence
    bool presence_central_container::initialize_central_container(::ca::application * papp)
    {
 
-      if(!App(papp).is_licensed("user_presence", false))
+      if(!App(papp).is_licensed("user_presence", true))
       {
          TRACE("user presence not licensed for this user");
          return false;
