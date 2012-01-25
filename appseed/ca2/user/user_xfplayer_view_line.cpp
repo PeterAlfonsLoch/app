@@ -1458,6 +1458,8 @@ void XfplayerViewLine::EmbossedTextOut(
 
       }
 
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
       System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), class size(pdibCache->width() - iLeft, pdibCache->height()), pdibCache->get_graphics(), point(iLeft, 0), dBlend);
 
       System.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, iLen, cr, dBlend);
