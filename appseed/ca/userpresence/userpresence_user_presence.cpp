@@ -30,7 +30,7 @@ namespace userpresence
       {
          m_iShortStatusCynceTag = status_away;
       }*/
-      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 10))
+      else 
       {
          m_iShortStatusCynceTag = status_offline;
       }
