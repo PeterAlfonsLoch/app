@@ -303,7 +303,7 @@ public:
 		return (_Val);
 		}
 
-	string to_string(char _E0 = (_Elem)'0', char _E1 = (_Elem)'1') const
+	string to_string(char _E0 = (char)'0', char _E1 = (char)'1') const
 	{	// convert bitset to string
 		string _Str;
 		strsize _Pos;
@@ -472,35 +472,35 @@ template<size_t _Bits> inline
 		return (_Ans ^= _Right);
 		}
 
-/*template<class _Elem,
+/*template<class char,
 	class _Tr,
 	size_t _Bits> inline
-	basic_ostream<_Elem, _Tr>& operator<<(
-		basic_ostream<_Elem, _Tr>& _Ostr, const bitset<_Bits>& _Right)
+	basic_ostream<char, _Tr>& operator<<(
+		basic_ostream<char, _Tr>& _Ostr, const bitset<_Bits>& _Right)
 	{	// insert bitset as a string
-	const ctype<_Elem>& _Ctype_fac = _USE(_Ostr.getloc(), ctype<_Elem>);
-	const _Elem _E0 = _Ctype_fac.widen('0');
-	const _Elem _E1 = _Ctype_fac.widen('1');
+	const ctype<char>& _Ctype_fac = _USE(_Ostr.getloc(), ctype<char>);
+	const char _E0 = _Ctype_fac.widen('0');
+	const char _E1 = _Ctype_fac.widen('1');
 
 	return (_Ostr
-		<< _Right.template to_string<_Elem, _Tr, allocator<_Elem> >(
+		<< _Right.template to_string<char, _Tr, allocator<char> >(
 			_E0, _E1));
 	}
 
 		// TEMPLATE operator>>
-template<class _Elem,
+template<class char,
 	class _Tr,
 	size_t _Bits> inline
-	basic_istream<_Elem, _Tr>& operator>>(
-		basic_istream<_Elem, _Tr>& _Istr, bitset<_Bits>& _Right)
+	basic_istream<char, _Tr>& operator>>(
+		basic_istream<char, _Tr>& _Istr, bitset<_Bits>& _Right)
 	{	// extract bitset as a string
-	const ctype<_Elem>& _Ctype_fac = _USE(_Istr.getloc(), ctype<_Elem>);
-	const _Elem _E0 = _Ctype_fac.widen('0');
-	const _Elem _E1 = _Ctype_fac.widen('1');
+	const ctype<char>& _Ctype_fac = _USE(_Istr.getloc(), ctype<char>);
+	const char _E0 = _Ctype_fac.widen('0');
+	const char _E1 = _Ctype_fac.widen('1');
 	ios_base::iostate _State = ios_base::goodbit;
 	bool _Changed = false;
 	string _Str;
-	const typename basic_istream<_Elem, _Tr>::sentry _Ok(_Istr);
+	const typename basic_istream<char, _Tr>::sentry _Ok(_Istr);
 
 	if (_Ok)
 		{	// valid stream, extract elements
@@ -509,7 +509,7 @@ template<class _Elem,
 		for (size_t _Count = _Right.size(); 0 < _Count;
 			_Meta = _Istr.rdbuf()->snextc(), --_Count)
 			{	// test _Meta
-			_Elem _Char;
+			char _Char;
 			if (_Tr::eq_int_type(_Tr::eof(), _Meta))
 				{	// end of file, quit
 				_State |= ios_base::eofbit;

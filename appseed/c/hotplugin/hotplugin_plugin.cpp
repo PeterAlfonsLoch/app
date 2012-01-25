@@ -1,6 +1,8 @@
 #include "StdAfx.h"
-#include <GdiPlus.h>
 
+#ifdef WINDOWS
+#include <GdiPlus.h>
+#endif
 
 #ifdef LINUX
 #include "c/linux/c_os_cross_win_gdi_internal.h"
@@ -439,6 +441,8 @@ float sin_dup(float x)
       wstring wstr;
       
       wstr = m_strStatus;
+      
+#ifdef WINDOWS
 
       Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
 
@@ -503,8 +507,11 @@ float sin_dup(float x)
 
          delete psf;
 
+      
       }
-
+#endif
+      
+      
 
    }
 

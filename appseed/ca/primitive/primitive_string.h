@@ -352,6 +352,9 @@ public:
    bool contains_wci(const char * psz, strsize start = 0, strsize count = -1);
    bool contains_wci(const string & str, strsize start = 0, strsize count = -1);
    // Advanced manipulation
+   
+   
+   void reserve(strsize res_arg = 0);
 
    // Delete 'nCount' characters, starting at index 'iIndex'
    strsize Delete(strsize iIndex, strsize nCount = 1);

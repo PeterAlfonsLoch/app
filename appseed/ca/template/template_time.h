@@ -58,6 +58,10 @@ private:
 
 class CLASS_DECL_ca time
 {
+private:
+   
+   __time64_t m_time;
+
 public:
    static time WINAPI get_current_time() NOTHROW;
    static BOOL WINAPI is_valid_FILETIME(const FILETIME& ft) NOTHROW;
@@ -145,8 +149,7 @@ public:
 //   CArchive& Serialize64(CArchive& ar);
 #endif
 
-private:
-   __time64_t m_time;
+
 };
 
 class CLASS_DECL_ca CFileTimeSpan

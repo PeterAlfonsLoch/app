@@ -101,9 +101,10 @@ DECLARE_SE_EXCEPTION_CLASS(se_microsoft_cpp)
 
 
 #include "se_translator.h"
+#if !defined(MACOS)
 #include <ucontext.h>
 #include <sys/ucontext.h>
-
+#endif
 
 class CLASS_DECL_ca se_exception :
    public base_exception

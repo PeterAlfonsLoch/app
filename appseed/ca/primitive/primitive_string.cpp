@@ -2742,3 +2742,9 @@ bool string::load_string(::ca::application * papp, id id)
 {
    return App(papp).load_string(*this, id);
 }
+
+
+void string::reserve(strsize res_arg)
+{
+   GetBufferSetLength(res_arg + 1);
+}

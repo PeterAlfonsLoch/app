@@ -7944,7 +7944,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = x86_64;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -7952,6 +7952,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					TARGET_CPU_X64,
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -7963,7 +7964,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -7972,7 +7973,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = x86_64;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -7984,7 +7985,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
@@ -7997,8 +7998,9 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
@@ -8012,8 +8014,9 @@
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
