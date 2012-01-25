@@ -872,47 +872,69 @@ namespace fontopus
 
       string strLogin;
 
-      {
-
-         string strLoginUrl("https://"+ m_strFontopusServer +"/ca2api/account/login");
-
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
-
-         if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
-         {
-            m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], strLoginUrl);
-         }
-         else
-         {
-            m_puser->set_sessid("not_auth", strLoginUrl);
-         }
-         set["app"] = papp;
-
-         Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-
-      }
-
-      strLogin.trim();
-
-      if(strLogin.is_empty())
-         return "";
+      string strLoginUrl("https://"+ m_strFontopusServer +"/ca2api/account/login");
 
       xml::node node(get_app());
 
-      if(!node.load(strLogin))
-         return "";
+      string strSessId;
 
-      if(node.m_strName != "login")
-         return "";
+      string strRsaModulus;
 
-      string strSessId = node.attr("sessid");
+      for(int iRetry = 0; iRetry <= 8; iRetry++)
+      {
 
-      if(strSessId.is_empty())
-         return "";
+         if(iRetry > 0)
+         {
+            Sleep(iRetry * 584);
+         }
 
-      string strRsaModulus = node.attr("rsa_modulus");
+         try
+         {
+
+
+            gen::property_set post;
+            gen::property_set headers;
+            gen::property_set set;
+
+            if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
+            {
+               m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], strLoginUrl);
+            }
+            else
+            {
+               m_puser->set_sessid("not_auth", strLoginUrl);
+            }
+            set["app"] = papp;
+
+            Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+
+         }
+         catch(...)
+         {
+         }
+
+         strLogin.trim();
+
+         if(strLogin.is_empty())
+            continue;
+
+         if(!node.load(strLogin))
+            continue;
+
+         if(node.m_strName != "login")
+            continue;
+
+         strSessId = node.attr("sessid");
+
+         if(strSessId.is_empty())
+            continue;
+
+         strRsaModulus = node.attr("rsa_modulus");
+
+         if(strRsaModulus.has_char())
+            break;
+
+      }
 
       if(strRsaModulus.is_empty())
          return "";
