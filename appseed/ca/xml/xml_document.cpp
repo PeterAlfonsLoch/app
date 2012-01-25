@@ -58,6 +58,9 @@ namespace xml
    //========================================================
    char * document::load(const char * psz)
    {
+
+      m_nodea.remove_all();
+
       m_strData = psz;
       const char * pszXml = m_strData;
       class node * pnodeRoot = new class node(get_app());
