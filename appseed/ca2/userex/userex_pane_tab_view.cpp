@@ -83,7 +83,12 @@ namespace userex
          {
             GetParentFrame()->EndModalLoop("yes");
          }
+         if(get_filemanager_document() != NULL)
+         {
+            get_filemanager_document()->get_filemanager_data()->m_pdocumentSave = NULL;
+         }
       }
+
    }
 
    void pane_tab_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
