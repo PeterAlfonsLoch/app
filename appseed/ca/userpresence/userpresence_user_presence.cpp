@@ -22,10 +22,21 @@ namespace userpresence
 
    void presence::defer_pulse_user_presence()
    {
-      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 1))
+      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 2))
       {
-         pulse_user_presence();
+         m_iShortStatusCynceTag = status_online;
       }
+      /*else if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 10))
+      {
+         m_iShortStatusCynceTag = status_away;
+      }*/
+      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 10))
+      {
+         m_iShortStatusCynceTag = status_offline;
+      }
+
+      pulse_user_presence();
+
    }
 
 
