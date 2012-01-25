@@ -402,6 +402,7 @@ namespace ca2
       || strLocale == "kz"
       || strLocale == "kr"
       || strLocale == "my"
+      || strLocale == "ph"
       || strLocale == "sg"
       || strLocale == "su"
       || strLocale == "ru"
