@@ -851,10 +851,12 @@ namespace fontopus
          Application.http().get(strGetFontopus, m_strFontopusServer, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
       }
 
-      if(m_strFontopusServer.is_empty() || m_strFontopusServer.get_length() > 64
-      || m_strFontopusServer.find("fontopus.") < 0)
-         return "";
+      url_domain domainFontopus;
 
+      domainFontopus.create(m_strFontopusServer);
+
+      if(domainFontopus.m_strRadix != "fontopus")
+         return "";
 
       if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
@@ -862,12 +864,6 @@ namespace fontopus
       }
 
 
-      url_domain domainFontopus;
-
-      domainFontopus.create(m_strFontopusServer);
-
-      if(domainFontopus.m_strRadix != "fontopus")
-         return "";
 
 
       string strLogin;

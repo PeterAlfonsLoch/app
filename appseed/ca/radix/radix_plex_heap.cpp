@@ -159,8 +159,8 @@ void plex_heap_alloc::Free(void * p)
 
    // simply return the node to the free list
    node* pNode = (node*)p;
-/*   if(pNode == m_pnodeFree)
-      AfxDebugBreak();*/
+   if(pNode == m_pnodeFree) // dbgsnp - debug snippet
+      AfxDebugBreak();
    pNode->pNext = m_pnodeFree;
    m_pnodeFree = pNode;
 
