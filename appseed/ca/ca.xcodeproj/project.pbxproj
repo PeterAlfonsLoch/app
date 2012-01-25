@@ -1816,6 +1816,7 @@
 		9A88B4EF14C2CA2F006B4023 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADDB14C2CA2D006B4023 /* zlib.h */; };
 		9A88B4F014C2CA2F006B4023 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88ADDF14C2CA2D006B4023 /* zutil.c */; };
 		9A88B4F114C2CA2F006B4023 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADE014C2CA2D006B4023 /* zutil.h */; };
+		9A91900414D0A4AA00757806 /* bitset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A91900314D0A4A900757806 /* bitset.h */; };
 		9A94F7ED14C8D4BA0090A8F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94F7EC14C8D4BA0090A8F6 /* c.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -3673,6 +3674,7 @@
 		9A88ADDE14C2CA2D006B4023 /* zlib.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = zlib.vcxproj.filters; sourceTree = "<group>"; };
 		9A88ADDF14C2CA2D006B4023 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		9A88ADE014C2CA2D006B4023 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
+		9A91900314D0A4A900757806 /* bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitset.h; sourceTree = "<group>"; };
 		9A94F7EC14C8D4BA0090A8F6 /* c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug/c.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3985,6 +3987,7 @@
 		9A88A72E14C2CA2C006B4023 /* collection */ = {
 			isa = PBXGroup;
 			children = (
+				9A91900314D0A4A900757806 /* bitset.h */,
 				9A88A72F14C2CA2C006B4023 /* 2DArray.cpp */,
 				9A88A73014C2CA2C006B4023 /* _array_app_copy.cpp */,
 				9A88A73114C2CA2C006B4023 /* array.cpp */,
@@ -7092,6 +7095,7 @@
 				9A88B4EE14C2CA2F006B4023 /* zconf.in.h in Headers */,
 				9A88B4EF14C2CA2F006B4023 /* zlib.h in Headers */,
 				9A88B4F114C2CA2F006B4023 /* zutil.h in Headers */,
+				9A91900414D0A4AA00757806 /* bitset.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

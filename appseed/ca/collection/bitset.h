@@ -4,7 +4,7 @@ template<int>
 struct _Bitset_base
 {	
    // default element size
-	typedef _Uint32t _Ty;
+	typedef UINT _Ty;
 };
 
 template<>
@@ -119,7 +119,7 @@ public:
 				set(_Pos);
 		}
 
-	bitset(_ULonglong _Val)
+	bitset(uint64_t _Val)
 
  #else /* _HAS_CPP0X */
 	bitset(unsigned long _Val)
@@ -278,26 +278,26 @@ public:
 
 	unsigned long to_ulong() const
 		{	// convert bitset to unsigned long
-		_ULonglong _Val = to_ullong();
+		uint64_t _Val = to_ullong();
 		unsigned long _Ans = (unsigned long)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 		}
 
-	_ULonglong to_ullong() const
+	uint64_t to_ullong() const
 		{	// convert bitset to unsigned long long
 		enum
 			{	// cause zero divide if unsigned long long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (_ULonglong) % sizeof (_Ty) == 0)};
+				/ (int)(sizeof (uint64_t) % sizeof (_Ty) == 0)};
 
 		int _Wpos = _Words;
-		for (; (int)(sizeof (_ULonglong) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		for (; (int)(sizeof (uint64_t) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		_ULonglong _Val = _Array[_Wpos];
+		uint64_t _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
 		return (_Val);
@@ -422,10 +422,6 @@ private:
 		_Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;
 		}
 
-	template<>
-		void _Trim_if<false>()
-		{	// no bits to trim, do nothing
-		}
 
 	__declspec(noreturn) void _Xinv() const
 		{	// report invalid string element in bitset conversion
@@ -564,3 +560,11 @@ public:
  * Copyright (c) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
  * Consult your license regarding permissions and restrictions.
 V5.20:0009 */
+
+
+template<size_t _Bits>
+class 
+void bitset::_Trim_if<false>()
+{	// no bits to trim, do nothing
+}
+
