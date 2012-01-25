@@ -18,8 +18,7 @@ EXTERN_C BOOL WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 
 	if (reason == DLL_PROCESS_ATTACH)
 	{
-      // Sleep(15 * 1000);
-      // MessageBox(NULL, "iexca2.dll PROCESS ATTACH", "iexca2.dll", MB_OK);
+
       initialize_primitive_heap();
 		_init_atexit();
 		_init_file();
