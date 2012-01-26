@@ -13,9 +13,9 @@ namespace ca
       {
       }
 
-      void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists)
+      void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
       {
-         return m_psystem->m_file.copy(pszNew, pszOld, bFailIfExists, m_papp);
+         return m_psystem->m_file.copy(pszNew, pszOld, bFailIfExists, eextract, m_papp);
       }
 
       void application::trash_that_is_not_trash(const char * psz)

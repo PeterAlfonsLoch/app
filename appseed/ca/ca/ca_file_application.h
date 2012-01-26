@@ -18,7 +18,7 @@ namespace ca
          application();
 
 
-         virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists = false);
+         virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists = false, e_extract eextract = extract_first);
 
 
          virtual void trash_that_is_not_trash(const char * psz);

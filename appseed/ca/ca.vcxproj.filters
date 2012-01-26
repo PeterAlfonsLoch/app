@@ -3365,6 +3365,9 @@
     <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="ca\ca_enum.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">

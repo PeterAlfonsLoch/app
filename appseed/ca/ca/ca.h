@@ -13,7 +13,6 @@
 #include "nodeapp/operational_system/ca2.h"
 
 
-
 namespace plane
 {
 
@@ -42,6 +41,9 @@ namespace plane
 
 
 #pragma warning(disable: 4250)
+
+
+
 
 
 

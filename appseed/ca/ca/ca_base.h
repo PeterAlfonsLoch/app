@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "ca_enum.h"
 #include "ca_ca.h"
 #include "ca_live_object.h"
 #include "ca_log.h"

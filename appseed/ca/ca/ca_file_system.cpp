@@ -545,14 +545,14 @@ namespace ca
          }
       }
 
-      void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, ::ca::application * papp)
+      void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::ca::application * papp)
       {
          if(bFailIfExists)
          {
             if(exists(pszNew, papp))
                throw "Failed to copy file";
          }
-         if(System.dir().is(psz, papp))
+         if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(gen::str::ends_ci(psz, ".zip"))))
          {
             stringa straPath;
             System.dir().rls(papp, psz, &straPath);
@@ -572,7 +572,13 @@ namespace ca
                strDst = System.dir().path(strDirDst, strDst);
                if(System.dir().is(strSrc, papp))
                {
-                  System.dir().mk(strDst, papp);
+                  if((eextract == extract_first || eextract == extract_none) && (gen::str::ends_ci(psz, ".zip")))
+                  {
+                  }
+                  else
+                  {
+                     System.dir().mk(strDst, papp);
+                  }
                }
                else
                {
@@ -580,7 +586,7 @@ namespace ca
                   {
                      System.dir().mk(System.dir().name(strDst), papp);
                   }
-                  copy(strDst, strSrc, bFailIfExists, papp);
+                  copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
                }
             }
          }
@@ -608,6 +614,7 @@ namespace ca
             ::ca4::compress::null(ofile, ifile);
 
          }
+
       }
 
       void system::move(const char * pszNew, const char * psz)
@@ -671,7 +678,7 @@ namespace ca
                strNew.Format("%s-%s-%d", psz, strCopy.c_str(), i);
                if(!exists(strNew, papp))
                {
-                  copy(strNew, psz, false, papp);
+                  copy(strNew, psz, false, extract_all, papp);
                   return strNew;
                }
                i++;
@@ -690,7 +697,7 @@ namespace ca
                strNew.Format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
                if(!exists(strNew, papp))
                {
-                  copy(strNew, psz, false, papp);
+                  copy(strNew, psz, false, extract_all, papp);
                   return strNew;
                }
                i++;
@@ -793,7 +800,7 @@ namespace ca
          else
          {
             string strNew = System.dir().path(strDest, name_(path));
-            copy(strNew, path, false, papp);
+            copy(strNew, path, false, extract_all, papp);
             return strNew;
          }
       }
