@@ -842,16 +842,35 @@ namespace fontopus
 
       ::ca::application * papp = get_app();
 
-      {
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
-         set["disable_ca2_sessid"] = true;
-         set["app"] = papp;
-         Application.http().get(strGetFontopus, m_strFontopusServer, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-      }
-
       url_domain domainFontopus;
+
+      for(int iRetry = 0; iRetry <= 8; iRetry++)
+      {
+
+         if(iRetry > 0)
+         {
+            Sleep(iRetry * 584);
+         }
+
+         try
+         {
+            gen::property_set post;
+            gen::property_set headers;
+            gen::property_set set;
+            set["disable_ca2_sessid"] = true;
+            set["app"] = papp;
+            Application.http().get(strGetFontopus, m_strFontopusServer, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
+         }
+         catch(...)
+         {
+            continue;
+         }
+
+         domainFontopus.create(m_strFontopusServer);
+
+         if(domainFontopus.m_strRadix == "fontopus")
+            break;
+      }
 
       domainFontopus.create(m_strFontopusServer);
 

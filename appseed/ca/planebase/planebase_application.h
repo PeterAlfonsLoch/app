@@ -124,6 +124,9 @@ namespace planebase
       virtual ::bergedge::document * get_document();
 
 
+      virtual bool update_appmatter(const char * pszRoot, const char * pszRelative);
+      virtual bool update_appmatter(const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
+
 
    };
 

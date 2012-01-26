@@ -30,9 +30,6 @@ namespace cube2
 
       virtual bool initialize_instance();
 
-      virtual bool on_install();
-      virtual bool on_uninstall();
-
       using cube1::application::request;
       virtual void request(::ca::create_context * pcreatecontext);
 
@@ -42,8 +39,6 @@ namespace cube2
       virtual int send_simple_command(void * osdata, const char * psz, void * osdataSender);
 
 
-      virtual bool update_appmatter(const char * pszRoot, const char * pszRelative);
-      virtual bool update_appmatter(const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
 
 
    };
