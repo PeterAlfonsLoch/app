@@ -85,7 +85,7 @@ bool font_central::Initialize()
 
    memset(&lf, 0, sizeof(lf));
    //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -9;
+   lf.lfHeight = 90;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
