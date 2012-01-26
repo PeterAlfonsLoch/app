@@ -1,17 +1,24 @@
+// bitset standard header
 #pragma once
 
+/*namespace ex1
+{
+   class input_stream;
+   class output_stream;
+}*/
+
+		// TEMPLATE CLASS _Bitset_base
 template<int>
-struct _Bitset_base
-{	
-   // default element size
-	typedef UINT _Ty;
-};
+	struct _Bitset_base
+	{	// default element size
+	typedef _Uint32t _Ty;
+	};
 
 template<>
-struct _Bitset_base<8>
-{	// eight-byte bitset
-   typedef uint64_t  _Ty;
-};
+	struct _Bitset_base<8>
+	{	// eight-byte bitset
+	typedef uint64_t _Ty;
+	};
 
 		// TEMPLATE CLASS bitset
 template<size_t _Bits>
@@ -119,7 +126,7 @@ public:
 				set(_Pos);
 		}
 
-	bitset(uint64_t _Val)
+	bitset(_ULonglong _Val)
 
  #else /* _HAS_CPP0X */
 	bitset(unsigned long _Val)
@@ -132,26 +139,28 @@ public:
 				set(_Pos);
 		}
 
+ #define _BITSET_SIZE_TYPE	\
+	strsize
 
-	explicit bitset(const string & str, strsize _Pos = 0)
+	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos = 0)
 	{	// construct from [_Pos, ...) elements in string
-   	_Construct(_Str, _Pos, - 1, '0', '1');
+		_Construct(_Str, _Pos,basic_string<char, _Tr, _Alloc>::npos, (char)'0', (char)'1');
 	}
 
-	explicit bitset(const string & _Str, strsize _Pos, strsize _Count, char _E0 = '0', char _E1 = '1')
-	{	
-      // construct from [_Pos, _Pos + _Count) elements in string
-	   _Construct(_Str, _Pos, _Count, _E0, _E1);
+	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0 = (char)'0', char _E1 = (char)'1')
+	{	// construct from [_Pos, _Pos + _Count) elements in string
+	_Construct(_Str, _Pos, _Count, _E0, _E1);
 	}
 
 	explicit bitset(const char *_Ptr)
-   {	// initialize from NTBS
-	   string _Str(_Ptr);
+	{	// initialize from NTBS
+		string _Str(_Ptr);
 		_Construct(_Str, 0, _Str.size(), '0', '1');
-   }
+	}
 
-	void _Construct(const string & _Str, strsize _Pos, strsize _Count, char _E0, char _E1)
-	{	// initialize from [_Pos, _Pos + _Count) elements in string
+   void _Construct(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0, char _E1)
+   {	// initialize from [_Pos, _Pos + _Count) elements in string
+		typename basic_string<char, _Tr, _Alloc>::size_type _Num;
 		if (_Str.size() < _Pos)
 			_Xran();	// _Pos off end
 		if (_Str.size() - _Pos < _Count)
@@ -278,35 +287,35 @@ public:
 
 	unsigned long to_ulong() const
 		{	// convert bitset to unsigned long
-		uint64_t _Val = to_ullong();
+		_ULonglong _Val = to_ullong();
 		unsigned long _Ans = (unsigned long)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 		}
 
-	uint64_t to_ullong() const
+	_ULonglong to_ullong() const
 		{	// convert bitset to unsigned long long
 		enum
 			{	// cause zero divide if unsigned long long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (uint64_t) % sizeof (_Ty) == 0)};
+				/ (int)(sizeof (_ULonglong) % sizeof (_Ty) == 0)};
 
 		int _Wpos = _Words;
-		for (; (int)(sizeof (uint64_t) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		for (; (int)(sizeof (_ULonglong) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		uint64_t _Val = _Array[_Wpos];
+		_ULonglong _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
 		return (_Val);
 		}
 
-	string to_string(char _E0 = (char)'0', char _E1 = (char)'1') const
-	{	// convert bitset to string
-		string _Str;
-		strsize _Pos;
+   string to_string(char _E0 = (char)'0', char _E1 = (char)'1') const
+   {	// convert bitset to string
+		basic_string<char, _Tr, _Alloc> _Str;
+		typename basic_string<char, _Tr, _Alloc>::size_type _Pos;
 		_Str.reserve(_Bits);
 
 		for (_Pos = _Bits; 0 < _Pos; )
@@ -315,7 +324,9 @@ public:
 			else
 				_Str += _E0;
 		return (_Str);
-		}
+   }
+
+
 
 	size_t count() const
 		{	// count number of set bits
@@ -422,12 +433,10 @@ private:
 		_Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;
 		}
 
-#ifdef WINDOWS
-      template <>
-      void _Trim_if < false >()
-      {	// no bits to trim, do nothing
-      }
-#endif
+	template<>
+		void _Trim_if<false>()
+		{	// no bits to trim, do nothing
+		}
 
 	__declspec(noreturn) void _Xinv() const
 		{	// report invalid string element in bitset conversion
@@ -472,77 +481,11 @@ template<size_t _Bits> inline
 		return (_Ans ^= _Right);
 		}
 
-/*template<class char,
-	class _Tr,
-	size_t _Bits> inline
-	basic_ostream<char, _Tr>& operator<<(
-		basic_ostream<char, _Tr>& _Ostr, const bitset<_Bits>& _Right)
-	{	// insert bitset as a string
-	const ctype<char>& _Ctype_fac = _USE(_Ostr.getloc(), ctype<char>);
-	const char _E0 = _Ctype_fac.widen('0');
-	const char _E1 = _Ctype_fac.widen('1');
+   /*inline ::ex1::output_stream & operator << (::ex1::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
 
-	return (_Ostr
-		<< _Right.template to_string<char, _Tr, allocator<char> >(
-			_E0, _E1));
-	}
+	inline ::ex1::input_stream & operator>>(::ex1::input_stream  _Istr, bitset<_Bits>& _Right);*/
 
-		// TEMPLATE operator>>
-template<class char,
-	class _Tr,
-	size_t _Bits> inline
-	basic_istream<char, _Tr>& operator>>(
-		basic_istream<char, _Tr>& _Istr, bitset<_Bits>& _Right)
-	{	// extract bitset as a string
-	const ctype<char>& _Ctype_fac = _USE(_Istr.getloc(), ctype<char>);
-	const char _E0 = _Ctype_fac.widen('0');
-	const char _E1 = _Ctype_fac.widen('1');
-	ios_base::iostate _State = ios_base::goodbit;
-	bool _Changed = false;
-	string _Str;
-	const typename basic_istream<char, _Tr>::sentry _Ok(_Istr);
-
-	if (_Ok)
-		{	// valid stream, extract elements
-		_TRY_IO_BEGIN
-		typename _Tr::int_type _Meta = _Istr.rdbuf()->sgetc();
-		for (size_t _Count = _Right.size(); 0 < _Count;
-			_Meta = _Istr.rdbuf()->snextc(), --_Count)
-			{	// test _Meta
-			char _Char;
-			if (_Tr::eq_int_type(_Tr::eof(), _Meta))
-				{	// end of file, quit
-				_State |= ios_base::eofbit;
-				break;
-				}
-			else if ((_Char = _Tr::to_char_type(_Meta)) != _E0
-				&& _Char != _E1)
-				break;	// invalid element
-			else if (_Str.max_size() <= _Str.size())
-				{	// no room in string, give up (unlikely)
-				_State |= ios_base::failbit;
-				break;
-				}
-			else
-				{	// valid, append '0' or '1'
-				if (_Char == _E1)
-					_Str.append(1, '1');
-				else
-					_Str.append(1, '0');
-				_Changed = true;
-				}
-			}
-		_CATCH_IO_(_Istr)
-		}
-
-	if (!_Changed)
-		_State |= ios_base::failbit;
-	_Istr.setstate(_State);
-	_Right = bitset<_Bits>(_Str);	// convert string and store
-	return (_Istr);
-	}
-
- #if _HAS_CPP0X
+/* #if _HAS_CPP0X
 template<class _Kty>
 	class hash;
 
@@ -559,19 +502,11 @@ public:
 		}
 	};
  #endif /* _HAS_CPP0X */
-//_STD_END*/
 
+ //#pragma warning(pop)
+ //#pragma pack(pop)
 
 /*
  * Copyright (c) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
  * Consult your license regarding permissions and restrictions.
 V5.20:0009 */
-
-#ifdef MACOS
-
-template < size_t _Bits, bool >
-void bitset < _Bits >::_Trim_if < false >()
-{	// no bits to trim, do nothing
-}
-
-#endif
