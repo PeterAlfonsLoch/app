@@ -2922,7 +2922,7 @@ install_begin:;
       {
          strStage += " " + strParam1;
       }
-      strStage += " : app=bergedge bergedge_start=";
+      strStage += " : app=session session_start=";
       strStage += psz;
       if(strParam2.length() > 0)
       {

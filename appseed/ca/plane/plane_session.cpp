@@ -300,9 +300,9 @@ namespace plane
          {
             if(pcreatecontext->m_spCommandLine->m_strApp == "session")
             {
-               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("bergedge_start"))
+               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
                {
-                  strApp = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_start"];
+                  strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
                }
                else
                {
