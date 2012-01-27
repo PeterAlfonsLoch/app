@@ -4502,6 +4502,17 @@ ok1:
          str.replace("http://laborserver.net/", m_strCa2VFallbackWebSite);
          str.replace("https://fontopus.com/", m_strCa2OpenWebSite);
          str.replace("http://fontopus.com/", m_strCa2OpenWebSite);
+
+         stringa straReplacement;
+         straReplacement.add("ca2inside");
+         straReplacement.add("ca2based");
+
+         stringa straSearch;
+         straSearch.add("ca2inside");
+         straSearch.add("ca2based");
+
+         str = gen::str::random_replace(get_app(), straReplacement, straSearch, str);
+
          return str;
       }
       else

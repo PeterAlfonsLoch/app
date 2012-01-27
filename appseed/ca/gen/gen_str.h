@@ -2,6 +2,7 @@
 
 
 class var;
+class stringa;
 
 
 namespace gen
@@ -72,7 +73,11 @@ namespace gen
       void CLASS_DECL_ca copy(string & str, const char * lpcsz, int iCount);
       string CLASS_DECL_ca replace(const char * pszFind, const char * pszReplace, const char * psz);
       string CLASS_DECL_ca replace_ci(const char * pszFind, const char * pszReplace, const char * psz);
+
+      string CLASS_DECL_ca random_replace(::ca::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
       
+      int CLASS_DECL_ca find_first(const stringa & straSearch, int & iFound, const string & str, int iStart = 0);
+
       int CLASS_DECL_ca find_ci(const string & strFind   , const string & str, int iStart = 0);
       int CLASS_DECL_ca find_ci(const string & strFind   , const char   * psz, int iStart = 0);
       int CLASS_DECL_ca find_ci(const char   * pszFind   , const string & str, int iStart = 0);

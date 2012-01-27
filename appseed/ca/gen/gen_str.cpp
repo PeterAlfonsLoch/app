@@ -388,6 +388,53 @@ namespace gen
       return str;
    }
 
+
+   int CLASS_DECL_ca str::find_first(const stringa & straSearch, int & iFound, const string & str, int iStart)
+   {
+
+      int iFind = -1;
+      iFound = -1;
+
+
+      for(int i = 0; i < straSearch.get_count(); i++)
+      {
+         if(straSearch[i].has_char())
+         {
+            int iSearch = str.find(straSearch[i], iStart);
+            if(iSearch >= 0 && iSearch >= iStart && (iSearch < iFind || iFind < 0))
+            {
+               iFind = iSearch;
+               iFound = i;
+            }
+         }
+      }
+
+      return iFind;
+
+   }
+
+   string CLASS_DECL_ca str::random_replace(::ca::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   {
+
+      string str(psz);
+
+      int iFind;
+      int iFound;
+      int iStart = 0;
+
+      while((iFind = find_first(straSearch, iFound, str, iStart)) >= 0)
+      {
+         if(iFind < iStart)
+            throw "errror";
+         int i = Sys(papp).math().RandRange(0, straReplacement.get_upper_bound());
+         str = str.Left(iFind) + straReplacement[i] + str.Mid(iFind + straSearch[iFound].get_length());
+         iFind += straReplacement[i].get_length();
+         iStart = iFind;
+      }
+
+      return str;
+   }
+
    string str::replace_ci(const char * pszFind, const char * pszReplace, const char * psz)
    {
       int iPos = 0;
