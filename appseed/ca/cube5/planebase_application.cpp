@@ -1186,16 +1186,6 @@ InitFailure:
 
       try
       {
-         if(!::fontopus::application::on_install())
-            return false;
-      }
-      catch(...)
-      {
-         return false;
-      }
-
-      try
-      {
          string strRoot;
          string strDomain;
          if(is_system())
