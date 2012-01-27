@@ -1370,9 +1370,26 @@ InitFailure:
 
       strUrl += System.url().url_encode(strRelative);
 
-      Application.http().download(strUrl, strFile);
+      primitive::memory mem(get_app());
 
-      System.compress().extract_all(strFile, this);
+      Application.http().get(strUrl, mem);
+
+      primitive::memory_file file(get_app(), &mem);
+
+      if(mem.get_size() > 0)
+      {
+
+         zip::Util util;
+
+         string strDir = strFile;
+
+         gen::str::ends_eat_ci(strDir, ".zip");
+
+         util.extract_all(strDir, &file);
+
+         //System.compress().extract_all(strFile, this);
+
+      }
 
       return true;
 

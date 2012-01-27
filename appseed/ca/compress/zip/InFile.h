@@ -62,6 +62,7 @@ namespace zip
       virtual BOOL zip_open(const char *,UINT,ex1::file_exception_sp *);
       virtual BOOL zip_open(File * pzfile, const char * lpcszFileName);
 
+      virtual BOOL unzip_open(::ex1::file * pfile);
       virtual BOOL unzip_open(const char *,UINT,ex1::file_exception_sp *);
       virtual BOOL unzip_open(File * pzfile, const char * lpcszFileName);
 

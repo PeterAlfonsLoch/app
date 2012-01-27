@@ -302,6 +302,71 @@ namespace zip
 
    }
 
+   bool Util::extract_all(const char * pszDir, ::ex1::file * pfile)
+   {
+
+      InFile infile(pfile->get_app());
+
+      if(!infile.unzip_open(pfile))
+      {
+         return false;
+      }
+
+      unzFile pf = infile.get_zip_file()->m_pfUnzip;
+      string str;
+      string wstrFolder;
+      stringa wstraFolder;
+
+
+      unz_file_info fi;
+      if(pf != NULL)
+      {
+         while(true)
+         {
+
+            CHAR szTitle[_MAX_PATH];
+
+            unzGetCurrentFileInfo(
+               pf,
+               &fi,
+               szTitle,
+               _MAX_PATH,
+               NULL, // extra Field
+               0,
+               NULL, // comment
+               0);
+            string strTitle(szTitle);
+            if(gen::str::ends(szTitle, "/") || gen::str::ends(szTitle, "\\"))
+            {
+            }
+            else if(infile.locate(strTitle))
+            {
+
+               ex1::filesp spfile = App(pfile->get_app()).get_file(
+                  Sys(pfile->get_app()).dir().path(pszDir, strTitle),
+                  ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::defer_create_directory);
+
+               
+               if(spfile.is_set())
+               {
+                  infile.dump(spfile);
+               }
+               else
+               {
+               //   return false;
+               }
+            }
+            if(unzGoToNextFile(pf) != UNZ_OK)
+            {
+               break;
+            }
+         }
+      }
+
+      return true;
+
+   }
+
    bool Util::IsUnzipable(::ca::application * papp, const char * lpszFileName)
    {
       string str(lpszFileName);

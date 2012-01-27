@@ -38,6 +38,7 @@ namespace zip
       //return new ex1::filesp(this);
    }
 
+
    BOOL InFile::zip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
    {
       m_filea.remove_all();
@@ -95,6 +96,22 @@ namespace zip
       gen::str::begins_eat(strFile, "/");
       gen::str::begins_eat(strFile, "\\");
       return TRUE;
+   }
+
+   BOOL InFile::unzip_open(ex1::file * pfile)
+   {
+
+      m_filea.remove_all();
+      m_izfilea.remove_all();
+      m_straPath.remove_all();
+      m_straPrefix.remove_all();
+
+      m_filea.add(new File(get_app()));
+      if(!m_filea.last_element().unzip_open(pfile))
+         return false;
+
+      return TRUE;
+
    }
 
    BOOL InFile::unzip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
