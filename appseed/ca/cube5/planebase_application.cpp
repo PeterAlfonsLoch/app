@@ -1323,12 +1323,21 @@ InitFailure:
       }
       localestyle.add_locale_variant(get_locale(), get_locale());
 
+
+      localestyle.add_locale_variant("en", get_style());
+      localestyle.add_locale_variant("en", get_locale());
+      localestyle.add_locale_variant(get_style(), "en");
+      localestyle.add_locale_variant(get_locale(), "en");
+      localestyle.add_locale_variant("en", "en");
+
+      
       localestyle.add_locale_variant("_std", get_style());
       localestyle.add_locale_variant("_std", get_locale());
       localestyle.add_locale_variant(get_style(), "_std");
       localestyle.add_locale_variant(get_locale(), "_std");
       localestyle.add_locale_variant("_std", "_std");
-      
+
+
       localestyle.finalize();
 
       
