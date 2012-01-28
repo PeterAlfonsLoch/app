@@ -34,7 +34,7 @@ namespace hotplugin
 
       m_pcolorref = (DWORD *) ca2_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
 
-#if !defined(MACOS)
+#if !defined(MACOS) && !defined(LINUX)
       m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
 #endif
 
@@ -46,7 +46,7 @@ namespace hotplugin
    plugin::~plugin()
    {
       free_memory();
-#if !defined(MACOS)
+#if !defined(MACOS) && !defined(LINUX)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)
@@ -439,9 +439,9 @@ float sin_dup(float x)
          iStep = iRadius * 2 - iStep;
 
       wstring wstr;
-      
+
       wstr = m_strStatus;
-      
+
 #ifdef WINDOWS
 
       Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
@@ -507,11 +507,11 @@ float sin_dup(float x)
 
          delete psf;
 
-      
+
       }
 #endif
-      
-      
+
+
 
    }
 

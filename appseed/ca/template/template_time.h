@@ -1,7 +1,7 @@
 #pragma once
 
 #include "definition.h"
-#include "primitive_string.h"
+#include "primitive/primitive_string.h"
 
 class CLASS_DECL_ca date_span
 {
@@ -59,7 +59,7 @@ private:
 class CLASS_DECL_ca time
 {
 private:
-   
+
    __time64_t m_time;
 
 public:

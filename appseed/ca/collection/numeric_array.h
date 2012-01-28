@@ -15,11 +15,15 @@ namespace gen
 
 
       inline CLASS_DECL_ca string from_number(int i) { return itoa(i); }
+#if !defined(LINUX)
       inline CLASS_DECL_ca string from_number(long i) { return l2string(i); }
+#endif
       inline CLASS_DECL_ca string from_number(int64_t i) { return i64toa(i); }
       inline CLASS_DECL_ca string from_number(double d) { return to_string(d); }
-      inline CLASS_DECL_ca string from_number(unsigned long ul) { return i64toa(ul); }
       inline CLASS_DECL_ca string from_number(unsigned int ui) { return i64toa(ui); }
+#if !defined(LINUX)
+      inline CLASS_DECL_ca string from_number(unsigned long ul) { return i64toa(ul); }
+#endif
       inline CLASS_DECL_ca string from_number(uint64_t d) { return bigint2string(d); }
 
       template < >

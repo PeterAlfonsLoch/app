@@ -1,6 +1,11 @@
 #pragma once
 
 
+#if defined(LINUX)
+#include <string.h>
+#endif
+
+
 class var;
 
 
@@ -98,6 +103,8 @@ namespace gen
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
 		      return _strnicmp(left.c_str(),right.c_str(),len);
+      #elif defined(LINUX)
+            return strnicmp_dup(left.c_str(), right.c_str(), len);
       #else
 		      return strncasecmp(left.c_str(),right.c_str(),len);
       #endif
@@ -105,6 +112,8 @@ namespace gen
 	      else {
       #if defined(WIN32) || defined(WIN64)
 		      return _stricmp(left.c_str(),right.c_str());
+      #elif defined(LINUX)
+            return stricmp_dup(left.c_str(), right.c_str());
       #else
 		      return strcasecmp(left.c_str(),right.c_str());
       #endif
@@ -120,6 +129,8 @@ namespace gen
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
 		      return _strnicmp(left,right.c_str(),len);
+      #elif defined(LINUX)
+            return strnicmp_dup(left, right.c_str(), len);
       #else
 		      return strncasecmp(left,right.c_str(),len);
       #endif
@@ -127,6 +138,8 @@ namespace gen
 	      else {
       #if defined(WIN32) || defined(WIN64)
 		      return _stricmp(left,right.c_str());
+      #elif defined(LINUX)
+            return stricmp_dup(left, right.c_str());
       #else
 		      return strcasecmp(left,right.c_str());
       #endif
@@ -142,6 +155,8 @@ namespace gen
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
 		      return _strnicmp(left.c_str(),right,len);
+      #elif defined(LINUX)
+            return strnicmp_dup(left.c_str(), right, len);
       #else
 		      return strncasecmp(left.c_str(),right,len);
       #endif
@@ -149,6 +164,8 @@ namespace gen
 	      else {
       #if defined(WIN32) || defined(WIN64)
 		      return _stricmp(left.c_str(),right);
+      #elif defined(LINUX)
+            return stricmp_dup(left.c_str(), right);
       #else
 		      return strcasecmp(left.c_str(),right);
       #endif
@@ -164,6 +181,8 @@ namespace gen
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
 		      return _strnicmp(left,right,len);
+      #elif defined(LINUX)
+            return strnicmp_dup(left, right, len);
       #else
 		      return strncasecmp(left,right,len);
       #endif
@@ -171,6 +190,8 @@ namespace gen
 	      else {
       #if defined(WIN32) || defined(WIN64)
 		      return _stricmp(left,right);
+      #elif defined(LINUX)
+            return stricmp_dup(left, right);
       #else
 		      return strcasecmp(left,right);
       #endif

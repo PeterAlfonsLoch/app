@@ -238,7 +238,7 @@ public:
 #ifdef _WINDOWS
    var & operator = (unsigned long ul);
 #endif
-#ifdef LINUX
+#ifndef LINUX
    var & operator = (long int l);
 #endif
    var & operator = (unsigned int ui);
