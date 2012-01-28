@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A5E0A0A14D3DB5900E91EC4 /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5E0A0914D3DB5900E91EC4 /* macos.h */; };
+		9A5E0A0C14D448F300E91EC4 /* plane_system_radix_factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5E0A0B14D448F300E91EC4 /* plane_system_radix_factory.h */; };
+		9A5E0A0E14D44DA700E91EC4 /* exception_overflow_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5E0A0D14D44DA700E91EC4 /* exception_overflow_error.h */; };
+		9A5E0A1014D44E4400E91EC4 /* exception_overflow_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5E0A0F14D44E4300E91EC4 /* exception_overflow_error.cpp */; };
 		9A88ADE114C2CA2E006B4023 /* api_muldiv64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A65E14C2CA2C006B4023 /* api_muldiv64.cpp */; };
 		9A88ADE214C2CA2E006B4023 /* api_str.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A65F14C2CA2C006B4023 /* api_str.cpp */; };
 		9A88ADE314C2CA2E006B4023 /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A66014C2CA2C006B4023 /* debug.cpp */; };
@@ -1021,9 +1025,6 @@
 		9A88B1D414C2CA2F006B4023 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8514C2CA2C006B4023 /* universal.h */; };
 		9A88B1D514C2CA2F006B4023 /* UTF8Prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA8614C2CA2C006B4023 /* UTF8Prober.cpp */; };
 		9A88B1D614C2CA2F006B4023 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8714C2CA2C006B4023 /* UTF8Prober.h */; };
-		9A88B1D714C2CA2F006B4023 /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA8914C2CA2C006B4023 /* debug.cpp */; };
-		9A88B1D814C2CA2F006B4023 /* linux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA8A14C2CA2C006B4023 /* linux.cpp */; };
-		9A88B1D914C2CA2F006B4023 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8B14C2CA2C006B4023 /* linux.h */; };
 		9A88B1DA14C2CA2F006B4023 /* mail.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8D14C2CA2C006B4023 /* mail.h */; };
 		9A88B1DB14C2CA2F006B4023 /* mail_pop3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA8E14C2CA2C006B4023 /* mail_pop3.cpp */; };
 		9A88B1DC14C2CA2F006B4023 /* mail_pop3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8F14C2CA2C006B4023 /* mail_pop3.h */; };
@@ -1821,6 +1822,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A5E0A0914D3DB5900E91EC4 /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = macos.h; path = macos/macos.h; sourceTree = "<group>"; };
+		9A5E0A0B14D448F300E91EC4 /* plane_system_radix_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plane_system_radix_factory.h; sourceTree = "<group>"; };
+		9A5E0A0D14D44DA700E91EC4 /* exception_overflow_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_overflow_error.h; sourceTree = "<group>"; };
+		9A5E0A0F14D44E4300E91EC4 /* exception_overflow_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_overflow_error.cpp; sourceTree = "<group>"; };
 		9A8897B614C2C8DB006B4023 /* libca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A88A65E14C2CA2C006B4023 /* api_muldiv64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_muldiv64.cpp; sourceTree = "<group>"; };
 		9A88A65F14C2CA2C006B4023 /* api_str.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_str.cpp; sourceTree = "<group>"; };
@@ -2853,9 +2858,6 @@
 		9A88AA8514C2CA2C006B4023 /* universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal.h; sourceTree = "<group>"; };
 		9A88AA8614C2CA2C006B4023 /* UTF8Prober.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8Prober.cpp; sourceTree = "<group>"; };
 		9A88AA8714C2CA2C006B4023 /* UTF8Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8Prober.h; sourceTree = "<group>"; };
-		9A88AA8914C2CA2C006B4023 /* debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
-		9A88AA8A14C2CA2C006B4023 /* linux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linux.cpp; sourceTree = "<group>"; };
-		9A88AA8B14C2CA2C006B4023 /* linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linux.h; sourceTree = "<group>"; };
 		9A88AA8D14C2CA2C006B4023 /* mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mail.h; sourceTree = "<group>"; };
 		9A88AA8E14C2CA2C006B4023 /* mail_pop3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mail_pop3.cpp; sourceTree = "<group>"; };
 		9A88AA8F14C2CA2C006B4023 /* mail_pop3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mail_pop3.h; sourceTree = "<group>"; };
@@ -3690,6 +3692,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A5E0A0714D3DA8D00E91EC4 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				9A5E0A0914D3DB5900E91EC4 /* macos.h */,
+			);
+			name = macos;
+			sourceTree = "<group>";
+		};
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
@@ -3717,7 +3727,7 @@
 				9A88AA4314C2CA2C006B4023 /* install */,
 				9A88AA4714C2CA2C006B4023 /* javascript */,
 				9A88AA4F14C2CA2C006B4023 /* libcharguess */,
-				9A88AA8814C2CA2C006B4023 /* linux */,
+				9A5E0A0714D3DA8D00E91EC4 /* macos */,
 				9A88AA8C14C2CA2C006B4023 /* mail */,
 				9A88AA9A14C2CA2C006B4023 /* math */,
 				9A88AAA914C2CA2C006B4023 /* multithreading */,
@@ -4663,6 +4673,8 @@
 				9A88A97E14C2CA2C006B4023 /* exception_not_implemented.cpp */,
 				9A88A97F14C2CA2C006B4023 /* exception_not_licensed_exception.cpp */,
 				9A88A98014C2CA2C006B4023 /* exception_not_supported_exception.cpp */,
+				9A5E0A0F14D44E4300E91EC4 /* exception_overflow_error.cpp */,
+				9A5E0A0D14D44DA700E91EC4 /* exception_overflow_error.h */,
 				9A88A98114C2CA2C006B4023 /* exception_range_error.cpp */,
 				9A88A98214C2CA2C006B4023 /* exception_range_error.h */,
 				9A88A98314C2CA2C006B4023 /* exception_runtime_error.cpp */,
@@ -4979,16 +4991,6 @@
 			path = Debug;
 			sourceTree = "<group>";
 		};
-		9A88AA8814C2CA2C006B4023 /* linux */ = {
-			isa = PBXGroup;
-			children = (
-				9A88AA8914C2CA2C006B4023 /* debug.cpp */,
-				9A88AA8A14C2CA2C006B4023 /* linux.cpp */,
-				9A88AA8B14C2CA2C006B4023 /* linux.h */,
-			);
-			path = linux;
-			sourceTree = "<group>";
-		};
 		9A88AA8C14C2CA2C006B4023 /* mail */ = {
 			isa = PBXGroup;
 			children = (
@@ -5110,6 +5112,7 @@
 				9A88AAE814C2CA2C006B4023 /* plane_system_allocate.h */,
 				9A88AAE914C2CA2C006B4023 /* plane_system_ca_template.h */,
 				9A88AAEA14C2CA2C006B4023 /* plane_system_template_trace.h */,
+				9A5E0A0B14D448F300E91EC4 /* plane_system_radix_factory.h */,
 			);
 			path = plane;
 			sourceTree = "<group>";
@@ -6656,7 +6659,6 @@
 				9A88B1D214C2CA2F006B4023 /* types.h in Headers */,
 				9A88B1D414C2CA2F006B4023 /* universal.h in Headers */,
 				9A88B1D614C2CA2F006B4023 /* UTF8Prober.h in Headers */,
-				9A88B1D914C2CA2F006B4023 /* linux.h in Headers */,
 				9A88B1DA14C2CA2F006B4023 /* mail.h in Headers */,
 				9A88B1DC14C2CA2F006B4023 /* mail_pop3.h in Headers */,
 				9A88B1E514C2CA2F006B4023 /* pop3_socket.h in Headers */,
@@ -7096,6 +7098,9 @@
 				9A88B4EF14C2CA2F006B4023 /* zlib.h in Headers */,
 				9A88B4F114C2CA2F006B4023 /* zutil.h in Headers */,
 				9A91900414D0A4AA00757806 /* bitset.h in Headers */,
+				9A5E0A0A14D3DB5900E91EC4 /* macos.h in Headers */,
+				9A5E0A0C14D448F300E91EC4 /* plane_system_radix_factory.h in Headers */,
+				9A5E0A0E14D44DA700E91EC4 /* exception_overflow_error.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7578,8 +7583,6 @@
 				9A88B1D014C2CA2F006B4023 /* SJISProber.cpp in Sources */,
 				9A88B1D314C2CA2F006B4023 /* universal.cpp in Sources */,
 				9A88B1D514C2CA2F006B4023 /* UTF8Prober.cpp in Sources */,
-				9A88B1D714C2CA2F006B4023 /* debug.cpp in Sources */,
-				9A88B1D814C2CA2F006B4023 /* linux.cpp in Sources */,
 				9A88B1DB14C2CA2F006B4023 /* mail_pop3.cpp in Sources */,
 				9A88B1DD14C2CA2F006B4023 /* mail_pop3_socket.cpp in Sources */,
 				9A88B1DE14C2CA2F006B4023 /* mail_simple_pop3.cpp in Sources */,
@@ -7934,6 +7937,7 @@
 				9A88B4EA14C2CA2F006B4023 /* trees.c in Sources */,
 				9A88B4EC14C2CA2F006B4023 /* uncompr.c in Sources */,
 				9A88B4F014C2CA2F006B4023 /* zutil.c in Sources */,
+				9A5E0A1014D44E4400E91EC4 /* exception_overflow_error.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

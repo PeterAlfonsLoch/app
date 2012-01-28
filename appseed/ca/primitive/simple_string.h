@@ -69,7 +69,7 @@ extern "C"
       virtual string_manager_interface* Clone() = 0;
       };
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
    #define _AtlInterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
    #define _AtlInterlockedDecrement(ptr) __sync_sub_and_fetch(ptr, 1)
 #else

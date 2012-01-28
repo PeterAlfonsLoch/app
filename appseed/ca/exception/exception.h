@@ -15,6 +15,7 @@ namespace win
 }
 
 #include "error_exception.h"
+#include "exception_overflow_error.h"
 #include "exception_range_error.h"
 #include "exception_runtime_error.h"
 #include "not_implemented.h"

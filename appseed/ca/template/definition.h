@@ -174,7 +174,7 @@ do {                                           \
 #define ATLENSURE_RETURN(expr) ATLENSURE_RETURN_HR(expr, E_FAIL)
 #endif
 
-#if defined(VC6) || defined(VC71) || defined(LINUX)
+#if defined(VC6) || defined(VC71) || defined(LINUX) || defined(MACOS)
 #define _SECURE_ATL 0
 #elif !defined(_SECURE_ATL)
 #define _SECURE_ATL 1

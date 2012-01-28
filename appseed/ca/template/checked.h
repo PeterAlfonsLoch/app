@@ -431,7 +431,7 @@ namespace _template
    inline void __cdecl itoa_s(int _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
       (_SizeInChars);
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       ::ltoa_dup(_Buf, _Val, _Radix);
 #elif defined(VC6) || defined(VC71)
       ::itoa(_Val, _Buf, _Radix);
@@ -449,7 +449,7 @@ namespace _template
    inline void __cdecl ltoa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
       (_SizeInChars);
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       ::ltoa_dup(_Buf, _Val, _Radix);
 #else
       ::_ltoa(_Val, _Buf, _Radix);
@@ -465,7 +465,7 @@ namespace _template
    inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
       (_SizeInChars);
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       ::ultoa_dup(_Buf, _Val, _Radix);
 #else
       ::_ultoa(_Val, _Buf, _Radix);
@@ -487,7 +487,7 @@ namespace _template
    inline void __cdecl i64toa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
       (_SizeInChars);
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       ::ltoa_dup(_Buf, _Val, _Radix);
 #else
       ::_i64toa(_Val, _Buf, _Radix);
@@ -503,7 +503,7 @@ namespace _template
    inline void __cdecl ui64toa_s(uint64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
       (_SizeInChars);
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       ::ultoa_dup(_Buf, _Val, _Radix);
 #else
       ::_ui64toa(_Val, _Buf, _Radix);
@@ -519,7 +519,7 @@ namespace _template
    inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int _Ndec)
    {
       (_SizeInChars);
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       ::gcvt(_Value, _Ndec, _Buffer);
 #else
       ::_gcvt(_Value, _Ndec, _Buffer);

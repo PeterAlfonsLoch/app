@@ -303,6 +303,15 @@ inline tstring time::Format(tstring & str, const char * pszFormat) const
     {
       szBuffer[0] = '\0';
     }
+#elif defined(MACOS)
+#if __WORDSIZE != 64
+#pragma error "error: long should 8-byte on MACOS"
+#endif
+   struct tm* ptmTemp = localtime(&m_time);
+   if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+   {
+      szBuffer[0] = '\0';
+   }
 #elif _SECURE_ATL
    struct tm ptmTemp;
    errno_t err = _localtime64_s(&ptmTemp, &m_time);
@@ -331,7 +340,7 @@ inline tstring time::FormatGmt(tstring & str, const char * pszFormat) const
 
    char szBuffer[maxTimeBufferSize];
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
    struct tm* ptmTemp = gmtime(&m_time);
    if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
     {

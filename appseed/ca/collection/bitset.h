@@ -11,7 +11,7 @@
 template<int>
 	struct _Bitset_base
 	{	// default element size
-	typedef _Uint32t _Ty;
+	typedef uint32_t _Ty;
 	};
 
 template<>
@@ -27,62 +27,82 @@ template<size_t _Bits>
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>
-	{	// store fixed-length sequence of Boolean elements
+{	// store fixed-length sequence of Boolean elements
 public:
+   
+   
 	enum {_EEN_BITS = _Bits};	// helper for expression evaluator
+   
+   
 	typedef _Bitset_base<_Bits <= 8 ? 1
-		: _Bits <= 16 ? 2
-		: _Bits <= 32 ? 4
-		: 8> _Mybase;
+   : _Bits <= 16 ? 2
+   : _Bits <= 32 ? 4
+   : 8> _Mybase;
 	typedef typename	// sic
-		_Mybase::_Ty _Ty;
-
+   _Mybase::_Ty _Ty;
+   
 	typedef bool element_type;	// retained
-
-		// CLASS reference
+   
+   // CLASS reference
 	class reference
-		{	// proxy for an element
+   {	// proxy for an element
 		friend class bitset<_Bits>;
-
+      
 	public:
 		reference& operator=(bool _Val)
-			{	// assign Boolean to element
+      {	// assign Boolean to element
 			_Pbitset->set(_Mypos, _Val);
 			return (*this);
-			}
-
+      }
+      
 		reference& operator=(const reference& _Bitref)
-			{	// assign reference to element
+      {	// assign reference to element
 			_Pbitset->set(_Mypos, bool(_Bitref));
 			return (*this);
-			}
-
+      }
+      
 		reference& flip()
-			{	// complement stored element
+      {	// complement stored element
 			_Pbitset->flip(_Mypos);
 			return (*this);
-			}
-
+      }
+      
 		bool operator~() const
-			{	// return complemented element
+      {	// return complemented element
 			return (!_Pbitset->test(_Mypos));
-			}
-
+      }
+      
 		operator bool() const
-			{	// return element
+      {	// return element
 			return (_Pbitset->test(_Mypos));
-			}
-
+      }
+      
 	private:
 		reference(bitset<_Bits>& _Bitset, size_t _Pos)
-			: _Pbitset(&_Bitset), _Mypos(_Pos)
-			{	// construct from bitset reference and position
-			}
-
+      : _Pbitset(&_Bitset), _Mypos(_Pos)
+      {	// construct from bitset reference and position
+      }
+      
 		bitset<_Bits> *_Pbitset;	// pointer to the bitset
 		size_t _Mypos;	// position of element in bitset
-		};
+   };
+   
+   
+private:
 
+   enum
+   {	// parameters for packing bits into words
+		_Bitsperword = (int)(CHAR_BIT * sizeof (_Ty)),	// bits in each word
+		_Words = (int)(_Bits == 0
+                     ? 0 : (_Bits - 1) / _Bitsperword)};	// NB: number of words - 1
+
+   
+	_Ty _Array[_Words + 1];	// the set of bits
+   
+   
+public:
+   
+   
 	bool at(size_t _Pos) const	// retained
 		{	// subscript nonmutable sequence with checking
 		return (test(_Pos));
@@ -144,7 +164,7 @@ public:
 
 	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos = 0)
 	{	// construct from [_Pos, ...) elements in string
-		_Construct(_Str, _Pos,basic_string<char, _Tr, _Alloc>::npos, (char)'0', (char)'1');
+		_Construct(_Str, _Pos, -1, (char)'0', (char)'1');
 	}
 
 	explicit bitset(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0 = (char)'0', char _E1 = (char)'1')
@@ -160,7 +180,7 @@ public:
 
    void _Construct(const string & _Str, _BITSET_SIZE_TYPE _Pos, _BITSET_SIZE_TYPE _Count, char _E0, char _E1)
    {	// initialize from [_Pos, _Pos + _Count) elements in string
-		typename basic_string<char, _Tr, _Alloc>::size_type _Num;
+		strsize _Num;
 		if (_Str.size() < _Pos)
 			_Xran();	// _Pos off end
 		if (_Str.size() - _Pos < _Count)
@@ -286,36 +306,36 @@ public:
 		}
 
 	unsigned long to_ulong() const
-		{	// convert bitset to unsigned long
-		_ULonglong _Val = to_ullong();
+   {	// convert bitset to unsigned long
+		uint64_t _Val = to_ullong();
 		unsigned long _Ans = (unsigned long)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
-		}
+	}
 
-	_ULonglong to_ullong() const
-		{	// convert bitset to unsigned long long
+	uint64_t to_ullong() const
+	{	// convert bitset to unsigned long long
 		enum
 			{	// cause zero divide if unsigned long long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (_ULonglong) % sizeof (_Ty) == 0)};
+				/ (int)(sizeof (uint64_t) % sizeof (_Ty) == 0)};
 
 		int _Wpos = _Words;
-		for (; (int)(sizeof (_ULonglong) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		for (; (int)(sizeof (uint64_t) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		_ULonglong _Val = _Array[_Wpos];
+		uint64_t _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
-		return (_Val);
+   return (_Val);
 		}
 
    string to_string(char _E0 = (char)'0', char _E1 = (char)'1') const
    {	// convert bitset to string
-		basic_string<char, _Tr, _Alloc> _Str;
-		typename basic_string<char, _Tr, _Alloc>::size_type _Pos;
+		string _Str;
+		strsize _Pos;
 		_Str.reserve(_Bits);
 
 		for (_Pos = _Bits; 0 < _Pos; )
@@ -408,11 +428,6 @@ public:
 		}
 
 private:
-	enum
-		{	// parameters for packing bits into words
-		_Bitsperword = (int)(CHAR_BIT * sizeof (_Ty)),	// bits in each word
-		_Words = (int)(_Bits == 0
-			? 0 : (_Bits - 1) / _Bitsperword)};	// NB: number of words - 1
 
 	void _Tidy(_Ty _Wordval = 0)
 		{	// set all words to _Wordval
@@ -430,31 +445,28 @@ private:
 	template<bool _Has_bits>
 		void _Trim_if()
 		{	// bits to trim, remove them
-		_Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;
+         if(_Has_bits)
+         {
+            _Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;
+         }
 		}
-
-	template<>
-		void _Trim_if<false>()
-		{	// no bits to trim, do nothing
-		}
-
+      
 	__declspec(noreturn) void _Xinv() const
-		{	// report invalid string element in bitset conversion
-		_Xinvalid_argument("invalid bitset<N> char");
-		}
+   {	// report invalid string element in bitset conversion
+		throw invalid_argument_exception("invalid bitset<N> char");
+	}
 
 	__declspec(noreturn) void _Xoflo() const
-		{	// report converted value too big to represent
-		_Xoverflow_error("bitset<N> overflow");
-		}
+	{	// report converted value too big to represent
+		throw overflow_error("bitset<N> overflow");
+	}
 
 	__declspec(noreturn) void _Xran() const
-		{	// report bit index out of range
-		_Xout_of_range("invalid bitset<N> position");
-		}
+	{	// report bit index out of range
+		throw range_error("invalid bitset<N> position");
+	}
 
-	_Ty _Array[_Words + 1];	// the set of bits
-	};
+};
 
 		// bitset TEMPLATE FUNCTIONS
 template<size_t _Bits> inline
@@ -510,3 +522,7 @@ public:
  * Copyright (c) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
  * Consult your license regarding permissions and restrictions.
 V5.20:0009 */
+
+
+
+

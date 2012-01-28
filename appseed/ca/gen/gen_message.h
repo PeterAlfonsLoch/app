@@ -36,7 +36,7 @@ class BaseCommand;
 
 #define USER_MESSAGE 1024
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 #define WM_APP 0x8000
 #define WM_USER                         0x0400
 #endif

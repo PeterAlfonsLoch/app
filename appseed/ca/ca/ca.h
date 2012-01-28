@@ -68,8 +68,9 @@ extern "C"
 
 #pragma pointers_to_members( full_generality, virtual_inheritance )
 
-
-#ifdef LINUX
+#if defined(MACOS)
+#include "macos/macos.h"
+#elif defined(LINUX)
 #include "linux/linux.h"
 #endif
 

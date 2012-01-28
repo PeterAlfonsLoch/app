@@ -553,18 +553,7 @@ namespace radix
 
 
 
-namespace ca
-{
 
-
-   template < class IFACE >
-   interface_application < IFACE > :: interface_application()
-   {
-      (dynamic_cast < ::radix::application * > (this->m_papp))->m_signal.connect(this, &::ca::interface_application < IFACE >::on_signal);
-   }
-
-
-} // namespace ca
 
 
 

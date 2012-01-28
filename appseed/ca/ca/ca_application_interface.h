@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "radix/radix_application.h"
+
+
 namespace ca
 {
 
@@ -20,7 +24,10 @@ namespace ca
    public:
 
 
-      interface_application();
+      interface_application()
+      {
+         (dynamic_cast < ::radix::application * > (this->m_papp))->m_signal.connect(this, &::ca::interface_application < IFACE >::on_signal);
+      }
 
       void on_signal(gen::signal_object * pobj)
       {
@@ -33,8 +40,8 @@ namespace ca
 
    };
 
-
-
+   
+   
 } // namespace mixeruserbase
 
 
