@@ -185,7 +185,7 @@ namespace ca
    // Update/Painting Functions
       virtual ::ca::graphics * GetDC();
       virtual ::ca::graphics * GetWindowDC();
-      virtual int ReleaseDC(::ca::graphics * pgraphics);
+      virtual BOOL ReleaseDC(::ca::graphics * pgraphics);
       virtual void Print(::ca::graphics * pgraphics, DWORD dwFlags) const;
       virtual void PrintClient(::ca::graphics * pgraphics, DWORD dwFlags) const;
 
