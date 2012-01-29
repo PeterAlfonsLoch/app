@@ -31,3 +31,20 @@ typedef unsigned long HRESULT;
 
 void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ULONG_PTR *lpArguments);
 #define EXCEPTION_NONCONTINUABLE 1
+
+
+namespace ex1
+{
+
+
+   class file;
+
+
+} // namespace ex1
+
+
+typedef ::ex1::file * HFILE;
+
+
+
+

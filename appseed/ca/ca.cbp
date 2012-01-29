@@ -251,6 +251,7 @@
 		<Unit filename="collection/base_array.h" />
 		<Unit filename="collection/bit_array.cpp" />
 		<Unit filename="collection/bit_array.h" />
+		<Unit filename="collection/bitset.h" />
 		<Unit filename="collection/class_sort_array.cpp" />
 		<Unit filename="collection/class_sort_array.h" />
 		<Unit filename="collection/collection.h" />
@@ -1012,6 +1013,7 @@
 		<Unit filename="gen/gen_signal_thread.h" />
 		<Unit filename="gen/gen_str.cpp" />
 		<Unit filename="gen/gen_str.h" />
+		<Unit filename="gen/gen_str2.h" />
 		<Unit filename="gen/gen_string_tokenizer.cpp" />
 		<Unit filename="gen/gen_string_tokenizer.h" />
 		<Unit filename="gen/gen_system.cpp" />
@@ -1605,9 +1607,9 @@
 		<Unit filename="template/template_old2.h" />
 		<Unit filename="template/template_std_pair.h" />
 		<Unit filename="template/template_time.cpp" />
+		<Unit filename="template/template_time.h" />
 		<Unit filename="template/template_trace.cpp" />
 		<Unit filename="template/template_trace_module_manager.cpp" />
-		<Unit filename="template/time.h" />
 		<Unit filename="template/trace.h" />
 		<Unit filename="template/trace_module_manager.h" />
 		<Unit filename="user/user.h" />

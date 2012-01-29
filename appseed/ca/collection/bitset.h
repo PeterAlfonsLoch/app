@@ -29,65 +29,65 @@ template<size_t _Bits>
 			: 8>
 {	// store fixed-length sequence of Boolean elements
 public:
-   
-   
+
+
 	enum {_EEN_BITS = _Bits};	// helper for expression evaluator
-   
-   
+
+
 	typedef _Bitset_base<_Bits <= 8 ? 1
    : _Bits <= 16 ? 2
    : _Bits <= 32 ? 4
    : 8> _Mybase;
 	typedef typename	// sic
    _Mybase::_Ty _Ty;
-   
+
 	typedef bool element_type;	// retained
-   
+
    // CLASS reference
 	class reference
    {	// proxy for an element
 		friend class bitset<_Bits>;
-      
+
 	public:
 		reference& operator=(bool _Val)
       {	// assign Boolean to element
 			_Pbitset->set(_Mypos, _Val);
 			return (*this);
       }
-      
+
 		reference& operator=(const reference& _Bitref)
       {	// assign reference to element
 			_Pbitset->set(_Mypos, bool(_Bitref));
 			return (*this);
       }
-      
+
 		reference& flip()
       {	// complement stored element
 			_Pbitset->flip(_Mypos);
 			return (*this);
       }
-      
+
 		bool operator~() const
       {	// return complemented element
 			return (!_Pbitset->test(_Mypos));
       }
-      
+
 		operator bool() const
       {	// return element
 			return (_Pbitset->test(_Mypos));
       }
-      
+
 	private:
 		reference(bitset<_Bits>& _Bitset, size_t _Pos)
       : _Pbitset(&_Bitset), _Mypos(_Pos)
       {	// construct from bitset reference and position
       }
-      
+
 		bitset<_Bits> *_Pbitset;	// pointer to the bitset
 		size_t _Mypos;	// position of element in bitset
    };
-   
-   
+
+
 private:
 
    enum
@@ -96,13 +96,13 @@ private:
 		_Words = (int)(_Bits == 0
                      ? 0 : (_Bits - 1) / _Bitsperword)};	// NB: number of words - 1
 
-   
+
 	_Ty _Array[_Words + 1];	// the set of bits
-   
-   
+
+
 public:
-   
-   
+
+
 	bool at(size_t _Pos) const	// retained
 		{	// subscript nonmutable sequence with checking
 		return (test(_Pos));
@@ -450,18 +450,18 @@ private:
             _Array[_Words] &= ((_Ty)1 << _Bits % _Bitsperword) - 1;
          }
 		}
-      
-	__declspec(noreturn) void _Xinv() const
+
+	void _Xinv() const
    {	// report invalid string element in bitset conversion
 		throw invalid_argument_exception("invalid bitset<N> char");
 	}
 
-	__declspec(noreturn) void _Xoflo() const
+	void _Xoflo() const
 	{	// report converted value too big to represent
 		throw overflow_error("bitset<N> overflow");
 	}
 
-	__declspec(noreturn) void _Xran() const
+	void _Xran() const
 	{	// report bit index out of range
 		throw range_error("invalid bitset<N> position");
 	}

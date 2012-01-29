@@ -17,14 +17,6 @@ namespace ex1
    struct file_status;
 
 
-   class file;
-
-#ifdef LINUX
-
-   typedef file * HFILE;
-
-#endif
-
    /////////////////////////////////////////////////////////////////////////////
    // ex1::filesp - raw unbuffered disk file I/O
 

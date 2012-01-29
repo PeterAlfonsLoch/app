@@ -22,8 +22,8 @@
 	<File name="ca/ca_create_context.h" open="0" top="0" tabpos="22">
 		<Cursor position="345" topLine="3" />
 	</File>
-	<File name="ca/ca_dib.cpp" open="0" top="0" tabpos="38">
-		<Cursor position="45412" topLine="1629" />
+	<File name="ca/ca_dib.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="72373" topLine="2702" />
 	</File>
 	<File name="ca/ca_file_application.cpp" open="0" top="0" tabpos="48">
 		<Cursor position="1449" topLine="45" />
@@ -71,7 +71,7 @@
 		<Cursor position="5007" topLine="184" />
 	</File>
 	<File name="collection/numeric_array.h" open="0" top="0" tabpos="4">
-		<Cursor position="1290" topLine="33" />
+		<Cursor position="734" topLine="6" />
 	</File>
 	<File name="collection/sort_array.h" open="0" top="0" tabpos="6">
 		<Cursor position="2911" topLine="113" />
@@ -84,6 +84,9 @@
 	</File>
 	<File name="ex1/ex1_dynamic_buffer.h" open="0" top="0" tabpos="26">
 		<Cursor position="543" topLine="3" />
+	</File>
+	<File name="ex1/ex1_file.h" open="0" top="0" tabpos="0">
+		<Cursor position="258" topLine="0" />
 	</File>
 	<File name="ex1/ex1_plain_text_stream.h" open="0" top="0" tabpos="20">
 		<Cursor position="6829" topLine="189" />
@@ -105,6 +108,12 @@
 	</File>
 	<File name="gen/gen_holder.h" open="0" top="0" tabpos="16">
 		<Cursor position="4969" topLine="263" />
+	</File>
+	<File name="gen/gen_str2.h" open="0" top="0" tabpos="0">
+		<Cursor position="6020" topLine="167" />
+	</File>
+	<File name="linux/linux.h" open="0" top="0" tabpos="0">
+		<Cursor position="1244" topLine="13" />
 	</File>
 	<File name="multithreading/multithreading_event.h" open="0" top="0" tabpos="7">
 		<Cursor position="447" topLine="1" />
@@ -131,7 +140,7 @@
 		<Cursor position="10160" topLine="238" />
 	</File>
 	<File name="primitive/var.h" open="0" top="0" tabpos="50">
-		<Cursor position="5412" topLine="188" />
+		<Cursor position="6465" topLine="223" />
 	</File>
 	<File name="radix/command.h" open="0" top="0" tabpos="14">
 		<Cursor position="888" topLine="41" />
@@ -177,9 +186,6 @@
 	</File>
 	<File name="template/template_hash.h" open="0" top="0" tabpos="12">
 		<Cursor position="987" topLine="34" />
-	</File>
-	<File name="template/time.h" open="0" top="0" tabpos="5">
-		<Cursor position="1593" topLine="42" />
 	</File>
 	<File name="user/user_interaction.h" open="0" top="0" tabpos="21">
 		<Cursor position="16433" topLine="465" />
