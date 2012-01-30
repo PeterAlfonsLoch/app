@@ -45,9 +45,7 @@ namespace cube
    };
 
    
-   CLASS_DECL_ca2 application & app_cast(::ca::application * papp);
-
-
 } // namespace cube
+
 
 

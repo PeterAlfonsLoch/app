@@ -29,8 +29,8 @@ namespace ca2
       virtual public ::xml::application
    {
    public:
-      ::collection::map < string, string, string_to_string_map *, string_to_string_map * >      m_stringtablemap;
-      ::collection::map < string, string, string_to_string_map *, string_to_string_map * >      m_stringtablemapStd;
+      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
+      ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
       comparable_array < language_string *, language_string * >                                 m_langstrptra;
       string                                                                                    m_strLocale;
       string                                                                                    m_strStyle;
@@ -40,6 +40,10 @@ namespace ca2
       string                                                                                    m_strLicense;
       string                                                                                    m_strBaseSupportId;
       collection::map < int, int, bool, bool > *                                                m_pmapKeyPressed;
+
+
+      string   m_strRoot;
+      string   m_strDomain;
 
 
       
@@ -55,7 +59,9 @@ namespace ca2
 
       virtual string get_locale();
       virtual string get_style();
-      virtual string get_locale_style_dir(const char * pszLocale = NULL, const char * pszStyle = NULL);
+      virtual string get_locale_style_dir(const string & strLocale, const string & strStyle);
+      virtual string get_locale_style_dir(const string & strLocale);
+      virtual string get_locale_style_dir();
 
       virtual void EnableShellOpen();
 
@@ -138,12 +144,10 @@ namespace ca2
 
    };
 
-   inline CLASS_DECL_ca application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
 
 } // namespace ca
 
 
 #include "ca/ca_font.h"
+
+

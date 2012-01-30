@@ -12,7 +12,7 @@ namespace cube2
 
 
       stringa m_straAppInterest;
-      ::collection::map < string, string, HWND, HWND > m_mapAppInterest;
+      ::collection::string_map < HWND, HWND > m_mapAppInterest;
 
 
       static BOOL CALLBACK GetAppsEnumWindowsProc(HWND hwnd, LPARAM lParam);
@@ -43,11 +43,9 @@ namespace cube2
 
    };
 
-   inline application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
 
 
 } // namespace ca
+
+
 

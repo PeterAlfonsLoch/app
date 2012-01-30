@@ -44,7 +44,7 @@
 class LiteHTMLEntityResolver
 {
 private:
-   class CharEntityRefs : public ::collection::map<string, const char *, char, char>
+   class CharEntityRefs : public ::collection::string_map < char, char >
    {
    public:
       CharEntityRefs();

@@ -127,7 +127,7 @@ namespace ca
          flag_discard_to_factory = 2,
          flag_ready_for_delete = 4,
          flag_auto_delete = 8,
-         flag_heap_alloc = 16,
+         //flag_heap_alloc = 16,
          flag_locked = 32,
       };
 

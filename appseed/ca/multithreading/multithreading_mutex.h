@@ -10,19 +10,19 @@ class CLASS_DECL_ca mutex :
 
 {
 public:
-   /* explicit */ mutex(BOOL bInitiallyOwn = FALSE, LPCTSTR lpszName = NULL,
-      LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
-// Implementation
-public:
+
+   mutex(BOOL bInitiallyOwn = FALSE, LPCTSTR lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~mutex();
+
+
 #ifndef _WIN32
    virtual bool lock(const duration & durationTimeout = ::duration::infinite());
 #endif
    bool unlock();
 
 
-   bool is_locked();
+   bool is_locked() const;
 
 
 };

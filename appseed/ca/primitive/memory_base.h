@@ -19,7 +19,7 @@ namespace primitive
 
       memory_container *      m_pcontainer;
 
-      mutex *                 m_pmutex;
+      sp(mutex)               m_spmutex;
       bool                    m_bLockMode;
       bool                    m_bLock;
 

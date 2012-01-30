@@ -27,12 +27,6 @@ namespace userpresence
    };
 
 
-   inline application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
-
-
 } // namespace userpresence
 
 

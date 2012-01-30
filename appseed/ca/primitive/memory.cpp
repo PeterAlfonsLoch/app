@@ -4,6 +4,7 @@
 namespace primitive
 {
 
+
    memory::memory(::ca::application * papp) :
       ca(papp)
    {
@@ -135,6 +136,7 @@ namespace primitive
 
    void memory::free_data()
    {
+
       if(m_pbStorage != NULL)
       {
          m_dwAllocation    = 0;
@@ -148,6 +150,10 @@ namespace primitive
          }
          m_pbStorage       = NULL;
       }
+
    }
 
+
 } // namespace primitive
+
+

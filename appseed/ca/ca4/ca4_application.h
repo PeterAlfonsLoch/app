@@ -115,9 +115,8 @@ namespace ca4
 
    };
 
-   inline application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
 
 } // namespace ca
+
+
+

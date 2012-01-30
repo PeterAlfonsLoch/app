@@ -39,7 +39,6 @@ namespace cube8
 
    };
 
-   CLASS_DECL_ca2 application & app_cast(::ca::ca * papp);
 
    CLASS_DECL_ca2 UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);
 
@@ -48,6 +47,6 @@ namespace cube8
    extern CLASS_DECL_ca2 LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
-
 } // namespace cube8
+
 

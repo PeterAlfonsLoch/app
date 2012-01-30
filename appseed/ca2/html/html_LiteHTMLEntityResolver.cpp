@@ -27,7 +27,7 @@
 #include "StdAfx.h"
 
 LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs() :
-   ::collection::map<string, const char *, char, char>(55)
+   ::collection::string_map < char, char >(55)
 {
    /** C0 Controls and Basic Latin */
    (*this)["quot"]      = '\x22';

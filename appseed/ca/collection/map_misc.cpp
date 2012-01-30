@@ -12,12 +12,12 @@ map_ptr_to_word::map_ptr_to_word(INT_PTR nBlockSize) :
 
 
 map_string_to_ob::map_string_to_ob(INT_PTR nBlockSize) :
-   ::collection::map < string, string, ::radix::object *, ::radix::object * >(nBlockSize)
+   ::collection::map < string, const string &, ::radix::object *, ::radix::object * >(nBlockSize)
 {
 }
 
 map_string_to_ptr::map_string_to_ptr(INT_PTR nBlockSize) :
-   ::collection::map < string, string, void *, void * >(nBlockSize)
+   ::collection::map < string, const string &, void *, void * >(nBlockSize)
 {
 }
 

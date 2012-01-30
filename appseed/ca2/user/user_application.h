@@ -126,15 +126,6 @@ namespace ca2
       };
 
 
-      inline application & app_cast(::ca::application * papp)
-      {
-         return *dynamic_cast < application * > (papp);
-      }
-   ///inline void AppInterface::SetDialogBkColor(COLORREF /*clrCtlBk*/, COLORREF /*clrCtlText*/)
-   //{
-   //}
-
-
    } // namespace user
 
 

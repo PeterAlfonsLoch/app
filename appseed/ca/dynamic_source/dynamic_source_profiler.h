@@ -36,7 +36,7 @@ namespace dynamic_source
 
       
 
-      ::collection::map < string, string, item, item > m_map;
+      ::collection::string_map < item, const item & > m_map;
 
       void enter(const char * psz);
       void leave(const char * psz);

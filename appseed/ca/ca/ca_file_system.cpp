@@ -34,24 +34,43 @@ namespace ca
          return stra == wstrb;
 
       }
+
+
       bool system::path::eat_end_level(string & str, int iLevelCount, const char * lpSeparator)
       {
-         stringa stra;
-         stringa straSeparator;
-         straSeparator.add("/");
-         straSeparator.add("\\");
-         stra.add_smallest_tokens(str, straSeparator, FALSE);
 
-         if(stra.get_data() == straSeparator.get_data())
-            AfxDebugBreak();
+         int iLast = str.length() - 1;
 
-         str.Empty();
-         for(int i = 0; i < (stra.get_size() - iLevelCount); i++)
+         if(iLast < 0)
+            return iLevelCount <= 0;
+
+         while(str[iLast] == '/' || str[iLast] == '\\')
+            iLast--;
+
+         for(int i = 0; i < iLevelCount; i++)
          {
-            str += stra[i];
-            str += lpSeparator;
+            
+            int iFind1 = str.reverse_find('/', iLast);
+            int iFind2 = str.reverse_find('\\', iLast);
+            int iFind = max(iFind1, iFind2);
+
+            if(iFind >= iLast)
+               return false;
+
+            if(iFind < 0)
+               return false;
+
+            iLast = iFind;
+
+            while(str[iLast] == '/' || str[iLast] == '\\')
+               iLast--;
+
          }
+
+         str.Truncate(iLast + 1);
+
          return true;
+
       }
 
       bool system::path::is_relative(const char * psz)
@@ -766,10 +785,11 @@ namespace ca
             if(iFind >= 0)
                return ziputil.exists(papp, strPath);
 
-            if(!App(papp).dir().is(System.dir().name(strPath)))
-               return false;
 
          }
+
+         if(!papp->m_psystem->dir().name_is(strPath, papp))
+            return false;
 
 #ifdef WINDOWS
 

@@ -29,23 +29,6 @@ UINT HashKey(const wchar_t * key)
    return nHash;
 }
 
-#if _MSC_VER >= 1100
-template<> UINT HashKey<const char *> (const char * key)
-#else
-UINT HashKey(const char * key)
-#endif
-{
-   ENSURE_ARG(AfxIsValidString(key));
-   UINT nHash = 0;
-   while (*key)
-      nHash = (nHash<<5) + nHash + *key++;
-   return nHash;
-}
-
-template<> UINT HashKey<string> (string key)
-{
-   return HashKey((const char *) key);
-}
 
 
 

@@ -35,10 +35,16 @@ namespace _template
 
       inline static UINT HashKey (const string & key)
       {
-         register const char * pszKey = key;
+         register uint64_t * puiKey = (uint64_t *) (const char *) key;
          register int counter = key.get_length();
          register UINT nHash = 0;
-         while(counter-- >= 0)nHash = (nHash<<5) + nHash + *pszKey++;
+         while(counter >= sizeof(*puiKey))
+         {
+            nHash = (nHash<<5) + nHash + *puiKey++;
+            counter -= sizeof(*puiKey);
+         }
+         register const char * pszKey = (const char *) puiKey;
+         while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
          return nHash;
       }
 
@@ -64,8 +70,6 @@ namespace _template
 template<> CLASS_DECL_ca UINT HashKey<CComBSTR> (CComBSTR key);
 
 template<> CLASS_DECL_ca UINT HashKey<const wchar_t *> (const wchar_t * key);
-template<> CLASS_DECL_ca UINT HashKey<const char *> (const char * key);
-template<> CLASS_DECL_ca UINT HashKey<string> (string key);
 
 
 template<> inline UINT HashKey<rect> (rect key)

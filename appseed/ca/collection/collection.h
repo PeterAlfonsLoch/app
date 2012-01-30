@@ -111,14 +111,14 @@ public:
 
 
 class CLASS_DECL_ca map_string_to_ptr : 
-   virtual public ::collection::map < string, string, void *, void * >
+   virtual public ::collection::map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(::count nBlockSize = 10);
 };
 
 class CLASS_DECL_ca map_string_to_ob : 
-   virtual public ::collection::map < string, string, ::radix::object *, ::radix::object * >
+   virtual public ::collection::map < string, const string &, ::radix::object *, ::radix::object * >
 {
 public:
    map_string_to_ob(::count nBlockSize = 10);

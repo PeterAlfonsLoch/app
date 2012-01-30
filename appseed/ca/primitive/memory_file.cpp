@@ -10,7 +10,6 @@ namespace primitive
       memory_container (papp)
    {
 
-      m_bSynch       = false;
       m_dwPosition   = 0;
       
       if(iSize > 0)
@@ -25,8 +24,9 @@ namespace primitive
       ca(papp),
       memory_container(papp, pMemory, dwSize)
    {
-      m_bSynch = false;
+
       m_dwPosition = 0;
+
    }
 
 
@@ -34,8 +34,9 @@ namespace primitive
       ca(papp),
       memory_container (papp, memoryfile.get_memory())
    {
-      m_bSynch = false;
+
       m_dwPosition = 0;
+
    }
 
 
@@ -43,8 +44,9 @@ namespace primitive
       ca(papp),
       memory_container (papp, pmemory)
    {
-      m_bSynch = false;
+
       m_dwPosition = 0;
+
    }
 
 
@@ -56,7 +58,9 @@ namespace primitive
 
    ::primitive::memory_size memory_file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
-      single_lock sl(m_spmutex, TRUE);
+      
+      single_lock sl(get_memory()->m_spmutex, TRUE);
+      
       ASSERT(IsValid());
 
       if(m_dwPosition >= this->get_size())
@@ -81,7 +85,7 @@ namespace primitive
    void memory_file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
 
-      single_lock sl(m_spmutex, TRUE);
+      single_lock sl(get_memory()->m_spmutex, TRUE);
       
       ::primitive::memory_size iEndPosition = m_dwPosition + nCount;
 
@@ -110,8 +114,11 @@ namespace primitive
 
    void memory_file::Truncate(file_size size)
    {
-      single_lock sl(m_spmutex, TRUE);
+      
+      single_lock sl(get_memory()->m_spmutex, TRUE);
+
       allocate((::primitive::memory_size) size);
+
       if(m_dwPosition > (::primitive::memory_position) size)
          m_dwPosition = (::primitive::memory_position) size;
 
@@ -122,9 +129,13 @@ namespace primitive
 
    void memory_file::clear()
    {
-      single_lock sl(m_spmutex, TRUE);
-       m_dwPosition = 0;
-       Truncate(0);
+
+      single_lock sl(get_memory()->m_spmutex, TRUE);
+      
+      m_dwPosition = 0;
+      
+      Truncate(0);
+
    }
 
 
@@ -145,7 +156,9 @@ namespace primitive
 
    file_position memory_file::seek(file_offset lOff, ::ex1::e_seek nFrom)
    {
-      single_lock sl(m_spmutex, TRUE);
+
+      single_lock sl(get_memory()->m_spmutex, TRUE);
+
       ASSERT(IsValid());
       ASSERT(nFrom == ::ex1::seek_begin || nFrom == ::ex1::seek_end || nFrom == ::ex1::seek_current);
       //ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
@@ -205,10 +218,14 @@ namespace primitive
 
    memory_size memory_file::remove_begin(void *lpBuf, ::primitive::memory_size uiCount)
    {
-      single_lock sl(m_spmutex, TRUE);
+
+      single_lock sl(get_memory()->m_spmutex, TRUE);
+
       ASSERT(IsValid());
+
       if(uiCount > this->get_size())
          uiCount = this->get_size();
+
       if(lpBuf != NULL)
       {
          memcpy(lpBuf, ((LPBYTE)get_data()), (size_t) uiCount);
@@ -283,7 +300,9 @@ namespace primitive
 
    void memory_file::full_load(const char * psz)
    {
-      single_lock sl(m_spmutex, TRUE);
+
+      single_lock sl(get_memory()->m_spmutex, TRUE);
+      
       ASSERT(IsValid());
 
       primitive::memory storage;

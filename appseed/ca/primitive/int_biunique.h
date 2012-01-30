@@ -1,6 +1,6 @@
 #pragma once
 
-template < class T, class T_to_T = ::collection::attrib_map < T, T, T, T > >
+template < class T, class T_to_T = ::collection::attrib_map < ::collection::map < T, T, T, T > > >
 class  biunique :
    virtual public ex1::byte_serializable
 {

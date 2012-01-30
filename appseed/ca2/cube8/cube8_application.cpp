@@ -25,11 +25,6 @@ namespace cube8
    {
    }
 
-   CLASS_DECL_ca2 application & app_cast(::ca::ca * papp)
-   {
-      return *(dynamic_cast < application * > (papp));
-   }
-
 
 /*   ::ca::application * application::instantiate_application(const char * pszId, ::ca::application_bias * pbias)
    {
@@ -953,6 +948,7 @@ InitFailure:
    {
       return ::ca2::fontopus::application::allocate_new_service();
    }*/
+
 
 } //namespace cube8
 

@@ -136,11 +136,6 @@ namespace planebase
 
    extern CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application;
 
-   inline application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
-
 
 } // namespace cube4
 

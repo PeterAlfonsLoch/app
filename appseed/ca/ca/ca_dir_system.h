@@ -60,6 +60,7 @@ namespace ca
 
          zip::Util *       m_pziputil;
          is_dir_map        m_isdirmap;
+         mutex             m_mutex;
          
 
          system(::ca::application * papp);
@@ -68,7 +69,25 @@ namespace ca
 
          virtual class path & path();
       
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const char * lpcsz2 = NULL);
+
+         virtual string path(const char * lpcszFolder, const char * lpcszRelative);
+         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const char * lpcsz2);
+         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const string & str2);
+         virtual string path(const char * lpcszFolder, const string & strRelative);
+         virtual string path(const char * lpcszFolder, const string & strRelative, const char * lpcsz2);
+         virtual string path(const char * lpcszFolder, const string & strRelative, const string & str2);
+
+         virtual string path(const string & strFolder, const char * lpcszRelative);
+         virtual string path(const string & strFolder, const char * lpcszRelative, const char * lpcsz2);
+         virtual string path(const string & strFolder, const char * lpcszRelative, const string & str2);
+         virtual string path(const string & strFolder, const string & strRelative);
+         virtual string path(const string & strFolder, const string & strRelative, const char * lpcsz2);
+         virtual string path(const string & strFolder, const string & strRelative, const string & str2);
+
+         virtual string simple_path(const string & str1, const string & str2);
+         virtual string simple_path(const string & str1, const string & str2, const string & str3);
+
+
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
          virtual void  ls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
          virtual void  ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
@@ -78,9 +97,15 @@ namespace ca
          virtual void  ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
          virtual bool  has_subdir(::ca::application * papp, const char * lpcsz);
          virtual void  ls_file(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         
          virtual bool  is(const char * lpcsz, ::ca::application * papp);
          virtual bool  is(const string & str, ::ca::application * papp);
          virtual bool  is(const var & var, ::ca::application * papp);
+
+         virtual bool  name_is(const char * lpcsz, ::ca::application * papp);
+         virtual bool  name_is(const string & str, ::ca::application * papp);
+         virtual bool  name_is(const var & var, ::ca::application * papp);
+
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, ::ca::application * papp);
          virtual bool  is_inside_time(const char * lpcsz, ::ca::application * papp);
          virtual void  root_ones(stringa & stra, ::ca::application * papp);
@@ -94,17 +119,26 @@ namespace ca
          virtual string stage(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string stageapp(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string netseed(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+
          // stage in ccvotagus spalib
-         virtual string ca2(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string ca2(const char * lpcsz, const char * lpcsz2 = NULL);
+         virtual string ca2();
+         virtual string ca2(const string & str);
+         virtual string ca2(const string & str, const string & str2);
+         virtual string ca2(const char * lpcsz, const string & str2);
+         virtual string ca2(const string & str, const char * lpcsz2);
+
          virtual string sensitive_ccvotagus(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string ca2module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual void time_square(string &str);
          virtual string time_log(const char * pszId);
 
-         virtual string locale_style(::ca::application * papp, const char * pszLocale = NULL, const char * pszStyle = NULL);
-         virtual string locale_style_matter(::ca::application * papp, const char * pszLocale = NULL, const char * pszStyle = NULL);
-         virtual string matter(::ca::application * papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string locale_style(::ca::application * papp, const string & strLocale, const string & strStyle);
+         virtual string locale_style_matter(::ca::application * papp, const string & strLocale, const string & strStyle);
+         virtual string matter(::ca::application * papp, const string & str, const string & str2);
+         virtual string matter(::ca::application * papp, const string & str);
+         virtual string matter(::ca::application * papp);
 
          virtual string trash_that_is_not_trash(const char * psz);
 

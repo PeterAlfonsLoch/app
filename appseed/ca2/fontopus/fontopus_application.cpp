@@ -105,12 +105,6 @@ namespace ca2
       }
 
 
-      application & app_cast(::ca::ca * pca)
-      {
-         return *dynamic_cast < application * > (pca);
-      }
-
-
    } // namespace fontopus
 
 

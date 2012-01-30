@@ -8,7 +8,7 @@ namespace radix
    inline void * PASCAL object::operator new(size_t nSize)
    {
       void * p = ::operator new(nSize);
-      try
+      /*try
       {
          if(::ca::get_thread_state() != NULL)
          {
@@ -17,14 +17,14 @@ namespace radix
       }
       catch(...)
       {
-      }
+      }*/
       return p;
    }
 
    inline void * PASCAL object::operator new(size_t nSize, const char * lpszFileName, int nLine)
    {
       void * p = ::operator new(nSize, _AFX_CLIENT_BLOCK, lpszFileName, nLine);
-      try
+      /*try
       {
          if(::ca::get_thread_state() != NULL)
          {
@@ -33,7 +33,7 @@ namespace radix
       }
       catch(...)
       {
-      }
+      }*/
       return p;
    }
 

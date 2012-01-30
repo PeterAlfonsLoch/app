@@ -17,9 +17,9 @@ namespace sockets
 
       // it is not currently designed to call open.
       //
-      file::file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn, mutex * pmutex) :
+      file::file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn) :
          ca(papp),
-         transfer_file(papp, pmemoryfileIn, pmutex)
+         transfer_file(papp, pmemoryfileIn)
       {
       }
 

@@ -12,7 +12,7 @@ namespace ex1
 
 
       sp(ex1::file)     m_pfile;
-      uint64_t         m_uiExpectedSize;
+      uint64_t          m_uiExpectedSize;
       DWORD             m_dwTimeOut;
       DWORD             m_dwLastCall;
       DWORD             m_dwSleep;

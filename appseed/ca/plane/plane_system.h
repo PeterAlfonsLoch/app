@@ -109,8 +109,8 @@ namespace plane
 
       ::user::str *                    m_puserstr;
 
-     ::collection::map < string, string, ::collection::map < int, int, string, string >, ::collection::map < int, int, string, string > > m_mapEnumToName;
-     ::collection::map < string, string, ::collection::map < string, string, int, int >, ::collection::map < string, string, int, int > > m_mapNameToEnum;
+     ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & > m_mapEnumToName;
+     ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & > m_mapNameToEnum;
 
 
      bool                              m_bDoNotExitIfNoApplications;
@@ -353,7 +353,8 @@ namespace plane
 
       virtual ::ca::application * get_new_app(::ca::application * pappNewApplicationParent, const char * pszId);
 
-      virtual bool find_applications();
+      virtual bool find_applications_from_cache();
+      virtual bool find_applications_to_cache();
       virtual bool map_application_library(const char * pszLibrary);
 
 
@@ -370,7 +371,10 @@ namespace plane
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
       virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
-	  virtual ::gen::command_thread & command_thread();
+	   virtual ::gen::command_thread & command_thread();
+
+
+      virtual bool on_install();
 
    };
 

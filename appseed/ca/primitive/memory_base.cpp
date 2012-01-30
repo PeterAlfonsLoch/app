@@ -6,7 +6,6 @@ namespace primitive
    memory_base::memory_base()
    {
 
-      m_pmutex             = NULL;
       m_iOffset            = 0;
       m_bLockMode          = false;
       m_bLock              = false;
@@ -46,13 +45,20 @@ namespace primitive
 
    bool memory_base::operator ==(memory_base& s)
    {
+
       bool b = false;
-      single_lock sl(m_pmutex);
+
+      single_lock sl(m_spmutex);
+
       sl.lock();
+
       if(this->get_size() == s.get_size())
-      b = memcmp(get_data(), s.get_data(), (size_t) this->get_size()) == 0;
+         b = memcmp(get_data(), s.get_data(), (size_t) this->get_size()) == 0;
+
       sl.unlock();
+
       return b;
+
    }
    void memory_base::allocate_add_up(memory_size dwAddUp)
    {
@@ -127,14 +133,17 @@ namespace primitive
 
    bool memory_base::IsLocked() const
    {
-      if(m_pmutex == NULL)
+
+      if(m_spmutex.is_null())
          return false;
       else
-         return m_pmutex->is_locked();
+         return m_spmutex->is_locked();
+
    }
 
    bool memory_base::IsEnabled() const
    {
+
       if(m_bLockMode)
          return IsLocked();
       else

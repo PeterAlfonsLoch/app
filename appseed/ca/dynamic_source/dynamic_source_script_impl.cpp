@@ -238,7 +238,7 @@ namespace dynamic_source
 
       string strRealPath;
 
-      strRealPath = real_path(System.dir().ca2("net-" + gprop("param_site").get_string(), "netseed/ds/ca2"), psz);
+      strRealPath = real_path(System.dir().ca2("net-" + gprop("param_site").get_string(), string("netseed/ds/ca2")), psz);
       if(strRealPath.has_char())
          return strRealPath;
 
@@ -683,7 +683,7 @@ namespace dynamic_source
          string strPath;
          if(strlen(gprop("param_site")) > 0)
          {
-            strPath = System.dir().path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+            strPath = System.dir().path(System.dir().ca2("net-" + gprop("param_site"), string("netseed/ds/ca2")), strScript);
          }
          if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
          {

@@ -4,8 +4,9 @@
 
 #undef new
 
-string_to_string_map::string_to_string_map(INT_PTR nBlockSize)
+base_string_to_string_map::base_string_to_string_map(INT_PTR nBlockSize)
 {
+   
    ASSERT(nBlockSize > 0);
    if (nBlockSize <= 0)
       nBlockSize = 10;   // default size
@@ -16,22 +17,10 @@ string_to_string_map::string_to_string_map(INT_PTR nBlockSize)
    m_pFreeList = NULL;
    m_pBlocks = NULL;
    m_nBlockSize = nBlockSize;
+
 }
 
-inline UINT string_to_string_map::HashKey(const char * key) const
-{
-   UINT nHash = 0;
-   if (key == NULL)
-   {
-      AfxThrowInvalidArgException();
-   }
-
-   while (*key)
-      nHash = (nHash<<5) + nHash + *key++;
-   return nHash;
-}
-
-void string_to_string_map::InitHashTable(
+void base_string_to_string_map::InitHashTable(
    UINT nHashSize, BOOL bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
@@ -58,7 +47,7 @@ void string_to_string_map::InitHashTable(
    m_nHashTableSize = nHashSize;
 }
 
-void string_to_string_map::remove_all()
+void base_string_to_string_map::remove_all()
 {
    ASSERT_VALID(this);
 
@@ -89,7 +78,7 @@ void string_to_string_map::remove_all()
    m_pBlocks = NULL;
 }
 
-string_to_string_map::~string_to_string_map()
+base_string_to_string_map::~base_string_to_string_map()
 {
    remove_all();
    ASSERT(m_nCount == 0);
@@ -100,17 +89,17 @@ string_to_string_map::~string_to_string_map()
 // same as list implementation except we store assoc's not node's
 //    and assoc's are singly linked all the time
 
-string_to_string_map::assoc*
-string_to_string_map::NewAssoc(const char * key)
+base_string_to_string_map::assoc*
+base_string_to_string_map::NewAssoc(const string & key)
 {
    if (m_pFreeList == NULL)
    {
       // add another block
       plex* newBlock = plex::create(m_pBlocks, m_nBlockSize,
-                     sizeof(string_to_string_map::assoc));
+                     sizeof(base_string_to_string_map::assoc));
       // chain them into free list
-      string_to_string_map::assoc* pAssoc =
-            (string_to_string_map::assoc*) newBlock->data();
+      base_string_to_string_map::assoc* pAssoc =
+            (base_string_to_string_map::assoc*) newBlock->data();
       // free in reverse order to make it easier to debug
       pAssoc += m_nBlockSize - 1;
       for (INT_PTR i = m_nBlockSize-1; i >= 0; i--, pAssoc--)
@@ -121,7 +110,7 @@ string_to_string_map::NewAssoc(const char * key)
    }
    ASSERT(m_pFreeList != NULL);  // we must have something
 
-   string_to_string_map::assoc* pAssoc = m_pFreeList;
+   base_string_to_string_map::assoc* pAssoc = m_pFreeList;
    m_pFreeList = m_pFreeList->pNext;
    m_nCount++;
    ASSERT(m_nCount > 0);  // make sure we don't overflow
@@ -130,7 +119,7 @@ string_to_string_map::NewAssoc(const char * key)
    return pAssoc;
 }
 
-void string_to_string_map::FreeAssoc(string_to_string_map::assoc* pAssoc)
+void base_string_to_string_map::FreeAssoc(base_string_to_string_map::assoc* pAssoc)
 {
    pAssoc->~assoc();
 //   DestructElement((string*)&pAssoc->key);  // free up string data
@@ -146,11 +135,11 @@ void string_to_string_map::FreeAssoc(string_to_string_map::assoc* pAssoc)
       remove_all();
 }
 
-string_to_string_map::assoc*
-string_to_string_map::GetAssocAt(const char * key, UINT& nHashBucket, UINT& nHashValue) const
+base_string_to_string_map::assoc*
+base_string_to_string_map::GetAssocAt(const string & key, UINT& nHashBucket, UINT& nHashValue) const
 // find association (or return NULL)
 {
-   nHashValue = HashKey(key);
+   nHashValue = _template::hash < BASE_ARG_KEY >::HashKey(key);
    nHashBucket = nHashValue % m_nHashTableSize;
 
    if (m_pHashTable == NULL)
@@ -168,7 +157,7 @@ string_to_string_map::GetAssocAt(const char * key, UINT& nHashBucket, UINT& nHas
 
 /////////////////////////////////////////////////////////////////////////////
 
-const string_to_string_map::pair *string_to_string_map::PLookup(const char * key) const
+const base_string_to_string_map::pair *base_string_to_string_map::PLookup(const string & key) const
 {
    ASSERT_VALID(this);
 
@@ -177,7 +166,7 @@ const string_to_string_map::pair *string_to_string_map::PLookup(const char * key
    return pAssoc;
 }
 
-string_to_string_map::pair *string_to_string_map::PLookup(const char * key)
+base_string_to_string_map::pair *base_string_to_string_map::PLookup(const string & key)
 {
    ASSERT_VALID(this);
 
@@ -186,7 +175,7 @@ string_to_string_map::pair *string_to_string_map::PLookup(const char * key)
    return pAssoc;
 }
 
-BOOL string_to_string_map::Lookup(const char * key, string & rValue) const
+BOOL base_string_to_string_map::Lookup(const string & key, string & rValue) const
 {
    ASSERT_VALID(this);
 
@@ -199,7 +188,7 @@ BOOL string_to_string_map::Lookup(const char * key, string & rValue) const
    return TRUE;
 }
 
-BOOL string_to_string_map::LookupKey(const char * key, const char *& rKey) const
+BOOL base_string_to_string_map::LookupKey(const string & key, string & rKey) const
 {
    ASSERT_VALID(this);
 
@@ -212,7 +201,7 @@ BOOL string_to_string_map::LookupKey(const char * key, const char *& rKey) const
    return TRUE;
 }
 
-string & string_to_string_map::operator[](const char * key)
+string & base_string_to_string_map::operator[](const string & key)
 {
    ASSERT_VALID(this);
 
@@ -236,7 +225,7 @@ string & string_to_string_map::operator[](const char * key)
 }
 
 
-BOOL string_to_string_map::RemoveKey(const char * key)
+BOOL base_string_to_string_map::RemoveKey(const string & key)
 // remove key - return TRUE if removed
 {
    ASSERT_VALID(this);
@@ -246,7 +235,7 @@ BOOL string_to_string_map::RemoveKey(const char * key)
 
    assoc** ppAssocPrev;
    UINT nHashValue;
-   nHashValue = HashKey(key);
+   nHashValue = _template::hash < BASE_ARG_KEY >::HashKey(key);
    ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
    assoc* pAssoc;
@@ -268,7 +257,7 @@ BOOL string_to_string_map::RemoveKey(const char * key)
 /////////////////////////////////////////////////////////////////////////////
 // Iterating
 
-const string_to_string_map::pair *string_to_string_map::PGetFirstAssoc() const
+const base_string_to_string_map::pair *base_string_to_string_map::PGetFirstAssoc() const
 {
    ASSERT_VALID(this);
    ASSERT(m_pHashTable != NULL);  // never call on is_empty ::collection::map
@@ -286,7 +275,7 @@ const string_to_string_map::pair *string_to_string_map::PGetFirstAssoc() const
    return pAssocRet;
 }
 
-string_to_string_map::pair *string_to_string_map::PGetFirstAssoc()
+base_string_to_string_map::pair *base_string_to_string_map::PGetFirstAssoc()
 {
    ASSERT_VALID(this);
    ASSERT(m_pHashTable != NULL);  // never call on is_empty ::collection::map
@@ -304,7 +293,7 @@ string_to_string_map::pair *string_to_string_map::PGetFirstAssoc()
    return pAssocRet;
 }
 
-void string_to_string_map::get_next_assoc(POSITION& rNextPosition,
+void base_string_to_string_map::get_next_assoc(POSITION& rNextPosition,
    string & rKey, string & rValue) const
 {
    ASSERT_VALID(this);
@@ -347,7 +336,7 @@ void string_to_string_map::get_next_assoc(POSITION& rNextPosition,
    rValue = pAssocRet->m_value;
 }
 
-const string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair *pAssoc) const
+const base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const pair *pAssoc) const
 {
    ASSERT_VALID(this);
    ASSERT(m_pHashTable != NULL);  // never call on is_empty ::collection::map
@@ -375,7 +364,7 @@ const string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair
    return pAssocNext;
 }
 
-string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair *pAssoc)
+base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const pair *pAssoc)
 {
    ASSERT_VALID(this);
    ASSERT(m_pHashTable != NULL);  // never call on is_empty ::collection::map
@@ -407,7 +396,7 @@ string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair *pAss
 /////////////////////////////////////////////////////////////////////////////
 // Serialization
 
-/*void string_to_string_map::Serialize(CArchive& ar)
+/*void base_string_to_string_map::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
@@ -449,7 +438,7 @@ string_to_string_map::pair *string_to_string_map::PGetNextAssoc(const pair *pAss
 // Diagnostics
 
 #ifdef _DEBUG
-void string_to_string_map::dump(dump_context & dumpcontext) const
+void base_string_to_string_map::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
 
@@ -471,7 +460,7 @@ void string_to_string_map::dump(dump_context & dumpcontext) const
    dumpcontext << "\n";
 }
 
-void string_to_string_map::assert_valid() const
+void base_string_to_string_map::assert_valid() const
 {
    ::radix::object::assert_valid();
 
@@ -483,7 +472,7 @@ void string_to_string_map::assert_valid() const
 
 
 
-void string_to_string_map::_001ReplaceVars(string & str)
+void base_string_to_string_map::_001ReplaceVars(string & str)
 {
    if(this->get_count() == 0)
       return;
@@ -499,3 +488,40 @@ void string_to_string_map::_001ReplaceVars(string & str)
    }
 }
 
+
+
+
+string_to_string_map::string_to_string_map(INT_PTR nBlockSize) :
+   base_string_to_string_map(nBlockSize)
+{
+   
+}
+
+
+string_to_string_map::string_to_string_map(const string_to_string_map & map) :
+   base_string_to_string_map(dynamic_cast < const base_string_to_string_map & > (map))
+{
+   
+}
+
+
+string_to_string_map::~string_to_string_map()
+{
+}
+
+
+
+string_to_string_map & string_to_string_map::operator = (const string_to_string_map & map)
+{
+
+   if(this != &map)
+   {
+
+      base_string_to_string_map::m_nBlockSize = map.base_string_to_string_map::m_nBlockSize;
+      attrib_map < base_string_to_string_map >::operator = (map);
+
+   }
+
+   return *this;
+
+}

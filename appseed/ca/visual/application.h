@@ -20,11 +20,6 @@ namespace visual
       class imaging * m_pimaging;
    };
 
-   inline CLASS_DECL_ca application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
-
 
 } // namespace visual
 

@@ -122,6 +122,9 @@ namespace radix
       // TRUE if we're in SHIFT+F1 mode.
       BOOL                          m_bHelpMode;
 
+      mutex                         m_mutexMatter;
+      string                        m_strLocaleStyleMatter;
+
       // set in constructor to override default
 
 
@@ -480,13 +483,6 @@ namespace radix
 
       virtual bool does_launch_window_on_startup();
       virtual bool activate_app();
-
-
-
-      static inline application & app_cast(::ca::ca * papp)
-      {
-         return *dynamic_cast < application * > (papp);
-      }
 
       virtual bool initialize1();
 

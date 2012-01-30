@@ -41,7 +41,7 @@ namespace html
          flags < e_flag >  m_flags;
          int               m_cxMax;
          int               m_cxMin;
-         ::collection::map < string, string, int, int > m_mapFont;
+         ::collection::string_map < int, int > m_mapFont;
          bool              m_bHoverEvaluated;
          bool              m_bHasHover;
          bool              m_bHover;

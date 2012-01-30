@@ -31,13 +31,352 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      string system::path(const char * lpcszFolder, const char * lpcszRelative, const char * psz2)
+      string system::path(const string & strFolder, const string & strRelative, const string & str2)
       {
-         UNREFERENCED_PARAMETER(lpcszFolder);
-         UNREFERENCED_PARAMETER(lpcszRelative);
-         UNREFERENCED_PARAMETER(psz2);
+         UNREFERENCED_PARAMETER(strFolder);
+         UNREFERENCED_PARAMETER(strRelative);
+         UNREFERENCED_PARAMETER(str2);
          throw interface_only_exception("this is an interface");
       }
+
+      string system::path(const string & strFolder, const string & strRelative, const char * lpcsz2)
+      {
+
+         string str2(lpcsz2);
+
+         return path(strFolder, strRelative, str2);
+
+      }
+
+      string system::path(const string & strFolder, const string & strRelative)
+      {
+
+         string strEmpty;
+
+         return path(strFolder, strRelative, strEmpty);
+
+      }
+
+      string system::path(const string & strFolder, const char * lpcszRelative, const string & str2)
+      {
+
+         string strRelative(lpcszRelative);
+
+         return path(strFolder, strRelative, str2);
+
+      }
+
+      string system::path(const string & strFolder, const char * lpcszRelative, const char * lpcsz2)
+      {
+
+         string strRelative(lpcszRelative);
+         string str2(lpcsz2);
+
+         return path(strFolder, strRelative, str2);
+
+      }
+
+      string system::path(const string & strFolder, const char * lpcszRelative)
+      {
+
+         string strRelative(lpcszRelative);
+         string strEmpty;
+
+         return path(strFolder, strRelative, strEmpty);
+
+      }
+
+      
+      string system::path(const char  * lpcszFolder, const string & strRelative, const string & str2)
+      {
+         
+         string strFolder(lpcszFolder);
+         string strEmpty;
+
+         return path(strFolder, strRelative, strEmpty);
+
+      }
+
+      string system::path(const char * lpcszFolder, const string & strRelative, const char * lpcsz2)
+      {
+
+         string strFolder(lpcszFolder);
+         string str2(lpcsz2);
+
+         return path(strFolder, strRelative, str2);
+
+      }
+
+      string system::path(const char * lpcszFolder, const string & strRelative)
+      {
+
+         string strFolder(lpcszFolder);
+         string strEmpty;
+
+         return path(strFolder, strRelative, strEmpty);
+
+      }
+
+      string system::path(const char * lpcszFolder, const char * lpcszRelative, const string & str2)
+      {
+
+         string strFolder(lpcszFolder);
+         string strRelative(lpcszRelative);
+
+         return path(strFolder, strRelative, str2);
+
+      }
+
+
+      string system::path(const char * lpcszFolder, const char * lpcszRelative)
+      {
+
+         string strFolder(lpcszFolder);
+         string strRelative(lpcszRelative);
+         string strEmpty;
+
+         return path(strFolder, strRelative, strEmpty);
+
+      }
+      
+
+
+      string system::path(const char * lpcszFolder, const char * lpcszRelative, const char * psz2)
+      {
+         if(lpcszRelative == NULL)
+         {
+            if(psz2 == NULL)
+               return lpcszFolder;
+            psz2 = lpcszRelative;
+            psz2 = NULL;
+         }
+         string strPath;
+         string strFolder(lpcszFolder);
+         string strRelative(lpcszRelative);
+         string str2(psz2);
+         return path(strFolder, strRelative, str2);
+      }
+
+     inline bool myspace(char ch)
+      {
+         return ch == ' ' ||
+                ch == '\t' ||
+                ch == '\r' ||
+                ch == '\n';
+      }
+
+#define string_STRCAT2_beg_char_end(strCat, ch, str1, str2, beg1, end1, beg2, end2) \
+         { \
+            char * psz = strCat.GetBufferSetLength(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
+            strncpy(psz, &((const char *)str1)[beg1], end1 - beg1 + 1); \
+            psz[end1 - beg1 + 1] = ch; \
+            strncpy(&psz[end1 - beg1 + 2], &((const char *)str2)[beg2], end2 - beg2 + 1); \
+            strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
+         }
+
+      string system::simple_path(const string & strFolder, const string & strRelative)
+      {
+
+         if(strRelative.is_empty())
+         {
+            if(strFolder.is_empty())
+               return "";
+            return strFolder;
+         }
+            
+         int iFolderBeg = 0;
+         int iFolderEnd = strFolder.get_length() - 1;
+         if(iFolderEnd >= iFolderBeg) 
+         {
+            //strFolder.trim();
+            // passive left trimming
+            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderBeg]))
+               iFolderBeg++;
+            // passive right trimming
+            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
+               iFolderEnd--;
+            //better than following 2 together
+            //gen::str::ends_eat(strFolder, "\\");
+            //gen::str::ends_eat(strFolder, "/");
+            while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
+               iFolderEnd--;
+         }
+         int iRelativeBeg = 0;
+         int iRelativeEnd = strRelative.get_length() - 1;
+         if(iRelativeEnd >= iRelativeBeg) 
+         {
+            //strFolder.trim();
+            // passive left trimming
+            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeBeg]))
+               iFolderBeg++;
+            // passive right trimming
+            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
+               iFolderEnd--;
+            //better than following 2 together
+            //gen::str::ends_eat(strFolder, "\\");
+            //gen::str::ends_eat(strFolder, "/");
+            while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
+               iRelativeBeg++;
+         }
+
+         string strPath;
+         if(iFolderBeg > iFolderEnd)
+         {
+            strPath = strRelative;
+         }
+         else
+         {
+            char * psz = strPath.GetBufferSetLength(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
+            strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+            psz[iFolderEnd - iFolderBeg + 1] = '\\';
+            strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
+            strPath.ReleaseBuffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
+         }
+      
+   
+         return strPath;
+      }
+
+      string system::simple_path(const string & strFolder, const string & strRelative, const string & str2)
+      {
+
+         if(strRelative.is_empty())
+         {
+            if(str2.is_empty())
+            {
+               if(strFolder.is_empty())
+                  return "";
+               return strFolder;
+            }
+            else
+            {
+               if(strFolder.is_empty())
+                  return str2;
+               return simple_path(strFolder, str2);
+            }
+         }
+         else if(strFolder.is_empty())
+         {
+            if(str2.is_empty())
+            {
+               return strRelative;
+            }
+            else
+            {
+               return simple_path(strRelative, str2);
+            }
+         }
+         else if(str2.is_empty())
+         {
+            return simple_path(strFolder, strRelative);
+         }
+
+         // none of them - 3 - are empty
+            
+         int iFolderBeg = 0;
+         int iFolderEnd = strFolder.get_length() - 1;
+         if(iFolderEnd >= iFolderBeg) 
+         {
+            //strFolder.trim();
+            // passive left trimming
+            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderBeg]))
+               iFolderBeg++;
+            // passive right trimming
+            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
+               iFolderEnd--;
+            //better than following 2 together
+            //gen::str::ends_eat(strFolder, "\\");
+            //gen::str::ends_eat(strFolder, "/");
+            while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
+               iFolderEnd--;
+         }
+         int iRelativeBeg = 0;
+         int iRelativeEnd = strRelative.get_length() - 1;
+         if(iRelativeEnd >= iRelativeBeg) 
+         {
+            //strFolder.trim();
+            // passive left trimming
+            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeBeg]))
+               iFolderBeg++;
+            // passive right trimming
+            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
+               iFolderEnd--;
+            //better than following 2 together
+            //gen::str::ends_eat(strFolder, "\\");
+            //gen::str::ends_eat(strFolder, "/");
+            while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
+               iRelativeBeg++;
+         }
+
+         int iBeg2 = 0;
+         int iEnd2 = str2.get_length() - 1;
+         if(iEnd2 >= iBeg2) 
+         {
+            //strFolder.trim();
+            // passive left trimming
+            while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iBeg2]))
+               iBeg2++;
+            // passive right trimming
+            while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iEnd2]))
+               iEnd2--;
+            //better than following 2 together
+            //gen::str::ends_eat(strFolder, "\\");
+            //gen::str::ends_eat(strFolder, "/");
+            while(iBeg2 <= iEnd2 && (str2[iBeg2] == '/' || str2[iBeg2] == '\\'))
+               iBeg2++;
+         }
+
+         if(iRelativeBeg > iRelativeEnd)
+         {
+            if(iBeg2 > iEnd2)
+            {
+               if(iFolderBeg > iFolderEnd)
+                  return "";
+               return strFolder.Mid(iFolderBeg, iFolderEnd - iFolderBeg + 1);
+            }
+            else
+            {
+               if(iFolderBeg > iFolderEnd)
+                  return str2.Mid(iBeg2, iEnd2 - iBeg2 + 1);
+               string strPath;
+               string_STRCAT2_beg_char_end(strPath, '\\', strFolder, str2, iFolderBeg, iFolderEnd, iBeg2, iEnd2);
+               return strPath;
+            }
+         }
+         else if(strFolder.is_empty())
+         {
+            if(str2.is_empty())
+            {
+               return strRelative;
+            }
+            else
+            {
+               string strPath;
+               string_STRCAT2_beg_char_end(strPath, '\\', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
+               return strPath;
+            }
+         }
+         else if(str2.is_empty())
+         {
+            string strPath;
+            string_STRCAT2_beg_char_end(strPath, '\\', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
+            return strPath;
+         }
+
+         string strPath;
+
+         char * psz = strPath.GetBufferSetLength(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
+         strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+         psz[iFolderEnd - iFolderBeg + 1] = '\\';
+         strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
+         psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '\\';
+         strncpy(&psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1 + 1], &((const char *)str2)[iBeg2], iEnd2 - iBeg2 + 1);
+         strPath.ReleaseBuffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
+   
+         return strPath;
+
+      }
+
 
       string system::relpath(const char * lpcszSource, const char * lpcszRelative, const char * psz2)
       {
@@ -179,6 +518,35 @@ namespace ca
          return is((const string &) var, papp);
       }
 
+      bool system::name_is(const char * lpcszPath, ::ca::application * papp)
+      {
+         return name_is((const string &) lpcszPath, papp);
+      }
+
+      bool system::name_is(const string & strPath, ::ca::application * papp)
+      {
+         if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
+         {
+            m_isdirmap.set(strPath, true);
+            return true;
+         }
+         if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
+         {
+            bool bHasSubFolder;
+            if(m_isdirmap.lookup(strPath, bHasSubFolder))
+               return bHasSubFolder;
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
+            m_isdirmap.set(strPath, bHasSubFolder);
+            return bHasSubFolder;
+         }
+         return false;
+      }
+
+      bool system::name_is(const var & var, ::ca::application * papp)
+      {
+         return name_is((const string &) var, papp);
+      }
+
       system::is_dir_map::is_dir_map() :
          ::collection::string_map < is_dir >(256) // block size
       {
@@ -281,6 +649,38 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
+      string system::ca2(const string & str, const char * lpcsz2)
+      {
+         UNREFERENCED_PARAMETER(str);
+         UNREFERENCED_PARAMETER(lpcsz2);
+         throw interface_only_exception("this is an interface");
+      }
+
+      string system::ca2(const char * lpcsz, const string & str2)
+      {
+         UNREFERENCED_PARAMETER(lpcsz);
+         UNREFERENCED_PARAMETER(str2);
+         throw interface_only_exception("this is an interface");
+      }
+
+      string system::ca2(const string & str, const string & str2)
+      {
+         UNREFERENCED_PARAMETER(str);
+         UNREFERENCED_PARAMETER(str2);
+         throw interface_only_exception("this is an interface");
+      }
+
+      string system::ca2(const string & str)
+      {
+         UNREFERENCED_PARAMETER(str);
+         throw interface_only_exception("this is an interface");
+      }
+
+      string system::ca2()
+      {
+         throw interface_only_exception("this is an interface");
+      }
+
       string system::module(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
@@ -326,28 +726,41 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      string system::locale_style(::ca::application * papp, const char * pszLocale, const char * pszStyle)
+      string system::locale_style(::ca::application * papp, const string & strLocale, const string & strStyle)
       {
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(pszLocale);
-         UNREFERENCED_PARAMETER(pszStyle);
+         UNREFERENCED_PARAMETER(strLocale);
+         UNREFERENCED_PARAMETER(strStyle);
          throw interface_only_exception("this is an interface");
       }
 
-      string system::locale_style_matter(::ca::application * papp, const char * pszLocale, const char * pszStyle)
+      string system::locale_style_matter(::ca::application * papp, const string & strLocale, const string & strStyle)
       {
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(pszLocale);
-         UNREFERENCED_PARAMETER(pszStyle);
+         UNREFERENCED_PARAMETER(strLocale);
+         UNREFERENCED_PARAMETER(strStyle);
          throw interface_only_exception("this is an interface");
       }
 
-      string system::matter(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
+      string system::matter(::ca::application * papp, const string & str, const string & str2)
       {
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
+         UNREFERENCED_PARAMETER(str);
+         UNREFERENCED_PARAMETER(str2);
          throw interface_only_exception("this is an interface");
+      }
+
+      string system::matter(::ca::application * papp, const string & str)
+      {
+         string str2;
+         return matter(papp, str, str2);
+      }
+
+      string system::matter(::ca::application * papp)
+      {
+         string str;
+         string str2;
+         return matter(papp, str, str2);
       }
 
       class system::path & system::path()

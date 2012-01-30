@@ -26,13 +26,12 @@ namespace ca
 
 
       inline T * operator ->();
+      inline const T * operator ->() const ;
       inline operator T & ();
+      inline operator const T & () const ;
       inline operator T * & ();
+      inline operator T * const & () const;
       inline T * get_();
-
-      inline const T * operator ->() const;
-      inline operator const T & () const;
-      inline operator T * () const;
       inline const T * get_() const;
 
       inline bool is_null() const;
@@ -122,7 +121,19 @@ namespace ca
    }
 
    template < class T >
+   inline const T * smart_pointer < T > ::operator ->() const
+   {
+      return m_p;
+   }
+
+   template < class T >
    inline smart_pointer < T > ::operator T & ()
+   {
+      return *m_p;
+   }
+
+   template < class T >
+   inline smart_pointer < T > ::operator const T & () const
    {
       return *m_p;
    }
@@ -134,25 +145,13 @@ namespace ca
    }
 
    template < class T >
+   inline smart_pointer < T > ::operator T * const & () const
+   {
+      return m_p;
+   }
+
+   template < class T >
    inline T * smart_pointer < T > ::get_()
-   {
-      return m_p;
-   }
-
-   template < class T >
-   inline const T * smart_pointer < T > ::operator ->() const
-   {
-      return m_p;
-   }
-
-   template < class T >
-   inline smart_pointer < T > ::operator const T & () const
-   {
-      return *m_p;
-   }
-
-   template < class T >
-   inline smart_pointer < T > ::operator T * () const
    {
       return m_p;
    }

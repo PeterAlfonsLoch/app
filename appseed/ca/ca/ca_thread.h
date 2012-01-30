@@ -183,13 +183,13 @@ namespace ca
          return false;
       }
 
-      inline void set_heap_alloc(::ca::ca * pca)
+      /*inline void set_heap_alloc(::ca::ca * pca)
       {
          if(find(pca, true))
          {
             pca->m_ulFlags |= ::ca::ca::flag_heap_alloc;
          }
-      }
+      }*/
 
    };
 
@@ -199,7 +199,7 @@ namespace ca
    public:
 
 
-      heap_item_array                     m_heapitema;
+      //heap_item_array                     m_heapitema;
 
 
    };

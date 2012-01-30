@@ -132,7 +132,7 @@ public:
    DWORD m_dwLastStartTime;
 
    class size_map :
-      public ::collection::map < string, string, file_size_table::get_fs_size, file_size_table::get_fs_size >
+      public ::collection::string_map < file_size_table::get_fs_size, file_size_table::get_fs_size >
    {
    public:
    };

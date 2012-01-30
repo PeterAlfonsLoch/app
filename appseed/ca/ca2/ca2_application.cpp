@@ -35,15 +35,39 @@ namespace ca2
       return m_strStyle;
    }
 
-   string application::get_locale_style_dir(const char * pszLocale, const char * pszStyle)
+   string application::get_locale_style_dir()
    {
-      string strLocale(pszLocale);
-      string strStyle(pszStyle);
+
+      return System.dir().simple_path(get_locale(), get_style());
+
+   }
+
+   string application::get_locale_style_dir(const string & strLocale)
+   {
+
       if(strLocale.is_empty())
-         strLocale = get_locale();
-      if(strStyle.is_empty())
-         strStyle = get_style();
-      return System.dir().path(strLocale, strStyle);
+         return System.dir().simple_path(get_locale(), get_style());
+      else
+         return System.dir().simple_path(strLocale, get_style());
+
+   }
+
+   string application::get_locale_style_dir(const string & strLocale, const string & strStyle)
+   {
+      if(strLocale.is_empty())
+      {
+         if(strStyle.is_empty())
+            return System.dir().simple_path(get_locale(), get_style());
+         else
+            return System.dir().simple_path(get_locale(), strStyle);
+      }
+      else
+      {
+         if(strStyle.is_empty())
+            return System.dir().simple_path(strLocale, get_style());
+         else
+            return System.dir().simple_path(strLocale, strStyle);
+      }
    }
 
    void application::set_locale(const char * lpcsz, bool bUser)

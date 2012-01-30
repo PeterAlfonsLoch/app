@@ -3368,6 +3368,9 @@
     <ClInclude Include="ca\ca_enum.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_overflow_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5625,6 +5628,9 @@
     </ClCompile>
     <ClCompile Include="radix\radix_allocation_ca2_heap.cpp">
       <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_overflow_error.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

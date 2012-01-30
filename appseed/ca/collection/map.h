@@ -427,7 +427,7 @@ namespace collection
    map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::GetAssocAt(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
    // find association (or return NULL)
    {
-      nHashValue = HASH::HashKey(key);
+      nHashValue = HASH::HashKey((ARG_KEY) key);
       nHashBucket = nHashValue % m_nHashTableSize;
 
       if (m_pHashTable == NULL)
@@ -744,65 +744,110 @@ namespace collection
    #endif //_DEBUG
 
 
-   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash < ARG_KEY > , class EQUALS = _template::equals_type_arg_type < KEY, ARG_KEY > >
+
+   template < class type_map >
    class attrib_map :
-      virtual public map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS >
+      virtual public type_map
    {
    public:
-      attrib_map();
+
+
+      attrib_map(INT_PTR nBlockSize = 10);
       attrib_map(const attrib_map & map);
 
       attrib_map & operator = (const attrib_map & map);
+
+
    };
 
-   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::attrib_map()
+
+   template < class type_map >
+   attrib_map < type_map >::attrib_map(INT_PTR nBlockSize) :
+      type_map(nBlockSize)
    {
    }
 
-   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::attrib_map(const attrib_map & attribmap)
+   template < class type_map >
+   attrib_map < type_map >::attrib_map(const attrib_map & attribmap)
    {
       operator = (attribmap);
    }
 
-   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS> & attrib_map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::operator = (const attrib_map & attribmap)
+   template < class type_map >
+   attrib_map < type_map > & attrib_map < type_map >::operator = (const attrib_map & attribmap)
    {
+
       if(this != &attribmap)
       {
          this->remove_all();
-         const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS >::pair * ppair = attribmap.PGetFirstAssoc();
+         type_map::m_nBlockSize = attribmap.type_map::m_nBlockSize;
+         const typename type_map::pair * ppair = attribmap.PGetFirstAssoc();
          while(ppair != NULL)
          {
             set_at(ppair->m_key, ppair->m_value);
             ppair  = attribmap.PGetNextAssoc(ppair);
          }
       }
+
       return *this;
+
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE & >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::hash < const string & > , class EQUALS = _template::equals_type_arg_type < string, const string & > >
    class string_map :
-      virtual public attrib_map < string, const string &, VALUE, ARG_VALUE >
+      virtual public attrib_map < map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
    public:
+      
+      
       string_map(::count nBlockSize = 10);
+      string_map(const string_map & map);
+
+
+      string_map & operator = (const string_map & map);
+
+
    };
 
-   template < class VALUE, class ARG_VALUE >
-   string_map < VALUE, ARG_VALUE >::string_map(::count nBlockSize) :
-      map < string, const string &, VALUE, ARG_VALUE > (nBlockSize)
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(::count nBlockSize) :
+      map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
    {
+   }
+
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(const string_map & map) :
+      attrib_map < ::collection::map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
+   {
+   }
+
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   string_map < VALUE, ARG_VALUE, HASH, EQUALS > & string_map < VALUE, ARG_VALUE, HASH, EQUALS >::operator = (const string_map & map)
+   {
+      
+      if(this != &map)
+      {
+         attrib_map < ::collection::map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
+      }
+
+      return *this;
+
    }
 
    template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::strid_hash, class EQUALS = _template::strid_equals  >
    class strid_map :
-      virtual public attrib_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS >
+      virtual public attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
    public:
+     
       strid_map(::count nBlockSize = 256);
+      strid_map(const strid_map & map);
+
+
+      strid_map & operator = (const strid_map & map);
+
+
    };
 
 
@@ -813,40 +858,67 @@ namespace collection
    }
 
 
-
-   template < class VALUE, class ARG_VALUE = const VALUE & >
-   class int_map :
-      virtual public attrib_map < int, int, VALUE, ARG_VALUE >
-   {
-   public:
-      int_map(::count nBlockSize = 10);
-   };
-
-   template < class VALUE, class ARG_VALUE >
-   int_map < VALUE, ARG_VALUE >::int_map(::count nBlockSize) :
-      map < int, int, VALUE, ARG_VALUE > (nBlockSize)
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(const strid_map & map) :
+      attrib_map < ::collection::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
    {
    }
 
-   class CLASS_DECL_ca int_to_int :
-      virtual public attrib_map < int, int, int, int >
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   strid_map < VALUE, ARG_VALUE, HASH, EQUALS > & strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::operator = (const strid_map & map)
+   {
+      
+      if(this != &map)
+      {
+         attrib_map < ::collection::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
+      }
+
+      return *this;
+
+   }
+
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::hash < int > , class EQUALS = _template::equals_type_arg_type < int, int > >
+   class int_map :
+      virtual public attrib_map < map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
    public:
+
+      int_map(::count nBlockSize = 10);
+      int_map(const int_map & map);
+
+
+      int_map & operator = (const int_map & map);
+
    };
 
-
-   class CLASS_DECL_ca int_to_string :
-      virtual public attrib_map < int, int, string, string >
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::count nBlockSize) :
+      map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
    {
-   public:
-   };
+   }
 
-
-   class CLASS_DECL_ca string_to_ptr :
-      virtual public ::collection::string_map < void *, void * >
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & map) :
+      attrib_map < ::collection::map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
    {
-   public:
-   };
+   }
+
+   template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   int_map < VALUE, ARG_VALUE, HASH, EQUALS > & int_map < VALUE, ARG_VALUE, HASH, EQUALS >::operator = (const int_map & map)
+   {
+      
+      if(this != &map)
+      {
+         attrib_map < ::collection::map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
+      }
+
+      return *this;
+
+   }
+
+   typedef CLASS_DECL_ca attrib_map < map < int, int, int, int > > int_to_int;
+   typedef CLASS_DECL_ca attrib_map < map < int, int, string, const string & > > int_to_string;
+   typedef CLASS_DECL_ca ::collection::string_map < void *, void * > string_to_ptr;
 
    template < class T >
    class CLASS_DECL_ca string_to_pointer :
@@ -909,11 +981,7 @@ namespace collection
    };
 
 
-   class CLASS_DECL_ca string_to_intptr :
-      virtual public ::collection::string_map < INT_PTR, INT_PTR >
-   {
-   public:
-   };
+   typedef CLASS_DECL_ca ::collection::string_map < INT_PTR, INT_PTR > string_to_intptr;
 
 
 } // namespace collection

@@ -963,7 +963,7 @@ private:
 
 public :
    typedef string_buffer CStrBuf;
-private:
+public:
    PXSTR m_pszData;
 
 };

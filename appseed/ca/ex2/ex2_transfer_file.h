@@ -19,7 +19,7 @@ namespace ex2
 
          
       transfer_file(::ca::application * papp, mutex * pmutex = NULL);
-      transfer_file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn, mutex * pmutex = NULL);
+      transfer_file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 

@@ -244,7 +244,7 @@ namespace plane
 
       try
       {
-         find_applications();
+         find_applications_from_cache();
       }
       catch(...)
       {
@@ -255,10 +255,31 @@ namespace plane
    }
 
 
-   bool system::find_applications()
+   bool system::find_applications_from_cache()
+   {
+
+      ex1::file_exception_sp fe(this);
+
+      ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::type_binary | ex1::file::mode_read, &fe);
+
+      if(file.is_null())
+         return false;
+
+      ex1::byte_input_stream is(file);
+
+      is >> m_mapAppLibrary;
+
+      return true;
+
+   }
+
+
+   bool system::find_applications_to_cache()
    {
 
 /*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
+
+      m_mapAppLibrary.remove_all();
 
       string strLibraryId;
       stringa straTitle;
@@ -275,6 +296,18 @@ namespace plane
 
       map_application_library("ca");
       map_application_library("ca2");
+      
+      ex1::file_exception_sp fe(this);
+
+      ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::defer_create_directory
+         | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write, &fe);
+
+      if(file.is_null())
+         return false;
+
+      ex1::byte_output_stream os(file);
+
+      os << m_mapAppLibrary;
 
       return true;
 
@@ -1393,5 +1426,45 @@ namespace plane
 	   return *m_pcommandthread;
    }
 
+
+   bool system::on_install()
+   {
+
+      try
+      {
+
+         if(!plane::application::on_install())
+            return false;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+
+      try
+      {
+
+         if(!find_applications_to_cache())
+            return false;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      
+      return true;
+
+   }
+
+
 } // namespace plane
+
 

@@ -16,15 +16,12 @@ namespace primitive
    public:
    
 
-      sp(mutex)      m_spmutex;
-      bool           m_bSynch;
-
-
       memory_file(::ca::application * papp, ::primitive::memory_size iSize = 0);
       memory_file(::ca::application * papp, void * pMemory, ::primitive::memory_size dwSize);
       memory_file(::ca::application * papp, const memory_file & memoryfile);
       memory_file(::ca::application * papp, memory_base * pmemory);
       virtual ~memory_file();
+
 
       virtual bool IsValid() const;
       memory_size remove_begin(void * lpBuf, ::primitive::memory_size uiCount);

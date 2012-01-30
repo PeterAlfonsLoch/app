@@ -26,11 +26,6 @@ namespace planebase
    {
    }
 
-   CLASS_DECL_ca application & app_cast(::ca::ca * papp)
-   {
-      return *(dynamic_cast < application * > (papp));
-   }
-
    class ::ca::dir::application & application::dir()
    {
       return m_dir;
@@ -165,6 +160,64 @@ namespace planebase
 
       m_dir.m_psystem = m_psystem;
       m_file.m_psystem = m_psystem;
+
+      {
+         string strLibraryRoot;
+         string strLibraryName;
+         if(m_strLibraryName.has_char() && m_strLibraryName != "app_" + m_strAppName
+            && gen::str::begins_ci(m_strLibraryName, "app_") && m_strLibraryName.find("_", strlen("app_")) > 4)
+         {
+            stringa stra2;
+            stra2.add_tokens(m_strLibraryName, "_", FALSE);
+            strLibraryRoot = stra2[1];
+            strLibraryName = stra2.implode("_", 2);
+         }
+         else
+         {
+            strLibraryName = m_strLibraryName;
+         }
+
+         stringa stra;
+         stra.add_tokens(m_strAppName, "_", FALSE);
+         for(int i = 1; i < stra.get_upper_bound(); i++)
+         {
+            stra[i] == "_" + stra[i];
+         }
+         if(stra.get_size() > 1)
+         {
+            if(strLibraryRoot.has_char())
+            {
+               m_strRoot = "app-" + strLibraryRoot;
+            }
+            else
+            {
+               m_strRoot = "app-" + stra[0];
+            }
+            stra.remove_at(0);
+            if(strLibraryName.has_char() && strLibraryName != "app_" + m_strAppName)
+            {
+               stra.insert_at(stra.get_upper_bound(), strLibraryName);
+            }
+            m_strDomain += stra.implode("/");
+         }
+         else
+         {
+            if(strLibraryRoot.has_char())
+            {
+               m_strRoot = "app-" + strLibraryRoot;
+            }
+            else
+            {
+               m_strRoot = "app";
+            }
+            if(strLibraryName.has_char() && strLibraryName != "app_" + m_strAppName)
+            {
+               m_strDomain = strLibraryName + "/";
+            }
+            m_strDomain += m_strAppName;
+         }
+      }
+
 
       MSG msg;
 

@@ -306,9 +306,9 @@ namespace gen
          return MultiByteToUnicode(CodePageUtf8, (const string &) var).detach();
       }
 
-      int utf8_to_unicode_count(const char * lpcsz)
+      int utf8_to_unicode_count(const char * lpcsz, strsize count)
       {
-         return MultiByteToUnicodeCount(CodePageUtf8, lpcsz);
+         return MultiByteToUnicodeCount(CodePageUtf8, lpcsz, count);
       }
 
       int utf8_to_unicode_count(const string & str)

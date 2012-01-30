@@ -245,7 +245,7 @@ typedef
       int32    numZ;
       int32    state_out_pos;
 
-      /* ::collection::map of bytes used in block */
+      /* map of bytes used in block */
       int32    nInUse;
       Bool     inUse[256];
       UChar    unseqToSeq[256];
@@ -403,7 +403,7 @@ typedef
       uint32   calculatedBlockCRC;
       uint32   calculatedCombinedCRC;
 
-      /* ::collection::map of bytes used in block */
+      /* map of bytes used in block */
       int32    nInUse;
       Bool     inUse[256];
       Bool     inUse16[16];

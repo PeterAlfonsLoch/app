@@ -1,10 +1,12 @@
 #pragma once
 
 
-class CLASS_DECL_ca string_to_string_map :
+class CLASS_DECL_ca base_string_to_string_map :
    public ::radix::object
 {
 public:
+
+
 	class pair
 	{
    public:
@@ -17,14 +19,15 @@ public:
       public pair
 	{
    public:
-		friend class string_to_string_map;
+		friend class base_string_to_string_map;
 		assoc* pNext;
 		UINT nHashValue;
       assoc(const string & key) : pair(key) {}
 	};
 
-   string_to_string_map(INT_PTR nBlockSize = 10);
-	~string_to_string_map();
+
+   base_string_to_string_map(INT_PTR nBlockSize = 10);
+	virtual ~base_string_to_string_map();
 
 
 // Attributes
@@ -35,20 +38,20 @@ public:
    bool has_elements(count countMinimum = 1) const;
 
 	// Lookup
-	BOOL Lookup(const char * key, string & rValue) const;
-	const pair *PLookup(const char * key) const;
-	pair *PLookup(const char * key);
-	BOOL LookupKey(const char * key, const char *& rKey) const;
+	BOOL Lookup(const string & key, string & rValue) const;
+	const pair *PLookup(const string & key) const;
+	pair *PLookup(const string & key);
+	BOOL LookupKey(const string & key, string & rKey) const;
 
 // Operations
 	// Lookup and add if not there
-	string & operator[](const char * key);
+	string & operator[](const string & key);
 
 	// add a new (key, value) pair
-	void set_at(const char * key, const char * newValue);
+	void set_at(const string & key, const string & newValue);
 
 	// removing existing (key, ?) pair
-	BOOL RemoveKey(const char * key);
+	BOOL RemoveKey(const string & key);
 	void remove_all();
 
 	// iterating all (key, value) pairs
@@ -66,11 +69,6 @@ public:
 	UINT GetHashTableSize() const;
 	void InitHashTable(UINT hashSize, BOOL bAllocNow = TRUE);
 
-// Overridables: special non-virtual (see ::collection::map implementation for details)
-	// Routine used to ::fontopus::user-provided hash keys
-	UINT HashKey(const char * key) const;
-
-
    void _001ReplaceVars(string & str);
 
 
@@ -83,9 +81,9 @@ protected:
 	struct plex* m_pBlocks;
 	INT_PTR m_nBlockSize;
 
-	assoc* NewAssoc(const char * key);
+	assoc* NewAssoc(const string & key);
 	void FreeAssoc(assoc*);
-	assoc* GetAssocAt(const char *, UINT&, UINT&) const;
+	assoc* GetAssocAt(const string & , UINT&, UINT&) const;
 
 public:
 
@@ -98,27 +96,42 @@ public:
 protected:
 	// local typedefs for typed_pointer_map class template
 	typedef string BASE_KEY;
-	typedef const char * BASE_ARG_KEY;
+	typedef const string & BASE_ARG_KEY;
 	typedef string BASE_VALUE;
-	typedef const char * BASE_ARG_VALUE;
+	typedef const string & BASE_ARG_VALUE;
 };
 
 
 
-inline INT_PTR string_to_string_map::get_count() const
+inline INT_PTR base_string_to_string_map::get_count() const
    { return m_nCount; }
-inline INT_PTR string_to_string_map::get_size() const
+inline INT_PTR base_string_to_string_map::get_size() const
    { return m_nCount; }
-inline bool string_to_string_map::is_empty(::count countMinimum) const
+inline bool base_string_to_string_map::is_empty(::count countMinimum) const
    { return m_nCount < countMinimum; }
-inline bool string_to_string_map::has_elements(::count countMinimum) const
+inline bool base_string_to_string_map::has_elements(::count countMinimum) const
    { return m_nCount >= countMinimum; }
-inline void string_to_string_map::set_at(const char * key, const char * newValue)
+inline void base_string_to_string_map::set_at(const string & key, const string & newValue)
    { (*this)[key] = newValue; }
-inline POSITION string_to_string_map::get_start_position() const
+inline POSITION base_string_to_string_map::get_start_position() const
    { return (m_nCount == 0) ? NULL : BEFORE_START_POSITION; }
-inline UINT string_to_string_map::GetHashTableSize() const
+inline UINT base_string_to_string_map::GetHashTableSize() const
    { return m_nHashTableSize; }
 
 
 
+
+class CLASS_DECL_ca string_to_string_map :
+   virtual public ex1::byte_serializable_map < ::collection::attrib_map < base_string_to_string_map >  >
+{
+public:
+
+
+   string_to_string_map(INT_PTR nBlockSize = 10);
+   string_to_string_map(const string_to_string_map & map);
+	~string_to_string_map();
+
+
+   string_to_string_map & operator = (const string_to_string_map & map);
+
+};

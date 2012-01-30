@@ -23,18 +23,17 @@ namespace xml
       
    };
 
-   inline application & app_cast(::ca::application * papp)
-   {
-      return *dynamic_cast < application * > (papp);
-   }
 
    inline disp_option::disp_option(::ca::application * papp)
    {
       newline = true; 
       reference_value = true; 
-      m_pentities = &::xml::app_cast(papp).m_entities; 
+      m_pentities = &papp->cast_app < application > ().m_entities; 
       tab_base = 0; 
       value_quotation_mark = '"'; 
    }
 
+
 } // namespace xml
+
+

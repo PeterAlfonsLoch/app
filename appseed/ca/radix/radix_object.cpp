@@ -19,7 +19,7 @@ namespace radix
 
    object::object()
    { 
-      try
+/*      try
       {
          if(::ca::get_thread_state() != NULL)
          {
@@ -28,7 +28,7 @@ namespace radix
       }
       catch(...)
       {
-      }
+      }*/
       common_construct(); 
    }
    
@@ -42,7 +42,7 @@ namespace radix
 
    object::object(const object& objectSrc)
    {
-      try
+      /*try
       {
          if(::ca::get_thread_state() != NULL)
          {
@@ -51,7 +51,7 @@ namespace radix
       }
       catch(...)
       {
-      }
+      }*/
       operator =(objectSrc);
    }
 

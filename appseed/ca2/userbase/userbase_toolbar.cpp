@@ -1350,17 +1350,17 @@ namespace userbase
 
    BOOL tool_bar::SetButtonText(int nIndex, const char * lpszText)
    {
-      // attempt to lookup string index in ::collection::map
+      // attempt to lookup string index in map
       int nString = -1;
       void * p;
       string wstrText(lpszText);
       if (m_pStringMap != NULL && m_pStringMap->Lookup(wstrText, p))
          nString = (int)p;
 
-      // add new string if not already in ::collection::map
+      // add new string if not already in map
       if (nString == -1)
       {
-         // initialize ::collection::map if necessary
+         // initialize map if necessary
          if (m_pStringMap == NULL)
             m_pStringMap = new ::collection::string_to_ptr;
 
@@ -1373,7 +1373,7 @@ namespace userbase
          if (nString == -1)
             return FALSE;
 
-         // cache string away in string ::collection::map
+         // cache string away in string map
          m_pStringMap->set_at(wstrText, (void *)nString);
          ASSERT(m_pStringMap->Lookup(wstrText, p));
       }
@@ -1416,7 +1416,7 @@ namespace userbase
          TBBUTTON button;
          _GetButton(nIndex, &button);
 
-         // look in ::collection::map for matching iString
+         // look in map for matching iString
          POSITION pos = m_pStringMap->get_start_position();
          string str; void * p;
          while (pos)
