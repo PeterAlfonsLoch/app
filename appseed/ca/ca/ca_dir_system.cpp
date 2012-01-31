@@ -593,7 +593,36 @@ namespace ca
          return true;
 
       }
-      
+
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, int iLast)
+      {
+         
+         if(iLast < 0)
+         {
+            bIsDir = true; // root_ones dir
+            return true;
+         }
+
+         string strLookup(strPath, iLast + 1);
+
+         single_lock sl(&m_mutex, TRUE);
+
+         ::collection::string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+
+         if(ppair == NULL)
+            return false;
+
+         if(::GetTickCount() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
+         {
+            return false;
+         }
+
+         bIsDir = ppair->m_value.m_bIsDir;
+
+         return true;
+
+      }
+
       void system::is_dir_map::set(const char * pszPath, bool bIsDir)
       {
          is_dir isdir;
