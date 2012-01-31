@@ -52,7 +52,7 @@ namespace dynamic_source
       m_strLibPlatform = "";
    #endif
 
-      System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
+      //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
 
       prepare1("dynamic_source_cld" + m_strPlat1 + ".bat", "dynamic_source_cld" + m_strPlat1 + ".bat");
       prepare1("dynamic_source_libcd" + m_strPlat1 + ".bat", "dynamic_source_libcd" + m_strPlat1 + ".bat");
@@ -239,6 +239,9 @@ namespace dynamic_source
 
       string strV(System.dir().votagus());
       strV.replace("\\", "/");
+      if(!gen::str::ends(strV, "/") && !gen::str::ends(strV, "\\"))
+         strV += "/";
+
 
 
       string strBuildCmd;
@@ -507,6 +510,8 @@ namespace dynamic_source
    {
       string strVotagusFolder;
       strVotagusFolder = System.dir().votagus();
+      if(!gen::str::ends(strVotagusFolder, "/") && !gen::str::ends(strVotagusFolder, "\\"))
+         strVotagusFolder += "/";
       string strTemplate;
       string strSource = "app\\stage\\app\\matter\\";
       strSource += lpcszSource;
