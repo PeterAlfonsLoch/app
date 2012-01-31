@@ -1,18 +1,10 @@
 #pragma once
 
 
-namespace ca
+enum e_extract
 {
-
-
-   enum e_extract
-   {
-      extract_none,
-      extract_first,
-      extract_all,
-   };
-
-
-} // namespace ca
-
+   extract_none,
+   extract_first,
+   extract_all,
+};
 
