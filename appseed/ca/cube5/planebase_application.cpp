@@ -585,7 +585,7 @@ InitFailure:
                   System.install().remove_spa_start(strId);
                   System.install().add_app_install(strId);
                }
-               else if(command().m_varTopicQuery.has_property("bergedge_start") && strId == command().m_varTopicQuery["bergedge_start"])
+               else if(command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
                   System.install().remove_spa_start(strId);
                   System.install().add_app_install(strId);
