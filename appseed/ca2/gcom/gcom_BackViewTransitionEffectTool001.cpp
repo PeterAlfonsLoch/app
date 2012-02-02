@@ -199,9 +199,9 @@ namespace gcom
          case TransitionEffectAccumulLinearFadingLeftRight:
          case TransitionEffectAccumulLinearFadingRightLeft:
             {
-               m_iStepRepeatCount = 16;
+               m_iStepRepeatCount = 128;
 
-               effect.m_dwDelay = 50;
+               effect.m_dwDelay = 5;
 
                //double dPow = 1.0 / 2.5;
                //const int iMaxGroupCount = 256;
@@ -242,10 +242,10 @@ namespace gcom
          case TransitionEffectLinearFadingLeftRight:
          case TransitionEffectLinearFadingRightLeft:
             {
-               effect.m_dwDelay = 125;
+               effect.m_dwDelay = 84;
                m_iStepRepeatCount = 1;
                const int iTileCount = 1;
-               const int iFrameCount = 16;
+               const int iFrameCount = 49;
                m_data.m_sliceframe.m_iTileCount = iTileCount;
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iTileCount * iFrameCount + 1;
