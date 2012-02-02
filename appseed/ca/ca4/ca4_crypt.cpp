@@ -287,10 +287,10 @@ namespace ca4
       int iBufSize = 20;
       unsigned char * buf = new unsigned char[iBufSize];
       sha1_ctx_t ctx;
-      sha1_init(&ctx);
+      __sha1_init(&ctx);
       //int iRead;
-      sha1_update(&ctx, mem, (int) mem.get_size());
-      sha1_final(&ctx, (uint32_t *) buf);
+      __sha1_update(&ctx, mem, (int) mem.get_size());
+      __sha1_final(&ctx, (uint32_t *) buf);
       string str;
       string strFormat;
       for(int i = 0; i < 20; i++)

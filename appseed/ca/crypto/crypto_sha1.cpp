@@ -13,7 +13,7 @@ namespace crypto
 
       void CContextBase::Init()
       {
-         sha1_init(&m_ctx);
+         __sha1_init(&m_ctx);
          _count = 0;
       }
 
@@ -25,7 +25,7 @@ namespace crypto
          for (int i = 0 ; i < 16; i++)
             M[i] = data[i];
 
-         sha1_core(M, (uint32_t *) destDigest);
+         __sha1_core(M, (uint32_t *) destDigest);
 
          if (returnRes)
             for (int i = 0 ; i < 16; i++)
@@ -49,7 +49,7 @@ namespace crypto
 
       void CContextBase::update(uint8_t * msg, int iSize)
       {
-         sha1_update(&m_ctx, msg, iSize);
+         __sha1_update(&m_ctx, msg, iSize);
       }
 
       void CContext::Update(const byte *data, size_t size)

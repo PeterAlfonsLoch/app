@@ -146,3 +146,6 @@ rdb_get_value
 rdb_increment
 rdb_add_index
 rdb_check
+__sha1_init
+__sha1_update
+__sha1_final
