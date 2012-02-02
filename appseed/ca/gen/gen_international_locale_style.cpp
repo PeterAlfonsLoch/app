@@ -12,7 +12,11 @@ namespace gen
          locale_style::locale_style(::ca::application * papp) :
             ca(papp)
          {
-            m_bFixStyle = false;
+
+            m_bFixStyle             = false;
+
+            m_bAddAlternateStyle    = false;
+
          }
 
 
@@ -168,28 +172,51 @@ namespace gen
          bool locale_style::defer_add_locale(const char * pszLocale, const char * pszStyle)
          {
 
+            bool bAdded = false;
+
+            string strStyle;
+
+            if(m_bAddAlternateStyle)
+            {
+
+               strStyle = pszStyle;
+
+               if(strStyle.get_length() == 0)
+               {
+                  strStyle = "_std";
+               }
+
+               for(int i = 0; i < m_straLocale.get_count() && i < m_straStyle.get_count(); i++)
+               {
+                  if(m_straLocale[i] == pszLocale && m_straStyle[i] == strStyle)
+                     goto step2;
+               }
+
+               m_straLocale.add(pszLocale);
+               m_straStyle.add(strStyle);
+
+               bAdded = true;
+
+            }
+
+            step2:
+
+            strStyle = m_strStyle;
+
+            if(strStyle.get_length() == 0)
+            {
+               strStyle = "_std";
+            }
+
             for(int i = 0; i < m_straLocale.get_count() && i < m_straStyle.get_count(); i++)
             {
-               if(m_straLocale[i] == pszLocale && m_straStyle[i] == pszStyle)
-                  return false;
+               if(m_straLocale[i] == pszLocale && m_straStyle[i] == strStyle)
+                  return bAdded;
             }
 
             m_straLocale.add(pszLocale);
-            if(m_straStyle.get_count() == 0)
-            {
-               if(m_strStyle.is_empty() || m_strStyle.CompareNoCase("_std") == 0)
-               {
-                  m_straStyle.add("_std");
-               }
-               else
-               {
-                  m_straStyle.add(m_strStyle);
-               }
-            }
-            else
-            {
-               m_straStyle.add(m_strStyle);
-            }
+            m_straStyle.add(strStyle);
+
             return true;
 
          }

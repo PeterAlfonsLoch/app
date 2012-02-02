@@ -1330,8 +1330,9 @@ InitFailure:
       gen::international::locale_style localestyle(this);
 
 
-      
-      
+      localestyle.m_bAddAlternateStyle = true;
+
+
       string strLocale;
       string strStyle;
 

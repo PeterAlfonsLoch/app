@@ -28,6 +28,8 @@ namespace gen
          stringa  m_straLocale;
          stringa  m_straStyle;
 
+         bool     m_bAddAlternateStyle;
+
          locale_style(::ca::application * papp);
          virtual ~locale_style();
 

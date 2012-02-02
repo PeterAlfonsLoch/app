@@ -354,7 +354,7 @@ namespace gcom
             }
          }
 
-         //Sleep(min(1984, m_dwDelay));
+         Sleep(m_dwDelay);
 
          m_tool001.m_iStep++;
       }

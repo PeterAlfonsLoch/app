@@ -131,9 +131,9 @@ namespace gen
          m_strApp = m_varQuery.propset()["app"];
       }
 
-      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
       {
-         m_strApp = m_varQuery.propset()["bergedge_start"];
+         m_strApp = m_varQuery.propset()["session_start"];
       }
 
 
@@ -170,9 +170,9 @@ namespace gen
          m_strApp = m_varQuery.propset()["app"];
       }
 
-      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
       {
-         m_strApp = m_varQuery.propset()["bergedge_start"];
+         m_strApp = m_varQuery.propset()["session_start"];
       }
 
 //      m_pthreadParent->consolidate(this);
@@ -211,9 +211,9 @@ namespace gen
          m_strApp = m_varQuery.propset()["app"];
       }
 
-      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
       {
-         m_strApp = m_varQuery.propset()["bergedge_start"];
+         m_strApp = m_varQuery.propset()["session_start"];
       }
 
 //      m_pthreadParent->consolidate(this);
@@ -254,9 +254,9 @@ namespace gen
          m_strApp = m_varQuery.propset()["app"];
       }
 
-      if(m_strApp == "bergedge" && m_varQuery.propset().has_property("bergedge_start"))
+      if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
       {
-         m_strApp = m_varQuery.propset()["bergedge_start"];
+         m_strApp = m_varQuery.propset()["session_start"];
       }
 
 //      m_pthreadParent->consolidate(this);

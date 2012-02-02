@@ -641,9 +641,9 @@ namespace ca2
 
    bool application::on_run_install()
    {
-      if(m_strId == "bergedge" || m_strAppName == "bergedge")
+      if(m_strId == "session" || m_strAppName == "session")
       {
-         if(!directrix().m_varTopicQuery.has_property("bergedge_start"))
+         if(!directrix().m_varTopicQuery.has_property("session_start"))
          {
             System.PostThreadMessage(WM_QUIT, 0, 0);
          }
@@ -665,9 +665,9 @@ namespace ca2
    bool application::on_run_uninstall()
    {
 
-      if(m_strId == "bergedge")
+      if(m_strId == "session")
       {
-         if(!directrix().m_varTopicQuery.has_property("bergedge_start"))
+         if(!directrix().m_varTopicQuery.has_property("session_start"))
          {
             System.PostThreadMessage(WM_QUIT, 0, 0);
          }
