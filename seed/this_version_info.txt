@@ -1,12 +1,12 @@
-﻿-c1-production -c2-producer -t12n-producing -mmmi- 2012-02-03 19-18-42 app:SVN3592M, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN26, app-core:SVN153M, app-frontpage:SVN59, app-sysutils:SVN48, app-veriwell:SVN177M - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
+﻿-c1-production -c2-producer -t12n-producing -mmmi- 2012-02-03 19-22-55 app:SVN3594, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN26, app-core:SVN154, app-frontpage:SVN59, app-sysutils:SVN48, app-veriwell:SVN178M - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
 // <==! Thanks and dedicated to &lt; <
 // Thanks to and in honor of God > &gt; ==>
 // for ca2 and 5!!
 // you(*) and me(*) and God(***) make 5...
-#define THIS_PRODUCT_VERSION "2012-02-03 19-18-42 app:SVN3592M, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN26, app-core:SVN153M, app-frontpage:SVN59, app-sysutils:SVN48, app-veriwell:SVN177M\0"
-#define THIS_FILE_VERSION "2012-02-03 19-18-42 app:SVN3592M, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN26, app-core:SVN153M, app-frontpage:SVN59, app-sysutils:SVN48, app-veriwell:SVN177M\0"
-#define __THIS_PRODUCT_VERSION 2012,0203,1918,42
-#define __THIS_FILE_VERSION 2012,0203,1918,42
+#define THIS_PRODUCT_VERSION "2012-02-03 19-22-55 app:SVN3594, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN26, app-core:SVN154, app-frontpage:SVN59, app-sysutils:SVN48, app-veriwell:SVN178M\0"
+#define THIS_FILE_VERSION "2012-02-03 19-22-55 app:SVN3594, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN26, app-core:SVN154, app-frontpage:SVN59, app-sysutils:SVN48, app-veriwell:SVN178M\0"
+#define __THIS_PRODUCT_VERSION 2012,0203,1922,55
+#define __THIS_FILE_VERSION 2012,0203,1922,55
 
 
 
