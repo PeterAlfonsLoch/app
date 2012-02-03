@@ -1429,7 +1429,15 @@ InitFailure:
 
          gen::str::ends_eat_ci(strDir, ".zip");
 
-         util.extract_all(strDir, &file);
+         try
+         {
+
+            util.extract_all(strDir, &file);
+
+         }
+         catch(...)
+         {
+         }
 
          //System.compress().extract_all(strFile, this);
 
