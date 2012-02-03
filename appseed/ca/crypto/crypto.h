@@ -7,6 +7,7 @@ extern "C"
    
    #include "crypto_kernel.h"
    #include "sha1.h"
+   #include "hmac.h"
 
 } // extern "C"
 
@@ -50,6 +51,7 @@ extern "C"
 
 // hash
 #include "crypto_sha1.h"
+#include "crypto_hmac_sha1.h"
 
 
 // compress filters

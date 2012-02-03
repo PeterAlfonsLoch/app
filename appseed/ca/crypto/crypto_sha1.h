@@ -20,35 +20,36 @@ namespace crypto
       const unsigned kBlockSizeInWords = (kBlockSize >> 2);
       const unsigned kDigestSizeInWords = (kDigestSize >> 2);
 
-      class CContextBase
+      class CLASS_DECL_ca CContextBase
       {
       protected:
          sha1_ctx_t     m_ctx;
          uint64         _count;
-         void UpdateBlock(uint32 *data, bool returnRes = false)
+         void UpdateBlock(char * data, bool returnRes = false)
          {
-            GetBlockDigest(data, (uint32 *) m_ctx.H, returnRes);
+            GetBlockDigest(data, m_ctx.Message_Digest, returnRes);
             _count++;
          }
       public:
          void Init();
-         void GetBlockDigest(uint32 *blockData, uint32 *destDigest, bool returnRes = false);
+         void GetBlockDigest(char * blockData, uint32 *destDigest, bool returnRes = false);
+         //void
          // PrepareBlock can be used only when size <= 13. size in Words
-         void PrepareBlock(uint32 *block, unsigned int size) const;
+//         void PrepareBlock(uint32 *block, unsigned int size) const;
          void update(uint8_t * msg, int iSize);
       };
 
-      class CContextBase2: public CContextBase
+      class CLASS_DECL_ca CContextBase2: public CContextBase
       {
       protected:
          unsigned _count2;
-         uint32 _buffer[kBlockSizeInWords];
-         void UpdateBlock() { CContextBase::UpdateBlock(_buffer); }
+         uint32_t _buffer[kBlockSizeInWords];
+         void UpdateBlock() { CContextBase::UpdateBlock((char *) _buffer); }
       public:
          void Init() { CContextBase::Init(); _count2 = 0; }
       };
 
-      class CContext: public CContextBase2
+      class CLASS_DECL_ca CContext: public CContextBase2
       {
       public:
          void Update(const byte *data, size_t size);
@@ -56,7 +57,7 @@ namespace crypto
          void Final(byte *digest);
       };
 
-      class CContext32: public CContextBase2
+      class CLASS_DECL_ca CContext32: public CContextBase2
       {
       public:
          void Update(const uint32 *data, size_t size);

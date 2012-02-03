@@ -35,7 +35,9 @@ namespace ca4
       string md5(primitive::memory & mem);
       string sha1(primitive::memory & mem);
 
-      void hmac(primitive::memory & key, const char * message, byte result[20]);
+      // result is 20-byte digest
+      void hmac(void * result, const ::primitive::memory & memMessage, const ::primitive::memory & key);
+      void hmac(void * result, const string & memMessage, const string & key);
 
       bool file_set(var varFile, const char * pszData, const char * pszSalt, ::ca::application * papp);
       bool file_get(var varFile, string & str, const char * pszSalt, ::ca::application * papp);

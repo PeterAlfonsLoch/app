@@ -286,11 +286,11 @@ namespace ca4
    {
       int iBufSize = 20;
       unsigned char * buf = new unsigned char[iBufSize];
-      sha1_ctx_t ctx;
-      __sha1_init(&ctx);
+      crypto::sha1::CContext ctx;
+      ctx.Init();
       //int iRead;
-      __sha1_update(&ctx, mem, (int) mem.get_size());
-      __sha1_final(&ctx, (uint32_t *) buf);
+      ctx.update(mem, (int) mem.get_size());
+      ctx.Final(buf);
       string str;
       string strFormat;
       for(int i = 0; i < 20; i++)
@@ -413,11 +413,26 @@ namespace ca4
       return crc32(dwPrevious, psz, (::primitive::memory_size) -1);
    }
 
-   void crypt::hmac(primitive::memory & memKey, const char * message, byte result[20])
+   void crypt::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
    {
-      hmac_ctx_t state;
-      memset(&state, 0, sizeof(state));
-      hmac_init(&state, memKey, (int) memKey.get_size());
-      hmac_compute(&state, message, strlen(message), 20, result);
+      
+      crypto::hmac_sha1::context context;
+      
+      context.digest(result, memMessage.get_data(), memMessage.get_size(), memKey.get_data(), memKey.get_size());
+
    }
+
+   void crypt::hmac(void * result, const string & strMessage, const string & strKey)
+   {
+      
+      crypto::hmac_sha1::context context;
+      
+      context.digest(result, strMessage, strMessage.get_length(), strKey, strKey.get_length());
+
+   }
+
+
 } // namespace ca4
+
+
+

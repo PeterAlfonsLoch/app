@@ -2978,9 +2978,6 @@
     <ClInclude Include="crypto\stat.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\sha1.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="crypto\rdbx.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
@@ -3370,6 +3367,12 @@
     </ClInclude>
     <ClInclude Include="exception\exception_overflow_error.h">
       <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\sha1.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_hmac_sha1.h">
+      <Filter>Header Files\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5158,9 +5161,6 @@
     <ClCompile Include="crypto\hash_null_auth.c">
       <Filter>Source Files\crypto\C Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\hash_sha1.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\kernel_alloc.c">
       <Filter>Source Files\crypto\C Source Files</Filter>
     </ClCompile>
@@ -5631,6 +5631,12 @@
     </ClCompile>
     <ClCompile Include="exception\exception_overflow_error.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\hash_sha1.c">
+      <Filter>Source Files\crypto\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

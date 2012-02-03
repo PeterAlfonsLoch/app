@@ -17,7 +17,7 @@ namespace crypto
          _count = 0;
       }
 
-      void CContextBase::GetBlockDigest(uint32 *data, uint32 *destDigest, bool returnRes)
+      void CContextBase::GetBlockDigest(char * data, uint32 *destDigest, bool returnRes)
       {
 
          uint32_t M[16];
@@ -25,7 +25,7 @@ namespace crypto
          for (int i = 0 ; i < 16; i++)
             M[i] = data[i];
 
-         __sha1_core(M, (uint32_t *) destDigest);
+         __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
 
          if (returnRes)
             for (int i = 0 ; i < 16; i++)
@@ -35,7 +35,9 @@ namespace crypto
          // a = b = c = d = e = 0;
       }
 
-      void CContextBase::PrepareBlock(uint32 *block, unsigned size) const
+
+      
+      /*void CContextBase::PrepareBlock(uint32 *block, unsigned size) const
       {
          unsigned curBufferPos = size & 0xF;
          block[curBufferPos++] = 0x80000000;
@@ -44,9 +46,9 @@ namespace crypto
          const uint64 lenInBits = (_count << 9) + ((uint64)size << 5);
          block[curBufferPos++] = (uint32)(lenInBits >> 32);
          block[curBufferPos++] = (uint32)(lenInBits);
-      }
+      }*/
 
-
+      
       void CContextBase::update(uint8_t * msg, int iSize)
       {
          __sha1_update(&m_ctx, msg, iSize);
@@ -64,12 +66,12 @@ namespace crypto
             if (++curBufferPos == kBlockSize)
             {
                curBufferPos = 0;
-               CContextBase::UpdateBlock(_buffer, false);
+               CContextBase::UpdateBlock((char *) _buffer, false);
             }
          }
          _count2 = curBufferPos;
       }
-
+      
       void CContext::UpdateRar(byte *data, size_t size, bool rar350Mode)
       {
          bool returnRes = false;
@@ -83,7 +85,7 @@ namespace crypto
             if (++curBufferPos == kBlockSize)
             {
                curBufferPos = 0;
-               CContextBase::UpdateBlock(_buffer, returnRes);
+               CContextBase::UpdateBlock((char *) _buffer, returnRes);
                if (returnRes)
                   for (int i = 0; i < kBlockSizeInWords; i++)
                   {
@@ -101,7 +103,9 @@ namespace crypto
 
       void CContext::Final(byte *digest)
       {
-         const uint64 lenInBits = (_count << 9) + ((uint64)_count2 << 3);
+         __sha1_final(&m_ctx, digest);
+         Init();
+/*         const uint64 lenInBits = (_count << 9) + ((uint64)_count2 << 3);
          unsigned curBufferPos = _count2;
          int pos = (int)(curBufferPos & 3);
          curBufferPos >>= 2;
@@ -129,7 +133,7 @@ namespace crypto
             *digest++ = (byte)(state >> 8);
             *digest++ = (byte)(state);
          }
-         Init();
+         Init();*/
       }
 
       ///////////////////////////
@@ -137,7 +141,8 @@ namespace crypto
 
       void CContext32::Update(const uint32 *data, size_t size)
       {
-         while (size--)
+         __sha1_update(&m_ctx, data, size * 4);
+         /*while (size--)
          {
             _buffer[_count2++] = *data++;
             if (_count2 == kBlockSizeInWords)
@@ -145,12 +150,14 @@ namespace crypto
                _count2 = 0;
                UpdateBlock();
             }
-         }
+         }*/
       }
 
       void CContext32::Final(uint32 *digest)
       {
-         const uint64 lenInBits = (_count << 9) + ((uint64)_count2 << 5);
+         __sha1_final(&m_ctx, digest);
+         Init();
+         /*const uint64 lenInBits = (_count << 9) + ((uint64)_count2 << 5);
          unsigned curBufferPos = _count2;
          _buffer[curBufferPos++] = 0x80000000;
          while (curBufferPos != (16 - 2))
@@ -163,9 +170,11 @@ namespace crypto
          _buffer[curBufferPos++] = (uint32)(lenInBits >> 32);
          _buffer[curBufferPos++] = (uint32)(lenInBits);
          GetBlockDigest(_buffer, digest);
-         Init();
+         Init();*/
       }
 
+
    }
+
 
 }

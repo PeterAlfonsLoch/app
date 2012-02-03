@@ -106,12 +106,14 @@ namespace crypto
          for (i = 0; i < kNumRounds; i++)
          {
             sha.UpdateRar(rawPassword, rawLength, _rar350Mode);
+            sha.Update(rawPassword, rawLength);
             byte pswNum[3] = { (byte)i, (byte)(i >> 8), (byte)(i >> 16) };
             sha.UpdateRar(pswNum, 3, _rar350Mode);
+            sha.update(pswNum, 3);
             if (i % (kNumRounds / 16) == 0)
             {
                crypto::sha1::CContext shaTemp = sha;
-               byte digest[crypto::sha1::kDigestSize];
+               byte digest[20];
                shaTemp.Final(digest);
                _aesInit[i / (kNumRounds / 16)] = (byte)digest[4 * 4 + 3];
             }

@@ -161,7 +161,7 @@ hmac_update(hmac_ctx_t *state, const uint8_t *message, int msg_octets) {
          octet_string_hex_string(message, msg_octets));
   
   /* hash message into sha1 context */
-  __sha1_update(&state->ctx, message, msg_octets);
+   __sha1_update(&state->ctx, message, msg_octets);
 
   return err_status_ok;
 }
