@@ -50,7 +50,7 @@ namespace spa
       if(is_installation_lock_file_locked())
       {
          // shouldn't do advanced operations using ca2
-         // starter_start will only kick a default installer if one isn't already running, cleaning file lock if any
+         // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
          m_phost->starter_start("session");
          return;
       }

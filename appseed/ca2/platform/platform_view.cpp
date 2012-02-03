@@ -807,7 +807,7 @@ namespace platform
                SW_HIDE);
 
             return;
-            // spa boot should cling (installer should catch
+            // spa boot should cling (app-install.exe should catch
             // exit could and restart main application)
          }
       }

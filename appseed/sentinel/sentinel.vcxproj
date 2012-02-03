@@ -36,9 +36,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46D3B606-0CF7-4F41-9BFB-2CF22FDCEC03}</ProjectGuid>
-    <RootNamespace>sentinel</RootNamespace>
+    <RootNamespace>app-sentinel</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>sentinel</ProjectName>
+    <ProjectName>app-sentinel</ProjectName>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

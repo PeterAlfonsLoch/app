@@ -151,7 +151,7 @@ bool installer::initialize()
 
    prepare_small_bell();
 
-   if(!m_rxchannel.create("ca2/fontopus/ccvotagus/spaboot_install", "installer.exe"))
+   if(!m_rxchannel.create("ca2/fontopus/ccvotagus/spaboot_install", "app-install.exe"))
    {
       m_iReturn = -1;
       return false;

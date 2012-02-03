@@ -860,7 +860,7 @@ namespace bergedge
 
       string strSentinelPath;
 
-      strSentinelPath = System.dir().ca2("stage/x86/sentinel.exe");
+      strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
 
       win::registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
       keyKar.SetValue("ca2 sentinel", "\"" + strSentinelPath + "\"");

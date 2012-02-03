@@ -7,11 +7,14 @@ extern bool g_bInstalling;
 namespace spa
 {
 
+
    class window;
+
 
    class CLASS_DECL_c installer
    {
    public:
+
 
       class CLASS_DECL_c launcher :
          virtual public ::launcher

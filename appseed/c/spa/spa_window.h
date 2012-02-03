@@ -4,8 +4,10 @@
 namespace spa
 {
 
+
    class installer;
    class window;
+
 
    class CLASS_DECL_c window_map :
       public simple_map < HWND, window * >
@@ -18,6 +20,7 @@ namespace spa
    {
    public:
 
+
       HINSTANCE            m_hinstance;
       canvas               m_canvas;
 
@@ -26,8 +29,8 @@ namespace spa
       HBITMAP              g_hbmAlpha;
       HDC                  g_hdcAlpha;
       static window_map    s_windowmap;
-      int         m_iStyle;
-      installer*  m_pinstaller;
+      int                  m_iStyle;
+      installer *          m_pinstaller;
 
       bool m_bDrag;
       POINT m_ptDragStart;

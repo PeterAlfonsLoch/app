@@ -565,12 +565,12 @@ install_begin:;
                bAsk = true;
                bRestart = true;
                vsstring strPath = g_straTerminateProcesses.element_at(i);
-               if(str_ends_ci_dup(strPath, "\\installer.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
+               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
                }
-               else if(str_ends_ci_dup(strPath, ".exe")  && stristr_dup(strPath, "\\installer") != NULL)
+               else if(str_ends_ci_dup(strPath, ".exe")  && stristr_dup(strPath, "\\app-install.exe") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
@@ -683,7 +683,7 @@ install_begin:;
                trace_add(".");
             }
          }
-         trace("***executing installer.");
+         trace("***executing app-install.exe.");
 
          if(m_NeedRestartBecauseOfReservedFile
          || m_NeedRestartFatalError)
@@ -1934,7 +1934,7 @@ install_begin:;
       }
       set_progress(0.5);
 //      DWORD dwStartError;
-      trace("starting installer...");
+      trace("starting app-install.exe...");
       int i = run_ca2_application_installer(m_strStart);
       if(m_strStart != "_set_windesk" && is_installed("_set_windesk"))
       {
@@ -2803,32 +2803,32 @@ install_begin:;
          ::GetFullPathNameA(szModulePath, iSpabootInstallStrSize, m_strPath.m_psz, &file);
          file[0] = '\0';
 
-         strcat_dup(m_strPath.m_psz, "installer.exe");
+         strcat_dup(m_strPath.m_psz, "app-install.exe");
       }
    #else
       throw "TODO";
    #endif
 
-      if(!file_exists_dup(m_strPath) || !is_file_ok(m_strPath, "installer.exe"))
+      if(!file_exists_dup(m_strPath) || !is_file_ok(m_strPath, "app-install.exe"))
       {
          int iRetry = 0;
          while(iRetry < 8)
          {
 
-            if(!get_temp_file_name_dup(m_strPath.m_psz, iSpabootInstallStrSize, "installer", "exe"))
+            if(!get_temp_file_name_dup(m_strPath.m_psz, iSpabootInstallStrSize, "app-install.exe", "exe"))
                return false;
 
-            if(is_file_ok(m_strPath, "installer.exe"))
+            if(is_file_ok(m_strPath, "app-install.exe"))
                break;
             vsstring strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-               strUrl = "http://hardaxs.net/spa?download=installer.exe&authnone";
+               strUrl = "http://hardaxs.net/spa?download=app-install.exe&authnone";
 #else
-               strUrl = "http://veriaxs.net/spa?download=installer.exe&authnone";
+               strUrl = "http://veriaxs.net/spa?download=app-install.exe&authnone";
 #endif
             if(ms_download_dup(strUrl, m_strPath, false))
             {
-               if(is_file_ok(m_strPath, "installer.exe"))
+               if(is_file_ok(m_strPath, "app-install.exe"))
                {
                   break;
                }
@@ -2836,7 +2836,7 @@ install_begin:;
             iRetry++;
          }
       }
-      if(!is_file_ok(m_strPath, "installer.exe"))
+      if(!is_file_ok(m_strPath, "app-install.exe"))
       {
          return false;
       }
@@ -2870,7 +2870,7 @@ install_begin:;
        _NSGetExecutablePath(path, &path_len);
        char * psz = path;
 #else
-      char * psz = br_find_exe("installer");
+      char * psz = br_find_exe("app-install");
 #endif
       call_sync(psz, param);
 #if defined(WINDOWS)

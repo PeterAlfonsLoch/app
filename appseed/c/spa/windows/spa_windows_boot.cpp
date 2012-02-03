@@ -78,7 +78,7 @@ int spaboot_registry_register(const char * lpszFile)
 
 
 
-/*int installer(const char * param)
+/*int app-install.exe(const char * param)
 {
    char szModulePath[MAX_PATH * 3];
    ::GetModuleFileNameA((HINSTANCE) ::GetModuleHandleA("npca2.dll"), szModulePath, sizeof(szModulePath));
@@ -88,7 +88,7 @@ int spaboot_registry_register(const char * lpszFile)
    ::GetFullPathNameA(szModulePath, sizeof(path), path, &file);
    file[0] = '\0';
 
-   strcat_dup(path, "installer.exe");
+   strcat_dup(path, "app-install.exe");
 
    installer_call_sync(path, param);
    return 0;
