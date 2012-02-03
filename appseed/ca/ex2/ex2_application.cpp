@@ -307,11 +307,6 @@ namespace ex2
       return ::ca::smart_pointer<::ex2::application>::m_p->window_from_os_data_permanent(pdata);
    }
 
-   ::user::printer * application::get_printer(const char * pszDeviceName)
-   {
-      return ::ca::smart_pointer<::ex2::application>::m_p->get_printer(pszDeviceName);
-   }
-
    ::ca::window * application::get_desktop_window()
    {
       return window_from_os_data(::GetDesktopWindow());

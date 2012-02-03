@@ -116,6 +116,7 @@ namespace cube2
 
    bool application::initialize_instance()
    {
+
       if(!::cube1::application::initialize_instance())
          return false;
       if(m_psession != NULL && m_psession->m_pbergedge != NULL)
@@ -173,9 +174,6 @@ namespace cube2
    {
       ::cube1::application::request(pcreatecontext);
    }
-
-
-
 
 
 } //namespace cube2

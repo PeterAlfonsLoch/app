@@ -15,16 +15,6 @@ namespace gen
 
 } // namespace gen
 
-namespace user
-{
-
-
-   class printer;
-
-
-} // namespace user
-
-
 namespace visual
 {
 
@@ -115,10 +105,6 @@ namespace ex2
 
       virtual ::ca::window * window_from_os_data(void * pdata);
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);
-
-      virtual ::user::printer * get_printer(const char * pszDeviceName);
-
-
 
       virtual ::ca::window * get_desktop_window();
 

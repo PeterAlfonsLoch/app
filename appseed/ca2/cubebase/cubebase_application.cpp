@@ -18,8 +18,41 @@ namespace cubebase
       return new application();
    }
 
+
+typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
+
+   void application::CubeOnFactoryExchange()
+   {
+   #ifdef WIN32
+
+      HMODULE hmodule = ::LoadLibraryA("os2.dll");
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
+      pfn_ca2_factory_exchange(this);
+   #else
+      return NULL; // not implemented... yet!! you may start!!
+   #endif
+   }
+
+
    bool application::initialize1()
    {
+
+      
+      
+      
+      if(is_cube())
+      {
+         
+         CubeOnFactoryExchange();
+
+         ::ca::smart_pointer < ::cubebase::application >::create(this);
+
+         if(::ca::smart_pointer < ::cubebase::application >::is_null())
+            return false;
+
+      }
+
+      
 
 
       if(!::plane::application::initialize1())
@@ -80,6 +113,14 @@ namespace cubebase
    bool application::is_cube()
    {
       return false;
+   }
+
+
+   ::user::printer * application::get_printer(const char * pszDeviceName)
+   {
+
+      return ::ca::smart_pointer < ::cubebase::application >::m_p->get_printer(pszDeviceName);
+
    }
 
 
