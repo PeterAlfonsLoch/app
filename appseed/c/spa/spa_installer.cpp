@@ -2916,7 +2916,7 @@ install_begin:;
 
       CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
 
-      strStage = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\aaaaaaplication.exe"));
+      strStage = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app.exe"));
 
       if(strParam1.length() > 0)
       {

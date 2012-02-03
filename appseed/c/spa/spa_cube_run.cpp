@@ -15,7 +15,7 @@ int cube_run(const char * id)
    strcat_dup(lpszDir, "\\x64");
 #endif
    strcpy_dup(lpszFile, lpszDir);
-   strcat_dup(lpszFile, "\\aaaaaaplication.exe");
+   strcat_dup(lpszFile, "\\app.exe");
 
    char param[MAX_PATH];
 

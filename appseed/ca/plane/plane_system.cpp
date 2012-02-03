@@ -792,7 +792,7 @@ namespace plane
          if(h == NULL)
          {
             string strApp;
-            strApp = "aaaaaaplication.exe";
+            strApp = "app.exe";
             string strParameters;
             strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
             ::ShellExecute(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
@@ -810,7 +810,7 @@ namespace plane
          if(h == NULL)
          {
             string strApp;
-            strApp = "aaaaaaplication.exe";
+            strApp = "app.exe";
             string strParameters;
             strParameters = ": app=" + strAppName;
             ::ShellExecute(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);

@@ -192,7 +192,7 @@ namespace ca2
          if(iItem >= 0)
          {
             string strRequest;
-            strRequest = "aaaaaaplication://" + m_list[iItem].m_strApp + "/" + m_strName;
+            strRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
             Bergedge.request(var(strRequest));
          }
 

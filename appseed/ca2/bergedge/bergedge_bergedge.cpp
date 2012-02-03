@@ -452,7 +452,7 @@ namespace bergedge
       }
 
       string strProtocol = System.url().get_protocol(strPathName);
-      if(strProtocol == "aaaaaaplication")
+      if(strProtocol == "app")
       {
          strId = System.url().get_server(strPathName);
 
