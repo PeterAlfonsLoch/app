@@ -464,7 +464,7 @@ namespace plane
       }
 
       string strProtocol = System.url().get_protocol(strPathName);
-      if(strProtocol == "ca2app")
+      if(strProtocol == "aaaaaaplication")
       {
          strId = System.url().get_server(strPathName);
 

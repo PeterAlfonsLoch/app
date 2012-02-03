@@ -38,7 +38,7 @@
     <ProjectGuid>{B2A3AD3B-1026-4D24-A527-2E1B38324184}</ProjectGuid>
     <RootNamespace>ca2app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>ca2app</ProjectName>
+    <ProjectName>aaaaaapplication</ProjectName>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

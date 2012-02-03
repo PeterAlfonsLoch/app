@@ -19,8 +19,8 @@ namespace fun
 
    bool user::votagus(const char * pszId)
    {
-      string strAppName = pstr("ca2app." + string(pszId) + ".name");
-      string strAppDescription = pstr("ca2app." + string(pszId) + ".description");
+      string strAppName = pstr("aaaaaaplication." + string(pszId) + ".name");
+      string strAppDescription = pstr("aaaaaaplication." + string(pszId) + ".description");
       double dDollar = 1.00;   
       var productid;
       var product = musicdb().query_row("SELECT t.type, t.days, t.trialwindow, p.license, p.licensetype, p.id FROM fun_product as p INNER JOIN fun_license as l ON l.id = p.license INNER JOIN fun_licensetype as t ON p.licensetype = t.id WHERE t.type = '1ymaintenance' AND l.strid = '"+ string(pszId)+"'");
