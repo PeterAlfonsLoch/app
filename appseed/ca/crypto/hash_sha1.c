@@ -115,7 +115,7 @@ int __sha1_final(sha1_ctx_t *context, void * p)
         context->Computed = 1;
     }
 
-    if(context->Computed)
+    if(p != NULL && context->Computed)
     {
        byte * pb = (uint8_t *) p;
        for(i = 0; i < 5; i++)

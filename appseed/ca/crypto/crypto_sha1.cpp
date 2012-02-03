@@ -17,24 +17,35 @@ namespace crypto
          _count = 0;
       }
 
-      void CContextBase::GetBlockDigest(char * data, uint32 *destDigest, bool returnRes)
+      void CContextBase::GetBlockDigest(void * data, uint32 *destDigest, bool returnRes)
       {
 
          uint32_t M[16];
 
          for (int i = 0 ; i < 16; i++)
-            M[i] = data[i];
+            M[i] = ((byte *)data)[i];
 
          __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
 
          if (returnRes)
             for (int i = 0 ; i < 16; i++)
-               data[i] = M[i];
+               ((byte *)data)[i] = M[i];
 
          // Wipe variables
          // a = b = c = d = e = 0;
       }
 
+      void CContextBase::GetBlockDigest(const void * data, uint32 *destDigest)
+      {
+
+         uint32_t M[16];
+
+         for (int i = 0 ; i < 16; i++)
+            M[i] = ((const byte *)data)[i];
+
+         __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
+
+      }
 
       
       /*void CContextBase::PrepareBlock(uint32 *block, unsigned size) const
@@ -49,13 +60,14 @@ namespace crypto
       }*/
 
       
-      void CContextBase::update(uint8_t * msg, int iSize)
+      void CContextBase::update(const void * msg, int iSize)
       {
          __sha1_update(&m_ctx, msg, iSize);
       }
 
-      void CContext::Update(const byte *data, size_t size)
+      void CContext::Update(const void * data0, size_t size)
       {
+         const byte * data = (const byte *) data0;
          unsigned curBufferPos = _count2;
          while (size--)
          {
@@ -72,8 +84,9 @@ namespace crypto
          _count2 = curBufferPos;
       }
       
-      void CContext::UpdateRar(byte *data, size_t size, bool rar350Mode)
+      void CContext::UpdateRar(void * data0, size_t size, bool rar350Mode)
       {
+         byte * data = (byte *) data0;
          bool returnRes = false;
          unsigned curBufferPos = _count2;
          while (size--)
@@ -101,7 +114,7 @@ namespace crypto
          _count2 = curBufferPos;
       }
 
-      void CContext::Final(byte *digest)
+      void CContext::Final(void * digest)
       {
          __sha1_final(&m_ctx, digest);
          Init();

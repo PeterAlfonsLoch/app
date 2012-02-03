@@ -18,7 +18,7 @@ namespace crypto
 
          hmac_init(&state, (const uint8_t *) key, key_len);
 
-         hmac_start(&state);
+         //hmac_start(&state);
 
          hmac_compute(&state, text, text_len, 20, (uint8_t *) digest);
 

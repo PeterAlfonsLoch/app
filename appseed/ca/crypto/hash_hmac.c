@@ -109,56 +109,73 @@ hmac_dealloc(auth_t *a) {
 }
 
 err_status_t
-hmac_init(hmac_ctx_t *state, const uint8_t *key, int key_len) {
-  int i;
-  uint8_t ipad[64]; 
+hmac_init(hmac_ctx_t *state, const void *key, int key_len)
+{
+
+   int         i;
+   int         j;
+   uint8_t     ipad[64]; 
+   char        sha1key[64];
   
     /*
    * check key length - note that we don't support keys larger
    * than 20 bytes yet
    */
-  if (key_len > 20)              
-    return err_status_bad_param;
+  //if (key_len > 20)              
+    //return err_status_bad_param;
   
-  /*
-   * set values of ipad and opad by exoring the key into the
-   * appropriate constant values
-   */
-  for (i=0; i < key_len; i++) {    
-    ipad[i] = key[i] ^ 0x36;
-    state->opad[i] = key[i] ^ 0x5c;
-  }  
-  /* set the rest of ipad, opad to constant values */
-  for (   ; i < 64; i++) {    
-    ipad[i] = 0x36;
-    ((uint8_t *)state->opad)[i] = 0x5c;
-  }  
+   /* repeated 64 times for values in ipad and opad */
+   memset(ipad, 0x36, sizeof(ipad));
+   memset(state->opad, 0x5c, sizeof(state->opad));
+   memset(sha1key, 0, sizeof(sha1key));
 
-  debug_print(mod_hmac, "ipad: %s", octet_string_hex_string(ipad, 64));
-  
+   /* STEP 1 */
+   if (key_len > 64)
+   {
+
+      __sha1_init(&state->ctx);
+      __sha1_update(&state->ctx, key, key_len);
+      __sha1_final(&state->ctx, sha1key);
+
+   }
+   else
+      memcpy(sha1key, key, key_len);
+
+   /* STEP 2 */
+   for(i = 0; i < sizeof(ipad); i++)
+   {
+      ipad[i] ^= sha1key[i];
+   }
+   for(j=0; j<sizeof(state->opad); j++)
+   {
+      state->opad[j] ^= sha1key[j];
+   }
+
   /* initialize sha1 context */
-  __sha1_init(&state->init_ctx);
+  __sha1_init(&state->ctx_init);
 
   /* hash ipad ^ key */
-  __sha1_update(&state->init_ctx, ipad, 64);
-  memcpy(&state->ctx, &state->init_ctx, sizeof(sha1_ctx_t)); 
+  __sha1_update(&state->ctx_init, ipad, sizeof(ipad));
+
+  hmac_start(state);
 
   return err_status_ok;
 }
 
 err_status_t
-hmac_start(hmac_ctx_t *state) {
+hmac_start(hmac_ctx_t *state)
+{
     
-  memcpy(&state->ctx, &state->init_ctx, sizeof(sha1_ctx_t));
+  memcpy(&state->ctx, &state->ctx_init, sizeof(sha1_ctx_t));
 
   return err_status_ok;
 }
 
 err_status_t
-hmac_update(hmac_ctx_t *state, const uint8_t *message, int msg_octets) {
+hmac_update(hmac_ctx_t *state, const void *message, int msg_octets) 
+{
 
-  debug_print(mod_hmac, "input: %s", 
-         octet_string_hex_string(message, msg_octets));
+  debug_print(mod_hmac, "input: %s", octet_string_hex_string(message, msg_octets));
   
   /* hash message into sha1 context */
    __sha1_update(&state->ctx, message, msg_octets);
@@ -167,35 +184,34 @@ hmac_update(hmac_ctx_t *state, const uint8_t *message, int msg_octets) {
 }
 
 err_status_t
-hmac_compute(hmac_ctx_t *state, const void *message,
-        int msg_octets, int tag_len, uint8_t *result) {
+hmac_compute(hmac_ctx_t *state, const void *message, int msg_octets, int tag_len, uint8_t *result)
+{
   uint32_t hash_value[5];
   uint32_t H[5];
   int i;
 
   /* check tag length, return error if we can't provide the value expected */
-  if (tag_len > 20)
-    return err_status_bad_param;
+  //if (tag_len > 20)
+    //return err_status_bad_param;
   
   /* hash message, copy output into H */
-  hmac_update(state, (const uint8_t*)message, msg_octets);
+  hmac_update(state, message, msg_octets);
   __sha1_final(&state->ctx, H);
 
   /*
    * note that we don't need to debug_print() the input, since the
    * function hmac_update() already did that for us
    */
-  debug_print(mod_hmac, "intermediate state: %s", 
-         octet_string_hex_string((uint8_t *)H, 20));
+  debug_print(mod_hmac, "intermediate state: %s", octet_string_hex_string((uint8_t *)H, 20));
 
   /* re-initialize hash context */
   __sha1_init(&state->ctx);
   
   /* hash opad ^ key  */
-  __sha1_update(&state->ctx, (uint8_t *)state->opad, 64);
+  __sha1_update(&state->ctx, state->opad, sizeof(state->opad));
 
   /* hash the result of the inner hash */
-  __sha1_update(&state->ctx, (uint8_t *)H, 20);
+  __sha1_update(&state->ctx, H, sizeof(H));
   
   /* the result is returned in the array hash_value[] */
   __sha1_final(&state->ctx, hash_value);
@@ -204,8 +220,7 @@ hmac_compute(hmac_ctx_t *state, const void *message,
   for (i=0; i < tag_len; i++)    
     result[i] = ((uint8_t *)hash_value)[i];
 
-  debug_print(mod_hmac, "output: %s", 
-         octet_string_hex_string((uint8_t *)hash_value, tag_len));
+  debug_print(mod_hmac, "output: %s", octet_string_hex_string((uint8_t *)hash_value, tag_len));
 
   return err_status_ok;
 }

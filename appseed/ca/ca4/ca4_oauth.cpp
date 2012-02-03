@@ -165,46 +165,33 @@ by Chien-Chung, Chung (Jim Chung) <jimchung1221@gmail.com>
 
 typedef unsigned char BYTE ;
 
-class CHMAC_SHA1 : public CSHA1
+*/
+
+
+/*class oauth_hmac_context :
+   public ::crypto::sha1::CContext
 {
-private:
+public:
+
+   
    BYTE m_ipad[64];
    BYTE m_opad[64];
 
-   char * szReport ;
-   char * SHA1_Key ;
-   char * AppendBuf1 ;
-   char * AppendBuf2 ;
-
-
-public:
-
-   enum {
+   enum
+   {
       SHA1_DIGEST_LENGTH	= 20,
       SHA1_BLOCK_SIZE		= 64,
       HMAC_BUF_LEN		= 4096
    } ;
 
-   CHMAC_SHA1()
-      :szReport(new char[HMAC_BUF_LEN]),
-      AppendBuf1(new char[HMAC_BUF_LEN]),
-      AppendBuf2(new char[HMAC_BUF_LEN]),
-      SHA1_Key(new char[HMAC_BUF_LEN])
-   {}
 
-   ~CHMAC_SHA1()
-   {
-      delete[] szReport ;
-      delete[] AppendBuf1 ;
-      delete[] AppendBuf2 ;
-      delete[] SHA1_Key ;
-   }
+   void digest(void * digest, const void * text, int text_len, const void * key, int key_len);
 
-   void HMAC_SHA1(BYTE *text, int text_len, BYTE *key, int key_len, BYTE *digest);
+   void digest(void * digest, const string & strMessage, const string & strKey);
+
 };
+*/
 
-
-#endif /* __HMAC_SHA1_H__ */
 
 
 
@@ -484,16 +471,20 @@ void CSHA1::GetHash(UINT_8 *puDest)
 
 
 
-//******************************************************************************
-//* HMAC_SHA1.cpp : Implementation of HMAC SHA1 algorithm
-//*                 Comfort to RFC 2104
-//*
-//******************************************************************************
+/******************************************************************************
+/* HMAC_SHA1.cpp : Implementation of HMAC SHA1 algorithm
+/*                 Comfort to RFC 2104
+/*
+/*******************************************************************************/
 
-
-//void CHMAC_SHA1::HMAC_SHA1(BYTE *text, int text_len, BYTE *key, int key_len, BYTE *digest)
+//
+//void oauth_hmac_context::digest(void * digest, const void * text, int text_len, const void * key, int key_len)
 //{
-//   memset(SHA1_Key, 0, SHA1_BLOCK_SIZE);
+//
+//   char szReport[HMAC_BUF_LEN];
+//   char SHA1_Key[HMAC_BUF_LEN];
+//
+//   //memset(SHA1_Key, 0, HMAC_BUF_LEN);
 //
 //   /* repeated 64 times for values in ipad and opad */
 //   memset(m_ipad, 0x36, sizeof(m_ipad));
@@ -502,11 +493,11 @@ void CSHA1::GetHash(UINT_8 *puDest)
 //   /* STEP 1 */
 //   if (key_len > SHA1_BLOCK_SIZE)
 //   {
-//      CSHA1::Reset();
-//      CSHA1::Update((UINT_8 *)key, key_len);
-//      CSHA1::Final();
 //
-//      CSHA1::GetHash((UINT_8 *)SHA1_Key);
+//      ::crypto::sha1::CContext::Init();
+//      ::crypto::sha1::CContext::update(key, key_len);
+//      ::crypto::sha1::CContext::Final(SHA1_Key);
+//
 //   }
 //   else
 //      memcpy(SHA1_Key, key, key_len);
@@ -517,36 +508,35 @@ void CSHA1::GetHash(UINT_8 *puDest)
 //      m_ipad[i] ^= SHA1_Key[i];
 //   }
 //
-//   /* STEP 3 */
-//   memcpy(AppendBuf1, m_ipad, sizeof(m_ipad));
-//   memcpy(AppendBuf1 + sizeof(m_ipad), text, text_len);
-//
-//   /* STEP 4 */
-//   CSHA1::Reset();
-//   CSHA1::Update((UINT_8 *)AppendBuf1, sizeof(m_ipad) + text_len);
-//   CSHA1::Final();
-//
-//   CSHA1::GetHash((UINT_8 *)szReport);
-//
 //   /* STEP 5 */
 //   for (int j=0; j<sizeof(m_opad); j++)
 //   {
 //      m_opad[j] ^= SHA1_Key[j];
 //   }
 //
-//   /* STEP 6 */
-//   memcpy(AppendBuf2, m_opad, sizeof(m_opad));
-//   memcpy(AppendBuf2 + sizeof(m_opad), szReport, SHA1_DIGEST_LENGTH);
+//   /* STEP 4 */
+//   ::crypto::sha1::CContext::Init();
+//   ::crypto::sha1::CContext::update(m_ipad, sizeof(m_ipad));
+//   ::crypto::sha1::CContext::update(text, text_len);
+//   ::crypto::sha1::CContext::Final(szReport);
+//
+//
 //
 //   /*STEP 7 */
-//   CSHA1::Reset();
-//   CSHA1::Update((UINT_8 *)AppendBuf2, sizeof(m_opad) + SHA1_DIGEST_LENGTH);
-//   CSHA1::Final();
+//   ::crypto::sha1::CContext::Init();
+//   ::crypto::sha1::CContext::update(m_opad, sizeof(m_opad));
+//   ::crypto::sha1::CContext::update(szReport, SHA1_DIGEST_LENGTH);
+//   ::crypto::sha1::CContext::Final(digest);
 //
-//   CSHA1::GetHash((UINT_8 *)digest);
 //}
-
-
+//
+//void oauth_hmac_context::digest(void * digest, const string & strMessage, const string & strKey)
+//{
+//
+//   ::oauth_hmac_context::digest(digest, strMessage, strMessage.length(), strKey, strKey.length());
+//
+//}
+//
 
 namespace ca4
 {
@@ -983,12 +973,14 @@ namespace ca4
 
       /* SHA 1 digest is 160 bits */
       ::primitive::memory memKey;
-      memKey.from_string(secretSigningKey);
+      memKey.From(secretSigningKey);
+
+
 
       ::primitive::memory memHmac;
       memHmac.allocate(1024 * 16);
 
-      crypto::hmac_sha1::context context;
+      //hmac_context context;
       System.crypt().hmac(memHmac, sigBase, secretSigningKey);
       //context.digest(memHmac.get_data(), sigBase, secretSigningKey);
       
