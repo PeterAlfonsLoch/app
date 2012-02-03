@@ -1437,6 +1437,11 @@ InitFailure:
          }
          catch(...)
          {
+
+            // spa installer would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
+
+            return false;
+
          }
 
          //System.compress().extract_all(strFile, this);
