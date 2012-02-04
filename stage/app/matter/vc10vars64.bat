@@ -1,7 +1,7 @@
-@echo Setting environment for using Microsoft Visual Studio 2010 x64 tools.
+@echo Setting environment for using Microsoft Visual Studio 2011 x64 tools.
 
 @call :GetVSCommonToolsDir
-@if "%VS100COMNTOOLS%"=="" goto error_no_VS100COMNTOOLSDIR
+@if "%VS110COMNTOOLS%"=="" goto error_no_VS100COMNTOOLSDIR
 
 @call ".\vc10vars_query_registry.bat" No32bit 64bit
 
@@ -61,7 +61,7 @@ echo "%WindowsSdkDir%"
 
 @REM -----------------------------------------------------------------------
 :GetVSCommonToolsDir
-@set VS100COMNTOOLS=
+@set VS110COMNTOOLS=
 @call :GetVSCommonToolsDirHelper32 HKLM > nul 2>&1
 @if errorlevel 1 call :GetVSCommonToolsDirHelper32 HKCU > nul 2>&1
 @if errorlevel 1 call :GetVSCommonToolsDirHelper64  HKLM > nul 2>&1
@@ -69,27 +69,27 @@ echo "%WindowsSdkDir%"
 @exit /B 0
 
 :GetVSCommonToolsDirHelper32
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\SxS\VS7" /v "10.0"') DO (
-	@if "%%i"=="10.0" (
-		@SET "VS100COMNTOOLS=%%k"
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\SxS\VS7" /v "11.0"') DO (
+	@if "%%i"=="11.0" (
+		@SET "VS110COMNTOOLS=%%k"
 	)
 )
-@if "%VS100COMNTOOLS%"=="" exit /B 1
-@SET "VS100COMNTOOLS=%VS100COMNTOOLS%Common7\Tools\"
+@if "%VS110COMNTOOLS%"=="" exit /B 1
+@SET "VS110COMNTOOLS=%VS110COMNTOOLS%Common7\Tools\"
 @exit /B 0
 
 :GetVSCommonToolsDirHelper64
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7" /v "10.0"') DO (
-	@if "%%i"=="10.0" (
-		@SET "VS100COMNTOOLS=%%k"
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7" /v "11.0"') DO (
+	@if "%%i"=="11.0" (
+		@SET "VS110COMNTOOLS=%%k"
 	)
 )
-@if "%VS100COMNTOOLS%"=="" exit /B 1
-@SET "VS100COMNTOOLS=%VS100COMNTOOLS%Common7\Tools\"
+@if "%VS110COMNTOOLS%"=="" exit /B 1
+@SET "VS110COMNTOOLS=%VS110COMNTOOLS%Common7\Tools\"
 @exit /B 0
 
 @REM -----------------------------------------------------------------------
-:error_no_VS100COMNTOOLSDIR
+:error_no_VS110COMNTOOLSDIR
 @echo ERROR: Cannot determine the location of the VS Common Tools folder.
 @goto end
 

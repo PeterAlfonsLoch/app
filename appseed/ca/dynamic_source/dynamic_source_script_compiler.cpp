@@ -27,7 +27,8 @@ namespace dynamic_source
 
    void script_compiler::prepare_compile_and_link_environment(void)
    {
-      string strVars = getenv("VS100COMNTOOLS");
+      //string strVars = getenv("VS100COMNTOOLS");
+      string strVars = getenv("VS110COMNTOOLS");
       System.file().path().eat_end_level(strVars, 2, "\\");
       //m_strEnv = strVars;
       //m_strEnv += "vc\\vcvarsall.bat";
@@ -38,7 +39,8 @@ namespace dynamic_source
 
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
-      m_strSdk1 = "windows7.1sdk";
+      //m_strSdk1 = "windows7.1sdk";
+      m_strSdk1 = "110";
       string strPlat2;
    #ifdef _M_X64
       m_strPlat1     = "64";

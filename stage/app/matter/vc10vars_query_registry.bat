@@ -1,4 +1,5 @@
 @call :GetWindowsSdkDir
+@call :GetWindowsSdkDir_old
 @call :GetVSInstallDir
 @call :GetVCInstallDir
 @call :GetFSharpInstallDir
@@ -17,18 +18,55 @@
 @REM -----------------------------------------------------------------------
 :GetWindowsSdkDir
 @set WindowsSdkDir=
-@call :GetWindowsSdkDirHelper HKLM > nul 2>&1
-@if errorlevel 1 call :GetWindowsSdkDirHelper HKCU > nul 2>&1
-@if errorlevel 1 set WindowsSdkDir=%VCINSTALLDIR%\PlatformSDK\
+@call :GetWindowsSdkDirHelper32 HKLM > nul 2>&1
+@if errorlevel 1 call :GetWindowsSdkDirHelper32 HKCU > nul 2>&1
+@if errorlevel 1 call :GetWindowsSdkDirHelper64 HKLM > nul 2>&1
+@if errorlevel 1 call :GetWindowsSdkDirHelper64 HKCU > nul 2>&1
 @exit /B 0
 
-:GetWindowsSdkDirHelper
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\Microsoft SDKs\Windows" /v "CurrentInstallFolder"') DO (
-	@if "%%i"=="CurrentInstallFolder" (
+:GetWindowsSdkDirHelper32
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.0" /v "InstallationFolder"') DO (
+	@if "%%i"=="InstallationFolder" (
 		@SET "WindowsSdkDir=%%k"
 	)
 )
 @if "%WindowsSdkDir%"=="" exit /B 1
+@exit /B 0
+
+:GetWindowsSdkDirHelper64
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v8.0" /v "InstallationFolder"') DO (
+	@if "%%i"=="InstallationFolder" (
+		@SET "WindowsSdkDir=%%k"
+	)
+)
+@if "%WindowsSdkDir%"=="" exit /B 1
+@exit /B 0
+
+@REM -----------------------------------------------------------------------
+:GetWindowsSdkDir_old
+@set WindowsSdkDir_old=
+@call :GetWindowsSdkDirHelper32_old HKLM > nul 2>&1
+@if errorlevel 1 call :GetWindowsSdkDirHelper32_old HKCU > nul 2>&1
+@if errorlevel 1 call :GetWindowsSdkDirHelper64_old HKLM > nul 2>&1
+@if errorlevel 1 call :GetWindowsSdkDirHelper64_old HKCU > nul 2>&1
+@exit /B 0
+
+:GetWindowsSdkDirHelper32_old
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.0a" /v "InstallationFolder"') DO (
+	@if "%%i"=="InstallationFolder" (
+		@SET "WindowsSdkDir_old=%%k"
+	)
+)
+@if "%WindowsSdkDir_old%"=="" exit /B 1
+@exit /B 0
+
+:GetWindowsSdkDirHelper64_old
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v8.0a" /v "InstallationFolder"') DO (
+	@if "%%i"=="InstallationFolder" (
+		@SET "WindowsSdkDir_old=%%k"
+	)
+)
+@if "%WindowsSdkDir_old%"=="" exit /B 1
 @exit /B 0
 
 @REM -----------------------------------------------------------------------
@@ -41,8 +79,8 @@
 @exit /B 0
 
 :GetVSInstallDirHelper32
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\SxS\VS7" /v "10.0"') DO (
-	@if "%%i"=="10.0" (
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\SxS\VS7" /v "11.0"') DO (
+	@if "%%i"=="11.0" (
 		@SET "VSINSTALLDIR=%%k"
 	)
 )
@@ -50,8 +88,8 @@
 @exit /B 0
 
 :GetVSInstallDirHelper64
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7" /v "10.0"') DO (
-	@if "%%i"=="10.0" (
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7" /v "11.0"') DO (
+	@if "%%i"=="11.0" (
 		@SET "VSINSTALLDIR=%%k"
 	)
 )
@@ -68,8 +106,8 @@
 @exit /B 0
 
 :GetVCInstallDirHelper32
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\SxS\VC7" /v "10.0"') DO (
-	@if "%%i"=="10.0" (
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\SxS\VC7" /v "11.0"') DO (
+	@if "%%i"=="11.0" (
 		@SET "VCINSTALLDIR=%%k"
 	)
 )
@@ -77,8 +115,8 @@
 @exit /B 0
 
 :GetVCInstallDirHelper64
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VC7" /v "10.0"') DO (
-	@if "%%i"=="10.0" (
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VC7" /v "11.0"') DO (
+	@if "%%i"=="11.0" (
 		@SET "VCINSTALLDIR=%%k"
 	)
 )
@@ -95,7 +133,7 @@
 @exit /B 0
 
 :GetFSharpInstallDirHelper32
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\10.0\Setup\F#" /v "ProductDir"') DO (
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Microsoft\VisualStudio\11.0\Setup\F#" /v "ProductDir"') DO (
 	@if "%%i"=="ProductDir" (
 		@SET "FSHARPINSTALLDIR=%%k"
 	)
@@ -104,7 +142,7 @@
 @exit /B 0
 
 :GetFSharpInstallDirHelper64
-@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\10.0\Setup\F#" /v "ProductDir"') DO (
+@for /F "tokens=1,2*" %%i in ('reg query "%1\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Setup\F#" /v "ProductDir"') DO (
 	@if "%%i"=="ProductDir" (
 		@SET "FSHARPINSTALLDIR=%%k"
 	)
