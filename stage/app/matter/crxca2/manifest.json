@@ -10,6 +10,6 @@
   ],
   "plugins": [
     { "path": "npca2.dll", "public": true },
-    { "path": "installer.exe" }
+    { "path": "app-install.exe" }
   ]  
 }
