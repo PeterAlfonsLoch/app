@@ -158,6 +158,8 @@ namespace ca
          virtual string appmatter_locator(::ca::application * papp);
          virtual string appmatter_locator(const string & strLibraryName, const string & strAppName);
          virtual string appmatter_locator(const string & strAppName);
+         virtual string base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName);
+         virtual string base_appmatter_locator(const string & strBase, const string & strAppName);
 
 
 

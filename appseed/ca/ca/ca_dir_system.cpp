@@ -1002,7 +1002,7 @@ namespace ca
 
          appmatter_locators(strRoot, strDomain, papp);
 
-         return System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+         return ca2(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
@@ -1014,7 +1014,7 @@ namespace ca
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+         return ca2(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
@@ -1026,10 +1026,33 @@ namespace ca
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-         return System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+         return ca2(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
+      string system::base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
+      {
+
+         string strRoot;
+         string strDomain;
+
+         appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
+
+         return path(strBase, simple_path(strRoot, "appmatter", strDomain));
+
+      }
+
+      string system::base_appmatter_locator(const string & strBase, const string & strAppName)
+      {
+
+         string strRoot;
+         string strDomain;
+
+         appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
+
+         return path(strBase, simple_path(strRoot, "appmatter", strDomain));
+
+      }
 
 
       class system::path & system::path()
