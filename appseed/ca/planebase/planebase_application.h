@@ -20,6 +20,7 @@ namespace planebase
       sp(class ::fs::data)                m_spfsdata;
 
       bool                                m_bIfs;
+      bool                                m_bUpdateMatterOnInstall;
 
 
 

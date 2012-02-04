@@ -16,9 +16,10 @@ namespace planebase
       m_file.set_app(this);
       m_http.set_app(this);
 
-      m_bIfs            = true;
+      m_bIfs                     = true;
+      m_bUpdateMatterOnInstall   = true;
 
-      m_pservice = NULL;
+      m_pservice                 = NULL;
 
    }
 
@@ -1179,85 +1180,90 @@ InitFailure:
          start_service();
       }
 
-      try
+
+      if(m_bUpdateMatterOnInstall)
       {
-         string strRoot;
-         string strDomain;
-         if(is_system())
-         {
-            strRoot     = "app";
-            strDomain   = "main";
-         }
-         else if(is_session())
-         {
-            return true;
-         }
-         else if(is_cube())
-         {
-            return true;
-         }
-         else if(is_bergedge())
-         {
-            strRoot     = "app";
-            strDomain   = "bergedge";
-         }
-         else
-         {
-            stringa stra;
-            stra.add_tokens(App(this).m_strAppName, "_", FALSE);
-         
-            string strLibrary;
-         
-            strLibrary = App(this).m_strLibraryName;
 
-            if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName) == 0)
-               strLibrary.Empty();
-
-            if(strLibrary.has_char())
+         try
+         {
+            string strRoot;
+            string strDomain;
+            if(is_system())
             {
-          
-               ::ca2::library library;
-
-               if(library.open(this, strLibrary))
-               {
-                  stringa straAppList;
-                  library.get_app_list(straAppList);
-                  if(straAppList.get_count() <= 1)
-                     strLibrary.Empty();
-               }
-               else
-               {
-                  strLibrary.Empty();
-               }
-
+               strRoot     = "app";
+               strDomain   = "main";
             }
-
-            for(int i = 1; i < stra.get_upper_bound(); i++)
+            else if(is_session())
             {
-               stra[i] == "_" + stra[i];
+               return true;
             }
-            if(stra.get_size() > 1)
+            else if(is_cube())
             {
-               strRoot = "app-" + stra[0];
-               stra.remove_at(0);
-               if(strLibrary.has_char())
-                  stra.insert_at(stra.get_upper_bound(), strLibrary);
-               strDomain += stra.implode("/");
+               return true;
+            }
+            else if(is_bergedge())
+            {
+               strRoot     = "app";
+               strDomain   = "bergedge";
             }
             else
             {
-               strRoot = "app";
-               if(strLibrary.has_char())
-                  strDomain = strLibrary + "/";
-               strDomain += App(this).m_strAppName;
-            }
-         }
+               stringa stra;
+               stra.add_tokens(App(this).m_strAppName, "_", FALSE);
+         
+               string strLibrary;
+         
+               strLibrary = App(this).m_strLibraryName;
 
-         update_appmatter(strRoot, strDomain);
-      }
-      catch(...)
-      {
-         return false;
+               if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName) == 0)
+                  strLibrary.Empty();
+
+               if(strLibrary.has_char())
+               {
+          
+                  ::ca2::library library;
+
+                  if(library.open(this, strLibrary))
+                  {
+                     stringa straAppList;
+                     library.get_app_list(straAppList);
+                     if(straAppList.get_count() <= 1)
+                        strLibrary.Empty();
+                  }
+                  else
+                  {
+                     strLibrary.Empty();
+                  }
+
+               }
+
+               for(int i = 1; i < stra.get_upper_bound(); i++)
+               {
+                  stra[i] == "_" + stra[i];
+               }
+               if(stra.get_size() > 1)
+               {
+                  strRoot = "app-" + stra[0];
+                  stra.remove_at(0);
+                  if(strLibrary.has_char())
+                     stra.insert_at(stra.get_upper_bound(), strLibrary);
+                  strDomain += stra.implode("/");
+               }
+               else
+               {
+                  strRoot = "app";
+                  if(strLibrary.has_char())
+                     strDomain = strLibrary + "/";
+                  strDomain += App(this).m_strAppName;
+               }
+            }
+
+            update_appmatter(strRoot, strDomain);
+         }
+         catch(...)
+         {
+            return false;
+         }
       }
 
 

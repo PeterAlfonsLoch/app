@@ -27,6 +27,7 @@ namespace netnode
       m_strLicense               = "netnode";
       m_bShouldInitializeGTwf    = false;
       m_bService                 = true;
+      m_bUpdateMatterOnInstall   = false;
 
    }
 
