@@ -258,6 +258,9 @@ namespace plane
    bool system::find_applications_from_cache()
    {
 
+      if(directrix().m_varTopicQuery.has_property("install"))
+         return true;
+
       ex1::file_exception_sp fe(this);
 
       ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::type_binary | ex1::file::mode_read, &fe);
