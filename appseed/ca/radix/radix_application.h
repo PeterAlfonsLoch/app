@@ -122,8 +122,8 @@ namespace radix
       // TRUE if we're in SHIFT+F1 mode.
       BOOL                          m_bHelpMode;
 
-      mutex                         m_mutexMatter;
-      string                        m_strLocaleStyleMatter;
+      mutex                         m_mutexMatterLocator;
+      string                        m_strMatterLocator;
 
       // set in constructor to override default
 

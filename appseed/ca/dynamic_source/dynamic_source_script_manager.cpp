@@ -245,7 +245,7 @@ namespace dynamic_source
       TRACE(lpsz);
       delete lpsz;
 
-       m_puiredir->load_xml( System.dir().votagus("netseed\\ca2\\fontopus\\net\\ds\\ca2\\include\\11ca2_fontopus_redir.xml"));
+       m_puiredir->load_xml( System.dir().votagus("net\\netseed\\ds\\ca2\\include\\11ca2_fontopus_redir.xml"));
    }
 
    void script_manager::run(const char * lpcszName)

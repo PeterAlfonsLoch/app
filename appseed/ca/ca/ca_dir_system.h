@@ -145,9 +145,21 @@ namespace ca
 
          virtual string locale_style(::ca::application * papp, const string & strLocale, const string & strStyle);
          virtual string locale_style_matter(::ca::application * papp, const string & strLocale, const string & strStyle);
+         virtual string locale_style_matter(const string & strLocator, const string & strLocale, const string & strStyle);
          virtual string matter(::ca::application * papp, const string & str, const string & str2);
          virtual string matter(::ca::application * papp, const string & str);
          virtual string matter(::ca::application * papp);
+         virtual string matter_from_locator(const string & strLocator);
+         virtual string matter_from_locator(const string & strLocator, const string & str);
+         virtual string matter_from_locator(const string & strLocator, const string & str, const string & str2);
+         virtual void appmatter_locators(string & strRoot, string & strDomain, ::ca::application * papp);
+         virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryName, const string & strAppName);
+         virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strAppName);
+         virtual string appmatter_locator(::ca::application * papp);
+         virtual string appmatter_locator(const string & strLibraryName, const string & strAppName);
+         virtual string appmatter_locator(const string & strAppName);
+
+
 
          virtual string trash_that_is_not_trash(const char * psz);
 

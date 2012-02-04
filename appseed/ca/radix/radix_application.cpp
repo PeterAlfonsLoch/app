@@ -2602,25 +2602,8 @@ namespace radix
    bool application::initialize1()
    {
 
-      string strRoot;
-      string strDomain;
-      if(is_system())
-      {
-         strRoot     = "app";
-         strDomain   = "main";
-      }
-      else if(is_bergedge())
-      {
-         strRoot     = "app";
-         strDomain   = "bergedge";
-      }
-      else
-      {
-         strRoot = m_pappThis->m_strRoot;
-         strDomain = m_pappThis->m_strDomain;
-      }
 
-      m_strLocaleStyleMatter = System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+      m_strMatterLocator = System.dir().appmatter_locator(this);
       m_puserstrcontext = new ::user::str_context;
       if(m_puserstrcontext == NULL)
          return false;

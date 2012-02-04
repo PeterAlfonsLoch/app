@@ -24,7 +24,7 @@ ca(papp)
 {
 }
 
-void ui_redir::load_xml(const char * pszFileName)
+void ui_redir::load_xml(const string & pszFileName)
 {
    xml::node node(get_app());
    node.load(Application.file().as_string(pszFileName));
@@ -38,11 +38,11 @@ void ui_redir::load_xml(const char * pszFileName)
    }
 }
 
-void ui_redir::add(const char * pszRoot, const char * pszLang, const char * pszStyle, const char * pszTarget)
+void ui_redir::add(const string & pszRoot, const string & pszLang, const string & pszStyle, const string & pszTarget)
 {
    operator[](pszRoot)[pszStyle][pszLang].m_strTarget = pszTarget;
 }
-string ui_redir::solve(const char * pszRoot, const char * pszLang, const char * pszStyle, const char * pszExUri)
+string ui_redir::solve(const string & pszRoot, const string & pszLang, const string & pszStyle, const string & pszExUri)
 {
    string strTarget = operator[](pszRoot)[pszStyle][pszLang].m_strTarget;
    if(strTarget.has_char())

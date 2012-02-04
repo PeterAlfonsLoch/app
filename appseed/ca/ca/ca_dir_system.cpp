@@ -757,27 +757,80 @@ namespace ca
 
       string system::locale_style(::ca::application * papp, const string & strLocale, const string & strStyle)
       {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(strLocale);
-         UNREFERENCED_PARAMETER(strStyle);
-         throw interface_only_exception("this is an interface");
+
+         return papp->m_pappThis->get_locale_style_dir(strLocale, strStyle);
+
       }
 
       string system::locale_style_matter(::ca::application * papp, const string & strLocale, const string & strStyle)
       {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(strLocale);
-         UNREFERENCED_PARAMETER(strStyle);
-         throw interface_only_exception("this is an interface");
+      
+         single_lock sl(&papp->m_pappThis->m_mutexMatterLocator, true);
+
+         return path(papp->m_pappThis->m_strMatterLocator, papp->m_pappThis->get_locale_style_dir(strLocale, strStyle));
+
+      }
+
+      string system::locale_style_matter(const string & strLocator, const string & strLocale, const string & strStyle)
+      {
+      
+         return path(strLocator, simple_path(strLocale, strStyle));
+
       }
 
       string system::matter(::ca::application * papp, const string & str, const string & str2)
       {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(str);
-         UNREFERENCED_PARAMETER(str2);
-         throw interface_only_exception("this is an interface");
+         static const string strEn("en");
+         static const string strStd("_std");
+         static const string strEmpty("");
+         string strPath;
+         string strLs = locale_style_matter(papp, strEmpty, strEmpty);
+         strPath = path(strLs, str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strLs = locale_style_matter(papp, strEn, strEmpty);
+         strPath = path(strLs, str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strPath = path(locale_style_matter(papp, strStd, strEmpty), str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strPath = path(locale_style_matter(papp, strEmpty, App(papp).get_locale()), str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strPath = path(locale_style_matter(papp, strEmpty, strEn), str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strPath = path(locale_style_matter(papp, strEmpty, strStd), str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strLs = locale_style_matter(papp, strEn, strEn);
+         strPath = path(strLs, str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strPath = path(locale_style_matter(papp, strStd, strStd), str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         strPath = path(locale_style_matter(papp, "se", "se"), str, str2);
+         if(System.file().exists(strPath, papp))
+            return strPath;
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
+            (::ca::application *) papp->m_psystem != (::ca::application *) papp)
+         {
+            strPath = matter(papp->m_psession, str, str2);
+            if(System.file().exists(strPath, papp))
+               return strPath;
+         }
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+            (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
+         {
+            strPath = matter(papp->m_psystem, str, str2);
+            if(System.file().exists(strPath, papp))
+               return strPath;
+         }
+         return path(locale_style_matter(papp, strEmpty, strEmpty), str, str2);
       }
+
 
       string system::matter(::ca::application * papp, const string & str)
       {
@@ -791,6 +844,193 @@ namespace ca
          string str2;
          return matter(papp, str, str2);
       }
+
+      string system::matter_from_locator(const string & strLocator)
+      {
+         string str;
+         
+
+         string str2;
+
+         return matter_from_locator(strLocator, str, str2);
+
+      }
+
+      string system::matter_from_locator(const string & strLocator, const string & str)
+      {
+         
+         string str2;
+
+         return matter_from_locator(strLocator, str, str2);
+
+      }
+
+      string system::matter_from_locator(const string & strLocator,  const string & str, const string & str2)
+      {
+
+         static const string strEn("en");
+         static const string strStd("_std");
+         static const string strEmpty("");
+
+         string strPath;
+         string strLs = locale_style_matter(strLocator, strEmpty, strEmpty);
+         strPath = path(strLs, str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strLs = locale_style_matter(strLocator, strEn, strEmpty);
+         strPath = path(strLs, str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strPath = path(locale_style_matter(strLocator, strStd, strEmpty), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         /*strPath = path(locale_style_matter(strLocator, strEmpty, App(papp).get_locale()), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;*/
+         strPath = path(locale_style_matter(strLocator, strEmpty, strEn), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strPath = path(locale_style_matter(strLocator, strEmpty, strStd), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strLs = locale_style_matter(strLocator, strEn, strEn);
+         strPath = path(strLs, str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strPath = path(locale_style_matter(strLocator, strStd, strStd), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strPath = path(locale_style_matter(strLocator, "se", "se"), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         return path(strLs, str, str2);
+
+      }
+
+      void system::appmatter_locators(string & strRoot, string & strDomain, ::ca::application * papp)
+      {
+         
+         if(papp->is_system())
+         {
+            strRoot     = "app";
+            strDomain   = "main";
+         }
+         else if(papp->is_bergedge())
+         {
+            strRoot     = "app";
+            strDomain   = "bergedge";
+         }
+         else
+         {
+            appmatter_locators(strRoot, strDomain, papp->m_pappThis->m_strLibraryName, papp->m_pappThis->m_strAppName);
+         }
+
+      }
+
+      void system::appmatter_locators(string & strRoot, string & strDomain, const string & strAppName)
+      {
+         
+         appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
+
+      }
+
+      void system::appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryNameParam, const string & strAppNameParam)
+      {
+
+         string strLibraryRoot;
+         string strLibraryName;
+         if(strLibraryNameParam.has_char() && strLibraryNameParam != "app_" + strAppNameParam
+            && gen::str::begins_ci(strLibraryNameParam, "app_") && strLibraryNameParam.find("_", strlen("app_")) > 4)
+         {
+            stringa stra2;
+            stra2.add_tokens(strLibraryNameParam, "_", FALSE);
+            strLibraryRoot = stra2[1];
+            strLibraryName = stra2.implode("_", 2);
+         }
+         else
+         {
+            strLibraryName = strLibraryNameParam;
+         }
+
+         stringa stra;
+         stra.add_tokens(strAppNameParam, "_", FALSE);
+         for(int i = 1; i < stra.get_upper_bound(); i++)
+         {
+            stra[i] == "_" + stra[i];
+         }
+         if(stra.get_size() > 1)
+         {
+            if(strLibraryRoot.has_char())
+            {
+               strRoot = "app-" + strLibraryRoot;
+            }
+            else
+            {
+               strRoot = "app-" + stra[0];
+            }
+            stra.remove_at(0);
+            if(strLibraryName.has_char() && strLibraryName != "app_" + strAppNameParam)
+            {
+               stra.insert_at(stra.get_upper_bound(), strLibraryName);
+            }
+            strDomain += stra.implode("/");
+         }
+         else
+         {
+            if(strLibraryRoot.has_char())
+            {
+               strRoot = "app-" + strLibraryRoot;
+            }
+            else
+            {
+               strRoot = "app";
+            }
+            if(strLibraryName.has_char() && strLibraryName != "app_" + strAppNameParam)
+            {
+               strDomain = strLibraryName + "/";
+            }
+            strDomain += strAppNameParam;
+         }
+
+      }
+
+      string system::appmatter_locator(::ca::application * papp)
+      {
+         
+         string strRoot;
+         string strDomain;
+
+         appmatter_locators(strRoot, strDomain, papp);
+
+         return System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+
+      }
+
+      string system::appmatter_locator(const string & strLibraryName, const string & strAppName)
+      {
+
+         string strRoot;
+         string strDomain;
+
+         appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
+
+         return System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+
+      }
+
+      string system::appmatter_locator(const string & strAppName)
+      {
+
+         string strRoot;
+         string strDomain;
+
+         appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
+
+         return System.dir().ca2(System.dir().simple_path(strRoot, "appmatter", strDomain));
+
+      }
+
+
 
       class system::path & system::path()
       {
