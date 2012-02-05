@@ -1089,20 +1089,27 @@ InitFailure:
    BOOL application::run()
    {
 
-      if(command().m_varTopicQuery.has_property("install")
-      || command().m_varTopicQuery.has_property("uninstall"))
+      if(!is_system() && !is_session() && !is_bergedge() && !is_cube())
       {
-      }
-      else if(command().m_varTopicQuery.has_property("service"))
-      {
-         create_new_service();
-         service_base::run(*m_pservice);
-      }
-      else if(command().m_varTopicQuery.has_property("run") || is_serviceable())
-      {
-         create_new_service();
-         m_pservice->Start(0);
-         return fontopus::application::run();
+         if(command().m_varTopicQuery.has_property("install")
+         || command().m_varTopicQuery.has_property("uninstall"))
+         {
+         }
+         else if(command().m_varTopicQuery.has_property("service"))
+         {
+            create_new_service();
+            service_base::run(*m_pservice);
+         }
+         else if(command().m_varTopicQuery.has_property("run") || is_serviceable())
+         {
+            create_new_service();
+            m_pservice->Start(0);
+            return fontopus::application::run();
+         }
+         else
+         {
+            return fontopus::application::run();
+         }
       }
       else
       {
@@ -1199,7 +1206,7 @@ InitFailure:
             {
                return true;
             }
-            else if(is_session())
+            else if(is_session() && System.directrix().m_varTopicQuery["session_start"] != "session")
             {
                return true;
             }
@@ -1266,7 +1273,10 @@ InitFailure:
 
             update_appmatter("app", "main"); // update matter of system
             update_appmatter("app", "bergedge"); // update matter of bergedge
-            update_appmatter(strRoot, strDomain);
+            if(!is_session() && !is_system())
+            {
+               update_appmatter(strRoot, strDomain);
+            }
 
          }
          catch(...)
