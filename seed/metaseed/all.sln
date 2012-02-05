@@ -74,12 +74,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ca", "..\..\appseedcore\ca\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_projection", "..\..\appseed\projection\projection.vcxproj", "{5C028FB6-5812-4CFE-B5A6-5B714BEAAD2D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sentinel", "..\..\appseedcore\sentinel\sentinel.vcxproj", "{46D3B606-0CF7-4F41-9BFB-2CF22FDCEC03}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app-sentinel", "..\..\appseedcore\app-sentinel\app-sentinel.vcxproj", "{46D3B606-0CF7-4F41-9BFB-2CF22FDCEC03}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B2A3AD3B-1026-4D24-A527-2E1B38324184} = {B2A3AD3B-1026-4D24-A527-2E1B38324184}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "installer", "..\..\appseedcore\installer\installer.vcxproj", "{71BAB50B-DC41-4570-B676-30380CDA3A17}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app-install", "..\..\appseedcore\app-install\app-install.vcxproj", "{71BAB50B-DC41-4570-B676-30380CDA3A17}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_", "..\..\appseedcore\c\_.vcxproj", "{D9E0A96E-C666-45C1-AABE-609DDC85EC33}"
 EndProject

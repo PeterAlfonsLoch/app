@@ -15,14 +15,14 @@ int spaboot_start()
    while(iRetry < 8)
    {
 
-      if(!get_temp_file_name_dup(szSpabootInstall, sizeof(szSpabootInstall), "installer", "exe"))
+      if(!get_temp_file_name_dup(szSpabootInstall, sizeof(szSpabootInstall), "app-install", "exe"))
          return -1;
 
-      if(is_file_ok(szSpabootInstall, "installer.exe"))
+      if(is_file_ok(szSpabootInstall, "app-install.exe"))
       {
-         if(ms_download_dup("veriterse.net", "/spa?download=installer.exe&authnone", szSpabootInstall))
+         if(ms_download_dup("veriterse.net", "/spa?download=app-install.exe&authnone", szSpabootInstall))
          {
-            if(is_file_ok(szSpabootInstall, "installer.exe"))
+            if(is_file_ok(szSpabootInstall, "app-install.exe"))
             {
                break;
             }
@@ -138,7 +138,7 @@ int installer(const char * param)
    ::GetFullPathNameA(szModulePath, sizeof(path), path, &file);
    file[0] = '\0';
 
-   strcat_dup(path, "installer.exe");
+   strcat_dup(path, "app-install.exe");
 
    installer_call_sync(path, param);
    return 0;

@@ -2309,7 +2309,7 @@ bool ignit_phase2()
    }
 
    DWORD dwStartError;
-   trace("starting installer...");
+   trace("starting app-install...");
    int i = ca2_app_install_run(g_strStart, "", "install", dwStartError, true);
    if(g_strStart != "_set_windesk" && is_installed("_set_windesk"))
    {
