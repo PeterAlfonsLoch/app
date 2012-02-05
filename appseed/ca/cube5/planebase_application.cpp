@@ -1088,7 +1088,12 @@ InitFailure:
   
    BOOL application::run()
    {
-      if (command().m_varTopicQuery.has_property("service"))
+
+      if(command().m_varTopicQuery.has_property("install")
+      || command().m_varTopicQuery.has_property("uninstall"))
+      {
+      }
+      else if(command().m_varTopicQuery.has_property("service"))
       {
          create_new_service();
          service_base::run(*m_pservice);
@@ -1103,7 +1108,9 @@ InitFailure:
       {
          return fontopus::application::run();
       }
+
       return TRUE;
+
    }
 
    bool application::on_uninstall()
@@ -1190,8 +1197,7 @@ InitFailure:
             string strDomain;
             if(is_system())
             {
-               strRoot     = "app";
-               strDomain   = "main";
+               return true;
             }
             else if(is_session())
             {
@@ -1203,11 +1209,11 @@ InitFailure:
             }
             else if(is_bergedge())
             {
-               strRoot     = "app";
-               strDomain   = "bergedge";
+               return true;
             }
             else
             {
+
                stringa stra;
                stra.add_tokens(App(this).m_strAppName, "_", FALSE);
          
@@ -1258,7 +1264,10 @@ InitFailure:
                }
             }
 
+            update_appmatter("app", "main"); // update matter of system
+            update_appmatter("app", "bergedge"); // update matter of bergedge
             update_appmatter(strRoot, strDomain);
+
          }
          catch(...)
          {
