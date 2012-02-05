@@ -1,12 +1,12 @@
-﻿-c1-production -c2-producer -t12n-producing -mmmi- 2012-02-05 19-05-26 app:SVN3624, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN27, app-core:SVN158, app-frontpage:SVN60, app-sysutils:SVN49, app-veriwell:SVN182, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
+﻿-c1-production -c2-producer -t12n-producing -mmmi- 2012-02-05 21-13-29 app:SVN3631, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN27, app-core:SVN158, app-frontpage:SVN61, app-sysutils:SVN50, app-veriwell:SVN184, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
 // <==! Thanks and dedicated to &lt; <
 // Thanks to and in honor of God > &gt; ==>
 // for ca2 and 5!!
 // you(*) and me(*) and God(***) make 5...
-#define THIS_PRODUCT_VERSION "2012-02-05 19-05-26 app:SVN3624, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN27, app-core:SVN158, app-frontpage:SVN60, app-sysutils:SVN49, app-veriwell:SVN182, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist\0"
-#define THIS_FILE_VERSION "2012-02-05 19-05-26 app:SVN3624, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN27, app-core:SVN158, app-frontpage:SVN60, app-sysutils:SVN49, app-veriwell:SVN182, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist\0"
-#define __THIS_PRODUCT_VERSION 2012,0205,1905,26
-#define __THIS_FILE_VERSION 2012,0205,1905,26
+#define THIS_PRODUCT_VERSION "2012-02-05 21-13-29 app:SVN3631, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN27, app-core:SVN158, app-frontpage:SVN61, app-sysutils:SVN50, app-veriwell:SVN184, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist\0"
+#define THIS_FILE_VERSION "2012-02-05 21-13-29 app:SVN3631, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-mrs-helper:SVN'V:\basis\app-mrs-helper' doesn't exist, app-cidadedecuritiba:SVN27, app-core:SVN158, app-frontpage:SVN61, app-sysutils:SVN50, app-veriwell:SVN184, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist, app-install:SVN'V:\basis\app-install' doesn't exist, app-sentinel:SVN'V:\basis\app-sentinel' doesn't exist\0"
+#define __THIS_PRODUCT_VERSION 2012,0205,2113,29
+#define __THIS_FILE_VERSION 2012,0205,2113,29
 
 
 
