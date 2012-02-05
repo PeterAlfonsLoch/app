@@ -7,8 +7,8 @@ stage\basis\FreeImage.dll
 stage\basis\libeay32.dll
 stage\basis\libmysql.dll
 stage\basis\libssl32.dll
-stage\basis\msvcp100d.dll
-stage\basis\msvcr100d.dll
+stage\basis\msvcp110d.dll
+stage\basis\msvcr110d.dll
 stage\basis\npca2.dll
 stage\basis\optca.dll
 stage\basis\os.dll
