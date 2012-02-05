@@ -6,7 +6,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "installerapp", "..\..\appse
 		{9502C465-3D14-487E-A9B1-F9D69DEDBE1E} = {9502C465-3D14-487E-A9B1-F9D69DEDBE1E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app-installer", "..\..\appseed\ca2\fontopus\app\source\main\app-install\app-install.vcproj", "{9502C465-3D14-487E-A9B1-F9D69DEDBE1E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app-install", "..\..\appseed\ca2\fontopus\app\source\main\app-install\app-install.vcproj", "{9502C465-3D14-487E-A9B1-F9D69DEDBE1E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3BA7560E-0553-4DA1-8A11-3F9B87BCC55F} = {3BA7560E-0553-4DA1-8A11-3F9B87BCC55F}
 		{70C43211-724A-49F8-9A60-BA332DAF2E3A} = {70C43211-724A-49F8-9A60-BA332DAF2E3A}

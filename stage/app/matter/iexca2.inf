@@ -7,7 +7,7 @@
 [Add.Code]
    iexca2.dll=iexca2.dll
    iexca2.inf=iexca2.inf
-   installer.exe=installer.exe
+   app-install.exe=app-install.exe
 
 [iexca2.dll]
    file=thiscab
@@ -18,5 +18,5 @@
 [iexca2.inf]
    file=thiscab
 
-[installer.exe]
+[app-install.exe]
    file=thiscab

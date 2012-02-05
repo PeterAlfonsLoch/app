@@ -578,10 +578,10 @@
     <ClCompile Include="_mem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="sentinel.rc" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
+    <ResourceCompile Include="app-sentinel.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,5 @@
 stage\basis\app.exe
-stage\basis\app-installer.exe
+stage\basis\app-install.exe
 stage\basis\app-sentinel.exe
 stage\basis\c.dll
 stage\basis\ca.dll

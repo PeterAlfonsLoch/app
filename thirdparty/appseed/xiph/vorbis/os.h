@@ -21,6 +21,8 @@
 #include "config.h"
 #endif
 
+#include "c/c_c.h"
+
 #include <math.h>
 #include <ogg/os_types.h>
 

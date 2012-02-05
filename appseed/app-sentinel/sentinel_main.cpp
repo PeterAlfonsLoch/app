@@ -19,7 +19,7 @@ extern "C" int WinMainCRTStartup()
 
    if(initialize_installer() < 0)
    {
-      MessageBox(NULL, "Failed to initialize sentinel.exe", "ca2", MB_ICONERROR);
+      MessageBox(NULL, "Failed to initialize app-sentinel.exe", "ca2", MB_ICONERROR);
       return -1;
    }
 
