@@ -724,7 +724,7 @@ namespace cube8
          if(h == NULL)
          {
             string strApp;
-            strApp = "ca2app.exe";
+            strApp = "app.exe";
             string strParameters;
             strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
             ::ShellExecute(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
@@ -742,7 +742,7 @@ namespace cube8
          if(h == NULL)
          {
             string strApp;
-            strApp = "ca2app.exe";
+            strApp = "app.exe";
             string strParameters;
             strParameters = ": app=" + strAppName;
             ::ShellExecute(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
