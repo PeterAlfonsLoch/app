@@ -254,8 +254,8 @@
       </EntryPointSymbol>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\msvcp100d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\msvcr100d.dll" "$(OutDir)"
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++110\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++110\msvcr110d.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
