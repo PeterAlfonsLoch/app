@@ -187,11 +187,14 @@ UINT spa_starter_start::start()
       m_pplugin->set_ca2_installation_ready();
    }
 
-   vsstring strPlatform = spa_get_platform();
+   // sentinel is not ready neither spa entire concept of passive installation is ready yet.
+   // recap:  wait for a required installation. But upgrades are passive installation,  done when it all can be done hot or when there is no use, except when it is requested explicitly.
+
+   /*vsstring strPlatform = spa_get_platform();
 
    vsstring strSentinelPath = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app-sentinel.exe"));
 
-   call_sync(strSentinelPath, "");
+   call_sync(strSentinelPath, "");*/
 
    return 0;
 }
