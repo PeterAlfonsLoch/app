@@ -333,6 +333,7 @@ namespace plane
          if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
          {
+            System.appptra().remove(papp);
             return;
          }
 
