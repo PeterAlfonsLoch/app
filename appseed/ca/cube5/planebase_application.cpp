@@ -20,7 +20,6 @@ namespace planebase
       m_bUpdateMatterOnInstall   = true;
 
       m_pservice                 = NULL;
-
    }
 
    application::~application()

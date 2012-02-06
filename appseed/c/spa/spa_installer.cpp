@@ -16,7 +16,6 @@ extern TCHAR szTitle[1024];					// The title bar text
 extern TCHAR szWindowClassSpaAdmin[1024];			// the main window class name
 
 void ensure_trace_file();
-
 bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;

@@ -318,9 +318,9 @@ void installer::on_receive(const char * pszMessage)
 bool installer::are_there_user_files_in_use()
 {
 #ifdef _X86_
-   if(is_user_using(dir::ca2("stage\\x86\\msvcp100d.dll")))
+   if(is_user_using(dir::ca2("stage\\x86\\msvcp110d.dll")))
       return true;
-   if(is_user_using(dir::ca2("stage\\x86\\msvcr100d.dll")))
+   if(is_user_using(dir::ca2("stage\\x86\\msvcr110d.dll")))
       return true;
    if(is_user_using(dir::ca2("stage\\x86\\c.dll")))
       return true;
@@ -329,9 +329,9 @@ bool installer::are_there_user_files_in_use()
    if(is_user_using(dir::ca2("stage\\x86\\ca2.dll")))
       return true;
 #else
-   if(is_user_using(dir::ca2("stage\\x64\\msvcp100d.dll")))
+   if(is_user_using(dir::ca2("stage\\x64\\msvcp110d.dll")))
       return true;
-   if(is_user_using(dir::ca2("stage\\x64\\msvcr100d.dll")))
+   if(is_user_using(dir::ca2("stage\\x64\\msvcr110d.dll")))
       return true;
    if(is_user_using(dir::ca2("stage\\x64\\c.dll")))
       return true;
