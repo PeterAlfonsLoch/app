@@ -254,8 +254,8 @@
       </EntryPointSymbol>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++110\msvcp110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++110\msvcr110d.dll" "$(OutDir)"
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcr110d.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
@@ -470,8 +470,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       </IgnoreSpecificDefaultLibraries>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\x64\msvcp100d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\x64\msvcr100d.dll" "$(OutDir)"
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\FreeImage.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\libeay32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"
