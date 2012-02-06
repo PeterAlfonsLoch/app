@@ -407,10 +407,32 @@ namespace plane
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         if(appptra().get_size() <= 0)
+         ::ca::application_ptra appptra;
+
+         appptra = this->appptra();
+
+         for(int i = 0; i < appptra.get_size(); )
+         {
+            try
+            {
+               if(appptra[i]->is_bergedge() || appptra[i]->is_session() || appptra[i]->is_system() || appptra[i]->is_cube())
+               {
+                  appptra.remove_at(i);
+                  continue;
+               }
+            }
+            catch(...)
+            {
+               appptra.remove_at(i);
+               continue;
+            }
+            i++;
+         }
+
+         if(appptra.get_size() <= 0)
             return false;
 
-         if(appptra().get_size() == 1 && appptra().contains(this))
+         if(appptra.get_size() == 1 && appptra.contains(this))
             return false;
 
       }
