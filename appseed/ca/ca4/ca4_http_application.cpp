@@ -31,7 +31,7 @@ namespace ca4
          if(puser == NULL)
          {
             puser = &ApplicationUser;
-            set["app"] = this;
+            set["app"] = get_app();
          }
          return System.http().get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
@@ -42,7 +42,7 @@ namespace ca4
          if(psignal->m_puser == NULL)
          {
             psignal->m_puser = &ApplicationUser;
-            psignal->m_set["app"] = this;
+            psignal->m_set["app"] = get_app();
          }
          System.http().get(pobj);
       }
@@ -71,7 +71,7 @@ namespace ca4
          if(puser == NULL)
          {
             puser = &ApplicationUser;
-            set["app"] = this;
+            set["app"] = get_app();
          }
          return System.http().get(pszUrl, str, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
@@ -87,11 +87,11 @@ namespace ca4
          const char * pszVersion,
          e_status * pestatus)
       {
-         if(puser == NULL && !(bool)set["disable_ca2_sessid"])
+         if(puser == NULL && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])
          {
             puser = &ApplicationUser;
          }
-         set["app"] = this;
+         set["app"] = get_app();
          return System.http().get(pszUrl, memory, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
 
@@ -130,7 +130,7 @@ namespace ca4
          if(puser == NULL)
          {
             puser = &ApplicationUser;
-            set["app"] = this;
+            set["app"] = get_app();
          }
          return System.http().request(pszRequest, pszUrl, str, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }

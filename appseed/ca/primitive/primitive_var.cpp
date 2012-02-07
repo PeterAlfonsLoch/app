@@ -1812,7 +1812,7 @@ class var & var::operator = (::ca::ca * pca2)
    if(m_pca2 == pca2)
       return *this;
    set_type(type_ca2, false);
-   m_pca2 = dynamic_cast < ::ca::object * > (pca2);
+   m_pca2 = pca2;
    gen::add_ref(m_pca2);
    return *this;
 }

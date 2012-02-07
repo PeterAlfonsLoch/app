@@ -316,6 +316,10 @@ namespace ca
                {
                   Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
+               else if(varQuery.propset()["optional_ca2_sessid"])
+               {
+                  Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
+               }
                else
                {
                   Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));

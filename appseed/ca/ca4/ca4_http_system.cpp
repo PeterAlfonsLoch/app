@@ -401,7 +401,7 @@ retry:
          string strServer = System.url().get_root(pszUrl);
          string strProtocol = System.url().get_protocol(pszUrl);
          string strObject = System.url().get_object(pszUrl);
-
+         ::ca::application * papp = set["app"].ca2 < ::ca::application >();
          int iPort;
          if(strProtocol == "https")
          {
@@ -430,6 +430,64 @@ retry:
          string strSessId;
          if(!(bool)set["disable_ca2_sessid"])
          {
+            if((bool)set["optional_ca2_sessid"])
+            {
+               
+               if(papp != NULL)
+               {
+                  url_domain domainFontopus;
+                  string strGetFontopus("http://" + System.url().get_server(strUrl) + "/get_fontopus");
+
+                  //m_strFontopusServer.Empty();
+
+   //               ::ca::application * papp = get_app();
+
+
+                  string strFontopusServer;
+                  {
+                  //for(int iRetry = 0; iRetry <= 8; iRetry++)
+                  //{
+
+                     /*if(iRetry > 0)
+                     {
+                        Sleep(iRetry * 584);
+                     }*/
+
+               
+
+                     try
+                     {
+                        gen::property_set post;
+                        gen::property_set headers;
+                        gen::property_set set;
+                        set["disable_ca2_sessid"] = true;
+                        set["app"] = papp;
+                        Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, NULL, NULL, NULL, NULL);
+                     }
+                     catch(...)
+                     {
+                     }
+
+                     domainFontopus.create(strFontopusServer);
+
+                     //if(domainFontopus.m_strRadix == "fontopus")
+                       // break;
+                  }
+
+                  //domainFontopus.create(m_strFontopusServer);
+
+                  if(domainFontopus.m_strRadix == "fontopus")
+                  {
+                     puser = &AppUser(papp);
+                     if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                        if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                     {
+                        System.url().set(strUrl, "sessid", strSessId);
+                     }
+                  
+                  }
+               }
+            }
             if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
@@ -521,7 +579,7 @@ retry:
 
          int iIteration = 0;
          ::ca::live_signal keeplive;
-         ::ca::application * papp = set["app"].ca2 < ::ca::application >();
+         
          if(papp != NULL)
          {
             keeplive.add(papp);

@@ -429,7 +429,9 @@ namespace html
          string strResponse = Application.file().as_string(filename);
       }
 
-      string str = Application.file().as_string(varFile);
+      gen::property_set varQuery = m_propset["http_propset"].propset();
+      varQuery["app"] = get_app();
+      string str = Application.file().as_string(varFile, varQuery);
       if(str.is_empty())
       {
          string strCandidate = System.dir().relpath(m_strPathName, varFile);
