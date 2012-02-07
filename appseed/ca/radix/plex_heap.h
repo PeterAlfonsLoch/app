@@ -10,6 +10,17 @@ class CLASS_DECL_ca plex_heap_alloc_array :
 public: 
 
 
+   struct memdleak_block
+   {
+   
+   
+      int               m_iBlockUse;
+      const char *      m_pszFileName;
+      int               m_iLine;
+
+
+   };
+
    plex_heap_alloc_array();
    virtual ~plex_heap_alloc_array();
 

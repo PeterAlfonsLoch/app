@@ -228,6 +228,9 @@ void * plex_heap_alloc_array::alloc(size_t nAllocSize)
    }
 }
 
+
+, int nBlockUse, const char * szFileName, int iLine
+
 void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
 {
 
@@ -307,3 +310,92 @@ plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
       return NULL;
 }
 
+
+void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const char * szFileName, int iLine)
+{
+   plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
+   memdleak_block * pblock;
+   if(palloc != NULL)
+   {
+      pblock = (memdleak_block *) palloc->Alloc();
+   }
+   else
+   {
+      pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize + sizeof(memdleak_block));
+   }
+   
+   pblock->m_iBlockUse     = nBlockUse;
+   pblock->m_pszFileName   = ((id) pszFileName).m_psz;
+   pblock->m_iLine         = iLine;
+
+   return pblock + sizeof(memdleak_block);
+
+}
+
+
+void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
+{
+
+   plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
+
+   if(palloc != NULL)
+   {
+      return palloc->Free(p);
+   }
+   else
+   {
+      return ::system_heap_free(p);
+   }
+
+}
+
+
+void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize, int nBlockUse, const char * szFileName, int iLine)
+{
+   plex_heap_alloc * pallocOld = find(nOldAllocSize + sizeof(memdleak_block));
+   plex_heap_alloc * pallocNew = find(nNewAllocSize + sizeof(memdleak_block));
+   memdleak_block * pblock;
+   if(pallocOld == NULL && pallocNew == NULL)
+   {
+      pblock = (memdleak_block *) ::system_heap_realloc(pOld, nNewAllocSize + sizeof(memdleak_block));
+   }
+   else if(pallocOld == pallocNew)
+   {
+      pblock = (memdleak_block *) pOld;
+   }
+   else
+   {
+
+      void * pNew;
+      
+      if(pallocNew != NULL)
+      {
+         pNew = pallocNew->Alloc();
+      }
+      else
+      {
+         pNew = ::system_heap_alloc(nNewAllocSize + sizeof(memdleak_block));
+      }
+
+      memcpy(pNew, pOld, min(nOldAllocSize + sizeof(memdleak_block), nNewAllocSize + sizeof(memdleak_block)));
+
+      if(pallocOld != NULL)
+      {
+         pallocOld->Free(pOld);
+      }
+      else
+      {
+         ::system_heap_free(pOld);
+      }
+
+      pblock = (memdleak_block *) pNew;
+
+   }
+
+   pblock->m_iBlockUse     = nBlockUse;
+   pblock->m_pszFileName   = ((id) pszFileName).m_psz;
+   pblock->m_iLine         = iLine;
+
+   return pblock + sizeof(memdleak_block);
+
+}
