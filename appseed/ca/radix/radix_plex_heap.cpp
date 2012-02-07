@@ -229,8 +229,6 @@ void * plex_heap_alloc_array::alloc(size_t nAllocSize)
 }
 
 
-, int nBlockUse, const char * szFileName, int iLine
-
 void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
 {
 
@@ -311,7 +309,7 @@ plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 }
 
 
-void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const char * szFileName, int iLine)
+void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const char * pszFileName, int iLine)
 {
    plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
    memdleak_block * pblock;
@@ -350,7 +348,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 }
 
 
-void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize, int nBlockUse, const char * szFileName, int iLine)
+void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize, int nBlockUse, const char * pszFileName, int iLine)
 {
    plex_heap_alloc * pallocOld = find(nOldAllocSize + sizeof(memdleak_block));
    plex_heap_alloc * pallocNew = find(nNewAllocSize + sizeof(memdleak_block));

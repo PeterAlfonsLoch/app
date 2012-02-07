@@ -30,5 +30,8 @@ public:
 
    plex_heap_alloc * find(size_t nAllocSize);
 
+   void * alloc_dbg(size_t nAllocSize, int nBlockUse, const char * szFileName, int iLine);
+   void * realloc_dbg(void * p, size_t nOldAllocSize, size_t nNewAllocSize, int nBlockUse, const char * szFileName, int iLine);
+   void free_dbg(void * p, size_t nAllocSize);
 
 };
