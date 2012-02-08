@@ -1,0 +1,53 @@
+[Version]
+Signature   = "$WINDOWS NT$"
+Provider    = %Msft%
+DriverVer   = 08/02/2012,1.0.0.1
+CatalogFile = 
+
+[DestinationDirs]
+DefaultDestDir = 12
+ExampleFileSystem.DriverFiles = 12
+
+[SourceDisksNames]
+1 = %Disk1%
+
+[SourceDisksFiles]
+ListOpenedFileDrv_64.sys = 1
+
+[DefaultInstall]
+OptionDesc = %ServiceDesc%
+CopyFiles = ListOpenedFileDrv.DriverFiles
+
+[ListOpenedFileDr.DriverFiles]
+ListOpenedFileDrv_64.sys
+
+[DefaultInstall.Services]
+AddService = %ServiceName%,,ListOpenedFileDrv.Service
+
+[ExampleFileSystem.Service]
+DisplayName    = %ServiceName%
+Description    = %ServiceDesc%
+ServiceBinary  = %12%\ListOpenedFileDrv_64.sys
+ServiceType    = 2 ;    SERVICE_FILE_SYSTEM_DRIVER
+StartType      = 1 ;    SERVICE_SYSTEM_START
+ErrorControl   = 1 ;    SERVICE_ERROR_NORMAL
+LoadOrderGroup = "File System"
+AddReg         = ListOpenedFileDrv.AddRegistry
+
+[ListOpenedFileDrv.AddRegistry]
+HKR,Parameters,ExampleParameter,0x00010003,1
+
+[DefaultUninstall]
+DelFiles   = ListOpenedFileDrv.DriverFiles
+DelReg     = ListOpenedFileDrv.DelRegistry
+
+[DefaultUninstall.Services]
+DelService = %ServiceName%,0x200
+
+
+[Strings]
+Msft        = "ca2 Desenvolvimento de Software Ltda."
+ServiceDesc = "List Opened File Driver"
+ServiceName = "ListOpenedFileDrv"
+ParameterPath = "SYSTEM\CurrentControlSet\Services\ListOpenedFileDrv\Parameters"
+Disk1       = "List Opened File Driver Media"
