@@ -3374,6 +3374,12 @@
     <ClInclude Include="crypto\crypto_hmac_sha1.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="ca\OpenedFiles.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\Utils.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5637,6 +5643,9 @@
     </ClCompile>
     <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_utils.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -313,6 +313,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\ListOpenedFileDrv_32.sys" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\ListOpenedFileDrv_64.sys" "$(OutDir)"
 
 
 copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"

@@ -622,6 +622,18 @@ InitFailure:
       return true;
    }
 
+   ex1::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   {
+      try
+      {
+         return get_file(varFile, nOpenFlags);
+      }
+      catch(...)
+      {
+         return NULL;
+      }
+   }
+
    ex1::filesp application::get_file(var varFile, UINT nOpenFlags, ex1::file_exception_sp * pe)
    {
 

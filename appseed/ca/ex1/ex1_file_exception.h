@@ -1,4 +1,5 @@
 #pragma once
+#include "ca/OpenedFiles.h"
 
 
 namespace ex1
@@ -34,6 +35,7 @@ namespace ex1
    int      m_cause;
    LONG     m_lOsError;
    string   m_strFileName;
+   string   m_strAdd;
 
 
 
@@ -53,6 +55,10 @@ namespace ex1
       virtual int get_cause();
       virtual LONG get_os_error();
       virtual string get_file_path();
+
+      static void CALLBACK CallBackFunc( OF_INFO_t OpenedFileInfo, UINT_PTR pUserContext );
+      void OnFileFound(OF_INFO_t OpenedFileInfo );
+
 
 
    #ifdef _DEBUG

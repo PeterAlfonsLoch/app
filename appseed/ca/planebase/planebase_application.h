@@ -88,6 +88,8 @@ namespace planebase
       virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pe = NULL);
       virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pe = NULL);
 
+      // get a file and if there are exceptions, should show end user friendly messages
+      virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 

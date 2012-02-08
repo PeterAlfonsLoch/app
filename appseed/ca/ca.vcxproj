@@ -291,7 +291,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -837,6 +837,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca\ca_type_info.h" />
     <ClInclude Include="ca\ca_window.h" />
     <ClInclude Include="ca\ca_window_draw.h" />
+    <ClInclude Include="ca\OpenedFiles.h" />
+    <ClInclude Include="ca\Utils.h" />
     <ClInclude Include="collection\array.h" />
     <ClInclude Include="collection\array_app_alloc.h" />
     <ClInclude Include="collection\array_del_ptr.h" />
@@ -1836,6 +1838,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca\ca_system.cpp" />
     <ClCompile Include="ca\ca_thread.cpp" />
     <ClCompile Include="ca\ca_type_info.cpp" />
+    <ClCompile Include="ca\ca_utils.cpp" />
     <ClCompile Include="ca\ca_window.cpp" />
     <ClCompile Include="ca\ca_window_draw.cpp" />
     <ClCompile Include="collection\2DArray.cpp" />

@@ -53,6 +53,10 @@ namespace cubebase
 
       }
 
+      // get a file and if there are exceptions, should show end user friendly messages
+      virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+
+
 
    };
 

@@ -124,6 +124,25 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
+   ex1::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   {
+      try
+      {
+         return get_file(varFile, nOpenFlags);
+      }
+      catch(ex1::file_exception * pe)
+      {
+
+         string strMessage;
+
+         pe->GetErrorMessage(strMessage);
+
+         App(this).simple_message_box(NULL, strMessage, MB_OK);
+
+         return NULL;
+      }
+   }
+
 } //namespace cube
 
 
