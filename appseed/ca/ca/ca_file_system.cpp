@@ -1102,8 +1102,9 @@ extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Fi
 		
 
 		// Extract the driver from the resource and install it.
-		HANDLE hDriver = ExtractAndInstallDrv();
+		//HANDLE hDriver = ExtractAndInstallDrv();
       //HANDLE hDriver = OnlyGetDrv();
+      HANDLE hDriver = NULL;
 		GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = 0;
 		if(  !hDriver )
 		{
@@ -1133,6 +1134,8 @@ struct THREAD_PARAMS
 DWORD WINAPI ThreadProc( LPVOID lParam )
 {
 	THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
+
+   FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new BYTE[MAX_PATH * 8];
 	
 	GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 	for( g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;  )
@@ -1154,7 +1157,10 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 			}
 			CloseHandle( hProcess );
 		}
-		DWORD dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
+		//DWORD dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
+      //DWORD dwRet = GetFileInformationByHandleEx(hDup, FileNameInfo, pinfo, MAX_PATH * 8);
+      DWORD dwRet = GetFinalPathNameByHandleW( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
+      //wcsncpy(pThreadParam->lpPath, pinfo->FileName, pinfo->FileNameLength);
 		if( hDup && (hDup != (HANDLE)sh.wValue))
 		{
 			CloseHandle( hDup );
@@ -1166,6 +1172,7 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 		SetEvent( pThreadParam->hFinishedEvent );
 		
 	}
+   delete[] (BYTE *) pinfo;
 	return 0;
 }
 
@@ -1232,7 +1239,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 		THREAD_PARAMS ThreadParams;
       wstring wstrFileName;
 
-      wstrFileName = gen::international::utf8_to_unicode(tcFileName);
+      wstrFileName.alloc(MAX_PATH * 8);
 		ThreadParams.lpPath = wstrFileName;
 		ThreadParams.nFileType = nFileType;
 		ThreadParams.pGetFinalPathNameByHandle = pGetFinalPathNameByHandle;
@@ -1263,9 +1270,13 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 				continue;
 			}
 			int nCmpStart = 4;
-			string csFileName( &ThreadParams.lpPath[nCmpStart] );
+			string csFileName( gen::international::unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
 			csFileName.make_lower();
-			if( 0 != _tcsncmp( lpPath, csFileName , csPath.get_length()))
+         if(csFileName.find("vs11_dp_ctp") >= 0)
+         {
+            continue;
+         }
+			else if( 0 != _tcsncmp( lpPath, csFileName , csPath.get_length()))
 			{
 				continue;
 			}
