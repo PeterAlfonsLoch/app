@@ -346,8 +346,7 @@
       <PreserveSBR>false</PreserveSBR>
     </Bscmake>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>"$(SolutionDir)..\..\..\app\thirdparty\binary\signtool.exe" sign /f "G:\cecyn1.at.hotmail.com\ccvotagus\cgcl\2011-05-ca2.p12" /p none $(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
