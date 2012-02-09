@@ -120,15 +120,15 @@ namespace spa
 
 
       void set_progress(double dProgress);
-      int download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen);
+      int download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen);
 
       static DWORD WINAPI thread_proc_run(LPVOID lpParam);
 
       void PaintOpaqueBk(HDC hdc);
 
-      bool get(const vsstring& url_in, bool bExist, int iLength, const char * pszMd5, int iGzLen);
+      bool get(const vsstring& url_in, bool bExist, int iLength, const char * pszCrc, int iGzLen);
 
-      bool download_file(const vsstring& url_in, bool bExist, int iLength, const char * pszMd5, int iGzLen);
+      bool download_file(const vsstring& url_in, bool bExist, int iLength, const char * pszCrc, int iGzLen);
 
       vsstring ca2_get_dir(LPCTSTR lpcszUrl);
 
@@ -138,17 +138,17 @@ namespace spa
 
       vsstring ca2_get_file(LPCTSTR lpcszUrl);
 
-      vsstring ca2bz_get_file(LPCTSTR lpcszUrl, const char * pszMd5);
+      vsstring ca2bz_get_file(LPCTSTR lpcszUrl, const char * pszCrc);
 
       vsstring ca2unbz_get_file(LPCTSTR lpcszUrl);
 
-      bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int iLength, const char * pszMd5, int iGzLen, bool bIndex = false);
+      bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int iLength, const char * pszCrc, int iGzLen, bool bIndex = false);
 
-      int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5);
+      int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc);
 
       int GetLocalFileList(stra_dup & stra_dup, LPCTSTR lpcszUrl);
 
-      int UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapMd5);
+      int UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
 
       int CopyFileList(stra_dup & stra_dup);
 
@@ -156,7 +156,7 @@ namespace spa
 
       vsstring load_string(const char * pszId, const char * pszDefault);
 
-      void ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen);
+      void ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen);
 
       bool spa_exec(const char * psz);
 
