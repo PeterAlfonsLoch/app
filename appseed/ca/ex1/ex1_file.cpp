@@ -265,16 +265,11 @@ namespace ex1
 
    void file_exception::Construct(int cause, LONG lOsError, const char * pstrFileName /* = NULL */)
    {
+
       m_cause              = cause;
       m_lOsError           = lOsError;
       m_strFileName        = pstrFileName;
 
-      if(lOsError == ERROR_ACCESS_DENIED || lOsError == ERROR_SHARING_VIOLATION)
-      {
-         wstring wstr;
-         wstr = gen::international::utf8_to_unicode(System.dir().name(m_strFileName));
-         GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (ULONG_PTR)this );
-      }
    }
 
    file_exception::~file_exception()
@@ -297,11 +292,11 @@ namespace ex1
    }
 
 
-struct PROCESS_INFO_t
-{
-    string csProcess;
-    DWORD dwImageListIndex;
-};
+   struct PROCESS_INFO_t
+   {
+       string csProcess;
+       DWORD dwImageListIndex;
+   };
 
 
 
@@ -312,8 +307,10 @@ struct PROCESS_INFO_t
 
    void file_exception::OnFileFound(OF_INFO_t OpenedFileInfo )
    {
+
 	   if(System.file().name_(gen::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
+
 	      PROCESS_INFO_t stInfo;
 	      //if( !m_stProcessInfo.Lookup( OpenedFileInfo.dwPID, stInfo))
 	      {
@@ -359,7 +356,56 @@ struct PROCESS_INFO_t
          m_strAdd += "PID: " + csPid + " Process Name : " + stInfo.csProcess;
 	      //m_list.SetItemText( m_nCount, 2, OpenedFileInfo.lpFile );
 	      //m_list.SetItemData( m_nCount, (DWORD_PTR)OpenedFileInfo.hFile );
+
       }
+
+   }
+
+
+   BOOL file_exception::get_friendly_error_message(string & str, PUINT pnHelpContext) const
+   {
+   
+     // if (pnHelpContext != NULL)
+   //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
+
+      string strMessage;
+
+      string strFileName = m_strFileName;
+
+      if(strFileName.is_empty())
+         strFileName = "IDS_UNNAMED_FILE";
+
+      if(m_lOsError == ERROR_ACCESS_DENIED || m_lOsError == ERROR_SHARING_VIOLATION)
+      {
+
+         wstring wstr;
+
+         wstr = gen::international::utf8_to_unicode(System.dir().name(m_strFileName));
+
+         GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (ULONG_PTR)this);
+
+         if(m_strAdd.has_char())
+         {
+            ((file_exception * ) this)->m_strAdd = " Process Using the file = " + m_strAdd;
+         }
+         else
+         {
+            ((file_exception * ) this)->m_strAdd = " Process Using the file Not Found ";
+         }
+
+      }
+
+      string strExtra;
+
+      strExtra = get_system_error_message(m_lOsError);
+
+      strExtra += m_strAdd;
+
+      strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
+
+      str = strMessage;
+
+      return TRUE;
    }
 
 
@@ -370,29 +416,18 @@ struct PROCESS_INFO_t
    //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
 
       string strMessage;
+      
       string strFileName = m_strFileName;
+      
       if(strFileName.is_empty())
          strFileName = "IDS_UNNAMED_FILE";
-
-      if(m_lOsError == ERROR_ACCESS_DENIED || m_lOsError == ERROR_SHARING_VIOLATION)
-      {
-         if(m_strAdd.has_char())
-         {
-            ((file_exception * ) this)->m_strAdd = " Process Using the file = " + m_strAdd;
-         }
-         else
-         {
-            ((file_exception * ) this)->m_strAdd = " Process Using the file Not Found ";
-         }
-      }
 
       string strExtra;
 
       strExtra = get_system_error_message(m_lOsError);
 
-      strExtra += m_strAdd;
-
       strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
+
       str = strMessage;
 
       return TRUE;

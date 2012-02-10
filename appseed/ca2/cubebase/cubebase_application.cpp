@@ -135,7 +135,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
          string strMessage;
 
-         pe->GetErrorMessage(strMessage);
+         pe->get_friendly_error_message(strMessage);
 
          App(this).simple_message_box(NULL, strMessage, MB_OK);
 

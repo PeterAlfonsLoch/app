@@ -28,14 +28,3 @@ template<> UINT simple_HashKey<verisimple_wstring> (verisimple_wstring key)
    return simple_HashKey((const wchar_t *) key);
 }
 
-/*template<> UINT HashKey<vsstring> (vsstring key)
-{
-   return HashKey((const char *) key);
-}
-
-
-template<> UINT HashKey<wstring> (wstring key)
-{
-   return HashKey((const wchar_t *) key);
-}
-*/

@@ -37,7 +37,7 @@ namespace _template
       {
          register uint64_t * puiKey = (uint64_t *) (const char *) key;
          register int counter = key.get_length();
-         register UINT nHash = 0;
+         register uint64_t nHash = 0;
          while(counter >= sizeof(*puiKey))
          {
             nHash = (nHash<<5) + nHash + *puiKey++;
@@ -45,7 +45,7 @@ namespace _template
          }
          register const char * pszKey = (const char *) puiKey;
          while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
-         return nHash;
+         return (UINT) nHash;
       }
 
    };

@@ -27,5 +27,3 @@ template<> CLASS_DECL_c UINT simple_HashKey<const wchar_t *> (const wchar_t * ke
 template<> CLASS_DECL_c UINT simple_HashKey<const char *> (const char * key);
 template<> CLASS_DECL_c UINT simple_HashKey<verisimple_string> (verisimple_string key);
 template<> CLASS_DECL_c UINT simple_HashKey<verisimple_wstring> (verisimple_wstring key);
-/*template<> CLASS_DECL_c UINT HashKey<vsstring> (vsstring key);
-template<> CLASS_DECL_c UINT HashKey<wstring> (wstring key);*/
