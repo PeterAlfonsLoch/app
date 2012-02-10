@@ -43,7 +43,8 @@ namespace plane
 
 
 #ifdef WINDOWS
-      ULONG_PTR m_gdiplusToken;
+      ULONG_PTR                        m_gdiplusToken;
+      mutex                            m_mutexGdiplus;
 #endif
 
 
