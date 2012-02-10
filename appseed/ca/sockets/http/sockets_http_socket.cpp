@@ -333,17 +333,22 @@ namespace sockets
    {
       string msg;
       string strLine;
-      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("http_protocol") + "://" +  m_response.m_propertysetHeader["host"] +  m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
-      if(m_response.m_propertysetHeader["host"].get_string().has_char())
+      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("http_protocol") + "://" +  m_request.m_propertysetHeader["host"] +  m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+/*         msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      }*/
+      if(m_request.m_propertysetHeader["host"].get_string().has_char())
       {
-         strLine = "Host: " + m_response.m_propertysetHeader["host"];
+         strLine = "Host: " + m_request.m_propertysetHeader["host"];
          msg += strLine + "\r\n";
       }
-      for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_count(); i++)
+      for(int i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)
       {
-         string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
-         string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
+         string strKey = m_request.m_propertysetHeader.m_propertya[i].name();
+         string strValue = m_request.m_propertysetHeader.m_propertya[i].get_string();
          if(strKey.CompareNoCase("host") == 0)
+            continue;
+         strValue.trim();
+         if(strValue.is_empty())
             continue;
          msg += strKey + ": " + strValue + "\r\n";
       }
@@ -354,7 +359,9 @@ namespace sockets
 
    string http_socket::MyUseragent()
    {
-      string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; pt-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      string version = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0) Gecko/20100101 Firefox/10.0";
+
+      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; pt-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
       //string version = "C++Sockets/";
    #ifdef _VERSION
       version += _VERSION;

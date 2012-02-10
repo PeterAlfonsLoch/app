@@ -115,7 +115,7 @@ namespace ca
          bool mk_time(const char * lpcszCandidate);
 
          string as_string(var varFile, ::ca::application * papp);
-         string as_string(var varFile, var varQuery, ::ca::application * papp);
+         string as_string(var varFile, var & varQuery, ::ca::application * papp);
          void as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp);
          void lines(stringa & stra, var varFile, ::ca::application * papp);
 

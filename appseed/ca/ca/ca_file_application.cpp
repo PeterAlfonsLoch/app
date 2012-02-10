@@ -102,7 +102,7 @@ namespace ca
          return m_psystem->m_file.as_string(varFile, m_papp);
       }
 
-      string application::as_string(var varFile, var varQuery)
+      string application::as_string(var varFile, var & varQuery)
       {
          return m_psystem->m_file.as_string(varFile, varQuery, m_papp);
       }

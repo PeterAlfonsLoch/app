@@ -287,7 +287,7 @@ namespace ca
           return as_string(varFile, varQuery, papp);
       }
 
-      string system::as_string(var varFile, var varQuery, ::ca::application * papp)
+      string system::as_string(var varFile, var & varQuery, ::ca::application * papp)
       {
          primitive::memory storage;
          if(varFile.ca2 < ::ex1::file > () != NULL)
@@ -319,6 +319,14 @@ namespace ca
             {
                gen::property_set post;
                gen::property_set headers;
+               if(varQuery.has_property("post"))
+               {
+                  post = varQuery["post"].propset();
+               }
+               if(varQuery.has_property("in_headers"))
+               {
+                  headers = varQuery["in_headers"].propset();
+               }
                if(varQuery.propset()["disable_ca2_sessid"])
                {
                   Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
@@ -331,6 +339,7 @@ namespace ca
                {
                   Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
                }
+               varQuery["out_headers"] = headers;
             }
             else
             {

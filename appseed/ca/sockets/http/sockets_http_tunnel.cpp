@@ -33,7 +33,7 @@ namespace sockets
       }
       else if(GetUrlPort() == 80 || GetUrlPort() == 8080)
       {
-         m_response.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
+         m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
          m_bOk = true;
          step();
       }

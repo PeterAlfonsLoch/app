@@ -526,7 +526,7 @@ retry:
             bPut = false;
             psocket = new http_get_socket(handler, strUrl);
          }
-         psocket->outheaders().add(headers);
+         psocket->inheaders().add(headers);
          if(set.has_property("minimal_headers") && (bool)set["minimal_headers"])
          {
             psocket->m_request.attrs()["minimal_headers"] = true;

@@ -42,7 +42,7 @@ namespace ca
 
 
          virtual string as_string(var varFile);
-         virtual string as_string(var varFile, var varQuery);
+         virtual string as_string(var varFile, var & varQuery);
          virtual void as_memory(var varFile, primitive::memory & mem);
          virtual void lines(stringa & stra, var varFile);
 

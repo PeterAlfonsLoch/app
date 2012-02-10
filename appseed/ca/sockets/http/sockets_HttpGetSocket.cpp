@@ -80,17 +80,23 @@ namespace sockets
    void http_get_socket::step()
    {
       m_request.attr("http_method") = "GET";
-      //outheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      //outheader("Accept-Language") = "en-us,en;q=0.5";
-      //outheader("Accept-Encoding") = "gzip,deflate";
-      //outheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      outheader("User-agent") = MyUseragent();
+      
+      
+      
+      //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      //inheader("Accept-Language") = "en-us,en;q=0.5";
+      //inheader("Accept-Encoding") = "gzip,deflate";
+      //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+
+
+
+      inheader("User-Agent") = MyUseragent();
       //outheader("Content-Length") = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         outheader("Host") = GetUrlHost() + ":" + gen::str::l2string(GetUrlPort());
+         inheader("Host") = GetUrlHost() + ":" + gen::str::l2string(GetUrlPort());
       else
-         outheader("Host") = GetUrlHost();
+         inheader("Host") = GetUrlHost();
       SendRequest();
    }
 

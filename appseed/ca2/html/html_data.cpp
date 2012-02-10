@@ -369,6 +369,8 @@ namespace html
 
    bool data::open_document(var varFile)
    {
+      int iRetry = 0;
+      restart:
       ::ca::data::writing writing(this);
    string strPathName;
    if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
@@ -429,9 +431,38 @@ namespace html
          string strResponse = Application.file().as_string(filename);
       }
 
-      gen::property_set varQuery = m_propset["http_propset"].propset();
-      varQuery["app"] = get_app();
+      var varQuery = m_propset["http_propset"].propset();
+      varQuery.propset()["app"] = get_app();
+
+      //varQuery.propset()["in_headers"].propset()["Accept"] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+      varQuery.propset()["in_headers"].propset()["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+//      varQuery.propset()["in_headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
+      //varQuery.propset()["in_headers"].propset()["Accept-Encoding"] = "gzip,deflate";
+//      varQuery.propset()["in_headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+      varQuery.propset()["in_headers"].propset()["Cache-Control"] = "max-age=0";
+
       string str = Application.file().as_string(varFile, varQuery);
+
+      if(varQuery.propset()["out_headers"].propset().has_property("Location"))
+      {
+         iRetry++;
+         if(iRetry > 8)
+         {
+            str = "<html>";
+            str += "<head>";
+            str += "</head>";
+            str += "<body>";
+            str += "<h1>Redirecionamento Incorreto</h1>";
+            str += "</body>";
+            str += "</html>";
+         }
+         else
+         {
+            varFile = varQuery["out_headers"].propset()["Location"];
+            goto restart;
+         }
+      }
+
       if(str.is_empty())
       {
          string strCandidate = System.dir().relpath(m_strPathName, varFile);
