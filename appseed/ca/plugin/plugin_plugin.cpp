@@ -435,11 +435,27 @@ namespace plugin
 
             if(str == "ca2login")
             {
+               // graphical - 2 - user interface for login - fontopus - through the plugin
+               if(!m_psystem->install().is("fontopus2"))
+               {
+                  Sys(m_psystem).install().start("fontopus2");
+                  ::TerminateProcess(::GetCurrentProcess(), 0);
+                  m_bMainReady = false;
+                  return;
+               }
                m_strCa2LoginRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_login();
             }
             else if(str == "ca2logout")
             {
+               // graphical - 2 - user interface for logout - fontopus - through the plugin
+               if(!m_psystem->install().is("fontopus2"))
+               {
+                  Sys(m_psystem).install().start("fontopus2");
+                  ::TerminateProcess(::GetCurrentProcess(), 0);
+                  m_bMainReady = false;
+                  return;
+               }
                m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_logout();
             }
