@@ -53,6 +53,8 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    }
    thisType->inputSourceLoading = true;
 
+   thisType->m_strSource = Application.file().as_string(thisType->m_strSourceLocation);
+
    try
    {
       loadSource(thisType->m_strSourceLocation, thisType->m_strSource);

@@ -417,11 +417,11 @@ namespace colorertake5
          if (clearLine != gy){
             clearLine = gy;
             str = lineSource->getLine(gy);
-            if (str == NULL){
+            /*if (str == NULL){
                throw exception(string("NULL string passed into the parser: ")+gen::str::itoa(gy));
                gy = gy2;
                break;
-            };
+            };*/
             regionHandler->clearLine(gy, str);
          };
          // hack to include invisible regions in start of block

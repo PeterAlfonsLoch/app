@@ -346,13 +346,15 @@ namespace xml
                      // or none quote
                      int quote = *xml;
                      if( quote == '"' || quote == '\'' )
-                        pEnd = _tcsechr( ++xml, quote, chXMLEscape );
+                        //pEnd = _tcsechr( ++xml, quote, chXMLEscape );
+                        pEnd = _tcsechr( ++xml, quote, 0 );
                      else
                      {
                         //attr= m_strValue>
                         // none quote mode
                         //pEnd = _tcsechr( xml, ' ', '\\' );
-                        pEnd = _tcsepbrk( xml, " >", chXMLEscape );
+                        //pEnd = _tcsepbrk( xml, " >", chXMLEscape );
+                        pEnd = _tcsepbrk( xml, " >", 0 );
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
@@ -684,6 +686,7 @@ namespace xml
                && xml != prev )
             {
                *pbRet = true;
+               xml = _tcsskip( xml );
                return xml;
             }
             // restart xml parse when this node is root m_pdoc node
