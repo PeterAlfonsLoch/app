@@ -107,7 +107,7 @@ namespace ex1
    {
       ::count count = this->get_count();
       ostream << count;
-      pair * p = PGetFirstAssoc();
+      typename type_map::pair * p = this->PGetFirstAssoc();
       for(index index = 0; index < count; index++)
       {
          ostream << p->m_key;
@@ -121,8 +121,8 @@ namespace ex1
    {
       ::count count;
       istream >> count;
-      BASE_KEY key;
-      BASE_VALUE value;
+      typename type_map::BASE_KEY key;
+      typename type_map::BASE_VALUE value;
       for(index index = 0; index < count; index++)
       {
          istream >> key;

@@ -41,7 +41,7 @@ namespace ex1
       virtual string GetFilePath() const;
       virtual void SetFilePath(const char * lpszNewName);
 
-
+      
    // Operations
       virtual BOOL open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError = NULL);
 
@@ -121,4 +121,11 @@ namespace ex1
    }
 
 
-} // namespace ex1;
+
+} // namespace ex1
+
+
+
+
+
+

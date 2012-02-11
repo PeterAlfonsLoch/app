@@ -39,7 +39,6 @@ namespace user
          UINT                 m_uiElapse;
          UINT                 m_uiLastSent;
 
-
          bool check();
 
 
