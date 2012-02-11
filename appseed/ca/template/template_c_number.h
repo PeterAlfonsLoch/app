@@ -311,7 +311,7 @@ namespace primitive
 {
 
 
-#if defined(_M_X64)  // X64
+#if defined(_M_X64) || defined(__LP64__)  // X64
 
 
 //DEFINE_C_NUMBER(CLASS_DECL_ca, memory_size         , uint64_t)

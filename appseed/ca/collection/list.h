@@ -710,11 +710,11 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          {
             ASSERT(fx_is_valid_address(pNode, sizeof(node)));
             TYPE* pData;
-            /*
-             * in some cases the & operator might be overloaded, and we cannot use it to obtain
-             * the address of a given object.  We then use the following trick to get the address
-             */
-      /*      pData = reinterpret_cast< TYPE* >( &reinterpret_cast< int& >( static_cast< TYPE& >( pNode->data ) ) );
+            //
+            // in some cases the & operator might be overloaded, and we cannot use it to obtain
+            //the address of a given object.  We then use the following trick to get the address
+            //
+            pData = reinterpret_cast< TYPE* >( &reinterpret_cast< int& >( static_cast< TYPE& >( pNode->data ) ) );
             SerializeElements<TYPE>(ar, pData, 1);
          }
       }

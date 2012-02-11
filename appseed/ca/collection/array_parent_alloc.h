@@ -94,10 +94,9 @@ void array_parent_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
    }
    else
    {
-      INT_PTR iOldSize = this->ptra().get_size();
       this->ptra().set_size(iIndex + 1);
       INT_PTR iEmptySize = this->ptra().get_size() - 1;
-      int i;
+      index i;
       for(i = iIndex; i < iEmptySize; i++)
       {
          this->ptra().element_at(i) = gen::alloc<TYPE>();

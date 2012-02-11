@@ -362,11 +362,6 @@ public:
       pData->Release();
    }
 
-   operator simple_string&()
-   {
-      return *(simple_string*)this;
-   }
-
    simple_string& operator=(const simple_string& strSrc )
    {
       string_data * pSrcData = strSrc.get_data();
@@ -461,7 +456,7 @@ public:
       // See comment in SetString() about why we do this
       UINT_PTR nOffset = pszSrc-GetString();
 
-      UINT nOldLength = get_length();
+      strsize nOldLength = get_length();
       if (nOldLength < 0)
       {
          // protects from underflow
@@ -862,7 +857,7 @@ private:
    PXSTR PrepareWrite(strsize nLength )
    {
       string_data * pOldData = get_data();
-      strsize nShared = 1-pOldData->nRefs;  // nShared < 0 means true, >= 0 means false
+      long nShared = 1-pOldData->nRefs;  // nShared < 0 means true, >= 0 means false
       strsize nTooShort = pOldData->nAllocLength-nLength;  // nTooShort < 0 means true, >= 0 means false
       if( (nShared|nTooShort) < 0 )  // If either sign bit is set (i.e. either is less than zero), we need to copy data
       {

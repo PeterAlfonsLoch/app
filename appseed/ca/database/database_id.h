@@ -82,7 +82,7 @@ namespace database
 
    inline bool id::operator == (int i) const
    {
-      return m_id == i;
+      return m_id.m_ui == i;
    }
 
    inline const id & id::operator = (::id id)

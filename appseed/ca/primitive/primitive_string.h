@@ -247,7 +247,6 @@ public:
    explicit string( string_manager_interface * pstringmanager ) throw();
    static void __cdecl Construct( string* pstring );
    string(const string & strSrc );
-   operator simple_string&();
    string(const XCHAR* pszSrc);
    string(const char * pszSrc,string_manager_interface * pstringmanager );
    CSTRING_EXPLICIT string(const YCHAR* pszSrc );

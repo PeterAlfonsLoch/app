@@ -7,7 +7,7 @@ class class_sort_array :
 {
 public:
 
-   bool SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, int & iIndex);
+   bool SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex);
    void SortInsert(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t);
 
    virtual void QuickSort(
@@ -25,7 +25,7 @@ public:
 template < class BASE_CLASS, class TYPE, class ARG_TYPE, class BASE_ARRAY >
 bool
 class_sort_array < BASE_CLASS, TYPE, ARG_TYPE, BASE_ARRAY >::
-SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, int & iIndex)
+SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
 {
    if(this->get_size() == 0)
 	{
@@ -79,9 +79,9 @@ QuickSort(
 {
 		index_array stackLowerBound;
 		index_array stackUpperBound;
-		int iLowerBound;
-		int iUpperBound;
-		int iLPos, iUPos, iMPos;
+		index iLowerBound;
+		index iUpperBound;
+		index iLPos, iUPos, iMPos;
 	//	TYPE t;
 
 		if(this->get_size() >= 2)
@@ -155,9 +155,9 @@ QuickSort(
 {
 		index_array stackLowerBound;
 		index_array stackUpperBound;
-		int iLowerBound;
-		int iUpperBound;
-		int iLPos, iUPos, iMPos;
+		index iLowerBound;
+		index iUpperBound;
+		index iLPos, iUPos, iMPos;
 	//	TYPE t;
 
 		if(this->get_size() >= 2)

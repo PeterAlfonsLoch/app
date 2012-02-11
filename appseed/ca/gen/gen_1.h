@@ -7,7 +7,8 @@
 
 #include "primitive/shared_file.h"
 
-#ifndef _INC_MALLOC
+
+#if !defined(_INC_MALLOC) && !defined(MACOS)
    #include <malloc.h>
 #endif
 
@@ -148,7 +149,7 @@ class CDockContext;                     // for dragging control bars
    { message, 0, 0, 0, AfxSig_vv, \
       (AFX_PMSG)(AFX_PMSGW)(void (AFX_MSG_CALL ::ca::window::*)(void))&memberFxn },
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
 typedef void * HDWP;
 
@@ -203,7 +204,7 @@ protected:
 #endif
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 struct NMHDR
 {
 

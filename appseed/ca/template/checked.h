@@ -12,6 +12,7 @@
 namespace _template
 {
 
+   
    inline errno_t AtlCrtErrorCheck(errno_t nError)
    {
       switch(nError)
@@ -35,6 +36,7 @@ namespace _template
       return nError;
    }
 
+   
    /////////////////////////////////////////////////////////////////////////////
    // Secure (checked) CRT functions
 
@@ -291,37 +293,49 @@ namespace _template
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
+#ifdef WINDOWS
       (_S1max);
+#endif
       memcpy(_S1, _S2, _N);
    }
 
    inline void __cdecl wmemcpy_s(wchar_t *_S1, size_t _N1, const wchar_t *_S2, size_t _N)
    {
+#ifdef WINDOWS
       (_N1);
+#endif
       ::wmemcpy_dup(_S1, _S2, _N);
    }
 
    inline void __cdecl memmove_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
+#ifdef WINDOWS
       (_S1max);
+#endif
       memmove(_S1, _S2, _N);
    }
 
    inline void __cdecl strcpy_s(char *_S1, size_t _S1max, const char *_S2)
    {
+#ifdef WINDOWS
       (_S1max);
+#endif
       ::strcpy(_S1, _S2);
    }
 
    inline void __cdecl wcscpy_s(wchar_t *_S1, size_t _S1max, const wchar_t *_S2)
    {
+#ifdef WINDOWS
       (_S1max);
+#endif
       ::wcscpy_dup(_S1, _S2);
    }
 
    inline void __cdecl tcscpy_s(char * _Dst, size_t _SizeInChars, const char * _Src)
    {
+#ifdef WINDOWS
       (_SizeInChars);
+#endif
       ::strcpy_dup(_Dst, _Src);
    }
 
@@ -376,7 +390,7 @@ namespace _template
 #if !defined(VC6) && !defined(VC71)
    #pragma warning(disable: 6535)
 #endif
-      ::strncpy_dup(_Dest,_Source,_Count);
+      ::strncpy_dup(_Dest,_Source, (int) _Count);
    #pragma warning(pop)
       if(_SizeInChars>0)
       {
@@ -388,25 +402,33 @@ namespace _template
 
    inline void __cdecl strcat_s(char * _Dst, size_t _SizeInChars, const char * _Src)
    {
+#ifdef WINDOWS
       (_SizeInChars);
+#endif
       ::strcat(_Dst, _Src);
    }
 
    inline void __cdecl wcscat_s(wchar_t * _Dst, size_t _SizeInChars, const wchar_t * _Src)
    {
+#ifdef WINDOWS
       (_SizeInChars);
+#endif
       ::wcscat_dup(_Dst, _Src);
    }
 
    inline void __cdecl tcscat_s(char * _Dst, size_t _SizeInChars, const char * _Src)
    {
+#ifdef WINDOWS
       (_SizeInChars);
+#endif
       ::strcat_dup(_Dst, _Src);
    }
 
    inline void __cdecl strlwr_s(char * _Str, size_t _SizeInChars)
    {
+#ifdef WINDOWS
       (_SizeInChars);
+#endif
       ::to_lower(_Str);
    }
 
@@ -430,10 +452,10 @@ namespace _template
 
    inline void __cdecl itoa_s(int _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-      (_SizeInChars);
 #if defined(LINUX) || defined(MACOS)
       ::ltoa_dup(_Buf, _Val, _Radix);
 #elif defined(VC6) || defined(VC71)
+      (_SizeInChars);
       ::itoa(_Val, _Buf, _Radix);
 #else
       ::_itoa_s(_Val, _Buf, _SizeInChars, _Radix);
@@ -448,10 +470,10 @@ namespace _template
 
    inline void __cdecl ltoa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-      (_SizeInChars);
 #if defined(LINUX) || defined(MACOS)
       ::ltoa_dup(_Buf, _Val, _Radix);
 #else
+      (_SizeInChars);
       ::_ltoa(_Val, _Buf, _Radix);
 #endif
    }
@@ -464,10 +486,10 @@ namespace _template
 
    inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-      (_SizeInChars);
 #if defined(LINUX) || defined(MACOS)
       ::ultoa_dup(_Buf, _Val, _Radix);
 #else
+      (_SizeInChars);
       ::_ultoa(_Val, _Buf, _Radix);
 #endif
    }
@@ -486,10 +508,10 @@ namespace _template
 
    inline void __cdecl i64toa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-      (_SizeInChars);
 #if defined(LINUX) || defined(MACOS)
       ::ltoa_dup(_Buf, _Val, _Radix);
 #else
+      (_SizeInChars);
       ::_i64toa(_Val, _Buf, _Radix);
 #endif
    }
@@ -502,10 +524,10 @@ namespace _template
 
    inline void __cdecl ui64toa_s(uint64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-      (_SizeInChars);
 #if defined(LINUX) || defined(MACOS)
       ::ultoa_dup(_Buf, _Val, _Radix);
 #else
+      (_SizeInChars);
       ::_ui64toa(_Val, _Buf, _Radix);
 #endif
    }
@@ -518,10 +540,10 @@ namespace _template
 
    inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int _Ndec)
    {
-      (_SizeInChars);
 #if defined(LINUX) || defined(MACOS)
       ::gcvt(_Value, _Ndec, _Buffer);
 #else
+      (_SizeInChars);
       ::_gcvt(_Value, _Ndec, _Buffer);
 #endif
    }
@@ -544,19 +566,25 @@ namespace _template
 
    inline size_t __cdecl strnlen(const char *_Str, size_t _Maxsize)
    {
+#ifdef WINDOWS
       (_Maxsize);
+#endif
       return ::strlen(_Str);
    }
 
    inline size_t __cdecl wcsnlen(const wchar_t *_Wcs, size_t _Maxsize)
    {
+#ifdef WINDOWS
       (_Maxsize);
+#endif
       return ::wcslen_dup(_Wcs);
    }
 
    inline size_t __cdecl tcsnlen(const char *_Str, size_t _Maxsize)
    {
+#ifdef WINDOWS
       (_Maxsize);
+#endif
       return ::strlen_dup(_Str);
    }
 
@@ -572,6 +600,10 @@ namespace _template
 
    #endif // _SECURE_ATL
 
+      
    } // namespace checked
 
+   
 } // namespace _template
+
+

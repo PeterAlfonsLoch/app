@@ -680,12 +680,12 @@ namespace collection
             {
                KEY* pKey;
                VALUE* pValue;
-               /*
-                * in some cases the & operator might be overloaded, and we cannot use it to
-                * obtain the address of a given object.  We then use the following trick to
-                * get the address
-                */
-               /*pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
+               //
+               // in some cases the & operator might be overloaded, and we cannot use it to
+               // obtain the address of a given object.  We then use the following trick to
+               // get the address
+               //
+               pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
                pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int& >( static_cast< VALUE& >( pAssoc->value ) ) );
                SerializeElements<KEY>(ar, pKey, 1);
                SerializeElements<VALUE>(ar, pValue, 1);

@@ -132,7 +132,7 @@
     #endif
 
 
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(MACOS)
 
 inline int MulDiv32(int a, int b, int c)
 {

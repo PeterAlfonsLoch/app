@@ -97,15 +97,7 @@ extern const char GeoIP_country_code3[253][4];
 extern const char * GeoIP_country_name[253];
 extern const char GeoIP_country_continent[253][3];
 
-#ifdef LINUX
-#define GEOIP_API
-#else
-#ifdef __CA__DLL
-#define GEOIP_API __declspec(dllexport)
-#else
-#define GEOIP_API __declspec(dllimport)
-#endif  /* DLL */
-#endif
+#define GEOIP_API CLASS_DECL_ca
 
 GEOIP_API void GeoIP_setup_custom_directory(char *dir);
 GEOIP_API GeoIP* GeoIP_open_type (int type, int flags);

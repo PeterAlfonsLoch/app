@@ -124,9 +124,9 @@ void SortEx(ARRAYCOMPARE * pacompare,
 {
    dword_array stackLowerBound;
    dword_array stackUpperBound;
-   int iLowerBound;
-   int iUpperBound;
-   int iLPos, iUPos, iMPos;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
    string str;
 
     if(pacompare->get_size() >= 2)
@@ -202,9 +202,9 @@ void SortEx(ARRAYCOMPARE * pacompare,
 {
    dword_array stackLowerBound;
    dword_array stackUpperBound;
-   int iLowerBound;
-   int iUpperBound;
-   int iLPos, iUPos, iMPos;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
    string str;
 
     if(pacompare->get_size() >= 2)

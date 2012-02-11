@@ -109,10 +109,11 @@ void dump_elements(dump_context & dumpcontext, const TYPE* pElements, count nCou
    ENSURE(nCount == 0 || pElements != NULL);
    ASSERT(nCount == 0 ||
       fx_is_valid_address(pElements, (size_t)nCount * sizeof(TYPE), FALSE));
+#ifdef WINDOWS
    &dumpcontext; // not used
    pElements;  // not used
    nCount; // not used
-
+#endif
    // default does nothing
 }
 #endif

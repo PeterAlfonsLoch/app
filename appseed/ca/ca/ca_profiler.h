@@ -4,7 +4,7 @@
 // you need to profile the top start for bergedge
 // from profiler in beggining bottom for veriwellfair
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 #include <sys/time.h>                // for gettimeofday()
 #endif
 

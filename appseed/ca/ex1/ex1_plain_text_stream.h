@@ -94,7 +94,7 @@ namespace ex1
       plain_text_input_stream & operator >> (bool & b);
       plain_text_input_stream & operator >> (int & i);
       plain_text_input_stream & operator >> (unsigned int & ui);
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(__LP64__)
       plain_text_input_stream & operator >> (long & l);
       plain_text_input_stream & operator >> (unsigned long & ul);
 #endif
@@ -141,7 +141,7 @@ namespace ex1
       plain_text_output_stream & operator << (bool b);
       plain_text_output_stream & operator << (int i);
       plain_text_output_stream & operator << (unsigned int ui);
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(__LP64__)
       plain_text_output_stream & operator << (long i);
       plain_text_output_stream & operator << (unsigned long i);
 #endif

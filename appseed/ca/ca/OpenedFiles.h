@@ -17,8 +17,8 @@ struct OF_INFO_t
 typedef void (CALLBACK* OF_CALLBACK)(OF_INFO_t OpenedFileInf0, UINT_PTR uUserContext );
 
 
-extern "C" __declspec(dllexport) void ShowOpenedFiles( LPCWSTR lpPath );
-extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, 
+extern "C" CLASS_DECL_ca void ShowOpenedFiles( LPCWSTR lpPath );
+extern "C" CLASS_DECL_ca void GetOpenedFiles( LPCWSTR lpPath, 
 													  OF_TYPE Filter,
 													  OF_CALLBACK CallBackProc,
 													  UINT_PTR pUserContext );

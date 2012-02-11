@@ -129,7 +129,7 @@ fixed_alloc_no_sync class_name::s_alloc(sizeof(class_name), block_size) \
 
 #define new DEBUG_NEW
 
-/*#else //!_DEBUG
+#else //!_DEBUG
 
 #define DECLARE_FIXED_ALLOC(class_name) // nothing in debug
 #define IMPLEMENT_FIXED_ALLOC(class_name, block_size) // nothing in debug

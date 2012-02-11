@@ -495,9 +495,9 @@ template<size_t _Bits> inline
 
    /*inline ::ex1::output_stream & operator << (::ex1::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
 
-	inline ::ex1::input_stream & operator>>(::ex1::input_stream  _Istr, bitset<_Bits>& _Right);*/
+	inline ::ex1::input_stream & operator>>(::ex1::input_stream  _Istr, bitset<_Bits>& _Right);
 
-/* #if _HAS_CPP0X
+#if _HAS_CPP0X
 template<class _Kty>
 	class hash;
 
@@ -513,16 +513,16 @@ public:
 		return (_Keyval.hash());
 		}
 	};
- #endif /* _HAS_CPP0X */
+ #endif // _HAS_CPP0X
 
  //#pragma warning(pop)
  //#pragma pack(pop)
 
-/*
- * Copyright (c) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
- * Consult your license regarding permissions and restrictions.
-V5.20:0009 */
+//
+// Copyright (c) 1992-2009 by P.J. Plauger.  ALL RIGHTS RESERVED.
+// Consult your license regarding permissions and restrictions.
+// V5.20:0009
 
-
+*/
 
 

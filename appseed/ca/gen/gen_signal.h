@@ -83,7 +83,7 @@ namespace gen
       public:
          signal_delegate_instance(T * psignalizable)
          {
-#ifdef _DEBUG
+#if defined(_DEBUG) && defined(WINDOWS)
             // The object that is connected to a signal should be signalizable
             // (derived from signalizable);
             signalizable * psignalizableTest = psignalizable;

@@ -31,7 +31,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
    // Create a mutable dictionary to hold our attributes.
    attributes = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
    
-   check(attributes != NULL);
+   __Check(attributes != NULL);
    
    if (attributes != NULL)
    {
@@ -46,14 +46,14 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
       // Create the traits dictionary.
       symTraits = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &iTraits);
       
-      check(symTraits != NULL);
+      (symTraits != NULL);
       
       if (symTraits != NULL)
       {
          // Create a dictionary to hold our traits values.
          traits = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
          
-         check(traits != NULL);
+         __Check(traits != NULL);
          
          if (traits != NULL)
          {
@@ -75,7 +75,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
       // Create the font descriptor with our attributes and input size.
       descriptor = CTFontDescriptorCreateWithAttributes(attributes);
       
-      check(descriptor != NULL);
+      __Check(descriptor != NULL);
       
       CFRelease(attributes);
       
@@ -90,7 +90,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
 CTFontRef CreateFont(CTFontDescriptorRef iFontDescriptor, CGFloat iSize)
 {
    
-   check(iFontDescriptor != NULL);
+   __Check(iFontDescriptor != NULL);
    
    // Create the font from the font descriptor and input size. Pass
    // NULL for the matrix parameter to use the default matrix (identity).

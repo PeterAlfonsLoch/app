@@ -44,7 +44,7 @@ namespace ex1
       byte_input_stream & operator >> (bool & b);
       byte_input_stream & operator >> (int & i);
       byte_input_stream & operator >> (unsigned int & ui);
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__LP64__)
       byte_input_stream & operator >> (long & l);
       byte_input_stream & operator >> (unsigned long & ul);
 #endif
@@ -91,7 +91,7 @@ namespace ex1
       byte_output_stream & operator << (bool b);
       byte_output_stream & operator << (int i);
       byte_output_stream & operator << (unsigned int ui);
-#ifdef _WINDOWS
+#if defined(_WINDOWS) || defined(__LP64__)
       byte_output_stream & operator << (long i);
       byte_output_stream & operator << (unsigned long i);
 #endif

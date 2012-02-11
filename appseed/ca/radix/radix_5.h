@@ -341,7 +341,7 @@ public:
 namespace windows
 {
    template < class APP >
-   inline ::ca::application * cast(APP * papp)
+   inline ::ca::application & cast(APP * papp)
    {
       return *(dynamic_cast < ::ca::application * > (papp));
    }

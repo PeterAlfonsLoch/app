@@ -250,7 +250,7 @@ public:
    union
    {
       const char *         m_psz;
-#ifdef _AMD64_
+#if defined(_AMD64_) || defined(__LP64__)
       uint64_t     m_ui;
 #else
       unsigned int         m_ui;

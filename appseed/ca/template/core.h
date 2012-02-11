@@ -13,14 +13,18 @@ namespace _template
    // Verify that a null-terminated string points to valid primitive::memory
    inline BOOL _template_is_valid_string(const wchar_t * psz, size_t nMaxLength = INT_MAX)
    {
+#ifdef WINDOWS
       (nMaxLength);
+#endif
       return (psz != NULL);
    }
 
    // Verify that a null-terminated string points to valid primitive::memory
    inline BOOL _template_is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
    {
+#ifdef WINDOWS
       (nMaxLength);
+#endif
       return (psz != NULL);
    }
 
@@ -28,8 +32,10 @@ namespace _template
    inline BOOL _template_is_valid_address(const void * p, size_t nBytes,
       BOOL bReadWrite = TRUE)
    {
+#ifdef WINDOWS
       (bReadWrite);
       (nBytes);
+#endif
       return (p != NULL);
    }
 
@@ -217,7 +223,7 @@ namespace _template
          p = AtlCharNext(p);
       }
       //strchr for '\0' should succeed - the while loop terminates
-      //*p == 0, but ch also == 0, so NULL terminator address is returned
+      // *p == 0, but ch also == 0, so NULL terminator address is returned
       return (*p == ch) ? p : NULL;
    }
    //Ansi and Unicode versions of printf, used with templated CharType trait classes.
