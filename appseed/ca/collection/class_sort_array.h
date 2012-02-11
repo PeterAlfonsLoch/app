@@ -64,7 +64,7 @@ void
 class_sort_array < BASE_CLASS, TYPE, ARG_TYPE, BASE_ARRAY >::
 SortInsert(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t)
 {
-	int iIndex = 0;
+	index iIndex = 0;
 	SortFind(lpfnIntSortProperty, t, iIndex);
 	insert_at(iIndex, t);
 }

@@ -464,7 +464,7 @@ public:
       }
       strsize nNewLength = nOldLength+nLength;
       PXSTR pszBuffer = GetBuffer( nNewLength );
-      if( nOffset <= nOldLength )
+      if( nOffset <= (UINT_PTR) nOldLength )
       {
          pszSrc = pszBuffer+nOffset;
          // No need to call CopyCharsOverlapped, since the destination is

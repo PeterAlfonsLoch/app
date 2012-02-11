@@ -646,12 +646,6 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    {
    }
 
-   // Construct from CSimplestring
-   string::operator simple_string&()
-   {
-      return *(simple_string*)this;
-   }
-
    string::string(const XCHAR* pszSrc ) :
       simple_string( string_trait::GetDefaultManager() )
    {
