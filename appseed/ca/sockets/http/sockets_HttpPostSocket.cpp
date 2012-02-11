@@ -120,17 +120,17 @@ namespace sockets
             ::xml::node * pnode = m_fields["xml"].ca2 < ::xml::node >();
             body = pnode->get_xml();
             body.trim();
-            if(outheader("Content-type").get_string().find_ci("application/xml") < 0)
+            if(inheader("Content-type").get_string().find_ci("application/xml") < 0)
             {
-               outheader("Content-type") = "application/xml; " + outheader("Content-type").get_string();
+               inheader("Content-type") = "application/xml; " + inheader("Content-type").get_string();
             }
          }
          else
          {
             body = m_fields.get_http_post();
-            if(outheader("Content-type").get_string().find_ci("application/x-www-form-urlencoded") < 0)
+            if(inheader("Content-type").get_string().find_ci("application/x-www-form-urlencoded") < 0)
             {
-               outheader("Content-type") = "application/x-www-form-urlencoded; " + outheader("Content-type").get_string();
+               inheader("Content-type") = "application/x-www-form-urlencoded; " + inheader("Content-type").get_string();
             }
          }
 
@@ -161,15 +161,15 @@ namespace sockets
          m_request.attr("http_method") = "POST";
          m_request.attr("http_version") = "HTTP/1.1";
          string strHost = GetUrlHost();
-         outheader("Host") = strHost; // oops - this is actually a request header that we're adding..
+         inheader("Host") = strHost; // oops - this is actually a request header that we're adding..
          string strUserAgent = MyUseragent();
          if(!(bool)m_request.attr("minimal_headers"))
          {
-            outheader("User-agent") = "ca2_netnode";
-            outheader("Accept") = "text/html, text/plain, application/xml, */*;q=0.01";
-            outheader("Connection") = "close";
+            inheader("User-agent") = "ca2_netnode";
+            inheader("Accept") = "text/html, text/plain, application/xml, */*;q=0.01";
+            inheader("Connection") = "close";
          }
-         outheader("Content-length") = body.get_length();
+         inheader("Content-length") = body.get_length();
          SendRequest();
 
          if(body.get_length() > 0)
@@ -231,12 +231,12 @@ namespace sockets
       // build header, send body
       m_request.attr("http_method") = "POST";
       m_request.attr("http_version") = "HTTP/1.1";
-      outheader("Host") = GetUrlHost(); // oops - this is actually a request header that we're adding..
-      outheader("User-agent") = MyUseragent();
-      outheader("Accept") = "text/html, text/plain, */*;q=0.01";
-      outheader("Connection") = "close";
-      outheader("Content-type") = "multipart/form-data; boundary=" + m_boundary;
-      outheader("Content-length") = length;
+      inheader("Host") = GetUrlHost(); // oops - this is actually a request header that we're adding..
+      inheader("User-agent") = MyUseragent();
+      inheader("Accept") = "text/html, text/plain, */*;q=0.01";
+      inheader("Connection") = "close";
+      inheader("Content-type") = "multipart/form-data; boundary=" + m_boundary;
+      inheader("Content-length") = length;
 
       SendRequest();
 
