@@ -284,8 +284,9 @@ float sin_dup(float x)
 
       on_paint_progress(hdc, lprect);
 
+      double dRate = get_progress_rate();
 
-      double dH = get_progress_rate(); // blue ==> red => green
+      double dH = dRate; // blue ==> red => green
       double dL = 0.49;
       double dS = 0.84;
       BYTE uchR;
@@ -444,9 +445,26 @@ float sin_dup(float x)
 
 #ifdef WINDOWS
 
-      Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
+/*      HFONT hfont = ::CreatePointFont_dup(490, "Lucida Sans Unicode", hdc);
 
-      Gdiplus::Font font(&ff, 49, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+      HFONT hfontOld = (HFONT) ::SelectObject(hdc, hfont);
+
+      const char * psz = "Thank You";
+
+      ::SetBkMode(hdc, TRANSPARENT);
+
+      ::SetTextColor(hdc, RGB(255, 255, 255));
+
+      ::TextOut(hdc, lprect->left + 84, lprect->top + 84, psz, strlen_dup(psz));
+
+      ::SelectObject(hdc, hfontOld);
+
+      ::DeleteObject(hfont);*/
+
+
+  /*    Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
+
+      Gdiplus::Font font(&ff, 49, Gdiplus::FontStyleBold, Gdiplus::UnitPoint);
 
       Gdiplus::StringFormat * psf = Gdiplus::StringFormat::GenericDefault()->Clone();
 
@@ -458,27 +476,26 @@ float sin_dup(float x)
 
       Gdiplus::RectF rectText(rectFull);
 
-      rectText.X = 84.0f;
+      Gdiplus::RectF rectCircle(84.0f, 84.0f, 84, 84);
+
+      rectText.X = 84.0f;*/
 
       {
 
-         Gdiplus::Graphics graphics2(hdc);
-
-         Gdiplus::SolidBrush br1(Gdiplus::Color(0, 0, 0, 0));
-
-         graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-
-         {
+/*         {
 
             Gdiplus::Graphics graphics((Gdiplus::Bitmap *) m_pbitmap);
 
             graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
+            Gdiplus::SolidBrush br1(Gdiplus::Color(0, 0, 0, 0));
+
             graphics.FillRectangle(&br1, rectFull);
 
             Gdiplus::SolidBrush br(Gdiplus::Color(255, 255, 255, 255));
 
-            graphics.DrawString(wstr, wstr.get_length(), &font, rectText, psf, &br);
+            //graphics.DrawString(wstr, wstr.get_length(), &font, rectText, psf, &br);
+            graphics.FillEllipse(&br, rectCircle);
 
             for(int i = 0; i < 3; i++)
             {
@@ -490,22 +507,46 @@ float sin_dup(float x)
 
             for(int i = 0; i < area; i++)
             {
-               BYTE bA = min((((m_pcolorref[i] & 0xff00) >> 8) & 0xff) * 3, 255);
+               BYTE bA = min((((m_pcolorref[i] & 0xff00) >> 8) & 0xff), 255);
 
                m_pcolorref[i] = ((bA << 24) & 0xff000000) | ((((uchR * bA) / 255) & 0xff) << 16) | ((((uchG * bA) / 255) & 0xff) << 8) | ((((uchB * bA) / 255) & 0xff));
             }
 
             graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-            graphics.DrawString(wstr, wstr.get_length(), &font, rectText, psf, &br);
+            //graphics.FillEllipse(&br, rectCircle);
 
-         }
+         }*/
+
+         BYTE bA = 127;
+
+         Gdiplus::SolidBrush br(Gdiplus::Color(bA, uchR, uchG, uchB));
+
+         Gdiplus::Graphics graphics2(hdc);
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-         graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, 0, 0);
+         const int iLineCount = 23;
 
-         delete psf;
+         int iProgressLine = iLineCount * dRate; 
+
+         int iHeight = cy / iLineCount;
+
+         int iLine;
+
+         for(iLine = 0; iLine < iProgressLine; iLine++)
+         {
+            graphics2.FillRectangle(&br, lprect->left, lprect->top + iLine * iHeight, cx, iHeight);
+         }
+
+         if(iLine < iLineCount)
+         {
+            graphics2.FillRectangle(&br, lprect->left, lprect->top + iLine * iHeight, cx * ((dRate - ((double)(iLine) / (double) iLineCount)) * iLineCount), iHeight);
+         }
+
+         //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
+
+      //   delete psf;
 
 
       }

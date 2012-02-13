@@ -76,11 +76,22 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    if(iMode == 2 || iMode == 1 || iMode == 0)
    {
       HPEN hpen = ::CreatePen(PS_SOLID, 1, RGB(84, 84, 77));
-      HBRUSH hbrush = (HBRUSH) ::GetStockObject(NULL_BRUSH);
+      HBRUSH hbrush;
+      if(iMode == 0)
+      {
+         hbrush = (HBRUSH) ::GetStockObject(NULL_BRUSH);
+      }
+      else
+      {
+         hbrush = ::CreateSolidBrush(RGB(84, 84, 84));
+      }
       ::SelectObject(hdc, hpen);
       ::SelectObject(hdc, hbrush);
       ::Rectangle(hdc, lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom);
-      ::DeleteObject(hbrush);
+      if(iMode == 2 || iMode == 1)
+      {
+         ::DeleteObject(hbrush);
+      }
       ::DeleteObject(hpen);
    }
    SIZE size;
@@ -169,7 +180,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    else if(iMode == 1) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      ::SetTextColor(hdc, RGB(84 + 49, 84 + 49, 77 + 49));
+      ::SetTextColor(hdc, RGB(0xCC, 0xCC, 0xCC));
 
       size_t iRefresh = 884;
       size_t iEat = 8;
@@ -252,7 +263,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      ::SetTextColor(hdc, RGB(84 + 49, 84 + 49, 77 + 49));
+      ::SetTextColor(hdc, RGB(0xCC, 0xCC, 0xCC));
 
       size_t iRefresh = 884;
       size_t iEat = 8;

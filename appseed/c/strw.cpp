@@ -9,6 +9,8 @@
 
 int wcslen_dup(const wchar_t * str)
 {
+   if(str == NULL)
+      return 0;
    const wchar_t * pszEnd = str;
    while(*pszEnd != 0)
       pszEnd++;
