@@ -145,7 +145,7 @@ namespace bergedge
    void bergedge::load_string_table()
    {
       cube1::application::load_string_table();
-      cube1::application::load_string_table("platform");
+      cube1::application::load_string_table("platform", "");
    }
 
    bool bergedge::file_manager_open_file(

@@ -86,20 +86,14 @@ namespace ca2
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
-      if(m_spwindowMessage.m_p != NULL)
-      {
-         m_spwindowMessage->SetTimer(123, 884, NULL);
-      }
+      System.appa_load_string_table();
    }
 
    void application::on_set_style(const char * lpcsz, bool bUser)
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
-      if(m_spwindowMessage.m_p != NULL)
-      {
-         m_spwindowMessage->SetTimer(123, 884, NULL);
-      }
+      System.appa_load_string_table();
    }
 
 
@@ -124,7 +118,7 @@ namespace ca2
 
    void application::load_string_table()
    {
-      load_string_table("");
+      load_string_table("", "");
    }
 
    /*::fontopus::user * application::create_user(const char * pszLogin)
@@ -513,7 +507,7 @@ namespace ca2
       }
       else if(bLoadStringTable)
       {
-         load_string_table(strTable);
+         load_string_table(strTable, "");
          return load_cached_string_by_id(str, id, pszFallbackValue, false);
       }
       if(pszFallbackValue == NULL)
@@ -523,16 +517,40 @@ namespace ca2
       return true;
    }
 
-   void application::load_string_table(const char * pszId)
+   void application::load_string_table(const char * pszApp, const char * pszId)
    {
+      string strApp(pszApp);
       string strMatter;
-      strMatter = pszId;
-      if(System.file().extension(strMatter) != "xml")
+      string strLocator;
+
+      if(strApp.is_empty())
       {
-         strMatter += "\\stringtable.xml";
+         strLocator = System.dir().appmatter_locator(this);
       }
+      else
+      {
+         strLocator = System.dir().appmatter_locator(strApp);
+      }
+
+      if(strMatter.is_empty())
+      {
+         strMatter = "stringtable.xml";
+      }
+      else if(System.file().extension(strMatter) != "xml")
+      {
+         strMatter += ".xml";
+      }
+
+      string strTableId = strApp;
+
+      if(pszId != NULL && *pszId != '\0')
+      {
+         strTableId += "\\";
+         strTableId += pszId;
+      }
+
       ::xml::node node(get_app());
-      string strFilePath = Application.dir().matter(strMatter);
+      string strFilePath = System.dir().matter_from_locator(App(this).str_context(), strLocator, strMatter);
       if(!System.file().exists(strFilePath, this))
       {
          if(m_stringtablemap[pszId] != NULL)
@@ -550,10 +568,10 @@ namespace ca2
          string strValue   = node.child_at(i)->m_strValue;
          pmapNew->set_at(strId, strValue);
       }
-      if(m_stringtablemap[pszId] != NULL)
-         delete m_stringtablemap[pszId];
-      m_stringtablemap[pszId] = pmapNew;
-      ASSERT(m_stringtablemap[pszId] == pmapNew);
+      if(m_stringtablemap[strTableId] != NULL)
+         delete m_stringtablemap[strTableId];
+      m_stringtablemap[strTableId] = pmapNew;
+      ASSERT(m_stringtablemap[strTableId] == pmapNew);
    }
 
 

@@ -221,15 +221,21 @@ namespace plugin
       {
       }
       
-      ::ca::graphics_sp g(get_app());
+      try
+      {
+         ::ca::graphics_sp g(get_app());
 
-      g->Attach(hdcWindow);
+         g->Attach(hdcWindow);
 
-      g->set_alpha_mode(::ca::alpha_mode_blend);
+         g->set_alpha_mode(::ca::alpha_mode_blend);
 
-      g->BitBlt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, m_dib->get_graphics(), 0, 0, SRCCOPY);
+         g->BitBlt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, m_dib->get_graphics(), 0, 0, SRCCOPY);
 
-      g->Detach();
+         g->Detach();
+      }
+      catch(...)
+      {
+      }
 
       /*POINT pointViewport;
       ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
@@ -246,17 +252,26 @@ namespace plugin
       ::DeleteObject(hbmp);
       ::DeleteDC(hdc);*/
 
-      if(m_bOpenUrl)
+      try
       {
-         m_bOpenUrl = false;
-         string strOpenUrl = m_strOpenUrl;
-         m_strOpenUrl.Empty();
-         open_url(strOpenUrl);
+
+         if(m_bOpenUrl)
+         {
+            m_bOpenUrl = false;
+            string strOpenUrl = m_strOpenUrl;
+            m_strOpenUrl.Empty();
+            open_url(strOpenUrl);
+         }
+         else if(is_installation_lock_file_locked())
+         {
+            reload_plugin();
+         }
+
       }
-      else if(is_installation_lock_file_locked())
+      catch(...)
       {
-         reload_plugin();
       }
+
 
    }
 

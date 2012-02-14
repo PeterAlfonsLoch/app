@@ -96,7 +96,7 @@ namespace ca2
       virtual bool load_string(string & str, id id);
       bool load_cached_string(string & str, id id, bool bLoadStringTable);
       bool load_cached_string_by_id(string & str, id id, const char * pszFallbackValue, bool bLoadStringTable);
-      void load_string_table(const char * pszId);
+      void load_string_table(const char * pszApp, const char * pszId);
 
       virtual bool get_auth(const char * pszForm, string & strUsername, string & strPassword);
 

@@ -845,52 +845,65 @@ namespace ca
          return matter(papp, str, str2);
       }
 
-      string system::matter_from_locator(const string & strLocator)
+      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator)
       {
          string str;
          
 
          string str2;
 
-         return matter_from_locator(strLocator, str, str2);
+         return matter_from_locator(pcontext, strLocator, str, str2);
 
       }
 
-      string system::matter_from_locator(const string & strLocator, const string & str)
+      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str)
       {
          
          string str2;
 
-         return matter_from_locator(strLocator, str, str2);
+         return matter_from_locator(pcontext, strLocator, str, str2);
 
       }
 
-      string system::matter_from_locator(const string & strLocator,  const string & str, const string & str2)
+      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
       {
+         
+         string strPath;
 
-         static const string strEn("en");
+         for(int i = 0; i < pcontext->m_straParamLocale.get_count(); i++)
+         {
+            string strPath;
+            string strLocale = pcontext->m_straParamLocale[i];
+            string strStyle = pcontext->m_straParamStyle[i];
+            string strLs = locale_style_matter(strLocator, strLocale, strStyle);
+            strPath = path(strLs, str, str2);
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+         }
+
+/*         static const string strEn("en");
          static const string strStd("_std");
          static const string strEmpty("");
 
          string strPath;
-         string strLs = locale_style_matter(strLocator, strEmpty, strEmpty);
+         string strLs = locale_style_matter(strLocator, App(papp).get_locale(), App(papp).get_style());
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strLs = locale_style_matter(strLocator, strEn, strEmpty);
+         strLs = locale_style_matter(strLocator, strEn, App(papp).get_style());
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, strStd, strEmpty), str, str2);
+         strPath = path(locale_style_matter(strLocator, strStd, App(papp).get_style()), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         /*strPath = path(locale_style_matter(strLocator, strEmpty, App(papp).get_locale()), str, str2);
-         if(System.file().exists(strPath, get_app()))
-            return strPath;*/
-         strPath = path(locale_style_matter(strLocator, strEmpty, strEn), str, str2);
+         strPath = path(locale_style_matter(strLocator, App(papp).get_locale(), App(papp).get_locale()), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, strEmpty, strStd), str, str2);
+         strPath = path(locale_style_matter(strLocator, App(papp).get_locale(), strEn), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+         strPath = path(locale_style_matter(strLocator, App(papp).get_locale(), strStd), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
          strLs = locale_style_matter(strLocator, strEn, strEn);
@@ -900,6 +913,8 @@ namespace ca
          strPath = path(locale_style_matter(strLocator, strStd, strStd), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
+            */
+         string strLs = locale_style_matter(strLocator, "en", "en");
          strPath = path(locale_style_matter(strLocator, "se", "se"), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;

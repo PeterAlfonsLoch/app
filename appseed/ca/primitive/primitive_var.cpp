@@ -1611,6 +1611,10 @@ const id & var::get_ref_id(const char * pszOnNull) const
       str.Format("%f", m_d);
       id = str;
    }
+   else if(m_etype == var::type_string)
+   {
+      id = m_str;
+   }
    return id;
 }
 

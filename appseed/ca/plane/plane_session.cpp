@@ -137,7 +137,7 @@ namespace plane
    void session::load_string_table()
    {
       fontopus::application::load_string_table();
-      fontopus::application::load_string_table("plane");
+      fontopus::application::load_string_table("plane", "");
    }
 
 /*   bool session::file_manager_open_file(

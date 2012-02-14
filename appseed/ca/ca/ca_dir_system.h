@@ -149,9 +149,9 @@ namespace ca
          virtual string matter(::ca::application * papp, const string & str, const string & str2);
          virtual string matter(::ca::application * papp, const string & str);
          virtual string matter(::ca::application * papp);
-         virtual string matter_from_locator(const string & strLocator);
-         virtual string matter_from_locator(const string & strLocator, const string & str);
-         virtual string matter_from_locator(const string & strLocator, const string & str, const string & str2);
+         virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator);
+         virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str);
+         virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str, const string & str2);
          virtual void appmatter_locators(string & strRoot, string & strDomain, ::ca::application * papp);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryName, const string & strAppName);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strAppName);
