@@ -56,6 +56,10 @@ namespace sockets
    {
       TRACE0("\n");
       TRACE0(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
+      if(m_request.attr("request_uri").get_string().find("/passthrough/") >= 0)
+      {
+         TRACE0( "Passthrought");
+      }
       if(m_request.headers().has_property("user-agent"))
       {
          TRACE0("user-agent: " + m_request.header("user-agent") + "\n");

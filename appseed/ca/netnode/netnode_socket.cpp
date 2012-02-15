@@ -50,7 +50,7 @@ namespace netnode
          outheader("Pragma") = "public";
          int iPathCount;
          outheader("Expires") = System.http().gmdate(System.datetime().strtotime(NULL, "+1 day", 0, iPathCount));
-         simple_file_server(System.dir().ca2("net-img\\img\\ds\\common"));
+         simple_file_server(System.dir().path(System.dir().ca2("net-img\\img\\ds\\common"), inattr("request_uri")));
       }
       else
       {
@@ -71,6 +71,10 @@ namespace netnode
          if(strScript == "songs")
          {
             TRACE("socket::send_response songs");
+         }
+         if(strScript.find("/passthrough/") >= 0)
+         {
+            TRACE("socket::send_response passthrough");
          }
          if(strScript == "ca2netnodebergedge")
          {
@@ -217,6 +221,10 @@ namespace netnode
       else if(str == "js")
       {
          outheader("Content-Type") = "text/javascript";
+      }
+      else if(str == "css")
+      {
+         outheader("Content-Type") = "text/css";
       }
       else if(str == "xpi")
       {

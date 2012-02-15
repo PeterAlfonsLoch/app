@@ -1018,3 +1018,19 @@ void stringa::make_upper()
       this->element_at(i).make_upper();
    }
 }
+
+
+comparable_array < id > stringa::get_comparable_ida() const
+{
+
+   comparable_array < id > ida;
+
+   for(int i = 0; i < get_count(); i++)
+   {
+      ida.add(element_at(i));
+   }
+
+   return ida;
+
+}
+

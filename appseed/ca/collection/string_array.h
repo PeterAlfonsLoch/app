@@ -97,6 +97,7 @@ public:
 
    string_array & operator =(const string_array & stra);
 
+
 protected:
    string * m_pData;   // the actual base_array of data
    count    m_nSize;     // # of elements (upperBound - 1)

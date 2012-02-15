@@ -88,6 +88,10 @@ public:
    void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
    string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
 
+   comparable_array < id > get_comparable_ida() const;
+
+
+
 //   void XFV001Expand();
 
    stringa & operator =(const var var);
@@ -99,6 +103,10 @@ public:
 
    stringa operator -(const string_array & stra) const;
    stringa operator +(const string_array & stra) const;
+
+
+
+
 
    void replace(const char * lpszSearch, const char * lpszReplace);
 
