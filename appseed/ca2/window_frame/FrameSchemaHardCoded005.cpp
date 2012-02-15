@@ -260,7 +260,7 @@ namespace window_frame
       appearance * pappearance = m_pworkset->GetAppearance();
 
 
-      bool bZoomed = pwndiDraw->IsZoomed() != 0;
+//      bool bZoomed = pwndiDraw->IsZoomed() != 0;
 
 //      gen::savings & savings = System.savings();
 

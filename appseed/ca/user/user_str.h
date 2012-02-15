@@ -2,35 +2,44 @@
 
 
 #include "ca/primitive/id_space.h"
+#include "gen/gen_international_locale_style.h"
 
 
 namespace user
 {
 
+
    class str;
 
-   class CLASS_DECL_ca str_context
+
+   class CLASS_DECL_ca str_context :
+      virtual public ::radix::object
    {
    public:
       
       
-      raw_array < id > m_straParamLocale;
-      raw_array < id > m_straParamStyle;
+      gen::international::locale_style *    m_plocalestyle;
 
       str * m_pstr;
 
-      str_context();
+      str_context(::ca::application * papp);
+      virtual ~str_context();
 
-      inline raw_array < id > & param_locale_ex()
+      inline comparable_array < id > & param_locale_ex()
       {
-         return m_straParamLocale;
+         return m_plocalestyle->m_idaLocale;
       }
 
-      inline raw_array < id > & param_style_ex()
+      inline comparable_array < id > & param_style_ex()
       {
-         return m_straParamStyle;
+         return m_plocalestyle->m_idaStyle;
       }
-      
+
+      inline gen::international::locale_style & localestyle()
+      {
+         return *m_plocalestyle;
+      }
+
       bool matches(const id & pszRoot, const id & pszExtra, const char * psz);
       bool begins(const id & pszRoot, const id & pszExtra, const char * psz);
       bool begins_eat(string & str, const id & pszRoot, const id & pszExtra);

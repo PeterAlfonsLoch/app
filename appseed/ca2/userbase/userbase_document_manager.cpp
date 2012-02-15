@@ -44,48 +44,6 @@ AFX_STATIC inline BOOL IsDirSep(WCHAR wch)
    return (wch == '\\' || wch == '/');
 }
 
-void AfxGetRoot(const char * lpszPath, string& wstrRoot)
-{
-   ASSERT(lpszPath != NULL);
-   // determine the root name of the volume
-   char * lpszRoot = wstrRoot.GetBuffer(_MAX_PATH);
-   memset(lpszRoot, 0, _MAX_PATH);
-   lstrcpyn(lpszRoot, lpszPath, _MAX_PATH);
-   char * lpsz;
-   for (lpsz = lpszRoot; *lpsz != '\0'; lpsz = _wcsinc(lpsz))
-   {
-      // find first double slash and stop
-      if (IsDirSep(lpsz[0]) && IsDirSep(lpsz[1]))
-         break;
-   }
-   if (*lpsz != '\0')
-   {
-      // it is a UNC name, find second slash past '\\'
-      ASSERT(IsDirSep(lpsz[0]));
-      ASSERT(IsDirSep(lpsz[1]));
-      lpsz += 2;
-      while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
-         lpsz = _wcsinc(lpsz);
-      if (*lpsz != '\0')
-         lpsz = _wcsinc(lpsz);
-      while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
-         lpsz = _wcsinc(lpsz);
-      // terminate it just after the UNC root (ie. '\\server\share\')
-      if (*lpsz != '\0')
-         lpsz[1] = '\0';
-   }
-   else
-   {
-      // not a UNC, look for just the first slash
-      lpsz = lpszRoot;
-      while (*lpsz != '\0' && (!IsDirSep(*lpsz)))
-         lpsz = _wcsinc(lpsz);
-      // terminate it just after root (ie. 'x:\')
-      if (*lpsz != '\0')
-         lpsz[1] = '\0';
-   }
-   wstrRoot.ReleaseBuffer();
-}
 
 
 

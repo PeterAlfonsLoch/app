@@ -2602,14 +2602,22 @@ namespace radix
    bool application::initialize1()
    {
 
-
+      
       m_strMatterLocator = System.dir().appmatter_locator(this);
-      m_puserstrcontext = new ::user::str_context;
+      
+      
+      m_puserstrcontext = new ::user::str_context(this);
       if(m_puserstrcontext == NULL)
          return false;
+      
+
       if(!ca_initialize1())
             return false;
+
+
       return true;
+
+
    }
 
 

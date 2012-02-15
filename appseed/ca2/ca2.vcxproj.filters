@@ -2001,9 +2001,6 @@
     <ClCompile Include="user\user_check_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_check_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_edit_plain_text.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>

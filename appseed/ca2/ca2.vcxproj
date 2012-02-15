@@ -1599,7 +1599,6 @@
     <ClCompile Include="user\user_application.cpp" />
     <ClCompile Include="user\user_button.cpp" />
     <ClCompile Include="user\user_check_box.cpp" />
-    <ClCompile Include="user\user_check_interface.cpp" />
     <ClCompile Include="user\user_edit_plain_text.cpp" />
     <ClCompile Include="user\user_form_list.cpp" />
     <ClCompile Include="user\user_front_end.cpp" />

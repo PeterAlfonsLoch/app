@@ -1301,12 +1301,11 @@ InitFailure:
 
    }
 
-
-   bool application::update_appmatter(const char * pszRoot, const char * pszRelative)
+   void application::fill_locale_style(gen::international::locale_style & localestyle)
    {
-      
-      gen::international::locale_style localestyle(this);
 
+      localestyle.m_idaLocale.remove_all();
+      localestyle.m_idaStyle.remove_all();
 
       localestyle.m_bAddAlternateStyle = true;
 
@@ -1362,10 +1361,19 @@ InitFailure:
 
       localestyle.finalize();
 
+   }
+
+
+   bool application::update_appmatter(const char * pszRoot, const char * pszRelative)
+   {
       
-      for(int i = 0; i < localestyle.m_straLocale.get_count(); i++)
+      gen::international::locale_style localestyle(this);
+
+      fill_locale_style(localestyle);
+      
+      for(int i = 0; i < localestyle.m_idaLocale.get_count(); i++)
       {
-         update_appmatter(pszRoot, pszRelative, localestyle.m_straLocale[i], localestyle.m_straStyle[i]);
+         update_appmatter(pszRoot, pszRelative, localestyle.m_idaLocale[i], localestyle.m_idaStyle[i]);
       }
 
 

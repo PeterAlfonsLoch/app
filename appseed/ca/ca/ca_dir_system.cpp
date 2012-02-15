@@ -865,23 +865,7 @@ namespace ca
 
       }
 
-      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
-      {
-         
-         string strPath;
-
-         for(int i = 0; i < pcontext->m_straParamLocale.get_count(); i++)
-         {
-            string strPath;
-            string strLocale = pcontext->m_straParamLocale[i];
-            string strStyle = pcontext->m_straParamStyle[i];
-            string strLs = locale_style_matter(strLocator, strLocale, strStyle);
-            strPath = path(strLs, str, str2);
-            if(System.file().exists(strPath, get_app()))
-               return strPath;
-         }
-
-/*         static const string strEn("en");
+      /* static const string strEn("en");
          static const string strStd("_std");
          static const string strEmpty("");
 
@@ -913,12 +897,42 @@ namespace ca
          strPath = path(locale_style_matter(strLocator, strStd, strStd), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-            */
-         string strLs = locale_style_matter(strLocator, "en", "en");
-         strPath = path(locale_style_matter(strLocator, "se", "se"), str, str2);
+      */
+
+      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
+      {
+         
+         string strPath;
+
+         string strLocale  = pcontext->m_plocalestyle->m_idLocale;
+         string strStyle   = pcontext->m_plocalestyle->m_idStyle;
+         string strLs      = locale_style_matter(strLocator, strLocale, strStyle);
+         strPath           = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
+
+         
+         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+         {
+            
+            strLocale         = pcontext->param_locale_ex()[i];
+            strStyle          = pcontext->param_style_ex()[i];
+            strLs             = locale_style_matter(strLocator, strLocale, strStyle);
+            strPath           = path(strLs, str, str2);
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+
+         }
+
+         
+         strLs             = locale_style_matter(strLocator, "en", "en");
+         strPath           = path(locale_style_matter(strLocator, "se", "se"), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+
+
          return path(strLs, str, str2);
+
 
       }
 

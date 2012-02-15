@@ -19,6 +19,14 @@ namespace gen
 
          }
 
+         locale_style::locale_style(const locale_style & ls) :
+            ca(ls.get_app())
+         {
+
+            operator = (ls);
+         
+         }
+
 
          locale_style::~locale_style()
          {
@@ -28,17 +36,17 @@ namespace gen
          bool locale_style::add_locale_variant(const char * pszLocale, const char * pszStyle)
          {
 
-            if(m_strLocale.is_empty())
+            if(m_idLocale.is_empty())
             {
-               m_strLocale = pszLocale;
-               if(m_strLocale.is_empty())
-                  m_strLocale = "_std";
+               m_idLocale = pszLocale;
+               if(m_idLocale.is_empty())
+                  m_idLocale = "_std";
             }
-            if(m_strStyle.is_empty())
+            if(m_idStyle.is_empty())
             {
-               m_strStyle = pszStyle;
-               if(m_strStyle.is_empty())
-                  m_strStyle = "_std";
+               m_idStyle = pszStyle;
+               if(m_idStyle.is_empty())
+                  m_idStyle = "_std";
             }
 
             string strLocale = pszLocale;
@@ -48,10 +56,10 @@ namespace gen
                return false;
 
             if(strLocale.is_empty())
-               strLocale = m_strLocale;
+               strLocale = m_idLocale;
             
             if(strStyle.is_empty())
-               strStyle = m_strStyle;
+               strStyle = m_idStyle;
 
             if(defer_add_locale(strLocale, strStyle))
             {
@@ -181,19 +189,24 @@ namespace gen
 
                strStyle = pszStyle;
 
+               if(strStyle == string(m_idStyle) && m_idStyle == m_idLocale) // if style is a locale and alternate style is locale too
+               {
+                  strStyle = pszLocale;
+               }
+
                if(strStyle.get_length() == 0)
                {
                   strStyle = "_std";
                }
 
-               for(int i = 0; i < m_straLocale.get_count() && i < m_straStyle.get_count(); i++)
+               for(int i = 0; i < m_idaLocale.get_count() && i < m_idaStyle.get_count(); i++)
                {
-                  if(m_straLocale[i] == pszLocale && m_straStyle[i] == strStyle)
+                  if(m_idaLocale[i] == pszLocale && m_idaStyle[i] == strStyle)
                      goto step2;
                }
 
-               m_straLocale.add(pszLocale);
-               m_straStyle.add(strStyle);
+               m_idaLocale.add(pszLocale);
+               m_idaStyle.add(strStyle);
 
                bAdded = true;
 
@@ -201,21 +214,21 @@ namespace gen
 
             step2:
 
-            strStyle = m_strStyle;
+            strStyle = m_idStyle;
 
             if(strStyle.get_length() == 0)
             {
                strStyle = "_std";
             }
 
-            for(int i = 0; i < m_straLocale.get_count() && i < m_straStyle.get_count(); i++)
+            for(int i = 0; i < m_idaLocale.get_count() && i < m_idaStyle.get_count(); i++)
             {
-               if(m_straLocale[i] == pszLocale && m_straStyle[i] == strStyle)
+               if(m_idaLocale[i] == pszLocale && m_idaStyle[i] == strStyle)
                   return bAdded;
             }
 
-            m_straLocale.add(pszLocale);
-            m_straStyle.add(strStyle);
+            m_idaLocale.add(pszLocale);
+            m_idaStyle.add(strStyle);
 
             return true;
 
@@ -225,81 +238,85 @@ namespace gen
          bool locale_style::process_final_locale_style(bool bRTLLayout)
          {
          restart:
-            for(index i = 0; i < m_straLocale.get_count(); i++)
+            for(index i = 0; i < m_idaLocale.get_count(); i++)
             {
-               string strLocale = m_straLocale[i];
-               if(i >= m_straStyle.get_count())
-                  m_straStyle.add(m_strStyle);
-               string strStyle = m_straStyle[i];
+               string strLocale = m_idaLocale[i];
+               if(i >= m_idaStyle.get_count())
+                  m_idaStyle.add(m_idStyle);
+               string strStyle = m_idaStyle[i];
                stringa stra;
                stra.explode("-", strLocale);
                if(stra.get_count() == 2)
                {
-                  if(m_straLocale.find_first(stra[0]) < 0)
+                  if(m_idaLocale.find_first(stra[0]) < 0)
                   {
-                     m_straLocale.insert_at(i + 1, stra[0]);
-                     m_straStyle.insert_at(i + 1, strStyle);
+                     m_idaLocale.insert_at(i + 1, stra[0]);
+                     m_idaStyle.insert_at(i + 1, strStyle);
                      goto restart;
                   }
-                  if(m_straLocale.find_first(stra[1]) < 0)
+                  if(m_idaLocale.find_first(stra[1]) < 0)
                   {
-                     m_straLocale.insert_at(i + 1, stra[1]);
-                     m_straStyle.insert_at(i + 1, strStyle);
+                     m_idaLocale.insert_at(i + 1, stra[1]);
+                     m_idaStyle.insert_at(i + 1, strStyle);
                      goto restart;
                   }
                }
 
             }
-            stringa m_straLocaleAdd1;
-            stringa m_straStyleAdd1;
+
+
+            comparable_array < id > idaLocaleAdd1;
+            comparable_array < id > idaStyleAdd1;
+
+
             if(bRTLLayout)
             {
-               for(index i = 0; i < m_straLocale.get_count(); i++)
+               for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
-                  string strLocale = m_straLocale[i];
-                  if(i >= m_straStyle.get_count())
-                     m_straStyle.add(m_strStyle);
-                  string strStyle = m_straStyle[i];
+                  string strLocale = m_idaLocale[i];
+                  if(i >= m_idaStyle.get_count())
+                     m_idaStyle.add(m_idStyle);
+                  string strStyle = m_idaStyle[i];
                   if(strStyle.CompareNoCase("_std") != 0)
                   {
-                     m_straLocaleAdd1.add(strLocale);
-                     m_straStyleAdd1.add(strStyle + "_rl");
+                     idaLocaleAdd1.add(strLocale);
+                     idaStyleAdd1.add(strStyle + "_rl");
                   }
                }
             }
             if(bRTLLayout)
             {
-               for(index i = 0; i < m_straLocale.get_count(); i++)
+               for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
-                  string strLocale = m_straLocale[i];
-                  if(i >= m_straStyle.get_count())
-                     m_straStyle.add("_std");
-                  string strStyle = m_straStyle[i];
+                  string strLocale = m_idaLocale[i];
+                  if(i >= m_idaStyle.get_count())
+                     m_idaStyle.add("_std");
+                  string strStyle = m_idaStyle[i];
                   if(strStyle.CompareNoCase("_std") != 0)
                   {
-                     m_straLocaleAdd1.add(strLocale);
-                     m_straStyleAdd1.add("_std_rl");
+                     idaLocaleAdd1.add(strLocale);
+                     idaStyleAdd1.add("_std_rl");
                   }
                }
             }
             if(!m_bFixStyle)
             {
-               for(index i = 0; i < m_straLocale.get_count(); i++)
+               for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
-                  string strLocale = m_straLocale[i];
-                  if(i >= m_straStyle.get_count())
-                     m_straStyle.add("_std");
-                  string strStyle = m_straStyle[i];
+                  string strLocale = m_idaLocale[i];
+                  if(i >= m_idaStyle.get_count())
+                     m_idaStyle.add("_std");
+                  string strStyle = m_idaStyle[i];
                   if(strStyle.CompareNoCase("_std") != 0)
                   {
-                     m_straLocaleAdd1.add(strLocale);
-                     m_straStyleAdd1.add("_std");
+                     idaLocaleAdd1.add(strLocale);
+                     idaStyleAdd1.add("_std");
                   }
                }
             }
             
-            m_straLocale.add(m_straLocaleAdd1);
-            m_straStyle.add(m_straStyleAdd1);
+            m_idaLocale.add(idaLocaleAdd1);
+            m_idaStyle.add(idaStyleAdd1);
 
 
             return true;
@@ -311,6 +328,23 @@ namespace gen
                (bool) Application.directrix().m_varTopicQuery["right_to_left_layout"]);
          }
 
+         locale_style & locale_style::operator = (const locale_style & ls)
+         {
+
+            if(&ls != this)
+            {
+
+               m_bFixStyle          = ls.m_bFixStyle;
+               m_idLocale          = ls.m_idLocale;
+               m_idStyle           = ls.m_idStyle;
+               m_idaLocale         = ls.m_idaLocale;
+               m_idaStyle          = ls.m_idaStyle;
+
+            }
+
+            return *this;
+            
+         }
 
 
    }  // namespace international

@@ -127,6 +127,8 @@ namespace planebase
       virtual ::bergedge::document * get_document();
 
 
+      virtual void fill_locale_style(gen::international::locale_style & localestyle);
+
       virtual bool update_appmatter(const char * pszRoot, const char * pszRelative);
       virtual bool update_appmatter(const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
 

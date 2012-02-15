@@ -1242,8 +1242,8 @@ namespace dynamic_source
 
       dprint("<br>INIT PATH");
 
-      raw_array < id > & propLocaleEx = str_context()->param_locale_ex();
-      raw_array < id > & propStyleEx = str_context()->param_style_ex();
+      comparable_array < id > & propLocaleEx = str_context()->param_locale_ex();
+      comparable_array < id > & propStyleEx = str_context()->param_style_ex();
       gen::property & propLangDirModifierEx = gprop("g_langdir_modifier_ex");
 
       if(gprop("enable_userdir"))
@@ -1981,8 +1981,8 @@ namespace dynamic_source
       string strSubdomainModifier;
       string strParamLocale = gprop("param_locale");
       string strParamStyle = gprop("param_style");
-      raw_array < id > & propLocaleEx = str_context()->param_locale_ex();
-      raw_array < id > & propStyleEx = str_context()->param_style_ex();
+      comparable_array < id > & propLocaleEx = str_context()->param_locale_ex();
+      comparable_array < id > & propStyleEx = str_context()->param_style_ex();
 
       strLoad += ".ds";
 
@@ -2360,7 +2360,7 @@ namespace dynamic_source
          throw 0;
 
       m_ppropertysetVar = new gen::property_set(get_app());
-      m_puistrcontext = new ::user::str_context();
+      m_puistrcontext = new ::user::str_context(get_app());
       m_puistrcontext->m_pstr = &System.str();
 
       return true;

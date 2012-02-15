@@ -86,14 +86,14 @@ namespace ca2
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
-      System.appa_load_string_table();
+      //System.appa_load_string_table();
    }
 
    void application::on_set_style(const char * lpcsz, bool bUser)
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
-      System.appa_load_string_table();
+      //System.appa_load_string_table();
    }
 
 

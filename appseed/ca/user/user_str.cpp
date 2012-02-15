@@ -1,11 +1,32 @@
 #include "StdAfx.h"
 
+
 namespace user
 {
 
-   str_context::str_context()
+
+   str_context::str_context(::ca::application * papp) :
+      ca(papp)
    {
+      
+      
+      m_plocalestyle = new gen::international::locale_style(papp);
+
+
       m_pstr = NULL;
+
+
+   }
+
+   str_context::~str_context()
+   {
+
+      if(m_plocalestyle != NULL)
+      {
+         delete m_plocalestyle;
+         m_plocalestyle = NULL;
+      }
+
    }
 
    bool str_context::matches(const id & idRoot, const id & idExtra, const char * psz)
@@ -454,4 +475,7 @@ namespace user
       return "";
    }
 
+
 } // namespace user
+
+

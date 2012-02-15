@@ -20,17 +20,18 @@ namespace gen
          // 3. finalize locale_style
          // m_straLocale and m_straStyle will have the locale/styles
 
-         bool     m_bFixStyle;
+         bool                       m_bFixStyle;
 
-         string   m_strLocale;
-         string   m_strStyle;
+         id                         m_idLocale;
+         id                         m_idStyle;
 
-         stringa  m_straLocale;
-         stringa  m_straStyle;
+         comparable_array < id >    m_idaLocale;
+         comparable_array < id >    m_idaStyle;
 
-         bool     m_bAddAlternateStyle;
+         bool                       m_bAddAlternateStyle;
 
          locale_style(::ca::application * papp);
+         locale_style(const locale_style & ls);
          virtual ~locale_style();
 
 
@@ -43,6 +44,9 @@ namespace gen
          virtual bool _add_locale_variant(const char * pszLocale, const char * pszStyle);
          virtual bool process_final_locale_style(bool bRTLLayout);
          virtual bool process_final_locale_style();
+
+
+         locale_style & operator = (const locale_style & ls);
 
 
       };
