@@ -1304,33 +1304,42 @@ InitFailure:
    void application::fill_locale_style(gen::international::locale_style & localestyle)
    {
 
+
       localestyle.m_idaLocale.remove_all();
       localestyle.m_idaStyle.remove_all();
+
 
       localestyle.m_bAddAlternateStyle = true;
 
 
-      string strLocale;
-      string strStyle;
-
-      
       if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
       {
+         localestyle.m_idLocale = Application.directrix().m_varTopicQuery["locale"];
          if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
          {
-            localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["locale"], Application.directrix().m_varTopicQuery["style"]);
+            localestyle.m_idStyle = Application.directrix().m_varTopicQuery["style"];
          }
-         localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["locale"], Application.directrix().m_varTopicQuery["locale"]);
+         else
+         {
+            localestyle.m_idStyle = localestyle.m_idLocale;
+         }
       }
-      
-      
-      if(Application.directrix().m_varTopicQuery["lang"].has_char() && Application.directrix().m_varTopicQuery["lang"].get_string().CompareNoCase("_std") != 0)
+      else if(Application.directrix().m_varTopicQuery["lang"].has_char() && Application.directrix().m_varTopicQuery["lang"].get_string().CompareNoCase("_std") != 0)
       {
+         localestyle.m_idLocale = Application.directrix().m_varTopicQuery["lang"];
          if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
          {
-            localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["lang"], Application.directrix().m_varTopicQuery["style"]);
+            localestyle.m_idStyle = Application.directrix().m_varTopicQuery["style"];
          }
-         localestyle.add_locale_variant(Application.directrix().m_varTopicQuery["lang"], Application.directrix().m_varTopicQuery["lang"]);
+         else
+         {
+            localestyle.m_idStyle = localestyle.m_idLocale;
+         }
+      }
+      else
+      {
+         localestyle.m_idLocale  = get_locale();
+         localestyle.m_idStyle   = get_style();
       }
       
       
@@ -1338,10 +1347,12 @@ InitFailure:
       {
          localestyle.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
       }
+
       if(get_style().has_char() && get_style().CompareNoCase("_std") != 0 && get_style().CompareNoCase(get_locale()) != 0)
       {
          localestyle.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
       }
+
       localestyle.add_locale_variant(get_locale(), get_locale());
 
 
