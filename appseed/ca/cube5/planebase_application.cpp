@@ -1312,35 +1312,46 @@ InitFailure:
       localestyle.m_bAddAlternateStyle = true;
 
 
+      string strLocale;
+      string strStyle;
+
+
       if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
       {
-         localestyle.m_idLocale = Application.directrix().m_varTopicQuery["locale"];
+         strLocale = Application.directrix().m_varTopicQuery["locale"];
          if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
          {
-            localestyle.m_idStyle = Application.directrix().m_varTopicQuery["style"];
+            strStyle = Application.directrix().m_varTopicQuery["style"];
          }
          else
          {
-            localestyle.m_idStyle = localestyle.m_idLocale;
+            strStyle = strLocale;
          }
       }
       else if(Application.directrix().m_varTopicQuery["lang"].has_char() && Application.directrix().m_varTopicQuery["lang"].get_string().CompareNoCase("_std") != 0)
       {
-         localestyle.m_idLocale = Application.directrix().m_varTopicQuery["lang"];
+         strLocale = Application.directrix().m_varTopicQuery["lang"];
          if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
          {
-            localestyle.m_idStyle = Application.directrix().m_varTopicQuery["style"];
+            strStyle = Application.directrix().m_varTopicQuery["style"];
          }
          else
          {
-            localestyle.m_idStyle = localestyle.m_idLocale;
+            strStyle = strLocale;
          }
       }
       else
       {
-         localestyle.m_idLocale  = get_locale();
-         localestyle.m_idStyle   = get_style();
+         strLocale  = get_locale();
+         strStyle   = get_style();
       }
+
+
+      localestyle.m_idLocale     = strLocale;
+      localestyle.m_idStyle      = strStyle;
+
+
+      localestyle.add_locale_variant(strLocale, strStyle);
       
       
       if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
@@ -1355,18 +1366,16 @@ InitFailure:
 
       localestyle.add_locale_variant(get_locale(), get_locale());
 
+      localestyle.add_locale_variant(get_locale(), "en");
+      localestyle.add_locale_variant(get_locale(), "_std");
 
       localestyle.add_locale_variant("en", get_style());
-      localestyle.add_locale_variant("en", get_locale());
-      localestyle.add_locale_variant(get_style(), "en");
-      localestyle.add_locale_variant(get_locale(), "en");
-      localestyle.add_locale_variant("en", "en");
-
-      
       localestyle.add_locale_variant("_std", get_style());
+
+      localestyle.add_locale_variant("en", get_locale());
       localestyle.add_locale_variant("_std", get_locale());
-      localestyle.add_locale_variant(get_style(), "_std");
-      localestyle.add_locale_variant(get_locale(), "_std");
+
+      localestyle.add_locale_variant("en", "en");
       localestyle.add_locale_variant("_std", "_std");
 
 
@@ -1381,6 +1390,8 @@ InitFailure:
       gen::international::locale_style localestyle(this);
 
       fill_locale_style(localestyle);
+
+      update_appmatter(pszRoot, pszRelative, localestyle.m_idLocale, localestyle.m_idStyle);
       
       for(int i = 0; i < localestyle.m_idaLocale.get_count(); i++)
       {
@@ -1397,6 +1408,7 @@ InitFailure:
 
       string strLocale;
       string strStyle;
+      TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot, pszRelative, pszLocale, pszStyle);
       string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_style_dir(pszLocale, pszStyle)) + ".zip";
       string strFile = System.dir().ca2(strRelative);
       string strUrl;
