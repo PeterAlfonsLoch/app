@@ -722,14 +722,7 @@ void string_array::add(const id & id)
 
 ////////////////////////////////////////////////////////////////////////////
 
- count string_array::get_size() const
-   { return m_nSize; }
- count string_array::get_count() const
-   { return m_nSize; }
- index string_array::get_lower_bound(index i) const
-   { return i >= 0 ? i : m_nSize + i; }
- index string_array::get_upper_bound(count count) const
-   { return m_nSize - 1 - count; }
+ 
 inline index string_array::get_upper_bound(index i, count count) const
 {
    if(count >= 0)
@@ -785,7 +778,3 @@ inline void string_array::clear()
    { return this->element_at(nIndex); }
 
 
-inline string & string_array::last_element()
-{
-   return this->element_at(get_upper_bound());
-}
