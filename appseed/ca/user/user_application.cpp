@@ -22,14 +22,6 @@ namespace user
 
       m_dwAlive = ::GetTickCount();
 
-      if(!visual::application::initialize1())     
-         return false;
-      return true;
-   }
-
-   bool application::initialize()
-   {
-
       if(is_system())
       {
          m_pwindowmap = new class ::user::window_map();
@@ -50,6 +42,17 @@ namespace user
       }
       
       m_pshellimageset = new filemanager::_shell::ImageSet(this);
+
+      if(!visual::application::initialize1())     
+         return false;
+
+      return true;
+
+   }
+
+   bool application::initialize()
+   {
+
 
 
 

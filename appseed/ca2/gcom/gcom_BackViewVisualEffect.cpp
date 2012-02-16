@@ -743,7 +743,7 @@ namespace gcom
 
          Interface & iface = main.GetInterface();
 
-         TransitionEffect & transitioneffect = main.GetTransitionEffect();
+//         TransitionEffect & transitioneffect = main.GetTransitionEffect();
 
          rect rectClient;
          iface.BackViewGetClientRect(rectClient);

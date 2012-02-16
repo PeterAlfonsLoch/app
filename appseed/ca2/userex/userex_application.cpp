@@ -34,6 +34,22 @@ namespace userex
       System.factory().creatable_small < ::userex::minute_list_view > ();
       System.factory().creatable_small < ::userex::second_list_view > ();
 
+
+
+      if(!html::application::initialize1())     
+         return false;
+
+      return true;
+   }
+
+
+   bool application::initialize2()
+   {
+      
+
+      if(!html::application::initialize2())     
+         return false;
+
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
@@ -56,11 +72,11 @@ namespace userex
          System.template type_info < user::place_holder > ());
 
 
-      if(!html::application::initialize1())     
-         return false;
-
       return true;
+
+
    }
+
 
 
    form_document * application::create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent)

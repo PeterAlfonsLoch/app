@@ -227,7 +227,7 @@ namespace html
       }
       bool elemental::get_color(COLORREF & cr)
       {
-         cr = RGB(255, 0, 0, 0);
+         cr = ARGB(255, 0, 0, 0);
          return true;
       }
       bool elemental::has_link()

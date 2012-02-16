@@ -26,6 +26,7 @@ namespace userex
       ::document * hold(::user::interaction * pui);
 
       virtual bool initialize1();
+      virtual bool initialize2();
 
    };
 

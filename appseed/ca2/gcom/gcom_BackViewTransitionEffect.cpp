@@ -159,7 +159,7 @@ namespace gcom
       {
          m_bActive = false;
 
-         Main & main = HelperGetMain();
+//         Main & main = HelperGetMain();
 
          int iTypeOld = m_iType;
          int iTypeNew = m_iType;
@@ -408,8 +408,8 @@ namespace gcom
          HelperGetMain().DeferCheckLayout();
 
          ::ca::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
-         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
-         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
+//         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
+        ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
          if(dcBack.get_os_data() == NULL)
          {
             End();
@@ -1149,8 +1149,8 @@ namespace gcom
 
                double dy = (rect.height() / 2) * dRate;
 
-               rect.top += dy;
-               rect.bottom -= dy;
+               rect.top += (long) dy;
+               rect.bottom -= (long) dy;
 
                dcBack.BitBlt(
                   rect.left,
@@ -1179,8 +1179,8 @@ namespace gcom
 
                double dx = (rect.width() / 2) * dRate;
 
-               rect.left += dx;
-               rect.right -= dx;
+               rect.left += (long) dx;
+               rect.right -= (long) dx;
 
                dcBack.BitBlt(
                   rect.left,
@@ -1744,7 +1744,7 @@ namespace gcom
 
                ////iStepRepeatCount = 1c1 / (iSize * 8);
                //iStepRepeatCount = 1;
-               int dwTotalTime = 1000;
+//               int dwTotalTime = 1000;
                int iStepCount = c1 / iSize;
                if(c1 % iSize == 0)
                   iStepCount++;

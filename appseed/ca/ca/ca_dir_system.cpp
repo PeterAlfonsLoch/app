@@ -812,6 +812,22 @@ namespace ca
             return strPath;
 
 
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
+            (::ca::application *) papp->m_psystem != (::ca::application *) papp)
+         {
+            strPath = matter(papp->m_psession, str, str2);
+            if(System.file().exists(strPath, papp))
+               return strPath;
+         }
+
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+            (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
+         {
+            strPath = matter(papp->m_psystem, str, str2);
+            if(System.file().exists(strPath, papp))
+               return strPath;
+         }
+
          return path(strLs, str, str2);
 
          /*static const string strEn("en");

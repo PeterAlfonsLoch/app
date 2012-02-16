@@ -1409,7 +1409,6 @@ InitFailure:
       string strLocale;
       string strStyle;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot, pszRelative, pszLocale, pszStyle);
-      return true;
       string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_style_dir(pszLocale, pszStyle)) + ".zip";
       string strFile = System.dir().ca2(strRelative);
       string strUrl;
