@@ -96,11 +96,10 @@ namespace simpledb
       return true;
    }
 
-
-   bool application::initialize()
+   bool application::initialize2()
    {
 
-      if(!database::application::initialize())
+      if(!database::application::initialize2())
          return false;
 
       if(command().m_varTopicQuery["locale"].get_string().has_char())
@@ -234,6 +233,25 @@ namespace simpledb
       return true;
 
    }
+
+
+
+
+   bool application::initialize()
+   {
+
+   
+      
+      if(!database::application::initialize())
+         return false;
+
+
+
+      return true;
+
+
+   }
+
 
    bool application::finalize()
    {

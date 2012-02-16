@@ -29,7 +29,7 @@ namespace simpledb
 
       application();
 
-
+      virtual bool initialize2();
       virtual bool initialize();
       virtual bool finalize();
 

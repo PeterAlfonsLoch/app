@@ -780,7 +780,41 @@ namespace ca
 
       string system::matter(::ca::application * papp, const string & str, const string & str2)
       {
-         static const string strEn("en");
+
+         ::user::str_context * pcontext = App(papp).str_context();
+
+         string strPath;
+
+         string strLocale  = pcontext->m_plocalestyle->m_idLocale;
+         string strStyle   = pcontext->m_plocalestyle->m_idStyle;
+         string strLs      = locale_style_matter(papp, strLocale, strStyle);
+         strPath           = path(strLs, str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+
+         
+         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+         {
+            
+            strLocale         = pcontext->param_locale_ex()[i];
+            strStyle          = pcontext->param_style_ex()[i];
+            strLs             = locale_style_matter(papp, strLocale, strStyle);
+            strPath           = path(strLs, str, str2);
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+
+         }
+
+         
+         strLs             = locale_style_matter(papp, "en", "en");
+         strPath           = path(locale_style_matter(papp, "se", "se"), str, str2);
+         if(System.file().exists(strPath, get_app()))
+            return strPath;
+
+
+         return path(strLs, str, str2);
+
+         /*static const string strEn("en");
          static const string strStd("_std");
          static const string strEmpty("");
          string strPath;
@@ -828,7 +862,7 @@ namespace ca
             if(System.file().exists(strPath, papp))
                return strPath;
          }
-         return path(locale_style_matter(papp, strEmpty, strEmpty), str, str2);
+         return path(locale_style_matter(papp, strEmpty, strEmpty), str, str2);*/
       }
 
 
