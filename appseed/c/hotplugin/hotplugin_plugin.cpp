@@ -257,6 +257,145 @@ float sin_dup(float x)
 
 }
 
+void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
+{
+   double dH = dRate; // blue ==> red => green
+   double dL = 0.49;
+   double dS = 0.84;
+   {
+      if(dH >= 1.0)
+         dH = 0.0;
+      else if(dH < 0.0)
+         dH = 0.0;
+
+      if(dL > 1.0)
+         dL = 1.0;
+      else if(dL < 0.0)
+         dL = 0.0;
+
+      if(dS > 1.0)
+         dS = 1.0;
+      else if(dS < 0.0)
+         dS = 0.0;
+
+      double dR;
+      double dG;
+      double dB;
+
+      dH *= 6.0;
+
+   #if CA2_PLATFORM_VERSION == CA2_BASIS
+      dH += 5.0;
+   #else
+      dH += 2.0;
+   #endif
+      if(dH >= 6.0)
+         dH -= 6.0;
+
+      double dA;
+      if(dH >= 5.0)
+         dA = dH - 5.0;
+      else if(dH >= 4.0)
+         dA = dH - 4.0;
+      else if(dH >= 3.0)
+         dA = dH - 3.0;
+      else if(dH >= 2.0)
+         dA = dH - 2.0;
+      else if(dH >= 1.0)
+         dA = dH - 1.0;
+      else
+         dA = dH;
+
+      if(dH >= 3.0)
+      {
+         if(dH >= 4.0)
+         {
+            if(dH >= 5.0)
+            {
+               // 5.0
+               // magenta to red
+               dR = 1.0;
+               dG = 0.0;
+               dB = 1.0 - dA;
+            }
+            else
+            {
+               // 4.0
+               // blue to magenta
+               dR = dA;
+               dG = 0.0;
+               dB = 1.0;
+            }
+         }
+         else
+         {
+            // 3.0
+            // cyan to blue
+            dR = 0.0;
+            dG = 1.0 - dA;
+            dB = 1.0;
+         }
+      }
+      else /// if(dH >= 0.0)
+      {
+         if(dH >= 2.0)
+         {
+            // 2
+            // green to cyan
+            dR = 0.0;
+            dG = 1.0;
+            dB = dA;
+         }
+         else // (dH >= 0.0 && dH < 2.0)
+         {
+            if(dH >= 1.0)
+            {
+               // 1
+               // yellow to green
+               dR = 1.0 - dA;
+               dG = 1.0;
+               dB = 0.0;
+            }
+            else // if(dh >= 0 && dH < 1.0);
+            {
+               // 0
+               // red to yellow
+               dR = 1.0;
+               dG = dA;
+               dB = 0.0;
+            }
+         }
+      }
+
+      double dCMin;
+      double dCAdd;
+      double dSL = dS * dL;
+      if(dL >= 0.5)
+      {
+         dCMin = dL - dS + dSL;
+         dCAdd = 2.0 * dS - 2.0 * dSL;
+      }
+      else
+      {
+         dCMin = dL - dSL;
+         dCAdd = 2.0 * dSL;
+      }
+
+
+      dR      = (dCMin + dR * dCAdd);
+      dG      = (dCMin + dG * dCAdd);
+      dB      = (dCMin + dB * dCAdd);
+
+      /*uchR      = (BYTE) ftol(dR * 255.0);
+      uchG      = (BYTE) ftol(dG * 255.0);
+      uchB      = (BYTE) ftol(dB * 255.0);*/
+      uchR      = (BYTE) (dR * 255.0);
+      uchG      = (BYTE) (dG * 255.0);
+      uchB      = (BYTE) (dB * 255.0);
+
+   }
+
+}
 
 
    void plugin::on_bare_paint(HDC hdc, LPCRECT lprect)
@@ -285,143 +424,6 @@ float sin_dup(float x)
       on_paint_progress(hdc, lprect);
 
       double dRate = get_progress_rate();
-
-      double dH = dRate; // blue ==> red => green
-      double dL = 0.49;
-      double dS = 0.84;
-      BYTE uchR;
-      BYTE uchG;
-      BYTE uchB;
-      {
-         if(dH >= 1.0)
-            dH = 0.0;
-         else if(dH < 0.0)
-            dH = 0.0;
-
-         if(dL > 1.0)
-            dL = 1.0;
-         else if(dL < 0.0)
-            dL = 0.0;
-
-         if(dS > 1.0)
-            dS = 1.0;
-         else if(dS < 0.0)
-            dS = 0.0;
-
-         double dR;
-         double dG;
-         double dB;
-
-         dH *= 6.0;
-
-      #if CA2_PLATFORM_VERSION == CA2_BASIS
-         dH += 5.0;
-      #else
-         dH += 2.0;
-      #endif
-         if(dH >= 6.0)
-            dH -= 6.0;
-
-         double dA;
-         if(dH >= 5.0)
-            dA = dH - 5.0;
-         else if(dH >= 4.0)
-            dA = dH - 4.0;
-         else if(dH >= 3.0)
-            dA = dH - 3.0;
-         else if(dH >= 2.0)
-            dA = dH - 2.0;
-         else if(dH >= 1.0)
-            dA = dH - 1.0;
-         else
-            dA = dH;
-
-         if(dH >= 3.0)
-         {
-            if(dH >= 4.0)
-            {
-               if(dH >= 5.0)
-               {
-                  // 5.0
-                  // magenta to red
-                  dR = 1.0;
-                  dG = 0.0;
-                  dB = 1.0 - dA;
-               }
-               else
-               {
-                  // 4.0
-                  // blue to magenta
-                  dR = dA;
-                  dG = 0.0;
-                  dB = 1.0;
-               }
-            }
-            else
-            {
-               // 3.0
-               // cyan to blue
-               dR = 0.0;
-               dG = 1.0 - dA;
-               dB = 1.0;
-            }
-         }
-         else /// if(dH >= 0.0)
-         {
-            if(dH >= 2.0)
-            {
-               // 2
-               // green to cyan
-               dR = 0.0;
-               dG = 1.0;
-               dB = dA;
-            }
-            else // (dH >= 0.0 && dH < 2.0)
-            {
-               if(dH >= 1.0)
-               {
-                  // 1
-                  // yellow to green
-                  dR = 1.0 - dA;
-                  dG = 1.0;
-                  dB = 0.0;
-               }
-               else // if(dh >= 0 && dH < 1.0);
-               {
-                  // 0
-                  // red to yellow
-                  dR = 1.0;
-                  dG = dA;
-                  dB = 0.0;
-               }
-            }
-         }
-
-         double dCMin;
-         double dCAdd;
-         double dSL = dS * dL;
-         if(dL >= 0.5)
-         {
-            dCMin = dL - dS + dSL;
-            dCAdd = 2.0 * dS - 2.0 * dSL;
-         }
-         else
-         {
-            dCMin = dL - dSL;
-            dCAdd = 2.0 * dSL;
-         }
-
-
-         dR      = (dCMin + dR * dCAdd);
-         dG      = (dCMin + dG * dCAdd);
-         dB      = (dCMin + dB * dCAdd);
-
-         uchR      = (BYTE) ftol(dR * 255.0);
-         uchG      = (BYTE) ftol(dG * 255.0);
-         uchB      = (BYTE) ftol(dB * 255.0);
-
-      }
-
 
       int iDelta = s_iDelta;
       int iRadius = 8;
@@ -518,37 +520,102 @@ float sin_dup(float x)
 
          }*/
 
-         BYTE bA = 127;
 
-         Gdiplus::SolidBrush br(Gdiplus::Color(bA, uchR, uchG, uchB));
+
+         /*
+         BYTE bA = 84;
+         BYTE uchR;
+         BYTE uchG;
+         BYTE uchB;
 
          Gdiplus::Graphics graphics2(hdc);
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
          const int iLineCount = 23;
+         const int iRowCount = 49;
 
          int iProgressLine = iLineCount * dRate; 
+         
+         if(iProgressLine >= iLineCount)
+            iProgressLine = iLineCount - 1;
+
+         int iProgressRow = iRowCount * ((dRate - ((double)(iProgressLine) / (double) iLineCount)) * iLineCount);
+
+         if(iProgressRow >= iRowCount)
+            iProgressRow = iRowCount - 1;
 
          int iHeight = cy / iLineCount;
+         int iWidth = cx / iRowCount;
 
          int iLine;
+         int iRow;
 
          for(iLine = 0; iLine < iProgressLine; iLine++)
          {
-            graphics2.FillRectangle(&br, lprect->left, lprect->top + iLine * iHeight, cx, iHeight);
+            for(iRow = 0; iRow < iRowCount; iRow++)
+            {
+               get_progress_color(uchR, uchG, uchB, (((double) iLine + ((double) iRow / (double)iRowCount)) / (double) iLineCount));
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow * iWidth, lprect->top + iLine * iHeight, iWidth, iHeight);
+               delete pbr;
+            }
          }
 
          if(iLine < iLineCount)
          {
-            graphics2.FillRectangle(&br, lprect->left, lprect->top + iLine * iHeight, cx * ((dRate - ((double)(iLine) / (double) iLineCount)) * iLineCount), iHeight);
+
+            for(iRow = 0; iRow < iProgressRow; iRow++)
+            {
+               get_progress_color(uchR, uchG, uchB, (((double) iLine + ((double) iRow / (double)iRowCount)) / (double) iLineCount));
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow * iWidth, lprect->top + iLine * iHeight, iWidth, iHeight);
+               delete pbr;
+            }
+
+            if(iRow < iRowCount)
+            {
+               get_progress_color(uchR, uchG, uchB, (((double) iLine + ((double) iRow / (double)iRowCount)) / (double) iLineCount));
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow * iWidth, lprect->top + iLine * iHeight, iWidth * (dRate - ((double) iLine + ((double) iRow / (double)iRowCount) / (double) iLineCount)) , iHeight);
+               delete pbr;
+            }
+
          }
 
          //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
 
       //   delete psf;
+      */
 
 
+       BYTE bA = 84;
+         BYTE uchR;
+         BYTE uchG;
+         BYTE uchB;
+
+         Gdiplus::Graphics graphics2(hdc);
+
+         graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+         const int iLineCount = cy;
+         int iProgressLine = iLineCount * dRate;
+
+         int iLine;
+
+         for(iLine = 0; iLine < iProgressLine; iLine++)
+         {
+            get_progress_color(uchR, uchG, uchB, (double) iLine / (double) iLineCount);
+            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+            graphics2.FillRectangle(pbr, lprect->left , lprect->top + iLine, cx, 1);
+            delete pbr;
+         }
+
+
+         //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
+
+      //   delete psf;
+      
       }
 #endif
 
