@@ -20,8 +20,8 @@ namespace ca2
       virtual void remove_spa_start(const char * pszId);
       virtual void add_app_install(const char * pszId);
       virtual bool is(const char * pszId);
-      virtual int  start(const char * pszId);
-      virtual int  synch(const char * pszId);
+      virtual int  start(const char * pszCommandLine);
+      virtual int  synch(const char * pszCommandLine);
 
 
    };

@@ -327,6 +327,9 @@
     <Filter Include="Source Files\javascript">
       <UniqueIdentifier>{f515e346-96ba-4a76-8b4f-96786a4c5571}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\install">
+      <UniqueIdentifier>{98c66eba-9fae-453f-90f5-fe1c90966d19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -3379,6 +3382,12 @@
     </ClInclude>
     <ClInclude Include="ca\Utils.h">
       <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install.h">
+      <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="install\install_install.h">
+      <Filter>Header Files\install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1163,6 +1163,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="geoip\geoip_internal.h" />
     <ClInclude Include="geoip\geoip_update.h" />
     <ClInclude Include="geoip\global.h" />
+    <ClInclude Include="install\install.h" />
+    <ClInclude Include="install\install_install.h" />
     <ClInclude Include="javascript\javascript.h" />
     <ClInclude Include="javascript\javascript_functions.h" />
     <ClInclude Include="javascript\javascript_tinyjs.h" />

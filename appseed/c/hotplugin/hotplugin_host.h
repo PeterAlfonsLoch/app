@@ -87,7 +87,7 @@ namespace hotplugin
       virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
 
 
-      virtual int starter_start(const char * pszId);
+      virtual int starter_start(const char * pszCommandLine);
 
 
       virtual void deferred_prodevian_redraw();

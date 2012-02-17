@@ -151,13 +151,48 @@ const char * ca2_get_build()
    return g_pszCa2Build;
 }
 
+vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam)
+{
 
+   vsstring strParam(pszParam);
+
+   strParam = strParam + "=";
+
+   vsstring strValue;
+
+   const char * pszValue = strstr_dup(pszCommandLine, strParam);
+
+   if(pszValue == NULL)
+      return "";
+
+   pszValue += 4;
+
+   const char * pszValueEnd = strstr_dup(pszValue, " ");
+
+   if(pszValueEnd == NULL)
+   {
+      strValue = vsstring(pszValue);
+   }
+   else
+   {
+      strValue = vsstring(pszValue, pszValueEnd - pszValue);
+   }
+
+   return strValue;
+
+}
 
 UINT spa_starter_start::start()
 {
+
    static bool s_bStarting = false;
 
    if(s_bStarting)
+      return -1;
+
+   vsstring strId = get_command_line_param(m_strCommandLine, "app");
+
+   if(strId.is_empty())
       return -1;
 
    keep_true keepStarting(s_bStarting);
@@ -166,14 +201,14 @@ UINT spa_starter_start::start()
    while(true)
    {
       update_ca2_installed(true);
-      if(is_ca2_installed() && is_installed(m_strId))
+      if(is_ca2_installed() && is_installed(strId))
       {
          break;
          //update_ca2_updated();
          //if(is_ca2_updated())
            // break;
       }
-      ca2_cube_install(m_strId);
+      ca2_cube_install(m_strCommandLine);
       prepare_small_bell(true);
       Sleep((1984 + 1977) * 2);
    }
@@ -181,7 +216,7 @@ UINT spa_starter_start::start()
    //set_installing_ca2(false);
 
    //if(is_ca2_installed() && is_installed(m_strId) && is_ca2_updated())
-   if(is_ca2_installed() && is_installed(m_strId))
+   if(is_ca2_installed() && is_installed(strId))
    {
       defer_play_small_bell();
       m_pplugin->set_ca2_installation_ready();

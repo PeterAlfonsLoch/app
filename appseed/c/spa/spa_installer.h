@@ -49,7 +49,8 @@ namespace spa
 
       vsstring       m_strBuild;
       vsstring       m_strBuildResource;
-      vsstring       m_strStart;
+      vsstring       m_strApplicationId;
+      vsstring       m_strCommandLine;
 
       machine_event  m_machineevent;
 
@@ -164,7 +165,7 @@ namespace spa
 
       int run_file(const char * pszFile, int nCmdShow);
 
-      int starter_start(const char * pszId);
+      int starter_start(const char * pszCommandLine);
 
       int application_name();
 
@@ -227,7 +228,7 @@ namespace spa
    };
 
 
-   CLASS_DECL_c int ca2_app_install_run(const char * psz, const char * pszParam1, const char * pszParam2, DWORD & dwStartError, bool bSynch);
+   CLASS_DECL_c int ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch);
 
 
 } // namespace spa

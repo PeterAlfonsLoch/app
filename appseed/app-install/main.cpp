@@ -168,7 +168,7 @@ void installer::install_defer_file_transfer()
       update_updated();
       if(!is_updated() && !are_there_user_files_in_use())
       {
-         synch_spaadmin("starter_start=bergedge in background in spa");
+         synch_spaadmin("starter_start:app=session session_start=session install in background in spa");
       }
    }
 }
@@ -422,12 +422,23 @@ void simple_app::main()
 {
    if(__argc >= 2)
    {
-     if(!strncmp_dup(__argv[1], "-install=", strlen_dup("-install=")))
+     if(!strncmp_dup(__argv[1], "-install:", strlen_dup("-install:")))
      {
         //Sleep(15 * 1000);
-         vsstring id = &__argv[1][strlen_dup("-install=")];
+        vsstring strCommandLine;
+        for(int i = 1; i < __argc; i++)
+        {
+           if(i == 1)
+           {
+             strCommandLine = &__argv[1][strlen_dup("-install:")];
+           }
+           else
+           {
+              strCommandLine = strCommandLine + __argv[i];
+           }
+        }
          DWORD dwStartError;
-         spa::ca2_app_install_run(id, "", "install", dwStartError, true);
+         spa::ca2_app_install_run(strCommandLine, dwStartError, true);
          finalize();
          return;
      }

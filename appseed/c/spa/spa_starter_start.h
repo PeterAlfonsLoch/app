@@ -16,13 +16,16 @@ CLASS_DECL_c void set_installing_ca2(bool bSet = true);
 CLASS_DECL_c bool is_installing_ca2();
 
 
+CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam);
+
+
 class CLASS_DECL_c spa_starter_start
 {
 public:
       
       
    ::hotplugin::plugin  *              m_pplugin;
-   vsstring                            m_strId;
+   vsstring                            m_strCommandLine;
 
 
    UINT start();

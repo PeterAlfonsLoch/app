@@ -116,10 +116,22 @@ namespace planebase
          (!Application.command().m_varTopicQuery.has_property("install")
          && !Application.command().m_varTopicQuery.has_property("uninstall")))
       {
+         
          TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strId);
-         System.install().start(strId);
+         
+         string strCommandLine;
+
+         strCommandLine  =  "app=" + strId;
+         strCommandLine += " locale=" + string(Application.str_context()->m_plocalestyle->m_idLocale);
+         strCommandLine += " style=" + string(Application.str_context()->m_plocalestyle->m_idStyle);
+         strCommandLine += " install";
+
+         System.install().start(strCommandLine);
+         
          throw installing_exception();
+
          return NULL;
+
       }
 
 

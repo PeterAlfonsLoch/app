@@ -300,7 +300,7 @@ install_begin:;
          XNode nodeInstallFilter;
          nodeInstallFilter.Load(strInstallFilterList);
          strUrl = m_strSpaIgnitionBaseUrl + "query?node=install_application&id=";
-         strUrl += m_strStart;
+         strUrl += m_strApplicationId;
          strUrl += "&key=install_filter";
          vsstring strInstallFilter = ms_get_dup(strUrl);
          for(int ui = 0; ui < nodeInstallFilter.childs.get_count(); ui++)
@@ -406,7 +406,7 @@ install_begin:;
 
          set_progress(0.6);
 
-         if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strStart + ".spa"), mapLen, mapGzLen, mapMd5))
+         if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strApplicationId + ".spa"), mapLen, mapGzLen, mapMd5))
          {
                trace("Failed to download file list!");
                trace("Going to retry host...");
@@ -428,7 +428,7 @@ install_begin:;
             for(int ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
             {
                vsstring strId = lpnodeInstalled->childs[ui]->GetAttrValue("id");
-               if(strcmp_dup(strId, m_strStart) != 0)
+               if(strcmp_dup(strId, m_strApplicationId) != 0)
                {
                   GetFileList(straFileList, ("app/stage/metastage/" + strId + ".spa"), mapLen, mapGzLen, mapMd5);
                }
@@ -453,7 +453,7 @@ install_begin:;
               }
            }
 
-           if(bGet && m_strStart == strStart)
+           if(bGet && m_strApplicationId == strStart)
            {
                bGet = false;
            }
@@ -687,7 +687,7 @@ install_begin:;
          if(m_NeedRestartBecauseOfReservedFile
          || m_NeedRestartFatalError)
          {
-	         add_spa_start(m_strStart);
+	         add_spa_start(m_strCommandLine);
 
             if(::MessageBox(NULL, "The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.", "spa - Restart Needed!!", MB_ICONEXCLAMATION | MB_YESNO)
                == IDYES)
@@ -1725,7 +1725,8 @@ install_begin:;
                   if(vsstring(lpnode->childs[ui]->GetAttrValue("start")).length() > 0)
                   {
                      m_iStart = 4;
-                     m_strStart = vsstring(lpnode->childs[ui]->GetAttrValue("start"));
+                     m_strCommandLine = vsstring(lpnode->childs[ui]->GetAttrValue("start"));
+                     m_strApplicationId = get_command_line_param(m_strCommandLine, "app");
                   }
                }
                if(lpnode->childs[ui]->GetAttr("build") != NULL)
@@ -1759,7 +1760,8 @@ install_begin:;
                         str = str.substr(str.length() - 4);
                         if(str.length() > 19)
                         {
-                           m_strStart = str.substr(0, str.length() - 19);
+                           m_strApplicationId = str.substr(0, str.length() - 19);
+                           m_strCommandLine = "app=session session_start=" + m_strApplicationId + " install";
                            m_strBuildResource = str.substr(str.length() - 19);
                         }
                      }
@@ -1912,7 +1914,7 @@ install_begin:;
       char szFormat[256];
       vsstring strUrl;
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
-      strUrl += m_strStart;
+      strUrl += m_strApplicationId;
       strUrl += "&key=post_install_count";
       vsstring strCount = ms_get_dup(strUrl);
       int iCount = atoi_dup(strCount);
@@ -1920,7 +1922,7 @@ install_begin:;
       for(int i = 0; i < iCount; i++)
       {
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
-         strUrl += m_strStart;
+         strUrl += m_strApplicationId;
          strUrl += "&key=post_install";
          sprintf_dup(szFormat, "[%d]", i);
          strUrl += szFormat;
@@ -1934,14 +1936,14 @@ install_begin:;
       set_progress(0.5);
 //      DWORD dwStartError;
       trace("starting app-install.exe...");
-      int i = run_ca2_application_installer(m_strStart);
-      if(m_strStart != "_set_windesk" && is_installed("_set_windesk"))
+      int i = run_ca2_application_installer(m_strCommandLine);
+      /*if(m_strStart != "_set_windesk" && is_installed("_set_windesk"))
       {
          //DWORD dwStartError2;
          trace("starting windeskPackage...");
          int i2 = run_ca2_application_installer("_set_windesk");
          trace("started windeskPackage");
-      }
+      }*/
       trace(".");
       set_progress(0.9);
       vsstring strPlatform = spa_get_platform();
@@ -2053,7 +2055,8 @@ install_begin:;
          }
          else
          {
-            m_strStart = "bergedge";
+            m_strApplicationId = "session";
+            m_strCommandLine = "app=session session_start=session install";
          }
       }
 
@@ -2100,10 +2103,15 @@ install_begin:;
    }
 
 
-   int installer::starter_start(const char * pszId)
+   int installer::starter_start(const char * pszCommandLine)
    {
 
-      m_strStart  = pszId;
+      m_strCommandLine  = pszCommandLine;
+
+      m_strApplicationId = get_command_line_param(pszCommandLine, "app");
+
+      if(m_strApplicationId.is_empty())
+         return -1;
 
       m_bOfflineInstall = false;
 
@@ -2123,9 +2131,9 @@ install_begin:;
    int installer::application_name()
    {
       vsstring strUrl;
-      trace(("get application name from server http://spaignition.api.laborserver.net/ using id \"" + m_strStart + "\" "));
+      trace(("get application name from server http://spaignition.api.laborserver.net/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
-      strUrl += m_strStart;
+      strUrl += m_strApplicationId;
       strUrl += "&key=name";
 
       vsstring strName;
@@ -2271,7 +2279,7 @@ install_begin:;
    int installer::run_uninstall_run(const char * lpCmdLine, int nCmdShow)
    {
       DWORD dwStartError = 0;
-      return ca2_app_install_run(lpCmdLine, "", "uninstall", dwStartError, true);
+      return ca2_app_install_run(lpCmdLine, dwStartError, true);
    }
 
    int installer::run_install(const char * lpCmdLine, int nCmdShow)
@@ -2338,8 +2346,8 @@ install_begin:;
       m_strInstallGz = dir::module_folder("ca2\\bz\\stage\\");
       m_strInstall = dir::module_folder("ca2\\stage\\");
 
-      m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strStart + ".spa.bz"));
-      m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strStart + ".spa"));
+      m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
+      m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
 
       bool bOfflineInstall1 = dir::exists(dir::module_folder("ca2\\bz"));
       //bool bOfflineInstall2 = file_exists_dup(g_strIndexGz);
@@ -2348,7 +2356,7 @@ install_begin:;
 
       // Default stage.bz folder not present, would default to internet install
       // since the spa.xml is not present and contains turning information.
-      if(!m_bOfflineInstall && (m_strStart.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
+      if(!m_bOfflineInstall && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
          vsstring str = file_get_contents_dup(dir::module_folder("spa.xml"));
          XNode node;
@@ -2359,7 +2367,7 @@ install_begin:;
 #ifdef _WINDOWS
       // Default stage.bz folder not present, would default to internet install
       // since the spa.xml is not present and contains turning information.
-      if(!m_bOfflineInstall && !m_bInstallSet && (m_strStart.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
+      if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
          vsstring str = read_resource_as_string_dup(NULL, 1984, "CA2SP");
          XNode node;
@@ -2371,15 +2379,15 @@ install_begin:;
 #endif
 
 
-      if(m_strStart == "***parse_file_name")
+      if(m_strApplicationId == "***parse_file_name")
       {
 
       }
 
 
 
-      m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strStart + ".spa.bz"));
-      m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strStart + ".spa"));
+      m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
+      m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
 
       m_bInternetInstall = !m_bOfflineInstall;
 
@@ -2461,12 +2469,13 @@ install_begin:;
          i = str.find(" ", i);
          if(i != vsstring::npos)
          {
-            m_strStart = str.substr(iStart, i - iStart);
+            m_strApplicationId = str.substr(iStart, i - iStart);
          }
          else
          {
-            m_strStart = str.substr(iStart);
+            m_strApplicationId = str.substr(iStart);
          }
+         m_strCommandLine = "app=session session_start="  + m_strApplicationId + " install";
          m_iStart = 4;
          return run_install(pszCommandLine, m_nCmdShow);
 
@@ -2487,23 +2496,24 @@ install_begin:;
          m_iStart = 4;
          return starter_start(strIdStart);
       }
-      vsstring strFind("starter_start=");
+      vsstring strFind("starter_start:");
       i = str.find(strFind);
       if(i != vsstring::npos)
       {
          int iStart = i + strFind.length(); // 8 = strlen_dup("install=")
-         i = str.find(" ", iStart);
-         vsstring strIdStart;
-         if(i != vsstring::npos)
-         {
-            strIdStart = str.substr(iStart, i - iStart);
-         }
-         else
-         {
-            strIdStart = str.substr(iStart);
-         }
+//         i = str.find(" ", iStart);
+//         vsstring strCommandLine;
+  //       if(i != vsstring::npos)
+    //     {
+           // strCommandLine = str.substr(iStart, i - iStart);
+      //   }
+        // else
+         //{
+         vsstring strCommandLine;
+            strCommandLine = str.substr(iStart);
+  //       }
          m_iStart = 4;
-         return starter_start(strIdStart);
+         return starter_start(strCommandLine);
       }
 
 
@@ -2849,11 +2859,11 @@ install_begin:;
    }
 
 
-   int installer::run_ca2_application_installer(const char * id)
+   int installer::run_ca2_application_installer(const char * pszCommandLine)
    {
       vsstring param;
-      param = "-install=";
-      param += id;
+      param = "-install:";
+      param += pszCommandLine;
 #if defined(WINDOWS)
       wchar_t * pwsz = new wchar_t[2048];
       ::GetModuleFileNameW(NULL, pwsz, 2048);
@@ -2864,10 +2874,10 @@ install_begin:;
       delete pwsz;
       delete pwszFullPath;
 #elif defined(MACOS)
-       char path[MAXPATHLEN];
-       uint32_t path_len = MAXPATHLEN;
-       _NSGetExecutablePath(path, &path_len);
-       char * psz = path;
+      char path[MAXPATHLEN];
+      uint32_t path_len = MAXPATHLEN;
+      _NSGetExecutablePath(path, &path_len);
+      char * psz = path;
 #else
       char * psz = br_find_exe("app-install");
 #endif
@@ -2882,26 +2892,8 @@ install_begin:;
    }
 
 
-   int ca2_app_install_run(const char * psz, const char * pszParam1, const char * pszParam2, DWORD & dwStartError, bool bSynch)
+   int ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch)
    {
-      vsstring strStage;
-      vsstring strApp;
-      vsstring strUrl;
-
-      vsstring strParam1;
-      vsstring strParam2;
-
-      if(pszParam1 != NULL)
-      {
-         strParam1 = pszParam1;
-         strParam1.trim();
-      }
-
-      if(pszParam2 != NULL)
-      {
-         strParam2 = pszParam2;
-         strParam2.trim();
-      }
 
       vsstring strPlatform = spa_get_platform();
 
@@ -2915,23 +2907,18 @@ install_begin:;
 
       CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
 
-      strStage = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app.exe"));
+      vsstring strFullCommandLine;
 
-      if(strParam1.length() > 0)
-      {
-         strStage += " " + strParam1;
-      }
-      strStage += " : app=session session_start=";
-      strStage += psz;
-      if(strParam2.length() > 0)
-      {
-         strStage += " " + strParam2;
-      }
+      strFullCommandLine = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app.exe"));
+
+      strFullCommandLine = strFullCommandLine + " ";
+      
+      strFullCommandLine = strFullCommandLine + pszCommandLine;
 
 #ifdef WINDOWS
-      pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strStage, SW_HIDE);
+      pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strFullCommandLine, SW_HIDE);
 #else
-      pfn_ca2_main(strStage, SW_HIDE);
+      pfn_ca2_main(strFullCommandLine, SW_HIDE);
 #endif
 
       return 0;

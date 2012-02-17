@@ -270,12 +270,12 @@ namespace hotplugin
       return m_bCa2InstallationReady;
    }
 
-   int host::starter_start(const char * pszId)
+   int host::starter_start(const char * pszCommandLine)
    {
       set_installing_ca2();
-      spa_starter_start * pstart = new spa_starter_start;
-      pstart->m_pplugin  = this;
-      pstart->m_strId      = pszId;
+      spa_starter_start * pstart    = new spa_starter_start;
+      pstart->m_pplugin             = this;
+      pstart->m_strCommandLine      = pszCommandLine;
 #ifdef WINDOWS
       ::CreateThread(NULL, 0, &::_ca2_starter_start, pstart, 0, &m_nCa2StarterStartThreadID);
 #else
