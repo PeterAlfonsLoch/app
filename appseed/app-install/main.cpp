@@ -168,7 +168,7 @@ void installer::install_defer_file_transfer()
       update_updated();
       if(!is_updated() && !are_there_user_files_in_use())
       {
-         synch_spaadmin("starter_start:app=session session_start=session install in background in spa");
+         synch_spaadmin("starter_start: : app=session session_start=session install in background in spa");
       }
    }
 }

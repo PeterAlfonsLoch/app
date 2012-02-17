@@ -108,15 +108,15 @@ namespace ca2
 
    
 
-   int install::start(const char * pszId)
+   int install::start(const char * pszCommandLine)
    {
-      return ::start_ca2_cube_install(pszId);
+      return ::start_ca2_cube_install(pszCommandLine);
    }
 
 
-   int install::synch(const char * pszId)
+   int install::synch(const char * pszCommandLine)
    {
-      return ::ca2_cube_install(pszId);
+      return ::ca2_cube_install(pszCommandLine);
    }
 
 

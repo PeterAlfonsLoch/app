@@ -1761,7 +1761,7 @@ install_begin:;
                         if(str.length() > 19)
                         {
                            m_strApplicationId = str.substr(0, str.length() - 19);
-                           m_strCommandLine = "app=session session_start=" + m_strApplicationId + " install";
+                           m_strCommandLine = ": app=session session_start=" + m_strApplicationId + " install";
                            m_strBuildResource = str.substr(str.length() - 19);
                         }
                      }
@@ -2056,7 +2056,7 @@ install_begin:;
          else
          {
             m_strApplicationId = "session";
-            m_strCommandLine = "app=session session_start=session install";
+            m_strCommandLine = ": app=session session_start=session install";
          }
       }
 
@@ -2475,7 +2475,7 @@ install_begin:;
          {
             m_strApplicationId = str.substr(iStart);
          }
-         m_strCommandLine = "app=session session_start="  + m_strApplicationId + " install";
+         m_strCommandLine = ": app=session session_start="  + m_strApplicationId + " install";
          m_iStart = 4;
          return run_install(pszCommandLine, m_nCmdShow);
 

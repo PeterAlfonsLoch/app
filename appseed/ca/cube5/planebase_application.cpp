@@ -121,10 +121,10 @@ namespace planebase
          
          string strCommandLine;
 
-         strCommandLine  =  "app=" + strId;
-         strCommandLine += " locale=" + string(Application.str_context()->m_plocalestyle->m_idLocale);
-         strCommandLine += " style=" + string(Application.str_context()->m_plocalestyle->m_idStyle);
-         strCommandLine += " install";
+         strCommandLine    =" : app=" + strId;
+         strCommandLine    += " locale=" + string(Application.str_context()->m_plocalestyle->m_idLocale);
+         strCommandLine    += " style=" + string(Application.str_context()->m_plocalestyle->m_idStyle);
+         strCommandLine    += " install";
 
          System.install().start(strCommandLine);
          

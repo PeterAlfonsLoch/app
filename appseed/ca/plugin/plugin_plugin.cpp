@@ -453,7 +453,7 @@ namespace plugin
                // graphical - 2 - user interface for login - fontopus - through the plugin
                if(!m_psystem->install().is("fontopus2"))
                {
-                  Sys(m_psystem).install().start("fontopus2");
+                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 install");
                   ::TerminateProcess(::GetCurrentProcess(), 0);
                   m_bMainReady = false;
                   return;
@@ -466,7 +466,7 @@ namespace plugin
                // graphical - 2 - user interface for logout - fontopus - through the plugin
                if(!m_psystem->install().is("fontopus2"))
                {
-                  Sys(m_psystem).install().start("fontopus2");
+                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 install");
                   ::TerminateProcess(::GetCurrentProcess(), 0);
                   m_bMainReady = false;
                   return;
@@ -520,9 +520,29 @@ namespace plugin
                      }
                      if(strId.has_char() && !m_psystem->install().is(strId))
                      {
-                        Sys(m_psystem).install().start(strId);
+
+                        string strCommandLine; 
+
+
+                        strCommandLine = ": app=session session=session_start=" + strId;
+                        gen::property_set set(get_app());
+                        set.parse_url_query(str);
+                        for(int i = 0; i < set.m_propertya.get_count(); i++)
+                        {
+                           strCommandLine += " ";
+                           strCommandLine += set.m_propertya[i].m_strName;
+                           strCommandLine += "=";
+                           strCommandLine += set.m_propertya[i].get_string();
+                        }
+
+                        strCommandLine += " install";
+
+                        Sys(m_psystem).install().start(strCommandLine);
+
                         ::TerminateProcess(::GetCurrentProcess(), 0);
+
                         m_bMainReady = false;
+
                         return;
                         //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
                         
