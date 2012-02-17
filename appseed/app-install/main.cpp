@@ -422,26 +422,27 @@ void simple_app::main()
 {
    if(__argc >= 2)
    {
-     if(!strncmp_dup(__argv[1], "-install:", strlen_dup("-install:")))
-     {
-        //Sleep(15 * 1000);
-        vsstring strCommandLine;
-        for(int i = 1; i < __argc; i++)
-        {
-           if(i == 1)
-           {
-             strCommandLine = &__argv[1][strlen_dup("-install:")];
-           }
-           else
-           {
-              strCommandLine = strCommandLine + __argv[i];
-           }
-        }
+      if(!strncmp_dup(__argv[1], "-install:", strlen_dup("-install:")))
+      {
+         //Sleep(15 * 1000);
+         vsstring strCommandLine;
+         for(int i = 1; i < __argc; i++)
+         {
+            if(i == 1)
+            {
+               strCommandLine = &__argv[1][strlen_dup("-install:")];
+            }
+            else
+            {
+               strCommandLine = strCommandLine + " ";
+               strCommandLine = strCommandLine + __argv[i];
+            }
+         }
          DWORD dwStartError;
          spa::ca2_app_install_run(strCommandLine, dwStartError, true);
          finalize();
          return;
-     }
+      }
    }
 
    if(!initialize())
