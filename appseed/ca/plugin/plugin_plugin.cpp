@@ -395,7 +395,9 @@ namespace plugin
 
       try
       {
-      
+
+         Sleep(15 * 1000);
+
          LPSTR lpszAlloc = (LPSTR) (void *) psz;
       
          int iCount = strlen(psz);
@@ -524,15 +526,18 @@ namespace plugin
                         string strCommandLine; 
 
 
-                        strCommandLine = ": app=session session=session_start=" + strId;
+                        strCommandLine = ": app=session session_start=" + strId;
                         gen::property_set set(get_app());
                         set.parse_url_query(str);
                         for(int i = 0; i < set.m_propertya.get_count(); i++)
                         {
                            strCommandLine += " ";
                            strCommandLine += set.m_propertya[i].m_strName;
-                           strCommandLine += "=";
-                           strCommandLine += set.m_propertya[i].get_string();
+                           if(set.m_propertya[i].get_string().has_char())
+                           {
+                              strCommandLine += "=";
+                              strCommandLine += set.m_propertya[i].get_string();
+                           }
                         }
 
                         strCommandLine += " install";
