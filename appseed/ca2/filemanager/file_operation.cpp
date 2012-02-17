@@ -131,6 +131,7 @@ bool file_operation::start()
    {
    case filemanager::operation_copy:
       {
+         m_iFile = 0;
          m_pchBuffer = (char *) malloc(m_iBufferSize);
          string strName = System.dir().path(
             m_str, m_stra[m_iFile].Mid(m_strBase.get_length()));
@@ -148,6 +149,7 @@ bool file_operation::start()
       break;
    case filemanager::operation_move:
       {
+         m_iFile = 0;
          m_pchBuffer = (char *) malloc(m_iBufferSize);
          if(!open_src_dst(m_stra[m_iFile],
             System.dir().path(

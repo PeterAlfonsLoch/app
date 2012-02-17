@@ -112,7 +112,7 @@ namespace ca
 
       void application::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         return m_psystem->m_spdir.m_p->rls_dir(m_papp, lpcsz, pstraPath, pstraTitle);
+         return m_psystem->m_spdir.m_p->ls_dir(m_papp, lpcsz, pstraPath, pstraTitle);
       }
       
       bool application::has_subdir(const char * lpcsz)
