@@ -51,7 +51,7 @@ namespace spa
       {
          // shouldn't do advanced operations using ca2
          // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
-         m_phost->starter_start("app=session session_start=session");
+         m_phost->starter_start("app=session session_start=session install");
          return;
       }
 
@@ -79,7 +79,7 @@ namespace spa
       }
       else
       {
-         m_phost->starter_start("app=session session_start=session");
+         m_phost->starter_start("app=session session_start=session install");
       }
 
    }
