@@ -2108,20 +2108,7 @@ install_begin:;
 
       m_strCommandLine  = pszCommandLine;
 
-      m_strApplicationId = get_command_line_param(pszCommandLine, "app");
-
-
-      if(m_strApplicationId == "session")
-      {
-         
-         vsstring strSessionStart = get_command_line_param(pszCommandLine, "session_start");
-
-         if(strSessionStart.has_char())
-         {
-            m_strApplicationId = strSessionStart;
-         }
-
-      }
+      m_strApplicationId = get_command_line_param(pszCommandLine, "app", "session", "session_start");
 
       if(m_strApplicationId.is_empty())
          return -1;

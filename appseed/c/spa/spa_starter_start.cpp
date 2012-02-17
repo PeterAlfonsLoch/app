@@ -151,6 +151,27 @@ const char * ca2_get_build()
    return g_pszCa2Build;
 }
 
+vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
+{
+
+   vsstring strValue = get_command_line_param(pszCommandLine, pszParam);
+
+   if(strValue == pszIfParamValue)
+   {
+         
+      vsstring strReplace = get_command_line_param(pszCommandLine, pszReplaceParam);
+
+      if(strReplace.has_char())
+      {
+         strValue = strReplace;
+      }
+
+   }
+
+   return strValue;
+
+}
+
 vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam)
 {
 
@@ -165,7 +186,7 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
    if(pszValue == NULL)
       return "";
 
-   pszValue += 4;
+   pszValue += strParam.length();
 
    const char * pszValueEnd = strstr_dup(pszValue, " ");
 
@@ -190,22 +211,11 @@ UINT spa_starter_start::start()
    if(s_bStarting)
       return -1;
 
-   vsstring strId = get_command_line_param(m_strCommandLine, "app");
+   vsstring strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start");
 
    if(strId.is_empty())
       return -1;
 
-   if(strId == "session")
-   {
-         
-      vsstring strSessionStart = get_command_line_param(m_strCommandLine, "session_start");
-
-      if(strSessionStart.has_char())
-      {
-         strId = strSessionStart;
-      }
-
-   }
 
    keep_true keepStarting(s_bStarting);
 
