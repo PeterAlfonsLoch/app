@@ -195,6 +195,18 @@ UINT spa_starter_start::start()
    if(strId.is_empty())
       return -1;
 
+   if(strId == "session")
+   {
+         
+      vsstring strSessionStart = get_command_line_param(m_strCommandLine, "session_start");
+
+      if(strSessionStart.has_char())
+      {
+         strId = strSessionStart;
+      }
+
+   }
+
    keep_true keepStarting(s_bStarting);
 
    spa_set_admin(false);
