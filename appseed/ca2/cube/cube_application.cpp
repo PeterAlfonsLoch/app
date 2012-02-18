@@ -86,9 +86,9 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus")
+         if(strId == "fontopus2")
          {
-            return fontopus::application::construct();
+            return ::ca2::fontopus::application::construct();
          }
       }
       else if(chFirst == 'n')
@@ -118,9 +118,9 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus")
+         if(strId == "fontopus2")
          {
-            return fontopus::application::initialize_instance();
+            return ::ca2::fontopus::application::initialize_instance();
          }
       }
       else if(chFirst == 'n')
@@ -150,9 +150,9 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus")
+         if(strId == "fontopus2")
          {
-            return fontopus::application::exit_instance();
+            return ::ca2::fontopus::application::exit_instance();
          }
       }
       else if(chFirst == 'n')
@@ -197,9 +197,9 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "i2com")
+         if(strId == "fontopus2")
          {
-            return fontopus::application::bergedge_start();
+            return ::ca2::fontopus::application::bergedge_start();
          }
       }
       else if(chFirst == 'n')
@@ -230,6 +230,13 @@ namespace cube
             return ::ca2::filehandler::application::on_install();
          }
       }
+      else if(chFirst == 'f')
+      {
+         if(strId == "fontopus2")
+         {
+            return ::ca2::fontopus::application::on_install();
+         }
+      }
       else if(chFirst == 'n')
       {
          if(strId == "netnode")
@@ -253,6 +260,13 @@ namespace cube
          if(strId == "default_file_handler")
          {
             return ::ca2::filehandler::application::on_uninstall();
+         }
+      }
+      else if(chFirst == 'f')
+      {
+         if(strId == "fontopus2")
+         {
+            return ::ca2::fontopus::application::on_uninstall();
          }
       }
       else if(chFirst == 'n')
@@ -279,6 +293,13 @@ namespace cube
          if(strId == "default_file_handler")
          {
             return ::ca2::filehandler::application::on_request(pcreatecontext);
+         }
+      }
+      else if(chFirst == 'f')
+      {
+         if(strId == "fontopus2")
+         {
+            return ::ca2::fontopus::application::on_request(pcreatecontext);
          }
       }
       else if(m_strId == "netnode")

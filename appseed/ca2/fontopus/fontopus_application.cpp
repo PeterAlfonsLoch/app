@@ -17,9 +17,9 @@ namespace ca2
 
       void application::construct()
       {
-         m_strAppName         = "fontopus";
+         m_strAppName         = "fontopus2";
          m_strBaseSupportId   = "votagus_ca2_fontopus";
-         m_strInstallToken    = "fontopus";    
+         m_strInstallToken    = "fontopus2";    
       }
 
       application::~application(void)
