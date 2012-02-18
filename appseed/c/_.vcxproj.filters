@@ -532,5 +532,8 @@
     <ClCompile Include="c_c.c">
       <Filter>Source Files\C Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="windows\c_os.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

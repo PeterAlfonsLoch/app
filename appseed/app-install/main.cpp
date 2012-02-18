@@ -96,8 +96,11 @@ public:
 
 
 
-extern "C" void WinMainCRTStartup()
+extern "C" int WinMainCRTStartup()
 {
+
+   if(!os_init())
+      return -1;
 
    class installer installer;
 
@@ -110,6 +113,7 @@ extern bool g_bInstalling;
 
 installer::installer()
 {
+
    m_hinstance             = ::GetModuleHandleA(NULL);
    m_hmutexSpabootInstall  = NULL;
    e_message m_emessage    = message_none;

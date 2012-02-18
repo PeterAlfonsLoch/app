@@ -1,5 +1,9 @@
 #include "StdAfx.h"
 
+extern BOOL (WINAPI * g_pfnChangeWindowMessageFilter)(
+    _In_ UINT message,
+    _In_ DWORD dwFlag);
+
 
 small_ipc_channel_base::small_ipc_channel_base()
 {
@@ -96,8 +100,12 @@ small_ipc_rx_channel::~small_ipc_rx_channel()
 
 bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowProcModule)
 {
-   
-   ChangeWindowMessageFilter(WM_COPYDATA, MSGFLT_ADD);
+
+
+   if(g_pfnChangeWindowMessageFilter != NULL)
+   {
+      g_pfnChangeWindowMessageFilter(WM_COPYDATA, MSGFLT_ADD);
+   }
 
    HINSTANCE hinstance = ::GetModuleHandleA(pszWindowProcModule);
 
