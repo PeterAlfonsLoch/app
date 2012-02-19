@@ -396,7 +396,7 @@ namespace plugin
       try
       {
 
-         Sleep(15 * 1000);
+         //Sleep(15 * 1000);
 
          LPSTR lpszAlloc = (LPSTR) (void *) psz;
       
