@@ -24,8 +24,8 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
-Gdiplus::GdiplusStartupInput     g_gdiplusStartupInput;
-Gdiplus::GdiplusStartupOutput    g_gdiplusStartupOutput;
+Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput;
+Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput;
 ULONG_PTR                        g_gdiplusToken = NULL;
 ULONG_PTR                        g_gdiplusHookToken = NULL;
 
@@ -42,11 +42,15 @@ BOOL os_initialize()
    HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
    g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
 
+
+   g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
+
    // Initialize GDI+.
-   if(GdiplusStartup(&g_gdiplusToken, &g_gdiplusStartupInput, NULL) != Gdiplus::Ok)
+   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, NULL);
+   if(statusStartup != Gdiplus::Ok)
    {
       
-      MessageBox(NULL, "Gdiplus Failure", "Gdiplus Failed to Startup. ca2 cannot continue.", MB_ICONERROR);
+      MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
       
       return FALSE;
 
