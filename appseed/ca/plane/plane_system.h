@@ -26,6 +26,7 @@ namespace ca
 } // namespace ca
 
 
+
 namespace plane
 {
 
@@ -43,7 +44,10 @@ namespace plane
 
 
 #ifdef WINDOWS
+/*      Gdiplus::GdiplusStartupInput *   m_pgdiplusStartupInput;
+      Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
       ULONG_PTR                        m_gdiplusToken;
+      ULONG_PTR                        m_gdiplusHookToken;*/
       mutex                            m_mutexGdiplus;
 #endif
 

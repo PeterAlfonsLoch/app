@@ -23,7 +23,7 @@ EXTERN_C BOOL WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 		_init_file();
 		_initterm(__xc_a, __xc_z);
 
-      if(!os_init())
+      if(!os_initialize())
          return -1;
 
 
@@ -33,7 +33,11 @@ EXTERN_C BOOL WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 
 	if (reason == DLL_PROCESS_DETACH)
 	{
-		_doexit();
+
+      if(!os_finalize())
+         return -1;
+
+      _doexit();
       finalize_primitive_heap();
 	}
 

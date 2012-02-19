@@ -99,12 +99,15 @@ public:
 extern "C" int WinMainCRTStartup()
 {
 
-   if(!os_init())
+   if(!os_initialize())
       return -1;
 
    class installer installer;
 
    installer.main();
+
+   os_finalize();
+
 
 }
 

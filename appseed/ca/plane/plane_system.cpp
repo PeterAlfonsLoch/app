@@ -42,8 +42,13 @@ namespace plane
       }
 
 #ifdef WINDOWS
-      Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-      GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
+
+      //m_gdiplusStartupInput.SuppressBackgroundThread = TRUE;
+
+      //GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, &m_gdiplusStartupOutput);
+
+      //m_gdiplusStartupOutput.NotificationHook(&m_gdiplusHookToken);
+
 #endif
 
 /*      if(::plane::get_heap_itema() == NULL)
@@ -113,7 +118,11 @@ namespace plane
    {
 
 #ifdef WINDOWS
-      Gdiplus::GdiplusShutdown(m_gdiplusToken);
+
+      //m_gdiplusStartupOutput.NotificationUnhook(m_gdiplusHookToken);
+
+      //Gdiplus::GdiplusShutdown(m_gdiplusToken);
+
 #endif
 
       m_puiMain      = NULL;

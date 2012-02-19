@@ -24,8 +24,13 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
+Gdiplus::GdiplusStartupInput     g_gdiplusStartupInput;
+Gdiplus::GdiplusStartupOutput    g_gdiplusStartupOutput;
+ULONG_PTR                        g_gdiplusToken = NULL;
+ULONG_PTR                        g_gdiplusHookToken = NULL;
 
-BOOL os_init()
+
+BOOL os_initialize()
 {
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
@@ -34,18 +39,32 @@ BOOL os_init()
 
    HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
    g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
-      
 
+   //g_gdiplusStartupInput.SuppressBackgroundThread = TRUE;
 
-   Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-   ULONG_PTR           gdiplusToken;
-   
    // Initialize GDI+.
-   GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+   GdiplusStartup(&g_gdiplusToken, &g_gdiplusStartupInput, &g_gdiplusStartupOutput);
+
+   //g_gdiplusStartupOutput.NotificationHook(&g_gdiplusHookToken);
+
 
    return TRUE;
 
 } 
+
+
+BOOL os_finalize()
+{
+
+   //g_gdiplusStartupOutput.NotificationUnhook(&g_gdiplusHookToken);
+   
+   Gdiplus::GdiplusShutdown(g_gdiplusToken);
+
+
+   return TRUE;
+
+}
+
 
 
 LSTATUS
