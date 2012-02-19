@@ -34,14 +34,15 @@ EXTERN_C BOOL WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 	if (reason == DLL_PROCESS_DETACH)
 	{
 
-      if(!os_finalize())
-         return -1;
+      os_finalize();
 
       _doexit();
       finalize_primitive_heap();
+
 	}
 
 	return ret;
+
 }
 
 #endif

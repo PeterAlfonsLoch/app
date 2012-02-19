@@ -102,12 +102,18 @@ extern "C" int WinMainCRTStartup()
    if(!os_initialize())
       return -1;
 
+   if(!main_initialize())
+      return -1;
+
    class installer installer;
 
    installer.main();
 
+   main_finalize();
+
    os_finalize();
 
+   return 0;
 
 }
 

@@ -33,8 +33,8 @@ void point_array::rotate(double dAngle)
 	{
       x = element_at(i).x;
       y = element_at(i).y;
-	   element_at(i).x = x * dCos - y * dSin;
-	   element_at(i).y = x * dSin + y * dCos;
+	   element_at(i).x = (LONG) (x * dCos - y * dSin);
+	   element_at(i).y = (LONG) (x * dSin + y * dCos);
 	}
 
 }

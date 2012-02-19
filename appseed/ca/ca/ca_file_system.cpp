@@ -1244,7 +1244,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 	if( pGetFinalPathNameByHandle )// there is no driver, we have do it ugly way
 	{
 		g_CurrentIndex = 0;
-		TCHAR tcFileName[MAX_PATH+1];
+//		TCHAR tcFileName[MAX_PATH+1];
 		THREAD_PARAMS ThreadParams;
       wstring wstrFileName;
 

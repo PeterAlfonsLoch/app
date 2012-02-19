@@ -72,13 +72,15 @@ WinRegGetValueW(
    }
    else
    {
-      if(RegQueryValueExW(hkey, lpSubKey, NULL, pdwType, (LPBYTE) pvData, pcbData) == ERROR_SUCCESS)
+      LSTATUS lstatus = RegQueryValueExW(hkey, lpSubKey, NULL, pdwType, (LPBYTE) pvData, pcbData);
+      if(lstatus == ERROR_SUCCESS)
       {
          if(pvData != NULL && (dwFlags & RRF_RT_REG_SZ) != 0 && *pdwType == REG_SZ)
          {
-            ((WCHAR *)pvData)[*pcbData] == L'\0';
+            ((WCHAR *)pvData)[*pcbData] = L'\0';
          }
       }
+      return lstatus;
    }
 }
 

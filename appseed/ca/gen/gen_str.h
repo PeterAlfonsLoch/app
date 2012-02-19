@@ -119,6 +119,7 @@ namespace gen
 
       CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase = 0);
       CLASS_DECL_ca  string         itoa(int i);
+      CLASS_DECL_ca  string         itoa(int64_t i);
       CLASS_DECL_ca  string         i64toa(int64_t i);
       CLASS_DECL_ca  __int64        get_hex(const char * pszUtf8);
       CLASS_DECL_ca  __int64        get_hex_number(const char * pstr);
@@ -177,6 +178,11 @@ namespace gen
       template < class TYPE >
       inline TYPE from_string(const char * psz);
 
+
+      inline CLASS_DECL_ca  string         itoa(int64_t i)
+      {
+         return i64toa(i);
+      }
 
    } // namespace str
 

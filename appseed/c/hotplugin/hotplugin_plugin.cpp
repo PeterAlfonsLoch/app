@@ -225,15 +225,15 @@ namespace hotplugin
     return s;
 }*/
 
-float sin_dup(float x);
+double sin_dup(double x);
 
-float cos_dup(float x)
+double cos_dup(double x)
 {
    float sin = sin_dup(x / 2.0);
    return 1 - 2.0 * sin * sin;
 }
 
-float sin_dup(float x)
+double sin_dup(double x)
 {
    if(x < 0.0)
    {
@@ -241,8 +241,8 @@ float sin_dup(float x)
    }
    else if(x < 3.1415 / 16.0)
    {
-     float res=0.0, pow=x, fact=1.0;
-     for(float i=0; i<16.0; ++i)
+     double res=0.0, pow=x, fact=1.0;
+     for(double i=0; i<16.0; ++i)
      {
        res+=pow/fact;
        pow*=x*x;

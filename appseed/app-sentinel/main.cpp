@@ -19,6 +19,10 @@ extern "C" int WinMainCRTStartup()
 
    if(!os_initialize())
       return -1;
+
+   if(!main_initialize())
+      return -1;
+
    
    g_hmutexSpabootInstall = ::CreateMutex(NULL, FALSE, "Local\\ca2::fontopus::ccvotagus_ca2_spaboot_install_sentinel::7807e510-5579-11dd-ae16-0800200c7784");
    if(::GetLastError() == ERROR_ALREADY_EXISTS)
@@ -56,6 +60,7 @@ extern "C" int WinMainCRTStartup()
 		DispatchMessage(&g_msgSentinel);
 	}
 
+   main_finalize();
 
    os_finalize();
 
