@@ -739,27 +739,40 @@ bool imaging::Createcolor_blend_ImageList(
                                         COLORREF cr,
                                         BYTE bAlpha)
 {
-   image_list * pil = pilGray;
 
-   if(!pil->create(pilParam))
+   try
+   {
+
+      image_list * pil = pilGray;
+
+      if(!pil->create(pilParam))
+         return false;
+
+      if(pil->m_spdib->get_graphics() == NULL)
+         return false;
+
+      if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
+         return false;
+
+      ::ca::graphics_sp spgraphics(get_app());
+
+      spgraphics->CreateCompatibleDC(NULL);
+      spgraphics->SetMapMode(MM_TEXT);
+      //::ca::bitmap * pbitmapOld = spgraphics->GetCurrentBitmap();
+
+      color_blend(pil->m_spdib->get_graphics(), null_point(), pil->m_spdib->size(), cr, bAlpha);
+
+   //   pil->m_spdib->channel_from(visual::rgba::channel_alpha, pilParam->m_spdib);
+
+      //spgraphics->SelectObject(pbitmapOld);
+
+      return true;
+
+   }
+   catch(...)
+   {
       return false;
-
-   if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
-      return false;
-
-   ::ca::graphics_sp spgraphics(get_app());
-
-   spgraphics->CreateCompatibleDC(NULL);
-   spgraphics->SetMapMode(MM_TEXT);
-   //::ca::bitmap * pbitmapOld = spgraphics->GetCurrentBitmap();
-
-   color_blend(pil->m_spdib->get_graphics(), null_point(), pil->m_spdib->size(), cr, bAlpha);
-
-//   pil->m_spdib->channel_from(visual::rgba::channel_alpha, pilParam->m_spdib);
-
-   //spgraphics->SelectObject(pbitmapOld);
-
-   return true;
+   }
 
 }
 

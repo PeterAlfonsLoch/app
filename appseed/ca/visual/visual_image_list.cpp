@@ -277,16 +277,40 @@ bool image_list::_grow()
 
 BOOL image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
 {
-   ASSERT(pImageInfo != NULL);
-   if(nImage < 0 || nImage >= get_image_count())
+   
+   try
+   {
+   
+      ASSERT(pImageInfo != NULL);
+
+      if(nImage < 0 || nImage >= get_image_count())
+         return FALSE;
+
+
+      if(m_spdib.is_null())
+         return FALSE;
+
+      if(const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap().is_null())
+         return FALSE;
+
+      if((HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data() == NULL)
+         return FALSE;
+
+      pImageInfo->rcImage.left      = nImage * m_size.cx;
+      pImageInfo->rcImage.right     = pImageInfo->rcImage.left + m_size.cx;
+      pImageInfo->rcImage.top       = 0;
+      pImageInfo->rcImage.bottom    = m_size.cy;
+      pImageInfo->hbmImage          = (HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data();
+      pImageInfo->hbmMask           = NULL;
+
+      return TRUE;
+
+   }
+   catch(...)
+   {
       return FALSE;
-   pImageInfo->rcImage.left      = nImage * m_size.cx;
-   pImageInfo->rcImage.right     = pImageInfo->rcImage.left + m_size.cx;
-   pImageInfo->rcImage.top       = 0;
-   pImageInfo->rcImage.bottom    = m_size.cy;
-   pImageInfo->hbmImage          = (HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data();
-   pImageInfo->hbmMask           = NULL;
-   return TRUE;
+   }
+
 }
 
 void image_list::remove_all()
