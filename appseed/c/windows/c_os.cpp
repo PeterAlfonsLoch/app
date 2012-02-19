@@ -24,10 +24,6 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
-Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput;
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput;
-ULONG_PTR                        g_gdiplusToken = NULL;
-ULONG_PTR                        g_gdiplusHookToken = NULL;
 
 
 BOOL os_initialize()
@@ -43,19 +39,6 @@ BOOL os_initialize()
    g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
 
 
-   g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
-
-   // Initialize GDI+.
-   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, NULL);
-   if(statusStartup != Gdiplus::Ok)
-   {
-      
-      MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-      
-      return FALSE;
-
-   }
-
    return TRUE;
 
 } 
@@ -63,9 +46,6 @@ BOOL os_initialize()
 
 BOOL os_finalize()
 {
-
-
-   Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
 
    return TRUE;
@@ -100,4 +80,49 @@ WinRegGetValueW(
          }
       }
    }
+}
+
+
+
+Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
+Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
+ULONG_PTR                        g_gdiplusToken             = NULL;
+ULONG_PTR                        g_gdiplusHookToken         = NULL;
+
+
+BOOL main_initialize()
+{
+
+   //Sleep(15 * 1000);
+
+   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   g_pgdiplusStartupOutput    = NULL;
+   g_gdiplusToken             = NULL;
+   g_gdiplusHookToken         = NULL;
+
+   // Initialize GDI+.
+   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
+   if(statusStartup != Gdiplus::Ok)
+   {
+      
+      MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+      
+      return FALSE;
+
+   }
+
+   return TRUE;
+
+} 
+
+
+BOOL main_finalize()
+{
+
+
+   Gdiplus::GdiplusShutdown(g_gdiplusToken);
+
+
+   return TRUE;
+
 }

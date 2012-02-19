@@ -12,6 +12,10 @@
 CLASS_DECL_c BOOL os_initialize();
 CLASS_DECL_c BOOL os_finalize();
 
+
+CLASS_DECL_c BOOL main_initialize();
+CLASS_DECL_c BOOL main_finalize();
+
 CLASS_DECL_c
 LSTATUS
 APIENTRY
