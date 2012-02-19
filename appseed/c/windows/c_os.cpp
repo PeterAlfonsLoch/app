@@ -33,6 +33,8 @@ ULONG_PTR                        g_gdiplusHookToken = NULL;
 BOOL os_initialize()
 {
 
+   Sleep(15 * 1000);
+
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
 
