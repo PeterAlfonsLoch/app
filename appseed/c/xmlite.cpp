@@ -190,7 +190,7 @@ LPSTR _tcsepbrk( LPCSTR psz, LPCSTR chset, int escape )
 // Coder    Date                      Desc
 // bro      2002-10-29
 //========================================================
-int _tcsenicmp( LPCSTR psz, LPCSTR str, int len, int escape )
+int _tcsenicmp( LPCSTR psz, LPCSTR str, count len, int escape )
 {
 	LPSTR pch = (LPSTR)psz;
 	LPSTR prev_escape = NULL;
@@ -228,7 +228,7 @@ int _tcsenicmp( LPCSTR psz, LPCSTR str, int len, int escape )
 // Coder    Date                      Desc
 // bro      2002-10-29
 //========================================================
-LPSTR _tcsenistr( LPCSTR psz, LPCSTR str, int len, int escape )
+LPSTR _tcsenistr( LPCSTR psz, LPCSTR str, count len, int escape )
 {
 	LPSTR pch = (LPSTR)psz;
 	LPSTR prev_escape = NULL;
@@ -1848,40 +1848,62 @@ int _tagXMLEntitys::Entity2Ref( LPCSTR str, LPSTR estr, int estrlen )
 	*pes = '\0';
 
 	// total copied characters
-	return pes-estr;
+	return (int) (pes-estr);
 }
 
 vsstring _tagXMLEntitys::Ref2Entity( LPCSTR estr )
 {
-	vsstring es;
+	
+   vsstring es;
+
 	if( estr )
 	{
-		int len = strlen_dup(estr);
+      
+      count len = strlen_dup(estr);
+
 		LPSTR esbuf = (LPSTR) ca2_alloc(len+1);
+
 		if( esbuf )
-			Ref2Entity( estr, esbuf, len );
+			Ref2Entity( estr, esbuf, (int) len );
+
       es = esbuf;
+
       ca2_free(esbuf);
+
 	}
-	return es;
+	
+   return es;
+
 }
 
 vsstring _tagXMLEntitys::Entity2Ref( LPCSTR str )
 {
-	vsstring s;
+	
+   vsstring s;
+
 	if( str )
 	{
-		int nEntityCount = GetEntityCount(str);
+		
+      count nEntityCount = GetEntityCount(str);
+
 		if( nEntityCount == 0 )
 			return vsstring(str);
-		int len = strlen_dup(str) + nEntityCount*10 ;
+
+		count len = strlen_dup(str) + nEntityCount*10 ;
+
 		LPSTR sbuf = (LPSTR) ca2_alloc(len+1 );
+
 		if( sbuf )
-			Entity2Ref( str, sbuf, len );
+			Entity2Ref( str, sbuf, (int) len );
+
       s = sbuf;
+
       ca2_free(sbuf);
+
 	}
+
 	return s;
+
 }
 
 vsstring XRef2Entity( LPCSTR estr )

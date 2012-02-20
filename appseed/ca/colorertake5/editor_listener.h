@@ -4,14 +4,15 @@
 /**
  * Listener of base_editor events
  */
-class EditorListener {
+class EditorListener
+{
 public:
   /**
    * Informs EditorListener object about text modification event.
    * All the text becomes invalid after the specified line.
    * @param topLine Topmost modified line of text.
    */
-  virtual void modifyEvent(int topLine) = 0;
+  virtual void modifyEvent(index topLine) = 0;
 
 };
 

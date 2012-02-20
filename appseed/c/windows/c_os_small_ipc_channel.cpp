@@ -77,7 +77,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage)
    COPYDATASTRUCT cds;
 
    cds.dwData = 15111984;
-   cds.cbData = strlen_dup(pszMessage);
+   cds.cbData = (DWORD) strlen_dup(pszMessage);
    cds.lpData = (void *) pszMessage;
 
    SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);

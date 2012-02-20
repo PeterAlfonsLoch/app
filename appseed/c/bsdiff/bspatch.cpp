@@ -212,8 +212,12 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
       return err(1,"%s",oldfile);
    }
-   int r=oldsize;
-   while (r>0 && (i=fread_dup(old+oldsize-r,r, 1, fd))>0) r-=i;
+   
+   int r = oldsize;
+   
+   while(r > 0 && (i = (off_t) fread_dup(old+oldsize-r,r, 1, fd)) > 0)
+      r-=i;
+
    if (r>0 || fclose_dup(fd)==-1)
    {
       fclose_dup(cpf);

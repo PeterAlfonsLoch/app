@@ -3,6 +3,7 @@
 
 class var;
 class stringa;
+class id;
 
 
 namespace gen
@@ -76,17 +77,17 @@ namespace gen
 
       string CLASS_DECL_ca random_replace(::ca::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
       
-      int CLASS_DECL_ca find_first(const stringa & straSearch, int & iFound, const string & str, int iStart = 0);
+      index CLASS_DECL_ca find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 
-      int CLASS_DECL_ca find_ci(const string & strFind   , const string & str, int iStart = 0);
-      int CLASS_DECL_ca find_ci(const string & strFind   , const char   * psz, int iStart = 0);
-      int CLASS_DECL_ca find_ci(const char   * pszFind   , const string & str, int iStart = 0);
-      int CLASS_DECL_ca find_ci(const char   * pszFind   , const char   * psz, int iStart = 0);
+      index CLASS_DECL_ca find_ci(const string & strFind   , const string & str, index iStart = 0);
+      index CLASS_DECL_ca find_ci(const string & strFind   , const char   * psz, index iStart = 0);
+      index CLASS_DECL_ca find_ci(const char   * pszFind   , const string & str, index iStart = 0);
+      index CLASS_DECL_ca find_ci(const char   * pszFind   , const char   * psz, index iStart = 0);
 
-      int CLASS_DECL_ca find_ww(const char * pszFind, const char * psz, int iStart = 0);
-      int CLASS_DECL_ca find_wwci(const char * pszFind, const char * psz, int iStart = 0);
-      int CLASS_DECL_ca find_aww(const char * pszFind, const char * psz, int iStart = 0);
-      int CLASS_DECL_ca find_awwci(const char * pszFind, const char * psz, int iStart = 0);
+      index CLASS_DECL_ca find_ww(const char * pszFind, const char * psz, index iStart = 0);
+      index CLASS_DECL_ca find_wwci(const char * pszFind, const char * psz, index iStart = 0);
+      index CLASS_DECL_ca find_aww(const char * pszFind, const char * psz, index iStart = 0);
+      index CLASS_DECL_ca find_awwci(const char * pszFind, const char * psz, index iStart = 0);
       string CLASS_DECL_ca has_char(const char * pszIfHasChar, const char * pszBefore = NULL, const char * pszAfter = NULL);
       bool CLASS_DECL_ca has_upper(const char * psz);
       bool CLASS_DECL_ca has_lower(const char * psz);
@@ -109,21 +110,27 @@ namespace gen
       CLASS_DECL_ca  string         utf8_char(const char *psz);
       CLASS_DECL_ca  string         utf8_char(const char *psz, const char * pszEnd);
       CLASS_DECL_ca  bool           utf8_char(string & strChar, const char * & psz, const char * pszEnd);
-      CLASS_DECL_ca  string         utf8_char(const char * pszBeg, const char *psz, int i);
-      CLASS_DECL_ca  string         utf8_next_char(const char * pszBeg, const char *psz, int i = 0);
-      CLASS_DECL_ca  string         utf8_previous_char(const char * pszBeg, const char *psz, int i = 0);
+      CLASS_DECL_ca  string         utf8_char(const char * pszBeg, const char *psz, strsize i);
+      CLASS_DECL_ca  string         utf8_next_char(const char * pszBeg, const char *psz, strsize i = 0);
+      CLASS_DECL_ca  string         utf8_previous_char(const char * pszBeg, const char *psz, strsize i = 0);
       CLASS_DECL_ca  string         uni_to_utf8(__int64 ch);
 
       CLASS_DECL_ca  const char *   utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz);
       CLASS_DECL_ca  int            utf8_char(::gen::utf8_char * pchar, const char *psz);
 
+      CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i, int iBase = 0);
       CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase = 0);
       CLASS_DECL_ca  string         itoa(int i);
       CLASS_DECL_ca  string         itoa(int64_t i);
+      CLASS_DECL_ca  string         itoa(unsigned int ui);
+      CLASS_DECL_ca  string         itoa(unsigned long ui);
+      CLASS_DECL_ca  string         itoa(uint64_t ui);
+      inline CLASS_DECL_ca  string  itoa(const var & var);
+      inline CLASS_DECL_ca  string  itoa(const id & id);
       CLASS_DECL_ca  string         i64toa(int64_t i);
       CLASS_DECL_ca  __int64        get_hex(const char * pszUtf8);
       CLASS_DECL_ca  __int64        get_hex_number(const char * pstr);
-      CLASS_DECL_ca  __int64        get_escaped_char(const char * str, int pos, int &retPos);
+      CLASS_DECL_ca  int64_t        get_escaped_char(const char * str, strsize pos, strsize &retPos);
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
       CLASS_DECL_ca  bool           is_simple_natural(const char * psz);
 
@@ -142,9 +149,9 @@ namespace gen
 
       CLASS_DECL_ca void consume(const char * & pszXml, const char * psz);
       CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, const char * pszEnd);
-      CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, int iLen, const char * pszEnd);
-      CLASS_DECL_ca void consume_spaces(const char * & pszXml, int iMinimumCount = 1);
-      CLASS_DECL_ca void consume_spaces(const char * & pszXml, int iMinimumCount, const char * pszEnd);
+      CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, count iLen, const char * pszEnd);
+      CLASS_DECL_ca void consume_spaces(const char * & pszXml, count iMinimumCount = 1);
+      CLASS_DECL_ca void consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd);
       CLASS_DECL_ca string consume_nc_name(const char * & pszXml);
       CLASS_DECL_ca string consume_quoted_value(const char * & pszXml);
       CLASS_DECL_ca string consume_quoted_value(const char * & pszXml, const char * pszEnd);
@@ -155,9 +162,9 @@ namespace gen
 
       CLASS_DECL_ca string consume_c_quoted_value(const char * & pszXml);
 
-      CLASS_DECL_ca string pad(const char * psz, int iLen, const char * pszPattern, e_pad epad);
+      CLASS_DECL_ca string pad(const char * psz, count iLen, const char * pszPattern, e_pad epad);
 
-      __inline int ilen(const char * psz) { return (int) strlen(psz); }
+      __inline count ilen(const char * psz) { return (count) strlen(psz); }
       __inline __int64 len(const char * psz) { return (__int64) strlen(psz); }
 
 /** C++ Sockets Library \file Utility.cpp
@@ -167,7 +174,10 @@ namespace gen
 
       CLASS_DECL_ca string l2string(long l);
       CLASS_DECL_ca string bigint2string(uint64_t l);
-      CLASS_DECL_ca uint64_t atoi64(const string & str) ;
+      CLASS_DECL_ca int64_t atoi64(const string & str) ;
+      CLASS_DECL_ca int64_t atoi64(const char * psz) ;
+      CLASS_DECL_ca uint64_t atoui64(const string & str) ;
+      CLASS_DECL_ca uint64_t atoui64(const char * psz) ;
       CLASS_DECL_ca unsigned int hex2unsigned(const string & str);
       CLASS_DECL_ca string to_string(double d);
 /** \file Utility.cpp
@@ -179,10 +189,7 @@ namespace gen
       inline TYPE from_string(const char * psz);
 
 
-      inline CLASS_DECL_ca  string         itoa(int64_t i)
-      {
-         return i64toa(i);
-      }
+      inline CLASS_DECL_ca  string         itoa(int64_t i);
 
    } // namespace str
 

@@ -100,8 +100,20 @@ namespace xml
 
    attr * node::add_attr(const char * lpcszName, int iValue)
    {
+
       m_attra.add(lpcszName, iValue);
+
       return &m_attra[lpcszName];
+
+   }
+
+   attr * node::add_attr(const char * lpcszName, int64_t iValue)
+   {
+
+      m_attra.add(lpcszName, iValue);
+
+      return &m_attra[lpcszName];
+
    }
 
    attr * node::set_attr(const char * lpcszName, const char * pszValue)
@@ -110,6 +122,11 @@ namespace xml
    }
 
    attr * node::set_attr(const char * lpcszName, int iValue)
+   {
+      return &(m_attra[lpcszName] = iValue);
+   }
+
+   attr * node::set_attr(const char * lpcszName, int64_t iValue)
    {
       return &(m_attra[lpcszName] = iValue);
    }
@@ -129,7 +146,7 @@ namespace xml
       return -1;
    }
 
-   node * node::get_child_with_attr(const char * lpcszName, const char * pszAttr, var value, int iStart)
+   node * node::get_child_with_attr(const char * lpcszName, const char * pszAttr, var value, index iStart)
    {
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
@@ -1257,7 +1274,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::child_at( int i )
+   node * node::child_at(index i )
    {
       if( i >= 0 && i < m_nodea.get_size() )
          return &m_nodea[i];
@@ -1295,12 +1312,12 @@ namespace xml
       return m_nodea.get_count();
    }
 
-   count node::get_children_count(const char * pszName, int iDepth)
+   count node::get_children_count(const char * pszName, index iDepth)
    {
       if(iDepth == 0)
          return 0;
       count count = 0;
-      for(int i = 0; i < m_nodea.get_count(); i++)
+      for(index i = 0; i < m_nodea.get_count(); i++)
       {
          if(pszName == NULL || *pszName == '\0')
          {
@@ -1540,7 +1557,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   attr * node::attr_at( int i )
+   attr * node::attr_at( index i )
    {
       if( i >= 0 && i < m_attra.m_propertya.get_size() )
          return &m_attra.m_propertya[i];
@@ -1729,7 +1746,7 @@ namespace xml
    }
 
 
-   node *                  node::get_child_at(const char * pszName, int iIndex, int iDepth)
+   node *                  node::get_child_at(const char * pszName, index iIndex, index iDepth)
    {
       if(iDepth == 0)
          return 0;
@@ -1759,7 +1776,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   count node::get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, int iDepth)
+   count node::get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, index iDepth)
    {
 
       if(iDepth == 0)
@@ -1790,7 +1807,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   count node::remove_child_with_attr(const char * pszName, const char * pszAttrName, int iIndex, int iCount, int iDepth)
+   count node::remove_child_with_attr(const char * pszName, const char * pszAttrName, index iIndex, count iCount, index iDepth)
    {
 
       count nRemoveCount;
@@ -1800,7 +1817,7 @@ namespace xml
 
       string strValue;
       count count = 0;
-      for(int i = 0; i < m_nodea.get_size(); )
+      for(index i = 0; i < m_nodea.get_size(); )
       {
          if(m_nodea[i].m_strName == pszName)
          {
@@ -1880,11 +1897,11 @@ namespace xml
       }
       else
       {
-         int iColCount = str2a.get_count();
+         count iColCount = str2a.get_count();
          add_attr("column_count", iColCount);
-         int iRowCount;
+         count iRowCount;
 
-         for(int iCol = 0; iCol < iColCount; iCol++)
+         for(index iCol = 0; iCol < iColCount; iCol++)
          {
             xml::node * pcol = add_child("c");
             iRowCount = str2a[iCol].get_count();

@@ -70,8 +70,8 @@ bool dir::mk(LPCTSTR lpcsz)
    vsstring url(lpcsz);
    vsstring tmp;
    vsstring dir;
-   int oldpos = -1;
-   int pos = url.find("\\");
+   index oldpos = -1;
+   index pos = url.find("\\");
 	while (pos >= 0)
 	{
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
@@ -228,10 +228,14 @@ bool dir::exists(const char * path1)
 
 vsstring dir::name(const char * path1)
 {
+   
    vsstring str;
 
    str = path1;
-   int iPos = str.rfind('\\');
+   
+   index iPos = str.rfind('\\');
+   
    return str.substr(0, iPos + 1);
+
 }
 

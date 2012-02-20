@@ -413,7 +413,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>__C__LIB</PreprocessorDefinitions>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
@@ -431,6 +431,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -460,6 +461,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
+    <Lib>
+      <TargetMachine />
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <ClCompile>
@@ -695,7 +699,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="wstringtovss.h" />
     <ClInclude Include="xmlite.h" />
     <ClInclude Include="c.h" />
-    <ClInclude Include="_heap.h" />
+    <ClInclude Include="c_heap.h" />
     <ClInclude Include="printf.h" />
     <ClInclude Include="process.h" />
     <ClInclude Include="std_file.h" />
@@ -753,6 +757,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="conv.cpp" />
     <ClCompile Include="cpu_architecture.cpp" />
@@ -768,6 +773,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="strw.cpp" />
     <ClCompile Include="strx.cpp" />

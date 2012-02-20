@@ -69,7 +69,7 @@ int strcmp_dup(const char * sz1, const char * sz2)
    return *sz1 - *sz2;
 }
 
-int strnicmp_dup(const char * sz1, const char * sz2, int iLen)
+int strnicmp_dup(const char * sz1, const char * sz2, count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -97,7 +97,7 @@ int strnicmp_dup(const char * sz1, const char * sz2, int iLen)
    return iCmp;
 }
 
-int strncmp_dup(const char * sz1, const char * sz2, int iLen)
+int strncmp_dup(const char * sz1, const char * sz2, count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -324,37 +324,54 @@ void i64toa_dup(char * sz, __int64 i)
 
 void str_reverse(char * sz)
 {
-   int iLen = strlen_dup(sz);
-   int iMid = iLen / 2;
-   int iL = 0;
-   int iR = iLen - 1;
+
+   count iLen = strlen_dup(sz);
+
+   count iMid = iLen / 2;
+
+   count iL = 0;
+
+   count iR = iLen - 1;
+
    char ch;
+
    for(; iL < iMid; iL++, iR--)
    {
       ch = sz[iL];
       sz[iL] = sz[iR];
       sz[iR] = ch;
    }
+
 }
 
-void zero_pad(char * sz, int iPad)
+void zero_pad(char * sz, count iPad)
 {
-   int iLen = strlen_dup(sz);
-   int iZeroCount = iPad - iLen;
+   
+   count iLen = strlen_dup(sz);
+
+   count iZeroCount = iPad - iLen;
+
    if(iZeroCount > 0)
    {
-      int iEnd = iLen - 1;
-      int iFinalEnd = iEnd + iZeroCount;
+
+      count iEnd = iLen - 1;
+
+      count iFinalEnd = iEnd + iZeroCount;
+
       sz[iFinalEnd + 1] = '\0';
+
       for(; iEnd >= 0; iEnd--, iFinalEnd--)
       {
          sz[iFinalEnd] = sz[iEnd];
       }
+
       for(; iFinalEnd >= 0; iFinalEnd--)
       {
          sz[iFinalEnd] = '0';
       }
+
    }
+
 }
 
 char * str_begins_inc_dup(const char * sz1, const char * prefix)
@@ -411,11 +428,16 @@ int str_begins_ci_dup(const char * sz1, const char * prefix)
 
 int str_ends_ci_dup(const char * psz, const char * pszSuffix)
 {
-   int iLen = strlen_dup(psz);
-   int iLenSuffix = strlen_dup(pszSuffix);
+   
+   count iLen = strlen_dup(psz);
+
+   count iLenSuffix = strlen_dup(pszSuffix);
+
    if(iLen < iLenSuffix)
       return false;
+
    return stricmp_dup(&psz[iLen - iLenSuffix], pszSuffix) == 0;
+
 }
 
 

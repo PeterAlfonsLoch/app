@@ -7,8 +7,11 @@
 
 
 
-/*int app-install.exe(const char * param)
+int app_install(const char * param)
 {
+
+   /*
+
    char szModulePath[MAX_PATH * 3];
    ::GetModuleFileNameA((HINSTANCE) ::GetModuleHandleA("npca2.dll"), szModulePath, sizeof(szModulePath));
 
@@ -20,9 +23,12 @@
    strcat_dup(path, "app-install.exe");
 
    installer_call_sync(path, param);
+   
+   */
+
    return 0;
 
-}*/
+}
 
 
 

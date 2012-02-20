@@ -170,22 +170,30 @@ namespace userbase
 
    void menu_list_window::_UpdateCmdUi(menu_item * pitemParent)
    {
+      
       if(pitemParent->m_spitema == NULL)
          return;
+      
       menu_button_cmd_ui cmdui(get_app());
+      
       cmdui.m_pitema = pitemParent->m_spitema;
+
       for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
+         
          menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
-         cmdui.m_nIndex = i;
-         cmdui.m_id = pitem->m_id;
-         cmdui.m_pOther = (::user::interaction *) &pitem->m_button;
+         
+         cmdui.m_iIndex       = i;
+         cmdui.m_id           = pitem->m_id;
+         cmdui.m_pOther       = (::user::interaction *) &pitem->m_button;
 
          if(m_pwndNotify->_001OnUpdateCmdUi(&cmdui))
             continue;
 
          _UpdateCmdUi(pitem);
+
       }
+
    }
 
    void menu_list_window::_001OnTimer(gen::signal_object * pobj)

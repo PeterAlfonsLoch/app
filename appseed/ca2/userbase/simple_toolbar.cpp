@@ -347,16 +347,20 @@ void simple_toolbar::_001OnCreate(gen::signal_object * pobj)
 
 void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler)
 {
+   
    SimpleToolCmdUI state(get_app());
+   
    state.m_pOther = dynamic_cast <::user::interaction * > (this);
 
-   state.m_nIndexMax = _001GetItemCount();
-   for (state.m_nIndex = 0; state.m_nIndex < state.m_nIndexMax; state.m_nIndex++)
+   state.m_iCount = _001GetItemCount();
+
+   for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
    {
+      
       // ignore separators
-      if(m_itema[state.m_nIndex].m_id != "separator")
+      if(m_itema[state.m_iIndex].m_id != "separator")
       {
-         state.m_id = m_itema[state.m_nIndex].m_id;
+         state.m_id = m_itema[state.m_iIndex].m_id;
          // allow reflections
          //if (::user::interaction::_001OnCommand(0,
          //   MAKELONG((int)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
@@ -370,10 +374,12 @@ void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisabl
          // allow the owner to process the update
          state.DoUpdate(pTarget, bDisableIfNoHndler);
       }
+
    }
 
    // update the dialog controls added to the toolbar
    UpdateDialogControls(pTarget, bDisableIfNoHndler);
+
 }
 
 #define CX_OVERLAP 0
@@ -1508,9 +1514,9 @@ void SimpleToolCmdUI::Enable(BOOL bOn)
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
    ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
-   ASSERT(m_nIndex < m_nIndexMax);
+   ASSERT(m_iIndex < m_iCount);
 
-   UINT nNewStyle = pToolBar->GetButtonStyle(m_nIndex) & ~TBBS_DISABLED;
+   UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) & ~TBBS_DISABLED;
    if (!bOn)
    {
       nNewStyle |= TBBS_DISABLED;
@@ -1521,7 +1527,7 @@ void SimpleToolCmdUI::Enable(BOOL bOn)
       nNewStyle &= ~TBBS_PRESSED;
    }
    ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-   pToolBar->SetButtonStyle(m_nIndex, nNewStyle);
+   pToolBar->SetButtonStyle(m_iIndex, nNewStyle);
 }
 
 void SimpleToolCmdUI::SetCheck(check::e_check echeck)
@@ -1532,16 +1538,16 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
    ASSERT(pToolBar != NULL);
    ASSERT_KINDOF(simple_toolbar, pToolBar);
-   ASSERT(m_nIndex < m_nIndexMax);
+   ASSERT(m_iIndex < m_iCount);
 
-   UINT nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+   UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) &
       ~(TBBS_CHECKED | TBBS_INDETERMINATE);
    if(echeck == check::checked)
       nNewStyle |= TBBS_CHECKED;
    else if(echeck == check::tristate)
       nNewStyle |= TBBS_INDETERMINATE;
    ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-   pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);
+   pToolBar->SetButtonStyle(m_iIndex, nNewStyle | TBBS_CHECKBOX);
 }
 
 void SimpleToolCmdUI::SetText(const char *)

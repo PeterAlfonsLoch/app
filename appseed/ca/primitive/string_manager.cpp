@@ -64,7 +64,7 @@ string_manager::string_manager()
    m_nil.SetManager(this);
 }
 
-string_data * string_manager::allocate( int nChars, int nCharSize )
+string_data * string_manager::allocate(strsize nChars, int nCharSize )
 {
    size_t nTotalSize;
    string_data * pData;
@@ -105,14 +105,14 @@ string_data * string_manager::allocate( int nChars, int nCharSize )
    return pData;
 }
 
-void string_manager::Free( string_data * pData )
+void string_manager::Free(string_data * pData)
 {
    size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
    m_palloca->free(pData, nTotalSize);
    //ca2_free(pData, 0);
 }
 
-string_data * string_manager::Reallocate( string_data * pOldData, int nChars, int nCharSize )
+string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int nCharSize)
 {
    string_data * pNewData = NULL;
    size_t nNewTotalSize;

@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 
+
 namespace colorertake5
 {
 
@@ -13,30 +14,45 @@ namespace colorertake5
       picked = NULL;
       baseScheme = NULL;
    }
+
    text_parser_impl::~text_parser_impl()
    {
+
       clearCache();
+
       delete cache;
+
    }
 
-   void text_parser_impl::setFileType(file_type *type){
-      baseScheme = NULL;
-      if (type != NULL){
-         baseScheme = (scheme_impl*)(type->getBaseScheme());
-      };
-      clearCache();
-   };
-
-   void text_parser_impl::setLineSource(line_source *lh){
-      lineSource = lh;
-   };
-
-   void text_parser_impl::setRegionHandler(RegionHandler *rh){
-      regionHandler = rh;
-   };
-
-   int text_parser_impl::parse(int from, int num, TextParseMode mode)
+   void text_parser_impl::setFileType(file_type *type)
    {
+   
+      baseScheme = NULL;
+
+      if (type != NULL)
+         baseScheme = (scheme_impl*)(type->getBaseScheme());
+
+      clearCache();
+
+   }
+
+   void text_parser_impl::setLineSource(line_source *lh)
+   {
+   
+      lineSource = lh;
+
+   }
+
+   void text_parser_impl::setRegionHandler(RegionHandler *rh)
+   {
+
+      regionHandler = rh;
+
+   }
+
+   index text_parser_impl::parse(index from, count num, TextParseMode mode)
+   {
+
       gx = 0;
       gy = from;
       gy2 = from+num;
@@ -49,9 +65,15 @@ namespace colorertake5
 
       CLR_TRACE("text_parser_impl", "parse from=%d, num=%d", from, num);
       /* Check for initial bad conditions */
-      if (regionHandler == NULL) return from;
-      if (lineSource == NULL) return from;
-      if (baseScheme == NULL) return from;
+      if (regionHandler == NULL) 
+         return from;
+
+      if (lineSource == NULL) 
+         return from;
+
+      if (baseScheme == NULL) 
+         return from;
+
 
       vtlist = new VTList();
 
@@ -63,64 +85,88 @@ namespace colorertake5
       forward = NULL;
       cache->scheme = baseScheme;
 
-      if (mode == TPM_CACHE_READ || mode == TPM_CACHE_UPDATE) {
+      if (mode == TPM_CACHE_READ || mode == TPM_CACHE_UPDATE)
+      {
+
          parent = cache->searchLine(from, &forward);
-         if (parent != NULL){
+
+         if (parent != NULL)
+         {
             CLR_TRACE("TPCache", "searchLine() parent:%s,%d-%d", parent->scheme->getName(), parent->sline, parent->eline);
          }
+
       }
+
       cachedLineNo = from;
       cachedParent = parent;
       cachedForward = forward;
       CLR_TRACE("text_parser_impl", "parse: cache filled");
 
 
-      do{
-         if (!forward) {
-            if (!parent) {
+      do
+      {
+         if (!forward)
+         {
+            if (!parent) 
                return from;
-            }
-            if (updateCache){
+
+            if (updateCache)
+            {
                delete parent->children;
                parent->children = NULL;
             }
-         }else{
-            if (updateCache){
+        }
+        else
+        {
+            if (updateCache)
+            {
                delete forward->next;
                forward->next = NULL;
             }
-         };
+         }
          baseScheme = parent->scheme;
 
          stackLevel = 0;
          CLR_TRACE("text_parser_impl", "parse: goes into colorize()");
-         if (parent != cache) {
+         if (parent != cache)
+         {
             vtlist->restore(parent->vcache);
             parent->clender->end->setBackTrace(*parent->backLine, &parent->matchstart);
             colorize(parent->clender->end, parent->clender->lowContentPriority);
             vtlist->clear();
-         }else{
+         }
+         else
+         {
             colorize(NULL, false);
          };
 
-         if (updateCache){
-            if (parent != cache){
+         if (updateCache)
+         {
+            if (parent != cache)
+            {
                parent->eline = gy;
-            };
+            }
          }
-         if (parent != cache && gy < gy2){
+         if (parent != cache && gy < gy2)
+         {
             leaveScheme(gy, &matchend, parent->clender);
-         };
+         }
          gx = matchend.e[0];
 
          forward = parent;
          parent = parent->parent;
+
       }while(parent);
+
       regionHandler->endParsing(endLine);
+
       lineSource->endJob(endLine);
+
       delete vtlist;
+
       return endLine;
-   };
+
+   }
 
    void text_parser_impl::clearCache()
    {

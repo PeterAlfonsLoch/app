@@ -705,7 +705,7 @@ namespace ca
 
    BOOL graphics::Polygon(point_array & pta)
    {
-      return Polygon(pta.get_data(), pta.get_count());
+      return Polygon(pta.get_data(), (int) pta.get_count());
    }
 
    BOOL graphics::Rectangle(int x1, int y1, int x2, int y2)

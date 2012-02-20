@@ -16,7 +16,7 @@ namespace ca4
       NESSIEstruct ns;
       u8 digest[DIGESTBYTES];
       NESSIEinit(&ns);
-      NESSIEadd((const byte *) psz, 8*strlen(psz), &ns);
+      NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
       for(int i = 0; i < DIGESTBYTES; i++)
       {

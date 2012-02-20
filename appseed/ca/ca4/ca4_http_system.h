@@ -61,8 +61,8 @@ namespace ca4
       
          DECL_GEN_SIGNAL(get);
 
-         bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool get(const char * pszUrl, primitive::memory_base & memory, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool get(const char * pszUrl, primitive::base_memory & memory, ::fontopus::user * puser = NULL);
+         bool get(const char * pszUrl, primitive::base_memory & memory, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
          bool get(const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          
@@ -71,7 +71,7 @@ namespace ca4
          string get(const char * pszUrl, ::fontopus::user * puser = NULL);
 
          using ::radix::object::request;
-         bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+         bool request(const char * pszRequest, const char * pszUrl, primitive::base_memory & memory, ::fontopus::user * puser = NULL);
          bool request(const char * pszRequest, const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
 
@@ -84,7 +84,7 @@ namespace ca4
          bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = NULL);
 
 
-         bool put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+         bool put(const char * pszUrl, primitive::base_memory & memory, ::fontopus::user * puser = NULL);
          bool put(const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
          
 

@@ -31,7 +31,7 @@ namespace spa
 
       DWORD          m_dwDownloadCallbackLast100k;
       DWORD          m_iDownloadCallbackColumn;
-      DWORD          m_dwDownloadLen;
+      uint64_t       m_dwDownloadLen;
       int            m_cx;
       int            m_cy;
       vsstring       m_strHost;
@@ -61,7 +61,7 @@ namespace spa
       int            m_iStart;
       simple_double_array m_daDownloadRate;
       DWORD          m_dwDownloadTick;
-      DWORD          m_dwDownload;
+      uint64_t          m_dwDownload;
       int            m_iDownloadRate;
       double         m_dDownloadRate;
       DWORD          m_dwDownloadZeroRateTick;
@@ -91,7 +91,7 @@ namespace spa
       bool           m_bMsDownload;
       vsstring       m_strTitle;
       vsstring       m_strSpaIgnitionBaseUrl;
-      DWORD          m_dwCurFileLen;
+      uint64_t       m_dwCurFileLen;
 
 
       int            m_nCmdShow;
@@ -100,8 +100,8 @@ namespace spa
 
       int            m_iScreen;
       int            m_iProgressMode;
-      int            m_iTotalGzLen;
-      int            m_iGzLen;
+      int64_t        m_iTotalGzLen;
+      int64_t        m_iGzLen;
       int            m_iStyle;
       vsstring       m_strLogin;
       vsstring       m_strSessid;
@@ -121,15 +121,15 @@ namespace spa
 
 
       void set_progress(double dProgress);
-      int download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen);
+      count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen);
 
       static DWORD WINAPI thread_proc_run(LPVOID lpParam);
 
       void PaintOpaqueBk(HDC hdc);
 
-      bool get(const vsstring& url_in, bool bExist, int iLength, const char * pszCrc, int iGzLen);
+      bool get(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
 
-      bool download_file(const vsstring& url_in, bool bExist, int iLength, const char * pszCrc, int iGzLen);
+      bool download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
 
       vsstring ca2_get_dir(LPCTSTR lpcszUrl);
 
@@ -143,15 +143,15 @@ namespace spa
 
       vsstring ca2unbz_get_file(LPCTSTR lpcszUrl);
 
-      bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int iLength, const char * pszCrc, int iGzLen, bool bIndex = false);
+      bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
       int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc);
 
       int GetLocalFileList(stra_dup & stra_dup, LPCTSTR lpcszUrl);
 
-      int UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
+      count UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
 
-      int CopyFileList(stra_dup & stra_dup);
+      count CopyFileList(stra_dup & stra_dup);
 
       void ParseSpaIndex(XNode & node);
 
@@ -218,7 +218,7 @@ namespace spa
       void ms_get_callback( int i, DWORD_PTR dwLen);
 
       // download rate
-      void dlr(DWORD dwDownload);
+      void dlr(uint64_t dwDownload);
 
       void new_progress_end(double dMilestone);
 

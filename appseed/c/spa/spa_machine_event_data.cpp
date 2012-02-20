@@ -29,8 +29,18 @@ void blob::read(HANDLE f)
    }
    else
    {
+      
       m_pchData = (char *) ca2_alloc(m_sizet);
-      ::ReadFile(f, m_pchData, m_sizet, &dwRead, NULL);
+      
+      size_t sRead = 0;
+
+      while(::ReadFile(f, &m_pchData[sRead], 1024, &dwRead, NULL))
+      {
+         if(dwRead == 0)
+            break;
+         sRead += dwRead;
+      }
+
    }
 }
 
@@ -40,7 +50,19 @@ void blob::write(HANDLE f)
    ::WriteFile(f, &m_sizet, sizeof(m_sizet), &dwWritten, NULL);
    if(m_sizet >= 0)
    {
-      ::WriteFile(f, m_pchData, m_sizet, &dwWritten, NULL);
+      
+      size_t sWritten = 0;
+
+      while(::WriteFile(f, &m_pchData[sWritten], 1024, &dwWritten, NULL))
+      {
+
+         if(dwWritten == 0)
+            break;
+
+         sWritten += dwWritten;
+
+      }
+
    }
 }
 

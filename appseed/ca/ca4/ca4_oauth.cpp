@@ -570,7 +570,7 @@ namespace ca4
    {
 
       string escaped;
-      int max = c.get_length();
+      count max = c.get_length();
       for(int i=0; i<max; i++)
       {
          if ( (48 <= c[i] && c[i] <= 57) ||//0-9
@@ -1027,7 +1027,7 @@ namespace ca4
 
       /* If URL itself contains ?key=value, then extract and put them in map */
 
-      int nPos = rawUrl.find( "?" );
+      index nPos = rawUrl.find( "?" );
       if(nPos >= 0)
       {
          /* Get only URL */
@@ -1124,7 +1124,7 @@ namespace ca4
 
             for(int i = 0; i < keyValueList.get_count(); i++)
             {
-               int iFind = keyValueList[i].find("=");
+               index iFind = keyValueList[i].find("=");
                if(iFind >= 0)
                {
                   str = urlencode(keyValueList[i].Left(iFind)) + "=" + urlencode(keyValueList[i].Mid(iFind+ 1));
@@ -1155,7 +1155,7 @@ namespace ca4
    {
       if( requestTokenResponse.get_length() > 0 )
       {
-         int nPos = -1;
+         index nPos = -1;
          string strDummy( "" );
 
          /* Get oauth_token key */

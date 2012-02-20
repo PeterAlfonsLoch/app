@@ -404,7 +404,8 @@ namespace user
       string strRoot;
       if(pcontext != NULL)
       {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+         int i;
+         for(i = 0; i < pcontext->param_locale_ex().get_count(); i++)
          {
             id & idStyle = pcontext->param_style_ex()[i];
             id & idLocale = pcontext->param_locale_ex()[i];
@@ -416,7 +417,7 @@ namespace user
                stra.add_unique(str);
          }
          bool bOk = true;
-         int i = 0;
+         i = 0;
          while(i < 32 && bOk)
          {
             bOk = false;

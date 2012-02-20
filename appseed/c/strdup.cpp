@@ -12,13 +12,13 @@ void strcpy_dup(char * dest, const char * cpy)
    *dest = '\0';
 }
 
-void strncpy_dup(char * dest, const char * cpy, int iLen)
+void strncpy_dup(char * dest, const char * cpy, count iLen)
 {
    while(*cpy != 0 && iLen-- > 0)
       *dest++ = *cpy++;
 }
 
-int  strlen_dup(const char * str)
+count  strlen_dup(const char * str)
 {
    if(str == NULL)
       return 0;
@@ -30,13 +30,18 @@ int  strlen_dup(const char * str)
 
 char * strdup_dup(const char * src)
 {
-   int iLen = strlen_dup(src);
+
+   count iLen = strlen_dup(src);
+
    char * dup = (char *) ca2_alloc(iLen + 1);
+
    strcpy_dup(dup, src);
+
    return dup;
+
 }
 
-char * strndup_dup(const char * src, int iLen)
+char * strndup_dup(const char * src, count iLen)
 {
    char * dup = (char *) ca2_alloc(iLen + 1);
    strncpy_dup(dup, src, iLen);

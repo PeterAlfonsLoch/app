@@ -683,12 +683,12 @@ namespace userbase
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
-      ASSERT(m_nIndex < m_nIndexMax);
+      ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle(m_nIndex) & ~SBPS_DISABLED;
+      UINT nNewStyle = pStatusBar->GetPaneStyle(m_iIndex) & ~SBPS_DISABLED;
       if (!bOn)
          nNewStyle |= SBPS_DISABLED;
-      pStatusBar->SetPaneStyle(m_nIndex, nNewStyle);
+      pStatusBar->SetPaneStyle(m_iIndex, nNewStyle);
    }
 
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
@@ -696,12 +696,12 @@ namespace userbase
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
-      ASSERT(m_nIndex < m_nIndexMax);
+      ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle(m_nIndex) & ~SBPS_POPOUT;
+      UINT nNewStyle = pStatusBar->GetPaneStyle(m_iIndex) & ~SBPS_POPOUT;
       if (echeck != check::unchecked)
          nNewStyle |= SBPS_POPOUT;
-      pStatusBar->SetPaneStyle(m_nIndex, nNewStyle);
+      pStatusBar->SetPaneStyle(m_iIndex, nNewStyle);
    }
 
    void CStatusCmdUI::SetText(const char * lpszText)
@@ -709,9 +709,9 @@ namespace userbase
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
-      ASSERT(m_nIndex < m_nIndexMax);
+      ASSERT(m_iIndex < m_iCount);
 
-      pStatusBar->SetPaneText(m_nIndex, lpszText);
+      pStatusBar->SetPaneText(m_iIndex, lpszText);
    }
 
 
@@ -719,11 +719,11 @@ namespace userbase
    {
       CStatusCmdUI state(get_app());
       state.m_pOther = this;
-      state.m_nIndexMax = (UINT)m_panea.get_count();
-      for (state.m_nIndex = 0; state.m_nIndex < state.m_nIndexMax;
-         state.m_nIndex++)
+      state.m_iCount = (UINT)m_panea.get_count();
+      for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount;
+         state.m_iIndex++)
       {
-         state.m_id = _GetPanePtr(state.m_nIndex)->id;
+         state.m_id = _GetPanePtr(state.m_iIndex)->id;
 
          // allow the statusbar itself to have update handlers
          if (::user::interaction::_001OnUpdateCmdUi(&state))

@@ -326,7 +326,7 @@ namespace visual
 
 
       ::ca::font_sp fontUnderline;
-      ::ca::font * pfont;
+//      ::ca::font * pfont;
 
 
       if(iUnderline >= 0)

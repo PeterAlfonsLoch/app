@@ -85,8 +85,8 @@ public:
    void reverse_implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
    string reverse_implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
 
-   void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
-   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, int iStart = 0, int iCount = -1);
+   void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, count iCount = -1);
+   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, count iCount = -1);
 
    comparable_array < id > get_comparable_ida() const;
 

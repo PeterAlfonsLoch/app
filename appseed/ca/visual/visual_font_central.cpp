@@ -335,25 +335,25 @@ void font_central::CreateLyricViewFonts()
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = lf.lfWidth * 0.90;
+   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = lf.lfWidth * 0.90;
+   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = lf.lfWidth * 0.90;
+   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = lf.lfWidth * 0.90;
+   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->CreateFontIndirect(&lf);
    pPlayerFont->OnSetFont();

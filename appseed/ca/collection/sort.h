@@ -252,7 +252,7 @@ namespace sort
    }
 
    typedef void (*ARG_SWAP_FUNCTION)(void * lpVoidSwapArg, const index, const index);
-   typedef index (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg, const index, const index);
+   typedef int (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg, const index, const index);
 
 
    void CLASS_DECL_ca QuickSort(

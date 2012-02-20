@@ -3,83 +3,85 @@
 namespace colorertake5
 {
 
-class file_type_impl;
+   class file_type_impl;
 
-/** Implementation of HRCParser.
-    Reads and mantains HRC database of syntax rules,
-    used by text_parser implementations to make
-    realtime text syntax parsing.
-    @ingroup colorer_parsers
-*/
-class CLASS_DECL_ca HRCParserImpl : public HRCParser
-{
-public:
-   HRCParserImpl(::ca::application * papp);
-  virtual ~HRCParserImpl();
+   /** Implementation of HRCParser.
+       Reads and mantains HRC database of syntax rules,
+       used by text_parser implementations to make
+       realtime text syntax parsing.
+       @ingroup colorer_parsers
+   */
+   class CLASS_DECL_ca HRCParserImpl : public HRCParser
+   {
+   public:
+      HRCParserImpl(::ca::application * papp);
+     virtual ~HRCParserImpl();
 
-  void setErrorHandler(ErrorHandler *eh);
+     void setErrorHandler(ErrorHandler *eh);
 
-  void loadSource(const char * pszSourceLocation, const char * pszSource);
-  file_type *getFileType(const char *name);
-  file_type *enumerateFileTypes(int index);
-  file_type *chooseFileType(const char *fileName, const char *firstLine, int typeNo = 0);
+     void loadSource(const char * pszSourceLocation, const char * pszSource);
+     file_type *getFileType(const char *name);
+     file_type *enumerateFileTypes(int index);
+     file_type *chooseFileType(const char *fileName, const char *firstLine, int typeNo = 0);
 
-  count getRegionCount();
-  class region *getRegion(int id);
-  class region* getRegion(const char *name);
+     count getRegionCount();
+     class region *getRegion(int id);
+     class region* getRegion(const char *name);
 
-  string getVersion();
+     string getVersion();
 
-protected:
-friend class file_type_impl;
+   protected:
+   friend class file_type_impl;
 
-  enum QualifyNameType { QNT_DEFINE, QNT_SCHEME, QNT_ENTITY };
+     enum QualifyNameType { QNT_DEFINE, QNT_SCHEME, QNT_ENTITY };
 
-  // types and packages
-  ::collection::string_map<file_type_impl *>       fileTypeHash;
-  // types, not packages
-  base_array<file_type_impl *>       fileTypeVector;
+     // types and packages
+     ::collection::string_map<file_type_impl *>       fileTypeHash;
+     // types, not packages
+     base_array<file_type_impl *>       fileTypeVector;
 
-  ::collection::string_map<scheme_impl *>          schemeHash;
-  ::collection::string_map<int>                   disabledSchemes;
+     ::collection::string_map<scheme_impl *>          schemeHash;
+     ::collection::string_map<int>                   disabledSchemes;
 
-  base_array<region *>   regionNamesVector;
-  ::collection::string_map<region *>   regionNamesHash;
-  string_to_string_map              schemeEntitiesHash;
+     base_array<region *>   regionNamesVector;
+     ::collection::string_map<region *>   regionNamesHash;
+     string_to_string_map              schemeEntitiesHash;
 
-  string versionName;
+     string versionName;
 
-  file_type_impl *parseType;
-  bool structureChanged;
-  bool updateStarted;
+     file_type_impl *parseType;
+     bool structureChanged;
+     bool updateStarted;
 
-  string m_strCurrentSourceLocation;
-  string m_strCurrentSource;
+     string m_strCurrentSourceLocation;
+     string m_strCurrentSource;
 
-  //DocumentBuilder docbuilder;
-  ErrorHandler *errorHandler;
+     //DocumentBuilder docbuilder;
+     ErrorHandler *errorHandler;
 
-  void loadFileType(file_type *filetype);
+     void loadFileType(file_type *filetype);
 
-  void parseHRC(const char * psz);
-  void addPrototype(xml::node *elem);
-  void addType(xml::node *elem);
+     void parseHRC(const char * psz);
+     void addPrototype(xml::node *elem);
+     void addType(xml::node *elem);
 
-  void addScheme(xml::node *elem);
-  void addSchemeNodes(scheme_impl *scheme, xml::node *elem);
+     void addScheme(xml::node *elem);
+     void addSchemeNodes(scheme_impl *scheme, xml::node *elem);
   
-  void loadBlockRegions(SchemeNode *node, xml::node *el);
-  void loadRegions(SchemeNode *node, xml::node *el, bool st);
+     void loadBlockRegions(SchemeNode *node, xml::node *el);
+     void loadRegions(SchemeNode *node, xml::node *el, bool st);
 
-  string qualifyOwnName(const char *name);
-  bool checkNameExist(const char *name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors);
-  string qualifyForeignName(const char *name, QualifyNameType qntype, bool logErrors);
+     string qualifyOwnName(const char *name);
+     bool checkNameExist(const char *name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors);
+     string qualifyForeignName(const char *name, QualifyNameType qntype, bool logErrors);
 
-  void updateLinks();
-  string useEntities(const char * name);
-  class region *getNCRegion(xml::node *el, const char * tag);
-  class region *getNCRegion(const char *name, bool logErrors);
-};
+     void updateLinks();
+     string useEntities(const char * name);
+     class region *getNCRegion(xml::node *el, const char * tag);
+     class region *getNCRegion(const char *name, bool logErrors);
+
+
+   };
 
 
 } // namespace colorertake5namespace colorertake5 

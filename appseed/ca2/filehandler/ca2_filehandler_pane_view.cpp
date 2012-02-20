@@ -146,7 +146,7 @@ namespace ca2
       void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
       {
 
-         application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
+//         application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
 
          if(pcreatordata->m_id.is_text())
          {

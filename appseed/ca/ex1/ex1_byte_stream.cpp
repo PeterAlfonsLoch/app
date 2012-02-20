@@ -176,7 +176,7 @@ namespace ex1
       }
       else if(id.m_chType == IDTYPE_TYPE_NUMBER)
       {
-         operator >> (id.m_ui);
+         operator >> (id.m_i);
       }
 
       return *this;
@@ -349,7 +349,7 @@ namespace ex1
       }
       else if(id.m_chType == IDTYPE_TYPE_NUMBER)
       {
-         operator << (id.m_ui);
+         operator << (id.m_i);
       }
 
       return *this;

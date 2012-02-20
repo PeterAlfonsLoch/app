@@ -80,8 +80,10 @@ string::string(wchar_t ch,strsize nLength) :
       //allocate enough characters in string and flood (replicate) with the (converted character)*nLength
       PXSTR pszBuffer = GetBuffer( nLength*ncharCharLen );
       if (ncharCharLen == 1)
-      {   //Optimization for a common case - wide char translates to 1 ansi/wide char.
-         string_trait::FloodCharacters( buffcharChar[0], nLength, pszBuffer );
+      {  
+         //Optimization for a common case - wide char translates to 1 ansi/wide char.
+         string_trait::FloodCharacters( ((const char *)buffcharChar)[0], nLength, pszBuffer );
+
       } else
       {
          XCHAR* p=pszBuffer;
@@ -89,7 +91,7 @@ string::string(wchar_t ch,strsize nLength) :
          {
             for (strsize j=0 ; j < ncharCharLen ;++j)
             {
-               *p=buffcharChar[j];
+               *p = ((char *)buffcharChar)[j];
                ++p;
             }
          }
@@ -934,12 +936,12 @@ string::string(strsize nLength, char ch) :
       return operator = (string(c, n));
    }
 
-   string & string::assign(strsize n, strsize c)
+   string & string::assign(int n, int c)
    {
       return assign((uint64) n, (uint64) c);
    }
 
-   string & string::assign(int64 n, int64 c)
+   string & string::assign(int64_t n, int64_t c)
    {
       return assign((uint64) n, (uint64) c);
    }
@@ -963,86 +965,86 @@ string::string(strsize nLength, char ch) :
 
    // Comparison
 
-   strsize string::Compare(PCXSTR psz ) const
+   int string::Compare(PCXSTR psz ) const
    {
       ATLENSURE( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCompare( GetString(), psz ) );
    }
 
-   strsize string::CompareNoCase(PCXSTR psz ) const throw()
+   int string::CompareNoCase(PCXSTR psz ) const throw()
    {
       ATLASSERT( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCompareIgnore( GetString(), psz ) );
    }
 
-   strsize string::Collate(PCXSTR psz ) const throw()
+   int string::Collate(PCXSTR psz ) const throw()
    {
       ATLASSERT( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCollate( GetString(), psz ) );
    }
 
-   strsize string::CollateNoCase(PCXSTR psz ) const throw()
+   int string::CollateNoCase(PCXSTR psz ) const throw()
    {
       ATLASSERT( _template::_template_is_valid_string( psz ) );
       return( string_trait::StringCollateIgnore( GetString(), psz ) );
    }
 
-   strsize string::compare(PCXSTR psz ) const
+   int string::compare(PCXSTR psz ) const
    {
       return Compare(psz);
    }
 
-   strsize string::compare_no_case(PCXSTR psz ) const throw()
+   int string::compare_no_case(PCXSTR psz ) const throw()
    {
       return CompareNoCase(psz);
    }
 
-   strsize string::collate(PCXSTR psz ) const throw()
+   int string::collate(PCXSTR psz ) const throw()
    {
       return Collate(psz);
    }
 
-   strsize string::collate_no_case(PCXSTR psz ) const throw()
+   int string::collate_no_case(PCXSTR psz ) const throw()
    {
       return CollateNoCase(psz);
    }
 
-   strsize string::compare(strsize iStart, strsize nCount, PCXSTR psz ) const
+   int string::compare(strsize iStart, strsize nCount, PCXSTR psz ) const
    {
       return substr(iStart, nCount).compare(psz);
    }
 
-   strsize string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
+   int string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
    {
       return substr(iStart, nCount).compare_no_case(psz);
    }
 
-   strsize string::collate(strsize iStart, strsize nCount, PCXSTR psz ) const
+   int string::collate(strsize iStart, strsize nCount, PCXSTR psz ) const
    {
       return substr(iStart, nCount).collate(psz);
    }
 
-   strsize string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
+   int string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
    {
       return substr(iStart, nCount).compare_no_case(psz);
    }
 
-   strsize string::compare(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   int string::compare(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
    {
       return substr(iStart, nCount).compare(string(psz).substr(start2, count2));
    }
 
-   strsize string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   int string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
    {
       return substr(iStart, nCount).compare_no_case(string(psz).substr(start2, count2));
    }
 
-   strsize string::collate(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   int string::collate(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
    {
       return substr(iStart, nCount).collate(string(psz).substr(start2, count2));
    }
 
-   strsize string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+   int string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
    {
       return substr(iStart, nCount).collate_no_case(string(psz).substr(start2, count2));
    }
@@ -1058,7 +1060,7 @@ string::string(strsize nLength, char ch) :
       return find_w(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
    }
 
-   bool string::contains(strsize i, strsize iStart, strsize nCount) // utf8 char index
+   bool string::contains(int i, strsize iStart, strsize nCount) // utf8 char index
    {
       return find_w(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
    }
@@ -1083,7 +1085,7 @@ string::string(strsize nLength, char ch) :
       return find_wci(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
    }
 
-   bool string::contains_ci(strsize i, strsize iStart, strsize nCount) // utf8 char index
+   bool string::contains_ci(int i, strsize iStart, strsize nCount) // utf8 char index
    {
       return find_wci(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
    }
@@ -1103,7 +1105,7 @@ string::string(strsize nLength, char ch) :
       return find_wci(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
    }
 
-   bool string::contains_wci(strsize i, strsize iStart, strsize nCount) // utf8 char index
+   bool string::contains_wci(int i, strsize iStart, strsize nCount) // utf8 char index
    {
       return find_wci(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
    }

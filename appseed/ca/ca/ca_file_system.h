@@ -116,7 +116,7 @@ namespace ca
 
          string as_string(var varFile, ::ca::application * papp);
          string as_string(var varFile, var & varQuery, ::ca::application * papp);
-         void as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp);
+         void as_memory(var varFile, primitive::base_memory & mem, ::ca::application * papp);
          void lines(stringa & stra, var varFile, ::ca::application * papp);
 
          bool put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp);

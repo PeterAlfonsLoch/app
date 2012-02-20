@@ -464,7 +464,7 @@ int ISO_WN(int  y, int m, int d )
       string strFormat(psz);
       string str;
       class time time(timeParam);
-      int iFind = strFormat.find("%V");
+      index iFind = strFormat.find("%V");
       if(iFind >= 0)
       {
          string strV;

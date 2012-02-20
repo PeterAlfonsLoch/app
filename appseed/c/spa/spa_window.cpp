@@ -188,17 +188,20 @@ void window::OnPaint()
 
 }
 
-   void window::OnTimer(UINT nIDEvent)
+#ifdef WINDOWS
+
+   void window::OnTimer(UINT_PTR nIDEvent)
    {
+
       if(nIDEvent == 184)
       {
          HDC hdc = ::GetWindowDC(m_hwnd);
          OnPaint(hdc, NULL);
          ::ReleaseDC(m_hwnd, hdc);
       }
+
    }
 
-#ifdef WINDOWS
    LRESULT window::window_proc(UINT message, WPARAM wparam, LPARAM lparam)
    {
 	   switch (message)

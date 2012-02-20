@@ -76,7 +76,9 @@ CRegExp::~CRegExp()
 
 EError CRegExp::setRELow(const char * expr)
 {
-  int len = gen::str::ilen(expr);
+  
+   strsize len = gen::str::ilen(expr);
+
   if (!len) return EERROR;
 
   if (tree_root) delete tree_root;
@@ -91,9 +93,9 @@ EError CRegExp::setRELow(const char * expr)
 
   bool ok = false;
   ignoreCase = extend = singleLine = multiLine = false;
-  for (int i = len-1; i >= start && !ok; i--)
+  for (strsize i = len-1; i >= start && !ok; i--)
   if (expr[i] == '/'){
-    for (int j = i+1; j < len; j++){
+    for (strsize j = i+1; j < len; j++){
       if (expr[j] == 'i') ignoreCase = true;
       if (expr[j] == 'x') extend = true;
       if (expr[j] == 's') singleLine = true;
@@ -113,7 +115,7 @@ EError CRegExp::setRELow(const char * expr)
 
   string strMid = string(expr).Mid(start, len);
   len = strMid.get_length();
-  int endPos;
+  strsize endPos;
   EError err = setStructs(tree_root->un.param, strMid, endPos);
   if (endPos != len) err = EBRACKETS;
 
@@ -154,7 +156,7 @@ SRegInfo *next = tree_root;
   };
 };
 
-EError CRegExp::setStructs(SRegInfo *&re, const char * expr, int &retPos)
+EError CRegExp::setStructs(SRegInfo *&re, const char * expr, strsize &retPos)
 {
 SRegInfo *next, *temp;
 
@@ -163,7 +165,7 @@ SRegInfo *next, *temp;
   retPos = -1;
 
   next = re;
-  for(int i = 0; i < gen::str::ilen(expr); i++){
+  for(strsize i = 0; i < gen::str::ilen(expr); i++){
     // simple character
     if (extend && gen::ch::is_whitespace(&expr[i])) continue;
     // context return
@@ -181,7 +183,7 @@ SRegInfo *next, *temp;
     // Escape symbol
     if (expr[i] == '\\'){
       string br_name;
-      int blen;
+      strsize blen;
       switch (expr[i+1]){
         case 'd':
           next->op = ReMetaSymb;
@@ -267,7 +269,7 @@ SRegInfo *next, *temp;
           next->op = ReBkBrack;
           next->param0 = (int) gen::str::get_hex(&expr[i+1]);
           if (next->param0 < 0 || next->param0 > 9){
-            int retEnd;
+            index retEnd;
             next->op = ReSymb;
             next->un.symbol = 
                new string(
@@ -379,11 +381,11 @@ SRegInfo *next, *temp;
 
     // {n,m}
     if (expr[i] == '{'){
-      int st = i+1;
-      int en = -1;
-      int comma = -1;
+      strsize st = i+1;
+      strsize en = -1;
+      strsize comma = -1;
       bool nonGreedy = false;
-      int j;
+      strsize j;
       for (j = i; j < gen::str::ilen(expr); j++){
         if (gen::str::ilen(expr) > j+1 && expr[j] == '}' && expr[j+1] == '?'){
           en = j;
@@ -426,7 +428,7 @@ SRegInfo *next, *temp;
         string br_name;
         if(!gen::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return EBRACKETS;
         
-        int blen = br_name.get_length();
+        strsize blen = br_name.get_length();
         if (blen == 0){
           next->param0 = -1;
         }else{
@@ -454,7 +456,7 @@ SRegInfo *next, *temp;
       };
       next->un.param = new SRegInfo;
       next->un.param->parent = next;
-      int endPos;
+      strsize endPos;
       EError err = setStructs(next->un.param, string(&((const char *)expr)[i]), endPos);
       if (endPos == gen::str::ilen(expr)-i) return EBRACKETS;
       if (err) return err;
@@ -463,8 +465,9 @@ SRegInfo *next, *temp;
     };
 
     // [] [^]
-    if (expr[i] == '['){
-      int endPos;
+    if (expr[i] == '[')
+    {
+      strsize endPos;
       gen::ch_class *cc = gen::ch_class::createCharClass(expr, i, &endPos);
       if (cc == NULL) return EENUM;
 //      next->op = (exprn[i] == ReEnumS) ? ReEnum : ReNEnum;
@@ -592,17 +595,17 @@ SRegInfo *next, *temp;
 // parsing
 ////////////////////////////////////////////////////////////////////////////
 
-bool CRegExp::isWordBoundary(int &toParse)
+bool CRegExp::isWordBoundary(strsize &toParse)
 {
-  int before = 0;
-  int after  = 0;
+  strsize before = 0;
+  strsize after  = 0;
   if (toParse < end && (gen::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse]) ||
       ((const char *)global_pattern)[toParse] == '_')) after = 1;
   if (toParse > 0 && (gen::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse-1]) ||
       ((const char *)global_pattern)[toParse-1] == '_')) before = 1;
   return before+after == 1;
 };
-bool CRegExp::isNWordBoundary(int &toParse)
+bool CRegExp::isNWordBoundary(strsize &toParse)
 {
   return !isWordBoundary(toParse);
 };
@@ -610,7 +613,7 @@ bool CRegExp::isNWordBoundary(int &toParse)
 
 
 
-bool CRegExp::checkMetaSymbol(EMetaSymbols symb, int &toParse)
+bool CRegExp::checkMetaSymbol(EMetaSymbols symb, strsize &toParse)
 {
 const string &pattern = global_pattern;
 
@@ -705,9 +708,9 @@ const string &pattern = global_pattern;
   };
 }
 
-bool CRegExp::lowParse(SRegInfo *re, SRegInfo *prev, int toParse)
+bool CRegExp::lowParse(SRegInfo *re, SRegInfo *prev, strsize toParse)
 {
-int i, sv, wlen;
+strsize i, sv, wlen;
 bool leftenter = true;
 const string pattern = global_pattern;
 
@@ -937,7 +940,7 @@ const string pattern = global_pattern;
   return true;
 };
 
-inline bool CRegExp::quickCheck(int toParse)
+inline bool CRegExp::quickCheck(strsize toParse)
 {
   if (firstChar != -1){
     if (toParse >= end) return false;
@@ -963,16 +966,16 @@ inline bool CRegExp::quickCheck(int toParse)
   return true;
 };
 
-inline bool CRegExp::parseRE(int pos)
+inline bool CRegExp::parseRE(strsize pos)
 {
   if (error) return false;
 
-  int toParse = pos;
+  strsize toParse = pos;
 
   if (!positionMoves && (firstChar != -1 || firstMetaChar != ReBadMeta) && !quickCheck(toParse))
     return false;
 
-  int i;
+  strsize i;
   for (i = 0; i < cMatch; i++)
     matches->s[i] = matches->e[i] = -1;
   matches->cMatch = cMatch;
@@ -984,7 +987,7 @@ inline bool CRegExp::parseRE(int pos)
   return false;
 };
 
-bool CRegExp::parse(string str, int pos, int eol, SMatches *mtch
+bool CRegExp::parse(string str, strsize pos, int eol, SMatches *mtch
 , PMatchHash nmtch
 , int soScheme, int posMoves)
 {

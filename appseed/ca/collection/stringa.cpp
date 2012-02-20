@@ -5,7 +5,7 @@
 AFX_STATIC UINT _AfxReadStringLength(ex1::byte_input_stream & ar);
 
 stringa::stringa(::ca::application * papp) :
-   ca(papp)
+ca(papp)
 {
 }
 
@@ -88,29 +88,29 @@ void stringa::get_format_string(string & str, const char * lpcszSeparator) const
 
 /*void stringa::XFV001Expand()
 {
-   stringa strArray;
-   dword_array dwa;
-   for(int i = 0; i < m_nSize; i++)
-   {
-      strArray.add_tokens(get_at(i), "/", FALSE);
-      if(strArray.get_size() > 1)
-      {
-         for(int j = 0; j < strArray.get_size(); j++)
-         {
-            add_unique(strArray.get_at(j));
-         }
-         if(strArray.get_size() > 1)
-         {
-            dwa.add(i);
-         }
-      }
-      strArray.remove_all();
-   }
-   for(i = dwa.get_size(); --i >= 0 ;)
-   {
-      remove_at(dwa.get_at(i));
-   }
-   Sort(stringa::Compare);
+stringa strArray;
+dword_array dwa;
+for(int i = 0; i < m_nSize; i++)
+{
+strArray.add_tokens(get_at(i), "/", FALSE);
+if(strArray.get_size() > 1)
+{
+for(int j = 0; j < strArray.get_size(); j++)
+{
+add_unique(strArray.get_at(j));
+}
+if(strArray.get_size() > 1)
+{
+dwa.add(i);
+}
+}
+strArray.remove_all();
+}
+for(i = dwa.get_size(); --i >= 0 ;)
+{
+remove_at(dwa.get_at(i));
+}
+Sort(stringa::Compare);
 
 }*/
 
@@ -360,58 +360,60 @@ count stringa::remove_empty()
 
 LPTSTR stringa::GetFormatV004()
 {
-    int iTotalLength = 0;
-    int i;
 
-    for(i = 0; i < m_nSize; i++)
-    {
-        iTotalLength += this->element_at(i).get_length();
-        iTotalLength++;
-    }
+   strsize iTotalLength = 0;
 
-    if(iTotalLength == 0)
-    {
-        iTotalLength = 2;
-    }
-    else
-    {
-        iTotalLength++;
-    }
+   strsize i;
 
-    LPTSTR lpsz = (LPTSTR) malloc(iTotalLength * sizeof(char));
+   for(i = 0; i < m_nSize; i++)
+   {
+      iTotalLength += this->element_at(i).get_length();
+      iTotalLength++;
+   }
 
-    memset(lpsz, 0x00, iTotalLength * sizeof(char));
+   if(iTotalLength == 0)
+   {
+      iTotalLength = 2;
+   }
+   else
+   {
+      iTotalLength++;
+   }
 
-    LPTSTR lpszN = lpsz;
+   LPTSTR lpsz = (LPTSTR) malloc(iTotalLength * sizeof(char));
 
-//    size_t sizet;
+   memset(lpsz, 0x00, iTotalLength * sizeof(char));
 
-    int iLength;
+   LPTSTR lpszN = lpsz;
+
+   strsize iLength;
 
 
-    for(i = 0; i < m_nSize; i++)
-    {
-        string * pstr = &this->element_at(i);
+   for(i = 0; i < m_nSize; i++)
+   {
 
-        iLength = pstr->get_length();
-        strcat_s(lpszN, iLength, *pstr);
+      string * pstr = &this->element_at(i);
 
-        iLength = _tcsnbcnt(lpszN, iLength);
+      iLength = pstr->get_length();
 
-        lpszN = (LPTSTR) ((LPBYTE)lpszN) + iLength + sizeof(char);
+      strcat_s(lpszN, iLength, *pstr);
 
-    }
+      iLength = _tcsnbcnt(lpszN, iLength);
 
-    if(iTotalLength == 2)
-    {
-        memset(lpsz, 0x00, iTotalLength * sizeof(char));
-    }
-    else
-    {
-        memset(lpszN, 0x00, sizeof(char));
-    }
+      lpszN = (LPTSTR) ((LPBYTE)lpszN) + iLength + sizeof(char);
 
-    return lpsz;
+   }
+
+   if(iTotalLength == 2)
+   {
+      memset(lpsz, 0x00, iTotalLength * sizeof(char));
+   }
+   else
+   {
+      memset(lpszN, 0x00, sizeof(char));
+   }
+
+   return lpsz;
 
 
 
@@ -439,88 +441,88 @@ stringa & stringa::operator =(const int64_array & ia)
 
 /*int stringa::CountPrefixNoCase(const char * lpcszPrefix)
 {
-   string str;
-   if(lpcszPrefix != NULL)
-      str = lpcszPrefix;
-   if(str.is_empty())
-   {
-      return this->get_size();
-   }
-   else
-   {
-      int iCount = 0;
-      int iLen = str.get_length();
-      for(int i = 0; i < this->get_size(); i++)
-      {
-         string & strLeft = this->element_at(i).Left(iLen);
-         if(strLeft.get_length() == iLen)
-         {
-            if(CompareNoCase(strLeft, str) == 0)
-            {
-               iCount++;
-            }
-         }
-      }
-      return iCount;
-   }
+string str;
+if(lpcszPrefix != NULL)
+str = lpcszPrefix;
+if(str.is_empty())
+{
+return this->get_size();
+}
+else
+{
+int iCount = 0;
+int iLen = str.get_length();
+for(int i = 0; i < this->get_size(); i++)
+{
+string & strLeft = this->element_at(i).Left(iLen);
+if(strLeft.get_length() == iLen)
+{
+if(CompareNoCase(strLeft, str) == 0)
+{
+iCount++;
+}
+}
+}
+return iCount;
+}
 }*/
 
 /*void stringa::ExtractPrefixNoSortNoCase(
-   stringa &stra,
-   const char * lpcsz,
-   int iLength,
-   int iMinLength)
+stringa &stra,
+const char * lpcsz,
+int iLength,
+int iMinLength)
 {
-   ASSERT(iLength >= iMinLength);
-   remove_all();
-   string str;
-   if(lpcsz != NULL)
-      str = lpcsz;
-   if(str.is_empty())
-   {
-      for(int i = 0; i < stra.get_size(); i++)
-      {
-         string & strMid = stra[i].Left(iLength);
-         if(strMid.get_length() >= iMinLength)
-         {
-            if(FindFirstNoSortNoCase(strMid) < 0)
-            {
-               add(strMid);
-            }
-         }
-      }
-   }
-   else
-   {
-      int iLen = max(str.get_length(), iMinLength);
-      for(int i = 0; i < stra.get_size(); i++)
-      {
-         string & strMid = stra[i].Left(iLength);
-         if(strMid.get_length() >= iLen)
-         {
-            if(CompareNoCase(strMid.Left(iLen), str) == 0)
-            {
-               if(FindFirstNoSortNoCase(strMid) < 0)
-               {
-                  add(strMid);
-               }
-            }
-         }
-      }
-   }
+ASSERT(iLength >= iMinLength);
+remove_all();
+string str;
+if(lpcsz != NULL)
+str = lpcsz;
+if(str.is_empty())
+{
+for(int i = 0; i < stra.get_size(); i++)
+{
+string & strMid = stra[i].Left(iLength);
+if(strMid.get_length() >= iMinLength)
+{
+if(FindFirstNoSortNoCase(strMid) < 0)
+{
+add(strMid);
+}
+}
+}
+}
+else
+{
+int iLen = max(str.get_length(), iMinLength);
+for(int i = 0; i < stra.get_size(); i++)
+{
+string & strMid = stra[i].Left(iLength);
+if(strMid.get_length() >= iLen)
+{
+if(CompareNoCase(strMid.Left(iLen), str) == 0)
+{
+if(FindFirstNoSortNoCase(strMid) < 0)
+{
+add(strMid);
+}
+}
+}
+}
+}
 
 }
 
 int stringa::FindFirstNoSortNoCase(const char * lpcsz)
 {
-   for(int i = 0; i < this->get_size(); i++)
-   {
-      if(CompareNoCase(lpcsz, this->element_at(i)) == 0)
-      {
-         return i;
-      }
-   }
-   return -1;
+for(int i = 0; i < this->get_size(); i++)
+{
+if(CompareNoCase(lpcsz, this->element_at(i)) == 0)
+{
+return i;
+}
+}
+return -1;
 }
 */
 
@@ -577,7 +579,7 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
       // read new data
       if (ar.read(lpBuf, nByteLen) != nByteLen)
       {
-      //   AfxThrowArchiveException(CArchiveException::endOfFile);
+         //   AfxThrowArchiveException(CArchiveException::endOfFile);
       }
 
       // convert the data if as necessary
@@ -599,7 +601,7 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
 
 ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string & string)
 {
-    if (string.get_length() < 255)
+   if (string.get_length() < 255)
    {
       ar << (BYTE)string.get_length();
    }
@@ -735,46 +737,67 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 }
 
 
-void stringa::surround(const char * pszPrefix, const char * pszSuffix, int iStart, int iCount)
+void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
 {
+   
    string strPrefix(pszPrefix);
+   
    string strSuffix(pszSuffix);
-   int iEnd;
+   
+   strsize iEnd;
+
    if(iStart < 0)
       iStart = this->get_size() + iStart;
+
    if(iCount < 0)
       iEnd = this->get_size() + iCount;
    else
       iEnd = iStart + iCount - 1;
-   for(int i = iStart; i <= iEnd; i++)
+
+   for(index i = iStart; i <= iEnd; i++)
    {
+
       this->element_at(i) = strPrefix + this->element_at(i) + strSuffix;
+
    }
+
 }
 
-string stringa::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, int iStart, int iCount)
+string stringa::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
 {
    string str;
    string strSeparator(pszSeparator);
    string strPrefix(pszPrefix);
    string strSuffix(pszSuffix);
-   int iEnd;
+   
+   index iEnd;
+
    if(iStart < 0)
       iStart = this->get_size() + iStart;
+
    if(iCount < 0)
       iEnd = this->get_size() + iCount;
    else
       iEnd = iStart + iCount - 1;
+
    if(iStart <= iEnd)
    {
+      
       str = strPrefix + this->element_at(iStart) + strSuffix;
+      
       iStart++;
-      for(int i = iStart; i <= iEnd; i++)
+
+      for(index i = iStart; i <= iEnd; i++)
       {
+
          str += strSeparator + strPrefix + this->element_at(i) + strSuffix;
+
       }
+
    }
+
    return str;
+
 }
 
 stringa & stringa::operator -=(const string_array & stra)

@@ -8,18 +8,22 @@ namespace gen
    class CLASS_DECL_ca base64 :
       virtual public ::radix::object
    {
-
-   public:
-      base64();
-      virtual ~base64();
-
    protected:
+
+
       unsigned char etable[256];
       unsigned char dtable[256];
 
+
    public:
+
+
+      base64();
+      virtual ~base64();
+
+
       void encode(ex1::plain_text_output_stream & ostreamBase64, ex1::byte_input_stream & istreamBinary);
-      string encode(primitive::memory_base & storageBinary);
+      string encode(primitive::base_memory & storageBinary);
       string encode(byte * p, count c);
       string encode(const char * psz);
       string serialize(ex1::byte_serializable & serializable);

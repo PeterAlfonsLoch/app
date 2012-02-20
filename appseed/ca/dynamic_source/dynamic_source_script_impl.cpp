@@ -2059,7 +2059,7 @@ namespace dynamic_source
       strCandidate += strParamLocale;
       strCandidate += "/";
       strCandidate += strLoad;
-      dprint("(3)lang/{\$l_subdomain_modifier}\$param_locale/\$param_locale/\$load_stringtable=" + strCandidate + "<br>");
+      dprint("(3)lang/{\\$l_subdomain_modifier}\\$param_locale/\\$param_locale/\\$load_stringtable=" + strCandidate + "<br>");
       strPath = real_path(strCandidate);
       if(strPath.has_char())
       {
@@ -2082,7 +2082,7 @@ namespace dynamic_source
       strCandidate += strParamStyle;
       strCandidate += "/";
       strCandidate += strLoad;
-      dprint("(4)lang/{\$l_subdomain_modifier}\$param_locale/\$param_style/\$load_stringtable="+ strCandidate + "<br>");
+      dprint("(4)lang/{\\$l_subdomain_modifier}\\$param_locale/\\$param_style/\\$load_stringtable="+ strCandidate + "<br>");
       strPath = real_path(strCandidate);
       if(strPath.has_char())
       {
@@ -4382,9 +4382,13 @@ ok1:
 
    primitive::memory script_impl::ob_get_clean()
    {
-      class primitive::memory memory = *m_pinstanceMain->m_memoryfileaPrint.last_element().get_memory();
+
+      class primitive::memory memory = *m_pinstanceMain->m_memoryfileaPrint.last_element().get_primitive_memory();
+
       m_pinstanceMain->m_memoryfileaPrint.remove_at(m_pinstanceMain->m_memoryfileaPrint.get_upper_bound());
+
       return memory;
+
    }
 
 

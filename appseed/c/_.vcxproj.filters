@@ -197,9 +197,6 @@
     <ClInclude Include="spa\spa_trace.h">
       <Filter>Header Files\spa</Filter>
     </ClInclude>
-    <ClInclude Include="_heap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="_libct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -298,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="windows\c_os_internal.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="c_heap.h">
+      <Filter>Header Files\C Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

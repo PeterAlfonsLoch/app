@@ -197,7 +197,7 @@ var::~var()
    }
 }
 
-int var::get_length() const
+strsize var::get_length() const
 {
    return get_string().get_length();
 }
@@ -3465,4 +3465,79 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
       str += pszJson;
       throw str;
    }
+}
+
+
+
+bool var::is_numeric() const
+{
+   
+   switch(get_type())
+   {
+      case type_parareturn:
+      case type_new:
+      case type_null:
+      case type_empty:
+      case type_empty_argument:
+         return false;
+
+      case type_string: // may be improved MBI
+         return false;
+
+      case type_pstring: // may be improved MBI
+         return false;
+
+      case type_integer:
+      case type_pinteger:
+      case type_ulong:
+         return true;
+
+      case type_pvar:
+         return m_pvar->is_numeric();
+
+      case type_ca2:
+         return false;
+
+      case type_bool:
+      case type_pbool:
+         return false;
+
+      case type_double:
+         return true;
+
+      case type_stra:
+      case type_inta:
+      case type_vara:
+      case type_propset:
+      case type_prop:
+      case type_memory:
+         return false;
+
+      case type_int64:
+      case type_pint64:
+      case type_uint64:
+      case type_puint64:
+         return true;
+
+      case type_time:
+      case type_filetime:
+         return false;
+
+      case type_uint:
+         return true;
+
+      case type_id:
+         return m_id.is_number();
+
+      case type_pid:
+         return m_pid->is_number();
+
+      case type_int64a:
+         return false;
+
+      default:
+         throw not_implemented_exception();
+
+   };
+
 }

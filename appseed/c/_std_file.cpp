@@ -377,8 +377,13 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 
 			if (i > startpos)
 			{
-				WriteFile(hFile, &src[startpos], i-startpos, &bw2, 0);
-				bw += bw2;
+            size_t dwWritten = 0;
+            while(i - startpos - dwWritten > 0)
+            {
+				   WriteFile(hFile, &src[startpos + dwWritten], (DWORD) min(1024, i - startpos - dwWritten), &bw2, 0);
+               bw += bw2;
+               dwWritten += bw2;
+            }
 			}
 
 			const char *crlf = "\r\n";
@@ -388,15 +393,27 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 			startpos = i+1;
 		}
 
-		if (i > startpos)
-		{
-			WriteFile(hFile, &src[startpos], i-startpos, &bw2, 0);
-			bw += bw2;
-		}
+      size_t dwWritten = 0;
+      while(i - startpos - dwWritten > 0)
+      {
+			WriteFile(hFile, &src[startpos + dwWritten], (DWORD) min(1024, i - startpos - dwWritten), &bw2, 0);
+         bw += bw2;
+         dwWritten += bw2;
+      }
 	}
 	else
-		WriteFile(hFile, buffer, (DWORD)(size*count), &bw, 0);
-	return bw/size;
+   {
+      size_t s = size * count;
+		const char *src = (const char*)buffer;
+      size_t dwWritten = 0;
+      while(s - dwWritten > 0)
+      {
+			WriteFile(hFile, &src[dwWritten], (DWORD) min(1024, s - dwWritten), &bw2, 0);
+         bw += bw2;
+         dwWritten += bw2;
+      }
+   }
+	return bw / size;
 
 #else
 

@@ -101,7 +101,7 @@ namespace hotplugin
       return m_countMemory;
    }
 
-   int  host::read_memory(void * puchMemory, count c)
+   count host::read_memory(void * puchMemory, count c)
    {
       if(c > m_countMemory)
          c = m_countMemory;

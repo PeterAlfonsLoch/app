@@ -280,7 +280,7 @@ namespace md5
 
    void md5::update(void *data, size_t size)
    {
-	   uint4 saved_lo;
+	   size_t saved_lo;
 	   unsigned long used, free;
 
 	   saved_lo = m_ctx.lo;
@@ -333,14 +333,14 @@ namespace md5
 	   memset_dup(&m_ctx.buffer[used], 0, free - 8);
 
 	   m_ctx.lo <<= 3;
-	   m_ctx.buffer[56] = m_ctx.lo;
-	   m_ctx.buffer[57] = m_ctx.lo >> 8;
-	   m_ctx.buffer[58] = m_ctx.lo >> 16;
-	   m_ctx.buffer[59] = m_ctx.lo >> 24;
-	   m_ctx.buffer[60] = m_ctx.hi;
-	   m_ctx.buffer[61] = m_ctx.hi >> 8;
-	   m_ctx.buffer[62] = m_ctx.hi >> 16;
-	   m_ctx.buffer[63] = m_ctx.hi >> 24;
+	   m_ctx.buffer[56] = (uchar) (m_ctx.lo);
+	   m_ctx.buffer[57] = (uchar) (m_ctx.lo >> 8);
+	   m_ctx.buffer[58] = (uchar) (m_ctx.lo >> 16);
+	   m_ctx.buffer[59] = (uchar) (m_ctx.lo >> 24);
+	   m_ctx.buffer[60] = (uchar) (m_ctx.hi);
+	   m_ctx.buffer[61] = (uchar) (m_ctx.hi >> 8);
+	   m_ctx.buffer[62] = (uchar) (m_ctx.hi >> 16);
+	   m_ctx.buffer[63] = (uchar) (m_ctx.hi >> 24);
 
 	   body(m_ctx.buffer, 64);
 

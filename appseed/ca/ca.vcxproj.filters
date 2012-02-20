@@ -713,9 +713,6 @@
     <ClInclude Include="primitive\size.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\var.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -3388,6 +3385,12 @@
     </ClInclude>
     <ClInclude Include="install\install_install.h">
       <Filter>Header Files\install</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_string.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_gen_str.h">
+      <Filter>Header Files\plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

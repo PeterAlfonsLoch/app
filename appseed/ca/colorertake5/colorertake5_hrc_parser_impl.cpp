@@ -88,7 +88,7 @@ file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *first
    file_type_impl *best = NULL;
    double max_prior = 0;
    const double DELTA = 1e-6;
-   for(int idx = 0; idx < fileTypeVector.get_size(); idx++){
+   for(strsize idx = 0; idx < fileTypeVector.get_size(); idx++){
       file_type_impl *ret = fileTypeVector.element_at(idx);
       double prior = 0.0;
 //      const char * psz = ret->m_strSourceLocation;
@@ -175,7 +175,7 @@ void HRCParserImpl::parseHRC(const char * psz)
       globalUpdateStarted = true;
       updateStarted = true;
    };
-   for (int i = 0; i < types.get_children_count(); i++)
+   for (strsize i = 0; i < types.get_children_count(); i++)
    {
       xml::node *elem = types.child_at(i);
       if (elem->m_strName == "prototype"){
@@ -227,7 +227,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
       type->isPackage = true;
    }
 
-   for(int i = 0; i < elem->get_children_count(); i++)
+   for(strsize i = 0; i < elem->get_children_count(); i++)
    {
       xml::node *content = elem->child_at(i);
       if (content->m_strName == "location"){
@@ -279,7 +279,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
       }
       if (content->m_strName == "parameters")
       {
-         for(int i = 0; i < content->get_children_count(); i++)
+         for(strsize i = 0; i < content->get_children_count(); i++)
          {
             xml::node *param = content->child_at(i);
             if (param->m_strName == "param")
@@ -340,7 +340,7 @@ void HRCParserImpl::addType(xml::node *elem)
    file_type_impl *o_parseType = parseType;
    parseType = type;
 
-   for(int i = 0; i < elem->get_children_count(); i++){
+   for(strsize i = 0; i < elem->get_children_count(); i++){
       xml::node *xmlpar = elem->child_at(i);
       if(xmlpar->m_strName == "region"){
          string regionName = (xmlpar)->attr("name");
@@ -645,7 +645,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          next->type = SNT_KEYWORDS;
 
          for(xml::node *keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling()){
-            int type = 0;
+            strsize type = 0;
             if (keywrd->m_strName == "word") type = 1;
             if (keywrd->m_strName == "symb") type = 2;
             if (!type){
@@ -660,7 +660,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
             if ((keywrd)->attr("region"))
                rgn = getNCRegion(keywrd, string("region"));
 
-            int pos = next->kwList->num;
+            strsize pos = next->kwList->num;
             pIDs[pos].keyword = (param);
             pIDs[pos].region = rgn;
             pIDs[pos].isSymbol = (type == 2);
@@ -698,7 +698,7 @@ void HRCParserImpl::loadRegions(SchemeNode *node, xml::node *el, bool st)
          node->region = getNCRegion(el, string("region"));
       }
 
-      for(int i = 0; i < REGIONS_NUM; i++)
+      for(strsize i = 0; i < REGIONS_NUM; i++)
       {
          rg_tmpl[6] = (char) ((i < 0xA ? i : i+7+32) + '0');
 
@@ -711,7 +711,7 @@ void HRCParserImpl::loadRegions(SchemeNode *node, xml::node *el, bool st)
       }
    }
    /*
-   for (int i = 0; i < NAMED_REGIONS_NUM; i++)
+   for (strsize i = 0; i < NAMED_REGIONS_NUM; i++)
    {
    if(st) node->regionsn[i] = getNCRegion(node->start->getBracketName(i), false);
    else   node->regionen[i] = getNCRegion(node->end->getBracketName(i), false);
@@ -721,7 +721,7 @@ void HRCParserImpl::loadRegions(SchemeNode *node, xml::node *el, bool st)
 
 void HRCParserImpl::loadBlockRegions(SchemeNode *node, xml::node *el)
 {
-   int i;
+   strsize i;
    static char rg_tmpl[0x10] = "region";
 
    node->region = getNCRegion(el, string("region"));
@@ -746,7 +746,7 @@ void HRCParserImpl::updateLinks()
          if (!scheme->m_value->fileType->loadDone) continue;
          file_type_impl *old_parseType = parseType;
          parseType = scheme->m_value->fileType;
-         for (int sni = 0; sni < scheme->m_value->nodes.get_size(); sni++){
+         for (strsize sni = 0; sni < scheme->m_value->nodes.get_size(); sni++){
             SchemeNode *snode = scheme->m_value->nodes.element_at(sni);
             if (snode->schemeName != NULL && (snode->type == SNT_SCHEME || snode->type == SNT_INHERIT) && snode->scheme == NULL){
                string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
@@ -760,7 +760,7 @@ void HRCParserImpl::updateLinks()
                snode->schemeName.Empty();
             };
             if (snode->type == SNT_INHERIT){
-               for(int vti = 0; vti < snode->virtualEntryVector.get_size(); vti++){
+               for(strsize vti = 0; vti < snode->virtualEntryVector.get_size(); vti++){
                   VirtualEntry *vt = snode->virtualEntryVector.element_at(vti);
                   if (vt->virtScheme == NULL && vt->virtSchemeName.has_char()){
                      string vsn = qualifyForeignName(vt->virtSchemeName, QNT_SCHEME, true);
@@ -787,7 +787,7 @@ void HRCParserImpl::updateLinks()
 
 string HRCParserImpl::qualifyOwnName(const char * name) {
    if (name == NULL) return "";
-   int colon = string(name).find(':');
+   strsize colon = string(name).find(':');
    if (colon != -1){
       if (parseType && string(name, colon) != parseType->name){
          if (errorHandler != NULL) errorHandler->error(string("type name qualifer in '")+name+"' doesn't match type '"+parseType->name+"'");
@@ -818,7 +818,7 @@ bool HRCParserImpl::checkNameExist(const char * name, file_type_impl *parseType,
 };
 string HRCParserImpl::qualifyForeignName(const char * name, QualifyNameType qntype, bool logErrors){
    if (name == NULL) return "";
-   int colon = string(name).find(':');
+   strsize colon = string(name).find(':');
    if (colon != -1){ // qualified name
       string prefix(name, colon);
       file_type_impl *prefType = fileTypeHash[prefix];
@@ -831,7 +831,7 @@ string HRCParserImpl::qualifyForeignName(const char * name, QualifyNameType qnty
       if (prefType == parseType || prefType->typeLoaded)
          return checkNameExist(name, prefType, qntype, logErrors)?((name)):NULL;
    }else{ // unqualified name
-      for(int idx = -1; parseType != NULL && idx < parseType->importVector.get_size(); idx++){
+      for(strsize idx = -1; parseType != NULL && idx < parseType->importVector.get_size(); idx++){
          string tname = parseType->name;
          if (idx > -1) tname = parseType->importVector.element_at(idx);
          file_type_impl *importer = fileTypeHash[tname];
@@ -851,8 +851,8 @@ string HRCParserImpl::qualifyForeignName(const char * name, QualifyNameType qnty
 
 string HRCParserImpl::useEntities(const char * name)
 {
-   int copypos = 0;
-   int epos = 0;
+   strsize copypos = 0;
+   strsize epos = 0;
 
    if (!name) return "";
    string newname;
@@ -867,7 +867,7 @@ string HRCParserImpl::useEntities(const char * name)
          epos++;
          continue;
       };
-      int elpos = string(name).find(';', epos);
+      strsize elpos = string(name).find(';', epos);
       if (elpos == -1){
          epos = string(name).get_length();
          break;
@@ -905,7 +905,7 @@ class region* HRCParserImpl::getNCRegion(const char * name, bool logErrors)
    */
    if (reg != NULL){
       string name = reg->getName();
-      int idx = string(name).find(":default");
+      strsize idx = string(name).find(":default");
       if (idx != -1  && idx+8 == string(name).get_length()) return NULL;
    };
    return reg;

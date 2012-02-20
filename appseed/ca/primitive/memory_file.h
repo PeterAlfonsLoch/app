@@ -19,7 +19,7 @@ namespace primitive
       memory_file(::ca::application * papp, ::primitive::memory_size iSize = 0);
       memory_file(::ca::application * papp, void * pMemory, ::primitive::memory_size dwSize);
       memory_file(::ca::application * papp, const memory_file & memoryfile);
-      memory_file(::ca::application * papp, memory_base * pmemory);
+      memory_file(::ca::application * papp, base_memory * pmemory);
       virtual ~memory_file();
 
 
@@ -33,7 +33,7 @@ namespace primitive
 
       virtual string GetFilePath() const;
 
-      virtual ::primitive::memory_base * create_memory();
+      virtual ::primitive::base_memory * create_memory();
 
       void set_length(file_size dwNewLen);
       file_size get_length() const;

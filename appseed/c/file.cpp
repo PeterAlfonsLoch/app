@@ -96,13 +96,13 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
    HANDLE hfile = ::CreateFile(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
-   DWORD dwWrite;
+   count dwWrite;
    if(len < 0)
       dwWrite = strlen_dup(contents);
    else
       dwWrite = len;
    DWORD dwWritten = 0;
-   BOOL bOk = ::WriteFile(hfile, contents, dwWrite, &dwWritten, NULL);
+   BOOL bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL);
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
 

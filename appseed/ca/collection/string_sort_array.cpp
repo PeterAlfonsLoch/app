@@ -16,11 +16,11 @@ str_sort_array::~str_sort_array()
 void str_sort_array::Sort()
 {
    int (*fCompare)(const char *, const char *) = m_pfnCompare;
-   dword_array stackLowerBound;
-   dword_array stackUpperBound;
-   int iLowerBound;
-   int iUpperBound;
-   int iLPos, iUPos, iMPos;
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
    string str;
 
    if(this->get_size() >= 2)
@@ -91,7 +91,7 @@ index str_sort_array::SortFind(const char * lpcsz)
    if(!m_bSorted)
       Sort();
 
-   int iPos, iLoPos, iHiPos;
+   index iPos, iLoPos, iHiPos;
    int iCompare;
    iLoPos = 0;
    iHiPos = this->get_size() - 1;

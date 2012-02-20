@@ -31,11 +31,12 @@ struct KeywordInfo{
 /** List of keywords.
     @ingroup colorer_parsers
 */
-class KeywordList{
+class KeywordList
+{
 public:
   int num;
   int matchCase;
-  int minKeywordLength;
+  strsize minKeywordLength;
   gen::ch_class *firstChar;
   KeywordInfo *kwList;
   KeywordList();

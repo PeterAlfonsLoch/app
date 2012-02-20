@@ -10,28 +10,20 @@
 
 #ifdef WINDOWS
 
-#pragma section(".CRT$XCA", read, write)
+#pragma section(".CRT$XCA", read)
 #pragma data_seg(".CRT$XCA")		// start of ctor section
 _PVFV __xc_a[] = {0};
 
-#pragma section(".CRT$XCZ", read, write)
+#pragma section(".CRT$XCZ", read)
 #pragma data_seg(".CRT$XCZ")		// end of ctor section
 _PVFV __xc_z[] = {0};
 
 #pragma data_seg()
-#if _MSC_FULL_VER >= 140050214
-
 #pragma comment(linker, "/merge:.CRT=.rdata")
 
-#else  /* _MSC_FULL_VER >= 140050214 */
 
-#if defined (_M_IA64) || defined (_M_AMD64)
-#pragma comment(linker, "/merge:.CRT=.rdata")
-#else  /* defined (_M_IA64) || defined (_M_AMD64) */
-#pragma comment(linker, "/merge:.CRT=.data")
-#endif  /* defined (_M_IA64) || defined (_M_AMD64) */
 
-#endif  /* _MSC_FULL_VER >= 140050214 */
+
 BEGIN_EXTERN_C
 
 void _initterm(_PVFV *pfbegin, _PVFV *pfend)

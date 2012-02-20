@@ -36,7 +36,7 @@
 
 #include "_libct.h"
 
-#include "_heap.h"
+#include "c_heap.h"
 
 #include "std_file.h"
 

@@ -27,7 +27,7 @@ namespace gen
      Extensions (comparing to Perl):
      inner class substraction [{L}-[{Lu}]], addition [{L}[1234]], intersection [{L}&[{Lu}]]
    */
-   ch_class *ch_class::createCharClass(const char * ccs, int pos, int *retPos)
+   ch_class *ch_class::createCharClass(const char * ccs, strsize pos, strsize *retPos)
    {
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
@@ -128,7 +128,7 @@ namespace gen
                cc->add_class(cc_temp);
                break;
             default:
-               int retEnd;
+               index retEnd;
                prev_char = gen::str::uni_to_utf8(
                   gen::str::get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty()) 
@@ -143,7 +143,7 @@ namespace gen
          // substract -[class]
          if (natural(pos+1) < strlen(ccs) && ccs[pos] == '-' && ccs[pos+1] == '[')
          {
-            int retEnd;
+            strsize retEnd;
             ch_class * scc = createCharClass(ccs, pos+1, &retEnd);
             if(natural(retEnd) == strlen(ccs))
                return NULL;
@@ -161,7 +161,7 @@ namespace gen
          // intersect &&[class]
          if (natural(pos+2) < strlen(ccs) && ccs[pos] == '&' && ccs[pos+1] == '&' && ccs[pos+2] == '[')
          {
-            int retEnd;
+            strsize retEnd;
             ch_class *scc = createCharClass(ccs, pos+2, &retEnd);
             if(natural(retEnd) == strlen(ccs))
                return NULL;
@@ -179,7 +179,7 @@ namespace gen
          // add [class]
          if (ccs[pos] == '[')
          {
-            int retEnd;
+            strsize retEnd;
             ch_class *scc = createCharClass(ccs, pos, &retEnd);
             if(scc == NULL)
             {
@@ -192,19 +192,29 @@ namespace gen
             prev_char = BAD_WCHAR;
             continue;
          }
+         
          if(ccs[pos] == '-' && prev_char.has_char() && natural(pos+1) < strlen(ccs) && ccs[pos+1] != ']')
          {
-            int retEnd;
-            string nextc = gen::str::uni_to_utf8(
-               gen::str::get_escaped_char(ccs, pos+1, retEnd));
+            
+            index retEnd;
+            
+            string nextc = gen::str::uni_to_utf8(gen::str::get_escaped_char(ccs, pos+1, retEnd));
+
             if(nextc.is_empty())
                break;
+
             cc->add_range(prev_char, nextc);
+
             pos = retEnd;
+
             continue;
+
          }
+
          cc->add_char(gen::str::utf8_char(&ccs[pos]));
+
          prev_char = ccs[pos];
+
       }
       delete cc;
       return NULL;

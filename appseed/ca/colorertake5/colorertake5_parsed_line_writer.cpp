@@ -126,7 +126,9 @@ namespace colorertake5
       */
       void ParsedLineWriter::htmlRGBWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
       {
-         int pos = 0;
+         
+         index pos = 0;
+
          for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
          {
 
@@ -136,7 +138,7 @@ namespace colorertake5
             if (l1->start == l1->end)
                continue;
 
-            int end = l1->end;
+            index end = l1->end;
 
             if (end == -1)
                end = int(strlen(line));

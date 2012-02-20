@@ -106,7 +106,7 @@ int uni_to_utf8(char * psz, int w)
 }
 
 
-int utf16_len(const char * psz)
+count utf16_len(const char * psz)
 {
    if(psz == NULL)
       return -1;
@@ -131,12 +131,18 @@ void utf8_to_16(wchar_t * pwsz, const char * psz)
 
 WCHAR * utf8_to_16(const char * psz)
 {
-   int iCount = utf16_len(psz);
+   
+   count iCount = utf16_len(psz);
+
    if(iCount < 0)
       return NULL;
+
    WCHAR * pwz = new WCHAR[iCount + 1];
+
    utf8_to_16(pwz, psz);
+
    return pwz;
+
 }
 
 int utf8_len(const wchar_t * pwsz)

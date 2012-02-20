@@ -146,7 +146,7 @@ namespace hotplugin
       return 0;
    }
 
-   int plugin::read_memory(void * puchMemory, count c)
+   count plugin::read_memory(void * puchMemory, count c)
    {
       if(m_phost != NULL)
       {
@@ -229,30 +229,44 @@ double sin_dup(double x);
 
 double cos_dup(double x)
 {
-   float sin = sin_dup(x / 2.0);
-   return 1 - 2.0 * sin * sin;
+
+   double sin = sin_dup(x / 2.0);
+
+   return 1.0 - 2.0 * sin * sin;
+
 }
 
 double sin_dup(double x)
 {
+
    if(x < 0.0)
    {
+
       return -sin_dup(-x);
+
    }
    else if(x < 3.1415 / 16.0)
    {
-     double res=0.0, pow=x, fact=1.0;
-     for(double i=0; i<16.0; ++i)
-     {
-       res+=pow/fact;
-       pow*=x*x;
-       fact*=(2.0*(i+1.0))*(2.0*(i+1.0)+1.0);
-     }
-     return res;
+     
+      double sin = 0.0;
+      double pow = x;
+      double fact = 1.0;
+
+      for(double d = 0.0; d < 16.0; d += 1.0)
+      {
+         sin += pow / fact;
+         pow *= x * x;
+         fact *= (2.0 * (d + 1.0)) * (2.0 * (d + 1.0) + 1.0);
+      }
+
+      return sin;
+
    }
    else
    {
+
       return 2.0 * sin_dup(x / 2.0) * cos_dup(x / 2.0);
+
    }
 
 }
@@ -599,11 +613,13 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
          const int iLineCount = cy;
-         int iProgressLine = iLineCount * dRate;
+         int iProgressCount = max(min((int) (iLineCount * dRate), iLineCount), 0);
+
+         
 
          int iLine;
 
-         for(iLine = 0; iLine < iProgressLine; iLine++)
+         for(iLine = 0; iLine < iProgressCount; iLine++)
          {
             get_progress_color(uchR, uchG, uchB, (double) iLine / (double) iLineCount);
             Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));

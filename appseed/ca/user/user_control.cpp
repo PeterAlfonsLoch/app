@@ -513,7 +513,7 @@ namespace user
        ASSERT_KINDOF(::user::interaction, pwnd);
        //ASSERT(m_nIndex < m_nIndexMax);
 
-      ::user::interaction * pcontrol = pwnd->GetDlgItem(m_pcmdui->m_nIndex);
+      ::user::interaction * pcontrol = pwnd->GetDlgItem(m_pcmdui->m_idControl);
       control * pcontrolex = dynamic_cast < control * > (pcontrol);
       if(pcontrolex != NULL)
       {
@@ -636,7 +636,7 @@ namespace user
             id idControl = pwnd->GetDlgCtrlId();
 
    // xxx         state.m_nIndex = uiID;
-            state.m_nIndexMax = (UINT) -1;
+            state.m_iCount = -1;
             state.m_id = m_cmdui.GetControlCommand(idControl);
             state.m_bContinueRouting = FALSE;
 

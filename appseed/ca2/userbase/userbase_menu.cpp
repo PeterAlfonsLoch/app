@@ -447,9 +447,10 @@ namespace userbase
             cmdui.m_pitema          = m_pitem->m_spitema;
             for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
             {
-               cmdui.m_nIndex = i;
-               cmdui.m_id = m_pitem->m_spitema->ptr_at(i)->m_id;
-               cmdui.m_pOther = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
+
+               cmdui.m_iIndex    = i;
+               cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
+               cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
 
                ::user::interaction * pwndParent = m_hwndParent;
                if(pwndParent != NULL)
@@ -502,9 +503,10 @@ namespace userbase
          cmdui.m_pitema          = m_pitem->m_spitema;
          for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
          {
-            cmdui.m_nIndex = i;
-            cmdui.m_id = m_pitem->m_spitema->ptr_at(i)->m_id;
-            cmdui.m_pOther = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
+            
+            cmdui.m_iIndex    = i;
+            cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
+            cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
 
             ::user::interaction * pwndParent = m_hwndParent;
             if(pwndParent != NULL)

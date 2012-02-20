@@ -33,10 +33,10 @@ void stra_dup::remove_empty()
    }
 }
 
-int  stra_dup::remove(const char * psz)
+count  stra_dup::remove(const char * psz)
 {
-   int iCount = 0;
-   for(int ui = 0; ui < this->get_count();)
+   count iCount = 0;
+   for(index ui = 0; ui < this->get_count();)
    {
       if(this->element_at(ui) == psz)
       {
@@ -52,11 +52,11 @@ int  stra_dup::remove(const char * psz)
 }
 
 
-int  stra_dup::find_ci(const char * psz, int iStart)
+index  stra_dup::find_ci(const char * psz, index iStart)
 {
    if(iStart < 0)
       iStart = 0;
-   for(int ui = iStart; ui < this->get_count();)
+   for(index ui = iStart; ui < this->get_count();)
    {
       if(!stricmp_dup(this->element_at(ui), psz))
       {
@@ -70,9 +70,9 @@ int  stra_dup::find_ci(const char * psz, int iStart)
    return -1;
 }
 
-int  stra_dup::add_unique_ci(const char * psz)
+index  stra_dup::add_unique_ci(const char * psz)
 {
-   int iFind = find_ci(psz);
+   index iFind = find_ci(psz);
    if(iFind < 0)
    {
       add(psz);
@@ -87,20 +87,31 @@ int  stra_dup::add_unique_ci(const char * psz)
 
 void stra_dup::add_tokens(const char * psz, const char * pszSeparator)
 {
-	const char * pszPosBeg = psz;
+	
+   const char * pszPosBeg = psz;
+
 	const char * pszPosEnd;
-	int iLenSeparator = strlen_dup(pszSeparator);
+
+	count iLenSeparator = strlen_dup(pszSeparator);
+
 	vsstring str;
+
 	while(pszPosEnd = strstr_dup(pszPosBeg, pszSeparator))
 	{
+
 		str = vsstring(pszPosBeg, pszPosEnd - pszPosBeg);
-		add(str);
-		pszPosBeg = pszPosEnd + iLenSeparator;
+      add(str);
+      pszPosBeg = pszPosEnd + iLenSeparator;
+
 	}
-	if(pszPosBeg - psz == strlen_dup(psz))
+
+   if(pszPosBeg - psz == strlen_dup(psz))
 		return;
-	str = vsstring(pszPosBeg);
-	add(str);
+	
+   str = vsstring(pszPosBeg);
+	
+   add(str);
+
 }
 
 
@@ -192,10 +203,15 @@ bool stra_dup::spa_insert(const char * psz)
    str.trim();
    if(str.length() == 0)
       return false;
-   int iL = 0;
-   int iU = this->get_count();
-   int iM;
+
+   index iL = 0;
+
+   index iU = this->get_count();
+
+   index iM;
+
    int iCmp;
+
    while(true)
    {
       iM = (iL + iU) / 2;

@@ -24,8 +24,8 @@ public:
    void trim();
 
 
-    char & operator [] (int iIndex);
-    char operator [] (int iIndex) const;
+    char & operator [] (index iIndex);
+    char operator [] (index iIndex) const;
 
 
 
@@ -85,18 +85,18 @@ public:
    bool ends(const char * pszSuffix) const;
    bool ends(const verisimple_string & strSuffix) const;
 
-   verisimple_string substr(int offset, count count = -1) const;
+   verisimple_string substr(index offset, count count = -1) const;
 
-   int find(const char * pszFind, int iStart = 0) const;
-   int find(const verisimple_string & strFind, int iStart = 0) const;
+   index find(const char * pszFind, index iStart = 0) const;
+   index find(const verisimple_string & strFind, index iStart = 0) const;
    void replace(const char * pszFind, const char * pszReplace);
 
-   int find_ci(const char * pszFind, int iStart = 0) const;
-   int find_ci(const verisimple_string & strFind, int iStart = 0) const;
+   index find_ci(const char * pszFind, index iStart = 0) const;
+   index find_ci(const verisimple_string & strFind, index iStart = 0) const;
    void replace_ci(const char * pszFind, const char * pszReplace);
 
-   int rfind(char ch) const;
-   int rfind(char ch, int iStart) const;
+   index rfind(char ch) const;
+   index rfind(char ch, index iStart) const;
 
 
 

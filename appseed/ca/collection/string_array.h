@@ -92,7 +92,7 @@ public:
    void insert_at(index nStartIndex, const string_array & NewArray);
 
    void QuickSort(
-      void swap(void * lpVoidSwapArg, const DWORD, const DWORD) = NULL,
+      void swap(void * lpVoidSwapArg, const index, const index) = NULL,
       void * lpvoidSwapArg = NULL,
       bool bNoCase = false);
 

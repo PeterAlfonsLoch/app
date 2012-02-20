@@ -202,6 +202,12 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
+      inline CLASS_DECL_ca  string         itoa(int64_t i)
+      {
+         return i64toa(i);
+      }
+
+
    } // namespace str
 
 

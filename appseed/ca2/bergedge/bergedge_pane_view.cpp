@@ -105,7 +105,7 @@ namespace bergedge
    void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
-      frame * pframe = dynamic_cast < frame *> (GetParentFrame());
+//      frame * pframe = dynamic_cast < frame *> (GetParentFrame());
       if(get_view_id().is_text())
       {
          string strId = get_view_id();

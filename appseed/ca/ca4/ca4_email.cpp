@@ -38,10 +38,10 @@ namespace ca4
    {
       string strCandidate(pszCandidate);
       strCandidate.trim();
-      int iFind = strCandidate.find("@");
+      index iFind = strCandidate.find("@");
       if(iFind <= 0)
          return false;
-      int iLen = strCandidate.get_length();
+      count iLen = strCandidate.get_length();
       if(iFind == iLen - 1)
          return false;
       return true;

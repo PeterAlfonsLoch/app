@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace colorertake5
 {
+
 
   line_source::line_source()
   {
@@ -11,13 +13,13 @@ namespace colorertake5
   {
   }
 
-  void line_source::startJob(int lno)
+  void line_source::startJob(index lno)
   {
      UNREFERENCED_PARAMETER(lno);
   }
   
 
-  void line_source::endJob(int lno)
+  void line_source::endJob(index lno)
   {
      UNREFERENCED_PARAMETER(lno);
   }

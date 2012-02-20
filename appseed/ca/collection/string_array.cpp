@@ -97,7 +97,7 @@ void string_array::set_size(count nNewSize, count nGrowBy)
          //  (this avoids heap fragmentation in many situations)
          nGrowBy = min(1024, max(4, m_nSize / 8));
       }
-      int nNewMax;
+      count nNewMax;
       if (nNewSize < m_nMaxSize + nGrowBy)
          nNewMax = m_nMaxSize + nGrowBy;  // granularity
       else
@@ -136,7 +136,7 @@ count string_array::add(const string_array& src)
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
 
-   int nOldSize = m_nSize;
+   count nOldSize = m_nSize;
    set_size(m_nSize + src.m_nSize);
 
    CopyElements(m_pData + nOldSize, src.m_pData, src.m_nSize);
@@ -236,7 +236,7 @@ void string_array::InsertEmpty(index nIndex, count nCount)
    else
    {
       // inserting in the middle of the base_array
-      int nOldSize = m_nSize;
+      count nOldSize = m_nSize;
       set_size(m_nSize + nCount);  // grow it to new size
       // shift old data up to fill gap
       memmove(&m_pData[nIndex+nCount], &m_pData[nIndex],
@@ -288,7 +288,7 @@ void string_array::remove_at(index nIndex, count nCount)
    ASSERT(nIndex + nCount <= m_nSize);
 
    // just remov a range
-   int nMoveCount = m_nSize - (nIndex + nCount);
+   count nMoveCount = m_nSize - (nIndex + nCount);
 
    _DestructElements(&m_pData[nIndex], nCount);
 
@@ -379,15 +379,15 @@ void string_array::assert_valid() const
 #endif //_DEBUG
 
 void string_array::QuickSort(
-      void swap(void * lpVoidSwapArg, const DWORD, const DWORD),
+      void swap(void * lpVoidSwapArg, const index, const index),
       void * lpvoidSwapArg,
       bool bNoCase)
 {
-   dword_array stackLowerBound;
-   dword_array stackUpperBound;
-   int iLowerBound;
-   int iUpperBound;
-   int iLPos, iUPos, iMPos;
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
    string t;
 
    if(this->get_size() >= 2)
@@ -468,11 +468,11 @@ void string_array::QuickSort(
 
 void string_array::get_quick_sort_ci(index_array & ia)
 {
-   dword_array stackLowerBound;
-   dword_array stackUpperBound;
-   int iLowerBound;
-   int iUpperBound;
-   int iLPos, iUPos, iMPos;
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
    string t;
    ia.remove_all();
    ia.append_sequence(0, get_upper_bound());
@@ -497,7 +497,7 @@ void string_array::get_quick_sort_ci(index_array & ia)
                   iUPos--;
                else
                {
-                  int i = ia[iMPos];
+                  index i = ia[iMPos];
                   ia[iMPos] = ia[iUPos];
                   ia[iUPos] = i;
                   break;
@@ -515,7 +515,7 @@ void string_array::get_quick_sort_ci(index_array & ia)
                   iLPos++;
                else
                {
-                  int i = ia[iLPos];
+                  index i = ia[iLPos];
                   ia[iLPos] = ia[iMPos];
                   ia[iMPos] = i;
                   break;

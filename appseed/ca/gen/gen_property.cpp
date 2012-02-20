@@ -476,7 +476,7 @@ namespace gen
       return get_value(iIndex).propset();
    }
 
-   int property::get_length() const
+   strsize property::get_length() const
    {
       return get_value().get_length();
    }

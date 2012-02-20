@@ -184,8 +184,10 @@ namespace ca
             return strFolder;
          }
             
-         int iFolderBeg = 0;
-         int iFolderEnd = strFolder.get_length() - 1;
+         strsize iFolderBeg = 0;
+
+         strsize iFolderEnd = strFolder.get_length() - 1;
+
          if(iFolderEnd >= iFolderBeg) 
          {
             //strFolder.trim();
@@ -201,8 +203,11 @@ namespace ca
             while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
                iFolderEnd--;
          }
-         int iRelativeBeg = 0;
-         int iRelativeEnd = strRelative.get_length() - 1;
+
+         strsize iRelativeBeg = 0;
+
+         strsize iRelativeEnd = strRelative.get_length() - 1;
+
          if(iRelativeEnd >= iRelativeBeg) 
          {
             //strFolder.trim();
@@ -273,8 +278,10 @@ namespace ca
 
          // none of them - 3 - are empty
             
-         int iFolderBeg = 0;
-         int iFolderEnd = strFolder.get_length() - 1;
+         strsize iFolderBeg = 0;
+
+         strsize iFolderEnd = strFolder.get_length() - 1;
+
          if(iFolderEnd >= iFolderBeg) 
          {
             //strFolder.trim();
@@ -290,8 +297,11 @@ namespace ca
             while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
                iFolderEnd--;
          }
-         int iRelativeBeg = 0;
-         int iRelativeEnd = strRelative.get_length() - 1;
+
+         strsize iRelativeBeg = 0;
+
+         strsize iRelativeEnd = strRelative.get_length() - 1;
+
          if(iRelativeEnd >= iRelativeBeg) 
          {
             //strFolder.trim();
@@ -308,8 +318,11 @@ namespace ca
                iRelativeBeg++;
          }
 
-         int iBeg2 = 0;
-         int iEnd2 = str2.get_length() - 1;
+         
+         strsize iBeg2 = 0;
+
+         strsize iEnd2 = str2.get_length() - 1;
+
          if(iEnd2 >= iBeg2) 
          {
             //strFolder.trim();

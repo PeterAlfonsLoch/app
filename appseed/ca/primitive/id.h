@@ -22,11 +22,10 @@ class CLASS_DECL_ca id
 {
 public:
    id(const char * psz);
-#if defined(_AMD64_) || defined(VC6)
    id(int i);
-#endif
-   id(unsigned int i);
-   id(index i);
+   id(unsigned int ui);
+   id(int64_t i);
+   id(uint64_t ui);
    id(const string & str);
    id(const string_interface & str);
 
@@ -106,7 +105,6 @@ public:
    inline bool operator > (const string & str) const;
    inline bool operator >= (const string & str) const;
    id & operator = (const string & str);
-#if defined(_AMD64_) || defined(VC6)
    inline bool operator == (int i) const
    {
       return !id_cmp(this, i);
@@ -131,40 +129,39 @@ public:
    {
       return id_cmp(this, i) >= 0;
    }
-   inline id & operator = (index i)
+   inline id & operator = (int i)
    {
-      m_ui        = i;
+      m_i        = i;
       m_chType    = IDTYPE_TYPE_NUMBER;
       return *this;
    }
-#endif
-   inline bool operator == (index user) const
+   inline bool operator == (int64_t i) const
    {
-      return !id_cmp(this, user);
+      return !id_cmp(this, i);
    }
-   inline bool operator != (index user) const
+   inline bool operator != (int64_t i) const
    {
-      return id_cmp(this, user) != 0;
+      return id_cmp(this, i) != 0;
    }
-   inline bool operator < (index user) const
+   inline bool operator < (int64_t i) const
    {
-      return id_cmp(this, user) < 0;
+      return id_cmp(this, i) < 0;
    }
-   inline bool operator <= (index user) const
+   inline bool operator <= (int64_t i) const
    {
-      return id_cmp(this, user) <= 0;
+      return id_cmp(this, i) <= 0;
    }
-   inline bool operator > (index user) const
+   inline bool operator > (int64_t i) const
    {
-      return id_cmp(this, user) > 0;
+      return id_cmp(this, i) > 0;
    }
-   inline bool operator >= (index user) const
+   inline bool operator >= (int64_t i) const
    {
-      return id_cmp(this, user) >= 0;
+      return id_cmp(this, i) >= 0;
    }
-   inline id & operator = (int i)
+   inline id & operator = (int64_t i)
    {
-      m_ui        = i;
+      m_i        = i;
       m_chType    = IDTYPE_TYPE_NUMBER;
       return *this;
    }
@@ -177,18 +174,18 @@ public:
 
    id & operator = (const string_interface & str);
 
-   inline operator index() const
+   inline operator int64_t() const
    {
       if(is_number())
-         return m_ui;
+         return m_i;
       else
          return 0;
    }
 
-   inline operator index()
+   inline operator int64_t()
    {
       if(is_number())
-         return m_ui;
+         return m_i;
       else
          return 0;
    }
@@ -238,23 +235,19 @@ public:
       return m_chType == IDTYPE_TYPE_TEXT;
    }
 
-   friend CLASS_DECL_ca index id_cmp(const id * pid, index user);
-   friend CLASS_DECL_ca index id_cmp(const id * pid, const char * psz);
-   friend CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2);
-   friend CLASS_DECL_ca index id_strcmp(const id * pid1, const id * pid2);
+   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t user);
+   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz);
+   friend CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2);
+   friend CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2);
    friend class id_space;
    friend class ::ca::type_info;
 
    void raw_set(const char * psz);
-   void raw_set(index user);
+   void raw_set(int64_t user);
    union
    {
       const char *         m_psz;
-#if defined(_AMD64_) || defined(__LP64__)
-      uint64_t     m_ui;
-#else
-      unsigned int         m_ui;
-#endif
+      int64_t              m_i;
    };
    char m_chType;
 };
@@ -283,7 +276,7 @@ inline CLASS_DECL_ca bool id_is_null(const char * psz)
    return psz == NULL;
 }
 
-inline CLASS_DECL_ca index id_cmp(const id * pid, index user)
+inline CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t i)
 {
    if(pid->is_null())
    {
@@ -291,7 +284,7 @@ inline CLASS_DECL_ca index id_cmp(const id * pid, index user)
    }
    else if(pid->is_number())
    {
-      return pid->m_ui - user;
+      return pid->m_i - i;
    }
    else
    {
@@ -299,7 +292,7 @@ inline CLASS_DECL_ca index id_cmp(const id * pid, index user)
    }
 }
 
-inline CLASS_DECL_ca index id_cmp(const id * pid, const char * psz)
+inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz)
 {
    if(pid->is_null())
    {
@@ -339,20 +332,20 @@ inline CLASS_DECL_ca index id_cmp(const id * pid, const char * psz)
       }
       else
       {
-         return pid->m_ui - atoi(psz);
+         return pid->m_i - gen::str::atoi64(psz);
       }
    }
 }
 
 
-inline CLASS_DECL_ca index id_cmp(const id * pid1, const id * pid2)
+inline CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;
    return pid1->m_psz - pid2->m_psz;
 }
 
-inline CLASS_DECL_ca index id_strcmp(const id * pid1, const id * pid2)
+inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;
@@ -373,7 +366,7 @@ inline void id::raw_set(const char * psz)
    else if(id_is_number(psz))
    {
       m_chType = IDTYPE_TYPE_NUMBER;
-      m_ui = atoi(psz);
+      m_i = atoi(psz);
    }
    else
    {
@@ -382,8 +375,8 @@ inline void id::raw_set(const char * psz)
    }
 }
 
-inline void id::raw_set(index user)
+inline void id::raw_set(int64_t i)
 {
-   m_chType = IDTYPE_TYPE_NUMBER;
-   m_ui = user;
+   m_chType    = IDTYPE_TYPE_NUMBER;
+   m_i         = i;
 }

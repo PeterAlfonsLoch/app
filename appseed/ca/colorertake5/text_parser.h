@@ -73,7 +73,7 @@ public:
    * @param num   Number of lines to parse
    * @param mode  Parsing mode.
    */
-  virtual int parse(int from, int num, TextParseMode mode) = 0;
+  virtual index parse(index from, count num, TextParseMode mode) = 0;
 
   /**
    * Performs break of parsing process from external thread.

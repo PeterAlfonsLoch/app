@@ -19,7 +19,7 @@ fixed_string_manager::~fixed_string_manager() throw()
 }
 
 // string_manager_interface
-string_data  * fixed_string_manager::allocate(int nChars,int nCharSize ) throw()
+string_data  * fixed_string_manager::allocate(strsize nChars, int nCharSize ) throw()
 {
    ATLASSUME( m_pData->nRefs == -1 );
    ATLASSUME( m_pData->nDataLength == 0 );
@@ -60,7 +60,8 @@ void fixed_string_manager::Free( string_data  * pData ) throw()
    m_pData->nDataLength = 0;
    *static_cast< char* >( m_pData->data() ) = 0;
 }
-string_data * fixed_string_manager::Reallocate( string_data * pData,int nChars,int nCharSize ) throw()
+
+string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nChars, int nCharSize ) throw()
 {
    string_data * pNewData;
 

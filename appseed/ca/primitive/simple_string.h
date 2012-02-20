@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef int strsize;
+typedef INT_PTR strsize;
 
 
 
@@ -59,11 +59,11 @@ extern "C"
       {
    public:
       // allocate a new string_data
-      virtual string_data * allocate( strsize nAllocLength, strsize nCharSize ) = 0;
+      virtual string_data * allocate(strsize nAllocLength, int nCharSize) = 0;
       // Free an existing string_data
-      virtual void Free( string_data * pData ) = 0;
+      virtual void Free(string_data * pData) = 0;
       // Change the size of an existing string_data
-      virtual string_data * Reallocate( string_data * pData, strsize nAllocLength, strsize nCharSize ) = 0;
+      virtual string_data * Reallocate(string_data * pData, strsize nAllocLength, int nCharSize ) = 0;
       // get the string_data for a Nil string
       virtual string_data * GetNilString() = 0;
       virtual string_manager_interface* Clone() = 0;
@@ -477,38 +477,53 @@ public:
 #endif
       ReleaseBufferSetLength( nNewLength );
    }
+   
    void AppendChar(XCHAR ch )
    {
-      UINT nOldLength = get_length();
+
+      strsize nOldLength = get_length();
+      
       strsize nNewLength = nOldLength+1;
+      
       PXSTR pszBuffer = GetBuffer( nNewLength );
+      
       pszBuffer[nOldLength] = ch;
+      
       ReleaseBufferSetLength( nNewLength );
+
    }
+
    void append(const simple_string& strSrc )
    {
+      
       append( strSrc.GetString(), strSrc.get_length() );
+
    }
+
    void Empty() NOTHROW
    {
-      string_data * pOldData = get_data();
-      string_manager_interface * pstringmanager = pOldData->pstringmanager;
-      if( pOldData->nDataLength == 0 )
-      {
-         return;
-      }
 
-      if( pOldData->IsLocked() )
+      string_data * pOldData = get_data();
+
+      string_manager_interface * pstringmanager = pOldData->pstringmanager;
+
+      if(pOldData->nDataLength == 0)
+         return;
+
+      if(pOldData->IsLocked())
       {
          // Don't reallocate a locked buffer that's shrinking
-         set_length( 0 );
+         set_length(0);
       }
       else
       {
+         
          pOldData->Release();
          string_data* pNewData = pstringmanager->GetNilString();
          Attach( pNewData );
+
       }
+
    }
    void free_extra()
    {
@@ -695,8 +710,8 @@ public:
          if(pszSrc == NULL)
             AtlThrow(E_INVALIDARG);
 
-         UINT nOldLength = get_length();
-         UINT_PTR nOffset = pszSrc-GetString();
+         strsize nOldLength = get_length();
+         INT_PTR nOffset = pszSrc-GetString();
          // If 0 <= nOffset <= nOldLength, then pszSrc points into our
          // buffer
 

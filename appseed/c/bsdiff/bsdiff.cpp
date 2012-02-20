@@ -212,8 +212,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       }
       return err(1,"%s",oldfile);
    }
-   int r=oldsize;
-   while (r>0 && (i = fread_dup(old + oldsize - r, 1, r, fd))>0) r-=i;
+
+   int r = oldsize;
+
+   while(r > 0 && (i = (off_t) fread_dup(old + oldsize - r, 1, r, fd)) > 0)
+      r-=i;
    if (r>0 || fclose_dup(fd)>0)
    {
       ca2_free(old);
@@ -266,7 +269,8 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    }
 
    r=newsize;
-   while (r>0 && (i=fread_dup(_new + newsize - r, 1, r, fd))>0) r-=i;
+   while(r > 0 && (i = (off_t) fread_dup(_new + newsize - r, 1, r, fd)) > 0)
+      r-=i;
    if (r>0 || fclose_dup(fd)> 0)
    {
       ca2_free(old);

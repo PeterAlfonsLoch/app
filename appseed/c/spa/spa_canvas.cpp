@@ -186,7 +186,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
       ::SetBkMode(hdc, TRANSPARENT);
-      ::TextOutU_dup(hdc, 10, 10 + size.cy * 2, psz, strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat)));
+      ::TextOutU_dup(hdc, 10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
       int iLineMin = 5;
       int iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -234,13 +234,13 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
                      bBold = true;
                      strLine = strLine.substr(3);
                      ::SelectObject(hdc, hfontBold);
-                     ::TextOutU_dup(hdc, 10, 10 + size.cy * 3, strLine, strLine.length());
+                     ::TextOutU_dup(hdc, 10, 10 + size.cy * 3, strLine, (int) (strLine.length()));
                   }
                   else if(!strLine.begins_ci("***") && strLine.length() > 0 && !bNormal && !bBold && bPreNormal)
                   {
                      bNormal = true;
                      ::SelectObject(hdc, hfont);
-                     ::TextOutU_dup(hdc, 10, 10 + size.cy * 4, strLine, strLine.length());
+                     ::TextOutU_dup(hdc, 10, 10 + size.cy * 4, strLine, (int) (strLine.length()));
                   }
                   else if(strLine.length() > 0 && !bPreNormal && !bBold && !bNormal)
                   {
@@ -269,9 +269,9 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\ca2\\install.log\" ::::::::";
       ::SetBkMode(hdc, TRANSPARENT);
-      ::TextOutU_dup(hdc, 10, 10 + size.cy * 2, psz, strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat)));
+      ::TextOutU_dup(hdc, 10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
       ::SelectObject(hdc, hfontBold);
-      ::TextOutU_dup(hdc, 10, 10 + size.cy * 3, s_strLastStatus, s_strLastStatus.length());
+      ::TextOutU_dup(hdc, 10, 10 + size.cy * 3, s_strLastStatus, (int) (s_strLastStatus.length()));
       DWORD dwRead;
       int iLineMin = 5;
       int iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -326,7 +326,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
                   }
                   else
                   {
-                     int iFind = strLine.find('\t');
+                     index iFind = strLine.find('\t');
                      if(iFind >= 0)
                      {
                         strLine = strLine.substr(iFind + 1);
@@ -334,7 +334,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
                      ::SelectObject(hdc, hfont);
                   }
                   iLine--;
-                  ::TextOutU_dup(hdc, 10, 10 + iLine * size.cy, strLine, strLine.length());
+                  ::TextOutU_dup(hdc, 10, 10 + iLine * size.cy, strLine, (int) strLine.length());
                   skip_text_out1:
                   strLine = ch;
                }
@@ -348,7 +348,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
             if(iLine >= iLineMin && strLine.length() > 0)
             {
                iLine--;
-               ::TextOutU_dup(hdc, 10, 10 + iLine * size.cy, strLine, strLine.length());
+               ::TextOutU_dup(hdc, 10, 10 + iLine * size.cy, strLine, (int) strLine.length());
             }
          }
       }

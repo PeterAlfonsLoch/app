@@ -46,7 +46,7 @@ namespace ca
       bool system::path::eat_end_level(string & str, int iLevelCount, const char * lpSeparator)
       {
 
-         int iLast = str.length() - 1;
+         strsize iLast = str.length() - 1;
 
          if(iLast < 0)
             return iLevelCount <= 0;
@@ -57,9 +57,11 @@ namespace ca
          for(int i = 0; i < iLevelCount; i++)
          {
             
-            int iFind1 = str.reverse_find('/', iLast);
-            int iFind2 = str.reverse_find('\\', iLast);
-            int iFind = max(iFind1, iFind2);
+            strsize iFind1 = str.reverse_find('/', iLast);
+
+            strsize iFind2 = str.reverse_find('\\', iLast);
+
+            strsize iFind = max(iFind1, iFind2);
 
             if(iFind >= iLast)
                return false;
@@ -368,7 +370,7 @@ namespace ca
          return strResult;
       }
 
-      void system::as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp)
+      void system::as_memory(var varFile, primitive::base_memory & mem, ::ca::application * papp)
       {
          if(varFile.get_type() == var::type_string)
          {
@@ -526,9 +528,12 @@ namespace ca
 
       string system::title_(const char * path)
       {
+         
          string str = name_(path);
-         int iPos = str.reverse_find('.');
-         if(iPos != -1)
+
+         strsize iPos = str.reverse_find('.');
+
+         if(iPos < 0)
          {
             return str.Mid(0, iPos);
          }
@@ -536,52 +541,80 @@ namespace ca
          {
             return str;
          }
+
       }
 
       string system::name_(const char * path)
       {
+         
          string str(path);
-         int iPos;
-         int iPos1 = str.reverse_find('\\');
-         int iPos2 = str.reverse_find('/');
-         if(iPos1 != -1 && iPos2 != -1)
+         
+         strsize iPos;
+
+         strsize iPos1 = str.reverse_find('\\');
+         
+         strsize iPos2 = str.reverse_find('/');
+
+         if(iPos1 >= 0 && iPos2 >= 0)
          {
+
             if(iPos1 > iPos2)
             {
+
                iPos = iPos1 + 1;
+
             }
             else
             {
+
                iPos = iPos2 + 1;
+
             }
+
          }
-         else if(iPos1 != -1)
+         else if(iPos1 >= 0)
          {
+
             iPos = iPos1 + 1;
+
          }
-         else if(iPos2 != -1)
+         else if(iPos2 >= 0)
          {
+
             iPos = iPos2 + 1;
+
          }
          else
          {
+
             iPos = 0;
+
          }
+
          return str.Mid(iPos);
+
       }
 
       string system::extension(const char * path)
       {
+
          string str = name_(path);
-         int iPos = str.reverse_find('.');
-         if(iPos != -1)
+
+         strsize iPos = str.reverse_find('.');
+
+         if(iPos >= 0)
          {
+
             return str.Mid(iPos + 1);
+
          }
          else
          {
+
             return "";
+
          }
+
       }
 
       void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::ca::application * papp)
@@ -757,7 +790,7 @@ namespace ca
          if(papp->m_bZipIsDir)
          {
 
-            int iFind = gen::str::find_ci(".zip:", pszPath);
+            strsize iFind = gen::str::find_ci(".zip:", pszPath);
 
             zip::Util ziputil;
 
@@ -798,7 +831,7 @@ namespace ca
          if(papp->m_bZipIsDir)
          {
             
-            int iFind = gen::str::find_ci(".zip:", strPath);
+            strsize iFind = gen::str::find_ci(".zip:", strPath);
 
             zip::Util ziputil;
 
@@ -1513,5 +1546,9 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR 
 			CloseHandle( hModuleSnap ); 
 		}
 	}
+
 	delete pDwId;
+
 }
+
+

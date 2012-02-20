@@ -1627,9 +1627,9 @@ namespace userbase
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther);
       ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(tool_bar, pToolBar);
-      ASSERT(m_nIndex < m_nIndexMax);
+      ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pToolBar->GetButtonStyle(m_nIndex) & ~TBBS_DISABLED;
+      UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) & ~TBBS_DISABLED;
       if (!bOn)
       {
          nNewStyle |= TBBS_DISABLED;
@@ -1640,7 +1640,7 @@ namespace userbase
          nNewStyle &= ~TBBS_PRESSED;
       }
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-      pToolBar->SetButtonStyle(m_nIndex, nNewStyle);
+      pToolBar->SetButtonStyle(m_iIndex, nNewStyle);
    }
 
    void tool_cmd_ui::SetCheck(int nCheck)
@@ -1649,16 +1649,16 @@ namespace userbase
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther);
       ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(tool_bar, pToolBar);
-      ASSERT(m_nIndex < m_nIndexMax);
+      ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+      UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) &
                ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
          nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
          nNewStyle |= TBBS_INDETERMINATE;
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-      pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);
+      pToolBar->SetButtonStyle(m_iIndex, nNewStyle | TBBS_CHECKBOX);
    }
 
    void tool_cmd_ui::SetText(const char *)
@@ -1672,12 +1672,12 @@ namespace userbase
       tool_cmd_ui state;
       state.m_pOther = this;
 
-      state.m_nIndexMax = (UINT)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
-      for (state.m_nIndex = 0; state.m_nIndex < state.m_nIndexMax; state.m_nIndex++)
+      state.m_iCount = (UINT)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
          // get buttons state
          TBBUTTON button;
-         _GetButton(state.m_nIndex, &button);
+         _GetButton(state.m_iIndex, &button);
          state.m_id = button.idCommand;
 
          // ignore separators

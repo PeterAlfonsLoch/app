@@ -670,7 +670,7 @@ void GetLineFromBuf( char **src, char *tgt, int len )
  */
 int extractCDDBQueryInfo( LPCDDBQUERYITEM lpq, char *linebuf )
 {
-  int i;
+  INT_PTR i;
   char *p = linebuf;
   char *t;
 
@@ -684,9 +684,12 @@ int extractCDDBQueryInfo( LPCDDBQUERYITEM lpq, char *linebuf )
     return 0;
   
   i = (t - p + 1);
-  if ( i > 12 )
+
+  if(i > 12)
     i = 12;
-  lstrcpyn( lpq->categ, p, i );
+
+  lstrcpyn( lpq->categ, p, (int) i);
+
   p = t;
 
   // extract the cddbid
@@ -718,10 +721,10 @@ int extractCDDBQueryInfo( LPCDDBQUERYITEM lpq, char *linebuf )
   else
   {
     i = (t - p + 1);
-    if ( i > 81 )
+    if(i > 81)
       i = 81;
-    lstrcpyn( lpq->artist, p, i );
-    lstrcpyn( lpq->title, p+3, 81 );
+    lstrcpyn(lpq->artist, p, (int) i );
+    lstrcpyn(lpq->title, p+3, 81 );
   }
   
   i = lstrlen( lpq->title );

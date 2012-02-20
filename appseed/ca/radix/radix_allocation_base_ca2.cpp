@@ -126,10 +126,14 @@ void base_ca2_free(void * pvoid, int iBlockType)
 
 size_t base_ca2_msize(void * pvoid, int iBlockType)
 {
+   
    byte * p = (byte *) pvoid;
+   
    if(p == NULL)
       return 0;
+
    p -= (4 + 16);
+
    try
    {
       if(p[0] == 0)
@@ -153,6 +157,9 @@ size_t base_ca2_msize(void * pvoid, int iBlockType)
    {
       // todo: rethrow free exception
    }
+
+   return 0;
+
 }
 
 /*

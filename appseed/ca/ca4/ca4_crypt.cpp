@@ -248,7 +248,7 @@ namespace ca4
       MD5_CTX ctx;
       MD5_Init(&ctx);
       //int iRead;
-      MD5_Update(&ctx, psz, strlen(psz));
+      MD5_Update(&ctx, psz, (unsigned long) strlen(psz));
       MD5_Final(buf,&ctx);
       string str;
       string strFormat;
@@ -418,7 +418,7 @@ namespace ca4
       
       crypto::hmac_sha1::context context;
       
-      context.digest(result, memMessage.get_data(), memMessage.get_size(), memKey.get_data(), memKey.get_size());
+      context.digest(result, memMessage.get_data(), (int) memMessage.get_size(), memKey.get_data(), (int) memKey.get_size());
 
    }
 
@@ -427,7 +427,7 @@ namespace ca4
       
       crypto::hmac_sha1::context context;
       
-      context.digest(result, strMessage, strMessage.get_length(), strKey, strKey.get_length());
+      context.digest(result, strMessage, (int) strMessage.get_length(), strKey, (int) strKey.get_length());
 
    }
 

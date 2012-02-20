@@ -27,10 +27,9 @@ public:
 
    string_manager_interface* GetBackupManager() const throw();
 
-// string_manager_interface
-   virtual string_data  * allocate(int nChars,int nCharSize ) throw();
-   virtual void Free( string_data  * pData ) throw();
-   virtual string_data * Reallocate( string_data * pData,int nChars,int nCharSize ) throw();
+   virtual string_data * allocate(strsize nChars, int nCharSize) throw();
+   virtual void Free( string_data * pData ) throw();
+   virtual string_data * Reallocate(string_data * pData, strsize nChars, int nCharSize ) throw();
    virtual string_data * GetNilString() throw();
    virtual string_manager_interface* Clone() throw();
 
@@ -176,9 +175,10 @@ public:
    virtual ~fixed_string_log() throw();
 
 
-public:
-   void OnAllocateSpill(int nActualChars,int nFixedChars,const string_data* pData ) throw();
-   void OnReallocateSpill(int nActualChars,int nFixedChars,const string_data* pData ) throw();
+   void OnAllocateSpill(strsize nActualChars, strsize nFixedChars, const string_data* pData ) throw();
+   void OnReallocateSpill(strsize nActualChars, strsize nFixedChars, const string_data* pData ) throw();
+
+
 };
 
 

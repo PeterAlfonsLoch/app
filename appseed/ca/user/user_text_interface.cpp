@@ -15,7 +15,7 @@ void text_interface::_001SetText(const char * psz)
    UNREFERENCED_PARAMETER(psz);
 }
 
-int text_interface::get_length() const
+strsize text_interface::get_length() const
 {
    string str;
    _001GetText(str);

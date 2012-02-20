@@ -52,11 +52,14 @@ namespace spa
 
       void redraw();
 
-      void OnTimer(UINT nIDEvent);
+      
     #ifdef WINDOWS
+
+      void OnTimer(UINT_PTR nIDEvent);
       static LRESULT CALLBACK s_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
       LRESULT window_proc(UINT message, WPARAM wParam, LPARAM lParam);
-       ATOM register_class(HINSTANCE hInstance);
+      ATOM register_class(HINSTANCE hInstance);
+
     #endif
       
 

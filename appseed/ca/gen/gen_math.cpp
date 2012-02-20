@@ -283,6 +283,78 @@ namespace gen
          return (int) dRand;
       }
 
+      unsigned int math::RandRange(unsigned int ui1, unsigned int ui2)
+      {
+         // dRandRange == 0.0 is impossible event due this next statement;
+         if(ui1 == ui2)
+            return ui1;
+         int iMin = min(ui1, ui2);
+         int iMax = max(ui1, ui2);
+         double dRand = 0.0;
+         double dRange = (double) (iMax - iMin);
+         double dRandRange = 1.0;
+         int i = 1;
+         while((dRandRange - 1.0) < dRange)
+         {
+            dRand += dRandRange * gen_rand();
+            dRandRange = pow((double) rand_max() + 1, (double) i);
+            i++;
+         }
+         dRandRange -= 1.0;
+         dRand *= (dRange) / (double) dRandRange;
+         dRand += (double) iMin;
+         dRand += 0.5;
+         return (int) dRand;
+      }
+
+      int64_t math::RandRange(int64_t i1, int64_t i2)
+      {
+         // dRandRange == 0.0 is impossible event due this next statement;
+         if(i1 == i2)
+            return i1;
+         int iMin = min(i1, i2);
+         int iMax = max(i1, i2);
+         double dRand = 0.0;
+         double dRange = (double) (iMax - iMin);
+         double dRandRange = 1.0;
+         int i = 1;
+         while((dRandRange - 1.0) < dRange)
+         {
+            dRand += dRandRange * gen_rand();
+            dRandRange = pow((double) rand_max() + 1, (double) i);
+            i++;
+         }
+         dRandRange -= 1.0;
+         dRand *= (dRange) / (double) dRandRange;
+         dRand += (double) iMin;
+         dRand += 0.5;
+         return (int) dRand;
+      }
+
+      uint64_t math::RandRange(uint64_t ui1, uint64_t ui2)
+      {
+         // dRandRange == 0.0 is impossible event due this next statement;
+         if(ui1 == ui2)
+            return ui1;
+         int iMin = min(ui1, ui2);
+         int iMax = max(ui1, ui2);
+         double dRand = 0.0;
+         double dRange = (double) (iMax - iMin);
+         double dRandRange = 1.0;
+         int i = 1;
+         while((dRandRange - 1.0) < dRange)
+         {
+            dRand += dRandRange * gen_rand();
+            dRandRange = pow((double) rand_max() + 1, (double) i);
+            i++;
+         }
+         dRandRange -= 1.0;
+         dRand *= (dRange) / (double) dRandRange;
+         dRand += (double) iMin;
+         dRand += 0.5;
+         return (int) dRand;
+      }
+
       int math::LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax)
       {
          double d = iValue - iValueMin;

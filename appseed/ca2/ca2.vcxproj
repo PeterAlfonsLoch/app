@@ -599,6 +599,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

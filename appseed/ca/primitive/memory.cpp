@@ -5,63 +5,19 @@ namespace primitive
 {
 
 
-   memory::memory(::ca::application * papp) :
-      ca(papp)
+   internal_memory::internal_memory()
    {
-      m_pbStorage    = NULL;
+      m_pbStorage = NULL;
    }
 
-   memory::memory(const void * pdata, int iCount)
+   internal_memory::~internal_memory()
    {
-      m_pbStorage    = NULL;
-      allocate(iCount);
-      ASSERT(fx_is_valid_address(pdata, iCount, FALSE));
-      memcpy(m_pbStorage, pdata, iCount);
    }
 
-   memory::memory(const memory_base & s)
+   bool internal_memory::allocate_internal(memory_size dwNewLength)
    {
-      m_pbStorage    = NULL;
-      memory_base::operator = (s);
-   }
 
-   memory::memory(const memory & s)
-   {
-      m_pbStorage    = NULL;
-      memory_base::operator = (s);
-   }
-
-   memory::memory(const char * psz)
-   {
-      m_pbStorage    = NULL;
-      from_string(psz);
-   }
-
-   memory::memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
-   {
-      UNREFERENCED_PARAMETER(nAllocFlags);
-      m_pbStorage          = NULL;
-      m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
-   }
-
-   memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
-   {
-      m_pbStorage          = NULL;
-      m_pcontainer         = pcontainer;
-      allocate(dwSize);
-      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
-      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
-   }
-
-   memory::~memory()
-   {
-      free_data();
-   }
-
-   bool memory::allocate_internal(memory_size dwNewLength)
-   {
-      if(!IsEnabled())
+      if(!is_enabled())
       {
          ASSERT(FALSE);
          return false;
@@ -72,7 +28,7 @@ namespace primitive
          return true;
       }
    
-      _RemoveOffset();
+      base_remove_offset();
    
       if(m_pbStorage == NULL)
       {
@@ -124,17 +80,18 @@ namespace primitive
       }
    }
 
-   LPBYTE memory::internal_get_data() const
+   LPBYTE internal_memory::detach()
    {
-      return m_pbStorage;
+      
+      LPBYTE pbStorage = m_pbStorage;
+
+      m_pbStorage = NULL;
+
+      return pbStorage;
+
    }
 
-   LPBYTE memory::detach()
-   {
-      return m_pbStorage;
-   }
-
-   void memory::free_data()
+   void internal_memory::free_data()
    {
 
       if(m_pbStorage != NULL)
@@ -152,6 +109,61 @@ namespace primitive
       }
 
    }
+
+   memory::memory(::ca::application * papp) :
+      ca(papp)
+   {
+   }
+
+   memory::memory(const void * pdata, int iCount)
+   {
+      m_pbStorage    = NULL;
+      allocate(iCount);
+      ASSERT(fx_is_valid_address(pdata, iCount, FALSE));
+      memcpy(m_pbStorage, pdata, iCount);
+   }
+
+   memory::memory(const base_memory & s)
+   {
+      m_pbStorage    = NULL;
+      memory_base::operator = (s);
+   }
+
+   memory::memory(const memory & s)
+   {
+      m_pbStorage    = NULL;
+      memory_base::operator = (s);
+   }
+
+   memory::memory(const char * psz)
+   {
+      m_pbStorage    = NULL;
+      from_string(psz);
+   }
+
+   memory::memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   {
+      UNREFERENCED_PARAMETER(nAllocFlags);
+      m_pbStorage          = NULL;
+      m_pcontainer         = pcontainer;
+      m_dwAllocationAddUp  = dwAllocationAddUp;
+   }
+
+   memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
+   {
+      m_pbStorage          = NULL;
+      m_pcontainer         = pcontainer;
+      allocate(dwSize);
+      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
+   }
+
+   memory::~memory()
+   {
+      free_data();
+   }
+
+
 
 
 } // namespace primitive

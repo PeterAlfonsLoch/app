@@ -203,28 +203,39 @@ namespace gen
 
    bool str::begins_eat(string & str, const char * lpcszPrefix)
    {
+      
       string strPrefix(lpcszPrefix);
-      int iLen = strPrefix.get_length();
+
+      strsize iLen = strPrefix.get_length();
+
       if(str.Left(iLen) == lpcszPrefix)
       {
          str = str.Mid(iLen);
          return true;
       }
+
       return false;
+
    }
 
    bool str::begins_eat_ci(string & str, const char * lpcszPrefix)
    {
+      
       if(lpcszPrefix == NULL)
          return true;
+
       string strPrefix(lpcszPrefix);
-      int iLen = strPrefix.get_length();
+
+      strsize iLen = strPrefix.get_length();
+
       if(str.Left(iLen).CompareNoCase(lpcszPrefix) == 0)
       {
          str = str.Mid(iLen);
          return true;
       }
+
       return false;
+
    }
 
    bool str::begins_eat_ci(string & str, const char * lpcszPrefix, const char * pszSeparator)
@@ -353,26 +364,40 @@ namespace gen
 
    bool str::ends_eat(string & str, const char * lpcszSuffix)
    {
+      
       string strSuffix(lpcszSuffix);
-      int iLen = strSuffix.get_length();
+
+      strsize iLen = strSuffix.get_length();
+
       if(str.Right(iLen) == lpcszSuffix)
       {
+
          str = str.Left(str.get_length() - iLen);
          return true;
+
       }
+
       return false;
+
    }
 
    bool str::ends_eat_ci(string & str, const char * lpcszSuffix)
    {
+      
       string strSuffix(lpcszSuffix);
-      int iLen = strSuffix.get_length();
+
+      strsize iLen = strSuffix.get_length();
+
       if(str.Right(iLen).CompareNoCase(lpcszSuffix) == 0)
       {
+
          str = str.Left(str.get_length() - iLen);
          return true;
+
       }
+
       return false;
+
    }
 
    void str::copy(string & str, const char * lpcsz, int iCount)
@@ -389,24 +414,31 @@ namespace gen
    }
 
 
-   int CLASS_DECL_ca str::find_first(const stringa & straSearch, int & iFound, const string & str, int iStart)
+   index CLASS_DECL_ca str::find_first(const stringa & straSearch, index & iFound, const string & str, index iStart)
    {
 
-      int iFind = -1;
+      index iFind = -1;
+
       iFound = -1;
 
-
-      for(int i = 0; i < straSearch.get_count(); i++)
+      for(index i = 0; i < straSearch.get_count(); i++)
       {
+
          if(straSearch[i].has_char())
          {
-            int iSearch = str.find(straSearch[i], iStart);
+
+            index iSearch = str.find(straSearch[i], iStart);
+
             if(iSearch >= 0 && iSearch >= iStart && (iSearch < iFind || iFind < 0))
             {
+
                iFind = iSearch;
                iFound = i;
+
             }
+
          }
+
       }
 
       return iFind;
@@ -418,18 +450,26 @@ namespace gen
 
       string str(psz);
 
-      int iFind;
-      int iFound;
-      int iStart = 0;
+      index iFind;
+
+      index iFound;
+
+      index iStart = 0;
 
       while((iFind = find_first(straSearch, iFound, str, iStart)) >= 0)
       {
+         
          if(iFind < iStart)
             throw "errror";
-         int i = Sys(papp).math().RandRange(0, straReplacement.get_upper_bound());
+
+         index i = Sys(papp).math().RandRange(0, (int) straReplacement.get_upper_bound());
+
          str = str.Left(iFind) + straReplacement[i] + str.Mid(iFind + straSearch[iFound].get_length());
+
          iFind += straReplacement[i].get_length();
+
          iStart = iFind;
+
       }
 
       return str;
@@ -437,38 +477,54 @@ namespace gen
 
    string str::replace_ci(const char * pszFind, const char * pszReplace, const char * psz)
    {
-      int iPos = 0;
+      
+      index iPos = 0;
+
       string str(psz);
-      int iReplaceLen = -1;
-      int iFindLen = -1;
+
+      count iReplaceLen = -1;
+
+      count iFindLen = -1;
+
       while(true)
       {
+
          iPos = find_ci(pszFind, str, iPos);
+         
          if(iPos < 0)
             break;
+
          if(iReplaceLen < 0)
             iReplaceLen = strlen(pszReplace);
+
          if(iFindLen < 0)
             iFindLen = strlen(pszFind);
+
          str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+
          iPos += iReplaceLen;
+
       }
+
       return str;
+
    }
 
-   int str::find_ci(const string & strFind, const string & str, int iStart)
+   index str::find_ci(const string & strFind, const string & str, index iStart)
    {
 
       if(strFind.get_length() > (str.get_length() - iStart))
          return -1;
       
       string strFindLow(&((LPCTSTR)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
+      
       strFindLow.make_lower();
 
       string strLow(&((LPCSTR)str)[iStart], str.get_length() - iStart); // avoid optimized read only string copy
+      
       strLow.make_lower();
 
-      int iFind = strLow.find(strFindLow);
+      index iFind = strLow.find(strFindLow);
       
       if(iFind < 0)
          return -1;
@@ -478,12 +534,12 @@ namespace gen
    }
 
 
-   int str::find_ci(const string & strFind, const char * psz, int iStart)
+   index str::find_ci(const string & strFind, const char * psz, index iStart)
    {
       
-      int iFindLen = strFind.get_length();
+      count iFindLen = strFind.get_length();
 
-      int iLen = strlen(&psz[iStart]);
+      count iLen = strlen(&psz[iStart]);
 
       if(iFindLen > iLen)
          return -1;
@@ -492,14 +548,18 @@ namespace gen
       {
          
          char szFind[256];
+         
          memcpy(szFind, strFind, iFindLen + 1);
+         
          strlwr(szFind);
 
          if(iLen < 256)
          {
 
             char sz[256];
+         
             memcpy(sz, &psz[iStart], iLen + 1);
+            
             strlwr(sz);
 
             const char * pszFind = strstr(sz, szFind);
@@ -514,6 +574,7 @@ namespace gen
          {
 
             string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+            
             strLow.make_lower();
 
             psz = strLow;
@@ -532,12 +593,14 @@ namespace gen
       {
 
          string strFindLow(&((LPCTSTR)strFind)[0], iFindLen); // avoid optimized read only string copy
+         
          strFindLow.make_lower();
 
          string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+         
          strLow.make_lower();
 
-         int iFind = strLow.find(strFindLow);
+         index iFind = strLow.find(strFindLow);
       
          if(iFind < 0)
             return -1;
@@ -549,12 +612,12 @@ namespace gen
    }
 
 
-   int str::find_ci(const char * pszFind, const string & str, int iStart)
+   index str::find_ci(const char * pszFind, const string & str, index iStart)
    {
       
-      int iFindLen = strlen(pszFind);
+      count iFindLen = strlen(pszFind);
       
-      int iLen = str.get_length() - iStart;
+      index iLen = str.get_length() - iStart;
 
       if(iFindLen > iLen)
          return -1;
@@ -563,14 +626,18 @@ namespace gen
       {
          
          char szFind[256];
+
          memcpy(szFind, pszFind, iFindLen + 1);
+
          strlwr(szFind);
 
          if(iLen < 256)
          {
 
             char sz[256];
+
             memcpy(sz, &((LPCSTR)str)[iStart], iLen + 1);
+
             strlwr(sz);
 
             pszFind = strstr(sz, szFind);
@@ -585,6 +652,7 @@ namespace gen
          {
 
             string strLow(&((LPCSTR)str)[iStart], iLen); // avoid optimized read only string copy
+
             strLow.make_lower();
 
             const char * psz = strLow;
@@ -603,12 +671,14 @@ namespace gen
       {
 
          string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
+
          strFindLow.make_lower();
 
          string strLow(&((LPCSTR)str)[iStart], iLen); // avoid optimized read only string copy
+
          strLow.make_lower();
 
-         int iFind = strLow.find(strFindLow);
+         index iFind = strLow.find(strFindLow);
       
          if(iFind < 0)
             return -1;
@@ -620,12 +690,12 @@ namespace gen
    }
 
 
-   int str::find_ci(const char * pszFind, const char * psz, int iStart)
+   index str::find_ci(const char * pszFind, const char * psz, index iStart)
    {
       
-      int iFindLen = strlen(pszFind);
+      index iFindLen = strlen(pszFind);
       
-      int iLen = strlen(&psz[iStart]);
+      index iLen = strlen(&psz[iStart]);
 
       if(iFindLen > iLen)
          return -1;
@@ -679,7 +749,7 @@ namespace gen
          string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
          strLow.make_lower();
 
-         int iFind = strLow.find(strFindLow);
+         index iFind = strLow.find(strFindLow);
       
          if(iFind < 0)
             return -1;
@@ -690,46 +760,69 @@ namespace gen
 
    }
 
-   int str::find_wwci(const char * pszFind, const char * psz, int iStart)
+   index str::find_wwci(const char * pszFind, const char * psz, index iStart)
    {
+      
       string strFind(pszFind);
+
       strFind.make_lower();
+
       string str(psz);
+
       str.make_lower();
+
       return find_ww(strFind, str, iStart);
+
    }
 
-   int str::find_awwci(const char * pszFind, const char * psz, int iStart)
+   index str::find_awwci(const char * pszFind, const char * psz, index iStart)
    {
+
       string strFind(pszFind);
+
       strFind.make_lower();
+
       string str(psz);
+
       str.make_lower();
+
       return find_aww(strFind, str, iStart);
+
    }
 
-   int str::find_ww(const char * pszFind, const char * psz, int iStart)
+   index str::find_ww(const char * pszFind, const char * psz, index iStart)
    {
+      
       if(psz == NULL)
          return -1;
+
       const char * pszIter = &psz[iStart];
+
       if(pszIter == NULL)
          return -1;
+
       string strFind(pszFind);
-      int i = 0;
+      
+      index i = 0;
+
       if(iStart == 0)
       {
+         
          if(strFind == string(pszIter, strFind.get_length())
          && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
             return i;
          }
+
       }
       while(*pszIter != '\0')
       {
+         
          string strChar = utf8_char(pszIter);
+         
          if(!gen::ch::is_letter_or_digit(strChar))
          {
+            
             do
             {
                i += strChar.get_length();
@@ -740,109 +833,175 @@ namespace gen
 
             if(*pszIter == '\0')
                break;
+
             if(strFind == string(pszIter, strFind.get_length())
             && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
             {
+
                return iStart + i;
+
             }
+
          }
+
          i += strChar.get_length();
+
          pszIter = utf8_inc(pszIter);
+
       }
+
       return -1;
+
    }
 
-   int str::find_aww(const char * pszFind, const char * psz, int iStart)
+   index str::find_aww(const char * pszFind, const char * psz, index iStart)
    {
+      
       if(psz == NULL)
          return -1;
+
       const char * pszIter = &psz[iStart];
+
       if(pszIter == NULL)
          return -1;
+
       string strFind(pszFind);
-      int i = 0;
+
+      index i = 0;
+
       if(iStart == 0)
       {
+      
          if(strFind == string(pszIter, strFind.get_length())
          && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
          {
+
             return i;
+
          }
+
       }
+
       while(*pszIter != '\0')
       {
+
          string strChar = utf8_char(pszIter);
+         
          if(!gen::ch::is_letter(strChar))
          {
+
             do
             {
+               
                i += strChar.get_length();
+               
                pszIter = utf8_inc(pszIter);
+               
                strChar = utf8_char(pszIter);
+
             } 
             while(!gen::ch::is_letter(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
                break;
+
             if(strFind == string(pszIter, strFind.get_length())
             && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
             {
+
                return iStart + i;
+
             }
          }
+         
          i += strChar.get_length();
+
          pszIter = utf8_inc(pszIter);
+
       }
+
       return -1;
+
    }
 
    string str::has_char(const char * pszIfHasChar, const char * pszBefore, const char * pszAfter)
    {
+      
       string str;
+      
       if(pszIfHasChar == NULL)
          return str;
+
       if(strlen(pszIfHasChar) == 0)
          return str;
+
       if(pszBefore != NULL)
       {
+
          str = pszBefore;
+
       }
+
       str += pszIfHasChar;
+
       if(pszAfter != NULL)
       {
+
          str += pszAfter;
+
       }
+
       return str;
+
    }
+
+
    bool str::has_upper(const char * psz)
    {
+   
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
+      
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
+
       return bHasUpper;
+
    }
+   
    bool str::has_lower(const char * psz)
    {
+      
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
+
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
+
       return bHasLower;
+
    }
+   
    bool str::has_digit(const char * psz)
    {
+
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
+
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
+
       return bHasDigit;
+
    }
+   
    void str::calc_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
+
       bHasUpper = false;
       bHasLower = false;
       bHasDigit = false;
+
       while(true)
       {
          string qc = utf8_char(psz);
@@ -869,43 +1028,67 @@ namespace gen
          }
          psz = utf8_inc(psz);
       }
+
    }
+
    bool str::has_one_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
+
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
+
       return bHasUpper || bHasLower || bHasDigit;
+
    }
+
    bool str::has_all_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
+   
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
+
       return bHasUpper && bHasLower && bHasDigit;
+
    }
+
    bool str::has_all_v1(const char * psz)
    {
+   
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
+
       return has_all_v1(psz, bHasUpper, bHasLower, bHasDigit);
+
    }
+
 
    string str::if_null(const char * psz, const char * pszIfNull)
    {
+      
       if(psz == NULL)
          return pszIfNull;
       else
          return psz;
+
    }
 
    string str::get_window_text(HWND hwnd)
    {
+      
       string str;
+      
       if (hwnd != NULL)
       {
+      
          int nLen = ::GetWindowTextLength(hwnd);
+
          ::GetWindowText(hwnd, str.GetBufferSetLength(nLen), nLen+1);
+
          str.ReleaseBuffer();
+
       }
+
       return str;
+
    }
 
    string str::get_word(
@@ -914,10 +1097,13 @@ namespace gen
                      bool bWithSeparator, 
                      bool bEndIsSeparator)
    {
+      
       if(psz == NULL)
          return "";
+
       if(pszSeparator == NULL)
       {
+
          if(bEndIsSeparator)
          {
             return psz;
@@ -928,7 +1114,7 @@ namespace gen
          }
       }
       string str(psz);
-      int iFind = str.find(pszSeparator);
+      strsize iFind = str.find(pszSeparator);
       if(iFind < 0)
       {
          if(bEndIsSeparator)
@@ -950,16 +1136,45 @@ namespace gen
       }
    }
 
-   bool str::atoi(const char * psz, int & i, int iBase)
+   bool str::atoi(const char * psz, int64_t & i, int iBase)
    {
+
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
+
       char * pszEnd;
-      int iConversion = ::strtol(psz, &pszEnd, iBase);
+
+      int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
+
       if(pszEnd == psz)
          return false;
+
       i = iConversion;
+
       return true;
+
+   }
+
+   bool str::atoi(const char * psz, int & i, int iBase)
+   {
+
+      if(iBase < 0 || iBase == 1 || iBase > 36)
+         return false;
+
+      char * pszEnd;
+
+      int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
+
+      if(pszEnd == psz)
+         return false;
+
+      if(iConversion > numeric_info::get_maximum_value < int > ())
+         return false;
+
+      i = (int) iConversion;
+
+      return true;
+
    }
 
    string str::itoa(int i)
@@ -973,6 +1188,27 @@ namespace gen
    {
       string str;
       str.Format("%I64d", i);
+      return str;
+   }
+
+   string str::itoa(uint64_t ui)
+   {
+      string str;
+      str.Format("%I64u", ui);
+      return str;
+   }
+
+   string str::itoa(unsigned int ui)
+   {
+      string str;
+      str.Format("%u", ui);
+      return str;
+   }
+
+   string str::itoa(unsigned long ul)
+   {
+      string str;
+      str.Format("%u", ul);
       return str;
    }
 
@@ -1252,8 +1488,9 @@ namespace gen
       return true;
    }
 
-   string str::utf8_char(const char * pszBeg, const char * psz, int i)
+   string str::utf8_char(const char * pszBeg, const char * psz, index i)
    {
+
       if(i > 0)
       {
          while(i != 0)
@@ -1286,18 +1523,18 @@ namespace gen
       }
    }
 
-   string str::utf8_next_char(const char * pszBeg, const char * psz, int i)
+   string str::utf8_next_char(const char * pszBeg, const char * psz, index i)
    {
       return utf8_char(pszBeg, psz, i + 1);
    }
 
-   string str::utf8_previous_char(const char * pszBeg, const char * psz, int i)
+   string str::utf8_previous_char(const char * pszBeg, const char * psz, index i)
    {
       return utf8_next_char(pszBeg, psz, -i);
    }
 
 
-   __int64 str::get_escaped_char(const char * lpcsz, int pos, int &retPos)
+   int64_t str::get_escaped_char(const char * lpcsz, int64_t pos, int64_t &retPos)
    {
       retPos = pos;
       if(lpcsz[pos] == '\\')
@@ -1312,8 +1549,8 @@ namespace gen
                {
                   return BAD_WCHAR;
                }
-               __int64 hex = get_hex_number(val);
-               int val_len = val.get_length();
+               int64_t hex = get_hex_number(val);
+               strsize val_len = val.get_length();
                if(hex < 0 || hex > 0xFFFF) 
                {
                   return BAD_WCHAR;
@@ -1409,8 +1646,8 @@ namespace gen
    void str::consume(const char * & pszXml, const char * psz, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);
-     int idx;
-     int len = strlen(psz);
+     strsize idx;
+     strsize len = strlen(psz);
      for(idx = 0; idx < len; idx++)
      {
         if(pszXml[idx] != psz[idx])
@@ -1421,7 +1658,7 @@ namespace gen
      pszXml += len;
    }
 
-   void str::consume(const char * & pszXml, const char * psz, int len, const char * pszEnd)
+   void str::consume(const char * & pszXml, const char * psz, strsize len, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);
      int idx;
@@ -1435,7 +1672,7 @@ namespace gen
      pszXml += len;
    }
 
-   void str::consume_spaces(const char * & pszXml, int iMinimumCount)
+   void str::consume_spaces(const char * & pszXml, count iMinimumCount)
    {
       const char * psz = pszXml;
       int i = 0;
@@ -1452,7 +1689,7 @@ namespace gen
    }
 
 
-   void str::consume_spaces(const char * & pszXml, int iMinimumCount, const char * pszEnd)
+   void str::consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd)
    {
       const char * psz = pszXml;
       int i = 0;
@@ -1613,8 +1850,8 @@ namespace gen
 
    bool str::begins_consume(const char * & pszXml, const char * psz)
    {
-     int idx;
-     int len = strlen(psz);
+     strsize idx;
+     strsize len = strlen(psz);
      for(idx = 0; idx < len; idx++)
      {
         if(pszXml[idx] != psz[idx])
@@ -1649,7 +1886,7 @@ namespace gen
      return str;
    }
 
-   string str::pad(const char * psz, int iLen, const char * pszPattern, str::e_pad epad)
+   string str::pad(const char * psz, count iLen, const char * pszPattern, str::e_pad epad)
    {
       string str;
       str = psz;
@@ -1686,8 +1923,8 @@ namespace gen
       if(psz == NULL)
          return "";
       string str(psz);
-      int iLen = strlen(psz);
-      int iLenSuffix = strlen(pszSuffix);
+      strsize iLen = strlen(psz);
+      strsize iLenSuffix = strlen(pszSuffix);
       if(str.Right(iLenSuffix) == pszSuffix)
       {
          return str.Mid(0, iLen - iLenSuffix);
@@ -1702,8 +1939,8 @@ namespace gen
       if(psz == NULL)
          return "";
       string str(psz);
-      int iLen = strlen(psz);
-      int iLenSuffix = strlen(pszSuffix);
+      strsize iLen = strlen(psz);
+      strsize iLenSuffix = strlen(pszSuffix);
       if(str.Right(iLenSuffix).CompareNoCase(pszSuffix) == 0)
       {
          return str.Mid(0, iLen - iLenSuffix);
@@ -1766,17 +2003,92 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       return str;
    }
 
-
-   uint64_t str::atoi64(const string & str) 
+   int64_t str::atoi64(const string & str) 
    {
-      uint64_t l = 0;
-      for (int i = 0; i < str.get_length(); i++)
+      
+      int i = 0;
+      
+      for (; i < str.get_length() && isspace(str[i]); i++);
+      
+      bool bNegative = str[i] == '-';
+      
+      if(bNegative)
+         i++;
+      
+      uint64_t ui = 0;
+      
+      for(; i < str.get_length() && isdigit(str[i]); i++)
       {
-         l = l * 10 + str[i] - 48;
+         ui = ui * 10 + str[i] - 48;
       }
-      return l;
+      
+      if(bNegative)
+         return -(int64_t) ui;
+      else
+         return (int64_t) ui;
    }
 
+   int64_t str::atoi64(const char * psz) 
+   {
+      
+      int i = 0;
+      
+      for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
+      
+      bool bNegative = *psz == '-';
+      
+      if(bNegative)
+         psz++;
+      
+      uint64_t ui = 0;
+      
+      for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
+      {
+         ui = ui * 10 + *psz - 48;
+      }
+      
+      if(bNegative)
+         return -(int64_t) ui;
+      else
+         return (int64_t) ui;
+
+   }
+
+   uint64_t str::atoui64(const string & str) 
+   {
+      
+      int i = 0;
+
+      for (; i < str.get_length() && isspace(str[i]); i++);
+
+      uint64_t ui = 0;
+
+      for(; i < str.get_length() && isdigit(str[i]); i++)
+      {
+         ui = ui * 10 + str[i] - 48;
+      }
+
+      return ui;
+
+   }
+
+   uint64_t str::atoui64(const char * psz) 
+   {
+
+      int i = 0;
+      
+      for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
+
+      uint64_t ui = 0;
+
+      for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
+      {
+         ui = ui * 10 + *psz - 48;
+      }
+
+      return ui;
+
+   }
 
    unsigned int str::hex2unsigned(const string & str)
    {
@@ -1798,7 +2110,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    void str::increment_digit_letter(string & str)
    {
-      int i = str.get_length() - 1;
+      strsize i = str.get_length() - 1;
       while(i >= 0)
       {
          if(str[i] >= '0' && str[i] <= '8')
@@ -1853,7 +2165,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    void str::begin(wstring & wstr, const wchar_t * lpcszPrefix)
    {
       
-      int iPrefixLen = wcslen_dup(lpcszPrefix);
+      strsize iPrefixLen = wcslen_dup(lpcszPrefix);
       if(wstr.storage_size() >= (wstr.get_length() + iPrefixLen + 1))
       {
          memmove(&wstr[iPrefixLen], wstr, wstr.get_length() + 1);

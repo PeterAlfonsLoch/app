@@ -234,7 +234,7 @@ namespace gen
       return encode(storage);
    }
 
-   string base64::encode(primitive::memory_base & storageBinary)
+   string base64::encode(primitive::base_memory & storageBinary)
    {
       string strRet;
       gen::byte_stream_memory_file file(&System, &storageBinary);

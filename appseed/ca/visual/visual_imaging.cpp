@@ -4373,7 +4373,7 @@ bool imaging::true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics *
 bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2, ::ca::dib * pdibWork3)
 {
    
-   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
+   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY) != FALSE;
 
 }
 
@@ -4383,7 +4383,7 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
    
    
    
-   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
+   return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY) != FALSE;
 
 
 }
@@ -4407,19 +4407,22 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
    if(dBlend >= 1.0)
    {
 
-      pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, 0, 0, SRCCOPY);
+      return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, 0, 0, SRCCOPY) != FALSE;
 
    }
    else
    {
 
       ::visual::dib_sp dib(get_app());
+      
       if(!dib->create(size))
          return false;
+
       dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
       dib->from(point(0, 0), pdcColorAlpha, ptAlpha, size);
       dib->channel_multiply(visual::rgba::channel_alpha, dBlend);
-      pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, dib->get_graphics(), 0, 0, SRCCOPY);
+      
+      return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, dib->get_graphics(), 0, 0, SRCCOPY) != FALSE;
 
    }
 

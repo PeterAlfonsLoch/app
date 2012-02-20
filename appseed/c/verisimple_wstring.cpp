@@ -50,13 +50,18 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
    else
    {
 
-      int iLen         = wcslen_dup(pwsz);
+      count iLen         = wcslen_dup(pwsz);
+
       m_pwsz = (wchar_t *) wstring_data::alloc(iLen + 1);
+
       get_data()->m_iLength = iLen;
+
       memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(wchar_t));
+
       m_pwsz[get_data()->m_iLength] = L'\0';
 
    }
+
 }
 
 verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr)
@@ -75,7 +80,7 @@ verisimple_wstring::~verisimple_wstring()
 
 }
 
-wchar_t * verisimple_wstring::alloc(int iCount)
+wchar_t * verisimple_wstring::alloc(count iCount)
 {
 
    if(iCount < get_data()->m_iAllocation)
@@ -125,7 +130,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
    if(m_pwsz != pwsz)
    {
 
-      int iLen = wcslen_dup(pwsz);
+      count iLen = wcslen_dup(pwsz);
 
       if(storage_size() >= (iLen + 1))
       {
@@ -152,9 +157,12 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 {
    
-   int iLen = utf16_len(psz);
+   count iLen = utf16_len(psz);
+
    alloc(iLen + 1);
+
    utf8_to_16(*this, psz);
+
    set_length(iLen);
    
    return *this;
@@ -165,14 +173,23 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 
 verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2)
 {
-   int iLen1 = wstr1.length();
-   int iLen2 = wstr2.length();
+
+   count iLen1 = wstr1.length();
+
+   count iLen2 = wstr2.length();
+
    verisimple_wstring wstrRet;
+
    wstrRet.alloc(iLen1 + iLen2 + 1);
+
    wcscpy_dup(wstrRet, wstr1);
+
    wcscat_dup(wstrRet, wstr2);
+
    wstrRet.set_length(iLen1 + iLen2);
+
    return wstrRet;
+
 }
 
 
@@ -191,12 +208,18 @@ CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 {
    
    wstring wstr;
-   int iLen = utf16_len(psz);
+
+   count iLen = utf16_len(psz);
+
    if(iLen < 0)
       return wstr;
+
    wstr.alloc(iLen + 1);
+
    utf8_to_16(wstr, psz);
+
    wstr.set_length(iLen);
+
    return wstr;
 
 }

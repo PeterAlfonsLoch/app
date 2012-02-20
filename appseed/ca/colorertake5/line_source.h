@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace colorertake5
 {
+
 
    /**
     * Interface for editor line information requests.
@@ -26,14 +28,14 @@ namespace colorertake5
       * @param lno Line number, which will be used as
       * initial position of all subsequend parsing.
       */
-     virtual void startJob(int lno);
+     virtual void startJob(index lno);
 
      /**
       * Called by parser, when it has finished text parsing.
       * Could be used to cleanup objects, allocated by last
       * #getLine() call.
       */
-     virtual void endJob(int lno);
+     virtual void endJob(index lno);
 
      /**
       * Returns line of text with specified number.
@@ -45,10 +47,14 @@ namespace colorertake5
       * @param lno Requested line number
       * @return Unicode string, enwrapped into string class.
       */
-     virtual string getLine(int lno) = 0;
+     virtual string getLine(index lno) = 0;
+
+
    };
 
+
 } // namespace colorertake5
+
 
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1

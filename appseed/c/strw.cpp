@@ -7,14 +7,19 @@
 
 
 
-int wcslen_dup(const wchar_t * str)
+count wcslen_dup(const wchar_t * str)
 {
+   
    if(str == NULL)
       return 0;
+
    const wchar_t * pszEnd = str;
+
    while(*pszEnd != 0)
       pszEnd++;
+
    return pszEnd - str;
+
 }
 
 CLASS_DECL_c int iswalpha_dup(int ch)

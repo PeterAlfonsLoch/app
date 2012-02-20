@@ -550,7 +550,11 @@ void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
 
 void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
 {
-//   synch_lock lock(m_pguie);
+   
+   UNREFERENCED_PARAMETER(nIDFirst);
+   UNREFERENCED_PARAMETER(nIDLast);
+
+   //   synch_lock lock(m_pguie);
 
    ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
          (nFlags & ~reposNoPosLeftOver) == reposExtra);
@@ -589,7 +593,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
+         else if(pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (::user::interaction * hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
@@ -599,7 +603,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
+         else if (pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
@@ -612,7 +616,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
+         else if (pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (::user::interaction * hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
@@ -622,7 +626,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          ::user::interaction * pWnd = hWndChild;
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
-         else if ((int)nIDC >= nIDFirst && (int)nIDC <= nIDLast && pWnd != NULL)
+         else if (pWnd != NULL)
             hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }

@@ -770,11 +770,11 @@ namespace filemanager
          {
             ::userbase::menu_item_ptra * pitema = pcmdui1->m_pitema;
 
-            ::userbase::menu_base * pbase = pitema->ptr_at(pcmdui->m_pcmdui->m_nIndex)->m_pbase;
-            pitema->remove_at(pcmdui->m_pcmdui->m_nIndex);
+            ::userbase::menu_base * pbase = pitema->ptr_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
+            pitema->remove_at(pcmdui->m_pcmdui->m_iIndex);
 
 
-            int iStartIndex = pcmdui->m_pcmdui->m_nIndex;
+            int iStartIndex = pcmdui->m_pcmdui->m_iIndex;
             int iIndex = iStartIndex;
 
 
@@ -813,9 +813,9 @@ namespace filemanager
                pitema->insert_at(iIndex, menuitem);
                iIndex++;
             }
-            pcmdui->m_pcmdui->m_nIndex = iStartIndex;
+            pcmdui->m_pcmdui->m_iIndex = iStartIndex;
 
-            pcmdui->m_pcmdui->m_nIndexMax = iIndex;
+            pcmdui->m_pcmdui->m_iCount = iIndex;
 
 
             pbase->layout();

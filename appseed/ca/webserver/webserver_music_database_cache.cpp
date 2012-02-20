@@ -1379,8 +1379,8 @@ void database_cache::tmp_performer_update(bool bVerbose)
       int64_t        classid;
       int64_t        cl;
       int64_array    parent_class;
-      int64_t        oldtopicid;
-      int64_t        oldtopictype;
+      int64_t        oldtopicid = -1;
+      int64_t        oldtopictype = -1;
       stringa        classa_added;
 
 		if(countTopic > 0)

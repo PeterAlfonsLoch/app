@@ -37,9 +37,9 @@ MSG g_msgSpaAdminWindow;
 
 wchar_t * wfy(const char * pszUtf8)
 {
-   int iSize = MultiByteToWideChar(CP_UTF8, 0, pszUtf8, strlen_dup(pszUtf8), NULL, NULL);
+   int iSize = MultiByteToWideChar(CP_UTF8, 0, pszUtf8, (int) strlen_dup(pszUtf8), NULL, NULL);
    wchar_t * push = new wchar_t[iSize + 1];
-   MultiByteToWideChar(CP_UTF8, 0, pszUtf8, strlen_dup(pszUtf8), push, iSize + 1);
+   MultiByteToWideChar(CP_UTF8, 0, pszUtf8, (int) strlen_dup(pszUtf8), push, iSize + 1);
    push[iSize] = L'\0';
    return push;
 }

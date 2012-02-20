@@ -480,7 +480,7 @@ namespace ca2
       string strTable;
       string strString;
       string_to_string_map * pmap = NULL;
-      int iFind = 0;
+      index iFind = 0;
       if((iFind = strId.find(':')) <= 0)
       {
          strTable = "";

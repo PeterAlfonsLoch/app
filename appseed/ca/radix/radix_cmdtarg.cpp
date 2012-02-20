@@ -367,11 +367,16 @@ const AFX_MSGMAP* command_target::GetThisMessageMap()
 cmd_ui::cmd_ui(::ca::application * papp)  :
    ca(papp)
 {
-   // zero out everything
-   m_nIndex = m_nIndexMax = 0;
-   m_pMenu = m_pSubMenu = m_pParentMenu = NULL;
-   m_pOther = NULL;
-   m_bEnableChanged = m_bContinueRouting = FALSE;
+
+   m_iIndex             = 0;
+   m_iCount             = 0;
+   m_pMenu              = NULL;
+   m_pSubMenu           = NULL;
+   m_pParentMenu        = NULL;
+   m_pOther             = NULL;
+   m_bEnableChanged     = FALSE;
+   m_bContinueRouting   = FALSE;
+
 }
 
 // default cmd_ui implementation only works for Menu Items
@@ -382,7 +387,7 @@ void cmd_ui::Enable(BOOL bOn)
       if (m_pSubMenu != NULL)
          return; // don't change popup menus indirectly
 
-      ENSURE(m_nIndex < m_nIndexMax);
+      ENSURE(m_iIndex < m_iCount);
    }
    else
    {
@@ -407,7 +412,7 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
          return; // don't change popup menus indirectly
 
       // place checkmark next to menu item
-      ENSURE(m_nIndex < m_nIndexMax);
+      ENSURE(m_iIndex < m_iCount);
    }
    else
    {
@@ -430,7 +435,7 @@ void cmd_ui::SetRadio(BOOL bOn)
          return; // don't change popup menus indirectly
 
       // for menu item - use dot instead of checkmark
-      ENSURE(m_nIndex < m_nIndexMax);
+      ENSURE(m_iIndex < m_iCount);
 
       if (afxData.hbmMenuDot == NULL)
          _AfxLoadDotBitmap();    // in INIT segment

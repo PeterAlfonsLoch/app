@@ -1,69 +1,46 @@
 #include "StdAfx.h"
 
+
 namespace primitive
 {
 
-   shared_memory::shared_memory(const memory_base & s)
-   {
-      m_nAllocFlags        = 0;
-      m_hGlobalMemory      = NULL;
-      m_bAllowGrow         = TRUE;
-      m_pbStorage          = NULL;
-      memory_base::operator             = (s);
-   }
 
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   internal_shared_memory::internal_shared_memory()
    {
-      m_nAllocFlags        = nAllocFlags;
-      m_hGlobalMemory      = NULL;
-      m_bAllowGrow         = TRUE;
-      m_pbStorage          = NULL;
-      m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
-   }
-
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
-   {
-      m_pcontainer      = pcontainer;
+      
+      m_pcontainer      = NULL;
       m_nAllocFlags     = 0;
       m_hGlobalMemory   = NULL;
       m_bAllowGrow      = TRUE;
       m_pbStorage       = NULL;
-      allocate(dwSize);
-      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
-      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
+
    }
 
-   shared_memory::~shared_memory()
+   internal_shared_memory::~internal_shared_memory()
    {
       free_data();
    }
 
-   LPBYTE shared_memory::internal_get_data() const
+   LPBYTE internal_shared_memory::detach_shared_memory(HGLOBAL & hglobal)
    {
-      if(IsEnabled())
-         return m_pbStorage + m_iOffset;
-      else
-      {
-         ASSERT(FALSE);
-         return NULL;
-      }
-   }
 
-   LPBYTE shared_memory::DetachStorage()
-   {
-      LPBYTE pbStorage = m_pbStorage;
+      LPBYTE pbStorage     = m_pbStorage;
+      hglobal              = m_hGlobalMemory;
+
       m_hGlobalMemory      = NULL;
       m_pbStorage          = NULL;
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
+
       return pbStorage;
+
    }
 
 
-   bool shared_memory::allocate_internal(memory_size dwNewLength)
+   bool internal_shared_memory::allocate_internal(memory_size dwNewLength)
    {
-      if(!IsEnabled())
+
+      if(!is_enabled())
       {
          ASSERT(FALSE);
          return false;
@@ -75,7 +52,7 @@ namespace primitive
       }
 
 
-      _RemoveOffset();
+      base_remove_offset();
 
 
       if(m_pbStorage == NULL)
@@ -110,7 +87,7 @@ namespace primitive
             }
             else
             {
-               int iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               memory_offset iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
@@ -128,22 +105,141 @@ namespace primitive
       }
    }
 
-
-   bool shared_memory::IsLocked() const
+   void internal_shared_memory::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
    {
-      return m_bLock;
+      UNREFERENCED_PARAMETER(bAllowGrow);
+      ASSERT(m_hGlobalMemory == NULL);        // do once only
+      ASSERT(m_pbStorage == NULL);     // do once only
+
+      if (hGlobalMemory == NULL)
+      {
+         AfxThrowInvalidArgException();
+      }
+
+      m_hGlobalMemory = hGlobalMemory;
+      m_pbStorage = (BYTE*)::GlobalLock(m_hGlobalMemory);
+      m_dwAllocation = m_cbStorage = (ULONG)::GlobalSize(m_hGlobalMemory);
+      // xxx m_bAllowGrow = bAllowGrow;
    }
 
-   bool shared_memory::IsEnabled() const
+   BYTE* internal_shared_memory::Alloc(SIZE_T nBytes)
    {
-      if(m_bLockMode)
-         return IsLocked();
-      else
-         return true;
+      ASSERT(m_hGlobalMemory == NULL);        // do once only
+      m_hGlobalMemory = ::GlobalAlloc(m_nAllocFlags, nBytes);
+      if (m_hGlobalMemory == NULL)
+         return NULL;
+      return (BYTE*)::GlobalLock(m_hGlobalMemory);
+   }
+
+   BYTE* internal_shared_memory::Realloc(BYTE*, SIZE_T nBytes)
+   {
+      if (!m_bAllowGrow)
+         return NULL;
+      ASSERT(m_hGlobalMemory != NULL);
+
+      ::GlobalUnlock(m_hGlobalMemory);
+      HGLOBAL hNew;
+      hNew = ::GlobalReAlloc(m_hGlobalMemory, nBytes, m_nAllocFlags);
+      if (hNew == NULL)
+         return NULL;
+      m_hGlobalMemory = hNew;
+      return (BYTE*)::GlobalLock(m_hGlobalMemory);
+   }
+
+   void internal_shared_memory::Free(BYTE*)
+   {
+      ASSERT(m_hGlobalMemory != NULL);
+      ::GlobalUnlock(m_hGlobalMemory);
+      ::GlobalFree(m_hGlobalMemory);
+   }
+
+   HGLOBAL internal_shared_memory::detach()
+   {
+      HGLOBAL hMem;
+      ASSERT(m_hGlobalMemory != NULL);
+      hMem = m_hGlobalMemory;
+
+      ::GlobalUnlock(m_hGlobalMemory);
+      m_hGlobalMemory = NULL; // detach from global handle
+
+      // re-initialize the CMemFile parts too
+      m_pbStorage = NULL;
+      m_dwAllocation = m_cbStorage = 0;
+
+      return hMem;
+   }
+
+
+   void internal_shared_memory::free_data()
+   {
+      if(m_pbStorage != NULL)
+      {
+         m_dwAllocation    = 0;
+         try
+         {
+            Free(m_pbStorage);
+         }
+         catch(...)
+         {
+         }
+         m_pbStorage       = NULL;
+      }
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   shared_memory::shared_memory(const base_memory & s)
+   {
+      
+      memory_base::operator             = (s);
 
    }
 
-   void shared_memory::copy_from(const memory_base *pstorage)
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   {
+
+      m_nAllocFlags        = nAllocFlags;
+      m_bAllowGrow         = TRUE;
+      m_pcontainer         = pcontainer;
+      m_dwAllocationAddUp  = dwAllocationAddUp;
+
+   }
+
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
+   {
+      
+      m_pcontainer      = pcontainer;
+      m_bAllowGrow      = TRUE;
+
+      allocate(dwSize);
+
+      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+
+      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
+
+   }
+
+   shared_memory::~shared_memory()
+   {
+      
+   }
+
+
+
+
+
+   /*void shared_memory::copy_from(const memory_base *pstorage)
    {
       ASSERT(pstorage != NULL);
       allocate(pstorage->get_size());
@@ -156,9 +252,9 @@ namespace primitive
       allocate(uiSize);
       memcpy(get_data(), pdata, (size_t) uiSize);
    }
+   */
 
-
-   void shared_memory::To(string & str, memory_position iStart, memory_position iEnd)
+   /*void shared_memory::To(string & str, memory_position iStart, memory_position iEnd)
    {
       iStart = max(iStart, 0);
       if(iEnd == -1)
@@ -243,10 +339,10 @@ namespace primitive
          psz++;
       }
       From(str);
-   }
+   }*/
 
 
-   void shared_memory::from_string(const wchar_t * pwsz)
+   /*void shared_memory::from_string(const wchar_t * pwsz)
    {
       from_string(gen::international::unicode_to_utf8(pwsz));
    }
@@ -264,88 +360,8 @@ namespace primitive
       lpsz[this->get_size()] = '\0';
       str.ReleaseBuffer();
    }
+   */
 
-
-   void shared_memory::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
-   {
-      UNREFERENCED_PARAMETER(bAllowGrow);
-      ASSERT(m_hGlobalMemory == NULL);        // do once only
-      ASSERT(m_pbStorage == NULL);     // do once only
-
-      if (hGlobalMemory == NULL)
-      {
-         AfxThrowInvalidArgException();
-      }
-
-      m_hGlobalMemory = hGlobalMemory;
-      m_pbStorage = (BYTE*)::GlobalLock(m_hGlobalMemory);
-      m_dwAllocation = m_cbStorage = (ULONG)::GlobalSize(m_hGlobalMemory);
-      // xxx m_bAllowGrow = bAllowGrow;
-   }
-
-   BYTE* shared_memory::Alloc(SIZE_T nBytes)
-   {
-      ASSERT(m_hGlobalMemory == NULL);        // do once only
-      m_hGlobalMemory = ::GlobalAlloc(m_nAllocFlags, nBytes);
-      if (m_hGlobalMemory == NULL)
-         return NULL;
-      return (BYTE*)::GlobalLock(m_hGlobalMemory);
-   }
-
-   BYTE* shared_memory::Realloc(BYTE*, SIZE_T nBytes)
-   {
-      if (!m_bAllowGrow)
-         return NULL;
-      ASSERT(m_hGlobalMemory != NULL);
-
-      ::GlobalUnlock(m_hGlobalMemory);
-      HGLOBAL hNew;
-      hNew = ::GlobalReAlloc(m_hGlobalMemory, nBytes, m_nAllocFlags);
-      if (hNew == NULL)
-         return NULL;
-      m_hGlobalMemory = hNew;
-      return (BYTE*)::GlobalLock(m_hGlobalMemory);
-   }
-
-   void shared_memory::Free(BYTE*)
-   {
-      ASSERT(m_hGlobalMemory != NULL);
-      ::GlobalUnlock(m_hGlobalMemory);
-      ::GlobalFree(m_hGlobalMemory);
-   }
-
-   HGLOBAL shared_memory::detach()
-   {
-      HGLOBAL hMem;
-      ASSERT(m_hGlobalMemory != NULL);
-      hMem = m_hGlobalMemory;
-
-      ::GlobalUnlock(m_hGlobalMemory);
-      m_hGlobalMemory = NULL; // detach from global handle
-
-      // re-initialize the CMemFile parts too
-      m_pbStorage = NULL;
-      m_dwAllocation = m_cbStorage = 0;
-
-      return hMem;
-   }
-
-
-   void shared_memory::free_data()
-   {
-      if(m_pbStorage != NULL)
-      {
-         m_dwAllocation    = 0;
-         try
-         {
-            Free(m_pbStorage);
-         }
-         catch(...)
-         {
-         }
-         m_pbStorage       = NULL;
-      }
-   }
 
 } // namespace primitive
 

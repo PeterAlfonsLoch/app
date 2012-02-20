@@ -64,7 +64,7 @@ namespace xml
       m_pnode->set_attr(lpcszName, lpcszValue);
    }
 
-   void output_tree::set_attr(const char * lpcszName, int iValue)
+   void output_tree::set_attr(const char * lpcszName, int64_t iValue)
    {
       m_pnode->set_attr(lpcszName, iValue);
    }

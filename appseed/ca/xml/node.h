@@ -98,24 +98,24 @@ namespace xml
 
       // in one level child nodes
       node *                  get_child( const char * name);
-      node *                  get_child_with_attr(const char * lpcszName, const char * pszAttr, var value, int iStart = 0);
+      node *                  get_child_with_attr(const char * lpcszName, const char * pszAttr, var value, index iStart = 0);
       node *                  get_node_from_path(const char * path);
       node *                  get_node_from_attr_path(const char * path, const char * pszName, const char * pszAttr);
       string                  get_child_simple_path(node * pnode);
       string                  get_child_simple_attr_path(node * pnode, const char * pszAttr);
-      node *                  get_child( const char * name, index & iStartPosition);
-      string                  get_child_value( const char * name );
-      string                  get_child_text( const char * name, disp_option * opt = NULL);
-      node::base_array        children( const char * name );
+      node *                  get_child(const char * name, index & iStartPosition);
+      string                  get_child_value(const char * name);
+      string                  get_child_text(const char * name, disp_option * opt = NULL);
+      node::base_array        children(const char * name);
       node::base_array &      children();
 
-      ::xml::attr *           GetChildAttr( const char * name, const char * attrname );
-      string                  GetChildAttrValue( const char * name, const char * attrname );
+      ::xml::attr *           GetChildAttr(const char * name, const char * attrname);
+      string                  GetChildAttrValue(const char * name, const char * attrname);
       node *                  GetChildByAttr(const char * pszName, const char * pszAttrName, const char * pszAttrValue);
 
-      node *                  get_child_at(const char * pszName, int iIndex, int iDepth);
-      count                   get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, int iDepth = 1);
-      count                   remove_child_with_attr(const char * pszName, const char * pszAttrName, int iIndex, int iCount = 1, int iDepth = 1);
+      node *                  get_child_at(const char * pszName, index iIndex, index iDepth);
+      count                   get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, index iDepth = 1);
+      count                   remove_child_with_attr(const char * pszName, const char * pszAttrName, index iIndex, count iCount = 1, index iDepth = 1);
 
       // search node
       node *                  rfind( const char * name, int iDepth = -1);
@@ -123,8 +123,8 @@ namespace xml
       // modify DOM
       count                   get_children_count();
       count                   get_children_count(const char * pszName);
-      count                   get_children_count(const char * pszName, int iDepth);
-      node *                  child_at(int i);
+      count                   get_children_count(const char * pszName, index iDepth);
+      node *                  child_at(index i);
       //node *                create_node( const char * name = NULL, const char * value = NULL );
       node *                  add_child( const char * name = NULL, const char * value = NULL );
       node *                  add_child( node * node );
@@ -138,14 +138,16 @@ namespace xml
       node *                  AppendChildBranch( node * node );
 
       // modify attr
-      ::xml::attr *           attr_at( int i );
+      ::xml::attr *           attr_at( index i );
       //attr * CreateAttr( const char * anem = NULL, const char * value = NULL );
-      ::xml::attr *           add_attr(const char * name = NULL, const char * value = NULL);
-      ::xml::attr *           add_attr(const char * nam, int iValue);
+      ::xml::attr *           add_attr(const char * pszName = NULL, const char * value = NULL);
+      ::xml::attr *           add_attr(const char * pszName, int iValue);
+      ::xml::attr *           add_attr(const char * pszName, int64_t iValue);
       ::xml::attr *           add_attr(const ::xml::attr & attr);
-      ::xml::attr *           set_attr(const char * name, const char * value);
-      ::xml::attr *           set_attr(const char * nam, int iValue);
-      ::xml::attr *           set_attr(const char * nam, bool bValue);
+      ::xml::attr *           set_attr(const char * pszName, const char * value);
+      ::xml::attr *           set_attr(const char * pszName, int iValue);
+      ::xml::attr *           set_attr(const char * pszName, int64_t iValue);
+      ::xml::attr *           set_attr(const char * pszName, bool bValue);
       bool                    remove_attr(::xml::attr * attr);
       ::xml::attr *        detach_attr(::xml::attr * attr);
 

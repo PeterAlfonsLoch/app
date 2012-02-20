@@ -92,7 +92,7 @@ namespace gen
       const var_array & vara(int iIndex = -1) const;
       const property_set & propset(int iIndex = -1) const;
       virtual void get_string(char * psz) const;
-      virtual int get_length() const;
+      virtual strsize get_length() const;
 
       string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
 

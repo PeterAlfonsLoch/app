@@ -93,7 +93,8 @@ void document::update_frame_counts()
 {
    // walk all frames of views (mark and sweep approach)
    count count = get_view_count();
-   for(index index = 0; index < count; index++)
+   index index;
+   for(index = 0; index < count; index++)
    {
       ::view * pview = get_view(index);
       ASSERT_VALID(pview);
@@ -109,7 +110,7 @@ void document::update_frame_counts()
    // now do it again counting the unique ones
    int nFrames = 0;
    count = get_view_count();
-   for(index index = 0; index < count; index++)
+   for(index = 0; index < count; index++)
    {
       ::view * pview = get_view(index);
       ASSERT_VALID(pview);
@@ -130,7 +131,7 @@ void document::update_frame_counts()
    // go through frames updating the appropriate one
    int iFrame = 1;
    count = get_view_count();
-   for(index index = 0; index < count; index++)
+   for(index = 0; index < count; index++)
    {
       ::view * pview = get_view(index);
       ASSERT_VALID(pview);
@@ -334,7 +335,7 @@ bool document::do_save(const char * pszPathName, bool bReplace)
            !strExt.is_empty())
          {
             ASSERT(strExt[0] == '.');
-            int iStart = 0;
+            strsize iStart = 0;
             newName += strExt.Tokenize(";", iStart);
          }
       }

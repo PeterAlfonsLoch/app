@@ -27,17 +27,25 @@ void stringl::implode(string & str, const char * lpcszSeparator, index start, co
    {
       last = start + count - 1;
    }
-   int i = start;
+   
+   index i = start;
+
    POSITION pos = find_index(i);
-   for(;i <= last; i++)
+
+   for(; i <= last; i++)
    {
+      
       if(i > start)
       {
          str += strSeparator;
       }
+      
       str += get_at(pos);
+
       get_next(pos);
+
    }
+
 }
 
 string stringl::implode(const char * lpcszSeparator, index iStart, index iEnd) const
@@ -65,17 +73,25 @@ void stringl::reverse_implode(string & str, const char * lpcszSeparator, index s
    {
       last = start + count - 1;
    }
-   int i = last;
+
+   index i = last;
+
    POSITION pos = reverse_find_index(i);
+
    for(index i = last; i >= start; i--)
    {
+
       if(i < last)
       {
          str += strSeparator;
       }
+
       str += get_at(pos);
+
       get_previous(pos);
+
    }
+
 }
 
 string stringl::reverse_implode(const char * lpcszSeparator, index iStart, index iEnd) const

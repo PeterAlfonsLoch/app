@@ -325,7 +325,7 @@ install_begin:;
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strFile,
-                     strFile.length());
+                     (DWORD) strFile.length());
                   vsstring strDisplayName;
                   strDisplayName = "ca2 fontopus votagus - ";
                   strKey = "install_filter_title_" + strId;
@@ -336,21 +336,21 @@ install_begin:;
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strDisplayName,
-                     strDisplayName.length());
+                     (DWORD) strDisplayName.length());
                   ::RegSetValueEx(
                      hkey,
                      "UninstallString",
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strInstallFilter,
-                     strInstallFilter.length());
+                     (DWORD) strInstallFilter.length());
                   ::RegSetValueEx(
                      hkey,
                      "ModifyString",
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strInstallFilter,
-                     strInstallFilter.length());
+                     (DWORD) strInstallFilter.length());
                }
             }
          }
@@ -644,7 +644,7 @@ install_begin:;
                COPYDATASTRUCT cds;
                memset_dup(&cds, 0, sizeof(cds));
                cds.dwData = 15111984;
-               cds.cbData = str.length();
+               cds.cbData = (DWORD) str.length();
                cds.lpData = (PVOID) (const char *) str;
                ::SendMessageA(hwndSpaBoot, WM_COPYDATA, NULL, (LPARAM) &cds);
             }
@@ -730,7 +730,7 @@ install_begin:;
 
 
 
-   int installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen)
+   count installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen)
    {
    restart_download:
       m_dwDownloadTick = ::GetTickCount();
@@ -862,7 +862,7 @@ install_begin:;
 
 
 
-   bool installer::get(const vsstring& url_in, bool bExist, int iLength, const char * pszMd5, int iGzLen)
+   bool installer::get(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen)
    {
       if(m_bOfflineInstall)
          return true;
@@ -880,12 +880,12 @@ install_begin:;
       dir += "ca2\\time\\bz\\";
       int oldpos = -1;
 	   {
-         int pos = url_in.find(m_strInstall);
+         index pos = url_in.find(m_strInstall);
          if(pos == 0)
          {
             url = url_in.substr(m_strInstall.length());
          }
-         int oldpos = -1;
+         index oldpos = -1;
          pos = url.find("/");
          vsstring lastfile;
 		   while (pos >=0)
@@ -932,7 +932,7 @@ install_begin:;
    }
 
 
-   bool installer::download_file(const vsstring& url_in, bool bExist, int iLength, const char * pszMd5, int iGzLen)
+   bool installer::download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen)
    {
       if(m_bOfflineInstall)
          return true;
@@ -952,12 +952,12 @@ install_begin:;
       dir += "ca2\\time\\bz\\";
       int oldpos = -1;
 	   {
-         int pos = url_in.find(m_strInstall);
+         index pos = url_in.find(m_strInstall);
          if(pos == 0)
          {
             url = url_in.substr(m_strInstall.length());
          }
-         int oldpos = -1;
+         index oldpos = -1;
          pos = url.find("/");
          vsstring lastfile;
 		   while (pos >=0)
@@ -1228,7 +1228,7 @@ install_begin:;
       }
       dir += "ca2\\";
       vsstring strFind;
-      int pos = url_in.find(m_strInstall);
+      index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
          url = url_in.substr(m_strInstall.length());
@@ -1237,7 +1237,7 @@ install_begin:;
       {
          url = url_in;
       }
-      int oldpos = -1;
+      index oldpos = -1;
       pos = url.find("/");
       vsstring lastfile;
 	   while (pos >=0)
@@ -1269,7 +1269,7 @@ install_begin:;
       {
          dir = m_strInstallGz;
       }
-      int pos = url_in.find(m_strInstall);
+      index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
          url = url_in.substr(m_strInstall.length());
@@ -1278,7 +1278,7 @@ install_begin:;
       {
          url = url_in;
       }
-      int oldpos = -1;
+      index oldpos = -1;
       pos = url.find("/");
       vsstring lastfile;
 	   while (pos >=0)
@@ -1309,7 +1309,7 @@ install_begin:;
       {
          dir = m_strInstallGz;
       }
-      int pos = url_in.find(m_strInstall);
+      index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
          url = url_in.substr(m_strInstall.length());
@@ -1318,7 +1318,7 @@ install_begin:;
       {
          url = url_in;
       }
-      int oldpos = -1;
+      index oldpos = -1;
       pos = url.find("/");
       vsstring lastfile;
 	   while (pos >=0)
@@ -1348,7 +1348,7 @@ install_begin:;
       }
       dir += "ca2\\";
       vsstring strFind;
-      int pos = url_in.find(m_strInstall);
+      index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
          url = url_in.substr(m_strInstall.length());
@@ -1357,7 +1357,7 @@ install_begin:;
       {
          url = url_in;
       }
-      int oldpos = -1;
+      index oldpos = -1;
       pos = url.find("/");
       vsstring lastfile;
 	   while (pos >=0)
@@ -1385,7 +1385,7 @@ install_begin:;
       vsstring file;
       dir = dir::path(dir::afterca2(), "time\\bz\\");
       vsstring strFind;
-      int pos = url_in.find(m_strInstall);
+      index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
          url = url_in.substr(m_strInstall.length());
@@ -1394,7 +1394,7 @@ install_begin:;
       {
          url = url_in;
       }
-      int oldpos = -1;
+      index oldpos = -1;
       pos = url.find("/");
       vsstring lastfile;
       while (pos >=0)
@@ -1433,7 +1433,7 @@ install_begin:;
       vsstring file;
       dir = dir::path(dir::afterca2(), "time\\unbz\\");
       vsstring strFind;
-      int pos = url_in.find(m_strInstall);
+      index pos = url_in.find(m_strInstall);
       if(pos == 0)
       {
          url = url_in.substr(m_strInstall.length());
@@ -1442,7 +1442,7 @@ install_begin:;
       {
          url = url_in;
       }
-      int oldpos = -1;
+      index oldpos = -1;
       pos = url.find("/");
       vsstring lastfile;
       while (pos >=0)
@@ -1464,7 +1464,7 @@ install_begin:;
    }
 
 
-   bool installer::ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int iLength, const char * pszMd5, int iGzLen, bool bIndex)
+   bool installer::ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, bool bIndex)
    {
       vsstring strStage;
       vsstring strStageGz;
@@ -1640,7 +1640,7 @@ install_begin:;
    }
 
 
-   int installer::UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapMd5)
+   count installer::UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapMd5)
    {
       vsstring strStage;
       vsstring strStageGz;
@@ -1670,7 +1670,7 @@ install_begin:;
       return stra_dup.get_count();
    }
 
-   int installer::CopyFileList(stra_dup & stra_dup)
+   count installer::CopyFileList(stra_dup & stra_dup)
    {
       vsstring strStage;
       vsstring strStageUnbz;
@@ -1892,7 +1892,7 @@ install_begin:;
       {
          vsstring strStage;
          vsstring str2 = strExec.substr(11);
-         int iPos = str2.find(" ");
+         index iPos = str2.find(" ");
          vsstring str3 = str2.substr(iPos + 1);
          strStage = dir::path(dir::beforeca2(), "ca2");
          strStage = dir::path(strStage, str3);
@@ -2287,10 +2287,10 @@ install_begin:;
       vsstring str = lpCmdLine;
       vsstring strFile = lpCmdLine;
 
-      int i1 = str.find("\"");
+      index i1 = str.find("\"");
       if(i1 >= 0)
       {
-         int i2 =str.find("\"", i1 +1);
+         index i2 =str.find("\"", i1 +1);
          strFile = str.substr(i1 + 1, i2 - i1 - 1);
       }
       else
@@ -2447,10 +2447,10 @@ install_begin:;
       }
 
       m_bLoginStartup = false;
-      size_t i = str.find("install_filter=");
+      index i = str.find("install_filter=");
       if(i != vsstring::npos)
       {
-         int iStart = i + 15; // 15 = strlen_dup("install_filter=")
+         index iStart = i + 15; // 15 = strlen_dup("install_filter=")
          i = str.find(" ", i);
          if(i != vsstring::npos)
          {
@@ -2465,7 +2465,7 @@ install_begin:;
       i = str.find("install=");
       if(i != vsstring::npos)
       {
-         int iStart = i + 8; // 8 = strlen_dup("install=")
+         index iStart = i + 8; // 8 = strlen_dup("install=")
          i = str.find(" ", i);
          if(i != vsstring::npos)
          {
@@ -2482,7 +2482,7 @@ install_begin:;
       }
       if(strExe.begins_ci("Install "))
       {
-         int iStart = strlen_dup("Install ");
+         count iStart = strlen_dup("Install ");
          i = strExe.find(" ", iStart);
          vsstring strIdStart;
          if(i != vsstring::npos)
@@ -2500,7 +2500,7 @@ install_begin:;
       i = str.find(strFind);
       if(i != vsstring::npos)
       {
-         int iStart = i + strFind.length(); // 8 = strlen_dup("install=")
+         index iStart = i + strFind.length(); // 8 = strlen_dup("install=")
 //         i = str.find(" ", iStart);
 //         vsstring strCommandLine;
   //       if(i != vsstring::npos)
@@ -2544,7 +2544,7 @@ install_begin:;
       }
 
 
-      int iFind;
+      index iFind;
       if((iFind = str.find("uninstall")) != vsstring::npos)
       {
          return run_uninstall_run(&str[iFind + 10], m_nCmdShow);
@@ -2752,7 +2752,7 @@ install_begin:;
    }
 
 
-   void installer::dlr(DWORD dwDownload)
+   void installer::dlr(uint64_t dwDownload)
    {
       if(!m_bShowPercentage)
          return;
@@ -2761,7 +2761,7 @@ install_begin:;
       if(dwDeltaTime < 184)
          return;
       m_dwDownloadTick = dw;
-      DWORD dwLen = dwDownload - m_dwDownload;
+      uint64_t dwLen = dwDownload - m_dwDownload;
       m_dwDownload = dwDownload;
       if(m_daDownloadRate.get_count() < 100)
       {

@@ -180,7 +180,7 @@ void verisimple_string::trim()
 }
 
 
-verisimple_string verisimple_string::substr(int offset, count count) const
+verisimple_string verisimple_string::substr(index offset, count count) const
 {
    return verisimple_string(&m_psz[max(0, min(offset, length()))], count);
 }
@@ -202,14 +202,23 @@ verisimple_string & verisimple_string::operator += (const verisimple_string & st
 
 verisimple_string operator + (const verisimple_string & str1, const verisimple_string & str2)
 {
-   int iLen1 = str1.length();
-   int iLen2 = str2.length();
+   
+   count iLen1 = str1.length();
+
+   count iLen2 = str2.length();
+
    verisimple_string strRet;
+
    char * pszRet = (char *) ca2_alloc(iLen1 + iLen2 + 1);
+
    strcpy_dup(pszRet, str1);
+
    strcat_dup(pszRet, str2);
+
    strRet.attach(pszRet);
+
    return strRet;
+
 }
 
 
@@ -366,7 +375,7 @@ int verisimple_string::CompareNoCase(const verisimple_string &str) const
 }
 
 
-int verisimple_string::rfind(char ch) const
+index verisimple_string::rfind(char ch) const
 {
    const char * psz = m_psz + length() - 1;
    while(psz >= m_psz)
@@ -380,7 +389,7 @@ int verisimple_string::rfind(char ch) const
    return -1;
 }
 
-int verisimple_string::rfind(char ch, int iFind) const
+index verisimple_string::rfind(char ch, index iFind) const
 {
    if(iFind >= length())
       iFind = length() - 1;
@@ -416,12 +425,12 @@ vsstring std_gen_international_unicode_to_utf8(const wchar_t * psz)
 	return str;
 }
 
-int verisimple_string::find(const verisimple_string & str, int iStart) const
+index verisimple_string::find(const verisimple_string & str, index iStart) const
 {
    return find((const char *) str, iStart);
 }
 
-int verisimple_string::find(const char * str, int iStart) const
+index verisimple_string::find(const char * str, index iStart) const
 {
    if(iStart < 0)
       iStart = 0;
@@ -451,12 +460,12 @@ void verisimple_string::replace(const char * pszFind, const char * pszReplace)
    }
 }
 
-int verisimple_string::find_ci(const verisimple_string & str, int iStart) const
+index verisimple_string::find_ci(const verisimple_string & str, index iStart) const
 {
    return find_ci((const char *) str, iStart);
 }
 
-int verisimple_string::find_ci(const char * str, int iStart) const
+index verisimple_string::find_ci(const char * str, index iStart) const
 {
    if(iStart < 0)
       iStart = 0;
@@ -497,12 +506,12 @@ void verisimple_string::clear()
 
 
 
-char & verisimple_string::operator [] (int iIndex)
+char & verisimple_string::operator [] (index iIndex)
 {
     return (char &) (*((char *) &m_psz[iIndex]));
 }
 
-char verisimple_string::operator [] (int iIndex) const
+char verisimple_string::operator [] (index iIndex) const
 {
     return m_psz[iIndex];
 }

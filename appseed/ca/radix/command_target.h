@@ -193,21 +193,31 @@ protected:
 
 };
 
+
 #include "ca/user/user_check_interface.h"
+
 
 namespace userbase
 {
+
+
    class menu;
 
+
 }
+
 
 class CLASS_DECL_ca cmd_ui :
    public ::user::check_interface
 {
 public:
-// Attributes
-   id m_id;
-   UINT m_nIndex;          // menu item or other index
+
+
+   id          m_id;
+   id          m_idControl;     // menu item or other index
+
+   index       m_iIndex;
+   count       m_iCount;        // last + 1 for iterating m_iIndex
 
    // if a menu item
    ::userbase::menu* m_pMenu;         // NULL if not a menu
@@ -216,6 +226,17 @@ public:
 
    // if from some other ::ca::window
    ::user::interaction * m_pOther;         // NULL if a menu or not a ::ca::window
+
+   BOOL m_bEnableChanged;
+   BOOL m_bContinueRouting;
+   
+
+   ::userbase::menu* m_pParentMenu;   // NULL if parent menu not easily determined
+                     //  (probably a secondary popup menu)
+
+
+   cmd_ui(::ca::application * papp);
+
 
 // Operations to do in ON_UPDATE_COMMAND_UI
    virtual void Enable(BOOL bOn = TRUE);
@@ -227,14 +248,6 @@ public:
 // Advanced operation
    void ContinueRouting();
 
-// Implementation
-   cmd_ui(::ca::application * papp);
-   BOOL m_bEnableChanged;
-   BOOL m_bContinueRouting;
-   UINT m_nIndexMax;       // last + 1 for iterating m_nIndex
-
-   ::userbase::menu* m_pParentMenu;   // NULL if parent menu not easily determined
-                     //  (probably a secondary popup menu)
 
    BOOL DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler);
 };

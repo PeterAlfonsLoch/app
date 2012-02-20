@@ -1,9 +1,12 @@
 #pragma once
 
+
 #include "primitive/id_space.h"
+
 
 namespace radix
 {
+
 
    class CLASS_DECL_ca system :
       virtual public ::ca::system,
@@ -33,10 +36,7 @@ namespace radix
       static inline class id id(const ::std_type_info & info);
       static inline class id id(const char * psz);
       static inline class id id(const string & str);
-#ifdef _AMD64
-      inline class id id(int i);
-#endif
-      static inline class id id(index i);
+      static inline class id id(int64_t i);
       static inline class id_space & id();
 
       friend class application;
@@ -48,6 +48,7 @@ namespace radix
 
 
    };
+
 
    inline id system::id(const std_type_info & info)
    {
@@ -68,14 +69,7 @@ namespace radix
       return s_idspace(str);
    }
 
-#ifdef _AMD64
-   inline id system::id(int i)
-   {
-      return s_idspace(i);
-   }
-#endif
-
-   inline id system::id(index i)
+   inline id system::id(int64_t i)
    {
       return s_idspace(i);
    }

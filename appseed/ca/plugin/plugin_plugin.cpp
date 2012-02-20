@@ -567,7 +567,7 @@ namespace plugin
             }
          }
       }
-      catch(installing_exception & e)
+      catch(installing_exception &)
       {
          ::TerminateProcess(::GetCurrentProcess(), 0);
       }

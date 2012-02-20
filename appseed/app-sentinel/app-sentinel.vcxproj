@@ -416,7 +416,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__C__LIB</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__C__LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <BasicRuntimeChecks>
       </BasicRuntimeChecks>
@@ -434,6 +434,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Gdiplus.lib;msimg32.lib;gdi32.lib;psapi.lib;user32.lib;Winmm.lib;WinINet.lib;kernel32.lib;shell32.lib;Advapi32.lib</AdditionalDependencies>

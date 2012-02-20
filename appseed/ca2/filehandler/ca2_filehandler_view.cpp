@@ -91,6 +91,9 @@ namespace ca2
 
       void view::draw_item::draw(view * pview, ::ca::graphics * pdc, list * plist, item * pitem)
       {
+
+         UNREFERENCED_PARAMETER(plist);
+
          COLORREF cr;
          ::ca::application * papp = pview->get_app();
          bool bHover = pview->m_iHover == pitem->m_iIndex;
@@ -188,12 +191,18 @@ namespace ca2
          SCAST_PTR(gen::message::mouse, pmouse, pobj);
 
          e_element eelement;
+
          int iItem = hit_test(pmouse->m_pt, eelement);
+
          if(iItem >= 0)
          {
-            string strRequest;
-            strRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
-            Bergedge.request(var(strRequest));
+            
+            var varRequest;
+            
+            varRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
+            
+            Bergedge.request(varRequest);
+
          }
 
       }

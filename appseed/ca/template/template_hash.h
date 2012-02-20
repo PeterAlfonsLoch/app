@@ -36,7 +36,7 @@ namespace _template
       inline static UINT HashKey (const string & key)
       {
          register uint64_t * puiKey = (uint64_t *) (const char *) key;
-         register int counter = key.get_length();
+         register strsize counter = key.get_length();
          register uint64_t nHash = 0;
          while(counter >= sizeof(*puiKey))
          {

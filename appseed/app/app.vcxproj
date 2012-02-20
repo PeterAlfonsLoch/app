@@ -543,6 +543,7 @@
       <StringPooling>false</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

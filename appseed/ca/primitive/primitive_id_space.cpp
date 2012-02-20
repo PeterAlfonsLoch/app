@@ -76,17 +76,24 @@ id id_space::operator()(const char * psz)
    
 }
 
-id id_space::operator()(index i)
+id id_space::operator()(int64_t i)
 {
+
    single_lock sl(m_pmutex, TRUE);
+
    id idSearch;
-   idSearch.raw_set((uint64_t) i);
+
+   idSearch.raw_set(i);
+
    index iIndex = 0;
+
    if(find(idSearch, iIndex))
       return m_ida.element_at(m_iaStr.m_pData[iIndex]);
 
    m_ida.add(idSearch);
+
    m_iaStr.add(m_ida.get_upper_bound());
+
    sort();
    
    return idSearch;
@@ -181,7 +188,7 @@ bool id_space::find(const id & t, index & iIndex)
    index iLBound = 0;
    index iMaxBound = m_ida.m_nSize - 1;
    index iUBound = iMaxBound;
-   index iCompare;
+   int64_t iCompare;
    // do binary search
    iIndex = (iUBound + iLBound) / 2;
    while(iUBound - iLBound >= 8)

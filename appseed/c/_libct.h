@@ -30,8 +30,6 @@ END_EXTERN_C
 
 void _init_file();
 
-#include "_heap.h"
-
-
+#include "c_heap.h"
 
 #endif

@@ -7,21 +7,24 @@ id::id(const char * psz)
    operator = (::radix::system::id(psz));
 }
 
-#ifdef _AMD64_
 id::id(int i)
 {
    operator = (::radix::system::id(i));
 }
-#endif
 
-id::id(unsigned int user)
+id::id(unsigned int ui)
 {
-   operator = (::radix::system::id((index)user));
+   operator = (::radix::system::id(ui));
 }
 
-id::id(index i)
+id::id(int64_t i)
 {
    operator = (::radix::system::id(i));
+}
+
+id::id(uint64_t ui)
+{
+   operator = (::radix::system::id(ui));
 }
 
 id::id(const string & str)
@@ -59,9 +62,7 @@ string id::str() const
       return m_psz;
    else if(m_chType == IDTYPE_TYPE_NUMBER)
    {
-      string str;
-      str.Format("%d", m_ui);
-      return str;
+      return gen::str::itoa(m_i);
    }
    else
       return "";

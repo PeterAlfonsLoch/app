@@ -164,7 +164,7 @@ namespace mysql
       else
          return var(row[0]);
    }
-   bool database::query_blob(primitive::memory_base & memory, const char * pszSql)
+   bool database::query_blob(primitive::base_memory & memory, const char * pszSql)
    {
       result * presult = query(pszSql);
       if(presult == NULL)
@@ -178,7 +178,7 @@ namespace mysql
       {
          unsigned long * pul =  presult->fetch_lengths();
          memory.allocate(*pul);
-         memcpy(memory.get_data(), row[0], memory.get_size());
+         memcpy(memory.base_get_data(), row[0], memory.base_get_size());
          return true;
       }
    }

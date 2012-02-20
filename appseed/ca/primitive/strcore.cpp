@@ -2,14 +2,14 @@
 #include "template/template.h"
 
 
-CLASS_DECL_ca int strtoi(const char * psz)
+CLASS_DECL_ca int64_t strtoi(const char * psz)
 {
-   return atoi(psz);
+   return gen::str::atoi64(psz);
 }
 
-CLASS_DECL_ca int strtoi(const wchar_t * psz)
+CLASS_DECL_ca int64_t strtoi(const wchar_t * psz)
 {
-   return _wtoi(psz);
+   return _wtoi64(psz);
 }
 
 
@@ -39,7 +39,7 @@ string_manager_interface * AfxGetStringManager()
 }
 
 
-int const_empty_string::get_length() const
+strsize const_empty_string::get_length() const
 {
    return 0;
 }

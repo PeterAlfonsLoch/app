@@ -35,6 +35,13 @@ extern "C"
 
 #include "_libct.h"
 
+
+#include "count.h"
+#include "index.h"
+#include "keep_true.h"
+
+
+
 #include "printf.h"
 #include "sprintf.h"
 #include "str.h"
@@ -42,9 +49,6 @@ extern "C"
 #include "atol.h"
 
 
-#include "count.h"
-#include "index.h"
-#include "keep_true.h"
 
 #include "heap.h"
 #include "gdi.h"

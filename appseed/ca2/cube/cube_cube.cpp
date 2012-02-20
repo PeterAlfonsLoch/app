@@ -178,7 +178,11 @@ namespace cube
 
    bool cube::set_history(::ca::history * phistory)
    {
+
+      UNREFERENCED_PARAMETER(phistory);
+
       return true;
+
    }
 
 

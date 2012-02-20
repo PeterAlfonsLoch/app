@@ -1,19 +1,23 @@
 #include "StdAfx.h"
 
+
 namespace  sort
 {
 
+
    void QuickSort(
       base_array<DWORD, DWORD> & base_array,
-      int fCompare(const DWORD, const DWORD),
-      void swap(void * lpVoidSwapArg, int iA, int iB),
+      int fCompare(const index, const index),
+      void swap(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg)
    {
-      dword_array stackLowerBound;
-      dword_array stackUpperBound;
-      int iLowerBound;
-      int iUpperBound;
-      int iLPos, iUPos, iMPos;
+      
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
       DWORD t;
 
       if(base_array.get_size() >= 2)
@@ -107,13 +111,14 @@ namespace  sort
       base_array < void *, void * > & comparearga,
       base_array < void *, void * > & swaparga)
    {
-      dword_array stackLowerBound;
-      dword_array stackUpperBound;
-      int iLowerBound;
-      int iUpperBound;
-      int iLPos, iUPos, iMPos;
+      
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+      
       int iCmp;
-
       int iCompare;
 
       if(iSize >= 2)
@@ -212,4 +217,7 @@ namespace  sort
       }
    }
 
+
 } // namespace sort
+
+

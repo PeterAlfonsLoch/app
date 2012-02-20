@@ -123,7 +123,7 @@ namespace ca4
          string strFormat;
          for(int j = 0; j < 16; j++)
          {
-            strFormat.Format("%02x", buf[j]);
+            strFormat.Format("%02x", ((const char *)buf)[j]);
             strMd5 += strFormat;
          }
          write_ex1_string(spfile, NULL, strMd5);
@@ -140,14 +140,14 @@ namespace ca4
       if(spfile.is_null())
          throw "failed";
       read_ex1_string(spfile, NULL, strVersion);
-      int n;
+      int64_t n;
       string strRelative;
       string strMd5;
       string strMd5New;
       int iBufSize = 1024 * 1024;
       primitive::memory buf;
       buf.allocate(iBufSize);
-      int iLen;
+      int64_t iLen;
       MD5_CTX ctx;
       ex1::filesp file2(get_app());
       ::primitive::memory_size uiRead;
@@ -181,7 +181,7 @@ namespace ca4
             string strFormat;
             for(int i = 0; i < 16; i++)
             {
-               strFormat.Format("%02x", buf[i]);
+               strFormat.Format("%02x", ((const char *)buf)[i]);
                strMd5New += strFormat;
             }
             if(strMd5 != strMd5New)
@@ -190,62 +190,86 @@ namespace ca4
       }
    }
 
-   void file::write_n_number(ex1::file * pfile, MD5_CTX  * pctx, int iNumber)
+   void file::write_n_number(ex1::file * pfile, MD5_CTX  * pctx, int64_t iNumber)
    {
+
       string str;
-      str.Format("%dn", iNumber);
+      
+      str.Format("%I64dn", iNumber);
+
       pfile->write((const char *) str, str.get_length());
+
       if(pctx != NULL)
       {
-         MD5_Update(pctx, (const char *) str, str.get_length());
+
+         MD5_Update(pctx, (const char *) str, (int) str.get_length());
+
       }
+
    }
 
-   void file::read_n_number(ex1::file * pfile, MD5_CTX * pctx, int & iNumber)
+   void file::read_n_number(ex1::file * pfile, MD5_CTX * pctx, int64_t & iNumber)
    {
+      
       uint64_t uiRead;
+
       string str;
+
       char ch;
+
       while((uiRead = pfile->read(&ch, 1)) == 1)
       {
+
          if(ch >= '0' && ch <= '9')
             str += ch;
          else
             break;
+
          if(pctx != NULL)
          {
             MD5_Update(pctx, &ch, 1);
          }
+
       }
+
       if(ch != 'n')
          throw "failed";
+
       if(pctx != NULL)
       {
          MD5_Update(pctx, &ch, 1);
       }
-      iNumber = atoi(str);
+
+      iNumber = gen::str::atoi64(str);
+
    }
 
    void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
    {
-      int iLen = str.get_length();
+      count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
       pfile->write((const char *) str, str.get_length());
       if(pctx != NULL)
       {
-         MD5_Update(pctx, (const char *) str, str.get_length());
+         MD5_Update(pctx, (const char *) str, (int) str.get_length());
       }
    }
 
    void file::read_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
    {
-      int iLen;
+      int64_t iLen;
       read_n_number(pfile, pctx, iLen);
       LPTSTR lpsz = str.GetBufferSetLength(iLen + 1);
       pfile->read(lpsz, iLen);
       if(pctx != NULL)
       {
-         MD5_Update(pctx, lpsz, iLen);
+         int64_t iProcessed = 0;
+         while(iLen - iProcessed > 0)
+         {
+            int iProcess = (int) min(1024 * 1024, iLen - iProcessed);
+            MD5_Update(pctx, &lpsz[iProcessed], iProcess);
+            iProcessed += iProcess;
+         }
       }
       lpsz[iLen] = '\0';
       str.ReleaseBuffer();

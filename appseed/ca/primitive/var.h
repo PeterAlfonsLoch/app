@@ -85,6 +85,17 @@ public:
    void set_type(e_type e_type, bool bConvert = true);
    virtual e_type get_type() const;
 
+   virtual bool is_numeric() const;
+   
+   inline bool is_number() const
+   {
+      
+      return is_numeric();
+
+   }
+
+
+
    var();
    var(bool b);
    var(int i);
@@ -221,7 +232,7 @@ public:
       return m_etype == type_bool && m_b;
    }
    virtual void get_string(char * psz) const;
-   virtual int get_length() const;
+   virtual strsize get_length() const;
    var & operator = (::ca::ca * pca2);
    var & operator = (gen::para_return & eret);
    var & operator = (bool b);
@@ -490,5 +501,27 @@ public:
 
 };
 
+namespace gen
+{
 
+
+   namespace str
+   {
+
+
+      inline CLASS_DECL_ca string         itoa(const var & var)
+      {
+
+         if(!var.is_numeric())
+            throw simple_exception("invalid_conversion");
+
+         return var.get_string();
+
+      }
+
+
+   } // namespace str
+
+
+} // namespace gen
 

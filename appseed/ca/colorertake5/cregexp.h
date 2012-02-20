@@ -28,7 +28,7 @@
 #define NAMED_MATCHES_NUM 0x10
 
 struct SMatch{
-  int s,e;
+  strsize s,e;
 };
 // you can redefine this class
 class SMatchHash
@@ -122,9 +122,9 @@ enum EError
 /// @ingroup cregexp
 struct SMatches
 {
-  int s[MATCHES_NUM];
-  int e[MATCHES_NUM];
-  int cMatch;
+  strsize s[MATCHES_NUM];
+  strsize e[MATCHES_NUM];
+  count cMatch;
 };
 
 /** Regular expressions internal tree node.
@@ -147,9 +147,9 @@ public:
     SRegInfo *param;
   }un;
   string namedata;
-  int oldParse;
-  int param0, param1;
-  int s, e;
+  strsize oldParse;
+  strsize param0, param1;
+  strsize s, e;
 
   SRegInfo *parent;
   SRegInfo *next;
@@ -265,7 +265,7 @@ public:
   bool parse(string str, SMatches *mtch, SMatchHash *nmtch = NULL);
   /** Runs RE parser against input string @c str
   */
-  bool parse(string str, int pos, int eol, SMatches *mtch, SMatchHash *nmtch = NULL, int soscheme = 0, int moves = -1);
+  bool parse(string str, strsize pos, int eol, SMatches *mtch, SMatchHash *nmtch = NULL, int soscheme = 0, int moves = -1);
 
 private:
   bool ignoreCase, extend, positionMoves, singleLine, multiLine;
@@ -277,11 +277,11 @@ private:
   CRegExp *backRE;
   string backStr;
   SMatches *backTrace;
-  int schemeStart;
+  strsize schemeStart;
 #endif
   bool startChange, endChange;
   string global_pattern;
-  int end;
+  strsize end;
 
   SMatches *matches;
   int cMatch;
@@ -289,15 +289,15 @@ private:
 
   void init();
   EError setRELow(const char * re);
-  EError setStructs(SRegInfo *&, const char * expr, int &endPos);
+  EError setStructs(SRegInfo *&, const char * expr, strsize &endPos);
 
   void optimize();
-  bool quickCheck(int toParse);
-  bool isWordBoundary(int &toParse);
-  bool isNWordBoundary(int &toParse);
-  bool checkMetaSymbol(EMetaSymbols metaSymbol, int &toParse);
-  bool lowParse(SRegInfo *re, SRegInfo *prev, int toParse);
-  bool parseRE(int toParse);
+  bool quickCheck(strsize toParse);
+  bool isWordBoundary(strsize &toParse);
+  bool isNWordBoundary(strsize &toParse);
+  bool checkMetaSymbol(EMetaSymbols metaSymbol, strsize &toParse);
+  bool lowParse(SRegInfo *re, SRegInfo *prev, strsize toParse);
+  bool parseRE(strsize toParse);
 };
 
 #endif
