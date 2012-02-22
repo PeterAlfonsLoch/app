@@ -70,7 +70,7 @@ namespace html
 
    style * style_sheet::rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName)
    {
-      for(int i = m_stylea.get_upper_bound(); i >= 0; i--)
+      for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
          class style & style = m_stylea.element_at(i);
          if(style.matches(pszTag, pszClass, pszSubClass, pszName))

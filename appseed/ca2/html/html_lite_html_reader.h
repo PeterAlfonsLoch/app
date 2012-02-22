@@ -271,9 +271,9 @@ public:
 // Operations
 public:
    // parses an HTML document from the specified string
-   UINT read(const char * psz);
+   DWORD_PTR read(const char * psz);
    // parses an HTML document from a file given its HANDLE
-   UINT ReadFile(HANDLE hFile);
+   DWORD_PTR ReadFile(HANDLE hFile);
 
 // Helpers
 protected:

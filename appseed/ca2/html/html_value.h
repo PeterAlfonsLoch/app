@@ -5,12 +5,13 @@ namespace html
 {
 
 
-   class value : public base
+   class value : 
+      public base
    {
    public:
 
 
-      int      m_iIndex;
+      index             m_iIndex;
       string            m_strValue;
 
 

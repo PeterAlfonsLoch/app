@@ -15,7 +15,7 @@ namespace html
          virtual public ::radix::object
       {
       public:
-         int      m_iIndex;
+         index      m_iIndex;
          string   m_strPath;
          ::visual::dib_sp      m_spdib;
 

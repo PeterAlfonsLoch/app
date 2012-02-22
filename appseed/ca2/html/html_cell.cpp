@@ -101,7 +101,7 @@ namespace html
          size.cx = m_cxMin;
          if(iAddUp > 0)
          {
-            size.cx += iAddUp;
+            size.cx += (LONG) (iAddUp);
          }
          set_bound_size(pdata, size);
          point pointBound = m_pelemental->m_pparent->m_pimpl->get_bound_point();

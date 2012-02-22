@@ -212,7 +212,7 @@ LEndParse:
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-UINT lite_html_reader::read(const char * psz)
+DWORD_PTR lite_html_reader::read(const char * psz)
 {
    ASSERT(AfxIsValidString(psz));
    m_strBuffer    = psz;
@@ -233,7 +233,7 @@ UINT lite_html_reader::read(const char * psz)
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-UINT lite_html_reader::ReadFile(HANDLE hFile)
+DWORD_PTR lite_html_reader::ReadFile(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);

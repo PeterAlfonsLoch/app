@@ -9,7 +9,7 @@ namespace html
    public:
       
       
-      int               m_iIndex;
+      index               m_iIndex;
       string            m_strFamily;
       string            m_strWeight;
       string            m_strSize;
