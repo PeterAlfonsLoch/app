@@ -174,7 +174,7 @@ namespace user
 
    void str_fill(string & str, char ch)
    {
-      str = str_block(ch, str.get_length());
+      str = str_block(ch, (int) str.get_length());
    }
 
 
@@ -319,9 +319,9 @@ namespace user
          m_bFocus = false;
       }
 
-      int iSelStart;
-      int iSelEnd;
-      int lim = 0;
+      strsize iSelStart;
+      strsize iSelEnd;
+      strsize lim = 0;
 
 
    /*   rectClient.top = m_pt.y;
@@ -333,7 +333,7 @@ namespace user
 
       int y = rectClient.top;
       _001GetViewSel(iSelStart, iSelEnd);
-      int iCursor = iSelEnd;
+      strsize iCursor = iSelEnd;
       sort::sort(iSelStart, iSelEnd);
       pdc->SelectObject(GetFont());
       size size3;
@@ -348,10 +348,10 @@ namespace user
       string strExtent1;
       string strExtent2;
       string strExtent3;
-      int iLineStart = should_load_full_file() ? m_iLineOffset : 0;
-      int iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
+      index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
+      index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
       iLineEnd = min(iLineEnd, straLines.get_upper_bound());
-      for(int i = iLineStart; i <= iLineEnd; i++)
+      for(index i = iLineStart; i <= iLineEnd; i++)
       {
          straLineFeed.remove_all();
          straLineFeed.add_smallest_tokens(straLines[i], m_straSep, FALSE, FALSE);
@@ -372,11 +372,11 @@ namespace user
             {
                if(pregion->special || pregion->rdef == NULL)
                   continue;
-               int end = pregion->end;
+               index end = pregion->end;
                if(end == -1)
                   end = strLine.get_length();
-               int x = pregion->start;
-               int len = end - pregion->start;
+               strsize x = pregion->start;
+               strsize len = end - pregion->start;
                if(x < 0)
                {
                   len += x;
@@ -414,11 +414,11 @@ namespace user
          else
          {
             stringa stra;
-            int i1 = iSelStart - lim;
-            int i2 = iSelEnd - lim;
-            int i3 = iCursor - lim;
-            int iStart = max(0, i1);
-            int iEnd = min(i2, strLine.get_length());
+            strsize i1 = iSelStart - lim;
+            strsize i2 = iSelEnd - lim;
+            strsize i3 = iCursor - lim;
+            strsize iStart = max(0, i1);
+            strsize iEnd = min(i2, strLine.get_length());
             str1 = strLine.Mid(0, iStart);
             str2 = strLine.Mid(iStart, iEnd - iStart);
             str3 = strLine.Mid(iEnd);
@@ -763,15 +763,15 @@ namespace user
 
       //LRESULT lresult;
       bool bShift = Application.is_key_pressed(VK_SHIFT);
-      if(key.m_nChar < 256 && isalpha(key.m_nChar))
+      if(key.m_nChar < 256 && isalpha((int) key.m_nChar))
       {
          if(bShift)
          {
-            key.m_nChar = toupper(key.m_nChar);
+            key.m_nChar = toupper((int) key.m_nChar);
          }
          else
          {
-            key.m_nChar = tolower(key.m_nChar);
+            key.m_nChar = tolower((int) key.m_nChar);
          }
       }
       _001OnChar(&key);
@@ -864,7 +864,7 @@ namespace user
       _001RedrawWindow();
    }
 
-   void edit_plain_text::_001SetSel(int iSelStart, int iSelEnd)
+   void edit_plain_text::_001SetSel(strsize iSelStart, strsize iSelEnd)
    {
       m_iSelStart = iSelStart;
       m_iSelEnd = iSelEnd;
@@ -963,7 +963,7 @@ namespace user
       //UINT uiRead;
       //LPTSTR lpsz;
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
-      y = m_iLineHeight * m_iaLineIndex.get_size();
+      y = (int) (m_iLineHeight * m_iaLineIndex.get_size());
       if(y <= 0)
          y = 200;
    //   pview->SetScrollSizes(MM_TEXT,
@@ -975,8 +975,8 @@ namespace user
 
       pdc->SelectObject(GetFont());
       stringa & straLines = m_lines.lines;
-      int iSelStart;
-      int iSelEnd;
+      strsize iSelStart;
+      strsize iSelEnd;
       _001GetViewSel(iSelStart, iSelEnd);
       //int lim = 0;
       int maxcy;
@@ -991,13 +991,13 @@ namespace user
       {
          strLine = straLines[i];
          strLine.replace("\t", "   ");
-         size = strLine.get_length() * size3.cx / 8;
+         size = (DWORD) (strLine.get_length() * size3.cx / 8);
          maxcy = max(size.cy, size3.cy);
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
             m_scrollinfo.m_sizeTotal.cx = size.cx;
 
       }
-      m_scrollinfo.m_sizeTotal.cy = m_iaLineIndex.get_count() * maxcy;
+      m_scrollinfo.m_sizeTotal.cy = (long) (m_iaLineIndex.get_count() * maxcy);
       rect rectClient;
       GetClientRect(rectClient);
       class size sizePage;
@@ -1007,13 +1007,13 @@ namespace user
       m_scrollinfo.m_sizePage = sizePage;
    }
 
-   int edit_plain_text::SelToLine(int iSel)
+   index edit_plain_text::SelToLine(strsize iSel)
    {
       iSel -= m_iViewOffset;
       stringa & straLines = m_lines.lines;
-      int i1;
-      int i2 = 0;
-      for(int i = 0; i < straLines.get_size(); i++)
+      strsize i1;
+      strsize i2 = 0;
+      for(index i = 0; i < straLines.get_size(); i++)
       {
          i1 = i2;
          i2 = i1 + straLines[i].get_length();
@@ -1026,7 +1026,7 @@ namespace user
       return -1;
    }
 
-   int edit_plain_text::LineColumnToSel(int iLine, int iColumn)
+   strsize edit_plain_text::LineColumnToSel(index iLine, index iColumn)
    {
       //int i1;
 //      int i2 = 0;
@@ -1045,7 +1045,7 @@ namespace user
       {
          return 0;
       }
-      int iOffset = 0;
+      strsize iOffset = 0;
       for(int i = 0; i < iLine; i++)
       {
          iOffset += straLines[i].get_length();
@@ -1070,13 +1070,13 @@ namespace user
    }
 
 
-   int edit_plain_text::SelToColumn(int iSel)
+   index edit_plain_text::SelToColumn(strsize iSel)
    {
       iSel -= m_iViewOffset;
       stringa & straLines = m_lines.lines;
-      int i1;
-      int i2 = 0;
-      for(int i = 0; i < straLines.get_size(); i++)
+      strsize i1;
+      strsize i2 = 0;
+      for(index i = 0; i < straLines.get_size(); i++)
       {
          i1 = i2;
          i2 = i1 + straLines[i].get_length();
@@ -1089,7 +1089,7 @@ namespace user
       return -1;
    }
 
-   int edit_plain_text::char_hit_test(::ca::graphics * pdc, int px, int py)
+   strsize edit_plain_text::char_hit_test(::ca::graphics * pdc, int px, int py)
    {
       pdc->SelectObject(GetFont());
       rect rectClient;
@@ -1105,8 +1105,8 @@ namespace user
          py += m_scrollinfo.m_ptScroll.y % m_iLineHeight;
       }
       stringa & straLines = m_lines.lines;
-      int iSelStart;
-      int iSelEnd;
+      strsize iSelStart;
+      strsize iSelEnd;
       _001GetViewSel(iSelStart, iSelEnd);
       int lim = 0;
       int maxcy;
@@ -1116,7 +1116,7 @@ namespace user
       string strExtent;
       size size3;
       visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gqYALﾍ"), size3);
-      int iOffset = 0;
+      strsize iOffset = 0;
       stringa stra;
       for(int i = 0; i < straLines.get_size(); i++)
       {
@@ -1169,7 +1169,7 @@ namespace user
          if(pszEnd[0] == '\0')
             break;
       }
-      return (strsize) natural_min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
+      return (strsize) min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
    }
 
    void edit_plain_text::_002OnMouseMove(gen::signal_object * pobj)
@@ -1191,7 +1191,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_001GetViewSel(int &iSelStart, int &iSelEnd)
+   void edit_plain_text::_001GetViewSel(strsize &iSelStart, strsize &iSelEnd)
    {
       iSelStart = m_iSelStart - m_iViewOffset;
       iSelEnd = m_iSelEnd - m_iViewOffset;
@@ -1225,7 +1225,7 @@ namespace user
       //int y = 0;
       int i = 1;
       char buf[1024 * 256 + 1];
-      UINT uiRead;
+      primitive::memory_size uiRead;
       LPTSTR lpsz;
       m_iaLineIndex.remove_all();
       m_iaLineEndIndex.remove_all();
@@ -1279,8 +1279,8 @@ namespace user
       m_iaLineIndex.add(iLineSize);
       m_iaLineEndIndex.add(0);
 
-      int iAcc;
-      int iLineCount;
+      ::count iAcc;
+      ::count iLineCount;
       i = 0;
       while(i < m_iaLineIndex.get_size())
       {
@@ -1332,8 +1332,8 @@ namespace user
       {
          if(!m_bReadOnly)
          {
-            int i1 = m_iSelStart;
-            int i2 = m_iSelEnd;
+            strsize i1 = m_iSelStart;
+            strsize i2 = m_iSelEnd;
             if(i1 != i2)
             {
                plain_text_data::SetSelCommand * psetsel = new plain_text_data::SetSelCommand;
@@ -1361,12 +1361,12 @@ namespace user
                psetsel->m_iPreviousSelEnd = m_iSelEnd;
                char buf[512];
                memset(buf, 0, sizeof(buf));
-               int iBegin = max(0, m_iSelEnd - 256);
-               int iCur = m_iSelEnd - iBegin;
+               strsize iBegin = max(0, m_iSelEnd - 256);
+               strsize iCur = m_iSelEnd - iBegin;
                m_pdata->m_editfile.seek(iBegin, ::ex1::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
                const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
-               int iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+               strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_iSelEnd -= iMultiByteUtf8DeleteCount;
                m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
                m_pdata->m_editfile.Delete((file_size) iMultiByteUtf8DeleteCount);
@@ -1385,7 +1385,7 @@ namespace user
       }
       else if(pkey->m_nChar == VK_UP)
       {
-         int iLine = SelToLine(m_iSelEnd);
+         index iLine = SelToLine(m_iSelEnd);
          iLine--;
          m_iSelEnd = LineColumnToSel(iLine, m_iColumn);
          if(!bShift)
@@ -1396,7 +1396,7 @@ namespace user
       }
       else if(pkey->m_nChar == VK_DOWN)
       {
-         int iLine = SelToLine(m_iSelEnd);
+         index iLine = SelToLine(m_iSelEnd);
          iLine++;
          m_iSelEnd = LineColumnToSel(iLine, m_iColumn);
          if(!bShift)
@@ -1419,7 +1419,7 @@ namespace user
          {
             char buf[32];
             m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
-            UINT uiRead = m_pdata->m_editfile.read(buf, 32);
+            primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 32);
             if(uiRead == 2 &&
                buf[0] == '\r' &&
                buf[1] == '\n')
@@ -1455,7 +1455,7 @@ namespace user
                char * psz;
                m_pdata->m_editfile.seek(m_iSelEnd - 32, ::ex1::seek_begin);
                psz = &buf[32];
-               UINT uiRead = m_pdata->m_editfile.read(buf, 64);
+               primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 64);
                if(uiRead == 2 &&
                   psz[0] == '\r' &&
                   psz[1] == '\n')
@@ -1480,7 +1480,7 @@ namespace user
       }
       else if(pkey->m_nChar == VK_HOME)
       {
-         int iLine = SelToLine(m_iSelEnd);
+         index iLine = SelToLine(m_iSelEnd);
          m_iSelEnd = LineColumnToSel(iLine, 0);
          if(!bShift)
          {
@@ -1490,7 +1490,7 @@ namespace user
       }
       else if(pkey->m_nChar == VK_END)
       {
-         int iLine = SelToLine(m_iSelEnd);
+         index iLine = SelToLine(m_iSelEnd);
          m_iSelEnd = LineColumnToSel(iLine, -1);
          if(!bShift)
          {
@@ -1511,8 +1511,8 @@ namespace user
             psetsel->m_iPreviousSelStart = m_iSelStart;
             psetsel->m_iPreviousSelEnd = m_iSelEnd;
             m_pdata->m_editfile.MacroBegin();
-            int i1 = m_iSelStart;
-            int i2 = m_iSelEnd;
+            strsize i1 = m_iSelStart;
+            strsize i2 = m_iSelEnd;
             ::sort::sort(i1, i2);
             m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
             m_pdata->m_editfile.Delete((file_size) (i2 - i1));
@@ -1523,7 +1523,7 @@ namespace user
             char ch = (char) pkey->m_nChar;
             if(ch == '\r')
                ch = '\n';
-            int iChar = pkey->m_nChar;
+            int iChar = (int) pkey->m_nChar;
             if(iChar == '\r')
                iChar = '\n';
             if(bShift)
@@ -1570,8 +1570,8 @@ namespace user
       {
          if(!m_bReadOnly)
          {
-            int i1 = m_iSelStart;
-            int i2 = m_iSelEnd;
+            strsize i1 = m_iSelStart;
+            strsize i2 = m_iSelEnd;
             if(i1 != i2)
             {
                ::sort::sort(i1, i2);
@@ -1584,12 +1584,12 @@ namespace user
             {
                char buf[512];
                memset(buf, 0, sizeof(buf));
-               int iBegin = max(0, m_iSelEnd - 256);
-               int iCur = m_iSelEnd - iBegin;
+               strsize iBegin = max(0, m_iSelEnd - 256);
+               strsize iCur = m_iSelEnd - iBegin;
                m_pdata->m_editfile.seek(iBegin, ::ex1::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
                const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
-               int iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+               strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
                m_pdata->m_editfile.Delete((file_size) (iMultiByteUtf8DeleteCount));
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
@@ -1622,8 +1622,8 @@ namespace user
       int iHeight = 0;
       //char flag;
       m_iViewOffset = 0;
-      int iLineSize;
-      int i = 0;
+      ::count iLineSize;
+      ::index i = 0;
       while(m_scrollinfo.m_ptScroll.y > iHeight && i < m_iaLineIndex.get_size())
       {
          iLineSize = m_iaLineIndex[i];
@@ -1634,7 +1634,7 @@ namespace user
 
    }
 
-   void edit_plain_text::IndexRegisterDelete(int iSel, int iCount)
+   void edit_plain_text::IndexRegisterDelete(strsize iSel, strsize iCount)
    {
       UNREFERENCED_PARAMETER(iSel);
       UNREFERENCED_PARAMETER(iCount);
@@ -1699,7 +1699,7 @@ namespace user
 
    }
 
-   void edit_plain_text::IndexRegisterInsert(int iSel, const char * lpcszWhat)
+   void edit_plain_text::IndexRegisterInsert(strsize iSel, const char * lpcszWhat)
    {
       UNREFERENCED_PARAMETER(iSel);
       UNREFERENCED_PARAMETER(lpcszWhat);
@@ -1843,7 +1843,7 @@ namespace user
          || m_pdata->m_ptreeitem->get_next(false, false) != NULL;
    }
 
-   int edit_plain_text::GetRedoBranchCount()
+   ::count edit_plain_text::GetRedoBranchCount()
    {
       return m_pdata->m_ptreeitem->get_expandable_children_count()
            + (m_pdata->m_ptreeitem->m_pnext != NULL ? 1 : 0)
@@ -1925,9 +1925,9 @@ namespace user
          m_iLineOffset = max(0, m_scrollinfo.m_ptScroll.y / m_iLineHeight);
       }
 
-      int iLine = 0;
-      int iCLine = iLine / 100;
-      int i;
+      ::index iLine = 0;
+      ::count iCLine = iLine / 100;
+      ::index i;
 
       m_iViewOffset = 0;
 
@@ -1957,11 +1957,11 @@ namespace user
       m_pdata->m_editfile.seek(m_iViewOffset, ::ex1::seek_begin);
       iLine = m_iLineOffset;
       i = 0;
-      int iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
-      int iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : min(m_iaLineIndex.get_size(), m_iLineCount) - 1;
-      for(int iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++, iLine++)
+      ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
+      ::index iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : min(m_iaLineIndex.get_size(), m_iLineCount) - 1;
+      for(::index iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++, iLine++)
       {
-         int iLen = m_iaLineIndex[iLine];
+         strsize iLen = m_iaLineIndex[iLine];
          LPTSTR lpsz = str.GetBufferSetLength(iLen + 1);
          m_pdata->m_editfile.read(lpsz, iLen);
          lpsz[iLen] = '\0';
@@ -2008,7 +2008,7 @@ namespace user
       if(type == NULL)
       {
          string textStart;
-    int totalLength = 0;
+    strsize totalLength = 0;
     for(int i = 0; i < 4 && i < m_lines.getLineCount(); i++){
       string iLine = m_lines.getLine(i);
       textStart += iLine;

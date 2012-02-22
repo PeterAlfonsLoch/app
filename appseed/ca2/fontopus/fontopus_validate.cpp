@@ -183,9 +183,9 @@ namespace ca2
          else
          {
          }
-         UINT ui1 = GetCurrentThreadId();
-         UINT ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
-         if(::AttachThreadInput(ui1, ui2, TRUE)) 
+         INT_PTR ui1 = GetCurrentThreadId();
+         INT_PTR ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
+         if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE)) 
          {
             TRACE("AttachedThreadInput");
          }

@@ -32,41 +32,41 @@ class ILiteHTMLReaderEvents
 
 // Events
 protected:
-   virtual void BeginParse(DWORD dwAppData, bool &bAbort)
+   virtual void BeginParse(DWORD_PTR dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void StartTag(lite_html_tag *pTag, DWORD dwAppData, bool &bAbort)
-   {
-      UNUSED_ALWAYS(pTag);
-      UNUSED_ALWAYS(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void EndTag(lite_html_tag *pTag, DWORD dwAppData, bool &bAbort)
+   virtual void StartTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(pTag);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void Characters(const string &rText, DWORD dwAppData, bool &bAbort)
+   virtual void EndTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort)
+   {
+      UNUSED_ALWAYS(pTag);
+      UNUSED_ALWAYS(dwAppData);
+      bAbort = false;
+   }
+
+   virtual void Characters(const string &rText, DWORD_PTR dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rText);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void Comment(const string &rComment, DWORD dwAppData, bool &bAbort)
+   virtual void Comment(const string &rComment, DWORD_PTR dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rComment);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void EndParse(DWORD dwAppData, bool bIsAborted)
+   virtual void EndParse(DWORD_PTR dwAppData, bool bIsAborted)
    {
       UNUSED_ALWAYS(dwAppData);
       UNUSED_ALWAYS(bIsAborted);
@@ -281,7 +281,7 @@ protected:
 
    // parses an HTML document, and returns the
    // number of characters successfully parsed
-   virtual UINT parseDocument(void);
+   virtual DWORD_PTR parseDocument(void);
 
    // parses an HTML comment from the buffer starting from
    // the current buffer position and returns true on sucess

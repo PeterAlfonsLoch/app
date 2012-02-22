@@ -339,7 +339,7 @@ namespace filemanager
             }
          }
 
-         bool list_view::GetSongPath(string &str, int iItem)
+         bool list_view::GetSongPath(string &str, index iItem)
          {
             ::user::list_item item(this);
             item.m_iItem = iItem;
@@ -403,7 +403,7 @@ namespace filemanager
 
          }
 
-         void list_view::PostFillTask(string & wstrFile, UINT uiTimer)
+         void list_view::PostFillTask(string & wstrFile, UINT_PTR uiTimer)
          {
             UNREFERENCED_PARAMETER(wstrFile);
             UNREFERENCED_PARAMETER(uiTimer);
@@ -669,8 +669,8 @@ namespace filemanager
          void list_view::KickBuild(int iItem)
          {
             UNREFERENCED_PARAMETER(iItem);
-            int iTopIndex = m_iTopIndex;
-            int iDisplayItemCount = m_nDisplayCount;
+            index iTopIndex = m_iTopIndex;
+            count iDisplayItemCount = m_nDisplayCount;
 
             if(m_bKickActive &&
                m_buildhelper.m_iTopIndex == iTopIndex &&

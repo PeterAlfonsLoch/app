@@ -49,8 +49,8 @@ namespace zip
       string strFile;
       strFile = lpszFileName;
 
-      int iFind = -1;
-      int iStart = 0;
+      index iFind = -1;
+      index iStart = 0;
       while((iFind = gen::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
@@ -124,8 +124,8 @@ namespace zip
       string strFile;
       strFile = lpszFileName;
 
-      int iFind = -1;
-      int iStart = 0;
+      index iFind = -1;
+      index iStart = 0;
       while((iFind = gen::str::find_ci(".zip:", lpszFileName, iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart], iFind + strlen(".zip")));
@@ -182,7 +182,7 @@ namespace zip
    bool InFile::locate(const char * pszFileName)
    {
       string strFile(pszFileName);
-      int iFind = strFile.find(":");
+      index iFind = strFile.find(":");
       if(iFind >= 0)
          strFile = strFile.Left(iFind);
       strFile.replace("\\", "/");
@@ -630,10 +630,10 @@ namespace zip
 
       mem.allocate(256 * 1024);
 
-      UINT uiRead;
+      primitive::memory_size uiRead;
       while((uiRead = file->read(mem, mem.get_size())) > 0)
       {
-         zipWriteInFileInZip(get_zip_file()->m_pfZip, mem.get_data(), uiRead);
+         zipWriteInFileInZip(get_zip_file()->m_pfZip, mem.get_data(), (unsigned int) uiRead);
       }
 
       zipCloseFileInZip(get_zip_file()->m_pfZip);

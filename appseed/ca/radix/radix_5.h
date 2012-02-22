@@ -180,12 +180,6 @@ CLASS_DECL_ca CArchive& operator>>(CArchive& ar, POINT& point);
 CLASS_DECL_ca CArchive& operator>>(CArchive& ar, RECT& rect);
 */
 
-// Use AfxFindResourceHandle to find resource in chain of extension DLLs
-#ifndef _ApplicationFrameworkDLL
-#define AfxFindResourceHandle(lpszResource, lpszType) AfxGetResourceHandle()
-#else
-CLASS_DECL_ca HINSTANCE AfxFindResourceHandle(const char * lpszName, const char * lpszType);
-#endif
 
 
 
@@ -391,26 +385,11 @@ CLASS_DECL_ca void AfxFormatStrings(string & rString, const char * lpszFormat,
 CLASS_DECL_ca BOOL AfxExtractSubString(string & rString, const char * lpszFullString,
             int iSubString, char chSep = '\n');
 
-/////////////////////////////////////////////////////////////////////////////
-// Special target variant APIs
-
-#ifdef _ApplicationFrameworkDLL
-   #include "dll_.h"
-#endif
-
-// Windows Version compatibility (obsolete)
-#define AfxEnableWin30Compatibility()
-#define AfxEnableWin31Compatibility()
-#define AfxEnableWin40Compatibility()
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Use version 1.0 of the RichEdit control
+#include "radix_os.h"
 
-#define _RICHEDIT_VER 0x0210
 
-/////////////////////////////////////////////////////////////////////////////
-// Inline function declarations
 
 #ifndef GET_X_LPARAM
 #define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
@@ -420,7 +399,7 @@ CLASS_DECL_ca BOOL AfxExtractSubString(string & rString, const char * lpszFullSt
 #endif
 
 
-#include "fixed_alloc.h"
+#include "radix_fixed_alloc.h"
 #include "process_data.h"
 
 

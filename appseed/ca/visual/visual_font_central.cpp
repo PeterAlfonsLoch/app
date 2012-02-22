@@ -102,10 +102,12 @@ bool font_central::Initialize()
 
 void font_central::Finalize()
 {
+   
    if(!IsInitialized())
       return;
 
-    int i, iSize;
+   index i;
+   count iSize;
 
 
 

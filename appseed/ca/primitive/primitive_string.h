@@ -14,6 +14,7 @@ CLASS_DECL_ca string_manager_interface * AfxGetStringManager();
 
 
 class string;
+class istring;
 
 
 
@@ -70,7 +71,7 @@ CLASS_DECL_ca int64_t strtoi(const char * psz);
 CLASS_DECL_ca int64_t strtoi(const wchar_t * psz);
 
 
-inline strsize _AtlGetConversionACP()
+inline UINT _AtlGetConversionACP()
 {
 #ifdef _WINDOWS
     return CP_UTF8;
@@ -84,11 +85,6 @@ inline strsize _AtlGetConversionACP()
 
 #include "simple_string.h"
 
-#ifdef _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
-#define CSTRING_EXPLICIT explicit
-#else
-#define CSTRING_EXPLICIT
-#endif
 
 #ifndef _AFX
 #define _AFX_FUNCNAME(_Name) _Name
@@ -127,12 +123,12 @@ class crt_char_traits :
 public:
 
    static char*         __cdecl  CharNext(const char* p ) throw();
-   static strsize           __cdecl  IsDigit(const char * pch ) throw();
-   static strsize           __cdecl  IsSpace(const char * pch ) throw();
-   static strsize           __cdecl  StringCompare(const char * pszA,const char * pszB ) throw();
-   static strsize           __cdecl  StringCompareIgnore(const char * pszA,const char * pszB ) throw();
-   static strsize           __cdecl  StringCollate(const char * pszA,const char * pszB ) throw();
-   static strsize           __cdecl  StringCollateIgnore(const char * pszA,const char * pszB ) throw();
+   static int           __cdecl  IsDigit(const char * pch ) throw();
+   static int           __cdecl  IsSpace(const char * pch ) throw();
+   static int           __cdecl  StringCompare(const char * pszA,const char * pszB ) throw();
+   static int           __cdecl  StringCompareIgnore(const char * pszA,const char * pszB ) throw();
+   static int           __cdecl  StringCollate(const char * pszA,const char * pszB ) throw();
+   static int           __cdecl  StringCollateIgnore(const char * pszA,const char * pszB ) throw();
    static const char *  __cdecl  StringFindString(const char * pszBlock,const char * pszMatch ) throw();
    static char *        __cdecl  StringFindString(char * pszBlock,const char * pszMatch ) throw();
    static const char *  __cdecl  StringFindChar(const char * pszBlock,char chMatch ) throw();
@@ -254,26 +250,25 @@ public:
    string() throw();
    explicit string( string_manager_interface * pstringmanager ) throw();
    static void __cdecl Construct( string* pstring );
-   string(const string & strSrc );
-   string(const XCHAR* pszSrc);
+
+
+   string(const string & strSrc);
+   string(const char * pszSrc);
+   string(const unsigned char * pszSrc);
+//   string(char * pszSrc);
+   string(unsigned char * pszSrc);
+   string(wchar_t * pszSrc);
+   string(const wchar_t * pszSrc);
+   string(const string_interface & str);
+   string(const vsstring & str);
+   string(const istring & istr);
+
    string(const char * pszSrc,string_manager_interface * pstringmanager );
-   CSTRING_EXPLICIT string(const YCHAR* pszSrc );
-   CSTRING_EXPLICIT string( const string_interface & str );
    string(const wchar_t * pszSrc,string_manager_interface * pstringmanager );
 
-   CSTRING_EXPLICIT string( const unsigned char* pszSrc );
-//ctors to prevent from oldSyntax template ctor (above) hijack certain types.
-//ca2 API dll instantiate all string methods inside the dll and declares dllimport for
-//all methods in user build (see afxstr.h), so need to include the methods in ca2 API dll builds.
-#if defined(_ApplicationFrameworkDLL) && defined(_MFC_DLL_BLD) || !defined(__cplusplus_cli) && defined(_MANAGED)
-
-   /*CSTRING_EXPLICIT*/ string(char* pszSrc );
-   CSTRING_EXPLICIT string(unsigned char* pszSrc );
-   CSTRING_EXPLICIT string(wchar_t* pszSrc );
-#endif
 
    string(const unsigned char* pszSrc, string_manager_interface * pstringmanager);
-   CSTRING_EXPLICIT string(char ch, strsize nLength = 1);
+   explicit string(char ch, strsize nLength = 1);
    string(strsize nLength, char ch);
    string(wchar_t ch, strsize nLength = 1 );
    string(const XCHAR* pch, strsize nLength);
@@ -289,9 +284,10 @@ public:
    string& operator=(string strSrc );
    string& operator=(const id & id);
    template <bool bMFCDLL>
-   string& operator=(const simple_string& strSrc );
-   string& operator=(PCXSTR pszSrc );
-   string& operator=(PCYSTR pszSrc );
+   string& operator=(const simple_string& strSrc);
+   string& operator=(const vsstring & strSrc);
+   string& operator=(PCXSTR pszSrc);
+   string& operator=(PCYSTR pszSrc);
    string& operator=(const unsigned char* pszSrc );
    string& operator=(char ch );
    string& operator=(wchar_t ch );
@@ -597,9 +593,20 @@ public:
    friend string CLASS_DECL_ca operator+(string str1,PCXSTR psz2 );
    friend string CLASS_DECL_ca operator+(PCXSTR psz1,string str2 );
    friend string CLASS_DECL_ca operator+(string str1,wchar_t ch2 );
-   friend string CLASS_DECL_ca operator+(string str1,char ch2 );
    friend string CLASS_DECL_ca operator+(wchar_t ch1,string str2 );
+   friend string CLASS_DECL_ca operator+(string str1,char ch2 );
    friend string CLASS_DECL_ca operator+(char ch1,string str2 );
+   friend string CLASS_DECL_ca operator+(string str1,int ch2 );
+   friend string CLASS_DECL_ca operator+(int ch1,string str2 );
+   friend string CLASS_DECL_ca operator+(string str1,int64_t ch2 );
+   friend string CLASS_DECL_ca operator+(int64_t ch1,string str2 );
+   friend string CLASS_DECL_ca operator+(const var & var, const char * psz);
+   friend string CLASS_DECL_ca operator+(const char * psz, const var & var);
+   friend string CLASS_DECL_ca operator+(const var & var, string psz);
+   friend string CLASS_DECL_ca operator+(string psz, const var & var);
+
+   
+      
    friend bool CLASS_DECL_ca operator==(string str1,const string_interface & str2 );
    friend bool CLASS_DECL_ca operator==(const string_interface & str1,string str2 );
    friend bool CLASS_DECL_ca operator==(string str1,string str2 ) throw();
@@ -607,6 +614,8 @@ public:
    friend bool CLASS_DECL_ca operator==(PCXSTR psz1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator==(string str1,PCYSTR psz2 ) THROWS;
    friend bool CLASS_DECL_ca operator==(PCYSTR psz1,string str2 ) THROWS;
+   friend bool CLASS_DECL_ca operator==(string str1, int i);
+   friend bool CLASS_DECL_ca operator==(int i, string str1);
    friend bool CLASS_DECL_ca operator==(string str1, int i);
    friend bool CLASS_DECL_ca operator==(int i, string str1);
    friend bool CLASS_DECL_ca operator!=(string str1,string str2 ) throw();

@@ -107,7 +107,7 @@ namespace n7z
          Values.free_extra();
       }
 
-      bool GetItem(int index, uint64 &value) const
+      bool GetItem(index index, uint64 &value) const
       {
          if (index < Defined.get_count() && Defined[index])
          {
@@ -118,7 +118,7 @@ namespace n7z
          return false;
       }
 
-      void SetItem(int index, bool defined, uint64 value)
+      void SetItem(index index, bool defined, uint64 value)
       {
          while (index >= Defined.get_count())
             Defined.add(false);
@@ -130,7 +130,11 @@ namespace n7z
          Values[index] = value;
       }
 
-      bool CheckSize(int size) const { return Defined.get_count() == size || Defined.get_count() == 0; }
+      bool CheckSize(count size) const 
+      { 
+         return Defined.get_count() == size || Defined.get_count() == 0; 
+      }
+
    };
 
    struct CFileItem
@@ -243,15 +247,15 @@ namespace n7z
                return true;
          return false;
       }
-      bool IsItemAnti(int index) const { return (index < IsAnti.get_count() && IsAnti[index]); }
-      void SetItemAnti(int index, bool isAnti)
+      bool IsItemAnti(index index) const { return (index < IsAnti.get_count() && IsAnti[index]); }
+      void SetItemAnti(index index, bool isAnti)
       {
          while (index >= IsAnti.get_count())
             IsAnti.add(false);
          IsAnti[index] = isAnti;
       }
 
-      void GetFile(int index, CFileItem &file, CFileItem2 &file2) const;
+      void GetFile(index index, CFileItem &file, CFileItem2 &file2) const;
       void AddFile(const CFileItem &file, const CFileItem2 &file2);
    };
 

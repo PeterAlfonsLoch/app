@@ -88,7 +88,7 @@ var im_post::get_since(var rec)
    }
 
 
-   int iNumRows = m_pdataset->num_rows();
+   count iNumRows = m_pdataset->num_rows();
    if(iNumRows <= 0)
       return false;
    class var var;

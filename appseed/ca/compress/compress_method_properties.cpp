@@ -35,7 +35,7 @@ namespace compress
       }
 
       {
-         int numProps = method.Props.get_count();
+         count numProps = method.Props.get_count();
          ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;
          setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface * > (coder);
          if (setCoderProperties == NULL)
@@ -65,7 +65,7 @@ namespace compress
                }
                ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;
                setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface *> (coder);
-               res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, numProps);
+               res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }
             catch(...)
             {

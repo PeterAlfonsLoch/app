@@ -32,6 +32,7 @@ FileManagerTemplate::~FileManagerTemplate()
 ::filemanager::document * FileManagerTemplate::open(FileManagerCallbackInterface * pcallback, ::ca::create_context * pcreatecontext, ::fs::data * pdata)
 {
    UNREFERENCED_PARAMETER(pcallback);
+   UNREFERENCED_PARAMETER(pdata);
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateMain->open_document_file(pcreatecontext));
    if(pdoc != NULL)
    {

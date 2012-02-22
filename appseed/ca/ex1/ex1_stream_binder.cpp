@@ -97,7 +97,7 @@ namespace ex1
 
    ::primitive::memory_size stream_binder::read(void *data, ::primitive::memory_size size)
    {
-      uint sizeToRead = size;
+      primitive::memory_size sizeToRead = size;
       if(size > 0)
       {
          _thereAreBytesToReadEvent.wait();

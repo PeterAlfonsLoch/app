@@ -120,7 +120,7 @@ namespace n7z
          {
             ::ex1::byte_buffer buffer;
             wstring password = gen::international::utf8_to_unicode(_options.Password);
-            const uint32 sizeInBytes = password.get_length() * 2;
+            const uint32 sizeInBytes = (const uint32) (password.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int i = 0; i < password.get_length(); i++)
             {
@@ -162,8 +162,8 @@ namespace n7z
       array_ptr_alloc<::ex1::temp_io_buffer> inOutTempBuffers;
       array_ptr_alloc<::ex1::temp_io_writer *> tempBufferSpecs;
       array_ptr_alloc<::ca::smart_pointer<::ex1::writer> > tempBuffers;
-      int numMethods = _bindInfo.Coders.get_count();
-      int i;
+      count numMethods = _bindInfo.Coders.get_count();
+      index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          inOutTempBuffers.add(::ex1::temp_io_buffer());
@@ -180,7 +180,7 @@ namespace n7z
       }
 
       for (i = 0; i < numMethods; i++)
-         _mixerCoderSpec->SetCoderInfo(i, NULL, NULL);
+         _mixerCoderSpec->SetCoderInfo((uint32_t) i, NULL, NULL);
 
       if (_bindInfo.InStreams.is_empty())
          return E_FAIL;
@@ -247,13 +247,12 @@ namespace n7z
       {
          uint64 m = _codersInfo[i].MethodID;
          if (m == k_Delta || m == k_BCJ || m == k_BCJ2)
-            progressIndex = i + 1;
+            progressIndex = (uint32_t) (i + 1);
       }
 
       _mixerCoderSpec->SetProgressCoderIndex(progressIndex);
 
-      RINOK(_mixerCoder->Code(&inStreamPointers.first_element(), NULL, 1,
-         &outStreamPointers.first_element(), NULL, outStreamPointers.get_count(), compressProgress));
+      RINOK(_mixerCoder->Code(&inStreamPointers.first_element(), NULL, 1, &outStreamPointers.first_element(), NULL, (const uint32_t) outStreamPointers.get_count(), compressProgress));
 
       ConvertBindInfoToFolderItemInfo(_decompressBindInfo, _decompressionMethods, folderItem);
 
@@ -399,7 +398,8 @@ namespace n7z
 
          if (_options.PasswordIsDefined)
          {
-            int numCryptoStreams = _bindInfo.OutStreams.get_count();
+
+            count numCryptoStreams = _bindInfo.OutStreams.get_count();
 
             for (i = 0; i < numCryptoStreams; i++)
             {
@@ -433,7 +433,7 @@ namespace n7z
 
       }
 
-      for (int i = _options.Methods.get_count() - 1; i >= 0; i--)
+      for (index i = _options.Methods.get_count() - 1; i >= 0; i--)
       {
          const CMethodFull &methodFull = _options.Methods[i];
          _decompressionMethods.add(methodFull.Id);

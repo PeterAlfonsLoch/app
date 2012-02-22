@@ -330,6 +330,12 @@
     <Filter Include="Header Files\install">
       <UniqueIdentifier>{98c66eba-9fae-453f-90f5-fe1c90966d19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\windows">
+      <UniqueIdentifier>{1dafb0a0-4833-4c7e-b7ae-f1dce30b06f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windows">
+      <UniqueIdentifier>{28399771-e26a-4693-b4d6-9f4e76256ac8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -722,18 +728,6 @@
     <ClInclude Include="count.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="radix\_allocate.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\_DispatchPtrArray.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\_Flags.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\_spreadset.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\allocate.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -741,9 +735,6 @@
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\BSTR.H">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\cafxdllx.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\command.h">
@@ -782,19 +773,7 @@
     <ClInclude Include="radix\dispimpl.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\dll_.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\elements.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\factory.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\fixed_alloc.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\flags.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\heap.h">
@@ -827,9 +806,6 @@
     <ClInclude Include="radix\optr.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\packset.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\pipe.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -843,12 +819,6 @@
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\preview_dc.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\priv.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\priv2.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\process_data.h">
@@ -1083,9 +1053,6 @@
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1_file_exception.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_file_set.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1_file_status.h">
@@ -2156,9 +2123,6 @@
     <ClInclude Include="collection\unique_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="template\_allocate.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="template\_template.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
@@ -2166,9 +2130,6 @@
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\_trace_module_manager.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\allocate.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\base.h">
@@ -3392,6 +3353,54 @@
     <ClInclude Include="plane\plane_system_gen_str.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
+    <ClInclude Include="gen\gen_property_set.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_allocator.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\cafxdllx_want_to_remove.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\spreadset.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_factory.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_fixed_alloc.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\packset.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\c_priv_want_to_remove.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\c_priv2_want_to_remove.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_flags.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\os_library.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_os.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\os.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="template\c_allocate_want_to_remove.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\cw_allocate_want_to_remove.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\os_registry.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -3830,9 +3839,6 @@
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
     <ClCompile Include="ex1\ex1_file.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_file_set.cpp">
       <Filter>Source Files\ex1</Filter>
     </ClCompile>
     <ClCompile Include="ex1\ex1_file_system.cpp">
@@ -5239,9 +5245,6 @@
     <ClCompile Include="radix\radix_afxcrit.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_afxdbcs.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_allocator.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5267,9 +5270,6 @@
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_datetime_value.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_dllinit.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_externs.cpp">
@@ -5324,12 +5324,6 @@
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_wait_cursor.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_win_registry.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_winstr.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="plugin\plugin_history.cpp">
@@ -5658,6 +5652,15 @@
     </ClCompile>
     <ClCompile Include="ca\ca_utils.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\os_library_initialize.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\os_resouce_string.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\os_registry.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

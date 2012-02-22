@@ -158,8 +158,8 @@ public:
 	DWORD_PTR MaxSize() const {return m_dwMaxSize;}
 	void *Base() const {return m_pvBase;}
 
-	int ModuleCount() const {return m_nModuleCount;}
-	int CategoryCount() const {return m_nCategoryCount;}
+	count ModuleCount() const {return m_nModuleCount;}
+	count CategoryCount() const {return m_nCategoryCount;}
 	void IncModuleCount( UINT nModules ) {m_nModuleCount += nModules;}
 	void IncCategoryCount( UINT nCategories ) {m_nCategoryCount += nCategories;}
 
@@ -176,7 +176,7 @@ private:
 	UINT m_nRef;
 	void *m_pvBase;
 
-	UINT m_nModuleCount, m_nCategoryCount;
+	count m_nModuleCount, m_nCategoryCount;
 	LONG m_nNextCookie;
 };
 

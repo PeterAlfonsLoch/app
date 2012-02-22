@@ -72,7 +72,7 @@ namespace primitive
             }
             else
             {
-               int iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
@@ -168,6 +168,9 @@ namespace primitive
       m_dwAllocationAddUp  = dwAllocationAddUp;
    }
 
+   virtual_memory::~virtual_memory()
+   {
+   }
 
 
 

@@ -160,8 +160,7 @@ namespace visual
 
          for(int i = 0; i < lpglyph->get_size(); i++)
          {
-            pdc->PolyBezier(lpglyph->element_at(i).get_data(),
-               lpglyph->element_at(i).get_size());
+            pdc->PolyBezier(lpglyph->element_at(i).get_data(), (int) lpglyph->element_at(i).get_size());
          }
 
          pdc->SetWindowExt(viewportExt);
@@ -327,7 +326,7 @@ namespace visual
       {
          string str;
          str = gen::international::utf8_to_unicode(psz);
-         ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, str.get_length());
+         ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int) str.get_length());
       }
    }
 

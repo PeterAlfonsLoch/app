@@ -24,11 +24,11 @@ namespace user
          int iImage;
          if(data.m_pitem->m_dwState & ::ex1::tree_item_state_expanded)
          {
-            iImage = ptree->m_iImageCollapse;
+            iImage = (int) ptree->m_iImageCollapse;
          }
          else
          {
-            iImage = ptree->m_iImageExpand;
+            iImage = (int) ptree->m_iImageExpand;
          }
          pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0);
       }
@@ -87,7 +87,7 @@ namespace user
 
       if(pimagelistItem != NULL)
       {
-         int iImage = data.m_pitem->get_image();
+         int iImage = (int) data.m_pitem->get_image();
          if(iImage >= 0)
          {
             _001GetItemElementRect(
@@ -356,9 +356,9 @@ namespace user
          drawitemdata.m_pitem = pitem;
          drawitemdata.m_iItem = iItem;
          drawitemdata.m_rect = drawitemdata.m_rectClient;
-         drawitemdata.m_rect.left = drawitemdata.m_iIndentation * iLevel;
-         drawitemdata.m_rect.top += iIndex * drawitemdata.m_iItemHeight;
-         drawitemdata.m_rect.bottom = drawitemdata.m_rect.top + drawitemdata.m_iItemHeight;
+         drawitemdata.m_rect.left = (LONG) (drawitemdata.m_iIndentation * iLevel);
+         drawitemdata.m_rect.top += (LONG) (iIndex * drawitemdata.m_iItemHeight);
+         drawitemdata.m_rect.bottom = (LONG) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
          drawitemdata.m_rect.right = m_iCurrentViewWidth;
          if(pitem->m_dwState & ::ex1::tree_item_state_selected)
          {
@@ -449,7 +449,7 @@ namespace user
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       m_iClick = 2;
 
-      _001OnClick(pmouse->m_nFlags, pmouse->m_pt);
+      _001OnClick((UINT) pmouse->m_nFlags, pmouse->m_pt);
       ::ex1::tree_item * pitem;
       ::user::e_tree_element eelement;
       pitem = _001HitTest(pmouse->m_pt, eelement);
@@ -490,7 +490,7 @@ namespace user
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       m_iClick++;
-      m_uiLButtonUpFlags = pmouse->m_nFlags;
+      m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
       m_ptLButtonUp = pmouse->m_pt;
       SetTimer(TimerClick, 500, NULL);
       pobj->m_bRet = true;
@@ -743,7 +743,7 @@ namespace user
                index iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iObscured);
                if(iNewScroll > iParentIndex)
                   iNewScroll = iParentIndex;
-               m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
+               m_scrollinfo.m_ptScroll.y = (LONG) max(iNewScroll, 0);
    //            _001SetYScroll(max(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(m_scrollinfo.m_ptScroll.y);
             }
@@ -890,13 +890,13 @@ namespace user
       int iMaxWidth = rectClient.width();
       int iWidth;
       index iLevel = m_iFirstVisibleItemLevel;
-      int iIndent  = _001GetIndentation();
+      index iIndent  = _001GetIndentation();
       ::ex1::tree_item * pitem = m_pitemFirstVisible;
       if(pitem == NULL)
          return iMaxWidth;
       for(int i = 0; i < iCount; i++)
       {
-         iWidth = 200 + iIndent * iLevel;
+         iWidth = (int) (200 + iIndent * iLevel);
          if(iWidth > iMaxWidth)
          {
             iMaxWidth = iWidth;

@@ -190,7 +190,7 @@ LPSTR _tcsepbrk( LPCSTR psz, LPCSTR chset, int escape )
 // Coder    Date                      Desc
 // bro      2002-10-29
 //========================================================
-int _tcsenicmp( LPCSTR psz, LPCSTR str, count len, int escape )
+int _tcsenicmp( LPCSTR psz, LPCSTR str, ::count len, int escape )
 {
 	LPSTR pch = (LPSTR)psz;
 	LPSTR prev_escape = NULL;

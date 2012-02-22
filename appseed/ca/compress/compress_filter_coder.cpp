@@ -109,7 +109,7 @@ namespace compress
          if (processedSize != NULL)
             *processedSize += sizeTemp;
          data = (const byte *)data + sizeTemp;
-         uint32 endPos = _bufferPos + sizeTemp;
+         uint32 endPos = (uint32_t) (_bufferPos + sizeTemp);
          _bufferPos = Filter->Filter(_buffer, endPos);
          if (_bufferPos == 0)
          {
@@ -173,7 +173,7 @@ namespace compress
       {
          if (_convertedPosBegin != _convertedPosEnd)
          {
-            uint32 sizeTemp = min(size, _convertedPosEnd - _convertedPosBegin);
+            uint32 sizeTemp = (uint32_t) min(size, _convertedPosEnd - _convertedPosBegin);
             memcpy(data, _buffer + _convertedPosBegin, sizeTemp);
             _convertedPosBegin += sizeTemp;
             data = (void *)((byte *)data + sizeTemp);

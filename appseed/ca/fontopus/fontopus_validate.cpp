@@ -977,7 +977,7 @@ namespace fontopus
 
       memory.allocate(2048);
 
-      int i = RSA_public_encrypt(memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), memory.get_data(), rsa, RSA_PKCS1_PADDING);
+      int i = RSA_public_encrypt((int) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
       const char * psz = ERR_error_string(ERR_get_error(), NULL);
 

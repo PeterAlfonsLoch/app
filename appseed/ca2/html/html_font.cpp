@@ -56,7 +56,7 @@ namespace html
             lf.lfPitchAndFamily = FF_ROMAN | DEFAULT_PITCH;
          }
       }
-      int iLen;
+      strsize iLen;
       if(stra.get_count() > 0)
       {
          iLen = min(sizeof(lf.lfFaceName) - 1, stra[0].get_length());

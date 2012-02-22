@@ -33,7 +33,7 @@ namespace ex1
    file_position reader::find(const void * pFind, ::primitive::memory_size size, const file_position * limit)
    {
       byte * signature = (byte *) pFind;
-      unsigned signatureSize = size;
+      primitive::memory_size signatureSize = size;
       uint64 resPos = 0;
       byte_buffer byteBuffer2;
       byteBuffer2.SetCapacity(signatureSize);
@@ -47,7 +47,7 @@ namespace ex1
       byte_buffer byteBuffer;
       byteBuffer.SetCapacity(kBufferSize);
       Byte *buffer = byteBuffer;
-      uint32 numPrevBytes = signatureSize - 1;
+      primitive::memory_size numPrevBytes = signatureSize - 1;
       memcpy(buffer, (const Byte *)byteBuffer2 + 1, numPrevBytes);
       resPos = 1;
       for (;;)
@@ -65,7 +65,7 @@ namespace ex1
                throw simple_exception();
          }
          while (numPrevBytes < signatureSize);
-         uint32 numTests = numPrevBytes - signatureSize + 1;
+         uint32_t numTests = (uint32_t) (numPrevBytes - signatureSize + 1);
          for (uint32 pos = 0; pos < numTests; pos++)
          {
             Byte b = signature[0];

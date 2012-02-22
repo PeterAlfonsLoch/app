@@ -15,8 +15,8 @@ XfplayerViewLines::~XfplayerViewLines()
 
 void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisible)
 {
-   int iLineIndex = FindLine(pline);
-   int iIndex;
+   index iLineIndex = FindLine(pline);
+   index iIndex;
 
    if(bVisible)
    {
@@ -53,12 +53,12 @@ void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisibl
 
 }
 
-int XfplayerViewLines::GetFirstVisibleLineIndex()
+index XfplayerViewLines::GetFirstVisibleLineIndex()
 {
     return m_iFirstVisible;
 }
 
-int XfplayerViewLines::GetLastVisibleLineIndex()
+index XfplayerViewLines::GetLastVisibleLineIndex()
 {
     return m_iLastVisible;
 }
@@ -95,7 +95,7 @@ void XfplayerViewLines::SetRenderWindow(::ca::window * pWnd)
    UNREFERENCED_PARAMETER(pWnd);
 }
 
-int XfplayerViewLines::FindLine(XfplayerViewLine * pline)
+index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 {
    for(int iLine = 0; iLine < this->get_size(); iLine++)
    {
@@ -105,12 +105,11 @@ int XfplayerViewLines::FindLine(XfplayerViewLine * pline)
    return -1;
 }
 
-::user::e_line_hit XfplayerViewLines::hit_test(POINT &ptCursor, int &iLine, int &iChar)
+::user::e_line_hit XfplayerViewLines::hit_test(POINT &ptCursor, index &iLine, strsize &iChar)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(index i = 0; i < this->get_size(); i++)
    {
-      ::user::e_line_hit etest =
-         this->element_at(i).hit_test(ptCursor, iChar);
+      ::user::e_line_hit etest = this->element_at(i).hit_test(ptCursor, iChar);
       if(etest != user::line_hit_none)
       {
          iLine = i;

@@ -1033,9 +1033,11 @@ void var::write(ex1::byte_output_stream & ostream)
    switch(get_type())
    {
    case type_string:
-      i = m_str.get_length();
-      ostream << i;
-      ostream.write((const char *) m_str, m_str.get_length() + 1);
+      {
+         strsize len = m_str.get_length();
+         ostream << len;
+         ostream.write((const char *) m_str, m_str.get_length() + 1);
+      }
       break;
    case type_integer:
       ostream << m_i;
@@ -1962,7 +1964,7 @@ var var::explode(const char * pszGlue, bool bAddEmpty) const
 
 }
 
-var var::key(int i) const
+var var::key(index i) const
 {
    switch(m_etype)
    {
@@ -1980,7 +1982,7 @@ var var::key(int i) const
 }
 
 
-int var::get_count() const
+count var::get_count() const
 {
    switch(m_etype)
    {
@@ -1999,48 +2001,6 @@ int var::get_count() const
    }
 }
 
-var var::first() const
-{
-   return operator[]((var)(int) 0);
-}
-
-var var::last() const
-{
-   if(array_get_count() == 0)
-      return first();
-   else
-      return operator[](array_get_upper_bound());
-}
-
-const var & var::operator[] (var varKey) const
-{
-   return propset().operator[](varKey).get_value();
-}
-
-var & var::operator[] (var varKey)
-{
-   return propset().operator[](varKey).get_value();
-}
-
-const var & var::operator[] (int iKey) const
-{
-   return propset().operator[](iKey).get_value();
-}
-
-var & var::operator[] (int iKey)
-{
-   return propset().operator[](iKey).get_value();
-}
-
-const var &  var::operator[] (const char * pszKey) const
-{
-   return propset().operator[](pszKey).get_value();
-}
-
-var & var::operator[] (const char * pszKey)
-{
-   return propset().operator[](pszKey).get_value();
-}
 
 void var::on_delete(::ca::ca * pca)
 {
@@ -2070,7 +2030,7 @@ var var::dereference()
       return *this;
 }
 
-var var::at(int i) const
+var var::at(index i) const
 {
    switch(m_etype)
    {
@@ -2096,7 +2056,7 @@ var var::at(int i) const
    }
 }
 
-var var::at(int i)
+var var::at(index i)
 {
    switch(m_etype)
    {
@@ -2122,7 +2082,7 @@ var var::at(int i)
    }
 }
 
-int var::array_get_count() const
+count var::array_get_count() const
 {
    if(m_etype == type_new
    || m_etype == type_null
@@ -2137,7 +2097,7 @@ int var::array_get_count() const
       return 1; // this var is an scalar or object that can be retrieved through "array_" methods
 }
 
-int var::array_get_upper_bound() const
+index var::array_get_upper_bound() const
 {
    if(m_etype == type_new
    || m_etype == type_null
@@ -2151,6 +2111,7 @@ int var::array_get_upper_bound() const
    else
       return 0; // this var is an scalar or object that can be retrieved through "array_" methods
 }
+
 bool var::array_contains(const char * psz, index find, count count) const
 {
    switch(m_etype)
@@ -2166,7 +2127,7 @@ bool var::array_contains(const char * psz, index find, count count) const
    default:
       {
          index upperbound = min(array_get_upper_bound(), find + count - 1);
-         for(int i = find; i <= upperbound; i++)
+         for(index i = find; i <= upperbound; i++)
          {
             if(at(i) == psz)
             {
@@ -2195,7 +2156,7 @@ bool var::array_contains_ci(const char * psz, index find, index last) const
    default:
       {
          index upperbound = min(array_get_upper_bound(), last);
-         for(int i = find; i <= upperbound; i++)
+         for(index i = find; i <= upperbound; i++)
          {
             if(at(i).get_string().CompareNoCase(psz) == 0)
             {
@@ -2231,28 +2192,6 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
       return var();
    }
 }
-
-string var::operator + (const char * psz) const
-{
-   return get_string() + string(psz);
-}
-
-string var::operator + (const string & str) const
-{
-   return get_string() + str;
-}
-
-string CLASS_DECL_ca operator + (const char * psz, const class var & var)
-{
-   return string(psz) + var.get_string();
-}
-
-string CLASS_DECL_ca operator + (const string & str, const class var & var)
-{
-   return str + var.get_string();
-}
-
-
 
 
 var var::operator - (int i) const

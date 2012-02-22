@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace win
 {
+
 
    registry::registry()
    {
@@ -152,7 +154,7 @@ namespace win
          ::RegDeleteKey(m_hkey, NULL);
    }
 
-   int registry::Key::EnumKey(stringa & stra)
+   ::count registry::Key::EnumKey(stringa & stra)
    {
       DWORD dwMaxSubKeyLen;
       RegQueryInfoKey(
@@ -186,7 +188,7 @@ namespace win
       return m_hkey;
    }
 
-   int registry::Key::EnumValueName(stringa & stra)
+   ::count registry::Key::EnumValueName(stringa & stra)
    {
       DWORD dwMaxValueNameLen = 16384;
       char * pszBuf = (char *) malloc(dwMaxValueNameLen);
@@ -211,4 +213,7 @@ namespace win
       return stra.get_count();
    }
 
+
 } // namespace win
+
+

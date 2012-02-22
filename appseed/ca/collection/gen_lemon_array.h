@@ -119,7 +119,7 @@ namespace gen
 	   void array_makecombination(array_ptr_alloc < A > & comb, const A & a, A blindprefixa = A(), index idx = 0)
 	   {
 		   comb.add(blindprefixa);
-		   for(int i = idx; i < a.get_count(); i++)
+		   for(::index i = idx; i < a.get_count(); i++)
 		   {
 			   array_makecombination(comb, a, blindprefixa + ::gen::array < A > (a[i]), i + 1);
 		   }

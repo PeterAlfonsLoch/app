@@ -67,17 +67,20 @@ void scMathRand(CScriptVar *c, void *) {
 	c->getReturnVar()->setDouble((double)rand()/RAND_MAX);
 }
 
-void scMathRandInt(CScriptVar *c, void *) {
-	int min = c->getParameter("min")->getInt();
-	int max = c->getParameter("max")->getInt();
-	int val = min + (int)((long)rand()*(1+max-min)/RAND_MAX);
-	if (val>max) val=max;
+void scMathRandInt(CScriptVar *c, void *)
+{
+	int64_t min = c->getParameter("min")->getInt();
+	int64_t max = c->getParameter("max")->getInt();
+	int64_t val = min + (int)((long)rand()*(1+max-min)/RAND_MAX);
+	if(val>max)
+      val=max;
 	c->getReturnVar()->setInt(val);
 }
 
-void scCharToInt(CScriptVar *c, void *) {
+void scCharToInt(CScriptVar *c, void *)
+{
 	string str = c->getParameter("ch")->getString();;
-	int val = 0;
+	int64_t val = 0;
 	if (str.length()>0)
 		val = (int)str.c_str()[0];
 	c->getReturnVar()->setInt(val);
@@ -87,16 +90,16 @@ void scStringIndexOf(CScriptVar *c, void *) {
 	string str = c->getParameter("this")->getString();
 	string search = c->getParameter("search")->getString();
 	strsize p = str.find(search);
-	int val = (p< 0) ? -1 : p;
+	strsize val = (p< 0) ? -1 : p;
 	c->getReturnVar()->setInt(val);
 }
 
 void scStringSubstring(CScriptVar *c, void *) {
 	string str = c->getParameter("this")->getString();
-	int lo = c->getParameter("lo")->getInt();
-	int hi = c->getParameter("hi")->getInt();
+	int64_t lo = c->getParameter("lo")->getInt();
+	int64_t hi = c->getParameter("hi")->getInt();
 
-	int l = hi-lo;
+	int64_t l = hi-lo;
 	if (l>0 && lo>=0 && lo+l<=(int)str.length())
 		c->getReturnVar()->setString(str.substr(lo, l));
 	else
@@ -105,7 +108,7 @@ void scStringSubstring(CScriptVar *c, void *) {
 
 void scStringCharAt(CScriptVar *c, void *) {
 	string str = c->getParameter("this")->getString();
-	int p = c->getParameter("pos")->getInt();
+	int64_t p = c->getParameter("pos")->getInt();
 	if (p>=0 && p<(int)str.length())
 		c->getReturnVar()->setString(str.substr(p, 1));
 	else
@@ -146,7 +149,7 @@ void scIsInNet(CScriptVar *c, void *data)
    string addr = c->getParameter("addr")->getString();
    string mask = c->getParameter("mask")->getString();
 
-   int iFind = host.reverse_find(':');
+   strsize iFind = host.reverse_find(':');
    if(iFind >= 0)
       host = host.Left(iFind);
 

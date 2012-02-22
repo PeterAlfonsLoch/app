@@ -735,6 +735,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="collection\map.h" />
     <ClInclude Include="collection\numeric_array.h" />
     <ClInclude Include="collection\object_list.h" />
+    <ClInclude Include="collection\packset.h" />
     <ClInclude Include="collection\pointer_list.h" />
     <ClInclude Include="collection\point_array.h" />
     <ClInclude Include="collection\primitive_array.h" />
@@ -747,6 +748,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="collection\simple_typed_pointer_array.h" />
     <ClInclude Include="collection\sort.h" />
     <ClInclude Include="collection\sort_array.h" />
+    <ClInclude Include="collection\spreadset.h" />
     <ClInclude Include="collection\stringa.h" />
     <ClInclude Include="collection\stringl.h" />
     <ClInclude Include="collection\string_array.h" />
@@ -981,7 +983,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ex1\ex1_file.h" />
     <ClInclude Include="ex1\ex1_file_composite.h" />
     <ClInclude Include="ex1\ex1_file_exception.h" />
-    <ClInclude Include="ex1\ex1_file_set.h" />
     <ClInclude Include="ex1\ex1_file_status.h" />
     <ClInclude Include="ex1\ex1_file_system.h" />
     <ClInclude Include="ex1\ex1_fs_interface.h" />
@@ -1095,6 +1096,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="fs\native_fs.h" />
     <ClInclude Include="gen\base_rect.h" />
     <ClInclude Include="gen\base_rect_array.h" />
+    <ClInclude Include="gen\gen_flags.h" />
     <ClInclude Include="gen\gen.h" />
     <ClInclude Include="gen\gen_0.h" />
     <ClInclude Include="gen\gen_1.h" />
@@ -1128,6 +1130,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="gen\gen_pointer_manager.h" />
     <ClInclude Include="gen\gen_process.h" />
     <ClInclude Include="gen\gen_property.h" />
+    <ClInclude Include="gen\gen_property_set.h" />
     <ClInclude Include="gen\gen_ptri.h" />
     <ClInclude Include="gen\gen_raw_pointer.h" />
     <ClInclude Include="gen\gen_request_signal.h" />
@@ -1281,7 +1284,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="radix\allocate.h" />
     <ClInclude Include="radix\base.h" />
     <ClInclude Include="radix\BSTR.H" />
-    <ClInclude Include="radix\cafxdllx.h" />
+    <ClInclude Include="radix\cafxdllx_want_to_remove.h" />
     <ClInclude Include="radix\command.h" />
     <ClInclude Include="radix\command_target.h" />
     <ClInclude Include="radix\Common.h" />
@@ -1294,11 +1297,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="radix\datetime_value.h" />
     <ClInclude Include="radix\DispatchPtrArray.h" />
     <ClInclude Include="radix\dispimpl.h" />
-    <ClInclude Include="radix\dll_.h" />
     <ClInclude Include="radix\elements.h" />
-    <ClInclude Include="radix\factory.h" />
-    <ClInclude Include="radix\fixed_alloc.h" />
-    <ClInclude Include="radix\flags.h" />
+    <ClInclude Include="radix\radix_factory.h" />
+    <ClInclude Include="radix\radix_fixed_alloc.h" />
     <ClInclude Include="radix\heap.h" />
     <ClInclude Include="radix\hh.h" />
     <ClInclude Include="radix\html_file.h" />
@@ -1309,14 +1310,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="radix\language_string.h" />
     <ClInclude Include="radix\machine_event_central.h" />
     <ClInclude Include="radix\optr.h" />
-    <ClInclude Include="radix\packset.h" />
     <ClInclude Include="radix\pipe.h" />
     <ClInclude Include="radix\plex.h" />
     <ClInclude Include="radix\plex_heap.h" />
     <ClInclude Include="radix\pointer_object.h" />
     <ClInclude Include="radix\preview_dc.h" />
-    <ClInclude Include="radix\priv.h" />
-    <ClInclude Include="radix\priv2.h" />
+    <ClInclude Include="radix\c_priv_want_to_remove.h" />
+    <ClInclude Include="radix\c_priv2_want_to_remove.h" />
     <ClInclude Include="radix\process_data.h" />
     <ClInclude Include="radix\PushingRoutingFrame.h" />
     <ClInclude Include="radix\radix.h" />
@@ -1325,6 +1325,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="radix\radix_5.h" />
     <ClInclude Include="radix\radix_application.h" />
     <ClInclude Include="radix\radix_object.h" />
+    <ClInclude Include="radix\radix_os.h" />
     <ClInclude Include="radix\radix_os_history.h" />
     <ClInclude Include="radix\radix_system.h" />
     <ClInclude Include="radix\radix_template.h" />
@@ -1340,10 +1341,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="radix\util.h" />
     <ClInclude Include="radix\wait_cursor.h" />
     <ClInclude Include="radix\win_registry.h" />
-    <ClInclude Include="radix\_allocate.h" />
-    <ClInclude Include="radix\_DispatchPtrArray.h" />
-    <ClInclude Include="radix\_Flags.h" />
-    <ClInclude Include="radix\_spreadset.h" />
+    <ClInclude Include="radix\radix_allocator.h" />
     <ClInclude Include="simpledb\application.h" />
     <ClInclude Include="simpledb\DBFileSystemSize.h" />
     <ClInclude Include="simpledb\db_long_set.h" />
@@ -1439,7 +1437,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="sqlite\sqlite3.h" />
     <ClInclude Include="sqlite\sqlite3ext.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="template\allocate.h" />
+    <ClInclude Include="template\c_allocate_want_to_remove.h" />
     <ClInclude Include="template\base.h" />
     <ClInclude Include="template\checked.h" />
     <ClInclude Include="template\core.h" />
@@ -1460,7 +1458,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="template\time.h" />
     <ClInclude Include="template\trace.h" />
     <ClInclude Include="template\trace_module_manager.h" />
-    <ClInclude Include="template\_allocate.h" />
+    <ClInclude Include="template\cw_allocate_want_to_remove.h" />
     <ClInclude Include="template\_template.h" />
     <ClInclude Include="template\_template_xyz.h" />
     <ClInclude Include="template\_trace_module_manager.h" />
@@ -1584,6 +1582,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="webserver\webserver_spider.h" />
     <ClInclude Include="webserver\webserver_ui.h" />
     <ClInclude Include="webserver\webserver_wb.h" />
+    <ClInclude Include="windows\os.h" />
+    <ClInclude Include="windows\os_library.h" />
+    <ClInclude Include="windows\os_registry.h" />
     <ClInclude Include="xml\application.h" />
     <ClInclude Include="xml\attr.h" />
     <ClInclude Include="xml\base_array.h" />
@@ -2078,7 +2079,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ex1\ex1_exception.cpp" />
     <ClCompile Include="ex1\ex1_file.cpp" />
     <ClCompile Include="ex1\ex1_file_composite.cpp" />
-    <ClCompile Include="ex1\ex1_file_set.cpp" />
     <ClCompile Include="ex1\ex1_file_stream.cpp" />
     <ClCompile Include="ex1\ex1_file_system.cpp" />
     <ClCompile Include="ex1\ex1_fs_interface.cpp" />
@@ -2475,7 +2475,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\primitive_var.cpp" />
     <ClCompile Include="primitive\virtual_memory.cpp" />
     <ClCompile Include="radix\radix_afxcrit.cpp" />
-    <ClCompile Include="radix\radix_afxdbcs.cpp" />
     <ClCompile Include="radix\radix_allocation_mid_big.cpp" />
     <ClCompile Include="radix\radix_allocation_base_ca2.cpp" />
     <ClCompile Include="radix\radix_allocator.cpp" />
@@ -2487,7 +2486,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="radix\radix_composite.cpp" />
     <ClCompile Include="radix\radix_constraint.cpp" />
     <ClCompile Include="radix\radix_datetime_value.cpp" />
-    <ClCompile Include="radix\radix_dllinit.cpp" />
     <ClCompile Include="radix\radix_externs.cpp" />
     <ClCompile Include="radix\radix_factory.cpp" />
     <ClCompile Include="radix\radix_fixed_alloc.cpp" />
@@ -2512,8 +2510,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="radix\radix_util.cpp" />
     <ClCompile Include="radix\radix_validadd.cpp" />
     <ClCompile Include="radix\radix_wait_cursor.cpp" />
-    <ClCompile Include="radix\radix_winstr.cpp" />
-    <ClCompile Include="radix\radix_win_registry.cpp" />
     <ClCompile Include="simpledb\simpledb_application.cpp" />
     <ClCompile Include="simpledb\simpledb_database.cpp" />
     <ClCompile Include="simpledb\simpledb_dataset.cpp" />
@@ -2727,6 +2723,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="webserver\webserver_spider.cpp" />
     <ClCompile Include="webserver\webserver_user.cpp" />
     <ClCompile Include="webserver\webserver_wb.cpp" />
+    <ClCompile Include="windows\os_library_initialize.cpp" />
+    <ClCompile Include="windows\os_resouce_string.cpp" />
+    <ClCompile Include="windows\os_registry.cpp" />
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />

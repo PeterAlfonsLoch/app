@@ -9,12 +9,16 @@ class array_del_ptr :
    virtual public array_ptr < TYPE, ARG_TYPE, BASE_PTRA >
 {
 public:
+   
+   
    array_del_ptr();
    virtual ~array_del_ptr();
 
-   void remove_at(INT_PTR iIndex);
+   
+   void remove_at(index iIndex);
    count remove_all(bool bDelete = true);
    void remove_last(bool bDelete = true);
+
 
 };
 

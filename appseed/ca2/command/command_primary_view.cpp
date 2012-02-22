@@ -53,8 +53,8 @@ namespace command
       string str;
 
       _001GetText(str);
-      int iFind;
-      int iFind2;
+      strsize iFind;
+      strsize iFind2;
 
       if((iFind = str.reverse_find('\n')) >= 0)
       {

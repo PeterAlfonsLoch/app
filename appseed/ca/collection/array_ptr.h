@@ -6,8 +6,11 @@ class array_ptr :
    virtual public ::radix::object
 {
 public:
+
+
    array_ptr();
    virtual ~array_ptr();
+
 
    index add(TYPE * p);
    index add_unique(TYPE * p);
@@ -51,7 +54,7 @@ public:
 
 
 
-   void set_size(int iSize);
+   void set_size(count iSize);
 
    template < class CAST >
    array_ptr & operator -= (CAST * pt)
@@ -292,16 +295,19 @@ contains(TYPE * pt, index find, index last, count countMin, count countMax) cons
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::
-set_size(int iSize)
+set_size(count iSize)
 {
+   
    while(this->get_size() < iSize)
    {
       add(NULL);
    }
+   
    while(this->get_size() > iSize)
    {
       remove_at(this->get_size() - 1);
    }
+
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>

@@ -109,7 +109,7 @@ PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PRUint32
     }
   }
 
-  newLen = newptr - *newBuf;
+  newLen = (PRUint32) (newptr - *newBuf);
 
   return PR_TRUE;
 }

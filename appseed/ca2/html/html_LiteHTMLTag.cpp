@@ -79,7 +79,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
       ASSERT(strTagName.is_empty());
       ASSERT(pcollAttr == NULL);
       ASSERT(!bClosingTag);
-      nRetVal = lpszBegin - lpszString;
+      nRetVal = (UINT) (lpszBegin - lpszString);
       goto LUpdateAndExit;
    }
 
@@ -139,7 +139,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
 
       ASSERT(strTagName.get_length());
       ASSERT(pcollAttr == NULL);
-      nRetVal = lpszEnd - lpszString;
+      nRetVal = (UINT) (lpszEnd - lpszString);
       goto LUpdateAndExit;
    }
 
@@ -166,7 +166,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
          }
 
          // ... and delegate parsing process
-         nTemp = pcollAttr->parseFromStr(preader, lpszBegin);
+         nTemp = (UINT) pcollAttr->parseFromStr(preader, lpszBegin);
       }
 
       if (nTemp == 0)   // attribute/value pair parsing is disabled? 
@@ -214,7 +214,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
    else
       lpszEnd = ::_tcsinc(lpszEnd);
 
-   nRetVal = lpszEnd - lpszString;
+   nRetVal = (UINT) (lpszEnd - lpszString);
    goto LUpdateAndExit;   // just to show the flow-of-control
 
 LUpdateAndExit:

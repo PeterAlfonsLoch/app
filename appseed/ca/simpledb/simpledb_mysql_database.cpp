@@ -288,13 +288,13 @@ namespace mysql
    }
 
 
-   string database::real_escape_string(void * p, int iLen)
+   string database::real_escape_string(void * p, strsize iLen)
    {
       string str;
       char * psz = str.GetBufferSetLength(iLen * 2 + 1);
       if(psz == NULL)
          throw memory_exception();
-      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, iLen);
+      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (unsigned long) iLen);
       str.ReleaseBuffer();
       return str;
    }

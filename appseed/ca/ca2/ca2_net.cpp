@@ -346,7 +346,7 @@ namespace ca2
          memcpy(&a, &sa4 -> sin_addr, 4);
          string tmp;
          net::l2ip(a, tmp);
-         return tmp + ":" + gen::str::l2string(ntohs(sa4 -> sin_port));
+         return tmp + ":" + gen::str::itoa(ntohs(sa4 -> sin_port));
       }
       return "";
    }

@@ -367,18 +367,23 @@ public:
 
    var first() const;
    var last() const;
-   int get_count() const;
+   count get_count() const;
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
-   const var & operator[] (int iKey) const;
+   const var & operator[] (index iKey) const;
+   inline const var & operator[] (int iKey) const { return operator[]((index) iKey); }
    var & operator[] (var varKey);
    var & operator[] (const char * pszKey);
-   var & operator[] (int iKey);
-   var at(int i) const;
-   var at(int i);
-   var key(int i) const;
-   int array_get_count() const;
-   int array_get_upper_bound() const;
+   var & operator[] (index iKey);
+   inline var & operator[] (int iKey) { return operator[]((index) iKey); }
+   var at(index i) const;
+   inline var at(int i) const { return at((index) i); }
+   var at(index i);
+   inline var at(int i) { return at((index) i); }
+   var key(index i) const;
+   inline var key(int i) const { return key((index) i); }
+   count array_get_count() const;
+   index array_get_upper_bound() const;
    bool array_contains(const char * psz, index find = 0, count count = -1) const;
    bool array_contains_ci(const char * psz, index find = 0, count count = -1) const;
 
@@ -386,11 +391,6 @@ public:
    var equals_ci_get(const char * pszCompare, var varOnEqual) const;
 
 
-   string operator + (const char * psz) const;
-   string operator + (const string & str) const;
-
-   friend string CLASS_DECL_ca operator + (const char * psz, const var & var);
-   friend string CLASS_DECL_ca operator + (const string & str, const var & var);
 
    var operator - (int i) const;
    var operator - (unsigned int user) const;
@@ -524,4 +524,7 @@ namespace gen
 
 
 } // namespace gen
+
+
+
 

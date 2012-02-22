@@ -1064,14 +1064,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int window::GetWindowText(LPTSTR lpszString, int nMaxCount)
+   strsize window::GetWindowText(LPTSTR lpszString, int nMaxCount)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nMaxCount);
       throw interface_only_exception();
    }
 
-   int window::GetWindowTextLength()
+   strsize window::GetWindowTextLength()
    {
       throw interface_only_exception();
    }

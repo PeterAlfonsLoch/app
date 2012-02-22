@@ -14,8 +14,8 @@ namespace music
       var lyrics,
       var querystyle,
       var order,
-      int curpage,
-      int limitcount,
+      ::index curpage,
+      ::count limitcount,
       var cid,
       var aid,
       var target,
@@ -69,8 +69,8 @@ namespace music
       m_lyrics = lyrics;
       m_querystyle = querystyle;
       multi_page_init(curpage, limitcount);
-      int lastpage;
-      int totalcount;
+      ::index lastpage;
+      ::count totalcount;
       m_psonga = musicdb().get_songs(
          m_params_ex,
          query,
@@ -196,7 +196,7 @@ namespace music
       m_navtitle = navtitle;
       title += " - " + music().get_root_title();
       m_title = title;
-      int songcount = m_psonga->get_count();
+      ::count songcount = m_psonga->get_count();
       m_songcount   = songcount;
       m_num_rows   = songcount;
       m_dataa["songnavtitle"] = navtitle;
@@ -252,9 +252,9 @@ namespace music
       if(has_param("cid"))
       {
          ::webserver::music::song_ptr_array * psonga = m_psonga;
-         int num_rows             = psonga->get_count();
+         ::count num_rows             = psonga->get_count();
          ::webserver::music::song_ptr_array * psonga2                = m_psonga2;
-         int num_rows2             = psonga2->get_count();
+         ::count num_rows2             = psonga2->get_count();
          ::webserver::music::performer * pperformer             = m_pperformer;
          var performerid         = pperformer->m_id;
          var performername       = pperformer->m_name;
@@ -544,8 +544,8 @@ namespace music
 
    void in2_list_song::printrows()
    {
-      int pos = 0;
-      for(int i = multi_page_get_limit_start();
+      ::index pos = 0;
+      for(::index i = multi_page_get_limit_start();
          i < multi_page_get_limit_start() + m_limitcount;
          i++)
       {
@@ -579,7 +579,7 @@ namespace music
       if(has_param("aid"))
       {
          //dprint("xxx(".$_GET['aid'].")");
-         for(int i = multi_page_get_item_start();
+         for(::index i = multi_page_get_item_start();
             i < multi_page_get_item_end();
             i++)
          {
@@ -653,7 +653,7 @@ namespace music
             //      print(" "<br>"");
             // Performer Web Site URL Link Feature Facility
             song_starttable();
-            for(int i = multi_page_get_item_start();
+            for(::index i = multi_page_get_item_start();
                i < multi_page_get_item_end();
                i++)
             {
@@ -680,7 +680,7 @@ namespace music
       else
       {
          song_starttable();
-         for(int i = multi_page_get_item_start();
+         for(::index i = multi_page_get_item_start();
             i < multi_page_get_item_end();
             i++)
          {
@@ -698,7 +698,7 @@ namespace music
 
 
 
-   void in2_list_song::print_row(::webserver::music::song * psong, var line)
+   void in2_list_song::print_row(::webserver::music::song * psong, index line)
    {
       /*      global $g_languageid;
       global $param_nav;
@@ -1032,7 +1032,7 @@ namespace music
             //               print(" "onMouseUp=\"img_MouseUp("funImg', '$line")\""");
             print(" >");
             print("<img class='i1il'\r\n\
-                  name='funImg." + line + "'\r\n\
+                  name='funImg." + gen::str::itoa(line) + "'\r\n\
                   src='" + simage("f1n") + "' title=\"\"\r\n\
                   alt=\"Fun\"\r\n\
                   id='funImg.$line'\r\n\
@@ -1068,7 +1068,7 @@ namespace music
       if(m_querystyle == SQS_LAST_ACCESSES)
       {
          print_td(-1);
-         print(" <div id='acctime-"+line+"'>&nbsp;</div>");
+         print(string(" <div id='acctime-")+line+"'>&nbsp;</div>");
          //         print(" psong->accessdatetime");
          //         print(" "&nbsp;"");
          print(" </td>");
@@ -1142,7 +1142,7 @@ namespace music
          && (strlen(m_order) == 0 || m_order == ORDERBY_SONGNAME))
       {
          page = page - 1;
-         return "&nbsp;("+ m_psonga->element_at(multi_page_map_to_internal_item(page * m_limitcount))->m_propertyset["title"] +")";
+         return "&nbsp;("+ string(m_psonga->element_at(multi_page_map_to_internal_item(page * (int) m_limitcount))->m_propertyset["title"]) +")";
       }
       else
       {

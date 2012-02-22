@@ -338,7 +338,7 @@ namespace bergedge
 
    string view::GetNextBackgroundImagePath()
    {
-      int i = m_straImagePath.find_first(m_strCurrentImagePath);
+      index i = m_straImagePath.find_first(m_strCurrentImagePath);
       i++;
       if(i >= m_straImagePath.get_size())
       {

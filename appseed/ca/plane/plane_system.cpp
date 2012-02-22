@@ -1249,7 +1249,7 @@ namespace plane
 
    index system::get_new_bergedge(::ca::application_bias * pbiasCreation)
    {
-      int iNewEdge = m_iNewEdge;
+      index iNewEdge = m_iNewEdge;
       plane::session * pbergedge;
       while(m_pbergedgemap->Lookup(iNewEdge, pbergedge))
       {
@@ -1344,12 +1344,12 @@ namespace plane
          strCommandLine.trim();
          if(strCommandLine[0] == '\"')
          {
-            int iFind = strCommandLine.find("\"", 1);
+            strsize iFind = strCommandLine.find("\"", 1);
             strCommandLine = strCommandLine.Mid(iFind + 1);
          }
          else
          {
-            int iFind = strCommandLine.find(" ", 1);
+            strsize iFind = strCommandLine.find(" ", 1);
             strCommandLine = strCommandLine.Mid(iFind + 1);
          }
          command().add_line(strCommandLine);

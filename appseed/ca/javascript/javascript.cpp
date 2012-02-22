@@ -270,23 +270,30 @@ bool isIDString(const char *s) {
    return true;
 }
 
-void replace(string &str, char textFrom, const char *textTo) {
+void replace(string &str, char textFrom, const char *textTo) 
+{
 
-   int sLen = strlen(textTo);
+   strsize sLen = strlen(textTo);
+
    size_t p = str.find(textFrom);
-   while (p >= 0) {
+
+   while (p >= 0)
+   {
+   
       str = str.substr(0, p) + textTo + str.substr(p+1);
       p = str.find(textFrom, p+sLen);
+
    }
+
 }
 
-string &int2string(int intData, const string &inString=string());
-string &int2string(int intData, const string &inString) {
+/*string &gen::str::itoa(int intData, const string &inString=string());
+string &gen::str::itoa(int intData, const string &inString) {
    string &_inString = (string &) inString;
    char buffer[32];
    sprintf_s(buffer, sizeof(buffer), "%d", intData);
    return _inString=buffer;
-}
+}*/
 
 /// convert the given string into a quoted string suitable for javascript
 string getJSString(const string &str) {
@@ -322,14 +329,16 @@ bool isAlphaNum(const string &str) {
 
 // ----------------------------------------------------------------------------------- CSCRIPTEXCEPTION
 
-CScriptException::CScriptException(const string &exceptionText, int Pos) {
+CScriptException::CScriptException(const string &exceptionText, strsize Pos)
+{
    text = exceptionText;
    pos = Pos;
 }
 
 // ----------------------------------------------------------------------------------- CSCRIPTLEX
 
-CScriptLex::CScriptLex(const string &input) {
+CScriptLex::CScriptLex(const string &input)
+{
    data = _strdup(input.c_str());
    dataOwned = true;
    dataStart = 0;
@@ -337,7 +346,8 @@ CScriptLex::CScriptLex(const string &input) {
    reset();
 }
 
-CScriptLex::CScriptLex(CScriptLex *owner, int startChar, int endChar) {
+CScriptLex::CScriptLex(CScriptLex *owner, strsize startChar, strsize endChar) 
+{
    data = owner->data;
    dataOwned = false;
    dataStart = startChar;
@@ -351,7 +361,8 @@ CScriptLex::~CScriptLex(void)
       free((void*)data);
 }
 
-void CScriptLex::reset(int toPos) {
+void CScriptLex::reset(strsize toPos)
+{
    dataPos = dataStart+toPos;
    tokenStart = 0;
    tokenEnd = 0;
@@ -363,7 +374,8 @@ void CScriptLex::reset(int toPos) {
    getNextToken();
 }
 
-void CScriptLex::match(int expected_tk) {
+void CScriptLex::match(int expected_tk)
+{
    if (expected_tk==';' && tk==LEX_EOF) return; // ignore last missing ';'
    if (tk!=expected_tk) {
       _template_std_ostringstream errorString;
@@ -374,7 +386,8 @@ void CScriptLex::match(int expected_tk) {
    getNextToken();
 }
 
-string CScriptLex::getTokenStr(int token) {
+string CScriptLex::getTokenStr(int token)
+{
    if (token>32 && token<128) {
       char buf[4] = "' '";
       buf[1] = (char)token;
@@ -674,8 +687,8 @@ void CScriptLex::getNextToken() {
    tokenEnd = dataPos-3;
 }
 
-string CScriptLex::getSubString(int lastPosition) {
-   int lastCharIdx = tokenLastEnd+1;
+string CScriptLex::getSubString(strsize lastPosition) {
+   strsize lastCharIdx = tokenLastEnd+1;
    if (lastCharIdx < dataEnd) {
       /* save a memory alloc by using our data array to create the substring */
       char old = data[lastCharIdx];
@@ -689,20 +702,23 @@ string CScriptLex::getSubString(int lastPosition) {
 }
 
 
-CScriptLex *CScriptLex::getSubLex(int lastPosition) {
-   int lastCharIdx = tokenLastEnd+1;
+CScriptLex *CScriptLex::getSubLex(strsize lastPosition)
+{
+   strsize lastCharIdx = tokenLastEnd+1;
    if (lastCharIdx < dataEnd)
       return new CScriptLex( this, lastPosition, lastCharIdx);
    else
       return new CScriptLex( this, lastPosition, dataEnd );
 }
-int CScriptLex::getDataPos() {
+
+strsize CScriptLex::getDataPos() 
+{
    return dataPos;
 }
 
-string CScriptLex::getPosition(int pos) {
+string CScriptLex::getPosition(strsize pos) {
    if (pos<0) pos=tokenLastEnd;
-   int line = 1,col = 1;
+   index line = 1,col = 1;
    for (int i=0;i<pos;i++) {
       char ch;
       if (i < dataEnd)
@@ -842,7 +858,8 @@ CScriptVar::CScriptVar(double val) {
    setDouble(val);
 }
 
-CScriptVar::CScriptVar(int val) {
+CScriptVar::CScriptVar(int64_t val)
+{
    refs = 0;
    internalRefs = 0;
    recursionFlag = 0;
@@ -899,11 +916,14 @@ CScriptVar *CScriptVar::getParameter(const string &name) {
    return findChildOrCreate(name)->var;
 }
 
-CScriptVar *CScriptVar::getParameter(int Idx) {
+CScriptVar *CScriptVar::getParameter(index Idx)
+{
    CScriptVar *arguments = findChildOrCreate(TINYJS_ARGUMENTS_VAR)->var;
-   return arguments->findChildOrCreate(int2string(Idx))->var;
+   return arguments->findChildOrCreate(gen::str::itoa(Idx))->var;
 }
-int CScriptVar::getParameterLength() {
+
+int64_t CScriptVar::getParameterLength()
+{
    CScriptVar *arguments = findChildOrCreate(TINYJS_ARGUMENTS_VAR)->var;
    return arguments->findChildOrCreate("length")->var->getInt();
 }
@@ -989,15 +1009,17 @@ void CScriptVar::removeAllChildren()
    Childs.remove_all();
 }
 
-CScriptVar *CScriptVar::getArrayIndex(int idx) {
-   CScriptVarLink *link = findChild(int2string(idx));
+CScriptVar *CScriptVar::getArrayIndex(index idx)
+{
+   CScriptVarLink *link = findChild(gen::str::itoa(idx));
    if (link) return link->var;
    else return new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_NULL); // undefined
 }
 
-void CScriptVar::setArrayIndex(int idx, CScriptVar *value) {
+void CScriptVar::setArrayIndex(index idx, CScriptVar *value)
+{
    string sIdx;
-   CScriptVarLink *link = findChild(int2string(idx, sIdx));
+   CScriptVarLink *link = findChild(gen::str::itoa(sIdx, idx));
 
    if (link) {
       if (value->isUndefined())
@@ -1010,7 +1032,8 @@ void CScriptVar::setArrayIndex(int idx, CScriptVar *value) {
    }
 }
 
-int CScriptVar::getArrayLength() {
+count CScriptVar::getArrayLength()
+{
    int highest = -1;
    if (!isArray()) return 0;
 
@@ -1028,13 +1051,13 @@ int CScriptVar::getArrayLength() {
    return highest+1;
 }
 
-int CScriptVar::getInt() {
+int64_t CScriptVar::getInt() {
    /* strtol understands about hex and octal */
    if (isInt()) return intData;
    //  if (isNull()) return 0;
    //  if (isUndefined()) return 0;
-   if (isDouble()) return (int)doubleData;
-   if (isString()) return strtol(data.c_str(),0,0);
+   if (isDouble()) return (int64_t)doubleData;
+   if (isString()) return gen::str::atoi64(data.c_str());
    return 0;
 }
 
@@ -1050,7 +1073,7 @@ bool CScriptVar::getBool() {
 
 double CScriptVar::getDouble() {
    if (isDouble()) return doubleData;
-   if (isInt() || isBool()) return intData;
+   if (isInt() || isBool()) return (double) intData;
    //	if (isNull()) return 0.0;
    //	if (isUndefined()) return 0.0;
    if (isString()) return strtod(data.c_str(),0);
@@ -1068,7 +1091,7 @@ const string &CScriptVar::getString() {
    static string s_false = "false";
    if (isBool()) return getBool() ? s_true : s_false;
    if (isInt()) {
-      return int2string(intData, data);
+      return gen::str::itoa(data, intData);
    }
    if (isDouble()) {
       char buffer[32];
@@ -1084,10 +1107,16 @@ const string &CScriptVar::getString() {
    return data;
 }
 
-void CScriptVar::setInt(int val) {
+void CScriptVar::setInt(int64_t val)
+{
    init();
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_INTEGER;
    intData = val;
+}
+
+void CScriptVar::setInt(int val)
+{
+   setInt((int64_t) val);
 }
 
 void CScriptVar::setBool(bool val) {
@@ -1119,8 +1148,8 @@ void CScriptVar::setUndefined() {
 template <class T>
 CScriptVar *DoMaths(CScriptVar *a, CScriptVar *b, int op)
 {
-   int dai = a->getInt();// use int when needed
-   int dbi = b->getInt();
+   int64_t dai = a->getInt();// use int when needed
+   int64_t dbi = b->getInt();
    T da = (T)(a->isDouble()?a->getDouble():dai);
    T db = (T)(b->isDouble()?b->getDouble():dbi);
    switch (op) {
@@ -1151,7 +1180,7 @@ CScriptVar *DoMaths(CScriptVar *a, CScriptVar *b, int op)
 static CScriptVar *String2NumericVar(string &numeric) {
    double d;
    char *endptr;//=NULL;
-   int i = strtol(numeric.c_str(),&endptr,10);
+   int64_t i = ::_strtoi64(numeric.c_str(),&endptr,10);
    if(*endptr == 'x' || *endptr == 'X')
       i = strtol(numeric.c_str(),&endptr,16);
    if(*endptr == '\0')
@@ -1191,7 +1220,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, int op) {
    } else if (a->isNumeric() && b->isNumeric()) {
       if (!a->isDouble() && !b->isDouble()) {
          // use ints
-         return DoMaths<int>(a, b, op);
+         return DoMaths<int64_t>(a, b, op);
       } else {
          // use doubles
          return DoMaths<double>(a, b, op);
@@ -1328,11 +1357,13 @@ void CScriptVar::trace(string & indentStr, const char * name) {
          } else
             recursionFlag--;
          return;
-      } else if(!recursionSet->recursionPathBase || internalRefs>1) {
+      }
+      else if(!recursionSet->recursionPathBase || internalRefs>1)
+      {
          indent = "| ";
          recursionSet->recursionPathBase = this;
       }
-      recursionFlag = indentStr.length()<<12 | (internalRefs&0xfff) ;
+      recursionFlag = (int) (indentStr.length()<<12 | (internalRefs&0xfff)) ;
    }
    _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s'%s' = '%s' %s\n",
       indentStr.c_str(),
@@ -1367,7 +1398,8 @@ string CScriptVar::getFlagsAsString() {
    return flagstr;
 }
 
-string CScriptVar::getParsableString() {
+string CScriptVar::getParsableString()
+{
    // Numbers can just be put in directly
    if (isNumeric())
       return getString();
@@ -1375,7 +1407,7 @@ string CScriptVar::getParsableString() {
       _template_std_ostringstream funcStr;
       funcStr << "function (";
       // get list of parameters
-      int count = Childs.size();
+      count count = Childs.size();
       SCRIPTVAR_CHILDS::pair * ppair = Childs.PGetFirstAssoc();
       while(ppair != NULL)
       {
@@ -1408,12 +1440,13 @@ string CScriptVar::getVarType() {
    return "object"; // Object / Array / null
 }
 
-void CScriptVar::getJSON(_template_std_ostringstream &destination, const string linePrefix) {
+void CScriptVar::getJSON(_template_std_ostringstream &destination, const string linePrefix)
+{
    if (isObject()) {
       string indentedLinePrefix = linePrefix+"  ";
       // children - handle with bracketed list
       destination << "{ \n";
-      int count = Childs.size();
+      count count = Childs.size();
       SCRIPTVAR_CHILDS::pair * ppair = Childs.PGetFirstAssoc();
       while(ppair != NULL)
       {
@@ -1431,10 +1464,10 @@ void CScriptVar::getJSON(_template_std_ostringstream &destination, const string 
    } else if (isArray()) {
       string indentedLinePrefix = linePrefix+"  ";
       destination << "[\n";
-      int len = getArrayLength();
+      count len = getArrayLength();
       if (len>10000) len=10000; // we don't want to get stuck here!
 
-      for (int i=0;i<len;i++) {
+      for (index i=0;i<len;i++) {
          getArrayIndex(i)->getJSON(destination, indentedLinePrefix);
          if (i<len-1) destination  << ",\n";
       }
@@ -1555,9 +1588,9 @@ int CScriptVar::getRefs() {
    return refs;
 }
 
-int find_last(RECURSION_VECT &Vector, const CScriptVar * Key)
+index find_last(RECURSION_VECT &Vector, const CScriptVar * Key)
 {
-   for(int i = Vector.get_upper_bound(); i>= 0; i--)
+   for(index i = Vector.get_upper_bound(); i>= 0; i--)
    {
       if(Vector[i]==Key)
          return ++i;
@@ -1578,7 +1611,7 @@ void CScriptVar::recoursionCheck(RECURSION_VECT &recursionPath)
 {
    if(recursionFlag || (recursionSet && recursionSet->recursionPathBase)) { // recursion found - create a new set
       RECURSION_SET_VAR *new_set;
-      int it;
+      index it;
 
       if(recursionSet) {					// recursion starts by a Set
          new_set = recursionSet;			// we use the old Set as new Set
@@ -1705,8 +1738,10 @@ tinyjs::~tinyjs() {
 #endif
 }
 
-void tinyjs::throwError(bool &execute, const string &message, int pos /*=-1*/) {
-   if(execute && (runtimeFlags & RUNTIME_CANTHROW)) {
+void tinyjs::throwError(bool &execute, const string &message, strsize pos /*=-1*/)
+{
+   if(execute && (runtimeFlags & RUNTIME_CANTHROW))
+   {
       exceptionVar = (new CScriptVar(message))->ref();
       runtimeFlags |= RUNTIME_THROW;
       execute = false;
@@ -1774,9 +1809,10 @@ void tinyjs::parseFunctionArguments(CScriptVar *funcVar) {
    l->match('(');
    CScriptVar *arguments = new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
    funcVar->addChild(TINYJS_ARGUMENTS_VAR, arguments);
-   int idx = 0;
-   while (l->tk!=')') {
-      arguments->addChild(int2string(idx++), new CScriptVar(l->tkStr));
+   index idx = 0;
+   while (l->tk!=')')
+   {
+      arguments->addChild(gen::str::itoa(idx++), new CScriptVar(l->tkStr));
       l->match(LEX_ID);
       if (l->tk!=')') l->match(',');
    }
@@ -1821,7 +1857,7 @@ CScriptVar *tinyjs::addNative(const string &funcDesc) {
 
 CScriptVarSmartLink tinyjs::parseFunctionDefinition() {
    // actually parse a function...
-   int oldFuncOffset = funcOffset;
+   strsize oldFuncOffset = funcOffset;
    funcOffset = l->getDataPos();
    l->match(LEX_R_FUNCTION);
    string funcName = TINYJS_TEMP_NAME;
@@ -1841,7 +1877,7 @@ CScriptVarSmartLink tinyjs::parseFunctionDefinition() {
       block(noexecute);
       RESTORE_RUNTIME_PASS;
    } else if(IS_RUNTIME_PASS_TWO_1) {
-      int funcBegin = l->tokenStart;
+      strsize funcBegin = l->tokenStart;
       CScriptVar *locale = new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
       CScriptVarLink *anonymous_link = locale->addChild(TINYJS_ANONYMOUS_VAR, new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT));
       CScriptVarLink *locale_link = funcVar->var->addChild(TINYJS_LOKALE_VAR, locale);
@@ -1858,7 +1894,7 @@ CScriptVarSmartLink tinyjs::parseFunctionDefinition() {
       if(anonymous_link->var->Childs.size() == 0)
          locale->removeLink(anonymous_link);
    } else {
-      int funcBegin = l->tokenStart;
+      strsize funcBegin = l->tokenStart;
       block(noexecute);
       funcVar->var->data = l->getSubString(funcBegin);
    }
@@ -1956,9 +1992,9 @@ CScriptVarSmartLink tinyjs::factor(bool &execute) {
                }
                // grab in all parameters
                CScriptVarLink *arguments_proto = a->var->findChild("arguments");
-               int length_proto = arguments_proto ? arguments_proto->var->getChildren() : 0;
+               count length_proto = arguments_proto ? arguments_proto->var->getChildren() : 0;
                CScriptVar *arguments = new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
-               int arguments_idx = 0;
+               index arguments_idx = 0;
                for(; l->tk!=')' || arguments_idx<length_proto; ++arguments_idx) {
                   CScriptVarSmartLink value;
                   if (l->tk!=')') {
@@ -1973,7 +2009,7 @@ CScriptVarSmartLink tinyjs::factor(bool &execute) {
                   } else
                      value = new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_UNDEFINED);
                   if (execute) {
-                     string arguments_idx_str; int2string(arguments_idx, arguments_idx_str);
+                     string arguments_idx_str; gen::str::itoa(arguments_idx_str, arguments_idx);
                      if (value->var->isBasic()) {
                         // pass by value
                         value = arguments->addChild(arguments_idx_str , value->var->deepCopy());
@@ -2118,10 +2154,10 @@ CScriptVarSmartLink tinyjs::factor(bool &execute) {
                   /* if we haven't found this defined yet, use the built-in
                   'length' properly */
                   if (a->var->isArray() && name == "length") {
-                     int l = a->var->getArrayLength();
+                     count l = a->var->getArrayLength();
                      child = new CScriptVarLink(new CScriptVar(l));
                   } else if (a->var->isString() && name == "length") {
-                     int l = a->var->getString().size();
+                     strsize l = a->var->getString().size();
                      child = new CScriptVarLink(new CScriptVar(l));
                   } else {
                      //child = a->var->addChild(name);
@@ -2180,7 +2216,7 @@ CScriptVarSmartLink tinyjs::factor(bool &execute) {
       while (l->tk != ']') {
          CScriptVarSmartLink a = assignment(execute);
          if (execute) {
-            contents->addChild(int2string(idx), a->var);
+            contents->addChild(gen::str::itoa(idx), a->var);
          }
          // no need to clean here, as it will definitely be used
          if (l->tk != ']') l->match(',');
@@ -2191,10 +2227,10 @@ CScriptVarSmartLink tinyjs::factor(bool &execute) {
    }
    if (l->tk==LEX_R_FUNCTION) {
 //      CScriptVarLink *anonymous = scopes.back()->findChild(TINYJS_ANONYMOUS_VAR);
-      string anonymous_name = int2string(l->getDataPos()-this->funcOffset);
+      string anonymous_name = gen::str::itoa(l->getDataPos()-this->funcOffset);
       CScriptVarSmartLink funcVar = parseFunctionDefinition();
       this->runtimeFlags;
-      //				funcName = anonymous ? int2string(l->tokenStart) : l->tkStr;
+      //				funcName = anonymous ? gen::str::itoa(l->tokenStart) : l->tkStr;
 
       funcVar->name = TINYJS_TEMP_NAME; // always anonymous
       if(IS_RUNTIME_PASS_TWO_1)
@@ -2250,7 +2286,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
       a = unary(execute);
       if (execute) {
          CheckRightHandVar(execute, a);
-         CScriptVar zero(0);
+         CScriptVar zero((int64_t) 0);
          a = zero.mathsOp(a->var, '-');
       }
    } else if (l->tk=='+') {
@@ -2262,7 +2298,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
       a = unary(execute);
       if (execute) {
          CheckRightHandVar(execute, a);
-         CScriptVar zero(0);
+         CScriptVar zero((int64_t) 0);
          a = a->var->mathsOp(&zero, LEX_EQUAL);
       }
    } else if (l->tk=='~') {
@@ -2305,7 +2341,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
       if (execute) {
          if(a->owned)
          {
-            CScriptVar one(1);
+            CScriptVar one((int64_t) 1);
             CScriptVar *res = a->var->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
             // in-place add/subtract
             a->replaceWith(res);
@@ -2323,7 +2359,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
          if(a->owned)
          {
             //				TRACE("post-increment of %s and a is %sthe owner\n", a->name.c_str(), a->owned?"":"not ");
-            CScriptVar one(1);
+            CScriptVar one((int64_t) 1);
             CScriptVar *res = a->var->ref();
             CScriptVar *new_a = a->var->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
             a->replaceWith(new_a);
@@ -2500,7 +2536,7 @@ CScriptVarSmartLink tinyjs::assignment(bool &execute) {
       l->tk==LEX_LSHIFTEQUAL || l->tk==LEX_RSHIFTEQUAL ||
       l->tk==LEX_ANDEQUAL || l->tk==LEX_XOREQUAL || l->tk==LEX_OREQUAL) {
          int op = l->tk;
-         int pos = l->tokenEnd;
+         strsize pos = l->tokenEnd;
          l->match(l->tk);
          CScriptVarSmartLink rhs = assignment(execute); // R->L
          if (execute) {
@@ -2637,8 +2673,8 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
          bool old_execute = execute;
          int old_loop_runtimeFlags = runtimeFlags & RUNTIME_LOOP_MASK;
          runtimeFlags = (runtimeFlags & ~RUNTIME_LOOP_MASK) | RUNTIME_CANBREAK | RUNTIME_CANCONTINUE;
-         int whileBodyStart = l->tokenStart;
-         int whileCondStart = 0;
+         strsize whileBodyStart = l->tokenStart;
+         strsize whileCondStart = 0;
          CScriptLex *oldLex = NULL;
          CScriptLex *whileBody = NULL;
          CScriptLex *whileCond = NULL;
@@ -2707,13 +2743,13 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
          l->match(')');
          statement(execute);
       } else {
-         int whileCondStart = l->tokenStart;
+         strsize whileCondStart = l->tokenStart;
          bool noexecute = false;
          CScriptVarSmartLink cond = base(execute);
          bool loopCond = execute && cond->var->getBool();
          CScriptLex *whileCond = l->getSubLex(whileCondStart);
          l->match(')');
-         int whileBodyStart = l->tokenStart;
+         strsize whileBodyStart = l->tokenStart;
 
          bool old_execute = execute;
          int old_loop_runtimeFlags = runtimeFlags & RUNTIME_LOOP_MASK;
@@ -2772,10 +2808,10 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
    } else if (l->tk==LEX_R_FOR) {
       l->match(LEX_R_FOR);
       bool for_each_in;
-      int error_pos = -1;
+      strsize error_pos = -1;
       if((for_each_in = l->tk == LEX_ID && l->tkStr == "each")) l->match(LEX_ID);
       l->match('(');
-      int pos=l->tokenStart;
+      strsize pos=l->tokenStart;
       bool for_in = false;
       CScriptVarSmartLink for_var;
       CScriptVarSmartLink for_in_var;
@@ -2806,7 +2842,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
          if(IS_RUNTIME_PASS_TWO_1)
             statement(execute);
          else {
-            int forBodyStart = l->tokenStart;
+            strsize forBodyStart = l->tokenStart;
             bool old_execute = execute;
             int old_loop_runtimeFlags = runtimeFlags & RUNTIME_LOOP_MASK;
             runtimeFlags = (runtimeFlags & ~RUNTIME_LOOP_MASK) | RUNTIME_CANBREAK | RUNTIME_CANCONTINUE;
@@ -2839,7 +2875,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
          statement(execute); // initialisation
          //l->match(';');
          bool noexecute = false;
-         int forCondStart = l->tokenStart;
+         strsize forCondStart = l->tokenStart;
          bool cond_empty = true;
          bool loopCond = true;	// Empty Condition -->always true
          CScriptVarSmartLink cond;
@@ -2855,7 +2891,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
          if(l->tk != ')')
          {
             iter_empty = false;
-            int forIterStart = l->tokenStart;
+            strsize forIterStart = l->tokenStart;
             base(noexecute); // iterator
             forIter = l->getSubLex(forIterStart);
          }
@@ -2865,7 +2901,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
             delete forIter;
             statement(execute);
          } else {
-            int forBodyStart = l->tokenStart;
+            strsize forBodyStart = l->tokenStart;
             bool old_execute = execute;
             int old_loop_runtimeFlags = runtimeFlags & RUNTIME_LOOP_MASK;
             runtimeFlags = (runtimeFlags & ~RUNTIME_LOOP_MASK) | RUNTIME_CANBREAK | RUNTIME_CANCONTINUE;
@@ -3022,7 +3058,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
          block(isThrow ? finally_execute : execute);
       }
    } else if (l->tk==LEX_R_THROW) {
-      int tokenStart = l->tokenStart;
+      strsize tokenStart = l->tokenStart;
       l->match(LEX_R_THROW);
       CScriptVarSmartLink a = base(execute);
       if(execute) {

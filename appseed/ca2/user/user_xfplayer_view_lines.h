@@ -1,32 +1,35 @@
 #pragma once
 
+
 class CLASS_DECL_ca2 XfplayerViewLines :
    virtual public array_app_alloc<XfplayerViewLine, XfplayerViewLine &>,
    virtual public gen::signalizable
 {
 public:
 
+
    XfplayerViewLineSelection   m_selection;
    ::user::interaction *      m_pinteraction;
-   int                        m_iFirstVisible;
-   int                        m_iLastVisible;
+   index                        m_iFirstVisible;
+   index                        m_iLastVisible;
 
 
    XfplayerViewLines(::ca::application * papp);
 
+
    void SetBlend(double dBlend);
-   int FindLine(XfplayerViewLine * pline);
+   index FindLine(XfplayerViewLine * pline);
    void SetRenderWindow(::ca::window * pWnd);
    void SetEffect(int iEffect);
    void set_user_interaction(::user::interaction * pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);
    void Prepare();
     
-   int GetFirstVisibleLineIndex();
-   int GetLastVisibleLineIndex();
+   index GetFirstVisibleLineIndex();
+   index GetLastVisibleLineIndex();
    void OnChildSetVisible(XfplayerViewLine * lpViewLine, bool bVisible);
    
-   user::e_line_hit hit_test(POINT &ptCursor, int &iLine, int &iChar);
+   user::e_line_hit hit_test(POINT &ptCursor, strsize &iLine, strsize &iChar);
 
    void InstallMessageHandling(::gen::message::dispatch *pinterface);
 
@@ -39,6 +42,8 @@ public:
    DECL_GEN_SIGNAL(OnSetCursor)
 
    inline XfplayerViewLineSelection & GetSelection();
+
+
 };
 
 

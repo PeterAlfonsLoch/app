@@ -14,7 +14,7 @@ void db_stra_set::get_data(stringa & stra)
 
 
 // return the number of set directories
-int db_stra_set::set_data(stringa & stra)
+count db_stra_set::set_data(stringa & stra)
 {
    data_set(m_id, ::radix::system::idEmpty, stra);
    return stra.get_size();

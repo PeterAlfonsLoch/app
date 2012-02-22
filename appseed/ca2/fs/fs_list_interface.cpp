@@ -59,12 +59,12 @@ namespace fs
       list_data * pdata = get_fs_list_data();
       string str;
 //      HRESULT hr;
-      for(int i = 0; i < range.get_item_count(); i++)
+      for(index i = 0; i < range.get_item_count(); i++)
       {
          ItemRange & itemrange = range.ItemAt(i);
-         for(int iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
+         for(index iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
          {
-            int iStrict;
+            index iStrict;
             if(m_eview == ViewIcon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -366,7 +366,7 @@ namespace fs
    {
       list_data * pdata = get_fs_list_data();
       ::fs::item_array itema;
-      int iItemRange, iItem;
+      index iItemRange, iItem;
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
@@ -382,7 +382,7 @@ namespace fs
                continue;
             if(iItem >= _001GetItemCount())
                continue;
-            int iStrict;
+            index iStrict;
             if(m_eview == ViewIcon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -413,7 +413,7 @@ namespace fs
    {
       list_data * pdata = get_fs_list_data();
       ::fs::item_array itema;
-      int iItemRange, iItem;
+      index iItemRange, iItem;
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
@@ -429,7 +429,7 @@ namespace fs
                continue;
             if(iItem >= pdata->m_itema.get_count())
                continue;
-            int iStrict;
+            index iStrict;
             if(m_eview == ViewIcon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -537,10 +537,10 @@ namespace fs
    void list_interface::GetSelected(::fs::item_array &itema)
    {
       list_data * pdata = get_fs_list_data();
-      int iItemRange, iItem;
+      index iItemRange, iItem;
       Range range;
       _001GetSelection(range);
-      int_array iaItem;
+      index_array iaItem;
       for(iItemRange = 0;
             iItemRange < range.get_item_count();
             iItemRange++)
@@ -554,7 +554,7 @@ namespace fs
             if(iItem < pdata->m_itema.get_count() && !iaItem.contains(iItem))
             {
                iaItem.add(iItem);
-               int iStrict;
+               index iStrict;
                if(m_eview == ViewIcon)
                {
                   iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);

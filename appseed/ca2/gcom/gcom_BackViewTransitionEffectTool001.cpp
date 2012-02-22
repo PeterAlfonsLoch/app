@@ -316,9 +316,9 @@ namespace gcom
                   if(iSize < 64)
                      iSize = 64;
 
-                  int j = 0;
+                  index j = 0;
 
-                  int iStartIndex = m_pointa.get_size();
+                  index iStartIndex = m_pointa.get_size();
 
                   for(; j < c1; j += iSize)
                   {

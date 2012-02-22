@@ -108,7 +108,7 @@ namespace user
       return true;
    }*/
 
-   bool tab::set_title(int iPane, const char * lpcsz)
+   bool tab::set_title(::index iPane, const char * lpcsz)
    {
       get_data()->m_panea[iPane].m_istrTitleEx = lpcsz;
       return true;
@@ -194,7 +194,7 @@ namespace user
       return true;
    }
 
-   void tab::remove_tab(int iPane, bool bVisible)
+   void tab::remove_tab(::index iPane, bool bVisible)
    {
 
       if(iPane < 0 || iPane >= get_data()->m_panea.get_size())
@@ -257,7 +257,7 @@ namespace user
 
       //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
 
-      class imaging & imaging = System.imaging();
+//      class imaging & imaging = System.imaging();
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
@@ -584,7 +584,7 @@ namespace user
          get_data()->m_rectTabClient.bottom     = rectClient.bottom;
       }
 
-      int iSel = _001GetSel();
+      ::index iSel = _001GetSel();
       if(iSel >= 0)
       {
          place_holder * pholder = get_tab_holder(iSel);
@@ -695,7 +695,7 @@ namespace user
       pobj->m_bRet = true;
    }
 
-   bool tab::get_element_rect(int iTabParam, LPRECT lprect, e_element eelement)
+   bool tab::get_element_rect(::index iTabParam, LPRECT lprect, e_element eelement)
    {
       if(iTabParam < 0 || iTabParam >= GetTabCount())
          return false;
@@ -765,7 +765,7 @@ namespace user
 
          int iPreviousVisibleTabCount = 0;
          {
-            int iPane = iTabParam;
+            index iPane = iTabParam;
             for(int i = 0; iPane > 0 && i < get_data()->m_panea.get_count(); i++)
             {
                if(get_data()->m_panea[i].m_bVisible)
@@ -929,7 +929,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
-   void tab::_001SetSel(int iSel)
+   void tab::_001SetSel(::index iSel)
    {
       ::ca::data::writing writing(get_data());
       get_data()->m_iaSel.remove_all();
@@ -938,7 +938,7 @@ namespace user
       on_show_view();
    }
 
-   void tab::_001AddSel(int iSel)
+   void tab::_001AddSel(::index iSel)
    {
       ::ca::data::writing writing(get_data());
       get_data()->m_iaSel.add(iSel);
@@ -1052,7 +1052,7 @@ namespace user
 
    }
 
-   int tab::_001GetSel()
+   ::index tab::_001GetSel()
    {
       if(get_data()->m_iaSel.get_size() == 1)
       {
@@ -1064,13 +1064,13 @@ namespace user
       }
    }
 
-   int tab::_001GetPaneCount()
+   ::count tab::_001GetPaneCount()
    {
       return get_data()->m_panea.get_count();
    }
 
 
-   bool tab::_001IsAddTab(int iPane)
+   bool tab::_001IsAddTab(::index iPane)
    {
       if(get_data()->m_pcallback != NULL)
       {
@@ -1082,7 +1082,7 @@ namespace user
       }
    }
 
-   void tab::_001OnTabClick(int iPane)
+   void tab::_001OnTabClick(::index iPane)
    {
       if(get_data()->m_pcallback != NULL)
       {
@@ -1094,7 +1094,7 @@ namespace user
       }
    }
 
-   void tab::_001OnTabClose(int iPane)
+   void tab::_001OnTabClose(::index iPane)
    {
       if(get_data()->m_pcallback != NULL)
       {
@@ -1118,7 +1118,7 @@ namespace user
       return true;
    }
 
-   bool tab::show_tab(int iTab, bool bShow)
+   bool tab::show_tab(::index iTab, bool bShow)
    {
       pane * ppane = get_pane(iTab, !bShow);
       if(ppane == NULL)
@@ -1132,7 +1132,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab::get_tab_window(int iPane, bool bVisible)
+   ::user::interaction * tab::get_tab_window(::index iPane, bool bVisible)
    {
       place_holder * pholder = get_tab_holder(iPane, bVisible);
       if(pholder == NULL)
@@ -1140,7 +1140,7 @@ namespace user
       return pholder->get_ui();
    }
 
-   ::user::place_holder * tab::get_tab_holder(int iPane, bool bVisible)
+   ::user::place_holder * tab::get_tab_holder(::index iPane, bool bVisible)
    {
       pane * ppane = get_pane(iPane, bVisible);
       if(ppane == NULL)
@@ -1148,7 +1148,7 @@ namespace user
       return ppane->m_pholder;
    }
 
-   tab::pane * tab::get_pane(int iPane, bool bVisible)
+   tab::pane * tab::get_pane(::index iPane, bool bVisible)
    {
       if(iPane < 0 || iPane >= get_data()->m_panea.get_count())
          return NULL;
@@ -1177,7 +1177,7 @@ namespace user
    }
 
 
-   void tab::_001SelectTab(int iPane)
+   void tab::_001SelectTab(::index iPane)
    {
       if(get_tab_holder(_001GetSel()) != NULL)
       {
@@ -1240,9 +1240,9 @@ namespace user
    }
 
 
-   int tab::get_tab_by_id(id id)
+   ::index tab::get_tab_by_id(id id)
    {
-      for(int i = 0; i < get_data()->m_panea.get_size(); i++)
+      for(::index i = 0; i < get_data()->m_panea.get_size(); i++)
       {
          if(get_data()->m_panea[i].m_id == id)
             return i;
@@ -1251,7 +1251,7 @@ namespace user
    }
 
 
-   id tab::get_id_by_tab(int iPane, bool bVisible)
+   id tab::get_id_by_tab(::index iPane, bool bVisible)
    {
       if(bVisible)
       {
@@ -1282,7 +1282,7 @@ namespace user
 
    void tab::set_cur_tab_by_id(id id)
    {
-      int iPane = get_tab_by_id(id);
+      ::index iPane = get_tab_by_id(id);
       if(iPane == -1)
       {
          add_tab("", id);
@@ -1362,7 +1362,7 @@ namespace user
 
 
 
-   void tab::_001OnDropTab(int iPane, e_position eposition)
+   void tab::_001OnDropTab(::index iPane, e_position eposition)
    {
       if(get_data()->m_pcallback != NULL)
       {
@@ -1623,7 +1623,7 @@ namespace user
       }
    }
 
-   void tab::_001CloseTab(int iTab)
+   void tab::_001CloseTab(::index iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
    }

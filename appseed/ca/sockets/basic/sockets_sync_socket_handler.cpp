@@ -98,7 +98,7 @@ namespace sockets
       ::primitive::memory_size uiLen = 0;
       if(read(&uiLen, 4) != 4)
          throw simple_exception();
-      ntohl(uiLen);
+      ntohl((u_long) uiLen);
       primitive::memory memory;
       memory.allocate(uiLen);
       if(read(memory, uiLen) != uiLen)
@@ -109,8 +109,8 @@ namespace sockets
    {
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
-      UINT uiLen = strlen(xml_payload);
-      uint32_t wf_total_length = htonl(uiLen);
+      strsize uiLen = strlen(xml_payload);
+      uint32_t wf_total_length = htonl((u_long) uiLen);
       write(&wf_total_length, 4);
       write( (char *) xml_payload, uiLen);
    }

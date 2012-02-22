@@ -103,12 +103,12 @@ namespace userex
 
    int minute_list_view::set_minute(int iMinute)
    {
-      return set_cur_sel(iMinute);
+      return (int) set_cur_sel(iMinute);
    }
 
    int minute_list_view::get_minute()
    {
-      return get_cur_sel();
+      return (int) get_cur_sel();
    }
 
 

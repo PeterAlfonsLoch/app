@@ -88,7 +88,7 @@ public:
          return *this;
       }
 
-      iterator & operator +(int i)
+      iterator & operator +(index i)
       {
          m_i += i;
          if(m_i >= m_parray->get_size())

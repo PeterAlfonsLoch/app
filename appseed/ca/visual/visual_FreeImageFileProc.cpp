@@ -90,7 +90,7 @@ long __TellProc (fi_handle handle)
 
 unsigned _stdcall  __ReadProc2 (void *buffer, unsigned size, unsigned count, fi_handle handle)
 {
-   DWORD dwRead;
+   primitive::memory_size dwRead;
    ex1::file * pfile = (ex1::file *) handle;
    if(dwRead = pfile->read(buffer, count * size))
    {
@@ -142,7 +142,7 @@ long _stdcall __TellProc2 (fi_handle handle)
 
 unsigned _stdcall  ___Ex1File__ReadProc (void *buffer, unsigned size, unsigned count, fi_handle handle)
 {
-   DWORD dwRead;
+   primitive::memory_size dwRead;
    ex1::file * pfile = (ex1::file *) handle;
    if(dwRead = pfile->read(buffer, count * size))
    {

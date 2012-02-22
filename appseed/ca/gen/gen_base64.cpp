@@ -219,67 +219,111 @@ namespace gen
 
    string base64::encode(const char * psz)
    {
+      
       primitive::memory storage;
-      int iLen = strlen(psz);
+
+      strsize iLen = strlen(psz);
+
       storage.allocate(iLen);
+
       memcpy(storage.get_data(), psz, iLen);
+
       return encode(storage);
+
    }
 
    string base64::encode(byte * p, count c)
    {
+
       primitive::memory storage;
+
       storage.allocate(c);
+
       memcpy(storage.get_data(), p, c);
+
       return encode(storage);
+
    }
 
    string base64::encode(primitive::base_memory & storageBinary)
    {
+      
       string strRet;
+
       gen::byte_stream_memory_file file(&System, &storageBinary);
+
       _template_std_ostringstream ostream;
+
       encode(ostream, file);
+
       return ostream.str();
+
    }
 
    string base64::decode(const char * pszBase64)
    {
+      
       primitive::memory storage;
+      
       decode(storage, pszBase64);
+      
       string str;
+
       memcpy(
          str.GetBufferSetLength(storage.get_size()),
          storage.get_data(),
          storage.get_size());
+
       str.ReleaseBuffer();
+
       return str;
+
    }
 
    void base64::decode(primitive::memory & storageBinary, const char * pszBase64)
    {
+
       _template_std_istringstream istream(pszBase64);
+
       gen::byte_stream_memory_file memfile(&System, &storageBinary);
+
       decode(memfile, istream);
+
    }
 
    string base64::serialize(ex1::byte_serializable & serializable)
    {
+      
       gen::byte_stream_memory_file file(&System);
+
       serializable.write(file);
+
       file.seek_to_begin();
+
       _template_std_ostringstream writer;
+
       encode(writer, file);
+
       return writer.str();
+
    }
 
    void base64::unserialize(ex1::byte_serializable & serializable, const char * pszBase64)
    {
+      
       gen::byte_stream_memory_file file(&System);
+
       _template_std_istringstream reader(pszBase64);
+
       decode(file, reader);
+
       file.seek_to_begin();
+
       serializable.read(file);
+
    }
 
-}
+
+} // namespace gen
+
+

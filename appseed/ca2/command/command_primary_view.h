@@ -10,7 +10,7 @@ namespace command
    public:
 
 
-      int m_iCompromised;
+      strsize m_iCompromised;
 
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

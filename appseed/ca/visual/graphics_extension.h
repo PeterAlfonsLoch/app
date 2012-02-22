@@ -4,21 +4,23 @@
 namespace visual
 {
 
+
    class CLASS_DECL_ca graphics_extension :
       virtual public ::radix::object
    {
    public:
       
+      
       graphics_extension(::ca::application * papp);
       virtual ~graphics_extension();
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, base_array < size > & sizea);
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, size & size);
-      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, int iCount, size & size);
+      void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
 
-      BOOL TextOut(::ca::graphics * pdc, int x, int y, const char * lpcwsz, int iCount);
+      BOOL TextOut(::ca::graphics * pdc, int x, int y, const char * lpcwsz, strsize iCount);
       int _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline = NULL);
       
-      int _EncodeV033(string & str);
+      strsize _EncodeV033(string & str);
 
 
       void FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr);
@@ -29,5 +31,8 @@ namespace visual
 
    };
 
+
 } // namespace visual
+
+
 

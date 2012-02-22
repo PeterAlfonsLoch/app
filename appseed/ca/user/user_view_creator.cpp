@@ -34,7 +34,7 @@ namespace user
    {
    }
 
-   int view_creator::get_view_count()
+   count view_creator::get_view_count()
    {
       return m_viewmap.get_count();
    }

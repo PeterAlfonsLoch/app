@@ -42,8 +42,10 @@ namespace dynamic_source
          string strClassName = straClasses[iClass];
          string strVarName = typeid(var).raw_name();
 
-         int iVCount = 0;
-         int iLen = strClassName.get_length() - 2;
+         ::count iVCount = 0;
+         
+         ::count iLen = strClassName.get_length() - 2;
+
          for(int i = 0; i < iLen; i++)
          {
             if(strClassName[i] == '@')
@@ -51,6 +53,7 @@ namespace dynamic_source
                iVCount++;
             }
          }
+
          iVCount += 2;
 
          int iCount = 0;

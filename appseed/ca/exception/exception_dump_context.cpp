@@ -287,11 +287,7 @@ dump_context& dump_context::operator<<(const ::radix::object* pOb)
    if (pOb == NULL)
       *this << "NULL";
    else
-#ifdef _ApplicationFrameworkDLL
       pOb->dump(*this);
-#else
-      *this << "Unable to dump object in static release builds";
-#endif
 
    return *this;
 }

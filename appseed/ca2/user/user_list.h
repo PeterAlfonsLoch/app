@@ -57,7 +57,7 @@ namespace user
       UINT                             m_uiSmallBitmap;
       COLORREF                         m_crSmallMask;
       int                              m_iSmallImageWidth;
-      int                              m_iSubItem;
+      index                            m_iSubItem;
       image_list *                     m_pil;
       image_list *                     m_pilHover;
       ::visual::icon_int_map           m_mapIcon;
@@ -68,7 +68,7 @@ namespace user
 
       // form list attributes
       bool                             m_bEditOnSecondClick;
-      int                              m_iControl;
+      index                            m_iControl;
       ::database::id                   m_datakey;
 
 

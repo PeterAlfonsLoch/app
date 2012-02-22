@@ -76,11 +76,11 @@ namespace html
          int cxMin;
          int sMaxMin = 0;
          int sMin = 0;
-         int iAddUp = 0;
+         ::count iAddUp = 0;
          if(get_table() != NULL)
          {
-            int n = get_table()->m_columna.get_size();
-            for(int i = 0; i < n; i++)
+            ::count n = get_table()->m_columna.get_size();
+            for(index i = 0; i < n; i++)
             {
                cxMax = get_table()->m_columna[i].m_cxMax;
                cxMin = get_table()->m_columna[i].m_cxMin;

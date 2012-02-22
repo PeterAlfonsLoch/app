@@ -26,7 +26,7 @@ namespace webserver
 
          virtual void printrows();
 
-         virtual void print_row(int iIndex, ::webserver::music::song * psong, int line);
+         virtual void print_row(index iIndex, ::webserver::music::song * psong, index line);
          virtual void print_slist_closure();
       };
 

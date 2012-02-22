@@ -245,7 +245,7 @@ namespace dynamic_source
       virtual void array_unshift(gen::property & varArray, const var varElement);
       virtual void array_unshift(var & varArray, const var varElement) = 0;
 
-      virtual int count(var var) = 0;
+      virtual ::count count(var var) = 0;
 
       virtual var array(
          var var01 = gen::g_emptyargumentconst,

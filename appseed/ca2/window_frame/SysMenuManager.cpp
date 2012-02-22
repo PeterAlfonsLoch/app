@@ -58,7 +58,7 @@ namespace window_frame
       case WM_LBUTTONDBLCLK:
       {
          point point((DWORD)pbase->m_lparam);
-         if(OnLButtonDblClk(pbase->m_wparam, point))
+         if(OnLButtonDblClk((UINT) pbase->m_wparam, point))
          {
             pbase->set_lresult(0);
             pbase->m_bRet = true;

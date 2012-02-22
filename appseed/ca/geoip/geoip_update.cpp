@@ -189,7 +189,7 @@ struct hostent *GeoIP_get_host_or_proxy (void) {
 
 short int GeoIP_update_database (char * license_key, int verbose, void (*f)( char * )) {
    struct hostent *hostlist;
-   int sock;
+   SOCKET sock;
    char * buf;
    struct sockaddr_in sa;
    int offset = 0, err;
@@ -217,7 +217,7 @@ short int GeoIP_update_database (char * license_key, int verbose, void (*f)( cha
    } else {
       MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-         MD5_Update (&context, buffer, len);
+         MD5_Update (&context, buffer, (unsigned long) len);
       MD5_Final (buffer, &context);
       memcpy(digest,buffer,16);
       fclose (cur_db_fh);
@@ -258,7 +258,7 @@ short int GeoIP_update_database (char * license_key, int verbose, void (*f)( cha
    if (request_uri == NULL)
       return GEOIP_OUT_OF_MEMORY_ERR;
    sprintf(request_uri,GeoIPHTTPRequest,GeoIPProxyHTTP,GeoIPProxiedHost,license_key, hex_digest);
-   send(sock, request_uri, strlen(request_uri),0);
+   send(sock, request_uri, (int) strlen(request_uri),0);
    free(request_uri);
 
    buf = (char *) malloc(sizeof(char) * block_size);
@@ -284,7 +284,7 @@ short int GeoIP_update_database (char * license_key, int verbose, void (*f)( cha
    }
 
    compr = strstr(buf, "\r\n\r\n") + 4;
-   comprLen = offset + buf - compr;
+   comprLen = (unsigned long) (offset + buf - compr);
 
    if (strstr(compr, "License Key Invalid") != NULL) {
       if (verbose == 1)
@@ -438,7 +438,7 @@ short int GeoIP_update_database (char * license_key, int verbose, void (*f)( cha
 
 short int GeoIP_update_database_general (char * user_id,char * license_key,char *data_base_type, int verbose,char ** client_ipaddr, void (*f)( char *)) {
    struct hostent *hostlist;
-   int sock;
+   SOCKET sock;
    char * buf;
    struct sockaddr_in sa;
    int offset = 0, err;
@@ -500,7 +500,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    if (verbose == 1) {
       GeoIP_printf(f, "sending request %s \n",request_uri);
    }
-   send(sock, request_uri, strlen(request_uri),0); /* send the request */
+   send(sock, request_uri, (int) strlen(request_uri),0); /* send the request */
    free(request_uri);
    buf = (char *) malloc(sizeof(char) * (block_size+4));
    if (buf == NULL)
@@ -540,7 +540,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    } else {
       MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-         MD5_Update (&context, buffer, len);
+         MD5_Update (&context, buffer, (unsigned long) len);
       MD5_Final (buffer, &context);
       memcpy(digest,buffer,16);
       fclose (cur_db_fh);
@@ -579,7 +579,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
 
       /* get client ip address from MaxMind web page */
       sprintf(request_uri,GeoIPHTTPRequestClientIP,GeoIPProxyHTTP,GeoIPProxiedHost,GeoIPUpdateHost);
-      send(sock, request_uri, strlen(request_uri),0); /* send the request */
+      send(sock, request_uri, (int) strlen(request_uri),0); /* send the request */
       if (verbose == 1) {
          GeoIP_printf(f, "sending request %s", request_uri);
       }
@@ -625,7 +625,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    MD5_Init(&context2);
    unsigned char bufMd5[16];
    MD5_Update (&context2, (byte *)license_key, 12);//add license key to the md5 sum
-   MD5_Update (&context2, (byte *)ipaddress, strlen(ipaddress));//add ip address to the md5 sum
+   MD5_Update (&context2, (byte *)ipaddress, (unsigned long) strlen(ipaddress));//add ip address to the md5 sum
    MD5_Final (bufMd5, &context2);
    memcpy(digest2, bufMd5,16);
    for (i = 0; i < 16; i++)
@@ -637,7 +637,8 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    /* send the request using the ::fontopus::user id,product id, 
     * md5 sum of the prev database and 
     * the md5 sum of the license_key and ip address */
-   if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+   if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+   {
       return GEOIP_SOCKET_OPEN_ERR;
    }
    memset(&sa, 0, sizeof(struct sockaddr_in));
@@ -647,7 +648,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
       return GEOIP_CONNECTION_ERR;
    snprintf(request_uri, request_uri_len, GeoIPHTTPRequestMD5,GeoIPProxyHTTP,GeoIPProxiedHost,hex_digest,hex_digest2,user_id,data_base_type);
-   send(sock, request_uri, strlen(request_uri),0);
+   send(sock, request_uri, (int) strlen(request_uri),0);
    if (verbose == 1) {
       GeoIP_printf(f, "sending request %s\n",request_uri);
    }
@@ -679,7 +680,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    }
 
    compr = strstr(buf, "\r\n\r\n") + 4;
-   comprLen = offset + buf - compr;
+   comprLen = (unsigned long) (offset + buf - compr);
 
    if (strstr(compr, "License Key Invalid") != NULL) {
       if (verbose == 1)

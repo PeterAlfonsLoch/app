@@ -37,21 +37,21 @@ public:
 	void copy(const simple_pointer_array& src);
 
 	// overloaded operator helpers
-	void* operator[](int nIndex) const;
-	void*& operator[](int nIndex);
+	void* operator[](index nIndex) const;
+	void*& operator[](index nIndex);
 
 	// Operations that move elements around
-	void insert_at(int nIndex, void* newElement, int nCount = 1);
+	void insert_at(index nIndex, void* newElement, int nCount = 1);
 
-	void remove_at(int nIndex, int nCount = 1);
-	void insert_at(int nStartIndex, simple_pointer_array* pNewArray);
+	void remove_at(index nIndex, int nCount = 1);
+	void insert_at(index nStartIndex, simple_pointer_array* pNewArray);
 
 // Implementation
 protected:
 	void** m_pData;   // the actual array of data
-	int m_nSize;     // # of elements (upperBound - 1)
-	int m_nMaxSize;  // max allocated
-	int m_nGrowBy;   // grow amount
+	::count m_nSize;     // # of elements (upperBound - 1)
+	::count m_nMaxSize;  // max allocated
+	::count m_nGrowBy;   // grow amount
 
 
 public:

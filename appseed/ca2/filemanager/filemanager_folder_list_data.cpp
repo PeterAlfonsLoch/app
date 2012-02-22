@@ -118,7 +118,7 @@ namespace filemanager
          return true;
       bool_array baData;
       data_get("recursive", ::radix::system::idEmpty, baData);
-      int iFind;
+      index iFind;
       for(int i = 0; i < stra.get_count(); i++)
       {
          while((iFind = straData.find_first(stra[i])) >= 0)

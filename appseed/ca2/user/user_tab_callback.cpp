@@ -15,23 +15,23 @@ namespace user
 
    }
 
-   bool tab_callback::_001IsAddTab(int iTab)
+   bool tab_callback::_001IsAddTab(::index iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
       return false;
    }
 
-   void tab_callback::_001OnTabClick(int iTab)
+   void tab_callback::_001OnTabClick(::index iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
    }
 
-   void tab_callback::_001OnTabClose(int iTab)
+   void tab_callback::_001OnTabClose(::index iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
    }
 
-   ::user::interaction * tab_callback::_001GetTabWnd(int iTab)
+   ::user::interaction * tab_callback::_001GetTabWnd(::index iTab)
    {
       UNREFERENCED_PARAMETER(iTab);
       return NULL;
@@ -42,7 +42,7 @@ namespace user
       UNREFERENCED_PARAMETER(ptab);
    }
 
-   void tab_callback::_001OnDropTab(int iTab, e_position eposition)
+   void tab_callback::_001OnDropTab(::index iTab, e_position eposition)
    {
       UNREFERENCED_PARAMETER(iTab);
       UNREFERENCED_PARAMETER(eposition);

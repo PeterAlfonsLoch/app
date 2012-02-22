@@ -1,8 +1,6 @@
 #include "StdAfx.h"
-
-
 #include "common.h"
-#include "allocate.h"
+#include "radix_allocator.h"
 
 
 #pragma comment(lib, "advapi32.lib")
@@ -188,7 +186,7 @@ void allocator::close(bool bForceUnmap)
    }
 }
 
-trace_module *allocator::GetModule(int iModule) const
+trace_module *allocator::GetModule(index iModule) const
 {
    if( iModule == -1 )
    {
@@ -242,7 +240,7 @@ bool allocator::IsValidCategoryIndex(unsigned nIndex) const
 }
 */
 
-trace_category *allocator::GetCategory(int iCategory) const
+trace_category *allocator::GetCategory(index iCategory) const
 {
    if(iCategory == m_pProcess->CategoryCount())
       return NULL;
@@ -257,7 +255,7 @@ trace_category *allocator::GetCategory(int iCategory) const
    return pCategory;
 }
 
-int allocator::GetCategoryCount(int iModule) const
+count allocator::GetCategoryCount(index iModule) const
 {
    UINT nCategories = 0;
    trace_module* pModule = GetModule(iModule);
@@ -285,7 +283,7 @@ int allocator::GetCategoryCount(const trace_module& rModule) const
    return nCategories;
 }
 
-int allocator::GetModuleCount() const
+count allocator::GetModuleCount() const
 {
    ATLASSERT(m_pProcess);
    return m_pProcess->ModuleCount();
@@ -306,14 +304,14 @@ bool allocator::FindModule(const WCHAR *pszModulePath, unsigned *pnModule) const
    return false;
 }
 
-int allocator::AddModule(HINSTANCE hInst)
+index allocator::AddModule(HINSTANCE hInst)
 {
    trace_process *pProcess = GetProcess();
    ATLASSERT(pProcess);
-   int iFoundModule = -1;
+   index iFoundModule = -1;
    while( iFoundModule == -1 )
    {
-      for(int iModule = 0; (iModule < pProcess->ModuleCount()) && (iFoundModule == -1); iModule++)
+      for(index iModule = 0; (iModule < pProcess->ModuleCount()) && (iFoundModule == -1); iModule++)
       {
          trace_module *pModule = GetModule(iModule);
          ATLASSERT(pModule != NULL);
@@ -348,7 +346,7 @@ int allocator::AddModule(HINSTANCE hInst)
 
 const ULONG kCategoryBatchSize = 10;
 
-int allocator::AddCategory(int iModule, const CHAR *szCategoryName)
+index allocator::AddCategory(index iModule, const CHAR *szCategoryName)
 {
    int iFoundCategory = -1;
    trace_process *pProcess = GetProcess();
@@ -401,7 +399,7 @@ int allocator::AddCategory(int iModule, const CHAR *szCategoryName)
    return( iFoundCategory );
 }
 
-bool allocator::RemoveModule(int iModule)
+bool allocator::RemoveModule(index iModule)
 {
    trace_module* pModule = GetModule(iModule);
    if(pModule)
@@ -439,7 +437,7 @@ void allocator::TakeSnapshot()
       ReleaseSnapshot();
    }
 
-   int nModules = GetModuleCount();
+   count nModules = GetModuleCount();
    for( int iModule = 0; iModule < nModules; iModule++ )
    {
       trace_module* pModule = GetModule( iModule );

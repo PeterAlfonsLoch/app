@@ -18,6 +18,8 @@ namespace radix
       thread();
       thread(::ca::application * papp);
       thread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam);
+      virtual ~thread();
+
 
       virtual void * get_os_data() const;
       virtual INT_PTR get_os_int() const;
@@ -69,8 +71,8 @@ namespace radix
 
       virtual void add(::user::interaction * pui);
       virtual void remove(::user::interaction * pui);
-      virtual int get_ui_count();
-      virtual ::user::interaction * get_ui(int iIndex);
+      virtual ::count get_ui_count();
+      virtual ::user::interaction * get_ui(index iIndex);
       virtual void set_timer(::user::interaction * pui, UINT_PTR nIDEvent, UINT nEllapse);
       virtual void unset_timer(::user::interaction * pui, UINT_PTR nIDEvent);
       virtual void set_auto_delete(bool bAutoDelete = true);
@@ -83,9 +85,6 @@ namespace radix
       virtual void step_timer();
 
 
-      // Implementation
-   public:
-      virtual ~thread();
    #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;

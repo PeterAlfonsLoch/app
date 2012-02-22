@@ -76,7 +76,7 @@ namespace plugin
       virtual void open_ca2_string(const char * psz);
 
 #ifdef _WINDOWS
-      virtual UINT_PTR message_handler(UINT_PTR uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual UINT_PTR message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else
       virtual int message_handler(XEvent * pevent);
 #endif

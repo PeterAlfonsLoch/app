@@ -605,12 +605,16 @@ bool cynce::set_ambient(var id)
 
 var cynce::get_request_topic()
 {
+
    string req = inattr("REQUEST");
-   int pos = req.find('?');
+
+   strsize pos = req.find('?');
+
    if(pos < 0)
       return req.Mid(1);
    else
       return req.Mid(1, pos - 1);
+
 }
 
 var cynce::get_current_user_secure_tag()

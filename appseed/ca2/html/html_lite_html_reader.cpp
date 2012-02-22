@@ -26,7 +26,7 @@
  */
 #include "StdAfx.h"
 
-UINT lite_html_reader::parseDocument(void)
+DWORD_PTR lite_html_reader::parseDocument(void)
 {
    ASSERT(m_lpszBuffer != NULL);
 
@@ -36,8 +36,8 @@ UINT lite_html_reader::parseDocument(void)
    string   strCharacters;         // character data
    string   strComment;            // comment data
    string   strT;               // temporary storage
-   DWORD   dwCharDataStart = 0L;   // starting position of character data
-   DWORD   dwCharDataLen = 0L;      // length of character data
+   DWORD_PTR   dwCharDataStart = 0L;   // starting position of character data
+   DWORD_PTR   dwCharDataLen = 0L;      // length of character data
    LONG   lTemp = 0L;            // temporary storage
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information

@@ -224,7 +224,7 @@ namespace filemanager
             lpshiidLast = lpshiid;
             lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
          }
-         int iCount = ((LPBYTE)lpshiidLast) - ((LPBYTE) lpiidl);
+         count iCount = ((LPBYTE)lpshiidLast) - ((LPBYTE) lpiidl);
 
          if(iCount == 0)
             return NULL;
@@ -641,7 +641,7 @@ namespace filemanager
             strPath = szPath;
             if(strPath == "*")
             {
-               int iFind = strFilePath.reverse_find('.');
+               strsize iFind = strFilePath.reverse_find('.');
 
                imagekey.m_iIcon         = -1;
                imagekey.m_strExtension  = strFilePath.Mid(iFind);
@@ -952,7 +952,7 @@ namespace filemanager
             strPath = szPath;
             if(strPath == "*")
             {
-               int iFind = strFilePath.reverse_find('.');
+               strsize iFind = strFilePath.reverse_find('.');
 
                imagekey.m_iIcon         = -1;
                imagekey.m_strExtension  = strFilePath.Mid(iFind);

@@ -99,12 +99,12 @@ namespace userex
 
    int second_list_view::set_second(int isecond)
    {
-      return set_cur_sel(isecond);
+      return (int) set_cur_sel(isecond);
    }
 
    int second_list_view::get_second()
    {
-      return get_cur_sel();
+      return (int) get_cur_sel();
    }
 
 } // namespace userex

@@ -146,37 +146,37 @@ namespace gen
       return empty_string();
    }
 
-   void property::get_value(var & value, int iIndex)
+   void property::get_value(var & value, index iIndex)
    {
       value = get_value(iIndex);
    }
 
-   void property::get(var & value, int iIndex)
+   void property::get(var & value, index iIndex)
    {
       value = get_value(iIndex);
    }
 
-   var property::get_value(int iIndex) const
+   var property::get_value(index iIndex) const
    {
       return get_value(iIndex);
    }
 
-   var & property::get(int iIndex)
+   var & property::get(index iIndex)
    {
       return get_value(iIndex);
    }
 
-   void property::set(const var & var, int iIndex)
+   void property::set(const var & var, index iIndex)
    {
       set_value(var, iIndex);
    }
 
-   void property::unset(int iIndex)
+   void property::unset(index iIndex)
    {
       get_value(iIndex).unset();
    }
 
-   int property::get_value_count()
+   count property::get_value_count()
    {
       return 1;
    }
@@ -217,7 +217,7 @@ namespace gen
 
 
 
-   var & var_property::get_value(int iIndex)
+   var & var_property::get_value(index iIndex)
    {
       if(iIndex < 0)
       {
@@ -229,12 +229,12 @@ namespace gen
          return m_vara[iIndex];
    }
 
-   int var_property::get_value_count()
+   count var_property::get_value_count()
    {
       return m_vara.get_count();
    }
 
-   var var_property::get_value(int iIndex) const
+   var var_property::get_value(index iIndex) const
    {
       if(iIndex < 0)
       {
@@ -245,7 +245,7 @@ namespace gen
          return m_vara[iIndex];
    }
 
-   void var_property::set_value(const var & var, int iIndex)
+   void var_property::set_value(const var & var, index iIndex)
    {
       if(m_pset != NULL && m_pset->m_bMultiValue)
       {
@@ -264,13 +264,13 @@ namespace gen
       }
    }
 
-   var & new_property::get_value(int iIndex)
+   var & new_property::get_value(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
       return m_newconst;
    }
 
-   void new_property::set_value(const var & var, int iIndex)
+   void new_property::set_value(const var & var, index iIndex)
    {
       UNREFERENCED_PARAMETER(var);
       UNREFERENCED_PARAMETER(iIndex);
@@ -278,26 +278,26 @@ namespace gen
    }
 
 
-   var & null_property::get_value(int iIndex)
+   var & null_property::get_value(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
       return m_nullconst;
    }
 
-   void null_property::set_value(const var & var, int iIndex)
+   void null_property::set_value(const var & var, index iIndex)
    {
       UNREFERENCED_PARAMETER(var);
       UNREFERENCED_PARAMETER(iIndex);
       throw "unsupported!";
    }
 
-   var & empty_property::get_value(int iIndex)
+   var & empty_property::get_value(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
       return m_emptyconst;
    }
 
-   void empty_property::set_value(const var & var, int iIndex)
+   void empty_property::set_value(const var & var, index iIndex)
    {
       UNREFERENCED_PARAMETER(var);
       UNREFERENCED_PARAMETER(iIndex);
@@ -328,9 +328,9 @@ namespace gen
       m_strName = pszName;
    }
 
-   var_property::var_property(int iId)
+   var_property::var_property(index iIndex)
    {
-      m_strName.Format("id=%d", iId);
+      m_strName = "id=" + gen::str::itoa(iIndex);
    }
 
    var_property::var_property(const char * pszName, var & var)
@@ -370,7 +370,7 @@ namespace gen
       return m_strName;
    }
 
-   void property::set_value(const var & value, int iIndex)
+   void property::set_value(const var & value, index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
       if(m_pset != NULL)
@@ -382,37 +382,37 @@ namespace gen
 
    }
 
-   bool property::is_set(int iIndex) const
+   bool property::is_set(index iIndex) const
    {
      return get_value(iIndex).is_set();
    }
 
-   bool property::is_new(int iIndex) const
+   bool property::is_new(index iIndex) const
    {
       return get_value(iIndex).is_new();
    }
 
-   bool property::is_null(int iIndex) const
+   bool property::is_null(index iIndex) const
    {
       return get_value(iIndex).is_null();
    }
 
-   bool property::is_new_or_null(int iIndex) const
+   bool property::is_new_or_null(index iIndex) const
    {
       return get_value(iIndex).is_new_or_null();
    }
 
-   bool property::is_empty(int iIndex) const
+   bool property::is_empty(index iIndex) const
    {
       return get_value(iIndex).is_empty();
    }
 
-   bool property::is_true(int iIndex) const
+   bool property::is_true(index iIndex) const
    {
       return get_value(iIndex).is_true();
    }
 
-   string property::implode(const char * pszGlue, int iIndex) const
+   string property::implode(const char * pszGlue, index iIndex) const
    {
       return get_value(iIndex).implode(pszGlue);
    }
@@ -436,42 +436,42 @@ namespace gen
        get_value().parse_json(pszJson, pszEnd);
    }
 
-   stringa & property::stra(int iIndex)
+   stringa & property::stra(index iIndex)
    {
       return get_value(iIndex).stra();
    }
 
-   int_array & property::inta(int iIndex)
+   int_array & property::inta(index iIndex)
    {
       return get_value(iIndex).inta();
    }
 
-   var_array & property::vara(int iIndex)
+   var_array & property::vara(index iIndex)
    {
       return get_value(iIndex).vara();
    }
 
-   property_set & property::propset(int iIndex)
+   property_set & property::propset(index iIndex)
    {
       return get_value(iIndex).propset();
    }
 
-   const stringa & property::stra(int iIndex) const
+   const stringa & property::stra(index iIndex) const
    {
       return get_value(iIndex).stra();
    }
 
-   const int_array & property::inta(int iIndex) const
+   const int_array & property::inta(index iIndex) const
    {
       return get_value(iIndex).inta();
    }
 
-   const var_array & property::vara(int iIndex) const
+   const var_array & property::vara(index iIndex) const
    {
       return get_value(iIndex).vara();
    }
 
-   const property_set & property::propset(int iIndex) const
+   const property_set & property::propset(index iIndex) const
    {
       return get_value(iIndex).propset();
    }
@@ -491,12 +491,12 @@ namespace gen
       return propset().operator [](pszName);
    }
 
-   property & property::operator[](int iId)
+   property & property::operator[](index iIndex)
    {
-      return propset().operator [](iId);
+      return propset().operator [](iIndex);
    }
 
-   var property::element_at(int iIndex) const
+   var property::element_at(index iIndex) const
    {
       switch(get_value().m_etype)
       {
@@ -515,7 +515,7 @@ namespace gen
       }
    }
 
-   var property::at(int iIndex) const
+   var property::at(index iIndex) const
    {
       return this->element_at(iIndex);
    }
@@ -532,22 +532,22 @@ namespace gen
       istream >> get_value();
    }
 
-   int property::get_count(int iIndex) const
+   count property::get_count(index iIndex) const
    {
       return get_value(iIndex).get_count();
    }
 
-   int property::array_get_count(int iIndex) const
+   count property::array_get_count(index iIndex) const
    {
       return get_value(iIndex).array_get_count();
    }
 
-   bool property::array_contains(const char * psz, int iIndex, index first, index last) const
+   bool property::array_contains(const char * psz, index iIndex, index first, index last) const
    {
       return get_value(iIndex).array_contains(psz, first, last);
    }
 
-   bool property::array_contains_ci(const char * psz, int iIndex, index first, index last) const
+   bool property::array_contains_ci(const char * psz, index iIndex, index first, index last) const
    {
       return get_value(iIndex).array_contains_ci(psz, first, last);
    }
@@ -578,7 +578,7 @@ namespace gen
    }
 
 
-   int property::compare_value_ci(const char * psz, int iIndex) const
+   int property::compare_value_ci(const char * psz, index iIndex) const
    {
       return get_value(iIndex).compare_ci(psz);
    }
@@ -2305,7 +2305,7 @@ restart_finding:
       string strName;
       for(int i = 0; i < stra.get_size(); i++)
       {
-         int iPos = stra[i].find(":");
+         strsize iPos = stra[i].find(":");
          if(iPos < 0)
          {
             strName = stra[i];
@@ -2411,8 +2411,11 @@ restart_finding:
 
    void property_set::replace_ex1(string & str)
    {
-      int iPos;
+
+      strsize iPos;
+
       char ch;
+
       char chNext;
 
       for(iPos = 0; iPos < str.get_length(); iPos++)
@@ -2429,7 +2432,7 @@ restart_finding:
          }
          else if(ch == '{' && chNext == '$')
          {
-            int iEnd = str.find('}', iPos + 1);
+            strsize iEnd = str.find('}', iPos + 1);
             if(iEnd < 0)
             {
                //error
@@ -2446,8 +2449,8 @@ restart_finding:
                // error
                break;
             }
-            int iStart = iPos;
-            int iEnd = iStart + 2;
+            strsize iStart = iPos;
+            strsize iEnd = iStart + 2;
             for(; iEnd < str.get_length(); iEnd++)
             {
                ch = str[iEnd];
@@ -2566,22 +2569,22 @@ restart_finding:
       operator = (set);
    }
 
-   property & property_set::at(int iId)
+   property & property_set::at(index iIndex)
    {
-      if(iId >= m_propertya.get_size())
+      if(iIndex >= m_propertya.get_size())
       {
-         m_propertya.set_size(iId + 1);
+         m_propertya.set_size(iIndex + 1);
       }
-      return m_propertya[iId];
+      return m_propertya[iIndex];
    }
 
-   var_property property_set::at(int iId) const
+   var_property property_set::at(index iIndex) const
    {
-      if(iId >= m_propertya.get_size())
+      if(iIndex >= m_propertya.get_size())
       {
-         const_cast < property_set * > (this)->m_propertya.set_size(iId + 1);
+         const_cast < property_set * > (this)->m_propertya.set_size(iIndex + 1);
       }
-      return const_cast<property_set*>(this)->m_propertya[iId];
+      return const_cast<property_set*>(this)->m_propertya[iIndex];
    }
 
    property_set & property_set::operator = (const property_set & set)
@@ -2730,14 +2733,14 @@ restart_finding:
       return const_cast<property_set*>(this)->operator[](pszName);
    }
 
-   property & property_set::operator[](int iId)
+   property & property_set::operator[](index iIndex)
    {
-      return operator[](gen::str::itoa(iId));
+      return operator[](gen::str::itoa(iIndex));
    }
 
-   var_property property_set::operator[](int iId) const
+   var_property property_set::operator[](index iIndex) const
    {
-      return operator[](gen::str::itoa(iId));
+      return operator[](gen::str::itoa(iIndex));
    }
 
    property & property_set::operator[](const string_interface & str)

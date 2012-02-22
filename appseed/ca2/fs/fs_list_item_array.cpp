@@ -6,7 +6,7 @@ namespace fs
 
    void list_item_array::base_list_item_array::SoftSwap(index i1, index i2)
    {
-      int iArrange = this->element_at(i1).m_iArrange;
+      index iArrange = this->element_at(i1).m_iArrange;
       this->element_at(i1).m_iArrange = this->element_at(i2).m_iArrange;
       this->element_at(i2).m_iArrange = iArrange;
    }

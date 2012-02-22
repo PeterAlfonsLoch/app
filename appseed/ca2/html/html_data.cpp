@@ -128,7 +128,7 @@ namespace html
       class font * pfont = new class font(font);
       pfont->create(get_app());
       m_fonta.add(pfont);
-      pfont->m_iIndex = m_fonta.get_upper_bound();
+      pfont->m_iIndex = (int) m_fonta.get_upper_bound();
       return pfont->m_iIndex;
    }
 
@@ -285,7 +285,7 @@ namespace html
             return i;
       }
       image * pimage = m_imagea.add_new();
-      pimage->m_iIndex = m_imagea.get_upper_bound();
+      pimage->m_iIndex = (int) m_imagea.get_upper_bound();
       pimage->m_strPath = strUrl;
       load_image_asynch(pimage);
       return pimage->m_iIndex;

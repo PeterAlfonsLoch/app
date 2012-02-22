@@ -34,16 +34,13 @@
 
 
 
-#include "radix/packset.h"
-#include "radix/spreadset.h"
-
-
 
 #include "collection/Base2DArray.h"
 #include "collection/string_array.h"
 #include "collection/stringa.h"
 #include "collection/stringl.h"
 #include "collection/string_sort_array.h"
+#include "collection/collection.h"
 #include "gen_string_tokenizer.h"
 #include "gen_base_enum.h"
 #include "gen_variable_strict_compare.h"
@@ -93,7 +90,6 @@ CLASS_DECL_ca ex1::byte_input_stream &  operator >>(ex1::byte_input_stream & ist
 CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
-#include "radix/win_registry.h"
 #include "gen_file_association.h"
 #endif
 

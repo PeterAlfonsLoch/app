@@ -241,22 +241,22 @@ namespace user
    }
 
 
-   int control::GetEditItem()
+   index control::GetEditItem()
    {
       return m_iEditItem;
    }
 
-   int control::GetEditSubItem()
+   index control::GetEditSubItem()
    {
       return descriptor().m_iSubItem;
    }
 
-   void control::SetEditItem(int iItem)
+   void control::SetEditItem(index iItem)
    {
       m_iEditItem = iItem;
    }
 
-   void control::SetEditSubItem(int iSubItem)
+   void control::SetEditSubItem(index iSubItem)
    {
       descriptor().m_iSubItem = iSubItem;
    }

@@ -122,7 +122,7 @@ namespace n7z
          inStreams.add(inStream);
       }
 
-      int numCoders = folderInfo.Coders.get_count();
+      count numCoders = folderInfo.Coders.get_count();
 
       CBindInfoEx bindInfo;
       ConvertFolderItemInfoToBindInfo(folderInfo, bindInfo);
@@ -260,7 +260,7 @@ namespace n7z
                ::ex1::byte_buffer buffer;
                passwordIsDefined = true;
                wstring password(gen::international::utf8_to_unicode(passwordBSTR));
-               const uint32 sizeInBytes = password.get_length() * 2;
+               const uint32 sizeInBytes = (const uint32_t ) (password.get_length() * 2);
                buffer.SetCapacity(sizeInBytes);
                for (int i = 0; i < password.get_length(); i++)
                {
@@ -320,8 +320,7 @@ namespace n7z
       for (i = 0; i < inStreams.get_count(); i++)
          inStreamPointers.add(inStreams[i]);
       ::ex1::writer *outStreamPointer = outStream;
-      return _mixerCoder->Code(&inStreamPointers.first_element(), NULL,
-         inStreams.get_count(), &outStreamPointer, NULL, 1, compressProgress);
+      return _mixerCoder->Code(&inStreamPointers.first_element(), NULL, (const uint32_t) inStreams.get_count(), &outStreamPointer, NULL, 1, compressProgress);
    }
 
 } // namespace n7z

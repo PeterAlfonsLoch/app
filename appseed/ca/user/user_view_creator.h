@@ -61,7 +61,7 @@ namespace user
       virtual ~view_creator();
 
 
-      virtual int get_view_count();
+      virtual count get_view_count();
 
       virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);
       virtual void on_create_view(::user::view_creator_data * pcreatordata);

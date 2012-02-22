@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace database
 {
+
 
    client::client()
    {
@@ -179,9 +181,9 @@ namespace database
 
    bool client::data_set(selection & selection, const char * lpsz, update_hint * puh)
    {
-      int iCount = selection.get_item_count();
+      count iCount = selection.get_item_count();
       bool bOk = true;
-      for(int iItem = 0; iItem < iCount; iItem++)
+      for(index iItem = 0; iItem < iCount; iItem++)
       {
          selection_item & item = selection.get_item(iItem);
          if(!data_set(
@@ -199,9 +201,9 @@ namespace database
 
    bool client::data_set(selection & selection, var & var, update_hint * puh)
    {
-      int iCount = selection.get_item_count();
+      count iCount = selection.get_item_count();
       bool bOk = true;
-      for(int iItem = 0; iItem < iCount; iItem++)
+      for(index iItem = 0; iItem < iCount; iItem++)
       {
          selection_item & item = selection.get_item(iItem);
          if(!data_set(
@@ -423,12 +425,12 @@ namespace database
       }
    }
 
-   int client_array::GetClientCount()
+   count client_array::GetClientCount()
    {
       return this->get_size();
    }
 
-   client * client_array::ClientAt(int iClient)
+   client * client_array::ClientAt(index iClient)
    {
       return this->element_at(iClient);
    }
@@ -438,4 +440,7 @@ namespace database
       remove(pclient);
    }
 
+
 } // namespace database
+
+

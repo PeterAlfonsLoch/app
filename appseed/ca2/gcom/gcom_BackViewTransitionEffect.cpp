@@ -117,8 +117,8 @@ namespace gcom
 
          Main & main = HelperGetMain();
 
-         int iTypeOld = m_iType;
-         int iTypeNew = m_iType;
+         index iTypeOld = m_iType;
+         index iTypeNew = m_iType;
          if(m_etypea[iTypeOld] == TransitionEffectVisual)
          {
             m_iVisual--;
@@ -462,7 +462,7 @@ namespace gcom
                {
                   if(m_tool001.m_pointa.get_size() <= 0)
                      break;
-                  int iIndex = System.math().RandRange(
+                  index iIndex = System.math().RandRange(
                            0,
                            m_tool001.m_pointa.get_size() - 1);
 
@@ -522,7 +522,7 @@ namespace gcom
             {
                if(m_tool001.m_iStep > 0)
                {
-                  int iIndex = System.math().RandRange(
+                  index iIndex = System.math().RandRange(
                      0,
                      m_tool001.m_pointa.get_size() - 1);
 
@@ -583,7 +583,7 @@ namespace gcom
                {
                   if(m_tool001.m_ia.get_size() > 0)
                   {
-                     int iIndex = System.math().RandRange(
+                     index iIndex = System.math().RandRange(
                         0,
                         m_tool001.m_ia.get_size() - 1);
 
@@ -719,7 +719,7 @@ namespace gcom
                const int iTileMax = iTileCount - 1;
                int iGroupCount = m_tool001.m_data.m_sliceframe.m_iGroupCount;
 
-               int iIndex = m_tool001.m_iStep - 1;
+               index iIndex = m_tool001.m_iStep - 1;
                iIndex = min(iIndex, m_tool001.m_pointa.get_size() -1);
                if(iIndex >= 0)
                {

@@ -15,7 +15,7 @@ namespace visual
 
    }
 
-   BOOL graphics_extension::TextOut(::ca::graphics * pdc, int x, int y, const char * lpcsz, int iCount)
+   BOOL graphics_extension::TextOut(::ca::graphics * pdc, int x, int y, const char * lpcsz, strsize iCount)
    {
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
@@ -27,14 +27,14 @@ namespace visual
       rect rectClip(*lpcrect);
       wstring wstr = gen::international::utf8_to_unicode(lpcsz);
       const wchar_t * lpwsz = wstr;
-      int iFind = str.find(L' ');
+      index iFind = str.find(L' ');
       if(iFind < 0)
       {
          size_t i = 1;
          size sz;
          while(i < wcslen(wstr))
          {
-            ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, i, &sz);
+            ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, (int) i, &sz);
             if(sz.cx > rectClip.width())
             {
                if(i == 1)
@@ -58,7 +58,7 @@ namespace visual
    void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, base_array < size > & sizea)
    {
       string str(lpcsz);
-      int iLen = str.get_length();
+      strsize iLen = str.get_length();
       sizea.set_size(iLen);
       if(iLen > 0)
       {
@@ -90,7 +90,7 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, int iCount, size & size)
+   void graphics_extension::GetTextExtent(::ca::graphics *pdc, const char * lpcsz, strsize iCount, size & size)
    {
       /*::GetTextExtentPoint32U(
          (HDC)pdc->get_os_data(),
@@ -102,11 +102,11 @@ namespace visual
 
    }
 
-   int graphics_extension::_EncodeV033(string & str)
+   strsize graphics_extension::_EncodeV033(string & str)
    {
-      int iStart = 0;
-      int iIndex;
-      int iLen = str.get_length();
+      strsize iStart = 0;
+      strsize iIndex;
+      strsize iLen = str.get_length();
       while(true)
       {
          iIndex = str.find(L'&', iStart);
@@ -215,13 +215,13 @@ namespace visual
       sz.cx = 0;
       sz.cy = 0;
 
-      int iUnderline = _EncodeV033(str);
+      strsize iUnderline = _EncodeV033(str);
 
-      int iLen = str.get_length();
+      strsize iLen = str.get_length();
 
       if((uiFormat & DT_END_ELLIPSIS) != 0 || (uiFormat & DT_WORDBREAK) != 0)
       {
-         sz = pdc->GetTextExtent(str, iLen);
+         sz = pdc->GetTextExtent(str, (int) iLen);
          if(sz.cx > rectClip.width())
          {
             if((uiFormat & DT_WORDBREAK) != 0 && sz.cy * 2 <= rectClip.height())
@@ -230,7 +230,7 @@ namespace visual
                string str2;
                word_break(pdc, lpcsz, rectClip, str1, str2);
                iLen = str.get_length();
-               sz = pdc->GetTextExtent(str, iLen);
+               sz = pdc->GetTextExtent(str, (int) iLen);
                if(sz.cx <= rectClip.width())
                {
                   goto skip1;
@@ -238,7 +238,7 @@ namespace visual
             }
             iLen += 3;
             char * lpsz = str.GetBuffer(iLen + 1);
-            int i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
+            strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
             if(i > iLen)
                i = iLen;
             if(i < 4)
@@ -250,7 +250,7 @@ namespace visual
                lpsz[i - 3] = '.';
                lpsz[i - 2] = '.';
                lpsz[i - 1] = '\0';
-               sz = pdc->GetTextExtent(lpsz, i);
+               sz = pdc->GetTextExtent(lpsz, (int) i);
                if(sz.cx < rectClip.width())
                {
                   if(i >= iLen)
@@ -271,7 +271,7 @@ namespace visual
                lpsz[i - 3] = L'.';
                lpsz[i - 2] = L'.';
                lpsz[i - 1] = L'\0';
-               sz = pdc->GetTextExtent(lpsz, i);
+               sz = pdc->GetTextExtent(lpsz, (int) i);
                if(sz.cx > rectClip.width())
                {
                   i--;
@@ -288,7 +288,7 @@ namespace visual
       }
       else
       {
-         sz = pdc->GetTextExtent(str, iLen);
+         sz = pdc->GetTextExtent(str, (int) iLen);
          /*::GetTextExtentPoint32U(
             (HDC) pdc->get_os_data(),
             str,
@@ -297,7 +297,7 @@ namespace visual
 //         DWORD dw = ::GetLastError();
          if(sz.cx > rectClip.width())
          {
-            int i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
+            strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
             if(i < 0)
                i = 0;
             char * lpsz = str.GetBuffer(max(0, i) + 1);
@@ -306,7 +306,7 @@ namespace visual
                ::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),
                lpsz,
-               i,
+               (int) i,
                &sz);
                if(sz.cx > rectClip.width())
                {
@@ -377,7 +377,7 @@ namespace visual
          && iUnderline < str.get_length())
       {
          ::ca::font * pfontOld;
-         pdc->TextOutA(rect.left, rect.top, str, min(iUnderline, str.get_length()));
+         pdc->TextOutA(rect.left, rect.top, str, (int) min(iUnderline, str.get_length()));
          /*::TextOutU(
             (HDC)pdc->get_os_data(),
             rect.left,
@@ -393,7 +393,7 @@ namespace visual
                str,
                iUnderline,
                &sz);*/
-            sz = pdc->GetTextExtent(str, iUnderline);
+            sz = pdc->GetTextExtent(str, (int) iUnderline);
             char wch = str[iUnderline];
             /*::TextOutU(
                (HDC)pdc->get_os_data(),
@@ -405,14 +405,14 @@ namespace visual
             pdc->SelectObject(&fPrevious);
             if(iUnderline + 1 <= str.get_length())
             {
-               sz = pdc->GetTextExtent(str, iUnderline + 1);
+               sz = pdc->GetTextExtent(str, (int) (iUnderline + 1));
                /*::GetTextExtentPoint32U(
                   (HDC)pdc->get_os_data(),
                   str,
                   iUnderline + 1,
                   &sz);*/
-               int iCount = str.get_length() - iUnderline - 1;
-               pdc->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), iCount);
+               strsize iCount = str.get_length() - iUnderline - 1;
+               pdc->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), (int) iCount);
                /*::TextOutU(
                   (HDC)pdc->get_os_data(),
                   rect.left + sz.cx,

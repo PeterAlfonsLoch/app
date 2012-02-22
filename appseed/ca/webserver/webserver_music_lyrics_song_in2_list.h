@@ -25,7 +25,7 @@ namespace webserver
          virtual string get_list_title();
 
 
-         virtual void print_row(int iIndex, ::webserver::music::song * psong, int line);
+         virtual void print_row(index iIndex, ::webserver::music::song * psong, index line);
 
       };
 

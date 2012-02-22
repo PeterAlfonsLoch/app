@@ -244,20 +244,20 @@ namespace simpledb
          int iLen = System.file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
-            UINT uiTotal = 0;
+            primitive::memory_size uiTotal = 0;
             primitive::memory mem;
             mem.allocate(128 * 1024 * 1024);
             for(int i = 0; i < prangea->get_count(); i++)
             {
-               int iStart = prangea->element_at(i)[0];
-               int iEnd = prangea->element_at(i)[1];
+               primitive::memory_position  iStart = prangea->element_at(i)[0];
+               primitive::memory_position  iEnd = prangea->element_at(i)[1];
                if(iStart >= iLen)
                   continue;
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ex1::seek_begin);
-               UINT uiRead;
+               primitive::memory_size uiRead;
                gen::memory_file memfile(get_app());
-               int iPos = iStart;
+               primitive::memory_position iPos = iStart;
                if(iEnd >= iStart)
                {
                }
@@ -299,18 +299,18 @@ namespace simpledb
          }
          else
          {
-            UINT uiTotal = 0;
+            primitive::memory_size uiTotal = 0;
             primitive::memory mem;
             mem.allocate(128 * 1024 * 1024);
-            int iStart = prangea->element_at(0)[0];
-            int iEnd = prangea->element_at(0)[1];
+            primitive::memory_position iStart = prangea->element_at(0)[0];
+            primitive::memory_position iEnd = prangea->element_at(0)[1];
             if(iStart < iLen)
             {
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ex1::seek_begin);
-               UINT uiRead;
+               primitive::memory_size uiRead;
                gen::memory_file memfile(get_app());
-               int iPos = iStart;
+               primitive::memory_position iPos = iStart;
                if(iEnd >= iStart)
                {
                }
@@ -322,7 +322,7 @@ namespace simpledb
                {
                   if(iEnd != -1 && iEnd >= iStart)
                   {
-                     uiRead = min(mem.get_size(), (primitive::memory_size) (iEnd - iPos + 1));
+                     uiRead = min(mem.get_size(), (iEnd - iPos + 1));
                   }
                   else
                   {

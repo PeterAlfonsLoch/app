@@ -325,7 +325,7 @@ bool document::do_save(const char * pszPathName, bool bReplace)
       {
          newName = m_strTitle;
          // check for dubious filename
-         int iBad = newName.FindOneOf(":/\\");
+         strsize iBad = newName.FindOneOf(":/\\");
          if (iBad != -1)
             newName.ReleaseBuffer(iBad);
 

@@ -53,7 +53,7 @@ public:
    virtual void request(::ca::create_context * pcreatecontext); // open named file
    virtual BOOL save_all_modified(); // save before exit
    virtual void close_all_documents(BOOL bEndSession); // close documents before exiting
-   virtual int get_open_document_count();
+   virtual count get_open_document_count();
 
    virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
 
@@ -61,7 +61,7 @@ public:
    virtual void _001OnFileNew();
    virtual void on_file_open();
 
-   int get_document_count(); // helper to count number of total documents
+   count get_document_count(); // helper to count number of total documents
 
 
 

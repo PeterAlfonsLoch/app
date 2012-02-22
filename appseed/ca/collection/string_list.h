@@ -233,9 +233,9 @@ protected:
 };
 
 
-inline INT_PTR string_list::get_count() const
+inline count string_list::get_count() const
    { return m_nCount; }
-inline INT_PTR string_list::get_size() const
+inline count string_list::get_size() const
    { return m_nCount; }
 inline bool string_list::is_empty() const
    { return m_nCount == 0; }

@@ -35,20 +35,33 @@ string str_helper::get_str() {return work_str;}
 
 void str_helper::set_str(const char *s) {work_str = s; };
 
-string str_helper::before(string s, bool &is_found) {
-    is_found = false;
-    int pos = work_str.find(s);
-    int idx = pos+s.get_length();
-    is_found = pos >= 0;
-    if (idx == work_str.get_length()) 
+
+string str_helper::before(string s, bool &is_found)
+{
+    
+   is_found = false;
+   
+   strsize pos = work_str.find(s);
+   
+   strsize idx = pos + s.get_length();
+    
+   is_found = pos >= 0;
+   
+   if (idx == work_str.get_length()) 
+   {
       return work_str.Mid(0,pos); 
-    else
+   }
+   else
+   {
       if ((pos >= 0) && (!( (work_str[idx]>48 && work_str[idx]<58) || (work_str[idx]>64 && work_str[idx]<91) || (work_str[idx]>97 && work_str[idx]<123) || work_str[idx]==95 )))
-   return work_str.Mid(0,pos); 
-    else //return (string)NULL;
-      { string tmp(""); 
-      return tmp;
+         return work_str.Mid(0,pos); 
+      else //return (string)NULL;
+      {
+         string tmp(""); 
+         return tmp;
       }
+   }
+
 }
 
 string str_helper::after(string s) {return work_str.Mid(work_str.find(s)+s.get_length(),work_str.get_length());}

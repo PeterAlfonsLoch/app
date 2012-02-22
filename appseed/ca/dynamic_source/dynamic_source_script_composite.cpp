@@ -624,7 +624,7 @@ namespace dynamic_source
       m_pinterface->array_unshift(varArray, varElement);
    }
 
-   int script_composite::count(var var)
+   ::count script_composite::count(var var)
    {
       return m_pinterface->count(var);
    }

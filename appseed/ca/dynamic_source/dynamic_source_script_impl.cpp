@@ -145,7 +145,7 @@ namespace dynamic_source
    {
       string str(lpcsz);
 
-      int iStart = 0;
+      strsize iStart = 0;
       while(true)
       {
          iStart = str.find("$", iStart);
@@ -156,7 +156,7 @@ namespace dynamic_source
             break;
          if(isalpha(str[iStart]))
          {
-            int iEnd = iStart;
+            strsize iEnd = iStart;
             iEnd++;
             while(iEnd < str.get_length()
                && (     isalpha(str[iEnd])
@@ -922,9 +922,9 @@ namespace dynamic_source
    void script_impl::ui_nav_printOut5(stringa & straLink, stringa & straTitle)
    {
       print("<span class=\"topnav5\">");
-      int iCount = straTitle.get_size() - 1;
+      ::count iCount = straTitle.get_size() - 1;
       script_start();
-      int i;
+      index i;
       for(i = 0; i < iCount; i++)
       {
          if(i > 0)
@@ -957,7 +957,7 @@ namespace dynamic_source
 
    void script_impl::ui_nav_printOut3(stringa & straLink, stringa & straTitle)
    {
-      int iCount = straTitle.get_size() - 1;
+      ::count iCount = straTitle.get_size() - 1;
       // link array count should be 1 less than title array
       if(straLink.get_count() < iCount)
          return;
@@ -992,7 +992,7 @@ namespace dynamic_source
 
    void script_impl::ui_nav_printOut2(stringa & straLink, stringa & straTitle)
    {
-      int iCount = straTitle.get_size() - 1;
+      ::count iCount = straTitle.get_size() - 1;
       int i;
       for(i = 0; i < iCount; i++)
       {
@@ -1027,7 +1027,7 @@ namespace dynamic_source
          ((straLink.get_size() + 1) == straTitle.get_size())
          )
       {
-         int iCount = straLink.get_size();
+         ::count iCount = straLink.get_size();
          int i;
          for(i = 0; i < iCount; i++)
          {
@@ -2129,7 +2129,7 @@ namespace dynamic_source
    string script_impl::eval(const char * pszText)
    {
       string str(pszText);
-      int iStart = 0;
+      strsize iStart = 0;
       bool bBracket;
       while(true)
       {
@@ -2145,7 +2145,7 @@ namespace dynamic_source
             }
          }
          iStart++;
-         int iEnd = iStart;
+         strsize iEnd = iStart;
          while(iEnd < str.get_length()
             && (isalpha(str[iEnd]) || isdigit(str[iEnd]) || str[iEnd] == '_'))
          {
@@ -2639,7 +2639,7 @@ namespace dynamic_source
    void script_impl::header(const char * pszHeader)
    {
       string strHeader(pszHeader);
-      int iFind = strHeader.find(":");
+      strsize iFind = strHeader.find(":");
       if(iFind < 0)
       {
          TRACE("header(x) : x should contain :");
@@ -3294,7 +3294,7 @@ ok1:
    {
       string strFile;
       string strUri = gprop("request");
-      int iFind = strUri.find("?");
+      strsize iFind = strUri.find("?");
       string strObject;
       if(iFind >= 0)
          strObject = strUri.Left(iFind);
@@ -3390,8 +3390,8 @@ ok1:
       {
          strRequest = inattr("request_uri");
       }
-      int iFindQuestion = strRequest.find("?");
-      int iFindSlash = strRequest.find("/", 1);
+      strsize iFindQuestion = strRequest.find("?");
+      strsize iFindSlash = strRequest.find("/", 1);
       string strCandidate;
       if(iFindQuestion > 0)
       {
@@ -3668,7 +3668,7 @@ ok1:
    string script_impl::normalize_locale(const char * psz)
    {
       string str(psz);
-      int iPos = str.reverse_find("-");
+      strsize iPos = str.reverse_find("-");
       if(iPos >= 0)
          str = str.Mid(iPos + 1);
       str.make_lower();
@@ -3680,12 +3680,14 @@ ok1:
    }
 
 
-   int script_impl::count(var var)
+   ::count script_impl::count(var var)
    {
+      
       if(var.is_array())
          return var.array_get_count();
       else
          return 0;
+
    }
 
 
@@ -3696,8 +3698,8 @@ ok1:
       string emphasizeL(emphasize);
       emphasizeL.make_lower();
 
-      int pos = 0;
-      int empLen = emphasize.get_length();
+      strsize pos = 0;
+      strsize empLen = emphasize.get_length();
       while(true)
       {
          string textL(text);
@@ -3820,12 +3822,12 @@ ok1:
       webserver::simage_accepta_ptr_array * psimageptra = get_manager()->m_psimageptra;
       string candidate;
       string path;
-      for(int i = 0; i < psimageptra->get_count(); i++)
+      for(index i = 0; i < psimageptra->get_count(); i++)
       {
          webserver::simage_accepta * paccepta = psimageptra->element_at(i);
          
          
-         int iFind = paccepta->m_propsetAccept.find_value_ci(param_view);
+         strsize iFind = paccepta->m_propsetAccept.find_value_ci(param_view);
          gprop("root") = paccepta->m_root;
          if(isset(param_view) && iFind >= 0)
          {
@@ -4332,13 +4334,13 @@ ok1:
    {
 
       string str(ppop3->m_strBody);
-      int iFind = 0;
-      int iStart;
+      strsize iFind = 0;
+      strsize iStart;
       while(true)
       {
-         int iFindHttp = str.find("http://", iFind);
-         int iFindHttps = str.find("https://", iFind);
-         int iFindWww = str.find("www.", iFind);
+         strsize iFindHttp = str.find("http://", iFind);
+         strsize iFindHttps = str.find("https://", iFind);
+         strsize iFindWww = str.find("www.", iFind);
          if(iFindHttp == -1)
             iFindHttp = str.get_length();
          if(iFindHttps == -1)
@@ -4887,7 +4889,7 @@ ok1:
       string strPath(pszFolder);
       if(gen::str::begins_eat(strPath, "ifs://"))
       {
-         int iFind = strPath.find('/');
+         strsize iFind = strPath.find('/');
          if(iFind <= 0)
             return false;
          strUser = musicdb().query_item("SELECT id FROM fun_user WHERE email = '" + strPath.Left(iFind) + "'");
@@ -4908,10 +4910,10 @@ ok1:
          iFolder = 1;
          return true;
       }
-      int iStart = 0;
-      int iEnd;
+      strsize iStart = 0;
+      strsize iEnd;
       string strName;
-      int iFind;
+      strsize iFind;
       string strSql;
       iFolder = 1;
       while(true)
@@ -4953,7 +4955,7 @@ ok1:
       __int64 iFolder;
       if(gen::str::begins_eat(strPath, "ifs://"))
       {
-         int iFind = strPath.find('/');
+         strsize iFind = strPath.find('/');
          if(iFind <= 0)
             return false;
          strUser = musicdb().query_item("SELECT id FROM fun_user WHERE email = '" + strPath.Left(iFind) + "'");
@@ -4978,10 +4980,10 @@ ok1:
          iFolder = 1;
          return true;
       }
-      int iStart = 0;
-      int iEnd;
+      strsize iStart = 0;
+      strsize iEnd;
       string strName;
-      int iFind;
+      strsize iFind;
       string strSql;
       __int64 iParentFolder = 1;
       while(true)

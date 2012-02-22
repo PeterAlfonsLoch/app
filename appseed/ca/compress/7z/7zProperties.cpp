@@ -144,8 +144,11 @@ void CHandler::FillPopIDs()
 
 ex1::HRes CHandler::GetNumberOfProperties(uint32 *numProperties)
 {
-  *numProperties = _fileInfoPopIDs.get_count();
-  return S_OK;
+
+   *numProperties = (uint32_t) _fileInfoPopIDs.get_count();
+   
+   return S_OK;
+
 }
 
 ex1::HRes CHandler::GetPropertyInfo(uint32 index, string & name, int * propID, var::e_type *varType)

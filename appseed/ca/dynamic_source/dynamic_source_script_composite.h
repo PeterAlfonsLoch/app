@@ -198,7 +198,7 @@ namespace dynamic_source
       virtual bool in_array(const var & varElement, const var & varArray);
       virtual void array_unshift(var & varArray, const var varElement);
 
-      virtual int count(var var);
+      virtual ::count count(var var);
 
       var array(
          var var01 = gen::g_emptyargumentconst,

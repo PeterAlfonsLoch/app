@@ -70,7 +70,7 @@ namespace gen
             stra.add_tokens(strLocale, "-", FALSE);
             if(stra.get_count() > 1)
             {
-               for(int i = stra.get_upper_bound(); i >= 0; i--)
+               for(index i = stra.get_upper_bound(); i >= 0; i--)
                {
                   if(defer_add_locale(stra[i], pszStyle))
                   {

@@ -131,7 +131,7 @@ namespace ca8
             m_plistview->_001GetSelection(range);
             if(range.get_item_count() > 0)
             {
-               int iItem = range.ItemAt(0).GetLBound();
+               index iItem = range.ItemAt(0).GetLBound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
                   System.set_keyboard_layout(m_layoutida[iItem].m_strPath, true);

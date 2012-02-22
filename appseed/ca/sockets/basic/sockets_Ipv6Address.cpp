@@ -145,7 +145,7 @@ namespace sockets
    string ipv6_address::Convert(bool include_port)
    {
       if (include_port)
-         return Convert(get_app(), m_addr.sin6_addr) + ":" + gen::str::l2string(GetPort());
+         return Convert(get_app(), m_addr.sin6_addr) + ":" + gen::str::itoa(GetPort());
       return Convert(get_app(), m_addr.sin6_addr);
    }
 

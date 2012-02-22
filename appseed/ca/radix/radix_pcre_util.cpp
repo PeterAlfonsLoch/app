@@ -31,7 +31,7 @@ bool PcreUtil::match(::user::str_context * pcontext, string_array & stra, const 
    return false;
 }
 
-int PcreUtil::match(string_array & stra, const char * lpcsz, CRegExp * re, int iSize)
+index PcreUtil::match(string_array & stra, const char * lpcsz, CRegExp * re, strsize iSize)
 {
    stra.remove_all();
 
@@ -46,26 +46,26 @@ int PcreUtil::match(string_array & stra, const char * lpcsz, CRegExp * re, int i
 
    bool bMatch = re->parse(lpcsz, &matches);
 
-   for(int i = 0; i < matches.cMatch; i++)
+   for(index i = 0; i < matches.cMatch; i++)
    {
-      int iStart   = matches.s[i];
-      int iEnd     = matches.e[i];
+      strsize iStart   = matches.s[i];
+      strsize iEnd     = matches.e[i];
       stra.add(str.Mid(iStart, iEnd - iStart));
    }
 
    return bMatch;
 }
 
-int PcreUtil::match(string_array & stra, const char * lpcsz, const char * lpcszExp, bool bCaseInsensitive, int iSize)
+index PcreUtil::match(string_array & stra, const char * lpcsz, const char * lpcszExp, bool bCaseInsensitive, strsize iSize)
 {
    CRegExp * pre = CompileExpression(lpcszExp, bCaseInsensitive);
-   int i = match(stra, lpcsz, pre, iSize);
+   index i = match(stra, lpcsz, pre, iSize);
    delete pre;
    return i;
 }
 
 
-bool PcreUtil::find(const char * lpsz, CRegExp * re, int iSubString, int & iStart, int & iEnd)
+bool PcreUtil::find(const char * lpsz, CRegExp * re, index iSubString, strsize & iStart, strsize & iEnd)
 {
    string strSubject;
 
@@ -109,7 +109,7 @@ CRegExp * PcreUtil::CompileExpression(const char * lpszExp, bool bCaseInsensitiv
    return new CRegExp(lpszExp);
 }
 
-bool PcreUtil::find(const char * lpsz, const char * lpszExp, int iSubString, int & iStart, int & iEnd)
+bool PcreUtil::find(const char * lpsz, const char * lpszExp, index iSubString, strsize & iStart, strsize & iEnd)
 {
    CRegExp * pre;
 
@@ -141,11 +141,7 @@ bool PcreUtil::find(const char * lpsz, const char * lpszExp, int iSubString, int
 // 'true' if successfull.
 //
 ///////////////////////////////////////////////////////////////////////////////
-bool PcreUtil::add_tokens(
-   string_array & stra,
-   const char * lpszSubject,
-   const char * lpszExpression,
-   int iSubString /* =0 */)
+bool PcreUtil::add_tokens(string_array & stra, const char * lpszSubject, const char * lpszExpression, index iSubString /* =0 */)
 {
    CRegExp * pre;
 
@@ -174,7 +170,7 @@ bool PcreUtil::add_tokens(
    if(iSubString < 0)
       iSubString = 0;
 
-   int find = 0;
+   strsize find = 0;
    while(end < strlen(lpszSubject))
    {
       SMatches matches;
@@ -224,11 +220,11 @@ void PcreUtil::Format(string & str, string_array & wstraArg)
    }
 }
 
-bool PcreUtil::ReplaceAll(string & str, CRegExp * re, int iSubString, const char * lpsz)
+bool PcreUtil::ReplaceAll(string & str, CRegExp * re, index iSubString, const char * lpsz)
 {
-   int start;
-   int end = 0;
-   int iSubstLen = lstrlen(lpsz);
+   strsize start;
+   strsize end = 0;
+   strsize iSubstLen = lstrlen(lpsz);
    while(find(str, re, iSubString, start, end))
    {
       str = str.Left(start) + lpsz + str.Mid(end);

@@ -97,10 +97,10 @@ namespace primitive
       void to_string(string & str);*/
 
       // shared primitive::memory interface
-      virtual void SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow = TRUE);
+      /*virtual void SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow = TRUE);
       virtual BYTE* Alloc(SIZE_T nBytes);
       virtual BYTE* Realloc(BYTE* lpMem, SIZE_T nBytes);
-      virtual void Free(BYTE* lpMem);
+      virtual void Free(BYTE* lpMem);*/
 
 
 

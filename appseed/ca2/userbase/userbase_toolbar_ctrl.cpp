@@ -28,17 +28,6 @@ namespace userbase
          (LPARAM)&tbab);
    }
 
-   int tool_bar_control::AddBitmap(int nNumButtons, UINT nBitmapID)
-   {
-      ASSERT(IsWindow());
-      TBADDBITMAP tbab;
-      tbab.hInst = AfxFindResourceHandle((const char *)nBitmapID, RT_BITMAP);
-      ASSERT(tbab.hInst != NULL);
-      tbab.nID = nBitmapID;
-      return (int) SendMessage( TB_ADDBITMAP, (WPARAM)nNumButtons,
-         (LPARAM)&tbab);
-   }
-
    void tool_bar_control::SaveState(HKEY hKeyRoot, const char * lpszSubKey,
       const char * lpszValueName)
    {
@@ -59,15 +48,6 @@ namespace userbase
       tbs.pszSubKey = lpszSubKey;
       tbs.pszValueName = lpszValueName;
       SendMessage( TB_SAVERESTORE, (WPARAM)FALSE, (LPARAM)&tbs);
-   }
-
-   int tool_bar_control::AddString(UINT nStringID)
-   {
-      ASSERT(IsWindow());
-      HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE((nStringID>>4)+1),
-         RT_STRING);
-      ASSERT(hInst != NULL);
-      return (int)SendMessage( TB_ADDSTRING, (WPARAM)hInst, nStringID);
    }
 
    int tool_bar_control::OnCreate(LPCREATESTRUCT lpcs)

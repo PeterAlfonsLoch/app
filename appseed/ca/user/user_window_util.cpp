@@ -280,7 +280,7 @@ namespace user
 
    int HwndTree::CompareHwnd(HwndTree &tree1, HwndTree &tree2)
    {
-      return tree1.m_hwnd - tree2.m_hwnd;
+      return (int) (tree1.m_hwnd - tree2.m_hwnd);
    }
 
    INT_PTR HwndTree::Array::find(HWND hwnd)

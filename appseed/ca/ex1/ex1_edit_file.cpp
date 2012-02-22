@@ -303,7 +303,7 @@ namespace ex1
    {
       if(pfile->m_bRootDirection)
       {
-         for(int i = get_upper_bound(); i >= 0; i--)
+         for(index i = get_upper_bound(); i >= 0; i--)
          {
             UINT uiReadItem = this->element_at(i)->read_ch(pfile);
             if(uiReadItem <= 255)
@@ -312,7 +312,7 @@ namespace ex1
       }
       else
       {
-         for(int i = 0; i < this->get_count(); i++)
+         for(index i = 0; i < this->get_count(); i++)
          {
             UINT uiReadItem = this->element_at(i)->read_ch(pfile);
             if(uiReadItem <= 255)
@@ -554,7 +554,7 @@ l1:
       Save(spfile);
 
       char buf[4096];
-      UINT uiRead;
+      primitive::memory_size uiRead;
       m_pfile->set_length(0);
       spfile->seek(0, ::ex1::seek_begin);
       while((uiRead = spfile->read(buf, sizeof(buf))) > 0)
@@ -569,7 +569,7 @@ l1:
    bool edit_file::Save(ex1::file & file)
    {
       char buf[4096];
-      UINT uiRead;
+      primitive::memory_size uiRead;
       file.set_length(0);
       seek(0, ::ex1::seek_begin);
       while((uiRead = read(buf, sizeof(buf))) > 0)
@@ -585,7 +585,7 @@ l1:
    {
       char buf[4096];
       string str;
-      UINT uiRead;
+      primitive::memory_size uiRead;
       file.set_length(0);
       seek(0, ::ex1::seek_begin);
       while((uiRead = read(buf, sizeof(buf))) > 0)

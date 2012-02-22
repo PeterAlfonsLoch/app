@@ -1,9 +1,12 @@
 #pragma once
 
+
 namespace simpledb
 {
 
+
    class base;
+
 
    class CLASS_DECL_ca set : 
       public ::database::set
@@ -67,7 +70,7 @@ namespace simpledb
       /* sequence numbers */
       virtual long nextid(const char *seq_name);
       /* sequence numbers */
-      virtual int num_rows();
+      virtual count num_rows();
 
       virtual bool bof();
       virtual bool eof();
@@ -78,12 +81,12 @@ namespace simpledb
 
       virtual bool find_first(char * fieldname, var & value);
       /* Go to record No (starting with 0) */
-      virtual bool seek(int pos=0);
+      virtual bool seek(index pos=0);
 
       virtual bool SetFieldValue(const char *f_name, const var &value);
-      virtual bool SetFieldValue(int iFieldIndex, const var &value);
+      virtual bool SetFieldValue(index iFieldIndex, const var &value);
 
-      virtual var & FieldValueAt(int iFieldIndex);
+      virtual var & FieldValueAt(index iFieldIndex);
       virtual int GetFieldIndex(const char *f_name);
 
       base * get_database();
@@ -92,3 +95,5 @@ namespace simpledb
 
 
 } // namespace simpledb
+
+

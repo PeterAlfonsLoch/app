@@ -24,20 +24,21 @@ namespace ex2
       UNREFERENCED_PARAMETER(stra);
    }
 
-   int file_set::get_file_count()
+   ::count file_set::get_file_count()
    {
       return 0;
    }
 
-   void file_set::file_at(int i, string & str)
+   void file_set::file_at(::index i, string & str)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(str);
    }
 
-   int file_set::find_first_file(const char * lpcsz)
+   ::index file_set::find_first_file(const char * lpcsz, ::index iStart)
    {
       UNREFERENCED_PARAMETER(lpcsz);
+      UNREFERENCED_PARAMETER(iStart);
       return -1;
    }
 
@@ -59,7 +60,7 @@ namespace ex2
 
    bool file_set::get_next_file(const char * lpcszCurrentFilePath, string & strNextFilePath)
    {
-      int i = find_first_file(lpcszCurrentFilePath);
+      ::index i = find_first_file(lpcszCurrentFilePath);
       i++;
       if(i >= get_file_count())
          i = 0;

@@ -24,13 +24,13 @@ namespace cube
       {
          wstring wstr = ::GetCommandLineW();
          string str = gen::international::unicode_to_utf8(wstr);
-         int iFind = str.find(" : ");
+         strsize iFind = str.find(" : ");
          if(iFind >= 0)
          {
             iFind = str.find("app=", iFind);
             if(iFind >= 0)
             {
-               int iEnd = str.find(" ", iFind);
+               strsize iEnd = str.find(" ", iFind);
                if(iEnd < 0)
                {
                   m_strId = str.Mid(iFind + 4);

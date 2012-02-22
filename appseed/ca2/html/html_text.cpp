@@ -413,8 +413,8 @@ namespace html
             pdc->set_color(ARGB(255, 0, 0, 0));
          }
 
-         int iSelStart;
-         int iSelEnd;
+         strsize iSelStart;
+         strsize iSelEnd;
          size size3;
          visual::graphics_extension(pdata->m_papp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
          int maxcy = size3.cy;
@@ -678,7 +678,7 @@ namespace html
          }
       }
 
-      int text::char_hit_test(::ca::graphics * pdc, int px, int py)
+      strsize text::char_hit_test(::ca::graphics * pdc, int px, int py)
       {
          string strTag;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))

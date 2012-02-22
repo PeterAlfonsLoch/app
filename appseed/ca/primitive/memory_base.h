@@ -36,9 +36,9 @@ namespace primitive
       virtual bool allocate(memory_size dwNewLength);
       virtual bool allocate_internal(memory_size dwNewLength);
 
-      virtual const void *    base_get_data() const;
-      virtual void *          base_get_data();
-      virtual memory_size     base_get_size() const;
+      virtual const void *    base_get_data() const = 0;
+      virtual void *          base_get_data() = 0;
+      virtual memory_size     base_get_size() const = 0;
       virtual void            base_remove_offset();
 
       virtual void            base_from_string(const wchar_t * pwsz) = 0;

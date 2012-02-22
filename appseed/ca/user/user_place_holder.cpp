@@ -50,7 +50,7 @@ namespace user
       }
       if(m_uiptraHold.contains(pui))
          return true;
-      for(int i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
+      for(index i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
       {
          System.hold(m_uiptraHold[i]);
       }

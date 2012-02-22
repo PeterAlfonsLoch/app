@@ -93,7 +93,6 @@ namespace userbase
       BOOL PressButton(int nID, BOOL bPress = TRUE);
       BOOL HideButton(int nID, BOOL bHide = TRUE);
       BOOL Indeterminate(int nID, BOOL bIndeterminate = TRUE);
-      int AddBitmap(int nNumButtons, UINT nBitmapID);
       int AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap);
 #ifdef WINDOWS
       BOOL AddButtons(int nNumButtons, LPTBBUTTON lpButtons);
@@ -112,7 +111,6 @@ namespace userbase
       int hit_test(LPPOINT ppt);
 
       void Customize();
-      int AddString(UINT nStringID);
       int AddStrings(const char * lpszStrings);
       void AutoSize();
 

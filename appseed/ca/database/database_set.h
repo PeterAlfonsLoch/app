@@ -3,8 +3,10 @@
 
 namespace database
 {
-   
+
+
    class base;
+
 
    class CLASS_DECL_ca set :
       virtual public ::radix::object
@@ -23,7 +25,7 @@ namespace database
 
      bool            active;         // Is Query Opened?
      bool            haveError;
-     int             frecno;          // number of current row bei bewegung
+     index             frecno;          // number of current row bei bewegung
      string          sql;
      int             m_iLastResult;
      string          m_strQueryErrorMessage;
@@ -116,7 +118,7 @@ namespace database
    /* sequence numbers */
      virtual long nextid(const char *seq_name)=0;
    /* sequence numbers */
-     virtual int num_rows()= 0;
+     virtual count num_rows()= 0;
 
    /* open SQL query */
      virtual void open(const char * sql) = 0;
@@ -139,9 +141,9 @@ namespace database
      virtual void refresh();
 
    /* Go to record No (starting with 0) */
-     virtual bool seek(int pos=0);
+     virtual bool seek(index pos=0);
    /* Go to record No (starting with 1) */
-     virtual bool goto_rec(int pos=1);
+     virtual bool goto_rec(index pos=1);
    /* Go to the first record in set */
      virtual void first();
    /* Go to next record in set */
@@ -177,14 +179,14 @@ namespace database
 
    /* func. retrieves a number of fields */
    /* Number of fields in a record */
-     virtual int field_count();                      
-     virtual int fieldCount();
+     virtual count field_count();                      
+     virtual count fieldCount();
    /* func. retrieves a field name with 'n' index */
-     virtual const char *fieldName(int n);
+     virtual const char *fieldName(index n);
    /* func. retrieves a field index with 'fn' field name,return -1 when field name not found */
      virtual int  fieldIndex(const char *fn);
    /* func. retrieves a field size */
-     virtual int  fieldSize(int n);
+     virtual count  fieldSize(index n);
 
 
    /* Set field value */
@@ -199,7 +201,7 @@ namespace database
 
    /* Getting value of field for current record */
       virtual var GetFieldValue(const char *f_name);
-      virtual var GetSelectFieldValue(int iField);
+      virtual var GetSelectFieldValue(index iField);
    /* Alias to get_CFieldValue */
       var fv(const char *f) { return GetFieldValue(f); }
 
@@ -238,6 +240,9 @@ namespace database
 
    };
 
+
 } // namespace vmssqlite
+
+
 
 

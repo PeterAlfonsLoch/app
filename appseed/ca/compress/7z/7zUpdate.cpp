@@ -118,20 +118,20 @@ namespace n7z
       return (copyCoderSpec->TotalSize == size ? S_OK : E_FAIL);
    }
 
-   static int GetReverseSlashPos(const string &name)
+   static strsize GetReverseSlashPos(const string &name)
    {
-      int slashPos = name.reverse_find(L'/');
+      strsize slashPos = name.reverse_find(L'/');
 #ifdef _WIN32
-      int slash1Pos = name.reverse_find(L'\\');
+      strsize slash1Pos = name.reverse_find(L'\\');
       slashPos = max(slashPos, slash1Pos);
 #endif
       return slashPos;
    }
 
-   int CUpdateItem::GetExtensionPos() const
+   strsize CUpdateItem::GetExtensionPos() const
    {
-      int slashPos = GetReverseSlashPos(Name);
-      int dotPos = Name.reverse_find(L'.');
+      strsize slashPos = GetReverseSlashPos(Name);
+      strsize dotPos = Name.reverse_find(L'.');
       if (dotPos < 0 || (dotPos < slashPos && slashPos >= 0))
          return Name.get_length();
       return dotPos + 1;
@@ -172,18 +172,29 @@ namespace n7z
 
    static int CompareFolders(const CFolder &f1, const CFolder &f2)
    {
-      int s1 = f1.Coders.get_count();
-      int s2 = f2.Coders.get_count();
+      
+      count s1 = f1.Coders.get_count();
+
+      count s2 = f2.Coders.get_count();
+
       RINOZ_COMP(s1, s2);
-      int i;
-      for (i = 0; i < s1; i++)
+
+      index i;
+
+      for(i = 0; i < s1; i++)
          RINOZ(CompareCoders(f1.Coders[i], f2.Coders[i]));
+
       s1 = f1.BindPairs.get_count();
+      
       s2 = f2.BindPairs.get_count();
+
       RINOZ_COMP(s1, s2);
+
       for (i = 0; i < s1; i++)
          RINOZ(CompareBindPairs(f1.BindPairs[i], f2.BindPairs[i]));
+
       return 0;
+
    }
 
    /*
@@ -309,10 +320,10 @@ namespace n7z
    struct CRefItem
    {
       const CUpdateItem *UpdateItem;
-      uint32 Index;
-      uint32 ExtensionPos;
-      uint32 NamePos;
-      int ExtensionIndex;
+      strsize Index;
+      strsize ExtensionPos;
+      strsize NamePos;
+      strsize ExtensionIndex;
       CRefItem(uint32 index, const CUpdateItem &ui, bool sortByType):
       UpdateItem(&ui),
          Index(index),
@@ -322,11 +333,15 @@ namespace n7z
       {
          if (sortByType)
          {
-            int slashPos = GetReverseSlashPos(ui.Name);
+            
+            strsize slashPos = GetReverseSlashPos(ui.Name);
+
             NamePos = ((slashPos >= 0) ? (slashPos + 1) : 0);
-            int dotPos = ui.Name.reverse_find(L'.');
+
+            strsize  dotPos = ui.Name.reverse_find(L'.');
+
             if (dotPos < 0 || (dotPos < slashPos && slashPos >= 0))
-               ExtensionPos = ui.Name.get_length();
+               ExtensionPos = (uint32_t) ui.Name.get_length();
             else
             {
                ExtensionPos = dotPos + 1;
@@ -868,23 +883,36 @@ namespace n7z
          // ---------- Split files to 2 groups ----------
 
          bool useFilters = options.UseFilters;
+         
          const CCompressionMethodMode &method = *options.Method;
+         
          if (method.Methods.get_count() != 1 || method.Binds.get_count() != 0)
             useFilters = false;
+         
          for (i = 0; i < updateItems.get_count(); i++)
          {
+            
             const CUpdateItem &ui = updateItems[i];
+            
             if (!ui.NewData || !ui.HasStream())
                continue;
+            
             bool filteredGroup = false;
+
             if (useFilters)
             {
-               int dotPos = ui.Name.reverse_find(L'.');
+               
+               strsize dotPos = ui.Name.reverse_find(L'.');
+
                if (dotPos >= 0)
                   filteredGroup = IsExeExt(ui.Name.Mid(dotPos + 1));
+
             }
+
             groups[GetGroupIndex(method.PasswordIsDefined, filteredGroup)].Indices.add(i);
+
          }
+
       }
 
 #ifndef _NO_CRYPTO
@@ -1007,8 +1035,10 @@ namespace n7z
 
                threadDecoder.Begin();
 
-               int startPackIndex = newDatabase.PackSizes.get_count();
+               count startPackIndex = newDatabase.PackSizes.get_count();
+
                CFolder newFolder;
+
                RINOK(encoder.Encode(
                   codecsInfo, externalCodecs,
                   sbInStream, NULL, &inSizeForReduce, newFolder,
@@ -1061,7 +1091,7 @@ namespace n7z
             }
          }
 
-         int numFiles = group.Indices.get_count();
+         count numFiles = group.Indices.get_count();
          if (numFiles == 0)
             continue;
          array_del_ptr<CRefItem> refItems;
@@ -1077,8 +1107,8 @@ namespace n7z
 
          for (i = 0; i < numFiles; i++)
          {
-            uint32 index = refItems[i].Index;
-            indices.add(index);
+            ::index index = refItems[i].Index;
+            indices.add((const uint32_t) index);
             /*
             const CUpdateItem &ui = updateItems[index];
             CFileItem file;
@@ -1123,7 +1153,7 @@ namespace n7z
 
             CFolder folderItem;
 
-            int startPackIndex = newDatabase.PackSizes.get_count();
+            count startPackIndex = newDatabase.PackSizes.get_count();
             RINOK(encoder.Encode(
                codecsInfo, externalCodecs,
                solidInStream, NULL, &inSizeForReduce, folderItem,

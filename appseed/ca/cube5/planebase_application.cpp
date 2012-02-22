@@ -179,7 +179,7 @@ namespace planebase
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(), System.::ca::thread_sp::m_p->get_os_int(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (DWORD) System.::ca::thread_sp::m_p->get_os_int(), TRUE);
       }
 
       if(is_system())

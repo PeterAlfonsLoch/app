@@ -34,6 +34,7 @@ namespace colorertake5
       void clearCache();
 
    private:
+
       string str;
       index stackLevel;
       index gx, gy, gy2, len;
@@ -59,14 +60,14 @@ namespace colorertake5
       RegionHandler *regionHandler;
 
       void fillInvisibleSchemes(parse_cache *cache);
-      void addRegion(int lno, int sx, int ex, class region* region);
-      void enterScheme(int lno, int sx, int ex, class region* region);
-      void leaveScheme(int lno, int sx, int ex, class region* region);
-      void enterScheme(int lno, SMatches *match, SchemeNode *schemeNode);
-      void leaveScheme(int lno, SMatches *match, SchemeNode *schemeNode);
+      void addRegion(index lno, strsize sx, strsize ex, class region* region);
+      void enterScheme(index lno, strsize sx, strsize ex, class region* region);
+      void leaveScheme(index lno, strsize sx, strsize ex, class region* region);
+      void enterScheme(index lno, SMatches *match, SchemeNode *schemeNode);
+      void leaveScheme(index lno, SMatches *match, SchemeNode *schemeNode);
 
-      int searchKW(const SchemeNode *node, int no, int lowLen, int hiLen);
-      int searchRE(scheme_impl *cscheme, int no, int lowLen, int hiLen);
+      index searchKW(const SchemeNode *node, index no, index lowLen, index hiLen);
+      index searchRE(scheme_impl *cscheme, index no, index lowLen, index hiLen);
       bool colorize(CRegExp *root_end_re, bool lowContentPriority);
 
 

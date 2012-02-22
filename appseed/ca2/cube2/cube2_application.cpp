@@ -165,9 +165,9 @@ namespace cube2
       COPYDATASTRUCT cds;
       memset(&cds, 0, sizeof(cds));
       cds.dwData = 198477;
-      cds.cbData = strlen(psz);
+      cds.cbData = (DWORD) strlen(psz);
       cds.lpData = (PVOID) psz;
-      return SendMessage(hwnd, WM_COPYDATA, (WPARAM) (HWND) osdataSender, (LPARAM) &cds);
+      return (int) SendMessage(hwnd, WM_COPYDATA, (WPARAM) (HWND) osdataSender, (LPARAM) &cds);
    }
 
    void application::request(::ca::create_context * pcreatecontext)

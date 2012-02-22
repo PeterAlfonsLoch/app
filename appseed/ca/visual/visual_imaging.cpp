@@ -423,22 +423,21 @@ HFONT CreateScaledFont(
 
 void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 {
+   
    TEXTMETRIC tm;
-   GetTextMetrics(
-      hDC,
-      &tm);
-   int nIndex, nSize;
+   
+   GetTextMetrics(hDC,&tm);
+   
+   index nIndex;
+   count nSize;
+
    nSize = pArray->get_size();
    lpSize->cx = 0;
    size size;
    for(nIndex = 0; nIndex < nSize; nIndex++)
    {
       const string &str = pArray->get_at(nIndex);
-      GetTextExtentPoint32(
-         hDC,
-         str,
-         str.get_length(),
-         &size);
+      GetTextExtentPoint32(hDC, str, (int) str.get_length(), &size);
       if(size.cx > lpSize->cx)
          lpSize->cx = size.cx;
    }
@@ -447,29 +446,29 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
    //      tm.tmExternalLeading +
    //      tm.tmInternalLeading) *
    nSize;
-   lpSize->cy =
-      (tm.tmHeight +
-      tm.tmExternalLeading) *
-      nSize;
+   lpSize->cy = (LONG) ((tm.tmHeight +  tm.tmExternalLeading) * nSize);
 }
 
 void DrawMultiLineText(HDC hDC, stringa * pArray)
 {
+   
    TEXTMETRIC tm;
-   GetTextMetrics(
-      hDC,
-      &tm);
-   int nIndex, nSize;
+
+   GetTextMetrics(hDC, &tm);
+   
+   index nIndex;
+   count nSize;
+
    nSize = pArray->get_size();
+   
    int yPos = 0;
+
    for(nIndex = 0; nIndex < nSize; nIndex++)
    {
+      
       const string &str = pArray->get_at(nIndex);
-      TextOut(
-         hDC,
-         0, yPos,
-         str,
-         str.get_length());
+
+      TextOut(hDC, 0, yPos, str, (int) str.get_length());
 
       yPos +=
          tm.tmHeight +

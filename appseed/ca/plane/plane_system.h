@@ -734,28 +734,39 @@ void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, AR
 }
 
 template <class TYPE, class ARG_TYPE>
-inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(
-   int iIndex,
-   ARG_TYPE t)
+inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(index iIndex, ARG_TYPE t)
 {
+   
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
+   
    *pt = t;
+
    this->ptra().insert_at(iIndex, pt);
+
 }
 
 
 template <class TYPE, class ARG_TYPE>
 inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::operator = (const array_app_alloc <TYPE, ARG_TYPE> & a)
 {
+   
    remove_all();
-   for(int i = 0; i < a.ptra().get_size(); i++)
+
+   for(index i = 0; i < a.ptra().get_size(); i++)
    {
+
       TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
+
       *pt = *a.ptra()[i];
+
       this->ptra().add(pt);
+
    }
+
    this->ptra().set_size(a.ptra().get_size());
+
    return *this;
+
 }
 
 
@@ -763,6 +774,7 @@ inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::op
 template<class TYPE, class ARG_TYPE>
 void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
 {
+
    ASSERT(iIndex >= 0);
 
    if(iIndex < this->ptra().get_size())

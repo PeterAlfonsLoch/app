@@ -759,10 +759,10 @@ namespace webserver
       var lyrics,
       var querystyle_arg,
       var order,
-      int limitstart,
-      int limitcount,
-      int & lastpage,
-      int & totalcount,
+      index limitstart,
+      ::count limitcount,
+      index & lastpage,
+      ::count & totalcount,
       var cid,
       var aid,
       var topic,
@@ -1311,7 +1311,7 @@ namespace webserver
 
       totalcount = total_rows;
 
-      int recordcount = rowa.array_get_count();
+      ::count recordcount = rowa.array_get_count();
 
       //      int line = 0;
 

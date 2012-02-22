@@ -11,7 +11,7 @@
 #define CA2M_BERGEDGE 0xCA20
 #define BERGEDGE_GETAPP 0
 
-#include "factory.h"
+#include "radix_factory.h"
 
 
 class document_template;

@@ -37,7 +37,7 @@ namespace plane
       };
 
       class CLASS_DECL_ca map :
-         virtual public ::collection::map < int, int, ::plane::session *, ::plane::session * >
+         virtual public ::collection::map < index, index, ::plane::session *, ::plane::session * >
       {
       };
 

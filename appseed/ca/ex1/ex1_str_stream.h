@@ -10,7 +10,7 @@ namespace ex1
    public:
       
       
-      DWORD m_dwPos;
+      primitive::memory_size m_dwPos;
       string * m_pstr;
 
       

@@ -792,21 +792,30 @@ void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
 }
 
 
-int virtual_user_interface::GetWindowText(__out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpszStringBuf, __in int nMaxCount)
+strsize virtual_user_interface::GetWindowText(LPTSTR lpszStringBuf,  int nMaxCount)
 {
+   
    string str;
+   
    GetWindowText(str);
-   int iLen = str.get_length();
+   
+   strsize iLen = str.get_length();
+
    if(iLen >= (nMaxCount - 1))
    {
+
       memcpy(lpszStringBuf, str, nMaxCount - 1);
+
       lpszStringBuf[nMaxCount - 1] = '\0';
+
    }
    else
    {
       memcpy(lpszStringBuf, str, iLen + 1);
    }
+
    return iLen;
+
 }
 
 void virtual_user_interface::GetWindowText(string & str)

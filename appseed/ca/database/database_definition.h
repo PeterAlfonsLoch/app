@@ -1,6 +1,8 @@
 #pragma once
 
+
 #include "database_stringhelper.h"
+
 
 #define S_NO_CONNECTION "No active connection";
 
@@ -18,8 +20,11 @@
 #define DB_UNEXPECTED      7   // This shouldn't ever happen
 #define DB_UNEXPECTED_RESULT   -1       //For integer functions
 
+
 namespace database
 {
+
+
    /******************** Class DbErrors definition *********************
 
                error handling
@@ -160,12 +165,15 @@ namespace database
       var_array      m_fieldvaluea;
 
 
-      var & GetFieldValue(int i);
-      const char * GetKey(int i);
-      int get_size();
+      var & GetFieldValue(index i);
+      const char * GetKey(index i);
+      count get_size();
       bool is_empty();
       parameter_list & operator = (const parameter_list & paramlist);
+
+
    };
+
 
 } // namespace database
 

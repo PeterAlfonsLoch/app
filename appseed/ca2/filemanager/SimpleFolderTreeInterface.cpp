@@ -128,7 +128,7 @@ namespace filemanager
 
             if(iObscured > 0)
             {
-               int iNewScroll = m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight();
+               int iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
                m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
             }
          }
@@ -176,7 +176,7 @@ namespace filemanager
 
       void SimpleFolderTreeInterface::_017UpdateZipList(const char * lpcsz, ::ex1::tree_item * pitemParent, int iLevel)
       {
-         int i;
+         index i;
 
 //         ::fs::tree_item * pitemChild;
 
@@ -185,7 +185,7 @@ namespace filemanager
          string wstrExtraPath;
          string wstrItemExtra;
 
-         int iFind;
+         index iFind;
          ex1::filesp spfile(get_app());
 
          //spfile->open(szPath, ::ex1::file::mode_read | ::ex1::file::type_binary);

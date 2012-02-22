@@ -90,9 +90,9 @@ namespace filemanager
             {
             public:
                BuildHelper();
-               int      m_iTopIndex;
-               int      m_iDisplayItemCount;
-               int      m_iStep;
+               ::index      m_iTopIndex;
+               ::count      m_iDisplayItemCount;
+               ::index      m_iStep;
                bool     m_bActive;
             };
 
@@ -114,10 +114,10 @@ namespace filemanager
             void parse(const char * lpszSource);
             void KickBuild(int iItem = -1);
          
-            void PostFillTask(string & strFile, UINT uiTimer);
+            void PostFillTask(string & strFile, UINT_PTR uiTimer);
 
             virtual void _001OnSort();
-            bool GetSongPath(string & str, int iItem);
+            bool GetSongPath(string & str, index iItem);
 
             virtual void _001GetItemImage(::user::list_item * pitem);
             virtual void _001InsertColumns();

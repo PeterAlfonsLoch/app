@@ -288,7 +288,7 @@ namespace netnode
          int iLen = System.file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
-            UINT uiTotal = 0;
+            primitive::memory_size uiTotal = 0;
             primitive::memory mem;
             mem.allocate(128 * 1024 * 1024);
             for(int i = 0; i < prangea->get_count(); i++)
@@ -299,9 +299,9 @@ namespace netnode
                   continue;
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ex1::seek_begin);
-               UINT uiRead;
+               primitive::memory_size uiRead;
                gen::memory_file memfile(get_app());
-               int iPos = iStart;
+               primitive::memory_size iPos = iStart;
                if(iEnd >= iStart)
                {
                }
@@ -343,7 +343,7 @@ namespace netnode
          }
          else
          {
-            UINT uiTotal = 0;
+            primitive::memory_size uiTotal = 0;
             primitive::memory mem;
             mem.allocate(128 * 1024 * 1024);
             int iStart = prangea->element_at(0)[0];
@@ -352,9 +352,9 @@ namespace netnode
             {
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ex1::seek_begin);
-               UINT uiRead;
+               primitive::memory_size uiRead;
                gen::memory_file memfile(get_app());
-               int iPos = iStart;
+               primitive::memory_size iPos = iStart;
                if(iEnd >= iStart)
                {
                }

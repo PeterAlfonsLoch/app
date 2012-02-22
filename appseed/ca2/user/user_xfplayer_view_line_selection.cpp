@@ -25,8 +25,8 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
       return;
    }
 
-   int iLine;
-   int iChar;
+   index iLine;
+   strsize iChar;
    if((message == WM_MOUSEMOVE && GetState() == StateTracking)
       || message == WM_LBUTTONDOWN
       || message == WM_LBUTTONUP)
@@ -147,7 +147,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
    }
    else if(message == WM_TIMER)
    {
-      UINT nIDEvent = pbase->m_wparam;
+      UINT_PTR nIDEvent = pbase->m_wparam;
       if(nIDEvent == gen::Timer::ID_HOVER)
       {
          point pt;
@@ -361,10 +361,10 @@ XfplayerViewLineSelectionItem::XfplayerViewLineSelectionItem()
 {
 }
 XfplayerViewLineSelectionItem::XfplayerViewLineSelectionItem(
-   int      iLineStart,
-   int      iLineEnd,
-   int      iCharStart,
-   int      iCharEnd
+   index      iLineStart,
+   index      iLineEnd,
+   strsize      iCharStart,
+   strsize      iCharEnd
    )
 {
    m_iLineStart = iLineStart;
@@ -386,14 +386,14 @@ XfplayerViewLineSelectionItem & XfplayerViewLineSelectionItem::operator =(const 
 }
 
 void XfplayerViewLineSelection::Select(
-   int      iLineStart,
-   int      iLineEnd,
-   int      iCharStart,
-   int      iCharEnd,
+   index      iLineStart,
+   index      iLineEnd,
+   strsize      iCharStart,
+   strsize      iCharEnd,
    bool    bMerge)
 {
    UNREFERENCED_PARAMETER(bMerge);
-   for(int i = 0; i < m_itema.get_size(); i++)
+   for(index i = 0; i < m_itema.get_size(); i++)
    {
       if(m_itema.element_at(i).Intersect(iLineStart, iLineEnd))
       {
@@ -421,8 +421,8 @@ bool XfplayerViewLineSelection::OnLButtonDown(XfplayerViewLine & viewline, UINT 
 
    bool bInside;
 
-   int iLine;
-   int iChar;
+   index iLine;
+   strsize iChar;
    rect rectPlacement;
    viewline.GetPlacement(rectPlacement);
    bInside = rectPlacement.contains(pt1) != 0;
@@ -468,8 +468,8 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
 
    point pt1(pt);
    viewline.get_interaction()->ScreenToClient(&pt1);
-   int iLine;
-   int iChar;
+   index iLine;
+   strsize iChar;
 
    rect rectPlacement;
    viewline.GetPlacement(rectPlacement);
@@ -549,8 +549,8 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
 
    point pt1(pt);
    viewline.get_interaction()->ScreenToClient(&pt1);
-   int iLine;
-   int iChar;
+   index iLine;
+   strsize iChar;
 
    rect rectPlacement;
    viewline.GetPlacement(rectPlacement);
@@ -663,7 +663,7 @@ void XfplayerViewLineSelectionItem::NormalizeSel()
 
 
 
-void XfplayerViewLineSelection::GetNormalSelection(int & iLineStart, int & iCharStart, int & iLineEnd, int & iCharEnd)
+void XfplayerViewLineSelection::GetNormalSelection(index & iLineStart, strsize & iCharStart, index & iLineEnd, strsize & iCharEnd)
 {
    if(m_item.GetLineStart() > m_item.GetLineEnd())
    {
@@ -696,49 +696,49 @@ void XfplayerViewLineSelection::GetNormalSelection(int & iLineStart, int & iChar
    }
 }
 
-int XfplayerViewLineSelectionItem::GetLineStart()
+index XfplayerViewLineSelectionItem::GetLineStart()
 {
    return m_iLineStart;
 }
 
-int XfplayerViewLineSelectionItem::GetLineEnd()
+index XfplayerViewLineSelectionItem::GetLineEnd()
 {
    return m_iLineEnd;
 }
 
-int XfplayerViewLineSelectionItem::GetCharStart()
+strsize XfplayerViewLineSelectionItem::GetCharStart()
 {
    return m_iCharStart;
 }
 
-int XfplayerViewLineSelectionItem::GetCharEnd()
+strsize XfplayerViewLineSelectionItem::GetCharEnd()
 {
    return m_iCharEnd;
 }
 
-void XfplayerViewLineSelectionItem::SetLineStart(int iLine)
+void XfplayerViewLineSelectionItem::SetLineStart(index iLine)
 {
    m_iLineStart = iLine;
 }
 
-void XfplayerViewLineSelectionItem::SetLineEnd(int iLine)
+void XfplayerViewLineSelectionItem::SetLineEnd(index iLine)
 {
    m_iLineEnd = iLine;
 }
 
-void XfplayerViewLineSelectionItem::SetCharStart(int iChar)
+void XfplayerViewLineSelectionItem::SetCharStart(strsize iChar)
 {
    m_iCharStart = iChar;
 }
 
-void XfplayerViewLineSelectionItem::SetCharEnd(int iChar)
+void XfplayerViewLineSelectionItem::SetCharEnd(strsize iChar)
 {
    m_iCharEnd = iChar;
 }
 
 bool XfplayerViewLineSelectionItem::Intersect(XfplayerViewLine &viewline)
 {
-   return Intersect(viewline.m_iIndex, (int)viewline.m_iaPosition.get_upper_bound());
+   return Intersect(viewline.m_iIndex, viewline.m_iaPosition.get_upper_bound());
 }
 
 
@@ -749,7 +749,7 @@ XfplayerViewLineSelection::e_state XfplayerViewLineSelection::GetState()
 }
 
 
-bool XfplayerViewLineSelectionItem::Intersect(int iFirstLine, int iLastLine)
+bool XfplayerViewLineSelectionItem::Intersect(index iFirstLine, index iLastLine)
 {
 
    return max(iFirstLine, m_iLineStart) <= min(iLastLine, m_iLineEnd);
@@ -764,7 +764,7 @@ bool XfplayerViewLineSelection::get_item(XfplayerViewLineSelectionItem &item, Xf
       item.NormalizeSel();
       return true;
    }
-   for(int iItem = 0; iItem < m_itema.get_size(); iItem++)
+   for(index iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       XfplayerViewLineSelectionItem & itemTest = m_itema.element_at(iItem);
       if(itemTest.Intersect(viewline))

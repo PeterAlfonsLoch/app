@@ -365,7 +365,7 @@ namespace plugin
 
       m_bMainReady = true;
 
-      int iCount = get_memory_length();
+      count iCount = get_memory_length();
 
       if(iCount > 0)
       {
@@ -400,7 +400,7 @@ namespace plugin
 
          LPSTR lpszAlloc = (LPSTR) (void *) psz;
       
-         int iCount = strlen(psz);
+         strsize iCount = strlen(psz);
 
          //sleep(seconds(15));
 
@@ -515,7 +515,7 @@ namespace plugin
                   if(str.has_char())
                   {
                      string strId = str;
-                     int iFind = strId.find("?");
+                     strsize iFind = strId.find("?");
                      if(iFind >= 0)
                      {
                         strId = strId.Left(iFind);
@@ -620,7 +620,7 @@ namespace plugin
 
 
 
-   UINT_PTR plugin::message_handler(UINT_PTR uiMessage, WPARAM wparam, LPARAM lparam)
+   UINT_PTR plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       if(m_puiHost != NULL)
       {

@@ -81,7 +81,7 @@ SymEngine::~SymEngine()
    delete m_pstackframe;
 }
 
-unsigned SymEngine::module(string & str)
+strsize SymEngine::module(string & str)
 {
    if (!check())
       return 0;
@@ -92,7 +92,7 @@ unsigned SymEngine::module(string & str)
    return get_module_basename(hmodule, str);   
 }
 
-unsigned int SymEngine::symbol(string & str, DWORD_PTR * pdisplacement)
+strsize SymEngine::symbol(string & str, DWORD_PTR * pdisplacement)
 {
    if (!check())
       return 0;
@@ -115,7 +115,7 @@ unsigned int SymEngine::symbol(string & str, DWORD_PTR * pdisplacement)
    return str.get_length();
 }
 
-unsigned int SymEngine::fileline (string & str, DWORD_PTR * pline, DWORD_PTR * pdisplacement)
+index SymEngine::fileline (string & str, DWORD_PTR * pline, DWORD_PTR * pdisplacement)
 {
 
    if (!check())
@@ -256,21 +256,30 @@ bool SymEngine::get_line_from_address (HANDLE hprocess, DWORD_PTR uiAddress, DWO
    #endif
 }
 
-unsigned SymEngine::get_module_basename (HMODULE hmodule, string & str)
+strsize SymEngine::get_module_basename (HMODULE hmodule, string & str)
 {
+   
    char filename[MAX_PATH];
+
    DWORD r = GetModuleFileNameA(hmodule, filename, MAX_PATH);
-   if (!r) return 0;
+
+   if(!r)
+      return 0;
 
    str = filename;
 
    // find the last '\' mark.
-   int iPos = str.reverse_find('\\');
+   strsize iPos = str.reverse_find('\\');
+
    if(iPos >= 0)
    {
+
       str = str.Mid(iPos + 1);
+
    }
+
    return str.get_length();
+
 }
 
 bool SymEngine::check()

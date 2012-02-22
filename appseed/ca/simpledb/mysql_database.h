@@ -10,6 +10,17 @@ namespace mysql
    class CLASS_DECL_ca database :
       virtual public ::radix::object
    {
+   
+      
+      friend class result;
+   
+   protected:
+
+
+      comparable_array < result * > m_resultptra;
+      void * m_pmysql; // MYSQL *
+
+
    public:
 
 
@@ -18,6 +29,8 @@ namespace mysql
 
       database(::ca::application * papp);
       virtual ~database();
+
+
       bool connect(
          const char * pszHost, 
          const char * pszUser,
@@ -91,7 +104,7 @@ namespace mysql
 
       virtual var get_agent(const char * pszTable, const char * pszEmail, const char * pszUser);
 
-      string real_escape_string(void * p, int iLine);
+      string real_escape_string(void * p, strsize iLine);
       string real_escape_string(const char * psz);
 
       var get_insert_id();
@@ -99,10 +112,6 @@ namespace mysql
       string error1(const char * pszPrefix = NULL);
       void trace_error1(const char * pszPrefix = NULL);
 
-      friend class result;
-   protected:
-      comparable_array < result * > m_resultptra;
-      void * m_pmysql; // MYSQL *
    };
 
 

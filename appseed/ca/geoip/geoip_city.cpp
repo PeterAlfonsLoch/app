@@ -13,7 +13,7 @@ GeoIPRecord * _extract_record(GeoIP* gi, unsigned int seek_record, int *next_rec
    int j;
    double latitude = 0, longitude = 0;
    int metroarea_combo = 0;
-   int bytes_read = 0;
+   size_t bytes_read = 0;
    if (seek_record == gi->databaseSegments[0])      
       return NULL;
 
@@ -105,7 +105,7 @@ for (j = 0; j < 3; ++j)
 
    /* Used for GeoIP_next_record */
    if (next_record_ptr != NULL)
-      *next_record_ptr = seek_record + record_buf - begin_record_buf + 3;
+      *next_record_ptr = (int) (seek_record + record_buf - begin_record_buf + 3);
 
    return record;
 }
@@ -234,13 +234,16 @@ void GeoIPRecord_delete (GeoIPRecord *gir) {
 
 
 
-char * _iso_8859_1__utf8(const char * iso) {
+char * _iso_8859_1__utf8(const char * iso)
+{
+
    signed char c;
    char k;
    char * p;
    char * t = (char *)iso;
-   int len = 0;
-   while ( ( c = *t++) ){
+   strsize len = 0;
+   while ( ( c = *t++) )
+   {
       if ( c < 0 )
          len++; 
    }

@@ -84,14 +84,14 @@ namespace user
 
    void plain_text_data::GroupCommand::Undo(plain_text_data * pdoc)
    {
-      for(int i = get_upper_bound(); i >= 0; i--)
+      for(index i = get_upper_bound(); i >= 0; i--)
       {
          this->element_at(i)->Undo(pdoc);
       }
    }
    void plain_text_data::GroupCommand::Redo(plain_text_data * pdoc)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(index i = 0; i < this->get_size(); i++)
       {
          this->element_at(i)->Redo(pdoc);
       }

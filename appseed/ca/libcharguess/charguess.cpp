@@ -42,7 +42,7 @@ const char* GuessChardet(const char *str)
       return NULL;
    }
    det->Reset();
-   det->HandleData(str, strlen(str));
+   det->HandleData(str, (PRUint32) strlen(str));
    det->DataEnd();
    tmp = det->GetCharset();
 

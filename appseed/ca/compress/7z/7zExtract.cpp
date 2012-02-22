@@ -57,7 +57,7 @@ namespace n7z
        #ifdef _7Z_VOL
        _refs.get_count();
        #else
-       _db.Files.get_count();
+       (const uint32_t) _db.Files.get_count();
        #endif
 
      if(numItems == 0)
@@ -124,8 +124,8 @@ namespace n7z
          CExtractFolderInfo &efi = extractFolderInfoVector.last_element();
 
          // const CFolderInfo &folderInfo = m_dam_Folders[folderIndex];
-         CNum startIndex = db.FolderStartFileIndex[folderIndex];
-         for (CNum index = efi.ExtractStatuses.get_count();
+         CNum startIndex = (CNum) db.FolderStartFileIndex[folderIndex];
+         for(CNum index = (CNum) efi.ExtractStatuses.get_count();
              index <= fileIndex - startIndex; index++)
          {
            // uint64 unpackSize = _db.Files[startIndex + index].UnpackSize;

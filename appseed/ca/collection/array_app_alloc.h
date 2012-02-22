@@ -6,15 +6,18 @@ class array_app_alloc :
    public array_del_ptr < TYPE, ARG_TYPE >
 {
 public:
+
+
    array_app_alloc(::ca::application * papp);
    array_app_alloc();
    array_app_alloc(const array_app_alloc & a);
    virtual ~array_app_alloc();
 
+
    virtual TYPE * add_new();
    index add(const TYPE & t);
    index add(TYPE * p);
-   inline void insert_at(int iIndex, ARG_TYPE t);
+   inline void insert_at(index iIndex, ARG_TYPE t);
 
    void remove_at(index iIndex);
    count remove_all(bool bRelease = true);

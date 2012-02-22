@@ -98,14 +98,14 @@ namespace dynamic_source
       m_memfileError.seek_to_begin();
       m_memfileError.to_string(str);
       {
-         int iFind1 = str.find(".dll: does not exist.");
+         strsize iFind1 = str.find(".dll: does not exist.");
          if(iFind1 >= 0)
          {
             // if dll does not exist
             {
-               int iFind1 = str.find(" error(");
-               int iFind2 = str.find(" error ");
-               int iFind3 = str.find("Linking...");
+               strsize iFind1 = str.find(" error(");
+               strsize iFind2 = str.find(" error ");
+               strsize iFind3 = str.find("Linking...");
                // and have compile error
                if((iFind3 >= 0 && ((iFind1 < iFind3 && iFind1 >= 0) ||
                   (iFind2 < iFind3 && iFind2 >= 0))))
@@ -117,24 +117,24 @@ namespace dynamic_source
          }
       }
       {
-         int iFind1 = str.find("fatal error C1033:");
+         strsize iFind1 = str.find("fatal error C1033:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         int iFind1 = str.find("warning LNK4099:");
+         strsize iFind1 = str.find("warning LNK4099:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         int iFind1 = str.find("fatal error LNK1168:");
+         strsize iFind1 = str.find("fatal error LNK1168:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         int iFind1 = str.find(" error(");
-         int iFind2 = str.find(" error ");
-         int iFind3 = str.find("Linking...");
+         strsize iFind1 = str.find(" error(");
+         strsize iFind2 = str.find(" error ");
+         strsize iFind3 = str.find("Linking...");
          if(iFind3 >= 0 && (iFind1 > iFind3 || iFind2 > iFind3))
          {
             return true;

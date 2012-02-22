@@ -14,19 +14,19 @@ namespace visual
 
    glyph * glyph_set::GetGlyph(UINT user)
    {
-      int i = find_first(user);
+      index i = find_first(user);
       if(i >= 0)
          return &this->element_at(i);
       else
          return NULL;
    }
 
-   int glyph_set::find_first(
-      UINT user)
+   index glyph_set::find_first(UINT user)
    {
-      int iLoBound = 0;
-      int iHiBound = this->get_size() - 1;
-      int iIndex = 0;;
+      
+      index iLoBound = 0;
+      index iHiBound = this->get_size() - 1;
+      index iIndex = 0;;
       while(true)
       {
          if(iLoBound > iHiBound)
@@ -55,7 +55,7 @@ namespace visual
          else
             ASSERT(0);
       }
-      int iLastIndex = iIndex;
+      index iLastIndex = iIndex;
       while(true)
       {
          iIndex--;
@@ -70,11 +70,11 @@ namespace visual
 
    void glyph_set::QuickSort()
    {
-      dword_array stackLowerBound;
-      dword_array stackUpperBound;
-      int iLowerBound;
-      int iUpperBound;
-      int iLPos, iUPos, iMPos;
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
       glyph glyph;
 
       if(this->get_size() >= 2)

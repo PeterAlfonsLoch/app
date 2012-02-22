@@ -237,7 +237,7 @@ namespace compress
             int32 maxOpCount = 25000000;
             const CCommand *commands = &prg->Commands[0];
             const CCommand *cmd = commands;
-            uint32 numCommands = prg->Commands.get_size();
+            uint32 numCommands = (uint32_t) prg->Commands.get_size();
             for (;;)
             {
                switch(cmd->OpCode)
@@ -731,7 +731,7 @@ namespace compress
                               Distance -= 8;
                            else if (Distance >= 8)
                               Distance -= 16;
-                           Distance += prg->Commands.get_size() - 1;
+                           Distance += (int) (prg->Commands.get_size() - 1);
                         }
                         cmd->Op1.Data = Distance;
                      }

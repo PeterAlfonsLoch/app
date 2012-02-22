@@ -114,8 +114,8 @@ string ui_redir::solve(const string & pszRoot, const string & pszLang, const str
             <div class=\"divtopnav\">\r\n\
             \r\n\
             ");
-      int count = linka.array_get_count();
-      int i;
+      ::count count = linka.array_get_count();
+      ::index i;
       for(i = 0; i < count; i++)
       {
          print("<a href=\"" + linka.at(i) + "\" class=\"divtopnav-a\">" + titlea.at(i) + "</a>");
@@ -145,8 +145,8 @@ string ui_redir::solve(const string & pszRoot, const string & pszLang, const str
             <tr>\r\n\
             \r\n\
             ");
-      int count = pnav->get_count();
-      for(int i = 0; i < count; i++)
+      ::count count = pnav->get_count();
+      for(::index i = 0; i < count; i++)
       {
          ui_nav_item & item = *pnav->element_at(i);
          if(item.m_bCurrent)
@@ -178,8 +178,8 @@ string ui_redir::solve(const string & pszRoot, const string & pszLang, const str
             <tr>\r\n\
             \r\n\
             ");
-      int count = pnav->get_count();
-      for(int i = 0; i < count; i++)
+      ::count count = pnav->get_count();
+      for(::index i = 0; i < count; i++)
       {
          ui_nav_item & item = *pnav->element_at(i);
          if(item.m_bCurrent)
@@ -210,8 +210,8 @@ string ui_redir::solve(const string & pszRoot, const string & pszLang, const str
             <tr>\r\n\
             \r\n\
             ");
-      int count = pnav->get_count();
-      for(int i = 0; i < count; i++)
+      ::count count = pnav->get_count();
+      for(::index i = 0; i < count; i++)
       {
          ui_nav_item & item = *pnav->element_at(i);
          if(item.m_bCurrent)
@@ -240,10 +240,10 @@ string ui_redir::solve(const string & pszRoot, const string & pszLang, const str
 
    void user::karaoke_printOutTabNav70(ui_nav * pnav)
    {
-      int count = pnav->get_count();
-      double percent_total_tab_sp = (count - 1) * 2;
-      double percent_total_tab = 90 - percent_total_tab_sp;
-      double percent_tab_sp = 100;
+      ::count count = pnav->get_count();
+      double percent_total_tab_sp = (((double) count - 1.0) * 2.0);
+      double percent_total_tab = 90.0 - percent_total_tab_sp;
+      double percent_tab_sp = 100.0;
       if(count - 1 > 0)
       {
          percent_tab_sp = percent_total_tab_sp / (count - 1);
@@ -254,7 +254,7 @@ string ui_redir::solve(const string & pszRoot, const string & pszLang, const str
             <tr>\r\n\
             \r\n\
             ");
-      for(int i = 0; i < count; i++)
+      for(::index i = 0; i < count; i++)
       {
          ui_nav_item & item = *pnav->element_at(i);
          if(item.m_bCurrent)

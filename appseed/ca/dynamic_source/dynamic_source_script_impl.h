@@ -403,7 +403,7 @@ namespace dynamic_source
       using script_interface::array_unshift;
       virtual void array_unshift(var & varArray, const var varElement);
 
-      virtual int count(var var);
+      virtual ::count count(var var);
 
       var array(
          var var01 = gen::g_emptyargumentconst,

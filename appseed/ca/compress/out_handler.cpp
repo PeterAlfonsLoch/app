@@ -291,7 +291,7 @@ namespace compress
    {
       subStrings.clear();
       string name;
-      int len = srcString.get_length();
+      strsize len = srcString.get_length();
       if (len == 0)
          return;
       for (int i = 0; i < len; i++)
@@ -310,14 +310,14 @@ namespace compress
 
    static void SplitParam(const string &param, string &name, string &value)
    {
-      int eqPos = param.find(L'=');
+      strsize eqPos = param.find(L'=');
       if (eqPos >= 0)
       {
          name = param.Left(eqPos);
          value = param.Mid(eqPos + 1);
          return;
       }
-      for(int i = 0; i < param.get_length(); i++)
+      for(strsize i = 0; i < param.get_length(); i++)
       {
          char c = param[i];
          if (c >= '0' && c <= '9')
@@ -582,7 +582,7 @@ namespace compress
       if (number < minNumber)
          return E_INVALIDARG;
       number -= minNumber;
-      for(int j = _methods.get_size(); j <= (int)number; j++)
+      for(count j = _methods.get_size(); j <= (int)number; j++)
       {
          COneMethodInfo oneMethodInfo;
          _methods.add(oneMethodInfo);

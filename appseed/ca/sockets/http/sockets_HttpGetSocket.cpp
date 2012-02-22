@@ -94,7 +94,7 @@ namespace sockets
       //outheader("Content-Length") = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader("Host") = GetUrlHost() + ":" + gen::str::l2string(GetUrlPort());
+         inheader("Host") = GetUrlHost() + ":" + gen::str::itoa(GetUrlPort());
       else
          inheader("Host") = GetUrlHost();
       SendRequest();

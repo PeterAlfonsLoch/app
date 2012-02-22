@@ -6,11 +6,12 @@
 #include "database_selection.h"
 
 
-
 namespace database
 {
 
+
    class client_array;
+
 
    class CLASS_DECL_ca client :
       virtual public ::radix::object
@@ -87,15 +88,21 @@ namespace database
       public comparable_array < client * , client * >
    {
    public:
+      
+      
       client_array();
       virtual ~client_array();
 
 
       virtual void add_client(client * pclient);
       virtual void RemoveClient(client * pclient);
-      client * ClientAt(int iClient);
-      int GetClientCount();
+      client * ClientAt(index iClient);
+      ::count GetClientCount();
+
 
    };
 
+
 } // namespace database
+
+

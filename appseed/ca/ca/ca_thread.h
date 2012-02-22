@@ -172,6 +172,8 @@ namespace ca
 
       inline bool find(void * p, bool bRemove)  // lAyana e Mi tsuo tsumanumA
       {
+         UNREFERENCED_PARAMETER(bRemove);
+
          for(int mi = 0; mi < this->get_count(); mi++)
          {
             if(m_pData[mi].contains(p))
@@ -316,8 +318,8 @@ namespace ca
       using pha(::user::interaction)::remove;
       virtual void remove(::user::interaction * pui);
 
-      virtual int get_ui_count();
-      virtual ::user::interaction * get_ui(int iIndex);
+      virtual ::count get_ui_count();
+      virtual ::user::interaction * get_ui(index iIndex);
       virtual void set_timer(::user::interaction * pui, UINT_PTR nIDEvent, UINT nEllapse);
       virtual void unset_timer(::user::interaction * pui, UINT_PTR nIDEvent);
       virtual void set_auto_delete(bool bAutoDelete = true);

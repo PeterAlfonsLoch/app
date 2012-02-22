@@ -80,7 +80,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca int _tcsenicmp( const char * psz, const char * str, int len, int escape );
+   CLASS_DECL_ca int _tcsenicmp( const char * psz, const char * str, strsize len, int escape );
 
    //========================================================
    // Name   : _tcsenistr
@@ -91,7 +91,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca char * _tcsenistr( const char * psz, const char * str, int len, int escape );
+   CLASS_DECL_ca char * _tcsenistr( const char * psz, const char * str, strsize len, int escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -116,19 +116,6 @@ namespace xml
    CLASS_DECL_ca void _SetString( char * psz, char * end, string* ps, bool trim = FALSE, int escape = 0 );
 
 
-   // Helper Funtion
-   inline long XStr2Int( const char * str, long default_value = 0 )
-   {
-      return ( str && *str ) ? atoi(str) : default_value;
-   }
 
-   inline bool XIsEmptyString( const char * str )
-   {
-      string s(str);
-      s.trim_left();
-      s.trim_right();
-
-      return ( s.is_empty() || s == L"" );
-   }
 
 } // namespace xml

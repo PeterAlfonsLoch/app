@@ -277,7 +277,7 @@ namespace webserver
 
       dprint("karaoke_basepath=" + basepath);
 
-      int pos = filename.find("_-_");
+      strsize pos = filename.find("_-_");
       dprint(filename);
       dprint("pos="+gen::str::itoa(pos));
 
@@ -299,7 +299,7 @@ namespace webserver
             return path;
       }
 
-      int len;
+      strsize len;
       pos = filename.find("_");
       if(pos < 0)
          len = min(strlen(filename), 3);
@@ -328,7 +328,7 @@ namespace webserver
       string basepath = gprop("g_karaoke_basepath");
       string filename = varFilename;
 
-      int pos = filename.find("_-_");
+      strsize pos = filename.find("_-_");
       //   print(" $filename");
       //print(" "pos=$pos"");
 
@@ -347,7 +347,7 @@ namespace webserver
             return path;
       }
 
-      int len;
+      strsize len;
       pos = filename.find("_");
       if(pos < 0)
          len = min(filename.get_length(), 3);
@@ -375,7 +375,7 @@ namespace webserver
 
    string music::performer_implode1(var performernamea)
    {
-      int count = performernamea.array_get_count();
+      ::count count = performernamea.array_get_count();
       string ret;
       if(count == 0)
          ret = "";
@@ -464,7 +464,7 @@ namespace webserver
 
    string music::veriwell_getsongfileextension(var filename)
    {
-      int len = strlen(filename);
+      strsize len = strlen(filename);
       string type;
       if(len >= 4)
       {

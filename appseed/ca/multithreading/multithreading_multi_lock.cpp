@@ -45,9 +45,9 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
       return wait_result(wait_result::Failure);
 
    if (dwWakeMask == 0)
-      dwResult = ::WaitForMultipleObjects(m_handlea.get_count(), m_handlea.get_data(), bWaitForAll, duration.os_lock_duration());
+      dwResult = ::WaitForMultipleObjects((DWORD) m_handlea.get_count(), m_handlea.get_data(), bWaitForAll, duration.os_lock_duration());
    else
-      dwResult = ::MsgWaitForMultipleObjects(m_handlea.get_count(), m_handlea.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
+      dwResult = ::MsgWaitForMultipleObjects((DWORD) m_handlea.get_count(), m_handlea.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
 
    DWORD dwUpperBound = WAIT_OBJECT_0 + (DWORD) m_handlea.get_count();
    if (dwResult >= WAIT_OBJECT_0 && dwResult < dwUpperBound)

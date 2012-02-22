@@ -4,11 +4,11 @@
 namespace userbase
 {
 
+
    class CLASS_DECL_ca2 combo_box :
       virtual public ::user::combo_box
    {
    public:
-
 
 
       combo_box();
@@ -17,14 +17,14 @@ namespace userbase
 
       virtual bool create(::user::interaction* puiParent, id id);
 
-      int get_count();
-      int get_cur_sel();
-      int set_cur_sel(int nSelect);
+      count get_count();
+      index get_cur_sel();
+      index set_cur_sel(index nSelect);
       LCID GetLocale();
       LCID SetLocale(LCID nNewLocale);
-      int GetTopIndex();
-      int SetTopIndex(int nIndex);
-      int InitStorage(int nItems, UINT nBytes);
+      index GetTopIndex();
+      index SetTopIndex(index nIndex);
+      index InitStorage(count nItems, UINT nBytes);
       void SetHorizontalExtent(UINT nExtent);
       UINT GetHorizontalExtent();
       int SetDroppedWidth(UINT nWidth);
@@ -35,22 +35,22 @@ namespace userbase
    #endif   // WINVER >= 0x0500
 
       // for edit control
-      DWORD GetEditSel();
-      BOOL LimitText(int nMaxChars);
-      BOOL SetEditSel(int nStartChar, int nEndChar);
+      BOOL GetEditSel(strsize & nStartChar, strsize & nEndChar);
+      BOOL LimitText(strsize nMaxChars);
+      BOOL SetEditSel(strsize nStartChar, strsize nEndChar);
 
       // for combobox item
-      DWORD_PTR GetItemData(int nIndex);
-      int SetItemData(int nIndex, DWORD_PTR dwItemData);
-      void * GetItemDataPtr(int nIndex);
-      int SetItemDataPtr(int nIndex, void * pData);
-      int GetLBText(int nIndex, LPTSTR lpszText);
-      void GetLBText(int nIndex, string & rString);
-      int GetLBTextLen(int nIndex);
+      DWORD_PTR GetItemData(index nIndex);
+      index SetItemData(index nIndex, DWORD_PTR dwItemData);
+      void * GetItemDataPtr(index nIndex);
+      index SetItemDataPtr(index nIndex, void * pData);
+      index GetLBText(index nIndex, LPTSTR lpszText);
+      void GetLBText(index nIndex, string & rString);
+      strsize GetLBTextLen(index nIndex);
 
-      int SetItemHeight(int nIndex, UINT cyItemHeight);
-      int GetItemHeight(int nIndex);
-      int FindStringExact(int nIndexStart, const char * lpszFind);
+      int SetItemHeight(index nIndex, UINT cyItemHeight);
+      int GetItemHeight(index nIndex);
+      index FindStringExact(index nIndexStart, const char * lpszFind);
       int SetExtendedUI(BOOL bExtended = TRUE);
       BOOL GetExtendedUI();
       void GetDroppedControlRect(LPRECT lprect);
@@ -61,15 +61,15 @@ namespace userbase
       void ShowDropDown(BOOL bShowIt = TRUE);
 
       // manipulating listbox items
-      int AddString(const char * lpszString);
-      int DeleteString(UINT nIndex);
-      int InsertString(int nIndex, const char * lpszString);
+      index AddString(const char * lpszString);
+      index DeleteString(index nIndex);
+      index InsertString(index nIndex, const char * lpszString);
       void ResetContent();
-      int Dir(UINT attr, const char * lpszWildCard);
+      index Dir(index attr, const char * lpszWildCard);
 
       // selection helpers
-      int FindString(int nStartAfter, const char * lpszString);
-      int SelectString(int nStartAfter, const char * lpszString);
+      index FindString(index nStartAfter, const char * lpszString);
+      index SelectString(index nStartAfter, const char * lpszString);
 
       // Clipboard operations
       void clear();
@@ -86,7 +86,10 @@ namespace userbase
 #endif
 
       virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
+
+
    };
 
 
 } // namespace userbase
+

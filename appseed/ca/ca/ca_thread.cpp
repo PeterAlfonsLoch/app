@@ -307,12 +307,12 @@ namespace ca
       throw interface_only_exception();   
    }
 
-   int thread::get_ui_count()
+   ::count thread::get_ui_count()
    {
       throw interface_only_exception();   
    }
 
-   ::user::interaction * thread::get_ui(int iIndex)
+   ::user::interaction * thread::get_ui(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
       throw interface_only_exception();   

@@ -161,7 +161,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca int _tcsenicmp( const char * psz, const char * str, int len, int escape )
+   CLASS_DECL_ca int _tcsenicmp( const char * psz, const char * str, strsize len, int escape )
    {
       char * pch = (char *)psz;
       char * prev_escape = NULL;
@@ -199,7 +199,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca char * _tcsenistr( const char * psz, const char * str, int len, int escape )
+   CLASS_DECL_ca char * _tcsenistr( const char * psz, const char * str, strsize len, int escape )
    {
       char * pch = (char *)psz;
       char * prev_escape = NULL;
@@ -232,7 +232,7 @@ namespace xml
    //========================================================
    CLASS_DECL_ca char * _tcseistr( const char * psz, const char * str, int escape )
    {
-      int len = strlen( str );
+      strsize len = strlen( str );
       return _tcsenistr( psz, str, len, escape );
    }
 
@@ -253,7 +253,7 @@ namespace xml
          while( psz && psz < end && _istspace(*psz) ) psz++;
          while( (end-1) && psz < (end-1) && _istspace(*(end-1)) ) end--;
       }
-      int len = end - psz;
+      strsize len = end - psz;
       if( len <= 0 ) return;
       if( escape )
       {

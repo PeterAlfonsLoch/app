@@ -31,17 +31,17 @@ namespace webserver
          virtual void printrows();
 
          using in2_list::print_td;
-         virtual void print_td(int i = 0, const char * prefix_style = "");
+         virtual void print_td(index i = 0, const char * prefix_style = "");
    
-         virtual int get_cur_song_index();
+         virtual index get_cur_song_index();
 
          virtual ::webserver::music::song * get_cur_song();
    
-         virtual bool is_selected(::webserver::music::song * psong, int iIndex);
+         virtual bool is_selected(::webserver::music::song * psong, index iIndex);
 
          virtual void print_slist_closure();
 
-         virtual void print_row(int iIndex, ::webserver::music::song * psong, int iLine) = 0;
+         virtual void print_row(index iIndex, ::webserver::music::song * psong, index iLine) = 0;
 
 
       };

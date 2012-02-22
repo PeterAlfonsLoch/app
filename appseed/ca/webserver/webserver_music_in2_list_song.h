@@ -35,8 +35,8 @@ namespace webserver
             var lyrics, 
             var querystyle, 
             var order, 
-            int curpage, 
-            int limitcount,
+            ::index curpage, 
+            ::count limitcount,
             var cid,
             var aid, 
             var target,
@@ -51,7 +51,7 @@ namespace webserver
          virtual void song_starttable();
          virtual void printrows();
          virtual void song_printrows();
-         virtual void print_row(webserver::music:: song * psong, var line);
+         virtual void print_row(webserver::music:: song * psong, index line);
          virtual void song_endtable();
          virtual void print_slist_closure();
          virtual var get_accept_params();

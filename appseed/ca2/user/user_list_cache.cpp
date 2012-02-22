@@ -27,7 +27,7 @@ namespace user
       stringa * pwstra;
       string str;
 
-      int iItemEnd = iItemStart + iItemCount - 1;
+      index iItemEnd = iItemStart + iItemCount - 1;
       if(iItemCount > m_cacheArray.get_size())
       {
 

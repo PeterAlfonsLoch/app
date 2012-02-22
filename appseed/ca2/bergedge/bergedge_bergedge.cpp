@@ -327,7 +327,7 @@ namespace bergedge
          {
 
 
-            DWORD_PTR dw = WM_APP + 2043;
+            DWORD dw = WM_APP + 2043;
 
             papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
@@ -441,7 +441,7 @@ namespace bergedge
       strPathName.trim();
       strPathName.trim("\"");
 
-      int iFind = strPathName.find("?");
+      strsize iFind = strPathName.find("?");
       if(iFind >= 0)
       {
          strPathName = strPathName.Left(iFind);

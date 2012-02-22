@@ -179,7 +179,7 @@ namespace database
       return GetSelectFieldValue(0);
    }
 
-   bool set::seek(int pos)
+   bool set::seek(index pos)
    {
       frecno = (pos<num_rows()-1)? pos: num_rows()-1;
       frecno = (frecno<0)? 0: frecno;
@@ -189,7 +189,7 @@ namespace database
 
    void set::refresh()
    {
-      int row = frecno;
+      index row = frecno;
       if ((row != 0) && active)
       {
          close();
@@ -239,8 +239,10 @@ namespace database
      }
    }
 
-   bool set::goto_rec(int pos) {
-     if (ds_state == dsSelect) {
+   bool set::goto_rec(index pos)
+   {
+     if (ds_state == dsSelect)
+     {
        return seek(pos - 1);
      }
      return false;
@@ -335,7 +337,7 @@ namespace database
       throw DbErrors("set state is Inactive");
    }
 
-   var set::GetSelectFieldValue(int iField)
+   var set::GetSelectFieldValue(index iField)
    {
       if (ds_state != dsInactive)
       {
@@ -441,14 +443,22 @@ namespace database
      insert_sql.remove_all();
    }
 
-   void set::clear_delete_sql(){
+   void set::clear_delete_sql()
+   {
      delete_sql.remove_all();
    }
 
-   int set::field_count() { return fields_object.get_size();}
-   int set::fieldCount() { return fields_object.get_size();}
+   count set::field_count()
+   {
+      return fields_object.get_size();
+   }
 
-   const char *set::fieldName(int n)
+   count set::fieldCount()
+   {
+      return fields_object.get_size();
+   }
+
+   const char *set::fieldName(index n)
    {
      if ( n < field_count() && n >= 0)
        return fields_object[n].m_properties.name;
@@ -456,7 +466,7 @@ namespace database
        return NULL;
    }
 
-   int set::fieldSize(int n)
+   count set::fieldSize(index n)
    {
      if ( n < field_count() && n >= 0)
        return fields_object[n].m_properties.field_len;

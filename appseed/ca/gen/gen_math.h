@@ -3,12 +3,15 @@
 
 namespace gen
 {
+
+
    namespace math
    {
 
 
-
       CLASS_DECL_ca int ceil_div(int num, int den);
+      CLASS_DECL_ca int64_t ceil_div(int64_t num, int64_t den);
+
 
       class CLASS_DECL_ca math :
          virtual public ::radix::object  
@@ -111,6 +114,10 @@ namespace gen
             *pnClipValue = nMinValue;
       }
    
+
    } // namespace math
 
+
 } // namespace gen
+
+

@@ -52,7 +52,7 @@ bool CFolder::CheckStructure() const
 
   {
     bool_array v;
-    BoolVector_Fill_False(v, BindPairs.get_count() + PackStreams.get_count());
+    BoolVector_Fill_False(v, (int) (BindPairs.get_count() + PackStreams.get_count()));
 
     int i;
     for (i = 0; i < BindPairs.get_count(); i++)
@@ -62,7 +62,7 @@ bool CFolder::CheckStructure() const
       if (BoolVector_GetAndSet(v, PackStreams[i]))
         return false;
 
-    BoolVector_Fill_False(v, UnpackSizes.get_count());
+    BoolVector_Fill_False(v, (int) UnpackSizes.get_count());
     for (i = 0; i < BindPairs.get_count(); i++)
       if (BoolVector_GetAndSet(v, BindPairs[i].OutIndex))
         return false;
@@ -333,7 +333,7 @@ HRESULT CInArchive::FindAndReadSignature(::ex1::byte_input_stream *stream, const
     }
     while (numPrevBytes <= kHeaderSize);
     count numTests = numPrevBytes - kHeaderSize;
-    for (uint64 pos = 0; pos < numTests; pos++)
+    for (index pos = 0; pos < numTests; pos++)
     {
       for (; buffer[pos] != '7' && pos < numTests; pos++);
       if (pos == numTests)
@@ -977,7 +977,7 @@ HRESULT CInArchive::ReadHeader(
       case NID::kWinAttributes:
       {
         bool_array boolVector;
-        ReadBoolVector2(db.Files.get_count(), boolVector);
+        ReadBoolVector2((int) db.Files.get_count(), boolVector);
         CStreamSwitch streamSwitch;
         streamSwitch.Set(this, &dataVector);
         for (i = 0; i < numFiles; i++)

@@ -143,13 +143,13 @@ namespace xml
       // pszXml must be a valid portion of and point to an entity ref in:
       // m_strData of this document
       const char * pszOldData = m_strData;
-      int iPos = pszXml - pszOldData;
+      strsize iPos = pszXml - pszOldData;
       ASSERT(iPos < m_strData.get_length() && iPos >= 0);
       string strName;
       bool bExt = false;
       string strValue = consume_entity_ref(pszXml, strName, useExtEnt, bExt);
       m_strData = m_strData.Left(iPos) + strValue + m_strData.Mid(iPos + strName.get_length() + 2);
-      int iOffset = ((const char *)m_strData) - pszOldData;
+      strsize iOffset = ((const char *)m_strData) - pszOldData;
       va_list ptr;
       va_start(ptr, useExtEnt);
       INT_PTR p;

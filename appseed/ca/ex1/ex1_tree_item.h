@@ -1,13 +1,17 @@
 #pragma once
 
+
 class image_list;
+
 
 namespace ex1
 {
 
+
    class tree_item_ptr_array;
    class tree_data;
    class tree;
+
 
    enum ERelative
    {
@@ -41,8 +45,8 @@ namespace ex1
    public:
 
 
-      DWORD                      m_dwUser;
-      DWORD                      m_dwMetaData;
+      DWORD_PTR                  m_dwUser;
+      DWORD_PTR                  m_dwMetaData;
       tree_item *                m_pparent;
       tree_item *                m_pchild;
       tree_item *                m_pnext;
@@ -107,4 +111,7 @@ namespace ex1
    public:
    };
 
+
 } // namespace ex1
+
+

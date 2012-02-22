@@ -16,7 +16,7 @@ namespace gen
 
       inline CLASS_DECL_ca string from_number(int i) { return itoa(i); }
 #if !defined(LINUX)
-      inline CLASS_DECL_ca string from_number(long i) { return l2string(i); }
+      inline CLASS_DECL_ca string from_number(long l) { return itoa(l); }
 #endif
       inline CLASS_DECL_ca string from_number(int64_t i) { return i64toa(i); }
       inline CLASS_DECL_ca string from_number(double d) { return to_string(d); }
@@ -24,7 +24,7 @@ namespace gen
 #if !defined(LINUX)
       inline CLASS_DECL_ca string from_number(unsigned long ul) { return i64toa(ul); }
 #endif
-      inline CLASS_DECL_ca string from_number(uint64_t d) { return bigint2string(d); }
+      inline CLASS_DECL_ca string from_number(uint64_t ui) { return itoa(ui); }
 
       template < >
       inline int64_t from_string(const char * psz)

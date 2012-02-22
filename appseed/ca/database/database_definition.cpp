@@ -1,25 +1,31 @@
 #include "StdAfx.h"
 
+
 namespace database
 {
 
+
    //************* DbErrors implementation ***************
 
-   DbErrors::DbErrors() {
 
-     fprintf(stderr, "\nUnknown CDatabase Error\n");
+   DbErrors::DbErrors()
+   {
+
+      fprintf(stderr, "\nUnknown CDatabase Error\n");
    }
 
 
-   DbErrors::DbErrors(const char *msg, ...) {
-     va_list vl;
-     va_start(vl, msg);
-     //cout << "In db\n\n";
-     char buf[DB_BUFF_MAX]="";
-   //  vsnprintf(buf, DB_BUFF_MAX-1, msg, vl);
-     va_end(vl);
+   DbErrors::DbErrors(const char *msg, ...)
+   {
 
-     fprintf(stderr, "\nDatabase Error: %s\n", buf);
+      va_list vl;
+      va_start(vl, msg);
+      //cout << "In db\n\n";
+      char buf[DB_BUFF_MAX]="";
+      //  vsnprintf(buf, DB_BUFF_MAX-1, msg, vl);
+      va_end(vl);
+
+      fprintf(stderr, "\nDatabase Error: %s\n", buf);
    }
 
    parameter_list & parameter_list::operator = (const parameter_list & paramlist)
@@ -78,17 +84,17 @@ namespace database
       return this->get_size() <= 0;
    }
 
-   int parameter_list::get_size()
+   count parameter_list::get_size()
    {
       return m_stra.get_size();
    }
 
-   const char * parameter_list::GetKey(int i)
+   const char * parameter_list::GetKey(index i)
    {
       return m_stra[i];
    }
 
-   var  & parameter_list::GetFieldValue(int i)
+   var  & parameter_list::GetFieldValue(index i)
    {
       return m_fieldvaluea[i];
    }
@@ -121,12 +127,12 @@ namespace database
    }
 
    result_set::result_set(::ca::application * papp) :
-      ca(papp)
+   ca(papp)
    {
    }
 
    result_set::result_set(const result_set & set) :
-      ca(set.get_app())
+   ca(set.get_app())
    {
       operator = (set);
    }
@@ -181,4 +187,6 @@ namespace database
 
 
 } // namespace vmssqlite
+
+
 

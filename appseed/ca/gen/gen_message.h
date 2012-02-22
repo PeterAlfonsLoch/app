@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "radix/fixed_alloc.h"
+#include "radix_fixed_alloc.h"
 #include "gen_signal.h"
 #include "ca/collection/array_del_ptr.h"
 #include "ca/visual/visual_00.h"
@@ -364,7 +364,7 @@ namespace gen
          public:
 
 
-            UINT                    m_nFlags;
+            UINT_PTR                m_nFlags;
             point                   m_pt;
             ::visual::e_cursor      m_ecursor;
             bool                    m_bTranslated;
@@ -462,7 +462,7 @@ namespace gen
          public:
 
 
-            UINT m_nChar;
+            UINT_PTR m_nChar;
             UINT m_nRepCnt;
             UINT m_nFlags;
 

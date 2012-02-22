@@ -280,7 +280,7 @@ namespace sqlite
    }
 
 
-   int set::num_rows()
+   count set::num_rows()
    {
       return result.records.get_size();
    }
@@ -325,7 +325,7 @@ namespace sqlite
    }
 
 
-   bool set::seek(int pos)
+   bool set::seek(index pos)
    {
       if (ds_state == database::dsSelect)
       {
@@ -387,7 +387,7 @@ namespace sqlite
       //  return false;
    }
 
-   bool set::SetFieldValue(int iFieldIndex, const var &value)
+   bool set::SetFieldValue(index iFieldIndex, const var &value)
    {
       if(ds_state == database::dsSelect)
       {
@@ -410,7 +410,7 @@ namespace sqlite
       //  return false;
    }
 
-   var & set::FieldValueAt(int iFieldIndex)
+   var & set::FieldValueAt(index iFieldIndex)
    {
       //if(ds_state == dsSelect)
       {
@@ -459,7 +459,7 @@ namespace sqlite
                break;
             }
             if (iFound < 0) throw database::DbErrors("Field not found: %s",fieldname);
-            int iNumRows = num_rows();
+            count iNumRows = num_rows();
             for(i=0; i < iNumRows; i++)
                if(result.records[i][iFound] == value)
                {
@@ -518,13 +518,13 @@ namespace sqlite
    int callback(void * res_ptr,int ncol, char** reslt,char** cols){
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-      int sz = r->records.get_size();
+      count sz = r->records.get_size();
 
       //if (reslt == NULL ) cout << "EMPTY!!!\n";
       if (r->record_header.get_size() <= 0)
       {
          r->record_header.set_size(ncol, 32);
-         for (int i=0; i < ncol; i++)
+         for (index i=0; i < ncol; i++)
          {
             r->record_header[i].name = cols[i];
             if(cols[i + ncol] != NULL)

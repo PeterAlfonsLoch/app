@@ -49,7 +49,7 @@ namespace ex1
          _tempFile = Application.file().get(_tempFileName);
          _tempFileCreated = _tempFile.is_set();
       }
-      uint32 processed = size;
+      primitive::memory_size processed = size;
       _outFile->write(data, size);
       _crc = crc_update(_crc, data, processed);
       _size += processed;
@@ -60,7 +60,7 @@ namespace ex1
    {
       if (_bufPos < kTempBufSize)
       {
-         uint32 cur = min(kTempBufSize - _bufPos, size);
+         primitive::memory_position cur = min(kTempBufSize - _bufPos, size);
          memcpy(m_memory.get_data() + _bufPos, data, cur);
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;

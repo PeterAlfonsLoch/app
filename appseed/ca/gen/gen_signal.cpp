@@ -153,7 +153,7 @@ namespace gen
    {
       if(pobj == NULL)
       {
-         for(int i = m_delegatea.get_size() - 1; i >= 0 ; i++)
+         for(index i = m_delegatea.get_size() - 1; i >= 0 ; i++)
          {
             m_delegatea[i].emit(NULL);
          }

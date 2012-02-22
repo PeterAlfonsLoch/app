@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "radix/flags.h"
+#include "gen/gen_flags.h"
 #include "ca/primitive/check.h"
 
 

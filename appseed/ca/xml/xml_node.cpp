@@ -116,6 +116,16 @@ namespace xml
 
    }
 
+   attr * node::add_attr(const char * lpcszName, unsigned long ulValue)
+   {
+
+      m_attra.add(lpcszName, ulValue);
+
+      return &m_attra[lpcszName];
+
+   }
+
+
    attr * node::set_attr(const char * lpcszName, const char * pszValue)
    {
       return &(m_attra[lpcszName] = pszValue);
@@ -814,7 +824,7 @@ namespace xml
          {
             // if text m_strValue is not exist, then assign m_strValue
             //if( this->m_strValue.is_empty() || this->m_strValue == "" )
-            if( xml::XIsEmptyString( m_strValue ) )
+            if(gen::str::trimmed_is_empty(m_strValue))
             {
                // Text Value
                CHAR* pEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
@@ -931,7 +941,7 @@ namespace xml
                {
 
                   //if( xml && this->m_strValue.is_empty() && *xml !=chXMLTagOpen )
-                  if( xml && xml::XIsEmptyString( m_strValue ) && *xml !=chXMLTagOpen )
+                  if( xml && gen::str::trimmed_is_empty(m_strValue) && *xml !=chXMLTagOpen )
                   {
                      // Text Value
                      CHAR* pEnd = _tcsechr( xml, chXMLTagOpen, chXMLEscape );
@@ -1925,21 +1935,21 @@ namespace xml
       // "this is not a row column v2 xml node";
       if(m_strName != "row_column_v2")
          return false;
-      int iColCount = attr("column_count");
+      ::count iColCount = attr("column_count");
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
          str2a.remove_all();
          return true;
       }
       str2a.set_size(iColCount);
-      int iRowCount = 0;
+      ::count iRowCount = 0;
       xml::node * pheader = m_nodea.ptr_at(0);
-      for(int iCol = 0; iCol < iColCount; iCol++)
+      for(::index iCol = 0; iCol < iColCount; iCol++)
       {
          xml::node * pcol = pheader->m_nodea.ptr_at(iCol);
          str2a[iCol].set_size(pcol->attr("row_count"));
       }
-      for(int iRow = 0; iRow < iRowCount; iRow++)
+      for(::index iRow = 0; iRow < iRowCount; iRow++)
       {
 //         xml::node * prow = m_nodea.ptr_at(0);
          for(int iCol = 0; iCol < str2a[iCol].get_count(); iCol++)

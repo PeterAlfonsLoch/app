@@ -1,12 +1,16 @@
 #pragma once
 
+
 class ::user::interaction;
+
 
 namespace user
 {
 
+
    class tab_callback;
 
+   
    class CLASS_DECL_ca2 tab :
       virtual public control,
       virtual public place_holder_container
@@ -78,14 +82,14 @@ namespace user
          rect                             m_rectTab;
          rect                             m_rectTabClient;
          visual::graphics_extension       m_dcextension;
-         int_array                        m_iaSel;
+         index_array                      m_iaSel;
          rect                             m_rectBorder;
          rect                             m_rectMargin;
          rect                             m_rectTextMargin;
-         int                              m_iHover;
+         ::index                          m_iHover;
          image_list                       m_imagelist;
          tab_callback *                   m_pcallback;
-         int                              m_iDragTab;
+         ::index                          m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
          ::ex1::match::any                m_matchanyRestore;
@@ -118,38 +122,38 @@ namespace user
       virtual void on_show_view();
 
       virtual void  _001SetVertical(bool bSet = true);
-      virtual void _001SelectTab(int iTab);
-      virtual void _001CloseTab(int iTab);
-      virtual pane * get_pane(int iTab, bool bVisible = true);
-      virtual ::user::interaction * get_tab_window(int iTab, bool bVisible = true);
-      virtual ::user::place_holder * get_tab_holder(int iTab, bool bVisible = true);
+      virtual void _001SelectTab(::index iTab);
+      virtual void _001CloseTab(::index iTab);
+      virtual pane * get_pane(::index iTab, bool bVisible = true);
+      virtual ::user::interaction * get_tab_window(::index iTab, bool bVisible = true);
+      virtual ::user::place_holder * get_tab_holder(::index iTab, bool bVisible = true);
 
       void _000OnMouse(::gen::message::mouse * pmouse);
 
       virtual ::user::interaction * get_view_uie();
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
-      virtual bool _001IsAddTab(int iTab);
-      virtual void _001OnDropTab(int iTab, e_position eposition);
+      virtual bool _001IsAddTab(::index iTab);
+      virtual void _001OnDropTab(::index iTab, e_position eposition);
       virtual void set_cur_tab_by_id(id id);
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();
 
-      virtual void _001AddSel(int iSel);
-      virtual int _001GetSel();
-      virtual void _001SetSel(int iSel);
+      virtual void _001AddSel(::index iSel);
+      virtual ::index _001GetSel();
+      virtual void _001SetSel(::index iSel);
 
-      virtual int _001GetPaneCount();
+      virtual ::count _001GetPaneCount();
 
-      virtual void _001OnTabClick(int iTab);
-      virtual void _001OnTabClose(int iTab);
+      virtual void _001OnTabClick(::index iTab);
+      virtual void _001OnTabClose(::index iTab);
       virtual ::ca::window * GetNotifyWnd();
       virtual int hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
       virtual INT_PTR GetTabCount();
-      virtual bool get_element_rect(int iTab, LPRECT lprect, e_element eelement);
+      virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
       virtual void layout();
 
@@ -161,16 +165,16 @@ namespace user
       virtual bool add_image_tab(const char * lpcsz, const char * pszImage, id idTab = id(), bool bVisible = true, bool bPermanent = false);
       virtual bool set_image_tab(const char * lpcsz, const char * pszImage, id idTab = id(), bool bVisible = true);
       virtual bool remove_tab_by_id(id idTab = id());
-      virtual void remove_tab(int iTab, bool bVisible = true);
+      virtual void remove_tab(::index iTab, bool bVisible = true);
       virtual bool show_tab_by_id(id idTab = id(), bool bShow = true);
-      virtual bool show_tab(int iTab, bool bShow = true);
+      virtual bool show_tab(::index iTab, bool bShow = true);
 
 
-      virtual bool set_title(int iTab, const char * psz);
+      virtual bool set_title(::index iTab, const char * psz);
       virtual bool SetTitleById(id id, const char * psz);
 
-      virtual int get_tab_by_id(id id);
-      virtual id get_id_by_tab(int iTab, bool bVisible = true);
+      virtual ::index get_tab_by_id(id id);
+      virtual id get_id_by_tab(::index iTab, bool bVisible = true);
       virtual pane * get_pane_by_id(id id);
       virtual pane * ensure_pane_by_id(id id);
       virtual void ensure_tab_by_id(id id);
@@ -207,6 +211,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnAppLanguage)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnTimer)
+
    };
 
+
 } // namespace user
+
+

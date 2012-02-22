@@ -45,7 +45,7 @@ namespace primitive
 
 
       memory(::ca::application * papp);
-      memory(const void *, int iCount);
+      memory(const void *, memory_size iCount);
       memory(const base_memory & memorybase);
       memory(const memory & memory);
       memory(const char * psz);

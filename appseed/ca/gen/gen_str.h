@@ -118,16 +118,37 @@ namespace gen
       CLASS_DECL_ca  const char *   utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz);
       CLASS_DECL_ca  int            utf8_char(::gen::utf8_char * pchar, const char *psz);
 
-      CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i, int iBase = 0);
-      CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase = 0);
-      CLASS_DECL_ca  string         itoa(int i);
-      CLASS_DECL_ca  string         itoa(int64_t i);
-      CLASS_DECL_ca  string         itoa(unsigned int ui);
-      CLASS_DECL_ca  string         itoa(unsigned long ui);
-      CLASS_DECL_ca  string         itoa(uint64_t ui);
+      CLASS_DECL_ca  bool           atoi(const char * psz, int & i);
+      CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i);
+      CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase);
+      CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i, int iBase);
+
+      inline CLASS_DECL_ca int      xatoi(const char * psz, int iDefault){ atoi(psz, iDefault); return iDefault; }
+      inline CLASS_DECL_ca int64_t  xatoi64(const char * psz, int64_t & iDefault) { atoi(psz, iDefault); return iDefault; }
+      inline CLASS_DECL_ca int      xatoi(const char * psz, int iDefault, int iBase){ atoi(psz, iDefault, iBase); return iDefault; }
+      inline CLASS_DECL_ca int64_t  xatoi64(const char * psz, int64_t & iDefault, int iBase) { atoi(psz, iDefault, iBase); return iDefault; }
+
+      inline CLASS_DECL_ca  string  itoa(int i);
+      inline CLASS_DECL_ca  string  itoa(int64_t i);
+      inline CLASS_DECL_ca  string  itoa(unsigned int ui);
+      inline CLASS_DECL_ca  string  itoa(unsigned long ui);
+      inline CLASS_DECL_ca  string  itoa(uint64_t ui);
       inline CLASS_DECL_ca  string  itoa(const var & var);
       inline CLASS_DECL_ca  string  itoa(const id & id);
-      CLASS_DECL_ca  string         i64toa(int64_t i);
+      
+      
+      CLASS_DECL_ca  string &       itoa(string & str, int i);
+      CLASS_DECL_ca  string &       itoa(string & str, int64_t i);
+      CLASS_DECL_ca  string &       itoa(string & str, unsigned int ui);
+      CLASS_DECL_ca  string &       itoa(string & str, unsigned long ui);
+      CLASS_DECL_ca  string &       itoa(string & str, uint64_t ui);
+      inline CLASS_DECL_ca string & itoa(string & str, const var & var);
+      inline CLASS_DECL_ca string & itoa(string & str, const id & id);
+
+
+      inline CLASS_DECL_ca string   i64toa(int64_t i);
+      CLASS_DECL_ca string &        i64toa(string & str, int64_t i);
+
       CLASS_DECL_ca  __int64        get_hex(const char * pszUtf8);
       CLASS_DECL_ca  __int64        get_hex_number(const char * pstr);
       CLASS_DECL_ca  int64_t        get_escaped_char(const char * str, strsize pos, strsize &retPos);
@@ -172,8 +193,8 @@ namespace gen
  **   \author grymse@alhem.net
 **/
 
-      CLASS_DECL_ca string l2string(long l);
-      CLASS_DECL_ca string bigint2string(uint64_t l);
+      //CLASS_DECL_ca string l2string(long l); // please use itoa
+      //CLASS_DECL_ca string bigint2string(uint64_t l); // please use itoa
       CLASS_DECL_ca int64_t atoi64(const string & str) ;
       CLASS_DECL_ca int64_t atoi64(const char * psz) ;
       CLASS_DECL_ca uint64_t atoui64(const string & str) ;

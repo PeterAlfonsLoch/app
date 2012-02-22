@@ -38,10 +38,10 @@ namespace user
       class SetSelCommand : public Command
       {
       public:
-         int   m_iSelStart;
-         int   m_iSelEnd;
-         int   m_iPreviousSelStart;
-         int   m_iPreviousSelEnd;
+         strsize   m_iSelStart;
+         strsize   m_iSelEnd;
+         strsize   m_iPreviousSelStart;
+         strsize   m_iPreviousSelEnd;
          virtual void Undo(plain_text_data * pedit);
          virtual void Redo(plain_text_data * pedit);
          virtual ECommand get_command(){ return CommandSetSel;};
@@ -75,7 +75,7 @@ namespace user
 
       ::ex1::tree_item *      m_ptreeitem;
       GroupCommand *          m_pgroupcommand;
-      int                     m_iBranch;
+      index                   m_iBranch;
       ex1::file *             m_pfile;
       ex1::edit_file          m_editfile;
 

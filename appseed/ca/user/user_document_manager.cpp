@@ -463,10 +463,10 @@ BOOL document_manager::do_prompt_file_name(string & fileName, UINT nIDSTitle, DW
    return System.do_prompt_file_name(fileName, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }
 
-int document_manager::get_document_count()
+count document_manager::get_document_count()
 {
    // count all documents
-   int nCount = 0;
+   count nCount = 0;
    count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {
@@ -796,9 +796,9 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    pBestTemplate->request(pcreatecontext);
 }
 
-int document_manager::get_open_document_count()
+count document_manager::get_open_document_count()
 {
-   int nOpen = 0;
+   count nOpen = 0;
    count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
    {

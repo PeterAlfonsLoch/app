@@ -224,7 +224,7 @@ namespace sockets
          }
          if (bind(s, ad, ad) == -1)
          {
-            Handler().LogError(this, "bind() failed for port " + gen::str::l2string(ad.GetPort()), Errno, StrError(Errno), ::gen::log::level::fatal);
+            Handler().LogError(this, "bind() failed for port " + gen::str::itoa(ad.GetPort()), Errno, StrError(Errno), ::gen::log::level::fatal);
             closesocket(s);
             return -1;
          }
@@ -232,7 +232,7 @@ namespace sockets
          {
             Handler().LogError(this, "listen", Errno, StrError(Errno), ::gen::log::level::fatal);
             closesocket(s);
-            throw Exception("listen() failed for port " + gen::str::l2string(ad.GetPort()) + ": " + StrError(Errno));
+            throw Exception("listen() failed for port " + gen::str::itoa(ad.GetPort()) + ": " + StrError(Errno));
             return -1;
          }
          m_depth = depth;

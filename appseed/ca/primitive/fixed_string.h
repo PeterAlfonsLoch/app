@@ -1,11 +1,17 @@
 #pragma once
 
+
 class CLASS_DECL_ca fixed_string_log_interface
 {
 public:
-   virtual void OnAllocateSpill( int nActualChars, int nFixedChars, const string_data * pData ) throw() = 0;
-   virtual void OnReallocateSpill( int nActualChars, int nFixedChars, const string_data * pData ) throw() = 0;
+
+   
+   virtual void OnAllocateSpill(strsize nActualChars, strsize nFixedChars, const string_data * pData) throw() = 0;
+   virtual void OnReallocateSpill(strsize nActualChars, strsize nFixedChars, const string_data * pData) throw() = 0;
+
+
 };
+
 
 class CLASS_DECL_ca fixed_string_manager :
    public string_manager_interface
@@ -188,7 +194,11 @@ public:
 // const statically initialized string without making a copy on the heap
 template < int t_nChars> struct const_fixed_string
 {
+
+
    string_data m_data;
    string::XCHAR m_achData[t_nChars];
+
+
 };
 

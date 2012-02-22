@@ -43,9 +43,9 @@ class SymEngine
    DWORD_PTR address(void) const   { return m_uiAddress; }
 
    // symbol handler queries
-   unsigned int module  (string & str);
-   unsigned int symbol  (string & str, DWORD_PTR * = 0);
-   unsigned int fileline(string & str, DWORD_PTR *, DWORD_PTR * = 0);
+   strsize     module  (string & str);
+   strsize     symbol  (string & str, DWORD_PTR * = 0);
+   index       fileline(string & str, DWORD_PTR *, DWORD_PTR * = 0);
 
    // stack walk
    bool stack_first (CONTEXT* pctx);
@@ -71,7 +71,7 @@ class SymEngine
  private:
    static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
    static bool get_line_from_address(HANDLE hProc, DWORD_PTR uiAddress, DWORD_PTR * puiDisplacement, IMAGEHLP_LINE * pline);
-   static unsigned get_module_basename(HMODULE hmodule, string & strName);
+   static strsize get_module_basename(HMODULE hmodule, string & strName);
 
 
 

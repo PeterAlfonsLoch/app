@@ -82,9 +82,9 @@ bool XfplayerViewLine::PrepareLine(
    m_straLink.remove_all();
    m_iaLinkStart.remove_all();
    m_iaLinkEnd.remove_all();
-   int               iChars;
-   int               iStr;
-   int               iStrLen;
+   strsize               iChars;
+   strsize               iStr;
+   strsize               iStrLen;
    string str(lpcsz);
    ASSERT(pdc != NULL);
    iStrLen = str.get_length();
@@ -129,9 +129,7 @@ bool XfplayerViewLine::PrepareLine(
    return true;
 }*/
 
-void XfplayerViewLine::AddChar(
-   WCHAR wch,
-   int &index)
+void XfplayerViewLine::AddChar(WCHAR wch, strsize & index)
 {
    index++;
    if(m_iaPosition.get_size() < index + 2)
@@ -145,10 +143,7 @@ void XfplayerViewLine::AddChar(
 
 }
 
-void XfplayerViewLine::AddChar(
-   WCHAR wch,
-   int &index,
-   visual::font * pFont)
+void XfplayerViewLine::AddChar(WCHAR wch, strsize & index, visual::font * pFont)
 {
    UNREFERENCED_PARAMETER(pFont);
    index++;
@@ -216,8 +211,8 @@ bool XfplayerViewLine::to(
       {
          if(bDraw)
          {
-            int iLink = 0;
-            int iChar = 0;
+            strsize iLink = 0;
+            strsize iChar = 0;
             while(true)
             {
                pdc->SelectObject(m_font);
@@ -267,11 +262,11 @@ bool XfplayerViewLine::to(
             }
             if(GetSelection().m_iCharStartSource >= 0)
             {
-               int iStart;
-               int iLineStart;
-               int iLineEnd;
-               int iCharStart;
-               int iCharEnd;
+               index iStart;
+               index iLineStart;
+               index iLineEnd;
+               strsize iCharStart;
+               strsize iCharEnd;
                GetSelection().GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
                if(iLineStart < m_iIndex)
                {
@@ -285,7 +280,7 @@ bool XfplayerViewLine::to(
                {
                   iStart = iCharStart;
                }
-               int iEnd;
+               index iEnd;
                if(iLineEnd < m_iIndex)
                {
                   iEnd = -1;
@@ -413,7 +408,7 @@ bool XfplayerViewLine::to(
    bool                 bDraw,
    LPRECT               lpRect,
    rect_array &         rectaModified,
-   int *                count,
+   ::count *                count,
    bool                 bRecalcLayout,
    COLORREF               crColor,
    ::ca::pen &          pen)
@@ -430,8 +425,8 @@ bool XfplayerViewLine::to(
 
    point iMargin;
    {
-      iMargin.x = pen.m_dPenWidth / 2.0;
-      iMargin.y = pen.m_dPenWidth / 2.0;
+      iMargin.x = (LONG) (pen.m_dPenWidth / 2.0);
+      iMargin.y = (LONG) (pen.m_dPenWidth / 2.0);
    }
 
    if(!IsVisible())
@@ -1188,7 +1183,7 @@ void XfplayerViewLine::EmbossedTextOut(
       int iWidth,
       COLORREF cr,
       COLORREF crOutline,
-      int iLen,
+      strsize iLen,
       double dBlend)
 {
    EmbossedTextOut(
@@ -1412,7 +1407,7 @@ void XfplayerViewLine::EmbossedTextOut(
       int iWidth,
       COLORREF cr,
       COLORREF crOutline,
-      int iLen,
+      strsize iLen,
       double dBlend)
 {
    bool bSaveProcessing =  !m_bEnhancedEmboss;
@@ -1462,7 +1457,7 @@ void XfplayerViewLine::EmbossedTextOut(
 
       System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), class size(pdibCache->width() - iLeft, pdibCache->height()), pdibCache->get_graphics(), point(iLeft, 0), dBlend);
 
-      System.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, iLen, cr, dBlend);
+      System.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int) iLen, cr, dBlend);
 
    }
 
@@ -1486,7 +1481,7 @@ void XfplayerViewLine::GetLogFont(LOGFONT &lf)
 }
 
 
-void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pdc, const char * lpcsz, int iLen, ::ca::dib * pdibCache)
+void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pdc, const char * lpcsz, strsize iLen, ::ca::dib * pdibCache)
 {
    UNREFERENCED_PARAMETER(papp);
    if(!m_bEnhancedEmboss)
@@ -1503,14 +1498,14 @@ void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pd
    pdc->select_font(m_font);
    m_dcextension.GetTextExtent(pdc, lpcsz, iLen, size);
 
-   size.cx += (long) 2 * (max(2.0, m_floatRateX * 8.0));
-   size.cy += (long) 2 * (max(2.0, m_floatRateX * 8.0));
+   size.cx += (LONG) (2 * (max(2.0, m_floatRateX * 8.0)));
+   size.cy += (LONG) (2 * (max(2.0, m_floatRateX * 8.0)));
 
 
    if(!pdibCache->create(size))
       return;
    ::ca::graphics * pdcCache = pdibCache->get_graphics();
-   ::ca::font * pfontOld = pdcCache->SelectObject(m_font);
+//   ::ca::font * pfontOld = pdcCache->SelectObject(m_font);
 
    pdcCache->set_alpha_mode(::ca::alpha_mode_set);
    pdcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(0, 0, 0, 0));
@@ -1553,9 +1548,13 @@ void XfplayerViewLine::SetFont(visual::font * pfont)
 
 void XfplayerViewLine::PrepareURLLinks()
 {
-   int iStart = 0;
-   int iEnd = 0;
+   
+   strsize iStart = 0;
+
+   strsize iEnd = 0;
+
    string str;
+
    while(PcreUtil::find(m_str, "(^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$)", 3, iStart, iEnd))
    {
       m_straLink.add(m_str.Mid(iStart, iEnd - iStart));
@@ -1566,14 +1565,14 @@ void XfplayerViewLine::PrepareURLLinks()
 
 }
 
-bool XfplayerViewLine::CharHasLink(int iChar)
+bool XfplayerViewLine::CharHasLink(strsize iChar)
 {
    return GetCharLink(iChar) > -1;
 }
 
-bool XfplayerViewLine::GetCharLink(string & str, int iChar)
+bool XfplayerViewLine::GetCharLink(string & str, strsize iChar)
 {
-   int iLink = GetCharLink(iChar);
+   index iLink = GetCharLink(iChar);
    if(iLink < 0)
       return false;
    str = m_straLink[iLink];
@@ -1582,7 +1581,7 @@ bool XfplayerViewLine::GetCharLink(string & str, int iChar)
 
 user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
 {
-   int iChar;
+   strsize iChar;
    user::e_line_hit etest = hit_test(ptCursor, iChar);
    if(etest == ::user::line_hit_link)
    {
@@ -1591,9 +1590,9 @@ user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
    return etest;
 }
 
-int XfplayerViewLine::GetCharLink(int iChar)
+index XfplayerViewLine::GetCharLink(strsize iChar)
 {
-   for(int i = 0; i < m_iaLinkStart.get_size(); i++)
+   for(index i = 0; i < m_iaLinkStart.get_size(); i++)
    {
       if(iChar >= m_iaLinkStart[i] &&
          iChar <= m_iaLinkEnd[i])
@@ -1604,7 +1603,7 @@ int XfplayerViewLine::GetCharLink(int iChar)
    return -1;
 }
 
-::user::e_line_hit XfplayerViewLine::hit_test(const POINT &ptCursorParam, int &iChar)
+::user::e_line_hit XfplayerViewLine::hit_test(const POINT &ptCursorParam, strsize &iChar)
 {
    bool bInside;
    point ptCursor = ptCursorParam;
@@ -1638,7 +1637,7 @@ int XfplayerViewLine::GetCharLink(int iChar)
 
 }
 
-bool XfplayerViewLine::CalcChar(point pt, int &iChar)
+bool XfplayerViewLine::CalcChar(point pt, strsize &iChar)
 {
    rect rectPlacement;
    GetPlacement(rectPlacement);
@@ -1661,7 +1660,7 @@ bool XfplayerViewLine::CalcChar(point pt, int &iChar)
 void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-   int iChar;
+   strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {
       if(CharHasLink(iChar))
@@ -1745,7 +1744,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
       }
 
    }*/
-   if(GetSelection().OnMouseMove(*this, pmouse->m_nFlags, pmouse->m_pt))
+   if(GetSelection().OnMouseMove(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -1766,7 +1765,7 @@ void XfplayerViewLine::OnSetCursor(gen::signal_object * pobj)
 void XfplayerViewLine::OnLButtonDown(gen::signal_object * pobj)
 {
    SCAST_PTR(gen::message::mouse, pmouse, pobj);
-   if(GetSelection().OnLButtonDown(*this, pmouse->m_nFlags, pmouse->m_pt))
+   if(GetSelection().OnLButtonDown(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -1776,7 +1775,7 @@ void XfplayerViewLine::OnLButtonDown(gen::signal_object * pobj)
 void XfplayerViewLine::OnLButtonUp(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-   int iChar;
+   strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {
       if(CharHasLink(iChar))
@@ -1787,7 +1786,7 @@ void XfplayerViewLine::OnLButtonUp(gen::signal_object * pobj)
          System.open_link(str);
       }
    }
-   if(GetSelection().OnLButtonUp(*this, pmouse->m_nFlags, pmouse->m_pt))
+   if(GetSelection().OnLButtonUp(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -1818,11 +1817,10 @@ void XfplayerViewLine::SetBlend(double d)
 
 void XfplayerViewLine::UpdateHover(point &ptCursor)
 {
-   int iLine = m_iIndex;
-   int iChar;
+   ::index iLine = m_iIndex;
+   strsize iChar;
 
-   user::e_line_hit etest = hit_test(
-      ptCursor, iChar);
+   user::e_line_hit etest = hit_test(ptCursor, iChar);
    if(etest == ::user::line_hit_link)
    {
       if(m_iLinkHoverIndex !=
@@ -1858,7 +1856,7 @@ bool XfplayerViewLine::IsInHover()
 
 
 
-int XfplayerViewLine::GetLinkIndex(int iLine, int iChar)
+index XfplayerViewLine::GetLinkIndex(index iLine, strsize iChar)
 {
    if(!HasLink())
       return -1;

@@ -174,8 +174,8 @@ namespace music
          <div class=\"divtopnavnear\">\r\n\
          <div class=\"divtopnav\">\r\n\
       ");
-      int count = linka.array_get_count();
-      int i;
+      ::count count = linka.array_get_count();
+      index i;
       for(i = 0; i < count; i++)
       {
          print(" <a href=\"" + linka[i] + "\" class=\"divtopnav-a\">"
@@ -299,7 +299,7 @@ namespace music
       return patha;
    }
 
-   void in2_list::multi_page_init(int curpage, int limitcount)
+   void in2_list::multi_page_init(index curpage, ::count limitcount)
    {
       if(curpage <= 0)
          m_curpage             = 1;
@@ -308,7 +308,7 @@ namespace music
       m_limitcount       = limitcount;
    }
 
-   void in2_list::multi_page_inst(int totalcount, int num_rows, int lastpage)
+   void in2_list::multi_page_inst(::count totalcount, ::count num_rows, ::index lastpage)
    {
       m_totalcount       = totalcount;
       m_num_rows         = num_rows;
@@ -319,17 +319,17 @@ namespace music
    {
       if(m_totalcount <= m_limitcount)
          return;
-      int previouspage     = m_curpage - 1;
-      int nextpage         = m_curpage + 1;
+      ::index previouspage     = m_curpage - 1;
+      ::index nextpage         = m_curpage + 1;
 //      int resultstart       = multi_page_get_result_start();
 //      int resultend         = multi_page_get_result_end();
 //      int limitcount       = m_limitcount;
-      int num_rows         = m_num_rows;
-      int lastpage         = m_lastpage;
+      ::count num_rows         = m_num_rows;
+      ::index lastpage         = m_lastpage;
 
-      int curpage            = m_curpage;
-      int listfirstpage    = multi_page_get_list_first_page();
-      int listlastpage       = multi_page_get_list_last_page();
+      ::index curpage            = m_curpage;
+      ::index listfirstpage    = multi_page_get_list_first_page();
+      ::index listlastpage       = multi_page_get_list_last_page();
 
 
       var href;
@@ -358,10 +358,10 @@ namespace music
       if(bInMulti)
       {
          print("&nbsp;");
-         for(int page = listfirstpage; page <= listlastpage; page++)
+         for(::index page = listfirstpage; page <= listlastpage; page++)
          {
-            int userpage = page;
-            int resnumber = (userpage - 1) * m_limitcount + 1;
+            ::index userpage = page;
+            ::index resnumber = (userpage - 1) * m_limitcount + 1;
             if(page == curpage)
             {
                print(" <span class='page-res-curitem'>$resnumber");
@@ -412,40 +412,40 @@ namespace music
       print(" <br>");
    }
 
-   int in2_list::multi_page_get_list_first_page()
+   ::index in2_list::multi_page_get_list_first_page()
    {
-      int curpage            = m_curpage;
-      int listfirstpage    = max(1, curpage - 5);
+      ::index curpage            = m_curpage;
+      ::index listfirstpage    = max(1, curpage - 5);
       return listfirstpage;
    }
-   int in2_list::multi_page_get_list_last_page()
+   ::index in2_list::multi_page_get_list_last_page()
    {
-      int curpage            = m_curpage;
-      int listlastpage       = min(curpage + 4, ((m_totalcount - 1) / m_limitcount) + 1);
+      ::index curpage            = m_curpage;
+      ::index listlastpage       = min(curpage + 4, ((m_totalcount - 1) / m_limitcount) + 1);
       return listlastpage;
    }
 
-   int in2_list::multi_page_get_limit_back_advance()
+   ::index in2_list::multi_page_get_limit_back_advance()
    {
       return max(0, multi_page_get_limit_start() - 5 * m_limitcount);
    }
 
-   int in2_list::multi_page_get_limit_start()
+   ::index in2_list::multi_page_get_limit_start()
    {
       return (m_curpage - 1) * m_limitcount;
    }
 
-   int in2_list::multi_page_get_result_start()
+   ::index in2_list::multi_page_get_result_start()
    {
       return multi_page_get_limit_start() + 1;
    }
 
-   int in2_list::multi_page_get_result_end()
+   ::index in2_list::multi_page_get_result_end()
    {
       return min(multi_page_get_limit_start() + m_limitcount, m_totalcount);
    }
 
-   int in2_list::multi_page_get_limit_advance()
+   ::index in2_list::multi_page_get_limit_advance()
    {
       return min(multi_page_get_limit_start() + m_limitcount * 6, m_totalcount);
    }
@@ -503,18 +503,18 @@ namespace music
       return "";
    }
 
-   int in2_list::multi_page_get_item_start()
+   ::index in2_list::multi_page_get_item_start()
    {
       return multi_page_map_to_internal_item(multi_page_get_limit_start());
    }
 
-   int in2_list::multi_page_get_item_end()
+   ::index in2_list::multi_page_get_item_end()
    {
       return multi_page_map_to_internal_item(multi_page_get_result_end());
    }
 
 
-   int in2_list::multi_page_map_to_internal_item(int item)
+   ::index in2_list::multi_page_map_to_internal_item(::index item)
    {
       return item - ((multi_page_get_list_first_page() - 1) * m_limitcount);
    }

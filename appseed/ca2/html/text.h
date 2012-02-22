@@ -1,57 +1,61 @@
 #pragma once
 
+
 namespace html
 {
 
-namespace impl
-{
-   class text : 
-      virtual public elemental,
-      virtual public user::edit_plain_text
+
+   namespace impl
    {
-   public:
-
-      
-      base_array < size >           m_sizea;
-      stringa                       m_straLines;
-      stringa                       m_straWordSpace;
-      bool                          m_bLink;
-      string                        m_strLink;
 
 
-      text(::ca::application * papp);
+      class text : 
+         virtual public elemental,
+         virtual public user::edit_plain_text
+      {
+      public:
 
-      DECL_GEN_SIGNAL(OnLButtonDown)
-      DECL_GEN_SIGNAL(OnMouseMove)
-      DECL_GEN_SIGNAL(OnLButtonUp)
 
-      virtual void _001OnGetText();
+         base_array < size >           m_sizea;
+         stringa                       m_straLines;
+         stringa                       m_straWordSpace;
+         bool                          m_bLink;
+         string                        m_strLink;
 
-      virtual void _001OnDraw(data * pdoc);
-      virtual void _001OnDraw(::ca::graphics * pgraphics);
-      void implement_phase1(data * pdoc, ::html::elemental * pelemental);
-      void layout_phase3(data * pdoc);
 
-      virtual void delete_implementation();
+         text(::ca::application * papp);
 
-      virtual bool get_color(COLORREF & cr);
-      virtual bool has_link();
-      virtual string link();
+         DECL_GEN_SIGNAL(OnLButtonDown)
+         DECL_GEN_SIGNAL(OnMouseMove)
+         DECL_GEN_SIGNAL(OnLButtonUp)
 
-      using user::edit_plain_text::hit_test;
-      virtual int hit_test(data * pdoc, point pt);
+         virtual void _001OnGetText();
 
-      virtual int char_hit_test(::ca::graphics * pdc, int px, int py);
+         virtual void _001OnDraw(data * pdoc);
+         virtual void _001OnDraw(::ca::graphics * pgraphics);
+         void implement_phase1(data * pdoc, ::html::elemental * pelemental);
+         void layout_phase3(data * pdoc);
 
-      virtual int get_first_line_height();
-      virtual int get_last_line_height();
+         virtual void delete_implementation();
 
-      virtual void _001OnAfterChangeText();
-      
+         virtual bool get_color(COLORREF & cr);
+         virtual bool has_link();
+         virtual string link();
 
-   };
+         using user::edit_plain_text::hit_test;
+         virtual int hit_test(data * pdoc, point pt);
 
-} // namespace impl
+         virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
+
+         virtual int get_first_line_height();
+         virtual int get_last_line_height();
+
+         virtual void _001OnAfterChangeText();
+
+
+      };
+
+   } // namespace impl
 
 
 

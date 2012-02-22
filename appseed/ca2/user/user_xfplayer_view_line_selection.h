@@ -4,35 +4,36 @@ class XfplayerViewLine;
 
 class CLASS_DECL_ca2 XfplayerViewLineSelectionItem  
 {
+protected:
+
+   index               m_iLineStart;
+   index               m_iLineEnd;
+   strsize               m_iCharStart;
+   strsize               m_iCharEnd;
 
 public:
-   int GetLineStart();
-   int GetLineEnd();
-   int GetCharStart();
-   int GetCharEnd();
-   void SetLineStart(int iLine);
-   void SetLineEnd(int iLine);
-   void SetCharStart(int iChar);
-   void SetCharEnd(int iChar);
+   index GetLineStart();
+   index GetLineEnd();
+   index GetCharStart();
+   index GetCharEnd();
+   void SetLineStart(index iLine);
+   void SetLineEnd(index iLine);
+   void SetCharStart(strsize iChar);
+   void SetCharEnd(index iChar);
 
-protected:
-   int               m_iLineStart;
-   int               m_iLineEnd;
-   int               m_iCharStart;
-   int               m_iCharEnd;
 
 
       // Construction / Destruction
 public:
    void NormalizeSel();
    bool Intersect(XfplayerViewLine & viewline);
-   bool Intersect(int iLineStart, int iLineEnd);
+   bool Intersect(index iLineStart, index iLineEnd);
    XfplayerViewLineSelectionItem();
    XfplayerViewLineSelectionItem(
-      int      iLineStart,
-      int      iLineEnd,
-      int      iCharStart,
-      int      iCharEnd
+      index      iLineStart,
+      index      iLineEnd,
+      strsize      iCharStart,
+      strsize      iCharEnd
       );
    virtual ~XfplayerViewLineSelectionItem();
 
@@ -68,10 +69,10 @@ public:
    XfplayerViewLineSelectionItem m_item;
       
 
-   int               m_iLineStartSource;
-   int               m_iLineEndSource;
-   int               m_iCharStartSource;
-   int               m_iCharEndSource;
+   index               m_iLineStartSource;
+   index               m_iLineEndSource;
+   strsize               m_iCharStartSource;
+   strsize               m_iCharEndSource;
 
    int               m_etype; 
    e_state            m_estate;
@@ -89,13 +90,13 @@ public:
    bool SetSelBefore(XfplayerViewLine & viewline);
    bool SetSelAfter(XfplayerViewLine & viewline);
    void NormalizeSel(XfplayerViewLine & viewline);
-   void GetNormalSelection(int & iLineStart, int & iCharStart, int & iLineEnd, int & iCharEnd);
+   void GetNormalSelection(index & iLineStart, strsize & iCharStart, index & iLineEnd, strsize & iCharEnd);
 
    void Select(
-      int      iLineStart,
-      int      iLineEnd,
-      int      iCharStart,
-      int      iCharEnd,
+      index      iLineStart,
+      index      iLineEnd,
+      strsize      iCharStart,
+      strsize      iCharEnd,
       bool   bMerge);
 
 

@@ -8,8 +8,10 @@
 namespace gen
 {
 
+
    class signal;
    class request_signal;
+
 
    class CLASS_DECL_ca signal_object :
       public ::radix::object
@@ -17,9 +19,9 @@ namespace gen
    public:
 
 
-      int                  m_iIndex;
+      index                m_iIndex;
       gen::property_set *  m_pset;
-      int                  m_iParam;
+      index                m_iParam;
       bool                 m_bRet;
       signal *             m_psignal;
 
@@ -277,31 +279,31 @@ namespace gen
       };
 
 
-inline void dispatch::signal_array::
-GetSignalsById(dispatch::signal_ptr_array & signalptra, signalid * pid)
-{
-   for(int i = 0; i < this->get_size(); i++)
+   inline void dispatch::signal_array::
+   GetSignalsById(dispatch::signal_ptr_array & signalptra, signalid * pid)
    {
-      signal & signal = this->element_at(i);
-      if(signal.m_pid->matches(pid))
+      for(int i = 0; i < this->get_size(); i++)
       {
-         signalptra.add(&signal);
+         signal & signal = this->element_at(i);
+         if(signal.m_pid->matches(pid))
+         {
+            signalptra.add(&signal);
+         }
       }
    }
-}
 
-inline dispatch::signal * dispatch::signal_array::GetSignalById(signalid * pid)
-{
-   for(int i = 0; i < this->get_size(); i++)
+   inline dispatch::signal * dispatch::signal_array::GetSignalById(signalid * pid)
    {
-      signal & signal = this->element_at(i);
-      if(signal.m_pid->matches(pid))
+      for(int i = 0; i < this->get_size(); i++)
       {
-         return &signal;
+         signal & signal = this->element_at(i);
+         if(signal.m_pid->matches(pid))
+         {
+            return &signal;
+         }
       }
+      return NULL;
    }
-   return NULL;
-}
 
 
 } // namespace gen
@@ -315,3 +317,4 @@ inline dispatch::signal * dispatch::signal_array::GetSignalById(signalid * pid)
 
 
 #include "gen_request_signal.h"
+

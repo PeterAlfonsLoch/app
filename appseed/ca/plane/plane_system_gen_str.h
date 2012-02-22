@@ -19,6 +19,16 @@ namespace gen
 
       }
 
+      inline CLASS_DECL_ca string &       itoa(string & str, const id & id)
+      {
+
+         if(!id.is_number())
+            throw simple_exception("invalid_conversion");
+
+         return i64toa(str, id.m_i);
+
+      }
+
 
    } // namespace str
 

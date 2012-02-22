@@ -50,7 +50,7 @@ CHandler::CHandler()
 
 ex1::HRes CHandler::GetNumberOfItems(uint32 *numItems)
 {
-  *numItems = _db.Files.get_count();
+  *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
 }
 
@@ -95,7 +95,7 @@ ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
       for (i = 0; i < _db.Folders.get_count(); i++)
       {
         const CFolder &f = _db.Folders[i];
-        for (int j = f.Coders.get_count() - 1; j >= 0; j--)
+        for (index j = f.Coders.get_count() - 1; j >= 0; j--)
            ids.add_unique(f.Coders[j].MethodID);
       }
       ids.QuickSort(true);
@@ -262,7 +262,7 @@ ex1::HRes CHandler::GetProperty(uint32 index, int propID,  var *value)
         {
           const CFolder &folderInfo = _db.Folders[folderIndex];
           string methodsString;
-          for (int i = folderInfo.Coders.get_count() - 1; i >= 0; i--)
+          for (::index i = folderInfo.Coders.get_count() - 1; i >= 0; i--)
           {
             const CCoderInfo &coder = folderInfo.Coders[i];
             if (!methodsString.is_empty())

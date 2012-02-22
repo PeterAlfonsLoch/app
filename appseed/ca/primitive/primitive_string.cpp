@@ -165,33 +165,33 @@ char* __cdecl crt_char_traits::CharNext(const char* p ) throw()
 
 
 
-strsize __cdecl crt_char_traits::IsDigit(const char * pch ) throw()
+int __cdecl crt_char_traits::IsDigit(const char * pch ) throw()
 {
    return gen::ch::is_digit(pch) ? 1 : 0;
 }
 
-strsize __cdecl crt_char_traits::IsSpace(const char * pch ) throw()
+int __cdecl crt_char_traits::IsSpace(const char * pch ) throw()
 {
    return gen::ch::is_whitespace( pch ) ? 1 : 0;
 }
 
 
-strsize __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
+int __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
 {
    return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
 
-strsize __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
+int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
    return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
 
-strsize __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
+int __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
 {
    return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
 
-strsize __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
+int __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
 {
    return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
@@ -453,7 +453,7 @@ strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource ) throw
 strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource, strsize nLength ) throw()
 {
    // Returns required buffer length in XCHARs
-   return ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSource, nLength, NULL, 0, NULL, NULL );
+   return ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSource, (int) nLength, NULL, 0, NULL, NULL );
 }
 
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength) throw()
@@ -467,7 +467,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength) throw()
 {
    // nLen is in XCHARs
-   ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSrc, nSrcLength, pszDest, nDestLength, NULL, NULL );
+   ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSrc, (int) nSrcLength, pszDest, (int) nDestLength, NULL, NULL );
 }
 
 void crt_char_traits::ConvertToOem(char* pstrString) throw()
@@ -492,28 +492,34 @@ void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch
 
 BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nDataLength ) throw()
 {
-   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength,
-      NULL, NULL );
-   BSTR bstr = ::SysAllocStringLen( NULL, nLen );
+   
+   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
+
+   BSTR bstr = ::SysAllocStringLen( NULL, (UINT) nLen );
+
    if( bstr != NULL )
    {
-      ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength,
-         bstr, nLen );
+      ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, bstr, (int) nLen);
    }
 
    return bstr;
+
 }
 
 BOOL __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
 {
-   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength, NULL, NULL );
-   BOOL bSuccess = ::SysReAllocStringLen( pbstr, NULL, nLen );
+   
+   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
+
+   BOOL bSuccess = ::SysReAllocStringLen( pbstr, NULL, (UINT) nLen );
+
    if( bSuccess )
    {
-      ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, nDataLength, *pbstr, nLen );
+      ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, *pbstr, (int) nLen );
    }
 
    return bSuccess;
+
 }
 
 DWORD __cdecl crt_char_traits::FormatMessage(DWORD dwFlags, LPCVOID pSource,
@@ -668,7 +674,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      }
    }
 
-   CSTRING_EXPLICIT string::string(const YCHAR* pszSrc ) :
+   string::string(const YCHAR* pszSrc ) :
       simple_string( string_trait::GetDefaultManager() )
    {
 //      if( !CheckImplicitLoad( pszSrc ) )
@@ -677,7 +683,16 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      }
    }
 
-   CSTRING_EXPLICIT string::string( const string_interface & str ) :
+   string::string(const vsstring & str ) :
+      simple_string( string_trait::GetDefaultManager() )
+   {
+//      if( !CheckImplicitLoad( pszSrc ) )
+//      {
+         *this = str.m_psz;
+//      }
+   }
+
+   string::string( const string_interface & str ) :
       simple_string( string_trait::GetDefaultManager() )
    {
       char sz[256];
@@ -705,46 +720,47 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      }
    }
 
-   CSTRING_EXPLICIT string::string( const unsigned char* pszSrc ) :
+   string::string( const unsigned char* pszSrc ) :
       simple_string( string_trait::GetDefaultManager() )
    {
       *this = reinterpret_cast< const char* >( pszSrc );
    }
-//ctors to prevent from oldSyntax template ctor (above) hijack certain types.
-//ca2 API dll instantiate all string methods inside the dll and declares dllimport for
-//all methods in user build (see afxstr.h), so need to include the methods in ca2 API dll builds.
-#if defined(_ApplicationFrameworkDLL) && defined(_MFC_DLL_BLD) || !defined(__cplusplus_cli) && defined(_MANAGED)
 
-   /*CSTRING_EXPLICIT*/ string::string(char* pszSrc ) :
+/*CSTRING_EXPLICIT string::string(char* pszSrc ) :
       simple_string( string_trait::GetDefaultManager() )
    {
       const char *psz = reinterpret_cast< const char* >( pszSrc );
-      if (!CheckImplicitLoad( psz ))
-      {
+//      if (!CheckImplicitLoad( psz ))
+  //    {
          *this = psz;
-      }
-   }
+    //  }
+   }*/
 
-   CSTRING_EXPLICIT string::string(unsigned char* pszSrc ) :
+   string::string(unsigned char* pszSrc ) :
       simple_string( string_trait::GetDefaultManager() )
    {
       const char *psz = reinterpret_cast< const char* >( pszSrc );
-      if (!CheckImplicitLoad( psz ))
-      {
+//      if (!CheckImplicitLoad( psz ))
+  //    {
          *this = psz;
-      }
+    //  }
    }
 
-   CSTRING_EXPLICIT string::string(wchar_t* pszSrc ) :
+   string::string(wchar_t* pszSrc ) :
       simple_string( string_trait::GetDefaultManager() )
    {
       const wchar_t *psz = reinterpret_cast< const wchar_t* >( pszSrc );
-      if (!CheckImplicitLoad( psz ))
+      //if (!CheckImplicitLoad( psz ))
       {
          *this = psz;
       }
    }
-#endif
+
+      string::string(const istring & istr) :
+      simple_string( string_trait::GetDefaultManager() )
+      {
+         *this = (const char *) istr;
+      }
 
    string::string(const unsigned char* pszSrc,string_manager_interface * pstringmanager ) :
       simple_string( pstringmanager )
@@ -752,7 +768,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       *this = reinterpret_cast< const char* >( pszSrc );
    }
 
-   CSTRING_EXPLICIT string::string(char ch,strsize nLength) :
+   string::string(char ch,strsize nLength) :
       simple_string( string_trait::GetDefaultManager() )
    {
       ATLASSERT( nLength >= 0 );
@@ -810,6 +826,13 @@ string::string(strsize nLength, char ch) :
    string& string::operator=(PCXSTR pszSrc )
    {
       simple_string::operator=( pszSrc );
+
+      return( *this );
+   }
+
+   string& string::operator=(const vsstring & str)
+   {
+      simple_string::operator=( str.m_psz );
 
       return( *this );
    }
@@ -2171,7 +2194,7 @@ string::string(strsize nLength, char ch) :
 
       // out-of-bounds requests return sensible things
 
-      int nLength = get_length();
+      strsize nLength = get_length();
 
       if (iFirst < 0)
          iFirst = 0;
@@ -2469,6 +2492,87 @@ string::string(strsize nLength, char ch) :
       return( strResult );
    }
 
+
+   string CLASS_DECL_ca operator+ (string str1, int i2)
+   {
+      
+      string strResult( str1.GetManager() );
+      
+      strResult = str1 + gen::str::itoa(i2);
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (int i1, string str2)
+   {
+      
+      string strResult( str2.GetManager() );
+      
+      strResult = gen::str::itoa(i1) + str2;
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (string str1, int64_t i2)
+   {
+      
+      string strResult( str1.GetManager() );
+      
+      strResult = str1 + gen::str::itoa(i2);
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (int64_t i1, string str2)
+   {
+      
+      string strResult( str2.GetManager() );
+      
+      strResult = gen::str::itoa(i1) + str2;
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (const char * psz, const var & var)
+   {
+      
+      string strResult(psz);
+      
+      strResult += var;
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (const var & var, const char *psz)
+   {
+      
+      string strResult(var);
+      
+      strResult += psz;
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (string str, const var & var)
+   {
+      
+      string strResult(str);
+      
+      strResult += var;
+
+      return strResult;
+   }
+
+   string CLASS_DECL_ca operator+ (const var & var, string str)
+   {
+      
+      string strResult(var);
+      
+      strResult += str;
+
+      return strResult;
+   }
+
    bool CLASS_DECL_ca operator==(string str1,const string_interface & str2 )
    {
       return( str1.Compare(string(str2)) == 0 );
@@ -2508,12 +2612,12 @@ string::string(strsize nLength, char ch) :
       return( str1 == str2 );
    }
 
-   bool CLASS_DECL_ca operator==(string str1, strsize i)
+   bool CLASS_DECL_ca operator==(string str1, int i)
    {
       return strtoi(str1.operator string::PCXSTR()) == i;
    }
 
-   bool CLASS_DECL_ca operator==(strsize i, string str1)
+   bool CLASS_DECL_ca operator==(int i, string str1)
    {
       return strtoi(str1.operator string::PCXSTR()) == i;
    }
@@ -2547,12 +2651,12 @@ string::string(strsize nLength, char ch) :
       return( str1 != str2 );
    }
 
-   bool CLASS_DECL_ca operator!=(string str1, strsize i)
+   bool CLASS_DECL_ca operator!=(string str1, int i)
    {
       return strtoi(str1.operator string::PCXSTR()) != i;
    }
 
-   bool CLASS_DECL_ca operator!=(strsize i, string str1)
+   bool CLASS_DECL_ca operator!=(int i, string str1)
    {
       return strtoi(str1.operator string::PCXSTR()) != i;
    }
@@ -2572,12 +2676,12 @@ string::string(strsize nLength, char ch) :
       return( str2.Compare( psz1 ) > 0 );
    }
 
-   bool CLASS_DECL_ca operator<(string str1, strsize i)
+   bool CLASS_DECL_ca operator<(string str1, int i)
    {
       return strtoi(str1.operator string::PCXSTR()) < i;
    }
 
-   bool CLASS_DECL_ca operator<(strsize i, string str1)
+   bool CLASS_DECL_ca operator<(int i, string str1)
    {
       return i < strtoi(str1.operator string::PCXSTR());
    }
@@ -2597,12 +2701,12 @@ string::string(strsize nLength, char ch) :
       return( str2.Compare( psz1 ) < 0 );
    }
 
-   bool CLASS_DECL_ca operator>(string str1, strsize i)
+   bool CLASS_DECL_ca operator>(string str1, int i)
    {
       return strtoi(str1.operator string::PCXSTR()) > i;
    }
 
-   bool CLASS_DECL_ca operator>(strsize i, string str1)
+   bool CLASS_DECL_ca operator>(int i, string str1)
    {
       return i > strtoi(str1.operator string::PCXSTR());
    }
@@ -2622,12 +2726,12 @@ string::string(strsize nLength, char ch) :
       return( str2.Compare( psz1 ) >= 0 );
    }
 
-   bool CLASS_DECL_ca operator<=(string str1, strsize i)
+   bool CLASS_DECL_ca operator<=(string str1, int i)
    {
       return strtoi(str1.operator string::PCXSTR()) <= i;
    }
 
-   bool CLASS_DECL_ca operator<=(strsize i, string str1)
+   bool CLASS_DECL_ca operator<=(int i, string str1)
    {
       return i <= strtoi(str1.operator string::PCXSTR());
    }
@@ -2647,12 +2751,12 @@ string::string(strsize nLength, char ch) :
       return( str2.Compare( psz1 ) <= 0 );
    }
 
-   bool CLASS_DECL_ca operator>=(string str1, strsize i)
+   bool CLASS_DECL_ca operator>=(string str1, int i)
    {
       return strtoi(str1.operator string::PCXSTR()) >= i;
    }
 
-   bool CLASS_DECL_ca operator>=(strsize i, string str1)
+   bool CLASS_DECL_ca operator>=(int i, string str1)
    {
       return i >= strtoi(str1.operator string::PCXSTR());
    }

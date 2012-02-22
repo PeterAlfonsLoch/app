@@ -228,6 +228,7 @@ bool ifs::is_dir(const char * pszPath)
 
 string ifs::file_name(const char * pszPath)
 {
+
    string strPath(pszPath);
 
    if(!gen::str::begins_eat_ci(strPath, "ifs://") && !gen::str::begins_eat_ci(strPath, "uifs://"))
@@ -235,7 +236,7 @@ string ifs::file_name(const char * pszPath)
       return "";
    }
 
-   int iFind = strPath.reverse_find("/");
+   strsize iFind = strPath.reverse_find("/");
 
    if(iFind < 0)
       iFind = -1;

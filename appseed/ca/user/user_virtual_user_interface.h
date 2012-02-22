@@ -103,7 +103,7 @@ public:
    virtual ::frame_window * GetTopLevelFrame();
 
    using ::user::interaction::GetWindowText;
-   int GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
+   strsize GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
    void GetWindowText(string & str);
 
 

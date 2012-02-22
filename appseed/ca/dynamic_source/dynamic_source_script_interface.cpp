@@ -251,7 +251,7 @@ namespace dynamic_source
    bool      script_interface::fs_read                 (const char * pszPath)
    {
       string strPath(pszPath);
-      int iFind = strPath.reverse_find('/');
+      strsize iFind = strPath.reverse_find('/');
       if(iFind < 0)
          return false;
       return mid_fs_read(strPath.Left(iFind), strPath.Mid(iFind + 1));
@@ -261,7 +261,7 @@ namespace dynamic_source
    bool      script_interface::low_folder_lazy_file(string & strUser, __int64 & iFolder , string & strFile, const char * pszPath)
    {
       string strPath(pszPath);
-      int iFind = strPath.reverse_find('/');
+      strsize iFind = strPath.reverse_find('/');
       if(iFind < 0)
          return false;
       strFile = strPath.Mid(iFind + 1);

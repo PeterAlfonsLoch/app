@@ -286,7 +286,7 @@ namespace filemanager
 
       string str = get_fs_list_data()->m_itema.get_item(iLine).m_strPath;
 
-      int iFind = str.reverse_find(L'\\');
+      strsize iFind = str.reverse_find(L'\\');
 
       string wstrNew = str.Left(iFind + 1) + wstrNameNew;
 

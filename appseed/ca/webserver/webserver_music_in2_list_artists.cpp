@@ -90,7 +90,7 @@ namespace music
    }
    
    
-   void in2_list_artists::print_row(::webserver::music::performer * pperformer, var line)
+   void in2_list_artists::print_row(::webserver::music::performer * pperformer, index line)
    {
 //      int line = m_cur_line;
       

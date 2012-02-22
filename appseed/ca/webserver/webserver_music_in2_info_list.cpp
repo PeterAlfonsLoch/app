@@ -19,10 +19,10 @@ namespace music
       if(!gprop("g_listline").is_set())
          gprop("g_listline") = 0;
 
-      int limitstart = 0;
-      int limitcount = 1000;
-      int lastpage= 0;
-      int totalcount= 0;
+      ::index limitstart = 0;
+      ::count limitcount = 1000;
+      ::index lastpage= 0;
+      ::count totalcount= 0;
       string order = "";
       string querystyle_arg = "";
       string lyrics = "";
@@ -94,7 +94,7 @@ namespace music
    void in2_info_list::printrows()
    {
       //global $g_listline;
-      int count = m_psonga->get_count();
+      ::count count = m_psonga->get_count();
       m_cur_line = 0;
 //         print "count=$count";
       for(index i = 0; i < count; i++)
@@ -107,7 +107,7 @@ namespace music
 //      m_song_printrows();
    }
 
-   void in2_info_list::print_td(int i1, const char * prefix_style)
+   void in2_info_list::print_td(index i1, const char * prefix_style)
    {
       UNREFERENCED_PARAMETER(i1);
       string style;
@@ -123,9 +123,9 @@ namespace music
       print("<td class='infoi "+style+"'>");
    }
 
-      int in2_info_list::get_cur_song_index()
+      index in2_info_list::get_cur_song_index()
       {
-         int count = m_psonga->get_count();
+         ::count count = m_psonga->get_count();
          for(index i = 0; i < count; i++)
          {
             if(is_selected(m_psonga->element_at(i), i))
@@ -143,7 +143,7 @@ namespace music
             return NULL;
       }
 
-      bool in2_info_list::is_selected(::webserver::music::song * psong, int index)
+      bool in2_info_list::is_selected(::webserver::music::song * psong, index index)
       {
          dprint("List:selected?");
          bool selected;

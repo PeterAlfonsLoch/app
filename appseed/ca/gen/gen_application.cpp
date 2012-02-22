@@ -464,7 +464,7 @@ namespace gen
       {
          return NULL;
       }
-      return SetEnhMetaFileBits(storage.get_size(), storage.get_data());
+      return SetEnhMetaFileBits((UINT) storage.get_size(), storage.get_data());
    }
 
    /////////////////////////////////////////////////////////////////////////////

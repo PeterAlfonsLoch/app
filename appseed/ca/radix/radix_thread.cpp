@@ -233,12 +233,12 @@ namespace radix
       }
    }
 
-   int thread::get_ui_count()
+   ::count thread::get_ui_count()
    {
       return m_p->get_ui_count();
    }
 
-   ::user::interaction * thread::get_ui(int iIndex)
+   ::user::interaction * thread::get_ui(index iIndex)
    {
       return m_p->get_ui(iIndex);
    }

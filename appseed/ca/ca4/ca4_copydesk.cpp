@@ -46,8 +46,10 @@ void copydesk::get_filea(stringa & stra)
 
 void copydesk::set_filea(stringa & stra)
 {
+   
    ASSERT(m_p->IsWindow());
-   int iLen = 0;
+   
+   strsize iLen = 0;
 
    for(int i = 0; i < stra.get_size(); i++)
    {
@@ -117,7 +119,7 @@ void copydesk::set_plain_text(const char * psz)
    EmptyClipboard();
 
 
-   int iCount = gen::international::utf8_to_unicode_count(str) + 1;
+   count iCount = gen::international::utf8_to_unicode_count(str) + 1;
    HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, iCount * sizeof(WCHAR));
    wchar_t * lpwstrCopy  = (wchar_t *) ::GlobalLock(hglbCopy);
    gen::international::utf8_to_unicode(lpwstrCopy, iCount, str);

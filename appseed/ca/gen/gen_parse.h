@@ -75,7 +75,7 @@ namespace gen
       string   pa_the_str;
       string   pa_splits;
       string   pa_ord;
-      int      pa_the_ptr;
+      strsize  pa_the_ptr;
       char     pa_breakchar;
       char     pa_enable;
       char     pa_disable;

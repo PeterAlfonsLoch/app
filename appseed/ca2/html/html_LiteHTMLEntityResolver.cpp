@@ -180,7 +180,7 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
          psz[0] = (wchar_t) ulNum;
          psz[1] = L'\0';
          strChar = gen::international::unicode_to_utf8(psz);
-         return lpszEnd - lpszEntity + 1;
+         return (int) (lpszEnd - lpszEntity + 1);
       }
    }
 
@@ -230,7 +230,7 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
       if (m_CharEntityRefs.Lookup(strKey, chTemp))
       {
          strChar = chTemp;
-         return lpszEnd - lpszEntity + 1;
+         return (int) (lpszEnd - lpszEntity + 1);
       }
    }
 

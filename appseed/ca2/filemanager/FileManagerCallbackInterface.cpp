@@ -13,6 +13,8 @@ FileManagerCallbackInterface::~FileManagerCallbackInterface()
 void FileManagerCallbackInterface::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, const ::fs::item & item, stringa & straCommand, stringa & straCommandTitle)
 {
    UNREFERENCED_PARAMETER(item);
+   UNREFERENCED_PARAMETER(straCommand);
+   UNREFERENCED_PARAMETER(straCommandTitle);
    if(pdata->m_pmanager != NULL)
    {
       pdata->m_pmanager->OpenSelectionProperties();

@@ -4,8 +4,9 @@
 namespace webserver
 {
 
-namespace music
-{
+
+   namespace music
+   {
 
       karaoke_song_in2_list::karaoke_song_in2_list(var id)
       {
@@ -41,7 +42,7 @@ namespace music
    //      m_song_printrows();
       }
 
-      void karaoke_song_in2_list::print_row(int iIndex, ::webserver::music::song * psong, int iLine)
+      void karaoke_song_in2_list::print_row(index iIndex, ::webserver::music::song * psong, index iLine)
       {
          UNREFERENCED_PARAMETER(iIndex);
          //global $musicdb;
@@ -61,7 +62,7 @@ namespace music
          string line = gen::str::itoa(iLine);
 
 //         $openlink = "/open/download/".$song->filename;
-          string type       = psong->m_propertyset["type"];
+            string type       = psong->m_propertyset["type"];
 
 
          print_tr(mainlink);
@@ -94,7 +95,7 @@ namespace music
          ::webserver::fun::user * pinsertion_user = fun().get_user(psong->m_propertyset["insertionuserid"]);
          ::webserver::music::song_source * psong_source = musicdb().get_song_source(psong->m_propertyset["insertionsourceid"]);
          print("</tr>");
-           print ("\n");
+            print ("\n");
          print ("<tr>");
          print ("<td class=\"slist-comment-label\">");
          print(pstr("karaoke.song.list:file.insertion.datetime"));
@@ -174,23 +175,27 @@ namespace music
          }
 
       }
-   void karaoke_song_in2_list::print_slist_closure()
-   {
-      //global $g_nosong_extra;
-      dprint("tr_mdwn COUNT=" + count(m_tr_mdwn_parama));
-      //dprint_r(m_tr_mdwn_parama);
-      tr_mdwn_parama_endtable();
-      if(!isset(get("fwdaction")))
+
+      void karaoke_song_in2_list::print_slist_closure()
       {
-         if(gprop("g_nosong_extra") != 1)
+         //global $g_nosong_extra;
+         dprint("tr_mdwn COUNT=" + count(m_tr_mdwn_parama));
+         //dprint_r(m_tr_mdwn_parama);
+         tr_mdwn_parama_endtable();
+         if(!isset(get("fwdaction")))
          {
-            songa_print_kar_warning();
+            if(gprop("g_nosong_extra") != 1)
+            {
+               songa_print_kar_warning();
+            }
          }
       }
-   }
 
-} // namespace music
+
+   } // namespace music
 
 
 } // namespace webserver
+
+
 

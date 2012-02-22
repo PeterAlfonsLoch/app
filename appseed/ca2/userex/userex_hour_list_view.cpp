@@ -101,12 +101,12 @@ namespace userex
 
    int hour_list_view::set_hour(int iHour)
    {
-      return set_cur_sel(iHour);
+      return (int) set_cur_sel(iHour);
    }
 
    int hour_list_view::get_hour()
    {
-      return get_cur_sel();
+      return (int) get_cur_sel();
    }
 
 } // namespace userex

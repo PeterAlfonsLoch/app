@@ -342,34 +342,4 @@ BOOL AfxDumpMemoryLeaks()
 
 #endif // _AFX_NO_DEBUG_CRT
 
-/////////////////////////////////////////////////////////////////////////////
-// Non-diagnostic primitive::memory routines
-
-int AFX_CDECL AfxNewHandler(size_t /* nSize */ /*)
-{
-   AfxThrowMemoryException();
-}
-
-#pragma warning(disable: 4273)
-
-#ifndef _ApplicationFrameworkDLL
-_PNH _afxNewHandler = &AfxNewHandler;
-#endif
-
-/*
-_PNH AfxGetNewHandler(void)
-{
-#ifdef _ApplicationFrameworkDLL
-   AFX_MODULE_THREAD_STATE* pState = AfxGetModuleThreadState();
-   return pState->m_pfnNewHandler;
-#else
-   return _afxNewHandler;
-#endif
-}*/
-/*
-
-AFX_STATIC_DATA const _PNH _pfnUninitialized = (_PNH)-1;
-
-#undef new
-
 */

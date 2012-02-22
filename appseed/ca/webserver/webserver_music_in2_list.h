@@ -33,24 +33,24 @@ namespace webserver
          var m_base_url_path;
 
          // Multiple pages   
-         int m_curpage;
-         int m_lastpage;
-         int m_limitcount;
-         int m_totalcount;
-         int m_num_rows;
+         ::index     m_curpage;
+         ::index     m_lastpage;
+         ::count     m_limitcount;
+         ::count     m_totalcount;
+         ::count     m_num_rows;
 
          // song
          webserver::music::song_ptr_array * m_psonga;
          webserver::music::song_ptr_array * m_psonga2;
-         var m_perf_perf_glue;
-         var m_perf_glue;
-         var m_perf_perf_last_glue;
-         var m_bFirstPerf;
+         var         m_perf_perf_glue;
+         var         m_perf_glue;
+         var         m_perf_perf_last_glue;
+         var         m_bFirstPerf;
 
-         var m_querystyle;
-         var m_bAsc;
+         var         m_querystyle;
+         var         m_bAsc;
 
-         int m_cur_line;
+         ::index     m_cur_line;
 
 
          virtual string get_list_title();
@@ -75,21 +75,21 @@ namespace webserver
          virtual void print_navigation(var nav);
          virtual void songa_print_kar_warning();
          virtual var get_kar_warning_path_list();
-         virtual void multi_page_init(int curpage, int limitcount);
-         virtual void multi_page_inst(int totalcount, int num_rows, int lastpage);
+         virtual void multi_page_init(index curpage, ::count limitcount);
+         virtual void multi_page_inst(::count totalcount, ::count num_rows, index lastpage);
          virtual void print_multi_page_nav(bool bInMulti = false);
-         virtual int multi_page_get_list_first_page();
-         virtual int multi_page_get_list_last_page();
-         virtual int multi_page_get_limit_back_advance();
-         virtual int multi_page_get_limit_start();
-         virtual int multi_page_get_result_start();
-         virtual int multi_page_get_result_end();
-         virtual int multi_page_get_limit_advance();
+         virtual index multi_page_get_list_first_page();
+         virtual index multi_page_get_list_last_page();
+         virtual index multi_page_get_limit_back_advance();
+         virtual index multi_page_get_limit_start();
+         virtual index multi_page_get_result_start();
+         virtual index multi_page_get_result_end();
+         virtual index multi_page_get_limit_advance();
          virtual string multi_page_get_nav_link(var page);
          virtual string multi_page_get_nav_link_text_append(var page);
-         virtual int multi_page_get_item_start();
-         virtual int multi_page_get_item_end();
-         virtual int multi_page_map_to_internal_item(int item);
+         virtual index multi_page_get_item_start();
+         virtual index multi_page_get_item_end();
+         virtual index multi_page_map_to_internal_item(index item);
 
          // getTitle   
          // printSListPreamble

@@ -597,7 +597,7 @@ void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int & iNumber)
    {
       pctx->update(&ch, 1);
    }
-   iNumber = atol_dup(str, NULL, 10);
+   iNumber = atoi_dup(str);
 }
 
 /* void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)

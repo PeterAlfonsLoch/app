@@ -14,7 +14,7 @@
 
 
 // Implementation structures
-struct AFX_SIZEPARENTPARAMS;    // control bar implementation
+struct AFX_SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
 
 // Classes declared in this file
 

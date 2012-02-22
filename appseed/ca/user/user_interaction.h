@@ -35,7 +35,7 @@ namespace user
 
 
          interaction *        m_pguie;
-         UINT                 m_uiId;
+         UINT_PTR             m_uiId;
          UINT                 m_uiElapse;
          UINT                 m_uiLastSent;
 
@@ -56,15 +56,15 @@ namespace user
 
 
          virtual void on_delete(interaction * poc);
-         UINT set(interaction * pguie, UINT uiId, UINT uiElapse);
+         UINT_PTR set(interaction * pguie, UINT_PTR uiId, UINT uiElapse);
          void check();
-         bool unset(interaction * pguie, UINT uiId);
+         bool unset(interaction * pguie, UINT_PTR uiId);
          void unset(interaction * pguie);
          void detach(raw_array < timer_item > & timera, interaction * pguie);
          void transfer(::ca::window * pwindow, interaction * pguie);
          interaction * find(::ca::ca * pca);
-         int find(interaction * pguie, UINT uiId);
-         int find_from(interaction * pguie, int iStart);
+         index find(interaction * pguie, UINT_PTR uiId);
+         index find_from(interaction * pguie, index iStart);
 
          virtual void assert_valid() const;
          virtual void dump(dump_context & dc) const;
@@ -99,7 +99,7 @@ namespace user
       int                                 m_iModal;
       int                                 m_iModalCount;
       bool                                m_bRectOk;
-      comparable_array < int >            m_iaModalThread;
+      comparable_array < INT_PTR >        m_iaModalThread;
       id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
@@ -312,9 +312,9 @@ namespace user
       virtual interaction * GetDescendantWindow(id id);
 
       virtual void SetWindowText(const char * lpszString);
-      virtual int GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
+      virtual strsize GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
       virtual void GetWindowText(string & rString);
-      virtual int GetWindowTextLength();
+      virtual strsize GetWindowTextLength();
       virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
       virtual ::ca::font* GetFont();
 

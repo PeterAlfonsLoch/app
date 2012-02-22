@@ -122,7 +122,7 @@ namespace filemanager
                   break;
                }
 
-               int iNewItem = m_foldera.FindAbsolute(folder.m_iFolder);
+               index iNewItem = m_foldera.FindAbsolute(folder.m_iFolder);
                if(iNewItem == -1)
                {
                   iNewItem = m_foldera.get_size();

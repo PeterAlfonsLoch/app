@@ -88,7 +88,7 @@ file_size_table::item::item()
    m_pitemParent = NULL;
 }
 
-void file_size_table::item::ls(::ca::application * papp, int & iIteration)
+void file_size_table::item::ls(::ca::application * papp, index & iIteration)
 {
    if(m_bDir)
    {
@@ -150,7 +150,7 @@ string file_size_table::item::path()
       return m_pitemParent->path() + "\\" + m_strName;
 }
 
-file_size_table::item * file_size_table::item::FindItem(::ca::application * papp, const char * pszPath, int & iIteration)
+file_size_table::item * file_size_table::item::FindItem(::ca::application * papp, const char * pszPath, index & iIteration)
 {
    string strName;
    string strPath(pszPath);
@@ -158,8 +158,8 @@ file_size_table::item * file_size_table::item::FindItem(::ca::application * papp
 
    while(strPath.Left(1) == "\\")
       strPath = strPath.Mid(1);
-   int iFind = strPath.find('\\');
-   int iFindName;
+   strsize iFind = strPath.find('\\');
+   strsize iFindName;
    if(iFind < 0)
    {
       iFindName = FindName(papp, strPath, iIteration);
@@ -178,13 +178,13 @@ file_size_table::item * file_size_table::item::FindItem(::ca::application * papp
 }
 
 
-int file_size_table::item::FindName(::ca::application * papp, const char * pszName, int & iIteration)
+index file_size_table::item::FindName(::ca::application * papp, const char * pszName, index & iIteration)
 {
    if(m_bPendingLs)
    {
       ls(papp, iIteration);
    }
-   for(int i = 0; i < m_itema.get_size(); i++)
+   for(index i = 0; i < m_itema.get_size(); i++)
    {
       if(m_itema[i].m_strName == pszName)
          return i;
@@ -192,7 +192,7 @@ int file_size_table::item::FindName(::ca::application * papp, const char * pszNa
    return -1;
 }
 
-void file_size_table::item::update_size(::ca::application * papp, int & iIteration)
+void file_size_table::item::update_size(::ca::application * papp, index & iIteration)
 {
    UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(iIteration);
@@ -212,7 +212,7 @@ void file_size_table::item::update_size(::ca::application * papp, int & iIterati
 
 }
 
-void file_size_table::item::update_size_recursive(::ca::application * papp, int & iIteration)
+void file_size_table::item::update_size_recursive(::ca::application * papp, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -286,7 +286,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(__int64 & i64Size, const char * pszP
 
 bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
 {
-   int iIteration = 0;
+   index iIteration = 0;
    single_lock sl(m_table.m_pmutex, FALSE);
    if(!sl.lock(duration::zero()))
       return false;
@@ -296,7 +296,7 @@ bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, b
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending, int & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending, index & iIteration)
 {
    single_lock sl(m_table.m_pmutex, FALSE);
    if(!sl.lock(duration::zero()))
@@ -382,7 +382,7 @@ bool FileSystemSizeWnd::get_fs_size(__int64 & i64Size, const char * pszPath, boo
 
    COPYDATASTRUCT data;
    data.dwData = 0;
-   data.cbData = (::primitive::memory_size) file.get_length();
+   data.cbData = (DWORD) file.get_length();
    data.lpData = file.get_data();
    HWND hwndWparam = (HWND) m_p->get_os_data();
    WPARAM wparam = (WPARAM) hwndWparam;
@@ -454,7 +454,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
             file_size_table::get_fs_size & size = m_sizea[0];
             file.Truncate(0);
             size.write(file);
-            data.cbData = (::primitive::memory_size) file.get_length();
+            data.cbData = (DWORD) file.get_length();
             data.lpData = file.get_data();
             ::SendMessage((HWND) size.m_hwnd, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.remove_at(0);

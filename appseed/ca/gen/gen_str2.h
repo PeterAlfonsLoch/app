@@ -202,10 +202,65 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline CLASS_DECL_ca  string         itoa(int64_t i)
+      inline CLASS_DECL_ca  string  itoa(int i)
       {
-         return i64toa(i);
+         string str;
+         itoa(str, i);
+         return str;
       }
+
+      inline CLASS_DECL_ca  string  itoa(int64_t i)
+      {
+         string str;
+         itoa(str, i);
+         return str;
+      }
+
+      inline CLASS_DECL_ca  string  itoa(unsigned int ui)
+      {
+         string str;
+         itoa(str, ui);
+         return str;
+      }
+
+      inline CLASS_DECL_ca  string  itoa(unsigned long ui)
+      {
+         string str;
+         itoa(str, ui);
+         return str;
+      }
+
+      inline CLASS_DECL_ca  string  itoa(uint64_t ui)
+      {
+         string str;
+         itoa(str, ui);
+         return str;
+      }
+
+      inline CLASS_DECL_ca string  i64toa(int64_t i)
+      {
+         string str;
+         i64toa(str, i);
+         return str;
+      }
+
+      inline CLASS_DECL_ca  string &         itoa(string & str, int64_t i)
+      {
+         return i64toa(str, i);
+      }
+
+      inline CLASS_DECL_ca bool     trimmed_is_empty(const char * psz)
+      { 
+         
+         string str(psz); 
+         
+         str.trim(); 
+         
+         return str.is_empty();
+
+      }
+      
+
 
 
    } // namespace str

@@ -1,10 +1,13 @@
 #pragma once
 
+
 class keyboard_focus;
 class element_2d;
 
+
 namespace user
 {
+
 
    class CLASS_DECL_ca2 edit_plain_text :
       virtual public scroll_view,
@@ -16,8 +19,8 @@ namespace user
    public:
 
 
-      DWORD                      m_dwLastKeyWparam;
-      DWORD                      m_dwLastKeyLparam;
+      WPARAM                      m_dwLastKeyWparam;
+      LPARAM                      m_dwLastKeyLparam;
 
 
       bool                       m_bKeyPressed;
@@ -36,29 +39,29 @@ namespace user
       bool                       m_bCaretOn;
       DWORD                      m_dwLastCaret;
       DWORD                      m_dwCaretTime;
-      int                        m_iLineOffset;
+      index                      m_iLineOffset;
       stringa                    m_straSep;
       colorertake5::text_lines   m_lines;
       int                        m_y;
       bool                       m_bGetTextNeedUpdate;
       bool                       m_bNeedScrollUpdate;
 
-      int                        m_iSelStart;
-      int                        m_iSelEnd;
-      int                        m_iViewOffset; // in bytes
-      int                        m_iViewSize; // in bytes
+      strsize                    m_iSelStart;
+      strsize                    m_iSelEnd;
+      strsize                    m_iViewOffset; // in bytes
+      strsize                    m_iViewSize; // in bytes
       int                        m_iLineHeight;
-      int                        m_iColumn;
+      index                      m_iColumn;
       bool                       m_bMultiLine;
       bool                       m_bReadOnly;
 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size
-      int_array                  m_iaLineIndex; 
+      index_array                  m_iaLineIndex; 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
-      int_array                  m_iaLineEndIndex;
-      int_array                  m_iaCLineIndex; 
+      index_array                  m_iaLineEndIndex;
+      count_array                  m_iaCLineIndex; 
       
       plain_text_data *          m_pdata;
       bool                       m_bOwnData;
@@ -148,18 +151,18 @@ namespace user
 
       virtual bool create_control(class user::control::descriptor * pdescriptor);
 
-      virtual int char_hit_test(::ca::graphics * pdc, int x, int y);
+      virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
 
       colorertake5::file_type * colorer_select_type();
 
       void _001GetText(string & str) const; 
       void _001GetSelText(string & str) const;
 
-      void _001GetViewSel(int &iSelStart, int &iSelEnd);
+      void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd);
 
       void _001SetText(const char * psz);
       void _001SetSelText(const char * psz);
-      void _001SetSel(int iSelStart, int iSelEnd);
+      void _001SetSel(strsize iSelStart, strsize iSelEnd);
 
       bool should_load_full_file();
 
@@ -170,20 +173,20 @@ namespace user
       void OnFileUpdate();
       void CreateLineIndex();
 
-      int SelToColumn(int iSel);
-      int SelToLine(int iSel);
-      int LineColumnToSel(int iLine, int iColumn);
+      index SelToColumn(strsize iSel);
+      index SelToLine(strsize iSel);
+      strsize LineColumnToSel(index iLine, index iColumn);
 
       void OneLineUp();
 
-      void IndexRegisterDelete(int iSel, int iCount);
-      void IndexRegisterInsert(int iSel, const char * lpcszWhat);
+      void IndexRegisterDelete(strsize iSel, strsize iCount);
+      void IndexRegisterInsert(strsize iSel, const char * lpcszWhat);
 
       bool Undo();
       bool Redo();
       bool CanUndo();
       bool CanRedo();
-      int GetRedoBranchCount();
+      ::count GetRedoBranchCount();
 
       DECL_GEN_SIGNAL(_001OnDestroy)
       void VirtualOnSize();
@@ -195,6 +198,10 @@ namespace user
       virtual ex1::tree_item_data * on_allocate_item();
       virtual void on_delete_item(ex1::tree_item_data * pitem);
 
+
    };
 
+
 } // namespace user
+
+

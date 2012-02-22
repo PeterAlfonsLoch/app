@@ -22,6 +22,7 @@ public:
 
 
    inline operator const char * () { return m_str; }
+   inline operator const char * () const { return m_str; }
 
 
    void update_string();

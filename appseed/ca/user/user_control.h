@@ -94,33 +94,41 @@ namespace user
       class CLASS_DECL_ca descriptor
       {
       public:
-         descriptor();
-         descriptor(const descriptor & descriptor);
-         virtual ~descriptor();
-         form *                  m_pform;
-         control *               m_pcontrol;
-         id                      m_id;
-           ::ca::type_info         m_typeinfo;
-         int                     m_iSubItem;
-         id                      m_idPrivateDataSection;
-         bool                     m_bTransparent;
-         e_type                     m_etype;
-         bool                    m_bCreated;
-         bool                    m_bSubclassed;
-         eddx                    m_eddx;
-         ::database::id                 m_dataid;
-         flags < efunction >     m_flagsfunction;
-         edatatype               m_edatatype;
+
          union
          {
             void *                     m_pvoid;
             class ddx_dbflags *        m_pdbflags;
          } m_ddx;
+
+
          union
          {
             void                       * m_pvoid;
             Ex1FormInterfaceComboBox   * m_pcombobox;
          } m_data;
+
+         form *                  m_pform;
+         control *               m_pcontrol;
+         id                      m_id;
+         ::ca::type_info         m_typeinfo;
+         index                   m_iSubItem;
+         id                      m_idPrivateDataSection;
+         bool                    m_bTransparent;
+         e_type                  m_etype;
+         bool                    m_bCreated;
+         bool                    m_bSubclassed;
+         eddx                    m_eddx;
+         ::database::id          m_dataid;
+         flags < efunction >     m_flagsfunction;
+         edatatype               m_edatatype;
+
+
+         descriptor();
+         descriptor(const descriptor & descriptor);
+         virtual ~descriptor();
+
+
          void clear();
          bool operator == (const descriptor & descriptor) const;
          descriptor & operator = (const descriptor & descriptor);
@@ -132,28 +140,35 @@ namespace user
          edatatype get_data_type();
          void set_data_type(edatatype edatatype);
          void set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, INT_PTR value);
+
+
       };
 
       class CLASS_DECL_ca descriptor_set :
          public array_ptr_alloc < descriptor >
       {
       public:
+         
+
+         descriptor_set();
+         virtual ~descriptor_set();
+
+
          control * get_control_by_id(id id);
          descriptor * get(::user::interaction * puie);
          descriptor * get_by_sub_item(int iSubItem);
 
-         descriptor_set();
-         virtual ~descriptor_set();
+         
       };
 
 
       static const unsigned int  g_uiMessage;
-      int                        m_iHover;
+      index                      m_iHover;
       e_element                  m_eelementHover;
       descriptor *               m_pdescriptor;
       ::user::interaction *      m_pwndCustomWindowProc;
       bool                       m_bCustomWindowProc;
-      int                        m_iEditItem;
+      index                      m_iEditItem;
       form *                     m_pform;
       form_callback *            m_pformcallback;
       bool                       m_bControlExCommandEnabled;
@@ -190,10 +205,10 @@ namespace user
       static control Null();
       bool Validate(string & str);
       bool get_data(::user::interaction * pwnd, var & var);
-      void SetEditItem(int iItem);
-      void SetEditSubItem(int iItem);
-      int GetEditSubItem();
-      int GetEditItem();
+      void SetEditItem(index iItem);
+      void SetEditSubItem(index iItem);
+      index GetEditSubItem();
+      index GetEditItem();
 
       virtual ::user::interaction * ControlExGetWnd();
       

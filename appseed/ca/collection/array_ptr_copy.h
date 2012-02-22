@@ -15,7 +15,7 @@ public:
 
    index add(const TYPE & t);
    index add(TYPE * p);
-   inline void insert_at(int iIndex, ARG_TYPE t);
+   inline void insert_at(index iIndex, ARG_TYPE t);
 
    count add(const array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & base_array);
 
@@ -62,7 +62,7 @@ inline index array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(TYPE * p)
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::insert_at(
-   int iIndex,
+   index iIndex,
    ARG_TYPE t)
 {
    this->ptra().insert_at(iIndex, gen::alloc<TYPE>(t));

@@ -278,7 +278,7 @@ bool secure::login_check()
          //int iLenPass = strPassword.get_length();
          primitive::memory mem;
          Application.hex_to_memory(mem, strPassword);
-         int i = RSA_private_decrypt(mem.get_size(), (const unsigned char *) (const char *) mem.get_data(), (unsigned char *) to, rsa, RSA_PKCS1_PADDING);
+         ::count i = RSA_private_decrypt((int) mem.get_size(), (const unsigned char *) (const char *) mem.get_data(), (unsigned char *) to, rsa, RSA_PKCS1_PADDING);
          if(i < 0 || i > (1024 * 1024))
          {
             gprop("message") = gprop("strUserNotExist");
@@ -329,7 +329,7 @@ bool secure::login_check()
          //int iLenPass = strPasshash.get_length();
          primitive::memory mem;
          Application.hex_to_memory(mem, strPasshash);
-         int i = RSA_private_decrypt(mem.get_size(), (const unsigned char *) (const char *) mem.get_data(), (unsigned char *) to, rsa, RSA_PKCS1_PADDING);
+         ::count i = RSA_private_decrypt((int) mem.get_size(), (const unsigned char *) (const char *) mem.get_data(), (unsigned char *) to, rsa, RSA_PKCS1_PADDING);
          if(i < 0 || i > (1024 * 1024))
          {
             gprop("message") = gprop("strUserNotExist");

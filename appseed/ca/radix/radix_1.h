@@ -136,11 +136,9 @@ class dump_context;
 #pragma warning(disable: 4660)  // template is already instantiated
 #pragma warning(disable: 4127)  // constant expression used in macros do while(0);
 
-// warnings specific to _ApplicationFrameworkDLL version
-#ifdef _ApplicationFrameworkDLL
 #pragma warning(disable: 4275)  // deriving exported class from non-exported
 #pragma warning(disable: 4251)  // using non-exported as public in exported
-#endif
+
 
 #ifdef _AFX_ALL_WARNINGS
 #pragma warning( push )
@@ -160,10 +158,7 @@ class dump_context;
 #pragma warning(disable: 4189)  // initialized but unused var
 #pragma warning(disable: 4390)  // is_empty controlled statement
 #endif
-// warnings specific to _ApplicationFrameworkDLL version
-#ifdef _ApplicationFrameworkDLL
 #pragma warning(disable: 4204)  // non-constant aggregate initializer
-#endif
 #pragma warning(disable: 4263 4264)  // base class method is hidden
 
 
@@ -234,13 +229,10 @@ class dump_context;
 // Inline function declarations
 
 #ifdef _AFX_ENABLE_INLINES
+
 #define _AFX_INLINE inline
 
-#if !defined(_CA_DLL) || !defined(_ApplicationFrameworkDLL) || defined(_DEBUG)
 #define _AFX_PUBLIC_INLINE inline
-#else
-#define _AFX_PUBLIC_INLINE
-#endif
 
 #endif
 
@@ -282,4 +274,4 @@ class dump_context;
 #include "ca/ca_data_listener.h"
 
 #include "ca/ca_type_info.h"
-#include "factory.h"
+#include "radix_factory.h"

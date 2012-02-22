@@ -265,7 +265,7 @@ public:
   bool parse(string str, SMatches *mtch, SMatchHash *nmtch = NULL);
   /** Runs RE parser against input string @c str
   */
-  bool parse(string str, strsize pos, int eol, SMatches *mtch, SMatchHash *nmtch = NULL, int soscheme = 0, int moves = -1);
+  bool parse(string str, strsize pos, strsize eol, SMatches *mtch, SMatchHash *nmtch = NULL, int soscheme = 0, int moves = -1);
 
 private:
   bool ignoreCase, extend, positionMoves, singleLine, multiLine;

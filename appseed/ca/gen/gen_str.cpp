@@ -6,13 +6,13 @@ namespace gen
    {
       const char trailingBytesForUTF8[256] = {
          -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-          0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-          2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
+         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+         2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
       };
    }
 }
@@ -203,7 +203,7 @@ namespace gen
 
    bool str::begins_eat(string & str, const char * lpcszPrefix)
    {
-      
+
       string strPrefix(lpcszPrefix);
 
       strsize iLen = strPrefix.get_length();
@@ -220,7 +220,7 @@ namespace gen
 
    bool str::begins_eat_ci(string & str, const char * lpcszPrefix)
    {
-      
+
       if(lpcszPrefix == NULL)
          return true;
 
@@ -281,12 +281,12 @@ namespace gen
       }
 
       return false;
-/*      string str(lpcsz);
+      /*      string str(lpcsz);
       string strSuffix(lpcszSuffix);
       int iLen = strSuffix.get_length();
       if(str.Right(iLen) == lpcszSuffix)
       {
-         return true;
+      return true;
       }
       return false;*/
    }
@@ -364,7 +364,7 @@ namespace gen
 
    bool str::ends_eat(string & str, const char * lpcszSuffix)
    {
-      
+
       string strSuffix(lpcszSuffix);
 
       strsize iLen = strSuffix.get_length();
@@ -383,7 +383,7 @@ namespace gen
 
    bool str::ends_eat_ci(string & str, const char * lpcszSuffix)
    {
-      
+
       string strSuffix(lpcszSuffix);
 
       strsize iLen = strSuffix.get_length();
@@ -458,7 +458,7 @@ namespace gen
 
       while((iFind = find_first(straSearch, iFound, str, iStart)) >= 0)
       {
-         
+
          if(iFind < iStart)
             throw "errror";
 
@@ -477,7 +477,7 @@ namespace gen
 
    string str::replace_ci(const char * pszFind, const char * pszReplace, const char * psz)
    {
-      
+
       index iPos = 0;
 
       string str(psz);
@@ -490,7 +490,7 @@ namespace gen
       {
 
          iPos = find_ci(pszFind, str, iPos);
-         
+
          if(iPos < 0)
             break;
 
@@ -515,17 +515,17 @@ namespace gen
 
       if(strFind.get_length() > (str.get_length() - iStart))
          return -1;
-      
+
       string strFindLow(&((LPCTSTR)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
-      
+
       strFindLow.make_lower();
 
       string strLow(&((LPCSTR)str)[iStart], str.get_length() - iStart); // avoid optimized read only string copy
-      
+
       strLow.make_lower();
 
       index iFind = strLow.find(strFindLow);
-      
+
       if(iFind < 0)
          return -1;
 
@@ -536,7 +536,7 @@ namespace gen
 
    index str::find_ci(const string & strFind, const char * psz, index iStart)
    {
-      
+
       count iFindLen = strFind.get_length();
 
       count iLen = strlen(&psz[iStart]);
@@ -546,20 +546,20 @@ namespace gen
 
       if(iFindLen < 256)
       {
-         
+
          char szFind[256];
-         
+
          memcpy(szFind, strFind, iFindLen + 1);
-         
+
          strlwr(szFind);
 
          if(iLen < 256)
          {
 
             char sz[256];
-         
+
             memcpy(sz, &psz[iStart], iLen + 1);
-            
+
             strlwr(sz);
 
             const char * pszFind = strstr(sz, szFind);
@@ -574,7 +574,7 @@ namespace gen
          {
 
             string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
-            
+
             strLow.make_lower();
 
             psz = strLow;
@@ -593,15 +593,15 @@ namespace gen
       {
 
          string strFindLow(&((LPCTSTR)strFind)[0], iFindLen); // avoid optimized read only string copy
-         
+
          strFindLow.make_lower();
 
          string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
-         
+
          strLow.make_lower();
 
          index iFind = strLow.find(strFindLow);
-      
+
          if(iFind < 0)
             return -1;
 
@@ -614,9 +614,9 @@ namespace gen
 
    index str::find_ci(const char * pszFind, const string & str, index iStart)
    {
-      
+
       count iFindLen = strlen(pszFind);
-      
+
       index iLen = str.get_length() - iStart;
 
       if(iFindLen > iLen)
@@ -624,7 +624,7 @@ namespace gen
 
       if(iFindLen < 256)
       {
-         
+
          char szFind[256];
 
          memcpy(szFind, pszFind, iFindLen + 1);
@@ -679,7 +679,7 @@ namespace gen
          strLow.make_lower();
 
          index iFind = strLow.find(strFindLow);
-      
+
          if(iFind < 0)
             return -1;
 
@@ -692,9 +692,9 @@ namespace gen
 
    index str::find_ci(const char * pszFind, const char * psz, index iStart)
    {
-      
+
       index iFindLen = strlen(pszFind);
-      
+
       index iLen = strlen(&psz[iStart]);
 
       if(iFindLen > iLen)
@@ -702,7 +702,7 @@ namespace gen
 
       if(iFindLen < 256)
       {
-         
+
          char szFind[256];
          memcpy(szFind, pszFind, iFindLen + 1);
          strlwr(szFind);
@@ -750,7 +750,7 @@ namespace gen
          strLow.make_lower();
 
          index iFind = strLow.find(strFindLow);
-      
+
          if(iFind < 0)
             return -1;
 
@@ -762,7 +762,7 @@ namespace gen
 
    index str::find_wwci(const char * pszFind, const char * psz, index iStart)
    {
-      
+
       string strFind(pszFind);
 
       strFind.make_lower();
@@ -792,7 +792,7 @@ namespace gen
 
    index str::find_ww(const char * pszFind, const char * psz, index iStart)
    {
-      
+
       if(psz == NULL)
          return -1;
 
@@ -802,14 +802,14 @@ namespace gen
          return -1;
 
       string strFind(pszFind);
-      
+
       index i = 0;
 
       if(iStart == 0)
       {
-         
+
          if(strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
             return i;
          }
@@ -817,12 +817,12 @@ namespace gen
       }
       while(*pszIter != '\0')
       {
-         
+
          string strChar = utf8_char(pszIter);
-         
+
          if(!gen::ch::is_letter_or_digit(strChar))
          {
-            
+
             do
             {
                i += strChar.get_length();
@@ -835,7 +835,7 @@ namespace gen
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -856,7 +856,7 @@ namespace gen
 
    index str::find_aww(const char * pszFind, const char * psz, index iStart)
    {
-      
+
       if(psz == NULL)
          return -1;
 
@@ -871,9 +871,9 @@ namespace gen
 
       if(iStart == 0)
       {
-      
+
          if(strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
          {
 
             return i;
@@ -886,17 +886,17 @@ namespace gen
       {
 
          string strChar = utf8_char(pszIter);
-         
+
          if(!gen::ch::is_letter(strChar))
          {
 
             do
             {
-               
+
                i += strChar.get_length();
-               
+
                pszIter = utf8_inc(pszIter);
-               
+
                strChar = utf8_char(pszIter);
 
             } 
@@ -906,14 +906,14 @@ namespace gen
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
 
             }
          }
-         
+
          i += strChar.get_length();
 
          pszIter = utf8_inc(pszIter);
@@ -926,9 +926,9 @@ namespace gen
 
    string str::has_char(const char * pszIfHasChar, const char * pszBefore, const char * pszAfter)
    {
-      
+
       string str;
-      
+
       if(pszIfHasChar == NULL)
          return str;
 
@@ -958,20 +958,20 @@ namespace gen
 
    bool str::has_upper(const char * psz)
    {
-   
+
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
-      
+
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
 
       return bHasUpper;
 
    }
-   
+
    bool str::has_lower(const char * psz)
    {
-      
+
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
@@ -981,7 +981,7 @@ namespace gen
       return bHasLower;
 
    }
-   
+
    bool str::has_digit(const char * psz)
    {
 
@@ -994,7 +994,7 @@ namespace gen
       return bHasDigit;
 
    }
-   
+
    void str::calc_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
 
@@ -1042,7 +1042,7 @@ namespace gen
 
    bool str::has_all_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
-   
+
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
 
       return bHasUpper && bHasLower && bHasDigit;
@@ -1051,7 +1051,7 @@ namespace gen
 
    bool str::has_all_v1(const char * psz)
    {
-   
+
       bool bHasUpper;
       bool bHasLower;
       bool bHasDigit;
@@ -1063,7 +1063,7 @@ namespace gen
 
    string str::if_null(const char * psz, const char * pszIfNull)
    {
-      
+
       if(psz == NULL)
          return pszIfNull;
       else
@@ -1073,12 +1073,12 @@ namespace gen
 
    string str::get_window_text(HWND hwnd)
    {
-      
+
       string str;
-      
+
       if (hwnd != NULL)
       {
-      
+
          int nLen = ::GetWindowTextLength(hwnd);
 
          ::GetWindowText(hwnd, str.GetBufferSetLength(nLen), nLen+1);
@@ -1092,12 +1092,12 @@ namespace gen
    }
 
    string str::get_word(
-                     const char * psz, 
-                     const char * pszSeparator, 
-                     bool bWithSeparator, 
-                     bool bEndIsSeparator)
+      const char * psz, 
+      const char * pszSeparator, 
+      bool bWithSeparator, 
+      bool bEndIsSeparator)
    {
-      
+
       if(psz == NULL)
          return "";
 
@@ -1135,6 +1135,42 @@ namespace gen
          return str.Left(iFind);
       }
    }
+
+   bool str::atoi(const char * psz, int64_t & i)
+   {
+
+      const char * pszEnd;
+
+      int64_t iConversion = ::atoi64_dup(psz, &pszEnd);
+
+      if(pszEnd == psz)
+         return false;
+
+      i = iConversion;
+
+      return true;
+
+   }
+
+   bool str::atoi(const char * psz, int & i)
+   {
+
+      const char * pszEnd;
+
+      int64_t iConversion = ::atoi_dup(psz, &pszEnd);
+
+      if(pszEnd == psz)
+         return false;
+
+      if(iConversion > numeric_info::get_maximum_value < int > ())
+         return false;
+
+      i = (int) iConversion;
+
+      return true;
+
+   }
+
 
    bool str::atoi(const char * psz, int64_t & i, int iBase)
    {
@@ -1177,37 +1213,32 @@ namespace gen
 
    }
 
-   string str::itoa(int i)
+   string & str::itoa(string & str, int i)
    {
-      string str;
       str.Format("%d", i);
       return str;
    }
 
-   string str::i64toa(int64_t i)
+   string & str::i64toa(string & str, int64_t i)
    {
-      string str;
       str.Format("%I64d", i);
       return str;
    }
 
-   string str::itoa(uint64_t ui)
+   string & str::itoa(string & str, uint64_t ui)
    {
-      string str;
       str.Format("%I64u", ui);
       return str;
    }
 
-   string str::itoa(unsigned int ui)
+   string & str::itoa(string & str, unsigned int ui)
    {
-      string str;
       str.Format("%u", ui);
       return str;
    }
 
-   string str::itoa(unsigned long ul)
+   string & str::itoa(string & str, unsigned long ul)
    {
-      string str;
       str.Format("%u", ul);
       return str;
    }
@@ -1593,23 +1624,23 @@ namespace gen
 
    bool str::get_curly_content(const char * psz, string & str)
    {
-     if (psz[0] != '{') return false;
-     const char * pszChar;
-     for(pszChar = utf8_inc(psz); pszChar != NULL; pszChar = utf8_inc(pszChar))
-     {
-       if (*pszChar == '}')
-         break;
-     /*  ECharCategory cc = Character::getCategory(str[lpos]);
-       // check for what??
-       if (Character::isWhitespace(str[lpos]) ||
-           cc == CHAR_CATEGORY_Cn || cc == CHAR_CATEGORY_Cc ||
-           cc == CHAR_CATEGORY_Cf || cc == CHAR_CATEGORY_Cs)
+      if (psz[0] != '{') return false;
+      const char * pszChar;
+      for(pszChar = utf8_inc(psz); pszChar != NULL; pszChar = utf8_inc(pszChar))
+      {
+         if (*pszChar == '}')
+            break;
+         /*  ECharCategory cc = Character::getCategory(str[lpos]);
+         // check for what??
+         if (Character::isWhitespace(str[lpos]) ||
+         cc == CHAR_CATEGORY_Cn || cc == CHAR_CATEGORY_Cc ||
+         cc == CHAR_CATEGORY_Cf || cc == CHAR_CATEGORY_Cs)
          return null;*/
-     };
-     if (*pszChar == '\0')
-        return false;
-     str = string(&psz[1], pszChar - psz - 1);
-     return true;
+      };
+      if (*pszChar == '\0')
+         return false;
+      str = string(&psz[1], pszChar - psz - 1);
+      return true;
    }
 
 
@@ -1631,45 +1662,47 @@ namespace gen
 
    void str::consume(const char * & pszXml, const char * psz)
    {
-     int idx;
-     int len = strlen(psz);
-     for(idx = 0; idx < len; idx++)
-     {
-        if(pszXml[idx] != psz[idx])
-        {
-           throw "Name does not match expected";
-        }
-     }
-     pszXml += len;
+
+      index idx;
+
+      strsize len = strlen(psz);
+      for(idx = 0; idx < len; idx++)
+      {
+         if(pszXml[idx] != psz[idx])
+         {
+            throw "Name does not match expected";
+         }
+      }
+      pszXml += len;
    }
 
    void str::consume(const char * & pszXml, const char * psz, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);
-     strsize idx;
-     strsize len = strlen(psz);
-     for(idx = 0; idx < len; idx++)
-     {
-        if(pszXml[idx] != psz[idx])
-        {
-           throw "Name does not match expected";
-        }
-     }
-     pszXml += len;
+      strsize idx;
+      strsize len = strlen(psz);
+      for(idx = 0; idx < len; idx++)
+      {
+         if(pszXml[idx] != psz[idx])
+         {
+            throw "Name does not match expected";
+         }
+      }
+      pszXml += len;
    }
 
    void str::consume(const char * & pszXml, const char * psz, strsize len, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);
-     int idx;
-     for(idx = 0; idx < len; idx++)
-     {
-        if(pszXml[idx] != psz[idx])
-        {
-           throw "Name does not match expected";
-        }
-     }
-     pszXml += len;
+      int idx;
+      for(idx = 0; idx < len; idx++)
+      {
+         if(pszXml[idx] != psz[idx])
+         {
+            throw "Name does not match expected";
+         }
+      }
+      pszXml += len;
    }
 
    void str::consume_spaces(const char * & pszXml, count iMinimumCount)
@@ -1850,22 +1883,22 @@ namespace gen
 
    bool str::begins_consume(const char * & pszXml, const char * psz)
    {
-     strsize idx;
-     strsize len = strlen(psz);
-     for(idx = 0; idx < len; idx++)
-     {
-        if(pszXml[idx] != psz[idx])
-        {
-           return false;
-        }
-     }
-     pszXml += len;
-     return true;
+      strsize idx;
+      strsize len = strlen(psz);
+      for(idx = 0; idx < len; idx++)
+      {
+         if(pszXml[idx] != psz[idx])
+         {
+            return false;
+         }
+      }
+      pszXml += len;
+      return true;
    }
 
    bool str::xml_is_comment(const char * pszXml)
    {
-     return pszXml[0] == '<' && pszXml[1] == '!' && pszXml[2] == '-';
+      return pszXml[0] == '<' && pszXml[1] == '!' && pszXml[2] == '-';
    }
 
    string str::xml_consume_comment(const char * & pszXml)
@@ -1874,7 +1907,7 @@ namespace gen
       gen::str::consume(pszXml, "<!--");
       while(pszXml[0] != '-' || pszXml[1] != '-' ||pszXml[2] != '>')
       {
-         
+
          if(*pszXml == '\0')
          {
             break;
@@ -1883,7 +1916,7 @@ namespace gen
          pszXml = gen::str::utf8_inc(pszXml);
       }
       consume(pszXml, "-->");
-     return str;
+      return str;
    }
 
    string str::pad(const char * psz, count iLen, const char * pszPattern, str::e_pad epad)
@@ -1915,7 +1948,7 @@ namespace gen
       }
       return str;
    }
-   
+
    var str::ends_get(const char * pszSuffix, const char * psz)
    {
       if(pszSuffix == NULL)
@@ -1947,36 +1980,36 @@ namespace gen
       }
       return false;
    }
-/** \file Utility.cpp
- **   \date  2004-02-13
- **   \author grymse@alhem.net
-**/
-/*
-Copyright (C) 2004-2007  Anders Hedstrom
+   /** \file Utility.cpp
+   **   \date  2004-02-13
+   **   \author grymse@alhem.net
+   **/
+   /*
+   Copyright (C) 2004-2007  Anders Hedstrom
 
-This library is made available under the terms of the GNU GPL.
+   This library is made available under the terms of the GNU GPL.
 
-If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
-the closed-source license agreement for the C++ sockets library,
-please visit http://www.alhem.net/Sockets/license.html and/or
-email license@alhem.net.
+   If you would like to use this library in a closed-source application,
+   a separate license agreement is available. For information about 
+   the closed-source license agreement for the C++ sockets library,
+   please visit http://www.alhem.net/Sockets/license.html and/or
+   email license@alhem.net.
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
-   string str::l2string(long l)
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+   */
+/*   string str::l2string(long l)
    {
       string str;
       char tmp[100];
@@ -2001,27 +2034,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          str = "0";
       }
       return str;
-   }
+   }*/
 
    int64_t str::atoi64(const string & str) 
    {
-      
+
       int i = 0;
-      
+
       for (; i < str.get_length() && isspace(str[i]); i++);
-      
+
       bool bNegative = str[i] == '-';
-      
+
       if(bNegative)
          i++;
-      
+
       uint64_t ui = 0;
-      
+
       for(; i < str.get_length() && isdigit(str[i]); i++)
       {
          ui = ui * 10 + str[i] - 48;
       }
-      
+
       if(bNegative)
          return -(int64_t) ui;
       else
@@ -2030,23 +2063,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    int64_t str::atoi64(const char * psz) 
    {
-      
+
       int i = 0;
-      
+
       for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
-      
+
       bool bNegative = *psz == '-';
-      
+
       if(bNegative)
          psz++;
-      
+
       uint64_t ui = 0;
-      
+
       for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
       {
          ui = ui * 10 + *psz - 48;
       }
-      
+
       if(bNegative)
          return -(int64_t) ui;
       else
@@ -2056,7 +2089,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    uint64_t str::atoui64(const string & str) 
    {
-      
+
       int i = 0;
 
       for (; i < str.get_length() && isspace(str[i]); i++);
@@ -2076,7 +2109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
 
       int i = 0;
-      
+
       for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
 
       uint64_t ui = 0;
@@ -2164,7 +2197,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    void str::begin(wstring & wstr, const wchar_t * lpcszPrefix)
    {
-      
+
       strsize iPrefixLen = wcslen_dup(lpcszPrefix);
       if(wstr.storage_size() >= (wstr.get_length() + iPrefixLen + 1))
       {
@@ -2342,9 +2375,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-/** End \file Utility.cpp
- **   \date  2004-02-13
- **   \author grymse@alhem.net
-**/
+   /** End \file Utility.cpp
+   **   \date  2004-02-13
+   **   \author grymse@alhem.net
+   **/
+
 
 } // namespace gen
+
+

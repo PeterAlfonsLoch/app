@@ -113,7 +113,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
   {
      if (!mIsActive[i])
        continue;
-     st = mProbers[i]->HandleData(highbyteBuf, hptr - highbyteBuf);
+     st = mProbers[i]->HandleData(highbyteBuf, (PRUint32) (hptr - highbyteBuf));
      if (st == eFoundIt)
      {
        mBestGuess = i;

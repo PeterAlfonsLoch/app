@@ -61,7 +61,7 @@ namespace primitive
             }
             else
             {
-               int iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               primitive::memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
@@ -115,7 +115,7 @@ namespace primitive
    {
    }
 
-   memory::memory(const void * pdata, int iCount)
+   memory::memory(const void * pdata, memory_size iCount)
    {
       m_pbStorage    = NULL;
       allocate(iCount);

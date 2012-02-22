@@ -156,8 +156,11 @@ namespace rar
 
    ex1::HRes handler::GetNumberOfItems(uint32 * numItems)
    {
-      *numItems = _refItems.get_size();
+      
+      *numItems = (uint32_t) _refItems.get_size();
+
       return S_OK;
+
    }
 
 
@@ -258,13 +261,20 @@ namespace rar
 
       bool InitName(const string &name, bool newStyle)
       {
+
          _first = true;
+
          _newStyle = newStyle;
-         int dotPos = name.reverse_find('.');
+
+         strsize dotPos = name.reverse_find('.');
+
          string basePart = name;
+
          if (dotPos >= 0)
          {
+
             string ext = name.Mid(dotPos + 1);
+
             if (ext.CompareNoCase("rar") == 0)
             {
                _afterPart = name.Mid(dotPos);
@@ -321,8 +331,11 @@ namespace rar
          string newName;
          if (_newStyle || !_first)
          {
-            int i;
-            int numLetters = _changedPart.get_length();
+            
+            strsize i;
+
+            strsize numLetters = _changedPart.get_length();
+
             for (i = numLetters - 1; i >= 0; i--)
             {
                wchar_t c = _changedPart[i];
@@ -453,9 +466,9 @@ namespace rar
                if (needAdd)
                {
                   CRefItem refItem;
-                  refItem.ItemIndex = _items.get_size();
+                  refItem.ItemIndex = (int) _items.get_size();
                   refItem.NumItems = 1;
-                  refItem.VolumeIndex = _archives.get_size();
+                  refItem.VolumeIndex = (int) _archives.get_size();
                   _refItems.add(refItem);
                }
                _items.add(item);
@@ -519,7 +532,7 @@ namespace rar
       // importantTotalPacked = 0;
       bool allFilesMode = (numItems == (uint32)-1);
       if (allFilesMode)
-         numItems = _refItems.get_size();
+         numItems = (uint32_t) _refItems.get_size();
       if (numItems == 0)
          return S_OK;
       int lastIndex = 0;
@@ -712,7 +725,7 @@ namespace rar
                {
                   ::ex1::byte_buffer buffer;
                   wstring unicodePassword = gen::international::utf8_to_unicode(password);
-                  const uint32 sizeInBytes = unicodePassword.get_length() * 2;
+                  const uint32 sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
                   buffer.SetCapacity(sizeInBytes);
                   for (int i = 0; i < unicodePassword.get_length(); i++)
                   {
@@ -727,7 +740,7 @@ namespace rar
                {
                   string oemPassword;
                   gen::international::utf8_to_multibyte(CP_OEMCP, oemPassword, password);
-                  RINOK(cryptoSetPassword->CryptoSetPassword((const byte *)(const char *)oemPassword, oemPassword.get_length()));
+                  RINOK(cryptoSetPassword->CryptoSetPassword((const byte *)(const char *)oemPassword, (uint32_t) oemPassword.get_length()));
                }
             }
             else
@@ -763,7 +776,7 @@ namespace rar
                continue;
                }
                */
-               int m;
+               ::index m;
                for (m = 0; m < methodItems.get_size(); m++)
                   if (methodItems[m].RarUnPackVersion == item.UnPackVersion)
                      break;

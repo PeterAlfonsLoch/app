@@ -28,13 +28,11 @@ string_tokenizer
 
 
 
-BOOL string_tokenizer
-::GetNextToken(
-   string &strToken,
-   const char * lpSeparator,
-   BOOL bWithSeparator)
+BOOL string_tokenizer::GetNextToken(string &strToken, const char * lpSeparator, BOOL bWithSeparator)
 {
-   int i;
+   
+   strsize i;
+
    if((i = find(lpSeparator, m_nCurrentIndex)) >= 0)
    {
       if(bWithSeparator)
@@ -58,19 +56,15 @@ BOOL string_tokenizer
 
 }
 
-BOOL string_tokenizer
-::GetNextSmallestToken(
-   string &strToken,
-   string_array & straSeparator,
-   BOOL bWithSeparator)
+BOOL string_tokenizer::GetNextSmallestToken(string & strToken, string_array & straSeparator, BOOL bWithSeparator)
 {
    if(m_nCurrentIndex >= get_length())
    {
       return FALSE;
    }
-   int iMinPos = get_length();
-   int iMaxSepLen = 0;
-   int iPos;
+   strsize iMinPos = get_length();
+   strsize iMaxSepLen = 0;
+   strsize iPos;
    for(int j = 0; j < straSeparator.get_size(); j++)
    {
       iPos = find(straSeparator[j], m_nCurrentIndex);
@@ -98,14 +92,9 @@ BOOL string_tokenizer
    return TRUE;
 }
 
-bool string_tokenizer
-::GetNextTokenEx(
-   string &strToken,
-   const char * lpSeparator,
-   bool bWithSeparator,
-   bool bSkipAdjacent)
+bool string_tokenizer::GetNextTokenEx(string &strToken, const char * lpSeparator, bool bWithSeparator, bool bSkipAdjacent)
 {
-   int i;
+   strsize i;
    string strMid = Mid(m_nCurrentIndex);
    if((i = strMid.FindOneOf(lpSeparator)) >= 0)
    {
@@ -160,7 +149,7 @@ void string_tokenizer::Restart(string &strNew)
 bool string_tokenizer::ExtractFolderPath(const char * lpcszFilePath)
 {
    string strFilePath(lpcszFilePath);
-   int i = strFilePath.get_length();
+   strsize i = strFilePath.get_length();
    bool b = false;
    while(i > 0)
    {
@@ -234,8 +223,8 @@ bool string_tokenizer::_01ReadHex(int &i)
 bool string_tokenizer::ReadLine(string &strToken,
       bool bWithSeparator)
 {
-   int i1 = find("\r\n", m_nCurrentIndex);
-   int i2 = find("\n", m_nCurrentIndex);
+   strsize i1 = find("\r\n", m_nCurrentIndex);
+   strsize i2 = find("\n", m_nCurrentIndex);
    if(i1 >= 0 && (i1 < i2 || i2 < 0))
    {
       if(bWithSeparator)

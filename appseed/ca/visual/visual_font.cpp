@@ -29,8 +29,12 @@ namespace visual
 
    void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
    {
+      
       ::visual::api::EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str);
+      
       return;
+
+
       SetDC(pdc);
       SelectFont();
 
@@ -38,7 +42,7 @@ namespace visual
       point ptOffset(rectOffset.top_left());
 
       glyph * lpglyph;
-      int iSize = str.get_length();
+      strsize iSize = str.get_length();
       for(int i = 0; i < iSize; i++)
       {
          lpglyph = GetGlyph(str[i]);
@@ -85,8 +89,8 @@ namespace visual
 
 
       glyph * lpglyph;
-      int iSize = str.get_length();
-      for(int i = 0; i < iSize; i++)
+      strsize iSize = str.get_length();
+      for(strsize i = 0; i < iSize; i++)
       {
          lpglyph = GetGlyph(str[i]);
          if(lpglyph != NULL)
@@ -400,7 +404,7 @@ BOOL CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
       return ::TextOutW(hdc, x, y, NULL, c);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   BOOL bRet = ::TextOutW(hdc, x, y, wstr, wstr.get_length());
+   BOOL bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length());
    return bRet;
 }
 
@@ -411,7 +415,7 @@ CLASS_DECL_ca BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
       return ::GetTextExtentPoint32W(hdc, NULL, c, psizl);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   BOOL bRet = ::GetTextExtentPoint32W(hdc, wstr, wstr.get_length(), psizl);
+   BOOL bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl);
    return bRet;
 }
 
@@ -423,6 +427,6 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
       return ::DrawTextW(hdc, NULL, cchText, lprc, format);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpchText, cchText);
-   BOOL bRet = ::DrawTextW(hdc, wstr, wcslen(wstr), lprc, format);
+   BOOL bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format);
    return bRet;
 }

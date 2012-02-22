@@ -31,7 +31,7 @@ namespace compress
          uint32 srcInOffset = NumSrcInStreams;
          uint32 srcOutOffset = _numSrcOutStreams;
 
-         for (int i = srcBindInfo.Coders.get_count() - 1; i >= 0; i--)
+         for(index i = srcBindInfo.Coders.get_count() - 1; i >= 0; i--)
          {
             const CCoderStreamsInfo &srcCoderInfo = srcBindInfo.Coders[i];
 
@@ -61,7 +61,7 @@ namespace compress
          destBindInfo.InStreams.remove_all();
          destBindInfo.OutStreams.remove_all();
 
-         int i;
+         index i;
          for (i = _srcBindInfo.Coders.get_count() - 1; i >= 0; i--)
          {
             const CCoderStreamsInfo &srcCoderInfo = _srcBindInfo.Coders[i];

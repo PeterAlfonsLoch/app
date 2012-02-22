@@ -1047,15 +1047,7 @@ namespace gen
    //               ::ca::window* pWnd = ::ca::window::FromHandlePermanent(wndTemp.get_handle());
    //               if (pWnd == NULL)
                {
-   #ifndef _AFX_NO_OCC_SUPPORT
-                  // determine the site of the OLE control if it is one
-   /*               COleControlSite* pSite;
-                  if (m_pCtrlCont != NULL && (pSite = (COleControlSite*)
-                     m_pCtrlCont->m_siteMap.GetValueAt(wndTemp.get_handle())) != NULL)
-                  {
-                     wndTemp.m_pCtrlSite = pSite;
-                  }*/
-   //#endif
+   
    //               pWnd = &wndTemp;
       /*         }
                ctl_color ctlcolor(get_app());

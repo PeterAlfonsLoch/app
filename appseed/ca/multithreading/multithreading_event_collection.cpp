@@ -99,13 +99,17 @@
    ///  			false : failure
    void event_collection::remove(index index)
    {
+      
       if ( index > m_objecta.size() )
          throw range_error("event_collection::remove: index out of bounds");
 
       if(m_waitableelementa[index].callback!=0)
          callback_cnt--;
+
       m_objecta.erase( m_objecta.begin()+index );
+
       m_waitableelementa.erase( m_waitableelementa.begin()+index );
+
    }
 
    ///  \brief		waits for the collection forever
@@ -194,7 +198,7 @@
                      unsigned long res = ::WaitForSingleObject(m_objecta[position],0);
 
                      if ( res != WAIT_TIMEOUT ) {
-                        winResult= res + position;
+                        winResult= (DWORD) (res + position);
                         FoundExternal=true;
                      }
                   }

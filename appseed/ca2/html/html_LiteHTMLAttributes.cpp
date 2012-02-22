@@ -299,7 +299,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszV
    m_strValue.replace('\t', ' ');
 
    /** resolve entity reference(s) */
-   int    iCurPos = -1, iParseLen = 0;
+   strsize    iCurPos = -1, iParseLen = 0;
    string strChar;
    do
    {

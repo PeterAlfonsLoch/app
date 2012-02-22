@@ -49,7 +49,7 @@ namespace n7z
       {}
       void SetDirStatusFromAttrib() { IsDir = ((Attrib & FILE_ATTRIBUTE_DIRECTORY) != 0); };
 
-      int GetExtensionPos() const;
+      strsize GetExtensionPos() const;
       string GetExtension() const;
    };
 

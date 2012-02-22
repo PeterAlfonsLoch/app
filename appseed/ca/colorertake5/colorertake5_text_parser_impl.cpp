@@ -181,83 +181,116 @@ namespace colorertake5
       breakParsing = true;
    };
 
-   void text_parser_impl::addRegion(int lno, int sx, int ex, class region* region){
-      if (sx == -1 || region == NULL) return;
-      regionHandler->addRegion(lno, str, sx, ex, region);
-   };
-   void text_parser_impl::enterScheme(int lno, int sx, int ex, class region* region){
-      regionHandler->enterScheme(lno, str, sx, ex, region, baseScheme);
-   };
-   void text_parser_impl::leaveScheme(int lno, int sx, int ex, class region* region){
-      regionHandler->leaveScheme(lno, str, sx, ex, region, baseScheme);
-      if (region != NULL) picked = region;
-   };
-
-
-   void text_parser_impl::enterScheme(int lno, SMatches *match, SchemeNode *schemeNode)
+   void text_parser_impl::addRegion(index lno, strsize sx, strsize ex, class region* region)
    {
-      int i;
+      
+      if (sx == -1 || region == NULL) 
+         return;
+      
+      regionHandler->addRegion(lno, str, sx, ex, region);
+
+   }
+
+   void text_parser_impl::enterScheme(index lno, strsize sx, strsize ex, class region* region)
+   {
+      
+      regionHandler->enterScheme(lno, str, sx, ex, region, baseScheme);
+
+   }
+
+   void text_parser_impl::leaveScheme(index lno, strsize sx, strsize ex, class region* region)
+   {
+
+      regionHandler->leaveScheme(lno, str, sx, ex, region, baseScheme);
+
+      if (region != NULL) 
+         picked = region;
+
+   }
+
+
+   void text_parser_impl::enterScheme(index lno, SMatches *match, SchemeNode *schemeNode)
+   {
+      
+      index i;
 
       if (schemeNode->innerRegion == false)
-      {
          enterScheme(lno, match->s[0], match->e[0], schemeNode->region);
-      }
 
       for (i = 0; i < match->cMatch; i++)
          addRegion(lno, match->s[i], match->e[i], schemeNode->regions[i]);
       //  for (i = 0; i < match->cnMatch; i++)
       //  addRegion(lno, match->ns[i], match->ne[i], schemeNode->regionsn[i]);
 
-      if (schemeNode->innerRegion == true){
+      if (schemeNode->innerRegion == true)
          enterScheme(lno, match->e[0], match->e[0], schemeNode->region);
-      }
+      
+
    }
 
-   void text_parser_impl::leaveScheme(int lno, SMatches *match, SchemeNode *schemeNode)
+   void text_parser_impl::leaveScheme(index lno, SMatches *match, SchemeNode *schemeNode)
    {
+      
       UNREFERENCED_PARAMETER(lno);
-      int i;
+      
+      index i;
 
-      if (schemeNode->innerRegion == true){
+      if (schemeNode->innerRegion == true)
          leaveScheme(gy, match->s[0], match->s[0], schemeNode->region);
-      }
 
       for (i = 0; i < match->cMatch; i++)
          addRegion(gy, match->s[i], match->e[i], schemeNode->regione[i]);
       //  for (i = 0; i < match->cnMatch; i++)
       //  addRegion(gy, match->ns[i], match->ne[i], schemeNode->regionen[i]);
 
-      if (schemeNode->innerRegion == false){
+      if (schemeNode->innerRegion == false)
          leaveScheme(gy, match->s[0], match->e[0], schemeNode->region);
-      }
+
    }
 
    void text_parser_impl::fillInvisibleSchemes(parse_cache *ch)
    {
-      if (!ch->parent || ch == cache){
+      if (!ch->parent || ch == cache)
          return;
-      }
-      /* Fills output stream with valid "pseudo" enterScheme */
-      fillInvisibleSchemes(ch->parent);
-      enterScheme(gy, 0, 0, ch->clender->region);
-      return;
-   };
 
-   int text_parser_impl::searchKW(const SchemeNode *node, int no, int lowlen, int hilen)
+      /* Fills output stream with valid "pseudo" enterScheme */
+
+      fillInvisibleSchemes(ch->parent);
+
+      enterScheme(gy, 0, 0, ch->clender->region);
+
+      return;
+
+   }
+
+   index text_parser_impl::searchKW(const SchemeNode *node, index no, index lowlen, index hilen)
    {
+      
       UNREFERENCED_PARAMETER(no);
       UNREFERENCED_PARAMETER(hilen);
-      if (!node->kwList->num) return MATCH_NOTHING;
 
-      if (node->kwList->minKeywordLength+gx > lowlen) return MATCH_NOTHING;
-      if (gx < lowlen && !node->kwList->firstChar->in_class(&((const char *)str)[gx])) return MATCH_NOTHING;
+      if (!node->kwList->num) 
+         return MATCH_NOTHING;
 
-      int left = 0;
-      int right = node->kwList->num;
-      while(true){
-         int pos = left + (right-left)/2;
-         int kwlen = node->kwList->kwList[pos].keyword.get_length();
-         if (lowlen < gx+kwlen) kwlen = lowlen-gx;
+      if (node->kwList->minKeywordLength+gx > lowlen)
+         return MATCH_NOTHING;
+
+      if (gx < lowlen && !node->kwList->firstChar->in_class(&((const char *)str)[gx]))
+         return MATCH_NOTHING;
+
+      index left = 0;
+
+      index right = node->kwList->num;
+
+      while(true)
+      {
+
+         index pos = left + (right-left)/2;
+
+         index kwlen = node->kwList->kwList[pos].keyword.get_length();
+
+         if (lowlen < gx+kwlen)
+            kwlen = lowlen-gx;
 
          int cr;
          if (node->kwList->matchCase)
@@ -293,15 +326,24 @@ namespace colorertake5
             };
             break;
          };
-         if (cr == 1) right = pos;
-         if (cr == 0 || cr == -1) left = pos;
-      };
-      return MATCH_NOTHING;
-   };
+         
+         if (cr == 1) 
+            right = pos;
 
-   int text_parser_impl::searchRE(scheme_impl *cscheme, int no, int lowLen, int hiLen)
+         if (cr == 0 || cr == -1) 
+            left = pos;
+
+      };
+
+      return MATCH_NOTHING;
+
+   }
+
+
+   index text_parser_impl::searchRE(scheme_impl *cscheme, index no, index lowLen, index hiLen)
    {
-      int i, re_result;
+      
+      index i, re_result;
       scheme_impl *ssubst = NULL;
       SMatches match;
       parse_cache *OldCacheF = NULL;
@@ -311,10 +353,11 @@ namespace colorertake5
 
       CLR_TRACE("text_parser_impl", "searchRE: entered scheme \"%s\"", cscheme->getName());
 
-      if (!cscheme){
+      if (!cscheme)
          return MATCH_NOTHING;
-      }
-      for(int idx = 0; idx < cscheme->nodes.get_size(); idx++){
+
+      for(index idx = 0; idx < cscheme->nodes.get_size(); idx++)
+      {
          SchemeNode *schemeNode = cscheme->nodes.element_at(idx);
          CLR_TRACE("text_parser_impl", "searchRE: processing node:%d/%d, type:%s", idx+1, cscheme->nodes.get_size(), schemeNodeTypeNames[schemeNode->type]);
          switch(schemeNode->type){
@@ -387,7 +430,7 @@ namespace colorertake5
                OldCacheF->backLine = backLine;
             };
 
-            int ogy = gy;
+            index ogy = gy;
             bool zeroLength;
 
             scheme_impl *o_scheme = baseScheme;
@@ -485,7 +528,7 @@ namespace colorertake5
          if (root_end_re) res = root_end_re->parse(str, gx, len, &matchend, &schemeStart);
          if (!res) matchend.s[0] = matchend.e[0] = len;
 
-         int parent_len = len;
+         index parent_len = len;
          /*
          BUG: <regexp match="/.{3}\M$/" region="def:Error" priority="low"/>
          $ at the end of current schema
@@ -511,8 +554,8 @@ namespace colorertake5
                };
             };
 //            int ox = gx;
-            int oy = gy;
-            int re_result = searchRE(baseScheme, gy, matchend.s[0], len);
+            index oy = gy;
+            index re_result = searchRE(baseScheme, gy, matchend.s[0], len);
             if ((re_result == MATCH_SCHEME && (oy != gy || matchend.s[0] < gx)) ||
                (re_result == MATCH_RE && matchend.s[0] < gx)){
                   len = -1;

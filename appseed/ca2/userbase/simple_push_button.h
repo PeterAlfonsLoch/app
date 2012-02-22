@@ -23,8 +23,8 @@ public:
    bool             m_bHover;
    bool             m_bPush;
    bool             m_bTransitionEffect;
-   int              m_iStepCount;
-   int              m_iStep;
+   index            m_iStepCount;
+   index            m_iStep;
 
    ColorSchema *    m_pcolorschema;
 

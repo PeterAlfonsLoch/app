@@ -162,7 +162,7 @@ void stra_dup::decode_v16(const char * psz)
       sz[1] = psz[0];
       sz[2] = '\0';
       const char * pszEnd;
-      int iConversion = ::atol_dup(sz, &pszEnd, 16);
+      int iConversion = ::atoi_dup(sz, &pszEnd, 16);
       char ch = static_cast < char > (iConversion);
       if(ch == '\0')
       {

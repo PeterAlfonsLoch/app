@@ -230,7 +230,7 @@ namespace fs
 
 
       //for(int i = stra.get_size() - 1; i >= 0; i--)
-      for(int i = 0; i < stra.get_size(); i++)
+      for(index i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
          ex1::tree_item * pitem = find_item(strAscendant);
@@ -274,7 +274,7 @@ namespace fs
 
          if(iObscured > 0)
          {
-            int iNewScroll = m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight();
+            int iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
             m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
          }
       }
@@ -322,7 +322,7 @@ namespace fs
 
    void tree_interface::_017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel)
    {
-      int i;
+      index i;
 
       //::fs::tree_item * pitemChild;
 
@@ -331,7 +331,7 @@ namespace fs
       string wstrExtraPath;
       string wstrItemExtra;
 
-      int iFind;
+      index iFind;
       ex1::filesp spfile(get_app());
 
       //spfile->open(szPath, ::ex1::file::mode_read | ::ex1::file::type_binary);

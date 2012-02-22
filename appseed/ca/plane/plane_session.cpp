@@ -349,9 +349,9 @@ namespace plane
             }
 
 
-            DWORD_PTR dw = WM_APP + 2043;
+            UINT uiMessage = WM_APP + 2043;
 
-            papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+            papp->PostThreadMessage(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
             pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -460,7 +460,7 @@ namespace plane
       strPathName.trim();
       strPathName.trim("\"");
 
-      int iFind = strPathName.find("?");
+      strsize iFind = strPathName.find("?");
       if(iFind >= 0)
       {
          strPathName = strPathName.Left(iFind);

@@ -117,7 +117,7 @@ namespace user
    m_buttonBaseWndMenuItemPopup.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);           
    m_buttonBaseWndMenuItemPopup.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);      
    m_buttonBaseWndMenuItemPopup.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-     m_buttonBaseWndMenuItemPopup.m_crTextDisabled = RGB(255, 127, 127, 127);
+     m_buttonBaseWndMenuItemPopup.m_crTextDisabled = ARGB(255, 127, 127, 127);
       m_buttonBaseWndMenuItemPopup.m_bBorder      = false;
 
 

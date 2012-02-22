@@ -33,7 +33,7 @@ namespace http
          ::gen::parse pa(content_type,";=");
          char *tempcmp = NULL;
          size_t tc = 0;
-         int iBoundaryLength = 0;
+         strsize iBoundaryLength = 0;
          string str = pa.getword();
          m_strBoundary = "";
          while (!str.is_empty())

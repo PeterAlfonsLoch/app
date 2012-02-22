@@ -129,7 +129,7 @@ var veiev_post::get_page(int iPage, int iMessageCountPerPage)
    }
 
 
-   int iNumRows = m_pdataset->num_rows();
+   count iNumRows = m_pdataset->num_rows();
    if(iNumRows <= 0)
       return false;
 

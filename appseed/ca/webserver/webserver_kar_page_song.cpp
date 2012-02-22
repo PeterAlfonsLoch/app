@@ -298,14 +298,14 @@ week_top:
                dprint("month=$ppt_month");
                var weeka = musicdb().perpertop_getWeeks(m_ppt_year, m_ppt_month);
    //                                                         print_r($weeka)");
-               int navcount = weeka.array_get_count();
+               ::count navcount = weeka.array_get_count();
                if(!weeka.array_contains(m_ppt_week))
                {
                   m_ppt_week = weeka[0];
                }
 
 
-               for(int inav = 0; inav < navcount; inav++)
+               for(index inav = 0; inav < navcount; inav++)
                {
                   var week = weeka[inav];
                   dprint("week=$week");
@@ -343,7 +343,7 @@ month_top:
                dprint("PER_MONTH year={m_ppt_year}<br>");
                dprint("PER_MONTH month={m_ppt_month}<br>");
    //                                                         print_r($weeka)");
-               int navcount = montha.get_count();
+               ::count navcount = montha.get_count();
 
 
                for(int inav = 0; inav < navcount; inav++)
@@ -414,7 +414,7 @@ year_top:
                dprint("month=$ppt_month");
                var yeara = musicdb().perpertop_getYears();
    //                                                         print_r($weeka)");
-               int navcount = yeara.get_count();
+               ::count navcount = yeara.get_count();
 
                for(int inav = 0; inav < navcount; inav++)
                {

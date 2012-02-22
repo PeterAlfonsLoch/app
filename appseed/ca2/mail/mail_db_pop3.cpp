@@ -391,7 +391,7 @@ ret:
       string strValue;
       string strLine;
       string strSender;
-      int iPos;
+      strsize iPos;
       for(int i = 0; i < straHeaders.get_size(); i++)
       {
          strLine = straHeaders[i];

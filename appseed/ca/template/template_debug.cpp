@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "radix/common.h"
 #include "trace_module_manager.h"
+#include "radix/radix_allocator.h"
 
 namespace _template
 {

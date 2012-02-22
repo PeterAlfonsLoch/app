@@ -240,7 +240,7 @@ void html_frame::AnimateStatusBar()
    if(m_strAnimatedStatusBarText.is_empty())
       return;
 
-   int iLen = m_strAnimatedStatusBarText.get_length();
+   strsize iLen = m_strAnimatedStatusBarText.get_length();
    m_iAnimateStep++;
    if(m_iAnimateStep > iLen)
       m_iAnimateStep = 0;

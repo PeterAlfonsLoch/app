@@ -357,8 +357,8 @@ namespace dynamic_source
    string base_name(const char * lpcsz)
    {
       string str(lpcsz);
-      int iPos1 = str.reverse_find('\\');
-      int iPos2 = str.reverse_find('/');
+      strsize iPos1 = str.reverse_find('\\');
+      strsize iPos2 = str.reverse_find('/');
       if(iPos1 > iPos2)
       {
          return str.Left(iPos1);
@@ -384,7 +384,7 @@ namespace dynamic_source
          stra.add(str);
          str = base_name(str);
       }
-      for(int i = stra.get_size() - 1; i >= 0; i-- )
+      for(index i = stra.get_size() - 1; i >= 0; i-- )
       {
          if(!::CreateDirectory(stra[i], NULL))
             return false;
@@ -422,7 +422,7 @@ namespace dynamic_source
       memstorage.get_data()[memstorage.get_size() - 1] = '\0';
       memstorage.read(file);*/
       string strSource = Application.file().as_string(pscript->m_strSourcePath);
-      int iPosId = -1;
+      strsize iPosId = -1;
       stringa straId;
       string strDest;
       strDest = "";
@@ -435,9 +435,9 @@ namespace dynamic_source
          gen::str::ends_eat_ci(str, ".ds");
          strDest += "#include \""+str+".h\"\r\n";
       }
-      int iStart = 0;
-      int iPos = 0;
-      int iLastEnd = 0;
+      strsize iStart = 0;
+      strsize iPos = 0;
+      strsize iLastEnd = 0;
       if(strSource.Mid(0, 4) == "<?ss")
       {
          iLastEnd = strSource.find("?>", iPos);
@@ -829,9 +829,9 @@ namespace dynamic_source
             strDest += "#include \""+str+".h\"\r\n";
          }
       }
-      int iStart = 0;
-      int iPos = 0;
-      int iLastEnd = 0;
+      strsize iStart = 0;
+      strsize iPos = 0;
+      strsize iLastEnd = 0;
       stringa straId;
       while((iPos = strSource.find("<?", iStart)) >= 0)
       {
@@ -869,7 +869,7 @@ namespace dynamic_source
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
-      int iArroba = -1;
+      strsize iArroba = -1;
       bool bInVar = false;
       bool bInSlash = false;
       bool bInRet = false;
@@ -877,19 +877,19 @@ namespace dynamic_source
       bool bInSpec1Close = false;
       bool bInSpec2 = false;
       bool bInSpec2Close = false;
-      int iBracket = 0;
+      strsize iBracket = 0;
       bool bInBrace = false;
-      int iIdLen;
+      strsize iIdLen;
       char ch;
       char chNext;
       string strResult;
-      int iLen = str.get_length();
-      int i = 0;
+      strsize iLen = str.get_length();
+      strsize i = 0;
       bool bInitial = true;
       string strSpec1;
-      int iOpenParen = 1; // open Parenthesis Count
+      strsize iOpenParen = 1; // open Parenthesis Count
       stringa straFunction;
-      int_array iaFunctionParen; // index of the parenthesis of the function
+      index_array iaFunctionParen; // index of the parenthesis of the function
       bool bInserted = false;
       bool bNewLine = true;
       while(i < iLen)
@@ -1011,7 +1011,7 @@ namespace dynamic_source
                }
                else if(ch == '@')
                {
-                  int iFind = straId.find_first(strResult.Mid(iArroba));
+                  strsize iFind = straId.find_first(strResult.Mid(iArroba));
                   if(iFind <= 0)
                   {
                      straId.add(strResult.Mid(iArroba));
@@ -1365,10 +1365,10 @@ namespace dynamic_source
    }
 
 
-   bool script_compiler::is_id(const char * psz, const char * pszId, int & iIdLenRet)
+   bool script_compiler::is_id(const char * psz, const char * pszId, strsize & iIdLenRet)
    {
-      int iLen = strlen(psz);
-      int iIdLen = strlen(pszId);
+      strsize iLen = strlen(psz);
+      strsize iIdLen = strlen(pszId);
       if(iLen < iIdLen)
          return false;
       if(iIdLen == iLen)
@@ -1533,7 +1533,7 @@ namespace dynamic_source
       string strDest;
       while(strSource.get_length() > 0)
       {
-         int iLen = min(4 * 1024, strSource.get_length());
+         strsize iLen = min(4 * 1024, strSource.get_length());
          if(strSource.get_length() > iLen)
          {
             if(strSource[iLen] == '\n')

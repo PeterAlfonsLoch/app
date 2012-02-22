@@ -148,9 +148,9 @@ namespace ca
 
    // Window Text Functions
       virtual void SetWindowText(const char * lpszString);
-      virtual int GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
+      virtual strsize GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
       virtual void GetWindowText(string & rString);
-      virtual int GetWindowTextLength();
+      virtual strsize GetWindowTextLength();
       virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
       virtual ::ca::font* GetFont();
 

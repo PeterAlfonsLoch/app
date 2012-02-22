@@ -64,7 +64,7 @@ namespace sqlite
       /* sequence numbers */
       virtual long nextid(const char *seq_name);
       /* sequence numbers */
-      virtual int num_rows();
+      virtual count num_rows();
 
       virtual bool bof();
       virtual bool eof();
@@ -75,12 +75,12 @@ namespace sqlite
 
       virtual bool find_first(char * fieldname, var & value);
       /* Go to record No (starting with 0) */
-      virtual bool seek(int pos=0);
+      virtual bool seek(index pos=0);
 
       virtual bool SetFieldValue(const char *f_name, const var &value);
-      virtual bool SetFieldValue(int iFieldIndex, const var &value);
-
-      virtual var & FieldValueAt(int iFieldIndex);
+      virtual bool SetFieldValue(index iFieldIndex, const var &value);
+      
+      virtual var & FieldValueAt(index iFieldIndex);
       virtual int GetFieldIndex(const char *f_name);
 
    };

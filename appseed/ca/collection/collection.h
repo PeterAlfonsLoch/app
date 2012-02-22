@@ -133,6 +133,7 @@ public:
 #include "collection/string_array.h"
 #include "gen/gen_var_array.h"
 #include "gen/gen_property.h"
+#include "gen/gen_property_set.h"
 #include "gen/gen_international2.h"
 #include "point_array.h"
 #include "rect_array.h"
@@ -167,6 +168,8 @@ public:
 #include "array.h"
 
 #include "bitset.h"
+
+#include "spreadset.h"
 
 
 

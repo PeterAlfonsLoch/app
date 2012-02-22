@@ -142,6 +142,7 @@ namespace xml
       //attr * CreateAttr( const char * anem = NULL, const char * value = NULL );
       ::xml::attr *           add_attr(const char * pszName = NULL, const char * value = NULL);
       ::xml::attr *           add_attr(const char * pszName, int iValue);
+      ::xml::attr *           add_attr(const char * pszName, unsigned long ulValue);
       ::xml::attr *           add_attr(const char * pszName, int64_t iValue);
       ::xml::attr *           add_attr(const ::xml::attr & attr);
       ::xml::attr *           set_attr(const char * pszName, const char * value);

@@ -34,7 +34,7 @@ namespace webserver
          virtual void      print_slist_preamble();
          virtual void      print_slist_closure();
          virtual void      printrows();
-         virtual void      print_row(webserver::music:: performer * pperformer, var line);
+         virtual void      print_row(webserver::music:: performer * pperformer, index line);
 
       };
 

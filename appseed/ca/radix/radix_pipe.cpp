@@ -50,7 +50,7 @@ namespace gen
    { 
       DWORD dwWritten; 
       BOOL bSuccess = FALSE;
-      bSuccess = WriteFile(m_hWrite, (const char *) psz, strlen(psz), &dwWritten, NULL);
+      bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) strlen(psz), &dwWritten, NULL);
       return bSuccess != FALSE;
    } 
 

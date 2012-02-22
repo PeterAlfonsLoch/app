@@ -65,7 +65,7 @@ namespace sockets
             m_straProxy.add(str);
             if(m_straProxy.get_count() == 1)
             {
-               int iPos = str.find(" ");
+               strsize iPos = str.find(" ");
                string strStatus;
                if(iPos >= 0)
                {

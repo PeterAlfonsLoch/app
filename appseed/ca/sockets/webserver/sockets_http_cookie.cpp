@@ -71,7 +71,7 @@ cookies::~cookies()
 
 
 
-int cookies::find_cookie(const char * name)
+index cookies::find_cookie(const char * name)
 {
    for(int i = 0; i < this->get_size(); i++)
    {
@@ -85,13 +85,13 @@ int cookies::find_cookie(const char * name)
 
 http::cookie & cookies::cookie(const char * name)
 {
-   int iFind = find_cookie(name);
+   index iFind = find_cookie(name);
    if(iFind < 0)
    {
       class cookie c;
       c.m_strName = name;
       add(c);
-      int iFind = find_cookie(name);
+      iFind = find_cookie(name);
       if(iFind < 0)
       {
          return *((http::cookie *) NULL);
@@ -148,7 +148,7 @@ void cookies::add(const char * psz)
          }
       }
    }
-   int iFind = find_cookie(cookie.m_strName);
+   index iFind = find_cookie(cookie.m_strName);
    if(iFind < 0)
    {
       add(cookie);
@@ -162,7 +162,7 @@ void cookies::add(const char * psz)
 string cookies::get_cookie_header()
 {
    string strCookie;
-   for(int i = 0; i < this->get_size(); i++)
+   for(index i = 0; i < this->get_size(); i++)
    {
       strCookie += (const char *) (this->element_at(i).m_strName + "=" + this->element_at(i).m_varValue.get_string());
       strCookie += ";";
@@ -171,7 +171,7 @@ string cookies::get_cookie_header()
 }
 
 
-int cookies::get_length( const char * name)
+strsize cookies::get_length( const char * name)
 {
    return cookie(name).m_varValue.get_string().get_length();
 }

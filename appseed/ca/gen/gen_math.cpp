@@ -5,6 +5,8 @@
 
 namespace gen
 {
+
+
    namespace math
    {
 
@@ -16,6 +18,17 @@ namespace gen
             quo++;
          return quo;
       }
+
+
+      int64_t ceil_div(int64_t num, int64_t den)
+      {
+         int64_t quo = num / den;
+         if((num % den) > 0)
+            quo++;
+         return quo;
+      }
+
+
 
       math::math(::ca::application * papp) :
          ca(papp)
@@ -312,8 +325,8 @@ namespace gen
          // dRandRange == 0.0 is impossible event due this next statement;
          if(i1 == i2)
             return i1;
-         int iMin = min(i1, i2);
-         int iMax = max(i1, i2);
+         int64_t iMin = min(i1, i2);
+         int64_t iMax = max(i1, i2);
          double dRand = 0.0;
          double dRange = (double) (iMax - iMin);
          double dRandRange = 1.0;
@@ -336,10 +349,10 @@ namespace gen
          // dRandRange == 0.0 is impossible event due this next statement;
          if(ui1 == ui2)
             return ui1;
-         int iMin = min(ui1, ui2);
-         int iMax = max(ui1, ui2);
+         uint64_t uiMin = min(ui1, ui2);
+         uint64_t uiMax = max(ui1, ui2);
          double dRand = 0.0;
-         double dRange = (double) (iMax - iMin);
+         double dRange = (double) (uiMax - uiMin);
          double dRandRange = 1.0;
          int i = 1;
          while((dRandRange - 1.0) < dRange)
@@ -350,7 +363,7 @@ namespace gen
          }
          dRandRange -= 1.0;
          dRand *= (dRange) / (double) dRandRange;
-         dRand += (double) iMin;
+         dRand += (double) uiMin;
          dRand += 0.5;
          return (int) dRand;
       }
@@ -383,31 +396,47 @@ namespace gen
       }
 
 
-      namespace gen
-      {
-         namespace lemon
-         {
-            int CLASS_DECL_ca time_seed()
-            {
-               return (time(NULL) % 5000 + (::GetTickCount() / 100) % 5000) % 1000;
-            }
-            void CLASS_DECL_ca srand()
-            {
-               int iSeed = time_seed();
-               ::srand(iSeed);
-               iSeed %= 64;
-               for(int i = 0; i < iSeed; i++)
-               {
-                  ::srand(rand());
-               }
-               for(int i = 0; i < iSeed; i++)
-               {
-                  rand();
-               }
-            }
 
+   } // namespace math
+
+
+} // namespace gen
+
+
+
+namespace gen
+{
+
+
+   namespace lemon
+   {
+
+
+      int CLASS_DECL_ca time_seed()
+      {
+         return (time(NULL) % 5000 + (::GetTickCount() / 100) % 5000) % 1000;
+      }
+
+
+      void CLASS_DECL_ca srand()
+      {
+         int iSeed = time_seed();
+         ::srand(iSeed);
+         iSeed %= 64;
+         for(int i = 0; i < iSeed; i++)
+         {
+            ::srand(rand());
+         }
+         for(int i = 0; i < iSeed; i++)
+         {
+            rand();
          }
       }
 
-   }
-}
+
+   } // lemon
+
+
+} // gen
+
+

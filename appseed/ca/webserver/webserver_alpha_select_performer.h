@@ -50,11 +50,11 @@ namespace webserver
 
       void construct();
 
-      void out(int style);
+      void out(index style);
 
-      stringa code_getArray(int style = 2);
+      stringa code_getArray(index style = 2);
 
-      stringa code_getFullArray(int style = 2);
+      stringa code_getFullArray(index style = 2);
 
       void out_xml1();
 
@@ -62,13 +62,13 @@ namespace webserver
 
       int code_getCount(const char * pszCode);
 
-      void code_printCells(const stringa & codea, int style);
+      void code_printCells(const stringa & codea, index style);
 
-      void code_printCell(const char * code, int style, int & index);
+      void code_printCell(const char * code, index style, index & index);
 
-      void code_printXml1Tree(const stringa & codea, int style);
+      void code_printXml1Tree(const stringa & codea, index style);
 
-      void code_printXml1Element(const char * code, int style, int & index);
+      void code_printXml1Element(const char * code, index style, index & index);
 
       void code_printSpan(const char * code);
 

@@ -1369,7 +1369,9 @@ namespace user
          // todo, reached desktop or similar very top system window
          return NULL;
       }
-      int iFind = GetParent()->m_uiptraChild.find(this);
+      
+      index iFind = GetParent()->m_uiptraChild.find(this);
+
       if(iFind < 0)
       {
          throw "not expected situation";
@@ -1461,7 +1463,7 @@ namespace user
          m_pimpl->SetWindowText(lpszString);
    }
 
-   int interaction::GetWindowText(__out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpszStringBuf, __in int nMaxCount)
+   strsize interaction::GetWindowText(__out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpszStringBuf, __in int nMaxCount)
    {
       if(m_pimpl == NULL)
       {
@@ -1482,7 +1484,7 @@ namespace user
          m_pimpl->GetWindowText(rString);
    }
 
-   int interaction::GetWindowTextLength()
+   strsize interaction::GetWindowTextLength()
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2148,7 +2150,7 @@ ExitModal:
          m_iModalCount--;
          for(index i = 0; i < m_iaModalThread.get_count(); i++)
          {
-            ::PostThreadMessage(m_iaModalThread[i], WM_NULL, 0, 0);
+            ::PostThreadMessage((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
          }
          PostMessage(WM_NULL, 0, 0);
          System.GetThread()->PostThreadMessage(WM_NULL, 0, 0);
@@ -2426,7 +2428,7 @@ ExitModal:
       return true;
    }
 
-   UINT interaction::timer_array::set(interaction * pguie, UINT uiId, UINT uiElapse)
+   UINT_PTR interaction::timer_array::set(interaction * pguie, UINT_PTR uiId, UINT uiElapse)
    {
 
 
@@ -2499,7 +2501,7 @@ ExitModal:
       unset(pui);
    }
 
-   bool interaction::timer_array::unset(interaction * pguie, UINT uiId)
+   bool interaction::timer_array::unset(interaction * pguie, UINT_PTR uiId)
    {
 
 
@@ -2574,7 +2576,7 @@ ExitModal:
 
    }
 
-   int interaction::timer_array::find(interaction * pguie, UINT uiId)
+   index interaction::timer_array::find(interaction * pguie, UINT_PTR uiId)
    {
 
 
@@ -2593,14 +2595,14 @@ ExitModal:
 
    }
 
-   int interaction::timer_array::find_from(interaction * pguie, int iStart)
+   index interaction::timer_array::find_from(interaction * pguie, index iStart)
    {
 
 
       retry_single_lock sl(&m_mutex, millis(177), millis(184));
 
 
-      for(int i = iStart; i < m_timera.get_count(); i++)
+      for(index i = iStart; i < m_timera.get_count(); i++)
       {
          if(m_timera[i].m_pguie == pguie)
          {
@@ -2714,7 +2716,7 @@ ExitModal:
       }
       if(pui == NULL)
          return NULL;
-      int i = pui->m_uiptraChild.find(this);
+      index i = pui->m_uiptraChild.find(this);
       if(i < 0)
          return NULL;
       i--;
@@ -2727,7 +2729,7 @@ ExitModal:
    interaction * interaction::above_sibling(interaction * pui)
    {
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
-      int i = m_uiptraChild.find(pui);
+      index i = m_uiptraChild.find(pui);
       if(i < 0)
          return NULL;
 restart:

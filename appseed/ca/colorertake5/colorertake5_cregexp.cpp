@@ -987,9 +987,7 @@ inline bool CRegExp::parseRE(strsize pos)
   return false;
 };
 
-bool CRegExp::parse(string str, strsize pos, int eol, SMatches *mtch
-, PMatchHash nmtch
-, int soScheme, int posMoves)
+bool CRegExp::parse(string str, strsize pos, strsize eol, SMatches *mtch, PMatchHash nmtch, int soScheme, int posMoves)
 {
    UNREFERENCED_PARAMETER(nmtch);
   bool nms = positionMoves;

@@ -476,7 +476,7 @@ namespace filemanager
          iCount = pcallback->GetActionButtonCount();
       }
 
-      int i;
+      index i;
       for(i = 0; i < iCount; i++)
       {
          control.m_bTransparent = true;
@@ -687,12 +687,12 @@ namespace filemanager
 
       string str;
 //      HRESULT hr;
-      for(int i = 0; i < range.get_item_count(); i++)
+      for(index i = 0; i < range.get_item_count(); i++)
       {
          ItemRange & itemrange = range.ItemAt(i);
-         for(int iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
+         for(index iItem = itemrange.GetLBound() ; iItem <= itemrange.GetUBound(); iItem ++)
          {
-            int iStrict;
+            index iStrict;
             if(m_eview == ViewIcon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -867,7 +867,7 @@ namespace filemanager
    void SimpleFileListInterface::_017OpenSelected(bool bOpenFile)
    {
       ::fs::item_array itema;
-      int iItemRange, iItem;
+      index iItemRange, iItem;
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
@@ -883,7 +883,7 @@ namespace filemanager
                continue;
             if(iItem >= _001GetItemCount())
                continue;
-            int iStrict;
+            index iStrict;
             if(m_eview == ViewIcon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -914,7 +914,7 @@ namespace filemanager
    void SimpleFileListInterface::_017OpenContextMenuSelected()
    {
       ::fs::item_array itema;
-      int iItemRange, iItem;
+      index iItemRange, iItem;
       Range range;
       _001GetSelection(range);
       for(iItemRange = 0;
@@ -930,7 +930,7 @@ namespace filemanager
                continue;
             if(iItem >= get_fs_list_data()->m_itema.get_count())
                continue;
-            int iStrict;
+            index iStrict;
             if(m_eview == ViewIcon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -1012,8 +1012,8 @@ namespace filemanager
       if(pcallback != NULL)
       {
          ::fs::item item;
-         int iItem = pcontrol->GetEditItem();
-         int iStrict;
+         index iItem = pcontrol->GetEditItem();
+         index iStrict;
          if(m_eview == ViewIcon)
          {
             iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -1028,10 +1028,10 @@ namespace filemanager
 
    void SimpleFileListInterface::GetSelected(::fs::item_array &itema)
    {
-      int iItemRange, iItem;
+      index iItemRange, iItem;
       Range range;
       _001GetSelection(range);
-      int_array iaItem;
+      index_array iaItem;
       for(iItemRange = 0;
           iItemRange < range.get_item_count();
           iItemRange++)
@@ -1045,7 +1045,7 @@ namespace filemanager
             if(iItem < get_fs_list_data()->m_itema.get_count() && !iaItem.contains(iItem))
             {
                iaItem.add(iItem);
-               int iStrict;
+               index iStrict;
                if(m_eview == ViewIcon)
                {
                   iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);

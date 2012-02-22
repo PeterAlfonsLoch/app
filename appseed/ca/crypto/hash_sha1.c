@@ -154,7 +154,7 @@ int __sha1_final(sha1_ctx_t *context, void * p)
  */
 void __sha1_update(     sha1_ctx_t         *context,
                     const void * message_array0,
-                    unsigned            length)
+                    size_t            length)
 {
    const unsigned char *message_array = (const unsigned char *) message_array0;
     if (!length)

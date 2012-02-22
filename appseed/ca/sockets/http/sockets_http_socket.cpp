@@ -316,10 +316,10 @@ namespace sockets
    {
       if(response().file().get_size() > 0)
       {
-         int iSize = response().file().get_size();
+         primitive::memory_size iSize = response().file().get_size();
          while(iSize > 0)
          {
-            int iSend = min(iSize, 1024 * 16);
+            primitive::memory_size iSend = min(iSize, 1024 * 16);
             SendBuf(&((const char *) response().file().get_data())[response().file().get_size() - iSize], iSend);
             iSize -= iSend;
          }

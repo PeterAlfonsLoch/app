@@ -152,7 +152,7 @@ namespace gcom
 //         const int ciBufferBitmapNotSelected = 3;
 //         const int ciBackBitmapNotSelected = 4;
 //         const int ciBufferBitmapInfoNotAvailable = 5;
-         const int ciScaledBitmapInfoNotAvailable = 6;
+//         const int ciScaledBitmapInfoNotAvailable = 6;
 
          single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
@@ -165,7 +165,7 @@ namespace gcom
 //         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
 
 
-         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
+//         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
          if(dcSource.get_os_data() == NULL)
             return false;

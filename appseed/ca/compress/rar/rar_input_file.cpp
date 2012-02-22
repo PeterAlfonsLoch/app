@@ -364,7 +364,7 @@ namespace rar
             wstring unicodePassword = gen::international::utf8_to_unicode(password);
 
             ex1::byte_buffer buffer;
-            const uint32 sizeInBytes = unicodePassword.get_length() * 2;
+            const uint32 sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int i = 0; i < unicodePassword.get_length(); i++)
             {
@@ -386,7 +386,7 @@ namespace rar
             ::primitive::memory_size decryptedDataSizeT = kDecryptedBufferSize;
             RINOK(ReadStream(m_Stream, m_DecryptedDataAligned, &decryptedDataSizeT));
             m_DecryptedDataSize = (uint32)decryptedDataSizeT;
-            m_DecryptedDataSize = m_RarAES->Filter(m_DecryptedDataAligned, m_DecryptedDataSize);
+            m_DecryptedDataSize = m_RarAES->Filter(m_DecryptedDataAligned, (uint32_t) m_DecryptedDataSize);
 
             m_CryptoMode = true;
             m_CryptoPos = 0;

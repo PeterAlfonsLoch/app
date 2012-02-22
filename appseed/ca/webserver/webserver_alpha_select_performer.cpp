@@ -83,13 +83,13 @@ namespace webserver
 
    }
 
-   void AlphaSelectPerformer::out(int style)
+   void AlphaSelectPerformer::out(index style)
    {
       stringa codea = code_getArray();
       code_printCells(codea, style);
    }
 
-   stringa AlphaSelectPerformer::code_getArray(int style)
+   stringa AlphaSelectPerformer::code_getArray(index style)
    {
 
       UNREFERENCED_PARAMETER(style);
@@ -198,7 +198,7 @@ namespace webserver
       return $codea;*/
    }
 
-   stringa AlphaSelectPerformer::code_getFullArray(int style)
+   stringa AlphaSelectPerformer::code_getFullArray(index style)
    {
       stringa codea;
       if(m_strLangStyle == "ja" && style == 1)
@@ -413,9 +413,9 @@ namespace webserver
    }
 
 
-   void AlphaSelectPerformer::code_printCells(const stringa & codea, int style)
+   void AlphaSelectPerformer::code_printCells(const stringa & codea, index style)
    {
-      int iIndex = 0;
+      index iIndex = 0;
       ::count count;
       print("\n");
       if(style == 2)
@@ -425,16 +425,16 @@ namespace webserver
             code_printCell(get("acode"), style, iIndex);
          }
          count = codea.get_count();
-         int divcount = max(1, min(5, count / 4));
-         int_array ia;
-         int_array iaCount;
-         int_array iaSum;
-         int sum = 0;
+         ::count divcount = max(1, min(5, count / 4));
+         index_array ia;
+         count_array iaCount;
+         count_array iaSum;
+         ::count sum = 0;
    //         print "count=$count";
    //      int halfdiv = divcount / 2;
-         int maxcount = 0;
-         int iCount;
-         for(int i = -divcount + 2; i < divcount  ; i += 2)
+         ::count maxcount = 0;
+         ::count iCount;
+         for(index i = -divcount + 2; i < divcount  ; i += 2)
          {
             ia.add(sum);
             iCount = count / divcount + i;
@@ -454,11 +454,11 @@ namespace webserver
          }
          iaCount.add(iCount);
          iaSum.add(count);
-         int index = 0;
+         index index = 0;
          print("<table cellpadding=\"0\" cellspacing=\"0\">\n");
          print("<tbody>\n");
-         int i;
-         for(int irow = 0; irow < maxcount; irow++)
+         ::index i;
+         for(::index irow = 0; irow < maxcount; irow++)
          {
             print("<tr>\n");
             for(int idiv = 0; idiv < divcount; idiv++)
@@ -489,8 +489,8 @@ namespace webserver
             code_printCell(get("acode"), style, iIndex);
          }
          count = codea.get_count();
-         int index = 0;
-         int i = 0;
+         index index = 0;
+         ::index i = 0;
          print("<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" class=\"as-table\">");
          print("<tbody>");
          print("<tr>");
@@ -529,7 +529,7 @@ namespace webserver
 
    }
 
-   void AlphaSelectPerformer::code_printCell(const char * pszCode, int style, int & iIndex)
+   void AlphaSelectPerformer::code_printCell(const char * pszCode, index style, index & iIndex)
    {
 
       UNREFERENCED_PARAMETER(style);
@@ -593,11 +593,11 @@ namespace webserver
    }
 
 
-   void AlphaSelectPerformer::code_printXml1Tree(const stringa & codea, int style)
+   void AlphaSelectPerformer::code_printXml1Tree(const stringa & codea, index style)
    {
       print("\n");
-      int iIndex = 0;
-      for(int i = 0; i < codea.get_count(); i++)
+      index iIndex = 0;
+      for(index i = 0; i < codea.get_count(); i++)
       {
          code_printXml1Element(codea[i], style, iIndex);
       }
@@ -605,7 +605,7 @@ namespace webserver
 
    }
 
-   void AlphaSelectPerformer::code_printXml1Element(const char * pszCode, int style, int & iIndex)
+   void AlphaSelectPerformer::code_printXml1Element(const char * pszCode, index style, index & iIndex)
    {
       UNREFERENCED_PARAMETER(style);
       string strCode(pszCode);

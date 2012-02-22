@@ -319,7 +319,7 @@ namespace ex1
 
    byte_output_stream & byte_output_stream::operator << (::ca::type_info & info)
    {
-      int iLen = strlen(info.raw_name());
+      strsize iLen = strlen(info.raw_name());
       write(&iLen, sizeof(iLen));
       write(info.raw_name(), iLen);
       return *this;

@@ -47,6 +47,8 @@ namespace cubebase
       application & operator = (const application & app)
       {
 
+         UNREFERENCED_PARAMETER(app);
+
          // do nothing
 
          return *this;

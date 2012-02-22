@@ -331,7 +331,7 @@ namespace window_frame
       visual::api::DrawAndFillBeziers(
          pdc,
          m_pointsetBody.get_data(),
-         m_pointsetBody.get_size(),
+         (int) m_pointsetBody.get_size(),
          1.0,
          &pt);
 
@@ -350,7 +350,7 @@ namespace window_frame
       visual::api::DrawAndFillBeziers(
          pdc,
          m_pointset.get_data(),
-         m_pointset.get_size(),
+         (int) m_pointset.get_size(),
          1.0,
          &pt);
    }

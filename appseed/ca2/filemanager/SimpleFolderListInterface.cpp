@@ -244,12 +244,12 @@ namespace filemanager
    }
 
    SimpleFolderListInterface::Folder &
-   SimpleFolderListInterface::FolderArray::GetFolder(int i)
+   SimpleFolderListInterface::FolderArray::GetFolder(index i)
    {
       return this->element_at(i);
    }
 
-   int SimpleFolderListInterface::FolderArray::GetFolderCount()
+   ::count SimpleFolderListInterface::FolderArray::GetFolderCount()
    {
       return this->get_size();
    }
