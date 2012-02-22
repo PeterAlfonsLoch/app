@@ -251,7 +251,7 @@ namespace simpledb
             {
                primitive::memory_position  iStart = prangea->element_at(i)[0];
                primitive::memory_position  iEnd = prangea->element_at(i)[1];
-               if(iStart >= iLen)
+               if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ex1::seek_begin);
@@ -304,7 +304,7 @@ namespace simpledb
             mem.allocate(128 * 1024 * 1024);
             primitive::memory_position iStart = prangea->element_at(0)[0];
             primitive::memory_position iEnd = prangea->element_at(0)[1];
-            if(iStart < iLen)
+            if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ex1::seek_begin);

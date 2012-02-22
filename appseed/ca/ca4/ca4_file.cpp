@@ -259,8 +259,8 @@ namespace ca4
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);
-      LPTSTR lpsz = str.GetBufferSetLength(iLen + 1);
-      pfile->read(lpsz, iLen);
+      LPTSTR lpsz = str.GetBufferSetLength((strsize) (iLen + 1));
+      pfile->read(lpsz, (primitive::memory_size) iLen);
       if(pctx != NULL)
       {
          int64_t iProcessed = 0;

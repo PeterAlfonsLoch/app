@@ -1,8 +1,10 @@
 #include "StdAfx.h"
 #include "mysql/mysql.h"
 
+
 namespace mysql
 {
+
 
    result::result(database * pdatabase, bool bAutoDelete, void * pres) :
       m_pdatabase(pdatabase)
@@ -65,3 +67,5 @@ namespace mysql
 
 
 } // namespace mysql
+
+

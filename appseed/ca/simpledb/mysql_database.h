@@ -1,11 +1,12 @@
 #pragma once
 
 
-#include "mysql/mysql.h"
+typedef char **MYSQL_ROW;		/* return data as array of strings */
 
 
 namespace mysql
 {
+
 
    class CLASS_DECL_ca database :
       virtual public ::radix::object

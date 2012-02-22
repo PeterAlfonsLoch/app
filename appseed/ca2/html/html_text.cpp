@@ -162,7 +162,7 @@ namespace html
             {
                pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
                m_size.cx = 0;
-               class size size = pdc->GetTextExtent("MAÝqg");
+               class size size = pdc->GetTextExtent(unitext("MAÚqg"));
                m_size.cy = size.cy;
                pdata->m_layoutstate.m_cy = size.cy;
             }

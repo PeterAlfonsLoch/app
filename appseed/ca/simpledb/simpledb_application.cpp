@@ -2,7 +2,6 @@
 #include "mysql/mysql.h"
 
 
-
 namespace simpledb
 {
 

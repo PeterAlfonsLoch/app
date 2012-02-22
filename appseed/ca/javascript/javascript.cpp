@@ -872,6 +872,20 @@ CScriptVar::CScriptVar(int64_t val)
    setInt(val);
 }
 
+CScriptVar::CScriptVar(int val)
+{
+   refs = 0;
+   internalRefs = 0;
+   recursionFlag = 0;
+   recursionSet = 0;
+   __proto__ = NULL;
+#if DEBUG_MEMORY
+   mark_allocated(this);
+#endif
+   init();
+   setInt(val);
+}
+
 CScriptVar::CScriptVar(bool val) {
    refs = 0;
    internalRefs = 0;
@@ -1180,7 +1194,7 @@ CScriptVar *DoMaths(CScriptVar *a, CScriptVar *b, int op)
 static CScriptVar *String2NumericVar(string &numeric) {
    double d;
    char *endptr;//=NULL;
-   int64_t i = ::_strtoi64(numeric.c_str(),&endptr,10);
+   index i = (index) ::_strtoi64(numeric.c_str(),&endptr,10);
    if(*endptr == 'x' || *endptr == 'X')
       i = strtol(numeric.c_str(),&endptr,16);
    if(*endptr == '\0')
@@ -2286,7 +2300,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
       a = unary(execute);
       if (execute) {
          CheckRightHandVar(execute, a);
-         CScriptVar zero((int64_t) 0);
+         CScriptVar zero((index) 0);
          a = zero.mathsOp(a->var, '-');
       }
    } else if (l->tk=='+') {
@@ -2298,7 +2312,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
       a = unary(execute);
       if (execute) {
          CheckRightHandVar(execute, a);
-         CScriptVar zero((int64_t) 0);
+         CScriptVar zero((index) 0);
          a = a->var->mathsOp(&zero, LEX_EQUAL);
       }
    } else if (l->tk=='~') {
@@ -2341,7 +2355,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
       if (execute) {
          if(a->owned)
          {
-            CScriptVar one((int64_t) 1);
+            CScriptVar one((index) 1);
             CScriptVar *res = a->var->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
             // in-place add/subtract
             a->replaceWith(res);
@@ -2359,7 +2373,7 @@ CScriptVarSmartLink tinyjs::unary(bool &execute) {
          if(a->owned)
          {
             //				TRACE("post-increment of %s and a is %sthe owner\n", a->name.c_str(), a->owned?"":"not ");
-            CScriptVar one((int64_t) 1);
+            CScriptVar one((index) 1);
             CScriptVar *res = a->var->ref();
             CScriptVar *new_a = a->var->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
             a->replaceWith(new_a);

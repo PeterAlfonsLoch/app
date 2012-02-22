@@ -184,7 +184,7 @@ namespace userbase
    int bitmap_button::BaseToolTipGetIndex()
    {
       // use ::ca::window dialog control id as the index
-      return GetDlgCtrlId();
+      return (int) GetDlgCtrlId();
    }
 
 

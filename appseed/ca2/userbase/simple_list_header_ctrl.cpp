@@ -90,7 +90,7 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
 void simple_list_header_control::_001OnCreate(gen::signal_object * pobj) 
 {
    SCAST_PTR(::gen::message::create, pcreate, pobj)
-   LOGFONT lf;
+//   LOGFONT lf;
 
    ::user::list_header::m_font->operator = (*System.font_central().GetListCtrlFont());
    

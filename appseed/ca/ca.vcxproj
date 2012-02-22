@@ -594,6 +594,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="api\atol.h" />
     <ClInclude Include="api\debug.h" />
     <ClInclude Include="api\linux.h" />
     <ClInclude Include="api\muldiv64.h" />
@@ -1617,6 +1618,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="zlib\zutil.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="api\api_atol.cpp" />
     <ClCompile Include="api\api_muldiv64.cpp" />
     <ClCompile Include="api\api_str.cpp" />
     <ClCompile Include="ca2\ca2_application.cpp" />

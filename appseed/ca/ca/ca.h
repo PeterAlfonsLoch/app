@@ -84,6 +84,8 @@ extern "C"
 
 #include "ca/api/muldiv64.h"
 
+#include "ca/api/atol.h"
+
 #include "ca/api/str.h"
 
 

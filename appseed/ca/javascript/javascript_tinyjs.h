@@ -278,6 +278,7 @@ public:
 	CScriptVar(const string &str); ///< Create a string
 	CScriptVar(const char *str); ///< Create a string
 	CScriptVar(double varData);
+   CScriptVar(int val);
 	CScriptVar(int64_t val);
 	CScriptVar(bool val);
 	~CScriptVar(void);

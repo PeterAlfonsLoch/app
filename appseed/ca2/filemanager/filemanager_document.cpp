@@ -230,7 +230,7 @@ namespace filemanager
 
    void document::_001OnUpdateEditPaste(gen::signal_object * pobj)
    {
-      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
+//      SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
 //         pcmdui->m_pcmdui->Enable(System.m_strCopy.is_empty());
       pobj->m_bRet = true;

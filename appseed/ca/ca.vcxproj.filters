@@ -3401,6 +3401,9 @@
     <ClInclude Include="windows\os_registry.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="api\atol.h">
+      <Filter>Header Files\api</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5661,6 +5664,9 @@
     </ClCompile>
     <ClCompile Include="windows\os_registry.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="api\api_atol.cpp">
+      <Filter>Source Files\api</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

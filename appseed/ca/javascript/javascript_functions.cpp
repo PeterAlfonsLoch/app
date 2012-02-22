@@ -101,7 +101,7 @@ void scStringSubstring(CScriptVar *c, void *) {
 
 	int64_t l = hi-lo;
 	if (l>0 && lo>=0 && lo+l<=(int)str.length())
-		c->getReturnVar()->setString(str.substr(lo, l));
+		c->getReturnVar()->setString(str.substr((strsize) lo, (strsize) l));
 	else
 		c->getReturnVar()->setString("");
 }
@@ -110,7 +110,7 @@ void scStringCharAt(CScriptVar *c, void *) {
 	string str = c->getParameter("this")->getString();
 	int64_t p = c->getParameter("pos")->getInt();
 	if (p>=0 && p<(int)str.length())
-		c->getReturnVar()->setString(str.substr(p, 1));
+		c->getReturnVar()->setString(str.substr((strsize) p, 1));
 	else
 		c->getReturnVar()->setString("");
 }

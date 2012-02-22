@@ -1565,7 +1565,7 @@ namespace gen
    }
 
 
-   int64_t str::get_escaped_char(const char * lpcsz, int64_t pos, int64_t &retPos)
+   int str::get_escaped_char(const char * lpcsz, strsize pos, strsize &retPos)
    {
       retPos = pos;
       if(lpcsz[pos] == '\\')
@@ -1587,7 +1587,7 @@ namespace gen
                   return BAD_WCHAR;
                }
                retPos += val_len + 2;
-               return hex;
+               return (int) hex;
             }
             else
             {
@@ -1597,7 +1597,7 @@ namespace gen
                   return BAD_WCHAR;
                }
                retPos += 2;
-               return hex;
+               return (int) hex;
             }
          }
          return lpcsz[pos+1];

@@ -371,17 +371,27 @@ public:
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
    const var & operator[] (index iKey) const;
+#ifdef _AMD64_
    inline const var & operator[] (int iKey) const { return operator[]((index) iKey); }
+#endif
    var & operator[] (var varKey);
    var & operator[] (const char * pszKey);
    var & operator[] (index iKey);
+#ifdef _AMD64_
    inline var & operator[] (int iKey) { return operator[]((index) iKey); }
+#endif
    var at(index i) const;
+#ifdef _AMD64_
    inline var at(int i) const { return at((index) i); }
+#endif
    var at(index i);
+#ifdef _AMD64_
    inline var at(int i) { return at((index) i); }
+#endif
    var key(index i) const;
+#ifdef _AMD64_
    inline var key(int i) const { return key((index) i); }
+#endif
    count array_get_count() const;
    index array_get_upper_bound() const;
    bool array_contains(const char * psz, index find = 0, count count = -1) const;

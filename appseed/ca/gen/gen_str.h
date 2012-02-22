@@ -151,7 +151,7 @@ namespace gen
 
       CLASS_DECL_ca  __int64        get_hex(const char * pszUtf8);
       CLASS_DECL_ca  __int64        get_hex_number(const char * pstr);
-      CLASS_DECL_ca  int64_t        get_escaped_char(const char * str, strsize pos, strsize &retPos);
+      CLASS_DECL_ca  int            get_escaped_char(const char * str, strsize pos, strsize &retPos);
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
       CLASS_DECL_ca  bool           is_simple_natural(const char * psz);
 
