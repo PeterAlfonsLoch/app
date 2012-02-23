@@ -710,8 +710,8 @@ public:
          if(pszSrc == NULL)
             AtlThrow(E_INVALIDARG);
 
-         strsize nOldLength = get_length();
-         INT_PTR nOffset = pszSrc-GetString();
+         UINT_PTR nOldLength = (UINT_PTR) get_length();
+         UINT_PTR nOffset = (UINT_PTR) (pszSrc - GetString());
          // If 0 <= nOffset <= nOldLength, then pszSrc points into our
          // buffer
 

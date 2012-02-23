@@ -475,6 +475,11 @@
     <ClInclude Include="..\..\..\include\vorbis\vorbisfile.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ogg\xiph_ogg.vcxproj">
+      <Project>{15cbfeff-7965-41f5-b4e2-21e8795c9159}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

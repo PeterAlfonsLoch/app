@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include "include/FreeImage.h"
 #include "FreeImageFileProc.h"
+#undef new
+#include <gdiplus.h>
+#define new DEBUG_NEW
 
 #define AC_SRC_ALPHA                0x01
 
@@ -2259,21 +2262,30 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    if(pbitmap == NULL)
       return NULL;
 
+   HBITMAP hbitmap = NULL;
+
+   Gdiplus::Color colorBk(0, 0, 0, 0);
+   
+   ((Gdiplus::Bitmap *) (pbitmap.m_p->get_os_data()))->GetHBITMAP(colorBk, &hbitmap);
+
+   if(hbitmap == NULL)
+      return NULL;
+
    // ...
    // the following code assumes that you have a valid HBITMAP loaded into the primitive::memory
    BITMAP bm;
-   throw not_implemented_exception();
-//   pbitmap->GetObject(sizeof(BITMAP), (char *) &bm);
+   ::GetObject(hbitmap, sizeof(BITMAP), (char *) &bm);
    if(bm.bmWidth <= 0 || bm.bmHeight <= 0)
       return NULL;
    FIBITMAP * fi = FreeImage_Allocate(bm.bmWidth, bm.bmHeight, bm.bmBitsPixel);
    // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
    // So we save these infos below. This is needed for palettized images only.
    int nColors = FreeImage_GetColorsUsed(fi);
-   ::ca::graphics_sp spgraphics(get_app());
-   spgraphics->CreateCompatibleDC(NULL);
-   GetDIBits((HDC)spgraphics->get_os_data(), (HBITMAP) pbitmap->get_os_data(), 0, FreeImage_GetHeight(fi),
-      FreeImage_GetBits(fi), FreeImage_GetInfo(fi), DIB_RGB_COLORS);
+   HDC hdc = ::CreateCompatibleDC(NULL);
+   
+   GetDIBits(hdc, (HBITMAP) hbitmap, 0, FreeImage_GetHeight(fi), FreeImage_GetBits(fi), FreeImage_GetInfo(fi), DIB_RGB_COLORS);
+
+   ::DeleteDC(hdc);
 
 
 

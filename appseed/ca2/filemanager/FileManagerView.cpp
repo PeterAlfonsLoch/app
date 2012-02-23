@@ -145,7 +145,11 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                {
                   string strTitle;
                   dynamic_cast < FileManagerSaveAsView * >(get_pane_window(0))->_001GetText(strTitle);
-                  if(Application.dir().is(GetFileManager()->get_item().m_strPath))
+                  if(System.dir().name_is(strTitle, get_app()))
+                  {
+                     strPath = strTitle;
+                  }
+                  else if(Application.dir().is(GetFileManager()->get_item().m_strPath))
                   {
                      strPath = System.dir().path(GetFileManager()->get_item().m_strPath, strTitle);
                   }
