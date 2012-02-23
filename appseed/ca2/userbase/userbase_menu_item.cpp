@@ -27,7 +27,7 @@ namespace userbase
    bool menu_item::create_menu(const stringa & straCommand, const stringa & straCommandTitle)
    {
 
-      int iItemCount = straCommand.get_count();
+      ::count iItemCount = straCommand.get_count();
       
       if(straCommandTitle.get_size() < straCommand.get_size())
          return false;
@@ -70,7 +70,7 @@ namespace userbase
 
       xml::node node(get_app());
 
-      int iItemCount = lpnode->get_children_count();
+      ::count iItemCount = lpnode->get_children_count();
       for(int i = 0; i < iItemCount; i++)
       {
          xml::node * pnodeChild = lpnode->child_at(i);

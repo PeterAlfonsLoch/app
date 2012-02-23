@@ -9,6 +9,7 @@ class CLASS_DECL_ca veiev_post :
 {
 public:
 
+
    veiev_post(db_server * pdatacentral);
    virtual ~veiev_post();
 
@@ -30,10 +31,11 @@ public:
    var current();
 
 
-   var get_page(int iPage, int iMessageCountPerPage);
+   var get_page(::index iPage, ::count iMessageCountPerPage);
    int64_t get_count();
 
 
 };
+
 
 

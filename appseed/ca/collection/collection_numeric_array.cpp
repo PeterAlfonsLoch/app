@@ -260,6 +260,147 @@ unique_int_sort_array unique_int_sort_array::operator + (const unique_int_sort_a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+unique_index_sort_array::unique_index_sort_array(::ca::application * papp) :
+   ca(papp)
+{
+}
+
+unique_index_sort_array::unique_index_sort_array(const unique_index_sort_array & base_array) :
+   ::ca::ca(base_array.get_app())
+{
+   operator = (base_array);
+}
+
+unique_index_sort_array::~unique_index_sort_array()
+{
+}
+
+unique_index_sort_array unique_index_sort_array::operator - (const unique_index_sort_array & indexa) const
+{
+   unique_index_sort_array iaRet(*this);
+   iaRet.remove(indexa);
+   return iaRet;
+}
+
+unique_index_sort_array unique_index_sort_array::operator + (const unique_index_sort_array & indexa) const
+{
+   unique_index_sort_array iaRet(*this);
+   for(index i = 0; i < indexa.get_count(); i++)
+   {
+      iaRet.add(indexa[i]);
+   }
+   return iaRet;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 float_array::float_array()
 {
 }
@@ -321,6 +462,34 @@ dword_array::dword_array(const dword_array & base_array) :
 dword_array::~dword_array()
 {
 }
+
+
+
+
+
+
+
+
+dwordptr_array::dwordptr_array()
+{
+}
+
+dwordptr_array::dwordptr_array(const dwordptr_array & base_array) :
+   numeric_array < dwordptr >(base_array)
+{
+   operator = (base_array);
+}
+
+
+dwordptr_array::~dwordptr_array()
+{
+}
+
+
+
+
+
+
 
 uint_array::uint_array()
 {

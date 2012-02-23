@@ -92,14 +92,14 @@ namespace userbase
    #endif
 
 
-      int _001GetItemCount();
+      ::count _001GetItemCount();
       size SimpleLayout();
 
 
       // implementation helpers
 #ifdef WINDOWS
-      void _GetButton(int nIndex, TBBUTTON* pButton) const;
-      void _SetButton(int nIndex, TBBUTTON* pButton);
+      void _GetButton(::index nIndex, TBBUTTON* pButton) const;
+      void _SetButton(::index nIndex, TBBUTTON* pButton);
 #endif
       size CalcLayout(DWORD nMode, int nLength = -1);
 #ifdef WINDOWS

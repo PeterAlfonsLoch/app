@@ -162,7 +162,7 @@ size simple_toolbar::CalcSimpleLayout()
    ASSERT(IsWindow());
 
 
-   int nCount;
+   ::count nCount;
    size sizeResult(0,0);
 
    //BLOCK: Load Buttons
@@ -502,7 +502,7 @@ return true;
 
 int simple_toolbar::_001GetItemCount()
 {
-   return m_itema.get_size();
+   return (int) m_itema.get_size();
 }
 
 
@@ -1516,7 +1516,7 @@ void SimpleToolCmdUI::Enable(BOOL bOn)
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 
-   UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) & ~TBBS_DISABLED;
+   UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~TBBS_DISABLED;
    if (!bOn)
    {
       nNewStyle |= TBBS_DISABLED;
@@ -1527,7 +1527,7 @@ void SimpleToolCmdUI::Enable(BOOL bOn)
       nNewStyle &= ~TBBS_PRESSED;
    }
    ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-   pToolBar->SetButtonStyle(m_iIndex, nNewStyle);
+   pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle);
 }
 
 void SimpleToolCmdUI::SetCheck(check::e_check echeck)
@@ -1540,14 +1540,14 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 
-   UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) &
+   UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) &
       ~(TBBS_CHECKED | TBBS_INDETERMINATE);
    if(echeck == check::checked)
       nNewStyle |= TBBS_CHECKED;
    else if(echeck == check::tristate)
       nNewStyle |= TBBS_INDETERMINATE;
    ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-   pToolBar->SetButtonStyle(m_iIndex, nNewStyle | TBBS_CHECKBOX);
+   pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle | TBBS_CHECKBOX);
 }
 
 void SimpleToolCmdUI::SetText(const char *)
@@ -1647,7 +1647,7 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
          ::GetTextExtentPoint32U(
             (HDC)pdc->get_os_data(),
             str,
-            str.get_length(),
+            (int) str.get_length(),
             &size);
          dx += size.cx;
          dxNext = dx - CX_OVERLAP;

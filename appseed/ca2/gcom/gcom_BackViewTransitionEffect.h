@@ -150,9 +150,9 @@ namespace gcom
             base_array <point, point> m_pointa;
             base_array <point, point> m_pointa2;
             int_array   m_ia;
-            int            m_iStep; // 0 - Inactive, >= 1 Active
-            int            m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 count out
-            int m_iFrame;
+            index            m_iStep; // 0 - Inactive, >= 1 Active
+            ::count            m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 count out
+            index m_iFrame;
          public:
             void Start(int cx, int cy, double dRate, double dRateEx);
    //         void Go(ETransitionEffect eType);
@@ -229,13 +229,13 @@ namespace gcom
    
          DWORD                m_dwLastTransitionTime;
 
-         int                  m_iVisual;
+         index                  m_iVisual;
 
          ::radix::thread *    m_pthreadRunStep;
    //      ETransitionEffect               m_etype;
    //      ETransitionEffect               m_etypeNew;
 
-         int m_iType;
+         index m_iType;
 
          comparable_array < ETransitionEffect, ETransitionEffect >
                            m_etypea;

@@ -2572,7 +2572,7 @@ namespace gcom
          //pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, pdib3->get_graphics(), 0, 0, SRCCOPY);
 
 
-         int iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
+         ::index iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
          if(transitioneffect.m_tool001.m_iStep >= iReturnPoint * 2)
          {
@@ -3796,7 +3796,7 @@ namespace gcom
 
 
 
-         int iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
+         ::index iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
          m_explosion.to(pdib4->get_data(), pdib3->get_data());
 
@@ -3900,7 +3900,7 @@ namespace gcom
             null_point(),
             (BYTE) max(min(255, tool1.dalpha), 0));
 
-         int iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
+         ::index iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
          m_explosion.to(pdib4->get_data(), pdib2->get_data());
 
@@ -4007,7 +4007,7 @@ namespace gcom
             0, 0,
             (BYTE) max(min(255, tool1.dalpha), 0));*/
 
-         int iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
+         ::index iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
          m_explosion.to(pdib4->get_data(), pdib3->get_data());
 

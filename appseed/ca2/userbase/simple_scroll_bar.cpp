@@ -662,7 +662,7 @@ void simple_scroll_bar::pre_translate_message(gen::signal_object * pobj)
       switch(pbase->m_uiMessage)
       {
       case WM_DISPLAYCHANGE:
-         OnDisplayChange(pbase->m_wparam, size(LOWORD(pbase->m_lparam), HIWORD(pbase->m_lparam)));
+         OnDisplayChange((int) pbase->m_wparam, size(LOWORD(pbase->m_lparam), HIWORD(pbase->m_lparam)));
          pbase->m_bRet = true;
          return;
       default:

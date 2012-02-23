@@ -42,6 +42,7 @@ typedef unsigned short     word;
 typedef unsigned long      dword;
 typedef __uint64_t         qword;
 typedef unsigned int       uint;
+typedef DWORD_PTR          dwordptr;
 
 class __size64;
 class size;

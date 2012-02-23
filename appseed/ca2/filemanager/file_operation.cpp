@@ -169,7 +169,7 @@ bool file_operation::step()
       {
          if(m_iFile >= m_stra.get_size())
             return false;
-         UINT uiRead = m_fileSrc->read(m_pchBuffer, m_iBufferSize);
+         primitive::memory_size uiRead = m_fileSrc->read(m_pchBuffer, m_iBufferSize);
          if(uiRead > 0)
          {
             m_fileDst->write(m_pchBuffer, uiRead);
@@ -213,7 +213,7 @@ bool file_operation::step()
       {
          if(m_iFile >= m_stra.get_size())
             return false;
-         UINT uiRead = m_fileSrc->read(m_pchBuffer, m_iBufferSize);
+         primitive::memory_size uiRead = m_fileSrc->read(m_pchBuffer, m_iBufferSize);
          m_fileDst->write(m_pchBuffer, uiRead);
          m_daRead[m_iFile] += uiRead;
          m_dRead += uiRead;
@@ -289,7 +289,7 @@ bool file_operation::initialize()
 
 int file_operation::get_item_count()
 {
-   return m_stra.get_size();
+   return (int) m_stra.get_size();
 }
 
 string file_operation::get_item_message(int iItem)
@@ -332,7 +332,7 @@ void file_operation::make_duplicate_name(string & str, const char * psz)
    string strName = str.Mid(strDir.get_length());
    string strExtension;
    bool bDir;
-   int iFind = strName.find("\\");
+   strsize iFind = strName.find("\\");
    bDir = iFind > 0;
    if(bDir)
    {

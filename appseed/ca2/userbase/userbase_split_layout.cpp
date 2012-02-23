@@ -77,7 +77,7 @@ namespace userbase
       if(lpMsg->message == WM_LBUTTONDOWN)
       {
 
-         int   fwKeys = lpMsg->wParam;        // key flags
+         int   fwKeys = (int) lpMsg->wParam;        // key flags
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::userbase::split_bar & splitbar = m_splitbara.element_at(iIndex);
@@ -99,7 +99,7 @@ namespace userbase
       }
       else if(lpMsg->message == WM_MOUSEMOVE)
       {
-         int   fwKeys = lpMsg->wParam;        // key flags
+         int   fwKeys = (int) lpMsg->wParam;        // key flags
          point ptClient = ptCursor;
          _GetWnd()->ScreenToClient(&ptClient);
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
@@ -352,7 +352,7 @@ namespace userbase
 
    int split_layout::get_pane_count()
    {
-      return m_panea.get_count();
+      return (int) m_panea.get_count();
    }
 
    void split_layout::CalcPaneRect(int iPane, LPRECT lpRect)
@@ -651,7 +651,7 @@ namespace userbase
       if(uiMessage == WM_LBUTTONDOWN)
       {
 
-         int   fwKeys = wParam;        // key flags
+         int   fwKeys = (int) wParam;        // key flags
 //         int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor
 //         int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
@@ -678,7 +678,7 @@ namespace userbase
       }
       else if(uiMessage == WM_MOUSEMOVE)
       {
-         int   fwKeys = wParam;        // key flags
+         int   fwKeys = (int) wParam;        // key flags
          int xPos = splitRect.left + (short int) LOWORD(lParam);  // horizontal position of cursor
          int yPos = splitRect.top + (short int) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))

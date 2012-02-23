@@ -240,7 +240,7 @@ DWORD_PTR lite_html_reader::ReadFile(HANDLE hFile)
 
    HANDLE   hFileMap;
    const char *   lpsz;
-   UINT   nRetVal;
+   DWORD_PTR   nRetVal;
 
    // determine file size
    m_dwBufLen = ::GetFileSize(hFile, NULL);

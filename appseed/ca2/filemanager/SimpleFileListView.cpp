@@ -774,8 +774,8 @@ namespace filemanager
             pitema->remove_at(pcmdui->m_pcmdui->m_iIndex);
 
 
-            int iStartIndex = pcmdui->m_pcmdui->m_iIndex;
-            int iIndex = iStartIndex;
+            index iStartIndex = pcmdui->m_pcmdui->m_iIndex;
+            index iIndex = iStartIndex;
 
 
             ::fs::item_array itema;

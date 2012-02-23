@@ -82,3 +82,10 @@ class CLASS_DECL_ca int_int_spreadset :
 {
 public:
 };
+
+
+class CLASS_DECL_ca index_index_spreadset :
+   virtual public spreadset < index, index, index, index, unique_index_sort_array, unique_index_sort_array >
+{
+public:
+};

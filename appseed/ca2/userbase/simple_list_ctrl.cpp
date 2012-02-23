@@ -66,7 +66,7 @@ bool simple_list_control::RemoveItem(int iItem)
 bool simple_list_control::RemoveItem(ItemRange & range)
 {
    bool bOk = true;
-   for(int iItem = range.GetUBound(); iItem >= range.GetLBound(); iItem++)
+   for(::index iItem = range.GetUBound(); iItem >= range.GetLBound(); iItem++)
    {
       if(!m_listctrldata.RemoveItem(iItem))
          bOk = false;
@@ -78,17 +78,17 @@ bool simple_list_control::RemoveItem(ItemRange & range)
 bool simple_list_control::RemoveItem(Range & range)
 {
    bool bOk = true;
-   int_array iaRemove;
-   for(int iRange = 0; iRange < range.get_item_count(); iRange++)
+   index_array iaRemove;
+   for(::index iRange = 0; iRange < range.get_item_count(); iRange++)
    {
       ItemRange & itemrange = range.ItemAt(iRange);
-      for(int iItem = itemrange.GetLBound(); iItem <= itemrange.GetUBound(); iItem++)
+      for(::index iItem = itemrange.GetLBound(); iItem <= itemrange.GetUBound(); iItem++)
       {
          iaRemove.add_unique(iItem);
       }
    }
    iaRemove.QuickSort(false);
-   for(int i = 0; i < iaRemove.get_size(); i++)
+   for(index i = 0; i < iaRemove.get_size(); i++)
    {
       if(!m_listctrldata.RemoveItem(iaRemove[i]))
          bOk = false;

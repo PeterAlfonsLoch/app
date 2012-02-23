@@ -82,7 +82,7 @@ namespace html
          m_cxMax = size.cx;
 
 
-         int iLastSpace = 0;
+         strsize iLastSpace = 0;
          unsigned char uch;
          int iSpace = 0;
          string strLine;
@@ -191,7 +191,7 @@ namespace html
             int iSpace;
             string strLine;
             unsigned char uch;
-            int iLastSpace = 0;
+            strsize iLastSpace = 0;
             point pointBound = get_bound_point();
             int x = m_pt.x;
             size sizeBound = get_bound_size();
@@ -420,7 +420,7 @@ namespace html
          int maxcy = size3.cy;
 
          _001GetViewSel(iSelStart, iSelEnd);
-         int iCursor = iSelEnd;
+         strsize iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
 
 
@@ -434,7 +434,7 @@ namespace html
          string strExtent1;
          string strExtent2;
          string strExtent3;
-         int lim = 0;
+         strsize lim = 0;
         for(int i = 0; i < m_straLines.get_size(); i++)
         {
          string strLine = m_straLines[i];
@@ -444,11 +444,11 @@ namespace html
          {
             int y = top;
             stringa stra;
-            int i1 = iSelStart - lim;
-            int i2 = iSelEnd - lim;
-            int i3 = iCursor - lim;
-            int iStart = max(0, i1);
-            int iEnd = min(i2, strLine.get_length());
+            strsize i1 = iSelStart - lim;
+            strsize i2 = iSelEnd - lim;
+            strsize i3 = iCursor - lim;
+            strsize iStart = max(0, i1);
+            strsize iEnd = min(i2, strLine.get_length());
             str1 = strLine.Mid(0, iStart);
             str2 = strLine.Mid(iStart, iEnd - iStart);
             str3 = strLine.Mid(iEnd);
@@ -702,7 +702,7 @@ namespace html
          if(py < y)
             return 0;
          int iFind = 0;
-         int iLen = 0;
+         strsize iLen = 0;
          for(int i = 0; i < m_straLines.get_size(); i++)
          {
             string str = m_straLines[i];

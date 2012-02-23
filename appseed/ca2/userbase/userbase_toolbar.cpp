@@ -545,7 +545,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // tool_bar attribute access
 
-   void tool_bar::_GetButton(int nIndex, TBBUTTON* pButton) const
+   void tool_bar::_GetButton(::index nIndex, TBBUTTON* pButton) const
    {
       tool_bar* pBar = (tool_bar*)this;
       VERIFY(pBar->DefWindowProc(TB_GETBUTTON, nIndex, (LPARAM)pButton));
@@ -553,7 +553,7 @@ namespace userbase
       pButton->fsState ^= TBSTATE_ENABLED;
    }
 
-   void tool_bar::_SetButton(int nIndex, TBBUTTON* pButton)
+   void tool_bar::_SetButton(::index nIndex, TBBUTTON* pButton)
    {
       // get original button state
       TBBUTTON button;
@@ -680,7 +680,7 @@ namespace userbase
       point cur(0,0);
       size sizeResult(0,0);
 
-      DWORD dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
+      DWORD dwExtendedStyle = (DWORD) DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
 
       for (int i = 0; i < nCount; i++)
       {
@@ -766,7 +766,7 @@ namespace userbase
             ::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),
                str,
-               str.get_length(),
+               (int) str.get_length(),
                &size);
             dx += size.cx;
             dxNext = dx - CX_OVERLAP;
@@ -915,7 +915,7 @@ namespace userbase
 
       //BLOCK: Load Buttons
       {
-         nCount = DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+         nCount = (int) DefWindowProc(TB_BUTTONCOUNT, 0, 0);
          if (nCount != 0)
          {
             int i;
@@ -1352,7 +1352,7 @@ namespace userbase
 
       LRESULT lResult = Default();
       if (lResult)
-         size = lParam;
+         size = (DWORD) lParam;
 
       if (bModify)
          SetWindowLong(GWL_STYLE, dwStyle);
@@ -1405,7 +1405,7 @@ namespace userbase
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) & ~TBBS_DISABLED;
+      UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~TBBS_DISABLED;
       if (!bOn)
       {
          nNewStyle |= TBBS_DISABLED;
@@ -1416,7 +1416,7 @@ namespace userbase
          nNewStyle &= ~TBBS_PRESSED;
       }
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-      pToolBar->SetButtonStyle(m_iIndex, nNewStyle);
+      pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle);
    }
 
    void tool_cmd_ui::SetCheck(int nCheck)
@@ -1427,14 +1427,14 @@ namespace userbase
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pToolBar->GetButtonStyle(m_iIndex) &
+      UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) &
                ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
          nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
          nNewStyle |= TBBS_INDETERMINATE;
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-      pToolBar->SetButtonStyle(m_iIndex, nNewStyle | TBBS_CHECKBOX);
+      pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle | TBBS_CHECKBOX);
    }
 
    void tool_cmd_ui::SetText(const char *)
@@ -1508,8 +1508,8 @@ namespace userbase
       if (dumpcontext.GetDepth() > 0)
       {
          tool_bar* pBar = (tool_bar*)this;
-         int nCount = pBar->DefWindowProc(TB_BUTTONCOUNT, 0, 0);
-         for (int i = 0; i < nCount; i++)
+         LRESULT nCount = pBar->DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+         for (index i = 0; i < nCount; i++)
          {
             TBBUTTON button;
             _GetButton(i, &button);
@@ -1544,7 +1544,7 @@ namespace userbase
 
       //BLOCK: Load Buttons
       {
-         nCount = DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+         nCount =(int)  DefWindowProc(TB_BUTTONCOUNT, 0, 0);
          if (nCount != 0)
          {
             int i;
@@ -1606,7 +1606,7 @@ namespace userbase
    }
 
 
-   int tool_bar::_001GetItemCount()
+   ::count tool_bar::_001GetItemCount()
    {
       return -1;
    }

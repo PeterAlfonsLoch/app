@@ -685,10 +685,10 @@ namespace userbase
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle(m_iIndex) & ~SBPS_DISABLED;
+      UINT nNewStyle = pStatusBar->GetPaneStyle((int) m_iIndex) & ~SBPS_DISABLED;
       if (!bOn)
          nNewStyle |= SBPS_DISABLED;
-      pStatusBar->SetPaneStyle(m_iIndex, nNewStyle);
+      pStatusBar->SetPaneStyle((int) m_iIndex, nNewStyle);
    }
 
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
@@ -698,10 +698,10 @@ namespace userbase
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle(m_iIndex) & ~SBPS_POPOUT;
+      UINT nNewStyle = pStatusBar->GetPaneStyle((int) m_iIndex) & ~SBPS_POPOUT;
       if (echeck != check::unchecked)
          nNewStyle |= SBPS_POPOUT;
-      pStatusBar->SetPaneStyle(m_iIndex, nNewStyle);
+      pStatusBar->SetPaneStyle((int) m_iIndex, nNewStyle);
    }
 
    void CStatusCmdUI::SetText(const char * lpszText)
@@ -711,7 +711,7 @@ namespace userbase
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
-      pStatusBar->SetPaneText(m_iIndex, lpszText);
+      pStatusBar->SetPaneText((int) m_iIndex, lpszText);
    }
 
 
@@ -723,7 +723,7 @@ namespace userbase
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount;
          state.m_iIndex++)
       {
-         state.m_id = _GetPanePtr(state.m_iIndex)->id;
+         state.m_id = _GetPanePtr((int) state.m_iIndex)->id;
 
          // allow the statusbar itself to have update handlers
          if (::user::interaction::_001OnUpdateCmdUi(&state))

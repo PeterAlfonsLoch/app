@@ -799,7 +799,7 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
 
 template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::
-set_size(int iSize)
+set_size(::count iSize)
 {
    while(this->get_size() < iSize)
    {

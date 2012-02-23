@@ -178,7 +178,7 @@ void simple_menu_bar::pre_translate_message(gen::signal_object * pobj)
    {
       if(pbase->m_wparam == 33)
       {
-         _TrackPopupMenu(pbase->m_lparam);
+         _TrackPopupMenu((int) pbase->m_lparam);
       }
    }
    TRACE("simple_menu_bar::pre_translate_message messageID=%d wParam=%d lParam=%d\n", pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
@@ -224,7 +224,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
 
         if(pmsg->message == WM_MOUSEMOVE)
         {
-            DWORD fwKeys = pmsg->wParam;        // key flags
+            DWORD fwKeys = (DWORD) pmsg->wParam;        // key flags
             int xPos = LOWORD(pmsg->lParam);  // horizontal position of cursor
             int yPos = HIWORD(pmsg->lParam);
             TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, xPos, yPos);

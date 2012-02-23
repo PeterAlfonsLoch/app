@@ -39,7 +39,7 @@ namespace userbase
          pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
          pta.add(point(rectPopupArrow.left, rectPopupArrow.top));
          pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
-         pdc->Polygon(pta.get_data(), pta.get_size());
+         pdc->Polygon(pta.get_data(), (int) pta.get_size());
       }
       _001DrawCheck(pdc);
    }

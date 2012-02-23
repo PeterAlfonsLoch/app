@@ -161,8 +161,8 @@ namespace gcom
 
 //         Main & main = HelperGetMain();
 
-         int iTypeOld = m_iType;
-         int iTypeNew = m_iType;
+         index iTypeOld = m_iType;
+         index iTypeNew = m_iType;
          if(m_etypea[iTypeOld] == TransitionEffectVisual)
          {
             m_iVisual++;
@@ -894,7 +894,7 @@ namespace gcom
 
 
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dRate = 1.0 - dFrameStd * dFrameStd;
                double dComplementRate = 1.0 - dRate;
@@ -937,7 +937,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
                double dRate = 1.0 - dFrameStd * dFrameStd;
@@ -977,7 +977,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
 //               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
@@ -1039,7 +1039,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dRate = 1.0 - dFrameStd * dFrameStd;
 
@@ -1068,7 +1068,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dFrameStdPlus = 1.0 - ((double) (iFrame + 1) / iFrameMax);
                double dRate = 1.0 - dFrameStd * dFrameStd;
@@ -1140,7 +1140,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dRate = dFrameStd * dFrameStd;
 
@@ -1170,7 +1170,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
                double dRate = dFrameStd * dFrameStd;
 
@@ -1211,7 +1211,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
 
                double dRate = dFrameStd * dFrameStd * dFrameStd;
@@ -1256,7 +1256,7 @@ namespace gcom
                const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
                const int iFrameMax = iFrameCount - 1;
 
-               int iFrame = m_tool001.m_iStep - 1;
+               ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
 
                double dRate = dFrameStd * dFrameStd;
@@ -1313,8 +1313,8 @@ namespace gcom
                ::rect rectUpdate;
 
                int c1 = m_tool001.m_data.m_alphapixelate.m_c1;
-               int iIndex = m_tool001.m_iStep - 1;
-               int iSizeIndex = m_tool001.m_pointa[iIndex].x;
+               ::index iIndex = m_tool001.m_iStep - 1;
+               ::index iSizeIndex = m_tool001.m_pointa[iIndex].x;
                int iSize = m_tool001.m_ia[iSizeIndex];
                int nextc = m_tool001.m_pointa[iIndex].y;
                int c;
@@ -1391,7 +1391,7 @@ namespace gcom
                   if(nextc == 0)
                   {
 
-                     m_tool001.m_data.m_alphapixelate.m_iSizeIndex = iSizeIndex;
+                     m_tool001.m_data.m_alphapixelate.m_iSizeIndex = (int) iSizeIndex;
 
 /*                     ::ca::dib * pdib2 = graphics.GetDib(2);
 
@@ -1563,7 +1563,7 @@ namespace gcom
 //                  ::ca::dib * pdibT1 = graphics.GetDib(1977); // Radial Fill (White, Radius = 256 pixels)
                   ::ca::dib * pdibT2 = graphics.GetDib(1977); // Radial Fill (White, Radius = 256 pixels)
 
-                  int iIndex = m_tool001.m_iStep - 1;
+                  ::index iIndex = m_tool001.m_iStep - 1;
                   m_tool001.m_data.m_radialunveil.m_iRadius += m_tool001.m_data.m_radialunveil.m_iRadiusIncrement;
 
                   m_dwDelay = m_tool001.m_pointa[iIndex].y;
@@ -1735,7 +1735,7 @@ namespace gcom
                const int c1 = m_tool001.m_data.m_alphapixelate.m_c1;
 //               const int c2 = m_tool001.m_data.m_alphapixelate.m_c2;
 
-               int iIndex = m_tool001.m_iStep - 1;
+               ::index iIndex = m_tool001.m_iStep - 1;
                int iSizeIndex = m_tool001.m_pointa[iIndex].x;
                int iSize = m_tool001.m_ia[iSizeIndex];
                
@@ -1749,7 +1749,7 @@ namespace gcom
                if(c1 % iSize == 0)
                   iStepCount++;
                int iStartStep = m_tool001.m_pointa2[iIndex].y;
-               int iStep = iIndex - iStartStep;
+               int iStep = (int) (iIndex - iStartStep);
                iStepRepeatCount = iStepCount / 8;
                if(iStep > iStepCount - iStepCount / 4)
                   iStepRepeatCount = iStepCount - iStep - 1;

@@ -578,6 +578,18 @@ public:
    unique_int_sort_array operator + (const unique_int_sort_array & inta) const;
 };
 
+
+class CLASS_DECL_ca unique_index_sort_array :
+   virtual public unique_number_sort_array < index >
+{
+public:
+   unique_index_sort_array(::ca::application * papp = NULL);
+   unique_index_sort_array(const unique_index_sort_array & base_array);
+   virtual ~unique_index_sort_array();
+
+   unique_index_sort_array operator - (const unique_index_sort_array & inta) const;
+   unique_index_sort_array operator + (const unique_index_sort_array & inta) const;
+};
 class CLASS_DECL_ca float_array :
    virtual public numeric_array < float >
 {
@@ -623,6 +635,20 @@ public:
    virtual ~dword_array();
 
 };
+
+
+
+class CLASS_DECL_ca dwordptr_array :
+   virtual public numeric_array < dwordptr >
+{
+public:
+
+   dwordptr_array();
+   dwordptr_array(const dwordptr_array & base_array);
+   virtual ~dwordptr_array();
+
+};
+
 
 
 class CLASS_DECL_ca uint_array :

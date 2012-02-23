@@ -150,7 +150,7 @@ namespace userbase
       m_iItemHeight = iMaxHeight + 6 + 2;
       m_size.cx = iMaxWidth + 4 + 20 + 8;
 
-      int iItemCount = m_pitem->m_spitema->get_size();
+      ::count iItemCount = m_pitem->m_spitema->get_size();
       int iSeparatorCount = m_pitem->m_iSeparatorCount;
 //      int iFullHeightItemCount = m_pitem->m_iFullHeightItemCount;
 

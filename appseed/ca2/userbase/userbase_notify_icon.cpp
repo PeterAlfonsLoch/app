@@ -101,7 +101,7 @@ namespace userbase
       
       SCAST_PTR(::gen::message::base, pbase, pobj);
 
-      m_plistener->OnNotifyIconMessage(m_uiId, pbase->m_lparam);
+      m_plistener->OnNotifyIconMessage(m_uiId, (UINT) pbase->m_lparam);
 
    }
 

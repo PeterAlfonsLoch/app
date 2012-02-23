@@ -737,7 +737,7 @@ AFX_STATIC_DATA const char _afxOldWndProc[] = "AfxOldWndProc423";
 void simple_frame_window::_001OnDdeInitiate(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::base, pbase, pobj)
-   pbase->set_lresult(DefWindowProc(pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
+   pbase->set_lresult(DefWindowProc((DWORD) pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
 

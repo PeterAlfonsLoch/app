@@ -18,7 +18,7 @@ namespace platform
       {
       public:
          run();
-         int                     m_iEdge;
+         index                     m_iEdge;
          link *                  m_plink;
          string                  m_strApp;
          string                  m_strQuery;

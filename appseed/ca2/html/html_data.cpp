@@ -129,7 +129,7 @@ namespace html
       pfont->create(get_app());
       m_fonta.add(pfont);
       pfont->m_iIndex = (int) m_fonta.get_upper_bound();
-      return pfont->m_iIndex;
+      return (int) pfont->m_iIndex;
    }
 
    void data::delete_contents()
@@ -288,7 +288,7 @@ namespace html
       pimage->m_iIndex = (int) m_imagea.get_upper_bound();
       pimage->m_strPath = strUrl;
       load_image_asynch(pimage);
-      return pimage->m_iIndex;
+      return (int) pimage->m_iIndex;
    }
 
    void data::load_image_asynch(image * pimage)

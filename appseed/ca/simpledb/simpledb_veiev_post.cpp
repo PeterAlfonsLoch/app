@@ -101,7 +101,7 @@ var veiev_post::current()
 }
 
 
-var veiev_post::get_page(int iPage, int iMessageCountPerPage)
+var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 {
    if(m_pdataserver == NULL)
       return false;

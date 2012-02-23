@@ -94,7 +94,7 @@ namespace userex
    void pane_tab_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
-      int iTab = get_tab_by_id(pcreatordata->m_id);
+      ::index iTab = get_tab_by_id(pcreatordata->m_id);
 
       pcreatordata->m_pholder = get_new_place_holder();
 

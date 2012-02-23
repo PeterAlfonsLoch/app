@@ -41,7 +41,7 @@ namespace plugin
       host_interaction *            m_puiHost;
       primitive::memory             m_memory;
       ::plugin::system *            m_psystem;
-      int                           m_iEdge;
+      index                           m_iEdge;
       bool                          m_bMainReady;
       string                        m_strCa2LoginRuri;
       string                        m_strCa2LogoutRuri;

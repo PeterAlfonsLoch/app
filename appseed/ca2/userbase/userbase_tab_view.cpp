@@ -74,7 +74,7 @@ namespace userbase
 
    void tab_view::rotate()
    {
-      int iSel = _001GetSel();
+      index iSel = _001GetSel();
 
       if(iSel < 0)
          iSel = 0;
@@ -196,7 +196,7 @@ namespace userbase
    void tab_view::_001DropTargetWindowInitialize(::user::tab * pinterface)
    {
       ensure_tab_by_id(::user::tab::get_id_by_tab(pinterface->get_data()->m_iDragTab));
-      m_pdroptargetwindow = new tab_drop_target_window(this, pinterface->get_data()->m_iDragTab);
+      m_pdroptargetwindow = new tab_drop_target_window(this, (int) pinterface->get_data()->m_iDragTab);
       rect rect;
       rect = pinterface->get_data()->m_rectTabClient;
       pinterface->ClientToScreen(&rect);
@@ -240,7 +240,7 @@ namespace userbase
       class id idSplit;
       ::user::view_creator_data * pcreatordata = ensure(id);
       
-      int iTab = ::user::tab::get_tab_by_id(id);
+      index iTab = ::user::tab::get_tab_by_id(id);
 
       if(pcreatordata != NULL)
       {

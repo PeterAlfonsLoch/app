@@ -260,7 +260,7 @@ namespace userbase
 
          string sTmp = ImageFileName;
          string strSearch = "\\Device\\HarddiskVolume";
-         int ind = sTmp.find(strSearch);
+         strsize ind = sTmp.find(strSearch);
          if(ind != -1)
          {
             ind = sTmp.find('\\', ind + strSearch.get_length());
