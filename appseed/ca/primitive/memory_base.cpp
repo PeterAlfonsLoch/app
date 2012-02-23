@@ -72,7 +72,7 @@ namespace primitive
       allocate(cbStorage);
       try
       {
-         dwTemp = file.read(base_get_data(), cbStorage);
+         dwTemp = file.read(get_data(), cbStorage);
       }
       catch(ex1::file_exception_sp * pe)
       {
@@ -104,7 +104,7 @@ namespace primitive
 
          allocate(uiSize + uiBufSize);
 
-         uiRead = istream.read(&((byte *)base_get_data())[uiSize], uiBufSize);
+         uiRead = istream.read(&((byte *)get_data())[uiSize], uiBufSize);
 
          if(uiRead < uiBufSize)
          {
@@ -124,7 +124,7 @@ namespace primitive
    void base_memory::write(ex1::byte_output_stream & ostream)
    {
 
-      ostream.write(base_get_data(), this->base_get_size());
+      ostream.write(get_data(), this->get_size());
 
    }
 
@@ -140,7 +140,7 @@ namespace primitive
 
       allocate((memory_size) dwRemain);
 
-      memory_size dwRead = file.read(base_get_data(), dwRemain);
+      memory_size dwRead = file.read(get_data(), dwRemain);
 
       allocate(dwRead);
 
@@ -158,8 +158,8 @@ namespace primitive
    void base_memory::base_copy_from(const base_memory *pstorage)
    {
       ASSERT(pstorage != NULL);
-      allocate(pstorage->base_get_size());
-      memcpy(base_get_data(), pstorage->base_get_data(), (size_t) base_get_size());
+      allocate(pstorage->get_size());
+      memcpy(get_data(), pstorage->get_data(), (size_t) get_size());
    }
 
 

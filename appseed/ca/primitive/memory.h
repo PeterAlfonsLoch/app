@@ -17,17 +17,13 @@ namespace primitive
    public:
 
 
-      LPBYTE                  m_pbStorage;
+      
 
 
       internal_memory();
       virtual ~internal_memory();
 
 
-      inline LPBYTE internal_get_data() const
-      {
-         return m_pbStorage;
-      }
       LPBYTE detach();
 
 

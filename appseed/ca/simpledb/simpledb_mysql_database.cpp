@@ -179,7 +179,7 @@ namespace mysql
       {
          unsigned long * pul =  presult->fetch_lengths();
          memory.allocate(*pul);
-         memcpy(memory.base_get_data(), row[0], memory.base_get_size());
+         memcpy(memory.get_data(), row[0], memory.get_size());
          return true;
       }
    }

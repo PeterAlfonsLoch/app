@@ -47,7 +47,7 @@ namespace ca4
 
    string http_get_socket::MyUseragent()
    {
-	   return "Mozilla/5.0 (Windows; U; Windows NT 6.0; pt-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+	   return "ca2-sockets/10.0.2";
    }
 
 

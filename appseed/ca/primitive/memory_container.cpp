@@ -111,7 +111,7 @@ namespace primitive
 
    memory_size memory_container ::get_size() const
    {
-      return m_spmemory.is_set() ? m_spmemory->base_get_size() : 0;
+      return m_spmemory.is_set() ? m_spmemory->get_size() : 0;
    }
 
 
@@ -182,7 +182,7 @@ namespace primitive
       if(m_spmemory.is_null())
          return NULL;
       else
-         return (LPBYTE) m_spmemory->base_get_data();
+         return (LPBYTE) m_spmemory->get_data();
 
    }
 

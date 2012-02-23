@@ -13,6 +13,8 @@ namespace primitive
    {
    public:
 
+      
+      LPBYTE                  m_pbStorage;
 
       memory_offset           m_iOffset;
       memory_size             m_cbStorage;
@@ -36,9 +38,6 @@ namespace primitive
       virtual bool allocate(memory_size dwNewLength);
       virtual bool allocate_internal(memory_size dwNewLength);
 
-      virtual const void *    base_get_data() const = 0;
-      virtual void *          base_get_data() = 0;
-      virtual memory_size     base_get_size() const = 0;
       virtual void            base_remove_offset();
 
       virtual void            base_from_string(const wchar_t * pwsz) = 0;
@@ -57,6 +56,12 @@ namespace primitive
       inline void read(ex1::byte_input_stream & ostream);
 
       inline  void allocate_add_up(memory_size dwAddUp);
+
+
+      inline LPBYTE           internal_get_data() const;
+      inline memory_size      get_size() const;
+      inline const LPBYTE     get_data() const;
+      inline LPBYTE           get_data();
 
    };
 
@@ -92,14 +97,43 @@ namespace primitive
    }
 
 
+   inline LPBYTE base_memory::internal_get_data() const
+   {
+      return m_pbStorage;
+   }
+
+   inline memory_size base_memory::get_size() const
+   {
+      return m_cbStorage;
+   }
 
 
+   
+   inline const LPBYTE base_memory::get_data() const
+   {
 
+      if(is_enabled())
+         return internal_get_data() + m_iOffset;
+      else
+      {
+         ASSERT(FALSE);
+         return NULL;
+      }
 
+   }
 
+   inline LPBYTE base_memory::get_data()
+   {
 
+      if(is_enabled())
+         return internal_get_data() + m_iOffset;
+      else
+      {
+         ASSERT(FALSE);
+         return NULL;
+      }
 
-
+   }
 
 
 
@@ -171,10 +205,6 @@ namespace primitive
       inline operator const void *() const;
       inline operator void *();
 
-      inline const LPBYTE get_data() const;
-      inline LPBYTE get_data();
-      //inline LPBYTE internal_get_data() const;
-      inline memory_size get_size() const;
 
       inline void To(string & str, memory_position iStart = 0, memory_position iEnd = -1);
       inline void From(const char * psz);
@@ -220,40 +250,8 @@ namespace primitive
    {
    }
 
-   template < class BASE_MEMORY >
-   inline memory_size memory_base < BASE_MEMORY >::get_size() const
-   {
-      return m_cbStorage;
-   }
 
-   template < class BASE_MEMORY >
-   inline const LPBYTE memory_base < BASE_MEMORY >::get_data() const
-   {
-
-      if(is_enabled())
-         return internal_get_data() + m_iOffset;
-      else
-      {
-         ASSERT(FALSE);
-         return NULL;
-      }
-
-   }
-
-   template < class BASE_MEMORY >
-   inline LPBYTE memory_base < BASE_MEMORY >::get_data()
-   {
-
-      if(is_enabled())
-         return internal_get_data() + m_iOffset;
-      else
-      {
-         ASSERT(FALSE);
-         return NULL;
-      }
-
-   }
-
+   
    /*
    template < class BASE_MEMORY >
    inline LPBYTE memory_base < BASE_MEMORY >::internal_get_data() const
@@ -291,8 +289,8 @@ namespace primitive
 
       sl.lock();
 
-      if(this->get_size() == s.base_get_size())
-         b = memcmp(get_data(), s.base_get_data(), (size_t) this->get_size()) == 0;
+      if(this->get_size() == s.get_size())
+         b = memcmp(get_data(), s.get_data(), (size_t) this->get_size()) == 0;
 
       sl.unlock();
 
@@ -321,8 +319,8 @@ namespace primitive
    inline void memory_base < BASE_MEMORY >::base_copy_from(const base_memory *pstorage)
    {
       ASSERT(pstorage != NULL);
-      allocate(pstorage->base_get_size());
-      memcpy(get_data(), pstorage->base_get_data(), (size_t) this->get_size());
+      allocate(pstorage->get_size());
+      memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
    }
 
    template < class BASE_MEMORY >

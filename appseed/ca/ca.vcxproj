@@ -1396,7 +1396,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="sockets\http\http_tunnel.h" />
     <ClInclude Include="sockets\http_file.h" />
     <ClInclude Include="sockets\http_memory_file.h" />
-    <ClInclude Include="sockets\http_transaction.h" />
     <ClInclude Include="sockets\IBase.h" />
     <ClInclude Include="sockets\internal\SSLInitializer.h" />
     <ClInclude Include="sockets\log\StdLog.h" />

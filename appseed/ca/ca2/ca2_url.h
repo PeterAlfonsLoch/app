@@ -21,6 +21,7 @@ namespace ca2
       gen::property & set(gen::property & propUrl, const char * pszKey, var var);
       string set_script(const char * pszUrl, const char * pszScript);
       string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
+      string override_if_set_at_source(const char * pszDest, const char * pszSrc);
       string remove_key(const char * pszUrl, const char * pszKey);
       string remove(string & strUrl, const char * pszKey);
       var & remove(var & varUrl, const char * pszKey);

@@ -776,6 +776,37 @@ namespace ca2
    }
 
 
+   string url::override_if_set_at_source(const char * pszDst, const char * pszSrc)
+   {
+      
+      string strProtocol = get_protocol(pszDst);
+      string strProtocolOver = get_protocol(pszSrc);
+      string strRoot = get_root(pszDst);
+      string strRootOver = get_root(pszSrc);
+      string strScript = get_script(pszDst);
+      string strScriptOver = get_script(pszSrc);
+      string strQuery = get_query(pszDst);
+      string strQueryOver = get_query(pszSrc);
+
+      if(strProtocolOver.has_char())
+         strProtocol = strProtocolOver;
+      
+      if(strRootOver.has_char())
+         strRoot = strRootOver;
+      
+      if(strScriptOver.has_char())
+         strScript = strScriptOver;
+      
+      if(strQueryOver.has_char())
+         strQuery = strQueryOver;
+      
+      if(!gen::str::begins(strScript, "/"))
+         strScript = "/" + strScript;
+      
+      return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
+   }
+
+
 } // namespace ca2
 
 

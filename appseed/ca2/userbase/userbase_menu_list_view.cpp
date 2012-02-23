@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace userbase
 {
+
 
    menu_list_view::menu_list_view(::ca::application * papp) :
       ca(papp),
@@ -66,18 +68,24 @@ namespace userbase
       return view::_001OnCmdMsg(pcmdmsg);
    }
 
-   bool menu_list_view::LoadMenu(xml::node * pnode, ::user::interaction* pguieNotify,
-                                      UINT uiCallbackMessage)
+   bool menu_list_view::LoadMenu(xml::node * pnode, ::user::interaction* pguieNotify, UINT uiCallbackMessage)
    {
+      
       m_uiMessage = uiCallbackMessage;
       m_bAutoClose = false;
+
       if(!menu_list_window::LoadMenu(pnode))
-      {
          return false;
-      }
+
       MenuFill(this, GetParentFrame());
+
       m_pguieNotify = pguieNotify;
+
       return true;
+
    }
 
+
 } // namespace userbase
+
+

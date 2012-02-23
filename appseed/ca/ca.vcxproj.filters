@@ -2402,9 +2402,6 @@
     <ClInclude Include="sockets\webserver\http_request.h">
       <Filter>Header Files\sockets\Webserver framework</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\http_transaction.h">
-      <Filter>Header Files\sockets\Webserver framework</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\webserver\http_transaction.h">
       <Filter>Header Files\sockets\Webserver framework</Filter>
     </ClInclude>

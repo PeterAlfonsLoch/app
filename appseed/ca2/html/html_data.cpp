@@ -458,7 +458,7 @@ namespace html
          }
          else
          {
-            varFile = varQuery["out_headers"].propset()["Location"];
+            varFile = System.url().override_if_set_at_source(varFile, varQuery["out_headers"].propset()["Location"]);
             goto restart;
          }
       }

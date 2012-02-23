@@ -31,13 +31,13 @@ public:
 
    inline id()
    {
-      m_psz = NULL;
+      m_i = 0;
       m_chType = IDTYPE_TYPE_NULL;
    }
 
    inline id(const id & id)
    {
-      m_psz = id.m_psz;
+      m_i = id.m_i;
       m_chType = id.m_chType;
    }
 
@@ -45,7 +45,7 @@ public:
 
    inline bool operator == (const id & id) const
    {
-      return m_psz == id.m_psz && m_chType == id.m_chType;
+      return m_i == id.m_i && m_chType == id.m_chType;
    }
    inline bool operator != (const id & id) const
    {
@@ -69,7 +69,7 @@ public:
    }
    inline id & operator = (const id & id)
    {
-      m_psz       = id.m_psz;
+      m_i       = id.m_i;
       m_chType    = id.m_chType;
       return *this;
    }
@@ -217,12 +217,12 @@ public:
 
    inline void Empty()
    {
-      m_psz = NULL;
+      m_i = 0;
    }
 
    inline void clear()
    {
-      m_psz = NULL;
+      m_i = 0;
    }
 
    inline bool is_number() const
@@ -342,7 +342,7 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;
-   return pid1->m_psz - pid2->m_psz;
+   return pid1->m_i - pid2->m_i;
 }
 
 inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
@@ -352,7 +352,7 @@ inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
    if(pid1->m_chType == IDTYPE_TYPE_TEXT)
       return strcmp(pid1->m_psz, pid2->m_psz);
    else
-      return pid1->m_psz - pid2->m_psz;
+      return pid1->m_i - pid2->m_i;
 }
 
 
@@ -361,16 +361,17 @@ inline void id::raw_set(const char * psz)
    if(psz == NULL)
    {
       m_chType = IDTYPE_TYPE_NULL;
-      m_psz = NULL;
+      m_i = 0;
    }
    else if(id_is_number(psz))
    {
       m_chType = IDTYPE_TYPE_NUMBER;
-      m_i = atoi(psz);
+      m_i = atoi64_dup(psz);
    }
    else
    {
       m_chType = IDTYPE_TYPE_TEXT;
+      m_i = 0;
       m_psz = psz;
    }
 }

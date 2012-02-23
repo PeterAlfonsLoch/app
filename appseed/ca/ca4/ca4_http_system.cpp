@@ -543,6 +543,10 @@ retry:
          {
             psocket->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
          }
+         if(set.has_property("Cookie") && set["Cookie"].get_string().has_char())
+         {
+            psocket->request().header("Cookie") = set["Cookie"];
+         }
          psocket->SetCloseOnComplete();
          if(strProtocol == "https")
          {
@@ -618,6 +622,9 @@ retry:
                System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
             }
          }
+
+         string strCookie = psocket->response().cookies().get_cookie_header();
+         set["Cookie"] = strCookie;
 
          if(pestatus != NULL)
          {
@@ -772,7 +779,7 @@ retry:
          if(psocket == NULL)
             return false;
          memory.allocate(psocket->GetContentLength());
-         memcpy(memory.base_get_data(), psocket->GetDataPtr(), memory.base_get_size());
+         memcpy(memory.get_size(), psocket->GetDataPtr(), memory.get_size());
          headers = psocket->outheaders();
          gen::del(psocket);
          return true;

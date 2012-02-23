@@ -11,8 +11,6 @@ namespace primitive
    public:
 
 
-      LPBYTE                  m_pbStorage;
-
 
       internal_virtual_memory();
       virtual ~internal_virtual_memory();
@@ -20,11 +18,6 @@ namespace primitive
 
       void construct_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
 
-
-      inline LPBYTE internal_get_data() const
-      {
-         return m_pbStorage;
-      }
 
 
       virtual bool allocate_internal(memory_size dwNewLength);

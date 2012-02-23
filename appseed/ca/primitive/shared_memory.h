@@ -11,7 +11,7 @@ namespace primitive
    public:
 
 
-      LPBYTE                                 m_pbStorage;
+      
       UINT                                   m_nAllocFlags;
       HGLOBAL                                m_hGlobalMemory;
       BOOL                                   m_bAllowGrow;
@@ -52,7 +52,6 @@ namespace primitive
 
       HGLOBAL detach();
 
-      LPBYTE internal_get_data() const;
       void free_data();
 
 
@@ -60,19 +59,6 @@ namespace primitive
 
 
 
-
-
-
-   inline LPBYTE internal_shared_memory::internal_get_data() const
-   {
-      if(is_enabled())
-         return m_pbStorage + m_iOffset;
-      else
-      {
-         ASSERT(FALSE);
-         return NULL;
-      }
-   }
 
 
 

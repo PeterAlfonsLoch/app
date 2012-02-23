@@ -1455,7 +1455,7 @@ void XfplayerViewLine::EmbossedTextOut(
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
-      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), class size(pdibCache->width() - iLeft, pdibCache->height()), pdibCache->get_graphics(), point(iLeft, 0), dBlend);
+      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), class size(m_dibMain->width() - iLeft, m_dibMain->height()), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
       System.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int) iLen, cr, dBlend);
 
@@ -1505,7 +1505,7 @@ void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pd
    if(!pdibCache->create(size))
       return;
    ::ca::graphics * pdcCache = pdibCache->get_graphics();
-//   ::ca::font * pfontOld = pdcCache->SelectObject(m_font);
+   pdcCache->SelectObject(m_font);
 
    pdcCache->set_alpha_mode(::ca::alpha_mode_set);
    pdcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(0, 0, 0, 0));
