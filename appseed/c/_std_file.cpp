@@ -363,6 +363,9 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 	HANDLE hFile = (HANDLE) ((_FILE*)str)->_base;
 	int textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
 
+   if(hFile == NULL)
+      return 0;
+
 	// Text-mode translation is always ANSI!
 	if (textMode)			// text mode -> translate LF -> CRLF
 	{
@@ -380,7 +383,8 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
             size_t dwWritten = 0;
             while(i - startpos - dwWritten > 0)
             {
-				   WriteFile(hFile, &src[startpos + dwWritten], (DWORD) min(1024, i - startpos - dwWritten), &bw2, 0);
+				   if(!WriteFile(hFile, &src[startpos + dwWritten], (DWORD) min(1024, i - startpos - dwWritten), &bw2, 0))
+                  return 0;
                bw += bw2;
                dwWritten += bw2;
             }
