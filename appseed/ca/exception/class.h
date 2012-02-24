@@ -45,7 +45,7 @@ public:
    static string get(unsigned int uiSkip = 2)
    {
       string str;
-#ifdef WIN32
+#ifndef _AMD64_
       if(!IsWow64())
       {
          SymEngine::stack_trace(str, uiSkip);

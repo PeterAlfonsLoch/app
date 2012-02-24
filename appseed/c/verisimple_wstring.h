@@ -33,7 +33,7 @@ public:
    inline static wchar_t * alloc(count iCount)
    {
 
-      wstring_data * pdata = (wstring_data *) ca2_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(int) + sizeof(int) + sizeof(wchar_t));
+      wstring_data * pdata = (wstring_data *) ca2_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
       pdata->m_iAllocation = iCount;
       pdata->m_iLength = 0;
       pdata->m_wchFirst = L'\0';
@@ -44,12 +44,13 @@ public:
    inline static void free(wchar_t * pwsz)
    {
 
-      wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(int) - sizeof(int));
+      wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(count) - sizeof(count));
       if(pdata->m_iAllocation <= 0)
          return;
       ca2_free(pdata);
 
    }
+
 
    inline operator const wchar_t * () const { return &m_wchFirst; }
    inline operator wchar_t * () { return &m_wchFirst; }
@@ -71,12 +72,12 @@ protected:
 
    inline wstring_data * get_data()
    {
-      return (wstring_data *)(((byte *) m_pwsz) - sizeof(int) - sizeof(int));
+      return (wstring_data *)(((byte *) m_pwsz) - sizeof(count) - sizeof(count));
    }
 
    inline const wstring_data * get_data() const
    {
-      return (wstring_data *)(((byte *) m_pwsz) - sizeof(int) - sizeof(int));
+      return (wstring_data *)(((byte *) m_pwsz) - sizeof(count) - sizeof(count));
    }
 
 public:
