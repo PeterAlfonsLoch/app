@@ -16,7 +16,7 @@ int atoi_dup(const char * psz)
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > '9')
          break;
-      iResult += iResult * 10 + (ch - '0');
+      iResult = iResult * 10 + (ch - '0');
       psz++;
    }
    return iResult;
@@ -30,7 +30,7 @@ int atoi_dup(const char *psz, const char ** pszEnd)
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > '9')
          break;
-      iResult += iResult * 10 + (ch - '0');
+      iResult = iResult * 10 + (ch - '0');
       psz++;
    }
    if(pszEnd != NULL)
@@ -112,7 +112,7 @@ int _digit_atoi_dup(const char * psz, const char ** pszEnd, int iBase)
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      iResult += iResult * iBase + (ch - '0');
+      iResult = iResult * iBase + (ch - '0');
       psz++;
    }
    if(pszEnd != NULL)
@@ -137,11 +137,11 @@ int _atoi_dup(const char * psz, const char ** pszEnd, int iBase)
       }
       else if(ch >= '0' && ch <= '9')
       {
-         iResult += iResult * iBase + (ch - '0');
+         iResult = iResult * iBase + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         iResult += iResult * iBase + (ch - 'a' + 10);
+         iResult = iResult * iBase + (ch - 'a' + 10);
       }
       else
       {
