@@ -1,28 +1,31 @@
 #include "StdAfx.h"
 
+
 namespace primitive
 {
 
-   base_memory::base_memory()
+
+   memory_base::memory_base()
    {
 
+      m_pbStorage          = NULL;
+      m_cbStorage          = 0;
+      m_dwAllocation       = 0;
+      m_dwAllocationAddUp  = 0;
       m_iOffset            = 0;
       m_bLockMode          = false;
       m_bLock              = false;
       m_pcontainer         = NULL;
-      m_cbStorage          = 0;
-      m_dwAllocation       = 0;
-      m_dwAllocationAddUp  = 0;
 
    }
       
-   base_memory::~base_memory()
+   memory_base::~memory_base()
    {
    }
 
 
 
-   inline bool base_memory::allocate(memory_size dwNewLength)
+   inline bool memory_base::allocate(memory_size dwNewLength)
    {
 
       if(!is_enabled())
@@ -51,13 +54,13 @@ namespace primitive
       return true;
    }
 
-   bool base_memory::allocate_internal(memory_size dwNewLength)
+   bool memory_base::allocate_internal(memory_size dwNewLength)
    {
       return false;
    }
 
    
-   void base_memory::FullLoad(ex1::file & file)
+   void memory_base::FullLoad(ex1::file & file)
    {
 
       if(!is_enabled())
@@ -90,7 +93,7 @@ namespace primitive
    }
  
 
-   void base_memory::read(ex1::byte_input_stream & istream)
+   void memory_base::read(ex1::byte_input_stream & istream)
    {
 
       memory_size uiRead;
@@ -121,7 +124,7 @@ namespace primitive
    }
 
    
-   void base_memory::write(ex1::byte_output_stream & ostream)
+   void memory_base::write(ex1::byte_output_stream & ostream)
    {
 
       ostream.write(get_data(), this->get_size());
@@ -129,7 +132,7 @@ namespace primitive
    }
 
    
-   ::primitive::memory_size base_memory::read(ex1::file & file)
+   ::primitive::memory_size memory_base::read(ex1::file & file)
    {
 
       file_size dwEnd = file.get_length();
@@ -148,19 +151,23 @@ namespace primitive
 
    }
 
-   void base_memory::base_remove_offset()
+   void memory_base::delete_begin(memory_size iSize)
    {
-
-      throw not_implemented_exception();
-
-   }
-
-   void base_memory::base_copy_from(const base_memory *pstorage)
-   {
-      ASSERT(pstorage != NULL);
-      allocate(pstorage->get_size());
-      memcpy(get_data(), pstorage->get_data(), (size_t) get_size());
+      ASSERT(iSize >= 0);
+      ASSERT(iSize <= this->get_size());
+      if(iSize >= 0 &&
+         iSize <= this->get_size())
+      {
+         m_iOffset += iSize;
+         if(m_pcontainer != NULL)
+         {
+            m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
+         }
+         m_cbStorage -= iSize;
+      }
    }
 
 
 } // namespace primitive
+
+

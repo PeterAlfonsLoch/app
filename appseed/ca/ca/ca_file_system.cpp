@@ -370,7 +370,7 @@ namespace ca
          return strResult;
       }
 
-      void system::as_memory(var varFile, primitive::base_memory & mem, ::ca::application * papp)
+      void system::as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp)
       {
          if(varFile.get_type() == var::type_string)
          {

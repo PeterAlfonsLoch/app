@@ -11,7 +11,7 @@ namespace primitive
    protected:
 
 
-      sp(base_memory)                        m_spmemory;
+      sp(memory_base)                        m_spmemory;
       primitive_array < void ** >            m_vppa;
       memory_size                            m_dwAllocationAddUp;
 
@@ -20,7 +20,7 @@ namespace primitive
 
       memory_container(::ca::application * papp);
       memory_container(::ca::application * papp, void * pMemory, memory_size dwSize);
-      memory_container(::ca::application * papp, base_memory * pmemory);
+      memory_container(::ca::application * papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
 
@@ -29,8 +29,8 @@ namespace primitive
       void allocate(memory_size dwNewLength);
       void allocate_internal(memory_size dwNewLength);
 
-      virtual base_memory * create_memory();
-      base_memory * get_memory() const;
+      virtual memory_base * create_memory();
+      memory_base * get_memory() const;
 
       memory_size get_size() const;
 
@@ -40,7 +40,7 @@ namespace primitive
       void from_string(const var & str);
       void to_string(string & str);
 
-      void FullLoad(base_memory *pmemorystorage);
+      void FullLoad(memory_base *pmemorystorage);
       void FullLoad(ex1::file & file);
 
       void keep_pointer(void **ppvoid);
@@ -52,9 +52,9 @@ namespace primitive
 
       memory_container & operator =(const memory_container &container);
 
-      bool Attach(base_memory *pstorage);
+      bool Attach(memory_base *pstorage);
 
-      base_memory * detach();
+      memory_base * detach();
 
       virtual memory *          get_primitive_memory();
       virtual shared_memory *   get_shared_memory();
@@ -69,6 +69,48 @@ namespace primitive
       virtual LPBYTE            detach_virtual_storage();
 
    };
+
+   inline LPBYTE memory_container ::get_data()
+   {
+      
+      if(m_spmemory.is_null())
+         return NULL;
+      else
+         return (LPBYTE) m_spmemory->get_data();
+
+   }
+
+   inline memory_size memory_container ::get_size() const
+   {
+      return m_spmemory.is_set() ? m_spmemory->get_size() : 0;
+   }
+
+
+   inline void memory_container ::from_string(const wchar_t * pwsz)
+   {
+      m_spmemory->from_string(pwsz);
+   }
+
+
+   inline void memory_container ::from_string(const char * psz)
+   {
+      m_spmemory->from_string(psz);
+   }
+
+   inline void memory_container ::from_string(const string & str)
+   {
+      m_spmemory->from_string(str);
+   }
+
+   inline void memory_container ::from_string(const var & var)
+   {
+      m_spmemory->from_string(var);
+   }
+
+   inline void memory_container ::to_string(string & str)
+   {
+      m_spmemory->to_string(str);
+   }
 
 
 } // namespace primitive

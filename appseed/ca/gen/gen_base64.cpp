@@ -245,7 +245,7 @@ namespace gen
 
    }
 
-   string base64::encode(primitive::base_memory & storageBinary)
+   string base64::encode(primitive::memory_base & storageBinary)
    {
       
       string strRet;

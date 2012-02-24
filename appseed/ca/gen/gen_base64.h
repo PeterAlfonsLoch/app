@@ -23,7 +23,7 @@ namespace gen
 
 
       void encode(ex1::plain_text_output_stream & ostreamBase64, ex1::byte_input_stream & istreamBinary);
-      string encode(primitive::base_memory & storageBinary);
+      string encode(primitive::memory_base & storageBinary);
       string encode(byte * p, count c);
       string encode(const char * psz);
       string serialize(ex1::byte_serializable & serializable);

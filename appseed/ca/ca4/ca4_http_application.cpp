@@ -48,7 +48,7 @@ namespace ca4
       }
 
 
-      bool application::get(const char * pszUrl, primitive::base_memory & memory, ::fontopus::user * puser)
+      bool application::get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -78,7 +78,7 @@ namespace ca4
 
       bool application::get(
          const char * pszUrl,
-         primitive::base_memory & memory, 
+         primitive::memory_base & memory, 
          gen::property_set & post, 
          gen::property_set & headers,
          gen::property_set & set, 
@@ -154,7 +154,7 @@ namespace ca4
          return System.http().request(pszRequest, pszUrl, puser);
       }
 
-      bool application::request(const char * pszRequest, const char * pszUrl, primitive::base_memory & memory, ::fontopus::user * puser)
+      bool application::request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {

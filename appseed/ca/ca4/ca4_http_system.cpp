@@ -765,7 +765,7 @@ retry:
       }
       bool system::get(
                      const char * pszUrl,
-                     primitive::base_memory & memory,
+                     primitive::memory_base & memory,
                      gen::property_set & post,
                      gen::property_set & headers,
                      gen::property_set & set,
@@ -806,7 +806,7 @@ retry:
          return true;
       }
 
-      bool system::get(const char * pszUrl, primitive::base_memory & storage, ::fontopus::user * puser)
+      bool system::get(const char * pszUrl, primitive::memory_base & storage, ::fontopus::user * puser)
       {
          class signal signal;
          signal.m_strUrl = pszUrl;
@@ -856,7 +856,7 @@ retry:
          return true;
       }
 
-      bool system::request(const char * pszRequest, const char * pszUrl, primitive::base_memory & storage, ::fontopus::user * puser)
+      bool system::request(const char * pszRequest, const char * pszUrl, primitive::memory_base & storage, ::fontopus::user * puser)
       {
          class signal signal;
          signal.m_strUrl = pszUrl;
@@ -962,7 +962,7 @@ retry:
          System.file().del(System.dir().appdata(strSection + "_2"));
       }
 
-      bool system::put(const char * pszUrl, primitive::base_memory & memory, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
          gen::memory_file file(get_app(), &memory);
          return put(pszUrl, &file, puser);

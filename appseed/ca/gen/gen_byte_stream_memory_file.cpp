@@ -25,7 +25,7 @@ namespace gen
    {
    }
 
-   byte_stream_memory_file::byte_stream_memory_file(::ca::application * papp, ::primitive::base_memory * pmemory) :
+   byte_stream_memory_file::byte_stream_memory_file(::ca::application * papp, ::primitive::memory_base * pmemory) :
       ca(papp),
       memory_container(papp, pmemory),
       gen::memory_file(papp, pmemory)

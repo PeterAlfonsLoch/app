@@ -1,18 +1,57 @@
 #include "StdAfx.h"
 
+
 namespace primitive
 {
 
-   internal_virtual_memory::internal_virtual_memory()
+
+   virtual_memory::virtual_memory(::ca::application * papp) :
+      ca(papp)
    {
    }
 
-   internal_virtual_memory::~internal_virtual_memory()
+   virtual_memory::virtual_memory(const void * pdata, int iCount)
+   {
+      allocate(iCount);
+      ASSERT(fx_is_valid_address(pdata, iCount, FALSE));
+      memcpy(m_pbStorage, pdata, iCount);
+   }
+
+   virtual_memory::virtual_memory(const memory_base & s)
+   {
+      memory_base::operator = (s);
+   }
+
+   virtual_memory::virtual_memory(const char * psz)
+   {
+      from_string(psz);
+   }
+
+   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size dwSize) :
+      ca(pcontainer->get_app())
+   {
+      m_pbStorage          = NULL;
+      allocate(dwSize);
+      ASSERT(fx_is_valid_address(pmemory, (UINT_PTR) dwSize, FALSE));
+      memcpy(m_pbStorage, pmemory, (size_t) dwSize);
+   }
+
+
+   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   {
+      UNREFERENCED_PARAMETER(nAllocFlags);
+      m_pbStorage          = NULL;
+      m_pcontainer         = pcontainer;
+      m_dwAllocationAddUp  = dwAllocationAddUp;
+   }
+
+
+   virtual_memory::~virtual_memory()
    {
       free_data();
    }
 
-   LPBYTE internal_virtual_memory::detach()
+   LPBYTE virtual_memory::detach()
    {
 
       LPBYTE p = m_pbStorage;
@@ -26,7 +65,7 @@ namespace primitive
    }
 
 
-   bool internal_virtual_memory::allocate_internal(memory_size dwNewLength)
+   bool virtual_memory::allocate_internal(memory_size dwNewLength)
    {
       if(!is_enabled())
       {
@@ -39,7 +78,7 @@ namespace primitive
          return true;
       }
    
-      base_remove_offset();
+      remove_offset();
    
       if(m_pbStorage == NULL)
       {
@@ -92,7 +131,7 @@ namespace primitive
    }
 
 
-   void internal_virtual_memory::free_data()
+   void virtual_memory::free_data()
    {
       if(m_pbStorage != NULL)
       {
@@ -128,50 +167,9 @@ namespace primitive
    
    
    
-   virtual_memory::virtual_memory(::ca::application * papp) :
-      ca(papp)
-   {
-   }
-
-   virtual_memory::virtual_memory(const void * pdata, int iCount)
-   {
-      allocate(iCount);
-      ASSERT(fx_is_valid_address(pdata, iCount, FALSE));
-      memcpy(m_pbStorage, pdata, iCount);
-   }
-
-   virtual_memory::virtual_memory(const base_memory & s)
-   {
-      memory_base::operator = (s);
-   }
-
-   virtual_memory::virtual_memory(const char * psz)
-   {
-      from_string(psz);
-   }
-
-   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size dwSize) :
-      ca(pcontainer->get_app())
-   {
-      m_pbStorage          = NULL;
-      allocate(dwSize);
-      ASSERT(fx_is_valid_address(pmemory, (UINT_PTR) dwSize, FALSE));
-      memcpy(m_pbStorage, pmemory, (size_t) dwSize);
-   }
-
-
-   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
-   {
-      UNREFERENCED_PARAMETER(nAllocFlags);
-      m_pbStorage          = NULL;
-      m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
-   }
-
-   virtual_memory::~virtual_memory()
-   {
-   }
-
 
 
 } // namespace primitive
+
+
+

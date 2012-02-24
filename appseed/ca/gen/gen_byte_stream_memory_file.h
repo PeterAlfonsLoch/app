@@ -15,7 +15,7 @@ namespace gen
       byte_stream_memory_file(::ca::application * papp, ::primitive::memory_size iSize = 0);
       byte_stream_memory_file(::ca::application * papp, void * pMemory, ::primitive::memory_size dwSize);
       byte_stream_memory_file(::ca::application * papp, const memory_file & memoryfile);
-      byte_stream_memory_file(::ca::application * papp, ::primitive::base_memory * pmemory);
+      byte_stream_memory_file(::ca::application * papp, ::primitive::memory_base * pmemory);
       byte_stream_memory_file(const byte_stream_memory_file & file);
       virtual ~byte_stream_memory_file();
 

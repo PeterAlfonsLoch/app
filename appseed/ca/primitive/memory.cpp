@@ -4,17 +4,17 @@
 namespace primitive
 {
 
-
-   internal_memory::internal_memory()
-   {
-      m_pbStorage = NULL;
-   }
-
-   internal_memory::~internal_memory()
+   memory::memory(::ca::application * papp) :
+      ca(papp)
    {
    }
 
-   bool internal_memory::allocate_internal(memory_size dwNewLength)
+   memory::~memory()
+   {
+      free_data();
+   }
+
+   bool memory::allocate_internal(memory_size dwNewLength)
    {
 
       if(!is_enabled())
@@ -28,7 +28,7 @@ namespace primitive
          return true;
       }
    
-      base_remove_offset();
+      remove_offset();
    
       if(m_pbStorage == NULL)
       {
@@ -80,7 +80,7 @@ namespace primitive
       }
    }
 
-   LPBYTE internal_memory::detach()
+   LPBYTE memory::detach()
    {
       
       LPBYTE pbStorage = m_pbStorage;
@@ -91,7 +91,7 @@ namespace primitive
 
    }
 
-   void internal_memory::free_data()
+   void memory::free_data()
    {
 
       if(m_pbStorage != NULL)
@@ -110,11 +110,6 @@ namespace primitive
 
    }
 
-   memory::memory(::ca::application * papp) :
-      ca(papp)
-   {
-   }
-
    memory::memory(const void * pdata, memory_size iCount)
    {
       m_pbStorage    = NULL;
@@ -123,7 +118,7 @@ namespace primitive
       memcpy(m_pbStorage, pdata, iCount);
    }
 
-   memory::memory(const base_memory & s)
+   memory::memory(const memory_base & s)
    {
       m_pbStorage    = NULL;
       memory_base::operator = (s);
@@ -157,13 +152,6 @@ namespace primitive
       ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
       memcpy(m_pbStorage, pMemory, (size_t) dwSize);
    }
-
-   memory::~memory()
-   {
-      free_data();
-   }
-
-
 
 
 } // namespace primitive

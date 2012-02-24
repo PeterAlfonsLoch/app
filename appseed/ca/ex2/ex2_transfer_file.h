@@ -12,7 +12,7 @@ namespace ex2
 
          
       ::ex1::timeout_file *         m_ptimeoutfile;
-      sp(::primitive::base_memory)  m_pmemory;
+      sp(::primitive::memory_base)  m_pmemory;
       sp(::gen::memory_file)        m_pmemoryfileIn;
       sp(::gen::memory_file)        m_pmemoryfileOut;
       sp(mutex)                     m_spmutex;                      

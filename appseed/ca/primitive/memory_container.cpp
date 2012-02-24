@@ -22,7 +22,7 @@ namespace primitive
    }
 
 
-   memory_container ::memory_container(::ca::application * papp, base_memory * pmemory) :
+   memory_container ::memory_container(::ca::application * papp, memory_base * pmemory) :
       ca(papp)
    {
       m_spmemory = pmemory;
@@ -89,7 +89,7 @@ namespace primitive
    }
 
 
-   base_memory * memory_container::get_memory() const
+   memory_base * memory_container::get_memory() const
    {
 
       if(m_spmemory.is_null())
@@ -101,7 +101,7 @@ namespace primitive
 
    }
 
-   ::primitive::base_memory * memory_container::create_memory()
+   ::primitive::memory_base * memory_container::create_memory()
    {
 
       return new primitive::memory(this);
@@ -109,46 +109,15 @@ namespace primitive
    }
 
 
-   memory_size memory_container ::get_size() const
-   {
-      return m_spmemory.is_set() ? m_spmemory->get_size() : 0;
-   }
 
 
-   void memory_container ::from_string(const wchar_t * pwsz)
-   {
-      m_spmemory->base_from_string(pwsz);
-   }
-
-
-   void memory_container ::from_string(const char * psz)
-   {
-      m_spmemory->base_from_string(psz);
-   }
-
-   void memory_container ::from_string(const string & str)
-   {
-      m_spmemory->base_from_string(str);
-   }
-
-   void memory_container ::from_string(const var & var)
-   {
-      m_spmemory->base_from_string(var);
-   }
-
-   void memory_container ::to_string(string & str)
-   {
-      m_spmemory->base_to_string(str);
-   }
-
-
-   void memory_container ::FullLoad(base_memory * pmemory)
+   void memory_container ::FullLoad(memory_base * pmemory)
    {
       if(m_spmemory.is_null())
       {
          m_spmemory(new primitive::memory(this));
       }
-      m_spmemory->base_copy_from(pmemory);
+      m_spmemory->copy_from(pmemory);
    }
 
 
@@ -176,16 +145,6 @@ namespace primitive
       }
    }
 
-   LPBYTE memory_container ::get_data()
-   {
-      
-      if(m_spmemory.is_null())
-         return NULL;
-      else
-         return (LPBYTE) m_spmemory->get_data();
-
-   }
-
    bool memory_container ::IsValid() const
    {
       return true;
@@ -199,14 +158,14 @@ namespace primitive
       else
       {
          m_spmemory(new primitive::memory(this));
-         m_spmemory->base_copy_from(container.m_spmemory);
+         m_spmemory->copy_from(container.m_spmemory);
       }
       m_vppa.remove_all();
       return *this;
    }
 
 
-   bool memory_container ::Attach(base_memory * pstorage)
+   bool memory_container ::Attach(memory_base * pstorage)
    {
 
       m_spmemory(pstorage);
@@ -216,7 +175,7 @@ namespace primitive
    }
 
 
-   base_memory * memory_container::detach()
+   memory_base * memory_container::detach()
    {
 
       return m_spmemory.detach();
@@ -242,7 +201,7 @@ namespace primitive
 
    memory *          memory_container::detach_primitive_memory()
    {
-      ::primitive::base_memory * pmemorybase = m_spmemory.detach();
+      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
       if(pmemorybase != NULL)
          return NULL;
       ::primitive::memory * pmemory = dynamic_cast < ::primitive::memory * > (pmemorybase);
@@ -257,7 +216,7 @@ namespace primitive
 
    shared_memory *   memory_container::detach_shared_memory()
    {
-      ::primitive::base_memory * pmemorybase = m_spmemory.detach();
+      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
       if(pmemorybase != NULL)
          return NULL;
       ::primitive::shared_memory * psharedmemory = dynamic_cast < ::primitive::shared_memory * > (pmemorybase);
@@ -272,7 +231,7 @@ namespace primitive
 
    virtual_memory *  memory_container::detach_virtual_memory()
    {
-      ::primitive::base_memory * pmemorybase = m_spmemory.detach();
+      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
       if(pmemorybase != NULL)
          return NULL;
       ::primitive::virtual_memory * pvirtualmemory = dynamic_cast < ::primitive::virtual_memory * > (pmemorybase);

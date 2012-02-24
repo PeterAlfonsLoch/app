@@ -40,7 +40,7 @@ namespace primitive
    }
 
 
-   memory_file::memory_file(::ca::application * papp, base_memory * pmemory) :
+   memory_file::memory_file(::ca::application * papp, memory_base * pmemory) :
       ca(papp),
       memory_container (papp, pmemory)
    {
@@ -320,7 +320,7 @@ namespace primitive
       }
    }
 
-   ::primitive::base_memory * memory_file::create_memory()
+   ::primitive::memory_base * memory_file::create_memory()
    {
       
       return new primitive::memory(this);

@@ -5,23 +5,48 @@ namespace primitive
 {
 
 
-   internal_shared_memory::internal_shared_memory()
+   shared_memory::shared_memory(const memory_base & s)
    {
       
-      m_pcontainer      = NULL;
       m_nAllocFlags     = 0;
       m_hGlobalMemory   = NULL;
       m_bAllowGrow      = TRUE;
-      m_pbStorage       = NULL;
+
+      memory_base::operator             = (s);
 
    }
 
-   internal_shared_memory::~internal_shared_memory()
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   {
+
+      m_nAllocFlags        = nAllocFlags;
+      m_bAllowGrow         = TRUE;
+      m_pcontainer         = pcontainer;
+      m_dwAllocationAddUp  = dwAllocationAddUp;
+
+   }
+
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
+   {
+      
+      m_nAllocFlags     = 0;
+      m_pcontainer      = pcontainer;
+      m_bAllowGrow      = TRUE;
+
+      allocate(dwSize);
+
+      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+
+      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
+
+   }
+
+   shared_memory::~shared_memory()
    {
       free_data();
    }
 
-   LPBYTE internal_shared_memory::detach_shared_memory(HGLOBAL & hglobal)
+   LPBYTE shared_memory::detach_shared_memory(HGLOBAL & hglobal)
    {
 
       LPBYTE pbStorage     = m_pbStorage;
@@ -37,7 +62,7 @@ namespace primitive
    }
 
 
-   bool internal_shared_memory::allocate_internal(memory_size dwNewLength)
+   bool shared_memory::allocate_internal(memory_size dwNewLength)
    {
 
       if(!is_enabled())
@@ -52,7 +77,7 @@ namespace primitive
       }
 
 
-      base_remove_offset();
+      remove_offset();
 
 
       if(m_pbStorage == NULL)
@@ -105,7 +130,7 @@ namespace primitive
       }
    }
 
-   void internal_shared_memory::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
+   void shared_memory::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
    {
       UNREFERENCED_PARAMETER(bAllowGrow);
       ASSERT(m_hGlobalMemory == NULL);        // do once only
@@ -122,7 +147,7 @@ namespace primitive
       // xxx m_bAllowGrow = bAllowGrow;
    }
 
-   BYTE* internal_shared_memory::Alloc(SIZE_T nBytes)
+   BYTE* shared_memory::Alloc(SIZE_T nBytes)
    {
       ASSERT(m_hGlobalMemory == NULL);        // do once only
       m_hGlobalMemory = ::GlobalAlloc(m_nAllocFlags, nBytes);
@@ -131,7 +156,7 @@ namespace primitive
       return (BYTE*)::GlobalLock(m_hGlobalMemory);
    }
 
-   BYTE* internal_shared_memory::Realloc(BYTE*, SIZE_T nBytes)
+   BYTE* shared_memory::Realloc(BYTE*, SIZE_T nBytes)
    {
       if (!m_bAllowGrow)
          return NULL;
@@ -146,14 +171,14 @@ namespace primitive
       return (BYTE*)::GlobalLock(m_hGlobalMemory);
    }
 
-   void internal_shared_memory::Free(BYTE*)
+   void shared_memory::Free(BYTE*)
    {
       ASSERT(m_hGlobalMemory != NULL);
       ::GlobalUnlock(m_hGlobalMemory);
       ::GlobalFree(m_hGlobalMemory);
    }
 
-   HGLOBAL internal_shared_memory::detach()
+   HGLOBAL shared_memory::detach()
    {
       HGLOBAL hMem;
       ASSERT(m_hGlobalMemory != NULL);
@@ -170,7 +195,7 @@ namespace primitive
    }
 
 
-   void internal_shared_memory::free_data()
+   void shared_memory::free_data()
    {
       if(m_pbStorage != NULL)
       {
@@ -197,43 +222,6 @@ namespace primitive
 
 
 
-
-
-   shared_memory::shared_memory(const base_memory & s)
-   {
-      
-      memory_base::operator             = (s);
-
-   }
-
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
-   {
-
-      m_nAllocFlags        = nAllocFlags;
-      m_bAllowGrow         = TRUE;
-      m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
-
-   }
-
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
-   {
-      
-      m_pcontainer      = pcontainer;
-      m_bAllowGrow      = TRUE;
-
-      allocate(dwSize);
-
-      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
-
-      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
-
-   }
-
-   shared_memory::~shared_memory()
-   {
-      
-   }
 
 
 
