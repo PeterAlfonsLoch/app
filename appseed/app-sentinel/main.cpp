@@ -17,6 +17,8 @@ LRESULT CALLBACK sentinel_WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 extern "C" int WinMainCRTStartup()
 {
 
+   initialize_primitive_heap();
+
    if(!os_initialize())
       return -1;
 
@@ -29,8 +31,6 @@ extern "C" int WinMainCRTStartup()
    {
       return false;
    }
-
-   initialize_primitive_heap();
 
    g_pstraRestartCommandLine = NULL;;
 

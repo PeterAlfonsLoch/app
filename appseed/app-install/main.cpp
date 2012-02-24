@@ -99,6 +99,8 @@ public:
 extern "C" int WinMainCRTStartup()
 {
 
+   initialize_primitive_heap();
+
    if(!os_initialize())
       return -1;
 
@@ -112,6 +114,8 @@ extern "C" int WinMainCRTStartup()
    main_finalize();
 
    os_finalize();
+
+   finalize_primitive_heap();
 
    return 0;
 
