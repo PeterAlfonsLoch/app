@@ -426,7 +426,7 @@ install:
                }
                else if(strLine.begins_eat("|||"))
                {
-                  return ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
+                  return ((double) atoi64_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
                strLine = ch;
             }

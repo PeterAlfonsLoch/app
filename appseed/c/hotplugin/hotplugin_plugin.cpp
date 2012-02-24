@@ -612,18 +612,18 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-         const int iLineCount = cy;
-         int iProgressCount = max(min((int) (iLineCount * dRate), iLineCount), 0);
+         const int iRowCount = cx;
+         int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
 
          
 
-         int iLine;
+         int iRow;
 
-         for(iLine = 0; iLine < iProgressCount; iLine++)
+         for(iRow = 0; iRow < iProgressCount; iRow++)
          {
-            get_progress_color(uchR, uchG, uchB, (double) iLine / (double) iLineCount);
+            get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
             Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left , lprect->top + iLine, cx, 1);
+            graphics2.FillRectangle(pbr, lprect->left + iRow , lprect->top, 1, cy);
             delete pbr;
          }
 
