@@ -779,7 +779,7 @@ retry:
          if(psocket == NULL)
             return false;
          memory.allocate(psocket->GetContentLength());
-         memcpy(memory.get_size(), psocket->GetDataPtr(), memory.get_size());
+         memcpy(memory.get_data(), psocket->GetDataPtr(), memory.get_size());
          headers = psocket->outheaders();
          gen::del(psocket);
          return true;
