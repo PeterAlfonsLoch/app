@@ -1,11 +1,15 @@
 #pragma once
 
+
 class image_list;
+
 
 namespace user
 {
 
+
    class scroll_bar;
+
 
    class CLASS_DECL_ca2 tree_draw_item
    {
@@ -18,6 +22,7 @@ namespace user
       rect                    m_rectClient;
       rect                    m_rect;
    };
+
 
    enum e_tree_element
    {
@@ -66,11 +71,9 @@ namespace user
       virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);
 
-      void SetScrollSizes();
-
       void layout();
 
-      void _001GetViewRect(rect64 * lprect);
+      void _001GetViewRect(LPRECT lprect);
 
       void _001OnTreeDataChange();
       ::ex1::tree_item * CalcFirstVisibleItem(index & iLevel, index & iProperIndex);

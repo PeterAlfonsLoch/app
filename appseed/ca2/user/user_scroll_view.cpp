@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 
+
 namespace user
 {
 
@@ -274,4 +275,101 @@ namespace user
    }
 
 
+   void scroll_view::_001GetViewRect(LPRECT lprect)
+   {
+
+      GetClientRect(lprect);
+
+   }
+
+
+
+   void scroll_view::_001GetViewClientRect(LPRECT lprect)
+   {
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      rect rectTotal;
+
+      _001GetViewRect(&rectTotal);
+
+
+      index iTotalHeight = (index)rectTotal.height();
+
+      index iTotalWidth = (index)rectTotal.width();
+
+      index iClientHeight = (index)rectClient.height();
+
+      index iClientWidth = (index)rectClient.width();
+
+      index iScrollHeight =  iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+
+      index iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+
+      bool bHScroll = false;
+
+      bool bVScroll = false;
+
+      if(iTotalWidth > iClientWidth)
+      {
+         bHScroll = true;
+         if(iTotalHeight > iScrollHeight)
+         {
+            bVScroll = true;
+         }
+      }
+      else if(iTotalHeight > iClientHeight)
+      {
+         bVScroll = true;
+         if(iTotalWidth > iScrollWidth)
+         {
+            bHScroll = true;
+         }
+      }
+
+      lprect->left = 0;
+      lprect->top = 0;
+
+      if(bVScroll)
+         lprect->right = (LONG) (lprect->left + iScrollWidth);
+      else
+         lprect->right = (LONG) (lprect->left + iClientWidth);
+      if(bHScroll)
+         lprect->bottom = (LONG) (lprect->top + iScrollHeight);
+      else
+         lprect->bottom = (LONG) (lprect->top + iClientHeight);
+
+   }
+
+
+   void scroll_view::SetScrollSizes()
+   {
+
+      rect rectTotal;
+
+      _001GetViewRect(&rectTotal);
+
+      size sizeTotal = rectTotal.size();
+
+      m_scrollinfo.m_sizeTotal = sizeTotal;
+
+      rect rectViewClient;
+      _001GetViewClientRect(&rectViewClient);
+
+      m_scrollinfo.m_sizeTotal = sizeTotal;
+      m_scrollinfo.m_sizePage = rectViewClient.size();
+
+      if(m_scrollinfo.m_ptScroll.y > (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy))
+      {
+         m_scrollinfo.m_ptScroll.y = (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy);
+      }
+
+   }
+
+
 }  // namespace ex1
+
+
+

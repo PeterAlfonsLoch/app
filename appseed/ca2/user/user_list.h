@@ -657,7 +657,7 @@ namespace user
 
       void layout();
 
-      void SetScrollSizes();
+      //void SetScrollSizes();
 
       virtual bool _001OnUpdateItemCount(DWORD dwFlags = 0);
 

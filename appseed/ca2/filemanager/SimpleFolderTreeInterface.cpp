@@ -389,6 +389,8 @@ namespace filemanager
 
             pitemChild = new ::fs::tree_item;
 
+            iChildCount++;
+
             pitemChild->m_pdata = get_fs_tree_data();
 
             pitemChild->m_strPath = get_document()->dir_path(straPath[i], "");

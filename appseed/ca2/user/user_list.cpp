@@ -759,95 +759,9 @@ namespace user
 
    }
 
-   void list::SetScrollSizes()
-   {
-
-      rect rectTotal;
-
-      _001GetViewRect(&rectTotal);
-
-      size sizeTotal = rectTotal.size();
-
-      m_scrollinfo.m_sizeTotal = sizeTotal;
-
-      rect rectViewClient;
-      _001GetViewClientRect(&rectViewClient);
-
-      m_scrollinfo.m_sizeTotal = sizeTotal;
-      m_scrollinfo.m_sizePage = rectViewClient.size();
-
-   }
 
 
-   void list::_001GetViewClientRect(LPRECT lprect)
-   {
-      rect rectClient;
-      GetClientRect(rectClient);
-      *lprect = rect(rectClient);
-      if(m_bHeaderCtrl)
-      {
-         lprect->top += m_iItemHeight;
-      }
-      return;
-      rect rectView;
 
-      _001GetViewRect(&rectView);
-
-
-      index iViewHeight = (index)rectView.height();
-
-      index iViewWidth = (index)rectView.width();
-
-      index iClientHeight = (index)rectClient.height();
-
-      if(m_bHeaderCtrl)
-      {
-         iClientHeight -= m_iItemHeight;
-      }
-
-      index iClientWidth = (index)rectClient.width();
-
-      index iScrollHeight =  iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
-
-      index iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
-
-      bool bHScroll = false;
-
-      bool bVScroll = false;
-
-      if(iViewWidth > iClientWidth)
-      {
-         bHScroll = true;
-         if(iViewHeight > iScrollHeight)
-         {
-            bVScroll = true;
-         }
-      }
-      else if(iViewHeight > iClientHeight)
-      {
-         bVScroll = true;
-         if(iViewWidth > iScrollWidth)
-         {
-            bHScroll = true;
-         }
-      }
-
-      lprect->left = 0;
-      lprect->top = 0;
-      if(m_bHeaderCtrl)
-      {
-         lprect->top += m_iItemHeight;
-      }
-      if(bVScroll)
-         lprect->right = (LONG) (lprect->left + iScrollWidth);
-      else
-         lprect->right = (LONG) (lprect->left + iClientWidth);
-      if(bHScroll)
-         lprect->bottom = (LONG) (lprect->top + iScrollHeight);
-      else
-         lprect->bottom = (LONG) (lprect->top + iClientHeight);
-
-   }
 
    bool list::_001OnUpdateItemCount(DWORD dwFlags)
    {
@@ -5436,6 +5350,86 @@ namespace user
       pitem->m_iImage = -1;
    }
 
+
+
+   void list::_001GetViewClientRect(LPRECT lprect)
+   {
+
+
+      GetClientRect(lprect);
+
+      rect rectClient;
+      GetClientRect(rectClient);
+      *lprect = rect(rectClient);
+      if(m_bHeaderCtrl)
+      {
+         lprect->top += m_iItemHeight;
+      }
+      
+      
+      return;
+
+
+
+      rect rectView;
+
+      _001GetViewRect(&rectView);
+
+
+      index iViewHeight = (index)rectView.height();
+
+      index iViewWidth = (index)rectView.width();
+
+      index iClientHeight = (index)rectClient.height();
+
+      if(m_bHeaderCtrl)
+      {
+         iClientHeight -= m_iItemHeight;
+      }
+
+      index iClientWidth = (index)rectClient.width();
+
+      index iScrollHeight =  iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+
+      index iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+
+      bool bHScroll = false;
+
+      bool bVScroll = false;
+
+      if(iViewWidth > iClientWidth)
+      {
+         bHScroll = true;
+         if(iViewHeight > iScrollHeight)
+         {
+            bVScroll = true;
+         }
+      }
+      else if(iViewHeight > iClientHeight)
+      {
+         bVScroll = true;
+         if(iViewWidth > iScrollWidth)
+         {
+            bHScroll = true;
+         }
+      }
+
+      lprect->left = 0;
+      lprect->top = 0;
+      if(m_bHeaderCtrl)
+      {
+         lprect->top += m_iItemHeight;
+      }
+      if(bVScroll)
+         lprect->right = (LONG) (lprect->left + iScrollWidth);
+      else
+         lprect->right = (LONG) (lprect->left + iClientWidth);
+      if(bHScroll)
+         lprect->bottom = (LONG) (lprect->top + iScrollHeight);
+      else
+         lprect->bottom = (LONG) (lprect->top + iClientHeight);
+
+   }
 
 
 } // namespace user

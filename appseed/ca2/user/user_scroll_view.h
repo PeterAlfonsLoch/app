@@ -1,14 +1,19 @@
 #pragma once
 
+
 namespace user
 {
 
+
    class scroll_bar;
+
 
    class CLASS_DECL_ca2 scroll_view :
       virtual public control
    {
    public:
+
+
       class scroll_info
       {
       public:
@@ -24,9 +29,11 @@ namespace user
          int         m_iScrollWidth;
       };
 
+
       ph(scroll_bar)    m_pscrollbarHorz;
       ph(scroll_bar)    m_pscrollbarVert;
       scroll_info       m_scrollinfo;
+
 
       scroll_view(::ca::application * papp);
       virtual ~scroll_view();
@@ -50,6 +57,10 @@ namespace user
 
       void _001UpdateScrollBars();
 
+
+      virtual void _001GetViewRect(LPRECT lprect);
+      virtual void _001GetViewClientRect(LPRECT lprect);
+      virtual void SetScrollSizes();
 
 
       void send_scroll_message(::gen::message::scroll * pscroll);

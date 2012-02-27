@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace user
 {
+
 
    void tree::_001DrawItem(tree_draw_item & data)
    {
@@ -659,14 +661,17 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_TIMER         , pdispatch, this, &tree::_001OnTimer);
    }
 
-   void tree::_001GetViewRect(rect64 * lprect)
+   void tree::_001GetViewRect(LPRECT lprect)
    {
+
       rect rectClient;
       GetClientRect(rectClient);
       lprect->left = 0;
       lprect->top = 0;
       lprect->right = m_iCurrentViewWidth;
       lprect->bottom = get_proper_item_count() * _001GetItemHeight();
+
+
    }
 
    bool tree::_001GetItemElementRect(
@@ -725,9 +730,11 @@ namespace user
       {
          if(!(pitem->m_dwState & ::ex1::tree_item_state_expanded))
          {
+            
             _001OnItemExpand(pitem);
 
             pitem->m_dwState |= ::ex1::tree_item_state_expanded;
+
             // scroll properly to show the highest possible number
             // of children while trying to preserve the old position and
             // never passing
@@ -743,7 +750,7 @@ namespace user
 
             if(iObscured > 0)
             {
-               index iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iObscured);
+               index iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iObscured * _001GetItemHeight());
                if(iNewScroll > iParentIndex)
                   iNewScroll = iParentIndex;
                m_scrollinfo.m_ptScroll.y = (LONG) max(iNewScroll, 0);
@@ -799,30 +806,42 @@ namespace user
 
    }
 
-   void tree::SetScrollSizes()
+/*   void tree::SetScrollSizes()
    {
       rect64 rectTotal;
 
       _001GetViewRect(&rectTotal);
 
-      m_scrollinfo.m_sizeTotal = rectTotal.size();
-   }
+      size sizeTotal = rectTotal.size();
+
+      m_scrollinfo.m_sizeTotal = sizeTotal;
+
+      rect rectViewClient;
+      _001GetViewClientRect(&rectViewClient);
+
+      m_scrollinfo.m_sizeTotal = sizeTotal;
+      m_scrollinfo.m_sizePage = rectViewClient.size();
+
+
+      if(m_scrollinfo.m_ptScroll.y > (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy))
+      {
+         m_scrollinfo.m_ptScroll.y = (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy);
+      }
+
+
+   }*/
 
    void tree::layout()
    {
-      m_pitemFirstVisible = CalcFirstVisibleItem(
-         m_iFirstVisibleItemLevel,
-         m_iFirstVisibleItemProperIndex);
-
-
-
-
-      m_iCurrentViewWidth = _001CalcCurrentViewWidth();
-
+      
 
       SetScrollSizes();
 
+      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemLevel, m_iFirstVisibleItemProperIndex);
 
+      m_iCurrentViewWidth = _001CalcCurrentViewWidth();
+
+      _001LayoutScrollBars();
 
    }
 
@@ -979,4 +998,7 @@ namespace user
       return true;
    }
 
+
 } // namespace ex1
+
+
