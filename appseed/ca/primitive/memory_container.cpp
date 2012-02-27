@@ -94,7 +94,7 @@ namespace primitive
 
       if(m_spmemory.is_null())
       {
-         (const_cast < memory_container * > (this))->m_spmemory = (const_cast < memory_container * > (this))->create_memory();
+         (const_cast < memory_container * > (this))->m_spmemory((const_cast < memory_container * > (this))->create_memory());
       }
 
       return m_spmemory;

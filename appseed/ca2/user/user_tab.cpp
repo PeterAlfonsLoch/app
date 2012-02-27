@@ -1,4 +1,8 @@
 #include "StdAfx.h"
+#undef new
+
+#include <gdiplus.h>
+
 
 namespace user
 {
@@ -788,10 +792,16 @@ namespace user
          ASSERT(iTabParam < GetTabCount());
          ::ca::graphics_sp graphics(get_app());
          graphics->CreateCompatibleDC(NULL);
+         
+         //HDC hdc = ::CreateCompatibleDC(NULL);
+         //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
+         //delete pg;
+         //::DeleteDC(hdc);
          ::ca::graphics * pdc = graphics;
          rect rect = get_data()->m_rectTab;
          rect.right = rect.left;
          int ixAdd;
+         //return false;
          for(int iPane = 0; iPane < iTabParam + 1; iPane++)
          {
 

@@ -2293,7 +2293,7 @@ ExitModal:
    {
       if(m_pimpl != NULL)
       {
-         m_pimpl->_001DeferPaintLayeredWindowBackground(pdc);
+//         m_pimpl->_001DeferPaintLayeredWindowBackground(pdc);
       }
    }
 

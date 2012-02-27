@@ -117,17 +117,6 @@ namespace cube8
    bool application::initialize1()
    {
 
-      if(!is_system() && !is_bergedge())
-      {
-         if(m_spfsdata.is_null())
-            m_spfsdata(new ::fs::set(this));
-         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(new ::fs::native(this));
-         stringa stra;
-         pset->root_ones(stra);
-      }
-
-
       if(m_puser == NULL &&
         (App(this).directrix().m_varTopicQuery.has_property("install")
       || App(this).directrix().m_varTopicQuery.has_property("uninstall")))

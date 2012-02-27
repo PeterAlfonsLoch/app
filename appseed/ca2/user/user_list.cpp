@@ -3587,6 +3587,7 @@ namespace user
 
    void list::_001OnTimer(gen::signal_object * pobj)
    {
+//      return; //xxxtimer
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {

@@ -2516,8 +2516,9 @@ bool imaging::color_blend(
                          COLORREF cr,
                          BYTE bA)
 {
-   ::ca::dib_sp spdib(get_app());
-   return color_blend(pdc, pt, size, cr, bA, spdib);
+   //::ca::dib_sp spdib(get_app());
+   //return color_blend(pdc, pt, size, cr, bA, spdib);
+   return color_blend(pdc, pt, size, cr, bA, NULL);
 }
 
 bool imaging::color_blend(

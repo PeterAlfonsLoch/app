@@ -1152,6 +1152,7 @@ namespace window_frame
 
    void WorkSet::_001OnTimer(gen::signal_object * pobj)
    {
+      //return; //xxxtimer
       SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(!m_bEnable)
       {

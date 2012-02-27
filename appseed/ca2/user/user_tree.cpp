@@ -500,6 +500,9 @@ namespace user
    void tree::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj)
+
+//         return; //xxxtimer
+
       if(ptimer->m_nIDEvent == TimerHover)
       {
          UpdateHover();

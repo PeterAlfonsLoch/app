@@ -452,6 +452,7 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
 
 void simple_scroll_bar::_001OnTimer(gen::signal_object * pobj) 
 {
+//   return; //xxxtimer
    SCAST_PTR(::gen::message::timer, ptimer, pobj)
 
       point point;

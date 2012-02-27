@@ -117,7 +117,10 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
       system_heap_free(pvoidOld);
       return pNew;
    }
-   memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);
+   if(size > sizeOld)
+   {
+      memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);
+   }
    ((DWORD *)p)[0] = 0;
    iMod = ((DWORD_PTR)p) % 4;
    p[3 - iMod] = (uint8_t) (4 - iMod);
@@ -132,7 +135,11 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
    int iMod = p[-1];
    if(iMod < 1 || iMod > 4)
       return;
-   ::HeapFree(g_hSystemHeap, 0, p - iMod);
+   if(!::HeapFree(g_hSystemHeap, 0, p - iMod))
+   {
+      DWORD dw = ::GetLastError();
+      ::OutputDebugString("system_heap_free : Failed to free memory");
+   }
 }
 
 

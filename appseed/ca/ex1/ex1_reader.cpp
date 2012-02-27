@@ -147,13 +147,18 @@ namespace ex1
       seek((file_offset) dwStart, seek_begin);
       ::primitive::memory_position uiPos = 0;
       ::primitive::memory_size uiRead;
-      memory.allocate(1024 * 1024);
+      memory.allocate(1024);
       strsize nCount = dwEnd - dwStart;
+      int iTry = 0;
       while((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
       {
          uiPos += uiRead;
-         memory.allocate_add_up(1024 * 1024);
          nCount -= uiRead;
+         iTry++;
+         if(iTry == 2)
+         {
+            memory.allocate_add_up(1024 * 1024);
+         }
       }
       memory.allocate((::primitive::memory_size) uiPos);
       memory.To(str);

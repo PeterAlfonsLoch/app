@@ -275,7 +275,7 @@ BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs)
    }
 
    //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
-   cs.style = 0;
+   cs.style = WS_POPUP;
 
    return TRUE;
 }

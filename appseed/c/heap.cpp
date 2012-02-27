@@ -97,7 +97,7 @@ void * _ca_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFil
 #else   
       p = (byte *) HeapAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
 #endif
-      p = (byte *) HeapReAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
+      //p = (byte *) HeapReAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
 #else
       p = (byte *) realloc(p, nSize + 4 + 32);
 #if ZEROED_ALLOC

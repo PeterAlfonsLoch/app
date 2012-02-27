@@ -38,7 +38,7 @@ namespace userbase
 
    void elastic_slider::_001OnTimer(gen::signal_object * pobj)
    {
-
+//      return; // xxxtimer
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
