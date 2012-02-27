@@ -98,8 +98,10 @@ namespace ex1
       plain_text_input_stream & operator >> (long & l);
       plain_text_input_stream & operator >> (unsigned long & ul);
 #endif
+#if !defined(LINUX)
       plain_text_input_stream & operator >> (__int64 & i);
       plain_text_input_stream & operator >> (uint64_t & ui);
+#endif
       plain_text_input_stream & operator >> (float & f);
       plain_text_input_stream & operator >> (double & d);
       plain_text_input_stream & operator >> (LPRECT lprect);
@@ -145,8 +147,10 @@ namespace ex1
       plain_text_output_stream & operator << (long i);
       plain_text_output_stream & operator << (unsigned long i);
 #endif
+#if !defined(LINUX)
       plain_text_output_stream & operator << (__int64 i);
       plain_text_output_stream & operator << (uint64_t ui);
+#endif
       plain_text_output_stream & operator << (float f);
       plain_text_output_stream & operator << (double d);
       plain_text_output_stream & operator << (LPCRECT lpcrect);

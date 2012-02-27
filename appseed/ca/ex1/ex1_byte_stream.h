@@ -48,8 +48,10 @@ namespace ex1
       byte_input_stream & operator >> (long & l);
       byte_input_stream & operator >> (unsigned long & ul);
 #endif
+#if !defined(LINUX)
       byte_input_stream & operator >> (__int64 & i);
       byte_input_stream & operator >> (uint64_t & ui);
+#endif
       byte_input_stream & operator >> (float & f);
       byte_input_stream & operator >> (double & d);
       byte_input_stream & operator >> (LPRECT lprect);
@@ -95,8 +97,10 @@ namespace ex1
       byte_output_stream & operator << (long i);
       byte_output_stream & operator << (unsigned long i);
 #endif
+#if !defined(LINUX)
       byte_output_stream & operator << (__int64 i);
       byte_output_stream & operator << (uint64_t ui);
+#endif
       byte_output_stream & operator << (float f);
       byte_output_stream & operator << (double d);
       byte_output_stream & operator << (LPCRECT lpcrect);

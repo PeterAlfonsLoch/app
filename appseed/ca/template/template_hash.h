@@ -87,4 +87,17 @@ template<> inline UINT HashKey<size> (size key)
    return key.cx | key.cy;
 }
 
-
+template<> inline UINT HashKey<const char *> (const char * key)
+{
+   register uint64_t * puiKey = (uint64_t *) key;
+   register int counter = strlen(key);
+   register uint64_t nHash = 0;
+   while(counter >= sizeof(*puiKey))
+   {
+      nHash = (nHash<<5) + nHash + *puiKey++;
+      counter -= sizeof(*puiKey);
+   }
+   register const char * pszKey = (const char *) puiKey;
+   while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
+   return (UINT) nHash;
+}
