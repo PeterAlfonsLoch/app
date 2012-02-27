@@ -5,7 +5,7 @@
 
 simple_mutex g_mutexTrace;
 stra_dup g_straTrace;
-HANDLE g_ftrace = NULL;
+HANDLE g_ftrace = INVALID_HANDLE_VALUE;
 vsstring g_strLastStatus;
 int g_iLastStatus = 0;
 
@@ -18,6 +18,17 @@ void on_trace(vsstring & str, vsstring & str2);
 void ensure_trace_file()
 {
    dir::mk(dir::ca2());
+   if(g_ftrace != INVALID_HANDLE_VALUE)
+   {
+      // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
+      vsstring str2 = "ensure_trace_file";
+      DWORD dwWritten;
+      if(WriteFile(g_ftrace, str2, (DWORD) str2.length(), &dwWritten, NULL))
+      {
+         ::FlushFileBuffers(g_ftrace);
+         return;
+      }
+   }
    g_ftrace = ::CreateFile(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
 }
