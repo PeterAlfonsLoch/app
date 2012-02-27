@@ -97,12 +97,12 @@ namespace sockets
       int Bind(port_t port,const string & protocol,int depth = 20) {
          if (IsIpv6())
          {
-            ipv6_address ad(port);
+            ipv6_address ad(get_app(), port);
             return Bind(ad, protocol, depth);
          }
          else
          {
-            ipv4_address ad(port);
+            ipv4_address ad(get_app(), port);
             return Bind(ad, protocol, depth);
          }
       }

@@ -25,7 +25,7 @@ namespace visual
 } // namespace visual
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
 typedef ::visual::icon * HICON;
 

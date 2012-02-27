@@ -52,7 +52,7 @@ namespace ca
 
          template < class T >
          bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
-         #ifdef LINUX
+         #if defined(LINUX) || defined(MACOS)
          ;
          #else
          {
@@ -66,7 +66,7 @@ namespace ca
 
          template < class T >
          bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
-         #ifdef LINUX
+         #if defined(LINUX) || defined(MACOS)
          ;
          #else
          {
