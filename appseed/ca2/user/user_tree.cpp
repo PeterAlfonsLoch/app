@@ -717,12 +717,7 @@ namespace user
       }
    }
 
-   void tree::_001ExpandItem(
-      ::ex1::tree_item *pitem,
-      bool bExpand, /* = true */
-      bool bRedraw, /*=true*/
-      bool bLayout /*=true*/
-      )
+   void tree::_001ExpandItem(::ex1::tree_item *pitem, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
       ::ca::data::writing writing(::ca::data_container::m_spdata);
       UNREFERENCED_PARAMETER(bLayout);
@@ -743,7 +738,7 @@ namespace user
 
             index iLastChildIndex = iParentIndex + pitem->get_proper_descendant_count();
 
-            index iLastVisibleIndex = (index) (m_scrollinfo.m_ptScroll.y + _001GetVisibleItemCount());
+            index iLastVisibleIndex = (index) (m_scrollinfo.m_ptScroll.y / _001GetItemHeight() + _001GetVisibleItemCount());
 
             index iObscured; // obscured proper descendants
             iObscured = iLastChildIndex  - iLastVisibleIndex;
@@ -751,8 +746,8 @@ namespace user
             if(iObscured > 0)
             {
                index iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iObscured * _001GetItemHeight());
-               if(iNewScroll > iParentIndex)
-                  iNewScroll = iParentIndex;
+               if(iNewScroll > (iParentIndex * _001GetItemHeight()))
+                  iNewScroll = (iParentIndex * _001GetItemHeight());
                m_scrollinfo.m_ptScroll.y = (LONG) max(iNewScroll, 0);
    //            _001SetYScroll(max(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(m_scrollinfo.m_ptScroll.y);

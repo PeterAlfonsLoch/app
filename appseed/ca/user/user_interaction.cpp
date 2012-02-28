@@ -419,12 +419,18 @@ namespace user
    {
       if(m_pguie != NULL)
       {
-         rect64 rectWindow;
-         GetWindowRect(rectWindow);
-         get_wnd()->ScreenToClient(rectWindow);
-         pgraphics->SetViewportOrg(point(rectWindow.top_left()));
-         pgraphics->SelectClipRgn(NULL);
-         m_pguie->_001OnDraw(pgraphics);
+         try
+         {
+            rect64 rectWindow;
+            GetWindowRect(rectWindow);
+            get_wnd()->ScreenToClient(rectWindow);
+            pgraphics->SetViewportOrg(point(rectWindow.top_left()));
+            pgraphics->SelectClipRgn(NULL);
+            m_pguie->_001OnDraw(pgraphics);
+         }
+         catch(...)
+         {
+         }
       }
       else
       {
