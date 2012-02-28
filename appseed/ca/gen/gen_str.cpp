@@ -406,10 +406,10 @@ namespace gen
       str = strCopy;
    }
 
-   string str::replace(const char * pszFind, const char * pszReplace, const char * psz)
+   string str::replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
    {
       string str(psz);
-      str.replace(pszFind, pszReplace);
+      str.replace(pszFind, pszReplace, iStart);
       return str;
    }
 
@@ -475,10 +475,10 @@ namespace gen
       return str;
    }
 
-   string str::replace_ci(const char * pszFind, const char * pszReplace, const char * psz)
+   string str::replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
    {
 
-      index iPos = 0;
+      index iPos = iStart;
 
       string str(psz);
 
@@ -507,7 +507,6 @@ namespace gen
       }
 
       return str;
-
    }
 
    index str::find_ci(const string & strFind, const string & str, index iStart)

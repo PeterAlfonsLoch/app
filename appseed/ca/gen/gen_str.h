@@ -72,8 +72,8 @@ namespace gen
       bool CLASS_DECL_ca ends_eat(string & str, const char * lpcszSuffix);
       bool CLASS_DECL_ca ends_eat_ci(string & str, const char * lpcszSuffix);
       void CLASS_DECL_ca copy(string & str, const char * lpcsz, int iCount);
-      string CLASS_DECL_ca replace(const char * pszFind, const char * pszReplace, const char * psz);
-      string CLASS_DECL_ca replace_ci(const char * pszFind, const char * pszReplace, const char * psz);
+      string CLASS_DECL_ca replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
+      string CLASS_DECL_ca replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
       string CLASS_DECL_ca random_replace(::ca::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
       

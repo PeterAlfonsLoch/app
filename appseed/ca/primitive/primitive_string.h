@@ -372,10 +372,10 @@ public:
    strsize Insert(strsize iIndex,PCXSTR psz );
 
    // replace all occurrences of character 'chOld' with character 'chNew'
-   strsize replace(XCHAR chOld,XCHAR chNew );
+   strsize replace(XCHAR chOld,XCHAR chNew, strsize iStart = 0);
 
    // replace all occurrences of string 'pszOld' with string 'pszNew'
-   strsize replace(PCXSTR pszOld,PCXSTR pszNew );
+   strsize replace(PCXSTR pszOld,PCXSTR pszNew, strsize iStart = 0);
 
    string & replace(strsize iStart, strsize nCount, const char * psz);
 

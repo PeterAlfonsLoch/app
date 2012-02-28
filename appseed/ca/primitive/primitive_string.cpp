@@ -1242,7 +1242,7 @@ string::string(strsize nLength, char ch) :
       return( nNewLength );
    }
 
-   strsize string::replace(XCHAR chOld,XCHAR chNew )
+   strsize string::replace(XCHAR chOld,XCHAR chNew, strsize iStart )
    {
       strsize nCount = 0;
 
@@ -1251,7 +1251,7 @@ string::string(strsize nLength, char ch) :
       {
          // otherwise modify each character that matches in the string
          bool bCopied = false;
-         PXSTR pszBuffer = const_cast< PXSTR >( GetString() );  // We don't actually write to pszBuffer until we've called GetBuffer().
+         PXSTR pszBuffer = const_cast< PXSTR >( GetString() + iStart);  // We don't actually write to pszBuffer until we've called GetBuffer().
 
          strsize nLength = get_length();
          strsize iChar = 0;
@@ -1279,7 +1279,7 @@ string::string(strsize nLength, char ch) :
       return( nCount );
    }
 
-   strsize string::replace(PCXSTR pszOld,PCXSTR pszNew )
+   strsize string::replace(PCXSTR pszOld, PCXSTR pszNew, strsize iStart)
    {
       // can't have is_empty or NULL lpszOld
 
@@ -1293,17 +1293,13 @@ string::string(strsize nLength, char ch) :
       // loop once to figure out the size of the result string
       strsize nCount = 0;
       {
-         PCXSTR pszStart = GetString();
+         PCXSTR pszStart = GetString() + iStart;
          PCXSTR pszEnd = pszStart+get_length();
-         while( pszStart < pszEnd )
+         PCXSTR pszTarget;
+         while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL)
          {
-            PCXSTR pszTarget;
-            while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL)
-            {
-               nCount++;
-               pszStart = pszTarget+nSourceLen;
-            }
-            pszStart += string_trait::SafeStringLen( pszStart )+1;
+            nCount++;
+            pszStart = pszTarget+nSourceLen;
          }
       }
 
@@ -1317,8 +1313,8 @@ string::string(strsize nLength, char ch) :
 
          PXSTR pszBuffer = GetBuffer( __max( nNewLength, nOldLength ) );
 
-         PXSTR pszStart = pszBuffer;
-         PXSTR pszEnd = pszStart+nOldLength;
+         PXSTR pszStart = pszBuffer + iStart;
+         PXSTR pszEnd = pszBuffer+nOldLength;
 
          // loop again to actually do the work
          while( pszStart < pszEnd )
