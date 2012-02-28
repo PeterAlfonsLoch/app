@@ -28,6 +28,9 @@ namespace dynamic_source
 
       Begin();
 
+      m_strNetnodePath           = "C:\\netnodenet\\";
+      m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
+
    }
 
    script_manager::~script_manager(void)
@@ -48,12 +51,13 @@ namespace dynamic_source
 
    bool script_manager::initialize_instance()
    {
+
       initialize_message_window("ca2::fontopus::ccvotagus::netnode::cgclcst");
       m_pcompiler->initialize();
 
       {
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
-         pwatch->m_strPath = System.dir().netseed("ds\\ca2");
+         pwatch->m_strPath = System.dir().path(m_strNetseedPath, "ds\\ca2");
          pwatch->m_pmanager = this;
          AfxBeginThread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
       }
@@ -61,7 +65,7 @@ namespace dynamic_source
       stringa straPath;
       stringa straTitle;
 
-      Application.dir().ls_dir(System.dir().ca2(), &straPath, &straTitle);
+      Application.dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
 
       for(int i = 0; i < straPath.get_count(); i++)
       {
@@ -563,7 +567,7 @@ namespace dynamic_source
    {
       if(Application.file().exists(psz))
          return psz;
-      return real_path(System.dir().netseed("ds/ca2"), psz);
+      return real_path(System.dir().path(m_strNetseedPath, "ds/ca2"), psz);
    }
 
 

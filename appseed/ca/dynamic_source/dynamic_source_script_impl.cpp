@@ -238,7 +238,7 @@ namespace dynamic_source
 
       string strRealPath;
 
-      strRealPath = real_path(System.dir().ca2("net-" + gprop("param_site").get_string(), string("netseed/ds/ca2")), psz);
+      strRealPath = real_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site").get_string(), string("netseed/ds/ca2")), psz);
       if(strRealPath.has_char())
          return strRealPath;
 
@@ -256,7 +256,7 @@ namespace dynamic_source
       if(strRealPath.has_char())
          return strRealPath;
 
-      return real_path(System.dir().netseed("ds/ca2"), psz);
+      return real_path(System.dir().path(get_manager()->m_strNetseedPath, "ds/ca2"), psz);
 
    }
 
@@ -494,7 +494,7 @@ namespace dynamic_source
          outheader("Cache-control") = "public";
          outheader("Pragma") = "public";
          outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
-         simple_file_server(System.dir().ca2("net-img\\img\\ds\\common"));
+         simple_file_server(System.dir().path(get_manager()->m_strNetnodePath, "net-img\\img\\ds\\common"));
          return;
       }
 
@@ -683,11 +683,11 @@ namespace dynamic_source
          string strPath;
          if(strlen(gprop("param_site")) > 0)
          {
-            strPath = System.dir().path(System.dir().ca2("net-" + gprop("param_site"), string("netseed/ds/ca2")), strScript);
+            strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), string("netseed/ds/ca2")), strScript);
          }
          if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
          {
-            strPath = System.dir().netseed("ds\\ca2", strScript);
+            strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
          }
 
          if(get_manager()->include_matches_file_exists(strPath))
@@ -707,11 +707,11 @@ namespace dynamic_source
          string strPath;
          if(strlen(gprop("param_site")) > 0)
          {
-            strPath = System.dir().path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+            strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
          }
          if(strPath.is_empty() || !Application.file().exists(strPath))
          {
-            strPath = System.dir().netseed("ds\\ca2", strScript);
+            strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
          }
          include(strPath);
       }
@@ -724,7 +724,7 @@ namespace dynamic_source
             outheader("Pragma") = "public";
          }
          outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
-         include(System.dir().netseed("ds\\ca2", strScript));
+         include(System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript));
       }
       else if(strScript == "/sec" &&
          (
@@ -1411,7 +1411,7 @@ namespace dynamic_source
 
       if(strlen(gprop("param_site")) > 0)
       {
-         string str = named_sys_get_include_path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pstraAccept);
+         string str = named_sys_get_include_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pstraAccept);
          if(str.has_char())
          {
             if(Application.file().exists(str))
@@ -1431,7 +1431,7 @@ namespace dynamic_source
          }
       }
 
-      return named_sys_get_include_path(System.dir().netseed("ds/ca2"), pszExt, pszType, pszDoc, pstraAccept);
+      return named_sys_get_include_path(System.dir().path(get_manager()->m_strNetseedPath, "ds/ca2"), pszExt, pszType, pszDoc, pstraAccept);
 
    }
 
@@ -1478,7 +1478,7 @@ namespace dynamic_source
    {
       if(strlen(gprop("param_site")) > 0)
       {
-         string str = named_sys_get_base_path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pstraAccept);
+         string str = named_sys_get_base_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pstraAccept);
          if(str.has_char())
          {
             if(Application.file().exists(str))
@@ -1498,7 +1498,7 @@ namespace dynamic_source
          }
       }
 
-      return named_sys_get_base_path(System.dir().netseed("ds/ca2"), pszExt, pszType, pszDoc, pszBase, pstraAccept);
+      return named_sys_get_base_path(System.dir().path(get_manager()->m_strNetseedPath, "ds/ca2"), pszExt, pszType, pszDoc, pszBase, pstraAccept);
    }
 
    string script_impl::named_sys_get_base_path(const char * pszSystemPath, const char * pszExt, const char * pszType, const char * pszDoc, const char *pszBase, stringa * pstraAccept)
@@ -1532,7 +1532,7 @@ namespace dynamic_source
    {
       if(strlen(gprop("param_site")) > 0)
       {
-         string str = named_sys_get_subdomain_path(System.dir().ca2("net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
+         string str = named_sys_get_subdomain_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
          if(str.has_char())
          {
             if(Application.file().exists(str))
@@ -1552,7 +1552,7 @@ namespace dynamic_source
          }
       }
 
-      return named_sys_get_subdomain_path(System.dir().netseed("ds/ca2"), pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
+      return named_sys_get_subdomain_path(System.dir().path(get_manager()->m_strNetseedPath, "ds/ca2"), pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
    }
 
 
@@ -3730,11 +3730,11 @@ ok1:
       string strHost;
       if(strVersion.CompareNoCase("basis") == 0)
       {
-         strHost = Application.file().as_string(System.dir().ca2("net/system/basis_spa_host.txt"));
+         strHost = Application.file().as_string(System.dir().path(get_manager()->m_strNetnodePath, "net/system/basis_spa_host.txt"));
       }
       else
       {
-         strHost = Application.file().as_string(System.dir().ca2("net/system/stage_spa_host.txt"));
+         strHost = Application.file().as_string(System.dir().path(get_manager()->m_strNetnodePath, "net/system/stage_spa_host.txt"));
       }
       dprint("<pre>host:\n");
       dprint(strHost);
@@ -3747,7 +3747,7 @@ ok1:
       stringa straHost;
       straHost.explode("\r\n", strHost);
       double dMinDistance = 10000000000000.0;
-      GeoIP * pgeoip = GeoIP_open(System.dir().ca2("net/system/geoip/GeoLiteCity.dat"), GEOIP_STANDARD);
+      GeoIP * pgeoip = GeoIP_open(System.dir().path(get_manager()->m_strNetnodePath, "net/system/geoip/GeoLiteCity.dat"), GEOIP_STANDARD);
       string best_host;
       for(int i = 0; i < straHost.get_count(); i++)
       {
@@ -3792,7 +3792,7 @@ ok1:
    {
       if(m_pinstanceMain->m_pgeoiprecordClient != NULL)
          return m_pinstanceMain->m_pgeoiprecordClient;
-      GeoIP * pgeoip = GeoIP_open(System.dir().ca2("net/geoip/GeoLiteCity.dat"), GEOIP_STANDARD);
+      GeoIP * pgeoip = GeoIP_open(System.dir().path(get_manager()->m_strNetnodePath, "net/geoip/GeoLiteCity.dat"), GEOIP_STANDARD);
       if(pgeoip == NULL)
          return NULL;
       m_pinstanceMain->m_pgeoiprecordClient = GeoIP_record_by_addr(pgeoip, inattra()["remote_addr"]);
@@ -5286,12 +5286,13 @@ ok1:
    //	$default_asia_iphost = "27.112.107.224";
    //	$default_br_iphost = "187.84.226.245";
 	   //string default_br_iphost = default_iphost;
-      string default_br_iphost = "177.67.80.221";
+      //string default_br_iphost = "177.67.80.221";
+      string default_br_iphost = default_iphost;
 	   string  default_iphost_africa = default_weu_iphost;	
 	
    //	$default_eu_iphost = "173.224.125.231";
    //	$default_asia_iphost = $default_eu_iphost;
-	   string default_asia_iphost = "27.112.108.81";
+	   string default_asia_iphost = "163.43.33.45";
 	
 	   string cgcl_ttl = "1984";
 	

@@ -457,7 +457,14 @@ struct current_context : CONTEXT
 };
 
 DWORD WINAPI SymEngine::stack_trace_ThreadProc(void * lpvoidParam)
-{      
+{  
+
+#ifdef _AMD64_
+
+   return -1;
+
+#endif
+
    current_context * pcontext = reinterpret_cast<current_context*>(lpvoidParam);
    
    __try

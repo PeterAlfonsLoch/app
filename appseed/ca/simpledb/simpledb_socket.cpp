@@ -41,11 +41,6 @@ namespace simpledb
 
       if(gen::str::begins(inattr("request_uri"), "/passthrough/"))
       {
-/*         outheader("Cache-control") = "public";
-         outheader("Pragma") = "public";
-         int iPathCount;
-         outheader("Expires") = System.http().gmdate(System.datetime().strtotime(NULL, "+1 day", 0, iPathCount));
-         simple_file_server(System.dir().ca2("net-img\\img\\ds\\common"));*/
       }
       else
       {

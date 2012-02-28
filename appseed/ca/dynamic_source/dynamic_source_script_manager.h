@@ -58,12 +58,16 @@ namespace dynamic_source
 
 
 
+      string                  m_strNetnodePath;
+      string                  m_strNetseedPath;
 
-      mutex m_mutexSimage;
-      mutex m_mutexSpider;
-      mutex m_mutexRsa;
-      raw_array < RSA * > m_rsaptra;
-      DWORD m_dwLastRsa;
+      mutex                   m_mutexSimage;
+      mutex                   m_mutexSpider;
+
+      mutex                   m_mutexRsa;
+      raw_array < RSA * >     m_rsaptra;
+      DWORD                   m_dwLastRsa;
+
       webserver::simage_accepta_ptr_array * m_psimageptra;
       webserver::match_host_array * m_pmatchhostaSpider;
       __int64  m_iDatabaseWaitTimeOut;
