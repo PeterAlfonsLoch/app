@@ -260,6 +260,7 @@ namespace dynamic_source
       str.replace("%VS_VARS%", m_strEnv);
       str.replace("%VOTAGUS_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
+      str.replace("%CONFIGURATION_NAME%", "profiler");
       str.replace("%PLATFORM%", m_strPlatform);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
@@ -699,6 +700,7 @@ namespace dynamic_source
          str.replace("%ITEM_DIR%", System.dir().name(str1));
          str.replace("%PLATFORM%", m_strPlatform);
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
+         str.replace("%CONFIGURATION_NAME%", "profiler");
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1)));
@@ -765,6 +767,7 @@ namespace dynamic_source
       str.replace("%OBJS%", strObjs);
       str.replace("%PLATFORM%", m_strPlatform);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
+      str.replace("%CONFIGURATION_NAME%", "profiler");
       str.replace("%SDK1%", m_strSdk1);
       string strTargetName = m_strLibraryPath;
       gen::str::ends_eat_ci(strTargetName, ".dll");
