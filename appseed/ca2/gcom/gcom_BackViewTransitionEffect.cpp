@@ -1865,6 +1865,7 @@ namespace gcom
          event event;
          MMRESULT mmr;
          int iResolution = 25;
+         UINT uiRet = 0;
          try
          {
             while(peffect->m_bRun)
@@ -1927,12 +1928,11 @@ namespace gcom
             }
             catch(...)
             {
-               ASSERT(FALSE);
-               return (UINT) -3;
             }
+            uiRet = -3;
          }
          peffect->m_eventThreadExit.SetEvent();
-         return 0;
+         return uiRet;
       }
 
       ETransitionEffect TransitionEffect::get_type()
