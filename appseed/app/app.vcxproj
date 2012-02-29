@@ -762,6 +762,8 @@
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <Profile>true</Profile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>

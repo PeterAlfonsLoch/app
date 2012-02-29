@@ -653,6 +653,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <Profile>true</Profile>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\stage\app\matter\msvc++100\x64\msvcp100d.dll" "$(OutDir)msvcp100d.dll"
