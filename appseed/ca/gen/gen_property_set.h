@@ -31,11 +31,14 @@ namespace gen
       index remove_first_by_name(const char * pszName, index first = 0, index last = -1);
       count remove_by_name(const char * pszName, index first = 0, index last = -1);
       count remove_by_name(stringa & straName);
-
       property & operator[](const char * pszName);
       var_property operator[](const char * pszName) const;
       property & operator[](index iIndex);
       var_property operator[](index iIndex) const;
+#ifdef _AMD64_
+      inline property & operator[](int iIndex) { return operator []((index) iIndex); }
+      inline var_property operator[](int iIndex) const { return operator []((index) iIndex); }
+#endif
       property & operator[](const string_interface & str);
       var_property operator[](const string_interface & str) const;
       property & operator[](const string & str);
