@@ -5,6 +5,14 @@ namespace ca
 {
 
 
+   bool path::is_equal(const char * lpcsz1, const char * lpcsz2)
+   {
+      UNREFERENCED_PARAMETER(lpcsz1);
+      UNREFERENCED_PARAMETER(lpcsz2);
+      throw interface_only_exception("this is an interface");
+   }
+
+
    namespace dir
    {
 
@@ -22,13 +30,6 @@ namespace ca
          {
             delete m_pziputil;
          }
-      }
-
-      bool system::path::is_equal(const char * lpcsz1, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz1);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
       }
 
       string system::path(const string & strFolder, const string & strRelative, const string & str2)
@@ -1147,7 +1148,7 @@ namespace ca
       }
 
 
-      class system::path & system::path()
+      class ::ca::path & system::path()
       {
          throw interface_only_exception("this is an interface");
       }

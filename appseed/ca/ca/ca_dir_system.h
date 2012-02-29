@@ -15,6 +15,15 @@ namespace ca
 {
 
 
+   class CLASS_DECL_ca path :
+      virtual public ::radix::object
+
+   {
+   public:
+      virtual bool  is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
+   };
+
+
    namespace dir
    {
 
@@ -25,13 +34,6 @@ namespace ca
       public:
 
 
-         class CLASS_DECL_ca path :
-            virtual public ::radix::object
-
-         {
-         public:
-            virtual bool  is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
-         };
 
          class CLASS_DECL_ca is_dir
          {
