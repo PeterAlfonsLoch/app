@@ -533,7 +533,7 @@ namespace ca
 
          strsize iPos = str.reverse_find('.');
 
-         if(iPos < 0)
+         if(iPos >= 0)
          {
             return str.Mid(0, iPos);
          }
