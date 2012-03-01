@@ -746,12 +746,16 @@ namespace fs
       ex1::tree_item * pitem = get_base_item();
       if(lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
+      string strPath(lpcszPath);
+      strPath.trim_right("\\/");
       while(pitem != NULL)
       {
          if(pitem->m_pitemdata != NULL
          && typeid(*pitem->m_pitemdata) == System.template type_info < tree_item > ())
          {
-            if(((tree_item *)pitem->m_pitemdata)->m_strPath == lpcszPath)
+            string strTreeItem(((tree_item *)pitem->m_pitemdata)->m_strPath);
+            strTreeItem.trim_right("\\/");
+            if(strTreeItem.CompareNoCase(strPath) == 0)
                return pitem;
          }
          pitem = pitem->get_next();

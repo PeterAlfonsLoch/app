@@ -297,17 +297,13 @@ namespace visual
 //         DWORD dw = ::GetLastError();
          if(sz.cx > rectClip.width())
          {
-            strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
+            strsize i = iLen;
             if(i < 0)
                i = 0;
             char * lpsz = str.GetBuffer(max(0, i) + 1);
             while(true)
             {
-               ::GetTextExtentPoint32U(
-               (HDC)pdc->get_os_data(),
-               lpsz,
-               (int) i,
-               &sz);
+               sz = pdc->GetTextExtent(str, (int) i);
                if(sz.cx > rectClip.width())
                {
                   if(i <= 0)
