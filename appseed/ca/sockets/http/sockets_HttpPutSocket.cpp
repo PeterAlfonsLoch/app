@@ -94,14 +94,14 @@ namespace sockets
 
       m_request.attr("http_method")    = "PUT";
       m_request.attr("http_version")   = "HTTP/1.1";
-      outheader("Host")                = GetUrlHost();
+      inheader("Host")                = GetUrlHost();
       if(m_content_type.has_char())
       {
          outheader("Content-type")     = m_content_type;
       }
-      outheader("Content-length")      = m_content_length;
-      outheader("User-agent")          = MyUseragent();
-      outheader("Connection")          = "close";
+      inheader("Content-length")      = m_content_length;
+      inheader("User-agent")          = MyUseragent();
+      inheader("Connection")          = "close";
       SendRequest();
 
       if(m_file.is_set())

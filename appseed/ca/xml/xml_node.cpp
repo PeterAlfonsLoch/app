@@ -395,7 +395,18 @@ namespace xml
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                         pattr->set_string(pparseinfo->m_pentities->ref_to_entity(pattr->get_string()));
                      if( quote == '"' || quote == '\'' )
-                        xml++;
+                     {
+                        if(*xml == '\0')
+                        {
+                           return xml;
+                           break;
+                           // resilliency
+                        }
+                        else
+                        {
+                           xml++;
+                        }
+                     }
                   }
                }
             }
@@ -798,7 +809,7 @@ namespace xml
       if( xml = LoadAttributes( xml, pparseinfo ) )
       {
          // alone tag <TAG ... />
-         if( *xml == chXMLTagPre )
+         if(  *xml == chXMLTagPre )
          {
             xml++;
             if( *xml == chXMLTagClose )
@@ -818,7 +829,7 @@ namespace xml
                return NULL;
             }
          }
-         else
+         else if(*xml)
          // open/close tag <TAG ..> ... </TAG>
          //                        ^- current pointer
          {
@@ -936,7 +947,7 @@ namespace xml
                      }
                   }
                }
-               else   // Alone child Tag Loaded
+               else if(*xml)  // Alone child Tag Loaded
                      // else ﾇﾘｾﾟﾇﾏｴﾂﾁ・ｸｻｾﾆｾﾟﾇﾏｴﾂﾁ・ﾀﾇｽﾉｰ｣ｴﾙ.
                {
 

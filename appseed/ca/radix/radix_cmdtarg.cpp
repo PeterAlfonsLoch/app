@@ -456,7 +456,6 @@ void cmd_ui::SetText(const char * lpszText)
 
 BOOL cmd_ui::DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler)
 {
-   UNREFERENCED_PARAMETER(bDisableIfNoHndler);
    if(m_id.is_empty())
       return TRUE;     // ignore invalid IDs
 
@@ -464,10 +463,9 @@ BOOL cmd_ui::DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler)
 
    m_bEnableChanged = FALSE;
    BOOL bResult = pTarget->_001SendUpdateCmdUi(this);
-   // can have m_bEnableChanged but gave the chance for others
-   // to change without returning (bResult = FALSE)
-   //if (!bResult)
-   //   ASSERT(!m_bEnableChanged); // not routed
+
+   if(!bResult)
+      Enable(FALSE);
 
    return bResult;
 }

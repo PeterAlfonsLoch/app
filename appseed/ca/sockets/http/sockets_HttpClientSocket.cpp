@@ -56,6 +56,7 @@ namespace sockets
       string url;
       url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
       m_request.attr("http_protocol") = m_protocol;
+      outheader("host") = m_host;
       m_request.attr("request_uri") = url;
       m_response.attr("request_uri") = url;
       m_strUrl = url_in;

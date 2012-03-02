@@ -147,6 +147,7 @@ namespace xml
          char * sbuf = s.GetBufferSetLength(len + 1);
          if( sbuf )
             entity_to_ref( str, sbuf, (int) len);
+         s.ReleaseBuffer();
       }
       return s;
    }

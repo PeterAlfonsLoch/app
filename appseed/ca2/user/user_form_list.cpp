@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace user
 {
+
 
    form_list::form_list(::ca::application * papp) :
       ca(papp),
@@ -499,17 +501,19 @@ namespace user
 
    }
 
-   void form_list::control_get_client_rect(LPRECT lprect)
+   void form_list::control_get_client_rect(control * pcontrol, LPRECT lprect)
    {
-      if(_001GetEditControl() == NULL)
+      if(pcontrol == NULL)
       {
          SetRectEmpty(lprect);
          return;
       }
       rect rectControl;
       draw_list_item item(this);
-      item.m_iItem = m_iEditItem;
-      item.m_iSubItem = _001GetEditControl()->descriptor().m_iSubItem;
+      item.m_iDisplayItem = m_iItemHover;
+      item.m_iItem = DisplayToStrict(m_iItemHover);
+      item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
       _001GetElementRect(&item, userbase::_list::ElementSubItem);
       rectControl = item.m_rectSubItem;
@@ -517,9 +521,9 @@ namespace user
       *lprect = rect;
    }
 
-   void form_list::control_get_window_rect(LPRECT lprect)
+   void form_list::control_get_window_rect(control * pcontrol, LPRECT lprect)
    {
-      control_get_client_rect(lprect);
+      control_get_client_rect(pcontrol, lprect);
       ClientToScreen(lprect);
    }
 

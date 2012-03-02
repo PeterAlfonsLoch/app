@@ -79,7 +79,8 @@ FileManagerTemplate::~FileManagerTemplate()
    FileManagerCallbackInterface * pcallback,
    bool bMakeVisible,
    bool bTransparentBackground,
-   ::user::interaction * pwndParent)
+   ::user::interaction * pwndParent,
+   filemanager::data * pfilemanagerdata)
 {
    ::ca::create_context_sp createcontext(get_app());
    createcontext->m_bMakeVisible = false;
@@ -87,7 +88,11 @@ FileManagerTemplate::~FileManagerTemplate()
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateChild->open_document_file(createcontext));
    if(pdoc != NULL)
    {
-
+      if(pfilemanagerdata == NULL)
+      {
+         pfilemanagerdata = new ::filemanager::data(get_app());
+      }
+      pdoc->set_data(pfilemanagerdata);
       pdoc->get_filemanager_data()->m_pcallback                = pcallback;
       pdoc->get_filemanager_data()->m_pfilemanager             = pcallback;
       pdoc->get_filemanager_data()->m_pmanager                 = pdoc;

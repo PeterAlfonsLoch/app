@@ -55,8 +55,8 @@ namespace user
 
       void _000OnMouse(::gen::message::mouse * pmouse);
 
-      void control_get_client_rect(LPRECT lprect);
-      void control_get_window_rect(LPRECT lprect);
+      void control_get_client_rect(control * pcontrol, LPRECT lprect);
+      void control_get_window_rect(control * pcontrol, LPRECT lprect);
       bool control_001DisplayHitTest(POINT pt);
 
       bool _001IsEditing();

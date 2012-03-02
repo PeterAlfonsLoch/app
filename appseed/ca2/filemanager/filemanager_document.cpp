@@ -18,7 +18,6 @@ namespace filemanager
       ::fs::data(papp),
       ::fs::set(papp)
    {
-      set_data(new filemanager::data(papp));
       command_signalid id;
       connect_update_cmd_ui("levelup", &document::_001OnUpdateLevelUp);
       connect_command("levelup", &document::_001OnLevelUp);

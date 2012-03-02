@@ -88,28 +88,53 @@ namespace primitive
 
    inline void memory_container ::from_string(const wchar_t * pwsz)
    {
+
+      if(m_spmemory.is_null())
+         m_spmemory(create_memory());
+
       m_spmemory->from_string(pwsz);
+
    }
 
 
    inline void memory_container ::from_string(const char * psz)
    {
+
+      if(m_spmemory.is_null())
+         m_spmemory(create_memory());
+
       m_spmemory->from_string(psz);
+
    }
 
    inline void memory_container ::from_string(const string & str)
    {
+
+      if(m_spmemory.is_null())
+         m_spmemory(create_memory());
+
       m_spmemory->from_string(str);
+
    }
 
    inline void memory_container ::from_string(const var & var)
    {
+
+      if(m_spmemory.is_null())
+         m_spmemory(create_memory());
+
       m_spmemory->from_string(var);
+
    }
 
    inline void memory_container ::to_string(string & str)
    {
+
+      if(m_spmemory.is_null())
+         m_spmemory(create_memory());
+
       m_spmemory->to_string(str);
+
    }
 
 

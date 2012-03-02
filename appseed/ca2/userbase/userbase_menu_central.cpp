@@ -17,25 +17,29 @@ public:
    }
 } __basemenucentralInit;
 
+
 BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
    ca(papp),
    m_fontMenu(papp)
 {
+
    m_pil             = new image_list(papp);
    m_pilHue          = new image_list(papp);
    m_pilBlend        = new image_list(papp);
    m_pilHueLight     = new image_list(papp);
+
+
    NONCLIENTMETRICS ncm;
    ncm.cbSize = sizeof(NONCLIENTMETRICS);
    ::SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
+
    VERIFY(m_fontMenu->CreateFontIndirect(&ncm.lfMenuFont));
-   if(!MenuV033GetImageList()->create(
-      16, 16,
-      ILC_COLOR24 | ILC_MASK,
-      0, 10))
+   
+   if(!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
    {
-      return;
+      throw simple_exception("resource exception BaseMenuCentral constructor");
    }
+
 }
 
 BaseMenuCentral::~BaseMenuCentral()

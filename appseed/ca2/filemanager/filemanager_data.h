@@ -29,6 +29,9 @@ namespace filemanager
       ::user::place_holder *           m_pholderFileList;
       ::user::interaction *            m_ptreeFileTreeMerge;
       bool                             m_bSetBergedgeTopicFile;
+
+      string                           m_strToolBar;
+      string                           m_strToolBarSave;
    
    
 

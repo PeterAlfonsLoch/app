@@ -910,6 +910,11 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (user::frame_window_interface::_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
+   // then pump through parent
+   ::user::interaction * puiParent = GetParent();
+   if(puiParent != NULL && puiParent->_001OnCmdMsg(pcmdmsg))
+      return TRUE;
+
    // last but not least, pump through cast
    ::radix::application* pApp = dynamic_cast < ::radix::application * > (get_app());
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))

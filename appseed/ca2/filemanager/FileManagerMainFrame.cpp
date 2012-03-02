@@ -47,6 +47,19 @@ bool FileManagerMainFrame::CreateBars()
       strToolBar = pdoc->get_filemanager_data()->m_ptemplate->m_strToolBar;
    }
 
+   if(strToolBar.is_empty())
+   {
+      if(pdoc->get_filemanager_data()->is_saving())
+      {
+         strToolBar = pdoc->get_filemanager_data()->m_strToolBarSave;
+      }
+      else
+      {
+         strToolBar = pdoc->get_filemanager_data()->m_strToolBar;
+      }
+   }
+
+
    string str = Application.file().as_string(Application.dir().matter(strToolBar));
 
    if (!m_toolbar.CreateEx(this) ||

@@ -704,32 +704,20 @@ return true;
 
 
 
-bool imaging::CreateHueImageList(
-                                 ::ca::graphics * pdc,
-                                 image_list * pilGray,
-                                 image_list * pilParam,
-                                 COLORREF crHue,
-                                 double dCompress)
+bool imaging::CreateHueImageList(::ca::graphics * pdc, image_list * pilGray, image_list * pilParam, COLORREF crHue, double dCompress)
 {
+
    image_list * pil = pilGray;
 
    if(!pil->create(pilParam))
       return false;
-
 
    ::ca::graphics_sp spgraphics(get_app());
 
    spgraphics->CreateCompatibleDC(pdc);
 
 
-   HueVRCP(
-      spgraphics,
-      pil->m_spdib->get_bitmap(),
-      0, 0,
-      pil->m_spdib->width(),
-      pil->m_spdib->height(),
-      crHue,
-      dCompress);
+   HueVRCP(pil->m_spdib, crHue, dCompress);
 
    return true;
 
@@ -6512,76 +6500,17 @@ void imaging::free(FIBITMAP * pfibitmap)
 }
 
 
-bool imaging::HueVRCP(
-                      ::ca::graphics * pdc,
-                      ::ca::bitmap * pbitmap,
-                      int x,
-                      int y,
-                      int cx,
-                      int cy,
-                      COLORREF crHue,
-                      double dCompress // de 0 a 1
-                      )
+// dCompress de 0 a 1
+bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
 {
-   //COLORREF cr3dface = GetSysColor(COLOR_3DFACE);
-//   COLORREF cr3dshadow = GetSysColor(COLOR_3DSHADOW);
-   //BYTE uch3dfaceR = rgba_get_r(cr3dface);
-   //BYTE uch3dfaceG = rgba_get_g(cr3dface);
-   //BYTE uch3dfaceB = rgba_get_b(cr3dface);
-//   BYTE uch3dshadowR = rgba_get_r(cr3dshadow);
-//   BYTE uch3dshadowG = rgba_get_g(cr3dshadow);
-//   BYTE uch3dshadowB = rgba_get_b(cr3dshadow);
-
-//   COLORREF cr3dhighlight = GetSysColor(COLOR_3DHILIGHT);
-//   BYTE uch3dhighlightR = rgba_get_r(cr3dhighlight);
-//   BYTE uch3dhighlightG = rgba_get_g(cr3dhighlight);
-//   BYTE uch3dhighlightB = rgba_get_b(cr3dhighlight);
 
 
-
-   class size size = pbitmap->get_size();
-
-   UINT uiScanLines = size.cy;
-   UINT cbLine = size.cx * 4;
-   UINT cbImage = size.cy * cbLine;
-//   UINT cbMask = bitmap.bmHeight * bitmap.bmWidth;
-
-
-   BITMAPINFO bmi;
-
-   bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-   bmi.bmiHeader.biWidth = size.cx;
-   bmi.bmiHeader.biHeight = - size.cy;
-   bmi.bmiHeader.biPlanes = 1;
-   bmi.bmiHeader.biBitCount = 32;
-   bmi.bmiHeader.biCompression = BI_RGB;
-   bmi.bmiHeader.biSizeImage = 0;
-   bmi.bmiHeader.biXPelsPerMeter = 1;
-   bmi.bmiHeader.biYPelsPerMeter = 1;
-   bmi.bmiHeader.biClrUsed = 0;
-   bmi.bmiHeader.biClrImportant = 0;
-
-   LPBYTE lpbData = (LPBYTE) malloc(cbImage);
-   //LPBYTE lpbShadow = lpbData;
-
-   if(!GetDIBits(
-      (HDC)pdc->get_os_data(),
-      (HBITMAP) pbitmap->get_os_data(),
-      0,
-      uiScanLines,
-      lpbData,
-      &bmi,
-      DIB_RGB_COLORS))
-   {
-      return false;
-   }
-
+   
 
    COLORREF cra[256];
 
    color color;
-   int i;
-   for(i = 0; i < 256; i++)
+   for(int i = 0; i < 256; i++)
    {
       color.set_rgb(crHue);
       color.hls_mult(1.0, (i / 255.0) * (1.0 - dCompress) + dCompress, 1.0);
@@ -6589,50 +6518,17 @@ bool imaging::HueVRCP(
    }
 
 
-   LPBYTE lpbBase = lpbData + cbLine * y + x * 4;
+   LPBYTE lpb = (LPBYTE) pdib->get_data();
 
-//   COLORREF crBtnFace = GetSysColor(COLOR_BTNFACE);
-//   COLORREF crBtnShad = GetSysColor(COLOR_BTNSHADOW);
-//   COLORREF crWndBack = GetSysColor(COLOR_WINDOW);
 
-//   BYTE bRBtnFace = rgba_get_r(crBtnFace);
-//   BYTE bGBtnFace = rgba_get_g(crBtnFace);
-///   BYTE bBBtnFace = rgba_get_b(crBtnFace);
+   __int64 area = pdib->area();
 
-//   BYTE bRBtnShad = rgba_get_r(crBtnShad);
-//   BYTE bGBtnShad = rgba_get_g(crBtnShad);
-//   BYTE bBBtnShad = rgba_get_b(crBtnShad);
-
-//   BYTE bRWndBack = rgba_get_r(crWndBack);
-//   BYTE bGWndBack = rgba_get_g(crWndBack);
-//   BYTE bBWndBack = rgba_get_b(crWndBack);
-
-   for(i = 0; i < cy; i ++)
+   for(__int64 i = 0; i < area; i++)
    {
-      LPBYTE lpb = lpbBase + cbLine * i;
-      for(int j = 0; j < cx; j++)
-      {
-         COLORREF cr = (cra[(lpb[0] + lpb[1] + lpb[2]) / 3]) | lpb[3] << 24;
-         *((DWORD *) lpb) = cr;
-         lpb += 4;
-      }
+      *((DWORD *) lpb) = (cra[(lpb[0] + lpb[1] + lpb[2]) / 3]) | lpb[3] << 24;
+      lpb += 4;
    }
 
-
-   if(!SetDIBits(
-      (HDC)pdc->get_os_data(),
-      (HBITMAP) pbitmap->get_os_data(),
-      0,
-      uiScanLines,
-      lpbData,
-      &bmi,
-      DIB_RGB_COLORS))
-   {
-      return false;
-   }
-
-
-   ::free(lpbData);
 
    return true;
 

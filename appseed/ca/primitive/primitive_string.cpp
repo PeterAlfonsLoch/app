@@ -885,7 +885,7 @@ string::string(strsize nLength, char ch) :
 
    string& string::operator+=(const simple_string& str )
    {
-      append( str );
+      append( str, str.get_length() );
 
       return( *this );
    }

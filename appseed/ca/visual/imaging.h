@@ -202,15 +202,7 @@ public:
       int cy,
       COLORREF crTransparent);
 
-   bool HueVRCP(
-      ::ca::graphics * pgraphics,
-      ::ca::bitmap * pbitmap,
-      int x,
-      int y,
-      int cx,
-      int cy,
-      COLORREF crHue,
-      double dCompress);
+   bool HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress);
 
    bool GrayVRCP(
       ::ca::graphics * pgraphics,

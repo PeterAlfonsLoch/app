@@ -173,7 +173,20 @@ namespace userex
       }*/
       if(pcreatordata->m_id == "file_manager")
       {
-         ::filemanager::document * pdoc = Application.GetStdFileManagerTemplate()->OpenChild(&Application, true, true, pcreatordata->m_pholder);
+
+         ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
+
+         if(oprop("file_manager_toolbar").is_set())
+            pfilemanagerdata->m_strToolBar = oprop("file_manager_toolbar");
+         else
+            pfilemanagerdata->m_strToolBar = "file_manager_toolbar";
+
+         if(oprop("file_manager_toolbar_save").is_set())
+            pfilemanagerdata->m_strToolBarSave = oprop("file_manager_toolbar_save");
+         else
+            pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save";
+
+         ::filemanager::document * pdoc = Application.GetStdFileManagerTemplate()->OpenChild(&Application, true, true, pcreatordata->m_pholder, pfilemanagerdata);
          if(pdoc != NULL)
          {
             ::view * pview = pdoc->get_view();
@@ -184,6 +197,7 @@ namespace userex
                {
                   pcreatordata->m_pdoc = pdoc;
                   pcreatordata->m_pwnd = pframe;
+
                   pdoc->Initialize(true);
                }
             }
