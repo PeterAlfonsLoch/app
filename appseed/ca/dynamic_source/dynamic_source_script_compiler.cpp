@@ -520,6 +520,8 @@ namespace dynamic_source
       string strSource = "app\\stage\\app\\matter\\";
       strSource += lpcszSource;
 
+      string strN = m_pmanager->m_strNetnodePath;
+
    #ifdef _DEBUG
       strTemplate = System.dir().path(strVotagusFolder, strSource );
    #else
@@ -534,6 +536,7 @@ namespace dynamic_source
       string strV(strVotagusFolder);
       strV.replace("\\", "/");
       str.replace("%VOTAGUS_ROOT%", strV);
+      str.replace("%NETNODE_ROOT%", strN);
       string strDest = "stage\\front\\";
       strDest += lpcszDest;
       string strCmd;
@@ -681,6 +684,9 @@ namespace dynamic_source
          cppize(m_straLibIncludePath[i], m_straLibHppPath[i], cpptype_include);
       }
 
+
+      string strN = m_pmanager->m_strNetnodePath;
+
       for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
          cppize(m_straLibSourcePath[i], m_straLibCppPath[i], cpptype_source);
@@ -699,6 +705,7 @@ namespace dynamic_source
          str.replace("%ITEM_NAME%", str1);
          str.replace("%ITEM_DIR%", System.dir().name(str1));
          str.replace("%PLATFORM%", m_strPlatform);
+         str.replace("%NETNODE_ROOT%", strN);
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
          str.replace("%CONFIGURATION_NAME%", "profiler");
          str.replace("%SDK1%", m_strSdk1);
@@ -766,6 +773,7 @@ namespace dynamic_source
       str.replace("%ITEM_DIR%", "library");
       str.replace("%OBJS%", strObjs);
       str.replace("%PLATFORM%", m_strPlatform);
+      str.replace("%NETNODE_ROOT%", strN);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%CONFIGURATION_NAME%", "profiler");
       str.replace("%SDK1%", m_strSdk1);
