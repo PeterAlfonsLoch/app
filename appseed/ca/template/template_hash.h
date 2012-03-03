@@ -90,7 +90,7 @@ template<> inline UINT HashKey<size> (size key)
 template<> inline UINT HashKey<const char *> (const char * key)
 {
    register uint64_t * puiKey = (uint64_t *) key;
-   register int counter = strlen(key);
+   register strsize counter = strlen(key);
    register uint64_t nHash = 0;
    while(counter >= sizeof(*puiKey))
    {

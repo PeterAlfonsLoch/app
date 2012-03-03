@@ -29,14 +29,18 @@ FileManagerTemplate::~FileManagerTemplate()
    }
 }
 
-::filemanager::document * FileManagerTemplate::open(FileManagerCallbackInterface * pcallback, ::ca::create_context * pcreatecontext, ::fs::data * pdata)
+::filemanager::document * FileManagerTemplate::open(FileManagerCallbackInterface * pcallback, ::ca::create_context * pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
 {
    UNREFERENCED_PARAMETER(pcallback);
    UNREFERENCED_PARAMETER(pdata);
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateMain->open_document_file(pcreatecontext));
    if(pdoc != NULL)
    {
-
+      if(pfilemanagerdata == NULL)
+      {
+         pfilemanagerdata = new filemanager::data(get_app());
+      }
+      pdoc->set_data(pfilemanagerdata);
       pdoc->get_filemanager_data()->m_pcallback = pcallback;
       pdoc->get_filemanager_data()->m_pmanager  = pdoc;
       pdoc->get_filemanager_data()->m_pmanagerMain  = pdoc;
@@ -115,7 +119,8 @@ FileManagerTemplate::~FileManagerTemplate()
    FileManagerCallbackInterface * pcallback,
    bool bMakeVisible,
    bool bTransparentBackground,
-   ::user::interaction * pwndParent)
+   ::user::interaction * pwndParent,
+   ::filemanager::data * pfilemanagerdata)
 {
    UNREFERENCED_PARAMETER(bMakeVisible);
    ::ca::create_context_sp createcontext(get_app());
@@ -126,8 +131,11 @@ FileManagerTemplate::~FileManagerTemplate()
    {
 //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
 //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
-      
-      
+      if(pfilemanagerdata == NULL)
+      {
+         pfilemanagerdata = new filemanager::data(get_app());
+      }
+      pdoc->set_data(pfilemanagerdata);
       pdoc->get_filemanager_data()->m_pcallback = pcallback;
       pdoc->get_filemanager_data()->m_pfilemanager = pcallback;
       pdoc->get_filemanager_data()->m_pmanager  = pdoc;

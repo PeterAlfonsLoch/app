@@ -170,7 +170,9 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          pdoc->m_spafsdata = GetFileManagerDoc()->m_spafsdata;
          pdoc->m_fsdatamap = GetFileManagerDoc()->m_fsdatamap;
 
+         ::filemanager::data * pfilemanagerdata = new filemanager::data(get_app());
 
+         pdoc->set_data(pfilemanagerdata);
 
          pdoc->get_filemanager_data()->m_pcallback = GetFileManager()->get_filemanager_data()->m_pcallback;
          pdoc->get_filemanager_data()->m_pmanager  = pdoc;
