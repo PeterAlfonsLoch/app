@@ -89,10 +89,8 @@ namespace webserver
       code_printCells(codea, style);
    }
 
-   stringa AlphaSelectPerformer::code_getArray(index style)
+   stringa AlphaSelectPerformer::code_getArray()
    {
-
-      UNREFERENCED_PARAMETER(style);
 
       m_iaClassId.QuickSort();
 
@@ -103,9 +101,15 @@ namespace webserver
 
          string strClassId;
          strClassId = gen::str::i64toa(m_iaClassId[0]);
-         string strParentClassIda = m_iaClassId.surround_and_implode(NULL, "<", ">");
-
-         strSql.Format("SELECT codea FROM tmp_class_2 WHERE classid='%s' AND parentclassida='%s' AND topictype = %d", strClassId, strParentClassIda, m_iTopicType);
+         if(m_iaClassId.get_count() > 1)
+         {
+            string strParentClassIda = m_iaClassId.surround_and_implode(NULL, "<", ">", 1);
+            strSql.Format("SELECT codea FROM tmp_class_2 WHERE classid='%s' AND parentclassida='%s' AND topictype = %d", strClassId, strParentClassIda, m_iTopicType);
+         }
+         else
+         {
+            strSql.Format("SELECT codea FROM tmp_class_2 WHERE classid='%s' AND (parentclassida='' OR ISNULL(parentclassida)) AND topictype = %d", strClassId, m_iTopicType);
+         }
 
       }
       else
@@ -119,7 +123,7 @@ namespace webserver
 
       stringa straCode;
       straCode.add_tokens(strCodea, ";", FALSE);
-      stringa fullcodea = code_getFullArray(1);
+      stringa fullcodea = code_getFullArray();
 
       string strFull;
       stringa retcodea;
@@ -135,73 +139,35 @@ namespace webserver
       return retcodea;
 
 
-   /*   $codea = base_array();
-      $codea[] = "?";
-      $codea[] = "0";
-      $codea[] = "a";
-      $codea[] = "b";
-      $codea[] = "c";
-      $codea[] = "d";
-      $codea[] = "e";
-      $codea[] = "f";
-      $codea[] = "g";
-      $codea[] = "h";
-      $codea[] = "i";
-      $codea[] = "j";
-      $codea[] = "k";
-      $codea[] = "l";
-      $codea[] = "m";
-      $codea[] = "n";
-      $codea[] = "o";
-      $codea[] = "p";
-      $codea[] = "q";
-      $codea[] = "r";
-      $codea[] = "s";
-      $codea[] = "t";
-      $codea[] = "u";
-      $codea[] = "v";
-      $codea[] = "w";
-      $codea[] = "x";
-      $codea[] = "y";
-      $codea[] = "z";
-   /*      $codea[] = "kp-&#12490;"; //pi katakana
-      $codea[] = "kp-&#12500;"; //pi katakana
-      $codea[] = "kp-&#12521;"; //pi kata*/
-
-   /*   $codea[] = "kp-a";
-      $codea[] = "kp-i";
-      $codea[] = "kp-u";
-      $codea[] = "kp-e";
-      $codea[] = "kp-o";
-
-      $codea[] = "kp-ba";
-      $codea[] = "kp-bi";
-      $codea[] = "kp-bu";
-      $codea[] = "kp-be";
-      $codea[] = "kp-bo";
-
-      $codea[] = "*"; // all
-
-      if($style == 2)
-      {
-         $newcodea = base_array();
-         foreach($codea as $code)
-         {
-            $count = code_getCount($code);
-            if($count > 0)
-            {
-               $newcodea[] = $code;
-            }
-         }
-         return $newcodea;
-      }
-      return $codea;*/
    }
 
-   stringa AlphaSelectPerformer::code_getFullArray(index style)
+   stringa AlphaSelectPerformer::code_calcArray()
    {
+
+      stringa codea = code_getFullArray();
+      
+      stringa newcodea;
+      
+      for(int i = 0; i < codea.get_count(); i++)
+      {
+         int iCount = code_getCount(codea[i]);
+         if(iCount > 0)
+         {
+            newcodea.add(codea[i]);
+         }
+      }
+
+      return newcodea;
+
+   }
+
+
+   stringa AlphaSelectPerformer::code_getFullArray()
+   {
+      
       stringa codea;
-      if(m_strLangStyle == "ja" && style == 1)
+
+      if(m_strLangStyle == "ja")
       {
          codea.add("kp-a");
          codea.add("kp-i");
@@ -297,20 +263,9 @@ namespace webserver
          codea.add("*"); // all
 
       }
-      if(style == 2)
-      {
-         stringa newcodea;
-         for(int i = 0; i < codea.get_count(); i++)
-         {
-            int iCount = code_getCount(codea[i]);
-            if(iCount > 0)
-            {
-               newcodea.add(codea[i]);
-            }
-         }
-         return newcodea;
-      }
+      
       return codea;
+
    }
 
    void AlphaSelectPerformer::out_xml1()
@@ -348,7 +303,7 @@ namespace webserver
       string strSql;
       if(m_iaClassId.has_elements())
       {
-         strSql.Format("SELECT count(person.id) FROM person, topic_song, topic_class, topic_person WHERE person.id = topic_person.person AND topic_person.topic = topic_class.topic AND topic_person.topictype = topic_class.topictype AND topic_song.song = topic_class.song AND topic_class.class = %s AND person.name REGEXP '%s'",
+         strSql.Format("SELECT count(person.id) FROM person, topic_song, topic_class, topic_person WHERE person.id = topic_person.person AND topic_person.topic = topic_class.topic AND topic_person.topictype = topic_class.topictype AND topic_person.topic = topic_class.topic AND topic_person.topictype = topic_class.topictype AND topic_class.class = %s AND person.name REGEXP '%s'",
             m_iaClassId.implode(","), regexp);
       }
       else
@@ -400,12 +355,19 @@ namespace webserver
       }
 
       string classcondition;
+      string classinnerjoin;
+      if(m_iaClassId.has_elements())
+      {
+         classinnerjoin = " INNER JOIN topic_class ON topic_song.topic = topic_class.topic AND topic_song.topictype = topic_class.topictype ";
+         classcondition = m_iaClassId.surround_and_implode(" OR ", "topic_class.class = '", "'");
+         classcondition =  " AND (" + classcondition + ") ";
+      }
 
 
       string strSql;
       strSql.Format(
-         "SELECT COUNT(DISTINCT person.id) FROM person INNER JOIN topic_person ON topic_person.person = person.id INNER JOIN topic_song ON topic_person.topic = topic_song.topic AND topic_person.topictype = topic_song.topictype INNER JOIN tmp_song ON tmp_song.song = topic_song.song WHERE %s AND %s %s",
-         tt_cond, where_add, classcondition);
+         "SELECT COUNT(DISTINCT person.id) FROM person INNER JOIN topic_person ON topic_person.person = person.id INNER JOIN topic_song ON topic_person.topic = topic_song.topic AND topic_person.topictype = topic_song.topictype INNER JOIN tmp_song ON tmp_song.song = topic_song.song %s WHERE %s AND %s %s",
+         classinnerjoin,  tt_cond, where_add, classcondition);
       dprint(strSql);
       dprint("<br>");
       return musicdb().query_item(strSql);

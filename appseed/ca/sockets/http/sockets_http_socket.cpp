@@ -293,6 +293,12 @@ namespace sockets
       strTrace = strLine;
       strTrace.replace("%", "%%");
       TRACE(strTrace + "\n");
+      
+      bool bContentLength = m_response.attr("http_status_code") != 304;
+      
+      if(!bContentLength)
+         m_response.m_propertysetHeader.remove_by_name("Content-Length");
+
       for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
          string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
@@ -307,9 +313,18 @@ namespace sockets
          strTrace.replace("%", "%%");
          //TRACE(strTrace + "\n");
       }
+      
       msg += "\r\n";
+
       Send( msg );
-      SendResponseBody();
+
+      if(bContentLength)
+      {
+       
+         SendResponseBody();
+
+      }
+
    }
 
    void http_socket::SendResponseBody()

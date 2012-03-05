@@ -24,6 +24,7 @@ public:
 
    // add
    bool add_unique(ARG_TYPE t);
+   ::count add_unique(const ARRAY_TYPE & a);
 
 
    // Set
@@ -113,6 +114,25 @@ bool comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(ARG_TYPE t)
    add(t);
    return true;
 }
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+count comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(const ARRAY_TYPE & a)
+{
+      
+   ::count c = 0;
+
+   ::count cAdd = a.get_count();
+
+   for(int i = 0; i < cAdd; i++)
+   {
+      if(add_unique(a[i]))
+         c++;
+   }
+
+   return c;
+
+}
+
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::

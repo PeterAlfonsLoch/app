@@ -52,8 +52,12 @@ namespace dynamic_source
       mutex m_mutexIncludeMatches;
       ::collection::string_map < bool > m_mapIncludeMatchesFileExists;
       ::collection::string_map < bool > m_mapIncludeMatchesIsDir;
-      bool include_matches_file_exists(const string & strPath);
-      bool include_matches_is_dir(const string & strPath);
+      mutex m_mutexIncludeHasScript;
+      ::collection::string_map < bool > m_mapIncludeHasScript;
+      mutex m_mutexIncludeExpandMd5;
+      string_to_string_map             m_mapIncludeExpandMd5;
+
+
 
 
 
@@ -103,6 +107,11 @@ namespace dynamic_source
 
       bool initialize_instance();
 
+      bool include_matches_file_exists(const string & strPath);
+      bool include_matches_is_dir(const string & strPath);
+      bool include_has_script(const string & strPath);
+      string include_expand_md5(const string & strPath);
+      void set_include_expand_md5(const string & strPath, const string & strMd5);
 
       session * get_session(mutex * & pmutex, const char * pszId);
 

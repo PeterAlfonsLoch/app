@@ -52,9 +52,11 @@ namespace webserver
 
       void out(index style);
 
-      stringa code_getArray(index style = 2);
+      stringa code_getArray();
 
-      stringa code_getFullArray(index style = 2);
+      stringa code_calcArray();
+
+      stringa code_getFullArray();
 
       void out_xml1();
 

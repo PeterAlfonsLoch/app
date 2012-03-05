@@ -84,7 +84,7 @@ namespace dynamic_source
    }
 
 
-   var script_interface::include(const char * )
+   var script_interface::include(const char *, bool )
    {
       return var();
    }

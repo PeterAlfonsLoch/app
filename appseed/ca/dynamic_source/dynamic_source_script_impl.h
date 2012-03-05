@@ -283,7 +283,9 @@ namespace dynamic_source
 
       //string use_style_calc_initial_css_modifier_prefix();
 
-      var include(const char * lpcsz);
+      bool defer_expand_file(const char * lpcszPath);
+      string defer_expanded_file_string(const char * lpcszPath);
+      var include(const char * lpcsz, bool bRoot = false);
       void launch(const char * lpcsz);
 //      void edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible);
   //    void edgify_app(int iEdge, ::ca::type_info prtcApp, bool bMakeVisible);

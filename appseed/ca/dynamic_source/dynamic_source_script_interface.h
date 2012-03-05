@@ -145,7 +145,7 @@ namespace dynamic_source
       virtual void printstr(const char * lpcsz, ...);
       virtual bool read_file(const char * lpcsz, array_ptr_alloc < int_array > * prangea = NULL, const char * pszContentType = NULL);
 
-      virtual var include(const char * lpcsz);
+      virtual var include(const char * lpcsz, bool bRoot = false);
       virtual void launch(const char * lpcsz);
 //      virtual void edgify(int iEdge, ::userbase::document_template * ptemplate, bool bMakeVisible);
   //    virtual void edgify_app(int iEdge, ::ca::type_info prtcApp, bool bMakeVisible);

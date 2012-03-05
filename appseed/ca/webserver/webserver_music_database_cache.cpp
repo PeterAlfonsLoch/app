@@ -1231,23 +1231,30 @@ void database_cache::tmp_performer_update(bool bVerbose)
 
 	stringa database_cache::karaoke_getCodeArray(const int64_array & stra, int64_t topic, bool bVerbose)
 	{
-      UNREFERENCED_PARAMETER(bVerbose);
-		stringa codea;
-
+      
 		AlphaSelectPerformer * pas = new AlphaSelectPerformer(topic);
-		pas->m_iaClassId = stra;
+		
+      pas->m_iaClassId = stra;
 
-		stringa fulla  = pas->code_getFullArray();
-		for(int i = 0 ; i < fulla.get_count(); i++)
-		{
-         string code = fulla[i];
-         if(pas->code_getCount(code))
-			{
-				codea.add(code);
-         }
-		}
+      if(bVerbose)
+      {
+
+         dprint("<h3>karaoke_getCodeArray</h3>");
+         dprint("classes are " + stra.implode(", "));
+
+      }
+
+      stringa codea = pas->code_calcArray();
+
+      if(bVerbose)
+      {
+       
+         dprint("calculated artists first letters are " + codea.implode(","));
+
+      }
 
 		return codea;
+
 	}
 
 	string database_cache::karaoke_getCodeArrayField(const int64_array & iaClassId, int64_t topic, bool bVerbose)
@@ -1261,6 +1268,8 @@ void database_cache::tmp_performer_update(bool bVerbose)
 
       string strTopicType(gen::str::itoa(topictype));
       string strClassId(gen::str::itoa(classid));
+
+      int64_array iaClass;
 		
       stringa straClassid;
       straClassid = classidaParam;
@@ -1322,7 +1331,13 @@ void database_cache::tmp_performer_update(bool bVerbose)
             var row = rows.at(i);
 				if(row.at(0) > 0 && row.at(1) > 0)
 				{
-					string codeafld = karaoke_getCodeArrayField(classidaParam, topictype, bVerbose);
+               iaClass.remove_all();
+               if(classid >= 0)
+               {
+                  iaClass.add(classid);
+               }
+               iaClass.add_unique(classidaParam);
+					string codeafld = karaoke_getCodeArrayField(iaClass, topictype, bVerbose);
 					if(bVerbose)
 					{
 						print("Insert class=" + strClassId + ", parentclass=" + parentclass + ": ");

@@ -270,13 +270,203 @@ namespace dynamic_source
       return real_path(psz);
    }
 
-   var script_impl::include(const char * lpcsz)
+   bool script_impl::defer_expand_file(const char * lpcszPath)
+   {
+      
+      raw_print(defer_expanded_file_string(lpcszPath));
+
+      return true;
+
+   }
+
+   string script_impl::defer_expanded_file_string(const char * lpcszPath)
+   {
+
+      string strMainPath(lpcszPath);
+      
+      string strFile = Application.file().as_string(lpcszPath);
+
+      string strExtension = System.file().extension(lpcszPath);
+
+      string strRet;
+
+      if(strExtension == "css")
+      {
+         strRet += ("// including file inline : \"" );
+         gen::str::begins_eat_ci(strMainPath, get_manager()->m_strNetnodePath);
+         strRet += (strMainPath);
+         strRet += ("\"\r\n");
+         int iFind;
+         int iStart = 0;
+         int i;
+         int j;
+         while((iFind = strFile.find("@import", iStart)) >= 0)
+         {
+            strRet += (strFile.Mid(iStart, iFind - iStart));
+            i = iFind + 7; // length of @import
+            while(isspace(strFile[i]) && i < strFile.get_length())
+               i++;
+            j = i;
+            while(isalpha(strFile[j]) && j < strFile.get_length())
+               j++;
+            if(strFile.Mid(i, j - i) == "url")
+            {
+               while((isspace(strFile[j]) || strFile[j] == '(') && strFile[j] != '\r' && strFile[j] != '\n' && j < strFile.get_length())
+                  j++;
+               while((isspace(strFile[j]) || strFile[j] == '\"') && strFile[j] != '\r' && strFile[j] != '\n'  && j < strFile.get_length())
+                  j++;
+               i = j + 1;
+               while(strFile[i] != '\"'  && strFile[i] != '\r' && strFile[i] != '\n'  && i < strFile.get_length())
+                  i++;
+
+               string strScript = strFile.Mid(j, i - j);
+
+               i++; // skip quote
+
+               while((isspace(strFile[i]) || strFile[i] == ')') && strFile[i] != '\r' && strFile[i] != '\n'  && i < strFile.get_length())
+                  i++;
+               while((isspace(strFile[i]) || strFile[i] == ';') && strFile[i] != '\r' && strFile[i] != '\n'  && i < strFile.get_length())
+                  i++;
+               string strPath;
+               if(strScript.Left(1) == "/")
+               {
+                  
+                  if(strlen(gprop("param_site")) > 0)
+                  {
+                     strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+                  }
+                  if(strPath.is_empty() || !Application.file().exists(strPath))
+                  {
+                     strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
+                  }
+               }
+               else
+               {
+                  strPath = System.dir().path(System.dir().name(lpcszPath), strScript);
+               }
+               m_pinstanceMain->ob_start();
+               include(strPath);
+               string str;
+               m_pinstanceMain->ob_get_clean().to_string(str);
+               strRet += str;
+            }
+            iStart = i;
+         }
+         strRet += (strFile.Mid(iStart));
+      }
+      else if(strExtension == "js")
+      {
+         string strTitle = System.file().title_(strMainPath);
+         strRet += ("// including file inline : \"" );
+         gen::str::begins_eat_ci(strMainPath, get_manager()->m_strNetnodePath);
+         strRet += (strMainPath);
+         strRet += ("\"\r\n");
+         int iFind;
+         int iStart = 0;
+         int i;
+         int j;
+         if(strTitle == "c" && (iFind = strFile.find("___include", iStart)) >= 0)
+         {
+            strRet += (strFile.Mid(iStart, iFind - iStart + 10));
+            iStart = iFind + 10;
+         }
+         while((iFind = strFile.find("___include", iStart)) >= 0)
+         {
+            strRet += (strFile.Mid(iStart, iFind - iStart));
+            i = iFind + 10; // length of ___include
+            while(isspace(strFile[i]) && i < strFile.get_length())
+               i++;
+            if(strFile[i] != '(')
+            {
+               iStart = i + 1;
+               continue;
+            }
+            i++;
+            while(isspace(strFile[i]) && strFile[i] != '\r' && strFile[i] != '\n' && i < strFile.get_length())
+               i++;
+            char chQuote = strFile[i];
+            if(i + 1 < strFile.get_length())
+               i++;
+            j = i;
+            while(strFile[j] != chQuote  && strFile[j] != '\r' && strFile[j] != '\n'  && j < strFile.get_length())
+               j++;
+
+            string strScript = strFile.Mid(i, j - i);
+
+            if(j + 1 < strFile.get_length())
+               j++; // skip quote
+
+
+            while((isspace(strFile[j]) || strFile[j] == ')') && strFile[j] != '\r' && strFile[j] != '\n'  && j < strFile.get_length())
+               j++;
+            while((isspace(strFile[j]) || strFile[j] == ';') && strFile[j] != '\r' && strFile[j] != '\n'  && j < strFile.get_length())
+               j++;
+            string strPath;
+            if(strScript.Left(1) == "/")
+            {
+                  
+               if(strlen(gprop("param_site")) > 0)
+               {
+                  strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+               }
+               if(strPath.is_empty() || !Application.file().exists(strPath))
+               {
+                  strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
+               }
+            }
+            else
+            {
+               strPath = System.dir().path(System.dir().name(lpcszPath), strScript);
+            }
+            m_pinstanceMain->ob_start();
+            include(strPath);
+            string str;
+            m_pinstanceMain->ob_get_clean().to_string(str);
+            strRet += str;
+            iStart = j;
+         }
+         strRet += (strFile.Mid(iStart));
+      }
+      else if(strExtension == "php")
+      {
+         strRet += ("<!-- including file inline " );
+         gen::str::begins_eat_ci(strMainPath, get_manager()->m_strNetnodePath);
+         strRet += (strMainPath);
+         strRet += (" -->\r\n");
+         strRet += (strFile);
+      }
+      else
+      {
+         strRet += (strFile);
+      }
+
+
+      return strRet;
+   }
+
+   var script_impl::include(const char * lpcsz, bool bRoot)
    {
       string strInclude(lpcsz);
       string strExtension = System.file().extension(strInclude);
-      if(strExtension != "ds"
-         && strExtension != "js"
-         && strExtension != "css"
+      string strExternalMd5;
+      if(strExtension == "js"
+      || strExtension == "css")
+      {
+         string strName = System.file().name_(strInclude);
+         int iEnd = strName.reverse_find('.');
+         if(iEnd >= 0)
+         {
+            int iStart = strName.reverse_find('.', iEnd - 1);
+            if(iStart >= 0)
+            {
+               strExternalMd5 = strName.Mid(iStart + 1, iEnd - iStart - 1);
+               iEnd = strInclude.reverse_find('.');
+               iStart = strInclude.reverse_find('.', iEnd - 1);
+               strInclude = strInclude.Left(iStart) + "." + strExtension;
+            }
+         }
+      }
+      else if(strExtension != "ds"
          && strExtension != "php")
       {
          strInclude += ".ds";
@@ -292,6 +482,82 @@ namespace dynamic_source
             return include(sys_get_include_path("ds", "internal", "http_error/404"));
          }
       }
+
+      if(!get_manager()->include_has_script(strInclude))
+      {
+         if(bRoot)
+         {
+            if(strExternalMd5.has_char())
+            {
+               outheader("Cache-control") = "public, max-age=3153600";
+               outheader("Pragma") = "public";
+
+               m_pnetnodesocket->outheaders().remove_by_name("Set-Cookie");
+
+               m_pnetnodesocket->response().cookies().remove_all();
+               outheader("Expires") = System.http().gmdate(strtotime("+365 day"));
+
+            }
+            else
+            {
+               outheader("Cache-control") = "public, max-age=0";
+               outheader("Pragma") = "public";
+
+               m_pnetnodesocket->outheaders().remove_by_name("Set-Cookie");
+
+               m_pnetnodesocket->response().cookies().remove_all();
+               outheader("Expires") = System.http().gmdate(::time(NULL));
+
+            }
+
+            outheader("Vary") = "Accept-Encoding";
+
+            string strMd5 = get_manager()->include_expand_md5(strInclude);
+
+            if(strMd5.has_char() && inheader("If-None-Match").compare_value_ci(strMd5) == 0)
+            {
+               
+               outheader("ETag") = strMd5;
+               outattr("http_status_code") = 304;
+               outattr("http_status") = "Not Modified";
+
+            }
+            else
+            {
+
+               string strExpanded = defer_expanded_file_string(strInclude);
+
+               strMd5 = System.crypt().md5(strExpanded);
+
+               get_manager()->set_include_expand_md5(strInclude, strMd5);
+
+               outheader("ETag") = strMd5;
+
+               if(inheader("If-None-Match") == outheader("ETag"))
+               {
+
+                  outattr("http_status_code") = 304;
+                  outattr("http_status") = "Not Modified";
+
+               }
+               else
+               {
+               
+                  raw_print(strExpanded);
+
+               }
+            }
+               
+            return true;
+
+         }
+
+         return defer_expand_file(strInclude);
+
+      }
+      
+
+      
 
       netnode::application * papp = m_papp->m_pappThis;
       script_manager * pmanager = papp->get_script_manager();
@@ -677,9 +943,14 @@ namespace dynamic_source
          {
             outheader("Content-type") = "image/jpeg";
          }
-         outheader("Cache-control") = "public";
+         outheader("Cache-control") = "public, max-age=7257600";
          outheader("Pragma") = "public";
-         //outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
+
+         m_pnetnodesocket->outheaders().remove_by_name("Set-Cookie");
+
+         m_pnetnodesocket->response().cookies().remove_all();
+         
+         outheader("Expires") = System.http().gmdate(strtotime("+84 day"));
          string strPath;
          if(strlen(gprop("param_site")) > 0)
          {
@@ -689,42 +960,73 @@ namespace dynamic_source
          {
             strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
          }
-
+         
          if(get_manager()->include_matches_file_exists(strPath))
          {
-            read_file(strPath);
+
+            outheader("ETag") = System.file36().md5(strPath);
+
+            if(inheader("If-None-Match") == outheader("ETag"))
+            {
+
+               outattr("http_status_code") = 304;
+               outattr("http_status") = "Not Modified";
+
+            }
+            else
+            {
+             
+               read_file(strPath);
+
+            }
+
          }
       }
       else if(gen::str::begins(strUri, "/css/"))
       {
+
          if(System.file().extension(strScript).Right(3) == "css")
          {
             outheader("Content-type") = "text/css";
-            outheader("Cache-control") = "public";
-            outheader("Pragma") = "public";
          }
-         //outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
+
          string strPath;
+         
          if(strlen(gprop("param_site")) > 0)
          {
             strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
          }
+         
          if(strPath.is_empty() || !Application.file().exists(strPath))
          {
             strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
          }
-         include(strPath);
+
+         include(strPath, true);
+
       }
       else if(gen::str::begins(strUri, "/js/"))
       {
-         if(System.file().extension(strScript).Right(2) == "js")
+         
+         if(System.file().extension(strScript).Right(3) == "css")
          {
-            outheader("Content-type") = "text/javascript";
-            outheader("Cache-control") = "public";
-            outheader("Pragma") = "public";
+            outheader("Content-type") = "application/javascript";
          }
-         outheader("Expires") = System.http().gmdate(strtotime("+1 day"));
-         include(System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript));
+
+         string strPath;
+         
+         if(strlen(gprop("param_site")) > 0)
+         {
+            strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+         }
+         
+         if(strPath.is_empty() || !Application.file().exists(strPath))
+         {
+            strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
+         }
+
+         include(strPath, true);
+
       }
       else if(strScript == "/sec" &&
          (
@@ -1613,19 +1915,21 @@ namespace dynamic_source
          // use to search for a document
          //if(!is_empty($g_langdir_modifier))
          //   $local_modifiers[] = $g_langdir_modifier;
-         if(!gstr("g_langdir_modifier").is_empty())
-            straMod.add(gstr("g_langdir_modifier"));
+         //if(!gstr("g_langdir_modifier").is_empty())
+           // straMod.add(gstr("g_langdir_modifier"));
 
          // if $"g_langdir_modifier_ex" is set and is an base_array, it has
          // higher priority over $g_langdir_modifier and it will
          // hold the modifiers in order of priority. Higher priority first.
-         straMod.add(propLangDirModifierEx.stra());
+         //straMod.add(propLangDirModifierEx.stra());
+
+         gen::international::locale_style & ls = localestyle();
 
          if(gprop("enable_userdir"))
          {
-            for(int i = 0; i < straMod.get_size(); i++)
+            for(int i = 0; i < ls.m_idaStyle.get_size(); i++)
             {
-               string strCandidate = strSubdomain + strBase + straMod[i] + strType + strDoc + strExt;
+               string strCandidate = strSubdomain + strBase + string(ls.m_idaLocale[i]) + "/" + string(ls.m_idaStyle[i]) + "/" + strType + strDoc + strExt;
                dprint("candidate1=" + strCandidate);
                //$path = util_file_realpath($candidate);
                string strPath = System.dir().path(pszSystemPath, strCandidate);
@@ -1641,10 +1945,10 @@ namespace dynamic_source
          string strPath;
          //            print_r($local_modifiers);
          //foreach($local_modifiers as $local_modifier)
-         for(int i = 0; i < straMod.get_size(); i++)
+         for(int i = 0; i < ls.m_idaStyle.get_size(); i++)
          {
 
-            strCandidate = strBase + strSubdomain + straMod[i] + strType + strDoc + strExt;
+            strCandidate = strBase + strSubdomain + string(ls.m_idaLocale[i]) + "/" + string(ls.m_idaStyle[i]) + "/" + strType + strDoc + strExt;
             dprint("candidate1=" + strCandidate);
             //$path = util_file_realpath($candidate);
             strPath = System.dir().path(pszSystemPath, strCandidate);
@@ -1970,7 +2274,6 @@ namespace dynamic_source
    {
       return m_pmanager;
    }
-
 
 
    void script_impl::load_stringtable(const char * pszLoad)
@@ -2370,7 +2673,7 @@ namespace dynamic_source
    {
       if(this != m_pinstanceMain)
          throw 0;
-      if(cookies().find_cookie("sessid") >= 0 && m_ppropertysetSession != NULL)
+      if(cookies().find_cookie("sessid") >= 0 && m_pnetnodesocket->response().cookies().find_cookie("sessid") >= 0 && m_ppropertysetSession != NULL)
       {
          session_write(cookie("sessid").m_varValue, *m_ppropertysetSession);
       }
@@ -3312,13 +3615,38 @@ ok1:
       {
          dprint("strExtension=");
          dprint(strExtension);
+
+         bool bCacheable = false;
+
          if(!strcasecmp(strExtension, "ico"))
          {
             header("Content-type: image/x-icon");
+            bCacheable = true;
          }
          else if(!strcasecmp(strExtension, "ogv"))
          {
             header("Content-type: video/ogg");
+            bCacheable = true;
+         }
+         else if(!strcasecmp(strExtension, "png"))
+         {
+            header("Content-type: image/png");
+            bCacheable = true;
+         }
+         else if(!strcasecmp(strExtension, "jpg"))
+         {
+            header("Content-type: image/jpeg");
+            bCacheable = true;
+         }
+         else if(!strcasecmp(strExtension, "jpeg"))
+         {
+            header("Content-type: image/jpeg");
+            bCacheable = true;
+         }
+         else if(!strcasecmp(strExtension, "gif"))
+         {
+            header("Content-type: image/gif");
+            bCacheable = true;
          }
          else if(!strcasecmp(strExtension, "xpi"))
          {
@@ -3356,7 +3684,45 @@ ok1:
                }
             }
          }
-         read_file(strFile, &rangea);
+
+         if(bCacheable)
+         {
+            
+            outheader("Cache-control") = "public, max-age=7257600";
+            
+            outheader("Pragma") = "public";
+
+            m_pnetnodesocket->outheaders().remove_by_name("Set-Cookie");
+
+            m_pnetnodesocket->response().cookies().remove_all();
+         
+            outheader("Expires") = System.http().gmdate(strtotime("+84 day"));
+
+            outheader("ETag") = System.file36().md5(strFile);
+
+            if(inheader("If-None-Match") == outheader("ETag"))
+            {
+
+               outattr("http_status_code") = 304;
+               outattr("http_status") = "Not Modified";
+
+            }
+            else
+            {
+               
+               read_file(strFile, &rangea);
+
+            }
+
+
+         }
+         else
+         {
+
+            read_file(strFile, &rangea);
+
+         }
+
       }
    }
 
@@ -4503,7 +4869,77 @@ ok1:
       {
          string str(psz);
          str.replace("http://laborserver.net/image/", m_strImageWebSite);
-         str.replace("http://laborserver.net/css/", m_strCssWebSite);
+
+         stringa straExtension;
+         straExtension.add("css");
+         straExtension.add("js");
+
+         for(int i = 0; i < straExtension.get_count(); i++)
+         {
+
+            string strExtension = straExtension[i];
+
+            int iFind;
+            int iStart = 0;
+            string strRet;
+            string strScript;
+            string strPath;
+            string strFind = "http://laborserver.net/" + strExtension +"/";
+            int iExtensionLen = strExtension.length();
+            int iFindLen = strFind.length();
+            while((iFind = str.find(strFind, iStart)) >= 0)
+            {
+               strRet += str.Mid(iStart, iFind - iStart);
+               strRet += m_strCa2VFallbackWebSite + strExtension + "/";
+               iStart = iFind + iFindLen;
+               iFind = str.find("." + strExtension, iStart);
+               if(iFind >= 0)
+               {
+                  iFind += iExtensionLen + 1;
+                  strScript = "/" + strExtension + "/" + str.Mid(iStart, iFind - iStart);
+                  if(strlen(gprop("param_site")) > 0)
+                  {
+                     strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
+                  }
+                  if(strPath.is_empty() || !Application.file().exists(strPath))
+                  {
+                     strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
+                  }
+                  if(get_manager()->include_has_script(strPath))
+                  {
+                     // not cacheable.
+                     // write it as it is.
+                     strRet += str.Mid(iStart, iFind - iStart);
+                  }
+                  else
+                  {
+                     // cacheable.
+                     // write it with md5.
+                     string strMd5 = get_manager()->include_expand_md5(strPath);
+                     bool bUpdate = false;
+                     if(strMd5.is_empty())
+                     {
+                        strMd5 = System.crypt().md5(defer_expanded_file_string(strPath));
+                        bUpdate = true;
+                     }
+                     strRet += str.Mid(iStart, iFind - iStart - iExtensionLen - 1);
+                     strRet += ".";
+                     strRet += strMd5;
+                     strRet += "." + strExtension;
+                     if(bUpdate)
+                        get_manager()->set_include_expand_md5(strPath, strMd5);
+                  }
+               }
+               else
+               {
+                  break;
+               }
+               iStart = iFind;
+            }
+            strRet += str.Mid(iStart);
+            str = strRet;
+         }
+
          str.replace("http://laborserver.net/file/", m_strFileWebSite);
          str.replace("http://laborserver.net/", m_strCa2VFallbackWebSite);
          str.replace("https://fontopus.com/", m_strCa2OpenWebSite);

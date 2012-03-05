@@ -89,9 +89,9 @@ namespace dynamic_source
 
 
 
-   var script_composite::include(const char * lpcsz)
+   var script_composite::include(const char * lpcsz, bool bRoot)
    {
-      return m_pinterface->include(lpcsz);
+      return m_pinterface->include(lpcsz, bRoot);
    }
 
    void script_composite::launch(const char * lpcsz)

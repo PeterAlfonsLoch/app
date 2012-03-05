@@ -460,9 +460,23 @@ namespace dynamic_source
 
    void script_manager::clear_include_matches()
    {
-      single_lock sl(&m_mutexIncludeMatches, TRUE);
-      m_mapIncludeMatchesFileExists.remove_all();
-      m_mapIncludeMatchesIsDir.remove_all();
+      
+      {
+         single_lock sl(&m_mutexIncludeMatches, TRUE);
+         m_mapIncludeMatchesFileExists.remove_all();
+         m_mapIncludeMatchesIsDir.remove_all();
+      }
+
+      {
+         single_lock sl(&m_mutexIncludeHasScript, TRUE);
+         m_mapIncludeHasScript.remove_all();
+      }
+
+      {
+         single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+         m_mapIncludeExpandMd5.remove_all();
+      }
+
    }
 
    bool script_manager::include_matches_file_exists(const string & strPath)
@@ -491,6 +505,38 @@ namespace dynamic_source
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
       }
+   }
+
+   bool script_manager::include_has_script(const string & strPath)
+   {
+      single_lock sl(&m_mutexIncludeHasScript, TRUE);
+      ::collection::string_map < bool >::pair * ppair = m_mapIncludeHasScript.PLookup(strPath);
+      if(ppair != NULL)
+         return ppair->m_value;
+      else
+      {
+         
+         // roughly detect this way: by finding the <?
+
+         bool bHasScript = Application.file().as_string(strPath).find("<?") >= 0;
+         
+         m_mapIncludeHasScript.set_at(strPath, bHasScript);
+
+         return bHasScript;
+
+      }
+   }
+
+   string script_manager::include_expand_md5(const string & strPath)
+   {
+      single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+      return m_mapIncludeExpandMd5[strPath];
+   }
+
+   void script_manager::set_include_expand_md5(const string & strPath, const string & strMd5)
+   {
+      single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+      m_mapIncludeExpandMd5[strPath] = strMd5;
    }
 
    UINT AFX_CDECL script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
