@@ -185,7 +185,7 @@ namespace spa
 
       new_progress_end(0.1);
       
-      g_strLastHost = "";
+      
       
       g_hmutexInstall = NULL;
          //SECURITY_ATTRIBUTES MutexAttributes;
@@ -251,6 +251,7 @@ namespace spa
 install_begin:;
          installation_file_lock(true);
       {
+         g_strLastHost = "";
          m_strSpa.remove_all();
          m_iTotalGzLen = 0;
          m_NeedRestartBecauseOfReservedFile = false;

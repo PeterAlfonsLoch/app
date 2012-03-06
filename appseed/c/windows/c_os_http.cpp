@@ -37,6 +37,14 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    if(file_exists_dup(pszFile) && !::DeleteFile(pszFile))
    {
       //trace("download failed: could not delete file prior to download.");
+      vsstring str;
+      str = "ms_download_dup: error url=\"";
+      str += pszUrl;
+      str += "\"";
+      str = "file path=\"";
+      str += pszFile;
+      str += "\"";
+      trace(str);
       return false;
    }
 
@@ -206,6 +214,11 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       {
          ::CloseHandle(hfile);
          ::OutputDebugStringA("Out of memory\n");
+         vsstring str;
+         str = "ms_download_dup: out of memory error url=\"";
+         str += pszUrl;
+         str += "\"";
+         trace(str);
          return false;
       }
       if(callback != NULL)
@@ -258,6 +271,19 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
    delete [] pwzHost;
    g_hPreviousRequest = hRequest;
+
+   if(!bResults)
+   {
+      vsstring str;
+      str = "ms_download_dup: error url=\"";
+      str += pszUrl;
+      str += "\"";
+      str = "file path=\"";
+      str += pszFile;
+      str += "\"";
+      trace(str);
+   }
+
    return bResults != FALSE;
 }
 
@@ -468,7 +494,18 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    if (hConnect) InternetCloseHandle(hConnect);
    if (hSession) InternetCloseHandle(hSession);
    delete [] pwzHost;
+
+   if(!bResults)
+   {
+      vsstring str;
+      str = "ms_download_dup: error url=\"";
+      str += pszUrl;
+      str += "\"";
+      trace(str);
+   }
+
    return strRet;
+
 }
 
 
