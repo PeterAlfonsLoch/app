@@ -33,7 +33,15 @@ namespace sockets
       }
       else if(GetUrlPort() == 80 || GetUrlPort() == 8080)
       {
-         m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
+         
+         // It is absolutely no good idea to maintain a connection opened in the server
+         // in a general place as this class, because no one will know when it will be closed.
+         // And to keep alive in http - http_tunnel - it is better to create a session class,
+         // that receives http requests and finally close connection...
+         // session though is not currently implemented in ca2...
+         //m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
+
+
          m_bOk = true;
          step();
       }
