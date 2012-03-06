@@ -184,7 +184,10 @@ namespace spa
 
 
       new_progress_end(0.1);
-         g_hmutexInstall = NULL;
+      
+      g_strLastHost = "";
+      
+      g_hmutexInstall = NULL;
          //SECURITY_ATTRIBUTES MutexAttributes;
          //ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
          //MutexAttributes.nLength = sizeof( MutexAttributes );
