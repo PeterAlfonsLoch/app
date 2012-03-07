@@ -39,7 +39,7 @@ namespace sockets
          // And to keep alive in http - http_tunnel - it is better to create a session class,
          // that receives http requests and finally close connection...
          // session though is not currently implemented in ca2...
-         m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
+         //m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
 
 
          m_bOk = true;
