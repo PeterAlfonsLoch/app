@@ -843,6 +843,128 @@ namespace filemanager
    }
 
 
+   int ImageSet::GetImageByExtension(HWND hwnd, const char * pszPath, EIcon eicon, bool bFolder)
+   {
+
+      if(pszPath == NULL)
+         return -1;
+
+      string strPath(pszPath);
+
+      string strExtension = System.file().extension(strPath);
+
+      int iType;
+      switch(eicon)
+      {
+      case IconNormal:
+         iType = 0;
+         break;
+      case IconOpen:
+         iType = GIL_OPENICON;
+         break;
+      default:
+         // unexpected icon type
+         ASSERT(FALSE);
+         return -1;
+      }
+
+
+      int iImage = -1;
+
+      HICON hicon16 = NULL;
+      HICON hicon48 = NULL;
+      HRESULT hrIconLocation;
+      HRESULT hrExtract;
+      ImageKey imagekey;
+
+
+      string strExtra;
+
+
+      int iIcon = -1;
+      UINT uiFlags = 0;
+
+      SHFILEINFO shfi16;
+      SHFILEINFO shfi48;
+
+
+      imagekey.m_iIcon         = -1;
+      if(bFolder && !strExtension.has_char())
+      {
+         imagekey.m_strExtension  = "folder";
+      }
+      else
+      {
+         imagekey.m_strExtension  = strExtension;
+      }
+      imagekey.m_strPath.Empty();
+
+      if(!m_imagemap.Lookup(imagekey, iImage))
+      {
+
+         try
+         {
+            if(imagekey.m_strExtension == "folder")
+            {
+               SHGetFileInfo(
+                  "foo",
+                  FILE_ATTRIBUTE_DIRECTORY,
+                  &shfi16,
+                  sizeof(shfi16),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_SMALLICON);
+               SHGetFileInfo(
+                  "foo",
+                  FILE_ATTRIBUTE_DIRECTORY,
+                  &shfi48,
+                  sizeof(shfi48),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_LARGEICON);
+            }
+            else
+            {
+               strPath = "foo." +imagekey.m_strExtension;
+               SHGetFileInfo(
+                  strPath,
+                  FILE_ATTRIBUTE_NORMAL,
+                  &shfi16,
+                  sizeof(shfi16),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_SMALLICON);
+               SHGetFileInfo(
+                  strPath,
+                  FILE_ATTRIBUTE_NORMAL,
+                  &shfi48,
+                  sizeof(shfi48),
+                  SHGFI_USEFILEATTRIBUTES
+                  | SHGFI_ICON
+                  | SHGFI_LARGEICON);
+            }
+            iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
+            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+            System.imaging().Createcolor_blend_ImageList(
+               m_pil48,
+               m_pil48Hover,
+               RGB(255, 255, 240),
+               64);
+
+            m_imagemap.set_at(imagekey, iImage);
+         }
+         catch(...)
+         {
+         }
+
+      }
+
+
+
+      return iImage;
+
+   }
+
    bool ImageSet::GetIcon(
       HWND hwnd,
       IShellFolder * lpsf,
@@ -1153,13 +1275,15 @@ namespace filemanager
       HWND hwnd,
       const char * psz,
       const wchar_t * lpcszExtra,
-      EIcon eicon)
+      EIcon eicon, 
+      bool bFolder)
    {
       string strPath(psz);
 
+      int iImage = -1;
+
       if(gen::str::ends_ci(strPath, ".ca2"))
       {
-         int iImage = -1;
          string str = Application.file().as_string(strPath);
          if(gen::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
@@ -1176,12 +1300,38 @@ namespace filemanager
          }
          return iImage;
       }
+      // try to find "uifs:// http:// ftp:// like addresses"
+      // then should show icon by extension or if is folder
+      int iFind = gen::str::find_ci("://", strPath);
+      if(iFind >= 0)
+      {
+         string strProtocol = strPath.Left(iFind);
+         int i = 0;
+         while(i < strProtocol.get_length() && isalnum(strProtocol[i]))
+         {
+            i++;
+         }
+         if(i > 0 && i == strProtocol.get_length())
+         {
+            // heuristically valid protocol
+            return GetImageByExtension(hwnd, strPath, eicon, bFolder);
+         }
+         if(bFolder)
+         {
+            return GetImageByExtension(hwnd, strPath, eicon, bFolder);
+         }
+      }
 
       LPITEMIDLIST lpiidlAbsolute;
+      
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
-      int iImage = GetImage(hwnd, lpiidlAbsolute, lpcszExtra, eicon);
+      
+      iImage = GetImage(hwnd, lpiidlAbsolute, lpcszExtra, eicon);
+      
       _017ItemIDListFree(lpiidlAbsolute);
+
       return iImage;
+
    }
 
    bool ImageSet::GetIcon(

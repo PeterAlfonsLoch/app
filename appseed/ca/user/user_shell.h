@@ -107,11 +107,14 @@ namespace filemanager
          int GetImage(HWND hwnd, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
          int GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon) ;
-         int GetImage(HWND hwnd, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon);
+         int GetImage(HWND hwnd, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
+         int GetImageByExtension(HWND hwnd, const char * lpcsz, EIcon eicon, bool bFolder);
 #ifdef WINDOWS
          int GetImage(HWND hwnd, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
          int GetImage(HWND hwnd, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
+
+
          inline image_list * GetImageList16(void)
          {
             return m_pil16;

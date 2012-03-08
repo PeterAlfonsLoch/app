@@ -441,7 +441,8 @@ namespace filemanager
             _GetWnd()->GetTopLevelParent()->_get_handle(),
             item.m_strPath,
             NULL,
-            _shell::IconNormal);
+            _shell::IconNormal,
+            get_document()->is_dir(item.m_strPath));
 
          m_iCreateImageListStep++;
 
