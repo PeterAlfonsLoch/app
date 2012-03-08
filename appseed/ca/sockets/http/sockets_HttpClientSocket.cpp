@@ -107,15 +107,11 @@ namespace sockets
 
    void http_client_socket::OnHeaderComplete()
    {
-      if (m_filename.get_length())
-      {
-         m_fil = fopen(m_filename, "wb");
-      }
-      else if(m_pfile != NULL)
+      if(m_pfile != NULL)
       {
          if(m_content_length != ((size_t) (-1)))
          {
-            gen::memory_file * pmemoryfile = dynamic_cast < gen::memory_file * > (m_pfile);
+            gen::memory_file * pmemoryfile = dynamic_cast < gen::memory_file * > (m_pmemoryfile);
             if(pmemoryfile != NULL)
             {
                pmemoryfile->allocate_internal(m_content_length);
@@ -140,29 +136,15 @@ namespace sockets
    void http_client_socket::OnData(const char *buf,size_t len)
    {
       OnDataArrived(buf, len);
-      if(m_pfile)
-      {
-         m_pfile->write(buf, len);
-      }
-      else if (m_fil)
-      {
-         fwrite(buf, 1, len, m_fil);
-      }
-      else
-      {
-         gen::memory_file memfile(get_app(), &m_memoryData);
-         memfile.seek_to_end();
-         memfile.write(buf, len);
-      }
+      m_pfile->write(buf, len);
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
-         if (m_fil)
-         {
-            fclose(m_fil);
-            m_fil = NULL;
-         }
          m_b_complete = true;
+         if(m_response["Content-Encoding"] == "gzip")
+         {
+            System.compress().ungz(*m_pmemoryfile);
+         }
          OnContent();
          if (m_b_close_when_complete)
          {

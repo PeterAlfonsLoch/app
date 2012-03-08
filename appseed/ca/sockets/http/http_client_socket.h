@@ -1,8 +1,10 @@
 #pragma once
 
 
+
 namespace sockets
 {
+
 
    /** get http response to file or primitive::memory. 
       \ingroup http */
@@ -10,23 +12,22 @@ namespace sockets
    {
    public:
 
-      mutex             m_mutexData;
-      ::ex1::file *     m_pfile;
+      mutex                   m_mutexData;
+      gen::memory_file *      m_pmemoryfile;
       
       
-      string m_filename; ///< Filename to write response to
-      primitive::memory    m_memoryData; ///< Ptr to buffer where to store response
+      //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response
       //size_t m_data_size; ///< Max size of data buffer
       size_t m_content_length; ///< Content-length header received from remote
       string m_content; ///< Received http headers
       //bool m_data_ptr_set; ///< buffer set from outside, do not delete
-      FILE *m_fil; ///< Output file
       size_t m_content_ptr; ///< Number of bytes received from body
       bool m_b_complete; ///< The entire content-length number of bytes has been received
       bool m_b_close_when_complete; ///< close when the full response has been received
       string m_protocol; ///< Protocol part of url_in
       string m_url_filename; ///< Filename from url_in
       string m_content_type; ///< Content-type: header from response
+
 
       
       http_client_socket(socket_handler_base&);
@@ -46,10 +47,6 @@ namespace sockets
 
       /** New callback method fires when all data is received. */
       virtual void OnContent();
-
-      /** write response to this file */
-      void SetFilename(const string & );
-      const string & Filename() const { return m_filename; }
 
       /** get response headers. */
       const string & GetContent();

@@ -15,6 +15,8 @@ namespace ca4
       bool ungz(ex1::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
       bool gz(ex1::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
+      bool ungz(::gen::memory_file & memoryfile);
+
       bool unbz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
       bool bz(::ca::application * papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
 

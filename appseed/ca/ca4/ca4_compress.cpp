@@ -34,6 +34,64 @@ namespace ca4
    }
 
 
+   bool compress::ungz(::gen::memory_file & memoryfile)
+   {
+
+      __int64 dataLength = memoryfile.get_length();
+ 
+      bool done = false;
+      int status;
+ 
+      z_stream strm;
+      strm.next_in = (Bytef *)memoryfile.get_data();
+      strm.avail_in = (uInt)dataLength;
+      strm.total_out = 0;
+      strm.zalloc = Z_NULL;
+      strm.zfree = Z_NULL;
+
+      ::gen::memory_file memoryfileOut(get_app());
+      class primitive::memory memory;
+      memory.allocate(1024 * 256);
+
+      // inflateInit2 knows how to deal with gzip format
+      if (inflateInit2(&strm, (15+32)) != Z_OK)
+      {
+	      return false;
+      }
+ 
+      while (!done)
+      {
+ 
+	      strm.next_out = memory.get_data();
+	      strm.avail_out = memory.get_size();
+ 
+	      // Inflate another chunk.
+	      status = inflate (&strm, Z_SYNC_FLUSH);
+
+         memoryfileOut.write(memory.get_data(), memory.get_size() - strm.avail_out);
+ 
+	      if (status == Z_STREAM_END)
+	      {
+		      done = true;
+	      }
+	      else if (status != Z_OK)
+	      {
+		      break;	
+	      }
+      }
+ 
+      memoryfile.FullLoad(memoryfileOut);
+
+      if (inflateEnd (&strm) != Z_OK || !done)
+      {
+	      return true;
+      }
+
+      return true;
+
+   }
+
+
    bool compress::gz(ex1::writer & ostreamCompressed, const char * lpcszUncompressed)
    {
       string str(lpcszUncompressed);
