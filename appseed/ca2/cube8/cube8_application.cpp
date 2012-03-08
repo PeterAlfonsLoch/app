@@ -169,6 +169,38 @@ namespace cube8
       return ::ca2::fontopus::application::allocate_new_service();
    }*/
 
+   bool application::_001CloseApplicationByUser()
+   {
+
+      // attempt to save all documents
+      if(!save_all_modified())
+         return false;     // don't close it
+
+      // hide the application's windows before closing all the documents
+      HideApplication();
+
+      // close all documents first
+      close_all_documents(FALSE);
+
+
+      _001CloseAllDocuments(FALSE);
+
+
+      // there are cases where destroying the documents may destroy the
+      //  main ::ca::window of the application.
+      //bool bAfxContextIsDll = afxContextIsDLL;
+      //if (!bAfxContextIsDll && papp->GetVisibleFrameCount() <= 0)
+      if(GetVisibleFrameCount() <= 0)
+      {
+
+         PostThreadMessageA(WM_QUIT, 0, 0);
+
+      }
+
+      return true;
+
+   }
+
 
 } //namespace cube8
 

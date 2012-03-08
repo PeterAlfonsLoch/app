@@ -37,6 +37,8 @@ namespace cube8
       virtual void set_title(const char * pszTitle);
 
 
+      virtual bool _001CloseApplicationByUser();
+
    };
 
 

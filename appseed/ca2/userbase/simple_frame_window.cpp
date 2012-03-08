@@ -567,38 +567,29 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       return;
    }
 
-   if(is_application_main_window())
+   ::cube8::application * papp = &Application;
+
+   if(papp->is_cube() || papp->is_bergedge() || papp->is_session() || papp->is_system())
    {
-      if(Application.GetVisibleTopLevelFrameCountExcept(this) <= 0)
+         
+      // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
+      // cube, bergedge, session or system.
+         
+      for(int i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
-         // attempt to save all documents
-         if (!Application.save_all_modified())
-            return;     // don't close it
+            
+         ::cube8::application * pappChild = &App(Sys(papp).m_appptra[i]);
 
-         // hide the application's windows before closing all the documents
-         Application.HideApplication();
-
-         // close all documents first
-         Application.close_all_documents(FALSE);
-
-         Application._001CloseAllDocuments(FALSE);
-
-
-         // there are cases where destroying the documents may destroy the
-         //  main ::ca::window of the application.
-         //bool bAfxContextIsDll = afxContextIsDLL;
-         //if (!bAfxContextIsDll && papp->GetVisibleFrameCount() <= 0)
-         if(Application.GetVisibleFrameCount() <= 0)
-         {
-            Application.PostThreadMessageA(WM_QUIT, 0, 0);
+         if(!pappChild->_001CloseApplicationByUser())
             return;
-         }
+
+      }
+
+   }
+   else if(papp->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   {
+      if(!papp->_001CloseApplicationByUser())
          return;
-      }
-      else
-      {
-         DestroyWindow();
-      }
    }
    else
    {
