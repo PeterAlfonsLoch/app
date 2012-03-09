@@ -179,7 +179,7 @@ namespace sockets
    {
       //Debug deb("http_base_socket::OnTransferLimit");
       //TRACE("\n");
-      TRACE("http_base_socket::OnTransferLimit\n");
+      //TRACE("http_base_socket::OnTransferLimit\n");
    //   char msg[32768];
       OnResponseComplete();
       if (!m_b_keepalive)

@@ -247,12 +247,16 @@ namespace sockets
    }
 
 
-   int socket_handler::Select(long sec,long usec)
+   int socket_handler::Select(long lSeconds, long lMicroseconds)
    {
-      struct timeval tv;
-      tv.tv_sec = sec;
-      tv.tv_usec = usec;
-      return Select(&tv);
+      
+      struct timeval timeval;
+
+      timeval.tv_sec    = lSeconds;
+      timeval.tv_usec   = lMicroseconds;
+
+      return Select(&timeval);
+
    }
 
 
@@ -286,7 +290,7 @@ namespace sockets
          SOCKET s;
          socket *p;
          m_add.get_next_assoc(pos, s, p);
-         TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int)s, (int)m_add.get_size(), (int)ignore);
+         //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int)s, (int)m_add.get_size(), (int)ignore);
          //
          socket *plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
@@ -362,7 +366,7 @@ namespace sockets
          m_iSelectErrno = Errno;
       }
       dw2 = ::GetTickCount();
-      TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
+      //TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
       if (n == -1)
       {
          /*
@@ -597,7 +601,7 @@ namespace sockets
          if (tnow != m_tlast)
          {
             socket_id_list tmp = m_fds_timeout;
-            TRACE("Checking %d socket(s) for timeout\n", tmp.get_size());
+            //TRACE("Checking %d socket(s) for timeout\n", tmp.get_size());
             POSITION pos = tmp.get_head_position();
             for(; pos != NULL;)
             {
@@ -649,7 +653,7 @@ namespace sockets
                   
                      SOCKET nn = socket; //(*it3).first;
                      tcp -> SetRetryClientConnect(false);
-                     TRACE("close() before retry client connect\n");
+                     //TRACE("close() before retry client connect\n");
                      p -> close(); // removes from m_fds_retry
                      ::ca::smart_pointer < sockets::address > ad = p -> GetClientRemoteAddress();
                      if(ad.m_p != NULL)
@@ -671,7 +675,7 @@ namespace sockets
       if(m_fds_close.get_size())
       {
          socket_id_list tmp = m_fds_close;
-         TRACE("m_fds_close.size() == %d\n", (int)m_fds_close.get_size());
+         //TRACE("m_fds_close.size() == %d\n", (int)m_fds_close.get_size());
          POSITION pos = tmp.get_head_position();
          while(pos != NULL)
          {
@@ -694,7 +698,7 @@ namespace sockets
                      !tcp -> IsSSL() &&
                      p -> TimeSinceClose() < 5)
                   {
-   TRACE(" close(1)\n");
+   //TRACE(" close(1)\n");
                      if (tcp -> GetOutputLength())
                      {
                         LogError(p, "Closing", (int)tcp -> GetOutputLength(), "Sending all data before closing", ::gen::log::level::info);
@@ -713,11 +717,11 @@ namespace sockets
                   if (tcp && p -> IsConnected() && tcp -> Reconnect())
                   {
                      //SOCKET nn = *it; //(*it3).first;
-   TRACE(" close(2) fd %d\n", socket);
+   //TRACE(" close(2) fd %d\n", socket);
                      p -> SetCloseAndDelete(false);
                      tcp -> SetIsReconnect();
                      p -> SetConnected(false);
-                     TRACE("close() before reconnect\n");
+                     //TRACE("close() before reconnect\n");
                      p -> close(); // dispose of old file descriptor (open creates a new)
                      p -> OnDisconnect();
                      ::ca::smart_pointer <sockets::address> ad = p -> GetClientRemoteAddress();
@@ -735,7 +739,7 @@ namespace sockets
                   }
                   else
                   {
-                     TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
+                     //TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
                      if (tcp && p -> IsConnected() && tcp -> GetOutputLength())
                      {
                         LogError(p, "Closing", (int)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::gen::log::level::warning);
@@ -751,7 +755,7 @@ namespace sockets
                      else
                      {
                         Set(p -> GetSocket(),false,false,false);
-                        TRACE("close() before OnDelete\n");
+                        //TRACE("close() before OnDelete\n");
                         p -> close();
                      }
                      p -> OnDelete();
@@ -1165,12 +1169,12 @@ namespace sockets
          (which_one == LIST_CLOSE) ? m_fds_close : m_fds_close;
       if (add)
       {
-         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
+/*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
             (which_one == LIST_DETACH) ? "Detach" :
             (which_one == LIST_TIMEOUT) ? "Timeout" :
             (which_one == LIST_RETRY) ? "Retry" :
             (which_one == LIST_CLOSE) ? "close" : "<undef>",
-            add ? "add" : "remove");
+            add ? "add" : "remove");*/
       }
       if (add)
       {
@@ -1179,7 +1183,7 @@ namespace sockets
       }
       // remove
       ref.remove(s);
-      TRACE("/AddList\n");
+      //TRACE("/AddList\n");
    }
 
 
