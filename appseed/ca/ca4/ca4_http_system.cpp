@@ -800,7 +800,7 @@ retry:
          ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
          if(psocket == NULL)
             return false;
-         str = string((const char *) psocket->GetDataPtr(), psocket->GetPos() > psocket->GetContentLength()  ? psocket->GetPos() : psocket->GetContentLength());
+         str = string((const char *) psocket->GetDataPtr(), psocket->GetDataLength());
          headers = psocket->outheaders();
          gen::del(psocket);
          return true;

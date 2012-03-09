@@ -70,6 +70,9 @@ namespace sockets
       /** get ptr to response data buffer. */
       const unsigned char *GetDataPtr() const;
 
+      /** get length of response data buffer. */
+      size_t GetDataLength() const;
+
       /** close socket when response received. */
       void SetCloseOnComplete(bool = true);
 

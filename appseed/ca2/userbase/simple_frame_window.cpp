@@ -588,8 +588,10 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
    }
    else if(papp->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
+      
       if(!papp->_001CloseApplicationByUser())
          return;
+
    }
    else
    {

@@ -181,9 +181,10 @@ namespace sockets
       }
       else
       {
-         return m_content_length;
+         return m_memoryfile.get_size();
       }
    }
+
 
    size_t http_client_socket::GetContentPtr()
    {
@@ -202,8 +203,18 @@ namespace sockets
 
    const unsigned char *http_client_socket::GetDataPtr() const
    {
+
       return m_memoryfile.get_data();
+
    }
+
+   size_t http_client_socket::GetDataLength() const
+   {
+
+      return m_memoryfile.get_size();
+
+   }
+
 
    void http_client_socket::OnContent()
    {
