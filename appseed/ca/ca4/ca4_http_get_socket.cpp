@@ -1,25 +1,27 @@
 #include "StdAfx.h"
 
+
 namespace ca4
 {
 
-   http_get_socket::http_get_socket(::sockets::socket_handler_base& handler,const string & url,const string & to_file) :
+
+   http_get_socket::http_get_socket(::sockets::socket_handler_base & handler,const string & url) :
       ::ca::ca(handler.get_app()),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
-      ::sockets::http_get_socket(handler, url, to_file)
+      ::sockets::http_get_socket(handler, url)
    {
       m_pcookies = NULL;
    }
 
       
-   http_get_socket::http_get_socket(::sockets::socket_handler_base& handler,const string & host,port_t port,const string & url,const string & to_file) :
+   http_get_socket::http_get_socket(::sockets::socket_handler_base & handler, const string & host, port_t port, const string & url) :
       ::ca::ca(handler.get_app()),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
-      ::sockets::http_get_socket(handler, host, port, url, to_file)
+      ::sockets::http_get_socket(handler, host, port, url)
    {
       m_pcookies = NULL;
    }
@@ -52,3 +54,6 @@ namespace ca4
 
 
 } // namespace ca4
+
+
+

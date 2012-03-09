@@ -13,7 +13,8 @@ namespace sockets
    public:
 
       mutex                   m_mutexData;
-      gen::memory_file *      m_pmemoryfile;
+      gen::memory_file        m_memoryfile;
+      ex1::file *             m_pfile;
       
       
       //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response

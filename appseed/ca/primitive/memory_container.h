@@ -47,6 +47,7 @@ namespace primitive
       void offset_kept_pointers(memory_offset iOffset);
 
       LPBYTE get_data();
+      const LPBYTE get_data() const;
 
       bool IsValid() const;
 
@@ -71,6 +72,16 @@ namespace primitive
    };
 
    inline LPBYTE memory_container ::get_data()
+   {
+      
+      if(m_spmemory.is_null())
+         return NULL;
+      else
+         return (LPBYTE) m_spmemory->get_data();
+
+   }
+
+   inline const LPBYTE memory_container ::get_data() const
    {
       
       if(m_spmemory.is_null())

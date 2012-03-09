@@ -44,35 +44,32 @@ namespace sockets
    }
 
 
-   http_request_socket::http_request_socket(socket_handler_base& h, const char * pszRequest, const string & url_in,const string & to_file) : 
+   http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & url_in) : 
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
       http_client_socket(h, url_in)
    {
+      
       m_strRequest = pszRequest;
-      if (to_file.get_length())
-      {
-         SetFilename(to_file);
-      }
+
    }
 
 
-   http_request_socket::http_request_socket(socket_handler_base& h, const char * pszRequest, const string & host,port_t port,const string & url_in,const string & to_file) : 
+   http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & host, port_t port, const string & url_in) : 
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
       http_client_socket(h, url_in)
    {
+      
       m_strRequest = pszRequest;
+
       UNREFERENCED_PARAMETER(host);
       UNREFERENCED_PARAMETER(port);
-      if (to_file.get_length())
-      {
-         SetFilename(to_file);
-      }
+
    }
 
 

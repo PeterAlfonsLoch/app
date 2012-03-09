@@ -28,7 +28,7 @@
 
 #include <ctype.h>
 #include <errno.h>
-//#include <inttypes.h>
+#include "c/c_c.h"
 #include <limits.h>
 #include <math.h>
 #include <stdio.h>
@@ -64,6 +64,9 @@
 /* misc math functions */
 extern const uint8_t ff_log2_tab[256];
 
+/**
+ * Reverse the order of the bits of an 8-bits unsigned integer.
+ */
 extern const uint8_t av_reverse[256];
 
 static av_always_inline av_const int av_log2_c(unsigned int v)
@@ -124,7 +127,7 @@ static av_always_inline av_const int av_clip_c(int a, int amin, int amax)
 static av_always_inline av_const uint8_t av_clip_uint8_c(int a)
 {
     if (a&(~0xFF)) return (-a)>>31;
-    else           return (uint8_t) a;
+    else           return a;
 }
 
 /**
@@ -135,7 +138,7 @@ static av_always_inline av_const uint8_t av_clip_uint8_c(int a)
 static av_always_inline av_const int8_t av_clip_int8_c(int a)
 {
     if ((a+0x80) & ~0xFF) return (a>>31) ^ 0x7F;
-    else                  return (int8_t) a;
+    else                  return a;
 }
 
 /**
@@ -146,7 +149,7 @@ static av_always_inline av_const int8_t av_clip_int8_c(int a)
 static av_always_inline av_const uint16_t av_clip_uint16_c(int a)
 {
     if (a&(~0xFFFF)) return (-a)>>31;
-    else             return (uint16_t) a;
+    else             return a;
 }
 
 /**
@@ -157,7 +160,7 @@ static av_always_inline av_const uint16_t av_clip_uint16_c(int a)
 static av_always_inline av_const int16_t av_clip_int16_c(int a)
 {
     if ((a+0x8000) & ~0xFFFF) return (a>>31) ^ 0x7FFF;
-    else                      return (int16_t) a;
+    else                      return a;
 }
 
 /**
@@ -168,7 +171,7 @@ static av_always_inline av_const int16_t av_clip_int16_c(int a)
 static av_always_inline av_const int32_t av_clipl_int32_c(int64_t a)
 {
     if ((a+0x80000000u) & ~UINT64_C(0xFFFFFFFF)) return (a>>63) ^ 0x7FFFFFFF;
-    else                                         return (int32_t) a;
+    else                                         return a;
 }
 
 /**
@@ -220,8 +223,18 @@ static av_always_inline av_const int av_popcount_c(uint32_t x)
     return (x + (x >> 16)) & 0x3F;
 }
 
-#define MKTAG(a,b,c,d) ((a) | ((b) << 8) | ((c) << 16) | ((d) << 24))
-#define MKBETAG(a,b,c,d) ((d) | ((c) << 8) | ((b) << 16) | ((a) << 24))
+/**
+ * Count number of bits set to one in x
+ * @param x value to count bits of
+ * @return the number of bits set to one in x
+ */
+static av_always_inline av_const int av_popcount64_c(uint64_t x)
+{
+    return av_popcount(x) + av_popcount(x >> 32);
+}
+
+#define MKTAG(a,b,c,d) ((a) | ((b) << 8) | ((c) << 16) | ((unsigned)(d) << 24))
+#define MKBETAG(a,b,c,d) ((d) | ((c) << 8) | ((b) << 16) | ((unsigned)(a) << 24))
 
 /**
  * Convert a UTF-8 character (up to 4 bytes) to its 32-bit UCS-4 encoded form.
@@ -384,4 +397,7 @@ static av_always_inline av_const int av_popcount_c(uint32_t x)
 #endif
 #ifndef av_popcount
 #   define av_popcount      av_popcount_c
+#endif
+#ifndef av_popcount64
+#   define av_popcount64    av_popcount64_c
 #endif

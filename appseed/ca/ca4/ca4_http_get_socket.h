@@ -8,8 +8,8 @@ namespace ca4
    {
    public:
 
-      http_get_socket(::sockets::socket_handler_base& handler,const string & url,const string & to_file = "");
-      http_get_socket(::sockets::socket_handler_base& handler,const string & host,port_t port,const string & url,const string & to_file = "");
+      http_get_socket(::sockets::socket_handler_base& handler,const string & url);
+      http_get_socket(::sockets::socket_handler_base& handler,const string & host,port_t port,const string & url);
 
       string m_strHeaderLocation;
 

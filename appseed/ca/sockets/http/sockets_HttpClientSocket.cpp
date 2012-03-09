@@ -22,8 +22,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "StdAfx.h"
 
+
 namespace sockets
 {
+
 
    http_client_socket::http_client_socket(socket_handler_base& h) :
       ::ca::ca(h.get_app()),
@@ -32,44 +34,50 @@ namespace sockets
       tcp_socket(h),
       http_tunnel(h),
       m_content_length((size_t)-1),
-      m_fil(NULL),
       m_content_ptr(0),
       m_b_complete(false),
-      m_b_close_when_complete(false)
+      m_b_close_when_complete(false),
+      m_memoryfile(h.get_app())
    {
-      m_pfile = NULL;
+
+
+      m_pfile           = NULL;
+
+
    }
 
 
-   http_client_socket::http_client_socket(socket_handler_base& h,const string & url_in) :
+   http_client_socket::http_client_socket(socket_handler_base & h, const string & strUrlParam) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
       http_tunnel(h),
       m_content_length((size_t)-1),
-      m_fil(NULL),
       m_content_ptr(0),
       m_b_complete(false),
-      m_b_close_when_complete(false)
+      m_b_close_when_complete(false),
+      m_memoryfile(h.get_app())
    {
-      string url;
-      url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
-      m_request.attr("http_protocol") = m_protocol;
-      outheader("host") = m_host;
-      m_request.attr("request_uri") = url;
-      m_response.attr("request_uri") = url;
-      m_strUrl = url_in;
+      
+      string strRequestUri;
+
+      url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
+
+      m_request.attr("http_protocol")     = m_protocol;
+      outheader("host")                   = m_host;
+      m_request.attr("request_uri")       = strRequestUri;
+      m_response.attr("request_uri")      = strRequestUri;
+
+      m_strUrl = strUrlParam;
+
       m_pfile = NULL;
+
    }
 
 
    http_client_socket::~http_client_socket()
    {
-      if (m_fil)
-      {
-         fclose(m_fil);
-      }
    }
 
 
@@ -107,23 +115,10 @@ namespace sockets
 
    void http_client_socket::OnHeaderComplete()
    {
-      if(m_pfile != NULL)
+
+      if(m_content_length != ((size_t) (-1)))
       {
-         if(m_content_length != ((size_t) (-1)))
-         {
-            gen::memory_file * pmemoryfile = dynamic_cast < gen::memory_file * > (m_pmemoryfile);
-            if(pmemoryfile != NULL)
-            {
-               pmemoryfile->allocate_internal(m_content_length);
-            }
-         }
-      }
-      else
-      {
-         if(m_content_length != ((size_t) (-1)))
-         {
-            //m_memoryData.allocate(m_content_length);
-         }
+         m_memoryfile.allocate_internal(m_content_length);
       }
 
    }
@@ -136,14 +131,18 @@ namespace sockets
    void http_client_socket::OnData(const char *buf,size_t len)
    {
       OnDataArrived(buf, len);
-      m_pfile->write(buf, len);
+      m_memoryfile.write(buf, len);
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {
          m_b_complete = true;
-         if(m_response["Content-Encoding"] == "gzip")
+         if(outheader("Content-Encoding").compare_value_ci("gzip") == 0)
          {
-            System.compress().ungz(*m_pmemoryfile);
+            System.compress().ungz(m_memoryfile);
+         }
+         if(m_pfile != NULL)
+         {
+            m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
          }
          OnContent();
          if (m_b_close_when_complete)
@@ -164,19 +163,9 @@ namespace sockets
    {
       if (!m_b_complete)
       {
-         if (m_fil)
-         {
-            fclose(m_fil);
-            m_fil = NULL;
-         }
          m_b_complete = true;
          OnContent();
       }
-   }
-
-   void http_client_socket::SetFilename(const string & x)
-   {
-      m_filename = x;
    }
 
    const string & http_client_socket::GetContent()
@@ -213,7 +202,7 @@ namespace sockets
 
    const unsigned char *http_client_socket::GetDataPtr() const
    {
-      return m_memoryData.get_data();
+      return m_memoryfile.get_data();
    }
 
    void http_client_socket::OnContent()
@@ -249,4 +238,8 @@ namespace sockets
       port = (port_t) System.url().get_port(url);
    }
 
+
 } // namespace sockets
+
+
+

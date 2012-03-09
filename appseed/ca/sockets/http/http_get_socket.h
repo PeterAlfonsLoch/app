@@ -40,8 +40,8 @@ namespace sockets
    {
    public:
       http_get_socket(socket_handler_base&);
-      http_get_socket(socket_handler_base&,const string & url,const string & to_file = "");
-      http_get_socket(socket_handler_base&,const string & host,port_t port,const string & url,const string & to_file = "");
+      http_get_socket(socket_handler_base&,const string & url);
+      http_get_socket(socket_handler_base&,const string & host,port_t port,const string & url);
       ~http_get_socket();
 
       void step();

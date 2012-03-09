@@ -42,21 +42,17 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(socket_handler_base& h,const string & url_in,const string & to_file) : 
+   http_get_socket::http_get_socket(socket_handler_base& h,const string & url_in) : 
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
       http_client_socket(h, url_in)
    {
-      if (to_file.get_length())
-      {
-         SetFilename(to_file);
-      }
    }
 
 
-   http_get_socket::http_get_socket(socket_handler_base& h,const string & host,port_t port,const string & url_in,const string & to_file) : 
+   http_get_socket::http_get_socket(socket_handler_base& h,const string & host,port_t port,const string & url_in) : 
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -65,10 +61,6 @@ namespace sockets
    {
       UNREFERENCED_PARAMETER(host);
       UNREFERENCED_PARAMETER(port);
-      if (to_file.get_length())
-      {
-         SetFilename(to_file);
-      }
    }
 
 

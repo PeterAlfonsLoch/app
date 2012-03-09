@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
+
 namespace sockets
 {
 
@@ -44,16 +45,19 @@ namespace sockets
       string      m_strRequest;
 
 
-      http_request_socket(socket_handler_base&);
-      http_request_socket(socket_handler_base&, const char * pszRequest, const string & url,const string & to_file = "");
-      http_request_socket(socket_handler_base&, const char * pszRequest, const string & host,port_t port,const string & url,const string & to_file = "");
+      http_request_socket(socket_handler_base & handler);
+      http_request_socket(socket_handler_base & handler, const char * pszRequest, const string & url);
+      http_request_socket(socket_handler_base & handler, const char * pszRequest, const string & host, port_t port, const string & url);
       ~http_request_socket();
 
+
       void step();
+
 
    };
 
 
-
-
 } // namespace sockets
+
+
+
