@@ -14,7 +14,6 @@
 		CE30D6D614653CB2001991EA /* cpu_architecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE30D6D414653CB2001991EA /* cpu_architecture.cpp */; };
 		CEA7AABF14412789007E04DE /* _argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0E14412789007E04DE /* _argcargv.cpp */; };
 		CEA7AAC014412789007E04DE /* _atol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0F14412789007E04DE /* _atol.cpp */; };
-		CEA7AAC214412789007E04DE /* _heap.h in Headers */ = {isa = PBXBuildFile; fileRef = CEA7AA1114412789007E04DE /* _heap.h */; };
 		CEA7AAC314412789007E04DE /* _initterm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA1214412789007E04DE /* _initterm.cpp */; };
 		CEA7AAC414412789007E04DE /* _libct.h in Headers */ = {isa = PBXBuildFile; fileRef = CEA7AA1314412789007E04DE /* _libct.h */; };
 		CEA7AAC514412789007E04DE /* _math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA1414412789007E04DE /* _math.cpp */; };
@@ -184,7 +183,6 @@
 		CE30D6D414653CB2001991EA /* cpu_architecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_architecture.cpp; sourceTree = "<group>"; };
 		CEA7AA0E14412789007E04DE /* _argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _argcargv.cpp; sourceTree = "<group>"; };
 		CEA7AA0F14412789007E04DE /* _atol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _atol.cpp; sourceTree = "<group>"; };
-		CEA7AA1114412789007E04DE /* _heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _heap.h; sourceTree = "<group>"; };
 		CEA7AA1214412789007E04DE /* _initterm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _initterm.cpp; sourceTree = "<group>"; };
 		CEA7AA1314412789007E04DE /* _libct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _libct.h; sourceTree = "<group>"; };
 		CEA7AA1414412789007E04DE /* _math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _math.cpp; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 				CEFF24681449CE8D0089FCAA /* ca2_types.h */,
 				CEA7AA0E14412789007E04DE /* _argcargv.cpp */,
 				CEA7AA0F14412789007E04DE /* _atol.cpp */,
-				CEA7AA1114412789007E04DE /* _heap.h */,
 				CEA7AA1214412789007E04DE /* _initterm.cpp */,
 				CEA7AA1314412789007E04DE /* _libct.h */,
 				CEA7AA1414412789007E04DE /* _math.cpp */,
@@ -571,7 +568,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEA7AAC214412789007E04DE /* _heap.h in Headers */,
 				CEA7AAC414412789007E04DE /* _libct.h in Headers */,
 				CEA7AACA14412789007E04DE /* atol.h in Headers */,
 				CEA7AACF14412789007E04DE /* c_c.h in Headers */,
@@ -682,7 +678,7 @@
 		CEA754BB14411F2B007E04DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "c" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -814,7 +810,7 @@
 				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseedcore/ca2/ $(WorkspaceDir)../../ . ..";
 				VALID_ARCHS = x86_64;
@@ -844,7 +840,7 @@
 				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../appseedcore/ca2/ $(WorkspaceDir)../../ . ..";
 				VALID_ARCHS = x86_64;

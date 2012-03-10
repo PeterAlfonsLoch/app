@@ -302,3 +302,9 @@ BOOL SetTextColor(HDC hdc, COLORREF crText)
    hdc->m_cgcolorrefText = mac_create_color(crText);
    return TRUE;
 }
+
+HBRUSH CreateSolidBrush(COLORREF cr)
+{
+    return NULL;
+}
+
