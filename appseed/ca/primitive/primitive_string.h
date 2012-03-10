@@ -355,8 +355,8 @@ public:
    bool contains_wci(const char * psz, strsize start = 0, strsize count = -1);
    bool contains_wci(const string & str, strsize start = 0, strsize count = -1);
    // Advanced manipulation
-   
-   
+
+
    void reserve(strsize res_arg = 0);
 
    // Delete 'nCount' characters, starting at index 'iIndex'
@@ -605,8 +605,8 @@ public:
    friend string CLASS_DECL_ca operator+(const var & var, string psz);
    friend string CLASS_DECL_ca operator+(string psz, const var & var);
 
-   
-      
+
+
    friend bool CLASS_DECL_ca operator==(string str1,const string_interface & str2 );
    friend bool CLASS_DECL_ca operator==(const string_interface & str1,string str2 );
    friend bool CLASS_DECL_ca operator==(string str1,string str2 ) throw();
@@ -616,8 +616,8 @@ public:
    friend bool CLASS_DECL_ca operator==(PCYSTR psz1,string str2 ) THROWS;
    friend bool CLASS_DECL_ca operator==(string str1, int i);
    friend bool CLASS_DECL_ca operator==(int i, string str1);
-   friend bool CLASS_DECL_ca operator==(string str1, int i);
-   friend bool CLASS_DECL_ca operator==(int i, string str1);
+//   friend bool CLASS_DECL_ca operator==(string str1, int i);
+//   friend bool CLASS_DECL_ca operator==(int i, string str1);
    friend bool CLASS_DECL_ca operator!=(string str1,string str2 ) throw();
    friend bool CLASS_DECL_ca operator!=(string str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator!=(PCXSTR psz1,string str2 ) throw();

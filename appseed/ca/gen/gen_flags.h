@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ex1/ex1_byte_serializable.h"
-#include "DispatchPtrArray.h"
+#include "radix/DispatchPtrArray.h"
 #include "collection/sort_array.h"
 
 class CLASS_DECL_ca base_sort_serializable_int_ptr_array :

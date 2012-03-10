@@ -14,7 +14,7 @@ namespace gen
 
 
       class CLASS_DECL_ca math :
-         virtual public ::radix::object  
+         virtual public ::radix::object
       {
       private:
          double         dPi;
@@ -28,7 +28,7 @@ namespace gen
          rng            m_rng;
 
       public:
-         
+
          math(::ca::application * papp);
          virtual ~math();
 
@@ -53,6 +53,8 @@ namespace gen
          inline int64_t RandRange(int64_t iMin, uint64_t uiMax) { return RandRange((int64_t) iMin, (int64_t) uiMax); }
          inline int64_t RandRange(uint64_t uiMin, int64_t iMax) { return RandRange((int64_t) uiMin, (int64_t) iMax); }
 
+#if !defined(LINUX)
+
          inline int64_t RandRange(unsigned long ulMin, unsigned long ulMax) { return RandRange((int64_t) ulMin, (int64_t) ulMax); }
          inline int64_t RandRange(unsigned long ulMin, int iMax) { return RandRange((int64_t) ulMin, (int64_t) iMax); }
          inline int64_t RandRange(int iMin, unsigned long ulMax) { return RandRange((int64_t) iMin, (int64_t) ulMax); }
@@ -63,6 +65,7 @@ namespace gen
          inline int64_t RandRange(unsigned long ulMin, uint64_t uiMax) { return RandRange((int64_t) ulMin, (int64_t) uiMax); }
          inline int64_t RandRange(uint64_t uiMin, unsigned long ulMax) { return RandRange((int64_t) uiMin, (int64_t) ulMax); }
 
+#endif
 
          int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
          int gen_rand();
@@ -72,11 +75,11 @@ namespace gen
          int rand_max();
          double LinearMap(
             double dMin, double dMax,
-            double dValue, 
+            double dValue,
             double dValueMin,
             double dValueMax);
          double GetPi();
-         
+
          static BOOL IsPowerOfTwo(unsigned int uiValue);
          static unsigned int ReverseBits (unsigned index, unsigned NumBits );
       //   template <class N> static inline void MaxClip(N * pnClipValue, N nMaxValue);
@@ -113,7 +116,7 @@ namespace gen
          if(*pnClipValue < nMinValue)
             *pnClipValue = nMinValue;
       }
-   
+
 
    } // namespace math
 

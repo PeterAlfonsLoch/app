@@ -223,12 +223,16 @@ namespace gen
          return str;
       }
 
+#if !defined(LINUX)
+
       inline CLASS_DECL_ca  string  itoa(unsigned long ui)
       {
          string str;
          itoa(str, ui);
          return str;
       }
+
+#endif
 
       inline CLASS_DECL_ca  string  itoa(uint64_t ui)
       {
@@ -250,16 +254,16 @@ namespace gen
       }
 
       inline CLASS_DECL_ca bool     trimmed_is_empty(const char * psz)
-      { 
-         
-         string str(psz); 
-         
-         str.trim(); 
-         
+      {
+
+         string str(psz);
+
+         str.trim();
+
          return str.is_empty();
 
       }
-      
+
 
 
 
