@@ -59,3 +59,5 @@ CLASS_DECL_c count utf16_len(const char * psz);
 CLASS_DECL_c void utf8_to_16(wchar_t * pwsz, const char * psz);
 CLASS_DECL_c wchar_t * utf8_to_16(const char * psz);
 CLASS_DECL_c char * utf16_to_8(const wchar_t * psz);
+
+

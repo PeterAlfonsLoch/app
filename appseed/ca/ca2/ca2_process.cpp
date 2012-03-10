@@ -40,8 +40,10 @@ namespace ca2
       PROCESS_INFORMATION pi;
 
       memset(&pi, 0, sizeof(pi));
-         
-      if(!::CreateProcess(NULL, lpCommand, 
+
+
+
+      if(!::CreateProcess(NULL, lpCommand,
                          NULL, NULL, FALSE, 0, NULL, NULL,
                          &si, &pi))
       {
@@ -95,8 +97,8 @@ namespace ca2
       PROCESS_INFORMATION pi;
 
       memset(&pi, 0, sizeof(pi));
-         
-      if(!::CreateProcess(NULL, lpCommand, 
+
+      if(!::CreateProcess(NULL, lpCommand,
                          NULL, NULL, FALSE, 0, NULL, NULL,
                          &si, &pi))
       {
@@ -108,7 +110,7 @@ namespace ca2
       ::CloseHandle(pi.hThread);
       return true;
    }
-   
+
    process::process_thread::process_thread(::ca::application * papp) :
       ca(papp),
       thread(papp),

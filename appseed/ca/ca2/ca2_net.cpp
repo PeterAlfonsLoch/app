@@ -1,5 +1,11 @@
 #include "StdAfx.h"
 
+#ifdef LINUX
+#include <ctype.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#endif
+
 namespace ca2
 {
 
@@ -133,13 +139,13 @@ namespace ca2
       {
          l = pitem->m_ipaddr;
          DWORD dwTimeTelmo2 = GetTickCount();
-         TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)", 
+         TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
             (DWORD)((byte*)&pitem->m_ipaddr)[0],
             (DWORD)((byte*)&pitem->m_ipaddr)[1],
             (DWORD)((byte*)&pitem->m_ipaddr)[2],
             (DWORD)((byte*)&pitem->m_ipaddr)[3],
             (dwTimeTelmo2 - dwTimeTelmo1));
-         return pitem->r;         
+         return pitem->r;
       }
       if(pitem == NULL)
          pitem = new dns_cache_item;
@@ -150,7 +156,7 @@ namespace ca2
       pitem->m_dwLastChecked = ::GetTickCount();
       m_mapCache.set_at(str, pitem);
       DWORD dwTimeTelmo2 = GetTickCount();
-      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)", 
+      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (DWORD)((byte*)&pitem->m_ipaddr)[0],
          (DWORD)((byte*)&pitem->m_ipaddr)[1],
          (DWORD)((byte*)&pitem->m_ipaddr)[2],

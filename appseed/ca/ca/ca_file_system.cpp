@@ -56,7 +56,7 @@ namespace ca
 
          for(int i = 0; i < iLevelCount; i++)
          {
-            
+
             strsize iFind1 = str.reverse_find('/', iLast);
 
             strsize iFind2 = str.reverse_find('\\', iLast);
@@ -528,7 +528,7 @@ namespace ca
 
       string system::title_(const char * path)
       {
-         
+
          string str = name_(path);
 
          strsize iPos = str.reverse_find('.');
@@ -546,13 +546,13 @@ namespace ca
 
       string system::name_(const char * path)
       {
-         
+
          string str(path);
-         
+
          strsize iPos;
 
          strsize iPos1 = str.reverse_find('\\');
-         
+
          strsize iPos2 = str.reverse_find('/');
 
          if(iPos1 >= 0 && iPos2 >= 0)
@@ -830,7 +830,7 @@ namespace ca
 
          if(papp->m_bZipIsDir)
          {
-            
+
             strsize iFind = gen::str::find_ci(".zip:", strPath);
 
             zip::Util ziputil;
@@ -1071,6 +1071,9 @@ namespace ca
 
 
 #include "OpenedFiles.h"
+
+#ifndef LINUX
+
 #include <Tlhelp32.h>
 #include <Psapi.h>
 #include "Utils.h"
@@ -1090,7 +1093,7 @@ const LPCTSTR DRV_FILE_NAME = _T("ListOpenedFileDrv.sys");
 // This Function install the driver and starts it
 HANDLE OnlyGetDrv()
 {
-		
+
 
         HMODULE hModule = GetModuleHandle(_T("ca2.dll"));
         if( !hModule )
@@ -1111,7 +1114,7 @@ HANDLE OnlyGetDrv()
         {
            csFilePath += DRIVER_FILE_NAME_32;
         }
-        
+
         if( !PathFileExists( csFilePath ))
         {
             MessageBox(NULL, "Cannot find driver " + csFilePath, "Cannot find driver " + csFilePath, MB_OK );
@@ -1122,7 +1125,7 @@ HANDLE OnlyGetDrv()
 
 	// Delete the temp file...
 	//DeleteFile( csPath );
-	HANDLE hFile = CreateFile( DRV_DOS_NAME, GENERIC_READ|GENERIC_WRITE, 
+	HANDLE hFile = CreateFile( DRV_DOS_NAME, GENERIC_READ|GENERIC_WRITE,
 								FILE_SHARE_READ | FILE_SHARE_WRITE, 0,
 								OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0 );
 	return hFile;
@@ -1141,7 +1144,7 @@ extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Fi
 
 	if( Filter& FILES_ONLY )
 	{
-		
+
 
 		// Extract the driver from the resource and install it.
 		//HANDLE hDriver = ExtractAndInstallDrv();
@@ -1151,11 +1154,11 @@ extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Fi
 		if(  !hDriver )
 		{
 			pGetFinalPathNameByHandle = (GetFinalPathNameByHandleDef)GetProcAddress( GetModuleHandle(_T("kernel32.dll")), "GetFinalPathNameByHandleW" );
-		}		
+		}
 		// Now walk all handles
 		EnumerateOpenedFiles( csPath, CallBackProc, pUserContext, hDriver, pGetFinalPathNameByHandle );
 		//if( hDriver )
-		{	// Time to wind up		
+		{	// Time to wind up
 			//StopAndUninstallDrv( hDriver );
 		}
 	}
@@ -1178,7 +1181,7 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 	THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new BYTE[MAX_PATH * 8];
-	
+
 	GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 	for( g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;  )
 	{
@@ -1212,19 +1215,19 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 			pThreadParam->bStatus = true;
 		}
 		SetEvent( pThreadParam->hFinishedEvent );
-		
+
 	}
    delete[] (BYTE *) pinfo;
 	return 0;
 }
 
 void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pUserContext, HANDLE hDriver,
-						   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle ) 
+						   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle )
 {
 	int nFileType = XP_FILETYPE;
-	OSVERSIONINFO info = { 0 }; 
+	OSVERSIONINFO info = { 0 };
 	info.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	GetVersionEx(&info); 
+	GetVersionEx(&info);
 	if( info.dwMajorVersion == 6 &&
 		info.dwMinorVersion == 0 )
 	{
@@ -1242,7 +1245,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 		bShortPath = true;
 	}
 
-	HMODULE hModule = GetModuleHandle(_T("ntdll.dll"));		
+	HMODULE hModule = GetModuleHandle(_T("ntdll.dll"));
 	PNtQuerySystemInformation NtQuerySystemInformation = (PNtQuerySystemInformation)GetProcAddress( hModule, "NtQuerySystemInformation" );
 	if( 0 == NtQuerySystemInformation )
 	{
@@ -1293,7 +1296,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 		{
 			if( !ThreadHandle )
 			{
-				ThreadHandle = CreateThread( 0, 0, ThreadProc, &ThreadParams, 0, 0 );	
+				ThreadHandle = CreateThread( 0, 0, ThreadProc, &ThreadParams, 0, 0 );
 			}
 			ResetEvent( ThreadParams.hFinishedEvent );
 			SetEvent( ThreadParams.hStartEvent );
@@ -1335,7 +1338,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 			if( WAIT_TIMEOUT == WaitForSingleObject( ThreadHandle, 1000 ))
 			{
 				TerminateThread( ThreadHandle, 0 );
-			}			
+			}
 			CloseHandle( ThreadHandle );
 		}
 		CloseHandle( ThreadParams.hStartEvent );
@@ -1360,12 +1363,12 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 			ADDRESS_INFO stAddress;
 			stAddress.pAddress = sh.pAddress;
 			DWORD dwReturn = 0;
-			BOOL bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), 
+			BOOL bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO),
 				&stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL );
 
-			
-			if( bSuccess && stHandle.tcFileName[0] != 0 && 
-				stHandle.uType != FILE_DEVICE_SOUND && 
+
+			if( bSuccess && stHandle.tcFileName[0] != 0 &&
+				stHandle.uType != FILE_DEVICE_SOUND &&
 				stHandle.uType != FILE_DEVICE_NAMED_PIPE )
 			{
 
@@ -1388,7 +1391,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
             {
                 continue;
             }
-		}		
+		}
 		else
 		{
 			return;
@@ -1472,36 +1475,36 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR 
 	int nItemCount = -1;
 	// Enumerate modules of the above process
 	for( int nIdx = 0; nIdx < nCount;nIdx++ )
-	{    
+	{
 		if( 0 != pDwId[nIdx] )
 		{
-			HANDLE hModuleSnap = INVALID_HANDLE_VALUE; 
-			MODULEENTRY32 me32; 
-			// Take a snapshot of all modules in the specified process. 
-			hModuleSnap = CreateToolhelp32Snapshot( TH32CS_SNAPMODULE, pDwId[nIdx] ); 
-			if( hModuleSnap == INVALID_HANDLE_VALUE ) 
-			{     
-				continue; 
+			HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
+			MODULEENTRY32 me32;
+			// Take a snapshot of all modules in the specified process.
+			hModuleSnap = CreateToolhelp32Snapshot( TH32CS_SNAPMODULE, pDwId[nIdx] );
+			if( hModuleSnap == INVALID_HANDLE_VALUE )
+			{
+				continue;
 			}
-			me32.dwSize = sizeof( MODULEENTRY32 ); 
-			if( !Module32First( hModuleSnap, &me32 ) ) 
-			{     
+			me32.dwSize = sizeof( MODULEENTRY32 );
+			if( !Module32First( hModuleSnap, &me32 ) )
+			{
 				CloseHandle( hModuleSnap );
-				continue; 
+				continue;
 			}
-			bool bFirst = true;			
+			bool bFirst = true;
 			PROCESS_INFO_t stInfo;
-			do 
-			{ 
+			do
+			{
 				string csModule;
 				if( bFirst )
 				{
 					// First module is always the exe name
-					bFirst = false;					
+					bFirst = false;
 					if( !PathFileExists( me32.szExePath ))
 					{
 						TCHAR tcFileName[MAX_PATH];
-						HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, TRUE, pDwId[nIdx] );                        
+						HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, TRUE, pDwId[nIdx] );
 						if( GetProcessImageFileName( hProcess, tcFileName, MAX_PATH ))
 						{
 							GetDrive( tcFileName, csModule, false );
@@ -1511,7 +1514,7 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR 
 					else
 					{
 						csModule = me32.szExePath;
-					}					
+					}
 					csModule.make_lower();
 				}
 				else
@@ -1542,8 +1545,8 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR 
 				stOFInfo.lpFile = wstrCallback;
 				CallBackProc( stOFInfo, pUserContext );
 			}
-			while( Module32Next( hModuleSnap, &me32 ) ); 
-			CloseHandle( hModuleSnap ); 
+			while( Module32Next( hModuleSnap, &me32 ) );
+			CloseHandle( hModuleSnap );
 		}
 	}
 
@@ -1552,3 +1555,5 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR 
 }
 
 
+
+#endif // LINUX

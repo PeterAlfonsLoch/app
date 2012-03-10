@@ -346,7 +346,7 @@ void str_reverse(char * sz)
 
 void zero_pad(char * sz, count iPad)
 {
-   
+
    count iLen = strlen_dup(sz);
 
    count iZeroCount = iPad - iLen;
@@ -428,7 +428,7 @@ int str_begins_ci_dup(const char * sz1, const char * prefix)
 
 int str_ends_ci_dup(const char * psz, const char * pszSuffix)
 {
-   
+
    count iLen = strlen_dup(psz);
 
    count iLenSuffix = strlen_dup(pszSuffix);
@@ -686,6 +686,11 @@ int isdigit_dup(int ch)
 int isalpha_dup(int ch)
 {
    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
+}
+
+int isalnum_dup(int ch)
+{
+   return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9');
 }
 
 int isspace_dup(int ch)

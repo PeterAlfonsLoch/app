@@ -1195,6 +1195,8 @@
 		<Unit filename="plane/plane_system.h" />
 		<Unit filename="plane/plane_system_allocate.h" />
 		<Unit filename="plane/plane_system_ca_template.h" />
+		<Unit filename="plane/plane_system_gen_str.h" />
+		<Unit filename="plane/plane_system_radix_factory.h" />
 		<Unit filename="plane/plane_system_template_trace.h" />
 		<Unit filename="planebase/cube4_application.h" />
 		<Unit filename="planebase/planebase.h" />

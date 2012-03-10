@@ -30,7 +30,16 @@ namespace gen
       }
 
 
+
+
    } // namespace str
 
 
 } // namespace gen
+
+
+
+inline id::operator string()
+{
+   return string(m_psz);
+}

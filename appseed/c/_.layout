@@ -71,7 +71,7 @@
 		<Cursor position="16" topLine="0" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="4">
-		<Cursor position="247" topLine="0" />
+		<Cursor position="277" topLine="0" />
 	</File>
 	<File name="linux/c_os_binreloc.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="18872" topLine="708" />
@@ -170,10 +170,10 @@
 		<Cursor position="2780" topLine="107" />
 	</File>
 	<File name="str.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="4071" topLine="208" />
+		<Cursor position="14536" topLine="674" />
 	</File>
 	<File name="str.h" open="0" top="0" tabpos="1">
-		<Cursor position="1305" topLine="10" />
+		<Cursor position="2990" topLine="27" />
 	</File>
 	<File name="template.h" open="0" top="0" tabpos="0">
 		<Cursor position="281" topLine="0" />

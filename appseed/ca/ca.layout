@@ -22,14 +22,17 @@
 	<File name="ca/ca_create_context.h" open="0" top="0" tabpos="22">
 		<Cursor position="345" topLine="3" />
 	</File>
-	<File name="ca/ca_dib.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="72373" topLine="2702" />
+	<File name="ca/ca_dib.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="72554" topLine="2702" />
+	</File>
+	<File name="ca/ca_dir_system.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="26501" topLine="783" />
 	</File>
 	<File name="ca/ca_file_application.cpp" open="0" top="0" tabpos="48">
 		<Cursor position="1449" topLine="45" />
 	</File>
 	<File name="ca/ca_file_system.cpp" open="0" top="0" tabpos="49">
-		<Cursor position="26110" topLine="855" />
+		<Cursor position="44950" topLine="1522" />
 	</File>
 	<File name="ca/ca_graphics.cpp" open="0" top="0" tabpos="39">
 		<Cursor position="65735" topLine="2337" />
@@ -53,7 +56,10 @@
 		<Cursor position="67" topLine="0" />
 	</File>
 	<File name="ca2/ca2_net.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="309" topLine="0" />
+		<Cursor position="64" topLine="0" />
+	</File>
+	<File name="ca2/ca2_process.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="901" topLine="22" />
 	</File>
 	<File name="calculator/calculator_application.h" open="0" top="0" tabpos="31">
 		<Cursor position="316" topLine="0" />
@@ -75,6 +81,9 @@
 	</File>
 	<File name="collection/sort_array.h" open="0" top="0" tabpos="6">
 		<Cursor position="2911" topLine="113" />
+	</File>
+	<File name="colorertake5/region.h" open="0" top="0" tabpos="0">
+		<Cursor position="352" topLine="0" />
 	</File>
 	<File name="crypto/datatypes.h" open="0" top="0" tabpos="3">
 		<Cursor position="11110" topLine="391" />
@@ -109,6 +118,9 @@
 	<File name="gen/gen_holder.h" open="0" top="0" tabpos="16">
 		<Cursor position="4969" topLine="263" />
 	</File>
+	<File name="gen/gen_international_locale_style.h" open="0" top="0" tabpos="0">
+		<Cursor position="511" topLine="6" />
+	</File>
 	<File name="gen/gen_str2.h" open="0" top="0" tabpos="0">
 		<Cursor position="6020" topLine="167" />
 	</File>
@@ -130,11 +142,17 @@
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="29">
 		<Cursor position="16976" topLine="510" />
 	</File>
+	<File name="plane/plane_system_gen_str.h" open="0" top="0" tabpos="0">
+		<Cursor position="590" topLine="9" />
+	</File>
 	<File name="planebase/planebase.h" open="0" top="0" tabpos="16">
 		<Cursor position="70" topLine="0" />
 	</File>
 	<File name="planebase/planebase_application.h" open="0" top="0" tabpos="13">
 		<Cursor position="164" topLine="0" />
+	</File>
+	<File name="primitive/id.h" open="0" top="0" tabpos="0">
+		<Cursor position="4744" topLine="185" />
 	</File>
 	<File name="primitive/string.h" open="0" top="0" tabpos="47">
 		<Cursor position="10160" topLine="238" />

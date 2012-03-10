@@ -200,6 +200,8 @@ public:
       return m_psz;
    }
 
+   inline operator string();
+
    inline bool is_null() const
    {
       return m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_psz == NULL);
